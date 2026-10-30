@@ -1,0 +1,34 @@
+{
+  "id": "1384F",
+  "platform": "codeforces",
+  "contestId": 1384,
+  "index": "F",
+  "title": "Rearrange",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1384/problem/F",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Koa the Koala has a matrix $A$ of $n$ rows and $m$ columns. Elements of this matrix are distinct integers from $1$ to $n \\cdot m$ (each number from $1$ to $n \\cdot m$ appears exactly once in the matrix).\n\nFor any matrix $M$ of $n$ rows and $m$ columns let's define the following:\n\n- The $i$-th row of $M$ is defined as $R_i(M) = [ M_{i1}, M_{i2}, \\ldots, M_{im} ]$ for all $i$ ($1 \\le i \\le n$).\n- The $j$-th column of $M$ is defined as $C_j(M) = [ M_{1j}, M_{2j}, \\ldots, M_{nj} ]$ for all $j$ ($1 \\le j \\le m$).\n\nKoa defines $S(A) = (X, Y)$ as the spectrum of $A$, where $X$ is the set of the maximum values in rows of $A$ and $Y$ is the set of the maximum values in columns of $A$.\n\nMore formally:\n\n- $X = \\{ \\max(R_1(A)), \\max(R_2(A)), \\ldots, \\max(R_n(A)) \\}$\n- $Y = \\{ \\max(C_1(A)), \\max(C_2(A)), \\ldots, \\max(C_m(A)) \\}$\n\nKoa asks you to find some matrix $A'$ of $n$ rows and $m$ columns, such that each number from $1$ to $n \\cdot m$ appears exactly once in the matrix, and the following conditions hold:\n\n- $S(A') = S(A)$\n- $R_i(A')$ is bitonic for all $i$ ($1 \\le i \\le n$)\n- $C_j(A')$ is bitonic for all $j$ ($1 \\le j \\le m$)\n\nAn array $t$ ($t_1, t_2, \\ldots, t_k$) is called bitonic if it first increases and then decreases.\n\nMore formally: $t$ is bitonic if there exists some position $p$ ($1 \\le p \\le k$) such that: $t_1 \\lt t_2 \\lt \\ldots \\lt t_p \\gt t_{p+1} \\gt \\ldots \\gt t_k$.\n\nHelp Koa to find such matrix or to determine that it doesn't exist.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $m$ ($1 \\le n, m \\le 250$)  — the number of rows and columns of $A$.\n\nEach of the ollowing $n$ lines contains $m$ integers. The $j$-th integer in the $i$-th line denotes element $A_{ij}$ ($1 \\le A_{ij} \\le n \\cdot m$) of matrix $A$. It is guaranteed that every number from $1$ to $n \\cdot m$ appears exactly once among elements of the matrix.\n\n## Output\n\nIf such matrix doesn't exist, print $-1$ on a single line.\n\nOtherwise, the output must consist of $n$ lines, each one consisting of $m$ space separated integers  — a description of $A'$.\n\nThe $j$-th number in the $i$-th line represents the element $A'_{ij}$.\n\nEvery integer from $1$ to $n \\cdot m$ should appear exactly once in $A'$, every row and column in $A'$ must be bitonic and $S(A) = S(A')$ must hold.\n\nIf there are many answers print any.\n\n## Note\n\nLet's analyze the first sample:\n\nFor matrix $A$ we have:\n\n- $X = \\{ \\max(R_1(A)), \\max(R_2(A)), \\max(R_3(A)) \\} = \\{ 6, 9, 8 \\}$\n- $Y = \\{ \\max(C_1(A)), \\max(C_2(A)), \\max(C_3(A)) \\} = \\{ 4, 8, 9 \\}$\n- So $S(A) = (X, Y) = (\\{ 6, 9, 8 \\}, \\{ 4, 8, 9 \\})$\n\nFor matrix $A'$ we have:\n\n- Note that each of this arrays are bitonic.\n- $X = \\{ \\max(R_1(A')), \\max(R_2(A')), \\max(R_3(A')) \\} = \\{ 9, 8, 6 \\}$\n- $Y = \\{ \\max(C_1(A')), \\max(C_2(A')), \\max(C_3(A')) \\} = \\{ 9, 8, 4 \\}$\n- So $S(A') = (X, Y) = (\\{ 9, 8, 6 \\}, \\{ 9, 8, 4 \\})$",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3\n3 5 6\n1 7 9\n4 8 2\n",
+      "output": "9 5 1\n7 8 2\n3 6 4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2 2\n4 1\n3 2\n",
+      "output": "4 1\n3 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3 4\n12 10 8 6\n3 4 5 7\n2 11 9 1\n",
+      "output": "12 8 6 1\n10 11 9 2\n3 4 5 7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:47:07.674Z"
+}
