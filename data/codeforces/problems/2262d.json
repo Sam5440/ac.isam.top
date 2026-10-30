@@ -1,0 +1,29 @@
+{
+  "id": "2262D",
+  "platform": "codeforces",
+  "contestId": 2262,
+  "index": "D",
+  "title": "PLUSworld",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2262/problem/D",
+  "difficulty": 2900,
+  "tags": [
+    "constructive algorithms",
+    "graphs",
+    "greedy"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Farmer John is building *PLUSworld*, a giant barn complex with $n$ barns numbered from $1$ to $n$. For each $1 \\le i \\le n$, there is currently a one-way walkway from barn $i$ to barn $a_i$.\n\nBefore opening *PLUSworld*, Farmer John wants to reconfigure the roads so that, for every $1 \\le i \\le n$, the road from barn $i$ points to barn $b_i$. The target roads have the special property that each road points to its own barn or to a higher-numbered barn $(i \\le b_i)$.\n\nTo do this, he sends Bessie to one barn of his choice. Let $p$ be the barn where Bessie is currently located. Bessie may perform the following operations any number of times:\n\n- Operation $1$: Increase the destination of the road from the current barn by $1$. More formally, set $a_p := a_p + 1$. This operation may only be performed if $a_p \\lt n$.\n- Operation $2$: Follow the road from the current barn. More formally, set $p := a_p$.\n\nOperation $1$ changes the array $a$, but Bessie stays at the same barn. Operation $2$ changes Bessie's current barn, but does not change the array.\n\nYour goal is to make the array $a$ equal to the array $b$.\n\nDetermine whether this is possible. If it is possible, output any valid starting barn and any sequence of operations that makes $a=b$.\n\nIt can be shown that if a solution exists, then there exists one using at most $2n^2$ operations.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le 1000$).\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1\\le a_i\\le n$).\n\nThe third line contains $n$ integers $b_1,b_2,\\ldots,b_n$ ($\\color{red}{i\\le b_i}\\le n$).\n\nIt is guaranteed that the sum of $n^2$ over all test cases does not exceed $1000^2$.\n\n## Output\n\nFor each test case, if it is impossible to make $a$ equal to $b$, output a single integer $-1$.\n\nOtherwise, output two lines.\n\nOn the first line, output two integers $o$ and $p$ — the number of operations you will perform and the initial index you choose ($0 \\leq o \\leq 2n^2$, $1 \\leq p \\leq n$).\n\nOn the second line, output $o$ integers $c_1,c_2,\\ldots,c_o$ ($1\\le c_i\\le 2$), where $c_i$ is the type of the $i$-th operation.\n\nIf $c_i=1$, you perform operation $1$ and set $a_p:=a_p+1$. This operation may only be used if $a_p \\lt n$ at that moment.\n\nIf $c_i=2$, you perform operation $2$ and set $p:=a_p$.\n\nAfter performing all $o$ operations, the array $a$ must be equal to $b$.\n\nIf there are multiple valid answers, you may output any of them.\n\n## Note\n\nFor the first test case, Bessie starts at barn $1$. She increases $a_1$ from $1$ to $2$, follows the road to barn $2$, and increases $a_2$ from $2$ to $3$. The resulting array is $[2,3,3]$, which is equal to $b$.\n\nFor the second test case, $a_1=2 \\gt b_1=1$. Since road destinations can only be increased, it is impossible to make $a_1$ equal to $b_1$, so the answer is $-1$.\n\nFor the third test case, Bessie starts at barn $1$. She changes $a_1$ from $1$ to $2$ and follows the road to barn $2$. She then changes $a_2$ from $1$ to $3$ and moves to barn $3$, changes $a_3$ from $1$ to $4$ and moves to barn $4$, and finally changes $a_4$ from $4$ to $5$. The resulting array is $[2,3,4,5,5]$, which is equal to $b$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "9\n3\n1 2 3\n2 3 3\n2\n2 2\n1 2\n5\n1 1 1 4 5\n2 3 4 5 5\n3\n1 1 1\n1 2 3\n3\n1 1 1\n3 2 3\n3\n1 1 3\n1 2 3\n4\n1 1 1 4\n3 3 4 4\n4\n1 4 3 4\n1 4 3 4\n5\n1 3 4 5 4\n2 3 4 5 5\n",
+      "output": "5 1\n1 2 1 2 2\n-1\n12 1\n1 2 1 1 2 1 1 1 2 1 2 2\n-1\n-1\n2 2\n1 2\n12 1\n1 1 2 1 2 1 1 2 1 1 2 2\n0 1\n7 1\n1 2 2 2 2 1 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:15:26.184Z"
+}

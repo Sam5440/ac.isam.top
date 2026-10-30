@@ -1,0 +1,27 @@
+{
+  "id": "arc222_c",
+  "platform": "atcoder",
+  "contestId": "arc222",
+  "index": "C",
+  "title": "2 Directions vs 4 Directions",
+  "titleZh": "2 个方向 vs 4 个方向",
+  "url": "https://atcoder.jp/contests/arc222/tasks/arc222_c",
+  "difficulty": 1945,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is an $N\\times N$ grid, where $N$ is an integer at least $2$. For $1\\leq i,j\\leq N$, the cell at row $i$ from the top and column $j$ from the left is denoted by $(i,j)$.\n\nInitially, all cells are black. For each cell $(i,j)$, a cost $A_{i,j}$ to change the color of the cell from black to white is given.\n\nAlice and Bob play a game using this grid and one piece. The game consists of the following three steps.\n\n##### Step 1\n\nThe referee specifies the cell where the piece is initially placed.\n\n##### Step 2\n\nAlice performs the following operation zero or more times:\n\n- Choose a black cell $(i,j)$, pay cost $A_{i,j}$, and change that cell to white.\n\n##### Step 3\n\nPlace the piece on the cell specified as the initial position in Step 1. Then, starting with Alice, Alice and Bob take turns making moves.\n\n- On Alice's turn, Alice moves the piece to an adjacent cell to the **left or right**.\n- On Bob's turn, Bob moves the piece to an adjacent cell in any of the **up, down, left, or right** directions.\n\nA move that would take the piece outside the grid is not allowed.\n\nStep 3 ends immediately after Alice and Bob have each taken $10^{10}$ turns.\n\nAt the end of Step 3, if the piece is on a white cell, Alice wins; if it is on a black cell, Bob wins. In Step 3, Alice and Bob each act optimally to win.\n\nFor each cell $(h,w)$, find the minimum total cost that Alice must pay in Step 2 to guarantee a win if $(h,w)$ is specified as the initial cell in Step 1.\n\n$T$ test cases are given; solve each of them.\n\n## Constraints\n\n- $1\\leq T\\leq 10^4$\n- $2\\leq N\\leq 500$\n- $0\\leq A_{i,j}\\leq 10^9$\n- All input values are integers.\n- The sum of $N^2$ over all test cases is at most $500^2$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN\nA_{1,1} A_{1,2} \\ldots A_{1,N}\nA_{2,1} A_{2,2} \\ldots A_{2,N}\n\\vdots\nA_{N,1} A_{N,2} \\ldots A_{N,N}\n```\n\n## Output\n\nOutput $N$ lines per test case.\n\nFor each test case, the $h$-th line should contain the minimum total cost that Alice must pay in Step 2 to guarantee a win for each of $(h,1),(h,2),\\ldots,(h,N)$ specified as the initial cell, space-separated.",
+  "statementZhMd": "## 题目描述\n\n有一个 $N\\times N$ 的网格，其中 $N$ 是一个不小于 $2$ 的整数。对于 $1\\leq i,j\\leq N$，从上往下数第 $i$ 行、从左往右数第 $j$ 列的单元格记为 $(i,j)$。\n\n初始时，所有单元格都是黑色的。对于每个单元格 $(i,j)$，给定一个将该单元格从黑色变为白色的代价 $A_{i,j}$。\n\nAlice 和 Bob 使用这个网格以及一个棋子进行游戏。游戏由以下三个步骤组成。\n\n##### 步骤 1\n\n裁判指定棋子最初所在的单元格。\n\n##### 步骤 2\n\nAlice 执行以下操作零次或多次：\n\n- 选择一个黑色单元格 $(i,j)$，支付代价 $A_{i,j}$，并将该单元格变为白色。\n\n##### 步骤 3\n\n将棋子放在步骤 1 中指定的初始位置。然后从 Alice 开始，Alice 和 Bob 轮流移动棋子。\n\n- 在 Alice 的回合，Alice 将棋子移动到左侧或右侧的相邻单元格。\n- 在 Bob 的回合，Bob 将棋子移动到上、下、左、右任一方向的相邻单元格。\n\n不允许进行会使棋子移出网格的移动。\n\n当 Alice 和 Bob 各自移动 $10^{10}$ 次后，步骤 3 立即结束。\n\n步骤 3 结束时，如果棋子位于白色单元格，Alice 获胜；如果棋子位于黑色单元格，Bob 获胜。在步骤 3 中，Alice 和 Bob 都会采取最优策略以取得胜利。\n\n对于每个单元格 $(h,w)$，求当步骤 1 指定 $(h,w)$ 为初始单元格时，Alice 为保证获胜而必须在步骤 2 支付的最小总代价。\n\n给定 $T$ 个测试用例，请分别求解。\n\n## 约束条件\n\n- $1\\leq T\\leq 10^4$\n- $2\\leq N\\leq 500$\n- $0\\leq A_{i,j}\\leq 10^9$\n- 所有输入值均为整数。\n- 所有测试用例的 $N^2$ 之和不超过 $500^2$。\n\n## 输入格式\n\n输入从标准输入给出，格式如下：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每个测试用例的格式如下：\n\n```\nN\nA_{1,1} A_{1,2} \\ldots A_{1,N}\nA_{2,1} A_{2,2} \\ldots A_{2,N}\n\\vdots\nA_{N,1} A_{N,2} \\ldots A_{N,N}\n```\n\n## 输出格式\n\n每个测试用例输出 $N$ 行。\n\n对于每个测试用例，第 $h$ 行应包含当初始单元格指定为 $(h,1),(h,2),\\ldots,(h,N)$ 时，Alice 为保证获胜而必须在步骤 2 支付的最小总代价，整数之间用空格分隔。",
+  "samples": [
+    {
+      "input": "3\n2\n1 4\n3 2\n3\n1 2 3\n8 9 4\n7 6 5\n4\n0 0 1 0\n1 0 1 1\n1 1 1 0\n0 1 1 1\n",
+      "output": "3 7\n7 3\n25 20 25\n20 25 20\n25 20 25\n4 3 4 3\n4 4 3 5\n4 3 4 3\n3 4 3 5\n",
+      "note": "Let us explain the first test case.\n\nFor $(h,w) = (1,1)$ or $(h,w) = (2,2)$, Alice changes cells $(1,1)$ and $(2,2)$ to white.\n\nIn this case, at the end of each of Bob's turns, the piece is at $(1,1)$ or $(2,2)$. Therefore, immediately after Alice and Bob have each taken $10^{10}$ turns, the piece is at $(1,1)$ or $(2,2)$, so Alice wins regardless of how the piece is moved. The cost Alice pays in Step 2 is $A_{1,1}+A_{2,2}=1+2=3$.\n\nFor $(h,w) = (1,2)$ or $(h,w) = (2,1)$, it can be verified that Alice can win by changing cells $(1,2)$ and $(2,1)$ to white. In this case, the cost Alice pays in Step 2 is $A_{1,2}+A_{2,1}=4+3=7$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:18:26.484Z",
+  "translatedAt": "2026-10-30T20:29:13.657Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "abc471_d",
+  "platform": "atcoder",
+  "contestId": "abc471",
+  "index": "D",
+  "title": "Chargers",
+  "titleZh": "充电器",
+  "url": "https://atcoder.jp/contests/abc471/tasks/abc471_d",
+  "difficulty": 570,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a charger with an unlimited number of charging slots. At time $0$, all slots are empty.\n\nThe maximum capacity of a battery is $V$. While a battery is plugged into a slot, it is charged at a rate of $1$ until its charge level reaches the maximum capacity (that is, the charge level increases by $1$ for every $1$ unit of time that passes).\n\nProcess $Q$ queries in order. The $q$-th query is given in one of the following formats. Here, it is guaranteed that $t_1 < \\dots < t_Q$.\n\n- Type $1$ ($1\\ t_q\\ w_q$): At time $t_q$, plug one battery with charge level $w_q$ into a slot.\n- Type $2$ ($2\\ t_q$): At time $t_q$, unplug one battery with the highest charge level from its slot, and output that battery's charge level. If there is no battery plugged into any slot, output $-1$ instead.\n\n## Constraints\n\n- $1 \\leq Q \\leq 3 \\times 10^5$\n- $1 \\leq V \\leq 10^9$\n- For type $1$ queries, $1 \\leq t_q \\leq 10^9$.\n- For type $1$ queries, $0 \\leq w_q \\leq V$.\n- For type $2$ queries, $1 \\leq t_q \\leq 10^9$.\n- $t_1 < \\dots < t_Q$\n- The input values are all integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nQ V\n\\mathrm{query}_1\n\\vdots\n\\mathrm{query}_Q\n```\n\nHere, $\\mathrm{query}_q$ represents the $q$-th query, and is given in one of the following two formats:\n\n```\n1 t_q w_q\n```\n\n```\n2 t_q\n```\n\n## Output\n\nLet $x$ be the number of type $2$ queries. Output $x$ lines.\n\nThe $k$-th line ($1 \\leq k \\leq x$) should contain the value to be outputed for the $k$-th type $2$ query.",
+  "statementZhMd": "## 题目描述\n\n有一个充电器，拥有无限多的充电槽。在时刻 $0$，所有充电槽均为空。\n\n电池的最大容量为 $V$。电池插入充电槽后，会以速率 $1$ 充电，直到电量达到最大容量（即经过 $1$ 单位时间，电量增加 $1$）。\n\n请按顺序处理 $Q$ 个查询。第 $q$ 个查询的格式如下。保证 $t_1 < \\dots < t_Q$。\n\n- 类型 $1$（`1\\ t_q\\ w_q`）：在时刻 $t_q$，将一块电量为 $w_q$ 的电池插入充电槽。\n- 类型 $2$（`2\\ t_q`）：在时刻 $t_q$，将当前电量最高的电池从其充电槽中取出，并输出该电池的电量。如果没有电池插在任何充电槽中，则输出 $-1$。\n\n## 约束条件\n\n- $1 \\leq Q \\leq 3 \\times 10^5$\n- $1 \\leq V \\leq 10^9$\n- 对于类型 $1$ 的查询，$1 \\leq t_q \\leq 10^9$。\n- 对于类型 $1$ 的查询，$0 \\leq w_q \\leq V$。\n- 对于类型 $2$ 的查询，$1 \\leq t_q \\leq 10^9$。\n- $t_1 < \\dots < t_Q$\n- 输入中的所有数值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nQ V\n\\mathrm{query}_1\n\\vdots\n\\mathrm{query}_Q\n```\n\n其中，$\\mathrm{query}_q$ 表示第 $q$ 个查询，格式为以下两种之一：\n\n```\n1 t_q w_q\n```\n\n```\n2 t_q\n```\n\n## 输出格式\n\n设类型 $2$ 的查询数量为 $x$。输出 $x$ 行。\n\n第 $k$ 行（$1 \\leq k \\leq x$）应包含第 $k$ 个类型 $2$ 查询的输出值。",
+  "samples": [
+    {
+      "input": "7 100\n1 15 60\n1 25 80\n2 30\n1 45 0\n2 60\n2 70\n2 80\n",
+      "output": "85\n100\n25\n-1\n",
+      "note": "The seven queries are processed in the following order.\n\n- At time $15$, a battery with charge level $60$ is plugged in. At this point, the charger has a battery with charge level $60$.\n- At time $25$, a battery with charge level $80$ is plugged in. At this point, the charger has batteries with charge levels $70, 80$.\n- At time $30$, the charger has batteries with charge levels $75, 85$. Of these, the battery with charge level $85$ is unplugged.\n- At time $45$, a battery with charge level $0$ is plugged in. At this point, the charger has batteries with charge levels $0, 90$.\n- At time $60$, the charger has batteries with charge levels $15, 100$. Of these, the battery with charge level $100$ is unplugged.\n- At time $70$, the charger has a battery with charge level $25$. This battery, with charge level $25$, is unplugged.\n- At time $80$, no battery is plugged into the charger. Thus, no battery is unplugged."
+    },
+    {
+      "input": "20 380736236\n1 21873985 256702097\n2 86369729\n1 114301317 288304981\n1 147244640 305840435\n2 150951976\n1 331581391 50335458\n1 352989552 47577202\n1 400130024 345362760\n2 458793150\n2 509082216\n1 591375600 197371572\n1 617022014 101276068\n1 679649471 310249627\n1 796351653 268586022\n1 825648347 129608152\n2 908069704\n2 921770319\n1 949684819 372272469\n1 971850999 335461408\n2 986253026\n",
+      "output": "321197841\n324955640\n380736236\n380736236\n380736236\n380736236\n380736236\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:16:38.602Z",
+  "translatedAt": "2026-10-30T20:31:52.256Z",
+  "translateModel": "gpt-6.1-sol"
+}

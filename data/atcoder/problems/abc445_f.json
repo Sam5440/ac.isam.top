@@ -1,0 +1,36 @@
+{
+  "id": "abc445_f",
+  "platform": "atcoder",
+  "contestId": "abc445",
+  "index": "F",
+  "title": "Exactly K Steps 2",
+  "titleZh": "Exactly K Steps 2",
+  "url": "https://atcoder.jp/contests/abc445/tasks/abc445_f",
+  "difficulty": 1514,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a directed graph with $N$ vertices, vertex $1,$ vertex $2,\\ldots,$ vertex $N$. For any pair of integers $(i,j)$ with $1 \\leq i,j \\leq N$, there is exactly one directed edge from vertex $i$ to vertex $j$ with cost $C_{i,j}$.\n\nYou are given a positive integer $K$. For each of $s=1,2,\\ldots,N$, solve the following problem.\n\n- Among the ways to start at vertex $s$, move along an edge $K$ times, and return to vertex $s$, find the minimum possible total cost of the edges traversed. More formally, find the minimum possible value of $\\displaystyle\\sum_{i=1}^{K}C_{v_{i-1},v_i}$ for a sequence $v=(v_0,v_1,\\ldots,v_K)$ of integers between $1$ and $N$, inclusive, of length $K+1$ satisfying $v_0=v_K=s$.\n\n## Constraints\n\n- $1 \\le N \\le 100$\n- $1 \\le K \\le 10^9$\n- $0 \\le C_{i,j} \\le 10^9\\ (1 \\le i \\le N,1 \\le j \\le N)$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN K\nC_{1,1} C_{1,2} \\ldots C_{1,N}\nC_{2,1} C_{2,2} \\ldots C_{2,N}\n\\vdots\nC_{N,1} C_{N,2} \\ldots C_{N,N}\n```\n\n## Output\n\nOutput $N$ lines. The $i$-th line $(1 \\le i \\le N)$ should contain the answer to the problem for $s=i$.",
+  "statementZhMd": "{\"titleZh\":\"恰好 K 步 2\",\"bodyZh\":\"## 题目描述\\n\\n有一个包含 $N$ 个顶点的有向图，顶点编号为 $1,$ $2,\\\\ldots,$ $N$。对于任意满足 $1 \\\\leq i,j \\\\leq N$ 的整数对 $(i,j)$，都存在一条从顶点 $i$ 指向顶点 $j$、费用为 $C_{i,j}$ 的有向边。\\n\\n给定一个正整数 $K$。对于每个 $s=1,2,\\\\ldots,N$，请解决以下问题。\\n\\n- 从顶点 $s$ 出发，沿边移动 $K$ 次并回到顶点 $s$，求经过的边的总费用的最小值。更正式地说，对于一个长度为 $K+1$ 的整数序列 $v=(v_0,v_1,\\\\ldots,v_K)$，其中每个整数都在 $1$ 到 $N$（含）之间，且满足 $v_0=v_K=s$，求 $\\displaystyle\\\\sum_{i=1}^{K}C_{v_{i-1},v_i}$ 的最小可能值。\\n\\n## 约束条件\\n\\n- $1 \\\\leq N \\\\leq 100$\\n- $1 \\\\leq K \\\\leq 10^9$\\n- $0 \\\\leq C_{i,j} \\\\leq 10^9\\\\ (1 \\\\leq i \\\\leq N,1 \\\\leq j \\\\leq N)$\\n- 所有输入值均为整数。\\n\\n## 输入格式\\n\\n输入从标准输入按以下格式给出：\\n\\n```\\nN K\\nC_{1,1} C_{1,2} \\\\ldots C_{1,N}\\nC_{2,1} C_{2,2} \\\\ldots C_{2,N}\\n\\\\vdots\\nC_{N,1} C_{N,2} \\\\ldots C_{N,N}\\n```\\n\\n## 输出格式\\n\\n输出 $N$ 行。第 $i$ 行 $(1 \\\\leq i \\\\leq N)$ 应包含当 $s=i$ 时问题的答案。\"}",
+  "samples": [
+    {
+      "input": "4 3\n3 1 4 1\n5 9 2 6\n5 3 5 8\n9 7 9 3\n",
+      "output": "8\n8\n8\n9\n",
+      "note": "For $s=1$, moving $1\\rightarrow2\\rightarrow3\\rightarrow1$ gives a total cost of $1+2+5=8$. It is impossible to start at vertex $1$, move along an edge three times, and achieve a total cost of $7$ or less, so print `8` on the first line.\n\nFor $s=4$, moving $4\\rightarrow4\\rightarrow4\\rightarrow4$ gives a total cost of $3+3+3=9$. Note that the same edge or the same vertex may be traversed multiple times, and if the same edge is traversed multiple times, its cost is added to the total that many times."
+    },
+    {
+      "input": "3 1000000000\n100 999 999\n999 100 999\n999 999 100\n",
+      "output": "100000000000\n100000000000\n100000000000\n",
+      "note": "The answer may be $2^{32}$ or greater."
+    },
+    {
+      "input": "10 9482\n748 169 586 329 972 529 432 519 408 587\n138 249 656 114 632 299 984 755 404 772\n155 506 832 854 353 465 387 374 567 385\n631 556 951 428 104 705 530 406 258 102\n709 325 334 193 520 798 749 582 337 910\n530 110 659 635 786 773 811 468 810 638\n111 822 554 627 395 959 924 698 777 893\n142 848 532 781 711 814 665 395 960 290\n746 266 603 553 893 353 323 640 172 263\n749 921 845 334 594 821 233 695 109 951\n",
+      "output": "1382481\n1382481\n1382628\n1382481\n1382481\n1382540\n1382481\n1382739\n1382499\n1382481\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:21:02.402Z",
+  "translatedAt": "2026-10-30T20:24:58.689Z",
+  "translateModel": "gpt-6.1-sol"
+}

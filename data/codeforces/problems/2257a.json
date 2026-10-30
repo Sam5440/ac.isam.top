@@ -1,0 +1,30 @@
+{
+  "id": "2257A",
+  "platform": "codeforces",
+  "contestId": 2257,
+  "index": "A",
+  "title": "Creating Abbreviations",
+  "titleZh": "创建缩写",
+  "url": "https://codeforces.com/contest/2257/problem/A",
+  "difficulty": 800,
+  "tags": [
+    "brute force",
+    "strings"
+  ],
+  "points": 500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "The Beaver was given a set of words $S$, which initially contained $n$ words. Then he performed the following operation $m$ times:\n\n1. The Beaver forms a sequence of one or more words from the set $S$. The same word may appear in the sequence several times. An abbreviation$^{\\text{∗}}$ is formed from the resulting phrase.\n2. Then the Beaver adds the resulting abbreviation to $S$ and can now use it in subsequent operations as an ordinary word.\n\nYou are given the $n$ initial words that were in the set $S$, and the set of abbreviations that the Beaver formed. Determine whether the Beaver made a mistake and whether all these abbreviations could have appeared as a result of the operation described above. Note that the abbreviations did not necessarily appear in the same order in which they are given to you.\n\n$^{\\text{∗}}$The abbreviation of a sequence is the word produced by the first letters of the words in the sequence. For example, the sequence *birch OAK birch redwood* produces the abbreviation BOBR.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ — the number of ordinary words and the number of abbreviations, respectively ($1 \\le n, m \\le 100$).\n\nEach of the next $n$ lines contains one string $w_i$ — an ordinary word ($1 \\le |w_i| \\le 20$).\n\nEach of the next $m$ lines contains one string $a_i$ — an abbreviation formed by Bobr ($1 \\le |a_i| \\le 20$).\n\nAll ordinary words consist of lowercase English letters, and all abbreviations consist of uppercase English letters. In each test case, all strings $w_1, w_2, \\ldots, w_n, a_1, a_2, \\ldots, a_m$ are pairwise distinct.\n\nThe total length of all strings over all test cases does not exceed $50\\,000$.\n\n## Output\n\nFor each test case, print \"YES\" if there exists a suitable order in which the given abbreviations could have appeared, and \"NO\" otherwise.\n\nYou may print each letter in any case (lowercase or uppercase). For example, the strings \"yEs\", \"yes\", \"Yes\", and \"YES\" will be accepted as a positive answer.\n\n## Note\n\nIn the first test case, the order `AG`, `BG`, `CG`, `ABC` is suitable. The first three abbreviations can be created using the pairs of words `apple` and `grand`, `banana` and `great`, and `cherry` and `good`, respectively. After that, the abbreviation `ABC` can be created using the already created abbreviations `AG`, `BG`, and `CG`.\n\nIn the second test case, one can create `AA` using `apple` twice.\n\nIn the third test case, one can first create `A` using `apple`, and then create `AA` using `apple` and the already created abbreviation `A`.\n\nIn the fourth test case, it can be shown that the required order of creating the abbreviations does not exist.",
+  "statementZhMd": "海狸得到一个单词集合 $S$，其中最初包含 $n$ 个单词。随后，他执行以下操作 $m$ 次：\n\n1. 海狸从集合 $S$ 中选出由一个或多个单词组成的序列。同一个单词可以在序列中出现多次。由所得短语构成一个缩写$^{\\text{∗}}$。\n2. 然后，海狸将所得缩写加入 $S$，之后便可以在后续操作中将其作为普通单词使用。\n\n给定最初在集合 $S$ 中的 $n$ 个单词，以及海狸构成的缩写集合。请判断海狸是否犯了错误，即这些缩写是否都可能通过上述操作得到。注意，这些缩写不一定按照提供给你的顺序出现。\n\n$^{\\text{∗}}$一个序列的缩写是由该序列中各个单词的首字母组成的单词。例如，序列 *birch OAK birch redwood* 会产生缩写 BOBR。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 500$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$——普通单词和缩写的数量，分别为 $n$ 和 $m$（$1 \\le n, m \\le 100$）。\n\n接下来的 $n$ 行中，每行包含一个字符串 $w_i$——一个普通单词（$1 \\le |w_i| \\le 20$）。\n\n接下来的 $m$ 行中，每行包含一个字符串 $a_i$——由 Bobr 形成的缩写（$1 \\le |a_i| \\le 20$）。\n\n所有普通单词均由小写英文字母组成，所有缩写均由大写英文字母组成。在每个测试用例中，所有字符串 $w_1, w_2, \\ldots, w_n, a_1, a_2, \\ldots, a_m$ 两两不同。\n\n所有测试用例中所有字符串的总长度不超过 $50\\,000$。\n\n## 输出格式\n\n对于每个测试用例，输出如果存在一种合适的顺序，使给出的缩写能够按照该顺序出现，则输出 \"YES\"；否则输出 \"NO\"。\n\n每个字母的大小写均可任意输出（小写或大写均可）。例如，字符串 \"yEs\"、\"yes\"、\"Yes\" 和 \"YES\" 都会被接受为肯定答案。\n\n## 说明\n\n在第一个测试用例中，顺序 `AG`、`BG`、`CG`、`ABC` 是合适的。前三个缩写可以分别使用单词对 `apple` 和 `grand`、`banana` 和 `great`、`cherry` 和 `good` 构成。之后，可以使用已经构成的缩写 `AG`、`BG` 和 `CG` 构成缩写 `ABC`。\n\n在第二个测试用例中，可以使用 `apple` 两次构成 `AA`。\n\n在第三个测试用例中，可以先使用 `apple` 构成 `A`，然后使用 `apple` 和已经构成的缩写 `A` 构成 `AA`。\n\n在第四个测试用例中，可以证明不存在所需的缩写构成顺序。",
+  "samples": [
+    {
+      "input": "4\n6 4\napple\ngrand\nbanana\ngreat\ncherry\ngood\nAG\nBG\nCG\nABC\n1 1\napple\nAA\n1 2\napple\nA\nAA\n2 2\napple\navocado\nB\nBA\n",
+      "output": "YES\nYES\nYES\nNO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:21:37.521Z",
+  "translatedAt": "2026-10-30T20:44:22.311Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "abc463_f",
+  "platform": "atcoder",
+  "contestId": "abc463",
+  "index": "F",
+  "title": "Senshuraku",
+  "titleZh": "千秋乐",
+  "url": "https://atcoder.jp/contests/abc463/tasks/abc463_f",
+  "difficulty": 2127,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nA tournament is being held with $2N$ players. From now on, each player will play exactly one match. In the remaining $N$ matches, the $i$-th $(1\\le i\\le N)$ match is played between the $(2i-1)$-th and $2i$-th players.\n\nIn each match, one of the two competing players wins and the other loses. Which player wins is determined independently for each match, and each player wins with probability $\\dfrac12$.\n\nBefore the last $N$ matches begin, the $i$-th $(1\\le i\\le2N)$ player has won $A _ i$ times. After all matches are over, the champion is chosen from among the players with the most wins, uniformly at random and independently of the previous match results.\n\nFor each of the first, second, $\\ldots$, $2N$-th players, find the probability, modulo $998244353$, of that player becoming the champion.\n\nDefinition of probability modulo $998244353$ It can be proved that the sought probability is always a rational number. Moreover, under the constraints of this problem, it can be proved that when the rational number is expressed as an irreducible fraction $\\frac{P}{Q}$, we have $Q {{}\\not\\equiv{}} 0 \\pmod{998244353}$. Therefore, there is a unique integer $R$ satisfying $R \\times Q \\equiv P \\pmod{998244353}, 0 \\leq R \\lt 998244353$. Find this $R$.\n\n## Constraints\n\n- $1\\le N\\le2\\times10 ^ 5$\n- $0\\le A _ i\\lt2N\\ (1\\le i\\le 2N)$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nA _ 1 A _ 2\nA _ 3 A _ 4\n\\vdots\nA _ {2N-1} A _ {2N}\n```\n\n## Output\n\nOutput the probability of the first player becoming the champion, the probability of the second player becoming the champion, $\\ldots$, the probability of the $2N$-th player becoming the champion, in this order, separated by spaces, on a single line.",
+  "statementZhMd": "## 题目描述\n\n一场锦标赛共有 $2N$ 名选手。接下来每位选手恰好参加一场比赛。在剩余的 $N$ 场比赛中，第 $i$ 场（$1\\le i\\le N$）由第 $(2i-1)$ 名和第 $2i$ 名选手进行。\n\n每场比赛中，两名选手一胜一负。每场比赛的胜者独立决定，每名选手获胜的概率均为 $\\dfrac12$。\n\n在最后 $N$ 场比赛开始前，第 $i$ 名（$1\\le i\\le2N$）选手已经获胜 $A _ i$ 次。所有比赛结束后，将从获胜次数最多的选手中等概率随机选出冠军，且选出的结果与之前的比赛结果独立。\n\n请依次求出第 1、2、$\\ldots$、$2N$ 名选手成为冠军的概率，答案对 $998244353$ 取模。\n\n概率对 $998244353$ 取模的定义：可以证明，所求概率总是有理数。此外，在本题的约束条件下，可以证明将该有理数表示为既约分数 $\\frac{P}{Q}$ 时，满足 $Q {{}\\not\\equiv{}} 0 \\pmod{998244353}$。因此，存在唯一整数 $R$ 满足 $R \\times Q \\equiv P \\pmod{998244353}, 0 \\leq R \\lt 998244353$。请求出这个 $R$。\n\n## 约束条件\n\n- $1\\le N\\le2\\times10 ^ 5$\n- $0\\le A _ i\\lt2N\\ (1\\le i\\le 2N)$\n- 输入的所有数值均为整数。\n\n## 输入格式\n\n输入从标准输入给出，格式如下：\n\n```\nN\nA _ 1 A _ 2\nA _ 3 A _ 4\n\\vdots\nA _ {2N-1} A _ {2N}\n```\n\n## 输出格式\n\n在一行中按顺序输出第 1 名选手成为冠军的概率、第 2 名选手成为冠军的概率、$\\ldots$、第 $2N$ 名选手成为冠军的概率，相邻答案之间用空格分隔。",
+  "samples": [
+    {
+      "input": "4\n1 2\n3 4\n2 3\n1 4\n",
+      "output": "0 0 259959467 883862188 0 967049217 0 883862188\n",
+      "note": "For example, the third player becomes the champion in the following cases:\n\n- If the third player wins in the second match, the fifth player wins in the third match, and the seventh player wins in the fourth match, the third player becomes the champion with probability $\\dfrac13$.\n- If the third player wins in the second match, the sixth player wins in the third match, and the seventh player wins in the fourth match, the third player becomes the champion with probability $\\dfrac14$.\n\nThus, the probability of the third player becoming the champion is $\\dfrac18\\times\\dfrac13+\\dfrac18\\times\\dfrac14=\\dfrac7{96}$. We have $259959467\\times96\\equiv7\\pmod{998244353}$, so the probability of the third player becoming the champion in modulo-$998244353$ expression is $259959467$.\n\nThe probability of each player becoming the champion is $0,0,\\dfrac7{96},\\dfrac{43}{96},0,\\dfrac3{96},0,\\dfrac{43}{96}$. Thus, output `0 0 259959467 883862188 0 967049217 0 883862188`."
+    },
+    {
+      "input": "6\n0 0\n0 0\n0 0\n0 0\n0 0\n0 0\n",
+      "output": "582309206 582309206 582309206 582309206 582309206 582309206 582309206 582309206 582309206 582309206 582309206 582309206\n",
+      "note": "It is possible that no one has won yet.\n\nBy symmetry, each player becomes the champion with probability $\\dfrac1{12}$."
+    },
+    {
+      "input": "10\n18 17\n16 18\n18 16\n16 16\n17 17\n16 16\n17 16\n17 18\n16 16\n17 18\n",
+      "output": "357877533 151989635 0 357877533 357877533 0 0 0 575116994 575116994 0 0 597386855 0 151989635 357877533 0 0 151989635 357877533\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:18:19.407Z",
+  "translatedAt": "2026-10-30T20:29:20.108Z",
+  "translateModel": "gpt-6.1-sol"
+}

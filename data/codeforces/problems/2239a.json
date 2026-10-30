@@ -1,0 +1,32 @@
+{
+  "id": "2239A",
+  "platform": "codeforces",
+  "contestId": 2239,
+  "index": "A",
+  "title": "Nim Game Is XOR Game",
+  "titleZh": "Nim 游戏就是 XOR 游戏",
+  "url": "https://codeforces.com/contest/2239/problem/A",
+  "difficulty": 1300,
+  "tags": [
+    "constructive algorithms",
+    "games",
+    "greedy",
+    "math"
+  ],
+  "points": 750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Alice and Bob are playing a game with an array $a$ consisting of $n$ non-negative integers. Alice goes first.\n\nIn each turn, the current player must choose an array of $n$ non-negative integers $b = [b_1, b_2, \\ldots, b_n]$ that satisfies the following conditions:\n\n1. $0 \\le b_i \\le a_i$ for all $1 \\le i \\le n$;\n2. $\\sum_{i=1}^n b_i \\gt 0$ (i.e. the array $b$ does not consist entirely of zeros);\n3. $b_1 \\oplus b_2 \\oplus \\ldots \\oplus b_n = 0$, where $\\oplus$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\nAfter choosing the array $b$, the player updates the array $a$ by performing $a_i \\leftarrow a_i - b_i$ for all $1 \\le i \\le n$.\n\nThe player who cannot perform such an operation loses the game.\n\nDetermine the number of valid choices for the array $b$ that Alice can make on her first turn to guarantee a win, assuming both players play optimally. Since this number may be large, output the answer modulo $998\\,244\\,353$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 10^6$) — the length of the array $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\lt 2^{30}$) — the contents of the array $a$\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output the number of valid choices for the array $b$ that Alice can make on her first turn to guarantee a win modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, Alice must choose an array $b$ of length $1$. The conditions require $b_1 \\le a_1$, $b_1 \\gt 0$, and $b_1 = 0$. It is impossible to satisfy $b_1 \\gt 0$ and $b_1 = 0$ simultaneously. Thus, Alice has no valid moves and loses immediately. The answer is $0$.\n\nIn the second test case, $a = [1, 2]$. Alice must choose $b = [b_1, b_2]$. The condition $b_1 \\oplus b_2 = 0$ implies that $b_1 = b_2$. Since $0 \\le b_1 \\le 1$ and $0 \\le b_2 \\le 2$, and the array $b$ cannot consist entirely of zeros, the only valid choice is $b = [1, 1]$. If Alice chooses $b = [1, 1]$, the array updates to $a = [1-1, 2-1] = [0, 1]$. Now it is Bob's turn. Similar to Alice's situation, Bob must choose $b'$ such that $b'_1 = b'_2$. Since $a_1 = 0$, he is forced to pick $b'_1 = 0$, which means $b'_2 = 0$. Since a valid move must have $\\sum b'_i \\gt 0$, Bob has no valid moves and loses. Therefore, $b = [1, 1]$ is a winning move for Alice, and the answer is $1$.",
+  "statementZhMd": "Alice 和 Bob 正在使用一个由 $n$ 个非负整数构成的数组 $a$ 进行游戏。Alice 先手。\n\n在每个回合中，当前玩家必须选择一个由 $n$ 个非负整数组成的数组 $b = [b_1, b_2, \\ldots, b_n]$，并满足以下条件：\n\n1. 对所有 $1 \\le i \\le n$，满足 $0 \\le b_i \\le a_i$；\n2. $\\sum_{i=1}^n b_i \\gt 0$（即数组 $b$ 不全为零）；\n3. $b_1 \\oplus b_2 \\oplus \\ldots \\oplus b_n = 0$，其中 $\\oplus$ 表示[按位 XOR 运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n选择数组 $b$ 后，玩家对所有 $1 \\le i \\le n$ 执行 $a_i \\leftarrow a_i - b_i$，从而更新数组 $a$。\n\n无法执行上述操作的玩家输掉游戏。\n\n假设双方都采取最优策略，求 Alice 在第一回合中能够选择并确保获胜的数组 $b$ 的方案数。由于答案可能很大，请将答案对 $998\\,244\\,353$ 取模后输出。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^6$），表示数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\lt 2^{30}$），表示数组 $a$ 的内容。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出 Alice 在第一回合中能够选择并确保获胜的数组 $b$ 的方案数，并将答案对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个测试用例中，Alice 必须选择一个长度为 $1$ 的数组 $b$。根据条件，需要满足 $b_1 \\le a_1$、$b_1 \\gt 0$ 以及 $b_1 = 0$。显然，$b_1 \\gt 0$ 和 $b_1 = 0$ 无法同时成立。因此，Alice 没有合法操作，会立即输掉游戏。答案为 $0$。\n\n在第二个测试用例中，$a = [1, 2]$。Alice 必须选择 $b = [b_1, b_2]$。条件 $b_1 \\oplus b_2 = 0$ 表明 $b_1 = b_2$。由于 $0 \\le b_1 \\le 1$、$0 \\le b_2 \\le 2$，且数组 $b$ 不能全为零，唯一合法的选择是 $b = [1, 1]$。如果 Alice 选择 $b = [1, 1]$，数组将更新为 $a = [1-1, 2-1] = [0, 1]$。现在轮到 Bob。与 Alice 的情况类似，Bob 必须选择满足 $b'_1 = b'_2$ 的 $b'$。由于 $a_1 = 0$，他只能选择 $b'_1 = 0$，这意味着 $b'_2 = 0$。由于合法操作必须满足 $\\sum b'_i \\gt 0$，Bob 没有合法操作并输掉游戏。因此，$b = [1, 1]$ 是 Alice 的获胜操作，答案为 $1$。",
+  "samples": [
+    {
+      "input": "5\n1\n1\n2\n1 2\n5\n1 4 5 2 6\n1\n1073741823\n3\n1 2 3\n",
+      "output": "0\n1\n3\n0\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:06.521Z",
+  "translatedAt": "2026-10-30T20:36:49.542Z",
+  "translateModel": "gpt-6.1-sol"
+}

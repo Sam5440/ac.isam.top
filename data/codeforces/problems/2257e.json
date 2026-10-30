@@ -1,0 +1,35 @@
+{
+  "id": "2257E",
+  "platform": "codeforces",
+  "contestId": 2257,
+  "index": "E",
+  "title": "Busy Beaver",
+  "titleZh": "忙碌的海狸",
+  "url": "https://codeforces.com/contest/2257/problem/E",
+  "difficulty": 2100,
+  "tags": [
+    "brute force",
+    "data structures",
+    "divide and conquer",
+    "dp",
+    "greedy",
+    "implementation",
+    "sortings"
+  ],
+  "points": 2250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "The Beaver founded a construction company called \"Busy Beaver\". And now, in order to build up the company's reputation, it needs to construct the tallest building possible.\n\nThe company has an initial capital of $x$ carrots (a very valuable currency for beavers) and $n$ projects available for construction. A separate site has been allocated for each project, and nothing has been built there yet. A building project is represented by a sequence of contracts for constructing the next floor. To build the $j$-th floor of the $i$-th building, it is necessary to spend $a_{i, j}$ carrots; upon completing it, the company immediately receives $b_{i,j}$ carrots, which are added to the budget, and the company may use them to build higher floors of the same building or to work on other projects. Since the company is still young, not all contracts are necessarily profitable; in other words, it is possible that $a_{i,j} \\gt b_{i,j}$.\n\nThe Beaver hired you to plan the company's course of action. You choose in which order to build which floors. Note that it is not necessary to complete projects, or even to start them at all. Moreover, between constructing floors of the same building, it is allowed to complete an arbitrary number of contracts unrelated to that building. The main goal is — to build the tallest building possible.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 3 \\cdot 10^4$). The description of the test cases follows.\n\nThe first line of each input data set contains integers $n$ and $x$ — the number of building projects and the initial amount of money ($1 \\le n \\le 2 \\cdot 10^5; 0 \\le x \\le 10^{18}$).\n\nNext, there are $n$ descriptions of projects. The first line of the description of project number $i$ contains the number $m_i$ — the maximum number of floors available for construction in this building ($1 \\le m_i \\le 2 \\cdot 10^5$).\n\nThe second line of the project description contains $m_i$ integers $a_{i, 1}, a_{i, 2}, \\ldots a_{i, m_i}$ — the costs of building the floors. The third line of the project description contains $m_i$ integers $b_{i, 1}, b_{i, 2}, \\ldots b_{i, m_i}$ — the profits from building the floors. $(0 \\leq a_{i, j}, b_{i, j} \\leq 10^9)$.\n\nIt is guaranteed that the sum of $m_i$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each set of input data, output two numbers — the height, in floors, of the tallest building that can be constructed, and the smallest index of the building for which it is possible to build that number of floors.\n\n## Note\n\nIn the first set, there are enough carrots to sequentially build all $4$ floors of the only building.\n\nIn the second set, you need to first build the first floor of the second building, earning $2$ carrots from it, after which you can build both floors of the first building.",
+  "statementZhMd": "海狸创办了一家名为“Busy Beaver”的建筑公司。如今，为了提高公司的声誉，它需要建造尽可能高的建筑。\n\n公司拥有初始资金 $x$ 根胡萝卜（这是海狸们使用的一种非常有价值的货币），并且有 $n$ 个可供建设的项目。每个项目都有一块单独分配的场地，目前那里还没有建造任何东西。一个建筑项目由一系列用于建造下一层的合同组成。为了建造第 $i$ 栋建筑的第 $j$ 层，需要花费 $a_{i, j}$ 根胡萝卜；完成后，公司会立即获得 $b_{i,j}$ 根胡萝卜，并将其加入预算中，公司可以用这些胡萝卜继续建造同一栋建筑的更高楼层，或开展其他项目。由于公司尚处于起步阶段，并非所有合同都一定有利可图；换句话说，可能存在 $a_{i,j} \\gt b_{i,j}$ 的情况。\n\n海狸请你规划公司的行动方案。你可以选择建造各栋建筑各层的顺序。注意，不必完成任何项目，甚至可以完全不开始某个项目。此外，在建造同一栋建筑的两层之间，允许完成任意数量的与该建筑无关的合同。目标是——建造尽可能高的建筑。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 3 \\cdot 10^4$）。接下来是各测试用例的描述。\n\n每组输入数据的第一行包含整数 $n$ 和 $x$，分别表示建筑项目的数量和初始资金（$1 \\le n \\le 2 \\cdot 10^5$；$0 \\le x \\le 10^{18}$）。\n\n接下来给出 $n$ 个项目的描述。第 $i$ 个项目描述的第一行包含整数 $m_i$，表示该建筑最多可以建造的楼层数（$1 \\le m_i \\le 2 \\cdot 10^5$）。\n\n项目描述的第二行包含 $m_i$ 个整数 $a_{i, 1}, a_{i, 2}, \\ldots a_{i, m_i}$，表示建造各层的费用。项目描述的第三行包含 $m_i$ 个整数 $b_{i, 1}, b_{i, 2}, \\ldots b_{i, m_i}$，表示建造各层获得的收益。$(0 \\leq a_{i, j}, b_{i,j} \\leq 10^9)$。\n\n保证所有测试用例中 $m_i$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组输入数据，输出两个数字——能够建造的最高建筑的楼层数，以及能够建造出该楼层数的建筑的最小编号。\n\n## 说明\n\n在第一组数据中，拥有足够的胡萝卜，可以依次建造唯一一栋建筑的全部 $4$ 层。\n\n在第二组数据中，需要先建造第二栋建筑的第一层，从中获得 $2$ 根胡萝卜，之后就可以建造第一栋建筑的两层。",
+  "samples": [
+    {
+      "input": "2\n1 6\n4\n4 4 2 1\n2 4 1 1\n2 3\n2\n4 4\n5 5\n2\n2 20\n4 0\n",
+      "output": "4 1\n2 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:21:37.522Z",
+  "translatedAt": "2026-10-30T20:43:06.320Z",
+  "translateModel": "gpt-6.1-sol"
+}

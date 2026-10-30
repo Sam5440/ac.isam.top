@@ -1,0 +1,31 @@
+{
+  "id": "2246C",
+  "platform": "codeforces",
+  "contestId": 2246,
+  "index": "C",
+  "title": "0mar and Alternating Sums",
+  "titleZh": "0mar and Alternating Sums",
+  "url": "https://codeforces.com/contest/2246/problem/C",
+  "difficulty": 1400,
+  "tags": [
+    "combinatorics",
+    "dp",
+    "math"
+  ],
+  "points": 1500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Define the alternating sum of an array $b$ of length $k$ to be $\\sum_{i = 1}^{k}(-1)^{i+1}b_i$.\n\nYou are given a non-decreasing$^{\\text{∗}}$ array $a$ of length $n$ such that for all $1 \\le i \\le n,$ either $a_i = -1$ or $a_i$ is a positive integer. Find the number of sequences $1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\le n$ such that the alternating sum of the sequence $a_{i_1}, a_{i_2}, \\ldots, a_{i_k}$ is $0.$ Since this number may be large, output it modulo $10^9+7$.\n\nTwo sets $i_1, \\ldots, i_{k_1}$ and $i'_1, \\ldots, i'_{k_2}$ of indices are considered different if $k_1 \\neq k_2$ or there exists a $j$ such that $i_j \\neq i'_j.$\n\n$^{\\text{∗}}$A sequence $a_1, \\ldots, a_n$ is non-decreasing if $a_1 \\le a_2 \\le \\ldots \\le a_n$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n \\, (1 \\le n \\le 2 \\cdot 10^5)$ — the length of the array.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ — the elements of the array where $\\mathbf{a_i = -1}$ **or** $\\mathbf{1 \\leq a_i \\leq 10^9}$. It is guaranteed that the array is non-decreasing.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, output a single integer — the number of subsequences that have an alternating sum of zero modulo $10^9 +7$. A subsequence of length $0$ is considered to have an alternating sum of zero.\n\n## Note\n\nIn the first example, the following subsequences have an alternating sum of zero:\n\n| $\\bullet$ | $[],$ |\n| --- | --- |\n| $\\bullet$ | $[a_2,a_3] = [1,1]$, |\n| $\\bullet$ | $[a_1, a_2, a_4] = [-1,1,2]$, |\n| $\\bullet$ | $[a_1, a_3, a_4] = [-1,1,2]$, |\n| $\\bullet$ | $[a_1, a_4, a_5] = [-1,2,3]$, |\n| $\\bullet$ | $[a_1,a_2,a_3,a_4,a_5] = [-1,1,1,2,3].$ |\n\nIn the second example, only the empty subsequence $[]$ has an alternating sum of zero.",
+  "statementZhMd": "{\"titleZh\":\"0mar 与交错和\",\"bodyZh\":\"定义长度为 $k$ 的数组 $b$ 的交错和为 $\\sum_{i = 1}^{k}(-1)^{i+1}b_i$。\\n\\n给定一个长度为 $n$ 的非递减$^{\\\\text{∗}}$数组 $a$，其中对于所有 $1 \\\\le i \\\\le n$，要么 $a_i = -1$，要么 $a_i$ 是正整数。请求出满足下列条件的序列 $1 \\\\le i_1 \\\\lt i_2 \\\\lt \\\\ldots \\\\lt i_k \\\\le n$ 的数量：序列 $a_{i_1}, a_{i_2}, \\\\ldots, a_{i_k}$ 的交错和为 $0$。由于答案可能很大，请将其对 $10^9+7$ 取模后输出。\\n\\n如果 $k_1 \\\\neq k_2$，或者存在某个 $j$ 使得 $i_j \\\\neq i'_j$，则下标集合 $i_1, \\\\ldots, i_{k_1}$ 与 $i'_1, \\\\ldots, i'_{k_2}$ 被认为是不同的。\\n\\n$^{\\\\text{∗}}$如果一个序列 $a_1, \\\\ldots, a_n$ 满足 $a_1 \\\\le a_2 \\\\le \\\\ldots \\\\le a_n$，则称其为非递减序列。\\n\\n## 输入格式\\n\\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\\\le t \\\\le 10^4$）。接下来是各测试用例的描述。\\n\\n每个测试用例的第一行包含一个整数 $n$（$1 \\\\le n \\\\le 2 \\\\cdot 10^5$）——数组的长度。\\n\\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\\\ldots, a_n$——数组中的元素，其中 **$\\\\mathbf{a_i = -1}$** 或 **$\\\\mathbf{1 \\\\leq a_i \\\\leq 10^9}$**。保证数组是非递减的。\\n\\n保证所有测试用例中 $n$ 的总和不超过 $2 \\\\cdot 10^5$。\\n\\n## 输出格式\\n\\n对于每个测试用例，输出一个整数——交错和为零的子序列数量，对 $10^9 +7$ 取模。长度为 $0$ 的子序列的交错和被认为是零。\\n\\n## 说明\\n\\n在第一个样例中，以下子序列的交错和为零：\\n\\n| $\\\\bullet$ | $[],$ |\\n| --- | --- |\\n| $\\\\bullet$ | $[a_2,a_3] = [1,1]$， |\\n| $\\\\bullet$ | $[a_1, a_2, a_4] = [-1,1,2]$， |\\n| $\\\\bullet$ | $[a_1, a_3, a_4] = [-1,1,2]$， |\\n| $\\\\bullet$ | $[a_1, a_4, a_5] = [-1,2,3]$， |\\n| $\\\\bullet$ | $[a_1,a_2,a_3,a_4,a_5] = [-1,1,1,2,3]$。 | \\n\\n在第二个样例中，只有空子序列 $[]$ 的交错和为零。\"}",
+  "samples": [
+    {
+      "input": "4\n5\n-1 1 1 2 3\n3\n1 2 3\n4\n1 3 5 7\n14\n-1 -1 -1 1 2 2 3 3 3 5 5 5 5 5\n",
+      "output": "6\n1\n1\n1536\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:44.797Z",
+  "translatedAt": "2026-10-30T20:38:29.998Z",
+  "translateModel": "gpt-6.1-sol"
+}

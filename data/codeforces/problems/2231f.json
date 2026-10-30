@@ -1,0 +1,33 @@
+{
+  "id": "2231F",
+  "platform": "codeforces",
+  "contestId": 2231,
+  "index": "F",
+  "title": "Quadratic Jumps",
+  "titleZh": "二次跳跃",
+  "url": "https://codeforces.com/contest/2231/problem/F",
+  "difficulty": 2600,
+  "tags": [
+    "brute force",
+    "constructive algorithms",
+    "greedy",
+    "math",
+    "number theory"
+  ],
+  "points": 2750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given two integers $n$ and $q$. Consider a graph with $n$ vertices, where vertices $i$ and $j$ are connected by an edge if and only if $|j - i|$ is a perfect square$^{\\text{∗}}$.\n\nYou are given $q$ pairs of numbers $a_i, b_i$. For each of these $q$ pairs, you need to find the shortest distance between vertices $a_i$ and $b_i$ in this graph. It can be proved that the graph is connected, so the distance between $a_i$ and $b_i$ is not infinite.\n\n$^{\\text{∗}}$An integer $x$ is a perfect square if there exists an integer $y$ such that $x = y^2$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($2 \\le n \\le 2 \\cdot 10^5$, $1 \\le q \\le 10^5$) — the number of vertices in the graph and the number of pairs of vertices for which the distance must be found.\n\nThen the next $q$ lines describe the pairs of vertices for which the shortest distance must be found. Each pair is described by two numbers $a, b$ ($1 \\leq a \\lt b \\leq n$) — the numbers of the vertices between which the shortest distance must be found.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$, and the sum of $q$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output the shortest distance between each of the $q$ pairs of vertices.\n\n## Note\n\nThis is what the graph looks like for the first test case:\n\n![image](https://espresso.codeforces.com/40bfd22066fe9acd7f50f81ceae09ea022b9a8cf.png)\n\n- For the first pair of vertices, the shortest path is $1 \\rightarrow 2$.\n- For the second pair of vertices, the shortest path is $1 \\rightarrow 2 \\rightarrow 3$.\n- For the third pair of vertices, the shortest path is $1 \\rightarrow 5 \\rightarrow 4$.\n- For the fourth pair of vertices, the shortest path is $1 \\rightarrow 5$.\n\nThis is what the graph looks like for the second test case:\n\n![image](https://espresso.codeforces.com/d1730912dc669e44d9231a4d2fd63ef588cc7c11.png)\n\n- For the first pair of vertices, the shortest path is $1 \\rightarrow 2$.\n- For the second pair of vertices, the shortest path is $2 \\rightarrow 6 \\rightarrow 5$.\n- For the third pair of vertices, the shortest path is $1 \\rightarrow 2 \\rightarrow 6 \\rightarrow 7$.",
+  "statementZhMd": "给定两个整数 $n$ 和 $q$。考虑一个拥有 $n$ 个顶点的图，当且仅当 $|j - i|$ 是完全平方数$^{\\text{∗}}$时，顶点 $i$ 和 $j$ 之间有一条边。\n\n给定 $q$ 对数 $a_i, b_i$。对于每一对数，你需要求出图中顶点 $a_i$ 和 $b_i$ 之间的最短距离。可以证明该图是连通的，因此顶点 $a_i$ 和 $b_i$ 之间的距离不会是无穷大。\n\n$^{\\text{∗}}$如果存在整数 $y$ 使得 $x = y^2$，则称整数 $x$ 是完全平方数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$2 \\le n \\le 2 \\cdot 10^5$，$1 \\le q \\le 10^5$）——图中顶点的数量，以及需要查询距离的顶点对数量。\n\n接下来的 $q$ 行描述需要查询距离的顶点对。每一对由两个数 $a, b$（$1 \\leq a \\lt b \\leq n$）描述——需要求出最短距离的两个顶点的编号。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$，$q$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出每一对顶点之间的最短距离，共输出 $q$ 个距离。\n\n## 说明\n\n这是第一个测试用例中的图：\n\n![image](https://espresso.codeforces.com/40bfd22066fe9acd7f50f81ceae09ea022b9a8cf.png)\n\n- 对于第一对顶点，最短路径是 $1 \\rightarrow 2$。\n- 对于第二对顶点，最短路径是 $1 \\rightarrow 2 \\rightarrow 3$。\n- 对于第三对顶点，最短路径是 $1 \\rightarrow 5 \\rightarrow 4$。\n- 对于第四对顶点，最短路径是 $1 \\rightarrow 5$。\n\n这是第二个测试用例中的图：\n\n![image](https://espresso.codeforces.com/d1730912dc669e44d9231a4d2fd63ef588cc7c11.png)\n\n- 对于第一对顶点，最短路径是 $1 \\rightarrow 2$。\n- 对于第二对顶点，最短路径是 $2 \\rightarrow 6 \\rightarrow 5$。\n- 对于第三对顶点，最短路径是 $1 \\rightarrow 2 \\rightarrow 6 \\rightarrow 7$。",
+  "samples": [
+    {
+      "input": "2\n5 4\n1 2\n1 3\n1 4\n1 5\n8 3\n3 7\n2 5\n1 7\n",
+      "output": "1\n2\n2\n1\n1\n2\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:48.221Z",
+  "translatedAt": "2026-10-30T20:33:25.765Z",
+  "translateModel": "gpt-6.1-sol"
+}

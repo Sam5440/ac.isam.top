@@ -1,0 +1,31 @@
+{
+  "id": "2237E",
+  "platform": "codeforces",
+  "contestId": 2237,
+  "index": "E",
+  "title": "Permutation Commutation",
+  "titleZh": "置换交换",
+  "url": "https://codeforces.com/contest/2237/problem/E",
+  "difficulty": 2100,
+  "tags": [
+    "data structures",
+    "graphs",
+    "greedy"
+  ],
+  "points": 2250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Quack the Duck has a permutation$^{\\text{∗}}$ $a$ of length $n$ and an incomplete sequence $b_1,b_2,\\ldots,b_n$.\n\nEach element of $b$ is either $-1$ or an integer from $1$ to $n$. Each integer from $1$ to $n$ appears at most once in $b$.\n\nQuack hopes to complete $b$ into a permutation that commutes with $a$. In other words, after replacing every $-1$ in $b$, the equality $a_{b_i}=b_{a_i}$ should hold for every $1 \\le i \\le n$.\n\nJa the Ghost wants to help Quack. Among all possible ways to complete $b$, he wants to find the lexicographically smallest$^{\\text{†}}$ one.\n\nDetermine whether such a completion exists. If it exists, output the lexicographically smallest valid permutation $b$. Otherwise, report that it is impossible.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).$^{\\text{†}}$An array $p$ is lexicographically smaller than an array $q$ of the same size if and only if the following holds: $p \\ne q$, and in the first position where $p$ and $q$ differ, the array $p$ has a smaller element than the corresponding element in $q$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the permutation.\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1 \\le a_i \\le n$) — the permutation $a$.\n\nThe third line of each test case contains $n$ integers $b_1,b_2,\\ldots,b_n$ ($b_i=-1$ or $1 \\le b_i \\le n$) — the incomplete sequence $b$.\n\nIt is guaranteed that each integer from $1$ to $n$ appears at most once in $b$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print \"`YES`\" if the answer exists, and \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\nIf the answer exists, in the next line output $n$ integers $p_1,p_2,\\ldots,p_n$ — the lexicographically smallest valid sequence after replacing every $-1$ in $b$.\n\nThe sequence $p$ must be a permutation, that is, each integer from $1$ to $n$ must appear exactly once in $p$. Also, it must satisfy $a_{p_i}=p_{a_i}$ for every $1 \\le i \\le n$.\n\n## Note\n\nIn the first test case, $b=[1,2,3]$ commutes with any permutation $a$. Since all elements of $b$ are unknown, this is also the lexicographically smallest possible valid permutation.\n\nIn the second test case, $a=[2,1,4,3]$ and $b_3=4$. Since $a_3=4$, the condition for $i=3$ gives $a_{b_3}=b_{a_3}$, so $a_4=b_4$, hence $b_4=3$. The remaining values are $1$ and $2$, and the lexicographically smallest valid choice is $b_1=1$, $b_2=2$. Thus the answer is $[1,2,4,3]$.\n\nIn the third test case, $a=[2,1,4,3]$, $b_1=3$, and $b_2=1$. For $i=1$, the condition requires $a_{b_1}=b_{a_1}$. However, $a_{b_1}=a_3=4$, while $b_{a_1}=b_2=1$. Since $4 \\neq 1$, no valid completion exists.",
+  "statementZhMd": "Quack the Duck 有一个长度为 $n$ 的置换$^{\\text{∗}}$ $a$，以及一个不完整的序列 $b_1,b_2,\\ldots,b_n$。\n\n$b$ 中的每个元素要么是 $-1$，要么是 $1$ 到 $n$ 之间的整数。$1$ 到 $n$ 中的每个整数在 $b$ 中至多出现一次。\n\nQuack 希望将 $b$ 补全为一个与 $a$ 可交换的置换。换句话说，将 $b$ 中的每个 $-1$ 替换后，对于每个 $1 \\le i \\le n$，都应满足等式 $a_{b_i}=b_{a_i}$。\n\n幽灵 Ja 想要帮助 Quack。在所有可能的 $b$ 的补全方式中，他希望找到字典序最小$^{\\text{†}}$的一种。\n\n请判断是否存在这样的补全方式。如果存在，输出字典序最小的合法置换 $b$；否则，报告无法完成。\n\n$^{\\text{∗}}$长度为 $n$ 的置换是一个由 $n$ 个互不相同的 $1$ 到 $n$ 之间的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个置换，但 $[1,2,2]$ 不是置换（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是置换（$n=3$，但数组中出现了 $4$）。$^{\\text{†}}$当且仅当满足以下条件时，称同样大小的数组 $p$ 的字典序小于数组 $q$：$p \\ne q$，并且在 $p$ 和 $q$ 第一个不同的位置，数组 $p$ 在该位置的元素小于数组 $q$ 的对应元素。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$），表示置换的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1 \\le a_i \\le n$），表示置换 $a$。\n\n每个测试用例的第三行包含 $n$ 个整数 $b_1,b_2,\\ldots,b_n$（$b_i=-1$ 或 $1 \\le b_i \\le n$），表示不完整的序列 $b$。\n\n保证 $1$ 到 $n$ 中的每个整数在 $b$ 中至多出现一次。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果答案存在，输出 \"`YES`\"，否则输出 \"`NO`\"。\n\n输出时可以使用任意大小写形式。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定回答。\n\n如果答案存在，在下一行输出 $n$ 个整数 $p_1,p_2,\\ldots,p_n$，表示将 $b$ 中的每个 $-1$ 替换后的字典序最小的合法序列。\n\n序列 $p$ 必须是一个置换，即 $1$ 到 $n$ 中的每个整数都必须在 $p$ 中恰好出现一次。此外，对于每个 $1 \\le i \\le n$，还必须满足 $a_{p_i}=p_{a_i}$。\n\n## 说明\n\n在第一个测试用例中，$b=[1,2,3]$ 与任意置换 $a$ 都可交换。由于 $b$ 中的所有元素都是未知的，这也是字典序最小的合法置换。\n\n在第二个测试用例中，$a=[2,1,4,3]$ 且 $b_3=4$。由于 $a_3=4$，对于 $i=3$，条件给出 $a_{b_3}=b_{a_3}$，因此 $a_4=b_4$，从而 $b_4=3$。剩余的值为 $1$ 和 $2$，字典序最小的合法选择是 $b_1=1$、$b_2=2$。因此答案为 $[1,2,4,3]$。\n\n在第三个测试用例中，$a=[2,1,4,3]$，$b_1=3$，且 $b_2=1$。对于 $i=1$，条件要求 $a_{b_1}=b_{a_1}$。然而，$a_{b_1}=a_3=4$，而 $b_{a_1}=b_2=1$。由于 $4 \\neq 1$，不存在合法的补全方式。",
+  "samples": [
+    {
+      "input": "12\n3\n2 3 1\n-1 -1 -1\n4\n2 1 4 3\n-1 -1 4 -1\n4\n2 1 4 3\n3 1 -1 -1\n4\n2 1 4 3\n1 -1 -1 2\n5\n2 3 1 5 4\n2 -1 -1 -1 -1\n5\n2 3 1 5 4\n4 -1 -1 -1 -1\n6\n2 3 1 5 6 4\n4 -1 -1 -1 -1 -1\n6\n2 1 4 3 6 5\n-1 3 -1 -1 -1 -1\n6\n3 5 6 2 1 4\n-1 -1 -1 3 6 -1\n7\n2 3 1 5 4 6 7\n-1 -1 -1 -1 -1 7 -1\n8\n2 3 4 1 6 7 8 5\n5 7 -1 -1 -1 -1 -1 -1\n8\n2 3 4 1 6 7 8 5\n5 -1 -1 -1 -1 -1 -1 -1\n",
+      "output": "YES\n1 2 3\nYES\n1 2 4 3\nNO\nNO\nYES\n2 3 1 4 5\nNO\nYES\n4 5 6 1 2 3\nYES\n4 3 1 2 5 6\nNO\nYES\n1 2 3 4 5 7 6\nNO\nYES\n5 6 7 8 1 2 3 4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:22.076Z",
+  "translatedAt": "2026-10-30T20:35:10.135Z",
+  "translateModel": "gpt-6.1-sol"
+}

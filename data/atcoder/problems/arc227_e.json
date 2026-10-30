@@ -1,0 +1,36 @@
+{
+  "id": "arc227_e",
+  "platform": "atcoder",
+  "contestId": "arc227",
+  "index": "E",
+  "title": "Shift and XOR Switches",
+  "titleZh": "移位与异或开关",
+  "url": "https://atcoder.jp/contests/arc227/tasks/arc227_e",
+  "difficulty": 2710,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a length-$N$ sequence $B=(B_1,B_2,\\ldots,B_N)$ consisting of $0$ and $1$. Initially, $B_1=1$, and all other elements are $0$.\n\nThere are $M$ switches, and the integer $A_i$ is written on switch $i$ ($1 \\le i \\le M$). When switch $i$ is pressed, using the state immediately before the operation, $B_j$ is simultaneously changed as follows for every integer $j$ satisfying $1 \\le j \\le N$:\n\n\\[ B_j \\leftarrow \\begin{cases} B_j \\oplus B_{j-A_i} & (A_i \\lt j),\\\\ B_j & (j \\le A_i) \\end{cases} \\]\n\nEach switch can be pressed zero times or once, and the switches may be pressed in any order.\n\nFind the number, modulo $998244353$, of possible final sequences $B$.\n\nWhat is the bitwise $\\mathrm{XOR}$ operation? The bitwise $\\mathrm{XOR}$ of non-negative integers $A$ and $B$, denoted $A \\oplus B$, is defined as follows: The digit in the $2^k$'s place ($k \\geq 0$) of $A \\oplus B$, written in binary, is $1$ if exactly one of the digits in the $2^k$'s place of $A$ and $B$, written in binary, is $1$, and $0$ otherwise. For example, $3 \\oplus 5 = 6$ (in binary: $011 \\oplus 101 = 110$). In general, the bitwise $\\mathrm{XOR}$ of $k$ non-negative integers $p_1, p_2, p_3, \\dots, p_k$ is defined as $(\\dots ((p_1 \\oplus p_2) \\oplus p_3) \\oplus \\dots \\oplus p_k)$, and it can be proved that this does not depend on the order of $p_1, p_2, p_3, \\dots, p_k$.\n\n## Constraints\n\n- $2 \\le N \\le 2 \\times 10^5$\n- $1 \\le M \\le 2 \\times 10^5$\n- $1 \\le A_i \\lt N$ ($1 \\le i \\le M$)\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nA_1 A_2 \\ldots A_M\n```\n\n## Output\n\nOutput the number, modulo $998244353$, of possible final sequences $B$.",
+  "statementZhMd": "## 题目描述\n\n有一个长度为 $N$ 的由 $0$ 和 $1$ 组成的序列 $B=(B_1,B_2,\\ldots,B_N)$。初始时，$B_1=1$，其余所有元素均为 $0$。\n\n有 $M$ 个开关，第 $i$ 个开关上写着整数 $A_i$（$1 \\le i \\le M$）。按下第 $i$ 个开关时，使用操作前的状态，同时对满足以下条件的每个整数 $j$ 按如下方式改变 $B_j$：\n\n\\[ B_j \\leftarrow \\begin{cases} B_j \\oplus B_{j-A_i} & (A_i \\lt j),\\\\ B_j & (j \\le A_i) \\end{cases} \\]\n\n每个开关可以按下零次或一次，并且可以按照任意顺序按下开关。\n\n求所有可能得到的最终序列 $B$ 的数量。答案对 $998244353$ 取模。\n\n什么是按位 $\\mathrm{XOR}$ 运算？非负整数 $A$ 和 $B$ 的按位 $\\mathrm{XOR}$ 运算记作 $A \\oplus B$，其定义如下：将 $A$ 和 $B$ 用二进制表示后，$A \\oplus B$ 的第 $2^k$ 位（$k \\geq 0）$ 在且仅在 $A$ 和 $B$ 的第 $2^k$ 位中恰有一位为 $1$ 时为 $1$，否则为 $0$。例如，$3 \\oplus 5 = 6$（二进制表示为：$011 \\oplus 101 = 110$）。一般来说，$k$ 个非负整数 $p_1, p_2, p_3, \\dots, p_k$ 的按位 $\\mathrm{XOR}$ 运算定义为 $(\\dots ((p_1 \\oplus p_2) \\oplus p_3) \\oplus \\dots \\oplus p_k)$，并且可以证明其结果与 $p_1, p_2, p_3, \\dots, p_k$ 的顺序无关。\n\n## 约束条件\n\n- $2 \\le N \\le 2 \\times 10^5$\n- $1 \\le M \\le 2 \\times 10^5$\n- $1 \\le A_i \\lt N$（$1 \\le i \\le M$）\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入读入，格式如下：\n\n```\nN M\nA_1 A_2 \\ldots A_M\n```\n\n## 输出格式\n\n输出所有可能得到的最终序列 $B$ 的数量，答案对 $998244353$ 取模。",
+  "samples": [
+    {
+      "input": "4 2\n2 3\n",
+      "output": "4\n",
+      "note": "There are four possible final sequences:\n\n- $(1,0,0,0)$\n- $(1,0,1,0)$\n- $(1,0,0,1)$\n- $(1,0,1,1)$"
+    },
+    {
+      "input": "2 1\n1\n",
+      "output": "2\n",
+      "note": "There are two possible final sequences: $(1,0)$ and $(1,1)$."
+    },
+    {
+      "input": "96 30\n56 6 46 18 9 38 20 25 18 44 46 71 44 65 42 20 38 25 9 95 18 65 71 9 95 65 9 42 65 6\n",
+      "output": "384912\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:16:31.111Z",
+  "translatedAt": "2026-10-30T20:31:52.275Z",
+  "translateModel": "gpt-6.1-sol"
+}

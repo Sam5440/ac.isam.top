@@ -1,0 +1,27 @@
+{
+  "id": "arc217_b",
+  "platform": "atcoder",
+  "contestId": "arc217",
+  "index": "B",
+  "title": "Not High Element",
+  "titleZh": "非高位元素",
+  "url": "https://atcoder.jp/contests/arc217/tasks/arc217_b",
+  "difficulty": 1834,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given integers $N,K$ and an integer sequence $A=(A_1,A_2,\\ldots,A_K)$ of length $K$. It is guaranteed that each element of $A$ is between $1$ and $N$, inclusive, and all elements are distinct.\n\nFor a permutation $P=(P_1,P_2,\\ldots,P_N)$ of $(1,2,\\ldots,N)$, define $f(P)$ as follows.\n\n- The maximum number of times the following operation can be performed on $P$.\n- Choose $2\\le i\\le N$ satisfying $P_i < \\max(P_1,P_2,\\ldots,P_{i-1})$, and move $P_i$ to the front. That is, replace $P$ with $(P_i,P_1,P_2,\\ldots,P_{i-1},P_{i+1},\\ldots,P_N)$.\n\nThere are $(N-K)!$ permutations $P$ of $(1,2,\\ldots,N)$ satisfying $P_i=A_i$ for $i=1,2,\\ldots,K$. Find the sum, modulo $998244353$, of $f(P)$ over all such permutations.\n\nYou are given $T$ test cases; solve each of them.\n\n## Constraints\n\n- $1\\le T\\le 10^5$\n- $1\\le K\\le N$\n- The sum of $N$ over all test cases is at most $5\\times 10^5$.\n- $1\\le A_i\\le N$\n- All elements of $A$ are distinct.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\text{case}_1\n\\text{case}_2\n\\vdots\n\\text{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN K\nA_1 A_2 \\ldots A_K\n```\n\n## Output\n\nOutput the answer for the test cases in order, separated by newlines.",
+  "statementZhMd": "## 题目描述\n\n给定整数 $N,K$ 以及一个长度为 $K$ 的整数序列 $A=(A_1,A_2,\\ldots,A_K)$。保证 $A$ 中的每个元素都在 $1$ 到 $N$（含）之间，且所有元素互不相同。\n\n对于 $(1,2,\\ldots,N)$ 的一个排列 $P=(P_1,P_2,\\ldots,P_N)$，定义 $f(P)$ 如下。\n\n- 对 $P$ 最多可以执行下述操作的次数。\n- 选择满足 $2\\le i\\le N$ 且 $P_i < \\max(P_1,P_2,\\ldots,P_{i-1})$ 的 $i$，并将 $P_i$ 移到最前面。也就是说，将 $P$ 替换为 $(P_i,P_1,P_2,\\ldots,P_{i-1},P_{i+1},\\ldots,P_N)$。\n\n满足 $P_i=A_i$（对于 $i=1,2,\\ldots,K$）的 $(1,2,\\ldots,N)$ 的排列 $P$ 共有 $(N-K)!$ 个。求所有这些 $P$ 的 $f(P)$ 之和，结果对 $998244353$ 取模。\n\n给定 $T$ 组测试数据，请分别求出每组的答案。\n\n## 约束条件\n\n- $1\\le T\\le 10^5$\n- $1\\le K\\le N$\n- 所有测试数据中的 $N$ 之和不超过 $5\\times 10^5$。\n- $1\\le A_i\\le N$\n- $A$ 中的所有元素互不相同。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nT\n\\text{case}_1\n\\text{case}_2\n\\vdots\n\\text{case}_T\n```\n\n每组测试数据按以下格式给出：\n\n```\nN K\nA_1 A_2 \\ldots A_K\n```\n\n## 输出格式\n\n按顺序输出各组测试数据的答案，每个答案占一行。",
+  "samples": [
+    {
+      "input": "3\n3 1\n1\n4 2\n3 2\n10 3\n2 1 7\n",
+      "output": "2\n6\n1382640\n",
+      "note": "Consider the first test case.\n\nThe permutations $P$ of $(1,2,\\ldots,N)$ satisfying $P_i=A_i$ for $i=1,2,\\ldots,K$ are $P=(1,2,3)$ and $P=(1,3,2)$, giving two permutations.\n\nWhen $P=(1,2,3)$, no operation can be performed, so $f(P)=0$.\n\nWhen $P=(1,3,2)$, the operation can be performed twice as follows.\n\n- Choose $i=3$. Now $P=(2,1,3)$.\n- Choose $i=2$. Now $P=(1,2,3)$.\n\nThe operation cannot be performed three or more times, so $f(P)=2$ in this case.\n\nThus, the answer is $0+2=2$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:20:10.352Z",
+  "translatedAt": "2026-10-30T20:26:04.288Z",
+  "translateModel": "gpt-6.1-sol"
+}

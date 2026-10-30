@@ -1,0 +1,31 @@
+{
+  "id": "2249A",
+  "platform": "codeforces",
+  "contestId": 2249,
+  "index": "A",
+  "title": "Rank Subsequence",
+  "titleZh": "排名子序列",
+  "url": "https://codeforces.com/contest/2249/problem/A",
+  "difficulty": 1300,
+  "tags": [
+    "brute force",
+    "greedy",
+    "implementation"
+  ],
+  "points": 750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given $n$ elements arranged in a line, numbered $1, 2, \\ldots, n$ from left to right.\n\nYou may delete any number of elements (possibly none). The remaining elements form a **subsequence** and keep their relative order. Let the length of this subsequence be $m$. If the element with original index $i$ becomes the $j$-th element of the subsequence ($1 \\le j \\le m$), define\n\n- its *left rank* as $j$, and\n- its *right rank* as $m - j + 1$.\n\nFor each element, you are given two integer segments $[l_i, r_i]$ and $[u_i, v_i]$. The $i$-th element is *valid* in a subsequence of length $m$ if and only if, when it occupies position $j$ in that subsequence, both of the following hold:\n\n- Its *left rank* is not in the range $[l_i, r_i]$ (i.e., $j \\notin [l_i, r_i]$);\n- Its *right rank* is not in the range $[u_i, v_i]$ (i.e., $m - j + 1 \\notin [u_i, v_i]$).\n\nA subsequence is *valid* if every element remaining in it is *valid*.\n\nFind the maximum possible length of a *valid* subsequence. The answer may be $0$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 5000$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le 5000$) — the number of elements.\n\nThen $n$ lines follow, the $i$-th line containing the four integers $l_i$, $r_i$, $u_i$, and $v_i$ ($1\\le i\\le n$, $1\\le l_i\\le r_i\\le n$, $1\\le u_i\\le v_i\\le n$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5000$.\n\n## Output\n\nFor each test case, print one integer — the maximum possible length of a *valid* subsequence.\n\n## Note\n\nIn the first test case, the only element cannot form a *valid* subsequence of length $1$, so the answer is $0$.\n\nIn the second test case, all $4$ elements can be kept. Their pairs of *left* and *right ranks* are $(1, 4)$, $(2, 3)$, $(3, 2)$, and $(4, 1)$, respectively, and all of them are *valid*.\n\nIn the third test case, one optimal choice is to keep the elements with original indices $2$, $3$, and $5$.\n\nIn the fourth test case, keeping both elements yields a *valid* subsequence of length $2$. Note that no *valid* subsequence of length $1$ exists.\n\nIn the fifth test case, one optimal choice is to keep the elements with original indices $3$, $4$, and $5$.",
+  "statementZhMd": "你有 $n$ 个元素排成一列，从左到右编号为 $1, 2, \\ldots, n$。\n\n你可以删除任意数量的元素（也可以一个都不删除）。剩余元素构成一个**子序列**，并保持它们的相对顺序。设该子序列的长度为 $m$。如果原下标为 $i$ 的元素成为子序列中的第 $j$ 个元素（$1 \\le j \\le m$），则定义：\n\n- 它的*左排名*为 $j$；\n- 它的*右排名*为 $m - j + 1$。\n\n对于每个元素，给定两个整数区间 $[l_i, r_i]$ 和 $[u_i, v_i]$。当第 $i$ 个元素位于子序列中的位置 $j$ 时，如果且仅如果以下两个条件都满足，则称该元素在长度为 $m$ 的子序列中是*有效*的：\n\n- 它的*左排名*不在区间 $[l_i, r_i]$ 中（即 $j \\notin [l_i, r_i]$）；\n- 它的*右排名*不在区间 $[u_i, v_i]$ 中（即 $m - j + 1 \\notin [u_i, v_i]$）。\n\n如果子序列中保留的每个元素都是*有效*的，则称该子序列是*有效*的。\n\n求有效子序列可能达到的最大长度。答案可以为 $0$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 5000$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 5000$），表示元素的数量。\n\n接下来 $n$ 行，第 $i$ 行包含四个整数 $l_i$、$r_i$、$u_i$ 和 $v_i$（$1\\le i\\le n$，$1\\le l_i\\le r_i\\le n$，$1\\le u_i\\le v_i\\le n$）。\n\n保证所有测试用例的 $n$ 之和不超过 $5000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，即有效子序列可能达到的最大长度。\n\n## 说明\n\n在第一个测试用例中，唯一的元素无法构成长度为 $1$ 的*有效*子序列，因此答案为 $0$。\n\n在第二个测试用例中，所有 $4$ 个元素都可以保留。它们的*左排名*和*右排名*分别为 $(1, 4)$、$(2, 3)$、$(3, 2)$ 和 $(4, 1)$，并且它们全部都是*有效*的。\n\n在第三个测试用例中，一种最优选择是保留原下标为 $2$、$3$ 和 $5$ 的元素。\n\n在第四个测试用例中，保留两个元素可以得到一个长度为 $2$ 的*有效*子序列。注意，不存在长度为 $1$ 的*有效*子序列。\n\n在第五个测试用例中，一种最优选择是保留原下标为 $3$、$4$ 和 $5$ 的元素。",
+  "samples": [
+    {
+      "input": "5\n1\n1 1 1 1\n4\n2 2 2 2\n1 1 1 1\n1 1 1 1\n1 1 2 2\n5\n1 1 3 3\n2 2 2 2\n3 3 1 1\n1 5 1 5\n5 5 5 5\n2\n2 2 1 1\n1 1 2 2\n6\n1 1 6 6\n1 2 5 6\n2 3 4 5\n3 4 3 4\n4 5 2 3\n5 6 1 2\n",
+      "output": "0\n4\n3\n2\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:20.959Z",
+  "translatedAt": "2026-10-30T20:40:25.999Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "2257C",
+  "platform": "codeforces",
+  "contestId": 2257,
+  "index": "C",
+  "title": "Spying on the Beaver",
+  "titleZh": "监视海狸",
+  "url": "https://codeforces.com/contest/2257/problem/C",
+  "difficulty": 1200,
+  "tags": [
+    "constructive algorithms",
+    "dfs and similar",
+    "dsu",
+    "graphs",
+    "trees"
+  ],
+  "points": 1250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a rooted tree$^{\\text{∗}}$ with $n$ vertices, numbered from $1$ to $n$. The vertex numbered $1$ is the root of the tree. The Beaver, initially located at the root, travels through the tree to one of the beaver dams located at the vertices numbered $a_1, \\ldots, a_m$.\n\nYou need to determine which of these $m$ vertices the Beaver went to. To do this, you can place cameras on any edges of the tree. If the Beaver traverses an edge with a camera on it, you will see this. For clarity, we assume that after all the Beaver's movements, you will receive a sequence of edges with cameras in which the Beaver was observed passing through the corresponding edge.\n\nSince cameras are expensive, it is necessary to use the minimum number of them sufficient to uniquely determine the Beaver's destination. You are required to state the minimum necessary number of cameras $k$ and the edges on which they should be placed.\n\n$^{\\text{∗}}$A rooted tree is a tree where one vertex is special and called the root.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 2 \\cdot 10^4$). The description of the test cases follows.\n\nIn the first line of each test case, there is a single integer $n$ ($2 \\le n \\le 10^5$).\n\nThe second line contains $n-1$ integers $p_2, \\ldots, p_n$ — the parents of the vertices from the $2$nd to the $n$th ($1 \\le p_i \\lt i$; $2 \\le i \\le n$).\n\nThe third line contains a single integer $m$ — the number of vertices containing beaver dams ($1 \\le m \\le n$).\n\nIn the fourth line, there are $m$ integers $a_1, \\ldots, a_m$ — the numbers of these vertices ($1 \\le a_i \\le n$; $1 \\le i \\le m$). All $a_i$ are distinct.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output exactly one line. First, output the number $k$ — the minimum required number of cameras, and then, in the same line, for each of the $k$ edges connecting the vertices $u$ and $p_u$, where cameras need to be installed, output the vertex number $u$.\n\nIf there are multiple answers, you can output any one of them.\n\n## Note\n\nIn the first test case, we do not need to install any cameras because there is only one dam in the tree, and the Beaver will definitely go there.\n\nIn the second test case, it is necessary to place a camera on each edge because there is a dam located at each vertex.\n\nIn the third test case, the dams are located in two adjacent vertices, so by placing a camera on the edge between these vertices, we can uniquely determine which one the Beaver went to.",
+  "statementZhMd": "<statement>\n给定一棵有根树$^{\\text{∗}}$，包含 $n$ 个顶点，编号为 $1$ 到 $n$。编号为 $1$ 的顶点是这棵树的根。海狸最初位于根节点，随后穿过树前往编号为 $a_1, \\ldots, a_m$ 的某个顶点处的海狸水坝。\n\n你需要确定海狸前往了这 $m$ 个顶点中的哪一个。为此，你可以在树的任意边上安装摄像头。如果海狸经过安装了摄像头的边，你就能观察到这一点。为便于说明，我们假设在海狸完成所有移动后，你会获得一个边序列，其中记录了海狸经过的所有安装了摄像头的边。\n\n由于摄像头价格昂贵，因此需要使用足够唯一确定海狸目的地的最少摄像头数量。你需要给出所需的最少摄像头数量 $k$，以及应该安装摄像头的边。\n\n$^{\\text{∗}}$有根树是一棵其中一个顶点被指定为根的树。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 2 \\cdot 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 10^5$）。\n\n第二行包含 $n-1$ 个整数 $p_2, \\ldots, p_n$，表示从第 $2$ 个到第 $n$ 个顶点的父节点（$1 \\le p_i \\lt i$；$2 \\le i \\le n$）。\n\n第三行包含一个整数 $m$，表示包含海狸水坝的顶点数量（$1 \\le m \\le n$）。\n\n第四行包含 $m$ 个整数 $a_1, \\ldots, a_m$，表示这些顶点的编号（$1 \\le a_i \\le n$；$1 \\le i \\le m$）。所有 $a_i$ 两两不同。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，恰好输出一行。首先输出整数 $k$，表示所需的最少摄像头数量；然后在同一行中，对于每条需要安装摄像头、连接顶点 $u$ 和 $p_u$ 的边，输出顶点编号 $u$。\n\n如果有多个答案，可以输出其中任意一个。\n\n## 说明\n\n在第一个测试用例中，无需安装任何摄像头，因为树中只有一个水坝，海狸一定会前往那里。\n\n在第二个测试用例中，需要在每条边上都安装摄像头，因为每个顶点处都有一个水坝。\n\n在第三个测试用例中，水坝位于两个相邻的顶点处，因此只需在连接这两个顶点的边上安装摄像头，就能唯一确定海狸前往了哪一个顶点。\n</statement>",
+  "samples": [
+    {
+      "input": "4\n2\n1\n1\n1\n3\n1 1\n3\n2 3 1\n3\n1 2\n2\n2 3\n6\n1 2 2 1 1\n3\n5 3 1\n",
+      "output": "0\n2 2 3\n1 3\n2 2 5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:21:37.522Z",
+  "translatedAt": "2026-10-30T20:42:51.290Z",
+  "translateModel": "gpt-6.1-sol"
+}

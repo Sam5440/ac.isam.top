@@ -1,0 +1,32 @@
+{
+  "id": "2231D",
+  "platform": "codeforces",
+  "contestId": 2231,
+  "index": "D",
+  "title": "Maximum Prefix Sums",
+  "titleZh": "最大前缀和",
+  "url": "https://codeforces.com/contest/2231/problem/D",
+  "difficulty": 1900,
+  "tags": [
+    "constructive algorithms",
+    "greedy",
+    "implementation",
+    "two pointers"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "521 sounds the same as \"I love you\" in Chinese. On this special day, Little S wants to give Little A some well-prepared sequences to recall their friendship sealed for years.\n\nLittle S has prepared an array $a_1, a_2, \\ldots, a_n$. Let's define its prefix sums array $b_1, b_2, \\ldots, b_n$, where $b_i = a_1 + a_2 + \\ldots + a_i$. Also define the prefix maximum array of $b$: $c_1, c_2, \\ldots, c_n$, where $c_i = \\max(b_1, b_2, \\ldots, b_i)$.\n\nNow array $a$ has been partially lost, but luckily Little S still keeps the array $c$. Your task is to restore the array $a$ and send it to Little A, or report that no such array exists — in this case, the kind and cute Little A won't get mad either.\n\nFormally, you are given a binary string $s$, a partially filled array $a$, and an array $c$, where:\n\n- If you remember the value of $a_i$, then $s_i = 1$, and you are given the true value of $a_i$.\n- If you do not remember the value of $a_i$, then $s_i = 0$, and you are given $a_i = 0$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$).\n\nThe second line of each test case contains a binary string $s$ ($s_i \\in \\{\\texttt{0}, \\texttt{1}\\}$) of length $n$.\n\nThe third line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($|a_i| \\le 10^6$). If $s_i = \\texttt{0}$, then it is guaranteed that $a_i = 0$.\n\nThe fourth line of each test case contains $n$ integers $c_1, c_2, \\ldots, c_n$ ($|c_i| \\le 2 \\cdot 10^{11}$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print \"`Yes`\" in the first line if the array $a$ exists, otherwise print \"`No`\". You may print the answer in any case. For example, \"`YeS`\", \"`YES`\", \"`NO`\", \"`nO`\" will also be accepted.\n\nIf there is at least one solution, print $n$ integers $a_1, a_2, \\ldots, a_n$ ($|a_i| \\leq 10^{18}$) in the second line. If there are multiple suitable arrays, you may print any of them.\n\n## Note\n\nIn the first test case, we have:\n\n- $a = [1, 2, -1, 0]$.\n- $b = [1, 3, 2, 2]$.\n- $c = [1, 3, 3, 3]$.\n\nIn the third test case, the correct array $a$ should be equal to $[1]$, so no solution exists.",
+  "statementZhMd": "521 在中文中与“我爱你”谐音。在这个特殊的日子里，小 S 想送给小 A 一些精心准备的序列，以回忆他们维系多年的友谊。\n\n小 S 准备了一个数组 $a_1, a_2, \\ldots, a_n$。定义它的前缀和数组 $b_1, b_2, \\ldots, b_n$，其中 $b_i = a_1 + a_2 + \\ldots + a_i$。再定义 $b$ 的前缀最大值数组 $c_1, c_2, \\ldots, c_n$，其中 $c_i = \\max(b_1, b_2, \\ldots, b_i)$。\n\n现在，数组 $a$ 的部分元素丢失了，但幸运的是小 S 仍然保留着数组 $c$。你的任务是还原数组 $a$ 并将其送给小 A，或者报告不存在这样的数组——在这种情况下，善良可爱的小 A 也不会生气。\n\n形式化地说，给定一个二进制字符串 $s$、一个部分填充的数组 $a$ 和一个数组 $c$，其中：\n\n- 如果你记得 $a_i$ 的值，则 $s_i = 1$，并且给出 $a_i$ 的真实值。\n- 如果你不记得 $a_i$ 的值，则 $s_i = 0$，并且给出 $a_i = 0$。\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）。\n\n每个测试用例的第二行包含一个长度为 $n$ 的二进制字符串 $s$（$s_i \\in \\{\\texttt{0}, \\texttt{1}\\}$）。\n\n每个测试用例的第三行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$|a_i| \\le 10^6$）。如果 $s_i = \\texttt{0}$，则保证 $a_i = 0$。\n\n每个测试用例的第四行包含 $n$ 个整数 $c_1, c_2, \\ldots, c_n$（$|c_i| \\le 2 \\cdot 10^{11}$）。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，如果数组 $a$ 存在，在第一行输出 `Yes`，否则输出 `No`。答案可以使用任意大小写形式。例如，`YeS`、`YES`、`NO`、`nO` 也会被接受。\n\n如果至少存在一个解，则在第二行输出 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$|a_i| \\le 10^{18}$）。如果有多个满足条件的数组，可以输出其中任意一个。\n\n## 说明\n\n在第一个测试用例中：\n\n- $a = [1, 2, -1, 0]$。\n- $b = [1, 3, 2, 2]$。\n- $c = [1, 3, 3, 3]$。\n\n在第三个测试用例中，正确的数组 $a$ 应为 $[1]$，因此不存在解。",
+  "samples": [
+    {
+      "input": "10\n4\n1110\n1 2 -1 0\n1 3 3 3\n5\n00001\n0 0 0 0 5\n-4 -4 -1 -1 -1\n1\n1\n0\n1\n6\n001111\n0 0 2 -3 3 -6\n-5 -2 0 0 0 0\n5\n11110\n1 2 0 5 0\n1 2 2 7 6\n2\n01\n0 1\n-1 -1\n6\n001010\n0 0 5 0 3 0\n3 3 4 9 13 16\n6\n000100\n0 0 0 4 0 0\n2 6 6 7 7 7\n2\n00\n0 0\n4 -1\n8\n11111111\n6 1 1 2 0 5 1 9\n6 7 8 10 10 15 16 25\n",
+      "output": "Yes\n1 2 -1 0\nYes\n-4 0 3 -6 5\nNo\nYes\n-5 3 2 -3 3 -6\nNo\nNo\nNo\nYes\n2 4 -3 4 -100 0\nNo\nYes\n6 1 1 2 0 5 1 9\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:48.221Z",
+  "translatedAt": "2026-10-30T20:33:41.738Z",
+  "translateModel": "gpt-6.1-sol"
+}

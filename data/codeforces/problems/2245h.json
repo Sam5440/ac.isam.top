@@ -1,0 +1,30 @@
+{
+  "id": "2245H",
+  "platform": "codeforces",
+  "contestId": 2245,
+  "index": "H",
+  "title": "Connect Connect See",
+  "titleZh": "连接相连看",
+  "url": "https://codeforces.com/contest/2245/problem/H",
+  "difficulty": 3500,
+  "tags": [
+    "brute force",
+    "data structures"
+  ],
+  "points": 5000,
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 1024,
+  "statementMd": "You are given a rectangular grid $a$ consisting of $n$ rows and $m$ columns. The $j$-th cell in the $i$-th row is denoted by $(i,j)$. There is a non-negative integer written in every cell. The integer written in cell $(i,j)$ is denoted by $a_{i,j}$.\n\nA *path* $p$ of length $k$ on $a$ is defined as a sequence of cells $p_0,p_1,\\ldots,p_k$ such that $p_i$ and $p_{i+1}$ share an edge for every $0 \\le i \\lt k$, and all $p_i$ are distinct. The number of *turns* of a simple path $p$ of length $k$, denoted by $t(p)$, is defined as the number of indices $1 \\le i \\lt k$ that satisfy the following condition:\n\n- Let $p_j=(x_j,y_j)$ for $j \\in \\{i-1,i,i+1\\}$. Then, both $x_{i-1} \\ne x_{i+1}$ **and** $y_{i-1} \\ne y_{i+1}$ hold.\n\nA path $p=[(x_0,y_0),(x_1,y_1),\\ldots,(x_k,y_k)]$ is considered *valid* if and only if all of the following conditions hold:\n\n- $k \\ge 1$.\n- $t(p) \\le 2$.\n- $a_{x_0,y_0}=a_{x_k,y_k}$, $a_{x_0,y_0} \\gt 0$, and $a_{x_i,y_i}=0$ for every $1 \\le i \\lt k$.\n\nAn unordered pair of cells $(u_1,v_1)$ and $(u_2,v_2)$ is considered *connectable* if and only if there exists a valid path $p$ of length $k$ such that $p_0=(u_1,v_1)$ and $p_k=(u_2,v_2)$.\n\nFind the number of connectable pairs in $a$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 100$, $1 \\le n \\cdot m \\le 2 \\cdot 10^6$), representing the dimensions of $a$.\n\nThe $i$-th of the next $n$ lines contains $m$ integers $a_{i,1}, a_{i,2},\\ldots,a_{i,m}$ ($0 \\le a_{i,j} \\le n \\cdot m$), representing the $i$-th row of $a$.\n\nIt is guaranteed that the sum of $n \\cdot m$ over all test cases does not exceed $2 \\cdot 10^6$.\n\n## Output\n\nFor each test case, output an integer representing the number of connectable pairs in $a$.\n\n## Note\n\nIn the first and second test cases, there are no connectable pairs in $a$.\n\nIn the third test case, the connectable pairs are:\n\n- $(1,1),(1,2)$.\n- $(1,2),(2,2)$.\n- $(1,1),(2,2)$.\n\nIn the sixth test case, there are $34$ connectable pairs. One of them is $(1,1),(3,3)$. Note that $(1,1),(5,5)$ is not a connectable pair, as any path that begins at $(1,1)$ and ends at $(5,5)$ has more than $2$ turns.",
+  "statementZhMd": "你有一个由 $n$ 行 $m$ 列组成的矩形网格 $a$。第 $i$ 行第 $j$ 列的单元格记为 $(i,j)$。每个单元格中都写有一个非负整数。单元格 $(i,j)$ 中的整数记为 $a_{i,j}$。\n\n在 $a$ 上，一个长度为 $k$ 的*路径* $p$ 定义为一个单元格序列 $p_0,p_1,\\ldots,p_k$，满足对于每个 $0 \\le i \\lt k$，$p_i$ 和 $p_{i+1}$ 共享一条边，并且所有 $p_i$ 两两不同。长度为 $k$ 的简单路径 $p$ 的*转弯次数* $t(p)$ 定义为满足以下条件的下标 $1 \\le i \\lt k$ 的数量：\n\n- 令 $p_j=(x_j,y_j)$，其中 $j \\in \\{i-1,i,i+1\\}$。则 $x_{i-1} \\ne x_{i+1}$ **且** $y_{i-1} \\ne y_{i+1}$ 均成立。\n\n路径 $p=[(x_0,y_0),(x_1,y_1),\\ldots,(x_k,y_k)]$ 当且仅当满足以下所有条件时，被称为*有效*路径：\n\n- $k \\ge 1$。\n- $t(p) \\le 2$。\n- $a_{x_0,y_0}=a_{x_k,y_k}$，$a_{x_0,y_0} \\gt 0$，并且对于每个 $1 \\le i \\lt k$，都有 $a_{x_i,y_i}=0$。\n\n当且仅当存在一条长度为 $k$ 的有效路径 $p$，满足 $p_0=(u_1,v_1)$ 且 $p_k=(u_2,v_2)$ 时，称无序单元格对 $(u_1,v_1)$ 和 $(u_2,v_2)$ *可连接*。\n\n求 $a$ 中可连接的单元格对数量。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 100$，$1 \\le n \\cdot m \\le 2 \\cdot 10^6$），表示 $a$ 的尺寸。\n\n接下来的 $n$ 行中，第 $i$ 行包含 $m$ 个整数 $a_{i,1}, a_{i,2},\\ldots,a_{i,m}$（$0 \\le a_{i,j} \\le n \\cdot m$），表示第 $i$ 行。\n\n保证所有测试用例的 $n \\cdot m$ 之和不超过 $2 \\cdot 10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示 $a$ 中可连接的单元格对数量。\n\n## 说明\n\n在第一个和第二个测试用例中，$a$ 中不存在可连接的单元格对。\n\n在第三个测试用例中，可连接的单元格对为：\n\n- $(1,1),(1,2)$。\n- $(1,2),(2,2)$。\n- $(1,1),(2,2)$。\n\n在第六个测试用例中，有 $34$ 个可连接的单元格对。其中一个是 $(1,1),(3,3)$。注意，$(1,1),(5,5)$ 不是可连接的单元格对，因为任何从 $(1,1)$ 出发并在 $(5,5)$ 结束的路径都包含超过 $2$ 次转弯。",
+  "samples": [
+    {
+      "input": "7\n1 1\n1\n1 1\n0\n2 2\n3 3\n0 3\n2 2\n2 0\n0 2\n3 3\n0 0 0\n1 2 1\n0 0 0\n5 5\n1 0 1 0 1\n0 0 0 0 0\n1 0 1 0 1\n0 0 0 0 0\n1 0 1 0 1\n4 4\n0 0 0 0\n1 2 1 2\n1 0 0 1\n0 0 2 0\n",
+      "output": "0\n0\n3\n1\n1\n34\n7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:51.665Z",
+  "translatedAt": "2026-10-30T20:37:41.989Z",
+  "translateModel": "gpt-6.1-sol"
+}

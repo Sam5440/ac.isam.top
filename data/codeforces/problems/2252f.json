@@ -1,0 +1,33 @@
+{
+  "id": "2252F",
+  "platform": "codeforces",
+  "contestId": 2252,
+  "index": "F",
+  "title": "Spectral Components",
+  "titleZh": "谱连通分量",
+  "url": "https://codeforces.com/contest/2252/problem/F",
+  "difficulty": 2600,
+  "tags": [
+    "dfs and similar",
+    "dp",
+    "greedy",
+    "sortings",
+    "trees"
+  ],
+  "points": 2750,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a tree consisting of $n$ vertices. Each vertex $i$ is painted with a color $c_i$.\n\nFor each distinct color $c$ present in the tree, let $m_c$ be the total number of vertices of color $c$. You are also given an array $k$ of length $n$, where $k_c$ ($1 \\le k_c \\le m_c$) represents the target component size for color $c$.\n\nFor every color $c$ independently, your task is to choose a **connected subgraph** (a component) consisting of exactly $k_c$ vertices. The vertices you choose for the component do not necessarily have to be of color $c$.\n\nThe **cost** of a chosen component is the sum of the shortest distances from **every** vertex of color $c$ to the chosen component. (The distance from a vertex $v$ to a component $S$ is defined as the minimum number of edges on a simple path from $v$ to any vertex $u$ in $S$).\n\nFor each color $c$ from $1$ to $n$, find the minimum possible cost of a valid component of size $k_c$. If there are no vertices of color $c$ in the tree, output $-1$ for that color.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nThe second line contains $n$ integers $c_1, c_2, \\ldots, c_n$ ($1 \\le c_i \\le n$) — the colors of the vertices.\n\nThe third line contains $n$ integers $k_1, k_2, \\ldots, k_n$ ($1 \\le k_i \\le n$) — the target component sizes for each color. It is guaranteed that if color $c$ appears $m_c \\gt 0$ times in the tree, then $1 \\le k_c \\le m_c$.\n\nEach of the next $n - 1$ lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n$), representing an edge between vertices $u$ and $v$. It is guaranteed that the given edges form a valid tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers. The $c$-th integer should be the minimum possible cost of a valid component of size $k_c$ for color $c$, or $-1$ if color $c$ is not present in the tree.\n\n## Note\n\nIn the first testcase, the tree has $5$ vertices. Color $1$ appears $3$ times (vertices $1, 2, 4$). Color $2$ appears $2$ times (vertices $3, 5$). Colors $3$, $4$, and $5$ do not appear, so their output is $-1$. For color $1$ ($k_1 = 2$), we can choose the component $S = \\{2, 4\\}$. The distance from vertex $1$ to $S$ is $1$. The distances from vertices $2$ and $4$ to $S$ are $0$. The total cost is $1 + 0 + 0 = 1$. For color $2$ ($k_2 = 1$), the optimal component is the single vertex $S = \\{2\\}$. The distance from $3$ to $2$ is $1$, and from $5$ to $2$ is $2$. The total cost is $3$.\n\nIn the second testcase, the tree is a star graph with center $1$ (color $2$) and $5$ leaves (color $1$). For color $1$ ($k_1 = 3$), the optimal strategy is to include the center and two leaves, for instance, $S = \\{1, 2, 3\\}$. The distances from the color $1$ leaves to $S$ are $0$ (for $2, 3$) and $1$ (for $4, 5, 6$), yielding a minimum cost of $3$. For color $2$ ($k_2 = 1$), the only vertex is the center itself. Choosing $S = \\{1\\}$ gives a cost of $0$.\n\nIn the third testcase, the tree is a line graph $1-2-3-4-5-6$ with alternating colors. For color $2$ (vertices $2, 4, 6$), we need a component of size $3$. The optimal component is $S = \\{3, 4, 5\\}$. The distances from the vertices of color $2$ to $S$ are $1$ (from $2$, via edge $2-3$), $0$ (from $4$, since it is in $S$), and $1$ (from $6$, via edge $6-5$). The total cost is $2$.",
+  "statementZhMd": "你得到了一棵包含 $n$ 个顶点的树。每个顶点 $i$ 被涂成颜色 $c_i$。\n\n对于树中出现的每种颜色 $c$，令 $m_c$ 表示颜色为 $c$ 的顶点总数。你还会得到一个长度为 $n$ 的数组 $k$，其中 $k_c$（$1 \\le k_c \\le m_c$）表示颜色 $c$ 的目标连通分量大小。\n\n对于每种颜色 $c$，你需要独立地选择一个恰好包含 $k_c$ 个顶点的**连通子图**（一个连通分量）。你所选分量中的顶点不一定必须是颜色 $c$。\n\n所选分量的**代价**定义为：颜色为 $c$ 的**每个**顶点到所选分量的最短距离之和。（顶点 $v$ 到分量 $S$ 的距离定义为：从 $v$ 到 $S$ 中任意顶点 $u$ 的简单路径所包含的边数的最小值。）\n\n对于从 $1$ 到 $n$ 的每种颜色 $c$，求大小为 $k_c$ 的合法分量所能达到的最小代价。如果树中不存在颜色为 $c$ 的顶点，则该颜色的答案为 $-1$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$），表示树中顶点的数量。\n\n第二行包含 $n$ 个整数 $c_1, c_2, \\ldots, c_n$（$1 \\le c_i \\le n$），表示各顶点的颜色。\n\n第三行包含 $n$ 个整数 $k_1, k_2, \\ldots, k_n$（$1 \\le k_i \\le n$），表示每种颜色的目标分量大小。保证当颜色 $c$ 在树中出现 $m_c \\gt 0$ 次时，满足 $1 \\le k_c \\le m_c$。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$），表示一条连接顶点 $u$ 和顶点 $v$ 的边。保证给出的边构成一棵合法的树。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数。第 $c$ 个整数应为颜色 $c$ 的大小为 $k_c$ 的合法分量所能达到的最小代价；如果树中不存在颜色 $c$，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，树有 $5$ 个顶点。颜色 $1$ 出现了 $3$ 次（顶点 $1, 2, 4$），颜色 $2$ 出现了 $2$ 次（顶点 $3, 5$）。颜色 $3$、$4$ 和 $5$ 没有出现，因此它们的输出为 $-1$。对于颜色 $1$（$k_1 = 2$），我们可以选择分量 $S = \\{2, 4\\}$。顶点 $1$ 到 $S$ 的距离为 $1$，顶点 $2$ 和 $4$ 到 $S$ 的距离均为 $0$。总代价为 $1 + 0 + 0 = 1$。对于颜色 $2$（$k_2 = 1$），最优分量是单个顶点 $S = \\{2\\}$。顶点 $3$ 到顶点 $2$ 的距离为 $1$，顶点 $5$ 到顶点 $2$ 的距离为 $2$。总代价为 $3$。\n\n在第二个测试用例中，树是一棵中心为顶点 $1$ 的星形图，中心顶点 $1$ 的颜色为 $2$，另外 $5$ 个叶子顶点的颜色为 $1$。对于颜色 $1$（$k_1 = 3$），最优策略是选择中心和两个叶子，例如 $S = \\{1, 2, 3\\}$。颜色为 $1$ 的叶子到 $S$ 的距离分别为：顶点 $2, 3$ 的距离为 $0$，顶点 $4, 5, 6$ 的距离为 $1$，因此最小代价为 $3$。对于颜色 $2$（$k_2 = 1$），树中唯一的颜色 $2$ 顶点就是中心。选择 $S = \\{1\\}$ 时，代价为 $0$。\n\n在第三个测试用例中，树是一条顶点依次为 $1-2-3-4-5-6$ 的路径，颜色交替出现。对于颜色 $2$（顶点 $2, 4, 6$），我们需要一个大小为 $3$ 的分量。最优分量为 $S = \\{3, 4, 5\\}$。颜色为 $2$ 的顶点到 $S$ 的距离分别为：顶点 $2$ 的距离为 $1$（经过边 $2-3$），顶点 $4$ 的距离为 $0$（因为它位于 $S$ 中），顶点 $6$ 的距离为 $1$（经过边 $6-5$）。总代价为 $2$。",
+  "samples": [
+    {
+      "input": "3\n5\n1 1 2 1 2\n2 1 1 1 1\n1 2\n2 3\n2 4\n4 5\n6\n2 1 1 1 1 1\n3 1 1 1 1 1\n1 2\n1 3\n1 4\n1 5\n1 6\n6\n1 2 1 2 1 2\n2 3 1 1 1 1\n1 2\n2 3\n3 4\n4 5\n5 6\n",
+      "output": "1 3 -1 -1 -1\n3 0 -1 -1 -1 -1\n3 2 -1 -1 -1 -1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:03.538Z",
+  "translatedAt": "2026-10-30T20:41:23.361Z",
+  "translateModel": "gpt-6.1-sol"
+}

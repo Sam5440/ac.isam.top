@@ -1,0 +1,27 @@
+{
+  "id": "arc219_d",
+  "platform": "atcoder",
+  "contestId": "arc219",
+  "index": "D",
+  "title": "Grid Game",
+  "titleZh": "网格游戏",
+  "url": "https://atcoder.jp/contests/arc219/tasks/arc219_d",
+  "difficulty": 1716,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is an $N \\times N$ grid. The cell at the $i$-th row from the top and the $j$-th column from the left is denoted as cell $(i,j)$. Cell $(i,j)$ initially contains $A_{i,j}$ stones.\n\nAlice and Bob play the following game using this grid.\n\n- Starting with Alice, the two players alternate taking turns.\n- On each turn, the player chooses a cell and moves at least $1$ and at most $K$ stones from it together to an adjacent cell above or to the left. Specifically, the following steps are performed in order:\n- Choose a cell $(i,j)$ that contains at least $1$ stone. Cell $(1,1)$ cannot be chosen.\n  - Let $c$ be the number of stones in cell $(i,j)$, and choose an integer $x$ satisfying $1 \\le x \\le \\min(c,K)$.\n  - Choose as the destination either cell $(i-1,j)$ (if it exists) or cell $(i,j-1)$ (if it exists), then remove $x$ stones from cell $(i,j)$ and move all of them to that cell.\n\nThe player who cannot take a turn first loses.\n\nDetermine which player wins when both play optimally.\n\nYou are given $T$ test cases; solve each of them.\n\n## Constraints\n\n- $1\\le T$\n- $2\\le N\\le 100$\n- $1\\le K\\le 10^9$\n- $0\\le A_{i,j}\\le 10^9$\n- The sum of $N^2$ over all test cases is at most $3\\times 10^5$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\text{case}_1\n\\text{case}_2\n\\vdots\n\\text{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN K\nA_{1,1} A_{1,2} \\ldots A_{1,N}\nA_{2,1} A_{2,2} \\ldots A_{2,N}\n\\vdots\nA_{N,1} A_{N,2} \\ldots A_{N,N}\n```\n\n## Output\n\nOutput the answers for the test cases in order, separated by newlines.\n\nFor each test case, output `Alice` if Alice wins when both play optimally, and `Bob` if Bob wins.",
+  "statementZhMd": "## 题目描述\n\n有一个 $N \\times N$ 的网格。从上往下数第 $i$ 行、从左往右数第 $j$ 列的单元格记为 $(i,j)$。单元格 $(i,j)$ 中初始有 $A_{i,j}$ 个石子。\n\nAlice 和 Bob 使用这个网格进行如下游戏。\n\n- 两名玩家从 Alice 开始轮流行动。\n- 每次行动时，玩家选择一个单元格，将其中至少 $1$ 个、至多 $K$ 个石子一起移动到它上方或左方的相邻单元格。具体按以下步骤进行：\n- 选择一个包含至少 $1$ 个石子的单元格 $(i,j)$。不能选择单元格 $(1,1)$。\n  - 设单元格 $(i,j)$ 中有 $c$ 个石子，并选择一个满足 $1 \\le x \\le \\min(c,K)$ 的整数 $x$。\n  - 将目的地选择为单元格 $(i-1,j)$（如果存在）或单元格 $(i,j-1)$（如果存在），然后从单元格 $(i,j)$ 中移除 $x$ 个石子，并将它们全部移动到该单元格。\n\n无法行动的玩家输掉游戏。\n\n假设双方都采取最优策略，判断最终哪位玩家获胜。\n\n给定 $T$ 组测试数据，请分别求出每组测试数据的答案。\n\n## 约束条件\n\n- $1\\le T$\n- $2\\le N\\le 100$\n- $1\\le K\\le 10^9$\n- $0\\le A_{i,j}\\le 10^9$\n- 所有测试数据中 $N^2$ 的总和不超过 $3\\times 10^5$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nT\n\\text{case}_1\n\\text{case}_2\n\\vdots\n\\text{case}_T\n```\n\n每组测试数据按以下格式给出：\n\n```\nN K\nA_{1,1} A_{1,2} \\ldots A_{1,N}\nA_{2,1} A_{2,2} \\ldots A_{2,N}\n\\vdots\nA_{N,1} A_{N,2} \\ldots A_{N,N}\n```\n\n## 输出格式\n\n按顺序输出各组测试数据的答案，每组答案占一行。\n\n对于每组测试数据，如果双方都采取最优策略时 Alice 获胜，输出 `Alice`；如果 Bob 获胜，输出 `Bob`。",
+  "samples": [
+    {
+      "input": "3\n2 2\n0 1\n3 2\n3 1\n1 1 1\n1 1 1\n1 1 1\n4 4\n3 8 5 3\n4 2 0 6\n0 9 10 4\n1 9 7 10\n",
+      "output": "Alice\nBob\nAlice\n",
+      "note": "Consider the first test case.\n\nFor example, the game may proceed as follows (note that the players are not necessarily playing optimally):\n\n- Alice's turn: Choose cell $(2,2)$ and remove $2$ stones. Move the removed stones to cell $(1,2)$.\n- Bob's turn: Choose cell $(1,2)$ and remove $2$ stones. Move the removed stones to cell $(1,1)$.\n- Alice's turn: Choose cell $(2,1)$ and remove $2$ stones. Move the removed stones to cell $(1,1)$.\n- Bob's turn: Choose cell $(2,1)$ and remove $1$ stone. Move the removed stone to cell $(1,1)$.\n- Alice's turn: Choose cell $(1,2)$ and remove $1$ stone. Move the removed stone to cell $(1,1)$.\n- Bob's turn: Bob cannot take a turn and loses.\n\nBy playing optimally, Alice can always beat Bob. Thus, output `Alice` on the first line."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:19:22.344Z",
+  "translatedAt": "2026-10-30T20:27:34.474Z",
+  "translateModel": "gpt-6.1-sol"
+}

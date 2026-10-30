@@ -1,0 +1,35 @@
+{
+  "id": "arc228_c",
+  "platform": "atcoder",
+  "contestId": "arc228",
+  "index": "C",
+  "title": "Partially Sort",
+  "titleZh": "部分排序",
+  "url": "https://atcoder.jp/contests/arc228/tasks/arc228_c",
+  "difficulty": 2953,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a permutation $P=(P_1,P_2,\\dots,P_N)$ of $(1,2,\\dots,N)$.\n\nFor a subsequence $x=(x_1,x_2,\\dots,x_k)$ of $(1,2,\\dots,N)$, let $f(x)$ denote the sequence obtained by the following procedure.\n\n- Initialize the sequence $Q=(Q_1,Q_2,\\dots,Q_N)$ with $Q = P$.\n- Let $A=(A_1,A_2,\\dots,A_k)$ be the sequence obtained by sorting $(Q_{x_1},Q_{x_2},\\dots,Q_{x_k})$ in ascending order.\n- For every integer $i$ satisfying $1 \\le i \\le k$, replace $Q_{x_i}$ with $A_i$. Let $f(x)$ be $Q$ at this point.\n\nThere are $2^N$ possible choices of $x$, including the empty sequence. Find the sum, modulo $998244353$, of the number of inversions of $f(x)$ over all those choices.\n\n## Constraints\n\n- $2 \\le N \\le 2 \\times 10^5$\n- $P$ is a permutation of $(1,2,\\dots,N)$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nP_1\\ P_2\\ \\dots\\ P_N\n```\n\n## Output\n\nOutput the answer.",
+  "statementZhMd": "## 题目描述\n\n给定一个 $(1,2,\\dots,N)$ 的排列 $P=(P_1,P_2,\\dots,P_N)$。\n\n对于 $(1,2,\\dots,N)$ 的一个子序列 $x=(x_1,x_2,\\dots,x_k)$，定义 $f(x)$ 为按照以下步骤得到的序列。\n\n- 将序列 $Q=(Q_1,Q_2,\\dots,Q_N)$ 初始化为 $Q = P$。\n- 将 $(Q_{x_1},Q_{x_2},\\dots,Q_{x_k})$ 按升序排序，得到序列 $A=(A_1,A_2,\\dots,A_k)$。\n- 对于满足 $1 \\le i \\le k$ 的每个整数 $i$，将 $Q_{x_i}$ 替换为 $A_i$。此时的 $Q$ 即为 $f(x)$。\n\n共有 $2^N$ 种 $x$ 的选择方式，其中包括空序列。求所有这些选择对应的 $f(x)$ 的逆序对数之和，结果对 $998244353$ 取模。\n\n## 约束条件\n\n- $2 \\le N \\le 2 \\times 10^5$\n- $P$ 是 $(1,2,\\dots,N)$ 的一个排列。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nP_1\\ P_2\\ \\dots\\ P_N\n```\n\n## 输出格式\n\n输出答案。",
+  "samples": [
+    {
+      "input": "3\n3 1 2\n",
+      "output": "12\n",
+      "note": "$f(x)$ and its number of inversions for all eight possible choices of $x$ are as follows.\n\n- For $x = ()$, we have $f(x) = (3,1,2)$, and the number of inversions is $2$.\n- For $x = (1)$, we have $f(x) = (3,1,2)$, and the number of inversions is $2$.\n- For $x = (2)$, we have $f(x) = (3,1,2)$, and the number of inversions is $2$.\n- For $x = (3)$, we have $f(x) = (3,1,2)$, and the number of inversions is $2$.\n- For $x = (1,2)$, we have $f(x) = (1,3,2)$, and the number of inversions is $1$.\n- For $x = (1,3)$, we have $f(x) = (2,1,3)$, and the number of inversions is $1$.\n- For $x = (2,3)$, we have $f(x) = (3,1,2)$, and the number of inversions is $2$.\n- For $x = (1,2,3)$, we have $f(x) = (1,2,3)$, and the number of inversions is $0$.\n\nThus, the answer is $2+2+2+2+1+1+2+0=12$."
+    },
+    {
+      "input": "5\n4 2 5 3 1\n",
+      "output": "148\n"
+    },
+    {
+      "input": "13\n2 7 4 9 3 13 8 12 6 5 10 11 1\n",
+      "output": "174080\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:15:16.133Z",
+  "translatedAt": "2026-10-30T20:15:56.166Z",
+  "translateModel": "gpt-6.1-sol"
+}

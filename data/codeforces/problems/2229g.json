@@ -1,0 +1,33 @@
+{
+  "id": "2229G",
+  "platform": "codeforces",
+  "contestId": 2229,
+  "index": "G",
+  "title": "Roadworks",
+  "titleZh": "道路施工",
+  "url": "https://codeforces.com/contest/2229/problem/G",
+  "difficulty": 3000,
+  "tags": [
+    "binary search",
+    "data structures",
+    "dp",
+    "greedy",
+    "two pointers"
+  ],
+  "points": 3250,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 512,
+  "statementMd": "In an under-construction village, $n$ houses have been built in a row numbered from $1$ to $n$. House $i$ has *hospitality* $h_i$.\n\nThe village has $n - 1$ roads, where road $i$ connects houses $i$ and $i + 1$ and will be built on day $d_i$. Initially, no roads are built.\n\nYou start at house $x$ and will stay in the village from day $1$ to day $k$, initially with a satisfaction of $0$. On day $s$, the following happens in order:\n\n- All roads $i$ with $d_i = s$ are built;\n- You may move to an adjacent house, if the road to it has been built, or stay at your current house;\n- Your satisfaction increases by $h_j$, where $j$ is the house you are currently at.\n\nFind the maximum satisfaction you can achieve after $k$ days.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $k$ and $x$ ($2 \\le n \\le 2 \\cdot 10^5$, $1 \\le k \\le 10^9$, $1 \\le x \\le n$) — the number of houses, the number of days and the starting house, respectively.\n\nThe second line contains $n$ integers $h_1, h_2, \\ldots, h_n$ ($0 \\le h_i \\le 10^9$) — the hospitality of each house.\n\nThe third line contains $n - 1$ integers $d_1, d_2, \\ldots, d_{n - 1}$ ($1 \\le d_i \\le k$) — the day each road is built.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum satisfaction you can achieve after $k$ days.\n\n## Note\n\nIn the first test case, the following is one optimal sequence of moves:\n\n- You start at house $x = 3$ with a satisfaction of $0$.\n- On day $1$, no roads are built yet, so you must remain at house $3$. Your satisfaction becomes $3$.\n- On day $2$, road $3$ is built. You move to house $4$ and remain there on days $2$, $3$, $4$, $5$, $6$ and $7$. Your satisfaction becomes $33$. During this time, roads $2$ and $4$ are also built.\n- On day $8$, you move back to house $3$. Your satisfaction becomes $36$.\n- On day $9$, you move to house $2$. Your satisfaction becomes $38$.\n- On day $10$, road $1$ is built. You move to house $1$. Your satisfaction becomes $52$.\n\nIt can be shown that it is impossible to achieve a satisfaction greater than $52$.\n\nIn the second test case, you cannot reach house $4$ within $8$ days, so the maximum achievable satisfaction is $0$.\n\nIn the third test case, you can immediately move to house $2$ and remain there for $1\\,000\\,000\\,000$ days.",
+  "statementZhMd": "在一个正在建设中的村庄里，$n$ 栋房屋沿直线排列，编号为 $1$ 到 $n$。第 $i$ 栋房屋的*舒适度*为 $h_i$。\n\n村庄中有 $n - 1$ 条道路，其中道路 $i$ 连接房屋 $i$ 和 $i + 1$，并将在第 $d_i$ 天建成。起初，所有道路都尚未建成。\n\n你从房屋 $x$ 出发，将在村庄中度过第 $1$ 天到第 $k$ 天，初始满意度为 $0$。第 $s$ 天会按以下顺序发生事件：\n\n- 建成所有满足 $d_i = s$ 的道路 $i$；\n- 如果通往相邻房屋的道路已经建成，你可以移动到相邻房屋，也可以留在当前房屋；\n- 你的满意度增加 $h_j$，其中 $j$ 是你当前所在的房屋编号。\n\n请计算在第 $k$ 天结束后，你能够获得的最大满意度。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含三个整数 $n$、$k$ 和 $x$（$2 \\le n \\le 2 \\cdot 10^5$，$1 \\le k \\le 10^9$，$1 \\le x \\le n$），分别表示房屋数量、天数和起始房屋编号。\n\n第二行包含 $n$ 个整数 $h_1, h_2, \\ldots, h_n$（$0 \\le h_i \\le 10^9$），表示每栋房屋的舒适度。\n\n第三行包含 $n - 1$ 个整数 $d_1, d_2, \\ldots, d_{n - 1}$（$1 \\le d_i \\le k$），表示每条道路建成的日期。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示在第 $k$ 天结束后能够获得的最大满意度。\n\n## 说明\n\n在第一个测试用例中，以下是一种最优的移动方案：\n\n- 你从房屋 $x = 3$ 出发，初始满意度为 $0$。\n- 第 $1$ 天还没有道路建成，因此你必须留在房屋 $3$。满意度变为 $3$。\n- 第 $2$ 天，道路 $3$ 建成。你移动到房屋 $4$，并在第 $2$、$3$、$4$、$5$、$6$ 和 $7$ 天一直留在那里。满意度变为 $33$。在此期间，道路 $2$ 和道路 $4$ 也建成了。\n- 第 $8$ 天，你移动回房屋 $3$。满意度变为 $36$。\n- 第 $9$ 天，你移动到房屋 $2$。满意度变为 $38$。\n- 第 $10$ 天，道路 $1$ 建成。你移动到房屋 $1$。满意度变为 $52$。\n\n可以证明，不可能获得超过 $52$ 的满意度。\n\n在第二个测试用例中，你无法在 $8$ 天内到达房屋 $4$，因此能够获得的最大满意度为 $0$。\n\n在第三个测试用例中，你可以立即移动到房屋 $2$，并在那里停留 $1\\,000\\,000\\,000$ 天。",
+  "samples": [
+    {
+      "input": "4\n5 10 3\n14 2 3 5 6\n10 6 2 7\n4 8 1\n0 0 0 1\n7 1 2\n2 1000000000 1\n1 1000000000\n1\n9 27 6\n17 13 5 8 14 3 4 17 20\n10 1 2 13 3 15 6 23\n",
+      "output": "52\n0\n1000000000000000000\n386\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:56.506Z",
+  "translatedAt": "2026-10-30T20:33:02.911Z",
+  "translateModel": "gpt-6.1-sol"
+}

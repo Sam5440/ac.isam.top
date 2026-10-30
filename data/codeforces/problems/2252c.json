@@ -1,0 +1,33 @@
+{
+  "id": "2252C",
+  "platform": "codeforces",
+  "contestId": 2252,
+  "index": "C",
+  "title": "Risky Tower",
+  "titleZh": "危险高塔",
+  "url": "https://codeforces.com/contest/2252/problem/C",
+  "difficulty": 1400,
+  "tags": [
+    "binary search",
+    "brute force",
+    "data structures",
+    "greedy",
+    "sortings"
+  ],
+  "points": 1250,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are playing a 2D Jenga game represented by a grid with $n$ rows and $m$ columns. The $1$-st row is the top level of the tower, and the $n$-th row is the bottom level.\n\nEach piece at row $i$ and column $j$ has a destabilization factor $a_{i,j}$. Additionally, each row $i$ has an initial stability index of $v_i$.\n\nWhen you remove a piece, it is completely discarded from the game. Removing a piece from row $i$ damages all levels at and above it. Specifically, for every row $k$ such that $1 \\le k \\le i$, its stability index is decreased by $a_{i,j}$.\n\nThe tower collapses if either of the following conditions is met:\n\n- The stability index of any level drops to $0$ or less.\n- Any level is left with exactly $0$ pieces (even if it is the topmost level).\n\nFind the minimum number of pieces you must remove such that the tower collapses.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n, m \\le 10^6$) — the number of rows and columns of the tower.\n\nThe second line contains $n$ integers $v_1, v_2, \\ldots, v_n$ ($1 \\le v_i \\le 10^9$) — the initial stability indices of each level from top to bottom.\n\nEach of the next $n$ lines contains $m$ integers. The $j$-th integer on the $i$-th line is $a_{i, j}$ ($1 \\le a_{i, j} \\le 10^9$) — the destabilization factor of the piece at row $i$ and column $j$.\n\nIt is guaranteed that the sum of $n \\cdot m$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output a single integer — the minimum number of pieces that must be removed to collapse the tower.\n\n## Note\n\nIn the first testcase, we have a $2 \\times 3$ tower. The initial stabilities are $v_1 = 10$ and $v_2 = 20$. The top level ($i=1$) has pieces with destabilization factors $2, 2, 2$. The bottom level ($i=2$) has pieces $5, 5, 5$.\n\nIf we remove two pieces from the bottom level, it inflicts $5 + 5 = 10$ damage to level $2$, and $5 + 5 = 10$ damage to level $1$. The remaining stability of level $1$ becomes $10 - 10 = 0$. Since its stability dropped to $\\le 0$, the tower collapses. Thus, the minimum number of pieces we must remove is $2$.\n\nIn the second testcase, $m = 1$. The rule states that the tower collapses if any level is left with exactly $0$ pieces. Since every level initially has $1$ piece, removing any $1$ piece from the tower will instantly empty a level and cause a collapse. Therefore, the minimum number of pieces to remove is $1$.",
+  "statementZhMd": "你正在玩一个由 $n$ 行 $m$ 列网格表示的二维叠叠乐游戏。第 $1$ 行是塔的顶层，第 $n$ 行是塔的底层。\n\n位于第 $i$ 行第 $j$ 列的每个方块都有一个破坏因子 $a_{i,j}$。此外，每一层 $i$ 还有一个初始稳定度 $v_i$。\n\n当你移除一个方块时，该方块会被从游戏中完全移除。移除第 $i$ 行的一个方块会对它所在的层以及其上方的所有层造成破坏。具体来说，对于满足 $1 \\le k \\le i$ 的每一行 $k$，其稳定度都会减少 $a_{i,j}$。\n\n如果满足以下任一条件，高塔就会倒塌：\n\n- 任意一层的稳定度降至 $0$ 或以下。\n- 任意一层恰好剩下 $0$ 个方块（即使该层是最顶层）。\n\n请找出使高塔倒塌所需移除的最少方块数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 10^6$），分别表示高塔的行数和列数。\n\n第二行包含 $n$ 个整数 $v_1, v_2, \\ldots, v_n$（$1 \\le v_i \\le 10^9$），表示从顶层到底层每一层的初始稳定度。\n\n接下来的 $n$ 行中，每行包含 $m$ 个整数。第 $i$ 行的第 $j$ 个整数为 $a_{i, j}$（$1 \\le a_{i, j} \\le 10^9$），表示第 $i$ 行第 $j$ 列方块的破坏因子。\n\n保证所有测试用例的 $n \\cdot m$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，即使高塔倒塌所需移除的最少方块数。\n\n## 说明\n\n在第一个测试用例中，有一个 $2 \\times 3$ 的高塔。初始稳定度为 $v_1 = 10$ 和 $v_2 = 20$。顶层（$i=1$）的方块破坏因子分别为 $2, 2, 2$。底层（$i=2$）的方块破坏因子分别为 $5, 5, 5$。\n\n如果我们移除底层的两个方块，它们会对第 $2$ 层造成 $5 + 5 = 10$ 点伤害，同时也会对第 $1$ 层造成 $5 + 5 = 10$ 点伤害。第 $1$ 层剩余的稳定度变为 $10 - 10 = 0$。由于其稳定度降至 $\\le 0$，高塔倒塌。因此，需要移除的最少方块数为 $2$。\n\n在第二个测试用例中，$m = 1$。根据规则，如果任意一层恰好剩下 $0$ 个方块，高塔就会倒塌。由于每一层最初都有 $1$ 个方块，移除高塔中的任意 $1$ 个方块都会立即使某一层变空并导致高塔倒塌。因此，需要移除的最少方块数为 $1$。",
+  "samples": [
+    {
+      "input": "2\n2 3\n10 20\n2 2 2\n5 5 5\n3 1\n100 100 100\n1\n2\n3\n",
+      "output": "2\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:03.538Z",
+  "translatedAt": "2026-10-30T20:41:03.945Z",
+  "translateModel": "gpt-6.1-sol"
+}

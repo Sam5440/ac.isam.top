@@ -1,0 +1,31 @@
+{
+  "id": "abc460_g",
+  "platform": "atcoder",
+  "contestId": "abc460",
+  "index": "G",
+  "title": "Vertex Flip Query",
+  "titleZh": "顶点颜色翻转查询",
+  "url": "https://atcoder.jp/contests/abc460/tasks/abc460_g",
+  "difficulty": 2838,
+  "tags": [],
+  "points": 650,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a tree with $N$ vertices numbered $1$ to $N$. The $i$-th edge connects vertices $a_i$ and $b_i$. Each vertex $i$ has a weight $W_i$ and a color $C_i \\in \\lbrace 0,1 \\rbrace$.\nProcess $Q$ queries. There are three types of queries as follows.\n\n- `1 v`: Change $C_v$ to $1 - C_v$ for vertex $v$.\n- `2 v x`: Change $W_v$ to $W_v + x$ for vertex $v$.\n- `3 v`: Let $c$ be the color of vertex $v$. Output the sum of weights of all vertices reachable from vertex $v$ by traveling only through vertices of color $c$ (including vertex $v$ itself).\n\n## Constraints\n\n- $1 \\leq N \\leq 3 \\times 10^5$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $1 \\leq W_i \\leq 10^9$\n- $C_i \\in \\lbrace 0,1 \\rbrace$\n- $1 \\leq a_i \\lt b_i \\leq N$\n- The input graph is a tree.\n- $1 \\leq v \\leq N$\n- $1 \\leq x \\leq 10^9$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{query}_i$ denotes the $i$-th query:\n\n```\nN Q\nW_1 W_2 \\dots W_N\nC_1 C_2 \\dots C_N\na_1 b_1\na_2 b_2\n\\vdots\na_{N-1} b_{N-1}\n\\mathrm{query}_1\n\\mathrm{query}_2\n\\vdots\n\\mathrm{query}_Q\n```\n\nEach query is given in one of the following formats:\n\n```\n1 v\n```\n\n```\n2 v x\n```\n\n```\n3 v\n```\n\n## Output\n\nLet $m$ be the number of type-$3$ queries given. Output $m$ lines. The $i$-th line should contain the answer for the $i$-th type-$3$ query.",
+  "statementZhMd": "## 题目描述\n\n给定一棵有 $N$ 个顶点的树，顶点编号为 $1$ 到 $N$。第 $i$ 条边连接顶点 $a_i$ 和 $b_i$。每个顶点 $i$ 有一个权值 $W_i$ 和一种颜色 $C_i \\in \\lbrace 0,1 \\rbrace$。\n请处理 $Q$ 个查询，查询分为以下三种类型：\n\n- `1 v`：将顶点 $v$ 的颜色 $C_v$ 改为 $1 - C_v$。\n- `2 v x`：将顶点 $v$ 的权值 $W_v$ 增加 $x$。\n- `3 v`：令 $c$ 为顶点 $v$ 的颜色。输出仅经过颜色为 $c$ 的顶点，从顶点 $v$ 可以到达的所有顶点的权值之和（包括顶点 $v$ 本身）。\n\n## 约束条件\n\n- $1 \\leq N \\leq 3 \\times 10^5$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $1 \\leq W_i \\leq 10^9$\n- $C_i \\in \\lbrace 0,1 \\rbrace$\n- $1 \\leq a_i \\lt b_i \\leq N$\n- 输入的图是一棵树。\n- $1 \\leq v \\leq N$\n- $1 \\leq x \\leq 10^9$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入给出，格式如下，其中 $\\mathrm{query}_i$ 表示第 $i$ 个查询：\n\n```\nN Q\nW_1 W_2 \\dots W_N\nC_1 C_2 \\dots C_N\na_1 b_1\na_2 b_2\n\\vdots\na_{N-1} b_{N-1}\n\\mathrm{query}_1\n\\mathrm{query}_2\n\\vdots\n\\mathrm{query}_Q\n```\n\n每个查询的格式为以下之一：\n\n```\n1 v\n```\n\n```\n2 v x\n```\n\n```\n3 v\n```\n\n## 输出格式\n\n设给出的 3 型查询共有 $m$ 个。输出 $m$ 行，第 $i$ 行包含第 $i$ 个 3 型查询的答案。",
+  "samples": [
+    {
+      "input": "5 9\n1 10 100 1000 10000\n0 0 0 0 0\n1 2\n2 3\n3 4\n2 5\n3 1\n1 2\n3 1\n3 2\n3 3\n1 3\n1 2\n2 1 1\n3 5\n",
+      "output": "11111\n1\n10\n1100\n10012\n",
+      "note": "For example, for the first query, the set of vertices reachable from vertex $1$ by traveling only through vertices of color $0$ is $\\lbrace 1,2,3,4,5 \\rbrace$."
+    },
+    {
+      "input": "10 25\n1 10 100 1000 10000 100000 1000000 10000000 100000000 1000000000\n0 1 0 0 0 1 0 0 0 0\n1 2\n1 3\n2 4\n4 5\n4 6\n2 7\n5 8\n8 9\n6 10\n3 4\n1 8\n2 6 100000\n3 3\n1 3\n1 7\n1 7\n1 7\n3 8\n2 1 1\n2 6 100000\n2 8 10000000\n1 5\n2 5 10000\n1 9\n2 7 1000000\n1 7\n2 10 1000000000\n1 9\n1 6\n1 9\n1 1\n3 7\n2 5 10000\n3 6\n",
+      "output": "110011000\n101\n10000000\n2000000\n2000301000\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:18:57.001Z",
+  "translatedAt": "2026-10-30T20:28:19.149Z",
+  "translateModel": "gpt-6.1-sol"
+}

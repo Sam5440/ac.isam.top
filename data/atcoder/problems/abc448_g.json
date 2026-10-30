@@ -1,0 +1,35 @@
+{
+  "id": "abc448_g",
+  "platform": "atcoder",
+  "contestId": "abc448",
+  "index": "G",
+  "title": "Conquest",
+  "titleZh": "征服",
+  "url": "https://atcoder.jp/contests/abc448/tasks/abc448_g",
+  "difficulty": 3305,
+  "tags": [],
+  "points": 675,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nTakahashi and Aoki play a card game. The game proceeds according to the following rules.\n\n- Takahashi presents decks $A_1, A_2, \\dots, A_N$. Here $N \\geq 3$.\n- Aoki presents decks $B_1, B_2, B_3$.\n- Takahashi chooses one deck from Aoki's decks and bans it. Aoki also chooses one deck from Takahashi's decks and bans it. These two ban operations are performed **simultaneously**. (That is, neither player can act based on the other's choice.)\n- Then, Takahashi and Aoki each **simultaneously** declare which deck from their own presented decks they will use. However, the banned deck cannot be declared.\n- Then, the two players battle exactly once using their declared decks. As a result, one of them wins.\n\nYou are given integers $X_{i,j}$ $(1 \\leq i \\leq N, 1 \\leq j \\leq 3)$. Let $p_{i,j} = \\dfrac{X_{i,j}}{10^6}$. $p_{i,j}$ is Takahashi's win rate when Takahashi uses deck $A_i$ and Aoki uses deck $B_j$. Both Takahashi and Aoki know the values of $p_{i,j}$ in advance.\nFind Takahashi's win rate when both players act to maximize their own win rate.\n\n$T$ test cases are given; solve each of them.\n\nWhat is Takahashi's win rate when both players act to maximize their own win rate? At each stage, each player assigns probabilities summing to $1$ to the available choices based on the information revealed up to that point, and randomly selects one choice according to those probabilities. Each player chooses a strategy that maximizes \"the minimum possible win rate,\" that is, \"the win rate when the opponent chooses a strategy that minimizes the player's win rate.\" If there are multiple strategies satisfying this condition, any of them may be chosen. When both players act according to this policy, Takahashi's win rate is uniquely determined regardless of the specific strategy chosen. Find this value.\n\n## Constraints\n\n- $1 \\leq T \\leq 500$\n- $3 \\leq N \\leq 5 \\times 10^4$\n- $0 \\leq X_{i,j} \\leq 10^6$\n- The sum of $N$ over all test cases is at most $5 \\times 10^4$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{case}_i$ denotes the $i$-th test case.\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nFor each test case, the input is given in the following format.\n\n```\nN\nX_{1,1} X_{1,2} X_{1,3}\nX_{2,1} X_{2,2} X_{2,3}\n\\vdots\nX_{N,1} X_{N,2} X_{N,3}\n```\n\n## Output\n\nOutput $T$ lines. The $i$-th line should contain the answer to the $i$-th test case.\nFor each test case, output Takahashi's win rate when both players act to maximize their own win rate. The output is considered correct if the absolute or relative error from the true value is at most $10^{-6}$.",
+  "statementZhMd": "## 题目描述\n\n高桥和青木在玩一场卡牌游戏。游戏按照以下规则进行。\n\n- 高桥提出 $N$ 套牌 $A_1, A_2, \\dots, A_N$。其中 $N \\geq 3$。\n- 青木提出 3 套牌 $B_1, B_2, B_3$。\n- 高桥从青木提出的牌组中选择一套并将其禁用。青木也从高桥提出的牌组中选择一套并将其禁用。这两次禁用操作**同时**进行。（也就是说，双方都不能根据对方的选择来行动。）\n- 接着，高桥和青木各自**同时**宣布自己要使用所提出牌组中的哪一套。不过，被禁用的牌组不能被选择。\n- 随后，两人使用各自宣布的牌组进行一场对战。对战结果是其中一方获胜。\n\n给定整数 $X_{i,j}$ $(1 \\leq i \\leq N, 1 \\leq j \\leq 3)$。令 $p_{i,j} = \\dfrac{X_{i,j}}{10^6}$。当高桥使用牌组 $A_i$、青木使用牌组 $B_j$ 时，高桥的胜率为 $p_{i,j}$。高桥和青木都提前知道所有 $p_{i,j}$ 的值。\n求双方都采取使自己胜率最大化的行动时，高桥的胜率。\n\n给定 $T$ 组测试用例，请分别求解。\n\n双方都采取使自己胜率最大化的行动时，高桥的胜率是多少？在每个阶段，双方都会根据截至该阶段已知的信息，为所有可选行动分配总和为 $1$ 的概率，并按照这些概率随机选择行动。每名玩家都选择使“最坏情况下的胜率”最大的策略，也就是说，假设对手选择使该玩家胜率最小的策略，玩家要最大化此时的胜率。如果有多个满足条件的策略，可以任选其一。双方都遵循这一策略时，无论具体选择哪种满足条件的策略，高桥的胜率都唯一确定。求出该值。\n\n## 约束条件\n\n- $1 \\leq T \\leq 500$\n- $3 \\leq N \\leq 5 \\times 10^4$\n- $0 \\leq X_{i,j} \\leq 10^6$\n- 所有测试用例中 $N$ 的总和不超过 $5 \\times 10^4$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入给出，格式如下，其中 $\\mathrm{case}_i$ 表示第 $i$ 组测试用例。\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每组测试用例的输入格式如下。\n\n```\nN\nX_{1,1} X_{1,2} X_{1,3}\nX_{2,1} X_{2,2} X_{2,3}\n\\vdots\nX_{N,1} X_{N,2} X_{N,3}\n```\n\n## 输出格式\n\n输出 $T$ 行。第 $i$ 行应包含第 $i$ 组测试用例的答案。\n对于每组测试用例，输出双方都采取使自己胜率最大化的行动时高桥的胜率。若答案与正确值的绝对误差或相对误差不超过 $10^{-6}$，则输出被视为正确。",
+  "samples": [
+    {
+      "input": "1\n3\n600000 500000 100000\n400000 700000 300000\n800000 200000 900000\n",
+      "output": "0.5272727272727272\n",
+      "note": "Takahashi's win rate when both players act to maximize their own win rate is $0.5272727 \\cdots$."
+    },
+    {
+      "input": "3\n6\n402522 269943 705465\n529104 292257 262398\n598965 708517 393767\n10680 760196 459175\n163269 555933 100458\n252724 762224 143581\n4\n720086 398924 165990\n446155 678065 592893\n674921 176800 484411\n222632 81476 633357\n5\n212176 543920 484352\n23874 760886 95861\n291354 504948 790821\n523486 327166 289413\n621589 178581 628701\n",
+      "output": "0.5136657634439492\n0.5120053615937050\n0.5396248345565982\n"
+    },
+    {
+      "input": "6\n3\n600000 300000 100000\n0 400000 600000\n700000 400000 100000\n3\n700000 700000 200000\n0 0 900000\n500000 600000 900000\n5\n1000000 658525 1000000\n867635 1000000 259903\n727305 342912 1000000\n995128 432824 1000000\n69492 105991 1000000\n6\n900000 700000 300000\n600000 300000 500000\n900000 100000 900000\n900000 1000000 0\n800000 200000 900000\n700000 800000 900000\n7\n300000 900000 800000\n600000 1000000 700000\n700000 200000 1000000\n1000000 200000 200000\n200000 400000 1000000\n500000 800000 900000\n900000 500000 800000\n5\n500000 500000 41274\n270488 520436 605863\n247128 522516 149943\n502751 491747 516407\n503752 488744 31814\n",
+      "output": "0.3520000000000000\n0.5571428571428572\n0.9951279999999999\n0.8478260869565216\n0.8336956521739129\n0.4988562153245037\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:20:38.502Z",
+  "translatedAt": "2026-10-30T20:25:25.625Z",
+  "translateModel": "gpt-6.1-sol"
+}

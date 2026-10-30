@@ -1,0 +1,27 @@
+{
+  "id": "arc224_c",
+  "platform": "atcoder",
+  "contestId": "arc224",
+  "index": "C",
+  "title": "Ascending Labels",
+  "titleZh": "递增标签",
+  "url": "https://atcoder.jp/contests/arc224/tasks/arc224_c",
+  "difficulty": 969,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a connected simple undirected graph with $N$ vertices and $M$ edges. The vertices are numbered $1,2,\\ldots,N$, and the $i$-th edge connects vertices $U_i$ and $V_i$.\n\nConstruct one integer sequence $A=(A_1,A_2,\\ldots,A_N)$ satisfying all of the following conditions.\n\n- $0 \\le A_v \\le N$ for every vertex $v$.\n- $A_1=0$.\n- For every vertex $v$ other than vertex $1$, there is exactly one vertex $w$ adjacent to $v$ satisfying $A_w=A_v-1$.\n\nIt can be proved that under the constraints of this problem, there exists at least one integer sequence satisfying all of the above conditions. If there are multiple integer sequences satisfying the conditions, any of them will be accepted.\n\n$T$ test cases are given; solve each of them.\n\n## Constraints\n\n- $1 \\le T \\le 3 \\times 10^4$\n- $1 \\le N \\le 3 \\times 10^5$\n- $N-1 \\le M \\le 3 \\times 10^5$\n- $1 \\le U_i < V_i \\le N$\n- $(U_i,V_i) \\neq (U_j,V_j)$ if $i \\neq j$.\n- The given graph is connected.\n- The sum of $N$ in each input is at most $3 \\times 10^5$.\n- The sum of $M$ in each input is at most $3 \\times 10^5$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{case}_i$ denotes the $i$-th test case:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN M\nU_1 V_1\nU_2 V_2\n\\vdots\nU_M V_M\n```\n\n## Output\n\nOutput $T$ lines. The $i$-th line should contain the answer for the $i$-th test case.\n\nFor each test case, output an integer sequence $A$ satisfying the conditions in the following format:\n\n```\nA_1 A_2 \\dots A_N\n```",
+  "statementZhMd": "## 题目描述\n\n给定一个有 $N$ 个顶点、$M$ 条边的连通简单无向图。顶点编号为 $1,2,\\ldots,N$，第 $i$ 条边连接顶点 $U_i$ 和 $V_i$。\n\n请构造一个整数序列 $A=(A_1,A_2,\\ldots,A_N)$，满足以下所有条件：\n\n- 对每个顶点 $v$，都有 $0 \\le A_v \\le N$。\n- $A_1=0$。\n- 对于每个顶点 $v\\neq 1$，恰好存在一个与 $v$ 相邻的顶点 $w$，满足 $A_w=A_v-1$。\n\n可以证明，在本题的约束条件下，至少存在一个满足上述所有条件的整数序列。如果有多个满足条件的整数序列，输出其中任意一个即可。\n\n给定 $T$ 组测试用例，请分别求解。\n\n## 约束条件\n\n- $1 \\le T \\le 3 \\times 10^4$\n- $1 \\le N \\le 3 \\times 10^5$\n- $N-1 \\le M \\le 3 \\times 10^5$\n- $1 \\le U_i < V_i \\le N$\n- 若 $i \\neq j$，则 $(U_i,V_i) \\neq (U_j,V_j)$。\n- 给定的图是连通的。\n- 每个输入中所有测试用例的 $N$ 之和不超过 $3 \\times 10^5$。\n- 每个输入中所有测试用例的 $M$ 之和不超过 $3 \\times 10^5$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入读入，格式如下，其中 $\\\\mathrm{case}_i$ 表示第 $i$ 组测试用例：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每组测试用例的格式如下：\n\n```\nN M\nU_1 V_1\nU_2 V_2\n\\vdots\nU_M V_M\n```\n\n## 输出格式\n\n输出 $T$ 行。第 $i$ 行应包含第 $i$ 组测试用例的答案。\n\n对于每组测试用例，按以下格式输出一个满足条件的整数序列 $A$：\n\n```\nA_1 A_2 \\dots A_N\n```",
+  "samples": [
+    {
+      "input": "3\n6 7\n1 5\n1 3\n3 5\n2 5\n3 4\n3 6\n4 6\n1 0\n6 10\n4 6\n1 4\n2 5\n3 6\n1 3\n1 2\n2 3\n2 4\n3 4\n3 5\n",
+      "output": "0 2 1 2 1 2\n0\n0 3 2 1 3 3\n",
+      "note": "This input contains three test cases.\n\nFor the first test case, consider setting $A=(0,2,1,2,1,2)$.\n\n- For vertex $1$, $A_1=0$.\n- For vertex $2$, there is only one adjacent vertex $w$ satisfying $A_w=A_2-1$, which is vertex $5$.\n- For vertex $3$, there is only one adjacent vertex $w$ satisfying $A_w=A_3-1$, which is vertex $1$.\n- For vertex $4$, there is only one adjacent vertex $w$ satisfying $A_w=A_4-1$, which is vertex $3$.\n- For vertex $5$, there is only one adjacent vertex $w$ satisfying $A_w=A_5-1$, which is vertex $1$.\n- For vertex $6$, there is only one adjacent vertex $w$ satisfying $A_w=A_6-1$, which is vertex $3$.\n\nThus, this integer sequence $A$ satisfies the conditions in the problem statement.\n\nAdditionally, setting $A=(0,3,1,2,2,2)$ also satisfies the conditions, so the output `0 3 1 2 2 2` is also accepted.\n\nThe figure below shows, for each test case in the sample output, the vertex number $v$ outside each vertex and $A_v$ inside each vertex.\n\n![image](https://img.atcoder.jp/arc224/b6ddd768f899c66c1c146ba63129d933.png)"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:17:37.462Z",
+  "translatedAt": "2026-10-30T20:30:07.312Z",
+  "translateModel": "gpt-6.1-sol"
+}

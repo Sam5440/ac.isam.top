@@ -1,0 +1,37 @@
+{
+  "id": "2248G",
+  "platform": "codeforces",
+  "contestId": 2248,
+  "index": "G",
+  "title": "No Balance Left",
+  "titleZh": "余额归零",
+  "url": "https://codeforces.com/contest/2248/problem/G",
+  "difficulty": 3000,
+  "tags": [
+    "bitmasks",
+    "dp",
+    "math",
+    "number theory"
+  ],
+  "points": 3500,
+  "timeLimitMs": 6000,
+  "memoryLimitMb": 256,
+  "statementMd": "Alisa has a shopping card with an initial balance of $h$. There are $n$ types of products in a supermarket. A product of type $i$ costs $c_i$, and Alisa can buy any number of products of each type.\n\nThere are also $m$ rebate activities. The $j$-th activity applies to a purchase if its total cost is at least $a_j$ and gives a rebate of $b_j$.\n\nFor each purchase, Alisa performs the following operations:\n\n- She chooses one or more products whose total cost $x$ does not exceed the current balance on her card and pays $x$ using the card.\n- Among all rebate activities that apply to this purchase, the one with the largest rebate takes effect and its rebate is added to the card balance. If no rebate activity applies, no rebate is added.\n\nFor every $h$ from $1$ to $s$, determine whether Alisa can make the balance on her card equal to $0$ after finitely many purchases.\n\n## Input\n\nThe first line contains three integers $n$, $m$, and $s$ ($1 \\le n, m, s \\le 125\\,000$) — the number of product types, the number of rebate activities, and the maximum initial balance to consider, respectively.\n\nThe second line contains $n$ integers $c_1, c_2, \\ldots, c_n$ ($1 \\le c_i \\le 125\\,000$) — the price of a product of each type.\n\nThe $i$-th of the next $m$ lines contains two integers $a_i$ and $b_i$ ($1 \\le a_i, b_i \\le 125\\,000$) — the spending threshold and the rebate of the $i$-th activity, respectively.\n\nIt is guaranteed that $a_1 \\lt a_2 \\lt \\cdots \\lt a_m$ and $b_1 \\lt b_2 \\lt \\cdots \\lt b_m$.\n\n## Output\n\nPrint $s$ lines. For each $i$ ($1 \\le i \\le s$), print \"`YES`\" if Alisa can make the balance on her card equal to $0$ when its initial balance is $i$, and print \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first example, Alisa can make the balance equal to $0$ when the initial balance is $15$ as follows:\n\n- She buys one product of each type for a total cost of $4 + 7 = 11$. The balance decreases from $15$ to $4$.\n- Since $11 \\ge 8$, the rebate of $4$ takes effect. The balance increases from $4$ to $8$.\n- She buys one product of the first type for $4$. No rebate activity applies, so the balance decreases from $8$ to $4$.\n- She buys one product of the first type again for $4$. No rebate activity applies, so the balance decreases from $4$ to $0$.\n\nTherefore, the $15$-th line of the first example output is \"`YES`\".\n\nIn the second example, if the initial balance is $4$, Alisa can buy one product of the first type for $4$. Since $4 \\lt 6$, no rebate activity applies, and the balance becomes $0$. Therefore, the fourth line of the second example output is \"`YES`\". If the initial balance is $1$, no product is affordable, so the first line is \"`NO`\".",
+  "statementZhMd": "Alisa 有一张购物卡，初始余额为 $h$。超市中有 $n$ 种商品。第 $i$ 种商品的价格为 $c_i$，Alisa 可以购买每种商品任意件。\n\n此外，还有 $m$ 个返利活动。第 $j$ 个活动适用于总花费至少为 $a_j$ 的一次购买，并返还 $b_j$。\n\n对于每次购买，Alisa 按照以下步骤操作：\n\n- 她选择一件或多件商品，使总花费 $x$ 不超过购物卡当前余额，并使用购物卡支付 $x$。\n- 在所有适用于本次购买的返利活动中，返利金额最大者生效，其返利金额会加到购物卡余额中。如果没有适用的返利活动，则不会获得返利。\n\n对于每个 $h$（从 $1$ 到 $s$），判断 Alisa 是否能在有限次购买后使购物卡余额变为 $0$。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$ 和 $s$（$1 \\le n, m, s \\le 125\\,000$），分别表示商品种类数、返利活动数以及需要考虑的最大初始余额。\n\n第二行包含 $n$ 个整数 $c_1, c_2, \\ldots, c_n$（$1 \\le c_i \\le 125\\,000$），表示每种商品的价格。\n\n接下来的 $m$ 行中，第 $i$ 行包含两个整数 $a_i$ 和 $b_i$（$1 \\le a_i, b_i \\le 125\\,000$），表示第 $i$ 个返利活动的消费门槛和返利金额。\n\n保证 $a_1 \\lt a_2 \\lt \\cdots \\lt a_m$ 且 $b_1 \\lt b_2 \\lt \\cdots \\lt b_m$。\n\n## 输出格式\n\n输出 $s$ 行。对于每个 $i$（$1 \\le i \\le s$），如果初始余额为 $i$ 时 Alisa 能使购物卡余额变为 $0$，输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n输出可以使用任意大小写形式。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定 პასუხ。\n\n## 说明\n\n在第一个样例中，当初始余额为 $15$ 时，Alisa 可以按如下方式使余额变为 $0$：\n\n- 她每种商品购买一件，总花费为 $4 + 7 = 11$。余额从 $15$ 减少到 $4$。\n- 由于 $11 \\ge 8$，金额为 $4$ 的返利生效。余额从 $4$ 增加到 $8$。\n- 她购买一件第一种商品，花费为 $4$。没有返利活动适用，因此余额从 $8$ 减少到 $4$。\n- 她再次购买一件第一种商品，花费为 $4$。没有返利活动适用，因此余额从 $4$ 减少到 $0$。\n\n因此，第一个样例输出的第 15 行为 \"`YES`\"。\n\n在第二个样例中，如果初始余额为 $4$，Alisa 可以购买一件第一种商品，花费为 $4$。由于 $4 \\lt 6$，没有返利活动适用，余额变为 $0$。因此，第二个样例输出的第 4 行为 \"`YES`\"。如果初始余额为 $1$，则没有任何商品买得起，因此第一行为 \"`NO`\"。",
+  "samples": [
+    {
+      "input": "2 1 15\n4 7\n8 4\n",
+      "output": "NO\nNO\nNO\nYES\nNO\nNO\nYES\nYES\nNO\nNO\nYES\nYES\nNO\nYES\nYES\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5 3 25\n4 8 12 16 20\n6 8\n7 9\n8 10\n",
+      "output": "NO\nNO\nNO\nYES\nNO\nNO\nNO\nYES\nNO\nYES\nNO\nYES\nNO\nYES\nNO\nYES\nNO\nYES\nNO\nYES\nNO\nYES\nNO\nYES\nNO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:29.577Z",
+  "translatedAt": "2026-10-30T20:39:55.398Z",
+  "translateModel": "gpt-6.1-sol"
+}

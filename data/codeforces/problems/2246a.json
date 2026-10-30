@@ -1,0 +1,29 @@
+{
+  "id": "2246A",
+  "platform": "codeforces",
+  "contestId": 2246,
+  "index": "A",
+  "title": "farmpiggie and Subset Sum",
+  "titleZh": "farmpiggie 与子集和",
+  "url": "https://codeforces.com/contest/2246/problem/A",
+  "difficulty": 800,
+  "tags": [
+    "constructive algorithms"
+  ],
+  "points": 500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "For a permutation$^{\\text{∗}}$ $p$ of even length, you can do the following process:\n\n- Initialize a counter $c = 0.$\n- For each $i$ from $1$ to $n,$ either add $i \\cdot p_i$ to $c$, subtract $i \\cdot p_i$ from $c$, or do nothing.\n\nLet the final value of the counter be $c_{\\mathrm{final}}.$\n\nFormally, for each $i \\in \\{1,\\ldots,n\\},$ consider the set $S_i = \\{-i \\cdot p_i, 0, i \\cdot p_i\\}$ and choose some $x_i \\in S_i.$ Set $c_{\\mathrm{final}} = \\sum_{i = 1}^{n}x_i.$\n\nYou are given a single **even** integer $n$. Find any permutation of length $n$ so that regardless of the operations chosen, the final value $c_{\\mathrm{final}}$ will not be $1.$\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 25$). The description of the test cases follows.\n\nThe first and only line of each test case contains a single **even** integer $n \\, (2 \\le n \\le 50)$ — the length of the desired permutation.\n\n## Output\n\nFor each test case, output $n$ integers $p_1, \\ldots, p_n \\, (1 \\le p_i \\le n)$ — a permutation satisfying the conditions.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\nIn the first test case, the permutation given in the output is $[2,1].$ The counter may be incremented in the following $9$ ways:\n\n1. $0 \\xrightarrow{+2 \\cdot 1} 2 \\xrightarrow{+0} 2$\n2. $0 \\xrightarrow{+0} 2 \\xrightarrow{+1 \\cdot 2} 2$\n3. $0 \\xrightarrow{-2 \\cdot 1} -2 \\xrightarrow{+0} -2$\n4. $0 \\xrightarrow{+0} 2 \\xrightarrow{-1 \\cdot 2} -2$\n5. $0 \\xrightarrow{-2 \\cdot 1} -2 \\xrightarrow{+1 \\cdot 2} 0$\n6. $0 \\xrightarrow{+2 \\cdot 1} 2 \\xrightarrow{-1 \\cdot 2} 0$\n7. $0 \\xrightarrow{-2 \\cdot 1} -2 \\xrightarrow{-1 \\cdot 2} -4$\n8. $0 \\xrightarrow{+2 \\cdot 1} 2 \\xrightarrow{+1 \\cdot 2} 4.$\n9. $0 \\xrightarrow{+0} 0 \\xrightarrow{+0} 0.$\n\nNone of these are $1,$ so the permutation satisfies the given condition.\n\nWe can show that the permutation given in the second test case satisfies the condition. However, the permutation $[1,2,3,4]$ would not satisfy the condition, since the sequence $$0 \\xrightarrow{+1 \\cdot 1} 1 \\xrightarrow{+0} 1 \\xrightarrow{+0} 1 \\xrightarrow{+0} 1$$ results in $c = 1$ at the end.",
+  "statementZhMd": "对于一个长度为偶数的排列$^{\\text{∗}}$ $p$，可以进行如下过程：\n\n- 初始化计数器 $c = 0.$\n- 对于每个 $i$（从 $1$ 到 $n$），可以将 $i \\cdot p_i$ 加到 $c$ 中，将 $i \\cdot p_i$ 从 $c$ 中减去，或者什么也不做。\n\n令计数器的最终值为 $c_{\\mathrm{final}}.$\n\n形式化地，对于每个 $i \\in \\{1,\\ldots,n\\}$，考虑集合 $S_i = \\{-i \\cdot p_i, 0, i \\cdot p_i\\}$，并从中选择某个 $x_i \\in S_i.$ 令 $c_{\\mathrm{final}} = \\sum_{i = 1}^{n}x_i.$\n\n给定一个**偶数** $n$。请找出任意一个长度为 $n$ 的排列，使得无论选择何种操作，最终值 $c_{\\mathrm{final}}$ 都不会为 $1$。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 25$）。接下来描述各个测试用例。\n\n每个测试用例的第一行且仅有一行包含一个**偶数** $n$（$2 \\le n \\le 50$）——所需排列的长度。\n\n## 输出\n\n对于每个测试用例，输出 $n$ 个整数 $p_1, \\ldots, p_n$（$1 \\le p_i \\le n$）——一个满足条件的排列。\n\n如果有多个解，输出任意一个即可。\n\n## 说明\n\n在第一个测试用例中，输出中的排列为 $[2,1]$。计数器可能以下列 $9$ 种方式变化：\n\n1. $0 \\xrightarrow{+2 \\cdot 1} 2 \\xrightarrow{+0} 2$\n2. $0 \\xrightarrow{+0} 2 \\xrightarrow{+1 \\cdot 2} 2$\n3. $0 \\xrightarrow{-2 \\cdot 1} -2 \\xrightarrow{+0} -2$\n4. $0 \\xrightarrow{+0} 2 \\xrightarrow{-1 \\cdot 2} -2$\n5. $0 \\xrightarrow{-2 \\cdot 1} -2 \\xrightarrow{+1 \\cdot 2} 0$\n6. $0 \\xrightarrow{+2 \\cdot 1} 2 \\xrightarrow{-1 \\cdot 2} 0$\n7. $0 \\xrightarrow{-2 \\cdot 1} -2 \\xrightarrow{-1 \\cdot 2} -4$\n8. $0 \\xrightarrow{+2 \\cdot 1} 2 \\xrightarrow{+1 \\cdot 2} 4.$\n9. $0 \\xrightarrow{+0} 0 \\xrightarrow{+0} 0.$\n\n其中没有一个最终值为 $1$，因此该排列满足题目条件。\n\n我们可以证明，第二个测试用例中给出的排列满足题目条件。然而，排列 $[1,2,3,4]$ 不满足题目条件，因为序列 $$0 \\xrightarrow{+1 \\cdot 1} 1 \\xrightarrow{+0} 1 \\xrightarrow{+0} 1 \\xrightarrow{+0} 1$$ 最终得到的 $c = 1$。",
+  "samples": [
+    {
+      "input": "3\n2\n4\n6\n",
+      "output": "2 1\n2 3 4 1\n5 4 6 2 1 3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:44.796Z",
+  "translatedAt": "2026-10-30T20:39:05.075Z",
+  "translateModel": "gpt-6.1-sol"
+}

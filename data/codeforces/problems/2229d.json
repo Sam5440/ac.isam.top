@@ -1,0 +1,30 @@
+{
+  "id": "2229D",
+  "platform": "codeforces",
+  "contestId": 2229,
+  "index": "D",
+  "title": "Me When Median Problem",
+  "titleZh": "我与中位数题",
+  "url": "https://codeforces.com/contest/2229/problem/D",
+  "difficulty": 1700,
+  "tags": [
+    "binary search",
+    "greedy"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given two arrays of positive integers $a$ and $b$, both of length $n$. You will perform the following operation exactly $n - 1$ times:\n\n- let $m$ be the current length of $a$ and $b$, note that the lengths will always be equal.\n- select an integer $i$ ($1 \\le i \\lt m$):\n- let $S$ be the multiset $\\{a_i, a_{i + 1}, b_i, b_{i + 1}\\}$\n  - sort the elements of $S$ such that $s_1 \\le s_2 \\le s_3 \\le s_4$.\n  - now replace $a_i, a_{i + 1}$ with $s_2$ and $b_i, b_{i + 1}$ with $s_3$. More formally, replace $a$ with $[a_1,a_2,\\ldots,a_{i - 1},s_2,a_{i + 2},\\ldots,a_m]$, and replace $b$ with $[b_1,b_2,\\ldots,b_{i - 1},s_3,b_{i + 2},\\ldots,b_m]$.\n\nAfter performing all operations, there will be exactly $1$ element remaining in both $a$ and $b$. Determine the maximum value of $\\min(a_1, b_1)$ attainable if you perform operations optimally.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each testcase contains an integer $n$ ($1 \\le n \\le 10^5$) — the length of the arrays $a$ and $b$.\n\nThe second line of each testcase contains $n$ integers $a_1,a_2,\\ldots,a_{n}$ ($1 \\le a_i \\le 2 \\cdot n$).\n\nThe third line of each testcase contains $n$ integers $b_1,b_2,\\ldots,b_{n}$ ($1 \\le b_i \\le 2 \\cdot n$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each testcase, output the maximum value of $\\min(a_1,b_1)$ attainable.\n\n## Note\n\nIn the first example, we do not need to perform any operations, so the answer is just $\\min(1, 2)$ which is $1$.\n\nFor the second example, we can do the following sequence of moves:\n\n- select $i = 1$ and then:\n- $S = \\{2, 4, 1, 3\\}$, $s_1 = 1$, $s_2 = 2$, $s_3 = 3$, $s_4 = 4$\n  - $a = [\\color{red}{2, 4}, 5] \\rightarrow [\\color{red}{2}, 5]$\n  - $b = [\\color{red}{1, 3}, 6] \\rightarrow [\\color{red}{3}, 6]$\n- select $i = 1$ and then\n- $S = \\{2, 5, 3, 6\\}$, $s_1 = 2$, $s_2 = 3$, $s_3 = 5$, $s_4 = 6$\n  - $a = [\\color{red}{2, 5}] \\rightarrow [\\color{red}{3}]$\n  - $b = [\\color{red}{3, 6}] \\rightarrow [\\color{red}{5}]$\n\nThe answer is then $\\min(3, 5)$ which is $3$, it can be proven that this is optimal.",
+  "statementZhMd": "你有两个长度均为 $n$ 的正整数数组 $a$ 和 $b$。你需要恰好执行 $n - 1$ 次以下操作：\n\n- 设当前 $a$ 和 $b$ 的长度为 $m$，注意两者的长度始终相等。\n- 选择一个整数 $i$（$1 \\le i \\lt m$）：\n- 设多重集合 $S$ 为 $\\{a_i, a_{i + 1}, b_i, b_{i + 1}\\}$。\n  - 将 $S$ 中的元素排序，使得 $s_1 \\le s_2 \\le s_3 \\le s_4$。\n  - 现在将 $a_i, a_{i + 1}$ 替换为 $s_2$，将 $b_i, b_{i + 1}$ 替换为 $s_3$。更形式化地说，将 $a$ 替换为 $[a_1,a_2,\\ldots,a_{i - 1},s_2,a_{i + 2},\\ldots,a_m]$，并将 $b$ 替换为 $[b_1,b_2,\\ldots,b_{i - 1},s_3,b_{i + 2},\\ldots,b_m]$。\n\n执行完所有操作后，$a$ 和 $b$ 中都将恰好剩下 $1$ 个元素。请确定通过最优地执行操作，$\\min(a_1, b_1)$ 能达到的最大值。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^5$）——数组的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_{n}$（$1 \\le a_i \\le 2 \\cdot n$）。\n\n每个测试用例的第三行包含 $n$ 个整数 $b_1,b_2,\\ldots,b_{n}$（$1 \\le b_i \\le 2 \\cdot n$）。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $\\min(a_1,b_1)$ 能达到的最大值。\n\n## 说明\n\n在第一个样例中，我们不需要执行任何操作，因此答案就是 $\\min(1, 2)$，即 $1$。\n\n对于第二个样例，我们可以执行如下操作序列：\n\n- 选择 $i = 1$，然后：\n- $S = \\{2, 4, 1, 3\\}$，$s_1 = 1$，$s_2 = 2$，$s_3 = 3$，$s_4 = 4$\n  - $a = [\\color{red}{2, 4}, 5] \\rightarrow [\\color{red}{2}, 5]$\n  - $b = [\\color{red}{1, 3}, 6] \\rightarrow [\\color{red}{3}, 6]$\n- 选择 $i = 1$，然后：\n- $S = \\{2, 5, 3, 6\\}$，$s_1 = 2$，$s_2 = 3$，$s_3 = 5$，$s_4 = 6$\n  - $a = [\\color{red}{2, 5}] \\rightarrow [\\color{red}{3}]$\n  - $b = [\\color{red}{3, 6}] \\rightarrow [\\color{red}{5}]$\n\n因此答案为 $\\min(3, 5)$，即 $3$。可以证明这是最优的。",
+  "samples": [
+    {
+      "input": "6\n1\n1\n2\n3\n2 4 5\n1 3 6\n4\n7 5 4 8\n4 6 7 8\n8\n8 7 13 11 1 10 4 5\n11 11 12 8 9 2 3 13\n9\n16 1 9 12 5 18 10 10 16\n14 6 7 11 12 17 18 3 17\n6\n3 6 12 4 10 12\n2 3 2 7 8 9\n",
+      "output": "1\n3\n6\n8\n14\n8\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:56.506Z",
+  "translatedAt": "2026-10-30T20:33:01.906Z",
+  "translateModel": "gpt-6.1-sol"
+}

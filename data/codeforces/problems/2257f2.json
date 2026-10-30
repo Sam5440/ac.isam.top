@@ -1,0 +1,31 @@
+{
+  "id": "2257F2",
+  "platform": "codeforces",
+  "contestId": 2257,
+  "index": "F2",
+  "title": "Beaver's Jumping Track (Hard Version)",
+  "titleZh": "海狸的跳跃赛道（困难版本）",
+  "url": "https://codeforces.com/contest/2257/problem/F2",
+  "difficulty": 2700,
+  "tags": [
+    "data structures",
+    "dp",
+    "matrices"
+  ],
+  "points": 1000,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, the constraint on $x$ and time limit are higher. You can hack only if you solved all versions of this problem.**\n\nThe Beaver is training to jump long distances. The Beaver can already jump $x$ meters. However, just jumping as far as possible is easy and boring. Therefore, the Beaver has created an unusual training track for jumping.\n\nThe track consists of $n$ platforms; each platform consists of $d_i$ meter cells. If the Beaver stands on platform number $i$, jumps, and lands back on the same platform, this results in $s_i$ penalty points being awarded; otherwise, no penalty points are given. The Beaver can jump forward any integer number of cells less than or equal to $x$. Note that the Beaver can skip one or more platforms in a single jump without landing on them at all.\n\nThe Beaver has unlimited computational power in its mind and always jumps in such a way as to minimize the total penalty for passing the track. Moreover, the track is not constant, and sometimes the lengths and penalties of some platforms change. Learn to calculate what penalty the Beaver will get if it starts standing on the first cell of platform number $l$ and finishes standing on the last cell of platform number $r$.\n\n## Input\n\nThe first line contains three integers $n$, $q$, $x$ — the number of sections of the track, the number of queries, and the maximum jump length, respectively ($1 \\leq n \\leq 10^6$; $1 \\leq q \\leq 10^4$; $1 \\leq x \\leq 10$).\n\nThe second line contains $n$ integers $d_i$ — the lengths of the platforms ($1 \\leq d_i \\leq 10^7$).\n\nThe third line contains $n$ integers $s_i$ — the penalties ($1 \\leq s_i \\leq 10^5$).\n\nThe following $q$ lines describe the queries in one of the following formats:\n\n1. \"`1 $i$ $v$`\" — set the length of the $i$-th platform to $v$ ($1 \\leq i \\leq n$; $1 \\leq v \\leq 10^7$);\n2. \"`2 $i$ $y$`\" — set the penalty on the $i$-th platform to $y$ ($1 \\leq i \\leq n$; $1 \\leq y \\leq 10^5$);\n3. \"`? $l$ $r$`\" — calculate the minimum penalty for passing the track consisting of platforms from $l$ to $r$ ($1 \\leq l \\leq r \\leq n$).\n\n## Output\n\nFor each query of the third type, output a single number on a separate line — the minimum penalty.\n\n## Note\n\nDuring the first query, the lengths of the course sections are $[4, 2, 5]$ with costs $[4, 2, 7]$; the optimal route is\n\n$$1 \\rightarrow 4 \\rightarrow 6 \\rightarrow 8 \\rightarrow 11$$ In this case, the penalty is $4 + 0 + 0 + 7 = 11$.\n\nBefore the second query, the penalty of the second course increased, but we never get it; thus, the answer to this query is also $11$.\n\nBefore the third query, we have the lengths of the courses $[2, 2, 5]$; then the route $$1 \\rightarrow 4 \\rightarrow 6 \\rightarrow 9$$ gives a penalty of 7, as the only penalizing jump is within one platform: $6 \\rightarrow 9$.",
+  "statementZhMd": "**这是本题的困难版本。两个版本的区别在于，本版本中 $x$ 的约束和时间限制更高。只有解决了本题的所有版本后才能进行 hack。**\n\n海狸正在训练长距离跳跃。海狸已经可以跳跃 $x$ 米了。然而，每次都尽可能跳远既简单又无聊。因此，海狸设计了一条不同寻常的跳跃训练赛道。\n\n赛道由 $n$ 个平台组成；每个平台由 $d_i$ 个米格组成。如果海狸站在编号为 $i$ 的平台上，起跳后又落回同一个平台，则会得到 $s_i$ 个罚分；否则不会得到罚分。海狸每次可以向前跳跃任意个整数格，且跳跃距离不超过 $x$。注意，海狸一次跳跃可以跳过一个或多个平台，完全不在这些平台上着陆。\n\n海狸拥有无限的计算能力，并且总是采用使通过整条赛道的总罚分最小的跳跃方式。此外，赛道并不是固定不变的，有时某些平台的长度和罚分会发生变化。请计算：如果海狸从编号为 $l$ 的平台的第一个格子开始，最终站在编号为 $r$ 的平台的最后一个格子上，那么它将得到多少罚分。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$q$、$x$，分别表示赛道的平台数量、询问数量以及最大跳跃距离（$1 \\leq n \\leq 10^6$；$1 \\leq q \\leq 10^4$；$1 \\leq x \\leq 10$）。\n\n第二行包含 $n$ 个整数 $d_i$，表示各个平台的长度（$1 \\leq d_i \\leq 10^7$）。\n\n第三行包含 $n$ 个整数 $s_i$，表示各个平台的罚分（$1 \\leq s_i \\leq 10^5$）。\n\n接下来的 $q$ 行描述询问，格式为以下三种之一：\n\n1. `1 $i$ $v$` —— 将第 $i$ 个平台的长度修改为 $v$（$1 \\leq i \\leq n$；$1 \\leq v \\leq 10^7$）；\n2. `2 $i$ $y$` —— 将第 $i$ 个平台的罚分修改为 $y$（$1 \\leq i \\leq n$；$1 \\leq y \\leq 10^5$）；\n3. `? $l$ $r$` —— 计算通过由编号从 $l$ 到 $r$ 的平台组成的赛道所需的最小罚分（$1 \\leq l \\leq r \\leq n$）。\n\n## 输出格式\n\n对于每个第三种询问，单独一行输出一个数，表示最小罚分。\n\n## 说明\n\n在第一次询问时，各赛道区段的长度为 $[4, 2, 5]$，代价为 $[4, 2, 7]$；最优路线为\n\n$$1 \\rightarrow 4 \\rightarrow 6 \\rightarrow 8 \\rightarrow 11$$\n\n在这种情况下，罚分为 $4 + 0 + 0 + 7 = 11$。\n\n在第二次询问之前，第二段赛道的罚分增加了，但我们不会落在该平台上；因此，这次询问的答案仍然是 $11$。\n\n在第三次询问之前，各赛道区段的长度为 $[2, 2, 5]$；此时路线 $$1 \\rightarrow 4 \\rightarrow 6 \\rightarrow 9$$ 的罚分为 $7$，因为唯一会产生罚分的跳跃是在同一个平台内进行的：$6 \\rightarrow 9$。",
+  "samples": [
+    {
+      "input": "5 8 3\n4 2 5 1 3\n4 2 7 1 5\n? 1 3\n2 2 10\n? 1 3\n1 1 2\n? 1 3\n? 2 5\n1 3 2\n? 2 5\n",
+      "output": "11\n11\n7\n7\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:21:37.522Z",
+  "translatedAt": "2026-10-30T20:43:10.857Z",
+  "translateModel": "gpt-6.1-sol"
+}

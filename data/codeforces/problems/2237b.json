@@ -1,0 +1,30 @@
+{
+  "id": "2237B",
+  "platform": "codeforces",
+  "contestId": 2237,
+  "index": "B",
+  "title": "Annoying the Ghost",
+  "titleZh": "惹恼幽灵",
+  "url": "https://codeforces.com/contest/2237/problem/B",
+  "difficulty": 1000,
+  "tags": [
+    "brute force",
+    "greedy"
+  ],
+  "points": 1000,
+  "timeLimitMs": 1500,
+  "memoryLimitMb": 256,
+  "statementMd": "Ja the Ghost is playing with rubber ducks. He has $n$ piles of rubber ducks arranged in a row, where the $i$-th pile contains $a_i$ ducks. Quack the Duck gives Ja a **strictly increasing** sequence $b_1,b_2,\\ldots,b_n$ and commands him to make the piles $a_1,a_2,\\ldots,a_n$ become exactly this sequence.\n\nJa performs the process in the following two stages:\n\n1. Ja may add any number of ducks to each pile.Formally, for each pile $i$, he chooses a non-negative integer $x_i$ and replaces $a_i$ with $a_i+x_i$.\n2. Ja may repeatedly swap two adjacent piles.Formally, he may perform the following operation any number of times, possibly zero: choose an index $i$ such that $1\\le i\\le n-1$, and swap the values of $a_i$ and $a_{i+1}$.\n\nA process is called *valid* if, after both stages end, the sequence of pile sizes is exactly $b_1,b_2,\\ldots,b_n$.\n\nFind the minimum possible number of operations performed in the **second stage** among all *valid* processes. If there is no *valid* process, output $-1$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 2000$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1\\le n\\le 2000$) — the number of piles of rubber ducks.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1\\le a_i\\le 10^9$) — the initial number of rubber ducks in each pile.\n\nThe third line contains $n$ integers $b_1,b_2,\\ldots,b_n$ ($1\\le b_1 \\lt b_2 \\lt \\cdots \\lt b_n\\le 10^9$) — the final number of rubber ducks in each pile.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2000$.\n\n## Output\n\nFor each test case, output a single integer — the minimum possible number of operations performed in the **second stage** among all *valid* processes. If there is no *valid* process, output $-1$.\n\n## Note\n\nIn the first test case, Ja only needs the first stage. He can set $x_1=0,x_2=1,x_3=3$, so the piles become $1,3,5$. No swaps are needed, so the answer is $0$.\n\nIn the second test case, Ja needs both stages. He can set $x_1=0,x_2=1,x_3=0$, so the piles become $2,3,1$. Then he can perform two swaps: $$ [2,3,1]\\to [2,1,3]\\to [1,2,3]. $$ The pile with $1$ duck must move from the third position to the first position, so at least two swaps are necessary. Therefore the answer is $2$.\n\nIn the third test case, it is impossible. The first pile initially contains $5$ ducks, but every number in the target sequence is at most $4$. Since Ja can only add ducks and cannot remove them, this pile cannot become equal to any number in the target sequence. Therefore the answer is $-1$.\n\nIn the fourth test case, no ducks need to be added. Ja only needs to reorder the piles into increasing order. The minimum number of adjacent swaps is $15$.\n\nIn the fifth test case, no ducks need to be added. Again, Ja only needs to reorder the piles into increasing order. The minimum number of adjacent swaps is $12$.",
+  "statementZhMd": "Ja 幽灵正在玩橡皮鸭。他有 $n$ 堆排成一行的橡皮鸭，其中第 $i$ 堆有 $a_i$ 只鸭子。鸭子 Quack 给了 Ja 一个**严格递增**的序列 $b_1,b_2,\\ldots,b_n$，并命令他将各堆鸭子的数量 $a_1,a_2,\\ldots,a_n$ 变为恰好这个序列。\n\nJa 按以下两个阶段进行操作：\n\n1. Ja 可以向每堆中添加任意数量的鸭子。形式化地，对于每一堆 $i$，他选择一个非负整数 $x_i$，并将 $a_i$ 替换为 $a_i+x_i$。\n2. Ja 可以反复交换相邻的两堆。形式化地，他可以进行任意次（也可以一次都不进行）以下操作：选择一个满足 $1\\le i\\le n-1$ 的下标 $i$，交换 $a_i$ 和 $a_{i+1}$ 的值。\n\n如果两个阶段结束后，各堆的大小恰好为 $b_1,b_2,\\ldots,b_n$，则称这一过程是*有效的*。\n\n请求出所有*有效的*过程中，第二阶段所执行的操作次数的最小值。如果不存在*有效的*过程，输出 $-1$。\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 2000$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 2000$）——橡皮鸭堆的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1\\le a_i\\le 10^9$）——每堆橡皮鸭的初始数量。\n\n第三行包含 $n$ 个整数 $b_1,b_2,\\ldots,b_n$（$1\\le b_1 \\lt b_2 \\lt \\cdots \\lt b_n\\le 10^9$）——每堆橡皮鸭的最终数量。\n\n保证所有测试用例中 $n$ 的总和不超过 $2000$。\n\n## 输出\n\n对于每个测试用例，输出一个整数——所有*有效的*过程中，第二阶段所执行的操作次数的最小值。如果不存在*有效的*过程，输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，Ja 只需要执行第一阶段。他可以令 $x_1=0,x_2=1,x_3=3$，这样各堆就变为 $1,3,5$。不需要交换，因此答案为 $0$。\n\n在第二个测试用例中，Ja 需要执行两个阶段。他可以令 $x_1=0,x_2=1,x_3=0$，这样各堆变为 $2,3,1$。然后他可以进行两次交换：$$ [2,3,1]\\to [2,1,3]\\to [1,2,3]. $$ 含有 $1$ 只鸭子的那堆必须从第三个位置移动到第一个位置，因此至少需要进行两次交换。所以答案为 $2$。\n\n在第三个测试用例中，这是不可能的。第一堆一开始就有 $5$ 只鸭子，但目标序列中的每个数都不超过 $4$。由于 Ja 只能添加鸭子而不能移除鸭子，因此这堆无法变为目标序列中的任何一个数。所以答案为 $-1$。\n\n在第四个测试用例中，不需要添加鸭子。Ja 只需要将各堆重新排列为递增顺序。相邻交换的最小次数为 $15$。\n\n在第五个测试用例中，同样不需要添加鸭子。Ja 只需要将各堆重新排列为递增顺序。相邻交换的最小次数为 $12$。",
+  "samples": [
+    {
+      "input": "10\n3\n1 2 2\n1 3 5\n3\n2 2 1\n1 2 3\n2\n5 1\n2 4\n6\n6 5 4 3 2 1\n1 2 3 4 5 6\n7\n4 7 1 6 2 5 3\n1 2 3 4 5 6 7\n2\n2 1\n2 3\n4\n3 2 2 1\n1 2 3 4\n4\n4 3 2 1\n1 3 4 5\n5\n1 5 4 3 2\n2 3 4 5 6\n5\n10 3 8 6 9\n3 6 8 9 10\n",
+      "output": "0\n2\n-1\n15\n12\n0\n4\n4\n3\n5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:22.075Z",
+  "translatedAt": "2026-10-30T20:35:47.936Z",
+  "translateModel": "gpt-6.1-sol"
+}

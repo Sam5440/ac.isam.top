@@ -1,0 +1,32 @@
+{
+  "id": "2239E",
+  "platform": "codeforces",
+  "contestId": 2239,
+  "index": "E",
+  "title": "The end of this world,",
+  "titleZh": "世界的终结，",
+  "url": "https://codeforces.com/contest/2239/problem/E",
+  "difficulty": 3300,
+  "tags": [
+    "data structures",
+    "divide and conquer",
+    "dsu",
+    "graphs"
+  ],
+  "points": 2750,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 1024,
+  "statementMd": "[... and the girl who crossed the moon's oceans.](https://music.163.com/#/song?id=528271201) — Frums\n\nYou are given an undirected graph consisting of $n$ vertices and $m$ edges. The $i$-th vertex has an associated value $\\mathrm{val}_i$. The $j$-th edge connects vertices $u_j$ and $v_j$ and has two properties: a capacity $w_j$ and a floor $\\mathrm{low}_j$. It is guaranteed that $w_j \\ge \\mathrm{low}_j$ for all edges.\n\nYou want to start a walk from a vertex $s$. Before the walk begins, you must choose an arbitrary non-negative integer $h_{start}$ as your initial state parameter.\n\nIf you are currently at vertex $u$ with state $h$, you can traverse an edge $j$ connecting $u$ and $v$ if and only if $w_j \\ge h$. Upon traversing this edge and arriving at vertex $v$, the state parameter $h$ updates to $\\max(h, \\mathrm{low}_j)$.\n\nLet the walk end at some vertex $t$. You must traverse **at least one edge**. The **score** of such a walk is defined as $\\mathrm{val}_t + h_{start}$. Note that we are interested in the sum of the *final vertex value* and the *initial state parameter*, not the final state parameter.\n\nFor each starting vertex $s$ from $1$ to $n$, calculate the maximum possible score achievable. If it is impossible to traverse any edge starting from some $s$, output $-1$ instead.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 5\\cdot 10^5, 0 \\le m \\le 5\\cdot 10^5$) — the number of vertices and the number of edges.\n\nThe second line of each test case contains $n$ integers $\\mathrm{val}_1, \\mathrm{val}_2, \\ldots, \\mathrm{val}_n$ ($1 \\le \\mathrm{val}_i \\le 10^9$) — the values of the vertices.\n\nThe next $m$ lines describe the edges. The $j$-th line contains four integers $u_j, v_j, w_j, \\mathrm{low}_j$ ($1 \\le u_j, v_j \\le n, u_j \\neq v_j$; $1 \\le \\mathrm{low}_j \\le w_j \\le 10^9$) — the endpoints and properties of the $j$-th edge.\n\n**The graph is not guaranteed to be connected and may contain multiple edges.**\n\nIt is guaranteed that the sum of $n$ and the sum of $m$ over all test cases do not exceed $5\\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers separated by spaces. The $i$-th integer should be the maximum score achievable starting from vertex $i$, or $-1$ if no edge can be traversed.\n\n## Note\n\nIn the first test case, here are the optimal $h_{start}$ values and paths for each starting node:\n\n- For node $1$, it is optimal to use $h_{start}=5$. Then, take the path from node $1$ to node $2$. $h$ is updated to $\\operatorname{max}(5,2)=5$. The path ends, and the score is $20+5=25$.\n- For node $2$, it is optimal to use $h_{start}=5$. Then, take the path from node $2$ to node $1$, then from node $1$ to node $2$. The score is $20+5=25$.\n- For node $3$, it is optimal to use $h_{start}=4$. Then, take the path from node $3$ to node $2$. The score is $20+4=24$.\n\nIn the third test case, since there are no edges incident to either node, the answer is $-1$ for both.",
+  "statementZhMd": "[……以及那个穿越月之海洋的女孩。](https://music.163.com/#/song?id=528271201) — Frums\n\n给定一个由 $n$ 个顶点和 $m$ 条边组成的无向图。第 $i$ 个顶点有一个关联值 $\\mathrm{val}_i$。第 $j$ 条边连接顶点 $u_j$ 和 $v_j$，并具有两个属性：容量 $w_j$ 和下限 $\\mathrm{low}_j$。保证对所有边都有 $w_j \\ge \\mathrm{low}_j$。\n\n你想从顶点 $s$ 开始进行一段行走。在行走开始前，你必须选择一个任意的非负整数 $h_{start}$ 作为初始状态参数。\n\n若你当前位于顶点 $u$，状态为 $h$，当且仅当 $w_j \\ge h$ 时，才能经过一条连接 $u$ 和 $v$ 的边 $j$。经过这条边并到达顶点 $v$ 后，状态参数 $h$ 更新为 $\\max(h, \\mathrm{low}_j)$。\n\n设行走结束于某个顶点 $t$。你必须至少经过 **一条边**。这段行走的 **得分** 定义为 $\\mathrm{val}_t + h_{start}$。注意，我们关注的是*最终顶点的值*与*初始状态参数*之和，而不是最终状态参数。\n\n对于每个起点 $s$（从 $1$ 到 $n$），计算能够取得的最大得分。如果从某个 $s$ 出发无法经过任何边，则输出 $-1$。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数 $t$（$1 \\le t \\le 10^4$）。随后是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 5\\cdot 10^5, 0 \\le m \\le 5\\cdot 10^5$），分别表示顶点数和边数。\n\n每个测试用例的第二行包含 $n$ 个整数 $\\mathrm{val}_1, \\mathrm{val}_2, \\ldots, \\mathrm{val}_n$（$1 \\le \\mathrm{val}_i \\le 10^9$），表示各顶点的值。\n\n接下来的 $m$ 行描述各条边。第 $j$ 行包含四个整数 $u_j, v_j, w_j, \\mathrm{low}_j$（$1 \\le u_j, v_j \\le n, u_j \\neq v_j$；$1 \\le \\mathrm{low}_j \\le w_j \\le 10^9$），表示第 $j$ 条边的端点及其属性。\n\n**图不一定连通，且可能包含重边。**\n\n保证所有测试用例的 $n$ 之和与 $m$ 之和均不超过 $5\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个以空格分隔的整数。第 $i$ 个整数表示从顶点 $i$ 出发能够取得的最大得分；如果无法经过任何边，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，各起点对应的最优 $h_{start}$ 和路径如下：\n\n- 对于顶点 $1$，最优选择是 $h_{start}=5$。接着沿路径从顶点 $1$ 到顶点 $2$。此时 $h$ 更新为 $\\operatorname{max}(5,2)=5$。行走结束，得分为 $20+5=25$。\n- 对于顶点 $2$，最优选择是 $h_{start}=5$。接着沿路径从顶点 $2$ 到顶点 $1$，再从顶点 $1$ 到顶点 $2$。得分为 $20+5=25$。\n- 对于顶点 $3$，最优选择是 $h_{start}=4$。接着沿路径从顶点 $3$ 到顶点 $2$。得分为 $20+4=24$。\n\n在第三个测试用例中，由于两个顶点都没有相邻边，因此它们的答案均为 $-1$。",
+  "samples": [
+    {
+      "input": "9\n3 2\n10 20 5\n1 2 5 2\n2 3 4 3\n2 1\n100 10\n1 2 10 5\n2 0\n50 50\n1 0\n114514\n4 1\n1 2 3 4\n3 4 2 1\n3 2\n1 4 1\n1 3 4 1\n1 2 2 1\n3 2\n10 3 2\n2 3 4 4\n2 1 3 2\n3 2\n5 2 2\n3 2 4 4\n1 3 5 5\n5 9\n857147200 381798978 633421584 956726892 315899900\n2 1 883474754 795831571\n2 4 657281748 375466725\n1 3 666641114 444218918\n2 3 901861650 790895313\n3 2 613790652 96876004\n2 5 852725279 216601090\n3 4 500240642 193633892\n2 5 210434355 130646156\n3 2 457018372 279005896\n",
+      "output": "25 25 24\n110 110\n-1 -1\n-1\n-1 -1 6 6\n6 6 6\n13 13 7\n10 9 10\n1740621954 1740621954 1740621954 1614008640 1709872479\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:06.522Z",
+  "translatedAt": "2026-10-30T20:36:21.960Z",
+  "translateModel": "gpt-6.1-sol"
+}

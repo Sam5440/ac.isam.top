@@ -1,0 +1,30 @@
+{
+  "id": "2247D1",
+  "platform": "codeforces",
+  "contestId": 2247,
+  "index": "D1",
+  "title": "XOR Sorting (Easy Version)",
+  "titleZh": "XOR 排序（简单版）",
+  "url": "https://codeforces.com/contest/2247/problem/D1",
+  "difficulty": 1500,
+  "tags": [
+    "bitmasks",
+    "greedy"
+  ],
+  "points": 1500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is the easy version of the problem. The only difference between the versions is that in this version, $q = 0$.**\n\n***Note that zero-based indexing is used in this problem.***\n\nFor an array $b$ consisting of $m$ positive integers, define $f(b)$ as follows.\n\nFor a non-negative integer $k$, we say that $b$ can be $k$-sorted if it can be sorted in non-decreasing order by performing the following operation any number of times:\n\n1. Choose two indices $i$ and $j$ ($0 \\le i \\lt j \\le m - 1$) such that $i \\oplus j \\le k$$^{\\text{∗}}$. Note that the condition applies **to the indices** $i$ and $j$, **not to the elements** $b_i$ and $b_j$.\n2. Swap the elements $b_i$ and $b_j$.\n\nThe value $f(b)$ is defined as the smallest non-negative integer $k$ such that the array $b$ can be $k$-sorted.\n\nYou are given an array $a$ of length $n$, consisting of positive integers. You will perform $q$ updates on $a$. Each update has the following form:\n\n- $i \\; x$: assign $a_i = x$.\n\nNote that the updates are **persistent**. In other words, each update affects all subsequent states of the array.\n\nFor each of the $q + 1$ states of $a$ — the initial state and the state after each of the $q$ updates — find the value of $f(a)$.\n\n$^{\\text{∗}}$$\\oplus$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1 \\le n \\le 10^6, q = 0$) — the length of the array $a$ and the number of updates.\n\nThe second line of each test case contains $n$ integers $a_0, a_1, \\ldots, a_{n - 1}$ ($1 \\le a_i \\le 10^9$) — the array $a$.\n\nThe $j$-th of the following $q$ lines contains two integers $i_j$ and $x_j$ ($0 \\le i_j \\lt n$, $1 \\le x_j \\le 10^9$) — the description of the $j$-th update. This update means that the assignment $a_{i_j} = x_j$ is performed.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\nIt is guaranteed that the sum of $q$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output $q + 1$ integers — the values of $f(a)$ for the initial state of the array and after each of the $q$ updates, in order.\n\n## Note\n\nIn the first example, the array is $a = [2, 3, 4]$. It is already sorted, so $f(a) = 0$.\n\nIn the second example, the array is $a = [10^9, 10^9 - 1]$. We can swap $a_0$ and $a_1$, transforming $a$ as follows: $[\\color{red}{10^9}, \\color{red}{10^9 - 1}] \\rightarrow [\\color{red}{10^9 - 1}, \\color{red}{10^9}]$. Therefore, $f(a) = 0 \\oplus 1 = 1$.\n\nIn the third example, the array is $a = [2, 5, 3, 4, 1, 6]$. We can perform swaps using the index pairs $(0, 1)$ and $(0, 4)$, transforming $a$ as follows: $[\\color{red}{2}, \\color{red}{5}, 3, 4, 1, 6] \\rightarrow [\\color{red}{5}, \\color{red}{2}, 3, 4, 1, 6]$, $[\\color{red}{5}, 2, 3, 4, \\color{red}{1}, 6] \\rightarrow [\\color{red}{1}, 2, 3, 4, \\color{red}{5}, 6]$. It can be shown that no smaller value of $k$ is sufficient, so $f(a) = \\max(0 \\oplus 1, 0 \\oplus 4) = 4$.",
+  "statementZhMd": "**这是本题的简单版本。各版本之间唯一的区别是，本版本中 $q = 0$。**\n\n***注意，本题使用从 0 开始的下标。***\n\n对于一个由 $m$ 个正整数组成的数组 $b$，定义 $f(b)$ 如下。\n\n对于非负整数 $k$，如果可以通过任意次执行以下操作，将 $b$ 排列为非递减顺序，则称 $b$ 可以被 $k$-排序：\n\n1. 选择两个下标 $i$ 和 $j$（$0 \\le i \\lt j \\le m - 1$），满足 $i \\oplus j \\le k$$^{\\text{∗}}$。注意，该条件适用于**下标** $i$ 和 $j$，而不是元素 $b_i$ 和 $b_j$。\n2. 交换元素 $b_i$ 和 $b_j$。\n\n$f(b)$ 的值定义为使数组 $b$ 可以被 $k$-排序的最小非负整数 $k$。\n\n给定一个长度为 $n$、由正整数组成的数组 $a$。你需要对 $a$ 执行 $q$ 次更新。每次更新的形式如下：\n\n- $i \\; x$：令 $a_i = x$。\n\n注意，更新是**持久的**。换句话说，每次更新都会影响数组之后的所有状态。\n\n对于 $a$ 的 $q + 1$ 个状态——初始状态以及每次更新后的状态——求 $f(a)$ 的值。\n\n$^{\\text{∗}}$$\\oplus$ 表示[按位异或运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$1 \\le n \\le 10^6, q = 0$），分别表示数组 $a$ 的长度和更新次数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_0, a_1, \\ldots, a_{n - 1}$（$1 \\le a_i \\le 10^9$），表示数组 $a$。\n\n接下来的 $q$ 行中，第 $j$ 行包含两个整数 $i_j$ 和 $x_j$（$0 \\le i_j \\lt n$, $1 \\le x_j \\le 10^9$），描述第 $j$ 次更新。该更新表示执行赋值 $a_{i_j} = x_j$。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n保证所有测试用例的 $q$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q + 1$ 个整数——依次表示数组初始状态以及每次更新后的状态下 $f(a)$ 的值。\n\n## 说明\n\n在第一个样例中，数组为 $a = [2, 3, 4]$。它已经有序，因此 $f(a) = 0$。\n\n在第二个样例中，数组为 $a = [10^9, 10^9 - 1]$。我们可以交换 $a_0$ 和 $a_1$，将数组变换如下：$[\\color{red}{10^9}, \\color{red}{10^9 - 1}] \\rightarrow [\\color{red}{10^9 - 1}, \\color{red}{10^9}]$。因此，$f(a) = 0 \\oplus 1 = 1$。\n\n在第三个样例中，数组为 $a = [2, 5, 3, 4, 1, 6]$。我们可以使用下标对 $(0, 1)$ 和 $(0, 4)$ 执行交换，将 $a$ 变换如下：$[\\color{red}{2}, \\color{red}{5}, 3, 4, 1, 6] \\rightarrow [\\color{red}{5}, \\color{red}{2}, 3, 4, 1, 6]$，$[\\color{red}{5}, 2, 3, 4, \\color{red}{1}, 6] \\rightarrow [\\color{red}{1}, 2, 3, 4, \\color{red}{5}, 6]$。可以证明，不存在更小的 $k$ 能够满足要求，因此 $f(a) = \\max(0 \\oplus 1, 0 \\oplus 4) = 4$。",
+  "samples": [
+    {
+      "input": "3\n3 0\n2 3 4\n2 0\n1000000000 999999999\n6 0\n2 5 3 4 1 6\n",
+      "output": "0\n1\n4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:36.391Z",
+  "translatedAt": "2026-10-30T20:39:20.960Z",
+  "translateModel": "gpt-6.1-sol"
+}

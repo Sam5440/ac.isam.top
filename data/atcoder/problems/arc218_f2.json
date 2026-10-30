@@ -1,0 +1,31 @@
+{
+  "id": "arc218_f2",
+  "platform": "atcoder",
+  "contestId": "arc218",
+  "index": "F2",
+  "title": "Buckets",
+  "titleZh": "桶",
+  "url": "https://atcoder.jp/contests/arc218/tasks/arc218_f2",
+  "difficulty": null,
+  "tags": [],
+  "points": 300,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\n**Problems F and F2 are the same problem with different constraints on $M$. In Problem F2, $M = 5$.**\n\nYou are given a positive integer $M$. Consider the following problem.\n\n> Bucket\n> \n> You are given a positive integer $N$ and non-negative integer sequences $A=(A_1,A_2,\\dots,A_N)$ and $B=(B_1,B_2,\\dots,B_N)$ of length $N$. All elements of $A$ and $B$ are between $0$ and $M$, inclusive.\n> \n> There are $N$ buckets numbered $1$ to $N$. Each bucket can hold up to $M$ liters of water. Initially, bucket $i$ contains $A_i$ liters of water.\n> \n> You may perform the following operation any number of times.\n> \n> - Choose two distinct buckets $i$ and $j$. Continue pouring water from bucket $i$ into bucket $j$ as long as both of the following conditions are satisfied:\n> - Bucket $i$ still has water remaining.\n>   - The amount of water in bucket $j$ is less than $M$ liters.\n> \n> Your goal is to have exactly $B_i$ liters of water in bucket $i$ for all $i$. Determine whether the goal can be achieved.\n\nYou are given a non-negative integer matrix $X=(X_{i,j})(0 \\le i,j \\le M)$ of $(M+1)$ rows and $(M+1)$ columns. Process the following queries $Q$ times.\n\n- You are given non-negative integers $i,j,Y$ with $0 \\le i,j \\le M$. Change $X_{i,j}$ to $Y$. Then, obtain non-negative integer sequences $A$ and $B$ by the following procedure.\n- Initialize non-negative integer sequences $A$ and $B$ as empty sequences.\n  - For $i = 0,1,\\dots,M$ in this order:\n- Solve **Bucket** for the non-negative integer sequences $A$ and $B$ of length $N = \\sum_{i=0}^{M} \\sum_{j=0}^{M} X_{i,j}$.\n\n## Constraints\n\n- **$M = 5$**\n- $1 \\le Q \\le 10^6$\n- $0 \\le X_{i,j},Y \\le 10^{17}$\n- $0 \\le i,j \\le M$\n- $\\sum_{i=0}^{M} \\sum_{j=0}^{M} X_{i,j} \\ge 1$ at any time.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nM Q\nX_{0,0}\\ X_{0,1}\\ \\dots\\ X_{0,M}\nX_{1,0}\\ X_{1,1}\\ \\dots\\ X_{1,M}\n\\vdots\nX_{M,0}\\ X_{M,1}\\ \\dots\\ X_{M,M}\n\\mathrm{query}_1\n\\mathrm{query}_2\n\\vdots\n\\mathrm{query}_Q\n```\n\nEach query is given in the following format:\n\n```\ni\\ j\\ Y\n```\n\n## Output\n\nOutput $Q$ lines. The $i$-th line should contain `Yes` if the goal can be achieved in $\\mathrm{query}_i$, and `No` otherwise.",
+  "statementZhMd": "## 题目描述\n\n**问题 F 和问题 F2 是同一道题，只有 $M$ 的约束不同。在问题 F2 中，$M = 5$。**\n\n给定一个正整数 $M$。考虑下面的问题。\n\n> 桶\n> \n> 给定一个正整数 $N$，以及两个长度均为 $N$ 的非负整数序列 $A=(A_1,A_2,\\dots,A_N)$ 和 $B=(B_1,B_2,\\dots,B_N)$。$A$ 和 $B$ 中的所有元素均在 $0$ 到 $M$（含）之间。\n> \n> 有 $N$ 个编号为 $1$ 到 $N$ 的桶。每个桶最多可以容纳 $M$ 升水。初始时，桶 $i$ 中有 $A_i$ 升水。\n> \n> 你可以进行任意次以下操作。\n> \n> - 选择两个不同的桶 $i$ 和 $j$。只要以下两个条件同时满足，就持续将水从桶 $i$ 倒入桶 $j$：\n> - 桶 $i$ 中仍有水。\n>   - 桶 $j$ 中的水量小于 $M$ 升。\n> \n> 你的目标是使每个桶 $i$ 中恰好有 $B_i$ 升水。请判断是否可以实现这一目标。\n\n给定一个有 $(M+1)$ 行、$(M+1)$ 列的非负整数矩阵 $X=(X_{i,j})(0 \\le i,j \\le M)$。请处理 $Q$ 次以下查询。\n\n- 给定满足 $0 \\le i,j \\le M$ 的非负整数 $i,j,Y$。将 $X_{i,j}$ 修改为 $Y$。然后按照以下过程得到非负整数序列 $A$ 和 $B$。\n- 将非负整数序列 $A$ 和 $B$ 初始化为空序列。\n  - 按照 $i = 0,1,\\dots,M$ 的顺序：\n- 对长度为 $N = \\sum_{i=0}^{M} \\sum_{j=0}^{M} X_{i,j}$ 的非负整数序列 $A$ 和 $B$，求解 **桶** 问题。\n\n## 约束条件\n\n- $M = 5$\n- $1 \\le Q \\le 10^6$\n- $0 \\le X_{i,j},Y \\le 10^{17}$\n- $0 \\le i,j \\le M$\n- 在任何时刻，都有 $\\sum_{i=0}^{M} \\sum_{j=0}^{M} X_{i,j} \\ge 1$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入给出，格式如下：\n\n```\nM Q\nX_{0,0}\\ X_{0,1}\\ \\dots\\ X_{0,M}\nX_{1,0}\\ X_{1,1}\\ \\dots\\ X_{1,M}\n\\vdots\nX_{M,0}\\ X_{M,1}\\ \\dots\\ X_{M,M}\n\\mathrm{query}_1\n\\mathrm{query}_2\n\\vdots\n\\mathrm{query}_Q\n```\n\n每次查询的格式如下：\n\n```\ni\\ j\\ Y\n```\n\n## 输出格式\n\n输出 $Q$ 行。第 $i$ 行应包含 `Yes`，如果在第 $i$ 次查询中可以实现目标；否则输出 `No`。",
+  "samples": [
+    {
+      "input": "5 3\n1 0 0 0 0 0\n0 0 0 0 0 0\n0 0 0 0 0 0\n0 1 0 0 0 1\n0 0 0 0 0 0\n0 0 0 0 0 0\n0 5 0\n4 0 1\n1 5 1\n",
+      "output": "Yes\nNo\nYes\n",
+      "note": "The sequences $A$ and $B$ obtained at each query are as follows:\n\n- At the time of processing the first query: $A=(0,3,3),B=(0,1,5)$\n- At the time of processing the second query: $A=(0,3,3,4),B=(0,1,5,0)$\n- At the time of processing the third query: $A=(0,1,3,3,4),B=(0,5,1,5,0)$"
+    },
+    {
+      "input": "5 10\n61717749303507807 83849626163233111 84388501405824055 8514730661576685 8408052512772637 42085112989954358\n33333333333333333 70477132070314067 43546706335438313 61370380435458585 99101823689638606 77669930608921552\n33333333333333333 21459633523757247 8151410984806542 14183403125185219 68299186110683565 35549692732468863\n98146856836553017 53630682913685434 12400422817799555 29967281381593348 67521547136428867 48353536740933612\n97356055491517734 55777507072845580 59235925940735000 6228770338558507 41778108608223669 60544364859700647\n5960356361755846 59147828067221624 65687376011190687 33333333333333333 31563848832259443 98724011871535047\n2 3 1333175914347793\n3 4 80371774347266293\n2 1 20920094361040152\n2 3 793636751630698\n0 5 68209364995103050\n2 0 98643963346205063\n3 2 7931291059115265\n0 1 79380494404548821\n2 5 6440038070576840\n2 3 88122600737306767\n",
+      "output": "No\nNo\nNo\nNo\nNo\nYes\nNo\nYes\nNo\nYes\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:19:46.788Z",
+  "translatedAt": "2026-10-30T20:26:48.028Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2255A",
+  "platform": "codeforces",
+  "contestId": 2255,
+  "index": "A",
+  "title": "Hot Potatoes at the Fairy Warehouse",
+  "titleZh": "仙女仓库里的烫土豆游戏",
+  "url": "https://codeforces.com/contest/2255/problem/A",
+  "difficulty": 1200,
+  "tags": [
+    "games",
+    "greedy",
+    "implementation"
+  ],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "On a quiet afternoon at the Fairy Warehouse, Ithea gathers Chtholly, Nephren, and the other leprechauns for one last game before dinner: *Hot Potatoes*.\n\nThere are $2n$ leprechauns sitting in a circle, numbered from $1$ to $2n$ clockwise. They are divided into two teams: leprechauns with odd numbers belong to the **Red Team**, while those with even numbers belong to the **Blue Team**.\n\nInitially, some leprechauns hold a potato. The game then lasts for $k$ rounds.\n\nAt the beginning of each round, both teams know the current positions of all potatoes. Then, simultaneously, every leprechaun holding a potato does exactly one of the following:\n\n- Keep the potato, or\n- Pass the potato to the next leprechaun clockwise, provided that the next leprechaun does not hold a potato at the beginning of the round.\n\nIf the next leprechaun holds a potato at the beginning of the round, the current holder must keep their potato. Whether a potato can be passed depends only on the positions of the potatoes at the beginning of the round.\n\nUnder these rules, every leprechaun holds at most one potato at any time.\n\nWhen all $k$ rounds are over, the final bell rings. Every leprechaun still holding a potato is eliminated from the game. The score of each team is defined as the number of eliminated leprechauns on the other team. All members of each team cooperate and share all available information to maximize their team's score.\n\nFind the scores of the Red Team and the Blue Team if both teams play optimally. It can be shown that the scores under optimal play are uniquely determined.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1\\le n\\le 10^5$, $1\\le k\\le 10^9$) — half the number of leprechauns and the number of rounds.\n\nThe second line contains a binary string $s$ of length $2n$ ($s_i=\\texttt{0}$ or $\\texttt{1}$) describing the initial state of the game. If $s_i=\\texttt{1}$, leprechaun $i$ initially holds a potato; otherwise, they do not.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, print two integers — the scores of the Red Team and the Blue Team, respectively, if they play optimally.\n\n## Note\n\nIn the first test case, it is optimal for leprechaun $1$ to pass the potato to leprechaun $2$ in the only round. Afterwards, only leprechaun $2$, who belongs to the Blue Team, holds a potato. Therefore, the score of the Red Team is $1$, while the score of the Blue Team is $0$.\n\nIn the second test case, it is optimal for leprechaun $4$ to pass their potato to leprechaun $1$ in the only round. Note that leprechaun $3$ cannot pass their potato to leprechaun $4$, because leprechaun $4$ already holds a potato at the beginning of the round.\n\nHere is a demonstration for the third test case:\n\n![image](https://espresso.codeforces.com/45e2b71b9979cdb65198a6b629b54f7d540750ef.png)\n\nNote that this is one possible optimal strategy for both teams. Other optimal strategies may exist, but the resulting scores are the same.",
+  "statementZhMd": "在仙女仓库一个宁静的午后，Ithea 召集 Chtholly、Nephren 和其他妖精，在晚餐前玩最后一场游戏：*烫土豆*。\n\n有 $2n$ 个妖精围成一圈，按顺时针方向编号为 $1$ 到 $2n$。他们分为两队：编号为奇数的妖精属于**红队**，编号为偶数的妖精属于**蓝队**。\n\n起初，部分妖精手里拿着土豆。随后，游戏进行 $k$ 轮。\n\n每一轮开始时，两队都知道当前所有土豆的位置。接着，所有手里拿着土豆的妖精同时执行以下操作之一：\n\n- 保留土豆；或\n- 将土豆传给顺时针方向的下一个妖精，前提是该妖精在本轮开始时没有拿着土豆。\n\n如果下一个妖精在本轮开始时拿着土豆，当前持有者就必须保留自己的土豆。能否传递土豆只取决于本轮开始时土豆的位置。\n\n按照这些规则，任何时刻每个妖精最多拿着一个土豆。\n\n$k$ 轮全部结束后，终场铃声响起。此时仍拿着土豆的妖精将被淘汰。每队的得分定义为对方队伍中被淘汰的妖精数量。每队的所有成员相互合作，并共享所有可用信息，以最大化本队得分。\n\n求两队都采用最优策略时，红队和蓝队的得分。可以证明，双方最优策略下的得分是唯一确定的。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1\\le n\\le 10^5$，$1\\le k\\le 10^9$），分别表示妖精数量的一半和游戏轮数。\n\n第二行包含一个长度为 $2n$ 的二进制字符串 $s$（$s_i=\\texttt{0}$ 或 $\\texttt{1}$），描述游戏的初始状态。如果 $s_i=\\texttt{1}$，表示妖精 $i$ 起初拿着土豆；否则，表示他们没有拿着土豆。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出两个整数，分别表示红队和蓝队在双方都采用最优策略时的得分。\n\n## 说明\n\n在第一个测试用例中，最优策略是在唯一的一轮中让妖精 $1$ 把土豆传给妖精 $2$。之后，只有属于蓝队的妖精 $2$ 拿着土豆。因此，红队得分为 $1$，蓝队得分为 $0$。\n\n在第二个测试用例中，最优策略是在唯一的一轮中让妖精 $4$ 把土豆传给妖精 $1$。注意，妖精 $3$ 不能把土豆传给妖精 $4$，因为妖精 $4$ 在本轮开始时已经拿着土豆。\n\n以下是第三个测试用例的演示：\n\n![image](https://espresso.codeforces.com/45e2b71b9979cdb65198a6b629b54f7d540750ef.png)\n\n注意，这是双方的一种最优策略。也可能存在其他最优策略，但最终得分相同。",
+  "samples": [
+    {
+      "input": "6\n2 1\n1000\n2 1\n0011\n3 2\n101110\n5 100000\n1111111111\n5 100000\n0000000000\n7 4\n10011110101011\n",
+      "output": "1 0\n0 2\n3 1\n5 5\n0 0\n7 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:21:52.819Z",
+  "translatedAt": "2026-10-30T20:41:38.291Z",
+  "translateModel": "gpt-6.1-sol"
+}

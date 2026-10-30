@@ -1,0 +1,31 @@
+{
+  "id": "2238A",
+  "platform": "codeforces",
+  "contestId": 2238,
+  "index": "A",
+  "title": "Another Puzzle from Papyrus",
+  "titleZh": "Papyrus 的又一道谜题",
+  "url": "https://codeforces.com/contest/2238/problem/A",
+  "difficulty": 800,
+  "tags": [
+    "greedy",
+    "math",
+    "sortings"
+  ],
+  "points": 500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "*You are filled with determination.*— Undertale\n\nPapyrus came up with another puzzle for Frisk to solve. Papyrus brought two arrays $a$ and $b$ of length $n$ and allowed the following two operations to be performed:\n\n- choose any index $i$ ($1 \\le i \\le n$) and change $a_i$ to $a_i - 1$. The execution time of such an operation is $1$ second.\n- reorder all elements of array $a$ in any way. The execution time of such an operation is $c$ seconds.\n\nYou need to convert array $a$ into array $b$.\n\nFrisk wants to solve the puzzle as soon as possible. Help Frisk determine the minimum time needed to solve the puzzle. If there is no solution, output $-1$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $c$ ($1 \\le n, c \\le 100$) — the length of arrays $a$ and $b$ and the cost of the second operation.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 100$) — the elements of the first array.\n\nThe third line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\le b_i \\le 100$) — the elements of the second array.\n\n## Output\n\nFor each test case, output a single integer representing the minimum number of seconds required to solve the puzzle, or $-1$ if it is impossible to solve the puzzle.\n\n## Note\n\nIn the first test case, it is impossible to transform $a$ into $b$ using only subtraction because $a_2 \\lt b_2$. Let's rearrange the elements of array $a$ as follows: $[5, 2, 3] \\Rightarrow [2, 3, 5]$. Now it is enough to subtract one from $a_3$, and we get that array $a$ becomes equal to array $b$ in $5 + 1 = 6$ seconds.\n\nIn the second test case, all elements of $a$ are less than all elements of $b$, which means $a$ cannot be transformed into $b$.\n\nIn the third test case, you can choose not to rearrange the elements and get an answer of $3$. If you rearrange them at least once, the answer will be at least $4$, so the optimal answer is $3$ seconds.\n\nIn the sixth test case, the array can be rearranged as follows: $[14, 20, 20]$. It can be seen that the cost will then be $5 + (14 - 12) + (20 - 18) + (20 - 17) = 12$.",
+  "statementZhMd": "<statement>\n*你内心充满了决心。*—— Undertale\n\nPapyrus 又想出一道谜题让 Frisk 来解。Papyrus 给了 Frisk 两个长度为 $n$ 的数组 $a$ 和 $b$，并允许执行以下两种操作：\n\n- 选择任意下标 $i$（$1 \\le i \\le n$），将 $a_i$ 改为 $a_i - 1$。执行该操作需要 $1$ 秒。\n- 以任意方式重新排列数组 $a$ 的所有元素。执行该操作需要 $c$ 秒。\n\n你需要将数组 $a$ 转换为数组 $b$。\n\nFrisk 想尽快解开谜题。请帮助 Frisk 求出解开谜题所需的最短时间。如果无解，输出 $-1$。\n\n## 输入格式\n\n每个输入包含多组测试数据。第一行包含测试数据组数 $t$（$1 \\le t \\le 500$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $c$（$1 \\le n, c \\le 100$），分别表示数组 $a$ 和 $b$ 的长度，以及第二种操作的代价。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 100$），表示第一个数组的元素。\n\n第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$1 \\le b_i \\le 100$），表示第二个数组的元素。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数，表示解开谜题所需的最少秒数。如果无解，则输出 $-1$。\n\n## 说明\n\n在第一组测试数据中，只通过减法操作无法将 $a$ 转换为 $b$，因为 $a_2 \\lt b_2$。将数组 $a$ 的元素重新排列为 $[5, 2, 3] \\Rightarrow [2, 3, 5]$。此时只需将 $a_3$ 减 $1$，数组 $a$ 就会与数组 $b$ 相等，总耗时为 $5 + 1 = 6$ 秒。\n\n在第二组测试数据中，$a$ 的所有元素都小于 $b$ 的所有元素，因此无法将 $a$ 转换为 $b$。\n\n在第三组测试数据中，可以不重新排列元素，得到答案 $3$。如果至少重新排列一次，答案至少为 $4$，因此最优答案是 $3$ 秒。\n\n在第六组测试数据中，可以将数组重新排列为 $[14, 20, 20]$。此时总耗时为 $5 + (14 - 12) + (20 - 18) + (20 - 17) = 12$。\n</statement>",
+  "samples": [
+    {
+      "input": "6\n3 5\n5 2 3\n2 3 4\n3 3\n1 2 3\n4 5 6\n4 4\n4 5 2 3\n3 5 1 2\n6 4\n2 4 5 3 6 8\n5 8 3 1 2 5\n5 11\n5 8 11 14 17\n16 12 10 10 6\n3 5\n20 14 20\n12 18 17\n",
+      "output": "6\n-1\n3\n8\n-1\n12\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:14.989Z",
+  "translatedAt": "2026-10-30T20:36:13.292Z",
+  "translateModel": "gpt-6.1-sol"
+}

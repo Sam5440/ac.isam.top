@@ -1,0 +1,37 @@
+{
+  "id": "abc462_d",
+  "platform": "atcoder",
+  "contestId": "abc462",
+  "index": "D",
+  "title": "Accomplice",
+  "titleZh": "Accomplice",
+  "url": "https://atcoder.jp/contests/abc462/tasks/abc462_d",
+  "difficulty": 798,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nA murder occurred at a certain mansion. There are $N$ suspects, called person $1$, person $2$, $\\dots$, person $N$.\n\nPerson $i$ entered the mansion at time $S_i$, left the mansion at time $T_i$, and did not enter or leave at any other times.\n\nThe following facts are known about the crime:\n\n- There are exactly two culprits.\n- The crime started at some integer time $x$, took $D$ units of time, and was completed at time $x + D$.\n- Both culprits were in the mansion at all times from the start to the completion of the crime. (They may have entered the mansion exactly when the crime started, or left exactly when it was completed.)\n\nAssuming that both culprits are among the $N$ suspects, how many combinations of the two culprits and the crime start time are possible? Here, the order of the two culprits does not matter.\n\n## Constraints\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq S_i \\leq T_i \\leq 10^6$\n- $1 \\leq D \\leq 10^6$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN D\nS_1 T_1\nS_2 T_2\n\\vdots\nS_N T_N\n```\n\n## Output\n\nOutput the number of possible combinations of the two culprits and the crime start time.",
+  "statementZhMd": "{\"titleZh\":\"共犯\",\"bodyZh\":\"## 题目描述\\n\\n某座宅邸发生了一起谋杀案。有 $N$ 名嫌疑人，分别称为嫌疑人 $1$、嫌疑人 $2$、$\\dots$、嫌疑人 $N$。\\n\\n嫌疑人 $i$ 在时刻 $S_i$ 进入宅邸，在时刻 $T_i$ 离开宅邸，除此之外没有在其他时刻进出宅邸。\\n\\n关于这起犯罪，我们知道以下事实：\\n\\n- 犯罪者恰好有两人。\\n- 犯罪在某个整数时刻 $x$ 开始，持续 $D$ 个单位时间，并在时刻 $x + D$ 完成。\\n- 从犯罪开始到完成的所有时刻，两名犯罪者都在宅邸内。（他们可以恰好在犯罪开始时进入宅邸，也可以恰好在犯罪完成时离开宅邸。）\\n\\n假设两名犯罪者都在 $N$ 名嫌疑人之中，求可能的两名犯罪者组合与犯罪开始时刻的组合数。这里，两名犯罪者的顺序不影响组合。\\n\\n## 约束条件\\n\\n- $2 \\\\leq N \\\\leq 2 \\\\times 10^5$\\n- $1 \\\\leq S_i \\\\leq T_i \\\\leq 10^6$\\n- $1 \\\\leq D \\\\leq 10^6$\\n- 所有输入值均为整数。\\n\\n## 输入格式\\n\\n输入由标准输入给出，格式如下：\\n\\n```\\nN D\\nS_1 T_1\\nS_2 T_2\\n\\\\vdots\\nS_N T_N\\n```\\n\\n## 输出格式\\n\\n输出可能的两名犯罪者组合与犯罪开始时刻的组合数。\"}",
+  "samples": [
+    {
+      "input": "3 2\n9 17\n10 12\n13 20\n",
+      "output": "4\n",
+      "note": "In this sample, there are three suspects, and the crime took two units of time.\n\n- If persons $1$ and $2$ are the culprits, they were both in the mansion from time $10$ to time $12$. If the crime start time is time $10$, the crime can be committed in two units of time.\n- If persons $1$ and $3$ are the culprits, they were both in the mansion from time $13$ to time $17$. If the crime start time is $13$, $14$, or $15$, the crime can be committed in two units of time.\n- If persons $2$ and $3$ are the culprits, they were never in the mansion at the same time, so this pair cannot have committed the crime.\n\nThus, the possible combinations of the two culprits and the crime start time are (persons $1, 2$, time $10$), (persons $1, 3$, time $13$), (persons $1, 3$, time $14$), (persons $1, 3$, time $15$), giving four combinations."
+    },
+    {
+      "input": "3 5\n9 17\n10 12\n13 20\n",
+      "output": "0\n",
+      "note": "The suspects are the same as in Sample Input 1, but this time the crime took five units of time.\n\nNo matter which two persons are the culprits, the time they were both in the mansion is shorter than the time required for the crime, so the crime is impossible.\n\nThus, the number of possible combinations of the two culprits and the crime start time is zero. (In other words, our assumption is wrong, and the real culprit has escaped us.)"
+    },
+    {
+      "input": "4 1\n1 1000000\n1 1000000\n1 1000000\n1 1000000\n",
+      "output": "5999994\n",
+      "note": "Beware of overflow for larger cases."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:18:36.110Z",
+  "translatedAt": "2026-10-30T20:28:51.139Z",
+  "translateModel": "gpt-6.1-sol"
+}

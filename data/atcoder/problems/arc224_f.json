@@ -1,0 +1,27 @@
+{
+  "id": "arc224_f",
+  "platform": "atcoder",
+  "contestId": "arc224",
+  "index": "F",
+  "title": "AND/OR",
+  "titleZh": "与或",
+  "url": "https://atcoder.jp/contests/arc224/tasks/arc224_f",
+  "difficulty": 2407,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a length-$N$ sequence of non-negative integers $A=(A_1,A_2,\\dots,A_N)$ and an integer $K$.\n\nInitially, $x=0$. For $i=1,2,\\dots,N$ in this order, let us choose one of the following two operations to perform.\n\n- Operation $1$ : Replace $x$ with $x$ ${\\rm AND}$ $A_i$.\n- Operation $2$ : Replace $x$ with $x$ ${\\rm OR}$ $A_i$.\n\nHere, operation $2$ must be chosen at most $K$ times in total. ${\\rm AND}$ denotes the bitwise ${\\rm AND}$ operation, and ${\\rm OR}$ denotes the bitwise ${\\rm OR}$ operation.\n\nLet $M$ be the maximum possible value of $x$ after all operations are finished. Find the number, modulo $998244353$, of operation sequences such that the final $x$ equals $M$.\n\nHere, two operation sequences are distinguished if and only if there exists an integer $j$ ($1 \\le j \\le N$) such that the operation chosen at the $j$-th step differs between them.\n\n$T$ test cases are given; solve each of them.\n\nWhat is the bitwise $\\mathrm{AND}$ operation? The bitwise $\\mathrm{AND}$ of non-negative integers $A, B$, denoted $A\\ \\mathrm{AND}\\ B$, is defined as follows. The digit in the $2^k$ ($k \\geq 0$) place of the binary representation of $A\\ \\mathrm{AND}\\ B$ is $1$ if the corresponding digits of $A$ and $B$ in binary are both $1$, and $0$ otherwise. For example, $3\\ \\mathrm{AND}\\ 5 = 1$ (in binary: $011\\ \\mathrm{AND}\\ 101 = 001$).\n\nWhat is the bitwise $\\mathrm{OR}$ operation? The bitwise $\\mathrm{OR}$ of non-negative integers $A, B$, denoted $A\\ \\mathrm{OR}\\ B$, is defined as follows. The digit in the $2^k$ ($k \\geq 0$) place of the binary representation of $A\\ \\mathrm{OR}\\ B$ is $1$ if at least one of the corresponding digits of $A$ and $B$ in binary is $1$, and $0$ otherwise. For example, $3\\ \\mathrm{OR}\\ 5 = 7$ (in binary: $011\\ \\mathrm{OR}\\ 101 = 111$).\n\n## Constraints\n\n- $1 \\le T \\le 10^4$\n- $1 \\le K \\le N \\le 2 \\times 10^5$\n- $0 \\le A_i < 2^{60}$\n- The sum of $N$ in each input is at most $2 \\times 10^5$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{case}_i$ denotes the $i$-th test case:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN K\nA_1 A_2 \\dots A_N\n```\n\n## Output\n\nOutput $T$ lines. The $i$-th line should contain the answer for the $i$-th test case.",
+  "statementZhMd": "## 题目描述\n\n给定一个长度为 $N$ 的非负整数序列 $A=(A_1,A_2,\\dots,A_N)$ 和一个整数 $K$。\n\n初始时，$x=0$。按照 $i=1,2,\\dots,N$ 的顺序，对每个 $i$ 选择以下两种操作之一执行。\n\n- 操作 $1$：将 $x$ 替换为 $x$ ${\\rm AND}$ $A_i$。\n- 操作 $2$：将 $x$ 替换为 $x$ ${\\rm OR}$ $A_i$。\n\n其中，操作 $2$ 总共最多可以选择 $K$ 次。${\\rm AND}$ 表示按位与运算，${\\rm OR}$ 表示按位或运算。\n\n设所有操作完成后 $x$ 的最大可能值为 $M$。请计算最终 $x$ 等于 $M$ 的操作序列数量，并对 $998244353$ 取模。\n\n当且仅当存在一个整数 $j$（$1 \\le j \\le N$），使得两个操作序列在第 $j$ 步选择的操作不同，这两个操作序列才视为不同。\n\n给定 $T$ 组测试数据，请分别求解。\n\n什么是按位 $\\mathrm{AND}$ 运算？对于非负整数 $A,B$，其按位 $\\mathrm{AND}$ 运算记作 $A\\ \\mathrm{AND}\\ B$，定义如下：在 $A\\ \\mathrm{AND}\\ B$ 的二进制表示中，$2^k$（$k \\geq 0$）位上的数字为 $1$，当且仅当 $A$ 和 $B$ 的二进制表示中对应位上的数字都为 $1$；否则为 $0$。例如，$3\\ \\mathrm{AND}\\ 5 = 1$（二进制表示为：$011\\ \\mathrm{AND}\\ 101 = 001$）。\n\n什么是按位 $\\mathrm{OR}$ 运算？对于非负整数 $A,B$，其按位 $\\mathrm{OR}$ 运算记作 $A\\ \\mathrm{OR}\\ B$，定义如下：在 $A\\ \\mathrm{OR}\\ B$ 的二进制表示中，$2^k$（$k \\geq 0$）位上的数字为 $1$，当且仅当 $A$ 和 $B$ 的二进制表示中对应位上的数字至少有一个为 $1$；否则为 $0$。例如，$3\\ \\mathrm{OR}\\ 5 = 7$（二进制表示为：$011\\ \\mathrm{OR}\\ 101 = 111$）。\n\n## 约束条件\n\n- $1 \\le T \\le 10^4$\n- $1 \\le K \\le N \\le 2 \\times 10^5$\n- $0 \\le A_i < 2^{60}$\n- 每组输入中 $N$ 的总和不超过 $2 \\times 10^5$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出，其中 $\\mathrm{case}_i$ 表示第 $i$ 组测试数据：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每组测试数据按以下格式给出：\n\n```\nN K\nA_1 A_2 \\dots A_N\n```\n\n## 输出格式\n\n输出 $T$ 行。第 $i$ 行应包含第 $i$ 组测试数据的答案。",
+  "samples": [
+    {
+      "input": "5\n5 3\n3 7 1 2 6\n1 1\n1\n10 8\n3 1 4 1 5 9 2 6 5 3\n10 5\n227966327241983404 430356836747706085 918791034668488208 753980266897555955 1090352658151595591 1077218377572152409 641276315925917062 859382256805178767 103741332934325112 1090530740094421349\n33 33\n0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n",
+      "output": "3\n1\n26\n1\n603979768\n",
+      "note": "This input contains five test cases.\n\nFor the first test case, $M=7$, and the following three operation sequences achieve the final value $x=M$.\n\n- Perform the operations in the order $1,1,2,2,2$. $x$ changes as $0 \\to 0 \\to 0 \\to 1 \\to 3 \\to 7$.\n- Perform the operations in the order $1,2,1,2,2$. $x$ changes as $0 \\to 0 \\to 7 \\to 1 \\to 3 \\to 7$.\n- Perform the operations in the order $2,1,1,2,2$. $x$ changes as $0 \\to 3 \\to 3 \\to 1 \\to 3 \\to 7$.\n\nFor the fifth test case, note that the answer should be output modulo $998244353$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:17:43.251Z",
+  "translatedAt": "2026-10-30T20:30:01.331Z",
+  "translateModel": "gpt-6.1-sol"
+}

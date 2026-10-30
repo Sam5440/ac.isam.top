@@ -1,0 +1,30 @@
+{
+  "id": "2247C",
+  "platform": "codeforces",
+  "contestId": 2247,
+  "index": "C",
+  "title": "Inversion of a Subsequence",
+  "titleZh": "子序列反转",
+  "url": "https://codeforces.com/contest/2247/problem/C",
+  "difficulty": 1100,
+  "tags": [
+    "greedy",
+    "math"
+  ],
+  "points": 1250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given two arrays $a$ and $b$ of length $n$, consisting only of $0$ and $1$.\n\nYou may perform the following operation on $a$ any number of times:\n\n1. Choose $k$ indices $1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\le n$, where $1 \\le k \\le n$ and $\\sum\\limits_{j = 1}^k a_{i_j}$ is **odd**. In other words, choose a non-empty subsequence$^{\\text{∗}}$ of $a$ with an odd sum.\n2. For each $1 \\le j \\le k$, set $a_{i_j} = 1 - a_{i_j}$. In other words, invert all elements of the chosen subsequence.\n\nFind the minimum number of operations needed to transform $a$ into $b$, or determine that it is impossible.\n\n$^{\\text{∗}}$A sequence $c$ is a subsequence of a sequence $d$ if $c$ can be obtained from $d$ by the deletion of several (possibly, zero or all) elements from arbitrary positions.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the arrays $a$ and $b$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($a_i \\in \\{0, 1\\}$) — array $a$.\n\nThe third line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($b_i \\in \\{0, 1\\}$) — array $b$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum number of operations needed to transform $a$ into $b$, or $-1$ if it is impossible.\n\n## Note\n\nIn the first example, $a = b$, so no operations are needed. Therefore, the answer is $0$.\n\nIn the second example, we can perform an operation with the subsequence $[a_1, a_2]$. The sum of its elements is $1 + 0 = 1$, which is odd. This operation transforms $a$ as follows: $[\\color{red}{1, 0}] \\rightarrow [\\color{red}{0, 1}]$. The resulting array equals $b$, so the answer is $1$.",
+  "statementZhMd": "给定两个长度为 $n$ 的数组 $a$ 和 $b$，其中只包含 $0$ 和 $1$。\n\n你可以对 $a$ 执行任意次以下操作：\n\n1. 选择 $k$ 个下标 $1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\le n$，其中 $1 \\le k \\le n$ 且 $\\sum\\limits_{j = 1}^k a_{i_j}$ 为**奇数**。换句话说，选择 $a$ 的一个和为奇数的非空子序列$^{\\text{∗}}$。\n2. 对于每个 $1 \\le j \\le k$，令 $a_{i_j} = 1 - a_{i_j}$。换句话说，将所选子序列中的所有元素取反。\n\n请找出将 $a$ 变为 $b$ 所需的最少操作次数，或者判断是否无法完成转换。\n\n$^{\\text{∗}}$如果一个序列 $c$ 可以通过从序列 $d$ 的任意位置删除若干个（可能为零个或全部）元素得到，则称 $c$ 是 $d$ 的子序列。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——数组 $a$ 和 $b$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$a_i \\in \\{0, 1\\}$）——数组 $a$。\n\n每个测试用例的第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$b_i \\in \\{0, 1\\}$）——数组 $b$。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——将 $a$ 变为 $b$ 所需的最少操作次数；如果无法完成转换，则输出 $-1$。\n\n## 说明\n\n在第一个样例中，$a = b$，因此不需要执行任何操作，答案为 $0$。\n\n在第二个样例中，我们可以选择子序列 $[a_1, a_2]$ 执行一次操作。其元素之和为 $1 + 0 = 1$，是奇数。该操作将 $a$ 变为：$[\\color{red}{1, 0}] \\rightarrow [\\color{red}{0, 1}]$。所得数组等于 $b$，因此答案为 $1$。",
+  "samples": [
+    {
+      "input": "5\n1\n0\n0\n2\n1 0\n0 1\n3\n1 1 1\n0 0 0\n4\n1 0 1 0\n0 1 0 1\n5\n1 0 1 0 1\n1 1 1 1 1\n",
+      "output": "0\n1\n1\n2\n-1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:36.391Z",
+  "translatedAt": "2026-10-30T20:39:23.885Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "2234F",
+  "platform": "codeforces",
+  "contestId": 2234,
+  "index": "F",
+  "title": "Vessels, Heights and Two Versions (Hard Version)",
+  "titleZh": "容器、高度与两个版本（困难版）",
+  "url": "https://codeforces.com/contest/2234/problem/F",
+  "difficulty": 2000,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "dsu",
+    "greedy",
+    "implementation",
+    "two pointers"
+  ],
+  "points": 1750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, constraints on $n$ and on the number of test cases are higher. You can hack only if you solved all versions of this problem.**\n\nThere are $n$ communicating vessels of infinite height arranged in a circle. The base area of each vessel is $1$ cm$^2$, and between the $i$-th vessel and the $(i \\bmod n) + 1$-th vessel there is a connection of negligible volume at height $h_i$ cm. For each vessel $i$, find the maximum total volume of water in cm$^3$ that can be placed in these vessels under the condition that the $i$-th vessel remains empty.\n\nFormally, you are given an array $h_1, h_2, \\ldots, h_n$. A cyclic array of non-negative integers $w_1, w_2, \\ldots, w_n$ is called good if the following holds:\n\n- For every $i$ from $1$ to $n$, if $\\max(w_i, w_{i \\bmod n + 1}) \\gt h_i$, then $w_i = w_{i \\bmod n + 1}$. In other words, if the maximum of two neighboring elements of the array $w$ exceeds the corresponding element of the array $h$, then these two neighboring elements of the array $w$ must be equal.\n\nFor each $i$ from $1$ to $n$, output the maximum possible sum $w_1 + w_2 + \\ldots + w_n$ among all good arrays $w_1, w_2, \\ldots, w_n$, under the condition that $w_i = 0$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($3 \\le n \\le 2 \\cdot 10^5$) — the number of vessels.\n\nThe second line of each test case contains $n$ integers $h_1, h_2, \\ldots, h_n$ ($1 \\le h_i \\le 10^9$) — the heights of the partitions between the vessels.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers — the $l$-th integer means the maximum total volume of water in cm$^3$ in the vessels under the condition that the $l$-th vessel remains empty.\n\n## Note\n\nConsider the first test case.\n\n- To keep vessel $1$ empty, one good array is $w = [0, 1, 2, 3]$, with a total of $6$ cm$^3$ of water.\n- To keep vessel $2$ empty, one good array is $w = [1, 0, 2, 3]$, with a total of $6$ cm$^3$ of water.\n- To keep vessel $3$ empty, one good array is $w = [2, 2, 0, 3]$, with a total of $7$ cm$^3$ of water.\n- To keep vessel $4$ empty, one good array is $w = [3, 3, 3, 0]$, with a total of $9$ cm$^3$ of water.\n\nFor example, the array $w = [2, 2, 0, 4]$ is not good, because $\\max(w_3, w_4) \\gt h_3$, and therefore $w_3 = w_4$ must hold.\n\nIt can be shown that each of the arrays above has the maximum possible sum among all suitable options.",
+  "statementZhMd": "**这是本题的困难版。两个版本的区别在于，本版本中 $n$ 的约束以及测试用例数量的约束更高。只有在解决了本题的所有版本后才能进行 hack。**\n\n有 $n$ 个高度无限的连通容器，它们沿圆周排列。每个容器的底面积为 $1$ cm$^2$，第 $i$ 个容器与第 $(i \\bmod n) + 1$ 个容器之间，在高度 $h_i$ cm 处有一条体积可忽略不计的连接。对于每个容器 $i$，求在保证第 $i$ 个容器为空的条件下，能够放入这些容器中的水的最大总体积（单位为 cm$^3$）。\n\n形式化地说，给定一个数组 $h_1, h_2, \\ldots, h_n$。如果一个由非负整数组成的循环数组 $w_1, w_2, \\ldots, w_n$ 满足以下条件，则称其为好的数组：\n\n- 对于每个 $i$（$1$ 到 $n$），如果 $\\max(w_i, w_{i \\bmod n + 1}) \\gt h_i$，那么 $w_i = w_{i \\bmod n + 1}$。换句话说，如果数组 $w$ 中两个相邻元素的最大值超过数组 $h$ 中对应的元素，那么这两个相邻元素必须相等。\n\n对于每个 $i$（$1$ 到 $n$），在满足 $w_i = 0$ 的条件下，求所有好的数组 $w_1, w_2, \\ldots, w_n$ 中 $w_1 + w_2 + \\ldots + w_n$ 的最大可能值。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$3 \\le n \\le 2 \\cdot 10^5$），表示容器的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $h_1, h_2, \\ldots, h_n$（$1 \\le h_i \\le 10^9$），表示容器之间隔板的高度。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数，其中第 $l$ 个整数表示在保证第 $l$ 个容器为空的条件下，这些容器中水的最大总体积（单位为 cm$^3$）。\n\n## 说明\n\n考虑第一个测试用例。\n\n- 为了让容器 $1$ 为空，一个好的数组是 $w = [0, 1, 2, 3]$，水的总体积为 $6$ cm$^3$。\n- 为了让容器 $2$ 为空，一个好的数组是 $w = [1, 0, 2, 3]$，水的总体积为 $6$ cm$^3$。\n- 为了让容器 $3$ 为空，一个好的数组是 $w = [2, 2, 0, 3]$，水的总体积为 $7$ cm$^3$。\n- 为了让容器 $4$ 为空，一个好的数组是 $w = [3, 3, 3, 0]$，水的总体积为 $9$ cm$^3$。\n\n例如，数组 $w = [2, 2, 0, 4]$ 不是好的数组，因为 $\\max(w_3, w_4) \\gt h_3$，因此必须满足 $w_3 = w_4$。\n\n可以证明，上述每个数组在所有符合条件的方案中都取得了最大可能的总和。",
+  "samples": [
+    {
+      "input": "4\n4\n1 2 3 4\n5\n5 3 1 5 2\n6\n3 4 2 6 1 5\n7\n1 2 1 4 2 3 5\n",
+      "output": "6 6 7 9\n17 16 14 14 17\n21 21 20 20 21 21\n17 17 17 17 21 21 22\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:31.344Z",
+  "translatedAt": "2026-10-30T20:34:32.325Z",
+  "translateModel": "gpt-6.1-sol"
+}

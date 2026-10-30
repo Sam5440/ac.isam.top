@@ -1,0 +1,31 @@
+{
+  "id": "2238C",
+  "platform": "codeforces",
+  "contestId": 2238,
+  "index": "C",
+  "title": "Village Guilds",
+  "titleZh": "村庄公会",
+  "url": "https://codeforces.com/contest/2238/problem/C",
+  "difficulty": 1400,
+  "tags": [
+    "dfs and similar",
+    "dp",
+    "trees"
+  ],
+  "points": 1250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*Hmmmrmm.*— Minecraft\n\nDuring his long adventure, Steve stumbled upon a village of villagers. The houses in the village are connected by bidirectional paths. In total, there are $n$ houses in the village, numbered from $1$ to $n$. The graph of houses and paths represents a rooted$^{\\text{∗}}$ tree$^{\\text{†}}$, rooted at vertex $1$, where the town hall is located.\n\nConsider an arbitrary house $v$ and its subtree$^{\\text{‡}}$. For each such house $v$ and each non-negative integer $h$, consider the set of houses that are in the subtree of $v$ at a distance exactly $h$ from $v$. Such a set will be called a **guild**. For example, for $h=0$, the guild will consist only of the vertex $v$.\n\nIn the example below, the guilds for the vertex $v=4$ are shown. The guild for $h=0$ is marked in red, for $h=1$ in light blue, and for $h=2$ in green.\n\n![image](https://espresso.codeforces.com/a938038658faae022f04ae6bbab854fdb13fcf9f.png)\n\nTwo guilds are considered different if there exists a house that is in one guild and not in the other. Steve wants to know how many different non-empty guilds there are in the tree. Help him with this.\n\n$^{\\text{∗}}$A rooted tree is a tree where one vertex is special and called the root.$^{\\text{†}}$A tree is a connected graph without cycles.$^{\\text{‡}}$A subtree of vertex $v$ is the subgraph of $v$, all its descendants, and all the edges between them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of houses in the village.\n\nThe second line contains $n-1$ integers $p_2, p_3, \\ldots, p_n$ ($1 \\le p_i \\lt i$), where $p_i$ is the parent of the $i$-th house in the tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the number of different guilds in the village.\n\n## Note\n\nIn the first testcase, there are $5$ guilds, each consisting of a single house.\n\nIn the second testcase, in addition to the guilds consisting of a single house, there is also a guild consisting of vertices $2$ and $3$. It can be obtained by considering houses at distance $h=1$ in the subtree of vertex $v=1$.\n\nIn the third testcase, in addition to the guilds consisting of a single house, there are $2$ more guilds: for $v=1$ and $h=1$, the guild consists of vertices $2$ and $4$; for $v=5$, $h=1$, the guild consists of vertices $6$ and $7$.\n\n![image](https://espresso.codeforces.com/8b4347ae961535dc26e91f46a38b1f15c3b2e6e1.png)",
+  "statementZhMd": "*嗯嗯嗯。*——《Minecraft》\n\n在漫长的冒险中，Steve 偶然发现了一个村民村庄。村庄里的房屋由双向道路相连。村庄共有 $n$ 间房屋，编号为 $1$ 到 $n$。房屋和道路构成的图是一棵以顶点 $1$ 为根的有根$^{\\text{∗}}$树$^{\\text{†}}$，市政厅就位于顶点 $1$。\n\n考虑任意一间房屋 $v$ 及其子树$^{\\text{‡}}$。对于每个这样的房屋 $v$ 和每个非负整数 $h$，取子树中与 $v$ 的距离恰好为 $h$ 的房屋集合。这样的集合称为一个**公会**。例如，当 $h=0$ 时，公会只包含顶点 $v$。\n\n下图展示了顶点 $v=4$ 对应的公会。其中，$h=0$ 的公会标为红色，$h=1$ 的公会标为浅蓝色，$h=2$ 的公会标为绿色。\n\n![image](https://espresso.codeforces.com/a938038658faae022f04ae6bbab854fdb13fcf9f.png)\n\n如果存在一间房屋只属于其中一个公会，则这两个公会被视为不同。Steve 想知道这棵树中有多少个不同的非空公会。请帮助他。\n\n$^{\\text{∗}}$有根树是一棵指定了一个特殊顶点并称其为根的树。$^{\\text{†}}$树是一个连通且无环的图。$^{\\text{‡}}$顶点 $v$ 的子树是由 $v$、它的所有后代以及它们之间的所有边构成的子图。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每组测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$），表示村庄中的房屋数量。\n\n第二行包含 $n-1$ 个整数 $p_2, p_3, \\ldots, p_n$（$1 \\le p_i \\lt i$），其中 $p_i$ 表示树中第 $i$ 间房屋的父节点。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数，表示村庄中不同公会的数量。\n\n## 说明\n\n在第一个测试用例中，有 $5$ 个公会，每个公会都只包含一间房屋。\n\n在第二个测试用例中，除了只包含一间房屋的公会外，还有一个由顶点 $2$ 和 $3$ 组成的公会。它可以通过取顶点 $1$ 的子树中距离 $h=1$ 的房屋得到。\n\n在第三个测试用例中，除了只包含一间房屋的公会外，还有另外 $2$ 个公会：当 $v=1$ 且 $h=1$ 时，公会由顶点 $2$ 和 $4$ 组成；当 $v=5$ 且 $h=1$ 时，公会由顶点 $6$ 和 $7$ 组成。\n\n![image](https://espresso.codeforces.com/8b4347ae961535dc26e91f46a38b1f15c3b2e6e1.png)",
+  "samples": [
+    {
+      "input": "5\n5\n1 2 3 4\n3\n1 1\n7\n1 2 1 3 5 5\n10\n1 1 3 2 2 4 4 4 3\n15\n1 2 1 3 3 4 3 7 3 10 6 7 1 9\n",
+      "output": "5\n4\n9\n15\n22\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:14.990Z",
+  "translatedAt": "2026-10-30T20:35:52.354Z",
+  "translateModel": "gpt-6.1-sol"
+}

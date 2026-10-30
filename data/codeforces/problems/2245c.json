@@ -1,0 +1,31 @@
+{
+  "id": "2245C",
+  "platform": "codeforces",
+  "contestId": 2245,
+  "index": "C",
+  "title": "MEXOR",
+  "titleZh": "MEXOR",
+  "url": "https://codeforces.com/contest/2245/problem/C",
+  "difficulty": 1400,
+  "tags": [
+    "bitmasks",
+    "constructive algorithms",
+    "math"
+  ],
+  "points": 1250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a positive integer $n$ and a non-negative integer $k$. Construct a permutation $p$ of length $n$ such that the following condition is satisfied:\n\n- Let $f(i)=\\operatorname{mex}([p_0,p_1,\\ldots,p_i])$$^{\\text{∗}}$ for every $0 \\le i \\lt n$. Then, $f(0) \\oplus f(1) \\oplus \\ldots \\oplus f(n-1)$ should equal $k$, where $\\oplus$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\n**Note that** a permutation of length $n$ is an array consisting of $n$ distinct integers from $0$ to $n-1$ in arbitrary order. For example, $[1,2,0,4,3]$ is a permutation, but $[0,1,1]$ is not a permutation ($1$ appears twice in the array), and $[0,2,3]$ is also not a permutation ($n=3$ but there is $3$ in the array).\n\n$^{\\text{∗}}$The minimum excluded (MEX) of a collection of integers $c_1, c_2, \\ldots, c_k$ is defined as the smallest non-negative integer $x$ which does not occur in the collection $c$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe only line of each test case contains two integers $n$ and $k$ ($1 \\le n \\le 2 \\cdot 10^5$, $0 \\le k \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if no such permutation exists, output \"`NO`\".\n\nOtherwise, first output \"`YES`\" on a single line. Then, output $n$ distinct integers $p_0,p_1,\\ldots,p_{n-1}$ ($0 \\le p_i \\lt n$), representing the permutation $p$ you constructed. If there are multiple permutations satisfying the requirement, you may output any of them.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first and second test cases, the only permutation of length $1$ is $[0]$, with $f(0)=\\operatorname{mex}([0])=1$.\n\nIn the fourth test case, it can be proven that no permutation of length $4$ exists such that $f(0) \\oplus f(1) \\oplus f(2) \\oplus f(3)=8$.\n\nIn the fifth test case, the values of $f(i)$ for $0 \\le i \\lt n$ are as follows:\n\n- $f(0)=\\operatorname{mex}([3])=0$,\n- $f(1)=\\operatorname{mex}([3,0])=1$,\n- $f(2)=\\operatorname{mex}([3,0,2])=1$,\n- $f(3)=\\operatorname{mex}([3,0,2,1])=4$,\n- $f(4)=\\operatorname{mex}([3,0,2,1,4])=5$,\n\nSince $f(0) \\oplus f(1) \\oplus f(2) \\oplus f(3) \\oplus f(4)=0\\oplus 1 \\oplus 1 \\oplus 4 \\oplus 5=1$, $p=[3,0,2,1,4]$ is a valid permutation.",
+  "statementZhMd": "## 题目描述\n\n给定一个正整数 $n$ 和一个非负整数 $k$。请构造一个长度为 $n$ 的排列 $p$，使其满足以下条件：\n\n- 对于每个 $0 \\le i \\lt n$，令 $f(i)=\\operatorname{mex}([p_0,p_1,\\ldots,p_i])$\\(^{\\text{∗}}\\)。那么，$f(0) \\oplus f(1) \\oplus \\ldots \\oplus f(n-1)$ 应当等于 $k$，其中 $\\oplus$ 表示[按位异或运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n**注意，**长度为 $n$ 的排列是一个由 $0$ 到 $n-1$ 中的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[1,2,0,4,3]$ 是一个排列，但 $[0,1,1]$ 不是排列（数组中 $1$ 出现了两次），$[0,2,3]$ 也不是排列（$n=3$，但数组中出现了 $3$）。\n\n$^{\\text{∗}}$一组整数 $c_1, c_2, \\ldots, c_k$ 的最小未出现值（MEX）定义为：集合 $c$ 中未出现的最小非负整数 $x$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例仅包含一行，包含两个整数 $n$ 和 $k$（$1 \\le n \\le 2 \\cdot 10^5$，$0 \\le k \\le 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果不存在满足条件的排列，输出“`NO`”。\n\n否则，首先在单独一行输出“`YES`”。然后输出 $n$ 个互不相同的整数 $p_0,p_1,\\ldots,p_{n-1}$（$0 \\le p_i \\lt n$），表示你构造的排列 $p$。如果有多个排列满足要求，你可以输出其中任意一个。\n\n你可以使用任意大小写形式输出答案。例如，字符串“`yEs`”“`yes`”“`Yes`”和“`YES`”都会被识别为肯定回答。\n\n## 说明\n\n在第一个和第二个测试用例中，长度为 $1$ 的排列只有 $[0]$，且 $f(0)=\\operatorname{mex}([0])=1$。\n\n在第四个测试用例中，可以证明不存在长度为 $4$ 的排列，使得 $f(0) \\oplus f(1) \\oplus f(2) \\oplus f(3)=8$。\n\n在第五个测试用例中，对于 $0 \\le i \\lt n$，$f(i)$ 的值如下：\n\n- $f(0)=\\operatorname{mex}([3])=0$，\n- $f(1)=\\operatorname{mex}([3,0])=1$，\n- $f(2)=\\operatorname{mex}([3,0,2])=1$，\n- $f(3)=\\operatorname{mex}([3,0,2,1])=4$，\n- $f(4)=\\operatorname{mex}([3,0,2,1,4])=5$，\n\n由于 $f(0) \\oplus f(1) \\oplus f(2) \\oplus f(3) \\oplus f(4)=0\\oplus 1 \\oplus 1 \\oplus 4 \\oplus 5=1$，因此 $p=[3,0,2,1,4]$ 是一个合法的排列。",
+  "samples": [
+    {
+      "input": "6\n1 0\n1 1\n3 0\n4 8\n5 1\n9 12\n",
+      "output": "NO\nYES\n0\nYES\n0 1 2\nNO\nYES\n3 0 2 1 4\nYES\n1 4 0 8 2 3 7 5 6\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:51.664Z",
+  "translatedAt": "2026-10-30T20:38:01.741Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "abc445_g",
+  "platform": "atcoder",
+  "contestId": "abc445",
+  "index": "G",
+  "title": "Knight Placement",
+  "titleZh": "骑士放置",
+  "url": "https://atcoder.jp/contests/abc445/tasks/abc445_g",
+  "difficulty": 2250,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a grid with $N$ rows and $N$ columns. The cell at the $i$-th row from the top $(1 \\le i \\le N)$ and the $j$-th column from the left $(1 \\le j \\le N)$ is called cell $(i,j)$.\n\nEach cell is an empty cell or a wall cell, represented by a sequence of $N$ strings of length $N$ each, $(S_1,S_2,\\ldots,S_N)$. Cell $(i,j)\\ (1 \\le i \\le N,1 \\le j \\le N)$ is an empty cell if the $j$-th character of $S_i$ is `.`, and a wall cell if it is `#`.\n\nYou want to place as many pieces as possible on this grid. The placement of pieces is subject to the following constraints.\n\n- A piece cannot be placed on a wall cell.\n- At most one piece can be placed on a single cell.\n- If a piece is placed on cell $(i,j)$, no piece can be placed on the cell reached by moving $A$ cells vertically and $B$ cells horizontally from cell $(i,j)$, or the cell reached by moving $B$ cells vertically and $A$ cells horizontally. More formally, if a piece is placed on cell $(i,j)$, then no piece can be placed on any of cell $(i+A,j+B),$ cell $(i+B,j+A),$ cell $(i+B,j-A),$ cell $(i+A,j-B),$ cell $(i-A,j-B),$ cell $(i-B,j-A),$ cell $(i-B,j+A),$ cell $(i-A,j+B)$ (if those cells exist).\n\nLet $K$ be the maximum number of pieces that can be placed under these constraints, and find one placement of $K$ pieces satisfying the constraints.\n\n## Constraints\n\n- $1 \\le N \\le 300$\n- $0 \\le A \\le B \\le N$\n- $1 \\le B$\n- $N,A,B$ are integers.\n- $S_i$ is a string of length $N$ consisting of `.` and `#` $(1 \\le i \\le N)$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN A B\nS_1\nS_2\n\\vdots\nS_N\n```\n\n## Output\n\nFind one placement of $K$ pieces satisfying the constraints, and output it as strings over $N$ lines. The $i$-th line $(1 \\le i \\le N)$ should contain a string of $N$ characters consisting of `.`, `o`, and `#`. The $j$-th character $(1 \\le j \\le N)$ of the string on the $i$-th line should be `.` if cell $(i,j)$ is an empty cell with no piece, `o` if cell $(i,j)$ is an empty cell with a piece, and `#` if cell $(i,j)$ is a wall cell.\n\nIf there are multiple valid placements, any of them will be accepted.",
+  "statementZhMd": "## 题目描述\n\n有一个 $N$ 行 $N$ 列的网格。从上往下数第 $i$ 行 $(1 \\le i \\le N)$、从左往右数第 $j$ 列 $(1 \\le j \\le N)$ 的格子称为格子 $(i,j)$。\n\n给定由 $N$ 个长度均为 $N$ 的字符串 $(S_1,S_2,\\ldots,S_N)$ 表示的网格，其中每个格子为空地或墙壁。若 $S_i$ 的第 $j$ 个字符为 `.`，则格子 $(i,j)\\ (1 \\le i \\le N,1 \\le j \\le N)$ 为空地；若该字符为 `#`，则格子 $(i,j)$ 为墙壁。\n\n你希望在这个网格上放置尽可能多的棋子。棋子的放置需要满足以下条件。\n\n- 不能在墙壁上放置棋子。\n- 每个格子至多放置一个棋子。\n- 如果在格子 $(i,j)$ 上放置了棋子，则通过从格子 $(i,j)$ 垂直移动 $A$ 格、水平移动 $B$ 格，或垂直移动 $B$ 格、水平移动 $A$ 格所到达的格子上不能放置棋子。更正式地说，如果在格子 $(i,j)$ 上放置了棋子，则以下格子中存在的格子都不能放置棋子：$(i+A,j+B),$ $(i+B,j+A),$ $(i+B,j-A),$ $(i+A,j-B),$ $(i-A,j-B),$ $(i-B,j-A),$ $(i-B,j+A),$ $(i-A,j+B)$。\n\n设在满足上述条件的情况下最多可以放置 $K$ 个棋子，请找出一种放置 $K$ 个棋子的方案。\n\n## 约束条件\n\n- $1 \\le N \\le 300$\n- $0 \\le A \\le B \\le N$\n- $1 \\le B$\n- $N,A,B$ 均为整数。\n- $S_i$ 是一个长度为 $N$、由 `.` 和 `#` 组成的字符串 $(1 \\le i \\le N)$。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN A B\nS_1\nS_2\n\\vdots\nS_N\n```\n\n## 输出格式\n\n请找出一种满足条件的 $K$ 个棋子的放置方案，并按 $N$ 行输出字符串。第 $i$ 行 $(1 \\le i \\le N)$ 应包含一个由 `.`, `o` 和 `#` 组成的长度为 $N$ 的字符串。第 $i$ 行字符串的第 $j$ 个字符 $(1 \\le j \\le N)$ 应为：如果格子 $(i,j)$ 是没有放置棋子的空地，则为 `.`；如果格子 $(i,j)$ 是放置了棋子的空地，则为 `o`；如果格子 $(i,j)$ 是墙壁，则为 `#`。\n\n如果存在多种满足条件的放置方案，输出其中任意一种即可。",
+  "samples": [
+    {
+      "input": "5 1 2\n..#..\n..##.\n.#..#\n##..#\n.#...\n",
+      "output": "o.#.o\noo##.\no#..#\n##.o#\no#ooo\n",
+      "note": "For example, $10$ pieces can be placed as follows while satisfying the constraints.\n\n![image](https://img.atcoder.jp/abc445/1641a8d0bdde78a148f3f782d868eab9.png)\n\nIt is impossible to place $11$ pieces while satisfying the constraints, so outputting the board corresponding to the placement above,\n\nwill be judged as correct.\n\nNote that any valid placement will be accepted if there are multiple of them. For example, the following also allows $10$ pieces to be placed while satisfying the constraints.\n\n![image](https://img.atcoder.jp/abc445/c38f0b19c5744eefce9761819cdcd203.png)\n\nThus, outputting\n\nwill also be judged as correct."
+    },
+    {
+      "input": "4 0 1\n.###\n##.#\n#.##\n###.\n",
+      "output": "o###\n##o#\n#o##\n###o\n",
+      "note": "The constraints can be satisfied by placing one piece on each empty cell."
+    },
+    {
+      "input": "20 3 4\n#...#...........##.#\n..##........#.......\n.....##..#....###.#.\n.#...##.##.#.#.#..#.\n#...#.....###..#...#\n#...##......##.##.#.\n.#....#.##.##...#...\n#..##..........#...#\n##.#..........##....\n...#..#....#.#.#...#\n#.....#.##.#...#....\n##................#.\n.#....#..#....#.....\n........#........#.#\n........#.#..##....#\n.##.....#....#......\n.##.#.##....#.#...##\n......#...#..#......\n.........##...#..#.#\n###.....#...#....#..\n",
+      "output": "#ooo#....ooo....##o#\noo##o...oooo#..ooooo\nooooo##oo#ooo.###o#o\no#ooo##.##o#o#.#oo#o\n#ooo#....o###..#ooo#\n#...##...oo.##.##o#.\n.#o...#.##.##...#oo.\n#.o##.....o....#..o#\n##o#.....o.o..##oo..\nooo#oo#.ooo#.#.#ooo#\n#oooo.#o##o#oo.#oooo\n##ooo...oooo..o.oo#o\n.#oo..#o.#oo..#oooo.\n........#.o......#o#\n..oo....#.#o.##..o.#\n.##.o...#.o..#....o.\n.##o#.##...o#.#.oo##\noooooo#.oo#oo#o.oooo\n.oooo..o.##ooo#oo#o#\n###oooo.#ooo#.o.o#oo\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:21:04.673Z",
+  "translatedAt": "2026-10-30T20:25:06.453Z",
+  "translateModel": "gpt-6.1-sol"
+}

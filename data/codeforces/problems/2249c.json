@@ -1,0 +1,33 @@
+{
+  "id": "2249C",
+  "platform": "codeforces",
+  "contestId": 2249,
+  "index": "C",
+  "title": "Double-Rift Dial",
+  "titleZh": "双裂口转盘",
+  "url": "https://codeforces.com/contest/2249/problem/C",
+  "difficulty": 2000,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "dsu",
+    "implementation",
+    "two pointers"
+  ],
+  "points": 1750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "A permutation$^{\\text{∗}}$ $p$ of length $n$ is written clockwise on a circular dial.\n\nChoose a starting position $s$ ($1\\le s\\le n$) and read one full circle clockwise from $p_s$, wrapping around after $p_n$. The resulting sequence is\n\n$$ q=[p_s,p_{s+1},\\ldots,p_n,p_1,\\ldots,p_{s-1}], $$\n\nwhich also has a length of $n$.\n\nFor any non-empty prefix of this sequence $[q_1, q_2, \\ldots, q_k]$ ($k\\ge 1$), let $S$ be the corresponding set of values, that is, $S=\\{q_1, q_2,\\ldots, q_k\\}$. Split $S$ into maximal segments of consecutive integers, and we call these segments the *blocks* of $S$.\n\nFor example, $S=\\{1,2,5,7,8,9\\}$ has $3$ *blocks*: $\\{1,2\\}$, $\\{5\\}$, and $\\{7,8,9\\}$.\n\nA starting position $s$ is called *good* if and only if, for every non-empty prefix of $q$, the corresponding set $S$ has at most $2$ *blocks*.\n\nFind the number of *good* starting positions.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($1\\le n\\le 2\\cdot 10^5$) — the length of $p$.\n\nThe second line of each test case contains $n$ integers $p_1,p_2,\\ldots,p_n$ ($1\\le p_i\\le n$, all $p_i$-s are distinct) — the elements of $p$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print one integer — the number of *good* starting positions.\n\n## Note\n\nIn the first test case, there is only one starting position. Every non-empty prefix contains the single value $1$, so it has one *block*. Thus, this position is *good*.\n\nIn the second test case, after reading the first $3$ numbers from position $1$, the set is $\\{1,3,5\\}$ and has $3$ *blocks*. Thus, position $1$ is not *good*. Each of the other $4$ positions is *good*.",
+  "statementZhMd": "长度为 $n$ 的排列$^{\\text{∗}}$ $p$ 按顺时针方向写在一个圆形转盘上。\n\n选择一个起始位置 $s$（$1\\le s\\le n$），从 $p_s$ 开始沿顺时针方向读取一整圈，在 $p_n$ 之后回到开头。得到的序列为\n\n$$ q=[p_s,p_{s+1},\\ldots,p_n,p_1,\\ldots,p_{s-1}], $$\n\n其长度同样为 $n$。\n\n对于该序列的任意非空前缀 $[q_1, q_2, \\ldots, q_k]$（$k\\ge 1$），令 $S$ 为对应的数值集合，即 $S=\\{q_1, q_2,\\ldots, q_k\\}$。将 $S$ 划分为若干个极大的连续整数段，并称这些连续整数段为 $S$ 的*块*。\n\n例如，$S=\\{1,2,5,7,8,9\\}$ 有 $3$ 个*块*：$\\{1,2\\}$、$\\{5\\}$ 和 $\\{7,8,9\\}$。\n\n当且仅当对于 $q$ 的每个非空前缀，其对应的集合 $S$ 至多包含 $2$ 个*块*时，起始位置 $s$ 被称为*优秀*。\n\n求*优秀*起始位置的数量。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 2\\cdot 10^5$），表示 $p$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $p_1,p_2,\\ldots,p_n$（$1\\le p_i\\le n$，所有 $p_i$ 互不相同），表示 $p$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，即*优秀*起始位置的数量。\n\n## 说明\n\n在第一个测试用例中，只有一个起始位置。每个非空前缀都只包含值 $1$，因此有一个*块*。所以该位置是*优秀*的。\n\n在第二个测试用例中，从位置 $1$ 开始读取前 $3$ 个数后，集合为 $\\{1,3,5\\}$，包含 $3$ 个*块*。因此，位置 $1$ 不是*优秀*的。其他 $4$ 个位置都是*优秀*的。",
+  "samples": [
+    {
+      "input": "4\n1\n1\n5\n1 3 5 2 4\n6\n1 2 4 5 3 6\n7\n1 3 5 7 2 4 6\n",
+      "output": "1\n4\n3\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:22:20.960Z",
+  "translatedAt": "2026-10-30T20:40:15.264Z",
+  "translateModel": "gpt-6.1-sol"
+}

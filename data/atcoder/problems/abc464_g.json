@@ -1,0 +1,27 @@
+{
+  "id": "abc464_g",
+  "platform": "atcoder",
+  "contestId": "abc464",
+  "index": "G",
+  "title": "Celester 2",
+  "titleZh": "Celester 2",
+  "url": "https://atcoder.jp/contests/abc464/tasks/abc464_g",
+  "difficulty": 2592,
+  "tags": [],
+  "points": 625,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThe weather for the upcoming $N$ days is given as a string $S$.\nIf the $i$-th character of $S$ is `S`, then the weather on day $i$ is sunny; if it is `R`, then the weather on day $i$ is rainy.\n\nYou can perform the following operation between $0$ and $k$ times, inclusive:\n\n- Choose an integer $i$ with $1 \\le i \\le N$.\n- If the weather on day $i$ is sunny, change it to rainy; if it is rainy, change it to sunny.\n\nAfter performing the operations, you gain happiness based on the final weather according to the following condition:\n\n- For each integer $i$ with $1 \\le i \\le N-1$, if the weather on day $i$ after modification is rainy and the weather on day $i+1$ is sunny, your happiness increases by $1$.\n\nFor each $k = 0, 1, \\dots, N$, find the maximum total happiness you can gain by performing the operation at most $k$ times.\n\n$T$ test cases are given; solve each.\n\n## Constraints\n\n- $1 \\le T \\le 10^4$\n- $N$ is an integer between $2$ and $10^6$, inclusive.\n- $S$ is a string of length $N$ consisting of `S` and `R`.\n- The sum of $N$ in a single input is at most $10^6$.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{case}_i$ denotes the $i$-th test case:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN\nS\n```\n\n## Output\n\nOutput $T$ lines. The $i$-th line should contain the answer for the $i$-th test case.\n\nFor each test case, let $A_i$ be the answer for $k = i$. Then, output the answer in the following format:\n\n```\nA_0 A_1 \\dots A_N\n```",
+  "statementZhMd": "## 题目描述\n\n接下来 $N$ 天的天气由一个字符串 $S$ 给出。\n如果 $S$ 的第 $i$ 个字符是 `S`，则第 $i$ 天是晴天；如果是 `R`，则第 $i$ 天是雨天。\n\n你可以进行以下操作，操作次数在 $0$ 到 $k$ 次之间（含）：\n\n- 选择一个满足 $1 \\le i \\le N$ 的整数 $i$。\n- 如果第 $i$ 天是晴天，就将其改为雨天；如果是雨天，就将其改为晴天。\n\n操作完成后，根据最终天气情况获得幸福值：\n\n- 对于每个满足 $1 \\le i \\le N-1$ 的整数 $i$，如果修改后第 $i$ 天是雨天，且第 $i+1$ 天是晴天，幸福值增加 $1$。\n\n对于每个 $k = 0, 1, \\dots, N$，求最多进行 $k$ 次操作所能获得的幸福值最大值。\n\n给定 $T$ 组测试数据，请分别求解。\n\n## 约束条件\n\n- $1 \\le T \\le 10^4$\n- $N$ 是一个介于 $2$ 和 $10^6$ 之间的整数（含）。\n- $S$ 是一个长度为 $N$、仅由 `S` 和 `R` 组成的字符串。\n- 单个输入中所有测试数据的 $N$ 之和不超过 $10^6$。\n\n## 输入格式\n\n输入从标准输入给出，格式如下，其中 $\\mathrm{case}_i$ 表示第 $i$ 组测试数据：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每组测试数据的格式如下：\n\n```\nN\nS\n```\n\n## 输出格式\n\n输出 $T$ 行。第 $i$ 行应包含第 $i$ 组测试数据的答案。\n\n对于每组测试数据，令 $A_i$ 表示 $k = i$ 时的答案。然后按以下格式输出答案：\n\n```\nA_0 A_1 \\dots A_N\n```",
+  "samples": [
+    {
+      "input": "5\n4\nSSSR\n2\nSR\n6\nRSRSRS\n10\nRSRSRRRRRR\n20\nSSRRSSSSRRRSSRRSRSRS\n",
+      "output": "0 1 1 2 2\n0 0 1\n3 3 3 3 3 3 3\n2 3 4 5 5 5 5 5 5 5 5\n5 6 7 8 8 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10\n",
+      "note": "This input contains five test cases.\n\nFor the $1$st test case:\n\n- The weather on each day before any operations is sunny, sunny, sunny, rainy in order.\n- For $k = 0$, no operations can be performed.\n- The weather on each day after operations is sunny, sunny, sunny, rainy, and the total happiness is $0$, which is the achievable maximum.\n- For $k = 1$, for example, changing the weather on day $2$ is optimal.\n- The weather on each day after operations is sunny, rainy, sunny, rainy, and the total happiness is $1$, which is the achievable maximum.\n- For $k = 2$, for example, changing the weather on days $1$ and $2$ is optimal.\n- The weather on each day after operations is rainy, rainy, sunny, rainy, and the total happiness is $1$, which is the achievable maximum.\n- For $k = 3$, for example, changing the weather on days $1$, $3$, and $4$ is optimal.\n- The weather on each day after operations is rainy, sunny, rainy, sunny, and the total happiness is $2$, which is the achievable maximum.\n- For $k = 4$, for example, changing the weather on days $1$, $3$, and $4$ is optimal.\n- The weather on each day after operations is rainy, sunny, rainy, sunny, and the total happiness is $2$, which is the achievable maximum."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:18:11.093Z",
+  "translatedAt": "2026-10-30T20:29:28.654Z",
+  "translateModel": "gpt-6.1-sol"
+}

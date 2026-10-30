@@ -1,0 +1,35 @@
+{
+  "id": "arc218_e",
+  "platform": "atcoder",
+  "contestId": "arc218",
+  "index": "E",
+  "title": "Reverse and Reverse",
+  "titleZh": "Reverse and Reverse",
+  "url": "https://atcoder.jp/contests/arc218/tasks/arc218_e",
+  "difficulty": 2705,
+  "tags": [],
+  "points": 800,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nFor a permutation $p=(p_1,p_2,\\dots,p_N)$ of $(1,2,\\dots,N)$ and a positive integer $M$, let $f(p,M)$ denote the answer to the following problem.\n\n> Perform the following operation $M$ times on $p$.\n> \n> - Choose an integer $i$ with $1 \\le i \\le N-1$, and reverse each of $(p_1,p_2,\\dots,p_i)$ and $(p_{i+1},p_{i+2},\\dots,p_N)$. Formally, replace $p$ with $(p_i,p_{i-1},\\dots,p_1,p_N,p_{N-1},\\dots,p_{i+1})$.\n> \n> There are $(N-1)^M$ possible sequences of operations. Find the sum, modulo $998244353$, of \"the number of inversions of $p$ after $M$ operations\" over all such sequences.\n\nYou are given a permutation $P=(P_1,P_2,\\dots,P_N)$ of $(1,2,\\dots,N)$. Process the following query $Q$ times.\n\n- You are given an integer $x$ with $1 \\le x \\le N-1$ and a positive integer $K$. Swap $P_x$ and $P_{x+1}$. Then, find $f(P,K)$.\n\n## Constraints\n\n- $2 \\le N \\le 2 \\times 10^5$\n- $1 \\le Q \\le 2 \\times 10^5$\n- $P$ is a permutation of $(1,2,\\dots,N)$.\n- $1 \\le x \\le N-1$\n- $1 \\le K \\le 10^9$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN Q\nP_1\\ P_2\\ \\dots\\ P_N\n\\mathrm{query}_1\n\\mathrm{query}_2\n\\vdots\n\\mathrm{query}_Q\n```\n\nEach query is given in the following format:\n\n```\nx K\n```\n\n## Output\n\nOutput $Q$ lines. The $i$-th line should contain the answer to $\\mathrm{query}_i$.",
+  "statementZhMd": "{\"titleZh\":\"反转与反转\",\"bodyZh\":\"## 题目描述\\n\\n对于排列 $p=(p_1,p_2,\\\\dots,p_N)$（由 $(1,2,\\\\dots,N)$ 构成）和正整数 $M$，令 $f(p,M)$ 表示以下问题的答案。\\n\\n> 对 $p$ 执行以下操作 $M$ 次。\\n>\\n> - 选择一个满足 $1 \\\\le i \\\\le N-1$ 的整数 $i$，然后分别反转 $(p_1,p_2,\\\\dots,p_i)$ 和 $(p_{i+1},p_{i+2},\\\\dots,p_N)$。形式化地，将 $p$ 替换为 $(p_i,p_{i-1},\\\\dots,p_1,p_N,p_{N-1},\\\\dots,p_{i+1})$。\\n>\\n> 一共有 $(N-1)^M$ 种可能的操作序列。求所有这些操作序列中“执行 $M$ 次操作后 $p$ 的逆序对数”之和，结果对 $998244353$ 取模。\\n\\n给定一个由 $(1,2,\\\\dots,N)$ 构成的排列 $P=(P_1,P_2,\\\\dots,P_N)$。请处理以下 $Q$ 次查询。\\n\\n- 给定一个满足 $1 \\\\le x \\\\le N-1$ 的整数 $x$ 和一个正整数 $K$。交换 $P_x$ 与 $P_{x+1}$，然后求 $f(P,K)$。\\n\\n## 约束条件\\n\\n- $2 \\\\le N \\\\le 2 \\\\times 10^5$\\n- $1 \\\\le Q \\\\le 2 \\\\times 10^5$\\n- $P$ 是 $(1,2,\\\\dots,N)$ 的一个排列。\\n- $1 \\\\le x \\\\le N-1$\\n- $1 \\\\le K \\\\le 10^9$\\n- 所有输入值均为整数。\\n\\n## 输入格式\\n\\n输入从标准输入按以下格式给出：\\n\\n```\\nN Q\\nP_1\\\\ P_2\\\\ \\\\dots\\\\ P_N\\n\\\\mathrm{query}_1\\n\\\\mathrm{query}_2\\n\\\\vdots\\n\\\\mathrm{query}_Q\\n```\\n\\n每次查询的格式如下：\\n\\n```\\nx K\\n```\\n\\n## 输出格式\\n\\n输出 $Q$ 行。第 $i$ 行应包含对第 $\\mathrm{query}_i$ 次查询的答案。\"}",
+  "samples": [
+    {
+      "input": "3 2\n1 3 2\n1 1\n2 1\n",
+      "output": "4\n4\n",
+      "note": "For the first query, swapping $P_1$ and $P_2$ gives $P=(3,1,2)$. There are two possible sequences of operations as follows:\n\n- Choose $i = 1$. $P$ becomes $(3,2,1)$. The number of inversions is $3$.\n- Choose $i = 2$. $P$ becomes $(1,3,2)$. The number of inversions is $1$.\n\nThus, the answer is $3+1=4$.\n\nFor the second query, swapping $P_2$ and $P_3$ gives $P=(3,2,1)$. There are two possible sequences of operations as follows:\n\n- Choose $i = 1$. $P$ becomes $(3,1,2)$. The number of inversions is $2$.\n- Choose $i = 2$. $P$ becomes $(2,3,1)$. The number of inversions is $2$.\n\nThus, the answer is $2+2=4$."
+    },
+    {
+      "input": "4 4\n3 2 4 1\n2 1\n2 2\n3 3\n1 4\n",
+      "output": "11\n28\n67\n242\n"
+    },
+    {
+      "input": "10 7\n7 9 3 10 5 2 4 6 8 1\n2 29\n1 86\n3 30\n8 64\n1 24\n1 9\n5 55\n",
+      "output": "29362950\n633265500\n847469581\n741165544\n385334408\n653522086\n169485402\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:19:43.560Z",
+  "translatedAt": "2026-10-30T20:26:49.817Z",
+  "translateModel": "gpt-6.1-sol"
+}

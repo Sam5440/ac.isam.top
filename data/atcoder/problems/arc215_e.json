@@ -1,0 +1,27 @@
+{
+  "id": "arc215_e",
+  "platform": "atcoder",
+  "contestId": "arc215",
+  "index": "E",
+  "title": "CNOT Party",
+  "titleZh": "CNOT 聚会",
+  "url": "https://atcoder.jp/contests/arc215/tasks/arc215_e",
+  "difficulty": 2418,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given binary strings $A = A_1 A_2 \\ldots A_N$ and $B = B_1 B_2 \\ldots B_N$ of length $N$.\n\nYou can perform $M$ types of operations. The $i$-th type of operation is represented by a pair of integers $(x_i, y_i)$ with $1 \\le x_i, y_i \\le N$, and it flips the value of $A_{y_i}$ when $A_{x_i} = 1$. It is possible that $x_i = y_i$. Here, flipping means changing $0$ to $1$ or $1$ to $0$.\n\nDetermine whether it is possible to convert $A$ into a string equal to $B$ by performing at most $2N$ operations on $A$, and if so, construct one such way.\n\nYou are given $T$ test cases; solve each one.\n\n## Constraints\n\n- $1 \\le T \\le 2 \\times 10^5$\n- $1 \\le N \\le 2 \\times 10^5$\n- $1 \\le M \\le 2 \\times 10^5$\n- $A$ and $B$ are binary strings of length $N$.\n- $A \\neq B$\n- $1 \\le x_i \\le N$ ($1 \\le i \\le M$)\n- $1 \\le y_i \\le N$ ($1 \\le i \\le M$)\n- The sum of $N$ and $M$ over all test cases is at most $2 \\times 10^5$.\n- $T$, $N$, $M$, $x_i$, $y_i$ are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\text{case}_1\n\\text{case}_2\n\\vdots\n\\text{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN\nA\nB\nM\nx_1 y_1\nx_2 y_2\n\\vdots\nx_M y_M\n```\n\n## Output\n\nOutput for the $T$ test cases in order.\n\nFor each test case, output as follows.\n\nIf no sequence of operations satisfying the condition exists, output `-1` on a single line.\n\nIf a sequence of operations satisfying the condition exists, let $K$ be the length of the sequence of operations and $C_i$ be the index of the $i$-th operation performed, and output as follows:\n\n```\nK\nC_1 C_2 \\ldots C_K\n```\n\nHere, $K$ must be at most $2N$, and operation $i$ must not be performed when $A_{x_i} = 0$.",
+  "statementZhMd": "## 题目描述\n\n给定两个长度为 $N$ 的二进制字符串 $A = A_1 A_2 \\ldots A_N$ 和 $B = B_1 B_2 \\ldots B_N$。\n\n你可以对 $A$ 执行 $M$ 种操作。第 $i$ 种操作由一对整数 $(x_i, y_i)$ 表示，其中 $1 \\le x_i, y_i \\le N$。当 $A_{x_i} = 1$ 时，该操作会翻转 $A_{y_i}$ 的值。允许 $x_i = y_i$。这里，翻转是指将 $0$ 变为 $1$，或将 $1$ 变为 $0$。\n\n判断能否通过至多 $2N$ 次操作将 $A$ 转换成与 $B$ 相同的字符串；如果可以，请构造一种操作方案。\n\n给定 $T$ 组测试用例，请分别求解。\n\n## 约束条件\n\n- $1 \\le T \\le 2 \\times 10^5$\n- $1 \\le N \\le 2 \\times 10^5$\n- $1 \\le M \\le 2 \\times 10^5$\n- $A$ 和 $B$ 是长度为 $N$ 的二进制字符串。\n- $A \\neq B$\n- $1 \\le x_i \\le N$（$1 \\le i \\le M$）\n- $1 \\le y_i \\le N$（$1 \\le i \\le M$）\n- 所有测试用例的 $N$ 和 $M$ 之和不超过 $2 \\times 10^5$。\n- $T$、$N$、$M$、$x_i$、$y_i$ 均为整数。\n\n## 输入格式\n\n输入从标准输入读入，格式如下：\n\n```\nT\n\\text{case}_1\n\\text{case}_2\n\\vdots\n\\text{case}_T\n```\n\n每组测试用例的格式如下：\n\n```\nN\nA\nB\nM\nx_1 y_1\nx_2 y_2\n\\vdots\nx_M y_M\n```\n\n## 输出格式\n\n按顺序输出 $T$ 组测试用例的答案。\n\n对于每组测试用例，按以下格式输出。\n\n如果不存在满足条件的操作序列，在单独一行输出 `-1`。\n\n如果存在满足条件的操作序列，设操作序列的长度为 $K$，第 $i$ 次执行的操作编号为 $C_i$，按以下格式输出：\n\n```\nK\nC_1 C_2 \\ldots C_K\n```\n\n其中，$K$ 必须不超过 $2N$，并且执行第 $i$ 种操作时必须满足 $A_{x_i} = 1$。",
+  "samples": [
+    {
+      "input": "3\n4\n0100\n1010\n4\n1 2\n2 1\n2 3\n4 3\n2\n10\n01\n1\n1 2\n2\n01\n00\n3\n1 1\n1 2\n2 1\n",
+      "output": "3\n2 3 1\n-1\n3\n3 2 1\n",
+      "note": "For the first test case, you can perform the operations as follows.\n\n- Initially, $A = 0100$.\n- Perform operation $2$. Now, $A = 1100$.\n- Perform operation $3$. Now, $A = 1110$.\n- Perform operation $1$. Now, $A = 1010$.\n\nFor the second test case, no matter what operations are performed, it is impossible to make $A_1$ equal to $0$.\n\nNote that, as in the third test case, $x_i = y_i$ is possible."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:20:55.832Z",
+  "translatedAt": "2026-10-30T20:25:04.527Z",
+  "translateModel": "gpt-6.1-sol"
+}

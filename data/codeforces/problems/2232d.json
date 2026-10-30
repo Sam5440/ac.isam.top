@@ -1,0 +1,32 @@
+{
+  "id": "2232D",
+  "platform": "codeforces",
+  "contestId": 2232,
+  "index": "D",
+  "title": "Magical Tiered Cake",
+  "titleZh": "魔法多层蛋糕",
+  "url": "https://codeforces.com/contest/2232/problem/D",
+  "difficulty": 2000,
+  "tags": [
+    "constructive algorithms",
+    "dfs and similar",
+    "dp",
+    "greedy"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Alice has finished a magical tiered cake with $n$ magical layers, where each layer is smaller than all layers below it (i.e. the first layer is the smallest, the $n$-th layer is the largest). Now, she needs your help to transport it from her kitchen to the party site. Since moving the whole cake at once is impossible, she also prepares a warehouse for you to ease the transportation process.\n\nSince the cake is magical, the $i$-th layer of cake is movable if and only if there are exactly $a_i$ layers of cake above it.\n\nIn each move, you can choose **exactly one** movable layer of cake from any location and move it on top of the tiered cake in any other location. However, to preserve a structure of the cake, the moved layer has to be on the layer that is strictly larger than it if there is a tiered cake at the destination. For example, you cannot move a layer with size $4$ on top of a location where there is already a layer with size $3$.\n\nThe party is starting soon, so we need to move fast. Help Alice transport the cake to the party within $2^n$ moves or report that it is impossible.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10000$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 20$) – the number of layers in the magical tiered cake.\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($0 \\leq a_i \\leq n$), which represent how many layers of cake need to be above the $i$-th layer for it to be movable.\n\nIt is guaranteed that the sum of $2^n$ across all test cases does not exceed $2^{20}$.\n\n## Output\n\nFor each test case, if it is impossible to move the magical tiered cake to the party site, output `NO`.\n\nOtherwise, on the first line, output `YES`.\n\nThen, on the next line, output an integer $k$ ($0 \\leq k \\leq 2^n$) – the number of moves you make to transport the cake.\n\nFor the following $k$ lines, output integers $\\mathrm{id}$, $\\mathrm{from}$, $\\mathrm{to}$ ($1 \\le \\mathrm{id} \\le n, 1 \\le \\mathrm{from}, \\mathrm{to} \\le 3$): the layer of cake you want to move, its current location, and its destination, where $1$ represents Alice's kitchen, $2$ represents Alice's warehouse, and $3$ represents the party site.\n\n## Note\n\nThe visualization of the solution to test case $1$ and $2$ is shown in the gif below:\n\n![image](https://espresso.codeforces.com/7ebd5b9bb97ece014221564ed5c73b97544b628f.gif) ![image](https://espresso.codeforces.com/1ba547b6b7cff66893603cd116ca8ac0ef905225.gif)\n\nIn the third test case, it can be shown it is impossible to move all layers of the cake to the party site.",
+  "statementZhMd": "爱丽丝制作完成了一块有 $n$ 层的魔法蛋糕，每一层都比它下面的所有层小（也就是说，第一层最小，第 $n$ 层最大）。现在，她需要你帮忙把蛋糕从厨房运到派对现场。由于无法一次搬动整块蛋糕，她还准备了一个仓库来方便运输。\n\n因为蛋糕具有魔法，第 $i$ 层蛋糕当且仅当其上方恰好有 $a_i$ 层蛋糕时才能移动。\n\n每次操作中，你可以从任意位置选择**恰好一层**可移动的蛋糕，并将它移到另一个位置的叠层蛋糕顶部。不过，为了保持蛋糕的结构，如果目的地已经有叠层蛋糕，移过去的这一层必须放在比它严格大的那一层上面。例如，不能把大小为 $4$ 的一层放到已经有大小为 $3$ 的一层的位置上。\n\n派对马上就要开始了，因此我们需要尽快完成运输。请帮助爱丽丝在 $2^n$ 次操作以内把蛋糕运到派对现场，或者报告这是不可能的。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 20$），表示魔法多层蛋糕的层数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$0 \\leq a_i \\leq n$），表示第 $i$ 层蛋糕可移动时，其上方需要有多少层蛋糕。\n\n保证所有测试用例的 $2^n$ 之和不超过 $2^{20}$。\n\n## 输出格式\n\n对于每个测试用例，如果无法将魔法多层蛋糕运到派对现场，输出 `NO`。\n\n否则，第一行输出 `YES`。\n\n接下来一行输出一个整数 $k$（$0 \\leq k \\leq 2^n$），表示运输蛋糕所需的操作次数。\n\n接下来的 $k$ 行，每行输出整数 $\\mathrm{id}$、$\\mathrm{from}$、$\\mathrm{to}$（$1 \\le \\mathrm{id} \\le n, 1 \\le \\mathrm{from}, \\mathrm{to} \\le 3$）：分别表示要移动的蛋糕层、它当前所在的位置以及它的目的地。其中，$1$ 表示爱丽丝的厨房，$2$ 表示爱丽丝的仓库，$3$ 表示派对现场。\n\n## 说明\n\n下方的 GIF 展示了第 1、2 个测试用例的解法：\n\n![image](https://espresso.codeforces.com/7ebd5b9bb97ece014221564ed5c73b97544b628f.gif) ![image](https://espresso.codeforces.com/1ba547b6b7cff66893603cd116ca8ac0ef905225.gif)\n\n在第三个测试用例中，可以证明无法将蛋糕的所有层都运到派对现场。",
+  "samples": [
+    {
+      "input": "3\n3\n0 0 0\n3\n0 1 2\n3\n2 2 2\n",
+      "output": "YES\n7\n1 1 3\n2 1 2\n1 3 2\n3 1 3\n1 2 1\n2 2 3\n1 1 3\nYES\n3\n3 1 3\n2 1 3\n1 1 3\nNO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:23:39.359Z",
+  "translatedAt": "2026-10-30T20:33:47.432Z",
+  "translateModel": "gpt-6.1-sol"
+}

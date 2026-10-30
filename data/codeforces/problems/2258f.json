@@ -1,0 +1,34 @@
+{
+  "id": "2258F",
+  "platform": "codeforces",
+  "contestId": 2258,
+  "index": "F",
+  "title": "Plus Minus Tree",
+  "titleZh": "正负树",
+  "url": "https://codeforces.com/contest/2258/problem/F",
+  "difficulty": 3000,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "dp",
+    "graphs",
+    "greedy",
+    "trees"
+  ],
+  "points": 3000,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a tree $T$ with $n$ vertices, rooted$^{\\text{∗}}$ at vertex $1$. Each vertex $v$ is assigned an initial weight $ a_v \\in \\{ -1, 0, +1 \\} $.\n\nFor each vertex with weight $0$, you have to assign a new weight, either $-1$ or $+1$. Let $x_v$ be the final weight of vertex $v$.\n\nFor vertex $v$, let $T_v$ be the set of nodes in the subtree$^{\\text{†}}$ of vertex $v$. The cost of vertex $v$ is defined as $$ S_v = \\left| \\sum_{u \\in T_v}{x_u} \\right|.$$\n\nThe total cost of the tree is defined as the sum of costs over all vertices. Find the minimum possible total cost of the tree after assigning the weights of all vertices with zero initial weight.\n\n$^{\\text{∗}}$A tree is a connected graph without cycles. A rooted tree is a tree where one vertex is special and called the root.$^{\\text{†}}$A subtree of vertex $v$ is the subgraph consisting of $v$, all its descendants, and all the edges between them. A descendant of vertex $v$ is any vertex $u$ for which $v$ is an ancestor. No vertex is its own descendant. An ancestor of vertex $v$ is any vertex on the simple path from $v$ to the root, including the root, but not including $v$. The root has no ancestors.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains $n$ ($2 \\le n \\le 2 \\cdot 10^5$), denoting the number of vertices in the tree.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($-1 \\le a_i \\le 1$).\n\nEach of the next $n-1$ lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n$), denoting the nodes connected with an edge of the tree. It is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the minimum total cost of the tree.\n\n## Note\n\nThe best assignments in the first test case are $[+1, +1, -1, -1, +1]$ and $[-1, +1, -1, -1, +1]$. They have a cost of $5$.\n\nAnother assignment, $[+1, +1, -1, +1, +1]$ has a cost of $9$, and $[-1, +1, -1, +1, +1]$ has a cost of $7$.\n\n![image](https://espresso.codeforces.com/e6d79fb7b6e201ed3e9f3c159988cbb6734c6976.png)![image](https://espresso.codeforces.com/f4caa2b2809df78444a8b72a7df27fd522569266.png)The tree of the first testcaseThe tree of the second testcase",
+  "statementZhMd": "你得到一棵有 $n$ 个顶点的树 $T$，以顶点 $1$ 为根$^{\\text{∗}}$。每个顶点 $v$ 被赋予一个初始权值 $a_v \\in \\{ -1, 0, +1 \\}$。\n\n对于权值为 $0$ 的每个顶点，你需要为其赋予一个新权值，可以是 $-1$ 或 $+1$。令 $x_v$ 表示顶点 $v$ 的最终权值。\n\n对于顶点 $v$，令 $T_v$ 表示顶点 $v$ 的子树$^{\\text{†}}$中的节点集合。顶点 $v$ 的代价定义为 $$ S_v = \\left| \\sum_{u \\in T_v}{x_u} \\right|.$$ \n\n整棵树的总代价定义为所有顶点代价之和。请在为所有初始权值为 $0$ 的顶点赋值后，求整棵树可能达到的最小总代价。\n\n$^{\\text{∗}}$树是一张无环的连通图。根树是指有一个顶点被特别指定为根的树。$^{\\text{†}}$顶点 $v$ 的子树是由 $v$、它的所有后代以及它们之间的所有边组成的子图。顶点 $v$ 的后代是指满足 $v$ 是其祖先的任意顶点。任何顶点都不是自己的后代。顶点 $v$ 的祖先是从 $v$ 到根的简单路径上的任意顶点，包括根但不包括 $v$。根没有祖先。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$），表示树中顶点的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$-1 \\le a_i \\le 1$）。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$），表示一条连接节点的边。保证给出的边构成一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出整棵树的最小总代价。\n\n## 说明\n\n第一个测试用例的最优赋值为 $[+1, +1, -1, -1, +1]$ 和 $[-1, +1, -1, -1, +1]$。它们的代价均为 $5$。\n\n另一个赋值 $[+1, +1, -1, +1, +1]$ 的代价为 $9$，而 $[-1, +1, -1, +1, +1]$ 的代价为 $7$。\n\n![image](https://espresso.codeforces.com/e6d79fb7b6e201ed3e9f3c159988cbb6734c6976.png)![image](https://espresso.codeforces.com/f4caa2b2809df78444a8b72a7df27fd522569266.png)第一个测试用例的树第二个测试用例的树",
+  "samples": [
+    {
+      "input": "2\n5\n0 1 -1 0 1\n1 2\n1 3\n2 4\n2 5\n8\n1 -1 1 -1 1 -1 1 -1\n1 2\n2 3\n2 4\n3 5\n4 6\n6 7\n2 8\n",
+      "output": "5\n7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:21:28.599Z",
+  "translatedAt": "2026-10-30T20:43:41.009Z",
+  "translateModel": "gpt-6.1-sol"
+}
