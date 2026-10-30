@@ -40,7 +40,7 @@ function readProblems(platform) {
 export function buildIndex() {
   const problems = [];
   const contests = [];
-  for (const platform of ['atcoder', 'codeforces']) {
+  for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
     for (const p of readProblems(platform)) problems.push(p);
     for (const c of readJsonSafe(path.join(DATA_ROOT, platform, 'contests.json')) ?? []) {
       contests.push(c);
@@ -48,7 +48,7 @@ export function buildIndex() {
   }
 
   const byPlatform = {};
-  for (const platform of ['atcoder', 'codeforces']) {
+  for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
     const ps = problems.filter((p) => p.platform === platform);
     const cs = contests.filter((c) => c.platform === platform);
     byPlatform[platform] = {

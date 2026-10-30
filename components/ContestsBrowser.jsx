@@ -39,40 +39,43 @@ export default function ContestsBrowser({ contests }) {
   }, [contests, platform, type, q]);
 
   // 只显示与当前平台匹配的类型标签
-  const visibleTypes = TYPE_TABS.filter(
-    (t) =>
-      t.id === 'all' ||
-      (platform === 'all'
-        ? true
-        : platform === 'atcoder'
-          ? ['abc', 'arc', 'agc', 'other'].includes(t.id)
-          : !['abc', 'arc', 'agc'].includes(t.id)),
-  );
+  const atcoderTypes = ['abc', 'arc', 'agc', 'other'];
+  const nowcoderTypes = ['nc-weekly', 'nc-xiaobai', 'nc-practice', 'nc-challenge', 'nc-other'];
+  const cfTypes = ['div1', 'div2', 'div3', 'div4', 'div12', 'other'];
+  const visibleTypes = TYPE_TABS.filter((t) => {
+    if (t.id === 'all') return true;
+    if (platform === 'atcoder') return atcoderTypes.includes(t.id);
+    if (platform === 'nowcoder') return nowcoderTypes.includes(t.id);
+    if (platform === 'codeforces') return cfTypes.includes(t.id);
+    return true;
+  });
 
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <div className="bg-muted text-muted-foreground inline-flex rounded-lg p-0.5 text-sm">
-          {[
-            { id: 'all', label: '全部' },
-            { id: 'atcoder', label: 'AtCoder' },
-            { id: 'codeforces', label: 'Codeforces' },
-          ].map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => {
-                setPlatform(t.id);
-                if (t.id === 'atcoder' && ['div1', 'div2', 'div3', 'div4', 'div12'].includes(type)) setType('all');
-                if (t.id === 'codeforces' && ['abc', 'arc', 'agc'].includes(type)) setType('all');
-              }}
-              className={`rounded-md px-3 py-1.5 transition-colors ${
-                platform === t.id ? 'bg-background text-foreground shadow-sm' : ''
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
+            {[
+              { id: 'all', label: '全部' },
+              { id: 'atcoder', label: 'AtCoder' },
+              { id: 'codeforces', label: 'Codeforces' },
+              { id: 'nowcoder', label: '牛客' },
+            ].map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => {
+                  setPlatform(t.id);
+                  const keep = { all: null, atcoder: atcoderTypes, codeforces: cfTypes, nowcoder: nowcoderTypes };
+                  const allow = keep[t.id];
+                  if (allow && !allow.includes(type)) setType('all');
+                }}
+                className={`rounded-md px-3 py-1.5 transition-colors ${
+                  platform === t.id ? 'bg-background text-foreground shadow-sm' : ''
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
         </div>
         <div className="flex flex-wrap gap-1">
           {visibleTypes.map((t) => (

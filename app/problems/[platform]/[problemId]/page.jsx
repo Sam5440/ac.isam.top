@@ -133,6 +133,7 @@ export default async function ProblemPage({ params }) {
                   segments={segments}
                   title={prob.title}
                   titleZh={prob.titleZh}
+                  zhModel={prob.translateModel}
                 />
               ) : (
                 <div className="text-muted-foreground rounded-lg border border-dashed p-4 text-sm">

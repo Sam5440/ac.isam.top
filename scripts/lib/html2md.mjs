@@ -114,9 +114,25 @@ function inlineChildren($, nodes, opts, texMode = false) {
       case 'a':
         out.push(`[${inner().trim() || 'link'}](${absUrl(el.attr('href'), opts.base)})`);
         break;
-      case 'img':
-        out.push(`![${(el.attr('alt') || 'image').replace(/[\[\]]/g, '')}](${absUrl(el.attr('src'), opts.base)})`);
+      case 'img': {
+        const src = el.attr('src') || '';
+        // 牛客公式：equation?tex= 服务端 SVG 图 → 还原为行内公式。
+        // alt 通常即原始 TeX；部分页面 alt 为空，TeX 只在 URL 参数里。
+        if (/equation\?tex=/.test(src)) {
+          let tex = (el.attr('alt') || '').trim();
+          if (!tex) {
+            try {
+              tex = decodeURIComponent(src.split('tex=')[1] || '').trim();
+            } catch {
+              tex = '';
+            }
+          }
+          out.push(tex ? `$${tex}$` : '');
+        } else {
+          out.push(`![${(el.attr('alt') || 'image').replace(/[\[\]]/g, '')}](${absUrl(src, opts.base)})`);
+        }
         break;
+      }
       case 'code':
       case 'tt':
         out.push('`' + el.text().replace(/`/g, '’') + '`');
@@ -168,6 +184,15 @@ function blockNode($, node, opts, blocks) {
       break;
     }
     case 'pre': {
+      // 牛客的「输入描述/输出描述」内容装在 pre 里且内嵌公式图 —— 不是代码块，
+      // 展开为段落让行内转换还原公式；纯文本 pre 才输出代码围栏。
+      if ($(node).find('img[src*="equation?tex="]').length) {
+        const md = inlineChildren($, node.children ?? [], opts)
+          .replace(/[ \t]*\n[ \t]*/g, '\n')
+          .trim();
+        if (md) blocks.push(md);
+        break;
+      }
       const text = preText(el).replace(/\n$/, '');
       blocks.push('```\n' + text + '\n```');
       break;

@@ -39,6 +39,12 @@ import {
   parseCfProblemsPage,
 } from './lib/cf.mjs';
 import { llmConfig, translateStatement, translateTitles } from './lib/llm.mjs';
+import {
+  fetchNowcoderContests,
+  fetchNowcoderProblemList,
+  fetchNowcoderStatement,
+  nowcoderProblemUrl,
+} from './lib/nowcoder.mjs';
 import { problemComplete, saveProblem, upsertContest } from './lib/store.mjs';
 import { buildIndex } from './build-index.mjs';
 import { loadEnv, log, pLimit, parseArgs, rnd, sleep } from './lib/util.mjs';
@@ -48,6 +54,7 @@ const SCAN_ABC = args.abc ?? Number(process.env.ABC_SCAN ?? 3);
 const SCAN_ARC = args.arc ?? Number(process.env.ARC_SCAN ?? 1);
 const SCAN_AGC = args.agc ?? Number(process.env.AGC_SCAN ?? 1);
 const SCAN_CF = args.cf ?? Number(process.env.CF_SCAN ?? 3);
+const SCAN_NC = args.nc ?? Number(process.env.NC_SCAN ?? 2);
 const BACKFILL = args.backfill ?? Number(process.env.BACKFILL ?? 10);
 const TRANSLATE_LIMIT = args.translateLimit ?? Number(process.env.TRANSLATE_LIMIT ?? 0);
 const TRANSLATE_ONLY = Boolean(args.translateOnly);
@@ -59,6 +66,7 @@ const nowIso = () => new Date().toISOString();
 const summary = {
   atcoder: { contests: 0, problems: 0, backfilled: 0, errors: [] },
   codeforces: { contests: 0, problems: 0, backfilled: 0, errors: [] },
+  nowcoder: { contests: 0, problems: 0, backfilled: 0, errors: [] },
   translated: 0,
   translateErrors: [],
 };
@@ -285,11 +293,133 @@ async function runCodeforces() {
   }
 }
 
+/* ================================ 牛客竞赛 ================================ */
+
+async function runNowcoder() {
+  log('nowcoder', `拉取官方比赛列表（扫描最近 ${SCAN_NC} 场，回填 ${BACKFILL} 题）…`);
+  const contests = await fetchNowcoderContests(Math.max(3, Math.ceil((SCAN_NC + 2) / 4)));
+  log('nowcoder', `已结束官方比赛 ${contests.length} 场（最新 ${contests[0]?.id} ${contests[0]?.title}）`);
+
+  const fetchOne = async (c, p) => {
+    try {
+      const st = await fetchNowcoderStatement(c.id, p.index);
+      saveProblem('nowcoder', {
+        id: `nc${c.id}p${p.index.toLowerCase()}`,
+        platform: 'nowcoder',
+        contestId: c.id,
+        index: p.index,
+        title: p.title,
+        // 牛客题面即中文：译文存原文，翻译管线自动跳过；站点芯片显示「官方中文」
+        titleZh: p.title,
+        url: nowcoderProblemUrl(c.id, p.index),
+        difficulty: null,
+        tags: [],
+        timeLimitMs: st.timeLimitMs,
+        memoryLimitMb: st.memoryLimitMb,
+        statementMd: st.statementMd,
+        statementZhMd: st.statementMd,
+        samples: st.samples,
+        language: 'zh',
+        translateModel: '官方原文',
+        fetchedAt: nowIso(),
+      });
+      return true;
+    } catch (e) {
+      summary.nowcoder.errors.push(`${c.id}/${p.index}: ${e.message}`);
+      log('nowcoder', `✗ ${c.id}/${p.index} — ${e.message}`);
+      return false;
+    }
+  };
+
+  const loadList = async (c) => {
+    try {
+      return await fetchNowcoderProblemList(c.id);
+    } catch (e) {
+      summary.nowcoder.errors.push(`#${c.id} problem-list: ${e.message}`);
+      log('nowcoder', `✗ #${c.id} problem-list — ${e.message}`);
+      return [];
+    }
+  };
+
+  // 1) 最新 N 场：全部补齐（题面即中文，无需翻译）
+  let fetched = 0;
+  for (const c of contests.slice(0, SCAN_NC)) {
+    const list = await loadList(c);
+    const isNew = upsertContest('nowcoder', {
+      id: c.id,
+      platform: 'nowcoder',
+      title: c.title,
+      titleZh: c.title,
+      startTime: c.startTime,
+      durationSeconds: c.durationSeconds,
+      ratedRange: null,
+      url: c.url,
+      problems: list.map((p) => `nc${c.id}p${p.index.toLowerCase()}`),
+    });
+    if (isNew) {
+      summary.nowcoder.contests++;
+      log('nowcoder', `+ 比赛 #${c.id} — ${c.title}`);
+    }
+    let newForContest = 0;
+    for (const p of list) {
+      if (problemComplete('nowcoder', `nc${c.id}p${p.index.toLowerCase()}`)) continue;
+      if (await fetchOne(c, p)) {
+        fetched++;
+        newForContest++;
+      }
+      await sleep(rnd(900, 1600));
+    }
+    if (newForContest) log('nowcoder', `  #${c.id}: 新增题面 ${newForContest}/${list.length}`);
+  }
+  summary.nowcoder.problems = fetched;
+
+  // 2) 回填：最旧比赛开始，补抓尚未收录的题面
+  if (BACKFILL > 0) {
+    let budget = BACKFILL;
+    for (const c of [...contests].reverse()) {
+      if (budget <= 0) break;
+      const list = await loadList(c);
+      const missing = list.filter((p) => !problemComplete('nowcoder', `nc${c.id}p${p.index.toLowerCase()}`));
+      if (missing.length === 0) continue;
+      upsertContest('nowcoder', {
+        id: c.id,
+        platform: 'nowcoder',
+        title: c.title,
+        titleZh: c.title,
+        startTime: c.startTime,
+        durationSeconds: c.durationSeconds,
+        ratedRange: null,
+        url: c.url,
+        problems: list.map((p) => `nc${c.id}p${p.index.toLowerCase()}`),
+      });
+      log('nowcoder', `回填 #${c.id} ${c.title}（缺 ${missing.length} 题，预算 ${budget}）`);
+      const done = [];
+      for (const p of missing) {
+        if (budget <= 0) break;
+        if (await fetchOne(c, p)) {
+          summary.nowcoder.backfilled++;
+          budget--;
+          done.push(`nc${c.id}p${p.index.toLowerCase()}`);
+        }
+        await sleep(rnd(900, 1600));
+      }
+      if (done.length) {
+        const cur = JSON.parse(fs.readFileSync(path.join(DATA_ROOT, 'nowcoder', 'contests.json'), 'utf8'));
+        const row = cur.find((x) => String(x.id) === String(c.id));
+        if (row) {
+          row.problems = [...new Set([...(row.problems ?? []), ...done])];
+          fs.writeFileSync(path.join(DATA_ROOT, 'nowcoder', 'contests.json'), JSON.stringify(cur, null, 2) + '\n');
+        }
+      }
+    }
+  }
+}
+
 /* ================================ 翻译 ================================ */
 
 function collectProblems() {
   const out = [];
-  for (const platform of ['atcoder', 'codeforces']) {
+  for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
     const dir = path.join(DATA_ROOT, platform, 'problems');
     let files = [];
     try {
@@ -352,7 +482,7 @@ async function runTranslate() {
   );
   summary.translated = done;
 
-  // 2) 比赛名（两平台合并批翻）
+  // 2) 比赛名（两平台合并批翻；牛客比赛名本就是中文，已存 titleZh 跳过）
   const todoTitles = [];
   for (const platform of ['atcoder', 'codeforces']) {
     for (const c of loadContestsList(platform)) {
@@ -387,12 +517,13 @@ function loadContestsList(platform) {
 
 async function main() {
   loadEnv();
-  log('main', `开始：scan abc=${SCAN_ABC} arc=${SCAN_ARC} agc=${SCAN_AGC} cf=${SCAN_CF}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}`);
+  log('main', `开始：scan abc=${SCAN_ABC} arc=${SCAN_ARC} agc=${SCAN_AGC} cf=${SCAN_CF} nc=${SCAN_NC}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}`);
 
   try {
     if (!TRANSLATE_ONLY) {
       await runAtCoder();
       await runCodeforces();
+      await runNowcoder();
     }
     if (!NO_TRANSLATE) {
       await runTranslate();

@@ -7,7 +7,7 @@ AtCoder Beginner Contest 与 Codeforces 比赛题目的**自动抓取题库**：
 ## 功能一览
 
 - **题库**（`/problems`）：全部收录题目，按平台 / 难度带 / 关键词筛选
-- **比赛**（`/contests`）：ABC / ARC / AGC 与 Codeforces Div. 1–4 / Div. 1+2 列表，**按类型筛选**；进入单场查看题目清单
+- **比赛**（`/contests`）：ABC / ARC / AGC、Codeforces Div. 1–4 / Div. 1+2、牛客周赛 / 小白月赛 / 练习赛 / 挑战赛列表，**按类型筛选**；进入单场查看题目清单
 - **题目页**（`/problems/[platform]/[id]`）：
   - 完整题面**逐段对照**翻译：CI 存档 AI 译文（`gpt-6.1-sol`）+ 访客浏览器本机实时机器翻译（DeepL / 有道 / 彩云 / 讯飞，3s 节流轮转，IndexedDB 缓存）+ **AI 外置**（用户自己的 OpenAI 兼容接口，Key 仅存本机），每段标注来源芯片
   - 左下角**译字浮标**随时切换语言模式（对照 / 英文 / 中文·各渠道），设置弹窗配置默认语言与**对照优先级链**
@@ -23,6 +23,9 @@ AtCoder Beginner Contest 与 Codeforces 比赛题目的**自动抓取题库**：
 | --- | --- | --- | --- |
 | AtCoder (ABC/ARC/AGC) | [kenkoooo](https://kenkoooo.com/atcoder/) `resources/*.json` | `atcoder.jp/contests/{cid}/tasks/{pid}?lang=en`（HTTP 抓取） | problem-models 实验难度 ⌀ |
 | Codeforces | [CF API](https://codeforces.com/api) `contest.list` / `problemset.problems` | `codeforces.com/contest/{id}/problems`（**Playwright 真实 Chromium** 过 Cloudflare） | CF rating |
+| 牛客竞赛（官方赛） | `ac.nowcoder.com/acm/contest/vip-index?topCategoryFilter=13`（HTML 内嵌 `data-json`） | `problem-list` JSON + `/acm/contest/{cid}/{index}` 服务端渲染题面（`equation?tex=` SVG 公式还原为 `$…$`） | 未评级 |
+
+牛客题面为中文，抓取时直接存为译文（来源芯片显示「官方中文」），不消耗 AI 翻译额度。
 
 浏览器端编译器：C++ 运行时构建期经 codeload 自 `Sam5440/ys_problem_web` 的 `data/runtime` 分支注入 `public/compiler/`（同一维护者的构建，见其 `scripts/build-cpp-runtime.mjs`）；Python 走 jsDelivr CDN + Cache API。
 

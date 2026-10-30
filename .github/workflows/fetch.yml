@@ -15,6 +15,9 @@ on:
       backfill:
         description: "回填历史未拉取的题面数（从最旧比赛开始）"
         default: "10"
+      nc_scan:
+        description: "扫描最近 N 场牛客官方赛（补新题面）"
+        default: "2"
       translate_limit:
         description: "本次最多翻译题数（0=不限）"
         default: "0"
@@ -58,6 +61,7 @@ jobs:
             --abc "${{ github.event.inputs.abc_scan || '3' }}" \
             --arc "1" --agc "1" \
             --cf "${{ github.event.inputs.cf_scan || '3' }}" \
+            --nc "${{ github.event.inputs.nc_scan || '2' }}" \
             --backfill "${{ github.event.inputs.backfill || '10' }}" \
             --translate-limit "${{ github.event.inputs.translate_limit || '0' }}"
 

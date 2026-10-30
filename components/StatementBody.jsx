@@ -43,23 +43,27 @@ const ICON_SPARKLES =
 
 const SOURCE_LABELS = { deepl: 'DeepL', youdao: '有道', caiyun: '彩云', iflyrec: '讯飞' };
 
-const sourceChipHtml = (source) => {
-  const ai = source === 'ai:builtin' || source === 'ai:external';
-  const icon = ai ? ICON_SPARKLES : ICON_GLOBE;
-  const label =
-    source === 'ai:builtin'
+const sourceChipHtml = (source, model) => {
+  const official = source === 'ai:builtin' && model === '官方原文';
+  const ai = (source === 'ai:builtin' || source === 'ai:external') && !official;
+  const icon = official ? ICON_GLOBE : ai ? ICON_SPARKLES : ICON_GLOBE;
+  const label = official
+    ? '官方中文'
+    : source === 'ai:builtin'
       ? 'AI (CI翻译)'
       : source === 'ai:external'
         ? 'AI 外置'
         : SOURCE_LABELS[source] || source;
-  const tone = ai
-    ? 'border-violet-500/40 bg-violet-500/10 text-violet-400'
-    : 'border-border bg-muted text-muted-foreground';
+  const tone = official
+    ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400'
+    : ai
+      ? 'border-violet-500/40 bg-violet-500/10 text-violet-400'
+      : 'border-border bg-muted text-muted-foreground';
   return `<span class="ml-1.5 inline-flex items-center gap-0.5 rounded border px-1 py-px align-middle text-[10px] leading-4 ${tone}">${icon}${label}</span>`;
 };
 
-function WithSourceChip({ html, source, className }) {
-  const chip = sourceChipHtml(source);
+function WithSourceChip({ html, source, model, className }) {
+  const chip = sourceChipHtml(source, model);
   const withChip = /<\/p>\s*$/.test(html) ? html.replace(/<\/p>(\s*)$/, `${chip}</p>$1`) : html + chip;
   return <div className={`zh-styled ${className ?? ''}`} dangerouslySetInnerHTML={{ __html: withChip }} />;
 }
@@ -112,7 +116,7 @@ function mergedChannels(archivedZh, rec) {
 }
 
 /** 对照模式的一段译文：沿优先级链取首个有译文的渠道。 */
-function ChainZhLine({ segKey, archivedZh, priority, note }) {
+function ChainZhLine({ segKey, archivedZh, priority, note, zhModel }) {
   const rec = useZhSegment(segKey);
   const prio = priority?.length ? priority : DEFAULT_PRIORITY;
   const merged = mergedChannels(archivedZh, rec);
@@ -123,6 +127,7 @@ function ChainZhLine({ segKey, archivedZh, priority, note }) {
       <WithSourceChip
         html={renderRich(merged[hitCh])}
         source={hitCh === 'ai' ? 'ai:builtin' : hitCh}
+        model={hitCh === 'ai' ? zhModel : undefined}
       />
     );
   }
@@ -139,13 +144,19 @@ function ChainZhLine({ segKey, archivedZh, priority, note }) {
 }
 
 /** 指定渠道的一段译文。 */
-function ZhLine({ segKey, archivedZh, channel, note }) {
+function ZhLine({ segKey, archivedZh, channel, note, zhModel }) {
   const rec = useZhSegment(segKey);
   const archived = channel === 'ai' && typeof archivedZh === 'string' && archivedZh.trim() ? archivedZh : null;
   const local = typeof rec.zh[channel] === 'string' && rec.zh[channel].trim() ? rec.zh[channel] : null;
   const zh = archived || local;
   if (zh) {
-    return <WithSourceChip html={renderRich(zh)} source={channel === 'ai' ? 'ai:builtin' : channel} />;
+    return (
+      <WithSourceChip
+        html={renderRich(zh)}
+        source={channel === 'ai' ? 'ai:builtin' : channel}
+        model={archived ? zhModel : undefined}
+      />
+    );
   }
   if (rec.status[channel] === 'failed') {
     return <UntranslatedMark note={note ? `${note}（${channelLabel(channel)}）` : undefined} />;
@@ -160,7 +171,7 @@ function ZhLine({ segKey, archivedZh, channel, note }) {
  * @param {string} title 原文题名
  * @param {string|null} titleZh CI 存档题名
  */
-export default function StatementBody({ code, segments, title, titleZh }) {
+export default function StatementBody({ code, segments, title, titleZh, zhModel }) {
   const { lang, settings } = useSettings();
   const mode = lang.mode;
   const channel = lang.channel;
@@ -173,6 +184,8 @@ export default function StatementBody({ code, segments, title, titleZh }) {
         : null;
 
   const hasArchive = segments.some((s) => s.zh);
+  // 官方中文题面（牛客）：原文即译文，对照/中文模式只渲染单份，避免同文重复
+  const sameLang = zhModel === '官方原文';
   const zhSegments = segments.map((s, i) => ({
     key: `${code}|p|${i}`,
     text: s.en,
@@ -189,18 +202,36 @@ export default function StatementBody({ code, segments, title, titleZh }) {
   const zhLineFor = (seg, i, note) => {
     const segKey = segKeyOf(i);
     if (channel === 'ai_custom') return <AiZhLine en={seg.en} ai={ai} note={note} />;
-    if (chain) return <ChainZhLine segKey={segKey} archivedZh={seg.zh} priority={chain.priority} note={note} />;
-    return <ZhLine segKey={segKey} archivedZh={seg.zh} channel={channel} note={note} />;
+    if (chain) return <ChainZhLine segKey={segKey} archivedZh={seg.zh} priority={chain.priority} note={note} zhModel={zhModel} />;
+    return <ZhLine segKey={segKey} archivedZh={seg.zh} channel={channel} note={note} zhModel={zhModel} />;
   };
 
   const titleLine =
     mode !== 'en' ? (
-      channel === 'ai_custom' ? (
+      sameLang ? (
+        <WithSourceChip html={renderRich(title)} source="ai:builtin" model="官方原文" />
+      ) : channel === 'ai_custom' ? (
         <AiZhLine en={title} ai={ai} note="标题" />
       ) : (
         <ChainZhLine segKey={`${code}|title`} archivedZh={titleZh || null} priority={chain.priority} note="标题" />
       )
     ) : null;
+
+  // 官方中文：任何非英文模式都渲染单份原文（带「官方中文」来源芯片）
+  if (mode !== 'en' && sameLang) {
+    return (
+      <>
+        {titleLine}
+        <div className="stmt-body">
+          {segments.map((s, i) => (
+            <div key={i} className="md-body">
+              <WithSourceChip html={renderRich(s.en)} source="ai:builtin" model="官方原文" />
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  }
 
   // 中文模式 + AI (CI翻译) 渠道：存档只有整篇级时（配对彻底失败的单段情况
   // 已由 pairSegments 兜底），渲染存档段即可 —— 与分段渲染同一路径。
