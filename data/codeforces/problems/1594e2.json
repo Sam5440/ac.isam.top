@@ -1,0 +1,41 @@
+{
+  "id": "1594E2",
+  "platform": "codeforces",
+  "contestId": 1594,
+  "index": "E2",
+  "title": "Rubik's Cube Coloring (hard version)",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1594/problem/E2",
+  "difficulty": 2300,
+  "tags": [
+    "brute force",
+    "dp",
+    "implementation",
+    "math",
+    "trees"
+  ],
+  "points": 1500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "**It is the hard version of the problem. The difference is that in this version, there are nodes with already chosen colors.**\n\nTheofanis is starving, and he wants to eat his favorite food, sheftalia. However, he should first finish his homework. Can you help him with this problem?\n\nYou have a *perfect* binary tree of $2^k - 1$ nodes — a binary tree where all vertices $i$ from $1$ to $2^{k - 1} - 1$ have exactly two children: vertices $2i$ and $2i + 1$. Vertices from $2^{k - 1}$ to $2^k - 1$ don't have any children. You want to color its vertices with the $6$ Rubik's cube colors (White, Green, Red, Blue, Orange and Yellow).\n\nLet's call a coloring *good* when all edges connect nodes with colors that are *neighboring* sides in the Rubik's cube.\n\n![image](https://espresso.codeforces.com/8976bbf99d7a32f74b2ecc4b9d5e6f5c21ca191d.png)![image](https://espresso.codeforces.com/233a414d467ca7b9da33fbfdd02c09d84084ba75.png) A picture of Rubik's cube and its 2D map.\n\nMore formally:\n\n- a white node can **not** be neighboring with white and yellow nodes;\n- a yellow node can **not** be neighboring with white and yellow nodes;\n- a green node can **not** be neighboring with green and blue nodes;\n- a blue node can **not** be neighboring with green and blue nodes;\n- a red node can **not** be neighboring with red and orange nodes;\n- an orange node can **not** be neighboring with red and orange nodes;\n\nHowever, there are $n$ special nodes in the tree, colors of which are already chosen.\n\nYou want to calculate the number of the good colorings of the binary tree. Two colorings are considered different if at least one node is colored with a different color.\n\nThe answer may be too large, so output the answer modulo $10^9+7$.\n\n## Input\n\nThe first line contains the integers $k$ ($1 \\le k \\le 60$) — the number of levels in the perfect binary tree you need to color.\n\nThe second line contains the integer $n$ ($1 \\le n \\le \\min(2^k - 1, 2000)$) — the number of nodes, colors of which are already chosen.\n\nThe next $n$ lines contains integer $v$ ($1 \\le v \\le 2^k - 1$) and string $s$ — the index of the node and the color of the node ($s$ is one of the `white`, `yellow`, `green`, `blue`, `red` and `orange`).\n\nIt is guaranteed that each node $v$ appears in the input at most once.\n\n## Output\n\nPrint one integer — the number of the different colorings modulo $10^9+7$.\n\n## Note\n\nIn the picture below, you can see one of the correct colorings of the first test example.\n\n![image](https://espresso.codeforces.com/a24bc78cbb7936f786c506b4e5e7f7c2a36d25cf.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n2\n5 orange\n2 white\n",
+      "output": "1024\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2\n2\n1 white\n2 white\n",
+      "output": "0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "10\n3\n1 blue\n4 red\n5 orange\n",
+      "output": "328925088\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:21:42.648Z"
+}
