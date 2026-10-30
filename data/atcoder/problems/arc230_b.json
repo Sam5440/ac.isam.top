@@ -1,0 +1,27 @@
+{
+  "id": "arc230_b",
+  "platform": "atcoder",
+  "contestId": "arc230",
+  "index": "B",
+  "title": "Chmax and Chmin",
+  "titleZh": "Chmax 与 Chmin",
+  "url": "https://atcoder.jp/contests/arc230/tasks/arc230_b",
+  "difficulty": 2632,
+  "tags": [],
+  "points": 800,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a positive integer $N$, and length-$N$ integer sequences, $X=(X_1,X_2,\\dots ,X_N)$ and $Y=(Y_1,Y_2,\\dots ,Y_N)$.\n\nAdditionally, you are given length-$N$ integer sequences, $A=(A_1,A_2,\\dots ,A_N)$ and $B=(B_1,B_2,\\dots ,B_N)$.\n\nDetermine whether it is possible to make $A$ match $B$ by performing the following operations any number of times between $0$ and $2N$ (inclusive) in total, and if it is possible, output one such procedure.\n\n- **chmax**: Choose integers $l$ and $r$ such that $1\\le l\\le r\\le N$. For $i=l,l+1,\\dots ,r$, replace $A_i$ with $\\max(A_i,X_{r-l+1})$.\n- **chmin**: Choose integers $l$ and $r$ such that $1\\le l\\le r\\le N$. For $i=l,l+1,\\dots ,r$, replace $A_i$ with $\\min(A_i,Y_{r-l+1})$.\n\nYou are given $T$ test cases; solve each of them.\n\n## Constraints\n\n- $1 \\le T \\le 10^5$\n- $1 \\le N \\le 400$\n- $1 \\le X_i,Y_i,A_i,B_i\\le N$\n- The sum of $N^3$ over all test cases is at most $400^3$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format. Here, $\\mathrm{test}_i$ denotes the $i$-th test case.\n\n```\nT\n\\mathrm{test}_1\n\\mathrm{test}_2\n\\vdots\n\\mathrm{test}_T\n```\n\nEach test case is given in the following format:\n\n```\nN\nX_1 X_2 \\dots X_N\nY_1 Y_2 \\dots Y_N\nA_1 A_2 \\dots A_N\nB_1 B_2 \\dots B_N\n```\n\n## Output\n\nFor each of the $T$ test cases, in order, output as follows.\n\nIf it is impossible to make $A$ match $B$, output `-1`.\n\nIf it is possible, letting $K\\ (0\\le K\\le 2N)$ be the number of operations performed, output in the following format:\n\n```\nK\n\\mathrm{op}_1 l_1 r_1\n\\mathrm{op}_2 l_2 r_2\n\\vdots\n\\mathrm{op}_K l_K r_K\n```\n\nHere, $\\mathrm{op}_i$, $l_i$, and $r_i$ represent the $i$-th operation. $\\mathrm{op}_i$ is `chmax` or `chmin`, representing the type of the $i$-th operation. $l_i$ and $r_i$ are the $l$ and $r$ chosen in the $i$-th operation, respectively.",
+  "statementZhMd": "## 题目描述\n\n给定一个正整数 $N$，以及两个长度为 $N$ 的整数序列 $X=(X_1,X_2,\\dots ,X_N)$ 和 $Y=(Y_1,Y_2,\\dots ,Y_N)$。\n\n此外，还给定两个长度为 $N$ 的整数序列 $A=(A_1,A_2,\\dots ,A_N)$ 和 $B=(B_1,B_2,\\dots ,B_N)$。\n\n请判断是否可以通过执行总次数在 $0$ 次到 $2N$ 次（包含端点）的以下操作，使 $A$ 变为 $B$。如果可以，请输出一种操作方案。\n\n- **chmax**：选择整数 $l$ 和 $r$，满足 $1\\le l\\le r\\le N$。对于 $i=l,l+1,\\dots ,r$，将 $A_i$ 替换为 $\\max(A_i,X_{r-l+1})$。\n- **chmin**：选择整数 $l$ 和 $r$，满足 $1\\le l\\le r\\le N$。对于 $i=l,l+1,\\dots ,r$，将 $A_i$ 替换为 $\\min(A_i,Y_{r-l+1})$。\n\n给定 $T$ 个测试用例，请分别求解每个测试用例。\n\n## 约束条件\n\n- $1 \\le T \\le 10^5$\n- $1 \\le N \\le 400$\n- $1 \\le X_i,Y_i,A_i,B_i\\le N$\n- 所有测试用例的 $N^3$ 之和不超过 $400^3$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入给出，格式如下。其中，$\\mathrm{test}_i$ 表示第 $i$ 个测试用例。\n\n```\nT\n\\mathrm{test}_1\n\\mathrm{test}_2\n\\vdots\n\\mathrm{test}_T\n```\n\n每个测试用例的格式如下：\n\n```\nN\nX_1 X_2 \\dots X_N\nY_1 Y_2 \\dots Y_N\nA_1 A_2 \\dots A_N\nB_1 B_2 \\dots B_N\n```\n\n## 输出格式\n\n对于每个测试用例，按输入顺序输出如下内容。\n\n如果无法使 $A$ 变为 $B$，输出 `-1`。\n\n如果可以，令 $K\\ (0\\le K\\le 2N)$ 为执行的操作次数，按照以下格式输出：\n\n```\nK\n\\mathrm{op}_1 l_1 r_1\n\\mathrm{op}_2 l_2 r_2\n\\vdots\n\\mathrm{op}_K l_K r_K\n```\n\n其中，$\\mathrm{op}_i$、$l_i$ 和 $r_i$ 分别表示第 $i$ 个操作及其所选择的区间端点。$\\mathrm{op}_i$ 为 `chmax` 或 `chmin`，表示第 $i$ 个操作的类型。$l_i$ 和 $r_i$ 分别为第 $i$ 个操作中选择的 $l$ 和 $r$。",
+  "samples": [
+    {
+      "input": "2\n3\n1 3 1\n3 1 3\n1 2 3\n3 1 1\n2\n1 1\n2 2\n1 2\n2 1\n",
+      "output": "2\nchmax 1 2\nchmin 2 3\n-1\n",
+      "note": "We explain the first test case. We have $A=(1,2,3)$ and $B=(3,1,1)$. Perform the following two operations in order.\n\n- `chmax 1 2` : Replace $A_1,A_2$ with $\\max(A_1,X_2)=3,\\max(A_2,X_2)=3$, respectively. Now $A=(3,3,3)$.\n- `chmin 2 3` : Replace $A_2,A_3$ with $\\min(A_2,Y_2)=1,\\min(A_3,Y_2)=1$, respectively. Now $A=(3,1,1)$.\n\nAs a result, $A$ matches $B$. The following output is also accepted.\n\nNote that the number of operations does not need to be minimized.\n\nFor the second test case, it can be shown that no sequence of operations of length between $0$ and $2N$ (inclusive) makes $A$ match $B$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:10:45.928Z",
+  "translatedAt": "2026-10-30T20:11:26.359Z",
+  "translateModel": "gpt-6.1-sol"
+}
