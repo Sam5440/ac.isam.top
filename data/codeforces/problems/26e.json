@@ -1,0 +1,39 @@
+{
+  "id": "26E",
+  "platform": "codeforces",
+  "contestId": 26,
+  "index": "E",
+  "title": "Multithreading",
+  "titleZh": "多线程",
+  "url": "https://codeforces.com/contest/26/problem/E",
+  "difficulty": 2400,
+  "tags": [
+    "constructive algorithms"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given the following concurrent program. There are $*N*$ processes and the $*i*$-th process has the following pseudocode:\n\n```\nrepeat ni times\n    yi := y\n    y := yi + 1\nend repeat\n```\n\nHere $*y*$ is a shared variable. Everything else is local for the process. All actions on a given row are atomic, i.e. when the process starts executing a row it is never interrupted. Beyond that all interleavings are possible, i.e. every process that has yet work to do can be granted the rights to execute its next row. In the beginning $*y* = 0$. You will be given an integer $*W*$ and $*n*_{*i*}$, for $*i* = 1, ... , *N*$. Determine if it is possible that after all processes terminate, $*y* = *W*$, and if it is possible output an arbitrary schedule that will produce this final value.\n\n## Input\n\nIn the first line of the input you will be given two space separated integers $*N*$ ($1 ≤ *N* ≤ 100$) and $*W*$ ($- 10^{9} ≤ *W* ≤ 10^{9}$). In the second line there are $*N*$ space separated integers $*n*_{*i*}$ ($1 ≤ *n*_{*i*} ≤ 1000$).\n\n## Output\n\nOn the first line of the output write `Yes` if it is possible that at the end $*y* = *W*$, or `No` otherwise. If the answer is `No` then there is no second line, but if the answer is `Yes`, then on the second line output a space separated list of integers representing some schedule that leads to the desired result. For more information see note.\n\n## Note\n\nFor simplicity, assume that there is no repeat statement in the code of the processes, but the code from the loop is written the correct amount of times. The processes are numbered starting from 1. The list of integers represent which process works on its next instruction at a given step. For example, consider the schedule `1 2 2 1 3`. First process `1` executes its first instruction, then process `2` executes its first two instructions, after that process `1` executes its second instruction, and finally process `3` executes its first instruction. The list must consists of exactly $2·Σ _{*i* = 1...*N*} *n*_{*i*}$ numbers.",
+  "statementZhMd": "你将得到以下并发程序。共有 $*N*$ 个进程，第 $*i*$ 个进程执行以下伪代码：\n\n```\nrepeat ni times\n    yi := y\n    y := yi + 1\nend repeat\n```\n\n其中，$*y*$ 是一个共享变量，其他所有变量均为进程的局部变量。同一行中的所有操作都是原子的，即当进程开始执行某一行时，执行过程不会被中断。除此之外，所有交错执行都是可能的，也就是说，任何仍有工作要完成的进程都可能获得执行其下一行的权限。初始时 $*y*$ = 0。给定一个整数 $*W*$ 以及对于 $*i* = 1, ... , *N*$ 的 $*n*_{*i*}$，请判断在所有进程终止后，$*y*$ 是否可能等于 $*W*$；如果可能，请输出一个能够得到该最终值的任意调度方案。\n\n## 输入格式\n\n输入的第一行包含两个由空格分隔的整数 $*N*$（$1 ≤ *N* ≤ 100$）和 $*W*$（$- 10^{9} ≤ *W* ≤ 10^{9}$）。第二行包含 $*N*$ 个由空格分隔的整数 $*n*_{*i*}$（$1 ≤ *n*_{*i*} ≤ 1000$）。\n\n## 输出格式\n\n如果最终 $*y* = *W*$ 是可能的，在第一行输出 `Yes`，否则输出 `No`。如果答案为 `No`，则不应输出第二行；如果答案为 `Yes`，则在第二行输出一个由空格分隔的整数列表，表示某个能够得到所需结果的调度方案。更多信息请参见说明。\n\n## 说明\n\n为简单起见，可以认为进程的代码中不存在 repeat 语句，而是将循环中的代码按照正确的次数直接写出。进程编号从 1 开始。整数列表表示在每一步中执行其下一条指令的进程。例如，考虑调度方案 `1 2 2 1 3`。首先，进程 `1` 执行其第一条指令；然后，进程 `2` 执行其前两条指令；之后，进程 `1` 执行其第二条指令；最后，进程 `3` 执行其第一条指令。该列表必须恰好包含 $2·Σ _{*i* = 1...*N*} *n*_{*i*}$ 个数字。",
+  "samples": [
+    {
+      "input": "1 10\n11\n",
+      "output": "No\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2 3\n4 4\n",
+      "output": "Yes\n1 1 2 1 2 2 2 2 2 1 2 1 1 1 1 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3 6\n1 2 3\n",
+      "output": "Yes\n1 1 2 2 2 2 3 3 3 3 3 3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:53:39.345Z",
+  "translatedAt": "2026-10-30T17:54:31.183Z",
+  "translateModel": "gpt-6.1-sol"
+}
