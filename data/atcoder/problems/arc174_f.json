@@ -1,0 +1,24 @@
+{
+  "id": "arc174_f",
+  "platform": "atcoder",
+  "contestId": "arc174",
+  "index": "F",
+  "title": "Final Stage",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc174/tasks/arc174_f",
+  "difficulty": 3773,
+  "tags": [],
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nPlayers Alice and Bob play a game using sequences $L$ and $R$ of length $N$, as follows.\n\n- The game consists of $N$ turns.\n- If $i$ is odd, turn $i$ is played by Alice; if $i$ is even, turn $i$ is played by Bob.\n- Initially, there is a pile with some number of stones.\n- For $i=1,2,\\dots,N$ in this order, they perform the following operation (called turn $i$):\n- The player who plays turn $i$ takes an integer number of stones between $L_i$ and $R_i$, inclusive, from the pile.\n  - If the player cannot take stones satisfying the above, they lose, and the other player wins.\n- If neither player has lost by the end of turn $N$, the game ends in a draw.\n\nBefore the game starts, both players are informed of the sequences $L$ and $R$ and the number of stones in the pile at the start of the game.\n\nIt can be proved that the game has exactly one of the following three **consequences**:\n\n- `Alice` ... Alice has a winning strategy.\n- `Bob` ... Bob has a winning strategy.\n- `Draw` ... Neither player has a winning strategy.\n\nAnswer $Q$ queries about this game. The $i$-th query is as follows:\n\n- Assume that the pile contains $C_i$ stones at the start of the game. Report the consequence of the game: `Alice`, `Bob`, or `Draw`.\n\n## Constraints\n\n- $N$, $L_i$, $R_i$, $Q$, and $C_i$ are integers.\n- $1 \\le N \\le 3 \\times 10^5$\n- $1 \\le L_i \\le R_i \\le 10^9$\n- $1 \\le Q \\le 3 \\times 10^5$\n- $1 \\le C_i \\le \\sum_{i=1}^{N} R_i$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nL_1 R_1\nL_2 R_2\n\\vdots\nL_N R_N\nQ\nC_1\nC_2\n\\vdots\nC_Q\n```\n\n## Output\n\nPrint $Q$ lines. The $i$-th line should contain the answer to the $i$-th query.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n1 3\n1 2\n3 4\n1 2\n11\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n",
+      "output": "Alice\nAlice\nAlice\nBob\nBob\nAlice\nAlice\nAlice\nDraw\nDraw\nDraw\n",
+      "note": "This input contains $11$ queries.\n\n- When $C_i \\le 3$, Alice can take all $C_i$ stones on turn $1$, leaving no stones in the pile, so Alice has a winning strategy.\n- When $4 \\le C_i \\le 5$, Bob has a winning strategy.\n- When $6 \\le C_i \\le 8$, Alice has a winning strategy.\n- When $C_i \\ge 9$, neither player has a winning strategy.\n- For example, if $C_i=9$, the game could proceed as follows:\n  - On turn $1$, Alice takes $3$ stones. $6$ stones remain.\n    - On turn $2$, Bob takes $1$ stone. $5$ stones remain.\n    - On turn $3$, Alice takes $4$ stones. $1$ stone remains.\n    - On turn $4$, Bob takes $1$ stone. No stones remain.\n    - Since neither player has lost by the end of turn $4$, the game ends in a draw.\n  - Various other progressions are possible, but it can be shown that when $C_i=9$, neither player has a winning strategy (if both players play optimally, the game will end in a draw)."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:09:41.796Z"
+}

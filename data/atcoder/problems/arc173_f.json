@@ -1,0 +1,38 @@
+{
+  "id": "arc173_f",
+  "platform": "atcoder",
+  "contestId": "arc173",
+  "index": "F",
+  "title": "Select and Split",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc173/tasks/arc173_f",
+  "difficulty": null,
+  "tags": [],
+  "points": 1200,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a blackboard with a set of positive integers written on it. Initially, the set $S=\\lbrace 1,2,\\dots,A,A+1,A+2,\\dots,A+B\\rbrace$ is written on the blackboard.\n\nTakahashi wants to perform the following operation $N-1$ times to have $N$ sets on the blackboard:\n\n- From the sets of integers written on the blackboard, choose a set $S_0$ that contains at least one element not greater than $A$ and at least one element not less than $A+1$. From the chosen set $S_0$, choose one element $a$ not greater than $A$ and one element $b$ not less than $A+1$. Erase the set $S_0$ from the blackboard and write two sets $S_1$ and $S_2$ of his choice that satisfy all of the following conditions:\n- The union of $S_1$ and $S_2$ is $S_0$, and they have no common elements.\n  - $a \\in S_1, b \\in S_2$\n\nFind the number of possible ways to perform the series of operations, modulo $998244353$.\n\nHere, two series of operations are distinguished when there is an $i\\ (1 \\leq i \\leq N-1)$ such that $S_0$, $a$, $b$, $S_1$, or $S_2$ chosen in the $i$-th operation of one series is different from that of the other series.\n\n## Constraints\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq A,B \\leq 2 \\times 10^5$\n- $N \\leq A+B$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN A B\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2 4\n",
+      "output": "1728\n",
+      "note": "One possible series of operations is as follows:\n\n- Choose $S_0=\\lbrace 1,2,3,4,5,6\\rbrace$, let $a=2$ and $b=5$, and let $S_1 =\\lbrace 1,2,3,6\\rbrace$ and $S_2=\\lbrace 4,5\\rbrace$. There are now two sets of integers written on the blackboard: $\\lbrace 1,2,3,6\\rbrace$ and $\\lbrace 4,5\\rbrace$.\n- Choose $S_0=\\lbrace 1,2,3,6\\rbrace$, let $a=1$ and $b=3$, and let $S_1 = \\lbrace1,2\\rbrace$ and $S_2=\\lbrace 3,6\\rbrace$. There are now three sets of integers written on the blackboard: $\\lbrace 1,2\\rbrace$, $\\lbrace 3,6\\rbrace$, and $\\lbrace 4,5\\rbrace$."
+    },
+    {
+      "input": "4 1 3\n",
+      "output": "6\n",
+      "note": "If we let $a=1$ and $b=2$ and let $S_1 = \\lbrace 1\\rbrace$ and $S_2 = \\lbrace 2,3,4\\rbrace$ in the first operation, we can no longer perform the second and subsequent operations.\n\nDo not count these cases where we cannot complete $N-1$ operations."
+    },
+    {
+      "input": "5 6 6\n",
+      "output": "84486693\n"
+    },
+    {
+      "input": "173173 173173 173173\n",
+      "output": "446948086\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:09:54.189Z"
+}

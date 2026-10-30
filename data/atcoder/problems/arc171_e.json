@@ -1,0 +1,33 @@
+{
+  "id": "arc171_e",
+  "platform": "atcoder",
+  "contestId": "arc171",
+  "index": "E",
+  "title": "Rookhopper's Tour",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc171/tasks/arc171_e",
+  "difficulty": 3034,
+  "tags": [],
+  "points": 800,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a grid with $N$ rows and $N$ columns. Let $(i, j)$ denote the cell at the $i$-th row from the top and the $j$-th column from the left. Additionally, there is one black stone and $M$ white stones.\nYou will play a single-player game using these items.\n\nHere are the rules. Initially, you place the black stone at $(A, B)$. Then, you place each of the $M$ white stones on some cell of the grid. Here:\n\n- You cannot place a white stone at $(A, B)$.\n- You can place at most one white stone per row.\n- You can place at most one white stone per column.\n\nThen, you will perform the following operation until you cannot do so:\n\n- Assume the black stone is at $(i, j)$. Perform one of the four operations below:\n- If there is a white stone at $(i, k)$ where $(j < k)$, remove that white stone and move the black stone to $(i, k + 1)$.\n  - If there is a white stone at $(i, k)$ where $(j > k)$, remove that white stone and move the black stone to $(i, k - 1)$.\n  - If there is a white stone at $(k, j)$ where $(i < k)$, remove that white stone and move the black stone to $(k + 1, j)$.\n  - If there is a white stone at $(k, j)$ where $(i > k)$, remove that white stone and move the black stone to $(k - 1, j)$.\n  - Here, if the cell to which the black stone is to be moved does not exist, such a move cannot be made.\n\nThe following figure illustrates an example. Here, `B` represents the black stone, `W` represents a white stone, `.` represents an empty cell, and `O` represents a cell to which the black stone can be moved.\n\n```\n..O...\n..W...\n......\n......\n..B.WO\n......\n```\n\nYou win the game if all of the following conditions are satisfied when you finish performing the operation. Otherwise, you lose.\n\n- All white stones have been removed from the grid.\n- The black stone is placed at $(A, B)$.\n\nIn how many initial configurations of the $M$ white stones can you win the game by optimally performing the operation? Find the count modulo $998244353$.\n\n## Constraints\n\n- $2 \\leq M \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq A \\leq N$\n- $1 \\leq B \\leq N$\n- $N$, $M$, $A$, and $B$ are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M A B\n```\n\n## Output\n\nPrint the number, modulo $998244353$, of possible configurations of the white stones that can lead to your victory.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 4 2 3\n",
+      "output": "4\n",
+      "note": "For example, consider the white stones placed as shown in the following figure:\n\nHere, you can win the game by moving the black stone in the following steps:\n\n- Remove the white stone at $(5, 3)$ and move the black stone to $(6, 3)$.\n- Remove the white stone at $(6, 5)$ and move the black stone to $(6, 6)$.\n- Remove the white stone at $(3, 6)$ and move the black stone to $(2, 6)$.\n- Remove the white stone at $(2, 4)$ and move the black stone to $(2, 3)$.\n- Since all white stones have been removed from the grid and the black stone is placed at $(A, B) = (2, 3)$, you win the game.\n\nThere are four configurations of white stones that can lead to your victory."
+    },
+    {
+      "input": "5 3 1 3\n",
+      "output": "0\n"
+    },
+    {
+      "input": "200000 47718 21994 98917\n",
+      "output": "146958602\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:10:25.980Z"
+}

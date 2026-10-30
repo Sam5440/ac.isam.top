@@ -1,0 +1,34 @@
+{
+  "id": "arc175_a",
+  "platform": "atcoder",
+  "contestId": "arc175",
+  "index": "A",
+  "title": "Spoon Taking Problem",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc175/tasks/arc175_a",
+  "difficulty": 1132,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\n$N$ people are sitting around a round table, and numbered $1$ to $N$ in a counterclockwise order. Each person has a dominant hand: left or right.\n\nThere are $N$ spoons numbered $1$ to $N$ on the round table, with one spoon placed between each pair of adjacent people. For each $1 \\leq i \\leq N$, to the left and right of person $i$, there are spoons $i$ and $(i+1)$, respectively. Here, spoon $(N+1)$ refers to spoon $1$.\n\nBelow is a diagram for $N = 4$.\n\n![image](https://img.atcoder.jp/arc175/b86aef99039c82389bf15f8df725a4c5.png)\n\nYou are given a permutation $(P_1, \\dots, P_N)$ of $(1, \\dots, N)$. In the order $i=1,\\dots,N$, person $P_i$ will act as follows:\n\n- If there is a spoon remaining on left or right side, they will take one of them.\n- If there are spoons remaining on both sides, they will take the spoon on the side of their dominant hand.\n- Otherwise, they do nothing.\n\nYou are also given a string $S$ of length $N$ consisting of `L`, `R`, and `?`. Among the $2^N$ possible combinations of dominant hands, find how many satisfy all of the following conditions, modulo $998244353$:\n\n- If the $i$-th character of $S$ is `L`, person $i$ is left-handed.\n- If the $i$-th character of $S$ is `R`, person $i$ is right-handed.\n- When everyone has finished acting, everyone has taken a spoon.\n\n## Constraints\n\n- All input values are integers.\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $(P_1, \\dots, P_N)$ is a permutation of $(1, \\dots, N)$.\n- $S$ is a string of length $N$ consisting of `L`, `R`, and `?`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nP_1 \\dots P_N\nS\n```\n\n## Output\n\nPrint the answer in a single line.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n1 2 3\nL??\n",
+      "output": "2\n",
+      "note": "When persons $1$, $2$, and $3$ are left-handed, left-handed, and right-handed, respectively, the actions are performed as follows:\n\n- Person $1$ starts acting. There are spoons on both sides, so person $1$ takes spoon $1$ on the left side, which is the same as their dominant hand.\n- Person $2$ starts acting. There are spoons on both sides, so person $2$ takes spoon $2$ on the left side, which is the same as their dominant hand.\n- Person $3$ starts acting. There is no spoon on the right side, but spoon $3$ is remaining on the left side, so they take spoon $3$. Everyone has finished acting and taken a spoon.\n\nThis combination of dominant hands satisfies the conditions. Besides, the conditions are also satisfied when persons $1, 2, 3$ are all left-handed."
+    },
+    {
+      "input": "3\n1 3 2\nR?L\n",
+      "output": "0\n",
+      "note": "No combinations of dominant hands satisfy the conditions."
+    },
+    {
+      "input": "12\n6 2 9 3 1 4 11 5 12 10 7 8\n????????????\n",
+      "output": "160\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:09:18.860Z"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "arc168_f",
+  "platform": "atcoder",
+  "contestId": "arc168",
+  "index": "F",
+  "title": "Up-Down Queries",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc168/tasks/arc168_f",
+  "difficulty": null,
+  "tags": [],
+  "points": 1100,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nFor an integer sequence $x=(x_1,x_2,\\cdots,x_N)$ of length $N$ with each element being between $0$ and $M$, inclusive, we define $f(x)$ as follows:\n\n- Prepare an integer sequence $y=(y_1,y_2,\\cdots,y_M)$ of length $M$. Initially, set all elements of $y$ to $0$. Then, for each $i=1,2,\\cdots,N$, in order, perform the following operations:\n- For each integer $j$ ($1 \\leq j \\leq x_i$), replace the value of $y_j$ with $\\max(y_j-1,0)$.\n  - For each integer $j$ ($x_i < j \\leq M$), replace the value of $y_j$ with $y_j+1$.\n- The sum of the elements of $y$ after all operations is the value of $f(x)$.\n\nYou are given an integer sequence $A=(A_1,A_2,\\cdots,A_N)$ of length $N$ with each element being between $0$ and $M$, inclusive. Process $Q$ queries:\n\n- The $i$-th query: Given integers $X_i$ and $Y_i$, replace the value of $A_{X_i}$ with $Y_i$. Then, print the value of $f(A)$.\n\n## Constraints\n\n- $1 \\leq N,M,Q \\leq 250000$\n- $0 \\leq A_i \\leq M$\n- $1 \\leq X_i \\leq N$\n- $0 \\leq Y_i \\leq M$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M Q\nA_1 A_2 \\cdots A_N\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_Q Y_Q\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 4 2\n1 2 3\n1 4\n3 0\n",
+      "output": "2\n6\n",
+      "note": "Consider the first query. We replace the value of $A_1$ with $4$, making $A=(4,2,3)$. Then, the value of $f(A)$ is calculated as follows:\n\n- Prepare $y=(0,0,0,0)$.\n- Perform the operation for $A_1=4$, resulting in $y=(0,0,0,0)$.\n- Perform the operation for $A_2=2$, resulting in $y=(0,0,1,1)$.\n- Perform the operation for $A_3=3$, resulting in $y=(0,0,0,2)$.\n- The sum of the elements of $y$, which equals $2$, is the value of $f(A)$.\n\nNext, consider the second query. We replace the value of $A_3$ with $0$, making $A=(4,2,0)$. Then, the value of $f(A)$ is calculated as follows:\n\n- Prepare $y=(0,0,0,0)$.\n- Perform the operation for $A_1=4$, resulting in $y=(0,0,0,0)$.\n- Perform the operation for $A_2=2$, resulting in $y=(0,0,1,1)$.\n- Perform the operation for $A_3=0$, resulting in $y=(1,1,2,2)$.\n- The sum of the elements of $y$, which equals $6$, is the value of $f(A)$."
+    },
+    {
+      "input": "7 2 9\n2 0 2 2 0 1 0\n1 1\n3 0\n4 0\n4 1\n6 1\n3 2\n2 0\n3 2\n2 0\n",
+      "output": "4\n7\n11\n9\n9\n6\n6\n6\n6\n"
+    },
+    {
+      "input": "20 200000 10\n39664 143179 193565 153887 16141 91985 51452 155409 116777 190060 87620 64458 106481 51272 9108 100995 139248 18243 181424 6182\n4 196305\n13 59753\n8 96194\n6 57037\n19 125781\n16 142779\n15 13967\n10 17772\n16 84763\n12 17283\n",
+      "output": "1145670\n1234421\n1352851\n1352851\n1464137\n1380569\n1380569\n1608611\n1724643\n1736769\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:11:35.856Z"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "arc170_e",
+  "platform": "atcoder",
+  "contestId": "arc170",
+  "index": "E",
+  "title": "BDFS",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc170/tasks/arc170_e",
+  "difficulty": 3174,
+  "tags": [],
+  "points": 800,
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given integers $N$ and $P$.\n\nThere is a graph with $N$ vertices and $N$ edges, where each vertex is labeled $1$ to $N$. The $i$-th edge connects vertices $i$ and $i+1$ bidirectionally. Here, vertex $N+1$ refers to vertex $1$.\n\nPerform the following algorithm to obtain a sequence $D=(D_1,D_2,\\ldots,D_N)$ of length $N$:\n\n- Set an integer sequence $D$ of length $N$ to $D=(D_1,\\ldots,D_N)=(-1,\\ldots,-1)$. Also, set a sequence $Q$ of number pairs to $Q=((1,0))$. Repeat the following process while $Q$ is not empty:\n- Let $(v,d)$ be the first element of $Q$. Remove this element.\n  - If $D_v = -1$, then set $D_v := d$, and for each vertex $x$ adjacent to vertex $v$ such that $D_x=-1$, perform the following process. If there are multiple such $x$ that satisfy the condition, process them in ascending order of vertex number:\n  - With probability $\\frac{P}{100}$, add $(x,d+1)$ to the **front** of $Q$.\n    - If $(x,d+1)$ was not added to the front of $Q$, add it to the **end** of $Q$.\n\nFind the expected value of the sum of the elements of the final sequence $D$ obtained, modulo $998244353$.\n\nSolve each of the $T$ test cases given.\n\nDefinition of expected value $\\text{mod } 998244353$ It can be proved that the expected value to be found is always a rational number. Furthermore, the constraints of this problem guarantee that if that value is expressed as an irreducible fraction $\\frac{P}{Q}$, then $Q$ is not divisible by $998244353$. Here, there is a unique integer $R$ between $0$ and $998244352$, inclusive, such that $R\\times Q \\equiv P\\pmod{998244353}$. Provide this $R$ as the answer.\n\n## Constraints\n\n- $1 \\leq T \\leq 10^4$\n- $3 \\leq N \\leq 10^{18}$\n- $1\\leq P \\leq 99$\n- All input numbers are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\vdots\n\\mathrm{case}_T\n```\n\nEach case is given in the following format:\n\n```\nN P\n```\n\n## Output\n\nPrint $T$ lines. The $i$-th line $(1 \\leq i \\leq T)$ should contain the answer for the $i$-th test case.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n3 50\n4 1\n1000000000000000000 70\n",
+      "output": "499122179\n595552585\n760296751\n",
+      "note": "In the first test case, the algorithm may operate as follows:\n\n- Initially, $D=(-1,-1,-1)$ and $Q=((1,0))$. Remove the first element $(1,0)$ from $Q$.\n- $D_1 = -1$, so set $D_1 := 0$. The vertices $x$ adjacent to vertex $1$ such that $D_x= -1$ are $2$ and $3$.\n- Add $(2,1)$ to the front of $Q$. Add $(3,1)$ to the end of $Q$. Now $Q=((2,1),(3,1))$.\n- Remove the first element $(2,1)$ from $Q$.\n- $D_2 = -1$, so set $D_2 := 1$. The vertex $x$ adjacent to vertex $2$ such that $D_x= -1$ is $3$.\n- Add $(3,2)$ to the front of $Q$. Now $Q=((3,2),(3,1))$.\n- Remove the first element $(3,2)$ from $Q$.\n- $D_3 = -1$, so set $D_3 := 2$. There are no vertices $x$ adjacent to vertex $3$ such that $D_x= -1$, so do nothing.\n- Remove the first element $(3,1)$ from $Q$.\n- $D_3 =2$, so do nothing.\n- $Q$ is now empty, so the process ends.\n\nIn this case, the final sequence obtained is $D=(0,1,2)$. The probability that the algorithm operates as described above is $\\frac{1}{8}$, and the expected sum of the elements of $D$ is $\\frac{5}{2}$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:10:41.735Z"
+}

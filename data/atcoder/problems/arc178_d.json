@@ -1,0 +1,39 @@
+{
+  "id": "arc178_d",
+  "platform": "atcoder",
+  "contestId": "arc178",
+  "index": "D",
+  "title": "Delete Range Mex",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc178/tasks/arc178_d",
+  "difficulty": 2498,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a positive integer $N$ and a sequence of $M$ non-negative integers $A = (A_{1}, A_{2}, \\dots, A_{M})$.\n\nHere, all elements of $A$ are distinct integers between $0$ and $N-1$, inclusive.\n\nFind the number, modulo $998244353$, of permutations $P$ of $(0, 1, \\dots, N-1)$ that satisfy the following condition.\n\n- After initializing a sequence $B = (B_{1}, B_{2}, \\dots, B_{N})$ to $P$, it is possible to make $B = A$ by repeating the following operation some number of times:\n- Choose $l$ and $r$ such that $1 \\leq l \\leq r \\leq |B|$, and if $\\mathrm{mex}(\\{B_{l}, B_{l+1}, \\dots, B_{r}\\})$ is contained in $B$, remove it from $B$.\n\nWhat is $\\mathrm{mex}(X)$? For a finite set $X$ of non-negative integers, $\\mathrm{mex}(X)$ is defined as the smallest non-negative integer that is not in $X$.\n\n## Constraints\n\n- $1 \\leq M \\leq N \\leq 500$\n- $0 \\leq A_{i} < N$\n- All elements of $A$ are distinct.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nA_{1} A_{2} \\cdots A_{M}\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 2\n1 3\n",
+      "output": "8\n",
+      "note": "After initializing $B = (2, 1, 0, 3)$, it is possible to make $B = A$ using the following steps:\n\n- Choose $(l, r) = (2, 4)$, remove $\\mathrm{mex}(\\{1, 0, 3\\}) = 2$ from $B$, making $B = (1, 0, 3)$.\n- Choose $(l, r) = (3, 3)$, remove $\\mathrm{mex}(\\{3\\}) = 0$ from $B$, making $B = (1, 3)$.\n\nThus, $P = (2, 1, 0, 3)$ satisfies the condition.\n\nThere are eight permutations $P$ that satisfy the condition, including the above, so print $8$."
+    },
+    {
+      "input": "4 4\n0 3 2 1\n",
+      "output": "1\n",
+      "note": "Only $P = (0, 3, 2, 1)$ satisfies the condition."
+    },
+    {
+      "input": "16 7\n9 2 4 0 1 6 7\n",
+      "output": "3520\n"
+    },
+    {
+      "input": "92 4\n1 67 16 7\n",
+      "output": "726870122\n",
+      "note": "Find the count modulo $998244353$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:08:24.934Z"
+}

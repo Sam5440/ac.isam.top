@@ -1,0 +1,33 @@
+{
+  "id": "abc351_g",
+  "platform": "atcoder",
+  "contestId": "abc351",
+  "index": "G",
+  "title": "Hash on Tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc351/tasks/abc351_g",
+  "difficulty": 2920,
+  "tags": [],
+  "points": 650,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a rooted tree with $N$ vertices numbered $1$ to $N$.\nVertex $1$ is the root, and the parent of vertex $i$ $(2 \\leq i \\leq N)$ is vertex $p_i$ $(p_i < i)$.\nAdditionally, there is a sequence $A = (A_1, A_2, \\dots, A_N)$.\n\nThe **hash value** of the rooted tree is calculated as follows:\n\n- Define $f(n)$ $(1 \\leq n \\leq N)$ as follows in the order $n = N, N-1, \\dots, 2, 1$.\n- If vertex $n$ is a leaf, $f(n) = A_n$.\n  - If vertex $n$ is not a leaf, $\\displaystyle f(n) = A_n + \\prod_{c \\in C(n)} f(c)$, where $C(n)$ is the set of children of $n$.\n- The hash value of the rooted tree is $f(1) \\bmod{998244353}$.\n\nProcess $Q$ queries in the order they are given.\nEach query provides $v$ and $x$, so update $A_v$ to $x$ and then compute the hash value of the rooted tree.\n\n## Constraints\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $1 \\leq p_i < i$\n- $0 \\leq A_i < 998244353$\n- $1 \\leq v \\leq N$\n- $0 \\leq x < 998244353$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{query}_i$ represents the $i$-th query:\n\n```\nN Q\np_2 p_3 \\dots p_N\nA_1 A_2 \\dots A_N\n\\mathrm{query}_1\n\\mathrm{query}_2\n\\vdots\n\\mathrm{query}_Q\n```\n\nEach query is given in the following format:\n\n```\nv x\n```\n\n## Output\n\nPrint $Q$ lines. The $i$-th line should contain the answer to the $i$-th query.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2\n1 1\n3 5 1\n3 4\n2 1\n",
+      "output": "23\n7\n",
+      "note": "Initially, $A = (3, 5, 1)$.\nThe first query is processed as follows:\n\n- Update $A_3$ to $4$. Now $A = (3, 5, 4)$.\n- The hash value of the rooted tree is calculated as follows to be $23$, which should be printed.\n- Vertex $3$ has no children. Thus, $f(3) = 4$.\n  - Vertex $2$ has no children. Thus, $f(2) = 5$.\n  - Vertex $1$ has children $2$ and $3$. Thus, $f(1) = 3 + 5 \\times 4 = 23$.\n  - $f(1) \\bmod{998244353} = 23$ is the hash value of the rooted tree.\n\nThe second query is processed as follows:\n\n- Update $A_2$ to $1$. Now $A = (3, 1, 4)$.\n- The hash value of the rooted tree is calculated as follows to be $7$:\n- Vertex $3$ has no children. Thus, $f(3) = 4$.\n  - Vertex $2$ has no children. Thus, $f(2) = 1$.\n  - Vertex $1$ has children $2$ and $3$. Thus, $f(1) = 3 + 1 \\times 4 = 7$.\n  - $f(1) \\bmod{998244353} = 7$ is the hash value of the rooted tree."
+    },
+    {
+      "input": "5 4\n1 1 2 2\n2 5 4 4 1\n3 3\n5 0\n4 5\n5 2\n",
+      "output": "29\n17\n17\n47\n"
+    },
+    {
+      "input": "10 10\n1 2 1 2 5 6 3 5 1\n766294629 440423913 59187619 725560240 585990756 965580535 623321125 550925213 122410708 549392044\n1 21524934\n9 529970099\n6 757265587\n8 219853537\n5 687675301\n5 844033519\n8 780395611\n2 285523485\n6 13801766\n3 487663184\n",
+      "output": "876873846\n952166813\n626349486\n341294449\n466546009\n331098453\n469507939\n414882732\n86695436\n199797684\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:08:48.056Z"
+}

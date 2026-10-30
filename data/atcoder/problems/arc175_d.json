@@ -1,0 +1,34 @@
+{
+  "id": "arc175_d",
+  "platform": "atcoder",
+  "contestId": "arc175",
+  "index": "D",
+  "title": "LIS on Tree 2",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc175/tasks/arc175_d",
+  "difficulty": 2276,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a tree with $N$ vertices numbered $1$ to $N$. The $i$-th edge of the tree connects vertices $u_i$ and $v_i$ bidirectionally.\n\nFor a permutation $P=(P_1,\\ldots,P_N)$ of $(1,\\ldots,N)$, we define $f(P)$ as follows:\n\n- For each vertex $i\\ (1\\leq i\\leq N)$, let $(v_1=1,v_2,\\ldots,v_k=i)$ be the simple path from vertex $1$ to vertex $i$, and let $L_i$ be the length of a longest increasing subsequence of $(P_{v_1},P_{v_2},\\ldots,P_{v_k})$. We define $f(P) = \\sum_{i=1}^N L_i$.\n\nYou are given an integer $K$. Determine whether there is a permutation $P$ of $(1,\\ldots,N)$ such that $f(P)=K$. If it exists, present one such permutation.\n\nWhat is a longest increasing subsequence? A **subsequence** of a sequence is a sequence obtained by removing zero or more elements from the original sequence and concatenating the remaining elements without changing the order. For example, $(10,30)$ is a subsequence of $(10,20,30)$, but $(20,10)$ is not. The **longest increasing subsequence** of a sequence is the longest strictly increasing subsequence of that sequence.\n\nWhat is a simple path? For vertices $X$ and $Y$ in a graph $G$, a **walk** from vertex $X$ to vertex $Y$ is a sequence of vertices $(v_1,v_2, \\ldots, v_k)$ such that $v_1=X$, $v_k=Y$, and $v_i$ and $v_{i+1}$ are connected by an edge for all $1\\leq i\\leq k-1$. Furthermore, if $v_1,v_2, \\ldots, v_k$ are all distinct, it is called a **simple path** (or simply a **path**) from vertex $X$ to vertex $Y$.\n\n## Constraints\n\n- All input values are integers.\n- $2 \\leq N \\leq 2\\times 10^5$\n- $1\\leq K \\leq 10^{11}$\n- $1\\leq u_i,v_i\\leq N$\n- The given graph is a tree.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN K\nu_1 v_1\n\\vdots\nu_{N-1} v_{N-1}\n```\n\n## Output\n\nIf there is no permutation $P$ such that $f(P)=K$, print `No`.\n\nIf there is a permutation $P$ such that $f(P)=K$, print it in the following format:\n\n```\nYes\nP_1 \\ldots P_N\n```\n\nIf multiple permutations $P$ satisfy the condition, any of them will be accepted.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 8\n1 2\n2 3\n2 4\n4 5\n",
+      "output": "Yes\n3 2 1 4 5\n",
+      "note": "If $P=(3,2,1,4,5)$, then $f(P)$ is determined as follows:\n\n- The simple path from vertex $1$ to vertex $1$ is $(1)$, and the length of the longest increasing subsequence of $(P_1)=(3)$ is $1$. Thus, $L_1 = 1$.\n- The simple path from vertex $1$ to vertex $2$ is $(1,2)$, and the length of the longest increasing subsequence of $(P_1,P_2)=(3,2)$ is $1$. Thus, $L_2 = 1$.\n- The simple path from vertex $1$ to vertex $3$ is $(1,2,3)$, and the length of the longest increasing subsequence of $(P_1,P_2,P_3)=(3,2,1)$ is $1$. Thus, $L_3 = 1$.\n- The simple path from vertex $1$ to vertex $4$ is $(1,2,4)$, and the length of the longest increasing subsequence of $(P_1,P_2,P_4)=(3,2,4)$ is $2$. Thus, $L_4 = 2$.\n- The simple path from vertex $1$ to vertex $5$ is $(1,2,4,5)$, and the length of the longest increasing subsequence of $(P_1,P_2,P_4,P_5)=(3,2,4,5)$ is $3$. Thus, $L_5 = 3$.\n- From the above, $f(P)=1+1+1+2+3= 8$.\n\nHence, the permutation $P$ in the sample output satisfies the condition $f(P)=8$. Besides, $P=(3,2,4,5,1)$ also satisfies the condition, for example."
+    },
+    {
+      "input": "7 21\n2 1\n7 2\n5 1\n3 7\n2 6\n3 4\n",
+      "output": "No\n",
+      "note": "It can be proved that no permutation $P$ satisfies $f(P) = 21$."
+    },
+    {
+      "input": "8 20\n3 1\n3 8\n7 1\n7 5\n3 2\n6 5\n4 7\n",
+      "output": "Yes\n2 1 3 5 6 8 4 7\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:09:24.691Z"
+}

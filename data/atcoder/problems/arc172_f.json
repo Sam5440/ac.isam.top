@@ -1,0 +1,42 @@
+{
+  "id": "arc172_f",
+  "platform": "atcoder",
+  "contestId": "arc172",
+  "index": "F",
+  "title": "Walking",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc172/tasks/arc172_f",
+  "difficulty": 3474,
+  "tags": [],
+  "points": 1000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThe Kingdom of AtCoder has $2N$ intersections labeled with numbers from $1$ to $2N$. Additionally, there are three types of **one-way** roads in the kingdom:\n\n- **Type A:** For each $2 \\leq i \\leq N$, there is a road from intersection $2i-3$ to intersection $2i-1$.\n- **Type B:** For each $2 \\leq i \\leq N$, there is a road from intersection $2i-2$ to intersection $2i$.\n- **Type C:** For each $1 \\leq i \\leq N$, there is a road connecting intersection $2i-1$ and intersection $2i$ with direction $s_i$.\n\nHere, $s_i$ is `X` or `Y`, where direction `X` means the road goes from intersection $2i-1$ to intersection $2i$, and direction `Y` means it goes from intersection $2i$ to intersection $2i-1$.\n\nTakahashi wants to **walk** several times so that for each $1 \\leq i \\leq N$, the direction of Type-C road connecting intersections $2i-1$ and $2i$ will be $t_i$.\n\n> **What is a walk?**\n> \n> Start at any intersection and repeat the following action zero or more times:\n> \n> - If it is possible to proceed to a Type-C road from the current intersection, walk along the Type-C road to the next intersection.\n> - Otherwise, if it is possible to proceed to a Type-A or B road from the current intersection, walk along that road to the next intersection.\n> \n> Then, reverse the directions of all Type-C roads that were passed.\n\nCalculate the minimum number of walks needed to achieve the goal and provide one method to achieve the goal in the minimum number of walks. Under the constraints of this problem, it can be proved that the goal can be achieved in a finite number of walks.\n\n## Constraints\n\n- $N$ is an integer such that $1 \\leq N \\leq 4000$.\n- Each of $s_1, s_2, \\dots, s_N$ is `X` or `Y`.\n- Each of $t_1, t_2, \\dots, t_N$ is `X` or `Y`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\ns_1 s_2 \\cdots s_N\nt_1 t_2 \\cdots t_N\n```\n\n## Output\n\nPrint your solution in the following format, where $X$ is the number of walks, and the $i$-th walk $(1 \\leq i \\leq X)$ starts at intersection $a_i$ and finishes at intersection $b_i$.\n\n```\nX\na_1 b_1\na_2 b_2\n\\vdots\na_X b_X\n```",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\nXYXYX\nXXYXX\n",
+      "output": "1\n2 7\n",
+      "note": "In this sample input, Takahashi will walk as follows:\n\n- Start at intersection $2$.\n- Since there is no Type-C road to proceed from intersection $2$, walk along the Type-B road to intersection $4$.\n- Since there is a Type-C road to proceed from intersection $4$, walk along the Type-C road to intersection $3$.\n- Since there is no Type-C road to proceed from intersection $3$, walk along the Type-A road to intersection $5$.\n- Since there is a Type-C road to proceed from intersection $5$, walk along the Type-C road to intersection $6$.\n- Since there is no Type-C road to proceed from intersection $6$, walk along the Type-B road to intersection $8$.\n- Since there is a Type-C road to proceed from intersection $8$, walk along the Type-C road to intersection $7$.\n- Finish at intersection $7$.\n\nThis walk passes through the following three Type-C roads:\n\n- The road connecting intersection $3$ and intersection $4$.\n- The road connecting intersection $5$ and intersection $6$.\n- The road connecting intersection $7$ and intersection $8$.\n\nThe directions of these roads are reversed, so the directions of the roads connecting intersections $2i-1$ and $2i$ for $i = 1, 2, 3, 4, 5$ are now `X`, `X`, `Y`, `X`, `X`, respectively, achieving the goal."
+    },
+    {
+      "input": "5\nXXYYX\nXXYYX\n",
+      "output": "0\n",
+      "note": "Note that the goal is already achieved at the beginning, so there is no need to walk even once."
+    },
+    {
+      "input": "5\nXXXXX\nYYYYY\n",
+      "output": "5\n1 2\n3 4\n5 6\n7 8\n9 10\n"
+    },
+    {
+      "input": "20\nXXXYXYYXXXYXXXXYYXXY\nXXYXYYXXYXXYXYXYXYXY\n",
+      "output": "5\n14 18\n29 38\n14 26\n5 10\n27 35\n"
+    },
+    {
+      "input": "20\nYXYXYXYYYXYYXYYXYXXX\nXXXXXYXYYYXYYXXYYYXY\n",
+      "output": "5\n29 36\n10 38\n2 3\n4 7\n28 40\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:10:11.671Z"
+}

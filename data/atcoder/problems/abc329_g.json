@@ -1,0 +1,34 @@
+{
+  "id": "abc329_g",
+  "platform": "atcoder",
+  "contestId": "abc329",
+  "index": "G",
+  "title": "Delivery on Tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc329/tasks/abc329_g",
+  "difficulty": 2995,
+  "tags": [],
+  "points": 625,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a binary tree with $N$ vertices. The vertices are numbered $1$ to $N$, with vertex $1$ being the root. The $i$-th edge $(1\\leq i \\leq N-1)$ connects vertex $i+1$ and vertex $P_i\\ (\\leq i)$ bidirectionally.\n\nThere are one basket and $M$ balls on this tree. The balls are numbered $1$ to $M$, and each ball $j$ has a designated **start vertex** $S_j$ and **goal vertex** $T_j$. Initially, the basket is empty and placed at vertex $1$, and the balls are placed at their respective start vertices.\n\nYou can perform the following operation any number of times in any order.\n\n- Let $v$ be the current vertex where the basket is placed. Do one of the following:\n- Choose one edge connected to vertex $v$, and move the basket along that edge to the adjacent vertex. The balls inside the basket move together with it.\n  - Choose a ball with the start vertex $v$ that is still placed at $v$, and put it into the basket. This operation can only be performed if the basket contains fewer than $K$ balls (that is, the basket cannot contain $K+1$ or more balls).\n  - Choose a ball with the goal vertex $v$ from the basket and take it out, placing it at vertex $v$.\n\nA sequence of operations is called a **good operation sequence** if and only if the basket is eventually empty and placed at vertex $1$, and the balls are eventually placed at their respective goal vertices.\n\nSince it is tiring to move the basket many times, the basket's movement path should traverse each edge exactly twice before returning to vertex $1$. Find the number, modulo $998244353$, of those paths such that a good operation sequence exists following that path.\n\n## Constraints\n\n- $2\\leq N \\leq 10^4$\n- $1\\leq M \\leq 2\\times 10^5$\n- $1\\leq K \\leq 10^3$\n- $1\\leq P_i \\leq i$\n- For every $v\\ (1\\leq v \\leq N)$, there are at most two $i$'s such that $P_i=v$.\n- $1\\leq S_j, T_j \\leq N$\n- $S_j \\neq T_j$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M K\nP_1 P_2 \\dots P_{N-1}\nS_1 T_1\nS_2 T_2\n\\vdots\nS_M T_M\n```\n\n## Output\n\nPrint the number, modulo $998244353$, of paths traversing every edge exactly twice before returning to vertex $1$ such that a good operation sequence exists following that path.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 2 1\n1 1 3 3\n2 4\n5 3\n",
+      "output": "1\n",
+      "note": "The given graph is shown in the figure below. The circles and squares written next to the vertices represent the start and goal vertices of the balls, respectively.\n\n![image](https://img.atcoder.jp/abc329/afa9812169c0c570270c32e5aa1c814a.jpg)\n\nAmong the paths where every edge is traversed exactly twice before returning to vertex $1$, there is only one path such that a good operation sequence exists following that path, which is shown below:\n\n![image](https://img.atcoder.jp/abc329/b80e2b20635a90cf935fa4bbc89872fd.jpg)\n\nHere, you can construct the following good operation sequence:\n\n1. Move the basket to vertex $2$.\n2. Put ball $1$ into the basket.\n3. Move the basket to vertex $1$.\n4. Move the basket to vertex $3$.\n5. Move the basket to vertex $4$.\n6. Take ball $1$ out of the basket and place it at vertex $4$.\n7. Move the basket to vertex $3$.\n8. Move the basket to vertex $5$.\n9. Put ball $2$ into the basket.\n10. Move the basket to vertex $3$.\n11. Take ball $2$ out of the basket and place it at vertex $3$.\n12. Move the basket to vertex $1$."
+    },
+    {
+      "input": "5 2 2\n1 1 3 3\n2 4\n5 3\n",
+      "output": "2\n",
+      "note": "The value of $K$ has increased by $1$ from Sample Input 1. This allows you to construct a good operation sequence for the following path, in addition to the one illustrated above.\n\n![image](https://img.atcoder.jp/abc329/31ce5331d578d5f2d0c0fe86751fd60d.jpg)"
+    },
+    {
+      "input": "15 4 2\n1 2 1 4 2 3 4 7 3 7 5 9 11 8\n14 12\n5 4\n13 15\n5 12\n",
+      "output": "8\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:11:37.392Z"
+}
