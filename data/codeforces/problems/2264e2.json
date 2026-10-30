@@ -1,0 +1,32 @@
+{
+  "id": "2264E2",
+  "platform": "codeforces",
+  "contestId": 2264,
+  "index": "E2",
+  "title": "A Prime Flood (Hard Version)",
+  "titleZh": "质数洪水（困难版）",
+  "url": "https://codeforces.com/contest/2264/problem/E2",
+  "difficulty": 2700,
+  "tags": [
+    "brute force",
+    "combinatorics",
+    "dp",
+    "number theory"
+  ],
+  "points": 1500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is the Hard version of the problem. The difference between the versions is that in this version, $n \\le 3\\cdot 10^5$. You can hack only if you solved all versions of this problem.**\n\nAntigun and Lamus have flooded Madamant's house. She wants them to make the water levels equal while removing as little water as possible.\n\nFormally, the initial water levels are given by an array $a = [a_1, a_2, \\ldots, a_n]$. For each hypothetical cleanup, Antigun and Lamus select a non-empty subsequence$^{\\text{∗}}$ $b$ of $a$. They may perform the following operation on $b$ any number of times, possibly zero:\n\n- choose a prime number $p$;\n- simultaneously decrease every element $b_i$ whose current value is divisible by $p$ by $1$. All other elements remain unchanged.\n\nLet $f(b)$ be the maximum integer $x$ such that, after some sequence of operations, every element of $b$ is equal to $x$.\n\nFind the sum of $f(b)$ over all non-empty subsequences $b$ of $a$, modulo $998\\,244\\,353$. Subsequences formed by different choices of indices are counted separately, even if their values are equal.\n\nEach subsequence is considered independently, starting from its original values.\n\n$^{\\text{∗}}$A sequence $a$ is a subsequence of a sequence $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) elements from arbitrary positions.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 300\\,000$) — the length of the array $a$.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le n$) — the elements of $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $300\\,000$.\n\n## Output\n\nFor each test case, print one integer — the sum of $f(b)$ over all non-empty subsequences $b$ of $a$, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, the only non-empty subsequence is $[1]$, and no operation is needed. Therefore, its contribution is $f([1]) = 1$.\n\nIn the second test case, the $2^3 - 1 = 7$ non-empty subsequences containing only occurrences of $4$ contribute $4 \\cdot 7 = 28$. The subsequence $[2]$ contributes $2$. Each of the $7$ subsequences containing the value $2$ and at least one occurrence of $4$ has $f(b) = 1$. Hence, the answer is $28 + 2 + 7 = 37$.",
+  "statementZhMd": "<statement>\n**这是本题的困难版。在该版本中，$n \\le 3\\cdot 10^5$。只有解决了本题的所有版本后，才能进行 hack。**\n\nAntigun 和 Lamus 淹没了 Madamant 的房子。她希望他们在排出尽可能少的水的同时，使所有水位相等。\n\n形式化地说，初始水位由数组 $a = [a_1, a_2, \\ldots, a_n]$ 给出。对于每次假设的清理，Antigun 和 Lamus 从 $a$ 中选择一个非空子序列$^{\\text{∗}}$ $b$。他们可以对 $b$ 执行以下操作任意次，也可以一次都不执行：\n\n- 选择一个质数 $p$；\n- 同时将当前值可被 $p$ 整除的每个元素 $b_i$ 减少 $1$。所有其他元素保持不变。\n\n令 $f(b)$ 表示满足以下条件的最大整数 $x$：经过某种操作序列后，$b$ 中的每个元素都等于 $x$。\n\n求所有非空子序列 $b$ 的 $f(b)$ 之和，结果对 $998\\,244\\,353$ 取模。由不同下标选择形成的子序列要分别计数，即使它们的值相同。\n\n每个子序列都独立处理，均从其原始值开始。\n\n$^{\\text{∗}}$如果可以通过从序列 $b$ 的任意位置删除若干个（可能为零个或全部）元素得到序列 $a$，则称序列 $a$ 是序列 $b$ 的子序列。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来给出各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 300\\,000$）— 数组 $a$ 的长度。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le n$）— 数组 $a$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $300\\,000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 — 所有非空子序列 $b$ 的 $f(b)$ 之和，结果对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个测试用例中，唯一的非空子序列是 $[1]$，且不需要执行任何操作。因此，它的贡献为 $f([1]) = 1$。\n\n在第二个测试用例中，仅包含 $4$ 的 $2^3 - 1 = 7$ 个非空子序列贡献为 $4 \\cdot 7 = 28$。子序列 $[2]$ 的贡献为 $2$。包含数值 $2$ 且至少包含一个数值 $4$ 的 7 个子序列中，每个子序列都有 $f(b) = 1$。因此，答案为 $28 + 2 + 7 = 37$。\n</statement>",
+  "samples": [
+    {
+      "input": "4\n1\n1\n4\n2 4 4 4\n4\n2 3 4 4\n6\n3 6 1 1 1 1\n",
+      "output": "1\n37\n34\n72\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:26.111Z",
+  "translatedAt": "2026-10-30T17:41:41.052Z",
+  "translateModel": "gpt-6.1-sol"
+}

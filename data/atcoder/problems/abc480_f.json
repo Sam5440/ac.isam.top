@@ -1,0 +1,32 @@
+{
+  "id": "abc480_f",
+  "platform": "atcoder",
+  "contestId": "abc480",
+  "index": "F",
+  "title": "Cake Cutting",
+  "titleZh": "切蛋糕",
+  "url": "https://atcoder.jp/contests/abc480/tasks/abc480_f",
+  "difficulty": 1840,
+  "tags": [],
+  "points": 525,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $N$ cakes, and the size of the $i$-th cake is $A_i$. You are going to distribute these cakes to $M$ people.\n\nLet $S$ be the total size of the cakes, $A_1+\\dots+A_N$. Here, it is guaranteed that $S$ is a multiple of $M$.\n\nYou can perform the following operation any number of times (possibly zero) in any order.\n\n- Choose one cake and cut it into $2$ pieces in any way you like (the sizes need not be integers).\n\nAfter the operations, you distribute the cakes to the $M$ people. Find the minimum number of operations required so that the total size of the cakes each person receives is $\\frac{S}{M}$.\n\nA more formal statement is as follows.\n\n- You are given a sequence $A=(A_1,\\dots,A_N)$ and a positive integer $M$. Let $S=\\sum_i A_i$.\n- You can perform the following operation any number of times.\n- Choose an integer $i$ with $1\\leq i \\leq |A|$ and a real number $x$ with $0 < x < A_i$. Replace $A$ with the sequence of length $|A|+1$ obtained by appending $x,A_i-x$ to the end of $A$ and removing the $i$-th element.\n- Find the minimum number of operations required for there to exist a $\\mathcal{P}$ satisfying all of the following conditions.\n- $\\mathcal{P}$ is a partition of $\\{1,2,\\dots,|A|\\}$; that is, it is a set satisfying the following $3$ conditions.\n  - Each element of $\\mathcal{P}$ is a subset of $\\{1,2,\\dots,|A|\\}$.\n    - If $X,Y \\in \\mathcal{P}$ and $X\\neq Y$, then $X \\cap Y = \\emptyset$.\n    - $\\bigcup_{X \\in \\mathcal{P}}X=\\{1,2,\\dots,|A|\\}$ holds.\n  - $\\sum_{i\\in X}A_i=\\frac{S}{M}$ holds for every $X\\in \\mathcal{P}$.\n\n## Constraints\n\n- $1 \\leq N \\leq 20$\n- $1 \\leq M \\leq 100$\n- $1 \\leq A_i \\leq 10^9$\n- $A_1+\\dots+A_N$ is a multiple of $M$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nA_1 A_2 \\dots A_N\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": "## 题目描述\n\n有 $N$ 个蛋糕，第 $i$ 个蛋糕的大小为 $A_i$。你需要将这些蛋糕分给 $M$ 个人。\n\n设蛋糕的大小总和为 $S=A_1+\\dots+A_N$。保证 $S$ 是 $M$ 的倍数。\n\n你可以按任意顺序进行任意次（也可以一次都不进行）以下操作。\n\n- 选择一个蛋糕，并以任意方式将其切成 $2$ 块（大小不必是整数）。\n\n操作结束后，将蛋糕分给 $M$ 个人。求使每个人分到的蛋糕大小总和都为 $\\frac{S}{M}$ 所需的最少操作次数。\n\n更形式化地，题目如下。\n\n- 给定一个序列 $A=(A_1,\\dots,A_N)$ 和一个正整数 $M$。令 $S=\\sum_i A_i$。\n- 你可以进行任意次以下操作。\n- 选择一个满足 $1\\leq i \\leq |A|$ 的整数 $i$，以及一个满足 $0 < x < A_i$ 的实数 $x$。将 $A$ 中第 $i$ 个元素删除，并在序列末尾追加 $x,A_i-x$，从而得到一个长度为 $|A|+1$ 的新序列。\n- 求所需的最少操作次数，使得存在一个满足以下所有条件的 $\\mathcal{P}$。\n- $\\mathcal{P}$ 是 $\\{1,2,\\dots,|A|\\}$ 的一个划分；也就是说，它是一个满足以下 $3$ 个条件的集合。\n  - $\\mathcal{P}$ 中的每个元素都是 $\\{1,2,\\dots,|A|\\}$ 的子集。\n    - 若 $X,Y \\in \\mathcal{P}$ 且 $X\\neq Y$，则 $X \\cap Y = \\emptyset$。\n    - 满足 $\\bigcup_{X \\in \\mathcal{P}}X=\\{1,2,\\dots,|A|\\}$。\n  - 对每个 $X\\in \\mathcal{P}$，都有 $\\sum_{i\\in X}A_i=\\frac{S}{M}$。\n\n## 约束条件\n\n- $1 \\leq N \\leq 20$\n- $1 \\leq M \\leq 100$\n- $1 \\leq A_i \\leq 10^9$\n- $A_1+\\dots+A_N$ 是 $M$ 的倍数。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN M\nA_1 A_2 \\dots A_N\n```\n\n## 输出格式\n\n输出答案。",
+  "samples": [
+    {
+      "input": "2 3\n7 23\n",
+      "output": "2\n",
+      "note": "The minimum is achieved by performing $2$ operations as follows.\n\n- Cut the cake of size $23$ into pieces of sizes $10$ and $13$. The cake sizes become $(7,10,13)$.\n- Cut the cake of size $13$ into pieces of sizes $10$ and $3$. The cake sizes become $(7,10,10,3)$.\n- Give the cakes of sizes $7$ and $3$ to one person, a cake of size $10$ to another person, and the remaining cake of size $10$ to the last person."
+    },
+    {
+      "input": "4 2\n1234 123 12 1\n",
+      "output": "1\n",
+      "note": "The minimum is achieved by performing $1$ operation as follows.\n\n- Cut the cake of size $1234$ into pieces of sizes $685$ and $549$. The cake sizes become $(123,12,1,685,549)$.\n- Give the $4$ cakes of sizes $123,12,1,549$ to one person and the cake of size $685$ to the other."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:28:31.008Z",
+  "translatedAt": "2026-10-30T17:32:02.050Z",
+  "translateModel": "gpt-6.1-sol"
+}

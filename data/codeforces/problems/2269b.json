@@ -1,0 +1,30 @@
+{
+  "id": "2269B",
+  "platform": "codeforces",
+  "contestId": 2269,
+  "index": "B",
+  "title": "KiaKio and Squared Numbers",
+  "titleZh": "KiaKio 与平方数",
+  "url": "https://codeforces.com/contest/2269/problem/B",
+  "difficulty": 1000,
+  "tags": [
+    "brute force",
+    "implementation"
+  ],
+  "points": 1000,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Kia and Kio spent the summer at the port of Mehragan, where $n$ lighthouses stand on the cliffs facing the dark sea.\n\nThe lighthouses of Mehragan do not give light. Every night a **number** is written in fire on each of them, and the sailors read their way from those numbers.\n\nThe law of the lighthouses is this: if a lighthouse shows $x$ tonight, then tomorrow night it shows the **sum of the squares of the decimal digits** of $x$.\n\nFor example, a lighthouse showing $23$ will show $2^2+3^2=13$ tomorrow, then $1^2+3^2=10$, and then $1$.\n\nOn night $0$ of the season, lighthouse $i$ shows the number $a_i$. From that night on, the law is applied once every night, forever.\n\nKio calls two lighthouses $i$ and $j$ **in tune** if there exists a night after which, **forever**, both of them show exactly the same number on every single night.\n\nKia asks: how many pairs $(i, j)$ with $i \\lt j$ are in tune?\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nEach test case consists of two lines.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 1000$) — the number of lighthouses.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the number shown by each lighthouse on night $0$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $1000$.\n\n## Output\n\nFor each test case, print a single integer — the number of pairs $(i, j)$ with $i \\lt j$ such that lighthouses $i$ and $j$ are in tune.\n\n## Note\n\nIn the first test case:\n\n- Lighthouse $1$ starts at $7$: $7 \\to 49 \\to 97 \\to 130 \\to 10 \\to 1$, and it stays at $1$ forever.\n- Lighthouses $2$ and $4$ both start at $4$, so they show the same number on every night.\n- Lighthouse $3$ starts at $16$ and lighthouse $5$ starts at $2$; each of them is at a different point of the cycle Kio found, and never matches anybody.\n\nSo the only pair in tune is $(2, 4)$, and the answer is $1$.\n\nIn the second test case, every lighthouse sooner or later reaches $1$ and stays there, so all of them are pairwise in tune, which gives $6$ pairs.\n\nIn the fourth test case, on night $1$, lighthouse $2$ shows $2^2+0^2 = 4$, and lighthouse $1$ shows $2^2 = 4$. From night $1$ on, they are identical forever. Lighthouse $3$ starts at $4$, so it is one night ahead of both of them and is in tune with neither.",
+  "statementZhMd": "Kia 和 Kio 在 Mehragan 港度过了夏天，那里有 $n$ 座灯塔，矗立在面朝漆黑大海的悬崖上。\n\nMehragan 的灯塔并不发光。每晚，每座灯塔上都会用火焰写出一个**数字**，水手们通过这些数字辨认航路。\n\n灯塔遵循这样的规律：如果一座灯塔今晚显示的是 $x$，那么明晚它将显示 $x$ 的**各个十进制数位的平方和**。\n\n例如，一座显示 $23$ 的灯塔，明晚将显示 $2^2+3^2=13$，之后是 $1^2+3^2=10$，再之后是 $1$。\n\n在这个季节的第 $0$ 晚，灯塔 $i$ 显示数字 $a_i$。从那一晚开始，每晚都会应用一次上述规律，永远持续下去。\n\nKio 称两座灯塔 $i$ 和 $j$ **同步**，当且仅当存在某一晚，使得从那一晚起，它们在之后的每一晚都显示完全相同的数字，**永远如此**。\n\nKia 想知道：有多少对满足 $i \\lt j$ 的灯塔 $(i, j)$ 是同步的？\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各组测试用例的描述。\n\n每组测试用例包含两行。\n\n每组测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 1000$）——灯塔的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——各座灯塔在第 $0$ 晚显示的数字。\n\n保证所有测试用例的 $n$ 之和不超过 $1000$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数——满足 $i \\lt j$ 且灯塔 $i$ 和 $j$ 同步的数对 $(i, j)$ 的数量。\n\n## 说明\n\n在第一组测试用例中：\n\n- 灯塔 $1$ 从 $7$ 开始：$7 \\to 49 \\to 97 \\to 130 \\to 10 \\to 1$，之后永远保持为 $1$。\n- 灯塔 $2$ 和 $4$ 都从 $4$ 开始，因此它们每晚显示的数字都相同。\n- 灯塔 $3$ 从 $16$ 开始，灯塔 $5$ 从 $2$ 开始；它们分别处于 Kio 发现的循环中的不同位置，且永远不会与任何其他灯塔显示相同的数字。\n\n因此，唯一同步的灯塔对是 $(2, 4)$，答案为 $1$。\n\n在第二组测试用例中，每座灯塔迟早都会到达 $1$ 并保持不变，因此所有灯塔都两两同步，共有 $6$ 对。\n\n在第四组测试用例中，第 $1$ 晚，灯塔 $2$ 显示 $2^2+0^2 = 4$，灯塔 $1$ 显示 $2^2 = 4$。从第 $1$ 晚开始，它们显示的数字将永远相同。灯塔 $3$ 从 $4$ 开始，因此它比另外两座灯塔都领先一晚，与它们中的任何一座都不同步。",
+  "samples": [
+    {
+      "input": "4\n5\n7 4 16 4 2\n4\n1 7 10 100\n3\n4 16 37\n3\n2 20 4\n",
+      "output": "1\n6\n0\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:01.219Z",
+  "translatedAt": "2026-10-30T17:38:06.755Z",
+  "translateModel": "gpt-6.1-sol"
+}

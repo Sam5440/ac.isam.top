@@ -1,0 +1,73 @@
+name: Fetch & translate problems
+
+on:
+  schedule:
+    # 每 6 小时一次（错开整点，规避 GitHub 定时任务高峰丢弃）
+    - cron: "23 1/6 * * *"
+  workflow_dispatch:
+    inputs:
+      abc_scan:
+        description: "扫描最近 N 场 ABC（补新题面）"
+        default: "3"
+      cf_scan:
+        description: "扫描最近 N 场 CF（补新题面）"
+        default: "3"
+      backfill:
+        description: "回填历史未拉取的题面数（从最旧比赛开始）"
+        default: "10"
+      translate_limit:
+        description: "本次最多翻译题数（0=不限）"
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-data
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium (Codeforces 反爬需要真实浏览器)
+        run: npx playwright install --with-deps chromium
+
+      - name: Fetch newest + backfill + translate
+        env:
+          # AI 翻译端点配置在仓库 Secrets（Settings → Secrets and variables → Actions）
+          TRANSLATE_BASE_URL: ${{ secrets.TRANSLATE_BASE_URL }}
+          TRANSLATE_API_KEY: ${{ secrets.TRANSLATE_API_KEY }}
+          TRANSLATE_MODEL: ${{ secrets.TRANSLATE_MODEL }}
+          TRANSLATE_CONCURRENCY: "4"
+          # CI 出口 IP 更容易被 Cloudflare 质询：有头浏览器 + Xvfb 通过率更高
+          CF_HEADLESS: "0"
+        run: |
+          xvfb-run -a node scripts/fetch.mjs \
+            --abc "${{ github.event.inputs.abc_scan || '3' }}" \
+            --cf "${{ github.event.inputs.cf_scan || '3' }}" \
+            --backfill "${{ github.event.inputs.backfill || '10' }}" \
+            --translate-limit "${{ github.event.inputs.translate_limit || '0' }}"
+
+      - name: Commit & push data updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No data changes — skip commit."
+          else
+            git commit -m "data: fetch & translate $(date -u +%FT%TZ) [skip ci]"
+            git push
+          fi

@@ -1,0 +1,32 @@
+{
+  "id": "2273D",
+  "platform": "codeforces",
+  "contestId": 2273,
+  "index": "D",
+  "title": "Aura Battle",
+  "titleZh": "灵气对战",
+  "url": "https://codeforces.com/contest/2273/problem/D",
+  "difficulty": 2600,
+  "tags": [
+    "brute force",
+    "implementation",
+    "interactive",
+    "math"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*This is an interactive problem. Hacks are disabled.*\n\nYou're in an aura battle in Pachuca, Mexico. Each battle consists of $10$ rounds. The judges have a hidden integer $x$ ($1 \\le x \\le 10^4$), which remains fixed throughout the battle.\n\nIn round $i$, you choose two integers $a_i$ and $b_i$ ($-10^9 \\le a_i, b_i \\le 10^9$). You then lose $$ \\min\\bigl(|x-a_i|,\\ |x-b_i|\\bigr) $$ aura and are told this amount before the next round begins. Your choices may depend on the results of all previous rounds. After the battle is over, your total aura loss is calculated as the sum of the aura lost in each of the $10$ rounds.\n\nLet $m$ be the smallest integer such that there exists a strategy guaranteeing a total aura loss of at most $m$, regardless of the hidden value of $x$. Your task is to guarantee a total aura loss not exceeding the limit, which is $10^5$ **on the first test (the example)** and $m+67$ on all other tests.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of battles.\n\n## Interaction\n\nThe $t$ battles are carried out one after another. In every battle, you repeat the following $10$ times:\n\n- print two integers $a_i$ and $b_i$ ($-10^9 \\le a_i, b_i \\le 10^9$) — the values you play for the $i$-th round;\n- read one integer $p$ — the aura you lost this round, that is, $p = \\min(\\lvert x - a_i \\rvert, \\lvert x - b_i \\rvert)$, where $x$ is the hidden value of the current battle.\n\nYou must play all $10$ rounds of a battle.\n\nNothing is printed or read between battles: right after the $10$-th round of a battle, the next battle begins, and after the $10$-th round of the last battle your program must terminate without printing anything else.\n\nIf you print a value outside $[-10^9, 10^9]$, the interactor stops answering and you will get the verdict **Wrong answer**. Make sure your program exits immediately in that case, otherwise you may get an arbitrary verdict. You will also get the verdict **Wrong answer** if the total aura you lose in some battle exceeds the limit, which is $10^5$ on the first test (the example) and $m+67$ on all other tests.\n\nAfter printing a value, do not forget to output the end of line and to flush the output. Otherwise, you will get the verdict Idleness limit exceeded. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see the documentation for other languages.\n\n## Note\n\nIn the example there is a single battle, and the hidden value $x$ is $40$.\n\n- In the first round, $a_1 = 3$ and $b_1 = 53$, so you lose $13 = \\min(\\lvert 3 - 40 \\rvert, \\lvert 53 - 40 \\rvert)$ aura.\n- In the second round, $a_2 = 36$ and $b_2 = 49$, so you lose $4 = \\min(\\lvert 36 - 40 \\rvert, \\lvert 49 - 40 \\rvert)$ aura.\n- In the third round, the amount of aura you lose is $2$.\n- In the following rounds, the amount of aura you lose is $2, 4, 5, 9, 6, 9, 13$ respectively.\n\nThe total amount of aura you lose is $67$. Note that this is an example of how the interaction works. To receive an accepted verdict, you must solve the problem without exceeding the aura limit outlined in the statement above.",
+  "statementZhMd": "*本题为交互题。不支持 Hack。*\n\n你正在墨西哥帕丘卡参加一场灵气对战。每场对战由 $10$ 轮组成。裁判掌握一个隐藏整数 $x$（$1 \\le x \\le 10^4$），且在整场对战中保持不变。\n\n在第 $i$ 轮中，你需要选择两个整数 $a_i$ 和 $b_i$（$-10^9 \\le a_i, b_i \\le 10^9$）。随后你会损失 $$ \\min\\bigl(|x-a_i|,\\ |x-b_i|\\bigr) $$ 点灵气，并在下一轮开始前得知损失的数值。你可以根据之前所有轮次的结果来决定当前选择。对战结束后，你损失的灵气总量为 $10$ 轮中每轮损失的灵气之和。\n\n令 $m$ 为最小的整数，使得存在一种策略，无论隐藏值 $x$ 是多少，都能保证灵气总损失不超过 $m$。你的任务是保证灵气总损失不超过上限：第一组测试（样例）中上限为 $10^5$，其余测试中上限为 $m+67$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——对战场数。\n\n## 交互\n\n$t$ 场对战依次进行。在每场对战中，你需要重复以下过程 $10$ 次：\n\n- 输出两个整数 $a_i$ 和 $b_i$（$-10^9 \\le a_i, b_i \\le 10^9$）——第 $i$ 轮选择的数值；\n- 读入一个整数 $p$——本轮损失的灵气，即 $p = \\min(\\lvert x - a_i \\rvert, \\lvert x - b_i \\rvert)$，其中 $x$ 是当前这场对战的隐藏值。\n\n每场对战都必须进行完全部 $10$ 轮。\n\n两场对战之间不会进行任何读写：一场对战的第 $10$ 轮结束后，下一场对战立即开始；最后一场对战的第 $10$ 轮结束后，程序必须立即终止，不能再输出任何内容。\n\n如果输出的数值超出 $[-10^9, 10^9]$，交互器将停止回复，你会得到 **Wrong answer** 判定。如果发生这种情况，请确保程序立即退出，否则可能会得到任意判定。如果某场对战的灵气总损失超过上限，你也会得到 **Wrong answer** 判定；第一组测试（样例）的上限为 $10^5$，其余测试的上限为 $m+67$。\n\n输出数值后，别忘了输出换行并刷新输出缓冲区，否则你会得到 Idleness limit exceeded 判定。可以使用：\n\n- C++ 中的 `fflush(stdout)` 或 `cout.flush()`；\n- Java 中的 `System.out.flush()`；\n- Pascal 中的 `flush(output)`；\n- Python 中的 `stdout.flush()`；\n- 其他语言请参阅相关文档。\n\n## 说明\n\n样例中只有一场对战，隐藏值 $x$ 为 $40$。\n\n- 第一轮中，$a_1 = 3$ 且 $b_1 = 53$，因此你会损失 $13 = \\min(\\lvert 3 - 40 \\rvert, \\lvert 53 - 40 \\rvert)$ 点灵气。\n- 第二轮中，$a_2 = 36$ 且 $b_2 = 49$，因此你会损失 $4 = \\min(\\lvert 36 - 40 \\rvert, \\lvert 49 - 40 \\rvert)$ 点灵气。\n- 第三轮中，你会损失 $2$ 点灵气。\n- 后续各轮中，你会依次损失 $2, 4, 5, 9, 6, 9, 13$ 点灵气。\n\n你损失的灵气总量为 $67$。注意，这只是交互过程的示例。若要获得 Accepted 判定，你必须在不超过题面所述灵气上限的前提下解决问题。",
+  "samples": [
+    {
+      "input": "1\n\n13\n\n4\n\n2\n\n2\n\n4\n\n5\n\n9\n\n6\n\n9\n\n13\n",
+      "output": "3 53\n\n36 49\n\n47 38\n\n1 38\n\n44 32\n\n35 35\n\n31 67\n\n33 46\n\n49 50\n\n20 27\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:32.974Z",
+  "translatedAt": "2026-10-30T17:36:18.526Z",
+  "translateModel": "gpt-6.1-sol"
+}

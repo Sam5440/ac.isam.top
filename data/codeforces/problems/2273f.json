@@ -1,0 +1,32 @@
+{
+  "id": "2273F",
+  "platform": "codeforces",
+  "contestId": 2273,
+  "index": "F",
+  "title": "Pancho's Permutation",
+  "titleZh": "潘乔的排列",
+  "url": "https://codeforces.com/contest/2273/problem/F",
+  "difficulty": 3500,
+  "tags": [
+    "constructive algorithms",
+    "dp",
+    "greedy",
+    "math"
+  ],
+  "points": 3500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Pancho was given a permutation$^{\\text{∗}}$ $p_1, p_2, \\ldots, p_n$ as a gift when he was a child. He made many fond memories with his permutation, but the day he turned $18$, he realized to his horror that some of the elements of the permutation may have been erased.\n\nPancho was never great at remembering long sequences of numbers, but he recalls two of its properties:\n\n- For any $i$ ($1 \\le i \\le n-1$), $p_1, p_2, \\ldots, p_i$ was not a permutation of length $i$.\n- For any $j$ ($2 \\le j \\le n$), $p_j, p_{j+1}, \\ldots, p_n$ was not a permutation of length $n-j+1$.\n\nYour task is to help Pancho by outputting the **$k$-th smallest permutation in lexicographical order**$^{\\text{†}}$ that matches the information he remembers or reporting that there is no such permutation.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).$^{\\text{†}}$An array $a$ is lexicographically smaller than an array $b$ if and only if one of the following holds: $a$ is a prefix of $b$, but $a \\neq b$; or in the first position where $a$ and $b$ differ, the array $a$ has a smaller element than the corresponding element in $b$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\leq t \\leq 100$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($2 \\leq n \\leq 10^6$ and $1 \\leq k \\leq 10^{18}$) — the length of the permutation and the index of the one you must construct.\n\nThe second line of each test case contains $n$ integers $p_1,p_2,\\dots,p_n$ (if $p_i$ is known, then $1 \\leq p_i \\leq n$; otherwise, $p_i=-1$)  — the information provided about the original permutation.\n\nIt is guaranteed that the known values $p_i$ (those with $p_i \\neq -1$) are pairwise distinct.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nPrint a line for each test case. Print $-1$ if there are fewer than $k$ valid permutations. Otherwise, print $n$ integers representing the requested permutation.\n\n## Note\n\nIn the first test case, the first two elements of the given information are $1$ and $2$. Since these two numbers are precisely the elements of a permutation of length $2$, there are no valid permutations.\n\nIn the third test case, there are exactly $2$ valid permutations (listed in lexicographical order), $[2, 4, 1, 3]$ and $[3, 1, 4, 2]$.\n\nThe answer is the second one, as requested.",
+  "statementZhMd": "潘乔小时候收到过一个排列$^{\\text{∗}}$ $p_1, p_2, \\ldots, p_n$ 作为礼物。这个排列给他留下了许多美好的回忆，但在他年满 $18$ 岁的那天，他惊恐地发现，排列中的一些元素可能已经被擦掉了。\n\n潘乔一直不擅长记住很长的数字序列，但他还记得这个排列的两个性质：\n\n- 对于任意 $i$（$1 \\le i \\le n-1$），$p_1, p_2, \\ldots, p_i$ 都不是一个长度为 $i$ 的排列。\n- 对于任意 $j$（$2 \\le j \\le n$），$p_j, p_{j+1}, \\ldots, p_n$ 都不是一个长度为 $n-j+1$ 的排列。\n\n你的任务是帮助潘乔，输出符合他所记得的信息的、**按字典序排列的第 $k$ 小的排列**$^{\\text{†}}$，或者报告不存在这样的排列。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。$^{\\text{†}}$数组 $a$ 的字典序小于数组 $b$，当且仅当以下条件之一成立：$a$ 是 $b$ 的前缀，且 $a \\neq b$；或者，在 $a$ 和 $b$ 第一个不同的位置上，数组 $a$ 的元素小于数组 $b$ 对应位置的元素。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\leq t \\leq 100$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含两个整数 $n$ 和 $k$（$2 \\leq n \\leq 10^6$ 且 $1 \\leq k \\leq 10^{18}$）——分别表示排列的长度，以及你需要构造的排列的序号。\n\n每组测试用例的第二行包含 $n$ 个整数 $p_1,p_2,\\dots,p_n$（如果 $p_i$ 已知，则 $1 \\leq p_i \\leq n$；否则，$p_i=-1$）——表示已知的原排列的信息。\n\n保证所有已知的 $p_i$（即满足 $p_i \\neq -1$ 的值）两两不同。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每组测试用例，输出一行。如果合法排列的数量少于 $k$，输出 $-1$。否则，输出 $n$ 个整数，表示所求的排列。\n\n## 说明\n\n在第一组测试用例中，给定信息中的前两个元素是 $1$ 和 $2$。由于这两个数恰好构成一个长度为 $2$ 的排列，因此不存在合法的排列。\n\n在第三组测试用例中，恰好有 $2$ 个合法排列，按字典序依次为 $[2, 4, 1, 3]$ 和 $[3, 1, 4, 2]$。\n\n根据要求，答案是其中的第二个。",
+  "samples": [
+    {
+      "input": "4\n5 1\n1 2 3 4 5\n6 69\n-1 -1 -1 -1 -1 -1\n4 2\n-1 -1 -1 -1\n10 10\n5 3 9 -1 -1 10 -1 2 -1 -1\n",
+      "output": "-1\n3 4 1 6 2 5\n3 1 4 2\n5 3 9 1 6 10 7 2 8 4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:32.974Z",
+  "translatedAt": "2026-10-30T17:36:30.495Z",
+  "translateModel": "gpt-6.1-sol"
+}

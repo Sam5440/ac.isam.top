@@ -1,0 +1,29 @@
+{
+  "id": "2268F",
+  "platform": "codeforces",
+  "contestId": 2268,
+  "index": "F",
+  "title": "Deglado",
+  "titleZh": "德格拉多",
+  "url": "https://codeforces.com/contest/2268/problem/F",
+  "difficulty": 3500,
+  "tags": [
+    "constructive algorithms"
+  ],
+  "points": 3250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "You are given a $2n \\times 2n$ grid $a$ where each column is a permutation$^{\\text{∗}}$ of length $2n$.\n\nWe want to sort all columns in ascending order from top to bottom by performing the following operation:\n\n- Choose a $2 \\times 2$ subgrid and swap the two top elements with the two bottom elements.More formally, you can choose two integers $i$ and $j$ ($1 \\leq i, j \\lt 2n$), then swap $a_{i,j}$ with $a_{i+1,j}$ and swap $a_{i,j+1}$ with $a_{i+1,j+1}$.\n\nYou have to sort all columns using at most $n \\cdot \\binom{2n}{2} + 9n$ operations, or determine that it is impossible.\n\nNote that you do **not** need to minimize the number of operations.\n\n$^{\\text{∗}}$A permutation of length $m$ is an array consisting of $m$ distinct integers from $1$ to $m$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($m=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each test contains a single integer $n$ ($1 \\leq n \\leq 80$).\n\nThe $i$-th line of the next $2n$ lines contains $2n$ integers $a_{i,1},a_{i,2},\\ldots,a_{i,2n}$ ($1 \\leq a_{i,j} \\leq 2n$) — the elements of the $i$-th row of the grid.\n\nIt is guaranteed that every column in the grid forms a permutation of length $2n$.\n\nIt is guaranteed that the sum of $n^3$ over all test cases does not exceed $80^3$.\n\n## Output\n\nFor each test case, if it is impossible to sort all columns in at most $n \\cdot \\binom{2n}{2} + 9n$ operations, print $-1$ in a single line.\n\nOtherwise, in the first line print a single integer $k$ ($0 \\leq k \\leq n \\cdot \\binom{2n}{2} + 9n$) — the number of operations.\n\nThen $k$ lines follow, the $w$-th line containing two integers $i_w$ and $j_w$ ($1 \\leq i_w, j_w \\lt 2n$) — you choose $i_w$ and $j_w$ in the $w$-th operation.\n\n## Note\n\nIn the first test case, you can sort columns using one operation.\n\nIn the second test case, it can be shown that you cannot sort columns.\n\nThe illustration of the third test case:\n\n![image](https://espresso.codeforces.com/c576d957f7932225d62d41ecd06b0d94d82490f6.png)",
+  "statementZhMd": "给定一个 $2n \\times 2n$ 的网格 $a$，其中每一列都是一个长度为 $2n$ 的排列$^{\\text{∗}}$。\n\n我们希望通过执行以下操作，将所有列从上到下按升序排列：\n\n- 选择一个 $2 \\times 2$ 的子网格，并交换其中上方两个元素与下方两个元素。更正式地说，可以选择两个整数 $i$ 和 $j$（$1 \\leq i, j \\lt 2n$），然后交换 $a_{i,j}$ 与 $a_{i+1,j}$，并交换 $a_{i,j+1}$ 与 $a_{i+1,j+1}$。\n\n你需要在不超过 $n \\cdot \\binom{2n}{2} + 9n$ 次操作内将所有列排好序，或者判定这是不可能的。\n\n注意，你**不需要**最小化操作次数。\n\n$^{\\text{∗}}$长度为 $m$ 的排列是由 $1$ 到 $m$ 中的 $m$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$m=3$，但数组中有 $4$）。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 500$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 80$）。\n\n接下来的 $2n$ 行中，第 $i$ 行包含 $2n$ 个整数 $a_{i,1},a_{i,2},\\ldots,a_{i,2n}$（$1 \\leq a_{i,j} \\leq 2n$），表示网格的第 $i$ 行。\n\n保证网格中的每一列都是一个长度为 $2n$ 的排列。\n\n保证所有测试用例的 $n^3$ 之和不超过 $80^3$。\n\n## 输出格式\n\n对于每个测试用例，如果无法在不超过 $n \\cdot \\binom{2n}{2} + 9n$ 次操作内将所有列排好序，则在一行中输出 $-1$。\n\n否则，第一行输出一个整数 $k$（$0 \\leq k \\leq n \\cdot \\binom{2n}{2} + 9n$），表示操作次数。\n\n接下来输出 $k$ 行，第 $w$ 行包含两个整数 $i_w$ 和 $j_w$（$1 \\leq i_w, j_w \\lt 2n$），表示第 $w$ 次操作中选择的 $i_w$ 和 $j_w$。\n\n## 说明\n\n在第一个测试用例中，可以通过一次操作将各列排好序。\n\n可以证明，第二个测试用例中无法将各列排好序。\n\n第三个测试用例的示意图：\n\n![image](https://espresso.codeforces.com/c576d957f7932225d62d41ecd06b0d94d82490f6.png)",
+  "samples": [
+    {
+      "input": "3\n1\n2 2\n1 1\n1\n1 2\n2 1\n2\n1 2 2 1\n2 1 3 3\n4 4 1 2\n3 3 4 4\n",
+      "output": "1\n1 1\n-1\n3\n3 1\n2 3\n1 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:08.596Z",
+  "translatedAt": "2026-10-30T17:39:04.489Z",
+  "translateModel": "gpt-6.1-sol"
+}

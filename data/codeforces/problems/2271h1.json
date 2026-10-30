@@ -1,0 +1,31 @@
+{
+  "id": "2271H1",
+  "platform": "codeforces",
+  "contestId": 2271,
+  "index": "H1",
+  "title": "Personal Issues (Easy Version)",
+  "titleZh": "个人恩怨（简单版）",
+  "url": "https://codeforces.com/contest/2271/problem/H1",
+  "difficulty": 2800,
+  "tags": [
+    "dp",
+    "games",
+    "trees"
+  ],
+  "points": 3000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, $t \\le 1000$, $n \\le 3000$ and the sum of $n$ over all test cases does not exceed $3000$. You can hack only if you solved all versions of this problem.**\n\nThe rivals Axial and Nife have had yet another argument, and they decided to settle it by playing a game on a tree.\n\nThey are given a tree with $n$ vertices numbered from $1$ to $n$. Each vertex contains either $0$ or $1$. Initially, two distinct vertices $x$ and $y$ contain $0$, and all other vertices contain $1$.\n\nThe players take turns, with Axial going first. On each turn, the current player chooses a vertex $v$ containing $1$ and changes its value to $0$. Before changing the value of $v$, let $c_v$ be the number of neighbors of $v$ that contain $0$. If $c_v = 1$, the current player gets one point. Otherwise, they get no points. The game ends when all vertices contain $0$.\n\nLet $p$ and $q$ be the final scores of Axial and Nife, respectively. Axial wants to maximize $p - q$, while Nife wants to minimize it. Assuming both players play optimally, determine the value of $p - q$ at the end of the game.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $x$, and $y$ ($2 \\le n \\le 3000$, $1 \\le x, y \\le n$, $x \\ne y$) — the number of vertices in the tree and the two vertices that initially contain $0$.\n\nEach of the next $n - 1$ lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n$, $u \\ne v$), denoting an edge between vertices $u$ and $v$.\n\nIt is guaranteed that the given graph is a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3000$.\n\n## Output\n\nFor each test case, output a single integer — the value of $p - q$ at the end of the game.\n\n## Note\n\nIn the figures below, blue vertices initially contain $0$, while white vertices initially contain $1$.\n\nFor the first example, the initial state is:\n\n![image](https://espresso.codeforces.com/e9cd98c760fe6648d25e0a629a0cd74beffac9d8.png)\n\nAxial changes vertex $3$ to $0$. It has exactly one neighbor containing $0$, so Axial gets one point. Therefore, $p - q=1$.\n\nFor the second example, the initial state is:\n\n![image](https://espresso.codeforces.com/8509b22a1a90150db9d0ced2994f4b274ae098eb.png)\n\nAxial can change either vertex $2$ or vertex $3$ to $0$ and get one point. After that, the remaining vertex has two neighbors containing $0$, so Nife gets no points. Therefore, $p - q=1$.\n\nFor the third example, the initial state is:\n\n![image](https://espresso.codeforces.com/7ef05afa3fec9ce0ae24a054df3667379ed20537.png)\n\nThe only possible move is to change vertex $2$ to $0$. It has two neighbors containing $0$, so Axial gets no points. Therefore, $p - q=0$.",
+  "statementZhMd": "**这是本题的简单版本。两个版本的区别在于，本版本中 $t \\le 1000$、$n \\le 3000$，且所有测试用例的 $n$ 之和不超过 $3000$。只有解决了本题的所有版本，你才能进行 hack。**\n\n宿敌 Axial 和 Nife 又发生了争执，他们决定通过在一棵树上进行游戏来一决高下。\n\n给定一棵有 $n$ 个顶点的树，顶点编号为 $1$ 到 $n$。每个顶点上的值为 $0$ 或 $1$。初始时，两个不同的顶点 $x$ 和 $y$ 上的值为 $0$，其余所有顶点上的值均为 $1$。\n\n两名玩家轮流行动，Axial 先手。每回合，当前玩家选择一个值为 $1$ 的顶点 $v$，将其值改为 $0$。在修改 $v$ 的值之前，设 $c_v$ 为 $v$ 的相邻顶点中值为 $0$ 的顶点数量。如果 $c_v = 1$，当前玩家获得一分；否则，不得分。当所有顶点上的值均为 $0$ 时，游戏结束。\n\n设 Axial 和 Nife 的最终得分分别为 $p$ 和 $q$。Axial 希望最大化 $p - q$，而 Nife 希望最小化它。假设双方均采取最优策略，求游戏结束时 $p - q$ 的值。\n\n## 输入格式\n\n每个输入包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含三个整数 $n$、$x$ 和 $y$（$2 \\le n \\le 3000$，$1 \\le x, y \\le n$，$x \\ne y$）——树的顶点数量，以及初始时值为 $0$ 的两个顶点。\n\n接下来的 $n - 1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$，$u \\ne v$），表示顶点 $u$ 和 $v$ 之间有一条边。\n\n保证给定的图是一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $3000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——游戏结束时 $p - q$ 的值。\n\n## 说明\n\n在下图中，蓝色顶点的初始值为 $0$，白色顶点的初始值为 $1$。\n\n对于第一个样例，初始状态如下：\n\n![image](https://espresso.codeforces.com/e9cd98c760fe6648d25e0a629a0cd74beffac9d8.png)\n\nAxial 将顶点 $3$ 的值改为 $0$。它恰好有一个值为 $0$ 的相邻顶点，因此 Axial 获得一分。所以，$p - q=1$。\n\n对于第二个样例，初始状态如下：\n\n![image](https://espresso.codeforces.com/8509b22a1a90150db9d0ced2994f4b274ae098eb.png)\n\nAxial 可以将顶点 $2$ 或顶点 $3$ 的值改为 $0$，并获得一分。此后，剩下的那个顶点有两个值为 $0$ 的相邻顶点，因此 Nife 不得分。所以，$p - q=1$。\n\n对于第三个样例，初始状态如下：\n\n![image](https://espresso.codeforces.com/7ef05afa3fec9ce0ae24a054df3667379ed20537.png)\n\n唯一可行的操作是将顶点 $2$ 的值改为 $0$。它有两个值为 $0$ 的相邻顶点，因此 Axial 不得分。所以，$p - q=0$。",
+  "samples": [
+    {
+      "input": "4\n3 1 2\n1 2\n2 3\n4 1 4\n1 2\n2 3\n3 4\n3 1 3\n1 2\n2 3\n6 2 3\n1 2\n1 3\n1 4\n1 5\n1 6\n",
+      "output": "1\n1\n0\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:51.537Z",
+  "translatedAt": "2026-10-30T17:37:54.011Z",
+  "translateModel": "gpt-6.1-sol"
+}

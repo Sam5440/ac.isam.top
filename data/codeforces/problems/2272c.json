@@ -1,0 +1,32 @@
+{
+  "id": "2272C",
+  "platform": "codeforces",
+  "contestId": 2272,
+  "index": "C",
+  "title": "Yet Another Black Cell Problem",
+  "titleZh": "又一个黑格问题",
+  "url": "https://codeforces.com/contest/2272/problem/C",
+  "difficulty": null,
+  "tags": [
+    "binary search",
+    "constructive algorithms",
+    "dp",
+    "greedy"
+  ],
+  "points": 1000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*Inspired by [this problem](https://codeforces.com/contest/2026/problem/B).*\n\nThere is a strip divided into cells numbered from $0$ to $10^9$ from left to right. Initially, all cells are white.\n\nAn array $a$ of length $n$ is given, containing the indices of $n$ cells. We want to paint all these $n$ cells black.\n\nGiven an integer $x$, you may choose an integer $y$ such that $0 \\le y \\le x$, and then arbitrarily select $y$ cells that are **not in** $a$. We also want to paint these selected $y$ cells black while keeping all non-selected cells white.\n\nYou may perform the following operation any number of times:\n\n- Choose two distinct cells $i$ and $j$ such that $1 \\le |i-j| \\le k$, and paint them black, regardless of whether they were originally black or white.\n\nFind the minimum value of $k$ for which it is possible to paint all the required cells black while keeping other cells white.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $x$ ($2\\leq n\\leq 2\\cdot 10^5,0\\leq x\\leq n$).\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($0\\leq a_i\\leq 10^{9}$). It is guaranteed that $a_i \\lt a_{i+1}$ for all $1 \\leq i \\lt n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the minimum value of $k$ for which it is possible to paint all the required cells black while keeping other cells white.\n\n## Note\n\nIn the first example, we cannot paint any cell other than $1$ and $3$ black because $x=0$. So it's optimal to set $k=2$ and choose $i=1,j=3$ in the first operation.\n\nIn the second example, we can set $k=1$, which is the minimal available value. We first choose $i=1,j=2$ to paint and then choose $i=2,j=3$ to paint. After that, cells $1,2,3$ are painted black, only cell $2$ is not in the given list, which satisfies the condition $x=1$.",
+  "statementZhMd": "*灵感来源于[这道题](https://codeforces.com/contest/2026/problem/B)。*\n\n有一条被划分为若干格子的长条，格子从左到右依次编号为 $0$ 到 $10^9$。最初，所有格子都是白色的。\n\n给定一个长度为 $n$ 的数组 $a$，其中包含 $n$ 个格子的编号。我们希望将这 $n$ 个格子全部涂成黑色。\n\n给定一个整数 $x$，你可以选择一个整数 $y$，使得 $0 \\le y \\le x$，然后任意选出 $y$ 个编号**不在** $a$ 中的格子。我们还希望将这 $y$ 个选出的格子涂成黑色，同时保持其余格子为白色。\n\n你可以执行以下操作任意多次：\n\n- 选择两个不同的格子 $i$ 和 $j$，满足 $1 \\le |i-j| \\le k$，并将它们涂成黑色，无论它们原本是黑色还是白色。\n\n求最小的 $k$，使得能够将所有要求的格子涂成黑色，同时保持其他格子为白色。\n\n## 输入格式\n\n每个输入包含多组测试数据。第一行包含测试数据组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $x$（$2\\leq n\\leq 2\\cdot 10^5,0\\leq x\\leq n$）。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$0\\leq a_i\\leq 10^{9}$）。保证对于所有 $1 \\leq i \\lt n$，都有 $a_i \\lt a_{i+1}$。\n\n保证所有测试数据的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数——最小的 $k$，使得能够将所有要求的格子涂成黑色，同时保持其他格子为白色。\n\n## 说明\n\n在第一个样例中，由于 $x=0$，我们不能将 $1$ 和 $3$ 以外的任何格子涂成黑色。因此，最优方案是令 $k=2$，并在第一次操作中选择 $i=1,j=3$。\n\n在第二个样例中，我们可以令 $k=1$，这是可取的最小值。我们先选择 $i=1,j=2$ 进行涂色，再选择 $i=2,j=3$ 进行涂色。之后，格子 $1,2,3$ 都被涂成了黑色，其中只有格子 $2$ 的编号不在给定列表中，满足 $x=1$ 的条件。",
+  "samples": [
+    {
+      "input": "4\n2 0\n1 3\n2 1\n1 3\n3 1\n2 5 7\n10 2\n0 6 8 10 13 14 16 19 25 31\n",
+      "output": "2\n1\n2\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:41.148Z",
+  "translatedAt": "2026-10-30T17:36:48.084Z",
+  "translateModel": "gpt-6.1-sol"
+}

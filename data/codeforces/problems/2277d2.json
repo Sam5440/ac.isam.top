@@ -1,0 +1,32 @@
+{
+  "id": "2277D2",
+  "platform": "codeforces",
+  "contestId": 2277,
+  "index": "D2",
+  "title": "Number Operating (Hard Version)",
+  "titleZh": "数字操作（困难版）",
+  "url": "https://codeforces.com/contest/2277/problem/D2",
+  "difficulty": null,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "divide and conquer",
+    "dp"
+  ],
+  "points": 2250,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "*[Harry Styles - Carla's Song](https://open.spotify.com/track/3QuRLv8zkIYH31O5VgEpmo)*\n\n**This is the hard version of the problem. The difference between the versions is that in this version, there is no constraint on the sum of $r - l + 1$ over all test cases.**\n\nYou have a variable $x$, initially equal to $0$. In one operation, you can do one of the following:\n\n- Operation $1$: add $2^k$ to $x$, where $k$ is the number of times Operation $1$ has been performed in a row immediately before this one (in particular, $k = 0$ if this is the first operation or the previous operation was Operation $2$);\n- Operation $2$: subtract $1$ from $x$ (the result may be negative).\n\nFor a non-negative integer $n$, let $f(n)$ be the minimum number of operations needed to make $x$ equal to $n$. It can be shown that this is always possible.\n\nYou are given two integers $l$ and $r$. Find $\\sum\\limits_{n = l}^{r} f(n)$. Since the answer can be very large, output it modulo $998\\,244\\,353$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe only line of each test case contains two integers $l$ and $r$ ($0 \\le l \\le r \\le 10^{18}$).\n\n## Output\n\nFor each test case, output a single integer — the value of $\\sum\\limits_{n = l}^{r} f(n)$ modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, $l = r = 4$. Initially, $x = 0$. One optimal sequence of $6$ operations is as follows:\n\n1. Perform Operation $1$ with $k = 0$, so $x$ becomes $0 + 2^0 = 1$.\n2. Perform Operation $1$ with $k = 1$, so $x$ becomes $1 + 2^1 = 3$.\n3. Perform Operation $1$ with $k = 2$, so $x$ becomes $3 + 2^2 = 7$.\n4. Perform Operation $2$, so $x$ becomes $7 - 1 = 6$.\n5. Perform Operation $2$, so $x$ becomes $6 - 1 = 5$.\n6. Perform Operation $2$, so $x$ becomes $5 - 1 = 4$.\n\nIt can be shown that $x = 4$ cannot be reached in $5$ or fewer operations. Thus, $f(4) = 6$, and the answer is $6$.\n\nIn the second test case, $l = 1$ and $r = 3$. We have $f(1) = 1$, $f(2) = 3$, and $f(3) = 2$. Thus, the answer is $1 + 3 + 2 = 6$.\n\nIn the third test case, $l = r = 127$. We can perform Operation $1$ seven times in a row to reach $x = 2^7 - 1 = 127$. It can be shown that $x = 127$ cannot be reached in $6$ or fewer operations. Thus, $f(127) = 7$, and the answer is $7$.",
+  "statementZhMd": "*[Harry Styles - Carla's Song](https://open.spotify.com/track/3QuRLv8zkIYH31O5VgEpmo)*\n\n**这是本题的困难版本。两个版本之间的区别在于，在本版本中，不限制所有测试用例的 $r - l + 1$ 之和。**\n\n你有一个变量 $x$，初始值为 $0$。在一次操作中，你可以执行以下操作之一：\n\n- 操作 $1$：将 $2^k$ 加到 $x$ 上，其中 $k$ 是紧接在本次操作之前连续执行操作 $1$ 的次数（特别地，如果这是第一次操作，或者上一次操作是操作 $2$，则 $k = 0$）；\n- 操作 $2$：从 $x$ 中减去 $1$（结果可能为负数）。\n\n对于非负整数 $n$，令 $f(n)$ 表示使 $x$ 等于 $n$ 所需的最少操作次数。可以证明，这始终是可行的。\n\n给定两个整数 $l$ 和 $r$。求 $\\sum\\limits_{n = l}^{r} f(n)$。由于答案可能非常大，请输出答案对 $998\\,244\\,353$ 取模后的结果。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例仅包含一行，其中有两个整数 $l$ 和 $r$（$0 \\le l \\le r \\le 10^{18}$）。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——$\\sum\\limits_{n = l}^{r} f(n)$ 的值对 $998\\,244\\,353$ 取模后的结果。\n\n## 说明\n\n在第一个测试用例中，$l = r = 4$。初始时，$x = 0$。以下是一种由 $6$ 次操作组成的最优操作序列：\n\n1. 执行操作 $1$，其中 $k = 0$，于是 $x$ 变为 $0 + 2^0 = 1$。\n2. 执行操作 $1$，其中 $k = 1$，于是 $x$ 变为 $1 + 2^1 = 3$。\n3. 执行操作 $1$，其中 $k = 2$，于是 $x$ 变为 $3 + 2^2 = 7$。\n4. 执行操作 $2$，于是 $x$ 变为 $7 - 1 = 6$。\n5. 执行操作 $2$，于是 $x$ 变为 $6 - 1 = 5$。\n6. 执行操作 $2$，于是 $x$ 变为 $5 - 1 = 4$。\n\n可以证明，无法在 $5$ 次或更少的操作内得到 $x = 4$。因此，$f(4) = 6$，答案为 $6$。\n\n在第二个测试用例中，$l = 1$ 且 $r = 3$。我们有 $f(1) = 1$、$f(2) = 3$ 和 $f(3) = 2$。因此，答案为 $1 + 3 + 2 = 6$。\n\n在第三个测试用例中，$l = r = 127$。连续执行七次操作 $1$，可以得到 $x = 2^7 - 1 = 127$。可以证明，无法在 $6$ 次或更少的操作内得到 $x = 127$。因此，$f(127) = 7$，答案为 $7$。",
+  "samples": [
+    {
+      "input": "5\n4 4\n1 3\n127 127\n0 1000\n999999999999900001 1000000000000000000\n",
+      "output": "6\n6\n7\n25383\n102936941\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:27:17.707Z",
+  "translatedAt": "2026-10-30T17:36:27.159Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2271G",
+  "platform": "codeforces",
+  "contestId": 2271,
+  "index": "G",
+  "title": "Grid Filling",
+  "titleZh": "网格填充",
+  "url": "https://codeforces.com/contest/2271/problem/G",
+  "difficulty": 3100,
+  "tags": [
+    "constructive algorithms",
+    "greedy",
+    "implementation"
+  ],
+  "points": 3500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a grid of size $n \\times m$. The rows are numbered from $1$ to $n$ from top to bottom, and the columns are numbered from $1$ to $m$ from left to right. Two cells are *adjacent* if they share a side.\n\nThere are $h$ horizontal and $v$ vertical cuts in the grid. The $i$-th horizontal cut goes between rows $r_i$ and $r_i + 1$, and the $j$-th vertical cut goes between columns $c_j$ and $c_j + 1$; every cut crosses the whole grid. Together with the borders of the grid, the cuts split it into $(h + 1) \\cdot (v + 1)$ rectangular *pieces*.\n\nWrite a positive integer in every cell of the grid so that both of the following conditions hold:\n\n- any two adjacent cells contain different integers, **even if** these cells belong to different pieces;\n- every piece consisting of $x$ cells contains each of the integers $1, 2, \\ldots, x$ exactly once.\n\nFind any way to fill the grid satisfying these conditions, or determine that it is impossible.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains four integers $n$, $m$, $h$, and $v$ ($1 \\le n, m \\le 1000$, $0 \\le h \\lt n$, $0 \\le v \\lt m$) — the number of rows of the grid, the number of columns of the grid, the number of horizontal cuts, and the number of vertical cuts.\n\nThe next line contains $h$ integers $r_1, r_2, \\ldots, r_h$ ($1 \\le r_1 \\lt r_2 \\lt \\ldots \\lt r_h \\lt n$) — the positions of the horizontal cuts. If $h = 0$, this line is not present.\n\nThe next line contains $v$ integers $c_1, c_2, \\ldots, c_v$ ($1 \\le c_1 \\lt c_2 \\lt \\ldots \\lt c_v \\lt m$) — the positions of the vertical cuts. If $v = 0$, this line is not present.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $1000$.\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $1000$.\n\n## Output\n\nFor each test case, if there is no valid way to fill the grid, output $-1$.\n\nOtherwise, output $n$ lines. The $i$-th of these lines should contain $m$ integers — the numbers written in the cells of the $i$-th row of the grid, from left to right.\n\nIf there are multiple valid ways to fill the grid, output any of them.\n\n## Note\n\nIn the first example, one possible way to fill the grid is shown below:\n\n![image](https://espresso.codeforces.com/eda15f0cc6ccf867e34bf8e9a617023beda6bea5.png)\n\nIn the third example, the dashed lines represent the cuts. One possible way to fill the grid is shown below:\n\n![image](https://espresso.codeforces.com/b5c8bbd174903f93312dd6854945c5de3930c5b8.png)\n\nIn the fourth example, it can be shown that no valid filling exists.",
+  "statementZhMd": "给定一个大小为 $n \\times m$ 的网格。行从上到下编号为 $1$ 到 $n$，列从左到右编号为 $1$ 到 $m$。如果两个格子共用一条边，则称它们*相邻*。\n\n网格中有 $h$ 条横向切割线和 $v$ 条纵向切割线。第 $i$ 条横向切割线位于第 $r_i$ 行与第 $r_i + 1$ 行之间，第 $j$ 条纵向切割线位于第 $c_j$ 列与第 $c_j + 1$ 列之间；每条切割线都贯穿整个网格。这些切割线与网格边界一起，将网格分成 $(h + 1) \\cdot (v + 1)$ 个矩形*区域*。\n\n请在网格的每个格子中填入一个正整数，使以下两个条件都成立：\n\n- 任意两个相邻格子中的整数都不同，**即使**它们属于不同的区域；\n- 每个由 $x$ 个格子组成的区域中，整数 $1, 2, \\ldots, x$ 都恰好出现一次。\n\n请找出一种满足条件的填法，或者判断无解。\n\n## 输入格式\n\n每个输入包含多个测试用例。第一行包含测试用例数量 $t$ ($1 \\le t \\le 1000$)。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含四个整数 $n$、$m$、$h$ 和 $v$ ($1 \\le n, m \\le 1000$, $0 \\le h \\lt n$, $0 \\le v \\lt m$)——分别表示网格的行数、列数、横向切割线数量和纵向切割线数量。\n\n下一行包含 $h$ 个整数 $r_1, r_2, \\ldots, r_h$ ($1 \\le r_1 \\lt r_2 \\lt \\ldots \\lt r_h \\lt n$)——表示横向切割线的位置。如果 $h = 0$，则不存在这一行。\n\n下一行包含 $v$ 个整数 $c_1, c_2, \\ldots, c_v$ ($1 \\le c_1 \\lt c_2 \\lt \\ldots \\lt c_v \\lt m$)——表示纵向切割线的位置。如果 $v = 0$，则不存在这一行。\n\n保证所有测试用例的 $n$ 之和不超过 $1000$。\n\n保证所有测试用例的 $m$ 之和不超过 $1000$。\n\n## 输出格式\n\n对于每个测试用例，如果不存在满足条件的填法，输出 $-1$。\n\n否则，输出 $n$ 行。第 $i$ 行应包含 $m$ 个整数，表示网格第 $i$ 行各个格子中填入的数，从左到右排列。\n\n如果有多种满足条件的填法，输出任意一种即可。\n\n## 说明\n\n在第一个样例中，一种可能的填法如下图所示：\n\n![image](https://espresso.codeforces.com/eda15f0cc6ccf867e34bf8e9a617023beda6bea5.png)\n\n在第三个样例中，虚线表示切割线。一种可能的填法如下图所示：\n\n![image](https://espresso.codeforces.com/b5c8bbd174903f93312dd6854945c5de3930c5b8.png)\n\n在第四个样例中，可以证明不存在满足条件的填法。",
+  "samples": [
+    {
+      "input": "4\n3 3 0 0\n1 6 0 2\n1 3\n5 5 2 2\n2 3\n2 3\n4 4 2 2\n1 2\n1 2\n",
+      "output": "1 2 3\n4 5 6\n7 8 9\n1 2 1 2 1 3\n1 2 1 2 1\n3 4 2 3 4\n1 2 1 2 1\n3 4 2 3 4\n1 2 1 2 1\n-1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:51.537Z",
+  "translatedAt": "2026-10-30T17:37:51.756Z",
+  "translateModel": "gpt-6.1-sol"
+}

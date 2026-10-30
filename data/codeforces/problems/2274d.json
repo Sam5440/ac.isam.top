@@ -1,0 +1,26 @@
+{
+  "id": "2274D",
+  "platform": "codeforces",
+  "contestId": 2274,
+  "index": "D",
+  "title": "Robot Championship",
+  "titleZh": "机器人锦标赛",
+  "url": "https://codeforces.com/contest/2274/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Fran and Sofia have become huge fans of robot aura fights, so they have decided to create their own robot aura tournament. Since Sofia is a great expert on robots, Fran will need your help to win the championship.\n\nA match of the tournament takes place on an $n \\times n$ board. The rows are numbered from **bottom to top** and the columns from left to right, so $(1, 1)$ is the bottom-left corner and $(n, n)$ is the top-right corner. The opponent's robot is hidden at some unknown cell $(i, j)$ and moves once every second, but you do not see it.\n\nAt the beginning of each second $s$, before the robot moves, you must choose an integer $v$ with $2 \\le v \\le 2n$ and shoot a laser along the diagonal\n\n$$\\{\\, (r, c) \\mid r + c = v \\,\\}.$$ The laser touches the robot if the robot is currently on a cell of that diagonal, in which case you win immediately. Otherwise, after your shot, suppose the robot is currently at $(r, c)$, the robot moves to one of the following cells, provided the move stays inside the board:\n\n- up: $(r + 1, c)$;\n- right: $(r, c + 1)$;\n- down-left: $(r - 1, c - 1)$.\n\n![image](https://espresso.codeforces.com/76c8fb5da81a03caa0f7e955b4dd790574238278.png) *The robot is at cell $(3,2)$ (its diagonal is $r+c=5$). The green laser is the diagonal $v=7$, which does not touch the robot.*\n\nThe robot is adversarial: it may start on any cell, and it may choose any valid sequence of moves. You have to output a fixed sequence of at most $3n$ diagonals $v_1, v_2, \\ldots, v_k$ such that, no matter where the robot starts and no matter how it moves, at least one of the lasers is guaranteed to touch it at some second during the tournament.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 44$). The description of the test cases follows.\n\nThe only line of each test case contains a single integer $n$ ($2 \\le n \\le 100$) — the size of the board.\n\nIt is guaranteed that the sum of $n^3$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each testcase, print two lines. The first line contains an integer $k$ ($1 \\le k \\le 3n$) — the number of lasers.\n\nThe second line contains $k$ integers $v_1, v_2, \\ldots, v_k$ ($2 \\le v_i \\le 2n$) — the diagonals in the order they are shot.\n\nYou may print any valid sequence.\n\n## Note\n\nFor $n = 2$, the sequence $3, 3, 3$ works. The first laser $3$ removes the diagonal $r + c = 3$ (cells $(1, 2)$ and $(2, 1)$). Cell $(1, 1)$ must move onto that same diagonal on the next turn, and cell $(2, 2)$ is forced to follow the path $(2, 2) \\to (1, 1) \\to$ the same diagonal. The second and third lasers catch both.\n\nFor $n = 3$, the sequence $4, 4, 4$ works. A robot on the diagonal $r + c = 4$ is hit by the first laser. From the diagonal $r + c = 3$ or from cell $(3, 3)$, every move leads onto $r + c = 4$, so the second laser hits it. From cell $(1, 1)$ or from the diagonal $r + c = 5$, every move leads onto $r + c = 3$ or to cell $(3, 3)$, so the third laser hits it.",
+  "statementZhMd": "题目描述\n\nFran 和 Sofia 成为了机器人气场对战的超级粉丝，因此决定创建属于自己的机器人气场锦标赛。由于 Sofia 是机器人方面的专家，Fran 需要你的帮助来赢得冠军。\n\n锦标赛中的一场比赛在一个 $n \\times n$ 的棋盘上进行。行从**下到上**编号，列从左到右编号，因此 $(1, 1)$ 是左下角，$(n, n)$ 是右上角。对手的机器人藏在某个未知的格子 $(i, j)$ 中，并且每秒移动一次，但你看不见它。\n\n在每秒 $s$ 开始时、机器人移动之前，你必须选择一个满足 $2 \\le v \\le 2n$ 的整数 $v$，并沿对角线\n\n$$\\{\\, (r, c) \\mid r + c = v \\,\\}$$\n\n发射激光。如果机器人当前位于这条对角线上的某个格子，激光就会击中机器人，此时你立即获胜。否则，假设机器人当前位于 $(r, c)$，在发射激光后，机器人会移动到以下某个格子中，前提是移动后仍在棋盘内：\n\n- 向上：$(r + 1, c)$；\n- 向右：$(r, c + 1)$；\n- 左下：$(r - 1, c - 1)$。\n\n![image](https://espresso.codeforces.com/76c8fb5da81a03caa0f7e955b4dd790574238278.png) *机器人位于格子 $(3,2)$（其所在对角线为 $r+c=5$）。绿色激光是对角线 $v=7$，不会击中机器人。*\n\n机器人是对抗性的：它可以从任意格子开始，也可以选择任意合法的移动序列。你需要输出一个长度不超过 $3n$ 的固定对角线序列 $v_1, v_2, \\ldots, v_k$，使得无论机器人从哪里开始、如何移动，都能保证在比赛期间的某一秒被至少一道激光击中。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 44$）。接下来是各测试用例的描述。\n\n每个测试用例仅包含一行，其中有一个整数 $n$（$2 \\le n \\le 100$）——棋盘的大小。\n\n保证所有测试用例的 $n^3$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出两行。第一行包含一个整数 $k$（$1 \\le k \\le 3n$）——激光的数量。\n\n第二行包含 $k$ 个整数 $v_1, v_2, \\ldots, v_k$（$2 \\le v_i \\le 2n$）——按发射顺序排列的对角线编号。\n\n你可以输出任意一个合法的序列。\n\n## 说明\n\n当 $n = 2$ 时，序列 $3, 3, 3$ 可行。第一道激光 $3$ 会清除对角线 $r + c = 3$（格子 $(1, 2)$ 和 $(2, 1)$）。格子 $(1, 1)$ 必须在下一回合移动到同一条对角线上，而格子 $(2, 2)$ 被迫沿着路径 $(2, 2) \\to (1, 1) \\to$ 同一条对角线移动。第二道和第三道激光会将它们全部击中。\n\n当 $n = 3$ 时，序列 $4, 4, 4$ 可行。位于对角线 $r + c = 4$ 上的机器人会被第一道激光击中。从对角线 $r + c = 3$ 或格子 $(3, 3)$ 出发时，每次移动都会到达 $r + c = 4$，因此第二道激光会将其击中。从格子 $(1, 1)$ 或对角线 $r + c = 5$ 出发时，每次移动都会到达 $r + c = 3$ 或格子 $(3, 3)$，因此第三道激光会将其击中。",
+  "samples": [
+    {
+      "input": "2\n2\n3\n",
+      "output": "3\n3 3 3\n3\n4 4 4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:23.440Z",
+  "translatedAt": "2026-10-30T17:35:44.387Z",
+  "translateModel": "gpt-6.1-sol"
+}

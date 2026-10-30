@@ -1,0 +1,32 @@
+{
+  "id": "2268B",
+  "platform": "codeforces",
+  "contestId": 2268,
+  "index": "B",
+  "title": "What a SauSaGe! It's All Meat",
+  "titleZh": "多么美味的香肠！全是肉",
+  "url": "https://codeforces.com/contest/2268/problem/B",
+  "difficulty": 1500,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "data structures",
+    "math"
+  ],
+  "points": 1000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "In SauSaGe City, there are $n$ different flavors of sausages. Reyhaneh, the Queen of SauSaGe City, keeps $a_i$ ($a_i \\lt 16$) sausages of flavor $i$ in the royal warehouse.\n\nOver time, the royal inventory undergoes $q$ updates. Each update is given in the form $(p, x)$, which means the number of sausages of flavor $p$ in the warehouse is changed to $x$ (i.e., $a_p := x$).\n\nReyhaneh can perform the following operation on the sausages any number of times (possibly zero):\n\n- Choose an index $1 \\leq i \\lt n$ and an integer $1 \\leq k \\leq 5$, then replace $a_i$ and $a_{i+1}$ with $a_i \\oplus (3 \\cdot k)$ and $a_{i+1} \\oplus (3 \\cdot k)$, respectively, where $\\oplus$ denotes the [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\nIn SauSaGe City, a sausage flavor is called *All-Meat* if its quantity is divisible by $3$. Three famous sausage critics — Shafi, Shafaghi, and Ghaffari — only like flavors that are All-Meat.\n\nBefore processing any updates, and after each of the $q$ updates, you need to answer the following question: If Reyhaneh performs an arbitrary number of operations optimally, what is the maximum possible number of sausage flavors that the three critics would like?\n\n**Note:** The operations you perform to find the answer for each state are hypothetical and do not affect the array for subsequent queries. However, the $q$ inventory updates ($a_p := x$) are permanent.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($2 \\leq n \\leq 2 \\cdot 10^5$, $0 \\leq q \\leq 2 \\cdot 10^5$) — the number of sausage flavors and the number of updates, respectively.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\leq a_i \\lt 16$) — the initial numbers of sausages of each flavor.\n\nThen $q$ lines follow, each containing two integers $p$ and $x$ ($1 \\leq p \\leq n$, $0 \\leq x \\lt 16$), meaning that $a_p$ is replaced with $x$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\nIt is guaranteed that the sum of $q$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output $q + 1$ integers. The first integer denotes the answer for the initial array. The next $q$ integers denote the answer for each update.\n\n## Note\n\nIn the first test case, the initial array is $[10, 3]$. By choosing $i = 1$ and $k = 1$ (so we apply XOR with $3$), we obtain $[10 \\oplus 3, 3 \\oplus 3] = [9, 0]$, and both $9$ and $0$ are divisible by $3$. After the update, the array becomes $[0, 3]$, where both elements are already divisible by $3$, so the answer is $2$ in both states.\n\nIn the second test case, the initial array is $[15, 1, 5]$. By choosing $i = 2$ and $k = 3$ (XOR with $9$), we get $[15, 1 \\oplus 9, 5 \\oplus 9] = [15, 8, 12]$, and $15$ and $12$ are divisible by $3$, so the answer is $2$.\n\nAfter the first update, the array is $[15, 1, 0]$. Again, two elements ($15$ and $0$) are divisible by $3$, so the answer is $2$.\n\nAfter the second update, the array is $[10, 1, 0]$. Choosing $i = 1$ and $k = 3$ (XOR with $9$) gives $[10 \\oplus 9, 1 \\oplus 9, 0] = [3, 8, 0]$, where $3$ and $0$ are divisible by $3$, so the answer remains $2$.",
+  "statementZhMd": "在 SauSaGe 城中，有 $n$ 种不同口味的香肠。SauSaGe 城的女王 Reyhaneh 在王室仓库中保存着口味 $i$ 的 $a_i$（$a_i \\lt 16$）根香肠。\n\n随着时间推移，王室库存会进行 $q$ 次更新。每次更新以 $(p, x)$ 的形式给出，表示仓库中口味 $p$ 的香肠数量变为 $x$（即 $a_p := x$）。\n\nReyhaneh 可以对这些香肠执行以下操作任意次（也可以一次都不执行）：\n\n- 选择一个下标 $1 \\leq i \\lt n$ 和一个整数 $1 \\leq k \\leq 5$，然后分别将 $a_i$ 和 $a_{i+1}$ 替换为 $a_i \\oplus (3 \\cdot k)$ 和 $a_{i+1} \\oplus (3 \\cdot k)$，其中 $\\oplus$ 表示[按位异或](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n在 SauSaGe 城中，如果某种口味的香肠数量能被 $3$ 整除，则称该口味为*全肉*（All-Meat）。三位著名的香肠评论家——Shafi、Shafaghi 和 Ghaffari——只喜欢全肉口味。\n\n在处理更新之前，以及每次更新之后，你需要回答以下问题：如果 Reyhaneh 以最优方式执行任意次操作，三位评论家最多会喜欢多少种香肠口味？\n\n**注意：**对于每个状态，为求得答案而执行的操作都是假设性的，不会影响后续查询中的数组。然而，$q$ 次库存更新（$a_p := x$）是永久性的。\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\leq t \\leq 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$2 \\leq n \\leq 2 \\cdot 10^5$，$0 \\leq q \\leq 2 \\cdot 10^5$），分别表示香肠口味的数量和更新次数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\lt 16$），表示每种口味香肠的初始数量。\n\n接下来 $q$ 行，每行包含两个整数 $p$ 和 $x$（$1 \\leq p \\leq n$，$0 \\leq x \\lt 16$），表示将 $a_p$ 替换为 $x$。\n\n保证所有测试用例中 $n$ 的总和不超过 $2\\cdot 10^5$。\n\n保证所有测试用例中 $q$ 的总和不超过 $2\\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，输出 q + 1 个整数。第一个整数表示初始数组的答案，接下来的 q 个整数表示每次更新后的答案。\n\n## 说明\n\n在第一个测试用例中，初始数组为 $[10, 3]$。通过选择 $i = 1$ 和 $k = 1$（即与 $3$ 进行 XOR），可以得到 $[10 \\oplus 3, 3 \\oplus 3] = [9, 0]$，此时 $9$ 和 $0$ 都能被 $3$ 整除。更新后，数组变为 $[0, 3]$，其中两个元素本来就都能被 $3$ 整除，因此这两种状态下的答案都是 $2$。\n\n在第二个测试用例中，初始数组为 $[15, 1, 5]$。通过选择 $i = 2$ 和 $k = 3$（与 $9$ 进行 XOR），得到 $[15, 1 \\oplus 9, 5 \\oplus 9] = [15, 8, 12]$，其中 $15$ 和 $12$ 能被 $3$ 整除，因此答案为 $2$。\n\n第一次更新后，数组变为 $[15, 1, 0]$。同样地，两个元素（$15$ 和 $0$）能被 $3$ 整除，因此答案为 $2$。\n\n第二次更新后，数组变为 $[10, 1, 0]$。选择 $i = 1$ 和 $k = 3$（与 $9$ 进行 XOR）得到 $[10 \\oplus 9, 1 \\oplus 9, 0] = [3, 8, 0]$，其中 $3$ 和 $0$ 能被 $3$ 整除，因此答案仍为 $2$。",
+  "samples": [
+    {
+      "input": "3\n2 1\n10 3\n1 0\n3 3\n15 1 5\n3 0\n1 10\n2 0\n4 0\n1 2 3 4\n",
+      "output": "2 2\n2 2 2 3\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:08.595Z",
+  "translatedAt": "2026-10-30T17:41:46.083Z",
+  "translateModel": "gpt-6.1-sol"
+}

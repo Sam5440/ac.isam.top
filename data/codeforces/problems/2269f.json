@@ -1,0 +1,26 @@
+{
+  "id": "2269F",
+  "platform": "codeforces",
+  "contestId": 2269,
+  "index": "F",
+  "title": "AghaBalaSar and Hamed",
+  "titleZh": "AghaBalaSar 与 Hamed",
+  "url": "https://codeforces.com/contest/2269/problem/F",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a permutation$^{\\text{∗}}$ $p$ of length $n$.\n\nFor each index $i$, you may move in one step to:\n\n- any index $j \\lt i$, or\n- the first index $j \\gt i$ such that $p_j \\gt p_i$ (if such an index exists),\n\nIn other words:\n\n- You can always move to any position on the left.\n- On the right, you can move only to the **nearest** position whose value is strictly greater than the current one.\n\nFor every pair of indices $(i,j)$, let $f(i,j)$ be the minimum number of steps needed to move from $i$ to $j$. Note that if we cannot reach $j$ from $i$, then $f(i,j)=0$.\n\nYour task is to compute:\n\n$$\\sum_{1 \\le i,j \\le n} f(i,j).$$\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\leq n \\leq 10^6$) — the length of $p$.\n\nThe second line of each test case contains $n$ distinct integers $p_1,p_2,\\ldots,p_n$ ($1\\le p_i\\le n$) — the elements of $p$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, print a single integer — the value of $\\sum\\limits_{1 \\le i,j \\le n} f(i,j)$.\n\n## Note\n\nIn the first test case, $f(1, 2) + f(2, 1) = 1 + 1 = 2$.\n\nIn the second test case, $f(1, 2) + f(2, 1) = 0 + 1 = 1$.\n\nIn the third test case, $f(1, 2) + f(1, 3) + f(2, 1) + f(2, 3) + f(3, 1) + f(3, 2) = 1 + 0 + 1 + 0 + 1 + 1 = 4$.\n\nIn the fourth test case, $f(1, 2) + f(1, 3) + f(2, 1) + f(2, 3) + f(3, 1) + f(3, 2) = 1 + 2 + 1 + 1 + 1 + 1 = 7$.",
+  "statementZhMd": "给定一个长度为 $n$ 的排列$^{\\text{∗}}$ $p$。\n\n对于每个下标 $i$，你可以用一步移动到：\n\n- 任意下标 $j \\lt i$，或\n- 第一个满足 $p_j \\gt p_i$ 的下标 $j \\gt i$（如果存在这样的下标）。\n\n换句话说：\n\n- 你始终可以移动到左侧的任意位置。\n- 向右移动时，你只能移动到值严格大于当前位置的值的**最近**位置。\n\n对于每一对下标 $(i,j)$，设 $f(i,j)$ 为从 $i$ 移动到 $j$ 所需的最少步数。注意，如果无法从 $i$ 到达 $j$，则 $f(i,j)=0$。\n\n你的任务是计算：\n\n$$\\sum_{1 \\le i,j \\le n} f(i,j).$$\n\n$^{\\text{∗}}$长度为 $n$ 的排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 10^6$）——$p$ 的长度。\n\n每组测试用例的第二行包含 $n$ 个互不相同的整数 $p_1,p_2,\\ldots,p_n$（$1\\le p_i\\le n$）——$p$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数——$\\sum\\limits_{1 \\le i,j \\le n} f(i,j)$ 的值。\n\n## 说明\n\n在第一组测试用例中，$f(1, 2) + f(2, 1) = 1 + 1 = 2$。\n\n在第二组测试用例中，$f(1, 2) + f(2, 1) = 0 + 1 = 1$。\n\n在第三组测试用例中，$f(1, 2) + f(1, 3) + f(2, 1) + f(2, 3) + f(3, 1) + f(3, 2) = 1 + 0 + 1 + 0 + 1 + 1 = 4$。\n\n在第四组测试用例中，$f(1, 2) + f(1, 3) + f(2, 1) + f(2, 3) + f(3, 1) + f(3, 2) = 1 + 2 + 1 + 1 + 1 + 1 = 7$。",
+  "samples": [
+    {
+      "input": "6\n2\n1 2\n2\n2 1\n3\n1 3 2\n3\n1 2 3\n5\n1 3 5 2 4\n7\n6 2 4 3 7 5 1\n",
+      "output": "2\n1\n4\n7\n15\n38\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:01.220Z",
+  "translatedAt": "2026-10-30T17:38:36.518Z",
+  "translateModel": "gpt-6.1-sol"
+}

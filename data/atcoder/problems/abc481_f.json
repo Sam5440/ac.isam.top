@@ -1,0 +1,37 @@
+{
+  "id": "abc481_f",
+  "platform": "atcoder",
+  "contestId": "abc481",
+  "index": "F",
+  "title": "Evil Shortest Path",
+  "titleZh": "邪恶最短路径",
+  "url": "https://atcoder.jp/contests/abc481/tasks/abc481_f",
+  "difficulty": 1621,
+  "tags": [],
+  "points": 525,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a directed graph with $N$ vertices and $M$ edges. The vertices are numbered $1,2,\\ldots,N$. The $i$-th edge goes from vertex $A_i$ to vertex $B_i$, and a digit $C_i$ between $1$ and $9$, inclusive, is written on this edge.\n\nWhen moving along the edges in their directions, the integer obtained by concatenating the digits written on the traversed edges in the order they are traversed is called the **score** of the movement. For example, if the digits written on the traversed edges are $3,1,4$ in this order, the **score** of the movement is $314$. The same vertex or edge may be traversed multiple times.\n\nFor each $v=2,3,\\ldots,N$, find the minimum **score** of a movement from vertex $1$ to vertex $v$, modulo $998244353$. Here, it is guaranteed that the given directed graph allows moving from vertex $1$ to every other vertex along the edges in their directions.\n\n## Constraints\n\n- $2 \\le N \\le 2\\times 10^5$\n- $N-1 \\le M \\le 2\\times 10^5$\n- $1 \\le A_i,B_i \\le N$\n- $1 \\le C_i \\le 9$\n- All input values are integers.\n- It is possible to move from vertex $1$ to every other vertex along the edges in their directions.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nA_1 B_1 C_1\nA_2 B_2 C_2\n\\vdots\nA_M B_M C_M\n```\n\n## Output\n\nPrint $N-1$ lines. The $(v-1)$-th line should contain the value found for vertex $v$.",
+  "statementZhMd": "## 题目描述\n\n给定一个有向图，包含 $N$ 个顶点和 $M$ 条边。顶点编号为 $1,2,\\ldots,N$。第 $i$ 条边从顶点 $A_i$ 指向顶点 $B_i$，边上标有一个介于 $1$ 和 $9$（含）之间的数字 $C_i$。\n\n沿边的方向移动时，按照经过边的顺序，将这些边上标记的数字拼接得到的整数称为这次移动的**得分**。例如，若经过的边上依次标有数字 $3,1,4$，则这次移动的**得分**为 $314$。同一个顶点或同一条边可以经过多次。\n\n对于每个 $v=2,3,\\ldots,N$，求从顶点 $1$ 移动到顶点 $v$ 所能得到的最小**得分**，并对 $998244353$ 取模。保证给定的有向图中，从顶点 $1$ 出发可以沿边的方向到达每个其他顶点。\n\n## 约束条件\n\n- $2 \\le N \\le 2\\times 10^5$\n- $N-1 \\le M \\le 2\\times 10^5$\n- $1 \\le A_i,B_i \\le N$\n- $1 \\le C_i \\le 9$\n- 所有输入值均为整数。\n- 从顶点 $1$ 出发可以沿边的方向到达每个其他顶点。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN M\nA_1 B_1 C_1\nA_2 B_2 C_2\n\\vdots\nA_M B_M C_M\n```\n\n## 输出格式\n\n输出 $N-1$ 行。第 $(v-1)$ 行应包含顶点 $v$ 对应的答案。",
+  "samples": [
+    {
+      "input": "4 4\n1 2 1\n1 3 1\n2 4 9\n3 4 2\n",
+      "output": "1\n1\n12\n",
+      "note": "- For vertex $2$, $1\\xrightarrow{1}2$ gives a score of $1$.\n- For vertex $3$, $1\\xrightarrow{1}3$ gives a score of $1$.\n- For vertex $4$, $1\\xrightarrow{1}2\\xrightarrow{9}4$ gives a score of $19$, and $1\\xrightarrow{1}3\\xrightarrow{2}4$ gives a score of $12$, so the minimum is $12$.\n\nThus, print $1, 1, 12$, separated by newlines."
+    },
+    {
+      "input": "3 5\n1 2 9\n1 2 2\n2 2 1\n1 3 9\n2 3 1\n",
+      "output": "2\n9\n",
+      "note": "- For vertex $2$, $1\\xrightarrow{9}2$ gives a score of $9$, and $1\\xrightarrow{2}2$ gives a score of $2$, so the minimum is $2$.\n- For vertex $3$, $1\\xrightarrow{9}3$ gives a score of $9$, and $1\\xrightarrow{2}2\\xrightarrow{1}3$ gives a score of $21$, so the minimum is $9$.\n\nNote that the given graph may contain multi-edges and self-loops."
+    },
+    {
+      "input": "11 11\n1 2 9\n2 3 9\n3 4 8\n4 5 2\n5 6 4\n6 7 4\n7 8 3\n8 9 5\n9 10 3\n9 10 2\n10 11 9\n",
+      "output": "9\n99\n998\n9982\n99824\n998244\n9982443\n99824435\n998244352\n998244352\n",
+      "note": "Note that the score should be printed modulo $998244353$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:22:43.862Z",
+  "translatedAt": "2026-10-30T17:31:47.491Z",
+  "translateModel": "gpt-6.1-sol"
+}

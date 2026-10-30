@@ -1,0 +1,33 @@
+{
+  "id": "2264D",
+  "platform": "codeforces",
+  "contestId": 2264,
+  "index": "D",
+  "title": "Dr. Agos's Dark Mode",
+  "titleZh": "Agos 博士的深色模式",
+  "url": "https://codeforces.com/contest/2264/problem/D",
+  "difficulty": 1900,
+  "tags": [
+    "brute force",
+    "chinese remainder theorem",
+    "constructive algorithms",
+    "math",
+    "strings"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Someone has chopped up Dr. Agos's chickens. Furious, he turns to the one thing that still brings him comfort: his OLED screen. Today, he wants almost all of it black.\n\nThe screen has a single row of $n$ pixels. Its pattern is represented by a binary string $s$; $s_i = 0$ means that the $i$-th pixel is dark, and $s_i = 1$ means that it is lit.\n\nDr. Agos finds a contiguous segment of pixels *irritating* if, when read from left to right as a binary integer, its value is divisible by $3$. More precisely, the segment from position $l$ to position $r$ ($1 \\le l \\le r \\le n$) has value $$ \\sum_{i=l}^{r} s_i \\cdot 2^{r-i}. $$ Leading zeroes are allowed. A segment consisting only of dark pixels has value $0$, which is also divisible by $3$.\n\nLet $f(s)$ be the number of irritating segments. Segments with different pairs of endpoints $(l,r)$ are counted separately, even if their pixel patterns are identical.\n\nDr. Agos wants a pattern with at most three lit pixels that minimizes $f(s)$ among all binary strings of length $n$, including strings with more than three ones. Help him construct such a pattern.\n\nWe can show that an answer always exists.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe only line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of pixels in the row.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a binary string $s$ of length $n$ describing Dr. Agos's screen. It must contain at most three ones and minimize $f(s)$ among all binary strings of length $n$.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\nFor $n=1$, Dr. Agos can light the only pixel, giving $s=\\mathtt{1}$. The only segment has value $1$, so it is not irritating and $f(s)=0$.\n\nFor $n=2$, he can light both pixels, giving $s=\\mathtt{11}$. The whole row has binary value $3$ and is irritating, while each individual pixel has value $1$. Thus, $f(s)=1$. Every binary string of length $2$ has at least one irritating segment, so this is optimal.\n\nThe displayed patterns are not necessarily unique.",
+  "statementZhMd": "有人把 Agos 博士的鸡剁成了碎块。他怒不可遏，转而寻求唯一还能给他带来慰藉的东西：他的 OLED 屏幕。今天，他希望屏幕几乎全黑。\n\n屏幕只有一行，共有 $n$ 个像素。屏幕图案用一个二进制字符串 $s$ 表示；$s_i = 0$ 表示第 $i$ 个像素是暗的，$s_i = 1$ 表示它是亮的。\n\n如果将一段连续像素从左到右视为一个二进制整数，其值能被 $3$ 整除，Agos 博士就会觉得这段像素*令人烦躁*。更准确地说，从位置 $l$ 到位置 $r$（$1 \\le l \\le r \\le n$）的区间的值为 $$ \\sum_{i=l}^{r} s_i \\cdot 2^{r-i}. $$ 允许前导零。仅由暗像素组成的区间的值为 $0$，它也能被 $3$ 整除。\n\n设 $f(s)$ 为令人烦躁的区间数量。端点对 $(l,r)$ 不同的区间分别计数，即使它们的像素图案完全相同。\n\nAgos 博士希望构造一个至多有三个亮像素的图案，使其 $f(s)$ 在所有长度为 $n$ 的二进制字符串中达到最小值，比较范围也包括含有超过三个 $1$ 的字符串。请帮助他构造这样的图案。\n\n可以证明，答案总是存在。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试用例的描述。\n\n每组测试用例仅包含一行，其中有一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——这一行中的像素数量。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个长度为 $n$ 的二进制字符串 $s$，表示 Agos 博士的屏幕图案。它必须至多包含三个 $1$，并且其 $f(s)$ 必须在所有长度为 $n$ 的二进制字符串中达到最小值。\n\n如果有多个解，输出其中任意一个即可。\n\n## 说明\n\n当 $n=1$ 时，Agos 博士可以点亮唯一的像素，得到 $s=\\mathtt{1}$。唯一的区间的值为 $1$，因此它不令人烦躁，且 $f(s)=0$。\n\n当 $n=2$ 时，他可以点亮两个像素，得到 $s=\\mathtt{11}$。整行对应的二进制数的值为 $3$，因此令人烦躁，而每个单独像素的值均为 $1$。所以，$f(s)=1$。每个长度为 $2$ 的二进制字符串都至少有一个令人烦躁的区间，因此这是最优解。\n\n所展示的图案不一定是唯一的。",
+  "samples": [
+    {
+      "input": "6\n1\n2\n3\n4\n5\n6\n",
+      "output": "1\n11\n101\n0101\n10101\n010100\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:26.110Z",
+  "translatedAt": "2026-10-30T17:41:08.858Z",
+  "translateModel": "gpt-6.1-sol"
+}

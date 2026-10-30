@@ -1,0 +1,31 @@
+{
+  "id": "2277C",
+  "platform": "codeforces",
+  "contestId": 2277,
+  "index": "C",
+  "title": "Edge Addeleting",
+  "titleZh": "删除边",
+  "url": "https://codeforces.com/contest/2277/problem/C",
+  "difficulty": null,
+  "tags": [
+    "dfs and similar",
+    "greedy",
+    "trees"
+  ],
+  "points": 1500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "*[Frums - Credits](https://www.youtube.com/watch?v=EOTAWLaDa58)*\n\nYou are given a tree with $n$ vertices, numbered from $1$ to $n$.\n\nYou need to perform $m$ operations on this tree. The $i$-th operation consists of two steps:\n\n1. an edge between vertex $1$ and vertex $v_i$ is added, which creates a cycle;\n2. you choose one edge of this cycle (possibly the newly added one) and delete it, so the graph becomes a tree again.\n\nIf there is already an edge between vertex $1$ and vertex $v_i$, the new edge is still added, and the cycle consists of these two parallel edges.\n\nFind the maximum possible distance$^{\\text{∗}}$ between vertices $1$ and $n$ after all $m$ operations.\n\n$^{\\text{∗}}$The distance between two vertices in a tree is the number of edges on the unique simple path between them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\le n \\le 5 \\cdot 10^5$, $1 \\le m \\le 5 \\cdot 10^5$) — the number of vertices and the number of operations.\n\nEach of the next $n - 1$ lines contains two integers $x$ and $y$ ($1 \\le x, y \\le n$, $x \\ne y$) — an edge of the initial tree. It is guaranteed that the given edges form a tree.\n\nThe next line contains $m$ integers $v_1, v_2, \\ldots, v_m$ ($2 \\le v_i \\le n$), describing the operations.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum possible distance between vertices $1$ and $n$ after all $m$ operations.\n\n## Note\n\nIn the first test case, the tree consists of a single edge $(1, 2)$, and it stays the same after every operation. Thus, the answer is $1$.\n\nIn the second test case, the distance between vertices $1$ and $3$ is initially $2$, and neither operation can increase it. Thus, the answer is $2$.\n\nIn the third test case, we can delete the newly added edge in the first operation. In the second operation, the edge $(1, 5)$ is added, and we delete the edge $(1, 2)$. After that, the path from $1$ to $7$ is $1 \\to 5 \\to 4 \\to 2 \\to 3 \\to 7$, so the distance is $5$. It can be shown that no larger distance is possible. Thus, the answer is $5$.",
+  "statementZhMd": "*[Frums - Credits](https://www.youtube.com/watch?v=EOTAWLaDa58)*\n\n给定一棵有 $n$ 个顶点的树，顶点编号为 $1$ 到 $n$。\n\n你需要对这棵树进行 $m$ 次操作。第 $i$ 次操作包含两个步骤：\n\n1. 添加一条连接顶点 $1$ 和顶点 $v_i$ 的边，从而形成一个环；\n2. 选择并删除这个环上的一条边（可以是刚添加的边），使图重新变成一棵树。\n\n如果顶点 $1$ 和顶点 $v_i$ 之间已经有一条边，仍然会添加新边，此时这个环由这两条平行边组成。\n\n求完成所有 $m$ 次操作后，顶点 $1$ 和顶点 $n$ 之间的最大可能距离$^{\\text{∗}}$。\n\n$^{\\text{∗}}$树中两个顶点之间的距离是它们之间唯一简单路径上的边数。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 5 \\cdot 10^5$，$1 \\le m \\le 5 \\cdot 10^5$）——分别表示顶点数和操作次数。\n\n接下来的 $n - 1$ 行，每行包含两个整数 $x$ 和 $y$（$1 \\le x, y \\le n$，$x \\ne y$），表示初始树中的一条边。保证给出的边构成一棵树。\n\n接下来一行包含 $m$ 个整数 $v_1, v_2, \\ldots, v_m$（$2 \\le v_i \\le n$），描述这些操作。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n保证所有测试用例的 $m$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——完成所有 $m$ 次操作后，顶点 $1$ 和顶点 $n$ 之间的最大可能距离。\n\n## 说明\n\n在第一个测试用例中，这棵树只有一条边 $(1, 2)$，每次操作后它都保持不变。因此答案为 $1$。\n\n在第二个测试用例中，顶点 $1$ 和顶点 $3$ 之间的初始距离为 $2$，两次操作都无法增加这个距离。因此答案为 $2$。\n\n在第三个测试用例中，第一次操作时可以删除刚添加的边。第二次操作时，添加边 $(1, 5)$，并删除边 $(1, 2)$。此后，从 $1$ 到 $7$ 的路径为 $1 \\to 5 \\to 4 \\to 2 \\to 3 \\to 7$，因此距离为 $5$。可以证明无法得到更大的距离，所以答案为 $5$。",
+  "samples": [
+    {
+      "input": "5\n2 2\n1 2\n2 2\n3 2\n1 2\n2 3\n2 3\n7 2\n1 2\n2 3\n3 7\n2 4\n4 5\n1 6\n6 5\n10 4\n1 2\n2 3\n3 10\n2 4\n4 5\n5 6\n1 7\n7 8\n8 9\n9 8 6 10\n7 1\n1 2\n2 7\n1 3\n3 4\n4 5\n5 6\n6\n",
+      "output": "1\n2\n5\n6\n2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:27:17.706Z",
+  "translatedAt": "2026-10-30T17:34:34.831Z",
+  "translateModel": "gpt-6.1-sol"
+}

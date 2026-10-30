@@ -1,0 +1,35 @@
+{
+  "id": "abc475_e",
+  "platform": "atcoder",
+  "contestId": "abc475",
+  "index": "E",
+  "title": "Quiz Competition: Qualifiers",
+  "titleZh": "问答竞赛：晋级者",
+  "url": "https://atcoder.jp/contests/abc475/tasks/abc475_e",
+  "difficulty": 1737,
+  "tags": [],
+  "points": 475,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nA preliminary round of a quiz competition was held. There are $N$ participants, numbered $1$ to $N$, and at most $M$ of them can pass the preliminary round.\n\nThe preliminary round consists of $K$ two-choice quiz questions, and the answer to each question is `o` or `x`.\nParticipant $i$'s answer to the $j$-th question is given as the $j$-th character of the string $S_i$.\nThe correct answer to the $j$-th question is given as the $j$-th character of the string $T$.\n\nThe qualifiers are determined by the following procedure.\n\n- Initially, the numbers of qualifiers and non-qualifiers are both $0$; all $N$ participants are undetermined.\n- For $k=1,2,\\dots,K$ in this order, perform the following process.\n- If the number of qualifiers plus the number of undetermined participants who answered the $k$-th question correctly is at most $M$, then all undetermined participants who answered the $k$-th question correctly become qualifiers.\n  - Otherwise, all undetermined participants who answered the $k$-th question incorrectly become non-qualifiers.\n- All remaining undetermined participants become non-qualifiers.\n\nYou are given $Q$ queries in the following format. Process them in order.\n\n- Integers $i$ and $j$ are given. Change participant $i$'s answer to the $j$-th question from `o` to `x`, or from `x` to `o`. Then, determine whether participant $i$ passes the preliminary round.\n\nThe change of the answer in each query remains in effect when processing subsequent queries as well.\n\n## Constraints\n\n- $1 \\leq M \\leq N \\leq 3\\times 10^4$\n- $1 \\leq K \\leq 200$\n- $S_i$ and $T$ are strings of length $K$ consisting of `o` and `x`.\n- $1 \\leq Q \\leq 5\\times 10^4$\n- For each query, $1\\leq i \\leq N$ and $1 \\leq j \\leq K$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M K\nT\nS_1\n\\vdots\nS_N\nQ\n\\mathrm{query}_1\n\\vdots\n\\mathrm{query}_Q\n```\n\nHere, $\\mathrm{query}_q$ represents the $q$-th query, and is given in the following format:\n\n```\ni j\n```\n\n## Output\n\nOutput $Q$ lines.\nThe $q$-th line should contain `Yes` if the participant specified in the $q$-th query passes the preliminary round, and `No` otherwise.",
+  "statementZhMd": "## 题目描述\n\n一场问答竞赛的预赛已经举行。共有 $N$ 名参赛者，编号为 $1$ 至 $N$，其中至多有 $M$ 人可以通过预赛。\n\n预赛由 $K$ 道二选一的问答题组成，每道题的答案为 `o` 或 `x`。\n参赛者 $i$ 对第 $j$ 道题的回答由字符串 $S_i$ 的第 $j$ 个字符给出。\n第 $j$ 道题的正确答案由字符串 $T$ 的第 $j$ 个字符给出。\n\n晋级者按照以下过程确定。\n\n- 初始时，晋级者和未晋级者的人数均为 $0$；$N$ 名参赛者全部处于未确定状态。\n- 按照 $k=1,2,\\dots,K$ 的顺序，执行以下过程。\n- 如果晋级者人数与第 $k$ 道题回答正确的未确定参赛者人数之和不超过 $M$，则所有回答第 $k$ 道题正确的未确定参赛者都成为晋级者。\n  - 否则，所有回答第 $k$ 道题错误的未确定参赛者都成为未晋级者。\n- 所有剩余的未确定参赛者都成为未晋级者。\n\n接下来给出 $Q$ 个询问。请按顺序处理。\n\n- 给出整数 $i$ 和 $j$。将参赛者 $i$ 对第 $j$ 道题的答案从 `o` 改为 `x`，或从 `x` 改为 `o`。然后，判断参赛者 $i$ 是否通过预赛。\n\n每次询问中答案的修改在处理后续询问时也会保持有效。\n\n## 约束条件\n\n- $1 \\leq M \\leq N \\leq 3\\times 10^4$\n- $1 \\leq K \\leq 200$\n- $S_i$ 和 $T$ 是长度为 $K$ 且仅由 `o` 和 `x` 构成的字符串。\n- $1 \\leq Q \\leq 5\\times 10^4$\n- 对于每个询问，$1\\leq i \\leq N$ 且 $1 \\leq j \\leq K$。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN M K\nT\nS_1\n\\vdots\nS_N\nQ\n\\mathrm{query}_1\n\\vdots\n\\mathrm{query}_Q\n```\n\n其中，$\\mathrm{query}_q$ 表示第 $q$ 个询问，格式如下：\n\n```\ni j\n```\n\n## 输出格式\n\n输出 $Q$ 行。\n第 $q$ 行应包含 `Yes`，如果第 $q$ 个询问中指定的参赛者通过了预赛；否则应包含 `No`。",
+  "samples": [
+    {
+      "input": "5 3 3\noxo\noxo\noxx\nxxo\nxox\nxoo\n3\n5 1\n1 3\n4 1\n",
+      "output": "Yes\nYes\nNo\n",
+      "note": "- Before the first query, participants $1,2$ pass on the first question and participant $3$ passes on the second question, so the qualifiers are the three participants $1,2,3$.\n- After the first query, participants $1,2,5$ pass on the first question, so the qualifiers are the three participants $1,2,5$. Since participant $5$ passes the preliminary round, output `Yes`.\n- After the second query, participants $1,2,5$ still pass on the first question, so the qualifiers are the three participants $1,2,5$. Since participant $1$ passes the preliminary round, output `Yes`.\n- After the third query, participant $3$ is eliminated on the first question, participants $1,2$ pass on the second question, and participant $5$ passes on the third question, so the qualifiers remain the three participants $1,2,5$. Since participant $4$ does not pass the preliminary round, output `No`."
+    },
+    {
+      "input": "3 1 2\nox\nxo\noo\nox\n4\n3 1\n1 1\n2 2\n1 2\n",
+      "output": "No\nNo\nYes\nNo\n"
+    },
+    {
+      "input": "1 1 1\no\no\n2\n1 1\n1 1\n",
+      "output": "No\nYes\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:29:40.464Z",
+  "translatedAt": "2026-10-30T17:34:06.028Z",
+  "translateModel": "gpt-6.1-sol"
+}

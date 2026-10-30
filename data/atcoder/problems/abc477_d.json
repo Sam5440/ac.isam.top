@@ -1,0 +1,31 @@
+{
+  "id": "abc477_d",
+  "platform": "atcoder",
+  "contestId": "abc477",
+  "index": "D",
+  "title": "Masking Tape",
+  "titleZh": "遮蔽胶带",
+  "url": "https://atcoder.jp/contests/abc477/tasks/abc477_d",
+  "difficulty": 946,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $N$ squares arranged in a horizontal row, numbered square $1$ to square $N$ from left to right. Colors are represented by lowercase English letters.\n\nInitially, the color of every square is `a`, and nothing is placed on any square.\n\nYou are given $Q$ queries; process them in the given order. Each query is of one of the following two types:\n\n- `1 X` : If no tile is placed on square $X$, place a tile on it; if a tile is placed on it, remove it.\n- `2 C` : Change the color of every square on which no tile is placed to $C$.\n\nFind the color of each square after processing all queries (regardless of whether a tile is placed on it).\n\n## Constraints\n\n- $1 \\le N,Q \\le 3\\times 10^5$\n- Each query is of type $1$ or type $2$.\n- In type-$1$ queries, $X$ is an integer satisfying $1 \\le X \\le N$.\n- In type-$2$ queries, $C$ is a single lowercase English letter.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN Q\n\\mathrm{query}_1\n\\vdots\n\\mathrm{query}_Q\n```\n\nEach query $\\mathrm{query}_i ~ (1 \\le i \\le Q)$ is given in the form\n\n```\n1 X\n```\n\nor\n\n```\n2 C\n```\n\n## Output\n\nOutput the final colors of the squares as a string of length $N$, concatenated from left to right.",
+  "statementZhMd": "## 题目描述\n\n有 $N$ 个方格从左到右排成一行，依次编号为方格 $1$ 到方格 $N$。颜色用小写英文字母表示。\n\n初始时，每个方格的颜色都是 `a`，且没有任何方格上放置块。\n\n给定 $Q$ 个询问，请按给定顺序处理。每个询问属于以下两种类型之一：\n\n- `1 X`：如果方格 $X$ 上没有放置块，则在该方格上放置一个块；如果已经放置了块，则将其移除。\n- `2 C`：将所有没有放置块的方格的颜色改为 $C$。\n\n请找出处理完所有询问后每个方格的颜色（无论该方格上是否放置了块）。\n\n## 约束条件\n\n- $1 \\le N,Q \\le 3\\times 10^5$\n- 每个询问的类型为 $1$ 或 $2$。\n- 在类型为 $1$ 的询问中，$X$ 是满足 $1 \\le X \\le N$ 的整数。\n- 在类型为 $2$ 的询问中，$C$ 是一个小写英文字母。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN Q\n\\mathrm{query}_1\n\\vdots\n\\mathrm{query}_Q\n```\n\n每个询问 $\\mathrm{query}_i ~ (1 \\le i \\le Q)$ 按以下格式之一给出：\n\n```\n1 X\n```\n\n或\n\n```\n2 C\n```\n\n## 输出格式\n\n将每个方格最终的颜色从左到右拼接成一个长度为 $N$ 的字符串并输出。",
+  "samples": [
+    {
+      "input": "3 5\n1 2\n2 b\n1 1\n1 2\n2 c\n",
+      "output": "bcc\n",
+      "note": "We represent the state of tiles as a string formed by concatenating, from left to right, `#` if a tile is placed and `.` otherwise.\n\nThe queries change the colors of the squares and the state of tiles as follows. The initial state is `aaa` and `...`.\n\n- Processing the $1$-st query places a tile on square $2$. The state becomes `aaa` and `.#.`.\n- Processing the $2$-nd query changes the color of the squares without tiles to `b`. The state becomes `bab` and `.#.`.\n- Processing the $3$-rd query places a tile on square $1$. The state becomes `bab` and `##.`.\n- Processing the $4$-th query removes the tile on square $2$. The state becomes `bab` and `#..`.\n- Processing the $5$-th query changes the color of the squares without tiles to `c`. The state becomes `bcc` and `#..`.\n\nThus, output `bcc`. A tile remains placed on square $1$, but even in that case, output the color of the square."
+    },
+    {
+      "input": "10 15\n1 8\n2 m\n1 3\n1 10\n2 q\n1 6\n1 10\n2 d\n1 1\n2 z\n1 9\n2 f\n1 4\n1 7\n2 k\n",
+      "output": "dkmfkqfazk\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:29:12.618Z",
+  "translatedAt": "2026-10-30T17:32:53.006Z",
+  "translateModel": "gpt-6.1-sol"
+}

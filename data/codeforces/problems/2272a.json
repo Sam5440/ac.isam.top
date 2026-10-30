@@ -1,0 +1,31 @@
+{
+  "id": "2272A",
+  "platform": "codeforces",
+  "contestId": 2272,
+  "index": "A",
+  "title": "Maximize One MEX",
+  "titleZh": "最大化一个 MEX",
+  "url": "https://codeforces.com/contest/2272/problem/A",
+  "difficulty": null,
+  "tags": [
+    "brute force",
+    "constructive algorithms",
+    "greedy"
+  ],
+  "points": 500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Given an array $a$ of length $n$, which is a permutation of the integers $0,1,\\ldots,n-1$, you can perform the following operation **at most** once:\n\n- Choose two distinct indices $i$ and $j$ ($i \\ne j$), and swap the values of $a_i$ and $a_j$.\n\nAfter performing the operation, define $f_i=\\operatorname{mex}(a_1, a_2, \\ldots, a_i)$. $\\operatorname{mex}(c)$ denotes the minimum excluded (MEX)$^{\\text{∗}}$ of the collection $c$.\n\nGiven an integer $k$, find two indices to use in the operation above so as to maximize the $k$-th largest value among $f_1, f_2, \\ldots, f_n$. If no operation is needed, output $-1$.\n\nIf there are several valid answers, you may output any of them.\n\n$^{\\text{∗}}$The minimum excluded (MEX) of a collection of integers $c_1, c_2, \\ldots, c_k$ is defined as the smallest non-negative integer $x$ which does not occur in the collection $c$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 50$). The description of the test cases follows.\n\nFor each test case, the first line contains two integers $n$ and $k$ ($2 \\le n \\le 100$, $1 \\le k \\le n$), where $n$ is the number of elements in the array $a$ and $k$ is the rank of the value to be maximized (with $k=1$ corresponding to the largest value).\n\nThe next line contains $n$ integers: $a_1,a_2,\\ldots,a_n$. It is guaranteed that each of the values $0,1,\\ldots,n−1$ appears exactly once in the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $100$.\n\n## Output\n\nFor each test case, output a single line that contains two indices used in the operation to maximize the $k$-th largest value among $f_1, f_2, \\ldots, f_n$. If no operation is needed, output $-1$.\n\n## Note\n\nIn the first test case, no operation is needed; the $1$st largest value among $f_1, f_2, \\ldots, f_5$ is $f_5=5$. Actually, if we perform the swap operation, no matter which two indices we choose, $f_5$ is always the largest one, with value $5$.\n\nIn the second test case, after swapping $a_1$ and $a_3$, we get the array $[1,0,2]$, and $f_1=0, f_2=2, f_3=3$; the $2$nd largest value among $f_1, f_2, f_3$ is $f_2=2$.",
+  "statementZhMd": "给定一个长度为 $n$ 的数组 $a$，它是整数 $0,1,\\ldots,n-1$ 的一个排列。你可以**至多**执行一次以下操作：\n\n- 选择两个不同的下标 $i$ 和 $j$（$i \\ne j$），交换 $a_i$ 和 $a_j$ 的值。\n\n执行操作后，定义 $f_i=\\operatorname{mex}(a_1, a_2, \\ldots, a_i)$。$\\operatorname{mex}(c)$ 表示集合 $c$ 的最小未出现非负整数（MEX）$^{\\text{∗}}$。\n\n给定一个整数 $k$，请找出用于上述操作的两个下标，使 $f_1, f_2, \\ldots, f_n$ 中第 $k$ 大的值最大。如果不需要执行操作，则输出 $-1$。\n\n如果有多个合法答案，你可以输出其中任意一个。\n\n$^{\\text{∗}}$整数集合 $c_1, c_2, \\ldots, c_k$ 的最小未出现非负整数（MEX）定义为未在集合 $c$ 中出现的最小非负整数 $x$。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 50$）。接下来是各组测试用例的描述。\n\n对于每组测试用例，第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 100$，$1 \\le k \\le n$），其中 $n$ 是数组 $a$ 的元素个数，$k$ 是要最大化的值的排名（$k=1$ 对应最大值）。\n\n下一行包含 $n$ 个整数：$a_1,a_2,\\ldots,a_n$。保证 $0,1,\\ldots,n−1$ 中的每个值都在数组 $a$ 中恰好出现一次。\n\n保证所有测试用例的 $n$ 之和不超过 $100$。\n\n## 输出格式\n\n对于每组测试用例，输出一行，包含用于操作的两个下标，使 $f_1, f_2, \\ldots, f_n$ 中第 $k$ 大的值最大。如果不需要执行操作，则输出 $-1$。\n\n## 说明\n\n在第一组测试用例中，不需要执行操作；$f_1, f_2, \\ldots, f_5$ 中第 $1$ 大的值是 $f_5=5$。事实上，即使执行交换操作，无论选择哪两个下标，$f_5$ 始终是最大值，且其值为 $5$。\n\n在第二组测试用例中，交换 $a_1$ 和 $a_3$ 后，得到数组 $[1,0,2]$，此时 $f_1=0, f_2=2, f_3=3$；$f_1, f_2, f_3$ 中第 $2$ 大的值是 $f_2=2$。",
+  "samples": [
+    {
+      "input": "3\n5 1\n0 1 2 3 4\n3 2\n2 0 1\n5 2\n0 2 1 4 3\n",
+      "output": "-1\n1 3\n4 5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:41.148Z",
+  "translatedAt": "2026-10-30T17:36:36.815Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2267E",
+  "platform": "codeforces",
+  "contestId": 2267,
+  "index": "E",
+  "title": "Clean Substrings",
+  "titleZh": "整洁子串",
+  "url": "https://codeforces.com/contest/2267/problem/E",
+  "difficulty": 2000,
+  "tags": [
+    "combinatorics",
+    "data structures",
+    "math"
+  ],
+  "points": 1750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "A binary string $t$ of length $m$ is called *clean* if $t_i = t_{i+1}$ for all $1\\le i\\lt m$.\n\nThe chief engineer of the country has made another discovery. He invented a smart robot that can perform the following operation on any binary string $t$ for one coin:\n\n- Choose any *clean* substring$^{\\text{∗}}$ of the string $t$.\n- Invert all elements of the substring (change $0$ to $1$ and vice versa).\n\nDefine the *beauty* of a string $t$ as the minimum number of coins needed to make it *clean*. Define the *power* of a string $t$ as the sum of the *beauties* of all its substrings.\n\nYou are given a binary string $s$ of length $n$. The engineer's competitors are going to modify the string exactly $q$ times. Each modification is described by one number $i$. After the modification, $s_i$ is inverted. Your task is to compute the *power* of the string $s$ before and after each modification.\n\n$^{\\text{∗}}$A string $a$ is a substring of a string $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1\\le n, q\\le 2\\cdot 10^5$) — the length of the binary string and the number of modifications.\n\nThe second line of each test case contains the binary string $s$.\n\nThe next $q$ lines of each test case contain one integer $i$ ($1\\le i\\le n$) — the description of the modifications.\n\nIt is guaranteed that the sum of all $n$ values and the sum of all $q$ values over all test cases do not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output $q + 1$ integers separated by spaces — the answer before the modifications and after each modification of the string.\n\n## Note\n\nConsider the first test case.\n\nBefore the modifications, the string $s$ is `110`. The *power* of the string is $2$:\n\n- The *beauty* of substring $s[1, 1]$ is 0.\n- The *beauty* of substring $s[2, 2]$ is 0.\n- The *beauty* of substring $s[3, 3]$ is 0.\n- The *beauty* of substring $s[1, 2]$ is 0.\n- The *beauty* of substring $s[2, 3]$ is 1.\n- The *beauty* of substring $s[1, 3]$ is 1.\n\nAfter the modification, the string $s$ is\n\n100\n\n. Now the\n\npower\n\nis $2$:\n\n- The *beauty* of substring $s[1, 1]$ is 0.\n- The *beauty* of substring $s[2, 2]$ is 0.\n- The *beauty* of substring $s[3, 3]$ is 0.\n- The *beauty* of substring $s[1, 2]$ is 1.\n- The *beauty* of substring $s[2, 3]$ is 0.\n- The *beauty* of substring $s[1, 3]$ is 1.",
+  "statementZhMd": "长度为 $m$ 的二进制字符串 $t$ 被称为*整洁*，当且仅当对于所有 $1\\le i\\lt m$，都有 $t_i = t_{i+1}$。\n\n这个国家的总工程师又有了新的发现。他发明了一台智能机器人，只需花费一枚硬币，就可以对任意二进制字符串 $t$ 执行以下操作：\n\n- 选择字符串 $t$ 的任意*整洁*子串$^{\\text{∗}}$。\n- 翻转该子串中的所有元素（将 0 变为 1，反之亦然）。\n\n定义字符串 $t$ 的*美丽度*为将其变为*整洁*所需的最少硬币数。定义字符串 $t$ 的*能量*为其所有子串的*美丽度*之和。\n\n现在给定一个长度为 $n$ 的二进制字符串 $s$。工程师的竞争对手将对该字符串进行恰好 $q$ 次修改。每次修改由一个数字 $i$ 描述。修改后，$s_i$ 将被翻转。你的任务是计算字符串 $s$ 在修改前以及每次修改后的*能量*。\n\n$^{\\text{∗}}$如果字符串 $a$ 可以通过从字符串 $b$ 的开头删除若干个（可能为零个或全部）字符，并从结尾删除若干个（可能为零个或全部）字符得到，则称 $a$ 是 $b$ 的子串。\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来给出各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$1\\le n, q\\le 2\\cdot 10^5$）——二进制字符串的长度以及修改次数。\n\n每个测试用例的第二行包含二进制字符串 $s$。\n\n接下来的 $q$ 行中，每行包含一个整数 $i$（$1\\le i\\le n$）——表示一次修改。\n\n保证所有测试用例的 $n$ 之和以及所有测试用例的 $q$ 之和均不超过 $2\\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，输出 $q + 1$ 个由空格分隔的整数——分别表示修改前以及每次修改后的答案。\n\n## 说明\n\n考虑第一个测试用例。\n\n修改前，字符串 $s$ 为 `110`。该字符串的*能量*为 $2$：\n\n- 子串 $s[1, 1]$ 的*美丽度*为 0。\n- 子串 $s[2, 2]$ 的*美丽度*为 0。\n- 子串 $s[3, 3]$ 的*美丽度*为 0。\n- 子串 $s[1, 2]$ 的*美丽度*为 0。\n- 子串 $s[2, 3]$ 的*美丽度*为 1。\n- 子串 $s[1, 3]$ 的*美丽度*为 1。\n\n修改后，字符串 $s$ 为\n\n100\n\n。现在字符串的\n\n能量\n\n为 $2$：\n\n- 子串 $s[1, 1]$ 的*美丽度*为 0。\n- 子串 $s[2, 2]$ 的*美丽度*为 0。\n- 子串 $s[3, 3]$ 的*美丽度*为 0。\n- 子串 $s[1, 2]$ 的*美丽度*为 1。\n- 子串 $s[2, 3]$ 的*美丽度*为 0。\n- 子串 $s[1, 3]$ 的*美丽度*为 1。",
+  "samples": [
+    {
+      "input": "4\n3 1\n110\n2\n4 2\n1010\n1\n2\n8 4\n10101110\n3\n5\n2\n3\n10 5\n1100101110\n1\n6\n10\n7\n3\n",
+      "output": "2 2\n7 5 5\n36 23 22 25 26\n61 66 41 35 59 60\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:17.640Z",
+  "translatedAt": "2026-10-30T17:41:29.307Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "2277F",
+  "platform": "codeforces",
+  "contestId": 2277,
+  "index": "F",
+  "title": "Token Re-Moving",
+  "titleZh": "令牌重新移动",
+  "url": "https://codeforces.com/contest/2277/problem/F",
+  "difficulty": null,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "dsu",
+    "trees"
+  ],
+  "points": 3000,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "*[Taylor Swift - Patient Zero](https://open.spotify.com/track/11hcBLPtbMp4aQI6zGQLub)*\n\nYou are given a tree with $n$ vertices, numbered from $1$ to $n$. Initially, vertex $i$ contains $a_i$ tokens.\n\nSuppose the tree is rooted at some vertex $r$. An operation on a vertex $u$ moves all tokens currently located in the subtree$^{\\text{∗}}$ of $u$ to vertex $u$. The cost of this operation is the number of tokens at vertex $u$ after the move.\n\nYou are also given a permutation $p_1, p_2, \\ldots, p_n$ of the integers from $1$ to $n$. The weight of $p$ is the total cost of performing the operations on vertices $p_1, p_2, \\ldots, p_n$ in this order.\n\nFor each $r$ from $1$ to $n$, find the weight of $p$ when the tree is rooted at vertex $r$. For each $r$, the operations are performed independently, starting from the initial placement of tokens. Since the answers might be large, output them modulo $998\\,244\\,353$.\n\n$^{\\text{∗}}$A subtree of vertex $u$ is the subgraph consisting of $u$, all its descendants, and all the edges between them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 5 \\cdot 10^5$) — the number of vertices in the tree.\n\nEach of the next $n - 1$ lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n$, $u \\ne v$) — an edge between vertices $u$ and $v$. It is guaranteed that the given edges form a tree.\n\nThe next line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\lt 998\\,244\\,353$), where $a_i$ is the initial number of tokens at vertex $i$.\n\nThe next line contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\le p_i \\le n$, all $p_i$ are distinct) — the permutation $p$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers, where the $r$-th integer is the weight of $p$ when the tree is rooted at vertex $r$, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, consider $r = 1$. Initially, the token counts are $[1]$. The operation on vertex $p_1 = 1$ moves the tokens of the subtree $\\{1\\}$ to vertex $1$, so its cost is $1$. Thus, the weight of $p$ is $1$.\n\nIn the second test case, consider $r = 1$. Initially, the token counts are $[5, 13]$.\n\n- The operation on vertex $p_1 = 2$ moves the tokens of the subtree $\\{2\\}$ to vertex $2$, so its cost is $13$. The token counts stay $[5, 13]$.\n- The operation on vertex $p_2 = 1$ moves the tokens of the subtree $\\{1, 2\\}$ to vertex $1$, so its cost is $18$. The token counts become $[18, 0]$.\n\nThus, the weight of $p$ is $13 + 18 = 31$.\n\nIn the third test case, consider $r = 1$. Initially, the token counts are $[7, 2, 9]$.\n\n- The operation on vertex $p_1 = 2$ moves the tokens of the subtree $\\{2\\}$ to vertex $2$, so its cost is $2$. The token counts stay $[7, 2, 9]$.\n- The operation on vertex $p_2 = 3$ moves the tokens of the subtree $\\{3\\}$ to vertex $3$, so its cost is $9$. The token counts stay $[7, 2, 9]$.\n- The operation on vertex $p_3 = 1$ moves the tokens of the subtree $\\{1, 2, 3\\}$ to vertex $1$, so its cost is $18$. The token counts become $[18, 0, 0]$.\n\nThus, the weight of $p$ is $2 + 9 + 18 = 29$.",
+  "statementZhMd": "*[Taylor Swift - Patient Zero](https://open.spotify.com/track/11hcBLPtbMp4aQI6zGQLub)*\n\n给定一棵有 $n$ 个顶点的树，顶点编号为 $1$ 到 $n$。初始时，顶点 $i$ 上有 $a_i$ 个令牌。\n\n假设以某个顶点 $r$ 为根。对顶点 $u$ 执行一次操作，会将当前位于 $u$ 的子树$^{\\text{∗}}$中的所有令牌移到顶点 $u$。这次操作的代价为操作后顶点 $u$ 上的令牌数。\n\n另给定一个由 $1$ 到 $n$ 组成的排列 $p_1, p_2, \\ldots, p_n$。排列 $p$ 的权重为按顺序对顶点 $p_1, p_2, \\ldots, p_n$ 执行操作的总代价。\n\n对于每个 $r$（$1$ 到 $n$），求以顶点 $r$ 为根时排列 $p$ 的权重。对于每个 $r$，操作都独立进行，且从令牌的初始分布开始。由于答案可能很大，请将答案对 $998\\,244\\,353$ 取模后输出。\n\n$^{\\text{∗}}$顶点 $u$ 的子树是由 $u$、它的所有后代以及它们之间的所有边组成的子图。\n\n## 输入格式\n\n每个输入文件包含多组测试用例。第一行包含测试用例数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 5 \\cdot 10^5$）——树的顶点数。\n\n接下来 $n - 1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$，$u \\ne v$），表示顶点 $u$ 和顶点 $v$ 之间有一条边。保证给出的边构成一棵树。\n\n接下来一行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\le a_i \\lt 998\\,244\\,353$），其中 $a_i$ 表示顶点 $i$ 上的初始令牌数。\n\n接下来一行包含 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$1 \\le p_i \\le n$，且两两不同），表示排列 $p$。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数，其中第 $r$ 个整数表示以顶点 $r$ 为根时排列 $p$ 的权重，对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个测试用例中，考虑 $r = 1$ 的情况。初始令牌数为 $[1]$。对顶点 $p_1 = 1$ 执行操作，会将子树 ${1}$ 中的令牌移到顶点 $1$，因此代价为 $1$。所以排列 $p$ 的权重为 $1$。\n\n在第二个测试用例中，考虑 $r = 1$ 的情况。初始令牌数为 $[5, 13]$。\n\n- 对顶点 $p_1 = 2$ 执行操作，会将子树 ${2}$ 中的令牌移到顶点 $2$，因此代价为 $13$。令牌数仍为 $[5, 13]$。\n- 对顶点 $p_2 = 1$ 执行操作，会将子树 ${1, 2}$ 中的令牌移到顶点 $1$，因此代价为 $18$。令牌数变为 $[18, 0]$。\n\n所以排列 $p$ 的权重为 $13 + 18 = 31$。\n\n在第三个测试用例中，考虑 $r = 1$ 的情况。初始令牌数为 $[7, 2, 9]$。\n\n- 对顶点 $p_1 = 2$ 执行操作，会将子树 ${2}$ 中的令牌移到顶点 $2$，因此代价为 $2$。令牌数仍为 $[7, 2, 9]$。\n- 对顶点 $p_2 = 3$ 执行操作，会将子树 ${3}$ 中的令牌移到顶点 $3$，因此代价为 $9$。令牌数仍为 $[7, 2, 9]$。\n- 对顶点 $p_3 = 1$ 执行操作，会将子树 ${1, 2, 3}$ 中的令牌移到顶点 $1$，因此代价为 $18$。令牌数变为 $[18, 0, 0]$。\n\n所以排列 $p$ 的权重为 $2 + 9 + 18 = 29$。",
+  "samples": [
+    {
+      "input": "6\n1\n1\n1\n2\n1 2\n5 13\n2 1\n3\n1 2\n1 3\n7 2 9\n2 3 1\n4\n1 2\n1 3\n2 4\n3 1 4 1\n3 2 4 1\n8\n1 2\n2 3\n3 4\n4 5\n5 6\n6 7\n7 8\n17 23 31 12 8 45 19 62\n4 3 6 1 7 8 2 5\n10\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n4 8\n5 9\n6 10\n101 203 157 59 311 83 97 127 41 67\n3 10 2 8 1 7 5 6 9 4\n",
+      "output": "1\n31 18\n29 18 20\n15 13 9 21\n540 557 363 217 426 300 436 591\n2391 1650 1246 2837 2544 2409 2395 2710 3749 2342\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:27:17.707Z",
+  "translatedAt": "2026-10-30T17:35:10.073Z",
+  "translateModel": "gpt-6.1-sol"
+}

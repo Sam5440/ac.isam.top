@@ -1,0 +1,32 @@
+{
+  "id": "2272F",
+  "platform": "codeforces",
+  "contestId": 2272,
+  "index": "F",
+  "title": "Tree Reduction Game",
+  "titleZh": "树上缩减游戏",
+  "url": "https://codeforces.com/contest/2272/problem/F",
+  "difficulty": null,
+  "tags": [
+    "dfs and similar",
+    "dp",
+    "games",
+    "trees"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "Alice and Bob are playing a game on a tree with $n$ vertices. Alice moves first, and then they take turns.\n\nAt any moment, the tree has a designated root. Suppose the current root is $u$. On their turn, the current player must choose a child $v$ of $u$ and perform exactly one of the following operations:\n\n1. Make $v$ the new root.\n2. Delete the entire subtree$^{\\text{∗}}$ rooted at $v$.\n\nHere, parent-child relationships are determined with respect to the current root.\n\nDuring the entire game, each vertex can become the root **at most once**.\n\nIf a player has no valid move on their turn, that player loses.\n\nBefore the game begins, as compensation for moving second, Bob may choose any vertex as the initial root.\n\nGiven the tree, determine the winner assuming both players play optimally. If Bob can win, output all vertices that he can choose as the initial root to guarantee a victory, **in increasing order**.\n\n$^{\\text{∗}}$The subtree rooted at vertex $v$ is the set of all vertices that pass through $v$ on a simple path to the root (including $v$ itself).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 5 \\cdot 10^5$), the number of vertices in the tree.\n\nEach of the next $n-1$ lines contains two integers $u$ and $v$ ($1 \\le u,v \\le n$, $u \\ne v$), denoting an edge between vertices $u$ and $v$. It is guaranteed that the given graph is a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\n- If Alice wins, print `Alice`.\n- Otherwise, print `Bob` on the first line. On the second line, print an integer $k$, the number of vertices that Bob can choose as the initial root to guarantee his victory. On the third line, print $k$ distinct integers $v_1,v_2,\\ldots,v_k$ **in increasing order**, denoting all such vertices.\n\n## Note\n\nIn the first test case, regardless of which vertex Bob chooses as the initial root, Alice can remove the only child subtree on her first move. Bob then has no legal move, so Alice wins.\n\nIn the fifth test case, vertices $2$, $4$, and $6$ are winning choices for Bob. We explain vertex $2$; the other two cases are symmetric.\n\nIf Bob chooses vertex $2$ as the initial root, its children are $1$ and $3$.\n\n- If Alice changes the root from $2$ to $1$, Bob can change the root from $1$ to $4$ (or $6$).\n- If Alice deletes the subtree rooted at $1$, Bob deletes the subtree rooted at $3$, leaving Alice with no legal move.\n- If Alice changes the root from $2$ to $3$, Bob deletes the subtree rooted at $2$, again leaving Alice with no legal move.\n- If Alice deletes the subtree rooted at $3$, Bob deletes the subtree rooted at $1$.\n\nThus Bob can force a win when the initial root is $2$. By symmetry, the same holds for $4$ and $6$. If Bob chooses any of $1$, $3$, $5$, or $7$, Alice has a winning strategy. Therefore the answer is $2,4,6$.",
+  "statementZhMd": "Alice 和 Bob 在一棵有 $n$ 个顶点的树上进行游戏。Alice 先手，之后两人轮流行动。\n\n任意时刻，树上都有一个指定的根。设当前根为 $u$，当前玩家必须选择 $u$ 的一个子节点 $v$，并恰好执行以下操作之一：\n\n1. 将 $v$ 设为新的根。\n2. 删除以 $v$ 为根的整棵子树$^{\\text{∗}}$。\n\n这里的父子关系是相对于当前根确定的。\n\n在整个游戏过程中，每个顶点最多只能成为根一次。\n\n如果某位玩家在自己的回合没有合法操作，则该玩家输掉游戏。\n\n游戏开始前，作为后手的补偿，Bob 可以选择任意一个顶点作为初始根。\n\n给定这棵树，假设双方都采取最优策略，判断谁会获胜。如果 Bob 能获胜，则按**升序**输出他可以选择并确保获胜的所有初始根顶点。\n\n$^{\\text{∗}}$以顶点 $v$ 为根的子树，是所有从根到某个顶点的简单路径经过 $v$ 的顶点集合（包括 $v$ 本身）。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 5 \\cdot 10^5$），表示树的顶点数。\n\n接下来 $n-1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n$，$u \\ne v$），表示顶点 $u$ 和顶点 $v$ 之间有一条边。保证给定的图是一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n- 如果 Alice 获胜，输出 `Alice`。\n- 否则，第一行输出 `Bob`。第二行输出一个整数 $k$，表示 Bob 可以选择并确保获胜的初始根顶点数量。第三行按**升序**输出 $k$ 个互不相同的整数 $v_1,v_2,\\ldots,v_k$，表示所有这样的顶点。\n\n## 说明\n\n在第一组测试用例中，无论 Bob 选择哪个顶点作为初始根，Alice 都可以在第一步删除唯一的子节点子树。此后 Bob 没有合法操作，因此 Alice 获胜。\n\n在第五组测试用例中，顶点 $2$、$4$ 和 $6$ 是 Bob 的获胜选择。下面以顶点 $2$ 为例说明；其他两种情况对称。\n\n如果 Bob 选择顶点 $2$ 作为初始根，那么它的子节点是 $1$ 和 $3$。\n\n- 如果 Alice 将根从 $2$ 改为 $1$，Bob 可以将根从 $1$ 改为 $4$（或 $6$）。\n- 如果 Alice 删除以 $1$ 为根的子树，Bob 就删除以 $3$ 为根的子树，使 Alice 没有合法操作。\n- 如果 Alice 将根从 $2$ 改为 $3$，Bob 就删除以 $2$ 为根的子树，再次使 Alice 没有合法操作。\n- 如果 Alice 删除以 $3$ 为根的子树，Bob 就删除以 $1$ 为根的子树。\n\n因此，当初始根为 $2$ 时，Bob 可以确保获胜。根据对称性，顶点 $4$ 和 $6$ 也同样如此。如果 Bob 选择 $1$、$3$、$5$ 或 $7$ 中的任一顶点，Alice 都有必胜策略。因此答案是 $2,4,6$。",
+  "samples": [
+    {
+      "input": "6\n2\n1 2\n3\n1 2\n2 3\n5\n1 2\n1 3\n1 4\n1 5\n5\n1 2\n2 3\n3 4\n4 5\n7\n1 2\n2 3\n1 4\n4 5\n1 6\n6 7\n7\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n",
+      "output": "Alice\nBob\n1\n2\nBob\n1\n1\nBob\n2\n2 4\nBob\n3\n2 4 6\nBob\n1\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:41.149Z",
+  "translatedAt": "2026-10-30T17:37:01.863Z",
+  "translateModel": "gpt-6.1-sol"
+}

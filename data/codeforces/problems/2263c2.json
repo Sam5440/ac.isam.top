@@ -1,0 +1,26 @@
+{
+  "id": "2263C2",
+  "platform": "codeforces",
+  "contestId": 2263,
+  "index": "C2",
+  "title": "Floor of MEX (Hard Version)",
+  "titleZh": "MEX 的下取整（困难版）",
+  "url": "https://codeforces.com/contest/2263/problem/C2",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, you need to count how many sets satisfy the constraints. You can hack only if you solved all versions of this problem.**\n\nLet $$ f(S,x)=\\text{mex}\\left(\\left\\{\\left\\lfloor \\frac{y}{x}\\right\\rfloor : y\\in S\\right\\}\\right), $$ where $S$ is a set of non-negative integers and $x$ is a positive integer. $^{\\text{∗}}$\n\nFarmer John chooses a (possibly empty) subset $A\\subseteq \\{0,1,\\ldots,n-1\\}$. He then constructs an array $a$ of length $n$, where $a_k = f(A,k)$ for every $1\\le k\\le n$.\n\nBessie, being a mischievous cow, hides the set $A$. Farmer John is left only with the array $a_1,a_2,\\ldots,a_n$.\n\nYour task is to count how many sets (including the empty set) $B \\subseteq \\{0,1,\\ldots,n-1\\}$ such that $f(B,k)=a_k$ for every $1 \\le k \\le n$. Since the number can be very large, output it modulo $10^9+7$. **Farmer John will only give you arrays where such a $B$ exists**.\n\n$^{\\text{∗}}$$\\operatorname{mex}(c)$ denotes the minimum excluded (MEX)$^{\\text{∗}}$ of the collection $c$. (in this case, the minimum non-negative integer not present in the set)\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\leq n \\leq 10^5$).\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($0 \\leq a_i \\leq n$).\n\nYou will only be given arrays where there exists $B \\subseteq \\{0,1,\\ldots,n-1\\}$ such that $f(B,k)=a_k$ for every $1 \\le k \\le n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each testcase, output one number, the number of sets $B$ that satisfy the constraints modulo $10^9 + 7$.\n\n## Note\n\nFor the first testcase, the $6$ subsets are $$\\{1, 2, 5\\}, \\{1, 3, 5\\}, \\{1, 2, 3, 5\\}, \\{1, 2, 4, 5\\}, \\{1, 3, 4, 5\\}, \\{1, 2, 3, 4, 5\\}.$$$$\n\nFor the second testcase, the only subset that satisfies $f(B,k) = a_k$ for every $1 \\le k \\le n$ is $\\{0, 1\\}$$$.",
+  "statementZhMd": "**这是本题的困难版本。两个版本的区别在于，本版本要求统计满足约束条件的集合数量。只有解决了本题的所有版本，你才能进行 hack。**\n\n定义 $$ f(S,x)=\\text{mex}\\left(\\left\\{\\left\\lfloor \\frac{y}{x}\\right\\rfloor : y\\in S\\right\\}\\right), $$ 其中，$S$ 是一个非负整数集合，$x$ 是一个正整数。$^{\\text{∗}}$\n\nFarmer John 选择一个（可以为空的）子集 $A\\subseteq \\{0,1,\\ldots,n-1\\}$。随后，他构造一个长度为 $n$ 的数组 $a$，其中对于每个 $1\\le k\\le n$，都有 $a_k = f(A,k)$。\n\nBessie 是一头调皮的奶牛，她把集合 $A$ 藏了起来。Farmer John 手中只剩下数组 $a_1,a_2,\\ldots,a_n$。\n\n你的任务是统计有多少个集合（包括空集）$B \\subseteq \\{0,1,\\ldots,n-1\\}$，满足对于每个 $1 \\le k \\le n$，都有 $f(B,k)=a_k$。由于答案可能非常大，请输出答案对 $10^9+7$ 取模的结果。**Farmer John 只会给出存在这样的 $B$ 的数组**。\n\n$^{\\text{∗}}$$\\operatorname{mex}(c)$ 表示集合 $c$ 的最小排除数（MEX）$^{\\text{∗}}$。（在本题中，即未出现在集合中的最小非负整数）\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 10^5$）。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$0 \\leq a_i \\leq n$）。\n\n给出的数组保证存在 $B \\subseteq \\{0,1,\\ldots,n-1\\}$，使得对于每个 $1 \\le k \\le n$，都有 $f(B,k)=a_k$。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个数，表示满足约束条件的集合 $B$ 的数量对 $10^9 + 7$ 取模的结果。\n\n## 说明\n\n对于第一组测试用例，这 $6$ 个子集为 $$\\{1, 2, 5\\}, \\{1, 3, 5\\}, \\{1, 2, 3, 5\\}, \\{1, 2, 4, 5\\}, \\{1, 3, 4, 5\\}, \\{1, 2, 3, 4, 5\\}.$$$$\n\n对于第二组测试用例，唯一满足对于每个 $1 \\le k \\le n$ 都有 $f(B,k) = a_k$ 的子集是 $\\{0, 1\\}$$$。",
+  "samples": [
+    {
+      "input": "3\n6\n0 3 2 2 2 1\n5\n2 1 1 1 1\n6\n1 2 1 1 1 1\n",
+      "output": "6\n1\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:32.781Z",
+  "translatedAt": "2026-10-30T17:42:02.498Z",
+  "translateModel": "gpt-6.1-sol"
+}

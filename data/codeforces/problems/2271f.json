@@ -1,0 +1,33 @@
+{
+  "id": "2271F",
+  "platform": "codeforces",
+  "contestId": 2271,
+  "index": "F",
+  "title": "Beautiful Pillers",
+  "titleZh": "美丽的柱子",
+  "url": "https://codeforces.com/contest/2271/problem/F",
+  "difficulty": 2300,
+  "tags": [
+    "constructive algorithms",
+    "data structures",
+    "dp",
+    "greedy",
+    "implementation"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "For an array $b$ of $m$ integers, a pair of indices $(l, r)$ ($l \\lt r$) is called *good* if $b_l = b_r$ and there is no index $i$ ($l \\lt i \\lt r$) such that $b_i \\ge b_l$.\n\nWe say that an index $i$ is *covered* by a good pair $(l, r)$ if $l \\le i \\le r$.\n\nThe array $b$ is called *beautiful* if every index is *covered* by at least one good pair.\n\nYou are given an array $a$ of $n$ integers. You can perform the following operation with it: choose two integers $i$ and $x$ ($1 \\le i \\le n$, $1 \\le x \\le 10^9$) and set $a_i = x$.\n\nFind the minimum number of operations required to make the array *beautiful*. Also, output the operations. It can be shown that it is always possible to make the array *beautiful* using at most $n$ operations.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the length of the array $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer $k$ ($0 \\le k \\le n$) — the minimum number of operations.\n\nThen output $k$ lines describing the operations in the order they are applied. Each of these lines should contain two integers $i$ and $x$ ($1 \\le i \\le n$, $1 \\le x \\le 10^9$) — the index and the new value of the corresponding operation.\n\nIf there are multiple optimal sequences of operations, output any of them.\n\n## Note\n\nIn the first example, the array $a = [1, 2, 3]$ has no good pairs at all, so it is not *beautiful*. After the operation with $i = 1$ and $x = 3$, the array becomes $[3, 2, 3]$. The pair $(1, 3)$ is good because its endpoints are both $3$ and its only internal value is $2 \\lt 3$, so it *covers* all three indices.\n\nIn the second example, the array $a = [5, 3, 2, 5, 1, 7, 9, 9]$ has exactly two good pairs, $(1, 4)$ and $(7, 8)$, so the indices $5$ and $6$ are not *covered*. The operation with $i = 5$ and $x = 7$ turns the array into $[5, 3, 2, 5, 7, 7, 9, 9]$: the pairs $(1, 4)$ and $(7, 8)$ are still good, and the new good pair $(5, 6)$ *covers* the two remaining indices.\n\nIn the third example, the array is already *beautiful*, since $(i, i + 1)$ is a good pair for every $i$ from $1$ to $4$. Therefore, no operations are needed.",
+  "statementZhMd": "对于一个包含 $m$ 个整数的数组 $b$，如果一对下标 $(l, r)$（$l \\lt r$）满足 $b_l = b_r$，且不存在下标 $i$（$l \\lt i \\lt r$）使得 $b_i \\ge b_l$，则称这对下标为*好下标对*。\n\n如果一个下标 $i$ 满足 $l \\le i \\le r$，则称它被好下标对 $(l, r)$ *覆盖*。\n\n如果数组 $b$ 中的每个下标都至少被一个好下标对*覆盖*，则称数组 $b$ 是*美丽的*。\n\n给定一个包含 $n$ 个整数的数组 $a$。你可以对它进行以下操作：选择两个整数 $i$ 和 $x$（$1 \\le i \\le n$，$1 \\le x \\le 10^9$），并令 $a_i = x$。\n\n求使数组变得*美丽*所需的最少操作次数，并输出这些操作。可以证明，总能通过不超过 $n$ 次操作使数组变得*美丽*。\n\n## 输入\n\n每个输入包含多组测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——数组 $a$。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，输出一个整数 $k$（$0 \\le k \\le n$）——最少操作次数。\n\n然后输出 $k$ 行，按操作执行顺序描述这些操作。每行包含两个整数 $i$ 和 $x$（$1 \\le i \\le n$，$1 \\le x \\le 10^9$）——操作对应的下标和新值。\n\n如果存在多个最优操作序列，输出任意一个即可。\n\n## 说明\n\n第一个样例中，数组 $a = [1, 2, 3]$ 完全没有好下标对，因此它不是*美丽的*。执行 $i = 1$ 且 $x = 3$ 的操作后，数组变为 $[3, 2, 3]$。下标对 $(1, 3)$ 是好的，因为它的两个端点都是 $3$，且唯一的内部元素为 $2 \\lt 3$，所以它*覆盖*了全部三个下标。\n\n第二个样例中，数组 $a = [5, 3, 2, 5, 1, 7, 9, 9]$ 恰好有两个好下标对：$(1, 4)$ 和 $(7, 8)$，因此下标 $5$ 和 $6$ 没有被*覆盖*。执行 $i = 5$ 且 $x = 7$ 的操作后，数组变为 $[5, 3, 2, 5, 7, 7, 9, 9]$：下标对 $(1, 4)$ 和 $(7, 8)$ 仍然是好的，而新的好下标对 $(5, 6)$ *覆盖*了剩余的两个下标。\n\n第三个样例中，数组已经是*美丽的*，因为对于从 $1$ 到 $4$ 的每个 $i$，下标对 $(i, i + 1)$ 都是好的。因此，不需要进行任何操作。",
+  "samples": [
+    {
+      "input": "5\n3\n1 2 3\n8\n5 3 2 5 1 7 9 9\n5\n1 1 1 1 1\n8\n1 2 3 4 4 3 2 1\n2\n1000000000 1000000000\n",
+      "output": "1\n1 3\n1\n5 7\n0\n2\n1 3\n8 3\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:30:51.537Z",
+  "translatedAt": "2026-10-30T17:37:42.621Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "2267F2",
+  "platform": "codeforces",
+  "contestId": 2267,
+  "index": "F2",
+  "title": "XOR Transformations (Hard Version)",
+  "titleZh": "XOR 变换（困难版）",
+  "url": "https://codeforces.com/contest/2267/problem/F2",
+  "difficulty": 2300,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "data structures",
+    "dfs and similar",
+    "greedy",
+    "math",
+    "sortings",
+    "strings",
+    "trees"
+  ],
+  "points": 2000,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 512,
+  "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, the constraints on $n$ and $q$ are higher. You can make hacks only if you have solved all versions of this problem.**\n\nFor an array $b$ consisting of $m$ integers, define a *transformation* as follows:\n\n- Write down the values $b_i\\oplus b_j$ for all $1\\le i\\lt j\\le m$, where $\\oplus$ denotes the [bitwise XOR operation]().\n- Take the $m$ smallest among the written values.\n- Replace the elements of the array with the taken $m$ values.\n\nFor example, consider the *transformation* of the array $[6, 7, 8, 9, 15]$. We write down the values $1, 1, 6, 7, 8, 9, 14, 14, 15, 15$. After the *transformation*, the array becomes $[1, 1, 6, 7, 8]$ — the $5$ smallest elements.\n\nYou are given an array $a$ consisting of $n$ non-negative integers. Let $\\max(a)$ denote the maximum element of the array $a$, and $\\min(a)$ — the minimum. Your task is to answer $q$ queries, each of which gives you one integer $x$. For each query, find the value of $\\max(a) - \\min(a)$ after $x$ transformations on the array. Note that the queries are independent, i.e. before each query, the array $a$ is restored to its original state.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($5\\le n\\le 10^5, 1\\le q\\le 10^5$) — the size of the array and the number of queries.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0\\le a_i\\lt 2^{30}$).\n\nThe next $q$ lines of each test case contain an integer $x$ ($0\\le x\\lt 2^{30}$).\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ over all test cases do not exceed $10^5$.\n\n## Output\n\nFor each test case, print $q$ integers — the answer to each query.\n\n## Note\n\nIn the first test case, after one *transformation*, the array becomes $[0, 0, 0, 0, 1]$. Here $\\max(a) - \\min(a) = 1 - 0 = 1$.\n\nIn the second test case, the initial array is $[6, 7, 8, 9, 15]$. Initially, $\\max(a) - \\min(a) = 15 - 6 = 9$. After the *transformation*, the array becomes $[1, 1, 6, 7, 8]$, where $\\max(a) - \\min(a) = 8 - 1 = 7$.",
+  "statementZhMd": "**这是本题的困难版本。与其他版本的区别在于，本版本中 $n$ 和 $q$ 的约束更大。只有解决了本题所有版本后，才能进行 hack。**\n\n对于一个由 $m$ 个整数构成的数组 $b$，定义一次*变换*如下：\n\n- 写下所有满足 $1\\le i\\lt j\\le m$ 的 $b_i\\oplus b_j$，其中 $\\oplus$ 表示[按位异或运算]()。\n- 取其中最小的 $m$ 个值。\n- 用取出的 $m$ 个值替换数组中的元素。\n\n例如，考虑对数组 $[6, 7, 8, 9, 15]$ 进行一次*变换*。我们写下的值为 $1, 1, 6, 7, 8, 9, 14, 14, 15, 15$。经过*变换*后，数组变为 $[1, 1, 6, 7, 8]$ ——即最小的 $5$ 个值。\n\n给定一个由 $n$ 个非负整数组成的数组 $a$。令 $\\max(a)$ 表示数组 $a$ 中的最大值，$\\min(a)$ 表示最小值。你的任务是回答 $q$ 个询问，每个询问给出一个整数 $x$。对于每个询问，求对数组进行 $x$ 次变换后，$\\max(a) - \\min(a)$ 的值。注意，各个询问相互独立，即每次询问前，数组 $a$ 都会恢复为初始状态。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$5\\le n\\le 10^5, 1\\le q\\le 10^5$）——数组的大小和询问数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0\\le a_i\\lt 2^{30}$）。\n\n接下来的 $q$ 行，每行包含一个整数 $x$（$0\\le x\\lt 2^{30}$）。\n\n保证所有测试用例的 $n$ 之和以及 $q$ 之和均不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q$ 个整数——分别表示每个询问的答案。\n\n## 说明\n\n在第一个测试用例中，经过一次*变换*后，数组变为 $[0, 0, 0, 0, 1]$。此时 $\\max(a) - \\min(a) = 1 - 0 = 1$。\n\n在第二个测试用例中，初始数组为 $[6, 7, 8, 9, 15]$。初始时，$\\max(a) - \\min(a) = 15 - 6 = 9$。经过一次*变换*后，数组变为 $[1, 1, 6, 7, 8]$，此时 $\\max(a) - \\min(a) = 8 - 1 = 7$。",
+  "samples": [
+    {
+      "input": "4\n5 1\n0 0 1 1 1\n1\n5 2\n6 7 8 9 15\n0\n1\n8 2\n102 92 15 19 25 54 62 36\n2\n1\n10 1\n56 73 81 23 17 92 50 34 67 78\n2\n",
+      "output": "1\n9\n7\n12\n31\n7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T17:31:17.640Z",
+  "translatedAt": "2026-10-30T17:40:24.585Z",
+  "translateModel": "gpt-6.1-sol"
+}
