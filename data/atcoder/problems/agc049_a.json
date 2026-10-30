@@ -1,0 +1,35 @@
+{
+  "id": "agc049_a",
+  "platform": "atcoder",
+  "contestId": "agc049",
+  "index": "A",
+  "title": "Erasing Vertices",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc049/tasks/agc049_a",
+  "difficulty": 1922,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a directed graph with $N$ vertices numbered $1$ to $N$. $N$ strings of length $N$ each, $S_1,S_2,\\ldots,S_N$, represent the edges in the graph. Specifically, $S_{i,j}$ is `1` if there is an edge from Vertex $i$ to Vertex $j$, and `0` otherwise. The graph has no self-loops and no multi-edges.\n\nUntil the graph becomes empty, AtCobear will repeat the following operation:\n\n- Choose one (unerased) vertex uniformly at random (independently from the previous choices). Then, erase that vertex and all vertices that are reachable from the chosen vertex by traversing some edges. Erasing a vertex will also erase the edges incident to it.\n\nFind the expected value of the number of times the operation is done.\n\n## Constraints\n\n- $1 \\leq N \\leq 100$\n- $S_i$ is a string of length $N$ consisting of `0` and `1`.\n- $S_{i,i}=$`0`\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nS_1\nS_2\n\\vdots\nS_N\n```\n\n## Output\n\nPrint the expected value of the number of times the operation is done. Your output will be considered correct when its absolute or relative error from our answer is at most $10^{-9}$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n010\n001\n010\n",
+      "output": "1.66666666666666666667\n",
+      "note": "We have the following three scenarios happening with equal probability:\n\n- Choose Vertex $1$ in the first operation, erasing Vertex $1$, $2$, and $3$. The graph is now empty, so we are done.\n- Choose Vertex $2$ in the first operation, erasing Vertex $2$ and $3$. Then, choose Vertex $1$ in the second operation, erasing Vertex $1$. The graph is now empty, so we are done.\n- Choose Vertex $3$ in the first operation, erasing Vertex $2$ and $3$. Then, choose Vertex $1$ in the second operation, erasing Vertex $1$. The graph is now empty, so we are done.\n\nThus, the expected value of the number of times the operation is done is $(1+2+2)/3=5/3$."
+    },
+    {
+      "input": "3\n000\n000\n000\n",
+      "output": "3.00000000000000000000\n",
+      "note": "There will always be three operations."
+    },
+    {
+      "input": "3\n011\n101\n110\n",
+      "output": "1.00000000000000000000\n",
+      "note": "There will always be one operation."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:03:22.285Z"
+}

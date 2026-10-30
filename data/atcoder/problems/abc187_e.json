@@ -1,0 +1,33 @@
+{
+  "id": "abc187_e",
+  "platform": "atcoder",
+  "contestId": "abc187",
+  "index": "E",
+  "title": "Through Path",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc187/tasks/abc187_e",
+  "difficulty": 1358,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a tree with $N$ vertices and $N-1$ edges, where the vertices are numbered $1, 2, \\dots, N$ and the edges are numbered $1, 2, \\dots, N-1$. Edge $i$ connects Vertices $a_i$ and $b_i$.\nEach vertex in the tree has an integer written on it. Let $c_i$ be the integer written on Vertex $i$. Initially, $c_i = 0$.\n\nYou will be given $Q$ queries. The $i$-th query, consisting of integers $t_i$, $e_i$, and $x_i$, is as follows:\n\n- If $t_i = 1$: for each Vertex $v$ reachable from Vertex $a_{e_i}$ without visiting Vertex $b_{e_i}$ by traversing edges, replace $c_v$ with $c_v + x_i$.\n- If $t_i = 2$: for each Vertex $v$ reachable from Vertex $b_{e_i}$ without visiting Vertex $a_{e_i}$ by traversing edges, replace $c_v$ with $c_v + x_i$.\n\nAfter processing all queries, print the integer written on each vertex.\n\n## Constraints\n\n- All values in input are integers.\n- $2 \\le N \\le 2 \\times 10^5$\n- $1 \\le a_i, b_i \\le N$\n- The given graph is a tree.\n- $1 \\le Q \\le 2 \\times 10^5$\n- $t_i \\in \\{1, 2\\}$\n- $1 \\le e_i \\le N-1$\n- $1 \\le x_i \\le 10^9$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\na_1 b_1\n\\vdots\na_{N-1} b_{N-1}\nQ\nt_1 e_1 x_1\n\\vdots\nt_Q e_Q x_Q\n```\n\n## Output\n\nPrint the values $c_1, c_2, \\dots, c_N$ after processing all queries, each in its own line.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n1 2\n2 3\n2 4\n4 5\n4\n1 1 1\n1 4 10\n2 1 100\n2 2 1000\n",
+      "output": "11\n110\n1110\n110\n100\n",
+      "note": "In the first query, we add $1$ to each vertex reachable from Vertex $1$ without visiting Vertex $2$, that is, Vertex $1$.\nIn the second query, we add $10$ to each vertex reachable from Vertex $4$ without visiting Vertex $5$, that is, Vertex $1, 2, 3, 4$.\nIn the third query, we add $100$ to each vertex reachable from Vertex $2$ without visiting Vertex $1$, that is, Vertex $2, 3, 4, 5$.\nIn the fourth query, we add $1000$ to each vertex reachable from Vertex $3$ without visiting Vertex $2$, that is, Vertex $3$."
+    },
+    {
+      "input": "7\n2 1\n2 3\n4 2\n4 5\n6 1\n3 7\n7\n2 2 1\n1 3 2\n2 2 4\n1 6 8\n1 3 16\n2 4 32\n2 1 64\n",
+      "output": "72\n8\n13\n26\n58\n72\n5\n"
+    },
+    {
+      "input": "11\n2 1\n1 3\n3 4\n5 2\n1 6\n1 7\n5 8\n3 9\n3 10\n11 4\n10\n2 6 688\n1 10 856\n1 8 680\n1 8 182\n2 2 452\n2 4 183\n2 6 518\n1 3 612\n2 6 339\n2 3 206\n",
+      "output": "1657\n1657\n2109\n1703\n1474\n1657\n3202\n1474\n1247\n2109\n2559\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:01:33.628Z"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "agc048_e",
+  "platform": "atcoder",
+  "contestId": "agc048",
+  "index": "E",
+  "title": "Strange Relation",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc048/tasks/agc048_e",
+  "difficulty": 3819,
+  "tags": [],
+  "points": 1500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nFor an integer sequence of length $N$, $A=(A_1,A_2,\\cdots,A_N)$, and an integer $T$, let $f(A,T)$ defined as follows:\n\n- $f(A, T)$ is the lexicographically greatest integer sequence $x$ that satisfies all of the conditions below. Here, under the constraints in this problem, it can be proved that there always are sequences that satisfy the conditions and that the number of those sequences is finite. Thus, $f(A, T)$ can always be defined.\n- $x$ is a sequence of length $N$ consisting of non-negative integers.\n  - For each $i$ ($1 \\leq i \\leq N$), let $y_i$ be the number of indices $j$ such that $j<i$ and $A_j+T \\times x_j < A_i+T \\times x_i$. Then, $y_i=x_i$ holds.\n\nFor example, assume that $A=(6,5,1)$ and $T=3$. Then, the sequences $x$ that satisfy the conditions are: $(0,0,0)$, $(0,0,2)$, and $(0,1,0)$. Thus, the value of $f(A, T)$ is the lexicographically maximum among them: $(0,1,0)$.\n\nNow, Snuke has $N$ integer sequences $B_1,B_2,\\cdots,B_N$ and an integer $T$. Each of the sequences $B_i$ ($1 \\leq i \\leq N$) is an integer sequence of length $K$.\n\nHe will create an integer sequence $A$ of length $N$ and compute $f(A, T)$. The value of $A_i$ will be chosen from $B_{i,1},B_{i,2},\\cdots,B_{i,K}$. Here, if $B_i$ contains the same value multiple times, we will distinguish those occurrences; that is, there are $K^N$ ways to create $A$.\n\nFor every $i$ ($1 \\leq i \\leq N$), solve the following problem:\n\n- For all $K^N$ choices of $A$, we will compute $f(A,T)$ and record the value of its $i$-th element. Find the sum of these values, modulo $(10^9+7)$.\n\n## Constraints\n\n- $1 \\leq N \\leq 50$\n- $1 \\leq K \\leq 50$\n- $1 \\leq T \\leq 10^7$\n- $1 \\leq B_{i,j} \\leq 10^9$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN K T\nB_{1,1} B_{1,2} \\cdots B_{1,K}\nB_{2,1} B_{2,2} \\cdots B_{2,K}\n\\vdots\nB_{N,1} B_{N,2} \\cdots B_{N,K}\n```\n\n## Output\n\nFor every $i$, print the answer in its own line.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2 1\n1 2\n1 2\n",
+      "output": "0\n3\n",
+      "note": "- For $A=(1,1)$: $f(A,T)=(0,1)$\n- For $A=(1,2)$: $f(A,T)=(0,1)$\n- For $A=(2,1)$: $f(A,T)=(0,0)$\n- For $A=(2,2)$: $f(A,T)=(0,1)$\n\nThus, the answer is $0+0+0+0=0$ for $i=1$ and $1+1+0+1=3$ for $i=2$."
+    },
+    {
+      "input": "3 2 3\n6 2\n5 3\n1 4\n",
+      "output": "0\n6\n13\n"
+    },
+    {
+      "input": "10 15 45\n129 82 26 185 217 258 22 192 24 117 167 255 91 180 203\n171 73 168 26 208 169 115 164 121 214 154 196 172 66 230\n185 178 241 220 243 143 111 124 10 62 56 117 254 43 81\n201 74 213 163 204 35 44 203 207 73 218 60 243 51 250\n229 117 212 245 112 152 206 96 266 165 105 94 231 41 27\n261 201 258 111 100 72 239 31 199 203 226 151 72 268 44\n94 19 47 243 133 174 141 82 190 62 175 256 126 123 210\n186 64 73 82 68 183 261 120 265 212 18 24 36 152 92\n205 101 186 91 172 153 91 242 141 97 247 193 45 245 66\n225 97 162 213 61 219 184 195 80 203 79 72 269 258 199\n",
+      "output": "0\n248044096\n333666695\n536381826\n8787512\n11659012\n661959013\n166067001\n529828166\n526544756\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:04:27.557Z"
+}

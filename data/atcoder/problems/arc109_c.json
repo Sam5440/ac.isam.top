@@ -1,0 +1,33 @@
+{
+  "id": "arc109_c",
+  "platform": "atcoder",
+  "contestId": "arc109",
+  "index": "C",
+  "title": "Large RPS Tournament",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc109/tasks/arc109_c",
+  "difficulty": 1157,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nTo decide which is the strongest among Rock, Paper, and Scissors, we will hold an RPS tournament. There are $2^k$ players in this tournament, numbered $0$ through $2^k-1$. Each player has his/her favorite hand, which he/she will use in every match.\n\nA string $s$ of length $n$ consisting of `R`, `P`, and `S` represents the players' favorite hands. Specifically, the favorite hand of Player $i$ is represented by the $((i\\text{ mod } n) + 1)$-th character of $s$; `R`, `P`, and `S` stand for Rock, Paper, and Scissors, respectively.\n\nFor $l$ and $r$ such that $r-l$ is a power of $2$, the winner of the tournament held among Players $l$ through $r-1$ will be determined as follows:\n\n- If $r-l=1$ (that is, there is just one player), the winner is Player $l$.\n- If $r-l\\geq 2$, let $m=(l+r)/2$, and we hold two tournaments, one among Players $l$ through $m-1$ and the other among Players $m$ through $r-1$. Let $a$ and $b$ be the respective winners of these tournaments. $a$ and $b$ then play a match of rock paper scissors, and the winner of this match - or $a$ if the match is drawn - is the winner of the tournament held among Players $l$ through $r-1$.\n\nFind the favorite hand of the winner of the tournament held among Players $0$ through $2^k-1$.\n\n## Note\n\n- $a\\text{ mod } b$ denotes the remainder when $a$ is divided by $b$.\n- The outcome of a match of rock paper scissors is determined as follows:\n- If both players choose the same hand, the match is drawn;\n  - `R` beats `S`;\n  - `P` beats `R`;\n  - `S` beats `P`.\n\n## Constraints\n\n- $1 \\leq n,k \\leq 100$\n- $s$ is a string of length $n$ consisting of `R`, `P`, and `S`.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nn k\ns\n```\n\n## Output\n\nPrint the favorite hand of the winner of the tournament held among Players $0$ through $2^k-1$, as `R`, `P`, or `S`.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2\nRPS\n",
+      "output": "P\n",
+      "note": "- The favorite hand of the winner of the tournament held among Players $0$ through $1$ is `P`.\n- The favorite hand of the winner of the tournament held among Players $2$ through $3$ is `R`.\n- The favorite hand of the winner of the tournament held among Players $0$ through $3$ is `P`.\n\nThus, the answer is `P`."
+    },
+    {
+      "input": "11 1\nRPSSPRSPPRS\n",
+      "output": "P\n"
+    },
+    {
+      "input": "1 100\nS\n",
+      "output": "S\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:02:40.534Z"
+}

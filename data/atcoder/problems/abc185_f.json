@@ -1,0 +1,29 @@
+{
+  "id": "abc185_f",
+  "platform": "atcoder",
+  "contestId": "abc185",
+  "index": "F",
+  "title": "Range Xor Query",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc185/tasks/abc185_f",
+  "difficulty": 1053,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have an integer sequence $A$ of length $N$.\nYou will process $Q$ queries on this sequence. In the $i$-th query, given values $T_i$, $X_i$, and $Y_i$, do the following:\n\n- If $T_i = 1$, replace $A_{X_i}$ with $A_{X_i} \\oplus Y_i$.\n- If $T_i = 2$, print $A_{X_i} \\oplus A_{X_i + 1} \\oplus A_{X_i + 2} \\oplus \\dots \\oplus A_{Y_i}$.\n\nHere, $a \\oplus b$ denotes the bitwise XOR of $a$ and $b$.\n\nWhat is bitwise XOR? The bitwise XOR of integers $A$ and $B$, $A \\oplus B$, is defined as follows: When $A \\oplus B$ is written in base two, the digit in the $2^k$'s place ($k \\geq 0$) is $1$ if either $A$ or $B$, but not both, has $1$ in the $2^k$'s place, and $0$ otherwise. For example, $3 \\oplus 5 = 6$. (In base two: $011 \\oplus 101 = 110$.)\n\n## Constraints\n\n- $1 \\le N \\le 300000$\n- $1 \\le Q \\le 300000$\n- $0 \\le A_i \\lt 2^{30}$\n- $T_i$ is $1$ or $2$.\n- If $T_i = 1$, then $1 \\le X_i \\le N$ and $0 \\le Y_i \\lt 2^{30}$.\n- If $T_i = 2$, then $1 \\le X_i \\le Y_i \\le N$.\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN Q\nA_1 \\hspace{7pt} A_2 \\hspace{7pt} A_3 \\hspace{5pt} \\dots \\hspace{5pt} A_N\nT_1 X_1 Y_1\nT_2 X_2 Y_2\nT_3 X_3 Y_3\n\\hspace{22pt} \\vdots\nT_Q X_Q Y_Q\n```\n\n## Output\n\nFor each query with $T_i = 2$ in the order received, print the response in its own line.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 4\n1 2 3\n2 1 3\n2 2 3\n1 2 3\n2 2 3\n",
+      "output": "0\n1\n2\n",
+      "note": "In the first query, we print $1 \\oplus 2 \\oplus 3 = 0$.\nIn the second query, we print $2 \\oplus 3 = 1$.\nIn the third query, we replace $A_2$ with $2 \\oplus 3 = 1$.\nIn the fourth query, we print $1 \\oplus 3 = 2$."
+    },
+    {
+      "input": "10 10\n0 5 3 4 7 0 0 0 1 0\n1 10 7\n2 8 9\n2 3 6\n2 1 6\n2 1 10\n1 9 4\n1 6 1\n1 6 3\n1 1 7\n2 3 5\n",
+      "output": "1\n0\n5\n3\n0\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:02:23.164Z"
+}

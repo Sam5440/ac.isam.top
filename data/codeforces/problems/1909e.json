@@ -1,0 +1,31 @@
+{
+  "id": "1909E",
+  "platform": "codeforces",
+  "contestId": 1909,
+  "index": "E",
+  "title": "Multiple Lamps",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1909/problem/E",
+  "difficulty": 2400,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "constructive algorithms",
+    "math",
+    "number theory"
+  ],
+  "points": 2500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "*[Kid2Will - Fire Aura](https://soundcloud.com/xgp/kid2will-fire-aura)*⠀\n\nYou have $n$ lamps, numbered from $1$ to $n$. Initially, all the lamps are turned off.\n\nYou also have $n$ buttons. The $i$-th button toggles all the lamps whose index is a multiple of $i$. When a lamp is toggled, if it was off it turns on, and if it was on it turns off.\n\nYou have to press some buttons according to the following rules.\n\n- You have to press at least one button.\n- You cannot press the same button multiple times.\n- You are given $m$ pairs $(u_i, v_i)$. If you press the button $u_i$, you also have to press the button $v_i$ (at any moment, not necessarily after pressing the button $u_i$). Note that, if you press the button $v_i$, you don't need to press the button $u_i$.\n\nYou don't want to waste too much electricity. Find a way to press buttons such that at the end at most $\\lfloor n/5 \\rfloor$ lamps are on, or print $-1$ if it is impossible.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\leq n \\leq 2 \\cdot 10^5$, $0 \\leq m \\leq 2 \\cdot 10^5$) — the number of lamps and the number of pairs, respectively.\n\nEach of the next $m$ lines contains two integers $u_i$, $v_i$ ($1 \\leq u_i, v_i \\leq n$, $u_i \\neq v_i$). If you press the button $u_i$, you also have to press the button $v_i$. It is guaranteed that the pairs $(u_i, v_i)$ are distinct.\n\nIt is guaranteed that the sum of $n$ and the sum of $m$ over all test cases do not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case:\n\n- If there is no choice of buttons that makes at most $\\lfloor n/5 \\rfloor$ lamps on at the end, output a single line containing $-1$.\n- Otherwise, output two lines. The first line should contain an integer $k$ ($1 \\le k \\le n$) — the number of pressed buttons. The second line should contain $k$ integers $b_1, b_2, \\dots, b_k$ ($1 \\le b_i \\le n$) — the indices of the pressed buttons (in any order). The $b_i$ must be distinct, and at the end at most $\\lfloor n/5 \\rfloor$ lamps must be turned on.\n\n## Note\n\nIn the first test case, you need to turn at most $\\lfloor 4/5 \\rfloor$ lamps on, which means that no lamp can be turned on. You can show that no choice of at least one button turns $0$ lamps on.\n\nIn the second test case, you can press buttons $3$, $5$, $1$, $2$.\n\n- Initially, all the lamps are off;\n- after pressing button $3$, the lamps whose index is a multiple of $3$ (i.e., $3$) are toggled, so lamp $3$ is turned on;\n- after pressing button $5$, the lamps whose index is a multiple of $5$ (i.e., $5$) are toggled, so lamps $3$, $5$ are turned on;\n- after pressing button $1$, the lamps whose index is a multiple of $1$ (i.e., $1$, $2$, $3$, $4$, $5$) are toggled, so lamps $1$, $2$, $4$ are turned on;\n- after pressing button $2$, the lamps whose index is a multiple of $2$ (i.e., $2$, $4$) are toggled, so lamp $1$ is turned on.\n\nThis is valid because\n\n- you pressed at least one button;\n- you pressed all the buttons at most once;\n- you pressed button $u_2 = 5$, which means that you had to also press button $v_2 = 1$: in fact, button $1$ has been pressed;\n- at the end, only lamp $1$ is on.\n\nIn the third test case, pressing the buttons $8$, $9$, $10$ turns only the lamps $8$, $9$, $10$ on.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n4 0\n5 2\n4 1\n5 1\n15 9\n7 8\n8 9\n9 10\n10 9\n11 1\n12 2\n13 3\n14 4\n15 5\n5 4\n1 2\n2 3\n3 4\n4 5\n",
+      "output": "-1\n4\n3 5 1 2\n3\n8 9 10\n1\n5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:07:14.445Z"
+}

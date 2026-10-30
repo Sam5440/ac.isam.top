@@ -1,0 +1,34 @@
+{
+  "id": "agc050_d",
+  "platform": "atcoder",
+  "contestId": "agc050",
+  "index": "D",
+  "title": "Shopping",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc050/tasks/agc050_d",
+  "difficulty": 2674,
+  "tags": [],
+  "points": 1300,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $N$ people numbered $1$ through $N$, and $K$ items numbered $1$ through $K$. They play a turn-based game. Person $1$ takes the first turn, Person $2$ takes the next turn, then Person $3$, $\\ldots$, Person $N$, then Person $1$ again, $\\ldots$, Person $N$, Person $1$ again, $\\ldots$, and so on, until all items are taken.\n\nIn each turn, the following happens:\n\n- If the person already wins an item, nothing happens.\n- Otherwise, he chooses one of the items he hasn't chosen yet uniformly at random, and secretly tells it to Snuke, the judge of the game. If the item is already taken by someone else, nothing happens; otherwise he wins the item.\n\nFor each $i$, compute the probability that Person $i$ wins an item, modulo $998,244,353$ (as described in the Notes section).\n\n## Note\n\n- All random choices are made independently.\n- We can prove that the game always ends in finite number of steps.\n- We can also prove that, whenever a player is asked to choose an item, he has at least one item he hasn't chosen yet.\n- We can also prove that the probabilities are rational numbers. When you print a probability, first write it as a fraction $\\frac{y}{x}$, where $x, y$ are integers and $x$ is not divisible by $P = 998,244,353$ (under the constraints of the problem, such representation is always possible). Then, you need to print the only integer $z$ between $0$ and $P - 1$, inclusive, that satisfies $xz \\equiv y \\pmod{P}$.\n\n## Constraints\n\n- $1 \\leq K \\leq N \\leq 40$\n- All values in the input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN K\n```\n\n## Output\n\nPrint $N$ lines. On the $i$-th line, print the probability that the $i$-th person wins an item, modulo $998,244,353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2\n",
+      "output": "1\n249561089\n748683265\n",
+      "note": "- First, Person $1$ chooses an item (call it Item $p$), and wins it.\n- Then, with $1/2$ probability, Person $2$ chooses the other item in the next turn and wins it, and the game ends.\n  - With $1/2$ probability, Person $2$ chooses $p$, he doesn't win it, and Person $3$ takes the next turn.\n  - With $1/4$ probability, Person $3$ chooses the other item, wins it, and the game ends.\n    - With $1/4$ probability, Person $3$ chooses $p$ again. Then, next turn is Person $1$'s and nothing happens because he has already won an item. Then, in the next turn, Person $2$ chooses the other item for sure because he has already chosen $p$ in his previous turn, so he wins an item this time, and the game ends.\n\nTo summarize, Person $1, 2, 3$ will get an item with probability $1, \\frac{3}{4}, \\frac{1}{4}$, respectively."
+    },
+    {
+      "input": "4 3\n",
+      "output": "1\n314262112\n767169272\n915057324\n",
+      "note": "The probabilities are $1, \\frac{47}{54}, \\frac{77}{108}, \\frac{5}{12}$."
+    },
+    {
+      "input": "40 10\n",
+      "output": "1\n868517173\n27621563\n837064957\n222682471\n512462123\n662169358\n927654899\n421237429\n47896491\n462367772\n888812171\n300869511\n63754652\n144548024\n358216674\n895724239\n274552277\n722622637\n946769993\n579325471\n777654313\n142897955\n607284898\n8038340\n863909530\n63295741\n862961672\n335905745\n944425523\n358698956\n299986928\n847582651\n197657467\n180361665\n412489246\n762713624\n410322243\n646538576\n79047758\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:01:54.311Z"
+}
