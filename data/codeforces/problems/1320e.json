@@ -1,0 +1,31 @@
+{
+  "id": "1320E",
+  "platform": "codeforces",
+  "contestId": 1320,
+  "index": "E",
+  "title": "Treeland and Viruses",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1320/problem/E",
+  "difficulty": 3000,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "dp",
+    "shortest paths",
+    "trees"
+  ],
+  "points": 2500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 512,
+  "statementMd": "There are $n$ cities in Treeland connected with $n - 1$ bidirectional roads in such that a way that any city is reachable from any other; in other words, the graph of cities and roads is a tree. Treeland is preparing for a seasonal virus epidemic, and currently, they are trying to evaluate different infection scenarios.\n\nIn each scenario, several cities are initially infected with different virus species. Suppose that there are $k_i$ virus species in the $i$-th scenario. Let us denote $v_j$ the initial city for the virus $j$, and $s_j$ the propagation speed of the virus $j$. The spread of the viruses happens in turns: first virus $1$ spreads, followed by virus $2$, and so on. After virus $k_i$ spreads, the process starts again from virus $1$.\n\nA spread turn of virus $j$ proceeds as follows. For each city $x$ not infected with any virus at the start of the turn, at the end of the turn it becomes infected with virus $j$ if and only if there is such a city $y$ that:\n\n- city $y$ was infected with virus $j$ at the start of the turn;\n- the path between cities $x$ and $y$ contains at most $s_j$ edges;\n- all cities on the path between cities $x$ and $y$ (excluding $y$) were uninfected with any virus at the start of the turn.\n\nOnce a city is infected with a virus, it stays infected indefinitely and can not be infected with any other virus. The spread stops once all cities are infected.\n\nYou need to process $q$ independent scenarios. Each scenario is described by $k_i$ virus species and $m_i$ important cities. For each important city determine which the virus it will be infected by in the end.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\leq n \\leq 2 \\cdot 10^5$) — the number of cities in Treeland.\n\nThe following $n - 1$ lines describe the roads. The $i$-th of these lines contains two integers $x_i$ and $y_i$ ($1 \\leq x_i, y_i \\leq n$) — indices of cities connecting by the $i$-th road. It is guaranteed that the given graph of cities and roads is a tree.\n\nThe next line contains a single integer $q$ ($1 \\leq q \\leq 2 \\cdot 10^5$) — the number of infection scenarios. $q$ scenario descriptions follow.\n\nThe description of the $i$-th scenario starts with a line containing two integers $k_i$ and $m_i$ ($1 \\leq k_i, m_i \\leq n$) — the number of virus species and the number of important cities in this scenario respectively. It is guaranteed that $\\sum_{i = 1}^ q k_i$ and $\\sum_{i = 1}^ q m_i$ do not exceed $2 \\cdot 10^5$.\n\nThe following $k_i$ lines describe the virus species. The $j$-th of these lines contains two integers $v_j$ and $s_j$ ($1 \\leq v_j \\leq n$, $1 \\leq s_j \\leq 10^6$) – the initial city and the propagation speed of the virus species $j$. It is guaranteed that the initial cities of all virus species within a scenario are distinct.\n\nThe following line contains $m_i$ distinct integers $u_1, \\ldots, u_{m_i}$ ($1 \\leq u_j \\leq n$) — indices of important cities.\n\n## Output\n\nPrint $q$ lines. The $i$-th line should contain $m_i$ integers — indices of virus species that cities $u_1, \\ldots, u_{m_i}$ are infected with at the end of the $i$-th scenario.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n3\n2 2\n4 1\n7 1\n1 3\n2 2\n4 3\n7 1\n1 3\n3 3\n1 1\n4 100\n7 100\n1 2 3\n",
+      "output": "1 2\n1 1\n1 1 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:55:40.956Z"
+}
