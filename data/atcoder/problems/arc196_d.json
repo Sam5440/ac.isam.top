@@ -1,0 +1,29 @@
+{
+  "id": "arc196_d",
+  "platform": "atcoder",
+  "contestId": "arc196",
+  "index": "D",
+  "title": "Roadway",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc196/tasks/arc196_d",
+  "difficulty": 2956,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $N$ towns, numbered $1,2,\\ldots,N$, arranged in a line in this order.\n\nThere are $N-1$ roads connecting adjacent towns: road $j\\,(1 \\leq j \\leq N-1)$ connects towns $j$ and $j+1$. For each road $j$, you can set a **strength** $w_j$ (an integer that may be negative).\n\nWhen a person travels along a road, their **stamina** changes. Specifically, if a person with stamina $x$ travels along road $j$, their stamina becomes $x + w_j$.\n\nThere are $M$ people who will now move between these towns.\n\nPerson $i\\,(1 \\le i \\le M)$ starts with stamina $0$ at town $S_i$ and travels to town $T_i$ via the shortest path. It is guaranteed that $|S_i - T_i| > 1$. Also, $(S_i, T_i) \\neq (S_j, T_j)$ if $i \\neq j$.\n\nPerson $i$’s requirement is as follows:\n\n> When departing Town $S_i$ and when arriving at Town $T_i$, their stamina should be exactly $0$. At every other town, their stamina should always be a positive integer.\n\nAssume that there are no changes to stamina other than those due to traveling along roads as described above.\n\nProcess $Q$ queries. For the $k$-th query $(1 \\le k \\le Q)$, if it is possible to set the strengths of the roads so that the requirements of all people $L_k, L_k + 1, \\ldots, R_k$ are satisfied, print `Yes`; otherwise, print `No`.\n\n## Constraints\n\n- $3 \\le N \\le 4 \\times 10^5$\n- $1 \\le M \\le 2 \\times 10^5$\n- $1 \\le Q \\le 2 \\times 10^5$\n- $1 \\le S_i, T_i \\le N$\n- $|S_i - T_i| > 1$\n- $(S_i, T_i) \\neq (S_j, T_j)\\,(i \\neq j)$\n- $1 \\le L_k \\le R_k \\le M$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M Q\nS_1 T_1\nS_2 T_2\n\\vdots\nS_M T_M\nL_1 R_1\nL_2 R_2\n\\vdots\nL_Q R_Q\n```\n\n## Output\n\nPrint $Q$ lines.\n\nThe $k$-th line should contain `Yes` if there is a way to set the strengths of the roads so that the requirements of all people $L_k, L_k + 1, \\ldots, R_k$ are satisfied, and `No` otherwise.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 4 2\n4 2\n1 3\n3 5\n2 4\n1 3\n2 4\n",
+      "output": "Yes\nNo\n",
+      "note": "For the first query, consider setting the strengths of roads $1, 2, 3, 4$ to $1, -1, 1, -1$, respectively.\n\n- Person $1$ starts at town $4$ with stamina $0$, visits town $3$ with stamina $1$, and arrives at town $2$ with stamina $0$.\n- Person $2$ starts at town $1$ with stamina $0$, visits town $2$ with stamina $1$, and arrives at town $3$ with stamina $0$.\n- Person $3$ starts at town $3$ with stamina $0$, visits town $4$ with stamina $1$, and arrives at town $5$ with stamina $0$.\n\nThus, this configuration satisfies the requirements of persons $1,2,3$, so print `Yes` on the first line.\n\nFor the second query, it is impossible to satisfy the requirements of persons $2,3,4$ simultaneously, so print `No`."
+    },
+    {
+      "input": "7 6 3\n1 5\n2 4\n4 6\n7 1\n5 3\n1 6\n1 6\n4 4\n2 5\n",
+      "output": "No\nYes\nYes\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:59:30.197Z"
+}

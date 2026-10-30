@@ -1,0 +1,33 @@
+{
+  "id": "abc409_g",
+  "platform": "atcoder",
+  "contestId": "abc409",
+  "index": "G",
+  "title": "Accumulation of Wealth",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc409/tasks/abc409_g",
+  "difficulty": 2616,
+  "tags": [],
+  "points": 625,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given an integer $N \\geq 2$ and an integer $P$ between $0$ and $100$, inclusive. Let $p=P/100$.\n\nThere is a sequence $A$. Initially, the length of $A$ is $1$, and its only element is $1$.\n\nThe following operation is repeated $N-1$ times on sequence $A$:\n\n- Let $m$ be the smallest positive integer that does not appear in $A$. With probability $p$, perform operation $1$; with probability $1-p$, perform operation $2$:\n- Operation $1$: Append $m$ to the end of $A$.\n  - Operation $2$: Let $c_1,c_2,\\dots,c_{m-1}$ be the number of times $1,2,\\dots,m-1$ appear in $A$, respectively. Choose an integer $k$ between $1$ and $m-1$, inclusive, with probability proportional to $c_k$. That is, choose $k$ with probability $c_k/\\sum_{j=1}^{m-1} c_j$. Then, append $k$ to the end of $A$.\n\nFor each $k=1,2,\\dots,N$, find the expected number of occurrences of $k$ in $A$ after $N-1$ operations, modulo $998244353$.\n\nDefinition of expected value modulo $998244353$ It can be proved that the expected value you seek is always a rational number. Also, under the constraints of this problem, it can be proved that when this value is expressed as an irreducible fraction $\\frac{P}{Q}$, we have $Q {{}\\not\\equiv{}} 0 \\pmod{998244353}$. Therefore, there is a unique integer $R$ such that $R \\times Q \\equiv P \\pmod{998244353}$ and $0 \\leq R \\lt 998244353$. Output this $R$.\n\n## Constraints\n\n- $2 \\leq N \\leq 10^5$\n- $0 \\leq P \\leq 100$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN P\n```\n\n## Output\n\nOutput $N$ lines. The $k$-th $(1\\leq k \\leq N)$ line should contain the expected number of occurrences of $k$ in $A$ after the operations, modulo $998244353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 50\n",
+      "output": "124780546\n124780545\n748683265\n",
+      "note": "The operations proceed as follows:\n\n- Initially, $A=(1)$.\n- $1$st operation: It becomes $A=(1,2)$ with probability $1/2$, and $A=(1,1)$ with probability $1/2$.\n- $2$nd operation:\n- If $A=(1,2)$, it becomes $A=(1,2,3)$ with probability $1/2$, $A=(1,2,1)$ with probability $1/4$, and $A=(1,2,2)$ with probability $1/4$.\n  - If $A=(1,1)$, it becomes $A=(1,1,2)$ with probability $1/2$, and $A=(1,1,1)$ with probability $1/2$.\n\nThe expected numbers of occurrences of $1,2,3$ in the final $A$ are $\\frac{15}{8}, \\frac{7}{8}, \\frac{1}{4}$, respectively."
+    },
+    {
+      "input": "2 0\n",
+      "output": "2\n0\n"
+    },
+    {
+      "input": "5 24\n",
+      "output": "297734288\n442981554\n937492320\n798158491\n518366411\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:52:38.658Z"
+}

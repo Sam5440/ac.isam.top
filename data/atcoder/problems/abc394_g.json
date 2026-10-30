@@ -1,0 +1,25 @@
+{
+  "id": "abc394_g",
+  "platform": "atcoder",
+  "contestId": "abc394",
+  "index": "G",
+  "title": "Dense Buildings",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc394/tasks/abc394_g",
+  "difficulty": 2031,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a city divided into $H \\times W$ blocks in the north-south-east-west directions, and there is exactly one building in each block.\nSpecifically, in the block at the $i$-th row from the north $(1\\leq i\\leq H)$ and the $j$-th column from the west $(1\\leq j\\leq W)$ (hereafter referred to as block $(i,j)$), there is a building of $F_{i,j}$ floors.\n\nTakahashi has two ways of moving. If he is on the $X$-th floor $(1\\leq X\\leq F_{i,j})$ of the building in block $(i,j)$, he can:\n\n- Move up or down one floor within the same building using **stairs**. If $X=1$, he cannot move down; if $X=F_{i,j}$, he cannot move up.\n- Choose a building with at least $X$ floors in a cardinally adjacent block, and move to the $X$-th floor of that building using a **(sky) walkway**.\n\nHere, two blocks $(i,j)$ and $(i',j')$ are cardinally adjacent if and only if $\\lvert i - i'\\rvert + \\lvert j - j'\\rvert = 1$.\n\nYou are given $Q$ queries to be answered. The $i$-th query $(1\\leq i\\leq Q)$ is the following.\n\n> Find the minimum possible number of times that Takahashi uses **stairs** to move from the $Y_i$-th floor of the building in block $(A_i,B_i)$ to the $Z_i$-th floor of the building in block $(C_i,D_i)$.\n> The count of times using stairs is incremented each time he moves up or down one floor, possibly multiple times within the same building. (For example, moving from the 1st floor to the 6th floor of a building counts as $5$ uses of stairs.)\n> Note that he does not have to minimize the number of times he uses walkways.\n\n## Constraints\n\n- $1\\leq H \\leq 500$\n- $1\\leq W \\leq 500$\n- $1\\leq F_{i,j} \\leq 10^6$\n- $1\\leq Q\\leq 2\\times 10^5$\n- $1\\leq A_i,C_i\\leq H$\n- $1\\leq B_i,D_i\\leq W$\n- $1\\leq Y_i\\leq F_{A_i,B_i}$\n- $1\\leq Z_i\\leq F_{C_i,D_i}$\n- $(A_i,B_i,Y_i)\\neq (C_i,D_i,Z_i)$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nH W\nF_{1,1} F_{1,2} \\ldots F_{1,W}\nF_{2,1} F_{2,2} \\ldots F_{2,W}\n\\vdots\nF_{H,1} F_{H,2} \\ldots F_{H,W}\nQ\nA_1 B_1 Y_1 C_1 D_1 Z_1\nA_2 B_2 Y_2 C_2 D_2 Z_2\n\\vdots\nA_Q B_Q Y_Q C_Q D_Q Z_Q\n```\n\n## Output\n\nPrint $Q$ lines. The $i$-th line should contain the answer to the $i$-th query as an integer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3\n12 10 6\n1 1 3\n8 6 7\n2\n1 1 10 3 1 6\n1 1 6 1 2 4\n",
+      "output": "10\n2\n",
+      "note": "For the first query, for example, it is possible to move from the 10th floor of the building in block $(1,1)$ to the 6th floor of the building in block $(3,1)$ by using stairs a total of $10$ times, in the following manner:\n\n- Move from the 10th floor of the building in block $(1,1)$ to the 10th floor of the building in block $(1,2)$ via a walkway.\n- Use stairs $4$ times to go from the 10th floor down to the 6th floor of the building in block $(1,2)$.\n- Move from the 6th floor of the building in block $(1,2)$ to the 6th floor of the building in block $(1,3)$ via a walkway.\n- Use stairs $3$ times to go from the 6th floor down to the 3rd floor of the building in block $(1,3)$.\n- Move from the 3rd floor of the building in block $(1,3)$ to the 3rd floor of the building in block $(2,3)$ via a walkway.\n- Move from the 3rd floor of the building in block $(2,3)$ to the 3rd floor of the building in block $(3,3)$ via a walkway.\n- Use stairs $3$ times to go from the 3rd floor up to the 6th floor of the building in block $(3,3)$.\n- Move from the 6th floor of the building in block $(3,3)$ to the 6th floor of the building in block $(3,2)$ via a walkway.\n- Move from the 6th floor of the building in block $(3,2)$ to the 6th floor of the building in block $(3,1)$ via a walkway.\n\nIt is impossible to make this journey using at most $9$ uses of stairs, so we output $10$.\n\nFor the second query, if you first use a walkway to go to the building in block $(1,2)$, and then use the stairs twice to go from the 6th floor down to the 4th floor, it is possible to move from the 6th floor of the building in block $(1,1)$ to the 4th floor of the building in block $(1,2)$ by using the stairs twice."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:00:22.222Z"
+}

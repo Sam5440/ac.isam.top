@@ -1,0 +1,29 @@
+{
+  "id": "2192D",
+  "platform": "codeforces",
+  "contestId": 2192,
+  "index": "D",
+  "title": "Cost of Tree",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2192/problem/D",
+  "difficulty": 1800,
+  "tags": [
+    "dp",
+    "greedy",
+    "trees"
+  ],
+  "points": 1750,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "For a tree $T$ with root $r$, where each node $u$ has a value $a_u$ associated with it, the cost of the tree defined as:\n\n$$\\sum_{u\\in T} (a_u \\cdot d(r,u))$$\n\nHere, this sum is taken over all nodes $u$ in the tree $T$, and $d(r,u)$ denotes the number of edges on the shortest path from node $r$ to node $u$ on a tree.\n\nYou are given a tree consisting of $n$ nodes, rooted at node $1$. Each node $i$ has a value $a_i$ assigned to it. For each $r$ from $1$ to $n$, please solve the following problem independently:\n\nConsider the subtree of node $r$ with respect to node $1$. Formally, the subtree of node $r$ is the tree consisting of all nodes $u$ such that the shortest path from $1$ to $u$ contains $r$.\n\nFind the maximum cost of the subtree after performing **at most one** operation of the following type on the subtree:\n\n- Choose any node $u$ ($u \\neq r$). Remove the edge from $u$ to the parent of node $u$$^{\\text{∗}}$. Then, add an edge from $u$ to any node $v$ that is still reachable from $r$. It can be shown that after this operation, the graph remains a tree.\n\nAs an example, below shows an example of an operation with $r=1$,$u=5$, and $v=4$.\n\n![image](https://espresso.codeforces.com/08cbc8b0340fa37c3036d5842d029b6d770d5775.png)\n\n$^{\\text{∗}}$Formally, remove the edge from $u$ to $p$, where $p$ is the unique node satisfying $d(u,p)=1$ and $d(u,r)=d(p,r)+1$\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each testcase contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the count of nodes in the tree.\n\nThe second line of each testcase contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 2 \\cdot 10^5$).\n\nThen $n − 1$ lines follow, the $i$-th line containing two integers $u$ and $v$ ($1 \\le u, v \\le n$) — the two nodes that the $i$-th edge connects.\n\nIt is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ does not exceed $2 \\cdot 10^5$ over all test cases.\n\n## Output\n\nFor each test case, print $n$ numbers – the answers for $r=1,2,\\ldots,n$.\n\n## Note\n\nIn the first test case, for $r=1$, it is optimal to choose $u=5$ and $v=4$. The cost of the tree is then $1\\cdot 0 + 3\\cdot 1+2\\cdot 2+1\\cdot 3+2\\cdot 4=18$. It can be shown that a larger cost cannot be obtained over all legal operations.\n\nFor $r=4$ for example, there is only $1$ node in the subtree, so there is no operation possible. The only possible cost of the subtree is $0$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n5\n1 3 2 1 2\n1 2\n2 3\n3 4\n3 5\n7\n1 2 3 1 3 2 1\n1 2\n2 3\n3 4\n4 5\n4 6\n3 7\n5\n5 4 3 2 1\n1 2\n2 3\n3 4\n4 5\n",
+      "output": "18 10 5 0 0\n40 28 18 8 0 0 0\n20 10 4 1 0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:04:06.912Z"
+}

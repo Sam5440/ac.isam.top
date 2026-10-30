@@ -1,0 +1,33 @@
+{
+  "id": "arc204_c",
+  "platform": "atcoder",
+  "contestId": "arc204",
+  "index": "C",
+  "title": "Maximize Sum of Mex",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc204/tasks/arc204_c",
+  "difficulty": 3004,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a positive integer $N$ and a permutation $P = (P_{1}, P_{2}, \\dots, P_{N})$ of $(1, 2, \\dots , N)$.\n\nProcess $Q$ queries. In each query, non-negative integers $A_{0}, A_{1}, A_{2}$ are given, so output the answer to the following problem. It is guaranteed that $A_{0} + A_{1} + A_{2} = N$.\n\n> A sequence $B$ of length $N$ is called a **good sequence** if and only if it satisfies all of the following conditions:\n> \n> - There are exactly $A_{0}$ integers $i$ with $1 \\leq i \\leq N$ such that $B_{i} = 0$.\n> - There are exactly $A_{1}$ integers $i$ with $1 \\leq i \\leq N$ such that $B_{i} = 1$.\n> - There are exactly $A_{2}$ integers $i$ with $1 \\leq i \\leq N$ such that $B_{i} = 2$.\n> \n> For a sequence $B$ of length $N$, the **score** is defined as follows:\n> \n> - $\\displaystyle\\sum_{i = 1}^{N}\\mathrm{MEX}(B_{i}, B_{P_{i}})$\n> \n> Here, $\\mathrm{MEX}(x, y)$ is defined as the minimum non-negative integer that is neither $x$ nor $y$.\n> \n> Find the maximum value of the **score** over all **good sequences**.\n\n## Constraints\n\n- $1\\leq N\\leq 3\\times 10^{5}$\n- $(P_{1}, P_{2}, \\dots , P_{N})$ is a permutation of $(1, 2, \\dots , N)$.\n- $1\\leq Q\\leq 3\\times 10^{5}$\n- $0\\leq A_{i}$\n- For each query, $A_{0} + A_{1} + A_{2} = N$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nP_{1} P_{2} \\dots P_{N}\nQ\nquery_{1}\nquery_{2}\n\\cdots\nquery_{Q}\n```\n\nHere $query_{i}$ is the $i$-th query, given in the following format:\n\n```\nA_{0} A_{1} A_{2}\n```\n\n## Output\n\nOutput $Q$ lines. The $i$-th line should contain the answer to the $i$-th query.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n2 3 1\n2\n1 1 1\n1 0 2\n",
+      "output": "3\n2\n",
+      "note": "For the first query, $B = (0, 1, 2)$ is a good sequence. The score of this sequence is $\\mathrm{MEX}(0, 1) + \\mathrm{MEX}(1, 2) + \\mathrm{MEX}(2, 0) = 2 + 0 + 1 = 3$, which is $3$. There is no good sequence with a score greater than $3$, so output $3$ on the first line."
+    },
+    {
+      "input": "7\n6 3 4 5 2 1 7\n4\n2 2 3\n4 1 2\n0 3 4\n1 2 4\n",
+      "output": "8\n9\n0\n4\n"
+    },
+    {
+      "input": "9\n1 6 7 3 5 8 9 2 4\n10\n5 3 1\n0 7 2\n0 6 3\n1 3 5\n4 0 5\n4 2 3\n1 5 3\n4 5 0\n2 2 5\n2 5 2\n",
+      "output": "14\n0\n0\n4\n7\n11\n4\n13\n8\n8\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:51:33.001Z"
+}

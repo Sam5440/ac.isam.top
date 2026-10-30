@@ -1,0 +1,33 @@
+{
+  "id": "arc204_d",
+  "platform": "atcoder",
+  "contestId": "arc204",
+  "index": "D",
+  "title": "Favorite Interval",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc204/tasks/arc204_d",
+  "difficulty": 3290,
+  "tags": [],
+  "points": 1000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given integers $N, L, R$.\n\nThese integers satisfy the following:\n\n- $2 \\leq N$\n- $0\\leq L < R \\leq N$\n- $(L, R)\\neq (0, N)$\n\nInitialize a length-$N$ sequence $A = (A_{0}, A_{1}, \\dots , A_{N - 1})$ as $A = (0, 1, \\dots, N - 1)$.\n\nChoose a permutation $P = (P_{0}, P_{1}, \\dots, P_{N - (R - L) - 1})$ of $(R - L, R - L + 1, \\dots , N - 1)$, and perform the following operation for $i = 0, 1, \\dots N - (R - L) - 1$ in this order.\n\n- Let $a$ be the remainder when $P_{i}$ is divided by $|A|$, and remove $A_{a}$ from $A$ (after removing an element, the indices of sequence $A$ are renumbered starting from $0$).\n\nDetermine whether there exists a $P$ such that $A = (L, L + 1, \\dots , R - 1)$ in the end, and if it exists, output one such $P$.\n\n## Constraints\n\n- $2\\leq N\\leq 2\\times 10^{5}$\n- $0\\leq L < R\\leq N$\n- $(L, R) \\neq (0, N)$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN L R\n```\n\n## Output\n\nIf there is no $P$ that makes $A = (L, L + 1, \\dots , R - 1)$, output `No`.\n\nIf it exists, output a solution in the following format:\n\n```\nYes\nP_{0} P_{1} \\cdots P_{N - (R - L) - 1}\n```\n\nFormally, output `Yes` on the first line, and output $P_{0}, P_{1}, \\dots , P_{N - (R - L) - 1}$ separated by spaces on the second line.\n\nIf there are multiple solutions, any of them will be considered correct.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 3 5\n",
+      "output": "Yes\n2 4 5 3\n",
+      "note": "When choosing $P = (2, 4, 5, 3)$, perform four operations on $A = (0, 1, 2, 3, 4, 5)$ as follows.\n\n- The remainder when $P_{0} = 2$ is divided by $|A| = 6$ is $2$, so remove $A_{2} = 2$ from $A$. Then, $A = (A_{0}, A_{1}, A_{2}, A_{3}, A_{4}) = (0, 1, 3, 4, 5)$.\n- The remainder when $P_{1} = 4$ is divided by $|A| = 5$ is $4$, so remove $A_{4} = 5$ from $A$. Then, $A = (A_{0}, A_{1}, A_{2}, A_{3}) = (0, 1, 3, 4)$.\n- The remainder when $P_{2} = 5$ is divided by $|A| = 4$ is $1$, so remove $A_{1} = 1$ from $A$. Then, $A = (A_{0}, A_{1}, A_{2}) = (0, 3, 4)$.\n- The remainder when $P_{3} = 3$ is divided by $|A| = 3$ is $0$, so remove $A_{0} = 0$ from $A$. Then, $A = (A_{0}, A_{1}) = (3, 4)$.\n\nTherefore, the goal can be achieved by setting $P = (2, 4, 5, 3)$. It is also acceptable to output $P = (5, 2, 4, 3)$."
+    },
+    {
+      "input": "9 2 4\n",
+      "output": "Yes\n4 5 6 7 3 8 2\n"
+    },
+    {
+      "input": "178 68 167\n",
+      "output": "No\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:51:34.855Z"
+}

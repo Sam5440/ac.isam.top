@@ -1,0 +1,25 @@
+{
+  "id": "arc186_c",
+  "platform": "atcoder",
+  "contestId": "arc186",
+  "index": "C",
+  "title": "Ball and Box",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc186/tasks/arc186_c",
+  "difficulty": 2451,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nMr. Ball and Mr. Box will play a game with balls and boxes.\n\nInitially, Mr. Ball has $10^{100}$ balls of each of $M$ different types, and Mr. Box has $10^{100}$ yen. There are $N$ boxes, where the $i$-th box has capacity $V_i$ and costs $P_i$ yen. During the game, Mr. Box can buy any box at any time.\n\nIn this game, the following operations are repeated until the game ends:\n\n1. Mr. Ball chooses one ball and gives it to Mr. Box.\n2. Mr. Box either accepts the ball or ends the game without accepting it.\n3. If Mr. Box accepts the ball, he chooses one of his purchased boxes and puts the ball in it.\n4. If the box with the ball satisfies the following conditions, Mr. Box receives $1$ yen. Otherwise, the game ends.\n- The number of balls in the box does not exceed its capacity.\n  - All balls in the box are of the same type.\n\nMr. Ball will play optimally to minimize Mr. Box's final money, while Mr. Box will play optimally to maximize it. How much will Mr. Box's money increase throughout the game?\n\nHere, both players have access to all information. In particular, Mr. Ball can see the capacity, price, and contents (type and number of balls) of each box. Also, note that Mr. Box's initial money is large enough that he will never run out of money to buy boxes.\n\nSolve $T$ test cases for each input file.\n\n## Constraints\n\n- $1\\le T,N,M\\le 3\\times 10^5$\n- $1\\le V_i,P_i \\le 10^9$\n- The sum of $N$ over the $T$ test cases is at most $3\\times 10^5$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{case}_i$ represents the $i$-th test case:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN M\nV_1 P_1\nV_2 P_2\n\\vdots\nV_N P_N\n```\n\n## Output\n\nPrint the difference between Mr. Box's final and initial money when both players play optimally.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n3 2\n1 1000000000\n3 1\n3 1\n1 300000\n1000000000 1\n10 4\n22 5\n26 45\n72 21\n47 39\n97 2\n75 35\n82 24\n17 46\n32 22\n28 67\n",
+      "output": "2\n0\n28\n",
+      "note": "In the first test case, there are two types of balls and three boxes. Let us call the two types of balls white and black balls, and call the $i$-th box box $i$. Here is an example of how the game could proceed where the money increases by $2$ yen.\n\n1. Mr. Ball chooses and gives a white ball.\n2. Mr. Box accepts the ball, buys box $2$ for $1$ yen, and puts the white ball in it.\n- Box $2$ contains $1$ white ball. This satisfies the conditions, so Mr. Box receives $1$ yen.\n3. Mr. Ball chooses and gives a white ball.\n4. Mr. Box accepts the ball and puts it in box $2$.\n- Box $2$ contains $2$ white balls. This satisfies the conditions, so Mr. Box receives $1$ yen.\n5. Mr. Ball chooses and gives a black ball.\n6. Mr. Box accepts the ball, buys box $3$ for $1$ yen, and puts the black ball in it.\n- Box $3$ contains $1$ black ball. This satisfies the conditions, so Mr. Box receives $1$ yen.\n7. Mr. Ball chooses and gives a white ball.\n8. Mr. Box accepts the ball and puts it in box $2$.\n- Box $2$ contains $3$ white balls. This satisfies the conditions, so Mr. Box receives $1$ yen.\n9. Mr. Ball chooses and gives a white ball.\n10. Mr. Box chooses to end the game without accepting it.\n\nFinally, box $2$ contains $3$ white balls and box $3$ contains $1$ black ball. Mr. Box spent $2$ yen and received $4$ yen, so his money increased by $2$ yen.\n\nIn the second test case, Mr. Ball can play in a way that prevents Mr. Box from earning any money."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:02:21.003Z"
+}

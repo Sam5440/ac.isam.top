@@ -1,0 +1,25 @@
+{
+  "id": "abc437_g",
+  "platform": "atcoder",
+  "contestId": "abc437",
+  "index": "G",
+  "title": "Colorful Christmas Tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc437/tasks/abc437_g",
+  "difficulty": 2806,
+  "tags": [],
+  "points": 625,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThe Christmas season this year is over, and it is finally time for the new year. Takahashi is busy with the big cleanup of putting away the Christmas tree.\n\nThere is a Christmas tree decorated with bulbs in three colors: red, blue, and green. The Christmas tree has $N$ bulbs, and they are connected by $N-1$ ribbons. When viewing the bulbs as vertices and the ribbons as edges, this graph is a tree.\n\nThe bulbs are numbered from $1$ to $N$, and the ribbons are numbered from $1$ to $N-1$. Ribbon $i$ connects bulbs $u_i$ and $v_i$. Bulb $i$ is initially lit in red if $c_i$ is `R`, in green if it is `G`, and in blue if it is `B`.\n\nTakahashi is considering performing the following operation $N-1$ times to remove all ribbons.\n\n1. Choose one ribbon among those not yet removed where the bulbs at both ends have different colors, and remove that ribbon.\n2. Let bulbs $u$ and $v$ be the bulbs at both ends of the removed ribbon. For each of the bulbs $u$ and $v$, change the color they are lit in according to the following rule:\n- If it was lit in red, light it in green.\n  - If it was lit in green, light it in blue.\n  - If it was lit in blue, light it in red.\n\nDetermine whether it is possible for Takahashi to remove all ribbons by repeating this operation. If possible, output one such method.\n\nYou are given $T$ test cases. Solve each of them.\n\n## Constraints\n\n- $1\\leq T\\leq 20000$\n- $2\\leq N\\leq 2000$\n- $c_i$ is `R`, `G`, or `B`.\n- $1\\leq u_i,v_i\\leq N$\n- When viewing the bulbs as vertices and the ribbons as edges, the given graph is a tree.\n- $T,N,u_i,v_i$ are integers.\n- The sum of $N^2$ in one input file is at most $2000^2$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN\nc_1c_2\\ldots c_N\nu_1 v_1\nu_2 v_2\n\\vdots\nu_{N-1} v_{N-1}\n```\n\n## Output\n\nOutput the answers for $\\mathrm{case}_1, \\mathrm{case}_2, \\ldots, \\mathrm{case}_T$ in order in the following format.\n\nIf it is impossible to remove all ribbons, output `No`.\n\nIf it is possible, let $e_i$ be the number of the ribbon removed in the $i$-th operation, and output:\n\n```\nYes\ne_1 e_2 \\ldots e_{N-1}\n```\n\n$(e_1, e_2, \\ldots, e_{N-1})$ must be a permutation of $(1, 2, \\ldots, N-1)$.\n\nIf there are multiple solutions, any of them will be accepted as correct.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n4\nGBBR\n1 2\n1 3\n1 4\n3\nRRR\n1 2\n2 3\n5\nRGBRG\n1 2\n2 3\n3 4\n3 5\n",
+      "output": "Yes\n1 3 2\nNo\nYes\n1 4 2 3\n",
+      "note": "For the first test case, for example, all ribbons can be removed by performing the operations as follows:\n\n- Initially, the colors of the bulbs are green, blue, blue, red, in order (from bulb $1$).\n- Remove ribbon $1$. After removal, the colors of the bulbs are blue, red, blue, red, in order.\n- Remove ribbon $3$. After removal, the colors of the bulbs are red, red, blue, green, in order.\n- Remove ribbon $2$. After removal, the colors of the bulbs are green, red, red, green, in order.\n\nThe $(e_1, e_2, e_3)$ satisfying the condition are $(1, 3, 2)$ and $(2, 3, 1)$, and either one will be accepted as correct.\n\nFor the second test case, it is impossible to remove all ribbons no matter how you perform the operations."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:49:17.232Z"
+}

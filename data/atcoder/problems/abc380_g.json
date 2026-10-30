@@ -1,0 +1,33 @@
+{
+  "id": "abc380_g",
+  "platform": "atcoder",
+  "contestId": "abc380",
+  "index": "G",
+  "title": "Another Shuffle Window",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc380/tasks/abc380_g",
+  "difficulty": 1995,
+  "tags": [],
+  "points": 575,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a permutation $P$ of $(1,2,\\dots,N)$ and an integer $K$.\n\nFind the expected value, modulo $998244353$, of the inversion number of $P$ after performing the following operation:\n\n- First, choose an integer $i$ uniformly at random between $1$ and $N - K + 1$, inclusive.\n- Then, shuffle $P_i, P_{i+1}, \\dots, P_{i+K-1}$ uniformly at random.\n\nWhat is the inversion number? The inversion number of a sequence $(A_1, A_2, \\dots, A_N)$ is the number of integer pairs $(i, j)$ satisfying $1 \\le i < j \\le N$ and $A_i > A_j$.\n\nWhat does \"expected value modulo $998244353$\" mean? It can be proved that the sought expected value is always rational. Under the constraints of this problem, when this value is represented as an irreducible fraction $\\frac{P}{Q}$, it can also be proved that $Q \\not\\equiv 0 \\pmod{998244353}$. Thus, there is a unique integer $R$ satisfying $R \\times Q \\equiv P \\pmod{998244353}, \\ 0 \\le R < 998244353$. Report this integer $R$.\n\n## Constraints\n\n- All input values are integers.\n- $1 \\le K \\le N \\le 2 \\times 10^5$\n- $P$ is a permutation of $(1,2,\\dots,N)$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN K\nP_1 P_2 \\dots P_N\n```\n\n## Output\n\nPrint the answer in one line.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 2\n1 4 2 3\n",
+      "output": "166374061\n",
+      "note": "The operation changes the permutation $P$ into the following:\n\n- $(1,4,2,3)$ ... probability $1/2$\n- $(4,1,2,3)$ ... probability $1/6$\n- $(1,2,4,3)$ ... probability $1/6$\n- $(1,4,3,2)$ ... probability $1/6$\n\nThe expected value of the inversion number is $\\displaystyle 2 \\times \\frac{1}{2} + 3 \\times \\frac{1}{6} + 1 \\times \\frac{1}{6} + 3 \\times \\frac{1}{6} = \\frac{13}{6}$.\n\n$\\displaystyle \\frac{13}{6}$ modulo $998244353$ is $166374061$, so print this number."
+    },
+    {
+      "input": "1 1\n1\n",
+      "output": "0\n"
+    },
+    {
+      "input": "10 6\n7 4 10 5 6 1 8 2 3 9\n",
+      "output": "499122200\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:02:10.440Z"
+}

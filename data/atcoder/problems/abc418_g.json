@@ -1,0 +1,33 @@
+{
+  "id": "abc418_g",
+  "platform": "atcoder",
+  "contestId": "abc418",
+  "index": "G",
+  "title": "Binary Operation",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc418/tasks/abc418_g",
+  "difficulty": 3038,
+  "tags": [],
+  "points": 650,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $16$ integer tuples $(A, B, C, D)$ satisfying $A, B, C, D \\in \\lbrace 0, 1 \\rbrace$. For each of them, solve the following problem.\n\n> A non-empty string $S$ consisting of `0` and `1` is called a beautiful string when it satisfies the following condition:\n> \n> - (Condition) You can perform the following sequence of operations until the length of $S$ becomes $1$ and make the only character remaining in $S$ be `1`.\n> - Choose any integer $i$ satisfying $1 \\leq i \\leq |S| - 1$.\n>   - Define an integer $x$ as follows:\n>   - If $S_i =$ `0` and $S_{i+1} =$ `0`, let $x = A$.\n>     - If $S_i =$ `0` and $S_{i+1} =$ `1`, let $x = B$.\n>     - If $S_i =$ `1` and $S_{i+1} =$ `0`, let $x = C$.\n>     - If $S_i =$ `1` and $S_{i+1} =$ `1`, let $x = D$.\n>   - Remove $S_i$ and $S_{i+1}$, and insert the digit corresponding to $x$ in their place. For example, if $S=$ `10101` and you choose $i=2$, the string after the operation is `1001` if $B=0$, and `1101` if $B=1$.\n> \n> You are given a string $T$ of length $N$ consisting of `0` and `1`.\n> \n> - Let $L$ be the length of the longest beautiful string that is a substring of $T$ (if no substring of $T$ is a beautiful string, let $L = -1$),\n> - Let $M$ be the number of beautiful strings that are substrings of $T$.\n> \n> Find $L$ and $M$. Even if two substrings are identical as strings, count them separately if they are taken from different positions.\n\nWhat are substrings? A **substring** of $S$ is a string obtained by deleting zero or more characters from the beginning and zero or more characters from the end of $S$. For example, `10` is a substring of `101`, but `11` is not a substring of `101`.\n\n## Constraints\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $N$ is an integer.\n- $T$ is a string of length $N$ consisting of `0` and `1`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nT\n```\n\n## Output\n\nPrint $16$ lines. The $i$-th line should contain $L$ and $M$ separated by a space for $(A,B,C,D)$ satisfying $i-1 = 8A + 4B + 2C + D$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n110\n",
+      "output": "1 2\n2 3\n2 3\n3 5\n1 2\n2 3\n2 3\n3 5\n3 3\n2 3\n3 4\n3 5\n3 3\n2 3\n3 4\n3 5\n",
+      "note": "We explain the case $(A,B,C,D)=(0,0,0,1)$.\nThe string `11` obtained by taking the 1st through 2nd characters of $T$ is a beautiful string, because if you choose $i=1$ and perform the operation, the string becomes `1`.\nIn the case $(A,B,C,D)=(0,0,0,1)$, the beautiful strings that are substrings of $T$ are the following three strings:\n\n- The string `1` obtained by taking the 1st character of $T$.\n- The string `1` obtained by taking the 2nd character of $T$.\n- The string `11` obtained by taking the 1st through 2nd characters of $T$."
+    },
+    {
+      "input": "4\n0000\n",
+      "output": "-1 0\n-1 0\n-1 0\n-1 0\n-1 0\n-1 0\n-1 0\n-1 0\n4 4\n4 4\n4 6\n4 6\n4 6\n4 6\n4 6\n4 6\n"
+    },
+    {
+      "input": "30\n011011100101110111100010011010\n",
+      "output": "1 17\n4 31\n29 263\n29 280\n29 232\n29 247\n30 240\n30 447\n30 418\n29 225\n30 435\n30 435\n30 435\n30 435\n30 439\n30 452\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:51:38.740Z"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2173D",
+  "platform": "codeforces",
+  "contestId": 2173,
+  "index": "D",
+  "title": "Taiga's Carry Chains",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2173/problem/D",
+  "difficulty": 1900,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "dp",
+    "greedy",
+    "math"
+  ],
+  "points": 1750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*Miracles don't happen to those who just wait.*— *Toradora!*\n\nAfter classes at Ohashi High School, Ryuuji hands Taiga a positive integer $n$ and sets a simple challenge.\n\nThey will play for exactly $k$ moves. In a single move, Taiga chooses a non-negative integer $\\ell$ and sets $n \\gets n + 2^{\\ell}$.\n\nRyuuji defines the *score* of one move as the number of binary carries that occur when adding $2^{\\ell}$ to the current number in base $2$. The total *score* is the sum of *score* over all $k$ moves.\n\nTaiga wants the total *score* to be as large as possible after $k$ moves. What is the maximum total *score* she can achieve?\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe only line of each test case contains two integers $n$ and $k$ ($1 \\le n \\lt 2^{30}$, $0 \\le k \\le 10^9$) — the initial integer and the number of moves.\n\n## Output\n\nFor each test case, output a single integer — the maximum total *score* that Taiga can achieve.\n\n## Note\n\nIn the first test case, $(n,k)=(7,1)$ and $7=\\mathtt{111}_2$. Adding $2^0$ gives $\\mathtt{111}+\\mathtt{1}=\\mathtt{1000}$, which produces carries at bits $0,1,2$. So the total score is $3$.\n\nIn the second test case, $(n,k)=(13,2)$ with $13=\\mathtt{1101}_2$. First we add $2^0$: $\\mathtt{1101}+\\mathtt{0001}=\\mathtt{1110}$, which creates one carry. Then we add $2^1$: $\\mathtt{1110}+\\mathtt{0010}=\\mathtt{10000}$, with carries propagating through bits $1,2,3$. In total there are $1+3=4$ carries, so the score is ${4}$.\n\nIn the third test case, $(n,k)=(42,2)$ and $42=\\mathtt{101010}_2$. First we add $2^1$: $\\mathtt{101010}+\\mathtt{000010}=\\mathtt{101100}$, giving one carry. Next we add $2^2$: $\\mathtt{101100}+\\mathtt{000100}=\\mathtt{110000}$, which generates carries at bits $2$ and $3$. Thus the total number of carries is $1+2=3$.\n\nIn the fifth test case, $(n,k)=(23,2)$ and $23=\\mathtt{10111}_2$. First we add $2^0$: $\\mathtt{10111}+\\mathtt{00001}=\\mathtt{11000}$, which produces carries at bits $0,1,2$. Then we add $2^3$: $\\mathtt{11000}+\\mathtt{01000}=\\mathtt{100000}$, producing carries at bits $3$ and $4$. Altogether there are $3+2=5$ carries, so the total score is ${5}$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n7 1\n13 2\n42 2\n1048576 100\n23 2\n371 1\n",
+      "output": "3\n4\n3\n100\n5\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:05:37.954Z"
+}

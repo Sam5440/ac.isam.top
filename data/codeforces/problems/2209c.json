@@ -1,0 +1,28 @@
+{
+  "id": "2209C",
+  "platform": "codeforces",
+  "contestId": 2209,
+  "index": "C",
+  "title": "Find the Zero",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2209/problem/C",
+  "difficulty": 1400,
+  "tags": [
+    "constructive algorithms",
+    "interactive"
+  ],
+  "points": 1500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*This is an interactive problem.*\n\nYou are given an integer $n$. There is a hidden array $a$ of length $2n$. Each integer from $1$ to $n$ appears **exactly once** in $a$. The rest of the elements are all $0$.\n\nYou can make the following type of query:\n\n- Choose two integers $i$ and $j$ ($1 \\le i,j \\le 2n$, $i \\ne j$). The judge will respond with $1$ if $a_i=a_j$, and will respond with $0$ otherwise.\n\nFind any integer $k$ ($1 \\le k \\le 2n$) such that $a_k=0$ in no more than $n+1$ queries. Note that the interactor is **adaptive**, which means that the hidden array $a$ may change depending on your queries but will not contradict previous queries.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^3$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($2 \\le n \\le 10^4$). The length of the hidden array $a$ will be $2n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^4$.\n\n## Interaction\n\nTo make a query, output a line in the following format:\n\n- $\\texttt{?}\\;i\\;j$ ($1 \\le i,j \\le 2n$, $i \\ne j$)\n\nAs a response to the query, you will get:\n\n- $1$ if $a_i=a_j$;\n- $0$ if $a_i \\ne a_j$;\n- $-1$ if you made an invalid query or if you exceed the limit of $n+1$ queries.\n\nTo report the answer, output a line in the following format:\n\n- $\\texttt{!}\\;k$ ($1 \\le k \\le 2n$)\n\nAfter this, proceed to the next test case or terminate if this is the last test case.\n\nNote that reporting the answer does not count towards the $n+1$ queries.\n\nThe interactor is **adaptive**. This means that the hidden array $a$ may change depending on your queries but will not contradict previous queries.\n\nAfter printing each query do not forget to output the end of line and flush$^{\\text{∗}}$ the output. Otherwise, you will get `Idleness limit exceeded` verdict. If, at any interaction step, you read $-1$ instead of valid data, your solution must exit immediately. This means that your solution will receive `Wrong answer` because of an invalid query or any other mistake. Failing to exit can result in an arbitrary verdict because your solution will continue to read from a closed stream.\n\n**For this problem, hacks are disabled.**\n\n$^{\\text{∗}}$To flush, use: `fflush(stdout)` or `cout.flush()` in C++; `sys.stdout.flush()` in Python; see the documentation for other languages.\n\n## Note\n\nIn the first example test case, the hidden array $a$ is $[0,1,0,2]$:\n\n- In the first query, $(i,j)=(1,2)$. Since $a_1=0$, $a_2=1$, $a_1 \\ne a_2$, the judge responds with $0$.\n- In the second query, $(i,j)=(3,1)$. Since $a_3=0$, $a_1=0$, $a_3 = a_1$, the judge responds with $1$.\n- The program reports $k=3$ as an answer. Since $a_3=0$, the answer is correct.\n\nIn the second example test case, the hidden array $a$ is $[3,2,0,1,0,0]$:\n\n- In the first query, $(i,j)=(5,6)$. Since $a_5=0$, $a_6=0$, $a_5 = a_6$, the judge responds with $1$.\n- In the second query, $(i,j)=(2,4)$. Since $a_2=2$, $a_4=1$, $a_2 \\ne a_4$, the judge responds with $0$.\n- In the third query, $(i,j)=(1,3)$. Since $a_1=3$, $a_3=0$, $a_1 \\ne a_3$, the judge responds with $0$.\n- The program reports $k=6$ as an answer. Since $a_6=0$, the answer is correct.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n2\n\n0\n\n1\n\n3\n\n1\n\n0\n\n0\n",
+      "output": "? 1 2\n\n? 3 1\n\n! 3\n\n? 5 6\n\n? 2 4\n\n? 1 3\n\n! 6\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:54:55.028Z"
+}

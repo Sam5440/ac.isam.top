@@ -1,0 +1,25 @@
+{
+  "id": "arc209_c",
+  "platform": "atcoder",
+  "contestId": "arc209",
+  "index": "C",
+  "title": "Adjusting a Rectangle",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc209/tasks/arc209_c",
+  "difficulty": 2869,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given positive integers $N, X$ and integer sequences of length $N$: $S = (S_1, S_2, \\dots, S_N), P = (P_1, P_2, \\dots, P_N)$. Here, each element of $P$ is $1$ or $-1$.\n\nYou are given $Q$ queries. In each query, you are given integers $l, r$ satisfying $1 \\leq l \\leq r \\leq N$, and you play the following game:\n\n- Initially, your score is $0$, and integers $a, b$ are initialized as $a = 1, b = 1$.\n- For $i = l, l+1, \\dots, r$ in this order, perform the following operation:\n- If $i$ is even, replace the value of $a$ with any integer between $1$ and $X$ (inclusive); if $i$ is odd, replace the value of $b$ with any integer between $1$ and $X$ (inclusive).\n  - After that, if $ab \\geq S_i$, add $P_i$ to your score. Otherwise, the score does not change. Note that $P_i$ can be negative.\n\nFor each query, find the maximum possible value of your score when the game ends.\n\n## Constraints\n\n- $1 \\le N, X, Q \\le 10^5$\n- $1 \\le S_i \\le 10^5$\n- $P_i = 1$ or $P_i = -1$.\n- For each query, $1 \\le l \\le r \\le N$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN X Q\nS_1 S_2 \\ldots S_N\nP_1 P_2 \\ldots P_N\n\\text{query}_1\n\\text{query}_2\n\\vdots\n\\text{query}_Q\n```\n\nEach query is given in the following format:\n\n```\nl r\n```\n\n## Output\n\nOutput $Q$ lines.\n\nThe $i$-th line should contain the maximum possible value of your score when the game ends in the $i$-th query.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "9 4 4\n3 11 10 12 5 7 3 9 16\n1 1 -1 1 -1 1 -1 1 1\n5 9\n1 4\n5 5\n2 8\n",
+      "output": "2\n3\n0\n1\n",
+      "note": "In the first query, you can make the score $2$ when the game ends by the following procedure:\n\n| $i$ | Operation | $a$ | $b$ | Score |\n| --- | --- | --- | --- | --- |\n| - |   | $1$ | $1$ | $0$ |\n| $5$ | Replace the value of $b$ with $4$. Since $ab < S_5 \\, (= 5)$, the score does not change. | $1$ | $4$ | $0$ |\n| $6$ | Replace the value of $a$ with $2$. Since $ab \\geq S_6 \\, (= 7)$, add $P_6 \\, (= 1)$ to the score. | $2$ | $4$ | $1$ |\n| $7$ | Replace the value of $b$ with $3$. Since $ab \\geq S_7 \\, (= 3)$, add $P_7 \\, (= -1)$ to the score. | $2$ | $3$ | $0$ |\n| $8$ | Replace the value of $a$ with $4$. Since $ab \\geq S_8 \\, (= 9)$, add $P_8 \\, (= 1)$ to the score. | $4$ | $3$ | $1$ |\n| $9$ | Replace the value of $b$ with $4$. Since $ab \\geq S_9 \\, (= 16)$, add $P_9 \\, (= 1)$ to the score. | $4$ | $4$ | $2$ |\n\nIt is impossible to make the score $3$ or more when the game ends, so output $2$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:49:58.631Z"
+}

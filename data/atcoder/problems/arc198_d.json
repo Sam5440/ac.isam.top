@@ -1,0 +1,33 @@
+{
+  "id": "arc198_d",
+  "platform": "atcoder",
+  "contestId": "arc198",
+  "index": "D",
+  "title": "Many Palindromes on Tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc198/tasks/arc198_d",
+  "difficulty": 2299,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a tree $T$ with $N$ vertices numbered $1$ through $N$, and an $N \\times N$ matrix $A = (A_{i,j})$. The $i$-th edge of $T$ connects vertices $U_i$ and $V_i$. Each entry of $A$ is $0$ or $1$.\n\nDefine the **score** of an integer sequence $x=(x_1,x_2,\\dots,x_N)$ as follows:\n\n- For a vertex pair $(i,j)(1 \\le i,j \\le N)$, let the simple path in $T$ from $i$ to $j$ be $v_1=i,v_2,\\dots,v_n=j$ (this path is unique since $T$ is a tree). The pair $(i,j)$ is called a **palindromic pair** if $x_{v_k} = x_{v_{n+1-k}}$ for every $k(1 \\le k \\le n)$.\n- If there exists a pair $(i,j)$ such that $A_{i,j} = 1$ and $(i,j)$ is not a palindromic pair, then the score of $x$ is $10^{100}$.\n- Otherwise, the score of $x$ is the number of pairs $(i,j)$ such that $1 \\le i,j \\le N$ and $(i,j)$ is a palindromic pair.\n\nFind the minimum score over all integer sequences $x$.\n\n## Constraints\n\n- $1 \\le N \\le 3000$\n- $1 \\le U_i,V_i \\le N$\n- $T$ is a tree.\n- $A_{i,j} \\in \\lbrace 0,1 \\rbrace$\n- $A_{i,i} = 1$\n- $A_{i,j} = A_{j,i}$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nU_1 V_1\nU_2 V_2\n\\vdots\nU_{N-1} V_{N-1}\nA_{1,1}A_{1,2}\\dots A_{1,N}\nA_{2,1}A_{2,2}\\dots A_{2,N}\n\\vdots\nA_{N,1}A_{N,2}\\dots A_{N,N}\n```\n\n## Output\n\nOutput the minimum score over all integer sequences $x$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n1 2\n1 3\n1 4\n1000\n0101\n0010\n0101\n",
+      "output": "6\n",
+      "note": "For example, when $x = (1,2,4,2)$, there is no pair $(i,j)$ such that $A_{i,j}=1$ and $(i,j)$ is not a palindromic pair. The palindromic pairs are $(1,1),(2,2),(3,3),(4,4),(2,4),(4,2)$, so the score is $6$.\n\nOn the other hand, when $x = (1,2,3,4)$, we have $A_{2,4} = 1$ while $(2,4)$ is not a palindromic pair, so the score is $10^{100}$."
+    },
+    {
+      "input": "7\n7 2\n4 1\n6 5\n1 6\n3 4\n2 3\n1001000\n0100000\n0010000\n1001001\n0000100\n0000010\n0001001\n",
+      "output": "13\n"
+    },
+    {
+      "input": "10\n7 5\n10 3\n7 6\n6 10\n8 3\n9 3\n5 4\n1 5\n2 10\n1000000000\n0100010000\n0010010100\n0001000000\n0000100100\n0110010000\n0000001001\n0010100110\n0000000110\n0000001001\n",
+      "output": "66\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:52:55.487Z"
+}

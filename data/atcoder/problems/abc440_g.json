@@ -1,0 +1,29 @@
+{
+  "id": "abc440_g",
+  "platform": "atcoder",
+  "contestId": "abc440",
+  "index": "G",
+  "title": "Haunted House",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc440/tasks/abc440_g",
+  "difficulty": 2993,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nHalloween season has arrived. As a test of courage, you are about to challenge a haunted house.\n\nThere is a haunted house with $F$ floors, and each floor is represented by an $H$-row by $W$-column grid. Let cell $(k,i,j)$ be the cell at the $i$-th row from the top and $j$-th column from the left of the grid representing floor $k$.\n\nThe content of cell $(k,i,j)$ is represented by the character $S_{k,i,j}$ as follows:\n\n- If $S_{k,i,j}$ is a digit (`0` - `9`), cell $(k,i,j)$ is an empty cell with a number of coins equal to the single-digit integer represented by the digit.\n- If $S_{k,i,j}$ is `#`, cell $(k,i,j)$ is a wall cell.\n\nYou can move directly from an empty cell $(k,i,j)$ to another cell $(k', i', j')$ if cell $(k', i', j')$ is an empty cell and one of the following is satisfied:\n\n- $k' = k$ and $|i' - i| + |j' - j| = 1$ are satisfied.\n- $(k', i', j') = (k+1, i, j)$ is satisfied.\n- $(k', i', j') = (k-1, i, j)$ is satisfied, and a **ladder** is placed at cell $(k,i,j)$.\n\nYou cannot move outside the grid.\n\nYou are given $Q$ questions; answer each of them. The $i$-th question ($1 \\leq i \\leq Q$) is as follows:\n\n- Find the maximum total number of coins in the cells you visit if you choose exactly one empty cell and place a ladder there, start at cell $(G_i, A_i, B_i)$, and repeatedly move.\n\nEach question is independent. That is, a ladder placed for one question does not affect other questions.\n\n## Constraints\n\n- $F,H,W$ are integers.\n- $1 \\leq F \\leq 10$\n- $1 \\leq H,W \\leq 500$\n- $S_{k,i,j}$ is either a digit (`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`) or `#`. ($1 \\leq k \\leq F, 1 \\leq i \\leq H, 1 \\leq j \\leq W$)\n- $Q$ is an integer.\n- $1 \\leq Q \\leq 10^5$\n- $G_i, A_i, B_i$ are integers. ($1 \\leq i \\leq Q$)\n- $1 \\leq G_i \\leq F$ ($1 \\leq i \\leq Q$)\n- $1 \\leq A_i \\leq H$ ($1 \\leq i \\leq Q$)\n- $1 \\leq B_i \\leq W$ ($1 \\leq i \\leq Q$)\n- $S_{G_i, A_i, B_i}$ is not `#`. ($1 \\leq i \\leq Q$)\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nF H W\nS_{1,1,1} S_{1,1,2} \\cdots S_{1,1,W}\nS_{1,2,1} S_{1,2,2} \\cdots S_{1,2,W}\n\\vdots\nS_{1,H,1} S_{1,H,2} \\cdots S_{1,H,W}\nS_{2,1,1} S_{2,1,2} \\cdots S_{2,1,W}\nS_{2,2,1} S_{2,2,2} \\cdots S_{2,2,W}\n\\vdots\nS_{2,H,1} S_{2,H,2} \\cdots S_{2,H,W}\n\\vdots\nS_{F,1,1} S_{F,1,2} \\cdots S_{F,1,W}\nS_{F,2,1} S_{F,2,2} \\cdots S_{F,2,W}\n\\vdots\nS_{F,H,1} S_{F,H,2} \\cdots S_{F,H,W}\nQ\nG_1 A_1 B_1\nG_2 A_2 B_2\n\\vdots\nG_Q A_Q B_Q\n```\n\n## Output\n\nOutput $Q$ lines. The $i$-th line ($1 \\leq i \\leq Q$) should contain the answer to the $i$-th question.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 5 6\n######\n##5###\n#1#11#\n#1#11#\n######\n######\n##313#\n#4##1#\n#242##\n######\n######\n#0####\n##4###\n###99#\n######\n3\n1 2 3\n2 3 2\n3 2 2\n",
+      "output": "47\n34\n0\n",
+      "note": "For the first question, by placing a ladder at cell $(2,3,5)$ and moving as follows, you can make the total number of coins in the visited cells $47$:\n\n1. Start at cell $(1,2,3)$ on the first floor.\n2. Go up to the second floor and move in the order $(2,2,3) \\to (2,2,4) \\to (2,2,5) \\to (2,3,5)$.\n3. Go down to the first floor and move in the order $(1,3,5) \\to (1,4,5) \\to (1,4,4) \\to (1,3,4) \\to (1,4,4)$.\n4. Go up to the second floor and move in the order $(2,4,4) \\to (2,4,3) \\to (2,4,2) \\to (2,3,2) \\to (2,4,2) \\to (2,4,3) \\to (2,4,4)$.\n5. Go up to the third floor and move in the order $(3,4,4) \\to (3,4,5)$.\n\nFor the second question, by placing a ladder at cell $(2,4,4)$ and moving as follows, you can make the total number of coins in the visited cells $34$:\n\n1. Move in the order $(2,3,2) \\to (2,4,2) \\to (2,4,3) \\to (2,4,4)$ on the second floor.\n2. Go down to the first floor and move in the order $(1,4,4) \\to (1,4,5) \\to (1,3,5) \\to (1,3,4) \\to (1,4,4)$.\n3. Go up to the second floor and be at cell $(2,4,4)$.\n4. Go up to the third floor and move in the order $(3,4,4) \\to (3,4,5)$.\n\nFor the third question, no matter how you place the ladder, you cannot move from the starting cell $(3,2,2)$."
+    },
+    {
+      "input": "3 6 30\n31#990#7###71298#6#9####3##04#\n###66###6######7#4#3#1079239#6\n891###8#73#7#5838#589#225#1282\n#####5#306#9#38#50##6#71##8658\n6#68#4#5###30###3#5716987#####\n06#8####3#####134#5##2##28#169\n#5#11####0#75#8######28#6#904#\n85#71####0##9#7#0##8#2##00####\n#1#09#3772#838#67#6##261###0#4\n#4##78###7#########9#9#488##08\n43#1##4632##46714436##849#77#6\n8#83#61##4#14476#9#1##72#3####\n5#99####52##6#9####9#4#4132#3#\n##910#27529#69##491###0#06#9##\n0#60845#02##28##610#2####25#6#\n#229156374##47#30907#60#####28\n#0#810#54###21##1#3###8#5917##\n###6#56#60##04#73###6255###2##\n10\n3 4 23\n3 2 4\n1 4 14\n2 3 12\n1 1 16\n1 2 9\n3 5 6\n1 3 19\n2 2 4\n3 4 9\n",
+      "output": "136\n217\n474\n255\n474\n285\n217\n451\n251\n217\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:48:59.852Z"
+}

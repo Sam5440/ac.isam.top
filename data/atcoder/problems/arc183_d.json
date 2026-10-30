@@ -1,0 +1,37 @@
+{
+  "id": "arc183_d",
+  "platform": "atcoder",
+  "contestId": "arc183",
+  "index": "D",
+  "title": "Keep Perfectly Matched",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc183/tasks/arc183_d",
+  "difficulty": 2880,
+  "tags": [],
+  "points": 800,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a tree with $N$ vertices numbered from $1$ to $N$. The $i$-th edge connects vertices $A_i$ and $B_i$. Here, $N$ is even, and furthermore, this tree has a perfect matching. Specifically, for each $i$ ($1 \\leq i \\leq N/2$), it is guaranteed that $A_i=i \\times 2-1$ and $B_i=i \\times 2$.\n\nYou will perform the following operation $N/2$ times:\n\n- Choose two leaves (vertices with degree exactly $1$) and remove them from the tree. Here, the tree after removal must still have a perfect matching. In this problem, we consider a graph with zero vertices to be a tree as well.\n\nFor each operation, its score is defined as the distance between the two chosen vertices (the number of edges on the simple path connecting the two vertices).\n\nShow one procedure that maximizes the total score. It can be proved that there always exists a procedure to complete $N/2$ operations under the constraints of this problem.\n\n## Constraints\n\n- $2 \\leq N \\leq 250000$\n- $N$ is even.\n- $1 \\leq A_i < B_i \\leq N$ ($1 \\leq i \\leq N-1$)\n- $A_i=i \\times 2 -1$, $B_i=i \\times 2$ ($1 \\leq i \\leq N/2$)\n- The given graph is a tree.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nA_1 B_1\nA_2 B_2\n\\vdots\nA_{N-1} B_{N-1}\n```\n\n## Output\n\nPrint a solution in the following format:\n\n```\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_{N/2} Y_{N/2}\n```\n\nHere, $X_i$ and $Y_i$ are the two vertices chosen in the $i$-th operation. If there are multiple solutions, you may print any of them.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n1 2\n3 4\n2 3\n",
+      "output": "4 1\n2 3\n",
+      "note": "The procedure in the sample output is as follows:\n\n- 1st operation: Remove vertices $4$ and $1$. The remaining tree has vertices $2$ and $3$, and a perfect matching. The score of this operation is $3$.\n- 2nd operation: Remove vertices $2$ and $3$. The remaining tree has zero vertices and a perfect matching. The score of this operation is $1$.\n- The total score is $3 + 1 = 4$.\n\nIt is impossible to make the total score greater than $4$, so this output solves this sample input."
+    },
+    {
+      "input": "8\n1 2\n3 4\n5 6\n7 8\n2 3\n1 5\n1 7\n",
+      "output": "4 8\n7 6\n5 3\n2 1\n"
+    },
+    {
+      "input": "14\n1 2\n3 4\n5 6\n7 8\n9 10\n11 12\n13 14\n2 8\n4 11\n5 12\n7 13\n11 14\n9 13\n",
+      "output": "1 6\n5 2\n8 12\n3 7\n10 4\n11 9\n13 14\n"
+    },
+    {
+      "input": "20\n1 2\n3 4\n5 6\n7 8\n9 10\n11 12\n13 14\n15 16\n17 18\n19 20\n8 10\n16 18\n16 19\n5 9\n10 17\n2 13\n7 14\n3 7\n3 12\n",
+      "output": "6 1\n2 15\n20 13\n14 19\n16 4\n11 18\n17 12\n3 5\n9 7\n8 10\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:03:17.304Z"
+}

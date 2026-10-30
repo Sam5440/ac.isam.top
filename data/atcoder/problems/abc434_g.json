@@ -1,0 +1,25 @@
+{
+  "id": "abc434_g",
+  "platform": "atcoder",
+  "contestId": "abc434",
+  "index": "G",
+  "title": "Keyboard",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc434/tasks/abc434_g",
+  "difficulty": 3645,
+  "tags": [],
+  "points": 650,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nFor a string $A$ consisting of `1`, `2`, $\\dots$, `9` and `B`, define $f(A)$ as the string obtained by the following procedure:\n\n- Initially, there is an empty string $C$.\n- Perform the following operations in the order $i = 1, 2, \\dots, |A|$:\n- If $A_i$ is one of `1`, `2`, $\\dots$, `9`, append $A_i$ to the end of $C$.\n  - If $A_i =$ `B`, delete the last character of $C$. However, if $C$ is an empty string, do nothing.\n- Let $f(A)$ be $C$ after completing all the above operations.\n\nYou are given a string $S$ of length $N$ consisting of `1`, `2`, $\\dots$, `9`, and `B`.\nProcess $Q$ queries described below. Each query is of one of the following two types:\n\n- $1\\ \\ x\\ \\ c$ : Update $S_x$ to $c$. (Here, $c$ is `1`, `2`, $\\dots$, `9`, or `B`.)\n- $2\\ \\ l\\ \\ r$ : Let $T$ be the string formed by extracting the $l$-th through $r$-th characters of $S$. Then, let $U=f(T)$. If $U$ is an empty string, output $-1$; otherwise, output the remainder when the value of $U$ regarded as a decimal integer is divided by $998244353$.\n\n## Constraints\n\n- $1 \\leq N \\leq 8 \\times 10^6$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $S$ is a string of length $N$ consisting of `1`, `2`, $\\dots$, `9`, and `B`.\n- $1 \\leq x \\leq N$\n- $c$ is `1`, `2`, $\\dots$, `9`, or `B`.\n- $1 \\leq l \\leq r \\leq N$\n- $N, Q, x, l, r$ are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{query}_i$ denotes the $i$-th query.\n\n```\nN Q\nS\n\\mathrm{query}_1\n\\mathrm{query}_2\n\\vdots\n\\mathrm{query}_Q\n```\n\nEach query is given in one of the following two formats:\n\n```\n1 x c\n```\n\n```\n2 l r\n```\n\n## Output\n\nOutput the answers to the queries separated by newlines, following the instructions in the problem statement.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "10 12\n1234567891\n2 5 7\n2 2 8\n2 1 10\n1 3 B\n1 4 B\n2 2 4\n2 2 8\n2 1 10\n1 7 B\n2 3 9\n1 3 4\n2 1 10\n",
+      "output": "567\n2345678\n236323538\n-1\n5678\n567891\n589\n125891\n",
+      "note": "For the first query, $T=U=$ `567`. Thus, output $567$.\nFor the third query, $T=U=$ `1234567891`. Thus, output $1234567891 \\bmod 998244353 = 236323538$.\nFor the sixth query, $T=$ `2BB` and $U$ is an empty string. Thus, output $-1$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:49:33.031Z"
+}

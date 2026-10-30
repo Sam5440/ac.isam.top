@@ -1,0 +1,34 @@
+{
+  "id": "arc211_c",
+  "platform": "atcoder",
+  "contestId": "arc211",
+  "index": "C",
+  "title": "Forest",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc211/tasks/arc211_c",
+  "difficulty": 1792,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a positive integer $N$, a string $S$ of length $N$ consisting of `#` and `.`, and a length-$N$ sequence of positive integers $R=(R_1,R_2,\\dots,R_N)$.\n\nThere is a forest with $N$ sections arranged in a single horizontal line. The sections are numbered $1,2,\\dots,N$ from left to right.\n\nSome sections have trees. Specifically, section $i$ has a tree if and only if the $i$-th character of $S$ is `#`. It is guaranteed that the following operation can be performed at least once.\n\nYou can repeat the following operation as many times as you like:\n\n- Choose two sections without trees. Let sections $i$ and $j$ (where $i < j$) be the chosen sections from left to right. Then, all trees between sections $i$ and $j$ are removed, and you gain a reward of $R_i+R_j$.\n\nHere, you cannot perform an operation that removes no trees.\n\nFind the number of ways to perform the **first** operation to achieve the maximum possible total reward. Two ways are considered distinct if and only if there exists a section chosen in one way but not in the other.\n\n## Constraints\n\n- $3\\leq N\\leq 2\\times 10^5$\n- The length of $S$ is $N$, and each character is `#` or `.`.\n- $1\\leq R_i\\leq 10^9$ $(1\\leq i\\leq N)$\n- The operation can be performed at least once.\n- $N$ and $R_i$ are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nS\nR_1 R_2 \\dots R_N\n```\n\n## Output\n\nOutput the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "8\n...###..\n20 25 1 1 30 2 1 1\n",
+      "output": "2\n",
+      "note": "There are six ways to perform the first operation, as follows:\n\n- Choose sections $1$ and $7$. The trees at sections $4,5,6$ are removed, and you gain a reward of $21$.\n- Choose sections $1$ and $8$. The trees at sections $4,5,6$ are removed, and you gain a reward of $21$.\n- Choose sections $2$ and $7$. The trees at sections $4,5,6$ are removed, and you gain a reward of $26$.\n- Choose sections $2$ and $8$. The trees at sections $4,5,6$ are removed, and you gain a reward of $26$.\n- Choose sections $3$ and $7$. The trees at sections $4,5,6$ are removed, and you gain a reward of $2$.\n- Choose sections $3$ and $8$. The trees at sections $4,5,6$ are removed, and you gain a reward of $2$.\n\nNo matter which operation is performed, all trees are removed, so a second operation cannot be performed. The maximum possible total reward is $26$."
+    },
+    {
+      "input": "5\n.#.#.\n211 182 192 182 211\n",
+      "output": "2\n",
+      "note": "The maximum possible total reward is $825$.\n\nNote that the goal is not to maximize the reward obtained in the first operation. If you choose sections $1$ and $5$ first, you can gain a reward of $422$, but no operation can be performed afterwards, and the total reward cannot reach $825$."
+    },
+    {
+      "input": "11\n#..#.##.#..\n192 192 192 211 182 192 182 192 182 211 182\n",
+      "output": "3\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:49:27.197Z"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2183F",
+  "platform": "codeforces",
+  "contestId": 2183,
+  "index": "F",
+  "title": "Jumping Man",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2183/problem/F",
+  "difficulty": 2500,
+  "tags": [
+    "brute force",
+    "combinatorics",
+    "dfs and similar",
+    "dp",
+    "trees"
+  ],
+  "points": 2750,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "You have a tree rooted at node $1$ with $n$ nodes. Each node has a lowercase English letter written on it.\n\nFor each integer $i$ from $1$ to $n$, please solve the following problem independently:\n\n- Consider the set of strings formed by the following process:You performed the above process exactly once for every possible path. Two paths are considered different if one node is visited in one path but not another.Now, you have obtained many strings. You want to know the sum of the square of the number of occurrences for each type of string. Since this answer might be very large, output its value modulo $998\\,244\\,353$.\n- Choose any node $u$ that is in the subtree of $i$ as your starting location.\n  - Repeat 0 or more times:\n  - Suppose you are currently on node $x$. Select a node $v$ that is in the subtree$^{\\text{∗}}$ of node $x$, but you may **not** choose $v=x$. Move to node $v$. This process can be terminated at any point.\n  - The characters obtained from all nodes you passed through (in order) are concatenated to form a string.\n\n$^{\\text{∗}}$A node $v$ is in another node $x$'s subtree if and only if the shortest path from node $1$ to node $v$ passes through node $x$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 5000$). The description of the test cases follows.\n\nFor each test case, the first line contains an integer $n$ ($1 \\le n \\le 5000$).\n\nThe next line is a string of length $n$ containing only lowercase English letters, where the $i$-th character represents the letter on the $i$-th node.\n\nThis is followed by $n-1$ lines, each containing two integers $u$ and $v$ ($1 \\leq u,v \\leq n, u \\neq v$) representing an edge of the tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5000$.\n\n## Output\n\nFor each test case, output $n$ numbers on a new line: the answer for $i=1,2,\\ldots,n$, modulo $998\\,244\\,353$.\n\n## Note\n\nFor the first test case:\n\n- For nodes $2$ and $3$, the only string that is possible to get from the process is `b`. Therefore, the answer is $1$ for both.\n- For node $1$, the possible strings are `a`, `ab`, `ab`, `b`, and `b`. Overall, `a` is obtainable in one way, while `ab` and `b` are obtainable in two ways. Therefore, the answer for node $1$ is $1^2+2^2+2^2=9$.\n\nIn the fourth test case, for node $1$, the possible strings are:\n\n- `aaaa` (obtainable $1$ way)\n- `aaa` (obtainable $4$ ways)\n- `aa` (obtainable $6$ ways)\n- `a` (obtainable $4$ ways)\n\nTherefore, the answer for node $1$ is $1^2+4^2+6^2+4^2=69$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n3\nabb\n1 2\n1 3\n2\naa\n1 2\n4\nccbb\n1 2\n2 3\n2 4\n4\naaaa\n1 4\n4 2\n2 3\n10\ncacbcccbac\n1 2\n2 3\n3 4\n2 5\n1 6\n2 7\n3 8\n4 9\n8 10\n",
+      "output": "9 1 1\n5 1\n29 9 1 1\n69 5 1 19\n185 65 19 3 1 1 1 3 1 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:04:53.441Z"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "agc069_a",
+  "platform": "atcoder",
+  "contestId": "agc069",
+  "index": "A",
+  "title": "Schedule Optimization",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc069/tasks/agc069_a",
+  "difficulty": 2460,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2500,
+  "memoryLimitMb": 2048,
+  "statementMd": "## Problem Statement\n\nTakahashi decided to hold a tournament that lasts for $10^9$ days in a single-elimination format.\nThere are $2^N$ players, called player $1$, $\\ldots$, player $2^N$. Player $i$ plans to participate from day $l_i$ to day $r_i$ of the tournament, for a total of $r_i - l_i + 1$ days.\n\nFirst, we describe the flow of the tournament. There are $2^N - 1$ matches in total, corresponding one-to-one with the integer pairs $(i, j)$ satisfying $1 \\leq i \\leq N$ and $1 \\leq j \\leq 2^{N - i}$. In the match corresponding to $(i, j)$, the following two players compete to decide the winner and the loser:\n\n- If $i = 1$, players $2j - 1$ and $2j$\n- If $i \\geq 2$, the winners of the matches corresponding to $(i - 1, 2j - 1)$ and $(i - 1, 2j)$\n\nEach match can be completed immediately when all the matches necessary to determine the two players who will compete in it have been completed, and both players are currently participating in the tournament. In particular, a single player can participate in multiple matches on the same day.\nThe match corresponding to $(N, 1)$ is called the final, and the goal of the tournament is to complete it.\n\nTo successfully complete the final, Takahashi decided to perform the following manipulations:\n\n- Instruct the referees to fix the outcomes of the matches as desired.\n- Pay the players to change their participation schedules. To make player $i$ participate from day $l'_i$ to day $r'_i$, Takahashi needs to pay $|l_i - l'_i| + |r_i - r'_i|$ yen. Here, $l'_i$ and $r'_i$ are integers satisfying $1 \\leq l'_i \\leq r'_i \\leq 10^9$.\n\nFind the minimum total amount of money Takahashi needs to pay the players.\n\n## Constraints\n\n- $1 \\leq N \\leq 18$\n- $1 \\leq l_i \\leq r_i \\leq 10^9$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nl_1 r_1\n\\vdots\nl_{2^N} r_{2^N}\n```\n\n## Output\n\nLet $X$ be the minimum total amount of money Takahashi needs to pay. Print $X$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n1 4\n1 3\n3 4\n2 2\n3 4\n4 4\n2 3\n3 4\n",
+      "output": "1\n",
+      "note": "Assume that Takahashi pays $1$ yen to player $4$ to change his participation schedule to $(l'_4, r'_4) = (2, 3)$, and not change the schedules of the other players. Then, for example, the final can be completed as follows:\n\n1. On Day $1$, conduct the match corresponding to $(1, 1)$ (player $1$ vs. player $2$), and let player $2$ win.\n2. On Day $3$, conduct the match corresponding to $(1, 2)$ (player $3$ vs. player $4$), and let player $3$ win.\n3. On Day $3$, conduct the match corresponding to $(2, 1)$ (player $2$ vs. player $3$), and let player $3$ win.\n4. On Day $3$, conduct the match corresponding to $(1, 4)$ (player $7$ vs. player $8$), and let player $8$ win.\n5. On Day $4$, conduct the match corresponding to $(1, 3)$ (player $5$ vs. player $6$), and let player $5$ win.\n6. On Day $4$, conduct the match corresponding to $(2, 2)$ (player $5$ vs. player $8$), and let player $8$ win.\n7. On Day $4$, conduct the match corresponding to $(3, 1)$ (player $3$ vs. player $8$), and let player $8$ win.\n\nOn the other hand, it is impossible to complete the final with less than $1$ yen of payments. Therefore, the expected output is $1$."
+    },
+    {
+      "input": "1\n1 1\n1000000000 1000000000\n",
+      "output": "999999999\n"
+    },
+    {
+      "input": "4\n158260522 877914575\n24979445 602436426\n623690081 861648772\n433933447 476190629\n211047202 262703497\n628894325 971407775\n731963982 822804784\n430302156 450968417\n161735902 982631932\n880895728 923078537\n189330739 707723857\n802329211 910286918\n303238506 404539679\n317063340 492686568\n125660016 773361868\n650287940 839296263\n",
+      "output": "1088492036\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:01:38.403Z"
+}

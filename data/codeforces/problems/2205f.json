@@ -1,0 +1,30 @@
+{
+  "id": "2205F",
+  "platform": "codeforces",
+  "contestId": 2205,
+  "index": "F",
+  "title": "Simons and Reconstructing His Roads",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2205/problem/F",
+  "difficulty": 2400,
+  "tags": [
+    "constructive algorithms",
+    "data structures",
+    "dsu",
+    "graphs"
+  ],
+  "points": 2750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "*Dropping all the time, but the exit I can find.*— SHUN, *[DYING FOR YOU](https://open.spotify.com/track/2akBCXjdlUgpyZ4cr1t3B9)*\n\nThere are $n \\times m$ crossroads in the city, named crossroad $(1, 1), (1, 2),\\ldots, (n, m)$. The first number represents the row, and the second represents the column.\n\nThere exists and only exists streets between $(i,j)$ and $(i+1,j)$ or between $(i,j)$ and $(i,j+1)$. The street between $(i, j)$ and $(i + 1, j)$ has a weight of $w_{i,j}$, and the street between $(i, j)$ and $(i, j + 1)$ has a weight of $v_{i,j}$.\n\nSimons wants some streets reconstructed. Due to some accidents, some of the streets **cannot** be reconstructed, while others are optional to be reconstructed.\n\nFor each crossroad, if the number of reconstructed streets adjacent to it is **even**, Simons calls the crossroad *elegant*. If all the crossroads are *elegant*, Simons calls the reconstruction *nice*.\n\nThe *beauty* of a reconstruction is calculated as follows:\n\n- At first, the *beauty* is $0$.\n- For each **row** $i$ from $1$ to $n - 1$, let the columns of the streets reconstructed be $c_1 \\lt c_2 \\lt c_3 \\lt \\cdots$, add $w_{i, c_1} - w_{i, c_2} + w_{i, c_3} - w_{i, c_4}+\\cdots$ to the *beauty*.\n- Similarly, for each **column** $j$ from $1$ to $m - 1$, let the rows of the streets reconstructed be $r_1 \\lt r_2 \\lt r_3 \\lt \\cdots$, add $v_{r_1, j} - v_{r_2, j} + v_{r_3, j} - v_{r_4, j}+\\cdots$ to the *beauty*.\n\nIn other words, if a street is an odd-indexed one reconstructed in its row or column, add its weight to the *beauty*; else subtract it from the *beauty*.\n\nFor example, consider the streets and crossroads below without any streets that cannot be reconstructed:\n\n![image](https://espresso.codeforces.com/5826d6aa9c0b7895bcf04a1f291b3c18c586aa08.png)\n\nWe can have a *nice* reconstruction as follows:\n\n![image](https://espresso.codeforces.com/0c09dd7c7f03acecc55b71026b667499ee254912.png)\n\nThe *beauty* of the reconstruction is $3+4+2-(-9)-(-2)+9+1-(-1)-(-3)-(-4)=38$.\n\nHelp Simons find the maximum *beauty* among all the *nice* reconstructions.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 5\\cdot 10^4$). The description of the test cases follows.\n\nThe first line contains two integers $n$ and $m$ ($2\\le n,m\\le 2\\cdot 10^5$; $n\\cdot m\\le 4\\cdot 10^5$) — the number of rows and columns.\n\nIn the next $n-1$ lines, each line contains $m$ integers $w_{i,j}$ ($-10^9\\le w_{i,j}\\le 10^9$) — the weights of the street between $(i,j)$ and $(i+1,j)$.\n\nIn the next $n$ lines, each line contains $m-1$ integers $v_{i,j}$ ($-10^9\\le v_{i,j}\\le 10^9$) — the weights of the street between $(i,j)$ and $(i,j+1)$.\n\nIn the next $n-1$ lines, each line contains $m$ characters $p_{i,j}$ ($p_{i,j}\\in\\{\\texttt{0},\\texttt{1}\\}$) — if $p_{i,j}=\\texttt{0}$, the street between $(i,j)$ and $(i+1,j)$ cannot be reconstructed, and vice versa.\n\nIn the next $n$ lines, each line contains $m-1$ characters $q_{i,j}$ ($q_{i,j}\\in\\{\\texttt{0},\\texttt{1}\\}$) — if $q_{i,j}=\\texttt{0}$, the street between $(i,j)$ and $(i,j+1)$ cannot be reconstructed, and vice versa.\n\nIt is guaranteed that the sum of $n\\cdot m$ over all test cases does not exceed $4\\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum *beauty* among all the *nice* reconstructions.\n\n## Note\n\nThe first test case is explained in the statement.\n\nIn the second test case, there is only one *nice* reconstruction: Simons reconstructs no street. So the maximum *beauty* is $0$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n3 4\n2 3 -2 3\n4 9 4 -4\n3 4 -2\n-9 -5 1\n6 -1 -3\n1111\n1111\n111\n111\n111\n2 4\n4 23 1 35\n6 12 -17\n-14 1 -40\n0100\n000\n101\n3 3\n1 0 1\n0 1 0\n1 0\n0 1\n0 0\n110\n111\n10\n11\n11\n3 4\n13 7 6 -12\n3 -5 12 -6\n-3 10 -15\n-5 8 -11\n10 0 -5\n1111\n0110\n110\n101\n010\n",
+      "output": "38\n0\n4\n8\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:55:19.928Z"
+}

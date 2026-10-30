@@ -1,0 +1,31 @@
+{
+  "id": "2164E",
+  "platform": "codeforces",
+  "contestId": 2164,
+  "index": "E",
+  "title": "Journey",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2164/problem/E",
+  "difficulty": 2300,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "dsu",
+    "graphs",
+    "greedy"
+  ],
+  "points": 2250,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 512,
+  "statementMd": "You are on an undirected connected graph of $n$ vertices and $m$ weighted edges. The edges are indexed from $1$ to $m$. The $i$-th edge connects vertex $u_i$ and $v_i$, and has weight $w_i$. You decided to take a wonderful journey around the graph.\n\nSuppose you are at vertex $x$. You can do the following operations any number of times:\n\n1. *Mark* an edge connecting $x$ and $y$, take photos along the edge, and move to $y$, which costs exactly the edge's weight.\n2. *Transfer* to another arbitrary vertex $z \\neq x$ by train. You may choose any path $x\\leadsto z$ (**not necessarily simple**), and the cost is **the weight** of the edge with **the maximum index** on that path. Formally, suppose you choose the path with edge indices $e_1, e_2, \\ldots, e_k$, such that there exists an array of vertices $p_1, p_2, \\ldots, p_{k+1}$ where $x = p_1$, $z = p_{k+1}$, and for all $i$ in $[1, k]$, edge $e_i$ connects $p_{i}$ and $p_{i+1}$, the cost is $w_{\\max_{i=1}^k e_i}$.\n\nYou are now at vertex $1$, and you need to *mark* every edge at least once and return to vertex $1$. Calculate the minimum cost.\n\n**Please note the cost for *transferring* is not the maximum weight on the path, nor the maximum index itself. If you have any questions, refer to the *Note* section below.**\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $T$ ($1 \\le T \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 10^6$, $0 \\le m \\le 10^6$).\n\nThen $m$ lines, the $i$-th line contains three integers $u_i, v_i, w_i$ ($1 \\le u_i, v_i \\le n$, $1 \\le w \\le 10^9$) — meaning that the edge with index $i$ is between vertex $u_i$ and vertex $v_i$ with weight $w_i$.\n\nIt's guaranteed that the described graph is connected.\n\nAlso note that the graph may have **self-loops** and **multiple edges**.\n\nIt is guaranteed that the sums of $n$ and $m$ over all test cases do not exceed $10^6$ each.\n\n## Output\n\nFor each test case output one integer — the minimum cost.\n\n## Note\n\n[Visualizer link](https://codeforces.com/assets/contests/2164/E_ooxathoosh9Oob4quoiv.html)\n\nLet $u \\xrightarrow{e} v$ denote going to vertex $v$ from vertex $u$ by edge $e$.\n\nIn the first test case, one possible solution is:\n\n1. Initially, you are at vertex $1$.\n2. Mark edge $3$ and move to vertex $3$, costs $6$.\n3. Mark edge $6$ and move to vertex $4$, costs $7$.\n4. Mark edge $1$ and move to vertex $2$, costs $15$.\n5. Mark edge $4$ and move to vertex $3$, costs $9$.\n6. Transfer to vertex $5$. By choosing path $3 \\xrightarrow{6} 4 \\xrightarrow{1} 2 \\xrightarrow{2} 5$, we can achieve cost $7$, since the maximum index among the edges on the path is $6$, and $w_6 = 7$. **Note that we don't care about the maximum weight on the path when using operation 2.**\n7. Mark edge $2$ and move to vertex $2$, costs $4$.\n8. Mark edge $5$ and move to vertex $1$, costs $10$.\n\nThe total cost is $6+7+15+9+7+4+10=58$.\n\nIn the second test case, one possible solution is:\n\n1. Mark edge $1$ and move to vertex $2$, costs $3$.\n2. Transfer to vertex $3$ by $2 \\xrightarrow{1} 1 \\xrightarrow{3} 4 \\xrightarrow{3} 1 \\xrightarrow{2} 3$, costs $1$. **Note the path chosen in operation 2 may not be simple.**\n3. Mark edge $2$ and move to vertex $1$, costs $2$.\n4. Mark edge $3$ and move to vertex $4$, costs $1$.\n5. Transfer to vertex $1$ by $4 \\xrightarrow{3} 1$, costs $1$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n5 6\n2 4 15\n2 5 4\n1 3 6\n2 3 9\n1 2 10\n3 4 7\n4 3\n1 2 3\n1 3 2\n1 4 1\n2 3\n1 2 1\n2 1 3\n1 1 4\n6 6\n2 3 10\n1 3 10\n5 6 10\n6 6 1\n4 5 10\n3 4 10\n5 5\n1 2 4\n5 1 5\n4 3 6\n2 4 10\n1 4 7\n",
+      "output": "58\n8\n8\n71\n43\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:06:02.278Z"
+}

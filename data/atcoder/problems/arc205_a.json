@@ -1,0 +1,29 @@
+{
+  "id": "arc205_a",
+  "platform": "atcoder",
+  "contestId": "arc205",
+  "index": "A",
+  "title": "2x2 Erasing",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc205/tasks/arc205_a",
+  "difficulty": 262,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a grid with $N$ rows and $N$ columns. Let $(r,c)$ denote the cell at the $r$-th row from the top and $c$-th column from the left. Each cell is colored black or white. Cell $(r,c)$ is colored black when $S_{r,c}$ is `#`, and white when $S_{r,c}$ is `.`.\n\nYou are given $Q$ questions about this grid, so answer each of them. In the $i$-th question $(1\\le i\\le Q)$, integers $U_i,D_i,L_i,R_i$ are given, so find the answer to the following question.\n\n- After coloring all cells that do **not** satisfy $U_i \\le r \\le D_i$ and $L_i \\le c \\le R_i$ black, find the maximum number of times you can perform the following operation.\n- Choose a pair of integers $(r,c)$ such that cells $(r,c),(r,c+1),(r+1,c),(r+1,c+1)$ are all colored white, and color one of these four cells black.\n\nSolve each question independently. In other words, the color of each cell is reset to the initial state for each question.\n\n## Constraints\n\n- $2\\le N\\le 500$\n- $1\\le Q\\le 2\\times 10^5$\n- $S_{r,c}$ is `.` or `#`.\n- $1\\le U_i < D_i \\le N$\n- $1\\le L_i < R_i \\le N$\n- $N,Q,U_i,D_i,L_i,R_i$ are all integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN Q\nS_{1,1}S_{1,2}\\ldots S_{1,N}\nS_{2,1}S_{2,2}\\ldots S_{2,N}\n\\vdots\nS_{N,1}S_{N,2}\\ldots S_{N,N}\nU_1 D_1 L_1 R_1\nU_2 D_2 L_2 R_2\n\\vdots\nU_Q D_Q L_Q R_Q\n```\n\n## Output\n\nOutput $Q$ lines.\n\nThe $i$-th line $(1\\le i\\le Q)$ should contain the answer to the $i$-th question.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 4\n..#.#\n.....\n#....\n...#.\n.#...\n1 3 1 3\n3 5 3 5\n2 3 1 4\n1 5 1 5\n",
+      "output": "2\n0\n2\n5\n",
+      "note": "Consider the first question.\n\nAfter coloring all cells that do not satisfy $1\\le r\\le 3$ and $1\\le c\\le 3$ black, the grid becomes as follows.\n\nYou can perform the operation twice on this grid as follows.\n\n- Choose $(r,c)=(1,1)$. Among cells $(1,1),(1,2),(2,1),(2,2)$, choose cell $(1,2)$ and color it black.\n- Choose $(r,c)=(2,2)$. Among cells $(2,2),(2,3),(3,2),(3,3)$, choose cell $(2,2)$ and color it black.\n\nYou cannot perform the operation more than twice, so output $2$ on the first line."
+    },
+    {
+      "input": "7 6\n#.#....\n.....#.\n.......\n.#..#.#\n#....#.\n.......\n....##.\n1 3 2 7\n4 6 1 6\n6 7 2 7\n3 5 4 6\n1 6 2 4\n1 7 1 7\n",
+      "output": "4\n4\n2\n0\n6\n13\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:51:16.615Z"
+}

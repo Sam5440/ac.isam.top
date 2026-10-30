@@ -1,0 +1,30 @@
+{
+  "id": "arc212_d",
+  "platform": "atcoder",
+  "contestId": "arc212",
+  "index": "D",
+  "title": "Two Rooms",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc212/tasks/arc212_d",
+  "difficulty": 2018,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $N$ people numbered $1,2,\\ldots,N$. For $i\\neq j$, the intimacy between persons $i$ and $j$ is $A_{i,j}$.\n\nFor each of the $N$ people, assign room $X$ or room $Y$. Each of the $N$ people moves to their assigned room. It is acceptable if there is an empty room.\n\nPerson $i$ is in a **good state** if the following is satisfied:\n\n> (Sum of intimacy with person $i$ of all people in the same room as person $i$) $\\geq$ (Sum of intimacy with person $i$ of all people in a different room from person $i$).\n\nOutput one assignment of rooms such that all $N$ people are in a good state.\n\nIt can be proved that such an assignment always exists.\n\n## Constraints\n\n- $2 \\leq N \\leq 50$\n- $-50 \\leq A_{i,j} \\leq 50$\n- $A_{i,j} = A_{j,i}$\n- $A_{i,i}=0$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nA_{1,1} A_{1,2} \\cdots A_{1,N}\nA_{2,1} A_{2,2} \\cdots A_{2,N}\n\\vdots\nA_{N,1} A_{N,2} \\cdots A_{N,N}\n```\n\n## Output\n\nOutput one assignment that satisfies the condition. If there are multiple solutions, you may output any of them. Represent the assignment by a string $S$ of length $N$. If person $i$ is assigned to room $X$, the $i$-th character of $S$ should be `X`; if assigned to room $Y$, the $i$-th character of $S$ should be `Y`.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n0 4 -2 -1\n4 0 -3 -5\n-2 -3 0 2\n-1 -5 2 0\n",
+      "output": "XXYY\n",
+      "note": "Suppose persons $1,2$ are assigned to room $X$ and persons $3,4$ are assigned to room $Y$.\n\nFor person $1$, the sum of intimacy with people in the same room (person $2$) is $4$, and the sum of intimacy with people in different rooms (persons $3$ and $4$) is $(-2)+(-1)=-3$, so they are in a good state.\n\nAll other people are also in a good state, so this assignment satisfies the condition.\n\nOutputting `YYXX` is also correct."
+    },
+    {
+      "input": "3\n0 0 0\n0 0 0\n0 0 0\n",
+      "output": "XXX\n",
+      "note": "It is acceptable if there is an empty room."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:48:52.815Z"
+}

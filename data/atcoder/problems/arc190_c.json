@@ -1,0 +1,29 @@
+{
+  "id": "arc190_c",
+  "platform": "atcoder",
+  "contestId": "arc190",
+  "index": "C",
+  "title": "Basic Grid Problem with Updates",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc190/tasks/arc190_c",
+  "difficulty": 3010,
+  "tags": [],
+  "points": 800,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is an $H \\times W$ grid. Let $(h,w)$ denote the cell at the $h$-th row from the top and the $w$-th column from the left. A non-negative integer $A_{h,w}$ is written in cell $(h,w)$.\n\nTakahashi starts at cell $(sh,sw)$ and will perform $Q$ changes to the grid. The $i$-th change is given by a character $d_i$ ($d_i$ is one of `L`, `R`, `U`, `D`) and a non-negative integer $a_i$, meaning Takahashi will do the following:\n\n- Move one cell in the direction $d_i$. That is, if $d_i$ is `L`, move left; if `R`, move right; if `U`, move up; if `D`, move down by one cell. Then, let the destination cell be $(h,w)$, and set $A_{h,w}$ to $a_i$.\n\nIt is guaranteed that in each change, he can move one cell in direction $d_i$.\n\nAfter each change, print the answer to the following problem:\n\n> A sequence of cells $P = ((h_1,w_1), \\ldots, (h_{M},w_{M}))$ is said to be a **path** if and only if it satisfies all of the following conditions:\n> \n> - $(h_1,w_1) = (1,1)$, $(h_{M},w_{M}) = (H,W)$, and $M = H + W - 1$.\n> - For every $i$ with $1 \\leq i \\leq M-1$, either $(h_{i+1}, w_{i+1}) = (h_i + 1, w_i)$ or $(h_{i+1}, w_{i+1}) = (h_i, w_i + 1)$.\n> \n> There are $\\binom{H+W-2}{H-1}$ paths. For a path $P = ((h_1,w_1), \\ldots, (h_{M},w_{M}))$, define $f(P) = \\prod_{1\\leq i\\leq M}A_{h_i,w_i}$. Print the sum, modulo $998244353$, of $f(P)$ over all paths $P$.\n\n## Constraints\n\n- $2 \\leq H, W \\leq 200000$\n- $HW \\leq 200000$\n- $0 \\leq A_{h,w} < 998244353$\n- $1 \\leq Q \\leq 200000$\n- $1 \\leq sh \\leq H$, $1 \\leq sw \\leq W$\n- $0 \\leq a_i < 998244353$\n- $H$, $W$, $A_{h,w}$, $Q$, $sh$, $sw$, and $a_i$ are integers.\n- Each $d_i$ is `L`, `R`, `U`, or `D`.\n- In each change, Takahashi can move one cell in the direction $d_i$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nH W\nA_{1,1} \\cdots A_{1,W}\n\\vdots\nA_{H,1} \\cdots A_{H,W}\nQ sh sw\nd_1 a_1\n\\vdots\nd_Q a_Q\n```\n\n## Output\n\nPrint $Q$ lines.\n\nThe $i$-th line should contain the sum, modulo $998244353$, of $f(P)$ over all paths $P$ after performing the $i$-th change to the grid.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 3\n1 2 3\n4 5 6\n3 2 2\nU 7\nR 8\nL 9\n",
+      "output": "456\n666\n822\n",
+      "note": "- Initially, Takahashi is at $(2,2)$.\n- Move up, then set $A_{1,2}$ to $7$. The value of $f(P)$ for each path is:\n- $P=((1,1),(1,2),(1,3),(2,3))$: $f(P)=1 \\times 7 \\times 3 \\times 6=126$.\n  - $P=((1,1),(1,2),(2,2),(2,3))$: $f(P)=1 \\times 7 \\times 5 \\times 6=210$.\n  - $P=((1,1),(2,1),(2,2),(2,3))$: $f(P)=1 \\times 4 \\times 5 \\times 6=120$.\n- Move right, then set $A_{1,3}$ to $8$. The value of $f(P)$ for each path is:\n- $P=((1,1),(1,2),(1,3),(2,3))$: $f(P)=1 \\times 7 \\times 8 \\times 6=336$.\n  - $P=((1,1),(1,2),(2,2),(2,3))$: $f(P)=1 \\times 7 \\times 5 \\times 6=210$.\n  - $P=((1,1),(2,1),(2,2),(2,3))$: $f(P)=1 \\times 4 \\times 5 \\times 6=120$.\n- Move left, then set $A_{1,2}$ to $9$. The value of $f(P)$ for each path is:\n- $P=((1,1),(1,2),(1,3),(2,3))$: $f(P)=1 \\times 9 \\times 8 \\times 6=432$.\n  - $P=((1,1),(1,2),(2,2),(2,3))$: $f(P)=1 \\times 9 \\times 5 \\times 6=270$.\n  - $P=((1,1),(2,1),(2,2),(2,3))$: $f(P)=1 \\times 4 \\times 5 \\times 6=120$."
+    },
+    {
+      "input": "5 4\n147015809 294958521 852121867 499798308\n790350368 404692331 645419803 290531806\n275766153 896286651 239187926 945049742\n340760022 236352314 926236110 223464913\n287023679 590772036 340282357 521075891\n6 3 1\nU 344644511\nR 45812235\nD 260083498\nR 781118585\nL 156297846\nL 411901560\n",
+      "output": "299123226\n548055393\n810247224\n876210800\n773990840\n506814544\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:00:58.126Z"
+}

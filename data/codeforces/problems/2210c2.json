@@ -1,0 +1,29 @@
+{
+  "id": "2210C2",
+  "platform": "codeforces",
+  "contestId": 2210,
+  "index": "C2",
+  "title": "A Simple GCD Problem (Hard Version)",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2210/problem/C2",
+  "difficulty": 2100,
+  "tags": [
+    "dp",
+    "greedy",
+    "number theory"
+  ],
+  "points": 1000,
+  "timeLimitMs": 6000,
+  "memoryLimitMb": 512,
+  "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, $1 \\leq n \\leq 5 \\cdot 10^{4}$, $1 \\leq b_i \\leq 10^{9}$ for $1 \\leq i \\leq n$, and the time limit is $6$ seconds. Note that a solution for one version does not necessarily solve the other version. You can hack only if you solved all versions of this problem.**\n\nYou are given two arrays $a$ and $b$ of length $n$.\n\nFor **each index** $i$ ($1 \\le i \\le n$) of array $a$, you can perform the following operation **at most once**:\n\n- choose an arbitrary integer $m$ ($\\mathbf{m \\neq a_i}$) such that $1 \\leq m \\leq b_i$, and set $a_i := m$.\n\nLet the array after performing all the operations be $a'$. You can only perform operations in such a way that the following condition holds:\n\n- For all $1\\leq l \\lt r\\leq n$, $\\operatorname{gcd}(a_l,a_{l+1},\\ldots,{a_r})=\\operatorname{gcd}(a'_l,a'_{l+1},\\ldots,a'_r)$\n\nHere, $\\gcd(x, y)$ denotes the [greatest common divisor (GCD)](https://en.wikipedia.org/wiki/Greatest_common_divisor) of integers $x$ and $y$.\n\nYou have to determine the **maximum** number of operations that can be performed while ensuring that the condition remains satisfied.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($2 \\leq n \\leq 5\\cdot 10^4$) — the length of $a$.\n\nThe following line of each test case contains $n$ space-separated integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 10^9$).\n\nThe next line of each test case contains $n$ space-separated integers $b_1, b_2, \\ldots, b_n$ (**$1 \\le b_i \\le 10^9$**).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5\\cdot 10^4$.\n\n## Output\n\nFor each test case, output the maximum number of operations which can be done.\n\n## Note\n\nIn the first test, since the gcd of all subarrays is $1$, we can change the array to $a' = [67, 5, 7, 11, 1, 2, 1]$. Here we have performed $7$ operations, and since there are only $7$ elements in the array, it is the maximum possible.\n\nIn the second test case, we can change the array to $a' = [938, 2613, 4489]$. It can be shown that after this transformation, gcd of all subarrays remains the same. Hence the answer is $3$ here.\n\nIn the third test case, it can be shown that no operation can be performed, hence the answer is $0$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "9\n7\n1 2 3 4 5 6 7\n100 6 12 20 5 2 7\n3\n67 67 67\n1000000000 1000000000 1000000000\n6\n8 10 10 12 12 14\n1 1 1 1 1 1\n8\n2010 330 550 2 210 385 1001 323\n2010 1000 1200 30 500 1000 2000 1000\n4\n1 2 4 3\n1 1 1 1\n6\n2 3 4 5 1 6\n10 15 20 25 5 30\n2\n1 2\n2 100\n5\n2860 2860 143 9009 9009\n2860 2860 1430 9009 9009\n3\n2 60 60\n10 60 60\n",
+      "output": "7\n3\n0\n7\n1\n6\n2\n0\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:54:46.957Z"
+}

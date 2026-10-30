@@ -1,0 +1,29 @@
+{
+  "id": "abc395_g",
+  "platform": "atcoder",
+  "contestId": "abc395",
+  "index": "G",
+  "title": "Minimum Steiner Tree 2",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc395/tasks/abc395_g",
+  "difficulty": 2561,
+  "tags": [],
+  "points": 625,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given positive integers $N, K$, and an $N \\times N$ matrix $C=(C_{i,j})$ $(1\\leq i,j\\leq N)$. It is guaranteed that $C_{i,i} = 0$ and $C_{i,j} = C_{j,i}$.\n\nThere is a weighted complete graph with $N$ vertices labeled $1,2,\\dots,N$. For each pair of vertices $i$ and $j$ with $i\\lt j$, the weight of the edge connecting vertices $i$ and $j$ is $C_{i,j}$.\n\nYou have $Q$ queries. In the $i$-th query, you are given a pair of distinct integers $s_i$ and $t_i$ (both between $K+1$ and $N$, inclusive), for which you must solve the following problem.\n\n> A **good graph** is a **connected** graph containing all of the vertices $1,2,\\dots,K,s_i,t_i$ obtained by removing any number of edges and vertices (possibly zero) from the graph above.\n> \n> The **cost** of a good graph is the sum of the weights of its edges.\n> \n> Find the minimum possible cost of a good graph.\n\n## Constraints\n\n- $3 \\leq N \\leq 80$\n- $1\\leq K\\leq \\min(N-2,\\textcolor{red}{8})$\n- $0 \\leq C_{i,j} \\leq 10^9 \\ (1 \\leq i,j \\leq N, i \\ne j)$\n- $C_{i,j} = C_{j,i} \\ (1 \\leq i,j \\leq N, i \\ne j)$\n- $C_{i,i} = 0 \\ (1 \\leq i \\leq N)$\n- $1 \\leq Q \\leq 5000$\n- $K+1 \\leq s_i, t_i \\leq N \\ (1 \\leq i \\leq Q)$\n- $s_i \\ne t_i \\ (1 \\leq i \\leq Q)$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN K\nC_{1,1} C_{1,2} \\dots C_{1,N}\nC_{2,1} C_{2,2} \\dots C_{2,N}\n\\vdots\nC_{N,1} C_{N,2} \\dots C_{N,N}\nQ\ns_1 t_1\ns_2 t_2\n\\vdots\ns_Q t_Q\n```\n\n## Output\n\nPrint $Q$ lines.\n\nThe $i$-th line should contain the answer for the $i$-th query.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 2\n0 395 395 1 1\n395 0 1 395 1\n395 1 0 395 1\n1 395 395 0 1\n1 1 1 1 0\n3\n3 4\n3 5\n4 5\n",
+      "output": "4\n3\n3\n",
+      "note": "Let “edge $i-j$” denote the edge connecting vertices $i$ and $j$.\n\nFor the first query, it is optimal to keep the following vertices and edges, and remove all others. The cost is $4$.\n\n- Vertices $1,2,3,4,5$\n- Edges $1-4,2-3,3-5,4-5$\n\nFor the second query, it is optimal to keep the following vertices and edges, and remove all others. The cost is $3$.\n\n- Vertices $1,2,3,5$\n- Edges $1-5,2-3,3-5$"
+    },
+    {
+      "input": "9 5\n0 344670307 744280520 967824729 322288793 152036485 628902494 596982638 853214705\n344670307 0 249168130 769431650 532405020 981520310 755031424 86416231 284114341\n744280520 249168130 0 80707350 256358888 620411718 713892371 272961036 836365490\n967824729 769431650 80707350 0 45539861 298766521 722757772 623807668 366719378\n322288793 532405020 256358888 45539861 0 361324668 69837030 222135106 935147464\n152036485 981520310 620411718 298766521 361324668 0 486834509 225447688 859904884\n628902494 755031424 713892371 722757772 69837030 486834509 0 434140395 490910900\n596982638 86416231 272961036 623807668 222135106 225447688 434140395 0 22078599\n853214705 284114341 836365490 366719378 935147464 859904884 490910900 22078599 0\n20\n9 7\n8 9\n9 8\n7 6\n9 8\n8 9\n9 7\n7 8\n7 8\n6 9\n9 8\n9 6\n8 6\n8 9\n6 8\n8 7\n7 6\n8 9\n7 6\n9 6\n",
+      "output": "849002970\n779165940\n779165940\n882119751\n779165940\n779165940\n849002970\n826924371\n826924371\n834361320\n779165940\n834361320\n812282721\n779165940\n812282721\n826924371\n882119751\n779165940\n882119751\n834361320\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:00:12.708Z"
+}

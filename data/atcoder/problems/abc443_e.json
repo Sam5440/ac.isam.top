@@ -1,0 +1,25 @@
+{
+  "id": "abc443_e",
+  "platform": "atcoder",
+  "contestId": "abc443",
+  "index": "E",
+  "title": "Climbing Silver",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc443/tasks/abc443_e",
+  "difficulty": 1301,
+  "tags": [],
+  "points": 450,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is an $N \\times N$ grid. The cell at the $i$-th row from the top and $j$-th column from the left is called $(i,j)$.\nThe grid is described by $N$ strings $S_1,S_2,\\dots,S_N$. If the $j$-th character of $S_i$ is `.`, $(i,j)$ is an empty cell; if it is `#`, $(i,j)$ is a wall cell.\n\nInitially, Takahashi-kun is at empty cell $(N,C)$, and repeats the following movement $N-1$ times:\n\n- If he is currently at $(r,c)$, he specifies one of $(r-1,c-1),(r-1,c),(r-1,c+1)$ as the destination. Here, he cannot specify a cell that does not exist in the grid as the destination.\n- If the destination $(a,b)$ is a wall cell, the following occurs:\n- If $(i,b)$ is currently an empty cell for all integers satisfying $a < i \\le N$, he destroys the wall at $(a,b)$ and moves there. That is, $(a,b)$ becomes an empty cell and he moves to $(a,b)$.\n  - Otherwise, he fails to move. In this case, he immediately ends the repetition of movements, even if he has not made $N-1$ movements.\n- If the destination $(a,b)$ is an empty cell, he moves to $(a,b)$.\n\nOutput a string $R$ of length $N$ satisfying the following conditions:\n\n- If he can reach $(1,i)$ without failing during the movements, the $i$-th character of $R$ is `1`.\n- Otherwise, the $i$-th character of $R$ is `0`.\n\nYou are given $T$ test cases; solve each of them.\n\n## Constraints\n\n- $T,N,C$ are integers.\n- $1 \\le T \\le 50000$\n- $2 \\le N \\le 3000$\n- $1 \\le C \\le N$\n- $S_i$ is a string of length $N$ consisting of `.` and `#`.\n- The $C$-th character of $S_N$ is `.`.\n- For each input, the sum of $N^2$ does not exceed $9 \\times 10^6$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\text{case}_1\n\\text{case}_2\n\\vdots\n\\text{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN C\nS_1\nS_2\n\\vdots\nS_N\n```\n\n## Output\n\nPrint $T$ lines.\n\nThe $i$-th line should contain the answer for the $i$-th test case.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n5 3\n.###.\n..#..\n#.#.#\n#...#\n##..#\n2 2\n##\n..\n4 1\n####\n####\n####\n.###\n3 3\n...\n...\n...\n10 3\n##.##.##.#\n.####..#..\n...#.#..#.\n.#.#.#.#..\n...####...\n#.#.##....\n.##...#...\n#.##.....#\n#....###.#\n.#..#.#...\n",
+      "output": "10111\n11\n1000\n111\n0011010010\n",
+      "note": "This input contains five test cases.\n\nFor the first test case, for example, he can reach $(1,3)$ without failing during the movements as follows:\n\n- Initially, he is at $(5,3)$.\n- He moves to empty cell $(4,2)$.\n- $(3,3)$ is a wall cell, but since $(4,3),(5,3)$ are currently both empty cells, he destroys the wall at $(3,3)$ and moves to $(3,3)$.\n- $(2,3)$ is a wall cell, but since $(3,3),(4,3),(5,3)$ are currently all empty cells, he destroys the wall at $(2,3)$ and moves to $(2,3)$.\n- $(1,3)$ is a wall cell, but since $(2,3),(3,3),(4,3),(5,3)$ are currently all empty cells, he destroys the wall at $(1,3)$ and moves to $(1,3)$.\n\nHe can reach $(1,1),(1,3),(1,4),(1,5)$ without failing during the movements, so print `10111`."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:48:27.957Z"
+}

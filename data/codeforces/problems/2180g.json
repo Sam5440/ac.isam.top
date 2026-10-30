@@ -1,0 +1,30 @@
+{
+  "id": "2180G",
+  "platform": "codeforces",
+  "contestId": 2180,
+  "index": "G",
+  "title": "Balance",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2180/problem/G",
+  "difficulty": 3500,
+  "tags": [
+    "bitmasks",
+    "combinatorics",
+    "implementation",
+    "math"
+  ],
+  "points": 2750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have an array $a$ which is initially empty. You have to process $q$ queries of the following types on your array.\n\n- **Type 1**: Erase the middle element of $a$. Formally, if $a$ has $n$ elements, remove the $\\lceil \\frac{n}{2} \\rceil$-th$^{\\text{∗}}$ element of $a$ and concatenate the remaining parts. It's guaranteed that $a$ is non-empty whenever you are given a query of this type.\n- **Type 2**: Insert $x$ at the beginning, the end, and between every two consecutive elements of $a$. Formally, if $a = [a_1, a_2, \\ldots, a_n]$ before this query, $a$ will become $[x, a_1, x, a_2, x, \\ldots, x, a_n, x]$ after the query.\n- **Type 3**: Output the sum of the *balances* of all $2^L - 1$ non-empty subsequences$^{\\text{†}}$ of $a$, where $L$ is the length of $a$ at this moment. It is guaranteed that $L$ will not be a multiple of $10^9 + 7$ whenever this query is processed.\n\nThe *balance* of an array $b = [b_1, b_2, \\ldots, b_m]$ is defined as $$ \\text{balance}(b) = \\frac{1 \\cdot b_1 + 2 \\cdot b_2 + \\ldots + m \\cdot b_m}{m}. $$\n\n$^{\\text{∗}}$$\\lceil k \\rceil$ is the $k$ rounded up, i. e. the smallest integer greater than or equal to $k$. $^{\\text{†}}$A sequence $b$ is a subsequence of a sequence $a$ if $b$ can be obtained from $a$ by the deletion of several (possibly, zero or all) element from arbitrary positions. Two subsequences are considered different if the sets of **positions** of the deleted elements are different.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $q$ ($2 \\leq q \\leq 10^6$), denoting the number of queries. The next $q$ lines describe the queries:\n\n- Each query of type 1 is in the form `1`, which means to erase the middle element of $a$. It's guaranteed that $a$ is non-empty whenever you are given a query of this type.\n- Each query of type 2 is in the form `2 x`, where $x$ is an integer to be inserted as described and $1 \\le x \\le 10^9$.\n- Each query of type 3 is in the form `3`, which means to output the sum of the balances of all non-empty subsequences of $a$. It is guaranteed that the length of $a$ will not be a multiple of $10^9 + 7$ whenever this query is processed.\n\nIt is also guaranteed that each test case contains at least one query of the third type, and that the total sum of $q$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each query of type 3, output the desired sum of balances.\n\nFormally, let $M = 10^9+7$. It can be shown that the exact answer can be expressed as an irreducible fraction $\\frac{P}{Q}$, where $P$ and $Q$ are integers and $Q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $P \\cdot Q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot Q \\equiv P \\pmod{M}$.\n\n## Note\n\nIn the first test case, the array $a$ is initially empty.\n\nAfter the first query, the array becomes $[1]$.\n\nAfter the second query, the array becomes $[2,\\, 1,\\, 2]$.\n\nIn the third query, the subsequences of $a$ and their balances are as follows:\n\n- Subsequence $[1]$ with balance $$\\frac{1 \\cdot 1}{1} = 1;$$\n- Two subsequences $[2]$, each having balance $$\\frac{1 \\cdot 2}{1} = 2;$$\n- Subsequence $[1,\\,2]$ with balance $$\\frac{1 \\cdot 1 + 2 \\cdot 2}{2} = \\frac{5}{2};$$\n- Subsequence $[2,\\,1]$ with balance $$\\frac{1 \\cdot 2 + 2 \\cdot 1}{2} = 2;$$\n- Subsequence $[2,\\,2]$ with balance $$\\frac{1 \\cdot 2 + 2 \\cdot 2}{2} = 3;$$\n- Subsequence $[2,\\,1,\\,2]$ with balance $$\\frac{1 \\cdot 2 + 2 \\cdot 1 + 3 \\cdot 2}{3} = \\frac{10}{3}.$$\n\nThus, the total sum of balances is: $$\\frac{95}{6}.$$$$\n\nAfter the fourth query, the array $a$ becomes $[2,\\,2]$$$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n5\n2 1\n2 2\n3\n1\n3\n10\n2 33532\n1\n2 938556\n2 559503\n2 353115\n3\n1\n3\n1\n3\n",
+      "output": "833333355\n7\n856804480\n553793656\n724179701\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:05:00.931Z"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "abc367_g",
+  "platform": "atcoder",
+  "contestId": "abc367",
+  "index": "G",
+  "title": "Sum of (XOR^K or 0)",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc367/tasks/abc367_g",
+  "difficulty": 3110,
+  "tags": [],
+  "points": 675,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given positive integers $N$, $M$, $K$, and a sequence of non-negative integers: $A=(A_1,A_2,\\ldots,A_N)$.\n\nFor a non-empty non-negative integer sequence $B=(B_1,B_2,\\ldots,B_{|B|})$, we define its **score** as follows.\n\n- If the length of $B$ is a multiple of $M$: $(B_1 \\oplus B_2 \\oplus \\dots \\oplus B_{|B|})^K$\n- Otherwise: $0$\n\nHere, $\\oplus$ represents the bitwise XOR.\n\nFind the sum, modulo $998244353$, of the scores of the $2^N-1$ non-empty subsequences of $A$.\n\nWhat is bitwise XOR? The bitwise XOR of non-negative integers $A$ and $B$, denoted as $A \\oplus B$, is defined as follows: In the binary representation of $A \\oplus B$, the digit at position $2^k$ ($k \\geq 0$) is $1$ if exactly one of $A$ and $B$ has a $1$ in that position in their binary representations, and $0$ otherwise. For example, $3 \\oplus 5 = 6$ (in binary: $011 \\oplus 101 = 110$). In general, the XOR of $k$ integers $p_1, \\dots, p_k$ is defined as $(\\cdots ((p_1 \\oplus p_2) \\oplus p_3) \\oplus \\cdots \\oplus p_k)$, and it can be proved that this is independent of the order of $p_1, \\dots, p_k$.\n\n## Constraints\n\n- $1 \\leq N,K \\leq 2 \\times 10^5$\n- $1 \\leq M \\leq 100$\n- $0 \\leq A_i < 2^{20}$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M K\nA_1 A_2 \\ldots A_N\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2 2\n1 2 3\n",
+      "output": "14\n",
+      "note": "Here are the scores of the $2^3-1=7$ non-empty subsequences of $A$.\n\n- $(1)$: $0$\n- $(2)$: $0$\n- $(3)$: $0$\n- $(1,2)$: $(1\\oplus2)^2=9$\n- $(1,3)$: $(1\\oplus3)^2=4$\n- $(2,3)$: $(2\\oplus3)^2=1$\n- $(1,2,3)$: $0$\n\nTherefore, the sought sum is $0+0+0+9+4+1+0=14$."
+    },
+    {
+      "input": "10 5 3\n100 100 100 100 100 100 100 100 100 100\n",
+      "output": "252000000\n"
+    },
+    {
+      "input": "16 4 100\n7053 3876 3178 8422 7802 5998 2334 6757 6889 6637 7365 9495 7848 9026 7312 6558\n",
+      "output": "432440016\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:03:34.466Z"
+}

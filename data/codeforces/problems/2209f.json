@@ -1,0 +1,30 @@
+{
+  "id": "2209F",
+  "platform": "codeforces",
+  "contestId": 2209,
+  "index": "F",
+  "title": "Dynamic Values And Maximum Sum",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2209/problem/F",
+  "difficulty": 2700,
+  "tags": [
+    "data structures",
+    "greedy",
+    "implementation",
+    "trees"
+  ],
+  "points": 3000,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a tree$^{\\text{∗}}$ with $n$ vertices numbered from 1 to $n$, where each vertex $i$ has an initial value $a_i$. You perform $k$ operations. The total is $0$ initially. In each operation:\n\n1. Choose a vertex $r$ and root the tree at $r$.\n2. Add the current value of $r$ to the total and set the value of $r$ to $0$.\n3. For each vertex $ u $ that is not a leaf$^{\\text{†}}$, find the leaves in the subtree$^{\\text{‡}}$ of $u$ that are at the maximum distance from $u$. Among them, select the one with the smallest index, denoted as the destination for $u$. Add the current value of $u$ to the destination and set the value of $u$ to $0$.\n\nFind the maximum possible total.\n\n$^{\\text{∗}}$A tree is a connected graph without cycles. $^{\\text{†}}$A leaf is any vertex without children. $^{\\text{‡}}$A subtree of vertex $v$ is the subgraph of $v$, all its descendants, and all the edges between them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10 ^ 4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 3 \\cdot 10^5$).\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the initial values of vertices.\n\nEach of the following $n-1$ lines contains two integers $u$ and $v$, denoting an edge connecting vertex $u$ and $v$. It is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3\\cdot 10 ^ 5$.\n\n## Output\n\nFor each test case, output an integer — the maximum possible total.\n\n## Note\n\nIn the first test case:\n\n1. Choose vertex $1$ as the root. Add $a_1 = 19$ to the total and set $a_1 = 0$. After rooting the tree at $1$, for every non-leaf vertex $u$, move its value to the leaf in its subtree that is farthest from $u$ (breaking ties by smallest index). Under this rooting:\n- The value of vertex $2$ is transferred to vertex $4$, so $a_2$ becomes $0$ and $a_4$ becomes $101$.\n  - The values of vertices $3$, $4$, and $5$ remain at their respective positions according to the rule.\n2. Choose vertex $3$ as the root. Add $a_3 = 39$ to the total and set $a_3 = 0$. After redistribution under this rooting, the values of vertices $4$ and $5$ remain at their positions.\n3. Choose vertex $4$ as the root. Add $a_4 = 101$ to the total and set $a_4 = 0$. After redistribution, the value at vertex $5$ remains unchanged.\n4. Choose vertex $5$ as the root. Add $a_5 = 2$ to the total and set $a_5 = 0$.\n\nThe total obtained is $19 + 39 + 101 + 2 = 161$.\n\nIn the sixth test case, choose vertex $2$ as the root. Add its value to the total, obtaining $1\\,000\\,000\\,000$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n5 4\n19 20 39 81 2\n1 2\n1 3\n2 4\n2 5\n5 3\n12 21 39 8 21\n1 2\n1 3\n3 4\n2 5\n5 2\n129 216 32 83 221\n1 2\n1 3\n3 4\n4 5\n5 3\n15 15 15 15 15\n1 2\n1 3\n1 4\n1 5\n1 1\n1\n2 1\n1 1000000000\n1 2\n7 2\n8 3 5 7 9 1 6\n4 3\n7 5\n5 2\n2 3\n3 6\n6 1\n",
+      "output": "161\n101\n681\n60\n1\n1000000000\n32\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:54:55.029Z"
+}

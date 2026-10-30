@@ -1,0 +1,29 @@
+{
+  "id": "arc210_b",
+  "platform": "atcoder",
+  "contestId": "arc210",
+  "index": "B",
+  "title": "Remove Median Operations",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc210/tasks/arc210_b",
+  "difficulty": 1506,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given an integer sequence $A=(A_1,A_2,\\ldots,A_N)$ of length $N$ and an integer sequence $B=(B_1,B_2,\\ldots,B_M)$ of length $M$. Here, $N$ is **even**.\n\nYou are given $Q$ queries. The $q$-th query is given as a triple of integers $(t_q,i_q,x_q)$, and it does the following.\n\n- If $t_q=1$: In this case, $1\\leq i_q\\leq N$. This query changes $A_{i_q}$ to $x_q$.\n- If $t_q=2$: In this case, $1\\leq i_q\\leq M$. This query changes $B_{i_q}$ to $x_q$.\n\nAfter processing each query, find the answer to the following subproblem.\n\n> Initialize a multiset $X$ with $X=\\lbrace A_1,A_2,\\ldots,A_N\\rbrace$. For $j=1,2,\\ldots,M$, perform the following operation:\n> \n> - Insert $B_j$ into $X$. Then, remove one median of $X$ from $X$.\n> \n> Find the sum of elements in $X$ when all operations are finished.\n\nWhat is a median? When $N$ is even, the median of a multiset $X$ with $N+1$ elements is the $\\left(1+\\frac{N}{2}\\right)$-th value in ascending order among the elements of $X$. For example, the median of $X=\\lbrace 1, 3, 4, 5, 8\\rbrace$ is $4$, and the median of $X=\\lbrace 2,2,2\\rbrace$ is $2$. Note that in this problem, the multiset for which we consider the median always has an odd number of elements.\n\n## Constraints\n\n- $1\\leq N,M,Q\\leq 2\\times 10^5$\n- $N$ is even.\n- $1\\leq A_i\\leq 10^9$\n- $1\\leq B_i\\leq 10^9$\n- $t_q\\in\\lbrace 1,2\\rbrace$\n- If $t_q=1$, then $1\\leq i_q\\leq N$\n- If $t_q=2$, then $1\\leq i_q\\leq M$\n- $1\\leq x_q\\leq 10^9$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M Q\nA_1 A_2 \\cdots A_N\nB_1 B_2 \\cdots B_M\nt_1 i_1 x_1\n\\vdots\nt_Q i_Q x_Q\n```\n\n## Output\n\nOutput $Q$ lines. The $q$-th line should contain the answer to the subproblem immediately after processing the $q$-th query.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 2 2\n5 1 4 3\n1 2\n1 3 3\n2 1 5\n",
+      "output": "10\n13\n",
+      "note": "First, the $1$-st query makes $A=(5,1,3,3)$ and $B=(1,2)$. In this case, the operations in the subproblem proceed as follows.\n\n- Initialize $X=\\lbrace 5,1,3,3\\rbrace=\\lbrace 1,3,3,5\\rbrace$.\n- Insert $B_1=1$ into $X$, making $X=\\lbrace 1,1,3,3,5\\rbrace$. Then, remove one median from $X$, making $X=\\lbrace 1,1,3,5\\rbrace$.\n- Insert $B_2=2$ into $X$, making $X=\\lbrace 1,1,2,3,5\\rbrace$. Then, remove one median from $X$, making $X=\\lbrace 1,1,3,5\\rbrace$.\n\nThe sum of elements in $X$ when all operations are finished is $1+1+3+5=10$.\n\nNext, the $2$-nd query makes $A=(5,1,3,3)$ and $B=(5,2)$. In this case, the operations in the subproblem proceed as follows.\n\n- Initialize $X=\\lbrace 5,1,3,3\\rbrace=\\lbrace 1,3,3,5\\rbrace$.\n- Insert $B_1=5$ into $X$, making $X=\\lbrace 1,3,3,5,5\\rbrace$. Then, remove one median from $X$, making $X=\\lbrace 1,3,5,5\\rbrace$.\n- Insert $B_2=2$ into $X$, making $X=\\lbrace 1,2,3,5,5\\rbrace$. Then, remove one median from $X$, making $X=\\lbrace 1,2,5,5\\rbrace$.\n\nThe sum of elements in $X$ when all operations are finished is $1+2+5+5=13$."
+    },
+    {
+      "input": "6 7 5\n7 1 2 5 5 3\n4 2 5 1 3 3 8\n2 1 3\n2 7 1\n1 3 6\n2 4 2\n1 5 1\n",
+      "output": "24\n20\n21\n22\n21\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:49:38.640Z"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "arc211_d",
+  "platform": "atcoder",
+  "contestId": "arc211",
+  "index": "D",
+  "title": "Michishirube",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc211/tasks/arc211_d",
+  "difficulty": 2301,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a simple connected undirected graph with $N$ vertices and $M$ edges. The $i$-th edge $(1\\leq i\\leq M)$ is an undirected edge connecting vertices $U_i$ and $V_i$.\n\nPlace signposts at all vertices as follows:\n\n- At every vertex except vertex $1$, place a blue signpost pointing to one of its adjacent vertices.\n- At every vertex except vertex $2$, place a yellow signpost pointing to one of its adjacent vertices.\n\nHere, the two signposts at the same vertex must not point to the same vertex.\n\nDetermine whether it is possible to place signposts satisfying the following conditions, and if possible, output one way to place them:\n\n- From any vertex other than vertex $1$, you can reach vertex $1$ by repeatedly moving to the vertex pointed to by the blue signpost a finite number of times.\n- From any vertex other than vertex $2$, you can reach vertex $2$ by repeatedly moving to the vertex pointed to by the yellow signpost a finite number of times.\n\nIf there are multiple ways to place signposts satisfying the conditions, you may output any of them.\n\n## Constraints\n\n- $2\\leq N\\leq 2\\times 10^5$\n- $1\\leq M\\leq 3\\times 10^5$\n- $1\\leq U_i\\lt V_i\\leq N$ $(1\\leq i\\leq M)$\n- The given graph is simple and connected.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nU_1 V_1\nU_2 V_2\n\\vdots\nU_M V_M\n```\n\n## Output\n\nIf there is no way to place signposts satisfying the conditions, output `No` only.\n\nIf there is, output $N+1$ lines.\n\nThe first line should contain `Yes`.\n\nThe second line should contain the number of the vertex pointed to by the yellow signpost at vertex $1$.\n\nThe third line should contain the number of the vertex pointed to by the blue signpost at vertex $2$.\n\nThe $i$-th line $(4\\leq i\\leq N+1)$ should contain the number of the vertex pointed to by the blue signpost at vertex $i-1$ and the number of the vertex pointed to by the yellow signpost at vertex $i-1$, in this order, separated by a space.\n\nIf there are multiple solutions, you may output any of them.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7 8\n1 3\n3 4\n4 5\n1 5\n4 6\n2 6\n2 7\n4 7\n",
+      "output": "Yes\n5\n6\n4 1\n5 6\n1 4\n4 2\n4 2\n",
+      "note": "Here, signposts are placed as shown in the figure below. For example, from vertex $3$:\n\n- Following the blue signpost, you move as vertex $3\\rightarrow 4\\rightarrow 5\\rightarrow 1$, eventually reaching vertex $1$.\n- Following the yellow signpost, you move as vertex $3\\rightarrow 1\\rightarrow 5\\rightarrow 4 \\rightarrow 6\\rightarrow 2$, eventually reaching vertex $2$.\n\nYou can also verify that following the blue signpost from vertex $2$ leads to vertex $1$, and following the yellow signpost from vertex $1$ leads to vertex $2$. The other vertices also satisfy the conditions.\n\n![image](https://img.atcoder.jp/arc211/b14d7aa0532d37600cd141d8f5f7f695.png)\n\nThere are multiple other solutions, but you must not have both the blue signpost and the yellow signpost at vertex $3$ point to vertex $4$, because the signposts at the same vertex would point to the same vertex."
+    },
+    {
+      "input": "10 12\n1 3\n3 4\n4 5\n1 5\n4 6\n2 6\n2 7\n4 7\n4 8\n8 9\n9 10\n8 10\n",
+      "output": "No\n",
+      "note": "There is no way to place signposts satisfying the conditions."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:49:29.076Z"
+}

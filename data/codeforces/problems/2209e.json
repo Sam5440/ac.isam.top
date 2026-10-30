@@ -1,0 +1,31 @@
+{
+  "id": "2209E",
+  "platform": "codeforces",
+  "contestId": 2209,
+  "index": "E",
+  "title": "A Trivial String Problem",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2209/problem/E",
+  "difficulty": 2200,
+  "tags": [
+    "brute force",
+    "dp",
+    "hashing",
+    "string suffix structures",
+    "strings"
+  ],
+  "points": 2250,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "Define $f(t)$ as the maximum number of parts $t$ can be split into such that each part is a non-empty prefix of $t$. In other words, $f(t)$ is the maximum positive integer $k$ that satisfies the following condition:\n\n- There exist $k$ strings $p_1,p_2,\\ldots,p_k$, which are prefixes of $t$, such that $t=p_1+p_2+\\ldots+p_k$. Here $+$ denotes the string concatenation.\n\nYou are given a string $s$ of length $n$, consisting of only lowercase English letters. Let $s[x..y]$ represent the substring$^{\\text{∗}}$ of $s$ from the $x$-th to the $y$-th character (inclusive). You need to answer $q$ queries. The $i$-th query provides two integers $l_i$ and $r_i$, and you need to find\n\n$$ \\sum_{j=l_i}^{r_i} f(s[l_i..j]). $$\n\n$^{\\text{∗}}$A string $a$ is a substring of a string $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^3$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1 \\le n \\le 10^6$, $1 \\le q \\le 100$).\n\nThe second line contains the string $s$ of length $n$, consisting of only lowercase English letters.\n\nThe $i$-th of the next $q$ lines contains two integers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le n$), representing the $i$-th query.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each query, output an integer representing the value of the expression.\n\n## Note\n\nIn the first test case, $f(\\texttt{a})=1$.\n\nIn the second test case, $f(\\texttt{a})+f(\\texttt{aa})+f(\\texttt{aaa})+f(\\texttt{aaaa})+f(\\texttt{aaaaa})=1+2+3+4+5=15$ and $f(\\texttt{a})+f(\\texttt{aa})+f(\\texttt{aaa})=1+2+3=6$.\n\nIn the third test case, $f(\\texttt{a})+f(\\texttt{ab})+f(\\texttt{abc})+f(\\texttt{abcd})+f(\\texttt{abcde})+f(\\texttt{abcdef})=1+1+1+1+1+1=6$ and $f(\\texttt{c})+f(\\texttt{cd})+f(\\texttt{cde})=1+1+1=3$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n1 1\na\n1 1\n5 2\naaaaa\n1 5\n2 4\n6 2\nabcdef\n1 6\n3 5\n6 3\nabaaba\n1 6\n1 3\n2 6\n7 3\nabcabca\n1 7\n2 7\n4 7\n8 3\naababaac\n1 8\n2 8\n3 7\n",
+      "output": "1\n15\n6\n6\n3\n14\n4\n7\n12\n9\n5\n13\n14\n7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:54:55.029Z"
+}

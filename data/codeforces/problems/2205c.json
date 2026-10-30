@@ -1,0 +1,28 @@
+{
+  "id": "2205C",
+  "platform": "codeforces",
+  "contestId": 2205,
+  "index": "C",
+  "title": "Simons and Posting Blogs",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2205/problem/C",
+  "difficulty": 1500,
+  "tags": [
+    "greedy",
+    "sortings"
+  ],
+  "points": 1250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*This life is like a TV show; we're swept along as the plotlines go.*— SHUN, *[TRAP](https://open.spotify.com/track/4lfS48CaivAm4QaimqbAPv)*\n\nThere are $n$ blogs. The $i$-th blog mentioned $l_i$ users in order as an array $a_i=[a_{i,1},a_{i,2},\\ldots,a_{i,l_i}]$.\n\nYou are going to post all $n$ blogs. Let us maintain a sequence $Q$ that describes the list of users you have recently mentioned. You need to perform the following operation **exactly** $n$ times:\n\n- Choose an **unposted** blog $i$ ($1\\le i\\le n$), then post it. This will cause the following operations for each $1\\le j\\le l_i$ in order:\n- If $a_{i,j}$ already exists in $Q$, then move $a_{i,j}$ to the beginning of $Q$.\n  - Otherwise, insert $a_{i,j}$ at the beginning of $Q$.\n\nFind the lexicographically smallest$^{\\text{∗}}$ $Q$ after all $n$ operations.\n\n$^{\\text{∗}}$An array $x$ is lexicographically smaller than an array $y$ if and only if one of the following holds: $x$ is a prefix of $y$, but $x \\ne y$; or in the first position where $x$ and $y$ differ, the array $x$ has a smaller element than the corresponding element in $y$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line contains a single integer $n$ ($1\\le n\\le 3000$) — the number of blogs.\n\nThen $n$ lines follow, the $i$-th line starting with an integer $l_i$ ($1\\le l_i\\le 3000$), describing the number of users mentioned in the $i$-th blog, which is followed by $l_i$ integers $a_{i,1},a_{i,2},\\ldots,a_{i,l_i}$ ($1\\le a_{i,j}\\le 10^6$) — the list of users mentioned in the $i$-th blog.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3000$.\n\nDenote $\\sum\\limits_{i=1}^n l_i$ as $L$. It is guaranteed that the sum of $L$ over all test cases does not exceed $3000$.\n\n## Output\n\nDenote $m$ as the number of users mentioned in at least one blog. For each test case, output $m$ integers $Q_1,Q_2,\\ldots,Q_m$ — the lexicographically smallest $Q$.\n\n## Note\n\nIn the first test case, you can post the blogs as follows:\n\n- Post the first blog, and $Q$ will become $[6,4,3,2,1]$.\n- Post the third blog, and $Q$ will become $[3,2,9,1,6,4]$.\n- Post the second blog, and $Q$ will become $[1,5,2,3,9,6,4]$.\n\nThere is another method to post blogs:\n\n- Post the third blog, and $Q$ will become $[3,2,9,1]$.\n- Post the first blog, and $Q$ will become $[6,4,3,2,1,9]$.\n- Post the second blog, and $Q$ will become $[1,5,2,6,4,3,9]$.\n\nWe can see that $[1,5,2,3,9,6,4]$ is lexicographically smaller than the other one. If we do not post the second blog at the end, the first element of the array will not be $1$, so $[1,5,2,3,9,6,4]$ is the lexicographically smallest array $Q$.\n\nIn the second test case, you can post the blogs as follows:\n\n- Post the first blog, and $Q$ will become $[6,1]$.\n- Post the second blog, and $Q$ will keep itself $[6,1]$.\n\nIn the third test case, you have to post the only blog, and $Q$ will become $[1,6]$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n3\n5 1 2 3 4 6\n3 2 5 1\n4 1 9 2 3\n2\n2 1 6\n1 6\n1\n3 6 1 1\n5\n4 2 3 3 4\n5 1 2 4 3 1\n2 4 1\n3 3 3 1\n5 4 3 2 2 2\n5\n4 2 3 1 4\n5 2 5 5 6 5\n5 3 4 7 5 5\n8 3 6 4 3 1 1 5 4\n2 1 1\n",
+      "output": "1 5 2 3 9 6 4\n6 1\n1 6\n1 3 2 4\n1 4 3 2 5 6 7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:55:19.928Z"
+}

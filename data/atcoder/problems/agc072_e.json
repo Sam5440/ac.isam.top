@@ -1,0 +1,34 @@
+{
+  "id": "agc072_e",
+  "platform": "atcoder",
+  "contestId": "agc072",
+  "index": "E",
+  "title": "Flights 2",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc072/tasks/agc072_e",
+  "difficulty": null,
+  "tags": [],
+  "points": 1400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nJapan has $N$ airports numbered $1, 2, \\dots, N$. AtCoder Airlines operates $M$ directed flight routes in Japan, numbered $1, 2, \\dots, M$. Route $j$ goes from airport $A_j$ to airport $B_j$ and costs $C_j \\times F$ yen.\n\nFlying with AtCoder Airlines earns “miles.” You start with $0$ miles. Taking route $j$ once grants $C_j$ miles. At airport $i$, you can exchange miles for money at the rate $R_i$ yen per mile. Because of the constraint $0 \\le R_i \\le F-1$, endless profit cycles are impossible.\n\nYou can exchange a non-integral amount of miles or have a non-integral amount of money, but you cannot have a negative amount of miles or money.\n\nWhat is the minimum initial amount of money in yen needed to fly from airport $1$ to airport $N$?\n\nSolve $\\mathrm{TESTCASES}$ test cases.\n\n## Constraints\n\n- $1 \\le \\mathrm{TESTCASES} \\le 40\\,000$\n- $2 \\leq N \\leq 400$\n- $1 \\leq M \\leq N \\times (N-1)$\n- $1 \\leq F \\leq 100$\n- $1 \\leq A_j \\leq N$\n- $1 \\leq B_j \\leq N$\n- $A_j \\neq B_j$\n- $(A_1, B_1), (A_2, B_2), \\dots, (A_M, B_M)$ are all different.\n- $1 \\le C_j \\le 100$\n- $0 \\le R_i \\le F-1$\n- It is possible to go from airport $1$ to airport $N$.\n- The sum of $N^2$ over all test cases is at most $160\\,000$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format, where $\\mathrm{case}_k$ represents the $k$-th test case:\n\n```\n\\mathrm{TESTCASES}\n\\mathrm{case}_1\n\\mathrm{case}_2\n \\vdots\n\\mathrm{case}_{\\mathrm{TESTCASES}}\n```\n\nEach test case is given in the following format:\n\n```\nN M\nF\nA_1 B_1 C_1\nA_2 B_2 C_2\n \\vdots\nA_M B_M C_M\nR_1 R_2 \\cdots R_N\n```\n\n## Output\n\nPrint $\\mathrm{TESTCASES}$ lines. The $k$-th line should contain the minimum initial amount of money in yen needed to fly from airport $1$ to airport $N$ for the $k$-th test case.\n\nYour output is considered as correct if its absolute or relative error is at most $10^{-6}$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1\n3 2\n10\n1 2 7\n2 3 9\n2 2 2\n",
+      "output": "146\n",
+      "note": "If you start with $146$ yen, you can go from airport $1$ to airport $3$:\n\n1. Take route $1$ to go from airport $1$ to airport $2$. You now have $146-70=76$ yen, and get $7$ miles.\n2. At airport $2$, exchange $7$ miles for $14$ yen. You now have $76+14=90$ yen.\n3. Take route $2$ to go from airport $2$ to airport $3$. You now have $90-90=0$ yen, and get $9$ miles.\n\nIf you start with less than $146$ yen, you cannot go to airport $3$."
+    },
+    {
+      "input": "1\n4 4\n10\n1 2 7\n2 4 9\n2 3 1\n3 2 1\n2 2 9 2\n",
+      "output": "106\n",
+      "note": "If you start with $106$ yen, you can go from airport $1$ to airport $4$:\n\n1. Take route $1$ to go from airport $1$ to airport $2$. You now have $106-70=36$ yen, and get $7$ miles.\n2. Take route $3$ to go from airport $2$ to airport $3$. You now have $36-10=26$ yen, and get $1$ mile.\n3. At airport $3$, exchange $8$ miles for $72$ yen. You now have $26+72=98$ yen.\n4. Take route $4$ to go from airport $3$ to airport $2$. You now have $98-10=88$ yen, and get $1$ mile.\n5. At airport $2$, exchange $1$ mile for $2$ yen. You now have $88+2=90$ yen.\n6. Take route $2$ to go from airport $2$ to airport $4$. You now have $90-90=0$ yen, and get $9$ miles.\n\nIf you start with less than $106$ yen, you cannot go to airport $4$."
+    },
+    {
+      "input": "1\n7 8\n100\n3 2 81\n3 4 42\n1 6 97\n4 5 42\n4 1 59\n6 3 34\n5 3 68\n2 7 47\n0 58 37 10 89 16 0\n",
+      "output": "16354.2758620689655172413793103448275862068965\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:59:18.165Z"
+}

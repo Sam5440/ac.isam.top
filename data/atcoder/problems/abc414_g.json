@@ -1,0 +1,29 @@
+{
+  "id": "abc414_g",
+  "platform": "atcoder",
+  "contestId": "abc414",
+  "index": "G",
+  "title": "AtCoder Express 4",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc414/tasks/abc414_g",
+  "difficulty": 3020,
+  "tags": [],
+  "points": 625,
+  "timeLimitMs": 2500,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nIn AtCoder Kingdom, there is a railway line extending east-west, and this line has stations $1,2,\\ldots,N$. Station $i\\ (1\\leq i\\leq N)$ is located at coordinate $x_i$ $(x_1 < x_2 < \\ldots < x_N)$.\n\nOn this line, AtCoder Express company operates $M$ types of express trains.\n\nThe $i$-th type of express train operates as follows:\n\n- You can board this train at one of the stations $l_i,l_i+1,\\ldots,r_i$.\n- You can get off this train at one of the stations $L_i, L_i+1, \\ldots, R_i$. Here, the train travels in one direction, either east or west, satisfying $r_i\\lt L_i$ or $R_i\\lt l_i$.\n- The fare consists of a base fare of $c_i$ plus an amount based on the distance from the boarding station to the destination station. Specifically, when traveling from station $s\\ (l_i\\leq s\\leq r_i)$ to station $t\\ (L_i\\leq t\\leq R_i)$, the fare is $c_i+|x_s-x_t|$.\n\nYou are currently at station $1$. For each $k\\ (2\\leq k\\leq N)$, determine whether you can travel from station $1$ to station $k$ by transferring between express trains, and if you can travel, find the minimum total fare required for the travel.\n\n## Constraints\n\n- $2\\leq N\\leq 10^5$\n- $1\\leq M\\leq 10^5$\n- $0\\leq x_1 < x_2 < \\ldots < x_N \\leq 10^{12}$\n- $1\\leq l_i\\leq r_i\\leq N, 1\\leq L_i\\leq R_i\\leq N$\n- $r_i\\lt L_i$ or $R_i\\lt l_i$.\n- $1\\leq c_i\\leq 10^{12}$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nx_1 x_2 \\ldots x_N\nl_1 r_1 L_1 R_1 c_1\nl_2 r_2 L_2 R_2 c_2\n\\vdots\nl_M r_M L_M R_M c_M\n```\n\n## Output\n\nOutput the answer in the following format:\n\n```\n\\mathrm{ans}_2 \\mathrm{ans}_3 \\ldots \\mathrm{ans}_N\n```\n\n$\\mathrm{ans}_i$ is the answer for $k=i$. If you can travel from station $1$ to station $i$, $\\mathrm{ans}_i$ is the minimum total fare required for the travel; otherwise, $\\mathrm{ans}_i$ is `-1`.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 3\n0 20 50 90 110 150\n1 2 5 6 100\n1 1 2 3 10000\n6 6 1 2 30\n",
+      "output": "410 10050 -1 210 250\n",
+      "note": "You can travel to station $2$ as follows:\n\n1. Board the $1$st express train at station $1$ and get off at station $6$. The fare is $c_1+|x_1-x_6|=100+|0-150|=250$.\n2. Board the $3$rd express train at station $6$ and get off at station $2$. The fare is $c_3+|x_6-x_2|=30+|150-20|=160$.\n\nThe total fare in this case is $410$, which is the minimum.\n\nYou cannot travel to station $4$."
+    },
+    {
+      "input": "10 5\n4427 6839 17992 39701 46954 76602 81804 91814 95651 95895\n3 4 10 10 60978\n1 1 4 4 30037\n9 10 7 8 66643\n4 4 1 2 50872\n8 10 3 7 23949\n",
+      "output": "149045 284335 65311 255373 225725 220523 253207 -1 182483\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:52:07.672Z"
+}

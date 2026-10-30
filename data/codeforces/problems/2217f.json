@@ -1,0 +1,34 @@
+{
+  "id": "2217F",
+  "platform": "codeforces",
+  "contestId": 2217,
+  "index": "F",
+  "title": "Interval Game",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2217/problem/F",
+  "difficulty": 2400,
+  "tags": [
+    "bitmasks",
+    "combinatorics",
+    "constructive algorithms",
+    "dp",
+    "games",
+    "greedy",
+    "math",
+    "probabilities"
+  ],
+  "points": 2750,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "Alice and Bob are playing a game involving two intervals, $[l_1, r_1]$ and $[l_2, r_2]$, constrained by integers $x_1$ and $x_2$ respectively. The intervals satisfy $1 \\le l_1 \\le r_1 \\le x_1$ and $1 \\le l_2 \\le r_2 \\le x_2$.\n\nThe game is played as follows. In one turn, a player must choose one of the two intervals (let's say the $i$-th interval $[l_i, r_i]$) and perform **exactly one** of the following operations:\n\n- Replace $l_i$ with a strictly smaller integer $l'_i$ such that $1 \\le l'_i \\lt l_i$.\n- Replace $r_i$ with a strictly larger integer $r'_i$ such that $r_i \\lt r'_i \\le x_i$.\n\nThe player who cannot make a valid move loses the game.\n\nThe game setup proceeds in two steps:\n\n1. First, Alice chooses the values of $l_1$ and $r_1$ to determine the first interval. It must be a valid interval within $[1, x_1]$.\n2. Then, the second interval $[l_2, r_2]$ is chosen **uniformly at random** from all possible valid intervals within $[1, x_2]$.\n\nOnce the intervals are chosen, the game begins with **Alice moving first**.\n\nAssuming both Alice and Bob play optimally, Alice wants to choose the initial interval $[l_1, r_1]$ to maximize her probability of winning. Your task is to find such an interval. If there are multiple optimal intervals, you may output any one of them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe only line of each test case contains two integers $x_1$ and $x_2$ ($1 \\le x_1, x_2 \\le 5 \\cdot 10^5$) — the upper bounds for the two intervals.\n\nIt is guaranteed that the sum of $x_1$ over all test cases does not exceed $5 \\cdot 10^5$.\n\nIt is guaranteed that the sum of $x_2$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output two integers $l_1$ and $r_1$ ($1 \\le l_1 \\le r_1 \\le x_1$) — the optimal interval chosen by Alice.\n\nIf there are multiple optimal intervals, you may output any one of them.\n\n## Note\n\nFor the first test case, Alice is forced to choose $[1, 1]$ as it is the only valid option.\n\nFor the third test case, if Alice chooses $[2, 2]$, she is guaranteed to win (probability $1$); she can replace $l_1$ with $1$, after which Bob cannot make a valid move. Note that $[1, 1]$ would also be a valid winning answer here.\n\nFor the fourth test case, if Alice chooses $[1, 2]$, she achieves a winning probability of $2/3$. By contrast, choosing $[1, 1]$ or $[2, 2]$ would result in a winning probability of only $1/3$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n1 1\n1 10\n2 1\n2 2\n20 64578\n185367 133524\n",
+      "output": "1 1\n1 1\n2 2\n1 2\n5 12\n37381 52023\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:54:12.552Z"
+}

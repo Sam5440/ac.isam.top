@@ -1,0 +1,29 @@
+{
+  "id": "2223F",
+  "platform": "codeforces",
+  "contestId": 2223,
+  "index": "F",
+  "title": "Zhily and Colorful Strings",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2223/problem/F",
+  "difficulty": 3500,
+  "tags": [
+    "divide and conquer",
+    "fft",
+    "math"
+  ],
+  "points": 4500,
+  "timeLimitMs": 7000,
+  "memoryLimitMb": 512,
+  "statementMd": "Since Jily's first birthday, Zhily has given him a colored string as a gift each year, and each year's gift has been different from all previous ones. This year, Jily was amazed to discover that he has received every possible distinct gift!\n\nWe call a colored string that meets the following conditions **valid**:\n\n1. It consists of $m$ types of characters, with exactly $n_i$ characters of the $i$-th type;\n2. Each character of the $i$-th type is colored with one of $c_i$ colors;\n3. The string can be **reduced** to an empty string by repeatedly deleting $d_i$ consecutive characters of the $i$-th type that share the same color.\n\nCalculate the number of all **valid** colored strings, modulo $998\\,244\\,353$.\n\nTwo colored strings are considered different if they differ in at least one position (either in character type or in color).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $m$ ($1\\le m\\le 2\\cdot 10^5$) — the number of types.\n\nThe $i$-th of the next $m$ lines contains $n_i, c_i, d_i$ ($1\\le c_i \\lt 998\\,244\\,353, 1\\le n_i, d_i \\le 10^8$) — the total count of characters of the $i$-th type, the number of colors for this type, and the required reduction length, respectively.\n\nIt is guaranteed that the sum of $\\left\\lceil\\frac{n_i}{d_i}\\right\\rceil$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer in one line, representing the number of valid colored strings, modulo $998\\,244\\,353$.\n\n## Note\n\nFor the examples, let's number all the colors by $1, 2, \\ldots, \\sum_{j=1}^m c_j$. Where the colors $1+\\sum_{j=1}^{i-1} c_j,\\ldots,\\sum_{j=1}^i c_j$ are of the $i$-th type. Below, the color $1, 2, 3$ are colored red, blue, and green, respectively.\n\nFor the first test case, the valid strings are:\n\n1. $[{\\color{red}1}, {\\color{red}1}, {\\color{blue}2}]$\n2. $[{\\color{red}1}, {\\color{red}1}, {\\color{green}3}]$\n3. $[{\\color{red}1}, {\\color{blue}2}, {\\color{red}1}]$\n4. $[{\\color{red}1}, {\\color{green}3}, {\\color{red}1}]$\n5. $[{\\color{blue}2}, {\\color{red}1}, {\\color{red}1}]$\n6. $[{\\color{green}3}, {\\color{red}1}, {\\color{red}1}]$\n\nFor any of these strings, we can first remove the only $2$ or $3$, and then remove the $2$ consecutive $1$s.\n\nFor the second test case, the valid strings are:\n\n1. $[{\\color{red}1}, {\\color{red}1}, {\\color{green}3}, {\\color{green}3}]$\n2. $[{\\color{red}1}, {\\color{green}3}, {\\color{green}3}, {\\color{red}1}]$\n3. $[{\\color{blue}2}, {\\color{blue}2}, {\\color{green}3}, {\\color{green}3}]$\n4. $[{\\color{blue}2}, {\\color{green}3}, {\\color{green}3}, {\\color{blue}2}]$\n5. $[{\\color{green}3}, {\\color{red}1}, {\\color{red}1}, {\\color{green}3}]$\n6. $[{\\color{green}3}, {\\color{blue}2}, {\\color{blue}2}, {\\color{green}3}]$\n7. $[{\\color{green}3}, {\\color{green}3}, {\\color{red}1}, {\\color{red}1}]$\n8. $[{\\color{green}3}, {\\color{green}3}, {\\color{blue}2}, {\\color{blue}2}]$\n\nFor the third test case, it can be easily seen that there are no valid strings.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n2\n2 1 1\n1 2 1\n2\n2 2 2\n2 1 2\n2\n6 2 3\n5 3 2\n",
+      "output": "6\n8\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:53:39.057Z"
+}

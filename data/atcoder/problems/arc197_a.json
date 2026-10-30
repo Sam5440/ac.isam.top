@@ -1,0 +1,25 @@
+{
+  "id": "arc197_a",
+  "platform": "atcoder",
+  "contestId": "arc197",
+  "index": "A",
+  "title": "Union of Grid Paths",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc197/tasks/arc197_a",
+  "difficulty": 860,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is an $H\\times W$ grid of cells. Let $(h,w)$ denote the cell at the $h$-th row from the top and the $w$-th column from the left. Furthermore, you are given a string $S = S_1\\cdots S_{H+W-2}$ of length $H+W-2$ consisting of `D`, `R`, and `?`.\n\nInitially, all cells are painted white. You may perform the following operation, which consists of three steps, any number of times:\n\n1. Choose a string $X = X_1\\cdots X_{H+W-2}$ of length $H+W-2$ satisfying all of the following.\n- $X$ consists of exactly $H-1$ `D`s and $W-1$ `R`s.\n  - For each $1 \\le i \\le H+W-2$, if $S_i$ is `D` then $X_i$ must also be `D`.\n  - For each $1 \\le i \\le H+W-2$, if $S_i$ is `R` then $X_i$ must also be `R`.\n2. Stand on cell $(1,1)$. Then for $i=1,2,\\ldots$ in order, move one cell in the direction indicated by $X_i$: if $X_i$ is `D`, move down one cell; if $X_i$ is `R`, move right one cell. It can be shown that if $X$ satisfies the conditions in step 1, the destination cell always exists within the grid.\n3. For every cell you visited in step 2 (including the starting and ending cells), if the cell is currently white, paint it black.\n\nFind the maximum possible number of cells that can be painted black in total.\n\nThere are $T$ test cases; solve each one.\n\n## Constraints\n\n- $1\\le T\\le 2\\times 10^5$\n- $2\\le H,W\\le 2\\times 10^5$\n- $T,H,W$ are integers.\n- $S$ is a string of length $H+W-2$ consisting of `D`, `R`, and `?`.\n- The number of `D`s in $S$ is at most $H-1$.\n- The number of `R`s in $S$ is at most $W-1$.\n- The sum of $H+W$ over all test cases is at most $4\\times 10^5$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\text{case}_1\n\\vdots\n\\text{case}_T\n```\n\nEach case is given in the following format:\n\n```\nH W\nS\n```\n\n## Output\n\nPrint $T$ lines. The $i$-th line should contain the maximum number of cells that can be painted black for the $i$-th test case.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n4 5\nD?DRR?R\n4 5\nDDRRDRR\n4 5\n???????\n2 2\nDR\n",
+      "output": "12\n8\n20\n3\n",
+      "note": "For the first test case, by choosing $X$ as `DRDRRDR` in the first operation and `DDDRRRR` in the second operation, you can paint $12$ cells black.\n\n![image](https://img.atcoder.jp/arc197/fe14a42d236585f23bf6e59480bb45ac.png)"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:53:05.377Z"
+}

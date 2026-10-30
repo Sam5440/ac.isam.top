@@ -1,0 +1,38 @@
+{
+  "id": "abc366_g",
+  "platform": "atcoder",
+  "contestId": "abc366",
+  "index": "G",
+  "title": "XOR Neighbors",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc366/tasks/abc366_g",
+  "difficulty": 2409,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a simple undirected graph with $N$ vertices and $M$ edges. The $i$-th edge connects vertices $u_i$ and $v_i$ bidirectionally.\n\nDetermine if there exists a way to write an integer between $1$ and $2^{60} - 1$, inclusive, on each vertex of this graph so that the following condition is satisfied:\n\n- For every vertex $v$ with a degree of at least $1$, the total XOR of the numbers written on its adjacent vertices (excluding $v$ itself) is $0$.\n\nWhat is XOR? The XOR of two non-negative integers $A$ and $B$, denoted as $A \\oplus B$, is defined as follows: In the binary representation of $A \\oplus B$, the bit at position $2^k \\, (k \\geq 0)$ is $1$ if and only if exactly one of the bits at position $2^k$ in the binary representations of $A$ and $B$ is $1$. Otherwise, it is $0$. For example, $3 \\oplus 5 = 6$ (in binary: $011 \\oplus 101 = 110$). In general, the bitwise XOR of $k$ integers $p_1, \\dots, p_k$ is defined as $(\\cdots ((p_1 \\oplus p_2) \\oplus p_3) \\oplus \\cdots \\oplus p_k)$. It can be proved that this is independent of the order of $p_1, \\dots, p_k$.\n\n## Constraints\n\n- $1 \\leq N \\leq 60$\n- $0 \\leq M \\leq N(N-1)/2$\n- $1 \\leq u_i < v_i \\leq N$\n- $(u_i, v_i) \\neq (u_j, v_j)$ for $i \\neq j$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nu_1 v_1\nu_2 v_2\n\\vdots\nu_M v_M\n```\n\n## Output\n\nIf there is no way to write integers satisfying the condition, print `No`.\n\nOtherwise, let $X_v$ be the integer written on vertex $v$, and print your solution in the following format. If multiple solutions exist, any of them will be accepted.\n\n```\nYes\nX_1 X_2 \\dots X_N\n```",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3\n1 2\n1 3\n2 3\n",
+      "output": "Yes\n4 4 4\n",
+      "note": "Other acceptable solutions include writing $(2,2,2)$ or $(3,3,3)$."
+    },
+    {
+      "input": "2 1\n1 2\n",
+      "output": "No\n"
+    },
+    {
+      "input": "1 0\n",
+      "output": "Yes\n1\n",
+      "note": "Any integer between $1$ and $2^{60} - 1$ can be written."
+    },
+    {
+      "input": "4 5\n1 2\n1 3\n2 3\n2 4\n3 4\n",
+      "output": "Yes\n12 4 4 8\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:03:47.927Z"
+}

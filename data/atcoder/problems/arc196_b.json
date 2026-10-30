@@ -1,0 +1,25 @@
+{
+  "id": "arc196_b",
+  "platform": "atcoder",
+  "contestId": "arc196",
+  "index": "B",
+  "title": "Torus Loop",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc196/tasks/arc196_b",
+  "difficulty": 2188,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a grid of $H$ rows and $W$ columns. The rows are numbered $0,1,\\ldots,H-1$ from top to bottom, and the columns are numbered $0,1,\\ldots,W-1$ from left to right. Let $(i,j)$ denote the cell at row $i$ and column $j$.\n\nYou are given $H$ strings $S_0, S_1, \\ldots, S_{H-1}$, each of which is of length $W$ and consists of `A` and `B`.\n\nIn each cell, one of the following two types of tiles is placed. Let $S_{ij}$ denote the $(j+1)$-th character $(0 \\le j \\le W-1)$ of the string $S_i$. The type of tile placed in cell $(i,j)$ is $S_{ij}$.\n\n- Type A: A single line segment is drawn on the tile’s surface, connecting the midpoints of two adjacent edges.\n\n![image](https://img.atcoder.jp/arc196/A.png)\n\n- Type B: A single line segment is drawn on the tile’s surface, connecting the midpoints of two opposite edges.\n\n![image](https://img.atcoder.jp/arc196/B.png)\n\nThese tiles can be freely rotated. When focusing only on the pattern formed by the line segments, there are four ways to rotate a Type-A tile and two ways to rotate a Type-B tile. Therefore, if we distinguish placements only by the pattern of line segments, the number of ways to place the tiles is $4^a \\times 2^b$, where $a$ is the number of Type-A tiles and $b$ is the number of Type-B tiles.\n\nAmong these ways, print the number, modulo $998244353$, of ways such that the line segments on the tiles have no dead ends when viewing the grid as a torus.\n\nHere, \"the line segments on the tiles have no dead ends when viewing the grid as a torus\" if and only if the following two conditions are satisfied for every cell $(i,j)$:\n\n- Both of the following exist, or neither of the following exists:\n- the line segment drawn in the cell $(i,j)$, whose endpoint is the midpoint of the right edge of the cell $(i,j)$\n  - the line segment drawn in the cell $(i,(j+1)\\bmod W)$, whose endpoint is the midpoint of the left edge of the cell $(i,(j+1)\\bmod W)$\n- Both of the following exist, or neither of the following exists:\n- the line segment drawn in the cell $(i,j)$, whose endpoint is the midpoint of the bottom edge of the cell $(i,j)$\n  - the line segment drawn in the cell $((i+1)\\bmod H,j)$, whose endpoint is the midpoint of the top edge of the cell $((i+1)\\bmod H,j)$\n\nFor example, the following placement satisfies the condition:\n\n![image](https://img.atcoder.jp/arc196/ok.png)\n\nThe following placement does not satisfy the condition. Specifically, while there is no line segment whose endpoint is the midpoint of the right edge of the tile in cell $(0,2)$, there is a line segment whose endpoint is the midpoint of the left edge of the tile in cell $(0,0)$, so the condition is not satisfied.\n\n![image](https://img.atcoder.jp/arc196/ng.png)\n\nYou are given $T$ test cases; solve each of them.\n\n## Constraints\n\n- $1 \\le T \\le 10^5$\n- $2 \\le H,W$\n- $HW\\leq 10^6$\n- $S_i\\,(0\\le i\\le H-1)$ are length-$W$ strings consisting of `A` and `B`.\n- The sum of $H W$ over all test cases is at most $10^6$.\n- $T$, $H$, and $W$ are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\ncase_1\ncase_2\n\\vdots\ncase_T\n```\n\nEach case is given in the following format:\n\n```\nH W\nS_0\nS_1\n\\vdots\nS_{H-1}\n```\n\n## Output\n\nFor each test case, print the number, modulo $998244353$, of placements that satisfies the condition, in separate lines.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n3 3\nAAB\nAAB\nBBB\n3 3\nBBA\nABA\nAAB\n3 4\nBAAB\nBABA\nBBAA\n",
+      "output": "2\n0\n2\n",
+      "note": "One valid placement for the first test case is shown in the following image:\n\n![image](https://img.atcoder.jp/arc196/sample.png)"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:59:26.246Z"
+}

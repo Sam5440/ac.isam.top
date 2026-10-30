@@ -1,0 +1,28 @@
+{
+  "id": "abc431_g",
+  "platform": "atcoder",
+  "contestId": "abc431",
+  "index": "G",
+  "title": "One Time Swap 2",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc431/tasks/abc431_g",
+  "difficulty": 2490,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given an integer sequence $A=(A_1,A_2,\\ldots,A_N)$ of length $N$.\n\nFor a pair of integers $(l, r) \\ (1\\leq l\\lt r\\leq N)$, let $f(l,r)$ be the integer sequence obtained by swapping the $l$-th element and the $r$-th element of $A$.\n\nGenerate a sequence of integer sequences $B=(B_1,B_2,\\ldots,B_{\\frac{N(N-1)}{2}})$ of length $\\frac{N(N-1)}{2}$ by the following procedure:\n\n- Prepare an empty sequence $B=()$.\n- For each pair of integers $(l, r)\\ (1\\leq l\\lt r\\leq N)$, add $f(l,r)$ to $B$.\n- Sort $B$ in lexicographical order of sequences.\n\nYou are given $Q$ queries; process them in order. The $i$-th query is as follows:\n\n- Given an integer $k$, find one pair of integers $(l, r) \\ (1\\leq l\\lt r\\leq N)$ such that $B_k=f(l,r)$ and output it.\n\nWhat is lexicographical order of sequences? A sequence $S = (S_1,S_2,\\ldots,S_{|S|})$ is **lexicographically smaller** than a sequence $T = (T_1,T_2,\\ldots,T_{|T|})$ if and only if one of the following two conditions holds. Here, $|S|$ and $|T|$ represent the lengths of $S$ and $T$, respectively. $|S| \\lt |T|$ and $(S_1,S_2,\\ldots,S_{|S|}) = (T_1,T_2,\\ldots,T_{|S|})$. There exists an integer $1 \\leq i \\leq \\min\\lbrace |S|, |T| \\rbrace$ such that both of the following hold: $(S_1,S_2,\\ldots,S_{i-1}) = (T_1,T_2,\\ldots,T_{i-1})$ $S_i$ is smaller than $T_i$ (as a number).\n\n## Constraints\n\n- $2\\leq N\\leq 2\\times 10^5$\n- $1\\leq Q\\leq 2\\times 10^5$\n- $1\\leq A_i\\leq N$\n- $1\\leq k\\leq \\frac{N(N-1)}{2}$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN Q\nA_1 A_2 \\ldots A_N\n\\mathrm{query}_1\n\\mathrm{query}_2\n\\vdots\n\\mathrm{query}_Q\n```\n\nEach query is given in the following format:\n\n```\nk\n```\n\n## Output\n\nOutput $Q$ lines. The $i$-th line should contain the answer to the $i$-th query in the following format:\n\n```\nl r\n```\n\nIf there are multiple solutions, any of them will be considered correct.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 3\n1 2 1 2\n1\n3\n5\n",
+      "output": "2 3\n2 4\n1 2\n",
+      "note": "$f(1, 2) = (2, 1, 1, 2), f(1, 3) = (1, 2, 1, 2), f(1, 4) = (2, 2, 1, 1), f(2, 3) = (1, 1, 2, 2), f(2, 4) = (1, 2, 1, 2), f(3, 4) = (1, 2, 2, 1)$.\n\nThe sequence $B$ obtained by sorting these six sequences in lexicographical order is $B=((1, 1, 2, 2), (1, 2, 1, 2), (1, 2, 1, 2), (1, 2, 2, 1), (2, 1, 1, 2), (2, 2, 1, 1))$.\n\n- For the $1$-st query, the only $(l,r)$ such that $B_1=(1,1,2,2)=f(l,r)$ is $(l,r)=(2,3)$.\n- For the $2$-nd query, $(l,r)$ such that $B_3=(1,2,1,2)=f(l,r)$ are $(l,r)=(1,3),(2,4)$. In this case, either one will be considered correct.\n- For the $3$-rd query, the only $(l,r)$ such that $B_5=(2,1,1,2)=f(l,r)$ is $(l,r)=(1,2)$."
+    },
+    {
+      "input": "10 10\n1 1 2 7 6 3 5 7 3 3\n21\n36\n9\n17\n13\n24\n7\n45\n33\n1\n",
+      "output": "6 8\n2 4\n5 7\n9 10\n8 9\n3 9\n5 9\n1 8\n2 10\n4 10\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:50:04.628Z"
+}
