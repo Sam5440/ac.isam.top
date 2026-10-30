@@ -1,0 +1,29 @@
+{
+  "id": "1698B",
+  "platform": "codeforces",
+  "contestId": 1698,
+  "index": "B",
+  "title": "Rising Sand",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1698/problem/B",
+  "difficulty": 800,
+  "tags": [
+    "constructive algorithms",
+    "greedy",
+    "implementation"
+  ],
+  "points": 500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "There are $n$ piles of sand where the $i$-th pile has $a_i$ blocks of sand. The $i$-th pile is called *too tall* if $1 \\lt i \\lt n$ and $a_i \\gt a_{i-1} + a_{i+1}$. That is, a pile is too tall if it has more sand than its two neighbours combined. (Note that piles on the ends of the array cannot be too tall.)\n\nYou are given an integer $k$. An operation consists of picking $k$ consecutive piles of sand and adding one unit of sand to them all. Formally, pick $1 \\leq l,r \\leq n$ such that $r-l+1=k$. Then for all $l \\leq i \\leq r$, update $a_i \\gets a_i+1$.\n\nWhat is the **maximum** number of piles that can simultaneously be too tall after some (possibly zero) operations?\n\n## Input\n\nThe input consists of multiple test cases. The first line contains an integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($3 \\leq n \\leq 2 \\cdot 10^5$; $1 \\leq k \\leq n$) — the number of piles of sand and the size of the operation, respectively.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the sizes of the piles.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum number of piles that are simultaneously too tall after some (possibly zero) operations.\n\n## Note\n\nIn the first test case, we can perform the following three operations:\n\n- Add one unit of sand to piles $1$ and $2$: $[\\color{red}{3}, \\color{red}{10}, 2, 4, 1]$.\n- Add one unit of sand to piles $4$ and $5$: $[3, 10, 2, \\color{red}{5}, \\color{red}{2}]$.\n- Add one unit of sand to piles $3$ and $4$: $[3, 10, \\color{red}{3}, \\color{red}{6}, 2]$.\n\nNow piles $2$ and $4$ are too tall, so in this case the answer is $2$. It can be shown that it is impossible to make more than $2$ piles too tall.\n\nIn the second test case, any operation will increase all piles by $1$ unit, so the number of too tall piles will always be $0$.\n\nIn the third test case, we can increase any pile by $1$ unit of sand. It can be shown that the maximum number of too tall piles is $1$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n5 2\n2 9 2 4 1\n4 4\n1 3 2 1\n3 1\n1 3 1\n",
+      "output": "2\n0\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:00:21.808Z"
+}

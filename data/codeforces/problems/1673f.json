@@ -1,0 +1,32 @@
+{
+  "id": "1673F",
+  "platform": "codeforces",
+  "contestId": 1673,
+  "index": "F",
+  "title": "Anti-Theft Road Planning",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1673/problem/F",
+  "difficulty": 2400,
+  "tags": [
+    "bitmasks",
+    "constructive algorithms",
+    "divide and conquer",
+    "greedy",
+    "interactive",
+    "math"
+  ],
+  "points": 3250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*This is an interactive problem.*\n\nA city has $n^2$ buildings divided into a grid of $n$ rows and $n$ columns. You need to build a road of some length $D(A,B)$ of your choice between each pair of adjacent by side buildings $A$ and $B$. Due to budget limitations and legal restrictions, the length of each road must be a positive integer and **the total length of all roads should not exceed $48\\,000$**.\n\nThere is a thief in the city who will start from the topmost, leftmost building (in the first row and the first column) and roam around the city, occasionally stealing artifacts from some of the buildings. He can move from one building to another adjacent building by travelling through the road which connects them.\n\nYou are unable to track down what buildings he visits and what path he follows to reach them. But there is one tracking mechanism in the city. The tracker is capable of storing a single integer $x$ which is initially $0$. Each time the thief travels from a building $A$ to another adjacent building $B$ through a road of length $D(A,B)$, the tracker changes $x$ to $x\\oplus D(A,B)$. Each time the thief steals from a building, the tracker reports the value $x$ stored in it and resets it back to $0$.\n\nIt is known beforehand that the thief will steal in exactly $k$ buildings but you will know the values returned by the tracker only after the thefts actually happen. Your task is to choose the lengths of roads in such a way that no matter what strategy or routes the thief follows, you will be able to exactly tell the location of all the buildings where the thefts occurred from the values returned by the tracker.\n\n## Interaction\n\nFirst read a single line containing two integers $n$ $(2\\leq n\\leq 32)$ and $k$ $(1\\leq k\\leq 1024)$ denoting the number of rows and number of thefts respectively.\n\nLet's denote the $j$-th building in the $i$-th row by $B_{i,j}$.\n\nThen print $n$ lines each containing $n-1$ integers. The $j$-th integer of the $i$-th line must be the value of $D(B_{i,j},B_{i,j+1})$.\n\nThen print $n-1$ lines each containing $n$ integers. The $j$-th integer of the $i$-th line must be the value of $D(B_{i,j},B_{i+1,j})$.\n\nRemember that the total length of the roads must not exceed $48\\,000$.\n\nThen answer $k$ queries. First read the value $x$ returned by the tracker. Then print two integers denoting the row number and column number of the building where the theft occurred. After that you will be able to answer the next query (if such exists).\n\nAfter printing the answers do not forget to output end of line and flush the output buffer. Otherwise you will get the verdict `Idleness limit exceeded`. To flush the buffer, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- Read documentation for other languages.\n\n**Hacks**\n\nYou cannot make hacks in this problem.\n\n## Note\n\nFor the sample test, $n=2$ and $k=4$.\n\nYou choose to build the roads of the following lengths:\n\n![image](https://espresso.codeforces.com/ecceb8e844d103a4c2df2d68233ebcb8b1f45d70.png)\n\nThe thief follows the following strategy:\n\n1. Start at $B_{1,1}$.\n2. Move Right to $B_{1,2}$.\n3. Move Down to $B_{2,2}$.\n4. Move Left to $B_{2,1}$.\n5. Move Up to $B_{1,1}$.\n6. Move Right to $B_{1,2}$.\n7. Steal from $B_{1,2}$.\n8. Move Left to $B_{1,1}$.\n9. Steal from $B_{1,1}$.\n10. Move Down to $B_{2,1}$.\n11. Move Right to $B_{2,2}$.\n12. Move Up to $B_{1,2}$.\n13. Steal from $B_{1,2}$.\n14. Move Left to $B_{1,1}$.\n15. Move Down to $B_{2,1}$.\n16. Steal from $B_{2,1}$.\n\nThe tracker responds in the following way:\n\n1. Initialize $x=0$.\n2. Change $x$ to $x\\oplus 1=0\\oplus1=1$.\n3. Change $x$ to $x\\oplus 4=1\\oplus4=5$.\n4. Change $x$ to $x\\oplus 8=5\\oplus8=13$.\n5. Change $x$ to $x\\oplus 2=13\\oplus2=15$.\n6. Change $x$ to $x\\oplus 1=15\\oplus1=14$.\n7. Return $x=14$ and re-initialize $x=0$.\n8. Change $x$ to $x\\oplus 1=0\\oplus1=1$.\n9. Return $x=1$ and re-initialize $x=0$.\n10. Change $x$ to $x\\oplus 2=0\\oplus2=2$.\n11. Change $x$ to $x\\oplus 8=2\\oplus8=10$.\n12. Change $x$ to $x\\oplus 4=10\\oplus4=14$.\n13. Return $x=14$ and re-initialize $x=0$.\n14. Change $x$ to $x\\oplus 1=0\\oplus1=1$.\n15. Change $x$ to $x\\oplus 2=1\\oplus2=3$.\n16. Return $x=3$ and re-initialize $x=0$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 4\n\n14\n\n1\n\n14\n\n3\n",
+      "output": "1\n8\n2 4\n\n1 2\n\n1 1\n\n1 2\n\n2 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:02:29.860Z"
+}

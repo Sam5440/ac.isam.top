@@ -1,0 +1,46 @@
+{
+  "id": "1684G",
+  "platform": "codeforces",
+  "contestId": 1684,
+  "index": "G",
+  "title": "Euclid Guess",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1684/problem/G",
+  "difficulty": 2800,
+  "tags": [
+    "constructive algorithms",
+    "flows",
+    "graph matchings",
+    "math",
+    "number theory"
+  ],
+  "points": 2500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Let's consider Euclid's algorithm for finding the [greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor), where $t$ is a list:\n\n```\nfunction Euclid(a, b):\n    if a < b:\n        swap(a, b)\n\n    if b == 0:\n        return a\n\n    r = reminder from dividing a by b\n    if r > 0:\n        append r to the back of t\n\n    return Euclid(b, r)\n```\n\nThere is an array $p$ of pairs of positive integers that are not greater than $m$. Initially, the list $t$ is empty. Then the function is run on each pair in $p$. After that the list $t$ is shuffled and given to you.\n\nYou have to find an array $p$ **of any size** not greater than $2 \\cdot 10^4$ that produces the given list $t$, or tell that no such array exists.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($1 \\le n \\le 10^3$, $1 \\le m \\le 10^9$) — the length of the array $t$ and the constraint for integers in pairs.\n\nThe second line contains $n$ integers $t_1, t_2, \\ldots, t_n$ ($1 \\le t_i \\le m$) — the elements of the array $t$.\n\n## Output\n\n- If the answer does not exist, output $-1$.\n- If the answer exists, in the first line output $k$ ($1 \\le k \\le 2 \\cdot 10^4$) — the size of your array $p$, i. e. the number of pairs in the answer. The $i$-th of the next $k$ lines should contain two integers $a_i$ and $b_i$ ($1 \\le a_i, b_i \\le m$) — the $i$-th pair in $p$.\n\nIf there are multiple valid answers you can output any of them.\n\n## Note\n\nIn the first sample let's consider the array $t$ for each pair:\n\n- $(19,\\, 11)$: $t = [8, 3, 2, 1]$;\n- $(15,\\, 9)$: $t = [6, 3]$;\n- $(3,\\, 7)$: $t = [1]$.\n\nSo in total $t = [8, 3, 2, 1, 6, 3, 1]$, which is the same as the input $t$ (up to a permutation).\n\nIn the second test case it is impossible to find such array $p$ of pairs that all integers are not greater than $10$ and $t = [7, 1]$\n\nIn the third test case for the pair $(15,\\, 8)$ array $t$ will be $[7, 1]$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7 20\n1 8 1 6 3 2 3\n",
+      "output": "3\n19 11\n15 9\n3 7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2 10\n7 1\n",
+      "output": "-1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2 15\n1 7\n",
+      "output": "1\n15 8\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1 1000000000\n845063470\n",
+      "output": "-1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:01:47.546Z"
+}

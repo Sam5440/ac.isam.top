@@ -1,0 +1,48 @@
+{
+  "id": "1696H",
+  "platform": "codeforces",
+  "contestId": 1696,
+  "index": "H",
+  "title": "Maximum Product?",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1696/problem/H",
+  "difficulty": 3500,
+  "tags": [
+    "brute force",
+    "combinatorics",
+    "dp",
+    "greedy",
+    "implementation",
+    "math",
+    "two pointers"
+  ],
+  "points": 4000,
+  "timeLimitMs": 1500,
+  "memoryLimitMb": 512,
+  "statementMd": "You are given a positive integer $k$. For a multiset of integers $S$, define $f(S)$ as the following.\n\n- If the number of elements in $S$ is less than $k$, $f(S)=0$.\n- Otherwise, define $f(S)$ as the maximum product you can get by choosing exactly $k$ integers from $S$.\n\nMore formally, let $|S|$ denote the number of elements in $S$. Then,\n\n- If $|S| \\lt k$, $f(S)=0$.\n- Otherwise, $f(S)=\\max\\limits_{T\\subseteq S,|T|=k}\\left(\\prod\\limits_{i\\in T}i\\right)$.\n\nYou are given a multiset of integers, $A$. Compute $\\sum\\limits_{B\\subseteq A} f(B)$ modulo $10^9+7$.\n\nNote that in this problem, **we distinguish the elements by indices instead of values**. That is, a multiset consisting of $n$ elements always has $2^n$ distinct subsets regardless of whether some of its elements are equal.\n\n## Input\n\nThe first line of input contains two integers $n$ and $k$, where $n$ is the number of elements in $A$ ($1\\le k\\le n\\le 600$).\n\nThe second line of input contains $n$ integers $a_1,a_2,\\dots,a_n$, describing the elements in $A$ ($-10^9\\le a_i\\le 10^9$).\n\n## Output\n\nOutput $\\sum\\limits_{B\\subseteq A} f(B)$ modulo $10^9+7$.\n\n## Note\n\nConsider the first sample. From the definitions we know that\n\n- $f(\\varnothing)=0$\n- $f(\\{-1\\})=0$\n- $f(\\{2\\})=0$\n- $f(\\{4\\})=0$\n- $f(\\{-1,2\\})=-2$\n- $f(\\{-1,4\\})=-4$\n- $f(\\{2,4\\})=8$\n- $f(\\{-1,2,4\\})=8$\n\nSo we should print $(0+0+0+0-2-4+8+8)\\bmod (10^9+7)=10$.\n\nIn the second example, note that although the multiset consists of three same values, it still has $8$ distinct subsets: $\\varnothing,\\{1\\},\\{1\\},\\{1\\},\\{1,1\\},\\{1,1\\},\\{1,1\\},\\{1,1,1\\}$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2\n-1 2 4\n",
+      "output": "10\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3 1\n1 1 1\n",
+      "output": "7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "10 4\n-24 -41 9 -154 -56 14 18 53 -7 120\n",
+      "output": "225905161\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "15 5\n0 0 2 -2 2 -2 3 -3 -3 4 5 -4 -4 4 5\n",
+      "output": "18119684\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:00:28.917Z"
+}
