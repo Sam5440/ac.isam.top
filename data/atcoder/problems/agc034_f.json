@@ -1,0 +1,34 @@
+{
+  "id": "agc034_f",
+  "platform": "atcoder",
+  "contestId": "agc034",
+  "index": "F",
+  "title": "RNG and XOR",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc034/tasks/agc034_f",
+  "difficulty": 3634,
+  "tags": [],
+  "points": 1600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nSnuke found a random number generator. It generates an integer between $0$ and $2^N-1$ (inclusive). An integer sequence $A_0, A_1, \\cdots, A_{2^N-1}$ represents the probability that each of these integers is generated. The integer $i$ ($0 \\leq i \\leq 2^N-1$) is generated with probability $A_i / S$, where $S = \\sum_{i=0}^{2^N-1} A_i$. The process of generating an integer is done independently each time the generator is executed.\n\nSnuke has an integer $X$, which is now $0$. He can perform the following operation any number of times:\n\n- Generate an integer $v$ with the generator and replace $X$ with $X \\oplus v$, where $\\oplus$ denotes the bitwise XOR.\n\nFor each integer $i$ ($0 \\leq i \\leq 2^N-1$), find the expected number of operations until $X$ becomes $i$, and print it modulo $998244353$. More formally, represent the expected number of operations as an irreducible fraction $P/Q$. Then, there exists a unique integer $R$ such that $R \\times Q \\equiv P \\mod 998244353,\\ 0 \\leq R < 998244353$, so print this $R$.\n\nWe can prove that, for every $i$, the expected number of operations until $X$ becomes $i$ is a finite rational number, and its integer representation modulo $998244353$ can be defined.\n\n## Constraints\n\n- $1 \\leq N \\leq 18$\n- $1 \\leq A_i \\leq 1000$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nA_0 A_1 \\cdots A_{2^N-1}\n```\n\n## Output\n\nPrint $2^N$ lines. The $(i+1)$-th line ($0 \\leq i \\leq 2^N-1$) should contain the expected number of operations until $X$ becomes $i$, modulo $998244353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n1 1 1 1\n",
+      "output": "0\n4\n4\n4\n",
+      "note": "$X=0$ after zero operations, so the expected number of operations until $X$ becomes $0$ is $0$.\n\nAlso, from any state, the value of $X$ after one operation is $0$, $1$, $2$ or $3$ with equal probability. Thus, the expected numbers of operations until $X$ becomes $1$, $2$ and $3$ are all $4$."
+    },
+    {
+      "input": "2\n1 2 1 2\n",
+      "output": "0\n499122180\n4\n499122180\n",
+      "note": "The expected numbers of operations until $X$ becomes $0$, $1$, $2$ and $3$ are $0$, $7/2$, $4$ and $7/2$, respectively."
+    },
+    {
+      "input": "4\n337 780 799 10 796 875 331 223 941 67 148 483 390 565 116 355\n",
+      "output": "0\n468683018\n635850749\n96019779\n657074071\n24757563\n745107950\n665159588\n551278361\n143136064\n557841197\n185790407\n988018173\n247117461\n129098626\n789682908\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:30:21.973Z"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "1797D",
+  "platform": "codeforces",
+  "contestId": 1797,
+  "index": "D",
+  "title": "Li Hua and Tree",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1797/problem/D",
+  "difficulty": 1900,
+  "tags": [
+    "brute force",
+    "data structures",
+    "dfs and similar",
+    "dp",
+    "implementation",
+    "trees"
+  ],
+  "points": 1750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Li Hua has a tree of $n$ vertices and $n-1$ edges. The root of the tree is vertex $1$. Each vertex $i$ has importance $a_i$. Denote the *size* of a subtree as the number of vertices in it, and the *importance* as the sum of the importance of vertices in it. Denote the *heavy son* of a non-leaf vertex as the son with the **largest** subtree *size*. If multiple of them exist, the *heavy son* is the one with the **minimum** index.\n\nLi Hua wants to perform $m$ operations:\n\n- \"1 $x$\" ($1\\leq x \\leq n$) — calculate the *importance* of the subtree whose root is $x$.\n- \"2 $x$\" ($2\\leq x \\leq n$) — rotate the *heavy son* of $x$ up. Formally, denote $son_x$ as the *heavy son* of $x$, $fa_x$ as the father of $x$. He wants to remove the edge between $x$ and $fa_x$ and connect an edge between $son_x$ and $fa_x$. It is guaranteed that $x$ is not root, but **not** guaranteed that $x$ is not a leaf. If $x$ is a leaf, please ignore the operation.\n\nSuppose you were Li Hua, please solve this problem.\n\n## Input\n\nThe first line contains 2 integers $n,m$ ($2\\le n\\le 10^{5},1\\le m\\le 10^{5}$) — the number of vertices in the tree and the number of operations.\n\nThe second line contains $n$ integers $a_{1},a_{2},\\ldots ,a_{n}$ ($-10^{9}\\le a_{i}\\le 10^{9}$) — the importance of each vertex.\n\nNext $n-1$ lines contain the edges of the tree. The $i$-th line contains two integers $u_i$ and $v_i$ ($1\\le u_i,v_i\\le n$, $u_i\\ne v_i$) — the corresponding edge. The given edges form a tree.\n\nNext $m$ lines contain operations — one operation per line. The $j$-th operation contains two integers $t_{j},x_{j}$ ($t_{j}\\in \\{1,2\\}$, $1 \\leq x_{j} \\leq n$, $x_{j}\\neq 1$ if $t_j = 2$) — the $j$-th operation.\n\n## Output\n\nFor each query \"1 $x$\", output the answer in an independent line.\n\n## Note\n\nIn the first example:\n\nThe initial tree is shown in the following picture:\n\n![image](https://espresso.codeforces.com/af888b780d7c1bceabc3c0fc4a2811196e9039bc.png)\n\nThe *importance* of the subtree of $6$ is $a_6+a_7=2$.\n\nAfter rotating the *heavy son* of $3$ (which is $6$) up, the tree is shown in the following picture:\n\n![image](https://espresso.codeforces.com/6bf3cd7cfbb5490e11c0bb86d51f77db0630fa90.png)\n\nThe *importance* of the subtree of $6$ is $a_6+a_3+a_7=3$.\n\nThe *importance* of the subtree of $2$ is $a_2+a_4+a_5=3$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7 4\n1 1 1 1 1 1 1\n1 2\n1 3\n2 4\n2 5\n3 6\n6 7\n1 6\n2 3\n1 6\n1 2\n",
+      "output": "2\n3\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "10 14\n-160016413 -90133231 -671446275 -314847579 -910548234 121155052 -359359950 83112406 -704889624 145489303\n1 6\n1 10\n10 8\n1 4\n3 4\n2 7\n2 5\n3 2\n9 8\n1 4\n2 2\n2 4\n1 4\n1 10\n2 10\n1 9\n1 6\n2 8\n2 10\n1 5\n1 8\n1 1\n2 5\n",
+      "output": "-2346335269\n-314847579\n-476287915\n-704889624\n121155052\n-1360041415\n228601709\n-2861484545\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:34:36.788Z"
+}

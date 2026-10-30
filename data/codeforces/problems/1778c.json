@@ -1,0 +1,29 @@
+{
+  "id": "1778C",
+  "platform": "codeforces",
+  "contestId": 1778,
+  "index": "C",
+  "title": "Flexible String",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1778/problem/C",
+  "difficulty": 1600,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "strings"
+  ],
+  "points": 1250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have a string $a$ and a string $b$. Both of the strings have length $n$. There are **at most $10$ different characters** in the string $a$. You also have a set $Q$. Initially, the set $Q$ is empty. You can apply the following operation on the string $a$ any number of times:\n\n- Choose an index $i$ ($1\\leq i \\leq n$) and a lowercase English letter $c$. Add $a_i$ to the set $Q$ and then replace $a_i$ with $c$.\n\nFor example, Let the string $a$ be \"$\\tt{abecca}$\". We can do the following operations:\n\n- In the first operation, if you choose $i = 3$ and $c = \\tt{x}$, the character $a_3 = \\tt{e}$ will be added to the set $Q$. So, the set $Q$ will be $\\{\\tt{e}\\}$, and the string $a$ will be \"$\\tt{ab\\underline{x}cca}$\".\n- In the second operation, if you choose $i = 6$ and $c = \\tt{s}$, the character $a_6 = \\tt{a}$ will be added to the set $Q$. So, the set $Q$ will be $\\{\\tt{e}, \\tt{a}\\}$, and the string $a$ will be \"$\\tt{abxcc\\underline{s}}$\".\n\nYou can apply any number of operations on $a$, but in the end, the set $Q$ should contain **at most $k$ different characters**. Under this constraint, you have to maximize the number of integer pairs $(l, r)$ ($1\\leq l\\leq r \\leq n$) such that $a[l,r] = b[l,r]$. Here, $s[l,r]$ means the substring of string $s$ starting at index $l$ (inclusively) and ending at index $r$ (inclusively).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line contains two integers $n$ and $k$ ($1\\leq n \\leq 10^5$, $0\\leq k\\leq 10$) — the length of the two strings and the limit on different characters in the set $Q$.\n\nThe second line contains the string $a$ of length $n$. There is **at most $10$ different characters** in the string $a$.\n\nThe last line contains the string $b$ of length $n$.\n\nBoth of the strings $a$ and $b$ contain only lowercase English letters. The sum of $n$ over all test cases doesn't exceed $10^5$.\n\n## Output\n\nFor each test case, print a single integer in a line, the maximum number of pairs $(l, r)$ satisfying the constraints.\n\n## Note\n\nIn the first case, we can select index $i = 3$ and replace it with character $c = \\tt{d}$. All possible pairs $(l,r)$ will be valid.\n\nIn the second case, we can't perform any operation. The $3$ valid pairs $(l,r)$ are:\n\n1. $a[1,1] = b[1,1] =$ \"$\\tt{a}$\",\n2. $a[1,2] = b[1,2] =$ \"$\\tt{ab}$\",\n3. $a[2,2] = b[2,2] =$ \"$\\tt{b}$\".\n\nIn the third case, we can choose index $2$ and index $3$ and replace them with the characters $\\tt{c}$ and $\\tt{d}$ respectively. The final set $Q$ will be $\\{\\tt{b}\\}$ having size $1$ that satisfies the value of $k$. All possible pairs $(l,r)$ will be valid.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n3 1\nabc\nabd\n3 0\nabc\nabd\n3 1\nxbb\nxcd\n4 1\nabcd\naxcb\n3 10\nabc\nabd\n10 3\nlkwhbahuqa\nqoiujoncjb\n",
+      "output": "6\n3\n6\n6\n6\n11\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:36:15.355Z"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "1804F",
+  "platform": "codeforces",
+  "contestId": 1804,
+  "index": "F",
+  "title": "Approximate Diameter",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1804/problem/F",
+  "difficulty": 2700,
+  "tags": [
+    "binary search",
+    "divide and conquer",
+    "graphs",
+    "shortest paths"
+  ],
+  "points": 2750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "Jack has a graph of $n$ vertices and $m$ edges. All edges are bidirectional and of unit length. The graph is connected, i. e. there exists a path between any two of its vertices. There can be more than one edge connecting the same pair of vertices. The graph can contain self-loops, i. e. edges connecting a node to itself.\n\nThe distance between vertices $u$ and $v$ is denoted as $\\rho(u, v)$ and equals the minimum possible number of edges on a path between $u$ and $v$. The diameter of graph $G$ is defined as the maximum possible distance between some pair of its vertices. We denote it as $d(G)$. In other words, $$d(G) = \\max_{1 \\le u, v \\le n}{\\rho(u, v)}.$$\n\nJack plans to consecutively apply $q$ updates to his graph. Each update adds exactly one edge to the graph. Denote as $G_i$ the graph after exactly $i$ updates are made. Jack wants to calculate $q + 1$ values $d(G_0), d(G_1), d(G_2), \\ldots, d(G_q)$.\n\nHowever, Jack suspects that finding the exact diameters of $q + 1$ graphs might be a difficult task, so he is fine with approximate answers that differ from the correct answers no more than twice. Formally, Jack wants to find a sequence of positive integers $a_0, a_1, a_2, \\ldots, a_q$ such that $$\\left\\lceil \\frac{d(G_i)}{2} \\right\\rceil \\le a_i \\le 2 \\cdot d(G_i)$$ for each $i$.\n\n**Hacks**\n\nYou cannot make hacks in this problem.\n\n## Input\n\nThe first line of the input contains three integers $n$, $m$, and $q$ ($2 \\leq n \\leq 10^5$, $n - 1 \\leq m \\leq 10^5$, $0 \\leq q \\leq 10^5$), the number of vertices in the given graph, the number of edges and the number of updates, respectively.\n\nThen follow $m$ lines describing the initial edges of the graph. The $i$-th of these lines contains two integers $u_i$ and $v_i$ ($1 \\leq u_i, v_i \\leq n$), the indexes of the vertices connected by the $i$-th edge.\n\nThen follow $q$ lines describing the updates. The $i$-th of these lines contains two integers $u'_i$ and $v'_i$ ($1 \\leq u'_i, v'_i \\leq n$), the indexes of the vertices connected by the edge that is added to the graph in the $i$-th update.\n\n**Important note.** For testing purposes, the input data **may** contain some extra lines after the mentioned input format. These will be used by the checker to verify your answer. They are not a part of the test data, you should not use them in any way and you can even omit reading them.\n\n## Output\n\nPrint a sequence of $q + 1$ positive integers $a_0, a_1, a_2, \\ldots, a_q$. The $i$-th of these integers should differ from the diameter of graph $G_i$ no more than twice.\n\n## Note\n\nIn the first example, the correct sequence of $d(G_0), d(G_1), d(G_2), \\ldots, d(G_q)$ is $6, 6, 6, 3, 3, 3, 2, 2, 2$.\n\nIn the second example, the input contains an extra line that you can omit reading. It is not a part of the test and will be used for verifying your answer. The output of the second example contains the correct values of $d(G_i)$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "9 10 8\n1 2\n2 3\n2 4\n3 5\n4 5\n5 6\n5 7\n6 8\n7 8\n8 9\n3 4\n6 7\n2 8\n1 9\n1 6\n4 9\n3 9\n7 1\n",
+      "output": "10 6 5 6 2 4 2 2 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "8 7 9\n1 2\n2 3\n3 4\n4 5\n5 6\n6 7\n7 8\n1 5\n3 7\n2 4\n4 6\n6 8\n8 2\n5 4\n2 4\n3 3\n1 652997 124613 653029 653029 124613 124613 124613 648901 124613 653029\n",
+      "output": "7 5 4 4 4 3 3 3 3 3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:33:50.840Z"
+}

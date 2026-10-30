@@ -1,0 +1,31 @@
+{
+  "id": "1799F",
+  "platform": "codeforces",
+  "contestId": 1799,
+  "index": "F",
+  "title": "Halve or Subtract",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1799/problem/F",
+  "difficulty": 2700,
+  "tags": [
+    "binary search",
+    "brute force",
+    "dp",
+    "greedy",
+    "sortings"
+  ],
+  "points": 2500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have an array of positive integers $a_1, a_2, \\ldots, a_n$, of length $n$. You are also given a positive integer $b$.\n\nYou are allowed to perform the following operations (possibly several) times in any order:\n\n1. Choose some $1 \\le i \\le n$, and replace $a_i$ with $\\lceil \\frac{a_i}{2} \\rceil$. Here, $\\lceil x \\rceil$ denotes the smallest integer not less than $x$.\n2. Choose some $1 \\le i \\le n$, and replace $a_i$ with $\\max(a_i - b, 0)$.\n\nHowever, you must also follow these rules:\n\n- You can perform at most $k_1$ operations of type 1 in total.\n- You can perform at most $k_2$ operations of type 2 in total.\n- For all $1 \\le i \\le n$, you can perform at most $1$ operation of type 1 on element $a_i$.\n- For all $1 \\le i \\le n$, you can perform at most $1$ operation of type 2 on element $a_i$.\n\nThe *cost* of an array is the sum of its elements. Find the minimum cost of $a$ you can achieve by performing these operations.\n\n## Input\n\nInput consists of multiple test cases. The first line contains a single integer $t$, the number of test cases ($1 \\le t \\le 5000$).\n\nThe first line of each test case contains $n$, $b$, $k_1$, and $k_2$ ($1 \\le n \\le 5000$, $1 \\le b \\le 10^9$, $0 \\le k_1, k_2 \\le n$).\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ describing the array $a$ ($1 \\le a_i \\le 10^9$).\n\nIt is guaranteed the sum of $n$ over all test cases does not exceed $5000$.\n\n## Output\n\nFor each test case, print the minimum cost of $a$ you can achieve by performing the operations.\n\n## Note\n\nIn the first test case, you can do the following:\n\n- Perform operation 2 on element $a_3$. It changes from $5$ to $3$.\n- Perform operation 1 on element $a_1$. It changes from $9$ to $5$.\n\nAfter these operations, the array is $a = [5, 3, 3]$ has a cost $5 + 3 + 3 = 11$. We can show that this is the minimum achievable cost.\n\nIn the second test case, note that we are not allowed to perform operation 1 more than once on $a_1$. So it is optimal to apply operation 1 once to each $a_1$ and $a_2$. Alternatively we could apply operation 1 only once to $a_1$, since it has no effect on $a_2$.\n\nIn the third test case, here is one way to achieve a cost of $23$:\n\n- Apply operation 1 to $a_4$. It changes from $19$ to $10$.\n- Apply operation 2 to $a_4$. It changes from $10$ to $7$.\n\nAfter these operations, $a = [2, 8, 3, 7, 3]$. The cost of $a$ is $2 + 8 + 3 + 7 + 3 = 23$. We can show that this is the minimum achievable cost.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n3 2 1 1\n9 3 5\n2 1 2 0\n1000000000 1\n5 3 1 1\n2 8 3 19 3\n6 9 4 2\n1 2 3 4 5 6\n3 10 3 3\n1 2 3\n5 1 0 0\n999999999 999999999 999999999 999999999 999999999\n5 5 4 3\n5 9 10 7 4\n",
+      "output": "11\n500000001\n23\n6\n0\n4999999995\n6\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:34:19.052Z"
+}

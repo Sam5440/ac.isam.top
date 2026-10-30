@@ -1,0 +1,44 @@
+{
+  "id": "1804G",
+  "platform": "codeforces",
+  "contestId": 1804,
+  "index": "G",
+  "title": "Flow Control",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1804/problem/G",
+  "difficulty": 3500,
+  "tags": [
+    "data structures",
+    "dsu",
+    "implementation"
+  ],
+  "points": 3500,
+  "timeLimitMs": 6000,
+  "memoryLimitMb": 512,
+  "statementMd": "Raj has a single physical network line that connects his office to the Internet. This line bandwidth is $b$ bytes per millisecond.\n\nThere are $n$ users who would like to use this network line to transmit some data. The $i$-th of them will use the line from millisecond $s_i$ to millisecond $f_i$ inclusive. His initial data rate will be set to $d_i$. That means he will use data rate equal to $d_i$ for millisecond $s_i$, and then it will change according to the procedure described below.\n\nThe flow control will happen as follows. Suppose there are $m$ users trying to transmit some data via the given network line during millisecond $x$. Denote as $t_i$ the data rate that the $i$-th of these $m$ users has at the beginning of this millisecond. All $t_i$ are non-negative integer values.\n\n1. If $m = 0$, i. e. there are no users trying to transmit data during this millisecond, nothing happens.\n2. If the sum of all $t_i$ is less than or equal to $b$, each active user successfully completes his transmission (the $i$-th active user transmits $t_i$ bytes). After that, the data rate of each active user grows by $1$, i. e. each $t_i$ is increased by $1$.\n3. If the sum of all $t_i$ is greater than $b$, the congestion occurs and no data transmissions succeed this millisecond at all. If that happens, each $t_i$ decreases twice, i. e. each $t_i$ is replaced with $\\lfloor \\frac{t_i}{2} \\rfloor$.\n\nRaj knows all the values $n$, $b$, $s_i$, $f_i$, and $d_i$, he wants to calculate the total number of bytes transmitted by all the users in the aggregate.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $b$ ($1 \\leq n \\leq 2 \\cdot 10^5$, $1 \\leq b \\leq 10^9$), the number of users who will use the line and the line bandwidth, respectively.\n\nEach of the following $n$ lines contains three integers $s_i$, $f_i$ and $d_i$ ($1 \\leq s_i \\leq f_i \\leq 10^9$, $1 \\leq d_i \\leq 10^9$), denoting that the $i$-th user will try to transmit data during each millisecond between $s_i$ and $f_i$ inclusive, and the initial data rate of the $i$-th user.\n\n## Output\n\nPrint one integer — the total number of bytes all users will successfully transmit.\n\n## Note\n\nConsider the first example.\n\n- Millisecond $1$: User $1$ transmits $2$ bytes.\n- Millisecond $2$: User $1$ transmits $3$ bytes.\n- Millisecond $3$: Congestion occurs, and no user transmits data.\n- Millisecond $4$: User $1$ transmits $2$ bytes.\n- Millisecond $5$: User $1$ transmits $3$ bytes.\n\nIn the second example, at each millisecond from the $7$-th to the $11$-th inclusive, congestion occurs, and the only user decreases their rate twice. However, they don't decrease the speed enough before disconnecting.\n\nConsider the third example.\n\n- Millisecond $1$: User $1$ transmits $1$ bytes.\n- Millisecond $2$: User $1$ transmits $2$ bytes.\n- Millisecond $3$: User $1$ transmits $3$ bytes.\n- Millisecond $4$: User $1$ transmits $4$ bytes.\n- Millisecond $5$: User $1$ transmits $5$ bytes.\n- Millisecond $6$: User $1$ transmits $6$ bytes.\n- Millisecond $7$: Congestion occurs, and no user transmits data.\n- Millisecond $8$: User $1$ transmits $3$ bytes. User $2$ transmits $3$ bytes.\n- Millisecond $9$: Congestion occurs, and no user transmits data.\n- Millisecond $10$: User $1$ transmits $2$ bytes. User $2$ transmits $2$ bytes.\n- Millisecond $11$: User $1$ transmits $3$ bytes. User $2$ transmits $3$ bytes.\n- Millisecond $12$: Congestion occurs, and no user transmits data.\n- Millisecond $13$: User $2$ transmits $2$ bytes.\n- Millisecond $14$: User $2$ transmits $3$ bytes.\n- Millisecond $15$: User $2$ transmits $4$ bytes.\n- Millisecond $16$: User $2$ transmits $5$ bytes.\n- Millisecond $17$: User $2$ transmits $6$ bytes.\n- Millisecond $18$: Congestion occurs, and no user transmits data.\n- Millisecond $19$: User $2$ transmits $3$ bytes.\n- Millisecond $20$: User $2$ transmits $4$ bytes.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1 3\n1 5 2\n",
+      "output": "10\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1 10\n7 11 1000\n",
+      "output": "0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2 6\n1 12 1\n8 20 3\n",
+      "output": "64\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3 10\n1 100 1\n30 60 20\n40 80 6\n",
+      "output": "534\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:33:50.840Z"
+}

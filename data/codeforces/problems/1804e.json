@@ -1,0 +1,46 @@
+{
+  "id": "1804E",
+  "platform": "codeforces",
+  "contestId": 1804,
+  "index": "E",
+  "title": "Routing",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1804/problem/E",
+  "difficulty": 2400,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "dfs and similar",
+    "dp",
+    "graphs"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "Ada operates a network that consists of $n$ servers and $m$ direct connections between them. Each direct connection between a pair of distinct servers allows bidirectional transmission of information between these two servers. Ada knows that these $m$ direct connections allow to directly or indirectly transmit information between any two servers in this network. We say that server $v$ is a neighbor of server $u$ if there exists a direct connection between these two servers.\n\nAda needs to configure her network's WRP (Weird Routing Protocol). For each server $u$ she needs to select exactly one of its neighbors as an auxiliary server $a(u)$. After all $a(u)$ are set, routing works as follows. Suppose server $u$ wants to find a path to server $v$ (different from $u$).\n\n1. Server $u$ checks all of its direct connections to other servers. If it sees a direct connection with server $v$, it knows the path and the process terminates.\n2. If the path was not found at the first step, server $u$ asks its auxiliary server $a(u)$ to find the path.\n3. Auxiliary server $a(u)$ follows this process starting from the first step.\n4. After $a(u)$ finds the path, it returns it to $u$. Then server $u$ constructs the resulting path as the direct connection between $u$ and $a(u)$ plus the path from $a(u)$ to $v$.\n\nAs you can see, this procedure either produces a correct path and finishes or keeps running forever. Thus, it is critically important for Ada to configure her network's WRP properly.\n\nYour goal is to assign an auxiliary server $a(u)$ for each server $u$ in the given network. Your assignment should make it possible to construct a path from any server $u$ to any other server $v$ using the aforementioned procedure. Or you should report that such an assignment doesn't exist.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $m$ ($2 \\leq n \\leq 20$, $n - 1 \\leq m \\leq \\frac{n \\cdot (n - 1)}{2}$) — the number of servers and the number of direct connections in the given network.\n\nThen follow $m$ lines containing two integers $u_i$ and $v_i$ ($1 \\leq u_i, v_i \\leq n$, $u_i \\ne v_i$) each, the $i$-th line describes the $i$-th direct connection.\n\nIt is guaranteed that there is no more than one direct connection between any two servers. It is guaranteed that there is a direct or indirect route (consisting only of the given direct connections) between any two servers.\n\n## Output\n\nIf there is no way to assign an auxiliary server $a(u)$ for each server $u$ in such a way that WRP will be able to find a path from any server $u$ to any other server $v$, print \"`No`\" in the only line of the output.\n\nOtherwise, print \"`Yes`\" in the first line of the output. In the second line of the output print $n$ integers, the $i$-th of these integers should be equal to $a(i)$ – the index of the auxiliary server for server $i$. Do not forget that there must be a direct connection between server $i$ and server $a(i)$.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 7\n1 2\n2 3\n3 1\n4 5\n5 6\n4 6\n2 5\n",
+      "output": "Yes\n2 5 2 5 2 5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3 2\n1 2\n2 3\n",
+      "output": "Yes\n2 1 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4 4\n1 3\n2 3\n4 1\n4 2\n",
+      "output": "Yes\n3 3 1 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "6 5\n1 2\n2 3\n3 4\n4 5\n5 6\n",
+      "output": "No\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:33:50.839Z"
+}

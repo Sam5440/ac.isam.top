@@ -1,0 +1,38 @@
+{
+  "id": "agc036_b",
+  "platform": "atcoder",
+  "contestId": "agc036",
+  "index": "B",
+  "title": "Do Not Duplicate",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc036/tasks/agc036_b",
+  "difficulty": 1771,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a sequence of $N \\times K$ integers: $X=(X_0,X_1,\\cdots,X_{N \\times K-1})$. Its elements are represented by another sequence of $N$ integers: $A=(A_0,A_1,\\cdots,A_{N-1})$. For each pair $i, j$ ($0 \\leq i \\leq K-1,\\ 0 \\leq j \\leq N-1$), $X_{i \\times N + j}=A_j$ holds.\n\nSnuke has an integer sequence $s$, which is initially empty. For each $i=0,1,2,\\cdots,N \\times K-1$, in this order, he will perform the following operation:\n\n- If $s$ does not contain $X_i$: add $X_i$ to the end of $s$.\n- If $s$ does contain $X_i$: repeatedly delete the element at the end of $s$ until $s$ no longer contains $X_i$. Note that, in this case, we do **not** add $X_i$ to the end of $s$.\n\nFind the elements of $s$ after Snuke finished the operations.\n\n## Constraints\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq K \\leq 10^{12}$\n- $1 \\leq A_i \\leq 2 \\times 10^5$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN K\nA_0 A_1 \\cdots A_{N-1}\n```\n\n## Output\n\nPrint the elements of $s$ after Snuke finished the operations, in order from beginning to end, with spaces in between.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2\n1 2 3\n",
+      "output": "2 3\n",
+      "note": "In this case, $X=(1,2,3,1,2,3)$. We will perform the operations as follows:\n\n- $i=0$: $s$ does not contain $1$, so we add $1$ to the end of $s$, resulting in $s=(1)$.\n- $i=1$: $s$ does not contain $2$, so we add $2$ to the end of $s$, resulting in $s=(1,2)$.\n- $i=2$: $s$ does not contain $3$, so we add $3$ to the end of $s$, resulting in $s=(1,2,3)$.\n- $i=3$: $s$ does contain $1$, so we repeatedly delete the element at the end of $s$ as long as $s$ contains $1$, which causes the following changes to $s$: $(1,2,3)→(1,2)→(1)→()$.\n- $i=4$: $s$ does not contain $2$, so we add $2$ to the end of $s$, resulting in $s=(2)$.\n- $i=5$: $s$ does not contain $3$, so we add $3$ to the end of $s$, resulting in $s=(2,3)$."
+    },
+    {
+      "input": "5 10\n1 2 3 2 3\n",
+      "output": "3\n"
+    },
+    {
+      "input": "6 1000000000000\n1 1 2 2 3 3\n",
+      "output": "\n",
+      "note": "$s$ may be empty in the end."
+    },
+    {
+      "input": "11 97\n3 1 4 1 5 9 2 6 5 3 5\n",
+      "output": "9 2 6\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:28:39.868Z"
+}

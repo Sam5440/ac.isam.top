@@ -1,0 +1,30 @@
+{
+  "id": "1787E",
+  "platform": "codeforces",
+  "contestId": 1787,
+  "index": "E",
+  "title": "The Harmonization of XOR",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1787/problem/E",
+  "difficulty": 2100,
+  "tags": [
+    "bitmasks",
+    "constructive algorithms",
+    "greedy",
+    "math"
+  ],
+  "points": 2250,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given an array of exactly $n$ numbers $[1,2,3,\\ldots,n]$ along with integers $k$ and $x$.\n\nPartition the array in exactly $k$ non-empty disjoint subsequences such that the [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) of all numbers in each subsequence is $x$, and each number is in exactly one subsequence. Notice that there are no constraints on the length of each subsequence.\n\nA sequence $a$ is a subsequence of a sequence $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) elements.\n\nFor example, for $n = 15$, $k = 6$, $x = 7$, the following scheme is valid:\n\n- $[6,10,11]$, $6 \\oplus 10 \\oplus 11 = 7$,\n- $[5,12,14]$, $5 \\oplus 12 \\oplus 14 = 7$,\n- $[3,9,13]$, $3 \\oplus 9 \\oplus 13 = 7$,\n- $[1,2,4]$, $1 \\oplus 2 \\oplus 4 = 7$,\n- $[8,15]$, $8 \\oplus 15 = 7$,\n- $[7]$, $7 = 7$,\n\nwhere $\\oplus$ represents the bitwise XOR operation.\n\nThe following scheme is invalid, since $8$, $15$ do not appear:\n\n- $[6,10,11]$, $6 \\oplus 10 \\oplus 11 = 7$,\n- $[5,12,14]$, $5 \\oplus 12 \\oplus 14 = 7$,\n- $[3,9,13]$, $3 \\oplus 9 \\oplus 13 = 7$,\n- $[1,2,4]$, $1 \\oplus 2 \\oplus 4 = 7$,\n- $[7]$, $7 = 7$.\n\nThe following scheme is invalid, since $3$ appears twice, and $1$, $2$ do not appear:\n\n- $[6,10,11]$, $6 \\oplus 10 \\oplus 11 = 7$,\n- $[5,12,14]$, $5 \\oplus 12 \\oplus 14 = 7$,\n- $[3,9,13]$, $3 \\oplus 9 \\oplus 13 = 7$,\n- $[3,4]$, $3 \\oplus 4 = 7$,\n- $[8,15]$, $8 \\oplus 15 = 7$,\n- $[7]$, $7 = 7$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first and the only line of each test case contains three integers $n$, $k$, $x$ ($1 \\le k \\le n \\le 2 \\cdot 10^5$; $1\\le x \\le 10^9$) — the length of the array, the number of subsequences and the required XOR.\n\nIt's guaranteed that the sum of $n$ does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if it is possible to partition the sequence, print \"`YES`\" in the first line. In the $i$-th of the following $k$ lines first print the length $s_i$ of the $i$-th subsequence, then print $s_i$ integers, representing the elements in the $i$-th subsequence. If there are multiple answers, print any. Note that you can print a subsequence in any order.\n\nIf it is not possible to partition the sequence, print \"`NO`\".\n\n## Note\n\nIn the first test case, we construct the following $6$ subsequences:\n\n- $[6,10,11]$, $6 \\oplus 10 \\oplus 11 = 7$,\n- $[5,12,14]$, $5 \\oplus 12 \\oplus 14 = 7$,\n- $[3,9,13]$, $3 \\oplus 9 \\oplus 13 = 7$,\n- $[1,2,4]$, $1 \\oplus 2 \\oplus 4 = 7$,\n- $[8,15]$, $8 \\oplus 15 = 7$,\n- $[7]$, $7 = 7$.\n\nIn the second test case, we construct the following $4$ subsequences:\n\n- $[1,4]$, $1 \\oplus 4 = 5$,\n- $[2,7]$, $2 \\oplus 7 = 5$,\n- $[3,6]$, $3 \\oplus 6 = 5$,\n- $[5,8,9,10,11]$, $5 \\oplus 8 \\oplus 9 \\oplus 10 \\oplus 11 = 5$.\n\nThe following solution is considered correct in this test case as well:\n\n- $[1,4]$, $1 \\oplus 4 = 5$,\n- $[2,7]$, $2 \\oplus 7 = 5$,\n- $[5]$, $5 = 5$,\n- $[3,6,8,9,10,11]$, $3 \\oplus 6 \\oplus 8 \\oplus 9 \\oplus 10 \\oplus 11 = 5$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n15 6 7\n11 4 5\n5 3 2\n4 1 4\n6 1 7\n11 5 5\n11 6 5\n",
+      "output": "YES\n3 6 10 11\n3 5 12 14\n3 3 9 13\n3 1 2 4\n2 8 15\n1 7\nYES\n2 1 4\n2 2 7\n2 3 6\n5 5 8 9 10 11\nNO\nYES\n4 1 2 3 4\nYES\n6 1 2 3 4 5 6\nNO\nNO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:35:21.521Z"
+}
