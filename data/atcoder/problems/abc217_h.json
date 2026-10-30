@@ -1,0 +1,33 @@
+{
+  "id": "abc217_h",
+  "platform": "atcoder",
+  "contestId": "abc217",
+  "index": "H",
+  "title": "Snuketoon",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc217/tasks/abc217_h",
+  "difficulty": 3112,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nIn a game called Snuketoon, developed by AtCoder, Inc., the player plays as Snuke to dodge water from water guns.\n\nThe platform consists of an infinite number line, and Snuke is at the point $0$ at the beginning of the game.\nStarting from the beginning of the game, Snuke can make one of the three moves in each second: move $1$ in the negative direction, move $1$ in the positive direction, or remain still. More formally, if Snuke's position is $p$ at $t$ seconds ($t \\geq 0$, $t$ is an integer) from the beginning of the game, his position at $t+1$ seconds can be $p-1$, $p$, or $p+1$.\n\nSnuke takes damage from getting soaked by water guns. The water guns shoot $N$ times, and the $i$-th shot is represented by $T_i$, $D_i$, and $X_i$ as follows.\n\n- At $T_i$ seconds from the beginning of the game, water is shot from the left or right. Let $p$ be Snuke's position at that time. He takes the following damage if he is in the following range.\n- When $D_i = 0$, he takes $X_i - p$ points of damage if he is in the range $p \\lt X_i$.\n  - When $D_i = 1$, he takes $p - X_i$ points of damage if he is in the range $X_i \\lt p$.\n\nTakahashi, a pro gamer, wants to minimize the total damage taken by Snuke after the end of the $N$-th shot, to post a tweet on this game. Find the total damage taken by Snuke when the game is played to minimize it.\n\n## Constraints\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq T_1 \\lt T_2 \\lt \\dots \\lt T_N \\leq 10^9$\n- $D_i$ $(1 \\leq i \\leq N)$ is $0$ or $1$.\n- $-10^9 \\leq X_i \\leq 10^9$ $(1 \\leq i \\leq N)$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nT_1 D_1 X_1\nT_2 D_2 X_2\n\\vdots\nT_N D_N X_N\n```\n\n## Output\n\nPrint the number of points of damage taken by Snuke when the game is played to minimize it.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n1 0 3\n3 1 0\n4 0 6\n",
+      "output": "7\n",
+      "note": "For convenience, let $t$ denote the number of seconds elapsed from the beginning of the game. The optimal course of movements for Snuke until all the shots are done is as follows.\n\n- When $t = 0$, Snuke is at the point $0$. He moves $1$ in the positive direction.\n- When $t = 1$, Snuke is at the point $1$ and takes $2$ points of damage from the first shot. He moves $1$ in the negative direction.\n- When $t = 2$, Snuke is at the point $0$. He remains still.\n- When $t = 3$, Snuke is at the point $0$ and takes no damage from the second shot. He moves $1$ in the positive direction.\n- When $t = 4$, Snuke is at the point $1$ and takes $5$ points of damage from the third shot.\n\nHere, Snuke takes a total of $7$ points of damage, so you should print $7$."
+    },
+    {
+      "input": "3\n1 0 1\n6 1 1\n8 0 -1\n",
+      "output": "0\n"
+    },
+    {
+      "input": "5\n1 0 1000000000\n2 1 -1000000000\n3 0 1000000000\n4 1 -1000000000\n5 0 1000000000\n",
+      "output": "4999999997\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:44:31.392Z"
+}

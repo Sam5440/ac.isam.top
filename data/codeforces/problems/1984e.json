@@ -1,0 +1,29 @@
+{
+  "id": "1984E",
+  "platform": "codeforces",
+  "contestId": 1984,
+  "index": "E",
+  "title": "Shuffle",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1984/problem/E",
+  "difficulty": 2400,
+  "tags": [
+    "dp",
+    "greedy",
+    "trees"
+  ],
+  "points": 3000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Two hungry red pandas, Oscar and Lura, have a tree $T$ with $n$ nodes. They are willing to perform the following **shuffle procedure** on the whole tree $T$ **exactly once**. With this shuffle procedure, they will create a new tree out of the nodes of the old tree.\n\n1. Choose any node $V$ from the original tree $T$. Create a new tree $T_2$, with $V$ as the root.\n2. Remove $V$ from $T$, such that the original tree is split into one or more subtrees (or zero subtrees, if $V$ is the only node in $T$).\n3. Shuffle each subtree with the same procedure (again choosing any node as the root), then connect all shuffled subtrees' roots back to $V$ to finish constructing $T_2$.\n\nAfter this, Oscar and Lura are left with a new tree $T_2$. They can only eat leaves and are very hungry, so please find the maximum number of leaves over all trees that can be created in **exactly one** shuffle.\n\nNote that leaves are all nodes with degree $1$. Thus, the root may be considered as a leaf if it has only one child.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of every test case contains a single integer $n$ ($2 \\leq n \\leq 2 \\cdot 10^5$) — the number of nodes within the original tree $T$.\n\nThe next $n - 1$ lines each contain two integers $u$ and $v$ ($1 \\leq u, v \\leq n$) — an edge within the original tree $T$. The given edges form a tree.\n\nThe sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum number of leaves achievable with exactly one shuffle procedure on the whole tree.\n\n## Note\n\nIn the first test case, it can be shown that the maximum number of leaves is $4$. To accomplish this, we can start our shuffle with selecting node $3$ as the new root.\n\n![image](https://espresso.codeforces.com/3b6a15cedc736d9c72bd687c795e2536e7606d05.png)\n\nNext, we are left only with one subtree, in which we can select node $2$ to be the new root of that subtree.\n\n![image](https://espresso.codeforces.com/d9a2175b66b3bee6c2b6f8d8b203b85f674e5124.png)\n\nThis will force all $3$ remaining nodes to be leaves, and once we connect them back to our new root, the shuffled subtree looks like this:\n\n![image](https://espresso.codeforces.com/fdcf3a1a91a18d2474c68f47f6531b3c216bf03d.png)\n\nWe connect the shuffled subtree back to our new root of our new tree. Our final tree has four leaves (including the root), and looks like this:\n\n![image](https://espresso.codeforces.com/a7378f80e4393604cffbe5fbce5c8ac1ceb33ad2.png)\n\nIn our second test case, we have a line of five nodes. It can be shown that the maximum number of leaves after one shuffle is $3$. We can start off with node $2$, which forces node $1$ to become a leaf. Then, if we select node $4$ on the right side, we will also have nodes $3$ and $5$ as leaves.\n\nThe third test case is a star graph with six nodes. The number of leaves cannot increase, thus our answer will be $5$ (if we start the shuffling with the original root node).",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n5\n1 2\n1 3\n2 4\n2 5\n5\n1 2\n2 3\n3 4\n4 5\n6\n1 2\n1 3\n1 4\n1 5\n1 6\n10\n9 3\n8 1\n10 6\n8 5\n7 8\n4 6\n1 3\n10 1\n2 7\n",
+      "output": "4\n3\n5\n6\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:50:17.462Z"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "abc203_e",
+  "platform": "atcoder",
+  "contestId": "abc203",
+  "index": "E",
+  "title": "White Pawn",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc203/tasks/abc203_e",
+  "difficulty": 1750,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nLet $N$ be a positive integer. We have a $(2N+1)\\times (2N+1)$ grid where rows are numbered $0$ through $2N$ and columns are also numbered $0$ through $2N$. Let $(i,j)$ denote the square at Row $i$ and Column $j$.\n\nWe have one white pawn, which is initially at $(0, N)$. Also, we have $M$ black pawns, the $i$-th of which is at $(X_i, Y_i)$.\n\nWhen the white pawn is at $(i, j)$, you can do one of the following operations to move it:\n\n- If $0\\leq i\\leq 2N-1$, $0 \\leq j\\leq 2N$ hold and $(i+1,j)$ **does not** contain a black pawn, move the white pawn to $(i+1, j)$.\n- If $0\\leq i\\leq 2N-1$, $0 \\leq j\\leq 2N-1$ hold and $(i+1,j+1)$ **does** contain a black pawn, move the white pawn to $(i+1,j+1)$.\n- If $0\\leq i\\leq 2N-1$, $1 \\leq j\\leq 2N$ hold and $(i+1,j-1)$ **does** contain a black pawn, move the white pawn to $(i+1,j-1)$.\n\nYou cannot move the black pawns.\n\nFind the number of integers $Y$ such that it is possible to have the white pawn at $(2N, Y)$ by repeating these operations.\n\n## Constraints\n\n- $1 \\leq N \\leq 10^9$\n- $0 \\leq M \\leq 2\\times 10^5$\n- $1 \\leq X_i \\leq 2N$\n- $0 \\leq Y_i \\leq 2N$\n- $(X_i, Y_i) \\neq (X_j, Y_j)$ $(i \\neq j)$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M\nX_1 Y_1\n:\nX_M Y_M\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 4\n1 1\n1 2\n2 0\n4 2\n",
+      "output": "3\n",
+      "note": "We can move the white pawn to $(4,0)$, $(4,1)$, and $(4,2)$, as follows:\n\n- $(0,2)\\to (1,1)\\to (2,1)\\to (3,1)\\to (4,2)$\n- $(0,2)\\to (1,1)\\to (2,1)\\to (3,1)\\to (4,1)$\n- $(0,2)\\to (1,1)\\to (2,0)\\to (3,0)\\to (4,0)$\n\nOn the other hand, we cannot move it to $(4,3)$ or $(4,4)$. Thus, we should print $3$."
+    },
+    {
+      "input": "1 1\n1 1\n",
+      "output": "0\n",
+      "note": "We cannot move the white pawn from $(0,1)$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:47:33.745Z"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1984H",
+  "platform": "codeforces",
+  "contestId": 1984,
+  "index": "H",
+  "title": "Tower Capturing",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1984/problem/H",
+  "difficulty": 3300,
+  "tags": [
+    "combinatorics",
+    "dp",
+    "geometry"
+  ],
+  "points": 5000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "There are $n$ towers at $n$ distinct points $(x_1, y_1), (x_2, y_2), \\ldots, (x_n, y_n)$, such that no three are collinear and no four are concyclic. Initially, you own towers $(x_1, y_1)$ and $(x_2, y_2)$, and you want to capture all of them. To do this, you can do the following operation any number of times:\n\n- Pick two towers $P$ and $Q$ you own and one tower $R$ you don't own, such that the circle through $P$, $Q$, and $R$ contains **all** $n$ towers inside of it.\n- Afterwards, capture all towers in or on triangle $\\triangle PQR$, including $R$ itself.\n\nAn\n\nattack plan\n\nis a series of choices of $R$ ($R_1, R_2, \\ldots, R_k$) using the above operations after which you capture all towers. Note that two attack plans are considered different only if they differ in their choice of $R$ in some operation; in particular, two attack plans using the same choices of $R$ but different choices of $P$ and $Q$ are considered the same.\n\nCount the number of attack plans of **minimal length**. Note that it might not be possible to capture all towers, in which case the answer is $0$.\n\nSince the answer may be large, output it modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 250$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($4 \\leq n \\leq 100$) — the number of towers.\n\nThe $i$-th of the next $n$ lines contains two integers $x_i$ and $y_i$ ($-10^4 \\leq x_i, y_i \\leq 10^4$) — the location of the $i$-th tower. Initially, you own towers $(x_1, y_1)$ and $(x_2, y_2)$.\n\nAll towers are at distinct locations, no three towers are collinear, and no four towers are concyclic.\n\nThe sum of $n$ over all test cases does not exceed $1000$.\n\n## Output\n\nFor each test case, output a single integer — the number of attack plans of minimal length after which you capture all towers, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, there is only one possible attack plan of shortest length, shown below.\n\n![image](https://espresso.codeforces.com/355d03bbd2157b1e93d7b313dd1bcacc0ba0d787.png)\n\n- Use the operation with $P =$ tower $1$, $Q =$ tower $2$, and $R =$ tower $5$. The circle through these three towers contains all towers inside of it, and as a result towers $3$ and $5$ are captured.\n- Use the operation with $P =$ tower $5$, $Q =$ tower $1$, and $R =$ tower $4$. The circle through these three towers contains all towers inside of it, and as a result tower $4$ is captured.\n\nIn the second case, for example, you can never capture the tower at $(3, 10\\,000)$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n5\n1 1\n2 5\n3 3\n4 2\n5 4\n6\n1 1\n3 3\n1 2\n2 1\n3 10000\n19 84\n7\n2 7\n-4 -3\n-3 6\n3 1\n-5 2\n1 -4\n-1 7\n",
+      "output": "1\n0\n10\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:50:17.463Z"
+}

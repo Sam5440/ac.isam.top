@@ -1,0 +1,35 @@
+{
+  "id": "abc228_g",
+  "platform": "atcoder",
+  "contestId": "abc228",
+  "index": "G",
+  "title": "Digits on Grid",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc228/tasks/abc228_g",
+  "difficulty": 2711,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a grid with $H$ horizontal rows and $W$ vertical columns, where each square contains a digit between $1$ and $9$. For each pair of integers $(i, j)$ such that $1 \\leq i \\leq H$ and $1 \\leq j \\leq W$, the digit written on the square at the $i$-th row from the top and $j$-th column from the left is $c_{i, j}$.\n\nUsing this grid, Takahashi and Aoki will play together. First, Takahashi chooses a square and puts a piece on it. Then, the two will repeat the following procedures, 1. through 4., $N$ times.\n\n1. Takahashi does one of the following two actions.\n- Move the piece to another square that **shares a row** with the square the piece is on.\n  - Do nothing.\n2. Takahashi writes on a blackboard the digit written on the square the piece is on.\n3. Aoki does one of the following two actions.\n- Move the piece to another square that **shares a column** with the square the piece is on.\n  - Do nothing.\n4. Aoki writes on the blackboard the digit written on the square the piece is on.\n\nAfter that, there will be $2N$ digits written on the blackboard. Let $d_1, d_2, \\ldots, d_{2N}$ be those digits, in the order they are written. The two boys will concatenate the $2N$ digits in this order to make a $2N$-digit integer $X := d_1d_2\\ldots d_{2N}$.\n\nFind the number, modulo $998244353$, of different integers that $X$ can become.\n\n## Constraints\n\n- $2 \\leq H, W \\leq 10$\n- $1 \\leq N \\leq 300$\n- $1 \\leq c_{i, j} \\leq 9$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nH W N\nc_{1, 1}c_{1, 2}\\cdotsc_{1, W}\nc_{2, 1}c_{2, 2}\\cdotsc_{2, W}\n\\vdots\nc_{H, 1}c_{H, 2}\\cdotsc_{H, W}\n```\n\n## Output\n\nPrint the number, modulo $998244353$, of different integers that $X$ can become.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2 1\n31\n41\n",
+      "output": "5\n",
+      "note": "Below is one possible scenario.\n\n- First, Takahashi puts the piece on $(1, 2)$.\n- Takahashi moves the piece from $(1, 2)$ to $(1, 1)$, and then writes the digit $3$ written on $(1, 1)$.\n- Aoki moves the piece from $(1, 1)$ to $(2, 1)$, and then writes the digit $4$ written on $(2, 1)$.\n\nIn this case, we have $X = 34$.\nBelow is another possible scenario.\n\n- First, Takahashi puts the piece on $(2, 2)$.\n- Takahashi keeps the piece on $(2, 2)$, and then writes the digit $1$ written on $(2, 2)$.\n- Aoki moves the piece from $(2, 2)$ to $(1, 2)$, and then writes the digit $1$ written on $(1, 2)$.\n\nIn this case, we have $X = 11$. Other than these, $X$ can also become $33$, $44$, or $43$, but nothing else.\nThat is, there are five integers that $X$ can become, so we print $5$."
+    },
+    {
+      "input": "2 3 4\n777\n777\n",
+      "output": "1\n",
+      "note": "$X$ can only become $77777777$."
+    },
+    {
+      "input": "10 10 300\n3181534389\n4347471911\n4997373645\n5984584273\n1917179465\n3644463294\n1234548423\n6826453721\n5892467783\n1211598363\n",
+      "output": "685516949\n",
+      "note": "Be sure to find the count modulo $998244353$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:42:59.497Z"
+}

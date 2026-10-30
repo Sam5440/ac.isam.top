@@ -1,0 +1,33 @@
+{
+  "id": "abc209_e",
+  "platform": "atcoder",
+  "contestId": "abc209",
+  "index": "E",
+  "title": "Shiritori",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc209/tasks/abc209_e",
+  "difficulty": 2153,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThe Takahashi Dictionary lists $N$ words; the $i$-th word $(1 \\leq i \\leq N)$ is $s_i$.\n\nUsing this dictionary, Takahashi and Aoki will play *$3$-shiritori*, which goes as follows.\n\n- Takahashi and Aoki alternately say words, with Takahashi going first.\n- Each player must say a word beginning with the last three characters of the previous word. For example, if a player says `Takahashi`, the next player can say `ship` or `shield` along with other choices, but not `Aoki`, `sing`, or `his`.\n- Uppercase and lowercase are distinguished. For example, a player cannot say `ShIp` following `Takahashi`.\n- A player who becomes unable to say a word loses.\n- A player cannot say a word not listed in the dictionary.\n- The same word can be used multiple times.\n\nFor each $i$ $(1 \\leq i \\leq N)$, determine who will win when Takahashi starts the game by saying the word $s_i$. Here, we assume that both players play optimally. More specifically, each player gives first priority to avoiding his loss and second priority to defeating the opponent.\n\n## Constraints\n\n- $N$ is an integer between $1$ and $2 \\times 10^5$ (inclusive).\n- $s_i$ is a string of length between $3$ and $8$ (inclusive) consisting of lowercase and uppercase English letters.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\ns_1\ns_2\n\\vdots\ns_N\n```\n\n## Output\n\nPrint $N$ lines. The $i$-th line $(1 \\leq i \\leq N)$ should contain `Takahashi` if Takahashi wins when Takahashi starts the game by saying the word $s_i$, `Aoki` if Aoki wins in that scenario, and `Draw` if the game continues forever with neither of them losing in that scenario.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\nabcd\nbcda\nada\n",
+      "output": "Aoki\nTakahashi\nDraw\n",
+      "note": "When Takahashi starts the game by saying `abcd`, Aoki will say `bcda` next, and Takahashi will then have no word to say, resulting in Aoki's win. Thus, we should print `Aoki`.\n\nWhen Takahashi starts the game by saying `bcda`, Aoki will have no word to say, resulting in Takahashi win. Thus, we should print `Takahashi`.\n\nWhen Takahashi starts the game by saying `ada`, both players will repeat `ada` and never end the game. Thus, we should print `Draw`. Note that they can use the same word any number of times."
+    },
+    {
+      "input": "1\nABC\n",
+      "output": "Draw\n"
+    },
+    {
+      "input": "5\neaaaabaa\neaaaacaa\ndaaaaaaa\neaaaadaa\ndaaaafaa\n",
+      "output": "Takahashi\nTakahashi\nTakahashi\nAoki\nTakahashi\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:45:59.016Z"
+}
