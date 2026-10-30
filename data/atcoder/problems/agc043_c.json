@@ -1,0 +1,33 @@
+{
+  "id": "agc043_c",
+  "platform": "atcoder",
+  "contestId": "agc043",
+  "index": "C",
+  "title": "Giant Graph",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc043/tasks/agc043_c",
+  "difficulty": 2872,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nGiven are simple undirected graphs $X$, $Y$, $Z$, with $N$ vertices each and $M_1$, $M_2$, $M_3$ edges, respectively. The vertices in $X$, $Y$, $Z$ are respectively called $x_1, x_2, \\dots, x_N$, $y_1, y_2, \\dots, y_N$, $z_1, z_2, \\dots, z_N$. The edges in $X$, $Y$, $Z$ are respectively $(x_{a_i}, x_{b_i})$, $(y_{c_i}, y_{d_i})$, $(z_{e_i}, z_{f_i})$.\n\nBased on $X$, $Y$, $Z$, we will build another undirected graph $W$ with $N^3$ vertices. There are $N^3$ ways to choose a vertex from each of the graphs $X$, $Y$, $Z$. Each of these choices corresponds to the vertices in $W$ one-to-one. Let $(x_i, y_j, z_k)$ denote the vertex in $W$ corresponding to the choice of $x_i, y_j, z_k$.\n\nWe will span edges in $W$ as follows:\n\n- For each edge $(x_u, x_v)$ in $X$ and each $w, l$, span an edge between $(x_u, y_w, z_l)$ and $(x_v, y_w, z_l)$.\n- For each edge $(y_u, y_v)$ in $Y$ and each $w, l$, span an edge between $(x_w, y_u, z_l)$ and $(x_w, y_v, z_l)$.\n- For each edge $(z_u, z_v)$ in $Z$ and each $w, l$, span an edge between $(x_w, y_l, z_u)$ and $(x_w, y_l, z_v)$.\n\nThen, let the weight of the vertex $(x_i, y_j, z_k)$ in $W$ be $1,000,000,000,000,000,000^{(i +j + k)} = 10^{18(i + j + k)}$. Find the maximum possible total weight of the vertices in an [independent set](https://en.wikipedia.org/wiki/Independent_set_(graph_theory)) in $W$, and print that total weight modulo $998,244,353$.\n\n## Constraints\n\n- $2 \\leq N \\leq 100,000$\n- $1 \\leq M_1, M_2, M_3 \\leq 100,000$\n- $1 \\leq a_i, b_i, c_i, d_i, e_i, f_i \\leq N$\n- $X$, $Y$, and $Z$ are simple, that is, they have no self-loops and no multiple edges.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nM_1\na_1 b_1\na_2 b_2\n\\vdots\na_{M_1} b_{M_1}\nM_2\nc_1 d_1\nc_2 d_2\n\\vdots\nc_{M_2} d_{M_2}\nM_3\ne_1 f_1\ne_2 f_2\n\\vdots\ne_{M_3} f_{M_3}\n```\n\n## Output\n\nPrint the maximum possible total weight of an independent set in $W$, modulo $998,244,353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n1\n1 2\n1\n1 2\n1\n1 2\n",
+      "output": "46494701\n",
+      "note": "The maximum possible total weight of an independent set is that of the set $(x_2, y_1, z_1)$, $(x_1, y_2, z_1)$, $(x_1, y_1, z_2)$, $(x_2, y_2, z_2)$. The output should be $(3 \\times 10^{72} + 10^{108})$ modulo $998,244,353$, which is $46,494,701$."
+    },
+    {
+      "input": "3\n3\n1 3\n1 2\n3 2\n2\n2 1\n2 3\n1\n2 1\n",
+      "output": "883188316\n"
+    },
+    {
+      "input": "100000\n1\n1 2\n1\n99999 100000\n1\n1 100000\n",
+      "output": "318525248\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:14:14.027Z"
+}

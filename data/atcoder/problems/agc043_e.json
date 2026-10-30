@@ -1,0 +1,38 @@
+{
+  "id": "agc043_e",
+  "platform": "atcoder",
+  "contestId": "agc043",
+  "index": "E",
+  "title": "Topology",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc043/tasks/agc043_e",
+  "difficulty": 3505,
+  "tags": [],
+  "points": 1400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nGiven are a positive integer $N$ and a sequence of length $2^N$ consisting of $0$s and $1$s: $A_0,A_1,\\ldots,A_{2^N-1}$. Determine whether there exists a closed curve $C$ that satisfies the condition below for all $2^N$ sets $S \\subseteq \\{0,1,\\ldots,N-1 \\}$. If the answer is yes, construct one such closed curve.\n\n- Let $x = \\sum_{i \\in S} 2^i$ and $B_S$ be the set of points $\\{ (i+0.5,0.5) | i \\in S \\}$.\n- If there is a way to continuously move the closed curve $C$ without touching $B_S$ so that every point on the closed curve has a negative $y$-coordinate, $A_x = 1$.\n- If there is no such way, $A_x = 0$.\n\nFor instruction on printing a closed curve, see Output below.\n\n## Note\n\n$C$ is said to be a closed curve if and only if:\n\n- $C$ is a continuous function from $[0,1]$ to $\\mathbb{R}^2$ such that $C(0) = C(1)$.\n\nWe say that a closed curve $C$ can be continuously moved without touching a set of points $X$ so that it becomes a closed curve $D$ if and only if:\n\n- There exists a function $f : [0,1] \\times [0,1] \\rightarrow \\mathbb{R}^2$ that satisfies all of the following.\n- $f$ is continuous.\n  - $f(0,t) = C(t)$.\n  - $f(1,t) = D(t)$.\n  - $f(x,t) \\notin X$.\n\n## Constraints\n\n- $1 \\leq N \\leq 8$\n- $A_i = 0,1 \\quad (0 \\leq i \\leq 2^N-1)$\n- $A_0 = 1$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nA_0A_1 \\cdots A_{2^N-1}\n```\n\n## Output\n\nIf there is no closed curve that satisfies the condition, print `Impossible`.\n\nIf such a closed curve exists, print `Possible` in the first line. Then, print one such curve in the following format:\n\n```\nL\nx_0 y_0\nx_1 y_1\n:\nx_L y_L\n```\n\nThis represents the closed polyline that passes $(x_0,y_0),(x_1,y_1),\\ldots,(x_L,y_L)$ in this order.\n\nHere, all of the following must be satisfied:\n\n- $0 \\leq x_i \\leq N$, $0 \\leq y_i \\leq 1$, and $x_i, y_i$ are integers. ($0 \\leq i \\leq L$)\n- $|x_i-x_{i+1}| + |y_i-y_{i+1}| = 1$. ($0 \\leq i \\leq L-1$)\n- $(x_0,y_0) = (x_L,y_L)$.\n\nAdditionally, the length of the closed curve $L$ must satisfy $0 \\leq L \\leq 250000$.\n\nIt can be proved that, if there is a closed curve that satisfies the condition in Problem Statement, there is also a closed curve that can be expressed in this format.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1\n10\n",
+      "output": "Possible\n4\n0 0\n0 1\n1 1\n1 0\n0 0\n",
+      "note": "When $S = \\emptyset$, we can move this curve so that every point on it has a negative $y$-coordinate.\n\n![image](https://img.atcoder.jp/agc043/d44ca639698b4c14bb84b90da5442ca6.png)\n\nWhen $S = \\{0\\}$, we cannot do so.\n\n![image](https://img.atcoder.jp/agc043/5a960a0c4167e8593b6c8f8af685253d.png)"
+    },
+    {
+      "input": "2\n1000\n",
+      "output": "Possible\n6\n1 0\n2 0\n2 1\n1 1\n0 1\n0 0\n1 0\n",
+      "note": "The output represents the following curve:\n\n![image](https://img.atcoder.jp/agc043/283e490d520a451f1b15160900c9b545.png)"
+    },
+    {
+      "input": "2\n1001\n",
+      "output": "Impossible\n"
+    },
+    {
+      "input": "1\n11\n",
+      "output": "Possible\n0\n1 1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:14:17.636Z"
+}
