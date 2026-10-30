@@ -1,0 +1,34 @@
+{
+  "id": "abc312_h",
+  "platform": "atcoder",
+  "contestId": "abc312",
+  "index": "Ex",
+  "title": "snukesnuke",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc312/tasks/abc312_h",
+  "difficulty": 2477,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nTakahashi is going to decide nicknames of $N$ people, person $1,\\ldots,N$.\n\nPerson $i$ wants a nickname $S_i$. To avoid giving the same nickname to multiple people, he is going to decide their nicknames as follows:\n\n- For each $i=1,\\ldots,N$ in order, decide person $i$'s nickname as follows:\n- Initialize a variable $k_i$ with $1$.\n  - Repeatedly increment $k_i$ by one while the $k_i$-time repetition of $S_i$ is someone's nickname.\n  - Let person $i$'s nickname be the $k_i$-time repetition of $S_i$.\n\nFind $k_1,\\ldots$, and $k_N$ after deciding nicknames of the $N$ people.\n\n## Constraints\n\n- $N \\geq 1$\n- $S_i$ is a string of length at least $1$ consisting of lowercase English letters.\n- The sum of lengths of $S_i$ is at most $2\\times 10^5$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nS_1\n\\vdots\nS_N\n```\n\n## Output\n\nPrint $k_1,\\ldots$, and $k_N$ resulting from deciding the nicknames of the $N$ people by the procedure in the problem statement.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\nsnuke\nsnuke\nrng\n",
+      "output": "1 2 1\n",
+      "note": "- First, he decides person $1$'s nickname.\n- Let $k_1=1$.\n  - The $k_1$-time repetition of $S_1$ is `snuke`, which is nobody's nickname, so person $1$'s nickname is set to `snuke`.\n- Next, he decides person $2$'s nickname.\n- Let $k_2=1$.\n  - The $k_2$-time repetition of $S_2$ is `snuke`, which is already a nickname of person $1$, so increment $k_2$ by one to make it $2$.\n  - The $k_2$-time repetition of $S_2$ is `snukesnuke`, which is nobody's nickname, so person $2$'s nickname is set to `snukesnuke`.\n- Finally, he decides person $3$'s nickname.\n- Let $k_3=1$.\n  - The $k_3$-time repetition of $S_3$ is `rng`, which is nobody's nickname, so person $3$'s nickname is set to `rng`.\n\nThus, $k_1$, $k_2$, and $k_3$ result in $1$, $2$, and $1$, respectively."
+    },
+    {
+      "input": "4\naa\na\na\naaa\n",
+      "output": "1 1 3 2\n",
+      "note": "- Person $1$'s nickname is set to `aa`.\n- Person $2$'s nickname is set to `a`.\n- Person $3$'s nickname is set to `aaa`, because `a` and `aa` are already nicknames of someone else.\n- Person $4$'s nickname is set to `aaaaaa`, because `aaa` is already a nickname of someone else."
+    },
+    {
+      "input": "5\nx\nx\nx\nx\nx\n",
+      "output": "1 2 3 4 5\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:17:04.910Z"
+}

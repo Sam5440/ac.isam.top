@@ -1,0 +1,37 @@
+{
+  "id": "agc064_b",
+  "platform": "atcoder",
+  "contestId": "agc064",
+  "index": "B",
+  "title": "Red and Blue Spanning Tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc064/tasks/agc064_b",
+  "difficulty": 1787,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a connected undirected graph $G$ with $N$ vertices and $M$ edges. For each $i=1,2,\\ldots,M$, the $i$-th edge connects vertices $a_i$ and $b_i$, and is colored red if $c_i=$ `R` and blue if $c_i=$ `B`.\n\nDetermine if there is a spanning tree of $G$ that satisfies the following condition, and if so, display such a tree.\n\n- For every $i=1,2,\\ldots,N$,\n- if $s_i =$ `R`, at least one red edge has vertex $i$ as its endpoint;\n  - if $s_i =$ `B`, at least one blue edge has vertex $i$ as its endpoint.\n\n## Constraints\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $N-1 \\leq M \\leq 2 \\times 10^5$\n- $1 \\leq a_i \\lt b_i \\leq N$\n- $c_i$ is `R` or `B`.\n- $(a_i,b_i,c_i) \\neq (a_j,b_j,c_j)$ if $i \\neq j$.\n- The given graph is connected.\n- $s_i$ is `R` or `B`.\n- $N,M,a_i,b_i$ are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\na_1 b_1 c_1\n\\vdots\na_M b_M c_M\ns_1 s_2 \\ldots s_N\n```\n\n## Output\n\nIf no spanning tree of $G$ satisfies the condition, print `No`.\n\n```\nNo\n```\n\nOtherwise, print such a tree in the following format:\n\n```\nYes\nt_1 t_2 \\ldots t_{N-1}\n```\n\nThis means that the $i$-th edge of the spanning tree is the $t_i$-th edge of $G$.\nIf multiple spanning trees of $G$ satisfy the condition, any one of them is accepted.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3\n1 2 R\n1 3 B\n2 3 B\nRRB\n",
+      "output": "Yes\n2 1\n",
+      "note": "Here we show that the spanning tree formed by the first and second edges of $G$ satisfies the condition.\n\n- $s_1 =$ `R`, so for $i=1$, at least one red edge must have vertex $1$ as its endpoint. The first edge of $G$ is such an edge.\n- $s_2 =$ `R`, so for $i=2$, at least one red edge must have vertex $2$ as its endpoint. The first edge of $G$ is such an edge.\n- $s_3 =$ `B`, so for $i=3$, at least one blue edge must have vertex $3$ as its endpoint. The second edge of $G$ is such an edge."
+    },
+    {
+      "input": "3 4\n1 2 R\n1 2 B\n1 3 B\n2 3 B\nRRR\n",
+      "output": "No\n"
+    },
+    {
+      "input": "8 16\n5 7 B\n2 7 R\n1 6 R\n1 4 R\n6 7 R\n4 6 B\n4 8 R\n2 3 R\n3 5 R\n6 7 B\n2 6 B\n5 6 R\n1 3 B\n4 5 B\n2 7 B\n1 8 B\nBRBRRBRB\n",
+      "output": "Yes\n1 2 4 9 11 13 16\n"
+    },
+    {
+      "input": "8 10\n1 7 R\n1 3 B\n2 5 B\n2 8 R\n1 5 R\n3 6 R\n2 6 B\n3 4 B\n2 8 B\n4 6 B\nRRRBBBRB\n",
+      "output": "No\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:16:36.910Z"
+}

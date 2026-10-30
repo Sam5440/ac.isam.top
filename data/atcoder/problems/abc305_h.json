@@ -1,0 +1,43 @@
+{
+  "id": "abc305_h",
+  "platform": "atcoder",
+  "contestId": "abc305",
+  "index": "Ex",
+  "title": "Shojin",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc305/tasks/abc305_h",
+  "difficulty": 3344,
+  "tags": [],
+  "points": 650,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou have decided to **practice**. Practice means solving a large number of problems in AtCoder.\nPractice takes place over several days. The practice for one day is carried out in the following steps.\n\n- Let $M$ be the number of problems to be solved on that day. Each problem has a value called **difficulty**, which is a pair of non-negative integers $(A, B)$.\n- First, rearrange the $M$ problems in any order. Then, solve the problems one by one in that order.\n- You have a value called **fatigue**. The fatigue at the beginning of the day is $0$, and it changes from $x$ to $Ax + B$ when solving a problem with difficulty $(A, B)$.\n- The fatigue at the end of solving all $M$ problems is called the **energy consumed** for that day.\n\nThere is a sequence of $N$ problems in AtCoder, called problem $1$, problem $2$, $\\dots$, problem $N$ in order. The difficulty of problem $i$ is $(A_i, B_i)$.\nYou have decided to solve all $N$ problems through practice.\nPractice is carried out in the following steps. Below, let $[L, R]$ denote the following sequence of problems: problem $L$, problem $L+1$, $...$, problem $R$.\n\n- Choose an integer $K$ freely between $1$ and $N$, inclusive. The practice will last $K$ days.\n- Divide the sequence of $N$ problems into $K$ non-empty continuous subsequences, and let $S_i$ be the $i$-th sequence. Formally, choose a strictly increasing non-negative integer sequence $x_0, x_1, \\dots, x_K$ such that $1 = x_0$ and $x_K = N + 1$, and let $S_i = [x_{i-1}, x_i - 1]$ for $1 \\leq i \\leq K$.\n- Then, for $i=1, 2, \\dots, K$, solve all problems in $S_i$ on the $i$-th day of practice.\n\nYou have decided to practice so that the total energy consumed throughout the practice is at most $X$.\nLet $D$ be the minimum possible value of $K$, the number of days, for such a practice. (Here, it is guaranteed that $\\sum_{i = 1}^N B_i \\leq X$. Under this constraint, such $D$ always exists.)\nAlso, let $M$ be the minimum possible total energy consumed throughout a practice such that $K=D$.\n\nFind $D$ and $M$.\n\n## Constraints\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq X \\leq 10^8$\n- $1 \\leq A_i \\leq 10^5$\n- $1 \\leq B_i$\n- $\\sum_{i=1}^N B_i \\leq X$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN X\nA_1 B_1\nA_2 B_2\n\\vdots\nA_N B_N\n```\n\n## Output\n\nPrint $D$ and $M$ separated by a space.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 100\n2 2\n3 4\n5 7\n",
+      "output": "1 52\n",
+      "note": "In this test case, you can solve all problems in one day while satisfying the condition for $X$.\nBy following the steps below, the total energy consumed during the practice will be $52$, which is the minimum.\n\n- Set $K=1$ and solve $[1, 3]$ on the first day.\n- Carry out the practice on the first day in the following steps.\n- Arrange the problems in the order (problem $3$, problem $2$, problem $1$).\n  - Initially, the fatigue is $0$.\n  - Solve problem $3$. The fatigue changes to $5 \\times 0 + 7 = 7$.\n  - Solve problem $2$. The fatigue changes to $3 \\times 7 + 4 = 25$.\n  - Solve problem $1$. The fatigue changes to $2 \\times 25 + 2 = 52$.\n  - The fatigue at the end of solving all problems is $52$. Therefore, the energy consumed on this day is $52$.\n- The total energy consumed throughout the practice is also $52$."
+    },
+    {
+      "input": "3 30\n2 2\n3 4\n5 7\n",
+      "output": "2 17\n",
+      "note": "This test case is obtained by changing $X$ from $100$ to $30$ in the first test case. Therefore, it is impossible to solve all problems in one day while satisfying the condition for $X$.\n\nBy following the steps below, you can achieve $M=17$ by practicing for two days.\n\n- Set $K = 2$, and solve $[1, 2]$ on the first day and $[3, 3]$ on the second day.\n- Carry out the practice on the first day in the following steps.\n- Arrange the problems in the order (problem $1$, problem $2$).\n  - Initially, the fatigue is $0$.\n  - Solve problem $1$. The fatigue changes to $2 \\times 0 + 2 = 2$.\n  - Solve problem $2$. The fatigue changes to $3 \\times 2 + 4 = 10$.\n  - The fatigue at the end of solving all problems is $10$. Therefore, the energy consumed on the first day is $10$.\n- Carry out the practice on the second day in the following steps.\n- Arrange the problems in the order (problem $3$).\n  - Initially, the fatigue is $0$.\n  - Solve problem $3$. The fatigue changes to $5 \\times 0 + 7 = 7$.\n  - The fatigue at the end of solving all problems is $7$. Therefore, the energy consumed on the second day is $7$.\n- The total energy consumed throughout the practice is $10 + 7 = 17$."
+    },
+    {
+      "input": "5 50000000\n100000 10000000\n100000 10000000\n100000 10000000\n100000 10000000\n100000 10000000\n",
+      "output": "5 50000000\n",
+      "note": "The optimal practice is to solve one problem per day."
+    },
+    {
+      "input": "10 100000000\n5 88\n66 4\n52 1\n3 1\n12 1\n53 25\n11 12\n12 2\n1 20\n47 10\n",
+      "output": "2 73647\n"
+    },
+    {
+      "input": "15 100000000\n2387 3178\n2369 5772\n1 29\n36 3\n52 2981\n196 1\n36 704\n3 3\n1501 5185\n23 628\n3623 810\n80 101\n6579 15\n681 7\n183 125\n",
+      "output": "4 54468135\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:18:06.792Z"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "arc161_d",
+  "platform": "atcoder",
+  "contestId": "arc161",
+  "index": "D",
+  "title": "Everywhere is Sparser than Whole (Construction)",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc161/tasks/arc161_d",
+  "difficulty": 1379,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe define the **density** of a non-empty simple undirected graph as $\\displaystyle\\frac{(\\text{number\\ of\\ edges})}{(\\text{number\\ of\\ vertices})}$.\n\nYou are given positive integers $N$ and $D$. Determine whether there is a simple undirected graph $G$ with $N$ vertices and $DN$ edges that satisfies the following condition. If it exists, find one such graph.\n\n**Condition:** Let $V$ be the vertex set of $G$. For any non-empty **proper** subset $X$ of $V$, the density of the induced subgraph of $G$ by $X$ is **strictly less than** $D$.\n\nWhat is an induced subgraph? For a vertex subset $X$ of graph $G$, the **induced subgraph** of $G$ by $X$ is the graph with vertex set $X$ and edge set containing all edges of $G$ that connect two vertices in $X$. In the above condition, note that we only consider vertex subsets that are neither empty nor the entire set.\n\n## Constraints\n\n- $N \\geq 1$\n- $D \\geq 1$\n- $DN \\leq 5 \\times 10^4$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN D\n```\n\n## Output\n\nIf there is a simple undirected graph that satisfies the condition, print `Yes`; otherwise, print `No`. Furthermore, in the case of `Yes`, print a graph that satisfies the condition in the following format in the next $DN$ lines. If multiple graphs satisfy the condition, any of them will be considered correct.\n\n```\nA_1 B_1\nA_2 B_2\n\\vdots\nA_{DN} B_{DN}\n```\n\n- $1 \\leq A_i, B_i \\leq N \\ \\ (1 \\leq i \\leq DN)$\n- $A_i \\neq B_i \\ \\ (1 \\leq i \\leq DN)$\n- $\\{A_i, B_i\\} \\neq \\{A_j, B_j\\} \\ \\ (1 \\leq i < j \\leq DN)$\n- The vertices of the graph are numbered from $1$ to $N$.\n- The $i$-th line of the output represents that the $i$-th edge connects vertex $A_i$ and vertex $B_i$.\n- The order of the edges (which edge is printed first) and the order of the vertices (which endpoint of each edge is printed first) may be arbitrary.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 1\n",
+      "output": "Yes\n1 2\n1 3\n2 3\n",
+      "note": "The printed graph has vertex set $\\{1, 2, 3\\}$ and edge set $\\{(1, 2), (1, 3), (2, 3)\\}$, and is simple. The vertex set $X$ has $6$ non-empty proper subsets: $\\{1\\}, \\{2\\}, \\{3\\}, \\{1, 2\\}, \\{1, 3\\}, \\{2, 3\\}$.\n\n- For $X = \\{1\\}, \\{2\\}, \\{3\\}$, the edge sets of the induced subgraphs by $X$ are empty, and the densities are $\\displaystyle\\frac{0}{1} = 0$.\n- For $X = \\{1, 2\\}, \\{1, 3\\}, \\{2, 3\\}$, the edge sets of the induced subgraphs by $X$ are $\\{(1, 2)\\}, \\{(1, 3)\\}, \\{(2, 3)\\}$, respectively, and the densities are all $\\displaystyle\\frac{1}{2}$.\n\nIn all cases, the density of the induced subgraph is strictly less than $D = 1$, so this graph satisfies the condition."
+    },
+    {
+      "input": "4 2\n",
+      "output": "No\n",
+      "note": "A simple undirected graph with $4$ vertices and $8$ edges does not exist."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:18:20.381Z"
+}

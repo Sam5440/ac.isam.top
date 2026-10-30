@@ -1,0 +1,37 @@
+{
+  "id": "abc307_h",
+  "platform": "atcoder",
+  "contestId": "abc307",
+  "index": "Ex",
+  "title": "Marquee",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc307/tasks/abc307_h",
+  "difficulty": 2754,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a length $L$ string $S$ consisting of uppercase and lowercase English letters displayed on an electronic bulletin board with a width of $W$. The string $S$ scrolls from right to left by a width of one character at a time.\n\nThe display repeats a cycle of $L+W-1$ states, with the first character of $S$ appearing from the right edge when the last character of $S$ disappears from the left edge.\n\nFor example, when $W=5$ and $S=$ `ABC`, the board displays the following seven states in a loop:\n\n- `ABC..`\n- `BC...`\n- `C....`\n- `....A`\n- `...AB`\n- `..ABC`\n- `.ABC.`\n\n(`.` represents a position where no character is displayed.)\n\nMore precisely, there are distinct states for $k=0,\\ldots,L+W-2$ in which the display is as follows.\n\n- Let $f(x)$ be the remainder when $x$ is divided by $L+W-1$. The $(i+1)$-th position from the left of the board displays the $(f(i+k)+1)$-th character of $S$ when $f(i+k)<L$, and nothing otherwise.\n\nYou are given a length $W$ string $P$ consisting of uppercase English letters, lowercase English letters, `.`, and `_`.\nFind the number of states among the $L+W-1$ states of the board that coincide $P$ except for the positions with `_`.\nMore precisely, find the number of states that satisfy the following condition.\n\n- For every $i=1,\\ldots,W$, one of the following holds.\n- The $i$-th character of $P$ is `_`.\n  - The character displayed at the $i$-th position from the left of the board is equal to the $i$-th character of $P$.\n  - Nothing is displayed at the $i$-th position from the left of the board, and the $i$-th character of $P$ is `.`.\n\n## Constraints\n\n- $1 \\leq L \\leq W \\leq 3\\times 10^5$\n- $L$ and $W$ are integers.\n- $S$ is a string of length $L$ consisting of uppercase and lowercase English letters.\n- $P$ is a string of length $W$ consisting of uppercase and lowercase English letters, `.`, and `_`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nL W\nS\nP\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 5\nABC\n..___\n",
+      "output": "3\n",
+      "note": "There are three desired states, where the board displays `....A`, `...AB`, `..ABC`."
+    },
+    {
+      "input": "11 15\nabracadabra\n__.._________ab\n",
+      "output": "2\n"
+    },
+    {
+      "input": "20 30\nabaababbbabaabababba\n__a____b_____a________________\n",
+      "output": "2\n"
+    },
+    {
+      "input": "1 1\na\n_\n",
+      "output": "1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:17:47.595Z"
+}

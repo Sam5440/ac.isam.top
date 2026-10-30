@@ -1,0 +1,35 @@
+{
+  "id": "arc157_c",
+  "platform": "atcoder",
+  "contestId": "arc157",
+  "index": "C",
+  "title": "YY Square",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc157/tasks/arc157_c",
+  "difficulty": 1802,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a grid with $H$ rows and $W$ columns where each square has one of the characters `X` and `Y` written on it. Let $(i, j)$ denote the square at the $i$-th row from the top and $j$-th column from the left. The characters on the grid are given as $H$ strings $S_1, S_2, \\dots, S_H$: the $j$-th character of $S_i$ is the character on square $(i, j)$.\n\nFor a path $P$ from square $(1, 1)$ to square $(H, W)$ obtained by repeatedly moving down or right to the adjacent square, the **score** is defined as follows.\n\n- Let $\\mathrm{str}(P)$ be the string of length $(H + W - 1)$ obtained by concatenating the characters on the squares visited by $P$ in the order they are visited.\n- The score of $P$ is the **square of the number** of pairs of consecutive `Y`s in $\\mathrm{str}(P)$.\n\nThere are $\\displaystyle\\binom{H + W - 2}{H - 1}$ such paths. Find the sum of the scores over all those paths, modulo $998244353$.\n\nWhat is $\\binom{N}{K}$? $\\displaystyle\\binom{N}{K}$ is the binomial coefficient representing the number of ways to choose $K$ from $N$ distinct elements.\n\n## Constraints\n\n- $1 \\leq H \\leq 2000$\n- $1 \\leq W \\leq 2000$\n- $S_i \\ (1 \\leq i \\leq H)$ is a string of length $W$ consisting of `X` and `Y`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nH W\nS_1\nS_2\n\\vdots\nS_H\n```\n\n## Output\n\nPrint the sum of the scores over all possible paths, modulo $998244353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2\nYY\nXY\n",
+      "output": "4\n",
+      "note": "There are two possible paths $P$: $(1, 1) \\to (1, 2) \\to (2, 2)$ and $(1, 1) \\to (2, 1) \\to (2, 2)$.\n\n- For $(1, 1) \\to (1, 2) \\to (2, 2)$, we have $\\mathrm{str}(P) = {}$`YYY`, with two pairs of consecutive `Y`s at positions $1, 2$ and $2, 3$, so the score is $2^2 = 4$.\n- For $(1, 1) \\to (2, 1) \\to (2, 2)$, we have $\\mathrm{str}(P) = {}$`YXY`, with no pairs of consecutive `Y`s , so the score is $0^2 = 0$.\n\nThus, the sought sum is $4 + 0 = 4$."
+    },
+    {
+      "input": "2 2\nXY\nYY\n",
+      "output": "2\n",
+      "note": "For either of the two possible paths $P$, we have $\\mathrm{str}(P) = {}$`XYY`, for a score of $1^2 = 1$."
+    },
+    {
+      "input": "10 20\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\nYYYYYYYYYYYYYYYYYYYY\n",
+      "output": "423787835\n",
+      "note": "Print the sum of the scores modulo $998244353$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:20:11.382Z"
+}

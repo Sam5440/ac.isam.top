@@ -1,0 +1,29 @@
+{
+  "id": "2128F",
+  "platform": "codeforces",
+  "contestId": 2128,
+  "index": "F",
+  "title": "Strict Triangle",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2128/problem/F",
+  "difficulty": 3200,
+  "tags": [
+    "graphs",
+    "greedy",
+    "shortest paths"
+  ],
+  "points": 4000,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 512,
+  "statementMd": "You are given an undirected connected graph with $n$ nodes and $m$ edges. The weight $w_i$ of the $i$-th edge is not yet decided and must be a real number between $l_i$ and $r_i$.\n\nYou are given a node $k$. Determine if there exists a valid assignment of weights $(w_1, \\ldots, w_m)$ such that:\n\n- $l_i \\leq w_i \\leq r_i$ for all $i$, and\n- $\\mathrm{dist}_w(1, n) \\neq \\mathrm{dist}_w(1, k) + \\mathrm{dist}_w(k, n)$$^{\\text{∗}}$.\n\n$^{\\text{∗}}$Given an assignment of weights $w$, $\\mathrm{dist}_w(u, v)$ is the minimum value of $w_{e_1} + w_{e_2} + \\ldots + w_{e_p}$ over all sequences of $p$ edges $(e_1, e_2, \\ldots, e_p)$ that form a path from $u$ to $v$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10\\,000$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $m$, and $k$ ($4 \\le n \\le 200\\,000$, $n-1 \\le m \\le 200\\,000$, $2 \\le k \\le n - 1$) — the number of nodes, the number of edges, and the node $k$.\n\nThe $i$-th of the following $m$ lines contains four integers $u_i$, $v_i$, $l_i$, and $r_i$ ($1 \\le u_i, v_i \\le n$, $u_i \\ne v_i$, $1 \\le l_i \\le r_i \\le 10^9$), representing an edge between $u_i$ and $v_i$ whose weight must be between $l_i$ and $r_i$ inclusive. No edge appears in the input more than once.\n\nIt is guaranteed that:\n\n- the sum of $n$ over all test cases doesn't exceed $200\\,000$\n- the sum of $m$ over all test cases doesn't exceed $200\\,000$\n\n## Output\n\nPrint `YES` if there exists a valid assignment of weights and `NO` otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, $w = (20, 30, 49, 21)$ is a valid assignment of weights, since $\\mathrm{dist}_w(1, 4) = 70 \\neq 71 = \\mathrm{dist}_w(1, 2) + \\mathrm{dist}_w(2, 4)$.\n\n![image](https://espresso.codeforces.com/08c192ce8bb0b4907e26c6ef9ad61bc02da4ed2d.png)\n\nIn the second test case, there is no valid assignment of weights.\n\n![image](https://espresso.codeforces.com/58f6b48b99a87489ada74291d842536b28c3287e.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n4 4 2\n1 2 10 20\n2 3 10 30\n1 3 49 90\n4 3 1 1000\n4 4 2\n1 2 10 20\n2 3 10 30\n1 3 50 90\n4 3 1 1000\n5 7 3\n1 2 1 100000\n1 4 10 100\n2 3 1 100000\n3 4 1 100000\n2 5 2 100000\n3 5 1 1\n4 5 1 31\n5 7 3\n1 2 1 100000\n1 4 100000 100000\n2 3 1 1\n3 4 1 100000\n2 5 2 100000\n3 5 1 1\n4 5 1 31\n5 5 3\n1 2 1 42\n2 4 1 42\n4 5 1 42\n1 3 1 1\n3 5 1 42\n5 5 3\n1 2 1 42\n2 4 1 42\n4 5 1 42\n1 3 1 1\n3 5 1 1\n5 5 3\n1 2 1 42\n2 4 1 42\n4 5 1 42\n1 3 1 1\n3 5 2 2\n",
+      "output": "YES\nNO\nYES\nYES\nYES\nNO\nNO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:21:29.438Z"
+}

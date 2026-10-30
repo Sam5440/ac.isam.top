@@ -1,0 +1,25 @@
+{
+  "id": "arc157_e",
+  "platform": "atcoder",
+  "contestId": "arc157",
+  "index": "E",
+  "title": "XXYX Binary Tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc157/tasks/arc157_e",
+  "difficulty": 2877,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a rooted tree with $N$ vertices. The vertices are numbered $1$ to $N$, and the root is vertex $1$. The parent of each vertex $i$ except the root is vertex $P_i$. Each vertex, including the root, has ** no child or exactly two children**.\n\nDetermine whether it is possible to write one of the characters `X` and `Y` on each vertex of the given tree to satisfy the following condition.\n\n**Condition:** For each edge of the tree, consider the string of length $2$ obtained by concatenating the characters written on the endpoints in the order from the parent $P_i$ to the child $i$. Among the $(N - 1)$ strings obtained in this way,\n\n- exactly $A$ are `XX`,\n- exactly $B$ are `XY`,\n- exactly $C$ are `YX`, and\n- none is `YY`.\n\nYou have $T$ test cases to solve.\n\n## Constraints\n\n- $T \\geq 1$\n- $N \\geq 1$\n- For each input, the sum of $N$ over the test cases is at most $10^4$.\n- $A \\geq 0$\n- $B \\geq 0$\n- $C \\geq 0$\n- $A + B + C = N - 1$\n- $1 \\leq P_i < i \\ \\ (2 \\leq i \\leq N)$\n- Each vertex $k \\ (1 \\leq k \\leq N)$ occurs as a parent $P_i \\ (2 \\leq i \\leq N)$ **zero times or twice in total**.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case $\\mathrm{case}_i \\ (1 \\leq i \\leq T)$ is in the following format:\n\n```\nN A B C\nP_2 P_3 \\cdots P_N\n```\n\n## Output\n\nPrint $T$ lines. The $i$-th line should contain `Yes` if there is a way to write characters to satisfy the condition, and `No` otherwise.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n7 2 2 2\n1 1 2 2 3 3\n7 0 2 4\n1 1 2 2 3 3\n7 2 0 4\n1 1 2 2 4 4\n",
+      "output": "Yes\nYes\nNo\n",
+      "note": "For the first test case, if you, for instance, write `XXYXYXX` in this order on vertices $1$ to $7$,\n\n- from the edge $(1, 2)$, we obtain `XX`,\n- from the edge $(1, 3)$, we obtain `XY`,\n- from the edge $(2, 4)$, we obtain `XX`,\n- from the edge $(2, 5)$, we obtain `XY`,\n- from the edge $(3, 6)$, we obtain `YX`, and\n- from the edge $(3, 7)$, we obtain `YX`.\n\nEach of `XX`, `XY`, and `YX` occurs twice, so the condition is satisfied.\n\nFor the second case, one way to satisfy the condition is to write `XYYXXXX`.\n\nFor the third case, there is no way to satisfy the condition."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:20:16.100Z"
+}

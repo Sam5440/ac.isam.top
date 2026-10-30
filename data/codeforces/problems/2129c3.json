@@ -1,0 +1,31 @@
+{
+  "id": "2129C3",
+  "platform": "codeforces",
+  "contestId": 2129,
+  "index": "C3",
+  "title": "Interactive RBS (Hard Version)",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2129/problem/C3",
+  "difficulty": 2300,
+  "tags": [
+    "binary search",
+    "bitmasks",
+    "constructive algorithms",
+    "dp",
+    "interactive"
+  ],
+  "points": 750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is an interactive problem.**\n\n**This is the hard version of the problem. The only difference is the limit on the number of queries. You can make hacks only if all versions of the problem are solved.**\n\nThere is a hidden bracket sequence $s$ of length $n$, where $s$ only contains $\\texttt{'('}$ and $\\texttt{')'}$. It is guaranteed that $s$ contains at least one $\\texttt{'('}$ and one $\\texttt{')'}$.\n\nTo find this bracket sequence, you can ask queries. Each query has the following form: you pick an integer $k$ and arbitrary indices $i_1, i_2, \\ldots, i_k$ ($1 \\le k \\le 1000$, $1 \\le i_1, i_2, \\ldots, i_k \\le n$). **Note that the indices can be equal.** Next, you receive an integer $f(s_{i_1}s_{i_2}\\ldots s_{i_k})$ calculated by the jury.\n\nFor a bracket sequence $t$, $f(t)$ is the number of non-empty *regular* bracket substrings in $t$ (the substrings must be **contiguous**). For example, $f(\\texttt{\"()())\"}) = 3$.\n\nA bracket sequence is called *regular* if it can be constructed in the following way.\n\n1. The empty sequence $\\varnothing$ is regular.\n2. If the bracket sequence $A$ is regular, then $\\mathtt{(}A\\mathtt{)}$ is also regular.\n3. If the bracket sequences $A$ and $B$ are regular, then the concatenated sequence $A B$ is also regular.\n\nFor example, the sequences $\\texttt{\"(())()\"}$, $\\texttt{\"()\"}$ are regular, while $\\texttt{\"(()\"}$ and $\\texttt{\"())(\"}$ are not.\n\nFind the sequence $s$ using no more than $100$ queries.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 20$). The description of the test cases follows.\n\n## Interaction\n\nThe first line of each test case contains one integer $n$ ($2 \\le n \\le 1000$). At this moment, the bracket sequence $s$ is chosen. The interactor in this task is **not adaptive**. In other words, the bracket sequence $s$ is fixed in every test case and does not change during the interaction.\n\nTo ask a query, you need to pick an integer $k$ and arbitrary indices $i_1$, $i_2 \\ldots i_k$ ($1 \\le k \\leq 1000$, $1 \\leq i_1, i_2, \\ldots, i_k \\leq n$) and print the line of the following form (without quotes):\n\n- \"$?\\ k\\ i_1\\ i_2 \\ldots i_k$\"\n\nAfter that, you receive an integer $f(s_{i_1}s_{i_2}\\ldots s_{i_k})$.\n\nYou can ask at most $100$ queries of this form.\n\nNext, if your program has found the bracket sequence $s$, print a line with the following format (without quotes):\n\n- \"$!\\ s_1s_2 \\ldots s_n$\"\n\nNote that this line is **not** considered a query and is **not** taken into account when counting the number of queries asked.\n\nAfter this, proceed to the next test case.\n\nIf you ask more than $100$ queries during an interaction, your program must terminate immediately, and you will receive the `Wrong Answer` verdict. Otherwise, you can get an arbitrary verdict because your solution will continue to read from a closed stream.\n\nAfter printing a query or the answer for a test case, do not forget to output the end of the line and flush the output. Otherwise, you will get the verdict `Idleness Limit Exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see the documentation for other languages.\n\n**Hacks**\n\nTo hack, follow the test format below.\n\nThe first line contains the number of test cases $t$ ($1 \\le t \\le 20$). The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($2 \\le n \\le 1000$).\n\nThe second line of each test case contains a bracket sequence $s_1 s_2\\ldots s_{n}$, where $s_i= \\texttt{'('}$ or $\\texttt{')'}$.\n\nThe bracket sequence $s$ must contain at least one $\\texttt{'('}$ and one $\\texttt{')'}$.\n\n## Note\n\nIn the first test case, the hidden bracket sequence is $s=\\texttt{\")((\"}$.\n\nFor the query \"`? 4 1 2 3 3`\", the jury returns $0$ because $f(s_{1}s_{2}s_{3}s_{3}) = f(\\texttt{\")(((\"}) = 0$.\n\nFor the query \"`? 2 2 1`\", the jury returns $1$ because $f(s_{2}s_{1}) = f(\\texttt{\"()\"}) = 1$.\n\nFor the query \"`? 2 3 1`\", the jury returns $1$ because $f(s_{3}s_{1}) = f(\\texttt{\"()\"}) = 1$.\n\nIn the second test case, the hidden bracket sequence is $s=\\texttt{\"()\"}$.\n\nFor the query \"`? 4 1 2 1 2`\", the jury returns $3$ because $f(s_{1}s_{2}s_{1}s_{2}) = f(\\texttt{\"()()\"}) = 3$.\n\nNote that the example is only for understanding the statement and does **not** guarantee finding the unique bracket sequence $s$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n3\n\n0\n\n1\n\n1\n\n2\n\n3\n",
+      "output": "? 4 1 2 3 3\n\n? 2 2 1\n\n? 2 3 1\n\n! )((\n\n? 4 1 2 1 2\n\n! ()\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:21:11.995Z"
+}

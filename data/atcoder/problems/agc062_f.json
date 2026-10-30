@@ -1,0 +1,39 @@
+{
+  "id": "agc062_f",
+  "platform": "atcoder",
+  "contestId": "agc062",
+  "index": "F",
+  "title": "Preserve Distinct",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc062/tasks/agc062_f",
+  "difficulty": null,
+  "tags": [],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $N$ decks of cards, each card in which has an integer between $1$ and $M$, inclusive, written on it. The $i$-th deck $(1\\leq i \\leq N)$ contains $K_i$ cards, and the number written on the $j$-th card from the top is $A_{i,j}\\ (1\\leq j \\leq K_i)$.\n\nInitially, the integers written on the cards satisfy the following conditions:\n\n- For each integer $x\\ (1\\leq x \\leq M)$, there are exactly two cards with $x$ written on them, each in a different deck.\n- The integers written on the top cards of all the decks are pairwise different.\n\nWe can perform the following operation on the $N$ decks:\n\n- Choose a deck that still has cards and discard the top card. After discarding, the integers written on the top cards of the decks that still have cards must remain pairwise different.\n\nDetermine the maximum number of times this operation can be performed.\n\n## Constraints\n\n- $2 \\leq N \\leq M$\n- $2 \\leq M \\leq 2 \\times 10^5$\n- $1 \\leq K_i \\leq M$\n- $1 \\leq A_{i,j} \\leq M$\n- For each integer $x\\ (1\\leq x \\leq M)$, there are exactly two pairs $(i,j)$ such that $x=A_{i,j}$, and the two values of $i$ are different.\n- $A_{i,1}\\ (1\\leq i \\leq N)$ are pairwise different.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nK_1 A_{1,1} A_{1,2} \\dots A_{1,K_1}\nK_2 A_{2,1} A_{2,2} \\dots A_{2,K_2}\n\\vdots\nK_N A_{N,1} A_{N,2} \\dots A_{N,K_N}\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 4\n4 1 2 3 4\n4 3 2 1 4\n",
+      "output": "1\n",
+      "note": "If you initially perform the operation on the first deck, the numbers on the cards of this deck become $2, 3, 4$ in order from the top. After this, you may not perform the operation again on the first deck because both the first and second decks would have $3$ on their top cards. Similarly, you cannot perform the operation on the second deck either. Therefore, if you start by performing the operation on the first deck, you can only do it once.\n\nEven if you start by performing the operation on the second deck, you can only do it once. Therefore, the answer is $1$."
+    },
+    {
+      "input": "4 6\n2 6 4\n3 2 5 3\n4 3 1 5 6\n3 4 1 2\n",
+      "output": "12\n",
+      "note": "By operating properly, it is possible to discard all the cards."
+    },
+    {
+      "input": "3 3\n2 1 2\n2 2 3\n2 3 1\n",
+      "output": "0\n",
+      "note": "There are cases when no operation can be performed."
+    },
+    {
+      "input": "12 40\n4 35 39 11 21\n7 31 29 16 15 30 32 34\n4 21 27 38 40\n11 17 28 26 23 33 22 3 36 8 1 20\n1 30\n4 40 38 24 6\n8 8 36 9 10 5 7 20 4\n10 5 10 9 3 22 33 23 26 28 17\n4 15 16 29 31\n11 19 13 12 18 25 2 39 35 7 14 37\n3 4 1 14\n13 24 27 11 2 25 18 12 13 19 32 37 6 34\n",
+      "output": "53\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:18:40.685Z"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "arc158_f",
+  "platform": "atcoder",
+  "contestId": "arc158",
+  "index": "F",
+  "title": "Random Radix Sort",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc158/tasks/arc158_f",
+  "difficulty": 3500,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nFor non-negative integers $x$ and $k$, the $k$-th lowest digit of $x$ is the remainder when $\\bigl\\lfloor \\frac{x}{10^k}\\bigr\\rfloor$ is divided by $10$. For instance, the $0$-th, $1$-st, $2$-nd, and $3$-rd lowest digits of $123$ are $3$, $2$, $1$, and $0$, respectively.\n\nYou are given positive integers $N$, $M$, $K$, and sequences of non-negative integers $A = (A_1, \\ldots, A_N)$ and $B = (B_1, \\ldots, B_N)$.\n\nConsider rearranging $A$ by the following process.\n\n- Do the following $M$ times.\n- Choose an integer $k$ such that $0\\leq k \\leq K - 1$.\n  - Then, perform a stable sort on $A$ by $k$-th lowest digit. That is, let $A^{(d)}$ be the subsequence of $A$ composed of all elements of $A$ whose $k$-th lowest digits are $d$, and replace $A$ with the concatenation of $A^{(0)}, A^{(1)}, \\ldots, A^{(9)}$ in this order.\n\nThere are $K^M$ ways to execute this process. How many of them end up making $A$ equal $B$? Find this count modulo $998244353$.\n\n## Constraints\n\n- $1\\leq N\\leq 2\\times 10^5$\n- $1\\leq M\\leq 10^9$\n- $1\\leq K\\leq 18$\n- $0\\leq A_i < 10^K$\n- $0\\leq B_i < 10^K$\n- $A$ and $B$ are equal as multisets. That is, every integer $x$ occurs the same number of times in $A$ and $B$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M K\nA_1 \\ldots A_N\nB_1 \\ldots B_N\n```\n\n## Output\n\nPrint the number, modulo $998244353$, of ways to execute the process that end up making $A$ equal $B$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2 3\n74 42 54\n42 54 74\n",
+      "output": "5\n",
+      "note": "Let $k_1$ and $k_2$ be the $k$ chosen in the first and second iterations, respectively. For instance, if $k_1 = 0$ and $k_2 = 1$, then $A$ changes as follows.\n\n- A stable sort by $k_1$-th ($0$-th) lowest digit makes $A = (42,74,54)$.\n- A stable sort by $k_2$-th ($1$-st) lowest digit makes $A = (42,54,74)$.\n\nHere are all the ways to execute the process and the resulting $A$.\n\n- $(k_1, k_2) = (0,0)$: $A = (42,74,54)$.\n- $(k_1, k_2) = (0,1)$: $A = (42,54,74)$.\n- $(k_1, k_2) = (0,2)$: $A = (42,74,54)$.\n- $(k_1, k_2) = (1,0)$: $A = (42,54,74)$.\n- $(k_1, k_2) = (1,1)$: $A = (42,54,74)$.\n- $(k_1, k_2) = (1,2)$: $A = (42,54,74)$.\n- $(k_1, k_2) = (2,0)$: $A = (42,74,54)$.\n- $(k_1, k_2) = (2,1)$: $A = (42,54,74)$.\n- $(k_1, k_2) = (2,2)$: $A = (74,42,54)$."
+    },
+    {
+      "input": "2 1 1\n2 3\n3 2\n",
+      "output": "0\n",
+      "note": "There is no way to satisfy the condition."
+    },
+    {
+      "input": "5 100 4\n0 12 34 56 78\n0 12 34 56 78\n",
+      "output": "982924732\n",
+      "note": "All $4^{100}$ ways satisfy the condition."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:19:52.849Z"
+}

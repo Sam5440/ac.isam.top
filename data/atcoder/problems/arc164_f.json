@@ -1,0 +1,29 @@
+{
+  "id": "arc164_f",
+  "platform": "atcoder",
+  "contestId": "arc164",
+  "index": "F",
+  "title": "Subtree Reversi",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc164/tasks/arc164_f",
+  "difficulty": 3486,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a rooted tree with $N$ vertices numbered from $1$ to $N$, rooted at vertex $1$. The parent of vertex $i$ is vertex $p_i$ ($2\\leq i\\leq N$).\n\nAlice and Bob play a game using this tree as follows.\n\n- Alice goes first, and Bob goes second. They take turns placing a stone, with a white side and a black side, on a vertex of the tree. Alice places the stone with the white side up, and Bob places the stone with the black side up.\n- In each turn, a stone can only be placed on a vertex that does not have a stone on itself while all its descendants already have stones on them.\n- When placing a stone on a vertex, all the stones on the descendants of that vertex are flipped over (the placed stone itself is not flipped).\n\nThe game ends when all vertices have stones. Alice's score is the number of stones with the white side up at this point.\n\nAlice tries to maximize her score, and Bob tries to minimize Alice's score. If both play optimally, what will be Alice's score?\n\n## Constraints\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq p_i < i$ $(2\\leq i \\leq N)$\n- All input values are integers.\n- The given graph is a tree.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\np_2 p_3 \\ldots p_N\n```\n\n## Output\n\nPrint the answer as an integer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n1 1 2\n",
+      "output": "2\n",
+      "note": "In the given tree, the only vertices where a stone can be placed initially are $3$ and $4$. One possible progression from here is as follows.\n\n- Alice places a stone with the white side up on vertex $4$. After this operation, all descendants of vertex $2$ have stones, so it is now possible to place a stone on vertex $2$.\n- Bob places a stone with the black side up on vertex $2$ and flips the stone on vertex $4$ to have the black side up.\n- Alice places a stone with the white side up on vertex $3$.\n- Bob places a stone with the black side up on vertex $1$ and flips all the stones on vertices $2$, $3$, and $4$.\n\nIn this case, at the end of the game, the stones on vertices $1$, $2$, $3$, and $4$ have black, white, black, and white sides up, respectively. In fact, this progression is an example of optimal sequences of moves for both players; the answer is $2$."
+    },
+    {
+      "input": "7\n1 1 2 4 4 4\n",
+      "output": "5\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:17:26.418Z"
+}

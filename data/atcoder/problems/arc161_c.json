@@ -1,0 +1,25 @@
+{
+  "id": "arc161_c",
+  "platform": "atcoder",
+  "contestId": "arc161",
+  "index": "C",
+  "title": "Dyed by Majority (Odd Tree)",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc161/tasks/arc161_c",
+  "difficulty": 1746,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a tree with $N$ vertices. The vertices are labeled from $1$ to $N$, and the $i$-th edge connects vertex $A_i$ and vertex $B_i$. Moreover, for every vertex, the **number of incident edges is odd**.\n\nYou will color each vertex of the given tree either black ( `B` ) or white ( `W` ). Here, the string obtained by arranging the colors ( `B` or `W` ) of the vertices in the order of vertex labels is called a **color sequence**.\n\nYou are given a color sequence $S$. Determine whether the color sequence $S$ can result from performing the following operation once when all vertices are colored, and if it can, find one possible color sequence before the operation.\n\n**Operation:** For each vertex $k = 1, 2, \\dots, N$, let $C_k$ be the color that occupies the majority (more than half) of the colors of the vertices connected to $k$ by an edge. For every vertex $k$, change its color to $C_k$ simultaneously.\n\nThere are $T$ test cases to solve.\n\n## Constraints\n\n- $T \\geq 1$\n- $N \\geq 2$\n- The sum of $N$ over the test cases in each input file is at most $2 \\times 10^5$.\n- $1 \\leq A_i < B_i \\leq N \\ \\ (1 \\leq i \\leq N - 1)$\n- The given edges $(A_i, B_i) \\ (1 \\leq i \\leq N - 1)$ form a tree.\n- Each vertex $k \\ (1 \\leq k \\leq N)$ appears an **odd number of times in total** as $A_i, B_i \\ (1 \\leq i \\leq N - 1)$.\n- $S$ is a string of length $N$ consisting of `B` and `W`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case $\\mathrm{case}_i \\ (1 \\leq i \\leq T)$ is in the following format:\n\n```\nN\nA_1 B_1\nA_2 B_2\n\\vdots\nA_{N-1} B_{N-1}\nS\n```\n\n## Output\n\nPrint $T$ lines. For the $i$-th line, if the color sequence $S$ can result from performing the operation in the $i$-th test case, print one possible color sequence before the operation; otherwise, print `-1`. If there are multiple possible color sequences before the operation, any of them will be considered correct.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n4\n1 2\n1 3\n1 4\nBWWW\n4\n1 2\n1 3\n1 4\nBBWW\n",
+      "output": "WBBW\n-1\n",
+      "note": "For the first test case, suppose the color sequence before the operation was `WBBW`. In this case,\n\n- for vertex $1$, the colors of the connected vertices $2, 3, 4$ are `B`, `B`, `W`, respectively, with $C_1 = {}$`B` occupying the majority;\n- for vertex $2$, the color of the connected vertex $1$ is `W`, with $C_2 = {}$`W` occupying the majority;\n- for vertex $3$, the color of the connected vertex $1$ is `W`, with $C_3 = {}$`W` occupying the majority;\n- for vertex $4$, the color of the connected vertex $1$ is `W`, with $C_4 = {}$`W` occupying the majority.\n\nTherefore, the color sequence after the operation is `BWWW`, satisfying the condition. Similarly, if the color sequence before the operation was `WBBB`, `WBWB`, or `WWBB`, the color sequence after the operation would be `BWWW`, and any of these are considered correct.\n\nFor the second test case, the color sequence `BBWW` cannot result from the operation on the given tree."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:18:18.697Z"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "agc062_b",
+  "platform": "atcoder",
+  "contestId": "agc062",
+  "index": "B",
+  "title": "Split and Insert",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc062/tasks/agc062_b",
+  "difficulty": 2407,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a permutation $A=(A_1,A_2,\\dots,A_N)$ of the integers from $1$ to $N$. Initially, we have $A_i=i\\ (1\\leq i \\leq N)$.\n\nTakahashi will perform the following operation on this sequence $K$ times.\n\n- Choose an integer $k$ such that $0 \\leq k < N$. Take the last $k$ terms of $A$ and insert them among the first $N-k$. More precisely, replace $A$ with any permutation $A'$ of the $N$ integers that satisfies the following conditions.\n- $(A_1,A_2,\\dots,A_{N-k})$ is a (not necessarily contiguous) subsequence of $A'$.\n  - $(A_{N-k+1},A_{N-k+2},\\dots,A_{N})$ is a (not necessarily contiguous) subsequence of $A'$.\n\nThe cost of the series of operations is $\\sum_{i=1}^{K}k_iC_i$, where $k_i$ is the $k$ chosen in the $i$-th operation.\n\nTakahashi wants to perform $K$ operations so that $A=(P_1,P_2,\\dots,P_N)$ afterward.\n\nDetermine whether it is possible to perform such a series of operations. If it is possible, find its minimum cost.\n\n## Constraints\n\n- $2 \\leq N \\leq 100$\n- $1 \\leq K \\leq 100$\n- $1 \\leq C_i \\leq 10^9$\n- $(P_1,P_2,\\dots,P_N)$ is a permutation of the integers from $1$ to $N$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN K\nC_1 C_2 \\dots C_K\nP_1 P_2 \\dots P_N\n```\n\n## Output\n\nIf it is impossible to perform $K$ operations so that $A=(P_1,P_2,\\dots,P_N)$ holds afterward, print `-1`. If it is possible, print the minimum cost of such a series of operations.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 1\n3\n3 1 2 4\n",
+      "output": "6\n",
+      "note": "By choosing $k=2$, and inserting $A_3=3$ before $A_1,A_2$ and $A_4=4$ after $A_1,A_2$, we can make $A=(3,1,2,4)$, which satisfies $A=(P_1,P_2,P_3,P_4)$. The cost of this operation is $2 \\times C_1 = 6$.\n\nIt can be proved that the minimum cost of performing operations so that $A=(P_1,P_2,P_3,P_4)$ afterward is $6$."
+    },
+    {
+      "input": "4 1\n3\n4 3 2 1\n",
+      "output": "-1\n",
+      "note": "It is impossible to perform operations so that $A=(P_1,P_2,P_3,P_4)$ afterward."
+    },
+    {
+      "input": "20 10\n874735445 684260477 689935252 116941558 915603029 923404262 843759669 656978932 286318130 255195090\n11 15 20 10 6 8 18 2 12 4 9 13 19 3 16 7 14 17 5 1\n",
+      "output": "7372920743\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:18:32.646Z"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "abc317_h",
+  "platform": "atcoder",
+  "contestId": "abc317",
+  "index": "Ex",
+  "title": "Walk",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc317/tasks/abc317_h",
+  "difficulty": 3426,
+  "tags": [],
+  "points": 650,
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a directed graph with $N$ vertices numbered $1$ to $N$. The graph has no multi-edges but can have self-loops. Also, every edge in the graph satisfies the following condition.\n\n- If the edge goes from vertex $s$ to vertex $t$, then $s$ and $t$ satisfy at least one of $0 \\leq t - s\\leq 2$ and $t = 1$.\n\nThe presence or absence of an edge in the graph is represented by sequences $A, B, C, D$, each of length $N$. Each element of $A, B, C, D$ has the following meaning. (Let $A_n$ denote the $n$-th element of $A$; the same applies to $B_n, C_n, D_n$.)\n\n- $A_n$ is $1$ if there is an edge from vertex $n$ to vertex $n$, and $0$ otherwise.\n- $B_n$ is $1$ if there is an edge from vertex $n$ to vertex $n+1$, and $0$ otherwise. (Here, $B_N = 0$.)\n- $C_n$ is $1$ if there is an edge from vertex $n$ to vertex $n+2$, and $0$ otherwise. (Here, $C_{N-1} = C_N = 0$.)\n- $D_n$ is $1$ if there is an edge from vertex $n$ to vertex $1$, and $0$ otherwise. (Here, $D_1 = A_1$.)\n\nIn the given graph, find the number, modulo $998244353$, of walks with $K$ edges starting at vertex $1$ and ending at vertex $N$.\n\nHere, a walk with $K$ edges starting at vertex $1$ and ending at vertex $N$ is a sequence of vertices $v_0 = 1, v_1, \\dots, v_K = N$ such that for each $i$ $(0 \\leq i \\lt K)$ there is an edge from vertex $v_i$ to vertex $v_{i + 1}$. Two walks are distinguished when they differ as sequences.\n\n## Constraints\n\n- $2 \\leq N \\leq 5 \\times 10^4$\n- $1 \\leq K \\leq 5 \\times 10^5$\n- $A_i, B_i, C_i, D_i \\in \\lbrace 0, 1 \\rbrace$\n- $A_1 = D_1$\n- $B_N = C_{N-1} = C_N = 0$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN K\nA_1 A_2 \\dots A_N\nB_1 B_2 \\dots B_N\nC_1 C_2 \\dots C_N\nD_1 D_2 \\dots D_N\n```\n\n## Output\n\nPrint the number, modulo $998244353$, of walks of length $K$ starting at vertex $1$ and ending at vertex $N$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3\n1 0 1\n1 1 0\n1 0 0\n1 0 1\n",
+      "output": "6\n",
+      "note": "The following figure shows the graph.\n\n![image](https://img.atcoder.jp/abc317/2106e1b4faaa87d208ed3e3a275cda1b.jpg)\n\nThe following six walks satisfy the conditions.\n\n- $1, 1, 1, 3$\n- $1, 1, 2, 3$\n- $1, 1, 3, 3$\n- $1, 2, 3, 3$\n- $1, 3, 1, 3$\n- $1, 3, 3, 3$"
+    },
+    {
+      "input": "4 6\n1 1 1 1\n1 1 1 0\n1 1 0 0\n1 0 0 0\n",
+      "output": "50\n"
+    },
+    {
+      "input": "10 500000\n0 1 0 1 0 0 0 0 1 1\n1 1 1 0 1 1 1 0 1 0\n0 0 1 1 0 0 1 1 0 0\n0 1 1 1 1 1 0 1 1 0\n",
+      "output": "866263864\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:16:26.410Z"
+}
