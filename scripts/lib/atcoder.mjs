@@ -66,13 +66,21 @@ export async function fetchAtCoderStatement(contestId, problemId) {
     memoryLimitMb = parseInt(m[2], 10);
   }
 
-  // 英文块优先，缺失回退日文块（早期 ABC 无英文版）
+  // 英文块优先，缺失回退日文块；早期 ABC（~2013）为单语言结构 span.lang > span
   let container = $('#task-statement span.lang-en').first();
   let language = 'en';
   if (!container.length) {
     container = $('#task-statement span.lang-ja').first();
     language = 'ja';
   }
+  if (!container.length) {
+    const single = $('#task-statement span.lang > span').first();
+    if (single.length) {
+      container = single;
+      language = /問題|制約|入力|出力/.test(single.text().slice(0, 2000)) ? 'ja' : 'en';
+    }
+  }
+  if (!container.length) container = $('#task-statement').first();
   if (!container.length) throw new Error('statement container not found');
 
   // 配点："Score : 100 points" / "配点 : 100 点"
