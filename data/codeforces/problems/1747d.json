@@ -1,0 +1,30 @@
+{
+  "id": "1747D",
+  "platform": "codeforces",
+  "contestId": 1747,
+  "index": "D",
+  "title": "Yet Another Problem",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1747/problem/D",
+  "difficulty": 1900,
+  "tags": [
+    "binary search",
+    "bitmasks",
+    "constructive algorithms",
+    "data structures"
+  ],
+  "points": 1750,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given an array $a$ of $n$ integers $a_1, a_2, a_3, \\ldots, a_n$.\n\nYou have to answer $q$ independent queries, each consisting of two integers $l$ and $r$.\n\n- Consider the subarray $a[l:r]$ $=$ $[a_l, a_{l+1}, \\ldots, a_r]$. You can apply the following operation to the subarray any number of times (possibly zero)-\n- Choose two integers $L$, $R$ such that $l \\le L \\le R \\le r$ and $R - L + 1$ is **odd**.\n  - Replace each element in the subarray from $L$ to $R$ with the `XOR` of the elements in the subarray $[L, R]$.\n- The answer to the query is the minimum number of operations required to make all elements of the subarray $a[l:r]$ equal to $0$ or $-1$ if it is impossible to make all of them equal to $0$.\n\nYou can find more details about `XOR` operation [here](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\n## Input\n\nThe first line contains two integers $n$ and $q$ $(1 \\le n, q \\le 2 \\cdot 10^5)$  — the length of the array $a$ and the number of queries.\n\nThe next line contains $n$ integers $a_1, a_2, \\ldots, a_n$ $(0 \\le a_i \\lt 2^{30})$  — the elements of the array $a$.\n\nThe $i$-th of the next $q$ lines contains two integers $l_i$ and $r_i$ $(1 \\le l_i \\le r_i \\le n)$  — the description of the $i$-th query.\n\n## Output\n\nFor each query, output a single integer  — the answer to that query.\n\n## Note\n\nIn the **first query**, $l = 3, r = 4$, subarray = $[3, 3]$. We can apply operation only to the subarrays of length $1$, which won't change the array; hence it is impossible to make all elements equal to $0$.\n\nIn the **second query**, $l = 4, r = 6$, subarray = $[3, 1, 2]$. We can choose the whole subarray $(L = 4, R = 6)$ and replace all elements by their XOR $(3 \\oplus 1 \\oplus 2) = 0$, making the subarray $[0, 0, 0]$.\n\nIn the **fifth query**, $l = 1, r = 6$, subarray = $[3, 0, 3, 3, 1, 2]$. We can make the operations as follows:\n\n1. Choose $L = 4, R = 6$, making the subarray $[3, 0, 3, 0, 0, 0]$.\n2. Choose $L = 1, R = 5$, making the subarray $[0, 0, 0, 0, 0, 0]$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7 6\n3 0 3 3 1 2 3\n3 4\n4 6\n3 7\n5 6\n1 6\n2 2\n",
+      "output": "-1\n1\n1\n-1\n2\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:44:35.088Z"
+}

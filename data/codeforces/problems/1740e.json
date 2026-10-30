@@ -1,0 +1,37 @@
+{
+  "id": "1740E",
+  "platform": "codeforces",
+  "contestId": 1740,
+  "index": "E",
+  "title": "Hanging Hearts",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1740/problem/E",
+  "difficulty": 1800,
+  "tags": [
+    "constructive algorithms",
+    "data structures",
+    "dfs and similar",
+    "dp",
+    "greedy",
+    "trees"
+  ],
+  "points": 2000,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Pak Chanek has $n$ blank heart-shaped cards. Card $1$ is attached directly to the wall while each of the other cards is hanging onto exactly one other card by a piece of string. Specifically, card $i$ ($i \\gt 1$) is hanging onto card $p_i$ ($p_i \\lt i$).\n\nIn the very beginning, Pak Chanek must write one integer number on each card. He does this by choosing any permutation $a$ of $[1, 2, \\dots, n]$. Then, the number written on card $i$ is $a_i$.\n\nAfter that, Pak Chanek must do the following operation $n$ times while maintaining a sequence $s$ (which is initially empty):\n\n1. Choose a card $x$ such that no other cards are hanging onto it.\n2. Append the number written on card $x$ to the end of $s$.\n3. If $x \\neq 1$ and the number on card $p_x$ is larger than the number on card $x$, replace the number on card $p_x$ with the number on card $x$.\n4. Remove card $x$.\n\nAfter that, Pak Chanek will have a sequence $s$ with $n$ elements. What is the maximum length of the longest non-decreasing subsequence$^\\dagger$ of $s$ at the end if Pak Chanek does all the steps optimally?\n\n$^\\dagger$ A sequence $b$ is a subsequence of a sequence $c$ if $b$ can be obtained from $c$ by deletion of several (possibly, zero or all) elements. For example, $[3,1]$ is a subsequence of $[3,2,1]$, $[4,3,1]$ and $[3,1]$, but not $[1,3,3,7]$ and $[3,10,4]$.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 10^5$) — the number of heart-shaped cards.\n\nThe second line contains $n - 1$ integers $p_2, p_3, \\dots, p_n$ ($1 \\le p_i \\lt i$) describing which card that each card hangs onto.\n\n## Output\n\nPrint a single integer — the maximum length of the longest non-decreasing subsequence of $s$ at the end if Pak Chanek does all the steps optimally.\n\n## Note\n\nThe following is the structure of the cards in the first example.\n\n![image](https://espresso.codeforces.com/c4d0c5306e1d6be44755420f8b1345716c1ee683.png)\n\nPak Chanek can choose the permutation $a = [1, 5, 4, 3, 2, 6]$.\n\n![image](https://espresso.codeforces.com/d1c9a0f7fbc695269ba1287c55135c43ef8bae73.png)\n\nLet $w_i$ be the number written on card $i$. Initially, $w_i = a_i$. Pak Chanek can do the following operations in order:\n\n1. Select card $5$. Append $w_5 = 2$ to the end of $s$. As $w_4 \\gt w_5$, the value of $w_4$ becomes $2$. Remove card $5$. After this operation, $s = [2]$.\n2. Select card $6$. Append $w_6 = 6$ to the end of $s$. As $w_2 \\leq w_6$, the value of $w_2$ is left unchanged. Remove card $6$. After this operation, $s = [2, 6]$.\n3. Select card $4$. Append $w_4 = 2$ to the end of $s$. As $w_1 \\leq w_4$, the value of $w_1$ is left unchanged. Remove card $4$. After this operation, $s = [2, 6, 2]$.\n4. Select card $3$. Append $w_3 = 4$ to the end of $s$. As $w_2 \\gt w_3$, the value of $w_2$ becomes $4$. Remove card $3$. After this operation, $s = [2, 6, 2, 4]$.\n5. Select card $2$. Append $w_2 = 4$ to the end of $s$. As $w_1 \\leq w_2$, the value of $w_1$ is left unchanged. Remove card $2$. After this operation, $s = [2, 6, 2, 4, 4]$.\n6. Select card $1$. Append $w_1 = 1$ to the end of $s$. Remove card $1$. After this operation, $s = [2, 6, 2, 4, 4, 1]$.\n\nOne of the longest non-decreasing subsequences of $s = [2, 6, 2, 4, 4, 1]$ is $[2, 2, 4, 4]$. Thus, the length of the longest non-decreasing subsequence of $s$ is $4$. It can be proven that this is indeed the maximum possible length.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n1 2 1 4 2\n",
+      "output": "4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2\n1\n",
+      "output": "2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:44:49.349Z"
+}
