@@ -1,0 +1,34 @@
+{
+  "id": "1548A",
+  "platform": "codeforces",
+  "contestId": 1548,
+  "index": "A",
+  "title": "Web of Lies",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1548/problem/A",
+  "difficulty": 1400,
+  "tags": [
+    "brute force",
+    "graphs",
+    "greedy"
+  ],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*When you play the game of thrones, you win, or you die. There is no middle ground.*Cersei Lannister, *A Game of Thrones* by George R. R. Martin\n\nThere are $n$ nobles, numbered from $1$ to $n$. Noble $i$ has a power of $i$. There are also $m$ \"friendships\". A friendship between nobles $a$ and $b$ is always mutual.\n\nA noble is defined to be *vulnerable* if both of the following conditions are satisfied:\n\n- the noble has at least one friend, and\n- **all** of that noble's friends have a higher power.\n\nYou will have to process the following three types of queries.\n\n1. Add a friendship between nobles $u$ and $v$.\n2. Remove a friendship between nobles $u$ and $v$.\n3. Calculate the answer to the following process.\n\nThe process: all vulnerable nobles are simultaneously killed, and all their friendships end. Then, it is possible that new nobles become vulnerable. The process repeats itself until no nobles are vulnerable. It can be proven that the process will end in finite time. After the process is complete, you need to calculate the number of remaining nobles.\n\nNote that the results of the process are **not** carried over between queries, that is, every process starts with all nobles being alive!\n\n## Input\n\nThe first line contains the integers $n$ and $m$ ($1 \\le n \\le 2\\cdot 10^5$, $0 \\le m \\le 2\\cdot 10^5$) — the number of nobles and number of original friendships respectively.\n\nThe next $m$ lines each contain the integers $u$ and $v$ ($1 \\le u,v \\le n$, $u \\ne v$), describing a friendship. No friendship is listed twice.\n\nThe next line contains the integer $q$ ($1 \\le q \\le 2\\cdot {10}^{5}$) — the number of queries.\n\nThe next $q$ lines contain the queries themselves, each query has one of the following three formats.\n\n- $1$ $u$ $v$ ($1 \\le u,v \\le n$, $u \\ne v$) — add a friendship between $u$ and $v$. It is guaranteed that $u$ and $v$ are not friends at this moment.\n- $2$ $u$ $v$ ($1 \\le u,v \\le n$, $u \\ne v$) — remove a friendship between $u$ and $v$. It is guaranteed that $u$ and $v$ are friends at this moment.\n- $3$ — print the answer to the process described in the statement.\n\n## Output\n\nFor each type $3$ query print one integer to a new line. It is guaranteed that there will be at least one type $3$ query.\n\n## Note\n\nConsider the first example. In the first type 3 query, we have the diagram below.\n\nIn the first round of the process, noble $1$ is weaker than all of his friends ($2$ and $3$), and is thus killed. No other noble is vulnerable in round 1. In round 2, noble $3$ is weaker than his only friend, noble $4$, and is therefore killed. At this point, the process ends, and the answer is $2$.\n\n![image](https://espresso.codeforces.com/483bb69a9e0172a45f351cb5e2f302d79332da72.png)\n\nIn the second type 3 query, the only surviving noble is $4$.\n\nThe second example consists of only one type $3$ query. In the first round, two nobles are killed, and in the second round, one noble is killed. The final answer is $1$, since only one noble survives.\n\n![image](https://espresso.codeforces.com/30e26ef380f9ffa399c28c4afc4f8f65b32290fd.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 3\n2 1\n1 3\n3 4\n4\n3\n1 2 3\n2 3 1\n3\n",
+      "output": "2\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4 3\n2 3\n3 4\n4 1\n1\n3\n",
+      "output": "1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:29:40.792Z"
+}
