@@ -1,0 +1,35 @@
+{
+  "id": "arc120_b",
+  "platform": "atcoder",
+  "contestId": "arc120",
+  "index": "B",
+  "title": "Uniformly Distributed",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc120/tasks/arc120_b",
+  "difficulty": 835,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a grid with $H$ rows and $W$ columns. Let $(i, j)$ denote the square at the $i$-th row and $j$-th column.\nYou are given $H$ strings $S_1, S_2, S_3, \\dots, S_H$ that describe the square, as follows:\n\n- if the $j$-th character of $S_i$ is `R`, $(i, j)$ is painted red;\n- if the $j$-th character of $S_i$ is `B`, $(i, j)$ is painted blue;\n- if the $j$-th character of $S_i$ is `.`, $(i, j)$ is unpainted.\n\nLet $k$ be the number of unpainted squares. Among the $2^k$ ways to paint each of those squares red or blue, how many satisfy the following condition?\n\n- The number of red squares visited while getting from $(1, 1)$ to $(H, W)$ by repeatedly moving one square right or down, including $(1, 1)$ and $(H, W)$, is always the same regardless of the path taken.\n\nSince the count may be enormous, print it modulo $998244353$.\n\n## Constraints\n\n- $2 \\le H \\le 500$\n- $2 \\le W \\le 500$\n- $S_i$ is a string of length $W$ consisting of `R`, `B`, and `.`.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nH W\nS_1\nS_2\nS_3\n\\hspace{3pt} \\vdots\nS_H\n```\n\n## Output\n\nPrint the count modulo $998244353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2\nB.\n.R\n",
+      "output": "2\n",
+      "note": "There are two ways to get from $(1, 1)$ to $(2, 2)$ by repeatedly moving right or down, as follows:\n\n- $(1, 1) \\rightarrow (1, 2) \\rightarrow (2, 2)$\n- $(1, 1) \\rightarrow (2, 1) \\rightarrow (2, 2)$\n\nIf we paint $(1, 2)$ and $(2, 1)$ in different colors, the above two paths will contain different numbers of red squares, violating the condition.\nOn the other hand, if we paint $(1, 2)$ and $(2, 1)$ in the same color, the two paths will contain the same numbers of red squares, satisfying the condition.\nThus, there are two ways to satisfy the condition."
+    },
+    {
+      "input": "3 3\nR.R\nBBR\n...\n",
+      "output": "0\n",
+      "note": "There may be no way to satisfy the condition."
+    },
+    {
+      "input": "2 2\nBB\nBB\n",
+      "output": "1\n",
+      "note": "There is no unpainted square, and the current grid satisfies the condition, so the answer is $1$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:51:50.443Z"
+}

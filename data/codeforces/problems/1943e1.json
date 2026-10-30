@@ -1,0 +1,29 @@
+{
+  "id": "1943E1",
+  "platform": "codeforces",
+  "contestId": 1943,
+  "index": "E1",
+  "title": "MEX Game 2 (Easy Version)",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1943/problem/E1",
+  "difficulty": 2900,
+  "tags": [
+    "binary search",
+    "brute force",
+    "greedy"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is the easy version of the problem. The only difference between the two versions is the constraint on $t$, $m$ and the sum of $m$. You can make hacks only if both versions of the problem are solved.**\n\nAlice and Bob play yet another game on an array $a$ of size $n$. Alice starts with an empty array $c$. Both players take turns playing, with Alice starting first.\n\nOn Alice's turn, she picks one element from $a$, appends that element to $c$, and then deletes it from $a$.\n\nOn Bob's turn, he picks at most $k$ elements from $a$, and then deletes it from $a$.\n\nThe game ends when the array $a$ is empty. Alice's score is defined to be the MEX$^\\dagger$ of $c$. Alice wants to maximize her score while Bob wants to minimize it. Find Alice's final score if both players play optimally.\n\nThe array will be given in compressed format. Instead of giving the elements present in the array, we will be giving their frequencies. Formally, you will be given $m$, the maximum element in the array, and then $m + 1$ integers $f_0, f_1, \\ldots, f_m$, where $f_i$ represents the number of times $i$ occurs in the array $a$.\n\n$^\\dagger$ The $\\operatorname{MEX}$ (minimum excludant) of an array of integers is defined as the smallest non-negative integer which does not occur in the array. For example:\n\n- The MEX of $[2,2,1]$ is $0$, because $0$ does not belong to the array.\n- The MEX of $[3,1,0,1]$ is $2$, because $0$ and $1$ belong to the array, but $2$ does not.\n- The MEX of $[0,3,1,2]$ is $4$, because $0$, $1$, $2$ and $3$ belong to the array, but $4$ does not.\n\n## Input\n\nEach test contains multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 500$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $m$ and $k$ ($1 \\le m \\le 50, 1 \\le k \\le 10^9$).\n\nThe second line contains $m + 1$ integers $f_0, f_1, \\ldots, f_m$ ($1 \\le f_i \\le 10^9$).\n\nIt is guaranteed the sum of $m$ over all test cases does not exceed $1000$.\n\n## Output\n\nFor each test case, find Alice's score if both players play optimally.\n\n## Note\n\nIn the first test case, the array $a$ is $[0, 0, 0, 0, 1, 1, 1, 1, 1]$. A possible game with a score of $2$ is as follows:\n\n1. Alice chooses the element $0$. After this move, $a = [0, 0, 0, 1, 1, 1, 1, 1]$ and $c=[0]$.\n2. Bob chooses to remove the $3$ elements $0$, $0$ and $1$. After this move, $a = [0, 1, 1, 1, 1]$ and $c=[0]$.\n3. Alice chooses the element $1$. After this move, $a = [0,1,1,1]$ and $c=[0,1]$.\n4. Bob removes the $4$ remaining elements $0$, $1$, $1$ and $1$. After this move, $a=[\\,]$ and $c=[0,1]$.\n\nAt the end, $c=[0,1]$ which has a MEX of $2$. Note that this is an example game and does not necessarily represent the optimal strategy for both players.\n\nIn the second test case, Alice can choose a $0$ in her first turn, guaranteeing that her score is at least $1$. While Bob can remove all copies of element $1$ in his first turn, thus guaranteeing that Alice's score cannot exceed $1$. So Alice's score is $1$ if both players play optimally.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n1 4\n4 5\n2 1000000000\n1000000000 1000000000 1000000000\n3 2\n2 3 100 1\n1 1\n2 2\n3 1\n1 1 1 1\n",
+      "output": "2\n1\n3\n2\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:58:59.721Z"
+}

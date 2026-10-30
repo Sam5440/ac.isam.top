@@ -1,0 +1,34 @@
+{
+  "id": "abc199_f",
+  "platform": "atcoder",
+  "contestId": "abc199",
+  "index": "F",
+  "title": "Graph Smoothing",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc199/tasks/abc199_f",
+  "difficulty": 2065,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a simple undirected graph with $N$ vertices and $M$ edges. The vertices are numbered $1$ through $N$ and the edges are numbered $1$ through $M$.\nEdge $i$ connects Vertex $X_i$ and Vertex $Y_i$. Initially, Vertex $i$ has an integer $A_i$ written on it.\nYou will do the following operation $K$ times:\n\n- Choose one from the $M$ edges uniformly at random and independently from other choices. Let $x$ be the arithmetic mean of the numbers written on the two vertices connected by that edge. Replace each number written on those vertices with $x$.\n\nFor each vertex $i$, find the expected value of the number written on that vertex after $K$ operations, and print it modulo $(10^9 + 7)$ as described in Notes.\n\n## Note\n\nWhen printing a rational number, first, represent it as a fraction $\\frac{y}{x}$, where $x$ and $y$ are integers and $x$ is not divisible by $(10^9+7)$ (under the Constraints of this problem, such a representation is always possible).\nThen, print the only integer $z$ between $0$ and $(10^9+6)$ (inclusive) such that $xz \\equiv y \\pmod {10^9+7}$.\n\n## Constraints\n\n- $2 \\le N \\le 100$\n- $1 \\le M \\le \\frac{N(N - 1)}{2}$\n- $0 \\le K \\le 10^9$\n- $0 \\le A_i \\le 10^9$\n- $1 \\le X_i \\le N$\n- $1 \\le Y_i \\le N$\n- The given graph is simple.\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M K\nA_1 A_2 A_3 \\dots A_N\nX_1 Y_1\nX_2 Y_2\nX_3 Y_3\n\\hspace{15pt} \\vdots\nX_M Y_M\n```\n\n## Output\n\nPrint $N$ lines.\nThe $i$-th line should contain the expected value of the number written on that vertex after $K$ operations, modulo $(10^9 + 7)$, as described in Notes.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2 1\n3 1 5\n1 2\n1 3\n",
+      "output": "3\n500000005\n500000008\n",
+      "note": "- If Edge $1$ is chosen in the only operation: the vertices written on Vertices $1, 2, 3$ will be $2, 2, 5$, respectively.\n- If Edge $2$ is chosen in the only operation: the vertices written on Vertices $1, 2, 3$ will be $4, 1, 4$, respectively.\n\nThus, the expected values of the numbers written on Vertices $1, 2, 3$ are $3, \\frac{3}{2}, \\frac{9}{2}$, respectively.\nIf we express them modulo $(10^9 + 7)$ as described in Notes, they will be $3, 500000005, 500000008$, respectively."
+    },
+    {
+      "input": "3 2 2\n12 48 36\n1 2\n1 3\n",
+      "output": "750000036\n36\n250000031\n",
+      "note": "- If Edge $1$ is chosen in the $1$-st operation: The numbers written on Vertices $1, 2, 3$ will be $30, 30, 36$, respectively.\n- If Edge $1$ is chosen in the $2$-nd operation: The numbers written on Vertices $1, 2, 3$ will be $30, 30, 36$, respectively.\n  - If Edge $2$ is chosen in the $2$-nd operation: The numbers written on Vertices $1, 2, 3$ will be $33, 30, 33$, respectively.\n- If Edge $2$ is chosen in the $1$-st operation: The numbers written on Vertices $1, 2, 3$ will be $24, 48, 24$, respectively.\n- If Edge $1$ is chosen in the $2$-nd operation: The numbers written on Vertices $1, 2, 3$ will be $36, 36, 24$, respectively.\n  - If Edge $2$ is chosen in the $2$-nd operation: The numbers written on Vertices $1, 2, 3$ will be $24, 48, 24$, respectively.\n\nEach of these four scenarios happen with probability $\\frac{1}{4}$, so the expected values of the numbers written on Vertices $1, 2, 3$ are $\\frac{123}{4}, \\frac{144}{4} (=36), \\frac{117}{4}$, respectively."
+    },
+    {
+      "input": "4 5 1000\n578 173 489 910\n1 2\n2 3\n3 4\n4 1\n1 3\n",
+      "output": "201113830\n45921509\n67803140\n685163678\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:53:12.558Z"
+}

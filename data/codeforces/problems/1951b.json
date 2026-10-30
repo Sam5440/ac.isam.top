@@ -1,0 +1,29 @@
+{
+  "id": "1951B",
+  "platform": "codeforces",
+  "contestId": 1951,
+  "index": "B",
+  "title": "Battle Cows",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1951/problem/B",
+  "difficulty": 1200,
+  "tags": [
+    "binary search",
+    "data structures",
+    "greedy"
+  ],
+  "points": 1000,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "[*The HU - Shireg Shireg*](https://youtu.be/SNCx4n2m5_o)ඞ\n\nThere are $n$ cows participating in a coding tournament. Cow $i$ has a Cowdeforces rating of $a_i$ (all distinct), and is initially in position $i$. The tournament consists of $n-1$ matches as follows:\n\n- The first match is between the cow in position $1$ and the cow in position $2$.\n- Subsequently, each match $i$ is between the cow in position $i+1$ and the winner of match $i-1$.\n- In each match, the cow with the higher Cowdeforces rating wins and proceeds to the next match.\n\nYou are the owner of cow $k$. For you, winning the tournament is not important; rather, you want your cow to win in as many matches as possible. As an acquaintance of the tournament organizers, you can ask them to swap the position of your cow with another cow **only once**, or you can choose to do nothing.\n\nFind the maximum number of wins your cow can achieve.\n\n## Input\n\nEach test contains multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($2 \\le n \\le 10^5, 1 \\le k \\le n$) — the number of cows and your cow's index.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the Cowdeforces rating of the cows. It is guaranteed that $a_i$'s are pairwise different.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, print one integer: the maximum number of wins cow $k$ can achieve if you choose to swap (or do nothing) optimally.\n\n## Note\n\nIn the first test case, it is optimal to do nothing. Let $a'$ be the Cowdeforces rating of the cows in the original order (with your cow's rating bolded), then\n\n- Initially, $a' = [\\mathbf{12}, 10, 14, 11, 8, 3]$.\n- Your cow plays against the cow with Cowdeforces rating $10$ and wins. $a' = [\\mathbf{12}, 14, 11, 8, 3]$.\n- Your cow plays against the cow with Cowdeforces rating $14$ and loses.\n\nIn total, your cow wins $1$ match.\n\nIn the second test case, it is optimal to swap your cow to position $3$. Then, let $a'$ be the Cowdeforces rating of the cows in the order after the swap.\n\n- Initially, $a' = [7, 2, \\mathbf{12}, 10, 727, 13]$.\n- The cow with Cowdeforces rating $7$ plays against the cow with Cowdeforces rating $2$ and wins. $a' = [7, \\mathbf{12}, 10, 727, 13]$.\n- The cow with Cowdeforces rating $7$ plays against your cow, and your cow wins. $a' = [\\mathbf{12}, 10, 727, 13]$.\n- Your cow plays against the cow with Cowdeforces rating $10$ and wins. $a' = [\\mathbf{12}, 727, 13]$.\n- Your cow plays against the cow with Cowdeforces rating $727$ and loses.\n\nIn total, your cow wins $2$ matches.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n6 1\n12 10 14 11 8 3\n6 5\n7 2 727 10 12 13\n2 2\n1000000000 1\n",
+      "output": "1\n2\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:58:34.609Z"
+}

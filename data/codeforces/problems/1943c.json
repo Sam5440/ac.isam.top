@@ -1,0 +1,30 @@
+{
+  "id": "1943C",
+  "platform": "codeforces",
+  "contestId": 1943,
+  "index": "C",
+  "title": "Tree Compass",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1943/problem/C",
+  "difficulty": 2300,
+  "tags": [
+    "constructive algorithms",
+    "dfs and similar",
+    "greedy",
+    "trees"
+  ],
+  "points": 1250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a tree with $n$ vertices numbered $1, 2, \\ldots, n$. Initially, all vertices are colored white.\n\nYou can perform the following two-step operation:\n\n1. Choose a vertex $v$ ($1 \\leq v \\leq n$) and a distance $d$ ($0 \\leq d \\leq n-1$).\n2. For all vertices $u$ ($1 \\leq u \\leq n$) such that $\\text{dist}^\\dagger(u,v)=d$, color $u$ black.\n\nConstruct a sequence of operations to color all the nodes in the tree black using the minimum possible number of operations. It can be proven that it is always possible to do so using at most $n$ operations.\n\n$^\\dagger$ $\\text{dist}(x, y)$ denotes the number of edges on the (unique) simple path between vertices $x$ and $y$ on the tree.\n\n## Input\n\nEach test contains multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 200$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^3$) — the number of vertices of the tree.\n\nThe following $n - 1$ lines of each test case describe the edges of the tree. The $i$-th of these lines contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$, $u_i \\neq v_i$), the indices of the vertices connected by the $i$-th edge.\n\nIt is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^3$.\n\n## Output\n\nFor each test case, first output a single integer $op$ $(1 \\le op \\le n)$, the minimum number of operations needed to color all vertices of the tree black.\n\nThen, output $op$ lines, each containing $2$ integers. The $i$-th line should contain the values of $v$ and $d$ chosen for the $i$-th operation ($1 \\le v \\le n$, $0 \\le d \\le n - 1$)\n\nYou must guarantee that at the end of $op$ operations, all vertices are colored black.\n\nIf there are multiple solutions, you may output any one of them.\n\n## Note\n\nIn the first test case, there is only one possible operation, and performing it gives us a valid answer.\n\nIn the second test case, the first operation colors vertex $2$ black, and the second operation colors vertex $1$ black. It can be shown that it is impossible to color both vertices black in one operation, so the minimum number of operations needed is $2$. Another possible solution is to use the $2$ operations: $(u, r) = (1, 0)$ and $(u, r) = (2, 0)$.\n\nIn the third test case, the first operation colors vertices $2$, $3$ and $4$ black, and the second operation colors vertex $1$ black. Again, it can be shown that it is impossible to color all vertices black in $1$ operation, so the minimum number of operations needed is $2$.\n\nIn the fourth test case, the first operation colors vertices $4$, $1$ and $7$ black, the second operation colors vertices $2$, $5$ and $6$ black while the third operation colors vertices $3$ and $7$ black. Notice that it is allowed to color vertex $7$ black twice.\n\nThus, each node was marked at least once, with node $7$ marked twice. It can be shown that it is impossible to color all vertices black in fewer than $3$ moves.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n1\n2\n1 2\n4\n1 2\n1 3\n1 4\n7\n2 7\n3 2\n6 4\n5 7\n1 6\n6 7\n",
+      "output": "1\n1 0\n2\n1 1\n2 1\n2\n1 1\n2 1\n3\n6 1\n7 1\n2 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:58:59.721Z"
+}

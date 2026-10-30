@@ -1,0 +1,38 @@
+{
+  "id": "arc114_e",
+  "platform": "atcoder",
+  "contestId": "arc114",
+  "index": "E",
+  "title": "Paper Cutting 2",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc114/tasks/arc114_e",
+  "difficulty": 2514,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a rectangular piece of paper divided into $H \\times W$ squares, where two of those squares are painted black and the rest are painted white. If we let $(i, j)$ denote the square at the $i$-th row and $j$-th column, the squares painted black are $(h_1, w_1)$ and $(h_2, w_2)$.\n\nMaroon will repeat the following operation to cut the piece of paper:\n\n- Assume that we have $h \\times w$ squares remaining. There are $(h - 1)$ horizontal lines and $(w - 1)$ vertical lines that are parallel to the edges of the piece and pass the borders of the squares. He chooses one of these lines uniformly at random and cuts the piece into two along that line. Then,\n- if the two black squares are on the same piece, he throws away the other piece and continues the process;\n  - otherwise, he ends the process.\n\nFind the expected value of the number of times Maroon cuts a piece of paper until he ends the process, modulo $998244353$.\n\n## Note\n\nWe can prove that the expected value in question is always a rational number. Additionally, under the constraints of this problem, we can also prove that if we express that value as an irreducible fraction $\\frac{P}{Q}$, we have $Q \\not \\equiv 0 \\pmod{998244353}$. Thus, there exists a unique integer $R$ such that $R \\times Q \\equiv P \\pmod{998244353}, 0 \\leq R < 998244353$. Answer this $R$.\n\n## Constraints\n\n- $1 \\leq H, W \\leq 10^5$\n- $H \\times W \\geq 2$\n- $1 \\leq h_1, h_2 \\leq H$\n- $1 \\leq w_1, w_2 \\leq W$\n- $(h_1, w_1) \\neq (h_2, w_2)$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nH W\nh_1 w_1 h_2 w_2\n```\n\n## Print\n\nFind the expected value of the number of times Maroon cuts a piece of paper until he ends the process, modulo $998244353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 3\n2 2 1 1\n",
+      "output": "332748119\n",
+      "note": "In the first cut, the process will end with probability $2/3$. For the remaining case with probability $1/3$, the process will end in the second cut.\n\nThus, the expected number of cuts is $1 \\times 2/3 + 2 \\times 1/3 = 4/3$."
+    },
+    {
+      "input": "1 5\n1 2 1 3\n",
+      "output": "332748120\n"
+    },
+    {
+      "input": "2 1\n2 1 1 1\n",
+      "output": "1\n",
+      "note": "The process will always end in the first cut."
+    },
+    {
+      "input": "10 10\n3 4 5 6\n",
+      "output": "831078040\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:54:48.042Z"
+}

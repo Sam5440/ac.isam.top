@@ -1,0 +1,38 @@
+{
+  "id": "arc114_d",
+  "platform": "atcoder",
+  "contestId": "arc114",
+  "index": "D",
+  "title": "Moving Pieces on Line",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc114/tasks/arc114_d",
+  "difficulty": 2723,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nLet $X = 10^{100}$. We have a graph with a vertex for each integer $-X \\leq i \\leq X$, and an undirected edge connecting Vertex $i$ and Vertex $i + 1$ (we will call it Edge $\\{ i, i + 1 \\}$) for each $-X \\leq i \\leq X-1$.\n\nAll edges in this graph are initially painted red. Additionally, we have $N$ pieces, and the $i$-th of them is on Vertex $a_i$.\n\nMaroon can repeat the following operation:\n\n- Choose a piece. If that piece is on Vertex $i$, move it to Vertex $i-1$ or Vertex $i + 1$. Then, if the traversed edge is now painted red, repaint it blue, and vice versa.\n\nDuring the process, there may be multiple pieces on the same vertex.\n\nMaroon wants to do this operation zero or more times to make the edges painted in his desired combination of colors. The desired combination of colors is represented by an even number $K$ and $K$ integers $t_1 < t_2 < \\cdots < t_K$: it means that Edge $\\{ i, i + 1 \\}$ is red for $i < t_1$, blue for $t_1 \\leq i < t_2$, $\\cdots$, red for $t_K \\leq i$. More formally, for each odd number $j = 1, 3, \\cdots, K-1$, Edge $\\{ i, i + 1 \\}$ is blue for each $i$ such that $t_j \\leq i < t_{j+1}$; all other edges are red.\n\nFind the minimum number of operations required to make the edges painted in the desired combination of colors. If it is impossible to do so, print $-1$.\n\n## Constraints\n\n- $1 \\leq N \\leq 5000$\n- $2 \\leq K \\leq 5000$\n- $K$ is even.\n- $|a_i| \\leq 10^9$\n- $|t_i| \\leq 10^9$\n- $t_i < t_{i+1}$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN K\na_1 a_2 \\cdots a_N\nt_1 t_2 \\cdots t_K\n```\n\n## Output\n\nPrint the minimum number of operations required to make the edges painted in the desired combination of colors. If it is impossible to do so, print $-1$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2\n2 -1\n-2 2\n",
+      "output": "4\n",
+      "note": "As shown below, we can achieve the desired state in four operations, which is optimal since we need to repaint four edges.\n\nThe following is the initial situation. For convenience, we have omitted edges to the left of $-3$ and the right of $3$.\n\n![0](https://img.atcoder.jp/arc114/cfe333a77072f2bb54812c06d62de656.png)\n\nWe move the piece on $-1$ to $-2$ to get the following:\n\n![1](https://img.atcoder.jp/arc114/93c2fca818e0d1a8069b70919a043d21.png)\n\nThen, we move the piece on $2$ to $1$ to get the following:\n\n![2](https://img.atcoder.jp/arc114/f7520729ea3f02659eef7df2d17c1363.png)\n\nThen, we move the piece on $1$ to $0$ to get the following:\n\n![3](https://img.atcoder.jp/arc114/fa295d290a5de5c01f66934899fb6280.png)\n\nThen, we move the piece on $0$ to $-1$ to get the following, which is the desired state:\n\n![last](https://img.atcoder.jp/arc114/eab39d19d0973644aa27e8c695ab5812.png)"
+    },
+    {
+      "input": "2 2\n2 2\n5 8\n",
+      "output": "9\n",
+      "note": "There can be multiple pieces on the same vertex already in the beginning."
+    },
+    {
+      "input": "3 4\n1 3 5\n0 2 4 6\n",
+      "output": "-1\n"
+    },
+    {
+      "input": "4 4\n3 4 5 6\n3 4 5 6\n",
+      "output": "2\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:54:46.177Z"
+}

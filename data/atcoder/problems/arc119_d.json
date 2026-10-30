@@ -1,0 +1,35 @@
+{
+  "id": "arc119_d",
+  "platform": "atcoder",
+  "contestId": "arc119",
+  "index": "D",
+  "title": "Grid Repainting 3",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc119/tasks/arc119_d",
+  "difficulty": 2713,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a canvas represented as a grid with $H$ rows and $W$ columns. Let $(i, j)$ denote the square at the $i$-th row from the top $(1 \\leq i \\leq H)$ and $j$-th column from the left $(1 \\leq j \\leq W)$. Initially, $(i, j)$ is painted red if $s_{i, j}=$ `R` and blue if $s_{i, j}=$ `B`.\n\nFor any number of times, you can choose one of the two operations below and do it.\n\n> **Operation X:** Choose a square painted red, and repaint all squares in the row containing that square (including itself) white.\n> **Operation Y:** Choose a square painted red, and repaint all squares in the column containing that square (including itself) white.\n\nShow one way that maximizes the number of squares painted white in the end.\n\n## Constraints\n\n- $1 \\leq H \\leq 2500$\n- $1 \\leq W \\leq 2500$\n- $s_{i, j}$ is `R` or `B`. $(1 \\leq i \\leq H, 1 \\leq j \\leq W)$\n- $H$ and $W$ are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nH W\ns_{1, 1}s_{1, 2}s_{1, 3}\\cdotss_{1, W}\ns_{2, 1}s_{2, 2}s_{2, 3}\\cdotss_{2, W}\ns_{3, 1}s_{3, 2}s_{3, 3}\\cdotss_{3, W}\n \\vdots\ns_{H, 1}s_{H, 2}s_{H, 3}\\cdotss_{H, W}\n```\n\n## Output\n\nPrint the following to Standard Output:\n\n```\nn\nt_1 r_1 c_1\nt_2 r_2 c_2\nt_3 r_3 c_3\n \\vdots\nt_n r_n c_n\n```\n\nHere, $n$ is the number of operations you do, and $t_i, r_i, c_i$ means that your $i$-th operation is Operation $t_i$ with $(r_i, c_i)$ being chosen, where $t_i$ is `X` or `Y`.\nIf there are multiple possible solutions, you may print any of them.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 4\nRBBB\nBBBB\nBBBB\nRBRB\n",
+      "output": "3\nX 1 1\nY 4 3\nX 4 1\n",
+      "note": "Here is one sequence of operations that makes $10$ squares white:\n\n- First, do **Operation X** choosing $(1, 1)$.\n- Then, do **Operation Y** choosing $(4, 3)$.\n- Then, do **Operation X** choosing $(4, 1)$.\n\nThere is no way to make $11$ or more squares white.\n\n![ ](https://img.atcoder.jp/arc119/b0fde87f879b9dc90ca8788945f21bf2.png)"
+    },
+    {
+      "input": "1 119\nBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBBBBBRBBB\n",
+      "output": "4\nY 1 60\nY 1 109\nY 1 46\nX 1 11\n",
+      "note": "We can repaint all squares white."
+    },
+    {
+      "input": "10 10\nBBBBBBBBBB\nBBBBBBBBBB\nBBBBBBBBBB\nBBBBBBBBBB\nBBBBBBBBBB\nBBBBBBBBBB\nBBBBBBBBBB\nBBBBBBBBBB\nBBBBBBBBBB\nBBBBBBBBBB\n",
+      "output": "0\n",
+      "note": "Since there is no red square, we cannot do the operations at all."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:52:19.788Z"
+}

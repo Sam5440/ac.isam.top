@@ -1,0 +1,38 @@
+{
+  "id": "1975F",
+  "platform": "codeforces",
+  "contestId": 1975,
+  "index": "F",
+  "title": "Set",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1975/problem/F",
+  "difficulty": 2600,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "combinatorics",
+    "dfs and similar",
+    "divide and conquer",
+    "dp",
+    "math"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "Define the *binary encoding* of a finite set of natural numbers $T \\subseteq \\{0,1,2,\\ldots\\}$ as $f(T) = \\sum\\limits_{i \\in T} 2^i$. For example, $f(\\{0,2\\}) = 2^0 + 2^2 = 5$ and $f(\\{\\}) = 0$. Notice that $f$ is a bijection from all such sets to all non-negative integers. As such, $f^{-1}$ is also defined.\n\nYou are given an integer $n$ along with $2^n-1$ sets $V_1,V_2,\\ldots,V_{2^n-1}$.\n\nFind all sets $S$ that satisfy the following constraint:\n\n- $S \\subseteq \\{0,1,\\ldots,n-1\\}$. Note that $S$ can be **empty**.\n- For all **non-empty** subsets $T \\subseteq \\{0,1,\\ldots,n-1\\}$, $|S \\cap T| \\in V_{f(T)}$.\n\nDue to the large input and output, both input and output will be given in terms of binary encodings of the sets.\n\n## Input\n\nThe first line of input contains a single integer $n$ ($1 \\leq n \\leq 20$).\n\nThe second line of input contains $2^n-1$ integers $v_1,v_2,\\ldots,v_{2^n-1}$ ($0 \\leq v_i \\lt 2^{n+1}$) — the sets $V_i$ given in their binary encoding where $V_i = f^{-1}(v_i)$.\n\n## Output\n\nThe first line of output should contain an integer $k$ indicating the number of possible $S$.\n\nIn the following $k$ lines, you should output $f(S)$ for all possible $S$ in **increasing order**.\n\n## Note\n\nIn the first test case, one possible $S$ is $f^{-1}(3) = \\{0,1\\}$. All the non-empty subsets $T \\subseteq \\{0,1,2\\}$ and the corresponding $|S \\cap T|$, $f(T)$ and $V_f(T)$ are as follows:\n\n$T$$|S\\cap T|$$f(T)$$V_{f(T)}$$\\{0\\}$$1$$1$$\\{0,1,2,3\\}$$\\{1\\}$$1$$2$$\\{0,1,2,3\\}$$\\{2\\}$$0$$4$$\\{0,1,2,3\\}$$\\{0,1\\}$$2$$3$$\\{0,1,2,3\\}$$\\{0,2\\}$$1$$5$$\\{0,1,2,3\\}$$\\{1,2\\}$$1$$6$$\\{0,1,2,3\\}$$\\{0,1,2\\}$$2$$7$$\\{2,3\\}$",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n15 15 15 15 15 15 12\n",
+      "output": "4\n3\n5\n6\n7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\n63 63 63 63 6 63 63 63 63 63 63 5 63 63 63 63 63 63 8 63 63 63 63 2 63 63 63 63 63 63 63\n",
+      "output": "1\n19\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:57:23.579Z"
+}

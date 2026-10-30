@@ -1,0 +1,33 @@
+{
+  "id": "1979D",
+  "platform": "codeforces",
+  "contestId": 1979,
+  "index": "D",
+  "title": "Fixing a Binary String",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1979/problem/D",
+  "difficulty": 1800,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "constructive algorithms",
+    "dp",
+    "greedy",
+    "hashing",
+    "strings"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a binary string $s$ of length $n$, consisting of zeros and ones. You can perform the following operation **exactly once**:\n\n1. Choose an integer $p$ ($1 \\le p \\le n$).\n2. Reverse the substring $s_1 s_2 \\ldots s_p$. After this step, the string $s_1 s_2 \\ldots s_n$ will become $s_p s_{p-1} \\ldots s_1 s_{p+1} s_{p+2} \\ldots s_n$.\n3. Then, perform a cyclic shift of the string $s$ to the left $p$ times. After this step, the initial string $s_1s_2 \\ldots s_n$ will become $s_{p+1}s_{p+2} \\ldots s_n s_p s_{p-1} \\ldots s_1$.\n\nFor example, if you apply the operation to the string `110001100110` with $p=3$, after the second step, the string will become `011001100110`, and after the third step, it will become `001100110011`.\n\nA string $s$ is called *$k$-proper* if two conditions are met:\n\n- $s_1=s_2=\\ldots=s_k$;\n- $s_{i+k} \\neq s_i$ for any $i$ ($1 \\le i \\le n - k$).\n\nFor example, with $k=3$, the strings `000`, `111000111`, and `111000` are $k$-proper, while the strings `000000`, `001100`, and `1110000` are not.\n\nYou are given an integer $k$, which **is a divisor** of $n$. Find an integer $p$ ($1 \\le p \\le n$) such that after performing the operation, the string $s$ becomes $k$-proper, or determine that it is impossible. Note that if the string is initially $k$-proper, you still need to apply exactly one operation to it.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le k \\le n$, $2 \\le n \\le 10^5$) — the length of the string $s$ and the value of $k$. It is guaranteed that $k$ **is a divisor** of $n$.\n\nThe second line of each test case contains a binary string $s$ of length $n$, consisting of the characters `0` and `1`.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the value of $p$ to make the string $k$-proper, or $-1$ if it is impossible.\n\nIf there are multiple solutions, output any of them.\n\n## Note\n\nIn the first test case, if you apply the operation with $p=3$, after the second step of the operation, the string becomes `11100001`, and after the third step, it becomes `00001111`. This string is $4$-proper.\n\nIn the second test case, it can be shown that there is no operation after which the string becomes $2$-proper.\n\nIn the third test case, if you apply the operation with $p=7$, after the second step of the operation, the string becomes `100011100011`, and after the third step, it becomes `000111000111`. This string is $3$-proper.\n\nIn the fourth test case, after the operation with any $p$, the string becomes $5$-proper.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n8 4\n11100001\n4 2\n1110\n12 3\n111000100011\n5 5\n00000\n6 1\n101001\n8 4\n01110001\n12 2\n110001100110\n",
+      "output": "3\n-1\n7\n5\n4\n-1\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:56:59.456Z"
+}
