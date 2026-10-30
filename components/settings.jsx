@@ -524,7 +524,7 @@ function SettingsDialog({ onClose }) {
 
         <div className="space-y-1.5">
           <p className="text-muted-foreground text-xs font-medium">首页展示的比赛类型</p>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-1.5" data-testid="home-contest-types">
             {CONTEST_TYPES.map((t) => {
               const on = settings.homeContestTypes.includes(t.id);
               return (

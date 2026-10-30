@@ -99,19 +99,17 @@ export async function fetchAtCoderStatement(contestId, problemId) {
   const sampleOut = {};
   const sampleNote = {};
 
-  container.find('div.part > section').each((_, sec) => {
-    const secEl = $(sec);
-    const h3 = secEl.children('h3').first();
-    const heading = h3.text().trim();
-    h3.remove();
+  // 现代页面为 div.part > section；2012–2013 年的旧页面没有 part 包裹，
+  // h3 与 section（或裸内容）平级相邻 —— 用 h3 兄弟遍历切分。
+  let secNodes = container.find('div.part > section').toArray();
+  if (secNodes.length === 0) secNodes = container.find('section').toArray();
 
-    const pres = secEl.find('pre');
+  const collectSection = (heading, secEl, pres) => {
     const si = heading.match(/^Sample Input\s*(\d+)/i) || heading.match(/^入力例\s*(\d+)/);
     const so = heading.match(/^Sample Output\s*(\d+)/i) || heading.match(/^出力例\s*(\d+)/);
     if (si) {
       const n = si[1];
       if (pres.length) sampleIn[n] = preText(pres.first());
-      // 样例说明（pre 之外的段落）
       pres.remove();
       const note = nodesToMd($, secEl.children().toArray(), opts);
       if (note) sampleNote[n] = (sampleNote[n] ? sampleNote[n] + '\n\n' : '') + note;
@@ -128,7 +126,38 @@ export async function fetchAtCoderStatement(contestId, problemId) {
     const body = nodesToMd($, secEl.children().toArray(), opts);
     if (heading && body) sections.push(`${sectionHeading(heading)}\n\n${body}`);
     else if (body) sections.push(body);
-  });
+  };
+
+  if (container.find('div.part').length === 0) {
+    // 旧式结构：h3 引导后续兄弟节点，直到下一个 h3
+    let curHeading = null;
+    let curNodes = [];
+    const flush = () => {
+      if (curHeading === null) return;
+      const holder = $('<div>').append(curNodes);
+      collectSection(curHeading, holder, holder.find('pre'));
+      curHeading = null;
+      curNodes = [];
+    };
+    container.children().each((_, node) => {
+      const el = $(node);
+      if (node.tagName === 'h3') {
+        flush();
+        curHeading = el.text().trim();
+      } else if (curHeading !== null) {
+        curNodes.push(node);
+      }
+    });
+    flush();
+  } else {
+    for (const sec of secNodes) {
+      const secEl = $(sec);
+      const h3 = secEl.children('h3').first();
+      const heading = h3.text().trim();
+      h3.remove();
+      collectSection(heading, secEl, secEl.find('pre'));
+    }
+  }
 
   const samples = [];
   for (const n of Object.keys(sampleIn)) {

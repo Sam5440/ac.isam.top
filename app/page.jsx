@@ -5,7 +5,7 @@ import { DifficultyBadge, PlatformBadge } from '@/components/Badges';
 import RecentContests from '@/components/RecentContests';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { getIndex, getProblemsOfContest } from '@/lib/data';
+import { getIndex } from '@/lib/data';
 import { formatDateTime } from '@/lib/utils';
 
 function StatCard({ icon: Icon, label, value }) {

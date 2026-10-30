@@ -1,0 +1,44 @@
+{
+  "id": "30E",
+  "platform": "codeforces",
+  "contestId": 30,
+  "index": "E",
+  "title": "Tricky and Clever Password",
+  "titleZh": "棘手而巧妙的密码",
+  "url": "https://codeforces.com/contest/30/problem/E",
+  "difficulty": 2800,
+  "tags": [
+    "binary search",
+    "constructive algorithms",
+    "data structures",
+    "greedy",
+    "hashing",
+    "strings"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "In his very young years the hero of our story, king Copa, decided that his private data was hidden not enough securely, what is unacceptable for the king. That's why he invented tricky and clever password (later he learned that his password is a palindrome of odd length), and coded all his data using it.\n\nCopa is afraid to forget his password, so he decided to write it on a piece of paper. He is aware that it is insecure to keep password in such way, so he decided to cipher it the following way: he cut $*x*$ characters from the start of his password and from the end of it ($*x*$ can be $0$, and $2*x*$ is strictly less than the password length). He obtained 3 **parts of the password**. Let's call it $*prefix*$, $*middle*$ and $*suffix*$ correspondingly, both $*prefix*$ and $*suffix*$ having equal length and $*middle*$ always having odd length. From these parts he made a string $*A* + *prefix* + *B* + *middle* + *C* + *suffix*$, where $*A*$, $*B*$ and $*C*$ are some (possibly empty) strings invented by Copa, and «$+$» means concatenation.\n\nMany years have passed, and just yesterday the king Copa found the piece of paper where his ciphered password was written. The password, as well as the strings $*A*$, $*B*$ and $*C*$, was completely forgotten by Copa, so he asks you to find a password of maximum possible length, which could be invented, ciphered and written by Copa.\n\n## Input\n\nThe input contains single string of small Latin letters with length from $1$ to $10^{5}$ characters.\n\n## Output\n\nThe first line should contain integer $*k*$ — amount of **nonempty parts of the password** in your answer (![image](https://espresso.codeforces.com/1d3312b9ecb4aaef4f6998ba33bc1bc6dcfac529.png)). In each of the following $*k*$ lines output two integers $*x*_{*i*}$ and $*l*_{*i*}$ — start and length of the corresponding part of the password. Output pairs in order of increasing $*x*_{*i*}$. Separate the numbers in pairs by a single space.\n\nStarting position $*x*_{*i*}$ should be an integer from $1$ to the length of the input string. All $*l*_{*i*}$ must be positive, because you should output only non-empty parts. The middle part must have odd length.\n\nIf there are several solutions, output any. Note that your goal is to maximize the sum of $*l*_{*i*}$, but not to maximize $*k*$.",
+  "statementZhMd": "在故事主人公 Copa 国王年幼时，他认为自己的私人数据隐藏得不够安全，而这对国王来说是不可接受的。因此，他发明了一种棘手而巧妙的密码（后来他才知道，这个密码是一个长度为奇数的回文串），并用它加密了所有数据。\n\nCopa 担心自己会忘记密码，于是决定把它写在一张纸上。他知道以这种方式保存密码并不安全，因此决定采用以下方式加密：从密码的开头和末尾各截取 $*x*$ 个字符（$*x*$ 可以为 $0$，且 $2*x*$ 严格小于密码长度）。这样便得到了密码的 3 **个部分**。我们分别称它们为 $*prefix*$、$*middle*$ 和 $*suffix*$，其中 $*prefix*$ 和 $*suffix*$ 长度相等，而 $*middle*$ 的长度始终为奇数。接着，他将这些部分按如下方式组成一个字符串：$*A* + *prefix* + *B* + *middle* + *C* + *suffix*$，其中 $*A*$、$*B*$ 和 $*C*$ 是 Copa 自行构造的字符串（可以为空），「$+$」表示拼接。\n\n许多年过去了，就在昨天，Copa 国王找到了那张写着加密后密码的纸。Copa 已经完全忘记了密码以及字符串 $*A*$、$*B*$ 和 $*C*$，所以他请你找出一个可能由 Copa 发明并加密写下的、长度尽可能大的密码。\n\n## 输入格式\n\n输入包含一个由小写英文字母组成的字符串，长度在 $1$ 到 $10^{5}$ 之间。\n\n## 输出格式\n\n第一行输出整数 $*k*$，表示答案中**非空密码部分**的数量 (![image](https://espresso.codeforces.com/1d3312b9ecb4aaef4f6998ba33bc1bc6dcfac529.png))。接下来的 $*k*$ 行中，每行输出两个整数 $*x*_{*i*}$ 和 $*l*_{*i*}$，分别表示对应部分在输入字符串中的起始位置和长度。按 $*x*_{*i*}$ 递增的顺序输出这些数对。每对中的两个数字以一个空格分隔。\n\n起始位置 $*x*_{*i*}$ 必须是一个介于 $1$ 和输入字符串长度之间的整数。所有 $*l*_{*i*}$ 都必须为正数，因为只应输出非空部分。中间部分的长度必须为奇数。\n\n如果有多个解，输出任意一个。注意，你的目标是最大化 $*l*_{*i*}$ 的总和，而不是最大化 $*k*$。",
+  "samples": [
+    {
+      "input": "abacaba\n",
+      "output": "1\n1 7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "axbya\n",
+      "output": "3\n1 1\n2 1\n5 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "xabyczba\n",
+      "output": "3\n2 2\n4 1\n7 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T19:11:53.013Z",
+  "translatedAt": "2026-10-30T19:18:28.156Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -8,6 +8,7 @@
  */
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import CompilerDock from '@/components/compiler/CompilerDock';
 import { DifficultyBadge, TranslatedBadge } from '@/components/Badges';
@@ -25,8 +26,9 @@ function compilerProblems(problems) {
   }));
 }
 
-/** 题目切换条：← / 下拉选择 / →，置于题目卡头部。 */
+/** 题目切换条：← / 下拉选择 / →，置于题目卡头部（客户端路由切换）。 */
 export function ProblemSwitcher({ contest, current }) {
+  const router = useRouter();
   const problems = contest?.problemsList ?? [];
   if (problems.length <= 1) return null;
   const idx = problems.findIndex((p) => p.id === current.id);
@@ -50,7 +52,7 @@ export function ProblemSwitcher({ contest, current }) {
         value={idx}
         onChange={(e) => {
           const p = problems[Number(e.target.value)];
-          if (p) window.location.href = href(p);
+          if (p) router.push(href(p));
         }}
         aria-label="切换题目"
         className="min-w-0 flex-1 rounded-md border bg-background px-2 py-1 text-xs"

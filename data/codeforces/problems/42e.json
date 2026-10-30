@@ -1,0 +1,36 @@
+{
+  "id": "42E",
+  "platform": "codeforces",
+  "contestId": 42,
+  "index": "E",
+  "title": "Baldman and the military",
+  "titleZh": "秃头侠与军方",
+  "url": "https://codeforces.com/contest/42/problem/E",
+  "difficulty": 2700,
+  "tags": [
+    "dfs and similar",
+    "graphs",
+    "trees"
+  ],
+  "points": 2500,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "Baldman is a warp master. He possesses a unique ability — creating wormholes! Given two positions in space, Baldman can make a wormhole which makes it possible to move between them in both directions. Unfortunately, such operation isn't free for Baldman: each created wormhole makes him lose plenty of hair from his head.\n\nBecause of such extraordinary abilities, Baldman has caught the military's attention. He has been charged with a special task. But first things first.\n\nThe military base consists of several underground objects, some of which are connected with bidirectional tunnels. There necessarily exists a path through the tunnel system between each pair of objects. Additionally, exactly two objects are connected with surface. For the purposes of security, a patrol inspects the tunnel system every day: he enters one of the objects which are connected with surface, walks the base passing each tunnel **at least** once and leaves through one of the objects connected with surface. He can enter and leave either through the same object, or through different objects. The military management noticed that the patrol visits some of the tunnels multiple times and decided to optimize the process. Now they are faced with a problem: a system of wormholes needs to be made to allow of a patrolling which passes each tunnel **exactly** once. At the same time a patrol is allowed to pass each wormhole any number of times.\n\nThis is where Baldman comes to operation: he is the one to plan and build the system of the wormholes. Unfortunately for him, because of strict confidentiality the military can't tell him the arrangement of tunnels. Instead, they insist that his system of portals solves the problem for any arrangement of tunnels which satisfies the given condition. Nevertheless, Baldman has some information: he knows which pairs of objects he can potentially connect and how much it would cost him (in hair). Moreover, tomorrow he will be told which objects (exactly two) are connected with surface. Of course, our hero decided not to waste any time and calculate the minimal cost of getting the job done for some pairs of objects (which he finds likely to be the ones connected with surface). Help Baldman!\n\n## Input\n\nFirst line of the input contains a single natural number $*n*$ ($2 ≤ *n* ≤ 100000$) — the number of objects on the military base. The second line — one number $*m*$ ($1 ≤ *m* ≤ 200000$) — the number of the wormholes Baldman can make. The following $*m*$ lines describe the wormholes: each line contains three integer numbers $*a*, *b*, *c*$ ($1 ≤ *a*, *b* ≤ *n*, 1 ≤ *c* ≤ 100000$) — the numbers of objects which can be connected and the number of hair Baldman has to spend to make this wormhole.\n\nThe next line contains one natural number $*q*$ ($1 ≤ *q* ≤ 100000$) — the number of queries. Finally, the last $*q*$ lines contain a description of one query each — a pair of numbers of different objects $*a*_{*i*}, *b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$, $*a*_{*i*} ≠ *b*_{*i*}$). There could be more than one wormhole between a pair of objects.\n\n## Output\n\nYour program should output $*q*$ lines, one for each query. The $*i*$-th line should contain a single integer number — the answer for $*i*$-th query: the minimum cost (in hair) of a system of wormholes allowing the optimal patrol for any system of tunnels (satisfying the given conditions) if $*a*_{*i*}$ and $*b*_{*i*}$ are the two objects connected with surface, or `\"-1\"` if such system of wormholes cannot be made.",
+  "statementZhMd": "秃头侠是一位空间传送大师。他拥有一种独特的能力——创造虫洞！给定空间中的两个位置，秃头侠可以在它们之间创建一个虫洞，使人能够双向往返。不幸的是，这种操作并非毫无代价：每创建一个虫洞，他都会损失大量头发。\n\n凭借这项非凡的能力，秃头侠引起了军方的注意，并被委以一项特殊任务。不过，还是先从头说起。\n\n军事基地由若干地下设施组成，其中一些设施之间通过双向隧道相连。任意两个设施之间都必然存在一条隧道路径。此外，恰好有两个设施与地面相连。出于安全考虑，每天都会有一名巡逻兵检查隧道系统：他从一个与地面相连的设施进入，巡查基地，至少经过每条隧道一次，然后从一个与地面相连的设施离开。他可以从同一个设施进出，也可以从不同的设施进出。军方管理层发现巡逻兵会多次经过某些隧道，于是决定优化巡逻过程。现在，他们面临的问题是：需要建立一套虫洞系统，使巡逻兵能够恰好经过每条隧道一次。同时，巡逻兵可以任意次经过每个虫洞。\n\n这时，秃头侠便派上了用场：由他来规划并建造虫洞系统。不幸的是，由于严格的保密要求，军方不能告知他隧道的具体布局。相反，他们要求他设计的系统必须能够解决所有满足给定条件的隧道布局问题。尽管如此，秃头侠还是掌握了一些信息：他知道哪些设施之间可能建立连接，以及每条虫洞的建造代价（以头发计）。此外，明天他就会获知哪两个设施（恰好两个）与地面相连。当然，我们的主人公决定不浪费时间，先针对一些设施对（他认为这些设施很可能与地面相连）计算完成任务的最低代价。请帮助秃头侠！\n\n## 输入格式\n\n输入第一行包含一个正整数 $*n*$（$2 ≤ *n* ≤ 100000$）——军事基地中设施的数量。第二行包含一个整数 $*m*$（$1 ≤ *m* ≤ 200000$）——秃头侠可以建造的虫洞数量。接下来的 $*m*$ 行描述虫洞：每行包含三个整数 $*a*, *b*, *c*$（$1 ≤ *a*, *b* ≤ *n*, 1 ≤ *c* ≤ 100000$）——可以建立连接的设施编号，以及建造该虫洞所需消耗的头发数量。\n\n接下来一行包含一个正整数 $*q*$（$1 ≤ *q* ≤ 100000$）——询问数量。最后的 $*q*$ 行每行描述一个询问，包含一对不同的设施编号 $*a*_{*i*}, *b*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$，$*a*_{*i*} ≠ *b*_{*i*}$）。一对设施之间可以有多个虫洞。\n\n## 输出格式\n\n程序应输出 $*q*$ 行，每个询问对应一行。第 $*i*$ 行应包含一个整数——第 $*i*$ 个询问的答案：如果 $*a*_{*i*}$ 和 $*b*_{*i*}$ 是与地面相连的两个设施，则输出能够使巡逻过程最优、且适用于任意满足给定条件的隧道系统的虫洞系统的最低代价（以头发计）；如果无法建立这样的系统，则输出 `\"-1\"`。",
+  "samples": [
+    {
+      "input": "2\n1\n1 2 3\n1\n1 2\n",
+      "output": "0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3\n1\n1 2 3\n2\n1 2\n1 3\n",
+      "output": "-1\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T19:30:21.251Z",
+  "translatedAt": "2026-10-30T19:35:59.418Z",
+  "translateModel": "gpt-6.1-sol"
+}

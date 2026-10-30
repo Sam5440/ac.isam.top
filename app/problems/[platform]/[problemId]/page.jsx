@@ -14,10 +14,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { getAllProblems, getContest, getProblem, getProblemsOfContest, platformOf } from '@/lib/data';
-import { pairBlocks } from '@/lib/statement-segments';
+import { pairSegments } from '@/lib/statement-segments';
 import { tagZh } from '@/lib/tags';
-
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllProblems().map((p) => ({ platform: p.platform, problemId: String(p.id) }));
@@ -25,11 +23,18 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { platform, problemId } = await params;
-  const prob = getAllProblems().find(
-    (p) => p.platform === platform && String(p.id) === String(problemId),
-  );
+  const prob = findProblem(platform, problemId);
   if (!prob) return { title: '题目未找到' };
   return { title: `${prob.index}. ${prob.titleZh || prob.title}` };
+}
+
+/** 题号大小写不敏感查找（手输 20a 也能命中 20A）。返回全量记录。 */
+function findProblem(platform, problemId) {
+  const pid = String(problemId).toLowerCase();
+  const summary = getAllProblems().find(
+    (p) => p.platform === platform && String(p.id).toLowerCase() === pid,
+  );
+  return summary ? getProblem(platform, summary.id) : null;
 }
 
 function MetaItem({ icon: Icon, label, children }) {
@@ -46,11 +51,7 @@ function MetaItem({ icon: Icon, label, children }) {
 
 export default async function ProblemPage({ params }) {
   const { platform, problemId } = await params;
-  const all = getAllProblems();
-  const summary = all.find((p) => p.platform === platform && String(p.id) === String(problemId));
-  if (!summary) notFound();
-
-  const prob = getProblem(platform, problemId);
+  const prob = findProblem(platform, problemId);
   if (!prob) notFound();
 
   const p = platformOf(platform);
@@ -74,7 +75,7 @@ export default async function ProblemPage({ params }) {
     ? { id: contest.id, platform, title: contest.title, titleZh: contest.titleZh ?? null, problemsList }
     : null;
 
-  const { enBlocks, zhBlocks, wholeFallback } = pairBlocks(prob.statementMd, prob.statementZhMd);
+  const segments = pairSegments(prob.statementMd, prob.statementZhMd);
 
   return (
     <div className="space-y-6 py-10">
@@ -129,9 +130,7 @@ export default async function ProblemPage({ params }) {
               {prob.statementMd ? (
                 <StatementBody
                   code={prob.id}
-                  enBlocks={enBlocks}
-                  zhBlocks={zhBlocks}
-                  wholeFallbackZh={wholeFallback}
+                  segments={segments}
                   title={prob.title}
                   titleZh={prob.titleZh}
                 />

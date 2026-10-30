@@ -175,6 +175,31 @@
   @apply my-3 overflow-x-auto overflow-y-hidden;
 }
 
+/* statement paragraphs（对照模式的原文段，题面特有间距） */
+.stmt-body p {
+  @apply my-2 leading-7;
+}
+
+/* 不可断行内容（行内 KaTeX nowrap、裸 URL）在段内横向滚动，不撑破页面 */
+.stmt-body p,
+.md-body p,
+.md-body li {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.stmt-body pre.code-block {
+  @apply relative my-3 overflow-x-auto rounded-lg border bg-background p-4 pt-8 font-mono text-[13px] leading-6 text-foreground/90;
+}
+.stmt-body pre.code-block::before {
+  content: attr(data-lang);
+  @apply absolute right-3 top-1.5 font-sans text-[11px] font-medium uppercase tracking-wider text-muted-foreground;
+}
+
+.stmt-body img {
+  @apply my-2 h-auto max-w-full rounded-md;
+}
+
 /* ---------- 语法高亮（HighlightRuntime 客户端套色） ---------- */
 .code-block .hljs {
   @apply text-foreground/90;

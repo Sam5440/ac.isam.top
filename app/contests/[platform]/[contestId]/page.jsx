@@ -9,8 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { getContest, getContests, getProblemsOfContest, platformOf } from '@/lib/data';
 import { formatDateTime } from '@/lib/utils';
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   const params = [];
   for (const platform of ['atcoder', 'codeforces']) {

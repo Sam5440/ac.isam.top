@@ -3,11 +3,11 @@
 /**
  * 分段对照题面（参考 ys_problem_web/components/StatementBody.jsx 移植）。
  *
- * 服务端把 statementMd / statementZhMd 切成段落块传入（lib/statement-segments.js
- * 的 pairBlocks）。CI 存档译文作为 'ai' 渠道；存档未覆盖的（段落, 渠道）对由
- * 本机实时补齐：lib/zh-store.js 轮转调度四家机器翻译（IndexedDB 持久化），
- * AI（用户自定义翻译）走访问者自己的 OpenAI 兼容接口。语言模式（对照/英文/
- * 中文）与优先级链来自设置（左下角译字浮标 / 设置弹窗）。
+ * 服务端经 lib/statement-segments.js 把 statementMd / statementZhMd 切成
+ * 一一对应的段落数组传入。CI 存档译文作为 'ai' 渠道；存档未覆盖的
+ * （段落, 渠道）对由本机实时补齐：lib/zh-store.js 轮转调度四家机器翻译
+ * （IndexedDB 持久化），AI（用户自定义翻译）走访问者自己的 OpenAI 兼容
+ * 接口。语言模式（对照/英文/中文）与优先级链来自设置。
  */
 
 import { useEffect, useRef, useState } from 'react';
@@ -156,13 +156,11 @@ function ZhLine({ segKey, archivedZh, channel, note }) {
 /**
  * 完整分段题面。
  * @param {string} code 题目 id（segment key 前缀）
- * @param {string[]} enBlocks 原文段落块
- * @param {string[]|null} zhBlocks CI 存档译文（与 enBlocks 逐块配对）或 null
- * @param {string|null} wholeFallbackZh 配对失败时的整篇 CI 译文
+ * @param {Array<{en: string, zh: string|null}>} segments 服务端配对好的段落
  * @param {string} title 原文题名
  * @param {string|null} titleZh CI 存档题名
  */
-export default function StatementBody({ code, enBlocks, zhBlocks, wholeFallbackZh, title, titleZh }) {
+export default function StatementBody({ code, segments, title, titleZh }) {
   const { lang, settings } = useSettings();
   const mode = lang.mode;
   const channel = lang.channel;
@@ -174,25 +172,25 @@ export default function StatementBody({ code, enBlocks, zhBlocks, wholeFallbackZ
         ? { priority: ['ai'] }
         : null;
 
-  const segments = enBlocks.map((text, i) => ({
+  const hasArchive = segments.some((s) => s.zh);
+  const zhSegments = segments.map((s, i) => ({
     key: `${code}|p|${i}`,
-    text,
-    archived: Boolean(zhBlocks),
+    text: s.en,
+    archived: Boolean(s.zh),
   }));
 
   useEffect(() => {
-    if (mode !== 'en') hydrateSegments(code, segments);
+    if (mode !== 'en') hydrateSegments(code, zhSegments);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [code, mode, zhBlocks === null]);
+  }, [code, mode, hasArchive]);
 
   const segKeyOf = (i) => `${code}|p|${i}`;
 
-  const zhLineFor = (en, i, note) => {
+  const zhLineFor = (seg, i, note) => {
     const segKey = segKeyOf(i);
-    const archivedZh = zhBlocks ? zhBlocks[i] : null;
-    if (channel === 'ai_custom') return <AiZhLine en={en} ai={ai} note={note} />;
-    if (chain) return <ChainZhLine segKey={segKey} archivedZh={archivedZh} priority={chain.priority} note={note} />;
-    return <ZhLine segKey={segKey} archivedZh={archivedZh} channel={channel} note={note} />;
+    if (channel === 'ai_custom') return <AiZhLine en={seg.en} ai={ai} note={note} />;
+    if (chain) return <ChainZhLine segKey={segKey} archivedZh={seg.zh} priority={chain.priority} note={note} />;
+    return <ZhLine segKey={segKey} archivedZh={seg.zh} channel={channel} note={note} />;
   };
 
   const titleLine =
@@ -204,8 +202,8 @@ export default function StatementBody({ code, enBlocks, zhBlocks, wholeFallbackZ
       )
     ) : null;
 
-  // 整篇回退（配对失败）：中文模式或对照模式末尾整篇显示 CI 译文
-  const fallbackDoc = mode === 'zh' && channel !== 'ai_custom' ? wholeFallbackZh : null;
+  // 中文模式 + AI (CI翻译) 渠道：存档只有整篇级时（配对彻底失败的单段情况
+  // 已由 pairSegments 兜底），渲染存档段即可 —— 与分段渲染同一路径。
 
   return (
     <>
@@ -213,31 +211,21 @@ export default function StatementBody({ code, enBlocks, zhBlocks, wholeFallbackZ
 
       {mode === 'en' ? (
         <div className="md-body stmt-body">
-          {enBlocks.map((b, i) => (
-            <div key={i} dangerouslySetInnerHTML={{ __html: renderRich(b) }} />
+          {segments.map((s, i) => (
+            <div key={i} dangerouslySetInnerHTML={{ __html: renderRich(s.en) }} />
           ))}
         </div>
       ) : (
         <div className="stmt-body">
-          {enBlocks.map((b, i) => (
+          {segments.map((s, i) => (
             <div key={i}>
-              <div className="md-body" dangerouslySetInnerHTML={{ __html: renderRich(b) }} />
+              <div className="md-body" dangerouslySetInnerHTML={{ __html: renderRich(s.en) }} />
               <div className="stmt-zh mt-1 border-l-2 border-primary/40 pl-3 text-[13px] text-muted-foreground">
-                {zhLineFor(b, i)}
+                {zhLineFor(s, i)}
               </div>
             </div>
           ))}
-          {zhBlocks == null && wholeFallbackZh && (
-            <div className="mt-3 rounded-lg border p-3">
-              <div className="text-muted-foreground mb-1 text-[11px] uppercase tracking-wider">CI 译文（整篇回退）</div>
-              <div className="md-body" dangerouslySetInnerHTML={{ __html: renderRich(wholeFallbackZh) }} />
-            </div>
-          )}
         </div>
-      )}
-
-      {fallbackDoc && (
-        <div className="md-body mt-4" dangerouslySetInnerHTML={{ __html: renderRich(fallbackDoc) }} />
       )}
     </>
   );
