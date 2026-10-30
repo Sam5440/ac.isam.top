@@ -1,0 +1,37 @@
+{
+  "id": "1705E",
+  "platform": "codeforces",
+  "contestId": 1705,
+  "index": "E",
+  "title": "Mark and Professor Koro",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1705/problem/E",
+  "difficulty": 2300,
+  "tags": [
+    "binary search",
+    "bitmasks",
+    "brute force",
+    "combinatorics",
+    "data structures",
+    "greedy"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "After watching a certain anime before going to sleep, Mark dreams of standing in an old classroom with a blackboard that has a sequence of $n$ positive integers $a_1, a_2,\\dots,a_n$ on it.\n\nThen, professor Koro comes in. He can perform the following operation:\n\n- select an integer $x$ that appears at least $2$ times on the board,\n- erase those $2$ appearances, and\n- write $x+1$ on the board.\n\nProfessor Koro then asks Mark the question, \"what is the maximum possible number that could appear on the board after some operations?\"\n\nMark quickly solves this question, but he is still slower than professor Koro. Thus, professor Koro decides to give Mark additional challenges. He will update the initial sequence of integers $q$ times. Each time, he will choose positive integers $k$ and $l$, then change $a_k$ to $l$. After each update, he will ask Mark the same question again.\n\nHelp Mark answer these questions faster than Professor Koro!\n\nNote that the updates are persistent. Changes made to the sequence $a$ will apply when processing future updates.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $q$ ($2\\leq n\\leq 2\\cdot 10^5$, $1\\leq q\\leq 2\\cdot 10^5$) — the length of the sequence $a$ and the number of updates, respectively.\n\nThe second line contains $n$ integers $a_1,a_2,\\dots,a_n$ ($1\\leq a_i\\leq 2\\cdot 10^5$)\n\nThen, $q$ lines follow, each consisting of two integers $k$ and $l$ ($1\\leq k\\leq n$, $1\\leq l\\leq 2\\cdot 10^5$), telling to update $a_k$ to $l$.\n\n## Output\n\nPrint $q$ lines. The $i$-th line should consist of a single integer — the answer after the $i$-th update.\n\n## Note\n\nIn the first example test, the program must proceed through $4$ updates.\n\nThe sequence after the first update is $[2,3,2,4,5]$. One sequence of operations that achieves the number $6$ the following.\n\n- Initially, the blackboard has numbers $[2,3,2,4,5]$.\n- Erase two copies of $2$ and write $3$, yielding $[3,4,5,\\color{red}{3}]$.\n- Erase two copies of $3$ and write $4$, yielding $[4,5,\\color{red}{4}]$.\n- Erase two copies of $4$ and write $5$, yielding $[5,\\color{red}{5}]$.\n- Erase two copies of $5$ and write $6$, yielding $[\\color{red}{6}]$.\n\nThen, in the second update, the array is changed to $[2,3,2,4,3]$. This time, Mark cannot achieve $6$. However, one sequence that Mark can use to achieve $5$ is shown below.\n\n- Initially, the blackboard has $[2,3,2,4,3]$.\n- Erase two copies of $2$ and write $3$, yielding $[3,4,3,\\color{red}{3}]$.\n- Erase two copies of $3$ and write $4$, yielding $[3,4,\\color{red}{4}]$.\n- Erase two copies of $4$ and write $5$, yielding $[3,\\color{red}{5}]$.\n\nIn the third update, the array is changed to $[2,3,2,1,3]$. One way to achieve $4$ is shown below.\n\n- Initially, the blackboard has $[2,3,2,1,3]$.\n- Erase two copies of $3$ and write $4$, yielding $[2,2,1,\\color{red}{4}]$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 4\n2 2 2 4 5\n2 3\n5 3\n4 1\n1 4\n",
+      "output": "6\n5\n4\n5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2 1\n200000 1\n2 200000\n",
+      "output": "200001\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:53:50.481Z"
+}

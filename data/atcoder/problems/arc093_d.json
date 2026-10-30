@@ -1,0 +1,41 @@
+{
+  "id": "arc093_d",
+  "platform": "atcoder",
+  "contestId": "arc093",
+  "index": "F",
+  "title": "Dark Horse",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc093/tasks/arc093_d",
+  "difficulty": 3201,
+  "tags": [],
+  "points": 1100,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "## Problem Statement\n\nThere are $2^N$ players, numbered $1, 2, ..., 2^N$. They decided to hold a tournament.\n\nThe tournament proceeds as follows:\n\n- Choose a permutation of $1, 2, ..., 2^N$: $p_1, p_2, ..., p_{2^N}$.\n- The players stand in a row in the order of Player $p_1$, Player $p_2$, $...$, Player $p_{2^N}$.\n- Repeat the following until there is only one player remaining in the row:\n- Play the following matches: the first player in the row versus the second player in the row, the third player versus the fourth player, and so on. The players who lose leave the row. The players who win stand in a row again, preserving the relative order of the players.\n- The last player who remains in the row is the champion.\n\nIt is known that, the result of the match between two players can be written as follows, using $M$ integers $A_1, A_2, ..., A_M$ given as input:\n\n- When $y = A_i$ for some $i$, the winner of the match between Player $1$ and Player $y$ ($2 \\leq y \\leq 2^N$) will be Player $y$.\n- When $y \\neq A_i$ for every $i$, the winner of the match between Player $1$ and Player $y$ ($2 \\leq y \\leq 2^N$) will be Player $1$.\n- When $2 \\leq x < y \\leq 2^N$, the winner of the match between Player $x$ and Player $y$ will be Player $x$.\n\nThe champion of this tournament depends only on the permutation $p_1, p_2, ..., p_{2^N}$ chosen at the beginning. Find the number of permutation $p_1, p_2, ..., p_{2^N}$ chosen at the beginning of the tournament that would result in Player $1$ becoming the champion, modulo $10^9 + 7$.\n\n## Constraints\n\n- $1 \\leq N \\leq 16$\n- $0 \\leq M \\leq 16$\n- $2 \\leq A_i \\leq 2^N$ ($1 \\leq i \\leq M$)\n- $A_i < A_{i + 1}$ ($1 \\leq i < M$)\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M\nA_1 A_2 ... A_M\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 1\n3\n",
+      "output": "8\n",
+      "note": "Examples of $p$ that satisfy the condition are: $[1, 4, 2, 3]$ and $[3, 2, 1, 4]$. Examples of $p$ that do not satisfy the condition are: $[1, 2, 3, 4]$ and $[1, 3, 2, 4]$."
+    },
+    {
+      "input": "4 3\n2 4 6\n",
+      "output": "0\n"
+    },
+    {
+      "input": "3 0\n",
+      "output": "40320\n"
+    },
+    {
+      "input": "3 3\n3 4 7\n",
+      "output": "2688\n"
+    },
+    {
+      "input": "16 16\n5489 5490 5491 5492 5493 5494 5495 5497 18993 18995 18997 18999 19000 19001 19002 19003\n",
+      "output": "816646464\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:46:35.071Z"
+}
