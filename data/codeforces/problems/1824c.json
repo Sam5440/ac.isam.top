@@ -1,0 +1,47 @@
+{
+  "id": "1824C",
+  "platform": "codeforces",
+  "contestId": 1824,
+  "index": "C",
+  "title": "LuoTianyi and XOR-Tree",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1824/problem/C",
+  "difficulty": 2500,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "dp",
+    "dsu",
+    "greedy",
+    "trees"
+  ],
+  "points": 1750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "LuoTianyi gives you a tree with values in its vertices, and the root of the tree is vertex $1$.\n\nIn one operation, you can change the value in one vertex to any non-negative integer.\n\nNow you need to find the minimum number of operations you need to perform to make each path from the root to leaf$^{\\dagger}$ has a [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) value of zero.\n\n$^{\\dagger}$A leaf in a rooted tree is a vertex that has exactly one neighbor and is not a root.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 10^5$) — the number of vertices in the tree.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$), the $i$-th number represents the value in the $i$-th vertex.\n\nNext $n−1$ lines describe the edges of the tree. The $i$-th line contains two integers $u_i$ and $v_i$ ($1 \\le u_i,v_i \\le n, u_i \\neq v_i$) — the vertices connected by an edge of the tree. It's guaranteed that the given edges form a tree.\n\n## Output\n\nPrint a single integer — the minimum number of operations.\n\n## Note\n\nThe tree in the first example:\n\n![image](https://espresso.codeforces.com/106872fad85e7d7967170d76532640ffd495613a.png)\n\nIf we change the value in the vertex $2$ to $3$, the value in the vertex $5$ to $4$, and the value in the vertex $6$ to $6$, then the tree will be ok.\n\nThe bitwise XOR from the root to the leaf $2$ will be $3 \\oplus 3=0$.\n\nThe bitwise XOR from the root to the leaf $5$ will be $4 \\oplus 7 \\oplus 3=0$.\n\nThe bitwise XOR from the root to the leaf $6$ will be $6 \\oplus 5 \\oplus 3=0$.\n\nThe tree in the second example:\n\n![image](https://espresso.codeforces.com/b3c27b4d05c409d8ff458ce36aeae111fa49a71c.png)\n\nIf we change the value in the vertex $2$ to $4$, the value in the vertex $3$ to $27$, and the value in the vertex $6$ to $20$, then the tree will be ok.\n\nThe bitwise XOR from the root to the leaf $6$ will be $20 \\oplus 19 \\oplus 7=0$.\n\nThe bitwise XOR from the root to the leaf $8$ will be $11 \\oplus 27 \\oplus 4 \\oplus 19 \\oplus 7=0$.\n\nThe bitwise XOR from the root to the leaf $4$ will be $16 \\oplus 4 \\oplus 19 \\oplus 7=0$.\n\nThe bitwise XOR from the root to the leaf $7$ will be $16 \\oplus 4 \\oplus 19 \\oplus 7=0$.\n\nIn the third example, the only leaf is the vertex $4$ and the bitwise XOR on the path to it is $1 \\oplus 2 \\oplus 1 \\oplus 2 = 0$, so we don't need to change values.\n\nIn the fourth example, we can change the value in the vertex $1$ to $5$, and the value in the vertex $4$ to $0$.\n\nHere $\\oplus$ denotes the bitwise XOR operation.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n3 5 7 5 8 4\n1 2\n1 3\n1 4\n3 5\n4 6\n",
+      "output": "3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "8\n7 10 7 16 19 9 16 11\n1 5\n4 2\n6 5\n5 2\n7 2\n2 3\n3 8\n",
+      "output": "3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4\n1 2 1 2\n1 2\n2 3\n4 3\n",
+      "output": "0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "9\n4 3 6 1 5 5 5 2 7\n1 2\n2 3\n4 1\n4 5\n4 6\n4 7\n8 1\n8 9\n",
+      "output": "2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:26:11.270Z"
+}

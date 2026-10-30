@@ -1,0 +1,28 @@
+{
+  "id": "1839B",
+  "platform": "codeforces",
+  "contestId": 1839,
+  "index": "B",
+  "title": "Lamps",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1839/problem/B",
+  "difficulty": 1100,
+  "tags": [
+    "greedy",
+    "sortings"
+  ],
+  "points": 1000,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have $n$ lamps, numbered by integers from $1$ to $n$. Each lamp $i$ has two integer parameters $a_i$ and $b_i$.\n\nAt each moment each lamp is **in one of three states**: it may be turned on, turned off, or broken.\n\nInitially all lamps are turned off. In one operation you can select one lamp that is turned off and turn it on (you can't turn on broken lamps). You **receive** $b_i$ points for turning lamp $i$ on. The following happens after each performed operation:\n\n- Let's denote the number of lamps that are turned on as $x$ (broken lamps **do not count**). All lamps $i$ such that $a_i \\le x$ simultaneously break, whether they were turned on or off.\n\nPlease note that broken lamps never count as turned on and that after a turned on lamp breaks, you still keep points received for turning it on.\n\nYou can perform an arbitrary number of operations.\n\nFind the maximum number of points you can get.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of lamps.\n\nEach of the next $n$ lines contains two integers $a_i$ and $b_i$ ($1 \\le a_i \\le n, 1 \\le b_i \\le 10^9$) — parameters of the $i$-th lamp.\n\nIt is guaranteed that sum of $n$ over all test cases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer — the maximum number of points you can get.\n\n## Note\n\nIn first test case $n = 4$. One of ways to get the maximum number of points is as follows:\n\n- You turn lamp $4$ on and receive $b_4 = 13$ points.\n- The number of lamps that are turned on is $1$, so all lamps with $a_i \\le 1$ (namely lamps $2$, $3$ and $4$) break. Lamp $4$ is no longer turned on, so the number of lamps that are turned becomes $0$.\n- The only lamp you can turn on is lamp $1$, as all other lamps are broken. You receive $b_1 = 2$ points for turning it on.\n- The number of lamps that are turned on is $1$. As $a_1 = 2$, lamp $1$ doesn't break.\n\nYour receive $13 + 2 = 15$ points in total. It can be shown that this is the maximum number of points you can get, so the answer for the first test case is $15$.\n\nIn the second test case, one of the ways to get the maximum number of points is as follows:\n\n- On the first operation you turn on lamp $4$ and receive $2$ points. No lamps break after the first operation.\n- On the second operation you turn on lamp $3$ and receive $5$ points. After the second operation, there are $2$ lamps turned on. As $a_3 \\le 2$, lamp $3$ breaks.\n- On the third operation, you turn on lamp $1$ and receive $4$ points.\n- On the fourth operation, you turn on lamp $5$ and receive $3$ points. After that there are $3$ lamps turned on: lamps $1$, $4$ and $5$. Lamps $1$, $2$, $4$ and $5$ simultaneously break, because for all of them $a_i \\le 3$.\n\nYou receive $2 + 5 + 4 + 3 = 14$ points in total. It can be shown that this is the maximum number of points you can get.\n\nIn the third test case, one of the ways to get the maximum number of points is as follows:\n\n- Turn the lamp $3$ on and receive $4$ points. Lamps $1$ and $3$ break.\n- Turn the lamp $2$ on and receive $4$ points.\n- Turn the lamp $6$ on and receive $3$ points. Lamp $6$ breaks.\n- Turn the lamp $4$ on and receive $4$ points.\n- Turn the lamp $5$ on and receive $5$ points. Lamps $2$, $4$ and $5$ break.\n\nYou receive $4 + 4 + 3 + 4 + 5 = 20$ points in total. It can be shown that this is the maximum number of points you can get.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n4\n2 2\n1 6\n1 10\n1 13\n5\n3 4\n3 1\n2 5\n3 2\n3 3\n6\n1 2\n3 4\n1 4\n3 4\n3 5\n2 3\n1\n1 1\n",
+      "output": "15\n14\n20\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:24:39.170Z"
+}

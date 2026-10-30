@@ -1,0 +1,33 @@
+{
+  "id": "1819F",
+  "platform": "codeforces",
+  "contestId": 1819,
+  "index": "F",
+  "title": "Willy-nilly, Crack, Into Release!",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1819/problem/F",
+  "difficulty": 3500,
+  "tags": [
+    "data structures",
+    "dp"
+  ],
+  "points": 3000,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "You have long dreamed of working in a large IT company and finally got a job there. You have studied all existing modern technologies for a long time and are ready to apply all your knowledge in practice. But then you sit down at your desk and see a sheet of paper with the company's motto printed in large letters: `abcdabcdabcdabcd...`.\n\nThe company's motto contains four main principles— `a` (Willi), `b` (Nilli), `c` (Crack), `d` (Release). Therefore, you consider strings of length $n$ consisting of these four Latin letters. **Unordered** pairs of letters \"`ab`\", \"`bc`\", \"`cd`\", and \"`da`\" in this motto are adjacent, so we will call such pairs of symbols *good*. So, if you are given a string $s$ of length $n$, and it is known that the unordered pair of symbols $\\{ x, y \\}$ is good, then you can perform one of the following operations on the string:\n\n- if $s_n = x$, then you are allowed to replace this symbol with $y$,\n- if there exists $1 \\le i \\lt n$ such that $s_i = x$ and $s_{i+1} = \\ldots = s_n = y$, then you are allowed to replace the $i$-th symbol of the string with $y$, and all subsequent symbols with $x$.\n\nFor example, the string `bacdd` can be replaced with one of the strings `bacda`, `bacdc`, or `badcc`, and the string `aac` can be replaced with `aab` or `aad`.\n\nA non-empty sequence of operations for the string $s$ will be called *correct* if the following two conditions are met:\n\n1. after performing all operations, the string becomes $s$ again,\n2. no string, except for $s$, will occur more than once during the operations. At the same time, the string $s$ can occur exactly twice - before the start of the operations and after performing all operations.\n\nNow we are ready to move on to the problem statement! You have a set of strings that is initially empty. Then, each of $q$ queries adds another string $t_i$ to the set, or removes the string $t_i$ from the set. After each query, you need to output the minimum and maximum size of a correct sequence of operations in which each word occurs at least once. The choice of the initial string $s$ is up to you.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n \\le 20$, $1 \\le q \\le 100\\,000$) — the length of the strings under consideration and the number of queries to modify the set of strings.\n\nEach of the next $q$ lines contains a string $t_i$ ($\\lvert t_i \\rvert = n$). All strings consist of characters \"`a`\", \"`b`\", \"`c`\" and \"`d`\". If the string $t_i$ was not in the set before the query, it is added to the set, otherwise it is removed from the set.\n\n## Output\n\nFor each of the $q$ queries, output two integers: the minimum and maximum size of a correct sequence of operations in which each word from the set appears at least once.\n\nIf there is no sequence of operations that satisfies the condition of the problem, output a single number $-1$.\n\n## Note\n\nLet's consider the first test example.\n\n- After the first query, the set of important words is equal to $\\{$`aa`$\\}$, the minimum sequence of actions has the following form: `aa`, `ab`, `aa`. The maximum sequence of actions that fits is `aa`, `ab`, `ba`, `bb`, `bc`, `cb`, `cc`, `cd`, `dc`, `dd`, `da`, `ad`, `aa`.\n- After the second query, the set of important words is equal to $\\{$`aa, ac`$\\}$. The minimum and maximum sequences of actions are: `aa`, `ab`, `ac`, `ad`, `aa`.\n- After the third query, the set of important words is equal to $\\{$`aa, ac, dd`$\\}$. There is no sequence of actions that fits the condition, so $-1$ should be outputted.\n- After the fourth query, the set of important words is equal to $\\{$`aa, dd`$\\}$. The minimum and maximum sequences of actions are as follows: `aa`, `ab`, `ba`, `bb`, `bc`, `cb`, `cc`, `cd`, `dc`, `dd`, `da`, `ad`, `aa`.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 4\naa\nac\ndd\nac\n",
+      "output": "2 12\n4 4\n-1\n12 12\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3 2\nacc\nbdd\n",
+      "output": "2 44\n28 44\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:26:37.123Z"
+}

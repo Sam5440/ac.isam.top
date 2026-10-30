@@ -1,0 +1,41 @@
+{
+  "id": "1823F",
+  "platform": "codeforces",
+  "contestId": 1823,
+  "index": "F",
+  "title": "Random Walk",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1823/problem/F",
+  "difficulty": 2600,
+  "tags": [
+    "dp",
+    "graphs",
+    "math",
+    "probabilities",
+    "trees"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a tree consisting of $n$ vertices and $n - 1$ edges, and each vertex $v$ has a counter $c(v)$ assigned to it.\n\nInitially, there is a chip placed at vertex $s$ and all counters, except $c(s)$, are set to $0$; $c(s)$ is set to $1$.\n\nYour goal is to place the chip at vertex $t$. You can achieve it by a series of moves. Suppose right now the chip is placed at the vertex $v$. In one move, you do the following:\n\n1. choose one of neighbors $to$ of vertex $v$ **uniformly at random** ($to$ is neighbor of $v$ if and only if there is an edge $\\{v, to\\}$ in the tree);\n2. move the chip to vertex $to$ and increase $c(to)$ by $1$;\n\nYou'll repeat the move above until you reach the vertex $t$.\n\nFor each vertex $v$ calculate the *expected value* of $c(v)$ modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains three integers $n$, $s$ and $t$ ($2 \\le n \\le 2 \\cdot 10^5$; $1 \\le s, t \\le n$; $s \\neq t$) — number of vertices in the tree and the starting and finishing vertices.\n\nNext $n - 1$ lines contain edges of the tree: one edge per line. The $i$-th line contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$; $u_i \\neq v_i$), denoting the edge between the nodes $u_i$ and $v_i$.\n\nIt's guaranteed that the given edges form a tree.\n\n## Output\n\nPrint $n$ numbers: *expected values* of $c(v)$ modulo $998\\,244\\,353$ for each $v$ from $1$ to $n$.\n\nFormally, let $M = 998\\,244\\,353$. It can be shown that the answer can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $p \\cdot q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot q \\equiv p \\pmod{M}$.\n\n## Note\n\nThe tree from the first example is shown below:\n\n![image](https://espresso.codeforces.com/1f97a4e744573216618dcb13f8bba740ea24f70f.png)\n\nLet's calculate expected value $E[c(1)]$:\n\n- $P(c(1) = 0) = 0$, since $c(1)$ is set to $1$ from the start.\n- $P(c(1) = 1) = \\frac{1}{2}$, since there is the only one series of moves that leads $c(1) = 1$. It's $1 \\rightarrow 2 \\rightarrow 3$ with probability $1 \\cdot \\frac{1}{2}$.\n- $P(c(1) = 2) = \\frac{1}{4}$: the only path is $1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 3$.\n- $P(c(1) = 3) = \\frac{1}{8}$: the only path is $1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 3$.\n- $P(c(1) = i) = \\frac{1}{2^i}$ in general case.\n\nAs a result, $E[c(1)] = \\sum\\limits_{i=1}^{\\infty}{i \\frac{1}{2^i}} = 2$.\n\nImage of tree in second test ![image](https://espresso.codeforces.com/a6d9e24f187028a288c6de81a8219a6ae7bd5b0b.png)\n\nImage of tree in third test ![image](https://espresso.codeforces.com/0e0dceee3908824901afe2711f77ecc859ce10bd.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 1 3\n1 2\n2 3\n",
+      "output": "2 2 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4 1 3\n1 2\n2 3\n1 4\n",
+      "output": "4 2 1 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "8 2 6\n6 4\n6 2\n5 4\n3 1\n2 3\n7 4\n8 2\n",
+      "output": "1 3 2 0 0 1 0 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:26:19.302Z"
+}

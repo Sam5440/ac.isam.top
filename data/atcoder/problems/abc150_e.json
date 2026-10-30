@@ -1,0 +1,34 @@
+{
+  "id": "abc150_e",
+  "platform": "atcoder",
+  "contestId": "abc150",
+  "index": "E",
+  "title": "Change a Little Bit",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc150/tasks/abc150_e",
+  "difficulty": 1851,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nFor two sequences $S$ and $T$ of length $N$ consisting of $0$ and $1$, let us define $f(S, T)$ as follows:\n\n- Consider repeating the following operation on $S$ so that $S$ will be equal to $T$. $f(S, T)$ is the minimum possible total cost of those operations.\n- Change $S_i$ (from $0$ to $1$ or vice versa). The cost of this operation is $D \\times C_i$, where $D$ is the number of integers $j$ such that $S_j \\neq T_j (1 \\leq j \\leq N)$ just before this change.\n\nThere are $2^N \\times (2^N - 1)$ pairs $(S, T)$ of different sequences of length $N$ consisting of $0$ and $1$. Compute the sum of $f(S, T)$ over all of those pairs, modulo $(10^9+7)$.\n\n## Constraints\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq C_i \\leq 10^9$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nC_1 C_2 \\cdots C_N\n```\n\n## Output\n\nPrint the sum of $f(S, T)$, modulo $(10^9+7)$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1\n1000000000\n",
+      "output": "999999993\n",
+      "note": "There are two pairs $(S, T)$ of different sequences of length $2$ consisting of $0$ and $1$, as follows:\n\n- $S = (0), T = (1):$ by changing $S_1$ to $1$, we can have $S = T$ at the cost of $1000000000$, so $f(S, T) = 1000000000$.\n- $S = (1), T = (0):$ by changing $S_1$ to $0$, we can have $S = T$ at the cost of $1000000000$, so $f(S, T) = 1000000000$.\n\nThe sum of these is $2000000000$, and we should print it modulo $(10^9+7)$, that is, $999999993$."
+    },
+    {
+      "input": "2\n5 8\n",
+      "output": "124\n",
+      "note": "There are $12$ pairs $(S, T)$ of different sequences of length $3$ consisting of $0$ and $1$, which include:\n\n- $S = (0, 1), T = (1, 0)$\n\nIn this case, if we first change $S_1$ to $1$ then change $S_2$ to $0$, the total cost is $5 \\times 2 + 8 = 18$. We cannot have $S = T$ at a smaller cost, so $f(S, T) = 18$."
+    },
+    {
+      "input": "5\n52 67 72 25 79\n",
+      "output": "269312\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:20:15.124Z"
+}

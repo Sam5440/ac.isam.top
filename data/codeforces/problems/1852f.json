@@ -1,0 +1,44 @@
+{
+  "id": "1852F",
+  "platform": "codeforces",
+  "contestId": 1852,
+  "index": "F",
+  "title": "Panda Meetups",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1852/problem/F",
+  "difficulty": 3500,
+  "tags": [
+    "data structures",
+    "dp",
+    "flows"
+  ],
+  "points": 3000,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "The red pandas are in town to meet their relatives, the blue pandas! The town is modeled by a number line.\n\nThe pandas have already planned their meetup, but the schedule keeps changing. You are given $q$ updates of the form `x t c`.\n\n- If $c \\lt 0$, it means $|c|$ more **red** pandas enter the number line at position $x$ and time $t$. Then, each unit of time, they can each independently move one unit in either direction across the number line, or **not move at all**.\n- If $c \\gt 0$, it means that $c$ more **blue** pandas check position $x$ for red pandas at time $t$. If a blue panda does not meet a red panda at that specific location and time, they dejectedly leave the number line right away. If there is a red panda at a position at the same time a blue panda checks it, they form a friendship and leave the number line. Each red panda can form a friendship with **at most one** blue panda and vice versa.\n\nThe updates will be given in order of **non-decreasing** $x$ values. After each update, please print the maximum number of friendships if the red pandas move in an optimal order based on all the updates given in the input above (and including) this update.\n\nThe order in which a red panda moves can change between updates.\n\n## Input\n\nThe first line contains $q$ ($1 \\leq q \\leq 2 \\cdot 10^5$)  – the number of updates.\n\nThe $i$-th line of the next $q$ lines consists of $3$ integers $x_i$, $t_i$ and $c_i$ ($0 \\leq x_i \\leq 10^9$, $0 \\leq t_i \\leq 10^9$, $0 \\lt |c_i| \\leq 1000$) – the description of the $i$-th update.\n\nIt is guaranteed that the $x_i$ will be given in **non-decreasing** order.\n\n## Output\n\nAfter each update, print the maximum number of friendships that can be formed.\n\n## Note\n\nIn the first example, the number of friendships after each update can be optimized as follows:\n\n1. $3$ blue pandas now check for red pandas at position $0$ at time $6$. There are no red pandas anywhere, so there are no friendships.\n2. $5$ red pandas now appear at position $4$ and time $2$. $4$ of the red pandas can travel to position $0$ at time $6$, where $3$ of them can make friendships with the $3$ existing blue pandas.\n3. $6$ red pandas now appear at position $7$ and time $4$. No new blue pandas are added, so the maximum number of friendships is still $3$.\n4. $100$ blue pandas now appear at position $10$ and time $5$. No red pandas can reach them at a time of $5$, so no new friendships are created.\n5. $7$ blue pandas now appear at position $10$ and time $8$. $6$ of the red pandas at position $7$ and time $4$, along with $1$ red panda at position $4$ and time $2$, can reach $7$ of the blue pandas at position $10$ at time $8$, adding $7$ new friendships. This brings the total to $10$ friendships.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n0 6 3\n4 2 -5\n7 4 -6\n10 5 100\n10 8 7\n",
+      "output": "0\n3\n3\n3\n10\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\n0 6 3\n4 2 -5\n7 4 -6\n10 5 100\n11 8 7\n",
+      "output": "0\n3\n3\n3\n9\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "7\n0 8 6\n2 7 -2\n3 1 -6\n5 3 -8\n7 3 -3\n8 0 -2\n8 2 1\n",
+      "output": "0\n0\n6\n6\n6\n6\n7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4\n0 0 -3\n0 0 2\n0 0 4\n0 0 -10\n",
+      "output": "0\n2\n3\n6\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T22:23:55.394Z"
+}
