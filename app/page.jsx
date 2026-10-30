@@ -2,6 +2,7 @@ import { ArrowRight, BookOpen, Clock, FileText, Languages, Layers, Trophy } from
 import Link from 'next/link';
 
 import { DifficultyBadge, PlatformBadge } from '@/components/Badges';
+import RecentContests from '@/components/RecentContests';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { getIndex, getProblemsOfContest } from '@/lib/data';
@@ -78,41 +79,12 @@ export default function Home() {
         />
       </section>
 
-      {/* Recent contests */}
+      {/* Recent contests（类型由设置过滤，见 components/RecentContests.jsx） */}
       <section>
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold tracking-tight">最新比赛</h2>
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/contests" className="text-muted-foreground">
-              全部比赛
-              <ArrowRight className="size-3.5" />
-            </Link>
-          </Button>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {recentContests.slice(0, 6).map((c) => (
-            <Link
-              key={`${c.platform}/${c.id}`}
-              href={`/contests/${c.platform}/${encodeURIComponent(String(c.id))}`}
-              className="group"
-            >
-              <Card className="h-full transition-colors group-hover:border-foreground/25">
-                <CardContent className="space-y-2 p-5">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <PlatformBadge platform={c.platform} />
-                    <span className="text-muted-foreground font-mono text-xs">
-                      {formatDateTime(c.startTime)}
-                    </span>
-                  </div>
-                  <div className="line-clamp-2 font-medium leading-snug">
-                    {c.titleZh || c.title}
-                  </div>
-                  <div className="text-muted-foreground text-xs">{c.problemCount} 道题目</div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
+        <RecentContests contests={recentContests} />
       </section>
 
       {/* Recent problems */}

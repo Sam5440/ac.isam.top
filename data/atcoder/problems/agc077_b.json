@@ -1,0 +1,27 @@
+{
+  "id": "agc077_b",
+  "platform": "atcoder",
+  "contestId": "agc077",
+  "index": "B",
+  "title": "Long Increasing Walk",
+  "titleZh": "最长递增游走",
+  "url": "https://atcoder.jp/contests/agc077/tasks/agc077_b",
+  "difficulty": 2794,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given positive integers $N$ and $K$.\n\nThere is a complete bipartite graph $G$ with $N$ vertices $l_1, l_2, \\ldots, l_N$ on the left and $N$ vertices $r_1, r_2, \\ldots, r_N$ on the right. It has $N^2$ edges; for each $(i, j)\\ (1\\leq i\\leq N, 1\\leq j\\leq N)$, there is one undirected edge between vertices $l_i$ and $r_j$.\n\nDetermine whether there exists a way to write an integer between $1$ and $N^2$, inclusive, on each edge of $G$ (where the $N^2$ integers written are all distinct) such that the answer to the following problem is $K$, and if such a way exists, find one.\n\n> Among all walks on graph $G$, we call a walk **good** if the sequence of numbers written on the edges traversed, in the order they are traversed, is strictly increasing.\n> \n> Find the maximum number of edges contained in a good walk.\n\n$T$ test cases are given; solve each of them.\n\nWhat is a walk? A walk on graph $G$ is a sequence of $k$ vertices and $k-1$ edges alternately arranged, $(v_1 ​ ,e_1 ​ ,v_2 ​ ,\\ldots,v_{k−1} ​ ,e_{k−1} ​ ,v_k)$ (where $k$ is a positive integer), such that edge $e_i$ connects vertices $v_i$ and $v_{i+1}$.\n\n## Constraints\n\n- $1\\leq T\\leq 3000$\n- $1\\leq N\\leq 700$\n- $1\\leq K\\leq N^2$\n- The sum of $N^2$ in each input is at most $5\\times 10^5$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN K\n```\n\n## Output\n\nOutput the answers for $\\mathrm{case}_1,\\mathrm{case}_2,\\ldots,\\mathrm{case}_T$ in this order in the following format.\n\nIf no valid way of writing exists, output `No`.\n\nIf a valid way exists, letting $A_{i,j}$ be the integer written on the edge connecting vertices $l_i$ and $r_j$,\n\n```\nYes\nA_{1,1} A_{1,2} \\ldots A_{1,N}\nA_{2,1} A_{2,2} \\ldots A_{2,N}\n\\vdots\nA_{N,1} A_{N,2} \\ldots A_{N,N}\n```\n\noutput as above. $(A_{1,1},\\ldots,A_{1,N},A_{2,1},\\ldots,A_{2,N},\\ldots,A_{N,1},\\ldots,A_{N,N})$ must be a permutation of $(1,2,\\ldots,N^2)$.\n\nIf multiple solutions exist, any of them will be accepted.",
+  "statementZhMd": "## 题目描述\n\n给定正整数 $N$ 和 $K$。\n\n有一个完全二分图 $G$，左侧有 $N$ 个顶点 $l_1, l_2, \\ldots, l_N$，右侧有 $N$ 个顶点 $r_1, r_2, \\ldots, r_N$。该图有 $N^2$ 条边；对于每个 $(i, j)\\ (1\\leq i\\leq N, 1\\leq j\\leq N)$，顶点 $l_i$ 与 $r_j$ 之间有一条无向边。\n\n请判断是否存在一种方案，在 $G$ 的每条边上分别写入一个 $1$ 到 $N^2$（包含两端）的整数，并且写入的 $N^2$ 个整数互不相同，使得下面问题的答案为 $K$；如果存在，请构造出一种方案。\n\n> 在图 $G$ 的所有游走中，如果沿游走经过的边上的数字按照经过顺序严格递增，则称该游走是**优秀的**。\n> \n> 求优秀游走所包含的边数的最大值。\n\n共有 $T$ 组测试数据，请分别求解。\n\n什么是游走？图 $G$ 上的一个游走是由 $k$ 个顶点和 $k-1$ 条边交替组成的序列 $(v_1 ​ ,e_1 ​ ,v_2 ​ ,\\ldots,v_{k−1} ​ ,e_{k−1} ​ ,v_k)$（其中 $k$ 为正整数），并且边 $e_i$ 连接顶点 $v_i$ 和 $v_{i+1}$。\n\n## 约束条件\n\n- $1\\leq T\\leq 3000$\n- $1\\leq N\\leq 700$\n- $1\\leq K\\leq N^2$\n- 所有输入中 $N^2$ 的总和不超过 $5\\times 10^5$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每组测试数据按以下格式给出：\n\n```\nN K\n```\n\n## 输出格式\n\n按照 $\\mathrm{case}_1,\\mathrm{case}_2,\\ldots,\\mathrm{case}_T$ 的顺序，按以下格式输出答案。\n\n如果不存在有效的填写方案，输出 `No`。\n\n如果存在有效方案，设连接顶点 $l_i$ 和 $r_j$ 的边上写入的整数为 $A_{i,j}$，则输出：\n\n```\nYes\nA_{1,1} A_{1,2} \\ldots A_{1,N}\nA_{2,1} A_{2,2} \\ldots A_{2,N}\n\\vdots\nA_{N,1} A_{N,2} \\ldots A_{N,N}\n```\n\n其中 $(A_{1,1},\\ldots,A_{1,N},A_{2,1},\\ldots,A_{2,N},\\ldots,A_{N,1},\\ldots,A_{N,N})$ 必须是 $(1,2,\\ldots,N^2)$ 的一个排列。\n\n如果存在多个解，输出其中任意一个即可。",
+  "samples": [
+    {
+      "input": "3\n2 1\n2 3\n3 5\n",
+      "output": "No\nYes\n1 2\n3 4\nYes\n2 9 7\n4 5 6\n1 8 3\n",
+      "note": "For the first test case, no valid way of writing exists.\n\nFor the second test case, a good walk containing three edges is $r_1 \\xrightarrow{1} l_1 \\xrightarrow{2}r_2\\xrightarrow{4}l_2$. No good walk contains four or more edges, so this output satisfies the condition.\n\nFor the third test case, a good walk containing five edges is $l_1 \\xrightarrow{2} r_1 \\xrightarrow{4}l_2\\xrightarrow{6}r_3 \\xrightarrow{7} l_1 \\xrightarrow{9} r_2$. No good walk contains six or more edges, so this output satisfies the condition.\n\n![image](https://img.atcoder.jp/agc077/483f3ac7fef3640067cde0b569f0be80.png)"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T18:44:04.360Z",
+  "translatedAt": "2026-10-30T18:46:45.829Z",
+  "translateModel": "gpt-6.1-sol"
+}

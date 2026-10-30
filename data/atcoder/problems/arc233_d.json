@@ -1,0 +1,31 @@
+{
+  "id": "arc233_d",
+  "platform": "atcoder",
+  "contestId": "arc233",
+  "index": "D",
+  "title": "Zigzag Code for Cubic Functions",
+  "titleZh": "三次函数的锯齿码",
+  "url": "https://atcoder.jp/contests/arc233/tasks/arc233_d",
+  "difficulty": 3467,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given positive integers $A,B,C,L,R$. Here, $L \\leq R$. Define\n$f(n)=n^3+An^2+Bn+C$.\nFor a non-empty string $S$ consisting of $\\mathtt{+}$ and $\\mathtt{-}$, define\n$g(S) = \\sum_{i=1}^{|S|} \\begin{cases} f(i) & (S_i = \\mathtt{+}) \\\\ -f(i) & (S_i = \\mathtt{-}) \\end{cases}$.\nHere, $S_i$ denotes the $i$-th character of $S$.\nAn integer $k$ is said to be generable from $S$ if there exists a non-empty substring $S'$ of $S$ such that $g(S')=k$.\n\nConstruct a string $S$ that satisfies the following conditions.\n\n- $1 \\leq |S| \\leq 2 \\times 10^6$\n- $S$ is a string consisting of $\\mathtt{+}$ and $\\mathtt{-}$.\n- Among the strings satisfying the two conditions above, $S$ maximizes the number of integers between $L$ and $R$, inclusive, that are generable from $S$.\n\nFurthermore, for the constructed string $S$ and each $k=L,L+1,\\dots,R$, determine whether there exist two integers $l,r$ satisfying the following conditions, and if they exist, find one such pair.\n\n- $1 \\leq l \\leq r \\leq |S|$\n- Letting $S'$ be the string formed by the $l$-th through $r$-th characters of $S$, we have $g(S')=k$.\n\nWhat is a substring? A **substring** of $S$ is a string obtained by deleting zero or more characters from the beginning and zero or more characters from the end of $S$. For example, `AB` is a substring of `ABC`, but `AC` is not a substring of `ABC`.\n\n## Constraints\n\n- $1 \\leq A,B,C \\leq 10^5$\n- $1 \\leq L \\leq R \\leq \\min(L+10^5,10^{14})$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nA B C L R\n```\n\n## Output\n\nPrint a solution in the following format:\n\n```\nS\n\\mathrm{output}_{L}\n\\mathrm{output}_{L+1}\n\\vdots\n\\mathrm{output}_{R}\n```\n\nHere, $\\mathrm{output}_i$ denotes the output for $k=i$.\nIf there exist two integers $l,r$ satisfying the conditions, print them in the following format:\n\n```\nl r\n```\n\nIf they do not exist, print `-1`.\n\nIf there are multiple solutions, you may print any of them.",
+  "statementZhMd": "## 题目描述\n\n给定正整数 $A,B,C,L,R$，其中 $L \\leq R$。定义\n$f(n)=n^3+An^2+Bn+C$。\n对于一个由 $\\mathtt{+}$ 和 $\\mathtt{-}$ 构成的非空字符串 $S$，定义\n$g(S) = \\sum_{i=1}^{|S|} \\begin{cases} f(i) & (S_i = \\mathtt{+}) \\\\ -f(i) & (S_i = \\mathtt{-}) \\end{cases}$。\n其中，$S_i$ 表示 $S$ 的第 $i$ 个字符。\n如果存在 $S$ 的一个非空子串 $S'$ 满足 $g(S')=k$，则称整数 $k$ 可以由 $S$ 生成。\n\n构造一个满足以下条件的字符串 $S$。\n\n- $1 \\leq |S| \\leq 2 \\times 10^6$\n- $S$ 是一个由 $\\mathtt{+}$ 和 $\\mathtt{-}$ 构成的字符串。\n- 在满足上述两个条件的字符串中，$S$ 使得区间 $[L,R]$ 内（含端点）可以由 $S$ 生成的整数数量最大。\n\n此外，对于构造出的字符串 $S$，对每个 $k=L,L+1,\\dots,R$，判断是否存在满足以下条件的两个整数 $l,r$；若存在，输出一组这样的 $l,r$。\n\n- $1 \\leq l \\leq r \\leq |S|$\n- 令 $S'$ 为由 $S$ 的第 $l$ 个至第 $r$ 个字符构成的字符串，则 $g(S')=k$。\n\n什么是子串？$S$ 的**子串**是指从 $S$ 的开头删除零个或多个字符，并从结尾删除零个或多个字符后得到的字符串。例如，`AB` 是 `ABC` 的子串，但 `AC` 不是 `ABC` 的子串。\n\n## 约束条件\n\n- $1 \\leq A,B,C \\leq 10^5$\n- $1 \\leq L \\leq R \\leq \\min(L+10^5,10^{14})$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入中按以下格式给出：\n\n```\nA B C L R\n```\n\n## 输出格式\n\n按以下格式输出一个解：\n\n```\nS\n\\mathrm{output}_{L}\n\\mathrm{output}_{L+1}\n\\vdots\n\\mathrm{output}_{R}\n```\n\n这里，$\\mathrm{output}_i$ 表示 $k=i$ 时的输出。\n如果存在满足条件的两个整数 $l,r$，按以下格式输出：\n\n```\nl r\n```\n\n如果不存在，则输出 `-1`。\n\n如果有多个解，可以输出其中任意一个。",
+  "samples": [
+    {
+      "input": "2 2 3 22 23\n",
+      "output": "+---+--+\n2 5\n6 8\n",
+      "note": "We have\n$f(n)=n^3+2n^2+2n+3$ and\n$f(1)=8,\\; f(2)=23,\\; f(3)=54,\\; f(4)=107$.\nSince\n$g(\\mathtt{---+})=-f(1)-f(2)-f(3)+f(4)=-8-23-54+107=22$ and\n$g(\\mathtt{--+})=-f(1)-f(2)+f(3)=-8-23+54=23$,\nboth $22$ and $23$ are generable from $\\mathtt{---+}$."
+    },
+    {
+      "input": "1 2 2 5 7\n",
+      "output": "++\n-1\n2 2\n-1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T18:43:31.188Z",
+  "translatedAt": "2026-10-30T18:44:54.362Z",
+  "translateModel": "gpt-6.1-sol"
+}

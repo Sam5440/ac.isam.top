@@ -6,24 +6,26 @@ import { useMemo, useState } from 'react';
 
 import { PlatformBadge } from '@/components/Badges';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { CONTEST_TYPES, contestType, contestTypeLabel } from '@/lib/contest-type';
 import { formatDateTime } from '@/lib/utils';
 
-const TABS = [
+/** 平台 × 类型两级筛选；类型枚举与设置弹窗共用 CONTEST_TYPES。 */
+const TYPE_TABS = [
   { id: 'all', label: '全部' },
-  { id: 'atcoder', label: 'AtCoder (ABC)' },
-  { id: 'codeforces', label: 'Codeforces' },
+  ...CONTEST_TYPES,
 ];
 
 export default function ContestsBrowser({ contests }) {
-  const [tab, setTab] = useState('all');
+  const [platform, setPlatform] = useState('all');
+  const [type, setType] = useState('all');
   const [q, setQ] = useState('');
 
   const filtered = useMemo(() => {
     let list = contests;
-    if (tab !== 'all') list = list.filter((c) => c.platform === tab);
+    if (platform !== 'all') list = list.filter((c) => c.platform === platform);
+    if (type !== 'all') list = list.filter((c) => contestType(c) === type);
     const kw = q.trim().toLowerCase();
     if (kw) {
       list = list.filter(
@@ -34,19 +36,55 @@ export default function ContestsBrowser({ contests }) {
       );
     }
     return list;
-  }, [contests, tab, q]);
+  }, [contests, platform, type, q]);
+
+  // 只显示与当前平台匹配的类型标签
+  const visibleTypes = TYPE_TABS.filter(
+    (t) =>
+      t.id === 'all' ||
+      (platform === 'all'
+        ? true
+        : platform === 'atcoder'
+          ? ['abc', 'arc', 'agc', 'other'].includes(t.id)
+          : !['abc', 'arc', 'agc'].includes(t.id)),
+  );
 
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <div className="bg-muted text-muted-foreground inline-flex rounded-lg p-0.5 text-sm">
-          {TABS.map((t) => (
+          {[
+            { id: 'all', label: '全部' },
+            { id: 'atcoder', label: 'AtCoder' },
+            { id: 'codeforces', label: 'Codeforces' },
+          ].map((t) => (
             <button
               key={t.id}
               type="button"
-              onClick={() => setTab(t.id)}
+              onClick={() => {
+                setPlatform(t.id);
+                if (t.id === 'atcoder' && ['div1', 'div2', 'div3', 'div4', 'div12'].includes(type)) setType('all');
+                if (t.id === 'codeforces' && ['abc', 'arc', 'agc'].includes(type)) setType('all');
+              }}
               className={`rounded-md px-3 py-1.5 transition-colors ${
-                tab === t.id ? 'bg-background text-foreground shadow-sm' : ''
+                platform === t.id ? 'bg-background text-foreground shadow-sm' : ''
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-1">
+          {visibleTypes.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              title={t.desc ?? '全部类型'}
+              onClick={() => setType(t.id)}
+              className={`rounded-md border px-2.5 py-1 text-xs transition-colors ${
+                type === t.id
+                  ? 'border-primary/60 bg-primary/10 text-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
               }`}
             >
               {t.label}
@@ -79,14 +117,17 @@ export default function ContestsBrowser({ contests }) {
               className="hover:bg-accent/40 flex flex-wrap items-center gap-3 px-4 py-3 transition-colors"
             >
               <PlatformBadge platform={c.platform} />
-              <span className="text-muted-foreground w-24 shrink-0 font-mono text-xs">
+              <Badge variant="outline" className="text-muted-foreground hidden sm:inline-flex">
+                {contestTypeLabel(contestType(c))}
+              </Badge>
+              <span className="text-muted-foreground w-20 shrink-0 font-mono text-xs">
                 {String(c.id)}
               </span>
               <span className="min-w-0 flex-1 truncate text-sm font-medium">
                 {c.titleZh || c.title}
               </span>
               {c.ratedRange ? (
-                <Badge variant="outline" className="text-muted-foreground hidden font-mono sm:inline-flex">
+                <Badge variant="outline" className="text-muted-foreground hidden font-mono md:inline-flex">
                   {c.ratedRange}
                 </Badge>
               ) : null}

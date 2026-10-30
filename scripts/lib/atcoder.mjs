@@ -4,12 +4,12 @@ import { loadHtml, nodesToMd, preText, inlineMd } from './html2md.mjs';
 const KENKOO = 'https://kenkoooo.com/atcoder/resources';
 const ATCODER = 'https://atcoder.jp';
 
-/** kenkoooo 比赛列表 → 已结束的 ABC（id 形如 abc481），新→旧。 */
-export async function fetchAbcContests() {
+/** kenkoooo 比赛列表 → 已结束的 ABC/ARC/AGC，新→旧。 */
+export async function fetchAtCoderContests() {
   const contests = await httpGet(`${KENKOO}/contests.json`, { json: true, timeout: 20000 });
   const now = Math.floor(Date.now() / 1000);
   return contests
-    .filter((c) => /^abc\d+$/.test(c.id))
+    .filter((c) => /^(abc|arc|agc)\d+$/.test(c.id))
     .filter((c) => c.start_epoch_second + c.duration_second < now)
     .sort((a, b) => b.start_epoch_second - a.start_epoch_second);
 }

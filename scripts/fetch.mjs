@@ -22,7 +22,7 @@ import path from 'node:path';
 import {
   atcoderContestUrl,
   atcoderProblemUrl,
-  fetchAbcContests,
+  fetchAtCoderContests,
   fetchAtCoderModels,
   fetchAtCoderProblems,
   fetchAtCoderStatement,
@@ -45,6 +45,8 @@ import { loadEnv, log, pLimit, parseArgs, rnd, sleep } from './lib/util.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const SCAN_ABC = args.abc ?? Number(process.env.ABC_SCAN ?? 3);
+const SCAN_ARC = args.arc ?? Number(process.env.ARC_SCAN ?? 1);
+const SCAN_AGC = args.agc ?? Number(process.env.AGC_SCAN ?? 1);
 const SCAN_CF = args.cf ?? Number(process.env.CF_SCAN ?? 3);
 const BACKFILL = args.backfill ?? Number(process.env.BACKFILL ?? 10);
 const TRANSLATE_LIMIT = args.translateLimit ?? Number(process.env.TRANSLATE_LIMIT ?? 0);
@@ -64,9 +66,9 @@ const summary = {
 /* ============================ AtCoder (ABC) ============================ */
 
 async function runAtCoder() {
-  log('atcoder', `拉取元数据（扫描最近 ${SCAN_ABC} 场，回填 ${BACKFILL} 题）…`);
+  log('atcoder', `拉取元数据（扫描 abc ${SCAN_ABC} / arc ${SCAN_ARC} / agc ${SCAN_AGC} 场，回填 ${BACKFILL} 题）…`);
   const [contests, allProblems, models] = await Promise.all([
-    fetchAbcContests(),
+    fetchAtCoderContests(),
     fetchAtCoderProblems(),
     fetchAtCoderModels(),
   ]);
@@ -77,7 +79,11 @@ async function runAtCoder() {
   for (const list of problemsByContest.values()) {
     list.sort((a, b) => a.problem_index.localeCompare(b.problem_index, undefined, { numeric: true }));
   }
-  log('atcoder', `ABC 共 ${contests.length} 场（最新 ${contests[0]?.id}）`);
+  const count = (re) => contests.filter((c) => re.test(c.id)).length;
+  log(
+    'atcoder',
+    `已结束赛次 abc=${count(/^abc/)} arc=${count(/^arc/)} agc=${count(/^agc/)}（最新 ${contests[0]?.id}）`,
+  );
 
   const contestMeta = (c) => ({
     id: c.id,
@@ -120,9 +126,14 @@ async function runAtCoder() {
     }
   };
 
-  // 1) 最新 N 场：全部补齐
+  // 1) 最新 N 场（abc/arc/agc 各自取头部）：全部补齐
+  const scanSet = [
+    ...contests.filter((c) => /^abc/.test(c.id)).slice(0, SCAN_ABC),
+    ...contests.filter((c) => /^arc/.test(c.id)).slice(0, SCAN_ARC),
+    ...contests.filter((c) => /^agc/.test(c.id)).slice(0, SCAN_AGC),
+  ];
   let fetched = 0;
-  for (const c of contests.slice(0, SCAN_ABC)) {
+  for (const c of scanSet) {
     const isNew = upsertContest('atcoder', contestMeta(c));
     if (isNew) {
       summary.atcoder.contests++;
@@ -132,7 +143,6 @@ async function runAtCoder() {
     let newForContest = 0;
     for (const p of list) {
       if (problemComplete('atcoder', p.id)) continue;
-      // 首次建档失败也记录 error 存根，便于下次回填重试
       if (await fetchOne(c, p)) {
         fetched++;
         newForContest++;
@@ -143,7 +153,7 @@ async function runAtCoder() {
   }
   summary.atcoder.problems = fetched;
 
-  // 2) 回填：最旧比赛开始，补抓尚未收录的题面
+  // 2) 回填：最旧比赛开始，补抓尚未收录的题面（abc/arc/agc 合并一条时间线）
   if (BACKFILL > 0) {
     let budget = BACKFILL;
     for (const c of [...contests].reverse()) {
@@ -377,7 +387,7 @@ function loadContestsList(platform) {
 
 async function main() {
   loadEnv();
-  log('main', `开始：scan abc=${SCAN_ABC} cf=${SCAN_CF}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}`);
+  log('main', `开始：scan abc=${SCAN_ABC} arc=${SCAN_ARC} agc=${SCAN_AGC} cf=${SCAN_CF}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}`);
 
   try {
     if (!TRANSLATE_ONLY) {
