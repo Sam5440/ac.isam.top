@@ -1,0 +1,31 @@
+{
+  "id": "1450D",
+  "platform": "codeforces",
+  "contestId": 1450,
+  "index": "D",
+  "title": "Rating Compression",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1450/problem/D",
+  "difficulty": 1800,
+  "tags": [
+    "binary search",
+    "data structures",
+    "greedy",
+    "implementation",
+    "two pointers"
+  ],
+  "points": 1750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "On the competitive programming platform CodeCook, every person has a rating graph described by an array of integers $a$ of length $n$. You are now updating the infrastructure, so you've created a program to compress these graphs.\n\nThe program works as follows. Given an integer parameter $k$, the program takes the minimum of each contiguous subarray of length $k$ in $a$.\n\nMore formally, for an array $a$ of length $n$ and an integer $k$, define the $k$-compression array of $a$ as an array $b$ of length $n-k+1$, such that $$b_j =\\min_{j\\le i\\le j+k-1}a_i$$\n\nFor example, the $3$-compression array of $[1, 3, 4, 5, 2]$ is $[\\min\\{1, 3, 4\\}, \\min\\{3, 4, 5\\}, \\min\\{4, 5, 2\\}]=[1, 3, 2].$\n\nA permutation of length $m$ is an array consisting of $m$ distinct integers from $1$ to $m$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($m=3$ but there is $4$ in the array).\n\nA $k$-compression array will make CodeCook users happy if it will be a permutation. Given an array $a$, determine for all $1\\leq k\\leq n$ if CodeCook users will be happy after a $k$-compression of this array or not.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\leq t\\leq 10^4$) — the number of test cases.\n\nThe first line of the description of each test case contains a single integer $n$ ($1\\leq n\\leq 3\\cdot 10^5$) — the length of the array.\n\nThe second line of the description of each test case contains $n$ integers $a_1,\\ldots,a_n$ ($1\\leq a_i\\leq n$) — the elements of the array.\n\nIt is guaranteed, that the sum of $n$ for all test cases does not exceed $3\\cdot 10^5$.\n\n## Output\n\nFor each test case, print a binary string of length $n$.\n\nThe $k$-th character of the string should be $1$ if CodeCook users will be happy after a $k$-compression of the array $a$, and $0$ otherwise.\n\n## Note\n\nIn the first test case, $a=[1, 5, 3, 4, 2]$.\n\n- The $1$-compression of $a$ is $[1, 5, 3, 4, 2]$ and it is a permutation.\n- The $2$-compression of $a$ is $[1, 3, 3, 2]$ and it is not a permutation, since $3$ appears twice.\n- The $3$-compression of $a$ is $[1, 3, 2]$ and it is a permutation.\n- The $4$-compression of $a$ is $[1, 2]$ and it is a permutation.\n- The $5$-compression of $a$ is $[1]$ and it is a permutation.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n5\n1 5 3 4 2\n4\n1 3 2 1\n5\n1 3 3 3 2\n10\n1 2 3 4 5 6 7 8 9 10\n3\n3 3 2\n",
+      "output": "10111\n0001\n00111\n1111111111\n000\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:40:53.851Z"
+}

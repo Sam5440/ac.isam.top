@@ -1,0 +1,29 @@
+{
+  "id": "1450G",
+  "platform": "codeforces",
+  "contestId": 1450,
+  "index": "G",
+  "title": "Communism",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1450/problem/G",
+  "difficulty": 3500,
+  "tags": [
+    "bitmasks",
+    "dp",
+    "trees"
+  ],
+  "points": 3750,
+  "timeLimitMs": 1500,
+  "memoryLimitMb": 32,
+  "statementMd": "**Please pay attention to the unusual memory limit in this problem.**\n\n*In a parallel universe, Satan is called \"Trygub\". For that reason, the letters of his namesake were deleted from the alphabet in ancient times.*\n\nThe government has $n$ workers standing in a row and numbered with integers from $1$ to $n$ from left to right. Their job categories can be represented as a string $s$ of length $n$, where the character $s_i$ represents the job category of the $i$-th worker.\n\nA new law will be approved to increase the equality between the workers. The government decided to make everyone have the same job category by performing the following operation any number of times (possibly zero).\n\nThere is a fixed **rational** parameter $k=\\frac ab$ describing how easy it is to convince the public, and it will be used to determine the success of an operation.\n\nIn an operation, the government first selects a job category $x$ with at least one worker at the current moment. Suppose $i_1,\\ldots, i_m$ ($i_1 \\lt \\ldots \\lt i_m$) are the positions of all the workers with job category $x$. If $k\\cdot (i_m-i_1+1)\\le m$, the government is able to choose any job category $y$ with at least one worker at the current moment and change the job category of **all** workers with job category $x$ to job category $y$.\n\nIf it is possible to make all workers have job category $x$, we say that $x$ is obtainable. Can you tell the government the set of obtainable job categories?\n\n## Input\n\nThe first line contains three integers $n, a, b$ ($1 \\le n \\le 5000$, $1\\le a\\le b\\le 10^5$) — the number of workers and the numerator and denominator of the parameter $k$, respectively.\n\nThe second line contains a string $s$ of length $n$, consisting of lowercase English characters — the job categories of each worker. **The characters '`t`', '`r`', '`y`', '`g`', '`u`', and '`b`' do not appear in the string $s$.**\n\n## Output\n\nPrint an integer $c$ equal to the number of obtainable job categories followed by $c$ space-separated characters — the obtainable job categories sorted in the lexicographical order.\n\n## Note\n\nThe first operation must select the job category '`i`' because all other job categories cannot satisfy the condition, therefore '`i`' is not obtainable.\n\nBelow is showed how to obtain '`c`', '`m`', and '`o`'. The square brackets denote the segment containing all workers of the selected category, the red color denotes this category and the blue color denotes the new category after the change.\n\n- Get '`c`':\n- ($\\texttt{com}\\color{red}{\\texttt{[i]}}\\texttt{com} \\rightarrow \\texttt{com}\\color{#1E90FF}{\\texttt{[o]}}\\texttt{com}$)\n  - ($\\texttt{c}\\color{red}{\\texttt{[o}}\\texttt{m}\\color{red}{\\texttt{o}}\\texttt{c}\\color{red}{\\texttt{o]}}\\texttt{m} \\rightarrow \\texttt{c}\\color{#1E90FF}{\\texttt{[m}}\\texttt{m}\\color{#1E90FF}{\\texttt{m}}\\texttt{c}\\color{#1E90FF}{\\texttt{m]}}\\texttt{m}$)\n  - ($\\texttt{c}\\color{red}{\\texttt{[mmm}}\\texttt{c}\\color{red}{\\texttt{mm]}} \\rightarrow \\texttt{c}\\color{#1E90FF}{\\texttt{[ccc}}\\texttt{c}\\color{#1E90FF}{\\texttt{cc]}}$)\n- Get '`m`':\n- ($\\texttt{com}\\color{red}{\\texttt{[i]}}\\texttt{com} \\rightarrow \\texttt{com}\\color{#1E90FF}{\\texttt{[o]}}\\texttt{com}$)\n  - ($\\texttt{c}\\color{red}{\\texttt{[o}}\\texttt{m}\\color{red}{\\texttt{o}}\\texttt{c}\\color{red}{\\texttt{o]}}\\texttt{m} \\rightarrow \\texttt{c}\\color{#1E90FF}{\\texttt{[c}}\\texttt{m}\\color{#1E90FF}{\\texttt{c}}\\texttt{c}\\color{#1E90FF}{\\texttt{c]}}\\texttt{m}$)\n  - ($\\color{red}{\\texttt{[cc}}\\texttt{m}\\color{red}{\\texttt{ccc]}}\\texttt{m} \\rightarrow \\color{#1E90FF}{\\texttt{[mm}}\\texttt{m}\\color{#1E90FF}{\\texttt{mmm]}}\\texttt{m}$)\n- Get '`o`':\n- ($\\texttt{com}\\color{red}{\\texttt{[i]}}\\texttt{com} \\rightarrow \\texttt{com}\\color{#1E90FF}{\\texttt{[c]}}\\texttt{com}$)\n  - ($\\color{red}{\\texttt{[c}}\\texttt{om}\\color{red}{\\texttt{cc]}}\\texttt{om} \\rightarrow \\color{#1E90FF}{\\texttt{[m}}\\texttt{om}\\color{#1E90FF}{\\texttt{mm]}}\\texttt{om}$)\n  - ($\\color{red}{\\texttt{[m}}\\texttt{o}\\color{red}{\\texttt{mmm}}\\texttt{o}\\color{red}{\\texttt{m]}} \\rightarrow \\color{#1E90FF}{\\texttt{[o}}\\texttt{o}\\color{#1E90FF}{\\texttt{ooo}}\\texttt{o}\\color{#1E90FF}{\\texttt{o]}}$)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7 1 2\ncomicom\n",
+      "output": "3 c m o\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:40:53.853Z"
+}

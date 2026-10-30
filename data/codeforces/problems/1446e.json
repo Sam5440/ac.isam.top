@@ -1,0 +1,33 @@
+{
+  "id": "1446E",
+  "platform": "codeforces",
+  "contestId": 1446,
+  "index": "E",
+  "title": "Long Recovery",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1446/problem/E",
+  "difficulty": 3500,
+  "tags": [
+    "constructive algorithms",
+    "dfs and similar"
+  ],
+  "points": 3000,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "A patient has been infected with an unknown disease. His body can be seen as an infinite grid of triangular cells which looks as follows:\n\n![image](https://espresso.codeforces.com/a7d6b49046fa4b8e76aa260dc95b651bb60c3fad.png)\n\nTwo cells are neighboring if they share a side. Therefore, each cell ($x$, $y$) has exactly three neighbors:\n\n- ($x+1$, $y$)\n- ($x-1$, $y$)\n- ($x+1$, $y-1$) if $x$ is even and ($x-1$, $y+1$) otherwise.\n\nInitially some cells are infected, all the others are healthy. The process of recovery begins. Each second, for **exactly one** cell (even though there might be multiple cells that could change its state) one of the following happens:\n\n- A healthy cell with at least $2$ infected neighbors also becomes infected.\n- An infected cell with at least $2$ healthy neighbors also becomes healthy.\n\nIf no such cell exists, the process of recovery stops. Patient is considered recovered if the process of recovery has stopped and all the cells are healthy.\n\nWe're interested in a **worst-case** scenario: is it possible that the patient never recovers, or if it's not possible, what is the maximum possible duration of the recovery process?\n\n## Input\n\nThe first line contains one integer $n$ $(1 \\leq n \\leq 250000)$  — the number of infected cells.\n\nThe $i$-th of the next $n$ lines contains two space-separated integers $x_i$ and $y_i$ $(0 \\leq x_i, y_i \\lt 500)$, meaning that cell $(x_i, y_i)$ is infected. All cells $(x_i, y_i)$ are distinct, and all other cells are considered healthy.\n\n## Output\n\nIf it is possible that the organism never fully recovers from the disease, print `SICK`. Otherwise, you should print `RECOVERED` and in the next line an integer $k$  — the longest possible recovery period, modulo $998244353$.\n\n## Note\n\nFor the first testcase, the following drawings describe the longest possible recovery process. It can be proven that there are no recovery periods of length $5$ or longer, and the organism always recovers in this testcase.\n\n![image](https://espresso.codeforces.com/c5d285a4bae281134b213e8703721a46322146e2.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/d6d28f0d1a78faa331c4223e5102119cc6db9cc0.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/6c4cf2f2d3c2964d16892f9da9aaa57bab19d45c.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/af53b4020eba6dc695c7a7fc0620c723faf22f30.png) $\\hspace{40pt} \\downarrow$\n\n$\\hspace{15pt}$ RECOVERED\n\nFor the second testcase, it is possible for the cells $(2, 0)$, $(2, 1)$, $(0, 1)$ to become infected. After that, no cell can change its state, so the answer is `SICK`, as not all of the cells are healthy.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n0 0\n1 0\n2 0\n0 1\n",
+      "output": "RECOVERED\n4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3\n1 0\n3 0\n1 1\n",
+      "output": "SICK\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:41:09.574Z"
+}
