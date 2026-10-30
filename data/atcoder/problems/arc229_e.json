@@ -1,0 +1,27 @@
+{
+  "id": "arc229_e",
+  "platform": "atcoder",
+  "contestId": "arc229",
+  "index": "E",
+  "title": "Taka and Hashi",
+  "titleZh": "Taka 与 Hashi",
+  "url": "https://atcoder.jp/contests/arc229/tasks/arc229_e",
+  "difficulty": 2004,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nTakahashi is known for being able to split into the famous comedy duo \"Taka and Hashi\", that is, Taka and Hashi. When Taka and Hashi merge, they return to being the original Takahashi.\nThere is a connected undirected graph with $N$ vertices and $M$ edges, and each edge is labeled with $1$, $2$, or $3$. The $i$-th edge connects vertices $u_i$ and $v_i$, and is labeled $l_i$. The graph does not contain self-loops, but may contain multi-edges.\nEach edge can be traversed by only one of Takahashi, Taka, and Hashi, and an edge labeled $1$, $2$, or $3$ can be traversed only by Takahashi, Taka, or Hashi, respectively.\n\nInitially, Takahashi is at vertex $1$. Takahashi and the others can perform the following operations in any order, zero or more times.\n\n- Takahashi splits into Taka and Hashi at the vertex where he currently is. At this point, both Taka and Hashi are at that vertex.\n- One of the currently existing people moves by traversing one edge that they are able to traverse.\n- When Taka and Hashi are at the same vertex, they merge at that vertex and return to being Takahashi.\n\nEnumerate, in ascending order, all vertices where Takahashi can be after performing a sequence of operations.\n\nYou are given $T$ test cases; solve each of them.\n\n## Constraints\n\n- $1 \\leq T \\leq 10^5$\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $N-1 \\leq M \\leq 2 \\times 10^5$\n- $1 \\leq u_i \\lt v_i \\leq N$\n- $1 \\leq l_i \\leq 3$\n- The given graph is connected.\n- The sum of $N$ over all test cases is at most $2 \\times 10^5$.\n- The sum of $M$ over all test cases is at most $2 \\times 10^5$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case $\\mathrm{case}_t$ is given in the following format:\n\n```\nN M\nu_1 v_1 l_1\nu_2 v_2 l_2\n\\vdots\nu_M v_M l_M\n```\n\n## Output\n\nOutput $2T$ lines.\nFor each test case, letting $a_1,a_2,\\dots,a_k$ be the sequence of numbers of the vertices satisfying the condition, listed in ascending order, output them in the following format:\n\n```\nk\na_1 a_2 \\dots a_k\n```",
+  "statementZhMd": "## 题目描述\n\nTakahashi 因能够分裂成著名的搞笑二人组合“Taka 与 Hashi”而闻名，也就是说，他可以分裂成 Taka 和 Hashi。当 Taka 与 Hashi 合并时，他们会恢复成原来的 Takahashi。\n\n给定一个有 $N$ 个顶点和 $M$ 条边的连通无向图，每条边都标记为 $1$、$2$ 或 $3$。第 $i$ 条边连接顶点 $u_i$ 和 $v_i$，标记为 $l_i$。图中不包含自环，但可能包含重边。\n\n每条边只能由 Takahashi、Taka 和 Hashi 中的一人通过；标记为 $1$、$2$ 或 $3$ 的边分别只能由 Takahashi、Taka 或 Hashi 通过。\n\n初始时，Takahashi 位于顶点 $1$。Takahashi 和其他人可以按照任意顺序执行以下操作任意次，也可以一次都不执行。\n\n- Takahashi 在当前所在的顶点分裂成 Taka 和 Hashi。此时，Taka 和 Hashi 都位于该顶点。\n- 当前存在的某个人通过一条自己能够通过的边移动。\n- 当 Taka 和 Hashi 位于同一顶点时，他们在该顶点合并，恢复成 Takahashi。\n\n请按升序列出执行一系列操作后 Takahashi 可能所在的所有顶点。\n\n给定 $T$ 个测试用例，请分别求解每个测试用例。\n\n## 约束条件\n\n- $1 \\leq T \\leq 10^5$\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $N-1 \\leq M \\leq 2 \\times 10^5$\n- $1 \\leq u_i \\lt v_i \\leq N$\n- $1 \\leq l_i \\leq 3$\n- 给定的图是连通图。\n- 所有测试用例的 $N$ 之和不超过 $2 \\times 10^5$。\n- 所有测试用例的 $M$ 之和不超过 $2 \\times 10^5$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入给出，格式如下：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每个测试用例 $\\mathrm{case}_t$ 的格式如下：\n\n```\nN M\nu_1 v_1 l_1\nu_2 v_2 l_2\n\\vdots\nu_M v_M l_M\n```\n\n## 输出格式\n\n输出 $2T$ 行。\n\n对于每个测试用例，设满足条件的顶点编号按升序排列后组成的序列为 $a_1,a_2,\\dots,a_k$，请按以下格式输出：\n\n```\nk\na_1 a_2 \\dots a_k\n```",
+  "samples": [
+    {
+      "input": "3\n5 5\n1 2 1\n2 3 2\n3 4 2\n2 4 3\n4 5 1\n8 15\n1 3 3\n1 5 2\n1 5 3\n1 7 1\n2 3 2\n2 4 1\n2 5 3\n2 6 1\n2 7 3\n2 8 1\n3 4 3\n3 5 3\n4 7 2\n5 6 1\n6 7 1\n10 13\n1 3 2\n1 4 1\n1 6 1\n2 7 2\n2 8 2\n3 6 2\n3 9 2\n4 5 3\n4 7 2\n4 9 2\n5 8 2\n5 10 3\n6 7 2\n",
+      "output": "4\n1 2 4 5\n8\n1 2 3 4 5 6 7 8\n4\n1 4 5 6\n",
+      "note": "Consider the first test case.\nTakahashi can move from vertex $1$ to vertex $2$ by traversing an edge labeled $1$. After splitting into Taka and Hashi at vertex $2$, Taka moves $2 \\to 3 \\to 4$ and Hashi moves $2 \\to 4$, and by merging at vertex $4$, it is possible to make Takahashi be at vertex $4$. Furthermore, Takahashi can move to vertex $5$ by traversing an edge labeled $1$.\nIt is impossible to make Takahashi be at vertex $3$, so the vertices satisfying the condition are $1,2,4,5$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T20:13:47.900Z",
+  "translatedAt": "2026-10-30T20:14:26.676Z",
+  "translateModel": "gpt-6.1-sol"
+}
