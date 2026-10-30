@@ -1,0 +1,39 @@
+{
+  "id": "arc155_e",
+  "platform": "atcoder",
+  "contestId": "arc155",
+  "index": "E",
+  "title": "Split and Square",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc155/tasks/arc155_e",
+  "difficulty": 3513,
+  "tags": [],
+  "points": 900,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nFor a set $X$ of non-negative integers, let $f(X)$ denote the set of non-negative integers that can be represented as the bitwise $\\mathrm{XOR}$ of two integers (possibly the same) in $X$. As an example, for $X=\\lbrace 1, 2, 4\\rbrace$, we have $f(X)=\\lbrace 0, 3, 5, 6\\rbrace$.\n\nYou are given a set of $N$ non-negative integers less than $2^M$: $S=\\lbrace A_1, A_2, \\dots, A_N\\rbrace$.\n\nYou may perform the following operation any number of times.\n\n- Divide $S$ into two sets $T_1$ and $T_2$ (one of them may be empty). Then, replace $S$ with the union of $f(T_1)$ and $f(T_2)$.\n\nFind the minimum number of operations needed to make $S=\\lbrace 0\\rbrace$.\n\nWhat is bitwise $\\mathrm{XOR}$? The bitwise $\\mathrm{XOR}$ of non-negative integers $A$ and $B$, $A \\oplus B$, is defined as follows. When $A \\oplus B$ is written in binary, the $k$-th lowest bit ($k \\geq 0$) is $1$ if exactly one of the $k$-th lowest bits of $A$ and $B$ is $1$, and $0$ otherwise. For instance, $3 \\oplus 5 = 6$ (in binary: $011 \\oplus 101 = 110$). Generally, the bitwise $\\mathrm{XOR}$ of $k$ non-negative integers $p_1, p_2, p_3, \\dots, p_k$ is defined as $(\\dots ((p_1 \\oplus p_2) \\oplus p_3) \\oplus \\dots \\oplus p_k)$, which can be proved to be independent of the order of $p_1, p_2, p_3, \\dots, p_k$.\n\n## Constraints\n\n- $1 \\leq N \\leq 300$\n- $1 \\leq M \\leq 300$\n- $0 \\leq A_i < 2^{M}$\n- $A_i\\ (1\\leq i \\leq N)$ are pairwise distinct.\n- Each $A_i$ is given with exactly $M$ digits in binary (possibly with leading zeros).\n- All values in the input are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nA_1\nA_2\n\\vdots\nA_N\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 2\n00\n01\n10\n11\n",
+      "output": "2\n",
+      "note": "In the first operation, you can divide $S$ into $T_1=\\lbrace 0, 1\\rbrace, T_2=\\lbrace 2, 3\\rbrace$, for which $f(T_1) =\\lbrace 0, 1\\rbrace, f(T_2) =\\lbrace 0, 1\\rbrace$, replacing $S$ with $\\lbrace 0, 1\\rbrace$.\n\nIn the second operation, you can divide $S$ into $T_1=\\lbrace 0\\rbrace, T_2=\\lbrace 1\\rbrace$, making $S=\\lbrace 0\\rbrace$.\n\nThere is no way to make $S=\\lbrace 0\\rbrace$ in fewer than two operations, so the answer is $2$."
+    },
+    {
+      "input": "1 8\n10011011\n",
+      "output": "1\n",
+      "note": "In the first operation, you can divide $S$ into $T_1=\\lbrace 155\\rbrace, T_2=\\lbrace \\rbrace$, making $S=\\lbrace 0\\rbrace$. Note that $T_1$ or $T_2$ may be empty."
+    },
+    {
+      "input": "1 2\n00\n",
+      "output": "0\n",
+      "note": "We have $S=\\lbrace 0\\rbrace$ from the beginning; no operation is needed."
+    },
+    {
+      "input": "20 20\n10011011111101101111\n10100111100001111100\n10100111100110001111\n10011011100011011111\n11001000001110011010\n10100111111011000101\n11110100001001110010\n10011011100010111001\n11110100001000011010\n01010011101011010011\n11110100010000111100\n01010011101101101111\n10011011100010110111\n01101111101110001110\n00111100000101111010\n01010011101111010100\n10011011100010110100\n01010011110010010011\n10100111111111000001\n10100111111000010101\n",
+      "output": "10\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:25:26.666Z"
+}

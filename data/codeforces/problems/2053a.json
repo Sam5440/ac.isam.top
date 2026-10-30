@@ -1,0 +1,30 @@
+{
+  "id": "2053A",
+  "platform": "codeforces",
+  "contestId": 2053,
+  "index": "A",
+  "title": "Tender Carpenter",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2053/problem/A",
+  "difficulty": 800,
+  "tags": [
+    "dp",
+    "geometry",
+    "greedy",
+    "math"
+  ],
+  "points": 500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "*I would use a firework to announce, a wave to bid farewell, and a bow to say thanks: bygones are bygones; not only on the following path will I be walking leisurely and joyfully, but also the footsteps won't halt as time never leaves out flowing; for in the next year, we will meet again.*— Cocoly1990, *[Goodbye 2022](https://www.luogu.com.cn/problem/P8941)*\n\n*In his dream, Cocoly would go on a long holiday with no worries around him. So he would try out for many new things, such as... being a carpenter. To learn it well, Cocoly decides to become an apprentice of Master, but in front of him lies a hard task waiting for him to solve.*\n\nCocoly is given an array $a_1, a_2,\\ldots, a_n$. Master calls a set of integers $S$ *stable* if and only if, for any possible $u$, $v$, and $w$ from the set $S$ (note that $u$, $v$, and $w$ do not necessarily have to be pairwise distinct), sticks of length $u$, $v$, and $w$ can form a non-degenerate triangle$^{\\text{∗}}$.\n\nCocoly is asked to partition the array $a$ into several (possibly, $1$ or $n$) **non-empty** continuous subsegments$^{\\text{†}}$, such that: for each of the subsegments, the set containing all the elements in it is *stable*.\n\nMaster wants Cocoly to partition $a$ in **at least two** different$^{\\text{‡}}$ ways. You have to help him determine whether it is possible.\n\n$^{\\text{∗}}$A triangle with side lengths $x$, $y$, and $z$ is called non-degenerate if and only if: $x + y \\gt z$, $y + z \\gt x$, and $z + x \\gt y$. $^{\\text{†}}$A sequence $b$ is a subsegment of a sequence $c$ if $b$ can be obtained from $c$ by the deletion of several (possibly, zero or all) elements from the beginning and several (possibly, zero or all) elements from the end. $^{\\text{‡}}$Two partitions are considered different if and only if at least one of the following holds: the numbers of continuous subsegments split in two partitions are different; there is an integer $k$ such that the lengths of the $k$-th subsegment in two partitions are different.\n\n## Input\n\nEach test contains multiple test cases. The first line of the input contains a single integer $t$ ($1 \\leq t \\leq 200$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\leq n \\leq 200$) — the length of the array $a$.\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1 \\leq a_i \\leq 10^5$) — the elements in the array $a$.\n\n## Output\n\nFor each test case, print $\\texttt{YES}$ if there are at least two ways to partition $a$, and $\\texttt{NO}$ otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings $\\texttt{yEs}$, $\\texttt{yes}$, $\\texttt{Yes}$, and $\\texttt{YES}$ will be recognized as positive responses.\n\n## Note\n\nIn the first test case, here are two possible partitions:\n\n- $[2, 3], [5, 7]$, since\n- $[2, 3]$ is *stable* because sticks of lengths $(2, 2, 2), (2, 2, 3), (2, 3, 3), (3, 3, 3)$ respectively can all form non-degenerate triangles.\n  - $[5, 7]$ is *stable* because sticks of lengths $(5, 5, 5), (5, 5, 7), (5, 7, 7), (7, 7, 7)$ respectively can all form non-degenerate triangles.\n- and $[2], [3, 5], [7]$, since\n- $[2]$ is *stable* because sticks of lengths $(2, 2, 2)$ respectively can form a non-degenerate triangle.\n  - $[3, 5]$ is *stable* because sticks of lengths $(3, 3, 3), (3, 3, 5), (3, 5, 5), (5, 5, 5)$ respectively can all form non-degenerate triangles.\n  - $[7]$ is *stable* because sticks of lengths $(7, 7, 7)$ respectively can form a non-degenerate triangle.\n\nNote that some other partitions also satisfy the constraints, such as $[2], [3], [5], [7]$ and $[2], [3], [5, 7]$.\n\nIn the second test case, Cocoly can only partition each element as a single subsegment, resulting in $[115], [9], [2], [28]$. Since we only have one possible partition, the answer is $\\texttt{NO}$.\n\nIn the third test case, please note that the partition $[8, 4], [1], [6], [2]$ does not satisfy the constraints, because $\\{8, 4\\}$ is not a *stable* set: sticks of lengths $4$, $4$, and $8$ cannot form a non-degenerate triangle.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n4\n2 3 5 7\n4\n115 9 2 28\n5\n8 4 1 6 2\n6\n1 5 4 1 4 7\n2\n100000 100000\n",
+      "output": "YES\nNO\nNO\nYES\nYES\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:33:07.738Z"
+}

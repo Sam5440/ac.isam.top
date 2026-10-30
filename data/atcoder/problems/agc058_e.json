@@ -1,0 +1,34 @@
+{
+  "id": "agc058_e",
+  "platform": "atcoder",
+  "contestId": "agc058",
+  "index": "E",
+  "title": "Nearer Permutation",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc058/tasks/agc058_e",
+  "difficulty": 3825,
+  "tags": [],
+  "points": 1400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nIn this problem, a \"permutation\" always means a permutation of $(1,2,\\cdots,N)$.\n\nFor two permutations $p$ and $q$, let us define the distance between them, $d(p,q)$, as follows.\n\n- Consider making $p$ equal $q$ by repeatedly swapping two adjacent terms in $p$. Let $d(p,q)$ be the minimum number of swaps required here.\n\nAdditionally, for a permutation $x$, let us define another permutation $f(x)$ as follows.\n\n- Let $y=(1,2,\\cdots,N)$. Consider permutations $z$ such that $d(x,z) \\leq d(y,z)$. Let $f(x)$ be the lexicographically smallest of those permutations.\n\nFor example, when $x=(2,3,1)$, the permutations $z$ such that $d(x,z) \\leq d(y,z)$ are $z=(2,1,3),(2,3,1),(3,1,2),(3,2,1)$. The lexicographically smallest of them is $(2,1,3)$, so we have $f(x)=(2,1,3)$.\n\nYou are given a permutation $A=(A_1,A_2,\\cdots,A_N)$. Determine whether there is a permutation $x$ such that $f(x)=A$.\n\nSolve $T$ test cases for each input file.\n\nWhat is lexicographical order on sequences? The algorithm described here determines the lexicographical order between distinct sequences $S$ and $T$. Below, let $S_i$ denote the $i$-th element of $S$. Additionally, let $S \\lt T$ and $S \\gt T$ mean \"$S$ is lexicographical smaller than $T$\" and \"$S$ is lexicographical larger than $T$,\" respectively. Let $L$ be the length of the shorter of $S$ and $T$. For each $i=1,2,\\dots,L$, let us check whether $S_i$ and $T_i$ are equal. If there is $i$ such that $S_i \\neq T_i$, let $j$ be the smallest such $i$, and compare $S_j$ and $T_j$. If $S_j$ is smaller than $T_j$ (as a number), we conclude $S \\lt T$ and exit; if $S_j$ is larger than $T_j$, we conclude $S \\gt T$ and exit. If there is no $i$ such that $S_i \\neq T_i$, compare the lengths of $S$ and $T$. If $S$ is shorter than $T$, we conclude $S \\lt T$ and exit; if $S$ is longer than $T$, we conclude $S \\gt T$ and exit.\n\n## Constraints\n\n- $1 \\leq T \\leq 150000$\n- $2 \\leq N \\leq 300000$\n- $(A_1,A_2,\\cdots,A_N)$ is a permutation of $(1,2,\\cdots,N)$.\n- The sum of $N$ in one input file does not exceed $300000$.\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nT\ncase_1\ncase_2\n\\vdots\ncase_T\n```\n\nEach case is in the following format:\n\n```\nN\nA_1 A_2 \\cdots A_N\n```\n\n## Output\n\nFor each case, print `Yes` if there is a permutation $x$ such that $f(x)=A$, and `No` otherwise.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n2\n1 2\n2\n2 1\n",
+      "output": "Yes\nYes\n",
+      "note": "For instance, when $A=(2,1)$, one can let $x=(2,1)$ to satisfy $f(x)=A$."
+    },
+    {
+      "input": "6\n3\n1 2 3\n3\n1 3 2\n3\n2 1 3\n3\n2 3 1\n3\n3 1 2\n3\n3 2 1\n",
+      "output": "Yes\nYes\nYes\nYes\nNo\nNo\n",
+      "note": "For instance, when $A=(2,3,1)$, one can let $x=(3,2,1)$ to satisfy $f(x)=A$."
+    },
+    {
+      "input": "24\n4\n1 2 3 4\n4\n1 2 4 3\n4\n1 3 2 4\n4\n1 3 4 2\n4\n1 4 2 3\n4\n1 4 3 2\n4\n2 1 3 4\n4\n2 1 4 3\n4\n2 3 1 4\n4\n2 3 4 1\n4\n2 4 1 3\n4\n2 4 3 1\n4\n3 1 2 4\n4\n3 1 4 2\n4\n3 2 1 4\n4\n3 2 4 1\n4\n3 4 1 2\n4\n3 4 2 1\n4\n4 1 2 3\n4\n4 1 3 2\n4\n4 2 1 3\n4\n4 2 3 1\n4\n4 3 1 2\n4\n4 3 2 1\n",
+      "output": "Yes\nYes\nYes\nYes\nYes\nYes\nYes\nYes\nYes\nYes\nNo\nNo\nNo\nNo\nNo\nNo\nNo\nNo\nNo\nNo\nNo\nNo\nNo\nNo\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:29:19.162Z"
+}

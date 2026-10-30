@@ -1,0 +1,29 @@
+{
+  "id": "2061G",
+  "platform": "codeforces",
+  "contestId": 2061,
+  "index": "G",
+  "title": "Kevin and Teams",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2061/problem/G",
+  "difficulty": 2900,
+  "tags": [
+    "constructive algorithms",
+    "graphs",
+    "interactive"
+  ],
+  "points": 3000,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "*This is an interactive problem.*\n\nKevin has $n$ classmates, numbered $1, 2, \\ldots, n$. Any two of them may either be friends or not friends.\n\nKevin wants to select $2k$ classmates to form $k$ teams, where each team contains exactly $2$ people. Each person can belong to at most one team.\n\nLet $u_i$ and $v_i$ be two people in the $i$-th team. To avoid potential conflicts during team formation, the team members must satisfy one of the following two conditions:\n\n- For all $i$ ($1\\leq i \\leq k$), classmate $u_i$ and $v_i$ are friends.\n- For all $i$ ($1\\leq i \\leq k$), classmate $u_i$ and $v_i$ are not friends.\n\nKevin wants to determine the maximum $k$ such that, regardless of the friendship relationships among the $n$ people, he can always find $2k$ people to form the teams. After that, he needs to form $k$ teams. But asking whether two classmates are friends is awkward, so Kevin wants to achieve this while asking about the friendship status of no more than $n$ pairs of classmates.\n\nThe interactor is **adaptive**. It means that the hidden relationship between classmates is not fixed before the interaction and will change during the interaction.\n\n## Interaction\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains one positive integer $n$ ($2\\leq n \\leq 10^5$) — the number of classmates.\n\nFirst, you should output an integer $k$ ($1\\leq k\\leq \\frac{n}2$) — the maximum number of teams you can form.\n\nYou can make queries in the following way — print one line of the form $?\\;u\\;v$ where $1\\leq u\\neq v \\leq n$. After that, read a single integer: $0$ or $1$ indicating whether they are friends. $1$ means they are friends while $0$ means not.\n\nIf you want to print the answer, output $!\\;u_1\\;v_1\\;u_2\\;v_2\\;\\ldots\\;u_k\\;v_k$. You should output **exactly** $2k$ distinct numbers. Then, the interaction continues with the next test case.\n\nYou can make at most $n$ queries. Printing the answer does **not** count towards the number of queries made.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\nAfter printing each query do not forget to output the end of line and flush$^{\\text{∗}}$ the output. Otherwise, you will get `Idleness limit exceeded` verdict.\n\nIf, at any interaction step, you read $-1$ instead of valid data, your solution must exit immediately. This means that your solution will reveive `Wrong answer` because of an invalid query or any other mistake. Failing to exit can result in an arbitrary verdict because your solution will continue to read from a closed stream.\n\n**Hacks**\n\nThe interactor for hacks is not adaptive. To make a hack, use the following format.\n\nThe first line contains the word \"`manual`\".\n\nThe second line contains a single integer $t$ ($1\\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains an integer $n$ ($2\\leq n \\leq 10^5$) — the number of classmates.\n\nThe second line of each test case contains a string $s$ consisting of '0' and '1' of length $\\frac{n(n - 1)}{2}$ — indicating the relationship between $(1, 2)$, $(1, 3)$, $\\ldots$, $(1, n)$, $(2, 3)$, $(2, 4)$, $\\ldots$, $(2, n)$, $\\ldots$, $(n - 1, n)$. '1' means being friends and '0' means not being friends.\n\nThe following is the input of example.\n\n```\nmanual\n2\n3\n011\n5\n1011101011\n```\n\nThe sum of $n$ over all test cases must not exceed $10^5$.\n\nThere is an additional constraint for hacks: The sum of $\\frac{n(n-1)}{2}$ over all test cases must not exceed $10^7$.\n\n$^{\\text{∗}}$To flush, use: `fflush(stdout)` or `cout.flush()` in C++; `sys.stdout.flush()` in Python; see the documentation for other languages.\n\n## Note\n\n**In the first test case:**\n\nKevin claims he can form $1$ team regardless of the friendship relationships among the $3$ people.\n\nKevin asks about the friendship relationship between people $1$ and $2$. The jury responds that they are friends.\n\nKevin answers that he can form a team with people $1$ and $2$.\n\n**In the second test case:**\n\nKevin claims he can form $2$ teams regardless of the friendship relationships among the $5$ people.\n\nKevin asks about the friendship relationship between people $(1, 2), (3, 4), (3, 5), (1, 3), (2, 4)$. The jury responds with $1, 0, 1, 0, 0$.\n\nKevin answers that he can form two teams with people $(1, 2)$ and $(3, 5)$.\n\nIt is also possible to form two teams with people $(1, 3)$ and $(2, 4)$, since they are both not friends.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n3\n\n1\n\n5\n\n1\n\n0\n\n1\n\n0\n\n0\n",
+      "output": "1\n? 1 2\n\n! 1 2\n\n2\n? 1 2\n\n? 3 4\n\n? 3 5\n\n? 1 3\n\n? 2 4\n\n! 1 2 3 5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:32:26.558Z"
+}

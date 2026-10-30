@@ -1,0 +1,34 @@
+{
+  "id": "arc148_b",
+  "platform": "atcoder",
+  "contestId": "arc148",
+  "index": "B",
+  "title": "dp",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc148/tasks/arc148_b",
+  "difficulty": 975,
+  "tags": [],
+  "points": 500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nFor a string $T$ of length $L$ consisting of `d` and `p`, let $f(T)$ be $T$ rotated $180$ degrees. More formally, let $f(T)$ be the string that satisfies the following conditions.\n\n- $f(T)$ is a string of length $L$ consisting of `d` and `p`.\n- For every integer $i$ such that $1 \\leq i \\leq L$, the $i$-th character of $f(T)$ differs from the $(L + 1 - i)$-th character of $T$.\n\nFor instance, if $T =$ `ddddd`, $f(T) =$ `ppppp`; if $T =$ `dpdppp`, $f(T)=$ `dddpdp`.\n\nYou are given a string $S$ of length $N$ consisting of `d` and `p`.\nYou may perform the following operation **zero or one** time.\n\n- Choose a pair of integers $(L, R)$ such that $1 \\leq L \\leq R \\leq N$, and let $T$ be the substring formed by the $L$-th through $R$-th characters of $S$. Then, replace the $L$-th through $R$-th characters of $S$ with $f(T)$.\n\nFor instance, if $S=$ `dpdpp` and $(L,R)=(2,4)$, we have $T=$ `pdp` and $f(T)=$ `dpd`, so $S$ becomes `ddpdp`.\n\nPrint the lexicographically smallest string that $S$ can become.\n\nWhat is lexicographical order? A string $S = S_1S_2\\ldots S_{|S|}$ is said to be **lexicographically smaller** than a string $T = T_1T_2\\ldots T_{|T|}$ if one of the following 1. and 2. holds. Here, $|S|$ and $|T|$ denote the lengths of $S$ and $T$, respectively. $|S| \\lt |T|$ and $S_1S_2\\ldots S_{|S|} = T_1T_2\\ldots T_{|S|}$. There is an integer $1 \\leq i \\leq \\min\\lbrace |S|, |T| \\rbrace$ that satisfies the following two conditions: $S_1S_2\\ldots S_{i-1} = T_1T_2\\ldots T_{i-1}$. $S_i$ is smaller than $T_i$ in alphabetical order.\n\n## Constraints\n\n- $1 \\leq N \\leq 5000$\n- $S$ is a string of length $N$ consisting of `d` and `p`.\n- $N$ is an integer.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nS\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\ndpdppd\n",
+      "output": "dddpdd\n",
+      "note": "Let $(L, R) = (2, 5)$. Then, we have $T =$ `pdpp` and $f(T) =$ `ddpd`, so $S$ becomes `dddpdd`.\nThis is the lexicographically smallest string that can be obtained, so print it."
+    },
+    {
+      "input": "3\nddd\n",
+      "output": "ddd\n",
+      "note": "It may be optimal to skip the operation."
+    },
+    {
+      "input": "11\nddpdpdppddp\n",
+      "output": "ddddpdpdddp\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:28:24.640Z"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "arc149_e",
+  "platform": "atcoder",
+  "contestId": "arc149",
+  "index": "E",
+  "title": "Sliding Window Sort",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc149/tasks/arc149_e",
+  "difficulty": 3188,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given positive integers $N$, $M$, and $K$. Consider the following operation on a sequence of positive integers $A = (A_0, \\ldots, A_{N-1})$.\n\n- Do the following for $k=0, 1, \\ldots, K-1$ in this order.\n- Sort $A_{k\\bmod N}, A_{(k+1)\\bmod N}, \\ldots, A_{(k+M-1)\\bmod N}$ in ascending order. That is, replace $A_{(k+j)\\bmod N}$ with $x_j$ for each $0\\leq j < M$, where $(x_0, \\ldots, x_{M-1})$ is the result of sorting $A_{k\\bmod N}, A_{(k+1)\\bmod N}, \\ldots, A_{(k+M-1)\\bmod N}$ in ascending order.\n\nYou are given a permutation $B = (B_0, \\ldots, B_{N-1})$ of the integers from $1$ through $N$. Find the number of sequences $A$ of positive integers that will equal $B$ after performing the operation above, modulo $998244353$.\n\n## Constraints\n\n- $2\\leq N\\leq 3\\times 10^5$\n- $2\\leq M\\leq N$\n- $1\\leq K\\leq 10^9$\n- $1\\leq B_i\\leq N$\n- $B_i\\neq B_j$ if $i\\neq j$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M K\nB_0 \\ldots B_{N-1}\n```\n\n## Print\n\nPrint the number of sequences $A$ of positive integers that will equal $B$ after performing the operation, modulo $998244353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 3 5\n6 4 2 3 1 5\n",
+      "output": "18\n",
+      "note": "For instance, $A = (4,1,5,6,2,3)$ satisfies the condition. On this $A$, the operation will proceed as follows.\n\n- The action for $k=0$ changes $A$ to $(1,4,5,6,2,3)$.\n- The action for $k=1$ changes $A$ to $(1,4,5,6,2,3)$.\n- The action for $k=2$ changes $A$ to $(1,4,2,5,6,3)$.\n- The action for $k=3$ changes $A$ to $(1,4,2,3,5,6)$.\n- The action for $k=4$ changes $A$ to $(6,4,2,3,1,5)$, which equals $B$."
+    },
+    {
+      "input": "6 3 5\n6 5 4 3 2 1\n",
+      "output": "0\n",
+      "note": "No sequence $A$ satisfies the condition."
+    },
+    {
+      "input": "20 20 149\n13 14 15 16 17 18 19 20 1 2 3 4 5 6 7 8 9 10 11 12\n",
+      "output": "401576539\n",
+      "note": "All permutations of the integers from $1$ through $20$ satisfy the condition."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:28:06.271Z"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "abc261_h",
+  "platform": "atcoder",
+  "contestId": "abc261",
+  "index": "Ex",
+  "title": "Game on Graph",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc261/tasks/abc261_h",
+  "difficulty": 2531,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a directed graph with $N$ vertices and $M$ edges. Edge $i$ is directed from Vertex $A_i$ to $B_i$ and has a weight of $C_i$.\n\nInitially, there is a piece on Vertex $v$. Takahashi and Aoki will play a game where they alternate turns moving the piece as follows:\n\n- If there is no edge that goes from the vertex on which the piece is placed, end the game.\n- If there are edges that go from the vertex on which the piece is placed, choose one of those edges and move the piece along that edge.\n\nTakahashi goes first. Takahashi tries to minimize the total weight of the edges traversed by the piece, and Aoki tries to maximize it.\nMore formally, their objectives are as follows.\nTakahashi gives the first priority to ending the game in a finite number of moves. If this is possible, he tries to minimize the total weight of the edges traversed by the piece.\nAoki gives the first priority to preventing the game from ending in a finite number of moves. If this is impossible, he tries to maximize the total weight of the edges traversed by the piece.\n(If the piece traverses the same edge multiple times, the weight is added that number of times.)\n\nDetermine whether the game ends in a finite number of moves when both players play optimally. If it ends, find the total weight of the edges traversed by the piece.\n\n## Constraints\n\n- $1 \\leq N \\leq 2\\times 10^5$\n- $0 \\leq M \\leq 2\\times 10^5$\n- $1 \\leq v \\leq N$\n- $1 \\leq A_i,B_i \\leq N$\n- There is no multi-edges. That is, $(A_i,B_i)\\neq(A_j,B_j)$ for $i\\neq j$.\n- There is no self-loops. That is, $A_i\\neq B_i$.\n- $0 \\leq C_i \\leq 10^9$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M v\nA_1 B_1 C_1\nA_2 B_2 C_2\n\\vdots\nA_M B_M C_M\n```\n\n## Output\n\nIf the game does not end in a finite number of moves when both players play optimally, print `INFINITY`.\nIf the game ends in a finite number of moves, print the total weight of the edges traversed by the piece.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7 6 1\n1 2 1\n1 3 10\n2 4 100\n2 5 102\n3 6 20\n3 7 30\n",
+      "output": "40\n",
+      "note": "First, Takahashi will move the piece to Vertex $3$. Next, Aoki will move the piece to Vertex $7$, and the game will end.\nThe total weight of the edges traversed by the piece will be $10+30=40$."
+    },
+    {
+      "input": "3 6 3\n1 2 1\n2 1 2\n2 3 3\n3 2 4\n3 1 5\n1 3 6\n",
+      "output": "INFINITY\n",
+      "note": "The game will not end in a finite number of moves."
+    },
+    {
+      "input": "4 4 1\n1 2 1\n2 3 1\n3 1 1\n2 4 1\n",
+      "output": "5\n",
+      "note": "The piece will go $1\\to 2 \\to 3 \\to 1 \\to 2\\to 4$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:29:45.838Z"
+}

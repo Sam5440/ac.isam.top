@@ -1,0 +1,35 @@
+{
+  "id": "2071E",
+  "platform": "codeforces",
+  "contestId": 2071,
+  "index": "E",
+  "title": "LeaFall",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2071/problem/E",
+  "difficulty": 2600,
+  "tags": [
+    "combinatorics",
+    "dp",
+    "probabilities",
+    "trees"
+  ],
+  "points": 2500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 512,
+  "statementMd": "You are given a tree$^{\\text{∗}}$ with $n$ vertices. Over time, each vertex $i$ ($1 \\le i \\le n$) has a probability of $\\frac{p_i}{q_i}$ of falling. Determine the expected value of the number of unordered pairs$^{\\text{†}}$ of **distinct** vertices that become leaves$^{\\text{‡}}$ in the resulting forest$^{\\text{§}}$, modulo $998\\,244\\,353$.\n\nNote that when vertex $v$ falls, it is removed along with all edges connected to it. However, adjacent vertices remain unaffected by the fall of $v$.\n\n$^{\\text{∗}}$A tree is a connected graph without cycles. $^{\\text{†}}$An unordered pair is a collection of two elements where the order in which the elements appear does not matter. For example, the unordered pair $(1, 2)$ is considered the same as $(2, 1)$.$^{\\text{‡}}$A leaf is a vertex that is connected to exactly one edge.$^{\\text{§}}$A forest is a graph without cycles\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 10^5$).\n\nThe $i$-th line of the following $n$ lines contains two integers $p_i$ and $q_i$ ($1 \\le p_i \\lt q_i \\lt 998\\,244\\,353$).\n\nEach of the following $n - 1$ lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n$, $u \\neq v$) — the indices of the vertices connected by an edge.\n\nIt is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output a single integer — the expected value of the number of unordered pairs of distinct vertices that become leaves in the resulting forest modulo $998\\,244\\,353$.\n\nFormally, let $M = 998\\,244\\,353$. It can be shown that the exact answer can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $p \\cdot q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot q \\equiv p \\pmod{M}$.\n\n## Note\n\nIn the first test case, only one vertex is in the tree, which is not a leaf, so the answer is $0$.\n\nIn the second test case, the tree is shown below.\n\n![image](https://espresso.codeforces.com/218d5395c3eda2e155307f3e22e7428b9a96e6ff.png)\n\nVertices that have not fallen are denoted in bold. Let us examine the following three cases:\n\n![image](https://espresso.codeforces.com/6cfe17a3ff2a57778dfab93b3e9a98240502f199.png) We arrive at this configuration with a probability of $\\left( \\frac{1}{2} \\right) ^3$, where the only unordered pair of distinct leaf vertices is $(2, 3)$. ![image](https://espresso.codeforces.com/a22759c32eac92fed3e06de6d3dae7fba635c199.png) We arrive at this configuration with a probability of $\\left( \\frac{1}{2} \\right) ^3$, where the only unordered pair of distinct leaf vertices is $(2, 1)$. ![image](https://espresso.codeforces.com/482e22b5149724d44e3ecc17a70ff253edaec105.png) We arrive at this configuration with a probability of $\\left( \\frac{1}{2} \\right) ^3$, where the only unordered pair of distinct leaf vertices is $(1, 3)$.\n\nAll remaining cases contain no unordered pairs of distinct leaf vertices. Hence, the answer is $\\frac{1 + 1 + 1}{8} = \\frac{3}{8}$, which is equal to $623\\,902\\,721$ modulo $998\\,244\\,353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n1\n1 2\n3\n1 2\n1 2\n1 2\n1 2\n2 3\n3\n1 3\n1 5\n1 3\n1 2\n2 3\n1\n998244351 998244352\n6\n10 17\n7 13\n6 11\n2 10\n10 19\n5 13\n4 3\n3 6\n1 4\n3 5\n3 2\n",
+      "output": "0\n623902721\n244015287\n0\n799215919\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1\n10\n282508078 551568452\n894311255 989959022\n893400641 913415297\n460925436 801908985\n94460427 171411253\n997964895 998217862\n770266391 885105593\n591419316 976424827\n606447024 863339056\n940224886 994244553\n9 5\n9 6\n9 8\n8 7\n3 6\n1 5\n7 4\n8 10\n4 2\n",
+      "output": "486341067\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:31:36.223Z"
+}

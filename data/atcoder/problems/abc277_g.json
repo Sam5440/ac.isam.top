@@ -1,0 +1,29 @@
+{
+  "id": "abc277_g",
+  "platform": "atcoder",
+  "contestId": "abc277",
+  "index": "G",
+  "title": "Random Walk to Millionaire",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc277/tasks/abc277_g",
+  "difficulty": 2491,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a connected simple undirected graph consisting of $N$ vertices and $M$ edges.\nFor $i = 1, 2, \\ldots, M$, the $i$-th edge connects vertex $u_i$ and vertex $v_i$.\n\nTakahashi starts at **Level** $0$ on vertex $1$, and will perform the following action exactly $K$ times.\n\n- First, choose one of the vertices adjacent to the vertex he is currently on, uniformly at random, and move to the chosen vertex.\n- Then, the following happens according to the vertex $v$ he has moved to.\n- If $C_v = 0$: Takahashi's Level increases by $1$.\n  - If $C_v = 1$: Takahashi receives a money of $X^2$ yen, where $X$ is his current Level.\n\nPrint the expected value of the total amount of money Takahashi receives during the $K$ actions above, modulo $998244353$ (see Notes).\n\n## Note\n\nIt can be proved that the sought expected value is always a rational number. Additionally, under the Constraints of this problem, when that value is represented as $\\frac{P}{Q}$ using two coprime integers $P$ and $Q$, it can also be proved that there is a unique integer $R$ such that $R \\times Q \\equiv P\\pmod{998244353}$ and $0 \\leq R \\lt 998244353$. Find this $R$.\n\n## Constraints\n\n- $2 \\leq N \\leq 3000$\n- $N-1 \\leq M \\leq \\min\\lbrace N(N-1)/2, 3000\\rbrace$\n- $1 \\leq K \\leq 3000$\n- $1 \\leq u_i, v_i \\leq N$\n- $u_i \\neq v_i$\n- $i \\neq j \\implies \\lbrace u_i, v_i\\rbrace \\neq \\lbrace u_j, v_j \\rbrace$\n- The given graph is connected.\n- $C_i \\in \\lbrace 0, 1\\rbrace$\n- All values in the input are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M K\nu_1 v_1\nu_2 v_2\n\\vdots\nu_M v_M\nC_1 C_2 \\ldots C_N\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 4 8\n4 5\n2 3\n2 4\n1 2\n0 0 1 1 0\n",
+      "output": "89349064\n",
+      "note": "Among the multiple paths that Takahashi may traverse, let us take a case where Takahashi starts on vertex $1$ and goes along the path $1 \\rightarrow 2 \\rightarrow 4 \\rightarrow 5 \\rightarrow 4 \\rightarrow 2 \\rightarrow 1 \\rightarrow 2 \\rightarrow 3$, and compute the total amount of money he receives.\n\n1. In the first action, he moves from vertex $1$ to an adjacent vertex, vertex $2$. Then, since $C_2 = 0$, his Level increases to $1$.\n2. In the second action, he moves from vertex $2$ to an adjacent vertex, vertex $4$. Then, since $C_4 = 1$, he receives $1^2 = 1$ yen.\n3. In the third action, he moves from vertex $4$ to an adjacent vertex, vertex $5$. Then, since $C_5 = 0$, his Level increases to $2$.\n4. In the fourth action, he moves from vertex $5$ to an adjacent vertex, vertex $4$. Then, since $C_4 = 1$, he receives $2^2 = 4$ yen.\n5. In the fifth action, he moves from vertex $4$ to an adjacent vertex, vertex $2$. Then, since $C_2 = 0$, his Level increases to $3$.\n6. In the sixth action, he moves from vertex $2$ to an adjacent vertex, vertex $1$. Then, since $C_1 = 0$, his Level increases to $4$.\n7. In the seventh action, he moves from vertex $1$ to an adjacent vertex, vertex $2$. Then, since $C_2 = 0$, his Level increases to $5$.\n8. In the eighth action, he moves from vertex $2$ to an adjacent vertex, vertex $3$. Then, since $C_3 = 1$, he receives $5^2 = 25$ yen.\n\nThus, he receives a total of $1 + 4 + 25 = 30$ yen."
+    },
+    {
+      "input": "8 12 20\n7 6\n2 6\n6 4\n2 1\n8 5\n7 2\n7 5\n3 7\n3 5\n1 8\n6 3\n1 4\n0 0 1 1 0 0 0 0\n",
+      "output": "139119094\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:27:11.835Z"
+}

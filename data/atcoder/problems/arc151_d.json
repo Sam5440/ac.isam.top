@@ -1,0 +1,29 @@
+{
+  "id": "arc151_d",
+  "platform": "atcoder",
+  "contestId": "arc151",
+  "index": "D",
+  "title": "Binary Representations and Queries",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc151/tasks/arc151_d",
+  "difficulty": 2282,
+  "tags": [],
+  "points": 700,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given an integer sequence $A = (A_0, A_1, \\ldots, A_{2^N-1})$ of length $2^N$.\n\nAdditionally, $Q$ queries are given. For each $i = 1, 2, \\ldots, Q$, the $i$-th query is represented by two integers $X_i$ and $Y_i$ and asks you to perform the operation below.\n\n> For each $j = 0, 1, 2, \\ldots, 2^N-1$ in this order, do the following.\n> \n> 1. First, let $b_{N-1}b_{N-2}\\ldots b_0$ be the binary representation of $j$ with $N$ digits. Additionally, let $j'$ be the integer represented by the binary representation $b_{N-1}b_{N-2}\\ldots b_0$ after flipping the bit $b_{X_i}$ (changing $0$ to $1$ and $1$ to $0$).\n> 2. Then, if $b_{X_i} = Y_i$, add the value of $A_j$ to $A_{j'}$.\n\nPrint each element of $A$, modulo $998244353$, after processing all the queries in the order they are given in the input.\n\nWhat is binary representation with $N$ digits? The binary representation of an non-negative integer $X$ ($0 \\leq X < 2^N$) with $N$ digits is the unique sequence $b_{N-1}b_{N-2}\\ldots b_0$ of length $N$ consisting of $0$ and $1$ that satisfies: $\\sum_{i = 0}^{N-1} b_i \\cdot 2^i = X$.\n\n## Constraints\n\n- $1 \\leq N \\leq 18$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $0 \\leq A_i \\lt 998244353$\n- $0 \\leq X_i \\leq N-1$\n- $Y_i \\in \\lbrace 0, 1\\rbrace$\n- All values in the input are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN Q\nA_0 A_1 \\ldots A_{2^N-1}\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_Q Y_Q\n```\n\n## Output\n\nFor each $i = 0, 1, \\ldots, 2^N-1$, print the remainder $A'_i$ when dividing $A_i$ after processing all the queries by $998244353$, separated by spaces, in the following format:\n\n```\nA'_0 A'_1 \\ldots A'_{2^N-1}\n```",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2\n0 1 2 3\n1 1\n0 0\n",
+      "output": "2 6 2 5\n",
+      "note": "The first query asks you to do the following.\n\n- For $j = 0$, we have $b_1b_0 = 00$ and $j' = 2$. Since $b_1 \\neq 1$, skip the addition.\n- For $j = 1$, we have $b_1b_0 = 01$ and $j' = 3$. Since $b_1 \\neq 1$, skip the addition.\n- For $j = 2$, we have $b_1b_0 = 10$ and $j' = 0$. Since $b_1 = 1$, add the value of $A_2$ to $A_0$. Now we have $A = (2, 1, 2, 3)$.\n- For $j = 3$, we have $b_1b_0 = 11$ and $j' = 1$. Since $b_1 = 1$, add the value of $A_3$ to $A_1$. Now we have $A = (2, 4, 2, 3)$.\n\nThe second query asks you to do the following.\n\n- For $j = 0$, we have $b_1b_0 = 00$ and $j' = 1$. Since $b_0 = 0$, add the value of $A_0$ to $A_1$. Now we have $A = (2, 6, 2, 3)$.\n- For $j = 1$, we have $b_1b_0 = 01$ and $j' = 0$. Since $b_0 \\neq 0$, skip the addition.\n- For $j = 2$, we have $b_1b_0 = 10$ and $j' = 3$. Since $b_0 = 0$, add the value of $A_2$ to $A_3$. Now we have $A = (2, 6, 2, 5)$.\n- For $j = 3$, we have $b_1b_0 = 11$ and $j' = 2$. Since $b_0 \\neq 0$, skip the addition.\n\nThus, $A$ will be $(2, 6, 2, 5)$ after processing all the queries."
+    },
+    {
+      "input": "3 10\n606248357 338306877 919152167 981537317 808873985 845549408 680941783 921035119\n1 1\n0 0\n0 0\n0 0\n0 1\n0 1\n0 1\n2 0\n2 0\n2 0\n",
+      "output": "246895115 904824001 157201385 744260759 973709546 964549010 61683812 205420980\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:27:32.004Z"
+}

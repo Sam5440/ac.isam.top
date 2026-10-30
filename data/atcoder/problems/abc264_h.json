@@ -1,0 +1,38 @@
+{
+  "id": "abc264_h",
+  "platform": "atcoder",
+  "contestId": "abc264",
+  "index": "Ex",
+  "title": "Perfect Binary Tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc264/tasks/abc264_h",
+  "difficulty": 2660,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a rooted tree with $N$ vertices numbered $1,2,\\dots,N$.\nThe tree is rooted at Vertex $1$, and the parent of Vertex $i \\ge 2$ is Vertex $P_i(<i)$.\nFor each integer $k=1,2,\\dots,N$, solve the following problem:\n\nThere are $2^{k-1}$ ways to choose some of the vertices numbered between $1$ and $k$ so that Vertex $1$ is chosen.\nHow many of them satisfy the following condition: the subgraph induced by the set of chosen vertices forms a perfect binary tree (with $2^d-1$ vertices for a positive integer $d$) rooted at Vertex $1$?\nSince the count may be enormous, print the count modulo $998244353$.\n\nWhat is an induced subgraph? Let $S$ be a subset of the vertex set of a graph $G$. The subgraph $H$ induced by this vertex set $S$ is constructed as follows: Let the vertex set of $H$ equal $S$. Then, we add edges to $H$ as follows: For all vertex pairs $(i, j)$ such that $i,j \\in S, i < j$, if there is an edge connecting $i$ and $j$ in $G$, then add an edge connecting $i$ and $j$ to $H$.\n\nWhat is a perfect binary tree? A perfect binary tree is a rooted tree that satisfies all of the following conditions: Every vertex that is not a leaf has exactly $2$ children. All leaves have the same distance from the root. Here, we regard a graph with $1$ vertex and $0$ edges as a perfect binary tree, too.\n\n## Constraints\n\n- All values in input are integers.\n- $1 \\le N \\le 3 \\times 10^5$\n- $1 \\le P_i < i$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nP_2 P_3 \\dots P_N\n```\n\n## Output\n\nPrint $N$ lines. The $i$-th ($1 \\le i \\le N$) line should contain the answer as an integer when $k=i$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "10\n1 1 2 1 2 5 5 5 1\n",
+      "output": "1\n1\n2\n2\n4\n4\n4\n5\n7\n10\n",
+      "note": "The following ways of choosing vertices should be counted:\n\n- $\\{1\\}$ when $k \\ge 1$\n- $\\{1,2,3\\}$ when $k \\ge 3$\n- $\\{1,2,5\\},\\{1,3,5\\}$ when $k \\ge 5$\n- $\\{1,2,4,5,6,7,8\\}$ when $k \\ge 8$\n- $\\{1,2,4,5,6,7,9\\},\\{1,2,4,5,6,8,9\\}$ when $k \\ge 9$\n- $\\{1,2,10\\},\\{1,3,10\\},\\{1,5,10\\}$ when $k = 10$"
+    },
+    {
+      "input": "1\n",
+      "output": "1\n",
+      "note": "If $N=1$, the $2$-nd line of the Input is empty."
+    },
+    {
+      "input": "10\n1 2 3 4 5 6 7 8 9\n",
+      "output": "1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n"
+    },
+    {
+      "input": "13\n1 1 1 2 2 2 3 3 3 4 4 4\n",
+      "output": "1\n1\n2\n4\n4\n4\n4\n4\n7\n13\n13\n19\n31\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:29:23.473Z"
+}
