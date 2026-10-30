@@ -1,0 +1,30 @@
+{
+  "id": "1628F",
+  "platform": "codeforces",
+  "contestId": 1628,
+  "index": "F",
+  "title": "Spaceship Crisis Management",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1628/problem/F",
+  "difficulty": 3500,
+  "tags": [
+    "binary search",
+    "data structures",
+    "geometry",
+    "sortings"
+  ],
+  "points": 3000,
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 256,
+  "statementMd": "*NASA (Norwegian Astronaut Stuff Association) is developing a new steering system for spaceships. But in its current state, it wouldn't be very safe if the spaceship would end up in a bunch of space junk. To make the steering system safe, they need to answer the following:*\n\nGiven the target position $t = (0, 0)$, a set of $n$ pieces of space junk $l$ described by line segments $l_i = ((a_{ix}, a_{iy}), (b_{ix}, b_{iy}))$, and a starting position $s = (s_x, s_y)$, is there a direction such that floating in that direction from the starting position would lead to the target position?\n\nWhen the spaceship hits a piece of space junk, what happens depends on the absolute difference in angle between the floating direction and the line segment, $\\theta$:\n\n- If $\\theta \\lt 45^{\\circ}$, the spaceship slides along the piece of space junk in the direction that minimizes the change in angle, and when the spaceship slides off the end of the space junk, it continues floating in the direction it came in (before hitting the space junk).\n- If $\\theta \\ge 45^{\\circ}$, the spaceship stops, because there is too much friction to slide along the space junk.\n\nYou are only given the set of pieces of space junk once, and the target position is always $(0, 0)$, but there are $q$ queries, each with a starting position $s_j = (s_{jx}, s_{jy})$.\n\nAnswer the above question for each query.\n\n## Input\n\nThe first line contains the the integer $n$ ($1 \\le n \\le 1500$).\n\nThen follows $n$ lines, the $i$-th of which containing the $4$ integers $a_{ix}$, $a_{iy}$, $b_{ix}$, and $b_{iy}$ ($|a_{ix}|, |a_{iy}|, |b_{ix}|, |b_{iy}| \\le 1000$).\n\nThen follows a line containing the integer $q$ ($1 \\le q \\le 1000$).\n\nThen follows $q$ lines, the $j$-th of which containing the $2$ integers $s_{jx}$ and $s_{jy}$ ($|s_{jx}|, |s_{jy}| \\le 1000$).\n\nIt is guaranteed that none of the segments in $l$ cross or touch, that $t$ is not on any segment in $l$, that $s_j$ is not on any segment in $l$, and that $s \\neq t$.\n\n## Output\n\nFor each query $s_j$ print an answer. If there exists a direction such that floating from $s_j$ in that direction, possibly sliding along some pieces of space junk, leads to $t$, print \"YES\". Otherwise, print \"NO\" (case insensitive).\n\n## Note\n\n![image](https://espresso.codeforces.com/eb6cbf5cb0fb3b298ea67a25b2289dfbdcc8448a.png)\n\nThe blue cross represents the target location, and the other blue line segments represent the space junk.\n\nGreen dots represent starting locations where the answer is yes, and red dots represent starting locations where the answer is no.\n\nThe yellow lines are possible paths to the target location for the $3$rd and $14$th queries.\n\nThe black line is a possible path from the starting location in the $6$th query, but it barely misses the target location.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n0 1 2 4\n1 3 -1 6\n0 -1 1 -1\n14\n-2 10\n-1 10\n0 10\n1 10\n2 10\n3 10\n4 10\n5 10\n6 10\n-1 -2\n0 -2\n1 -2\n2 -2\n3 -2\n",
+      "output": "YES\nYES\nYES\nYES\nYES\nNO\nNO\nNO\nYES\nYES\nNO\nNO\nNO\nYES\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:12:34.552Z"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1634D",
+  "platform": "codeforces",
+  "contestId": 1634,
+  "index": "D",
+  "title": "Finding Zero",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1634/problem/D",
+  "difficulty": 2000,
+  "tags": [
+    "constructive algorithms",
+    "interactive",
+    "math"
+  ],
+  "points": 2000,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "![image](https://espresso.codeforces.com/1b3f8506501b8393400b3a441a3b82b3bab2bb30.png)\n\n**This is an interactive problem.**\n\nWe picked an array of whole numbers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 10^9$) and concealed **exactly one** zero in it! Your goal is to find the location of this zero, that is, to find $i$ such that $a_i = 0$.\n\nYou are allowed to make several queries to guess the answer. For each query, you can think up three distinct indices $i, j, k$, and we will tell you the value of $\\max(a_i, a_j, a_k) - \\min(a_i, a_j, a_k)$. In other words, we will tell you the difference between the maximum and the minimum number among $a_i$, $a_j$ and $a_k$.\n\nYou are allowed to make no more than $2 \\cdot n - 2$ queries, and after that you have two tries to guess where the zero is. That is, you have to tell us two numbers $i$ and $j$ and you win if $a_i = 0$ or $a_j = 0$.\n\nCan you guess where we hid the zero?\n\nNote that the array in each test case is fixed beforehand and will not change during the game. In other words, the interactor is not adaptive.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). Description of the test cases follows.\n\nThe first and only line of each test case contains an integer $n$ ($4 \\le n \\le 1000$) — the length of the array that we picked.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3000$.\n\n## Interaction\n\nFor each test case, the interaction starts with reading $n$.\n\nTo make a query, print \"`? $i$ $j$ $k$`\" (without quotes, $1 \\le i, j, k \\le n$, indices must be distinct). Then you should read our response from standard input, that is, $\\max(a_i, a_j, a_k) - \\min(a_i, a_j, a_k)$.\n\nIf the response is $-1$, it means your program has made an invalid query or has run out of tries. Your program must terminate immediately after reading $-1$, and you will get a verdict `Wrong answer`. Otherwise you may get any verdict, because the program will continue reading from the closed stream. Note that if the query is correct, the answer will never be $-1$ because $\\max(a_i, a_j, a_k) - \\min(a_i, a_j, a_k) \\geq 0$.\n\nTo give the final answer, print \"`! $i$ $j$`\" (without the quotes). Printing the same number twice (that is, $i = j$) is allowed. Note that giving this answer is not counted towards the limit of $2 \\cdot n - 2$ queries. After that, your program must continue to solve the remaining test cases, or exit if all test cases have been solved.\n\nAfter printing a query, don't forget to output line feed and flush the output buffer. Otherwise you will get the verdict `Idleness limit exceeded`. To flush the buffer, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- Read documentation for other languages.\n\n**Hacks**\n\nThe first line must contain an integer $t$ ($1 \\le t \\le 500$) — the count of test cases.\n\nThe first line of each test case must contain an integer $n$ ($4 \\le n \\le 1000$) — the length of the hidden array.\n\nThe second line of each test case must contain $n$ integers separated by spaces — $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 10^9$). There must also be **exactly one** zero in this array.\n\nThe sum of $n$ over all test cases must not exceed $3000$.\n\n## Note\n\nArray from sample: $[1, 2, 0, 3]$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1\n\n4\n\n2\n\n3\n\n3\n\n2\n",
+      "output": "? 1 2 3\n\n? 2 3 4\n\n? 3 4 1\n\n? 4 1 2\n\n! 2 3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T23:11:55.011Z"
+}
