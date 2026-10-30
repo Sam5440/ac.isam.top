@@ -1,0 +1,34 @@
+{
+  "id": "arc136_a",
+  "platform": "atcoder",
+  "contestId": "arc136",
+  "index": "A",
+  "title": "A ↔ BB",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc136/tasks/arc136_a",
+  "difficulty": -114,
+  "tags": [],
+  "points": 300,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a string $S$ of length $N$ consisting of `A`, `B`, `C`.\n\nYou can do the following two kinds of operations on $S$ any number of times in any order.\n\n- Choose `A` in $S$, delete it, and insert `BB` at that position.\n- Choose two adjacent characters that are `BB` in $S$, delete them, and insert `A` at that position.\n\nFind the lexicographically smallest possible string that $S$ can become after your operations.\n\nWhat is the lexicographical order? Simply speaking, the lexicographical order is the order in which words are listed in a dictionary. As a more formal definition, here is the algorithm to determine the lexicographical order between different strings $S$ and $T$. Below, let $S_i$ denote the $i$-th character of $S$. Also, if $S$ is lexicographically smaller than $T$, we will denote that fact as $S \\lt T$; if $S$ is lexicographically larger than $T$, we will denote that fact as $S \\gt T$. Let $L$ be the smaller of the lengths of $S$ and $T$. For each $i=1,2,\\dots,L$, we check whether $S_i$ and $T_i$ are the same. If there is an $i$ such that $S_i \\neq T_i$, let $j$ be the smallest such $i$. Then, we compare $S_j$ and $T_j$. If $S_j$ comes earlier than $T_j$ in alphabetical order, we determine that $S \\lt T$ and quit; if $S_j$ comes later than $T_j$, we determine that $S \\gt T$ and quit. If there is no $i$ such that $S_i \\neq T_i$, we compare the lengths of $S$ and $T$. If $S$ is shorter than $T$, we determine that $S \\lt T$ and quit; if $S$ is longer than $T$, we determine that $S \\gt T$ and quit.\n\n## Constraints\n\n- $1 \\leq N \\leq 200000$\n- $S$ is a string of length $N$ consisting of `A`, `B`, `C`.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nS\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\nCBAA\n",
+      "output": "CAAB\n",
+      "note": "We should do the following.\n\n- Initially, we have $S=$`CBAA`.\n- Delete the $3$-rd character `A` and insert `BB`, making $S=$`CBBBA`.\n- Delete the $2$-nd and $3$-rd characters `BB` and insert `A`, making $S=$`CABA`.\n- Delete the $4$-th character `A` and insert `BB`, making $S=$`CABBB`.\n- Delete the $3$-rd and $4$-th characters `BB` and insert `A`, making $S=$`CAAB`.\n\nWe cannot make $S$ lexicographically smaller than `CAAB`. Thus, the answer is `CAAB`."
+    },
+    {
+      "input": "1\nA\n",
+      "output": "A\n",
+      "note": "We do no operation."
+    },
+    {
+      "input": "6\nBBBCBB\n",
+      "output": "ABCA\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:36:39.093Z"
+}

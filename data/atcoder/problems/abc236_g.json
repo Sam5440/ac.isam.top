@@ -1,0 +1,29 @@
+{
+  "id": "abc236_g",
+  "platform": "atcoder",
+  "contestId": "abc236",
+  "index": "G",
+  "title": "Good Vertices",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc236/tasks/abc236_g",
+  "difficulty": 2438,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a directed graph with $N$ vertices. The $N$ vertices are called Vertex $1$, Vertex $2$, $\\ldots$, Vertex $N$. At time $0$, the graph has no edge.\n\nFor each $t = 1, 2, \\ldots, T$, at time $t$, a directed edge from Vertex $u_t$ to Vertex $v_t$ will be added. (The edge may be a self-loop, that is, $u_t = v_t$ may hold.)\n\nA vertex is called *good* when it can be reached by starting at Vertex $1$ and traversing an edge **exactly** $L$ times.\n\nFor each $i = 1, 2, \\ldots, N$, print the earliest time when Vertex $i$ is good. If there is no time when Vertex $i$ is good, print $-1$ instead.\n\n## Constraints\n\n- $2 \\leq N \\leq 100$\n- $1 \\leq T \\leq N^2$\n- $1 \\leq L \\leq 10^9$\n- $1 \\leq u_t, v_t \\leq N$\n- $i \\neq j \\Rightarrow (u_i, v_i) \\neq (u_j, v_j)$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN T L\nu_1 v_1\nu_2 v_2\n\\vdots\nu_T v_T\n```\n\n## Output\n\nIn the following format, for each $i = 1, 2, \\ldots, N$, print the earliest time $X_i$ when Vertex $i$ is good. If there is no time when Vertex $i$ is good, $X_i$ should be $-1$.\n\n```\nX_1 X_2 \\ldots X_N\n```",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 5 3\n2 3\n3 4\n1 2\n3 2\n2 2\n",
+      "output": "-1 4 5 3\n",
+      "note": "At time $0$, the graph has no edge. Afterward, edges are added as follows.\n\n- At time $1$, a directed edge from Vertex $2$ to Vertex $3$ is added.\n- At time $2$, a directed edge from Vertex $3$ to Vertex $4$ is added.\n- At time $3$, a directed edge from Vertex $1$ to Vertex $2$ is added. Now, Vertex $4$ can be reached from Vertex $1$ in exactly three moves: $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4$, making Vertex $4$ good.\n- At time $4$, a directed edge from Vertex $3$ to Vertex $2$ is added. Now, Vertex $2$ can be reached from Vertex $1$ in exactly three moves: $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 2$, making Vertex $2$ good.\n- At time $5$, a directed edge (self-loop) from Vertex $2$ to Vertex $2$ is added. Now, Vertex $3$ can be reached from Vertex $1$ in exactly three moves: $1 \\rightarrow 2 \\rightarrow 2 \\rightarrow 3$, making Vertex $3$ good.\n\nVertex $1$ will never be good."
+    },
+    {
+      "input": "2 1 1000000000\n1 2\n",
+      "output": "-1 -1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:37:34.265Z"
+}

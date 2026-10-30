@@ -1,0 +1,29 @@
+{
+  "id": "abc253_h",
+  "platform": "atcoder",
+  "contestId": "abc253",
+  "index": "Ex",
+  "title": "We Love Forest",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc253/tasks/abc253_h",
+  "difficulty": 2758,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nWe have a graph $G$ with $N$ vertices numbered $1$ through $N$ and $0$ edges. You are given sequences $u=(u_1,u_2,\\ldots,u_M),v=(v_1,v_2,\\ldots,v_M)$ of length $M$.\n\nYou will perform the following operation $(N-1)$ times.\n\n- Choose $i$ $(1 \\leq i \\leq M)$ uniformly at random. Add to $G$ an undirected edge connecting Vertices $u_i$ and $v_i$.\n\nNote that the operation above will add a new edge connecting Vertices $u_i$ and $v_i$ even if $G$ already has one or more edges between them. In other words, the resulting $G$ may contain multiple edges.\n\nFor each $K=1,2,\\ldots,N-1$, find the probability, modulo $998244353$, that $G$ is a forest after the $K$-th operation.\n\nWhat is a forest? An undirected graph without a cycle is called a forest. A forest is not necessarily connected.\n\nDefinition of probability modulo $998244353$ We can prove that the sought probability is always a rational number. Moreover, under the Constraints of this problem, it is guaranteed that, when the sought probability is represented by an irreducible fraction $\\frac{y}{x}$, $x$ is indivisible by $998244353$. Then, we can uniquely determine an integer $z$ between $0$ and $998244352$ (inclusive) such that $xz \\equiv y \\pmod{998244353}$. Print this $z$.\n\n## Constraints\n\n- $2 \\leq N \\leq 14$\n- $N-1 \\leq M \\leq 500$\n- $1 \\leq u_i,v_i \\leq N$\n- $u_i\\neq v_i$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M\nu_1 v_1\n\\vdots\nu_M v_M\n```\n\n## Output\n\nPrint $N-1$ lines. The $i$-th line should contain the probability, modulo $998244353$, that $G$ is a forest after the $i$-th operation.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2\n1 2\n2 3\n",
+      "output": "1\n499122177\n",
+      "note": "Let us denote by $(u, v)$ the edge connecting Vertices $u$ and $v$.\n\nAfter the $1$-st operation, $G$ will have:\n\n- Edge $(1, 2)$ with a probability of $1/2$;\n- Edge $(2, 3)$ with a probability of $1/2$.\n\nIn both cases, $G$ is a forest, so the answer for $K=1$ is $1$.\n\nAfter the $2$-nd operation, $G$ will have:\n\n- Edges $(1, 2)$ and $(1, 2)$ with a probability of $1/4$;\n- Edges $(2, 3)$ and $(2, 3)$ with a probability of $1/4$;\n- Edges $(1, 2)$ and $(2, 3)$ with a probability of $1/2$.\n\n$G$ is a forest only when $G$ has Edges $(1, 2)$ and $(2, 3)$. Therefore, the sought probability is $1/2$; when represented modulo $998244353$, it is $499122177$, which should be printed."
+    },
+    {
+      "input": "4 5\n1 2\n1 2\n1 4\n2 3\n2 4\n",
+      "output": "1\n758665709\n918384805\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:34:54.093Z"
+}

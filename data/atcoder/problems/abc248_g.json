@@ -1,0 +1,29 @@
+{
+  "id": "abc248_g",
+  "platform": "atcoder",
+  "contestId": "abc248",
+  "index": "G",
+  "title": "GCD cost on the tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc248/tasks/abc248_g",
+  "difficulty": 2514,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 2048,
+  "statementMd": "## Problem Statement\n\nYou are given an undirected tree with $N$ vertices.\nLet us call the vertices Vertex $1$, Vertex $2$, $\\ldots$, Vertex $N$. For each $1\\leq i\\leq N-1$, the $i$-th edge connects Vertex $U_i$ and Vertex $V_i$.\nAdditionally, each vertex is assigned a positive integer: Vertex $i$ is assigned $A_i$.\n\nThe cost between two distinct vertices $s$ and $t$, $C(s,t)$, is defined as follows.\n\n> Let $p_1(=s)$, $p_2$, $\\ldots$, $p_k(=t)$ be the vertices of the simple path connecting Vertex $s$ and Vertex $t$, where $k$ is the number of vertices in the path (including the endpoints).\n> Then, let $C(s,t)=k\\times \\gcd (A_{p_1},A_{p_2},\\ldots,A_{p_k})$,\n> where $\\gcd (X_1,X_2,\\ldots, X_k)$ denotes the greatest common divisor of $X_1,X_2,\\ldots, X_k$.\n\nFind $\\displaystyle\\sum_{i=1}^{N-1}\\sum_{j=i+1}^N C(i,j)$, modulo $998244353$.\n\n## Constraints\n\n- $2 \\leq N \\leq 10^5$\n- $1 \\leq A_i\\leq 10^5$\n- $1\\leq U_i<V_i\\leq N$\n- All values in input are integers.\n- The given graph is a tree.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nA_1 A_2 \\cdots A_N\nU_1 V_1\nU_2 V_2\n\\vdots\nU_{N-1} V_{N-1}\n```\n\n## Output\n\nPrint $\\displaystyle\\sum_{i=1}^{N-1}\\sum_{j=i+1}^N C(i,j)$, modulo $998244353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n24 30 28 7\n1 2\n1 3\n3 4\n",
+      "output": "47\n",
+      "note": "There are edges directly connecting Vertex $1$ and $2$, Vertex $1$ and $3$, and Vertex $3$ and $4$. Thus, the costs are computed as follows.\n\n- $C(1,2)=2\\times \\gcd(24,30)=12$\n- $C(1,3)=2\\times \\gcd(24,28)=8$\n- $C(1,4)=3\\times \\gcd(24,28,7)=3$\n- $C(2,3)=3\\times \\gcd(30,24,28)=6$\n- $C(2,4)=4\\times \\gcd(30,24,28,7)=4$\n- $C(3,4)=2\\times \\gcd(28,7)=14$\n\nThus, the sought value is $\\displaystyle\\sum_{i=1}^{3}\\sum_{j=i+1}^4 C(i,j)=(12+8+3)+(6+4)+14=47$ modulo $998244353$, which is $47$."
+    },
+    {
+      "input": "10\n180 168 120 144 192 200 198 160 156 150\n1 2\n2 3\n2 4\n2 5\n5 6\n4 7\n7 8\n7 9\n9 10\n",
+      "output": "1184\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:35:50.004Z"
+}

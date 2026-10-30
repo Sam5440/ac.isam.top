@@ -1,0 +1,33 @@
+{
+  "id": "abc251_h",
+  "platform": "atcoder",
+  "contestId": "abc251",
+  "index": "Ex",
+  "title": "Fill Triangle",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc251/tasks/abc251_h",
+  "difficulty": 3108,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nBlocks are stacked in a triangle. The $i$-th column from the top has $i$ blocks.\n\nYou are given a sequence $P = ((a_1, c_1), (a_2, c_2), ..., (a_M, c_M))$ which is a result of the run-length compression of a sequence $A = (A_1, A_2, ..., A_N)$ consisting of non-negative integers less than or equal to $6$.\n\n- For example, when $A = (2, 2, 2, 5, 5, 1)$, you are given $P = ((2, 3), (5, 2), (1, 1))$.\n\nYou will write a number on each block so that the following conditions are satisfied, where $B_{i,j}$ denotes the number to write on the $j$-th block from the left in the $i$-th column from the top:\n\n- For all integers $i$ such that $1 \\leq i \\leq N$, it holds that $B_{N,i} = A_{i}$.\n- For all pairs of integers $(i, j)$ such that $1 \\leq j \\leq i \\leq N-1$, it holds that $B_{i,j}= (B_{i+1,j}+B_{i+1,j+1})\\bmod 7$.\n\nEnumerate the numbers written on the blocks in the $K$-th column from the top.\n\nWhat is run-length compression? The run-length compression is a conversion from a given sequence $A$ to a sequence of pairs of integers obtained by the following procedure. Split $A$ off at the positions where two different elements are adjacent to each other. For each subsequence $B$ that has been split off, replace $B$ with a integer pair of \"the number which $B$ consists of\" and \"the length of $B$\". Construct a sequence consisting of the integer pairs after the replacement without changing the order.\n\n## Constraints\n\n- $1 \\leq N \\leq 10^9$\n- $1 \\leq M \\leq \\min(N, 200)$\n- $1 \\leq K \\leq \\min(N,5 \\times 10^5)$\n- $0 \\leq a_i \\leq 6$\n- $1 \\leq c_i \\leq N$\n- $\\sum_{i=1}^M c_i = N$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M K\na_1 c_1\na_2 c_2\n\\vdots\na_M c_M\n```\n\n## Output\n\nPrint the answer in the following format. It is guaranteed that the answer is unique under the Constraint of the problem.\n\n```\nB_{K,1} B_{K,2} \\dots B_{K,K}\n```",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 3 4\n2 3\n5 2\n1 1\n",
+      "output": "1 4 3 2\n",
+      "note": "We have $A = (2,2,2,5,5,1)$. The number written on the blocks are as follows."
+    },
+    {
+      "input": "1 1 1\n6 1\n",
+      "output": "6\n"
+    },
+    {
+      "input": "111111111 9 9\n0 1\n1 10\n2 100\n3 1000\n4 10000\n5 100000\n6 1000000\n0 10000000\n1 100000000\n",
+      "output": "1 0 4 2 5 5 5 6 3\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:35:13.037Z"
+}

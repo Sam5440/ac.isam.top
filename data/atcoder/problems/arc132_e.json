@@ -1,0 +1,29 @@
+{
+  "id": "arc132_e",
+  "platform": "atcoder",
+  "contestId": "arc132",
+  "index": "E",
+  "title": "Paw",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc132/tasks/arc132_e",
+  "difficulty": 3144,
+  "tags": [],
+  "points": 800,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $n$ squares arranged in a row. Each square has a left- or right-pointing footprint or a hole. The initial state of each square is described by a string $s$ consisting of `.`, `<`, `>`. If the $i$-th character of $s$ is `.`, the $i$-th square from the left has a hole; if that character is `<`, that square has a left-pointing footprint; if that character is `>`, that square has a right-pointing footprint.\n\nSnuke, the cat, will repeat the following procedure until there is no more square with a hole.\n\n- Step $1$: Choose one square with a hole randomly with equal probability.\n- Step $2$: Fill the hole in the chosen square, stand there, and face to the left or right randomly with equal probability.\n- Step $3$: Keep walking in the direction Snuke is facing until he steps on a square with a hole or exits the row of squares.\n\nHere, the choices of squares and directions are independent of each other.\n\nWhen Snuke walks on a square (without a hole), that square gets a footprint in the direction he walks in. If the square already has a footprint, it gets erased and replaced by a new one. For example, in the situation `>.<><.><`, if Snuke chooses the $6$-th square from the left and faces to the left, the $6$-th, $5$-th, $4$-th, $3$-rd squares get left-pointing footprints: `>.<<<<><`.\n\nFind the expected value of the number of left-pointing footprints when Snuke finishes the procedures, modulo $998244353$.\n\n## Note\n\nWhen the sought expected value is represented as an irreducible fraction $p/q$, there uniquely exists an integer $r$ such that $rq\\equiv p ~(\\text{mod } 998244353)$ and $0 \\leq r \\lt 998244353$ under the Constraints of this problem. This $r$ is the value to be found.\n\n## Constraints\n\n- $1 \\leq n \\leq 10^5$\n- $s$ is a string of length $n$ consisting of `.`, `<`, `>`.\n- $s$ contains at least one `.`.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nn\ns\n```\n\n## Output\n\nPrint the expected value of the number of left-pointing footprints, modulo $998244353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n><.<<\n",
+      "output": "3\n",
+      "note": "In Step $1$, Snuke always chooses the only square with a hole.\n\nIf Snuke faces to the left in Step $2$, the squares become `<<<<<`, where $5$ squares have left-pointing footprints.\n\nIf Snuke faces to the right in Step $2$, the squares become `><>>>`, where $1$ square has a left-pointing footprint.\n\nTherefore, the answer is $\\frac{5+1}{2}=3$."
+    },
+    {
+      "input": "20\n>.>.<>.<<.<>.<..<>><\n",
+      "output": "848117770\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:38:02.929Z"
+}

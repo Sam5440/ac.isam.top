@@ -1,0 +1,30 @@
+{
+  "id": "2034G1",
+  "platform": "codeforces",
+  "contestId": 2034,
+  "index": "G1",
+  "title": "Simurgh's Watch (Easy Version)",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2034/problem/G1",
+  "difficulty": 3500,
+  "tags": [
+    "constructive algorithms",
+    "greedy",
+    "implementation",
+    "sortings"
+  ],
+  "points": 3000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**The only difference between the two versions of the problem is whether overlaps are considered at all points or only at integer points.**\n\nThe legendary [Simurgh](https://www.eavartravel.com/blog/2023/11/3/140727/simurgh/), a mythical bird, is responsible for keeping watch over vast lands, and for this purpose, she has enlisted $n$ vigilant warriors. Each warrior is alert during a specific time segment $[l_i, r_i]$, where $l_i$ is the start time (included) and $r_i$ is the end time (included), both positive integers.\n\n![image](https://espresso.codeforces.com/e448e919c3f03a9c212cd45c8dcd8e2bb0be579c.webp)\n\nOne of Simurgh's trusted advisors, [Zal](https://asia-archive.si.edu/learn/shahnama/zal-and-the-simurgh/), is concerned that if multiple warriors are stationed at the same time and all wear the same color, the distinction between them might be lost, causing confusion in the watch. To prevent this, whenever multiple warriors are on guard at the same moment (**which can be non-integer**), there must be at least one color which is worn by exactly one warrior.\n\nSo the task is to determine the minimum number of colors required and assign a color $c_i$ to each warrior's segment $[l_i, r_i]$ such that, for every (real) time $t$ contained in at least one segment, there exists one color which belongs to exactly one segment containing $t$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nFor each test case:\n\n- The first line contains an integer $n$ ($1 \\leq n \\leq 2 \\cdot 10^5$) — the number of warriors stationed by Simurgh.\n- The next $n$ lines each contain two integers $l_i$ and $r_i$ ($1 \\leq l_i \\leq r_i \\leq 10^9$) — the start and end times of the warrior's watch segment.\n\nThe sum of $n$ across all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case:\n\n- Output the minimum number of colors $k$ needed.\n- Then, output a line of $n$ integers $c_i$ ($1 \\leq c_i \\leq k$), where each $c_i$ is the color assigned to the $i$-th warrior.\n\n## Note\n\nWe can represent each warrior's watch segment as an interval on the X-axis;\n\nIn test case 1, we have two independent intervals, which can be colored with the same color.\n\nIn test case 2, point 2 is common to two intervals, meaning we cannot color them with the same color.\n\nIn test case 3, the intervals can be colored as shown below (intervals are colored with the selected color; areas are colored if this color occurs exactly once at this point in time):\n\n![image](https://espresso.codeforces.com/3621fb5d1e806633bd48c1763356b309e9a8ad77.png)\n\nIn test case 4, the intervals can be colored as shown below:\n\n![image](https://espresso.codeforces.com/d59b4c52612e54ffb1b8fbe04995fc8488a62d75.png)\n\nIn test case 5, the intervals can be colored as shown below. The image on the right demonstrates an example of incorrect coloring for this test case; there is no unique color at the moment $5.5$:\n\n![image](https://espresso.codeforces.com/8e3c91b284213f3926fb049478c7c48756955ad0.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n2\n1 2\n3 4\n2\n1 2\n2 3\n3\n1 4\n2 5\n3 6\n5\n1 4\n2 8\n3 7\n5 10\n6 9\n5\n1 5\n2 6\n3 7\n4 7\n6 7\n",
+      "output": "1\n1 1\n2\n1 2\n2\n1 2 1\n3\n2 3 1 2 1\n3\n2 1 3 1 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:40:10.402Z"
+}

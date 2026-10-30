@@ -1,0 +1,30 @@
+{
+  "id": "abc244_g",
+  "platform": "atcoder",
+  "contestId": "abc244",
+  "index": "G",
+  "title": "Construct Good Path",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc244/tasks/abc244_g",
+  "difficulty": 2117,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a simple connected undirected graph with $N$ vertices and $M$ edges. (A graph is said to be simple if it has no multi-edges and no self-loops.)\nFor $i = 1, 2, \\ldots, M$, the $i$-th edge connects Vertex $u_i$ and Vertex $v_i$.\n\nA sequence $(A_1, A_2, \\ldots, A_k)$ is said to be a **path** of length $k$ if both of the following two conditions are satisfied:\n\n- For all $i = 1, 2, \\dots, k$, it holds that $1 \\leq A_i \\leq N$.\n- For all $i = 1, 2, \\ldots, k-1$, Vertex $A_i$ and Vertex $A_{i+1}$ are directly connected with an edge.\n\nAn empty sequence is regarded as a path of length $0$.\n\nYou are given a sting $S = s_1s_2\\ldots s_N$ of length $N$ consisting of $0$ and $1$. A path $A = (A_1, A_2, \\ldots, A_k)$ is said to be a **good path** with respect to $S$ if the following conditions are satisfied:\n\n- For all $i = 1, 2, \\ldots, N$, it holds that:\n- if $s_i = 0$, then $A$ has even number of $i$'s.\n  - if $s_i = 1$, then $A$ has odd number of $i$'s.\n\nUnder the Constraints of this problem, it can be proved that there is at least one good path with respect to $S$ of length at most $4N$. Print a good path with respect to $S$ of length at most $4N$.\n\n## Constraints\n\n- $2 \\leq N \\leq 10^5$\n- $N-1 \\leq M \\leq \\min\\lbrace 2 \\times 10^5, \\frac{N(N-1)}{2}\\rbrace$\n- $1 \\leq u_i, v_i \\leq N$\n- The given graph is simple and connected.\n- $N, M, u_i$, and $v_i$ are integers.\n- $S$ is a string of length $N$ consisting of $0$ and $1$.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M\nu_1 v_1\nu_2 v_2\n\\vdots\nu_M v_M\nS\n```\n\n## Output\n\nPrint a good path with respect to $S$ of length at most $4N$ in the following format. Specifically, the first line should contain the length $K$ of the path, and the second line should contain the elements of the path, with spaces in between.\n\n```\nK\nA_1 A_2 \\ldots A_K\n```",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 6\n6 3\n2 5\n4 2\n1 3\n6 5\n3 2\n110001\n",
+      "output": "9\n2 5 6 5 6 3 1 3 6\n",
+      "note": "The path $(2, 5, 6, 5, 6, 3, 1, 3, 6)$ has a length no greater than $4N$, and\n\n- it has odd number ($1$) of $1$\n- it has odd number ($1$) of $2$\n- it has even number ($2$) of $3$\n- it has even number ($0$) of $4$\n- it has even number ($2$) of $5$\n- it has odd number ($3$) of $6$\n\nso it is a good path with respect to $S = 110001$."
+    },
+    {
+      "input": "3 3\n3 1\n3 2\n1 2\n000\n",
+      "output": "0\n",
+      "note": "An empty path $()$ is a good path with respect to $S = 000000$. Alternatively, paths like $(1, 2, 3, 1, 2, 3)$ are also accepted."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:36:17.930Z"
+}

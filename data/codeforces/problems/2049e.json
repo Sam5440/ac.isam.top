@@ -1,0 +1,32 @@
+{
+  "id": "2049E",
+  "platform": "codeforces",
+  "contestId": 2049,
+  "index": "E",
+  "title": "Broken Queries",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2049/problem/E",
+  "difficulty": 2400,
+  "tags": [
+    "binary search",
+    "bitmasks",
+    "brute force",
+    "constructive algorithms",
+    "implementation",
+    "interactive"
+  ],
+  "points": 2250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "*You, a wizard whose creation was destroyed by a dragon, are determined to hunt it down with a magical AOE tracker. But it seems to be toyed with...*\n\n*This is an interactive problem.*\n\nThere is a hidden binary array $a$ of length $n$ ($\\mathbf{n}$ **is a power of 2**) and a hidden integer $k\\ (2 \\le k \\le n - 1)$. The array $a$ contains **exactly one 1** (and all other elements are 0). For two integers $l$ and $r$ ($1 \\le l \\le r \\le n$), define the range sum $s(l, r) = a_l + a_{l+1} + \\cdots + a_r$.\n\nYou have a magical device that takes ranges and returns range sums, but it returns the opposite result when the range has length at least $k$. Formally, in one query, you can give it a pair of integers $[l, r]$ where $1 \\le l \\le r \\le n$, and it will return either $0$ or $1$ according to the following rules:\n\n- If $r - l + 1 \\lt k$, it will return $s(l, r)$.\n- If $r - l + 1 \\ge k$, it will return $1 - s(l, r)$.\n\nFind $k$ using at most $33$ queries.\n\nThe device is **not** adaptive. It means that the hidden $a$ and $k$ are fixed before the interaction and will not change during the interaction.\n\n## Interaction\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each test case contains one positive integer $n$ ($4 \\le n \\le 2^{30}$) — the length of the hidden array. **It is guaranteed that $\\mathbf{n}$ is a power of 2**; that is, $n = 2^m$ for some non-negative integer $m$.\n\nYou can make queries in the following way — print one line of the form \"$\\mathtt{?}\\,l\\,r$\" where $1 \\le l \\le r \\le n$. After that, read a single integer: $0$ or $1$, as described in the statement.\n\nIf you want to print the answer $k$, output \"$\\mathtt{!}\\,k$\". Then, the interaction continues with the next test case.\n\nPrinting the answer does **not** count towards the number of queries made.\n\nAfter printing each query do not forget to output the end of line and flush$^{\\text{∗}}$ the output. Otherwise, you will get `Idleness limit exceeded` verdict.\n\nIf, at any interaction step, you read $-1$ instead of valid data, your solution must exit immediately. This means that your solution will receive `Wrong answer` because of an invalid query or any other mistake. Failing to exit can result in an arbitrary verdict because your solution will continue to read from a closed stream.\n\n**Hacks**\n\nThe format of the hacks should be the following: the first line should contain one integer $t$ ($1 \\le t \\le 100$) — the number of test cases. The description of the test cases should follow.\n\nThe first and only line of each test case should contain three integers $n$, $p$, and $k$ ($4 \\le n \\le 2^{30}$, $1 \\le p \\le n$, $2 \\le k \\le n - 1$) — the length of the hidden array $a$, the position of the only 1 in $a$, and the hidden $k$. $n$ must be a power of $2$.\n\n$^{\\text{∗}}$To flush, use: `fflush(stdout)` or `cout.flush()` in C++; `sys.stdout.flush()` in Python; see the documentation for other languages.\n\n## Note\n\nIn the first test case, $k = 6$ and the 1 in the hidden array is at index 6, so $a = [0, 0, 0, 0, 0, 1, 0, 0]$.\n\n- For the query `3 5`, since $5-3+1 = 3 \\lt k$, the device answers correctly. Since 6 is not contained in the range $[3, 5]$, the device answers $0$.\n- For the query `1 8`, since $8 - 1 + 1 = 8 \\ge k$, the device answers $0$ incorrectly.\n- For the query `4 8`, since $8 - 4 + 1 = 5 \\lt k$, the device answers $1$ correctly.\n- For the query `3 8`, since $8 - 3 + 1 = 6 \\ge k$, the device answers $0$ incorrectly.\n\nThe example solution then outputs $6$ as the answer, which is correct.\n\nIn the second test case, $k = 2$ and the 1 in the hidden array is at index 3, so $a = [0, 0, 1, 0]$.\n\nNote that the example solution may not have enough information to determine $k$ above; this is only an example.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n8\n\n0\n\n0\n\n1\n\n0\n\n4\n\n1\n\n0\n",
+      "output": "? 3 5\n\n? 1 8\n\n? 4 8\n\n? 3 8\n\n! 6\n\n? 3 3\n\n? 3 4\n\n! 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:39:14.189Z"
+}

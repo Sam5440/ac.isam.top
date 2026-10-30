@@ -1,0 +1,37 @@
+{
+  "id": "arc138_f",
+  "platform": "atcoder",
+  "contestId": "arc138",
+  "index": "F",
+  "title": "KD Tree",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc138/tasks/arc138_f",
+  "difficulty": 3882,
+  "tags": [],
+  "points": 1000,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere are $N$ points in a plane, the $i$-th ($1 \\leq i \\leq N$) of which is $(i,P_i)$. Here, $(P_1,P_2,\\cdots,P_N)$ is a permutation of $(1,2,\\cdots,N)$.\n\nYou can **arrange** a non-empty set $s$ of points, which is a recursive operation defined as follows.\n\n- If $s$ contains exactly one point, arranging it creates a sequence composed of just that point.\n- If $s$ contains two or more points, arranging it creates a sequence composed of those points by doing one of the following two operations.\n- Choose any integer $x$ and divide $s$ into two: the set $a$ of points whose $X$-coordinates are less than $x$ and the set $b$ of the other points. Here, neither $a$ nor $b$ should be empty. Create a sequence by concatenating the sequence obtained by arranging $a$ and the sequence obtained by arranging $b$ in this order.\n  - Choose any integer $y$ and divide $s$ into two: the set $a$ of points whose $Y$-coordinates are less than $y$ and the set $b$ of the other points. Here, neither $a$ nor $b$ should be empty. Create a sequence by concatenating the sequence obtained by arranging $a$ and the sequence obtained by arranging $b$ in this order.\n\nFind the number, modulo $(10^9+7)$, of sequences that can be obtained by arranging the set of points $\\{(1,P_1),(2,P_2),\\cdots,(N,P_N)\\}$.\n\n## Constraints\n\n- $1 \\leq N \\leq 30$\n- $(P_1,P_2,\\cdots,P_N)$ is a permutation of $(1,2,\\cdots,N)$.\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nP_1 P_2 \\cdots P_N\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n3 1 2\n",
+      "output": "3\n",
+      "note": "The following three sequences can be obtained.\n\n- $((1,3),(2,1),(3,2))$\n- $((2,1),(3,2),(1,3))$\n- $((2,1),(1,3),(3,2))$\n\nFor example, the sequence $((2,1),(1,3),(3,2))$ can be obtained as follows.\n\n- Arrange the set $\\{(1,3),(2,1),(3,2)\\}$ by dividing it to the set of points whose $Y$-coordinates are less than $2$ ($=\\{(2,1)\\}$) and the set of the other points ($=\\{(1,3),(3,2)\\}$).\n- Arrange the set $\\{(2,1)\\}$ to obtain the sequence $((2,1))$.\n  - Arrange the set $\\{(1,3),(3,2)\\}$ by dividing it to the set of points whose $X$-coordinates are less than $3$ and the set of the other points.\n  - Arrange the set $\\{(1,3)\\}$ to obtain the sequence $((1,3))$.\n    - Arrange the set $\\{(3,2)\\}$ to obtain the sequence $((3,2))$.\n    - Concatenate the resulting two sequences to obtain the sequence $((1,3),(3,2))$.\n  - Concatenate the resulting two sequences to obtain the sequence $((2,1),(1,3),(3,2))$."
+    },
+    {
+      "input": "5\n1 2 3 4 5\n",
+      "output": "1\n"
+    },
+    {
+      "input": "10\n3 6 4 8 7 2 10 5 9 1\n",
+      "output": "1332\n"
+    },
+    {
+      "input": "30\n7 11 8 26 4 13 28 5 14 1 16 27 10 2 23 25 17 6 3 18 24 15 9 22 21 29 12 20 19 30\n",
+      "output": "641915679\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:36:06.004Z"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2030C",
+  "platform": "codeforces",
+  "contestId": 2030,
+  "index": "C",
+  "title": "A TRUE Battle",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2030/problem/C",
+  "difficulty": 1100,
+  "tags": [
+    "brute force",
+    "games",
+    "greedy"
+  ],
+  "points": 1000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Alice and Bob are playing a game. There is a list of $n$ booleans, each of which is either `true` or `false`, given as a binary string $^{\\text{∗}}$ of length $n$ (where $\\texttt{1}$ represents `true`, and $\\texttt{0}$ represents `false`). Initially, there are no operators between the booleans.\n\nAlice and Bob will take alternate turns placing `and` or `or` between the booleans, with Alice going first. Thus, the game will consist of $n-1$ turns since there are $n$ booleans. Alice aims for the final statement to evaluate to `true`, while Bob aims for it to evaluate to `false`. Given the list of boolean values, determine whether Alice will win if both players play optimally.\n\nTo evaluate the final expression, repeatedly perform the following steps until the statement consists of a single `true` or `false`:\n\n- If the statement contains an `and` operator, choose any one and replace the subexpression surrounding it with its evaluation.\n- Otherwise, the statement contains an `or` operator. Choose any one and replace the subexpression surrounding the `or` with its evaluation.\n\nFor example, the expression\n\ntrue or false and false\n\nis evaluated as\n\ntrue or (false and false)\n\n$=$\n\ntrue or false\n\n$=$\n\ntrue\n\n. It can be shown that the result of any compound statement is unique.\n\n$^{\\text{∗}}$A binary string is a string that only consists of characters $\\texttt{0}$ and $\\texttt{1}$\n\n## Input\n\nThe first line contains $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains an integer $n$ ($2 \\leq n \\leq 2 \\cdot 10^5$) — the length of the string.\n\nThe second line contains a binary string of length $n$, consisting of characters $\\texttt{0}$ and $\\texttt{1}$ — the list of boolean values.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, output \"`YES`\" (without quotes) if Alice wins, and \"`NO`\" (without quotes) otherwise.\n\nYou can output \"`YES`\" and \"`NO`\" in any case (for example, strings \"`yES`\", \"`yes`\" and \"`Yes`\" will be recognized as a positive response).\n\n## Note\n\nIn the first testcase, Alice can place `and` between the two booleans. The game ends as there are no other places to place operators, and Alice wins because `true and true` is `true`.\n\nIn the second testcase, Alice can place `or` between the middle `true` and the left `false`. Bob can place `and` between the middle `true` and the right `false`. The statement `false or true and false` is `false`.\n\nNote that these examples may not be the best strategies for either Alice or Bob.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n2\n11\n3\n010\n12\n101111111100\n10\n0111111011\n8\n01000010\n",
+      "output": "YES\nNO\nYES\nYES\nNO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:40:37.691Z"
+}

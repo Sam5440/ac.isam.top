@@ -1,0 +1,37 @@
+{
+  "id": "agc056_f",
+  "platform": "atcoder",
+  "contestId": "agc056",
+  "index": "F",
+  "title": "Degree Sequence in DFS Order",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/agc056/tasks/agc056_f",
+  "difficulty": 4310,
+  "tags": [],
+  "points": 1600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nGiven are integers $N$ and $M$. Find the number of integer sequences $a=(a_1,a_2,\\cdots,a_N)$ that can be generated as follows, modulo $998244353$.\n\n- Provide an undirected connected graph $G$ with $N$ vertices and $M$ edges. Here, $G$ may not contain self-loops, but **may contain multi-edges**.\n- Perform DFS on $G$ and let $a_i$ be the degree of the $i$-th vertex to be visited. More accurately, execute the pseudo-code below to get $a$.\n\n```\na = empty array\n\ndfs(v):\n    visited[v]=True\n    a.append(degree[v])\n    for u in g[v]:\n        if not visited[u]:\n            dfs(u)\n\ndfs(arbitrary root)\n```\n\nHere, the variable $g$ represents the graph $G$ as an adjacency list, where $g[v]$ is the list of vertices adjacent to the vertex $v$ in **arbitrary order**.\n\nFor example, when $N=4,M=5$, it is possible to generate $a=(2,4,1,3)$, by providing the graph $G$ as follows.\n\n![picture](https://img.atcoder.jp/agc056/3bfec17f881ae4cd27eccae94ebeae10.png)\n\nHere, the numbers written on vertices represent the order they are visited in the DFS. (The DFS starts at the vertex labeled $1$.) The orange arrows show the transitions in the DFS, and the numbers next to them represent the order the edges are traversed.\n\n## Constraints\n\n- $2 \\leq N \\leq M \\leq 10^6$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2\n",
+      "output": "1\n",
+      "note": "The only possible result is $a=(2,2)$. Note that $G$ may have multi-edges."
+    },
+    {
+      "input": "3 4\n",
+      "output": "9\n"
+    },
+    {
+      "input": "10 20\n",
+      "output": "186225754\n"
+    },
+    {
+      "input": "100000 1000000\n",
+      "output": "191021899\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:38:39.743Z"
+}

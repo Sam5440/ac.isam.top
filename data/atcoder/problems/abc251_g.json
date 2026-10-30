@@ -1,0 +1,29 @@
+{
+  "id": "abc251_g",
+  "platform": "atcoder",
+  "contestId": "abc251",
+  "index": "G",
+  "title": "Intersection of Polygons",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc251/tasks/abc251_g",
+  "difficulty": 2468,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThe vertices of a convex $N$-gon $P$ in an $xy$-plane are given as $(x_1, y_1), (x_2, y_2), \\ldots, (x_N, y_N)$ in the **counterclockwise** order. (Here, the positive direction of the $x$-axis is right, and the positive direction of the $y$-axis is up.)\n\nBased on this polygon $P$, we consider $M$ convex $N$-gons $P_1, P_2, \\ldots, P_M$.\nFor $i = 1, 2, \\ldots, M$, the polygon $P_i$ is obtained by shifting $P$ in the positive direction of the $x$-axis by $u_i$ and in the positive direction of the $y$-axis by $v_i$. In other words, $P_i$ is a convex $N$-gon whose vertices are $(x_1+u_i, y_1+v_i), (x_2+u_i, y_2+v_i), \\ldots, (x_N+u_i, y_N+v_i)$.\n\nFor each of $Q$ points $(a_1, b_1), (a_2, b_2), \\ldots, (a_Q, b_Q)$, determine if \"the point is contained in all of the $M$ polygons $P_1, P_2, \\ldots, P_M$.\"\n\nHere, we regard a point is also contained in a polygon if the point is on the polygon's boundary.\n\n## Constraints\n\n- $3 \\leq N \\leq 50$\n- $1 \\leq M \\leq 2 \\times 10^5$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $-10^8 \\leq x_i, y_i \\leq 10^8$\n- $-10^8 \\leq u_i, v_i \\leq 10^8$\n- $-10^8 \\leq a_i, b_i \\leq 10^8$\n- All values in input are integers.\n- $(x_1, y_1), (x_2, y_2), \\ldots, (x_N, y_N)$ forms a convex $N$-gon in the counterclockwise order.\n- Each interior angle of the polygon $P$ is less than $180$ degrees.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nx_1 y_1\nx_2 y_2\n\\vdots\nx_N y_N\nM\nu_1 v_1\nu_2 v_2\n\\vdots\nu_M v_M\nQ\na_1 b_1\na_2 b_2\n\\vdots\na_Q b_Q\n```\n\n## Output\n\nPrint $Q$ lines. For $i = 1, 2, \\ldots, Q$, the $i$-th line should contain `Yes` if point $(a_i, b_i)$ is contained in all of the $M$ polygons $P_1, P_2, \\ldots, P_M$; it should contain `No` otherwise.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n-2 -3\n0 -2\n1 0\n0 2\n-2 1\n2\n0 1\n1 0\n6\n0 0\n1 0\n0 1\n1 1\n-1 -1\n-1 -2\n",
+      "output": "Yes\nNo\nYes\nYes\nYes\nNo\n",
+      "note": "Polygon $P$ is a pentagon ($5$-gon) whose vertices are $(-2, -3), (0, -2), (1, 0), (0, 2), (-2, 1)$.\n\n- Polygon $P_1$ is a pentagon ($5$-gon) obtained by shifting $P$ in the positive direction of the $x$-axis by $0$ and in the positive direction of the $y$-axis by $1$, so its vertices are $(-2, -2), (0, -1), (1, 1), (0, 3), (-2, 2)$.\n- Polygon $P_2$ is a pentagon ($5$-gon) obtained by shifting $P$ in the positive direction of the $x$-axis by $1$ and in the positive direction of the $y$-axis by $0$, so its vertices are $(-1, -3), (1, -2), (2, 0), (1, 2), (-1, 1)$.\n\nThus, the following $6$ lines should be printed.\n\n- The $1$-st line should be `Yes` because $(a_1, b_1) = (0, 0)$ is contained in both $P_1$ and $P_2$.\n- The $2$-nd line should be `No` because $(a_2, b_2) = (1, 0)$ is contained in $P_2$ but not in $P_1$.\n- The $3$-rd line should be `Yes` because $(a_3, b_3) = (0, 1)$ is contained in both $P_1$ and $P_2$.\n- The $4$-th line should be `Yes` because $(a_4, b_4) = (1, 1)$ is contained in both $P_1$ and $P_2$.\n- The $5$-th line should be `Yes` because $(a_5, b_5) = (-1, -1)$ is contained in both $P_1$ and $P_2$.\n- The $6$-th line should be `No` because $(a_6, b_6) = (-1, -2)$ is contained in $P_2$ but not in $P_1$.\n\nNote that a point on the boundary of a polygon is also considered to be contained in the polygon.\n\n![image](https://img.atcoder.jp/abc251/8216bd194340d2648ce000e9ac9a203e.png)"
+    },
+    {
+      "input": "10\n45 100\n-60 98\n-95 62\n-95 28\n-78 -41\n-54 -92\n-8 -99\n87 -94\n98 23\n87 91\n5\n-57 -40\n-21 -67\n25 39\n-30 25\n39 -20\n16\n4 5\n-34 -8\n-63 53\n78 84\n19 -16\n64 9\n-13 7\n13 53\n-20 4\n2 -7\n3 18\n-12 10\n-69 -93\n2 9\n27 64\n-92 -100\n",
+      "output": "Yes\nYes\nNo\nNo\nYes\nNo\nYes\nNo\nYes\nYes\nYes\nYes\nNo\nYes\nNo\nNo\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:35:15.135Z"
+}

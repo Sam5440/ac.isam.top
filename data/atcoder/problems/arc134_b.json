@@ -1,0 +1,38 @@
+{
+  "id": "arc134_b",
+  "platform": "atcoder",
+  "contestId": "arc134",
+  "index": "B",
+  "title": "Reserve or Reverse",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/arc134/tasks/arc134_b",
+  "difficulty": 934,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nGiven is a string $s$ of length $N$. Let $s_i$ denote the $i$-th character of $s$.\n\nSnuke will transform $s$ by the following procedure.\n\n- Choose an **even length** (not necessarily contiguous) subsequence $x=(x_1, x_2, \\ldots, x_{2k})$ of $(1,2, \\ldots, N)$ ($k$ may be $0$).\n- Swap $s_{x_1}$ and $s_{x_{2k}}$.\n- Swap $s_{x_2}$ and $s_{x_{2k-1}}$.\n- Swap $s_{x_3}$ and $s_{x_{2k-2}}$.\n- $\\vdots$\n- Swap $s_{x_{k}}$ and $s_{x_{k+1}}$.\n\nAmong the strings that $s$ can become after the procedure, find the lexicographically smallest one.\n\nWhat is the lexicographical order? Simply speaking, the lexicographical order is the order in which words are listed in a dictionary. As a more formal definition, here is the algorithm to determine the lexicographical order between different strings $S$ and $T$. Below, let $S_i$ denote the $i$-th character of $S$. Also, if $S$ is lexicographically smaller than $T$, we will denote that fact as $S \\lt T$; if $S$ is lexicographically larger than $T$, we will denote that fact as $S \\gt T$. Let $L$ be the smaller of the lengths of $S$ and $T$. For each $i=1,2,\\dots,L$, we check whether $S_i$ and $T_i$ are the same. If there is an $i$ such that $S_i \\neq T_i$, let $j$ be the smallest such $i$. Then, we compare $S_j$ and $T_j$. If $S_j$ comes earlier than $T_j$ in alphabetical order, we determine that $S \\lt T$ and quit; if $S_j$ comes later than $T_j$, we determine that $S \\gt T$ and quit. If there is no $i$ such that $S_i \\neq T_i$, we compare the lengths of $S$ and $T$. If $S$ is shorter than $T$, we determine that $S \\lt T$ and quit; if $S$ is longer than $T$, we determine that $S \\gt T$ and quit.\n\n## Constraints\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $s$ is a string of length $N$ consisting of lowercase English letters.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\ns\n```\n\n## Output\n\nPrint the lexicographically smallest possible string $s$ after the procedure by Snuke.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\ndcab\n",
+      "output": "acdb\n",
+      "note": "- When $x=(1,3)$, the procedure just swaps $s_{1}$ and $s_{3}$.\n- The $s$ after the procedure is `acdb`, the lexicographically smallest possible result."
+    },
+    {
+      "input": "2\nab\n",
+      "output": "ab\n",
+      "note": "- When $x=()$, the $s$ after the procedure is `ab`, the lexicographically smallest possible result.\n- Note that $x$ may have a length of $0$."
+    },
+    {
+      "input": "16\ncabaaabbbabcbaba\n",
+      "output": "aaaaaaabbbbcbbbc\n"
+    },
+    {
+      "input": "17\nsnwfpfwipeusiwkzo\n",
+      "output": "effwpnwipsusiwkzo\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:37:22.342Z"
+}

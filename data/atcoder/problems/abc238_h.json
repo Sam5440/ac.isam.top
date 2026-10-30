@@ -1,0 +1,29 @@
+{
+  "id": "abc238_h",
+  "platform": "atcoder",
+  "contestId": "abc238",
+  "index": "Ex",
+  "title": "Removing People",
+  "titleZh": null,
+  "url": "https://atcoder.jp/contests/abc238/tasks/abc238_h",
+  "difficulty": 3247,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\n$N$ people numbered $1$ to $N$ are standing in a circle, in the clockwise order of Person $1$, Person $2$, $\\cdots$, Person $N$. The direction each person faces is given by a string $S$ of length $N$. For each $i$ $(1 \\leq i \\leq N)$, Person $i$ is facing in the counter-clockwise direction if $S_i =$ `L`, and clockwise direction if $S_i =$ `R`.\n\nThe following operation will be repeated $N-1$ times.\n\n- Choose one of the remaining people with equal probability, and remove from the circle the nearest person seen from the chosen person. This incurs a cost equal to the distance from the chosen person to the removed person.\n\nHere, the distance from Person $i$ to Person $j$ $(i \\neq j)$ is defined as follows.\n\n1. When Person $i$ is facing in the clockwise direction:\n- $j-i$ if $i \\lt j$;\n  - $j-i+N$ if $i \\gt j$.\n2. When Person $i$ is facing in the counter-clockwise direction:\n- $i-j+N$ if $i \\lt j$;\n  - $i-j$ if $i \\gt j$.\n\nFind the expected value of the total cost incurred, modulo $998244353$ (see Notes).\n\n## Note\n\nIt can be proved that the sought expected value is always a rational number. Additionally, under the Constraints of this problem, when that value is expressed as $\\frac{P}{Q}$ using two coprime integers $P$ and $Q$, there is a unique integer $R$ such that $R \\times Q \\equiv P\\pmod{998244353}$ and $0 \\leq R \\lt 998244353$. Find this $R$.\n\n## Constraints\n\n- $2 \\leq N \\leq 300$\n- $N$ is an integer.\n- $S$ is a string of length $N$ consisting of `L` and `R`.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nS\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\nLLR\n",
+      "output": "831870297\n",
+      "note": "The sought expected value is $\\frac{17}{6}$. We have $831870297 \\times 6 \\equiv 17\\pmod{998244353}$, so $831870297$ should be printed.\n\nFor your reference, here is one possible scenario.\n\n1. Person $2$ is chosen. The nearest person seen from Person $2$ remaining in the circle is Person $1$, who gets removed from the circle.\n2. Person $2$ is chosen again. The nearest person seen from Person $2$ remaining in the circle is Person $3$, who gets removed from the circle.\n\nIn this case, the total cost incurred is $3(=1+2)$."
+    },
+    {
+      "input": "10\nRRRRRRLLRR\n",
+      "output": "460301586\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-30T21:37:13.421Z"
+}
