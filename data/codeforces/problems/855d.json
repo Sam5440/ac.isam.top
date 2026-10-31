@@ -1,0 +1,32 @@
+{
+  "id": "855D",
+  "platform": "codeforces",
+  "contestId": 855,
+  "index": "D",
+  "title": "Rowena Ravenclaw's Diadem",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/855/problem/D",
+  "difficulty": 2500,
+  "tags": [
+    "trees"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Harry, upon inquiring Helena Ravenclaw's ghost, came to know that she told Tom Riddle or You-know-who about Rowena Ravenclaw's diadem and that he stole it from her.\n\nHarry thought that Riddle would have assumed that he was the only one to discover the Room of Requirement and thus, would have hidden it there. So Harry is trying to get inside the Room of Requirement to destroy the diadem as he knows that it is a horcrux.\n\nBut he has to answer a puzzle in order to enter the room. He is given $*n*$ objects, numbered from $1$ to $*n*$. Some of the objects have a parent object, that has a lesser number. Formally, object $*i*$ may have a parent object $*parent*_{*i*}$ such that $*parent*_{*i*} < *i*$.\n\nThere is also a type associated with each parent relation, it can be either of type $1$ or type $2$. Type $1$ relation means that the child object is like a special case of the parent object. Type $2$ relation means that the second object is **always** a part of the first object and all its special cases.\n\nNote that if an object $*b*$ is a special case of object $*a*$, and $*c*$ is a special case of object $*b*$, then $*c*$ is considered to be a special case of object $*a*$ as well. The same holds for parts: if object $*b*$ is a part of $*a*$, and object $*c*$ is a part of $*b*$, then we say that object $*c*$ is a part of $*a*$. Also note, that if object $*b*$ is a part of $*a*$, and object $*c*$ is a special case of $*a*$, then $*b*$ is a part of $*c*$ as well.\n\nAn object is considered to be neither a part of itself nor a special case of itself.\n\nNow, Harry has to answer two type of queries:\n\n- `1 u v`: he needs to tell if object $*v*$ is a special case of object $*u*$.\n- `2 u v`: he needs to tell if object $*v*$ is a part of object $*u*$.\n\n## Input\n\nFirst line of input contains the number $*n*$ ($1 ≤ *n* ≤ 10^{5}$), the number of objects.\n\nNext $*n*$ lines contain two integer $*parent*_{*i*}$ and $*type*_{*i*}$ ($- 1 ≤ *parent*_{*i*} < *i*$ $*parent*_{*i*} ≠ 0$, $- 1 ≤ *type*_{*i*} ≤ 1$), implying that the $*i*$-th object has the parent $*parent*_{*i*}$. (If $*type*_{*i*} = 0$, this implies that the object $*i*$ is a special case of object $*parent*_{*i*}$. If $*type*_{*i*} = 1$, this implies that the object $*i*$ is a part of object $*parent*_{*i*}$). In case the $*i*$-th object has no parent, both $*parent*_{*i*}$ and $*type*_{*i*}$ are `-1`.\n\nNext line contains an integer $*q*$ ($1 ≤ *q* ≤ 10^{5}$), the number of queries.\n\nNext $*q*$ lines each represent a query having three space separated integers $*type*_{*i*}, *u*_{*i*}, *v*_{*i*}$ ($1 ≤ *type*_{*i*} ≤ 2, 1 ≤ *u*, *v* ≤ *n*$).\n\n## Output\n\nOutput will contain $*q*$ lines, each containing the answer for the corresponding query as \"`YES`\" (affirmative) or \"`NO`\" (without quotes).\n\nYou can output each letter in any case (upper or lower).\n\n## Note\n\nIn test case $1$, as object $2$ is a special case of object $1$ and object $3$ is a special case of object $2$, this makes object $3$ a special case of object $1$.\n\nIn test case $2$, as object $2$ is a special case of object $1$ and object $1$ has object $3$, this will mean that object $2$ will also have object $3$. This is because when a general case (object $1$) has object $3$, its special case (object $2$) will definitely have object $3$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n-1 -1\n1 0\n2 0\n2\n1 1 3\n2 1 3\n",
+      "output": "YES\nNO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3\n-1 -1\n1 0\n1 1\n2\n2 2 3\n2 3 2\n",
+      "output": "YES\nNO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:45:17.562Z"
+}
