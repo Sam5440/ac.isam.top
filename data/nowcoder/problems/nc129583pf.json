@@ -1,0 +1,39 @@
+{
+  "id": "nc129583pf",
+  "platform": "nowcoder",
+  "contestId": "129583",
+  "index": "F",
+  "title": "move（Hard Version）",
+  "titleZh": null,
+  "url": "https://ac.nowcoder.com/acm/contest/129583/F",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "## 题目描述\n\n**本题与《E. move (Easy Version)》共享部分题目背景，这一部分文本我们将使用特殊的格式加以标注。**\n\n〖引用开始〗\n\n给定一个长为 $n$ 宽为 $m$ 的矩阵 $a$，其中矩阵中每个格子都有一个权值，第 $i$ 行第 $j$ 列的权值记为 $a_{i,j}$，现在你能够执行以下两种操作之一：\\\n$\\hspace{23pt}\\bullet\\,$选择矩阵中某个位置 $\\left ( i,j \\right )$ $\\left ( 1\\leqq i\\leqq n;\\, 1\\leqq j<m \\right )$，令 $u:=\\left(a_{i,j}\\operatorname{or} a_{i,(j+1)}\\right)$、$v:=\\left(a_{i,j}\\operatorname{and} a_{i,(j+1)}\\right)$，使得 $a_{i,j}:=u$、$a_{i,(j+1)}:=v$。\\\n$\\hspace{23pt}\\bullet\\,$选择矩阵中某个位置 $\\left ( i,j \\right )$ $\\left ( 1\\leqq i<n;\\, 1\\leqq j\\leqq m \\right )$，令 $u:=\\left(a_{i,j}\\operatorname{or} a_{(i+1),j}\\right)$、$v:=\\left(a_{i,j}\\operatorname{and} a_{(i+1),j}\\right)$，使得 $a_{i,j}:=u$、$a_{(i+1),j}:=v$。\n\n〖引用结束〗\n\n你**需要构造**一个从列下标 $1,2,\\dots,m$ 中选取 $k \\left( 0\\leqq k\\leqq m \\right)$ 个数构成的集合 $\\Bbb{A}$，记剩余 $m-k$ 个数构成的集合为 $\\Bbb{B}$，**使得能**通过若干次上述操作（可以为零次），将矩阵 $a$ 变成满足以下条件的新矩阵：\\\n$\\hspace{23pt}\\bullet\\,$对于任意的 $j\\in \\Bbb{A}$、$i\\in[1,n]$，满足 $a_{i,j}=1$；\\\n$\\hspace{23pt}\\bullet\\,$对于任意的 $j\\in \\Bbb{B}$、$i\\in[1,n]$，满足 $a_{i,j}=0$；\\\n如果有多个这样的集合 $\\Bbb{A}$ 满足要求，找出字典序**最大**的一个。随后，求解该字典序最大化的集合 $\\Bbb{A}$ 所需要的将矩阵 $a$ 变成满足条件的新矩阵的最少操作次数（不需要输出具体的构造）；如果没有满足要求的集合 $\\Bbb{A}$，则输出 $-1$。\n\n【名词解释】\\\n$\\operatorname{or}$：指位运算中的按位或（Bitwise OR），对两个整数的二进制表示按位进行或运算。\\\n$\\operatorname{and}$：指位运算中的按位与（Bitwise AND），对两个整数的二进制表示按位进行与运算。\\\n集合的字典序比较：将集合元素升序排列后，从小到大逐个比较两个集合的元素。如果在某个位置上元素不同，比较这两个元素的大小，元素大的集合字典序也大。如果一直比较到其中一个集合结束，则长度较长的集合字典序更大。\n\n## 输入格式\n\n第一行输入两个整数 $n,m$ $\\left ( 1\\leqq n\\leqq 120;\\,1\\leqq m \\leqq 500\\right )$，分别表示矩阵的长和宽。\\\n此后 $n$ 行，第 $i$ 行输入 $m$ 个整数 $a_{i,1}, a_{i,2}, \\ldots, a_{i,m}$ $\\left ( 0\\leqq a_{i,j}\\leqq 1 \\right )$，表示矩阵中第 $i$ 行的权值。\n\n## 输出格式\n\n如果有满足条件的字典序最大化的集合 $\\Bbb{A}$，则输出该集合所需要的将矩阵 $a$ 变成满足条件的新矩阵的最少操作次数；否则输出 $-1$。",
+  "statementZhMd": "## 题目描述\n\n**本题与《E. move (Easy Version)》共享部分题目背景，这一部分文本我们将使用特殊的格式加以标注。**\n\n〖引用开始〗\n\n给定一个长为 $n$ 宽为 $m$ 的矩阵 $a$，其中矩阵中每个格子都有一个权值，第 $i$ 行第 $j$ 列的权值记为 $a_{i,j}$，现在你能够执行以下两种操作之一：\\\n$\\hspace{23pt}\\bullet\\,$选择矩阵中某个位置 $\\left ( i,j \\right )$ $\\left ( 1\\leqq i\\leqq n;\\, 1\\leqq j<m \\right )$，令 $u:=\\left(a_{i,j}\\operatorname{or} a_{i,(j+1)}\\right)$、$v:=\\left(a_{i,j}\\operatorname{and} a_{i,(j+1)}\\right)$，使得 $a_{i,j}:=u$、$a_{i,(j+1)}:=v$。\\\n$\\hspace{23pt}\\bullet\\,$选择矩阵中某个位置 $\\left ( i,j \\right )$ $\\left ( 1\\leqq i<n;\\, 1\\leqq j\\leqq m \\right )$，令 $u:=\\left(a_{i,j}\\operatorname{or} a_{(i+1),j}\\right)$、$v:=\\left(a_{i,j}\\operatorname{and} a_{(i+1),j}\\right)$，使得 $a_{i,j}:=u$、$a_{(i+1),j}:=v$。\n\n〖引用结束〗\n\n你**需要构造**一个从列下标 $1,2,\\dots,m$ 中选取 $k \\left( 0\\leqq k\\leqq m \\right)$ 个数构成的集合 $\\Bbb{A}$，记剩余 $m-k$ 个数构成的集合为 $\\Bbb{B}$，**使得能**通过若干次上述操作（可以为零次），将矩阵 $a$ 变成满足以下条件的新矩阵：\\\n$\\hspace{23pt}\\bullet\\,$对于任意的 $j\\in \\Bbb{A}$、$i\\in[1,n]$，满足 $a_{i,j}=1$；\\\n$\\hspace{23pt}\\bullet\\,$对于任意的 $j\\in \\Bbb{B}$、$i\\in[1,n]$，满足 $a_{i,j}=0$；\\\n如果有多个这样的集合 $\\Bbb{A}$ 满足要求，找出字典序**最大**的一个。随后，求解该字典序最大化的集合 $\\Bbb{A}$ 所需要的将矩阵 $a$ 变成满足条件的新矩阵的最少操作次数（不需要输出具体的构造）；如果没有满足要求的集合 $\\Bbb{A}$，则输出 $-1$。\n\n【名词解释】\\\n$\\operatorname{or}$：指位运算中的按位或（Bitwise OR），对两个整数的二进制表示按位进行或运算。\\\n$\\operatorname{and}$：指位运算中的按位与（Bitwise AND），对两个整数的二进制表示按位进行与运算。\\\n集合的字典序比较：将集合元素升序排列后，从小到大逐个比较两个集合的元素。如果在某个位置上元素不同，比较这两个元素的大小，元素大的集合字典序也大。如果一直比较到其中一个集合结束，则长度较长的集合字典序更大。\n\n## 输入格式\n\n第一行输入两个整数 $n,m$ $\\left ( 1\\leqq n\\leqq 120;\\,1\\leqq m \\leqq 500\\right )$，分别表示矩阵的长和宽。\\\n此后 $n$ 行，第 $i$ 行输入 $m$ 个整数 $a_{i,1}, a_{i,2}, \\ldots, a_{i,m}$ $\\left ( 0\\leqq a_{i,j}\\leqq 1 \\right )$，表示矩阵中第 $i$ 行的权值。\n\n## 输出格式\n\n如果有满足条件的字典序最大化的集合 $\\Bbb{A}$，则输出该集合所需要的将矩阵 $a$ 变成满足条件的新矩阵的最少操作次数；否则输出 $-1$。",
+  "samples": [
+    {
+      "input": "4 5\n1 0 0 0 1\n0 1 0 0 1\n1 0 1 0 0\n0 0 0 1 1",
+      "output": "10",
+      "note": "在这个样例中，集合 $\\Bbb{A}=\\{1,3\\}$ 是字典序最大的集合，最终的矩阵为：$\\begin{bmatrix}<br />1 & 0 & 1 & 0 & 0 \\\\<br />1 & 0 & 1 & 0 & 0 \\\\<br />1 & 0 & 1 & 0 & 0 \\\\<br />1 & 0 & 1 & 0 & 0 \\\\<br />\\end{bmatrix}$。"
+    },
+    {
+      "input": "2 3\n0 0 0\n0 0 0",
+      "output": "0",
+      "note": "在这个样例中，不需要任何操作就能满足要求。"
+    },
+    {
+      "input": "3 3\n1 0 1\n1 1 1\n1 1 0",
+      "output": "-1",
+      "note": "在这个样例中，找不到任何的集合 $\\Bbb{A}$ 满足要求。"
+    },
+    {
+      "input": "10 10\n0 0 0 0 0 1 1 1 0 0\n1 0 0 0 0 1 1 1 1 1\n1 1 0 1 1 0 1 0 0 0\n1 1 1 0 0 0 1 0 0 0\n0 1 0 1 0 1 0 1 0 1\n0 1 0 1 1 0 1 1 1 0\n0 0 1 0 1 0 1 0 0 1\n0 1 1 0 1 0 1 1 1 0\n0 1 0 0 0 0 1 1 1 0\n0 1 1 1 0 1 1 0 1 1",
+      "output": "109"
+    }
+  ],
+  "language": "zh",
+  "translateModel": "官方原文",
+  "fetchedAt": "2026-10-31T15:43:29.348Z"
+}
