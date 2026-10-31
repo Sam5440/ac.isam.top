@@ -1,0 +1,29 @@
+{
+  "id": "nc129209pd",
+  "platform": "nowcoder",
+  "contestId": "129209",
+  "index": "D",
+  "title": "简单图论题",
+  "titleZh": "简单图论题",
+  "url": "https://ac.nowcoder.com/acm/contest/129209/D",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "## 题目描述\n\n有一个 $n$ 个点 $m$ 条边构成的无向图 $G$，第 $i$ 条边 $(u_i,v_i)$ 有一个颜色 $c_i$。现在有一个环形颜色圆盘，其包含了编号 $[0,P-1]$ 的颜色，圆盘上有一个指针，初始指向颜色 $0$，若指针指向颜色 $x$，则可以花费 $1$ 的代价将其指向 $\\left(x+P-1\\right)\\bmod P$ 或 $\\left(x+1\\right)\\bmod P$。\\\n第 $i$ 个点有一个颜色偏转值 $b_i$。当你想走过边 $(u,v,c)$ 时：\\\n$\\hspace{23pt}\\bullet\\,$若从点 $u$ 走向点 $v$，那你在点 $u$ 时圆盘的指针必须指向 $\\left(c+P-b_u\\right)\\bmod P$，\\\n$\\hspace{23pt}\\bullet\\,$若从点 $v$ 走向点 $u$，那你在点 $v$ 时圆盘的指针必须指向 $\\left(c+P-b_v\\right)\\bmod P$。\\\n注意，经过边时不能调整指针。\n\n求从点 $1$ 到点 $n$ 的最小代价，不可达输出 $-1$。\n\n## 输入格式\n\n第一行输入三个整数 $n,m,P \\left(1\\le n,m\\le 2\\times 10^5;\\, 1\\le P\\le 10^9\\right)$。\\\n第二行输入 $n$ 个整数 $b_1, b_2, \\dots, b_n \\left(0\\le b_i<P\\right)$，表示第 $i$ 个点的颜色偏转值。\\\n接下来 $m$ 行，第 $i$ 行输入三个整数 $u_i,v_i,c_i \\left(1\\le u_i,v_i\\le n;\\, u_i\\ne v_i;\\, 0 \\le c_i < P\\right)$，表示第 $i$ 条边双向连接点 $u_i$ 和点 $v_i$，颜色为 $c_i$。\\\n图可能不连通、可能存在重边。不存在自环。\n\n## 输出格式\n\n若点 $1$ 无法到达点 $n$，输出 $-1$；否则，输出一个整数，表示从点 $1$ 到点 $n$ 的最小代价。",
+  "statementZhMd": "## 题目描述\n\n有一个 $n$ 个点 $m$ 条边构成的无向图 $G$，第 $i$ 条边 $(u_i,v_i)$ 有一个颜色 $c_i$。现在有一个环形颜色圆盘，其包含了编号 $[0,P-1]$ 的颜色，圆盘上有一个指针，初始指向颜色 $0$，若指针指向颜色 $x$，则可以花费 $1$ 的代价将其指向 $\\left(x+P-1\\right)\\bmod P$ 或 $\\left(x+1\\right)\\bmod P$。\\\n第 $i$ 个点有一个颜色偏转值 $b_i$。当你想走过边 $(u,v,c)$ 时：\\\n$\\hspace{23pt}\\bullet\\,$若从点 $u$ 走向点 $v$，那你在点 $u$ 时圆盘的指针必须指向 $\\left(c+P-b_u\\right)\\bmod P$，\\\n$\\hspace{23pt}\\bullet\\,$若从点 $v$ 走向点 $u$，那你在点 $v$ 时圆盘的指针必须指向 $\\left(c+P-b_v\\right)\\bmod P$。\\\n注意，经过边时不能调整指针。\n\n求从点 $1$ 到点 $n$ 的最小代价，不可达输出 $-1$。\n\n## 输入格式\n\n第一行输入三个整数 $n,m,P \\left(1\\le n,m\\le 2\\times 10^5;\\, 1\\le P\\le 10^9\\right)$。\\\n第二行输入 $n$ 个整数 $b_1, b_2, \\dots, b_n \\left(0\\le b_i<P\\right)$，表示第 $i$ 个点的颜色偏转值。\\\n接下来 $m$ 行，第 $i$ 行输入三个整数 $u_i,v_i,c_i \\left(1\\le u_i,v_i\\le n;\\, u_i\\ne v_i;\\, 0 \\le c_i < P\\right)$，表示第 $i$ 条边双向连接点 $u_i$ 和点 $v_i$，颜色为 $c_i$。\\\n图可能不连通、可能存在重边。不存在自环。\n\n## 输出格式\n\n若点 $1$ 无法到达点 $n$，输出 $-1$；否则，输出一个整数，表示从点 $1$ 到点 $n$ 的最小代价。",
+  "samples": [
+    {
+      "input": "5 7 20\n10 7 10 16 15\n1 2 3\n2 3 2\n1 4 13\n4 5 10\n3 4 1\n2 5 19\n1 5 19",
+      "output": "8",
+      "note": "在这个样例中，初始图如下图所示，最优路线为 $1\\rightarrow 2\\rightarrow 5$。\n\n![image](https://uploadfiles.nowcoder.com/images/20260302/0_1772461268049/9806A4B5A8251EBD031CCB303DEA1978)"
+    },
+    {
+      "input": "3 1 6\n2 3 3\n1 2 2",
+      "output": "-1"
+    }
+  ],
+  "language": "zh",
+  "translateModel": "官方原文",
+  "fetchedAt": "2026-10-31T15:48:08.288Z"
+}

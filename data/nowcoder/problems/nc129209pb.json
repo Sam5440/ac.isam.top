@@ -1,0 +1,28 @@
+{
+  "id": "nc129209pb",
+  "platform": "nowcoder",
+  "contestId": "129209",
+  "index": "B",
+  "title": "简单异或题",
+  "titleZh": "简单异或题",
+  "url": "https://ac.nowcoder.com/acm/contest/129209/B",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "## 题目描述\n\n给出一个长度为 $n\\times m$ 的数组 $a_1,a_2,\\dots,a_{n\\times m}$，它是由一个长度为 $n$ 的数组 $b_1,b_2,\\dots,b_n$ 重复 $m$ 次生成的，且每一次重复后，数组 $b$ 的每一个元素都加上 $1$。换句话说，数组 $a$ 由 $m$ 个块拼接而成，其中第 $i \\left(1 \\le i \\le m\\right)$ 个块由数组 $b$ 的每个元素加上 $i-1$ 构成。\\\n例如，若数组 $b$ 为 $\\{4,7\\}$，重复 $2$ 次后，数组 $a$ 为 $\\{4,7,5,8\\}$。\n\n设 $f_{1,j}= \\begin{cases} <br />a_j & 1\\le j\\le n\\times m \\\\<br />0& n\\times m < j<br />\\end{cases}$，对于 $2 \\le i$ 且 $1 \\le j$，有 $f_{i,j}=f_{i-1,j}\\oplus f_{i-1,j+1}$。\n\n现在有 $Q$ 个查询，每次询问给出三个数 $k_i,l_i,r_i$，询问 $\\displaystyle\\bigoplus_{j=l_i}^{r_i}f_{k_i,j} = f_{k_i,l_i} \\oplus f_{k_i,l_i+1} \\oplus \\cdots \\oplus f_{k_i,r_i}$ 的值。\n\n【名词解释】\\\n$\\oplus$：指位运算中的按位异或（Bitwise XOR），对两个整数的二进制表示按位进行异或运算。\n\n## 输入格式\n\n第一行输入两个整数 $n,m \\left(1\\le n\\le 10^6;\\, 1\\le m\\le 10^{12}\\right)$，表示数组 $b$ 中的元素数量、数组 $b$ 的重复次数。\\\n第二行输入 $n$ 个整数 $b_1, b_2, \\ldots, b_n \\left(1\\le b_i\\le 10^9\\right)$，表示数组 $b$ 中的元素。\\\n第三行输入一个整数 $Q(1\\le Q\\le 10^6)$，表示查询次数。\\\n此后 $Q$ 行，第 $i$ 行输入三个整数 $k_i,l_i,r_i \\left(1\\le l_i\\le r_i\\le m\\times n;\\, 2\\le k_i\\le 10^6\\right)$，表示第 $i$ 次查询的参数。\n\n除此之外，保证单个测试文件的 $k_i$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每一次查询，新起一行输出一个整数表示答案。\n\n## 说明\n\n本题数据量较大，我们建议您选取较快的读入方式。",
+  "statementZhMd": "## 题目描述\n\n给出一个长度为 $n\\times m$ 的数组 $a_1,a_2,\\dots,a_{n\\times m}$，它是由一个长度为 $n$ 的数组 $b_1,b_2,\\dots,b_n$ 重复 $m$ 次生成的，且每一次重复后，数组 $b$ 的每一个元素都加上 $1$。换句话说，数组 $a$ 由 $m$ 个块拼接而成，其中第 $i \\left(1 \\le i \\le m\\right)$ 个块由数组 $b$ 的每个元素加上 $i-1$ 构成。\\\n例如，若数组 $b$ 为 $\\{4,7\\}$，重复 $2$ 次后，数组 $a$ 为 $\\{4,7,5,8\\}$。\n\n设 $f_{1,j}= \\begin{cases} <br />a_j & 1\\le j\\le n\\times m \\\\<br />0& n\\times m < j<br />\\end{cases}$，对于 $2 \\le i$ 且 $1 \\le j$，有 $f_{i,j}=f_{i-1,j}\\oplus f_{i-1,j+1}$。\n\n现在有 $Q$ 个查询，每次询问给出三个数 $k_i,l_i,r_i$，询问 $\\displaystyle\\bigoplus_{j=l_i}^{r_i}f_{k_i,j} = f_{k_i,l_i} \\oplus f_{k_i,l_i+1} \\oplus \\cdots \\oplus f_{k_i,r_i}$ 的值。\n\n【名词解释】\\\n$\\oplus$：指位运算中的按位异或（Bitwise XOR），对两个整数的二进制表示按位进行异或运算。\n\n## 输入格式\n\n第一行输入两个整数 $n,m \\left(1\\le n\\le 10^6;\\, 1\\le m\\le 10^{12}\\right)$，表示数组 $b$ 中的元素数量、数组 $b$ 的重复次数。\\\n第二行输入 $n$ 个整数 $b_1, b_2, \\ldots, b_n \\left(1\\le b_i\\le 10^9\\right)$，表示数组 $b$ 中的元素。\\\n第三行输入一个整数 $Q(1\\le Q\\le 10^6)$，表示查询次数。\\\n此后 $Q$ 行，第 $i$ 行输入三个整数 $k_i,l_i,r_i \\left(1\\le l_i\\le r_i\\le m\\times n;\\, 2\\le k_i\\le 10^6\\right)$，表示第 $i$ 次查询的参数。\n\n除此之外，保证单个测试文件的 $k_i$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每一次查询，新起一行输出一个整数表示答案。\n\n## 说明\n\n本题数据量较大，我们建议您选取较快的读入方式。",
+  "samples": [
+    {
+      "input": "3 3\n1 2 3\n2\n2 3 5\n3 6 7",
+      "output": "7\n6"
+    },
+    {
+      "input": "5 5\n3 4 2 3 5\n3\n2 5 8\n5 10 20\n10 4 21",
+      "output": "1\n15\n13"
+    }
+  ],
+  "language": "zh",
+  "translateModel": "官方原文",
+  "fetchedAt": "2026-10-31T15:48:06.209Z"
+}
