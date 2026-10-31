@@ -1,0 +1,44 @@
+{
+  "id": "916D",
+  "platform": "codeforces",
+  "contestId": 916,
+  "index": "D",
+  "title": "Jamie and To-do List",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/916/problem/D",
+  "difficulty": 2200,
+  "tags": [
+    "data structures",
+    "interactive",
+    "trees"
+  ],
+  "points": 2250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "*Why I have to finish so many assignments???*\n\nJamie is getting very busy with his school life. He starts to forget the assignments that he has to do. He decided to write the things down on a to-do list. He assigns a value `priority` for each of his assignment **(lower value means more important)** so he can decide which he needs to spend more time on.\n\nAfter a few days, Jamie finds out the list is too large that he can't even manage the list by himself! As you are a good friend of Jamie, help him write a program to support the following operations on the to-do list:\n\n- $*set* *a*_{*i*} *x*_{*i*}$ — Add assignment $*a*_{*i*}$ to the to-do list if it is not present, and set its `priority` to $*x*_{*i*}$. If assignment $*a*_{*i*}$ is already in the to-do list, its `priority` **is changed** to $*x*_{*i*}$.\n- $*remove* *a*_{*i*}$ — Remove assignment $*a*_{*i*}$ from the to-do list if it is present in it.\n- $*query* *a*_{*i*}$ — Output the number of assignments that are more important (have a **smaller** `priority` value) than assignment $*a*_{*i*}$, so Jamie can decide a better schedule. Output $- 1$ if $*a*_{*i*}$ is not in the to-do list.\n- $*undo* *d*_{*i*}$ — Undo all changes that have been made in the previous $*d*_{*i*}$ days (not including the day of this operation)\n\nAt day $0$, the to-do list is empty. In each of the following $*q*$ days, Jamie will do **exactly one** out of the four operations. If the operation is a $*query*$, you should **output the result of the query before proceeding to the next day**, or poor Jamie cannot make appropriate decisions.\n\n## Input\n\nThe first line consists of a single integer $*q*$ $(1 ≤ *q* ≤ 10^{5})$ — the number of operations.\n\nThe following $*q*$ lines consists of the description of the operations. The $*i*$-th line consists of the operation that Jamie has done in the $*i*$-th day. The query has the following format:\n\nThe first word in the line indicates the type of operation. It must be one of the following four: `set`, `remove`, `query`, `undo`.\n\n- If it is a `set` operation, a string $*a*_{*i*}$ and an integer $*x*_{*i*}$ follows $(1 ≤ *x*_{*i*} ≤ 10^{9})$. $*a*_{*i*}$ is the assignment that need to be set to `priority` $*x*_{*i*}$.\n- If it is a `remove` operation, a string $*a*_{*i*}$ follows. $*a*_{*i*}$ is the assignment that need to be removed.\n- If it is a `query` operation, a string $*a*_{*i*}$ follows. $*a*_{*i*}$ is the assignment that needs to be queried.\n- If it is a `undo` operation, an integer $*d*_{*i*}$ follows $(0 ≤ *d*_{*i*} < *i*)$. $*d*_{*i*}$ is the number of days that changes needed to be undone.\n\nAll assignment names $*a*_{*i*}$ only consists of lowercase English letters and have a length $1 ≤ |*a*_{*i*}| ≤ 15$.\n\nIt is guaranteed that the last operation is a `query` operation.\n\n## Output\n\nFor each `query` operation, output a single integer — the number of assignments that have a priority lower than assignment $*a*_{*i*}$, or $- 1$ if $*a*_{*i*}$ is not in the to-do list.\n\n## Interaction\n\nIf the operation is a $*query*$, you **should** output the result of the query and flush the output stream before proceeding to the next operation. Otherwise, you may get the verdict `Idleness Limit Exceed`.\n\nFor flushing the output stream, please refer to the documentation of your chosen programming language. The flush functions of some common programming languages are listed below:\n\n- C: `fflush(stdout);`\n- C++: `cout « flush;`\n- Java: `System.out.flush();`",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "8\nset chemlabreport 1\nset physicsexercise 2\nset chinesemockexam 3\nquery physicsexercise\nquery chinesemockexam\nremove physicsexercise\nquery physicsexercise\nquery chinesemockexam\n",
+      "output": "1\n2\n-1\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "8\nset physicsexercise 2\nset chinesemockexam 3\nset physicsexercise 1\nquery physicsexercise\nquery chinesemockexam\nundo 4\nquery physicsexercise\nquery chinesemockexam\n",
+      "output": "0\n1\n0\n-1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\nquery economicsessay\nremove economicsessay\nquery economicsessay\nundo 2\nquery economicsessay\n",
+      "output": "-1\n-1\n-1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\nset economicsessay 1\nremove economicsessay\nundo 1\nundo 1\nquery economicsessay\n",
+      "output": "-1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:37:37.480Z"
+}
