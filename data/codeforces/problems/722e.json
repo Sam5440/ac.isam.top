@@ -1,0 +1,38 @@
+{
+  "id": "722E",
+  "platform": "codeforces",
+  "contestId": 722,
+  "index": "E",
+  "title": "Research Rover",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/722/problem/E",
+  "difficulty": 2900,
+  "tags": [
+    "combinatorics",
+    "dp"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2500,
+  "memoryLimitMb": 256,
+  "statementMd": "*Unfortunately, the formal description of the task turned out to be too long, so here is the legend.*\n\nResearch rover finally reached the surface of Mars and is ready to complete its mission. Unfortunately, due to the mistake in the navigation system design, the rover is located in the wrong place.\n\nThe rover will operate on the grid consisting of $*n*$ rows and $*m*$ columns. We will define as $(*r*, *c*)$ the cell located in the row $*r*$ and column $*c*$. From each cell the rover is able to move to any cell that share a side with the current one.\n\nThe rover is currently located at cell $(1, 1)$ and has to move to the cell $(*n*, *m*)$. It will randomly follow some **shortest path** between these two cells. Each possible way is chosen equiprobably.\n\nThe cargo section of the rover contains the battery required to conduct the research. Initially, the battery charge is equal to $*s*$ units of energy.\n\nSome of the cells contain anomaly. Each time the rover gets to the cell with anomaly, the battery looses half of its charge rounded down. Formally, if the charge was equal to $*x*$ before the rover gets to the cell with anomaly, the charge will change to ![image](https://espresso.codeforces.com/f12f73ab57d327f2f2cb7c8de54e8e6e246f6b2e.png).\n\nWhile the rover picks a random shortest path to proceed, compute the expected value of the battery charge after it reaches cell $(*n*, *m*)$. If the cells $(1, 1)$ and $(*n*, *m*)$ contain anomaly, they also affect the charge of the battery.\n\n## Input\n\nThe first line of the input contains four integers $*n*$, $*m*$, $*k*$ and $*s*$ ($1 ≤ *n*, *m* ≤ 100 000$, $0 ≤ *k* ≤ 2000$, $1 ≤ *s* ≤ 1 000 000$) — the number of rows and columns of the field, the number of cells with anomaly and the initial charge of the battery respectively.\n\nThe follow $*k*$ lines containing two integers $*r*_{*i*}$ and $*c*_{*i*}$ ($1 ≤ *r*_{*i*} ≤ *n*$, $1 ≤ *c*_{*i*} ≤ *m*$) — coordinates of the cells, containing anomaly. It's guaranteed that each cell appears in this list no more than once.\n\n## Output\n\nThe answer can always be represented as an irreducible fraction ![image](https://espresso.codeforces.com/46898f7da6d890f88194a3d5535e5e990ecdd3fa.png). Print the only integer $*P*·*Q*^{ - 1}$ modulo $10^{9} + 7$.\n\n## Note\n\nIn the first sample, the rover picks one of the following six routes:\n\n1. ![image](https://espresso.codeforces.com/c9ec158c30775d6289140a3854e05168b09af399.png), after passing cell $(2, 3)$ charge is equal to $6$.\n2. ![image](https://espresso.codeforces.com/fcc490c05d2acb731046a7c4c861f4c9ebff3633.png), after passing cell $(2, 3)$ charge is equal to $6$.\n3. ![image](https://espresso.codeforces.com/8d5828aadc35714d7a3453c40de81ad186e87ab3.png), charge remains unchanged and equals $11$.\n4. ![image](https://espresso.codeforces.com/3bc680a61ca3712bbbec0eb682f3af16ab7664a2.png), after passing cells $(2, 1)$ and $(2, 3)$ charge equals $6$ and then $3$.\n5. ![image](https://espresso.codeforces.com/9a87005ef2b3eb1efc9e486e608fadf3a5b557fa.png), after passing cell $(2, 1)$ charge is equal to $6$.\n6. ![image](https://espresso.codeforces.com/342ddbff927874c07e9d307d73383aa50f2117b6.png), after passing cell $(2, 1)$ charge is equal to $6$.\n\nExpected value of the battery charge is calculated by the following formula:\n\n![image](https://espresso.codeforces.com/7ddca3ad80b71df649b7beb01944a4ad8f863265.png).\n\nThus $*P* = 19$, and $*Q* = 3$.\n\n$3^{ - 1}$ modulo $10^{9} + 7$ equals $333333336$.\n\n$19·333333336 = 333333342 (*mod* 10^{9} + 7)$",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3 2 11\n2 1\n2 3\n",
+      "output": "333333342\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4 5 3 17\n1 2\n3 3\n4 1\n",
+      "output": "514285727\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1 6 2 15\n1 1\n1 5\n",
+      "output": "4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:03:51.736Z"
+}

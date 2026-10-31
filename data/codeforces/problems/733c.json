@@ -1,0 +1,40 @@
+{
+  "id": "733C",
+  "platform": "codeforces",
+  "contestId": 733,
+  "index": "C",
+  "title": "Epidemic in Monstropolis",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/733/problem/C",
+  "difficulty": 1800,
+  "tags": [
+    "constructive algorithms",
+    "dp",
+    "greedy",
+    "two pointers"
+  ],
+  "points": 2000,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "There was an epidemic in Monstropolis and all monsters became sick. To recover, all monsters lined up in queue for an appointment to the only doctor in the city.\n\nSoon, monsters became hungry and began to eat each other.\n\nOne monster can eat other monster if its weight is **strictly greater** than the weight of the monster being eaten, and they stand in the queue next to each other. Monsters eat each other instantly. There are no monsters which are being eaten at the same moment. After the monster $*A*$ eats the monster $*B*$, the weight of the monster $*A*$ increases by the weight of the eaten monster $*B*$. In result of such eating the length of the queue decreases by one, all monsters after the eaten one step forward so that there is no empty places in the queue again. A monster can eat several monsters one after another. Initially there were $*n*$ monsters in the queue, the $*i*$-th of which had weight $*a*_{*i*}$.\n\nFor example, if weights are $[1, 2, 2, 2, 1, 2]$ (in order of queue, monsters are numbered from $1$ to $6$ from left to right) then some of the options are:\n\n1. the first monster can't eat the second monster because $*a*_{1} = 1$ is not greater than $*a*_{2} = 2$;\n2. the second monster can't eat the third monster because $*a*_{2} = 2$ is not greater than $*a*_{3} = 2$;\n3. the second monster can't eat the fifth monster because they are not neighbors;\n4. the second monster can eat the first monster, the queue will be transformed to $[3, 2, 2, 1, 2]$.\n\nAfter some time, someone said a good joke and all monsters recovered. At that moment there were $*k*$ ($*k* ≤ *n*$) monsters in the queue, the $*j*$-th of which had weight $*b*_{*j*}$. Both sequences ($*a*$ and $*b*$) contain the weights of the monsters in the order from the first to the last.\n\nYou are required to provide one of the possible orders of eating monsters which led to the current queue, or to determine that this could not happen. Assume that the doctor didn't make any appointments while monsters were eating each other.\n\n## Input\n\nThe first line contains single integer $*n*$ ($1 ≤ *n* ≤ 500$) — the number of monsters in the initial queue.\n\nThe second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ 10^{6}$) — the initial weights of the monsters.\n\nThe third line contains single integer $*k*$ ($1 ≤ *k* ≤ *n*$) — the number of monsters in the queue after the joke.\n\nThe fourth line contains $*k*$ integers $*b*_{1}, *b*_{2}, ..., *b*_{*k*}$ ($1 ≤ *b*_{*j*} ≤ 5·10^{8}$) — the weights of the monsters after the joke.\n\nMonsters are listed in the order from the beginning of the queue to the end.\n\n## Output\n\nIn case if no actions could lead to the final queue, print \"NO\" (without quotes) in the only line.\n\nOtherwise print \"YES\" (without quotes) in the first line. In the next $*n* - *k*$ lines print actions in the chronological order. In each line print $*x*$ — the index number of the monster in the current queue which eats and, separated by space, the symbol '`L`' if the monster which stays the $*x*$-th in the queue eats the monster in front of him, or '`R`' if the monster which stays the $*x*$-th in the queue eats the monster behind him. After each eating the queue is enumerated again.\n\nWhen one monster eats another the queue decreases. If there are several answers, print any of them.\n\n## Note\n\nIn the first example, initially there were $*n* = 6$ monsters, their weights are $[1, 2, 2, 2, 1, 2]$ (in order of queue from the first monster to the last monster). The final queue should be $[5, 5]$. The following sequence of eatings leads to the final queue:\n\n- the second monster eats the monster to the left (i.e. the first monster), queue becomes $[3, 2, 2, 1, 2]$;\n- the first monster (note, it was the second on the previous step) eats the monster to the right (i.e. the second monster), queue becomes $[5, 2, 1, 2]$;\n- the fourth monster eats the mosnter to the left (i.e. the third monster), queue becomes $[5, 2, 3]$;\n- the finally, the third monster eats the monster to the left (i.e. the second monster), queue becomes $[5, 5]$.\n\nNote that for each step the output contains numbers of the monsters in their current order in the queue.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n1 2 2 2 1 2\n2\n5 5\n",
+      "output": "YES\n2 L\n1 R\n4 L\n3 L\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\n1 2 3 4 5\n1\n15\n",
+      "output": "YES\n5 L\n4 L\n3 L\n2 L\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\n1 1 1 3 3\n3\n2 1 6\n",
+      "output": "NO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:02:45.445Z"
+}
