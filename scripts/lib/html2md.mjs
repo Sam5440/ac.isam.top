@@ -68,6 +68,24 @@ export function preText(el) {
     .replace(/^\n+|\n+$/g, '') + '\n';
 }
 
+/** <img> → markdown。牛客公式图（equation?tex= 服务端 SVG）还原为行内公式。 */
+function imgMd($, el, opts) {
+  const src = el.attr('src') || '';
+  // alt 通常即原始 TeX；部分页面 alt 为空，TeX 只在 URL 参数里
+  if (/equation\?tex=/.test(src)) {
+    let tex = (el.attr('alt') || '').trim();
+    if (!tex) {
+      try {
+        tex = decodeURIComponent(src.split('tex=')[1] || '').trim();
+      } catch {
+        tex = '';
+      }
+    }
+    return tex ? `$${tex}$` : '';
+  }
+  return `![${(el.attr('alt') || 'image').replace(/[\[\]]/g, '')}](${absUrl(src, opts.base)})`;
+}
+
 /** 行内转换。texMode=true 时 sub/sup 输出 _{} ^{}（用于 var/tex-span 内部）。 */
 function inlineChildren($, nodes, opts, texMode = false) {
   const out = [];
@@ -114,25 +132,9 @@ function inlineChildren($, nodes, opts, texMode = false) {
       case 'a':
         out.push(`[${inner().trim() || 'link'}](${absUrl(el.attr('href'), opts.base)})`);
         break;
-      case 'img': {
-        const src = el.attr('src') || '';
-        // 牛客公式：equation?tex= 服务端 SVG 图 → 还原为行内公式。
-        // alt 通常即原始 TeX；部分页面 alt 为空，TeX 只在 URL 参数里。
-        if (/equation\?tex=/.test(src)) {
-          let tex = (el.attr('alt') || '').trim();
-          if (!tex) {
-            try {
-              tex = decodeURIComponent(src.split('tex=')[1] || '').trim();
-            } catch {
-              tex = '';
-            }
-          }
-          out.push(tex ? `$${tex}$` : '');
-        } else {
-          out.push(`![${(el.attr('alt') || 'image').replace(/[\[\]]/g, '')}](${absUrl(src, opts.base)})`);
-        }
+      case 'img':
+        out.push(imgMd($, el, opts));
         break;
-      }
       case 'code':
       case 'tt':
         out.push('`' + el.text().replace(/`/g, '’') + '`');
@@ -159,6 +161,40 @@ export function inlineMd($, el, opts) {
   return inlineChildren($, el.get(0)?.children ?? [], opts).replace(/\s+/g, ' ').trim();
 }
 
+/** 行内内容 → 段落文本：保留 <br> 换行但合并为单块（用于列表项）。 */
+export function inlineMdBr($, el, opts) {
+  return inlineChildren($, el.get(0)?.children ?? [], opts)
+    .replace(/[ \t]*\n[ \t]*/g, '\\\n')
+    .trim();
+}
+
+/**
+ * 行内内容 → 段落块数组：单个换行是源 <br>（输出 GFM 硬换行 `\\`+换行，
+ * 站点 marked gfm 模式渲染为 <br>）；两个以上连续换行（<br><br> 或
+ * display 公式边界）视作分段，拆成独立块。
+ */
+function inlineBlocksOf($, el, opts) {
+  return splitInlineBlocks(inlineChildren($, el.get(0)?.children ?? [], opts));
+}
+
+export function splitInlineBlocks(raw) {
+  return String(raw)
+    .replace(/[ \t]*\n[ \t]*/g, '\n')
+    .trim()
+    .split(/\n{2,}/)
+    .map((s) => s.replace(/\n/g, '\\\n').trim())
+    .filter(Boolean);
+}
+
+const BLOCK_TAGS = new Set([
+  'p', 'div', 'ul', 'ol', 'table', 'pre', 'blockquote', 'hr',
+  'center', 'section', 'article', 'figure', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+]);
+
+function hasBlockChild($, el) {
+  return el.children().toArray().some((n) => n.type === 'tag' && BLOCK_TAGS.has(n.tagName));
+}
+
 /** 单个块级节点 → markdown 段落数组（每项一个空行分隔的块）。 */
 function blockNode($, node, opts, blocks) {
   if (node.type === 'text') {
@@ -171,8 +207,7 @@ function blockNode($, node, opts, blocks) {
   const tag = node.tagName;
   switch (tag) {
     case 'p': {
-      const md = inlineChildren($, node.children ?? [], opts).replace(/[ \t]*\n[ \t]*/g, '\n').trim();
-      if (md) blocks.push(md);
+      for (const md of inlineBlocksOf($, el, opts)) blocks.push(md);
       break;
     }
     case 'h1':
@@ -187,10 +222,7 @@ function blockNode($, node, opts, blocks) {
       // 牛客的「输入描述/输出描述」内容装在 pre 里且内嵌公式图 —— 不是代码块，
       // 展开为段落让行内转换还原公式；纯文本 pre 才输出代码围栏。
       if ($(node).find('img[src*="equation?tex="]').length) {
-        const md = inlineChildren($, node.children ?? [], opts)
-          .replace(/[ \t]*\n[ \t]*/g, '\n')
-          .trim();
-        if (md) blocks.push(md);
+        for (const md of inlineBlocksOf($, el, opts)) blocks.push(md);
         break;
       }
       const text = preText(el).replace(/\n$/, '');
@@ -208,7 +240,7 @@ function blockNode($, node, opts, blocks) {
           nested += '\n' + listToMd($, $(sub), opts, '  ');
         });
         liEl.children('ul,ol').remove();
-        const body = inlineMd($, liEl, opts);
+        const body = inlineMdBr($, liEl, opts);
         items.push({ body, nested });
       });
       const list = items
@@ -249,7 +281,7 @@ function blockNode($, node, opts, blocks) {
       blocks.push('---');
       break;
     case 'img':
-      blocks.push(`![${(el.attr('alt') || 'image').replace(/[\[\]]/g, '')}](${absUrl(el.attr('src'), opts.base)})`);
+      blocks.push(imgMd($, el, opts));
       break;
     case 'script': {
       const type = node.attribs.type || '';
@@ -271,16 +303,24 @@ function blockNode($, node, opts, blocks) {
         el.contents().each((_, c) => blockNode($, c, opts, blocks));
         break;
       }
-      const md = inlineMd($, el, opts);
-      if (md) blocks.push(md);
+      if (hasBlockChild($, el)) {
+        // 包裹层内嵌块级结构：下钻，避免把段落/列表拍平成一行
+        el.contents().each((_, c) => blockNode($, c, opts, blocks));
+        break;
+      }
+      // 纯行内 div（牛客题面段）：源 <br> 转硬换行
+      for (const md of inlineBlocksOf($, el, opts)) blocks.push(md);
       break;
     }
     case 'center': {
-      const md = inlineMd($, el, opts);
-      if (md) blocks.push(md);
+      for (const md of inlineBlocksOf($, el, opts)) blocks.push(md);
       break;
     }
     default: {
+      if (hasBlockChild($, el)) {
+        el.contents().each((_, c) => blockNode($, c, opts, blocks));
+        break;
+      }
       const md = inlineMd($, el, opts);
       if (md) blocks.push(md);
     }
@@ -296,7 +336,7 @@ function listToMd($, el, opts, indent) {
       nested += '\n' + indent + listToMd($, $(sub), opts, indent + '  ');
     });
     liEl.children('ul,ol').remove();
-    items.push(`- ${inlineMd($, liEl, opts)}${nested}`);
+    items.push(`- ${inlineMdBr($, liEl, opts)}${nested}`);
   });
   return items.join(`\n${indent}`);
 }
