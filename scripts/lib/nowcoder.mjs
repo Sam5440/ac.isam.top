@@ -24,6 +24,9 @@ const UA =
 /** 官方专辑 id（vip-index 的 topCategoryFilter），当前为 13（牛客竞赛）。 */
 export const NC_OFFICIAL_CATEGORY = 13;
 
+/** 标题是否中文：牛客不少题标题是英文（如小白月赛），英文标题交给翻译/MT。 */
+export const isZhTitle = (t) => /[\u4e00-\u9fff]/.test(String(t || ''));
+
 /**
  * 牛客官方赛事名模式。匿名前端没有历史列表接口（vip-index 纯 SSR 只出最新
  * 一页且忽略 page 参数），历史比赛只能按 contest id 倒序探测：problem-list

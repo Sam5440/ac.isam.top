@@ -40,6 +40,7 @@ import {
   fetchNowcoderContests,
   fetchNowcoderProblemList,
   fetchNowcoderStatement,
+  isZhTitle,
   nowcoderContestUrl,
   nowcoderProblemUrl,
   scanNowcoderContestsById,
@@ -294,8 +295,8 @@ async function ncFetchContestProblems(c, budget) {
         contestId: c.id,
         index: p.index,
         title: p.title,
-        // 中文题译文=原文；英文题（ICPC 系）译文置空走翻译管线
-        titleZh: st.language === 'zh' ? p.title : null,
+        // 中文题面+中文标题：译文=原文；英文题面（ICPC 系）或英文标题：置空走翻译
+        titleZh: st.language === 'zh' && isZhTitle(p.title) ? p.title : null,
         url: nowcoderProblemUrl(c.id, p.index),
         difficulty: null,
         tags: [],

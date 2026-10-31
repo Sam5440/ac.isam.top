@@ -12,7 +12,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { fetchNowcoderStatement } from './lib/nowcoder.mjs';
+import { fetchNowcoderStatement, isZhTitle } from './lib/nowcoder.mjs';
 import { loadProblem, saveProblem } from './lib/store.mjs';
 import { buildIndex } from './build-index.mjs';
 import { loadEnv, log, rnd, sleep } from './lib/util.mjs';
@@ -59,9 +59,10 @@ async function main() {
         patch.statementZhMd = st.statementMd;
       } else if (!st.statementZhMd) {
         patch.statementZhMd = null;
-        if (patch.titleZh === cur.title) patch.titleZh = null;
         delete patch.translateModel;
       }
+      // 英文标题此前被复制成 titleZh（假「翻译」）—— 置空交给翻译/MT
+      if (patch.titleZh === cur.title && !isZhTitle(cur.title)) patch.titleZh = null;
       saveProblem('nowcoder', patch);
       done++;
       if (done % 20 === 0) log('refetch', `进度 ${done}${failed ? `，失败 ${failed}` : ''}`);

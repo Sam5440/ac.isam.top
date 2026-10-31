@@ -43,6 +43,7 @@ import {
   fetchNowcoderContests,
   fetchNowcoderProblemList,
   fetchNowcoderStatement,
+  isZhTitle,
   nowcoderProblemUrl,
 } from './lib/nowcoder.mjs';
 import { problemComplete, saveProblem, upsertContest } from './lib/store.mjs';
@@ -309,8 +310,9 @@ async function runNowcoder() {
         contestId: c.id,
         index: p.index,
         title: p.title,
-        // 中文题：译文存原文，翻译管线自动跳过；英文题（ICPC 系）：译文置空走翻译
-        titleZh: st.language === 'zh' ? p.title : null,
+        // 中文题：译文存原文，翻译管线自动跳过；英文题面/英文标题（ICPC 系
+        // 与部分月赛）置空，交翻译管线与站内 MT 兜底
+        titleZh: st.language === 'zh' && isZhTitle(p.title) ? p.title : null,
         url: nowcoderProblemUrl(c.id, p.index),
         difficulty: null,
         tags: [],

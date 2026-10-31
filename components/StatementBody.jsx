@@ -184,13 +184,18 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
         : null;
 
   const hasArchive = segments.some((s) => s.zh);
-  // 官方中文题面（牛客）：原文即译文，对照/中文模式只渲染单份，避免同文重复
+  // 官方中文题面（牛客）：原文即译文，对照/中文模式只渲染单份，避免同文重复；
+  // 但标题本身是英文时（牛客不少题标题为英文）仍走翻译链
   const sameLang = zhModel === '官方原文';
-  const zhSegments = segments.map((s, i) => ({
-    key: `${code}|p|${i}`,
-    text: s.en,
-    archived: Boolean(s.zh),
-  }));
+  const titleIsZh = /[\u4e00-\u9fff]/.test(String(title || ''));
+  const zhSegments = [
+    { key: `${code}|title`, text: title, archived: Boolean(titleZh) },
+    ...segments.map((s, i) => ({
+      key: `${code}|p|${i}`,
+      text: s.en,
+      archived: Boolean(s.zh),
+    })),
+  ];
 
   useEffect(() => {
     if (mode !== 'en') hydrateSegments(code, zhSegments);
@@ -208,7 +213,7 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
 
   const titleLine =
     mode !== 'en' ? (
-      sameLang ? (
+      sameLang && titleIsZh ? (
         <WithSourceChip html={renderRich(title)} source="ai:builtin" model="官方原文" />
       ) : channel === 'ai_custom' ? (
         <AiZhLine en={title} ai={ai} note="标题" />
