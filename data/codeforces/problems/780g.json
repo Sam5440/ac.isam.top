@@ -1,0 +1,43 @@
+{
+  "id": "780G",
+  "platform": "codeforces",
+  "contestId": 780,
+  "index": "G",
+  "title": "Andryusha and Nervous Barriers",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/780/problem/G",
+  "difficulty": 2700,
+  "tags": [
+    "data structures",
+    "dp"
+  ],
+  "points": 3000,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "Andryusha has found a perplexing arcade machine. The machine is a vertically adjusted board divided into square cells. The board has $*w*$ columns numbered from $1$ to $*w*$ from left to right, and $*h*$ rows numbered from $1$ to $*h*$ from the bottom to the top.\n\nFurther, there are barriers in some of board rows. There are $*n*$ barriers in total, and $*i*$-th of them occupied the cells $*l*_{*i*}$ through $*r*_{*i*}$ of the row $*u*_{*i*}$. Andryusha recollects well that no two barriers share the same row. Furthermore, no row is completely occupied with a barrier, that is, at least one cell in each row is free.\n\nThe player can throw a marble to any column of the machine from above. A marble falls downwards until it encounters a barrier, or falls through the bottom of the board. A marble disappears once it encounters a barrier but is replaced by two more marbles immediately to the left and to the right of the same barrier. In a situation when the barrier is at an edge of the board, both marbles appear next to the barrier at the side opposite to the edge. More than one marble can occupy the same place of the board, without obstructing each other's movement. Ultimately, all marbles are bound to fall from the bottom of the machine.\n\n![image](https://espresso.codeforces.com/be7f826a9594cfaaea0158d8904a494fe6296844.png) Examples of marble-barrier interaction.\n\nPeculiarly, sometimes marbles can go through barriers as if they were free cells. That is so because the barriers are in fact alive, and frightened when a marble was coming at them from a very high altitude. More specifically, if a marble falls towards the barrier $*i*$ from relative height more than $*s*_{*i*}$ (that is, it started its fall strictly higher than $*u*_{*i*} + *s*_{*i*}$), then the barrier evades the marble. If a marble is thrown from the top of the board, it is considered to appear at height $(*h* + 1)$.\n\nAndryusha remembers to have thrown a marble once in each of the columns. Help him find the total number of marbles that came down at the bottom of the machine. Since the answer may be large, print it modulo $10^{9} + 7$.\n\n## Input\n\nThe first line contains three integers $*h*$, $*w*$, and $*n*$ ($1 ≤ *h* ≤ 10^{9}$, $2 ≤ *w* ≤ 10^{5}$, $0 ≤ *n* ≤ 10^{5}$) — the number of rows, columns, and barriers in the machine respectively.\n\nNext $*n*$ lines describe barriers. $*i*$-th of these lines containts four integers $*u*_{*i*}$, $*l*_{*i*}$, $*r*_{*i*}$, and $*s*_{*i*}$ ($1 ≤ *u*_{*i*} ≤ *h*$, $1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *w*$, $1 ≤ *s*_{*i*} ≤ 10^{9}$) — row index, leftmost and rightmost column index of $*i*$-th barrier, and largest relative fall height such that the barrier does not evade a falling marble. It is guaranteed that each row has at least one free cell, and that all $*u*_{*i*}$ are distinct.\n\n## Output\n\nPrint one integer — the answer to the problem modulo $10^{9} + 7$.\n\n## Note\n\nIn the first sample case, there is a single barrier: if one throws a marble in the second or the third column, two marbles come out, otherwise there is only one. The total answer is $7$.\n\nIn the second sample case, the numbers of resulting marbles are $2$, $2$, $4$, $4$, $4$ in order of indexing columns with the initial marble.\n\nIn the third sample case, the numbers of resulting marbles are $1$, $1$, $4$, $4$, $4$. Note that the first barrier evades the marbles falling from the top of the board, but does not evade the marbles falling from the second barrier.\n\nIn the fourth sample case, the numbers of resulting marbles are $2$, $2$, $6$, $6$, $6$, $6$, $6$, $6$, $6$, $1$, $2$, $1$, $1$, $1$, $1$. The picture below shows the case when a marble is thrown into the seventh column.\n\n![image](https://espresso.codeforces.com/f7b8f0edcdb3f141f20293b0002b5c7d561e06d8.png) The result of throwing a marble into the seventh column.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "10 5 1\n3 2 3 10\n",
+      "output": "7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "10 5 2\n3 1 3 10\n5 3 5 10\n",
+      "output": "16\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "10 5 2\n3 1 3 7\n5 3 5 10\n",
+      "output": "14\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "10 15 4\n7 3 9 5\n6 4 10 1\n1 1 4 10\n4 11 11 20\n",
+      "output": "53\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:54:43.811Z"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "796F",
+  "platform": "codeforces",
+  "contestId": 796,
+  "index": "F",
+  "title": "Sequence Recovery",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/796/problem/F",
+  "difficulty": 2800,
+  "tags": [
+    "bitmasks",
+    "data structures",
+    "greedy"
+  ],
+  "points": 2500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Zane once had a *good* sequence $*a*$ consisting of $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ — but he has lost it.\n\nA sequence is said to be *good* if and only if all of its integers are non-negative and do not exceed $10^{9}$ in value.\n\n![image](https://espresso.codeforces.com/f5be9df120ac14c88f250133e07650d9c46f5813.png)\n\nHowever, Zane remembers having played around with his sequence by applying $*m*$ operations to it.\n\nThere are two types of operations:\n\n1. Find the maximum value of integers with indices $*i*$ such that $*l* ≤ *i* ≤ *r*$, given $*l*$ and $*r*$.\n\n2. Assign $*d*$ as the value of the integer with index $*k*$, given $*k*$ and $*d*$.\n\nAfter he finished playing, he restored his sequence to the state it was before any operations were applied. That is, sequence $*a*$ was no longer affected by the applied type 2 operations. Then, he lost his sequence at some time between now and then.\n\nFortunately, Zane remembers all the operations and the order he applied them to his sequence, along with the **distinct** results of all type 1 operations. Moreover, among all *good* sequences that would produce the same results when the same operations are applied in the same order, he knows that his sequence $*a*$ has the greatest *cuteness*.\n\nWe define *cuteness* of a sequence as the bitwise OR result of all integers in such sequence. For example, the *cuteness* of Zane's sequence $*a*$ is $*a*_{1}$ `OR` $*a*_{2}$ `OR` ... `OR` $*a*_{*n*}$.\n\nZane understands that it might not be possible to recover exactly the lost sequence given his information, so he would be happy to get any *good* sequence $*b*$ consisting of $*n*$ integers $*b*_{1}, *b*_{2}, ..., *b*_{*n*}$ that:\n\n1. would give the same results when the same operations are applied in the same order, and\n\n2. has the same *cuteness* as that of Zane's original sequence $*a*$.\n\nIf there is such a sequence, find it. Otherwise, it means that Zane must have remembered something incorrectly, which is possible.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 3·10^{5}$) — the number of integers in Zane's original sequence and the number of operations that have been applied to the sequence, respectively.\n\nThe $*i*$-th of the following $*m*$ lines starts with one integer $*t*_{*i*}$ (![image](https://espresso.codeforces.com/4c7c768da8395489b31f8f3db90a6fe799bdeb0f.png)) — the type of the $*i*$-th operation.\n\nIf the operation is type 1 ($*t*_{*i*} = 1$), then three integers $*l*_{*i*}$, $*r*_{*i*}$, and $*x*_{*i*}$ follow ($1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$, $0 ≤ *x*_{*i*} ≤ 10^{9}$) — the leftmost index to be considered, the rightmost index to be considered, and the maximum value of all integers with indices between $*l*_{*i*}$ and $*r*_{*i*}$, inclusive, respectively.\n\nIf the operation is type 2 ($*t*_{*i*} = 2$), then two integers $*k*_{*i*}$ and $*d*_{*i*}$ follow ($1 ≤ *k*_{*i*} ≤ *n*$, $0 ≤ *d*_{*i*} ≤ 10^{9}$) — meaning that the integer with index $*k*_{*i*}$ should become $*d*_{*i*}$ after this operation.\n\nIt is guaranteed that $*x*_{*i*} ≠ *x*_{*j*}$ for all pairs $(*i*, *j*)$ where $1 ≤ *i* < *j* ≤ *m*$ and $*t*_{*i*} = *t*_{*j*} = 1$.\n\nThe operations are given in the same order they were applied. That is, the operation that is given first was applied first, the operation that is given second was applied second, and so on.\n\n## Output\n\nIf there does not exist a valid *good* sequence, print \"`NO`\" (without quotation marks) in the first line.\n\nOtherwise, print \"`YES`\" (without quotation marks) in the first line, and print $*n*$ space-separated integers $*b*_{1}, *b*_{2}, ..., *b*_{*n*}$ ($0 ≤ *b*_{*i*} ≤ 10^{9}$) in the second line.\n\nIf there are multiple answers, print any of them.\n\n## Note\n\nIn the first sample, it is easy to verify that this *good* sequence is valid. In particular, its *cuteness* is $19$ `OR` $0$ `OR` $0$ `OR` $0$ `OR` $1$ $=$ $19$.\n\nIn the second sample, the two operations clearly contradict, so there is no such *good* sequence.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 4\n1 1 5 19\n1 2 5 1\n2 5 100\n1 1 5 100\n",
+      "output": "YES\n19 0 0 0 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5 2\n1 1 5 0\n1 1 5 100\n",
+      "output": "NO\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:53:30.250Z"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "773F",
+  "platform": "codeforces",
+  "contestId": 773,
+  "index": "F",
+  "title": "Test Data Generation",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/773/problem/F",
+  "difficulty": 3400,
+  "tags": [
+    "combinatorics",
+    "divide and conquer",
+    "dp",
+    "fft",
+    "math",
+    "number theory"
+  ],
+  "points": 3500,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "Test data generation is not an easy task! Often, generating big random test cases is not enough to ensure thorough testing of solutions for correctness.\n\nFor example, consider a problem from an old Codeforces round. Its input format looks roughly as follows:\n\n*The first line contains a single integer $*n*$ ($1 ≤ *n* ≤ *max*_{*n*}$) — the size of the set. The second line contains $*n*$ distinct integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ *max*_{*a*}$) — the elements of the set **in increasing order**.*\n\nIf you don't pay attention to the problem solution, it looks fairly easy to generate a good test case for this problem. Let $*n* = *max*_{*n*}$, take random distinct $*a*_{*i*}$ from 1 to $*max*_{*a*}$, sort them... Soon you understand that it's not that easy.\n\nHere is the actual problem solution. Let $*g*$ be the greatest common divisor of $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$. Let $*x* = *a*_{*n*} / *g* - *n*$. Then the correct solution outputs \"`Alice`\" if $*x*$ is odd, and \"`Bob`\" if $*x*$ is even.\n\nConsider two wrong solutions to this problem which differ from the correct one only in the formula for calculating $*x*$.\n\nThe first wrong solution calculates $*x*$ as $*x* = *a*_{*n*} / *g*$ (without subtracting $*n*$).\n\nThe second wrong solution calculates $*x*$ as $*x* = *a*_{*n*} - *n*$ (without dividing by $*g*$).\n\nA test case is interesting if it makes **both** wrong solutions output an incorrect answer.\n\nGiven $*max*_{*n*}$, $*max*_{*a*}$ and $*q*$, find the number of interesting test cases satisfying the constraints, and output it modulo $*q*$.\n\n## Input\n\nThe only line contains three integers $*max*_{*n*}$, $*max*_{*a*}$ and $*q*$ ($1 ≤ *max*_{*n*} ≤ 30 000$; $*max*_{*n*} ≤ *max*_{*a*} ≤ 10^{9}$; $10^{4} ≤ *q* ≤ 10^{5} + 129$).\n\n## Output\n\nOutput a single integer — the number of test cases which satisfy the constraints and make both wrong solutions output an incorrect answer, modulo $*q*$.\n\n## Note\n\nIn the first example, interesting test cases look as follows:\n\n```\n1              1              1              3\n2              4              6              2 4 6\n```",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 6 100000\n",
+      "output": "4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "6 21 100129\n",
+      "output": "154\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "58 787788 50216\n",
+      "output": "46009\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:55:26.111Z"
+}

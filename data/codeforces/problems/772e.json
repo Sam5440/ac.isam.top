@@ -1,0 +1,30 @@
+{
+  "id": "772E",
+  "platform": "codeforces",
+  "contestId": 772,
+  "index": "E",
+  "title": "Verifying Kingdom",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/772/problem/E",
+  "difficulty": 3200,
+  "tags": [
+    "binary search",
+    "divide and conquer",
+    "interactive",
+    "trees"
+  ],
+  "points": 2250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is an interactive problem.**\n\nThe judge has a hidden rooted full binary tree with $*n*$ leaves. A full binary tree is one where every node has either $0$ or $2$ children. The nodes with $0$ children are called the leaves of the tree. Since this is a full binary tree, there are exactly $2*n* - 1$ nodes in the tree. The leaves of the judge's tree has labels from $1$ to $*n*$. You would like to reconstruct a tree that is isomorphic to the judge's tree. To do this, you can ask some questions.\n\nA question consists of printing the label of three distinct leaves $*a*_{1}, *a*_{2}, *a*_{3}$. Let the *depth* of a node be the shortest distance from the node to the root of the tree. Let $*LCA*(*a*, *b*)$ denote the node with maximum depth that is a common ancestor of the nodes $*a*$ and $*b*$.\n\nConsider $*X* = *LCA*(*a*_{1}, *a*_{2}), *Y* = *LCA*(*a*_{2}, *a*_{3}), *Z* = *LCA*(*a*_{3}, *a*_{1})$. The judge will tell you which one of $*X*, *Y*, *Z*$ has the maximum depth. Note, this pair is uniquely determined since the tree is a binary tree; there can't be any ties.\n\nMore specifically, if $*X*$ (or $*Y*$, $*Z*$ respectively) maximizes the depth, the judge will respond with the string \"`X`\" (or \"`Y`\", \"`Z`\" respectively).\n\nYou may only ask at most $10·*n*$ questions.\n\n## Input\n\nThe first line of input will contain a single integer $*n*$ ($3 ≤ *n* ≤ 1 000$) — the number of leaves in the tree.\n\n## Output\n\nTo print the final answer, print out the string \"`-1`\" on its own line. Then, the next line should contain $2*n* - 1$ integers. The $*i*$-th integer should be the parent of the $*i*$-th node, or -1, if it is the root.\n\nYour answer will be judged correct if your output is isomorphic to the judge's tree. In particular, the labels of the leaves do not need to be labeled from $1$ to $*n*$. Here, isomorphic means that there exists a permutation $π$ such that node $*i*$ is the parent of node $*j*$ in the judge tree if and only node $π(*i*)$ is the parent of node $π(*j*)$ in your tree.\n\n## Interaction\n\nTo ask a question, print out three distinct integers $*a*_{1}, *a*_{2}, *a*_{3}$. These integers should be between $1$ and $*n*$, inclusive.\n\nThe judge will respond with a single character, either \"`X`\", \"`Y`\", \"`Z`\".\n\nIf the string is \"`X`\" (or \"`Y`\", \"`Z`\" respectively), that means the pair $(*a*_{1}, *a*_{2})$ (or $(*a*_{2}, *a*_{3})$, $(*a*_{3}, *a*_{1})$ respectively) has the deepest $*LCA*$ among the three pairs.\n\nYou may only ask a question at most $10·*n*$ times, otherwise, you will get `Wrong Answer`.\n\nWhen you are ready to answer, print out a single integer \"`-1`\" on its own line. The next line should contain $2*n* - 1$ integers. The $*i*$-th integer should be the parent of the $*i*$-th node, or -1, if it is the root. Do not forget to flush the final answer as well. Printing the answer does not count as asking a question.\n\nYou will get `Wrong Answer` verdict if\n\n- Your question or answers are not in the format described in this statement.\n- You ask strictly more than $10·*n*$ questions.\n- Your question contains duplicate indices.\n- Your final answer is not isomorphic to the judge tree.\n\nYou will get `Idleness Limit Exceeded` if you don't print anything or if you forget to flush the output, including for the final answer (more info about flushing output below).\n\nTo flush you can use (just after printing an integer and end-of-line):\n\n- `fflush(stdout)` in C++;\n- `System.out.flush()` in Java;\n- `stdout.flush()` in Python;\n- `flush(output)` in Pascal;\n- See the documentation for other languages.\n\nIf at any moment your program reads `-1` as an answer, it should immediately exit normally (for example, by calling `exit(0)`). You will get `Wrong Answer` in this case, it means that you made more queries than allowed, or made an invalid query. If you ignore this, you can get other verdicts since your program will continue to read from a closed stream.\n\n**Hacking** To hack someone, use the following format\n\n```\nn\np_1 p_2 ... p_{2n-1}\n```\n\nThis denotes a tree where the parent of the $*i*$-th node is $*p*_{*i*}$ ($*p*_{*i*} =  - 1$ or $*n* < *p*_{*i*} ≤ 2*n* - 1$). If $*p*_{*i*}$ is equal to `-1`, then node $*i*$ is the root. This input must describe a valid full rooted binary tree.\n\nOf course, contestant programs will not be able to see this input.\n\n## Note\n\nFor the first sample, the judge has the hidden tree:\n\n![image](https://espresso.codeforces.com/2c9cae7de194cc1bc508ea7243ff4d0d509d34bd.png)\n\nHere is a more readable format of the interaction:\n\n![image](https://espresso.codeforces.com/1cfb86747dfd0278bc848ef24aa3a158e4ce0220.png)\n\nThe last line can also be\n\n8 6 9 8 9 7 -1 6 7\n\n.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\nX\nZ\nY\nY\nX\n",
+      "output": "1 4 2\n1 2 4\n2 4 1\n2 3 5\n2 4 3\n-1\n-1 1 1 2 2 3 3 6 6\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:55:34.236Z"
+}

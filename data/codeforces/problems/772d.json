@@ -1,0 +1,38 @@
+{
+  "id": "772D",
+  "platform": "codeforces",
+  "contestId": 772,
+  "index": "D",
+  "title": "Varying Kibibits",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/772/problem/D",
+  "difficulty": 2700,
+  "tags": [
+    "bitmasks",
+    "dp"
+  ],
+  "points": 2250,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$. Denote this list of integers as $*T*$.\n\nLet $*f*(*L*)$ be a function that takes in a non-empty list of integers $*L*$.\n\nThe function will output another integer as follows:\n\n- First, all integers in $*L*$ are padded with leading zeros so they are all the same length as the maximum length number in $*L*$.\n- We will construct a string where the $*i*$-th character is the minimum of the $*i*$-th character in padded input numbers.\n- The output is the number representing the string interpreted in base 10.\n\nFor example $*f*(10, 9) = 0$, $*f*(123, 321) = 121$, $*f*(530, 932, 81) = 30$.\n\nDefine the function\n\n![image](https://espresso.codeforces.com/34a509f74cbc53a043710b4c2baed78d6aeb4c3e.png)\n\nHere,\n\n![image](https://espresso.codeforces.com/0241ed64f7f754d714cf9b2cef41ae3ac7b2cb35.png)\n\ndenotes a subsequence.\n\nIn other words, $*G*(*x*)$ is the sum of squares of sum of elements of nonempty subsequences of $*T*$ that evaluate to $*x*$ when plugged into $*f*$ modulo $1 000 000 007$, then multiplied by $*x*$. The last multiplication is not modded.\n\nYou would like to compute $*G*(0), *G*(1), ..., *G*(999 999)$. To reduce the output size, print the value ![image](https://espresso.codeforces.com/8758e4ee150415656efb78a88beae1c6d7f1c5bb.png), where ![image](https://espresso.codeforces.com/c4b7092c0f7ce6535f2574569c98f7b3c2fe2c5f.png) denotes the bitwise XOR operator.\n\n## Input\n\nThe first line contains the integer $*n*$ ($1 ≤ *n* ≤ 1 000 000$) — the size of list $*T*$.\n\nThe next line contains $*n*$ space-separated integers, $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($0 ≤ *a*_{*i*} ≤ 999 999$) — the elements of the list.\n\n## Output\n\nOutput a single integer, the answer to the problem.\n\n## Note\n\nFor the first sample, the nonzero values of $*G*$ are $*G*(121) = 144 611 577$, $*G*(123) = 58 401 999$, $*G*(321) = 279 403 857$, $*G*(555) = 170 953 875$. The bitwise XOR of these numbers is equal to $292 711 924$.\n\nFor example, ![image](https://espresso.codeforces.com/53a1c46c7cd2d3d56e89fe99af6328601758b327.png), since the subsequences $[123]$ and $[123, 555]$ evaluate to $123$ when plugged into $*f*$.\n\nFor the second sample, we have ![image](https://espresso.codeforces.com/330ab8a9387bb33a82877190f4439f4e9ccd8e92.png)\n\nFor the last sample, we have ![image](https://espresso.codeforces.com/0e0eeb7662af22bf04ea1a2ea669b162d53ad7ba.png), where ![image](https://espresso.codeforces.com/4f42013cbab8c31325f2cf28b60aa2ccc1cf89d3.png) is the binomial coefficient.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n123 321 555\n",
+      "output": "292711924\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1\n999999\n",
+      "output": "997992010006992\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "10\n1 1 1 1 1 1 1 1 1 1\n",
+      "output": "28160\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:55:34.236Z"
+}
