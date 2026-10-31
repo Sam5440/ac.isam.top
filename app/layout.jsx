@@ -20,10 +20,17 @@ export const metadata = {
     'AtCoder Beginner Contest 与 Codeforces 比赛题目的自动抓取题库：完整题面、样例、难度分级，AI 中文翻译，随 CI 持续更新。',
 };
 
+/** 首帧前应用外观（settings.jsx 存的 theme）：夜间=dark，日间=无类，墨水屏=eink。
+    默认（无记录/读不到）保持 SSR 的 dark，避免闪白。 */
+const THEME_BOOTSTRAP = `(function(){try{var t=JSON.parse(localStorage.getItem('stmt-settings-v1')||'{}').theme;if(t==='light')document.documentElement.classList.remove('dark');else if(t==='eink'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('eink');}}catch(e){}})();`;
+
 export default function RootLayout({ children }) {
   const idx = getIndex();
   return (
-    <html lang="zh-CN" className="dark">
+    <html lang="zh-CN" className="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
+      </head>
       <body>
         <KatexRuntime />
         <HighlightRuntime />

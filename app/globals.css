@@ -45,6 +45,88 @@
   --ring: oklch(0.552 0.016 285.938);
 }
 
+/* ---------- 墨水屏主题（html.eink）----------
+   彩色墨水屏优先：纸白底 + 近黑字的高对比打底（黑白墨水屏下依然清晰），
+   主色/强调色用高饱和深色调（色相分明、明度拉开），不做任何灰阶处理；
+   关闭过渡/动画与阴影（少残影、低刷新），小圆角硬朗边缘。
+   日间 = :root 默认 token，夜间 = .dark。 */
+.eink {
+  --radius: 0.25rem;
+  --background: oklch(0.978 0.004 95);
+  --foreground: oklch(0.16 0.01 275);
+  --card: oklch(0.995 0.002 95);
+  --card-foreground: oklch(0.16 0.01 275);
+  --popover: oklch(0.995 0.002 95);
+  --popover-foreground: oklch(0.16 0.01 275);
+  --primary: oklch(0.45 0.2 275);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.945 0.012 275);
+  --secondary-foreground: oklch(0.2 0.03 275);
+  --muted: oklch(0.945 0.008 275);
+  --muted-foreground: oklch(0.4 0.04 275);
+  --accent: oklch(0.92 0.03 275);
+  --accent-foreground: oklch(0.25 0.08 275);
+  --destructive: oklch(0.5 0.22 27);
+  --border: oklch(0.55 0.015 275);
+  --input: oklch(0.55 0.015 275);
+  --ring: oklch(0.45 0.2 275);
+}
+.eink *,
+.eink *::before,
+.eink *::after {
+  transition-duration: 0ms !important;
+  animation-duration: 0ms !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+/* 编译器周边（globals 硬编码暗色）→ 纸白高对比 */
+.eink .compiler-edge-tab {
+  color: var(--foreground);
+  background: var(--card);
+  border-color: var(--border);
+}
+.eink .compiler-edge-tab:hover {
+  background: var(--accent);
+}
+.eink .compiler-launch {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--border);
+}
+.eink .compiler-launch:hover {
+  background: oklch(0.38 0.2 275);
+}
+.eink .compiler-launch kbd {
+  color: oklch(0.85 0.03 275);
+}
+.eink .compiler-toast {
+  background: var(--card);
+  color: var(--foreground);
+}
+.eink .cp-kb {
+  background: oklch(0.94 0.01 275);
+}
+.eink .cp-kb-key {
+  background: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+.eink .cp-kb-key-tool {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+.eink .cp-kb-key:active,
+.eink .cp-kb-key[data-active] {
+  background: var(--accent);
+  transform: none;
+}
+/* Monaco 画布自带主题（默认 ys-dark）：智能反转为浅色画布，
+   色相经 hue-rotate 还原、保留彩色语法高亮；编辑器配色仍可在
+   编译器设置里单独选浅色主题（如 github-light）则不受影响 */
+.eink .compiler-editor-host {
+  filter: invert(0.92) hue-rotate(180deg);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

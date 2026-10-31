@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Terminal } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { SettingsGearButton } from '@/components/settings';
+import { SettingsGearButton, ThemeToggleButton } from '@/components/settings';
 import GithubMark from '@/components/GithubMark';
 
 const NAV = [
@@ -72,6 +72,7 @@ export default function SiteHeader() {
               <kbd>⌘ J</kbd>
             </Button>
           )}
+          <ThemeToggleButton />
           <SettingsGearButton />
           <Button asChild size="sm">
             <a

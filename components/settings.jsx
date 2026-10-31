@@ -34,6 +34,13 @@ export const DEFAULT_ZH_STYLE = { color: '', fontSize: '', bold: false, italic: 
 
 export const DEFAULT_HOME_TYPES = CONTEST_TYPES.map((t) => t.id);
 
+// 界面外观：夜间（默认）/ 日间 / 墨水屏。html 类名驱动：dark / 无 / eink
+export const THEME_OPTIONS = [
+  { id: 'dark', label: '夜间' },
+  { id: 'light', label: '日间' },
+  { id: 'eink', label: '墨水屏' },
+];
+
 const DEFAULT_SETTINGS = {
   defaultChannel: 'deepl',
   // 首次访问（无本机选择记录）时的题面语言模式：对照（原文 + 优先级链译文）
@@ -46,6 +53,8 @@ const DEFAULT_SETTINGS = {
   contestView: 'sidebar',
   // 首页「最新比赛」展示的比赛类型（CONTEST_TYPES 子集）
   homeContestTypes: DEFAULT_HOME_TYPES,
+  // 界面外观（THEME_OPTIONS 之一，默认夜间）
+  theme: 'dark',
 };
 
 const LANG_KEY = 'stmt-lang-v2';
@@ -113,6 +122,14 @@ export function SettingsProvider({ children }) {
     setSettingsState(s);
     setLangState(loadLang(s.defaultChannel, s.defaultLangMode));
   }, []);
+
+  // 界面外观 → <html> 类名：夜间=dark，日间=两者皆无，墨水屏=eink（去 dark）
+  useEffect(() => {
+    const t = THEME_OPTIONS.some((o) => o.id === settings.theme) ? settings.theme : 'dark';
+    const root = document.documentElement;
+    root.classList.toggle('dark', t === 'dark');
+    root.classList.toggle('eink', t === 'eink');
+  }, [settings.theme]);
 
   // 译文样式偏好 → <html>：颜色/字号走 CSS 变量，加粗/斜体/下划线走开关类
   useEffect(() => {
@@ -188,6 +205,57 @@ export function SettingsGearButton() {
     >
       <GearIcon className="size-4" />
     </button>
+  );
+}
+
+/* ---------------- theme quick toggle (top-right, in SiteHeader) ---------------- */
+
+const THEME_ICONS = { dark: MoonIcon, light: SunIcon, eink: EinkIcon };
+
+/** 外观快捷切换：点击在 夜间 → 日间 → 墨水屏 间循环，图标反映当前外观。 */
+export function ThemeToggleButton() {
+  const { settings, setSettings } = useSettings();
+  const cur = THEME_OPTIONS.some((o) => o.id === settings.theme) ? settings.theme : 'dark';
+  const Icon = THEME_ICONS[cur];
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        const i = THEME_OPTIONS.findIndex((o) => o.id === cur);
+        setSettings({ theme: THEME_OPTIONS[(i + 1) % THEME_OPTIONS.length].id });
+      }}
+      title={`外观：${THEME_OPTIONS.find((o) => o.id === cur).label}（点击切换 夜间 / 日间 / 墨水屏）`}
+      aria-label={`界面外观：${THEME_OPTIONS.find((o) => o.id === cur).label}，点击切换`}
+      className="text-muted-foreground hover:text-foreground inline-flex size-8 items-center justify-center rounded-md border bg-card transition-colors"
+    >
+      <Icon className="size-4" />
+    </button>
+  );
+}
+
+function MoonIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  );
+}
+
+function SunIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+    </svg>
+  );
+}
+
+function EinkIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <rect x="5" y="2.5" width="14" height="19" rx="2" />
+      <path d="M9 7h6M9 11h6M9 15h4" />
+    </svg>
   );
 }
 
@@ -309,6 +377,37 @@ function SettingsDialog({ onClose }) {
           <button type="button" onClick={onClose} className="text-muted-foreground hover:text-foreground" aria-label="关闭">
             ✕
           </button>
+        </div>
+
+        <div className="space-y-1.5">
+          <p className="text-muted-foreground text-xs font-medium">
+            界面外观（夜间为默认；顶部按钮可随时快捷切换）
+          </p>
+          <div className="flex rounded-md border p-0.5">
+            {THEME_OPTIONS.map((t) => {
+              const active = (settings.theme || 'dark') === t.id;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setSettings({ theme: t.id })}
+                  aria-pressed={active}
+                  className={`flex-1 rounded px-2 py-1 text-xs transition-colors ${
+                    active
+                      ? 'bg-primary font-medium text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              );
+            })}
+          </div>
+          {settings.theme === 'eink' && (
+            <p className="text-muted-foreground/70 block text-[11px] leading-relaxed">
+              墨水屏模式：纸白底、高对比强色彩（适配彩色墨水屏，黑白屏下对比依旧清晰），去动效去阴影以减少残影。内置代码编辑器的配色可在下方「编译器」里单独选浅色主题。
+            </p>
+          )}
         </div>
 
         <div className="space-y-1.5">
