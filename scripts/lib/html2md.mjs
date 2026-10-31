@@ -195,6 +195,32 @@ function hasBlockChild($, el) {
   return el.children().toArray().some((n) => n.type === 'tag' && BLOCK_TAGS.has(n.tagName));
 }
 
+const isBlockNode = (node) =>
+  node.type === 'tag' && (BLOCK_TAGS.has(node.tagName) || node.tagName === 'center');
+
+/**
+ * 块级下钻：连续的行内兄弟节点（文本/行内公式图/<br>…）归组为一个行内
+ * run 再转块 —— 牛客题面在 <div> 段落之间夹裸文本+行内公式图，逐节点
+ * 处理会把一句话拆成多段。
+ */
+function drillBlocks($, nodes, opts, blocks) {
+  let run = [];
+  const flush = () => {
+    if (!run.length) return;
+    for (const md of splitInlineBlocks(inlineChildren($, run, opts))) blocks.push(md);
+    run = [];
+  };
+  for (const node of nodes ?? []) {
+    if (isBlockNode(node)) {
+      flush();
+      blockNode($, node, opts, blocks);
+    } else {
+      run.push(node);
+    }
+  }
+  flush();
+}
+
 /** 单个块级节点 → markdown 段落数组（每项一个空行分隔的块）。 */
 function blockNode($, node, opts, blocks) {
   if (node.type === 'text') {
@@ -272,7 +298,7 @@ function blockNode($, node, opts, blocks) {
     }
     case 'blockquote': {
       const inner = [];
-      el.contents().each((_, c) => blockNode($, c, opts, inner));
+      drillBlocks($, el.contents().toArray(), opts, inner);
       const md = inner.join('\n\n').split('\n').map((l) => `> ${l}`).join('\n');
       if (md.trim()) blocks.push(md);
       break;
@@ -300,12 +326,12 @@ function blockNode($, node, opts, blocks) {
       }
       if (/\bpart\b/.test(cls) || /\bio-style\b/.test(cls) || /\bsample-tests\b/.test(cls)) {
         // AtCoder 的包裹层：下钻其子节点
-        el.contents().each((_, c) => blockNode($, c, opts, blocks));
+        drillBlocks($, el.contents().toArray(), opts, blocks);
         break;
       }
       if (hasBlockChild($, el)) {
         // 包裹层内嵌块级结构：下钻，避免把段落/列表拍平成一行
-        el.contents().each((_, c) => blockNode($, c, opts, blocks));
+        drillBlocks($, el.contents().toArray(), opts, blocks);
         break;
       }
       // 纯行内 div（牛客题面段）：源 <br> 转硬换行
@@ -318,7 +344,7 @@ function blockNode($, node, opts, blocks) {
     }
     default: {
       if (hasBlockChild($, el)) {
-        el.contents().each((_, c) => blockNode($, c, opts, blocks));
+        drillBlocks($, el.contents().toArray(), opts, blocks);
         break;
       }
       const md = inlineMd($, el, opts);
@@ -344,7 +370,7 @@ function listToMd($, el, opts, indent) {
 /** 一组节点 → markdown 文本（块间空行）。 */
 export function nodesToMd($, nodes, opts) {
   const blocks = [];
-  for (const node of nodes ?? []) blockNode($, node, opts, blocks);
+  drillBlocks($, nodes, opts, blocks);
   return blocks.filter((b) => String(b).trim()).join('\n\n');
 }
 

@@ -1,4 +1,5 @@
 import CopyBox from '@/components/CopyBox';
+import { renderRich } from '@/lib/render';
 
 /** 题面样例区块：输入/输出成对展示，note（若有）作为说明附在组后。 */
 export default function SamplesSection({ samples }) {
@@ -11,7 +12,10 @@ export default function SamplesSection({ samples }) {
           {s.input != null && <CopyBox label={`Input #${i + 1}`} text={s.input} />}
           {s.output != null && <CopyBox label={`Output #${i + 1}`} text={s.output} tone="green" />}
           {s.note ? (
-            <div className="text-muted-foreground md-body text-sm" dangerouslySetInnerHTML={{ __html: s.note }} />
+            <div
+              className="text-muted-foreground md-body text-sm"
+              dangerouslySetInnerHTML={{ __html: renderRich(s.note) }}
+            />
           ) : null}
         </div>
       ))}

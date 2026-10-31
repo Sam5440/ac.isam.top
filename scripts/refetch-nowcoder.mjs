@@ -43,18 +43,26 @@ async function main() {
   for (const { contestId, cur } of LIMIT ? todo.slice(0, LIMIT) : todo) {
     try {
       const st = await fetchNowcoderStatement(contestId, cur.index);
-      // AI 译文不覆盖：仅当现译文就是原文（或缺失）时同步更新
+      // AI 译文不覆盖：中文题同步官方原文；英文题（ICPC 系）译文置空走翻译/MT
       const zhIsOriginal =
         !cur.statementZhMd || cur.statementZhMd === cur.statementMd || cur.translateModel === '官方原文';
-      saveProblem('nowcoder', {
+      const patch = {
         ...cur,
         statementMd: st.statementMd,
-        statementZhMd: zhIsOriginal ? st.statementMd : cur.statementZhMd,
         samples: st.samples,
+        language: st.language,
         ...(st.timeLimitMs != null ? { timeLimitMs: st.timeLimitMs } : {}),
         ...(st.memoryLimitMb != null ? { memoryLimitMb: st.memoryLimitMb } : {}),
         fetchedAt: nowIso(),
-      });
+      };
+      if (st.statementZhMd && zhIsOriginal) {
+        patch.statementZhMd = st.statementMd;
+      } else if (!st.statementZhMd) {
+        patch.statementZhMd = null;
+        if (patch.titleZh === cur.title) patch.titleZh = null;
+        delete patch.translateModel;
+      }
+      saveProblem('nowcoder', patch);
       done++;
       if (done % 20 === 0) log('refetch', `进度 ${done}${failed ? `，失败 ${failed}` : ''}`);
     } catch (e) {

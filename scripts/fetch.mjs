@@ -309,18 +309,18 @@ async function runNowcoder() {
         contestId: c.id,
         index: p.index,
         title: p.title,
-        // 牛客题面即中文：译文存原文，翻译管线自动跳过；站点芯片显示「官方中文」
-        titleZh: p.title,
+        // 中文题：译文存原文，翻译管线自动跳过；英文题（ICPC 系）：译文置空走翻译
+        titleZh: st.language === 'zh' ? p.title : null,
         url: nowcoderProblemUrl(c.id, p.index),
         difficulty: null,
         tags: [],
         timeLimitMs: st.timeLimitMs,
         memoryLimitMb: st.memoryLimitMb,
         statementMd: st.statementMd,
-        statementZhMd: st.statementMd,
+        statementZhMd: st.statementZhMd,
         samples: st.samples,
-        language: 'zh',
-        translateModel: '官方原文',
+        language: st.language,
+        ...(st.statementZhMd ? { translateModel: '官方原文' } : {}),
         fetchedAt: nowIso(),
       });
       return true;

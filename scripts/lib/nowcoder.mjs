@@ -180,6 +180,21 @@ function headingMd(raw) {
 }
 
 /**
+ * 中英文粗判：剥掉公式/代码/链接/图片后按 CJK 字符占比。
+ * 官方中文题 >0.9，ICPC 系英文题 <0.02，实测无灰区，阈值 0.2。
+ */
+function detectLanguage(md) {
+  const t = String(md)
+    .replace(/\$[^$\n]+?\$/g, ' ')
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[[^\]]*\]\([^)]*\)/g, ' ');
+  const cjk = (t.match(/[\u4e00-\u9fff]/g) || []).length;
+  const latin = (t.match(/[A-Za-z]/g) || []).length;
+  return cjk / Math.max(1, cjk + latin) >= 0.2 ? 'zh' : 'en';
+}
+
+/**
  * 抓取单个题面（中文）。返回 { statementMd, samples, timeLimitMs, memoryLimitMb, language }。
  * 结构：question-intr（时限）+ 顶级 h2 小节（题目描述 / 输入描述: / 输出描述: /
  * 示例N（内嵌 h3 输入/输出/说明）/ 备注:）。
@@ -258,11 +273,16 @@ export async function fetchNowcoderStatement(contestId, index) {
     .trim();
   if (!statementMd && samples.length === 0) throw new Error('empty statement');
 
+  // 牛客多为官方中文（译文=原文），但 ICPC 系赛事题面是英文 —— 英文题
+  // statementZhMd 置空，交给翻译管线（CI）与站内 MT 兜底
+  const language = detectLanguage(statementMd);
+
   return {
     statementMd,
+    statementZhMd: language === 'zh' ? statementMd : null,
     samples,
     timeLimitMs: limits.timeLimitMs,
     memoryLimitMb: limits.memoryLimitMb,
-    language: 'zh',
+    language,
   };
 }
