@@ -1,0 +1,24 @@
+{
+  "id": "1008E",
+  "platform": "codeforces",
+  "contestId": 1008,
+  "index": "E",
+  "title": "Guess two numbers",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1008/problem/E",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is an interactive problem.**\n\nVasya and Vitya play a game. Vasya thought of two integers $a$ and $b$ from $1$ to $n$ and Vitya tries to guess them. Each round he tells Vasya two numbers $x$ and $y$ from $1$ to $n$. If both $x=a$ and $y=b$ then Vitya wins. Else Vasya must say one of the three phrases:\n\n1. $x$ is less than $a$;\n2. $y$ is less than $b$;\n3. $x$ is greater than $a$ or $y$ is greater than $b$.\n\nVasya can't lie, but if multiple phrases are true, he may choose any of them. For example, if Vasya thought of numbers $2$ and $4$, then he answers with the phrase $3$ to a query $(3, 4)$, and he can answer with the phrase $1$ or phrase $3$ to a query $(1, 5)$.\n\nHelp Vitya win in no more than $600$ rounds.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\leq n \\leq 10^{18}$) — the upper limit of the numbers.\n\n## Interaction\n\nFirst, you need to read the number $n$, after that you can make queries.\n\nTo make a query, print two integers: $x$ and $y$ ($1 \\leq x, y \\leq n$), then `flush` the output.\n\nAfter each query, read a single integer $ans$ ($0 \\leq ans \\leq 3$).\n\nIf $ans \\gt 0$, then it is the number of the phrase said by Vasya.\n\nIf $ans = 0$, it means that you win and your program should terminate.\n\nIf you make more than $600$ queries or make an incorrect query, you will get `Wrong Answer`.\n\nYour solution will get `Idleness Limit Exceeded`, if you don't print anything or forget to `flush` the output.\n\nTo `flush` you need to do the following right after printing a query and a line end:\n\n- `fflush(stdout)` in C++;\n- `System.out.flush()` in Java;\n- `stdout.flush()` in Python;\n- `flush(output)` in Pascal;\n- For other languages see documentation.\n\n**Hacks format**\n\nFor hacks, use the following format:\n\nIn the first line, print a single integer $n$ ($1 \\leq n \\leq 10^{18}$) — the upper limit of the numbers.\n\nIn the second line, print two integers $a$ and $b$ ($1 \\leq a, b \\leq n$) — the numbers which Vasya thought of.\n\nIn the third line, print a single integer $m$ ($1 \\leq m \\leq 10^5$) — the number of instructions for the interactor.\n\nIn each of the next $m$ lines, print five integers: $x_i$, $y_i$, $r^{12}_i$, $r^{13}_i$, and $r^{23}_i$ ($1 \\leq x_i, y_i \\leq n$), where $r^{ST}_i$ equals to either number $S$ or number $T$.\n\nWhile answering the query $x\\,\\, y$, the interactor finds a number $i$ from $1$ to $n$ with the minimal value $|x-x_i| + |y-y_i|$. If multiple numbers can be chosen, the least $i$ is preferred. Then the interactor answers to the query, but if there are two phrases $S$ and $T$ that can be given, then $r^{ST}_i$ is chosen.\n\nFor example, the sample test data file contains the following:\n\n```\n5\n2 4\n2\n2 5 1 1 2\n4 1 2 3 3\n```\n\n## Note\n\nLet's analyze the sample test. The chosen numbers are $2$ and $4$. The interactor was given two instructions.\n\nFor the query $(4, 3)$, it can return $2$ or $3$. Out of the two instructions the second one is chosen, so the interactor returns $a^{23}_2=3$.\n\nFor the query $(3, 4)$, it can return only $3$.\n\nFor the query $(3, 3)$, it can return $2$ or $3$. Out of the two instructions the first one is chosen (since in case of equal values, the least number is preferred), so the interactor returns $a^{23}_1=2$.\n\nFor the query $(1, 5)$, it can return $1$ or $3$. Out of the two instructions the first one is chosen, so the interactor returns $a^{13}_1=1$.\n\nIn the fifth query $(2, 4)$, the numbers are guessed correctly, the player wins.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n3\n3\n2\n1\n0\n",
+      "output": "4 3\n3 4\n3 3\n1 5\n2 4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:27:48.954Z"
+}
