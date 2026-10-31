@@ -1,0 +1,44 @@
+{
+  "id": "643F",
+  "platform": "codeforces",
+  "contestId": 643,
+  "index": "F",
+  "title": "Bears and Juice",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/643/problem/F",
+  "difficulty": 2900,
+  "tags": [
+    "dp",
+    "math",
+    "meet-in-the-middle"
+  ],
+  "points": 3000,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "There are $*n*$ bears in the inn and $*p*$ places to sleep. Bears will party together for some number of nights (and days).\n\nBears love drinking juice. They don't like wine but they can't distinguish it from juice by taste or smell.\n\nA bear doesn't sleep unless he drinks wine. A bear must go to sleep a few hours after drinking a wine. He will wake up many days after the party is over.\n\nRadewoosh is the owner of the inn. He wants to put some number of barrels in front of bears. One barrel will contain wine and all other ones will contain juice. Radewoosh will challenge bears to find a barrel with wine.\n\nEach night, the following happens in this exact order:\n\n1. Each bear must choose a (maybe empty) set of barrels. The same barrel may be chosen by many bears.\n2. Each bear drinks a glass from each barrel he chose.\n3. All bears who drink wine go to sleep (exactly those bears who chose a barrel with wine). They will wake up many days after the party is over. If there are not enough places to sleep then bears lose immediately.\n\nAt the end, if it's sure where wine is and there is at least one awake bear then bears win (unless they have lost before because of the number of places to sleep).\n\nRadewoosh wants to allow bears to win. He considers $*q*$ scenarios. In the $*i*$-th scenario the party will last for $*i*$ nights. Then, let $*R*_{*i*}$ denote the maximum number of barrels for which bears surely win if they behave optimally. Let's define ![image](https://espresso.codeforces.com/aa85ca4caef891acc09b71a549d14e5ac2d80746.png). Your task is to find ![image](https://espresso.codeforces.com/a9508034c6074683459bbbd26844e1b3e9b41d5e.png), where ![image](https://espresso.codeforces.com/c4b7092c0f7ce6535f2574569c98f7b3c2fe2c5f.png) denotes the exclusive or (also denoted as XOR).\n\nNote that the same barrel may be chosen by many bears and all of them will go to sleep at once.\n\n## Input\n\nThe only line of the input contains three integers $*n*$, $*p*$ and $*q*$ ($1 ≤ *n* ≤ 10^{9}$, $1 ≤ *p* ≤ 130$, $1 ≤ *q* ≤ 2 000 000$) — the number of bears, the number of places to sleep and the number of scenarios, respectively.\n\n## Output\n\nPrint one integer, equal to ![image](https://espresso.codeforces.com/a9508034c6074683459bbbd26844e1b3e9b41d5e.png).\n\n## Note\n\nIn the first sample, there are $5$ bears and only $1$ place to sleep. We have $*R*_{1} = 6, *R*_{2} = 11, *R*_{3} = 16$ so the answer is ![image](https://espresso.codeforces.com/b3272ae710321a0a8ceffa5d8c9afe3bf54e75eb.png). Let's analyze the optimal strategy for scenario with $2$ days. There are $*R*_{2} = 11$ barrels and $10$ of them contain juice.\n\n- In the first night, the $*i*$-th bear chooses a barrel $*i*$ only.\n- If one of the first $5$ barrels contains wine then one bear goes to sleep. Then, bears win because they know where wine is and there is at least one awake bear.\n  - But let's say none of the first $5$ barrels contains wine. In the second night, the $*i*$-th bear chooses a barrel $5 + *i*$.\n  - If one of barrels $6 – 10$ contains wine then one bear goes to sleep. And again, bears win in such a situation.\n    - If nobody went to sleep then wine is in a barrel $11$.\n\nIn the second sample, there is only one bear. He should choose an empty set of barrels in each night. Otherwise, he would maybe get wine and bears would lose (because there must be at least one awake bear). So, for any number of days we have $*R*_{*i*} = 1$. The answer is ![image](https://espresso.codeforces.com/c8b4cc3bcaf1329398e221289359b01c0a392ec5.png).",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 1 3\n",
+      "output": "32\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1 100 4\n",
+      "output": "4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3 2 1\n",
+      "output": "7\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "100 100 100\n",
+      "output": "381863924\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:13:20.777Z"
+}

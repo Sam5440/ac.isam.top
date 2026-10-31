@@ -1,0 +1,40 @@
+{
+  "id": "639E",
+  "platform": "codeforces",
+  "contestId": 639,
+  "index": "E",
+  "title": "Bear and Paradox",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/639/problem/E",
+  "difficulty": 2800,
+  "tags": [
+    "binary search",
+    "greedy",
+    "math",
+    "sortings"
+  ],
+  "points": 2000,
+  "timeLimitMs": 3500,
+  "memoryLimitMb": 256,
+  "statementMd": "Limak is a big polar bear. He prepared $*n*$ problems for an algorithmic contest. The $*i*$-th problem has **initial** score $*p*_{*i*}$. Also, testers said that it takes $*t*_{*i*}$ minutes to solve the $*i*$-th problem. Problems aren't necessarily sorted by difficulty and maybe harder problems have smaller initial score but it's too late to change it — Limak has already announced initial scores for problems. Though it's still possible to adjust the speed of losing points, denoted by $*c*$ in this statement.\n\nLet $*T*$ denote the total number of minutes needed to solve all problems (so, $*T* = *t*_{1} + *t*_{2} + ... + *t*_{*n*}$). The contest will last exactly $*T*$ minutes. So it's just enough to solve all problems.\n\nPoints given for solving a problem decrease linearly. Solving the $*i*$-th problem after $*x*$ minutes gives exactly ![image](https://espresso.codeforces.com/c2c3d2323710b5236e42078b445a8cc586f0800e.png) points, where ![image](https://espresso.codeforces.com/64f50f66d213ce98d5ae4014b8736c50e1aecfe2.png) is some real constant that Limak must choose.\n\nLet's assume that $*c*$ is fixed. During a contest a participant chooses some order in which he or she solves problems. There are $*n*!$ possible orders and each of them gives some total number of points, not necessarily integer. We say that an order is *optimal* if it gives the maximum number of points. In other words, the total number of points given by this order is greater or equal than the number of points given by any other order. It's obvious that there is at least one optimal order. However, there may be more than one optimal order.\n\nLimak assumes that every participant will properly estimate $*t*_{*i*}$ at the very beginning and will choose some optimal order. He also assumes that testers correctly predicted time needed to solve each problem.\n\nFor two distinct problems $*i*$ and $*j*$ such that $*p*_{*i*} < *p*_{*j*}$ Limak wouldn't be happy to see a participant with strictly more points for problem $*i*$ than for problem $*j*$. He calls such a situation a *paradox*.\n\nIt's not hard to prove that there will be no paradox for $*c* = 0$. The situation may be worse for bigger $*c*$. What is the maximum real value $*c*$ (remember that ![image](https://espresso.codeforces.com/64f50f66d213ce98d5ae4014b8736c50e1aecfe2.png)) for which there is no paradox possible, that is, there will be no paradox for **any optimal order** of solving problems?\n\nIt can be proved that the answer (the maximum $*c*$ as described) always exists.\n\n## Input\n\nThe first line contains one integer $*n*$ ($2 ≤ *n* ≤ 150 000$) — the number of problems.\n\nThe second line contains $*n*$ integers $*p*_{1}, *p*_{2}, ..., *p*_{*n*}$ ($1 ≤ *p*_{*i*} ≤ 10^{8}$) — initial scores.\n\nThe third line contains $*n*$ integers $*t*_{1}, *t*_{2}, ..., *t*_{*n*}$ ($1 ≤ *t*_{*i*} ≤ 10^{8}$) where $*t*_{*i*}$ is the number of minutes needed to solve the $*i*$-th problem.\n\n## Output\n\nPrint one real value on a single line — the maximum value of $*c*$ that ![image](https://espresso.codeforces.com/64f50f66d213ce98d5ae4014b8736c50e1aecfe2.png) and there is no optimal order with a paradox. Your answer will be considered correct if its absolute or relative error does not exceed $10^{ - 6}$.\n\nNamely: let's assume that your answer is $*a*$, and the answer of the jury is $*b*$. The checker program will consider your answer correct if ![image](https://espresso.codeforces.com/fb10c3e3b874552413ba93d1cdf2971c83f2ebe0.png).\n\n## Note\n\nIn the first sample, there are $3$ problems. The first is $(4, 1)$ (initial score is $4$ and required time is $1$ minute), the second problem is $(3, 1)$ and the third one is $(10, 8)$. The total time is $*T* = 1 + 1 + 8 = 10$.\n\nLet's show that there is a paradox for $*c* = 0.7$. Solving problems in order $1$, $2$, $3$ turns out to give the best total score, equal to the sum of:\n\n1. solved $1$ minute after the start: ![image](https://espresso.codeforces.com/e300b226dba2622235193889de3334147547cfcb.png)\n2. solved $2$ minutes after the start: ![image](https://espresso.codeforces.com/899352b92886f248a9c8e31247a7e4043f9f45e9.png)\n3. solved $10$ minutes after the start: ![image](https://espresso.codeforces.com/ed13f9d5e6cc1ef056b90a9157397d02abab0b16.png)\n\nSo, this order gives $3.72 + 2.58 + 3 = 9.3$ points in total and this is the only optimal order (you can calculate total scores for other $5$ possible orders too see that they are lower). You should check points for problems $1$ and $3$ to see a paradox. There is $4 < 10$ but $3.72 > 3$. It turns out that there is no paradox for $*c* = 0.625$ but there is a paradox for any bigger $*c*$.\n\nIn the second sample, all $24$ orders are optimal.\n\nIn the third sample, even for $*c* = 1$ there is no paradox.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n4 3 10\n1 1 8\n",
+      "output": "0.62500000000\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4\n7 20 15 10\n7 20 15 10\n",
+      "output": "0.31901840491\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2\n10 20\n10 1\n",
+      "output": "1.00000000000\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:13:36.183Z"
+}

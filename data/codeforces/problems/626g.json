@@ -1,0 +1,35 @@
+{
+  "id": "626G",
+  "platform": "codeforces",
+  "contestId": 626,
+  "index": "G",
+  "title": "Raffles",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/626/problem/G",
+  "difficulty": 3100,
+  "tags": [
+    "data structures",
+    "dp",
+    "greedy",
+    "math"
+  ],
+  "points": 3000,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "Johnny is at a carnival which has $*n*$ raffles. Raffle $*i*$ has a prize with value $*p*_{*i*}$. Each participant can put tickets in whichever raffles they choose (they may have more than one ticket in a single raffle). At the end of the carnival, one ticket is selected at random from each raffle, and the owner of the ticket wins the associated prize. A single person can win multiple prizes from different raffles.\n\nHowever, county rules prevent any one participant from owning more than half the tickets in a single raffle, i.e. putting more tickets in the raffle than all the other participants combined. To help combat this (and possibly win some prizes), the organizers started by placing a single ticket in each raffle, which they will never remove.\n\nJohnny bought $*t*$ tickets and is wondering where to place them. Currently, there are a total of $*l*_{*i*}$ tickets in the $*i*$-th raffle. He watches as other participants place tickets and modify their decisions and, at every moment in time, wants to know how much he can possibly earn. Find the maximum possible expected value of Johnny's winnings at each moment if he distributes his tickets optimally. Johnny may redistribute all of his tickets arbitrarily between each update, but he may not place more than $*t*$ tickets total or have more tickets in a single raffle than all other participants combined.\n\n## Input\n\nThe first line contains two integers $*n*$, $*t*$, and $*q*$ ($1 ≤ *n*, *t*, *q* ≤ 200 000$) — the number of raffles, the number of tickets Johnny has, and the total number of updates, respectively.\n\nThe second line contains $*n*$ space-separated integers $*p*_{*i*}$ ($1 ≤ *p*_{*i*} ≤ 1000$) — the value of the $*i*$-th prize.\n\nThe third line contains $*n*$ space-separated integers $*l*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ 1000$) — the number of tickets initially in the $*i*$-th raffle.\n\nThe last $*q*$ lines contain the descriptions of the updates. Each description contains two integers $*t*_{*k*}$, $*r*_{*k*}$ ($1 ≤ *t*_{*k*} ≤ 2$, $1 ≤ *r*_{*k*} ≤ *n*$) — the type of the update and the raffle number. An update of type $1$ represents another participant adding a ticket to raffle $*r*_{*k*}$. An update of type $2$ represents another participant removing a ticket from raffle $*r*_{*k*}$.\n\nIt is guaranteed that, after each update, each raffle has at least $1$ ticket (not including Johnny's) in it.\n\n## Output\n\nPrint $*q*$ lines, each containing a single real number — the maximum expected value of Johnny's winnings after the $*k*$-th update. Your answer will be considered correct if its absolute or relative error does not exceed $10^{ - 6}$.\n\nNamely: let's assume that your answer is $*a*$, and the answer of the jury is $*b*$. The checker program will consider your answer correct, if ![image](https://espresso.codeforces.com/c97ba2000ebfad962bff7ffd8d043594f5ae1086.png).\n\n## Note\n\nIn the first case, Johnny only has one ticket to distribute. The prizes are worth $4$ and $5$, and the raffles initially have $1$ and $2$ tickets, respectively. After the first update, each raffle has $2$ tickets, so Johnny has expected value ![image](https://espresso.codeforces.com/436bcf2181eea8fe79cdb015a5567ca1b8d69652.png) of winning by placing his ticket into the second raffle. The second update adds a ticket to the second raffle, so Johnny can win ![image](https://espresso.codeforces.com/6ed6e0db65395a75b021f54fa4289733d0399cee.png) in the first raffle. After the final update, Johnny keeps his ticket in the first raffle and wins ![image](https://espresso.codeforces.com/83dfd107e988fb3278df4f4561bd77ba068cc202.png).\n\nIn the second case, Johnny has more tickets than he is allowed to spend. In particular, after the first update, there are $7$, $6$, and $6$ tickets in each raffle, respectively, so Johnny can only put in $19$ tickets, winning each prize with probability ![image](https://espresso.codeforces.com/eb946338365d9781f7d2e9ec692c26702d0ae3a7.png). Also, note that after the last two updates, Johnny must remove a ticket from the last raffle in order to stay under ![image](https://espresso.codeforces.com/eb946338365d9781f7d2e9ec692c26702d0ae3a7.png) the tickets in the third raffle.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 1 3\n4 5\n1 2\n1 1\n1 2\n2 1\n",
+      "output": "1.666666667\n1.333333333\n2.000000000\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3 20 5\n6 8 10\n6 6 6\n1 1\n1 2\n1 3\n2 3\n2 3\n",
+      "output": "12.000000000\n12.000000000\n11.769230769\n12.000000000\n12.000000000\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:14:58.465Z"
+}

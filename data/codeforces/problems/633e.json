@@ -1,0 +1,31 @@
+{
+  "id": "633E",
+  "platform": "codeforces",
+  "contestId": 633,
+  "index": "E",
+  "title": "Startup Funding",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/633/problem/E",
+  "difficulty": 2400,
+  "tags": [
+    "binary search",
+    "constructive algorithms",
+    "data structures",
+    "probabilities",
+    "two pointers"
+  ],
+  "points": 2500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "An e-commerce startup pitches to the investors to get funding. They have been functional for $*n*$ weeks now and also have a website!\n\nFor each week they know the number of unique visitors during this week $*v*_{*i*}$ and the revenue $*c*_{*i*}$. To evaluate the potential of the startup at some range of weeks from $*l*$ to $*r*$ inclusive investors use the minimum among the maximum number of visitors multiplied by $100$ and the minimum revenue during this period, that is:\n\n![image](https://espresso.codeforces.com/fc09cb175c0793eedba45d4d2ac6af2fdf5eddc8.png)\n\nThe truth is that investors have no idea how to efficiently evaluate the startup, so they are going to pick some $*k*$ random distinct weeks $*l*_{*i*}$ and give them to managers of the startup. For each $*l*_{*i*}$ they should pick some $*r*_{*i*} ≥ *l*_{*i*}$ and report maximum number of visitors and minimum revenue during this period.\n\nThen, investors will calculate the potential of the startup for each of these ranges and take minimum value of $*p*(*l*_{*i*}, *r*_{*i*})$ as the total evaluation grade of the startup. Assuming that managers of the startup always report the optimal values of $*r*_{*i*}$ for some particular $*l*_{*i*}$, i.e., the value such that the resulting grade of the startup is maximized, what is the expected resulting grade of the startup?\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*k*$ ($1 ≤ *k* ≤ *n* ≤ 1 000 000$).\n\nThe second line contains $*n*$ integers $*v*_{*i*}$ ($1 ≤ *v*_{*i*} ≤ 10^{7}$) — the number of unique visitors during each week.\n\nThe third line contains $*n*$ integers $*c*_{*i*}$ ($1 ≤ *c*_{*i*} ≤ 10^{7}$) —the revenue for each week.\n\n## Output\n\nPrint a single real value — the expected grade of the startup. Your answer will be considered correct if its absolute or relative error does not exceed $10^{ - 6}$.\n\nNamely: let's assume that your answer is $*a*$, and the answer of the jury is $*b*$. The checker program will consider your answer correct, if ![image](https://espresso.codeforces.com/c97ba2000ebfad962bff7ffd8d043594f5ae1086.png).\n\n## Note\n\nConsider the first sample.\n\nIf the investors ask for $*l*_{*i*} = 1$ onwards, startup will choose $*r*_{*i*} = 1$, such that max number of visitors is $3$ and minimum revenue is $300$. Thus, potential in this case is $*min*(3·100, 300) = 300$.\n\nIf the investors ask for $*l*_{*i*} = 2$ onwards, startup will choose $*r*_{*i*} = 3$, such that max number of visitors is $2$ and minimum revenue is $200$. Thus, potential in this case is $*min*(2·100, 200) = 200$.\n\nIf the investors ask for $*l*_{*i*} = 3$ onwards, startup will choose $*r*_{*i*} = 3$, such that max number of visitors is $1$ and minimum revenue is $300$. Thus, potential in this case is $*min*(1·100, 300) = 100$.\n\nWe have to choose a set of size $2$ equi-probably and take minimum of each. The possible sets here are : ${200, 300}$,${100, 300}$,${100, 200}$, effectively the set of possible values as perceived by investors equi-probably: ${200, 100, 100}$. Thus, the expected value is $(100 + 200 + 100) / 3 = 133.(3)$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2\n3 2 1\n300 200 300\n",
+      "output": "133.3333333\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:14:22.789Z"
+}

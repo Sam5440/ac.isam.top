@@ -1,0 +1,28 @@
+{
+  "id": "618E",
+  "platform": "codeforces",
+  "contestId": 618,
+  "index": "E",
+  "title": "Robot Arm",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/618/problem/E",
+  "difficulty": 2500,
+  "tags": [
+    "data structures",
+    "geometry"
+  ],
+  "points": 2500,
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 256,
+  "statementMd": "Roger is a robot. He has an arm that is a series of $*n*$ segments connected to each other. The endpoints of the $*i*$-th segment are initially located at points $(*i* - 1, 0)$ and $(*i*, 0)$. The endpoint at $(*i* - 1, 0)$ is colored red and the endpoint at $(*i*, 0)$ is colored blue for all segments. Thus, the blue endpoint of the $*i*$-th segment is touching the red endpoint of the $(*i* + 1)$-th segment for all valid $*i*$.\n\nRoger can move his arm in two different ways:\n\n1. He can choose some segment and some value. This is denoted as choosing the segment number $*i*$ and picking some positive $*l*$. This change happens as follows: the red endpoint of segment number $*i*$ and segments from $1$ to $*i* - 1$ are all fixed in place. Imagine a ray from the red endpoint to the blue endpoint. The blue endpoint and segments $*i* + 1$ through $*n*$ are translated $*l*$ units in the direction of this ray. ![image](https://espresso.codeforces.com/494cc2c6bc66ee9b700ef86a99daba68618cd5b7.png) ![image](https://espresso.codeforces.com/40d4cee4ae3e2a2de7bf864f95689db46dd63a74.png) In this picture, the red point labeled $*A*$ and segments before $*A*$ stay in place, while the blue point labeled $*B*$ and segments after $*B*$ gets translated.\n2. He can choose a segment and rotate it. This is denoted as choosing the segment number $*i*$, and an angle $*a*$. The red endpoint of the $*i*$-th segment will stay fixed in place. The blue endpoint of that segment and segments $*i* + 1$ to $*n*$ will rotate clockwise by an angle of $*a*$ degrees around the red endpoint. ![image](https://espresso.codeforces.com/99858f5e450dc5d06ca1593230354f8bf6f1f037.png) ![image](https://espresso.codeforces.com/b659d1a90e2430db0dff4f295c564f810cd75ff0.png) In this picture, the red point labeled $*A*$ and segments before $*A*$ stay in place, while the blue point labeled $*B*$ and segments after $*B*$ get rotated around point $*A*$.\n\nRoger will move his arm $*m*$ times. These transformations are a bit complicated, and Roger easily loses track of where the blue endpoint of the last segment is. Help him compute the coordinates of the blue endpoint of the last segment after applying each operation. Note that these operations are cumulative, and Roger's arm may intersect itself arbitrarily during the moves.\n\n## Input\n\nThe first line of the input will contain two integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 300 000$) — the number of segments and the number of operations to perform.\n\nEach of the next $*m*$ lines contains three integers $*x*_{*i*}$, $*y*_{*i*}$ and $*z*_{*i*}$ describing a move. If $*x*_{*i*} = 1$, this line describes a move of type $1$, where $*y*_{*i*}$ denotes the segment number and $*z*_{*i*}$ denotes the increase in the length. If $*x*_{*i*} = 2$, this describes a move of type 2, where $*y*_{*i*}$ denotes the segment number, and $*z*_{*i*}$ denotes the angle in degrees. ($1 ≤ *x*_{*i*} ≤ 2, 1 ≤ *y*_{*i*} ≤ *n*, 1 ≤ *z*_{*i*} ≤ 359$)\n\n## Output\n\nPrint $*m*$ lines. The $*i*$-th line should contain two real values, denoting the coordinates of the blue endpoint of the last segment after applying operations $1, ..., *i*$. Your answer will be considered correct if its absolute or relative error does not exceed $10^{ - 4}$.\n\nNamely, let's assume that your answer for a particular value of a coordinate is $*a*$ and the answer of the jury is $*b*$. The checker program will consider your answer correct if ![image](https://espresso.codeforces.com/49eb236611e23b2e7c8e81e9516771daca716eec.png) for all coordinates.\n\n## Note\n\nThe following pictures shows the state of the arm after each operation. The coordinates of point $*F*$ are printed after applying each operation. For simplicity, we only show the blue endpoints of a segment (with the exception for the red endpoint of the first segment). For instance, the point labeled $*B*$ is the blue endpoint for segment $1$ and also the red endpoint for segment $2$.\n\nInitial state:\n\n![image](https://espresso.codeforces.com/159cbecbc37057e0497b3610cb2c376600298351.png)\n\nExtend segment\n\n1\n\nby\n\n3\n\n.\n\n![image](https://espresso.codeforces.com/930d809b93628487910ebc8115346b40a6bd248d.png)\n\nRotate segment\n\n3\n\nby\n\n90\n\ndegrees clockwise.\n\n![image](https://espresso.codeforces.com/fa6faea96260288e7ea8ceba9b0cf8c821f80245.png)\n\nRotate segment\n\n5\n\nby\n\n48\n\ndegrees clockwise.\n\n![image](https://espresso.codeforces.com/9f0885cd24d5d100496a40a11e4d048cc4cf4143.png)\n\nExtend segment\n\n4\n\nby\n\n1\n\n.\n\n![image](https://espresso.codeforces.com/5d1e406842a4ae718a56042679d1bd2ad9ef6824.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 4\n1 1 3\n2 3 90\n2 5 48\n1 4 1\n",
+      "output": "8.0000000000 0.0000000000\n5.0000000000 -3.0000000000\n4.2568551745 -2.6691306064\n4.2568551745 -3.6691306064\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:15:42.396Z"
+}
