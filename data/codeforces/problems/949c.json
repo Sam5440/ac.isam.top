@@ -1,0 +1,33 @@
+{
+  "id": "949C",
+  "platform": "codeforces",
+  "contestId": 949,
+  "index": "C",
+  "title": "Data Center Maintenance",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/949/problem/C",
+  "difficulty": 1900,
+  "tags": [
+    "dfs and similar",
+    "graphs"
+  ],
+  "points": 1250,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 512,
+  "statementMd": "BigData Inc. is a corporation that has $*n*$ data centers indexed from $1$ to $*n*$ that are located all over the world. These data centers provide storage for client data (you can figure out that client data is really big!).\n\nMain feature of services offered by BigData Inc. is the access availability guarantee even under the circumstances of any data center having an outage. Such a guarantee is ensured by using the *two-way replication*. Two-way replication is such an approach for data storage that any piece of data is represented by two identical copies that are stored in two different data centers.\n\nFor each of $*m*$ company clients, let us denote indices of two different data centers storing this client data as $*c*_{*i*, 1}$ and $*c*_{*i*, 2}$.\n\nIn order to keep data centers operational and safe, the software running on data center computers is being updated regularly. Release cycle of BigData Inc. is one day meaning that the new version of software is being deployed to the data center computers each day.\n\nData center software update is a non-trivial long process, that is why there is a special hour-long time frame that is dedicated for data center maintenance. During the maintenance period, data center computers are installing software updates, and thus they may be unavailable. Consider the day to be exactly $*h*$ hours long. For each data center there is an integer $*u*_{*j*}$ ($0 ≤ *u*_{*j*} ≤ *h* - 1$) defining the index of an hour of day, such that during this hour data center $*j*$ is unavailable due to maintenance.\n\nSumming up everything above, the condition $*u*_{*c*_{*i*, 1}} ≠ *u*_{*c*_{*i*, 2}}$ should hold for each client, or otherwise his data may be unaccessible while data centers that store it are under maintenance.\n\nDue to occasional timezone change in different cities all over the world, the maintenance time in some of the data centers may change by one hour sometimes. Company should be prepared for such situation, that is why they decided to conduct an experiment, choosing some non-empty subset of data centers, and shifting the maintenance time for them by an hour later (i.e. if $*u*_{*j*} = *h* - 1$, then the new maintenance hour would become $0$, otherwise it would become $*u*_{*j*} + 1$). Nonetheless, such an experiment should not break the accessibility guarantees, meaning that data of any client should be still available during any hour of a day after the data center maintenance times are changed.\n\nSuch an experiment would provide useful insights, but changing update time is quite an expensive procedure, that is why the company asked you to find out the minimum number of data centers that have to be included in an experiment in order to keep the data accessibility guarantees.\n\n## Input\n\nThe first line of input contains three integers $*n*$, $*m*$ and $*h*$ ($2 ≤ *n* ≤ 100 000$, $1 ≤ *m* ≤ 100 000$, $2 ≤ *h* ≤ 100 000$), the number of company data centers, number of clients and the day length of day measured in hours.\n\nThe second line of input contains $*n*$ integers $*u*_{1}, *u*_{2}, ..., *u*_{*n*}$ ($0 ≤ *u*_{*j*} < *h*$), $*j*$-th of these numbers is an index of a maintenance hour for data center $*j*$.\n\nEach of the next $*m*$ lines contains two integers $*c*_{*i*, 1}$ and $*c*_{*i*, 2}$ ($1 ≤ *c*_{*i*, 1}, *c*_{*i*, 2} ≤ *n*$, $*c*_{*i*, 1} ≠ *c*_{*i*, 2}$), defining the data center indices containing the data of client $*i*$.\n\nIt is guaranteed that the given maintenance schedule allows each client to access at least one copy of his data at any moment of day.\n\n## Output\n\nIn the first line print the minimum possible number of data centers $*k*$ ($1 ≤ *k* ≤ *n*$) that have to be included in an experiment in order to keep the data available for any client.\n\nIn the second line print $*k*$ distinct integers $*x*_{1}, *x*_{2}, ..., *x*_{*k*}$ ($1 ≤ *x*_{*i*} ≤ *n*$), the indices of data centers whose maintenance time will be shifted by one hour later. Data center indices may be printed in any order.\n\nIf there are several possible answers, it is allowed to print any of them. It is guaranteed that at there is at least one valid choice of data centers.\n\n## Note\n\nConsider the first sample test. The given answer is the only way to conduct an experiment involving the only data center. In such a scenario the third data center has a maintenance during the hour 1, and no two data centers storing the information of the same client have maintenance at the same hour.\n\nOn the other hand, for example, if we shift the maintenance time on hour later for the first data center, then the data of clients 1 and 3 will be unavailable during the hour 0.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3 5\n4 4 0\n1 3\n3 2\n3 1\n",
+      "output": "1\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4 5 4\n2 1 0 3\n4 3\n3 2\n1 2\n1 4\n1 3\n",
+      "output": "4\n1 2 3 4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:33:24.333Z"
+}
