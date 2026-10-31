@@ -1,0 +1,36 @@
+{
+  "id": "593D",
+  "platform": "codeforces",
+  "contestId": 593,
+  "index": "D",
+  "title": "Happy Tree Party",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/593/problem/D",
+  "difficulty": 2400,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "graphs",
+    "math",
+    "trees"
+  ],
+  "points": 3000,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "Bogdan has a birthday today and mom gave him a tree consisting of $*n*$ vertecies. For every edge of the tree $*i*$, some number $*x*_{*i*}$ was written on it. In case you forget, a tree is a connected non-directed graph without cycles. After the present was granted, $*m*$ guests consecutively come to Bogdan's party. When the $*i*$-th guest comes, he performs exactly one of the two possible operations:\n\n1. Chooses some number $*y*_{*i*}$, and two vertecies $*a*_{*i*}$ and $*b*_{*i*}$. After that, he moves along the edges of the tree from vertex $*a*_{*i*}$ to vertex $*b*_{*i*}$ using the shortest path (of course, such a path is unique in the tree). Every time he moves along some edge $*j*$, he replaces his current number $*y*_{*i*}$ by ![image](https://espresso.codeforces.com/a185f1c5e3a23a089bf689d964cc2d081c9f40ce.png), that is, by the result of integer division $*y*_{*i*}$ div $*x*_{*j*}$.\n2. Chooses some edge $*p*_{*i*}$ and replaces the value written in it $*x*_{*p*_{*i*}}$ by some positive integer $*c*_{*i*} < *x*_{*p*_{*i*}}$.\n\nAs Bogdan cares about his guests, he decided to ease the process. Write a program that performs all the operations requested by guests and outputs the resulting value $*y*_{*i*}$ for each $*i*$ of the first type.\n\n## Input\n\nThe first line of the input contains integers, $*n*$ and $*m*$ ($2 ≤ *n* ≤ 200 000$, $1 ≤ *m* ≤ 200 000$) — the number of vertecies in the tree granted to Bogdan by his mom and the number of guests that came to the party respectively.\n\nNext $*n* - 1$ lines contain the description of the edges. The $*i*$-th of these lines contains three integers $*u*_{*i*}$, $*v*_{*i*}$ and $*x*_{*i*}$ ($1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*$, $*u*_{*i*} ≠ *v*_{*i*}$, $1 ≤ *x*_{*i*} ≤ 10^{18}$), denoting an edge that connects vertecies $*u*_{*i*}$ and $*v*_{*i*}$, with the number $*x*_{*i*}$ initially written on it.\n\nThe following $*m*$ lines describe operations, requested by Bogdan's guests. Each description contains three or four integers and has one of the two possible forms:\n\n- $1$ $*a*_{*i*}$ $*b*_{*i*}$ $*y*_{*i*}$ corresponds to a guest, who chooses the operation of the first type.\n- $2$ $*p*_{*i*}$ $*c*_{*i*}$ corresponds to a guests, who chooses the operation of the second type.\n\nIt is guaranteed that all the queries are correct, namely\n\n1 ≤ *a*<sub>*i*</sub>, *b*<sub>*i*</sub> ≤ *n*\n\n,\n\n1 ≤ *p*<sub>*i*</sub> ≤ *n* - 1\n\n,\n\n1 ≤ *y*<sub>*i*</sub> ≤ 10<sup>18</sup>\n\nand\n\n1 ≤ *c*<sub>*i*</sub> < *x*<sub>*p*<sub>*i*</sub></sub>\n\n, where\n\n*x*<sub>*p*<sub>*i*</sub></sub>\n\nrepresents a number written on edge\n\n*p*<sub>*i*</sub>\n\nat this particular moment of time that is not necessarily equal to the initial value\n\n*x*<sub>*p*<sub>*i*</sub></sub>\n\n, as some decreases may have already been applied to it. The edges are numbered from\n\n1\n\nto\n\n*n* - 1\n\nin the order they appear in the input.\n\n## Output\n\nFor each guest who chooses the operation of the first type, print the result of processing the value $*y*_{*i*}$ through the path from $*a*_{*i*}$ to $*b*_{*i*}$.\n\n## Note\n\nInitially the tree looks like this: ![image](https://espresso.codeforces.com/bcea9d23f26044b8c3f80ef7acb580f12d2b408e.png) The response to the first query is: ![image](https://espresso.codeforces.com/5d118e070291dffa2524a35d044ed59aa2446202.png) = 2After the third edge is changed, the tree looks like this: ![image](https://espresso.codeforces.com/73cdd0af5696182d3ab2f1221c801d03ac5e84d4.png) The response to the second query is: ![image](https://espresso.codeforces.com/e174ec48fc18590923a6011f38f9725ace276d6b.png) = 4In the third query the initial and final vertex coincide, that is, the answer will be the initial number 20.After the change in the fourth edge the tree looks like this: ![image](https://espresso.codeforces.com/e8c14649b47b3622f3297b9150db434f6fa80b20.png) In the last query the answer will be: ![image](https://espresso.codeforces.com/9e2fd5e66c04846639323b74047d246292d6d487.png) = 3",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 6\n1 2 1\n1 3 7\n1 4 4\n2 5 5\n2 6 2\n1 4 6 17\n2 3 2\n1 4 6 17\n1 5 5 20\n2 4 1\n1 5 1 3\n",
+      "output": "2\n4\n20\n3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5 4\n1 2 7\n1 3 3\n3 4 2\n3 5 5\n1 4 2 100\n1 5 4 1\n2 2 2\n1 1 3 4\n",
+      "output": "2\n0\n2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:19:40.654Z"
+}
