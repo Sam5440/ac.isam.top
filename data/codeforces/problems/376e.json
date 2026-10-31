@@ -1,0 +1,39 @@
+{
+  "id": "376E",
+  "platform": "codeforces",
+  "contestId": 376,
+  "index": "E",
+  "title": "Circling Round Treasures",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/376/problem/E",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have a map as a rectangle table. Each cell of the table is either an obstacle, or a treasure with a certain price, or a bomb, or an empty cell. Your initial position is also given to you.\n\nYou can go from one cell of the map to a side-adjacent one. At that, you are not allowed to go beyond the borders of the map, enter the cells with treasures, obstacles and bombs. To pick the treasures, you need to build a closed path (starting and ending in the starting cell). The closed path mustn't contain any cells with bombs inside. Let's assume that the sum of the treasures' values that are located inside the closed path equals $*v*$, and besides, you've made $*k*$ single moves (from one cell to another) while you were going through the path, then such path brings you the profit of $*v* - *k*$ rubles.\n\nYour task is to build a closed path that doesn't contain any bombs and brings maximum profit.\n\nNote that the path can have self-intersections. In order to determine if a cell lies inside a path or not, use the following algorithm:\n\n1. Assume that the table cells are points on the plane (the table cell on the intersection of the $*i*$-th column and the $*j*$-th row is point $(*i*, *j*)$). And the given path is a closed polyline that goes through these points.\n2. You need to find out if the point $*p*$ of the table that is not crossed by the polyline lies inside the polyline.\n3. Let's draw a ray that starts from point $*p*$ and does not intersect other points of the table (such ray must exist).\n4. Let's count the number of segments of the polyline that intersect the painted ray. If this number is odd, we assume that point $*p*$ (and consequently, the table cell) lie inside the polyline (path). Otherwise, we assume that it lies outside.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ $(1 ≤ *n*, *m* ≤ 20)$ — the sizes of the table. Next $*n*$ lines each contains $*m*$ characters — the description of the table. The description means the following:\n\n- character \"`B`\" is a cell with a bomb;\n- character \"`S`\" is the starting cell, you can assume that it's empty;\n- digit $*c*$ (`1-8`) is treasure with index $*c*$;\n- character \"`.`\" is an empty cell;\n- character \"`#`\" is an obstacle.\n\nAssume that the map has $*t*$ treasures. Next $*t*$ lines contain the prices of the treasures. The $*i*$-th line contains the price of the treasure with index $*i*$, $*v*_{*i*}$ $( - 200 ≤ *v*_{*i*} ≤ 200)$. It is guaranteed that the treasures are numbered from 1 to $*t*$. It is guaranteed that the map has not more than 8 objects in total. Objects are bombs and treasures. It is guaranteed that the map has exactly one character \"`S`\".\n\n## Output\n\nPrint a single integer — the maximum possible profit you can get.\n\n## Note\n\nIn the first example the answer will look as follows.\n\n![image](https://espresso.codeforces.com/9cf4ac525766382f936b2a7a1bb7d553ba7e5b99.png)\n\nIn the second example the answer will look as follows.\n\n![image](https://espresso.codeforces.com/eeaab367f6adf4e0c9d8823fb86bfcbd06b623fb.png)\n\nIn the third example you cannot get profit.\n\nIn the fourth example you cannot get profit as you cannot construct a closed path with more than one cell.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 4\n....\n.S1.\n....\n....\n10\n",
+      "output": "2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "7 7\n.......\n.1###2.\n.#...#.\n.#.B.#.\n.3...4.\n..##...\n......S\n100\n100\n100\n100\n",
+      "output": "364\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "7 8\n........\n........\n....1B..\n.S......\n....2...\n3.......\n........\n100\n-100\n100\n",
+      "output": "0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1 1\nS\n",
+      "output": "0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:53:59.068Z"
+}
