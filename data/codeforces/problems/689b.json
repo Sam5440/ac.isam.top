@@ -1,0 +1,40 @@
+{
+  "id": "689B",
+  "platform": "codeforces",
+  "contestId": 689,
+  "index": "B",
+  "title": "Mike and Shortcuts",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/689/problem/B",
+  "difficulty": 1600,
+  "tags": [
+    "dfs and similar",
+    "graphs",
+    "greedy",
+    "shortest paths"
+  ],
+  "points": 1000,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "Recently, Mike was very busy with studying for exams and contests. Now he is going to chill a bit by doing some sight seeing in the city.\n\nCity consists of $*n*$ intersections numbered from $1$ to $*n*$. Mike starts walking from his house located at the intersection number $1$ and goes along some sequence of intersections. Walking from intersection number $*i*$ to intersection $*j*$ requires $|*i* - *j*|$ units of energy. The *total energy* spent by Mike to visit a sequence of intersections $*p*_{1} = 1, *p*_{2}, ..., *p*_{*k*}$ is equal to ![image](https://espresso.codeforces.com/b366a738332ae698b6ad24b23eec6b08a25a2fe9.png) units of energy.\n\nOf course, walking would be boring if there were no shortcuts. A *shortcut* is a special path that allows Mike walking from one intersection to another requiring only $1$ unit of energy. There are exactly $*n*$ shortcuts in Mike's city, the $*i*^{*th*}$ of them allows walking from intersection $*i*$ to intersection $*a*_{*i*}$ ($*i* ≤ *a*_{*i*} ≤ *a*_{*i* + 1}$) (but not in the opposite direction), thus there is exactly one shortcut starting at each intersection. Formally, if Mike chooses a sequence $*p*_{1} = 1, *p*_{2}, ..., *p*_{*k*}$ then for each $1 ≤ *i* < *k*$ satisfying $*p*_{*i* + 1} = *a*_{*p*_{*i*}}$ and $*a*_{*p*_{*i*}} ≠ *p*_{*i*}$ Mike will spend **only $1$ unit of energy** instead of $|*p*_{*i*} - *p*_{*i* + 1}|$ walking from the intersection $*p*_{*i*}$ to intersection $*p*_{*i* + 1}$. For example, if Mike chooses a sequence $*p*_{1} = 1, *p*_{2} = *a*_{*p*_{1}}, *p*_{3} = *a*_{*p*_{2}}, ..., *p*_{*k*} = *a*_{*p*_{*k* - 1}}$, he spends exactly $*k* - 1$ units of total energy walking around them.\n\nBefore going on his adventure, Mike asks you to find the minimum amount of energy required to reach each of the intersections from his home. Formally, for each $1 ≤ *i* ≤ *n*$ Mike is interested in finding minimum possible total energy of some sequence $*p*_{1} = 1, *p*_{2}, ..., *p*_{*k*} = *i*$.\n\n## Input\n\nThe first line contains an integer $*n*$ $(1 ≤ *n* ≤ 200 000)$ — the number of Mike's city intersection.\n\nThe second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ $(*i* ≤ *a*_{*i*} ≤ *n*$ , ![image](https://espresso.codeforces.com/a0e0e50a93f8d64ea6c764b778e4071020d4ef96.png), describing shortcuts of Mike's city, allowing to walk from intersection $*i*$ to intersection $*a*_{*i*}$ using only $1$ unit of energy. Please note that the shortcuts don't allow walking in opposite directions (from $*a*_{*i*}$ to $*i*$).\n\n## Output\n\nIn the only line print $*n*$ integers $*m*_{1}, *m*_{2}, ..., *m*_{*n*}$, where $*m*_{*i*}$ denotes the least amount of total energy required to walk from intersection $1$ to intersection $*i*$.\n\n## Note\n\nIn the first sample case desired sequences are:\n\n$1: 1$; $*m*_{1} = 0$;\n\n$2: 1, 2$; $*m*_{2} = 1$;\n\n$3: 1, 3$; $*m*_{3} = |3 - 1| = 2$.\n\nIn the second sample case the sequence for any intersection $1 < *i*$ is always $1, *i*$ and $*m*_{*i*} = |1 - *i*|$.\n\nIn the third sample case — consider the following intersection sequences:\n\n$1: 1$; $*m*_{1} = 0$;\n\n$2: 1, 2$; $*m*_{2} = |2 - 1| = 1$;\n\n$3: 1, 4, 3$; $*m*_{3} = 1 + |4 - 3| = 2$;\n\n$4: 1, 4$; $*m*_{4} = 1$;\n\n$5: 1, 4, 5$; $*m*_{5} = 1 + |4 - 5| = 2$;\n\n$6: 1, 4, 6$; $*m*_{6} = 1 + |4 - 6| = 3$;\n\n$7: 1, 4, 5, 7$; $*m*_{7} = 1 + |4 - 5| + 1 = 3$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n2 2 3\n",
+      "output": "0 1 2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\n1 2 3 4 5\n",
+      "output": "0 1 2 3 4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "7\n4 4 4 4 7 7 7\n",
+      "output": "0 1 2 1 2 3 3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:08:08.581Z"
+}

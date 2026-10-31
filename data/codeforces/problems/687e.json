@@ -1,0 +1,33 @@
+{
+  "id": "687E",
+  "platform": "codeforces",
+  "contestId": 687,
+  "index": "E",
+  "title": "TOF",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/687/problem/E",
+  "difficulty": 2900,
+  "tags": [
+    "dfs and similar",
+    "graphs"
+  ],
+  "points": 2500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Today Pari gave Arya a cool graph problem. Arya wrote a non-optimal solution for it, because he believes in his ability to optimize non-optimal solutions. In addition to being non-optimal, his code was buggy and he tried a lot to optimize it, so the code also became dirty! He keeps getting Time Limit Exceeds and he is disappointed. Suddenly a bright idea came to his mind!\n\nHere is how his dirty code looks like:\n\n```\ndfs(v)\n{\n     set count[v] = count[v] + 1\n     if(count[v] < 1000)\n     {\n          foreach u in neighbors[v]\n          {\n               if(visited[u] is equal to false)\n               {\n                    dfs(u)\n               }\n               break\n          }\n     }\n     set visited[v] = true\n}\n\nmain()\n{\n     input the digraph()\n     TOF()\n     foreach 1<=i<=n\n     {\n          set count[i] = 0 , visited[i] = false\n     }\n     foreach 1 <= v <= n\n     {\n          if(visited[v] is equal to false)\n          {\n               dfs(v)\n          }\n     }\n     ... // And do something cool and magical but we can't tell you what!\n}\n```\n\nHe asks you to write the TOF function in order to optimize the running time of the code with minimizing the number of calls of the dfs function. The input is a directed graph and in the TOF function you have to rearrange the edges of the graph in the list neighbors for each vertex. The number of calls of dfs function depends on the arrangement of neighbors of each vertex.\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 5000$) — the number of vertices and then number of directed edges in the input graph.\n\nEach of the next $*m*$ lines contains a pair of integers $*u*_{*i*}$ and $*v*_{*i*}$ ($1  ≤  *u*_{*i*},  *v*_{*i*}  ≤  *n*$), meaning there is a directed ![image](https://espresso.codeforces.com/c20f40f5f7e1e2baecd80691a3bb1d072198563d.png) edge in the input graph.\n\nYou may assume that the graph won't contain any self-loops and there is at most one edge between any unordered pair of vertices.\n\n## Output\n\nPrint a single integer — the minimum possible number of dfs calls that can be achieved with permuting the edges.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3\n1 2\n2 3\n3 1\n",
+      "output": "2998\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "6 7\n1 2\n2 3\n3 1\n3 4\n4 5\n5 6\n6 4\n",
+      "output": "3001\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:08:24.541Z"
+}
