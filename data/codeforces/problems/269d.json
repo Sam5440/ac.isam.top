@@ -1,0 +1,35 @@
+{
+  "id": "269D",
+  "platform": "codeforces",
+  "contestId": 269,
+  "index": "D",
+  "title": "Maximum Waterfall",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/269/problem/D",
+  "difficulty": 2600,
+  "tags": [
+    "data structures",
+    "dp",
+    "graphs",
+    "sortings"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Emuskald was hired to design an artificial waterfall according to the latest trends in landscape architecture. A modern artificial waterfall consists of multiple horizontal panels affixed to a wide flat wall. The water flows down the top of the wall from panel to panel until it reaches the bottom of the wall.\n\nThe wall has height $*t*$ and has $*n*$ panels on the wall. Each panel is a horizontal segment at height $*h*_{*i*}$ which begins at $*l*_{*i*}$ and ends at $*r*_{*i*}$. The $*i*$-th panel connects the points $(*l*_{*i*}, *h*_{*i*})$ and $(*r*_{*i*}, *h*_{*i*})$ of the plane. The top of the wall can be considered a panel connecting the points $( - 10^{9}, *t*)$ and $(10^{9}, *t*)$. Similarly, the bottom of the wall can be considered a panel connecting the points $( - 10^{9}, 0)$ and $(10^{9}, 0)$. No two panels share a common point.\n\nEmuskald knows that for the waterfall to be aesthetically pleasing, it can flow from panel $*i*$ to panel $*j*$ (![image](https://espresso.codeforces.com/c59da485d3a4e463f0157335ace916b7c377dcd8.png)) only if the following conditions hold:\n\n1. $*max*(*l*_{*i*}, *l*_{*j*}) < *min*(*r*_{*i*}, *r*_{*j*})$ (horizontal projections of the panels overlap);\n2. $*h*_{*j*} < *h*_{*i*}$ (panel $*j*$ is below panel $*i*$);\n3. there is no such panel $*k*$ $(*h*_{*j*} < *h*_{*k*} < *h*_{*i*})$ that the first two conditions hold for the pairs $(*i*, *k*)$ and $(*k*, *j*)$.\n\nThen the **flow** for ![image](https://espresso.codeforces.com/c59da485d3a4e463f0157335ace916b7c377dcd8.png) is equal to $*min*(*r*_{*i*}, *r*_{*j*}) - *max*(*l*_{*i*}, *l*_{*j*})$, the length of their horizontal projection overlap.\n\nEmuskald has decided that in his waterfall the water will flow in a single path from top to bottom. If water flows to a panel (except the bottom of the wall), the water will fall further to **exactly one** lower panel. The total amount of water flow in the waterfall is then defined as the minimum horizontal projection overlap between two consecutive panels in the path of the waterfall. Formally:\n\n1. the waterfall consists of a single path of panels ![image](https://espresso.codeforces.com/19e243d0761d715c71c322f6d06337878267eae8.png);\n2. the flow of the waterfall is the minimum flow in the path ![image](https://espresso.codeforces.com/19e243d0761d715c71c322f6d06337878267eae8.png).\n\nTo make a truly great waterfall Emuskald must maximize this water flow, but there are too many panels and he is having a hard time planning his creation. Below is an example of a waterfall Emuskald wants:\n\n![image](https://espresso.codeforces.com/4da5829cfd11950499f15e49228952c7f8b0ce83.png)\n\nHelp Emuskald maintain his reputation and find the value of the maximum possible water flow.\n\n## Input\n\nThe first line of input contains two space-separated integers $*n*$ and $*t*$ ($1 ≤ *n* ≤ 10^{5}$, $2 ≤ *t* ≤ 10^{9}$), the number of the panels excluding the top and the bottom panels, and the height of the wall. Each of the $*n*$ following lines contain three space-separated integers $*h*_{*i*}$, $*l*_{*i*}$ and $*r*_{*i*}$ ($0 < *h*_{*i*} < *t*$, $- 10^{9} ≤ *l*_{*i*} < *r*_{*i*} ≤ 10^{9}$), the height, left and right ends of the $*i*$-th panel segment.\n\nIt is guaranteed that no two segments share a common point.\n\n## Output\n\nOutput a single integer — the maximum possible amount of water flow in the desired waterfall.\n\n## Note\n\nThe first test case corresponds to the picture.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 6\n4 1 6\n3 2 7\n5 9 11\n3 10 15\n1 13 16\n",
+      "output": "4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "6 5\n4 2 8\n3 1 2\n2 2 3\n2 6 12\n1 0 7\n1 8 11\n",
+      "output": "2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T02:11:30.285Z"
+}
