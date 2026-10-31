@@ -1,0 +1,34 @@
+{
+  "id": "1153E",
+  "platform": "codeforces",
+  "contestId": 1153,
+  "index": "E",
+  "title": "Serval and Snake",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1153/problem/E",
+  "difficulty": 2200,
+  "tags": [
+    "binary search",
+    "brute force",
+    "interactive"
+  ],
+  "points": 2250,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "*This is an interactive problem.*\n\nNow Serval is a senior high school student in Japari Middle School. However, on the way to the school, he must go across a pond, in which there is a dangerous snake. The pond can be represented as a $n \\times n$ grid. The snake has a head and a tail in different cells, and its body is a series of adjacent cells connecting the head and the tail without self-intersecting. If Serval hits its head or tail, the snake will bite him and he will die.\n\nLuckily, he has a special device which can answer the following question: you can pick a rectangle, it will tell you the number of times one needs to cross the border of the rectangle walking cell by cell along the snake from the head to the tail. The pictures below show a possible snake and a possible query to it, which will get an answer of $4$.\n\n![image](https://espresso.codeforces.com/95652ffad46f36bf8dda20ad0e718e2278b1096b.png)\n\n![image](https://espresso.codeforces.com/fc4f7627830cbe45738e7543a046cae6f1f858da.png)\n\nToday Serval got up too late and only have time to make $2019$ queries. As his best friend, can you help him find the positions of the head and the tail?\n\nNote that two cells are adjacent if and only if they have a common edge in the grid, and a snake can have a body of length $0$, that means it only has adjacent head and tail.\n\nAlso note that the snake is sleeping, so it won't move while Serval using his device. And what's obvious is that the snake position does not depend on your queries.\n\n## Input\n\nThe first line contains a single integer $n$ ($2\\leq n \\leq 1000$) — the size of the grid.\n\n## Output\n\nWhen you are ready to answer, you should print `! x1 y1 x2 y2`, where $(x_1, y_1)$ represents the position of the head and $(x_2,y_2)$ represents the position of the tail. You can print head and tail in any order.\n\n## Interaction\n\nTo make a query, you should print `? x1 y1 x2 y2` ($1 \\leq x_1 \\leq x_2 \\leq n$, $1\\leq y_1 \\leq y_2 \\leq n$), representing a rectangle consisting of all cells $(x,y)$ such that $x_1 \\leq x \\leq x_2$ and $y_1 \\leq y \\leq y_2$. You will get a single integer as the answer.\n\nAfter printing a query, do not forget to output the end of line and flush the output, otherwise you will get `Idleness limit exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see documentation for other languages.\n\nAnswer $-1$ instead of a valid answer means that you made an invalid query or exceeded the maximum number of queries. Exit immediately after receiving $-1$ and you will see `Wrong answer` verdict. Otherwise you can get an arbitrary verdict because your solution will continue to read from a closed stream.\n\nIf your program cannot find out the head and tail of the snake correctly, you will also get a `Wrong Answer` verdict.\n\n**Hacks**\n\nTo make a hack, print a single integer $n$ ($2 \\leq n \\leq 1000$) in the first line, indicating the size of the grid.\n\nThen print an integer $k$ ($2 \\leq k \\leq n^2$) in the second line, indicating the length of the snake.\n\nIn the next $k$ lines, print $k$ pairs of integers $x_i, y_i$ ($1 \\leq x_i, y_i \\leq n$), each pair in a single line, indicating the $i$-th cell of snake, such that the adjacent pairs are adjacent, and all $k$ pairs are distinct.\n\n## Note\n\n![image](https://espresso.codeforces.com/e99f68d2bd9d49b9944f0e1f2441a371b15c9231.png)\n\n![image](https://espresso.codeforces.com/c2d364b093a2d4e05b4e085cd1690a6d69954840.png)\n\n![image](https://espresso.codeforces.com/4ddccf6f38769989691d1f0ea9ad6066929a41fe.png)\n\n![image](https://espresso.codeforces.com/3d1ed786478ab08f799467e9cc458aa2de75696b.png)\n\nThe pictures above show our queries and the answers in the first example. We first made a query for $(1,1)$ and got an answer $1$, then found that it must be connected to exactly one other cell. Then we made a query for $(1,2)$ and got an answer of $0$, then knew that the snake never entered it. So the cell connected to $(1,1)$ must be $(2,1)$. Then we made a query for $(2,2)$ and got an answer $0$, then knew that it never entered $(2,2)$ as well. So the snake cannot leave $(2,1)$, which implies that the answer is $(1,1)$ and $(2,1)$.\n\n![image](https://espresso.codeforces.com/0576a29dc4d6548b5fd63f165ecfad387b220334.png)\n\n![image](https://espresso.codeforces.com/8fb34e3007b66c3443c47b37b5c8e14f0ed1b33b.png)\n\n![image](https://espresso.codeforces.com/e73a4b234db4f1566ef5d032a8f83bab23fb2273.png)\n\nThe pictures above show our queries and the answers in the second example. By making query to $(2,2)$ and receiving $2$, we found that the snake occupies $(2,2)$. And by making query to rectangle from $(2,1)$ to $(2,3)$ and receiving answer $0$, we knew that it never goes out of the rectangle from $(2,1)$ to $(2,3)$. Since the first answer is $2$, both $(2,1)$ and $(2,3)$ must be occupied but none of others, so the answer is $(2,1)$ and $(2,3)$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n\n1\n\n0\n\n0\n",
+      "output": "? 1 1 1 1\n\n? 1 2 1 2\n\n? 2 2 2 2\n\n! 1 1 2 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3\n\n2\n\n0\n",
+      "output": "? 2 2 2 2\n\n? 2 1 2 3\n\n! 2 1 2 3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:12:22.655Z"
+}

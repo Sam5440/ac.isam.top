@@ -1,0 +1,38 @@
+{
+  "id": "1143C",
+  "platform": "codeforces",
+  "contestId": 1143,
+  "index": "C",
+  "title": "Queen",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1143/problem/C",
+  "difficulty": 1400,
+  "tags": [
+    "dfs and similar",
+    "trees"
+  ],
+  "points": 1000,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a rooted tree with vertices numerated from $1$ to $n$. A tree is a connected graph without cycles. A rooted tree has a special vertex named root.\n\nAncestors of the vertex $i$ are all vertices on the path from the root to the vertex $i$, except the vertex $i$ itself. The parent of the vertex $i$ is the nearest to the vertex $i$ ancestor of $i$. Each vertex is a child of its parent. In the given tree the parent of the vertex $i$ is the vertex $p_i$. For the root, the value $p_i$ is $-1$.\n\n![image](https://espresso.codeforces.com/89dec5022cbf328500d1f0790b082548bea0349d.png) An example of a tree with $n=8$, the root is vertex $5$. The parent of the vertex $2$ is vertex $3$, the parent of the vertex $1$ is vertex $5$. The ancestors of the vertex $6$ are vertices $4$ and $5$, the ancestors of the vertex $7$ are vertices $8$, $3$ and $5$\n\nYou noticed that some vertices do not respect others. In particular, if $c_i = 1$, then the vertex $i$ does not respect any of its ancestors, and if $c_i = 0$, it respects all of them.\n\nYou decided to delete vertices from the tree one by one. On each step you select such a non-root vertex that it does not respect its parent and none of its children respects it. If there are several such vertices, you select the one with the **smallest number**. When you delete this vertex $v$, all children of $v$ become connected with the parent of $v$.\n\n![image](https://espresso.codeforces.com/b17235f5a5b36b832215da45c68b63ac46c8be7c.png) An example of deletion of the vertex $7$.\n\nOnce there are no vertices matching the criteria for deletion, you stop the process. Print the order in which you will delete the vertices. Note that this order is unique.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 10^5$) — the number of vertices in the tree.\n\nThe next $n$ lines describe the tree: the $i$-th line contains two integers $p_i$ and $c_i$ ($1 \\le p_i \\le n$, $0 \\le c_i \\le 1$), where $p_i$ is the parent of the vertex $i$, and $c_i = 0$, if the vertex $i$ respects its parents, and $c_i = 1$, if the vertex $i$ does not respect any of its parents. The root of the tree has $-1$ instead of the parent index, also, $c_i=0$ for the root. It is guaranteed that the values $p_i$ define a rooted tree with $n$ vertices.\n\n## Output\n\nIn case there is at least one vertex to delete, print the only line containing the indices of the vertices you will delete in the order you delete them. Otherwise print a single integer $-1$.\n\n## Note\n\nThe deletion process in the first example is as follows (see the picture below, the vertices with $c_i=1$ are in yellow):\n\n- first you will delete the vertex $1$, because it does not respect ancestors and all its children (the vertex $2$) do not respect it, and $1$ is the smallest index among such vertices;\n- the vertex $2$ will be connected with the vertex $3$ after deletion;\n- then you will delete the vertex $2$, because it does not respect ancestors and all its children (the only vertex $4$) do not respect it;\n- the vertex $4$ will be connected with the vertex $3$;\n- then you will delete the vertex $4$, because it does not respect ancestors and all its children (there are none) do not respect it ([vacuous truth](https://en.wikipedia.org/wiki/Vacuous_truth));\n- you will just delete the vertex $4$;\n- there are no more vertices to delete.\n\n![image](https://espresso.codeforces.com/a3dcf36566d51f5dae247287bb42659885b915ff.png)\n\nIn the second example you don't need to delete any vertex:\n\n- vertices $2$ and $3$ have children that respect them;\n- vertices $4$ and $5$ respect ancestors.\n\n![image](https://espresso.codeforces.com/b70045a29a78d8bae48864eb9902be93484c9411.png)\n\nIn the third example the tree will change this way:\n\n![image](https://espresso.codeforces.com/114431666de59f2448f591836f19417bea14a508.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n3 1\n1 1\n-1 0\n2 1\n3 0\n",
+      "output": "1 2 4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\n-1 0\n1 1\n1 1\n2 0\n3 0\n",
+      "output": "-1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "8\n2 1\n-1 0\n1 0\n1 1\n1 1\n4 0\n5 1\n7 0\n",
+      "output": "5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:13:26.496Z"
+}
