@@ -48,6 +48,8 @@ async function chatWithRetry(cfg, messages, opts = {}) {
       return content;
     } catch (e) {
       lastErr = e;
+      // 401/403 = 密钥失效或被限额，重试无意义，立即抛出让上层快速失败
+      if (/HTTP 40[13]/.test(e.message)) throw e;
       if (attempt < retries) {
         const wait = 8000 * (attempt + 1);
         log('llm', `retry ${attempt + 1}/${retries} — ${e.message}`);
@@ -56,6 +58,11 @@ async function chatWithRetry(cfg, messages, opts = {}) {
     }
   }
   throw lastErr;
+}
+
+/** 端点探活：1-token 请求，401/403 时抛错（用于批量翻译前快速失败）。 */
+export async function pingLLM(cfg) {
+  await chatOnce(cfg, [{ role: 'user', content: 'hi' }], { temperature: 0, timeout: 30000 });
 }
 
 /** 从模型输出中尽力解析 JSON 对象。 */

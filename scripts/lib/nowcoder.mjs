@@ -24,6 +24,67 @@ const UA =
 /** 官方专辑 id（vip-index 的 topCategoryFilter），当前为 13（牛客竞赛）。 */
 export const NC_OFFICIAL_CATEGORY = 13;
 
+/**
+ * 牛客官方赛事名模式。匿名前端没有历史列表接口（vip-index 纯 SSR 只出最新
+ * 一页且忽略 page 参数），历史比赛只能按 contest id 倒序探测：problem-list
+ * 返回 code=0 即有效比赛，再取页面标题按这些模式判定官方赛事。
+ */
+export const NC_SERIES_RE =
+  /牛客\s*(周赛|练习赛|小白月赛|月赛|挑战赛|集训派对|集训营|多校|百校|原创赛|娱乐赛|女生赛| binary|寒假|暑假)/i;
+
+export function isOfficialNowcoderTitle(title) {
+  return NC_SERIES_RE.test(String(title));
+}
+
+/** 比赛页 <title>（"牛客练习赛158_ACM/NOI/..._牛客竞赛OJ"）→ 比赛名。 */
+export function contestNameFromPageTitle(html) {
+  const m = /<title>([^<]+)<\/title>/.exec(html);
+  if (!m) return null;
+  return m[1].split('_')[0].trim();
+}
+
+/**
+ * 从 fromId 起倒序探测至多 maxProbe 个 contest id，返回发现的官方比赛。
+ * 每个候选用 problem-list（小 JSON）探测，命中才抓比赛页取名字。
+ */
+export async function scanNowcoderContestsById({ fromId, maxProbe = 240, onProgress } = {}) {
+  const found = [];
+  let probed = 0;
+  let id = fromId;
+  for (; probed < maxProbe && id > 1000; id--, probed++) {
+    let ok = false;
+    try {
+      const data = await httpGet(`${NC}/acm/contest/problem-list?token=&id=${id}`, {
+        json: true,
+        timeout: 15000,
+        retries: 1,
+      });
+      ok = data.code === 0 && Array.isArray(data.data?.data) && data.data.data.length > 0;
+    } catch {
+      ok = false; // 非 JSON（404 页）/网络错 —— 非 比赛 或临时失败，跳过
+    }
+    if (ok) {
+      try {
+        const html = await httpGet(`${NC}/acm/contest/${id}`, { timeout: 20000, retries: 1 });
+        const name = contestNameFromPageTitle(html);
+        if (name && isOfficialNowcoderTitle(name)) {
+          found.push({
+            id: String(id),
+            platform: 'nowcoder',
+            title: name,
+            startTime: null, // 无接口提供时间；站点按 id 排序展示
+            durationSeconds: null,
+            url: nowcoderContestUrl(id),
+          });
+        }
+      } catch {}
+    }
+    if (onProgress && probed % 20 === 0) onProgress(probed, maxProbe, found.length);
+    await new Promise((r) => setTimeout(r, 280));
+  }
+  return { contests: found, scanned: probed, nextId: id + 1 };
+}
+
 export function nowcoderContestUrl(contestId) {
   return `${NC}/acm/contest/${contestId}`;
 }

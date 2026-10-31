@@ -65,9 +65,10 @@ export function buildIndex() {
     (problemsByContest.get(key) ?? problemsByContest.set(key, []).get(key)).push(p);
   }
 
+  const t = (c) => (c.startTime ? new Date(c.startTime).getTime() : 0);
   const sortedContests = contests
     .slice()
-    .sort((a, b) => new Date(b.startTime) - new Date(a.startTime));
+    .sort((a, b) => t(b) - t(a) || String(b.id).localeCompare(String(a.id), undefined, { numeric: true }));
 
   const recentContests = sortedContests.slice(0, 12).map((c) => {
     const ps = problemsByContest.get(contestKey(c)) ?? [];
