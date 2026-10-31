@@ -1,0 +1,32 @@
+{
+  "id": "414E",
+  "platform": "codeforces",
+  "contestId": 414,
+  "index": "E",
+  "title": "Mashmokh's Designed Problem",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/414/problem/E",
+  "difficulty": 3200,
+  "tags": [
+    "data structures"
+  ],
+  "points": 2500,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 512,
+  "statementMd": "After a lot of trying, Mashmokh designed a problem and it's your job to solve it.\n\nYou have a tree $*T*$ with $*n*$ vertices. Each vertex has a unique index from 1 to $*n*$. The root of $*T*$ has index $1$. For each vertex of this tree $*v*$, you are given a list of its children in a specific order. You must perform three types of query on this tree:\n\n1. find distance (the number of edges in the shortest path) between $*u*$ and $*v*$;\n2. given $*v*$ and $*h*$, disconnect $*v*$ from its father and connect it to its $*h*$-th ancestor; more formally, let's denote the path from $*v*$ to the root by $*x*_{1}, *x*_{2}, ..., *x*_{*l*} (*h* < *l*)$, so that $*x*_{1} = *v*$ and $*x*_{*l*}$ is root; disconnect $*v*$ from its father ($*x*_{2}$) and connect it to $*x*_{*h* + 1}$; vertex $*v*$ must be added to the end of the child-list of vertex $*x*_{*h* + 1}$;\n3. in the vertex sequence produced by calling function dfs(root) find the latest vertex that has distance $*k*$ from the root.\n\nThe pseudo-code of function dfs(v):\n\n```\n// ls[v]: list of children of vertex v\n// its i-th element is ls[v][i]\n// its size is size(ls[v])\nsequence result = empty sequence;\nvoid dfs(vertex now)\n{\n    add now to end of result;\n    for(int i = 1; i <= size(ls[v]); i = i + 1) //loop from i = 1 to i = size(ls[v])\n        dfs(ls[v][i]);\n}\n```\n\n## Input\n\nThe first line of input contains two space-separated integers $*n*, *m* (2 ≤ *n* ≤ 10^{5}; 1 ≤ *m* ≤ 10^{5})$, the number of vertices of $*T*$ and number of queries to perform.\n\nThe $*i*$-th of the following $*n*$ lines contains an integer $*l*_{*i*} (0 ≤ *l*_{*i*} ≤ *n*)$, number of $*i*$-th vertex's children. Then $*l*_{*i*}$ space-separated integers follow, the $*j*$-th of them is the index of $*j*$-th child of $*i*$-th vertex. Note that the order of these vertices is important.\n\nEach of the following $*m*$ lines has one of the following format: \"$1$ $*v*$ $*u*$\", \"$2$ $*v*$ $*h*$\", or \"$3$ $*k*$\". The first number in the line is the type of query to perform according to the problem statement. The next numbers are description of the query.\n\nIt's guaranteed that all the queries are correct. For example, in the second-type query $*h*$ is at least 2 and at most distance of $*v*$ from root. Also in the third-type query there is at least one vertex with distance $*k*$ from the root at the time the query is given.\n\n## Output\n\nFor each query of the first or third type output one line containing the result of the query.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 9\n1 2\n1 3\n1 4\n0\n1 1 4\n2 4 2\n1 3 4\n3 1\n3 2\n2 3 2\n1 1 2\n3 1\n3 2\n",
+      "output": "3\n2\n2\n4\n1\n3\n4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "2 2\n1 2\n0\n1 2 1\n3 1\n",
+      "output": "1\n2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:48:09.294Z"
+}

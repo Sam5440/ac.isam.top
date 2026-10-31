@@ -1,0 +1,36 @@
+{
+  "id": "414D",
+  "platform": "codeforces",
+  "contestId": 414,
+  "index": "D",
+  "title": "Mashmokh and Water Tanks",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/414/problem/D",
+  "difficulty": 2300,
+  "tags": [
+    "binary search",
+    "data structures",
+    "greedy",
+    "trees",
+    "two pointers"
+  ],
+  "points": 1500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 512,
+  "statementMd": "Mashmokh is playing a new game. In the beginning he has $*k*$ liters of water and $*p*$ coins. Additionally he has a rooted tree (an undirected connected acyclic graph) that consists of $*m*$ vertices. Each vertex of the tree contains a water tank that is empty in the beginning.\n\nThe game begins with the fact that Mashmokh chooses some (no more than $*k*$) of these tanks (except the root) and pours into each of them exactly $1$ liter of water. Then the following process is performed until there is no water remained in tanks.\n\n- The process consists of several steps.\n- At the beginning of each step Mashmokh opens doors of all tanks. Then Mashmokh closes doors of some tanks (he is not allowed to close door of tank in the root) for the duration of this move. Let's denote the number of liters in some tank with closed door as $*w*$, Mashmokh pays $*w*$ coins for the closing of that tank during this move.\n- Let's denote by $*x*_{1}, *x*_{2}, ..., *x*_{*m*}$ as the list of vertices of the tree sorted (nondecreasing) by their depth. The vertices from this list should be considered one by one in the order. Firstly vertex $*x*_{1}$ (which is the root itself) is emptied. Then for each vertex $*x*_{*i*}$ $(*i* > 1)$, if its door is closed then skip the vertex else move all the water from the tank of vertex $*x*_{*i*}$ to the tank of its father (even if the tank of the father is closed).\n\nSuppose $*l*$ moves were made until the tree became empty. Let's denote the amount of water inside the tank of the root after the $*i*$-th move by $*w*_{*i*}$ then Mashmokh will win $*max*(*w*_{1}, *w*_{2}, ..., *w*_{*l*})$ dollars. Mashmokh wanted to know what is the maximum amount of dollars he can win by playing the above game. He asked you to find this value for him.\n\n## Input\n\nThe first line of the input contains three space-separated integers $*m*, *k*, *p* (2 ≤ *m* ≤ 10^{5}; 0 ≤ *k*, *p* ≤ 10^{9})$.\n\nEach of the following $*m* - 1$ lines contains two space-separated integers $*a*_{*i*}, *b*_{*i*} (1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *m*; *a*_{*i*} ≠ *b*_{*i*})$ — the edges of the tree.\n\nConsider that the vertices of the tree are numbered from 1 to $*m*$. The root of the tree has number 1.\n\n## Output\n\nOutput a single integer, the number Mashmokh asked you to find.\n\n## Note\n\nThe tree in the first sample is shown on the picture below. The black, red, blue colors correspond to vertices with 0, 1, 2 liters of water.\n\n![image](https://espresso.codeforces.com/715ad37bc3e20c52021935adf257821f27688d20.png)\n\nOne way to achieve the maximum amount of money is to put 1 liter of water in each of vertices 3 and 4. The beginning state is shown on the picture below.\n\n![image](https://espresso.codeforces.com/182d56e467c6cb4d4784d1ac56905da1b9e7179b.png)\n\nThen in the first move Mashmokh will pay one token to close the door of the third vertex tank. The tree after the first move is shown on the picture below.\n\n![image](https://espresso.codeforces.com/30f1ae50b02a91829da2059e772625afeb4c13ca.png)\n\nAfter the second move there are 2 liters of water in the root as shown on the picture below.\n\n![image](https://espresso.codeforces.com/1c247872ac7aee0de94e1f35924491c0958f5dcf.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "10 2 1\n1 2\n1 3\n3 4\n3 5\n2 6\n6 8\n6 7\n9 8\n8 10\n",
+      "output": "2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5 1000 1000\n1 2\n1 3\n3 4\n3 5\n",
+      "output": "4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:48:09.293Z"
+}
