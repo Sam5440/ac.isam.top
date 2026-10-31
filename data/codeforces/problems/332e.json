@@ -1,0 +1,34 @@
+{
+  "id": "332E",
+  "platform": "codeforces",
+  "contestId": 332,
+  "index": "E",
+  "title": "Binary Key",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/332/problem/E",
+  "difficulty": 2400,
+  "tags": [
+    "dp",
+    "greedy",
+    "implementation"
+  ],
+  "points": 3000,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "Let's assume that $*p*$ and $*q*$ are strings of positive length, called the *container* and the *key* correspondingly, string $*q*$ only consists of characters 0 and 1. Let's take a look at a simple algorithm that extracts *message* $*s*$ from the given container $*p*$:\n\n```\ni = 0;\nj = 0;\ns = <>;\nwhile i is less than the length of the string p\n{\n    if q[j] == 1, then add to the right of string s character p[i];\n    increase variables i, j by one;\n    if the value of the variable j equals the length of the string q, then j = 0;\n}\n```\n\nIn the given pseudocode $*i*$, $*j*$ are integer variables, $*s*$ is a string, '`=`' is an assignment operator, '`==`' is a comparison operation, '`[]`' is the operation of obtaining the string character with the preset index, '`<>`' is an empty string. We suppose that in all strings the characters are numbered starting from zero.\n\nWe understand that implementing such algorithm is quite easy, so your task is going to be slightly different. You need to construct the lexicographically minimum key of length $*k*$, such that when it is used, the algorithm given above extracts message $*s*$ from container $*p*$ (otherwise find out that such key doesn't exist).\n\n## Input\n\nThe first two lines of the input are non-empty strings $*p*$ and $*s*$ ($1 ≤ |*p*| ≤ 10^{6}$, $1 ≤ |*s*| ≤ 200$), describing the container and the message, correspondingly. The strings can contain any characters with the ASCII codes from 32 to 126, inclusive.\n\nThe third line contains a single integer $*k*$ ($1 ≤ *k* ≤ 2000)$ — the key's length.\n\n## Output\n\nPrint the required key (string of length $*k*$, consisting only of characters 0 and 1). If the key doesn't exist, print the single character 0.\n\n## Note\n\nString $*x* = *x*_{1}*x*_{2}... *x*_{*p*}$ is *lexicographically smaller* than string $*y* = *y*_{1}*y*_{2}... *y*_{*q*}$, if either $*p* < *q*$ and $*x*_{1} = *y*_{1}, *x*_{2} = *y*_{2}, ... , *x*_{*p*} = *y*_{*p*}$, or there exists such integer $*r*$ ($0 ≤ *r* < *min*(*p*, *q*))$ that $*x*_{1} = *y*_{1}, *x*_{2} = *y*_{2}, ... , *x*_{*r*} = *y*_{*r*}$ and $*x*_{*r* + 1} < *y*_{*r* + 1}$. Symbols are compared according to their ASCII codes.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "abacaba\naba\n6\n",
+      "output": "100001\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "abacaba\naba\n3\n",
+      "output": "0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T02:01:11.816Z"
+}
