@@ -1,0 +1,34 @@
+{
+  "id": "482D",
+  "platform": "codeforces",
+  "contestId": 482,
+  "index": "D",
+  "title": "Random Function and Tree",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/482/problem/D",
+  "difficulty": 2700,
+  "tags": [
+    "combinatorics",
+    "dp",
+    "trees"
+  ],
+  "points": 2000,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have a rooted tree consisting of $*n*$ vertices. Let's number them with integers from $1$ to $*n*$ inclusive. The root of the tree is the vertex $1$. For each $*i* > 1$ direct parent of the vertex $*i*$ is $*p*_{*i*}$. We say that vertex $*i*$ is child for its direct parent $*p*_{*i*}$.\n\nYou have initially painted all the vertices with red color. You like to repaint some vertices of the tree. To perform painting you use the function `paint` that you call with the root of the tree as an argument. Here is the pseudocode of this function:\n\n```\ncount = 0 // global integer variable\n\nrnd() { // this function is used in paint code\n    return 0 or 1 equiprobably\n}\n\npaint(s) {\n    if (count is even) then paint s with white color\n    else paint s with black color\n\n    count = count + 1\n\n    if rnd() = 1 then children = [array of vertex s children in ascending order of their numbers]\n    else children = [array of vertex s children in descending order of their numbers]\n\n    for child in children { // iterating over children array\n        if rnd() = 1 then paint(child) // calling paint recursively\n    }\n}\n```\n\nAs a result of this function, some vertices may change their colors to white or black and some of them may remain red.\n\nYour task is to determine the number of distinct possible colorings of the vertices of the tree. We will assume that the coloring is possible if there is a nonzero probability to get this coloring with a single call of $*paint*(1)$. We assume that the colorings are different if there is a pair of vertices that are painted with different colors in these colorings. Since the required number may be very large, find its remainder of division by $1000000007$ ($10^{9} + 7$).\n\n## Input\n\nThe first line contains a single integer $*n*$ ($2 ≤ *n* ≤ 10^{5}$) — the number of vertexes in the tree.\n\nThe second line contains $*n* - 1$ integers $*p*_{2}, *p*_{3}, ..., *p*_{*n*}$ ($1 ≤ *p*_{*i*} < *i*$). Number $*p*_{*i*}$ is the parent of vertex $*i*$.\n\n## Output\n\nPrint a single integer — the answer to the problem modulo $1000000007$ ($10^{9} + 7$)\n\n## Note\n\nAll possible coloring patterns of the first sample are given below.\n\n![image](https://espresso.codeforces.com/f1983908c1c40675b1613d81b93d5040cad5b35b.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n1 2 1\n",
+      "output": "8\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3\n1 1\n",
+      "output": "5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:37:20.883Z"
+}
