@@ -1,0 +1,36 @@
+{
+  "id": "850E",
+  "platform": "codeforces",
+  "contestId": 850,
+  "index": "E",
+  "title": "Random Elections",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/850/problem/E",
+  "difficulty": 2800,
+  "tags": [
+    "bitmasks",
+    "brute force",
+    "divide and conquer",
+    "fft",
+    "math"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "The presidential election is coming in Bearland next year! Everybody is so excited about this!\n\nSo far, there are three candidates, Alice, Bob, and Charlie.\n\nThere are $*n*$ citizens in Bearland. The election result will determine the life of all citizens of Bearland for many years. Because of this great responsibility, each of $*n*$ citizens will choose one of six orders of preference between Alice, Bob and Charlie uniformly at random, independently from other voters.\n\nThe government of Bearland has devised a function to help determine the outcome of the election given the voters preferences. More specifically, the function is ![image](https://espresso.codeforces.com/9f777253eb96ac0cbbb7c8e17df025ee3288f568.png) (takes $*n*$ boolean numbers and returns a boolean number). The function also obeys the following property: $*f*(1 - *x*_{1}, 1 - *x*_{2}, ..., 1 - *x*_{*n*}) = 1 - *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$.\n\nThree rounds will be run between each pair of candidates: Alice and Bob, Bob and Charlie, Charlie and Alice. In each round, $*x*_{*i*}$ will be equal to $1$, if $*i*$-th citizen prefers the first candidate to second in this round, and $0$ otherwise. After this, $*y* = *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$ will be calculated. If $*y* = 1$, the first candidate will be declared as winner in this round. If $*y* = 0$, the second will be the winner, respectively.\n\nDefine the probability that there is a candidate who won two rounds as $*p*$. $*p*·6^{*n*}$ is always an integer. Print the value of this integer modulo $10^{9} + 7 = 1 000 000 007$.\n\n## Input\n\nThe first line contains one integer $*n*$ ($1 ≤ *n* ≤ 20$).\n\nThe next line contains a string of length $2^{*n*}$ of zeros and ones, representing function $*f*$. Let $*b*_{*k*}(*x*)$ the $*k*$-th bit in binary representation of $*x*$, $*i*$-th (0-based) digit of this string shows the return value of $*f*(*b*_{1}(*i*), *b*_{2}(*i*), ..., *b*_{*n*}(*i*))$.\n\nIt is guaranteed that $*f*(1 - *x*_{1}, 1 - *x*_{2}, ..., 1 - *x*_{*n*}) = 1 - *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$ for any values of $*x*_{1}, *x*_{2}, *ldots*, *x*_{*n*}$.\n\n## Output\n\nOutput one integer — answer to the problem.\n\n## Note\n\nIn first sample, result is always fully determined by the first voter. In other words, $*f*(*x*_{1}, *x*_{2}, *x*_{3}) = *x*_{1}$. Thus, any no matter what happens, there will be a candidate who won two rounds (more specifically, the candidate who is at the top of voter 1's preference list), so $*p* = 1$, and we print $1·6^{3} = 216$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n01010101\n",
+      "output": "216\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3\n01101001\n",
+      "output": "168\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:47:07.044Z"
+}
