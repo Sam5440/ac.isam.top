@@ -1,0 +1,29 @@
+{
+  "id": "1270I",
+  "platform": "codeforces",
+  "contestId": 1270,
+  "index": "I",
+  "title": "Xor on Figures",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1270/problem/I",
+  "difficulty": 3500,
+  "tags": [
+    "constructive algorithms",
+    "fft",
+    "math"
+  ],
+  "points": 4500,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "There is given an integer $k$ and a grid $2^k \\times 2^k$ with some numbers written in its cells, cell $(i, j)$ initially contains number $a_{ij}$. Grid is considered to be a torus, that is, the cell to the right of $(i, 2^k)$ is $(i, 1)$, the cell below the $(2^k, i)$ is $(1, i)$ There is also given a lattice figure $F$, consisting of $t$ cells, where $t$ is **odd**. $F$ doesn't have to be connected.\n\nWe can perform the following operation: place $F$ at some position on the grid. (Only translations are allowed, rotations and reflections are prohibited). Now choose any nonnegative integer $p$. After that, for each cell $(i, j)$, covered by $F$, replace $a_{ij}$ by $a_{ij}\\oplus p$, where $\\oplus$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\nMore formally, let $F$ be given by cells $(x_1, y_1), (x_2, y_2), \\dots, (x_t, y_t)$. Then you can do the following operation: choose any $x, y$ with $1\\le x, y \\le 2^k$, any nonnegative integer $p$, and for every $i$ from $1$ to $n$ replace number in the cell $(((x + x_i - 1)\\bmod 2^k) + 1, ((y + y_i - 1)\\bmod 2^k) + 1)$ with $a_{((x + x_i - 1)\\bmod 2^k) + 1, ((y + y_i - 1)\\bmod 2^k) + 1}\\oplus p$.\n\nOur goal is to make all the numbers equal to $0$. Can we achieve it? If we can, find the smallest number of operations in which it is possible to do this.\n\n## Input\n\nThe first line contains a single integer $k$ ($1 \\le k \\le 9$).\n\nThe $i$-th of the next $2^k$ lines contains $2^k$ integers $a_{i1}, a_{i2}, \\dots, a_{i2^k}$ ($0 \\le a_{ij} \\lt 2^{60}$) — initial values in the $i$-th row of the grid.\n\nThe next line contains a single integer $t$ ($1\\le t \\le \\min(99, 4^k)$, $t$ is odd) — number of cells of figure.\n\n$i$-th of next $t$ lines contains two integers $x_i$ and $y_i$ ($1 \\le x_i, y_i \\le 2^k$), describing the position of the $i$-th cell of the figure.\n\nIt is guaranteed that all cells are different, but **it is not guaranteed that the figure is connected**.\n\n## Output\n\nIf it is impossible to make all numbers in the grid equal to $0$ with these operations, output $-1$.\n\nOtherwise, output a single integer — the minimal number of operations needed to do this. It can be shown that if it is possible to make all numbers equal $0$, it is possible to do so in less than $10^{18}$ operations.\n\n## Note\n\nThe figure and the operations for the example are shown above:\n\n![image](https://espresso.codeforces.com/1f5c9fd5964809bc1d06c5999ab7fdf4dc29b1e6.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n5 5 5 5\n2 6 2 3\n0 0 2 0\n0 0 0 0\n5\n1 1\n1 2\n1 3\n1 4\n2 4\n",
+      "output": "3\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:00:00.819Z"
+}

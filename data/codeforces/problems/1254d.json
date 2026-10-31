@@ -1,0 +1,29 @@
+{
+  "id": "1254D",
+  "platform": "codeforces",
+  "contestId": 1254,
+  "index": "D",
+  "title": "Tree Queries",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1254/problem/D",
+  "difficulty": 2700,
+  "tags": [
+    "data structures",
+    "probabilities",
+    "trees"
+  ],
+  "points": 1750,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 512,
+  "statementMd": "Hanh is a famous biologist. He loves growing trees and doing experiments on his own garden.\n\nOne day, he got a tree consisting of $n$ vertices. Vertices are numbered from $1$ to $n$. A tree with $n$ vertices is an undirected connected graph with $n-1$ edges. Initially, Hanh sets the value of every vertex to $0$.\n\nNow, Hanh performs $q$ operations, each is either of the following types:\n\n- Type $1$: Hanh selects a vertex $v$ and an integer $d$. Then he chooses some vertex $r$ **uniformly at random**, lists all vertices $u$ such that the path from $r$ to $u$ passes through $v$. Hanh then increases the value of all such vertices $u$ by $d$.\n- Type $2$: Hanh selects a vertex $v$ and calculates the expected value of $v$.\n\nSince Hanh is good at biology but not math, he needs your help on these operations.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\leq n, q \\leq 150\\,000$) — the number of vertices on Hanh's tree and the number of operations he performs.\n\nEach of the next $n - 1$ lines contains two integers $u$ and $v$ ($1 \\leq u, v \\leq n$), denoting that there is an edge connecting two vertices $u$ and $v$. It is guaranteed that these $n - 1$ edges form a tree.\n\nEach of the last $q$ lines describes an operation in either formats:\n\n- $1$ $v$ $d$ ($1 \\leq v \\leq n, 0 \\leq d \\leq 10^7$), representing a first-type operation.\n- $2$ $v$ ($1 \\leq v \\leq n$), representing a second-type operation.\n\nIt is guaranteed that there is at least one query of the second type.\n\n## Output\n\nFor each operation of the second type, write the expected value on a single line.\n\nLet $M = 998244353$, it can be shown that the expected value can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $p \\cdot q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot q \\equiv p \\pmod{M}$.\n\n## Note\n\nThe image below shows the tree in the example:\n\n![image](https://espresso.codeforces.com/29beef9ccf36e5728fb015dfcdbaa66cfb5511b3.png)\n\nFor the first query, where $v = 1$ and $d = 1$:\n\n- If $r = 1$, the values of all vertices get increased.\n- If $r = 2$, the values of vertices $1$ and $3$ get increased.\n- If $r = 3$, the values of vertices $1$, $2$, $4$ and $5$ get increased.\n- If $r = 4$, the values of vertices $1$ and $3$ get increased.\n- If $r = 5$, the values of vertices $1$ and $3$ get increased.\n\nHence, the expected values of all vertices after this query are ($1, 0.4, 0.8, 0.4, 0.4$).\n\nFor the second query, where $v = 2$ and $d = 2$:\n\n- If $r = 1$, the values of vertices $2$, $4$ and $5$ get increased.\n- If $r = 2$, the values of all vertices get increased.\n- If $r = 3$, the values of vertices $2$, $4$ and $5$ get increased.\n- If $r = 4$, the values of vertices $1$, $2$, $3$ and $5$ get increased.\n- If $r = 5$, the values of vertices $1$, $2$, $3$ and $4$ get increased.\n\nHence, the expected values of all vertices after this query are ($2.2, 2.4, 2, 2, 2$).",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 12\n1 2\n1 3\n2 4\n2 5\n1 1 1\n2 1\n2 2\n2 3\n2 4\n2 5\n1 2 2\n2 1\n2 2\n2 3\n2 4\n2 5\n",
+      "output": "1\n199648871\n399297742\n199648871\n199648871\n598946614\n199648873\n2\n2\n2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:01:20.705Z"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "1263F",
+  "platform": "codeforces",
+  "contestId": 1263,
+  "index": "F",
+  "title": "Economic Difficulties",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1263/problem/F",
+  "difficulty": 2400,
+  "tags": [
+    "data structures",
+    "dfs and similar",
+    "dp",
+    "flows",
+    "graphs",
+    "trees"
+  ],
+  "points": 3000,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "An electrical grid in Berland palaces consists of 2 grids: main and reserve. Wires in palaces are made of expensive material, so selling some of them would be a good idea!\n\nEach grid (main and reserve) has a head node (its number is $1$). Every other node gets electricity from the head node. Each node can be reached from the head node by a unique path. Also, both grids have exactly $n$ nodes, which do not spread electricity further.\n\nIn other words, every grid is a rooted directed tree on $n$ leaves with a root in the node, which number is $1$. Each tree has independent enumeration and nodes from one grid are not connected with nodes of another grid.\n\nAlso, the palace has $n$ electrical devices. Each device is connected with one node of the main grid and with one node of the reserve grid. Devices connect only with nodes, from which electricity is not spread further (these nodes are the tree's leaves). Each grid's leaf is connected with exactly one device.\n\n![image](https://espresso.codeforces.com/16955a56842f79768a873fcd3f7976995e8e80c8.png) In this example the main grid contains $6$ nodes (the top tree) and the reserve grid contains $4$ nodes (the lower tree). There are $3$ devices with numbers colored in blue.\n\nIt is guaranteed that the whole grid (two grids and $n$ devices) can be shown in this way (like in the picture above):\n\n- main grid is a top tree, whose wires are directed 'from the top to the down',\n- reserve grid is a lower tree, whose wires are directed 'from the down to the top',\n- devices — horizontal row between two grids, which are numbered from $1$ to $n$ from the left to the right,\n- wires between nodes do not intersect.\n\nFormally, for each tree exists a depth-first search from the node with number $1$, that visits leaves in order of connection to devices $1, 2, \\dots, n$ (firstly, the node, that is connected to the device $1$, then the node, that is connected to the device $2$, etc.).\n\nBusinessman wants to sell (remove) **maximal** amount of wires so that each device will be powered from at least one grid (main or reserve). In other words, for each device should exist at least one path to the head node (in the main grid or the reserve grid), which contains only nodes from one grid.\n\n## Input\n\nThe first line contains an integer $n$ ($1 \\le n \\le 1000$) — the number of devices in the palace.\n\nThe next line contains an integer $a$ ($1 + n \\le a \\le 1000 + n$) — the amount of nodes in the main grid.\n\nNext line contains $a - 1$ integers $p_i$ ($1 \\le p_i \\le a$). Each integer $p_i$ means that the main grid contains a wire from $p_i$-th node to $(i + 1)$-th.\n\nThe next line contains $n$ integers $x_i$ ($1 \\le x_i \\le a$) — the number of a node in the main grid that is connected to the $i$-th device.\n\nThe next line contains an integer $b$ ($1 + n \\le b \\le 1000 + n$) — the amount of nodes in the reserve grid.\n\nNext line contains $b - 1$ integers $q_i$ ($1 \\le q_i \\le b$). Each integer $q_i$ means that the reserve grid contains a wire from $q_i$-th node to $(i + 1)$-th.\n\nThe next line contains $n$ integers $y_i$ ($1 \\le y_i \\le b$) — the number of a node in the reserve grid that is connected to the $i$-th device.\n\nIt is guaranteed that each grid is a tree, which has exactly $n$ leaves and each leaf is connected with one device. Also, it is guaranteed, that for each tree exists a depth-first search from the node $1$, that visits leaves in order of connection to devices.\n\n## Output\n\nPrint a single integer — the maximal amount of wires that can be cut so that each device is powered.\n\n## Note\n\nFor the first example, the picture below shows one of the possible solutions (wires that can be removed are marked in red):\n\n![image](https://espresso.codeforces.com/1b030d8ce945ecae2d092c6db7bc8c287b14d3f7.png)\n\nThe second and the third examples can be seen below:\n\n![image](https://espresso.codeforces.com/dfd6470f9b00eec246e75aed97fe2bbb343b38d3.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n6\n4 1 1 4 2\n6 5 3\n4\n1 1 1\n3 4 2\n",
+      "output": "5\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "4\n6\n4 4 1 1 1\n3 2 6 5\n6\n6 6 1 1 1\n5 4 3 2\n",
+      "output": "6\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "5\n14\n1 1 11 2 14 14 13 7 12 2 5 6 1\n9 8 3 10 4\n16\n1 1 9 9 2 5 10 1 14 3 7 11 6 12 2\n8 16 13 4 15\n",
+      "output": "17\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:00:50.224Z"
+}
