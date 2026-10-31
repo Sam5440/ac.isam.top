@@ -1,0 +1,33 @@
+{
+  "id": "749D",
+  "platform": "codeforces",
+  "contestId": 749,
+  "index": "D",
+  "title": "Leaving Auction",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/749/problem/D",
+  "difficulty": 2000,
+  "tags": [
+    "binary search",
+    "data structures"
+  ],
+  "points": 2000,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "There are $*n*$ people taking part in auction today. The rules of auction are classical. There were $*n*$ bids made, though it's not guaranteed they were from different people. It might happen that some people made no bids at all.\n\nEach bid is define by two integers $(*a*_{*i*}, *b*_{*i*})$, where $*a*_{*i*}$ is the index of the person, who made this bid and $*b*_{*i*}$ is its size. Bids are given in chronological order, meaning $*b*_{*i*} < *b*_{*i* + 1}$ for all $*i* < *n*$. Moreover, participant never makes two bids in a row (no one updates his own bid), i.e. $*a*_{*i*} ≠ *a*_{*i* + 1}$ for all $*i* < *n*$.\n\nNow you are curious with the following question: who (and which bid) will win the auction if some participants were absent? Consider that if someone was absent, all his bids are just removed and no new bids are added.\n\nNote, that if during this imaginary exclusion of some participants it happens that some of the remaining participants makes a bid twice (or more times) in a row, only first of these bids is counted. For better understanding take a look at the samples.\n\nYou have several questions in your mind, compute the answer for each of them.\n\n## Input\n\nThe first line of the input contains an integer $*n*$ ($1 ≤ *n* ≤ 200 000$) — the number of participants and bids.\n\nEach of the following $*n*$ lines contains two integers $*a*_{*i*}$ and $*b*_{*i*}$ ($1 ≤ *a*_{*i*} ≤ *n*, 1 ≤ *b*_{*i*} ≤ 10^{9}, *b*_{*i*} < *b*_{*i* + 1}$) — the number of participant who made the $*i*$-th bid and the size of this bid.\n\nNext line contains an integer $*q*$ ($1 ≤ *q* ≤ 200 000$) — the number of question you have in mind.\n\nEach of next $*q*$ lines contains an integer $*k*$ ($1 ≤ *k* ≤ *n*$), followed by $*k*$ integers $*l*_{*j*}$ ($1 ≤ *l*_{*j*} ≤ *n*$) — the number of people who are not coming in this question and their indices. It is guarenteed that $*l*_{*j*}$ values are different for a single question.\n\nIt's guaranteed that the sum of $*k*$ over all question won't exceed $200 000$.\n\n## Output\n\nFor each question print two integer — the index of the winner and the size of the winning bid. If there is no winner (there are no remaining bids at all), print two zeroes.\n\n## Note\n\nConsider the first sample:\n\n- In the first question participant number $3$ is absent so the sequence of bids looks as follows: Participant number $2$ wins with the bid $100 000$.\n- $1$ $10$\n  - $2$ $100$\n  - $1$ $10 000$\n  - $2$ $100 000$\n- In the second question participants $2$ and $3$ are absent, so the sequence of bids looks: The winner is, of course, participant number $1$ but the winning bid is $10$ instead of $10 000$ as no one will ever increase his own bid (in this problem).\n- $1$ $10$\n  - $1$ $10 000$\n- In the third question participants $1$ and $2$ are absent and the sequence is: The winner is participant $3$ with the bid $1 000$.\n- $3$ $1 000$\n  - $3$ $1 000 000$",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n1 10\n2 100\n3 1000\n1 10000\n2 100000\n3 1000000\n3\n1 3\n2 2 3\n2 1 2\n",
+      "output": "2 100000\n1 10\n3 1000\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "3\n1 10\n2 100\n1 1000\n2\n2 1 2\n2 2 3\n",
+      "output": "0 0\n1 10\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:59:25.759Z"
+}

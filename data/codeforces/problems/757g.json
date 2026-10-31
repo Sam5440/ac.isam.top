@@ -1,0 +1,30 @@
+{
+  "id": "757G",
+  "platform": "codeforces",
+  "contestId": 757,
+  "index": "G",
+  "title": "Can Bash Save the Day?",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/757/problem/G",
+  "difficulty": 3400,
+  "tags": [
+    "data structures",
+    "divide and conquer",
+    "graphs",
+    "trees"
+  ],
+  "points": 3500,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 768,
+  "statementMd": "Whoa! You did a great job helping Team Rocket who managed to capture all the Pokemons sent by Bash. Meowth, part of Team Rocket, having already mastered the human language, now wants to become a master in programming as well. He agrees to free the Pokemons if Bash can answer his questions.\n\nInitially, Meowth gives Bash a weighted tree containing $*n*$ nodes and a sequence $*a*_{1}, *a*_{2}..., *a*_{*n*}$ which is a permutation of $1, 2, ..., *n*$. Now, Mewoth makes $*q*$ queries of one of the following forms:\n\n- `1 l r v`: meaning Bash should report ![image](https://espresso.codeforces.com/816a5c5f7673f6efda3e7eb855b33f1cd0660d88.png), where $*dist*(*a*, *b*)$ is the length of the shortest path from node $*a*$ to node $*b*$ in the given tree.\n- `2 x`: meaning Bash should swap $*a*_{*x*}$ and $*a*_{*x* + 1}$ in the given sequence. This new sequence is used for later queries.\n\nHelp Bash to answer the questions!\n\n## Input\n\nThe first line contains two integers $*n*$ and $*q*$ ($1 ≤ *n* ≤ 2·10^{5}$, $1 ≤ *q* ≤ 2·10^{5}$) — the number of nodes in the tree and the number of queries, respectively.\n\nThe next line contains $*n*$ space-separated integers — the sequence $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ which is a permutation of $1, 2, ..., *n*$.\n\nEach of the next $*n* - 1$ lines contain three space-separated integers $*u*$, $*v*$, and $*w*$ denoting that there exists an undirected edge between node $*u*$ and node $*v*$ of weight $*w*$, ($1 ≤ *u*, *v* ≤ *n*$, $*u* ≠ *v*$, $1 ≤ *w* ≤ 10^{6}$). It is guaranteed that the given graph is a tree.\n\nEach query consists of two lines. First line contains single integer $*t*$, indicating the type of the query. Next line contains the description of the query:\n\n- **t = 1**: Second line contains three integers $*a*$, $*b*$ and $*c*$ ($1 ≤ *a*, *b*, *c* < 2^{30}$) using which $*l*$, $*r*$ and $*v*$ can be generated using the formula given below:\n- ![image](https://espresso.codeforces.com/41e63c8dc8bc8ccdd6518f3545d4ed6563ad0149.png),\n  - ![image](https://espresso.codeforces.com/d507471ec4ac41dfdb7ae85e8e229454a071fabf.png),\n  - ![image](https://espresso.codeforces.com/ef5c7174e223cf6451bba39d4eec35ac6d923636.png).\n- **t = 2**: Second line contains single integer $*a*$ ($1 ≤ *a* < 2^{30}$) using which $*x*$ can be generated using the formula given below:\n- ![image](https://espresso.codeforces.com/d48156478483a72dae043d51512212446bbff09e.png).\n\nThe $*ans*_{*i*}$ is the answer for the $*i*$-th query, assume that $*ans*_{0} = 0$. If the $*i*$-th query is of type 2 then $*ans*_{*i*}$ = $*ans*_{*i* - 1}$. It is guaranteed that:\n\n- **for each query of type 1**: $1 ≤ *l* ≤ *r* ≤ *n*$, $1 ≤ *v* ≤ *n*$,\n- **for each query of type 2**: $1 ≤ *x* ≤ *n* - 1$.\n\nThe ![image](https://espresso.codeforces.com/c4b7092c0f7ce6535f2574569c98f7b3c2fe2c5f.png) operation means bitwise exclusive OR.\n\n## Output\n\nFor each query of type $1$, output a single integer in a separate line, denoting the answer to the query.\n\n## Note\n\nIn the sample, the actual queries are the following:\n\n- `1 1 5 4`\n- `1 1 3 3`\n- `2 3`\n- `2 2`\n- `1 1 3 3`",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 5\n4 5 1 3 2\n4 2 4\n1 3 9\n4 1 4\n4 5 2\n1\n1 5 4\n1\n22 20 20\n2\n38\n2\n39\n1\n36 38 38\n",
+      "output": "23\n37\n28\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T00:58:36.253Z"
+}
