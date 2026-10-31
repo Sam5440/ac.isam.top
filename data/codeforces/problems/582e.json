@@ -1,0 +1,44 @@
+{
+  "id": "582E",
+  "platform": "codeforces",
+  "contestId": 582,
+  "index": "E",
+  "title": "Boolean Function",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/582/problem/E",
+  "difficulty": 3000,
+  "tags": [
+    "bitmasks",
+    "dp",
+    "expression parsing"
+  ],
+  "points": 2500,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "In this problem we consider Boolean functions of four variables $*A*, *B*, *C*, *D*$. Variables $*A*, *B*, *C*$ and $*D*$ are logical and can take values 0 or 1. We will define a function using the following grammar:\n\n`<expression> ::= <variable> | (<expression>) <operator> (<expression>)`\n\n`<variable> ::= 'A' | 'B' | 'C' | 'D' | 'a' | 'b' | 'c' | 'd'`\n\n`<operator> ::= '&' | '|'`\n\nHere large letters $*A*, *B*, *C*, *D*$ represent variables, and small letters represent their negations. For example, if $*A* = 1$, then character `'A'` corresponds to value 1, and value character `'a'` corresponds to value 0. Here character '&' corresponds to the operation of logical AND, character '|' corresponds to the operation of logical OR.\n\nYou are given expression $*s*$, defining function $*f*$, where some operations and variables are missing. Also you know the values of the function $*f*(*A*, *B*, *C*, *D*)$ for some $*n*$ distinct sets of variable values. Count the number of ways to restore the elements that are missing in the expression so that the resulting expression corresponded to the given information about function $*f*$ in the given variable sets. As the value of the result can be rather large, print its remainder modulo $10^{9} + 7$.\n\n## Input\n\nThe first line contains expression $*s*$ ($1 ≤ |*s*| ≤ 500$), where some characters of the operators and/or variables are replaced by character '?'.\n\nThe second line contains number $*n*$ ($0 ≤ *n* ≤ 2^{4}$) — the number of integers sets for which we know the value of function $*f*(*A*, *B*, *C*, *D*)$. Next $*n*$ lines contain the descriptions of the sets: the $*i*$-th of them contains five integers $*a*_{*i*}, *b*_{*i*}, *c*_{*i*}, *d*_{*i*}, *e*_{*i*}$ ($0 ≤ *a*_{*i*}, *b*_{*i*}, *c*_{*i*}, *d*_{*i*}, *e*_{*i*} ≤ 1$), separated by spaces and meaning that $*f*(*a*_{*i*}, *b*_{*i*}, *c*_{*i*}, *d*_{*i*}) = *e*_{*i*}$.\n\nIt is guaranteed that all the tuples ($*a*_{*i*}, *b*_{*i*}, *c*_{*i*}, *d*_{*i*}$) are distinct.\n\n## Output\n\nIn a single line print the answer to the problem.\n\n## Note\n\nIn the first sample the two valid expressions are 'C' and 'd'.\n\nIn the second sample the expressions look as follows: '(A)&(a)', '(A)&(b)', '(A)&(C)', '(A)&(D)'.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "?\n2\n1 0 1 0 1\n0 1 1 0 1\n",
+      "output": "2\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "(A)?(?)\n1\n1 1 0 0 0\n",
+      "output": "4\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "((?)&(?))|((?)&(?))\n0\n",
+      "output": "4096\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "b\n1\n1 0 1 1 1\n",
+      "output": "1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:22:18.126Z"
+}
