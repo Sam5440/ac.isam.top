@@ -1,0 +1,40 @@
+{
+  "id": "436C",
+  "platform": "codeforces",
+  "contestId": 436,
+  "index": "C",
+  "title": "Dungeons and Candies",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/436/problem/C",
+  "difficulty": 1800,
+  "tags": [
+    "dsu",
+    "graphs",
+    "greedy",
+    "trees"
+  ],
+  "points": 1500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "During the loading of the game \"Dungeons and Candies\" you are required to get descriptions of $*k*$ levels from the server. Each description is a map of an $*n* × *m*$ checkered rectangular field. Some cells of the field contain candies (each cell has at most one candy). An empty cell is denoted as \"`.`\" on the map, but if a cell has a candy, it is denoted as a letter of the English alphabet. A level may contain identical candies, in this case the letters in the corresponding cells of the map will be the same.\n\n![image](https://espresso.codeforces.com/cdd8d81e392298ff9e83e9300c270413d026c364.png)\n\nWhen you transmit information via a network, you want to minimize traffic — the total size of the transferred data. The levels can be transmitted in any order. There are two ways to transmit the current level $*A*$:\n\n1. You can transmit the whole level $*A*$. Then you need to transmit $*n*·*m*$ bytes via the network.\n2. You can transmit the difference between level $*A*$ and some previously transmitted level $*B*$ (if it exists); this operation requires to transmit $*d*_{*A*, *B*}·*w*$ bytes, where $*d*_{*A*, *B*}$ is the number of cells of the field that are different for $*A*$ and $*B*$, and $*w*$ is a constant. Note, that you should compare only the corresponding cells of levels $*A*$ and $*B*$ to calculate $*d*_{*A*, *B*}$. You cannot transform the maps of levels, i.e. rotate or shift them relatively to each other.\n\nYour task is to find a way to transfer all the $*k*$ levels and minimize the traffic.\n\n## Input\n\nThe first line contains four integers $*n*, *m*, *k*, *w*$ $(1 ≤ *n*, *m* ≤ 10; 1 ≤ *k*, *w* ≤ 1000)$. Then follows the description of $*k*$ levels. Each level is described by $*n*$ lines, each line contains $*m*$ characters. Each character is either a letter of the English alphabet or a dot (\"`.`\"). Please note that the case of the letters matters.\n\n## Output\n\nIn the first line print the required minimum number of transferred bytes.\n\nThen print $*k*$ pairs of integers $*x*_{1}, *y*_{1}, *x*_{2}, *y*_{2}, ..., *x*_{*k*}, *y*_{*k*}$, describing the way to transfer levels. Pair $*x*_{*i*}$, $*y*_{*i*}$ means that level $*x*_{*i*}$ needs to be transferred by way $*y*_{*i*}$. If $*y*_{*i*}$ equals 0, that means that the level must be transferred using the first way, otherwise $*y*_{*i*}$ must be equal to the number of a previously transferred level. It means that you will transfer the difference between levels $*y*_{*i*}$ and $*x*_{*i*}$ to transfer level $*x*_{*i*}$. Print the pairs in the order of transferring levels. The levels are numbered 1 through $*k*$ in the order they follow in the input.\n\nIf there are multiple optimal solutions, you can print any of them.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 3 3 2\nA.A\n...\nA.a\n..C\nX.Y\n...\n",
+      "output": "14\n1 0\n2 1\n3 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1 1 4 1\nA\n.\nB\n.\n",
+      "output": "3\n1 0\n2 0\n4 2\n3 0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "1 3 5 2\nABA\nBBB\nBBA\nBAB\nABB\n",
+      "output": "11\n1 0\n3 1\n2 3\n4 2\n5 1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T01:44:20.863Z"
+}
