@@ -1,0 +1,36 @@
+{
+  "id": "167D",
+  "platform": "codeforces",
+  "contestId": 167,
+  "index": "D",
+  "title": "Wizards and Roads",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/167/problem/D",
+  "difficulty": 3000,
+  "tags": [
+    "data structures",
+    "divide and conquer",
+    "graph matchings",
+    "graphs",
+    "greedy"
+  ],
+  "points": 2000,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "In some country live wizards. They love to build cities and roads.\n\nThe country used to have $*k*$ cities, the $*j*$-th city ($1 ≤ *j* ≤ *k*$) was located at a point ($*x*_{*j*}$, $*y*_{*j*}$). It was decided to create another $*n* - *k*$ cities. And the $*i*$-th one ($*k* < *i* ≤ *n*$) was created at a point with coordinates ($*x*_{*i*}$, $*y*_{*i*}$):\n\n- $*x*_{*i*} = (*a*·*x*_{*i* - 1} + *b*) *mod* (10^{9} + 9)$\n- $*y*_{*i*} = (*c*·*y*_{*i* - 1} + *d*) *mod* (10^{9} + 9)$\n\nHere $*a*$, $*b*$, $*c*$, $*d*$ are primes. Also, $*a* ≠ *c*, *b* ≠ *d*$.\n\nAfter the construction of all $*n*$ cities, the wizards have noticed something surprising. It turned out that for every two different cities $*i*$ and $*j*$, $*x*_{*i*} ≠ *x*_{*j*}$ and $*y*_{*i*} ≠ *y*_{*j*}$ holds.\n\nThe cities are built, it's time to build roads! It was decided to use the most difficult (and, of course, the most powerful) spell for the construction of roads. Using this spell creates a road between the towns of $*u*$, $*v*$ ($*y*_{*u*}$ > $*y*_{*v*}$) if and only if for any city $*w*$ which lies strictly inside the corner at the point $*u*$, $*v*$ (see below), there is a city $*s*$ that does not lie in the corner, which is located along the $*x*$-coordinate strictly between $*w*$ and $*u*$ and simultaneously $*y*_{*s*} > *y*_{*v*}$.\n\nA *corner* on the points $*p*_{2}$($*x*_{2}$, $*y*_{2}$), $*p*_{1}$($*x*_{1}$, $*y*_{1}$) ($*y*_{1} < *y*_{2}$) is the set of points ($*x*, *y*$), for which at least one of the two conditions is fulfilled:\n\n- $*min*(*x*_{1}, *x*_{2}) ≤ *x* ≤ *max*(*x*_{1}, *x*_{2})$ and $*y* ≥ *y*_{1}$\n- $*y*_{1} ≤ *y* ≤ *y*_{2}$ and $(*x* - *x*_{2})·(*x*_{1} - *x*_{2}) ≥ 0$\n\n![image](https://espresso.codeforces.com/46711a4199ab47f454e9b4e2c18c0ef5a8c6d436.png) The pictures showing two different corners\n\nIn order to test the spell, the wizards will apply it to all the cities that lie on the $*x*$-coordinate in the interval $[*L*, *R*]$. After the construction of roads the national government wants to choose the maximum number of pairs of cities connected by the road, so that no city occurs in two or more pairs. Your task is for each $*m*$ offered variants of values $*L*$, $*R*$ to calculate the maximum number of such pairs after the construction of the roads. Please note that the cities that do not lie in the interval $[*L*, *R*]$ on the $*x*$-coordinate, do not affect the construction of roads in any way.\n\n## Input\n\nThe first line contains two space-separated integers $*n*$, $*k*$ ($1 ≤ *k* ≤ *n* ≤ 10^{5}$, $*k* ≤ 30$). Next $*k*$ lines contain coordinates of the cities' location points from the first to the $*k*$-th one. The $*j*$-th line contains space-separated pair of integers $*x*_{*j*}$, $*y*_{*j*}$ ($0 ≤ *x*_{*j*}, *y*_{*j*} < 10^{9} + 9$) — coordinates of the $*j*$-th city.\n\nThe next line contains space-separated integers $*a*, *b*, *c*, *d*$ ($2 ≤ *a*, *b*, *c*, *d* < 10^{9} + 9$). It is guaranteed that those numbers are prime and also that $*a* ≠ *c*, *b* ≠ *d*$.\n\nIt's guaranteed, that for every two different cities $*i*$ and $*j*$, $*x*_{*i*} ≠ *x*_{*j*}$ and $*y*_{*i*} ≠ *y*_{*j*}$ holds.\n\nThe next line contains integer $*m*$ ($1 ≤ *m* ≤ 10^{5}$) — the number of variants to build the roads. Next $*m*$ lines contain pairs of space-separated integers $*L*_{*i*}$, $*R*_{*i*}$ ($0 ≤ *L*_{*i*} ≤ *R*_{*i*} < 10^{9} + 9$) — the variants of choosing the cities to build the roads.\n\n## Output\n\nFor any pair of numbers $*L*_{*i*}$, $*R*_{*i*}$ print the answer to the problem on a single line. Print the answers for the pairs in the order, in which the pairs are given in the input data.\n\n## Note\n\nIn the first sample the roads connect the cities in a chain in the order of increasing of $*x*$.\n\nIn the second sample the remaining 5 cities will be located at points $(5,  11); (20,  263098); (65,  292514823); (200,  76958738); (605,  622120197)$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 6\n0 0\n1 1\n2 2\n3 3\n4 4\n5 5\n2 3 3 2\n4\n0 5\n1 4\n2 3\n3 3\n",
+      "output": "3\n2\n1\n0\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "6 1\n0 0\n3 5 23917 11\n4\n0 1000000008\n0 10\n100 150\n200 10000\n",
+      "output": "2\n1\n0\n1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T02:27:05.329Z"
+}

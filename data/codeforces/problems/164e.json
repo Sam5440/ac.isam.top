@@ -1,0 +1,30 @@
+{
+  "id": "164E",
+  "platform": "codeforces",
+  "contestId": 164,
+  "index": "E",
+  "title": "Polycarpus and Tasks",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/164/problem/E",
+  "difficulty": 3100,
+  "tags": [],
+  "points": 2500,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "Polycarpus has many tasks. Each task is characterized by three integers $*l*_{*i*}$, $*r*_{*i*}$ and $*t*_{*i*}$. Three integers $(*l*_{*i*}, *r*_{*i*}, *t*_{*i*})$ mean that to perform task $*i*$, one needs to choose an integer $*s*_{*i*}$ $(*l*_{*i*} ≤ *s*_{*i*}; *s*_{*i*} + *t*_{*i*} - 1 ≤ *r*_{*i*})$, then the task will be carried out continuously for $*t*_{*i*}$ units of time, starting at time $*s*_{*i*}$ and up to time $*s*_{*i*} + *t*_{*i*} - 1$, inclusive. In other words, a task is performed for a continuous period of time lasting $*t*_{*i*}$, should be started no earlier than $*l*_{*i*}$, and completed no later than $*r*_{*i*}$.\n\nPolycarpus's tasks have a surprising property: for any task $*j*, *k*$ (with $*j* < *k*$) $*l*_{*j*} < *l*_{*k*}$ and $*r*_{*j*} < *r*_{*k*}$.\n\nLet's suppose there is an ordered set of tasks $*A*$, containing $|*A*|$ tasks. We'll assume that $*a*_{*j*} = (*l*_{*j*}, *r*_{*j*}, *t*_{*j*})$ $(1 ≤ *j* ≤ |*A*|)$. Also, we'll assume that the tasks are ordered by increasing $*l*_{*j*}$ with the increase in number.\n\nLet's consider the following recursive function $*f*$, whose argument is an ordered set of tasks $*A*$, and the result is an integer. The function $*f*(*A*)$ is defined by the greedy algorithm, which is described below in a pseudo-language of programming.\n\n- Step 1. ![image](https://espresso.codeforces.com/1ed3944c0b14c968310c01e937f4516a098d1003.png), $*ans* = 0$.\n- Step 2. We consider all tasks in the order of increasing of their numbers in the set $*A*$. Lets define the current task counter $*i* = 0$.\n- Step 3. Consider the next task: $*i* = *i* + 1$. If $*i* > |*A*|$ fulfilled, then go to the 8 step.\n- Step 4. If you can get the task done starting at time $*s*_{*i*}$ = max$(*ans* + 1, *l*_{*i*})$, then do the task $*i*$: $*s*_{*i*}$ = max($*ans* + 1$, $*l*_{*i*}$), $*ans* = *s*_{*i*} + *t*_{*i*} - 1$, ![image](https://espresso.codeforces.com/9e0b3f8e2ea4b89161f28f557c6cf3214d2c1959.png). Go to the next task (step 3).\n- Step 5. Otherwise, find such task ![image](https://espresso.codeforces.com/dd623995c9aca7918af19266cad3dca474c9e78b.png), that first, task $*a*_{*i*}$ can be done at time $*s*_{*i*}$ = max![image](https://espresso.codeforces.com/bdfe105b7ef5bc1282bc7ae868643e2f377e6fc1.png), and secondly, the value of ![image](https://espresso.codeforces.com/78cb8d5ce80fdc3a85f2ade7dd6e3b5e9429a22c.png) is positive and takes the maximum value among all $*b*_{*k*}$ that satisfy the first condition. If you can choose multiple tasks as $*b*_{*k*}$, choose the one with the maximum number in set $*A*$.\n- Step 6. If you managed to choose task $*b*_{*k*}$, then ![image](https://espresso.codeforces.com/cd4142771dd3e976ac653ce8143d602e52a4e13e.png), ![image](https://espresso.codeforces.com/bd0fe15069bab47edb8c01ebeee403bfd75c592b.png). Go to the next task (step 3).\n- Step 7. If you didn't manage to choose task $*b*_{*k*}$, then skip task $*i*$. Go to the next task (step 3).\n- Step 8. Return $*ans*$ as a result of executing $*f*(*A*)$.\n\nPolycarpus got entangled in all these formulas and definitions, so he asked you to simulate the execution of the function $*f*$, calculate the value of $*f*(*A*)$.\n\n## Input\n\nThe first line of the input contains a single integer $*n*$ ($1 ≤ *n* ≤ 10^{5}$) — the number of tasks in set $*A*$.\n\nThen $*n*$ lines describe the tasks. The $*i*$-th line contains three space-separated integers $*l*_{*i*}$, $*r*_{*i*}$, $*t*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ 10^{9}$, $1 ≤ *t*_{*i*} ≤ *r*_{*i*} - *l*_{*i*} + 1$) — the description of the $*i*$-th task.\n\nIt is guaranteed that for any tasks $*j*, *k*$ (considering that $*j* < *k*$) the following is true: $*l*_{*j*} < *l*_{*k*}$ and $*r*_{*j*} < *r*_{*k*}$.\n\n## Output\n\nFor each task $*i*$ print a single integer — the result of processing task $*i*$ on the $*i*$-th iteration of the cycle (step 3) in function $*f*(*A*)$. In the $*i*$-th line print:\n\n- 0 — if you managed to add task $*i*$ on step 4.\n- -1 — if you didn't manage to add or replace task $*i*$ (step 7).\n- $*res*_{*i*}$ ($1 ≤ *res*_{*i*} ≤ *n*$) — if you managed to replace the task (step 6): $*res*_{*i*}$ equals the task number (in set $*A*$), that should be chosen as $*b*_{*k*}$ and replaced by task $*a*_{*i*}$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n1 8 5\n2 9 3\n3 10 3\n8 11 4\n11 12 2\n",
+      "output": "0 0 1 0 -1\n",
+      "note": "InputCopy\n\nOutputCopy"
+    },
+    {
+      "input": "13\n1 8 5\n2 9 4\n3 10 1\n4 11 3\n8 12 5\n9 13 5\n10 14 5\n11 15 1\n12 16 1\n13 17 1\n14 18 3\n15 19 3\n16 20 2\n",
+      "output": "0 0 0 2 -1 -1 0 0 0 0 7 0 12\n",
+      "note": "InputCopy\n\nOutputCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-10-31T02:27:30.509Z"
+}
