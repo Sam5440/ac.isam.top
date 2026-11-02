@@ -4,7 +4,7 @@
   "contestId": 2192,
   "index": "C",
   "title": "All-in-one Gun",
-  "titleZh": null,
+  "titleZh": "全能枪",
   "url": "https://codeforces.com/contest/2192/problem/C",
   "difficulty": 1300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*You are developing a new shooter game, but since there are a lot of shooter games out there, you decide to have something unique in your game.*\n\nYou have an all-in-one gun that shoots bullets in a fixed order. There are $n$ bullets in the magazine, the $i$-th of which deals $a_i$ damage. The enemy starts with $h$ health and dies when its health becomes $\\le 0$.\n\nThe gun shoots one bullet per second. After firing all $n$ bullets, it must reload, which takes $k$ seconds. Reloading always restores the **same sequence** of bullets $[a_1, a_2, \\ldots, a_n]$. You cannot reload early; you must empty the magazine first. At the start, the magazine is already full.\n\nBefore the fight begins, you may perform **at most one** swap: pick any indices $1 \\le i \\lt j \\le n$ and exchange $a_i$ with $a_j$.\n\nYour task is to find the minimum number of seconds needed to kill the enemy, taking into account this optional single swap.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each testcase contains three integer $n$, $h$ and $k$ ($2 \\le n \\le 2\\cdot 10^5$, $ 1 \\le h, k \\le 10^9$) — the size of magazine, health of your enemy and time required to reload the magazine.\n\nThe second line of each testcase contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ does not exceed $2 \\cdot 10^5$ over all test cases.\n\n## Output\n\nFor each testcase, output a single integer denoting the minimum time required to kill the enemy.\n\n## Note\n\nIn the first test case, you swap the bullets present at index $2$ and $5$. This makes array $a$ as $4, 3, 3, 5, 2$.\n\nAfter $3$ seconds, the health of your enemy will be $10 - 4 - 3 - 3 = 0$, hence the enemy dies in $3$ seconds. It can be shown that achieving time to kill less than $3$ is not possible.\n\nIn the third test case, you swap bullets present at index $1$ and $3$. This makes array $a$ as $3, 2, 1$.\n\nIn $7$ seconds, you shoot the entire first magazine ($3$ seconds) $+$ reload a new magazine ($2$ seconds) $+$ shoot the first and the second bullet from the new magazine ($2$ seconds).\n\nThe health of the enemy will be $10 - 3 - 2 - 1 - 3 - 2 = -1$, hence the enemy dies in $7$ seconds. It can be shown that achieving time to kill less than $7$ is not possible.",
-  "statementZhMd": null,
+  "statementZhMd": "*你正在开发一款新的射击游戏，但由于市面上已经有太多射击游戏，你决定在游戏中加入一些独特的东西。*\n\n你有一把按固定顺序发射子弹的全能枪。弹匣里有 $n$ 发子弹，其中第 $i$ 发造成 $a_i$ 点伤害。敌人初始生命值为 $h$，当其生命值变为 $\\le 0$ 时死亡。\n\n这把枪每秒射出一发子弹。打完全部 $n$ 发子弹后必须重新装填，装填需要 $k$ 秒。装填总会恢复**相同的子弹序列** $[a_1, a_2, \\ldots, a_n]$。你不能提前装填，必须先打空弹匣。开始时弹匣已经是满的。\n\n在战斗开始前，你可以进行**至多一次**交换：任选下标 $1 \\le i \\lt j \\le n$，交换 $a_i$ 与 $a_j$。\n\n你的任务是求出在考虑这次可选的单次交换的情况下，击杀敌人所需的最少秒数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含三个整数 $n$、$h$ 和 $k$（$2 \\le n \\le 2\\cdot 10^5$，$ 1 \\le h, k \\le 10^9$）——分别表示弹匣的大小、敌人的生命值以及重新装填弹匣所需的时间。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示击杀敌人所需的最短时间。\n\n## 说明\n\n在第一个测试用例中，你交换下标 $2$ 和 $5$ 处的子弹，使得数组 $a$ 变为 $4, 3, 3, 5, 2$。\n\n$3$ 秒后，敌人的生命值将为 $10 - 4 - 3 - 3 = 0$，因此敌人在 $3$ 秒内死亡。可以证明，击杀时间少于 $3$ 秒是不可能的。\n\n在第三个测试用例中，你交换下标 $1$ 和 $3$ 处的子弹，使得数组 $a$ 变为 $3, 2, 1$。\n\n在 $7$ 秒内，你射出第一个弹匣的全部子弹（$3$ 秒）$+$ 装填一个新弹匣（$2$ 秒）$+$ 射出新弹匣的第一发和第二发子弹（$2$ 秒）。\n\n敌人的生命值将为 $10 - 3 - 2 - 1 - 3 - 2 = -1$，因此敌人在 $7$ 秒内死亡。可以证明，击杀时间少于 $7$ 秒是不可能的。",
   "samples": [
     {
       "input": "6\n5 10 1\n4 2 3 5 3\n5 10 1\n4 2 3 7 3\n3 10 2\n1 2 3\n2 5 3\n2 1\n3 18 5\n1 2 3\n4 10 10\n1 1 2 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:06.911Z"
+  "fetchedAt": "2026-10-30T21:04:06.911Z",
+  "translatedAt": "2026-11-03T02:57:05.894+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

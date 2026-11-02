@@ -4,7 +4,7 @@
   "contestId": 2192,
   "index": "D",
   "title": "Cost of Tree",
-  "titleZh": null,
+  "titleZh": "树的代价",
   "url": "https://codeforces.com/contest/2192/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "For a tree $T$ with root $r$, where each node $u$ has a value $a_u$ associated with it, the cost of the tree defined as:\n\n$$\\sum_{u\\in T} (a_u \\cdot d(r,u))$$\n\nHere, this sum is taken over all nodes $u$ in the tree $T$, and $d(r,u)$ denotes the number of edges on the shortest path from node $r$ to node $u$ on a tree.\n\nYou are given a tree consisting of $n$ nodes, rooted at node $1$. Each node $i$ has a value $a_i$ assigned to it. For each $r$ from $1$ to $n$, please solve the following problem independently:\n\nConsider the subtree of node $r$ with respect to node $1$. Formally, the subtree of node $r$ is the tree consisting of all nodes $u$ such that the shortest path from $1$ to $u$ contains $r$.\n\nFind the maximum cost of the subtree after performing **at most one** operation of the following type on the subtree:\n\n- Choose any node $u$ ($u \\neq r$). Remove the edge from $u$ to the parent of node $u$$^{\\text{∗}}$. Then, add an edge from $u$ to any node $v$ that is still reachable from $r$. It can be shown that after this operation, the graph remains a tree.\n\nAs an example, below shows an example of an operation with $r=1$,$u=5$, and $v=4$.\n\n![image](https://espresso.codeforces.com/08cbc8b0340fa37c3036d5842d029b6d770d5775.png)\n\n$^{\\text{∗}}$Formally, remove the edge from $u$ to $p$, where $p$ is the unique node satisfying $d(u,p)=1$ and $d(u,r)=d(p,r)+1$\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each testcase contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the count of nodes in the tree.\n\nThe second line of each testcase contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 2 \\cdot 10^5$).\n\nThen $n − 1$ lines follow, the $i$-th line containing two integers $u$ and $v$ ($1 \\le u, v \\le n$) — the two nodes that the $i$-th edge connects.\n\nIt is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ does not exceed $2 \\cdot 10^5$ over all test cases.\n\n## Output\n\nFor each test case, print $n$ numbers – the answers for $r=1,2,\\ldots,n$.\n\n## Note\n\nIn the first test case, for $r=1$, it is optimal to choose $u=5$ and $v=4$. The cost of the tree is then $1\\cdot 0 + 3\\cdot 1+2\\cdot 2+1\\cdot 3+2\\cdot 4=18$. It can be shown that a larger cost cannot be obtained over all legal operations.\n\nFor $r=4$ for example, there is only $1$ node in the subtree, so there is no operation possible. The only possible cost of the subtree is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "对于一棵以 $r$ 为根的树 $T$，其中每个节点 $u$ 都关联一个值 $a_u$，这棵树的代价定义为：\n\n$$\\sum_{u\\in T} (a_u \\cdot d(r,u))$$\n\n其中，该求和遍历树 $T$ 中的所有节点 $u$，$d(r,u)$ 表示树上从节点 $r$ 到节点 $u$ 的最短路径所包含的边数。\n\n给定一棵由 $n$ 个节点组成的树，以节点 $1$ 为根。每个节点 $i$ 都被赋有一个值 $a_i$。对于从 $1$ 到 $n$ 的每个 $r$，请独立解决以下问题：\n\n考虑节点 $r$ 相对于节点 $1$ 的子树。形式化地说，节点 $r$ 的子树是由所有满足从 $1$ 到 $u$ 的最短路径经过 $r$ 的节点 $u$ 组成的树。\n\n求对子树执行**至多一次**以下类型的操作后，子树代价的最大值：\n\n- 选择任意节点 $u$（$u \\neq r$），删除从 $u$ 到其父亲节点$^{\\text{∗}}$ 的边，然后添加一条从 $u$ 到任意一个仍可从 $r$ 到达的节点 $v$ 的边。可以证明，在此操作之后，该图仍然是一棵树。\n\n下图展示了一个操作的例子，其中 $r=1$、$u=5$、$v=4$。\n\n![image](https://espresso.codeforces.com/08cbc8b0340fa37c3036d5842d029b6d770d5775.png)\n\n$^{\\text{∗}}$形式化地说，删除从 $u$ 到 $p$ 的边，其中 $p$ 是唯一满足 $d(u,p)=1$ 且 $d(u,r)=d(p,r)+1$ 的节点。\n\n## 输入格式\n\n本题包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——表示树中节点的数量。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 2 \\cdot 10^5$）。\n\n接下来 $n − 1$ 行，其中第 $i$ 行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$）——表示第 $i$ 条边所连接的两个节点。\n\n保证给定的边构成一棵树。\n\n保证所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出 $n$ 个数——即 $r=1,2,\\ldots,n$ 对应的答案。\n\n## 说明\n\n在第一组测试数据中，对于 $r=1$，最优方案是选择 $u=5$ 和 $v=4$。此时树的代价为 $1\\cdot 0 + 3\\cdot 1+2\\cdot 2+1\\cdot 3+2\\cdot 4=18$。可以证明，无法通过任何合法操作得到更大的代价。\n\n例如对于 $r=4$，子树中只有 $1$ 个节点，因此无法进行任何操作。子树唯一可能的代价为 $0$。",
   "samples": [
     {
       "input": "3\n5\n1 3 2 1 2\n1 2\n2 3\n3 4\n3 5\n7\n1 2 3 1 3 2 1\n1 2\n2 3\n3 4\n4 5\n4 6\n3 7\n5\n5 4 3 2 1\n1 2\n2 3\n3 4\n4 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:06.912Z"
+  "fetchedAt": "2026-10-30T21:04:06.912Z",
+  "translatedAt": "2026-11-03T02:58:05.639+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
