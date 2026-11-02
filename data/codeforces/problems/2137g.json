@@ -4,7 +4,7 @@
   "contestId": 2137,
   "index": "G",
   "title": "Cry Me a River",
-  "titleZh": null,
+  "titleZh": "泪流成河",
   "url": "https://codeforces.com/contest/2137/problem/G",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a directed acyclic graph with $n$ nodes and $m$ edges. Each node is initially colored blue.\n\nLet's define the *fun graph game* as follows:\n\n- Initially, a token is placed on node $s$.\n- Cry and River take turns moving the token to a node such that there exists a directed edge from its current position to that node, with Cry going first.\n- Cry wins if the token ever reaches a node with no outgoing edges, after either player's turn.\n- River wins if the token reaches a red node after either player's turn.\n- **If the players reach a node that is both red and does not have outgoing edges, River wins.**\n\nSince the graph is acyclic, it can be shown that the game always ends in a finite number of turns.\n\nNote that Cry and River can win the game immediately if the starting node $s$ doesn't have outgoing edges, or is red respectively.\n\nYou must handle $q$ queries of the following kind:\n\n- `1 u`: update the color of node $u$ to red. It is guaranteed that node $u$ was blue before this update.\n- `2 u`: If a *fun graph game* is played with the token initially at node $u$, and both players play optimally, does Cry win?\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $m$, $q$ ($2 \\leq n \\leq 2\\cdot 10^5$ ,$1 \\leq m,q \\leq 2\\cdot 10^5$).\n\nThe following $m$ lines each contain two integers $u$ and $v$ ($1 \\leq u,v \\leq n$), meaning that there is an edge from $u$ to $v$.\n\nThe following $q$ lines each contain two integers $x$ and $u$ ($1 \\leq x \\leq 2, 1 \\leq u \\leq n$) – denoting the type of query and the node that the query is done on.\n\nIt is guaranteed that the given graph is a directed acyclic graph. Additionally, no edge is given more than once.\n\nIt is guaranteed that the sum of $n$, the sum of $m$, and the sum of $q$ each do not exceed $2\\cdot 10^5$ over all test cases.\n\n## Output\n\nFor each query of the second type, output `YES` if Cry wins. Otherwise, output `NO`. Each letter may be outputted in uppercase or lowercase.\n\n## Note\n\nBelow shows the graph in the sample.\n\n![image](https://espresso.codeforces.com/16ef8e2c00893d45ba2b81fc5228ba1b610fbec8.png)\n\nInitially, all nodes are blue. Thus, Cry cannot lose, and eventually the token will be moved to a node without outgoing edges.\n\nAfter nodes $3$ and $4$ are painted red, the nodes $1,3,4$ now start off as a win for River when playing optimally. If the game starts at nodes $3$ and $4$, River wins immediately. If the game starts at node $1$, one way the game can go is as follows:\n\n- Cry moves the token to node $2$.\n- River moves the token to node $3$, which is red, so River wins.\n\n.\n\nIt can be shown that Cry still wins with optimal play for all other nodes.",
-  "statementZhMd": null,
+  "statementZhMd": "有一张 $n$ 个节点、$m$ 条边的有向无环图。初始时，每个节点都被染成蓝色。\n\n我们定义*有趣图游戏*如下：\n\n- 初始时，一枚棋子被放在节点 $s$ 上。\n- Cry 和 River 轮流将棋子移动到一个节点，要求从棋子当前位置到该节点存在一条有向边，由 Cry 先手。\n- 若在任意一方操作之后，棋子到达某个没有出边的节点，则 Cry 获胜。\n- 若在任意一方操作之后，棋子到达某个红色节点，则 River 获胜。\n- **若双方到达的节点既是红色的又没有出边，则 River 获胜。**\n\n由于图是无环的，可以证明游戏总会在有限的回合数内结束。\n\n注意，如果起始节点 $s$ 没有出边，那么 Cry 可以立即获胜；如果起始节点 $s$ 是红色的，那么 River 可以立即获胜。\n\n你需要处理 $q$ 次如下类型的询问：\n\n- `1 u`：将节点 $u$ 的颜色更新为红色。保证节点 $u$ 在这次更新之前是蓝色的。\n- `2 u`：如果进行一局*有趣图游戏*，棋子初始位于节点 $u$，且双方都采取最优策略，那么 Cry 会获胜吗？\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含三个整数 $n$，$m$，$q$（$2 \\leq n \\leq 2\\cdot 10^5$，$1 \\leq m,q \\leq 2\\cdot 10^5$）。\n\n接下来 $m$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\leq u,v \\leq n$），表示存在一条从 $u$ 到 $v$ 的边。\n\n接下来 $q$ 行，每行包含两个整数 $x$ 和 $u$（$1 \\leq x \\leq 2, 1 \\leq u \\leq n$）——表示询问的类型以及该询问所作用的节点。\n\n保证给定的图是有向无环图。此外，每条边至多给出一次。\n\n保证所有测试数据的 $n$ 之和、$m$ 之和与 $q$ 之和均不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个第二种类型的询问，如果 Cry 获胜，输出 `YES`；否则，输出 `NO`。每个字母可以用大写或小写输出。\n\n## 说明\n\n下图展示了样例中的图。\n\n![image](https://espresso.codeforces.com/16ef8e2c00893d45ba2b81fc5228ba1b610fbec8.png)\n\n初始时，所有节点都是蓝色的。因此 Cry 不可能输，棋子最终会被移动到某个没有出边的节点。\n\n在节点 $3$ 和 $4$ 被染成红色之后，在双方最优策略下，节点 $1,3,4$ 现在作为起始点时是 River 必胜的。如果游戏从节点 $3$ 和 $4$ 开始，River 都会立即获胜。如果游戏从节点 $1$ 开始，游戏的一种可能的进行方式如下：\n\n- Cry 将棋子移动到节点 $2$。\n- River 将棋子移动到节点 $3$，该节点是红色的，因此 River 获胜。\n\n。\n\n可以证明，在最优策略下，Cry 在所有其它节点上仍然获胜。",
   "samples": [
     {
       "input": "1\n7 8 10\n1 2\n1 3\n1 4\n2 5\n3 6\n5 7\n2 3\n3 4\n2 1\n1 3\n1 4\n2 1\n2 2\n2 3\n2 4\n2 5\n2 6\n2 7\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:46:49.460Z"
+  "fetchedAt": "2026-11-02T16:46:49.460Z",
+  "translatedAt": "2026-11-03T05:46:46.308+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
