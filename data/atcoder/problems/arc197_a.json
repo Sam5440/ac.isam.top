@@ -4,7 +4,7 @@
   "contestId": "arc197",
   "index": "A",
   "title": "Union of Grid Paths",
-  "titleZh": null,
+  "titleZh": "网格路径的并集",
   "url": "https://atcoder.jp/contests/arc197/tasks/arc197_a",
   "difficulty": 860,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere is an $H\\times W$ grid of cells. Let $(h,w)$ denote the cell at the $h$-th row from the top and the $w$-th column from the left. Furthermore, you are given a string $S = S_1\\cdots S_{H+W-2}$ of length $H+W-2$ consisting of `D`, `R`, and `?`.\n\nInitially, all cells are painted white. You may perform the following operation, which consists of three steps, any number of times:\n\n1. Choose a string $X = X_1\\cdots X_{H+W-2}$ of length $H+W-2$ satisfying all of the following.\n- $X$ consists of exactly $H-1$ `D`s and $W-1$ `R`s.\n  - For each $1 \\le i \\le H+W-2$, if $S_i$ is `D` then $X_i$ must also be `D`.\n  - For each $1 \\le i \\le H+W-2$, if $S_i$ is `R` then $X_i$ must also be `R`.\n2. Stand on cell $(1,1)$. Then for $i=1,2,\\ldots$ in order, move one cell in the direction indicated by $X_i$: if $X_i$ is `D`, move down one cell; if $X_i$ is `R`, move right one cell. It can be shown that if $X$ satisfies the conditions in step 1, the destination cell always exists within the grid.\n3. For every cell you visited in step 2 (including the starting and ending cells), if the cell is currently white, paint it black.\n\nFind the maximum possible number of cells that can be painted black in total.\n\nThere are $T$ test cases; solve each one.\n\n## Constraints\n\n- $1\\le T\\le 2\\times 10^5$\n- $2\\le H,W\\le 2\\times 10^5$\n- $T,H,W$ are integers.\n- $S$ is a string of length $H+W-2$ consisting of `D`, `R`, and `?`.\n- The number of `D`s in $S$ is at most $H-1$.\n- The number of `R`s in $S$ is at most $W-1$.\n- The sum of $H+W$ over all test cases is at most $4\\times 10^5$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\text{case}_1\n\\vdots\n\\text{case}_T\n```\n\nEach case is given in the following format:\n\n```\nH W\nS\n```\n\n## Output\n\nPrint $T$ lines. The $i$-th line should contain the maximum number of cells that can be painted black for the $i$-th test case.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有一个 $H\\times W$ 的网格。设 $(h,w)$ 表示从上往下第 $h$ 行、从左往右第 $w$ 列的格子。此外，给定一个长度为 $H+W-2$、由 `D`、`R` 和 `?` 组成的字符串 $S = S_1\\cdots S_{H+W-2}$。\n\n初始时，所有格子都被涂成白色。你可以执行任意次以下由三个步骤组成的操作：\n\n1. 选择一个长度为 $H+W-2$ 的字符串 $X = X_1\\cdots X_{H+W-2}$，要求满足以下所有条件。\n- $X$ 恰好由 $H-1$ 个 `D` 和 $W-1$ 个 `R` 组成。\n  - 对每个 $1 \\le i \\le H+W-2$，若 $S_i$ 为 `D`，则 $X_i$ 也必须是 `D`。\n  - 对每个 $1 \\le i \\le H+W-2$，若 $S_i$ 为 `R`，则 $X_i$ 也必须是 `R`。\n2. 站在格子 $(1,1)$ 上。然后按 $i=1,2,\\ldots$ 的顺序，沿 $X_i$ 所指的方向移动一格：若 $X_i$ 为 `D`，则向下移动一格；若 $X_i$ 为 `R`，则向右移动一格。可以证明，若 $X$ 满足步骤 1 中的条件，则移动的目标格子总在网格内。\n3. 对于步骤 2 中经过的每个格子（包括起点和终点），若该格子当前为白色，则将其涂成黑色。\n\n求最终被涂成黑色的格子数的最大可能值。\n\n共有 $T$ 组测试数据，请逐一求解。\n\n## 约束条件\n\n- $1\\le T\\le 2\\times 10^5$\n- $2\\le H,W\\le 2\\times 10^5$\n- $T,H,W$ 均为整数。\n- $S$ 是长度为 $H+W-2$、由 `D`、`R` 和 `?` 组成的字符串。\n- $S$ 中 `D` 的个数不超过 $H-1$。\n- $S$ 中 `R` 的个数不超过 $W-1$。\n- 所有测试数据的 $H+W$ 之和不超过 $4\\times 10^5$。\n\n## 输入格式\n\n输入由标准输入按以下格式给出：\n\n```\nT\n\\text{case}_1\n\\vdots\n\\text{case}_T\n```\n\n每组测试数据按以下格式给出：\n\n```\nH W\nS\n```\n\n## 输出格式\n\n输出 $T$ 行。第 $i$ 行应包含第 $i$ 组测试数据中被涂黑的格子数的最大值。",
   "samples": [
     {
       "input": "4\n4 5\nD?DRR?R\n4 5\nDDRRDRR\n4 5\n???????\n2 2\nDR\n",
@@ -21,5 +21,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:53:05.377Z"
+  "fetchedAt": "2026-10-30T20:53:05.377Z",
+  "translatedAt": "2026-11-03T07:13:16.644+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

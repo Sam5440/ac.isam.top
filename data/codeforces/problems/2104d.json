@@ -4,7 +4,7 @@
   "contestId": 2104,
   "index": "D",
   "title": "Array and GCD",
-  "titleZh": null,
+  "titleZh": "数组与 GCD",
   "url": "https://codeforces.com/contest/2104/problem/D",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "You are given an integer array $a$ of size $n$.\n\nYou can perform the following operations any number of times (possibly, zero):\n\n- pay one coin and increase any element of the array by $1$ (you must have at least $1$ coin to perform this operation);\n- gain one coin and decrease any element of the array by $1$.\n\nLet's say that an array is *ideal* if both of the following conditions hold:\n\n- each element of the array is at least $2$;\n- for each pair of indices $i$ and $j$ ($1 \\le i, j \\le n$; $i \\ne j$) the greatest common divisor (GCD) of $a_i$ and $a_j$ is equal to $1$. If the array has less than $2$ elements, this condition is automatically satisfied.\n\nLet's say that an array is *beautiful* if it can be transformed into an ideal array using the aforementioned operations, provided that you initially have no coins. If the array is already ideal, then it is also beautiful.\n\nThe given array is not necessarily beautiful or ideal. You can remove any elements from it (including removing the entire array or not removing anything at all). Your task is to calculate the minimum number of elements you have to remove (possibly, zero) from the array $a$ to make it **beautiful**.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 4 \\cdot 10^5$).\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($2 \\le a_i \\le 10^9$).\n\nAdditional constraint on the input: the sum of $n$ over all test cases doesn't exceed $4 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the minimum number of elements you have to remove (possibly, zero) from the array $a$ to make it **beautiful**.\n\n## Note\n\nIn the first example, you don't need to delete any elements, because the array is already beautiful. It can be transformed into an ideal array as follows: $[5, 5, 5] \\rightarrow [4, 5, 5] \\rightarrow [4, 4, 5] \\rightarrow [4, 3, 5]$ (you end up with $3$ coins).\n\nIn the second example, you need to remove $2$ elements so that the array becomes beautiful. If you leave the elements $[2, 3]$ and delete the other elements, then the given array is already ideal (and therefore, beautiful).\n\nIn the third example, you don't need to delete any elements because the array is already ideal (and thus, beautiful).\n\nIn the fourth example, the array is beautiful. It can be transformed into an ideal array as follows: $[2, 100, 2] \\rightarrow [2, 99, 2] \\rightarrow [2, 99, 3] \\rightarrow [2, 98, 3] \\rightarrow [2, 97, 3]$ (you end up with $2$ coins).",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个大小为 $n$ 的整数数组 $a$。\n\n你可以进行任意多次以下操作（也可以不进行任何操作）：\n\n- 支付一枚硬币，并将数组中的任意一个元素增加 $1$（执行此操作时你必须拥有至少 $1$ 枚硬币）；\n- 获得一枚硬币，并将数组中的任意一个元素减少 $1$。\n\n如果一个数组同时满足以下两个条件，则称它是*理想*的：\n\n- 数组的每个元素都至少为 $2$；\n- 对于每一对下标 $i$ 和 $j$（$1 \\le i, j \\le n$；$i \\ne j$），$a_i$ 与 $a_j$ 的最大公约数（GCD）等于 $1$。如果数组的元素个数少于 $2$，则该条件自动满足。\n\n如果一个数组在初始没有硬币的情况下，能够通过上述操作被转化为理想数组，则称它是*优美*的。如果数组已经是理想的，那么它也是优美的。\n\n给定的数组不一定优美，也不一定理想。你可以从中删除任意元素（包括删除整个数组，或者一个元素都不删除）。你的任务是计算为了使数组 $a$ 变得**优美**，最少需要删除多少个元素（可以为零）。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）—— 表示测试用例的组数。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 4 \\cdot 10^5$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$2 \\le a_i \\le 10^9$）。\n\n输入的额外约束：所有测试用例的 $n$ 之和不超过 $4 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 使数组 $a$ 变得**优美**所需要删除的最少元素个数（可以为零）。\n\n## 说明\n\n在第一个样例中，你不需要删除任何元素，因为该数组已经是优美的。它可以按如下方式转化为理想数组：$[5, 5, 5] \\rightarrow [4, 5, 5] \\rightarrow [4, 4, 5] \\rightarrow [4, 3, 5]$（最终你拥有 $3$ 枚硬币）。\n\n在第二个样例中，你需要删除 $2$ 个元素，使数组变得优美。如果保留元素 $[2, 3]$ 并删除其余元素，那么给定的数组已经是理想的（因此也是优美的）。\n\n在第三个样例中，你不需要删除任何元素，因为该数组已经是理想的（因此也是优美的）。\n\n在第四个样例中，该数组是优美的。它可以按如下方式转化为理想数组：$[2, 100, 2] \\rightarrow [2, 99, 2] \\rightarrow [2, 99, 3] \\rightarrow [2, 98, 3] \\rightarrow [2, 97, 3]$（最终你拥有 $2$ 枚硬币）。",
   "samples": [
     {
       "input": "5\n3\n5 5 5\n4\n2 3 2 4\n1\n3\n3\n2 100 2\n5\n2 4 2 11 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:48:35.398Z"
+  "fetchedAt": "2026-11-02T16:48:35.398Z",
+  "translatedAt": "2026-11-03T07:16:15.309+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

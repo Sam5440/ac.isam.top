@@ -4,7 +4,7 @@
   "contestId": 2104,
   "index": "B",
   "title": "Move to the End",
-  "titleZh": null,
+  "titleZh": "移到末尾",
   "url": "https://codeforces.com/contest/2104/problem/B",
   "difficulty": 1000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "You are given an array $a$ consisting of $n$ integers.\n\nFor every integer $k$ from $1$ to $n$, you have to do the following:\n\n1. choose an arbitrary element of $a$ and move it to the right end of the array (you can choose the last element, then the array won't change);\n2. print the sum of $k$ last elements of $a$;\n3. move the element you've chosen on the first step to its original position (restore the original array $a$).\n\nFor every $k$, you choose the element which you move so that the value you print is **the maximum possible**.\n\nCalculate the value you print for every $k$.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case consists of two lines:\n\n- the first line contains one integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$);\n- the second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$).\n\nAdditional constraint on the input: the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print $n$ integers. The $i$-th of these integers should be equal to the maximum value you can print if $k=i$.\n\n## Note\n\nLet's consider the first test case from the statement:\n\n- when $k = 1$, you can move the $6$-th element to the end, the array becomes $[13, 5, 10, 14, 8, 13, 15]$, and the value you print is $15$;\n- when $k = 2$, you can move the $6$-th element to the end, the array becomes $[13, 5, 10, 14, 8, 13, 15]$, and the value you print is $13 + 15 = 28$;\n- when $k = 3$, you can move the $4$-th element to the end, the array becomes $[13, 5, 10, 8, 15, 13, 14]$, and the value you print is $15 + 13 + 14 = 42$;\n- when $k = 4$, you can move the $5$-th element to the end, the array becomes $[13, 5, 10, 14, 15, 13, 8]$, and the value you print is $14 + 15 + 13 + 8 = 50$;\n- when $k = 5$, you can move the $1$-st element to the end, the array becomes $[5, 10, 14, 8, 15, 13, 13]$, and the value you print is $14 + 8 + 15 + 13 + 13 = 63$;\n- when $k = 6$, you can move the $1$-st element to the end, the array becomes $[5, 10, 14, 8, 15, 13, 13]$, and the value you print is $10 + 14 + 8 + 15 + 13 + 13 = 73$;\n- when $k = 7$, you can move the $6$-th element to the end, the array becomes $[13, 5, 10, 14, 8, 13, 15]$, and the value you print is $13 + 5 + 10 + 14 + 8 + 13 + 15 = 78$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个整数组成的数组 $a$。\n\n对于从 $1$ 到 $n$ 的每个整数 $k$，你需要依次进行以下操作：\n\n1. 选择 $a$ 中的任意一个元素，将它移到数组的右端（你可以选择最后一个元素，此时数组不变）；\n2. 输出 $a$ 的最后 $k$ 个元素之和；\n3. 将你在第一步中选择的元素移回它原来的位置（恢复原始数组 $a$）。\n\n对于每个 $k$，你都要选择所移动的元素，使得你输出的值**尽可能大**。\n\n请计算对于每个 $k$ 你输出的值。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）—— 表示测试用例的数量。\n\n每个测试用例由两行组成：\n\n- 第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）；\n- 第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n输入的附加约束：所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数。其中第 $i$ 个整数应当等于当 $k=i$ 时你能输出的最大值。\n\n## 说明\n\n让我们来看题面中的第一个测试用例：\n\n- 当 $k = 1$ 时，你可以将第 $6$ 个元素移到末尾，数组变为 $[13, 5, 10, 14, 8, 13, 15]$，你输出的值为 $15$；\n- 当 $k = 2$ 时，你可以将第 $6$ 个元素移到末尾，数组变为 $[13, 5, 10, 14, 8, 13, 15]$，你输出的值为 $13 + 15 = 28$；\n- 当 $k = 3$ 时，你可以将第 $4$ 个元素移到末尾，数组变为 $[13, 5, 10, 8, 15, 13, 14]$，你输出的值为 $15 + 13 + 14 = 42$；\n- 当 $k = 4$ 时，你可以将第 $5$ 个元素移到末尾，数组变为 $[13, 5, 10, 14, 15, 13, 8]$，你输出的值为 $14 + 15 + 13 + 8 = 50$；\n- 当 $k = 5$ 时，你可以将第 $1$ 个元素移到末尾，数组变为 $[5, 10, 14, 8, 15, 13, 13]$，你输出的值为 $14 + 8 + 15 + 13 + 13 = 63$；\n- 当 $k = 6$ 时，你可以将第 $1$ 个元素移到末尾，数组变为 $[5, 10, 14, 8, 15, 13, 13]$，你输出的值为 $10 + 14 + 8 + 15 + 13 + 13 = 73$；\n- 当 $k = 7$ 时，你可以将第 $6$ 个元素移到末尾，数组变为 $[13, 5, 10, 14, 8, 13, 15]$，你输出的值为 $13 + 5 + 10 + 14 + 8 + 13 + 15 = 78$。",
   "samples": [
     {
       "input": "4\n7\n13 5 10 14 8 15 13\n6\n1000000000 1000000000 1000000000 1000000000 1000000000 1000000000\n1\n42\n2\n7 5\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:48:35.394Z"
+  "fetchedAt": "2026-11-02T16:48:35.394Z",
+  "translatedAt": "2026-11-03T07:15:37.326+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

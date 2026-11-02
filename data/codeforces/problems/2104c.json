@@ -4,7 +4,7 @@
   "contestId": 2104,
   "index": "C",
   "title": "Card Game",
-  "titleZh": null,
+  "titleZh": "纸牌游戏",
   "url": "https://codeforces.com/contest/2104/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Alice and Bob are playing a game. They have $n$ cards numbered from $1$ to $n$. At the beginning of the game, some of these cards are given to Alice, and the rest are given to Bob.\n\nCard with number $i$ beats card with number $j$ if and only if $i \\gt j$, **with one exception**: card $1$ beats card $n$.\n\nThe game continues as long as each player has at least one card. During each turn, the following occurs:\n\n1. Alice chooses one of her cards and places it face up on the table;\n2. Bob, seeing Alice's card, chooses one of his cards and places it face up on the table;\n3. if Alice's card beats Bob's card, both cards are taken by Alice. Otherwise, both cards are taken by Bob.\n\nA player can use a card that they have taken during one of the previous turns.\n\nThe player who has no cards at the beginning of a turn loses. Determine who will win if both players play optimally.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 5000$) — the number of test cases.\n\nEach test case consists of two lines:\n\n- the first line contains a single integer $n$ ($2 \\le n \\le 50$) — the number of cards;\n- the second line contains $n$ characters, each either `A` or `B`. If the $i$-th character is `A`, then card number $i$ is initially given to Alice; otherwise, it is given to Bob.\n\nAdditional constraint on the input: in each test case, at least one card is initially given to Alice, and at least one card is initially given to Bob.\n\n## Output\n\nFor each test case, output `Alice` if Alice wins with optimal play, or `Bob` if Bob wins. It can be shown that if both players play optimally, the game will definitely end in a finite number of turns with one of the players winning.\n\n## Note\n\nIn the first test case, Alice has only one card, and Bob has only one card. Since Alice's card beats Bob's card, she wins after the first turn.\n\nIn the second test case, Alice has only one card, and Bob has only one card. Since Bob's card beats Alice's card, he wins after the first turn.\n\nIn the third test case, there are two possible game scenarios:\n\n- if Alice plays the card $1$ on the first turn, Bob can respond with the card $2$ and take both cards. Then, Alice has to play the card $3$ on the second turn, and Bob will respond by playing the card $4$. Then, he wins;\n- if Alice plays the card $3$ on the first turn, Bob can respond with the card $4$ and take both cards. Then, Alice has to play the card $1$, and Bob can respond either with the card $2$ or the card $3$. Then, he wins.\n\nIn the fourth test case, there are two possible game scenarios:\n\n- if Alice plays the card $2$ on the first turn, Bob can respond with the card $3$ and take both cards. Then, Alice has to play the card $4$ on the second turn, and Bob will respond by playing the card $1$. Then, he wins;\n- if Alice plays the card $4$ on the first turn, Bob can respond with the card $1$ and take both cards. Then, Alice has to play the card $2$, and Bob can respond either with the card $3$ or the card $4$. Then, he wins.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 正在玩游戏。他们有 $n$ 张卡片，编号从 $1$ 到 $n$。游戏开始时，其中一些卡片分给 Alice，其余的卡片分给 Bob。\n\n编号为 $i$ 的卡片当且仅当 $i \\gt j$ 时胜过编号为 $j$ 的卡片，**但有一个例外**：卡片 $1$ 胜过卡片 $n$。\n\n只要每名玩家都至少拥有一张卡片，游戏就会继续进行。每一回合中，会发生以下事情：\n\n1. Alice 选择她的一张卡片，正面朝上放在桌上；\n2. Bob 在看到 Alice 的卡片后，选择自己的一张卡片，正面朝上放在桌上；\n3. 如果 Alice 的卡片胜过 Bob 的卡片，则两张卡片都归 Alice 所有；否则，两张卡片都归 Bob 所有。\n\n玩家可以使用自己在之前某个回合中赢得的卡片。\n\n在某个回合开始时没有卡片的玩家将输掉游戏。请判断如果双方玩家都采取最优策略，谁会获胜。\n\n## 输入格式\n\n第一行包含一个整数 $t$ ($1 \\le t \\le 5000$) — 表示测试数据组数。\n\n每组测试数据由两行组成：\n\n- 第一行包含一个整数 $n$ ($2 \\le n \\le 50$) — 表示卡片数量；\n- 第二行包含 $n$ 个字符，每个字符要么是 `A`，要么是 `B`。如果第 $i$ 个字符是 `A`，则编号为 $i$ 的卡片初始时分给 Alice；否则分给 Bob。\n\n输入的附加约束：在每组测试数据中，初始时至少有一张卡片分给 Alice，且至少有一张卡片分给 Bob。\n\n## 输出格式\n\n对于每组测试数据，如果 Alice 在最优策略下获胜，输出 `Alice`；如果 Bob 获胜，输出 `Bob`。可以证明，如果双方玩家都采取最优策略，游戏必定会在有限回合内结束，且其中一名玩家获胜。\n\n## 说明\n\n在第一组测试数据中，Alice 只有一张卡片，Bob 也只有一张卡片。由于 Alice 的卡片胜过 Bob 的卡片，她在第一回合后就获胜了。\n\n在第二组测试数据中，Alice 只有一张卡片，Bob 也只有一张卡片。由于 Bob 的卡片胜过 Alice 的卡片，他在第一回合后就获胜了。\n\n在第三组测试数据中，存在两种可能的游戏过程：\n\n- 如果 Alice 在第一回合打出卡片 $1$，Bob 可以用卡片 $2$ 应对并拿走两张卡片。然后，Alice 在第二回合不得不打出卡片 $3$，而 Bob 会用卡片 $4$ 应对。这样，他就获胜了；\n- 如果 Alice 在第一回合打出卡片 $3$，Bob 可以用卡片 $4$ 应对并拿走两张卡片。然后，Alice 不得不打出卡片 $1$，而 Bob 可以用卡片 $2$ 或卡片 $3$ 应对。这样，他就获胜了。\n\n在第四组测试数据中，存在两种可能的游戏过程：\n\n- 如果 Alice 在第一回合打出卡片 $2$，Bob 可以用卡片 $3$ 应对并拿走两张卡片。然后，Alice 在第二回合不得不打出卡片 $4$，而 Bob 会用卡片 $1$ 应对。这样，他就获胜了；\n- 如果 Alice 在第一回合打出卡片 $4$，Bob 可以用卡片 $1$ 应对并拿走两张卡片。然后，Alice 不得不打出卡片 $2$，而 Bob 可以用卡片 $3$ 或卡片 $4$ 应对。这样，他就获胜了。",
   "samples": [
     {
       "input": "8\n2\nAB\n2\nBA\n4\nABAB\n4\nBABA\n3\nBAA\n5\nAAAAB\n5\nBAAAB\n6\nBBBAAA\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:48:35.395Z"
+  "fetchedAt": "2026-11-02T16:48:35.395Z",
+  "translatedAt": "2026-11-03T07:15:40.407+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2108,
   "index": "E",
   "title": "Spruce Dispute",
-  "titleZh": null,
+  "titleZh": "云杉之争",
   "url": "https://codeforces.com/contest/2108/problem/E",
   "difficulty": 2600,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "It's already a hot April outside, and Polycarp decided that this is the perfect time to finally take down the spruce tree he set up several years ago. As he spent several hours walking around it, gathering his strength, he noticed something curious: the spruce is actually a tree$^{\\text{∗}}$ — and not just any tree, but one consisting of an **odd** number of vertices $n$. Moreover, on $n-1$ of the vertices hang Christmas ornaments, painted in exactly $\\frac{n-1}{2}$ distinct colors, with exactly two ornaments painted in each color. The remaining vertex, as tradition dictates, holds the tree's topper.\n\nAt last, after several days of mental preparation, Polycarp began dismantling the spruce. First, he removed the topper and had already started taking apart some branches when suddenly a natural question struck him: how can he remove one of the tree's edges and rearrange the ornaments in such a way that the sum of the lengths of the simple paths between ornaments of the same color is as large as possible?\n\nIn this problem, removing an edge from the tree is defined as follows: choose a pair of adjacent vertices $a$ and $b$ ($a \\lt b$), then remove vertex $b$ from the tree and reattach all of $b$'s adjacent vertices (except for $a$) directly to $a$.\n\nPolycarp cannot continue dismantling his spruce until he gets an answer to this question. However, checking all possible options would take him several more years. Knowing your experience in competitive programming, he turned to you for help. But can you solve this dispute?\n\n$^{\\text{∗}}$A tree is a connected graph without cycles.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an **odd** number $n$ ($3 \\le n \\lt 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nThe following $n-1$ lines describe the tree, given by pairs of adjacent vertices $u$, $v$ ($1 \\le u, v \\le n, u \\neq v$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, you need to output two lines.\n\nIn the first line, output the pair of vertices $u$, $v$, the edge between which Polycarp is going to remove.\n\nIn the next line, output the array $c$ of $n$ numbers from $0$ to $\\frac{n-1}{2}$, where $c[i]$ — the positive color number assigned to vertex $i$. Note that $c[\\text{max}(u, v)]= 0$, since this vertex has been removed.\n\n## Note\n\nConsider the first test case.\n\nRemove the edge connecting vertices $1$ and $2$. After this, vertex $2$ will be removed from the tree, and vertices $3$ and $4$ will be connected to vertex $1$.\n\nColor vertices $3$ and $4$ with the first color, and vertices $1$ and $5$ with the second. The sum of the lengths of simple paths between ornaments of the same color is equal to $2 + 2 = 4$. It can be shown that this value is the largest possible.\n\n![image](https://espresso.codeforces.com/187d5439eac93442b727d84bea394613d3a21efe.png)\n\nIn the second and third examples, the maximum sum of path lengths will be $3$ and $9$, respectively.",
-  "statementZhMd": null,
+  "statementZhMd": "外面已经是炎热的四月，Polycarp 认为现在是时候把几年前立起来的那棵云杉终于拆下来了。他花了几个小时绕着树踱步、积蓄力量，其间注意到一件奇怪的事：这棵云杉其实是一棵树$^{\\text{∗}}$——而且不是普通的树，而是一棵由 **奇数** 个顶点 $n$ 组成的树。此外，其中 $n-1$ 个顶点上挂着圣诞装饰品，它们恰好被涂成 $\\frac{n-1}{2}$ 种不同的颜色，每种颜色恰好有两个装饰品。剩下的那个顶点按照传统放着树顶装饰物。\n\n终于，经过几天的心理准备，Polycarp 开始拆解这棵云杉。他先取下了树顶装饰物，刚开始拆卸一些树枝，一个自然而然的问题突然浮现在他脑海中：他要如何移除树的一条边并重新布置装饰品，使得同颜色装饰品之间的简单路径长度之和尽可能大？\n\n在本题中，从树中移除一条边的定义如下：选择一对相邻顶点 $a$ 和 $b$（$a \\lt b$），然后从树中删除顶点 $b$，并将 $b$ 的所有相邻顶点（$a$ 除外）直接重新连接到 $a$ 上。\n\n在得到这个问题的答案之前，Polycarp 无法继续拆解他的云杉。然而，检查所有可能的方案要花掉他好几年时间。知道你经验丰富的竞赛编程功底，他向你求助。你能解决这场争端吗？\n\n$^{\\text{∗}}$树是指不含环的连通图。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数目 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个 **奇数** $n$（$3 \\le n \\lt 2 \\cdot 10^5$）——树中顶点的数目。\n\n接下来的 $n-1$ 行描述这棵树，每行给出一对相邻顶点 $u$, $v$（$1 \\le u, v \\le n, u \\neq v$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，你需要输出两行。\n\n第一行输出顶点对 $u$, $v$，表示 Polycarp 将移除它们之间的边。\n\n下一行输出一个包含 $n$ 个数的数组 $c$，数的取值范围从 $0$ 到 $\\frac{n-1}{2}$，其中 $c[i]$ 为分配给顶点 $i$ 的颜色编号（为正数）。注意 $c[\\text{max}(u, v)]= 0$，因为该顶点已被删除。\n\n## 说明\n\n考虑第一个测试用例。\n\n移除连接顶点 $1$ 和 $2$ 的边。此后，顶点 $2$ 将从树中被删除，而顶点 $3$ 和 $4$ 将被连接到顶点 $1$。\n\n将顶点 $3$ 和 $4$ 涂成第一种颜色，将顶点 $1$ 和 $5$ 涂成第二种颜色。同颜色装饰品之间简单路径长度之和等于 $2 + 2 = 4$。可以证明这个值是可能的最大值。\n\n![image](https://espresso.codeforces.com/187d5439eac93442b727d84bea394613d3a21efe.png)\n\n在第二个和第三个样例中，路径长度之和的最大值分别为 $3$ 和 $9$。",
   "samples": [
     {
       "input": "3\n5\n1 2\n2 3\n2 4\n4 5\n5\n1 2\n1 3\n1 4\n1 5\n7\n1 5\n5 4\n4 3\n3 2\n2 6\n6 7\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:23:14.481Z"
+  "fetchedAt": "2026-10-30T21:23:14.481Z",
+  "translatedAt": "2026-11-03T07:15:06.826+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

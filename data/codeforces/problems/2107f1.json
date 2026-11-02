@@ -4,7 +4,7 @@
   "contestId": 2107,
   "index": "F1",
   "title": "Cycling (Easy Version)",
-  "titleZh": null,
+  "titleZh": "骑行（简单版本）",
   "url": "https://codeforces.com/contest/2107/problem/F1",
   "difficulty": 2300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, $1\\le n\\le 5\\cdot 10^3$ and you don't need to output the answer for each prefix. You can hack only if you solved all versions of this problem.**\n\nLeo works as a programmer in the city center, and his lover teaches at a high school in the suburbs. Every weekend, Leo would ride his bike to the suburbs to spend a nice weekend with his lover.\n\nThere are $n$ cyclists riding in front of Leo on this road right now. They are numbered $1$, $2$, $\\ldots$, $n$ from front to back. Initially, Leo is behind the $n$-th cyclist. The $i$-th cyclist has an agility value $a_i$.\n\nLeo wants to get ahead of the $1$-st cyclist. Leo can take the following actions as many times as he wants:\n\n- Assuming that the first person in front of Leo is cyclist $i$, he can go in front of cyclist $i$ for a cost of $a_i$. This puts him behind cyclist $i - 1$.\n- Using his super powers, swap $a_i$ and $a_j$ ($1\\le i \\lt j\\le n$) for a cost of $(j - i)$.\n\nLeo wants to know the minimum cost to get in front of the $1$-st cyclist. Here you only need to print the answer for the whole array, i.e. $[a_1, a_2, \\ldots, a_n]$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^3$). The description of the test cases follows.\n\nThe first line of each test case contains a positive integer $n$ ($1 \\leq n \\leq 5\\cdot 10^3$), representing the number of the cyclists.\n\nThe second line of each test case contains $n$ integers $a_1, \\ldots, a_n$ ($1 \\leq a_i \\leq 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5\\cdot 10^3$.\n\n## Output\n\nFor each test case, print one integer representing the minimum cost for Leo to go from behind the $n$-th cyclist to in front of the $1$-st cyclist.\n\n## Note\n\nIn the first test case, one possible way to move from the position behind the $n$-th cyclist to the position in front of the $1$-st cyclist is:\n\n- Leo swaps $a_2$ $(i=2)$ and $a_3$ $(j=3)$, then the array becomes $[1,4,2]$; it costs $j-i=3-2=1$.\n- Leo is behind the $3$-rd cyclist and moves behind the $2$-nd cyclist; it costs $a_3=2$.\n- Leo swaps $a_1$ $(i=1)$ and $a_2$ $(j=2)$, then the array becomes $[4,1,2]$; it costs $j-i=2-1=1$.\n- Leo is behind the $2$-nd cyclist and moves behind the $1$-st cyclist; it costs $a_2=1$.\n- Leo swaps $a_1$ $(i=1)$ and $a_2$ $(j=2)$, then the array becomes $[1,4,2]$; it costs $j-i=2-1=1$.\n- Leo moves ahead of the $1$-st cyclist; it costs $a_1=1$.\n\nSo the total cost is $1+2+1+1+1+1=7$. It can be proved that $7$ is the minimum cost.\n\nIn the second test case, to move ahead of the $1$-st cyclist from the position behind the $n$-th cyclist, Leo should not swap anyone's agility value. The total cost is $1+1+1+1=4$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。两个版本的区别在于：本版本中 $1\\le n\\le 5\\cdot 10^3$，且你不需要输出每个前缀的答案。只有当你通过了本题的所有版本后，你才可以 hack。**\n\nLeo 是一名在市中心工作的程序员，而他的爱人在郊区的一所高中教书。每个周末，Leo 都会骑上自行车前往郊区，与他的爱人共度一个愉快的周末。\n\n现在，这条路上有 $n$ 名骑行者骑在 Leo 的前方。他们从前到后编号为 $1$、$2$、$\\ldots$、$n$。初始时，Leo 位于第 $n$ 名骑行者的后面。第 $i$ 名骑行者有一个敏捷值 $a_i$。\n\nLeo 想要骑到第 $1$ 名骑行者的前面。Leo 可以按自己的意愿执行以下操作任意多次：\n\n- 假设 Leo 面前的第一个人是骑行者 $i$，他可以以 $a_i$ 的代价骑到骑行者 $i$ 的前面。此时他将位于骑行者 $i - 1$ 的后面。\n- 使用他的超能力交换 $a_i$ 和 $a_j$（$1\\le i \\lt j\\le n$），代价为 $(j - i)$。\n\nLeo 想知道他到达第 $1$ 名骑行者前面的最小代价。这里你只需要输出整个数组（即 $[a_1, a_2, \\ldots, a_n]$）的答案。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^3$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个正整数 $n$（$1 \\leq n \\leq 5\\cdot 10^3$），表示骑行者的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, \\ldots, a_n$（$1 \\leq a_i \\leq 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $5\\cdot 10^3$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示 Leo 从第 $n$ 名骑行者的后面移动到第 $1$ 名骑行者的前面所需的最小代价。\n\n## 说明\n\n在第一个测试用例中，一种从第 $n$ 名骑行者后面的位置移动到第 $1$ 名骑行者前面的位置的可行方式如下：\n\n- Leo 交换 $a_2$（$i=2$）和 $a_3$（$j=3$），此时数组变为 $[1,4,2]$；代价为 $j-i=3-2=1$。\n- Leo 位于第 $3$ 名骑行者的后面，他移动到第 $2$ 名骑行者的后面；代价为 $a_3=2$。\n- Leo 交换 $a_1$（$i=1$）和 $a_2$（$j=2$），此时数组变为 $[4,1,2]$；代价为 $j-i=2-1=1$。\n- Leo 位于第 $2$ 名骑行者的后面，他移动到第 $1$ 名骑行者的后面；代价为 $a_2=1$。\n- Leo 交换 $a_1$（$i=1$）和 $a_2$（$j=2$），此时数组变为 $[1,4,2]$；代价为 $j-i=2-1=1$。\n- Leo 移动到第 $1$ 名骑行者的前面；代价为 $a_1=1$。\n\n因此总代价为 $1+2+1+1+1+1=7$。可以证明 $7$ 是最小代价。\n\n在第二个测试用例中，要从第 $n$ 名骑行者后面的位置移动到第 $1$ 名骑行者的前面，Leo 不应该交换任何人的敏捷值。总代价为 $1+1+1+1=4$。",
   "samples": [
     {
       "input": "4\n3\n1 2 4\n4\n1 1 1 1\n2\n1 2\n4\n4 1 3 2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:23:26.529Z"
+  "fetchedAt": "2026-10-30T21:23:26.529Z",
+  "translatedAt": "2026-11-03T07:12:31.163+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
