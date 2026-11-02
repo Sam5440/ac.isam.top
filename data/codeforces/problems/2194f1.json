@@ -4,7 +4,7 @@
   "contestId": 2194,
   "index": "F1",
   "title": "Again Trees... (Easy Version)",
-  "titleZh": null,
+  "titleZh": "又是树……（简单版）",
   "url": "https://codeforces.com/contest/2194/problem/F1",
   "difficulty": 2300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 1024,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, $k \\leq 4$. You can hack only if you solved all versions of this problem.**\n\nGiven a tree consisting of $n$ vertices. Each vertex has a non-negative integer $a_v$ written on it. You are also given $k$ distinct non-negative integers $b_1, \\ldots, b_k$.\n\nWe will call a set of edges beautiful if, after removing these edges from the tree, the tree splits into connected components, where in each component the bitwise `XOR` of all the numbers $a_v$ in that component belongs to the set $b$.\n\nYou need to count the number of beautiful sets of edges in the tree modulo $10^9 + 7$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each dataset contains two integers $n$ and $k$ ($2 \\leq n \\leq 10^5$, $1 \\leq k \\leq 4$) — the number of vertices in the tree and the size of the set $b$.\n\nThe next $n - 1$ lines describe the edges of the tree. The $i$-th line contains two integers $v_i$ and $u_i$ ($1 \\leq v_i, u_i \\leq n$) — the numbers of the vertices connected by the $i$-th edge.\n\nThe next line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\leq a_i \\lt 2^{30}$) — the values written on the vertices.\n\nThe following line contains $k$ distinct integers $b_1, b_2, \\ldots, b_k$ ($0 \\leq b_i \\lt 2^{30}$) — the elements of the set $b$.\n\nIt is guaranteed that the sum of $n$ across all datasets does not exceed $10^5$.\n\n## Output\n\nFor each test dataset, output a single integer — the answer to the problem.\n\n## Note\n\nIllustration for the first test dataset. In it, you can remove the edge between vertices $1$ and $2$. Then the bitwise XOR in the component consisting of vertices $2$ and $5$ is $a_2 \\oplus a_5 = 2 \\oplus 3 = 1$. The bitwise XOR in the component with vertices $1$, $3$, and $4$ is $a_1 \\oplus a_3 \\oplus a_4 = 0 \\oplus 2 \\oplus 3 = 1$. The second beautiful set is the one consisting of the edge connecting vertices $1$ and $3$.\n\n![image](https://espresso.codeforces.com/2a2092f4086e1a411ce476deee506c62e3dec616.png)\n\nIn the third test dataset, the beautiful sets will be (an edge is denoted by the pair of vertices it connects) $[(1, 2)], [(1, 3)], [(2, 5)], [(3, 4)]$. Note that the first and third samples differ only in the set $b$.\n\nIn the fourth test dataset, the beautiful sets will be $[(1, 2)], [(3, 4)], [(1, 2), (2, 3), (3, 4)]$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。两个版本的区别在于，本版本中 $k \\leq 4$。只有当你通过了本题的所有版本后，才能进行 hack。**\n\n给定一棵由 $n$ 个顶点组成的树，每个顶点上写有一个非负整数 $a_v$。同时给定 $k$ 个互不相同的非负整数 $b_1, \\ldots, b_k$。\n\n我们称一个边集是美丽的，如果从树中移除这些边后，树分裂成若干个连通块，且每个连通块中所有数 $a_v$ 的按位异或（`XOR`）都属于集合 $b$。\n\n你需要统计树中美丽边集的数量，对 $10^9 + 7$ 取模。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 500$）。接下来是各测试用例的描述。\n\n每组数据的第一行包含两个整数 $n$ 和 $k$（$2 \\leq n \\leq 10^5$，$1 \\leq k \\leq 4$）——分别表示树的顶点数和集合 $b$ 的大小。\n\n接下来的 $n - 1$ 行描述树的各条边。第 $i$ 行包含两个整数 $v_i$ 和 $u_i$（$1 \\leq v_i, u_i \\leq n$）——表示第 $i$ 条边所连接的顶点编号。\n\n接下来一行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\lt 2^{30}$）——表示写在顶点上的值。\n\n随后一行包含 $k$ 个互不相同的整数 $b_1, b_2, \\ldots, b_k$（$0 \\leq b_i \\lt 2^{30}$）——表示集合 $b$ 的元素。\n\n保证所有数据中 $n$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数——即问题的答案。\n\n## 说明\n\n第一个测试数据的图示如下。在该图中，你可以移除顶点 $1$ 和 $2$ 之间的边，此时由顶点 $2$ 和 $5$ 组成的连通块中的按位异或为 $a_2 \\oplus a_5 = 2 \\oplus 3 = 1$；由顶点 $1$、$3$ 和 $4$ 组成的连通块中的按位异或为 $a_1 \\oplus a_3 \\oplus a_4 = 0 \\oplus 2 \\oplus 3 = 1$。第二个美丽边集是由连接顶点 $1$ 和 $3$ 的边构成的集合。\n\n![image](https://espresso.codeforces.com/2a2092f4086e1a411ce476deee506c62e3dec616.png)\n\n在第三个测试数据中，美丽边集为（一条边用其所连接的顶点对表示）$[(1, 2)], [(1, 3)], [(2, 5)], [(3, 4)]$。注意第一个样例和第三个样例仅在集合 $b$ 上不同。\n\n在第四个测试数据中，美丽边集为 $[(1, 2)], [(3, 4)], [(1, 2), (2, 3), (3, 4)]$。",
   "samples": [
     {
       "input": "4\n5 1\n1 2\n1 3\n3 4\n2 5\n0 2 2 3 3\n1\n5 1\n4 5\n1 2\n3 1\n3 5\n0 0 2 0 2\n0\n5 2\n1 2\n1 3\n3 4\n2 5\n0 2 2 3 3\n1 3\n4 1\n1 2\n2 3\n3 4\n1 1 1 1\n1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:03:59.333Z"
+  "fetchedAt": "2026-10-30T21:03:59.333Z",
+  "translatedAt": "2026-11-03T03:08:12.644+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

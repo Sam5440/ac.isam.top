@@ -4,7 +4,7 @@
   "contestId": 2187,
   "index": "G",
   "title": "Many Cartesian Trees",
-  "titleZh": null,
+  "titleZh": "多棵笛卡尔树",
   "url": "https://codeforces.com/contest/2187/problem/G",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Consider an array $a$ consisting of $n$ **distinct** integers. The *Cartesian Tree* of $a$ is defined as a **unique** binary tree$^{\\text{∗}}$ that satisfies the following conditions:\n\n- The tree consists of $n$ vertices labeled from $1$ to $n$;\n- For all pairs of vertices $(i,j)$ such that $i$ is a parent$^{\\text{†}}$ of $j$, $a_i \\gt a_j$;\n- For any vertex $i$, all vertices in the left subtree$^{\\text{‡}}$ of $i$ have labels less than $i$;\n- For any vertex $i$, all vertices in the right subtree of $i$ have labels greater than $i$.\n\nDenote $r(a)$ as the root of the Cartesian Tree, and $f_a(i)$ as the parent of $i$ in the Cartesian Tree.\n\nDefine $E_a=\\{(i,f_a(i)) \\mid 1 \\le i \\le n, i \\ne r(a)\\}$.\n\nConsider a permutation$^{\\text{§}}$ $q$ of length $n$. We define a series of arrays $p_1,p_2,\\ldots,p_n$ as follows:\n\n- $p_1=q$;\n- For each $2 \\le i \\le n$, $p_i$ is obtained by incrementing the minimum element in $p_{i-1}$ by $n$. It can be shown that all elements in $p_i$ are distinct.\n\nYou are now given $n$ and $S=\\bigcup\\limits_{i=1}^n E_{p_i}$. To minimize input, $S$ will be given in the form of a $n \\times n$ binary matrix $s$. Denote $s_{i,j}$ as the $j$-th character of the $i$-th row. $s_{i,j}=1$ if and only if $(i,j) \\in S$.\n\nPlease find any permutation $q$ such that $S$ can be obtained by the process above. It is guaranteed that the tests are generated to ensure a valid $q$ always exists.\n\n$^{\\text{∗}}$A binary tree is a rooted tree, in which each node has no more than $2$ children, referred to as the left child and the right child.$^{\\text{†}}$The parent of vertex $v$ is the first vertex on the simple path from $v$ to the root. The root has no parent. $^{\\text{‡}}$A subtree of vertex $v$ is the subgraph of $v$, all its descendants, and all the edges between them. $^{\\text{§}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test contains an integer $n$ ($2 \\le n \\le 3000$) — the length of $q$ that you need to find.\n\nThe $i$-th of the next $n$ lines contains a binary string of length $n$, representing the $i$-th row of $s$. It is guaranteed that $s_{i,i} = 0$ for all $1 \\le i \\le n$.\n\nIt is guaranteed that the tests are generated to ensure a valid $q$ always exists.\n\nIt is guaranteed that the sum of $n^2$ over all test cases does not exceed $9 \\cdot 10^6$.\n\n## Output\n\nFor each test case, output $n$ integers $q_1,q_2,\\ldots,q_n$, representing the permutation $q$ you found.\n\n## Note\n\n![image](https://espresso.codeforces.com/8ad4d6fd711325905b3f7b2f039672e3cbe337d0.png)",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一个由 $n$ 个**互不相同**的整数构成的数组 $a$。$a$ 的*笛卡尔树*定义为满足以下条件的**唯一**一棵二叉树$^{\\text{∗}}$：\n\n- 树由编号为 $1$ 到 $n$ 的 $n$ 个顶点组成；\n- 对于所有满足 $i$ 是 $j$ 的父亲$^{\\text{†}}$ 的顶点对 $(i,j)$，有 $a_i \\gt a_j$；\n- 对于任意顶点 $i$，其左子树$^{\\text{‡}}$ 中所有顶点的编号都小于 $i$；\n- 对于任意顶点 $i$，其右子树中所有顶点的编号都大于 $i$。\n\n记 $r(a)$ 为笛卡尔树的根，$f_a(i)$ 为 $i$ 在笛卡尔树中的父亲。\n\n定义 $E_a=\\{(i,f_a(i)) \\mid 1 \\le i \\le n, i \\ne r(a)\\}$。\n\n考虑一个长度为 $n$ 的排列$^{\\text{§}}$ $q$。我们按如下方式定义一组数组 $p_1,p_2,\\ldots,p_n$：\n\n- $p_1=q$；\n- 对于每个 $2 \\le i \\le n$，$p_i$ 是将 $p_{i-1}$ 中的最小元素增加 $n$ 后得到的数组。可以证明 $p_i$ 中的所有元素互不相同。\n\n现在给定 $n$ 和 $S=\\bigcup\\limits_{i=1}^n E_{p_i}$。为了减小输入规模，$S$ 将以 $n \\times n$ 的 01 矩阵 $s$ 的形式给出。记 $s_{i,j}$ 为第 $i$ 行的第 $j$ 个字符。$s_{i,j}=1$ 当且仅当 $(i,j) \\in S$。\n\n请找出任意一个排列 $q$，使得 $S$ 能由上述过程得到。保证测试数据经过生成，确保合法的 $q$ 总是存在。\n\n$^{\\text{∗}}$二叉树是一棵有根树，其中每个节点至多有 $2$ 个孩子，分别称为左孩子和右孩子。$^{\\text{†}}$顶点 $v$ 的父亲是从 $v$ 到根的简单路径上的第一个顶点。根没有父亲。$^{\\text{‡}}$顶点 $v$ 的子树是由 $v$、它的所有后代以及它们之间的所有边构成的子图。$^{\\text{§}}$长度为 $n$ 的排列是由 $n$ 个 $1$ 到 $n$ 的互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$n=3$ 但数组中出现了 $4$）。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 3000$）—— 你需要找出的 $q$ 的长度。\n\n接下来 $n$ 行中的第 $i$ 行包含一个长度为 $n$ 的 01 字符串，表示 $s$ 的第 $i$ 行。保证对于所有 $1 \\le i \\le n$ 有 $s_{i,i} = 0$。\n\n保证测试数据经过生成，确保合法的 $q$ 总是存在。\n\n保证所有测试用例的 $n^2$ 之和不超过 $9 \\cdot 10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数 $q_1,q_2,\\ldots,q_n$，表示你找到的排列 $q$。\n\n## 说明\n\n![image](https://espresso.codeforces.com/8ad4d6fd711325905b3f7b2f039672e3cbe337d0.png)",
   "samples": [
     {
       "input": "3\n2\n01\n10\n3\n011\n100\n010\n4\n0101\n0010\n1001\n0110\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:45.649Z"
+  "fetchedAt": "2026-10-30T21:04:45.649Z",
+  "translatedAt": "2026-11-03T03:12:24.701+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
