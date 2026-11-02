@@ -4,7 +4,7 @@
   "contestId": 2097,
   "index": "B",
   "title": "Baggage Claim",
-  "titleZh": null,
+  "titleZh": "行李提取",
   "url": "https://codeforces.com/contest/2097/problem/B",
   "difficulty": 2300,
   "tags": [
@@ -21,7 +21,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Every airport has a baggage claim area, and Balbesovo Airport is no exception. At some point, one of the administrators at Sheremetyevo came up with an unusual idea: to change the traditional shape of the baggage claim conveyor from a carousel to a more complex form.\n\nSuppose that the baggage claim area is represented as a rectangular grid of size $n \\times m$. The administration proposed that the path of the conveyor should pass through the cells $p_1, p_2, \\ldots, p_{2k+1}$, where $p_i = (x_i, y_i)$.\n\nFor each cell $p_i$ and the next cell $p_{i+1}$ (where $1 \\leq i \\leq 2k$), these cells must share a common side. Additionally, the path must be simple, meaning that for no pair of indices $i \\neq j$ should the cells $p_i$ and $p_j$ coincide.\n\nUnfortunately, the route plan was accidentally spoiled by spilled coffee, and only the cells with odd indices of the path were preserved: $p_1, p_3, p_5, \\ldots, p_{2k+1}$. Your task is to determine the number of ways to restore the original complete path $p_1, p_2, \\ldots, p_{2k+1}$ given these $k+1$ cells.\n\nSince the answer can be very large, output it modulo $10^9+7$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 3 \\cdot 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $m$, and $k$ ($1 \\le n, m \\le 1000$, $n \\cdot m \\ge 3$, $1 \\le k \\le \\left\\lfloor \\frac12 (n m - 1) \\right\\rfloor$) — the dimensions of the grid and a parameter defining the length of the path.\n\nNext, there are $k+1$ lines, the $i$-th of which contains two integers $x_{2i-1}$ and $y_{2i-1}$ ($1 \\le x_{2i-1} \\le n$, $1 \\le y_{2i-1} \\le m$) — the coordinates of the cell $p_{2i-1}$ that lies on the path.\n\nIt is guaranteed that all pairs $(x_{2i-1}, y_{2i-1})$ are distinct.\n\nIt is guaranteed that the sum $n \\cdot m$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output a single integer — the number of ways to restore the original complete path modulo $10^9+7$.\n\n## Note\n\nIn the first test case, there are two possible paths:\n\n- $(1,1) \\to (2,1) \\to (2, 2) \\to (2, 3) \\to (2, 4)$\n- $(1,1) \\to (1,2) \\to (2, 2) \\to (2, 3) \\to (2, 4)$\n\nIn the second test case, there is no suitable path, as the cells $(1,1)$ and $(1,4)$ do not have a common neighboring cell.",
-  "statementZhMd": null,
+  "statementZhMd": "每个机场都有一个行李提取区，Balbesovo 机场也不例外。某天，Sheremetyevo 的一位管理员想出了一个不同寻常的主意：把行李传送带从传统的环形转盘改成更复杂的形状。\n\n假设行李提取区是一个大小为 $n \\times m$ 的矩形网格。管理局提出，传送带的路径应当依次经过格子 $p_1, p_2, \\ldots, p_{2k+1}$，其中 $p_i = (x_i, y_i)$。\n\n对于每一对相邻的格子 $p_i$ 与 $p_{i+1}$（其中 $1 \\leq i \\leq 2k$），它们必须共享一条公共边。此外，路径必须是简单路径，也就是说，对于任意两个不同的下标 $i \\neq j$，格子 $p_i$ 与 $p_j$ 不得重合。\n\n不幸的是，路线图意外地被洒出的咖啡弄脏了，只有路径中下标为奇数的格子被保留了下来：$p_1, p_3, p_5, \\ldots, p_{2k+1}$。你的任务是：给定这 $k+1$ 个格子，求还原出原始完整路径 $p_1, p_2, \\ldots, p_{2k+1}$ 的方案数。\n\n由于答案可能非常大，请输出其对 $10^9+7$ 取模后的结果。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 3 \\cdot 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含三个整数 $n$、$m$ 和 $k$（$1 \\le n, m \\le 1000$，$n \\cdot m \\ge 3$，$1 \\le k \\le \\left\\lfloor \\frac12 (n m - 1) \\right\\rfloor$）——分别表示网格的尺寸，以及一个定义路径长度的参数。\n\n接下来有 $k+1$ 行，其中第 $i$ 行包含两个整数 $x_{2i-1}$ 和 $y_{2i-1}$（$1 \\le x_{2i-1} \\le n$，$1 \\le y_{2i-1} \\le m$）——表示位于路径上的格子 $p_{2i-1}$ 的坐标。\n\n保证所有数对 $(x_{2i-1}, y_{2i-1})$ 互不相同。\n\n保证所有测试用例的 $n \\cdot m$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——还原原始完整路径的方案数，对 $10^9+7$ 取模。\n\n## 说明\n\n在第一个测试用例中，有两条可能的路径：\n\n- $(1,1) \\to (2,1) \\to (2, 2) \\to (2, 3) \\to (2, 4)$\n- $(1,1) \\to (1,2) \\to (2, 2) \\to (2, 3) \\to (2, 4)$\n\n在第二个测试用例中，不存在合适的路径，因为格子 $(1,1)$ 与 $(1,4)$ 没有公共的相邻格子。",
   "samples": [
     {
       "input": "5\n2 4 2\n1 1\n2 2\n2 4\n1 4 1\n1 1\n1 4\n5 5 11\n2 5\n3 4\n4 5\n5 4\n4 3\n5 2\n4 1\n3 2\n2 1\n1 2\n2 3\n1 4\n3 4 4\n1 2\n2 1\n3 2\n2 3\n3 4\n3 3 2\n2 2\n1 1\n1 3\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:24:07.276Z"
+  "fetchedAt": "2026-10-30T21:24:07.276Z",
+  "translatedAt": "2026-11-03T07:17:35.596+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,14 +4,14 @@
   "contestId": 2098,
   "index": "F",
   "title": "Homework",
-  "titleZh": null,
+  "titleZh": "家庭作业",
   "url": "https://codeforces.com/contest/2098/problem/F",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Some teachers work at the educational center \"Sirius\" while simultaneously studying at the university. In this case, the trip does not exempt them from completing their homework, so they do their homework right on the plane. Artem is one of those teachers, and he was assigned the following homework at the university.\n\nWith an arbitrary string $a$ of **even** length $m$, he can perform the following operation. Artem splits the string $a$ into two halves $x$ and $y$ of equal length, after which he performs **exactly one** of three actions:\n\n- For each $i \\in \\left\\{ 1, 2, \\ldots, \\frac{m}{2}\\right\\}$ assign $x_i = (x_i + y_i) \\bmod 2$;\n- For each $i \\in \\left\\{ 1, 2, \\ldots, \\frac{m}{2}\\right\\}$ assign $y_i = (x_i + y_i) \\bmod 2$;\n- Perform an arbitrary number of operations (the same operations defined above, applied recursively) on the strings $x$ and $y$, independently of each other. Note that in this case, the strings $x$ and $y$ must be of even length.\n\nAfter that, the string $a$ is replaced by the strings $x$ and $y$, concatenated in the same order.\n\nUnfortunately, Artem fell asleep on the plane, so you will have to complete his homework. Artem has two binary strings $s$ and $t$ of length $n$, each consisting of $n$ characters `0` or `1`. Determine whether it is possible to make string $s$ equal to string $t$ with **an arbitrary** number of operations.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^5$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 10^6$) — the length of the strings $s$ and $t$.\n\nThe second line of each test case contains the string $s$ of length $n$, consisting only of characters `0` and `1`.\n\nThe third line of each test case contains the string $t$ of length $n$, consisting only of characters `0` and `1`.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output \"`Yes`\" (without quotes) if it is possible to make string $s$ equal to string $t$, and \"`No`\" otherwise.\n\nYou can output each letter in any case (lowercase or uppercase). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be accepted as a positive answer.\n\n## Note\n\nIn the first test case, the string `00001001` can be transformed into the string `10101001` in two operations. The sequence of actions is illustrated in the figure below:\n\n![image](https://espresso.codeforces.com/db22dab7fd76e815ff8fea8c2beaa45cc9e94441.png)\n\nIn the second test case, the string `00000000` cannot be transformed into any string other than `00000000`, as no non-zero elements can be formed during any operation.",
-  "statementZhMd": null,
+  "statementZhMd": "一些教师在“Sirius”教育中心任教的同时，还在大学里读书。这种情况下，出行并不能免除他们完成作业的义务，所以他们就在飞机上做作业。Artem 就是其中一位教师，大学给他布置了下面这份作业。\n\n对于任意一个长度 $m$ 为**偶数**的字符串 $a$，他可以执行以下操作。Artem 将字符串 $a$ 分成两个等长的部分 $x$ 和 $y$，随后**恰好**执行以下三种操作之一：\n\n- 对于每个 $i \\in \\left\\{ 1, 2, \\ldots, \\frac{m}{2}\\right\\}$，令 $x_i = (x_i + y_i) \\bmod 2$；\n- 对于每个 $i \\in \\left\\{ 1, 2, \\ldots, \\frac{m}{2}\\right\\}$，令 $y_i = (x_i + y_i) \\bmod 2$；\n- 对字符串 $x$ 和 $y$ 各自独立地执行任意数量的操作（即递归地应用上文定义的相同操作）。注意，此时字符串 $x$ 和 $y$ 的长度必须为偶数。\n\n之后，字符串 $a$ 被替换为字符串 $x$ 和 $y$ 按原顺序拼接得到的字符串。\n\n不巧的是，Artem 在飞机上睡着了，所以只能由你来替他完成这份作业。Artem 有两个长度为 $n$ 的二进制字符串 $s$ 和 $t$，每个都由 $n$ 个字符 `0` 或 `1` 组成。请判断是否可以通过**任意**数量的操作，使字符串 $s$ 变得与字符串 $t$ 相同。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$ ($1 \\le t \\le 10^5$)。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$ ($1 \\le n \\le 10^6$) —— 表示字符串 $s$ 和 $t$ 的长度。\n\n每个测试用例的第二行包含长度为 $n$ 的字符串 $s$，仅由字符 `0` 和 `1` 组成。\n\n每个测试用例的第三行包含长度为 $n$ 的字符串 $t$，仅由字符 `0` 和 `1` 组成。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，若能使字符串 $s$ 变得与字符串 $t$ 相同，则输出 \"`Yes`\"（不含引号）；否则输出 \"`No`\"。\n\n输出的每个字母可以任意大小写。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被视为肯定回答而通过。\n\n## 说明\n\n在第一个测试用例中，字符串 `00001001` 可以经过两次操作变为字符串 `10101001`。操作过程如下图所示：\n\n![image](https://espresso.codeforces.com/db22dab7fd76e815ff8fea8c2beaa45cc9e94441.png)\n\n在第二个测试用例中，字符串 `00000000` 无法变成除 `00000000` 之外的任何字符串，因为在任何操作中都无法产生非零元素。",
   "samples": [
     {
       "input": "3\n8\n00001001\n10101001\n8\n00000000\n00001001\n6\n010110\n100010\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:23:59.444Z"
+  "fetchedAt": "2026-10-30T21:23:59.444Z",
+  "translatedAt": "2026-11-03T07:19:44.789+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

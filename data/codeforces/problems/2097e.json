@@ -4,7 +4,7 @@
   "contestId": 2097,
   "index": "E",
   "title": "Clearing the Snowdrift",
-  "titleZh": null,
+  "titleZh": "清理雪堆",
   "url": "https://codeforces.com/contest/2097/problem/E",
   "difficulty": 3100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "Boy Vasya loves to travel very much. In particular, flying in airplanes brings him extraordinary pleasure. He was about to fly to another city, but the runway was heavily covered with snow and needed to be cleared.\n\nThe runway can be represented as $n$ consecutive sections numbered from $1$ to $n$. The snowstorm was quite strong, but it has already stopped, so Vasya managed to calculate that the $i$-th section is covered with $a_i$ meters of snow. For such situations, the airport has a snowplow that works in a rather unusual way. In one minute, the snowplow can do the following:\n\n- Choose a consecutive segment of length no more than $d$ and remove one meter of snow from the most snow-covered sections.Formally, one can choose $1 \\le l \\le r \\le n$ ($r - l + 1 \\le d$). After that, $c = \\max \\{ a_l, a_{l + 1}, \\ldots , a_r \\}$ is calculated, and if $c \\gt 0$, then for all $i \\colon l \\le i \\le r$ such that $a_i = c$, the value of $a_i$ is decreased by one.\n\nVasya has been preparing for the flight for a long time and wants to understand how much time he has left to wait until all sections are completely cleared of snow. In other words, it is required to calculate the minimum number of minutes that the snowplow will need to achieve $a_i = 0$ for all $i$ from $1$ to $n$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 2 \\cdot 10^5$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $d$ ($1 \\le n \\le 5 \\cdot 10^5, 1 \\le d \\le n$) — the number of sections on the runway and the maximum length of the segment that the snowplow can choose.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$), where $a_i$ is the number of meters of snow on the $i$-th section.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum number of minutes required for the snowplow to achieve $a_i = 0$ for all $i$ from $1$ to $n$.\n\n## Note\n\nIn the first test case, there is an optimal sequence of operations. First, select the segment $[2, 3]$ four times. After three operations, $a_2$ will turn into $2$, and the array $a$ will look like $[1, 2, 2, 1, 2]$. After the fourth operation, the array $a$ will become $[1, 1, 1, 1, 2]$. Next, the array can be transformed into zeros by selecting the segments $[1, 2]$, $[3, 3]$, $[5, 5]$, and $[4, 5]$ (in that exact order).\n\nIn the second test case, $d = 1$, which means that each section is cleared independently of the others, and the answer is equal to the sum of all $a_i$.",
-  "statementZhMd": null,
+  "statementZhMd": "小男孩 Vasya 非常喜欢旅行，尤其是乘飞机出行，这给他带来了无比的快乐。他正准备飞往另一座城市，但跑道上覆盖了厚厚的积雪，需要清理。\n\n跑道可以看作 $n$ 个连续的区段，编号从 $1$ 到 $n$。暴风雪相当猛烈，但现在已经停了，因此 Vasya 得以算出第 $i$ 个区段上覆盖着 $a_i$ 米厚的雪。针对这种情况，机场配备了一台工作方式相当不寻常的扫雪机。在一分钟内，扫雪机可以执行如下操作：\n\n- 选择一个长度不超过 $d$ 的连续区段，并从其中积雪最多的区段上移除一米的雪。形式化地说，可以选择 $1 \\le l \\le r \\le n$（$r - l + 1 \\le d$）。之后计算 $c = \\max \\{ a_l, a_{l + 1}, \\ldots , a_r \\}$，若 $c \\gt 0$，则对所有满足 $l \\le i \\le r$ 且 $a_i = c$ 的 $i$，将 $a_i$ 的值减一。\n\nVasya 为这次飞行已经准备了很久，他想知道还要等多久才能把所有区段上的雪彻底清理干净。换句话说，需要计算扫雪机使得从 $1$ 到 $n$ 的所有 $i$ 都满足 $a_i = 0$ 所需的最少分钟数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 2 \\cdot 10^5$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $d$（$1 \\le n \\le 5 \\cdot 10^5, 1 \\le d \\le n$）——分别表示跑道上的区段数以及扫雪机可选择的区段的最大长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$），其中 $a_i$ 表示第 $i$ 个区段上积雪的米数。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——扫雪机使得从 $1$ 到 $n$ 的所有 $i$ 都满足 $a_i = 0$ 所需的最少分钟数。\n\n## 说明\n\n在第一个测试用例中，存在如下最优操作序列。首先，选择区段 $[2, 3]$ 四次。三次操作后，$a_2$ 将变为 $2$，数组 $a$ 变为 $[1, 2, 2, 1, 2]$。第四次操作后，数组 $a$ 变为 $[1, 1, 1, 1, 2]$。接下来，依次选择区段 $[1, 2]$、$[3, 3]$、$[5, 5]$ 和 $[4, 5]$（严格按此顺序），即可将数组全部变为零。\n\n在第二个测试用例中，$d = 1$，这意味着每个区段都独立于其他区段被清理，答案等于所有 $a_i$ 之和。",
   "samples": [
     {
       "input": "2\n5 2\n1 5 2 1 2\n3 1\n1000000000 1000000000 1000000000\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:24:07.276Z"
+  "fetchedAt": "2026-10-30T21:24:07.276Z",
+  "translatedAt": "2026-11-03T07:18:01.848+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
