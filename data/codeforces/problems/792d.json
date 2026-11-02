@@ -1,0 +1,27 @@
+{
+  "id": "792D",
+  "platform": "codeforces",
+  "contestId": 792,
+  "index": "D",
+  "title": "Paths in a Complete Binary Tree",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/792/problem/D",
+  "difficulty": 1900,
+  "tags": [
+    "bitmasks",
+    "trees"
+  ],
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "$*T*$ is a complete binary tree consisting of $*n*$ vertices. It means that exactly one vertex is a root, and each vertex is either a leaf (and doesn't have children) or an inner node (and has exactly two children). All leaves of a complete binary tree have the same depth (distance from the root). So $*n*$ is a number such that $*n* + 1$ is a power of $2$.\n\nIn the picture you can see a complete binary tree with $*n* = 15$.\n\n![image](https://espresso.codeforces.com/7cf45e9d9e44d8d0a3972224b62a35dd86b5f1b3.png)\n\nVertices are numbered from $1$ to $*n*$ in a special recursive way: we recursively assign numbers to all vertices from the left subtree (if current vertex is not a leaf), then assign a number to the current vertex, and then recursively assign numbers to all vertices from the right subtree (if it exists). In the picture vertices are numbered exactly using this algorithm. It is clear that for each size of a complete binary tree exists exactly one way to give numbers to all vertices. This way of numbering is called *symmetric*.\n\nYou have to write a program that for given $*n*$ answers $*q*$ queries to the tree.\n\nEach query consists of an integer number $*u*_{*i*}$ ($1 ≤ *u*_{*i*} ≤ *n*$) and a string $*s*_{*i*}$, where $*u*_{*i*}$ is the number of vertex, and $*s*_{*i*}$ represents the path starting from this vertex. String $*s*_{*i*}$ doesn't contain any characters other than '`L`', '`R`' and '`U`', which mean traverse to the left child, to the right child and to the parent, respectively. Characters from $*s*_{*i*}$ have to be processed from left to right, considering that $*u*_{*i*}$ is the vertex where the path starts. If it's impossible to process a character (for example, to go to the left child of a leaf), then you have to skip it. The answer is the number of vertex where the path represented by $*s*_{*i*}$ ends.\n\nFor example, if $*u*_{*i*} = 4$ and $*s*_{*i*} =$«`UURL`», then the answer is $10$.\n\n## Input\n\nThe first line contains two integer numbers $*n*$ and $*q*$ ($1 ≤ *n* ≤ 10^{18}$, $*q* ≥ 1$). $*n*$ is such that $*n* + 1$ is a power of $2$.\n\nThe next $2*q*$ lines represent queries; each query consists of two consecutive lines. The first of these two lines contains $*u*_{*i*}$ ($1 ≤ *u*_{*i*} ≤ *n*$), the second contains non-empty string $*s*_{*i*}$. $*s*_{*i*}$ doesn't contain any characters other than '`L`', '`R`' and '`U`'.\n\nIt is guaranteed that the sum of lengths of $*s*_{*i*}$ (for each $*i*$ such that $1 ≤ *i* ≤ *q*$) doesn't exceed $10^{5}$.\n\n## Output\n\nPrint $*q*$ numbers, $*i*$-th number must be the answer to the $*i*$-th query.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "15 2\n4\nUURL\n8\nLRLLLLLLLL\n",
+      "output": "10\n5\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T19:50:59.592Z"
+}
