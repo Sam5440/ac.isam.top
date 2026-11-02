@@ -4,7 +4,7 @@
   "contestId": 2092,
   "index": "E",
   "title": "She knows...",
-  "titleZh": null,
+  "titleZh": "她知道……",
   "url": "https://codeforces.com/contest/2092/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "D. Pippy is preparing for a \"black-and-white\" party at his home. He only needs to repaint the floor in his basement, which can be represented as a board of size $n \\times m$.\n\nAfter the last party, the entire board is painted green, except for some $k$ cells $(x_1, y_1), (x_2, y_2), \\ldots, (x_k, y_k)$, each of which is painted either white or black. For the upcoming party, D. Pippy wants to paint **each** of the remaining green cells either black or white. At the same time, he wants the number of pairs of adjacent cells with different colors on the board to be even after repainting.\n\nFormally, if $$A = \\left\\{((i_1, j_1), (i_2, j_2)) \\ | \\ 1 \\le i_1, i_2 \\le n, 1 \\le j_1, j_2 \\le m, i_1+j_1 \\lt i_2+j_2, |i_1-i_2|+|j_1-j_2| = 1, \\operatorname{color}(i_1, j_1) \\neq \\operatorname{color}(i_2, j_2) \\right\\},$$ where $\\operatorname{color}(x, y)$ denotes the color of the cell $(x, y)$, then it is required that $|A|$ be even.\n\nHelp D. Pippy find the number of ways to repaint the floor so that the condition is satisfied. Since this number can be large, output the remainder of its division by $10^9 + 7$.\n\n## Input\n\nEach test consists of several test cases. The first line of the input data contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains three integers $n, m, k$ ($3 \\le n, m \\le 10^9$; $1 \\le k \\le 2 \\cdot 10^5$) — the dimensions of the board and the number of cells that are initially not green.\n\nIn the $i$-th of the following $k$ lines of each test case, there are three integers $x_i, y_i$ and $c_i$ ($1 \\le x_i \\le n; 1 \\le y_i \\le m$; $c_i \\in \\{0, 1\\}$) — the coordinates of the cell and its color (if white, then $c_i = 0$; if black, then $c_i = 1$). It is guaranteed that all cells are distinct.\n\nIt is guaranteed that the sum of $k$ across all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the answer modulo $10^9 + 7$.\n\n## Note\n\nIn the first test case, there are exactly $4$ ways to paint the green cells $(2, 1), (2, 2), (2, 3)$, namely: $(1, 1, 0), (0, 0, 1), (1, 0, 0), (0, 1, 1)$ (the colors are indicated in the same order as the cells), as shown below.\n\n![image](https://espresso.codeforces.com/675afbf168b04d13cafb66dda4b563200ddc256d.png) Example 1.\n\nIn the second test case, all cells of the board are already painted, and the number of pairs of adjacent cells with different colors on the board is odd, so the answer is zero.",
-  "statementZhMd": null,
+  "statementZhMd": "D. Pippy 正在为他在家中举办的一场“黑白”派对做准备。他只需要重新粉刷地下室的地板，地板可以表示为一块大小为 $n \\times m$ 的棋盘。\n\n在上次派对结束后，整块棋盘都被涂成了绿色，只有 $k$ 个格子 $(x_1, y_1), (x_2, y_2), \\ldots, (x_k, y_k)$ 除外，其中每个格子都被涂成了白色或黑色。为了即将到来的派对，D. Pippy 想把**每个**剩余的绿色格子涂成黑色或白色。同时，他希望重新粉刷之后，棋盘上颜色不同的相邻格子对的数量为偶数。\n\n形式化地，如果 $$A = \\left\\{((i_1, j_1), (i_2, j_2)) \\ | \\ 1 \\le i_1, i_2 \\le n, 1 \\le j_1, j_2 \\le m, i_1+j_1 \\lt i_2+j_2, |i_1-i_2|+|j_1-j_2| = 1, \\operatorname{color}(i_1, j_1) \\neq \\operatorname{color}(i_2, j_2) \\right\\},$$ 其中 $\\operatorname{color}(x, y)$ 表示格子 $(x, y)$ 的颜色，那么要求 $|A|$ 为偶数。\n\n请帮助 D. Pippy 求出满足条件的重新粉刷地板的方案数。由于这个数可能很大，请输出它除以 $10^9 + 7$ 的余数。\n\n## 输入格式\n\n每个测试由多组测试数据组成。输入数据的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试数据的组数。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含三个整数 $n, m, k$（$3 \\le n, m \\le 10^9$；$1 \\le k \\le 2 \\cdot 10^5$）——棋盘的尺寸以及最初不是绿色的格子数量。\n\n每组测试数据的接下来 $k$ 行中的第 $i$ 行包含三个整数 $x_i, y_i$ 和 $c_i$（$1 \\le x_i \\le n; 1 \\le y_i \\le m$；$c_i \\in \\{0, 1\\}$）——格子的坐标及其颜色（如果是白色，则 $c_i = 0$；如果是黑色，则 $c_i = 1$）。保证所有格子互不相同。\n\n保证所有测试数据的 $k$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数——答案对 $10^9 + 7$ 取模的结果。\n\n## 说明\n\n在第一组测试数据中，给绿色格子 $(2, 1), (2, 2), (2, 3)$ 涂色恰好有 $4$ 种方案，分别是：$(1, 1, 0), (0, 0, 1), (1, 0, 0), (0, 1, 1)$（颜色按照与格子相同的顺序给出），如下图所示。\n\n![image](https://espresso.codeforces.com/675afbf168b04d13cafb66dda4b563200ddc256d.png) 样例 1。\n\n在第二组测试数据中，棋盘上的所有格子都已经涂好了颜色，且棋盘上颜色不同的相邻格子对的数量为奇数，因此答案为零。",
   "samples": [
     {
       "input": "2\n3 3 6\n1 1 0\n1 2 1\n1 3 0\n3 1 1\n3 2 0\n3 3 1\n3 4 12\n1 1 0\n1 2 1\n1 3 0\n1 4 1\n2 1 1\n2 2 0\n2 3 1\n2 4 0\n3 1 0\n3 2 1\n3 3 0\n3 4 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:30:23.669Z"
+  "fetchedAt": "2026-10-30T21:30:23.669Z",
+  "translatedAt": "2026-11-03T07:43:05.306+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

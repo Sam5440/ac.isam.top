@@ -4,7 +4,7 @@
   "contestId": 2086,
   "index": "B",
   "title": "Large Array and Segments",
-  "titleZh": null,
+  "titleZh": "大数组与区间",
   "url": "https://codeforces.com/contest/2086/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "There is an array $a$ consisting of $n$ **positive** integers, and a positive integer $k$. An array $b$ is created from array $a$ according to the following rules:\n\n- $b$ contains $n \\cdot k$ numbers;\n- the first $n$ numbers of array $b$ are the same as the numbers of array $a$, that is, $b_{i} = a_{i}$ for $i \\le n$;\n- for any $i \\gt n$, it holds that $b_{i} = b_{i - n}$.\n\nFor example, if $a = [2, 3, 1, 4]$ and $k = 3$, then $b = [2, 3, 1, 4, 2, 3, 1, 4, 2, 3, 1, 4]$.\n\nGiven a number $x$, it is required to count the number of such positions $l$ ($1 \\le l \\le n \\cdot k$), for which there exists a position $r \\ge l$, such that the sum of the elements of array $b$ on the segment $[l, r]$ is **at least** $x$ (in other words, $b_{l} + b_{l+1} + \\dots + b_{r} \\ge x$).\n\n## Input\n\nEach test consists of several test cases. The first line contains one integer $t$ ($1 \\le t \\le 10^{4}$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $k$, $x$ ($1 \\le n, k \\le 10^{5}$; $1 \\le x \\le 10^{18}$).\n\nThe second line of each test case contains $n$ integers $a_{i}$ ($1 \\le a_{i} \\le 10^{8}$).\n\nAdditional constraints on the input:\n\n- the sum of $n$ across all test cases does not exceed $2 \\cdot 10^{5}$;\n- the sum of $k$ across all test cases does not exceed $2 \\cdot 10^{5}$.\n\n## Output\n\nFor each test case, output one integer — the number of suitable positions $l$ in the array $b$.\n\n## Note\n\nIn the first test case, the array $b$ looks like this:\n\n$$[3, 4, 2, 1, 5, 3, 4, 2, 1, 5, 3, 4, 2, 1, 5]$$\n\nThere are $12$ positions $l$ for which there exists a suitable position $r$. Here are some (not all) of them:\n\n- $l = 1$, for which there is a position $r = 6$, the sum over the segment $[1, 6]$ equals $18$;\n- $l = 2$, for which there is a position $r = 5$, the sum over the segment $[2, 5]$ equals $12$;\n- $l = 6$, for which there is a position $r = 9$, the sum over the segment $[6, 9]$ equals $10$.",
-  "statementZhMd": null,
+  "statementZhMd": "有一个由 $n$ 个**正**整数组成的数组 $a$，以及一个正整数 $k$。数组 $b$ 根据以下规则由数组 $a$ 生成：\n\n- $b$ 包含 $n \\cdot k$ 个数；\n- 数组 $b$ 的前 $n$ 个数与数组 $a$ 中的数相同，即当 $i \\le n$ 时，$b_{i} = a_{i}$；\n- 对于任意 $i \\gt n$，都有 $b_{i} = b_{i - n}$。\n\n例如，若 $a = [2, 3, 1, 4]$ 且 $k = 3$，则 $b = [2, 3, 1, 4, 2, 3, 1, 4, 2, 3, 1, 4]$。\n\n给定一个数 $x$，要求统计满足条件的位置 $l$（$1 \\le l \\le n \\cdot k$）的个数：存在一个位置 $r \\ge l$，使得数组 $b$ 在区间 $[l, r]$ 上元素之和**至少**为 $x$（换句话说，$b_{l} + b_{l+1} + \\dots + b_{r} \\ge x$）。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^{4}$）——表示测试用例的数量。接下来是各组测试用例的描述。\n\n每个测试用例的第一行包含三个整数 $n$、$k$、$x$（$1 \\le n, k \\le 10^{5}$；$1 \\le x \\le 10^{18}$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_{i}$（$1 \\le a_{i} \\le 10^{8}$）。\n\n输入的附加限制：\n\n- 所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^{5}$；\n- 所有测试用例的 $k$ 之和不超过 $2 \\cdot 10^{5}$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——数组 $b$ 中满足条件的位置 $l$ 的数量。\n\n## 说明\n\n在第一个测试用例中，数组 $b$ 如下所示：\n\n$$[3, 4, 2, 1, 5, 3, 4, 2, 1, 5, 3, 4, 2, 1, 5]$$\n\n共有 $12$ 个位置 $l$ 满足存在合适的位置 $r$。下面列出其中一些（并非全部）：\n\n- $l = 1$，对应存在位置 $r = 6$，区间 $[1, 6]$ 上的和等于 $18$；\n- $l = 2$，对应存在位置 $r = 5$，区间 $[2, 5]$ 上的和等于 $12$；\n- $l = 6$，对应存在位置 $r = 9$，区间 $[6, 9]$ 上的和等于 $10$。",
   "samples": [
     {
       "input": "7\n5 3 10\n3 4 2 1 5\n15 97623 1300111\n105 95 108 111 118 101 95 118 97 108 111 114 97 110 116\n1 100000 1234567891011\n1\n1 1 1\n1\n1 1 1\n2\n2 1 2\n1 1\n2 1 5\n2 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:53:19.251Z"
+  "fetchedAt": "2026-11-02T16:53:19.251Z",
+  "translatedAt": "2026-11-03T07:39:10.086+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
