@@ -4,7 +4,7 @@
   "contestId": 2190,
   "index": "A",
   "title": "Sorting Game",
-  "titleZh": null,
+  "titleZh": "排序游戏",
   "url": "https://codeforces.com/contest/2190/problem/A",
   "difficulty": 1200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob play a game on a binary string $s$ of length $n$ (a string consisting only of characters $\\mathtt{0}$ and $\\mathtt{1}$). Alice moves first, and the players take alternate turns.\n\nIn one turn, a player chooses a sequence of indices $i_1, i_2, \\ldots, i_m$ ($1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_m \\le n$) such that the characters at these positions form a **non-increasing** sequence (that is, $s_{i_1} \\ge s_{i_2} \\ge \\ldots \\ge s_{i_m}$). The player then rearranges the characters at these positions to be sorted in **non-decreasing** order.\n\nFormally, let the chosen characters consist of $z$ zeros and $o$ ones (where $z + o = m$). The move replaces the characters at positions $i_1, i_2, \\ldots, i_m$ with a sequence of $z$ zeros followed by $o$ ones. A move is valid if and only if it strictly **modifies** the string $s$ (which implies $z \\ge 1$ and $o \\ge 1$).\n\nThe player who cannot make a valid move loses.\n\nAssuming both players play optimally, determine the winner. If Alice wins, output a valid first move that is part of a winning strategy.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case consists of a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the string $s$.\n\nThe second line of each test case contains a binary string $s$ of length $n$ consisting of only characters $\\mathtt{0}$ and $\\mathtt{1}$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output one or three lines:\n\n- If Bob wins with optimal play, print a single line containing \"`Bob`\".\n- Otherwise, print three lines. On the first line print \"`Alice`\". On the second line print an integer $m$ ($2 \\le m \\le n$), and on the third line print $m$ distinct integers $i_1, i_2, \\ldots, i_m$ ($1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_m \\le n$) — the indices chosen for Alice's first move.\n\nThe sequence of indices you print must form a valid move according to the rules described in the statement. The indices must be printed in **increasing order**. If there are multiple winning moves, you may output any of them.\n\n## Note\n\nIn the first example, there is no way to make a move after which $s$ will change, so Bob wins immediately.\n\nIn the third example, Alice can choose a subsequence $[1, 2]$ and sort it, after which $s$ will turn into $\\mathtt{011}$. After that, Bob can't make a move, so Alice wins.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 在一个长度为 $n$ 的二进制字符串 $s$（仅由字符 $\\mathtt{0}$ 和 $\\mathtt{1}$ 组成的字符串）上玩一场游戏。Alice 先手，双方轮流行动。\n\n在一次行动中，玩家选择一列下标 $i_1, i_2, \\ldots, i_m$（$1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_m \\le n$），使得这些位置上的字符构成一个**不升**序列（即 $s_{i_1} \\ge s_{i_2} \\ge \\ldots \\ge s_{i_m}$）。然后该玩家将这些位置上的字符重新排列，使其按**不降**顺序排列。\n\n形式化地说，设所选的字符由 $z$ 个 0 和 $o$ 个 1 组成（其中 $z + o = m$）。这次操作会把位置 $i_1, i_2, \\ldots, i_m$ 上的字符替换为 $z$ 个 0 后接 $o$ 个 1。当且仅当该操作严格**改变**字符串 $s$ 时，它才是合法的（这意味着 $z \\ge 1$ 且 $o \\ge 1$）。\n\n无法进行合法操作的一方落败。\n\n假设双方都采取最优策略，请判定获胜者。如果 Alice 获胜，请输出一个属于必胜策略的合法第一步操作。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）—— 表示字符串 $s$ 的长度。\n\n每个测试用例的第二行包含一个长度为 $n$、仅由字符 $\\mathtt{0}$ 和 $\\mathtt{1}$ 组成的二进制字符串 $s$。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一行或三行：\n\n- 如果双方都采取最优策略时 Bob 获胜，输出单行 `Bob`。\n- 否则，输出三行。第一行输出 `Alice`；第二行输出一个整数 $m$（$2 \\le m \\le n$）；第三行输出 $m$ 个互不相同的整数 $i_1, i_2, \\ldots, i_m$（$1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_m \\le n$）—— 即 Alice 第一步操作所选的下标。\n\n你输出的下标序列必须按照题面所述规则构成一次合法操作。下标必须按**升序**输出。如果存在多个必胜的第一步操作，你可以输出其中任意一个。\n\n## 说明\n\n在第一个样例中，不存在任何能使 $s$ 发生改变的操作方式，因此 Bob 直接获胜。\n\n在第三个样例中，Alice 可以选择子序列 $[1, 2]$ 并将其排序，此后 $s$ 将变为 $\\mathtt{011}$。此时 Bob 无法进行任何操作，因此 Alice 获胜。",
   "samples": [
     {
       "input": "3\n3\n000\n2\n10\n3\n101\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:22.982Z"
+  "fetchedAt": "2026-10-30T21:04:22.982Z",
+  "translatedAt": "2026-11-03T03:22:10.509+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

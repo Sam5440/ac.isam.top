@@ -4,7 +4,7 @@
   "contestId": 2185,
   "index": "G",
   "title": "Mixing MEXes",
-  "titleZh": null,
+  "titleZh": "混合 MEX",
   "url": "https://codeforces.com/contest/2185/problem/G",
   "difficulty": 1800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given $n$ **arrays** $a_1, a_2, \\ldots, a_n$.\n\nThe following operation is performed exactly once:\n\n- Choose any array among $a_1, a_2, \\ldots, a_n$. Suppose you've chosen array $a_i$ ($1 \\leq i \\leq n$).\n- Choose any element in array $a_i$. Suppose you've chosen the $j$-th element of $a_i$, denoted by $a_{i,j}$ ($1 \\leq j \\leq |a_i|$, where $|a_i|$ denotes the length of array $a_i$).\n- Choose any other array among $a_1, a_2, \\ldots a_n$ **that is not $a_i$**. Suppose you've chosen $a_k$ ($1 \\leq k \\leq n, k \\neq i$).\n- Add $a_{i,j}$ to the back of array $a_k$. Then, remove $a_{i,j}$ from $a_i$.\n- The value of this operation $(i,j,k)$ is defined as the sum of each array's $\\operatorname{MEX}$ after the operation is performed. More formally, the value of an operation after the operation is performed is $\\sum_{i=1} ^{n} \\operatorname{MEX}(a_i)$.\n\nEvaluate the sum of the values of all possible distinct independent operations. Two operations are distinct if the ordered triple of integers $(i,j,k)$ is different.\n\n$\\operatorname{MEX}(a)$ is defined as the smallest non-negative integer that is not present in the array. For example, $\\operatorname{MEX}([1, 2, 0, 5])$ is $3$, and $\\operatorname{MEX}([1, 2, 4, 9])$ is $0$.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of arrays.\n\nThe next $n$ lines start with $l_i$ ($1 \\le l_i \\le 10^5$) — the length of the $i$th array — then contain $l_i$ integers $a_1, a_2, \\ldots, a_{l_i}$ ($0 \\le a_{i_j} \\le 10^6$) — the array $a_i$.\n\nIt is guaranteed that the sum of $l_i$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the sum of the values of all possible distinct operations.\n\n## Note\n\nFor the first test case, we have 3 possible distinct operations:\n\n- $i = 1, j = 1, k = 2$: The arrays are now [] and [$0, 1, 2$], which have a $\\operatorname{mex}$ of $0$ and $3$ respectively, so the value of the operation is $3$.\n- $i = 2, j = 1, k = 1$: The arrays are now [$0, 1$] and [$2$], which have a $\\operatorname{mex}$ of $2$ and $0$ respectively, so the value of the operation is $2$.\n- $i = 2, j = 2, k = 1$: The arrays are now [$0, 2$] and [$1$], which have a $\\operatorname{mex}$ of $1$ and $0$ respectively, so the value of the operation is $1$.\n\nFor the second test case, since no array contains a zero, the value of all operations will be $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定 $n$ 个**数组** $a_1, a_2, \\ldots, a_n$。\n\n以下操作将恰好执行一次：\n\n- 从 $a_1, a_2, \\ldots, a_n$ 中任选一个数组。假设你选择了数组 $a_i$（$1 \\leq i \\leq n$）。\n- 在数组 $a_i$ 中任选一个元素。假设你选择了 $a_i$ 的第 $j$ 个元素，记作 $a_{i,j}$（$1 \\leq j \\leq |a_i|$，其中 $|a_i|$ 表示数组 $a_i$ 的长度）。\n- 再从 $a_1, a_2, \\ldots a_n$ 中任选一个**不是 $a_i$ 的**其他数组。假设你选择了 $a_k$（$1 \\leq k \\leq n, k \\neq i$）。\n- 将 $a_{i,j}$ 追加到数组 $a_k$ 的末尾，然后将 $a_{i,j}$ 从 $a_i$ 中移除。\n- 操作 $(i,j,k)$ 的价值定义为操作执行后各数组的 $\\operatorname{MEX}$ 之和。更正式地，操作执行后该操作的价值为 $\\sum_{i=1} ^{n} \\operatorname{MEX}(a_i)$。\n\n求所有可能的不同独立操作的价值之和。若两个操作对应的有序整数三元组 $(i,j,k)$ 不同，则这两个操作互不相同。\n\n$\\operatorname{MEX}(a)$ 定义为未在数组中出现的最小非负整数。例如，$\\operatorname{MEX}([1, 2, 0, 5])$ 为 $3$，$\\operatorname{MEX}([1, 2, 4, 9])$ 为 $0$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——表示数组的数量。\n\n接下来的 $n$ 行，每行以 $l_i$（$1 \\le l_i \\le 10^5$）开头——表示第 $i$ 个数组的长度——随后包含 $l_i$ 个整数 $a_1, a_2, \\ldots, a_{l_i}$（$0 \\le a_{i_j} \\le 10^6$）——表示数组 $a_i$。\n\n保证所有测试用例的 $l_i$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出所有可能的不同操作的价值之和。\n\n## 说明\n\n对于第一个测试用例，共有 3 种可能的不同操作：\n\n- $i = 1, j = 1, k = 2$：此时两个数组分别为 [] 和 [$0, 1, 2$]，其 $\\operatorname{mex}$ 分别为 $0$ 和 $3$，因此该操作的价值为 $3$。\n- $i = 2, j = 1, k = 1$：此时两个数组分别为 [$0, 1$] 和 [$2$]，其 $\\operatorname{mex}$ 分别为 $2$ 和 $0$，因此该操作的价值为 $2$。\n- $i = 2, j = 2, k = 1$：此时两个数组分别为 [$0, 2$] 和 [$1$]，其 $\\operatorname{mex}$ 分别为 $1$ 和 $0$，因此该操作的价值为 $1$。\n\n对于第二个测试用例，由于没有任何数组包含 0，所有操作的价值均为 $0$。",
   "samples": [
     {
       "input": "6\n2\n1 0\n2 1 2\n3\n1 1\n2 2 3\n3 4 5 6\n5\n4 1 7 8 10\n2 5 6\n2 0 7\n2 6 6\n2 6 8\n2\n1 3\n3 0 1 2\n2\n6 0 0 1 2 2 3\n3 0 2 3\n10\n1 0\n9 7 8 0 1 5 6 4 3 2\n8 4 3 8 6 2 5 0 1\n7 2 3 0 1 0 4 0\n2 3 1\n9 2 0 5 4 1 3 0 0 0\n7 6 3 2 4 1 8 0\n5 3 2 4 1 0\n4 0 3 1 1\n3 0 3 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:08.701Z"
+  "fetchedAt": "2026-11-02T16:39:08.701Z",
+  "translatedAt": "2026-11-03T03:21:21.178+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

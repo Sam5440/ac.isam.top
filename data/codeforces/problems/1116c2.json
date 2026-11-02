@@ -1,0 +1,20 @@
+{
+  "id": "1116C2",
+  "platform": "codeforces",
+  "contestId": 1116,
+  "index": "C2",
+  "title": "\"Is the bit string periodic?\" oracle",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1116/problem/C2",
+  "difficulty": null,
+  "tags": [
+    "*special"
+  ],
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "Implement a quantum oracle on $N$ qubits which checks whether the bits in the input vector $\\vec{x}$ form a periodic bit string (i.e., implements the function $f(\\vec{x}) = 1$ if $\\vec{x}$ is periodic, and 0 otherwise).\n\nA bit string of length $N$ is considered periodic with period $P$ ($1 \\le P \\le N - 1$) if for all $i \\in [0, N - P - 1]$ $x_i = x_{i + P}$. Note that $P$ does not have to divide $N$ evenly; for example, bit string `\"01010\"` is periodic with period $P = 2$.\n\nYou have to implement an operation which takes the following inputs:\n\n- an array of $N$ ($2 \\le N \\le 7$) qubits $x$ in an arbitrary state (input register),\n- a qubit $y$ in an arbitrary state (output qubit),\n\nand performs a transformation $|x\\rangle|y\\rangle \\rightarrow |x\\rangle|y \\oplus f(x)\\rangle$. The operation doesn't have an output; its \"output\" is the state in which it leaves the qubits. Note that the input register $x$ has to remain unchanged after applying the operation.\n\nYour code should have the following signature:\n\n```\nnamespace Solution {\n    open Microsoft.Quantum.Primitive;\n    open Microsoft.Quantum.Canon;\n\n    operation Solve (x : Qubit[], y : Qubit) : Unit {\n        body (...) {\n            // your code here\n        }\n        adjoint auto;\n    }\n}\n```\n\nNote: the operation has to have an adjoint specified for it; `adjoint auto` means that the adjoint will be generated automatically. For details on adjoint, see [Operation Definitions](https://docs.microsoft.com/en-us/quantum/language/file-structure#operation-definitions).\n\nYou are not allowed to use measurements in your operation.",
+  "statementZhMd": null,
+  "samples": [],
+  "language": "en",
+  "fetchedAt": "2026-11-02T19:18:35.398Z"
+}

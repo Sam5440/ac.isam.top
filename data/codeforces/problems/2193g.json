@@ -4,7 +4,7 @@
   "contestId": 2193,
   "index": "G",
   "title": "Paths in a Tree",
-  "titleZh": null,
+  "titleZh": "树中的路径",
   "url": "https://codeforces.com/contest/2193/problem/G",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "**This is an interactive problem**.\n\nIn this interactive problem, you are given an acyclic, connected, undirected graph consisting of $n$ vertices. We define a path between two vertices $v$ and $u$ as a sequence of **distinct** vertices $p_1, p_2,\\dots p_k$ such that $p_1 = v$, $p_k = u$, and for all $i$ ($1 \\le i \\lt k$), there exists an edge between vertices $p_i$ and $p_{i+1}$.\n\nThere are hidden vertices $x$ and $y$ (they may coincide). You can make the following queries:\n\n- Choose two vertices $a$, $b$ ($1\\le a, b\\le n$). The jury will respond with $1$ if the path between vertices $x$, $y$ and the path between vertices $a$, $b$ share at least one common vertex, and will respond with $0$ otherwise.\n\nYour task is to find at least one vertex on the path between $x$ and $y$ in no more than $\\lfloor\\frac{n}{2}\\rfloor + 1$ queries.\n\nNote that the interactor is **adaptive**, which means that the hidden vertices may change depending on your queries, but will not contradict previous queries.\n\n## Input\n\nEach test consists of several test cases. The first line contains one integer $t$ ($1\\le t\\le 10^4$) — the number of test cases. The following lines describe the test cases.\n\nThe first line of each test case contains one integer $n$ ($2\\le n\\le 2\\cdot 10^5$) — the number of vertices in the graph.\n\nNext, there are $n - 1$ lines, each containing two integers $v$, $u$ ($1\\le v, u\\le n$), indicating that vertices $v$ and $u$ are connected by an edge in the graph.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $2\\cdot 10^5$.\n\n## Interaction\n\nTo find any vertex on the path, you can use no more than $\\lfloor\\frac{n}{2}\\rfloor + 1$ queries. For this, use queries of the form \"? $a$ $b$\".\n\nAfter each query, read one number, either $0$ or $1$ — the response to the query.\n\nWhen you find one of the required vertices, output one line in the following format: \"! $v$\" ($1\\le v\\le n$), where $v$ is the vertex you found.\n\nIf your program makes more than $\\lfloor\\frac{n}{2}\\rfloor + 1$ queries for one test case, the **response to the query will** be $-1$, and after receiving such a response, your program should terminate immediately to receive a verdict of `Incorrect answer`. Otherwise, it may receive any other verdict.\n\nAfter outputting a query, do not forget to output a newline and flush the output buffer. Otherwise, you will receive a verdict of `Solution \"timed out\"`. To flush the buffer, use:\n\n- $\\tt{fflush(stdout)}$ or $\\tt{cout.flush()}$ in C++;\n- $\\tt{System.out.flush()}$ in Java;\n- $\\tt{flush(output)}$ in Pascal;\n- $\\tt{stdout.flush()}$ in Python;\n- refer to the documentation for other languages.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是一道交互题**。\n\n在这道交互题中，给定一个由 $n$ 个顶点组成的无环、连通、无向图。我们将两个顶点 $v$ 和 $u$ 之间的路径定义为**互不相同**的顶点序列 $p_1, p_2,\\dots p_k$，满足 $p_1 = v$，$p_k = u$，且对于所有的 $i$（$1 \\le i \\lt k$），顶点 $p_i$ 与 $p_{i+1}$ 之间都存在一条边。\n\n存在隐藏顶点 $x$ 和 $y$（两者可能重合）。你可以进行如下询问：\n\n- 选择两个顶点 $a$、$b$（$1\\le a, b\\le n$）。若顶点 $x$、$y$ 之间的路径与顶点 $a$、$b$ 之间的路径至少共享一个公共顶点，评测机将回答 $1$，否则回答 $0$。\n\n你的任务是在不超过 $\\lfloor\\frac{n}{2}\\rfloor + 1$ 次询问内，找到 $x$ 与 $y$ 之间路径上的至少一个顶点。\n\n请注意，交互器是**自适应的**，这意味着隐藏顶点可能会根据你的询问而改变，但不会与之前的询问相矛盾。\n\n## 输入格式\n\n每个测试包含若干个测试用例。第一行包含一个整数 $t$（$1\\le t\\le 10^4$），表示测试用例的数量。接下来的各行描述这些测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$2\\le n\\le 2\\cdot 10^5$），表示图中顶点的数量。\n\n接下来有 $n - 1$ 行，每行包含两个整数 $v$、$u$（$1\\le v, u\\le n$），表示顶点 $v$ 和 $u$ 在图中由一条边相连。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 交互\n\n要找到路径上的任意一个顶点，你可以使用不超过 $\\lfloor\\frac{n}{2}\\rfloor + 1$ 次询问。为此，请使用形如 \"? $a$ $b\" 的询问。\n\n每次询问后，读入一个数字，为 $0$ 或 $1$，即对该询问的回答。\n\n当你找到其中一个所需的顶点时，按如下格式输出一行：\"! $v$\"（$1\\le v\\le n$），其中 $v$ 是你找到的顶点。\n\n如果你的程序在单个测试用例中进行了超过 $\\lfloor\\frac{n}{2}\\rfloor + 1$ 次询问，询问的**回答将为** $-1$，收到这样的回答后，你的程序应立即终止，以获得 `Incorrect answer` 的判定结果。否则，它可能收到任何其他判定结果。\n\n输出询问后，不要忘记输出换行并刷新输出缓冲区，否则你将收到 `Solution \"timed out\"` 的判定结果。刷新缓冲区可使用：\n\n- C++ 中使用 $\\tt{fflush(stdout)}$ 或 $\\tt{cout.flush()}$；\n- Java 中使用 $\\tt{System.out.flush()}$；\n- Pascal 中使用 $\\tt{flush(output)}$；\n- Python 中使用 $\\tt{stdout.flush()}$；\n- 其他语言请参阅相关文档。",
   "samples": [
     {
       "input": "3\n\n2\n1 2\n\n1\n\n3\n1 2\n1 3\n\n0\n\n0\n\n4\n1 2\n2 3\n2 4\n\n0\n\n1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:38:59.090Z"
+  "fetchedAt": "2026-11-02T16:38:59.090Z",
+  "translatedAt": "2026-11-03T03:15:49.127+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

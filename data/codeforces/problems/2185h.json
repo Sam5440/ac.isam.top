@@ -4,7 +4,7 @@
   "contestId": 2185,
   "index": "H",
   "title": "BattleCows 2",
-  "titleZh": null,
+  "titleZh": "战斗奶牛 2",
   "url": "https://codeforces.com/contest/2185/problem/H",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Farmer John wants to host another tournament with $n$ cows, where the $i$-th cow has a skill level of $a_i$. The following process repeats until there is only one cow in the line.\n\n- The first cow in the line fights the second cow in the line, and the cow with the higher skill level wins. If there is a tie, the first cow wins.\n- The winning cow's skill level is set to $x + y$, where $x$ is the skill level of the winning cow and $y$ is the skill level of the losing cow.\n- The losing cow leaves the line.\n\nHowever, to maintain accuracy to the real USACOW competition, a cow is able to cheat up to $k$ times. This means that even if it loses the match, Farmer John will treat it as if the losing cow won the match, meaning that the losing cow's skill level will be set to $x + y$, where $x$ is the skill level of the winning cow and $y$ is the skill level of the losing cow, and the winning cow will leave the line.\n\nA position $x$ is good for a cow $i$ if cow $i$ can be removed from its original position and inserted at index $x$ **without changing the order of the other cows** and be the only cow remaining in the line once the tournament has ended, assuming no other cow cheats.\n\nFor each cow in the line, calculate the number of good positions for that cow.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $k$ ($2 \\le n \\le 2 \\cdot 10^5$, $0 \\leq k \\lt n$) — the number of cows and the number of cheats a cow can use.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the skill levels of the cows.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers, where the $i$-th integer denotes the number of good positions for cow $i$.\n\n## Note\n\nFor the first test case, cow $2$ would lose no matter what it was positioned, and cow $1$ would win no matter where it was positioned.\n\nFor the second test case, both cows could win at position $1$, but could not win at position $2$, meaning that they each have $1$ good position.\n\nFor the third test case, let's look at cow $1$.\n\n- If cow $1$ were at position $1$, then it would win its first match, making its skill level equal to $2$, and could cheat to win its second match.\n- If cow $1$ were at position $2$, then it would have to cheat to win its first match, but would then lose its second match.\n- If cow $1$ were at position $3$, then it would have to cheat to win its first match, and would have no more matches.",
-  "statementZhMd": null,
+  "statementZhMd": "Farmer John 想要再举办一场由 $n$ 头奶牛参加的锦标赛，其中第 $i$ 头奶牛的技能等级为 $a_i$。以下过程不断重复，直到队列中只剩下一头奶牛。\n\n- 队列中的第一头奶牛与第二头奶牛进行战斗，技能等级更高的奶牛获胜。如果技能等级相同，则第一头奶牛获胜。\n- 获胜奶牛的技能等级会被设为 $x + y$，其中 $x$ 为获胜奶牛的技能等级，$y$ 为落败奶牛的技能等级。\n- 落败的奶牛离开队列。\n\n然而，为了忠实还原真实的 USACOW 比赛，每头奶牛最多可以作弊 $k$ 次。这意味着即使某头奶牛输掉了比赛，Farmer John 也会将其视作落败奶牛获胜：即落败奶牛的技能等级会被设为 $x + y$，其中 $x$ 为获胜奶牛的技能等级，$y$ 为落败奶牛的技能等级，而获胜的那头奶牛将离开队列。\n\n如果奶牛 $i$ 可以从其原始位置移出，并在 **不改变其他奶牛顺序** 的情况下被插入到下标 $x$ 处，且在假设没有其他奶牛作弊的情况下，它能够在锦标赛结束后成为队列中仅剩的一头奶牛，那么位置 $x$ 对奶牛 $i$ 而言就是一个好位置。\n\n对于队列中的每头奶牛，计算它拥有的好位置数量。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——表示测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 2 \\cdot 10^5$，$0 \\leq k \\lt n$）——分别表示奶牛的数量和每头奶牛可以使用的作弊次数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——表示奶牛们的技能等级。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数，其中第 $i$ 个整数表示奶牛 $i$ 的好位置数量。\n\n## 说明\n\n对于第一个测试用例，无论奶牛 $2$ 被放在哪个位置，它都会输；而无论奶牛 $1$ 被放在哪个位置，它都会赢。\n\n对于第二个测试用例，两头奶牛都可以在位置 $1$ 获胜，但都无法在位置 $2$ 获胜，也就是说它们各自拥有 $1$ 个好位置。\n\n对于第三个测试用例，我们来看奶牛 $1$。\n\n- 如果奶牛 $1$ 位于位置 $1$，那么它会赢得第一场比赛，使其技能等级变为 $2$，随后可以靠作弊赢得第二场比赛。\n- 如果奶牛 $1$ 位于位置 $2$，那么它必须靠作弊才能赢得第一场比赛，但之后就赢不了第二场比赛了。\n- 如果奶牛 $1$ 位于位置 $3$，那么它必须靠作弊才能赢得第一场比赛，并且之后将不再有比赛。",
   "samples": [
     {
       "input": "7\n2 0\n2 1\n2 0\n1 1\n3 1\n1 1 3\n3 0\n2 1 1\n3 1\n1 3 1\n4 1\n1 2 1 3\n7 2\n1 3 3 17 39 3 12\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:08.703Z"
+  "fetchedAt": "2026-11-02T16:39:08.703Z",
+  "translatedAt": "2026-11-03T03:21:52.032+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

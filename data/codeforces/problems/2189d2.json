@@ -4,7 +4,7 @@
   "contestId": 2189,
   "index": "D2",
   "title": "Little String (Hard Version)",
-  "titleZh": null,
+  "titleZh": "小字符串（困难版本）",
   "url": "https://codeforces.com/contest/2189/problem/D2",
   "difficulty": 2200,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the *hard* version of the problem. The difference between the versions is that in this version, the string $s$ can contain the character `?`.**\n\nFor the string $w_1w_2 \\ldots w_n$, consisting of characters `0` and `1`, we define $f(w)$ as the number of permutations $p_1, p_2, \\ldots, p_n$ of the array $[0, 1, \\ldots, n-1]$, such that for all $i$ from $1$ to $n$ the following holds:\n\n- if $w_i = \\texttt{1}$, then there exist such $1 \\leq l \\leq r \\leq n$ that $\\operatorname{mex}([p_l, p_{l+1}, \\ldots, p_r]) = i$;$^{\\text{∗}}$\n- if $w_i = \\texttt{0}$, then there do not exist such $1 \\leq l \\leq r \\leq n$ that $\\operatorname{mex}([p_l, p_{l+1}, \\ldots, p_r]) = i$.\n\nGiven a string $s_1s_2 \\ldots s_n$, consisting of characters `0`, `1`, and `?`, and a positive integer $c$. Consider all strings $w$ that can be obtained from $s$ by replacing all characters `?` with characters `0` and `1`. Find the smallest value of $f(w)$ among all such strings $w$ that is not divisible by $c$, or determine that such a string $w$ does not exist. Since the answer may be large, find it modulo $10^9+7$.\n\n$^{\\text{∗}}$The minimum excluded (MEX) of a collection of integers $c_1, c_2, \\ldots, c_k$ is defined as the smallest non-negative integer $x$ which does not occur in the collection $c$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $c$ ($3 \\leq n \\leq 2 \\cdot 10^5$, $1 \\leq c \\leq 10^9$) — the length of the string and the number that limits the value of the function.\n\nThe second line of each test case contains a string of length $n$, consisting of characters `0`, `1`, and `?` — the string $s$.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if there exists such a string $w$ that can be obtained from $s$ by replacing all characters `?` with characters `0` and `1`, such that $f(w)$ is not divisible by $c$, then output the minimum value of $f(w)$ among all such strings $w$. The answer should be output modulo $10^9+7$. If such a string does not exist, output $-1$.\n\n## Note\n\nIn the second test case, there is no suitable string $w$, since $f(w)$ is always divisible by $1$.\n\nIn the third test case, we can only take $w = s$, then $f(w) = 4$, as there are exactly $4$ suitable permutations:\n\n1. $p = [0, 2, 3, 1]$;\n2. $p = [0, 3, 2, 1]$;\n3. $p = [1, 2, 3, 0]$;\n4. $p = [1, 3, 2, 0]$.\n\nIn the seventh test case, one can take the string $w = \\mathtt{10001}$, then $f(w)$ will be equal to $12$. One of the suitable permutations is $[0, 4, 3, 2, 1]$, while, for example, the permutation $[0, 1, 2, 3, 4]$ does not fit. It can be shown that $12$ is the smallest value not divisible by $8$ that can be obtained.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的*困难*版本。两个版本的区别在于：在本版本中，字符串 $s$ 可以包含字符 `?`。**\n\n对于由字符 `0` 和 `1` 组成的字符串 $w_1w_2 \\ldots w_n$，我们定义 $f(w)$ 为数组 $[0, 1, \\ldots, n-1]$ 的排列 $p_1, p_2, \\ldots, p_n$ 的数量，这些排列满足：对于从 $1$ 到 $n$ 的所有 $i$，以下条件成立：\n\n- 若 $w_i = \\texttt{1}$，则存在 $1 \\leq l \\leq r \\leq n$ 使得 $\\operatorname{mex}([p_l, p_{l+1}, \\ldots, p_r]) = i$；$^{\\text{∗}}$\n- 若 $w_i = \\texttt{0}$，则不存在 $1 \\leq l \\leq r \\leq n$ 使得 $\\operatorname{mex}([p_l, p_{l+1}, \\ldots, p_r]) = i$。\n\n给定一个由字符 `0`、`1` 和 `?` 组成的字符串 $s_1s_2 \\ldots s_n$，以及一个正整数 $c$。考虑所有由 $s$ 将字符 `?` 替换为字符 `0` 和 `1` 后能得到的字符串 $w$。请在所有此类字符串 $w$ 中找出不被 $c$ 整除的最小的 $f(w)$ 值，或判定这样的字符串 $w$ 不存在。由于答案可能很大，请对 $10^9+7$ 取模输出。\n\n$^{\\text{∗}}$一组整数 $c_1, c_2, \\ldots, c_k$ 的最小排除值（MEX）定义为未在集合 $c$ 中出现过的最小非负整数 $x$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $c$（$3 \\leq n \\leq 2 \\cdot 10^5$，$1 \\leq c \\leq 10^9$）——分别表示字符串的长度和限制函数取值的数。\n\n每个测试用例的第二行包含一个长度为 $n$、由字符 `0`、`1` 和 `?` 组成的字符串——即字符串 $s$。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果存在某个能由 $s$ 将所有字符 `?` 替换为字符 `0` 和 `1` 得到的字符串 $w$，使得 $f(w)$ 不被 $c$ 整除，则输出所有此类字符串 $w$ 中 $f(w)$ 的最小值。答案应对 $10^9+7$ 取模输出。如果这样的字符串不存在，则输出 $-1$。\n\n## 说明\n\n在第二个测试用例中，不存在合适的字符串 $w$，因为 $f(w)$ 总是能被 $1$ 整除。\n\n在第三个测试用例中，我们只能取 $w = s$，此时 $f(w) = 4$，因为恰好有 $4$ 个符合条件的排列：\n\n1. $p = [0, 2, 3, 1]$；\n2. $p = [0, 3, 2, 1]$；\n3. $p = [1, 2, 3, 0]$；\n4. $p = [1, 3, 2, 0]$。\n\n在第七个测试用例中，可以取字符串 $w = \\mathtt{10001}$，此时 $f(w)$ 等于 $12$。$[0, 4, 3, 2, 1]$ 就是其中一个符合条件的排列，而例如排列 $[0, 1, 2, 3, 4]$ 则不符合。可以证明，$12$ 是所能得到的不被 $8$ 整除的最小值。",
   "samples": [
     {
       "input": "10\n3 3\n00?\n3 1\n???\n4 100\n1001\n3 3\n???\n6 100\n111001\n6 100\n111101\n5 8\n100?1\n4 100\n1??0\n20 253034496\n10001100011000??????\n3 4\n1?1\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:31.174Z"
+  "fetchedAt": "2026-10-30T21:04:31.174Z",
+  "translatedAt": "2026-11-03T03:18:50.326+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
