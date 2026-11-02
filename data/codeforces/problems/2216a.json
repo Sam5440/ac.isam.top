@@ -4,7 +4,7 @@
   "contestId": 2216,
   "index": "A",
   "title": "Course Wishes",
-  "titleZh": null,
+  "titleZh": "选课志愿",
   "url": "https://codeforces.com/contest/2216/problem/A",
   "difficulty": 900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "qwqkawaii is registering for $n$ ($n\\le 50$) courses. In the registration system, he can submit a *course wish* for each course, which indicates his priority for taking that course.\n\nCourse wishes are divided into $k+1$ ($k\\le 20$) priority levels, where level $1$ is the highest priority and level $k+1$ is the lowest.\n\nThe first $k$ wish levels have capacity limits: for each $1 \\le i \\le k$, at most $a_i$ courses can be assigned wish level $i$. Note that wish level $k+1$ has no capacity limit.\n\nInitially, the $i$-th course has wish level $b_i$, and it is guaranteed that this initial assignment satisfies all capacity limits. Now qwqkawaii wants to adjust all his courses to wish level $k + 1$. To achieve this, he can apply the following operation at most $1000$ times:\n\n- Select a course $i$ ($1\\le i\\le n$), then increase $b_i$ by $1$.\n\nNote that:\n\n- A course at level $k+1$ cannot be selected;\n- After every single operation, all capacity limits **must** still be satisfied.\n\nYour task is to construct a valid adjustment sequence with at most $1000$ operations, or report that it is impossible.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 50$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le n \\le 50$, $1 \\le k \\le 20$) — the number of courses and the number of priority levels (excluding the lowest priority level).\n\nThe second line contains $k$ integers $a_1, a_2, \\ldots, a_k$ ($1 \\le a_i \\le n$) — the capacity limits of the first $k$ wish levels.\n\nThe third line contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\le b_i \\le k+1$) — the initial wish levels of the courses.\n\nIt is guaranteed that the initial assignment satisfies all capacity limits.\n\n## Output\n\nFor each test case, if it is impossible to reach the target state, print a single integer $-1$.\n\nOtherwise, print the number of operations $m$ ($0 \\le m \\le 1000$) on the first line of output.\n\nThen print one line with $m$ integers $u_1, u_2, \\ldots, u_m$ ($1 \\le u_i \\le n$), denoting that in the $i$-th operation, you increase the wish level $b_{u_i}$ of course $u_i$ by $1$.\n\n## Note\n\nIn the first test case, initially, the wish levels are $[1, 2, 2]$. The capacity limits are $a_1=2$ and $a_2=2$. The operations are as follows:\n\n1. Increase course $2$ to level $3$. Now the wish levels are $[1,3,2]$.\n2. Increase course $1$ to level $2$. Now the wish levels are $[2,3,2]$.\n3. Increase course $3$ to level $3$. Now the wish levels are $[2,3,3]$.\n4. Increase course $1$ to level $3$. Now the wish levels are $[3,3,3]$, which matches the target.\n\nIn the second test case, the initial state is already exactly the target state, so no operations are needed.",
-  "statementZhMd": null,
+  "statementZhMd": "qwqkawaii 正在注册 $n$（$n\\le 50$）门课程。在选课系统中，他可以为每门课程提交一个*选课志愿*，表示他修读该课程的优先级。\n\n选课志愿被分为 $k+1$（$k\\le 20$）个优先级，其中第 $1$ 级优先级最高，第 $k+1$ 级优先级最低。\n\n前 $k$ 个志愿等级有容量限制：对于每个 $1 \\le i \\le k$，至多有 $a_i$ 门课程可以被分配到志愿等级 $i$。注意，志愿等级 $k+1$ 没有容量限制。\n\n初始时，第 $i$ 门课程的志愿等级为 $b_i$，并且保证这一初始分配满足所有容量限制。现在 qwqkawaii 想把所有课程的志愿等级都调整为 $k + 1$。为此，他可以执行以下操作至多 $1000$ 次：\n\n- 选择一门课程 $i$（$1\\le i\\le n$），然后将 $b_i$ 增加 $1$。\n\n注意：\n\n- 处于等级 $k+1$ 的课程不能被选择；\n- 在每一次操作之后，所有容量限制都**必须**仍然被满足。\n\n你的任务是构造一个至多包含 $1000$ 次操作的有效调整序列，或者报告无解。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 50$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 50$，$1 \\le k \\le 20$）——分别表示课程数量和优先级数量（不含最低优先级）。\n\n第二行包含 $k$ 个整数 $a_1, a_2, \\ldots, a_k$（$1 \\le a_i \\le n$）——表示前 $k$ 个志愿等级的容量限制。\n\n第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$1 \\le b_i \\le k+1$）——表示各课程的初始志愿等级。\n\n保证初始分配满足所有容量限制。\n\n## 输出格式\n\n对于每个测试用例，如果无法到达目标状态，输出一个整数 $-1$。\n\n否则，在输出的第一行输出操作次数 $m$（$0 \\le m \\le 1000$）。\n\n然后在下一行输出 $m$ 个整数 $u_1, u_2, \\ldots, u_m$（$1 \\le u_i \\le n$），表示第 $i$ 次操作将课程 $u_i$ 的志愿等级 $b_{u_i}$ 增加 $1$。\n\n## 说明\n\n在第一个测试用例中，初始时志愿等级为 $[1, 2, 2]$。容量限制为 $a_1=2$ 和 $a_2=2$。操作过程如下：\n\n1. 将课程 $2$ 提升到等级 $3$。此时志愿等级为 $[1,3,2]$。\n2. 将课程 $1$ 提升到等级 $2$。此时志愿等级为 $[2,3,2]$。\n3. 将课程 $3$ 提升到等级 $3$。此时志愿等级为 $[2,3,3]$。\n4. 将课程 $1$ 提升到等级 $3$。此时志愿等级为 $[3,3,3]$，与目标一致。\n\n在第二个测试用例中，初始状态已经恰好是目标状态，因此无需任何操作。",
   "samples": [
     {
       "input": "4\n3 2\n2 2\n1 2 2\n4 2\n2 2\n3 3 3 3\n1 1\n1\n1\n5 3\n1 2 3\n1 2 4 2 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:21.211Z"
+  "fetchedAt": "2026-10-30T20:54:21.211Z",
+  "translatedAt": "2026-11-03T02:08:14.539+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

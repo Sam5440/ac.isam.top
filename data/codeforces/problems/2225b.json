@@ -4,7 +4,7 @@
   "contestId": 2225,
   "index": "B",
   "title": "Alternating String",
-  "titleZh": null,
+  "titleZh": "交替字符串",
   "url": "https://codeforces.com/contest/2225/problem/B",
   "difficulty": 900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Let us call a string $t$ *alternating* if for every $i$ from $1$ to $n - 1$, the condition $t_{i} \\neq t_{i + 1}$ holds.\n\nYou are given a string $s$ consisting only of the letters \"`a`\" and/or \"`b`\". You may perform the following operation on it **at most once**:\n\n- choose a substring $s_{l}s_{l+1}\\ldots s_{r}$ consisting of at least one character;\n- after choosing the substring, you may invert all letters in it, that is, change every \"`a`\" to \"`b`\" and every \"`b`\" to \"`a`\" (you are allowed to do it, but you don't have to do it);\n- reverse the chosen substring, that is, transform the string $s_{1}s_{2}\\dots s_{l-1}s_{l}s_{l+1}\\ldots s_{r}s_{r+1}\\ldots s_{n}$ into $s_{1}s_{2}\\dots s_{l-1}s_{r}s_{r-1}\\ldots s_{l}s_{r+1}\\ldots s_{n}$.\n\nNote that when performing such an operation, you are not required to do the second step. For example, for the string $s =~$\"`ababbab`\", after one operation you can obtain \"`abababa`\" by choosing the substring $s_{5}s_{6}s_{7}$ and doing the second step, or \"`bababab`\" by choosing the substring $s_{1}s_{2}s_{3}s_{4}$ and not doing the second step. However, you always have to perform the third step of the operation.\n\nYour task is to determine whether it is possible to obtain any *alternating* string from the string $s$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nEach test case consists of one line containing one string $s$ ($2 \\le |s| \\le 2 \\cdot 10^{5}$). The string consists only of lowercase Latin letters \"`a`\" and/or \"`b`\".\n\nAdditional constraints on the input:\n\n- the sum of string lengths over all test cases does not exceed $2 \\cdot 10^{5}$.\n\n## Output\n\nFor each test case, output one of the following:\n\n- `YES`, if it is possible to obtain an *alternating* string from $s$;\n- `NO` otherwise.\n\nYou may output each letter in any case.\n\n## Note\n\nIn the first example, you can choose the substring $s_3 s_4 s_5 s_6$ and skip the second step; then you get the string \"`ababab`\".\n\nIn the third example, you can choose the substring $s_1 s_2 s_3 s_4 s_5$ and perform the second step; then you get the string \"`abababa`\".\n\nIn the fourth example, the string is already alternating.\n\nIn the sixth example, you can choose the substring $s_2$ and perform the second step; then you get the string \"`bab`\".",
-  "statementZhMd": null,
+  "statementZhMd": "如果对于从 $1$ 到 $n - 1$ 的每个 $i$，条件 $t_{i} \\neq t_{i + 1}$ 都成立，我们就称字符串 $t$ 是*交替的*。\n\n给定一个仅由字母 \"`a`\" 和/或 \"`b`\" 组成的字符串 $s$。你可以对它执行以下操作**至多一次**：\n\n- 选择一个至少包含一个字符的子串 $s_{l}s_{l+1}\\ldots s_{r}$；\n- 选择子串之后，你可以将其中的所有字母取反，即把每个 \"`a`\" 变成 \"`b`\"，把每个 \"`b`\" 变成 \"`a`\"（你可以这样做，但不是必须的）；\n- 将所选子串翻转，即把字符串 $s_{1}s_{2}\\dots s_{l-1}s_{l}s_{l+1}\\ldots s_{r}s_{r+1}\\ldots s_{n}$ 变为 $s_{1}s_{2}\\dots s_{l-1}s_{r}s_{r-1}\\ldots s_{l}s_{r+1}\\ldots s_{n}$。\n\n注意，执行这样的操作时，第二步不是必须执行的。例如，对于字符串 $s =~$\"`ababbab`\"，一次操作后，你可以选择子串 $s_{5}s_{6}s_{7}$ 并执行第二步，得到 \"`abababa`\"；也可以选择子串 $s_{1}s_{2}s_{3}s_{4}$ 而不执行第二步，得到 \"`bababab`\"。但是，操作的第三步你总是必须执行。\n\n你的任务是判断能否从字符串 $s$ 得到一个*交替的*字符串。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例由一行组成，包含一个字符串 $s$（$2 \\le |s| \\le 2 \\cdot 10^{5}$）。字符串仅由小写拉丁字母 \"`a`\" 和/或 \"`b`\" 组成。\n\n输入的附加约束条件：\n\n- 所有测试用例的字符串长度之和不超过 $2 \\cdot 10^{5}$。\n\n## 输出格式\n\n对于每个测试用例，输出以下内容之一：\n\n- `YES`，如果可以从 $s$ 得到一个*交替的*字符串；\n- 否则输出 `NO`。\n\n每个字母你可以用任意大小写输出。\n\n## 说明\n\n在第一个样例中，你可以选择子串 $s_3 s_4 s_5 s_6$ 并跳过第二步；这样你会得到字符串 \"`ababab`\"。\n\n在第三个样例中，你可以选择子串 $s_1 s_2 s_3 s_4 s_5$ 并执行第二步；这样你会得到字符串 \"`abababa`\"。\n\n在第四个样例中，字符串本身就是交替的。\n\n在第六个样例中，你可以选择子串 $s_2$ 并执行第二步；这样你会得到字符串 \"`bab`\"。",
   "samples": [
     {
       "input": "8\nabbaba\naaaaa\nbababba\nab\nabbaabba\nbbb\nababa\naabb\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:33:14.788Z"
+  "fetchedAt": "2026-11-02T16:33:14.788Z",
+  "translatedAt": "2026-11-03T01:58:54.757+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
