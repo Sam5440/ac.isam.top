@@ -4,7 +4,7 @@
   "contestId": 2152,
   "index": "H1",
   "title": "Victorious Coloring (Easy Version)",
-  "titleZh": null,
+  "titleZh": "胜利染色（简单版）",
   "url": "https://codeforces.com/contest/2152/problem/H1",
   "difficulty": 2900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, $q \\le 10$. You can hack only if you solved all versions of this problem.**\n\nYou are given a tree with $n$ vertices, where each vertex is numbered from $1$ to $n$. Each edge is assigned a positive integer weight $w_1, w_2, \\ldots, w_{n-1}$ as well.\n\nA **victorious coloring** is a coloring of each vertex into two colors: *red* and *yellow*, where there should be at least one vertex colored in red (corresponding to the symbol of team T1).\n\nSuppose that there is a **nonnegative** integer weight $x_1, x_2, \\ldots, x_n$ assigned to each vertex. The cost of the victorious coloring is defined as the sum of the weights of all red vertices, plus the sum of the weights of all edges that connect vertices of different colors (between red and yellow). We define $f([x_1, x_2, \\ldots, x_n])$ as the minimum possible cost for all victorious colorings.\n\nGumayusi considered the problem of computing $f([x_1, x_2, \\ldots, x_n])$, given the sequence $x_1, x_2, \\ldots, x_n$. However, this problem was too easy for him, so he devised a variation: Given an integer $l$, find a sequence of nonnegative integer vertex weights $[x_1, x_2, \\ldots, x_n]$ such that $f([x_1, x_2, \\ldots, x_n]) \\ge l$ and the total sum $\\sum_{i=1}^n x_i$ is minimized.\n\nGumayusi was satisfied, but there was a serious issue — this problem doesn't have any queries, which is a necessary component for any problem that isn't bad. So, he added queries to this problem. For each $l$ given as a query, you must find the corresponding minimum possible sum of vertex weights.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line contains an integer $n$ ($2 \\le n \\le 250\\,000$) — the number of vertices.\n\nThe following $n-1$ lines contain three integers $u_i$, $v_i$, $w_i$ ($1 \\le u_i, v_i \\leq n, 1 \\le w_i \\le 10^9, u_i \\neq v_i$) — indicating an edge connecting the vertices $u_i$ and $v_i$ with weight $w_i$.\n\nIt is guaranteed that the edges form a tree.\n\nThe next line contains an integer $q$ ($1 \\le q \\le 10$) — the number of queries.\n\nThe following $q$ lines contain a single integer $l_i$ ($1 \\leq l_i \\leq 10^9$) — the parameters of the $i$-th query.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $250\\,000$.\n\nNote that there is no explicit upper bound on the sum of $q$.\n\n## Output\n\nFor each of the $q$ queries, output the answer separated by lines.\n\n## Note\n\nThe following list shows the possible optimal assignments for each query in the first test case:\n\n- $[18,24,2,26,18]$\n- $[22,28,6,30,22]$\n- $[4,7,0,9,1]$\n- $[7,13,0,15,7]$\n- $[13,19,0,21,13]$",
-  "statementZhMd": null,
+  "statementZhMd": "**本题是简单版。两个版本的区别在于本版本中 $q \\le 10$。只有当你通过了本题的所有版本后才能进行 hack。**\n\n给你一棵有 $n$ 个顶点的树，每个顶点编号从 $1$ 到 $n$。每条边同样被赋予了一个正整数权值 $w_1, w_2, \\ldots, w_{n-1}$。\n\n**胜利染色**是指将每个顶点染成两种颜色之一：*红色*和*黄色*，其中必须至少有一个顶点被染成红色（对应战队 T1 的标志）。\n\n假设每个顶点都被赋予了一个**非负**整数权值 $x_1, x_2, \\ldots, x_n$。胜利染色的代价定义为：所有红色顶点的权值之和，加上所有连接不同颜色顶点（红色与黄色之间）的边的权值之和。我们定义 $f([x_1, x_2, \\ldots, x_n])$ 为所有胜利染色中的最小可能代价。\n\nGumayusi 考虑了在给定序列 $x_1, x_2, \\ldots, x_n$ 时计算 $f([x_1, x_2, \\ldots, x_n])$ 的问题。然而，这个问题对他来说太简单了，于是他设计了一个变体：给定一个整数 $l$，找到一组非负整数顶点权值 $[x_1, x_2, \\ldots, x_n]$，使得 $f([x_1, x_2, \\ldots, x_n]) \\ge l$，且总和 $\\sum_{i=1}^n x_i$ 最小。\n\nGumayusi 很满意，但存在一个严重的问题——这道题没有任何询问，而询问是任何不烂的题目必不可少的组成部分。于是，他在这道题中加入了询问。对于每个作为询问给出的 $l$，你必须求出对应的顶点权值总和的最小可能值。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$ ($1 \\le t \\le 10^4$)。接下来是各测试用例的描述。\n\n第一行包含一个整数 $n$ ($2 \\le n \\le 250\\,000$)——顶点的数量。\n\n接下来的 $n-1$ 行每行包含三个整数 $u_i$, $v_i$, $w_i$ ($1 \\le u_i, v_i \\leq n, 1 \\le w_i \\le 10^9, u_i \\neq v_i$)——表示一条连接顶点 $u_i$ 和 $v_i$、权值为 $w_i$ 的边。\n\n保证这些边构成一棵树。\n\n接下来一行包含一个整数 $q$ ($1 \\le q \\le 10$)——询问的数量。\n\n接下来的 $q$ 行每行包含一个整数 $l_i$ ($1 \\leq l_i \\leq 10^9$)——第 $i$ 个询问的参数。\n\n保证所有测试用例的 $n$ 之和不超过 $250\\,000$。\n\n注意，$q$ 的总和没有显式的上界。\n\n## 输出格式\n\n对于 $q$ 个询问中的每一个，各输出一行对应的答案。\n\n## 说明\n\n下面的列表给出了第一个测试用例中每个询问的一种可能的最优赋值方案：\n\n- $[18,24,2,26,18]$\n- $[22,28,6,30,22]$\n- $[4,7,0,9,1]$\n- $[7,13,0,15,7]$\n- $[13,19,0,21,13]$",
   "samples": [
     {
       "input": "2\n5\n3 5 10\n2 3 4\n3 1 10\n3 4 2\n5\n28\n32\n11\n17\n23\n2\n1 2 3\n1\n1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:21.182Z"
+  "fetchedAt": "2026-10-30T21:13:21.182Z",
+  "translatedAt": "2026-11-03T05:13:34.181+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

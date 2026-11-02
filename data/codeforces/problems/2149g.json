@@ -4,7 +4,7 @@
   "contestId": 2149,
   "index": "G",
   "title": "Buratsuta 3",
-  "titleZh": null,
+  "titleZh": "Buratsuta 3",
   "url": "https://codeforces.com/contest/2149/problem/G",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4500,
   "memoryLimitMb": 256,
   "statementMd": "In the ruthless world of Blue Lock, *Buratsuta 3* is a trio selected to overthrow the reigning champions and lead the Japan U-20 team to glory. *Sae Itoshi* has already secured his place as the first participant; the remaining two spots will be contested in the tough Side-B selection.\n\nTo test the strategic abilities of the candidates, Buratsuta has posed the following challenge:\n\nYou are given an array of $n$ integers called \"performance records\" and $q$ queries. Each query specifies a subarray $[l, r]$. In this subarray, find all record values that occur **strictly more** than $\\lfloor\\tfrac{r - l + 1}{3}\\rfloor$ times.\n\n## Input\n\nEach test consists of several test cases.\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe following describes the test cases.\n\nThe first line of each test case contains two integers $n$ and $q$ $(1 \\le n, q \\le 2\\cdot10^5)$ — the number of records and the number of queries.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\dots, a_n$ $(1 \\le a_i \\le 10^9)$ — the performance records.\n\nEach of the following $q$ lines contains two integers $l$ and $r$ $(1 \\le l \\le r \\le n)$ — the boundaries of the query.\n\nIt is guaranteed that the sum of $n$ and sum of $q$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each query, output in one line all record values (in sorted order) that occur **strictly more** than $\\lfloor\\tfrac{r - l + 1}{3}\\rfloor$ times in the segment $[l, r]$. If there are no such values, output $-1$.\n\n## Note\n\nIn the second test case, the array is $a=[1,1,2,3]$ and there are two queries:\n\n- Query $(l,r)=(1,4)$: The length of the segment $len=r-l+1=4$, the threshold $\\bigl\\lfloor \\frac{len}{3}\\bigr\\rfloor+1 = 2$. Occurrences of numbers: $1\\!\\to\\!2$, $2\\!\\to\\!1$, $3\\!\\to\\!1$. Only the number $1$ occurs at least $2$ times, so the answer is: $1$.\n- Query $(l,r)=(2,3)$: The length of the segment $len=2$, the threshold $\\bigl\\lfloor \\frac{len}{3}\\bigr\\rfloor+1 = 1$. Numbers $1$ and $2$ occur once each, so the answer is: $1 \\; 2$.\n\nIn the fourth test case, the array is $a=[4,4,4,5,5,5,6,6]$ and there are two queries:\n\n- Query $(l,r)=(1,8)$: The length of the segment $len = 8$, the threshold $\\bigl\\lfloor \\dfrac{len}{3} \\bigr\\rfloor + 1 = 3$.  Occurrences of numbers: $4 \\!\\to\\! 3$, $5 \\!\\to\\! 3$, $6 \\!\\to\\! 2$. Only the numbers $4$ and $5$ occur at least $3$ times, so the answer is: $4 \\; 5$.\n- Query $(l,r)=(3,6)$: The length of the segment $len = 4$, the threshold $\\bigl\\lfloor \\dfrac{len}{3} \\bigr\\rfloor + 1 = 2$. Occurrences of numbers: $4 \\!\\to\\! 1$, $5 \\!\\to\\! 3$. Only the number $5$ occurs at least $2$ times, so the answer is: $5$.",
-  "statementZhMd": null,
+  "statementZhMd": "在《蓝色监狱》的残酷世界中，*Buratsuta 3* 是一个被选中推翻卫冕冠军、率领日本 U-20 队走向荣耀的三人组。*糸师冴* 已经锁定了首位参与者的席位；剩余的两个名额将在激烈的 Side-B 选拔中决出。\n\n为了考验候选人们的策略能力，Buratsuta 提出了如下挑战：\n\n给定一个由 $n$ 个整数组成的数组，称为“表现记录”，以及 $q$ 个查询。每个查询指定一个子数组 $[l, r]$。你需要在该子数组中找出所有出现次数**严格大于** $\\lfloor\\tfrac{r - l + 1}{3}\\rfloor$ 的记录值。\n\n## 输入格式\n\n每个测试包含多组测试用例。\n\n第一行包含一个整数 $t$ ($1 \\le t \\le 10^4$) —— 测试用例的数量。\n\n接下来描述各组测试用例。\n\n每组测试用例的第一行包含两个整数 $n$ 和 $q$ $(1 \\le n, q \\le 2\\cdot10^5)$ —— 记录的数量和查询的数量。\n\n每组测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$ $(1 \\le a_i \\le 10^9)$ —— 表现记录。\n\n接下来的 $q$ 行中，每行包含两个整数 $l$ 和 $r$ $(1 \\le l \\le r \\le n)$ —— 查询的边界。\n\n保证所有测试用例中 $n$ 的总和与 $q$ 的总和均不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个查询，用一行输出在区间 $[l, r]$ 内出现次数**严格大于** $\\lfloor\\tfrac{r - l + 1}{3}\\rfloor$ 的所有记录值（按升序排列）。如果不存在这样的值，输出 $-1$。\n\n## 说明\n\n在第二组测试用例中，数组为 $a=[1,1,2,3]$，共有两个查询：\n\n- 查询 $(l,r)=(1,4)$：区间长度 $len=r-l+1=4$，阈值 $\\bigl\\lfloor \\frac{len}{3}\\bigr\\rfloor+1 = 2$。各数的出现次数：$1\\!\\to\\!2$，$2\\!\\to\\!1$，$3\\!\\to\\!1$。只有数 $1$ 出现了至少 $2$ 次，所以答案为：$1$。\n- 查询 $(l,r)=(2,3)$：区间长度 $len=2$，阈值 $\\bigl\\lfloor \\frac{len}{3}\\bigr\\rfloor+1 = 1$。数 $1$ 和 $2$ 各出现一次，所以答案为：$1 \\; 2$。\n\n在第四组测试用例中，数组为 $a=[4,4,4,5,5,5,6,6]$，共有两个查询：\n\n- 查询 $(l,r)=(1,8)$：区间长度 $len = 8$，阈值 $\\bigl\\lfloor \\dfrac{len}{3} \\bigr\\rfloor + 1 = 3$。各数的出现次数：$4 \\!\\to\\! 3$，$5 \\!\\to\\! 3$，$6 \\!\\to\\! 2$。只有数 $4$ 和 $5$ 出现了至少 $3$ 次，所以答案为：$4 \\; 5$。\n- 查询 $(l,r)=(3,6)$：区间长度 $len = 4$，阈值 $\\bigl\\lfloor \\dfrac{len}{3} \\bigr\\rfloor + 1 = 2$。各数的出现次数：$4 \\!\\to\\! 1$，$5 \\!\\to\\! 3$。只有数 $5$ 出现了至少 $2$ 次，所以答案为：$5$。",
   "samples": [
     {
       "input": "5\n1 1\n5\n1 1\n4 2\n1 1 2 3\n1 4\n2 3\n6 3\n7 7 7 8 8 9\n1 6\n2 5\n4 6\n8 2\n4 4 4 5 5 5 6 6\n1 8\n3 6\n10 5\n1 2 3 3 3 4 4 4 4 5\n1 10\n1 5\n4 9\n6 9\n7 10\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:41:00.679Z"
+  "fetchedAt": "2026-11-02T16:41:00.679Z",
+  "translatedAt": "2026-11-03T05:17:57.968+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

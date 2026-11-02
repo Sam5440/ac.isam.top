@@ -1,0 +1,35 @@
+{
+  "id": "nc117762pf",
+  "platform": "nowcoder",
+  "contestId": "117762",
+  "index": "F",
+  "title": "区间或与与再异或之和最大值",
+  "titleZh": "区间或与与再异或之和最大值",
+  "url": "https://ac.nowcoder.com/acm/contest/117762/F",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "## 题目描述\n\n现在加藤翔子又得到长度为 $n$ 的整数序列 $a_1, a_2, \\dots, a_n$，他需要将序列划分成若干个不相交的连续段（子区间），使得所有子区间的「价值」之和最大。\\\n对于一个子区间 $[l,r]$，定义其「价值」为 $\\mathrm{val}(l,r)={O(l,r)}\\operatorname{xor}{A(l,r)}$，其中：\n\n$O(l,r)=a_l \\operatorname{or} a_{l+1}\\operatorname{or}\\cdots\\operatorname{or} a_r.$\\\n$A(l,r)=a_l \\operatorname{and} a_{l+1}\\operatorname{and}\\cdots\\operatorname{and} a_r.$\n\n显然，若选取分界点 $(0 = x_0) < x_1 < x_2 < \\cdots < (x_m = n)$，则 $\\sum\\limits_{j=1}^m \\mathrm{val}\\bigl(x_{j-1}+1,\\;x_j\\bigr)$ 即为所求的最大「价值」。\n\n【名词解释】\\\n$\\operatorname{or}$：指位运算中的按位或（Bitwise OR），对两个整数的二进制表示按位进行或运算。如果您需要更多位运算相关的知识，可以参考 [**OI-Wiki的相关章节**](https://oi-wiki.org/math/bit/#%E4%B8%8E%E6%88%96%E5%BC%82%E6%88%96)。\\\n$\\operatorname{and}$：指位运算中的按位与（Bitwise AND），对两个整数的二进制表示按位进行与运算。\\\n$\\operatorname{xor}$：指位运算中的按位异或（Bitwise XOR），对两个整数的二进制表示按位进行异或运算。\n\n## 输入格式\n\n第一行输入一个整数 $n \\left ( 1 \\le n \\le 2\\times10^5 \\right )$，表示序列长度。\\\n第二行输入 $n$ 个整数 $a_1,a_2,\\dots,a_n \\left ( 0 \\le a_i \\le 10^9 \\right )$，表示序列的元素。\n\n## 输出格式\n\n输出一个整数，表示能取得的最大「价值」之和。",
+  "statementZhMd": "## 题目描述\n\n现在加藤翔子又得到长度为 $n$ 的整数序列 $a_1, a_2, \\dots, a_n$，他需要将序列划分成若干个不相交的连续段（子区间），使得所有子区间的「价值」之和最大。\\\n对于一个子区间 $[l,r]$，定义其「价值」为 $\\mathrm{val}(l,r)={O(l,r)}\\operatorname{xor}{A(l,r)}$，其中：\n\n$O(l,r)=a_l \\operatorname{or} a_{l+1}\\operatorname{or}\\cdots\\operatorname{or} a_r.$\\\n$A(l,r)=a_l \\operatorname{and} a_{l+1}\\operatorname{and}\\cdots\\operatorname{and} a_r.$\n\n显然，若选取分界点 $(0 = x_0) < x_1 < x_2 < \\cdots < (x_m = n)$，则 $\\sum\\limits_{j=1}^m \\mathrm{val}\\bigl(x_{j-1}+1,\\;x_j\\bigr)$ 即为所求的最大「价值」。\n\n【名词解释】\\\n$\\operatorname{or}$：指位运算中的按位或（Bitwise OR），对两个整数的二进制表示按位进行或运算。如果您需要更多位运算相关的知识，可以参考 [**OI-Wiki的相关章节**](https://oi-wiki.org/math/bit/#%E4%B8%8E%E6%88%96%E5%BC%82%E6%88%96)。\\\n$\\operatorname{and}$：指位运算中的按位与（Bitwise AND），对两个整数的二进制表示按位进行与运算。\\\n$\\operatorname{xor}$：指位运算中的按位异或（Bitwise XOR），对两个整数的二进制表示按位进行异或运算。\n\n## 输入格式\n\n第一行输入一个整数 $n \\left ( 1 \\le n \\le 2\\times10^5 \\right )$，表示序列长度。\\\n第二行输入 $n$ 个整数 $a_1,a_2,\\dots,a_n \\left ( 0 \\le a_i \\le 10^9 \\right )$，表示序列的元素。\n\n## 输出格式\n\n输出一个整数，表示能取得的最大「价值」之和。",
+  "samples": [
+    {
+      "input": "5\n1 2 3 4 5",
+      "output": "10",
+      "note": "在这个样例中，一种最优划分为 $[1..2]$，$[3..4]$，$[5..5]$：\\\n$\\hspace{23pt}\\bullet\\,$对于 $[1..2]$：\\\n$\\hspace{38pt}\\circ\\,$$O(1,2)=1\\operatorname{or}2=3$；\\\n$\\hspace{38pt}\\circ\\,$$A(1,2)=1\\operatorname{and}2=0$；\\\n$\\hspace{38pt}\\circ\\,$$\\mathrm{val}(1,2)=3\\operatorname{xor}0=3$；\\\n$\\hspace{23pt}\\bullet\\,$对于 $[3..4]$：\\\n$\\hspace{38pt}\\circ\\,$$O(3,4)=3\\operatorname{or}4=7$；\\\n$\\hspace{38pt}\\circ\\,$$A(3,4)=3\\operatorname{and}4=0$；\\\n$\\hspace{38pt}\\circ\\,$$\\mathrm{val}(3,4)=7\\operatorname{xor}0=7$；\\\n$\\hspace{23pt}\\bullet\\,$对于 $[5..5]$：\\\n$\\hspace{38pt}\\circ\\,$$O(5,5)=5$；\\\n$\\hspace{38pt}\\circ\\,$$A(5,5)=5$；\\\n$\\hspace{38pt}\\circ\\,$$\\mathrm{val}(5,5)=5\\operatorname{xor}5=0$。\\\n总和为 $3+7+0 = 10$。"
+    },
+    {
+      "input": "6\n2 7 3 9 5 1",
+      "output": "19",
+      "note": "在这个样例中，一种最优划分为 $[1..2]$，$[3..4]$，$[5..6]$：\\\n$\\hspace{23pt}\\bullet\\,$对于 $[1..2]$：$O=7$，$A=2$，$\\mathrm{val}=5$；\\\n$\\hspace{23pt}\\bullet\\,$对于 $[3..4]$：$O=11$，$A=1$，$\\mathrm{val}=10$；\\\n$\\hspace{23pt}\\bullet\\,$对于 $[5..6]$：$O=5$，$A=1$，$\\mathrm{val}=4$。\\\n总和为 $5+10+4 = 19$。"
+    },
+    {
+      "input": "10\n8 1 4 7 2 6 3 0 5 9",
+      "output": "37",
+      "note": "在这个样例中，一种最优划分为 $[1..3]$，$[4..5]$，$[6..8]$，$[9..10]$：\\\n$\\hspace{23pt}\\bullet\\,$对于 $[1..3]$：$O=13$，$A=0$，$\\mathrm{val}=13$；\\\n$\\hspace{23pt}\\bullet\\,$对于 $[4..5]$：$O=7$，$A=2$，$\\mathrm{val}=5$；\\\n$\\hspace{23pt}\\bullet\\,$对于 $[6..8]$：$O=7$，$A=0$，$\\mathrm{val}=7$；\\\n$\\hspace{23pt}\\bullet\\,$对于 $[9..10]$：$O=13$，$A=1$，$\\mathrm{val}=12$。\\\n总和为 $13+5+7+12 = 37$。"
+    }
+  ],
+  "language": "zh",
+  "translateModel": "官方原文",
+  "fetchedAt": "2026-11-02T21:17:49.589Z"
+}
