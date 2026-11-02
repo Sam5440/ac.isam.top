@@ -4,7 +4,7 @@
   "contestId": 2206,
   "index": "F",
   "title": "Minesweeper String",
-  "titleZh": null,
+  "titleZh": "扫雷字符串",
   "url": "https://codeforces.com/contest/2206/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "You are given a string $S$ of length $n$ consisting of digits `0`–`9`. You want to use this string to generate a variant of Minesweeper. In this variant, a cell may contain more than one mine, and the mine count in a cell is based on its 4-neighborhood (edge-adjacent cells), instead of the usual 8-neighborhood.\n\nTo do that, you choose an integer $w$ ($1 \\le w \\le n$) representing the width of the grid. You arrange the $n$ cells, numbered from $0$ to $n-1$, into a grid. The grid has $\\left\\lceil n / w \\right\\rceil$ rows numbered from $0$ to $\\left\\lceil n / w \\right\\rceil-1$ from top to bottom, and $w$ columns numbered from $0$ to $w-1$ from left to right. For each $0 \\leq i \\lt n$, cell $i$ is located at row $\\left\\lfloor i/w \\right\\rfloor$ and column $i \\bmod w$, and corresponds to the $(i+1)$-th digit of $S$. Thus, row $0$ contains cells $0$ to $w-1$, row $1$ contains cells $w$ to $2w-1$, and so on. Note that the bottommost row may contain less than $w$ cells.\n\nAfter arranging the grid, you perform the following steps:\n\n1. For each cell corresponding to a non-zero digit $x$ (`1`–`9`), you place $x$ mines in that cell.\n2. For each remaining cell corresponding to `0`, you write a number in that cell that is equal to the total number of mines in its adjacent cells. Two cells are adjacent if they share an edge. Note that each cell has at most **four** adjacent cells.\n\nFor a width $w$, define $f(w)$ as the sum of the numbers in all cells without mines on the generated grid. Given an integer $k$, your task is to compute the $k$-th largest value among the values $f(1), f(2), \\ldots, f(n)$.\n\n## Input\n\nThe first line of input contains two integers $n$ and $k$ ($1\\leq k \\leq n \\leq 500\\,000$).\n\nThe second line contains a string $S$ of length $n$ consisting of digits `0`–`9`.\n\n## Output\n\nOutput the $k$-th largest value among $f(1), f(2), \\ldots, f(n)$.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nFigure F.1 illustrates the resulting grids for widths $1$ to $5$. Each dot in a cell represents one mine.\n\n![image](https://espresso.codeforces.com/2d2c006be49c6a534dddc4c80c22c092b15e86a0.png)Figure F.1: The resulting grids for all $5$ possible widths.\n\nBy summing up the numbers on the cells containing no mines, you obtain the following.\n\n- $f(1) = 7$\n- $f(2) = 3$\n- $f(3) = 11$\n- $f(4) = 4$\n- $f(5) = 7$\n\nThe third largest value among them is $7$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的字符串 $S$，由数字 `0`–`9` 组成。你想用这个字符串生成一个扫雷（Minesweeper）的变体。在这个变体中，一个格子中可以包含多于一颗地雷，并且格子中的雷数是基于其 4-邻域（边相邻的格子）而非通常的 8-邻域来统计的。\n\n为此，你选择一个整数 $w$（$1 \\le w \\le n$）表示网格的宽度。你将编号为 $0$ 到 $n-1$ 的 $n$ 个格子排入一个网格。网格共有 $\\left\\lceil n / w \\right\\rceil$ 行，自上而下编号为 $0$ 到 $\\left\\lceil n / w \\right\\rceil-1$；以及 $w$ 列，自左而右编号为 $0$ 到 $w-1$。对于每个 $0 \\leq i \\lt n$，格子 $i$ 位于第 $\\left\\lfloor i/w \\right\\rfloor$ 行、第 $i \\bmod w$ 列，对应 $S$ 的第 $(i+1)$ 个数字。因此，第 $0$ 行包含格子 $0$ 到 $w-1$，第 $1$ 行包含格子 $w$ 到 $2w-1$，依此类推。注意，最下面一行包含的格子可能少于 $w$ 个。\n\n排好网格后，你执行以下步骤：\n\n1. 对于每个对应非零数字 $x$（`1`–`9`）的格子，你在该格子中放入 $x$ 颗地雷。\n2. 对于每个剩下的对应 `0` 的格子，你在该格子中写上一个数，它等于与其相邻的格子中地雷的总数。若两个格子共享一条边，则称它们相邻。注意，每个格子至多有**四个**相邻格子。\n\n对于宽度 $w$，定义 $f(w)$ 为生成的网格中所有无地雷格子上的数字之和。给定一个整数 $k$，你的任务是计算 $f(1), f(2), \\ldots, f(n)$ 中第 $k$ 大的值。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $k$（$1\\leq k \\leq n \\leq 500\\,000$）。\n\n第二行包含一个长度为 $n$ 的字符串 $S$，由数字 `0`–`9` 组成。\n\n## 输出格式\n\n输出 $f(1), f(2), \\ldots, f(n)$ 中第 $k$ 大的值。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n图 F.1 展示了宽度 $1$ 到 $5$ 所对应的生成网格。每个格子中的每个点代表一颗地雷。\n\n![image](https://espresso.codeforces.com/2d2c006be49c6a534dddc4c80c22c092b15e86a0.png)图 F.1：所有 $5$ 种可能的宽度所对应的生成网格。\n\n将所有无地雷格子上的数字求和，得到：\n\n- $f(1) = 7$\n- $f(2) = 3$\n- $f(3) = 11$\n- $f(4) = 4$\n- $f(5) = 7$\n\n其中第三大的值是 $7$。",
   "samples": [
     {
       "input": "5 3\n20103\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:33:41.182Z"
+  "fetchedAt": "2026-11-02T16:33:41.182Z",
+  "translatedAt": "2026-11-03T02:37:08.439+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

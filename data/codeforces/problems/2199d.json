@@ -4,7 +4,7 @@
   "contestId": 2199,
   "index": "D",
   "title": "Two Arrays",
-  "titleZh": null,
+  "titleZh": "两个数组",
   "url": "https://codeforces.com/contest/2199/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "The median of the sequence $[s_1, s_2, \\dots, s_k]$ is defined as the element that appears at position $\\lfloor \\frac{k+1}{2} \\rfloor$ when the sequence is sorted in non-decreasing order. For example, the median of the sequence $[4, 5, 6, 1, 2, 2]$ is $2$; the median of the sequence $[3, 6, 3, 4, 5]$ is $4$.\n\nYou are given two arrays $[a_1, a_2, \\dots, a_n]$ and $[b_1, b_2, \\dots, b_m]$, sorted in non-decreasing order. Both arrays have odd lengths.\n\nIn one operation, you can do the following:\n\n- choose one of the arrays and mark an **odd** number of elements in it;\n- calculate $x$ — the median of the marked elements;\n- remove all marked elements;\n- insert $x$ into any position of the array on which the operation was performed.\n\nYour task is to determine whether it is possible to make the arrays equal.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case consists of three lines:\n\n- the first line contains two integers $n$ and $m$ ($1 \\le n, m \\le 3 \\cdot 10^5$);\n- the second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_1 \\le a_2 \\le \\dots \\le a_n \\le 10^9$);\n- the third line contains $m$ integers $b_1, b_2, \\dots, b_m$ ($1 \\le b_1 \\le b_2 \\le \\dots \\le b_m \\le 10^9$).\n\nAdditional constraints on the input:\n\n- the sum of $(n+m)$ across all test cases does not exceed $3 \\cdot 10^5$;\n- in every test case, $n \\bmod 2 = 1$ and $m \\bmod 2 = 1$.\n\n## Output\n\nFor each test case, output `YES` if it is possible to make the arrays equal, or `NO` if it is not possible.\n\n## Note\n\nIn the first example, the arrays can be made equal by applying the following sequence of operations:\n\n1. for the array $a = [1, 2, 3, 4, 5]$, mark the $2$-nd, $4$-th, and $5$-th elements. Their median is $4$. We insert it at the end of the array, resulting in $a = [1, 3, 4]$;\n2. for the array $b = [1, 3, 7]$, mark all elements. Their median is $3$. We get the array $b = [3]$;\n3. for the array $a = [1, 3, 4]$, mark all elements. Their median is $3$. We get the array $a = [3]$;\n4. now the arrays $a$ and $b$ are equal.",
-  "statementZhMd": null,
+  "statementZhMd": "序列 $[s_1, s_2, \\dots, s_k]$ 的中位数定义为将该序列按非递减顺序排序后，位于第 $\\lfloor \\frac{k+1}{2} \\rfloor$ 个位置上的元素。例如，序列 $[4, 5, 6, 1, 2, 2]$ 的中位数是 $2$；序列 $[3, 6, 3, 4, 5]$ 的中位数是 $4$。\n\n给定两个按非递减顺序排序的数组 $[a_1, a_2, \\dots, a_n]$ 和 $[b_1, b_2, \\dots, b_m]$。两个数组的长度均为奇数。\n\n在一次操作中，你可以进行如下步骤：\n\n- 选择其中一个数组，并在其中标记**奇数**个元素；\n- 计算出 $x$ —— 被标记元素的中位数；\n- 移除所有被标记的元素；\n- 将 $x$ 插入到执行该操作的数组的任意位置。\n\n你的任务是判断是否有可能使这两个数组相等。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）—— 测试用例的数量。\n\n每个测试用例由三行组成：\n\n- 第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 3 \\cdot 10^5$）；\n- 第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_1 \\le a_2 \\le \\dots \\le a_n \\le 10^9$）；\n- 第三行包含 $m$ 个整数 $b_1, b_2, \\dots, b_m$（$1 \\le b_1 \\le b_2 \\le \\dots \\le b_m \\le 10^9$）。\n\n关于输入的额外约束条件：\n\n- 所有测试用例的 $(n+m)$ 之和不超过 $3 \\cdot 10^5$；\n- 在每个测试用例中，$n \\bmod 2 = 1$ 且 $m \\bmod 2 = 1$。\n\n## 输出格式\n\n对于每个测试用例，如果有可能使两个数组相等，输出 `YES`；否则输出 `NO`。\n\n## 说明\n\n在第一个样例中，可以通过执行以下操作序列使两个数组相等：\n\n1. 对于数组 $a = [1, 2, 3, 4, 5]$，标记第 $2$、$4$ 和 $5$ 个元素。它们的中位数是 $4$。我们将其插入到数组末尾，得到 $a = [1, 3, 4]$；\n2. 对于数组 $b = [1, 3, 7]$，标记所有元素。它们的中位数是 $3$。我们得到数组 $b = [3]$；\n3. 对于数组 $a = [1, 3, 4]$，标记所有元素。它们的中位数是 $3$。我们得到数组 $a = [3]$；\n4. 此时数组 $a$ 和 $b$ 相等。",
   "samples": [
     {
       "input": "3\n5 3\n1 2 3 4 5\n1 3 7\n3 5\n11 17 19\n19 20 26 29 37\n1 7\n11\n1 2 7 9 11 15 17\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:38:42.327Z"
+  "fetchedAt": "2026-11-02T16:38:42.327Z",
+  "translatedAt": "2026-11-03T02:39:12.693+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,14 +4,14 @@
   "contestId": 2206,
   "index": "M",
   "title": "Deformed Balance",
-  "titleZh": null,
+  "titleZh": "变形平衡",
   "url": "https://codeforces.com/contest/2206/problem/M",
   "difficulty": 2900,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "In this problem, a concatenation of two strings $T$ and $U$ is denoted by $T+U$.\n\nA string consisting only of parentheses (opening parentheses '`(`' or closing parentheses '`)`') is balanced if and only if it is one of the following.\n\n- An empty string.\n- The concatenation of two non-empty balanced strings.\n- The concatenation $\\texttt{(} + T + \\texttt{)}$, where $T$ is a balanced string.\n\nFor example, \"`()`\" and \"`(())()`\" are balanced, while \"`()(`\" and \"`((()`\" are not.\n\nA string is deformed if and only if it is one of the following.\n\n- The string \"`)`\".\n- The concatenation $T + \\texttt{)} + U$, where $T$ and $U$ are deformed strings.\n- The concatenation $\\texttt{(} + T + \\texttt{(}$, where $T$ is a deformed string.\n\nFor example, \"`()(`\" and \"`))()(`\" are deformed, while \"`()`\" and \"`(()`\" are not.\n\nA string $T$ has a deformed balance if $T$ is deformed and the concatenation $T + \\texttt{)}$ is balanced. For example, the string \"`()(`\" has a deformed balance.\n\nYou are given a string $S$ of length $n$ consisting only of parentheses. Under the given input constraints, it can be shown that there exist strings $X$ and $Y$ such that the concatenation $X + S + Y$ has a deformed balance. Determine the minimum possible value of $|X| + |Y|$ (the sum of the lengths of $X$ and $Y$).\n\n## Input\n\nThe first line of input contains one integer $t$ ($1 \\le t \\le 10\\,000$) representing the number of test cases. After that, $t$ test cases follow. Each of them is presented as follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 10^6$).\n\nThe second line contains a string $S$ of length $n$, consisting only of '`(`' or '`)`'.\n\nThe sum of $n$ across all test cases in one input file does not exceed $10^6$.\n\n## Output\n\nFor each test case, output the minimum possible value of $|X|+|Y|$ such that the concatenation $X + S + Y$ has a deformed balance.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nFor the first test case, the given string already has a deformed balance.\n\nFor the second test case, setting both $X$ and $Y$ to \"`(`\" yields the concatenation \"`()(`\", which has a deformed balance. The value of $|X|+|Y|$ is $2$.\n\nFor the third test case, it suffices to set $X$ to \"`((()`\" and $Y$ to an empty string to attain the minimum value of $|X|+|Y|$.",
-  "statementZhMd": null,
+  "statementZhMd": "在本题中，两个字符串 $T$ 和 $U$ 的拼接记为 $T+U$。\n\n仅由括号（左括号 '`(`' 或右括号 '`)`'）组成的字符串是平衡的，当且仅当它是以下情形之一。\n\n- 空字符串。\n- 两个非空平衡字符串的拼接。\n- 拼接 $\\texttt{(} + T + \\texttt{)}$，其中 $T$ 是平衡字符串。\n\n例如，\"`()`\" 和 \"`(())()`\" 是平衡的，而 \"`()(`\" 和 \"`((()`\" 不是。\n\n一个字符串是变形的，当且仅当它是以下情形之一。\n\n- 字符串 \"`)`\"。\n- 拼接 $T + \\texttt{)} + U$，其中 $T$ 和 $U$ 是变形字符串。\n- 拼接 $\\texttt{(} + T + \\texttt{(}$，其中 $T$ 是变形字符串。\n\n例如，\"`()(`\" 和 \"`))()(`\" 是变形的，而 \"`()`\" 和 \"`(()`\" 不是。\n\n如果字符串 $T$ 是变形的，且拼接 $T + \\texttt{)}$ 是平衡的，则称 $T$ 具有变形平衡。例如，字符串 \"`()(`\" 具有变形平衡。\n\n给定一个长度为 $n$、仅由括号组成的字符串 $S$。在给定的输入约束下，可以证明存在字符串 $X$ 和 $Y$，使得拼接 $X + S + Y$ 具有变形平衡。求 $|X| + |Y|$（即 $X$ 和 $Y$ 的长度之和）的最小可能值。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10\\,000$），表示测试用例的数量。接下来是 $t$ 个测试用例，每个测试用例按如下格式给出。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^6$）。\n\n第二行包含一个长度为 $n$ 的字符串 $S$，仅由 '`(`' 或 '`)`' 组成。\n\n一个输入文件中所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出使拼接 $X + S + Y$ 具有变形平衡的 $|X|+|Y|$ 的最小可能值。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n对于第一个测试用例，给定的字符串已经具有变形平衡。\n\n对于第二个测试用例，将 $X$ 和 $Y$ 都设为 \"`(`\"，得到拼接 \"`()(`\"，它具有变形平衡。此时 $|X|+|Y|$ 的值为 $2$。\n\n对于第三个测试用例，将 $X$ 设为 \"`((()`\"、$Y$ 设为空字符串，即可达到 $|X|+|Y|$ 的最小值。",
   "samples": [
     {
       "input": "3\n3\n()(\n1\n)\n7\n(())())\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:33:41.204Z"
+  "fetchedAt": "2026-11-02T16:33:41.204Z",
+  "translatedAt": "2026-11-03T02:38:47.036+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -1,0 +1,29 @@
+{
+  "id": "1437D",
+  "platform": "codeforces",
+  "contestId": 1437,
+  "index": "D",
+  "title": "Minimal Height Tree",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1437/problem/D",
+  "difficulty": 1600,
+  "tags": [
+    "graphs",
+    "greedy",
+    "shortest paths",
+    "trees"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Monocarp had a tree which consisted of $n$ vertices and was rooted at vertex $1$. He decided to study BFS ([Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)), so he ran BFS on his tree, starting from the root. BFS can be described by the following pseudocode:\n\n```\na = [] # the order in which vertices were processed\nq = Queue()\nq.put(1) # place the root at the end of the queue\nwhile not q.empty():\n    k = q.pop() # retrieve the first vertex from the queue\n    a.append(k) # append k to the end of the sequence in which vertices were visited\n    for y in g[k]: # g[k] is the list of all children of vertex k, sorted in ascending order\n        q.put(y)\n```\n\nMonocarp was fascinated by BFS so much that, in the end, he lost his tree. Fortunately, he still has a sequence of vertices, in which order vertices were visited by the BFS algorithm (the array `a` from the pseudocode). Monocarp knows that each vertex was visited exactly once (since they were put and taken from the queue exactly once). Also, he knows that all children of each vertex were viewed *in ascending order*.\n\nMonocarp knows that there are many trees (in the general case) with the same visiting order $a$, so he doesn't hope to restore his tree. Monocarp is okay with any tree that **has minimum height**.\n\n*The height* of a tree is the maximum depth of the tree's vertices, and the depth of a vertex is the number of edges in the path from the root to it. For example, the depth of vertex $1$ is $0$, since it's the root, and the depth of all root's children are $1$.\n\nHelp Monocarp to find any tree with given visiting order $a$ and minimum height.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n$; $a_i \\neq a_j$; $a_1 = 1$) — the order in which the vertices were visited by the BFS algorithm.\n\nIt's guaranteed that the total sum of $n$ over test cases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case print the minimum possible height of a tree with the given visiting order $a$.\n\n## Note\n\nIn the first test case, there is only one tree with the given visiting order:\n\n![image](https://espresso.codeforces.com/b293b1123957eaff414c059592d96a53244efdb7.png)\n\nIn the second test case, there is only one tree with the given visiting order as well:\n\n![image](https://espresso.codeforces.com/1420fda7c903dfd69b0658e0ba1a69c3a671d88f.png)\n\nIn the third test case, an optimal tree with the given visiting order is shown below:\n\n![image](https://espresso.codeforces.com/61b78f3e0f5eeab5bbb10e579c00dd80141fe794.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n4\n1 4 3 2\n2\n1 2\n3\n1 2 3\n",
+      "output": "3\n1\n1\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T18:37:08.058Z"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "1494E",
+  "platform": "codeforces",
+  "contestId": 1494,
+  "index": "E",
+  "title": "A-Z Graph",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1494/problem/E",
+  "difficulty": 2400,
+  "tags": [
+    "constructive algorithms",
+    "data structures",
+    "graphs",
+    "hashing"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a directed graph consisting of $n$ vertices. Each directed edge (or arc) labeled with a single character. Initially, the graph is empty.\n\nYou should process $m$ queries with it. Each query is one of three types:\n\n- \"`$+$ $u$ $v$ $c$`\" — add arc from $u$ to $v$ with label $c$. It's guaranteed that there is no arc $(u, v)$ in the graph at this moment;\n- \"`$-$ $u$ $v$`\" — erase arc from $u$ to $v$. It's guaranteed that the graph contains arc $(u, v)$ at this moment;\n- \"`$?$ $k$`\" — find the sequence of $k$ vertices $v_1, v_2, \\dots, v_k$ such that there exist both routes $v_1 \\to v_2 \\to \\dots \\to v_k$ and $v_k \\to v_{k - 1} \\to \\dots \\to v_1$ and if you write down characters along both routes you'll get the same string. You can visit the same vertices any number of times.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\le n \\le 2 \\cdot 10^5$; $1 \\le m \\le 2 \\cdot 10^5$) — the number of vertices in the graph and the number of queries.\n\nThe next $m$ lines contain queries — one per line. Each query is one of three types:\n\n- \"`$+$ $u$ $v$ $c$`\" ($1 \\le u, v \\le n$; $u \\neq v$; $c$ is a lowercase Latin letter);\n- \"`$-$ $u$ $v$`\" ($1 \\le u, v \\le n$; $u \\neq v$);\n- \"`$?$ $k$`\" ($2 \\le k \\le 10^5$).\n\nIt's guaranteed that you don't add multiple edges and erase only existing edges. Also, there is at least one query of the third type.\n\n## Output\n\nFor each query of the third type, print `YES` if there exist the sequence $v_1, v_2, \\dots, v_k$ described above, or `NO` otherwise.\n\n## Note\n\nIn the first query of the third type $k = 3$, we can, for example, choose a sequence $[1, 2, 3]$, since $1 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 3$ and $3 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 1$.\n\nIn the second query of the third type $k = 2$, and we can't find sequence $p_1, p_2$ such that arcs $(p_1, p_2)$ and $(p_2, p_1)$ have the same characters.\n\nIn the third query of the third type, we can, for example, choose a sequence $[1, 2, 3, 2, 1]$, where $1 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 3 \\xrightarrow{\\text{d}} 2 \\xrightarrow{\\text{c}} 1$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 11\n+ 1 2 a\n+ 2 3 b\n+ 3 2 a\n+ 2 1 b\n? 3\n? 2\n- 2 1\n- 3 2\n+ 2 1 c\n+ 3 2 d\n? 5\n",
+      "output": "YES\nNO\nYES\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T18:31:15.486Z"
+}

@@ -4,7 +4,7 @@
   "contestId": 2206,
   "index": "A",
   "title": "Compare Suffixes",
-  "titleZh": null,
+  "titleZh": "比较后缀",
   "url": "https://codeforces.com/contest/2206/problem/A",
   "difficulty": 3500,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "The judge program possesses a hidden string $S$ of length $n$ consisting only of lowercase Latin letters (`a`–`z`). You cannot access the string. At the start, only the length $n$ is given to you.\n\nYour task is to determine the order of all $n$ suffixes using a limited number of queries.\n\nFor an integer $k$ ($1 \\le k \\le n$), let $S(k)$ denote the suffix of $S$ starting at the $k$-th character. In particular, $S(1)=S$.\n\nIn a single query, you specify two distinct integers $i$ and $j$. The judge program compares $S(i)$ and $S(j)$ lexicographically and returns whether $S(i) \\lt S(j)$ or $S(i) \\gt S(j)$ to you. Note that ties never occur for $i\\not= j$ because all suffixes are distinct.\n\nFind a permutation $(p_1,p_2,\\ldots,p_n)$ of $(1,2,\\ldots,n)$ such that $S(p_1) \\lt S(p_2) \\lt \\cdots \\lt S(p_n)$.\n\n## Interaction\n\nThe first line of input contains the integer $n$ ($2 \\le n \\le 1000$).\n\nTo issue a query, your program should write a line of the form \"`query` $i$ $j$\" ($1 \\le i \\le n; 1 \\le j \\le n; i \\not= j$). After that, an input line containing `first` or `second` becomes available. A line containing `first` means $S(i) \\lt S(j)$, while a line containing `second` means $S(i) \\gt S(j)$.\n\nOnce you determine the order of the suffixes, your program should write a line of the form \"`answer` $p_1$ $p_2$ $\\ldots$ $p_n$\". After that, the interaction stops and your program should terminate without extra output.\n\nYour program may issue at most $6260$ queries. If your program issues more than $6260$ queries, it will be judged as \"Wrong Answer.\"\n\nIt is guaranteed that the hidden string $S$ consists only of lowercase letters (`a`–`z`).\n\n*Notes on interactive judging:*\n\n- The evaluation is non-adversarial, meaning that the string $S$ is chosen in advance rather than in response to your queries.\n- Do not forget to flush output buffers after writing.\n- You are provided with a command-line tool for local testing, together with input files corresponding to the sample interactions. You can download these files. The tool has comments at the top to explain its use.\n\n## Note\n\n*Explanation for the sample interaction #1*\n\nIn this sample, $S=\\texttt{icpc}$ is assumed. The order of four suffixes is $S(4) \\lt S(2) \\lt S(1) \\lt S(3)$ because $\\texttt{c} \\lt \\texttt{cpc} \\lt \\texttt{icpc} \\lt \\texttt{pc}$.\n\nIn the first and third query, `first` is returned because $S(2) \\lt S(1)$ and $S(1) \\lt S(3)$. In the second query, `second` is returned because $S(2) \\gt S(4)$. With these responses, you can determine the ordering.",
-  "statementZhMd": null,
+  "statementZhMd": "评测程序持有一个仅由小写拉丁字母（`a`–`z`）组成、长度为 $n$ 的隐藏字符串 $S$。你无法访问这个字符串。一开始，只会告诉你长度 $n$。\n\n你的任务是使用有限次数的询问，确定全部 $n$ 个后缀的大小顺序。\n\n对于整数 $k$（$1 \\le k \\le n$），令 $S(k)$ 表示 $S$ 从第 $k$ 个字符开始的后缀。特别地，$S(1)=S$。\n\n在一次询问中，你指定两个互不相同的整数 $i$ 和 $j$。评测程序会按字典序比较 $S(i)$ 与 $S(j)$，并向你返回是 $S(i) \\lt S(j)$ 还是 $S(i) \\gt S(j)$。注意，当 $i\\not= j$ 时绝不会出现相等的情况，因为所有后缀互不相同。\n\n请找出 $(1,2,\\ldots,n)$ 的一个排列 $(p_1,p_2,\\ldots,p_n)$，使得 $S(p_1) \\lt S(p_2) \\lt \\cdots \\lt S(p_n)$。\n\n## 交互\n\n输入的第一行包含整数 $n$（$2 \\le n \\le 1000$）。\n\n要进行一次询问，你的程序应输出一行，形如 \"`query` $i$ $j$\"（$1 \\le i \\le n; 1 \\le j \\le n; i \\not= j$）。此后，一行包含 `first` 或 `second` 的输入将变为可读。包含 `first` 的一行表示 $S(i) \\lt S(j)$，而包含 `second` 的一行表示 $S(i) \\gt S(j)$。\n\n一旦你确定了后缀的顺序，你的程序应输出一行，形如 \"`answer` $p_1$ $p_2$ $\\ldots$ $p_n$\"。此后，交互结束，你的程序应直接终止，不得有任何额外输出。\n\n你的程序最多可以进行 $6260$ 次询问。如果你的程序进行的询问超过 $6260$ 次，将被判为 \"Wrong Answer.\"。\n\n保证隐藏字符串 $S$ 仅由小写字母（`a`–`z`）组成。\n\n*关于交互评测的说明：*\n\n- 评测是非对抗性的，即字符串 $S$ 是预先选定的，而不是根据你的询问作出的回应。\n- 不要忘记在输出后刷新输出缓冲区。\n- 我们为你提供了一个用于本地测试的命令行工具，以及与样例交互对应的输入文件，你可以下载这些文件。该工具的顶部有注释说明其用法。\n\n## 说明\n\n*样例交互 #1 的解释*\n\n在这个样例中，假设 $S=\\texttt{icpc}$。四个后缀的顺序为 $S(4) \\lt S(2) \\lt S(1) \\lt S(3)$，因为 $\\texttt{c} \\lt \\texttt{cpc} \\lt \\texttt{icpc} \\lt \\texttt{pc}$。\n\n在第一次和第三次询问中，返回 `first` 是因为 $S(2) \\lt S(1)$ 和 $S(1) \\lt S(3)$。在第二次询问中，返回 `second` 是因为 $S(2) \\gt S(4)$。根据这些回答，你就可以确定顺序。",
   "samples": [
     {
       "input": "4\n\nfirst\n\nsecond\n\nfirst\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:33:41.167Z"
+  "fetchedAt": "2026-11-02T16:33:41.167Z",
+  "translatedAt": "2026-11-03T02:32:47.834+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

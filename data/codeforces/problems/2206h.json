@@ -4,7 +4,7 @@
   "contestId": 2206,
   "index": "H",
   "title": "Reflect Sort",
-  "titleZh": null,
+  "titleZh": "反射排序",
   "url": "https://codeforces.com/contest/2206/problem/H",
   "difficulty": 1800,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "You have a sequence of $n$ integers $(a_1, a_2, \\ldots, a_n)$, the initial values of which are given to you. You may apply the following operation to the sequence any number of times (possibly zero):\n\n1. Choose an index $i$ ($1 \\le i \\le n$).\n2. Choose a set $S$ to be either the prefix $\\{1,2,\\ldots,i-1\\}$ or the suffix $\\{i+1,i+2,\\ldots,n\\}$.\n3. For every $j \\in S$, replace $a_j$ with $2a_i - a_j$.\n\nYour goal is to make the sequence non-decreasing and all elements positive, while minimizing $a_n$, using the operation above any number of times. That is, $1 \\le a_1 \\le a_2 \\le \\ldots \\le a_n$ must hold in the resulting sequence. What is the minimum possible value of $a_n$ in the resulting sequence?\n\n## Input\n\nThe first line of input contains a single integer $n$ ($2 \\le n \\le 100\\,000$).\n\nThe second line contains $n$ integers representing the initial values of $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$).\n\n## Output\n\nOutput the minimum possible value of $a_n$ in the resulting sequence.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nYou can do the following sequence of operations.\n\n1. Choose $i = 1$ and $S$ as the suffix $\\{2, 3, 4, 5\\}$: $(6, 3, 5, 5, 2) \\to (6, 9, 7, 7, 10)$.\n2. Choose $i = 3$ and $S$ as the prefix $\\{1, 2\\}$: $(6, 9, 7, 7, 10) \\to (8, 5, 7, 7, 10)$.\n3. Choose $i = 2$ and $S$ as the prefix $\\{1\\}$: $(8, 5, 7, 7, 10) \\to (2, 5, 7, 7, 10)$.\n\nAfter these operations, the sequence is non-decreasing and all elements are positive. It can be shown that $a_5=10$ is the minimum possible value.\n\n*Explanation for the sample input/output #2*\n\nThe minimum possible value of $a_3$ is $100002$, which can be attained by the following operations.\n\n1. Choose $i = 2$ and $S$ as the suffix $\\{3\\}$: $(2, 1, 100000) \\to (2, 1, -99998)$.\n2. Choose $i = 1$ and $S$ as the suffix $\\{2, 3\\}$: $(2, 1, -99998) \\to (2, 3, 100002)$.\n\nNote that the sequence may contain non-positive values during operations.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个整数组成的序列 $(a_1, a_2, \\ldots, a_n)$，其初始值已给出。你可以对序列进行任意多次（也可以为零次）如下操作：\n\n1. 选择一个下标 $i$（$1 \\le i \\le n$）。\n2. 选择一个集合 $S$，它要么是前缀 $\\{1,2,\\ldots,i-1\\}$，要么是后缀 $\\{i+1,i+2,\\ldots,n\\}$。\n3. 对每个 $j \\in S$，将 $a_j$ 替换为 $2a_i - a_j$。\n\n你的目标是使用上述操作任意多次，使序列变为非递减且所有元素均为正，同时最小化 $a_n$。也就是说，最终序列必须满足 $1 \\le a_1 \\le a_2 \\le \\ldots \\le a_n$。最终序列中 $a_n$ 的最小可能值是多少？\n\n## 输入格式\n\n输入的第一行包含一个整数 $n$（$2 \\le n \\le 100\\,000$）。\n\n第二行包含 $n$ 个整数，表示 $a_1, a_2, \\ldots, a_n$ 的初始值（$1 \\le a_i \\le 10^9$）。\n\n## 输出格式\n\n输出最终序列中 $a_n$ 的最小可能值。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n你可以按如下顺序执行操作。\n\n1. 选择 $i = 1$，$S$ 为后缀 $\\{2, 3, 4, 5\\}$：$(6, 3, 5, 5, 2) \\to (6, 9, 7, 7, 10)$。\n2. 选择 $i = 3$，$S$ 为前缀 $\\{1, 2\\}$：$(6, 9, 7, 7, 10) \\to (8, 5, 7, 7, 10)$。\n3. 选择 $i = 2$，$S$ 为前缀 $\\{1\\}$：$(8, 5, 7, 7, 10) \\to (2, 5, 7, 7, 10)$。\n\n经过这些操作后，序列非递减且所有元素均为正。可以证明 $a_5=10$ 是最小可能值。\n\n*样例输入/输出 #2 的解释*\n\n$a_3$ 的最小可能值为 $100002$，可以通过以下操作取得。\n\n1. 选择 $i = 2$，$S$ 为后缀 $\\{3\\}$：$(2, 1, 100000) \\to (2, 1, -99998)$。\n2. 选择 $i = 1$，$S$ 为后缀 $\\{2, 3\\}$：$(2, 1, -99998) \\to (2, 3, 100002)$。\n\n注意，在操作过程中序列可以包含非正数。",
   "samples": [
     {
       "input": "5\n6 3 5 5 2\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:33:41.193Z"
+  "fetchedAt": "2026-11-02T16:33:41.193Z",
+  "translatedAt": "2026-11-03T02:36:56.477+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

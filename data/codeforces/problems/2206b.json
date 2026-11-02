@@ -4,7 +4,7 @@
   "contestId": 2206,
   "index": "B",
   "title": "Subtree Removal Game",
-  "titleZh": null,
+  "titleZh": "删除子树游戏",
   "url": "https://codeforces.com/contest/2206/problem/B",
   "difficulty": 2500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "You are given a rooted tree with $n$ nodes, numbered from $1$ to $n$, rooted at node $1$. For each node $i$ ($2 \\le i \\le n$), its parent is node $p_i$. For each node $i$, if it is a leaf (a node having no children), the integer $i$ is written on it. Otherwise, nothing is written.\n\nNode $u$ is a descendant of node $v$ if $u = v$, or $u$ is not the root and the parent of $u$ is a descendant of $v$.\n\nNow, you and your friend play a game on this tree, taking turns alternately: You move first, then your friend, and so on. On each turn, the current player must choose a node $v$ and then remove the entire subtree of $v$ (i.e., all descendants of $v$, including $v$ itself). The move is allowed only if, after the removal, at least one node with an integer written on it remains in the tree.\n\nThe game ends when no further moves are possible. At that point, exactly one node with an integer written on it remains; the score of the game is the integer on that node.\n\nYou aim to minimize the score, while your friend aims to maximize it. Assuming you and your friend play optimally, determine the score of the game.\n\n## Input\n\nThe first line of input contains an integer $n$ ($2 \\le n \\le 500\\,000$).\n\nThe second line contains $n-1$ integers $p_2, p_3, \\ldots, p_n$ ($1 \\le p_i \\lt i$ for all $2 \\le i \\le n$).\n\n## Output\n\nOutput the score of the game assuming you and your friend play optimally.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nThe given tree is illustrated in Figure B.1 (a).\n\n![image](https://espresso.codeforces.com/e684a0c27f802025fe858f0a6aee73f9b875e3c8.png)Figure B.1: Illustration of Sample Input #1.\n\nThe only optimal moves for both players are as follows:\n\n- You choose node $5$. Then nodes $5$, $6$, and $7$ are removed (Figure B.1 (b)).\n- Your friend chooses node $3$. Then only node $3$ is removed (Figure B.1 (c)).\n- You cannot make any moves, and the game ends.\n\nAfter these moves, only one node with an integer written on it, node $4$, remains. The score of this game is $4$.\n\n*Explanation for the sample input/output #2*\n\nThe given tree is illustrated in Figure B.2. One of the optimal moves for you is to choose node $2$. The game ends after that, and the score is $7$.\n\n![image](https://espresso.codeforces.com/70eafb3608a94cf6f7821f9b932e3445ff27932c.png)Figure B.2: Illustration of Sample Input #2.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵有 $n$ 个节点的有根树，节点编号从 $1$ 到 $n$，根节点为节点 $1$。对于每个节点 $i$（$2 \\le i \\le n$），它的父节点是节点 $p_i$。对于每个节点 $i$，如果它是叶子节点（即没有子节点的节点），则其上写有整数 $i$；否则其上没有写任何东西。\n\n如果 $u = v$，或者 $u$ 不是根节点且 $u$ 的父节点是 $v$ 的后代，则称节点 $u$ 是节点 $v$ 的后代。\n\n现在，你和你的朋友在这棵树上进行游戏，双方轮流行动：你先行动，然后是你的朋友，如此交替。每一回合，当前玩家必须选择一个节点 $v$，然后移除 $v$ 的整棵子树（即 $v$ 的所有后代，包括 $v$ 本身）。只有当移除之后，树上仍至少剩下一个写有整数的节点时，这步操作才是合法的。\n\n当无法再进行任何操作时，游戏结束。此时，树上恰好剩下一个写有整数的节点；游戏的得分即为该节点上写的整数。\n\n你的目标是使得分最小化，而你的朋友的目标是使得分最大化。假设你和你的朋友都采取最优策略，请确定游戏的得分。\n\n## 输入格式\n\n输入的第一行包含一个整数 $n$（$2 \\le n \\le 500\\,000$）。\n\n第二行包含 $n-1$ 个整数 $p_2, p_3, \\ldots, p_n$（对于所有 $2 \\le i \\le n$，满足 $1 \\le p_i \\lt i$）。\n\n## 输出格式\n\n输出假设你和你的朋友都采取最优策略时游戏的得分。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n给定的树如图 B.1 (a) 所示。\n\n![image](https://espresso.codeforces.com/e684a0c27f802025fe858f0a6aee73f9b875e3c8.png)图 B.1：样例输入 #1 的图示。\n\n双方玩家唯一的最优操作如下：\n\n- 你选择节点 $5$。随后节点 $5$、$6$ 和 $7$ 被移除（图 B.1 (b)）。\n- 你的朋友选择节点 $3$。随后仅节点 $3$ 被移除（图 B.1 (c)）。\n- 你无法进行任何操作，游戏结束。\n\n在这些操作之后，只剩下一个写有整数的节点，即节点 $4$。本局游戏的得分为 $4$。\n\n*样例输入/输出 #2 的解释*\n\n给定的树如图 B.2 所示。你的一个最优操作是选择节点 $2$。此后游戏结束，得分为 $7$。\n\n![image](https://espresso.codeforces.com/70eafb3608a94cf6f7821f9b932e3445ff27932c.png)图 B.2：样例输入 #2 的图示。",
   "samples": [
     {
       "input": "7\n1 2 2 1 5 5\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:33:41.170Z"
+  "fetchedAt": "2026-11-02T16:33:41.170Z",
+  "translatedAt": "2026-11-03T02:33:44.963+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

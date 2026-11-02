@@ -1,0 +1,28 @@
+{
+  "id": "1476C",
+  "platform": "codeforces",
+  "contestId": 1476,
+  "index": "C",
+  "title": "Longest Simple Cycle",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1476/problem/C",
+  "difficulty": 1600,
+  "tags": [
+    "dp",
+    "graphs",
+    "greedy"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have $n$ chains, the $i$-th chain consists of $c_i$ vertices. Vertices in each chain are numbered independently from $1$ to $c_i$ along the chain. In other words, the $i$-th chain is the undirected graph with $c_i$ vertices and $(c_i - 1)$ edges connecting the $j$-th and the $(j + 1)$-th vertices for each $1 \\le j \\lt c_i$.\n\nNow you decided to unite chains in one graph in the following way:\n\n1. the first chain is skipped;\n2. the $1$-st vertex of the $i$-th chain is connected by an edge with the $a_i$-th vertex of the $(i - 1)$-th chain;\n3. the last ($c_i$-th) vertex of the $i$-th chain is connected by an edge with the $b_i$-th vertex of the $(i - 1)$-th chain.\n\n![image](https://espresso.codeforces.com/613fe2860119e785c44eb05d78a94ed40a480bea.png) Picture of the first test case. Dotted lines are the edges added during uniting process\n\nCalculate the length of the longest simple cycle in the resulting graph.\n\nA *simple cycle* is a chain where the first and last vertices are connected as well. If you travel along the simple cycle, each vertex of this cycle will be visited exactly once.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nThe first line of each test case contains the single integer $n$ ($2 \\le n \\le 10^5$) — the number of chains you have.\n\nThe second line of each test case contains $n$ integers $c_1, c_2, \\dots, c_n$ ($2 \\le c_i \\le 10^9$) — the number of vertices in the corresponding chains.\n\nThe third line of each test case contains $n$ integers $a_1, a_2, \\dots, a_n$ ($a_1 = -1$; $1 \\le a_i \\le c_{i - 1}$).\n\nThe fourth line of each test case contains $n$ integers $b_1, b_2, \\dots, b_n$ ($b_1 = -1$; $1 \\le b_i \\le c_{i - 1}$).\n\nBoth $a_1$ and $b_1$ are equal to $-1$, they aren't used in graph building and given just for index consistency. It's guaranteed that the sum of $n$ over all test cases doesn't exceed $10^5$.\n\n## Output\n\nFor each test case, print the length of the longest simple cycle.\n\n## Note\n\nIn the first test case, the longest simple cycle is shown below:\n\n![image](https://espresso.codeforces.com/885ee3b5d950985047e6c8aa0ad7bee22dbe8607.png)\n\nWe can't increase it with the first chain, since in such case it won't be simple — the vertex $2$ on the second chain will break simplicity.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n4\n3 4 3 3\n-1 1 2 2\n-1 2 2 3\n2\n5 6\n-1 5\n-1 1\n3\n3 5 2\n-1 1 1\n-1 3 5\n",
+      "output": "7\n11\n8\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T18:34:04.120Z"
+}
