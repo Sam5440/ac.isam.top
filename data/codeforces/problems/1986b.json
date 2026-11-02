@@ -1,0 +1,29 @@
+{
+  "id": "1986B",
+  "platform": "codeforces",
+  "contestId": 1986,
+  "index": "B",
+  "title": "Matrix Stabilization",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1986/problem/B",
+  "difficulty": 1000,
+  "tags": [
+    "brute force",
+    "data structures",
+    "greedy",
+    "sortings"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a matrix of size $n \\times m$, where the rows are numbered from $1$ to $n$ from top to bottom, and the columns are numbered from $1$ to $m$ from left to right. The element at the intersection of the $i$-th row and the $j$-th column is denoted by $a_{ij}$.\n\nConsider the algorithm for stabilizing matrix $a$:\n\n1. Find the cell $(i, j)$ such that its value is strictly greater than the values of all its neighboring cells. If there is no such cell, terminate the algorithm. If there are multiple such cells, choose the cell with the smallest value of $i$, and if there are still multiple cells, choose the one with the smallest value of $j$.\n2. Set $a_{ij} = a_{ij} - 1$.\n3. Go to step $1$.\n\nIn this problem, cells $(a, b)$ and $(c, d)$ are considered neighbors if they share a common side, i.e., $|a - c| + |b - d| = 1$.\n\nYour task is to output the matrix $a$ after the stabilization algorithm has been executed. It can be shown that this algorithm cannot run for an infinite number of iterations.\n\n## Input\n\nEach test consists of multiple sets of input data. The first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of sets of input data. This is followed by their description.\n\nThe first line of each set of input data contains two integers $n$ and $m$ ($1 \\leq n, m \\leq 100, n \\cdot m \\gt 1$) — the number of rows and columns of matrix $a$.\n\nThe next $n$ lines describe the corresponding rows of the matrix. The $i$-th line contains $m$ integers $a_{i1}, a_{i2}, \\ldots, a_{im}$ ($1 \\leq a_{ij} \\leq 10^9$).\n\nIt is guaranteed that the sum of $n \\cdot m$ over all sets of input data does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each set of input data, output $n$ lines with $m$ numbers in each line — the values of the cells of matrix $a$ after the stabilization algorithm.\n\n## Note\n\nIn the first set of input data, the algorithm will select the cell $(1, 1)$ twice in a row and then terminate.\n\n![image](https://espresso.codeforces.com/4fb67cacd44fc282a22834a916612099b73944ec.png)\n\nIn the second set of input data, there is no cell whose value is strictly greater than the values of all neighboring cells.\n\nIn the third set of input data, the algorithm will select the cell $(2, 2)$ and then terminate.\n\n![image](https://espresso.codeforces.com/aa9bd0c452993dee06dfd201c5ebf32191300904.png)\n\nIn the fourth set of input data, the algorithm will select the cell $(1, 1)$ three times and then the cell $(2, 3)$ twice.\n\n![image](https://espresso.codeforces.com/cd610d02f268dd1f49435964d3b84fc0174827ac.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n1 2\n3 1\n2 1\n1\n1\n2 2\n1 2\n3 4\n2 3\n7 4 5\n1 8 10\n5 4\n92 74 31 74\n74 92 17 7\n31 17 92 3\n74 7 3 92\n7 31 1 1\n3 3\n1000000000 1 1000000000\n1 1000000000 1\n1000000000 1 1000000000\n",
+      "output": "1 1\n1\n1\n1 2\n3 3\n4 4 5\n1 8 8\n74 74 31 31\n74 74 17 7\n31 17 17 3\n31 7 3 3\n7 7 1 1\n1 1 1\n1 1 1\n1 1 1\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:08:45.674Z"
+}

@@ -4,7 +4,7 @@
   "contestId": 2275,
   "index": "G",
   "title": "Copper Squander",
-  "titleZh": null,
+  "titleZh": "挥霍铜缆",
   "url": "https://codeforces.com/contest/2275/problem/G",
   "difficulty": 1900,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "K1o0n accepted an alternative ending and got a job in the programming department. As is known, all programmers know how to dig trenches for cables, so his very first assignment was wiring between the university buildings — with the happy right to sell off the old stuff on his own.\n\nThere are $n$ buildings at the university, and cables are laid between some pairs of them — $m$ cables in total. Data travels in both directions along the $i$-th cable; it connects buildings $u_i$ and $v_i$, and it contains copper worth $d_i$ coins. The network was laid long before K1o0n, and nobody cared about money: somewhere an extra jumper was installed, somewhere a more expensive cable was used, and some buildings were never reached at all.\n\nThe network can be rebuilt in exactly the following order:\n\n1. **Remove** any subset of cables. The copper from the removed $i$-th cable is sent to a recycling center and brings $d_i$ coins; there is no longer any connection through that cable.\n2. **Lay** any number of new cables between any two distinct buildings. K1o0n digs the trenches himself, but the cable is installed by a construction crew, and its appetite grows with every request: the first new cable will cost $x$ coins, the second — $2x$, the third — $3x$, and so on.\n\nAfter that, the network must be connected: data must be able to travel from any building to any other building. Note that initially the network may be disconnected.\n\nProfit is the revenue from sold copper minus the installation costs.\n\nYou are given $q$ scenarios, in the $j$-th scenario the installation cost increment is $x_j$. For each scenario, find the maximum possible profit.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of testcases.\n\nThe first line of each testcase contains three integers $n$, $m$, and $q$ ($2 \\le n \\le 10^5$, $0 \\le m \\le 2 \\cdot 10^5$, $1 \\le q \\le 2 \\cdot 10^5$) — the number of buildings, cables, and scenarios.\n\nThe next $m$ lines contain three integers each: $u_i$, $v_i$, and $d_i$ ($1 \\le u_i, v_i \\le n$, $u_i \\ne v_i$, $1 \\le d_i \\le 5 \\cdot 10^8$) — the endpoints of the $i$-th cable and the value of the copper in it. A cable cannot connect a building to itself, and no pair of buildings is connected by two cables.\n\nThe last line of the testcase contains $q$ integers $x_1, x_2, \\ldots, x_q$ ($1 \\le x_j \\le 5 \\cdot 10^8$) — the installation cost increments in the scenarios.\n\nIt is guaranteed that the sum of $n$ over all testcases does not exceed $10^5$, the sum of $m$ does not exceed $2 \\cdot 10^5$, and the sum of $q$ does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each scenario, output one integer — the maximum profit. Print the answers for the scenarios of one testcase in the same order as the scenarios are given, on one line.",
-  "statementZhMd": null,
+  "statementZhMd": "K1o0n 接受了一个替代结局，并在程序设计部门找到了一份工作。众所周知，所有程序员都会挖电缆沟，所以他的第一个任务就是在大学各栋楼之间布线——同时还幸运地拥有自行变卖旧材料的权利。\n\n大学里有 $n$ 栋楼，其中某些楼对之间铺设了电缆——总共 $m$ 条。数据可以沿第 $i$ 条电缆双向传输；它连接楼 $u_i$ 和 $v_i$，其中含有价值 $d_i$ 枚硬币的铜。这套网络早在 K1o0n 来之前就已铺好，当时没人在乎钱：有的地方多装了一根跳线，有的地方用了更贵的电缆，还有些楼则从未被接入。\n\n网络可以严格按照如下顺序重建：\n\n1. **拆除**任意一个电缆子集。被拆除的第 $i$ 条电缆中的铜会被送往回收中心，换来 $d_i$ 枚硬币；此后这条电缆不再提供任何连接。\n2. **铺设**任意数量的新电缆，可以连接任意两栋不同的楼。挖沟由 K1o0n 亲自完成，但电缆由施工队安装，而且施工队的要价随每次请求水涨船高：第一条新电缆花费 $x$ 枚硬币，第二条花费 $2x$，第三条花费 $3x$，依此类推。\n\n此后，网络必须是连通的：数据必须能够从任意一栋楼传输到任意另一栋楼。注意，初始网络可能不是连通的。\n\n收益等于卖出铜所得的收入减去安装费用。\n\n给定 $q$ 个场景，第 $j$ 个场景中安装费用的增量为 $x_j$。对于每个场景，求最大可能的收益。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试数据组数。\n\n每组测试数据的第一行包含三个整数 $n$、$m$ 和 $q$（$2 \\le n \\le 10^5$，$0 \\le m \\le 2 \\cdot 10^5$，$1 \\le q \\le 2 \\cdot 10^5$）——分别表示楼的数量、电缆的数量和场景的数量。\n\n接下来的 $m$ 行，每行包含三个整数 $u_i$、$v_i$ 和 $d_i$（$1 \\le u_i, v_i \\le n$，$u_i \\ne v_i$，$1 \\le d_i \\le 5 \\cdot 10^8$）——分别表示第 $i$ 条电缆的两个端点和其中铜的价值。电缆不会将一栋楼与自身相连，且任意两栋楼之间至多由一条电缆直接相连。\n\n每组测试数据的最后一行包含 $q$ 个整数 $x_1, x_2, \\ldots, x_q$（$1 \\le x_j \\le 5 \\cdot 10^8$）——各场景中的安装费用增量。\n\n保证所有测试数据的 $n$ 之和不超过 $10^5$，$m$ 之和不超过 $2 \\cdot 10^5$，$q$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个场景，输出一个整数——最大收益。同一组测试数据的所有场景答案按场景给出的顺序输出在同一行中。",
   "samples": [
     {
       "input": "3\n4 4 1\n1 2 1\n2 3 1\n3 4 1\n1 4 10\n1\n5 4 1\n1 2 5\n1 3 5\n1 4 5\n1 5 5\n1\n5 4 3\n1 2 5\n2 3 5\n3 4 5\n1 3 1\n1 3 10\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:31:20.390Z"
+  "fetchedAt": "2026-11-02T16:31:20.390Z",
+  "translatedAt": "2026-11-03T01:10:55.816+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
