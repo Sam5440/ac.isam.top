@@ -4,7 +4,7 @@
   "contestId": "abc432",
   "index": "D",
   "title": "Suddenly, A Tempest",
-  "titleZh": null,
+  "titleZh": "骤起的风暴",
   "url": "https://atcoder.jp/contests/abc432/tasks/abc432_d",
   "difficulty": 1745,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere is an infinitely large two-dimensional grid. The color of cell $(x,y)$ is black if $0 \\leq x \\leq X-1$ and $0 \\leq y \\leq Y-1$, and white otherwise.\n\n$N$ great storms occur in order on this grid. The $i$-th great storm updates the color of each cell on the grid according to a rule represented by a character $C_i$ and integers $A_i, B_i$.\n\nIn the $i$-th great storm, the color of cell $(x, y)$ after the great storm is:\n\n- In case $C_i$ is `X`,\n- if $x < A_i$, it becomes the color of cell $(x, y + B_i)$ before the great storm;\n  - if $x \\geq A_i$, it becomes the color of cell $(x, y - B_i)$ before the great storm.\n- In case $C_i$ is `Y`,\n- if $y < A_i$, it becomes the color of cell $(x + B_i, y)$ before the great storm;\n  - if $y \\geq A_i$, it becomes the color of cell $(x - B_i, y)$ before the great storm.\n\nTwo black cells $(x_1, y_1), (x_2, y_2)$ are **adjacent** if and only if $|x_1 - x_2| + |y_1 - y_2| = 1$. Also, two black cells $c_1, c_2$ are **connected** if and only if one can move from cell $c_1$ to cell $c_2$ by repeatedly moving to adjacent black cells.\n\nA non-empty set $S$ of black cells is a **connected component** if and only if $S$ satisfies the following conditions:\n\n- Any two cells in $S$ are connected.\n- Every black cell not in $S$ is not connected to any cell in $S$.\n\nFor the grid after all $N$ great storms have occurred, find the number of connected components and output the number of cells in each connected component **in ascending order**.\n\n## Constraints\n\n- $N, X, Y$ are integers.\n- $1 \\leq N \\leq 14$\n- $1 \\leq X,Y \\leq 10^8$\n- $C_i$ is `X` or `Y`.\n- $A_i, B_i$ are integers.\n- $-10^8 \\leq A_i, B_i \\leq 10^8$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN X Y\nC_1 A_1 B_1\n\\vdots\nC_N A_N B_N\n```\n\n## Output\n\nOutput two lines.\n\nThe first line should contain the number of connected components consisting of black cells.\n\nThe second line should contain the number of cells in each connected component, space-separated, **in ascending order**.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有一个无限大的二维网格。当 $0 \\leq x \\leq X-1$ 且 $0 \\leq y \\leq Y-1$ 时，格子 $(x,y)$ 的颜色为黑色，否则为白色。\n\n$N$ 场大风暴按顺序在这张网格上发生。第 $i$ 场大风暴按照由字符 $C_i$ 和整数 $A_i, B_i$ 所表示的规则，更新网格上每个格子的颜色。\n\n在第 $i$ 场大风暴中，大风暴过后格子 $(x, y)$ 的颜色为：\n\n- 当 $C_i$ 为 `X` 时，\n- 若 $x < A_i$，则它变为大风暴发生前格子 $(x, y + B_i)$ 的颜色；\n  - 若 $x \\geq A_i$，则它变为大风暴发生前格子 $(x, y - B_i)$ 的颜色。\n- 当 $C_i$ 为 `Y` 时，\n- 若 $y < A_i$，则它变为大风暴发生前格子 $(x + B_i, y)$ 的颜色；\n  - 若 $y \\geq A_i$，则它变为大风暴发生前格子 $(x - B_i, y)$ 的颜色。\n\n两个黑色格子 $(x_1, y_1), (x_2, y_2)$ 当且仅当 $|x_1 - x_2| + |y_1 - y_2| = 1$ 时是**相邻**的。另外，两个黑色格子 $c_1, c_2$ 当且仅当能通过反复移动到相邻的黑色格子从格子 $c_1$ 移动到格子 $c_2$ 时是**连通**的。\n\n一个非空的黑色格子集合 $S$ 当且仅当 $S$ 满足以下条件时是一个**连通块**：\n\n- $S$ 中任意两个格子都连通。\n- 每个不在 $S$ 中的黑色格子都不与 $S$ 中的任何格子连通。\n\n对于所有 $N$ 场大风暴都发生之后的网格，求连通块的数量，并**按升序**输出每个连通块中格子的数量。\n\n## 约束条件\n\n- $N, X, Y$ 是整数。\n- $1 \\leq N \\leq 14$\n- $1 \\leq X,Y \\leq 10^8$\n- $C_i$ 是 `X` 或 `Y`。\n- $A_i, B_i$ 是整数。\n- $-10^8 \\leq A_i, B_i \\leq 10^8$\n\n## 输入格式\n\n输入由标准输入按以下格式给出：\n\n```\nN X Y\nC_1 A_1 B_1\n\\vdots\nC_N A_N B_N\n```\n\n## 输出格式\n\n输出两行。\n\n第一行应包含由黑色格子组成的连通块的数量。\n\n第二行应以空格分隔、**按升序**输出每个连通块中格子的数量。",
   "samples": [
     {
       "input": "2 3 5\nX 2 2\nY -1 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:49:48.645Z"
+  "fetchedAt": "2026-10-30T20:49:48.645Z",
+  "translatedAt": "2026-11-03T04:27:53.969+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

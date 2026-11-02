@@ -4,7 +4,7 @@
   "contestId": 2171,
   "index": "G",
   "title": "Sakura Adachi and Optimal Sequences",
-  "titleZh": null,
+  "titleZh": "安达樱与最优序列",
   "url": "https://codeforces.com/contest/2171/problem/G",
   "difficulty": 2000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "*\"What a pain...\"*\n\n— Hougetsu Shimamura\n\n*Adachi is in the middle of a generational crashout... over, uh, this problem! Yep, that's definitely it... anyways, please help her solve it!*\n\nYou are given two arrays $a$ and $b$ of length $n$ ($1\\leq a_i\\leq b_i$).\n\nIn one operation, you may either:\n\n- choose an index $i$ ($1\\leq i\\leq n$) and set $a_i := a_i + 1$, or\n- double all elements of $a$.\n\nLet $x$ denote the minimum number of operations needed to make $a = b$. Two arrays $a$ and $b$ of length $n$ are considered equal if $a_i = b_i$ for all $1\\leq i\\leq n$.\n\nFind the value of $x$. Additionally, count the number of sequences of operations that make $a = b$ using exactly $x$ operations. Two such sequences of operations are considered different if, for any $1\\leq j\\leq x$, the $j$-th operation of each sequence differs (either in the type of operation selected or the index chosen, if applicable).\n\nSince the number of sequences may be large, output it modulo ${\\color{red}{10^6+3}}$. Note that $10^6+3$ is a prime number.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\leq t\\leq 10^4$)  — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($2\\leq n\\leq 2\\cdot 10^5$).\n\nThe second line of each test case contains $n$ integers, $a_1, a_2, \\dots, a_n$ ($1\\leq a_i\\leq 10^6$).\n\nThe third line of each test case contains $n$ integers, $b_1, b_2, \\dots, b_n$ ($a_i\\leq b_i\\leq 10^6$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output two integers, the value of $x$, and the number of sequences of operations that make $a = b$ using exactly $x$ operations, modulo $10^6+3$. The value of $x$ should be printed exactly; that is, it should **not** be taken modulo $10^6 + 3$.\n\n## Note\n\nIn the second sample, it is possible to convert $a$ into $b$ using only three operations. There is only one way to do so, namely:\n\n- Add $1$ to $a_1$, yielding $a = [2, 1]$. Then double all elements of $a$, yielding $a = [4, 2]$. Then add $1$ to $a_2$, yielding $a = [4, 3]$. Then we have that $a = b$, as desired.\n\nIt can be shown that it is impossible to convert $a$ into $b$ using fewer than three operations.",
-  "statementZhMd": null,
+  "statementZhMd": "*“真麻烦……”*\n\n*— 岛村抱月*\n\n*安达正在进行一场史无前例的暴走……为了，呃，这道题！没错，绝对是这个原因……总之，请帮她把这题解开吧！*\n\n给定两个长度为 $n$ 的数组 $a$ 和 $b$（$1\\leq a_i\\leq b_i$）。\n\n在一次操作中，你可以选择执行以下二者之一：\n\n- 选择一个下标 $i$（$1\\leq i\\leq n$），并令 $a_i := a_i + 1$；或\n- 将 $a$ 的所有元素加倍。\n\n设 $x$ 为使 $a = b$ 所需的最少操作次数。当对所有 $1\\leq i\\leq n$ 都满足 $a_i = b_i$ 时，称长度为 $n$ 的两个数组 $a$ 与 $b$ 相等。\n\n求 $x$ 的值。此外，统计恰好使用 $x$ 次操作使 $a = b$ 的操作序列的数量。若存在某个 $1\\leq j\\leq x$ 使得两条操作序列的第 $j$ 次操作不同（即所选操作的类型不同，或在涉及下标时所选的下标不同），则认为这两条操作序列互不相同。\n\n由于操作序列的数量可能很大，请将其对 ${\\color{red}{10^6+3}}$ 取模后输出。注意 $10^6+3$ 是一个质数。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\leq t\\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2\\leq n\\leq 2\\cdot 10^5$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1\\leq a_i\\leq 10^6$）。\n\n每个测试用例的第三行包含 $n$ 个整数 $b_1, b_2, \\dots, b_n$（$a_i\\leq b_i\\leq 10^6$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出两个整数：$x$ 的值，以及恰好使用 $x$ 次操作使 $a = b$ 的操作序列数量对 $10^6+3$ 取模后的结果。$x$ 的值必须精确输出，也就是说，它**不要**对 $10^6 + 3$ 取模。\n\n## 说明\n\n在第二个样例中，可以仅用三次操作将 $a$ 转化为 $b$，且只有一种这样的方法：\n\n- 先给 $a_1$ 加 $1$，得到 $a = [2, 1]$；然后将 $a$ 的所有元素加倍，得到 $a = [4, 2]$；再给 $a_2$ 加 $1$，得到 $a = [4, 3]$。此时便有 $a = b$，符合要求。\n\n可以证明，不可能用少于三次的操作将 $a$ 转化为 $b$。",
   "samples": [
     {
       "input": "8\n6\n1 3 6 4 3 2\n3 7 10 4 4 8\n2\n1 1\n4 3\n5\n2 3 2 5 1\n18 13 10 30 7\n5\n5 4 3 6 2\n100 125 231 113 107\n4\n2 2 2 2\n2 2 2 2\n4\n1 1 1 1\n2 2 2 2\n7\n1 1 1 1 1 1 200000\n200000 200000 200000 200000 200000 200000 200000\n3\n542264 174876 441510\n641112 325241 995342\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:40:07.982Z"
+  "fetchedAt": "2026-11-02T16:40:07.982Z",
+  "translatedAt": "2026-11-03T04:20:18.349+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

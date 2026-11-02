@@ -4,7 +4,7 @@
   "contestId": 2172,
   "index": "N",
   "title": "New Kingdom",
-  "titleZh": null,
+  "titleZh": "新王国",
   "url": "https://codeforces.com/contest/2172/problem/N",
   "difficulty": 2800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "In the upcoming strategy game Island Cartographer: Penultimate Chapter (ICPC), players take the role of bridge engineers employed by the Imperial Cartography & Planning Council to design a new kingdom spread across an archipelago of $n$ islands connected by a network of causeways. To achieve balance between stability and exploration, the council requires that the player's plan satisfy several strict rules.\n\nThe first and fundamental requirement is that the kingdom must be **simple** and **connected**. That is, each causeway connects two different islands, no two causeways connect the same pair of islands, and for each pair of different islands, there exists a route between them using a sequence of causeways.\n\nAfter learning the ancient wisdom of the legendary tourist Euler, some visitors might be able to traverse every causeway exactly once in a single, seamless tour. If this is possible, then those visitors would not have enough time to enjoy their trips. To make them travel for longer, the council's second requirement is that **exactly $k$** islands have an odd number of causeways connected to them.\n\nSome causeways are considered **vital** to the kingdom. A causeway is vital if removing it would make travel between some pair of islands impossible. These causeways are important for local development, cultural identity, and tourism, but having too many of them could lead to traffic congestion. Therefore, the council's third and final requirement is that the kingdom must contain **exactly $b$** vital causeways.\n\nTo complete a game of ICPC, the player must submit a plan to build causeways that satisfies all the requirements for the parameters $n$, $k$, and $b$ provided by the council. Before the game's release, you are tasked with testing the game by designing a valid kingdom plan as the player. In case the game is impossible to complete, please report so.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$. The description of the test cases follows.\n\nThe only line of each test case contains three integers $n$, $k$, and $b$, representing the number of islands, the exact number of islands connected to an odd number of causeways, and the exact number of vital causeways, respectively.\n\n- $1\\le n\\le 10^5$\n- $0\\le k \\le n$\n- $0\\le b \\le n-1$\n- The sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, if there are no solutions that fit the requirements for a valid plan, output \"`No`\" in a single line.\n\nOtherwise, output \"`Yes`\" in the first line. Then, output a single integer $m$ in the second line, indicating the number of causeways in your plan. In each of the next $m$ lines, output two integers $u_i$ and $v_i$ separated by a whitespace, meaning that the islands $u_i$ and $v_i$ are connected with a single causeway. If there are multiple valid plans, output any.\n\nYour output must satisfy:\n\n- $0\\le m\\le 5n$\n- For all $1\\le i\\le m$, $1\\le u_i, v_i\\le n$.\n- For all $1\\le i\\le m$, $u_i\\neq v_i$.\n- For all $i\\neq j$, $\\{u_i, v_i\\}\\neq \\{u_j, v_j\\}$.\n\nIt can be proven that for every possible input that has a solution, there exists a solution that satisfies these constraints.",
-  "statementZhMd": null,
+  "statementZhMd": "在即将推出的策略游戏《岛屿制图师：倒数第二章》（Island Cartographer: Penultimate Chapter，ICPC）中，玩家扮演受帝国制图与规划委员会（Imperial Cartography & Planning Council）雇用的桥梁工程师，设计一个横跨由 $n$ 座岛屿组成的群岛的新王国，岛屿之间由堤道网络相连。为了在稳定与探索之间取得平衡，委员会要求玩家的方案满足若干严格的规则。\n\n首要且最基本的要求是王国必须是**简单**且**连通**的。也就是说，每条堤道连接两座不同的岛屿，任意两条堤道都不会连接同一对岛屿，并且对于任意两座不同的岛屿，都可以通过若干条堤道在它们之间通行。\n\n在领悟了传奇游客欧拉（Euler）的古老智慧之后，一些游客也许能在一次连贯的旅程中恰好经过每条堤道一次。如果这是可能的，这些游客就没有足够的时间来享受旅途。为了让他们旅行得更久，委员会的第二条要求是**恰好有 $k$** 座岛屿与奇数条堤道相连。\n\n有些堤道被认为对王国是**关键（vital）**的。如果移除某条堤道会使得某一对岛屿之间无法通行，那么这条堤道就是关键的。这些堤道对当地发展、文化认同和旅游业都很重要，但数量太多可能导致交通拥堵。因此，委员会的第三条也是最后一条要求是：王国必须**恰好包含 $b$** 条关键堤道。\n\n要完成一局 ICPC 游戏，玩家必须提交一个修建堤道的方案，满足委员会给出的参数 $n$、$k$ 和 $b$ 的全部要求。在游戏发布之前，你的任务是扮演玩家来测试游戏，设计一个合法的王国方案。如果游戏无法完成，请报告这一情况。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$。接下来是各测试用例的描述。\n\n每个测试用例仅一行，包含三个整数 $n$、$k$ 和 $b$，分别表示岛屿的数量、与奇数条堤道相连的岛屿的恰好数量，以及关键堤道的恰好数量。\n\n- $1\\le n\\le 10^5$\n- $0\\le k \\le n$\n- $0\\le b \\le n-1$\n- 所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果不存在满足要求的合法方案，单独一行输出 \"`No`\"。\n\n否则，第一行输出 \"`Yes`\"。然后，第二行输出一个整数 $m$，表示你的方案中堤道的数量。接下来的 $m$ 行中，每行输出两个整数 $u_i$ 和 $v_i$，以空白字符分隔，表示岛屿 $u_i$ 和 $v_i$ 之间由一条堤道相连。如果存在多个合法方案，输出任意一个即可。\n\n你的输出必须满足：\n\n- $0\\le m\\le 5n$\n- 对于所有 $1\\le i\\le m$，$1\\le u_i, v_i\\le n$。\n- 对于所有 $1\\le i\\le m$，$u_i\\neq v_i$。\n- 对于所有 $i\\neq j$，$\\{u_i, v_i\\}\\neq \\{u_j, v_j\\}$。\n\n可以证明，对于每一个有解的输入，都存在满足上述约束的解。",
   "samples": [
     {
       "input": "4\n6 2 1\n3 1 2\n4 0 0\n5 4 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:59.303Z"
+  "fetchedAt": "2026-11-02T16:39:59.303Z",
+  "translatedAt": "2026-11-03T04:27:40.271+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

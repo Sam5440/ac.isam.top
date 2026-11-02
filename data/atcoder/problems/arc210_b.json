@@ -4,7 +4,7 @@
   "contestId": "arc210",
   "index": "B",
   "title": "Remove Median Operations",
-  "titleZh": null,
+  "titleZh": "移除中位数操作",
   "url": "https://atcoder.jp/contests/arc210/tasks/arc210_b",
   "difficulty": 1506,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given an integer sequence $A=(A_1,A_2,\\ldots,A_N)$ of length $N$ and an integer sequence $B=(B_1,B_2,\\ldots,B_M)$ of length $M$. Here, $N$ is **even**.\n\nYou are given $Q$ queries. The $q$-th query is given as a triple of integers $(t_q,i_q,x_q)$, and it does the following.\n\n- If $t_q=1$: In this case, $1\\leq i_q\\leq N$. This query changes $A_{i_q}$ to $x_q$.\n- If $t_q=2$: In this case, $1\\leq i_q\\leq M$. This query changes $B_{i_q}$ to $x_q$.\n\nAfter processing each query, find the answer to the following subproblem.\n\n> Initialize a multiset $X$ with $X=\\lbrace A_1,A_2,\\ldots,A_N\\rbrace$. For $j=1,2,\\ldots,M$, perform the following operation:\n> \n> - Insert $B_j$ into $X$. Then, remove one median of $X$ from $X$.\n> \n> Find the sum of elements in $X$ when all operations are finished.\n\nWhat is a median? When $N$ is even, the median of a multiset $X$ with $N+1$ elements is the $\\left(1+\\frac{N}{2}\\right)$-th value in ascending order among the elements of $X$. For example, the median of $X=\\lbrace 1, 3, 4, 5, 8\\rbrace$ is $4$, and the median of $X=\\lbrace 2,2,2\\rbrace$ is $2$. Note that in this problem, the multiset for which we consider the median always has an odd number of elements.\n\n## Constraints\n\n- $1\\leq N,M,Q\\leq 2\\times 10^5$\n- $N$ is even.\n- $1\\leq A_i\\leq 10^9$\n- $1\\leq B_i\\leq 10^9$\n- $t_q\\in\\lbrace 1,2\\rbrace$\n- If $t_q=1$, then $1\\leq i_q\\leq N$\n- If $t_q=2$, then $1\\leq i_q\\leq M$\n- $1\\leq x_q\\leq 10^9$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M Q\nA_1 A_2 \\cdots A_N\nB_1 B_2 \\cdots B_M\nt_1 i_1 x_1\n\\vdots\nt_Q i_Q x_Q\n```\n\n## Output\n\nOutput $Q$ lines. The $q$-th line should contain the answer to the subproblem immediately after processing the $q$-th query.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个长度为 $N$ 的整数序列 $A=(A_1,A_2,\\ldots,A_N)$ 和一个长度为 $M$ 的整数序列 $B=(B_1,B_2,\\ldots,B_M)$。其中，$N$ 是**偶数**。\n\n共有 $Q$ 个查询。第 $q$ 个查询以由三个整数组成的三元组 $(t_q,i_q,x_q)$ 的形式给出，其执行的操作如下。\n\n- 若 $t_q=1$：此时满足 $1\\leq i_q\\leq N$。该查询将 $A_{i_q}$ 改为 $x_q$。\n- 若 $t_q=2$：此时满足 $1\\leq i_q\\leq M$。该查询将 $B_{i_q}$ 改为 $x_q$。\n\n在处理完每个查询后，求以下子问题的答案。\n\n> 初始化一个多重集 $X$，使得 $X=\\lbrace A_1,A_2,\\ldots,A_N\\rbrace$。对于 $j=1,2,\\ldots,M$，依次执行以下操作：\n> \n> - 将 $B_j$ 插入 $X$，然后从 $X$ 中移除一个中位数。\n> \n> 求所有操作结束后 $X$ 中元素之和。\n\n什么是中位数？当 $N$ 为偶数时，含有 $N+1$ 个元素的多重集 $X$ 的中位数，是指 $X$ 的元素按升序排列后的第 $\\left(1+\\frac{N}{2}\\right)$ 个值。例如，$X=\\lbrace 1, 3, 4, 5, 8\\rbrace$ 的中位数是 $4$，$X=\\lbrace 2,2,2\\rbrace$ 的中位数是 $2$。注意，在本题中，我们对其求中位数的多重集总是含有奇数个元素。\n\n## 约束条件\n\n- $1\\leq N,M,Q\\leq 2\\times 10^5$\n- $N$ 是偶数。\n- $1\\leq A_i\\leq 10^9$\n- $1\\leq B_i\\leq 10^9$\n- $t_q\\in\\lbrace 1,2\\rbrace$\n- 若 $t_q=1$，则 $1\\leq i_q\\leq N$\n- 若 $t_q=2$，则 $1\\leq i_q\\leq M$\n- $1\\leq x_q\\leq 10^9$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入由标准输入给出，格式如下：\n\n```\nN M Q\nA_1 A_2 \\cdots A_N\nB_1 B_2 \\cdots B_M\nt_1 i_1 x_1\n\\vdots\nt_Q i_Q x_Q\n```\n\n## 输出格式\n\n输出 $Q$ 行。第 $q$ 行应包含处理完第 $q$ 个查询后立即求得的子问题的答案。",
   "samples": [
     {
       "input": "4 2 2\n5 1 4 3\n1 2\n1 3 3\n2 1 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:49:38.640Z"
+  "fetchedAt": "2026-10-30T20:49:38.640Z",
+  "translatedAt": "2026-11-03T04:24:17.262+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

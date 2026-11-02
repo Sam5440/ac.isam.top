@@ -4,7 +4,7 @@
   "contestId": 2172,
   "index": "D",
   "title": "Divisor Card Game",
-  "titleZh": null,
+  "titleZh": "约数卡牌游戏",
   "url": "https://codeforces.com/contest/2172/problem/D",
   "difficulty": 3100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "In Taiwan, many mathematics teachers design board and card games to help students grasp difficult mathematical concepts. Recently, a particular card game has gone viral among elementary and middle school teachers because it effectively helps students understand the concepts of divisors and multiples, while also being highly engaging for both teachers and students.\n\nThe rules of the game are as follows. The teacher prepares $n$ distinct cards, labeled from $1$ to $n$. The $i$-th card has an integer value $a_i$ written on it, and the integers $a_1, a_2, \\dots, a_n$ are in a strictly increasing order.\n\nThere are $m$ students labeled from $1$ to $m$ participating in the game. Before the game begins, each student receives a nonempty subset of the $n$ cards. No two students share any card, and at least one card remains undealt.\n\nLet $k$ denote the number of undealt cards initially. The game consists of $k$ rounds. In each round, the following steps occur in order:\n\n1. The teacher selects one of the remaining undealt cards uniformly at random and reveals it to all students. Let $c$ be the integer written on this card.\n2. Each student simultaneously chooses exactly one card from their own collection.\n3. The ownership of the revealed card is determined as follows:\n- Among the values of all cards chosen by the students, consider those that are divisible by $c$.\n  - If there are one or more such values, the student who selected a card with the **smallest** divisible value wins the revealed card and adds it to their collection.\n  - If no chosen cards have value divisible by $c$, the revealed card is discarded (remains unowned). Discarded cards are not used in subsequent rounds.\n\nEach student follows the same strategy throughout the game:\n\n- If the student owns at least one card whose value is divisible by $c$, they choose the card with the **smallest** value.\n- Otherwise, they choose the card with the **smallest** value among those they own.\n\nAssuming that all students follow this strategy in every round, determine the expected number of cards that each student will own at the end of the game.\n\n## Input\n\nThe first line contains two integers $n$ and $m$, representing the number of cards and the number of students, respectively.\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$, where $a_i$ is the integer on the $i$-th card.\n\nThe third line contains $n$ integers $b_1,b_2,\\ldots,b_n$, where $b_i$ describes the ownership of the $i$-th card before the game begins: it is owned by the $b_i$-th student if $b_i \\ne 0$, and is undealt otherwise.\n\n- $1 \\leq m \\lt n \\leq 600$\n- $1 \\le a_i \\le 10^{18}$\n- $0 \\leq b_i \\leq m$\n- $a_i \\lt a_{i + 1}$ for all $1 \\le i \\lt n$.\n- There is at least one $i$ such that $b_i = j$ for $j = 0,1,\\ldots,m$.\n\n## Output\n\nPrint $m$ numbers in a new line, where the $i$-th number represents the expected number of cards the $i$-th student will own at the end of the game.\n\nIt can be proven that each answer can be represented by a rational number $\\frac{p}{q}$ where $q$ is not a multiple of $998244353$. Therefore, you are asked to print $p \\times q^{-1}$ modulo $998244353$ for each number, where $q^{-1}$ means the multiplicative inverse of $q$ modulo $998244353$.",
-  "statementZhMd": null,
+  "statementZhMd": "在台湾，许多数学老师会设计桌游和卡牌游戏，帮助学生理解难懂的数学概念。最近，一款卡牌游戏在中小学教师中迅速走红，因为它不仅能有效地帮助学生理解约数与倍数的概念，而且对老师和学生来说都极具趣味性。\n\n游戏规则如下。老师准备 $n$ 张不同的卡牌，编号从 $1$ 到 $n$。第 $i$ 张卡牌上写有一个整数 $a_i$，且整数 $a_1, a_2, \\dots, a_n$ 严格递增。\n\n有 $m$ 名学生参加游戏，编号从 $1$ 到 $m$。游戏开始前，每名学生获得这 $n$ 张卡牌的一个非空子集。任意两名学生不共享任何卡牌，且至少有一张卡牌未被发出。\n\n设 $k$ 为初始时未发出的卡牌数量。游戏共进行 $k$ 轮，每轮依次发生以下步骤：\n\n1. 老师从剩余未发出的卡牌中均匀随机地选择一张，并向所有学生展示。设 $c$ 为这张卡牌上写的整数。\n2. 每名学生同时从自己的收藏中恰好选择一张卡牌。\n3. 被展示卡牌的归属按如下方式确定：\n- 在所有学生所选卡牌的值中，考虑那些能被 $c$ 整除的值。\n  - 如果存在一个或多个这样的值，那么选择了具有**最小**整除值的卡牌的学生赢得被展示的卡牌，并将其加入自己的收藏。\n  - 如果没有任何被选卡牌的值能被 $c$ 整除，则被展示的卡牌被弃置（无人拥有）。被弃置的卡牌不会在后续轮次中使用。\n\n整场游戏中每名学生都遵循相同的策略：\n\n- 如果这名学生拥有至少一张值能被 $c$ 整除的卡牌，则选择值**最小**的那张卡牌。\n- 否则，从自己拥有的卡牌中选择值**最小**的一张。\n\n假设所有学生在每一轮都遵循该策略，请求出游戏结束时每名学生拥有的卡牌数量的期望值。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$，分别表示卡牌数量和学生数量。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$，其中 $a_i$ 是第 $i$ 张卡牌上的整数。\n\n第三行包含 $n$ 个整数 $b_1,b_2,\\ldots,b_n$，其中 $b_i$ 描述游戏开始前第 $i$ 张卡牌的归属：若 $b_i \\ne 0$，则该卡牌由第 $b_i$ 名学生拥有；否则该卡牌未被发出。\n\n- $1 \\leq m \\lt n \\leq 600$\n- $1 \\le a_i \\le 10^{18}$\n- $0 \\leq b_i \\leq m$\n- 对于所有 $1 \\le i \\lt n$，有 $a_i \\lt a_{i + 1}$。\n- 对于每个 $j = 0,1,\\ldots,m$，至少存在一个 $i$ 使得 $b_i = j$。\n\n## 输出格式\n\n在新的一行中输出 $m$ 个数，其中第 $i$ 个数表示游戏结束时第 $i$ 名学生拥有的卡牌数量的期望值。\n\n可以证明，每个答案都能表示为有理数 $\\frac{p}{q}$，其中 $q$ 不是 $998244353$ 的倍数。因此，你需要对每个数输出 $p \\times q^{-1}$ 模 $998244353$ 的结果，其中 $q^{-1}$ 表示 $q$ 在模 $998244353$ 意义下的乘法逆元。",
   "samples": [
     {
       "input": "5 2\n1 2 3 4 5\n0 0 1 2 1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:59.208Z"
+  "fetchedAt": "2026-11-02T16:39:59.208Z",
+  "translatedAt": "2026-11-03T04:25:28.709+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
