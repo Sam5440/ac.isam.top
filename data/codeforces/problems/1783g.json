@@ -1,0 +1,29 @@
+{
+  "id": "1783G",
+  "platform": "codeforces",
+  "contestId": 1783,
+  "index": "G",
+  "title": "Weighed Tree Radius",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1783/problem/G",
+  "difficulty": 2800,
+  "tags": [
+    "data structures",
+    "divide and conquer",
+    "implementation",
+    "trees"
+  ],
+  "timeLimitMs": 6000,
+  "memoryLimitMb": 512,
+  "statementMd": "You are given a tree of $n$ vertices and $n - 1$ edges. The $i$-th vertex has an initial weight $a_i$.\n\nLet the *distance* $d_v(u)$ from vertex $v$ to vertex $u$ be the number of edges on the path from $v$ to $u$. Note that $d_v(u) = d_u(v)$ and $d_v(v) = 0$.\n\nLet the *weighted* distance $w_v(u)$ from $v$ to $u$ be $w_v(u) = d_v(u) + a_u$. Note that $w_v(v) = a_v$ and $w_v(u) \\neq w_u(v)$ if $a_u \\neq a_v$.\n\nAnalogically to usual distance, let's define the *eccentricity* $e(v)$ of vertex $v$ as the greatest weighted distance from $v$ to any other vertex (including $v$ itself), or $e(v) = \\max\\limits_{1 \\le u \\le n}{w_v(u)}$.\n\nFinally, let's define the *radius* $r$ of the tree as the minimum eccentricity of any vertex, or $r = \\min\\limits_{1 \\le v \\le n}{e(v)}$.\n\nYou need to perform $m$ queries of the following form:\n\n- $v_j$ $x_j$ — assign $a_{v_j} = x_j$.\n\nAfter performing each query, print the radius $r$ of the current tree.\n\n## Input\n\nThe first line contains the single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nThe second line contains $n$ integers $a_1, \\dots, a_n$ ($0 \\le a_i \\le 10^6$) — the initial weights of vertices.\n\nNext $n - 1$ lines contain edges of tree. The $i$-th line contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$; $u_i \\neq v_i$) — the corresponding edge. The given edges form a tree.\n\nThe next line contains the single integer $m$ ($1 \\le m \\le 10^5$) — the number of queries.\n\nNext $m$ lines contain queries — one query per line. The $j$-th query contains two integers $v_j$ and $x_j$ ($1 \\le v_j \\le n$; $0 \\le x_j \\le 10^6$) — a vertex and it's new weight.\n\n## Output\n\nPrint $m$ integers — the radius $r$ of the tree after performing each query.\n\n## Note\n\nAfter the first query, you have the following tree:\n\n![image](https://espresso.codeforces.com/e593e7daa2075941d69a4230f0b420325faf2988.png)\n\nThe marked vertex in the picture is the vertex with minimum $e(v)$, or $r = e(4) = 7$. The eccentricities of the other vertices are the following: $e(1) = 8$, $e(2) = 9$, $e(3) = 9$, $e(5) = 8$, $e(6) = 8$.\n\nThe tree after the second query:\n\n![image](https://espresso.codeforces.com/7e5ba81adfee8e2552fb7fe12d4aaabe250cac07.png)\n\nThe radius $r = e(1) = 4$.\n\nAfter the third query, the radius $r = e(2) = 5$:\n\n![image](https://espresso.codeforces.com/507915aa9f97b2b76795c6976f7130b297839130.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n1 3 3 7 0 1\n2 1\n1 3\n1 4\n5 4\n4 6\n5\n4 7\n4 0\n2 5\n5 10\n5 5\n",
+      "output": "7\n4\n5\n10\n7\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:38:49.622Z"
+}

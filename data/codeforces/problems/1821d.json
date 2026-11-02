@@ -1,0 +1,29 @@
+{
+  "id": "1821D",
+  "platform": "codeforces",
+  "contestId": 1821,
+  "index": "D",
+  "title": "Black Cells",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1821/problem/D",
+  "difficulty": 1900,
+  "tags": [
+    "binary search",
+    "brute force",
+    "greedy",
+    "math"
+  ],
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are playing with a really long strip consisting of $10^{18}$ white cells, numbered from left to right as $0$, $1$, $2$ and so on. You are controlling a special pointer that is initially in cell $0$. Also, you have a \"Shift\" button you can press and hold.\n\nIn one move, you can do one of three actions:\n\n- move the pointer to the right (from cell $x$ to cell $x + 1$);\n- press and hold the \"Shift\" button;\n- release the \"Shift\" button: the moment you release \"Shift\", all cells that were visited while \"Shift\" was pressed are colored in black.\n\n(Of course, you can't press Shift if you already hold it. Similarly, you can't release Shift if you haven't pressed it.)\n\nYour goal is to color at least $k$ cells, but there is a restriction: you are given $n$ segments $[l_i, r_i]$ — you can color cells only inside these segments, i. e. you can color the cell $x$ if and only if $l_i \\le x \\le r_i$ for some $i$.\n\nWhat is the minimum number of moves you need to make in order to color at least $k$ cells black?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le n \\le 2 \\cdot 10^5$; $1 \\le k \\le 10^9$) — the number of segments and the desired number of black cells, respectively.\n\nThe second line contains $n$ integers $l_1, l_2, \\dots, l_n$ ($1 \\le l_1 \\lt l_2 \\lt \\dots \\lt l_n \\le 10^9$), where $l_i$ is the left border of the $i$-th segment.\n\nThe third line contains $n$ integers $r_1, r_2, \\dots, r_n$ ($1 \\le r_i \\le 10^9$; $l_i \\le r_i \\lt l_{i + 1} - 1$), where $r_i$ is the right border of the $i$-th segment.\n\nAdditional constraints on the input:\n\n- every cell belongs to at most one segment;\n- the sum of $n$ doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the minimum number of moves to color at least $k$ cells black, or $-1$ if it's impossible.\n\n## Note\n\nIn the first test case, one of the optimal sequences of operations is the following:\n\n1. Move right: pointer is moving into cell $1$;\n2. Press Shift;\n3. Release Shift: cell $1$ is colored black;\n4. Move right: pointer is moving into cell $2$;\n5. Move right: pointer is moving into cell $3$;\n6. Press Shift;\n7. Move right: pointer is moving into cell $4$;\n8. Release Shift: cells $3$ and $4$ are colored in black.\n\nWe've colored $3$ cells in $8$ moves.\n\nIn the second test case, we can color at most $8$ cells, while we need $20$ cell to color.\n\nIn the third test case, one of the optimal sequences of operations is the following:\n\n1. Move right: pointer is moving into cell $1$;\n2. Move right: pointer is moving into cell $2$;\n3. Move right: pointer is moving into cell $3$;\n4. Press Shift;\n5. Move right: pointer is moving into cell $4$;\n6. Move right: pointer is moving into cell $5$;\n7. Release Shift: cells $3$, $4$ and $5$ are colored in black.\n\nWe've colored $3$ cells in $7$ moves.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n2 3\n1 3\n1 4\n4 20\n10 13 16 19\n11 14 17 20\n2 3\n1 3\n1 10\n2 4\n99 999999999\n100 1000000000\n",
+      "output": "8\n-1\n7\n1000000004\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:35:23.432Z"
+}

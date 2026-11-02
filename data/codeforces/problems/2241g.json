@@ -4,7 +4,7 @@
   "contestId": 2241,
   "index": "G",
   "title": "Summmon",
-  "titleZh": null,
+  "titleZh": "召唤",
   "url": "https://codeforces.com/contest/2241/problem/G",
   "difficulty": 2400,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "**Note that the answer for this problem might not fit in int64 or long long. It is recommended to use int128.**\n\nFor any array $b$ of length $m$, define $f(b)$ as the **minimum** possible value of $\\max(b) - \\min(b)$ that can be achieved by performing the following operation any number of times:\n\n- Choose any index $1 \\le i \\lt m$, and do exactly one of the following:\n- Set $b_{i+1} := b_{i+1} + b_i$,\n  - Set $b_{i+1} := b_{i+1} - b_i$.\n\nYou are given an array $a$ of length $n$. Your task is to compute the sum of $f$ over all the subarrays$^{\\text{∗}}$ of $a$. More formally, determine the value of\n\n$$\\sum_{1 \\le l \\le r \\le n} f([a_l,a_{l+1},\\dots,a_r]).$$\n\n$^{\\text{∗}}$An array $b$ is a subarray of an array $a$ if $b$ can be obtained from $a$ by deletion of several (possibly, zero or all) elements from the beginning and several (possibly, zero or all) elements from the end. In particular, an array is a subarray of itself.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. Description of each test case follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2\\cdot10^5$) — the length of the array $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the elements of the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot10^5$.\n\n## Output\n\nFor each test case, print a single integer — the value of $\\sum_{1 \\le l \\le r \\le n} f([a_l,a_{l+1},\\dots,a_r])$.\n\n## Note\n\nFor the first test case, let us look at all subarrays.\n\n- For the single-element subarrays $[6]$, $[4]$, and $[8]$, no operation can change anything, so each of them contributes $0$.\n- For $[6,4]$, the first element is fixed as $6$. The second element can only be changed to $4+6=10$ or $4-6=-2$, so the gap would become $4$ or $8$. Hence, doing no operation is best, and the contribution is $2$.\n- For $[4,8]$, we choose $i=1$ and apply $b_{2}:=b_{2}-b_{1}$. Then the subarray becomes $[4,4]$, so its contribution is $0$.\n- For $[6,4,8]$, we keep the first two elements as they are and choose $i=2$. Then we apply $b_{3}:=b_{3}-b_{2}$, so $8$ becomes $4$. The array becomes $[6,4,4]$, and therefore $\\max(b)-\\min(b)=6-4=2$. It can be shown that this is the optimal value.\n\nTherefore, the answer for the first test case is $0+0+0+2+0+2=4$.\n\nFor the second test case, every subarray of length $1$ contributes $0$. Among the remaining subarrays, only $[2,3]$, $[3,4]$, and $[2,3,4]$ have a non-zero contribution, each contributing $1$. Therefore, the answer is $1+1+1=3$.",
-  "statementZhMd": null,
+  "statementZhMd": "**注意本题的答案可能无法用 int64 或 long long 存下。建议使用 int128。**\n\n对于任意长度为 $m$ 的数组 $b$，定义 $f(b)$ 为通过执行任意多次以下操作所能达到的 $\\max(b) - \\min(b)$ 的**最小**可能值：\n\n- 选择任意下标 $1 \\le i \\lt m$，并恰好执行以下操作之一：\n- 令 $b_{i+1} := b_{i+1} + b_i$，\n  - 令 $b_{i+1} := b_{i+1} - b_i$。\n\n给定一个长度为 $n$ 的数组 $a$。你的任务是计算 $a$ 的所有子数组$^{\\text{∗}}$ 的 $f$ 值之和。更正式地，求出下式的值：\n\n$$\\sum_{1 \\le l \\le r \\le n} f([a_l,a_{l+1},\\dots,a_r]).$$\n\n$^{\\text{∗}}$如果数组 $b$ 可以通过从数组 $a$ 的开头删除若干（可能为零或全部）元素、并从结尾删除若干（可能为零或全部）元素而得到，则称 $b$ 是 $a$ 的子数组。特别地，一个数组本身也是它自己的子数组。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2\\cdot10^5$）——数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——数组 $a$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——$\\sum_{1 \\le l \\le r \\le n} f([a_l,a_{l+1},\\dots,a_r])$ 的值。\n\n## 说明\n\n对于第一个测试用例，让我们考察所有子数组。\n\n- 对于单元素子数组 $[6]$、$[4]$ 和 $[8]$，没有任何操作能够改变其中的元素，因此它们各自的贡献均为 $0$。\n- 对于 $[6,4]$，第一个元素固定为 $6$。第二个元素只能被改为 $4+6=10$ 或 $4-6=-2$，因此极差将变为 $4$ 或 $8$。所以不进行任何操作是最优的，其贡献为 $2$。\n- 对于 $[4,8]$，我们选择 $i=1$ 并执行 $b_{2}:=b_{2}-b_{1}$。此时该子数组变为 $[4,4]$，因此其贡献为 $0$。\n- 对于 $[6,4,8]$，我们保持前两个元素不变并选择 $i=2$。然后执行 $b_{3}:=b_{3}-b_{2}$，于是 $8$ 变为 $4$。数组变为 $[6,4,4]$，因此 $\\max(b)-\\min(b)=6-4=2$。可以证明这是最优值。\n\n因此，第一个测试用例的答案为 $0+0+0+2+0+2=4$。\n\n对于第二个测试用例，每个长度为 $1$ 的子数组贡献均为 $0$。在其余子数组中，只有 $[2,3]$、$[3,4]$ 和 $[2,3,4]$ 的贡献非零，各自贡献 $1$。因此，答案为 $1+1+1=3$。",
   "samples": [
     {
       "input": "5\n3\n6 4 8\n4\n1 2 3 4\n9\n9 9 8 2 4 4 3 5 3\n6\n18 12 24 9 6 36\n6\n36 24 18 12 9 6\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:32:27.279Z"
+  "fetchedAt": "2026-11-02T16:32:27.279Z",
+  "translatedAt": "2026-11-03T01:38:40.308+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
