@@ -4,7 +4,7 @@
   "contestId": 2143,
   "index": "A",
   "title": "All Lengths Subtraction",
-  "titleZh": null,
+  "titleZh": "所有长度减法",
   "url": "https://codeforces.com/contest/2143/problem/A",
   "difficulty": 800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a permutation$^{\\text{∗}}$ $p$ of length $n$.\n\nYou must perform exactly one operation for each integer $k$ from 1 up to $n$ in that order:\n\n- Choose a subarray$^{\\text{†}}$ of $p$ of length exactly $k$, and subtract 1 from every element in that subarray.\n\nAfter completing all $n$ operations, your goal is to have all elements of the array equal to zero.\n\nDetermine whether it is possible to achieve this.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array). $^{\\text{†}}$An array $a$ is a subarray of an array $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) elements from the beginning and several (possibly, zero or all) elements from the end.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 100$). The description of the test cases follows.\n\nThe first line contains the value $n$ ($1 \\leq n \\leq 100$) — the length of the permutation.\n\nThe second line contains $p_1, p_2, \\ldots p_n$ ($1 \\le p_i \\le n$) — the permutation itself.\n\n## Output\n\nFor each test case, output `YES` if it is possible to make all elements of the array $p$ equal to $0$ after performing all the operations; otherwise, output `NO`.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nFor the first test case, we can proceed as follows:\n\n- $k = 1$: Choose the subarray $[3, 3]$. The array $[1, 3, 4, 2]$ becomes $[1, 3, 3, 2]$.\n- $k = 2$: Choose the subarray $[2, 3]$. The array $[1, 3, 3, 2]$ becomes $[1, 2, 2, 2]$.\n- $k = 3$: Choose the subarray $[2, 4]$. The array $[1, 2, 2, 2]$ becomes $[1, 1, 1, 1]$.\n- $k = 4$: Choose the subarray $[1, 4]$. The array $[1, 1, 1, 1]$ becomes $[0, 0, 0, 0]$.\n\nThus, we have successfully reduced the entire array to zeros, so the answer is `YES`.\n\nFor the second test case, it can be shown that it is impossible to reduce all elements to zero.\n\nFor the third test case, the process is as follows:\n\n$[2, 4, \\boldsymbol{5}, 3, 1] \\rightarrow [2, \\boldsymbol{4, 4}, 3, 1] \\rightarrow [2, \\boldsymbol{3, 3, 3}, 1] \\rightarrow [\\boldsymbol{2, 2, 2, 2}, 1] \\rightarrow [\\boldsymbol{1, 1, 1, 1, 1}] \\rightarrow [0, 0, 0, 0, 0].$\n\nThe bolded values indicate the subarrays from which we subtract at each step.\n\nFor the fourth test case, it can also be proven that it is impossible to make all values zero.",
-  "statementZhMd": null,
+  "statementZhMd": "给你一个长度为 $n$ 的排列$^{\\text{∗}}$ $p$。\n\n你必须按顺序对从 1 到 $n$ 的每个整数 $k$ 恰好执行一次操作：\n\n- 选择 $p$ 的一个长度恰好为 $k$ 的子数组$^{\\text{†}}$，并将该子数组中的每个元素减 1。\n\n完成全部 $n$ 次操作后，你的目标是使数组的所有元素都等于零。\n\n请判断这是否可能做到。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$n=3$ 但数组中出现了 $4$）。$^{\\text{†}}$如果数组 $a$ 可以通过从数组 $b$ 的开头删除若干（可能为零个或全部）元素、并从末尾删除若干（可能为零个或全部）元素得到，则称数组 $a$ 是数组 $b$ 的子数组。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 100$）。接下来是各测试用例的描述。\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 100$）— 表示排列的长度。\n\n第二行包含 $p_1, p_2, \\ldots p_n$（$1 \\le p_i \\le n$）— 表示排列本身。\n\n## 输出格式\n\n对于每个测试用例，如果在执行完所有操作后能使数组 $p$ 的所有元素都等于 $0$，则输出 `YES`；否则输出 `NO`。\n\n你可以以任意大小写输出答案。例如，字符串 “`yEs`”、“`yes`”、“`Yes`” 和 “`YES`” 都会被识别为肯定回答。\n\n## 说明\n\n对于第一个测试用例，我们可以按如下方式进行：\n\n- $k = 1$：选择子数组 $[3, 3]$。数组 $[1, 3, 4, 2]$ 变为 $[1, 3, 3, 2]$。\n- $k = 2$：选择子数组 $[2, 3]$。数组 $[1, 3, 3, 2]$ 变为 $[1, 2, 2, 2]$。\n- $k = 3$：选择子数组 $[2, 4]$。数组 $[1, 2, 2, 2]$ 变为 $[1, 1, 1, 1]$。\n- $k = 4$：选择子数组 $[1, 4]$。数组 $[1, 1, 1, 1]$ 变为 $[0, 0, 0, 0]$。\n\n这样，我们就成功地将整个数组都变成了零，因此答案为 `YES`。\n\n对于第二个测试用例，可以证明不可能将所有元素都变为零。\n\n对于第三个测试用例，过程如下：\n\n$[2, 4, \\boldsymbol{5}, 3, 1] \\rightarrow [2, \\boldsymbol{4, 4}, 3, 1] \\rightarrow [2, \\boldsymbol{3, 3, 3}, 1] \\rightarrow [\\boldsymbol{2, 2, 2, 2}, 1] \\rightarrow [\\boldsymbol{1, 1, 1, 1, 1}] \\rightarrow [0, 0, 0, 0, 0].$\n\n加粗的数值表示每一步操作中执行减 1 的子数组。\n\n对于第四个测试用例，同样可以证明不可能使所有值都变为零。",
   "samples": [
     {
       "input": "4\n4\n1 3 4 2\n5\n1 5 2 4 3\n5\n2 4 5 3 1\n3\n3 1 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:14:02.173Z"
+  "fetchedAt": "2026-10-30T21:14:02.173Z",
+  "translatedAt": "2026-11-03T05:30:33.327+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2148,
   "index": "C",
   "title": "Pacer",
-  "titleZh": null,
+  "titleZh": "折返跑",
   "url": "https://codeforces.com/contest/2148/problem/C",
   "difficulty": 900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. A single lap should be completed every time you hear this sound. Ding! Remember to run in a straight line and run as long as possible. The test will begin on the word start. On your mark. Get ready!... *\n\nFarmer John is running the FitnessGram Pacer Test! Farmer John takes **one minute** to run to the other side of the gym. Therefore, at the start of each minute, FJ can choose to either run to the other side of the gym or stay in place. If he chooses to run to the other side of the gym, he gains **one point**.\n\nFJ will run the Pacer Test until the start of the $m$-th minute. Initially (at the start of the $0$-th minute), FJ is at the starting side of the gym, which we will denote as side $0$. The opposite side of the gym is denoted side $1$.\n\nThe pacer test audio plays $n$ times. At the start of the $a_i$-th minute, FJ must be at the $b_i$-th side of the gym.\n\nWhat is the maximum number of points FJ can acquire while ensuring that he meets the audio's requirements?\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\leq n \\leq 2 \\cdot 10^5, n \\leq m \\leq 10^9$) — the number of requirements and the number of total minutes.\n\nThe following $n$ lines contain two integers $a_i$ and $b_i$ $(1 \\leq a_i \\leq m, b_i \\in \\{0,1\\})$ — the $i$-th requirement by the audio. It is guaranteed that $a_i \\gt a_{i-1}$ over all $i \\gt 1$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the maximum number of points that FJ can acquire.\n\n## Note\n\nFor the first sample test case,\n\n- During minute $0$, FJ can stay at side $0$.\n- During minute $1$, FJ can run to side $1$ and gain $1$ point.\n- Right before minute $2$, the audio requires FJ to be at side $1$. Here, FJ is indeed at side $1$.\n- During minute $2$, FJ can run to side $0$ and gain $1$ point.\n- During minute $3$, FJ can stay at side $0$.\n- Right before minute $4$, the audio requires FJ to be at side $0$. Here, FJ is indeed at side $0$.\n- Since the start of minute $4$ has reached, the Pacer Test ends. His total score is $2$.\n\nRelevant illustration of the statement:\n\n![image](https://espresso.codeforces.com/308623114ebb88f607bf50b390f9c2dea93705fa.png)",
-  "statementZhMd": null,
+  "statementZhMd": "*FitnessGram 折返跑测试是一项多阶段有氧能力测试，随着测试的进行，难度会逐步提升。20 米折返跑测试将在 30 秒后开始。请在起点处排好队。每次听到这个声音时，你都应当完成一次单程跑。叮！记得沿直线奔跑，并尽可能长时间地跑下去。测试将在 “start” 一词说出时开始。各就各位。预备！……*\n\nFarmer John 正在参加 FitnessGram 折返跑测试！Farmer John 跑到体育馆的另一侧需要 **一分钟**。因此，在每分钟的开始，FJ 可以选择跑到体育馆的另一侧，也可以选择原地不动。如果他选择跑到另一侧，就会获得 **一分**。\n\nFJ 将进行折返跑测试，直到第 $m$ 分钟的开始。初始时（第 $0$ 分钟的开始），FJ 位于体育馆的起始一侧，我们将其记为第 $0$ 侧。体育馆的另一侧记为第 $1$ 侧。\n\n折返跑测试的音频会播放 $n$ 次。在第 $a_i$ 分钟的开始，FJ 必须位于体育馆的第 $b_i$ 侧。\n\n在满足音频全部要求的前提下，FJ 最多能获得多少分？\n\n## 输入格式\n\n第一行包含一个整数 $t$ ($1 \\leq t \\leq 10^4$) —— 测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$ ($1 \\leq n \\leq 2 \\cdot 10^5, n \\leq m \\leq 10^9$) —— 分别表示要求的数量和总分钟数。\n\n接下来 $n$ 行每行包含两个整数 $a_i$ 和 $b_i$ $(1 \\leq a_i \\leq m, b_i \\in \\{0,1\\})$ —— 表示音频的第 $i$ 条要求。保证对于所有 $i \\gt 1$，均有 $a_i \\gt a_{i-1}$。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 FJ 能获得的最大分数。\n\n## 说明\n\n对于第一个样例测试用例：\n\n- 在第 $0$ 分钟内，FJ 可以留在第 $0$ 侧。\n- 在第 $1$ 分钟内，FJ 可以跑到第 $1$ 侧，并获得 $1$ 分。\n- 在第 $2$ 分钟即将开始时，音频要求 FJ 位于第 $1$ 侧。此时 FJ 的确位于第 $1$ 侧。\n- 在第 $2$ 分钟内，FJ 可以跑到第 $0$ 侧，并获得 $1$ 分。\n- 在第 $3$ 分钟内，FJ 可以留在第 $0$ 侧。\n- 在第 $4$ 分钟即将开始时，音频要求 FJ 位于第 $0$ 侧。此时 FJ 的确位于第 $0$ 侧。\n- 由于已经到了第 $4$ 分钟的开始时刻，折返跑测试结束。他的总得分为 $2$。\n\n题面的相关示意图：\n\n![image](https://espresso.codeforces.com/308623114ebb88f607bf50b390f9c2dea93705fa.png)",
   "samples": [
     {
       "input": "3\n2 4\n2 1\n4 0\n2 7\n1 1\n4 0\n4 9\n1 0\n2 0\n6 1\n9 0\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:45:14.432Z"
+  "fetchedAt": "2026-11-02T16:45:14.432Z",
+  "translatedAt": "2026-11-03T05:35:08.409+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

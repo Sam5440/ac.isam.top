@@ -4,7 +4,7 @@
   "contestId": 2144,
   "index": "D",
   "title": "Price Tags",
-  "titleZh": null,
+  "titleZh": "价签",
   "url": "https://codeforces.com/contest/2144/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Imagine that you are the owner of a store. Before the start of a new season, you decided to clear your store of leftover goods, and therefore you decided to hold a total sale.\n\nYou have $n$ different items in your store: the $i$-th item costs $c_i$ coins. Each item has a price tag with the corresponding price $c_i$. You decided to hold a sale in the format: \"we divided all the prices $x$ times.\" Formally, this means that you choose a common coefficient $x$, and during the sale, the $i$-th item will cost $\\left\\lceil \\frac{c_i}{x} \\right\\rceil$ coins (where $\\left\\lceil y \\right\\rceil$ denotes rounding up).\n\nTo avoid confusion among the customers, you need to pin new price tags with new prices on all items, but printing new price tags is costly. Specifically, each printed price tag will cost you $y$ coins.\n\nTherefore, you had a brilliant idea — why not use the existing price tags and simply repin them on other items? So, you'll need to print price tags only for those items that do not have a corresponding price tag available.\n\nThere remains one last question: by how much should you reduce the prices, or what $x$ should you choose? The coefficient $x$ must be an *integer* **strictly greater** than $1$ and such that the total income is maximized. The total income is equal to the total value of the items minus the cost of the printed price tags.\n\nDetermine the maximum possible total income.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $y$ ($1 \\le n \\le 2 \\cdot 10^5$; $1 \\le y \\le 10^9$) — the number of items and the cost of printing one price tag.\n\nThe second line contains $n$ integers $c_1, c_2, \\dots, c_n$ ($1 \\le c_i \\le 2 \\cdot 10^5$) — the initial prices of the items.\n\n## Output\n\nFor each test case, output a single integer — the maximum total income.\n\n## Note\n\nIn the first test case, it is optimal to choose $x = 3$. The new prices of the items will be $[17, 50, 17, 50, 50]$. In this case, we can use two old price tags of $50$, and we will have to print three price tags for $17$, $17$, and $50$. As a result, the income will be $17 + 50 + 17 + 50 + 50 - 51 \\cdot 3 = 31$.\n\nIn the second test case, it is optimal to choose $x = 2$. The new prices will be $[21, 21, 21]$, and we will have to print $3$ new price tags.\n\nIn the third test case, it is optimal to choose $x = 111$.\n\nIn the fourth test case, it is optimal to choose $x = 2$. The new prices will be the same as the old ones, so no new price tags will be printed.",
-  "statementZhMd": null,
+  "statementZhMd": "想象一下你是一家商店的老板。在新季节开始之前，你决定清空店里的剩余存货，因此决定举行一次全场大促销。\n\n你的商店里有 $n$ 件不同的商品：第 $i$ 件商品的价格为 $c_i$ 枚硬币。每件商品上都挂着标有对应价格 $c_i$ 的价签。你决定按如下形式举行促销：\"我们把所有价格都除以 $x$。\" 形式化地说，就是你选择一个公共系数 $x$，促销期间第 $i$ 件商品的价格将变为 $\\left\\lceil \\frac{c_i}{x} \\right\\rceil$ 枚硬币（其中 $\\left\\lceil y \\right\\rceil$ 表示向上取整）。\n\n为了避免顾客产生混淆，你需要给所有商品挂上标有新价格的新价签，但印刷新价签的代价不小。具体来说，每印一张价签都要花费你 $y$ 枚硬币。\n\n于是你想到了一个绝妙的主意——为什么不利用现有的价签，把它们直接改挂到其他商品上呢？这样一来，你只需为那些没有对应价签可用的商品印刷新价签。\n\n还剩最后一个问题：应该把价格降低多少，也就是该选择多大的 $x$？系数 $x$ 必须是一个*整数*且**严格大于** $1$，并使总收入最大化。总收入等于商品的总价值减去印刷新价签的花费。\n\n请确定可能达到的最大总收入。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $y$（$1 \\le n \\le 2 \\cdot 10^5$；$1 \\le y \\le 10^9$）——商品的数量以及印一张价签的花费。\n\n第二行包含 $n$ 个整数 $c_1, c_2, \\dots, c_n$（$1 \\le c_i \\le 2 \\cdot 10^5$）——商品的初始价格。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——最大总收入。\n\n## 说明\n\n在第一个测试用例中，最优选择是 $x = 3$。商品的新价格将为 $[17, 50, 17, 50, 50]$。此时，我们可以复用两张写着 $50$ 的旧价签，并需要为 $17$、$17$ 和 $50$ 印三张价签。因此，收入为 $17 + 50 + 17 + 50 + 50 - 51 \\cdot 3 = 31$。\n\n在第二个测试用例中，最优选择是 $x = 2$。新价格将为 $[21, 21, 21]$，我们需要印 $3$ 张新价签。\n\n在第三个测试用例中，最优选择是 $x = 111$。\n\n在第四个测试用例中，最优选择是 $x = 2$。新价格与旧价格完全相同，因此无需印任何新价签。",
   "samples": [
     {
       "input": "4\n5 51\n50 150 50 148 150\n3 1000000000\n42 42 42\n10 54321\n1 8088 45 1 73 1 9198 4991 1 83\n3 100\n1 1 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:52:55.891Z"
+  "fetchedAt": "2026-11-02T16:52:55.891Z",
+  "translatedAt": "2026-11-03T05:33:22.713+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

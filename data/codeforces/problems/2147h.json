@@ -4,7 +4,7 @@
   "contestId": 2147,
   "index": "H",
   "title": "Maxflow GCD Coloring",
-  "titleZh": null,
+  "titleZh": "最大流 GCD 染色",
   "url": "https://codeforces.com/contest/2147/problem/H",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Consider an undirected graph $G$ with $n$ vertices and positive integer capacities on its edges. We denote by $\\textsf{maxflow}(u, v)$ the value of the [maximum flow](https://en.wikipedia.org/wiki/Maximum_flow_problem) in the graph from source $u$ to sink $v$. We say that such a graph $G$ is *good* if there exists a positive integer $d \\geq 2$ such that $d$ divides each of the $n \\cdot (n-1)$ values of $\\textsf{maxflow}(u, v)$ for all pairs $(u, v)$ of distinct vertices of $G$. Note that, in particular, any graph without edges is good.\n\nYou are given a graph, and you have to color its vertices so that, for each color, the subgraph induced$^{\\text{∗}}$ by the vertices of that color is good. Find such a coloring with the **minimum** possible number of colors.\n\n$^{\\text{∗}}$Subgraph induced by a set of vertices $S$ is another graph, whose vertices are $S$ and whose edges are **all** of the edges, from the original graph, connecting pairs of vertices in $S$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\leq n \\leq 50$, $0 \\leq m \\leq \\frac{n(n-1)}{2}$), the number of vertices and the number of edges of the graph.\n\nThe next $m$ lines each contain three integers $u$, $v$, $w$ ($1 \\leq u, v \\leq n$, $1 \\leq w \\leq 10^6$), denoting that there is an edge connecting vertices $u$ and $v$ with capacity $w$. It is guaranteed that there are no self-loops or multiple edges between the same vertices.\n\nIt is guaranteed that the sum of $n^4$ over all test cases does not exceed $50^4$.\n\nIt can be shown that other limitations imply that the sum of $m$ over all test cases does not exceed $50\\,000$, so you don't need to worry about the size of the input.\n\n## Output\n\nFor each test case, output one integer $c$, the minimum possible number of colors. Then, output $2c$ lines, describing the coloring. For each $1 \\leq i \\leq c$, you must output two lines: one line with the number of vertices $k_i$ colored with the $i$-th color, followed by one line with $k_i$ integers, the vertices colored with the $i$-th color.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\n[Visualizer link](https://codeforces.com/assets/contests/2147/H_BpBMojEo8HY7badOmJkt.html)\n\nIn the answer to the first test case, the subgraph induced by the first color has no edges, and the subgraph induced by the second color has only one edge with capacity $6$; therefore, both subgraphs are good.\n\nIn the second test case, the whole graph is good since the value of $\\mathsf{maxflow}$ between any pair of vertices is divisible by $3$.",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一个有 $n$ 个顶点的无向图 $G$，其每条边上都有正整数容量。我们用 $\\textsf{maxflow}(u, v)$ 表示图中从源点 $u$ 到汇点 $v$ 的[最大流](https://en.wikipedia.org/wiki/Maximum_flow_problem)的值。如果存在正整数 $d \\geq 2$，使得对于 $G$ 中所有由不同顶点组成的顶点对 $(u, v)$，$d$ 都能整除这 $n \\cdot (n-1)$ 个 $\\textsf{maxflow}(u, v)$ 的值，我们就称图 $G$ 是*好的*。注意，特别地，任何没有边的图都是好的。\n\n给定一个图，你需要对其顶点进行染色，使得对于每种颜色，由该颜色的顶点导出$^{\\text{∗}}$的子图都是好的。求使用颜色数**最少**的一种染色方案。\n\n$^{\\text{∗}}$由顶点集合 $S$ 导出的子图是另一个图，其顶点为 $S$，其边为原图中连接 $S$ 内顶点对的**所有**边。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\leq n \\leq 50$，$0 \\leq m \\leq \\frac{n(n-1)}{2}$），分别表示图的顶点数和边数。\n\n接下来 $m$ 行，每行包含三个整数 $u$、$v$、$w$（$1 \\leq u, v \\leq n$，$1 \\leq w \\leq 10^6$），表示有一条连接顶点 $u$ 和 $v$、容量为 $w$ 的边。保证图中没有自环，同一对顶点之间也没有重边。\n\n保证所有测试用例的 $n^4$ 之和不超过 $50^4$。\n\n可以证明，其他限制条件意味着所有测试用例的 $m$ 之和不超过 $50\\,000$，因此你无需担心输入的规模。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 $c$，表示最少的颜色数。然后输出 $2c$ 行，描述染色方案。对于每个 $1 \\leq i \\leq c$，你需要输出两行：第一行输出用第 $i$ 种颜色染色的顶点数 $k_i$，随后一行输出 $k_i$ 个整数，表示用第 $i$ 种颜色染色的顶点。\n\n如果有多个可行的染色方案，输出任意一个即可。\n\n## 说明\n\n[可视化链接](https://codeforces.com/assets/contests/2147/H_BpBMojEo8HY7badOmJkt.html)\n\n在第一个测试用例的答案中，第一种颜色导出的子图没有边，第二种颜色导出的子图只有一条容量为 $6$ 的边；因此两个子图都是好的。\n\n在第二个测试用例中，整张图是好的，因为任意顶点对之间的 $\\mathsf{maxflow}$ 值都能被 $3$ 整除。",
   "samples": [
     {
       "input": "2\n5 5\n1 2 2\n2 3 3\n3 4 4\n4 5 5\n5 1 6\n6 7\n1 2 2\n1 3 2\n1 4 2\n2 5 1\n3 5 1\n4 5 1\n5 6 6\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:46.942Z"
+  "fetchedAt": "2026-10-30T21:13:46.942Z",
+  "translatedAt": "2026-11-03T05:28:59.908+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
