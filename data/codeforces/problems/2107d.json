@@ -4,7 +4,7 @@
   "contestId": 2107,
   "index": "D",
   "title": "Apple Tree Traversing",
-  "titleZh": null,
+  "titleZh": "苹果树遍历",
   "url": "https://codeforces.com/contest/2107/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "There is an apple tree with $n$ nodes, initially with one apple at each node. You have a paper with you, initially with nothing written on it.\n\nYou are traversing on the apple tree, by doing the following action as long as there is at least one apple left:\n\n- Choose an **apple path** $(u,v)$. A path $(u,v)$ is called an **apple path** if and only if for every node on the path $(u,v)$, there's an apple on it.\n- Let $d$ be the number of apples on the path, write down three numbers $(d,u,v)$, in this order, on the paper.\n- Then remove all the apples on the path $(u,v)$.\n\nHere, the path $(u, v)$ refers to the sequence of vertices on the unique shortest walk from $u$ to $v$.\n\nLet the number sequence on the paper be $a$. Your task is to find the lexicographically largest possible sequence $a$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a number $n$ ($1 \\le n \\le 1.5 \\cdot 10^5$).\n\nThe following $n-1$ lines of each test case contain two numbers $u,v$ ($1 \\le u,v \\le n$). It's guaranteed that the input forms a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $1.5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the lexicographically largest sequence possible $a_1, a_2, \\ldots, a_{|a|}$. It can be shown that $|a| \\le 3 \\cdot n$.\n\n## Note\n\nIn the first test case, we do the following steps:\n\n- Choose the apple path $(4, 3)$. This path consists of the nodes $4, 1, 3$, and each of them have an apple (so it is a valid apple path). $d = 3$ as there are $3$ apples on this path. Append $3, 4, 3$ in that order to our sequence $a$. Now, remove the apples from these $3$ vertices.\n- Only node $2$ has an apple left. Choose the apple path $(2, 2)$. This path only consists of the single node $2$. $d = 1$ as there is $1$ apple on this path. Append $1, 2, 2$ in that order to our sequence $a$ and remove the apple from $2$.\n\nThe final sequence is thus $[3, 4, 3, 1, 2, 2]$. It can be shown this is the lexicographically largest sequence possible.",
-  "statementZhMd": null,
+  "statementZhMd": "有一棵 $n$ 个节点的苹果树，初始时每个节点上都有一个苹果。你随身带着一张纸，初始时纸上什么都没写。\n\n你在苹果树上进行遍历，只要还剩至少一个苹果，就执行以下操作：\n\n- 选择一条**苹果路径** $(u,v)$。一条路径 $(u,v)$ 被称为**苹果路径**，当且仅当路径 $(u,v)$ 上的每个节点都有一个苹果。\n- 设 $d$ 为路径上苹果的数量，按此顺序在纸上写下三个数 $(d,u,v)$。\n- 然后移除路径 $(u,v)$ 上的所有苹果。\n\n这里，路径 $(u, v)$ 指的是从 $u$ 到 $v$ 的唯一最短途径上的顶点序列。\n\n设纸上写下的数列为 $a$。你的任务是求出可能得到的字典序最大的数列 $a$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$ ($1 \\le t \\le 10^4$)。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个数 $n$ ($1 \\le n \\le 1.5 \\cdot 10^5$)。\n\n每个测试用例接下来的 $n-1$ 行中，每行包含两个数 $u,v$ ($1 \\le u,v \\le n$)。保证输入构成一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $1.5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出可能得到的字典序最大的序列 $a_1, a_2, \\ldots, a_{|a|}$。可以证明 $|a| \\le 3 \\cdot n$。\n\n## 说明\n\n在第一个测试用例中，我们执行以下步骤：\n\n- 选择苹果路径 $(4, 3)$。这条路径由节点 $4, 1, 3$ 组成，且每个节点上都有一个苹果（因此它是一条合法的苹果路径）。$d = 3$，因为这条路径上有 $3$ 个苹果。按此顺序将 $3, 4, 3$ 追加到我们的序列 $a$ 末尾。然后，移除这 $3$ 个顶点上的苹果。\n- 只剩节点 $2$ 上还有一个苹果。选择苹果路径 $(2, 2)$。这条路径仅由单个节点 $2$ 组成。$d = 1$，因为这条路径上有 $1$ 个苹果。按此顺序将 $1, 2, 2$ 追加到我们的序列 $a$ 末尾，并移除节点 $2$ 上的苹果。\n\n最终得到的序列为 $[3, 4, 3, 1, 2, 2]$。可以证明这是可能得到的字典序最大的序列。",
   "samples": [
     {
       "input": "6\n4\n1 2\n1 3\n1 4\n4\n2 1\n2 4\n2 3\n5\n1 2\n2 3\n3 4\n4 5\n1\n8\n6 3\n3 5\n5 4\n4 2\n5 1\n1 8\n3 7\n6\n3 2\n2 6\n2 5\n5 4\n4 1\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:23:26.529Z"
+  "fetchedAt": "2026-10-30T21:23:26.529Z",
+  "translatedAt": "2026-11-03T07:11:25.847+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
