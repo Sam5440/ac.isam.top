@@ -4,7 +4,7 @@
   "contestId": 2152,
   "index": "C",
   "title": "Triple Removal",
-  "titleZh": null,
+  "titleZh": "三元组删除",
   "url": "https://codeforces.com/contest/2152/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "Tired of supporting ranged carries, Keria is now creating a data structure problem about supporting range queries.\n\nFor an array $b = [b_1, b_2, \\ldots, b_m]$ of length $m$ where $b_i=0$ or $b_i=1$, consider the following **triple removal** operation:\n\n1. Choose three indices $1 \\le i \\lt j \\lt k \\le m$ such that the elements at these positions are identical ($b_i = b_j = b_k$).\n2. Remove these three elements from the array. The cost of this operation is defined as $\\min(k-j, j-i)$. After the removal, the remaining parts of the array are concatenated, and their indices are relabeled.\n\nWe want to make the array $b$ empty using the **triple removal** operation. Hence, we define the *total cost* of an array as the minimum possible sum of the costs of **triple removal** operations required to make the array empty. If it is impossible to make the array empty, the cost is defined to be $-1$.\n\nKeria wants to test his data structure. For this, you must answer $q$ independent queries. Initially, you are given an array $a = [a_1, a_2, \\ldots, a_n]$ of length $n$ where $a_i=0$ or $a_i=1$. For each query, you are given a range $1 \\le l \\le r \\le n$ and must find the cost for the array $[a_l, a_{l+1}, \\ldots, a_r]$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1 \\le n, q \\le 250\\,000$) — the length of the array and the number of queries.\n\nThe next line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($a_i = 0$ or $a_i=1$) — the elements of the array.\n\nThen $q$ lines follow. The $i$-th of them contains two integers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le n$) — the range of the subarray for the $i$-th query.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $250\\,000$.\n\nIt is guaranteed that the sum of $q$ over all test cases does not exceed $250\\,000$.\n\n## Output\n\nFor each test case, output $q$ lines. The $i$-th line should contain a single integer representing the answer to the $i$-th query.\n\n## Note\n\n**Explanation of the first test case, first query (1 12):**\n\nThe subarray is $[0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0]$. There are six $0$s and six $1$s. A possible optimal sequence of operations is:\n\n1. Remove the three $1$s at indices $3$, $4$, $6$. The cost is $\\min(6-4, 4-3) = \\min(2, 1) = 1$. The array becomes $[0, 0, 0, 0, 1, 0, 1, 1, 0]$.\n2. Remove the three $0$s at indices $1$, $2$, $3$. The cost is $\\min(3-2, 2-1) = \\min(1, 1) = 1$. The array becomes $[0, 1, 0, 1, 1, 0]$.\n3. Remove the three $1$s at indices $2$, $4$, $5$. The cost is $\\min(5-4, 4-2) = \\min(1, 2) = 1$. The array becomes $[0, 0, 0]$.\n4. Remove the three $0$s at indices $1$, $2$, $3$. The cost is $\\min(3-2, 2-1) = \\min(1, 1) = 1$. The array is now empty.\n\nThe total cost is $1+1+1+1=4$.",
-  "statementZhMd": null,
+  "statementZhMd": "厌倦了辅助远程射手，Keria 现在正在创作一道支持区间查询的数据结构题。\n\n对于长度为 $m$ 的数组 $b = [b_1, b_2, \\ldots, b_m]$，其中 $b_i=0$ 或 $b_i=1$，考虑如下**三元组删除**操作：\n\n1. 选择三个下标 $1 \\le i \\lt j \\lt k \\le m$，使得这些位置上的元素相同（$b_i = b_j = b_k$）。\n2. 从数组中删除这三个元素。本次操作的花费定义为 $\\min(k-j, j-i)$。删除之后，数组中剩余的部分会被拼接起来，并重新编号。\n\n我们希望使用**三元组删除**操作把数组 $b$ 变为空。因此，我们定义一个数组的*总花费*为将数组变为空所需的**三元组删除**操作的花费之和的最小值。如果无法将数组变为空，则花费定义为 $-1$。\n\nKeria 想要测试他的数据结构。为此，你需要回答 $q$ 个相互独立的询问。初始时，给定一个长度为 $n$ 的数组 $a = [a_1, a_2, \\ldots, a_n]$，其中 $a_i=0$ 或 $a_i=1$。对于每个询问，给定一个区间 $1 \\le l \\le r \\le n$，你需要求出数组 $[a_l, a_{l+1}, \\ldots, a_r]$ 的花费。\n\n## 输入格式\n\n每组测试数据包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$1 \\le n, q \\le 250\\,000$）— 分别表示数组的长度和询问的个数。\n\n下一行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$a_i = 0$ 或 $a_i=1$）— 表示数组的元素。\n\n接下来 $q$ 行，其中的第 $i$ 行包含两个整数 $l_i$ 和 $r_i$（$1 \\le l_i \\le r_i \\le n$）— 表示第 $i$ 个询问所对应的子数组的区间。\n\n保证所有测试用例的 $n$ 之和不超过 $250\\,000$。\n\n保证所有测试用例的 $q$ 之和不超过 $250\\,000$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q$ 行。第 $i$ 行应包含一个整数，表示第 $i$ 个询问的答案。\n\n## 说明\n\n**第一个测试用例第一个询问（1 12）的解释：**\n\n子数组为 $[0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0]$。其中有六个 $0$ 和六个 $1$。一种可能的最优操作序列如下：\n\n1. 删除下标 $3$、$4$、$6$ 处的三个 $1$。花费为 $\\min(6-4, 4-3) = \\min(2, 1) = 1$。数组变为 $[0, 0, 0, 0, 1, 0, 1, 1, 0]$。\n2. 删除下标 $1$、$2$、$3$ 处的三个 $0$。花费为 $\\min(3-2, 2-1) = \\min(1, 1) = 1$。数组变为 $[0, 1, 0, 1, 1, 0]$。\n3. 删除下标 $2$、$4$、$5$ 处的三个 $1$。花费为 $\\min(5-4, 4-2) = \\min(1, 2) = 1$。数组变为 $[0, 0, 0]$。\n4. 删除下标 $1$、$2$、$3$ 处的三个 $0$。花费为 $\\min(3-2, 2-1) = \\min(1, 1) = 1$。此时数组变为空。\n\n总花费为 $1+1+1+1=4$。",
   "samples": [
     {
       "input": "2\n12 4\n0 0 1 1 0 1 0 1 0 1 1 0\n1 12\n2 7\n5 10\n6 11\n6 3\n0 0 0 1 1 1\n1 3\n4 6\n1 6\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:21.181Z"
+  "fetchedAt": "2026-10-30T21:13:21.181Z",
+  "translatedAt": "2026-11-03T05:11:03.323+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

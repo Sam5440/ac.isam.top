@@ -4,7 +4,7 @@
   "contestId": 2145,
   "index": "E",
   "title": "Predicting Popularity",
-  "titleZh": null,
+  "titleZh": "预测流行度",
   "url": "https://codeforces.com/contest/2145/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Imagine that you are working at Berflix — the largest streaming service in Berland, specialized in movie distribution. The audience of this service consists of n users, and for each of them, some preferences are known: the level of action in a movie ai and the level of drama di.\n\nYour current task is to try to predict the popularity of a certain movie. Let the movie you are interested in contain ac \"units\" of action and dr \"units\" of drama (data kindly provided by the analytics team). If both the action and drama levels in the movie meet or exceed the threshold values for a certain user, they will definitely watch the movie.\n\nIf the movie falls short in either action or drama, the user will hesitate. However, the popularity of the movie among other viewers may sway them to watch it. After lengthy discussions, your team has chosen the following model of events.\n\nLet p be the number of people who have already watched the movie (initially p=0). We will consider that the movie is *suitable* for user i if max.\n\nUsers constantly check recommendations. Therefore, we will assume that as long as there exists a user who has not yet watched the movie but finds it suitable, they will definitely watch it. Watching the movie will increase its popularity p by one and may make it suitable for other users.\n\nThis process will conclude when either everyone has watched the movie, or none of the remaining viewers find it suitable. Your task is to count how many people will watch the movie in total.\n\nThere is one last problem — the users' preferences are constantly changing. Specifically, there are m requests to change the values of a_k and d_k for some user k, and you need to recalculate the final popularity of the movie p after each change.\n\n## Input\n\nThe first line contains two numbers ac and dr (1 \\le ac, dr \\le 10^6) — the action and drama ratings of the movie.\n\nThe second line contains one integer n (1 \\le n \\le 5 \\cdot 10^5) — the number of users of Berflix.\n\nThe third line contains n numbers a_1, a_2, \\dots, a_n (1 \\le a_i \\le 10^6) — the users' preferences for action.\n\nThe fourth line contains n numbers d_1, d_2, \\dots, d_n (1 \\le d_i \\le 10^6) — the users' preferences for drama.\n\nThe fifth line contains one integer m (1 \\le m \\le 3 \\cdot 10^5) — the number of changes in user preferences.\n\nThe following m lines contain the changes in the format:\n\n- \"k_j na_j nd_j\" (1 \\le k_j \\le n; 1 \\le na_j, nd_j \\le 10^6), where na_j is the new preference of user k_j for action, and nd_j — for drama.\n\n## Output\n\nFor each change request, output the total number of views of the movie p after updating the information about the corresponding user.\n\n## Note\n\nConsider the first request. The first and third viewers already find the movie suitable, so they will watch it, increasing the popularity p by 2. With p = 2, the movie will become suitable for the second viewer. As a result, they will also watch it, increasing the popularity by another 1. However, the 4-th viewer still does not find the movie suitable, as \\max(30 - 20, 0) + \\max(30 - 25, 0) \\gt 3.\n\nThus, after the first request, 3 people will watch the movie.",
-  "statementZhMd": null,
+  "statementZhMd": "想象一下，你正在 Berflix 工作——Berland 最大的流媒体服务，专门从事电影发行。该服务的观众由 n 名用户组成，并且已知每位用户的一些偏好：其偏好的电影动作水平 ai 与剧情水平 di。\n\n你当前的任务是尝试预测某部电影的流行度。设你关注的这部电影包含 ac 个单位的动作和 dr 个单位的剧情（数据由分析团队热心提供）。如果电影的动作水平和剧情水平都达到或超过某位用户的阈值，那么该用户一定会观看这部电影。\n\n如果电影在动作或剧情某一方面有所欠缺，该用户就会犹豫。不过，这部电影在其他观众中的流行度可能会打动他们，使其前去观看。经过漫长的讨论，你的团队选定了如下的事件模型。\n\n设 p 为已经观看过这部电影的人数（初始时 p=0）。如果 $\\max(a_i - ac, 0) + \\max(d_i - dr, 0) \\le p$，我们就认为这部电影对用户 i 是*合适的*。\n\n用户会不停地查看推荐。因此，我们假设：只要存在尚未观看过这部电影但认为它合适的用户，这位用户就一定会去观看。观看会使电影的流行度 p 增加 1，并可能使电影对其他用户变得合适。\n\n当所有人都已观看过这部电影，或者剩余观众中没有人再认为它合适时，这一过程就会结束。你的任务是统计最终总共有多少人会观看这部电影。\n\n还有最后一个问题——用户的偏好会不断变化。具体来说，共有 m 个修改请求，每个请求会修改某个用户 k 的 a_k 和 d_k 的值，你需要在每次修改后重新计算电影的最终流行度 p。\n\n## 输入格式\n\n第一行包含两个数 ac 和 dr（$1 \\le ac, dr \\le 10^6$）——电影的动作与剧情数值。\n\n第二行包含一个整数 n（$1 \\le n \\le 5 \\cdot 10^5$）——Berflix 的用户数量。\n\n第三行包含 n 个数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^6$）——用户对动作的偏好。\n\n第四行包含 n 个数 $d_1, d_2, \\dots, d_n$（$1 \\le d_i \\le 10^6$）——用户对剧情的偏好。\n\n第五行包含一个整数 m（$1 \\le m \\le 3 \\cdot 10^5$）——用户偏好修改的次数。\n\n接下来的 m 行按如下格式给出这些修改：\n\n- \"k_j na_j nd_j\"（$1 \\le k_j \\le n$; $1 \\le na_j, nd_j \\le 10^6$），其中 na_j 为用户 k_j 对动作的新偏好，nd_j 为对剧情的新偏好。\n\n## 输出格式\n\n对于每次修改请求，输出在更新对应用户的信息之后，电影的总观看人数 p。\n\n## 说明\n\n考虑第一个修改请求。第一位和第三位观众已经认为这部电影合适，因此他们会观看它，使流行度 p 增加 2。在 p = 2 时，电影将对第二位观众变得合适。于是这位观众也会观看，使流行度再增加 1。然而，第 4 位观众仍然不认为这部电影合适，因为 $\\max(30 - 20, 0) + \\max(30 - 25, 0) \\gt 3$。\n\n因此，在第一个修改请求之后，共有 3 人会观看这部电影。",
   "samples": [
     {
       "input": "20 25\n4\n1 22 1 30\n1 22 50 30\n5\n3 1 25\n2 23 22\n4 10 27\n1 21 21\n3 20 26\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:45:23.913Z"
+  "fetchedAt": "2026-11-02T16:45:23.913Z",
+  "translatedAt": "2026-11-03T05:08:00.036+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
