@@ -4,7 +4,7 @@
   "contestId": 2159,
   "index": "E",
   "title": "Super-Short-Polynomial-San",
-  "titleZh": null,
+  "titleZh": "超短多项式桑",
   "url": "https://codeforces.com/contest/2159/problem/E",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 1024,
   "statementMd": "*This problem might be well-known in some countries, but how do other countries learn about such problems if nobody poses them?*— [XXI Open Cup, Grand Prix of Tokyo](https://qoj.ac/problem/3091)\n\nYou are given three integers $a,b,c$.\n\nLet $F(n)$ be the polynomial of degree $2n$ defined as follows.\n\n$$F(n)=\\left ({a x^2+b x+c}\\right) ^n$$\n\nYou are asked to solve $q$ queries of the following kind.\n\n- $n\\;k$: Please find the value of the sum $\\displaystyle \\sum_{i=0}^{k}{\\left [ {x^i} \\right] F(n)}$ modulo $10^9+7$$^{\\text{∗}}$.\n\nHowever, it might be too easy for you if this problem ends here. So here is a twist$^{\\text{†}}$: You are asked to solve the queries **online**.\n\n$^{\\text{∗}}$Here, $[x^a]F(n)$ denotes the coefficient of $x^a$ of the polynomial $F(n)$.$^{\\text{†}}$I hope it isn't too hard for you after the twist. Even a toddler knows one way to solve it. You just have to optimize that method by a factor of $8\\,000\\,000$.\n\n## Input\n\nThe first line contains three integers $a$, $b$, $c$ ($1 \\le a,b,c \\le 10^9+6$).\n\nThe second line contains the number of queries $q$ ($1 \\le q \\le 3 \\cdot 10^5$).\n\nEach of the $q$ following lines contains two integers $n_i'$ and $k_i'$ denoting the query in encrypted format.\n\nYou must decrypt the queries as follows.\n\n- Let the answer to the $i$-th query modulo $10^9+7$ be $ans_i$. Here, $ans_0$ is defined to be $0$.\n- Then, the values of $n$ and $k$ for the $i$-th query are $n_i = n_i' \\oplus ans_{i-1}$ and $k_i = k_i' \\oplus ans_{i-1}$ ($0 \\le n_i \\le 3\\cdot 10^5$, $0 \\le k_i \\le 2n_i$).\n\nDo note that **both** the sum of $n_i$ **and** the sum of $k_i$ over all queries **are not bounded**.\n\n## Output\n\nFor each query, print the answer modulo $10^9+7$ on a new line.\n\n## Note\n\nThe decrypted example input is as follows.\n\n```\n3 2 1\n11\n0 0\n1 0\n1 1\n1 2\n2 0\n2 1\n2 2\n2 3\n2 4\n31415 9265\n200000 69420\n```\n\nHere, the polynomial $F(n)$ corresponds to [A084608](https://oeis.org/A084608) from OEIS. Don't worry about the link; there's nothing so useful there. Trust me.",
-  "statementZhMd": null,
+  "statementZhMd": "*这道题在某些国家可能早已广为人知，但如果没有人把它出出来，其他国家的人要如何了解这样的题目呢？*—— [XXI Open Cup, Grand Prix of Tokyo](https://qoj.ac/problem/3091)\n\n给定三个整数 $a,b,c$。\n\n设 $F(n)$ 为次数为 $2n$ 的多项式，定义如下。\n\n$$F(n)=\\left ({a x^2+b x+c}\\right) ^n$$\n\n你需要解决 $q$ 个如下形式的询问。\n\n- $n\\;k$：请求出 $\\displaystyle \\sum_{i=0}^{k}{\\left [ {x^i} \\right] F(n)}$ 对 $10^9+7$ 取模的值$^{\\text{∗}}$。\n\n然而，如果这道题到这里就结束，对你来说可能太简单了。所以这里有一个转折$^{\\text{†}}$：你需要**在线**解决这些询问。\n\n$^{\\text{∗}}$这里，$[x^a]F(n)$ 表示多项式 $F(n)$ 中 $x^a$ 项的系数。$^{\\text{†}}$希望转折之后这道题对你来说不会太难。就连蹒跚学步的小孩都知道一种解法，你只需要把那个方法优化 $8\\,000\\,000$ 倍即可。\n\n## 输入格式\n\n第一行包含三个整数 $a$、$b$、$c$（$1 \\le a,b,c \\le 10^9+6$）。\n\n第二行包含询问的数量 $q$（$1 \\le q \\le 3 \\cdot 10^5$）。\n\n接下来 $q$ 行中的每一行包含两个整数 $n_i'$ 和 $k_i'$，表示以加密格式给出的询问。\n\n你必须按如下方式解密询问。\n\n- 设第 $i$ 个询问的答案对 $10^9+7$ 取模的结果为 $ans_i$。这里，$ans_0$ 定义为 $0$。\n- 那么，第 $i$ 个询问中 $n$ 和 $k$ 的值为 $n_i = n_i' \\oplus ans_{i-1}$ 与 $k_i = k_i' \\oplus ans_{i-1}$（$0 \\le n_i \\le 3\\cdot 10^5$，$0 \\le k_i \\le 2n_i$）。\n\n请注意，所有询问中 $n_i$ 的总和**与** $k_i$ 的总和**均无上界**。\n\n## 输出格式\n\n对于每个询问，在单独的一行输出答案对 $10^9+7$ 取模的结果。\n\n## 说明\n\n解密后的样例输入如下。\n\n```\n3 2 1\n11\n0 0\n1 0\n1 1\n1 2\n2 0\n2 1\n2 2\n2 3\n2 4\n31415 9265\n200000 69420\n```\n\n这里，多项式 $F(n)$ 对应 OEIS 中的 [A084608](https://oeis.org/A084608)。不用担心这个链接，那里没有什么太有用的东西。相信我。",
   "samples": [
     {
       "input": "3 2 1\n11\n0 0\n0 1\n0 0\n2 1\n4 6\n3 0\n7 7\n13 12\n25 31\n31379 9237\n396176013 396306657\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:12:21.275Z"
+  "fetchedAt": "2026-10-30T21:12:21.275Z",
+  "translatedAt": "2026-11-03T04:55:51.014+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

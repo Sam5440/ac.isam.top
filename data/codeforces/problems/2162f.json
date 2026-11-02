@@ -4,7 +4,7 @@
   "contestId": 2162,
   "index": "F",
   "title": "Beautiful Intervals",
-  "titleZh": null,
+  "titleZh": "美丽的区间",
   "url": "https://codeforces.com/contest/2162/problem/F",
   "difficulty": 2100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an integer n and m intervals. Each interval is of the form [li,ri] and satisfies 1≤li≤ri≤n. Note that there can be duplicate intervals.\n\nLet p be a permutation of length n containing all the integers 0,1,2,…,n−1 exactly once.\n\nThere is a multiset M which is initially empty.\n\nFor each interval [li,ri]:\n\n- consider the subarray p[li…ri],\n- compute vi=mex∗(p[li…ri]),\n- insert vi into M.\n\nAfter processing all the intervals, M will be equal to {v1,v2,…,vm}.\n\nYour task is to construct a permutation p of length n containing all the integers 0,1,2,…,n−1 exactly once such that mex(M) is **minimized**.\n\n∗mex(a) denotes the minimum excluded (MEX) of the integers in a. For example, mex([2,2,1])=0 because 0 does not belong to the array, and mex([0,3,1,2])=4 because 0, 1, 2, and 3 appear in the array, but 4 does not.\n\n## Input\n\nThe first line contains a single integer t (1≤t≤1000) — the number of test cases. Description of each testcase follows.\n\nThe first line contains two integers n and m (3≤n≤3000, 1≤m≤3000).\n\nThe next m lines each contain two space-separated integers li,ri (1≤li≤ri≤n) each denoting an interval.\n\nIt is guaranteed that the sum of n over all test cases does not exceed 3000, and the sum of m over all test cases does not exceed 3000.\n\n## Output\n\nFor each testcase, print a permutation p of length n containing all the integers 0,1,2,…,n−1 exactly once such that mex(M) is minimized.\n\nIf there are multiple answers, you may print any one of them.\n\n## Note\n\nFor the first testcase, if we choose to construct p=[2,0,1], then M={mex(2,0)}={1}. Now, mex(M)=0.\n\nFor the third testcase, if we choose to construct p=[0,2,1,3], then M={mex(0,2),mex(2,1),mex(1,3),mex(0),mex(3)}={1,0,0,1,0}. Now, mex(M)=2.\n\nFor the fourth testcase, if we choose to construct p=[2,0,1,3,4], then M={mex(1,3,4),mex(2),mex(0,1,3),mex(4)}={0,0,2,0}. Now, mex(M)=1.\n\nFor the fifth testcase, if we choose to construct p=[3,1,0,2], then M={mex(3,1,0),mex(1,0,2)}={2,3}. Now, mex(M)=0.",
-  "statementZhMd": null,
+  "statementZhMd": "给你一个整数 n 和 m 个区间。每个区间形如 [li,ri]，满足 1≤li≤ri≤n。注意，区间可以重复。\n\n设 p 是一个长度为 n 的排列，包含 0,1,2,…,n−1 中的每个整数恰好一次。\n\n有一个初始为空的多重集 M。\n\n对于每个区间 [li,ri]：\n\n- 考虑子数组 p[li…ri]，\n- 计算 vi=mex∗(p[li…ri])，\n- 将 vi 插入 M。\n\n处理完所有区间后，M 将等于 {v1,v2,…,vm}。\n\n你的任务是构造一个长度为 n 的排列 p，包含 0,1,2,…,n−1 中的每个整数恰好一次，使得 mex(M) **最小**。\n\n∗mex(a) 表示数组 a 中整数的最小排除值（MEX）。例如，mex([2,2,1])=0，因为 0 不在数组中；mex([0,3,1,2])=4，因为 0, 1, 2, 3 都出现在数组中，而 4 没有出现。\n\n## 输入格式\n\n第一行包含一个整数 t（1≤t≤1000）——表示测试用例的数量。接下来是每个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 n 和 m（3≤n≤3000，1≤m≤3000）。\n\n接下来 m 行，每行包含两个用空格分隔的整数 li,ri（1≤li≤ri≤n），表示一个区间。\n\n保证所有测试用例的 n 之和不超过 3000，且所有测试用例的 m 之和不超过 3000。\n\n## 输出格式\n\n对于每个测试用例，输出一个长度为 n 的排列 p，包含 0,1,2,…,n−1 中的每个整数恰好一次，使得 mex(M) 最小。\n\n如果有多组答案，输出任意一个即可。\n\n## 说明\n\n对于第一个测试用例，如果我们选择构造 p=[2,0,1]，那么 M={mex(2,0)}={1}。此时，mex(M)=0。\n\n对于第三个测试用例，如果我们选择构造 p=[0,2,1,3]，那么 M={mex(0,2),mex(2,1),mex(1,3),mex(0),mex(3)}={1,0,0,1,0}。此时，mex(M)=2。\n\n对于第四个测试用例，如果我们选择构造 p=[2,0,1,3,4]，那么 M={mex(1,3,4),mex(2),mex(0,1,3),mex(4)}={0,0,2,0}。此时，mex(M)=1。\n\n对于第五个测试用例，如果我们选择构造 p=[3,1,0,2]，那么 M={mex(3,1,0),mex(1,0,2)}={2,3}。此时，mex(M)=0。",
   "samples": [
     {
       "input": "5\n3 1\n1 2\n3 5\n1 1\n1 2\n2 2\n2 2\n2 3\n4 5\n1 2\n2 3\n3 4\n1 1\n4 4\n5 4\n3 5\n1 1\n2 4\n4 4\n4 2\n1 3\n2 4\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:40:51.755Z"
+  "fetchedAt": "2026-11-02T16:40:51.755Z",
+  "translatedAt": "2026-11-03T04:52:11.984+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
