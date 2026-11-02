@@ -4,7 +4,7 @@
   "contestId": 2090,
   "index": "C",
   "title": "Dining Hall",
-  "titleZh": null,
+  "titleZh": "食堂大厅",
   "url": "https://codeforces.com/contest/2090/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Inside the large kingdom, there is an infinite dining hall. It can be represented as a set of cells ($x, y$), where $x$ and $y$ are non-negative integers. There are an infinite number of tables in the hall. Each table occupies four cells ($3x + 1, 3y + 1$), ($3x + 1, 3y + 2$), ($3x + 2, 3y + 1$), ($3x + 2, 3y + 2$), where $x$ and $y$ are arbitrary non-negative integers. All cells that do not belong to any of the tables are corridors.\n\nThere are $n$ guests that come to the dining hall one by one. Each guest appears in the cell $(0, 0)$ and wants to reach a table cell. In one step, they can move to any neighboring by side **corridor** cell, and in their **last** step, they must move to a neighboring by side a free **table** cell. They occupy the chosen table cell, and no other guest can move there.\n\nEach guest has a characteristic $t_i$, which can either be $0$ or $1$. They enter the hall in order, starting to walk from the cell ($0, 0$). If $t_i=1$, the $i$-th guest walks to the nearest vacant table cell. If $t_i=0$, they walk to the nearest table cell that belongs to a completely unoccupied table. Note that other guests may choose the same table later.\n\nThe distance is defined as the smallest number of steps needed to reach the table cell. If there are multiple table cells at the same distance, the guests choose the cell with the smallest $x$, and if there are still ties, they choose among those the cell with the smallest $y$.\n\nFor each guest, find the table cell which they choose.\n\n## Input\n\nThe first line contains a single integer $q$ ($1 \\leq q \\leq 5000$) — the number of test cases. Then follows their description.\n\nThe first line of each test case contains a single integer $n$ ($1 \\leq n \\leq 50\\,000$) — the number of guests.\n\nThe second line of each test case contains $n$ integers $t_1, t_2, \\ldots, t_n$ ($t_i \\in \\{0, 1\\}$) — the characteristics of the guests.\n\nIt is guaranteed that the sum of $n$ for all test cases does not exceed $50\\,000$.\n\n## Output\n\nFor each test case, output $n$ lines — for each guest, the cell where they sit.\n\n## Note\n\nConsider the first test case:\n\nThe distance from the first guest to the cell ($1, 1$) is $2$, so he sits there.\n\nThe distance from the second guest to the cell ($1, 2$) is $3$, as is the distance to the cell ($2, 1$), but since the first coordinate is smaller for the first option, he will choose it.\n\nThe distance from the third guest to the cell ($2, 1$) is $3$, so he will choose it.\n\nThe distance from the fourth guest to the cell ($1, 4$) is $5$, and he will choose it.\n\nThe distance from the fifth guest to the cell ($4, 1$) is $5$.\n\nThe distance from the sixth guest to the cell ($1, 5$) is $6$, as is the distance to the cell ($2, 2$), but since the first coordinate is smaller, he will choose the first option.\n\n![image](https://espresso.codeforces.com/924cf915f87f2f0dcf03a374e5eb4a33cf3ee459.png)",
-  "statementZhMd": null,
+  "statementZhMd": "在一个庞大的王国里，有一个无限大的食堂大厅。它可以表示为一组格子 ($x, y$) 的集合，其中 $x$ 和 $y$ 均为非负整数。大厅里有无数张桌子。每张桌子占据四个格子 ($3x + 1, 3y + 1$)、($3x + 1, 3y + 2$)、($3x + 2, 3y + 1$)、($3x + 2, 3y + 2$)，其中 $x$ 和 $y$ 为任意非负整数。所有不属于任何桌子的格子都是走廊。\n\n有 $n$ 位客人依次来到食堂大厅。每位客人出现在格子 $(0, 0)$，并想要到达某个桌子格子。每一步中，他们可以移动到任意相邻（共边）的**走廊**格子，而在**最后**一步，他们必须移动到一个相邻（共边）的空闲**桌子**格子。他们会占据所选的桌子格子，之后其他客人不能再移动到该格子。\n\n每位客人有一个特征 $t_i$，取值为 $0$ 或 $1$。他们按顺序进入大厅，从格子 ($0, 0$) 出发开始行走。若 $t_i=1$，第 $i$ 位客人会走向最近的空置桌子格子。若 $t_i=0$，他们会走向最近的、属于一张完全无人占据的桌子的桌子格子。注意，其他客人之后仍可能选中同一张桌子。\n\n距离定义为到达该桌子格子所需的最少步数。如果存在多个距离相同的桌子格子，客人会选择其中 $x$ 最小的格子；若仍存在并列，则在这些格子中选择 $y$ 最小的那个。\n\n对于每位客人，求出他会选择的桌子格子。\n\n## 输入格式\n\n第一行包含一个整数 $q$（$1 \\leq q \\leq 5000$）— 表示测试数据组数。随后是各组测试数据的描述。\n\n每组测试数据的第一行包含一个整数 $n$（$1 \\leq n \\leq 50\\,000$）— 表示客人的数量。\n\n每组测试数据的第二行包含 $n$ 个整数 $t_1, t_2, \\ldots, t_n$（$t_i \\in \\{0, 1\\}$）— 表示客人们的特征。\n\n保证所有测试数据的 $n$ 之和不超过 $50\\,000$。\n\n## 输出格式\n\n对于每组测试数据，输出 $n$ 行 — 每行一位客人，输出他就座的格子。\n\n## 说明\n\n考虑第一组测试数据：\n\n第一位客人到格子 ($1, 1$) 的距离为 $2$，所以他坐在那里。\n\n第二位客人到格子 ($1, 2$) 的距离为 $3$，到格子 ($2, 1$) 的距离也是 $3$，但由于第一种选择的第一个坐标更小，所以他会选择它。\n\n第三位客人到格子 ($2, 1$) 的距离为 $3$，所以他会选择它。\n\n第四位客人到格子 ($1, 4$) 的距离为 $5$，他将选择它。\n\n第五位客人到格子 ($4, 1$) 的距离为 $5$。\n\n第六位客人到格子 ($1, 5$) 的距离为 $6$，到格子 ($2, 2$) 的距离也是 $6$，但由于第一种选择的第一个坐标更小，所以他会选择第一种。\n\n![image](https://espresso.codeforces.com/924cf915f87f2f0dcf03a374e5eb4a33cf3ee459.png)",
   "samples": [
     {
       "input": "2\n6\n0 1 1 0 0 1\n5\n1 0 0 1 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:30:33.495Z"
+  "fetchedAt": "2026-10-30T21:30:33.495Z",
+  "translatedAt": "2026-11-03T07:49:03.070+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
