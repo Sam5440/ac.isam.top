@@ -4,14 +4,14 @@
   "contestId": 2151,
   "index": "F",
   "title": "Attraction Theory",
-  "titleZh": null,
+  "titleZh": "景点理论",
   "url": "https://codeforces.com/contest/2151/problem/F",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*[Taylor Swift - Love Story (Taylor's Version)](https://soundcloud.com/taylorswiftofficial/love-story-taylors-version)*⠀\n\nThere are $n$ people in positions $p_1, p_2, \\ldots, p_n$ on a one-dimensional coordinate axis. Initially, $p_i = i$ for each $1 \\leq i \\leq n$.\n\nYou can introduce an attraction at some **integer** coordinate $x$ ($1 \\le x \\le n$), and then all the people will move closer to the attraction to look at it.\n\nFormally, if you put an attraction in position $x$ ($1 \\le x \\le n$), the following changes happen for each person $i$ ($1 \\le i \\le n$):\n\n- if $p_i = x$, no change;\n- if $p_i \\lt x$, the person moves in the positive direction, and $p_i$ is incremented by $1$;\n- if $p_i \\gt x$, the person moves in the negative direction, and $p_i$ is decremented by $1$.\n\nYou can put attractions any finite number of times, and in any order you want.\n\nIt can be proven that all positions of a person always stays within the range $[1, n]$, i.e. $1 \\le p_i \\le n$ at all times.\n\nEach position $x$ ($1 \\le x \\le n$), has a value $a_x$ associated with it. The score of a position array $[p_1, p_2, \\ldots, p_n]$, denoted by $score(p)$, is $\\sum_{i = 1}^{n} a_{p_i}$, i.e. your score increases by $a_x$ for every person standing at $x$ in the end.\n\nOver all possible distinct position arrays $p$ that are possible with placing attractions, find the sum of $score(p)$. Since the answer may be large, print it modulo $998\\,244\\,353$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$).\n\nThe second line of each test case contains $n$ integers — $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$)\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single line containing an integer: the sum of $score(p)$ over all possible distinct position arrays $p$ that are possible with placing attractions, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, the only possible result is that person $1$ stays at $1$. The score of that is $a_1 = 1$.\n\nIn the second test case, the following position arrays $[p_1, p_2]$ are possible:\n\n- $[1, 2]$, score $15$;\n- $[1, 1]$, score $10$;\n- $[2, 2]$, score $20$.\n\nThe sum of scores is $15 + 10 + 20 = 45$.\n\nIn the third test case, the following position arrays $[p_1, p_2, p_3]$ are possible:\n\n- $[1, 1, 1]$;\n- $[1, 1, 2]$;\n- $[1, 2, 2]$;\n- $[1, 2, 3]$;\n- $[2, 2, 2]$;\n- $[2, 2, 3]$;\n- $[2, 3, 3]$;\n- $[3, 3, 3]$.\n\nEach has a score of $3$, and thus the total sum is $24$.",
-  "statementZhMd": null,
+  "statementZhMd": "*[Taylor Swift - Love Story (Taylor's Version)](https://soundcloud.com/taylorswiftofficial/love-story-taylors-version)*⠀\n\n有 $n$ 个人位于一维坐标轴上的位置 $p_1, p_2, \\ldots, p_n$。初始时，对于每个 $1 \\leq i \\leq n$，都有 $p_i = i$。\n\n你可以在某个**整数**坐标 $x$（$1 \\le x \\le n$）处设置一个景点，随后所有人都会向景点靠近去观赏它。\n\n形式化地说，如果你在位置 $x$（$1 \\le x \\le n$）处放置了一个景点，那么对于每个人 $i$（$1 \\le i \\le n$），会发生如下变化：\n\n- 若 $p_i = x$，则不发生变化；\n- 若 $p_i \\lt x$，该人向正方向移动，$p_i$ 增加 $1$；\n- 若 $p_i \\gt x$，该人向负方向移动，$p_i$ 减少 $1$。\n\n你可以放置景点任意有限次，并且顺序任意。\n\n可以证明，每个人的位置始终保持在范围 $[1, n]$ 内，即任意时刻都有 $1 \\le p_i \\le n$。\n\n每个位置 $x$（$1 \\le x \\le n$）都有一个与之关联的值 $a_x$。位置数组 $[p_1, p_2, \\ldots, p_n]$ 的得分记作 $score(p)$，其值为 $\\sum_{i = 1}^{n} a_{p_i}$，也就是说，最终每有一个站在位置 $x$ 处的人，你的得分就会增加 $a_x$。\n\n对于通过放置景点所能得到的所有互不相同的位置数组 $p$，求 $score(p)$ 的总和。由于答案可能很大，请对 $998\\,244\\,353$ 取模后输出。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）。\n\n每个测试用例的第二行包含 $n$ 个整数 —— $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一行一个整数：通过放置景点所能得到的所有互不相同的位置数组 $p$ 的 $score(p)$ 之和，对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个测试用例中，唯一可能的结果是第 $1$ 个人停留在 $1$ 处。此时的得分为 $a_1 = 1$。\n\n在第二个测试用例中，以下位置数组 $[p_1, p_2]$ 是可能出现的：\n\n- $[1, 2]$，得分 $15$；\n- $[1, 1]$，得分 $10$；\n- $[2, 2]$，得分 $20$。\n\n得分之和为 $15 + 10 + 20 = 45$。\n\n在第三个测试用例中，以下位置数组 $[p_1, p_2, p_3]$ 是可能出现的：\n\n- $[1, 1, 1]$；\n- $[1, 1, 2]$；\n- $[1, 2, 2]$；\n- $[1, 2, 3]$；\n- $[2, 2, 2]$；\n- $[2, 2, 3]$；\n- $[2, 3, 3]$；\n- $[3, 3, 3]$。\n\n每个数组的得分均为 $3$，因此总和为 $24$。",
   "samples": [
     {
       "input": "7\n1\n1\n2\n5 10\n3\n1 1 1\n4\n1 1 1 1\n4\n10 2 9 7\n5\n1000000000 1000000000 1000000000 1000000000 1000000000\n8\n100 2 34 59 34 27 5 6\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:29.561Z"
+  "fetchedAt": "2026-10-30T21:13:29.561Z",
+  "translatedAt": "2026-11-03T05:23:19.349+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
