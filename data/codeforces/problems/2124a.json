@@ -4,7 +4,7 @@
   "contestId": 2124,
   "index": "A",
   "title": "Deranged Deletions",
-  "titleZh": null,
+  "titleZh": "错排删除",
   "url": "https://codeforces.com/contest/2124/problem/A",
   "difficulty": 800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Call an array $b$ of length $m$ a **derangement** if the following property holds:\n\n- Let $c$ be an array of length $m$ such that $c_i = b_i$ over all $1 \\leq i \\leq m$.\n- Sort $c$ in non-decreasing order.\n- If $b_i\\neq c_i$ over all $1\\leq i \\leq m$, then $b$ is a **derangement**.\n\nFor example,\n\n- If $b = [4,8,3,1]$, then $c = [1, 3, 4, 8]$ after getting sorted. Since $b_i \\neq c_i$ in all positions, $b$ is a **derangement**.\n- If $b = [3,2,1]$, then $c = [1, 2, 3]$ after getting sorted. Since $b_2 = c_2$, $b$ is not a **derangement**.\n\nYou are given an array $a$ of length $n$. In one operation, you can delete an element from $a$. The order of the remaining elements is preserved after each deletion.\n\nOutput whether it is possible to perform some (possibly none) operations such that the remaining elements form a **derangement**. If it is possible, output any possible remaining array. The remaining array must be non-empty.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 100$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\leq n \\leq 100$) — the length of array $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq n$) — denoting the array $a$.\n\n## Output\n\nFor each test case, on a new line, if it is possible to perform operations such that the remaining array is a **derangement**, output `YES`. Otherwise, output `NO`.\n\nYou can output in any case (upper or lower). For example, the strings `\"yEs\"`, `\"yes\"`, `\"Yes\"`, and `\"YES\"` will be recognized as positive responses.\n\nIf your response was positive, output two more lines in the following format:\n\n- The first line should contain an integer $k$ ($1 \\leq k \\leq n$), the number of elements that remain in the array.\n- The second line should contain $d_1, d_2 \\ldots, d_k$, the elements that remain in the array. It must be possible to acquire array $d$ after performing some operations on $a$. Array $d$ must be a **derangement**.\n\n## Note\n\nIn the second test case, we can delete one $5$ from the array so that it becomes $[4,5,2,4]$. It can be shown this array is a **derangement**. This is not the only solution – it can be shown that the original array $[4,5,5,2,4]$ is another valid solution.",
-  "statementZhMd": null,
+  "statementZhMd": "称长度为 $m$ 的数组 $b$ 为一个**错排**，如果它满足以下性质：\n\n- 设 $c$ 为一个长度为 $m$ 的数组，满足对所有 $1 \\leq i \\leq m$ 都有 $c_i = b_i$。\n- 将 $c$ 按非降序排序。\n- 若对所有 $1\\leq i \\leq m$ 都有 $b_i\\neq c_i$，则 $b$ 是一个**错排**。\n\n例如，\n\n- 若 $b = [4,8,3,1]$，排序后得到 $c = [1, 3, 4, 8]$。由于在所有位置上都有 $b_i \\neq c_i$，因此 $b$ 是一个**错排**。\n- 若 $b = [3,2,1]$，排序后得到 $c = [1, 2, 3]$。由于 $b_2 = c_2$，因此 $b$ 不是**错排**。\n\n给定一个长度为 $n$ 的数组 $a$。每次操作，你可以从 $a$ 中删除一个元素。每次删除后，剩余元素保持原有的顺序。\n\n请输出是否可以进行若干（也可以不进行）次操作，使得剩余的元素构成一个**错排**。如果可以，输出任意一个可行的剩余数组。剩余数组必须非空。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 100$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 100$）——表示数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq n$）——表示数组 $a$。\n\n## 输出格式\n\n对于每个测试用例，单独占一行：如果可以进行若干操作使得剩余数组是一个**错排**，输出 `YES`；否则，输出 `NO`。\n\n你可以以任意大小写输出。例如，字符串 `\"yEs\"`、`\"yes\"`、`\"Yes\"` 和 `\"YES\"` 都会被判定为肯定回答。\n\n如果你的回答是肯定的，请再按如下格式输出两行：\n\n- 第一行包含一个整数 $k$（$1 \\leq k \\leq n$），表示数组中剩余元素的个数。\n- 第二行包含 $d_1, d_2 \\ldots, d_k$，即数组中剩余的元素。必须能够通过对 $a$ 进行若干操作得到数组 $d$。数组 $d$ 必须是一个**错排**。\n\n## 说明\n\n在第二个测试用例中，我们可以从数组中删除一个 $5$，使其变为 $[4,5,2,4]$。可以证明这个数组是一个**错排**。这不是唯一的解法——可以证明原数组 $[4,5,5,2,4]$ 也是另一个可行的答案。",
   "samples": [
     {
       "input": "3\n3\n2 2 3\n5\n4 5 5 2 4\n1\n1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:21:48.308Z"
+  "fetchedAt": "2026-10-30T21:21:48.308Z",
+  "translatedAt": "2026-11-03T06:28:34.293+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

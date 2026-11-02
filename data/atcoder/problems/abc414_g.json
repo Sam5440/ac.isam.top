@@ -4,7 +4,7 @@
   "contestId": "abc414",
   "index": "G",
   "title": "AtCoder Express 4",
-  "titleZh": null,
+  "titleZh": "AtCoder 特快列车 4",
   "url": "https://atcoder.jp/contests/abc414/tasks/abc414_g",
   "difficulty": 3020,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nIn AtCoder Kingdom, there is a railway line extending east-west, and this line has stations $1,2,\\ldots,N$. Station $i\\ (1\\leq i\\leq N)$ is located at coordinate $x_i$ $(x_1 < x_2 < \\ldots < x_N)$.\n\nOn this line, AtCoder Express company operates $M$ types of express trains.\n\nThe $i$-th type of express train operates as follows:\n\n- You can board this train at one of the stations $l_i,l_i+1,\\ldots,r_i$.\n- You can get off this train at one of the stations $L_i, L_i+1, \\ldots, R_i$. Here, the train travels in one direction, either east or west, satisfying $r_i\\lt L_i$ or $R_i\\lt l_i$.\n- The fare consists of a base fare of $c_i$ plus an amount based on the distance from the boarding station to the destination station. Specifically, when traveling from station $s\\ (l_i\\leq s\\leq r_i)$ to station $t\\ (L_i\\leq t\\leq R_i)$, the fare is $c_i+|x_s-x_t|$.\n\nYou are currently at station $1$. For each $k\\ (2\\leq k\\leq N)$, determine whether you can travel from station $1$ to station $k$ by transferring between express trains, and if you can travel, find the minimum total fare required for the travel.\n\n## Constraints\n\n- $2\\leq N\\leq 10^5$\n- $1\\leq M\\leq 10^5$\n- $0\\leq x_1 < x_2 < \\ldots < x_N \\leq 10^{12}$\n- $1\\leq l_i\\leq r_i\\leq N, 1\\leq L_i\\leq R_i\\leq N$\n- $r_i\\lt L_i$ or $R_i\\lt l_i$.\n- $1\\leq c_i\\leq 10^{12}$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nx_1 x_2 \\ldots x_N\nl_1 r_1 L_1 R_1 c_1\nl_2 r_2 L_2 R_2 c_2\n\\vdots\nl_M r_M L_M R_M c_M\n```\n\n## Output\n\nOutput the answer in the following format:\n\n```\n\\mathrm{ans}_2 \\mathrm{ans}_3 \\ldots \\mathrm{ans}_N\n```\n\n$\\mathrm{ans}_i$ is the answer for $k=i$. If you can travel from station $1$ to station $i$, $\\mathrm{ans}_i$ is the minimum total fare required for the travel; otherwise, $\\mathrm{ans}_i$ is `-1`.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n在 AtCoder 王国，有一条东西走向的铁路线，这条线上有 $1,2,\\ldots,N$ 号车站。车站 $i\\ (1\\leq i\\leq N)$ 位于坐标 $x_i$ $(x_1 < x_2 < \\ldots < x_N)$ 处。\n\n在这条线路上，AtCoder Express 公司运营着 $M$ 种特快列车。\n\n第 $i$ 种特快列车按如下方式运行：\n\n- 你可以在车站 $l_i,l_i+1,\\ldots,r_i$ 中的某一站乘坐该列车。\n- 你可以在车站 $L_i, L_i+1, \\ldots, R_i$ 中的某一站下车。这里，列车沿单一方向行驶（向东或向西），满足 $r_i\\lt L_i$ 或 $R_i\\lt l_i$。\n- 票价由基础票价 $c_i$ 加上按乘车站到目的站距离计算的金额构成。具体来说，从车站 $s\\ (l_i\\leq s\\leq r_i)$ 乘坐到车站 $t\\ (L_i\\leq t\\leq R_i)$ 时，票价为 $c_i+|x_s-x_t|$。\n\n你现在位于车站 $1$。对于每个 $k\\ (2\\leq k\\leq N)$，请判断能否通过换乘特快列车从车站 $1$ 到达车站 $k$；如果能到达，求出行程所需的最低总票价。\n\n## 约束条件\n\n- $2\\leq N\\leq 10^5$\n- $1\\leq M\\leq 10^5$\n- $0\\leq x_1 < x_2 < \\ldots < x_N \\leq 10^{12}$\n- $1\\leq l_i\\leq r_i\\leq N, 1\\leq L_i\\leq R_i\\leq N$\n- $r_i\\lt L_i$ 或 $R_i\\lt l_i$。\n- $1\\leq c_i\\leq 10^{12}$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入通过标准输入按以下格式给出：\n\n```\nN M\nx_1 x_2 \\ldots x_N\nl_1 r_1 L_1 R_1 c_1\nl_2 r_2 L_2 R_2 c_2\n\\vdots\nl_M r_M L_M R_M c_M\n```\n\n## 输出格式\n\n按以下格式输出答案：\n\n```\n\\mathrm{ans}_2 \\mathrm{ans}_3 \\ldots \\mathrm{ans}_N\n```\n\n$\\mathrm{ans}_i$ 为 $k=i$ 时的答案。如果能从车站 $1$ 到达车站 $i$，则 $\\mathrm{ans}_i$ 为行程所需的最低总票价；否则，$\\mathrm{ans}_i$ 为 `-1`。",
   "samples": [
     {
       "input": "6 3\n0 20 50 90 110 150\n1 2 5 6 100\n1 1 2 3 10000\n6 6 1 2 30\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:52:07.672Z"
+  "fetchedAt": "2026-10-30T20:52:07.672Z",
+  "translatedAt": "2026-11-03T06:28:17.942+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2124,
   "index": "G",
   "title": "Maximise Sum",
-  "titleZh": null,
+  "titleZh": "最大化总和",
   "url": "https://codeforces.com/contest/2124/problem/G",
   "difficulty": 3200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "*This problem differs from problem B. In this problem, you must output the **maximum** sum of prefix minimums over all operations that cost at least $x$ for each integer $x$ from $0$ to $n-1$.*\n\nYou are given an array $a$ of length $n$, with elements satisfying $\\boldsymbol{0 \\le a_i \\le n}$. You can perform the following operation **at most once**:\n\n- Choose two indices $i$ and $j$ such that $i \\lt j$. Set $a_i := a_i + a_j$. Then, set $a_j = 0$.\n\nLet the *cost* of one operation be the value of $j-i$. The cost of not performing an operation is $0$.\n\nFor each integer $x$ from $0$ to $n-1$ inclusive, output the **maximum** possible value of $\\min(a_1) + \\min(a_1,a_2) + \\ldots + \\min(a_1, a_2, \\ldots, a_n)$ over all possible operations that have a cost of **at least** $x$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($2 \\leq n \\leq 10^6$) — the length of $a$.\n\nThe following line contains $n$ space-separated integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le n$) — denoting the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output $n$ integers on a new line: the $i$-th integer denoting the maximum answer over all operations that have a cost of at least $i-1$.\n\n## Note\n\nLet's analyze the fifth test case:\n\n- $x=0,1,2$: the optimal operation is $i=2$ and $j=4$, which has a cost of $2$. The array $a$ becomes $[4,4,3,0,1]$, which has a score of $11$.\n- $x=3$: the optimal operation is $i=2$ and $j=5$, which has a cost of $3$. The array $a$ becomes $[4,2,3,3,0]$, which has a score of $10$.\n- $x=4$: the optimal (and only) operation is $i=1$ and $j=5$, which has a cost of $4$. The array $a$ becomes $[5,1,3,3,0]$, which has a score of $8$.",
-  "statementZhMd": null,
+  "statementZhMd": "*本题与 B 题不同。在本题中，对于从 $0$ 到 $n-1$ 的每个整数 $x$，你需要输出在所有代价至少为 $x$ 的操作中，前缀最小值之和的**最大**值。*\n\n给定一个长度为 $n$ 的数组 $a$，其元素满足 $\\boldsymbol{0 \\le a_i \\le n}$。你可以**至多进行一次**以下操作：\n\n- 选择两个下标 $i$ 和 $j$，满足 $i \\lt j$。令 $a_i := a_i + a_j$，然后令 $a_j = 0$。\n\n一次操作的*代价*定义为 $j-i$ 的值。不进行操作的代价为 $0$。\n\n对于从 $0$ 到 $n-1$（含端点）的每个整数 $x$，输出在所有代价**至少**为 $x$ 的可能操作中，$\\min(a_1) + \\min(a_1,a_2) + \\ldots + \\min(a_1, a_2, \\ldots, a_n)$ 的**最大**可能值。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 10^6$）——表示 $a$ 的长度。\n\n接下来一行包含 $n$ 个以空格分隔的整数 $a_1, a_2, \\ldots, a_n$（$0 \\le a_i \\le n$）——表示数组 $a$。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，在新的一行中输出 $n$ 个整数：第 $i$ 个整数表示在所有代价至少为 $i-1$ 的操作中可能的最大答案。\n\n## 说明\n\n我们来分析第五个测试用例：\n\n- $x=0,1,2$：最优操作是 $i=2$ 且 $j=4$，其代价为 $2$。此时数组 $a$ 变为 $[4,4,3,0,1]$，其得分为 $11$。\n- $x=3$：最优操作是 $i=2$ 且 $j=5$，其代价为 $3$。此时数组 $a$ 变为 $[4,2,3,3,0]$，其得分为 $10$。\n- $x=4$：最优（且唯一）的操作是 $i=1$ 且 $j=5$，其代价为 $4$。此时数组 $a$ 变为 $[5,1,3,3,0]$，其得分为 $8$。",
   "samples": [
     {
       "input": "6\n2\n1 2\n4\n2 3 1 4\n2\n1 0\n5\n5 5 0 5 5\n5\n4 1 3 3 1\n10\n7 4 7 0 8 7 5 0 2 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:21:48.310Z"
+  "fetchedAt": "2026-10-30T21:21:48.310Z",
+  "translatedAt": "2026-11-03T06:29:49.871+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2124,
   "index": "D",
   "title": "Make a Palindrome",
-  "titleZh": null,
+  "titleZh": "构造回文数组",
   "url": "https://codeforces.com/contest/2124/problem/D",
   "difficulty": 1700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a$ of size $n$, and an integer $k$. You may perform the following operation any number of times:\n\n- Select two integers $l$ and $r$ $(1 \\le l \\le r \\le |a|)$ such that $r-l+1 \\geq k$.\n- Then, select an index $i$ such that $l\\leq i \\leq r$ where $a_i$ is the $k$-th smallest number out of the subarray $[a_l,a_{l+1},\\ldots,a_r]$. If there are multiple possible $i$, you may select any. For example, consider $a = [1, 2, 2, 1, 3], l = 1, r = 5$ and $k = 3$, the possible candidates of $i$ are indices $2$ and $3$.\n- Then, delete $a_i$ from $a$, concatenating the remaining parts of the array.\n\nDetermine if it is possible to get an array that is a palindrome$^{\\text{∗}}$ after any number of operations. Note that an empty array is considered a palindrome.\n\n$^{\\text{∗}}$An array $b=[b_1,b_2,\\ldots,b_m]$ is a palindrome if for each $1 \\leq i \\leq m$, $b_i=b_{m+1-i}$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line contains two integers $n$ and $k$ ($1 \\leq k \\leq n \\leq 2\\cdot 10^5$).\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1 \\leq a_i \\leq n$) — denoting the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output `YES` if it is possible to create a palindrome, and `NO` otherwise. You can output in any case (upper or lower). For example, the strings `\"yEs\"`, `\"yes\"`, `\"Yes\"`, and `\"YES\"` will be recognized as positive responses.\n\n## Note\n\nIn the first test case, $a$ is already a palindrome.\n\nIn the second test case, we can perform two operations as follows: $[\\mathbf{1,1},2,1]\\rightarrow [1,\\mathbf{2},1]\\rightarrow[1,1]$\n\nIn the third test case, we can perform one operation as follows: $[\\mathbf{2,3,4,5,3,2}]\\rightarrow[2,3,4,3,2]$.\n\nIn the fourth and fifth test cases, it can be shown it is impossible to create a palindrome no matter what operations are used.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个大小为 $n$ 的数组 $a$ 和一个整数 $k$。你可以执行以下操作任意次：\n\n- 选择两个整数 $l$ 和 $r$ $(1 \\le l \\le r \\le |a|)$，满足 $r-l+1 \\geq k$。\n- 然后，选择一个下标 $i$ 满足 $l\\leq i \\leq r$，使得 $a_i$ 是子数组 $[a_l,a_{l+1},\\ldots,a_r]$ 中第 $k$ 小的数。如果有多个可行的 $i$，你可以任选一个。例如，考虑 $a = [1, 2, 2, 1, 3], l = 1, r = 5$ 且 $k = 3$，则 $i$ 的候选下标为 $2$ 和 $3$。\n- 最后，从 $a$ 中删除 $a_i$，将数组剩余的部分拼接起来。\n\n请判断是否可以通过任意次操作得到一个回文数组$^{\\text{∗}}$。注意，空数组也被视为回文数组。\n\n$^{\\text{∗}}$如果对于每个 $1 \\leq i \\leq m$，都有 $b_i=b_{m+1-i}$，则数组 $b=[b_1,b_2,\\ldots,b_m]$ 是回文数组。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\leq k \\leq n \\leq 2\\cdot 10^5$）。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1 \\leq a_i \\leq n$）—— 表示数组 $a$。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果能够构造出回文数组，输出 `YES`；否则输出 `NO`。输出大小写不限（大写或小写均可）。例如，字符串 `\"yEs\"`、`\"yes\"`、`\"Yes\"` 和 `\"YES\"` 都会被视为肯定回答。\n\n## 说明\n\n在第一个测试用例中，$a$ 已经是回文数组。\n\n在第二个测试用例中，我们可以按如下方式执行两次操作：$[\\mathbf{1,1},2,1]\\rightarrow [1,\\mathbf{2},1]\\rightarrow[1,1]$\n\n在第三个测试用例中，我们可以按如下方式执行一次操作：$[\\mathbf{2,3,4,5,3,2}]\\rightarrow[2,3,4,3,2]$。\n\n在第四个和第五个测试用例中，可以证明无论使用什么操作都无法构造出回文数组。",
   "samples": [
     {
       "input": "8\n5 3\n5 4 3 4 5\n4 1\n1 1 2 1\n6 6\n2 3 4 5 3 2\n5 4\n5 2 4 3 1\n8 5\n4 7 1 2 3 1 3 4\n5 4\n1 2 1 2 2\n3 3\n1 2 2\n4 4\n2 1 2 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:21:48.309Z"
+  "fetchedAt": "2026-10-30T21:21:48.309Z",
+  "translatedAt": "2026-11-03T06:29:12.824+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2119,
   "index": "D",
   "title": "Token Removing",
-  "titleZh": null,
+  "titleZh": "移除令牌",
   "url": "https://codeforces.com/contest/2119/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*[r-906 & Hatsune Miku - All I Can See Is You](https://www.youtube.com/watch?v=xv7hJ32xK94)*\n\nDefine a sequence of integers $a$ *valid* if and only if $\\forall 1 \\le i \\le n, 0 \\le a_i \\le i$.\n\nDefine the *weight* $f(a)$ of a *valid* sequence $a$ of length $n$:\n\n- Initially, a token is placed at each integer point in the closed segment $[1, n]$ on the number axis.\n- Perform $n$ operations in sequence. During the $i$-th operation, if $a_i \\ne 0$, remove a token in the closed segment $[a_i, i]$ that has not been removed; otherwise, do nothing.\n- $f(a)$ is the number of ways to remove tokens. Two ways are considered different if there exists a $t$ such that the positions of the tokens removed by the two ways are different at the $t$-th operation.\n\nFor example, $f([0, 2, 1]) = 2$, because we can remove tokens on $2, 1$ or $2, 3$ in sequence.\n\nJT gives you two integers $n, m$ and asks you to find the sum of the *weight*s over all $(n + 1)!$ *valid* sequences of length $n$. Since the answer may be too large, print it modulo $m$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe only line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 5000, 10^8 \\le m \\le 1.01 \\cdot 10^9$) — the length of *valid* sequences, and the modulus.\n\nIt is guaranteed that the sum of $n^2$ over all test cases does not exceed $2.5 \\cdot 10^7$.\n\n## Output\n\nFor each test case, output an integer — the sum of the *weight*s over all $(n + 1)!$ *valid* sequences of length $n$, modulo $m$.\n\n## Note\n\nIn the first test case, *valid* sequences are $[0]$ and $[1]$, and the answer is $f([0]) + f([1]) = 1 + 1 = 2$.\n\nIn the second test case, *valid* sequences are $[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]$. The *weight* of $[0, 1]$ is $2$, and the others are $1$, so the answer is $5 \\cdot 1 + 1 \\cdot 2 = 7$.",
-  "statementZhMd": null,
+  "statementZhMd": "*[r-906 & Hatsune Miku - All I Can See Is You](https://www.youtube.com/watch?v=xv7hJ32xK94)*\n\n定义一个整数序列 $a$ 是*合法*的，当且仅当 $\\forall 1 \\le i \\le n, 0 \\le a_i \\le i$。\n\n定义长度为 $n$ 的*合法*序列 $a$ 的*权值* $f(a)$：\n\n- 初始时，在数轴上的闭区间 $[1, n]$ 内的每个整数点上都放置一个令牌。\n- 依次进行 $n$ 次操作。在第 $i$ 次操作中，若 $a_i \\ne 0$，则从闭区间 $[a_i, i]$ 中移除一个尚未被移除的令牌；否则，什么也不做。\n- $f(a)$ 为移除令牌的方案数。若存在某个 $t$，使得两种方案在第 $t$ 次操作中移除的令牌位置不同，则称这两种方案不同。\n\n例如，$f([0, 2, 1]) = 2$，因为我们可以依次移除位于 $2, 1$ 上的令牌，也可以依次移除位于 $2, 3$ 上的令牌。\n\nJT 给你两个整数 $n, m$，要你求所有 $(n + 1)!$ 个长度为 $n$ 的*合法*序列的*权值*之和。由于答案可能很大，请输出它对 $m$ 取模的结果。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各测试用例的描述。\n\n每个测试用例仅有一行，包含两个整数 $n$ 和 $m$（$1 \\le n \\le 5000, 10^8 \\le m \\le 1.01 \\cdot 10^9$）——分别表示*合法*序列的长度和模数。\n\n保证所有测试用例的 $n^2$ 之和不超过 $2.5 \\cdot 10^7$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——所有 $(n + 1)!$ 个长度为 $n$ 的*合法*序列的*权值*之和，对 $m$ 取模。\n\n## 说明\n\n在第一个测试用例中，*合法*序列为 $[0]$ 和 $[1]$，答案为 $f([0]) + f([1]) = 1 + 1 = 2$。\n\n在第二个测试用例中，*合法*序列为 $[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]$。$[0, 1]$ 的权值为 $2$，其余序列的权值均为 $1$，因此答案为 $5 \\cdot 1 + 1 \\cdot 2 = 7$。",
   "samples": [
     {
       "input": "6\n1 1000000007\n2 1000000007\n3 1000000007\n4 1000000007\n5 1000000007\n114 514191981\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:22:13.793Z"
+  "fetchedAt": "2026-10-30T21:22:13.793Z",
+  "translatedAt": "2026-11-03T06:31:33.412+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
