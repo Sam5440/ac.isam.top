@@ -4,7 +4,7 @@
   "contestId": "abc418",
   "index": "G",
   "title": "Binary Operation",
-  "titleZh": null,
+  "titleZh": "二元运算",
   "url": "https://atcoder.jp/contests/abc418/tasks/abc418_g",
   "difficulty": 3038,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere are $16$ integer tuples $(A, B, C, D)$ satisfying $A, B, C, D \\in \\lbrace 0, 1 \\rbrace$. For each of them, solve the following problem.\n\n> A non-empty string $S$ consisting of `0` and `1` is called a beautiful string when it satisfies the following condition:\n> \n> - (Condition) You can perform the following sequence of operations until the length of $S$ becomes $1$ and make the only character remaining in $S$ be `1`.\n> - Choose any integer $i$ satisfying $1 \\leq i \\leq |S| - 1$.\n>   - Define an integer $x$ as follows:\n>   - If $S_i =$ `0` and $S_{i+1} =$ `0`, let $x = A$.\n>     - If $S_i =$ `0` and $S_{i+1} =$ `1`, let $x = B$.\n>     - If $S_i =$ `1` and $S_{i+1} =$ `0`, let $x = C$.\n>     - If $S_i =$ `1` and $S_{i+1} =$ `1`, let $x = D$.\n>   - Remove $S_i$ and $S_{i+1}$, and insert the digit corresponding to $x$ in their place. For example, if $S=$ `10101` and you choose $i=2$, the string after the operation is `1001` if $B=0$, and `1101` if $B=1$.\n> \n> You are given a string $T$ of length $N$ consisting of `0` and `1`.\n> \n> - Let $L$ be the length of the longest beautiful string that is a substring of $T$ (if no substring of $T$ is a beautiful string, let $L = -1$),\n> - Let $M$ be the number of beautiful strings that are substrings of $T$.\n> \n> Find $L$ and $M$. Even if two substrings are identical as strings, count them separately if they are taken from different positions.\n\nWhat are substrings? A **substring** of $S$ is a string obtained by deleting zero or more characters from the beginning and zero or more characters from the end of $S$. For example, `10` is a substring of `101`, but `11` is not a substring of `101`.\n\n## Constraints\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $N$ is an integer.\n- $T$ is a string of length $N$ consisting of `0` and `1`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nT\n```\n\n## Output\n\nPrint $16$ lines. The $i$-th line should contain $L$ and $M$ separated by a space for $(A,B,C,D)$ satisfying $i-1 = 8A + 4B + 2C + D$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n满足 $A, B, C, D \\in \\lbrace 0, 1 \\rbrace$ 的整数四元组 $(A, B, C, D)$ 共有 $16$ 个。对于其中每一个，请求解以下问题。\n\n> 由 `0` 和 `1` 组成的非空字符串 $S$ 在满足以下条件时称为美丽字符串：\n> \n> - （条件）你可以反复执行以下操作序列，直到 $S$ 的长度变为 $1$，并使得 $S$ 中剩下的唯一字符为 `1`。\n> - 选择任意满足 $1 \\leq i \\leq |S| - 1$ 的整数 $i$。\n>   - 按如下方式定义整数 $x$：\n>   - 若 $S_i =$ `0` 且 $S_{i+1} =$ `0`，则令 $x = A$。\n>     - 若 $S_i =$ `0` 且 $S_{i+1} =$ `1`，则令 $x = B$。\n>     - 若 $S_i =$ `1` 且 $S_{i+1} =$ `0`，则令 $x = C$。\n>     - 若 $S_i =$ `1` 且 $S_{i+1} =$ `1`，则令 $x = D$。\n>   - 移除 $S_i$ 和 $S_{i+1}$，并将 $x$ 对应的数字插入到它们原来的位置。例如，若 $S=$ `10101` 且你选择 $i=2$，则操作后的字符串在 $B=0$ 时为 `1001`，在 $B=1$ 时为 `1101`。\n> \n> 给你一个长度为 $N$、由 `0` 和 `1` 组成的字符串 $T$。\n> \n> - 设 $L$ 为 $T$ 的子串中最长的美丽字符串的长度（若 $T$ 的子串中没有美丽字符串，则令 $L = -1$），\n> - 设 $M$ 为 $T$ 的子串中美丽字符串的个数。\n> \n> 请求出 $L$ 和 $M$。即使两个子串作为字符串完全相同，只要它们取自不同的位置，也应分别计数。\n\n什么是子串？$S$ 的**子串**是指从 $S$ 的开头删除零个或多个字符、并从结尾删除零个或多个字符后得到的字符串。例如，`10` 是 `101` 的子串，而 `11` 不是 `101` 的子串。\n\n## 约束条件\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $N$ 为整数。\n- $T$ 是一个长度为 $N$、由 `0` 和 `1` 组成的字符串。\n\n## 输入格式\n\n输入由标准输入按以下格式给出：\n\n```\nN\nT\n```\n\n## 输出格式\n\n输出共 $16$ 行。对于满足 $i-1 = 8A + 4B + 2C + D$ 的 $(A,B,C,D)$，第 $i$ 行应输出对应的 $L$ 和 $M$，两者以空格分隔。",
   "samples": [
     {
       "input": "3\n110\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:51:38.740Z"
+  "fetchedAt": "2026-10-30T20:51:38.740Z",
+  "translatedAt": "2026-11-03T06:06:13.133+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2131,
   "index": "D",
   "title": "Arboris Contractio",
-  "titleZh": null,
+  "titleZh": "树的收缩",
   "url": "https://codeforces.com/contest/2131/problem/D",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Kagari is preparing to archive a tree, and she knows the cost of doing so will depend on its diameter$^{\\text{∗}}$. To keep the expense down, her goal is to shrink the diameter as much as possible first. She can perform the following operation on the tree:\n\n1. Choose two vertices $s$ and $t$. Let the sequence of vertices on the simple path$^{\\text{†}}$ from $s$ to $t$ be $v_0, v_1, \\dots, v_k$, where $v_0 = s$ and $v_k = t$.\n2. Remove all edges along the path. In other words, remove edges $(v_0, v_1), (v_1, v_2), \\dots, (v_{k-1}, v_k)$.\n3. Connect vertices $v_1, v_2, \\dots, v_k$ directly to $v_0$. In other words, add edges $(v_0, v_1), (v_0, v_2), \\dots, (v_0, v_k)$.\n\nIt can be shown that the graph is still a tree after the operation.\n\nHelp her determine the minimum number of operations required to achieve the minimal diameter.\n\n$^{\\text{∗}}$The diameter of a tree is the longest possible distance between any pair of vertices. The distance itself is measured by the number of edges on the unique simple path connecting them.\n\n$^{\\text{†}}$A simple path is a path between two vertices in a tree that does not visit any vertex more than once. It can be shown that the simple path between any two vertices is always unique.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of the vertices in the tree.\n\nThe following $n-1$ lines of each test case describe the tree. Each of the lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n$, $u \\neq v$) that indicate an edge between vertex $u$ and $v$. It is guaranteed that these edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer — the minimum number of operations to minimize the diameter.\n\n## Note\n\nIn the first test case, the diameter of the original tree is $3$. Kagari can perform an operation on $s = 3$ and $t = 4$. As the figure depicts, the operations includes the following steps:\n\n1. Remove edges $(3, 1)$, $(1, 2)$ and $(2, 4)$.\n2. Add edges $(3, 1)$, $(3, 2)$ and $(3, 4)$.\n\n![image](https://espresso.codeforces.com/467bf647ed9e08a9d0b5a5ae0054b9dd76da0a9e.png)\n\nAfter the operation, the diameter reduces to $2$. It can be shown that $2$ is the minimum diameter.\n\nIn the second test case, the diameter of the tree is $1$. It can be shown that $1$ is already the minimum, so Kagari can perform no operation.",
-  "statementZhMd": null,
+  "statementZhMd": "Kagari 准备归档一棵树，她知道这样做的开销将取决于树的直径$^{\\text{∗}}$。为了控制开销，她的目标是先把直径尽可能缩小。她可以对树执行以下操作：\n\n1. 选择两个顶点 $s$ 和 $t$。设从 $s$ 到 $t$ 的简单路径$^{\\text{†}}$上的顶点序列为 $v_0, v_1, \\dots, v_k$，其中 $v_0 = s$，$v_k = t$。\n2. 删除路径上的所有边。换句话说，删除边 $(v_0, v_1), (v_1, v_2), \\dots, (v_{k-1}, v_k)$。\n3. 将顶点 $v_1, v_2, \\dots, v_k$ 直接连接到 $v_0$。换句话说，添加边 $(v_0, v_1), (v_0, v_2), \\dots, (v_0, v_k)$。\n\n可以证明，操作之后该图仍然是一棵树。\n\n请帮她求出使直径达到最小所需的最少操作次数。\n\n$^{\\text{∗}}$树的直径是任意两个顶点之间可能的最大距离。距离本身按连接两点的唯一简单路径上的边数来度量。\n\n$^{\\text{†}}$简单路径是树中两个顶点之间不重复访问任何顶点的一条路径。可以证明，任意两个顶点之间的简单路径总是唯一的。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$ ($1 \\le t \\le 10^4$)。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含一个整数 $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — 表示树中顶点的数量。\n\n接下来的 $n-1$ 行描述这棵树。每行包含两个整数 $u$ 和 $v$ ($1 \\le u, v \\le n$，$u \\neq v$)，表示顶点 $u$ 和 $v$ 之间有一条边。保证这些边构成一棵树。\n\n保证所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数 — 使直径最小所需的最少操作次数。\n\n## 说明\n\n在第一组测试数据中，原树的直径为 $3$。Kagari 可以对 $s = 3$ 和 $t = 4$ 执行一次操作。如图所示，该操作包含以下步骤：\n\n1. 删除边 $(3, 1)$、$(1, 2)$ 和 $(2, 4)$。\n2. 添加边 $(3, 1)$、$(3, 2)$ 和 $(3, 4)$。\n\n![image](https://espresso.codeforces.com/467bf647ed9e08a9d0b5a5ae0054b9dd76da0a9e.png)\n\n操作之后，直径减小为 $2$。可以证明 $2$ 就是最小直径。\n\n在第二组测试数据中，树的直径为 $1$。可以证明 $1$ 已经是最小值，因此 Kagari 无需执行任何操作。",
   "samples": [
     {
       "input": "4\n4\n1 2\n1 3\n2 4\n2\n2 1\n4\n1 2\n2 3\n2 4\n11\n1 2\n1 3\n2 4\n3 5\n3 8\n5 6\n5 7\n7 9\n7 10\n5 11\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:47:07.435Z"
+  "fetchedAt": "2026-11-02T16:47:07.435Z",
+  "translatedAt": "2026-11-03T06:04:15.096+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

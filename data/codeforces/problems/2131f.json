@@ -4,7 +4,7 @@
   "contestId": 2131,
   "index": "F",
   "title": "Unjust Binary Life",
-  "titleZh": null,
+  "titleZh": "不公的二进制生活",
   "url": "https://codeforces.com/contest/2131/problem/F",
   "difficulty": 1900,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Yuri is given two binary strings $a$ and $b$, both of which are of length $n$. The two strings dynamically define an $n \\times n$ grid. Let $(i, j)$ denote the cell in the $i$-th row and $j$-th column. The initial value of cell $(i, j)$ has the value of $a_i \\oplus b_j$, where $\\oplus$ denotes the [bitwise XOR operation](). .\n\nYuri's journey always starts at cell $(1, 1)$. From a cell $(i, j)$, she can only move down to $(i + 1, j)$ or right to $(i, j + 1)$. Her journey is possible if there exists a valid path such that all cells on the path, including $(1, 1)$, have a value of 0.\n\nBefore her departure, she can do the following operation for any number of times:\n\n- Choose one index $1 \\le i \\le n$, and flip the value of either $a_i$ or $b_i$ ($0$ becomes $1$, and $1$ becomes $0$). The grid will also change accordingly.\n\nLet $f(x, y)$ denote the minimum required operations so that Yuri can make her journey to the cell $(x,y)$. You must determine the **sum** of $f(x, y)$ over all $1 \\leq x, y \\leq n$.\n\nNote that each of these $n^2$ cases is independent, meaning you need to assume the grid is in its original state in each case (i.e., no actual operations are performed).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$).\n\nThe second line of each test case contains a binary string $a$ ($|a| = n$, $a_i \\in \\{0, 1\\}$).\n\nThe third line of each test case contains a binary string $b$ ($|b| = n$, $b_i \\in \\{0, 1\\}$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer — the sum of minimum operations over all possible cells.\n\n## Note\n\nIn the first test case, the $2 \\times 2$ grid is shown below.\n\n$$ 11 \\\\ 11 $$\n\nIn the initial state, Yuri cannot reach any cell.\n\nYuri can flip $a_1$ so that the grid becomes:\n\n$$ 00 \\\\ 11 $$\n\nand Yuri can travel to cells $(1,1)$ and $(1,2)$.\n\nOn the other hand, Yuri can flip $b_1$ so that the grid becomes:\n\n$$ 01 \\\\ 01 $$\n\nand Yuri can travel to cells $(1,1)$ and $(2,1)$.\n\nTo move to the cell $(2,2)$, it can be shown that she must perform at least two operations. For example, she can flip both $a_1$ and $a_2$ so that the grid becomes:\n\n$$ 00 \\\\ 00 $$\n\nTherefore, the answer is $1+1+1+2=5$.",
-  "statementZhMd": null,
+  "statementZhMd": "Yuri 得到两个长度均为 $n$ 的二进制串 $a$ 和 $b$。这两个串动态地定义了一个 $n \\times n$ 的网格。设 $(i, j)$ 表示第 $i$ 行第 $j$ 列的单元格。单元格 $(i, j)$ 的初始值为 $a_i \\oplus b_j$，其中 $\\oplus$ 表示[按位异或运算]()。\n\nYuri 的旅程总是从单元格 $(1, 1)$ 开始。从单元格 $(i, j)$ 出发，她只能向下移动到 $(i + 1, j)$，或向右移动到 $(i, j + 1)$。若存在一条合法路径，使得路径上包括 $(1, 1)$ 在内的所有单元格的值均为 0，则她的旅程是可行的。\n\n在出发之前，她可以进行任意多次以下操作：\n\n- 选择一个下标 $1 \\le i \\le n$，翻转 $a_i$ 或 $b_i$ 中某一个的值（$0$ 变为 $1$，$1$ 变为 $0$）。网格也会随之相应变化。\n\n设 $f(x, y)$ 表示使得 Yuri 能够完成到单元格 $(x,y)$ 的旅程所需的最少操作次数。你需要求出 $f(x, y)$ 在所有 $1 \\leq x, y \\leq n$ 上的**总和**。\n\n注意，这 $n^2$ 种情况彼此独立，也就是说，在每种情况下你都需要假设网格处于初始状态（即实际上不进行任何操作）。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）。\n\n每个测试用例的第二行包含一个二进制串 $a$（$|a| = n$，$a_i \\in \\{0, 1\\}$）。\n\n每个测试用例的第三行包含一个二进制串 $b$（$|b| = n$，$b_i \\in \\{0, 1\\}$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 所有可能单元格的最少操作次数之和。\n\n## 说明\n\n在第一个测试用例中，$2 \\times 2$ 的网格如下所示。\n\n$$ 11 \\\\ 11 $$\n\n在初始状态下，Yuri 无法到达任何单元格。\n\nYuri 可以翻转 $a_1$，使得网格变为：\n\n$$ 00 \\\\ 11 $$\n\n此时 Yuri 可以到达单元格 $(1,1)$ 和 $(1,2)$。\n\n另一方面，Yuri 可以翻转 $b_1$，使得网格变为：\n\n$$ 01 \\\\ 01 $$\n\n此时 Yuri 可以到达单元格 $(1,1)$ 和 $(2,1)$。\n\n而要移动到单元格 $(2,2)$，可以证明她至少需要进行两次操作。例如，她可以同时翻转 $a_1$ 和 $a_2$，使得网格变为：\n\n$$ 00 \\\\ 00 $$\n\n因此，答案为 $1+1+1+2=5$。",
   "samples": [
     {
       "input": "3\n2\n11\n00\n2\n01\n01\n4\n1010\n1101\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:47:07.438Z"
+  "fetchedAt": "2026-11-02T16:47:07.438Z",
+  "translatedAt": "2026-11-03T06:04:58.535+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

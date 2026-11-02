@@ -4,7 +4,7 @@
   "contestId": 2127,
   "index": "B",
   "title": "Hamiiid, Haaamid... Hamid?",
-  "titleZh": null,
+  "titleZh": "Hamiiid，Haaamid……Hamid？",
   "url": "https://codeforces.com/contest/2127/problem/B",
   "difficulty": 1300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Mani has locked Hamid in a $1 \\times n$ grid. Initially, some cells of the grid contain walls and the rest are empty, and Hamid is in an empty cell.\n\nIn each day, the following events happen in order:\n\n1. Mani selects an empty cell and builds a wall in that cell. Note that he can **not** build a wall in the cell which Hamid currently is at;\n2. Hamid selects a direction (left or right), then\n- If there are no walls in that direction, he will escape the grid;\n  - Otherwise, he will move to the nearest wall in that direction and destroy that wall. Hamid is at the position of the destroyed wall after this day.\n\nHere is an example of a possible sequence of actions when $n=6$:\n\n![image](https://espresso.codeforces.com/8bcd10effcd8ea6be8329a09b1b01111ec2239fa.png)\n\nHamid is **always** aware of where the walls are. He wants to minimize the number of days that he needs to escape the grid, while Mani wants to maximize it.\n\nYou have to determine the number of days Hamid needs to escape the grid if they both act optimally.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $x$ ($2 \\leq n \\leq 2 \\cdot 10^5$, $1 \\leq x \\leq n$) — the size of the grid and the initial position of Hamid. He is at the $x$-th cell from left to right initially.\n\nThe second line contains a string $s$ of length $n$ ($s_i=\\texttt{\"#\"}$ or $\\texttt{\".\"}$) — the initial state of the grid. The $i$-th cell of the grid contains a wall if $s_i= \\texttt{\"#\"}$, and it is empty if $s_i=\\texttt{\".\"}$.\n\nIt is guaranteed that the $x$-th cell is empty, and there are at least two empty cells in the grid.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the number of days Hamid needs to escape the grid if they both act optimally.\n\n## Note\n\nIn the first test case, Mani must build a wall in cell $2$, so Hamid can escape from the left side of the grid on the first day.\n\nIn the second test case, if Mani places the wall to the left of Hamid, Hamid can escape from the right. And if the wall is to Hamid's right, he can escape from the left. Thus, the answer is $1$.\n\nIn the third test case:\n\n![image](https://espresso.codeforces.com/da9772e72a1c53012878dd69f118e33675b2fb97.png)\n\nIt can be shown that both players acted optimally in the above illustration.\n\nIn the fourth test case, we have shown an example of actions in the statements. Note that the players did **not** act optimally in this example.",
-  "statementZhMd": null,
+  "statementZhMd": "Mani 把 Hamid 关在了一个 $1 \\times n$ 的网格中。初始时，网格中的一些格子上有着墙，其余格子为空，Hamid 位于一个空格子中。\n\n每天，以下事件按顺序发生：\n\n1. Mani 选择一个空格子并在其中建造一堵墙。注意，他**不能**在 Hamid 当前所在的格子中建墙；\n2. Hamid 选择一个方向（左或右），然后\n- 如果该方向上没有墙，他将逃出网格；\n  - 否则，他将移动到该方向上最近的墙并摧毁这堵墙。这一天结束后，Hamid 位于被摧毁的墙的位置。\n\n下面是 $n=6$ 时一组可能的行动序列示例：\n\n![image](https://espresso.codeforces.com/8bcd10effcd8ea6be8329a09b1b01111ec2239fa.png)\n\nHamid **始终**知道墙的位置。他想最小化自己逃出网格所需的天数，而 Mani 想把它最大化。\n\n你需要求出，若两人都采取最优策略，Hamid 逃出网格需要多少天。\n\n## 输入格式\n\n本题有多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $x$（$2 \\leq n \\leq 2 \\cdot 10^5$，$1 \\leq x \\leq n$）——分别表示网格的大小和 Hamid 的初始位置。初始时，他位于从左到右数第 $x$ 个格子。\n\n第二行包含一个长度为 $n$ 的字符串 $s$（$s_i=\\texttt{\"#\"}$ 或 $\\texttt{\".\"}$）——表示网格的初始状态。若 $s_i= \\texttt{\"#\"}$，则网格的第 $i$ 个格子中有一堵墙；若 $s_i=\\texttt{\".\"}$，则该格子为空。\n\n保证第 $x$ 个格子为空，且网格中至少有两个空格子。\n\n保证所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数——若两人都采取最优策略，Hamid 逃出网格所需的天数。\n\n## 说明\n\n在第一组测试数据中，Mani 只能在格子 $2$ 中建墙，因此 Hamid 可以在第一天从网格左侧逃出。\n\n在第二组测试数据中，如果 Mani 把墙建在 Hamid 的左侧，Hamid 就能从右侧逃出；而如果墙建在 Hamid 的右侧，他就能从左侧逃出。因此，答案为 $1$。\n\n在第三组测试数据中：\n\n![image](https://espresso.codeforces.com/da9772e72a1c53012878dd69f118e33675b2fb97.png)\n\n可以证明，上图中两名玩家的行动都是最优的。\n\n在第四组测试数据中，我们展示的是题面中给出的行动示例。注意，该示例中两名玩家的行动**并不**是最优的。",
   "samples": [
     {
       "input": "4\n3 1\n..#\n4 2\n....\n5 3\n##..#\n6 4\n#...#.\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:21:39.006Z"
+  "fetchedAt": "2026-10-30T21:21:39.006Z",
+  "translatedAt": "2026-11-03T06:07:06.792+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

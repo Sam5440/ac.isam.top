@@ -4,7 +4,7 @@
   "contestId": 2127,
   "index": "D",
   "title": "Root was Built by Love, Broken by Destiny",
-  "titleZh": null,
+  "titleZh": "Root 因爱而筑，因命运而碎",
   "url": "https://codeforces.com/contest/2127/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Heartfall River runs horizontally through Destinyland and divides it into the northern and southern sides.\n\nEngineer Root wants to build $n$ houses along the river, numbered from $1$ to $n$. All houses on the northern side and all houses on the southern side must lie along straight lines parallel to Heartfall River.\n\nThere will be $m$ bridges, with the $i$-th bridge connecting house $u_i$ and house $v_i$ ($u_i \\ne v_i$). It is guaranteed that all $n$ houses are connected by these bridges, that is, you can travel from any house to any other by crossing bridges. Also, there are no two bridges connecting the same pair of houses.\n\nRoot wants to know how many ways there are to arrange the $n$ houses along the river, modulo $10^9+7$, such that the following conditions hold for the planned $m$ bridges:\n\n- For every bridge, the two houses it connects lie on opposite sides of the river;\n- The bridges do not cross when drawn as straight lines between the houses.\n\n![image](https://espresso.codeforces.com/0dd5b34a180bf9e52a3690996614da8799730c37.png) A possible arrangement of the houses when $n=5$.\n\nTwo arrangements are considered different if at least one of the following conditions holds:\n\n- There exists a house that lies on a different side in each arrangement;\n- There exist two houses $a$ and $b$ that are on the same side in both arrangements, but $a$ comes before $b$ in one arrangement and $b$ comes before $a$ in the other.\n\nSince Root is distracted by his ex, whom destiny separated from him, he asks you to calculate the number of ways to arrange the houses along the river, modulo $10^9+7$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\leq n \\leq 2 \\cdot 10^5$, $n-1 \\leq m \\leq \\min\\left(\\frac{n(n-1)}{2}, 2 \\cdot 10^5\\right)$) — the number of houses and the number of bridges.\n\nThen $m$ lines follow, the $i$-th line containing two integers $u_i$ and $v_i$ ($1 \\leq u_i,v_i \\leq n$, $u_i\\ne v_i$) — the two houses that the $i$-th bridge connects.\n\nIt is guaranteed that all the $n$ houses are connected by the bridges, and there are no two bridges connecting the same pair of houses.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$, and the sum of $m$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the number of ways to arrange the $n$ houses along the river, modulo $10^9+7$.\n\n## Note\n\nIn the first test case, either house $1$ should be built on the northern side and house $2$ on the southern side, or vice versa.\n\nIn the second test case, at least two houses must be built on the same side of the river. But every pair of houses is connected by a bridge. So in every arrangement, at least one bridge will not cross the river. Thus, the answer is $0$.\n\nIn the third test case, one of the possible arrangements of the houses is provided in the problem statement.",
-  "statementZhMd": null,
+  "statementZhMd": "Heartfall 河横贯 Destinyland，将其分为北侧和南侧。\n\n工程师 Root 想沿河建造 $n$ 座房屋，编号为 $1$ 到 $n$。北侧的所有房屋和南侧的所有房屋都必须沿与 Heartfall 河平行的直线排列。\n\n将建造 $m$ 座桥，第 $i$ 座桥连接房屋 $u_i$ 和房屋 $v_i$（$u_i \\ne v_i$）。保证所有 $n$ 座房屋通过这些桥相互连通，即可以通过过桥从任意一座房屋到达任意另一座房屋。同时，不存在两座桥连接同一对房屋。\n\nRoot 想知道，有多少种沿河安排这 $n$ 座房屋的方案（对 $10^9+7$ 取模），使得已规划的 $m$ 座桥满足以下条件：\n\n- 对于每一座桥，它连接的两座房屋位于河的两侧；\n- 把桥画成房屋之间的直线时，桥与桥互不相交。\n\n![image](https://espresso.codeforces.com/0dd5b34a180bf9e52a3690996614da8799730c37.png) $n=5$ 时房屋的一种可能排布。\n\n如果两种排布至少满足以下条件之一，则认为它们不同：\n\n- 存在一座房屋在两种排布中位于不同的一侧；\n- 存在两座房屋 $a$ 和 $b$，它们在两种排布中都位于同一侧，但在一种排布中 $a$ 位于 $b$ 之前，而在另一种排布中 $b$ 位于 $a$ 之前。\n\n由于 Root 被命运从他身边分开的前任搅得心神不宁，他请你计算沿河安排这些房屋的方案数，对 $10^9+7$ 取模。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 2 \\cdot 10^5$，$n-1 \\leq m \\leq \\min\\left(\\frac{n(n-1)}{2}, 2 \\cdot 10^5\\right)$）—— 分别表示房屋的数量和桥的数量。\n\n接下来 $m$ 行，第 $i$ 行包含两个整数 $u_i$ 和 $v_i$（$1 \\leq u_i,v_i \\leq n$，$u_i\\ne v_i$）—— 表示第 $i$ 座桥连接的两座房屋。\n\n保证所有 $n$ 座房屋通过桥相互连通，且不存在两座桥连接同一对房屋。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$，且所有测试用例的 $m$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 沿河安排这 $n$ 座房屋的方案数，对 $10^9+7$ 取模。\n\n## 说明\n\n在第一个测试用例中，要么房屋 $1$ 建在北侧而房屋 $2$ 建在南侧，要么反之。\n\n在第二个测试用例中，至少有两座房屋必须建在河的同一侧。但每对房屋之间都有一座桥相连。因此在任何一种排布中，至少有一座桥不会跨过河流。于是答案为 $0$。\n\n在第三个测试用例中，题目描述中给出了房屋的一种可能排布。",
   "samples": [
     {
       "input": "4\n2 1\n1 2\n3 3\n1 2\n1 3\n2 3\n5 4\n1 2\n1 3\n3 4\n3 5\n4 3\n1 2\n1 3\n1 4\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:21:39.007Z"
+  "fetchedAt": "2026-10-30T21:21:39.007Z",
+  "translatedAt": "2026-11-03T06:07:29.228+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
