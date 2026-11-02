@@ -1,0 +1,31 @@
+{
+  "id": "2278G",
+  "platform": "codeforces",
+  "contestId": 2278,
+  "index": "G",
+  "title": "0s and 1s",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2278/problem/G",
+  "difficulty": null,
+  "tags": [
+    "bitmasks",
+    "dfs and similar",
+    "dp",
+    "hashing",
+    "number theory",
+    "trees"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "A tree is an undirected connected graph with no cycles.\n\nYou are given a tree with $n$ nodes, rooted at node $1$. Each node $i$ ($1 \\le i \\le n$) has a binary state, initially equal to $x_i$ ($x_i \\in \\{\\texttt{0},\\texttt{1}\\}$) and a target binary state $y_i$ ($y_i \\in \\{\\texttt{0},\\texttt{1}\\}$) associated with it.\n\nYou wish to make the state of every node equal to its target state. To do so, you are allowed to inject energy pulses into the root node. Each time a pulse is injected, it propagates through the tree according to the following procedure:\n\n- If the current state of the node is $\\texttt{0}$, its state becomes $\\texttt{1}$, and the pulse stops at this node.\n- Otherwise, if the current state of the node is $\\texttt{1}$, its state becomes $\\texttt{0}$, and the node sends one pulse to each of its children. If it has no children, then the pulse disappears. Every pulse sent to a child follows the same propagation rules.\n\nDetermine whether it is possible to make the state of every node equal to its target state. If it is possible, also find the minimum number of energy pulses needed to achieve this goal. Since this number can be very large, report the answer modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of each test case follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of nodes in the tree.\n\nThe next $n-1$ lines each contain two integers $u$ and $v$ ($1 \\le u,v \\le n$, $u \\ne v$), denoting an undirected edge between nodes $u$ and $v$. It is guaranteed that the given edges form a tree.\n\nThe next line contains a binary string $x$ of length $n$, where $x_i$ ($1 \\le i \\le n$, $x_i \\in \\{\\texttt{0},\\texttt{1}\\}$) represents the initial state of node $i$.\n\nThe next line contains a binary string $y$ of length $n$, where $y_i$ ($1 \\le i \\le n$, $y_i \\in \\{\\texttt{0},\\texttt{1}\\}$) represents the target state of node $i$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if it is impossible to make the state of every node equal to its target state, output $-1$. Otherwise, print the minimum number of energy pulses needed modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, the initial state is already equal to the target state. Therefore, no energy pulse is required, and the answer is $0$.\n\nIn the second test case, the tree contains only the root. Initially, its state is $x_1 = \\texttt{0}$.\n\nAfter one pulse is injected into the root, its state becomes $\\texttt{1} = y_1$, and the pulse stops. Therefore, the answer is $1$.\n\nFor the third test case, $2$ pulses are needed. The following image shows the propagation of both pulses through the tree.\n\n![image](https://espresso.codeforces.com/168014c94dd6fbbc147a7f7889e80d58e6517a63.png) Propagation of the two pulses. Pulse $1$ yields states $\\texttt{100}$, and Pulse $2$ propagates to achieve the target $\\texttt{011}$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n1\n0\n0\n1\n0\n1\n3\n1 2\n1 3\n000\n011\n3\n1 2\n1 3\n000\n010\n3\n1 2\n2 3\n000\n001\n",
+      "output": "0\n1\n2\n-1\n4\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T15:54:57.657Z"
+}
