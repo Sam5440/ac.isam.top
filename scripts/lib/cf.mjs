@@ -5,12 +5,12 @@ const CF = 'https://codeforces.com';
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
 
-/** contest.list → 已结束的正式赛（type=CF），新→旧。 */
+/** contest.list → 已结束的正式赛（type=CF 常规赛 / type=ICPC 的 Div.3、Div.4、Educational 等），新→旧。 */
 export async function fetchCfContests() {
   const data = await httpGet(`${CF}/api/contest.list`, { json: true, timeout: 20000 });
   if (data.status !== 'OK') throw new Error('contest.list failed');
   return data.result
-    .filter((c) => c.phase === 'FINISHED' && c.type === 'CF')
+    .filter((c) => c.phase === 'FINISHED' && (c.type === 'CF' || c.type === 'ICPC'))
     .sort((a, b) => b.id - a.id);
 }
 
