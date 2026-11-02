@@ -1,0 +1,26 @@
+{
+  "id": "1866E",
+  "platform": "codeforces",
+  "contestId": 1866,
+  "index": "E",
+  "title": "Elevators of Tamem",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1866/problem/E",
+  "difficulty": 2700,
+  "tags": [
+    "dp"
+  ],
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 512,
+  "statementMd": "There is a building named Taman Membeku (shortened as Tamem). The building has $N$ floors numbered from $1$ to $N$ from bottom to top. The only way to move between floors in the building is to use elevators. There are $3$ elevators available in Tamem, namely elevators $1$, $2$, and $3$.\n\nPak Chanek works as an elevator operator in Tamem. Pak Chanek will work for $Q$ days. Initially, each elevator is in floor $1$ and all elevators are on. On each day, exactly one of the following will happen:\n\n- `1 x y` – There is a person currently in floor $x$ who wants to go to floor $y$. ($1\\leq x,y\\leq N$; $x\\neq y$)\n- `2 p` – Elevator $p$ changes state **at the start of the day**. If previously it is on, then it will turn off. If previously it is off, then it will turn on. ($1\\leq p\\leq3$)\n\nFor each day, Pak Chanek can control the movement of all elevators as he pleases. However, for each day where there is a person currently in floor $x$ who wants to go to floor $y$, among all elevator movements done by Pak Chanek, the following must happen:\n\n1. One elevator moves to floor $x$.\n2. The person gets into the elevator.\n3. The elevator moves to floor $y$.\n4. The person gets out of the elevator.\n\nFor each day, Pak Chanek can only move the elevators that are currently on. Note that, since a change in state happens at the start of the day, this means that an elevator that turns off on some day starts becoming unusable from that day itself. Conversely, an elevator that turns on on some day starts becoming usable from that day itself.\n\nIt is known that the electricity fee for each day is different. More specifically, on the $j$-th day, the fee needed to move one elevator up or down by one floor is $A_j$.\n\nFrom the start, Pak Chanek already knows the electricity fees and the sequence of events that will happen on the $Q$ days, so Pak Chanek can operate the elevators strategically. What is the minimum possible electricity fee to fulfill all needs of the people who want to move between floors in Tamem? Note: in the end, each elevator does not have to go back to floor $1$.\n\n## Input\n\nThe first line contains two integers $N$ and $Q$ ($2\\leq N\\leq10^5$; $1\\leq Q\\leq300$) — the number of floors and the number of days.\n\nThe second line contains $Q$ integers $A_1, A_2, A_3 \\ldots, A_Q$ ($1 \\leq A_j \\leq 10^5$) — the electricity fee for each day.\n\nThe $j$-th of the next $Q$ lines contains the $j$-th event as described. At any moment, there will always be at least one elevator that is on.\n\n## Output\n\nAn integer representing the minimum possible electricity fee to fulfill all needs of the people who want to move between floors in Tamem.\n\n## Note\n\nThe following is an example of an optimal strategy:\n\n1. On the $1$-st day:\n- Elevator $2$ moves to floor $3$.\n  - Elevator $3$ moves to floor $2$, picks the person up, moves to floor $7$, then drops the person off.\n2. On the $2$-nd day:\n- Elevator $2$ picks the person up, moves to floor $9$, then drops the person off.\n3. On the $3$-rd day:\n- Elevator $2$ turns off.\n4. On the $4$-th day:\n- Elevator $3$ moves to floor $4$, picks the person up, moves to floor $5$, drops the person off, then moves to floor $3$.\n5. On the $5$-th day:\n- Elevator $3$ picks the person up, moves to floor $5$, then drops the person off.\n6. On the $6$-th day:\n- Elevator $2$ turns on.\n  - Elevator $1$ moves to floor $2$.\n  - Elevator $2$ moves to floor $7$.\n7. On the $7$-th day:\n- Elevator $2$ picks the person up, moves to floor $3$, then drops the person off.\n8. On the $8$-th day:\n- Elevator $1$ picks the person up, moves to floor $1$, then drops the person off.\n\nThe total electricity fee for each day from the $1$-st day to the $8$-th day are $24$, $24$, $0$, $18$, $8$, $6$, $28$, and $6$ respectively. Therefore, the total electricity fee for the entire $Q$ days is $24+24+0+18+8+6+28+6=114$.\n\nIt can be obtained that there is no strategy that requires a smaller electricity fee.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "9 8\n3 4 4 3 4 2 7 6\n1 2 7\n1 3 9\n2 2\n1 4 5\n1 3 5\n2 2\n1 7 3\n1 2 1\n",
+      "output": "114\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:25:58.625Z"
+}

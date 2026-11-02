@@ -4,7 +4,7 @@
   "contestId": 2254,
   "index": "C2",
   "title": "Marenol (hard version)",
-  "titleZh": null,
+  "titleZh": "Marenol（困难版本）",
   "url": "https://codeforces.com/contest/2254/problem/C2",
   "difficulty": 1200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of the problem. In this version, you are asked to determine the minimum number of operations to transform $a$ into $b$.**\n\nYousef has given you two binary strings, $a$ and $b$, of the same length $n$.\n\nYou are allowed to perform any of the following operations:\n\n- Choose a substring$^{\\text{∗}}$ in $a$ equal to $\\texttt{001}$ and replace it with $\\texttt{100}$, or vice versa (i.e. $\\texttt{001} \\rightarrow \\texttt{100}$ or $\\texttt{100} \\rightarrow \\texttt {001}$).\n- Choose a substring in $a$ equal to $\\texttt{110}$ and replace it with $\\texttt{011}$, or vice versa (i.e. $\\texttt{011} \\rightarrow \\texttt{110}$ or $\\texttt{110} \\rightarrow \\texttt {011}$).\n\nYour task is to determine the minimum number of operations required to transform string $a$ into string $b$. If it is impossible to transform $a$ into $b$ using the given operations, output $-1$ instead.\n\n$^{\\text{∗}}$A string $a$ is a substring of a string $b$ if $a$ can be obtained from $b$ by deletion of several (possibly zero or all) characters from the beginning and several (possibly zero or all) characters from the end.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of each string.\n\nThe second line of each test case contains a binary string $a$ ($|a| = n$), consisting of only characters $\\texttt{0}$ and/or $\\texttt{1}$.\n\nThe third line of each test case contains a binary string $b$ ($|b| = n$), consisting of only characters $\\texttt{0}$ and/or $\\texttt{1}$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the minimum number of operations required to transform $a$ into $b$. If it is impossible, output $-1$ instead.\n\n## Note\n\nIn the first test case, we can choose the substring $a[2, 4] = \\texttt{100}$ and replace it with $\\texttt{001}$. This takes exactly $1$ operation.\n\nIn the second test case, it is impossible to transform $a$ into $b$, so the answer is $-1$.\n\nIn the third test case, we can do the following in order:\n\n- $\\texttt{1}$${\\color{blue}{\\texttt{100}}}$$\\texttt{00}$ $\\rightarrow$ $\\texttt{1}$${\\color{blue}{\\texttt{001}}}$$\\texttt{00}$\n- $\\texttt{100}$${\\color{blue}{\\texttt{100}}}$ $\\rightarrow$ $\\texttt{100}$${\\color{blue}{\\texttt{001}}}$\n- ${\\color{blue}{\\texttt{100}}}$$\\texttt{001}$ $\\rightarrow$ ${\\color{blue}{\\texttt{001}}}$$\\texttt{001}$\n- $\\texttt{00}$${\\color{blue}{\\texttt{100}}}$$\\texttt{1}$ $\\rightarrow$ $\\texttt{00}$${\\color{blue}{\\texttt{001}}}$$\\texttt{1}$\n\nThis takes $4$ operations. It can be shown that $4$ is the minimum answer.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。在本版本中，你需要求出将 $a$ 变换为 $b$ 所需的最少操作次数。**\n\nYousef 给了你两个长度均为 $n$ 的 01 字符串 $a$ 和 $b$。\n\n你可以进行以下任意一种操作：\n\n- 选择 $a$ 中一个等于 $\\texttt{001}$ 的子串$^{\\text{∗}}$并将其替换为 $\\texttt{100}$，或者反之（即 $\\texttt{001} \\rightarrow \\texttt{100}$ 或 $\\texttt{100} \\rightarrow \\texttt {001}$）。\n- 选择 $a$ 中一个等于 $\\texttt{110}$ 的子串并将其替换为 $\\texttt{011}$，或者反之（即 $\\texttt{011} \\rightarrow \\texttt{110}$ 或 $\\texttt{110} \\rightarrow \\texttt {011}$）。\n\n你的任务是求出将字符串 $a$ 变换为字符串 $b$ 所需的最少操作次数。如果无法通过给定的操作将 $a$ 变换为 $b$，则输出 $-1$。\n\n$^{\\text{∗}}$如果字符串 $a$ 可以通过从字符串 $b$ 的开头删除若干（可以为零个或全部）字符、并从结尾删除若干（可以为零个或全部）字符后得到，则称字符串 $a$ 是字符串 $b$ 的子串。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——表示测试数据组数。\n\n每组测试数据的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——表示字符串的长度。\n\n每组测试数据的第二行包含一个 01 字符串 $a$（$|a| = n$），仅由字符 $\\texttt{0}$ 和/或 $\\texttt{1}$ 组成。\n\n每组测试数据的第三行包含一个 01 字符串 $b$（$|b| = n$），仅由字符 $\\texttt{0}$ 和/或 $\\texttt{1}$ 组成。\n\n保证所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出将 $a$ 变换为 $b$ 所需的最少操作次数。如果无法做到，则输出 $-1$。\n\n## 说明\n\n在第一组测试数据中，我们可以选择子串 $a[2, 4] = \\texttt{100}$ 并将其替换为 $\\texttt{001}$。这恰好需要 $1$ 次操作。\n\n在第二组测试数据中，无法将 $a$ 变换为 $b$，因此答案为 $-1$。\n\n在第三组测试数据中，我们可以按以下顺序进行操作：\n\n- $\\texttt{1}$${\\color{blue}{\\texttt{100}}}$$\\texttt{00}$ $\\rightarrow$ $\\texttt{1}$${\\color{blue}{\\texttt{001}}}$$\\texttt{00}$\n- $\\texttt{100}$${\\color{blue}{\\texttt{100}}}$ $\\rightarrow$ $\\texttt{100}$${\\color{blue}{\\texttt{001}}}$\n- ${\\color{blue}{\\texttt{100}}}$$\\texttt{001}$ $\\rightarrow$ ${\\color{blue}{\\texttt{001}}}$$\\texttt{001}$\n- $\\texttt{00}$${\\color{blue}{\\texttt{100}}}$$\\texttt{1}$ $\\rightarrow$ $\\texttt{00}$${\\color{blue}{\\texttt{001}}}$$\\texttt{1}$\n\n这共需 $4$ 次操作。可以证明 $4$ 是最小的答案。",
   "samples": [
     {
       "input": "5\n4\n0100\n0001\n4\n0100\n0010\n6\n110000\n000011\n8\n10101010\n10101010\n5\n01001\n10010\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:31:52.544Z"
+  "fetchedAt": "2026-11-02T16:31:52.544Z",
+  "translatedAt": "2026-11-03T01:31:51.791+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

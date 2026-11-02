@@ -1,0 +1,42 @@
+{
+  "id": "1878G",
+  "platform": "codeforces",
+  "contestId": 1878,
+  "index": "G",
+  "title": "wxhtzdy ORO Tree",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1878/problem/G",
+  "difficulty": 2300,
+  "tags": [
+    "binary search",
+    "bitmasks",
+    "brute force",
+    "data structures",
+    "dfs and similar",
+    "implementation",
+    "trees"
+  ],
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "After (finally) qualifying for the IOI 2023, wxhtzdy was very happy, so he decided to do what most competitive programmers do: trying to guess the problems that will be on IOI. During this process, he accidentally made a problem, which he thought was really cool.\n\nYou are given a tree (a connected acyclic graph) with 𝑛n vertices and 𝑛−1n−1 edges. Vertex 𝑖i (1≤𝑖≤𝑛1≤i≤n) has a value 𝑎𝑖ai.\n\nLets' define 𝑔(𝑢,𝑣)g(u,v) as the [bitwise or](http://tiny.cc/bitwise_or) of the values of all vertices on the shortest path from 𝑢u to 𝑣v. For example, let's say that we want to calculate 𝑔(3,4)g(3,4), on the tree from the first test case in the example. On the path from 33 to 44 are vertices 33, 11, 44. Then, 𝑔(3,4)=𝑎3 | 𝑎1 | 𝑎4g(3,4)=a3 | a1 | a4 (here, || represents the [bitwise OR operation](http://tiny.cc/bitwise_or)).\n\nAlso, you are given 𝑞q queries, and each query looks like this:\n\nYou are given 𝑥x and 𝑦y. Let's consider all vertices 𝑧z such that 𝑧z is on the shortest path from 𝑥x to 𝑦y (inclusive).\n\nLets define the *niceness* of a vertex 𝑧z as the sum of the number of non-zero bits in 𝑔(𝑥,𝑧)g(x,z) and the number of non-zero bits in 𝑔(𝑦,𝑧)g(y,z). You need to find the maximum *niceness* among all vertices 𝑧z on the shortest path from 𝑥x to 𝑦y.\n\nSince his brain is really tired after solving an output only problem on SIO (he had to do it to qualify for the IOI), he wants your help with this problem.\n\n## Input\n\nThe first line of input contains a single integer 𝑡t (1≤𝑡≤1041≤t≤104) — the number of test cases.\n\nThe first line of each test case contains a single integer 𝑛n (1≤𝑛≤2⋅1051≤n≤2⋅105) — the number of vertices.\n\nThe second line of each test case contains 𝑛n positive integers 𝑎1,𝑎2,…,𝑎𝑛a1,a2,…,an (1≤𝑎𝑣≤1091≤av≤109) — the value of each vertex, the 𝑖i-th integer in this line corresponds to the vertex 𝑖i.\n\nFollowing 𝑛−1n−1 lines are the description of a tree.\n\nEach line contains two integers 𝑢u and 𝑣v (1≤𝑢,𝑣≤𝑛,𝑢≠𝑣1≤u,v≤n,u≠v) — indicating that vertices 𝑢u and 𝑣v are connected by an edge.\n\nThe next line contains a single integer 𝑞q (1≤𝑞≤1051≤q≤105) — number of queries.\n\nFollowing 𝑞q lines contain 2 integers 𝑥,𝑦x,y (1≤𝑥,𝑦≤𝑛1≤x,y≤n) — the vertices 𝑥x and 𝑦y for each query.\n\nIt is guaranteed that the sum of 𝑛n over all test cases does not exceed 2⋅1052⋅105.\n\nIt is guaranteed that the sum of 𝑞q over all test cases does not exceed 105105.\n\n## Output\n\nFor each test case output 𝑞q integers, each of which is the answer to the corresponding query.\n\n## Note\n\nThe image below shows the tree from the second example, first test case.\n\n![image](https://espresso.codeforces.com/ae7bf45fd1594e714dcd6c4bb11a4dcbcef33d6d.png) Tree from the second example, first test case\n\nIn the **first query**, we have 𝑥=7x=7, 𝑦=5y=5. The shortest path from 77 to 55 is 7−4−2−1−57−4−2−1−5.\n\nLet's calculate the *niceness* of vertex 77 on this path. We have 𝑔(7,7)=𝑎7=10=(1010)2g(7,7)=a7=10=(1010)2 and 𝑔(5,7)=𝑎5 | 𝑎1 | 𝑎2 | 𝑎4 | 𝑎7=10 | 4 | 7 | 4 | 10=15=(1111)2g(5,7)=a5 | a1 | a2 | a4 | a7=10 | 4 | 7 | 4 | 10=15=(1111)2, so its *niceness* is equal to 2+4=62+4=6.\n\nNow let's calculate the *niceness* of vertex 44 on this path. We have 𝑔(7,4)=𝑎7 | 𝑎4=10 | 4=14=(1110)2g(7,4)=a7 | a4=10 | 4=14=(1110)2 and 𝑔(5,4)=𝑎5 | 𝑎1 | 𝑎2 | 𝑎4=10 | 4 | 7 | 4=15=(1111)2g(5,4)=a5 | a1 | a2 | a4=10 | 4 | 7 | 4=15=(1111)2, so its *niceness* is equal to 3+4=73+4=7.\n\nNow let's calculate the *niceness* of vertex 22 on this path. We have 𝑔(7,2)=𝑎7 | 𝑎4 | 𝑎2=10 | 4 | 7=15=(1111)2g(7,2)=a7 | a4 | a2=10 | 4 | 7=15=(1111)2 and 𝑔(5,2)=𝑎5 | 𝑎1 | 𝑎2=10 | 4 | 7=15=(1111)2g(5,2)=a5 | a1 | a2=10 | 4 | 7=15=(1111)2, so its *niceness* is equal to 4+4=84+4=8.\n\nNow let's calculate the *niceness* of vertex 11 on this path. We have 𝑔(7,1)=𝑎7 | 𝑎4 | 𝑎2 | 𝑎1=10 | 4 | 7 | 4=15=(1111)2g(7,1)=a7 | a4 | a2 | a1=10 | 4 | 7 | 4=15=(1111)2 and 𝑔(5,1)=𝑎5 | 𝑎1=10 | 4=14=(1110)2g(5,1)=a5 | a1=10 | 4=14=(1110)2, so its *niceness* is equal to 4+3=74+3=7.\n\nFinally, let's calculate the *niceness* of vertex 55 on this path. We have 𝑔(7,5)=𝑎7 | 𝑎4 | 𝑎2 | 𝑎1 | 𝑎5=10 | 4 | 7 | 4 | 10=15=(1111)2g(7,5)=a7 | a4 | a2 | a1 | a5=10 | 4 | 7 | 4 | 10=15=(1111)2 and 𝑔(5,5)=𝑎5=10=(1010)2g(5,5)=a5=10=(1010)2, so its *niceness* is equal to 4+2=64+2=6.\n\nThe maximum *niceness* on this path is at vertex 22, and it is 88.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n4\n1 2 3 4\n1 3\n1 2\n1 4\n3\n1 1\n1 3\n1 4\n3\n7 6 3\n3 1\n2 1\n4\n1 1\n1 2\n1 3\n2 3\n1\n4\n1\n1 1\n",
+      "output": "2 4 3\n6 6 6 6\n2\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "3\n7\n4 7 7 4 10 8 10\n6 1\n3 1\n2 1\n7 4\n1 5\n4 2\n4\n7 5\n2 3\n4 5\n2 5\n6\n9 5 6 2 4 6\n5 1\n2 1\n1 6\n4 3\n1 3\n4\n6 1\n1 4\n4 3\n3 5\n7\n5 1 3 7 5 1 6\n2 1\n5 4\n2 3\n3 4\n7 6\n6 3\n2\n4 2\n7 7\n",
+      "output": "8 6 7 7\n6 6 4 7\n6 4\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "1\n7\n6 8 7 2 5 8 7\n2 1\n3 2\n4 3\n4 6\n4 5\n6 7\n4\n1 5\n6 7\n4 5\n1 4\n",
+      "output": "7 7 5 7\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:25:29.179Z"
+}

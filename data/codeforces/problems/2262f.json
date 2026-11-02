@@ -4,7 +4,7 @@
   "contestId": 2262,
   "index": "F",
   "title": "Rank Removal",
-  "titleZh": null,
+  "titleZh": "秩消除",
   "url": "https://codeforces.com/contest/2262/problem/F",
   "difficulty": 3500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Farmer John is playing a game involving an $n \\times n$ binary matrix $M$. Throughout this problem, all matrix $\\href{https://en.wikipedia.org/wiki/Rank_(linear_algebra)}{\\text{ranks}}$ are computed over the field $\\mathbb{F}_2$. Initially, the rank of $M$ is guaranteed to be $n$.\n\nOn a move, let $r$ be the rank of the current matrix $M$. Farmer John must choose exactly $r$ **distinct** entries of $M$ that are equal to $1$ and change all of them to $0$.\n\nFarmer John wants to turn $M$ into the zero matrix using the minimum possible number of moves.\n\nFor each test case, output the minimum number of moves and any sequence of moves that achieves it.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\le n \\le 300, n \\le m \\le n^2$) — the size of the matrix and the number of entries equal to $1$.\n\nEach of the next $m$ lines contains two integers $x_i$ and $y_i$ ($1 \\le x_i,y_i \\le n$), denoting that $M_{x_i,y_i}=1$.\n\nAll other entries of $M$ are equal to $0$.\n\nIt is guaranteed that all given cells are distinct.\n\nIt is guaranteed that the rank of $M$ over $\\mathbb{F}_2$ is $n$ for every test case.\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $300^2$.\n\n## Output\n\nFor each test case, first output an integer $k$ — the minimum number of moves needed to turn $M$ into the zero matrix.\n\nThen output $k$ lines, each describing one move.\n\nFor each move, let $r$ be the rank of the current matrix before the move. Output the integer $r$ on a new line. Then, output $r$ pairs of integers $x_i$ and $y_i$ representing the cells of a matrix we are changing to $0$.\n\nFor every $1 \\le i \\le r$, the cell $(x_i,y_i)$ must contain a $1$ in the current matrix before the move. All chosen cells in the same move must be distinct.\n\nIf there are multiple optimal sequences of moves, you may output any of them.\n\n## Note\n\nFor the first test case, the matrix is\n\n$$ \\left[ \\begin{array}{cc} 1 & 0 \\\\ 0 & 1 \\end{array} \\right]. $$\n\nIts rank is $2$, so we remove the two entries $(1,1)$ and $(2,2)$ in one move.\n\nFor the second test case, the initial matrix is\n\n$$ \\left[ \\begin{array}{ccc} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 1 \\end{array} \\right]. $$\n\nIts rank is $3$. After removing $(1,2)$, $(2,3)$, and $(3,3)$, the matrix becomes\n\n$$ \\left[ \\begin{array}{ccc} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 0 \\end{array} \\right], $$\n\nwhich has rank $2$. We then remove $(1,1)$ and $(2,2)$ in the second move.",
-  "statementZhMd": null,
+  "statementZhMd": "Farmer John 正在玩一个关于 $n \\times n$ 01 矩阵 $M$ 的游戏。在本题中，所有矩阵的 $\\href{https://en.wikipedia.org/wiki/Rank_(linear_algebra)}{\\text{ranks}}$（秩）均在域 $\\mathbb{F}_2$ 上计算。初始时，保证 $M$ 的秩为 $n$。\n\n在一次操作中，设 $r$ 为当前矩阵 $M$ 的秩。Farmer John 必须恰好选择 $M$ 中 $r$ 个**互不相同**且值为 $1$ 的元素，并将它们全部变为 $0$。\n\nFarmer John 想要用尽可能少的操作次数将 $M$ 变为零矩阵。\n\n对于每组测试数据，输出最少的操作次数以及任意一组能达到该次数的操作序列。\n\n## 输入格式\n\n每个测试点包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 300, n \\le m \\le n^2$），分别表示矩阵的大小和值为 $1$ 的元素个数。\n\n接下来的 $m$ 行中，每行包含两个整数 $x_i$ 和 $y_i$（$1 \\le x_i,y_i \\le n$），表示 $M_{x_i,y_i}=1$。\n\n$M$ 的其余元素均为 $0$。\n\n保证所有给定的单元格互不相同。\n\n保证每组测试数据中 $M$ 在 $\\mathbb{F}_2$ 上的秩均为 $n$。\n\n保证所有测试数据的 $m$ 之和不超过 $300^2$。\n\n## 输出格式\n\n对于每组测试数据，首先输出一个整数 $k$，表示将 $M$ 变为零矩阵所需的最少操作次数。\n\n然后输出 $k$ 行，每行描述一次操作。\n\n对于每次操作，设 $r$ 为该操作执行前当前矩阵的秩。在新的一行输出整数 $r$。然后，输出 $r$ 对整数 $x_i$ 和 $y_i$，表示要将其变为 $0$ 的矩阵单元格。\n\n对于每个 $1 \\le i \\le r$，单元格 $(x_i,y_i)$ 在操作执行前的当前矩阵中必须为 $1$。同一次操作中选出的所有单元格必须互不相同。\n\n如果存在多组最优操作序列，你可以输出其中任意一组。\n\n## 说明\n\n对于第一组测试数据，矩阵为\n\n$$ \\left[ \\begin{array}{cc} 1 & 0 \\\\ 0 & 1 \\end{array} \\right]. $$\n\n它的秩为 $2$，因此我们在一次操作中移除 $(1,1)$ 和 $(2,2)$ 这两个元素。\n\n对于第二组测试数据，初始矩阵为\n\n$$ \\left[ \\begin{array}{ccc} 1 & 1 & 0 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 1 \\end{array} \\right]. $$\n\n它的秩为 $3$。移除 $(1,2)$、$(2,3)$ 和 $(3,3)$ 后，矩阵变为\n\n$$ \\left[ \\begin{array}{ccc} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 0 \\end{array} \\right], $$\n\n其秩为 $2$。然后我们在第二次操作中移除 $(1,1)$ 和 $(2,2)$。",
   "samples": [
     {
       "input": "2\n2 2\n1 1\n2 2\n3 5\n1 1\n1 2\n2 2\n2 3\n3 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:15:26.184Z"
+  "fetchedAt": "2026-10-30T20:15:26.184Z",
+  "translatedAt": "2026-11-03T01:23:32.987+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

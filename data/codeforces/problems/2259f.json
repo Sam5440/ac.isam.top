@@ -4,7 +4,7 @@
   "contestId": 2259,
   "index": "F",
   "title": "Binary Bubble Sort Inversions",
-  "titleZh": null,
+  "titleZh": "01 冒泡排序逆序对",
   "url": "https://codeforces.com/contest/2259/problem/F",
   "difficulty": 1800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Define performing a bubble on an array $b_1, b_2, \\ldots, b_m$ to be performing the following action:\n\n- For each integer $i$ ($1 \\leq i \\lt m$) **in order**, if $b_i \\gt b_{i+1}$, swap $b_i$ and $b_{i+1}$.\n\nDefine performing a reverse bubble on an array $b_1, b_2, \\ldots, b_m$ to be performing the following action:\n\n- For each integer $i$ ($1 \\leq i \\lt m$) **in reverse order**, if $b_i \\gt b_{i+1}$, swap $b_i$ and $b_{i+1}$.\n\nFor example, if we perform a bubble on $[1, 1, 0]$, we would transform it as follows: $[\\color{red}{1, 1}, 0] \\to [1, \\color{red}{1, 0}] \\to [1, 0, 1]$. If we perform a reverse bubble on $[1, 1, 0]$, we would transform it as follows: $[1, \\color{red}{1, 0}] \\to[\\color{red}{1, 0}, 1] \\to [0, 1, 1]$.\n\nYou are given an array $a_1, a_2, \\ldots, a_n$ consisting of only `0`s and `1`s and a binary string$^{\\text{∗}}$ $s$ of length $n$. You perform $n$ operations **in order**, where the $i$-th operation performs a bubble on $a$ if $s_i = \\texttt{1}$ and performs a reverse bubble on $a$ if $s_i = \\texttt{0}$. For each of the $n + 1$ states of $a$ — before any operations have been performed and after each operation — count the number of inversions$^{\\text{†}}$ in $a$.\n\n$^{\\text{∗}}$A binary string is a string that only contains `0`s and `1`s.\n\n$^{\\text{†}}$An inversion in an array $c$ of length $m$ is a pair of indices $i, j$ such that $1 \\leq i \\lt j \\leq m$ and $c_i \\gt c_j$.\n\n## Input\n\nThe first line of each input contains $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains $n$ ($1 \\leq n \\leq 5 \\cdot 10^5$) — the length of $a$ and $s$.\n\nThe second line of each test case contains $a_1, a_2, \\ldots, a_n$ ($0 \\leq a_i \\leq 1$) — the array $a$.\n\nThe third line of each test case contains $s$ ($s_i \\in \\{0, 1\\}$, $|s| = n$$^{\\text{∗}}$) — the binary string $s$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n$^{\\text{∗}}$$|c|$ denotes the length of a string $c$.\n\n## Output\n\nFor each test case, output $n + 1$ space separated integers, the $i$-th integer denoting the number of inversions in $a$ after the first $i - 1$ operations have been performed.\n\n## Note\n\nIn the first test case:\n\n- Before any operations: $a = [1, 1, 0, 0]$, which has $4$ inversions.\n- After the first operation: $a = [1, 0, 0, 1]$, which has $2$ inversions.\n- After the second operation: $a = [0, 1, 0, 1]$, which has $1$ inversion.\n- After the third operation: $a = [0, 0, 1, 1]$, which has $0$ inversions.\n- After the fourth operation: $a = [0, 0, 1, 1]$, which has $0$ inversions.",
-  "statementZhMd": null,
+  "statementZhMd": "定义对数组 $b_1, b_2, \\ldots, b_m$ 执行一次冒泡为执行以下操作：\n\n- **按顺序**对每个整数 $i$（$1 \\leq i \\lt m$），若 $b_i \\gt b_{i+1}$，则交换 $b_i$ 和 $b_{i+1}$。\n\n定义对数组 $b_1, b_2, \\ldots, b_m$ 执行一次反向冒泡为执行以下操作：\n\n- **以相反的顺序**对每个整数 $i$（$1 \\leq i \\lt m$），若 $b_i \\gt b_{i+1}$，则交换 $b_i$ 和 $b_{i+1}$。\n\n例如，如果我们对 $[1, 1, 0]$ 执行一次冒泡，它会按如下方式变化：$[\\color{red}{1, 1}, 0] \\to [1, \\color{red}{1, 0}] \\to [1, 0, 1]$。如果我们对 $[1, 1, 0]$ 执行一次反向冒泡，它会按如下方式变化：$[1, \\color{red}{1, 0}] \\to[\\color{red}{1, 0}, 1] \\to [0, 1, 1]$。\n\n给定一个仅由 `0` 和 `1` 组成的数组 $a_1, a_2, \\ldots, a_n$ 和一个长度为 $n$ 的二进制字符串$^{\\text{∗}}$ $s$。你需要**按顺序**执行 $n$ 次操作，其中第 $i$ 次操作在 $s_i = \\texttt{1}$ 时对 $a$ 执行一次冒泡，在 $s_i = \\texttt{0}$ 时对 $a$ 执行一次反向冒泡。对于 $a$ 的全部 $n + 1$ 个状态——执行任何操作之前以及每次操作之后——统计 $a$ 中逆序对$^{\\text{†}}$的数量。\n\n$^{\\text{∗}}$二进制字符串是指仅包含 `0` 和 `1` 的字符串。\n\n$^{\\text{†}}$长度为 $m$ 的数组 $c$ 中的逆序对是指满足 $1 \\leq i \\lt j \\leq m$ 且 $c_i \\gt c_j$ 的下标对 $i, j$。\n\n## 输入格式\n\n输入的第一行包含 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含 $n$（$1 \\leq n \\leq 5 \\cdot 10^5$）——$a$ 和 $s$ 的长度。\n\n每个测试用例的第二行包含 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\leq 1$）——数组 $a$。\n\n每个测试用例的第三行包含 $s$（$s_i \\in \\{0, 1\\}$，$|s| = n$$^{\\text{∗}}$）——二进制字符串 $s$。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n$^{\\text{∗}}$$|c|$ 表示字符串 $c$ 的长度。\n\n## 输出格式\n\n对于每个测试用例，输出 $n + 1$ 个用空格分隔的整数，其中第 $i$ 个整数表示执行完前 $i - 1$ 次操作后 $a$ 中逆序对的数量。\n\n## 说明\n\n在第一个测试用例中：\n\n- 执行任何操作之前：$a = [1, 1, 0, 0]$，有 $4$ 个逆序对。\n- 第一次操作之后：$a = [1, 0, 0, 1]$，有 $2$ 个逆序对。\n- 第二次操作之后：$a = [0, 1, 0, 1]$，有 $1$ 个逆序对。\n- 第三次操作之后：$a = [0, 0, 1, 1]$，有 $0$ 个逆序对。\n- 第四次操作之后：$a = [0, 0, 1, 1]$，有 $0$ 个逆序对。",
   "samples": [
     {
       "input": "7\n4\n1 1 0 0\n1010\n7\n0 1 0 1 1 0 0\n0101001\n4\n0 0 1 1\n1001\n1\n1\n1\n5\n0 1 1 0 0\n11101\n3\n1 0 0\n000\n6\n1 0 1 1 0 0\n011000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:31:44.939Z"
+  "fetchedAt": "2026-11-02T16:31:44.939Z",
+  "translatedAt": "2026-11-03T01:26:33.304+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

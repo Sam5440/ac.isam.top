@@ -1,0 +1,52 @@
+{
+  "id": "1837E",
+  "platform": "codeforces",
+  "contestId": 1837,
+  "index": "E",
+  "title": "Playoff Fixing",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1837/problem/E",
+  "difficulty": 2200,
+  "tags": [
+    "combinatorics",
+    "trees"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "$2^k$ teams participate in a playoff tournament. The teams are numbered from $1$ to $2^k$, in order of decreasing strength. So, team $1$ is the strongest one, team $2^k$ is the weakest one. A team with a smaller number always defeats a team with a larger number.\n\nFirst of all, the teams are arranged in some order during a procedure called seeding. Each team is assigned another unique value from $1$ to $2^k$, called a seed, that represents its starting position in the playoff.\n\nThe tournament consists of $2^k - 1$ games. They are held as follows: the teams are split into pairs: team with seed $1$ plays against team with seed $2$, team with seed $3$ plays against team with seed $4$ (exactly in this order), and so on (so, $2^{k-1}$ games are played in that phase). When a team loses a game, it is eliminated.\n\nAfter that, only $2^{k-1}$ teams remain. If only one team remains, it is declared the champion; otherwise, $2^{k-2}$ games are played: in the first one of them, the winner of the game \"seed $1$ vs seed $2$\" plays against the winner of the game \"seed $3$ vs seed $4$\", then the winner of the game \"seed $5$ vs seed $6$\" plays against the winner of the game \"seed $7$ vs seed $8$\", and so on. This process repeats until only one team remains.\n\nAfter the tournament ends, the teams are assigned places according to the tournament phase when they were eliminated. In particular:\n\n- the winner of the tournament gets place $1$;\n- the team eliminated in the finals gets place $2$;\n- both teams eliminated in the semifinals get place $3$;\n- all teams eliminated in the quarterfinals get place $5$;\n- all teams eliminated in the 1/8 finals get place $9$, and so on.\n\nNow that we established the rules, we do a little rigging. In particular, we want:\n\n- team $1$ (not team with seed $1$) to take place $1$;\n- team $2$ to take place $2$;\n- teams $3$ and $4$ to take place $3$;\n- teams from $5$ to $8$ to take place $5$, and so on.\n\nFor example, this picture describes one of the possible ways the tournament can go with $k = 3$, and the resulting places of the teams:\n\n![image](https://espresso.codeforces.com/8fab1b9637d97dbe907d742f5faef2e1bc7ca408.png)\n\nSome seeds are already reserved for some teams (we are not the only ones rigging the tournament, apparently). We have to fill the rest of the seeds with the remaining teams to achieve the desired placements. How many ways are there to do that? Since that value might be large, print it modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains a single integer $k$ ($0 \\le k \\le 19$) — there are $2^k$ teams.\n\nThe second line contains $2^k$ integers $a_1, a_2, \\dots, a_{2^k}$ ($a_i = -1$ or $1 \\le a_i \\le 2^k$). If $a_i \\ne -1$, then team $a_i$ has seed $i$. Otherwise, the seed $i$ is not reserved for any team.\n\nAll values, that are not $-1$, are distinct.\n\n## Output\n\nPrint a single integer — the number of ways to fill the non-reserved seeds so that the tournament goes as planned, modulo $998\\,244\\,353$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n1 2 3 4\n",
+      "output": "0\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "2\n1 3 4 2\n",
+      "output": "1\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "1\n-1 -1\n",
+      "output": "2\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "2\n-1 -1 -1 -1\n",
+      "output": "16\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "3\n-1 -1 -1 -1 2 -1 -1 -1\n",
+      "output": "768\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "0\n1\n",
+      "output": "1\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:28:34.123Z"
+}

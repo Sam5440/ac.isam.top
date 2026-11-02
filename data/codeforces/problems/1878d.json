@@ -1,0 +1,27 @@
+{
+  "id": "1878D",
+  "platform": "codeforces",
+  "contestId": 1878,
+  "index": "D",
+  "title": "Reverse Madness",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1878/problem/D",
+  "difficulty": 1600,
+  "tags": [
+    "data structures",
+    "greedy"
+  ],
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a string 𝑠s of length 𝑛n, containing lowercase Latin letters.\n\nNext you will be given a positive integer 𝑘k and two arrays, 𝑙l and 𝑟r of length 𝑘k.\n\nIt is guaranteed that the following conditions hold for these 2 arrays:\n\n- 𝑙1=1l1=1;\n- 𝑟𝑘=𝑛rk=n;\n- 𝑙𝑖≤𝑟𝑖li≤ri, for each positive integer 𝑖i such that 1≤𝑖≤𝑘1≤i≤k;\n- 𝑙𝑖=𝑟𝑖−1+1li=ri−1+1, for each positive integer 𝑖i such that 2≤𝑖≤𝑘2≤i≤k;\n\nNow you will be given a positive integer 𝑞q which represents the number of modifications you need to do on 𝑠s.\n\nEach modification is defined with one positive integer 𝑥x:\n\n- Find an index 𝑖i such that 𝑙𝑖≤𝑥≤𝑟𝑖li≤x≤ri (notice that such 𝑖i is unique).\n- Let 𝑎=min(𝑥,𝑟𝑖+𝑙𝑖−𝑥)a=min(x,ri+li−x) and let 𝑏=max(𝑥,𝑟𝑖+𝑙𝑖−𝑥)b=max(x,ri+li−x).\n- Reverse the substring of 𝑠s from index 𝑎a to index 𝑏b.\n\nReversing the substring [𝑎,𝑏][a,b] of a string 𝑠s means to make 𝑠s equal to 𝑠1,𝑠2,…,𝑠𝑎−1, 𝑠𝑏,𝑠𝑏−1,…,𝑠𝑎+1,𝑠𝑎, 𝑠𝑏+1,𝑠𝑏+2,…,𝑠𝑛−1,𝑠𝑛s1,s2,…,sa−1, sb,sb−1,…,sa+1,sa, sb+1,sb+2,…,sn−1,sn.\n\nPrint 𝑠s after the last modification is finished.\n\n## Input\n\nEach test contains multiple test cases. The first line contains a single integer 𝑡t (1≤𝑡≤1041≤t≤104) — the number of test cases. Description of the test cases follows.\n\nThe first line of each test case contains two integers 𝑛n and 𝑘k (1≤𝑘≤𝑛≤2⋅1051≤k≤n≤2⋅105) — the length of the string 𝑠s, and the length of arrays 𝑙l and 𝑟r.\n\nThe second line of each test case contains the string 𝑠s (|𝑠|=𝑛|s|=n) containing lowercase Latin letters — the initial string.\n\nThe third line of each test case contains 𝑘k positive integers 𝑙1,𝑙2,…,𝑙𝑘l1,l2,…,lk (1≤𝑙𝑖≤𝑛1≤li≤n) — the array 𝑙l.\n\nThe fourth line of each test case contains 𝑘k positive integers 𝑟1,𝑟2,…,𝑟𝑘r1,r2,…,rk (1≤𝑟𝑖≤𝑛1≤ri≤n) — the array 𝑟r.\n\nThe fifth line of each test case contains a positive integer 𝑞q (1≤𝑞≤2⋅1051≤q≤2⋅105) — the number of modifications you need to do to 𝑠s.\n\nThe sixth line of each test case contains 𝑞q positive integers 𝑥1,𝑥2,…,𝑥𝑞x1,x2,…,xq (1≤𝑥𝑖≤𝑛1≤xi≤n) — the description of the modifications.\n\nIt is guaranteed that the sum of 𝑛n over all test cases does not exceed 2⋅1052⋅105.\n\nIt is guaranteed that the sum of 𝑞q over all test cases does not exceed 2⋅1052⋅105.\n\nIt is guaranteed that the conditions in the statement hold for the arrays 𝑙l and 𝑟r.\n\n## Output\n\nFor each test case, in a new line, output the string 𝑠s after the last modification is done.\n\n## Note\n\nIn the first test case:\n\nThe initial string is \"`abcd`\". In the **first modification**, we have 𝑥=1x=1. Since 𝑙1=1≤𝑥≤𝑟1=2l1=1≤x≤r1=2, we find the index 𝑖=1i=1. We reverse the substring from index 𝑥=1x=1 to 𝑙1+𝑟1−𝑥=1+2−1=2l1+r1−x=1+2−1=2. After this modification, our string is \"`bacd`\".\n\nIn the **second modification** (and the last modification), we have 𝑥=3x=3. Since 𝑙2=3≤𝑥≤𝑟2=4l2=3≤x≤r2=4, we find the index 𝑖=2i=2. We reverse the substring from index 𝑥=3x=3 to 𝑙2+𝑟2−𝑥=3+4−3=4l2+r2−x=3+4−3=4. After this modification, our string is \"`badc`\".\n\nIn the second test case:\n\nThe initial string is \"`abcde`\". In the **first modification**, we have 𝑥=1x=1. Since 𝑙1=1≤𝑥≤𝑟1=1l1=1≤x≤r1=1, we find the index 𝑖=1i=1. We reverse the substring from index 𝑥=1x=1 to 𝑙1+𝑟1−𝑥=1+1−1=1l1+r1−x=1+1−1=1. After this modification, our string hasn't changed (\"`abcde`\").\n\nIn the **second modification**, we have 𝑥=2x=2. Since 𝑙2=2≤𝑥≤𝑟2=2l2=2≤x≤r2=2, we find the index 𝑖=2i=2. We reverse the substring from index 𝑥=2x=2 to 𝑙2+𝑟2−𝑥=2+2−2=2l2+r2−x=2+2−2=2. After this modification, our string hasn't changed (\"`abcde`\").\n\nIn the **third modification** (and the last modification), we have 𝑥=3x=3. Since 𝑙3=3≤𝑥≤𝑟3=5l3=3≤x≤r3=5, we find the index 𝑖=3i=3. We reverse the substring from index 𝑥=3x=3 to 𝑙3+𝑟3−𝑥=3+5−3=5l3+r3−x=3+5−3=5. After this modification, our string is \"`abedc`\".",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n4 2\nabcd\n1 3\n2 4\n2\n1 3\n5 3\nabcde\n1 2 3\n1 2 5\n3\n1 2 3\n3 1\ngaf\n1\n3\n2\n2 2\n10 1\naghcdegdij\n1\n10\n5\n1 2 3 4 2\n1 1\na\n1\n1\n1\n1\n",
+      "output": "badc\nabedc\ngaf\njihgedcdga\na\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:25:29.176Z"
+}

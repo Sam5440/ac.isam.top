@@ -1,0 +1,28 @@
+{
+  "id": "1857B",
+  "platform": "codeforces",
+  "contestId": 1857,
+  "index": "B",
+  "title": "Maximum Rounding",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1857/problem/B",
+  "difficulty": 1100,
+  "tags": [
+    "greedy",
+    "implementation",
+    "math"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Given a natural number $x$. You can perform the following operation:\n\n- choose a positive integer $k$ and round $x$ to the $k$-th digit\n\nNote that the positions are numbered from right to left, starting from zero. If the number has $k$ digits, it is considered that the digit at the $k$-th position is equal to $0$.\n\nThe rounding is done as follows:\n\n- if the digit at the $(k-1)$-th position is greater than or equal to $5$, then the digit at the $k$-th position is increased by $1$, otherwise the digit at the $k$-th position remains unchanged (mathematical rounding is used).\n- if before the operations the digit at the $k$-th position was $9$, and it should be increased by $1$, then we search for the least position $k'$ ($k' \\gt k$), where the digit at the $k'$-th position is less than $9$ and add $1$ to the digit at the $k'$-th position. Then we assign $k=k'$.\n- after that, all digits which positions are less than $k$ are replaced with zeros.\n\nYour task is to make $x$ as large as possible, if you can perform the operation as many times as you want.\n\nFor example, if $x$ is equal to $3451$, then if you choose consecutively:\n\n- $k=1$, then after the operation $x$ will become $3450$\n- $k=2$, then after the operation $x$ will become $3500$\n- $k=3$, then after the operation $x$ will become $4000$\n- $k=4$, then after the operation $x$ will become $0$\n\nTo maximize the answer, you need to choose $k=2$ first, and then $k=3$, then the number will become $4000$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of test cases.\n\nEach test case consists of positive integer $x$ with a length of up to $2 \\cdot 10^5$. It is guaranteed that there are no leading zeros in the integer.\n\nIt is guaranteed that the sum of the lengths of all integers $x$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each set of input data, output the maximum possible value of $x$ after the operations. The number should not have leading zeros in its representation.\n\n## Note\n\nIn the first sample, it is better not to perform any operations.\n\nIn the second sample, you can perform one operation and obtain $10$.\n\nIn the third sample, you can choose $k=1$ or $k=2$. In both cases the answer will be $100$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "10\n1\n5\n99\n913\n1980\n20444\n20445\n60947\n419860\n40862016542130810467\n",
+      "output": "1\n10\n100\n1000\n2000\n20444\n21000\n100000\n420000\n41000000000000000000\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:26:51.045Z"
+}

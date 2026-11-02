@@ -1,0 +1,29 @@
+{
+  "id": "1878E",
+  "platform": "codeforces",
+  "contestId": 1878,
+  "index": "E",
+  "title": "Iva & Pav",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1878/problem/E",
+  "difficulty": 1400,
+  "tags": [
+    "binary search",
+    "bitmasks",
+    "data structures",
+    "greedy"
+  ],
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "*Iva and Pav are a famous Serbian competitive programming couple. In Serbia, they call Pav \"papuca\" and that's why he will make all of Iva's wishes come true.*\n\nIva gave Pav an array 𝑎a of 𝑛n elements.\n\nLet's define 𝑓(𝑙,𝑟)=𝑎𝑙 & 𝑎𝑙+1 &…& 𝑎𝑟f(l,r)=al & al+1 &…& ar (here && denotes the [bitwise AND operation](http://tiny.cc/bitwise_and)).\n\n**Note that** 𝑓(𝑙,𝑟)f(l,r) **is not defined when** 𝑙>𝑟l>r.\n\nIva also gave Pav 𝑞q queries.\n\nEach query consists of 2 numbers, 𝑘k and 𝑙l, and she wants Pav to find the largest index 𝑟r (𝑙≤𝑟≤𝑛l≤r≤n), such that 𝑓(𝑙,𝑟)≥𝑘f(l,r)≥k.\n\nPav wants to solve this problem fast because he doesn't want to upset Iva. He needs your help.\n\n## Input\n\nThe first line contains a single integer 𝑡t (1≤𝑡≤1041≤t≤104) — the number of test cases.\n\nThe first line of each test case contains a single integer 𝑛n (1≤𝑛≤2⋅1051≤n≤2⋅105) — the length of array 𝑎a.\n\nThe second line of each test case contains 𝑛n integers 𝑎1,𝑎2,…,𝑎𝑛a1,a2,…,an (1≤𝑎𝑖≤1091≤ai≤109) — the elements of array 𝑎a.\n\nThe third line of each test case contains a single integer 𝑞q (1≤𝑞≤1051≤q≤105) — the number of queries Iva gave Pav.\n\nThe next 𝑞q lines of each test case contains two numbers, 𝑙l and 𝑘k (1≤𝑙≤𝑛1≤l≤n, 1≤𝑘≤1091≤k≤109) — the left bound for the subsegment, and the integer 𝑘k described in statement.\n\nIt is guaranteed that the sum of 𝑛n over all test cases does not exceed 2⋅1052⋅105. Also, it is guaranteed that the sum of 𝑞q over all test cases does not exceed 2⋅1052⋅105.\n\n## Output\n\nFor each query output maximal index 𝑟r (𝑙≤𝑟≤𝑛l≤r≤n) such that 𝑎𝑙 & 𝑎𝑙+1 &…& 𝑎𝑟 ≥ 𝑘al & al+1 &…& ar ≥ k.\n\nIf such 𝑟r doesn't exist, output −1−1.\n\n## Note\n\nIn the **first test case** 𝑛=5n=5, and the array 𝑎=[15,14,17,42,34]a=[15,14,17,42,34]\n\nThe first query asks for the biggest index 𝑟r such that the 𝑓(1,𝑟)≥7f(1,r)≥7.\n\n𝑓(1,1)=15, 𝑓(1,2)=14, 𝑓(1,3)=0 𝑓(1,4)=0 𝑓(1,5)=0f(1,1)=15, f(1,2)=14, f(1,3)=0 f(1,4)=0 f(1,5)=0, so 𝑟=2r=2 is the answer.\n\nThe second query asks for 𝑓(2,𝑟)≥15f(2,r)≥15. Since such 𝑟r doesn't exist, the answer is −1−1.\n\nThe third query asks for 𝑓(4,𝑟)≥5f(4,r)≥5. 𝑓(4,4)=42, 𝑓(4,5)=34f(4,4)=42, f(4,5)=34, so 𝑟=5r=5 is the answer.\n\nIn the **second test case** 𝑛=5n=5, and the array 𝑎=[7,5,3,1,7]a=[7,5,3,1,7].\n\nFor the first query, 𝑓(1,𝑟)≥7f(1,r)≥7.\n\n𝑓(1,1)=7, 𝑓(1,2)=5, 𝑓(1,3)=1, 𝑓(1,4)=1, 𝑓(1,5)=1f(1,1)=7, f(1,2)=5, f(1,3)=1, f(1,4)=1, f(1,5)=1, so the answer to this query is 11.\n\nFor the second query, 𝑓(5,𝑟)≥7f(5,r)≥7.\n\n𝑓(5,5)=7f(5,5)=7, so the answer is 55.\n\nFor the third query, 𝑓(2,𝑟)≥3f(2,r)≥3.\n\n𝑓(2,2)=5, 𝑓(2,3)=1, 𝑓(2,4)=1, 𝑓(2,5)=1f(2,2)=5, f(2,3)=1, f(2,4)=1, f(2,5)=1, so the answer is 22.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n5\n15 14 17 42 34\n3\n1 7\n2 15\n4 5\n5\n7 5 3 1 7\n4\n1 7\n5 7\n2 3\n2 2\n7\n19 20 15 12 21 7 11\n4\n1 15\n4 4\n7 12\n5 7\n",
+      "output": "2 -1 5\n1 5 2 2\n2 6 -1 5\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:25:29.177Z"
+}

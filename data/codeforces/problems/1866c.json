@@ -1,0 +1,28 @@
+{
+  "id": "1866C",
+  "platform": "codeforces",
+  "contestId": 1866,
+  "index": "C",
+  "title": "Completely Searching for Inversions",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1866/problem/C",
+  "difficulty": 1900,
+  "tags": [
+    "dfs and similar",
+    "dp",
+    "graphs"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "Pak Chanek has a directed acyclic graph (a directed graph that does not have any cycles) containing $N$ vertices. Vertex $i$ has $S_i$ edges directed away from that vertex. The $j$-th edge of vertex $i$ that is directed away from it, is directed towards vertex $L_{i,j}$ and has an integer $W_{i,j}$ ($0\\leq W_{i,j}\\leq1$). Another information about the graph is that the graph is shaped in such a way such that each vertex can be reached from vertex $1$ via zero or more directed edges.\n\nPak Chanek has an array $Z$ that is initially empty.\n\nPak Chanek defines the function `dfs` as follows:\n\n```\n// dfs from vertex i\nvoid dfs(int i) {\n    // iterate each edge of vertex i that is directed away from it\n    for(int j = 1; j <= S[i]; j++) {\n        Z.push_back(W[i][j]); // add the integer in the edge to the end of Z\n        dfs(L[i][j]); // recurse to the next vertex\n    }\n}\n```\n\nNote that the function does not keep track of which vertices have been visited, so each vertex can be processed more than once.\n\nLet's say Pak Chanek does `dfs(1)` once. After that, Pak Chanek will get an array $Z$ containing some elements $0$ or $1$. Define an inversion in array $Z$ as a pair of indices $(x, y)$ ($x \\lt y$) such that $Z_x \\gt Z_y$. How many different inversions in $Z$ are there if Pak Chanek does `dfs(1)` once? Since the answer can be very big, output the answer modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains a single integer $N$ ($2 \\leq N \\leq 10^5$) — the number of vertices in the graph. The following lines contain the description of each vertex from vertex $1$ to vertex $N$.\n\nThe first line of each vertex $i$ contains a single integer $S_i$ ($0 \\leq S_i \\leq N-1$) — the number of edges directed away from vertex $i$.\n\nThe $j$-th of the next $S_i$ lines of each vertex $i$ contains two integers $L_{i,j}$ and $W_{i,j}$ ($1 \\leq L_{i,j} \\leq N$; $0 \\leq W_{i,j} \\leq 1$) — an edge directed away from vertex $i$ that is directed towards vertex $L_{i,j}$ and has an integer $W_{i,j}$. For each $i$, the values of $L_{i,1}$, $L_{i,2}$, ..., $L_{i,S_i}$ are pairwise distinct.\n\nIt is guaranteed that the sum of $S_i$ over all vertices does not exceed $2 \\cdot 10^5$. There are no cycles in the graph. Each vertex can be reached from vertex $1$ via zero or more directed edges.\n\n## Output\n\nAn integer representing the number of inversions in $Z$ if Pak Chanek does `dfs(1)` once. Since the answer can be very big, output the answer modulo $998\\,244\\,353$.\n\n## Note\n\nThe following is the `dfs(1)` process on the graph.\n\n![image](https://espresso.codeforces.com/af0c10b8493daba48e02cd2b5bca98d190b50ea8.png)\n\nIn the end, $Z=[0,1,0,1,1,0]$. All of its inversions are $(2,3)$, $(2,6)$, $(4,6)$, and $(5,6)$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n2\n4 0\n3 1\n0\n1\n2 0\n2\n3 1\n5 1\n0\n",
+      "output": "4\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:25:58.623Z"
+}
