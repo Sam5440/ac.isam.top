@@ -4,7 +4,7 @@
   "contestId": 2154,
   "index": "D",
   "title": "Catshock",
-  "titleZh": null,
+  "titleZh": "猫击",
   "url": "https://codeforces.com/contest/2154/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A cat lives on a tree with $n$ nodes. The cat starts on node $1$, and you live on node $n$. You are going to leave the cat a note written in the parkour language to help it reach you.\n\nThe parkour language has two types of instructions:\n\n- $1$ — This means that the cat should move to any adjacent node to it, if there are multiple options, it will pick one of them arbitrarily. If there are no adjacent nodes to it, then it will not move.\n- $2\\,u$ — This means to destroy node $u$ and all adjacent edges to it. If the cat is currently on node $u$, it will die, so this should be avoided. If node $u$ was already destroyed, then nothing will happen.\n\n**Additionally, there cannot be two consecutive instances of the second instruction.**\n\nUnfortunately, the parkour language is ambiguous because the cat may have multiple options for each instance of the first instruction. So you should construct a sequence of instructions of length at most $3n$ so that if the cat follows them, it will end at node $n$, no matter what choices it makes. It can be proven that such a sequence exists for any tree.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each testcase contains an integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the size of the tree.\n\nThen $n - 1$ lines follow, each of them contains two integers $u$ and $v$ ($1 \\le u,v \\le n, u \\ne v$) which describe a pair of vertices connected by an edge. It is guaranteed that the given graph is a tree and has no loops or multiple edges.\n\nThe sum of $n$ across all testcases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, output a single integer $k$ ($0 \\le k \\le 3n$) — the number of operations you will perform.\n\nThen output $k$ lines of either of the following formats:\n\n- $1$ — make the cat move to an adjacent node if there are nodes adjacent to it.\n- $2\\,u$ ($1 \\le u \\le n$) — delete node $u$ along with all adjacent edges\n\n## Note\n\nThere are extra spaces between the output of different test cases only for **clarity**, and the participants are not expected to print them.\n\nThe path of the cat in the first testcase is shown below.\n\n![image](https://espresso.codeforces.com/c37e026894cce61a0a49647f1cacf69fca6efe22.png)\n\nIt can be shown that this is the only possible path, and so the cat will always end at node $5$.\n\nAn example of a sequence of instructions that does not work for the first testcase is: $\\mathtt{1}$, $\\mathtt{2}$ $\\mathtt{2}$. As the following may happen:\n\n![image](https://espresso.codeforces.com/0b9189c63b2ada2a006bcf9b3ce12b9201c25c01.png)\n\nHere the cat died at node $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "一只猫生活在一棵有 $n$ 个节点的树上。猫初始位于节点 $1$，而你住在节点 $n$。你打算给猫留下一张用跑酷语言写成的纸条，帮助它到达你所在的位置。\n\n跑酷语言有两种指令：\n\n- $1$ — 表示猫应当移动到与它相邻的任意一个节点；如果有多于一种选择，它会任选其中之一。如果它没有相邻的节点，则它不会移动。\n- $2\\,u$ — 表示摧毁节点 $u$ 以及与它相连的所有边。如果猫当前正位于节点 $u$，它就会死掉，因此必须避免这种情况。如果节点 $u$ 已经被摧毁，则什么都不会发生。\n\n**此外，第二条指令不能连续出现两次。**\n\n遗憾的是，跑酷语言是有歧义的，因为对于每一条第一条指令，猫都可能有多种选择。因此你需要构造一个长度不超过 $3n$ 的指令序列，使得无论猫如何选择，只要它按顺序执行这些指令，最终都会停在节点 $n$。可以证明，对于任意一棵树，这样的指令序列总是存在的。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）— 表示树的大小。\n\n接下来 $n - 1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n, u \\ne v$），描述一条边所连接的两个顶点。保证给定的图是一棵树，且没有自环或重边。\n\n所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，先输出一个整数 $k$（$0 \\le k \\le 3n$）— 表示你将执行的操作数量。\n\n接下来输出 $k$ 行，每行为以下两种格式之一：\n\n- $1$ — 若存在与猫相邻的节点，则让猫移动到其中一个相邻节点。\n- $2\\,u$（$1 \\le u \\le n$）— 删除节点 $u$ 以及所有与它相连的边\n\n## 说明\n\n不同测试用例的输出之间多出的空白仅是为了**清晰起见**，选手无需输出这些空白。\n\n第一个测试用例中猫的路径如下图所示。\n\n![image](https://espresso.codeforces.com/c37e026894cce61a0a49647f1cacf69fca6efe22.png)\n\n可以证明这是唯一可能的路径，因此猫最终一定会停在节点 $5$。\n\n对于第一个测试用例，一个不可行的指令序列示例是：$\\mathtt{1}$, $\\mathtt{2}$ $\\mathtt{2}$。接下来可能发生如下情况：\n\n![image](https://espresso.codeforces.com/0b9189c63b2ada2a006bcf9b3ce12b9201c25c01.png)\n\n在这里，猫死在了节点 $2$。",
   "samples": [
     {
       "input": "4\n5\n1 2\n2 3\n1 5\n5 4\n2\n1 2\n4\n1 2\n1 3\n1 4\n6\n1 2\n1 3\n3 4\n4 5\n4 6\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:03.436Z"
+  "fetchedAt": "2026-10-30T21:13:03.436Z",
+  "translatedAt": "2026-11-03T04:50:03.976+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

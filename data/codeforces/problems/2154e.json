@@ -4,7 +4,7 @@
   "contestId": 2154,
   "index": "E",
   "title": "No Mind To Think",
-  "titleZh": null,
+  "titleZh": "无思无想",
   "url": "https://codeforces.com/contest/2154/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array of positive integers $a$ of length $n$ and a positive integer $k$, and you will play the following game with them:\n\n- At the start of the game, you will choose an **odd** integer $x$ ($1 \\le x \\le n$).\n- Then do the following **at most** $k$ times (possibly none):\n- Select a **subsequence** of $a$ of length $x$, then replace every value in the subsequence with the median$^{\\text{∗}}$ of that subsequence. More formally, pick $x$ integers $i_1,\\ldots,i_x$ ($1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_x \\le n$). Then simultaneously do $a_{i_d}$:= $\\mathrm{median}([a_{i_1},a_{i_2},\\ldots,a_{i_x}])$ for all $d$ ($1 \\le d \\le x$).\n\nNote that the integer $x$ you choose **cannot** change between operations.\n\nDetermine the maximum value for the sum of $a$ obtainable after playing the game.\n\n$^{\\text{∗}}$The *median* of an array $a$ of length $n$ (written $\\mathrm{median}(a)$) is the $\\left\\lfloor\\frac{n + 1}{2}\\right\\rfloor$-th smallest element in $a$, where $\\left\\lfloor x \\right\\rfloor$ denotes the largest integer which is smaller than or equal to $x$. For example, $\\mathrm{median}([4, 3, 1, 2, 5]) = 3$ and $\\mathrm{median}([4, 3, 5, 3]) = 3$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains integers $n$ and $k$ ($3 \\le n \\le 2 \\cdot 10^5$, $1 \\le k \\le 2 \\cdot 10^5$) — the length of the array $a$, and the maximum number of times you can perform the operation.\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1 \\le a_i \\le 10^9$).\n\nThe sum of $n$ across all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the maximum sum of $a$ achievable after playing the game.\n\n## Note\n\nA way to achieve $25$ in the first test case is to select $x = 5$ and then do:\n\n- $[\\color{red}1, \\color{red}1, \\color{red}5, \\color{red}5, \\color{red}5] \\rightarrow [5, 5, 5, 5, 5]$\n\nA way to achieve $13$ in the third test case is to pick $x = 3$ and then do:\n\n- $[\\color{red}1, 1, \\color{red}2, 3, 1, \\color{red}2] \\rightarrow [\\color{red}2, 1, \\color{red}2, 3, \\color{red}1, 2] \\rightarrow [2, \\color{red}1, \\color{red}2, 3, \\color{red}2, 2] \\rightarrow [2, 2, 2, 3, 2, 2]$",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的正整数数组 $a$ 和一个正整数 $k$，你将用它们进行如下游戏：\n\n- 游戏开始时，你需要选择一个**奇数** $x$（$1 \\le x \\le n$）。\n- 然后进行以下操作**至多** $k$ 次（也可以一次都不做）：\n- 选择 $a$ 的一个长度为 $x$ 的**子序列**，然后将子序列中的每个值都替换为该子序列的中位数$^{\\text{∗}}$。更形式化地说，选取 $x$ 个整数 $i_1,\\ldots,i_x$（$1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_x \\le n$）。然后对所有 $d$（$1 \\le d \\le x$）同时执行 $a_{i_d}$:= $\\mathrm{median}([a_{i_1},a_{i_2},\\ldots,a_{i_x}])$。\n\n注意，你所选的整数 $x$ 在各次操作之间**不能**改变。\n\n求游戏结束后 $a$ 的元素之和所能达到的最大值。\n\n$^{\\text{∗}}$长度为 $n$ 的数组 $a$ 的*中位数*（记作 $\\mathrm{median}(a)$）是 $a$ 中第 $\\left\\lfloor\\frac{n + 1}{2}\\right\\rfloor$ 小的元素，其中 $\\left\\lfloor x \\right\\rfloor$ 表示小于等于 $x$ 的最大整数。例如，$\\mathrm{median}([4, 3, 1, 2, 5]) = 3$，$\\mathrm{median}([4, 3, 5, 3]) = 3$。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $k$（$3 \\le n \\le 2 \\cdot 10^5$，$1 \\le k \\le 2 \\cdot 10^5$）——分别表示数组 $a$ 的长度，以及你可以执行操作的最大次数。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1 \\le a_i \\le 10^9$）。\n\n所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出游戏结束后 $a$ 的元素之和所能取得的最大值。\n\n## 说明\n\n在第一组测试数据中，一种得到 $25$ 的方法是选择 $x = 5$，然后执行以下操作：\n\n- $[\\color{red}1, \\color{red}1, \\color{red}5, \\color{red}5, \\color{red}5] \\rightarrow [5, 5, 5, 5, 5]$\n\n在第三组测试数据中，一种得到 $13$ 的方法是选择 $x = 3$，然后执行以下操作：\n\n- $[\\color{red}1, 1, \\color{red}2, 3, 1, \\color{red}2] \\rightarrow [\\color{red}2, 1, \\color{red}2, 3, \\color{red}1, 2] \\rightarrow [2, \\color{red}1, \\color{red}2, 3, \\color{red}2, 2] \\rightarrow [2, 2, 2, 3, 2, 2]$",
   "samples": [
     {
       "input": "7\n5 1\n1 1 5 5 5\n3 1\n10 1 2\n6 3\n1 1 2 3 1 2\n5 1\n1 2 2 3 5\n3 1\n332473521 409066963 155613323\n6 6\n81 71 90 15 87 36\n7 2\n4 13 11 19 15 16 10\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:03.436Z"
+  "fetchedAt": "2026-10-30T21:13:03.436Z",
+  "translatedAt": "2026-11-03T04:50:48.182+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

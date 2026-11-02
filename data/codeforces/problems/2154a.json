@@ -4,7 +4,7 @@
   "contestId": 2154,
   "index": "A",
   "title": "Notelock",
-  "titleZh": null,
+  "titleZh": "音符锁定",
   "url": "https://codeforces.com/contest/2154/problem/A",
   "difficulty": 800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Teto is playing the hit rhythm game *osu!*. The game can be described by a binary string$^{\\text{∗}}$ $s$ of length $n$ and a positive integer $k$ where the following will happen in order:\n\n- You will choose some positions in $s$ to protect.\n- Then for each $i$ ($1 \\le i \\le n$) in increasing order, Teto can set $s_i$ to $\\mathtt{0}$ if all the following are true:\n- $s_i = \\mathtt{1}$,\n  - $s_i$ is not protected,\n  - the previous $k - 1$ elements do not contain $\\mathtt{1}$. More formally, $\\mathtt{1}$ does not occur in $s_{\\max(1, i - k + 1)},\\ldots,s_{i - 1}$.\n\nYou dislike Teto (for some reason). So determine the minimum number of positions you need to protect to force her to leave $s$ unchanged.\n\n$^{\\text{∗}}$A binary string is a string that only consists of characters $\\mathtt{0}$ and $\\mathtt{1}$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 100$). The description of the test cases follows.\n\nThe first line of each testcase contains integers $n$ and $k$ ($2 \\le n \\le 1000$; $2 \\le k \\le n$) — the length of $s$ and $k$.\n\nThe second line of each test case contains a binary string $s$ of length $n$ consisting of characters $\\mathtt{0}$ and $\\mathtt{1}$.\n\nThe sum of $n$ across all testcases does not exceed $1000$.\n\n## Output\n\nFor each testcase, output the minimum number of positions you need to protect to force Teto to leave the string unchanged.\n\n## Note\n\nFor the first testcase, you can protect the first element and have: $s = \\mathtt{\\color{red}{1}1}$. Now Teto cannot change $s_1$ because it is protected and cannot change $s_2$ because $s_1 = \\mathtt{1}$. It can be proven this is optimal.\n\nFor the second testcase, you can protect only the first element and have $s = \\color{red}{\\mathtt{1}}\\mathtt{00001}$. Teto cannot change $s_1$ because it is protected and she cannot change $s_6$ because there is $\\mathtt{1}$ in the previous $k - 1$ elements ($\\color{blue}{\\mathtt{10000}}\\mathtt{1}$).\n\nFor the fourth testcase, you must protect $s_1,s_3,s_5,s_7$ and have $s = \\mathtt{\\color{red}{1}0\\color{red}{1}0\\color{red}{1}0\\color{red}{1}}$. It can be shown that this is optimal. For example, if you did not protect $s_3$, then Teto can change it to $\\mathtt{0}$ ($\\mathtt{\\color{red}{1}\\color{blue}{0}10\\color{red}{1}0\\color{red}{1}}$)",
-  "statementZhMd": null,
+  "statementZhMd": "Teto 正在玩热门节奏游戏 *osu!*。该游戏可以由一个长度为 $n$ 的 01 串$^{\\text{∗}}$ $s$ 和一个正整数 $k$ 来描述，接下来将依次发生以下事情：\n\n- 你将选择 $s$ 中的若干位置进行保护。\n- 然后按从小到大的顺序，对于每个 $i$（$1 \\le i \\le n$），只要以下所有条件都满足，Teto 就可以将 $s_i$ 设为 $\\mathtt{0}$：\n- $s_i = \\mathtt{1}$；\n  - $s_i$ 未被保护；\n  - 其前面的 $k - 1$ 个元素中不包含 $\\mathtt{1}$。更形式化地，$s_{\\max(1, i - k + 1)},\\ldots,s_{i - 1}$ 中不出现 $\\mathtt{1}$。\n\n你不喜欢 Teto（出于某种原因）。因此，请确定你至少需要保护多少个位置，才能迫使她保持 $s$ 不变。\n\n$^{\\text{∗}}$01 串是仅由字符 $\\mathtt{0}$ 和 $\\mathtt{1}$ 组成的字符串。\n\n## 输入格式\n\n每个测试点包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 100$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含整数 $n$ 和 $k$（$2 \\le n \\le 1000$；$2 \\le k \\le n$）——分别表示 $s$ 的长度和 $k$。\n\n每组测试数据的第二行包含一个长度为 $n$ 的 01 串 $s$，仅由字符 $\\mathtt{0}$ 和 $\\mathtt{1}$ 组成。\n\n所有测试数据的 $n$ 之和不超过 $1000$。\n\n## 输出格式\n\n对于每组测试数据，输出你为了迫使 Teto 保持该串不变而需要保护的最少位置数。\n\n## 说明\n\n对于第一组测试数据，你可以保护第一个元素，得到 $s = \\mathtt{\\color{red}{1}1}$。此时 Teto 无法修改 $s_1$，因为它被保护了；也无法修改 $s_2$，因为 $s_1 = \\mathtt{1}$。可以证明这是最优的。\n\n对于第二组测试数据，你可以只保护第一个元素，得到 $s = \\color{red}{\\mathtt{1}}\\mathtt{00001}$。Teto 无法修改 $s_1$，因为它被保护了；她也无法修改 $s_6$，因为其前面的 $k - 1$ 个元素中存在 $\\mathtt{1}$（$\\color{blue}{\\mathtt{10000}}\\mathtt{1}$）。\n\n对于第四组测试数据，你必须保护 $s_1,s_3,s_5,s_7$，得到 $s = \\mathtt{\\color{red}{1}0\\color{red}{1}0\\color{red}{1}0\\color{red}{1}}$。可以证明这是最优的。例如，如果你没有保护 $s_3$，那么 Teto 可以将它改为 $\\mathtt{0}$（$\\mathtt{\\color{red}{1}\\color{blue}{0}10\\color{red}{1}0\\color{red}{1}}$）。",
   "samples": [
     {
       "input": "9\n2 2\n11\n6 6\n100001\n5 3\n10000\n7 2\n1010101\n7 4\n0000001\n3 3\n010\n3 2\n011\n7 4\n1001001\n8 3\n00000000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:03.435Z"
+  "fetchedAt": "2026-10-30T21:13:03.435Z",
+  "translatedAt": "2026-11-03T04:49:11.188+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
