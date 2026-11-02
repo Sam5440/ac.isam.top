@@ -4,7 +4,7 @@
   "contestId": 2181,
   "index": "M",
   "title": "Medical Parity",
-  "titleZh": null,
+  "titleZh": "医疗奇偶校验",
   "url": "https://codeforces.com/contest/2181/problem/M",
   "difficulty": 1700,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "Nurse Mira works in an allergy clinic. For each patient Mira tests $n$ allergens in a fixed order. The outcome of the tests is written down as a binary string $x$ of length $n$: for each allergen, 1 means a positive reaction and 0 means no reaction.\n\nTo analyze how the reactions are distributed, Mira also writes a parity control string for $x$. For a binary string $x$ of length $n$, the parity control string $y$ is defined as follows. For every position $i$ ($1 \\le i \\le n$), let $c_i$ be the number of characters equal to 1 among the first $i$ characters of $x$ (including position $i$). The parity control string $y$ is the binary string of length $n$ such that $y_i = c_i \\mod 2$ for all $i$ ($1 \\le i \\le n$). In other words, $y_i$ is 1 if $c_i$ is odd and 0 if $c_i$ is even. For example, if $x = 11101$, then $y = 10110$.\n\nUnfortunately, when recording the data, some bits in the test result string and the parity control string may have been written incorrectly. For a given patient, Mira later finds in the system two binary strings $x'$ and $y'$ of the same length $n$. They were intended to be some true test result string $x$ and its parity control string $y$, but some bits in $x$ and $y$ might have been flipped during recording. For instance, in the previous example only the 3rd bit in $y$ could have been flipped, resulting in $x' = 11101$ and $y' = 10010$.\n\nIn one bit flip, a position in one of the two strings is chosen and the bit at this position is flipped (changing 0 to 1 or 1 to 0). Mira wants to know the minimal number of bit flips that could have happened when recording the data.\n\nFormally, you are given two binary strings $x'$ and $y'$ of length $n$. You want to obtain two strings $x$ and $y$ of length $n$ from $x'$ and $y'$ by flipping some bits in $x'$ and $y'$, so that $y$ is a parity control string of $x$. Find the minimal possible total number of bit flips needed.\n\n## Input\n\nThe first line of the input contains the number of test cases $t$. The $2t$ lines follow — two lines for each test case. The first line of each test case contains a non-empty binary string $x'$ consisting of characters 0 and 1. The second line contains a binary string $y'$ consisting of characters 0 and 1 with the same length as $x'$.\n\nThe total length of all $x'$ strings in the input does not exceed $10^6$.\n\n## Output\n\nPrint $t$ lines — one line for each test case. For each test case, print a single integer — the minimal possible number of bit flips that could have happened when recording the data.",
-  "statementZhMd": null,
+  "statementZhMd": "护士 Mira 在一家过敏诊所工作。对于每位患者，Mira 会按固定的顺序检测 $n$ 种过敏原。检测结果被记录为一个长度为 $n$ 的二进制字符串 $x$：对每种过敏原，1 表示阳性反应，0 表示无反应。\n\n为了分析反应的分布情况，Mira 还会为 $x$ 写出一个奇偶校验串。对于一个长度为 $n$ 的二进制字符串 $x$，奇偶校验串 $y$ 定义如下：对每个位置 $i$（$1 \\le i \\le n$），令 $c_i$ 为 $x$ 的前 $i$ 个字符（含位置 $i$）中等于 1 的字符个数。奇偶校验串 $y$ 是长度为 $n$ 的二进制字符串，满足对所有 $i$（$1 \\le i \\le n$）都有 $y_i = c_i \\mod 2$。换言之，若 $c_i$ 为奇数，则 $y_i$ 为 1；若 $c_i$ 为偶数，则 $y_i$ 为 0。例如，若 $x = 11101$，则 $y = 10110$。\n\n不幸的是，在记录数据时，检测结果串和奇偶校验串中的一些比特可能被写错了。对于某位患者，Mira 后来在系统中找到了两个长度均为 $n$ 的二进制字符串 $x'$ 和 $y'$。它们本应是某个真实的检测结果串 $x$ 及其奇偶校验串 $y$，但在记录过程中，$x$ 和 $y$ 中的一些比特可能被翻转了。例如，在前面的例子中，可能只有 $y$ 的第 3 个比特被翻转了，从而得到 $x' = 11101$ 和 $y' = 10010$。\n\n一次比特翻转是指：选定两个字符串中某一个的某个位置，并将该位置上的比特翻转（把 0 变成 1，或把 1 变成 0）。Mira 想知道记录数据时可能发生过的比特翻转的最少次数。\n\n形式化地说，给定两个长度为 $n$ 的二进制字符串 $x'$ 和 $y'$。你要通过翻转 $x'$ 和 $y'$ 中的一些比特，得到两个长度为 $n$ 的字符串 $x$ 和 $y$，使得 $y$ 是 $x$ 的奇偶校验串。求所需比特翻转次数的最小可能总值。\n\n## 输入格式\n\n输入的第一行包含测试用例的数量 $t$。接下来是 $2t$ 行——每个测试用例占两行。每个测试用例的第一行包含一个非空的、由字符 0 和 1 组成的二进制字符串 $x'$。第二行包含一个由字符 0 和 1 组成的二进制字符串 $y'$，其长度与 $x'$ 相同。\n\n输入中所有 $x'$ 字符串的总长度不超过 $10^6$。\n\n## 输出格式\n\n输出 $t$ 行——每个测试用例对应一行。对于每个测试用例，输出一个整数——记录数据时可能发生过的比特翻转次数的最小可能值。",
   "samples": [
     {
       "input": "3\n11101\n10110\n11101\n10010\n01100\n10110\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:40.096Z"
+  "fetchedAt": "2026-11-02T16:39:40.096Z",
+  "translatedAt": "2026-11-03T03:59:17.496+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

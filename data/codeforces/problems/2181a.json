@@ -4,7 +4,7 @@
   "contestId": 2181,
   "index": "A",
   "title": "Alphabet City",
-  "titleZh": null,
+  "titleZh": "字母城",
   "url": "https://codeforces.com/contest/2181/problem/A",
   "difficulty": 1300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "Al is an urban designer in Alphabet City, and today their task is to prepare signs for $n$ city streets. In Alphabet City, the street signs simply consist of the street names composed of capital identically stamped English metal letters. For instance, if, during nighttime, someone sneakily exchanges the first letters on NERC street and on NEF street, the next day nobody will see the difference as the letter 'N' is identical on both signs.\n\nAl is planning to put $m$ signs on each street, and they have already ordered the required number of brass letters for each of the street names from the metallurgical plant. However, one hour before the order arrived, Al got a call from the plant's manager with a devastating piece of news: they lost one of the items from the list of street names! To mitigate the issue, Al decided for now to put as many signs as possible on each street whose order was not lost, and, with the leftover letters, to prepare at least one sign for the street whose order was lost.\n\nFormally, if $s_1, \\ldots, s_n$ are the street names, and $\\ell$ is the index of the missing item from the order, Al is interested in the maximum integer $k$ such that it is possible, from all the letters of $m$ copies of $s_1, \\ldots, s_{\\ell - 1}, s_{\\ell + 1}, \\ldots, s_n$, to compose $k$ copies of $s_1, \\ldots, s_{\\ell - 1}, s_{\\ell + 1}, \\ldots, s_n$ and additionally at least one copy of $s_\\ell$, or to determine that such a composition is impossible for any non-negative $k$.\n\nAl still does not know which of the items was lost. Write a program that, given $m$ and all street names, for each $\\ell \\in \\{1, 2, \\ldots, n\\}$ prints the maximum value of $k$, or $-1$ if such a composition is impossible.\n\n## Input\n\nThe first line consists of two integers $n$ and $m$, denoting the number of streets in Alphabet City for which the signs are needed and the number of copies of each street name that Al initially ordered ($2 \\le n \\le 2 \\cdot 10^5$; $1 \\le m \\le 5 \\cdot 10^5$). Each of the next $n$ lines consists of one string $s_i$ — the street name ($1 \\le \\left|s_i\\right| \\le 5 \\cdot 10^5$). All these names are composed of capital English letters. Some or all of these names may coincide. It is guaranteed that the sum of the lengths of all the street names does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nPrint $n$ integers, the $\\ell$-th of them denoting the maximum integer $k$ such that the letters of $m \\times s_1$, ..., $m \\times s_{\\ell - 1}$, $m \\times s_{\\ell + 1}$, ..., $m \\times s_n$ (where $m \\times s$ denotes $m$ copies of street name $s$) are enough to compose $k \\times s_1$, ..., $k \\times s_{\\ell - 1}$, $1 \\times s_\\ell$, $k \\times s_{\\ell + 1}$, ..., $k \\times s_n$. If, for the given value of $\\ell$, these letters are insufficient for any integer $k \\ge 0$, print $-1$ instead.",
-  "statementZhMd": null,
+  "statementZhMd": "Al 是字母城的一名城市设计师，今天他们的任务是为 $n$ 条城市街道制作路牌。在字母城，路牌就是街道名称，由统一冲压的大写英文字母金属字组成。例如，如果夜间有人偷偷交换了 NERC 街和 NEF 街路牌上的首字母，第二天谁也看不出任何差别，因为两个路牌上的字母 'N' 是完全一样的。\n\nAl 计划在每条街道上放置 $m$ 块路牌，并且已经向冶金厂订购了每条街道名称所需的黄铜字母。然而，就在订单送达前一小时，Al 接到了工厂经理打来的电话，得知一个噩耗：他们弄丢了街道名称清单中的一项！为了应对这一问题，Al 决定暂时先在每条订单未被丢失的街道上尽可能多地放置路牌，并用剩下的字母为订单被丢失的那条街道制作至少一块路牌。\n\n形式化地，设 $s_1, \\ldots, s_n$ 为街道名称，$\\ell$ 为订单中丢失项的编号，Al 想知道最大的整数 $k$，使得可以用 $m$ 份 $s_1, \\ldots, s_{\\ell - 1}, s_{\\ell + 1}, \\ldots, s_n$ 的全部字母，拼出 $k$ 份 $s_1, \\ldots, s_{\\ell - 1}, s_{\\ell + 1}, \\ldots, s_n$，并额外拼出至少一份 $s_\\ell$；或者判定对任何非负整数 $k$ 这样的拼法都无法实现。\n\nAl 还不知道丢失的是哪一项。请编写一个程序，给定 $m$ 和所有街道名称，对每个 $\\ell \\in \\{1, 2, \\ldots, n\\}$ 输出 $k$ 的最大值，若这样的拼法不可能则输出 $-1$。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$，分别表示字母城中需要制作路牌的街道数量，以及 Al 最初订购的每条街道名称的份数（$2 \\le n \\le 2 \\cdot 10^5$；$1 \\le m \\le 5 \\cdot 10^5$）。接下来 $n$ 行中的每一行包含一个字符串 $s_i$ —— 街道名称（$1 \\le \\left|s_i\\right| \\le 5 \\cdot 10^5$）。所有这些名称均由大写英文字母组成。这些名称可能部分或全部相同。保证所有街道名称的长度之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n输出 $n$ 个整数，其中第 $\\ell$ 个表示最大的整数 $k$，使得 $m \\times s_1$, ..., $m \\times s_{\\ell - 1}$, $m \\times s_{\\ell + 1}$, ..., $m \\times s_n$（其中 $m \\times s$ 表示街道名称 $s$ 的 $m$ 份拷贝）的字母足以拼出 $k \\times s_1$, ..., $k \\times s_{\\ell - 1}$, $1 \\times s_\\ell$, $k \\times s_{\\ell + 1}$, ..., $k \\times s_n$。若对于给定的 $\\ell$，这些字母对任何整数 $k \\ge 0$ 都不够用，则输出 $-1$。",
   "samples": [
     {
       "input": "3 10\nNEERC\nNERC\nNEF\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:40.047Z"
+  "fetchedAt": "2026-11-02T16:39:40.047Z",
+  "translatedAt": "2026-11-03T03:56:30.497+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2176,
   "index": "C",
   "title": "Odd Process",
-  "titleZh": null,
+  "titleZh": "奇数过程",
   "url": "https://codeforces.com/contest/2176/problem/C",
   "difficulty": 1300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You have $n$ coins with denominations $a_1, a_2, \\ldots, a_n$ and a natural number $k$. You also have a bag, which is initially empty, where you can place coins. You need to perform exactly $k$ actions. In each action, you take one coin from those you have left and put it in your bag. After that, you can no longer take that coin.\n\nAt the same time, you have a cat that loves even numbers, so every time the sum of the denominations of the coins in your bag becomes even, your cat empties the bag, meaning it takes all the coins to a place known only to it, and the bag is empty again. Note that the bag is emptied every time the sum becomes even during the process of adding coins, not just at the very last moment.\n\nLet your score be the sum of the denominations of the coins in the bag. Your task is to perform $k$ actions such that your final score is maximized. Find the answer for all $1 \\le k \\le n$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of coins you have.\n\nThe second line of each test case contains $n$ natural numbers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the denominations of the coins.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ numbers — the maximum possible score that can be achieved by performing exactly $k$ actions for all $k$ from $1$ to $n$.\n\n## Note\n\nIn the first set of input data, you have coins with denominations [$1,1,1$].\n\n- $k=1$: in this case, the sum of the denominations in the bag is $1$, regardless of the chosen coin. The final score is also $1$.\n- $k=2$: in this case, the sum of the denominations in the bag is initially $1$, regardless of the choice of coin. When choosing the second coin, the sum will be $2$, regardless of the choice of coin, and thus the bag will be emptied. The final score is $0$.\n- $k=3$: in this case, when choosing the first two coins, the sum will be $2$ and the bag will be emptied, after which the sum will be $0$. When choosing the third coin, the sum will become $1$.\n\nIn the second set of input data, you have coins with denominations [$1,2,3$].\n\n- $k=1$: in this case, when choosing the coin with denomination $2$, the bag will be emptied and the final score will be $0$. When choosing the coin with denomination $1$ or $3$, the final scores will be $1$ and $3$, respectively. The maximum possible final score is $3$.\n- $k=2$: in this case, when choosing two coins $1$ and $3$ in any order, their sum will be $4$, after which the bag will be emptied and the final score will be $0$. However, when choosing $3$ as the first coin, the score will be $3$. Then you can choose, for example, coin $2$, and the final score will become $5$.\n- $k=3$: in this case, the sum of all coins will be $6$, and since each time the bag is emptied it does not change the parity of the accumulated sum, the final score is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "你有 $n$ 枚面值分别为 $a_1, a_2, \\ldots, a_n$ 的硬币和一个自然数 $k$。你还有一个初始为空的袋子，可以往里面放硬币。你需要恰好执行 $k$ 次操作。每次操作中，你从剩余的硬币中取一枚放入袋子，此后你不能再取这枚硬币。\n\n同时，你有一只喜欢偶数的猫，因此每当袋子中硬币面值之和变为偶数时，你的猫就会清空袋子，也就是说它会把所有硬币带到只有它自己知道的地方，袋子再次变为空。注意，在放入硬币的过程中，只要面值之和变为偶数袋子就会被清空，而不仅仅是在最后时刻。\n\n设你的得分为袋子中硬币的面值之和。你的任务是执行 $k$ 次操作，使得最终得分最大。求 $1 \\le k \\le n$ 时所有的答案。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——表示你拥有的硬币数量。\n\n每个测试用例的第二行包含 $n$ 个自然数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——表示硬币的面值。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个数——对于 $1$ 到 $n$ 的每个 $k$，表示恰好执行 $k$ 次操作所能获得的最大得分。\n\n## 说明\n\n在第一组输入数据中，你拥有的硬币面值为 [$1,1,1$]。\n\n- $k=1$：在这种情况下，无论选择哪枚硬币，袋子中的面值之和都是 $1$，最终得分也是 $1$。\n- $k=2$：在这种情况下，无论选择哪枚硬币，袋子中的面值之和最初都是 $1$。当选择第二枚硬币时，无论选择哪枚，面值之和都会变为 $2$，因此袋子会被清空。最终得分为 $0$。\n- $k=3$：在这种情况下，选择前两枚硬币后，面值之和会变为 $2$，袋子被清空，此后面值之和为 $0$。再选择第三枚硬币时，面值之和变为 $1$。\n\n在第二组输入数据中，你拥有的硬币面值为 [$1,2,3$]。\n\n- $k=1$：在这种情况下，如果选择面值为 $2$ 的硬币，袋子会被清空，最终得分为 $0$。如果选择面值为 $1$ 或 $3$ 的硬币，最终得分分别为 $1$ 和 $3$。最大可能的最终得分为 $3$。\n- $k=2$：在这种情况下，如果以任意顺序选择硬币 $1$ 和 $3$，它们的和会变为 $4$，之后袋子被清空，最终得分为 $0$。然而，如果先选择 $3$，得分会是 $3$。然后再选择例如硬币 $2$，最终得分就会变为 $5$。\n- $k=3$：在这种情况下，所有硬币之和为 $6$，由于每次清空袋子都不会改变累计和的奇偶性，最终得分为 $0$。",
   "samples": [
     {
       "input": "6\n3\n1 1 1\n3\n1 2 3\n5\n4 1 3 1 2\n5\n4 2 3 1 3\n3\n4 1 2\n3\n4 2 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:05:15.687Z"
+  "fetchedAt": "2026-10-30T21:05:15.687Z",
+  "translatedAt": "2026-11-03T04:01:15.472+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

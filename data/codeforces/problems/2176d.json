@@ -4,7 +4,7 @@
   "contestId": 2176,
   "index": "D",
   "title": "Fibonacci Paths",
-  "titleZh": null,
+  "titleZh": "斐波那契路径",
   "url": "https://codeforces.com/contest/2176/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a **directed graph** consisting of $n$ vertices and $m$ edges. Each vertex $v$ corresponds to a positive number $a_v$. Count the number of distinct **simple paths**$^{\\text{∗}}$ consisting of at least two vertices, such that the sequence of numbers written at the vertices along the path forms a generalized Fibonacci sequence.\n\nIn this problem, we will consider that the sequence of numbers $x_0, x_1, \\ldots, x_k$ forms a generalized Fibonacci sequence if:\n\n- $x_0, x_1$ are arbitrary natural numbers.\n- $x_i = x_{i - 2} + x_{i - 1}$ for all $2 \\le i \\le k$.\n\nNote that a generalized Fibonacci sequence consists of at least two numbers.\n\nSince the answer may be large, output it modulo $998\\,244\\,353$.\n\n$^{\\text{∗}}$A simple path in a directed graph is a sequence of vertices $v_1, v_2, \\ldots, v_k$ such that each vertex in the graph appears in the path at most once and there is a directed edge from $v_i$ to $v_{i+1}$ for all $i \\lt k$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two numbers $n$, $m$ ($2 \\le n \\le 2 \\cdot 10^5$, $1 \\le m \\le 2 \\cdot 10^5$) — the number of vertices and the number of edges in the graph, respectively.\n\nThe second line of each test case contains $n$ natural numbers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^{18}$) — the numbers written at the vertices.\n\nThe next $m$ lines contain the edges of the graph; each edge is defined by two natural numbers $v, u$ ($1 \\le v, u \\le n$, $u \\neq v$), denoting a directed edge from $v$ to $u$. It is guaranteed that there are no multiple edges in the graph.\n\nIt is guaranteed that the sum of $n$ and the sum of $m$ across all test cases do not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the number of paths that form a generalized Fibonacci sequence, modulo $998\\,244\\,353$.\n\n## Note\n\nExplanation of the first test case example (the vertex number is outside the brackets, the number written in the vertex is inside):\n\n![image](https://espresso.codeforces.com/871040142263979c6a132efe66618c0297258b2c.png)\n\nIn this case, there are 5 generalized Fibonacci paths: ($1, 2$), ($1, 3$), ($2, 4$), ($3, 4$), ($1,3,4$). For example, for the path ($1,3,4$), the sequence of numbers written at the vertices along this path is: [$3,3,6$]. As can be easily seen, the third number in the sequence is the sum of the two previous ones.\n\nExplanation of the second test case example:\n\n![image](https://espresso.codeforces.com/8aa6e1cae1f8174334c375789c1bcae8f74f4506.png)\n\nIn this case, there are 9 generalized Fibonacci paths: ($1, 2$), ($1, 4$), ($2, 3$), ($2, 4$), ($3, 1$), ($3, 4$), ($1, 2, 4$), ($2, 3, 4$), ($3, 1, 4$). Note that for the path ($1, 2, 3$), the sequence of numbers written at the vertices along this path is: [$1,1,1$], and it is not a generalized Fibonacci sequence.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一张由 $n$ 个顶点和 $m$ 条边组成的**有向图**。每个顶点 $v$ 对应一个正整数 $a_v$。请统计由至少两个顶点组成的不同的**简单路径**$^{\\text{∗}}$的数目，使得路径上各顶点所写的数字依次构成的序列是一个广义斐波那契序列。\n\n在本题中，如果数列 $x_0, x_1, \\ldots, x_k$ 满足以下条件，我们就称其构成一个广义斐波那契序列：\n\n- $x_0, x_1$ 为任意自然数。\n- 对所有 $2 \\le i \\le k$，都有 $x_i = x_{i - 2} + x_{i - 1}$。\n\n注意，广义斐波那契序列至少由两个数组成。\n\n由于答案可能很大，请输出其对 $998\\,244\\,353$ 取模后的结果。\n\n$^{\\text{∗}}$有向图中的简单路径是指顶点序列 $v_1, v_2, \\ldots, v_k$，满足图中每个顶点在路径中至多出现一次，且对所有 $i \\lt k$，都存在一条从 $v_i$ 到 $v_{i+1}$ 的有向边。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含两个数 $n$、$m$（$2 \\le n \\le 2 \\cdot 10^5$，$1 \\le m \\le 2 \\cdot 10^5$）—— 分别表示图中顶点的数量和边的数量。\n\n每组测试用例的第二行包含 $n$ 个自然数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^{18}$）—— 写在各个顶点上的数字。\n\n接下来的 $m$ 行描述图中的边；每条边由两个自然数 $v, u$（$1 \\le v, u \\le n$，$u \\neq v$）定义，表示一条从 $v$ 到 $u$ 的有向边。保证图中没有重边。\n\n保证所有测试用例的 $n$ 之和与 $m$ 之和均不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出构成广义斐波那契序列的路径的数量，对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n第一组测试用例样例的解释（括号外为顶点编号，括号内为写在顶点中的数字）：\n\n![image](https://espresso.codeforces.com/871040142263979c6a132efe66618c0297258b2c.png)\n\n在此情况下，共有 5 条广义斐波那契路径：($1, 2$)、($1, 3$)、($2, 4$)、($3, 4$)、($1,3,4$)。例如，对于路径 ($1,3,4$)，沿该路径各顶点所写数字构成的序列为：[$3,3,6$]。易见，序列中的第三个数是前两个数之和。\n\n第二组测试用例样例的解释：\n\n![image](https://espresso.codeforces.com/8aa6e1cae1f8174334c375789c1bcae8f74f4506.png)\n\n在此情况下，共有 9 条广义斐波那契路径：($1, 2$)、($1, 4$)、($2, 3$)、($2, 4$)、($3, 1$)、($3, 4$)、($1, 2, 4$)、($2, 3, 4$)、($3, 1, 4$)。注意，对于路径 ($1, 2, 3$)，沿该路径各顶点所写数字构成的序列为：[$1,1,1$]，它并不是广义斐波那契序列。",
   "samples": [
     {
       "input": "4\n4 4\n3 4 3 6\n1 2\n1 3\n2 4\n3 4\n4 6\n1 1 1 2\n1 2\n2 3\n3 1\n1 4\n2 4\n3 4\n8 11\n2 4 2 6 8 10 18 26\n1 2\n2 3\n3 1\n4 3\n2 4\n3 5\n5 6\n4 6\n6 7\n7 5\n5 8\n2 2\n10 10\n1 2\n2 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:05:15.687Z"
+  "fetchedAt": "2026-10-30T21:05:15.687Z",
+  "translatedAt": "2026-11-03T04:01:34.940+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
