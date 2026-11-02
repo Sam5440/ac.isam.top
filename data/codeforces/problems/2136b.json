@@ -4,7 +4,7 @@
   "contestId": 2136,
   "index": "B",
   "title": "Like the Bitset",
-  "titleZh": null,
+  "titleZh": "像 Bitset 一样",
   "url": "https://codeforces.com/contest/2136/problem/B",
   "difficulty": 900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a binary string$^{\\text{∗}}$ $s$ of length $n$, as well as an integer $k$.\n\nAquawave wants to construct a permutation$^{\\text{†}}$ $p$ of length $n$, so that for each $1\\le i\\le n$, where $s_i=\\mathtt{1}$, the following holds:\n\n- For each interval $[l, r]$ ($1\\le l\\le r\\le n$) whose length is at least $k$ (i.e. $r - l + 1 \\geq k$), if it covers position $i$ (i.e. $l \\leq i \\leq r$), then the maximum element among $p_l, p_{l+1}, \\ldots, p_r$ is **not** $p_i$.\n\nNote that there are **no** such constraints on indices with $s_i = \\mathtt{0}$.\n\nYou have to find such a permutation, or determine that such permutations do not exist.\n\n$^{\\text{∗}}$A binary string is a string where each character is either $\\mathtt{0}$ or $\\mathtt{1}$.$^{\\text{†}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\leq n \\leq 2 \\cdot 10^5$, $1 \\leq k \\leq n$) — the length of $s$ and the integer in the statements.\n\nThe second line contains the binary string $s$ of length $n$ ($s_i = \\mathtt{0}$ or $\\mathtt{1}$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case:\n\n- If there is at least one possible permutation:\n- Print \"`YES`\" in the first line of output;\n  - Then, print $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\leq p_i \\leq n$, all $p_i$-s are distinct) in the second line — the permutation you constructed.\n- Otherwise, print \"`NO`\" in the single line of output.\n\nYou can output the tokens in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\nIf there are multiple answers, you may output any of them.\n\n## Note\n\nIn the first test case, you can output an arbitrary permutation of length $n = 2$, since all $s_i$-s are equal to $\\mathtt{0}$.\n\nIn the second test case, $p=[1, 4, 3, 2]$ is a valid answer because:\n\n- The only position where $s_i = \\tt{1}$ is $i = 3$. There are three distinct intervals $[l, r]$ covering index $3$, whose length is at least $k=3$: $[1, 3]$, $[1, 4]$, and $[2, 4]$;\n- And, for each of the three intervals, the maximum element among $p_l, \\ldots, p_r$ should be $p_2 = 4$, which is not equal to $p_3 = 3$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的二进制串$^{\\text{∗}}$ $s$，以及一个整数 $k$。\n\nAquawave 想要构造一个长度为 $n$ 的排列$^{\\text{†}}$ $p$，使得对于每个满足 $s_i=\\mathtt{1}$ 的 $1\\le i\\le n$，以下条件成立：\n\n- 对于每个长度至少为 $k$（即 $r - l + 1 \\geq k$）的区间 $[l, r]$（$1\\le l\\le r\\le n$），如果它覆盖位置 $i$（即 $l \\leq i \\leq r$），那么 $p_l, p_{l+1}, \\ldots, p_r$ 中的最大元素**不是** $p_i$。\n\n注意，对于满足 $s_i = \\mathtt{0}$ 的下标**没有**这样的约束。\n\n你需要找到这样一个排列，或者判定这样的排列不存在。\n\n$^{\\text{∗}}$二进制串是一个每个字符要么为 $\\mathtt{0}$ 要么为 $\\mathtt{1}$ 的字符串。$^{\\text{†}}$长度为 $n$ 的排列是一个由 $n$ 个 $1$ 到 $n$ 的互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$n=3$ 但数组中出现了 $4$）。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\leq n \\leq 2 \\cdot 10^5$，$1 \\leq k \\leq n$）——分别表示 $s$ 的长度和题述中的整数。\n\n第二行包含长度为 $n$ 的二进制串 $s$（$s_i = \\mathtt{0}$ 或 $\\mathtt{1}$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例：\n\n- 如果存在至少一个可行的排列：\n- 在输出的第一行打印 \"`YES`\"；\n  - 然后，在第二行打印 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$1 \\leq p_i \\leq n$，所有 $p_i$ 互不相同）——即你构造的排列。\n- 否则，在输出的单独一行中打印 \"`NO`\"。\n\n你可以以任意大小写（大写或小写）输出这些词。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定的回答。\n\n如果有多个答案，你可以输出其中任意一个。\n\n## 说明\n\n在第一个测试用例中，你可以输出任意一个长度为 $n = 2$ 的排列，因为所有 $s_i$ 都等于 $\\mathtt{0}$。\n\n在第二个测试用例中，$p=[1, 4, 3, 2]$ 是一个合法的答案，因为：\n\n- 满足 $s_i = \\tt{1}$ 的唯一位置是 $i = 3$。覆盖下标 $3$ 且长度至少为 $k=3$ 的不同区间共有三个：$[1, 3]$、$[1, 4]$ 和 $[2, 4]$；\n- 并且，对于这三个区间中的每一个，$p_l, \\ldots, p_r$ 中的最大元素都是 $p_2 = 4$，它不等于 $p_3 = 3$。",
   "samples": [
     {
       "input": "6\n2 1\n00\n4 3\n0010\n5 2\n11011\n7 5\n1111110\n8 4\n00101011\n10 2\n1000000010\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:14:32.355Z"
+  "fetchedAt": "2026-10-30T21:14:32.355Z",
+  "translatedAt": "2026-11-03T05:51:41.264+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
