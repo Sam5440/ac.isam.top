@@ -4,7 +4,7 @@
   "contestId": 2087,
   "index": "E",
   "title": "Color the Arrows",
-  "titleZh": null,
+  "titleZh": "给箭头染色",
   "url": "https://codeforces.com/contest/2087/problem/E",
   "difficulty": null,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "There are $n$ arrows drawn in a row on a strip of paper, numbered from $1$ to $n$. Each arrow points either to the left or to the right. Initially, all arrows are painted blue.\n\nIn one operation, you can repaint a **blue** arrow into **red**. For the first operation, you can choose any arrow. For each subsequent operation, you are only allowed to choose such an arrow that the arrow repainted on the previous operation points in its direction. That is, if the arrow repainted in the previous operation is a left arrow, then, for the current operation, you have to choose an arrow at a smaller index than the previous one. Similarly, if the previous arrow was a right arrow, the current one has to be at a greater index than it. Note that the arrows don't have to be adjacent.\n\nEach arrow has an integer reward for repainting it into red (which can be negative, positive, or zero).\n\nThe final score is the sum of the rewards for the repainted arrows. What is the maximum score that can be achieved if you are allowed to perform any number of operations (including zero)?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nIn the first line of each test case, there is a single integer $n$ ($1 \\le n \\le 3 \\cdot 10^5$) — the number of arrows.\n\nIn the second line, there is a string consisting of $n$ characters '`<`' and/or '`>`' (ASCII codes 60 and 62, respectively).\n\nIn the third line, there are $n$ integers $c_1, c_2, \\dots, c_n$ ($-10^9 \\le c_i \\le 10^9$) — the reward for repainting each arrow.\n\nAn additional constraint on the input: the sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the maximum score that can be achieved if you are allowed to perform any number of operations (including zero).\n\n## Note\n\nIn the first test case, you can first repaint the arrow at index $2$. This arrow points to the right, so in the next operation, you have to choose an arrow to the right of it. Let's repaint the arrow at index $3$. This arrow also points to the right, so no more arrows can be repainted. The answer is $c_2 + c_3 = 4 + 6 = 10$.\n\nIn the second test case, you can repaint arrows $3$, then $1$.\n\nIn the third test case, it is most optimal to not repaint any arrows. This will yield an answer of $0$, while repainting at least one arrow would lead to a negative answer.\n\nIn the fourth test case, you can repaint the arrows in the following order: $3, 7, 1, 5$.\n\nIn the fifth test case, you can repaint the arrows in the following order: $4, 3, 2, 1, 5$.",
-  "statementZhMd": null,
+  "statementZhMd": "纸条上画着 $n$ 个排成一行的箭头，编号从 $1$ 到 $n$。每个箭头要么指向左边，要么指向右边。初始时，所有箭头都被涂成蓝色。\n\n在一次操作中，你可以把一个**蓝色**箭头重新涂成**红色**。第一次操作时，你可以任选一个箭头。对于之后的每次操作，你只能选择这样的箭头：上一次操作中被涂色的箭头指向它的方向。也就是说，如果上一次涂色的箭头是向左的箭头，那么本次操作你必须选择一个编号比上一次更小的箭头；类似地，如果上一次的箭头是向右的箭头，那么本次的箭头编号必须比它更大。注意，这些箭头不必相邻。\n\n每个箭头都有一个将其涂成红色的整数奖励（可以是负数、正数或零）。\n\n最终得分是被涂色箭头的奖励之和。如果允许你执行任意次数的操作（包括零次），你能获得的最大得分是多少？\n\n## 输入格式\n\n第一行包含一个整数 $t$ ($1 \\le t \\le 10^4$)，表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$ ($1 \\le n \\le 3 \\cdot 10^5$)，表示箭头的数量。\n\n第二行是一个由 $n$ 个字符 '`<`' 和/或 '`>`' 组成的字符串（对应的 ASCII 码分别为 60 和 62）。\n\n第三行包含 $n$ 个整数 $c_1, c_2, \\dots, c_n$ ($-10^9 \\le c_i \\le 10^9$)，表示涂色每个箭头的奖励。\n\n输入的额外约束：所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示在允许执行任意次数操作（包括零次）的情况下所能获得的最大得分。\n\n## 说明\n\n在第一个测试用例中，你可以先涂色编号为 $2$ 的箭头。这个箭头向右指，所以在下一次操作中，你必须选择它右边的一个箭头。我们再涂色编号为 $3$ 的箭头。这个箭头也向右指，因此不能再涂色更多箭头了。答案是 $c_2 + c_3 = 4 + 6 = 10$。\n\n在第二个测试用例中，你可以先涂色箭头 $3$，再涂色 $1$。\n\n在第三个测试用例中，最优方案是不涂色任何箭头。这样得到的答案是 $0$，而涂色至少一个箭头会导致答案为负。\n\n在第四个测试用例中，你可以按以下顺序涂色箭头：$3, 7, 1, 5$。\n\n在第五个测试用例中，你可以按以下顺序涂色箭头：$4, 3, 2, 1, 5$。",
   "samples": [
     {
       "input": "5\n3\n<>>\n5 4 6\n5\n<><>>\n5 -2 4 -3 7\n2\n>>\n-1 -2\n8\n>>>><<<<\n1 -1 1 -1 1 -1 1 -1\n5\n><<<>\n-1 100 100 100 100\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:53:11.517Z"
+  "fetchedAt": "2026-11-02T16:53:11.517Z",
+  "translatedAt": "2026-11-03T07:33:39.132+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

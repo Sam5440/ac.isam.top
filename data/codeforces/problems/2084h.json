@@ -4,7 +4,7 @@
   "contestId": 2084,
   "index": "H",
   "title": "Turtle and Nediam 2",
-  "titleZh": null,
+  "titleZh": "乌龟与 Nediam 2",
   "url": "https://codeforces.com/contest/2084/problem/H",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "*[LGR-205-Div.1 C Turtle and Nediam](https://www.luogu.com.cn/problem/P11283)*\n\nYou are given a binary sequence $s$ of length $n$ which only consists of $0$ and $1$.\n\nYou can do the following operation **at most $n - 2$ times** (possibly zero):\n\n- Let $m$ denote the current length of $s$. Choose an integer $i$ such that $1 \\le i \\le m - 2$.\n- Let the median$^{\\text{∗}}$ of the subarray $[s_i, s_{i + 1}, s_{i + 2}]$ be $x$, and let $j$ be the smallest integer such that $j \\ge i$ and $s_j = x$.\n- Remove $s_j$ from the sequence and concatenate the remaining parts. In other words, replace $s$ with $[s_1, s_2, \\ldots, s_{j - 1}, s_{j + 1}, s_{j + 2}, \\ldots, s_m]$.\n\nNote that after every operation, the length of $s$ decreases by $1$.\n\nFind how many different binary sequences can be obtained after performing the operation, modulo $10^9 + 7$.\n\n$^{\\text{∗}}$The median of an array of odd length $k$ is the $\\frac{k + 1}{2}$-th element when sorted.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($3 \\le n \\le 2 \\cdot 10^6$) — the length of the binary sequence.\n\nThe second line of each test case contains a string $s$ of length $n$, consisting of only $0$ and $1$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^6$.\n\n## Output\n\nFor each test case, output a single integer — the number of binary sequences that can be obtained, modulo $10^9 + 7$.\n\n## Note\n\nIn the first test case, the following binary sequences can be obtained: $[1, 1]$, $[1, 1, 1]$, $[1, 1, 1, 1]$, $[1, 1, 1, 1, 1]$.\n\nIn the second test case, the following binary sequences can be obtained: $[0, 1]$, $[0, 1, 1]$, $[1, 0, 1]$, $[1, 0, 0, 1]$, $[1, 0, 1, 1]$, $[1, 0, 0, 0, 1]$, $[1, 0, 0, 1, 1]$, $[1, 0, 0, 0, 1, 1]$. For example, to obtain $[0, 1, 1]$, you can:\n\n- Choose $i = 2$. The median of $[0, 0, 0]$ is $0$. Remove $s_2$. The sequence becomes $[1, 0, 0, 1, 1]$.\n- Choose $i = 1$. The median of $[1, 0, 0]$ is $0$. Remove $s_2$. The sequence becomes $[1, 0, 1, 1]$.\n- Choose $i = 1$. The median of $[1, 0, 1]$ is $1$. Remove $s_1$. The sequence becomes $[0, 1, 1]$.",
-  "statementZhMd": null,
+  "statementZhMd": "*[LGR-205-Div.1 C 乌龟与 Nediam](https://www.luogu.com.cn/problem/P11283)*\n\n给你一个长度为 $n$ 的二进制序列 $s$，它仅由 $0$ 和 $1$ 组成。\n\n你可以进行以下操作**至多 $n - 2$ 次**（也可以一次都不做）：\n\n- 设 $m$ 为 $s$ 的当前长度。选择一个满足 $1 \\le i \\le m - 2$ 的整数 $i$。\n- 设子数组 $[s_i, s_{i + 1}, s_{i + 2}]$ 的中位数$^{\\text{∗}}$为 $x$，并设 $j$ 为满足 $j \\ge i$ 且 $s_j = x$ 的最小整数。\n- 从序列中删除 $s_j$，并将剩余部分拼接起来。换言之，将 $s$ 替换为 $[s_1, s_2, \\ldots, s_{j - 1}, s_{j + 1}, s_{j + 2}, \\ldots, s_m]$。\n\n注意，每次操作后，$s$ 的长度都会减少 $1$。\n\n求进行操作后能得到多少个不同的二进制序列，答案对 $10^9 + 7$ 取模。\n\n$^{\\text{∗}}$长度为奇数 $k$ 的数组的中位数，是排序后的第 $\\frac{k + 1}{2}$ 个元素。\n\n## 输入格式\n\n每个测试点包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含一个整数 $n$（$3 \\le n \\le 2 \\cdot 10^6$），表示二进制序列的长度。\n\n每组测试数据的第二行包含一个长度为 $n$ 的字符串 $s$，仅由 $0$ 和 $1$ 组成。\n\n保证所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^6$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数，表示可以得到的二进制序列的数量，对 $10^9 + 7$ 取模。\n\n## 说明\n\n在第一组测试数据中，可以得到以下二进制序列：$[1, 1]$、$[1, 1, 1]$、$[1, 1, 1, 1]$、$[1, 1, 1, 1, 1]$。\n\n在第二组测试数据中，可以得到以下二进制序列：$[0, 1]$、$[0, 1, 1]$、$[1, 0, 1]$、$[1, 0, 0, 1]$、$[1, 0, 1, 1]$、$[1, 0, 0, 0, 1]$、$[1, 0, 0, 1, 1]$、$[1, 0, 0, 0, 1, 1]$。例如，要得到 $[0, 1, 1]$，你可以：\n\n- 选择 $i = 2$。$[0, 0, 0]$ 的中位数是 $0$。删除 $s_2$。序列变为 $[1, 0, 0, 1, 1]$。\n- 选择 $i = 1$。$[1, 0, 0]$ 的中位数是 $0$。删除 $s_2$。序列变为 $[1, 0, 1, 1]$。\n- 选择 $i = 1$。$[1, 0, 1]$ 的中位数是 $1$。删除 $s_1$。序列变为 $[0, 1, 1]$。",
   "samples": [
     {
       "input": "5\n5\n11111\n6\n100011\n9\n000111000\n14\n11001111111000\n16\n0010000110100011\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:30:56.987Z"
+  "fetchedAt": "2026-10-30T21:30:56.987Z",
+  "translatedAt": "2026-11-03T07:38:37.642+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

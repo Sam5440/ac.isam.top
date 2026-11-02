@@ -4,7 +4,7 @@
   "contestId": "arc196",
   "index": "D",
   "title": "Roadway",
-  "titleZh": null,
+  "titleZh": "道路",
   "url": "https://atcoder.jp/contests/arc196/tasks/arc196_d",
   "difficulty": 2956,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere are $N$ towns, numbered $1,2,\\ldots,N$, arranged in a line in this order.\n\nThere are $N-1$ roads connecting adjacent towns: road $j\\,(1 \\leq j \\leq N-1)$ connects towns $j$ and $j+1$. For each road $j$, you can set a **strength** $w_j$ (an integer that may be negative).\n\nWhen a person travels along a road, their **stamina** changes. Specifically, if a person with stamina $x$ travels along road $j$, their stamina becomes $x + w_j$.\n\nThere are $M$ people who will now move between these towns.\n\nPerson $i\\,(1 \\le i \\le M)$ starts with stamina $0$ at town $S_i$ and travels to town $T_i$ via the shortest path. It is guaranteed that $|S_i - T_i| > 1$. Also, $(S_i, T_i) \\neq (S_j, T_j)$ if $i \\neq j$.\n\nPerson $i$’s requirement is as follows:\n\n> When departing Town $S_i$ and when arriving at Town $T_i$, their stamina should be exactly $0$. At every other town, their stamina should always be a positive integer.\n\nAssume that there are no changes to stamina other than those due to traveling along roads as described above.\n\nProcess $Q$ queries. For the $k$-th query $(1 \\le k \\le Q)$, if it is possible to set the strengths of the roads so that the requirements of all people $L_k, L_k + 1, \\ldots, R_k$ are satisfied, print `Yes`; otherwise, print `No`.\n\n## Constraints\n\n- $3 \\le N \\le 4 \\times 10^5$\n- $1 \\le M \\le 2 \\times 10^5$\n- $1 \\le Q \\le 2 \\times 10^5$\n- $1 \\le S_i, T_i \\le N$\n- $|S_i - T_i| > 1$\n- $(S_i, T_i) \\neq (S_j, T_j)\\,(i \\neq j)$\n- $1 \\le L_k \\le R_k \\le M$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M Q\nS_1 T_1\nS_2 T_2\n\\vdots\nS_M T_M\nL_1 R_1\nL_2 R_2\n\\vdots\nL_Q R_Q\n```\n\n## Output\n\nPrint $Q$ lines.\n\nThe $k$-th line should contain `Yes` if there is a way to set the strengths of the roads so that the requirements of all people $L_k, L_k + 1, \\ldots, R_k$ are satisfied, and `No` otherwise.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有 $N$ 个城镇，按 $1,2,\\ldots,N$ 的编号顺序排成一行。\n\n有 $N-1$ 条道路连接相邻的城镇：道路 $j\\,(1 \\leq j \\leq N-1)$ 连接城镇 $j$ 和 $j+1$。对于每条道路 $j$，你可以设定一个**强度** $w_j$（一个可以为负的整数）。\n\n当一个人沿道路行进时，其**体力**会发生变化。具体来说，若体力为 $x$ 的人沿道路 $j$ 行进，则其体力变为 $x + w_j$。\n\n现有 $M$ 个人将在这些城镇之间移动。\n\n第 $i$ 个人 $(1 \\le i \\le M)$ 从城镇 $S_i$ 出发，初始体力为 $0$，沿最短路径前往城镇 $T_i$。保证 $|S_i - T_i| > 1$。此外，当 $i \\neq j$ 时，$(S_i, T_i) \\neq (S_j, T_j)$。\n\n第 $i$ 个人的要求如下：\n\n> 在离开城镇 $S_i$ 时以及到达城镇 $T_i$ 时，其体力应恰好为 $0$。在其余每个城镇处，其体力都应始终为正整数。\n\n假设除上述沿道路行进引起的体力变化之外，体力不会发生其他变化。\n\n处理 $Q$ 个查询。对于第 $k$ 个查询 $(1 \\le k \\le Q)$，若存在一种设定各道路强度的方式，使得所有人 $L_k, L_k + 1, \\ldots, R_k$ 的要求均得到满足，则输出 `Yes`；否则输出 `No`。\n\n## 约束条件\n\n- $3 \\le N \\le 4 \\times 10^5$\n- $1 \\le M \\le 2 \\times 10^5$\n- $1 \\le Q \\le 2 \\times 10^5$\n- $1 \\le S_i, T_i \\le N$\n- $|S_i - T_i| > 1$\n- $(S_i, T_i) \\neq (S_j, T_j)\\,(i \\neq j)$\n- $1 \\le L_k \\le R_k \\le M$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入由标准输入按以下格式给出：\n\n```\nN M Q\nS_1 T_1\nS_2 T_2\n\\vdots\nS_M T_M\nL_1 R_1\nL_2 R_2\n\\vdots\nL_Q R_Q\n```\n\n## 输出格式\n\n输出 $Q$ 行。\n\n第 $k$ 行应包含 `Yes`，若存在一种设定各道路强度的方式，使得所有人 $L_k, L_k + 1, \\ldots, R_k$ 的要求均得到满足；否则应包含 `No`。",
   "samples": [
     {
       "input": "5 4 2\n4 2\n1 3\n3 5\n2 4\n1 3\n2 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:59:30.197Z"
+  "fetchedAt": "2026-10-30T20:59:30.197Z",
+  "translatedAt": "2026-11-03T07:35:31.273+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
