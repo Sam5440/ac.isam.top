@@ -4,7 +4,7 @@
   "contestId": 2190,
   "index": "F",
   "title": "Xor Product",
-  "titleZh": null,
+  "titleZh": "异或积",
   "url": "https://codeforces.com/contest/2190/problem/F",
   "difficulty": 3300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "For non-negative integers $x, y$ and a positive integer $k$, let $S(x, y, k)$ be the set of values $(x + i) \\oplus (y + j)$ for all $0 \\le i, j \\lt k$. Formally: $$ S(x, y, k) = \\{ (x + i) \\oplus (y + j) \\mid 0 \\le i, j \\lt k \\} $$ where $\\oplus$ denotes the bitwise XOR operation.\n\nDefine $f(x, k)$ as the maximum size of $S(x, y, k)$ over all non-negative integers $y$ (that is, $y \\ge 0$).\n\nYou are given integers $x$ and $k$. Compute $f(x, k)$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nEach of the next $t$ lines contains two integers $x$ and $k$ ($1 \\le x, k \\le 10^{17}$).\n\n## Output\n\nFor each test case, output a single integer — the value of $f(x, k)$.\n\n## Note\n\nIn the first example, since $k=1$, the set $S$ will always contain exactly one element regardless of $y$. For instance, if we pick $y = 69$, we have $S(67, 69, 1) = \\{67 \\oplus 69\\} = \\{6\\}$, so $|S(x, y, k)| = 1$.\n\nIn the second example, we have $x = 7$ and $k = 3$. The optimal choice is $y = 8$. The values of $(x + i) \\oplus (y + j)$ are: $$ [7 \\oplus 8, 7 \\oplus 9, 7 \\oplus 10, 8 \\oplus 8, 8 \\oplus 9, 8 \\oplus 10, 9 \\oplus 8, 9 \\oplus 9, 9 \\oplus 10] $$ which simplifies to $[15, 14, 13, 0, 1, 2, 1, 0, 3]$. The set of distinct values is $S(7, 8, 3) = \\{0, 1, 2, 3, 13, 14, 15\\}$, so the size is $7$. It can be shown that no other $y$ yields a larger size. However, the choice of $y$ matters; for example, if you chose $y = 22$, you would get $S(7, 22, 3) = \\{16, 17, 30, 31\\}$ with size $4$, which is suboptimal.\n\nIn the sixth example, after countless calculations, we managed to figure out that the optimal $y$ is $278\\,302\\,368\\,699\\,121\\,665$, which gives an answer of $398\\,158\\,383\\,604\\,301\\,822$. The proof is left to the reader as a trivial exercise.",
-  "statementZhMd": null,
+  "statementZhMd": "对于非负整数 $x, y$ 和正整数 $k$，令 $S(x, y, k)$ 为所有满足 $0 \\le i, j \\lt k$ 的 $(x + i) \\oplus (y + j)$ 的值组成的集合。形式化地：$$ S(x, y, k) = \\{ (x + i) \\oplus (y + j) \\mid 0 \\le i, j \\lt k \\} $$ 其中 $\\oplus$ 表示按位异或运算。\n\n定义 $f(x, k)$ 为对所有非负整数 $y$（即 $y \\ge 0$）而言，$S(x, y, k)$ 的大小的最大值。\n\n给定整数 $x$ 和 $k$，计算 $f(x, k)$。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n接下来的 $t$ 行，每行包含两个整数 $x$ 和 $k$（$1 \\le x, k \\le 10^{17}$）。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数 —— $f(x, k)$ 的值。\n\n## 说明\n\n在第一组样例中，由于 $k=1$，无论 $y$ 取何值，集合 $S$ 总是恰好包含一个元素。例如，若取 $y = 69$，则有 $S(67, 69, 1) = \\{67 \\oplus 69\\} = \\{6\\}$，因此 $|S(x, y, k)| = 1$。\n\n在第二组样例中，$x = 7$，$k = 3$，最优的选择是 $y = 8$。$(x + i) \\oplus (y + j)$ 的值依次为：$$ [7 \\oplus 8, 7 \\oplus 9, 7 \\oplus 10, 8 \\oplus 8, 8 \\oplus 9, 8 \\oplus 10, 9 \\oplus 8, 9 \\oplus 9, 9 \\oplus 10] $$ 化简后为 $[15, 14, 13, 0, 1, 2, 1, 0, 3]$。所有不同值组成的集合为 $S(7, 8, 3) = \\{0, 1, 2, 3, 13, 14, 15\\}$，因此其大小为 $7$。可以证明，没有其他 $y$ 能得到更大的大小。不过，$y$ 的选择是有影响的；例如，若选择 $y = 22$，则会得到 $S(7, 22, 3) = \\{16, 17, 30, 31\\}$，大小为 $4$，这是次优的。\n\n在第六组样例中，经过无数次的计算，我们终于求出最优的 $y$ 为 $278\\,302\\,368\\,699\\,121\\,665$，对应答案为 $398\\,158\\,383\\,604\\,301\\,822$。证明留给读者作为一个简单的练习。",
   "samples": [
     {
       "input": "6\n67 1\n7 3\n100 12\n1 1043\n1526 1043\n88946092640567295 100000000000000000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:22.983Z"
+  "fetchedAt": "2026-10-30T21:04:22.983Z",
+  "translatedAt": "2026-11-03T03:25:43.612+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

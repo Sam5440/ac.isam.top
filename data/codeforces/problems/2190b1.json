@@ -4,7 +4,7 @@
   "contestId": 2190,
   "index": "B1",
   "title": "Sub-RBS (Easy Version)",
-  "titleZh": null,
+  "titleZh": "Sub-RBS（简单版本）",
   "url": "https://codeforces.com/contest/2190/problem/B1",
   "difficulty": 1400,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, you only need to evaluate for whole string $s$, $s$ is *regular*, and the constraints on $n$ are higher**.\n\nWe say that a bracket sequence $a$ is **better** than a bracket sequence $b$ if one of the following holds:\n\n- $b$ is a prefix of $a$, but $a \\ne b$; or\n- let $i$ be the first position (if it exists) where $a_i \\neq b_i$, then $\\color{red}{a_i = \\texttt{(}}$ and $\\color{red}{b_i = \\texttt{)}}$.\n\nYou are given a *regular bracket sequence*$^{\\text{∗}}$ $s$ of even length $n$.\n\nAmong all non-empty **subsequences** $^{\\text{†}}$ $t$ of $s$ that are *regular bracket sequences*, find the maximum possible length of $t$ such that $t$ is **better** than $s$. If no such $t$ exists, report it.\n\n$^{\\text{∗}}$A regular bracket sequence is a bracket sequence that can be transformed into a correct arithmetic expression by inserting the characters $\\texttt{1}$ and $\\texttt{+}$ between the original characters of the sequence. For example: bracket sequences $\\texttt{()()}$ and $\\texttt{(())}$ are regular (the resulting expressions are $\\texttt{(1)+(1)}$ and $\\texttt{((1+1)+1)}$); bracket sequences $\\texttt{)(}$, $\\texttt{(}$, and $\\texttt{)}$ are not. $^{\\text{†}}$A sequence $a$ is a subsequence of a sequence $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) element from arbitrary positions.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$, $n$ is even) — the length of the string $s$.\n\nThe second line of each test case contains a sequence $s$ of length $n$ consisting only of characters $\\texttt{(}$ and $\\texttt{)}$.\n\nIt is guaranteed that the given sequence $s$ is a *regular bracket sequence*.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the maximum possible length of a non-empty subsequence $t$ of $s$ that is a *regular bracket sequence* and is **better** than $s$. If no such $t$ exists, print $-1$.\n\n## Note\n\nIn the first example, the only non-empty regular bracket subsequence of $s$ is $t = s = \\texttt{()}$. Since $t$ is not better than $s$, we output $-1$.\n\nIn the second example, we can choose $t = \\texttt{((()))}$. The first index where $t$ and $s$ differ is $i = 3$. Since $t_3 = \\texttt{(}$ and $s_3 = \\texttt{)}$, $t$ is better than $s$. We cannot choose a longer subsequence because the only longer regular bracket subsequence is $s$ itself, which is not better than $s$. Thus, we output $6$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。两个版本的区别在于：在本版本中，你只需要对整个字符串 $s$ 进行求解，$s$ 是*正规的*，并且对 $n$ 的约束更大**。\n\n我们称一个括号序列 $a$ **优于**另一个括号序列 $b$，如果满足以下条件之一：\n\n- $b$ 是 $a$ 的前缀，但 $a \\ne b$；或\n- 设 $i$ 为第一个满足 $a_i \\neq b_i$ 的位置（如果存在），则 $\\color{red}{a_i = \\texttt{(}}$ 且 $\\color{red}{b_i = \\texttt{)}}$。\n\n给定一个长度为偶数 $n$ 的*正规括号序列*$^{\\text{∗}}$ $s$。\n\n在 $s$ 的所有为*正规括号序列*的非空**子序列**$^{\\text{†}}$ $t$ 中，求 $t$ 的最大可能长度，使得 $t$ **优于** $s$。如果不存在这样的 $t$，请报告。\n\n$^{\\text{∗}}$正规括号序列是指可以通过在序列原有字符之间插入字符 $\\texttt{1}$ 和 $\\texttt{+}$ 而转化为一个正确算术表达式的括号序列。例如：括号序列 $\\texttt{()()}$ 和 $\\texttt{(())}$ 是正规的（所得表达式分别为 $\\texttt{(1)+(1)}$ 和 $\\texttt{((1+1)+1)}$）；括号序列 $\\texttt{)(}$、$\\texttt{(}$ 和 $\\texttt{)}$ 则不是。$^{\\text{†}}$如果序列 $a$ 可以通过从序列 $b$ 的任意位置删除若干（可以为零个或全部）元素而得到，则称序列 $a$ 是序列 $b$ 的子序列。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$，$n$ 为偶数）——表示字符串 $s$ 的长度。\n\n每个测试用例的第二行包含一个长度为 $n$ 的序列 $s$，仅由字符 $\\texttt{(}$ 和 $\\texttt{)}$ 组成。\n\n保证给定的序列 $s$ 是一个*正规括号序列*。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——$s$ 的一个为*正规括号序列*且**优于** $s$ 的非空子序列 $t$ 的最大可能长度。如果不存在这样的 $t$，输出 $-1$。\n\n## 说明\n\n在第一个样例中，$s$ 唯一的非空正规括号子序列是 $t = s = \\texttt{()}$。由于 $t$ 不优于 $s$，我们输出 $-1$。\n\n在第二个样例中，我们可以选择 $t = \\texttt{((()))}$。$t$ 与 $s$ 第一个不同的下标是 $i = 3$。由于 $t_3 = \\texttt{(}$ 且 $s_3 = \\texttt{)}$，所以 $t$ 优于 $s$。我们无法选择更长的子序列，因为唯一更长的正规括号子序列就是 $s$ 本身，而它不优于 $s$。因此，我们输出 $6$。",
   "samples": [
     {
       "input": "3\n2\n()\n8\n(()(()))\n6\n(())()\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:22.982Z"
+  "fetchedAt": "2026-10-30T21:04:22.982Z",
+  "translatedAt": "2026-11-03T03:22:50.937+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
