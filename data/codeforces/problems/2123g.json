@@ -1,0 +1,31 @@
+{
+  "id": "2123G",
+  "platform": "codeforces",
+  "contestId": 2123,
+  "index": "G",
+  "title": "Modular Sorting",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2123/problem/G",
+  "difficulty": 2100,
+  "tags": [
+    "brute force",
+    "data structures",
+    "greedy",
+    "math",
+    "number theory",
+    "sortings"
+  ],
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given an integer $m$ ($2\\leq m\\leq 5\\cdot 10^5$) and an array $a$ consisting of nonnegative integers smaller than $m$.\n\nAnswer queries of the following form:\n\n- $1$ $i$ $x$: assign $a_i := x$\n- $2$ $k$: in one operation, you may choose an element $a_i$ and assign $a_i := (a_i + k) \\pmod m$$^{\\text{∗}}$ — determine if there exists some sequence of (possibly zero) operations to make $a$ nondecreasing$^{\\text{†}}$.\n\nNote that instances of query $2$ are independent; that is, no actual operations are taking place. Instances of query $1$ are persistent.\n\n$^{\\text{∗}}$$a\\pmod m$ is defined as the unique integer $b$ such that $0\\leq b \\lt m$ and $a-b$ is an integer multiple of $m$.\n\n$^{\\text{†}}$An array $a$ of size $n$ is called nondecreasing if and only if $a_i\\leq a_{i+1}$ for all $1\\leq i \\lt n$.\n\n## Input\n\nThe first line contains an integer $t$ ($1\\leq t\\leq 10^4$)  — the number of test cases.\n\nThe first line of each test case contains three integers, $n$, $m$, and $q$ ($2\\leq n \\leq 10^5$, $2\\leq m\\leq 5\\cdot10^5$, $1\\leq q\\leq 10^5$) — the size of the array $a$, the integer $m$, and the number of queries.\n\nThe second line of each test case contains $n$ integers, $a_1,a_2,\\dots,a_n$ ($0\\leq a_i \\lt m$).\n\nThen follows $q$ lines. Each line is of one of the following forms:\n\n- $1$ $i$ $x$ ($1\\leq i\\leq n$, $0\\leq x \\lt m$)\n- $2$ $k$ ($1\\leq k \\lt m$)\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ over all test cases each do not exceed $10^5$.\n\n## Output\n\nFor each instance of query $2$, output on a single line \"`YES`\" if there exists some sequence of (possibly zero) operations to make $a$ nondecreasing, and \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first sample, the array is initially:\n\n| 4 | 5 | 2 | 2 | 4 | 1 | 0 |\n| --- | --- | --- | --- | --- | --- | --- |\n\nBy applying the operation twice on $a_1$, twice on $a_2$, once on $a_5$, twice on $a_6$, and once on $a_7$, the array becomes:\n\n| 0 | 1 | 2 | 2 | 2 | 3 | 4 |\n| --- | --- | --- | --- | --- | --- | --- |\n\nwhich is in nondecreasing order.\n\nAfter the second query, the array becomes:\n\n| 4 | 5 | 2 | 5 | 4 | 1 | 0 |\n| --- | --- | --- | --- | --- | --- | --- |\n\nand it can be shown that it is impossible to sort this with operations of the form $a_i := (a_i+4)\\pmod 6$, and it is also impossible to sort this with operations of the form $a_i := (a_i+3)\\pmod 6$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n7 6 6\n4 5 2 2 4 1 0\n2 4\n1 4 5\n2 4\n2 3\n1 7 2\n2 3\n8 8 3\n0 1 2 3 4 5 6 7\n2 4\n1 3 4\n2 4\n",
+      "output": "YES\nNO\nNO\nYES\nYES\nNO\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:47:33.119Z"
+}

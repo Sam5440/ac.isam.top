@@ -1,0 +1,31 @@
+{
+  "id": "2131F",
+  "platform": "codeforces",
+  "contestId": 2131,
+  "index": "F",
+  "title": "Unjust Binary Life",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2131/problem/F",
+  "difficulty": 1900,
+  "tags": [
+    "binary search",
+    "data structures",
+    "greedy",
+    "math",
+    "sortings",
+    "two pointers"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Yuri is given two binary strings $a$ and $b$, both of which are of length $n$. The two strings dynamically define an $n \\times n$ grid. Let $(i, j)$ denote the cell in the $i$-th row and $j$-th column. The initial value of cell $(i, j)$ has the value of $a_i \\oplus b_j$, where $\\oplus$ denotes the [bitwise XOR operation](). .\n\nYuri's journey always starts at cell $(1, 1)$. From a cell $(i, j)$, she can only move down to $(i + 1, j)$ or right to $(i, j + 1)$. Her journey is possible if there exists a valid path such that all cells on the path, including $(1, 1)$, have a value of 0.\n\nBefore her departure, she can do the following operation for any number of times:\n\n- Choose one index $1 \\le i \\le n$, and flip the value of either $a_i$ or $b_i$ ($0$ becomes $1$, and $1$ becomes $0$). The grid will also change accordingly.\n\nLet $f(x, y)$ denote the minimum required operations so that Yuri can make her journey to the cell $(x,y)$. You must determine the **sum** of $f(x, y)$ over all $1 \\leq x, y \\leq n$.\n\nNote that each of these $n^2$ cases is independent, meaning you need to assume the grid is in its original state in each case (i.e., no actual operations are performed).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$).\n\nThe second line of each test case contains a binary string $a$ ($|a| = n$, $a_i \\in \\{0, 1\\}$).\n\nThe third line of each test case contains a binary string $b$ ($|b| = n$, $b_i \\in \\{0, 1\\}$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer — the sum of minimum operations over all possible cells.\n\n## Note\n\nIn the first test case, the $2 \\times 2$ grid is shown below.\n\n$$ 11 \\\\ 11 $$\n\nIn the initial state, Yuri cannot reach any cell.\n\nYuri can flip $a_1$ so that the grid becomes:\n\n$$ 00 \\\\ 11 $$\n\nand Yuri can travel to cells $(1,1)$ and $(1,2)$.\n\nOn the other hand, Yuri can flip $b_1$ so that the grid becomes:\n\n$$ 01 \\\\ 01 $$\n\nand Yuri can travel to cells $(1,1)$ and $(2,1)$.\n\nTo move to the cell $(2,2)$, it can be shown that she must perform at least two operations. For example, she can flip both $a_1$ and $a_2$ so that the grid becomes:\n\n$$ 00 \\\\ 00 $$\n\nTherefore, the answer is $1+1+1+2=5$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n2\n11\n00\n2\n01\n01\n4\n1010\n1101\n",
+      "output": "5\n4\n24\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:47:07.438Z"
+}

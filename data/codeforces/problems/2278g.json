@@ -4,7 +4,7 @@
   "contestId": 2278,
   "index": "G",
   "title": "0s and 1s",
-  "titleZh": null,
+  "titleZh": "0 和 1",
   "url": "https://codeforces.com/contest/2278/problem/G",
   "difficulty": null,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A tree is an undirected connected graph with no cycles.\n\nYou are given a tree with $n$ nodes, rooted at node $1$. Each node $i$ ($1 \\le i \\le n$) has a binary state, initially equal to $x_i$ ($x_i \\in \\{\\texttt{0},\\texttt{1}\\}$) and a target binary state $y_i$ ($y_i \\in \\{\\texttt{0},\\texttt{1}\\}$) associated with it.\n\nYou wish to make the state of every node equal to its target state. To do so, you are allowed to inject energy pulses into the root node. Each time a pulse is injected, it propagates through the tree according to the following procedure:\n\n- If the current state of the node is $\\texttt{0}$, its state becomes $\\texttt{1}$, and the pulse stops at this node.\n- Otherwise, if the current state of the node is $\\texttt{1}$, its state becomes $\\texttt{0}$, and the node sends one pulse to each of its children. If it has no children, then the pulse disappears. Every pulse sent to a child follows the same propagation rules.\n\nDetermine whether it is possible to make the state of every node equal to its target state. If it is possible, also find the minimum number of energy pulses needed to achieve this goal. Since this number can be very large, report the answer modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of each test case follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of nodes in the tree.\n\nThe next $n-1$ lines each contain two integers $u$ and $v$ ($1 \\le u,v \\le n$, $u \\ne v$), denoting an undirected edge between nodes $u$ and $v$. It is guaranteed that the given edges form a tree.\n\nThe next line contains a binary string $x$ of length $n$, where $x_i$ ($1 \\le i \\le n$, $x_i \\in \\{\\texttt{0},\\texttt{1}\\}$) represents the initial state of node $i$.\n\nThe next line contains a binary string $y$ of length $n$, where $y_i$ ($1 \\le i \\le n$, $y_i \\in \\{\\texttt{0},\\texttt{1}\\}$) represents the target state of node $i$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if it is impossible to make the state of every node equal to its target state, output $-1$. Otherwise, print the minimum number of energy pulses needed modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, the initial state is already equal to the target state. Therefore, no energy pulse is required, and the answer is $0$.\n\nIn the second test case, the tree contains only the root. Initially, its state is $x_1 = \\texttt{0}$.\n\nAfter one pulse is injected into the root, its state becomes $\\texttt{1} = y_1$, and the pulse stops. Therefore, the answer is $1$.\n\nFor the third test case, $2$ pulses are needed. The following image shows the propagation of both pulses through the tree.\n\n![image](https://espresso.codeforces.com/168014c94dd6fbbc147a7f7889e80d58e6517a63.png) Propagation of the two pulses. Pulse $1$ yields states $\\texttt{100}$, and Pulse $2$ propagates to achieve the target $\\texttt{011}$.",
-  "statementZhMd": null,
+  "statementZhMd": "树是一个不含环的无向连通图。\n\n给你一棵有 $n$ 个节点的树，以节点 $1$ 为根。每个节点 $i$（$1 \\le i \\le n$）有一个二进制状态，初始等于 $x_i$（$x_i \\in \\{\\texttt{0},\\texttt{1}\\}$），并关联一个目标二进制状态 $y_i$（$y_i \\in \\{\\texttt{0},\\texttt{1}\\}$）。\n\n你希望使每个节点的状态都等于其目标状态。为此，你可以向根节点注入能量脉冲。每次注入脉冲后，脉冲会按照以下过程在树中传播：\n\n- 若该节点当前状态为 $\\texttt{0}$，则其状态变为 $\\texttt{1}$，脉冲在此节点停止。\n- 否则，若该节点当前状态为 $\\texttt{1}$，则其状态变为 $\\texttt{0}$，并且该节点向它的每个子节点各发送一个脉冲。若它没有子节点，则脉冲消失。发送给子节点的每个脉冲都遵循相同的传播规则。\n\n请判断是否能使每个节点的状态都等于其目标状态。如果可以，还需要求出达成该目标所需的最少能量脉冲数。由于该数可能非常大，请将答案对 $998\\,244\\,353$ 取模后输出。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）—— 测试用例的数量。接下来是每个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）—— 树中节点的数量。\n\n接下来的 $n-1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n$，$u \\ne v$），表示节点 $u$ 与节点 $v$ 之间的一条无向边。保证给定的边构成一棵树。\n\n接下来一行包含一个长度为 $n$ 的二进制字符串 $x$，其中 $x_i$（$1 \\le i \\le n$，$x_i \\in \\{\\texttt{0},\\texttt{1}\\}$）表示节点 $i$ 的初始状态。\n\n接下来一行包含一个长度为 $n$ 的二进制字符串 $y$，其中 $y_i$（$1 \\le i \\le n$，$y_i \\in \\{\\texttt{0},\\texttt{1}\\}$）表示节点 $i$ 的目标状态。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果无法使每个节点的状态都等于其目标状态，输出 $-1$；否则，输出所需的最少能量脉冲数对 $998\\,244\\,353$ 取模后的结果。\n\n## 说明\n\n在第一个测试用例中，初始状态已经等于目标状态，因此不需要任何能量脉冲，答案为 $0$。\n\n在第二个测试用例中，树中只有根节点。初始时其状态为 $x_1 = \\texttt{0}$。\n\n向根节点注入一个脉冲后，其状态变为 $\\texttt{1} = y_1$，脉冲停止。因此答案为 $1$。\n\n对于第三个测试用例，需要 $2$ 个脉冲。下图展示了两个脉冲在树中的传播过程。\n\n![image](https://espresso.codeforces.com/168014c94dd6fbbc147a7f7889e80d58e6517a63.png) 两个脉冲的传播。脉冲 $1$ 使状态变为 $\\texttt{100}$，脉冲 $2$ 继续传播以达到目标状态 $\\texttt{011}$。",
   "samples": [
     {
       "input": "5\n1\n0\n0\n1\n0\n1\n3\n1 2\n1 3\n000\n011\n3\n1 2\n1 3\n000\n010\n3\n1 2\n2 3\n000\n001\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T15:54:57.657Z"
+  "fetchedAt": "2026-11-02T15:54:57.657Z",
+  "translatedAt": "2026-11-03T00:49:16.724+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

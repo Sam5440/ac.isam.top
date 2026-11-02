@@ -1,0 +1,38 @@
+{
+  "id": "2112F",
+  "platform": "codeforces",
+  "contestId": 2112,
+  "index": "F",
+  "title": "Variables and Operations",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2112/problem/F",
+  "difficulty": 2800,
+  "tags": [
+    "graphs",
+    "greedy",
+    "shortest paths"
+  ],
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 512,
+  "statementMd": "There are n variables; let's denote the value of the i-th variable as ai.\n\nThere are also m operations which will be applied to these variables; the i-th operation is described by three integers xi,yi,zi. When the i-th operation is applied, the variable xi gets assigned the following value: min(axi,ayi+zi).\n\nEvery operation will be applied **exactly once**, but their order is not fixed; they can be applied in any order.\n\nLet's call a sequence of initial variable values a1,a2,…,an **stable**, if no matter in which order we apply operations, the resulting values will be the same. If the resulting value of the i-th variable depends on the order of operations, then the sequence of initial variable values is called i-**unstable**.\n\nYou have to process q queries. In each query, you will be given initial values a1,a2,…,an and an integer k; before applying the operations, you can at most k times choose a variable and decrease it by 1. For every variable i, you have to independently determine if it is possible to transform the given values into an i-unstable sequence.\n\n## Input\n\nThe first line contains two integers n and m (2≤n≤500; 1≤m≤4⋅105) — the number of variables and operations, respectively.\n\nThen, m lines follow. The i-th of them contains three integers xi,yi,zi (1≤xi,yi≤n; xi≠yi; 0≤zi≤105) — the description of the i-th operation.\n\nThe next line contains one integer q (1≤q≤1000) — the number of queries.\n\nEach query consists of two lines:\n\n- the first line contains one integer k (0≤k≤109) — the maximum number of times you can choose a variable and decrease it by 1;\n- the second line contains n integers a1,a2,…,an (0≤ai≤109) — the initial values of the variables.\n\n## Output\n\nFor each query, print a string of n zeroes and/or ones. The i-th character should be `1` if it is possible to obtain an i-unstable sequence, or `0` otherwise.\n\n## Note\n\nConsider the first example. If the initial variable values are [20,0,15,5], the resulting values will be [6,0,5,5] with any order of operations. Decreasing the variables 10 times is not enough. However, if we can apply no more than 30 changes, we can decrease the 1-st variable by 2, and the 4-th variable by 25, we get initial values equal to [18,0,15,−20], and this sequence is 2-unstable and 3-unstable:\n\n- if you apply the operations in the order they are given, you will get [−12,0,5,−20];\n- however, if you apply the operations in order [3,2,4,1,5], you will get [−12,−2,5,−20];\n- and if you apply the operations in order [3,4,5,1,2], you will get [−12,−2,3,−20].",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 5\n2 1 10\n3 2 5\n1 4 8\n1 2 6\n3 1 17\n3\n0\n20 0 15 5\n10\n20 0 15 5\n30\n20 0 15 5\n",
+      "output": "0000\n0000\n0110\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "3 5\n1 2 100\n1 2 10\n1 3 5\n1 2 100\n3 2 5\n1\n1000000000\n0 0 0\n",
+      "output": "000\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "3 4\n2 3 5\n1 2 0\n3 1 4\n1 3 4\n10\n5\n7 5 3\n2\n5 7 0\n1\n1 1 1\n5\n3 0 1\n0\n5 3 5\n5\n6 0 4\n5\n1 5 6\n1\n7 7 2\n1\n1 6 6\n4\n7 7 2\n",
+      "output": "000\n000\n000\n001\n000\n001\n001\n000\n000\n000\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:48:07.729Z"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "2126F",
+  "platform": "codeforces",
+  "contestId": 2126,
+  "index": "F",
+  "title": "1-1-1, Free Tree!",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2126/problem/F",
+  "difficulty": 2000,
+  "tags": [
+    "brute force",
+    "data structures",
+    "dfs and similar",
+    "graphs",
+    "implementation",
+    "trees"
+  ],
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "Given a tree$^{\\text{∗}}$ with $n$ vertices numbered from $1$ to $n$. Each vertex has an initial color $a_i$.\n\nEach edge of the tree is defined by three numbers: $u_i$, $v_i$, and $c_i$, where $u_i$ and $v_i$ are the endpoints of the edge, and $c_i$ is the edge parameter. The cost of the edge is defined as follows: if the colors of vertices $u_i$ and $v_i$ are the same, the cost is $0$; otherwise, the cost is $c_i$.\n\nYou are also given $q$ queries. Each query has the form: repaint vertex $v$ to color $x$. The queries depend on each other (after each query, the color change is preserved). After each query, you need to output the sum of the costs of all edges in the tree.\n\n$^{\\text{∗}}$A tree is a connected graph without cycles.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1 \\le n, q \\le 2\\cdot10^5$) — the number of vertices and the number of queries, respectively.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n$), where the $i$-th number specifies the initial color of vertex $i$.\n\nThe next $n-1$ lines describe the edges of the tree. Each line contains three integers $u$, $v$, and $c$, denoting an edge between vertices $u$ and $v$ with parameter $c$ ($1 \\le u, v \\le n$, $1 \\le c \\le 10^9$).\n\nThe following $q$ lines contain the queries. Each query contains two integers $v$ and $x$ — repaint vertex $v$ to color $x$ ($1 \\le v,x \\le n$).\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ across all test cases do not exceed $2\\cdot10^5$.\n\n## Output\n\nFor each query, output a single integer on a separate line — the sum of the costs of all edges in the tree after applying the corresponding query.\n\n## Note\n\nFirst test: $n =1$, one vertex — no edges. Query: repaint $a_1$ to $1$, the sum of costs is $0$.\n\nSecond test: $n=2$, edge $1 - 2$ ($c=10$). Queries:\n\n- $a_1 = 2$: colors [$2, 1$], cost is $10$;\n- $a_2 = 2$: colors [$2, 2$], cost $0$;\n- $a_1 = 1$: colors [$1, 2$], cost $10$.\n\nThird test: $n=5$, edges: $1 - 2\\ (c=5)$, $2 - 3\\ (c=3)$, $2 - 4\\ (c=4)$, $4 - 5\\ (c=7)$. Initial colors $[1,2,1,2,3]$. Queries:\n\n$a_3 = 2 \\rightarrow [1,2,2,2,3]$: edges $1 - 2\\ (c = 5)$ and $4 - 5\\ (c=7)$ give $12$;\n\n$a_5 = 2 \\rightarrow [1,2,2,2,2]$: edge $1 - 2\\ (c=5)$, cost $5$;\n\n$a_1 = 2 \\rightarrow [2,2,2,2,2]$: cost is $0$;\n\n$a_2 = 3 \\rightarrow [2,3,2,2,2]$: edges $1-2\\ (5)$, $2-3\\ (3)$, $2-4\\ (4)$ give $12$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n1 1\n1\n1 1\n2 3\n1 1\n1 2 10\n1 2\n2 2\n1 1\n5 4\n1 2 1 2 3\n1 2 5\n2 3 3\n2 4 4\n4 5 7\n3 2\n5 2\n1 2\n2 3\n4 3\n1 1 2 2\n1 2 2\n2 3 6\n2 4 8\n3 1\n4 1\n2 2\n",
+      "output": "0\n10\n0\n10\n12\n5\n0\n12\n8\n0\n16\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:47:15.449Z"
+}
