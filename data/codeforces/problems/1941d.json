@@ -1,0 +1,28 @@
+{
+  "id": "1941D",
+  "platform": "codeforces",
+  "contestId": 1941,
+  "index": "D",
+  "title": "Rudolf and the Ball Game",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1941/problem/D",
+  "difficulty": 1200,
+  "tags": [
+    "dfs and similar",
+    "dp",
+    "implementation"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Rudolf and Bernard decided to play a game with their friends. $n$ people stand in a circle and start throwing a ball to each other. They are numbered from $1$ to $n$ in the clockwise order.\n\nLet's call a transition a movement of the ball from one player to his neighbor. The transition can be made clockwise or counterclockwise.\n\nLet's call the clockwise (counterclockwise) distance from player $y_1$ to player $y_2$ the number of transitions clockwise (counterclockwise) that need to be made to move from player $y_1$ to player $y_2$. For example, if $n=7$ then the clockwise distance from $2$ to $5$ is $3$, and the counterclockwise distance from $2$ to $5$ is $4$.\n\nInitially, the ball is with the player number $x$ (players are numbered clockwise). On the $i$-th move the person with the ball throws it at a distance of $r_i$ ($1 \\le r_i \\le n - 1$) clockwise or counterclockwise. For example, if there are $7$ players, and the $2$nd player, after receiving the ball, throws it a distance of $5$, then the ball will be caught by either the $7$th player (throwing clockwise) or the $4$th player (throwing counterclockwise). An illustration of this example is shown below.\n\n![image](https://espresso.codeforces.com/3839c7a125c21f6555bcdb3ac6b10e676b4f5c07.png)\n\nThe game was interrupted after $m$ throws due to unexpected rain. When the rain stopped, the guys gathered again to continue. However, no one could remember who had the ball. As it turned out, Bernard remembered the distances for each of the throws and the direction for **some** of the throws (clockwise or counterclockwise).\n\nRudolf asks you to help him and based on the information from Bernard, calculate the numbers of the players who could have the ball after $m$ throws.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. Then follow the descriptions of the test cases.\n\nThe first line of each test case contains three integers $n, m, x$ ($2 \\le n \\le 1000$, $1 \\le m \\le 1000$, $1 \\le x \\le n$) — the number of players, the number of throws made, and the number of the player who threw the ball first, respectively.\n\nThe next $m$ lines contain information about each throw in order. Each of them contains an integer $r_i$ ($1 \\le r_i \\le n - 1$) — the distance at which the $i$-th throw was made, and a symbol $c_i$, equal to '`0`', '`1`', or '`?`':\n\n- if $c_i$='`0`', then the $i$-th throw was made clockwise,\n- if $c_i$='`1`', then the $i$-th throw was made counterclockwise,\n- if $c_i$='`?`', then Bernard does not remember the direction and the $i$-th throw could have been made either clockwise or counterclockwise.\n\nIt is guaranteed that the sum $n \\cdot m$ ($n$ multiplied by $m$) over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output two lines.\n\nIn the first line, output the number of players $k$ ($1 \\le k \\le n$) who could have the ball at the end of the game.\n\nIn the next line, output $k$ numbers $b_i$ ($1 \\le b_i \\le n$) — the numbers of the players in increasing order. All numbers must be different.\n\n## Note\n\nBelow is an illustration of three throws for the first test case. The arrows denote possible throw directions. Players who could have the ball after the throw are highlighted in gray.\n\n![image](https://espresso.codeforces.com/facec0e73193578aea46a4045fbd7b9d3ded40de.png) ![image](https://espresso.codeforces.com/5a3a9d0fe33eff8ebcbb17c795d9aa82cee18935.png) ![image](https://espresso.codeforces.com/9ca276927532adea0682a7875ded9538dcbef9fd.png)",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n6 3 2\n2 ?\n2 ?\n2 ?\n12 1 2\n3 1\n10 7 4\n2 ?\n9 1\n4 ?\n7 0\n2 0\n8 1\n5 ?\n5 3 1\n4 0\n4 ?\n1 ?\n4 1 1\n2 ?\n",
+      "output": "3\n2 4 6\n1\n11\n4\n3 5 7 9\n3\n2 3 5\n1\n3\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:16:46.009Z"
+}

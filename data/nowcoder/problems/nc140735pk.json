@@ -4,14 +4,14 @@
   "contestId": "140735",
   "index": "K",
   "title": "Calculate the Expression",
-  "titleZh": null,
+  "titleZh": "计算表达式的值",
   "url": "https://ac.nowcoder.com/acm/contest/140735/K",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "## 题目描述\n\n*As everyone knows, Mr. Chicken is a master of artificial intelligence. Unfortunately, the AI he trained, Little Chicken, is not very skilled. Especially in mathematics, Little Chicken cannot even correctly solve elementary arithmetic problems.*\n\n*\\\n*\n\n*To improve Little Chicken’s abilities, Mr. Chicken plans to provide it with a large number of arithmetic expressions for training. Due to Little Chicken’s poor skills, Mr. Chicken will only give it expressions containing only addition and multiplication to solve.*\n\n*However, Mr. Chicken doesn’t want to manually generate a large number of expressions. Instead, he uses a lazy method. He generates a string-stored expression and then extracts a substring from it where both ends are numbers (such a substring is guaranteed to be a valid expression). He chooses this substring as the training data for Little Chicken.*\n\n*Of course, always extracting substrings from a fixed expression doesn’t seem very effective for training, so Mr. Chicken will occasionally modify the characters in the expression. Mr. Chicken ensures that the modified expression remains valid.*\n\n*Now, Mr. Chicken needs your help to calculate the value of the expression to verify Little Chicken’s answers.*\n\nFormally, Mr. Chicken provides you with a string $s$ of length $n$, containing only digits, plus signs, and multiplication sign, forming a valid expression$^{\\dagger}$. Mr. Chicken will also provide a sequence of operations of the following types:\n\n- $1$ $l$ $r$: Queries the value of the substring from the $l$-th to the $r$-th character. The substring is guaranteed to be a valid expression.\n- $2$ $x$ $c$: Modifies the $x$-th character of the original expression to $c$. It is guaranteed that the modified expression $s$ remains valid.\n\nFor each query operation, output the result modulo $998,244,353$.\n\n$^{\\dagger}$ A valid expression should satisfy the following conditions:\n\n- It contains only the digits 0-9 and the operators + and *.\n- No two operators are adjacent.\n- Operators do not appear at the beginning or end of the expression.\n\nPlease note that under this definition, numbers **may have leading zeros**.\n\n## 输入格式\n\nThe first line contains an integer $q$ ($1 \\leq q \\leq 5 \\times 10^5$), representing the number of operations.\\\nThe second line contains a string $s$ ($|s| \\leq 5 \\times 10^5$, $s_i \\in \\{0 \\sim 9,+,*\\}$).\\\nThe next $q$ lines each contain an operation. The first number of each line is $o$, representing the type of operation:If $o=1$, it is followed by two integers $l$ and $r$ ($1 \\leq l \\leq r \\leq n$), representing a query.If $o=2$, it is followed by an integer $x$ and a character $c$ ($1 \\leq x \\leq n$, $c \\in \\{0 \\sim 9,+,*\\}$), representing a modification.It is guaranteed that all query strings and the string $s$ at any time are valid expressions.\n\n## 输出格式\n\nFor each query operation, output a single integer representing the result modulo $998,244,353$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n*众所周知，鸡先生是一位人工智能大师。遗憾的是，他训练出的 AI 小鸡水平并不高。尤其是在数学方面，小鸡连初等算术题都无法正确求解。*\n\n*\\\n*\n\n*为了提高小鸡的能力，鸡先生打算向它提供大量算术表达式进行训练。由于小鸡水平有限，鸡先生只会给它一些仅包含加法和乘法的表达式来求解。*\n\n*不过，鸡先生并不想手动生成大量表达式，而是采用了一种偷懒的方法：他先生成一个以字符串形式存储的表达式，再从中取出一个两端均为数字的子串（可以保证这样的子串是合法表达式），并将其作为小鸡的训练数据。*\n\n*当然，总是从同一个表达式中抽取子串似乎对训练效果不大，因此鸡先生会不时修改表达式中的字符。鸡先生保证修改后的表达式仍然合法。*\n\n*现在，鸡先生需要你帮忙计算表达式的值，以验证小鸡的答案。*\n\n形式化地，鸡先生会给你一个长度为 $n$ 的字符串 $s$，其中仅包含数字、加号和乘号，构成一个合法表达式$^{\\dagger}$。鸡先生还会给出若干个如下类型的操作：\n\n- $1$ $l$ $r$：查询从第 $l$ 个字符到第 $r$ 个字符的子串的值。保证该子串是一个合法表达式。\n- $2$ $x$ $c$：将原表达式的第 $x$ 个字符修改为 $c$。保证修改后的表达式 $s$ 仍然合法。\n\n对于每个查询操作，输出结果对 $998,244,353$ 取模后的值。\n\n$^{\\dagger}$ 合法表达式应满足以下条件：\n\n- 仅包含数字 0-9 以及运算符 + 和 *。\n- 任意两个运算符互不相邻。\n- 运算符不出现在表达式的开头或结尾。\n\n请注意，在此定义下，数字**可以有前导零**。\n\n## 输入格式\n\n第一行包含一个整数 $q$（$1 \\leq q \\leq 5 \\times 10^5$），表示操作的数量。\\\n第二行包含一个字符串 $s$（$|s| \\leq 5 \\times 10^5$，$s_i \\in \\{0 \\sim 9,+,*\\}$）。\\\n接下来 $q$ 行，每行包含一个操作。每行的第一个数为 $o$，表示操作的类型：若 $o=1$，则其后跟两个整数 $l$ 和 $r$（$1 \\leq l \\leq r \\leq n$），表示一次查询；若 $o=2$，则其后跟一个整数 $x$ 和一个字符 $c$（$1 \\leq x \\leq n$，$c \\in \\{0 \\sim 9,+,*\\}$），表示一次修改。保证所有查询对应的子串以及任意时刻的字符串 $s$ 均为合法表达式。\n\n## 输出格式\n\n对于每个查询操作，输出一个整数，表示结果对 $998,244,353$ 取模后的值。",
   "samples": [
     {
       "input": "5\n1+2*3\n1 1 5\n1 3 5\n2 2 4\n1 1 5\n1 2 5",
@@ -19,5 +19,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T14:26:18.604Z"
+  "fetchedAt": "2026-10-31T14:26:18.604Z",
+  "translatedAt": "2026-11-03T01:15:29.725+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
