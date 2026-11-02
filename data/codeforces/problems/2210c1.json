@@ -4,7 +4,7 @@
   "contestId": 2210,
   "index": "C1",
   "title": "A Simple GCD Problem (Easy Version)",
-  "titleZh": null,
+  "titleZh": "简单 GCD 问题（简单版本）",
   "url": "https://codeforces.com/contest/2210/problem/C1",
   "difficulty": 1200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, $1 \\leq n \\leq 2 \\cdot 10^{5}$ and $b_i = a_i$ for $1 \\leq i \\leq n$. Note that a solution for one version does not necessarily solve the other version. You can hack only if you solved all versions of this problem.**\n\nYou are given two arrays $a$ and $b$ of length $n$.\n\nFor **each index** $i$ ($1 \\le i \\le n$) of array $a$, you can perform the following operation **at most once**:\n\n- choose an arbitrary integer $m$ ($\\mathbf{m \\neq a_i}$) such that $1 \\leq m \\le b_i$, and set $a_i := m$.\n\nLet the array after performing all the operations be $a'$. You can only perform operations in such a way that the following condition holds:\n\n- for all $1\\leq l \\lt r\\leq n$, $\\operatorname{gcd}(a_l,a_{l+1},\\ldots,{a_r})=\\operatorname{gcd}(a'_l,a'_{l+1},\\ldots,a'_r).$\n\nHere, $\\gcd(x, y)$ denotes the [greatest common divisor (GCD)](https://en.wikipedia.org/wiki/Greatest_common_divisor) of integers $x$ and $y$.\n\nYou have to determine the **maximum** number of operations that can be performed while ensuring that the condition remains satisfied.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($2 \\leq n \\leq 2\\cdot 10^5$) — the length of $a$.\n\nThe following line of each test case contains $n$ space-separated integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 10^9$).\n\nThe next line of each test case contains $n$ space-separated integers $b_1, b_2, \\ldots, b_n$ ($\\color{red}{b_i = a_i}$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot10^5$.\n\n## Output\n\nFor each test case, output the maximum number of operations that can be done on a newline.\n\n## Note\n\nFor the first test case, the GCD of all subarrays is $1$. Hence, we can perform $6$ operations and change the array to $a' = [1, 1, 1, 1, 1, 1, 1]$. It can be shown that the maximum number of operations that can be performed in this case is $6$.\n\nFor the second test case, note that all the values are equal, and reducing any value causes the GCD of subarrays to decrease. Hence, $0$ operations can be performed.\n\nFor the third test case, it can be shown that at most $2$ operations can be performed.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。两个版本的区别在于：在本版本中，$1 \\leq n \\leq 2 \\cdot 10^{5}$，且对于 $1 \\leq i \\leq n$ 有 $b_i = a_i$。注意，适用于其中一个版本的解法不一定能解决另一个版本。只有当你通过了本题的所有版本后才能进行 hack。**\n\n给定两个长度为 $n$ 的数组 $a$ 和 $b$。\n\n对于数组 $a$ 的**每个下标** $i$（$1 \\le i \\le n$），你**至多可以执行一次**如下操作：\n\n- 选择一个任意整数 $m$（$\\mathbf{m \\neq a_i}$），满足 $1 \\leq m \\le b_i$，并令 $a_i := m$。\n\n设执行完所有操作后的数组为 $a'$。你只能以保证下述条件成立的方式执行操作：\n\n- 对于所有 $1\\leq l \\lt r\\leq n$，$\\operatorname{gcd}(a_l,a_{l+1},\\ldots,{a_r})=\\operatorname{gcd}(a'_l,a'_{l+1},\\ldots,a'_r).$\n\n这里，$\\gcd(x, y)$ 表示整数 $x$ 和 $y$ 的[最大公约数（GCD）](https://en.wikipedia.org/wiki/Greatest_common_divisor)。\n\n你需要求出在保证该条件仍然成立的前提下，**最多**能执行多少次操作。\n\n## 输入格式\n\n每个测试文件包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 2\\cdot 10^5$），表示 $a$ 的长度。\n\n每个测试用例的下一行包含 $n$ 个以空格分隔的整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq 10^9$）。\n\n每个测试用例的接下来一行包含 $n$ 个以空格分隔的整数 $b_1, b_2, \\ldots, b_n$（$\\color{red}{b_i = a_i}$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot10^5$。\n\n## 输出格式\n\n对于每个测试用例，在单独的一行中输出可以执行的操作的最大数量。\n\n## 说明\n\n对于第一个测试用例，所有子数组的 GCD 均为 $1$。因此，我们可以执行 $6$ 次操作，将数组变为 $a' = [1, 1, 1, 1, 1, 1, 1]$。可以证明，此情况下能执行的操作数量的最大值为 $6$。\n\n对于第二个测试用例，注意所有值都相等，而减小任何一个值都会导致子数组的 GCD 变小。因此，可以执行的操作数为 $0$。\n\n对于第三个测试用例，可以证明最多能执行 $2$ 次操作。",
   "samples": [
     {
       "input": "4\n7\n1 2 3 4 5 6 7\n1 2 3 4 5 6 7\n3\n67 67 67\n67 67 67\n6\n8 10 10 12 12 14\n8 10 10 12 12 14\n8\n2 4 8 16 32 64 128 256\n2 4 8 16 32 64 128 256\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:46.957Z"
+  "fetchedAt": "2026-10-30T20:54:46.957Z",
+  "translatedAt": "2026-11-03T02:18:43.342+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

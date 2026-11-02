@@ -4,7 +4,7 @@
   "contestId": 2217,
   "index": "C",
   "title": "Grid Covering",
-  "titleZh": null,
+  "titleZh": "网格覆盖",
   "url": "https://codeforces.com/contest/2217/problem/C",
   "difficulty": 1300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Prakul has been working hard setting problems for Codecraft. When he's deep in thought, he likes jumping around his room in weird but specific ways. After some time, he wonders if jumping in this manner can cover all the tiles of his room.\n\nPrakul's room can be considered as a grid $A$ consisting of $n$ rows and $m$ columns. He starts walking from $A_{1,1}$. If he is currently at $A_{i,j}$ he can do either of the following moves:\n\n- Jump $b$ steps right to $A_{\\,i,\\;((j+b-1)\\bmod m)+1}$, or\n- Jump $a$ steps down to $A_{\\,((i+a-1)\\bmod n)+1,\\;j}$.\n\nA special restriction is that he can start with either move, but **must alternate** between them.\n\nNote that his room is quite special as it wraps around itself. Moving one step right from the $m$-th column places him in the $1$-st column. Similarly, moving one step down from the $n$-th row places him in the $1$-st row.\n\nSince he still has to work on problemsetting, he needs your help. Determine if he can visit all tiles in $A$ in a finite number of jumps.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe only line of each test case contains four integers $n, m, a, b$ ($1 \\leq n, m, a, b\\leq 10^{9}$).\n\n## Output\n\nFor each test case, print \"`YES`\" if Prakul can cover all the tiles of his room, and \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the second test case: $n=2$, $m=2$, $a=1$, $b=1$. One possible way to cover the grid is if Prakul starts by moving **down**:\n\n- Start at $(1, 1)$.\n- Jump down $a=1$ tile: $(1, 1) \\to (2, 1)$.\n- Jump right $b=1$ tile: $(2, 1) \\to (2, 2)$.\n- Jump down $a=1$ tile: $(2, 2) \\to (1, 2)$.\n- Jump right $b=1$ tile: $(1, 2) \\to (1, 1)$.\n\nThe sequence of visited tiles is $\\{(1, 1), (2, 1), (2, 2), (1, 2)\\}$. In this case, all $2 \\cdot 2 = 4$ tiles are covered, so the answer would be \"YES\".\n\nNotice that Prakul wraps around the grid in the last two moves.\n\nIn the third test case: $n=4$, $m=2$, $a=2$, $b=1$. If Prakul starts by moving **down**, the moves look like:\n\n- Start at $(1, 1)$.\n- Jump down $a=2$ tiles: $(1, 1) \\to (3, 1)$.\n- Jump right $b=1$ tile: $(3, 1) \\to (3, 2)$.\n- Jump down $a=2$ tiles: $(3, 2) \\to (1, 2)$.\n- Jump right $b=1$ tile: $(1, 2) \\to (1, 1)$.\n- $\\cdots$\n\nIn this case, the tiles $\\{(2, 1), (2, 2), (4, 1), (4, 2)\\}$ remain unvisited forever. Since not all tiles can be covered, the answer is \"NO\". It can be shown that even if Prakul started by moving **right** in the first move, the answer would not have changed.",
-  "statementZhMd": null,
+  "statementZhMd": "Prakul 一直在努力为 Codecraft 出题。当他陷入沉思时，他喜欢以奇怪但特定的方式在房间里跳来跳去。过了一段时间，他想知道以这种方式跳跃能否覆盖房间的所有格子。\n\nPrakul 的房间可以看作一个由 $n$ 行 $m$ 列组成的网格 $A$。他从 $A_{1,1}$ 出发。如果他当前位于 $A_{i,j}$，他可以进行以下两种移动中的任意一种：\n\n- 向右跳 $b$ 步到达 $A_{\\,i,\\;((j+b-1)\\bmod m)+1}$，或者\n- 向下跳 $a$ 步到达 $A_{\\,((i+a-1)\\bmod n)+1,\\;j}$。\n\n有一条特殊限制：他可以从任意一种移动开始，但之后**必须交替**进行这两种移动。\n\n注意他的房间非常特殊，会在边界处环绕：从第 $m$ 列向右移动一步会到达第 $1$ 列；类似地，从第 $n$ 行向下移动一步会到达第 $1$ 行。\n\n由于他还要继续出题，所以需要你的帮助。请判断他能否在有限次跳跃内访问 $A$ 中的所有格子。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例仅一行，包含四个整数 $n, m, a, b$（$1 \\leq n, m, a, b\\leq 10^{9}$）。\n\n## 输出格式\n\n对于每个测试用例，如果 Prakul 能覆盖房间的所有格子，输出 \"`YES`\"，否则输出 \"`NO`\"。\n\n你可以以任意大小写输出答案。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被判定为肯定回答。\n\n## 说明\n\n在第二个测试用例中：$n=2$，$m=2$，$a=1$，$b=1$。一种可行的覆盖网格的方式是 Prakul 首先向**下**移动：\n\n- 从 $(1, 1)$ 出发。\n- 向下跳 $a=1$ 格：$(1, 1) \\to (2, 1)$。\n- 向右跳 $b=1$ 格：$(2, 1) \\to (2, 2)$。\n- 向下跳 $a=1$ 格：$(2, 2) \\to (1, 2)$。\n- 向右跳 $b=1$ 格：$(1, 2) \\to (1, 1)$。\n\n访问过的格子的序列为 $\\{(1, 1), (2, 1), (2, 2), (1, 2)\\}$。此时所有 $2 \\cdot 2 = 4$ 个格子都被覆盖，因此答案为 \"YES\"。\n\n注意 Prakul 在最后两次移动中发生了环绕。\n\n在第三个测试用例中：$n=4$，$m=2$，$a=2$，$b=1$。如果 Prakul 首先向**下**移动，移动过程如下：\n\n- 从 $(1, 1)$ 出发。\n- 向下跳 $a=2$ 格：$(1, 1) \\to (3, 1)$。\n- 向右跳 $b=1$ 格：$(3, 1) \\to (3, 2)$。\n- 向下跳 $a=2$ 格：$(3, 2) \\to (1, 2)$。\n- 向右跳 $b=1$ 格：$(1, 2) \\to (1, 1)$。\n- $\\cdots$\n\n在这种情况下，格子 $\\{(2, 1), (2, 2), (4, 1), (4, 2)\\}$ 将永远无法被访问。由于无法覆盖所有格子，答案为 \"NO\"。可以证明，即使 Prakul 第一步改为向**右**移动，答案也不会改变。",
   "samples": [
     {
       "input": "10\n1 1 1 1\n2 2 1 1\n4 2 2 1\n6 9 6 7\n67 42 42 67\n3411 4134 32 23\n90234 143124 232 323\n69387963 98793214 9791 4324786\n985865 578977 899368 447605\n1000000000 1000000000 1000000000 1000000000\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:12.552Z"
+  "fetchedAt": "2026-10-30T20:54:12.552Z",
+  "translatedAt": "2026-11-03T02:12:50.812+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

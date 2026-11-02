@@ -4,7 +4,7 @@
   "contestId": 2210,
   "index": "C2",
   "title": "A Simple GCD Problem (Hard Version)",
-  "titleZh": null,
+  "titleZh": "一个简单的 GCD 问题（困难版本）",
   "url": "https://codeforces.com/contest/2210/problem/C2",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, $1 \\leq n \\leq 5 \\cdot 10^{4}$, $1 \\leq b_i \\leq 10^{9}$ for $1 \\leq i \\leq n$, and the time limit is $6$ seconds. Note that a solution for one version does not necessarily solve the other version. You can hack only if you solved all versions of this problem.**\n\nYou are given two arrays $a$ and $b$ of length $n$.\n\nFor **each index** $i$ ($1 \\le i \\le n$) of array $a$, you can perform the following operation **at most once**:\n\n- choose an arbitrary integer $m$ ($\\mathbf{m \\neq a_i}$) such that $1 \\leq m \\leq b_i$, and set $a_i := m$.\n\nLet the array after performing all the operations be $a'$. You can only perform operations in such a way that the following condition holds:\n\n- For all $1\\leq l \\lt r\\leq n$, $\\operatorname{gcd}(a_l,a_{l+1},\\ldots,{a_r})=\\operatorname{gcd}(a'_l,a'_{l+1},\\ldots,a'_r)$\n\nHere, $\\gcd(x, y)$ denotes the [greatest common divisor (GCD)](https://en.wikipedia.org/wiki/Greatest_common_divisor) of integers $x$ and $y$.\n\nYou have to determine the **maximum** number of operations that can be performed while ensuring that the condition remains satisfied.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($2 \\leq n \\leq 5\\cdot 10^4$) — the length of $a$.\n\nThe following line of each test case contains $n$ space-separated integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 10^9$).\n\nThe next line of each test case contains $n$ space-separated integers $b_1, b_2, \\ldots, b_n$ (**$1 \\le b_i \\le 10^9$**).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5\\cdot 10^4$.\n\n## Output\n\nFor each test case, output the maximum number of operations which can be done.\n\n## Note\n\nIn the first test, since the gcd of all subarrays is $1$, we can change the array to $a' = [67, 5, 7, 11, 1, 2, 1]$. Here we have performed $7$ operations, and since there are only $7$ elements in the array, it is the maximum possible.\n\nIn the second test case, we can change the array to $a' = [938, 2613, 4489]$. It can be shown that after this transformation, gcd of all subarrays remains the same. Hence the answer is $3$ here.\n\nIn the third test case, it can be shown that no operation can be performed, hence the answer is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。两个版本的区别在于：本版本中，$1 \\leq n \\leq 5 \\cdot 10^{4}$，当 $1 \\leq i \\leq n$ 时 $1 \\leq b_i \\leq 10^{9}$，且时限为 $6$ 秒。注意，适用于其中一个版本的解法不一定能解决另一个版本。只有当你做出了本题的所有版本，你才能进行 hack。**\n\n给定两个长度为 $n$ 的数组 $a$ 和 $b$。\n\n对于数组 $a$ 的**每个下标** $i$（$1 \\le i \\le n$），你可以对它**至多一次**地执行以下操作：\n\n- 选择一个任意整数 $m$（$\\mathbf{m \\neq a_i}$），满足 $1 \\leq m \\leq b_i$，并令 $a_i := m$。\n\n记执行完所有操作后的数组为 $a'$。你只能按照满足以下条件的方式执行操作：\n\n- 对于所有 $1\\leq l \\lt r\\leq n$，$\\operatorname{gcd}(a_l,a_{l+1},\\ldots,{a_r})=\\operatorname{gcd}(a'_l,a'_{l+1},\\ldots,a'_r)$\n\n其中，$\\gcd(x, y)$ 表示整数 $x$ 和 $y$ 的[最大公约数（GCD）](https://en.wikipedia.org/wiki/Greatest_common_divisor)。\n\n你需要求出在保证上述条件仍然成立的前提下，能够执行的**最大**操作次数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 5\\cdot 10^4$）—— 表示 $a$ 的长度。\n\n每个测试用例的下一行包含 $n$ 个以空格分隔的整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq 10^9$）。\n\n每个测试用例的随后一行包含 $n$ 个以空格分隔的整数 $b_1, b_2, \\ldots, b_n$（**$1 \\le b_i \\le 10^9$**）。\n\n保证所有测试用例的 $n$ 之和不超过 $5\\cdot 10^4$。\n\n## 输出格式\n\n对于每个测试用例，输出可以执行的操作的最大数量。\n\n## 说明\n\n在第一个测试中，由于所有子数组的 gcd 均为 $1$，我们可以将数组改为 $a' = [67, 5, 7, 11, 1, 2, 1]$。这里我们执行了 $7$ 次操作，并且由于数组中只有 $7$ 个元素，这已是可能的最大值。\n\n在第二个测试用例中，我们可以将数组改为 $a' = [938, 2613, 4489]$。可以证明，经过这一变换后，所有子数组的 gcd 保持不变。因此此处的答案为 $3$。\n\n在第三个测试用例中，可以证明无法执行任何操作，因此答案为 $0$。",
   "samples": [
     {
       "input": "9\n7\n1 2 3 4 5 6 7\n100 6 12 20 5 2 7\n3\n67 67 67\n1000000000 1000000000 1000000000\n6\n8 10 10 12 12 14\n1 1 1 1 1 1\n8\n2010 330 550 2 210 385 1001 323\n2010 1000 1200 30 500 1000 2000 1000\n4\n1 2 4 3\n1 1 1 1\n6\n2 3 4 5 1 6\n10 15 20 25 5 30\n2\n1 2\n2 100\n5\n2860 2860 143 9009 9009\n2860 2860 1430 9009 9009\n3\n2 60 60\n10 60 60\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:46.957Z"
+  "fetchedAt": "2026-10-30T20:54:46.957Z",
+  "translatedAt": "2026-11-03T02:18:05.242+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

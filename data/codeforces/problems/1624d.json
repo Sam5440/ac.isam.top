@@ -1,0 +1,29 @@
+{
+  "id": "1624D",
+  "platform": "codeforces",
+  "contestId": 1624,
+  "index": "D",
+  "title": "Palindromes Coloring",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1624/problem/D",
+  "difficulty": 1400,
+  "tags": [
+    "binary search",
+    "greedy",
+    "sortings",
+    "strings"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have a string $s$ consisting of lowercase Latin alphabet letters.\n\nYou can color some letters in colors from $1$ to $k$. It is not necessary to paint all the letters. But for each color, there must be a letter painted in that color.\n\nThen you can swap any two symbols painted in the same color as many times as you want.\n\nAfter that, $k$ strings will be created, $i$-th of them will contain all the characters colored in the color $i$, written in the order of their sequence in the string $s$.\n\nYour task is to color the characters of the string so that all the resulting $k$ strings are palindromes, and the length of the shortest of these $k$ strings is as **large** as possible.\n\nRead the note for the first test case of the example if you need a clarification.\n\nRecall that a string is a palindrome if it reads the same way both from left to right and from right to left. For example, the strings `abacaba`, `cccc`, `z` and `dxd` are palindromes, but the strings `abab` and `aaabaa` — are not.\n\n## Input\n\nThe first line of input data contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of input data sets in the test.\n\nThe descriptions of the input data sets follow.\n\nThe first line of the description of each input data set contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 2 \\cdot 10^5$) — the length of the string and the number of colors in which its letters can be painted. The second line of the description of each input data set contains a string $s$ of length $n$ consisting of lowercase letters of the Latin alphabet.\n\nIt is guaranteed that the sum of n over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each set of input data, output a single integer  — the maximum length of the shortest palindrome string that can be obtained.\n\n## Note\n\n- In the first test case, $s$=\"`bxyaxzay`\", $k=2$. We use indices in the string from $1$ to $8$. The following coloring will work: $\\mathtt{\\mathbf{\\color{red}{b}\\color{blue}{xy}\\color{red}{a}\\color{blue}{x}z\\color{red}{a}\\color{blue}{y}}}$ (the letter `z` remained uncolored). After painting:Now, for each of the two colors we write out the corresponding characters from left to right, we get two strings $\\mathtt{\\mathbf{\\color{red}{aba}}}$ and $\\mathtt{\\mathbf{\\color{blue}{xyyx}}}$. Both of them are palindromes, the length of the shortest is $3$. It can be shown that the greatest length of the shortest palindrome cannot be achieved.\n- swap two red characters (with the indices $1$ and $4$), we get $\\mathtt{\\mathbf{\\color{red}{a}\\color{blue}{xy}\\color{red}{b}\\color{blue}{x}z\\color{red}{a}\\color{blue}{y}}}$;\n  - swap two blue characters (with the indices $5$ and $8$), we get $\\mathtt{\\mathbf{\\color{red}{a}\\color{blue}{xy}\\color{red}{b}\\color{blue}{y}z\\color{red}{a}\\color{blue}{x}}}$.\n- In the second set of input data, the following coloring is suitable: $[1, 1, 2, 2, 3, 3]$. There is no need to swap characters. Both received strings are equal to `aa`, they are palindromes and their length is $2$.\n- In the third set of input data, you can color any character and take it into a string.\n- In the fourth set of input data, you can color the $i$th character in the color $i$.\n- In the fifth set of input data can be colored in each of the colors of one character.\n- In the sixth set of input data, the following coloring is suitable: $[1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 0]$. Rearrange the characters so as to get the palindromes `abcba` and `acbca`.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "10\n8 2\nbxyaxzay\n6 3\naaaaaa\n6 1\nabcdef\n6 6\nabcdef\n3 2\ndxd\n11 2\nabcabcabcac\n6 6\nsipkic\n7 2\neatoohd\n3 1\nllw\n6 2\nbfvfbv\n",
+      "output": "3\n2\n1\n1\n1\n5\n1\n1\n3\n3\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T18:11:38.663Z"
+}

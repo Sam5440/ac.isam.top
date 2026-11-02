@@ -1,0 +1,29 @@
+{
+  "id": "1633F",
+  "platform": "codeforces",
+  "contestId": 1633,
+  "index": "F",
+  "title": "Perfect Matching",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1633/problem/F",
+  "difficulty": 2800,
+  "tags": [
+    "data structures",
+    "divide and conquer",
+    "interactive",
+    "trees"
+  ],
+  "timeLimitMs": 12000,
+  "memoryLimitMb": 512,
+  "statementMd": "You are given a tree consisting of $n$ vertices (numbered from $1$ to $n$) and $n-1$ edges (numbered from $1$ to $n-1$). Initially, all vertices except vertex $1$ are inactive.\n\nYou have to process queries of three types:\n\n- $1$ $v$ — activate the vertex $v$. It is guaranteed that the vertex $v$ is inactive before this query, and one of its neighbors is active. After activating the vertex, you have to choose a subset of edges of the tree such that each **active** vertex is incident to **exactly one** chosen edge, and each **inactive** vertex is not incident to any of the chosen edges — in other words, this subset should represent a perfect matching on the active part of the tree. If any such subset of edges exists, print the sum of indices of edges in it; otherwise, print $0$.\n- $2$ — queries of this type will be asked only right after a query of type $1$, and there will be **at most $10$** such queries. If your answer to the previous query was $0$, simply print $0$; otherwise, print the subset of edges for the previous query as follows: first, print the number of edges in the subset, then print the indices of the chosen edges **in ascending order**. The sum of indices should be equal to your answer to the previous query.\n- $3$ — terminate the program.\n\nNote that you should solve the problem in `online` mode. It means that you can't read the whole input at once. You can read each query only after writing the answer for the last query. Use functions `fflush` in `C++` and `BufferedWriter.flush` in `Java` languages after each writing in your program.\n\n## Input\n\nThe first line contains one integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices of the tree.\n\nThen $n-1$ lines follow. The $i$-th line contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$; $u_i \\ne v_i$) — the endpoints of the $i$-th edge. These edges form a tree.\n\nThen the queries follow in the format described in the statement, one line per query. There will be at least $2$ and at most $n+10$ queries. The last query (and only the last one) will be of type $3$. Note that you can read the $i$-th query only if you have already given the answer for the query $i-1$ (except for $i = 1$).\n\nIf your answer for one of the queries is incorrect and the judging program recognizes it, instead of the next query, you may receive the integer $0$ on a separate line. After receiving it, your program should terminate gracefully, and you will receive \"Wrong Answer\" verdict. If your program doesn't terminate, your solution may receive some other verdict, like \"Time Limit Exceeded\", \"Idleness Limit Exceeded\", etc. Note that the fact that your solution doesn't receive the integer $0$, it **does not mean that all your answers are correct**, some of them will be checked only after your program is terminated.\n\n## Output\n\nFor each query of type $1$ or $2$, print the answer on a separate line as described in the statement. Don't forget to flush the output.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n1 4\n6 1\n3 2\n1 2\n5 1\n1 4\n2\n1 2\n2\n1 3\n2\n1 5\n1 6\n2\n3\n",
+      "output": "1\n1 1\n0\n0\n4\n2 1 3\n0\n0\n0\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T18:11:21.284Z"
+}

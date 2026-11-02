@@ -4,7 +4,7 @@
   "contestId": 2215,
   "index": "G",
   "title": "Maze",
-  "titleZh": null,
+  "titleZh": "迷宫",
   "url": "https://codeforces.com/contest/2215/problem/G",
   "difficulty": 3500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 1024,
   "statementMd": "There is an $(n+2) \\times (n+2)$ grid, where both coordinates range from $0$ to $n+1$ inclusive. The outermost cells of the grid are all obstacle cells.\n\nIn addition, there are $m$ more obstacle cells in the grid. The $i$-th obstacle cell is located at $(x_i, y_i)$. **It is guaranteed that all obstacles (including the outer boundary cells) are 4-connected.** That is, you can move between any two obstacle cells by moving up, down, left, or right through other obstacle cells.\n\nLittle L is walking in this maze. He cannot step into any obstacle cell at any time. If Little L is at position $(x, y)$, he can make the following moves:\n\n- Move orthogonally to an adjacent cell $(x+1,y)$, $(x-1,y)$, $(x,y+1)$, or $(x,y-1)$ with a cost of $2$.\n- Move diagonally to an adjacent cell $(x+1,y+1)$, $(x+1,y-1)$, $(x-1,y+1)$, or $(x-1,y-1)$ with a cost of $3$.\n\nThere are $q$ queries. For each query, you are given a starting point and an ending point. You need to find the minimum total cost for Little L to travel from the starting point to the ending point. If it is impossible to reach the ending point, output $-1$.\n\n## Input\n\nThe first line of the input contains three integers $n$, $m$, and $q$ ($1 \\le n \\le 10^5$, $1 \\le m, q \\le 3 \\cdot 10^5$).\n\nThe next $m$ lines each contain two integers $x_i$ and $y_i$ — the coordinates of the $i$-th obstacle cell. It is guaranteed that all obstacle coordinates are distinct, and that all obstacles (including the outer boundary cells) are 4-connected.\n\nThe next $q$ lines each contain four integers $s_x$, $s_y$, $t_x$, and $t_y$ — a query with starting point $(s_x, s_y)$ and ending point $(t_x, t_y)$. It is guaranteed that neither $(s_x,s_y)$ nor $(t_x,t_y)$ is an obstacle.\n\n## Output\n\nFor each query, output a single integer — the minimum cost to travel from the starting point to the ending point. Or print $-1$ if it is impossible to do so.\n\n## Note\n\nFor the second query, you can move as follows: $(1, 1) \\to (1, 2) \\to (2, 3) \\to (3, 4) \\to (4, 3) \\to (4, 2) \\to (3, 1)$. The total cost is $2 + 3 + 3 + 3 + 2 + 3 = 16$.",
-  "statementZhMd": null,
+  "statementZhMd": "有一个 $(n+2) \\times (n+2)$ 的网格，两个坐标的取值范围均为 $0$ 到 $n+1$（含端点）。网格最外层的格子全部是障碍格。\n\n此外，网格中还有 $m$ 个障碍格，第 $i$ 个障碍格位于 $(x_i, y_i)$。**保证所有障碍（包括最外层的边界格）是四连通的。** 也就是说，你可以通过上、下、左、右的移动，经由其他障碍格在任意两个障碍格之间移动。\n\n小 L 正在这个迷宫中行走，他在任何时候都不能踏入任何障碍格。若小 L 当前位于 $(x, y)$，他可以进行如下移动：\n\n- 以 $2$ 的代价正交移动到相邻格 $(x+1,y)$、$(x-1,y)$、$(x,y+1)$ 或 $(x,y-1)$。\n- 以 $3$ 的代价对角移动到相邻格 $(x+1,y+1)$、$(x+1,y-1)$、$(x-1,y+1)$ 或 $(x-1,y-1)$。\n\n共有 $q$ 次询问。对于每次询问，你会得到一个起点和一个终点，你需要求出小 L 从起点走到终点所需的最小总代价。如果无法到达终点，输出 $-1$。\n\n## 输入格式\n\n输入的第一行包含三个整数 $n$、$m$ 和 $q$（$1 \\le n \\le 10^5$，$1 \\le m, q \\le 3 \\cdot 10^5$）。\n\n接下来的 $m$ 行，每行包含两个整数 $x_i$ 和 $y_i$ —— 第 $i$ 个障碍格的坐标。保证所有障碍的坐标互不相同，且所有障碍（包括最外层的边界格）是四连通的。\n\n接下来的 $q$ 行，每行包含四个整数 $s_x$、$s_y$、$t_x$ 和 $t_y$ —— 表示一次询问，其中起点为 $(s_x, s_y)$，终点为 $(t_x, t_y)$。保证 $(s_x,s_y)$ 和 $(t_x,t_y)$ 均不是障碍格。\n\n## 输出格式\n\n对于每次询问，输出一个整数 —— 从起点走到终点的最小代价；若无法到达，则输出 $-1$。\n\n## 说明\n\n对于第二次询问，你可以按如下方式移动：$(1, 1) \\to (1, 2) \\to (2, 3) \\to (3, 4) \\to (4, 3) \\to (4, 2) \\to (3, 1)$。总代价为 $2 + 3 + 3 + 3 + 2 + 3 = 16$。",
   "samples": [
     {
       "input": "4 4 5\n2 1\n2 2\n3 2\n3 3\n1 1 1 2\n1 1 3 1\n4 1 1 4\n4 4 1 1\n2 3 3 1\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:29.608Z"
+  "fetchedAt": "2026-10-30T20:54:29.608Z",
+  "translatedAt": "2026-11-03T02:08:51.405+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

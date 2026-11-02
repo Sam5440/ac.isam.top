@@ -4,7 +4,7 @@
   "contestId": 2217,
   "index": "F",
   "title": "Interval Game",
-  "titleZh": null,
+  "titleZh": "区间游戏",
   "url": "https://codeforces.com/contest/2217/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -21,7 +21,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob are playing a game involving two intervals, $[l_1, r_1]$ and $[l_2, r_2]$, constrained by integers $x_1$ and $x_2$ respectively. The intervals satisfy $1 \\le l_1 \\le r_1 \\le x_1$ and $1 \\le l_2 \\le r_2 \\le x_2$.\n\nThe game is played as follows. In one turn, a player must choose one of the two intervals (let's say the $i$-th interval $[l_i, r_i]$) and perform **exactly one** of the following operations:\n\n- Replace $l_i$ with a strictly smaller integer $l'_i$ such that $1 \\le l'_i \\lt l_i$.\n- Replace $r_i$ with a strictly larger integer $r'_i$ such that $r_i \\lt r'_i \\le x_i$.\n\nThe player who cannot make a valid move loses the game.\n\nThe game setup proceeds in two steps:\n\n1. First, Alice chooses the values of $l_1$ and $r_1$ to determine the first interval. It must be a valid interval within $[1, x_1]$.\n2. Then, the second interval $[l_2, r_2]$ is chosen **uniformly at random** from all possible valid intervals within $[1, x_2]$.\n\nOnce the intervals are chosen, the game begins with **Alice moving first**.\n\nAssuming both Alice and Bob play optimally, Alice wants to choose the initial interval $[l_1, r_1]$ to maximize her probability of winning. Your task is to find such an interval. If there are multiple optimal intervals, you may output any one of them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe only line of each test case contains two integers $x_1$ and $x_2$ ($1 \\le x_1, x_2 \\le 5 \\cdot 10^5$) — the upper bounds for the two intervals.\n\nIt is guaranteed that the sum of $x_1$ over all test cases does not exceed $5 \\cdot 10^5$.\n\nIt is guaranteed that the sum of $x_2$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output two integers $l_1$ and $r_1$ ($1 \\le l_1 \\le r_1 \\le x_1$) — the optimal interval chosen by Alice.\n\nIf there are multiple optimal intervals, you may output any one of them.\n\n## Note\n\nFor the first test case, Alice is forced to choose $[1, 1]$ as it is the only valid option.\n\nFor the third test case, if Alice chooses $[2, 2]$, she is guaranteed to win (probability $1$); she can replace $l_1$ with $1$, after which Bob cannot make a valid move. Note that $[1, 1]$ would also be a valid winning answer here.\n\nFor the fourth test case, if Alice chooses $[1, 2]$, she achieves a winning probability of $2/3$. By contrast, choosing $[1, 1]$ or $[2, 2]$ would result in a winning probability of only $1/3$.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 在玩一个涉及两个区间的游戏：区间 $[l_1, r_1]$ 和 $[l_2, r_2]$ 分别受整数 $x_1$ 和 $x_2$ 的约束。两个区间满足 $1 \\le l_1 \\le r_1 \\le x_1$ 且 $1 \\le l_2 \\le r_2 \\le x_2$。\n\n游戏按如下方式进行。在一个回合中，玩家必须选择两个区间之一（不妨设为第 $i$ 个区间 $[l_i, r_i]$），并**恰好执行**以下操作之一：\n\n- 将 $l_i$ 替换为一个严格更小的整数 $l'_i$，满足 $1 \\le l'_i \\lt l_i$。\n- 将 $r_i$ 替换为一个严格更大的整数 $r'_i$，满足 $r_i \\lt r'_i \\le x_i$。\n\n无法进行合法操作的玩家输掉游戏。\n\n游戏的准备分两步进行：\n\n1. 首先，Alice 选择 $l_1$ 和 $r_1$ 的值来确定第一个区间。它必须是 $[1, x_1]$ 内的合法区间。\n2. 然后，第二个区间 $[l_2, r_2]$ 从 $[1, x_2]$ 内所有可能的合法区间中**均匀随机**选取。\n\n区间确定后，游戏开始，**Alice 先行动**。\n\n假设 Alice 和 Bob 都采取最优策略，Alice 希望选择初始区间 $[l_1, r_1]$ 以最大化自己获胜的概率。你的任务是找出这样一个区间。如果存在多个最优区间，你可以输出其中任意一个。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例仅一行，包含两个整数 $x_1$ 和 $x_2$（$1 \\le x_1, x_2 \\le 5 \\cdot 10^5$）——两个区间的上界。\n\n保证所有测试用例的 $x_1$ 之和不超过 $5 \\cdot 10^5$。\n\n保证所有测试用例的 $x_2$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出两个整数 $l_1$ 和 $r_1$（$1 \\le l_1 \\le r_1 \\le x_1$）——Alice 选择的最优区间。\n\n如果存在多个最优区间，你可以输出其中任意一个。\n\n## 说明\n\n对于第一个测试用例，Alice 被迫选择 $[1, 1]$，因为这是唯一合法的选项。\n\n对于第三个测试用例，如果 Alice 选择 $[2, 2]$，她必胜（获胜概率为 $1$）；她可以将 $l_1$ 替换为 $1$，此后 Bob 无法进行任何合法操作。注意，$[1, 1]$ 在这里也是一个正确的获胜答案。\n\n对于第四个测试用例，如果 Alice 选择 $[1, 2]$，她的获胜概率为 $2/3$。相比之下，选择 $[1, 1]$ 或 $[2, 2]$ 的获胜概率仅为 $1/3$。",
   "samples": [
     {
       "input": "6\n1 1\n1 10\n2 1\n2 2\n20 64578\n185367 133524\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:12.552Z"
+  "fetchedAt": "2026-10-30T20:54:12.552Z",
+  "translatedAt": "2026-11-03T02:13:33.655+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

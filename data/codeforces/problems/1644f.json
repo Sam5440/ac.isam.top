@@ -1,0 +1,54 @@
+{
+  "id": "1644F",
+  "platform": "codeforces",
+  "contestId": 1644,
+  "index": "F",
+  "title": "Basis",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1644/problem/F",
+  "difficulty": 2900,
+  "tags": [
+    "combinatorics",
+    "fft",
+    "math",
+    "number theory"
+  ],
+  "timeLimitMs": 6000,
+  "memoryLimitMb": 512,
+  "statementMd": "For an array of integers $a$, let's define $|a|$ as the number of elements in it.\n\nLet's denote two functions:\n\n- $F(a, k)$ is a function that takes an array of integers $a$ and a positive integer $k$. The result of this function is the array containing $|a|$ first elements of the array that you get by replacing each element of $a$ with exactly $k$ copies of that element.For example, $F([2, 2, 1, 3, 5, 6, 8], 2)$ is calculated as follows: first, you replace each element of the array with $2$ copies of it, so you obtain $[2, 2, 2, 2, 1, 1, 3, 3, 5, 5, 6, 6, 8, 8]$. Then, you take the first $7$ elements of the array you obtained, so the result of the function is $[2, 2, 2, 2, 1, 1, 3]$.\n- $G(a, x, y)$ is a function that takes an array of integers $a$ and two **different** integers $x$ and $y$. The result of this function is the array $a$ with every element equal to $x$ replaced by $y$, and every element equal to $y$ replaced by $x$.For example, $G([1, 1, 2, 3, 5], 3, 1) = [3, 3, 2, 1, 5]$.\n\nAn array $a$ is a **parent** of the array $b$ if:\n\n- either there exists a positive integer $k$ such that $F(a, k) = b$;\n- or there exist two different integers $x$ and $y$ such that $G(a, x, y) = b$.\n\nAn array $a$ is an **ancestor** of the array $b$ if there exists a finite sequence of arrays $c_0, c_1, \\dots, c_m$ ($m \\ge 0$) such that $c_0$ is $a$, $c_m$ is $b$, and for every $i \\in [1, m]$, $c_{i-1}$ is a parent of $c_i$.\n\n*And now, the problem itself*.\n\nYou are given two integers $n$ and $k$. Your goal is to construct a sequence of arrays $s_1, s_2, \\dots, s_m$ in such a way that:\n\n- every array $s_i$ contains exactly $n$ elements, and all elements are integers from $1$ to $k$;\n- for every array $a$ consisting of exactly $n$ integers from $1$ to $k$, the sequence contains at least one array $s_i$ such that $s_i$ is an ancestor of $a$.\n\nPrint the minimum number of arrays in such sequence.\n\n## Input\n\nThe only line contains two integers $n$ and $k$ ($1 \\le n, k \\le 2 \\cdot 10^5$).\n\n## Output\n\nPrint one integer — the minimum number of elements in a sequence of arrays meeting the constraints. Since the answer can be large, output it modulo $998244353$.\n\n## Note\n\nLet's analyze the first example.\n\nOne of the possible answers for the first example is the sequence $[[2, 1, 2], [1, 2, 2]]$. Every array of size $3$ consisting of elements from $1$ to $2$ has an ancestor in this sequence:\n\n- for the array $[1, 1, 1]$, the ancestor is $[1, 2, 2]$: $F([1, 2, 2], 13) = [1, 1, 1]$;\n- for the array $[1, 1, 2]$, the ancestor is $[1, 2, 2]$: $F([1, 2, 2], 2) = [1, 1, 2]$;\n- for the array $[1, 2, 1]$, the ancestor is $[2, 1, 2]$: $G([2, 1, 2], 1, 2) = [1, 2, 1]$;\n- for the array $[1, 2, 2]$, the ancestor is $[1, 2, 2]$;\n- for the array $[2, 1, 1]$, the ancestor is $[1, 2, 2]$: $G([1, 2, 2], 1, 2) = [2, 1, 1]$;\n- for the array $[2, 1, 2]$, the ancestor is $[2, 1, 2]$;\n- for the array $[2, 2, 1]$, the ancestor is $[2, 1, 2]$: $F([2, 1, 2], 2) = [2, 2, 1]$;\n- for the array $[2, 2, 2]$, the ancestor is $[1, 2, 2]$: $G(F([1, 2, 2], 4), 1, 2) = G([1, 1, 1], 1, 2) = [2, 2, 2]$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 2\n",
+      "output": "2\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "4 10\n",
+      "output": "12\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "13 37\n",
+      "output": "27643508\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "1337 42\n",
+      "output": "211887828\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "198756 123456\n",
+      "output": "159489391\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "123456 198756\n",
+      "output": "460526614\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T18:11:08.013Z"
+}
