@@ -4,7 +4,7 @@
   "contestId": 2111,
   "index": "G",
   "title": "Divisible Subarrays",
-  "titleZh": null,
+  "titleZh": "可分割子数组",
   "url": "https://codeforces.com/contest/2111/problem/G",
   "difficulty": 2900,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 1024,
   "statementMd": "**Technically, this is an interactive problem.**\n\nAn array $a$ of $m$ numbers is called *divisible* if at least one of the following conditions holds:\n\n- There exists an index $i$ ($1 \\le i \\lt m$) and an integer $x$ such that for all indices $j$ ($j \\le i$), it holds that $a_{j} \\le x$ and for all indices $k$ ($k \\gt i$), it holds that $a_{k} \\gt x$.\n- There exists an index $i$ ($1 \\le i \\lt m$) and an integer $x$ such that for all indices $j$ ($j \\le i$), it holds that $a_{j} \\gt x$ and for all indices $k$ ($k \\gt i$), it holds that $a_{k} \\le x$.\n\nYou are given a permutation $p$ of integers $1, 2, \\dots, n$. Your task is to answer queries of the following form fast: if we take only the segment [$l$, $r$] from the permutation, that is, the numbers $p_{l}, p_{l + 1}, \\dots, p_{r}$, is this subarray of numbers *divisible*?\n\nQueries will be submitted in interactive mode in groups of $10$, meaning you will not receive the next group of queries until you output all answers for the current group.\n\n## Input\n\nThe first line contains one integer $n$ ($2 \\le n \\le 2 \\cdot 10^{5}$) — the size of the permutation.\n\nThe second line contains $n$ integers $p_{i}$ ($1 \\le p_{i} \\le n$) — the permutation of natural numbers itself.\n\nThe third line contains one integer $q$ ($10 \\le q \\le 10^{6}, q \\bmod 10 = 0$) — the number of queries.\n\nThe following $q$ lines contain two integers $l$ and $r$ ($1 \\le l \\lt r \\le n$) — the parameters of the query.\n\n## Output\n\nFor each query, output the string \"`YES`\" if the subarray from this query is *divisible* and \"`NO`\" otherwise.\n\nAfter printing the answers to a group of queries, do not forget to output the end of line and flush the output buffer. Otherwise, you may get the `Idleness Limit Exceeded` verdict. To flush the buffer, use:\n\n- `fflush(stdout)` or `cout.flush()` in `C++`;\n- `System.out.flush()` in `Java`;\n- `flush(output)` in `Pascal`;\n- `stdout.flush()` in `Python`;\n- refer to the documentation for other languages.\n\nYou have to flush the output buffer after the $10$-th, $20$-th, $30$-th query (and so on), i. e. after each query with index divisible by $10$. After that, you can read the next group of queries.",
-  "statementZhMd": null,
+  "statementZhMd": "**严格来说，这是一道交互题。**\n\n如果一个由 $m$ 个数组成的数组 $a$ 满足以下至少一个条件，则称它是*可分割的*：\n\n- 存在一个下标 $i$（$1 \\le i \\lt m$）和一个整数 $x$，使得对所有下标 $j$（$j \\le i$）都有 $a_{j} \\le x$，并且对所有下标 $k$（$k \\gt i$）都有 $a_{k} \\gt x$。\n- 存在一个下标 $i$（$1 \\le i \\lt m$）和一个整数 $x$，使得对所有下标 $j$（$j \\le i$）都有 $a_{j} \\gt x$，并且对所有下标 $k$（$k \\gt i$）都有 $a_{k} \\le x$。\n\n给定一个由整数 $1, 2, \\dots, n$ 组成的排列 $p$。你的任务是快速回答如下形式的询问：如果只取排列中的区间 [$l$, $r$]，即数字 $p_{l}, p_{l + 1}, \\dots, p_{r}$，这个子数组是否是*可分割的*？\n\n询问将以交互方式按每 $10$ 个一组给出，也就是说，在你输出当前一组询问的全部答案之前，你不会收到下一组询问。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^{5}$）—— 表示排列的大小。\n\n第二行包含 $n$ 个整数 $p_{i}$（$1 \\le p_{i} \\le n$）—— 表示这个由自然数构成的排列本身。\n\n第三行包含一个整数 $q$（$10 \\le q \\le 10^{6}, q \\bmod 10 = 0$）—— 表示询问的数量。\n\n接下来 $q$ 行，每行包含两个整数 $l$ 和 $r$（$1 \\le l \\lt r \\le n$）—— 表示一次询问的参数。\n\n## 输出格式\n\n对于每个询问，如果该询问对应的子数组是*可分割的*，输出字符串 \"`YES`\"，否则输出 \"`NO`\"。\n\n在输出一组询问的答案之后，不要忘记输出换行符并刷新输出缓冲区，否则你可能会得到 `Idleness Limit Exceeded` 的判定结果。刷新缓冲区的方法如下：\n\n- 在 `C++` 中使用 `fflush(stdout)` 或 `cout.flush()`；\n- 在 `Java` 中使用 `System.out.flush()`；\n- 在 `Pascal` 中使用 `flush(output)`；\n- 在 `Python` 中使用 `stdout.flush()`；\n- 其它语言请参阅相应文档。\n\n你必须在第 $10$、$20$、$30$ 个询问（依此类推）之后刷新输出缓冲区，即在每个序号能被 $10$ 整除的询问之后。刷新之后，你就可以读取下一组询问。",
   "samples": [
     {
       "input": "7\n4 2 3 6 1 5 7\n20\n1 2\n1 3\n1 4\n1 5\n1 6\n2 3\n2 4\n2 5\n2 6\n3 4\n3 5\n3 6\n4 5\n4 6\n5 6\n1 7\n2 7\n3 7\n4 7\n5 7\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:48:17.866Z"
+  "fetchedAt": "2026-11-02T16:48:17.866Z",
+  "translatedAt": "2026-11-03T06:50:17.913+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
