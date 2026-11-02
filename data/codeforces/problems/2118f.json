@@ -4,7 +4,7 @@
   "contestId": 2118,
   "index": "F",
   "title": "Shifts and Swaps",
-  "titleZh": null,
+  "titleZh": "移位与交换",
   "url": "https://codeforces.com/contest/2118/problem/F",
   "difficulty": 3100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 512,
   "statementMd": "You are given arrays $a$ and $b$ of length $n$ and an integer $m$.\n\nThe arrays only contain integers from $1$ to $m$, and both arrays contain all integers from $1$ to $m$.\n\nYou may repeatedly perform either of the following operations on $a$:\n\n- cyclic shift$^{\\text{∗}}$ the array to the left\n- swap two neighboring elements if their difference is at least $2$.\n\nIs it possible to transform the first array into the second?\n\n$^{\\text{∗}}$A left cyclic shift of a zero-indexed array $p$ of length $n$ is an array $q$ such that $q_i = p_{(i + 1) \\bmod n}$ for all $0 \\le i \\lt n$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^5$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\le m \\le n \\le 5\\cdot10^5$) — the length of the arrays and the number of distinct elements in $a$.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le m$) — denoting the array $a$.\n\nThe third line contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\le b_i \\le m$) — denoting the array $b$.\n\nIt is guaranteed that both arrays contain all integers from $1$ to $m$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5\\cdot10^5$.\n\n## Output\n\nFor each test case, output \"`YES`\" if it is possible to transform the first array into the second and \"`NO`\" otherwise. You can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, you can transform array $a$ into array $b$ with the following steps:\n\n- [$1$, $2$, $3$] — shift to the left\n- [$2$, $3$, $1$] — swap indices $2$ and $3$\n- [$2$, $1$, $3$] — shift to the left\n- [$1$, $3$, $2$] — shift to the left\n- [$3$, $2$, $1$]\n\nIn the second test case, it can be proven that it is impossible to transform array $a$ into array $b$ with the given operations.",
-  "statementZhMd": null,
+  "statementZhMd": "给定长度为 $n$ 的数组 $a$ 和 $b$，以及一个整数 $m$。\n\n数组中只包含 $1$ 到 $m$ 之间的整数，且两个数组都包含 $1$ 到 $m$ 中的所有整数。\n\n你可以对 $a$ 反复执行以下两种操作中的任意一种：\n\n- 将数组向左循环移位$^{\\text{∗}}$\n- 若两个相邻元素之差至少为 $2$，则交换这两个元素。\n\n是否有可能将第一个数组变成第二个数组？\n\n$^{\\text{∗}}$对于长度为 $n$、从 $0$ 开始编号的数组 $p$，其左循环移位得到的数组 $q$ 满足：对所有 $0 \\le i \\lt n$，都有 $q_i = p_{(i + 1) \\bmod n}$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 10^5$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\le m \\le n \\le 5\\cdot10^5$）——表示数组的长度以及 $a$ 中不同元素的个数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le m$）——表示数组 $a$。\n\n第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$1 \\le b_i \\le m$）——表示数组 $b$。\n\n保证两个数组都包含 $1$ 到 $m$ 中的所有整数。\n\n保证所有测试用例的 $n$ 之和不超过 $5\\cdot10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果可以将第一个数组变成第二个数组，输出 \"`YES`\"；否则输出 \"`NO`\"。答案的大小写不限。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定回答。\n\n## 说明\n\n在第一个测试用例中，你可以通过以下步骤将数组 $a$ 变成数组 $b$：\n\n- [$1$, $2$, $3$] — 向左移位\n- [$2$, $3$, $1$] — 交换下标 $2$ 和 $3$\n- [$2$, $1$, $3$] — 向左移位\n- [$1$, $3$, $2$] — 向左移位\n- [$3$, $2$, $1$]\n\n在第二个测试用例中，可以证明无法通过给定的操作将数组 $a$ 变成数组 $b$。",
   "samples": [
     {
       "input": "8\n3 3\n1 2 3\n3 2 1\n4 3\n1 1 2 3\n1 2 2 3\n4 4\n1 3 2 4\n2 3 4 1\n6 3\n1 1 2 1 2 3\n2 1 1 2 3 1\n5 4\n2 3 4 1 1\n3 2 1 1 4\n9 7\n2 4 6 7 3 1 5 4 6\n6 7 3 5 6 4 2 4 1\n9 8\n8 3 5 6 5 4 1 7 2\n7 5 3 5 8 4 6 2 1\n8 6\n2 1 5 4 6 3 5 4\n6 1 5 2 4 5 3 4\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:22:23.310Z"
+  "fetchedAt": "2026-10-30T21:22:23.310Z",
+  "translatedAt": "2026-11-03T06:45:34.184+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
