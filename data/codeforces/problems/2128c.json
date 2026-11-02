@@ -4,7 +4,7 @@
   "contestId": 2128,
   "index": "C",
   "title": "Leftmost Below",
-  "titleZh": null,
+  "titleZh": "最左小于",
   "url": "https://codeforces.com/contest/2128/problem/C",
   "difficulty": 1200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Consider an array $a_1, \\ldots, a_n$. Initially, $a_i = 0$ for every $i$.\n\nYou can do operations of the following form.\n\n- You choose an integer $x$ greater than $\\min(a)$.\n- Then, $i$ is defined as the minimum index such that $a_i \\lt x$. In other words, $i$ is the unique integer between $1$ and $n$ inclusive such that $a_i \\lt x$ and $a_j \\geq x$ for every $1 \\leq j \\leq i-1$.\n- Finally, $a_i$ is incremented by $x$.\n\nFor example, if $a = [6, 8, 2, 1]$ and you choose $x = 6$, then $i$ will be equal to $3$ (since $a_1 \\geq 6$, $a_2 \\geq 6$, and $a_3 \\lt 6$) and $a$ will become $[6, 8, 8, 1]$.\n\nYou can do as many operations as you want. Can you reach a target array $b_1, \\ldots, b_n$?\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10\\,000$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\leq n \\leq 200\\,000$).\n\nThe second line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\le b_i \\le 10^9$).\n\nThe sum of $n$ over all test cases does not exceed $200\\,000$.\n\n## Output\n\nFor each test case, print `YES` if you can reach the target array and `NO` otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, we can do the following sequence of operations:\n\n- we choose $x=2$, $a$ becomes $[2, 0, 0, 0]$\n- we choose $x=2$, $a$ becomes $[2, 2, 0, 0]$\n- we choose $x=3$, $a$ becomes $[5, 2, 0, 0]$\n- we choose $x=4$, $a$ becomes $[5, 6, 0, 0]$\n- we choose $x=1$, $a$ becomes $[5, 6, 1, 0]$\n- we choose $x=1$, $a$ becomes $[5, 6, 1, 1]$\n\nIn the second test case, we can prove there is no way to reach $[3, 1, 2]$.",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一个数组 $a_1, \\ldots, a_n$。初始时，每个 $a_i = 0$。\n\n你可以进行如下形式的操作。\n\n- 你选择一个大于 $\\min(a)$ 的整数 $x$。\n- 然后，$i$ 定义为满足 $a_i \\lt x$ 的最小下标。换句话说，$i$ 是 $1$ 到 $n$（含两端）之间唯一的整数，满足 $a_i \\lt x$，且对于每个 $1 \\leq j \\leq i-1$ 都有 $a_j \\geq x$。\n- 最后，$a_i$ 增加 $x$。\n\n例如，若 $a = [6, 8, 2, 1]$ 且你选择 $x = 6$，那么 $i$ 将等于 $3$（因为 $a_1 \\geq 6$、$a_2 \\geq 6$，而 $a_3 \\lt 6$），并且 $a$ 将变为 $[6, 8, 8, 1]$。\n\n你可以进行任意多次操作。你能到达目标数组 $b_1, \\ldots, b_n$ 吗？\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10\\,000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 200\\,000$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$1 \\le b_i \\le 10^9$）。\n\n所有测试用例的 $n$ 之和不超过 $200\\,000$。\n\n## 输出格式\n\n对于每个测试用例，如果能到达目标数组，输出 `YES`；否则输出 `NO`。\n\n你可以以任意大小写输出答案。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定回答。\n\n## 说明\n\n在第一个测试用例中，我们可以进行如下操作序列：\n\n- 我们选择 $x=2$，$a$ 变为 $[2, 0, 0, 0]$\n- 我们选择 $x=2$，$a$ 变为 $[2, 2, 0, 0]$\n- 我们选择 $x=3$，$a$ 变为 $[5, 2, 0, 0]$\n- 我们选择 $x=4$，$a$ 变为 $[5, 6, 0, 0]$\n- 我们选择 $x=1$，$a$ 变为 $[5, 6, 1, 0]$\n- 我们选择 $x=1$，$a$ 变为 $[5, 6, 1, 1]$\n\n在第二个测试用例中，可以证明无法到达 $[3, 1, 2]$。",
   "samples": [
     {
       "input": "4\n4\n5 6 1 1\n3\n3 1 2\n3\n40 60 90\n2\n1 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:21:29.437Z"
+  "fetchedAt": "2026-10-30T21:21:29.437Z",
+  "translatedAt": "2026-11-03T06:20:52.450+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

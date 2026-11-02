@@ -4,7 +4,7 @@
   "contestId": 2128,
   "index": "E2",
   "title": "Submedians (Hard Version)",
-  "titleZh": null,
+  "titleZh": "子中位数（困难版本）",
   "url": "https://codeforces.com/contest/2128/problem/E2",
   "difficulty": 2600,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the hard version of the problem. The only difference is that in this version, you are asked to find a subarray for all *submedians*.**\n\n**You can make hacks only if both versions of the problem are solved.**\n\nAn integer $v$ is a *median* of an array $b$ of length $m$ if and only if:\n\n- $v$ is greater than or equal to at least $\\lceil \\frac{m}{2} \\rceil$ elements of the array, and\n- $v$ is less than or equal to at least $\\lceil \\frac{m}{2} \\rceil$ elements of the array.\n\nFor instance:\n\n- the only *median* of $[9, 3, 7]$ is $7$,\n- the *medians* of $[5, 3, 7, 9]$ are $5$, $6$, and $7$, and\n- the only *median* of $[2, 2, 2]$ is $2$.\n\nYou're given an integer $k$ and an array $a_1, \\ldots, a_n$ of integers between $1$ and $n$.\n\nAn integer $v$ from $1$ to $n$ is said to be a *submedian* if there exists at least one pair of indices $(l, r)$ such that\n\n- $1 \\leq l \\leq r \\leq n$,\n- $r - l + 1 \\geq k$,\n- $v$ is a *median* of the subarray $[a_l, \\ldots, a_r]$.\n\nFind all *submedians* and for each of them, find any corresponding pair of indices $(l, r)$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 50\\,000$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\leq k \\leq n \\leq 300\\,000$).\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq n$).\n\nIt is guaranteed that the sum of $n$ over all test cases doesn't exceed $300\\,000$.\n\n## Output\n\nFor each test case, output your answer in the following format.\n\nOn the first line, output $c$, the number of *submedians*.\n\nOn the $i$-th of the following $c$ lines, output three integers $v_i$, $l_i$, and $r_i$ such that\n\n- $r_i - l_i + 1 \\geq k$, and\n- $v_i$ is one of the *medians* of the subarray $[a_{l_i}, \\ldots, a_{r_i}]$.\n\nEach *submedian* should be reported exactly once, that is, integers $v_1, \\ldots, v_c$ must be pairwise distinct. The order in which they are reported does not matter.\n\nIf there are many solutions, you can print any of them.\n\n## Note\n\nIn the first test case, the subarrays of length at least $k = 3$ are\n\n- $(l = 1, r = 3)$: $[4, 1, 2]$ whose only *median* is $2$,\n- $(l = 2, r = 4)$: $[1, 2, 4]$ whose only *median* is $2$, and\n- $(l = 1, r = 4)$: $[4, 1, 2, 4]$ whose *medians* are $2$, $3$, and $4$.\n\nIn the second test case, one possible output is\n\n- $(l = 4, r = 5)$: $[2, 1]$ whose *medians* are $1$ and $2$,\n- $(l = 1, r = 5)$: whose only *median* is $2$,\n- $(l = 3, r = 4)$: $[3, 2]$ whose *medians* are $2$ and $3$.\n\nAll of these subarrays are indeed of length at least $2$. Note that it can be proven that no subarray of length at least $2$ admits $4$ or $5$ as a *median*.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。唯一的区别在于：在本版本中，你需要为所有*子中位数*找出一组对应的下标。**\n\n**只有当本题的两个版本都被解决时，才可以进行 hack。**\n\n一个整数 $v$ 是长度为 $m$ 的数组 $b$ 的*中位数*，当且仅当：\n\n- $v$ 大于等于数组中至少 $\\lceil \\frac{m}{2} \\rceil$ 个元素，并且\n- $v$ 小于等于数组中至少 $\\lceil \\frac{m}{2} \\rceil$ 个元素。\n\n例如：\n\n- $[9, 3, 7]$ 唯一的*中位数*是 $7$，\n- $[5, 3, 7, 9]$ 的*中位数*是 $5$、$6$ 和 $7$，并且\n- $[2, 2, 2]$ 唯一的*中位数*是 $2$。\n\n给你一个整数 $k$ 和一个数组 $a_1, \\ldots, a_n$，数组元素均为 $1$ 到 $n$ 之间的整数。\n\n如果存在至少一对下标 $(l, r)$ 满足\n\n- $1 \\leq l \\leq r \\leq n$，\n- $r - l + 1 \\geq k$，\n- $v$ 是子数组 $[a_l, \\ldots, a_r]$ 的*中位数*，\n\n则称 $1$ 到 $n$ 之间的整数 $v$ 为一个*子中位数*。\n\n找出所有*子中位数*，并为每个*子中位数*给出任意一组对应的下标 $(l, r)$。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 50\\,000$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $k$（$1 \\leq k \\leq n \\leq 300\\,000$）。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq n$）。\n\n保证所有测试数据的 $n$ 之和不超过 $300\\,000$。\n\n## 输出格式\n\n对于每组测试数据，按以下格式输出答案。\n\n第一行输出*子中位数*的个数 $c$。\n\n在接下来的 $c$ 行中，第 $i$ 行输出三个整数 $v_i$、$l_i$ 和 $r_i$，满足\n\n- $r_i - l_i + 1 \\geq k$，并且\n- $v_i$ 是子数组 $[a_{l_i}, \\ldots, a_{r_i}]$ 的*中位数*之一。\n\n每个*子中位数*应恰好输出一次，即整数 $v_1, \\ldots, v_c$ 必须两两不同。输出的顺序无关紧要。\n\n如果有多组答案，你可以输出其中任意一组。\n\n## 说明\n\n在第一组测试数据中，长度至少为 $k = 3$ 的子数组有\n\n- $(l = 1, r = 3)$：$[4, 1, 2]$，其唯一的*中位数*是 $2$，\n- $(l = 2, r = 4)$：$[1, 2, 4]$，其唯一的*中位数*是 $2$，并且\n- $(l = 1, r = 4)$：$[4, 1, 2, 4]$，其*中位数*是 $2$、$3$ 和 $4$。\n\n在第二组测试数据中，一种可能的输出是\n\n- $(l = 4, r = 5)$：$[2, 1]$，其*中位数*是 $1$ 和 $2$，\n- $(l = 1, r = 5)$：其唯一的*中位数*是 $2$，\n- $(l = 3, r = 4)$：$[3, 2]$，其*中位数*是 $2$ 和 $3$。\n\n这些子数组的长度都确实至少为 $2$。注意，可以证明：不存在长度至少为 $2$ 的子数组能以 $4$ 或 $5$ 作为*中位数*。",
   "samples": [
     {
       "input": "7\n4 3\n4 1 2 4\n5 2\n1 2 3 2 1\n5 3\n1 2 3 2 1\n5 3\n1 1 2 5 3\n1 1\n1\n2 1\n2 1\n4 1\n1 2 1 3\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:21:29.438Z"
+  "fetchedAt": "2026-10-30T21:21:29.438Z",
+  "translatedAt": "2026-11-03T06:21:44.329+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2128,
   "index": "D",
   "title": "Sum of LDS",
-  "titleZh": null,
+  "titleZh": "LDS 之和",
   "url": "https://codeforces.com/contest/2128/problem/D",
   "difficulty": 1600,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You're given a permutation$^{\\text{∗}}$ $p_1, \\ldots, p_n$ such that $\\max(p_i, p_{i+1}) \\gt p_{i+2}$ for all $1 \\leq i \\leq n-2$.\n\nCompute the sum of the length of the longest decreasing subsequence$^{\\text{†}}$ of the subarray $[p_l, p_{l+1}, \\ldots, p_r]$ over all pairs $1 \\leq l \\leq r \\leq n$.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array). $^{\\text{†}}$Given an array $b$ of size $|b|$, a decreasing subsequence of length $k$ is a sequence of indices $i_1, \\ldots, i_k$ such that: $1 \\leq i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\leq |b|$ $b_{i_1} \\gt b_{i_2} \\gt \\ldots \\gt b_{i_k}$\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10\\,000$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($3 \\leq n \\leq 500\\,000$).\n\nThe second line of each test case contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\le p_i \\le n$, $p_i$ are pairwise distinct).\n\nIt is guaranteed that $\\max(p_i, p_{i+1}) \\gt p_{i+2}$ for all $1 \\leq i \\leq n-2$.\n\nThe sum of $n$ over all test cases does not exceed $500\\,000$.\n\n## Output\n\nFor each test case, output the sum over all subarrays of the length of its longest decreasing subsequence.\n\n## Note\n\nFor any array $a$, we define $\\text{LDS}(a)$ as the length of the longest decreasing subsequence of $a$.\n\nIn the first test case, all subarrays are decreasing.\n\nIn the second one, we have\n\n$\\text{LDS}([4]) = \\text{LDS}([3]) = \\text{LDS}([1]) = \\text{LDS}([2]) = 1$\n\n$\\text{LDS}([4,3]) = \\text{LDS}([3,1]) = 2, \\text{LDS}([1, 2]) = 1$\n\n$\\text{LDS}([4,3,1]) = 3, \\text{LDS}([3,1,2]) = 2$\n\n$\\text{LDS}([4,3,1,2]) = 3$\n\nSo the answer is $1+1+1+1+2+2+1+3+2+3=17$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个排列$^{\\text{∗}}$ $p_1, \\ldots, p_n$，满足对所有 $1 \\leq i \\leq n-2$ 都有 $\\max(p_i, p_{i+1}) \\gt p_{i+2}$。\n\n计算所有满足 $1 \\leq l \\leq r \\leq n$ 的数对所对应的子数组 $[p_l, p_{l+1}, \\ldots, p_r]$ 的最长下降子序列$^{\\text{†}}$ 的长度之和。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$n=3$ 但数组中出现了 $4$）。$^{\\text{†}}$给定一个大小为 $|b|$ 的数组 $b$，长度为 $k$ 的下降子序列是指一个下标序列 $i_1, \\ldots, i_k$，满足：$1 \\leq i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\leq |b|$ $b_{i_1} \\gt b_{i_2} \\gt \\ldots \\gt b_{i_k}$\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 10\\,000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$3 \\leq n \\leq 500\\,000$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$1 \\le p_i \\le n$，且 $p_i$ 两两不同）。\n\n保证对所有 $1 \\leq i \\leq n-2$ 都满足 $\\max(p_i, p_{i+1}) \\gt p_{i+2}$。\n\n所有测试用例的 $n$ 之和不超过 $500\\,000$。\n\n## 输出格式\n\n对于每个测试用例，输出所有子数组的最长下降子序列长度之和。\n\n## 说明\n\n对于任意数组 $a$，我们定义 $\\text{LDS}(a)$ 为其最长下降子序列的长度。\n\n在第一个测试用例中，所有子数组都是下降的。\n\n在第二个测试用例中，我们有\n\n$\\text{LDS}([4]) = \\text{LDS}([3]) = \\text{LDS}([1]) = \\text{LDS}([2]) = 1$\n\n$\\text{LDS}([4,3]) = \\text{LDS}([3,1]) = 2, \\text{LDS}([1, 2]) = 1$\n\n$\\text{LDS}([4,3,1]) = 3, \\text{LDS}([3,1,2]) = 2$\n\n$\\text{LDS}([4,3,1,2]) = 3$\n\n因此答案为 $1+1+1+1+2+2+1+3+2+3=17$。",
   "samples": [
     {
       "input": "4\n3\n3 2 1\n4\n4 3 1 2\n6\n6 1 5 2 4 3\n3\n2 3 1\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:21:29.438Z"
+  "fetchedAt": "2026-10-30T21:21:29.438Z",
+  "translatedAt": "2026-11-03T06:20:46.401+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
