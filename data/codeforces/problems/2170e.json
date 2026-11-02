@@ -4,7 +4,7 @@
   "contestId": 2170,
   "index": "E",
   "title": "Binary Strings and Blocks",
-  "titleZh": null,
+  "titleZh": "二进制串与块",
   "url": "https://codeforces.com/contest/2170/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Define a **block** in a binary string (a string consisting of characters `0` and/or `1`) as its continuous substring of characters of the same type that cannot be extended either to the left or to the right. For example, in the string `110001111`, there are three blocks:\n\n- `11` (from the $1$-st character to the $2$-nd character);\n- `000` (from the $3$-rd character to the $5$-th character);\n- `1111` (from the $6$-th character to the $9$-th character).\n\nThe substring from the $7$-th character to the $9$-th character `111` is not a block because it can be extended to the left. The substring from the $1$-st character to the $5$-th character `11000` is not a block because it contains characters of different types.\n\nWe call a string *beautiful* if we can remove **exactly one block** from it so that the resulting string consists of an **odd** number of blocks. For example:\n\n- the string `110001111` is beautiful because we can remove the block from the $3$-rd to the $5$-th character, resulting in the string `111111`, which consists of one block;\n- the string `1010` is beautiful because we can remove the block from the $1$-st to the $1$-st character, resulting in the string `010`, which consists of three blocks;\n- the string `0000` is not beautiful because the only way to remove a block from it will result in an empty string, which consists of $0$ blocks.\n\nYou are given an integer $n$ and $m$ constraints, the $i$-th of which is described by a pair of integers $l_i, r_i$. We denote the substring of the string $s$ from character $l$ to character $r$ inclusive as $s[l:r]$, that is, $s[l:r] = s_l s_{l+1} \\dots s_r$. Your task is to count the number of binary strings $s$ of length $n$ meeting the following condition:\n\n- for each $i$ from $1$ to $m$, the string $s[l_i:r_i]$ is beautiful.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test case.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\le n \\le 3 \\cdot 10^5$; $1 \\le m \\le 3 \\cdot 10^5$) — the required length of the string and the number of constraints, respectively.\n\nNext, there are $m$ lines, the $i$-th of which contains two integers $l_i, r_i$ ($1 \\le l_i \\lt r_i \\le n$) — the description of the $i$-th constraint.\n\nAdditional constraints on the input:\n\n- The sum of $n$ across all test cases does not exceed $3 \\cdot 10^5$;\n- The sum of $m$ across all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print one integer — the number of strings that satisfy the condition. Since it may be huge, output it modulo $998244353$.\n\n## Note\n\nIn the first example from the statement, the following strings are suitable: `1010`, `0101`. For each of these strings, both $s[1:2]$, $s[2:3]$, and $s[3:4]$ are beautiful.",
-  "statementZhMd": null,
+  "statementZhMd": "定义二进制串（由字符 `0` 和/或 `1` 组成的字符串）中的一个**块**为它的一个由同种字符组成的连续子串，且该子串既不能向左扩展，也不能向右扩展。例如，在字符串 `110001111` 中，有三个块：\n\n- `11`（从第 $1$ 个字符到第 $2$ 个字符）；\n- `000`（从第 $3$ 个字符到第 $5$ 个字符）；\n- `1111`（从第 $6$ 个字符到第 $9$ 个字符）。\n\n从第 $7$ 个字符到第 $9$ 个字符的子串 `111` 不是块，因为它可以向左扩展。从第 $1$ 个字符到第 $5$ 个字符的子串 `11000` 也不是块，因为它包含不同类型的字符。\n\n如果我们可以从一个字符串中删除**恰好一个块**，使得得到的字符串由**奇数**个块组成，那么我们就称这个字符串是*美丽的*。例如：\n\n- 字符串 `110001111` 是美丽的，因为我们可以删除从第 $3$ 个到第 $5$ 个字符的块，得到字符串 `111111`，它由一个块组成；\n- 字符串 `1010` 是美丽的，因为我们可以删除从第 $1$ 个到第 $1$ 个字符的块，得到字符串 `010`，它由三个块组成；\n- 字符串 `0000` 不是美丽的，因为从中删除一个块的唯一方式会得到空串，而空串由 $0$ 个块组成。\n\n给你一个整数 $n$ 和 $m$ 个约束条件，其中第 $i$ 个约束条件由一对整数 $l_i, r_i$ 描述。我们将字符串 $s$ 中从第 $l$ 个字符到第 $r$ 个字符（包含两端）的子串记为 $s[l:r]$，即 $s[l:r] = s_l s_{l+1} \\dots s_r$。你的任务是统计满足下列条件的长度为 $n$ 的二进制字符串 $s$ 的数量：\n\n- 对于从 $1$ 到 $m$ 的每个 $i$，字符串 $s[l_i:r_i]$ 都是美丽的。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——表示测试数据的组数。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 3 \\cdot 10^5$；$1 \\le m \\le 3 \\cdot 10^5$）——分别表示字符串的所需长度和约束条件的数量。\n\n接下来有 $m$ 行，其中第 $i$ 行包含两个整数 $l_i, r_i$（$1 \\le l_i \\lt r_i \\le n$）——表示第 $i$ 个约束条件的描述。\n\n输入的附加限制：\n\n- 所有测试数据的 $n$ 之和不超过 $3 \\cdot 10^5$；\n- 所有测试数据的 $m$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数——满足条件的字符串的数量。由于该数量可能非常大，请对 $998244353$ 取模输出。\n\n## 说明\n\n在题面的第一个例子中，满足条件的字符串有：`1010`、`0101`。对于其中每个字符串，$s[1:2]$、$s[2:3]$ 和 $s[3:4]$ 都是美丽的。",
   "samples": [
     {
       "input": "3\n4 3\n1 2\n2 3\n3 4\n4 2\n1 2\n3 4\n200 1\n13 37\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:40:16.545Z"
+  "fetchedAt": "2026-11-02T16:40:16.545Z",
+  "translatedAt": "2026-11-03T04:13:23.513+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

@@ -4,7 +4,7 @@
   "contestId": 2157,
   "index": "C",
   "title": "Meximum Array 2",
-  "titleZh": null,
+  "titleZh": "Mex 最大数组 2",
   "url": "https://codeforces.com/contest/2157/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*[Ferus Melek - Brute Force](https://soundcloud.com/ferusmelek/brute-force)*⠀\n\nYou are given three positive integers $n$, $k$, and $q$. You are also given $q$ tuples $(c, l, r)$, with $1 \\leq c \\leq 2$ and $1 \\leq l \\leq r \\leq n$.\n\nAn array $a_1, a_2, \\ldots, a_n$ is **meximum** if $0 \\leq a_i \\leq 10^9$ for each $i$ in $[1, n]$, and for each given tuple $(c, l, r)$,\n\n- if $c = 1$, then $\\min(a_l, a_{l+1}, \\ldots, a_r) = k$;\n- if $c = 2$, then $\\operatorname{MEX}$$^{\\text{∗}}$$(a_l, a_{l+1}, \\ldots, a_r) = k$.\n\nNote that the parameter $k$ is the same for all the conditions.\n\nFind a **meximum** array $a_1, a_2, \\ldots, a_n$ of length $n$. The input is generated in such a way that a valid array always exists. If there are multiple possible arrays, you can print any one of them.\n\n$^{\\text{∗}}$The minimum excluded (MEX) of a collection of integers $a_1, a_2, \\ldots, a_k$ is defined as the smallest non-negative integer $x$ which does not occur in the collection $a$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $k$, $q$ ($1 \\leq k \\leq n \\leq 100$, $1 \\leq q \\leq 100$) — the length of the array $a_1, a_2, \\ldots, a_n$, the result of the $\\min$ and $\\operatorname{MEX}$ calculations described by the tuples, and the number of tuples.\n\nThen, $q$ lines follow. The $i$-th line contains a tuple $(c, l, r)$, which gives a constraint to $a_l, a_{l+1}, \\ldots, a_r$ according to the statement.\n\nIt is guaranteed that there exists a valid array corresponding to the given input.\n\n**Note that there are no constraints on the sum of $n$, $k$, or $q$ over all test cases.**\n\n## Output\n\nFor each test case, print a single line containing a **meximum** array $a_1, a_2, \\ldots, a_n$.\n\n## Note\n\nIn the first test case, you have to build a meximum array with $n = 6$, $k = 2$ and with $q = 2$ constraints given by tuples.\n\n- tuple $(1, 1, 3)$: $\\min(a_1, a_2, a_3)$ must be $2$;\n- tuple $(2, 2, 6)$: $\\operatorname{MEX}(a_2, a_3, a_4, a_5, a_6)$ must be $2$.\n\nA possible array that satisfies all these constraints, and has elements $0 \\leq a_i \\leq 10^9$, is $[2, 5, 4, 3, 0, 1]$.\n\nIn the second test case, you have to build a meximum array with $n = 3$, $k = 3$ and with $q = 1$ constraint given by a tuple.\n\n- tuple $(2, 1, 3)$: $\\operatorname{MEX}(a_1, a_2, a_3)$ must be $3$.\n\nA possible array that satisfies this constraint, and has elements $0 \\leq a_i \\leq 10^9$, is $[2, 0, 1]$.",
-  "statementZhMd": null,
+  "statementZhMd": "*[Ferus Melek - Brute Force](https://soundcloud.com/ferusmelek/brute-force)*⠀\n\n给你三个正整数 $n$、$k$ 和 $q$，以及 $q$ 个三元组 $(c, l, r)$，满足 $1 \\leq c \\leq 2$ 且 $1 \\leq l \\leq r \\leq n$。\n\n如果数组 $a_1, a_2, \\ldots, a_n$ 满足：对于 $[1, n]$ 中的每个 $i$ 都有 $0 \\leq a_i \\leq 10^9$，且对于每个给定的三元组 $(c, l, r)$ 都满足下列条件，则称它是 **mex 最大**（meximum）的：\n\n- 若 $c = 1$，则 $\\min(a_l, a_{l+1}, \\ldots, a_r) = k$；\n- 若 $c = 2$，则 $\\operatorname{MEX}$$^{\\text{∗}}$$(a_l, a_{l+1}, \\ldots, a_r) = k$。\n\n注意，所有条件中的参数 $k$ 都是相同的。\n\n请找出一个长度为 $n$ 的 **mex 最大** 数组 $a_1, a_2, \\ldots, a_n$。输入数据保证合法数组一定存在。如果有多个可行的数组，你可以输出其中任意一个。\n\n$^{\\text{∗}}$一组整数 $a_1, a_2, \\ldots, a_k$ 的 MEX（minimum excluded，最小未出现值）定义为集合 $a$ 中未出现的最小非负整数 $x$。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 500$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含三个整数 $n$、$k$、$q$（$1 \\leq k \\leq n \\leq 100$，$1 \\leq q \\leq 100$）— 分别表示数组 $a_1, a_2, \\ldots, a_n$ 的长度、各三元组所描述的 $\\min$ 与 $\\operatorname{MEX}$ 计算的结果，以及三元组的个数。\n\n接下来 $q$ 行，第 $i$ 行包含一个三元组 $(c, l, r)$，按题面所述对 $a_l, a_{l+1}, \\ldots, a_r$ 给出一个约束。\n\n保证存在与给定输入相对应的合法数组。\n\n**注意，所有测试数据的 $n$、$k$、$q$ 之和没有任何限制。**\n\n## 输出格式\n\n对于每组测试数据，输出一行，包含一个 **mex 最大** 数组 $a_1, a_2, \\ldots, a_n$。\n\n## 说明\n\n在第一组测试数据中，你需要构造一个 mex 最大数组，其中 $n = 6$、$k = 2$，并有 $q = 2$ 个由三元组给出的约束。\n\n- 三元组 $(1, 1, 3)$：$\\min(a_1, a_2, a_3)$ 必须为 $2$；\n- 三元组 $(2, 2, 6)$：$\\operatorname{MEX}(a_2, a_3, a_4, a_5, a_6)$ 必须为 $2$。\n\n满足所有这些约束且元素满足 $0 \\leq a_i \\leq 10^9$ 的一个可行数组是 $[2, 5, 4, 3, 0, 1]$。\n\n在第二组测试数据中，你需要构造一个 mex 最大数组，其中 $n = 3$、$k = 3$，并有 $q = 1$ 个由三元组给出的约束。\n\n- 三元组 $(2, 1, 3)$：$\\operatorname{MEX}(a_1, a_2, a_3)$ 必须为 $3$。\n\n满足该约束且元素满足 $0 \\leq a_i \\leq 10^9$ 的一个可行数组是 $[2, 0, 1]$。",
   "samples": [
     {
       "input": "4\n6 2 2\n1 1 3\n2 2 6\n3 3 1\n2 1 3\n3 3 2\n1 1 1\n1 3 3\n3 2 2\n2 1 2\n2 2 3\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:12:38.299Z"
+  "fetchedAt": "2026-10-30T21:12:38.299Z",
+  "translatedAt": "2026-11-03T04:15:11.277+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

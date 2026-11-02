@@ -1,0 +1,31 @@
+{
+  "id": "180A",
+  "platform": "codeforces",
+  "contestId": 180,
+  "index": "A",
+  "title": "Defragmentation",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/180/problem/A",
+  "difficulty": 1800,
+  "tags": [
+    "implementation"
+  ],
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "In this problem you have to implement an algorithm to defragment your hard disk. The hard disk consists of a sequence of clusters, numbered by integers from $1$ to $*n*$. The disk has $*m*$ recorded files, the $*i*$-th file occupies clusters with numbers $*a*_{*i*, 1}$, $*a*_{*i*, 2}$, ..., $*a*_{*i*, *n*_{*i*}}$. These clusters are not necessarily located consecutively on the disk, but the order in which they are given corresponds to their sequence in the file (cluster $*a*_{*i*, 1}$ contains the first fragment of the $*i*$-th file, cluster $*a*_{*i*, 2}$ has the second fragment, etc.). Also the disc must have one or several clusters which are free from files.\n\nYou are permitted to perform operations of copying the contents of cluster number $*i*$ to cluster number $*j*$ ($*i*$ and $*j*$ must be different). Moreover, if the cluster number $*j*$ used to keep some information, it is lost forever. Clusters are not cleaned, but after the defragmentation is complete, some of them are simply declared unusable (although they may possibly still contain some fragments of files).\n\nYour task is to use a sequence of copy operations to ensure that each file occupies a contiguous area of memory. Each file should occupy a consecutive cluster section, the files must follow one after another from the beginning of the hard disk. After defragmentation all free (unused) clusters should be at the end of the hard disk. After defragmenting files can be placed in an arbitrary order. Clusters of each file should go consecutively from first to last. See explanatory examples in the notes.\n\nPrint the sequence of operations leading to the disk defragmentation. Note that **you do not have to minimize** the number of operations, but it should not exceed $2*n*$.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 200$) — the number of clusters and the number of files, correspondingly. Next $*m*$ lines contain descriptions of the files. The first number in the line is $*n*_{*i*}$ ($*n*_{*i*} ≥ 1$), the number of clusters occupied by the $*i*$-th file. Then follow $*n*_{*i*}$ numbers $*a*_{*i*, 1}$, $*a*_{*i*, 2}$, ..., $*a*_{*i*, *n*_{*i*}}$ ($1 ≤ *a*_{*i*, *j*} ≤ *n*$). It is guaranteed that each cluster number occurs not more than once and ![image](https://espresso.codeforces.com/179e6277f4c96272f5b7990e9663833ad354bea2.png), that is, there exists at least one unused cluster. Numbers on each line are separated by spaces.\n\n## Output\n\nIn the first line print a single integer $*k*$ ($0 ≤ *k* ≤ 2*n*$) — the number of operations needed to defragment the disk. Next $*k*$ lines should contain the operations' descriptions as \"$*i*$ $*j*$\" (copy the contents of the cluster number $*i*$ to the cluster number $*j*$).\n\n## Note\n\nLet's say that a disk consists of $8$ clusters and contains two files. The first file occupies two clusters and the second file occupies three clusters. Let's look at examples of correct and incorrect positions of files after defragmentation.\n\n![image](https://espresso.codeforces.com/12c1b4ddb5b46e5f8beefe03fec3d3f86633aa5c.png)\n\nExample 2: each file must occupy a contiguous area of memory.\n\nExample 3: the order of files to each other is not important, at first the second file can be written, and then — the first one.\n\nExample 4: violating the order of file fragments to each other is not allowed.\n\nExample 5: unused clusters should be located at the end, and in this example the unused clusters are $3$, $7$, $8$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7 2\n2 1 2\n3 3 4 5\n",
+      "output": "0\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "7 2\n2 1 3\n3 2 4 5\n",
+      "output": "3\n2 6\n3 2\n6 3\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T20:14:48.051Z"
+}
