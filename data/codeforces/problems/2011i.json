@@ -1,0 +1,33 @@
+{
+  "id": "2011I",
+  "platform": "codeforces",
+  "contestId": 2011,
+  "index": "I",
+  "title": "Stack and Queue",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2011/problem/I",
+  "difficulty": null,
+  "tags": [
+    "*special",
+    "data structures",
+    "divide and conquer"
+  ],
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 512,
+  "statementMd": "There are $2$ queues of patients at the doors of two doctors. The first doctor sees patients in the usual order of the queue — whoever arrived first will be seen first. The second doctor does the opposite — he sees those who arrived last first. Thus, there is a queue for the first doctor and a stack for the second doctor. A patient can be in both the queue and the stack. Each patient is characterized by the time their visit to the doctor will take (the time is the same for both doctors).\n\nWhen the appointments begin, the doctors will see patients in the order of the queue and stack, respectively. As soon as a doctor finishes with one patient, he will call the next one.\n\nBut there is one problem: if a patient is in both the queue and the stack, and he is called to one doctor first and then to the other, while he has not yet finished with the first one, confusion will arise. It is allowed for a patient to go to the second doctor at the exact moment he finishes with the first doctor.\n\nThe current configuration of the queue and stack is called good if the doctors can see all the patients without any confusion arising.\n\nInitially, both the queue and the stack are empty. There are three types of queries:\n\n1. add patient $x$ to the queue;\n2. add patient $x$ to the stack;\n3. patient $x$, who was in the queue, realizes he is in the wrong place and moves to the stack; however, he moves to the position in the stack as if he had entered the stack at the moment of the query when he entered the queue.\n\n**It is guaranteed that after each query, each patient is no more than once in the queue and no more than once in the stack.**\n\nAfter each query, you need to determine if the current configuration is good.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 10^5$) — the number of requests.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$) — for each patient, the time their visit to the doctor will take.\n\nEach of the following $n$ lines contains two integers $t$ and $x$ ($1 \\le t \\le 3$; $1 \\le x \\le n$) — the type of query and the patient's index. It is guaranteed that:\n\n- if the query is of type $1$, then patient $x$ is not in the queue yet;\n- if the query is of type $2$, then patient $x$ is not in the stack yet;\n- if the query is of type $3$, then patient $x$ is in the queue already and not in the stack yet.\n\n## Output\n\nAfter each query, print \"`YES`\", if the current configuration is good, and \"`NO`\" otherwise.\n\n## Note\n\nIn the first test, there are the following configurations:\n\n1. queue: $[1]$; stack: $[]$; patient $1$ is seen by the first doctor for $10$ minutes, starting at minute $0$.\n2. queue: $[1]$; stack: $[1]$; patient $1$ is seen by the first doctor during $[0; 10)$ and by the second during $[0; 10)$. Since patient $1$ must be at both doctors at the same time, the answer is \"`NO`\".\n3. queue: $[1]$; stack: $[1, 2]$; patient $1$ is seen by the first doctor during $[0; 10)$, and by the second during $[15; 25)$; patient $2$ is seen by the second doctor during $[0, 15)$. Now patient $1$ can make it to the second doctor after seeing the first.\n\nIn the second test, the configuration after query $4$ is as follows:\n\n- queue: $[1, 2]$;\n- stack: $[5, 3]$;\n- patient $1$: first doctor $[0, 2)$, second doctor is not seeing him;\n- patient $2$: first doctor $[2, 7)$, second doctor is not seeing him;\n- patient $3$: first doctor is not seeing him, second doctor $[0, 1)$;\n- patient $5$: first doctor is not seeing him, second doctor $[1, 6)$.\n\nAfter request $5$, the next configuration is:\n\n- queue: $[1]$;\n- stack: $[5, 2, 3]$;\n- patient $1$: first doctor $[0, 2)$, second doctor is not seeing him;\n- patient $2$: first doctor is not seeing him, second doctor $[1, 6)$;\n- patient $3$: first doctor is not seeing him, second doctor $[0, 1)$;\n- patient $5$: first doctor is not seeing him, second doctor $[6, 11)$.\n\nAfter request $6$, the next configuration is:\n\n- queue: $[1, 2]$;\n- stack: $[5, 2, 3]$;\n- patient $1$: first doctor $[0, 2)$, second doctor is not seeing him;\n- patient $2$: first doctor $[2, 7)$, second doctor $[1, 6)$;\n- patient $3$: first doctor is not seeing him, second doctor $[0, 1)$;\n- patient $5$: first doctor is not seeing him, second doctor $[6, 11)$.\n\nPatient $2$ must be at both doctors at the same time.\n\nAfter request $7$, the next configuration is:\n\n- queue: $[2]$;\n- stack: $[1, 5, 2, 3]$;\n- patient $1$: first doctor is not seeing him, second doctor $[11, 13)$;\n- patient $2$: first doctor $[0, 5)$, second doctor $[1, 6)$;\n- patient $3$: first doctor is not seeing him, second doctor $[0, 1)$;\n- patient $5$: first doctor is not seeing him, second doctor $[6, 11)$.\n\nPatient $2$ must be at both doctors at the same time.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n10 15 4\n1 1\n2 1\n2 2\n",
+      "output": "YES\nNO\nYES\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "7\n2 5 1 5 5 4 8\n1 1\n2 5\n1 2\n2 3\n3 2\n1 2\n3 1\n",
+      "output": "YES\nYES\nYES\nYES\nYES\nNO\nNO\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:01:51.922Z"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "2025D",
+  "platform": "codeforces",
+  "contestId": 2025,
+  "index": "D",
+  "title": "Attribute Checks",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2025/problem/D",
+  "difficulty": 1800,
+  "tags": [
+    "brute force",
+    "data structures",
+    "dp",
+    "implementation",
+    "math",
+    "two pointers"
+  ],
+  "timeLimitMs": 2500,
+  "memoryLimitMb": 512,
+  "statementMd": "Imagine a game where you play as a character that has two attributes: \"Strength\" and \"Intelligence\", that are at zero level initially.\n\nDuring the game, you'll acquire $m$ attribute points that allow you to increase your attribute levels — one point will increase one of the attributes by one level. But sometimes, you'll encounter a so-called \"Attribute Checks\": if your corresponding attribute is high enough, you'll pass it; otherwise, you'll fail it.\n\nSpending some time, you finally prepared a list which contains records of all points you got and all checks you've met. And now you're wondering: what is the maximum number of attribute checks you can pass in a single run if you'd spend points wisely?\n\nNote that you can't change the order of records.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($1 \\le m \\le 5000$; $m \\lt n \\le 2 \\cdot 10^6$) — the number of records in the list and the total number of points you'll get during the game.\n\nThe second line contains $n$ integers $r_1, r_2, \\dots, r_n$ ($-m \\le r_i \\le m$), where $r_i$ encodes the $i$-th record:\n\n- If $r_i = 0$, then the $i$-th record is an acquiring one attribute point. You can spend to level up either Strength or Intelligence;\n- If $r_i \\gt 0$, then it's an Intelligence check: if your Intelligence level is greater than or equal to $|r_i|$, you pass.\n- If $r_i \\lt 0$, then it's a Strength check: if your Strength level is greater than or equal to $|r_i|$, you pass.\n\nAdditional constraint on the input: the sequence $r_1, r_2, \\dots, r_n$ contains exactly $m$ elements equal to $0$.\n\n## Output\n\nPrint one integer — the maximum number of checks you can pass.\n\n## Note\n\nIn the first test, it's optimal to spend each point in Strength, so you'll fail $2$ Intelligence checks but pass $3$ Strength checks.\n\nIn the second test, you'll fail both checks, since the first point you get comes after the checks.\n\nIn the third test, one of the optimal strategies is:\n\n1. spend the first point on Intelligence;\n2. spend the second point on Strength;\n3. spend the third point on Strength;\n\nAs a result, you'll pass $2$ Intelligence checks $r_3$ and $r_9$ and $2$ Strength checks $r_7$ and $r_8$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "10 5\n0 1 0 2 0 -3 0 -4 0 -5\n",
+      "output": "3\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "3 1\n1 -1 0\n",
+      "output": "0\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "9 3\n0 0 1 0 2 -3 -2 -2 1\n",
+      "output": "4\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:01:31.430Z"
+}
