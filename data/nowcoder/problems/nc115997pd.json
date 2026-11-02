@@ -1,0 +1,25 @@
+{
+  "id": "nc115997pd",
+  "platform": "nowcoder",
+  "contestId": "115997",
+  "index": "D",
+  "title": "「LAOI-15」地球",
+  "titleZh": "「LAOI-15」地球",
+  "url": "https://ac.nowcoder.com/acm/contest/115997/D",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 512,
+  "statementMd": "## 题目描述\n\n在一个数轴上有 $n$ 个星球，第 $i$ 个星球位于 $i$，且引力为 $l_i$。\\\n对于第 $a,a+1,\\dots,b-1,b \\left(a \\leq b\\right)$ 个星球，我们定义他们之间的「吸引」为：令 $\\displaystyle s(a,i,b) = \\sum\\limits_{j=a}^{i-1} l_j - \\sum\\limits_{k=i+1}^{b} l_k \\left(a \\leq i \\leq b \\right)$，若 $\\left\\lvert s(a,i,b) + 0.5 \\right\\rvert > l_i$，则星球 $i$ 被「吸引」。\n\n记 $f(a,b)$ 为第 $a$ 个星球到第 $b$ 个星球之间被「吸引」的星球的引力之和。求解 $\\max\\limits_{1\\le a\\le b\\le n}f(a,b)$。\n\n## 输入格式\n\n每个测试文件均包含多组测试数据。第一行输入一个整数 $T\\left(1\\leq T\\leq 10^5\\right)$ 代表数据组数，每组测试数据描述如下：\\\n第一行输入一个整数 $n\\left(1\\leq n\\leq 2\\times 10^5\\right)$，表示星球数量。\\\n第二行输入 $n$ 个整数 $l_1,l_2,\\dots,l_n\\left(1\\leq l_i\\leq 10^9\\right)$，表示第 $i$ 个星球的引力。\\\n除此之外，保证单个测试文件的 $n$ 之和不超过 $2\\times 10^5$。\n\n## 输出格式\n\n对于每组测试数据，新起一行输出一个整数，表示答案。",
+  "statementZhMd": "## 题目描述\n\n在一个数轴上有 $n$ 个星球，第 $i$ 个星球位于 $i$，且引力为 $l_i$。\\\n对于第 $a,a+1,\\dots,b-1,b \\left(a \\leq b\\right)$ 个星球，我们定义他们之间的「吸引」为：令 $\\displaystyle s(a,i,b) = \\sum\\limits_{j=a}^{i-1} l_j - \\sum\\limits_{k=i+1}^{b} l_k \\left(a \\leq i \\leq b \\right)$，若 $\\left\\lvert s(a,i,b) + 0.5 \\right\\rvert > l_i$，则星球 $i$ 被「吸引」。\n\n记 $f(a,b)$ 为第 $a$ 个星球到第 $b$ 个星球之间被「吸引」的星球的引力之和。求解 $\\max\\limits_{1\\le a\\le b\\le n}f(a,b)$。\n\n## 输入格式\n\n每个测试文件均包含多组测试数据。第一行输入一个整数 $T\\left(1\\leq T\\leq 10^5\\right)$ 代表数据组数，每组测试数据描述如下：\\\n第一行输入一个整数 $n\\left(1\\leq n\\leq 2\\times 10^5\\right)$，表示星球数量。\\\n第二行输入 $n$ 个整数 $l_1,l_2,\\dots,l_n\\left(1\\leq l_i\\leq 10^9\\right)$，表示第 $i$ 个星球的引力。\\\n除此之外，保证单个测试文件的 $n$ 之和不超过 $2\\times 10^5$。\n\n## 输出格式\n\n对于每组测试数据，新起一行输出一个整数，表示答案。",
+  "samples": [
+    {
+      "input": "5\n5\n8 10 9 7 5\n6\n1 1 4 5 1 4\n6\n1 9 1 9 8 10\n6\n3 1 4 9 3 9\n10\n11 18 20 4 18 8 1 1 14 3",
+      "output": "30\n11\n29\n20\n80",
+      "note": "对于第一组测试数据，我们可以取到最大的值来自于 $a=1,b=5$：\\\n$\\hspace{23pt}\\bullet\\,$$\\textstyle s(1,1,5) = 0 - \\sum\\limits_{i=2}^5 l_i = -31$，$|-31+0.5|>8$，星球 $1$ 会被「吸引」。\\\n$\\hspace{23pt}\\bullet\\,$$\\textstyle s(1,2,5) = \\sum\\limits_{i=1}^1 l_i - \\sum\\limits_{i=3}^5 l_i = -13$，$|-13+0.5|>10$，星球 $2$ 会被「吸引」。\\\n$\\hspace{23pt}\\bullet\\,$$\\textstyle s(1,3,5) = \\sum\\limits_{i=1}^2 l_i - \\sum\\limits_{i=4}^5 l_i = 6$，$|6+0.5| < 9$，星球 $3$ **不会**被「吸引」。\\\n$\\hspace{23pt}\\bullet\\,$$\\textstyle s(1,4,5) = \\sum\\limits_{i=1}^3 l_i - \\sum\\limits_{i=5}^5 l_i = 22$，$|22+0.5| > 7$，星球 $4$ 会被「吸引」。\\\n$\\hspace{23pt}\\bullet\\,$$\\textstyle s(1,5,5) = \\sum\\limits_{i=1}^4 l_i - 0 = 30$，$|34+0.5| > 5$，星球 $5$ 会被「吸引」。\\\n综上，我们可以取到最大的值为 $f(1, 5) = 8 + 10 + 7 + 5 = 30$。"
+    }
+  ],
+  "language": "zh",
+  "translateModel": "官方原文",
+  "fetchedAt": "2026-11-02T22:01:42.390Z"
+}

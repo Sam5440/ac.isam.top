@@ -4,7 +4,7 @@
   "contestId": 2133,
   "index": "B",
   "title": "Villagers",
-  "titleZh": null,
+  "titleZh": "村民",
   "url": "https://codeforces.com/contest/2133/problem/B",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Steve lives in a village with $n$ other villagers. Unfortunately, due to disputes over the distribution of emeralds, none of those villagers are friends with any other villager. Furthermore, villager $i$ initially has a *grumpiness* of $g_i$.\n\nSteve can perform the following operation any number of times:\n\n- Select two villagers $i$ and $j$ and give them $\\text{max}(g_i, g_j)$ emeralds to share. Both of their grumpinesses decrease by $\\text{min}(g_i, g_j)$, and they become friends with each other if they weren't already.\n\nSteve wishes to make every villager friends with every other villager (possibly through some intermediate friendships); that is, from any villager, you can follow a path of friendships to reach any other villager. Since he does not want to inflate the village economy too much, calculate the minimum number of emeralds he must give away to accomplish this.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of villagers.\n\nThe second line of each test case contains $n$ integers $g_1, g_2,\\ldots, g_n$ ($1 \\le g_i \\le 10^9$) — the initial grumpiness of each villager.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum number of emeralds Steve must give away to make everyone friends.\n\n## Note\n\nIn the first test case, the only valid operation is $i = 1$, $j = 2$. Steve gives them $\\text{max}(1, 2) = 2$ emeralds, and they become friends.\n\nIn the second test case, one optimal sequence of operations is as follows:\n\n- Steve chooses $i = 1$, $j = 3$. He gives the villagers $\\text{max}(2, 5) = 5$ emeralds, and their grumpiness decreases by $\\text{min}(2, 5) = 2$. Now everyone's grumpiness is $[0, 1, 3, 2]$;\n- Steve chooses $i = 2$, $j = 4$. He gives the villagers $\\text{max}(1, 2) = 2$ emeralds, and their grumpiness decreases by $\\text{min}(1, 2) = 1$. Now everyone's grumpiness is $[0, 0, 3, 1]$;\n- Steve chooses $i = 1$, $j = 2$. He gives the villagers $\\text{max}(0, 0) = 0$ emeralds, and their grumpiness decreases by $\\text{min}(0, 0) = 0$. Now everyone's grumpiness is $[0, 0, 3, 1]$.\n\nAfter this, the pairs of villagers $(1, 3)$, $(2, 4)$ and $(1, 2)$ are directly friends, and every other pair of villagers is connected by a chain of mutual friendships. It can be shown that Steve cannot spend fewer than $7$ emeralds to accomplish this.",
-  "statementZhMd": null,
+  "statementZhMd": "Steve 住在一个村子里，村里还有 $n$ 名其他村民。不幸的是，由于绿宝石分配上的纠纷，这些村民之间互不为友。此外，村民 $i$ 初始的*怨气*为 $g_i$。\n\nSteve 可以进行任意多次以下操作：\n\n- 选择两名村民 $i$ 和 $j$，给他们 $\\text{max}(g_i, g_j)$ 颗绿宝石供其分享。两人的怨气都减少 $\\text{min}(g_i, g_j)$，并且如果他们原本不是朋友，则成为朋友。\n\nSteve 希望让每名村民都与其他所有村民成为朋友（可以通过若干中间朋友关系实现）；也就是说，从任意一名村民出发，沿着朋友关系的路径可以到达任何其他村民。由于他不想让村庄经济过于膨胀，请计算他为了达成这一目标必须送出的最少绿宝石数量。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——村民的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $g_1, g_2,\\ldots, g_n$（$1 \\le g_i \\le 10^9$）——每位村民的初始怨气。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——Steve 为了让所有人互为朋友必须送出的最少绿宝石数量。\n\n## 说明\n\n在第一个测试用例中，唯一可行的操作是 $i = 1$，$j = 2$。Steve 给他们 $\\text{max}(1, 2) = 2$ 颗绿宝石，他们成为了朋友。\n\n在第二个测试用例中，一种最优的操作序列如下：\n\n- Steve 选择 $i = 1$，$j = 3$。他给这两名村民 $\\text{max}(2, 5) = 5$ 颗绿宝石，他们的怨气减少了 $\\text{min}(2, 5) = 2$。此时所有人的怨气为 $[0, 1, 3, 2]$；\n- Steve 选择 $i = 2$，$j = 4$。他给这两名村民 $\\text{max}(1, 2) = 2$ 颗绿宝石，他们的怨气减少了 $\\text{min}(1, 2) = 1$。此时所有人的怨气为 $[0, 0, 3, 1]$；\n- Steve 选择 $i = 1$，$j = 2$。他给这两名村民 $\\text{max}(0, 0) = 0$ 颗绿宝石，他们的怨气减少了 $\\text{min}(0, 0) = 0$。此时所有人的怨气为 $[0, 0, 3, 1]$。\n\n在此之后，村民对 $(1, 3)$、$(2, 4)$ 和 $(1, 2)$ 直接互为朋友，而其余任意一对村民之间都能通过相互的朋友关系链相连。可以证明，Steve 不可能只花费少于 $7$ 颗绿宝石来完成这个目标。",
   "samples": [
     {
       "input": "4\n2\n1 2\n4\n2 1 5 2\n5\n1000000000 1000000000 1000000000 1000000000 1000000000\n6\n3 1 4 1 5 9\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:14:56.000Z"
+  "fetchedAt": "2026-10-30T21:14:56.000Z",
+  "translatedAt": "2026-11-03T05:57:44.313+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
