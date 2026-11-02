@@ -1,0 +1,25 @@
+{
+  "id": "nc112318pb",
+  "platform": "nowcoder",
+  "contestId": "112318",
+  "index": "B",
+  "title": "汉堡猫猫",
+  "titleZh": "汉堡猫猫",
+  "url": "https://ac.nowcoder.com/acm/contest/112318/B",
+  "difficulty": null,
+  "tags": [],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "## 题目描述\n\n给定一个由 $n$ 个整数组成的数组 $\\{a_1, a_2, \\dots, a_n\\}$，你可以进行以下操作任意次数（可以不操作），每一次：\\\n$\\hspace{23pt}\\bullet\\,$第一步，选择数组中的一个数 $a_i$；\\\n$\\hspace{23pt}\\bullet\\,$第二步，设 $a_i$ 的二进制表示为 $(\\cdots c_2c_1c_0)_2$（其中 $c_i$ 是第 $i$ 位的值，$c_0$ 是最低位）；\\\n$\\hspace{23pt}\\bullet\\,$第三步，选择一个位置 $k$（$1 \\leq k \\leq 60$）；\\\n$\\hspace{23pt}\\bullet\\,$第四步，将 $c_k$ 的值修改为 $c_{k-1}$ 的值（即 $c_k \\leftarrow c_{k-1}$）；\\\n通过上述操作，使得数组所有元素的异或和（$a_1 \\oplus a_2 \\oplus \\cdots \\oplus a_n$）最大化。输出这个最大异或和。\n\n## 输入格式\n\n第一行输入一个整数 $T\\left(1\\leq T\\leq 2 \\times 10^5\\right)$ 代表数据组数，每组测试数据描述如下：\\\n第一行一个整数 $n(1 \\leq n \\leq 2 \\times 10^5)$，表示数组中的元素个数。\\\n第二行输入 $n$ 个整数 $a_1, a_2, \\ldots, a_n\\left(0 \\leq a_i \\lt 2^{60}\\right)$，表示数组中的元素。\n\n除此之外，保证单个测试文件的 $n$ 之和不超过 $2 \\times 10^5$。\n\n## 输出格式\n\n对于每组测试数据，新起一行输出一个整数，表示可能的最大异或和。",
+  "statementZhMd": "## 题目描述\n\n给定一个由 $n$ 个整数组成的数组 $\\{a_1, a_2, \\dots, a_n\\}$，你可以进行以下操作任意次数（可以不操作），每一次：\\\n$\\hspace{23pt}\\bullet\\,$第一步，选择数组中的一个数 $a_i$；\\\n$\\hspace{23pt}\\bullet\\,$第二步，设 $a_i$ 的二进制表示为 $(\\cdots c_2c_1c_0)_2$（其中 $c_i$ 是第 $i$ 位的值，$c_0$ 是最低位）；\\\n$\\hspace{23pt}\\bullet\\,$第三步，选择一个位置 $k$（$1 \\leq k \\leq 60$）；\\\n$\\hspace{23pt}\\bullet\\,$第四步，将 $c_k$ 的值修改为 $c_{k-1}$ 的值（即 $c_k \\leftarrow c_{k-1}$）；\\\n通过上述操作，使得数组所有元素的异或和（$a_1 \\oplus a_2 \\oplus \\cdots \\oplus a_n$）最大化。输出这个最大异或和。\n\n## 输入格式\n\n第一行输入一个整数 $T\\left(1\\leq T\\leq 2 \\times 10^5\\right)$ 代表数据组数，每组测试数据描述如下：\\\n第一行一个整数 $n(1 \\leq n \\leq 2 \\times 10^5)$，表示数组中的元素个数。\\\n第二行输入 $n$ 个整数 $a_1, a_2, \\ldots, a_n\\left(0 \\leq a_i \\lt 2^{60}\\right)$，表示数组中的元素。\n\n除此之外，保证单个测试文件的 $n$ 之和不超过 $2 \\times 10^5$。\n\n## 输出格式\n\n对于每组测试数据，新起一行输出一个整数，表示可能的最大异或和。",
+  "samples": [
+    {
+      "input": "3\n2\n256 2048\n5\n6 1 3 4 5\n2\n1152921504606846975 1152921504606846975",
+      "output": "2305843009213693696\n2305843009213693951\n1152921504606846976",
+      "note": "对于第一组测试数据，最优方案为：$\\begin{array}{rc}<br />256 &=& (\\underbrace{\\texttt{000\\,} \\cdots \\texttt{\\,000}}_{52\\text{个}0} \\texttt{\\,1}\\underbrace{\\texttt{00\\,000\\,000}}_{8\\text{个}0})_2 \\\\<br />^{k=9}\\downarrow \\\\<br />768 &=& (\\underbrace{\\texttt{000\\,}\\cdots \\texttt{\\,00}}_{51\\text{个}0}{\\color{orange}{\\texttt{1}}}\\texttt{\\,1}\\underbrace{\\texttt{00\\,000\\,000}}_{8\\text{个}0})_2 \\\\<br />^{k=10}\\downarrow \\\\<br />1792 &=& (\\underbrace{\\texttt{000\\,}\\cdots \\texttt{\\,0}}_{50\\text{个}0}{\\color{orange}{\\texttt{1}}}\\texttt{1\\,1}\\underbrace{\\texttt{00\\,000\\,000}}_{8\\text{个}0})_2 \\\\<br />^{k=11}\\downarrow \\\\<br />\\vdots \\\\<br />^{k=60}\\downarrow \\\\<br />2\\,305\\,843\\,009\\,213\\,693\\,696 &=& (\\underbrace{{\\color{orange}{\\texttt{1}}}\\texttt{11\\,}\\cdots\\texttt{\\,111\\,}}_{53\\text{个}1}\\underbrace{\\texttt{00\\,000\\,000}}_{8\\text{个}0})_2 \\\\<br />\\hline \\\\<br />2048 &=& (\\underbrace{\\texttt{000\\,}\\cdots \\texttt{\\,000}}_{49\\text{个}0} \\texttt{\\,1}\\underbrace{\\texttt{00\\,000\\,000\\,000}}_{11\\text{个}0})_2 \\\\<br />^{k=11}\\downarrow \\\\<br />0 &=& (\\underbrace{\\texttt{000\\,}\\cdots \\texttt{\\,000}}_{49\\text{个}0} {\\color{orange}{\\texttt{0}}}\\underbrace{\\texttt{00\\,000\\,000\\,000}}_{11\\text{个}0})_2 \\\\<br />\\end{array}$"
+    }
+  ],
+  "language": "zh",
+  "translateModel": "官方原文",
+  "fetchedAt": "2026-11-02T23:33:09.508Z"
+}
