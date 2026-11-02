@@ -4,7 +4,7 @@
   "contestId": 2210,
   "index": "D",
   "title": "A Simple RBS Problem",
-  "titleZh": null,
+  "titleZh": "简单 RBS 问题",
   "url": "https://codeforces.com/contest/2210/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A bracket sequence is called regular if it is possible to obtain a correct arithmetic expression by inserting characters $+$ and $1$ into this sequence. For example, sequences `(())()`, `()` and `(()(()))` are regular, while `)(`, `(()` and `(()))(` are not. Let's call a regular bracket sequence *RBS*.\n\nYou can perform the following operation on any RBS string $b$ —\n\n- Choose any two **disjoint**, **non empty** substrings$^{\\text{∗}}$ of $b$ which are RBS and swap the two substrings.\n\nMore formally, let $m$ be the length of $b$. You can perform the following operation on $b$:\n\n- Choose indices $1 \\le l_1 \\lt r_1 \\lt l_2 \\lt r_2 \\le m$ such that the substrings $b[{l_1..r_1}]$ and $b[l_2..r_2]$ are both RBS and swap these substrings. The string $b$ becomes $b_1 \\ldots b_{l_1-1} b_{l_2} b_{l_2+1}\\ldots b_{r_2} b_{r_1+1}\\ldots b_{l_2-1} b_{l_1} b_{l_1+1}\\ldots b_{r_1}b_{r_2+1} \\ldots b_m$.\n\nYou are given two strings $s$ and $t$ of length $n$ ($n$ is **even**) such that both $s$ and $t$ are RBS.\n\nDetermine whether you can transform $s$ to $t$ using the above operation **any** number of times.\n\n$^{\\text{∗}}$A string $a$ is a substring of a string $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($4\\leq n\\leq 5\\cdot 10^5$, $n$ is **even**).\n\nThe second line of each test case contains a string $s$ of length $n$ such that $s$ is an RBS.\n\nThe third line of each test case contains a string $t$ of length $n$ such that $t$ is an RBS.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5\\cdot 10^5$.\n\n## Output\n\nFor each test case, print \"`YES`\" if $s$ can be transformed to $t$, and \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, the two strings are already same.\n\nIn the third test case, we can choose $l_1=1,r_1=4,l_2=5,r_2=6$ and transform $s$ to $t$.\n\nHere is a visualization of the operation performed in this case —\n\n$\\color{red}{(())}\\color{blue}{()}\\rightarrow\\color{blue}{()}\\color{red}{(())}$",
-  "statementZhMd": null,
+  "statementZhMd": "如果一个括号序列中插入字符 $+$ 和 $1$ 后能得到一个正确的算术表达式，则称这个括号序列是正规的。例如，序列 `(())()`、`()` 和 `(()(()))` 是正规的，而 `)(`、`(()` 和 `(()))(` 则不是。我们将正规的括号序列称为 *RBS*。\n\n你可以对任意 RBS 字符串 $b$ 执行以下操作 —\n\n- 选择 $b$ 的任意两个**不相交**、**非空**且均为 RBS 的子串$^{\\text{∗}}$，并交换这两个子串。\n\n更形式化地，设 $m$ 为 $b$ 的长度。你可以对 $b$ 执行以下操作：\n\n- 选择下标 $1 \\le l_1 \\lt r_1 \\lt l_2 \\lt r_2 \\le m$，使得子串 $b[{l_1..r_1}]$ 与 $b[l_2..r_2]$ 均为 RBS，并交换这两个子串。字符串 $b$ 变为 $b_1 \\ldots b_{l_1-1} b_{l_2} b_{l_2+1}\\ldots b_{r_2} b_{r_1+1}\\ldots b_{l_2-1} b_{l_1} b_{l_1+1}\\ldots b_{r_1}b_{r_2+1} \\ldots b_m$。\n\n给定两个长度为 $n$（$n$ 为**偶数**）的字符串 $s$ 和 $t$，满足 $s$ 和 $t$ 都是 RBS。\n\n请判断能否通过执行上述操作**任意**多次，将 $s$ 变换为 $t$。\n\n$^{\\text{∗}}$若字符串 $a$ 能由字符串 $b$ 删除其开头若干（可能为零个或全部）字符以及结尾若干（可能为零个或全部）字符得到，则称 $a$ 是 $b$ 的子串。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$4\\leq n\\leq 5\\cdot 10^5$，$n$ 为**偶数**）。\n\n每个测试用例的第二行包含一个长度为 $n$ 的字符串 $s$，保证 $s$ 是一个 RBS。\n\n每个测试用例的第三行包含一个长度为 $n$ 的字符串 $t$，保证 $t$ 是一个 RBS。\n\n保证所有测试用例的 $n$ 之和不超过 $5\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，若 $s$ 可以变换为 $t$，输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n你可以以任意大小写（大写或小写）输出答案。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都将被识别为肯定回答。\n\n## 说明\n\n在第一个测试用例中，两个字符串已经相同。\n\n在第三个测试用例中，我们可以选择 $l_1=1,r_1=4,l_2=5,r_2=6$，从而将 $s$ 变换为 $t$。\n\n下面是该用例中所执行操作的示意 —\n\n$\\color{red}{(())}\\color{blue}{()}\\rightarrow\\color{blue}{()}\\color{red}{(())}$",
   "samples": [
     {
       "input": "5\n4\n()()\n()()\n4\n()()\n(())\n6\n(())()\n()(())\n8\n(()()())\n()()(())\n8\n()()(())\n()(()())\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:46.957Z"
+  "fetchedAt": "2026-10-30T20:54:46.957Z",
+  "translatedAt": "2026-11-03T02:19:31.980+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

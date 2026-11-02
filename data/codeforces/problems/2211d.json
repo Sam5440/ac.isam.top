@@ -4,7 +4,7 @@
   "contestId": 2211,
   "index": "D",
   "title": "AND-array",
-  "titleZh": null,
+  "titleZh": "AND 数组",
   "url": "https://codeforces.com/contest/2211/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "For a sequence $a$ of length $n$, we define its *AND-array* $f(a)$ as follows:\n\n$$f(a)_k = \\sum\\limits_{1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\le n} a_{i_1} \\& a_{i_2} \\& \\ldots \\& a_{i_k}$$\n\nfor all $1\\le k\\le n$, where $\\&$ denotes the [bitwise AND operation](https://en.wikipedia.org/wiki/Bitwise_operation#AND).\n\nIn other words, $f(a)_k$ is a sum of bitwise AND over all subsequences$^{\\text{∗}}$ of $a$ with length $k$.\n\nThe sequence $a$ is unknown to you. However, you are provided with a sequence $b$ of length $n$ such that $b_i \\equiv f(a)_i \\pmod{10^9 + 7}$ for all $1 \\le i \\le n$. Your task is to reconstruct the sequence $a$ based on the given sequence $b$.\n\n$^{\\text{∗}}$A sequence $c$ is a subsequence of a sequence $d$ if $c$ can be obtained from $d$ by the deletion of several (possibly, zero or all) element from arbitrary positions. Two subsequences are considered different if the sets of **positions** of the deleted elements are different.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 10^5$) — the length of sequences $a$ and $b$.\n\nThe second line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($0 \\le b_i \\lt 10^9 + 7$) — the sequence $b$.\n\nIt is guaranteed that there exists a sequence $a$ of length $n$ with $0 \\le a_i \\lt 2^{29}$, such that $b_i \\equiv f(a)_i \\pmod{10^9 + 7}$ for all $1 \\le i \\le n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nOutput $n$ integers $a_1, a_2, \\ldots, a_n$ ($0\\le a_i \\lt 2^{29}$) representing the reconstructed sequence $a$. If there are multiple possible sequences satisfying the constraints, output any.\n\n## Note\n\nIn the second example, for $a = [5, 3, 6, 1, 7]$ the value of $f(a)_4$ is $a_1 \\& a_2 \\& a_3 \\& a_4 + a_1 \\& a_2 \\& a_3 \\& a_5 + a_1 \\& a_2 \\& a_4 \\& a_5 + a_1 \\& a_3 \\& a_4 \\& a_5 + a_2 \\& a_3 \\& a_4 \\& a_5 = 0 + 0 + 1 + 0 + 0 = 1$, and $f(a)_1 = a_1 + a_2 + a_3 + a_4 + a_5 = 22$. It can be proven that $f(a)_i = b_i$ for all $1 \\le i \\le 5$, so $a = [5, 3, 6, 1, 7]$ is a valid solution.",
-  "statementZhMd": null,
+  "statementZhMd": "对于一个长度为 $n$ 的序列 $a$，我们定义它的 *AND-array* $f(a)$ 如下：\n\n$$f(a)_k = \\sum\\limits_{1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\le n} a_{i_1} \\& a_{i_2} \\& \\ldots \\& a_{i_k}$$\n\n对所有的 $1\\le k\\le n$ 均成立，其中 $\\&$ 表示[按位与运算](https://en.wikipedia.org/wiki/Bitwise_operation#AND)。\n\n换句话说，$f(a)_k$ 是 $a$ 的所有长度为 $k$ 的子序列$^{\\text{∗}}$对应的按位与之和。\n\n序列 $a$ 对你来说是未知的。但是，你会得到一个长度为 $n$ 的序列 $b$，满足对所有 $1 \\le i \\le n$ 都有 $b_i \\equiv f(a)_i \\pmod{10^9 + 7}$。你的任务是根据给定的序列 $b$ 还原出序列 $a$。\n\n$^{\\text{∗}}$如果序列 $c$ 可以通过从序列 $d$ 的任意位置删除若干（可能为零个或全部）元素得到，那么称序列 $c$ 是序列 $d$ 的子序列。如果两个子序列被删除元素的**位置**集合不同，则认为它们是不同的。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^5$）——表示序列 $a$ 和 $b$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$0 \\le b_i \\lt 10^9 + 7$）——表示序列 $b$。\n\n保证存在一个长度为 $n$ 且满足 $0 \\le a_i \\lt 2^{29}$ 的序列 $a$，使得对所有 $1 \\le i \\le n$ 都有 $b_i \\equiv f(a)_i \\pmod{10^9 + 7}$。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n输出 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0\\le a_i \\lt 2^{29}$），表示还原出的序列 $a$。如果存在多个满足条件的序列，输出任意一个均可。\n\n## 说明\n\n在第二个样例中，对于 $a = [5, 3, 6, 1, 7]$，$f(a)_4$ 的值为 $a_1 \\& a_2 \\& a_3 \\& a_4 + a_1 \\& a_2 \\& a_3 \\& a_5 + a_1 \\& a_2 \\& a_4 \\& a_5 + a_1 \\& a_3 \\& a_4 \\& a_5 + a_2 \\& a_3 \\& a_4 \\& a_5 = 0 + 0 + 1 + 0 + 0 = 1$，而 $f(a)_1 = a_1 + a_2 + a_3 + a_4 + a_5 = 22$。可以证明对所有 $1 \\le i \\le 5$ 都有 $f(a)_i = b_i$，因此 $a = [5, 3, 6, 1, 7]$ 是一组合法的解。",
   "samples": [
     {
       "input": "3\n3\n0 0 0\n5\n22 24 10 1 0\n10\n130 585 1560 2730 3276 2730 1560 585 130 13\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:38.479Z"
+  "fetchedAt": "2026-10-30T20:54:38.479Z",
+  "translatedAt": "2026-11-03T02:21:22.342+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

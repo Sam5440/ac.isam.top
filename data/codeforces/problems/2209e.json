@@ -4,7 +4,7 @@
   "contestId": 2209,
   "index": "E",
   "title": "A Trivial String Problem",
-  "titleZh": null,
+  "titleZh": "一个平凡的字符串问题",
   "url": "https://codeforces.com/contest/2209/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 1024,
   "statementMd": "Define $f(t)$ as the maximum number of parts $t$ can be split into such that each part is a non-empty prefix of $t$. In other words, $f(t)$ is the maximum positive integer $k$ that satisfies the following condition:\n\n- There exist $k$ strings $p_1,p_2,\\ldots,p_k$, which are prefixes of $t$, such that $t=p_1+p_2+\\ldots+p_k$. Here $+$ denotes the string concatenation.\n\nYou are given a string $s$ of length $n$, consisting of only lowercase English letters. Let $s[x..y]$ represent the substring$^{\\text{∗}}$ of $s$ from the $x$-th to the $y$-th character (inclusive). You need to answer $q$ queries. The $i$-th query provides two integers $l_i$ and $r_i$, and you need to find\n\n$$ \\sum_{j=l_i}^{r_i} f(s[l_i..j]). $$\n\n$^{\\text{∗}}$A string $a$ is a substring of a string $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^3$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1 \\le n \\le 10^6$, $1 \\le q \\le 100$).\n\nThe second line contains the string $s$ of length $n$, consisting of only lowercase English letters.\n\nThe $i$-th of the next $q$ lines contains two integers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le n$), representing the $i$-th query.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each query, output an integer representing the value of the expression.\n\n## Note\n\nIn the first test case, $f(\\texttt{a})=1$.\n\nIn the second test case, $f(\\texttt{a})+f(\\texttt{aa})+f(\\texttt{aaa})+f(\\texttt{aaaa})+f(\\texttt{aaaaa})=1+2+3+4+5=15$ and $f(\\texttt{a})+f(\\texttt{aa})+f(\\texttt{aaa})=1+2+3=6$.\n\nIn the third test case, $f(\\texttt{a})+f(\\texttt{ab})+f(\\texttt{abc})+f(\\texttt{abcd})+f(\\texttt{abcde})+f(\\texttt{abcdef})=1+1+1+1+1+1=6$ and $f(\\texttt{c})+f(\\texttt{cd})+f(\\texttt{cde})=1+1+1=3$.",
-  "statementZhMd": null,
+  "statementZhMd": "定义 $f(t)$ 为 $t$ 能被划分成的部分数的最大值，使得每个部分都是 $t$ 的非空前缀。换句话说，$f(t)$ 是满足以下条件的最大正整数 $k$：\n\n- 存在 $k$ 个字符串 $p_1,p_2,\\ldots,p_k$，它们都是 $t$ 的前缀，满足 $t=p_1+p_2+\\ldots+p_k$。这里 $+$ 表示字符串的拼接。\n\n给定一个长度为 $n$ 的字符串 $s$，仅由小写英文字母组成。设 $s[x..y]$ 表示 $s$ 从第 $x$ 个到第 $y$ 个字符（含两端）的子串$^{\\text{∗}}$。你需要回答 $q$ 个询问。第 $i$ 个询问给出两个整数 $l_i$ 和 $r_i$，你需要求\n\n$$ \\sum_{j=l_i}^{r_i} f(s[l_i..j]). $$\n\n$^{\\text{∗}}$如果字符串 $a$ 可以通过从字符串 $b$ 的开头删除若干个（可能为零个或全部）字符、并从末尾删除若干个（可能为零个或全部）字符得到，则称 $a$ 是 $b$ 的子串。\n\n## 输入格式\n\n每组测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^3$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$1 \\le n \\le 10^6$，$1 \\le q \\le 100$）。\n\n第二行包含一个长度为 $n$ 的字符串 $s$，仅由小写英文字母组成。\n\n接下来的 $q$ 行中，第 $i$ 行包含两个整数 $l_i$ 和 $r_i$（$1 \\le l_i \\le r_i \\le n$），表示第 $i$ 个询问。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个询问，输出一个整数，表示该表达式的值。\n\n## 说明\n\n在第一个测试用例中，$f(\\texttt{a})=1$。\n\n在第二个测试用例中，$f(\\texttt{a})+f(\\texttt{aa})+f(\\texttt{aaa})+f(\\texttt{aaaa})+f(\\texttt{aaaaa})=1+2+3+4+5=15$；$f(\\texttt{a})+f(\\texttt{aa})+f(\\texttt{aaa})=1+2+3=6$。\n\n在第三个测试用例中，$f(\\texttt{a})+f(\\texttt{ab})+f(\\texttt{abc})+f(\\texttt{abcd})+f(\\texttt{abcde})+f(\\texttt{abcdef})=1+1+1+1+1+1=6$；$f(\\texttt{c})+f(\\texttt{cd})+f(\\texttt{cde})=1+1+1=3$。",
   "samples": [
     {
       "input": "6\n1 1\na\n1 1\n5 2\naaaaa\n1 5\n2 4\n6 2\nabcdef\n1 6\n3 5\n6 3\nabaaba\n1 6\n1 3\n2 6\n7 3\nabcabca\n1 7\n2 7\n4 7\n8 3\naababaac\n1 8\n2 8\n3 7\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:55.029Z"
+  "fetchedAt": "2026-10-30T20:54:55.029Z",
+  "translatedAt": "2026-11-03T02:24:07.833+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

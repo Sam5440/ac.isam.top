@@ -4,7 +4,7 @@
   "contestId": 2209,
   "index": "F",
   "title": "Dynamic Values And Maximum Sum",
-  "titleZh": null,
+  "titleZh": "动态数值与最大和",
   "url": "https://codeforces.com/contest/2209/problem/F",
   "difficulty": 2700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree$^{\\text{∗}}$ with $n$ vertices numbered from 1 to $n$, where each vertex $i$ has an initial value $a_i$. You perform $k$ operations. The total is $0$ initially. In each operation:\n\n1. Choose a vertex $r$ and root the tree at $r$.\n2. Add the current value of $r$ to the total and set the value of $r$ to $0$.\n3. For each vertex $ u $ that is not a leaf$^{\\text{†}}$, find the leaves in the subtree$^{\\text{‡}}$ of $u$ that are at the maximum distance from $u$. Among them, select the one with the smallest index, denoted as the destination for $u$. Add the current value of $u$ to the destination and set the value of $u$ to $0$.\n\nFind the maximum possible total.\n\n$^{\\text{∗}}$A tree is a connected graph without cycles. $^{\\text{†}}$A leaf is any vertex without children. $^{\\text{‡}}$A subtree of vertex $v$ is the subgraph of $v$, all its descendants, and all the edges between them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10 ^ 4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 3 \\cdot 10^5$).\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the initial values of vertices.\n\nEach of the following $n-1$ lines contains two integers $u$ and $v$, denoting an edge connecting vertex $u$ and $v$. It is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3\\cdot 10 ^ 5$.\n\n## Output\n\nFor each test case, output an integer — the maximum possible total.\n\n## Note\n\nIn the first test case:\n\n1. Choose vertex $1$ as the root. Add $a_1 = 19$ to the total and set $a_1 = 0$. After rooting the tree at $1$, for every non-leaf vertex $u$, move its value to the leaf in its subtree that is farthest from $u$ (breaking ties by smallest index). Under this rooting:\n- The value of vertex $2$ is transferred to vertex $4$, so $a_2$ becomes $0$ and $a_4$ becomes $101$.\n  - The values of vertices $3$, $4$, and $5$ remain at their respective positions according to the rule.\n2. Choose vertex $3$ as the root. Add $a_3 = 39$ to the total and set $a_3 = 0$. After redistribution under this rooting, the values of vertices $4$ and $5$ remain at their positions.\n3. Choose vertex $4$ as the root. Add $a_4 = 101$ to the total and set $a_4 = 0$. After redistribution, the value at vertex $5$ remains unchanged.\n4. Choose vertex $5$ as the root. Add $a_5 = 2$ to the total and set $a_5 = 0$.\n\nThe total obtained is $19 + 39 + 101 + 2 = 161$.\n\nIn the sixth test case, choose vertex $2$ as the root. Add its value to the total, obtaining $1\\,000\\,000\\,000$.",
-  "statementZhMd": null,
+  "statementZhMd": "给你一棵含有 $n$ 个顶点的树$^{\\text{∗}}$，顶点编号从 1 到 $n$，每个顶点 $i$ 有一个初始值 $a_i$。你将执行 $k$ 次操作。初始时总和为 $0$。每次操作中：\n\n1. 选择一个顶点 $r$，并将树以 $r$ 为根。\n2. 将 $r$ 的当前值加入总和，并将 $r$ 的值置为 $0$。\n3. 对于每个不是叶子$^{\\text{†}}$的顶点 $ u $，找出其子树$^{\\text{‡}}$中与 $u$ 距离最大的叶子。在这些叶子中选择编号最小的一个，记为 $u$ 的目的地。将 $u$ 的当前值加到目的地上，并将 $u$ 的值置为 $0$。\n\n求可能得到的最大总和。\n\n$^{\\text{∗}}$树是不含环的连通图。$^{\\text{†}}$叶子是没有子节点的顶点。$^{\\text{‡}}$顶点 $v$ 的子树是由 $v$、其所有后代以及它们之间的所有边构成的子图。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$（$1 \\le t \\le 10 ^ 4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 3 \\cdot 10^5$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）— 顶点的初始值。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $u$ 和 $v$，表示一条连接顶点 $u$ 与 $v$ 的边。保证给定的边构成一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $3\\cdot 10 ^ 5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 — 可能得到的最大总和。\n\n## 说明\n\n在第一个测试用例中：\n\n1. 选择顶点 $1$ 作为根。将 $a_1 = 19$ 加入总和，并将 $a_1$ 置为 $0$。将树以 $1$ 为根后，对于每个非叶子顶点 $u$，把它的值移动到其子树中距 $u$ 最远的叶子（并列时取编号最小的）。在这种定根方式下：\n- 顶点 $2$ 的值被转移到顶点 $4$，于是 $a_2$ 变为 $0$，而 $a_4$ 变为 $101$。\n  - 按照规则，顶点 $3$、$4$ 和 $5$ 的值保持在各自原来的位置上。\n2. 选择顶点 $3$ 作为根。将 $a_3 = 39$ 加入总和，并将 $a_3$ 置为 $0$。在这种定根方式下重新分配后，顶点 $4$ 和 $5$ 的值保持在各自位置上。\n3. 选择顶点 $4$ 作为根。将 $a_4 = 101$ 加入总和，并将 $a_4$ 置为 $0$。重新分配后，顶点 $5$ 上的值保持不变。\n4. 选择顶点 $5$ 作为根。将 $a_5 = 2$ 加入总和，并将 $a_5$ 置为 $0$。\n\n得到的总和为 $19 + 39 + 101 + 2 = 161$。\n\n在第六个测试用例中，选择顶点 $2$ 作为根。将它的值加入总和，得到 $1\\,000\\,000\\,000$。",
   "samples": [
     {
       "input": "7\n5 4\n19 20 39 81 2\n1 2\n1 3\n2 4\n2 5\n5 3\n12 21 39 8 21\n1 2\n1 3\n3 4\n2 5\n5 2\n129 216 32 83 221\n1 2\n1 3\n3 4\n4 5\n5 3\n15 15 15 15 15\n1 2\n1 3\n1 4\n1 5\n1 1\n1\n2 1\n1 1000000000\n1 2\n7 2\n8 3 5 7 9 1 6\n4 3\n7 5\n5 2\n2 3\n3 6\n6 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:54:55.029Z"
+  "fetchedAt": "2026-10-30T20:54:55.029Z",
+  "translatedAt": "2026-11-03T02:25:14.589+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

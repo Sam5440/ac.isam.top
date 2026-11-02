@@ -4,7 +4,7 @@
   "contestId": 2208,
   "index": "D2",
   "title": "Tree Orientation (Hard Version)",
-  "titleZh": null,
+  "titleZh": "树的定向（困难版）",
   "url": "https://codeforces.com/contest/2208/problem/D2",
   "difficulty": 2200,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, the constraint on $n$ is higher. You can hack only if you solved all versions of this problem.**\n\nYou once had an undirected tree with $n$ nodes. To make the tree look more interesting, you decided to assign an arbitary direction to each of the $n-1$ edges.\n\nAs time goes by, you forgot the structure of your tree. However, you found a note which recorded **after** the direction of the edges have been assigned, whether $u$ can reach $v$$^{\\text{∗}}$ for all ordered pairs of $(u,v)$ which satisfies $1\\le u,v\\le n$.\n\nYou want to find out the structure of the tree and the direction of the edges from the information given by the note. Determine if there is possible solution and construct one. If there are multiple solutions, you only need to find one of them.\n\n$^{\\text{∗}}$For a directed graph, we say that $x$ can reach $y$ if and only if there exists a sequence of nodes $u_1,u_2,\\ldots,u_k$ such that $u_1=x,u_k=y$ and for all $i$ from $2$ to $k$, the directed edge $u_{i-1}\\rightarrow u_i$ exists. In particular, a node can always reach itself.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test cases contain an integer $n$ ($2\\le n\\le 8000$) denoting the number of nodes your tree have.\n\nThe following $n$ lines contain a string $s_i$. $s_i$ is of length $n$ and consists only of $0$ and $1$. The $j$-th character of $s_i$ is $1$ if and only if $i$ can reach $j$ after the edges are directed.\n\nIt is guaranteed that the sum of $n^2$ over all test cases does not exceed $8000^2$.\n\n## Output\n\nFor each testcase, output $\\texttt{Yes}$ if a solution exists, otherwise print $\\texttt{No}$. If the answer is $\\texttt{Yes}$, on the following lines output a description of the edges constructed.\n\nOutput $n-1$ lines denoting the directed edges. Each line should contain two integers $x$ and $y$, denoting that after the edges are directed, the directed edge $x\\rightarrow y$ exists. If there are multiple solutions, print any of them.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nFor the first test case, nodes $1$ and $4$ can only reach themselves, node $2$ can reach every node, node $3$ can only reach node $1$ and $3$. The constructed edges satisfy this constraint.\n\nFor the second test case, it can be proven that no possible solution exists.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。两个版本的区别在于，本版本中 $n$ 的限制更大。只有当你解决了本题的所有版本时，才可以进行 Hack。**\n\n你曾经有一棵 $n$ 个节点的无向树。为了让这棵树看起来更有趣，你决定给 $n-1$ 条边中的每一条任意指定一个方向。\n\n随着时间的流逝，你忘记了这棵树的结构。然而，你找到了一张笔记，上面记录了在边的方向被指定**之后**，对于所有满足 $1\\le u,v\\le n$ 的有序对 $(u,v)$，$u$ 能否到达 $v$$^{\\text{∗}}$。\n\n你想根据笔记给出的信息，还原出树的结构以及每条边的方向。请判断是否存在可行解，并构造出一组解。如果有多组解，你只需找出其中任意一组即可。\n\n$^{\\text{∗}}$对于一个有向图，我们称 $x$ 能到达 $y$，当且仅当存在一列节点 $u_1,u_2,\\ldots,u_k$，满足 $u_1=x,u_k=y$，且对于从 $2$ 到 $k$ 的所有 $i$，都存在有向边 $u_{i-1}\\rightarrow u_i$。特别地，一个节点总能到达它自己。\n\n## 输入格式\n\n每个测试文件包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含一个整数 $n$（$2\\le n\\le 8000$），表示你的树的节点个数。\n\n接下来的 $n$ 行，每行包含一个字符串 $s_i$。$s_i$ 的长度为 $n$，仅由 $0$ 和 $1$ 组成。$s_i$ 的第 $j$ 个字符为 $1$ 当且仅当在边被定向之后，$i$ 能到达 $j$。\n\n保证所有测试数据的 $n^2$ 之和不超过 $8000^2$。\n\n## 输出格式\n\n对于每组测试数据，如果存在解，输出 $\\texttt{Yes}$，否则输出 $\\texttt{No}$。如果答案是 $\\texttt{Yes}$，在接下来的若干行中输出所构造的边的描述。\n\n输出 $n-1$ 行，表示这些有向边。每行应包含两个整数 $x$ 和 $y$，表示在边被定向之后，存在有向边 $x\\rightarrow y$。如果有多组解，输出任意一组均可。\n\n你可以以任意大小写输出答案。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被判定为肯定回答。\n\n## 说明\n\n对于第一组测试数据，节点 $1$ 和 $4$ 只能到达它们自己，节点 $2$ 能到达所有节点，节点 $3$ 只能到达节点 $1$ 和 $3$。所构造的边满足这一约束。\n\n对于第二组测试数据，可以证明不存在可行解。",
   "samples": [
     {
       "input": "11\n4\n1000\n1111\n1010\n0001\n4\n1111\n0111\n0010\n0111\n4\n0011\n0111\n0011\n0001\n4\n1000\n0110\n0010\n1111\n4\n1000\n0110\n1010\n1111\n5\n10000\n01011\n00111\n00010\n00001\n5\n10000\n11000\n10101\n10111\n00001\n5\n10000\n01101\n00100\n01110\n10001\n4\n1100\n0100\n0011\n0001\n4\n1110\n0100\n0010\n0101\n3\n100\n111\n101\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:55:04.100Z"
+  "fetchedAt": "2026-10-30T20:55:04.100Z",
+  "translatedAt": "2026-11-03T02:27:40.969+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
