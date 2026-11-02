@@ -4,7 +4,7 @@
   "contestId": 2173,
   "index": "D",
   "title": "Taiga's Carry Chains",
-  "titleZh": null,
+  "titleZh": "大河的进位链",
   "url": "https://codeforces.com/contest/2173/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*Miracles don't happen to those who just wait.*— *Toradora!*\n\nAfter classes at Ohashi High School, Ryuuji hands Taiga a positive integer $n$ and sets a simple challenge.\n\nThey will play for exactly $k$ moves. In a single move, Taiga chooses a non-negative integer $\\ell$ and sets $n \\gets n + 2^{\\ell}$.\n\nRyuuji defines the *score* of one move as the number of binary carries that occur when adding $2^{\\ell}$ to the current number in base $2$. The total *score* is the sum of *score* over all $k$ moves.\n\nTaiga wants the total *score* to be as large as possible after $k$ moves. What is the maximum total *score* she can achieve?\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe only line of each test case contains two integers $n$ and $k$ ($1 \\le n \\lt 2^{30}$, $0 \\le k \\le 10^9$) — the initial integer and the number of moves.\n\n## Output\n\nFor each test case, output a single integer — the maximum total *score* that Taiga can achieve.\n\n## Note\n\nIn the first test case, $(n,k)=(7,1)$ and $7=\\mathtt{111}_2$. Adding $2^0$ gives $\\mathtt{111}+\\mathtt{1}=\\mathtt{1000}$, which produces carries at bits $0,1,2$. So the total score is $3$.\n\nIn the second test case, $(n,k)=(13,2)$ with $13=\\mathtt{1101}_2$. First we add $2^0$: $\\mathtt{1101}+\\mathtt{0001}=\\mathtt{1110}$, which creates one carry. Then we add $2^1$: $\\mathtt{1110}+\\mathtt{0010}=\\mathtt{10000}$, with carries propagating through bits $1,2,3$. In total there are $1+3=4$ carries, so the score is ${4}$.\n\nIn the third test case, $(n,k)=(42,2)$ and $42=\\mathtt{101010}_2$. First we add $2^1$: $\\mathtt{101010}+\\mathtt{000010}=\\mathtt{101100}$, giving one carry. Next we add $2^2$: $\\mathtt{101100}+\\mathtt{000100}=\\mathtt{110000}$, which generates carries at bits $2$ and $3$. Thus the total number of carries is $1+2=3$.\n\nIn the fifth test case, $(n,k)=(23,2)$ and $23=\\mathtt{10111}_2$. First we add $2^0$: $\\mathtt{10111}+\\mathtt{00001}=\\mathtt{11000}$, which produces carries at bits $0,1,2$. Then we add $2^3$: $\\mathtt{11000}+\\mathtt{01000}=\\mathtt{100000}$, producing carries at bits $3$ and $4$. Altogether there are $3+2=5$ carries, so the total score is ${5}$.",
-  "statementZhMd": null,
+  "statementZhMd": "*奇迹不会发生在只会等待的人身上。*——*龙与虎！*\n\n在大桥高中放学后，龙儿给了大河一个正整数 $n$，并设下了一个简单的挑战。\n\n他们将进行恰好 $k$ 次操作。在单次操作中，大河选择一个非负整数 $\\ell$，然后令 $n \\gets n + 2^{\\ell}$。\n\n龙儿定义一次操作的*得分*为在二进制下将 $2^{\\ell}$ 加到当前数上时发生的进位次数。总*得分*是所有 $k$ 次操作的*得分*之和。\n\n大河希望 $k$ 次操作后的总*得分*尽可能大。她能获得的最大总*得分*是多少？\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各测试用例的描述。\n\n每个测试用例仅占一行，包含两个整数 $n$ 和 $k$（$1 \\le n \\lt 2^{30}$，$0 \\le k \\le 10^9$）——分别表示初始整数和操作次数。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——大河能获得的最大总*得分*。\n\n## 说明\n\n在第一个测试用例中，$(n,k)=(7,1)$ 且 $7=\\mathtt{111}_2$。加上 $2^0$ 得到 $\\mathtt{111}+\\mathtt{1}=\\mathtt{1000}$，在第 $0,1,2$ 位产生了进位。因此总得分为 $3$。\n\n在第二个测试用例中，$(n,k)=(13,2)$，其中 $13=\\mathtt{1101}_2$。首先加上 $2^0$：$\\mathtt{1101}+\\mathtt{0001}=\\mathtt{1110}$，产生一次进位。随后加上 $2^1$：$\\mathtt{1110}+\\mathtt{0010}=\\mathtt{10000}$，进位在第 $1,2,3$ 位传播。总共有 $1+3=4$ 次进位，因此得分为 ${4}$。\n\n在第三个测试用例中，$(n,k)=(42,2)$ 且 $42=\\mathtt{101010}_2$。首先加上 $2^1$：$\\mathtt{101010}+\\mathtt{000010}=\\mathtt{101100}$，产生一次进位。接下来加上 $2^2$：$\\mathtt{101100}+\\mathtt{000100}=\\mathtt{110000}$，在第 $2$ 位和第 $3$ 位产生了进位。因此进位总数为 $1+2=3$。\n\n在第五个测试用例中，$(n,k)=(23,2)$ 且 $23=\\mathtt{10111}_2$。首先加上 $2^0$：$\\mathtt{10111}+\\mathtt{00001}=\\mathtt{11000}$，在第 $0,1,2$ 位产生了进位。随后加上 $2^3$：$\\mathtt{11000}+\\mathtt{01000}=\\mathtt{100000}$，在第 $3$ 位和第 $4$ 位产生了进位。总共有 $3+2=5$ 次进位，因此总得分为 ${5}$。",
   "samples": [
     {
       "input": "6\n7 1\n13 2\n42 2\n1048576 100\n23 2\n371 1\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:05:37.954Z"
+  "fetchedAt": "2026-10-30T21:05:37.954Z",
+  "translatedAt": "2026-11-03T04:07:04.301+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

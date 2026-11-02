@@ -4,7 +4,7 @@
   "contestId": 2174,
   "index": "C2",
   "title": "Beautiful Patterns (Hard Version)",
-  "titleZh": null,
+  "titleZh": "美丽图案（困难版）",
   "url": "https://codeforces.com/contest/2174/problem/C2",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, $n \\le 2 \\cdot 10^5$. You can hack only if you solved all versions of this problem.**\n\nUpon entering the ancient palace \"Palindrome-Palace\", you noticed that there are peculiar patterns on its walls. The pattern is a mosaic of size $1 \\times n$ made of pebbles, each painted in one of $m$ different colors.\n\nThe *correctness* of an arbitrary mosaic $s$ is defined as the number of non-empty subsegments of $s$ that are palindromes. The *beauty* of the mosaic is defined as the square of its *correctness*. For example, for the mosaic `rgrb`, there are five palindromic subsegments: `r`, `g`, `r`, `b`, and `rgr`. Therefore, its *correctness* is $5$, and its *beauty* is $25$.\n\nWhile wandering through this palace, you wondered: what is the expected value of the *beauty* of the mosaic if the color of each of the $n$ pebbles is chosen uniformly and independently of the colors of the other pebbles? Print the answer modulo prime $p$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe only line of each test case contains 3 integers $n$, $m$, and $p$ ($1 \\leq n \\leq 2 \\cdot 10^5$; $1 \\leq m \\leq 10^7$; $m \\lt p \\lt 10^9$) representing the length of the mosaic, the number of different colors of pebbles, and the modulus for which the answer needs to be computed.\n\nIt is guaranteed that $p$ is a prime number. It is also guaranteed that the sum of $n$ across all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output the expected beauty of the mosaic modulo $p$.\n\nFormally, let $x = p$. It can be shown that the exact answer can be expressed as an irreducible fraction $\\frac{y}{z}$, where $y$ and $z$ are integers and $z \\not \\equiv 0 \\pmod{x}$. Output the integer equal to $y \\cdot z^{-1} \\bmod x$. In other words, output such an integer $t$ that $0 \\le t \\lt x$ and $t \\cdot z \\equiv y \\pmod{x}$.\n\n## Note\n\nIn the first test case, there are a total of four mosaics of length $2$ if only two different colors of pebbles can be used to construct them, with two of them having two palindromic subsegments, and the other two having three each. Thus, the expected value of the beauty of the mosaic is $\\left(\\frac{2^2}{4} + \\frac{2^2}{4} + \\frac{3^2}{4} + \\frac{3^2}{4}\\right) = 13 \\cdot 2^{-1} \\bmod 101 = 57$.\n\nIn the second test case, all subsegments of the mosaic of length 5 will be palindromes.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。两个版本之间的区别在于本版本中 $n \\le 2 \\cdot 10^5$。只有当你解决了本题的所有版本后，才能进行 hack。**\n\n走进古老的“回文宫殿”时，你注意到宫殿的墙壁上有一些奇特的图案。图案是一个由鹅卵石构成的尺寸为 $1 \\times n$ 的马赛克，每颗鹅卵石都被涂成 $m$ 种不同颜色中的一种。\n\n任意马赛克 $s$ 的*正确度*定义为 $s$ 中非空回文子段的数量。马赛克的*美观度*定义为其*正确度*的平方。例如，对于马赛克 `rgrb`，有五个回文子段：`r`、`g`、`r`、`b` 和 `rgr`。因此，它的*正确度*为 $5$，*美观度*为 $25$。\n\n在宫殿中漫步时，你好奇：如果每颗鹅卵石的颜色都是从 $m$ 种颜色中均匀随机选取，且与其他鹅卵石的颜色相互独立，那么马赛克的*美观度*的期望值是多少？请输出答案对素数 $p$ 取模的结果。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各测试用例的描述。\n\n每个测试用例仅一行，包含 3 个整数 $n$、$m$ 和 $p$（$1 \\leq n \\leq 2 \\cdot 10^5$；$1 \\leq m \\leq 10^7$；$m \\lt p \\lt 10^9$），分别表示马赛克的长度、鹅卵石的不同颜色数量，以及需要对其计算答案的模数。\n\n保证 $p$ 是素数。同时保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出马赛克的美观度期望值对 $p$ 取模的结果。\n\n形式化地，令 $x = p$。可以证明，精确答案可以表示为最简分数 $\\frac{y}{z}$，其中 $y$ 和 $z$ 为整数，且 $z \\not \\equiv 0 \\pmod{x}$。请输出等于 $y \\cdot z^{-1} \\bmod x$ 的整数。换句话说，输出一个满足 $0 \\le t \\lt x$ 且 $t \\cdot z \\equiv y \\pmod{x}$ 的整数 $t$。\n\n## 说明\n\n在第一个测试用例中，如果只能使用两种不同颜色的鹅卵石来构造马赛克，则长度为 $2$ 的马赛克共有四种，其中两种有两个回文子段，另外两种各有三个回文子段。因此，马赛克美观度的期望值为 $\\left(\\frac{2^2}{4} + \\frac{2^2}{4} + \\frac{3^2}{4} + \\frac{3^2}{4}\\right) = 13 \\cdot 2^{-1} \\bmod 101 = 57$。\n\n在第二个测试用例中，长度为 5 的马赛克的所有子段都是回文。",
   "samples": [
     {
       "input": "3\n2 2 101\n5 1 999999937\n100 23190 3214373\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:05:30.643Z"
+  "fetchedAt": "2026-10-30T21:05:30.643Z",
+  "translatedAt": "2026-11-03T04:03:25.812+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

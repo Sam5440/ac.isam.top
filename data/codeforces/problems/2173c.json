@@ -4,7 +4,7 @@
   "contestId": 2173,
   "index": "C",
   "title": "Kanade's Perfect Multiples",
-  "titleZh": null,
+  "titleZh": "Kanade 的完美倍数",
   "url": "https://codeforces.com/contest/2173/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*We've carved those memories into ourselves... No matter how hard they were, they're the lives we carried out!*— *Angel Beats!*\n\nIn the afterlife school, Kanade studies a peculiar number game.\n\nShe gives you two integers $n$ and $k$, as well as an array $a$ consisting of $n$ integers, where $1 \\le a_i \\le k$ holds.\n\nFor an integer set $B = \\{b_1, b_2, \\ldots, b_m\\}$ where $1\\le b_i\\le k$, we call it *complete* **if and only if** both of the following hold:\n\n- For each $1\\le i\\le n$, at least one divisor of $a_i$ is contained in $B$;\n- For each $1\\le j\\le m$, all positive multiples of $b_j$ which are less than or equal to $k$ appear in the array $a$ at least once.\n\nYou have to find a *complete* set $B$ with **minimum** possible size, or determine that no such set exists.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1\\le n\\le 2\\cdot 10^5$, $1\\le k\\le 10^9$) — the length of $a$ and the upper bound of elements of $a$.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1\\le a_i\\le k$) — the elements of $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case:\n\n- If no *complete* set $B$ exists, print a single integer $-1$ in the only line of output.\n- Otherwise:\n- First print a single integer $m$ ($1\\le m\\le n$) in the first line of output — the size of $B$. Note that you have to minimize the size of $B$.\n  - Then output $m$ integers $b_1, b_2, \\ldots, b_m$ ($1 \\le b_i \\le k$) in the second line — the set you constructed.\n\nIf there are multiple answers, you may print any of them.\n\n## Note\n\nIn the first test case, $B=\\{2,3\\}$ works. For $b=2$, all multiples $\\{2,4,6\\}$ (up to $k=6$) appear in $a$; for $b=3$, multiples $\\{3,6\\}$ appear. Every $a_i$ is divisible by $2$ or $3$. No single $b$ can satisfy both conditions, so $m=2$ is minimal.\n\nIn the second test case, $B=\\{1\\}$ satisfies both rules since every number is divisible by $1$ and all multiples of $1$ up to $k$ appear.",
-  "statementZhMd": null,
+  "statementZhMd": "*我们将那些回忆铭刻于自身……无论多么艰难，那都是我们一路走过的人生！*——《Angel Beats!》\n\n在死后世界的学校里，Kanade 正在研究一个奇特的数字游戏。\n\n她给你两个整数 $n$ 和 $k$，以及一个由 $n$ 个整数组成的数组 $a$，其中满足 $1 \\le a_i \\le k$。\n\n对于一个整数集合 $B = \\{b_1, b_2, \\ldots, b_m\\}$（其中 $1\\le b_i\\le k$），我们称它是*完全的*，**当且仅当**以下两个条件同时成立：\n\n- 对于每个 $1\\le i\\le n$，$a_i$ 的至少一个约数包含在 $B$ 中；\n- 对于每个 $1\\le j\\le m$，$b_j$ 的所有不超过 $k$ 的正倍数都至少在数组 $a$ 中出现过一次。\n\n你需要找出一个大小**尽可能小**的*完全*集合 $B$，或者判定这样的集合不存在。\n\n## 输入格式\n\n每个测试文件包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $k$（$1\\le n\\le 2\\cdot 10^5$，$1\\le k\\le 10^9$）——分别表示数组 $a$ 的长度和数组 $a$ 中元素的上界。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1\\le a_i\\le k$）——表示数组 $a$ 的元素。\n\n保证所有测试数据的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据：\n\n- 如果不存在*完全*集合 $B$，在输出的唯一一行中输出一个整数 $-1$。\n- 否则：\n- 首先在输出的第一行输出一个整数 $m$（$1\\le m\\le n$）——表示 $B$ 的大小。注意你必须最小化 $B$ 的大小。\n  - 然后在第二行输出 $m$ 个整数 $b_1, b_2, \\ldots, b_m$（$1 \\le b_i \\le k$）——表示你构造的集合。\n\n如果有多个答案，你可以输出其中任意一个。\n\n## 说明\n\n在第一组测试数据中，$B=\\{2,3\\}$ 是可行的。对于 $b=2$，它的所有倍数 $\\{2,4,6\\}$（不超过 $k=6$）都在 $a$ 中出现；对于 $b=3$，倍数 $\\{3,6\\}$ 也都出现。每个 $a_i$ 都能被 $2$ 或 $3$ 整除。没有任何单个的 $b$ 能同时满足这两个条件，因此 $m=2$ 是最小的。\n\n在第二组测试数据中，$B=\\{1\\}$ 同时满足两个规则，因为每个数都能被 $1$ 整除，且 $1$ 的所有不超过 $k$ 的倍数都出现了。",
   "samples": [
     {
       "input": "4\n4 6\n3 2 4 6\n5 5\n1 2 3 4 5\n3 6\n2 3 6\n1 2\n2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:05:37.954Z"
+  "fetchedAt": "2026-10-30T21:05:37.954Z",
+  "translatedAt": "2026-11-03T04:07:15.422+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
