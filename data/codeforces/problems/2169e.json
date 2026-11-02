@@ -4,7 +4,7 @@
   "contestId": 2169,
   "index": "E",
   "title": "Points Selection",
-  "titleZh": null,
+  "titleZh": "选点",
   "url": "https://codeforces.com/contest/2169/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Alice and Bob are playing with points on the XY plane. Initially, there are $n$ points on the plane: the $i$-th point is located at $(x_i, y_i)$ and has a cost of $c_i$.\n\nThe game consists of two stages:\n\n1. First, Alice selects some points (possibly none, but not all) and *removes* them from the field.\n2. Then, Bob draws a rectangle with sides parallel to the coordinate axes, such that all remaining points lie inside or on the boundary of this rectangle. The rectangle can degenerate into a line segment or even a point.\n\nAfter that, the game ends and the total score is calculated. The total score of the game is the sum of the costs of the **removed** points by Alice and the **perimeter** of the rectangle drawn by Bob. Alice wants to maximize the score, while Bob wants to minimize it.\n\nDetermine the total score of the game if both Alice and Bob play optimally.\n\nThe *perimeter* of the rectangle is equal to the sum of the lengths of all its *four* sides. Therefore, even if the rectangle degenerates into a line segment of length $k$, its perimeter will be $2k$. The perimeter of a rectangle that degenerates into a point is $0$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 3 \\cdot 10^5$) — the number of points on the plane.\n\nThe second line of each test case contains $n$ integers $x_1, x_2, \\dots, x_n$ ($0 \\le x_i \\le 10^{15}$) — the $x$-coordinates of the points.\n\nThe third line contains $n$ integers $y_1, y_2, \\dots, y_n$ ($0 \\le y_i \\le 10^{15}$) — the $y$-coordinates of the points.\n\nThe fourth line contains $n$ integers $c_1, c_2, \\dots, c_n$ ($0 \\le c_i \\le 10^9$) — the costs of the points.\n\nAdditional constraints on the input:\n\n- in one test case, all points are pairwise distinct;\n- the total number of points across all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the final score of the game if both Alice and Bob play optimally.\n\n## Note\n\nIn the first test case, there is only one point, and Alice cannot remove it. Then Bob constructs the rectangle $(1, 1) - (1, 1)$ with a perimeter of $0$.\n\nIn the second test case, it is optimal for Alice not to remove any points. Then Bob constructs the rectangle $(0, 0) - (10, 10)$ with a perimeter of $40$.\n\nIn the third test case, it is optimal for Alice to remove the first and third points. Then Bob constructs the rectangle $(7, 3) - (9, 3)$ with a perimeter of $4$. The total score will be $9 + 9 + 4 = 22$.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 在 XY 平面上玩点游戏。初始时平面上有 $n$ 个点：第 $i$ 个点位于 $(x_i, y_i)$，代价为 $c_i$。\n\n游戏由两个阶段组成：\n\n1. 首先，Alice 选择一些点（可以不选，但不能全选）并将它们从场地上*删除*。\n2. 然后，Bob 画一个边平行于坐标轴的矩形，使得所有剩余的点都位于该矩形内部或边界上。矩形可以退化成一条线段，甚至一个点。\n\n之后，游戏结束并计算总得分。游戏的总得分为 Alice **删除**的点的代价之和加上 Bob 画出的矩形的**周长**。Alice 想最大化得分，而 Bob 想最小化得分。\n\n若 Alice 和 Bob 都采取最优策略，请确定游戏的总得分。\n\n矩形的*周长*等于其*四条*边的长度之和。因此，即使矩形退化成长度为 $k$ 的线段，它的周长也为 $2k$。退化成一个点的矩形的周长为 $0$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）—— 测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^5$）—— 平面上点的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $x_1, x_2, \\dots, x_n$（$0 \\le x_i \\le 10^{15}$）—— 点的 $x$ 坐标。\n\n第三行包含 $n$ 个整数 $y_1, y_2, \\dots, y_n$（$0 \\le y_i \\le 10^{15}$）—— 点的 $y$ 坐标。\n\n第四行包含 $n$ 个整数 $c_1, c_2, \\dots, c_n$（$0 \\le c_i \\le 10^9$）—— 点的代价。\n\n输入的附加约束条件：\n\n- 在同一个测试用例中，所有点两两不同；\n- 所有测试用例的点的总数不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 双方都采取最优策略时游戏的最终得分。\n\n## 说明\n\n在第一个测试用例中，只有一个点，Alice 不能删除它。然后 Bob 构造矩形 $(1, 1) - (1, 1)$，其周长为 $0$。\n\n在第二个测试用例中，Alice 的最优策略是不删除任何点。然后 Bob 构造矩形 $(0, 0) - (10, 10)$，其周长为 $40$。\n\n在第三个测试用例中，Alice 的最优策略是删除第一个和第三个点。然后 Bob 构造矩形 $(7, 3) - (9, 3)$，其周长为 $4$。总得分为 $9 + 9 + 4 = 22$。",
   "samples": [
     {
       "input": "4\n1\n42\n42\n1000\n4\n5 10 5 0\n0 5 10 5\n1 1 1 1\n4\n6 7 8 9\n3 3 3 3\n9 0 9 0\n2\n1000000000 10\n10 1000000000\n12345 54321\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:40:25.813Z"
+  "fetchedAt": "2026-11-02T16:40:25.813Z",
+  "translatedAt": "2026-11-03T04:29:13.982+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

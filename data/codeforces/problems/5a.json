@@ -1,0 +1,31 @@
+{
+  "id": "5A",
+  "platform": "codeforces",
+  "contestId": 5,
+  "index": "A",
+  "title": "Chat Server's Outgoing Traffic",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/5/problem/A",
+  "difficulty": 1000,
+  "tags": [
+    "implementation"
+  ],
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 64,
+  "statementMd": "Polycarp is working on a new project called \"Polychat\". Following modern tendencies in IT, he decided, that this project should contain chat as well. To achieve this goal, Polycarp has spent several hours in front of his laptop and implemented a chat server that can process three types of commands:\n\n- Include a person to the chat (`'Add'` command).\n- Remove a person from the chat (`'Remove'` command).\n- Send a message from a person to all people, who are currently in the chat, including the one, who sends the message (`'Send'` command).\n\nNow Polycarp wants to find out the amount of outgoing traffic that the server will produce while processing a particular set of commands.\n\nPolycarp knows that chat server sends no traffic for 'Add' and 'Remove' commands. When 'Send' command is processed, server sends $*l*$ bytes to each participant of the chat, where $*l*$ is the length of the message.\n\nAs Polycarp has no time, he is asking for your help in solving this problem.\n\n## Input\n\nInput file will contain not more than 100 commands, each in its own line. No line will exceed 100 characters. Formats of the commands will be the following:\n\n- `+<name>` for `'Add'` command.\n- `-<name>` for `'Remove'` command.\n- `<sender_name>:<message_text>` for `'Send'` command.\n\n`<name>` and `<sender_name>` is a non-empty sequence of Latin letters and digits. `<message_text>` can contain letters, digits and spaces, but can't start or end with a space. `<message_text>` can be an empty line.\n\nIt is guaranteed, that input data are correct, i.e. there will be no `'Add'` command if person with such a name is already in the chat, there will be no `'Remove'` command if there is no person with such a name in the chat etc.\n\nAll names are case-sensitive.\n\n## Output\n\nPrint a single number — answer to the problem.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "+Mike\nMike:hello\n+Kate\n+Dmitry\n-Dmitry\nKate:hi\n-Kate\n",
+      "output": "9\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "+Mike\n-Mike\n+Mike\nMike:Hi   I am here\n-Mike\n+Kate\n-Kate\n",
+      "output": "14\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T20:31:37.252Z"
+}
