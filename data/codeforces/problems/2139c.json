@@ -4,14 +4,14 @@
   "contestId": 2139,
   "index": "C",
   "title": "Cake Assignment",
-  "titleZh": null,
+  "titleZh": "蛋糕分配",
   "url": "https://codeforces.com/contest/2139/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Chocola and Vanilla love cakes. Today, the manager of a cake shop gave them a total of $2^{k+1}$ cakes. The cakes were distributed evenly, so each of them initially received $2^k$ cakes.\n\nHowever, Chocola and Vanilla now want to redistribute the cakes such that Chocola ends up with exactly $x$ cakes and Vanilla gets the remaining $2^{k+1}-x$ cakes.\n\nIn one step, they can perform exactly one of the following two operations:\n\n1. Chocola gives half of her cakes to Vanilla. This operation is only allowed if Chocola currently has an even number of cakes.\n2. Vanilla gives half of her cakes to Chocola. This operation is only allowed if Vanilla currently has an even number of cakes.\n\nYour task is to determine the minimum number of steps required to reach the target distribution and to output any valid sequence of operations achieving that minimum.\n\nIt can be proven that, under the given constraints, a valid solution always exists, and the minimum number of steps required is at most $120$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $k$ and $x$ ($1 \\le k \\le 60$, $1 \\le x \\le 2^{k+1}-1$) — each person initially received $2^k$ cakes, and $x$ is the number of cakes Chocola should have after redistribution.\n\n## Output\n\nFor each test case, output a single integer $n$ ($0\\le n\\le 120$) representing the minimum number of steps required for them to redistribute the cakes accordingly.\n\nOn the next line, output $n$ integers $o_1, o_2, \\ldots, o_n$ ($o_i = \\mathtt{1}$ or $o_i = \\mathtt{2}$), where $o_i = \\mathtt{1}$ means that in the $i$-th step, Chocola gave half of her cakes to Vanilla (operation 1), and $o_i = \\mathtt{2}$ means that Vanilla gave half of her cakes to Chocola (operation 2).\n\n## Note\n\nIn the first test case, they can use the following steps so that Chocola has exactly $x = 3$ cakes and Vanilla has exactly $2 ^ {k + 1} - x = 5$ cakes. We use $\\{a, b\\}$ to denote that Chocola currently has $a$ cakes and Vanilla currently has $b$ cakes.\n\n$$\\{4, 4\\} \\xrightarrow{o_1 = \\mathtt{2}} \\{6, 2\\} \\xrightarrow{o_2 = \\mathtt{1}} \\{3, 5\\}$$\n\nIn the second test case, Chocola already has exactly $x = 4$ cakes and Vanilla already has exactly $2 ^ {k + 1} - x = 4$ cakes, so no operations are required.\n\nIn the third test case, they can use the following steps so that Chocola has exactly $x = 7$ cakes and Vanilla has exactly $2 ^ {k + 1} - x = 9$ cakes.\n\n$$\\{8, 8\\} \\xrightarrow{o_1 = \\mathtt{2}} \\{12, 4\\} \\xrightarrow{o_2 = \\mathtt{2}} \\{14, 2\\} \\xrightarrow{o_3 = \\mathtt{1}} \\{7, 9\\}$$",
-  "statementZhMd": null,
+  "statementZhMd": "Chocola 和 Vanilla 都非常喜爱蛋糕。今天，一家蛋糕店的经理总共给了她们 $2^{k+1}$ 个蛋糕。蛋糕被平均分配，因此每人最初都得到了 $2^k$ 个蛋糕。\n\n然而，Chocola 和 Vanilla 现在想要重新分配这些蛋糕，使得 Chocola 最终恰好拥有 $x$ 个蛋糕，而 Vanilla 得到剩下的 $2^{k+1}-x$ 个蛋糕。\n\n每一步中，她们可以执行以下两种操作中的恰好一种：\n\n1. Chocola 把她的一半蛋糕给 Vanilla。仅当 Chocola 当前拥有偶数个蛋糕时，才允许执行此操作。\n2. Vanilla 把她的一半蛋糕给 Chocola。仅当 Vanilla 当前拥有偶数个蛋糕时，才允许执行此操作。\n\n你的任务是求出达到目标分配所需的最少步数，并输出任意一组达到该最少步数的合法操作序列。\n\n可以证明，在给定的约束条件下，合法解总是存在，且所需的最少步数不超过 $120$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $k$ 和 $x$（$1 \\le k \\le 60$，$1 \\le x \\le 2^{k+1}-1$）— 每人最初获得 $2^k$ 个蛋糕，$x$ 为重新分配后 Chocola 应拥有的蛋糕数量。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 $n$（$0\\le n\\le 120$），表示她们据此重新分配蛋糕所需的最少步数。\n\n在下一行中，输出 $n$ 个整数 $o_1, o_2, \\ldots, o_n$（$o_i = \\mathtt{1}$ 或 $o_i = \\mathtt{2}$），其中 $o_i = \\mathtt{1}$ 表示在第 $i$ 步中 Chocola 把她的一半蛋糕给了 Vanilla（操作 1），$o_i = \\mathtt{2}$ 表示在第 $i$ 步中 Vanilla 把她的一半蛋糕给了 Chocola（操作 2）。\n\n## 说明\n\n在第一个测试用例中，她们可以按以下步骤操作，使得 Chocola 恰好拥有 $x = 3$ 个蛋糕，Vanilla 恰好拥有 $2 ^ {k + 1} - x = 5$ 个蛋糕。我们用 $\\{a, b\\}$ 表示 Chocola 当前拥有 $a$ 个蛋糕、Vanilla 当前拥有 $b$ 个蛋糕。\n\n$$\\{4, 4\\} \\xrightarrow{o_1 = \\mathtt{2}} \\{6, 2\\} \\xrightarrow{o_2 = \\mathtt{1}} \\{3, 5\\}$$\n\n在第二个测试用例中，Chocola 已经恰好拥有 $x = 4$ 个蛋糕，Vanilla 已经恰好拥有 $2 ^ {k + 1} - x = 4$ 个蛋糕，因此无需进行任何操作。\n\n在第三个测试用例中，她们可以按以下步骤操作，使得 Chocola 恰好拥有 $x = 7$ 个蛋糕，Vanilla 恰好拥有 $2 ^ {k + 1} - x = 9$ 个蛋糕。\n\n$$\\{8, 8\\} \\xrightarrow{o_1 = \\mathtt{2}} \\{12, 4\\} \\xrightarrow{o_2 = \\mathtt{2}} \\{14, 2\\} \\xrightarrow{o_3 = \\mathtt{1}} \\{7, 9\\}$$",
   "samples": [
     {
       "input": "4\n2 3\n2 4\n3 7\n2 5\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:14:16.063Z"
+  "fetchedAt": "2026-10-30T21:14:16.063Z",
+  "translatedAt": "2026-11-03T05:43:52.355+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

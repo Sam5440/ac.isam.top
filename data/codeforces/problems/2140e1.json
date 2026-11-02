@@ -4,7 +4,7 @@
   "contestId": 2140,
   "index": "E1",
   "title": "Prime Gaming (Easy Version)",
-  "titleZh": null,
+  "titleZh": "Prime Gaming（简单版）",
   "url": "https://codeforces.com/contest/2140/problem/E1",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, $m \\le 2$. You can hack only if you solved all versions of this problem.**\n\nA *valid* configuration is defined as an arrangement of $n$ piles of stones such that:\n\n- The number of stones in each pile is an integer between $1$ and $m$ (both inclusive).\n\nGiven a *valid* configuration of $n$ piles of stones, **some indices from $1$ to $n$ are marked as good**. Alice and Bob start playing a game taking $n-1$ turns alternately with Alice going first. In each turn, they have to perform the following operation:\n\n- Choose any integer $i$ such that $1 \\le i \\le p$ (where $p$ is the number of piles left) and $i$ is **good**, and remove the $i$-th pile completely.\n\nNote that after performing the operation once, the number of piles decreases by $1$ and the remaining piles are re-indexed. The game will end when there is only one pile left. It is guaranteed that the index $1$ is always good.\n\nLet $x$ denote the number of stones in the final remaining pile. Alice wants to maximize $x$, whereas Bob wants to minimize it. Both Alice and Bob play optimally.\n\nFind the sum of $x$ over all the possible *valid* configurations modulo $10 ^ 9 + 7$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each testcase contains two integers $n$ ($1 \\le n \\le 20$) and $m$ ($1 \\le m \\le 2$) — the number of piles and the upper bound on the number of stones in a pile.\n\nThe second line of each testcase contains a single integer $k$ ($1 \\le k \\le n$) — the number of indices marked as good.\n\nThe third line of each testcase contains $k$ integers $c_1,c_2,\\ldots,c_k$ ($1=c_1 \\lt c_2 \\lt \\ldots \\lt c_k\\le n$) — the good indices. **It is guaranteed that $1$ is always a good index (i.e. $c_1=1$)**.\n\nIt is guaranteed that the sum of $2^n$ over all test cases does not exceed $2^{20}$.\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each testcase, print a single integer — the sum of $x$ over all the possible *valid* configurations modulo $10 ^ 9 + 7$.\n\n## Note\n\nFor the first test case, the *valid* configurations are: $[1, 1]$, $[1,2]$, $[2, 1]$, $[2, 2]$.\n\nAs there are only $2$ piles of stones, Alice can only choose the first pile and remove it. Thus, the sum of $x$ is equal to $1+1+2+2=6$.\n\nFor the second test case, the final pile is always $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版。两个版本之间的区别在于本版本中 $m \\le 2$。只有当你做出本题的所有版本后才能进行 hack。**\n\n一个*合法*配置定义为 $n$ 堆石子的一种排布，满足：\n\n- 每堆石子的数量是 $1$ 到 $m$ 之间（包含两端）的整数。\n\n给定一个由 $n$ 堆石子组成的*合法*配置，**从 $1$ 到 $n$ 中的一些下标被标记为好下标**。Alice 和 Bob 开始轮流进行游戏，共进行 $n-1$ 轮，由 Alice 先手。在每一轮中，他们必须执行以下操作：\n\n- 选择任意整数 $i$，满足 $1 \\le i \\le p$（其中 $p$ 为剩余的堆数）且 $i$ 是**好下标**，然后将第 $i$ 堆完全移除。\n\n注意，执行一次操作后，堆数会减少 $1$，剩余的堆会被重新编号。当只剩下一堆时游戏结束。保证下标 $1$ 一定是好下标。\n\n设 $x$ 表示最后剩余那堆的石子数量。Alice 想要最大化 $x$，而 Bob 想要最小化 $x$。Alice 和 Bob 都采取最优策略。\n\n求所有可能的*合法*配置中 $x$ 的总和，对 $10 ^ 9 + 7$ 取模。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$（$1 \\le n \\le 20$）和 $m$（$1 \\le m \\le 2$）— 表示堆数以及每堆石子数量的上界。\n\n每个测试用例的第二行包含一个整数 $k$（$1 \\le k \\le n$）— 表示被标记为好下标的下标数量。\n\n每个测试用例的第三行包含 $k$ 个整数 $c_1,c_2,\\ldots,c_k$（$1=c_1 \\lt c_2 \\lt \\ldots \\lt c_k\\le n$）— 表示好下标。**保证 $1$ 一定是好下标（即 $c_1=1$）**。\n\n保证所有测试用例的 $2^n$ 之和不超过 $2^{20}$。\n\n保证所有测试用例的 $m$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 — 所有可能的*合法*配置中 $x$ 的总和，对 $10 ^ 9 + 7$ 取模。\n\n## 说明\n\n对于第一个测试用例，*合法*配置有：$[1, 1]$、$[1,2]$、$[2, 1]$、$[2, 2]$。\n\n由于只有 $2$ 堆石子，Alice 只能选择第一堆并将其移除。因此，$x$ 的总和等于 $1+1+2+2=6$。\n\n对于第二个测试用例，最终剩下的那堆总是 $1$。",
   "samples": [
     {
       "input": "3\n2 2\n1\n1\n3 1\n2\n1 3\n3 2\n2\n1 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:14:09.123Z"
+  "fetchedAt": "2026-10-30T21:14:09.123Z",
+  "translatedAt": "2026-11-03T05:39:28.295+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
