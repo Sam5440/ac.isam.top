@@ -1,0 +1,36 @@
+{
+  "id": "883L",
+  "platform": "codeforces",
+  "contestId": 883,
+  "index": "L",
+  "title": "Berland.Taxi",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/883/problem/L",
+  "difficulty": 2500,
+  "tags": [
+    "data structures"
+  ],
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "Berland.Taxi is a new taxi company with $*k*$ cars which started operating in the capital of Berland just recently. The capital has $*n*$ houses on a straight line numbered from $1$ (leftmost) to $*n*$ (rightmost), and the distance between any two neighboring houses is the same.\n\nYou have to help the company schedule all the taxi rides which come throughout the day according to the following rules:\n\n- All cars are available for picking up passengers. Initially the $*j*$-th car is located next to the house with the number $*x*_{*j*}$ at time $0$.\n- All cars have the same speed. It takes exactly $1$ minute for any car to travel between neighboring houses $*i*$ and $*i* + 1$.\n- The $*i*$-th request for taxi ride comes at the time $*t*_{*i*}$, asking for a passenger to be picked up at the house $*a*_{*i*}$ and dropped off at the house $*b*_{*i*}$. All requests for taxi rides are given in the increasing order of $*t*_{*i*}$. All $*t*_{*i*}$ are distinct.\n\nWhen a request for taxi ride is received at time $*t*_{*i*}$, Berland.Taxi operator assigns a car to it as follows:\n\n- Out of cars which are currently available, operator assigns the car which is the *closest* to the pick up spot $*a*_{*i*}$. Needless to say, if a car is already on a ride with a passenger, it won't be available for any rides until that passenger is dropped off at the corresponding destination.\n- If there are several such cars, operator will pick one of them which *has been waiting the most* since it became available.\n- If there are several such cars, operator will pick one of them which *has the lowest number*.\n\nAfter a car gets assigned to the taxi ride request:\n\n- The driver immediately starts driving from current position to the house $*a*_{*i*}$.\n- Once the car reaches house $*a*_{*i*}$, the passenger is immediately picked up and the driver starts driving to house $*b*_{*i*}$.\n- Once house $*b*_{*i*}$ is reached, the passenger gets dropped off and the car becomes available for new rides staying next to the house $*b*_{*i*}$.\n- It is allowed for multiple cars to be located next to the same house at the same point in time, while waiting for ride requests or just passing by.\n\nIf there are no available cars at time $*t*_{*i*}$ when a request for taxi ride comes, then:\n\n- The $*i*$-th passenger will have to wait for a car to become available.\n- When a car becomes available, operator will immediately assign it to this taxi ride request.\n- If multiple cars become available at once while the passenger is waiting, operator will pick a car out of them according to the rules described above.\n\nOperator processes taxi ride requests one by one. So if multiple passengers are waiting for the cars to become available, operator will not move on to processing the $(*i* + 1)$-th ride request until the car gets assigned to the $*i*$-th ride request.\n\nYour task is to write a program that will process the given list of $*m*$ taxi ride requests. For each request you have to find out which car will get assigned to it, and how long the passenger will have to wait for a car to arrive. Note, if there is already car located at the house $*a*_{*i*}$, then the corresponding wait time will be $0$.\n\n## Input\n\nThe first line of input contains integers $*n*$, $*k*$ and $*m*$ ($2 ≤ *n* ≤ 2·10^{5}$, $1 ≤ *k*, *m* ≤ 2·10^{5}$) — number of houses, number of cars, and number of taxi ride requests. The second line contains integers $*x*_{1}, *x*_{2}, ..., *x*_{*k*}$ ($1 ≤ *x*_{*i*} ≤ *n*$) — initial positions of cars. $*x*_{*i*}$ is a house number at which the $*i*$-th car is located initially. It's allowed for more than one car to be located next to the same house.\n\nThe following $*m*$ lines contain information about ride requests. Each ride request is represented by integers $*t*_{*j*}$, $*a*_{*j*}$ and $*b*_{*j*}$ ($1 ≤ *t*_{*j*} ≤ 10^{12}$, $1 ≤ *a*_{*j*}, *b*_{*j*} ≤ *n*$, $*a*_{*j*} ≠ *b*_{*j*}$), where $*t*_{*j*}$ is time in minutes when a request is made, $*a*_{*j*}$ is a house where passenger needs to be picked up, and $*b*_{*j*}$ is a house where passenger needs to be dropped off. All taxi ride requests are given in the increasing order of $*t*_{*j*}$. All $*t*_{*j*}$ are distinct.\n\n## Output\n\nPrint $*m*$ lines: the $*j*$-th line should contain two integer numbers, the answer for the $*j*$-th ride request — *car number* assigned by the operator and *passenger wait time*.\n\n## Note\n\nIn the first sample test, a request comes in at time $5$ and the car needs to get from house $3$ to house $2$ to pick up the passenger. Therefore wait time will be $1$ and the ride will be completed at time $5 + 1 + 6 = 12$. The second request comes in at time $9$, so the passenger will have to wait for the car to become available at time $12$, and then the car needs another $2$ minutes to get from house $8$ to house $10$. So the total wait time is $3 + 2 = 5$.\n\nIn the second sample test, cars $1$ and $2$ are located at the same distance from the first passenger and have the same \"wait time since it became available\". Car $1$ wins a tiebreaker according to the rules because it has the lowest number. It will come to house $3$ at time $3$, so the wait time will be $2$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "10 1 2\n3\n5 2 8\n9 10 3\n",
+      "output": "1 1\n1 5\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "5 2 1\n1 5\n10 3 5\n",
+      "output": "1 2\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "5 2 2\n1 5\n10 3 5\n20 4 1\n",
+      "output": "1 2\n2 1\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T19:43:25.637Z"
+}

@@ -4,7 +4,7 @@
   "contestId": 2178,
   "index": "C",
   "title": "First or Second",
-  "titleZh": null,
+  "titleZh": "第一个还是第二个",
   "url": "https://codeforces.com/contest/2178/problem/C",
   "difficulty": 1200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ children standing in a line, where the *niceness* of the $i$-th child is $a_i$. Santa is deciding which children belong on the nice list and which belong on the naughty list.\n\nAn integer $X$ is initially set to $0$. Santa will perform the following operation **exactly** $n-1$ times:\n\n- Choose the first or second child in line and remove them from the line.\n- Let $w$ be the *niceness* of the chosen child.\n- If the first child was chosen, add them to the nice list and add $w$ to $X$.\n  - If the second child was chosen, add them to the naughty list and subtract $w$ from $X$.\n\nNote that after all operations, exactly one child remains unassigned to a list.\n\nDetermine the maximum possible value of $X$ that Santa can obtain after all $n-1$ operations.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2\\le n\\le 2\\cdot 10^5$) — the number of children.\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($-10^9\\le a_i\\le 10^9$) — the *niceness* of each child.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10 ^ 5$.\n\n## Output\n\nFor each test case, print a single integer — the maximum possible value of $X$ that Santa can obtain after all $n-1$ operations.\n\n## Note\n\nIn the first test case, Santa will perform exactly one operation. If he chooses the first child, he will add $a_1=2$ to $X$ to get $X=2$; if he chooses the second child, he will subtract $a_2=-3$ from $X$ to get $X=3$. Thus, the answer is $3$.\n\nIn the second test case, it is optimal to select the first child in all three operations. The value of $X$ will be $1+4+3=8$.\n\nIn the third test case, below is an optimal sequence of operations:\n\n#Type*Niceness* of remaining children$X$ after operation0—$[-4, 2, 3, -6]$$0$1First$[2, 3, -6]$$-4$2First$[3, -6]$$-2$3Second$[3]$$4$\n\nIn the fourth test case, below is an optimal sequence of operations:\n\n#Type*Niceness* of remaining children$X$ after operation0—$[-2, -3, 4, 10, -9]$$0$1Second$[-2, 4, 10, -9]$$3$2First$[4, 10, -9]$$1$3First$[10, -9]$$5$4First$[-9]$$15$",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 个孩子站成一排，第 $i$ 个孩子的*乖巧值*为 $a_i$。圣诞老人正在决定哪些孩子应进入乖孩子名单，哪些孩子应进入淘气名单。\n\n一个整数 $X$ 初始为 $0$。圣诞老人将**恰好**执行 $n-1$ 次以下操作：\n\n- 选择队伍中的第一个或第二个孩子，并将其从队伍中移除。\n- 设 $w$ 为被选中孩子的*乖巧值*。\n- 如果选择的是第一个孩子，将其加入乖孩子名单，并把 $w$ 加到 $X$ 上。\n  - 如果选择的是第二个孩子，将其加入淘气名单，并从 $X$ 中减去 $w$。\n\n注意，所有操作结束后，恰好有一个孩子未被分配到任何名单。\n\n求圣诞老人在执行完所有 $n-1$ 次操作后，$X$ 能取得的最大值。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2\\le n\\le 2\\cdot 10^5$），表示孩子的数量。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$-10^9\\le a_i\\le 10^9$），表示每个孩子的*乖巧值*。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10 ^ 5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——圣诞老人在执行完所有 $n-1$ 次操作后，$X$ 能取得的最大值。\n\n## 说明\n\n在第一个测试用例中，圣诞老人将恰好执行一次操作。如果他选择第一个孩子，他会把 $a_1=2$ 加到 $X$ 上，得到 $X=2$；如果他选择第二个孩子，他会从 $X$ 中减去 $a_2=-3$，得到 $X=3$。因此答案为 $3$。\n\n在第二个测试用例中，最优策略是在全部三次操作中都选择第一个孩子。此时 $X$ 的值为 $1+4+3=8$。\n\n在第三个测试用例中，下面是一组最优的操作序列：\n\n| # | 类型 | 剩余孩子的*乖巧值* | 操作后的 $X$ |\n|---|---|---|---|\n| 0 | — | $[-4, 2, 3, -6]$ | $0$ |\n| 1 | 第一个 | $[2, 3, -6]$ | $-4$ |\n| 2 | 第一个 | $[3, -6]$ | $-2$ |\n| 3 | 第二个 | $[3]$ | $4$ |\n\n在第四个测试用例中，下面是一组最优的操作序列：\n\n| # | 类型 | 剩余孩子的*乖巧值* | 操作后的 $X$ |\n|---|---|---|---|\n| 0 | — | $[-2, -3, 4, 10, -9]$ | $0$ |\n| 1 | 第二个 | $[-2, 4, 10, -9]$ | $3$ |\n| 2 | 第一个 | $[4, 10, -9]$ | $1$ |\n| 3 | 第一个 | $[10, -9]$ | $5$ |\n| 4 | 第一个 | $[-9]$ | $15$ |",
   "samples": [
     {
       "input": "7\n2\n2 -3\n4\n1 4 3 4\n4\n-4 2 3 -6\n5\n-2 -3 4 10 -9\n5\n-12345678 -1000000000 -999999999 1000000000 -999999999\n2\n-7 1\n5\n7 -6 -1 -8 -8\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:05:07.858Z"
+  "fetchedAt": "2026-10-30T21:05:07.858Z",
+  "translatedAt": "2026-11-03T03:41:10.123+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

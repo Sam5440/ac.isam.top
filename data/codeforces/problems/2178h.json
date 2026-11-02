@@ -4,7 +4,7 @@
   "contestId": 2178,
   "index": "H",
   "title": "Create or Duplicate",
-  "titleZh": null,
+  "titleZh": "创造或复制",
   "url": "https://codeforces.com/contest/2178/problem/H",
   "difficulty": 3300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 1024,
   "statementMd": "Santa realized that hand-drawing circles takes too long, so he has turned to magic to meet his production quotas.\n\nThere are three types of presents with distinct values $a$, $b$, and $c$. Initially, Santa has **exactly one** present of each type.\n\nYou are given two integers $m$ and $k$, representing Santa's favorite number and the cost of duplication, respectively. Santa can cast the following two types of spells any number of times (possibly zero):\n\n1. Create — Choose a type of present and create one additional present of that type. This spell costs $x$ mana, where $x\\in \\{a,b,c\\}$ is the value of the chosen type.\n2. Duplicate — Choose a type of present and duplicate all presents of that type. This spell costs $k$ mana.\n\nSanta wants to perform a sequence of spells such that the sum of the values of all presents is a multiple of $m$ after the spells.\n\nDetermine the minimum amount of mana Santa needs to achieve this. It can be shown that, under the given constraints, such a sequence of spells always exists.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe only line of each test case contains five integers $a$, $b$, $c$, $m$, and $k$ ($1\\leq a \\lt b \\lt c \\lt m\\leq 5\\cdot 10^5$, $1\\leq k\\leq 5\\cdot 10^5$).\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $5\\cdot 10^5$.\n\nIt is guaranteed that the sum of $k$ over all test cases does not exceed $5\\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum amount of mana Santa needs to make the sum of the values of all presents a multiple of $m$.\n\n## Note\n\nLet $\\ell$ be the list of values of presents and $\\operatorname{sum}(\\ell)$ be the sum of all elements in $\\ell$.\n\nIn the first test case, below is an optimal sequence of operations:\n\n#OperationValue$\\ell$ after operation$\\operatorname{sum}(\\ell)$Cost0——$[1, 2, 3]$$6$—1Create$3$$[1, 2, 3, 3]$$9$$3$2Create$3$$[1, 2, 3, 3, 3]$$12$$3$3Duplicate$3$$[1, 2, 3, 3, 3, 3, 3, 3]$$21$$4$$21=7\\cdot 3$Total: $10$\n\nIn the second test case, it is optimal to not perform any operations because $3+4+5=12$ is already a multiple of $12$.\n\nIn the third test case, below is an optimal sequence of operations:\n\n#OperationValue$\\ell$ after operation$\\operatorname{sum}(\\ell)$Cost0——$[3, 12, 14]$$29$—1Duplicate$12$$[3, 12, 12, 14]$$41$$1$2Duplicate$14$$[3, 12, 12, 14, 14]$$55$$1$3Create$14$$[3, 12, 12, 14, 14, 14]$$69$$14$4Duplicate$3$$[3, 3, 12, 12, 14, 14, 14]$$72$$1$$72=18\\cdot 4$Total: $17$",
-  "statementZhMd": null,
+  "statementZhMd": "圣诞老人发现手绘圆圈太花时间，于是他改用魔法来完成生产指标。\n\n现有三种礼物，其价值 $a$、$b$、$c$ 互不相同。初始时，圣诞老人每种礼物**恰好有一个**。\n\n给你两个整数 $m$ 和 $k$，分别表示圣诞老人最喜欢的数和复制的代价。圣诞老人可以施放以下两种法术任意多次（可以为零次）：\n\n1. 创造 —— 选择一种礼物，并额外创造一个该种礼物。这个法术消耗 $x$ 点法力，其中 $x\\in \\{a,b,c\\}$ 为所选礼物的价值。\n2. 复制 —— 选择一种礼物，并复制该种类的所有礼物。这个法术消耗 $k$ 点法力。\n\n圣诞老人想要执行一个法术序列，使得在施放完这些法术后，所有礼物的价值之和是 $m$ 的倍数。\n\n请你求出圣诞老人达成这一目标所需的最少法力值。可以证明，在给定的约束条件下，这样的法术序列总是存在。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数目 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例仅有一行，包含五个整数 $a$、$b$、$c$、$m$ 和 $k$（$1\\leq a \\lt b \\lt c \\lt m\\leq 5\\cdot 10^5$，$1\\leq k\\leq 5\\cdot 10^5$）。\n\n保证所有测试用例的 $m$ 之和不超过 $5\\cdot 10^5$。\n\n保证所有测试用例的 $k$ 之和不超过 $5\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 圣诞老人使所有礼物的价值之和成为 $m$ 的倍数所需的最少法力值。\n\n## 说明\n\n令 $\\ell$ 表示礼物价值的列表，$\\operatorname{sum}(\\ell)$ 表示 $\\ell$ 中所有元素之和。\n\n在第一个测试用例中，下面是一组最优的操作序列：\n\n| 序号 | 操作 | 价值 | 操作后的 $\\ell$ | $\\operatorname{sum}(\\ell)$ | 代价 |\n| --- | --- | --- | --- | --- | --- |\n| 0 | — | — | $[1, 2, 3]$ | $6$ | — |\n| 1 | 创造 | $3$ | $[1, 2, 3, 3]$ | $9$ | $3$ |\n| 2 | 创造 | $3$ | $[1, 2, 3, 3, 3]$ | $12$ | $3$ |\n| 3 | 复制 | $3$ | $[1, 2, 3, 3, 3, 3, 3, 3]$ | $21$ | $4$ |\n|  |  |  |  | $21=7\\cdot 3$ | 总计：$10$ |\n\n在第二个测试用例中，最优方案是不进行任何操作，因为 $3+4+5=12$ 已经是 $12$ 的倍数。\n\n在第三个测试用例中，下面是一组最优的操作序列：\n\n| 序号 | 操作 | 价值 | 操作后的 $\\ell$ | $\\operatorname{sum}(\\ell)$ | 代价 |\n| --- | --- | --- | --- | --- | --- |\n| 0 | — | — | $[3, 12, 14]$ | $29$ | — |\n| 1 | 复制 | $12$ | $[3, 12, 12, 14]$ | $41$ | $1$ |\n| 2 | 复制 | $14$ | $[3, 12, 12, 14, 14]$ | $55$ | $1$ |\n| 3 | 创造 | $14$ | $[3, 12, 12, 14, 14, 14]$ | $69$ | $14$ |\n| 4 | 复制 | $3$ | $[3, 3, 12, 12, 14, 14, 14]$ | $72$ | $1$ |\n|  |  |  |  | $72=18\\cdot 4$ | 总计：$17$ |",
   "samples": [
     {
       "input": "7\n1 2 3 21 4\n3 4 5 12 34\n3 12 14 18 1\n6 7 8 10 3\n100 103 282 488 221\n307 2000 5096 12018 5764\n194093 292793 395323 475619 490151\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:05:07.859Z"
+  "fetchedAt": "2026-10-30T21:05:07.859Z",
+  "translatedAt": "2026-11-03T03:44:52.366+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
