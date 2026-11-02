@@ -1,0 +1,40 @@
+{
+  "id": "2199H",
+  "platform": "codeforces",
+  "contestId": 2199,
+  "index": "H",
+  "title": "Sum of MEX",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2199/problem/H",
+  "difficulty": 2300,
+  "tags": [
+    "*special",
+    "combinatorics",
+    "data structures",
+    "dp",
+    "math"
+  ],
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 512,
+  "statementMd": "The MEX of a sequence of non-negative integers $[s_1, s_2, \\dots, s_n]$ is the smallest non-negative integer that does not appear in this sequence.\n\nGiven an array $[a_1, a_2, \\dots, a_n]$, where each element is an integer from $-1$ to $n$. For each $i$ from $1$ to $n$, calculate $f([a_1, a_2, \\dots, a_i])$, where $f(s)$ for an array $s$ is defined as follows:\n\n- consider all distinct arrays $s'$ that can be obtained from the array $s$ by replacing all elements equal to $-1$ with integers from $0$ to $n$;\n- $f(s)$ is the sum of the MEX of all such arrays $s'$.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$).\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($-1 \\le a_i \\le n$).\n\nAn additional constraint on the input: the array $a$ contains no more than $300$ elements equal to $-1$.\n\n## Output\n\nFor each $i$ from $1$ to $n$, output a single integer — $f([a_1, a_2, \\dots, a_i])$, taken modulo $998244353$.\n\n## Note\n\nConsider $i=3$ in the first example. We need to calculate $f([-1, 1, -1])$. There are $36$ different arrays that can be obtained by replacing each element $-1$ with an integer from $0$ to $5$. For $25$ of them (those that do not contain $0$), the MEX is $0$. Let's consider the remaining $11$:\n\n- The MEX of the array $[0, 1, 0]$ is $2$;\n- The MEX of the array $[0, 1, 1]$ is $2$;\n- The MEX of the array $[0, 1, 2]$ is $3$;\n- The MEX of the array $[0, 1, 3]$ is $2$;\n- The MEX of the array $[0, 1, 4]$ is $2$;\n- The MEX of the array $[0, 1, 5]$ is $2$;\n- The MEX of the array $[1, 1, 0]$ is $2$;\n- The MEX of the array $[2, 1, 0]$ is $3$;\n- The MEX of the array $[3, 1, 0]$ is $2$;\n- The MEX of the array $[4, 1, 0]$ is $2$;\n- The MEX of the array $[5, 1, 0]$ is $2$.\n\nThe sum of these values is $24$.\n\nIf we consider $i=4$, then we need to append $3$ to each of these arrays. This will increase the MEX of two arrays by $2$, so for $i=4$, the answer is $26$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n-1 1 -1 3 -1\n",
+      "output": "1 2 24 26 248\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "7\n3 5 -1 -1 -1 -1 1\n",
+      "output": "0 0 1 17 223 2645 4906\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "10\n3 8 5 1 0 0 7 2 2 8\n",
+      "output": "0 0 0 0 2 2 2 4 4 4\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:38:42.334Z"
+}
