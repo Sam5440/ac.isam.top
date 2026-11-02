@@ -4,7 +4,7 @@
   "contestId": 2205,
   "index": "E",
   "title": "Simons and Dividing the Rhythm",
-  "titleZh": null,
+  "titleZh": "Simons 与节奏的划分",
   "url": "https://codeforces.com/contest/2205/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "*I grip my troubles within my hand, then hurl them off a thousand lands.*— SHUN, *[ONMYWAY](https://open.spotify.com/track/0ZOaDlRReh6qeZWipAMHDu)*\n\nConsider that Simons is given an array $a$ of size $m$.\n\nSimons must operate on the array **exactly once** as follows:\n\n- First, he has to select an integer $k$ and choose $k$ pairs of integers $[l_1,r_1],[l_2,r_2],\\ldots,[l_k,r_k]$, such that:\n- $l_i\\le r_i$ for each $1\\le i\\le k$,\n  - $l_1=1$, $r_k=m$, and\n  - $r_i+1=l_{i+1}$ for each $i$ from $1$ to $k-1$.\n- Then, he reverses each subarray $[a_{l_i},a_{l_i+1},\\ldots, a_{r_i}]$ independently. After this, the array will become $[a_{r_1},a_{r_1-1},\\ldots,a_{l_1},a_{r_2},\\ldots,a_{l_{k-1}},a_{r_{k}},a_{r_k-1},\\ldots,a_{l_k}]$.\n\nYou are given an array $T$ of size $n$. Count the number of arrays $S$ such that Simons can transform $S$ to $T$, modulo $998\\,244\\,353$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 8000$). The description of the test cases follows.\n\nThe first line contains an integer $n$ ($1\\le n\\le 8000$) — the length of $T$.\n\nThe second line contains $n$ integers $T_1,T_2,\\ldots,T_n$ ($1\\le T_i\\le 8000$) — the elements of $T$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $8000$.\n\n## Output\n\nFor each test case, output a single integer — the number of arrays $S$, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, we can see only the following arrays can be transformed to $T$:\n\n- For $S=[2,1,1,1]$, Simons will choose $[1,3]$ and $[4,4]$. Thus, the array will become $[1,1,2,1]$, equal to $T$.\n- For $S=[1,2,1,1]$, Simons will choose $[1,4]$.\n- For $S=[1,1,2,1]$, Simons will choose $[1,2]$, $[3,3]$, and $[4,4]$.\n- For $S=[1,1,1,2]$, Simons will choose $[1,2]$ and $[3,4]$.\n\nIn the second test case, we can see only the following arrays can be transformed to $T$:\n\n- For $S=[1,1,3,2]$, Simons will choose $[1,1]$ and $[2,4]$.\n- For $S=[1,2,1,3]$, Simons will choose $[1,1]$, $[2,2]$, and $[3,4]$.\n- For $S=[1,2,3,1]$, Simons will choose $[1,1]$, $[2,2]$, $[3,3]$, and $[4,4]$.\n- For $S=[1,3,2,1]$, Simons will choose $[1,4]$.\n- For $S=[2,1,1,3]$, Simons will choose $[1,2]$ and $[3,4]$.\n- For $S=[2,1,3,1]$, Simons will choose $[1,2]$, $[3,3]$, and $[4,4]$.\n- For $S=[3,2,1,1]$, Simons will choose $[1,3]$ and $[4,4]$.",
-  "statementZhMd": null,
+  "statementZhMd": "*我将烦恼握在手中，再将它们抛向千里之外。*— SHUN，*[ONMYWAY](https://open.spotify.com/track/0ZOaDlRReh6qeZWipAMHDu)*\n\n假设 Simons 得到一个大小为 $m$ 的数组 $a$。\n\nSimons 必须对数组**恰好进行一次**操作，方式如下：\n\n- 首先，他需要选择一个整数 $k$，并选出 $k$ 对整数 $[l_1,r_1],[l_2,r_2],\\ldots,[l_k,r_k]$，满足：\n- 对于每个 $1\\le i\\le k$，都有 $l_i\\le r_i$，\n  - $l_1=1$，$r_k=m$，且\n  - 对于从 $1$ 到 $k-1$ 的每个 $i$，都有 $r_i+1=l_{i+1}$。\n- 然后，他独立地翻转每个子数组 $[a_{l_i},a_{l_i+1},\\ldots, a_{r_i}]$。此后，数组将变为 $[a_{r_1},a_{r_1-1},\\ldots,a_{l_1},a_{r_2},\\ldots,a_{l_{k-1}},a_{r_{k}},a_{r_k-1},\\ldots,a_{l_k}]$。\n\n给定一个大小为 $n$ 的数组 $T$。请统计有多少个数组 $S$，使得 Simons 能将 $S$ 变换为 $T$，答案对 $998\\,244\\,353$ 取模。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的个数 $t$ ($1 \\le t \\le 8000$)。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$ ($1\\le n\\le 8000$) — 表示 $T$ 的长度。\n\n第二行包含 $n$ 个整数 $T_1,T_2,\\ldots,T_n$ ($1\\le T_i\\le 8000$) — 表示 $T$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $8000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 — 数组 $S$ 的个数，对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个测试用例中，可以看到只有以下数组能被变换为 $T$：\n\n- 对于 $S=[2,1,1,1]$，Simons 将选择 $[1,3]$ 和 $[4,4]$。于是，数组将变为 $[1,1,2,1]$，等于 $T$。\n- 对于 $S=[1,2,1,1]$，Simons 将选择 $[1,4]$。\n- 对于 $S=[1,1,2,1]$，Simons 将选择 $[1,2]$、$[3,3]$ 和 $[4,4]$。\n- 对于 $S=[1,1,1,2]$，Simons 将选择 $[1,2]$ 和 $[3,4]$。\n\n在第二个测试用例中，可以看到只有以下数组能被变换为 $T$：\n\n- 对于 $S=[1,1,3,2]$，Simons 将选择 $[1,1]$ 和 $[2,4]$。\n- 对于 $S=[1,2,1,3]$，Simons 将选择 $[1,1]$、$[2,2]$ 和 $[3,4]$。\n- 对于 $S=[1,2,3,1]$，Simons 将选择 $[1,1]$、$[2,2]$、$[3,3]$ 和 $[4,4]$。\n- 对于 $S=[1,3,2,1]$，Simons 将选择 $[1,4]$。\n- 对于 $S=[2,1,1,3]$，Simons 将选择 $[1,2]$ 和 $[3,4]$。\n- 对于 $S=[2,1,3,1]$，Simons 将选择 $[1,2]$、$[3,3]$ 和 $[4,4]$。\n- 对于 $S=[3,2,1,1]$，Simons 将选择 $[1,3]$ 和 $[4,4]$。",
   "samples": [
     {
       "input": "5\n4\n1 1 2 1\n4\n1 2 3 1\n6\n1 3 2 3 3 2\n10\n2 3 1 4 3 1 4 3 1 2\n1\n8000\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:55:19.928Z"
+  "fetchedAt": "2026-10-30T20:55:19.928Z",
+  "translatedAt": "2026-11-03T02:43:53.271+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
