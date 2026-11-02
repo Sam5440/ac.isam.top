@@ -4,7 +4,7 @@
   "contestId": 2196,
   "index": "E2",
   "title": "Fuzzy Concatenation (Hard version)",
-  "titleZh": null,
+  "titleZh": "模糊拼接（困难版本）",
   "url": "https://codeforces.com/contest/2196/problem/E2",
   "difficulty": 3000,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, $n \\le 5 \\cdot 10^{5}, m \\le 5 \\cdot 10^{4}$. You can hack only if you solved all versions of this problem.**\n\nThere are two strings $s$ and $t$, both consisting of lowercase Latin letters. You also have an empty string $p$.\n\nYou can perform the following operation, which consists of several stages:\n\n- choose any two integers $l$ and $r$ ($1 \\le l \\le r \\le |s|$);\n- copy the substring $s_{l},\\ldots, s_{r}$ and append it to the end of string $p$;\n- among the last $r - l + 1$ characters of string $p$, change **at most one** character to any lowercase Latin letter.\n\nFor example, if the string $s = $ \"`dhhtyhwbsl`\" and $p = $ \"\", you can choose $l = 3, r = 6$ and add \"`htyh`\" to the end of $p$, and then change the character \"`y`\" to \"`a`\", resulting in $p = $ \"`htah`\".\n\nYour task is to determine the minimum number of operations required for string $p$ to become equal to $t$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 5 \\cdot 10^{5}, 1 \\le m \\le 5 \\cdot 10^{4}$) — the lengths of strings $s$ and $t$.\n\nThe second line of each test case contains the string $s$ of length $n$, consisting of lowercase Latin letters.\n\nThe third line of each test case contains the string $t$ of length $m$, consisting of lowercase Latin letters.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $5 \\cdot 10^{5}$, and the sum of $m$ across all test cases does not exceed $5 \\cdot 10^{4}$.\n\n## Output\n\nFor each test case, output a single integer — the answer to the problem.\n\n## Note\n\nIn the first test case, you can take the substring $«\\mathtt{a}»$ from the string $s$, change a single letter in this string to $«\\mathtt{b}»$, and append it to the end of the string $p$, resulting in $p$ becoming equal to $t$.\n\nIn the second test case, $t$ can be obtained in $3$ operations as follows:\n\n$$«\\mathtt{a\\color{red}{b}}» + «\\mathtt{\\color{red}{z}}» + «\\mathtt{\\color{red}{b}a}»$$\n\nThe modified characters are highlighted in red.\n\nIn the third test case, the string $t$ can be obtained as follows:\n\n$$«\\mathtt{ht\\color{red}{a}h}» + «\\mathtt{bs\\color{red}{e}}» + «\\mathtt{htyh\\color{red}{z}b}»$$",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。两个版本的区别在于：本版本中 $n \\le 5 \\cdot 10^{5}, m \\le 5 \\cdot 10^{4}$。只有当你解决了本题的所有版本时才能进行 hack。**\n\n有两个字符串 $s$ 和 $t$，均由小写拉丁字母组成。你还有一个空字符串 $p$。\n\n你可以执行以下由若干个阶段组成的操作：\n\n- 选择任意两个整数 $l$ 和 $r$（$1 \\le l \\le r \\le |s|$）；\n- 复制子串 $s_{l},\\ldots, s_{r}$ 并将其追加到字符串 $p$ 的末尾；\n- 在字符串 $p$ 的最后 $r - l + 1$ 个字符中，将**至多一个**字符改为任意小写拉丁字母。\n\n例如，如果字符串 $s = $ \"`dhhtyhwbsl`\" 且 $p = $ \"\"，你可以选择 $l = 3, r = 6$ 并将 \"`htyh`\" 追加到 $p$ 的末尾，然后把字符 \"`y`\" 改为 \"`a`\"，得到 $p = $ \"`htah`\"。\n\n你的任务是确定使字符串 $p$ 变得与 $t$ 相等所需的最少操作次数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 5 \\cdot 10^{5}, 1 \\le m \\le 5 \\cdot 10^{4}$）—— 分别是字符串 $s$ 和 $t$ 的长度。\n\n每个测试用例的第二行包含长度为 $n$ 的字符串 $s$，由小写拉丁字母组成。\n\n每个测试用例的第三行包含长度为 $m$ 的字符串 $t$，由小写拉丁字母组成。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^{5}$，且所有测试用例的 $m$ 之和不超过 $5 \\cdot 10^{4}$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 本题的答案。\n\n## 说明\n\n在第一个测试用例中，你可以从字符串 $s$ 中取出子串 $«\\mathtt{a}»$，将该字符串中的一个字母改为 $«\\mathtt{b}»$，并把它追加到字符串 $p$ 的末尾，使得 $p$ 变得与 $t$ 相等。\n\n在第二个测试用例中，$t$ 可以通过 $3$ 次操作得到，如下所示：\n\n$$«\\mathtt{a\\color{red}{b}}» + «\\mathtt{\\color{red}{z}}» + «\\mathtt{\\color{red}{b}a}»$$\n\n被修改的字符用红色标出。\n\n在第三个测试用例中，字符串 $t$ 可以按如下方式得到：\n\n$$«\\mathtt{ht\\color{red}{a}h}» + «\\mathtt{bs\\color{red}{e}}» + «\\mathtt{htyh\\color{red}{z}b}»$$",
   "samples": [
     {
       "input": "4\n1 1\na\nb\n5 5\naaaaa\nabzba\n10 13\ndhhtyhwbsl\nhtahbsehtyhzb\n7 2\ncontest\non\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:55:52.397Z"
+  "fetchedAt": "2026-10-30T20:55:52.397Z",
+  "translatedAt": "2026-11-03T03:03:39.027+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
