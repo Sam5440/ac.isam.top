@@ -4,7 +4,7 @@
   "contestId": 2226,
   "index": "F",
   "title": "Inversion Invasion",
-  "titleZh": null,
+  "titleZh": "逆序对入侵",
   "url": "https://codeforces.com/contest/2226/problem/F",
   "difficulty": 2800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "There is an array $a$ of length $n$. Initially, $a_i = 0$ for all $1 \\le i \\le n$.\n\nA permutation$^{\\text{∗}}$ $p$ is said to be *valid* if **at least one** of the following conditions is satisfied for every $1 \\le i \\le n$:\n\n- $a_i = 0$.\n- $\\gcd(p_i, n) = a_i$.\n\nYou have to process $q$ queries. In each query, you are given two integers $i$ and $x$, and you must update the array by setting $a_i:= x$ **persistently**.\n\n**It is guaranteed that $a_i = 0$ at the time of each query, and it is guaranteed that $x$ divides $n$.**\n\nAfter performing each query, output the sum of the number of inversions$^{\\text{†}}$ across all *valid* permutations. As the answers can be very large, report them modulo $998\\,244\\,353$.\n\n$^{\\text{∗}}$A permutation of length $m$ is an array consisting of $m$ distinct integers from $1$ to $m$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($m=3$ but there is a $4$ in the array).$^{\\text{†}}$An inversion in a permutation $p$ is a pair of indices $(i, j)$ such that $i \\lt j$ and $p_i \\gt p_j$. For example, the permutation $[4, 1, 3, 2]$ has $4$ inversions: $(1, 2)$, $(1, 3)$, $(1, 4)$, and $(3, 4)$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each testcase contains two integers $n$ and $q$ ($1 \\le n \\le 2 \\cdot 10^6$; $1 \\le q \\le \\min(n, 10^6)$) — the length of the array $a$ and the number of queries.\n\nEach of the next $q$ lines contains two integers $i$ and $x$ ($1 \\le i \\le n$; $1 \\le x \\le n$).\n\n**It is guaranteed that $a_i = 0$ at the time of each query, and it is guaranteed that $x$ divides $n$.**\n\nIt is guaranteed that the sum of $n$ over all the test cases does not exceed $2 \\cdot 10^6$, and the sum of $q$ over all the test cases does not exceed $10^6$.\n\n## Output\n\nFor each testcase, print $q$ integers — the total number of inversions across all valid permutations after processing each query.\n\nAs the answers can be large, print them modulo $998\\,244\\,353$.\n\n## Note\n\nFor the first testcase, initially, $a = [0, 0, 0]$.\n\nAfter the first query, $a = [0, 3, 0]$. The valid permutations are $[1, 3, 2]$ and $[2, 3, 1]$. The total number of inversions is $1 + 2 = 3$.\n\nAfter the second query, $a = [0, 3, 3]$. There are no valid permutations.",
-  "statementZhMd": null,
+  "statementZhMd": "有一个长度为 $n$ 的数组 $a$。初始时，对于所有 $1 \\le i \\le n$，$a_i = 0$。\n\n排列$^{\\text{∗}}$ $p$ 被称为*合法的*，如果对于每个 $1 \\le i \\le n$，下列条件中**至少一个**成立：\n\n- $a_i = 0$。\n- $\\gcd(p_i, n) = a_i$。\n\n你需要处理 $q$ 次查询。每次查询会给你两个整数 $i$ 和 $x$，你必须通过赋值 $a_i:= x$ 来**持久地**更新数组。\n\n**保证每次查询时 $a_i = 0$，并保证 $x$ 整除 $n$。**\n\n在执行每次查询后，输出所有*合法*排列的逆序对数量$^{\\text{†}}$之和。由于答案可能非常大，请对 $998\\,244\\,353$ 取模后输出。\n\n$^{\\text{∗}}$长度为 $m$ 的排列是由 $1$ 到 $m$ 的 $m$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$m=3$ 但数组中出现了 $4$）。$^{\\text{†}}$排列 $p$ 中的逆序对是指满足 $i \\lt j$ 且 $p_i \\gt p_j$ 的下标对 $(i, j)$。例如，排列 $[4, 1, 3, 2]$ 有 $4$ 个逆序对：$(1, 2)$、$(1, 3)$、$(1, 4)$ 和 $(3, 4)$。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $q$（$1 \\le n \\le 2 \\cdot 10^6$；$1 \\le q \\le \\min(n, 10^6)$）—— 分别表示数组 $a$ 的长度和查询次数。\n\n接下来 $q$ 行，每行包含两个整数 $i$ 和 $x$（$1 \\le i \\le n$；$1 \\le x \\le n$）。\n\n**保证每次查询时 $a_i = 0$，并保证 $x$ 整除 $n$。**\n\n保证所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^6$，且所有测试数据的 $q$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每组测试数据，输出 $q$ 个整数 —— 依次表示处理每次查询后，所有合法排列的逆序对总数。\n\n由于答案可能很大，请对 $998\\,244\\,353$ 取模后输出。\n\n## 说明\n\n对于第一组测试数据，初始时 $a = [0, 0, 0]$。\n\n第一次查询后，$a = [0, 3, 0]$。合法的排列为 $[1, 3, 2]$ 和 $[2, 3, 1]$。逆序对总数为 $1 + 2 = 3$。\n\n第二次查询后，$a = [0, 3, 3]$。此时不存在合法排列。",
   "samples": [
     {
       "input": "3\n3 2\n2 3\n3 3\n9 3\n6 3\n7 1\n3 3\n100 7\n67 4\n41 25\n69 1\n99 1\n50 100\n100 2\n9 10\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:53:24.951Z"
+  "fetchedAt": "2026-10-30T20:53:24.951Z",
+  "translatedAt": "2026-11-03T01:55:45.508+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

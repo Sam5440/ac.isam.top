@@ -1,0 +1,26 @@
+{
+  "id": "1741E",
+  "platform": "codeforces",
+  "contestId": 1741,
+  "index": "E",
+  "title": "Sending a Sequence Over the Network",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1741/problem/E",
+  "difficulty": 1600,
+  "tags": [
+    "dp"
+  ],
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "The sequence $a$ is sent over the network as follows:\n\n1. sequence $a$ is split into segments (each element of the sequence belongs to exactly one segment, each segment is a group of consecutive elements of sequence);\n2. for each segment, its length is written next to it, either to the left of it or to the right of it;\n3. the resulting sequence $b$ is sent over the network.\n\nFor example, we needed to send the sequence $a = [1, 2, 3, 1, 2, 3]$. Suppose it was split into segments as follows: $[\\color{red}{1}] + [\\color{blue}{2, 3, 1}] + [\\color{green}{2, 3}]$. Then we could have the following sequences:\n\n- $b = [1, \\color{red}{1}, 3, \\color{blue}{2, 3, 1}, \\color{green}{2, 3}, 2]$,\n- $b = [\\color{red}{1}, 1, 3, \\color{blue}{2, 3, 1}, 2, \\color{green}{2, 3}]$,\n- $b = [\\color{red}{1}, 1, \\color{blue}{2, 3, 1}, 3, 2, \\color{green}{2, 3}]$,\n- $b = [\\color{red}{1}, 1,\\color{blue}{2, 3, 1}, 3, \\color{green}{2, 3}, 2]$.\n\nIf a different segmentation had been used, the sent sequence might have been different.\n\nThe sequence $b$ is given. Could the sequence $b$ be sent over the network? In other words, is there such a sequence $a$ that converting $a$ to send it over the network could result in a sequence $b$?\n\n## Input\n\nThe first line of input data contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case consists of two lines.\n\nThe first line of the test case contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the size of the sequence $b$.\n\nThe second line of test case contains $n$ integers $b_1, b_2, \\dots, b_n$ ($1 \\le b_i \\le 10^9$) — the sequence $b$ itself.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case print on a separate line:\n\n- `YES` if sequence $b$ could be sent over the network, that is, if sequence $b$ could be obtained from some sequence $a$ to send $a$ over the network.\n- `NO` otherwise.\n\nYou can output `YES` and `NO` in any case (for example, strings `yEs`, `yes`, `Yes` and `YES` will be recognized as positive response).\n\n## Note\n\nIn the first case, the sequence $b$ could be obtained from the sequence $a = [1, 2, 3, 1, 2, 3]$ with the following partition: $[\\color{red}{1}] + [\\color{blue}{2, 3, 1}] + [\\color{green}{2, 3}]$. The sequence $b$: $[\\color{red}{1}, 1, \\color{blue}{2, 3, 1}, 3, 2, \\color{green}{2, 3}]$.\n\nIn the second case, the sequence $b$ could be obtained from the sequence $a = [12, 7, 5]$ with the following partition: $[\\color{red}{12}] + [\\color{green}{7, 5}]$. The sequence $b$: $[\\color{red}{12}, 1, 2, \\color{green}{7, 5}]$.\n\nIn the third case, the sequence $b$ could be obtained from the sequence $a = [7, 8, 9, 10, 3]$ with the following partition: $[\\color{red}{7, 8, 9, 10, 3}]$. The sequence $b$: $[5, \\color{red}{7, 8, 9, 10, 3}]$.\n\nIn the fourth case, there is no sequence $a$ such that changing $a$ for transmission over the network could produce a sequence $b$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n9\n1 1 2 3 1 3 2 2 3\n5\n12 1 2 7 5\n6\n5 7 8 9 10 3\n4\n4 8 6 2\n2\n3 1\n10\n4 6 2 1 9 4 9 3 4 2\n1\n1\n",
+      "output": "YES\nYES\nYES\nNO\nYES\nYES\nNO\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:50:05.652Z"
+}

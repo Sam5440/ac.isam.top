@@ -4,7 +4,7 @@
   "contestId": 2230,
   "index": "E",
   "title": "Minimum Influence",
-  "titleZh": null,
+  "titleZh": "最小影响",
   "url": "https://codeforces.com/contest/2230/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Imagine that you are the owner of a news website and want to study how some selected news items affect your users.\n\nYou have n news items, and for each of them, you have already determined two parameters: how much it touches politics p_i and how much it touches culture c_i.\n\nYou also have m users whose reaction to the news you want to study. For each person, you have already determined three parameters: tolerance to political news tp_j, tolerance to cultural news tc_j, and the \"zone of influence\" d_j.\n\nThe influence of politics I_p(i, j) and culture I_c(i, j) in news item i on user j can be calculated by the following formulas:\n\n\\begin{array}{ c c } I_p(i, j) = \\begin{cases} 0 & \\text{if } p_i \\lt tp_j \\\\ p_i & \\text{if } tp_j \\le p_i \\lt tp_j + d_j \\\\ tp_j + d_j & \\text{if } p_i \\ge tp_j + d_j \\end{cases}, & I_c(i, j) = \\begin{cases} 0 & \\text{if } c_i \\lt tc_j \\\\ c_i & \\text{if } tc_j \\le c_i \\lt tc_j + d_j \\\\ tc_j + d_j & \\text{if } c_i \\ge tc_j + d_j \\end{cases} \\end{array}.\n\nIn other words, while the amount of politics p_i is less than the tolerance level tp_j, it does not affect the user. Otherwise, the topic starts to irritate the user, but not more than up to tp_j + d_j. The same goes for culture.\n\nThe total influence of news item i on user j is I(i, j) = I_p(i, j) + I_c(i, j).\n\nFor each user j, determine the **minimum** influence I(i, j) among all news items i.\n\n## Input\n\nThe first line contains one integer n (1 \\le n \\le 2 \\cdot 10^5) — the number of news items.\n\nThe second line contains n integers p_1, p_2, \\dots, p_n (0 \\le p_i \\le 10^6) — the amount of political content of each news item.\n\nThe third line contains n integers c_1, c_2, \\dots, c_n (0 \\le c_i \\le 10^6) — the amount of cultural content of each news item.\n\nThe fourth line contains one integer m (1 \\le m \\le 4 \\cdot 10^5) — the number of users.\n\nThe fifth line contains m integers tp_1, tp_2, \\dots, tp_m (0 \\le tp_j \\le 10^6) — the political tolerance of each user.\n\nThe sixth line contains m integers tc_1, tc_2, \\dots, tc_m (0 \\le tc_j \\le 10^6) — the cultural tolerance of each user.\n\nThe seventh line contains m integers d_1, d_2, \\dots, d_m (0 \\le d_j \\le 10^6) — the zone of influence of each user.\n\n## Output\n\nFor each user, output one integer — the minimum influence I(i, j) among all news items.",
-  "statementZhMd": null,
+  "statementZhMd": "想象一下，你是一家新闻网站的老板，想研究某些选定的新闻会对你的用户产生怎样的影响。\n\n你有 n 条新闻，并且对每条新闻，你已经确定了两个参数：它涉及政治的程度 p_i 和它涉及文化的程度 c_i。\n\n你还有 m 个用户，你想研究他们对新闻的反应。对于每个人，你已经确定了三个参数：对政治新闻的容忍度 tp_j、对文化新闻的容忍度 tc_j，以及“影响区域” d_j。\n\n新闻 i 对用户 j 的政治影响 I_p(i, j) 与文化影响 I_c(i, j) 可以用以下公式计算：\n\n\\begin{array}{ c c } I_p(i, j) = \\begin{cases} 0 & \\text{if } p_i \\lt tp_j \\\\ p_i & \\text{if } tp_j \\le p_i \\lt tp_j + d_j \\\\ tp_j + d_j & \\text{if } p_i \\ge tp_j + d_j \\end{cases}, & I_c(i, j) = \\begin{cases} 0 & \\text{if } c_i \\lt tc_j \\\\ c_i & \\text{if } tc_j \\le c_i \\lt tc_j + d_j \\\\ tc_j + d_j & \\text{if } c_i \\ge tc_j + d_j \\end{cases} \\end{array}.\n\n换句话说，当政治内容量 p_i 小于容忍度 tp_j 时，新闻不会影响该用户；否则，该话题开始让用户感到不适，但影响程度不超过 tp_j + d_j。对文化内容同理。\n\n新闻 i 对用户 j 的总影响为 I(i, j) = I_p(i, j) + I_c(i, j)。\n\n对于每个用户 j，求出所有新闻 i 中对该用户的**最小**影响 I(i, j)。\n\n## 输入格式\n\n第一行包含一个整数 n (1 \\le n \\le 2 \\cdot 10^5)，表示新闻的数量。\n\n第二行包含 n 个整数 p_1, p_2, \\dots, p_n (0 \\le p_i \\le 10^6)，表示每条新闻的政治内容量。\n\n第三行包含 n 个整数 c_1, c_2, \\dots, c_n (0 \\le c_i \\le 10^6)，表示每条新闻的文化内容量。\n\n第四行包含一个整数 m (1 \\le m \\le 4 \\cdot 10^5)，表示用户的数量。\n\n第五行包含 m 个整数 tp_1, tp_2, \\dots, tp_m (0 \\le tp_j \\le 10^6)，表示每个用户的政治容忍度。\n\n第六行包含 m 个整数 tc_1, tc_2, \\dots, tc_m (0 \\le tc_j \\le 10^6)，表示每个用户的文化容忍度。\n\n第七行包含 m 个整数 d_1, d_2, \\dots, d_m (0 \\le d_j \\le 10^6)，表示每个用户的影响区域。\n\n## 输出格式\n\n对于每个用户，输出一个整数 —— 所有新闻中对该用户的最小影响 I(i, j)。",
   "samples": [
     {
       "input": "6\n2 4 1 6 0 10\n3 2 6 1 9 0\n5\n0 0 0 1 5\n0 0 9 5 2\n9 4 8 2 2\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:32:55.211Z"
+  "fetchedAt": "2026-11-02T16:32:55.211Z",
+  "translatedAt": "2026-11-03T01:44:01.645+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

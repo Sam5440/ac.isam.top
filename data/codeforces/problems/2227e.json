@@ -4,7 +4,7 @@
   "contestId": 2227,
   "index": "E",
   "title": "It All Went Sideways",
-  "titleZh": null,
+  "titleZh": "一切都歪了",
   "url": "https://codeforces.com/contest/2227/problem/E",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Yousef has $n$ columns of cubes standing side by side. The $i$-th column contains $a_i$ identical unit cubes stacked vertically. Initially gravity pulls cubes downwards, so every column $i$ contains exactly $a_i$ cubes at heights $1, 2, \\dots, a_i$.\n\nSuddenly, gravity shifts to the right. Each cube slides horizontally as far to the right as possible. A cube cannot pass through or overlap other cubes, and it must remain at its original height. The final configuration is uniquely determined by the initial heights.\n\n![image](https://espresso.codeforces.com/111233edd63fbf78194f96fc81812e9b86368c8b.png) Before and after applying rightward gravity.\n\nBefore the gravity shift, Yousef may perform **at most one** operation: choose an index $i$ and decrease $a_i$ by $1$ (i.e. remove one cube from that column). He may also choose to do nothing.\n\nA cube is said to *move* if its column index after the gravity shift is different from its original column index.\n\nFind the maximum possible number of cubes that will move after the gravity shift, assuming Yousef applies the single decrease optimally (or chooses not to apply it).\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the array.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n$) — the elements of the array.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum possible number of cubes that will move after the gravity shift, assuming Yousef applies the single decrease optimally (or chooses not to apply it).\n\n## Note\n\nIn the first test case, it is optimal to perform the operation on index $5$, making the array $a = [1, 2, 3, 2, 0]$. After the gravity shift, every remaining cube will move. The answer is $1+2+3+2 = 8$. It can be proven that a greater answer does not exist.\n\nIn the second test case, we can perform the operation on index $6$, making the array $a = [5, 4, 1, 1, 1, 0, 3]$. After the gravity shift, $5+4+1+1+1 = 12$ cubes will move. Note that the cubes at index $7$ do not move, since they are already at the rightmost end of the array.\n\nIn the third test case, there is no way to make any cube move.",
-  "statementZhMd": null,
+  "statementZhMd": "Yousef 有 $n$ 列并排摆放的立方体。第 $i$ 列由 $a_i$ 个相同的单位立方体竖直堆叠而成。初始时重力向下，因此每列 $i$ 恰好有 $a_i$ 个立方体，分别位于高度 $1, 2, \\dots, a_i$ 处。\n\n突然间，重力转向了右边。每个立方体都尽可能地向右水平滑动。立方体不能穿过其他立方体或与其他立方体重叠，并且必须保持在原来的高度。最终的局面由初始高度唯一确定。\n\n![image](https://espresso.codeforces.com/111233edd63fbf78194f96fc81812e9b86368c8b.png) 施加向右重力前后的对比。\n\n在重力转向之前，Yousef 可以执行**至多一次**操作：选择一个下标 $i$ 并将 $a_i$ 减 $1$（即从该列移除一个立方体）。他也可以选择不执行任何操作。\n\n如果某个立方体在重力转向后的列下标与它原来的列下标不同，则称该立方体*移动*了。\n\n求在 Yousef 以最优方式执行这一次减一操作（或不执行）的情况下，重力转向后会移动的立方体数量的最大可能值。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——数组的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le n$）——数组的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——在 Yousef 以最优方式执行这一次减一操作（或不执行）的情况下，重力转向后会移动的立方体数量的最大可能值。\n\n## 说明\n\n在第一个测试用例中，最优方案是对下标 $5$ 执行操作，使数组变为 $a = [1, 2, 3, 2, 0]$。重力转向后，每个剩余的立方体都会移动。答案为 $1+2+3+2 = 8$。可以证明不存在更大的答案。\n\n在第二个测试用例中，我们可以对下标 $6$ 执行操作，使数组变为 $a = [5, 4, 1, 1, 1, 0, 3]$。重力转向后，将有 $5+4+1+1+1 = 12$ 个立方体移动。注意下标 $7$ 处的立方体不会移动，因为它们已经位于数组的最右端。\n\n在第三个测试用例中，无法使任何立方体移动。",
   "samples": [
     {
       "input": "5\n5\n1 2 3 2 1\n7\n5 4 1 1 1 1 3\n6\n1 2 3 4 5 6\n6\n4 1 6 3 2 6\n7\n1 3 2 7 2 3 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:33:04.850Z"
+  "fetchedAt": "2026-11-02T16:33:04.850Z",
+  "translatedAt": "2026-11-03T01:52:33.044+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

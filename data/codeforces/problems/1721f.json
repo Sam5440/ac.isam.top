@@ -1,0 +1,32 @@
+{
+  "id": "1721F",
+  "platform": "codeforces",
+  "contestId": 1721,
+  "index": "F",
+  "title": "Matching Reduction",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/1721/problem/F",
+  "difficulty": 2800,
+  "tags": [
+    "brute force",
+    "constructive algorithms",
+    "dfs and similar",
+    "flows",
+    "graph matchings",
+    "graphs",
+    "interactive"
+  ],
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 512,
+  "statementMd": "You are given a bipartite graph with $n_1$ vertices in the first part, $n_2$ vertices in the second part, and $m$ edges. The maximum matching in this graph is the maximum possible (by size) subset of edges of this graph such that no vertex is incident to more than one chosen edge.\n\nYou have to process two types of queries to this graph:\n\n- $1$ — remove the **minimum possible** number of vertices from this graph so that the size of the maximum matching gets reduced **exactly by $1$**, and print the vertices that you have removed. Then, find any maximum matching in this graph and print the sum of indices of edges belonging to this matching;\n- $2$ — query of this type will be asked only after a query of type $1$. As the answer to this query, you have to print the edges forming the maximum matching you have chosen in the previous query.\n\nNote that you should solve the problem in `online` mode. It means that you can't read the whole input at once. You can read each query only after writing the answer for the last query. Use functions `fflush` in `C++` and `BufferedWriter.flush` in `Java` languages after each writing in your program.\n\n## Input\n\nThe first line contains four integers $n_1$, $n_2$, $m$ and $q$ ($1 \\le n_1, n_2 \\le 2 \\cdot 10^5$; $1 \\le m \\le \\min(n_1 \\cdot n_2, 2 \\cdot 10^5)$; $1 \\le q \\le 2 \\cdot 10^5$).\n\nThen $m$ lines follow. The $i$-th of them contains two integers $x_i$ and $y_i$ ($1 \\le x_i \\le n_1$; $1 \\le y_i \\le n_2$) meaning that the $i$-th edge connects the vertex $x_i$ in the first part and the vertex $y_i$ in the second part. There are no pairs of vertices that are connected by more than one edge.\n\nThen $q$ lines follow. The $i$-th of them contains one integer, $1$ or $2$, denoting the $i$-th query. Additional constraints on queries:\n\n- the number of queries of type $1$ won't exceed the size of the maximum matching in the initial graph;\n- the number of queries of type $2$ won't exceed $3$;\n- each query of type $2$ is preceded by a query of type $1$;\n- your solution is allowed to read the $i$-th query only after printing the answer for the $(i-1)$-th query and flushing the output.\n\n## Output\n\nFor a query of type $1$, print the answer in three lines as follows:\n\n- the first line should contain the number of vertices you remove;\n- the second line should contain the indices of vertices you remove, as follows: if you remove the vertex $x$ from the left part, print $x$; if you remove the vertex $y$ from the right part, print $-y$ (negative index);\n- the third line should contain the sum of indices of edges in some maximum matching in the resulting graph. The edges are numbered from $1$ to $m$.\n\nFor a query of type $2$, print the answer in two lines as follows:\n\n- the first line should contain the size of the maximum matching;\n- the second line should contain the indices of the edges belonging to the maximum matching. Note that the sum of these indices should be equal to the number you printed at the end of the previous query of type $1$;\n\nAfter printing the answer to a query, don't forget to flush the output.\n\n## Note\n\nIn this problem, you may receive the verdict \"Idleness Limit Exceeded\" since it is in online mode. If it happens, it means that either the output format is wrong, or you don't meet some constraint of the problem. You may treat this verdict as \"Wrong Answer\".\n\nFor your convenience, the output for queries in the example is separated by the line `===`. **Don't print this line in your program, it is done only to make sure that it's easy to distinguish between answers for different queries in the statement**.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 4 4 4\n2 2\n1 3\n2 1\n3 4\n1\n2\n1\n2\n",
+      "output": "1\n-4\n3\n===\n2\n1 2\n===\n1\n2\n2\n===\n1\n2\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T17:53:15.094Z"
+}
