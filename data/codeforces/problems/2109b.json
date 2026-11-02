@@ -4,7 +4,7 @@
   "contestId": 2109,
   "index": "B",
   "title": "Slice to Survive",
-  "titleZh": null,
+  "titleZh": "切割求生",
   "url": "https://codeforces.com/contest/2109/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Duelists Mouf and Fouad enter the arena, which is an $n \\times m$ grid!\n\nFouad's monster starts at cell $(a, b)$, where rows are numbered $1$ to $n$ and columns $1$ to $m$.\n\nMouf and Fouad will keep duelling until the grid consists of only one cell.\n\nIn each turn:\n\n- Mouf first cuts the grid along a row or column line into two parts, discarding the part without Fouad's monster. Note that the grid must have at least two cells; otherwise, the game has already ended.\n- After that, in the same turn, Fouad moves his monster to any cell (possibly the same one it was in) within the remaining grid.\n\n![image](https://espresso.codeforces.com/8b1099cc13f7e0c8fbf449b3e7f2fcd1c9eec0b9.png) *Visualization of the phases of the fourth test case.*\n\nMouf wants to minimize the number of turns, while Fouad wants to maximize them. How many turns will this epic duel last if both play optimally?\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first and only line of each test case contains four integers $n$, $m$, $a$, and $b$ ($2 \\le n, m \\le 10^9$, $1 \\le a \\le n$, $1 \\le b \\le m$) — denoting the number of rows, the number of columns, the starting row of the monster, and the starting column of the monster, respectively.\n\n## Output\n\nFor each test case, output a single integer — the number of turns this epic duel will last if both play optimally.\n\n## Note\n\nIn the first test case, one possible duel sequence is as follows:\n\n- Turn 1: Mouf cuts the grid horizontally along the line between the rows $1$ and $2$, removing the bottom half and leaving a $1 \\times 2$ grid.\n- Turn 1: Fouad's monster is at the cell $(1,1)$.\n- Turn 2: Mouf cuts the $1 \\times 2$ grid again, removes one column, and isolates the cell $(1,1)$.\n\nThe duel is completed in $2$ turns.\n\nIn the fourth case, one possible duel sequence is as follows:\n\n- Turn 1: Mouf cuts the grid vertically along the line between the columns $2$ and $3$, splitting it into a $2 \\times 2$ and a $2 \\times 5$ field, then removes the $2 \\times 5$ part.\n- Turn 1: Fouad moves the monster to the cell $(1,1)$.\n- From this point on, the duel plays out just like the first test case—two more turns trim down the grid from $2 \\times 2$ to a single $1 \\times 1$ cell.\n\nIn total, the duel is completed in $3$ turns.\n\nYou can refer to the pictures mentioned in the problem statement for illustrations of the fourth test case.",
-  "statementZhMd": null,
+  "statementZhMd": "决斗者 Mouf 和 Fouad 进入竞技场，竞技场是一个 $n \\times m$ 的网格！\n\nFouad 的怪物初始位于格子 $(a, b)$，其中行从 $1$ 到 $n$ 编号，列从 $1$ 到 $m$ 编号。\n\nMouf 和 Fouad 将持续决斗，直到网格只剩下一个格子。\n\n每一回合中：\n\n- Mouf 首先沿某一条行线或列线将网格切成两部分，并丢弃不包含 Fouad 怪物的那一部分。注意，网格必须至少有两个格子；否则，游戏就已经结束了。\n- 之后，在同一回合内，Fouad 将他的怪物移动到剩余网格内的任意格子（可以是它原来所在的格子）。\n\n![image](https://espresso.codeforces.com/8b1099cc13f7e0c8fbf449b3e7f2fcd1c9eec0b9.png) *第四个测试用例各阶段的可视化。*\n\nMouf 想要最小化回合数，而 Fouad 想要最大化回合数。如果双方都采取最优策略，这场史诗般的决斗将持续多少回合？\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行也是唯一一行包含四个整数 $n$、$m$、$a$ 和 $b$（$2 \\le n, m \\le 10^9$，$1 \\le a \\le n$，$1 \\le b \\le m$）—— 分别表示行数、列数、怪物的起始行和怪物的起始列。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 表示如果双方都采取最优策略，这场史诗般的决斗将持续的回合数。\n\n## 说明\n\n在第一个测试用例中，一种可能的决斗过程如下：\n\n- 回合 1：Mouf 沿第 $1$ 行与第 $2$ 行之间的线水平切分网格，移除下半部分，留下一个 $1 \\times 2$ 的网格。\n- 回合 1：Fouad 的怪物位于格子 $(1,1)$。\n- 回合 2：Mouf 再次切分这个 $1 \\times 2$ 的网格，移除其中一列，只留下格子 $(1,1)$。\n\n决斗在 $2$ 个回合内完成。\n\n在第四个测试用例中，一种可能的决斗过程如下：\n\n- 回合 1：Mouf 沿第 $2$ 列与第 $3$ 列之间的线垂直切分网格，将其分成一个 $2 \\times 2$ 和一个 $2 \\times 5$ 的区域，然后移除 $2 \\times 5$ 的部分。\n- 回合 1：Fouad 将怪物移动到格子 $(1,1)$。\n- 从此时起，决斗的进行与第一个测试用例完全相同——再经过两个回合，网格从 $2 \\times 2$ 缩减为单个 $1 \\times 1$ 的格子。\n\n总而言之，决斗在 $3$ 个回合内完成。\n\n你可以参考题目描述中提到的图片来查看第四个测试用例的图示。",
   "samples": [
     {
       "input": "8\n2 2 1 1\n3 3 2 2\n2 7 1 4\n2 7 2 2\n8 9 4 6\n9 9 5 5\n2 20 2 11\n22 99 20 70\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:23:05.063Z"
+  "fetchedAt": "2026-10-30T21:23:05.063Z",
+  "translatedAt": "2026-11-03T07:00:58.143+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
