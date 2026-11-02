@@ -4,7 +4,7 @@
   "contestId": 2147,
   "index": "F",
   "title": "Exchange Queries",
-  "titleZh": null,
+  "titleZh": "交换查询",
   "url": "https://codeforces.com/contest/2147/problem/F",
   "difficulty": 2800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are at a marketplace and there are two traders who are willing to trade on $n$ different items. Each trader is represented by a permutation that signifies the relative value of the $n$ items for that trader. Let's denote those two permutations $p$ and $s$. If you have an item $i$, you can trade it for an item $j$ if either $p_i \\gt p_j$ (using the first trader) or $s_i \\gt s_j$ (using the second trader).\n\nWe say that an item $i$ is *at least as valuable as* an item $j$ if you can come to the marketplace with item $i$, make some (possibly none) trades, and get item $j$. Note that at any moment, you will have exactly one item on hand. Assume that the traders have infinite supplies of any item.\n\nDue to the never-ending updates in the market, traders will often reevaluate their views on the item values. You will be given $q$ queries; each is a swap in one of the permutations. After every update, you should print the number of pairs $(i, j)$ ($1 \\le i, j \\le n$) such that item $i$ is at least as valuable as item $j$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($2 \\le n \\le 10^5$, $1 \\le q \\le 10^5$).\n\nThe next two lines contain the initial permutations $p$ and $s$.\n\nThe following $q$ lines each contain three integers $tp$, $i$, $j$ ($tp \\in \\{ 1, 2 \\}$, $1 \\le i, j \\le n$, $i \\ne j$). If $tp=1$, swap $p_i$ with $p_j$. If $tp=2$, swap $s_i$ with $s_j$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$, and the sum of $q$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output $q$ lines, the $k$-th of them containing a single integer — the number of pairs $(i, j)$ such that item $i$ is at least as valuable as item $j$ after the first $k$ updates.\n\n## Note\n\nIn the first test case, after the first update, both permutations are the identity permutations and thus the only valid pairs are $(1, 1)$, $(2, 1)$, $(2, 2)$, $(3, 1)$, $(3, 2)$, and $(3, 3)$. After the second update, it is possible to get any item starting with any item. For instance, you can get item $3$ from item $1$ using the second trader since $s_1 = 3 \\gt 1 = s_3$. After the third update, it is still possible to get any item starting with any item. For instance, if you start with item $2$ and want to get item $1$, you can first exchange your item $2$ for item $3$ using the second trader, and then exchange item $3$ for item $1$ using the first trader.",
-  "statementZhMd": null,
+  "statementZhMd": "你来到一个集市，这里有两位商人，他们都愿意就 $n$ 种不同的物品进行交易。每位商人用一个排列来表示在他看来这 $n$ 种物品的相对价值。我们将这两个排列分别记为 $p$ 和 $s$。如果你持有物品 $i$，那么当 $p_i \\gt p_j$（通过第一位商人）或 $s_i \\gt s_j$（通过第二位商人）时，你可以用它换得物品 $j$。\n\n如果你可以带着物品 $i$ 来到集市，经过若干次（也可以不进行）交易后得到物品 $j$，我们就称物品 $i$ *价值不低于* 物品 $j$。注意，任意时刻你手中都恰好持有一件物品。假设商人们拥有每种物品的无限供应。\n\n由于市场上的更新永无止境，商人们会经常重新评估他们对物品价值的看法。你将收到 $q$ 个查询；每个查询都是对其中一个排列的一次交换。每次更新之后，你都需要输出满足物品 $i$ 价值不低于物品 $j$ 的数对 $(i, j)$（$1 \\le i, j \\le n$）的数量。\n\n## 输入格式\n\n每个输入包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$2 \\le n \\le 10^5$，$1 \\le q \\le 10^5$）。\n\n接下来的两行包含初始排列 $p$ 和 $s$。\n\n接下来的 $q$ 行中，每行包含三个整数 $tp$、$i$、$j$（$tp \\in \\{ 1, 2 \\}$，$1 \\le i, j \\le n$，$i \\ne j$）。若 $tp=1$，则交换 $p_i$ 与 $p_j$。若 $tp=2$，则交换 $s_i$ 与 $s_j$。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$，且所有测试用例的 $q$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q$ 行，其中第 $k$ 行包含一个整数 — 在前 $k$ 次更新之后，满足物品 $i$ 价值不低于物品 $j$ 的数对 $(i, j)$ 的数量。\n\n## 说明\n\n在第一个测试用例中，第一次更新之后，两个排列都是单位排列，因此唯一有效的数对是 $(1, 1)$、$(2, 1)$、$(2, 2)$、$(3, 1)$、$(3, 2)$ 和 $(3, 3)$。第二次更新之后，从任意物品出发都可以得到任意物品。例如，你可以通过第二位商人用物品 $1$ 换得物品 $3$，因为 $s_1 = 3 \\gt 1 = s_3$。第三次更新之后，仍然可以从任意物品出发得到任意物品。例如，如果你从物品 $2$ 出发想要得到物品 $1$，你可以先用第二位商人把物品 $2$ 换成物品 $3$，再用第一位商人把物品 $3$ 换成物品 $1$。",
   "samples": [
     {
       "input": "2\n3 3\n1 2 3\n3 2 1\n2 1 3\n2 1 3\n1 1 2\n4 2\n3 2 4 1\n3 1 4 2\n1 1 3\n2 1 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:46.942Z"
+  "fetchedAt": "2026-10-30T21:13:46.942Z",
+  "translatedAt": "2026-11-03T05:28:17.548+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

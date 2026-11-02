@@ -4,7 +4,7 @@
   "contestId": 2146,
   "index": "B",
   "title": "Merging the Sets",
-  "titleZh": null,
+  "titleZh": "合并集合",
   "url": "https://codeforces.com/contest/2146/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given $n$ sets $S_1,S_2,\\ldots,S_n$, where each element in the sets is an integer between $1$ and $m$.\n\nYou want to choose some of the sets (possibly none or all), such that every integer between $1$ and $m$ is included in **at least one** of the chosen sets.\n\nYou have to determine whether there exist **at least three** ways to choose the sets.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\leq n \\leq 5\\cdot 10^4$, $1\\le m \\leq 10^5$) — the number of sets and the upper bound of the integers in the sets.\n\nThen $n$ lines follow, the $i$-th line first containing an integer $l_i$ ($1\\le l_i\\le m$) — the size of set $S_i$.\n\nThen $l_i$ integers $S_{i,1}, S_{i,2}, \\ldots, S_{i, l_i}$ follow in the same line ($1\\le S_{i,1} \\lt S_{i,2} \\lt \\cdots \\lt S_{i, l_i}\\le m$) — the elements of set $S_i$.\n\nLet $L=\\sum\\limits_{i=1}^n l_i$. It is guaranteed that:\n\n- The sum of $n$ over all test cases does not exceed $5\\cdot 10^4$;\n- The sum of $m$ over all test cases does not exceed $10^5$;\n- The sum of $L$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print \"`YES`\" if there exist at least three ways to choose the sets. Otherwise, print \"`NO`\".\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, there are $5\\ge 3$ possible ways to choose the sets:\n\n- $S_1$ — both $1$ and $2$ are included in $S_1$;\n- $S_1$ and $S_2$ — $1$ is included in $S_1$ and $S_2$, and $2$ is included in $S_1$;\n- $S_1$ and $S_3$ — $1$ is included in $S_1$, and $2$ is included in $S_1$ and $S_3$;\n- $S_2$ and $S_3$ — $1$ is included in $S_2$, and $2$ is included in $S_3$;\n- $S_1$, $S_2$, and $S_3$ — $1$ is included in $S_1$ and $S_2$, and $2$ is included in $S_1$ and $S_3$.\n\nNote that it is invalid to choose $S_2$ only because $2$ is not included in $S_2$.\n\nIn the second test case, the only way is to choose all the sets.\n\nIn the third test case, $5$ does not appear in any of the sets, so there is no way to choose the sets.\n\nIn the fourth test case, choosing any non-empty collection of the sets is valid, so the number of ways is $2^5-1=31\\ge3$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定 $n$ 个集合 $S_1,S_2,\\ldots,S_n$，其中每个集合中的元素都是 $1$ 到 $m$ 之间的整数。\n\n你想选择其中一些集合（可以一个都不选，也可以全选），使得 $1$ 到 $m$ 之间的每个整数都包含在**至少一个**所选集合中。\n\n你需要判断是否存在**至少三种**选择集合的方案。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 5\\cdot 10^4$，$1\\le m \\leq 10^5$），分别表示集合的数量和集合中整数的上界。\n\n接下来 $n$ 行，第 $i$ 行首先包含一个整数 $l_i$（$1\\le l_i\\le m$），表示集合 $S_i$ 的大小。\n\n然后同一行中接着给出 $l_i$ 个整数 $S_{i,1}, S_{i,2}, \\ldots, S_{i, l_i}$（$1\\le S_{i,1} \\lt S_{i,2} \\lt \\cdots \\lt S_{i, l_i}\\le m$），表示集合 $S_i$ 的元素。\n\n设 $L=\\sum\\limits_{i=1}^n l_i$。保证：\n\n- 所有测试数据的 $n$ 之和不超过 $5\\cdot 10^4$；\n- 所有测试数据的 $m$ 之和不超过 $10^5$；\n- 所有测试数据的 $L$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，如果存在至少三种选择集合的方案，输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n你可以以任意大小写输出答案。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定回答。\n\n## 说明\n\n在第一组测试数据中，共有 $5\\ge 3$ 种选择集合的方案：\n\n- $S_1$ — $1$ 和 $2$ 都包含在 $S_1$ 中；\n- $S_1$ 和 $S_2$ — $1$ 包含在 $S_1$ 和 $S_2$ 中，$2$ 包含在 $S_1$ 中；\n- $S_1$ 和 $S_3$ — $1$ 包含在 $S_1$ 中，$2$ 包含在 $S_1$ 和 $S_3$ 中；\n- $S_2$ 和 $S_3$ — $1$ 包含在 $S_2$ 中，$2$ 包含在 $S_3$ 中；\n- $S_1$、$S_2$ 和 $S_3$ — $1$ 包含在 $S_1$ 和 $S_2$ 中，$2$ 包含在 $S_1$ 和 $S_3$ 中。\n\n注意，只选择 $S_2$ 是不合法的，因为 $2$ 不包含在 $S_2$ 中。\n\n在第二组测试数据中，唯一的方案是选择所有集合。\n\n在第三组测试数据中，$5$ 没有出现在任何集合中，因此无法选出满足条件的集合。\n\n在第四组测试数据中，选择任何非空的集合组合都是合法的，因此方案数为 $2^5-1=31\\ge3$。",
   "samples": [
     {
       "input": "6\n3 2\n2 1 2\n1 1\n1 2\n4 10\n3 1 2 3\n2 4 5\n1 6\n4 7 8 9 10\n2 5\n4 1 2 3 4\n4 1 2 3 4\n5 5\n5 1 2 3 4 5\n5 1 2 3 4 5\n5 1 2 3 4 5\n5 1 2 3 4 5\n5 1 2 3 4 5\n5 10\n4 1 2 3 4\n5 1 2 5 6 7\n5 2 6 7 8 9\n4 6 7 8 9\n2 9 10\n5 5\n1 1\n1 2\n1 3\n2 4 5\n1 5\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:13:55.189Z"
+  "fetchedAt": "2026-10-30T21:13:55.189Z",
+  "translatedAt": "2026-11-03T05:24:37.053+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
