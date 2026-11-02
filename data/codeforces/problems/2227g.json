@@ -1,0 +1,28 @@
+{
+  "id": "2227G",
+  "platform": "codeforces",
+  "contestId": 2227,
+  "index": "G",
+  "title": "Drowning",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2227/problem/G",
+  "difficulty": 2000,
+  "tags": [
+    "binary search",
+    "data structures",
+    "math"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Yousef has an array $a$ consisting of $n$ positive integers.\n\nHe defines a reduction operation on any array $c$ of length $|c| \\ge 3$:\n\n- Choose an index $i$ ($1 \\lt i \\lt |c|$) such that $c_{i-1} + c_{i+1} \\gt c_i$.\n- Replace the triplet $\\{c_{i-1}, c_i, c_{i+1}\\}$ with a single integer $x = c_{i-1} - c_i + c_{i+1}$.\n\nThe new integer $x$ occupies the position previously held by the triplet, and the length of the array decreases by $2$.\n\nAn array is considered *good* if it can be reduced to a single element by performing the operation above zero or more times. Note that an array of length $1$ is always good.\n\nYousef wants you to count the number of pairs $(l, r)$ ($1 \\le l \\le r \\le n$) such that the subarray $a[l, r]$ is good.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of each test case follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the size of the array.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$) — the elements of the array.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the number of good subarrays.\n\n## Note\n\nIn the first example, $a = [10, 20, 10]$. Subarrays $[10]$, $[20]$, and $[10]$ are all good ($3$ total). The subarray $[10, 20, 10]$ is not good. To reduce it, we must pick $i=2$. The condition $a_1 + a_3 \\gt a_2$ becomes $10 + 10 \\gt 20$, which is $20 \\gt 20$ (false).\n\nIn the second example, $a = [1, 1, 1, 1, 1]$:\n\n- All $5$ subarrays of length $1$ are good.\n- All $4$ subarrays of length $2$ are not good.\n- All $3$ subarrays of length $3$ (which are $[1, 1, 1]$) are good because $1 + 1 \\gt 1$.\n- All $2$ subarrays of length $4$ are not good.\n- The subarray of length $5$ is good: $[1, 1, 1, 1, 1] \\xrightarrow{i=2} [1, 1, 1] \\xrightarrow{i=2} [1]$.\n- Total good subarrays $= 5 + 3 + 1 = 9$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\n3\n10 20 10\n5\n1 1 1 1 1\n4\n5 1 5 1\n1\n100\n",
+      "output": "3\n9\n5\n1\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:33:04.859Z"
+}

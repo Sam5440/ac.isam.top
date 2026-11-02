@@ -1,0 +1,37 @@
+{
+  "id": "2230E",
+  "platform": "codeforces",
+  "contestId": 2230,
+  "index": "E",
+  "title": "Minimum Influence",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2230/problem/E",
+  "difficulty": 2200,
+  "tags": [
+    "binary search",
+    "data structures",
+    "greedy",
+    "implementation",
+    "math",
+    "sortings",
+    "two pointers"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "Imagine that you are the owner of a news website and want to study how some selected news items affect your users.\n\nYou have n news items, and for each of them, you have already determined two parameters: how much it touches politics p_i and how much it touches culture c_i.\n\nYou also have m users whose reaction to the news you want to study. For each person, you have already determined three parameters: tolerance to political news tp_j, tolerance to cultural news tc_j, and the \"zone of influence\" d_j.\n\nThe influence of politics I_p(i, j) and culture I_c(i, j) in news item i on user j can be calculated by the following formulas:\n\n\\begin{array}{ c c } I_p(i, j) = \\begin{cases} 0 & \\text{if } p_i \\lt tp_j \\\\ p_i & \\text{if } tp_j \\le p_i \\lt tp_j + d_j \\\\ tp_j + d_j & \\text{if } p_i \\ge tp_j + d_j \\end{cases}, & I_c(i, j) = \\begin{cases} 0 & \\text{if } c_i \\lt tc_j \\\\ c_i & \\text{if } tc_j \\le c_i \\lt tc_j + d_j \\\\ tc_j + d_j & \\text{if } c_i \\ge tc_j + d_j \\end{cases} \\end{array}.\n\nIn other words, while the amount of politics p_i is less than the tolerance level tp_j, it does not affect the user. Otherwise, the topic starts to irritate the user, but not more than up to tp_j + d_j. The same goes for culture.\n\nThe total influence of news item i on user j is I(i, j) = I_p(i, j) + I_c(i, j).\n\nFor each user j, determine the **minimum** influence I(i, j) among all news items i.\n\n## Input\n\nThe first line contains one integer n (1 \\le n \\le 2 \\cdot 10^5) — the number of news items.\n\nThe second line contains n integers p_1, p_2, \\dots, p_n (0 \\le p_i \\le 10^6) — the amount of political content of each news item.\n\nThe third line contains n integers c_1, c_2, \\dots, c_n (0 \\le c_i \\le 10^6) — the amount of cultural content of each news item.\n\nThe fourth line contains one integer m (1 \\le m \\le 4 \\cdot 10^5) — the number of users.\n\nThe fifth line contains m integers tp_1, tp_2, \\dots, tp_m (0 \\le tp_j \\le 10^6) — the political tolerance of each user.\n\nThe sixth line contains m integers tc_1, tc_2, \\dots, tc_m (0 \\le tc_j \\le 10^6) — the cultural tolerance of each user.\n\nThe seventh line contains m integers d_1, d_2, \\dots, d_m (0 \\le d_j \\le 10^6) — the zone of influence of each user.\n\n## Output\n\nFor each user, output one integer — the minimum influence I(i, j) among all news items.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n2 4 1 6 0 10\n3 2 6 1 9 0\n5\n0 0 0 1 5\n0 0 9 5 2\n9 4 8 2 2\n",
+      "output": "5\n4\n1\n2\n2\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "5\n75 19 53 12 10\n34 75 67 84 95\n5\n55 14 46 97 14\n78 61 56 23 33\n10 4 7 11 3\n",
+      "output": "0\n18\n53\n34\n36\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:32:55.211Z"
+}

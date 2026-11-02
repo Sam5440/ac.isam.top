@@ -1,0 +1,37 @@
+{
+  "id": "2206F",
+  "platform": "codeforces",
+  "contestId": 2206,
+  "index": "F",
+  "title": "Minesweeper String",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2206/problem/F",
+  "difficulty": 2400,
+  "tags": [
+    "fft",
+    "number theory"
+  ],
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "You are given a string $S$ of length $n$ consisting of digits `0`–`9`. You want to use this string to generate a variant of Minesweeper. In this variant, a cell may contain more than one mine, and the mine count in a cell is based on its 4-neighborhood (edge-adjacent cells), instead of the usual 8-neighborhood.\n\nTo do that, you choose an integer $w$ ($1 \\le w \\le n$) representing the width of the grid. You arrange the $n$ cells, numbered from $0$ to $n-1$, into a grid. The grid has $\\left\\lceil n / w \\right\\rceil$ rows numbered from $0$ to $\\left\\lceil n / w \\right\\rceil-1$ from top to bottom, and $w$ columns numbered from $0$ to $w-1$ from left to right. For each $0 \\leq i \\lt n$, cell $i$ is located at row $\\left\\lfloor i/w \\right\\rfloor$ and column $i \\bmod w$, and corresponds to the $(i+1)$-th digit of $S$. Thus, row $0$ contains cells $0$ to $w-1$, row $1$ contains cells $w$ to $2w-1$, and so on. Note that the bottommost row may contain less than $w$ cells.\n\nAfter arranging the grid, you perform the following steps:\n\n1. For each cell corresponding to a non-zero digit $x$ (`1`–`9`), you place $x$ mines in that cell.\n2. For each remaining cell corresponding to `0`, you write a number in that cell that is equal to the total number of mines in its adjacent cells. Two cells are adjacent if they share an edge. Note that each cell has at most **four** adjacent cells.\n\nFor a width $w$, define $f(w)$ as the sum of the numbers in all cells without mines on the generated grid. Given an integer $k$, your task is to compute the $k$-th largest value among the values $f(1), f(2), \\ldots, f(n)$.\n\n## Input\n\nThe first line of input contains two integers $n$ and $k$ ($1\\leq k \\leq n \\leq 500\\,000$).\n\nThe second line contains a string $S$ of length $n$ consisting of digits `0`–`9`.\n\n## Output\n\nOutput the $k$-th largest value among $f(1), f(2), \\ldots, f(n)$.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nFigure F.1 illustrates the resulting grids for widths $1$ to $5$. Each dot in a cell represents one mine.\n\n![image](https://espresso.codeforces.com/2d2c006be49c6a534dddc4c80c22c092b15e86a0.png)Figure F.1: The resulting grids for all $5$ possible widths.\n\nBy summing up the numbers on the cells containing no mines, you obtain the following.\n\n- $f(1) = 7$\n- $f(2) = 3$\n- $f(3) = 11$\n- $f(4) = 4$\n- $f(5) = 7$\n\nThe third largest value among them is $7$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 3\n20103\n",
+      "output": "7\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "5 1\n20103\n",
+      "output": "11\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "8 4\n60409003\n",
+      "output": "35\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:33:41.182Z"
+}

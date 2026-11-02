@@ -1,0 +1,28 @@
+{
+  "id": "2254D",
+  "platform": "codeforces",
+  "contestId": 2254,
+  "index": "D",
+  "title": "Silhouette",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2254/problem/D",
+  "difficulty": 1300,
+  "tags": [
+    "constructive algorithms",
+    "math",
+    "sortings"
+  ],
+  "timeLimitMs": 2500,
+  "memoryLimitMb": 256,
+  "statementMd": "Yousef has a secret array $a$ of $n$ strictly positive integers.\n\nFor each element $a_i$, its *shadow* $b_i$ is the sum of all elements in $a$ that are strictly smaller than $a_i$. Formally:\n\n$$b_i = \\sum_{\\substack{1 \\le j \\le n\\\\ a_j \\lt a_i}} a_j$$\n\nYou are given the shadow array $b$. Your task is to reconstruct the **lexicographically smallest** valid array $a$ consisting of strictly positive integers that satisfies the above condition. If no such array exists, output $-1$.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the size of the array.\n\nThe second line of each test case contains $n$ integers $b_1, b_2, \\dots, b_n$ ($0 \\le b_i \\le 2 \\cdot 10^{14}$) — the shadow array.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^{18}$) — the lexicographically smallest valid array $a$ that satisfies the condition. If no valid array exists, output $-1$ instead.\n\n## Note\n\nIn the first test case, the answer is $a = [1]$. Since there is only one element, there are no strictly smaller elements, so its shadow is $0$. Thus $a=[1]$ is valid. It is also lexicographically smallest, because the only allowed values are positive integers, and $1$ is the smallest possible.\n\nIn the second test case, the answer is $a = [2,5,2,5,6]$:\n\n- For each $2$, there is no smaller element in the array, so the shadow is $0$.\n- For each $5$, the strictly smaller elements are the two $2$'s, so the shadow is $2+2=4$.\n- For $6$, the strictly smaller elements are two $2$'s and two $5$'s, so the shadow is $2+2+5+5=14$.\n\nTherefore the shadow array is exactly $b = [0,4,0,4,14]$.\n\nIn the third test case, the shadow array for $a = [3, 2, 2]$ is calculated as follows:\n\n- For $a_1 = 3$, the strictly smaller elements in the array are the two $2$s. Their sum is $2 + 2 = 4$. So, $b_1 = 4$.\n- For $a_2 = 2$, there are no strictly smaller elements in the array. So, $b_2 = 0$.\n- For $a_3 = 2$, there are no strictly smaller elements in the array. So, $b_3 = 0$.\n\nThe resulting shadow array is $b = [4, 0, 0]$, which matches the input.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "8\n1\n0\n5\n0 4 0 4 14\n3\n4 0 0\n3\n0 0 0\n3\n0 1 1\n4\n1 1 1 1\n7\n0 4 4 4 4 4 9\n5\n0 0 0 3 3\n",
+      "output": "1\n2 5 2 5 6\n3 2 2\n1 1 1\n1 2 2\n-1\n-1\n1 1 1 2 2\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:31:52.550Z"
+}

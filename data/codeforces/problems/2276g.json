@@ -1,0 +1,28 @@
+{
+  "id": "2276G",
+  "platform": "codeforces",
+  "contestId": 2276,
+  "index": "G",
+  "title": "Elimination of Players",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2276/problem/G",
+  "difficulty": 2100,
+  "tags": [
+    "combinatorics",
+    "dp",
+    "math"
+  ],
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 512,
+  "statementMd": "In a certain game, there are 𝑛n players numbered from 11 to 𝑛n. Each player has a strength — an integer from 11 to 𝑛n. All players have distinct strengths. The distribution of strengths is given by a permutation (𝑠1,𝑠2,…,𝑠𝑛)(s1,s2,…,sn), where 𝑠𝑗sj is the strength of player 𝑗j.\n\nInitially, all players take part in the game. The game consists of 𝑛−1n−1 rounds. In the 𝑖i-th round, the player 𝑎𝑖ai is *protected*. It is possible that the protected player was already eliminated.\n\nIn each round, exactly one player is eliminated. This player is chosen as follows:\n\n- if the player with the minimum strength among the remaining players is not protected, that player is eliminated;\n- otherwise, the player with the second minimum strength among the remaining players is eliminated.\n\nAn eliminated player no longer takes part in the game. After the last round, exactly one player remains.\n\nYou are given the sequence 𝑎1,𝑎2,…,𝑎𝑛−1a1,a2,…,an−1, but the distribution of strengths is unknown. For each player 𝑗j and each round 𝑖i, find the number of permutations (𝑠1,𝑠2,…,𝑠𝑛)(s1,s2,…,sn) for which the player 𝑗j is eliminated in the 𝑖i-th round.\n\n## Input\n\nThe first line contains one integer 𝑡t (1≤𝑡≤25001≤t≤2500) — the number of test cases.\n\nEach test case consists of two lines:\n\n- the first line contains one integer 𝑛n (2≤𝑛≤50002≤n≤5000) — the number of players;\n- the second line contains 𝑛−1n−1 integers 𝑎1,𝑎2,…,𝑎𝑛−1a1,a2,…,an−1 (1≤𝑎𝑖≤𝑛1≤ai≤n) — the numbers of the protected players in the corresponding rounds. The values 𝑎𝑖ai may repeat.\n\nAdditional constraints on the input:\n\n- the sum of 𝑛n over all test cases does not exceed 50005000.\n\n## Output\n\nFor each test case, print the answer in the following way:\n\nLet 𝑎𝑛𝑠(𝑖,𝑗)ans(i,j) denote the number of permutations (𝑠1,𝑠2,…,𝑠𝑛)(s1,s2,…,sn) for which player 𝑖i is eliminated in round 𝑗j, taken modulo 998244353998244353. Print one integer equal to ⊕𝑛𝑖=1⊕𝑛−1𝑗=1(𝑎𝑛𝑠(𝑖,𝑗)⋅𝑖⋅𝑗)⊕i=1n⊕j=1n−1(ans(i,j)⋅i⋅j), where ⊕⊕ denotes the bitwise exclusive OR (XOR) operation. Only the values 𝑎𝑛𝑠(𝑖,𝑗)ans(i,j) are taken modulo 998244353998244353; the products 𝑎𝑛𝑠(𝑖,𝑗)⋅𝑖⋅𝑗ans(i,j)⋅i⋅j and the final answer are not.\n\n## Note\n\nIn the first test case, there are two possible distributions of strengths: (1,2)(1,2) and (2,1)(2,1). In the only round, player 22 is protected, so in both cases player 11 is eliminated. Thus, 𝑎𝑛𝑠(1,1)=2ans(1,1)=2, 𝑎𝑛𝑠(2,1)=0ans(2,1)=0, and the answer is\n\n(2⋅1⋅1)⊕(0⋅2⋅1)=2.(2⋅1⋅1)⊕(0⋅2⋅1)=2.\n\nIn the second test case, there are 66 possible distributions of strengths. The values of 𝑎𝑛𝑠(𝑖,𝑗)ans(i,j) are shown in the table: rows correspond to players, columns — to rounds.\n\n𝑖=1𝑖=2𝑖=3𝑗=1033𝑗=2501j=1j=2i=105i=230i=331\n\nPlayer 11 is protected in the first round, and player 22 — in the second, so the corresponding values are zero. In the second round, player 11 is eliminated for five strength distributions, and player 33 — only for the distribution (3,1,2)(3,1,2). After multiplying the table values by the player and round numbers, we get the answer\n\n0⊕10⊕6⊕0⊕9⊕6=3.0⊕10⊕6⊕0⊕9⊕6=3.\n\nIn the third test case, there are 2424 possible distributions of strengths. Player 11 is protected in all rounds and is never eliminated. The other three players are symmetric, so each of them is eliminated in each round for 24/3=824/3=8 strength distributions. The table of values 𝑎𝑛𝑠(𝑖,𝑗)ans(i,j) is\n\n𝑖=1𝑖=2𝑖=3𝑖=4𝑗=10888𝑗=20888𝑗=30888j=1j=2j=3i=1000i=2888i=3888i=4888\n\nThe products for player 11 are zero. The XOR of the products for the remaining players gives the answer\n\n16⊕32⊕48⊕24⊕48⊕72⊕32⊕64⊕96=96.16⊕32⊕48⊕24⊕48⊕72⊕32⊕64⊕96=96.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n2\n2\n3\n1 2\n4\n1 1 1\n4\n1 4 1\n7\n2 2 2 7 7 7\n6\n3 1 3 6 3\n5\n5 1 4 2\n",
+      "output": "2\n3\n96\n188\n2024\n4610\n69\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:31:08.944Z"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2275D",
+  "platform": "codeforces",
+  "contestId": 2275,
+  "index": "D",
+  "title": "Precision Alignment",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2275/problem/D",
+  "difficulty": 1300,
+  "tags": [
+    "binary search",
+    "brute force",
+    "greedy",
+    "implementation"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "K1o0n volunteered to work as a teaching assistant in the physics department, and he was assigned $n$ training laboratories. In the $i$-th laboratory, there are three instruments; their readings are $a_i$, $b_i$, and $c_i$. The instruments are distinguishable, and the order in this triple is fixed: the first ($a_i$), the second ($b_i$), the third ($c_i$).\n\nOne action is to choose the index of a laboratory $i$ and perform **exactly one** of the three adjustments:\n\n- $c_i \\mathrel{+}= \\operatorname{sgn}(a_i - b_i)$\n- $b_i \\mathrel{+}= \\operatorname{sgn}(a_i - c_i)$\n- $a_i \\mathrel{+}= \\operatorname{sgn}(b_i - c_i)$\n\nHere $\\operatorname{sgn}(x)$ equals $1$ if $x \\gt 0$, equals $-1$ if $x \\lt 0$, and equals $0$ if $x = 0$.\n\nIn other words, an adjustment shifts the reading of one instrument by one unit, and the direction of the shift is determined by the difference of the readings of the other two, taken in the order they are written: the earlier one minus the later one.\n\nThe actions are performed one after another, and each adjustment looks at the readings that have been obtained by that moment. The same laboratory may be adjusted any number of times, and some may be left untouched altogether; in total, K1o0n is ready to make **at most** $k$ actions across all laboratories.\n\nThe work will be evaluated by the worst laboratory:\n\n$$S = \\min_{1 \\le i \\le n} (a_i + b_i + c_i),$$\n\nwhere the readings are taken after all actions. K1o0n wants to impress his colleagues, so he asks you to find the maximum $S$ he can achieve.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of testcases.\n\nThe first line of each testcase contains two integers $n$ and $k$ ($1 \\le n \\le 2 \\cdot 10^5$, $0 \\le k \\le 10^{18}$) — the number of laboratories and the maximum number of actions.\n\nThe next $n$ lines of each testcase contain three integers $a_i$, $b_i$, and $c_i$ ($-10^9 \\le a_i, b_i, c_i \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all testcases does not exceed $2\\cdot10^5$.\n\n## Output\n\nFor each testcase, output one integer — the maximum achievable value of $S$.\n\nNote that the answer may not fit into a 32-bit integer type. Use a 64-bit integer type (`long long` in C++, `long` in Java).\n\n## Note\n\nIn the first testcase, to obtain a minimum sum of all triples equal to $-2$, you need to add $\\operatorname{sgn}(b_1 - c_1) = 1$ to $a_1$ four times. After that, the triplet $(a_1, b_1, c_1)$ will become $(1, -1, -2)$, and the sum of the remaining triplets was originally greater than $-2$. It can be shown that it is impossible to obtain a sum of $-1$ or higher with that many operations.\n\nIn the second testcase, to obtain a minimum sum of all triples equal to $14$, it is necessary to add $\\operatorname{sgn}(b_1 - c_1) = 1$ to $a_1$ $2$ times, add $\\operatorname{sgn}(a_2 - c_2) = 1$ to $b_2$ once, and add $\\operatorname{sgn}(a_3 - b_3) = 1$ to $c_3$.\n\nIn the fourth testcase, it seems that it's impossible to improve the value of the second lab; however, it's not. We can make $b_2 \\mathrel{+}= \\operatorname{sgn}(a_2 - c_2)$, and we are out of the \"stuck\" position.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5\n3 4\n-3 -1 -2\n1 3 5\n2 4 6\n3 4\n6 4 2\n6 7 0\n7 6 0\n3 1000000000000000000\n4 4 4\n1 5 9\n-1000000000 0 1000000000\n2 4\n1 2 3\n0 0 5\n4 3\n2 1 0\n4 4 5\n1 5 9\n7 -2 1\n",
+      "output": "-2\n14\n12\n6\n6\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:31:20.385Z"
+}
