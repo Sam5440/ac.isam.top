@@ -1,0 +1,37 @@
+{
+  "id": "2041I",
+  "platform": "codeforces",
+  "contestId": 2041,
+  "index": "I",
+  "title": "Auto Complete",
+  "titleZh": null,
+  "url": "https://codeforces.com/contest/2041/problem/I",
+  "difficulty": 2300,
+  "tags": [
+    "binary search",
+    "data structures",
+    "hashing",
+    "implementation",
+    "sortings",
+    "strings",
+    "trees"
+  ],
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 1024,
+  "statementMd": "![image](https://espresso.codeforces.com/b751a65cb8c1d8b8978cf9143b873542589864d8.png)\n\nYou are designing a snazzy new text editor, and you want to add a nifty auto-complete feature to help users save time. Here is how it will work: if a user types \"`App`\", your editor will magically suggest the word \"`Application`\"! Even better, users can personalize the words that auto-complete in your editor.\n\nYour editor will support 4 kinds of operations (Let's say the current text in your editor is $t$):\n\n1. Add an auto complete pattern $p_i$.\n2. Delete an auto complete pattern $p_i$.\n3. Append a string $s$ to the end of $t$.\n4. Delete $c$ characters from the end of $t$. Note that if $c$ is larger then the length of $t$, delete all the characters from $t$.\n\nAfter each action, your editor should suggest an auto-complete candidate $i$ that matches the following criteria:\n\n1. The string $p_i$ has a prefix equal to $t$.\n2. If there are multiple $p_i$, pick the longest one.\n3. If there are still multiple $p_i$, pick the one with the smallest lexicographic order.\n4. If there are still multiple $p_i$, pick the one with the smallest ID.\n\nTo simplify the question, for each action, print the suggested auto complete pattern ID. If there's no match, print `-1`.\n\nFor example, let us say we have three candidates: \"`alice`\", \"`bob`\", and \"`charlie`\", with ID 1, 2, and 3. At first, there is nothing on the screen, so \"`charlie`\" (3) should be suggested because it is the longest. Then, let us say the user types \"`b`\". You should suggest \"`bob`\" (2) because it is the only one that starts with \"`b`\". Finally, let us say the user type \"`body`\". You should print `-1` because there is no matched pattern.\n\n## Input\n\nThe first line contains an integer $n$, followed by $n$ lines, with each line containing an action.\n\nThere are four types of actions:\n\n1. $i$ $p_i$\n2. $i$\n3. $s$\n4. $c$\n\nThe `add` actions are followed by an integer $i$ and a pattern $p_i$, which means the user wants to add a pattern with ID $i$. The `delete` actions are followed by an integer $i$, which means the user wants to delete $p_i$ from the pattern set. The `append` actions are followed by a string $s$, which means the user appends $s$ to the end of $t$. The `backspace` actions are followed by an integer $c$, which means the user deletes $c$ characters from the end of $t$. All the parameters are splitted by a single space character.\n\n- $1 \\leq n \\leq 10^6$\n- The total number of characters in all $p_i$ and $s$ does not exceed $2\\times 10^6$.\n- $1 \\leq c \\leq 2\\times 10^6$\n- The strings $p_i$ and $s$ may contain any printable characters, excluding all space characters (ASCII number in the range from $33$ to $126$).\n- The ID $i$ for each `add` operation is unique.\n- The ID $i$ for each `delete` is guaranteed to be valid.\n- Each ID $i$ satisfies $0\\le i \\le n$.\n\n## Output\n\nThe program should output $n$ lines. For each action, output an integer $i$, which means that after the action, $p_i$ is the suggested auto complete candidate. If there is no $p_i$ that matches the requirement, output `-1`.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\nadd 1 pattern1_alice\nadd 2 pattern2_bob\nadd 3 pattern3_charlie\nappend pattern\nappend 2_bobabc\nbackspace 3\n",
+      "output": "1\n1\n3\n3\n-1\n2\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    },
+    {
+      "input": "6\nappend pattern\nadd 1 pattern1_alice____\nadd 2 pattern2_bob______\nadd 3 pattern3_charlie__\ndelete 1\ndelete 2\n",
+      "output": "-1\n1\n1\n1\n2\n3\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-02T16:56:13.258Z"
+}
