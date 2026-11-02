@@ -4,14 +4,14 @@
   "contestId": 2116,
   "index": "D",
   "title": "Gellyfish and Camellia Japonica",
-  "titleZh": null,
+  "titleZh": "水母与山茶花",
   "url": "https://codeforces.com/contest/2116/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Gellyfish has an array of $n$ integers $c_1, c_2, \\ldots, c_n$. In the beginning, $c = [a_1, a_2, \\ldots, a_n]$.\n\nGellyfish will make $q$ modifications to $c$.\n\nFor $i = 1,2,\\ldots,q$, Gellyfish is given three integers $x_i$, $y_i$, and $z_i$ between $1$ and $n$. Then Gellyfish will set $c_{z_i} := \\min(c_{x_i}, c_{y_i})$.\n\nAfter the $q$ modifications, $c = [b_1, b_2, \\ldots, b_n]$.\n\nNow Flower knows the value of $b$ and the value of the integers $x_i$, $y_i$, and $z_i$ for all $1 \\leq i \\leq q$, but she doesn't know the value of $a$.\n\nFlower wants to find any possible value of the array $a$ or report that no such $a$ exists.\n\nIf there are multiple possible values of the array $a$, you may output any of them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1 \\leq n, q \\leq 3 \\cdot 10^5$) — the size of the array and the number of modifications.\n\nThe second line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\leq b_i \\leq 10^9$) — the value of the array $c$ after the $q$ modifications.\n\nThe following $q$ lines each contain three integers $x_i$, $y_i$, and $z_i$ ($1 \\leq x_i, y_i, z_i \\leq n$) — describing the $i$-th modification.\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if $a$ exists, output $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\leq a_i \\leq 10^9$) in a single line. Otherwise, output \"-1\" in a single line.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\nIn the first test case, based on the given sequence of modifications, we know that $b_1 = a_1$ and $b_2 = \\min(a_1, a_2)$. Therefore, it is necessary that $b_2 \\leq b_1$. However, for the given $b$, we have $b_1 \\lt b_2$. Therefore, there is no solution.\n\nIn the second test case, we can see that the given $c$ becomes $b$ from $a$ after the given modifications, and $c$ is not changed at each modification.",
-  "statementZhMd": null,
+  "statementZhMd": "水母有一个由 $n$ 个整数组成的数组 $c_1, c_2, \\ldots, c_n$。初始时，$c = [a_1, a_2, \\ldots, a_n]$。\n\n水母将对 $c$ 进行 $q$ 次修改。\n\n对于 $i = 1,2,\\ldots,q$，给定三个介于 $1$ 和 $n$ 之间的整数 $x_i$、$y_i$ 和 $z_i$。然后水母会执行赋值 $c_{z_i} := \\min(c_{x_i}, c_{y_i})$。\n\n经过这 $q$ 次修改后，$c = [b_1, b_2, \\ldots, b_n]$。\n\n现在，花知道 $b$ 的值以及所有 $1 \\leq i \\leq q$ 对应的整数 $x_i$、$y_i$、$z_i$ 的值，但她不知道 $a$ 的值。\n\n花想要找出任一组合法的数组 $a$ 的值，或者报告不存在这样的 $a$。\n\n如果数组 $a$ 有多个可能的取值，你可以输出其中任意一个。\n\n## 输入格式\n\n每个测试点包含多组测试数据。第一行包含测试数据的组数 $t$ ($1 \\le t \\le 10^4$)。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $q$ ($1 \\leq n, q \\leq 3 \\cdot 10^5$) — 分别表示数组的大小和修改的次数。\n\n每组测试数据的第二行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$ ($1 \\leq b_i \\leq 10^9$) — 表示 $q$ 次修改后数组 $c$ 的值。\n\n接下来的 $q$ 行中，每行包含三个整数 $x_i$、$y_i$ 和 $z_i$ ($1 \\leq x_i, y_i, z_i \\leq n$) — 描述第 $i$ 次修改。\n\n保证所有测试数据的 $n$ 之和与 $q$ 之和均不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，如果 $a$ 存在，在单独一行中输出 $n$ 个整数 $a_1, a_2, \\ldots, a_n$ ($0 \\leq a_i \\leq 10^9$)；否则，在单独一行中输出 \"-1\"。\n\n如果有多组解，输出任意一组即可。\n\n## 说明\n\n在第一组测试数据中，根据给定的修改序列可知 $b_1 = a_1$ 且 $b_2 = \\min(a_1, a_2)$。因此必须有 $b_2 \\leq b_1$。然而对于给定的 $b$，有 $b_1 \\lt b_2$。因此无解。\n\n在第二组测试数据中，可以看到经过给定的修改后，$c$ 从 $a$ 变成了 $b$，并且在每次修改时 $c$ 都没有发生变化。",
   "samples": [
     {
       "input": "3\n2 1\n1 2\n2 1 2\n3 2\n1 2 3\n2 3 2\n1 2 1\n6 4\n1 2 2 3 4 5\n5 6 6\n4 5 5\n3 4 4\n2 3 3\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:22:30.398Z"
+  "fetchedAt": "2026-10-30T21:22:30.398Z",
+  "translatedAt": "2026-11-03T06:55:04.139+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

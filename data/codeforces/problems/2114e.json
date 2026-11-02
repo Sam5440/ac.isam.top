@@ -4,7 +4,7 @@
   "contestId": 2114,
   "index": "E",
   "title": "Kirei Attacks the Estate",
-  "titleZh": null,
+  "titleZh": "言峰绮礼袭击宅邸",
   "url": "https://codeforces.com/contest/2114/problem/E",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Once, Kirei stealthily infiltrated the trap-filled estate of the Ainzbern family but was discovered by Kiritugu's familiar. Assessing his strength, Kirei decided to retreat. The estate is represented as a tree with $n$ vertices, with the **root** at vertex $1$. Each vertex of the tree has a number $a_i$ recorded, which represents the *danger* of vertex $i$. Recall that a tree is a connected undirected graph without cycles.\n\nFor a successful retreat, Kirei must compute the *threat* value for each vertex. The *threat* of a vertex is equal to the **maximum** *alternating* sum along the vertical path starting from that vertex. The *alternating* sum along the vertical path starting from vertex $i$ is defined as $a_i - a_{p_i} + a_{p_{p_i}} - \\ldots$, where $p_i$ is the parent of vertex $i$ on the path to the root (to vertex $1$).\n\nFor example, in the tree below, vertex $4$ has the following vertical paths:\n\n- $[4]$ with an alternating sum of $a_4 = 6$;\n- $[4, 3]$ with an alternating sum of $a_4 - a_3 = 6 - 2 = 4$;\n- $[4, 3, 2]$ with an alternating sum of $a_4 - a_3 + a_2 = 6 - 2 + 5 = 9$;\n- $[4, 3, 2, 1]$ with an alternating sum of $a_4 - a_3 + a_2 - a_1 = 6 - 2 + 5 - 4 = 5$.\n\n![image](https://espresso.codeforces.com/ca9befad93e279ba6473c3a326b02cf92524400c.png) The *dangers* of the vertices are indicated in red.\n\nHelp Kirei compute the *threat* values for all vertices and escape the estate.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe following describes the test cases.\n\nThe first line contains an integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the *dangers* of the vertices.\n\nThe next $n - 1$ lines contain the numbers $v, u$ ($1 \\le v, u \\le n$, $v \\neq u$) — the description of the edges of the tree.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $2 \\cdot 10^5$. It is also guaranteed that the given set of edges forms a tree.\n\n## Output\n\nFor each test case, output $n$ integers — the *threat* of each vertex.\n\n## Note\n\nThe tree from the first test case is depicted in the statement, and the maximum *variable-sign* sums are achieved as follows:\n\n1. $a_1 = 4$;\n2. $a_2 = 5$;\n3. $a_3 = 2$;\n4. $a_4 - a_3 + a_2 = 6 - 2 + 5 = 9$;\n5. $a_5 = 7$.",
-  "statementZhMd": null,
+  "statementZhMd": "从前，言峰绮礼悄悄潜入了爱因兹贝伦家族布满陷阱的宅邸，却被切嗣的使魔发现了。在评估了实力之后，绮礼决定撤退。宅邸被表示成一棵有 $n$ 个顶点的树，**根**为顶点 $1$。树的每个顶点上记录着一个数 $a_i$，表示顶点 $i$ 的*危险度*。回顾一下，树是一张不含环的连通无向图。\n\n为了成功撤退，绮礼必须计算每个顶点的*威胁值*。一个顶点的*威胁值*等于从该顶点出发的竖直路径上**最大**的*交错和*。从顶点 $i$ 出发的竖直路径上的*交错和*定义为 $a_i - a_{p_i} + a_{p_{p_i}} - \\ldots$，其中 $p_i$ 是顶点 $i$ 在通往根（顶点 $1$）的路径上的父顶点。\n\n例如，在下图的树中，顶点 $4$ 有以下竖直路径：\n\n- $[4]$，其交错和为 $a_4 = 6$；\n- $[4, 3]$，其交错和为 $a_4 - a_3 = 6 - 2 = 4$；\n- $[4, 3, 2]$，其交错和为 $a_4 - a_3 + a_2 = 6 - 2 + 5 = 9$；\n- $[4, 3, 2, 1]$，其交错和为 $a_4 - a_3 + a_2 - a_1 = 6 - 2 + 5 - 4 = 5$。\n\n![image](https://espresso.codeforces.com/ca9befad93e279ba6473c3a326b02cf92524400c.png) 顶点的*危险度*用红色标出。\n\n帮助绮礼计算所有顶点的*威胁值*，逃离宅邸。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——树中顶点的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——各顶点的*危险度*。\n\n接下来的 $n - 1$ 行每行包含两个数 $v, u$（$1 \\le v, u \\le n$，$v \\neq u$）——描述树的各条边。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。同时保证给定的边集构成一棵树。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数——每个顶点的*威胁值*。\n\n## 说明\n\n第一个测试用例中的树已在题面中画出，最大*交错和*按如下方式取得：\n\n1. $a_1 = 4$；\n2. $a_2 = 5$；\n3. $a_3 = 2$；\n4. $a_4 - a_3 + a_2 = 6 - 2 + 5 = 9$；\n5. $a_5 = 7$。",
   "samples": [
     {
       "input": "2\n5\n4 5 2 6 7\n1 2\n3 2\n4 3\n5 1\n6\n1000000000 500500500 900900900 9 404 800800800\n3 4\n5 1\n2 5\n1 6\n6 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:47:56.633Z"
+  "fetchedAt": "2026-11-02T16:47:56.633Z",
+  "translatedAt": "2026-11-03T06:57:59.267+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

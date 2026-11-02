@@ -4,7 +4,7 @@
   "contestId": 2110,
   "index": "C",
   "title": "Racing",
-  "titleZh": null,
+  "titleZh": "竞速",
   "url": "https://codeforces.com/contest/2110/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "In 2077, a sport called hobby-droning is gaining popularity among robots.\n\nYou already have a drone, and you want to win. For this, your drone needs to fly through a course with $n$ obstacles.\n\nThe $i$-th obstacle is defined by two numbers $l_i, r_i$. Let the height of your drone at the $i$-th obstacle be $h_i$. Then the drone passes through this obstacle if $l_i \\le h_i \\le r_i$. Initially, the drone is on the ground, meaning $h_0 = 0$.\n\nThe flight program for the drone is represented by an array $d_1, d_2, \\ldots, d_n$, where $h_{i} - h_{i-1} = d_i$, and $0 \\leq d_i \\leq 1$. This means that your drone either does not change height between obstacles or rises by $1$. You already have a flight program, but some $d_i$ in it are unknown and marked as $-1$. Replace the unknown $d_i$ with numbers $0$ and $1$ to create a flight program that passes through the entire obstacle course, or report that it is impossible.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nIn the first line of each test case, an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5)$ is given — the size of the array $d$.\n\nIn the second line of each test case, there are $n$ integers $d_1, d_2, \\ldots, d_n$ ($-1 \\leq d_i \\leq 1$) — the elements of the array $d$. $d_i = -1$ means that this $d_i$ is unknown to you.\n\nNext, there are $n$ lines containing $2$ integers $l_i,r_i$ ($0\\leq l_i\\leq r_i\\leq n$) — descriptions of the obstacles.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers $d_1,d_2,\\ldots,d_n$, if it is possible to correctly restore the array $d$, or $-1$ if it is not possible.\n\n## Note\n\nIn the first test case, one possible answer is $d=[0,1,1,1]$. The array $h$ will be $[0,0+1,0+1+1,0+1+1+1]=[0,1,2,3]$. This array meets the conditions of the problem.\n\nIn the second test case, it can be proven that there is no suitable array $d$, so the answer is $-1$.",
-  "statementZhMd": null,
+  "statementZhMd": "在 2077 年，一项名为“业余无人机飞行”（hobby-droning）的运动正在机器人群体中流行起来。\n\n你已经拥有了一架无人机，并且你想赢得比赛。为此，你的无人机需要飞越一条有 $n$ 个障碍物的赛道。\n\n第 $i$ 个障碍物由两个数 $l_i, r_i$ 定义。设你的无人机在第 $i$ 个障碍物处的高度为 $h_i$，那么当 $l_i \\le h_i \\le r_i$ 时，无人机可以通过该障碍物。初始时，无人机位于地面上，即 $h_0 = 0$。\n\n无人机的飞行程序由一个数组 $d_1, d_2, \\ldots, d_n$ 表示，其中 $h_{i} - h_{i-1} = d_i$，且 $0 \\leq d_i \\leq 1$。也就是说，你的无人机在相邻两个障碍物之间要么高度不变，要么上升 $1$。你已经有一个飞行程序，但其中一些 $d_i$ 是未知的，被标记为 $-1$。请将未知的 $d_i$ 替换为 $0$ 或 $1$，构造出一个能通过全部障碍物的飞行程序；如果不可能，请报告无解。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行给出一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——表示数组 $d$ 的大小。\n\n每个测试用例的第二行包含 $n$ 个整数 $d_1, d_2, \\ldots, d_n$（$-1 \\leq d_i \\leq 1$）——表示数组 $d$ 的元素。$d_i = -1$ 表示这个 $d_i$ 对你是未知的。\n\n接下来 $n$ 行，每行包含 $2$ 个整数 $l_i,r_i$（$0\\leq l_i\\leq r_i\\leq n$）——描述障碍物。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果能够正确还原数组 $d$，输出 $n$ 个整数 $d_1,d_2,\\ldots,d_n$；否则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，一个可行的答案是 $d=[0,1,1,1]$。此时数组 $h$ 为 $[0,0+1,0+1+1,0+1+1+1]=[0,1,2,3]$。该数组满足题目条件。\n\n在第二个测试用例中，可以证明不存在合适的数组 $d$，因此答案为 $-1$。",
   "samples": [
     {
       "input": "5\n4\n0 -1 -1 1\n0 4\n1 2\n2 4\n1 4\n3\n0 -1 -1\n0 1\n2 2\n0 3\n2\n-1 -1\n0 0\n2 2\n8\n-1 -1 1 -1 -1 0 0 -1\n0 0\n0 1\n0 2\n0 2\n1 3\n0 4\n2 5\n4 5\n1\n0\n1 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:22:57.689Z"
+  "fetchedAt": "2026-10-30T21:22:57.689Z",
+  "translatedAt": "2026-11-03T06:59:40.893+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
