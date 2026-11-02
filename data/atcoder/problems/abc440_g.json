@@ -4,7 +4,7 @@
   "contestId": "abc440",
   "index": "G",
   "title": "Haunted House",
-  "titleZh": null,
+  "titleZh": "鬼屋",
   "url": "https://atcoder.jp/contests/abc440/tasks/abc440_g",
   "difficulty": 2993,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nHalloween season has arrived. As a test of courage, you are about to challenge a haunted house.\n\nThere is a haunted house with $F$ floors, and each floor is represented by an $H$-row by $W$-column grid. Let cell $(k,i,j)$ be the cell at the $i$-th row from the top and $j$-th column from the left of the grid representing floor $k$.\n\nThe content of cell $(k,i,j)$ is represented by the character $S_{k,i,j}$ as follows:\n\n- If $S_{k,i,j}$ is a digit (`0` - `9`), cell $(k,i,j)$ is an empty cell with a number of coins equal to the single-digit integer represented by the digit.\n- If $S_{k,i,j}$ is `#`, cell $(k,i,j)$ is a wall cell.\n\nYou can move directly from an empty cell $(k,i,j)$ to another cell $(k', i', j')$ if cell $(k', i', j')$ is an empty cell and one of the following is satisfied:\n\n- $k' = k$ and $|i' - i| + |j' - j| = 1$ are satisfied.\n- $(k', i', j') = (k+1, i, j)$ is satisfied.\n- $(k', i', j') = (k-1, i, j)$ is satisfied, and a **ladder** is placed at cell $(k,i,j)$.\n\nYou cannot move outside the grid.\n\nYou are given $Q$ questions; answer each of them. The $i$-th question ($1 \\leq i \\leq Q$) is as follows:\n\n- Find the maximum total number of coins in the cells you visit if you choose exactly one empty cell and place a ladder there, start at cell $(G_i, A_i, B_i)$, and repeatedly move.\n\nEach question is independent. That is, a ladder placed for one question does not affect other questions.\n\n## Constraints\n\n- $F,H,W$ are integers.\n- $1 \\leq F \\leq 10$\n- $1 \\leq H,W \\leq 500$\n- $S_{k,i,j}$ is either a digit (`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`) or `#`. ($1 \\leq k \\leq F, 1 \\leq i \\leq H, 1 \\leq j \\leq W$)\n- $Q$ is an integer.\n- $1 \\leq Q \\leq 10^5$\n- $G_i, A_i, B_i$ are integers. ($1 \\leq i \\leq Q$)\n- $1 \\leq G_i \\leq F$ ($1 \\leq i \\leq Q$)\n- $1 \\leq A_i \\leq H$ ($1 \\leq i \\leq Q$)\n- $1 \\leq B_i \\leq W$ ($1 \\leq i \\leq Q$)\n- $S_{G_i, A_i, B_i}$ is not `#`. ($1 \\leq i \\leq Q$)\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nF H W\nS_{1,1,1} S_{1,1,2} \\cdots S_{1,1,W}\nS_{1,2,1} S_{1,2,2} \\cdots S_{1,2,W}\n\\vdots\nS_{1,H,1} S_{1,H,2} \\cdots S_{1,H,W}\nS_{2,1,1} S_{2,1,2} \\cdots S_{2,1,W}\nS_{2,2,1} S_{2,2,2} \\cdots S_{2,2,W}\n\\vdots\nS_{2,H,1} S_{2,H,2} \\cdots S_{2,H,W}\n\\vdots\nS_{F,1,1} S_{F,1,2} \\cdots S_{F,1,W}\nS_{F,2,1} S_{F,2,2} \\cdots S_{F,2,W}\n\\vdots\nS_{F,H,1} S_{F,H,2} \\cdots S_{F,H,W}\nQ\nG_1 A_1 B_1\nG_2 A_2 B_2\n\\vdots\nG_Q A_Q B_Q\n```\n\n## Output\n\nOutput $Q$ lines. The $i$-th line ($1 \\leq i \\leq Q$) should contain the answer to the $i$-th question.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n万圣节到了。作为一次胆量测试，你即将挑战一座鬼屋。\n\n有一座 $F$ 层的鬼屋，每一层用一个 $H$ 行 $W$ 列的网格表示。设格子 $(k,i,j)$ 为表示第 $k$ 层的网格中从上往下第 $i$ 行、从左往右第 $j$ 列的格子。\n\n格子 $(k,i,j)$ 的内容由字符 $S_{k,i,j}$ 表示如下：\n\n- 若 $S_{k,i,j}$ 是数字（`0` - `9`），则格子 $(k,i,j)$ 是空格子，其中的硬币数量等于该数字所表示的一位整数。\n- 若 $S_{k,i,j}$ 是 `#`，则格子 $(k,i,j)$ 是墙。\n\n当格子 $(k', i', j')$ 是空格子，且满足以下条件之一时，你可以从空格子 $(k,i,j)$ 直接移动到格子 $(k', i', j')$：\n\n- 满足 $k' = k$ 且 $|i' - i| + |j' - j| = 1$。\n- 满足 $(k', i', j') = (k+1, i, j)$。\n- 满足 $(k', i', j') = (k-1, i, j)$，且格子 $(k,i,j)$ 上放置着**梯子**。\n\n你不能移动到网格之外。\n\n给定 $Q$ 个询问，请逐一回答。第 $i$ 个询问（$1 \\leq i \\leq Q$）如下：\n\n- 求在你恰好选择一个空格子并在那里放置一个梯子、从格子 $(G_i, A_i, B_i)$ 出发并不断移动的情况下，所访问的格子中硬币总数量的最大值。\n\n每个询问相互独立。也就是说，为某个询问放置的梯子不会影响其他询问。\n\n## 约束条件\n\n- $F,H,W$ 是整数。\n- $1 \\leq F \\leq 10$\n- $1 \\leq H,W \\leq 500$\n- $S_{k,i,j}$ 是数字（`0`、`1`、`2`、`3`、`4`、`5`、`6`、`7`、`8`、`9`）或 `#`。（$1 \\leq k \\leq F, 1 \\leq i \\leq H, 1 \\leq j \\leq W$）\n- $Q$ 是整数。\n- $1 \\leq Q \\leq 10^5$\n- $G_i, A_i, B_i$ 是整数。（$1 \\leq i \\leq Q$）\n- $1 \\leq G_i \\leq F$（$1 \\leq i \\leq Q$）\n- $1 \\leq A_i \\leq H$（$1 \\leq i \\leq Q$）\n- $1 \\leq B_i \\leq W$（$1 \\leq i \\leq Q$）\n- $S_{G_i, A_i, B_i}$ 不是 `#`。（$1 \\leq i \\leq Q$）\n\n## 输入格式\n\n输入由标准输入按以下格式给出：\n\n```\nF H W\nS_{1,1,1} S_{1,1,2} \\cdots S_{1,1,W}\nS_{1,2,1} S_{1,2,2} \\cdots S_{1,2,W}\n\\vdots\nS_{1,H,1} S_{1,H,2} \\cdots S_{1,H,W}\nS_{2,1,1} S_{2,1,2} \\cdots S_{2,1,W}\nS_{2,2,1} S_{2,2,2} \\cdots S_{2,2,W}\n\\vdots\nS_{2,H,1} S_{2,H,2} \\cdots S_{2,H,W}\n\\vdots\nS_{F,1,1} S_{F,1,2} \\cdots S_{F,1,W}\nS_{F,2,1} S_{F,2,2} \\cdots S_{F,2,W}\n\\vdots\nS_{F,H,1} S_{F,H,2} \\cdots S_{F,H,W}\nQ\nG_1 A_1 B_1\nG_2 A_2 B_2\n\\vdots\nG_Q A_Q B_Q\n```\n\n## 输出格式\n\n输出 $Q$ 行。第 $i$ 行（$1 \\leq i \\leq Q$）应包含第 $i$ 个询问的答案。",
   "samples": [
     {
       "input": "3 5 6\n######\n##5###\n#1#11#\n#1#11#\n######\n######\n##313#\n#4##1#\n#242##\n######\n######\n#0####\n##4###\n###99#\n######\n3\n1 2 3\n2 3 2\n3 2 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T20:48:59.852Z"
+  "fetchedAt": "2026-10-30T20:48:59.852Z",
+  "translatedAt": "2026-11-03T03:33:05.309+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

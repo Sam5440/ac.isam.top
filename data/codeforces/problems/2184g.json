@@ -4,7 +4,7 @@
   "contestId": 2184,
   "index": "G",
   "title": "Nastiness of Segments",
-  "titleZh": null,
+  "titleZh": "区间的恶劣度",
   "url": "https://codeforces.com/contest/2184/problem/G",
   "difficulty": 1900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Andrey remembered that he has $n$ blocks numbered from $1$ to $n$. On the block with number $i$, there is initially an integer $a_i$ written. He arranged them in a row in increasing order of their numbers: first is the block with number $1$, then the block with number $2$, and so on, with the block with number $n$ at the end.\n\nFor a certain segment of consecutive blocks $[l, r]$ ($1 \\le l \\le r \\le n$), we call an integer $d\\ (0 \\le d \\le r-l)$ **nasty** if $\\min(a_l, a_{l+1}, \\ldots, a_{l+d}) = d$.\n\nAndrey is very curious, so he wants to perform $q$ operations of one of two types:\n\n1. Change the number $a_i$ written on the $i$-th block to $x$.\n2. Determine the **nastiness** of the segment $[l,\\ r]\\ (1 \\le l \\le r \\le n)$. The nastiness of the segment refers to the number of nasty numbers $d\\ (0 \\le d \\le r-l)$ for the given segment.\n\nAndrey couldn't figure out how to process these queries quickly, so he turned to you for help. Help him perform the actions described above!\n\n## Input\n\nThe first line contains an integer $t$ $(1 \\le t \\le 10^4)$ — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $q$ $(1 \\le n, q \\le 2 \\cdot 10^5)$ — the number of blocks and the number of operations, respectively.\n\nThe next line contains $n$ integers $a_1, a_2, \\ldots, a_n$ $(1 \\le a_i \\le 2 \\cdot 10^5)$ — the initial numbers written on the blocks.\n\nThe following $q$ lines describe the operations to be performed.\n\nEach line starts with an integer $idx$ $(1 \\le idx \\le 2)$ — the type of operation.\n\nIf $idx = 1$, then two integers $i$ $(1 \\le i \\le n)$ and $x$ $(1 \\le x \\le 2 \\cdot 10^5)$ follow — the description of the first type of operation.\n\nIf $idx = 2$, then two integers $l$ and $r$ $(1 \\le l \\le r \\le n)$ follow — the description of the second type of operation.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$, and the sum of $q$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, for each operation of the second type, print an integer representing the nastiness of the segment.",
-  "statementZhMd": null,
+  "statementZhMd": "Andrey 想起他有 $n$ 块编号从 $1$ 到 $n$ 的积木。编号为 $i$ 的积木上最初写有一个整数 $a_i$。他按编号从小到大的顺序把它们排成一行：最前面是编号为 $1$ 的积木，接着是编号为 $2$ 的积木，以此类推，编号为 $n$ 的积木排在最后。\n\n对于一段连续的积木 $[l, r]$ ($1 \\le l \\le r \\le n$)，如果 $\\min(a_l, a_{l+1}, \\ldots, a_{l+d}) = d$，我们就称整数 $d\\ (0 \\le d \\le r-l)$ 是**恶劣的**。\n\nAndrey 非常好奇，因此他想要进行 $q$ 次操作，每次操作为以下两种类型之一：\n\n1. 将第 $i$ 块积木上写的数 $a_i$ 修改为 $x$。\n2. 求区间 $[l,\\ r]\\ (1 \\le l \\le r \\le n)$ 的**恶劣度**。区间的恶劣度指对给定区间而言恶劣数 $d\\ (0 \\le d \\le r-l)$ 的个数。\n\nAndrey 想不出如何快速处理这些询问，于是他向你求助。请帮他完成上述操作！\n\n## 输入格式\n\n第一行包含一个整数 $t$ $(1 \\le t \\le 10^4)$，表示测试数据组数。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $q$ $(1 \\le n, q \\le 2 \\cdot 10^5)$，分别表示积木的数量和操作的数量。\n\n接下来一行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$ $(1 \\le a_i \\le 2 \\cdot 10^5)$，表示积木上最初写的数。\n\n接下来的 $q$ 行描述要执行的操作。\n\n每行以一个整数 $idx$ $(1 \\le idx \\le 2)$ 开头，表示操作的类型。\n\n如果 $idx = 1$，随后给出两个整数 $i$ $(1 \\le i \\le n)$ 和 $x$ $(1 \\le x \\le 2 \\cdot 10^5)$，即第一类操作的描述。\n\n如果 $idx = 2$，随后给出两个整数 $l$ 和 $r$ $(1 \\le l \\le r \\le n)$，即第二类操作的描述。\n\n保证所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^5$，且所有测试数据的 $q$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，对每个第二类操作，输出一个整数，表示该区间的恶劣度。",
   "samples": [
     {
       "input": "1\n5 5\n1 2 3 4 5\n2 1 5\n1 1 5\n1 2 5\n1 3 1\n2 1 5\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:18.529Z"
+  "fetchedAt": "2026-11-02T16:39:18.529Z",
+  "translatedAt": "2026-11-03T03:31:39.340+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

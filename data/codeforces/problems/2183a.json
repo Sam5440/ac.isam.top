@@ -4,7 +4,7 @@
   "contestId": 2183,
   "index": "A",
   "title": "Binary Array Game",
-  "titleZh": null,
+  "titleZh": "01 数组游戏",
   "url": "https://codeforces.com/contest/2183/problem/A",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob are playing a game on an array $a$ of size $n$, containing only numbers `0` and `1`. Alice moves first, with each player alternating turns.\n\nIn a player's turn, he or she chooses two integers $l$ and $r$ such that $1 \\leq l \\color{red}{ \\lt } r \\leq |a|$ (here, $|a|$ denotes the current length of $a$). Then, the subarray $[a_l,a_{l+1},\\ldots,a_r]$ is replaced with a single number $1-\\operatorname{min}(a_l,a_{l+1},\\ldots,a_r)$. That is, if all numbers in the subarray are $1$, then the subarray $[a_l,a_{l+1},\\ldots,a_r]$ is removed, and the number $0$ is inserted where the subarray was. Otherwise, the subarray $[a_l,a_{l+1},\\ldots,a_r]$ is removed, and the number $1$ is inserted where the subarray was.\n\nThe game ends when there is exactly one number left in the array (where the player to go cannot make legal moves). Alice wins if the final number is $0$. Otherwise, Bob wins. Please determine who wins this game with optimal play.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 100$). The description of the test cases follows.\n\nThe first line of each test case contains a positive integer $n$ ($3 \\le n \\le 100$), denoting the length of the array $a$.\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($0 \\le a_i \\le 1$).\n\n## Output\n\nFor each test case, output `Alice` if Alice wins, and `Bob` otherwise. You may output each character in any case. For example, the answers `Alice`, `alice`, `ALICE`, `AliCe` will all be interpreted the same.\n\n## Note\n\nIn the first test case, Alice can win by choosing $l=2$ and $r=3$. Since $1-\\operatorname{min}(a_2,a_3)=1$, the subarray $[1,0]$ is replaced with a single integer $1$, and $a$ becomes $[1,1]$. At this point, it is Bob's turn, and the only move he has is to choose $l=1$ and $r=2$. Since $1-\\operatorname{min}(a_1,a_2)=0$, the array $a$ becomes $[0]$. The game now ends, and Alice wins because the last number is $0$.\n\nIn the second test case, Alice can win by choosing $l=1$ and $r=3$ in her first move. The array becomes $[0]$, and the game ends as a win for Alice immediately.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 在一个大小为 $n$、仅包含数字 `0` 和 `1` 的数组 $a$ 上玩游戏。Alice 先手，双方轮流行动。\n\n在一名玩家的回合中，他或她会选择两个整数 $l$ 和 $r$，满足 $1 \\leq l \\color{red}{ \\lt } r \\leq |a|$（其中 $|a|$ 表示 $a$ 当前的长度）。然后，子数组 $[a_l,a_{l+1},\\ldots,a_r]$ 会被替换为单个数字 $1-\\operatorname{min}(a_l,a_{l+1},\\ldots,a_r)$。也就是说，如果子数组中的所有数字都是 $1$，那么子数组 $[a_l,a_{l+1},\\ldots,a_r]$ 会被移除，并在其原来的位置插入数字 $0$；否则，子数组 $[a_l,a_{l+1},\\ldots,a_r]$ 会被移除，并在其原来的位置插入数字 $1$。\n\n当数组中恰好剩下一个数字时，游戏结束（此时轮到行动的玩家无法进行合法操作）。如果最终的数字是 $0$，则 Alice 获胜；否则 Bob 获胜。请判断在双方都采取最优策略的情况下，谁会赢得这场游戏。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 100$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个正整数 $n$（$3 \\le n \\le 100$），表示数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$0 \\le a_i \\le 1$）。\n\n## 输出格式\n\n对于每个测试用例，如果 Alice 获胜，输出 `Alice`；否则输出 `Bob`。输出中每个字符的大小写均可。例如，答案 `Alice`、`alice`、`ALICE`、`AliCe` 都会被视为相同。\n\n## 说明\n\n在第一个测试用例中，Alice 可以通过选择 $l=2$ 和 $r=3$ 获胜。由于 $1-\\operatorname{min}(a_2,a_3)=1$，子数组 $[1,0]$ 被替换为单个整数 $1$，$a$ 变为 $[1,1]$。此时轮到 Bob，他唯一可行的操作是选择 $l=1$ 和 $r=2$。由于 $1-\\operatorname{min}(a_1,a_2)=0$，数组 $a$ 变为 $[0]$。游戏至此结束，最后一个数字是 $0$，因此 Alice 获胜。\n\n在第二个测试用例中，Alice 可以在第一步中选择 $l=1$ 和 $r=3$ 获胜。数组变为 $[0]$，游戏立即结束，Alice 获胜。",
   "samples": [
     {
       "input": "7\n3\n1 1 0\n3\n1 1 1\n3\n0 1 0\n4\n0 0 0 0\n5\n1 0 1 0 1\n6\n0 1 0 1 0 1\n6\n0 1 0 1 0 0\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:53.440Z"
+  "fetchedAt": "2026-10-30T21:04:53.440Z",
+  "translatedAt": "2026-11-03T03:33:08.888+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

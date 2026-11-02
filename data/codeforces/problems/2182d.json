@@ -4,7 +4,7 @@
   "contestId": 2182,
   "index": "D",
   "title": "Christmas Tree Decoration",
-  "titleZh": null,
+  "titleZh": "圣诞树装饰",
   "url": "https://codeforces.com/contest/2182/problem/D",
   "difficulty": 1600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "A group of $n$ people decided to decorate the Christmas tree. They have $(n+1)$ boxes of decorations, numbered from $0$ to $n$. Initially, the $i$-th box contains $a_i$ decorations.\n\nWe say that a permutation $p$ of size $n$ (an array of size $n$ where each number from $1$ to $n$ appears exactly once) is **fair** if it is possible to hang all the decorations on the tree using the following process:\n\n- person $p_1$ takes a decoration either from box $0$ or from box $p_1$, and hangs it on the tree;\n- person $p_2$ takes a decoration either from box $0$ or from box $p_2$, and hangs it on the tree;\n- and so on;\n- after person $p_n$, person $p_1$ follows, and the process repeats until all the decoration are on the tree.\n\nDuring this process, there should never be a situation where person $i$ needs to hang a decoration, but both box $0$ and box $i$ are empty. If such a situation cannot be avoided, the permutation is not fair. However, if the people can choose from which box to take a decoration during each step in such a way that this situation does not arise, then the permutation is fair.\n\nYour task is to calculate the number of fair permutations. Since the answer may be large, output it modulo $998244353$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 5000$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 50$).\n\nThe second line contains $(n+1)$ integers $a_0, a_1, \\dots, a_n$ ($0 \\le a_i \\le 10^6$).\n\n## Output\n\nFor each test case, print a single integer — the number of fair permutations, taken modulo $998244353$.\n\n## Note\n\nIn the first example, the fair permutations are $[1, 2, 3]$ and $[1, 3, 2]$.\n\nLet's take a closer look at the Christmas tree decoration for permutation $[1, 3, 2]$:\n\n- the person $p_1=1$ hangs a decoration from the box $1$;\n- the person $p_2=3$ hangs a decoration from the box $0$;\n- the person $p_3=2$ hangs a decoration from the box $2$;\n- the person $p_1=1$ hangs a decoration from the box $1$.\n\nNote that if the person $p_1=1$ takes the decoration from the box $0$ during the first step, then the person $p_2=3$ won't be able to perform the next step (since both boxes $0$ and $3$ will be empty). However, since this situation can be avoided, the permutation is fair.",
-  "statementZhMd": null,
+  "statementZhMd": "$n$ 个人决定一起装饰圣诞树。他们有 $(n+1)$ 盒装饰品，编号从 $0$ 到 $n$。初始时，第 $i$ 个盒子里有 $a_i$ 个装饰品。\n\n我们称一个大小为 $n$ 的排列 $p$（一个大小为 $n$ 的数组，其中从 $1$ 到 $n$ 的每个数恰好出现一次）是**公平的**，如果可以通过以下过程将所有装饰品挂到树上：\n\n- 第 $p_1$ 个人从盒子 $0$ 或盒子 $p_1$ 中取一个装饰品，挂到树上；\n- 第 $p_2$ 个人从盒子 $0$ 或盒子 $p_2$ 中取一个装饰品，挂到树上；\n- 以此类推；\n- 第 $p_n$ 个人之后轮到第 $p_1$ 个人，过程如此循环，直到所有装饰品都挂到树上。\n\n在整个过程中，决不能出现第 $i$ 个人需要挂装饰品、但盒子 $0$ 和盒子 $i$ 都为空的情况。如果这种情况无法避免，则该排列不是公平的。反之，如果人们能够在每一步选择从哪个盒子取装饰品，使得这种情况不会发生，那么该排列就是公平的。\n\n你的任务是计算公平排列的数量。由于答案可能很大，请输出其对 $998244353$ 取模后的结果。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 5000$）— 表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 50$）。\n\n第二行包含 $(n+1)$ 个整数 $a_0, a_1, \\dots, a_n$（$0 \\le a_i \\le 10^6$）。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 — 公平排列的数量对 $998244353$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，公平排列为 $[1, 2, 3]$ 和 $[1, 3, 2]$。\n\n让我们仔细看看排列 $[1, 3, 2]$ 装饰圣诞树的过程：\n\n- 第 $p_1=1$ 个人从盒子 $1$ 中取装饰品挂上；\n- 第 $p_2=3$ 个人从盒子 $0$ 中取装饰品挂上；\n- 第 $p_3=2$ 个人从盒子 $2$ 中取装饰品挂上；\n- 第 $p_1=1$ 个人从盒子 $1$ 中取装饰品挂上。\n\n注意，如果第 $p_1=1$ 个人在第一步从盒子 $0$ 中取装饰品，那么第 $p_2=3$ 个人将无法进行下一步（因为盒子 $0$ 和盒子 $3$ 都会是空的）。然而，由于这种情况可以被避免，所以该排列是公平的。",
   "samples": [
     {
       "input": "4\n3\n1 2 1 0\n3\n1 0 2 0\n1\n2 5\n4\n6 1 4 2 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:31.215Z"
+  "fetchedAt": "2026-11-02T16:39:31.215Z",
+  "translatedAt": "2026-11-03T03:38:33.314+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

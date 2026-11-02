@@ -4,7 +4,7 @@
   "contestId": 2184,
   "index": "D",
   "title": "Unfair Game",
-  "titleZh": null,
+  "titleZh": "不公平的游戏",
   "url": "https://codeforces.com/contest/2184/problem/D",
   "difficulty": 1600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Bob is tired of losing to Alice and, to ensure he doesn't lose again, decided to choose a game in which he is guaranteed to win. Bob has thought of a number from $1$ to $n$, where it is known that $n = 2^d$ for some non-negative integer $d$. Initially, Alice **knows** whether the chosen number is even or not.\n\nIn one move, Alice can either halve the number or subtract $1$. Alice can only halve the number if the current number is even. Only Alice takes turns.\n\nAfter her move, Alice receives a response from Bob: either $-1$, which means the number has become $0$ and Alice has won, or a non-negative integer $x$. If we denote the current number as $a$, then for $x$ the following conditions hold simultaneously:\n\n1. $a$ is divisible by $2^x$.\n2. $a$ is not divisible by $2^{x+1}$.\n\nFor example, if $a=5$, then $x=0$, since $5$ is divisible by $2^0=1$ and not divisible by $2^1=2$, and if $a=12$, then $x=2$, since $12$ is divisible by $2^2=4$ and not divisible by $2^3=8$.\n\nIt can be shown that for any integer $a \\gt 0$, there exists a unique such $x$.\n\nBob is still afraid that Alice will win, so the game will have no more than $k$ moves. Additionally, Bob wants to maximize his chances of winning, so he wants to play as many games as possible. Given $n$ and $k$, calculate the number of initial numbers from $1$ to $n$ such that Alice, playing optimally, cannot win in no more than $k$ moves.\n\n## Input\n\nThe first line contains an integer $t$ $(1 \\le t \\le 10^4)$ — the number of test cases.\n\nThe only line of each test case contains $2$ integers $n$ and $k$ $(1 \\le n, k \\le 10^9)$ — the limit on the chosen number and the maximum number of Alice's moves, respectively. It is guaranteed that $n = 2^d$ for some non-negative integer $d$.\n\n## Output\n\nFor each test case, output the number of integers from $1$ to $n$ such that Alice, playing optimally, cannot win in at most $k$ moves.\n\n## Note\n\nIn the first sample, $a=2$, $a=3$, and $a=4$ are suitable because from $a=1$ one can reach $0$ in $1$ operation, while for the other values, it can be shown that at least $2$ operations are required.\n\nIn the second sample, $a=3$ and $a=4$ are suitable because for $a=2$, Alice can win in $2$ operations.\n\nIn the third, fourth, and fifth samples, there are no suitable $a$, because for $a=3$ and $a=4$, Alice can win in $3$ operations.",
-  "statementZhMd": null,
+  "statementZhMd": "Bob 受够了总是输给 Alice，为了确保自己不再输，他决定选择一个自己必定获胜的游戏。Bob 心中想好了一个 $1$ 到 $n$ 之间的数，其中已知 $n = 2^d$，$d$ 为某个非负整数。一开始，Alice **知道**所选的数是否为偶数。\n\n在一步操作中，Alice 可以将该数减半，或者将其减 $1$。只有当当前数为偶数时，Alice 才能将其减半。只有 Alice 进行操作。\n\n在每次操作之后，Alice 会收到 Bob 的回应：要么是 $-1$，表示该数已经变为 $0$，Alice 获胜；要么是一个非负整数 $x$。设当前数为 $a$，则 $x$ 同时满足以下条件：\n\n1. $a$ 能被 $2^x$ 整除。\n2. $a$ 不能被 $2^{x+1}$ 整除。\n\n例如，若 $a=5$，则 $x=0$，因为 $5$ 能被 $2^0=1$ 整除而不能被 $2^1=2$ 整除；若 $a=12$，则 $x=2$，因为 $12$ 能被 $2^2=4$ 整除而不能被 $2^3=8$ 整除。\n\n可以证明，对于任意整数 $a \\gt 0$，这样的 $x$ 存在且唯一。\n\nBob 仍然担心 Alice 会赢，因此游戏将进行不超过 $k$ 次操作。此外，Bob 想最大化自己获胜的机会，所以他想尽可能多地进行游戏。给定 $n$ 和 $k$，请计算 $1$ 到 $n$ 中有多少个初始数，使得 Alice 在最优策略下无法在不超过 $k$ 次操作内获胜。\n\n## 输入格式\n\n第一行包含一个整数 $t$ $(1 \\le t \\le 10^4)$ —— 表示测试用例的组数。\n\n每个测试用例仅包含一行，有 $2$ 个整数 $n$ 和 $k$ $(1 \\le n, k \\le 10^9)$ —— 分别表示所选数的上限和 Alice 操作次数的最大值。保证 $n = 2^d$，其中 $d$ 为某个非负整数。\n\n## 输出格式\n\n对于每个测试用例，输出 $1$ 到 $n$ 中使得 Alice 在最优策略下无法在至多 $k$ 次操作内获胜的整数的数量。\n\n## 说明\n\n在第一个样例中，$a=2$、$a=3$ 和 $a=4$ 符合条件，因为从 $a=1$ 出发可以在 $1$ 次操作内到达 $0$，而可以证明其他值都至少需要 $2$ 次操作。\n\n在第二个样例中，$a=3$ 和 $a=4$ 符合条件，因为对于 $a=2$，Alice 可以在 $2$ 次操作内获胜。\n\n在第三、第四和第五个样例中，不存在符合条件的 $a$，因为对于 $a=3$ 和 $a=4$，Alice 都可以在 $3$ 次操作内获胜。",
   "samples": [
     {
       "input": "7\n4 1\n4 2\n4 3\n4 4\n4 5\n16 5\n16 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:39:18.504Z"
+  "fetchedAt": "2026-11-02T16:39:18.504Z",
+  "translatedAt": "2026-11-03T03:31:12.482+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

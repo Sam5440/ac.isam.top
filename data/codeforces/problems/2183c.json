@@ -4,7 +4,7 @@
   "contestId": 2183,
   "index": "C",
   "title": "War Strategy",
-  "titleZh": null,
+  "titleZh": "战争策略",
   "url": "https://codeforces.com/contest/2183/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A war has broken out! You, as the country's top general, must strategize where to place your troops.\n\nThere are $n$ bases in a line, with the $k$-th of which being the home base for your army. Initially, there is only a single soldier at base $k$. Each day, the following happens in order:\n\n- You give out an order by choosing a base $i$ ($1 \\leq i \\leq n$), and **any** number of soldiers inside that base (which is allowed to be $0$ or all soldiers in that base currently). Then, tell all soldiers you ordered to either move to base $i-1$ or base $i+1$. All soldiers must move in the same direction, and no soldier is allowed to move to the left of base $1$ or to the right of base $n$.\n- Then, a new soldier moves onto base $k$. This soldier cannot be ordered by that day's commands.\n\nHowever, time is tight, and there are only $m$ days until the enemy attacks. A base is called *fortified* if at least one soldier resides in it. Your job is to find the maximum number of fortified bases (including the home base) you can have by the end of the $m$-th day.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $m$, $k$ ($1 \\leq k \\leq n \\leq 10^5$, $1 \\leq m \\leq 10^9$) — denoting the number of bases, the number of days you have to fortify your bases, and the index of the home base.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print the maximum number of bases you can fortify at the end of the $m$-th day.\n\n## Note\n\nIn the second test case, here is one way to fortify $3$ bases:\n\n- On the first day, order $0$ soldiers in base $3$ to move to base $2$. At the end of the day, a new soldier moves to base $2$ (there are now $2$ soldiers in base $2$ and $0$ soldiers on any other base).\n- On the second day, order $1$ soldier in base $2$ to move to base $1$. At the end of the day, a new soldier moves to base $2$. There are now $2$ soldiers in base $2$ and $1$ soldier on base $1$.\n- On the third day, order $2$ soldiers in base $2$ to move to base $3$. At the end of the day, a new soldier moves to base $2$. There are now $1$ soldier in base $1$ and $2$, and $2$ soldiers in base $3$.\n- There is now at least one soldier in each of bases $1$, $2$, $3$. Therefore, the answer is $3$.\n\nIn the third test case, here is one way you can achieve $3$ bases being fortified:\n\n- On the first day, order the existing soldier to move from base $2$ to base $3$. At the end of the day, a new soldier moves to base $2$.\n- On the second day, order the soldier in base $2$ to move to base $1$. At the end of the day, a new soldier moves to base $2$.\n- There is now a soldier at each of bases $1,2,3$. Therefore, the answer is $3$. It can be shown we cannot have more than $3$ fortified bases by the end of day $2$.\n\nBelow is a vivid explanation of the third test case.\n\n![image](https://espresso.codeforces.com/f0741da95a7d89fcb2247ee93848c6fbbb917105.png)",
-  "statementZhMd": null,
+  "statementZhMd": "战争爆发了！作为国家的最高将领，你必须规划部队的部署。\n\n有 $n$ 个基地排成一行，其中第 $k$ 个基地是你军队的大本营。初始时，基地 $k$ 上只有一名士兵。每天，以下事件按顺序发生：\n\n- 你下达一道命令：选择一个基地 $i$（$1 \\leq i \\leq n$）以及该基地内**任意**数量的士兵（可以是 $0$ 名，也可以是该基地当前的所有士兵）。然后，命令所有被选中的士兵移动到基地 $i-1$ 或基地 $i+1$。所有被命令的士兵必须朝同一方向移动，且不允许任何士兵移动到基地 $1$ 的左侧或基地 $n$ 的右侧。\n- 接着，一名新士兵进入基地 $k$。这名士兵不能被当天的命令指挥。\n\n然而，时间紧迫，距离敌军进攻只剩 $m$ 天。如果一个基地内至少驻扎着一名士兵，则称该基地是*设防的*。你的任务是求出在第 $m$ 天结束时，你最多能拥有多少个设防基地（包括大本营）。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含三个整数 $n$, $m$, $k$（$1 \\leq k \\leq n \\leq 10^5$，$1 \\leq m \\leq 10^9$）——分别表示基地的数量、你用来设防基地的天数，以及大本营的下标。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出在第 $m$ 天结束时你最多能设防的基地数量。\n\n## 说明\n\n在第二个测试用例中，以下是一种设防 $3$ 个基地的方法：\n\n- 第一天，命令基地 $3$ 中的 $0$ 名士兵移动到基地 $2$。当天结束时，一名新士兵进入基地 $2$（此时基地 $2$ 中有 $2$ 名士兵，其它基地上没有士兵）。\n- 第二天，命令基地 $2$ 中的 $1$ 名士兵移动到基地 $1$。当天结束时，一名新士兵进入基地 $2$。此时基地 $2$ 中有 $2$ 名士兵，基地 $1$ 上有 $1$ 名士兵。\n- 第三天，命令基地 $2$ 中的 $2$ 名士兵移动到基地 $3$。当天结束时，一名新士兵进入基地 $2$。此时基地 $1$ 和基地 $2$ 中各有 $1$ 名士兵，基地 $3$ 中有 $2$ 名士兵。\n- 此时基地 $1$、$2$、$3$ 中每个基地都至少有一名士兵。因此，答案为 $3$。\n\n在第三个测试用例中，以下是一种使 $3$ 个基地被设防的方法：\n\n- 第一天，命令已有的士兵从基地 $2$ 移动到基地 $3$。当天结束时，一名新士兵进入基地 $2$。\n- 第二天，命令基地 $2$ 中的士兵移动到基地 $1$。当天结束时，一名新士兵进入基地 $2$。\n- 此时基地 $1,2,3$ 上各有一名士兵。因此，答案为 $3$。可以证明，到第 $2$ 天结束时，设防基地的数量不可能超过 $3$ 个。\n\n下面是第三个测试用例的生动图解。\n\n![image](https://espresso.codeforces.com/f0741da95a7d89fcb2247ee93848c6fbbb917105.png)",
   "samples": [
     {
       "input": "7\n3 1 3\n3 3 2\n4 2 2\n3 2 1\n4 3 3\n7 7 4\n100000 1000000000 100000\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:04:53.441Z"
+  "fetchedAt": "2026-10-30T21:04:53.441Z",
+  "translatedAt": "2026-11-03T03:33:55.637+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
