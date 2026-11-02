@@ -4,7 +4,7 @@
   "contestId": 2123,
   "index": "G",
   "title": "Modular Sorting",
-  "titleZh": null,
+  "titleZh": "模意义下的排序",
   "url": "https://codeforces.com/contest/2123/problem/G",
   "difficulty": 2100,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an integer $m$ ($2\\leq m\\leq 5\\cdot 10^5$) and an array $a$ consisting of nonnegative integers smaller than $m$.\n\nAnswer queries of the following form:\n\n- $1$ $i$ $x$: assign $a_i := x$\n- $2$ $k$: in one operation, you may choose an element $a_i$ and assign $a_i := (a_i + k) \\pmod m$$^{\\text{∗}}$ — determine if there exists some sequence of (possibly zero) operations to make $a$ nondecreasing$^{\\text{†}}$.\n\nNote that instances of query $2$ are independent; that is, no actual operations are taking place. Instances of query $1$ are persistent.\n\n$^{\\text{∗}}$$a\\pmod m$ is defined as the unique integer $b$ such that $0\\leq b \\lt m$ and $a-b$ is an integer multiple of $m$.\n\n$^{\\text{†}}$An array $a$ of size $n$ is called nondecreasing if and only if $a_i\\leq a_{i+1}$ for all $1\\leq i \\lt n$.\n\n## Input\n\nThe first line contains an integer $t$ ($1\\leq t\\leq 10^4$)  — the number of test cases.\n\nThe first line of each test case contains three integers, $n$, $m$, and $q$ ($2\\leq n \\leq 10^5$, $2\\leq m\\leq 5\\cdot10^5$, $1\\leq q\\leq 10^5$) — the size of the array $a$, the integer $m$, and the number of queries.\n\nThe second line of each test case contains $n$ integers, $a_1,a_2,\\dots,a_n$ ($0\\leq a_i \\lt m$).\n\nThen follows $q$ lines. Each line is of one of the following forms:\n\n- $1$ $i$ $x$ ($1\\leq i\\leq n$, $0\\leq x \\lt m$)\n- $2$ $k$ ($1\\leq k \\lt m$)\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ over all test cases each do not exceed $10^5$.\n\n## Output\n\nFor each instance of query $2$, output on a single line \"`YES`\" if there exists some sequence of (possibly zero) operations to make $a$ nondecreasing, and \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first sample, the array is initially:\n\n| 4 | 5 | 2 | 2 | 4 | 1 | 0 |\n| --- | --- | --- | --- | --- | --- | --- |\n\nBy applying the operation twice on $a_1$, twice on $a_2$, once on $a_5$, twice on $a_6$, and once on $a_7$, the array becomes:\n\n| 0 | 1 | 2 | 2 | 2 | 3 | 4 |\n| --- | --- | --- | --- | --- | --- | --- |\n\nwhich is in nondecreasing order.\n\nAfter the second query, the array becomes:\n\n| 4 | 5 | 2 | 5 | 4 | 1 | 0 |\n| --- | --- | --- | --- | --- | --- | --- |\n\nand it can be shown that it is impossible to sort this with operations of the form $a_i := (a_i+4)\\pmod 6$, and it is also impossible to sort this with operations of the form $a_i := (a_i+3)\\pmod 6$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个整数 $m$（$2\\leq m\\leq 5\\cdot 10^5$）和一个由小于 $m$ 的非负整数组成的数组 $a$。\n\n你需要回答以下形式的询问：\n\n- $1$ $i$ $x$：令 $a_i := x$\n- $2$ $k$：在一次操作中，你可以选择一个元素 $a_i$ 并令 $a_i := (a_i + k) \\pmod m$$^{\\text{∗}}$ —— 判断是否存在某个（操作次数可以为零的）操作序列，使得 $a$ 变为非递减的$^{\\text{†}}$。\n\n注意，$2$ 型询问之间相互独立；也就是说，并不会真正执行任何操作。而 $1$ 型询问的修改是持久的。\n\n$^{\\text{∗}}$$a\\pmod m$ 定义为满足 $0\\leq b \\lt m$ 且 $a-b$ 是 $m$ 的整数倍的唯一整数 $b$。\n\n$^{\\text{†}}$称大小为 $n$ 的数组 $a$ 是非递减的，当且仅当对所有 $1\\leq i \\lt n$ 都有 $a_i\\leq a_{i+1}$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\leq t\\leq 10^4$）—— 测试用例的数量。\n\n每组测试用例的第一行包含三个整数 $n$、$m$、$q$（$2\\leq n \\leq 10^5$，$2\\leq m\\leq 5\\cdot10^5$，$1\\leq q\\leq 10^5$）—— 分别表示数组 $a$ 的大小、整数 $m$ 和询问的数量。\n\n每组测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\dots,a_n$（$0\\leq a_i \\lt m$）。\n\n接下来 $q$ 行，每行是以下两种形式之一：\n\n- $1$ $i$ $x$（$1\\leq i\\leq n$，$0\\leq x \\lt m$）\n- $2$ $k$（$1\\leq k \\lt m$）\n\n保证所有测试用例的 $n$ 之和与 $q$ 之和均不超过 $10^5$。\n\n## 输出格式\n\n对于每个 $2$ 型询问，如果存在某个（操作次数可以为零的）操作序列使得 $a$ 变为非递减的，则在单独的一行输出 \"`YES`\"，否则输出 \"`NO`\"。\n\n你可以以任意大小写输出答案。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被视为肯定的回答。\n\n## 说明\n\n在第一个样例中，数组初始为：\n\n| 4 | 5 | 2 | 2 | 4 | 1 | 0 |\n| --- | --- | --- | --- | --- | --- | --- |\n\n对 $a_1$ 应用两次操作、对 $a_2$ 应用两次、对 $a_5$ 应用一次、对 $a_6$ 应用两次、对 $a_7$ 应用一次后，数组变为：\n\n| 0 | 1 | 2 | 2 | 2 | 3 | 4 |\n| --- | --- | --- | --- | --- | --- | --- |\n\n此时数组是非递减的。\n\n在第二次询问之后，数组变为：\n\n| 4 | 5 | 2 | 5 | 4 | 1 | 0 |\n| --- | --- | --- | --- | --- | --- | --- |\n\n可以证明，无法通过形如 $a_i := (a_i+4)\\pmod 6$ 的操作将这个数组排成非递减的，也无法通过形如 $a_i := (a_i+3)\\pmod 6$ 的操作做到。",
   "samples": [
     {
       "input": "2\n7 6 6\n4 5 2 2 4 1 0\n2 4\n1 4 5\n2 4\n2 3\n1 7 2\n2 3\n8 8 3\n0 1 2 3 4 5 6 7\n2 4\n1 3 4\n2 4\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:47:33.119Z"
+  "fetchedAt": "2026-11-02T16:47:33.119Z",
+  "translatedAt": "2026-11-03T06:34:49.107+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

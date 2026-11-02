@@ -4,7 +4,7 @@
   "contestId": 2112,
   "index": "F",
   "title": "Variables and Operations",
-  "titleZh": null,
+  "titleZh": "变量与操作",
   "url": "https://codeforces.com/contest/2112/problem/F",
   "difficulty": 2800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "There are n variables; let's denote the value of the i-th variable as ai.\n\nThere are also m operations which will be applied to these variables; the i-th operation is described by three integers xi,yi,zi. When the i-th operation is applied, the variable xi gets assigned the following value: min(axi,ayi+zi).\n\nEvery operation will be applied **exactly once**, but their order is not fixed; they can be applied in any order.\n\nLet's call a sequence of initial variable values a1,a2,…,an **stable**, if no matter in which order we apply operations, the resulting values will be the same. If the resulting value of the i-th variable depends on the order of operations, then the sequence of initial variable values is called i-**unstable**.\n\nYou have to process q queries. In each query, you will be given initial values a1,a2,…,an and an integer k; before applying the operations, you can at most k times choose a variable and decrease it by 1. For every variable i, you have to independently determine if it is possible to transform the given values into an i-unstable sequence.\n\n## Input\n\nThe first line contains two integers n and m (2≤n≤500; 1≤m≤4⋅105) — the number of variables and operations, respectively.\n\nThen, m lines follow. The i-th of them contains three integers xi,yi,zi (1≤xi,yi≤n; xi≠yi; 0≤zi≤105) — the description of the i-th operation.\n\nThe next line contains one integer q (1≤q≤1000) — the number of queries.\n\nEach query consists of two lines:\n\n- the first line contains one integer k (0≤k≤109) — the maximum number of times you can choose a variable and decrease it by 1;\n- the second line contains n integers a1,a2,…,an (0≤ai≤109) — the initial values of the variables.\n\n## Output\n\nFor each query, print a string of n zeroes and/or ones. The i-th character should be `1` if it is possible to obtain an i-unstable sequence, or `0` otherwise.\n\n## Note\n\nConsider the first example. If the initial variable values are [20,0,15,5], the resulting values will be [6,0,5,5] with any order of operations. Decreasing the variables 10 times is not enough. However, if we can apply no more than 30 changes, we can decrease the 1-st variable by 2, and the 4-th variable by 25, we get initial values equal to [18,0,15,−20], and this sequence is 2-unstable and 3-unstable:\n\n- if you apply the operations in the order they are given, you will get [−12,0,5,−20];\n- however, if you apply the operations in order [3,2,4,1,5], you will get [−12,−2,5,−20];\n- and if you apply the operations in order [3,4,5,1,2], you will get [−12,−2,3,−20].",
-  "statementZhMd": null,
+  "statementZhMd": "有 n 个变量，我们将第 i 个变量的值记为 ai。\n\n还有 m 个操作将被应用在这些变量上；第 i 个操作由三个整数 xi,yi,zi 描述。当第 i 个操作被应用时，变量 xi 会被赋值为：min(axi,ayi+zi)。\n\n每个操作都会被应用**恰好一次**，但应用的顺序并不固定；它们可以按任意顺序应用。\n\n如果无论以何种顺序应用操作，最终得到的值都相同，我们就称初始变量值序列 a1,a2,…,an 是**稳定**的。如果第 i 个变量的最终值依赖于操作的顺序，那么这个初始变量值序列就被称为 i-**不稳定**的。\n\n你需要处理 q 次询问。每次询问会给出初始值 a1,a2,…,an 和一个整数 k；在应用操作之前，你最多可以进行 k 次操作，每次选择一个变量并将其减 1。对于每个变量 i，你需要独立地判断是否有可能将给定的值变成一个 i-不稳定序列。\n\n## 输入格式\n\n第一行包含两个整数 n 和 m (2≤n≤500; 1≤m≤4⋅105) —— 分别表示变量的数量和操作的数量。\n\n接下来 m 行，其中第 i 行包含三个整数 xi,yi,zi (1≤xi,yi≤n; xi≠yi; 0≤zi≤105) —— 表示第 i 个操作的描述。\n\n接下来一行包含一个整数 q (1≤q≤1000) —— 表示询问的数量。\n\n每次询问由两行组成：\n\n- 第一行包含一个整数 k (0≤k≤109) —— 表示你最多可以选择一个变量并将其减 1 的次数；\n- 第二行包含 n 个整数 a1,a2,…,an (0≤ai≤109) —— 表示变量的初始值。\n\n## 输出格式\n\n对于每次询问，输出一个由 n 个 0 和/或 1 组成的字符串。如果能够得到一个 i-不稳定序列，则第 i 个字符应为 `1`，否则为 `0`。\n\n## 说明\n\n考虑第一个样例。如果初始变量值为 [20,0,15,5]，那么无论以什么顺序应用操作，最终得到的值都是 [6,0,5,5]。将变量减少 10 次是不够的。然而，如果我们最多可以进行 30 次修改，就可以将第 1 个变量减少 2，将第 4 个变量减少 25，得到初始值 [18,0,15,−20]，这个序列是 2-不稳定且 3-不稳定的：\n\n- 如果按给定的顺序应用操作，你将得到 [−12,0,5,−20]；\n- 然而，如果按顺序 [3,2,4,1,5] 应用操作，你将得到 [−12,−2,5,−20]；\n- 而如果按顺序 [3,4,5,1,2] 应用操作，你将得到 [−12,−2,3,−20]。",
   "samples": [
     {
       "input": "4 5\n2 1 10\n3 2 5\n1 4 8\n1 2 6\n3 1 17\n3\n0\n20 0 15 5\n10\n20 0 15 5\n30\n20 0 15 5\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:48:07.729Z"
+  "fetchedAt": "2026-11-02T16:48:07.729Z",
+  "translatedAt": "2026-11-03T06:36:24.150+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }
