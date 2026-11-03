@@ -65,6 +65,8 @@ import {
 import { hasRuntime } from "@/lib/compiler/runtime-cache";
 import { CppClient } from "@/lib/compiler/cpp-client";
 import { PyClient, isCrossOriginIsolated } from "@/lib/compiler/py-client";
+import { loadAiSettings } from "@/lib/ai/ai-settings";
+import { getTokenStats, fmtTokens } from "@/lib/ai/tokenStats";
 import { useSettings } from "@/components/settings";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -121,6 +123,8 @@ export default function CompilerDock({ problems, day }) {
   const [available, setAvailable] = useState({ cpp: false, python: false });
   const [inputLine, setInputLine] = useState("");
   const [completionStatus, setCompletionStatus] = useState(null);
+  // AI 补全状态：'idle' | 'thinking' | {error} | null（未启用）
+  const [aiStatus, setAiStatus] = useState(null);
   const [panelW, setPanelW] = useState(null); // 面板宽度（px），null = CSS clamp 默认
   const [consoleH, setConsoleH] = useState(null); // 结果区高度（px），null = flex 默认比例
   const [dragging, setDragging] = useState(null); // 'w' | 'h' | 's' | null（手柄视觉态）
@@ -149,9 +153,38 @@ export default function CompilerDock({ problems, day }) {
   const [portalRoot, setPortalRoot] = useState(null); // layout 顶层的 #compiler-dock-root
 
   const problem = problems?.[probIdx] ?? null;
+
   // 编程键盘可见：移动端 + 设置开启 + 面板展开 + 未被临时收起（点编辑器恢复）。
   // 需在早退 return 之前算好：系统键盘开关联动 effect 的依赖要用它
   const kbVisible = isMobile && !!cp?.mobileKeyboard && open && !kbHidden;
+
+  // AI 补全状态 chip：未启用/补全中/出错/就绪（就绪时带方案名与累计 tokens，
+  // 状态变化时重读一次统计快照；渲染中读 localStorage 与源项目 StatusBar 同约定）
+  const aiChip = (() => {
+    let ai = null;
+    try {
+      ai = mounted ? loadAiSettings() : null;
+    } catch {
+      return null;
+    }
+    if (!ai?.enabled) return { cls: "text-muted-foreground", text: "AI 未启用" };
+    if (aiStatus === "thinking")
+      return { cls: "text-amber-500", text: `AI 补全中…${ai.name ? `（${ai.name}）` : ""}` };
+    if (aiStatus && typeof aiStatus === "object" && aiStatus.error) {
+      return { cls: "text-red-500", text: `AI 出错：${String(aiStatus.error).slice(0, 60)}`, title: String(aiStatus.error) };
+    }
+    const p = getTokenStats().profiles[ai.activeId || "default"];
+    const toks = p ? (p.prompt || 0) + (p.completion || 0) + (p.promptEst || 0) + (p.completionEst || 0) : 0;
+    return {
+      cls: "text-green-600",
+      text: `AI 就绪${ai.name ? ` · ${ai.name}` : ""}${toks ? ` ${fmtTokens(toks)} tok` : ""}`,
+      title: p
+        ? `${p.name || "当前方案"}（${p.model || "未配置模型"}）：请求 ${p.requests} 次 · 失败 ${p.errors} · 最近一次 ${p.lastLatencyMs || "?"}ms`
+        : ai.name
+          ? `当前方案：${ai.name}`
+          : undefined,
+    };
+  })();
 
   /* ---------- 初始化 ---------- */
   useEffect(() => {
@@ -1192,6 +1225,8 @@ export default function CompilerDock({ problems, day }) {
                 complete: ({ source, line, col }) =>
                   getCpp().complete({ source, line, col, std: cp.cppStd }),
               })}
+              getAi={() => loadAiSettings()}
+              onAiStatus={setAiStatus}
               onStatus={setCompletionStatus}
               onReady={(editor, monaco) => {
                 editorApiRef.current = { editor, monaco };
@@ -1275,7 +1310,15 @@ export default function CompilerDock({ problems, day }) {
                 键盘
               </button>
             )}
-            <span className="ml-auto truncate text-[11px] text-muted-foreground">
+            {aiChip && (
+              <span
+                className={`ml-auto truncate text-[11px] ${aiChip.cls}`}
+                title={aiChip.title}
+              >
+                {aiChip.text}
+              </span>
+            )}
+            <span className="truncate text-[11px] text-muted-foreground">
               {completionStatus ??
                 (dlInfo
                   ? fmtDl(dlInfo)

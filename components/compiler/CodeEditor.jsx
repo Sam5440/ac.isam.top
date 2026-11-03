@@ -165,6 +165,9 @@ function mergeClangItems(suggestions, items, kind, range) {
 }
 
 let providersRegistered = false;
+// AI 补全 provider 全局只注册一次（editor 实例可随面板开合重建，Monaco provider
+// 注册在 languages 上是全局的，重复注册会导致每次触发跑多份请求）
+let aiRegistered = false;
 // clang 补全竞态序号：慢请求返回时序号已变则丢弃（Monaco 不会替我们取消）
 let clangCompleteSeq = 0;
 // 最近一次 clang 成员补全缓存：key 是触发时的「光标前全文」。后台跑完后
@@ -514,6 +517,16 @@ function registerProviders(monaco, getCppContext) {
   }
 }
 
+/** AI FIM 内联补全（ghost text）：Tab 接受、Esc 关闭、Alt+\ 手动触发。
+    getAi 返回 lib/ai/ai-settings 的实时设置；onStatus 上报补全状态供面板展示。 */
+function registerAiProvider(monaco, getAi, onAiStatus) {
+  if (aiRegistered || !monaco) return;
+  aiRegistered = true;
+  import("../../lib/ai/inlineCompletion.js").then(({ registerAiInlineCompletions }) => {
+    registerAiInlineCompletions(monaco, () => getAi?.(), (s) => onAiStatus?.(s));
+  });
+}
+
 /**
  * @param {object} props
  * @param {string} props.language 'cpp' | 'python'
@@ -521,6 +534,8 @@ function registerProviders(monaco, getCppContext) {
  * @param {(v: string) => void} props.onChange
  * @param {Array<{line:number,col:number,endLine?:number,endCol?:number,severity:string,message:string}>} props.diagnostics
  * @param {() => object|null} props.getCppContext clang 补全上下文（可选）
+ * @param {() => object|null} props.getAi AI 补全设置（实时读取，lib/ai/ai-settings）
+ * @param {(state: 'idle'|'thinking'|{error:string}) => void} [props.onAiStatus] AI 补全状态上报
  * @param {string} [props.theme] 编辑器主题 id（lib/compiler/themes.js，默认 ys-dark）
  * @param {(editor: object, monaco: object) => void} [props.onReady] 编辑器就绪（CodeKeyboard 借它拿 trigger/executeEdits）
  * @param {() => void} [props.onFocused] 编辑器获得焦点（移动端键盘收起后由此重新展开）
@@ -534,6 +549,8 @@ export default function CodeEditor({
   onChange,
   diagnostics = [],
   getCppContext,
+  getAi,
+  onAiStatus,
   theme,
   onStatus,
   onReady,
@@ -552,6 +569,8 @@ export default function CodeEditor({
     language,
     onChange,
     getCppContext,
+    getAi,
+    onAiStatus,
     theme,
     onStatus,
     onReady,
@@ -562,6 +581,8 @@ export default function CodeEditor({
     language,
     onChange,
     getCppContext,
+    getAi,
+    onAiStatus,
     theme,
     onStatus,
     onReady,
@@ -616,6 +637,8 @@ export default function CodeEditor({
         // Monaco 0.57 默认 quickSuggestions=offWhenInlineCompletions（实测不弹），
         // 必须 显式开启字母自动补全
         quickSuggestions: { other: "on", comments: false, strings: false },
+        // AI ghost text（FIM 内联补全）：显式开启（Monaco standalone 默认 on，这里写明以免版本默认变动）
+        inlineSuggest: { enabled: true },
         renderLineHighlight: "line",
         scrollbar: { verticalScrollbarSize: 10, horizontalScrollbarSize: 10 },
         padding: { top: 10, bottom: 10 },
@@ -644,6 +667,37 @@ export default function CodeEditor({
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Space, () => {
         editor.trigger("keyboard", "editor.action.triggerSuggest", null);
       });
+      // Alt+\：AI 补全手动触发（手动模式下唯一的补全入口，自动模式下即时补一发）
+      editor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.Backslash, () => {
+        try {
+          editor.trigger("ai-manual", "editor.action.inlineSuggest.trigger", null);
+        } catch {}
+      });
+      // Tab：AI ghost 逐行接受（每按一次接受一行，剩余部分继续以 ghost 显示，
+      // 最后一行时整体接受）；suggest 弹层可见时保持「接受候选」；无 ghost 回退常规缩进
+      editor.addCommand(monaco.KeyCode.Tab, () => {
+        const suggestVisible = (() => {
+          try {
+            return !!editor._contextKeyService?.getContextKeyValue?.("suggestWidgetVisible");
+          } catch {}
+          return !!document.querySelector(".suggest-widget.visible"); // 兜底：DOM 状态
+        })();
+        if (suggestVisible) {
+          editor.trigger("tab", "acceptSelectedSuggestion", null);
+          return;
+        }
+        const model = editor.getModel();
+        const before = model.getValue();
+        editor.trigger("tab", "editor.action.inlineSuggest.acceptNextLine", null);
+        if (editor.getModel().getValue() === before) {
+          editor.trigger("tab", "tab", null); // 无 ghost → 常规 Tab 缩进
+        }
+      });
+      registerAiProvider(
+        monaco,
+        () => stateRef.current.getAi?.(),
+        (s) => stateRef.current.onAiStatus?.(s),
+      );
       stateRef.current.onReady?.(editor, monaco);
       // 移动端站内编程键盘收起后点击编辑器 → 重新展开键盘。抑制期间顺手
       // 调 virtualKeyboard.hide()（Chrome Android 支持），防个别浏览器在

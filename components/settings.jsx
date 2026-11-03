@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 import { AI_MODELS, aiTranslate } from '@/components/ai-translate';
 import CompilerSettingsSection from '@/components/compiler/CompilerSettingsSection';
+import AiCompletionSettingsSection from '@/components/compiler/AiCompletionSettingsSection';
 import GithubMark from '@/components/GithubMark';
 import { clearZhCache } from '@/lib/zh-store';
 import { CHANGELOG, APP_VERSION } from '@/lib/changelog';
@@ -669,6 +670,8 @@ function SettingsDialog({ onClose }) {
         </div>
 
         <CompilerSettingsSection />
+
+        <AiCompletionSettingsSection />
 
         <ChangelogSection />
 
