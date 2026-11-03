@@ -4,7 +4,7 @@
   "contestId": 2011,
   "index": "D",
   "title": "Among Wolves",
-  "titleZh": null,
+  "titleZh": "狼群之中",
   "url": "https://codeforces.com/contest/2011/problem/D",
   "difficulty": null,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "In a game you started playing recently, there is a field that can be represented as a rectangular grid. The field has $2$ rows and $n$ columns — $2n$ cells in total.\n\nSome cells are empty, but some are occupied by wolves. In the beginning of the game, you have one sheep in some cell, and you'd like to save it from wolves.\n\nWolves will attack you at night, so you still have some time for preparation. You have two ways to deal with wolves:\n\n1. You pay $h$ coins to hunters and choose a cell occupied by a wolf. Hunters will clear the cell, eradicating the wolf in it.\n2. You pay $b$ coins to builders and choose an empty cell. Builders will dig a trench in the chosen cell that wolves can't cross.\n\nYou can use both methods mentioned above any number of times and in any order.\n\nLet's say that a wolf can reach the sheep if there is a path that starts at the wolf's cell and finishes at the sheep's cell. This path shouldn't contain any cells with trenches, and each two consecutive cells in the path should be neighbors (share a side).\n\nWhat is the minimum total amount of money you should pay to ensure that none of the wolves can reach the sheep?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1200$) — the number of test cases. Next, $t$ independent cases follow.\n\nThe first line of each test case contains three integers $n$, $h$, and $b$ ($2 \\le n \\le 2 \\cdot 10^5$; $1 \\le h, b \\le 10^9$) — the size of the grid and corresponding costs.\n\nThe next two lines contain a description of the grid. The $j$-th character in the $i$-th line is either '`.`', '`S`' or '`W`':\n\n- '`.`' means that the cell is empty;\n- '`S`' means that the cell is occupied by the sheep; there is exactly one such cell on the grid;\n- '`W`' means that the cell is occupied by a wolf.\n\nAdditional constraints:\n\n- **there are no wolves in cells neighboring the sheep cell**;\n- the sum of $n$ over all test cases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the minimum total amount of money you should pay to save your sheep.\n\n## Note\n\nOne of the optimal strategies in the first test case of the second test can be shown like this:\n\n`W....W`$\\Rightarrow$`W.#..W``W.S..W``W#S#.W`\n\nAnalogically, one of the answers for the second case is the following:\n\n`W...WW`$\\Rightarrow$`W..#WW``..S..W``..S#.W`\n\nHere, '`#`' means a trench and '`W`' means an eradicated wolf.",
-  "statementZhMd": null,
+  "statementZhMd": "在一款你最近开始玩的游戏中，有一片可以表示为矩形网格的场地。场地有 $2$ 行和 $n$ 列——总共有 $2n$ 个单元格。\n\n一些单元格是空的，但另一些单元格中有狼。游戏开始时，一只羊位于某个单元格中，你希望将它从狼群中救出。\n\n狼会在夜晚袭击你，所以你还有一些准备时间。你有两种应对狼的方法：\n\n1. 你支付 $h$ 枚硬币给猎人，并选择一个有狼的单元格。猎人会清理该单元格，消灭其中的狼。\n2. 你支付 $b$ 枚硬币给建筑工人，并选择一个空的单元格。建筑工人会在所选单元格中挖一条狼无法通过的壕沟。\n\n你可以按照任意顺序、任意次数使用上述两种方法。\n\n如果存在一条从狼所在单元格出发、最终到达羊所在单元格的路径，我们就称这只狼可以到达羊。这条路径不能经过任何有壕沟的单元格，并且路径中每两个相邻单元格都必须是邻居（共享一条边）。\n\n为了确保没有狼可以到达羊，你最少需要支付多少钱？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1200$）——测试用例的数量。接下来是 $t$ 个相互独立的测试用例。\n\n每个测试用例的第一行包含三个整数 $n$、$h$ 和 $b$（$2 \\le n \\le 2 \\cdot 10^5$；$1 \\le h, b \\le 10^9$）——网格的大小以及相应的费用。\n\n接下来的两行描述网格。第 $i$ 行的第 $j$ 个字符为 '`.`'、'`S`' 或 '`W`'：\n\n- '`.`' 表示该单元格为空；\n- '`S`' 表示该单元格中有羊；网格中恰好有一个这样的单元格；\n- '`W`' 表示该单元格中有狼。\n\n附加约束：\n\n- **羊所在单元格的相邻单元格中没有狼**；\n- 所有测试用例中的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——为了救出羊而需要支付的最少总金额。\n\n## 说明\n\n第二个测试用例中的第一个样例，一种最优策略可以表示如下：\n\n`W....W`$\\Rightarrow$`W.#..W``W.S..W``W#S#.W`\n\n类似地，第二个测试用例的一种答案如下：\n\n`W...WW`$\\Rightarrow$`W..#WW``..S..W``..S#.W`\n\n其中，'`#`' 表示壕沟，'`W`' 表示被消灭的狼。",
   "samples": [
     {
       "input": "4\n2 3 7\nS.\n..\n2 3 7\nS.\n.W\n2 7 3\nS.\n.W\n4 999999999 1000000000\nW.S.\nW..W\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:01:51.902Z"
+  "fetchedAt": "2026-11-02T17:01:51.902Z",
+  "translatedAt": "2026-11-03T15:56:45.930+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

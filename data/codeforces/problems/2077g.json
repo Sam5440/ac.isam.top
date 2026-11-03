@@ -4,7 +4,7 @@
   "contestId": 2077,
   "index": "G",
   "title": "RGB Walking",
-  "titleZh": null,
+  "titleZh": "RGB 游走",
   "url": "https://codeforces.com/contest/2077/problem/G",
   "difficulty": 3500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "*[Red and Blue and Green - fn and Silentroom](https://www.youtube.com/watch?v=UeN7U474cxE)*⠀\n\nYou are given a connected graph with $n$ vertices and $m$ bidirectional edges with weight not exceeding $x$. The $i$-th edge connects vertices $u_i$ and $v_i$, has weight $w_i$, and is assigned a color $c_i$ ($1 \\leq i \\leq m$, $1 \\leq u_i, v_i \\leq n$). The color $c_i$ is either red, green, or blue. It is guaranteed that there is **at least** one edge of each color.\n\nFor a walk where vertices and edges may be repeated, let $s_r, s_g, s_b$ denote the sum of the weights of the red, green, and blue edges that the walk passes through, respectively. If an edge is traversed multiple times, each traversal is counted separately.\n\nFind the minimum value of $\\max(s_r, s_g, s_b) - \\min(s_r, s_g, s_b)$ over all possible walks from vertex $1$ to vertex $n$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $m$, and $x$ ($4 \\leq n \\leq 2 \\cdot 10^5$, $n-1 \\leq m \\leq 2 \\cdot 10^5$, $1 \\leq x \\leq 2 \\cdot 10^5$) — the number of vertices, the number of edges in the graph, and the upper bound on the weight of the edges, respectively.\n\nThe next $m$ lines each contain three integers $u_i, v_i, w_i$ and a letter $c_i$ ($1 \\leq u_i, v_i \\leq n$, $1 \\leq w_i \\leq x$), representing a bidirectional edge between vertices $u_i$ and $v_i$ with weight $w_i$ and color $c_i$. The color $c_i$ is either 'r', 'g', or 'b', denoting red, green, and blue, respectively.\n\nIt is guaranteed that the graph is connected and contains at least one edge of each color. The graph may also contain **multiple** edges and **self-loops**.\n\nAdditionally, it is guaranteed that the total sum of all values of $n$, the total sum of all values of $m$, and the total sum of all values of $x$ across all test cases do not exceed $2 \\cdot 10^5$ individually.\n\n## Output\n\nFor each test case, output a single integer — the minimum value of $\\max(s_r, s_g, s_b) - \\min(s_r, s_g, s_b)$ over all walks from vertex $1$ to vertex $n$.\n\n## Note\n\nIn the first test case, the optimal path is $1 \\to 2 \\to 3 \\to 4$. The edges used are:\n\n- $1 \\to 2$ (red, weight $2$)\n- $2 \\to 3$ (green, weight $3$)\n- $3 \\to 4$ (blue, weight $2$)\n\nWe have $s_r = 2$, $s_g = 3$, and $s_b = 2$. Thus, the answer is $1$.\n\nIn the second test case, one of the optimal paths is $1 \\to 1 \\to 2 \\to 1 \\to 2 \\to 3 \\to 4$. The edges used are:\n\n- $1 \\to 1$ (red, weight $1$)\n- $1 \\to 2$ (red, weight $1$)\n- $2 \\to 1$ (red, weight $1$)\n- $1 \\to 2$ (red, weight $1$)\n- $2 \\to 3$ (green, weight $4$)\n- $3 \\to 4$ (blue, weight $4$)\n\nWe have $s_r = s_g = s_b = 4$. Thus, the answer is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "*[Red and Blue and Green - fn and Silentroom](https://www.youtube.com/watch?v=UeN7U474cxE)*⠀\n\n给你一个由 $n$ 个顶点、$m$ 条边权不超过 $x$ 的双向边构成的连通图。第 $i$ 条边连接顶点 $u_i$ 和 $v_i$，权值为 $w_i$，并被赋予一种颜色 $c_i$（$1 \\leq i \\leq m$，$1 \\leq u_i, v_i \\leq n$）。颜色 $c_i$ 是红色、绿色或蓝色之一。保证每种颜色**至少**有一条边。\n\n对于一条顶点和边均可重复经过的游走路径，令 $s_r, s_g, s_b$ 分别表示该路径经过的红色、绿色、蓝色边的权值之和。如果一条边被经过多次，则每次经过都单独计数。\n\n求从顶点 $1$ 到顶点 $n$ 的所有可能游走路径中，$\\max(s_r, s_g, s_b) - \\min(s_r, s_g, s_b)$ 的最小值。\n\n## 输入格式\n\n每个测试点包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含三个整数 $n$、$m$ 和 $x$（$4 \\leq n \\leq 2 \\cdot 10^5$，$n-1 \\leq m \\leq 2 \\cdot 10^5$，$1 \\leq x \\leq 2 \\cdot 10^5$）——分别表示图中顶点数、边数以及边权的上界。\n\n接下来 $m$ 行，每行包含三个整数 $u_i, v_i, w_i$ 和一个字母 $c_i$（$1 \\leq u_i, v_i \\leq n$，$1 \\leq w_i \\leq x$），表示一条连接顶点 $u_i$ 和 $v_i$、权值为 $w_i$、颜色为 $c_i$ 的双向边。颜色 $c_i$ 为 'r'、'g' 或 'b' 之一，分别表示红色、绿色和蓝色。\n\n保证图是连通的，且每种颜色至少有一条边。图中还可能包含**重边**和**自环**。\n\n此外，保证所有测试数据的 $n$ 之和、$m$ 之和与 $x$ 之和均各自不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数——从顶点 $1$ 到顶点 $n$ 的所有游走路径中，$\\max(s_r, s_g, s_b) - \\min(s_r, s_g, s_b)$ 的最小值。\n\n## 说明\n\n在第一组测试数据中，最优路径为 $1 \\to 2 \\to 3 \\to 4$。用到的边为：\n\n- $1 \\to 2$（红色，权值 $2$）\n- $2 \\to 3$（绿色，权值 $3$）\n- $3 \\to 4$（蓝色，权值 $2$）\n\n于是 $s_r = 2$，$s_g = 3$，$s_b = 2$。因此答案为 $1$。\n\n在第二组测试数据中，最优路径之一为 $1 \\to 1 \\to 2 \\to 1 \\to 2 \\to 3 \\to 4$。用到的边为：\n\n- $1 \\to 1$（红色，权值 $1$）\n- $1 \\to 2$（红色，权值 $1$）\n- $2 \\to 1$（红色，权值 $1$）\n- $1 \\to 2$（红色，权值 $1$）\n- $2 \\to 3$（绿色，权值 $4$）\n- $3 \\to 4$（蓝色，权值 $4$）\n\n于是 $s_r = s_g = s_b = 4$。因此答案为 $0$。",
   "samples": [
     {
       "input": "3\n4 3 3\n1 2 2 r\n2 3 3 g\n3 4 2 b\n4 5 4\n1 2 1 r\n1 1 1 r\n2 1 1 r\n2 3 4 g\n3 4 4 b\n4 6 4\n1 2 2 r\n1 2 2 r\n2 3 3 b\n1 3 4 r\n1 4 1 g\n3 4 4 g\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:31:28.968Z"
+  "fetchedAt": "2026-10-30T21:31:28.968Z",
+  "translatedAt": "2026-11-03T13:17:27.056+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

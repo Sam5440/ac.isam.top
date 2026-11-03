@@ -4,7 +4,7 @@
   "contestId": 2035,
   "index": "H",
   "title": "Peak Productivity Forces",
-  "titleZh": null,
+  "titleZh": "巅峰生产力强制",
   "url": "https://codeforces.com/contest/2035/problem/H",
   "difficulty": 3500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "*I'm peakly productive and this is deep.*\n\nYou are given two permutations$^{\\text{∗}}$ $a$ and $b$, both of length $n$.\n\nYou can perform the following three-step operation on permutation $a$:\n\n1. Choose an index $i$ ($1 \\le i \\le n$).\n2. Cyclic shift $a_1, a_2, \\ldots, a_{i-1}$ by $1$ to the right. If you had chosen $i = 1$, then this range doesn't exist, and you cyclic shift nothing.\n3. Cyclic shift $a_{i + 1}, a_{i + 2}, \\ldots, a_n$ by $1$ to the right. If you had chosen $i = n$, then this range doesn't exist, and you cyclic shift nothing.\n\nAfter the operation, $a_1,a_2,\\ldots, a_{i-2},a_{i-1},a_i,a_{i + 1}, a_{i + 2},\\ldots,a_{n-1}, a_n$ is transformed into $a_{i-1},a_1,\\ldots,a_{i-3},a_{i-2},a_i,a_n, a_{i + 1},\\ldots,a_{n-2}, a_{n-1}$.\n\nHere are some examples of operations done on the identity permutation $[1,2,3,4,5,6,7]$ of length $7$:\n\n- If we choose $i = 3$, it will become $[2, 1, 3, 7, 4, 5, 6]$.\n- If we choose $i = 1$, it will become $[1, 7, 2, 3, 4, 5, 6]$.\n- If we choose $i = 7$, it will become $[6, 1, 2, 3, 4, 5, 7]$.\n\nNotably, position $i$ is\n\nnot\n\nshifted.\n\nFind a construction using at most $2n$ operations to make $a$ equal to $b$ or print $-1$ if it is impossible. The number of operations does not need to be minimized. It can be shown that if it is possible to make $a$ equal to $b$, it is possible to do this within $2n$ operations.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 5 \\cdot 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 5 \\cdot 10^5$) — the lengths of permutations $a$ and $b$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le n$) — the values of permutation $a$.\n\nThe third line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\le b_i \\le n$) — the values of permutation $b$.\n\nIt is guaranteed that the sum of $n$ over all test cases will not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case:\n\nIf there is a sequence of operations to transform $a$ into $b$, output a single integer $q$ ($0\\le q\\le 2n$) — the number of operations in the first line and $q$ integers with the $i$-th number representing the index of the $i$-th operation in the second line.\n\nIf there is no sequence of operations, output $-1$ in the only line.\n\n## Note\n\nIn the first case, you can do no operation since $a=b$.\n\nIn the second case, it can be proved $a$ can not be transformed into $b$.\n\nIn the third case, $a$ is transformed into $[2,3,1]$ after the first operation and into $b$ after the second operation.",
-  "statementZhMd": null,
+  "statementZhMd": "<题目描述>\n*我正处于巅峰生产力，而这很深奥。*\n\n给定两个长度均为 $n$ 的排列$^{\\text{∗}}$ $a$ 和 $b$。\n\n你可以对排列 $a$ 执行以下三步操作：\n\n1. 选择一个下标 $i$（$1 \\le i \\le n$）。\n2. 将 $a_1, a_2, \\ldots, a_{i-1}$ 循环向右移动 $1$ 位。如果选择了 $i = 1$，则该区间不存在，不进行任何循环移动。\n3. 将 $a_{i + 1}, a_{i + 2}, \\ldots, a_n$ 循环向右移动 $1$ 位。如果选择了 $i = n$，则该区间不存在，不进行任何循环移动。\n\n操作后，$a_1,a_2,\\ldots, a_{i-2},a_{i-1},a_i,a_{i + 1}, a_{i + 2},\\ldots,a_{n-1}, a_n$ 会变为 $a_{i-1},a_1,\\ldots,a_{i-3},a_{i-2},a_i,a_n, a_{i + 1},\\ldots,a_{n-2}, a_{n-1}$。\n\n下面是对长度为 $7$ 的单位排列 $[1,2,3,4,5,6,7]$ 执行操作的一些示例：\n\n- 如果选择 $i = 3$，排列将变为 $[2, 1, 3, 7, 4, 5, 6]$。\n- 如果选择 $i = 1$，排列将变为 $[1, 7, 2, 3, 4, 5, 6]$。\n- 如果选择 $i = 7$，排列将变为 $[6, 1, 2, 3, 4, 5, 7]$。\n\n需要特别注意的是，下标为 $i$ 的位置**不会**被移动。\n\n请构造一个至多执行 $2n$ 次操作的方案，使得 $a$ 变为 $b$；如果无法做到，则输出 $-1$。不需要最小化操作次数。可以证明，如果能够使 $a$ 变为 $b$，那么一定可以在 $2n$ 次操作内完成。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 5 \\cdot 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 5 \\cdot 10^5$）——排列 $a$ 和 $b$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le n$）——排列 $a$ 的元素。\n\n每个测试用例的第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$1 \\le b_i \\le n$）——排列 $b$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例：\n\n如果存在将 $a$ 变为 $b$ 的操作序列，则在第一行输出一个整数 $q$（$0\\le q\\le 2n$）——操作次数；在第二行输出 $q$ 个整数，其中第 $i$ 个数表示第 $i$ 次操作所选择的下标。\n\n如果不存在这样的操作序列，则在唯一一行输出 $-1$。\n\n## 说明\n\n在第一个样例中，由于 $a=b$，因此无需执行任何操作。\n\n在第二个样例中，可以证明无法将 $a$ 变为 $b$。\n\n在第三个样例中，第一次操作后，$a$ 变为 $[2,3,1]$；第二次操作后，$a$ 变为 $b$。",
   "samples": [
     {
       "input": "4\n1\n1\n1\n2\n1 2\n2 1\n3\n2 1 3\n3 2 1\n8\n7 8 3 5 4 6 1 2\n2 1 6 4 5 3 8 7\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:02.545Z"
+  "fetchedAt": "2026-10-30T21:40:02.545Z",
+  "translatedAt": "2026-11-03T15:53:10.991+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

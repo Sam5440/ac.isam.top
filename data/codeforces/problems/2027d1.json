@@ -4,7 +4,7 @@
   "contestId": 2027,
   "index": "D1",
   "title": "The Endspeaker (Easy Version)",
-  "titleZh": null,
+  "titleZh": "终焉演说者（简单版）",
   "url": "https://codeforces.com/contest/2027/problem/D1",
   "difficulty": 1700,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of this problem. The only difference is that you only need to output the minimum total cost of operations in this version. You must solve both versions to be able to hack.**\n\nYou're given an array $a$ of length $n$, and an array $b$ of length $m$ ($b_i \\gt b_{i+1}$ for all $1 \\le i \\lt m$). Initially, the value of $k$ is $1$. Your aim is to make the array $a$ empty by performing one of these two operations repeatedly:\n\n- Type $1$ — If the value of $k$ is less than $m$ and the array $a$ is **not empty**, you can increase the value of $k$ by $1$. This does not incur any cost.\n- Type $2$ — You remove a non-empty prefix of array $a$, such that its sum does not exceed $b_k$. This incurs a cost of $m - k$.\n\nYou need to minimize the total cost of the operations to make array $a$ empty. If it's impossible to do this through any sequence of operations, output $-1$. Otherwise, output the minimum total cost of the operations.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n, m \\le 3 \\cdot 10^5$, $\\boldsymbol{1 \\le n \\cdot m \\le 3 \\cdot 10^5}$).\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$).\n\nThe third line of each test case contains $m$ integers $b_1, b_2, \\ldots, b_m$ ($1 \\le b_i \\le 10^9$).\n\nIt is also guaranteed that $b_i \\gt b_{i+1}$ for all $1 \\le i \\lt m$.\n\nIt is guaranteed that the sum of $\\boldsymbol{n \\cdot m}$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if it's possible to make $a$ empty, then output the minimum total cost of the operations.\n\nIf there is no possible sequence of operations which makes $a$ empty, then output a single integer $-1$.\n\n## Note\n\nIn the first test case, one optimal sequence of operations which yields a total cost of $1$ is as follows:\n\n- Perform an operation of type $2$. Choose the prefix to be $[9]$. This incurs a cost of $1$.\n- Perform an operation of type $1$. The value of $k$ is now $2$. This incurs no cost.\n- Perform an operation of type $2$. Choose the prefix to be $[3, 4]$. This incurs a cost of $0$.\n- Perform an operation of type $2$. Choose the prefix to be $[3]$. This incurs a cost of $0$.\n- The array $a$ is now empty, and the total cost of all operations is $1$.\n\nIn the second test case, it's impossible to remove any prefix of the array since $a_1 \\gt b_1$, so array $a$ cannot be made empty by any sequence of operations.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。唯一的区别是，在本版本中你只需要输出操作的最小总费用。只有同时解决两个版本后，你才能进行 hack。**\n\n给定一个长度为 $n$ 的数组 $a$，以及一个长度为 $m$ 的数组 $b$（对于所有 $1 \\le i \\lt m$，均有 $b_i \\gt b_{i+1}$）。初始时，$k$ 的值为 $1$。你的目标是通过反复执行以下两种操作之一，使数组 $a$ 变为空：\n\n- 类型 $1$ — 如果 $k$ 的值小于 $m$ 且数组 $a$ **不为空**，你可以将 $k$ 的值增加 $1$。此操作不产生任何费用。\n- 类型 $2$ — 删除数组 $a$ 的一个非空前缀，要求该前缀的元素之和不超过 $b_k$。此操作的费用为 $m - k$。\n\n你需要最小化将数组 $a$ 变为空所需操作的总费用。如果无法通过任何操作序列做到这一点，则输出 $-1$。否则，输出操作的最小总费用。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 3 \\cdot 10^5$，$\\boldsymbol{1 \\le n \\cdot m \\le 3 \\cdot 10^5}$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n每个测试用例的第三行包含 $m$ 个整数 $b_1, b_2, \\ldots, b_m$（$1 \\le b_i \\le 10^9$）。\n\n保证对于所有 $1 \\le i \\lt m$，均有 $b_i \\gt b_{i+1}$。\n\n保证所有测试用例的 $\\boldsymbol{n \\cdot m}$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果可以将 $a$ 变为空，则输出操作的最小总费用。\n\n如果不存在能将 $a$ 变为空的操作序列，则输出一个整数 $-1$。\n\n## 说明\n\n在第一个测试用例中，一种能够得到总费用 $1$ 的最优操作序列如下：\n\n- 执行一次类型 $2$ 操作。选择前缀 $[9]$。此操作的费用为 $1$。\n- 执行一次类型 $1$ 操作。此时 $k$ 的值变为 $2$。此操作不产生费用。\n- 执行一次类型 $2$ 操作。选择前缀 $[3, 4]$。此操作的费用为 $0$。\n- 执行一次类型 $2$ 操作。选择前缀 $[3]$。此操作的费用为 $0$。\n- 此时数组 $a$ 变为空，所有操作的总费用为 $1$。\n\n在第二个测试用例中，由于 $a_1 \\gt b_1$，无法删除数组的任何前缀，因此无法通过任何操作序列将数组 $a$ 变为空。",
   "samples": [
     {
       "input": "5\n4 2\n9 3 4 3\n11 7\n1 2\n20\n19 18\n10 2\n2 5 2 1 10 3 2 9 9 6\n17 9\n10 11\n2 2 2 2 2 2 2 2 2 2\n20 18 16 14 12 10 8 6 4 2 1\n1 6\n10\n32 16 8 4 2 1\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:02.240Z"
+  "fetchedAt": "2026-10-30T21:41:02.240Z",
+  "translatedAt": "2026-11-03T15:45:49.128+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

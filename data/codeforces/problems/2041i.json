@@ -4,7 +4,7 @@
   "contestId": 2041,
   "index": "I",
   "title": "Auto Complete",
-  "titleZh": null,
+  "titleZh": "自动补全",
   "url": "https://codeforces.com/contest/2041/problem/I",
   "difficulty": 2300,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 1024,
   "statementMd": "![image](https://espresso.codeforces.com/b751a65cb8c1d8b8978cf9143b873542589864d8.png)\n\nYou are designing a snazzy new text editor, and you want to add a nifty auto-complete feature to help users save time. Here is how it will work: if a user types \"`App`\", your editor will magically suggest the word \"`Application`\"! Even better, users can personalize the words that auto-complete in your editor.\n\nYour editor will support 4 kinds of operations (Let's say the current text in your editor is $t$):\n\n1. Add an auto complete pattern $p_i$.\n2. Delete an auto complete pattern $p_i$.\n3. Append a string $s$ to the end of $t$.\n4. Delete $c$ characters from the end of $t$. Note that if $c$ is larger then the length of $t$, delete all the characters from $t$.\n\nAfter each action, your editor should suggest an auto-complete candidate $i$ that matches the following criteria:\n\n1. The string $p_i$ has a prefix equal to $t$.\n2. If there are multiple $p_i$, pick the longest one.\n3. If there are still multiple $p_i$, pick the one with the smallest lexicographic order.\n4. If there are still multiple $p_i$, pick the one with the smallest ID.\n\nTo simplify the question, for each action, print the suggested auto complete pattern ID. If there's no match, print `-1`.\n\nFor example, let us say we have three candidates: \"`alice`\", \"`bob`\", and \"`charlie`\", with ID 1, 2, and 3. At first, there is nothing on the screen, so \"`charlie`\" (3) should be suggested because it is the longest. Then, let us say the user types \"`b`\". You should suggest \"`bob`\" (2) because it is the only one that starts with \"`b`\". Finally, let us say the user type \"`body`\". You should print `-1` because there is no matched pattern.\n\n## Input\n\nThe first line contains an integer $n$, followed by $n$ lines, with each line containing an action.\n\nThere are four types of actions:\n\n1. $i$ $p_i$\n2. $i$\n3. $s$\n4. $c$\n\nThe `add` actions are followed by an integer $i$ and a pattern $p_i$, which means the user wants to add a pattern with ID $i$. The `delete` actions are followed by an integer $i$, which means the user wants to delete $p_i$ from the pattern set. The `append` actions are followed by a string $s$, which means the user appends $s$ to the end of $t$. The `backspace` actions are followed by an integer $c$, which means the user deletes $c$ characters from the end of $t$. All the parameters are splitted by a single space character.\n\n- $1 \\leq n \\leq 10^6$\n- The total number of characters in all $p_i$ and $s$ does not exceed $2\\times 10^6$.\n- $1 \\leq c \\leq 2\\times 10^6$\n- The strings $p_i$ and $s$ may contain any printable characters, excluding all space characters (ASCII number in the range from $33$ to $126$).\n- The ID $i$ for each `add` operation is unique.\n- The ID $i$ for each `delete` is guaranteed to be valid.\n- Each ID $i$ satisfies $0\\le i \\le n$.\n\n## Output\n\nThe program should output $n$ lines. For each action, output an integer $i$, which means that after the action, $p_i$ is the suggested auto complete candidate. If there is no $p_i$ that matches the requirement, output `-1`.",
-  "statementZhMd": null,
+  "statementZhMd": "![image](https://espresso.codeforces.com/b751a65cb8c1d8b8978cf9143b873542589864d8.png)\n\n你正在设计一款时髦的新文本编辑器，并希望添加一个实用的自动补全功能来帮助用户节省时间。其工作方式如下：如果用户输入“`App`”，你的编辑器将自动建议单词“`Application`”！更棒的是，用户还可以自定义编辑器中的自动补全词条。\n\n你的编辑器支持 4 种操作（设当前编辑器中的文本为 $t$）：\n\n1. 添加一个自动补全模式串 $p_i$。\n2. 删除一个自动补全模式串 $p_i$。\n3. 将字符串 $s$ 追加到 $t$ 的末尾。\n4. 删除 $t$ 末尾的 $c$ 个字符。注意，如果 $c$ 大于 $t$ 的长度，则删除 $t$ 中的所有字符。\n\n每次操作后，编辑器都应按照以下规则推荐一个符合条件的自动补全候选项 $i$：\n\n1. 字符串 $p_i$ 以 $t$ 为前缀。\n2. 如果有多个 $p_i$，选择长度最长的一个。\n3. 如果仍有多个 $p_i$，选择字典序最小的一个。\n4. 如果仍有多个 $p_i$，选择 ID 最小的一个。\n\n为简化问题，对于每次操作，输出推荐的自动补全模式串 ID。如果不存在匹配项，输出 `-1`。\n\n例如，假设有三个候选项：“`alice`”、“`bob`”和“`charlie`”，它们的 ID 分别为 1、2 和 3。开始时屏幕上没有任何内容，因此应推荐“`charlie`”（3），因为它的长度最长。接着，假设用户输入了“`b`”，此时应推荐“`bob`”（2），因为只有它以“`b`”开头。最后，假设用户输入了“`body`”，则应输出 `-1`，因为没有匹配的模式串。\n\n## 输入格式\n\n第一行包含一个整数 $n$，接下来 $n$ 行每行包含一个操作。\n\n操作共有以下四种类型：\n\n1. $i$ $p_i$\n2. $i$\n3. $s$\n4. $c$\n\n`add` 操作后跟一个整数 $i$ 和一个模式串 $p_i$，表示用户希望添加 ID 为 $i$ 的模式串。`delete` 操作后跟一个整数 $i$，表示用户希望从模式串集合中删除 $p_i$。`append` 操作后跟一个字符串 $s$，表示用户将 $s$ 追加到 $t$ 的末尾。`backspace` 操作后跟一个整数 $c$，表示用户从 $t$ 的末尾删除 $c$ 个字符。所有参数之间均由一个空格字符分隔。\n\n- $1 \\leq n \\leq 10^6$\n- 所有 $p_i$ 和 $s$ 中的字符总数不超过 $2\\times 10^6$。\n- $1 \\leq c \\leq 2\\times 10^6$\n- 字符串 $p_i$ 和 $s$ 可以包含除空格字符以外的任意可打印字符（ASCII 编号范围为 33 至 126）。\n- 每个 `add` 操作中的 ID $i$ 均不相同。\n- 每个 `delete` 操作中的 ID $i$ 均保证有效。\n- 每个 ID $i$ 满足 $0\\le i \\le n$。\n\n## 输出格式\n\n程序应输出 $n$ 行。对于每次操作，输出一个整数 $i$，表示操作后推荐的自动补全候选项为 $p_i$。如果不存在满足要求的 $p_i$，则输出 `-1`。",
   "samples": [
     {
       "input": "6\nadd 1 pattern1_alice\nadd 2 pattern2_bob\nadd 3 pattern3_charlie\nappend pattern\nappend 2_bobabc\nbackspace 3\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:00:36.734Z"
+  "fetchedAt": "2026-11-02T17:00:36.734Z",
+  "translatedAt": "2026-11-03T15:04:57.563+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

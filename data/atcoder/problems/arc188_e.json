@@ -4,7 +4,7 @@
   "contestId": "arc188",
   "index": "E",
   "title": "Gravity Sort",
-  "titleZh": null,
+  "titleZh": "重力排序",
   "url": "https://atcoder.jp/contests/arc188/tasks/arc188_e",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere are $2N$ cells numbered from $1$ to $2N$ arranged vertically in a column with cell $1$ at the top. Each cell contains one ball. The weight of the ball in cell $i$ at time $t=0$ is $m_i$ for $i=1,2,\\ldots,N$, and $0$ for $i=N+1,N+2,\\ldots,2N$. Here, $(m_1, m_2, \\ldots, m_N)$ is a permutation of the integers from $1$ to $N$.\n\nIn the following, we will refer to the ball of weight $i$ as ball $i$, and the cell number where each ball is located as the position of the ball.\n\nFrom time $t=0$ onwards, every time the time advances by $1$, the heavier balls sink downward, and the lighter balls rise upward.\n\nFormally, the positions of each ball at time $t=t_0+1$ are determined from their positions at time $t=t_0$ by the following procedure.\n\n> - First, for $i=N,N-1,\\ldots,2,1$ in this order, perform the following operation.\n> - If the position of ball $i$ at $t=t_0+1$ has already been determined:\n>   - **Do nothing.**\n>   - If the position of ball $i$ at $t=t_0+1$ has not been determined:\n>   - If there exists a cell immediately below ball $i$ at $t=t_0$, and the ball in that cell (call it ball $j$) is lighter than ball $i$, **set the positions of balls $i$ and $j$ at $t=t_0+1$ to be swapped from their positions at $t=t_0$**.\n>     - Otherwise, **set the position of ball $i$ at $t=t_0+1$ to be the same as at $t=t_0$.**\n> - Next, for all balls of weight $0$ whose positions at $t=t_0+1$ have not been determined at this point, **set their positions at $t=t_0+1$ to be the same as at $t=t_0$.**\n\nIt can be shown that at some time, the balls will be arranged from top to bottom in ascending order of weight, and their positions will no longer change. Find the time when this state is reached.\n\n## Constraints\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq m_i \\leq N$\n- $m_i \\neq m_j$ for $i \\neq j$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nm_1 m_2 \\ldots m_N\n```\n\n## Output\n\nPrint the answer as an integer.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有 $2N$ 个格子排成一列，从上到下编号为 $1$ 到 $2N$，其中格子 $1$ 位于最上方。每个格子中有一个球。在时刻 $t=0$，对于 $i=1,2,\\ldots,N$，格子 $i$ 中球的重量为 $m_i$；对于 $i=N+1,N+2,\\ldots,2N$，格子 $i$ 中球的重量为 $0$。其中，$(m_1, m_2, \\ldots, m_N)$ 是 $1$ 到 $N$ 的一个排列。\n\n下文中，将重量为 $i$ 的球称为球 $i$，并将每个球所在的格子编号称为该球的位置。\n\n从时刻 $t=0$ 开始，每当时间经过 $1$，较重的球就会下沉，较轻的球就会上浮。\n\n形式化地，时刻 $t=t_0+1$ 时每个球的位置按照以下过程，根据时刻 $t=t_0$ 时的位置确定。\n\n> - 按照 $i=N,N-1,\\ldots,2,1$ 的顺序，执行以下操作。\n> - 如果球 $i$ 在 $t=t_0+1$ 时的位置已经确定：\n>   - **什么也不做。**\n>   - 如果球 $i$ 在 $t=t_0+1$ 时的位置尚未确定：\n>   - 如果在 $t=t_0$ 时球 $i$ 的正下方存在一个格子，且该格子中的球（称为球 $j$）比球 $i$ 轻，则**将时刻 $t=t_0+1$ 时球 $i$ 和球 $j$ 的位置设为它们在时刻 $t=t_0$ 时位置的交换结果**。\n>     - 否则，**将时刻 $t=t_0+1$ 时球 $i$ 的位置设为其在时刻 $t=t_0$ 时的位置**。\n> - 接下来，对于此时在 $t=t_0+1$ 时位置尚未确定的所有重量为 $0$ 的球，**将其在 $t=t_0+1$ 时的位置设为其在 $t=t_0$ 时的位置**。\n\n可以证明，在某个时刻，球会按照重量从上到下的升序排列，并且之后它们的位置不再发生变化。请找出达到这一状态的时刻。\n\n## 约束条件\n\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq m_i \\leq N$\n- $m_i \\neq m_j$ for $i \\neq j$.\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nm_1 m_2 \\ldots m_N\n```\n\n## 输出格式\n\n将答案作为整数输出。",
   "samples": [
     {
       "input": "3\n2 3 1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:01:56.072Z"
+  "fetchedAt": "2026-10-30T21:01:56.072Z",
+  "translatedAt": "2026-11-03T15:14:32.447+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2056,
   "index": "F1",
   "title": "Xor of Median (Easy Version)",
-  "titleZh": null,
+  "titleZh": "中位数的异或（简单版）",
   "url": "https://codeforces.com/contest/2056/problem/F1",
   "difficulty": 2700,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, the constraints on $t$, $k$, and $m$ are lower. You can hack only if you solved all versions of this problem.**\n\nA sequence $a$ of $n$ integers is called *good* if the following condition holds:\n\n- Let $\\text{cnt}_x$ be the number of occurrences of $x$ in sequence $a$. For all pairs $0 \\le i \\lt j \\lt m$, at least one of the following has to be true: $\\text{cnt}_i = 0$, $\\text{cnt}_j = 0$, or $\\text{cnt}_i \\le \\text{cnt}_j$. In other words, if both $i$ and $j$ are present in sequence $a$, then the number of occurrences of $i$ in $a$ is less than or equal to the number of occurrences of $j$ in $a$.\n\nYou are given integers $n$ and $m$. Calculate the value of the bitwise XOR of the median$^{\\text{∗}}$ of all good sequences $a$ of length $n$ with $0\\le a_i \\lt m$.\n\nNote that the value of $n$ can be very large, so you are given its binary representation instead.\n\n$^{\\text{∗}}$The median of a sequence $a$ of length $n$ is defined as the $\\left\\lfloor\\frac{n + 1}{2}\\right\\rfloor$-th smallest value in the sequence.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 50$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $k$ and $m$ ($1 \\le k \\le 200$, $1 \\le m \\le 500$) — the number of bits in $n$ and the upper bound on the elements in sequence $a$.\n\nThe second line of each test case contains a binary string of length $k$ — the binary representation of $n$ with no leading zeros.\n\nIt is guaranteed that the sum of $k$ over all test cases does not exceed $200$.\n\n## Output\n\nFor each test case, output a single integer representing the bitwise XOR of the median of all good sequences $a$ of length $n$ where $0\\le a_i \\lt m$.\n\n## Note\n\nIn the first example, $n = 10_2 = 2$ and $m = 3$. All possible sequences with elements less than $m$ are: $[0, 0]$, $[0, 1]$, $[0, 2]$, $[1, 0]$, $[1, 1]$, $[1, 2]$, $[2, 0]$, $[2, 1]$, $[2, 2]$. All of them are good, so the answer is: $0 \\oplus 0 \\oplus 0 \\oplus 0 \\oplus 1 \\oplus 1 \\oplus 0 \\oplus 1 \\oplus 2 = 3$.\n\nIn the second example, $n = 11_2 = 3$ and $m = 3$. Some good sequences are $[2, 2, 2]$, $[1, 0, 1]$, and $[2, 0, 1]$. However, a sequence $[2, 0, 0]$ is not good, because $\\text{cnt}_0 = 2$, $\\text{cnt}_2 = 1$. Therefore, if we set $i = 0$ and $j = 2$, $i \\lt j$ holds, but $\\text{cnt}_i \\le \\text{cnt}_j$ does not.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。与其他版本的区别在于，本版本中 $t$、$k$ 和 $m$ 的约束更小。只有解决了本题的所有版本，才能进行 hack。**\n\n如果一个长度为 $n$ 的整数序列 $a$ 满足以下条件，则称其为*良好序列*：\n\n- 令 $\\text{cnt}_x$ 表示 $x$ 在序列 $a$ 中出现的次数。对于所有满足 $0 \\le i \\lt j \\lt m$ 的数对，以下条件至少有一个成立：$\\text{cnt}_i = 0$、$\\text{cnt}_j = 0$ 或 $\\text{cnt}_i \\le \\text{cnt}_j$。换句话说，如果 $i$ 和 $j$ 都出现在序列 $a$ 中，那么 $i$ 在 $a$ 中出现的次数不超过 $j$ 在 $a$ 中出现的次数。\n\n给定整数 $n$ 和 $m$。请计算所有满足 $0\\le a_i \\lt m$、长度为 $n$ 的良好序列 $a$ 的中位数$^{\\text{∗}}$的按位异或值。\n\n注意，$n$ 的值可能非常大，因此题目给出的是它的二进制表示。\n\n$^{\\text{∗}}$长度为 $n$ 的序列 $a$ 的中位数定义为序列中第 $\\left\\lfloor\\frac{n + 1}{2}\\right\\rfloor$ 小的值。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数 $t$（$1 \\le t \\le 50$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $k$ 和 $m$（$1 \\le k \\le 200$，$1 \\le m \\le 500$）——分别表示 $n$ 的二进制位数，以及序列 $a$ 中元素的上界。\n\n每个测试用例的第二行包含一个长度为 $k$ 的二进制字符串，表示 $n$ 的二进制表示，且不含前导零。\n\n保证所有测试用例的 $k$ 之和不超过 $200$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示所有满足 $0\\le a_i \\lt m$、长度为 $n$ 的良好序列 $a$ 的中位数的按位异或值。\n\n## 说明\n\n在第一个样例中，$n = 10_2 = 2$ 且 $m = 3$。所有元素都小于 $m$ 的可能序列为：$[0, 0]$、$[0, 1]$、$[0, 2]$、$[1, 0]$、$[1, 1]$、$[1, 2]$、$[2, 0]$、$[2, 1]$、$[2, 2]$。它们都是良好序列，因此答案为：$0 \\oplus 0 \\oplus 0 \\oplus 0 \\oplus 1 \\oplus 1 \\oplus 0 \\oplus 1 \\oplus 2 = 3$。\n\n在第二个样例中，$n = 11_2 = 3$ 且 $m = 3$。一些良好序列包括 $[2, 2, 2]$、$[1, 0, 1]$ 和 $[2, 0, 1]$。但是，序列 $[2, 0, 0]$ 不是良好序列，因为 $\\text{cnt}_0 = 2$、$\\text{cnt}_2 = 1$。因此，若令 $i = 0$、$j = 2$，则 $i \\lt j$ 成立，但 $\\text{cnt}_i \\le \\text{cnt}_j$ 不成立。",
   "samples": [
     {
       "input": "6\n2 3\n10\n2 3\n11\n5 1\n11101\n7 9\n1101011\n17 34\n11001010001010010\n1 500\n1\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:32:52.215Z"
+  "fetchedAt": "2026-10-30T21:32:52.215Z",
+  "translatedAt": "2026-11-03T14:52:48.693+08:00",
+  "translateModel": "gpt-6.1-sol"
 }

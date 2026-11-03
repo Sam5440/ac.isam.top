@@ -4,7 +4,7 @@
   "contestId": 2030,
   "index": "G1",
   "title": "The Destruction of the Universe (Easy Version)",
-  "titleZh": null,
+  "titleZh": "毁灭宇宙（简单版）",
   "url": "https://codeforces.com/contest/2030/problem/G1",
   "difficulty": 2900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the easy version of the problem. In this version, $n \\leq 5000$. You can only make hacks if both versions of the problem are solved.**\n\n*Orangutans are powerful beings—so powerful that they only need $1$ unit of time to destroy every vulnerable planet in the universe!*\n\nThere are $n$ planets in the universe. Each planet has an *interval of vulnerability* $[l, r]$, during which it will be exposed to destruction by orangutans. Orangutans can also expand the *interval of vulnerability* of any planet by $1$ unit.\n\nSpecifically, suppose the expansion is performed on planet $p$ with *interval of vulnerability* $[l_p, r_p]$. Then, the resulting *interval of vulnerability* may be either $[l_p - 1, r_p]$ or $[l_p, r_p + 1]$.\n\nGiven a set of planets, orangutans can destroy all planets if the *intervals of vulnerability* of all planets in the set intersect at least one common point. Let the *score* of such a set denote the minimum number of expansions that must be performed.\n\nOrangutans are interested in the sum of **scores** of all *non-empty* subsets of the planets in the universe. As the answer can be large, output it modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases.\n\nThe first line of each test case contains an integer $n$ ($1 \\leq n \\leq 5000$) — the number of planets in the universe.\n\nThe following $n$ lines contain two integers $l_i$ and $r_i$ ($1 \\leq l_i \\leq r_i \\leq n$) — the initial *interval of vulnerability* of the $i$-th planet.\n\nIt is guaranteed that the sum of $n$ does not exceed $5000$ over all test cases.\n\n## Output\n\nFor each test case, output an integer — the sum of *scores* to destroy all **non-empty** subsets of the planets in the universe, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first testcase, there are seven non-empty subsets of planets we must consider:\n\n- For each of the subsets $\\{[1,1]\\}, \\{[2,3]\\}, \\{[3,3]\\}$, the score is $0$.\n- For the subset $\\{[2,3], [3,3]\\}$, the score is $0$, because the point $3$ is already contained in both planets' *interval of vulnerability*.\n- For the subset $\\{[1,1], [2,3]\\}$, the score is $1$. By using one operation on changing the *interval of vulnerability* of the second planet to be $[1,3]$, the two planets now both have the point $1$ in their interval.\n- For the subset $\\{[1,1], [3,3]\\}$, the score is $2$. By using two operations on changing the *interval of vulnerability* of the first planet to be $[1,3]$, the two planets now both have the point $3$ in their interval.\n- For the subset $\\{[1,1], [2,3], [3,3]\\}$, the score is $2$. By using one operation on changing the *interval of vulnerability* of the first planet to be $[1,2]$ and one operation on changing the *interval of vulnerability* of the third planet to $[2,3]$, all three planets will have the point $2$ in their interval.\n\nThe sum of scores of all non-empty subsets of the first testcase is $0 \\cdot 4 + 1 \\cdot 1 + 2\\cdot2 = 5$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。在此版本中，$n \\leq 5000$。只有在两个版本的问题都解决后，才能进行 hacks。**\n\n*猩猩是强大的生物——它们强大到只需要 $1$ 单位时间，就能摧毁宇宙中所有易受攻击的行星！*\n\n宇宙中有 $n$ 颗行星。每颗行星都有一个*脆弱区间* $[l, r]$，在此期间它会暴露在猩猩的毁灭行动下。猩猩还可以将任意行星的*脆弱区间*扩展 $1$ 个单位。\n\n具体来说，假设对行星 $p$ 进行扩展操作，其*脆弱区间*为 $[l_p, r_p]$。那么，操作后的*脆弱区间*可以是 $[l_p - 1, r_p]$ 或 $[l_p, r_p + 1]$。\n\n给定一组行星，当这组行星中所有行星的*脆弱区间*至少有一个公共点时，猩猩就可以摧毁这组行星。将必须执行的最少扩展操作次数称为这组行星的**得分**。\n\n猩猩想知道宇宙中所有行星的**非空**子集的**得分**之和。由于答案可能很大，请输出答案对 $998\\,244\\,353$ 取模后的结果。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 1000$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 5000$）——宇宙中行星的数量。\n\n接下来的 $n$ 行中，每行包含两个整数 $l_i$ 和 $r_i$（$1 \\leq l_i \\leq r_i \\leq n$）——第 $i$ 颗行星初始的*脆弱区间*。\n\n保证所有测试用例中的 $n$ 之和不超过 $5000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——宇宙中所有**非空**行星子集的得分之和对 $998\\,244\\,353$ 取模后的结果。\n\n## 说明\n\n在第一个测试用例中，我们需要考虑七个非空行星子集：\n\n- 对于子集 $\\{[1,1]\\}, \\{[2,3]\\}, \\{[3,3]\\}$，得分均为 $0$。\n- 对于子集 $\\{[2,3], [3,3]\\}$，得分为 $0$，因为点 $3$ 已经同时包含在这两颗行星的*脆弱区间*中。\n- 对于子集 $\\{[1,1], [2,3]\\}$，得分为 $1$。对第二颗行星进行一次操作，将其*脆弱区间*变为 $[1,3]$，此时两颗行星的区间中都包含点 $1$。\n- 对于子集 $\\{[1,1], [3,3]\\}$，得分为 $2$。对第一颗行星进行两次操作，将其*脆弱区间*变为 $[1,3]$，此时两颗行星的区间中都包含点 $3$。\n- 对于子集 $\\{[1,1], [2,3], [3,3]\\}$，得分为 $2$。对第一颗行星进行一次操作，将其*脆弱区间*变为 $[1,2]$，再对第三颗行星进行一次操作，将其*脆弱区间*变为 $[2,3]$，这样三颗行星的区间中都包含点 $2$。\n\n第一个测试用例中所有非空子集的得分之和为 $0 \\cdot 4 + 1 \\cdot 1 + 2\\cdot2 = 5$。",
   "samples": [
     {
       "input": "3\n3\n1 1\n2 3\n3 3\n4\n1 4\n2 3\n2 4\n1 1\n5\n1 2\n2 3\n3 4\n4 5\n1 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:37.692Z"
+  "fetchedAt": "2026-10-30T21:40:37.692Z",
+  "translatedAt": "2026-11-03T16:05:20.764+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

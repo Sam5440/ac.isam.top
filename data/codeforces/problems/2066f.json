@@ -4,7 +4,7 @@
   "contestId": 2066,
   "index": "F",
   "title": "Curse",
-  "titleZh": null,
+  "titleZh": "诅咒",
   "url": "https://codeforces.com/contest/2066/problem/F",
   "difficulty": 3300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "You are given two arrays of integers: $a_1, a_2, \\ldots, a_n$ and $b_1, b_2, \\ldots, b_m$.\n\nYou need to determine if it is possible to transform array $a$ into array $b$ using the following operation several (possibly, zero) times.\n\n- Among all non-empty subarrays$^{\\text{∗}}$ of $a$, choose any with the maximum sum, and replace this subarray with an arbitrary non-empty integer array.\n\nIf it is possible, you need to construct any possible sequence of operations. Constraint: in your answer, the sum of the lengths of the arrays used as replacements must not exceed $n + m$ across all operations. The numbers must not exceed $10^9$ in absolute value.\n\n$^{\\text{∗}}$An array $a$ is a subarray of an array $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) elements from the beginning and several (possibly, zero or all) elements from the end.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 200$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n, m$ ($1 \\le n, m \\le 500$) — the lengths of arrays $a$ and $b$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($-10^6 \\le a_i \\le 10^6$) — the elements of array $a$.\n\nThe third line of each test case contains $m$ integers $b_1, b_2, \\ldots, b_m$ ($-10^6 \\le b_i \\le 10^6$) — the elements of array $b$.\n\nIt is guaranteed that the sum of the values of $n$ across all test cases does not exceed $500$.\n\nIt is guaranteed that the sum of the values of $m$ across all test cases does not exceed $500$.\n\n## Output\n\nFor each test case, output $-1$ if it is impossible to transform array $a$ into array $b$.\n\nOtherwise, in the first line, output the number of operations $0 \\leq q \\leq n + m$. Then output the operations in the following format in the order they are performed.\n\nIn the first line of each operation, print three numbers $l, r, k$ ($1 \\leq l \\leq r \\leq |a|$). In the second line, print $k$ integers $c_1 \\ldots c_k$, which means replacing the segment $a_l, \\ldots, a_r$ with the array $c_1, \\ldots, c_k$.\n\nThe sum of $k$ across all $q$ operations must not exceed $n + m$. Additionally, it must hold that $-10^9 \\leq c_i \\leq 10^9$.\n\nYou do not need to minimize the number of operations.\n\n## Note\n\nIn the first test, the initial array is modified as follows:\n\n$$ [2, -3, 2, 0] \\to [2, -3, -3] \\to [-3, -3, -3] \\to [-3, -7, -3] \\to [-3, -7, 0] $$\n\nYou may choose to output empty lines or not. Empty lines in the example are added for convenience.",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个整数数组：$a_1, a_2, \\ldots, a_n$ 和 $b_1, b_2, \\ldots, b_m$。\n\n你需要判断能否通过若干次（可能为零次）执行以下操作，将数组 $a$ 变换为数组 $b$。\n\n- 在 $a$ 的所有非空子数组$^{\\text{∗}}$中，任选一个和最大的子数组，并用一个任意构造的非空整数数组替换它。\n\n如果可行，你需要构造出任意一组合法的操作序列。限制条件：在你的答案中，所有操作中作为替换内容的数组长度之和不得超过 $n + m$。所有数字的绝对值不得超过 $10^9$。\n\n$^{\\text{∗}}$如果数组 $a$ 可以通过从数组 $b$ 的开头删除若干（可能为零个或全部）元素、并从结尾删除若干（可能为零个或全部）元素得到，则称 $a$ 是 $b$ 的一个子数组。\n\n## 输入格式\n\n每个测试文件包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 200$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n, m$（$1 \\le n, m \\le 500$），分别表示数组 $a$ 和 $b$ 的长度。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$-10^6 \\le a_i \\le 10^6$），表示数组 $a$ 的元素。\n\n每组测试数据的第三行包含 $m$ 个整数 $b_1, b_2, \\ldots, b_m$（$-10^6 \\le b_i \\le 10^6$），表示数组 $b$ 的元素。\n\n保证所有测试数据的 $n$ 之和不超过 $500$。\n\n保证所有测试数据的 $m$ 之和不超过 $500$。\n\n## 输出格式\n\n对于每组测试数据，如果无法将数组 $a$ 变换为数组 $b$，输出 $-1$。\n\n否则，在第一行输出操作的数量 $0 \\leq q \\leq n + m$。然后按照执行的顺序，以如下格式输出各个操作。\n\n每个操作的第一行输出三个数 $l, r, k$（$1 \\leq l \\leq r \\leq |a|$）。第二行输出 $k$ 个整数 $c_1 \\ldots c_k$，表示将片段 $a_l, \\ldots, a_r$ 替换为数组 $c_1, \\ldots, c_k$。\n\n所有 $q$ 个操作的 $k$ 之和不得超过 $n + m$。此外，必须满足 $-10^9 \\leq c_i \\leq 10^9$。\n\n你不需要最小化操作的数量。\n\n## 说明\n\n在第一组测试数据中，初始数组按如下方式被修改：\n\n$$ [2, -3, 2, 0] \\to [2, -3, -3] \\to [-3, -3, -3] \\to [-3, -7, -3] \\to [-3, -7, 0] $$\n\n你可以选择输出或不输出空行。样例中的空行只是为了方便阅读而添加的。",
   "samples": [
     {
       "input": "3\n4 3\n2 -3 2 0\n-3 -7 0\n2 1\n-2 -2\n2\n5 4\n-5 9 -3 5 -9\n-6 6 -1 -9\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:31:52.929Z"
+  "fetchedAt": "2026-10-30T21:31:52.929Z",
+  "translatedAt": "2026-11-03T13:36:13.208+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

@@ -4,7 +4,7 @@
   "contestId": 2062,
   "index": "D",
   "title": "Balanced Tree",
-  "titleZh": null,
+  "titleZh": "平衡树",
   "url": "https://codeforces.com/contest/2062/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a tree$^{\\text{∗}}$ with $n$ nodes and values $l_i, r_i$ for each node. You can choose an initial value $a_i$ satisfying $l_i\\le a_i\\le r_i$ for the $i$-th node. A tree is *balanced* if all node values are equal, and the value of a balanced tree is defined as the value of any node.\n\nIn one operation, you can choose two nodes $u$ and $v$, and increase the values of all nodes in the subtree$^{\\text{†}}$ of node $v$ by $1$ while considering $u$ as the root of the entire tree. Note that $u$ may be equal to $v$.\n\nYour goal is to perform a series of operations so that the tree becomes **balanced**. Find the minimum possible value of the tree after performing these operations. Note that you **don't** need to minimize the number of operations.\n\n$^{\\text{∗}}$A tree is a connected graph without cycles. $^{\\text{†}}$Node $w$ is considered in the subtree of node $v$ if any path from root $u$ to $w$ must go through $v$.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1 \\leq t \\leq 10^5$) — the number of input test cases.\n\nThe first line of each test case contains one integer $n$ ($1 \\le n \\le 2\\cdot 10^5$) — the number of nodes in the tree.\n\nThen $n$ lines follow. The $i$-th line contains two integers $l_i,r_i$ ($0\\le l_i \\le r_i\\le 10^9$) — the constraint of the value of the $i$-th node.\n\nThe next $n-1$ lines contain the edges of the tree. The $i$-th line contains two integers $u_i,v_i$ ($1\\le u_i,v_i \\le n$, $u_i \\neq v_i$) — an edge connecting $u_i$ and $v_i$. It is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum possible value that all $a_i$ can be made equal to after performing the operations. It can be shown that the answer always exists.\n\n## Note\n\nIn the first test case, you can choose $a=[6,6,0,5]$.\n\nYou can perform the following operations to make all $a_i$ equal:\n\n1. Choose $u=4$, $v=3$ and perform the operation $5$ times.\n2. Choose $u=1$, $v=3$ and perform the operation $6$ times.\n\nThe complete process is shown as follows (where the numbers inside the parentheses are elements of $a$):\n\n![image](https://espresso.codeforces.com/a4512a96aaa650d56aa5c2e380c8885f6faa74a5.png)\n\nIt can be proven that this is the optimal solution.",
-  "statementZhMd": null,
+  "statementZhMd": "给你一棵有 $n$ 个节点的树$^{\\text{∗}}$，每个节点带有值 $l_i, r_i$。你可以为第 $i$ 个节点选择一个满足 $l_i\\le a_i\\le r_i$ 的初始值 $a_i$。如果一棵树中所有节点的值都相等，则称这棵树是*平衡的*，平衡树的值定义为任意一个节点的值。\n\n在一次操作中，你可以选择两个节点 $u$ 和 $v$，并以 $u$ 作为整棵树的根，将节点 $v$ 的子树$^{\\text{†}}$中所有节点的值增加 $1$。注意 $u$ 可以等于 $v$。\n\n你的目标是执行一系列操作，使树变得**平衡**。求执行这些操作后树的最小可能值。注意你**不**需要最小化操作次数。\n\n$^{\\text{∗}}$树是不含环的连通图。$^{\\text{†}}$如果从根 $u$ 到节点 $w$ 的任何路径都必须经过 $v$，则节点 $w$ 被视为在节点 $v$ 的子树内。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 10^5$）—— 表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2\\cdot 10^5$）—— 表示树中节点的数量。\n\n接下来 $n$ 行，第 $i$ 行包含两个整数 $l_i,r_i$（$0\\le l_i \\le r_i\\le 10^9$）—— 表示第 $i$ 个节点值的约束。\n\n接下来 $n-1$ 行描述树的边。第 $i$ 行包含两个整数 $u_i,v_i$（$1\\le u_i,v_i \\le n$，$u_i \\neq v_i$）—— 表示一条连接 $u_i$ 和 $v_i$ 的边。保证给定的边构成一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 执行操作后所有 $a_i$ 能被变成相等的最小可能值。可以证明答案总是存在。\n\n## 说明\n\n在第一个测试用例中，你可以选择 $a=[6,6,0,5]$。\n\n你可以执行以下操作使所有 $a_i$ 相等：\n\n1. 选择 $u=4$，$v=3$，执行操作 $5$ 次。\n2. 选择 $u=1$，$v=3$，执行操作 $6$ 次。\n\n完整过程如下图所示（括号中的数字是 $a$ 的元素）：\n\n![image](https://espresso.codeforces.com/a4512a96aaa650d56aa5c2e380c8885f6faa74a5.png)\n\n可以证明这是最优解。",
   "samples": [
     {
       "input": "6\n4\n0 11\n6 6\n0 0\n5 5\n2 1\n3 1\n4 3\n7\n1 1\n0 5\n0 5\n2 2\n2 2\n2 2\n2 2\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n4\n1 1\n1 1\n1 1\n0 0\n1 4\n2 4\n3 4\n7\n0 20\n0 20\n0 20\n0 20\n3 3\n4 4\n5 5\n1 2\n1 3\n1 4\n2 5\n3 6\n4 7\n5\n1000000000 1000000000\n0 0\n1000000000 1000000000\n0 0\n1000000000 1000000000\n3 2\n2 1\n1 4\n4 5\n6\n21 88\n57 81\n98 99\n61 76\n15 50\n23 67\n2 1\n3 2\n4 3\n5 3\n6 4\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:32:17.984Z"
+  "fetchedAt": "2026-10-30T21:32:17.984Z",
+  "translatedAt": "2026-11-03T14:43:10.554+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

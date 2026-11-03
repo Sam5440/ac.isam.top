@@ -4,7 +4,7 @@
   "contestId": 2030,
   "index": "B",
   "title": "Minimise Oneness",
-  "titleZh": null,
+  "titleZh": "最小化单一性",
   "url": "https://codeforces.com/contest/2030/problem/B",
   "difficulty": 800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "For an arbitrary binary string $t$$^{\\text{∗}}$, let $f(t)$ be the number of non-empty subsequences$^{\\text{†}}$ of $t$ that contain only $\\mathtt{0}$, and let $g(t)$ be the number of non-empty subsequences of $t$ that contain at least one $\\mathtt{1}$.\n\nNote that for $f(t)$ and for $g(t)$, each subsequence is counted as many times as it appears in $t$. E.g., $f(\\mathtt{000}) = 7, g(\\mathtt{100}) = 4$.\n\nWe define the *oneness* of the binary string $t$ to be $|f(t)-g(t)|$, where for an arbitrary integer $z$, $|z|$ represents the absolute value of $z$.\n\nYou are given a positive integer $n$. Find a binary string $s$ of length $n$ such that its *oneness* is as small as possible. If there are multiple strings, you can print any of them.\n\n$^{\\text{∗}}$A binary string is a string that only consists of characters $\\texttt{0}$ and $\\texttt{1}$.$^{\\text{†}}$A sequence $a$ is a subsequence of a sequence $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) elements. For example, subsequences of $\\mathtt{1011101}$ are $\\mathtt{0}$, $\\mathtt{1}$, $\\mathtt{11111}$, $\\mathtt{0111}$, but not $\\mathtt{000}$ nor $\\mathtt{11100}$.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe only line of each test case contains an integer $n$ ($1 \\leq n \\leq 2\\cdot10^5$) — the length of $s$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot10^5$.\n\n## Output\n\nFor each test case, output $s$ on a new line. If multiple answers exist, output any.\n\n## Note\n\nIn the first test case, for the example output, $f(t)=1$ because there is one subsequence that contains only $\\mathtt{0}$ ($\\mathtt{0}$), and $g(t)=0$ because there are no subsequences that contain at least one $1$. The *oneness* is $|1-0|=1$. The output $\\mathtt{1}$ is correct as well because its *oneness* is $|0-1|=1$.\n\nFor the example output of the second test case, $f(t)=1$ because there is one non-empty subsequence that contains only $\\mathtt{0}$, and $g(t)=2$ because there are two non-empty subsequences that contain at least one $\\mathtt{1}$ ($\\mathtt{01}$ and $\\mathtt{1}$). The *oneness* is thus $|1-2|=1$. It can be shown that $1$ is the minimum possible value of its *oneness* over all possible binary strings of size $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "对于任意二进制字符串 $t$$^{\\text{∗}}$，令 $f(t)$ 表示 $t$ 中仅包含 $\\mathtt{0}$ 的非空子序列$^{\\text{†}}$数量，令 $g(t)$ 表示 $t$ 中至少包含一个 $\\mathtt{1}$ 的非空子序列数量。\n\n注意，对于 $f(t)$ 和 $g(t)$，每个子序列会按照其在 $t$ 中出现的次数进行计数。例如，$f(\\mathtt{000}) = 7, g(\\mathtt{100}) = 4$。\n\n我们将二进制字符串 $t$ 的*单一性*定义为 $|f(t)-g(t)|$，其中，对于任意整数 $z$，$|z|$ 表示 $z$ 的绝对值。\n\n给定一个正整数 $n$。请找出一个长度为 $n$ 的二进制字符串 $s$，使其*单一性*尽可能小。如果有多个满足条件的字符串，输出其中任意一个即可。\n\n$^{\\text{∗}}$二进制字符串是只由字符 $\\texttt{0}$ 和 $\\texttt{1}$ 组成的字符串。$^{\\text{†}}$如果可以通过删除序列 $b$ 中的若干个（可以是零个或全部）元素得到序列 $a$，则称 $a$ 是 $b$ 的子序列。例如，$\\mathtt{1011101}$ 的子序列包括 $\\mathtt{0}$、$\\mathtt{1}$、$\\mathtt{11111}$、$\\mathtt{0111}$，但不包括 $\\mathtt{000}$ 和 $\\mathtt{11100}$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例仅包含一行，其中有一个整数 $n$（$1 \\leq n \\leq 2\\cdot10^5$）——$s$ 的长度。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot10^5$。\n\n## 输出格式\n\n对于每个测试用例，在新的一行输出 $s$。如果有多个答案，输出其中任意一个即可。\n\n## 说明\n\n在第一个测试用例的示例输出中，$f(t)=1$，因为有一个仅包含 $\\mathtt{0}$ 的子序列（$\\mathtt{0}$）；而 $g(t)=0$，因为不存在包含至少一个 $1$ 的子序列。因此，*单一性*为 $|1-0|=1$。输出 $\\mathtt{1}$ 也是正确的，因为其*单一性*为 $|0-1|=1$。\n\n对于第二个测试用例的示例输出，$f(t)=1$，因为有一个仅包含 $\\mathtt{0}$ 的非空子序列；而 $g(t)=2$，因为有两个包含至少一个 $\\mathtt{1}$ 的非空子序列（$\\mathtt{01}$ 和 $\\mathtt{1}$）。因此，*单一性*为 $|1-2|=1$。可以证明，在所有长度为 $2$ 的二进制字符串中，其*单一性*的最小值为 $1$。",
   "samples": [
     {
       "input": "3\n1\n2\n3\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:37.691Z"
+  "fetchedAt": "2026-10-30T21:40:37.691Z",
+  "translatedAt": "2026-11-03T15:52:34.020+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2064,
   "index": "B",
   "title": "Variety is Discouraged",
-  "titleZh": null,
+  "titleZh": "多样性不受鼓励",
   "url": "https://codeforces.com/contest/2064/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "Define the score of an arbitrary array $b$ to be the length of $b$ minus the number of distinct elements in $b$. For example:\n\n- The score of $[1, 2, 2, 4]$ is $1$, as it has length $4$ and only $3$ distinct elements ($1$, $2$, $4$).\n- The score of $[1, 1, 1]$ is $2$, as it has length $3$ and only $1$ distinct element ($1$).\n- The empty array has a score of $0$.\n\nYou have an array $a$. You need to remove some **non-empty** contiguous subarray from $a$ **at most** once.\n\nMore formally, you can do the following **at most** once:\n\n- pick two integers $l$, $r$ where $1 \\le l \\le r \\le n$, and\n- delete the contiguous subarray $[a_l,\\ldots,a_r]$ from $a$ (that is, replace $a$ with $[a_1,\\ldots,a_{l - 1},a_{r + 1},\\ldots,a_n]$).\n\nOutput an operation such that the score of $a$ is **maximum**; if there are multiple answers, output one that **minimises** the final length of $a$ after the operation. If there are still multiple answers, you may output any of them.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of testcases.\n\nThe first line of each testcase contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the array $a$.\n\nThe second line of each testcase contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1 \\le a_i \\le n$).\n\nThe sum of $n$ across all testcases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, if you wish to not make a move, output $0$.\n\nOtherwise, output two integers $l$ and $r$ ($1 \\le l \\le r \\le n$), representing the left and right bound of the removed subarray.\n\nThe removed subarray should be chosen such that the score is maximized, and over all such answers choose any of them that minimises the final length of the array.\n\n## Note\n\nIn the first testcase, we have two options:\n\n- do nothing: the score of $[1]$ is $1-1=0$.\n- remove the subarray with $l=1$, $r=1$: we remove the only element, and we get an empty array with score $0$.\n\nTherefore, the maximum score possible is $0$. However, since we need to additionally minimise the final length of the array, we\n\nmust\n\noutput the second option with $l=r=1$. Note that the first option of doing nothing is\n\nincorrect\n\n, since it has a longer final length.\n\nIn the second testcase, no subarray is selected, so after which $a$ is still $[1, 1, 1, 1, 1]$. This has length $5$ and $1$ distinct element, so it has a score of $5 - 1 = 4$. This can be proven to be a shortest array which maximises the score.\n\nIn the third testcase, the subarray selected is $[2, \\color{red}1, \\color{red}3, 2]$, after which $a$ becomes $[2, 2]$. This has length $2$ and $1$ distinct element, so it has a score of $2 - 1 = 1$. This can be proven to be a shortest array which maximises the score.",
-  "statementZhMd": null,
+  "statementZhMd": "定义任意数组 $b$ 的分数为 $b$ 的长度减去 $b$ 中不同元素的个数。例如：\n\n- $[1, 2, 2, 4]$ 的分数为 $1$，因为它的长度为 $4$，且只有 $3$ 个不同的元素（$1$、$2$、$4$）。\n- $[1, 1, 1]$ 的分数为 $2$，因为它的长度为 $3$，且只有 $1$ 个不同的元素（$1$）。\n- 空数组的分数为 $0$。\n\n你有一个数组 $a$。你需要**至多**一次从 $a$ 中移除某个**非空**连续子数组。\n\n更正式地，你可以**至多**一次执行以下操作：\n\n- 选取两个整数 $l$、$r$，满足 $1 \\le l \\le r \\le n$，然后\n- 从 $a$ 中删除连续子数组 $[a_l,\\ldots,a_r]$（即将 $a$ 替换为 $[a_1,\\ldots,a_{l - 1},a_{r + 1},\\ldots,a_n]$）。\n\n输出一个操作，使得 $a$ 的分数**最大**；如果存在多组答案，输出其中使操作后 $a$ 的最终长度**最小**的一组。如果仍有多组答案，你可以输出其中任意一组。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——表示测试数据组数。\n\n每组测试数据的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——表示数组 $a$ 的长度。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1 \\le a_i \\le n$）。\n\n所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，如果你不想进行任何操作，输出 $0$。\n\n否则，输出两个整数 $l$ 和 $r$（$1 \\le l \\le r \\le n$），表示被移除子数组的左右边界。\n\n被移除的子数组应当使分数最大化，并在所有这样的答案中，任意选择使数组最终长度最小的一组。\n\n## 说明\n\n在第一组测试数据中，我们有两个选择：\n\n- 什么都不做：$[1]$ 的分数为 $1-1=0$。\n- 移除 $l=1$、$r=1$ 的子数组：我们移除了唯一的元素，得到一个分数为 $0$ 的空数组。\n\n因此，可能的最大分数为 $0$。然而，由于我们还需要额外地使数组的最终长度最小，我们必须输出第二个选择，即 $l=r=1$。注意，第一个选择（什么都不做）是不正确的，因为它的最终长度更长。\n\n在第二组测试数据中，没有选择任何子数组，因此操作后 $a$ 仍为 $[1, 1, 1, 1, 1]$。它的长度为 $5$，且只有 $1$ 个不同元素，所以它的分数为 $5 - 1 = 4$。可以证明这是使分数最大化的最短数组。\n\n在第三组测试数据中，选择的子数组为 $[2, \\color{red}1, \\color{red}3, 2]$，操作后 $a$ 变为 $[2, 2]$。它的长度为 $2$，且只有 $1$ 个不同元素，所以它的分数为 $2 - 1 = 1$。可以证明这是使分数最大化的最短数组。",
   "samples": [
     {
       "input": "3\n1\n1\n5\n1 1 1 1 1\n4\n2 1 3 2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:32:00.680Z"
+  "fetchedAt": "2026-10-30T21:32:00.680Z",
+  "translatedAt": "2026-11-03T13:30:54.961+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

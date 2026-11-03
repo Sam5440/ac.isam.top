@@ -4,7 +4,7 @@
   "contestId": 1986,
   "index": "B",
   "title": "Matrix Stabilization",
-  "titleZh": null,
+  "titleZh": "矩阵稳定化",
   "url": "https://codeforces.com/contest/1986/problem/B",
   "difficulty": 1000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a matrix of size $n \\times m$, where the rows are numbered from $1$ to $n$ from top to bottom, and the columns are numbered from $1$ to $m$ from left to right. The element at the intersection of the $i$-th row and the $j$-th column is denoted by $a_{ij}$.\n\nConsider the algorithm for stabilizing matrix $a$:\n\n1. Find the cell $(i, j)$ such that its value is strictly greater than the values of all its neighboring cells. If there is no such cell, terminate the algorithm. If there are multiple such cells, choose the cell with the smallest value of $i$, and if there are still multiple cells, choose the one with the smallest value of $j$.\n2. Set $a_{ij} = a_{ij} - 1$.\n3. Go to step $1$.\n\nIn this problem, cells $(a, b)$ and $(c, d)$ are considered neighbors if they share a common side, i.e., $|a - c| + |b - d| = 1$.\n\nYour task is to output the matrix $a$ after the stabilization algorithm has been executed. It can be shown that this algorithm cannot run for an infinite number of iterations.\n\n## Input\n\nEach test consists of multiple sets of input data. The first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of sets of input data. This is followed by their description.\n\nThe first line of each set of input data contains two integers $n$ and $m$ ($1 \\leq n, m \\leq 100, n \\cdot m \\gt 1$) — the number of rows and columns of matrix $a$.\n\nThe next $n$ lines describe the corresponding rows of the matrix. The $i$-th line contains $m$ integers $a_{i1}, a_{i2}, \\ldots, a_{im}$ ($1 \\leq a_{ij} \\leq 10^9$).\n\nIt is guaranteed that the sum of $n \\cdot m$ over all sets of input data does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each set of input data, output $n$ lines with $m$ numbers in each line — the values of the cells of matrix $a$ after the stabilization algorithm.\n\n## Note\n\nIn the first set of input data, the algorithm will select the cell $(1, 1)$ twice in a row and then terminate.\n\n![image](https://espresso.codeforces.com/4fb67cacd44fc282a22834a916612099b73944ec.png)\n\nIn the second set of input data, there is no cell whose value is strictly greater than the values of all neighboring cells.\n\nIn the third set of input data, the algorithm will select the cell $(2, 2)$ and then terminate.\n\n![image](https://espresso.codeforces.com/aa9bd0c452993dee06dfd201c5ebf32191300904.png)\n\nIn the fourth set of input data, the algorithm will select the cell $(1, 1)$ three times and then the cell $(2, 3)$ twice.\n\n![image](https://espresso.codeforces.com/cd610d02f268dd1f49435964d3b84fc0174827ac.png)",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个大小为 $n \\times m$ 的矩阵，其中行从上到下编号为 $1$ 到 $n$，列从左到右编号为 $1$ 到 $m$。第 $i$ 行第 $j$ 列交叉处的元素记为 $a_{ij}$。\n\n考虑以下用于稳定矩阵 $a$ 的算法：\n\n1. 找到一个单元格 $(i, j)$，使得它的值严格大于所有相邻单元格的值。如果不存在这样的单元格，则终止算法。如果有多个满足条件的单元格，则选择 $i$ 最小的单元格；如果仍有多个，则选择 $j$ 最小的单元格。\n2. 将 $a_{ij} = a_{ij} - 1$。\n3. 返回第 $1$ 步。\n\n在本题中，如果单元格 $(a, b)$ 和 $(c, d)$ 具有公共边，即 $|a - c| + |b - d| = 1$，则认为它们相邻。\n\n你的任务是输出执行稳定化算法后的矩阵 $a$。可以证明，该算法不可能运行无限多次。\n\n## 输入格式\n\n每个测试包含多组输入数据。第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——输入数据的组数。接下来是每组输入数据的描述。\n\n每组输入数据的第一行包含两个整数 $n$ 和 $m$（$1 \\leq n, m \\leq 100, n \\cdot m \\gt 1$）——矩阵 $a$ 的行数和列数。\n\n接下来的 $n$ 行描述矩阵的对应行。第 $i$ 行包含 $m$ 个整数 $a_{i1}, a_{i2}, \\ldots, a_{im}$（$1 \\leq a_{ij} \\leq 10^9$）。\n\n保证所有输入数据组的 $n \\cdot m$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组输入数据，输出 $n$ 行，每行包含 $m$ 个数字——矩阵 $a$ 经过稳定化算法后的各单元格的值。\n\n## 说明\n\n在第一组输入数据中，算法会连续两次选择单元格 $(1, 1)$，然后终止。\n\n![image](https://espresso.codeforces.com/4fb67cacd44fc282a22834a916612099b73944ec.png)\n\n在第二组输入数据中，不存在值严格大于所有相邻单元格值的单元格。\n\n在第三组输入数据中，算法会选择单元格 $(2, 2)$，然后终止。\n\n![image](https://espresso.codeforces.com/aa9bd0c452993dee06dfd201c5ebf32191300904.png)\n\n在第四组输入数据中，算法会连续三次选择单元格 $(1, 1)$，然后连续两次选择单元格 $(2, 3)$。\n\n![image](https://espresso.codeforces.com/cd610d02f268dd1f49435964d3b84fc0174827ac.png)",
   "samples": [
     {
       "input": "6\n1 2\n3 1\n2 1\n1\n1\n2 2\n1 2\n3 4\n2 3\n7 4 5\n1 8 10\n5 4\n92 74 31 74\n74 92 17 7\n31 17 92 3\n74 7 3 92\n7 31 1 1\n3 3\n1000000000 1 1000000000\n1 1000000000 1\n1000000000 1 1000000000\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:08:45.674Z"
+  "fetchedAt": "2026-11-02T17:08:45.674Z",
+  "translatedAt": "2026-11-03T16:14:38.973+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

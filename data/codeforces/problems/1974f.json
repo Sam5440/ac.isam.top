@@ -4,7 +4,7 @@
   "contestId": 1974,
   "index": "F",
   "title": "Cutting Game",
-  "titleZh": null,
+  "titleZh": "切割游戏",
   "url": "https://codeforces.com/contest/1974/problem/F",
   "difficulty": 1900,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob were playing a game again. They have a grid of size $a \\times b$ ($1 \\le a, b \\le 10^9$), on which there are $n$ chips, with at most one chip in each cell. The cell at the intersection of the $x$-th row and the $y$-th column has coordinates $(x, y)$.\n\nAlice made the first move, and the players took turns. On each move, a player could cut several (but not all) rows or columns from the beginning or end of the remaining grid and earn a point for each chip that was on the cut part of the grid. Each move can be described by the character '`U`', '`D`', '`L`', or '`R`' and an integer $k$:\n\n- If the character is '`U`', then the first $k$ remaining rows will be cut;\n- If the character is '`D`', then the last $k$ remaining rows will be cut;\n- If the character is '`L`', then the first $k$ remaining columns will be cut;\n- If the character is '`R`', then the last $k$ remaining columns will be cut.\n\nBased on the initial state of the grid and the players' moves, determine the number of points earned by Alice and Bob, respectively.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains four integers $a$, $b$, $n$, and $m$ ($2 \\le a, b \\le 10^9$, $1 \\le n, m \\le 2 \\cdot 10^5$) — the dimensions of the grid, the number of chips, and the number of moves.\n\nEach of the next $n$ lines contain two integers $x_i$ and $y_i$ ($1 \\le x_i \\le a$, $1 \\le y_i \\le b$) — the coordinates of the chips. All pairs of coordinates are distinct.\n\nEach of the next $m$ lines contain a character $c_j$ and an integer $k_j$ — the description of the $j$-th move. It is guaranteed that $k$ is **less than** the number of rows/columns in the current grid. In other words, a player cannot cut the entire remaining grid on their move.\n\nIt is guaranteed that the sum of the values of $n$ across all test cases in the test does not exceed $2 \\cdot 10^5$. It is guaranteed that the sum of the values of $m$ across all test cases in the test does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output two integers — the number of points earned by Alice and Bob, respectively.\n\n## Note\n\nBelow is the game from the first example:\n\n![image](https://espresso.codeforces.com/6f4f4b12904b9769cd782a7ba3be048dab3599fa.png)\n\nOn her turn, Alice cut $2$ rows from the bottom and scored $2$ points, then Bob cut $1$ column from the right and scored one point. Note that if Bob had cut $1$ row from the bottom, he would have also scored $1$ point.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 又开始玩游戏了。他们有一个大小为 $a \\times b$ 的网格（$1 \\le a, b \\le 10^9$），网格中放有 $n$ 个筹码，每个单元格中至多有一个筹码。第 $x$ 行与第 $y$ 列交 intersect 的单元格坐标为 $(x, y)$。\n\nAlice 先手，双方轮流进行操作。每次操作中，玩家可以从当前剩余网格的开头或末尾切除若干行（但不能切除所有行），或若干列（但不能切除所有列），并获得切除部分中每个筹码对应的 1 分。每次操作可以用字符 '`U`'、'`D`'、'`L`' 或 '`R`' 以及一个整数 $k$ 描述：\n\n- 如果字符为 '`U`'，则切除当前剩余网格的前 $k$ 行；\n- 如果字符为 '`D`'，则切除当前剩余网格的后 $k$ 行；\n- 如果字符为 '`L`'，则切除当前剩余网格的前 $k$ 列；\n- 如果字符为 '`R`'，则切除当前剩余网格的后 $k$ 列。\n\n根据网格的初始状态以及双方的操作，确定 Alice 和 Bob 分别获得的分数。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含四个整数 $a$、$b$、$n$ 和 $m$（$2 \\le a, b \\le 10^9$，$1 \\le n, m \\le 2 \\cdot 10^5$）——网格的行数、列数，筹码数量以及操作次数。\n\n接下来的 $n$ 行中，每行包含两个整数 $x_i$ 和 $y_i$（$1 \\le x_i \\le a$，$1 \\le y_i \\le b$）——一个筹码的坐标。所有坐标对均不相同。\n\n接下来的 $m$ 行中，每行包含一个字符 $c_j$ 和一个整数 $k_j$——第 $j$ 次操作的描述。保证 $k$ **小于**当前网格中的行数或列数。换句话说，玩家不能在一次操作中切除整个剩余网格。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。保证所有测试用例中 $m$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出两个整数——Alice 和 Bob 分别获得的分数。\n\n## 说明\n\n下面是第一个样例中的游戏过程：\n\n![image](https://espresso.codeforces.com/6f4f4b12904b9769cd782a7ba3be048dab3599fa.png)\n\n在她的回合中，Alice 从底部切除了 $2$ 行，获得了 $2$ 分；随后 Bob 从右侧切除了一列，获得了 1 分。注意，如果 Bob 从底部切除一行，他同样也会获得 1 分。",
   "samples": [
     {
       "input": "6\n4 4 3 2\n4 1\n3 3\n2 4\nD 2\nR 1\n4 4 3 3\n4 1\n3 2\n2 3\nD 1\nL 1\nU 2\n3 5 3 2\n1 3\n2 2\n3 3\nR 2\nR 2\n6 4 4 2\n1 4\n2 3\n5 3\n1 1\nR 1\nU 1\n9 3 2 1\n6 1\n3 3\nD 8\n10 10 2 5\n7 5\n9 1\nR 1\nL 2\nD 1\nU 4\nD 1\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:09:23.210Z"
+  "fetchedAt": "2026-11-02T17:09:23.210Z",
+  "translatedAt": "2026-11-03T16:15:23.604+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1984,
   "index": "F",
   "title": "Reconstruction",
-  "titleZh": null,
+  "titleZh": "重建",
   "url": "https://codeforces.com/contest/1984/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a hidden array $a_1, a_2, \\ldots, a_n$ of length $n$ whose elements are integers between $-m$ and $m$, inclusive.\n\nYou are given an array $b_1, b_2, \\ldots, b_n$ of length $n$ and a string $s$ of length $n$ consisting of the characters $\\texttt{P}$, $\\texttt{S}$, and $\\texttt{?}$.\n\nFor each $i$ from $1$ to $n$ inclusive, we must have:\n\n- If $s_i = \\texttt{P}$, $b_i$ is the sum of $a_1$ through $a_i$.\n- If $s_i = \\texttt{S}$, $b_i$ is the sum of $a_i$ through $a_n$.\n\nOutput the number of ways to replace all $\\texttt{?}$ in $s$ with either $\\texttt{P}$ or $\\texttt{S}$ such that there exists an array $a_1, a_2, \\ldots, a_n$ with elements not exceeding $m$ by absolute value satisfying the constraints given by the array $b_1, b_2, \\ldots, b_n$ and the string $s$.\n\nSince the answer may be large, output it modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10^3$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\leq n \\leq 2 \\cdot 10^3$, $2 \\leq m \\leq 10^{9}$) — the length of the hidden array $a_1, a_2, \\ldots, a_n$ and the maximum absolute value of an element $a_i$.\n\nThe second line of each test case contains a string $s$ of length $n$ consisting of characters $\\texttt{P}$, $\\texttt{S}$, and $\\texttt{?}$.\n\nThe third line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($|b_i| \\leq m \\cdot n$).\n\nThe sum of $n$ over all test cases does not exceed $5 \\cdot 10^3$.\n\n## Output\n\nFor each test case, output a single integer — the number of ways to replace all $\\texttt{?}$ in $s$ with either $\\texttt{P}$ or $\\texttt{S}$ that result in the existence of a valid array $a_1, a_2, \\ldots, a_n$, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case, we can see that the following array satisfies all constraints, thus the answer is $1$:\n\n1. $\\texttt{P}$ — ${[\\color{red}{\\textbf{1}},3,4,2]}$: sum of $1$.\n2. $\\texttt{S}$ — ${[1,\\color{red}{\\textbf{3},4,2}]}$: sum of $9$.\n3. $\\texttt{P}$ — ${[\\color{red}{1,3,\\textbf{4}},2]}$: sum of $8$.\n4. $\\texttt{P}$ — ${[\\color{red}{1,3,4,\\textbf{2}}]}$: sum of $10$.\n\nIn the second test case, it can be shown that no array $a$ with all $|a_i| \\leq m = 10^9$ satisfies all constraints.",
-  "statementZhMd": null,
+  "statementZhMd": "有一个长度为 $n$ 的隐藏数组 $a_1, a_2, \\ldots, a_n$，其中每个元素都是介于 $-m$ 和 $m$（含边界）之间的整数。\n\n给定一个长度为 $n$ 的数组 $b_1, b_2, \\ldots, b_n$，以及一个长度为 $n$、由字符 $\\texttt{P}$、$\\texttt{S}$ 和 $\\texttt{?}$ 组成的字符串 $s$。\n\n对于每个 $1$ 到 $n$ 之间的整数 $i$（含边界），必须满足：\n\n- 如果 $s_i = \\texttt{P}$，则 $b_i$ 等于 $a_1$ 到 $a_i$ 的元素之和。\n- 如果 $s_i = \\texttt{S}$，则 $b_i$ 等于 $a_i$ 到 $a_n$ 的元素之和。\n\n请输出将 $s$ 中的所有 $\\texttt{?}$ 替换为 $\\texttt{P}$ 或 $\\texttt{S}$ 的方案数，使得存在一个数组 $a_1, a_2, \\ldots, a_n$，其元素的绝对值均不超过 $m$，并且满足数组 $b_1, b_2, \\ldots, b_n$ 和字符串 $s$ 给出的约束。\n\n由于答案可能很大，请将其对 $998\\,244\\,353$ 取模后输出。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^3$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 2 \\cdot 10^3$，$2 \\leq m \\leq 10^{9}$）——隐藏数组 $a_1, a_2, \\ldots, a_n$ 的长度，以及元素 $a_i$ 的最大绝对值。\n\n每个测试用例的第二行包含一个长度为 $n$ 的字符串 $s$，由字符 $\\texttt{P}$、$\\texttt{S}$ 和 $\\texttt{?}$ 组成。\n\n每个测试用例的第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$|b_i| \\leq m \\cdot n$）。\n\n所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^3$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——将 $s$ 中的所有 $\\texttt{?}$ 替换为 $\\texttt{P}$ 或 $\\texttt{S}$ 后，能够使得存在一个满足条件的数组 $a_1, a_2, \\ldots, a_n$ 的方案数。答案对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个测试用例中，可以看到下面的数组满足所有约束，因此答案为 $1$：\n\n1. $\\texttt{P}$ —— ${[\\color{red}{\\textbf{1}},3,4,2]}$：和为 $1$。\n2. $\\texttt{S}$ —— ${[1,\\color{red}{\\textbf{3},4,2}]}$：和为 $9$。\n3. $\\texttt{P}$ —— ${[\\color{red}{1,3,\\textbf{4}},2]}$：和为 $8$。\n4. $\\texttt{P}$ —— ${[\\color{red}{1,3,4,\\textbf{2}}]}$：和为 $10$。\n\n在第二个测试用例中，可以证明不存在满足所有约束且所有 $|a_i| \\leq m = 10^9$ 的数组 $a$。",
   "samples": [
     {
       "input": "6\n4 10\nPSPP\n1 9 8 10\n4 1000000000\n????\n1 1 1 4000000000\n8 1000000000\n?P?SSP?P\n-857095623 -1424391899 -851974476 673437144 471253851 -543483033 364945701 -178537332\n4 7\nPPSS\n4 2 1 3\n9 20\n?????????\n1 2 3 4 5 6 7 8 9\n3 1000000000\nP??\n-145463248 -974068460 -1287458396\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:50:17.462Z"
+  "fetchedAt": "2026-10-30T21:50:17.462Z",
+  "translatedAt": "2026-11-03T16:09:38.533+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

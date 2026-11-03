@@ -4,7 +4,7 @@
   "contestId": 2022,
   "index": "E1",
   "title": "Billetes MX (Easy Version)",
-  "titleZh": null,
+  "titleZh": "MX 纸币（简单版）",
   "url": "https://codeforces.com/contest/2022/problem/E1",
   "difficulty": 2500,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the easy version of the problem. In this version, it is guaranteed that $q = 0$. You can make hacks only if both versions of the problem are solved.**\n\nAn integer grid $A$ with $p$ rows and $q$ columns is called *beautiful* if:\n\n- All elements of the grid are integers between $0$ and $2^{30}-1$, and\n- For any subgrid, the XOR of the values at the corners is equal to $0$. Formally, for any four integers $i_1$, $i_2$, $j_1$, $j_2$ ($1 \\le i_1 \\lt i_2 \\le p$; $1 \\le j_1 \\lt j_2 \\le q$), $A_{i_1, j_1} \\oplus A_{i_1, j_2} \\oplus A_{i_2, j_1} \\oplus A_{i_2, j_2} = 0$, where $\\oplus$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\nThere is a partially filled integer grid $G$ with $n$ rows and $m$ columns where only $k$ cells are filled. Polycarp wants to know how many ways he can assign integers to the unfilled cells so that the grid is beautiful.\n\nHowever, Monocarp thinks that this problem is too easy. Therefore, he will perform $q$ updates on the grid. In each update, he will choose an unfilled cell and assign an integer to it. Note that these updates are **persistent**. That is, changes made to the grid will apply when processing future updates.\n\nFor each of the $q + 1$ states of the grid, the initial state and after each of the $q$ queries, determine the number of ways Polycarp can assign integers to the unfilled cells so that the grid is beautiful. Since this number can be very large, you are only required to output their values modulo $10^9+7$.\n\n## Input\n\nThe first line contains $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains four integers $n$, $m$, $k$ and $q$ ($2 \\le n, m \\le 10^5$; $0 \\le k \\le 10^5$; $q = 0$) — the number of rows, the number of columns, the number of fixed cells, and the number of updates.\n\nThe following $k$ lines contain three integers $r$, $c$ and $v$ ($1 \\le r \\le n, 1 \\le c \\le m$; $0 \\le v \\lt 2^{30}$) — indicating that $G_{r, c}$ is assigned the integer $v$.\n\nThe following $q$ lines contain three integers $r$, $c$ and $v$ ($1 \\le r \\le n, 1 \\le c \\le m$; $0 \\le v \\lt 2^{30}$) — indicating that $G_{r, c}$ is assigned the integer $v$.\n\nIt is guaranteed that the pairs $(r,c)$ over all assignments are distinct.\n\nIt is guaranteed that the sum of $n$, $m$, $k$ and $q$ over all test cases does not exceed $10^5$ respectively.\n\n## Output\n\nFor each test case, output $q + 1$ lines. The $i$-th line of output should contain the answer of the $i$-th state of the grid modulo $10^9 + 7$.\n\n## Note\n\nIn the first test case of the example, we have the following grid:\n\n$0$$6$$10$$6$$0$$12$$10$$12$$?$\n\nIt can be proven that the only valid value for tile $(3, 3)$ is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。在此版本中，保证 $q = 0$。只有在两个版本的问题都解决后，才能进行 hack。**\n\n一个有 $p$ 行 $q$ 列的整数网格 $A$ 被称为*美丽的*，当且仅当：\n\n- 网格中的所有元素都是 $0$ 到 $2^{30}-1$ 之间的整数；\n- 对于任意子网格，其四个角上的数值的 XOR 等于 $0$。形式化地说，对于任意四个整数 $i_1$、$i_2$、$j_1$、$j_2$（$1 \\le i_1 \\lt i_2 \\le p$；$1 \\le j_1 \\lt j_2 \\le q$），都有 $A_{i_1, j_1} \\oplus A_{i_1, j_2} \\oplus A_{i_2, j_1} \\oplus A_{i_2, j_2} = 0$，其中 $\\oplus$ 表示[按位 XOR 运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n现在有一个 $n$ 行 $m$ 列的部分填充整数网格 $G$，其中只有 $k$ 个单元格被填充。Polycarp 想知道，有多少种方法可以为未填充的单元格赋值，使得该网格是美丽的。\n\n然而，Monocarp 认为这个问题太简单了。因此，他将对网格进行 $q$ 次更新。每次更新中，他会选择一个未填充的单元格，并为其赋予一个整数。注意，这些更新是**持久的**。也就是说，对网格所做的更改会在处理后续更新时保留。\n\n对于网格的 $q + 1$ 个状态（初始状态以及每次查询后的状态），请确定 Polycarp 为未填充的单元格赋值、使网格美丽的方案数。由于该数值可能非常大，你只需输出其对 $10^9+7$ 取模后的结果。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含四个整数 $n$、$m$、$k$ 和 $q$（$2 \\le n, m \\le 10^5$；$0 \\le k \\le 10^5$；$q = 0$）——行数、列数、已固定的单元格数量以及更新次数。\n\n接下来的 $k$ 行每行包含三个整数 $r$、$c$ 和 $v$（$1 \\le r \\le n, 1 \\le c \\le m$；$0 \\le v \\lt 2^{30}$），表示将 $G_{r, c}$ 赋值为整数 $v$。\n\n接下来的 $q$ 行每行包含三个整数 $r$、$c$ 和 $v$（$1 \\le r \\le n, 1 \\le c \\le m$；$0 \\le v \\lt 2^{30}$），表示将 $G_{r, c}$ 赋值为整数 $v$。\n\n保证所有赋值涉及的坐标对 $(r,c)$ 互不相同。\n\n保证所有测试用例的 $n$ 之和、$m$ 之和、$k$ 之和以及 $q$ 之和分别不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q + 1$ 行。输出的第 $i$ 行应包含网格第 $i$ 个状态的答案对 $10^9 + 7$ 取模后的结果。\n\n## 说明\n\n在样例的第一个测试用例中，网格如下：\n\n$0$$6$$10$$6$$0$$12$$10$$12$$?$\n\n可以证明，单元格 $(3, 3)$ 的唯一合法取值为 $0$。",
   "samples": [
     {
       "input": "2\n3 3 8 0\n2 1 6\n3 2 12\n1 2 6\n2 2 0\n1 3 10\n1 1 0\n2 3 12\n3 1 10\n2 5 2 0\n1 1 10\n1 2 30\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:26.225Z"
+  "fetchedAt": "2026-10-30T21:41:26.225Z",
+  "translatedAt": "2026-11-03T15:50:31.902+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

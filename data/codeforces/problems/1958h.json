@@ -4,7 +4,7 @@
   "contestId": 1958,
   "index": "H",
   "title": "Composite Spells",
-  "titleZh": null,
+  "titleZh": "复合咒语",
   "url": "https://codeforces.com/contest/1958/problem/H",
   "difficulty": 2600,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp plays a fantasy RPG. His character is a mage, so he casts spells. There are two types of spells he knows — basic spells and composite spells.\n\nThere are $n$ basic spells in Monocarp's spell book, numbered from $1$ to $n$. Each basic spell simply changes the health of the target: either decreases it or increases it. The $i$-th basic spell changes the target's health value by $b_i$ (increases by $b_i$ if $b_i$ is non-negative, or decreases by $|b_i|$ if $b_i$ is negative). If the target's health value goes to $0$ or below, it dies, and all next spells cast at it do nothing.\n\nThere are also $m$ composite spells in the spell book, numbered from $n+1$ to $n+m$. Each composite spell is a sequence of other spells, cast in specific order. A composite spell can consist both of basic spells and composite spells; the $i$-th spell consists of $s_i$ other spells, and each of those spells has index strictly less than $i$ (so there is no situation that composite spells infinitely cast each other). So, actually, each composite spell can be considered a finite sequence of basic spells, although its length might be huge. Note that the same spell can appear in a composite spell multiple times.\n\nMonocarp has decided to cast the $(n+m)$-th spell from his spell book. The target of this spell is a monster with an initial health value of $hp$. Monocarp wants to know whether the monster will be killed or not, and if it will be killed, which basic spell will kill it.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nEach test case is given as follows:\n\n- the first line contains two integers $n$ and $hp$ ($1 \\le n \\le 5000$; $1 \\le hp \\le 10^{9}$) — the number of basic spells and the initial health value of the monster;\n- the second line contains $n$ integers $b_1, b_2, \\dots, b_n$ ($-10^9 \\le b_i \\le 10^9$) — the descriptions of basic spells;\n- the third line contains one integer $m$ ($1 \\le m \\le 5000$) — the number of composite spells;\n- then $m$ lines follow, the $i$-th of these lines describes the $(n+i)$-th spell: it begins with an integer $s_{n+i}$ ($1 \\le s_{n+i} \\le 5000$) denoting the length of the spell (the number of spells it consists of); then a sequence of integers from $1$ to $(n+i-1)$ follows, denoting the sequence of spells.\n\nAdditional constraints on the input:\n\n- the sum of $n$ over all test cases does not exceed $5000$;\n- the sum of $m$ over all test cases does not exceed $5000$;\n- the total length of all composite spells over all test cases does not exceed $5000$.\n\n## Output\n\nFor each test case, print one integer:\n\n- if the monster dies, print the index of the basic spell that kills the monster;\n- otherwise, print $-1$.",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 正在玩一款奇幻 RPG。他的角色是一名法师，因此可以施放咒语。他所掌握的咒语分为两种——基础咒语和复合咒语。\n\nMonocarp 的咒语书中有 $n$ 个基础咒语，编号从 $1$ 到 $n$。每个基础咒语只会改变目标的生命值：减少或增加生命值。第 $i$ 个基础咒语会使目标的生命值改变 $b_i$（当 $b_i$ 非负时增加 $b_i$，当 $b_i$ 为负时减少 $|b_i|$）。如果目标的生命值变为 $0$ 或更低，目标就会死亡，此后对其施放的所有咒语都不会产生任何效果。\n\n咒语书中还有 $m$ 个复合咒语，编号从 $n+1$ 到 $n+m$。每个复合咒语都是由其他咒语按特定顺序施放组成的序列。一个复合咒语可以由基础咒语和复合咒语组成；第 $i$ 个咒语由 $s_i$ 个其他咒语组成，并且其中每个咒语的编号都严格小于 $i$（因此不会出现复合咒语之间无限相互施放的情况）。所以，实际上每个复合咒语都可以看作一个有限的基础咒语序列，尽管其长度可能非常大。注意，同一个咒语可以在一个复合咒语中出现多次。\n\nMonocarp 决定施放咒语书中的第 $(n+m)$ 个咒语。该咒语的目标是一只初始生命值为 $hp$ 的怪物。Monocarp 想知道这只怪物是否会死亡；如果会死亡，还要知道杀死它的是哪个基础咒语。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。\n\n每个测试用例的输入如下：\n\n- 第一行包含两个整数 $n$ 和 $hp$（$1 \\le n \\le 5000$；$1 \\le hp \\le 10^{9}$）——基础咒语的数量以及怪物的初始生命值；\n- 第二行包含 $n$ 个整数 $b_1, b_2, \\dots, b_n$（$-10^9 \\le b_i \\le 10^9$）——基础咒语的描述；\n- 第三行包含一个整数 $m$（$1 \\le m \\le 5000$）——复合咒语的数量；\n- 接下来有 $m$ 行，第 $i$ 行描述第 $(n+i)$ 个咒语：首先包含一个整数 $s_{n+i}$（$1 \\le s_{n+i} \\le 5000$），表示该咒语的长度（由多少个咒语组成）；随后给出一个由 $1$ 到 $(n+i-1)$ 之间的整数构成的序列，表示其中咒语的施放顺序。\n\n输入还满足以下条件：\n\n- 所有测试用例中 $n$ 的总和不超过 $5000$；\n- 所有测试用例中 $m$ 的总和不超过 $5000$；\n- 所有测试用例中复合咒语长度的总和不超过 $5000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：\n\n- 如果怪物死亡，输出杀死怪物的基础咒语编号；\n- 否则，输出 $-1$。",
   "samples": [
     {
       "input": "4\n4 9\n1 -2 3 -4\n3\n3 1 4 3\n4 1 2 1 2\n6 6 5 6 5 6 5\n4 9\n1 -2 3 -4\n3\n3 1 4 3\n4 1 2 1 2\n7 6 5 6 5 6 6 5\n3 31\n-10 -20 30\n1\n6 1 2 3 1 2 3\n6 20\n-1 -5 -9 -7 -1 -1\n4\n3 6 5 2\n4 3 3 7 6\n6 4 8 4 4 6 7\n3 6 5 7\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:10:03.438Z"
+  "fetchedAt": "2026-11-02T17:10:03.438Z",
+  "translatedAt": "2026-11-03T16:15:34.084+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

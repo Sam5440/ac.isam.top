@@ -4,7 +4,7 @@
   "contestId": 1982,
   "index": "F",
   "title": "Sorting Problem Again",
-  "titleZh": null,
+  "titleZh": "再次排序问题",
   "url": "https://codeforces.com/contest/1982/problem/F",
   "difficulty": 2600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "You have an array $a$ of $n$ elements. There are also $q$ modifications of the array. Before the first modification and after each modification, you would like to know the following:\n\nWhat is the minimum length subarray that needs to be sorted in non-decreasing order in order for the array $a$ to be completely sorted in non-decreasing order?\n\nMore formally, you want to select a subarray of the array $(l, r)$ with the minimum value of $r - l + 1$. After that, you will sort the elements $a_{l}, a_{l + 1}, \\ldots, a_{r}$ and want the condition $a_{i} \\le a_{i + 1}$ to hold for all $1 \\le i \\lt n$. If the array is already sorted in non-decreasing order, then $l$ and $r$ should be considered as equal to $-1$.\n\nNote that finding such $(l, r)$ does not change the array in any way. The modifications themselves take the form: assign $a_{pos} = x$ for given $pos$ and $x$.\n\n## Input\n\nEach test consists of several test cases. The first line contains an integer $t$ ($1 \\le t \\le 10$) — the number of test cases. Then follows the description of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 5 \\cdot 10^{5}$).\n\nThe second line of each test case contains $n$ integers $a_{i}$ ($0 \\le |a_{i}| \\le 10^{9}$) — the initial elements of the array $a$.\n\nThe third line of each test case contains a number $q$ ($0 \\le q \\le 5 \\cdot 10^{5}$) — the number of modifications to the array.\n\nThe following $q$ lines of each test case contain two integers $pos_{i}$ ($1 \\le pos_{i} \\le n$) and $val_{i}$ ($0 \\le |val_{i}| \\le 10^{9}$) — this means that for the $i$-th modification, $a_{pos_{i}}$ is assigned the value $val_{i}$.\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ for all test cases does not exceed $5 \\cdot 10^{5}$.\n\n## Output\n\nFor each test case, output $q + 1$ lines. Each line should contain $2$ integers $l, r$ — the boundaries of the minimum subarray, such that sorting it will make the array $a$ completely sorted. If $a$ is already sorted, then output $l = -1$, $r = -1$.\n\n## Note\n\nLet's consider the first test case:\n\n- Initially, the array is sorted in non-decreasing order: $[2, 2, 3, 4, 5]$\n- After the first query, the array looks like this: $[\\color{red}{2}, \\color{red}{1}, 3, 4, 5]$.\n- After the second query, the array looks like this: $[\\color{red}{2}, \\color{red}{1}, \\color{red}{3}, \\color{red}{1}, 5]$.\n- After the third query, the array looks like this: $[1, 1, \\color{red}{3}, \\color{red}{1}, 5]$.\n\nThe red segments indicate the subarrays that need to be sorted in order for the entire array to be sorted in non-decreasing order.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个包含 $n$ 个元素的数组 $a$。此外，还会对该数组进行 $q$ 次修改。在第一次修改之前以及每次修改之后，你需要求出以下内容：\n\n为了使数组 $a$ 完全按非递减顺序排列，需要将其按非递减顺序排序的最短子数组长度是多少？\n\n更正式地说，你需要选择数组的一个子数组 $(l, r)$，使 $r - l + 1$ 最小。然后，将元素 $a_{l}, a_{l + 1}, \\ldots, a_{r}$ 排序，并使条件 $a_{i} \\le a_{i + 1}$ 对所有 $1 \\le i \\lt n$ 都成立。如果数组已经按非递减顺序排列，则应认为 $l$ 和 $r$ 均等于 $-1$。\n\n注意，寻找这样的 $(l, r)$ 不会以任何方式改变数组。修改的形式为：对于给定的 `pos` 和 `x`，将 $a_{pos} = x$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 5 \\cdot 10^{5}$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_{i}$（$0 \\le |a_{i}| \\le 10^{9}$）——数组 $a$ 的初始元素。\n\n每个测试用例的第三行包含一个整数 $q$（$0 \\le q \\le 5 \\cdot 10^{5}$）——对数组进行的修改次数。\n\n接下来的 $q$ 行中，每行包含两个整数 `pos_i`（$1 \\le pos_{i} \\le n$）和 `val_i`（$0 \\le |val_{i}| \\le 10^{9}$）——这表示在第 $i$ 次修改中，将 $a_{pos_{i}}$ 赋值为 $val_{i}$。\n\n保证所有测试用例的 $n$ 之和以及 $q$ 之和均不超过 $5 \\cdot 10^{5}$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q + 1$ 行。每行应包含两个整数 $l, r$——满足将其排序后数组 $a$ 将完全有序的最短子数组的边界。如果 $a$ 已经有序，则输出 $l = -1$，$r = -1$。\n\n## 说明\n\n考虑第一个测试用例：\n\n- 初始时，数组按非递减顺序排列：$[2, 2, 3, 4, 5]$\n- 第一次查询后，数组变为：$[\\color{red}{2}, \\color{red}{1}, 3, 4, 5]$。\n- 第二次查询后，数组变为：$[\\color{red}{2}, \\color{red}{1}, \\color{red}{3}, \\color{red}{1}, 5]$。\n- 第三次查询后，数组变为：$[1, 1, \\color{red}{3}, \\color{red}{1}, 5]$。\n\n红色部分表示为了使整个数组按非递减顺序排列而需要排序的子数组。",
   "samples": [
     {
       "input": "2\n5\n2 2 3 4 5\n3\n2 1\n4 1\n1 1\n5\n1 2 3 4 5\n9\n1 4\n2 3\n5 2\n3 1\n1 1\n5 1\n4 1\n3 1\n2 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:56:43.919Z"
+  "fetchedAt": "2026-10-30T21:56:43.919Z",
+  "translatedAt": "2026-11-03T16:06:41.790+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

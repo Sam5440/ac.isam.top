@@ -4,7 +4,7 @@
   "contestId": 1987,
   "index": "G1",
   "title": "Spinning Round (Easy Version)",
-  "titleZh": null,
+  "titleZh": "旋转一周（简单版）",
   "url": "https://codeforces.com/contest/1987/problem/G1",
   "difficulty": 2900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 1024,
   "statementMd": "**This is the easy version of the problem. The only difference between the two versions are the allowed characters in $s$. In the easy version, $s$ only contains the character `?`. You can make hacks only if both versions of the problem are solved.**\n\nYou are given a permutation $p$ of length $n$. You are also given a string $s$ of length $n$, consisting only of the character `?`.\n\nFor each $i$ from $1$ to $n$:\n\n- Define $l_i$ as the largest index $j \\lt i$ such that $p_j \\gt p_i$. If there is no such index, $l_i := i$.\n- Define $r_i$ as the smallest index $j \\gt i$ such that $p_j \\gt p_i$. If there is no such index, $r_i := i$.\n\nInitially, you have an undirected graph with $n$ vertices (numbered from $1$ to $n$) and no edges. Then, for each $i$ from $1$ to $n$, add one edge to the graph:\n\n- If $s_i =$ `L`, add the edge $(i, l_i)$ to the graph.\n- If $s_i =$ `R`, add the edge $(i, r_i)$ to the graph.\n- If $s_i =$ `?`, either add the edge $(i, l_i)$ or the edge $(i, r_i)$ to the graph at your choice.\n\nFind the maximum possible diameter$^{\\text{∗}}$ over all **connected** graphs that you can form. Output $-1$ if it is not possible to form any connected graphs.\n\n$^{\\text{∗}}$ Let $d(s, t)$ denote the smallest number of edges on any path between $s$ and $t$.The diameter of the graph is defined as the maximum value of $d(s, t)$ over all pairs of vertices $s$ and $t$.\n\n## Input\n\nEach test contains multiple test cases. The first line of input contains a single integer $t$ ($1 \\le t \\le 2 \\cdot 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 4 \\cdot 10^5$) — the length of the permutation $p$.\n\nThe second line of each test case contains $n$ integers $p_1,p_2,\\ldots, p_n$ ($1 \\le p_i \\le n$) — the elements of $p$, which are guaranteed to form a permutation.\n\nThe third line of each test case contains a string $s$ of length $n$. It is guaranteed that it consists only of the character `?`.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $4 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the maximum possible diameter over all connected graphs that you form, or $-1$ if it is not possible to form any connected graphs.\n\n## Note\n\nIn the first test case, here are some possible connected graphs that you can form (the labels are indices):\n\n![image](https://espresso.codeforces.com/74faae79f574a6aca01852e096e6d121660f76c2.png)![image](https://espresso.codeforces.com/48a5603d81ee30cf4a98b4ea91e071467271fb5c.png)![image](https://espresso.codeforces.com/42d0f10284dfc6e75adcce317e95a527cfba67d2.png)\n\nIn the second test case, the only connected graph has a diameter of $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "这是本题的简单版本。两个版本之间唯一的区别是 $s$ 中允许出现的字符。在简单版本中，$s$ 只包含字符 `?`。只有在两个版本的问题都解决后，才能进行 hack。\n\n给定一个长度为 $n$ 的排列 $p$。还给定一个长度为 $n$ 的字符串 $s$，其只由字符 `?` 组成。\n\n对于每个 $i$（从 $1$ 到 $n$）：\n\n- 定义 $l_i$ 为满足 $j \\lt i$ 且 $p_j \\gt p_i$ 的最大下标 $j$。如果不存在这样的下标，则令 $l_i := i$。\n- 定义 $r_i$ 为满足 $j \\gt i$ 且 $p_j \\gt p_i$ 的最小下标 $j$。如果不存在这样的下标，则令 $r_i := i$。\n\n初始时，有一个包含 $n$ 个顶点（编号从 $1$ 到 $n$）且没有边的无向图。然后，对于每个 $i$（从 $1$ 到 $n$），向图中加入一条边：\n\n- 如果 $s_i =$ `L`，则向图中加入边 $(i, l_i)$。\n- 如果 $s_i =$ `R`，则向图中加入边 $(i, r_i)$。\n- 如果 $s_i =$ `?`，则可以自行选择向图中加入边 $(i, l_i)$ 或边 $(i, r_i)$。\n\n求所有可以构造出的**连通**图中，直径$^{\\text{∗}}$的最大值。如果无法构造出任何连通图，输出 $-1$。\n\n$^{\\text{∗}}$ 令 $d(s, t)$ 表示 $s$ 与 $t$ 之间任意路径中边数的最小值。图的直径定义为所有顶点对 $s$ 和 $t$ 的 $d(s, t)$ 的最大值。\n\n## 输入格式\n\n每个测试包含多个测试用例。输入的第一行包含一个整数 $t$（$1 \\le t \\le 2 \\cdot 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 4 \\cdot 10^5$）——排列 $p$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $p_1,p_2,\\ldots, p_n$（$1 \\le p_i \\le n$）——排列 $p$ 的元素。保证这些元素构成一个排列。\n\n每个测试用例的第三行包含一个长度为 $n$ 的字符串 $s$。保证其只由字符 `?` 组成。\n\n保证所有测试用例的 $n$ 之和不超过 $4 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出所构造出的所有连通图中可能的最大直径；如果无法构造出任何连通图，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，以下是一些可以构造出的连通图（标签表示下标）：\n\n![image](https://espresso.codeforces.com/74faae79f574a6aca01852e096e6d121660f76c2.png)![image](https://espresso.codeforces.com/48a5603d81ee30cf4a98b4ea91e071467271fb5c.png)![image](https://espresso.codeforces.com/42d0f10284dfc6e75adcce317e95a527cfba67d2.png)\n\n在第二个测试用例中，唯一的连通图的直径为 $1$。",
   "samples": [
     {
       "input": "8\n5\n2 1 4 3 5\n?????\n2\n1 2\n??\n3\n3 1 2\n???\n7\n5 3 1 6 4 2 7\n???????\n5\n5 2 1 3 4\n?????\n6\n6 2 3 4 5 1\n??????\n8\n1 7 5 6 2 8 4 3\n????????\n12\n6 10 7 1 8 5 12 2 11 3 4 9\n????????????\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:50:09.416Z"
+  "fetchedAt": "2026-10-30T21:50:09.416Z",
+  "translatedAt": "2026-11-03T16:04:54.099+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

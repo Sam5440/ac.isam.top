@@ -4,7 +4,7 @@
   "contestId": 2061,
   "index": "F2",
   "title": "Kevin and Binary String (Hard Version)",
-  "titleZh": null,
+  "titleZh": "Kevin 与二进制字符串（困难版）",
   "url": "https://codeforces.com/contest/2061/problem/F2",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, string $t$ consists of '0', '1' and '?'. You can hack only if you solved all versions of this problem.**\n\nKevin has a binary string $s$ of length $n$. Kevin can perform the following operation:\n\n- Choose two adjacent blocks of $s$ and swap them.\n\nA block is a maximal substring$^{\\text{∗}}$ of identical characters. Formally, denote $s[l,r]$ as the substring $s_l s_{l+1} \\ldots s_r$. A block is $s[l,r]$ satisfying:\n\n- $l=1$ or $s_l\\not=s_{l-1}$.\n- $s_l=s_{l+1} = \\ldots = s_{r}$.\n- $r=n$ or $s_r\\not=s_{r+1}$.\n\nAdjacent blocks are two blocks $s[l_1,r_1]$ and $s[l_2,r_2]$ satisfying $r_1+1=l_2$.\n\nFor example, if $s=\\mathtt{000}\\,\\mathbf{11}\\,\\mathbf{00}\\,\\mathtt{111}$, Kevin can choose the two blocks $s[4,5]$ and $s[6,7]$ and swap them, transforming $s$ into $\\mathtt{000}\\,\\mathbf{00}\\,\\mathbf{11}\\,\\mathtt{111}$.\n\nGiven a string $t$ of length $n$ consisting of '0', '1' and '?', Kevin wants to determine the minimum number of operations required to perform such that for any index $i$ ($1\\le i\\le n$), if $t_i\\not=$ '?' then $s_i=t_i$. If it is impossible, output $-1$.\n\n$^{\\text{∗}}$A string $a$ is a substring of a string $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a string $s$ consisting of '0' and '1'.\n\nThe second line of each test case contains a string $t$ consisting of **'0', '1' and '?'**.\n\nIt is guaranteed that the lengths of $s$ and $t$ are the same.\n\nIt is guaranteed that the sum of the length of $s$ over all test cases will not exceed $4\\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer — the minimum number of operations required. If it is impossible, output $-1$.\n\n## Note\n\nIn the first test case of the first example, the possible way is shown in the statement.\n\nIn the second test case of the first example, one possible way could be:\n\n- Swap blocks $[2, 2], [3, 3]$, $s$ will become $\\mathtt{001101}$.\n- Swap blocks $[3, 4], [5, 5]$, $s$ will become $\\mathtt{000111}$.\n- Swap blocks $[1, 3], [4, 6]$, $s$ will become $\\mathtt{111000}$.\n\nIn the first test case of the second example, one possible way could be:\n\n- Swap blocks $[1, 1], [2, 2]$, $s$ will become $\\mathtt{100101}$.\n- Swap blocks $[4, 4], [5, 5]$, $s$ will become $\\mathtt{100011}$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版。与简单版的区别在于，本版本中的字符串 $t$ 由 '0'、'1' 和 '?' 组成。只有解决了本题所有版本后，才能进行 hack。**\n\nKevin 有一个长度为 $n$ 的二进制字符串 $s$。Kevin 可以进行以下操作：\n\n- 选择 $s$ 中两个相邻的块并交换它们。\n\n块是由相同字符构成的极大子串$^{\\text{∗}}$。形式化地，记 $s[l,r]$ 为子串 $s_l s_{l+1} \\ldots s_r$。如果 $s[l,r]$ 满足以下条件，则称其为一个块：\n\n- $l=1$ 或 $s_l\\not=s_{l-1}$。\n- $s_l=s_{l+1} = \\ldots = s_{r}$。\n- $r=n$ 或 $s_r\\not=s_{r+1}$。\n\n如果两个块 $s[l_1,r_1]$ 和 $s[l_2,r_2]$ 满足 $r_1+1=l_2$，则称它们相邻。\n\n例如，如果 $s=\\mathtt{000}\\,\\mathbf{11}\\,\\mathbf{00}\\,\\mathtt{111}$，Kevin 可以选择两个块 $s[4,5]$ 和 $s[6,7]$ 并交换它们，从而将 $s$ 变为 $\\mathtt{000}\\,\\mathbf{00}\\,\\mathbf{11}\\,\\mathtt{111}$。\n\n给定一个长度为 $n$、由 '0'、'1' 和 '?' 组成的字符串 $t$。Kevin 想要确定，至少需要进行多少次操作，才能使得对于任意下标 $i$（$1\\le i\\le n$），只要 $t_i\\not=$ '?'，就有 $s_i=t_i$。如果无法做到，输出 $-1$。\n\n$^{\\text{∗}}$如果可以通过删除字符串 $b$ 开头的若干个字符（可以为零个或全部）以及结尾的若干个字符（可以为零个或全部）得到字符串 $a$，则称 $a$ 是 $b$ 的子串。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个由 '0' 和 '1' 组成的字符串 $s$。\n\n每个测试用例的第二行包含一个由 **'0'、'1' 和 '?'** 组成的字符串 $t$。\n\n保证 $s$ 和 $t$ 的长度相同。\n\n保证所有测试用例中 $s$ 的长度之和不超过 $4\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——所需的最少操作次数。如果无法做到，输出 $-1$。\n\n## 说明\n\n第一个样例的第一个测试用例中，一种可行方案如题面所示。\n\n第一个样例的第二个测试用例中，一种可行方案如下：\n\n- 交换块 $[2, 2], [3, 3]$，此时 $s$ 变为 $\\mathtt{001101}$。\n- 交换块 $[3, 4], [5, 5]$，此时 $s$ 变为 $\\mathtt{000111}$。\n- 交换块 $[1, 3], [4, 6]$，此时 $s$ 变为 $\\mathtt{111000}$。\n\n第二个样例的第一个测试用例中，一种可行方案如下：\n\n- 交换块 $[1, 1], [2, 2]$，此时 $s$ 变为 $\\mathtt{100101}$。\n- 交换块 $[4, 4], [5, 5]$，此时 $s$ 变为 $\\mathtt{100011}$。",
   "samples": [
     {
       "input": "6\n0001100111\n0000011111\n010101\n111000\n0101\n0110\n0101\n1010\n011001\n001110\n0\n1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:32:26.558Z"
+  "fetchedAt": "2026-10-30T21:32:26.558Z",
+  "translatedAt": "2026-11-03T14:52:52.003+08:00",
+  "translateModel": "gpt-6.1-sol"
 }

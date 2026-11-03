@@ -4,7 +4,7 @@
   "contestId": 2046,
   "index": "F1",
   "title": "Yandex Cuneiform (Easy Version)",
-  "titleZh": null,
+  "titleZh": "Yandex Cuneiform (Easy Version)",
   "url": "https://codeforces.com/contest/2046/problem/F1",
   "difficulty": 3300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, there are no question marks. You can hack only if you solved all versions of this problem.**\n\nFor a long time, no one could decipher Sumerian cuneiform. However, it has finally succumbed to pressure! Today, you have the chance to decipher Yandex cuneiform.\n\nYandex cuneiform is defined by the following rules:\n\n1. An empty string is a Yandex cuneiform.\n2. If you insert exactly one copy of each of the three letters '`Y`', '`D`', and '`X`' into a Yandex cuneiform in such a way that no two adjacent letters become equal after the operation, you obtain a Yandex cuneiform.\n3. If a string can't be obtained using the above rules, it is not a Yandex cuneiform.\n\nYou are given a template. A template is a string consisting of the characters '`Y`', '`D`', '`X`', and '`?`'.\n\nYou need to check whether there exists a way to replace each question mark with '`Y`', '`D`', or '`X`' to obtain a Yandex cuneiform, and if it exists, output any of the matching options, as well as a sequence of insertion operations to obtain the resulting cuneiform.\n\nIn this version of the problem, there are **no question marks** in the template.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 5 \\cdot 10^4$). The description of the test cases follows.\n\nEach test case consists of a single line containing a template of length $n$ ($3 \\leq n \\lt 2 \\cdot 10^5$, $n \\bmod 3 = 0$), consisting only of characters '`Y`', '`D`', '`X`'.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single line containing '`NO`' if it is not possible to obtain a cuneiform from the given template.\n\nOtherwise, output '`YES`' on the first line, and on the second line, any obtainable cuneiform. After that, you need to output the sequence of operations that leads to the cuneiform you printed.\n\nA sequence of operations is described by $\\frac{n}{3}$ triples of pairs. A pair has the form `c p`, where $c$ is one of the letters '`Y`', '`D`', or '`X`', and $p$ is the position at which the letter $c$ should be inserted. The insertion position is the number of letters to skip from the beginning of the string for the insertion. For example, after inserting the character '`D`' into the string \"`YDX`\" with $p=3$, the result is \"`YDXD`\", and with $p=0$, it is \"`DYDX`\". Note that the index cannot exceed the current length of the string.\n\nThe operations are applied from top to bottom, left to right. After inserting each triple to the string, there should be no two adjacent identical characters.\n\n## Note\n\nIn the second example, the string is transformed like this: $\"\" \\to \\mathtt{YDX} \\to \\mathtt{YDXDYX}$.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"Yandex 楔形文字（简单版）\",\"bodyZh\":\"**这是本题的简单版本。两个版本之间的区别在于，本版本中不存在问号。只有解决了本题的所有版本后，才能进行 hack。**\\n\\n长久以来，没有人能够破译苏美尔楔形文字。然而，它最终还是屈服于压力！今天，你有机会破译 Yandex 楔形文字。\\n\\nYandex 楔形文字由以下规则定义：\\n\\n1. 空字符串是 Yandex 楔形文字。\\n2. 如果向一个 Yandex 楔形文字中插入三个字母 '`Y`'、'`D`' 和 '`X`' 各恰好一次，并且操作后不存在两个相邻且相等的字母，那么得到的字符串也是一个 Yandex 楔形文字。\\n3. 如果一个字符串无法通过上述规则得到，那么它不是 Yandex 楔形文字。\\n\\n给定一个模板。模板是一个由字符 '`Y`'、'`D`'、'`X`' 和 '`?`' 组成的字符串。\\n\\n你需要判断是否存在一种替换每个问号的方法，使其得到一个 Yandex 楔形文字；如果存在，则输出任意一种满足条件的替换方案，以及得到该楔形文字所需的一系列插入操作。\\n\\n在本版本中，模板中**不存在问号**。\\n\\n## 输入格式\\n\\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\\\le t \\\\le 5 \\\\cdot 10^4$）。接下来是各测试用例的描述。\\n\\n每个测试用例包含一行，其中有一个长度为 $n$ 的模板（$3 \\\\leq n \\\\lt 2 \\\\cdot 10^5$，$n \\\\bmod 3 = 0$），且模板仅由字符 '`Y`'、'`D`'、'`X`' 组成。\\n\\n保证所有测试用例的 $n$ 之和不超过 $2 \\\\cdot 10^5$。\\n\\n## 输出格式\\n\\n对于每个测试用例，如果无法从给定模板得到楔形文字，输出一行 '`NO`'。\\n\\n否则，在第一行输出 '`YES`'，在第二行输出任意一个可以得到的楔形文字。之后，还需要输出能够得到你所输出楔形文字的操作序列。\\n\\n操作序列由 $\\\\frac{n}{3}$ 个二元组组成。每个二元组的形式为 `c p`，其中 $c$ 是字母 '`Y`'、'`D`' 或 '`X`' 之一，$p$ 是插入字母 $c$ 的位置。插入位置 $p$ 表示从字符串开头开始需要跳过的字母数量。例如，在字符串 \"`YDX`\" 中插入字符 '`D`' 时，若 $p=3$，结果为 \"`YDXD`\"；若 $p=0$，结果为 \"`DYDX`\"。注意，索引不能超过当前字符串的长度。\\n\\n操作按照从上到下、从左到右的顺序执行。每插入一个三元组后，字符串中都不能存在两个相邻且相同的字符。\\n\\n## 说明\\n\\n在第二个样例中，字符串的变化过程如下：$\\\"\\\" \\\\to \\\\mathtt{YDX} \\\\to \\\\mathtt{YDXDYX}$。\"}",
   "samples": [
     {
       "input": "4\nYDX\nYDXDYX\nYDX\nDYYDXYXYX\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:39:38.958Z"
+  "fetchedAt": "2026-10-30T21:39:38.958Z",
+  "translatedAt": "2026-11-03T15:00:38.394+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

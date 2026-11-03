@@ -4,7 +4,7 @@
   "contestId": 2028,
   "index": "B",
   "title": "Alice's Adventures in Permuting",
-  "titleZh": null,
+  "titleZh": "爱丽丝的排列历险记",
   "url": "https://codeforces.com/contest/2028/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Alice mixed up the words transmutation and permutation! She has an array $a$ specified via three integers $n$, $b$, $c$: the array $a$ has length $n$ and is given via $a_i = b\\cdot (i - 1) + c$ for $1\\le i\\le n$. For example, if $n=3$, $b=2$, and $c=1$, then $a=[2 \\cdot 0 + 1, 2 \\cdot 1 + 1, 2 \\cdot 2 + 1] = [1, 3, 5]$.\n\nNow, Alice really enjoys permutations of $[0, \\ldots, n-1]$$^{\\text{∗}}$ and would like to transform $a$ into a permutation. In one operation, Alice replaces the maximum element of $a$ with the $\\operatorname{MEX}$$^{\\text{†}}$ of $a$. If there are multiple maximum elements in $a$, Alice chooses the leftmost one to replace.\n\nCan you help Alice figure out how many operations she has to do for $a$ to become a permutation for the first time? If it is impossible, you should report it.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $0$ to $n-1$ in arbitrary order. **Please note, this is slightly different from the usual definition of a permutation.** For example, $[1,2,0,4,3]$ is a permutation, but $[0,1,1]$ is not a permutation ($1$ appears twice in the array), and $[0,2,3]$ is also not a permutation ($n=3$ but there is $3$ in the array).$^{\\text{†}}$The $\\operatorname{MEX}$ of an array is the smallest non-negative integer that does not belong to the array. For example, the $\\operatorname{MEX}$ of $[0, 3, 1, 3]$ is $2$ and the $\\operatorname{MEX}$ of $[5]$ is $0$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^5$). The description of the test cases follows.\n\nThe only line of each test case contains three integers $n$, $b$, $c$ ($1\\le n\\le 10^{18}$; $0\\le b$, $c\\le 10^{18}$) — the parameters of the array.\n\n## Output\n\nFor each test case, if the array can never become a permutation, output $-1$. Otherwise, output the minimum number of operations for the array to become a permutation.\n\n## Note\n\nIn the first test case, the array is already $[0, 1, \\ldots, 9]$, so no operations are required.\n\nIn the third test case, the starting array is $[1, 3, 5, \\ldots, 199]$. After the first operation, the $199$ gets transformed into a $0$. In the second operation, the $197$ gets transformed into a $2$. If we continue this, it will take exactly $50$ operations to get the array $[0, 1, 2, 3, \\ldots, 99]$.\n\nIn the fourth test case, two operations are needed: $[1,1,1] \\to [0,1,1] \\to [0,2,1]$.\n\nIn the fifth test case, the process is $[0,0,0] \\to [1,0,0] \\to [2,0,0] \\to [1,0,0] \\to [2,0,0]$. This process repeats forever, so the array is never a permutation and the answer is $-1$.",
-  "statementZhMd": null,
+  "statementZhMd": "爱丽丝把“嬗变（transmutation）”和“排列（permutation）”这两个词搞混了！她有一个由三个整数 $n$、$b$、$c$ 确定的数组 $a$：数组 $a$ 的长度为 $n$，其中 $a_i = b\\cdot (i - 1) + c$（$1\\le i\\le n$）。例如，若 $n=3$、$b=2$、$c=1$，则 $a=[2 \\cdot 0 + 1, 2 \\cdot 1 + 1, 2 \\cdot 2 + 1] = [1, 3, 5]$。\n\n现在，爱丽丝非常喜欢 $[0, \\ldots, n-1]$$^{\\text{∗}}$ 的排列，并希望把 $a$ 变换成一个排列。每次操作中，爱丽丝会用 $a$ 的 $\\operatorname{MEX}$$^{\\text{†}}$ 替换 $a$ 中的最大元素。如果 $a$ 中有多个最大元素，爱丽丝会选择最左边的那个进行替换。\n\n你能帮爱丽丝求出使 $a$ 第一次变成排列所需的操作次数吗？如果不可能做到，你需要指出这一点。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是由 $n$ 个互不相同的、取自 $0$ 到 $n-1$ 的整数按任意顺序组成的数组。**请注意，这与通常的排列定义略有不同。**例如，$[1,2,0,4,3]$ 是一个排列，而 $[0,1,1]$ 不是排列（$1$ 在数组中出现了两次），$[0,2,3]$ 也不是排列（$n=3$ 但数组中出现了 $3$）。$^{\\text{†}}$数组的 $\\operatorname{MEX}$ 是不属于该数组的最小非负整数。例如，$[0, 3, 1, 3]$ 的 $\\operatorname{MEX}$ 是 $2$，而 $[5]$ 的 $\\operatorname{MEX}$ 是 $0$。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^5$）。接下来是各组测试数据的描述。\n\n每组测试数据仅一行，包含三个整数 $n$、$b$、$c$（$1\\le n\\le 10^{18}$；$0\\le b$, $c\\le 10^{18}$）——数组的三个参数。\n\n## 输出格式\n\n对于每组测试数据，如果数组永远无法变成排列，输出 $-1$；否则，输出使数组变成排列的最少操作次数。\n\n## 说明\n\n在第一组测试数据中，数组已经是 $[0, 1, \\ldots, 9]$，因此无需任何操作。\n\n在第三组测试数据中，初始数组为 $[1, 3, 5, \\ldots, 199]$。第一次操作后，$199$ 被替换为 $0$；第二次操作中，$197$ 被替换为 $2$。照此进行下去，恰好需要 $50$ 次操作才能得到数组 $[0, 1, 2, 3, \\ldots, 99]$。\n\n在第四组测试数据中，需要两次操作：$[1,1,1] \\to [0,1,1] \\to [0,2,1]$。\n\n在第五组测试数据中，过程为 $[0,0,0] \\to [1,0,0] \\to [2,0,0] \\to [1,0,0] \\to [2,0,0]$。该过程会永远重复下去，因此数组永远无法成为排列，答案为 $-1$。",
   "samples": [
     {
       "input": "7\n10 1 0\n1 2 3\n100 2 1\n3 0 1\n3 0 0\n1000000000000000000 0 0\n1000000000000000000 1000000000000000000 1000000000000000000\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:54.054Z"
+  "fetchedAt": "2026-10-30T21:40:54.054Z",
+  "translatedAt": "2026-11-03T15:26:18.460+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

@@ -4,7 +4,7 @@
   "contestId": 1992,
   "index": "C",
   "title": "Gorilla and Permutation",
-  "titleZh": null,
+  "titleZh": "猩猩与排列",
   "url": "https://codeforces.com/contest/1992/problem/C",
   "difficulty": 900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Gorilla and Noobish_Monk found three numbers $n$, $m$, and $k$ ($m \\lt k$). They decided to construct a permutation$^{\\dagger}$ of length $n$.\n\nFor the permutation, Noobish_Monk came up with the following function: $g(i)$ is the sum of all the numbers in the permutation on a prefix of length $i$ that are not greater than $m$. Similarly, Gorilla came up with the function $f$, where $f(i)$ is the sum of all the numbers in the permutation on a prefix of length $i$ that are not less than $k$. A prefix of length $i$ is a subarray consisting of the first $i$ elements of the original array.\n\nFor example, if $n = 5$, $m = 2$, $k = 5$, and the permutation is $[5, 3, 4, 1, 2]$, then:\n\n- $f(1) = 5$, because $5 \\ge 5$; $g(1) = 0$, because $5 \\gt 2$;\n- $f(2) = 5$, because $3 \\lt 5$; $g(2) = 0$, because $3 \\gt 2$;\n- $f(3) = 5$, because $4 \\lt 5$; $g(3) = 0$, because $4 \\gt 2$;\n- $f(4) = 5$, because $1 \\lt 5$; $g(4) = 1$, because $1 \\le 2$;\n- $f(5) = 5$, because $2 \\lt 5$; $g(5) = 1 + 2 = 3$, because $2 \\le 2$.\n\nHelp them find a permutation for which the value of $\\left(\\sum_{i=1}^n f(i) - \\sum_{i=1}^n g(i)\\right)$ is maximized.\n\n$^{\\dagger}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in any order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation (as $2$ appears twice in the array) and $[1,3,4]$ is also not a permutation (as $n=3$, but $4$ appears in the array).\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$)  — the number of test cases.\n\nThe only line of each case contains three integers $n$, $m$, $k$ ($2\\le n \\le 10^5$; $1 \\le m \\lt k \\le n$) — the size of the permutation to be constructed and two integers.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the permutation  — a set of numbers that satisfies the conditions of the problem. If there are multiple solutions, output any of them.\n\n## Note\n\nIn the first example, $\\left(\\sum_{i=1}^n f(i) - \\sum_{i=1}^n g(i)\\right) = 5 \\cdot 5 - (0 \\cdot 3 + 1 + 3) = 25 - 4 = 21$",
-  "statementZhMd": null,
+  "statementZhMd": "猩猩和 Noobish_Monk 找到了三个数 $n$、$m$ 和 $k$（$m \\lt k$）。他们决定构造一个长度为 $n$ 的排列$^{\\dagger}$。\n\n对于这个排列，Noobish_Monk 定义了如下函数：$g(i)$ 表示排列的长度为 $i$ 的前缀中所有不大于 $m$ 的数字之和。类似地，猩猩定义了函数 $f$，其中 $f(i)$ 表示排列的长度为 $i$ 的前缀中所有不小于 $k$ 的数字之和。长度为 $i$ 的前缀是指由原数组的前 $i$ 个元素组成的子数组。\n\n例如，当 $n = 5$、$m = 2$、$k = 5$，且排列为 $[5, 3, 4, 1, 2]$ 时：\n\n- $f(1) = 5$，因为 $5 \\ge 5$；$g(1) = 0$，因为 $5 \\gt 2$；\n- $f(2) = 5$，因为 $3 \\lt 5$；$g(2) = 0$，因为 $3 \\gt 2$；\n- $f(3) = 5$，因为 $4 \\lt 5$；$g(3) = 0$，因为 $4 \\gt 2$；\n- $f(4) = 5$，因为 $1 \\lt 5$；$g(4) = 1$，因为 $1 \\le 2$；\n- $f(5) = 5$，因为 $2 \\lt 5$；$g(5) = 1 + 2 = 3$，因为 $2 \\le 2$。\n\n请帮助他们找出一个排列，使得 $\\left(\\sum_{i=1}^n f(i) - \\sum_{i=1}^n g(i)\\right)$ 的值最大。\n\n$^{\\dagger}$长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（因为数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（因为 $n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例仅一行，包含三个整数 $n$、$m$、$k$（$2\\le n \\le 10^5$；$1 \\le m \\lt k \\le n$）——要构造的排列的长度以及两个整数。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出满足题目条件的排列——一个由数字组成的序列。如果有多种答案，输出任意一种即可。\n\n## 说明\n\n在第一个样例中，$\\left(\\sum_{i=1}^n f(i) - \\sum_{i=1}^n g(i)\\right) = 5 \\cdot 5 - (0 \\cdot 3 + 1 + 3) = 25 - 4 = 21$",
   "samples": [
     {
       "input": "3\n5 2 5\n3 1 3\n10 3 8\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:08:28.999Z"
+  "fetchedAt": "2026-11-02T17:08:28.999Z",
+  "translatedAt": "2026-11-03T16:09:37.387+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

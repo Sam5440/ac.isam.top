@@ -4,7 +4,7 @@
   "contestId": 2023,
   "index": "D",
   "title": "Many Games",
-  "titleZh": null,
+  "titleZh": "许多游戏",
   "url": "https://codeforces.com/contest/2023/problem/D",
   "difficulty": 2900,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Recently, you received a rare ticket to the only casino in the world where you can actually earn something, and you want to take full advantage of this opportunity.\n\nThe conditions in this casino are as follows:\n\n- There are a total of $n$ games in the casino.\n- You can play each game **at most once**.\n- Each game is characterized by two parameters: $p_i$ ($1 \\le p_i \\le 100$) and $w_i$ — the probability of winning the game in percentage and the winnings for a win.\n- If you lose in any game you decide to play, you will receive nothing at all (even for the games you won).\n\nYou need to choose a set of games in advance that you will play in such a way as to maximize the expected value of your winnings.\n\nIn this case, if you choose to play the games with indices $i_1 \\lt i_2 \\lt \\ldots \\lt i_k$, you will win in all of them with a probability of $\\prod\\limits_{j=1}^k \\frac{p_{i_j}}{100}$, and in that case, your winnings will be equal to $\\sum\\limits_{j=1}^k w_{i_j}$.\n\nThat is, the expected value of your winnings will be $\\left(\\prod\\limits_{j=1}^k \\frac{p_{i_j}}{100}\\right) \\cdot \\left(\\sum\\limits_{j=1}^k w_{i_j}\\right)$.\n\nTo avoid going bankrupt, the casino owners have limited the expected value of winnings for each individual game. Thus, for all $i$ ($1 \\le i \\le n$), it holds that $w_i \\cdot p_i \\le 2 \\cdot 10^5$.\n\nYour task is to find the maximum expected value of winnings that can be obtained by choosing some set of games in the casino.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of games offered to play.\n\nThe $i$-th of the following $n$ lines contains two integers $p_i$ and $w_i$ ($1 \\leq p_i \\leq 100$, $1 \\leq w_i, p_i \\cdot w_i \\leq 2 \\cdot 10^5$) — the probability of winning and the size of the winnings in the $i$-th game.\n\n## Output\n\nOutput a single number — the maximum expected value of winnings in the casino that can be obtained by choosing some subset of games.\n\nYour answer will be accepted if the relative or absolute error does not exceed $10^{-6}$. Formally, if $a$ is your answer and $b$ is the jury's answer, it will be accepted if $\\frac{|a-b|}{\\max(b, 1)} \\le 10^{-6}$.\n\n## Note\n\nIn the first example, you can choose the first and third games. In this case, the expected value of winnings will be $\\left(\\frac{p_1}{100}\\cdot \\frac{p_3}{100}\\right) \\cdot (w_1 + w_3) = \\left(\\frac{80}{100}\\cdot \\frac{50}{100}\\right) \\cdot (80 + 200) = 112$.\n\nIn the second example, you can choose the first and second games. In this case, the expected value of winnings will be $\\left(\\frac{p_1}{100}\\cdot \\frac{p_2}{100}\\right) \\cdot (w_1 + w_2) = \\left(\\frac{100}{100}\\cdot \\frac{100}{100}\\right) \\cdot (1 + 1) = 2$.\n\nIn the third example, you can choose only the second game. In this case, the expected value of winnings will be $\\frac{p_2}{100} \\cdot w_2 = \\frac{2}{100} \\cdot 1000 = 20$.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，你获得了一张稀有的门票，可以进入世界上唯一一家真正能够赢钱的赌场。你希望充分利用这次机会。\n\n这家赌场的规则如下：\n\n- 赌场中共有 $n$ 个游戏。\n- 每个游戏**至多可以进行一次**。\n- 每个游戏由两个参数描述：$p_i$（$1 \\le p_i \\le 100$）和 $w_i$，分别表示赢得该游戏的概率（百分比）以及获胜时的奖金。\n- 如果你决定进行的任何一个游戏失败了，那么你将什么都得不到（即使之前进行的游戏获胜了，也无法获得奖金）。\n\n你需要提前选择一组游戏进行，使所得奖金的期望值最大。\n\n如果你选择进行编号为 $i_1 \\lt i_2 \\lt \\ldots \\lt i_k$ 的游戏，那么全部获胜的概率为 $\\prod\\limits_{j=1}^k \\frac{p_{i_j}}{100}$，此时你获得的奖金为 $\\sum\\limits_{j=1}^k w_{i_j}$。\n\n因此，你所得奖金的期望值为 $\\left(\\prod\\limits_{j=1}^k \\frac{p_{i_j}}{100}\\right) \\cdot \\left(\\sum\\limits_{j=1}^k w_{i_j}\\right)$。\n\n为了避免破产，赌场老板限制了每个单独游戏的奖金期望值。因此，对于所有的 $i$（$1 \\le i \\le n$），均满足 $w_i \\cdot p_i \\le 2 \\cdot 10^5$。\n\n你的任务是求出在赌场中选择某些游戏后所能获得的最大奖金期望值。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——提供进行的游戏数量。\n\n接下来的 $n$ 行中，第 $i$ 行包含两个整数 $p_i$ 和 $w_i$（$1 \\leq p_i \\leq 100$，$1 \\leq w_i, p_i \\cdot w_i \\leq 2 \\cdot 10^5$）——第 $i$ 个游戏的获胜概率以及获胜时的奖金。\n\n## 输出格式\n\n输出一个数——通过选择赌场中的某个游戏子集所能获得的最大奖金期望值。\n\n如果相对误差或绝对误差不超过 $10^{-6}$，你的答案将被接受。形式化地说，设 $a$ 为你的答案，$b$ 为标准答案，则当 $\\frac{|a-b|}{\\max(b, 1)} \\le 10^{-6}$ 时，答案将被接受。\n\n## 说明\n\n在第一个样例中，你可以选择第一个和第三个游戏。此时，奖金期望值为 $\\left(\\frac{p_1}{100}\\cdot \\frac{p_3}{100}\\right) \\cdot (w_1 + w_3) = \\left(\\frac{80}{100}\\cdot \\frac{50}{100}\\right) \\cdot (80 + 200) = 112$。\n\n在第二个样例中，你可以选择第一个和第二个游戏。此时，奖金期望值为 $\\left(\\frac{p_1}{100}\\cdot \\frac{p_2}{100}\\right) \\cdot (w_1 + w_2) = \\left(\\frac{100}{100}\\cdot \\frac{100}{100}\\right) \\cdot (1 + 1) = 2$。\n\n在第三个样例中，你可以只选择第二个游戏。此时，奖金期望值为 $\\frac{p_2}{100} \\cdot w_2 = \\frac{2}{100} \\cdot 1000 = 20$。",
   "samples": [
     {
       "input": "3\n80 80\n70 100\n50 200\n",
@@ -42,5 +42,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:18.540Z"
+  "fetchedAt": "2026-10-30T21:41:18.540Z",
+  "translatedAt": "2026-11-03T15:51:34.174+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

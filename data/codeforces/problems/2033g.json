@@ -4,7 +4,7 @@
   "contestId": 2033,
   "index": "G",
   "title": "Sakurako and Chefir",
-  "titleZh": null,
+  "titleZh": "Sakurako 与 Chefir",
   "url": "https://codeforces.com/contest/2033/problem/G",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Given a tree with $n$ vertices rooted at vertex $1$. While walking through it with her cat Chefir, Sakurako got distracted, and Chefir ran away.\n\nTo help Sakurako, Kosuke recorded his $q$ guesses. In the $i$-th guess, he assumes that Chefir got lost at vertex $v_i$ and had $k_i$ *stamina*.\n\nAlso, for each guess, Kosuke assumes that Chefir could move along the edges an arbitrary number of times:\n\n- from vertex $a$ to vertex $b$, if $a$ **is an ancestor**$^{\\text{∗}}$ of $b$, the *stamina* will not change;\n- from vertex $a$ to vertex $b$, if $a$ **is not an ancestor** of $b$, then Chefir's *stamina* decreases by $1$.\n\nIf Chefir's *stamina* is $0$, he cannot make a move of the second type.\n\nFor each assumption, your task is to find the distance to the farthest vertex that Chefir could reach from vertex $v_i$, having $k_i$ *stamina*.\n\n$^{\\text{∗}}$Vertex $a$ is an ancestor of vertex $b$ if the shortest path from $b$ to the root passes through $a$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of test cases.\n\nEach test case is described as follows:\n\n- The first line contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices in the tree.\n- The next $n-1$ lines contain the edges of the tree. It is guaranteed that the given edges form a tree.\n- The next line consists of a single integer $q$ $(1\\le q\\le 2 \\cdot 10^5)$, which denotes the number of guesses made by Kosuke.\n- The next $q$ lines describe the guesses made by Kosuke, with two integers $v_i$, $k_i$ $(1\\le v_i \\le n, 0 \\le k_i\\le n)$.\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ across all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case and for each guess, output the maximum distance to the farthest vertex that Chefir could reach from the starting point $v_i$ having $k_i$ *stamina*.\n\n## Note\n\nIn the first example:\n\n- In the first query, you can go from vertex $5$ to vertex $3$ (after which your stamina will decrease by $1$ and become $0$), and then you can go to vertex $4$;\n- In the second query, from vertex $3$ with $1$ stamina, you can only reach vertices $2$, $3$, $4$, and $5$;\n- In the third query, from vertex $2$ with $0$ stamina, you can only reach vertices $2$, $3$, $4$, and $5$;",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵有 $n$ 个顶点、以顶点 $1$ 为根的树。Sakurako 带着她的猫 Chefir 在树中行走时分了心，结果 Chefir 跑丢了。\n\n为了帮助 Sakurako，Kosuke 记录了他的 $q$ 个猜测。在第 $i$ 个猜测中，他认为 Chefir 在顶点 $v_i$ 处迷路，并拥有 $k_i$ 点*体力*。\n\n此外，对于每个猜测，Kosuke 认为 Chefir 可以沿着边任意移动多次：\n\n- 如果顶点 $a$ **是**顶点 $b$ 的祖先$^{\\text{∗}}$，则从顶点 $a$ 移动到顶点 $b$ 时，*体力*不会发生变化；\n- 如果顶点 $a$ **不是**顶点 $b$ 的祖先，则从顶点 $a$ 移动到顶点 $b$ 时，Chefir 的*体力*会减少 $1$。\n\n如果 Chefir 的*体力*为 $0$，则他无法进行第二种移动。\n\n对于每个猜测，你需要求出 Chefir 从顶点 $v_i$ 出发、拥有 $k_i$ 点*体力*时能够到达的最远顶点的距离。\n\n$^{\\text{∗}}$如果从顶点 $b$ 到根的最短路径经过顶点 $a$，则称顶点 $a$ 是顶点 $b$ 的祖先。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。\n\n每个测试用例如下描述：\n\n- 第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——树中顶点的数量。\n- 接下来的 $n-1$ 行包含树的边。保证给出的边构成一棵树。\n- 接下来一行包含一个整数 $q$（$1\\le q\\le 2\\cdot 10^5$），表示 Kosuke 做出的猜测数量。\n- 接下来的 $q$ 行描述 Kosuke 做出的猜测，每行包含两个整数 $v_i$ 和 $k_i$（$1\\le v_i \\le n, 0 \\le k_i\\le n$）。\n\n保证所有测试用例的 $n$ 之和以及 $q$ 之和均不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例中的每个猜测，输出 Chefir 从起点 $v_i$ 出发、拥有 $k_i$ 点*体力*时能够到达的最远顶点的最大距离。\n\n## 说明\n\n在第一个样例中：\n\n- 对于第一个询问，可以从顶点 $5$ 走到顶点 $3$（此后体力减少 $1$ 并变为 $0$），然后可以走到顶点 $4$；\n- 对于第二个询问，从拥有 $1$ 点体力的顶点 $3$ 出发，只能到达顶点 $2$、$3$、$4$ 和 $5$；\n- 对于第三个询问，从拥有 $0$ 点体力的顶点 $2$ 出发，只能到达顶点 $2$、$3$、$4$ 和 $5$。",
   "samples": [
     {
       "input": "3\n5\n1 2\n2 3\n3 4\n3 5\n3\n5 1\n3 1\n2 0\n9\n8 1\n1 7\n1 4\n7 3\n4 9\n3 2\n1 5\n3 6\n7\n6 0\n2 3\n6 2\n8 2\n2 4\n9 2\n6 3\n6\n2 1\n2 5\n2 4\n5 6\n4 3\n3\n3 1\n1 3\n6 5\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:01:14.976Z"
+  "fetchedAt": "2026-11-02T17:01:14.976Z",
+  "translatedAt": "2026-11-03T15:45:56.980+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

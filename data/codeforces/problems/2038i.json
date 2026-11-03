@@ -4,7 +4,7 @@
   "contestId": 2038,
   "index": "I",
   "title": "Polyathlon",
-  "titleZh": null,
+  "titleZh": "多项全能赛",
   "url": "https://codeforces.com/contest/2038/problem/I",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "Berland is this year's host country of the International Collegiate Polyathlon Competition! Similar to biathlon being a competition of two sports, polyathlon is a competition of many sports. This year, there are $m$ sports. Also, there are $n$ participants in the event. The sports are numbered from $1$ to $m$, and the participants are numbered from $1$ to $n$.\n\nSome participants are skilled in multiple sports. You are given a binary matrix $n \\times m$ such that the $j$-th character of the $i$-th row is `1` if the $i$-th participant is skilled in the $j$-th sport, and `0`, otherwise. It's also known that, for each pair of participants, there exists at least one sport such that one of them is skilled in that sport and the other one isn't.\n\nThe order of sports in the competition is determined at the opening ceremony. Historically, it's done by the almighty Random Number Generator. A random number $x$ from $1$ to $m$ is rolled. The competition then starts with the sport $x$, then the sport $(x \\bmod m + 1)$ is played, then the sport $((x + 1) \\bmod m + 1)$, and so on.\n\nEach sport is played as follows. If all remaining participants (all participants which are not eliminated yet) are not skilled in that sport, everyone goes through to the next sport. Otherwise, all skilled participants go through to the next sport, and all unskilled participants are eliminated from the competition. Once there is a single participant remaining in the competition, the competition ends, and that participant is declared the winner.\n\nAs an organizer of the competition, you are curious of the possible outcomes of the competition beforehand (not that you are going to rig the random roll, how could you possibly think that...). For each sport $x$, print the index of the winner if the competition starts with the sport $x$.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\le n, m \\le 10^6$; $n \\le 2^m$; $nm \\le 2 \\cdot 10^6$) — the number of participants and the number of sports, respectively.\n\nThe $i$-th of the next $n$ lines contains a binary string consisting of exactly $m$ characters `0` or `1` — the skillset of the $i$-th participant. If the $j$-th character is `1`, the $i$-th participant is skilled in the $j$-th sport. If it's `0`, the $i$-th participant is not skilled in the $j$-th sport.\n\nAdditional constraint on the input: for each pair of participants, there exists at least one sport such that one of them is skilled in that sport and the other one isn't. In other words, all $n$ binary strings are pairwise distinct.\n\n## Output\n\nPrint $m$ integers. For each $x$ from $1$ to $m$, print the index of the winner if the competition starts with the sport $x$.",
-  "statementZhMd": null,
+  "statementZhMd": "Berland 是今年国际大学生多项全能比赛的东道国！正如 biathlon（两项全能）是两项运动的比赛，polyathlon（多项全能）是许多项运动的比赛。今年共有 $m$ 项运动，另有 $n$ 名参赛者。运动项目编号为 $1$ 到 $m$，参赛者编号为 $1$ 到 $n$。\n\n有些参赛者擅长多项运动。给定一个 $n \\times m$ 的 0/1 矩阵：若第 $i$ 行的第 $j$ 个字符为 `1`，表示第 $i$ 名参赛者擅长第 $j$ 项运动，否则为 `0`。同时已知，对于任意两名参赛者，至少存在一项运动，使得其中一人擅长该运动而另一人不擅长。\n\n比赛中运动项目的顺序在开幕式上决定。按惯例，这由无所不能的随机数生成器完成：随机生成一个 $1$ 到 $m$ 之间的数 $x$，比赛从第 $x$ 项运动开始，接着进行第 $(x \\bmod m + 1)$ 项运动，再接着是第 $((x + 1) \\bmod m + 1)$ 项运动，以此类推。\n\n每项运动的进行方式如下：如果所有尚未被淘汰的参赛者都不擅长该项运动，则所有人晋级到下一项运动；否则，所有擅长该项运动的参赛者晋级，不擅长该项运动的参赛者被淘汰出局。一旦只剩一名参赛者，比赛即告结束，该参赛者被宣布为获胜者。\n\n作为比赛的组织者，你想提前了解比赛的各种可能结果（当然不是说你要操纵随机数，你怎么会这么想呢……）。对于每项运动 $x$，输出如果比赛从第 $x$ 项运动开始时的获胜者编号。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\le n, m \\le 10^6$；$n \\le 2^m$；$nm \\le 2 \\cdot 10^6$）——分别表示参赛者人数和运动项目数。\n\n接下来 $n$ 行中的第 $i$ 行包含一个由恰好 $m$ 个字符 `0` 或 `1` 组成的 01 字符串——第 $i$ 名参赛者的技能集。若第 $j$ 个字符为 `1`，表示第 $i$ 名参赛者擅长第 $j$ 项运动；若为 `0`，表示第 $i$ 名参赛者不擅长第 $j$ 项运动。\n\n输入的额外约束：对于任意两名参赛者，至少存在一项运动，使得其中一人擅长该运动而另一人不擅长。换句话说，这 $n$ 个 01 字符串两两不同。\n\n## 输出格式\n\n输出 $m$ 个整数。对于从 $1$ 到 $m$ 的每个 $x$，输出如果比赛从第 $x$ 项运动开始时的获胜者编号。",
   "samples": [
     {
       "input": "3 5\n10010\n01100\n10101\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:00:46.185Z"
+  "fetchedAt": "2026-11-02T17:00:46.185Z",
+  "translatedAt": "2026-11-03T15:15:18.250+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

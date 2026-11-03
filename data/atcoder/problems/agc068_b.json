@@ -4,7 +4,7 @@
   "contestId": "agc068",
   "index": "B",
   "title": "01 Graph Construction",
-  "titleZh": null,
+  "titleZh": "01 图构造",
   "url": "https://atcoder.jp/contests/agc068/tasks/agc068_b",
   "difficulty": 1813,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nA pair of strings $(S, T)$ consisting of `0` and `1` is called **good** if and only if all of the following conditions are satisfied.\n\n- $S$ and $T$ contain the same number of `0`s.\n- $S$ and $T$ contain the same number of `1`s.\n\nParticularly, for a good string pair $(S, T)$, $S$ and $T$ have the same length.\n\nFor a good string pair $(S, T)$, we define an undirected graph $G(S, T)$ as follows.\n\n- Let $L$ be the length of $S$. Create a graph $g$ with vertices $1, 2, \\cdots, L$.\n- Let $n$ be the number of `0`s in $S$. Let the indices of `0`s in $S$ be $1 \\leq a_1 < a_2 < \\cdots < a_n \\leq L$. Let the indices of `0`s in $T$ be $1 \\leq b_1 < b_2 < \\cdots < b_n \\leq L$. For each $1 \\leq i \\leq n$, add an edge between vertices $a_i$ and $b_i$ to $g$.\n- Let $m$ be the number of `1`s in $S$. Let the indices of `1`s in $S$ be $1 \\leq c_1 < c_2 < \\cdots < c_m \\leq L$. Let the indices of `1`s in $T$ be $1 \\leq d_1 < d_2 < \\cdots < d_m \\leq L$. For each $1 \\leq i \\leq m$, add an edge between vertices $c_i$ and $d_i$ to $g$.\n- The graph $g$ obtained through the above steps is $G(S, T)$.\n\nYou are given an integer sequence $A = (A_1, A_2, \\cdots, A_N)$ of length $N$. Find one good string pair $(S, T)$ satisfying all of the following conditions.\n\n- Let $L$ be the length of $S$. It satisfies $N \\leq L \\leq 10^5$.\n- For each pair $1 \\leq i, j \\leq N$, vertices $i$ and $j$ belong to the same connected component in $G(S, T)$ if and only if $A_i = A_j$.\n\nIt can be proved that a solution always exists under the constraints of this problem.\n\n## Constraints\n\n- $1 \\leq N \\leq 100$\n- $1 \\leq A_i \\leq N$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nA_1 A_2 \\cdots A_N\n```\n\n## Output\n\nPrint a solution in the following format:\n\n```\nL\nS\nT\n```\n\nHere, $L$ is the length of $S$ and $T$. If multiple solutions exist, any of them will be accepted.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n仅当满足以下所有条件时，由仅包含 `0` 和 `1` 的字符串 $(S, T)$ 组成的字符串对才称为**良好字符串对**。\n\n- $S$ 和 $T$ 中包含相同数量的 `0`。\n- $S$ 和 $T$ 中包含相同数量的 `1`。\n\n特别地，对于良好字符串对 $(S, T)$，$S$ 和 $T$ 的长度相同。\n\n对于良好字符串对 $(S, T)$，定义一个无向图 $G(S, T)$，具体如下。\n\n- 令 $L$ 为 $S$ 的长度。创建一个顶点为 $1, 2, \\cdots, L$ 的图 $g$。\n- 令 $n$ 为 $S$ 中 `0` 的数量。设 $S$ 中 `0` 的下标为 $1 \\leq a_1 < a_2 < \\cdots < a_n \\leq L$，$T$ 中 `0` 的下标为 $1 \\leq b_1 < b_2 < \\cdots < b_n \\leq L$。对于每个 $1 \\leq i \\leq n$，在顶点 $a_i$ 和 $b_i$ 之间添加一条边到 $g$ 中。\n- 令 $m$ 为 $S$ 中 `1` 的数量。设 $S$ 中 `1` 的下标为 $1 \\leq c_1 < c_2 < \\cdots < c_m \\leq L$，$T$ 中 `1` 的下标为 $1 \\leq d_1 < d_2 < \\cdots < d_m \\leq L$。对于每个 $1 \\leq i \\leq m$，在顶点 $c_i$ 和 $d_i$ 之间添加一条边到 $g$ 中。\n- 通过上述步骤得到的图 $g$ 就是 $G(S, T)$。\n\n给定一个长度为 $N$ 的整数序列 $A = (A_1, A_2, \\cdots, A_N)$。请找出一个满足以下所有条件的良好字符串对 $(S, T)$。\n\n- 令 $L$ 为 $S$ 的长度，满足 $N \\leq L \\leq 10^5$。\n- 对于每一对 $1 \\leq i, j \\leq N$，顶点 $i$ 和 $j$ 在 $G(S, T)$ 中属于同一个连通分量，当且仅当 $A_i = A_j$。\n\n可以证明，在本题约束条件下，解总是存在。\n\n## 约束条件\n\n- $1 \\leq N \\leq 100$\n- $1 \\leq A_i \\leq N$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nA_1 A_2 \\cdots A_N\n```\n\n## 输出格式\n\n请按以下格式输出一个解：\n\n```\nL\nS\nT\n```\n\n其中，$L$ 是 $S$ 和 $T$ 的长度。如果存在多个解，输出其中任意一个即可。",
   "samples": [
     {
       "input": "3\n1 2 1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:02:47.086Z"
+  "fetchedAt": "2026-10-30T21:02:47.086Z",
+  "translatedAt": "2026-11-03T16:01:48.422+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

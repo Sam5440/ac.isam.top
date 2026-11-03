@@ -4,7 +4,7 @@
   "contestId": 2025,
   "index": "G",
   "title": "Variable Damage",
-  "titleZh": null,
+  "titleZh": "可变伤害",
   "url": "https://codeforces.com/contest/2025/problem/G",
   "difficulty": 3000,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "Monocarp is gathering an army to fight a dragon in a videogame.\n\nThe army consists of two parts: the heroes and the defensive artifacts. Each hero has one parameter — his health. Each defensive artifact also has one parameter — its durability.\n\nBefore the battle begins, Monocarp distributes artifacts to the heroes so that each hero receives at most one artifact.\n\nThe battle consists of rounds that proceed as follows:\n\n- first, the dragon deals damage equal to $\\frac{1}{a + b}$ (**a real number without rounding**) to each hero, where $a$ is the number of heroes alive and $b$ is the number of active artifacts;\n- after that, all heroes with health $0$ or less die;\n- finally, some artifacts are deactivated. An artifact with durability $x$ is deactivated when one of the following occurs: the hero holding the artifact either dies or receives $x$ total damage (from the start of the battle). If an artifact is not held by any hero, it is inactive from the beginning of the battle.\n\nThe battle ends when there are no heroes left alive.\n\nInitially, the army is empty. There are $q$ queries: add a hero with health $x$ or an artifact with durability $y$ to the army. After each query, determine the maximum number of rounds that Monocarp can survive if he distributes the artifacts optimally.\n\n## Input\n\nThe first line contains one integer $q$ ($1 \\le q \\le 3 \\cdot 10^5$) — the number of queries.\n\nIn the $i$-th of the following $q$ lines, there are two integers $t_i$ and $v_i$ ($t_i \\in \\{1, 2\\}$; $1 \\le v_i \\le 10^9$) — the type of the query and the value of the query parameter. If the type is $1$, a hero with health $v_i$ is added. If the type is $2$, an artifact with durability $v_i$ is added.\n\n## Output\n\nPrint $q$ integers. After each query, output the maximum number of rounds that Monocarp can survive if he distributes the artifacts optimally.\n\n## Note\n\nLet's consider the first example.\n\n- An artifact with durability $5$ is added. Since there are no heroes yet, the battle ends immediately.\n- A hero with health $4$ is added. Monocarp can give him an artifact with durability $5$. First, there are rounds in which the hero takes $\\frac{1}{1 + 1} = \\frac{1}{2}$ damage. After $8$ such rounds, a total of $4$ damage will have been dealt, and the hero will die, while the artifact will deactivate. There are no more heroes alive, so the battle ends after $8$ rounds.\n- A hero with health $10$ is added. Now let the artifact with durability $5$ be with this hero. Then, in the first $12$ rounds, the heroes will take $12 \\cdot \\frac{1}{2 + 1} = 4$ damage, and the first hero will die. The second hero has $6$ health left, and the artifact has $1$ durability. Now the damage is $\\frac{1}{2}$, so after another $2$ rounds, the artifact will deactivate. The second hero has $5$ health left. After another $5$ rounds, the second hero will die. Therefore, the answer is $12 + 2 + 5 = 19$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nMonocarp 正在为一款电子游戏中与巨龙战斗而组建一支军队。\n\n军队由两部分组成：英雄和防御神器。每名英雄有一个参数——他的生命值。每件防御神器也有一个参数——它的耐久度。\n\n在战斗开始前，Monocarp 将神器分配给英雄，使得每名英雄至多获得一件神器。\n\n战斗由若干回合组成，每回合按以下顺序进行：\n\n- 首先，巨龙对每名英雄造成 $\\frac{1}{a + b}$ 的伤害（**实数，不进行舍入**），其中 $a$ 是当前存活的英雄数，$b$ 是当前激活的神器数；\n- 之后，所有生命值小于等于 $0$ 的英雄死亡；\n- 最后，部分神器被停用。当持有该神器的英雄死亡，或该英雄从战斗开始起累计受到 $x$ 点伤害时，耐久度为 $x$ 的神器会被停用。如果一件神器没有分配给任何英雄，那么它从战斗开始时就处于未激活状态。\n\n当没有存活的英雄时，战斗结束。\n\n最初，军队是空的。现在有 $q$ 次查询：向军队中加入一名生命值为 $x$ 的英雄，或加入一件耐久度为 $y$ 的神器。每次查询后，确定 Monocarp 最优分配神器时最多能够存活多少个回合。\n\n## 输入格式\n\n第一行包含一个整数 $q$（$1 \u001c q \u001c 3 \u001c 10^5$）——查询的数量。\n\n接下来的 $q$ 行中，第 $i$ 行包含两个整数 $t_i$ 和 $v_i$（$t_i \u001c \\{1, 2\\}$；$1 \u001c v_i \u001c 10^9$）——查询的类型和查询参数的值。如果类型为 $1$，则加入一名生命值为 $v_i$ 的英雄；如果类型为 $2$，则加入一件耐久度为 $v_i$ 的神器。\n\n## 输出格式\n\n输出 $q$ 个整数。每次查询后，输出 Monocarp 最优分配神器时最多能够存活的回合数。\n\n## 说明\n\n让我们考虑第一个样例。\n\n- 加入一件耐久度为 $5$ 的神器。由于此时还没有英雄，战斗立即结束。\n- 加入一名生命值为 $4$ 的英雄。Monocarp 可以将耐久度为 $5$ 的神器交给他。首先，英雄每回合受到 $\\frac{1}{1 + 1} = \\frac{1}{2}$ 点伤害。经过 $8$ 个这样的回合后，英雄总共受到 $4$ 点伤害并死亡，同时神器也会被停用。由于没有存活的英雄，战斗在 $8$ 个回合后结束。\n- 加入一名生命值为 $10$ 的英雄。现在将耐久度为 $5$ 的神器交给这名英雄。在最初的 $12$ 个回合中，英雄们受到的总伤害为 $12 \u001c \\frac{1}{2 + 1} = 4$，第一名英雄死亡。第二名英雄还剩 $6$ 点生命值，而神器还剩 $1$ 点耐久度。此时每回合造成的伤害为 $\\frac{1}{2}$，因此再经过 $2$ 个回合后，神器会被停用。第二名英雄还剩 $5$ 点生命值。再经过 $5$ 个回合后，第二名英雄死亡。因此，答案为 $12 + 2 + 5 = 19$。",
   "samples": [
     {
       "input": "3\n2 5\n1 4\n1 10\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:01:31.455Z"
+  "fetchedAt": "2026-11-02T17:01:31.455Z",
+  "translatedAt": "2026-11-03T15:52:19.902+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

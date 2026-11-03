@@ -4,7 +4,7 @@
   "contestId": 2023,
   "index": "E",
   "title": "Tree of Life",
-  "titleZh": null,
+  "titleZh": "生命之树",
   "url": "https://codeforces.com/contest/2023/problem/E",
   "difficulty": 3300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "In the heart of an ancient kingdom grows the legendary Tree of Life — the only one of its kind and the source of magical power for the entire world. The tree consists of $n$ nodes. Each node of this tree is a magical source, connected to other such sources through magical channels (edges). In total, there are $n-1$ channels in the tree, with the $i$-th channel connecting nodes $v_i$ and $u_i$. Moreover, there exists a unique simple path through the channels between any two nodes in the tree.\n\nHowever, the magical energy flowing through these channels must be balanced; otherwise, the power of the Tree of Life may disrupt the natural order and cause catastrophic consequences. The sages of the kingdom discovered that when two magical channels converge at a single node, a dangerous \"magical resonance vibration\" occurs between them. To protect the Tree of Life and maintain its balance, it is necessary to select several paths and perform special rituals along them. A path is a sequence of distinct nodes $v_1, v_2, \\ldots, v_k$, where each pair of adjacent nodes $v_i$ and $v_{i+1}$ is connected by a channel. When the sages perform a ritual along such a path, the resonance vibration between the channels $(v_i, v_{i+1})$ and $(v_{i+1}, v_{i+2})$ is blocked for each $1 \\leq i \\leq k - 2$.\n\nThe sages' task is to select the minimum number of paths and perform rituals along them to block all resonance vibrations. This means that for every pair of channels emanating from a single node, there must exist **at least one** selected path that contains **both** of these channels.\n\nHelp the sages find the minimum number of such paths so that the magical balance of the Tree of Life is preserved, and its power continues to nourish the entire world!\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 4 \\cdot 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\leq n \\leq 5 \\cdot 10^5$) — the number of nodes in the Tree of Life.\n\nThe $i$-th of the following $n - 1$ lines of each test case contains two integers $v_i$ and $u_i$ ($1 \\leq v_i \\lt u_i \\leq n$) — the channel connecting nodes $v_i$ and $u_i$.\n\nIt is guaranteed that there exists a unique simple path through the channels between any two nodes.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum number of paths that the sages need to select to prevent a catastrophe.\n\n## Note\n\nIn the first test case, there are two pairs of channels emanating from a single node: $(1, 2)$ and $(2, 3)$, $(2, 3)$ and $(3, 4)$. It is sufficient to perform the ritual along the path $1-2-3-4$. Thus, the answer is $1$.\n\nIn the second test case, there are no pairs of channels emanating from a single node, so the answer is $0$.\n\nIn the third test case, rituals can be performed along the paths $2-1-3$, $2-1-4$, and $3-1-4$.",
-  "statementZhMd": null,
+  "statementZhMd": "在一个古老王国的中心，生长着传说中的生命之树——世间唯一的一棵，也是整个世界魔力的源泉。这棵树由 $n$ 个节点组成。树中的每个节点都是一个魔法源泉，并通过魔法通道（边）与其他源泉相连。树中共有 $n-1$ 条通道，其中第 $i$ 条通道连接节点 $v_i$ 和 $u_i$。此外，树中任意两个节点之间都存在唯一一条经过通道的简单路径。\n\n然而，流经这些通道的魔法能量必须保持平衡；否则，生命之树的力量可能会扰乱自然秩序，并造成灾难性的后果。王国中的贤者发现，当两条魔法通道在同一个节点处汇合时，它们之间会产生危险的“魔法共振振动”。为了保护生命之树并维持其平衡，需要选出若干条路径，并沿这些路径执行特殊仪式。一条路径是由互不相同的节点 $v_1, v_2, \\ldots, v_k$ 组成的序列，其中每一对相邻节点 $v_i$ 和 $v_{i+1}$ 都由一条通道相连。当贤者沿这样的路径执行仪式时，对于每个 $1 \\leq i \\leq k - 2$，通道 $(v_i, v_{i+1})$ 与 $(v_{i+1}, v_{i+2})$ 之间的共振振动都会被阻断。\n\n贤者的任务是选出最少数量的路径，并沿这些路径执行仪式，从而阻断所有共振振动。也就是说，对于从同一个节点出发的每一对通道，必须存在**至少一条**被选中的路径，同时包含这两条通道。\n\n请帮助贤者找出需要选择的最少路径数，使生命之树保持魔法平衡，并继续为整个世界提供力量！\n\n## 输入格式\n\n每个测试由多个测试用例组成。第一行包含一个整数 $t$（$1 \\leq t \\leq 4 \\cdot 10^4$）——测试用例的数量。接下来给出各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 5 \\cdot 10^5$）——生命之树中的节点数。\n\n接下来的 $n - 1$ 行中，第 $i$ 行包含两个整数 $v_i$ 和 $u_i$（$1 \\leq v_i \\lt u_i \\leq n$）——连接节点 $v_i$ 和 $u_i$ 的通道。\n\n保证树中任意两个节点之间都存在唯一一条经过通道的简单路径。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——贤者为防止灾难所需选择的最少路径数。\n\n## 说明\n\n在第一个测试用例中，从同一个节点出发的通道有两对：$(1, 2)$ 和 $(2, 3)$，以及 $(2, 3)$ 和 $(3, 4)$。沿路径 $1-2-3-4$ 执行仪式即可。因此，答案为 $1$。\n\n在第二个测试用例中，不存在从同一个节点出发的通道对，因此答案为 $0$。\n\n在第三个测试用例中，可以沿路径 $2-1-3$、$2-1-4$ 和 $3-1-4$ 执行仪式。",
   "samples": [
     {
       "input": "5\n4\n1 2\n2 3\n3 4\n2\n1 2\n4\n1 2\n1 3\n1 4\n8\n3 7\n2 4\n1 2\n2 5\n3 6\n1 3\n3 8\n6\n2 3\n1 2\n3 6\n1 5\n1 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:18.540Z"
+  "fetchedAt": "2026-10-30T21:41:18.540Z",
+  "translatedAt": "2026-11-03T15:52:26.538+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

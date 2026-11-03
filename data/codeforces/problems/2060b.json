@@ -4,7 +4,7 @@
   "contestId": 2060,
   "index": "B",
   "title": "Farmer John's Card Game",
-  "titleZh": null,
+  "titleZh": "Farmer John 的纸牌游戏",
   "url": "https://codeforces.com/contest/2060/problem/B",
   "difficulty": 1000,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Farmer John's $n$ cows are playing a card game! Farmer John has a deck of $n \\cdot m$ cards numbered from $0$ to $n \\cdot m-1$. He distributes $m$ cards to each of his $n$ cows.\n\nFarmer John wants the game to be fair, so each cow should only be able to play $1$ card per round. He decides to determine a *turn order*, determined by a permutation$^{\\text{∗}}$ $p$ of length $n$, such that the $p_i$'th cow will be the $i$'th cow to place a card on top of the center pile in a round.\n\nIn other words, the following events happen in order in each round:\n\n- The $p_1$'th cow places any card from their deck on top of the center pile.\n- The $p_2$'th cow places any card from their deck on top of the center pile.\n- ...\n- The $p_n$'th cow places any card from their deck on top of the center pile.\n\nThere is a catch. Initially, the center pile contains a card numbered $-1$. In order to place a card, the number of the card must be greater than the number of the card on top of the center pile. Then, the newly placed card becomes the top card of the center pile. If a cow cannot place any card in their deck, the game is considered to be lost.\n\nFarmer John wonders: does there exist $p$ such that it is possible for all of his cows to empty their deck after playing all $m$ rounds of the game? If so, output any valid $p$. Otherwise, output $-1$.\n\n$^{\\text{∗}}$A permutation of length $n$ contains each integer from $1$ to $n$ exactly once\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\leq t \\leq 400$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\leq n \\cdot m \\leq 2\\,000$) — the number of cows and the number of cards each cow receives.\n\nThe following $n$ lines contain $m$ integers each – the cards received by each cow. It is guaranteed all given numbers (across all $n$ lines) are distinct and in the range from $0$ to $n \\cdot m - 1$, inclusive.\n\nIt is guaranteed the sum of $n \\cdot m$ over all test cases does not exceed $2\\,000$.\n\n## Output\n\nFor each test case, output the following on a new line:\n\n- If $p$ exists, output $n$ space-separated integers $p_1, p_2, \\ldots, p_n$.\n- Otherwise, output $-1$.\n\n## Note\n\nIn the first test case, one turn order that allows all cards to be played is by having the first cow go before the second cow. The cards played will be $0\\rightarrow1\\rightarrow2\\rightarrow3\\rightarrow4\\rightarrow5$.\n\nIn the second test case, there is only one cow, so having the cow play all of her cards in increasing order will empty the deck.\n\nIn the third test case, it can be shown there is no valid turn order that allows all cards to be played.",
-  "statementZhMd": null,
+  "statementZhMd": "Farmer John 的 $n$ 头奶牛正在玩牌！Farmer John 有一副由 $n \\cdot m$ 张牌组成的牌，牌面编号从 $0$ 到 $n \\cdot m-1$。他给 $n$ 头奶牛每头分发 $m$ 张牌。\n\n为了保证游戏公平，Farmer John 希望每头奶牛每轮只能出 $1$ 张牌。他决定确定一个由长度为 $n$ 的排列$^{\\text{∗}}$ $p$ 决定的*出牌顺序*，使得第 $p_i$ 头奶牛是第 $i$ 个将牌放到中央牌堆顶部的奶牛。\n\n换句话说，每轮会按以下顺序进行：\n\n- 第 $p_1$ 头奶牛从自己的牌中任意选择一张，放到中央牌堆顶部。\n- 第 $p_2$ 头奶牛从自己的牌中任意选择一张，放到中央牌堆顶部。\n- ...\n- 第 $p_n$ 头奶牛从自己的牌中任意选择一张，放到中央牌堆顶部。\n\n不过，游戏有一个限制。初始时，中央牌堆中有一张编号为 $-1$ 的牌。只有当要出的牌编号大于中央牌堆顶部牌的编号时，才能出牌。新出的牌会成为中央牌堆顶部的牌。如果某头奶牛无法从自己的牌中出牌，则游戏失败。\n\nFarmer John 想知道：是否存在一个 $p$，使得所有奶牛都能在进行完 $m$ 轮后出完自己的牌？如果存在，输出任意一个合法的 $p$；否则，输出 $-1$。\n\n$^{\\text{∗}}$长度为 $n$ 的排列恰好包含从 $1$ 到 $n$ 的每个整数各一次。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 400$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\leq n \\cdot m \\leq 2\\,000$）——奶牛的数量以及每头奶牛收到的牌数。\n\n接下来的 $n$ 行每行包含 $m$ 个整数，表示每头奶牛收到的牌。保证所有给定的数字（包括这 $n$ 行中的所有数字）互不相同，且均在 $0$ 到 $n \\cdot m - 1$（含）之间。\n\n保证所有测试用例的 $n \\cdot m$ 之和不超过 $2\\,000$。\n\n## 输出格式\n\n对于每个测试用例，在新的一行输出：\n\n- 如果存在 $p$，输出 $n$ 个由空格分隔的整数 $p_1, p_2, \\ldots, p_n$。\n- 否则，输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，一种能让所有牌都被打出的出牌顺序是先由第一头奶牛出牌，再由第二头奶牛出牌。打出的牌依次为 $0\\rightarrow1\\rightarrow2\\rightarrow3\\rightarrow4\\rightarrow5$。\n\n在第二个测试用例中，只有一头奶牛，因此让它按牌面编号递增的顺序打出所有牌，就能出完手中的牌。\n\n在第三个测试用例中，可以证明不存在能让所有牌都被打出的合法出牌顺序。",
   "samples": [
     {
       "input": "4\n2 3\n0 4 2\n1 5 3\n1 1\n0\n2 2\n1 2\n0 3\n4 1\n1\n2\n0\n3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:54:38.177Z"
+  "fetchedAt": "2026-11-02T16:54:38.177Z",
+  "translatedAt": "2026-11-03T14:52:50.596+08:00",
+  "translateModel": "gpt-6.1-sol"
 }

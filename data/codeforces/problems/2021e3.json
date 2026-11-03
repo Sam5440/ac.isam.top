@@ -4,7 +4,7 @@
   "contestId": 2021,
   "index": "E3",
   "title": "Digital Village (Extreme Version)",
-  "titleZh": null,
+  "titleZh": "数字村庄（极限版）",
   "url": "https://codeforces.com/contest/2021/problem/E3",
   "difficulty": 2800,
   "tags": [
@@ -21,7 +21,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the extreme version of the problem. In the three versions, the constraints on $n$ and $m$ are different. You can make hacks only if all the versions of the problem are solved.**\n\nPak Chanek is setting up internet connections for the village of Khuntien. The village can be represented as a connected simple graph with $n$ houses and $m$ internet cables connecting house $u_i$ and house $v_i$, each with a latency of $w_i$.\n\nThere are $p$ houses that require internet. Pak Chanek can install servers in at most $k$ of the houses. The houses that need internet will then be connected to one of the servers. However, since each cable has its latency, the latency experienced by house $s_i$ requiring internet will be the **maximum** latency of the cables between that house and the server it is connected to.\n\nFor each $k = 1,2,\\ldots,n$, help Pak Chanek determine the minimum **total** latency that can be achieved for all the houses requiring internet.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains 3 integers $n$, $m$, $p$ ($2 \\le n \\le 2 \\cdot 10^5$; $n-1 \\le m \\le 2 \\cdot 10^5$; $1 \\le p \\le n$) — the number of houses, the number of cables, and the number of houses that need internet.\n\nThe second line of each test case contains $p$ integers $s_1, s_2, \\ldots, s_p$ ($1 \\le s_i \\le n$) — the houses that need internet. It is guaranteed that all elements of $s$ are distinct.\n\nThe $i$-th of the next $m$ lines of each test case contains three integers $u_i$, $v_i$, and $w_i$ ($1 \\le u_i \\lt v_i \\le n$; $1 \\le w_i \\le 10^9$) — the internet cable connecting house $u_i$ and house $v_i$ with latency of $w_i$. It is guaranteed that the given edges form a connected simple graph.\n\nIt is guaranteed that the sum of $n$ and the sum of $m$ do not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers: the minimum total latency that can be achieved for all the houses requiring internet **for each** $k = 1,2,\\ldots,n$.\n\n## Note\n\nIn the first test case for $k=3$, a possible optimal solution is to install servers at vertices $2$, $6$ and $8$ and obtain the following latency:\n\n- $\\text{latency}(2) = 0$\n- $\\text{latency}(5) = \\max(3, 5) = 5$\n- $\\text{latency}(6) = 0$\n- $\\text{latency}(8) = 0$\n- $\\text{latency}(9) = \\max(2, 4) = 4$\n\nSo the total latency is $9$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的极限版本。在三个版本中，$n$ 和 $m$ 的约束不同。只有在解决本题的所有版本后，才能进行 hack。**\n\nPak Chanek 正在为 Khuntien 村设置互联网连接。该村可以表示为一个包含 $n$ 个房屋和 $m$ 条互联网电缆的连通简单图，其中每条电缆连接房屋 $u_i$ 和房屋 $v_i$，延迟为 $w_i$。\n\n有 $p$ 个房屋需要互联网。Pak Chanek 最多可以在 $k$ 个房屋中安装服务器。之后，需要互联网的房屋将连接到其中一台服务器。然而，由于每条电缆都有延迟，需要互联网的房屋 $s_i$ 所体验到的延迟，将是该房屋与其所连接服务器之间路径上所有电缆延迟的**最大值**。\n\n对于每个 $k = 1,2,\\ldots,n$，请帮助 Pak Chanek 求出所有需要互联网的房屋所能达到的最小**总**延迟。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含 3 个整数 $n$、$m$、$p$（$2 \\le n \\le 2 \\cdot 10^5$；$n-1 \\le m \\le 2 \\cdot 10^5$；$1 \\le p \\le n$）——房屋数量、电缆数量以及需要互联网的房屋数量。\n\n每个测试用例的第二行包含 $p$ 个整数 $s_1, s_2, \\ldots, s_p$（$1 \\le s_i \\le n$）——需要互联网的房屋编号。保证 $s$ 中的所有元素互不相同。\n\n接下来的 $m$ 行中，第 $i$ 行包含三个整数 $u_i$、$v_i$ 和 $w_i$（$1 \\le u_i \\lt v_i \\le n$；$1 \\le w_i \\le 10^9$）——一条连接房屋 $u_i$ 和房屋 $v_i$、延迟为 $w_i$ 的互联网电缆。保证给出的边构成一个连通简单图。\n\n保证所有测试用例的 $n$ 之和以及 $m$ 之和均不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数：对于每个 $k = 1,2,\\ldots,n$，所有需要互联网的房屋所能达到的最小总延迟。\n\n## 说明\n\n在第一个测试用例中，当 $k=3$ 时，一种可能的最优方案是在顶点 $2$、$6$ 和 $8$ 安装服务器，并得到如下延迟：\n\n- $\\text{latency}(2) = 0$\n- $\\text{latency}(5) = \\max(3, 5) = 5$\n- $\\text{latency}(6) = 0$\n- $\\text{latency}(8) = 0$\n- $\\text{latency}(9) = \\max(2, 4) = 4$\n\n因此总延迟为 $9$。",
   "samples": [
     {
       "input": "2\n9 8 5\n2 5 6 8 9\n1 2 1\n1 3 2\n3 4 10\n4 5 3\n4 6 5\n1 7 10\n7 8 4\n7 9 2\n3 3 2\n3 1\n1 2 1\n2 3 3\n1 3 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:35.255Z"
+  "fetchedAt": "2026-10-30T21:41:35.255Z",
+  "translatedAt": "2026-11-03T15:52:12.385+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

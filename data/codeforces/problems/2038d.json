@@ -4,7 +4,7 @@
   "contestId": 2038,
   "index": "D",
   "title": "Divide OR Conquer",
-  "titleZh": null,
+  "titleZh": "分 OR 治之",
   "url": "https://codeforces.com/contest/2038/problem/D",
   "difficulty": 2400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "You are given an array $[a_1, a_2, \\ldots a_n]$ consisting of integers between $0$ and $10^9$. You have to split this array into several segments (possibly one) in such a way that each element belongs to exactly one segment.\n\nLet the first segment be the array $[a_{l_1}, a_{l_1 + 1}, \\ldots, a_{r_1}]$, the second segment be $[a_{l_2}, a_{l_2+ 1}, \\ldots, a_{r_2}]$, ..., the last segment be $[a_{l_k}, a_{l_k+ 1}, \\ldots, a_{r_k}]$. Since every element should belong to exactly one array, $l_1 = 1$, $r_k = n$, and $r_i + 1 = l_{i+1}$ for each $i$ from $1$ to $k-1$. The split should meet the following condition: $f([a_{l_1}, a_{l_1 + 1}, \\ldots, a_{r_1}]) \\le f([a_{l_2}, a_{l_2+ 1}, \\ldots, a_{r_2}]) \\le \\dots \\le f([a_{l_k}, a_{l_k+1}, \\ldots, a_{r_k}])$, where $f(a)$ is the bitwise OR of all elements of the array $a$.\n\nCalculate the number of ways to split the array, and print it modulo $998\\,244\\,353$. Two ways are considered different if the sequences $[l_1, r_1, l_2, r_2, \\ldots, l_k, r_k]$ denoting the splits are different.\n\n## Input\n\nThe first line contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the array $a$.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 10 ^9$) — the elements of the given array.\n\n## Output\n\nPrint one integer — the number of ways to split the array, taken modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first two examples, every way to split the array is valid.\n\nIn the third example, there are three valid ways to split the array:\n\n- $k = 3$; $l_1 = 1, r_1 = 1, l_2 = 2, r_2 = 2, l_3 = 3, r_3 = 3$; the resulting arrays are $[3]$, $[4]$, $[6]$, and $3 \\le 4 \\le 6$;\n- $k = 2$; $l_1 = 1, r_1 = 1, l_2 = 2, r_2 = 3$; the resulting arrays are $[3]$ and $[4, 6]$, and $3 \\le 6$;\n- $k = 1$; $l_1 = 1, r_1 = 3$; there will be only one array: $[3, 4, 6]$.\n\nIf you split the array into two arrays $[3, 4]$ and $[6]$, the bitwise OR of the first array is $7$, and the bitwise OR of the second array is $6$; $7 \\gt 6$, so this way to split the array is invalid.",
-  "statementZhMd": null,
+  "statementZhMd": "给你一个由 $0$ 到 $10^9$ 之间的整数组成的数组 $[a_1, a_2, \\ldots a_n]$。你需要将这个数组划分成若干段（也可以是一段），使得每个元素恰好属于其中一段。\n\n设第一段为数组 $[a_{l_1}, a_{l_1 + 1}, \\ldots, a_{r_1}]$，第二段为 $[a_{l_2}, a_{l_2+ 1}, \\ldots, a_{r_2}]$，……，最后一段为 $[a_{l_k}, a_{l_k+ 1}, \\ldots, a_{r_k}]$。由于每个元素都应当恰好属于一个数组，因此 $l_1 = 1$，$r_k = n$，且对于从 $1$ 到 $k-1$ 的每个 $i$，都有 $r_i + 1 = l_{i+1}$。划分应当满足以下条件：$f([a_{l_1}, a_{l_1 + 1}, \\ldots, a_{r_1}]) \\le f([a_{l_2}, a_{l_2+ 1}, \\ldots, a_{r_2}]) \\le \\dots \\le f([a_{l_k}, a_{l_k+1}, \\ldots, a_{r_k}])$，其中 $f(a)$ 表示数组 $a$ 中所有元素的按位或。\n\n计算划分该数组的方法数，并输出其对 $998\\,244\\,353$ 取模后的结果。若表示划分的序列 $[l_1, r_1, l_2, r_2, \\ldots, l_k, r_k]$ 不同，则两种划分方式视为不同。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——表示数组 $a$ 的长度。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\le a_i \\le 10 ^9$）——表示给定数组的元素。\n\n## 输出格式\n\n输出一个整数——划分该数组的方法数，对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在前两个样例中，每一种划分数组的方式都是合法的。\n\n在第三个样例中，有三种合法的划分方式：\n\n- $k = 3$；$l_1 = 1, r_1 = 1, l_2 = 2, r_2 = 2, l_3 = 3, r_3 = 3$；得到的数组为 $[3]$、$[4]$、$[6]$，且 $3 \\le 4 \\le 6$；\n- $k = 2$；$l_1 = 1, r_1 = 1, l_2 = 2, r_2 = 3$；得到的数组为 $[3]$ 和 $[4, 6]$，且 $3 \\le 6$；\n- $k = 1$；$l_1 = 1, r_1 = 3$；此时只有一个数组：$[3, 4, 6]$。\n\n如果将数组划分为两个数组 $[3, 4]$ 和 $[6]$，第一个数组的按位或为 $7$，第二个数组的按位或为 $6$；由于 $7 \\gt 6$，这种划分方式是不合法的。",
   "samples": [
     {
       "input": "3\n1 2 3\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:00:46.171Z"
+  "fetchedAt": "2026-11-02T17:00:46.171Z",
+  "translatedAt": "2026-11-03T15:14:35.182+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

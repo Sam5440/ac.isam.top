@@ -4,7 +4,7 @@
   "contestId": 2013,
   "index": "F1",
   "title": "Game in Tree (Easy Version)",
-  "titleZh": null,
+  "titleZh": "树上游戏（简单版）",
   "url": "https://codeforces.com/contest/2013/problem/F1",
   "difficulty": 2700,
   "tags": [
@@ -21,7 +21,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of the problem. In this version, $\\mathbf{u = v}$. You can make hacks only if both versions of the problem are solved.**\n\nAlice and Bob are playing a fun game on a tree. This game is played on a tree with $n$ vertices, numbered from $1$ to $n$. Recall that a tree with $n$ vertices is an undirected connected graph with $n - 1$ edges.\n\nAlice and Bob take turns, with Alice going first. Each player starts at some vertex.\n\nOn their turn, a player must move from the current vertex to a neighboring vertex that has not yet been visited by anyone. The first player who cannot make a move loses.\n\nYou are given two vertices $u$ and $v$. Represent the simple path from vertex $u$ to $v$ as an array $p_1, p_2, p_3, \\ldots, p_m$, where $p_1 = u$, $p_m = v$, and there is an edge between $p_i$ and $p_{i + 1}$ for all $i$ ($1 \\le i \\lt m$).\n\nYou need to determine the winner of the game if Alice starts at vertex $1$ and Bob starts at vertex $p_j$ for each $j$ (where $1 \\le j \\le m$).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nEach of the following $n - 1$ lines contains two integers $a$ and $b$ ($1 \\le a, b \\le n$), denoting an undirected edge between vertices $a$ and $b$. It is guaranteed that these edges form a tree.\n\nThe last line of each test case contains two integers $u$ and $v$ ($2 \\le u, v \\le n$, $\\mathbf{u = v}$).\n\n**It is guaranteed that the path from $u$ to $v$ does not pass through vertex $1$.**\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $m$ lines.\n\nIn the $i$-th line, print the winner of the game if Alice starts at vertex $1$ and Bob starts at vertex $p_i$. Print \"`Alice`\" (without quotes) if Alice wins, or \"`Bob`\" (without quotes) otherwise.\n\n## Note\n\n![image](https://espresso.codeforces.com/a11b5d9e37bbb2990d5e56654bb6c5fa20f883b4.png) Tree from the first and second examples.\n\nIn the first test case, the path will be ($2,2$). Bob starts at vertex $2$, Alice will not be able to move anywhere on her first turn and will lose.\n\nIn the second test case, the path will be ($3,3$). Bob starts at vertex $3$, Alice will move to vertex $2$, and Bob will have no remaining vertices to visit and will lose.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。在此版本中，$\\mathbf{u = v}$。只有在两版本题目都通过的情况下，才可以进行 hack。**\n\nAlice 和 Bob 正在一棵树上进行一个有趣的游戏。这棵树有 $n$ 个顶点，编号为 $1$ 到 $n$。回顾一下，$n$ 个顶点的树是一个具有 $n - 1$ 条边的无向连通图。\n\nAlice 和 Bob 轮流行动，由 Alice 先手。每位玩家都从某个顶点开始。\n\n在自己的回合中，玩家必须从当前顶点移动到一个尚未被任何人访问过的相邻顶点。第一个无法移动的玩家输掉游戏。\n\n给定两个顶点 $u$ 和 $v$。将从顶点 $u$ 到 $v$ 的简单路径表示为数组 $p_1, p_2, p_3, \\ldots, p_m$，其中 $p_1 = u$，$p_m = v$，并且对于所有 $i$（$1 \\le i \\lt m$），$p_i$ 和 $p_{i + 1}$ 之间都有一条边。\n\n对于每个 $j$（其中 $1 \\le j \\le m$），你需要确定 Alice 从顶点 $1$ 开始、Bob 从顶点 $p_j$ 开始时游戏的获胜者。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——树的顶点数。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $a$ 和 $b$（$1 \\le a, b \\le n$），表示顶点 $a$ 和顶点 $b$ 之间的一条无向边。保证这些边构成一棵树。\n\n每个测试用例的最后一行包含两个整数 $u$ 和 $v$（$2 \\le u, v \\le n$，$\\mathbf{u = v}$）。\n\n**保证从 $u$ 到 $v$ 的路径不经过顶点 $1$。**\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $m$ 行。\n\n第 $i$ 行输出 Alice 从顶点 $1$ 开始、Bob 从顶点 $p_i$ 开始时游戏的获胜者。如果 Alice 获胜，输出“`Alice`”（不含引号）；否则输出“`Bob`”（不含引号）。\n\n## 说明\n\n![image](https://espresso.codeforces.com/a11b5d9e37bbb2990d5e56654bb6c5fa20f883b4.png) 第一和第二个样例中的树。\n\n在第一个测试用例中，路径为 $(2,2)$。Bob 从顶点 $2$ 开始，Alice 在她的第一个回合中无法移动到任何地方，因此输掉游戏。\n\n在第二个测试用例中，路径为 $(3,3)$。Bob 从顶点 $3$ 开始，Alice 会移动到顶点 $2$，而 Bob 将没有剩余的顶点可以访问，因此输掉游戏。",
   "samples": [
     {
       "input": "3\n3\n1 2\n2 3\n2 2\n3\n1 2\n2 3\n3 3\n6\n1 2\n1 3\n2 4\n2 5\n1 6\n4 4\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:48:12.158Z"
+  "fetchedAt": "2026-10-30T21:48:12.158Z",
+  "translatedAt": "2026-11-03T16:03:54.226+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

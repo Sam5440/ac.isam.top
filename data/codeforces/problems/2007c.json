@@ -4,7 +4,7 @@
   "contestId": 2007,
   "index": "C",
   "title": "Dora and C++",
-  "titleZh": null,
+  "titleZh": "Dora 与 C++",
   "url": "https://codeforces.com/contest/2007/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Dora has just learned the programming language C++!\n\nHowever, she has completely misunderstood the meaning of C++. She considers it as two kinds of adding operations on the array $c$ with $n$ elements. Dora has two integers $a$ and $b$. In one operation, she can choose one of the following things to do.\n\n- Choose an integer $i$ such that $1 \\leq i \\leq n$, and increase $c_i$ by $a$.\n- Choose an integer $i$ such that $1 \\leq i \\leq n$, and increase $c_i$ by $b$.\n\nNote that $a$ and $b$ are **constants**, and they can be the same.\n\nLet's define a *range* of array $d$ as $\\max(d_i) - \\min(d_i)$. For instance, the range of the array $[1, 2, 3, 4]$ is $4 - 1 = 3$, the range of the array $[5, 2, 8, 2, 2, 1]$ is $8 - 1 = 7$, and the range of the array $[3, 3, 3]$ is $3 - 3 = 0$.\n\nAfter any number of operations (possibly, $0$), Dora calculates the range of the new array. You need to help Dora minimize this value, but since Dora loves exploring all by herself, you only need to tell her the minimized value.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains three integers $n$, $a$, and $b$ ($1 \\leq n \\leq 10^5$, $1 \\leq a, b \\leq 10^9$) — the length of the array $c$ and the constant values, respectively.\n\nThe second line of each test case contains $n$ integers $c_1, c_2, \\ldots, c_n$ ($1 \\leq c_i \\leq 10^9$) — the initial elements of the array $c$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum possible range of the array after any number of operations.\n\n## Note\n\nIn the first test case, we can increase $c_1 = 1$ by $a = 5$. The array $c$ will become $[6, 3, 4, 4]$, and the range is $3$. Note that there is more than one way to reach the answer.\n\nIn the second test case, we can increase $c_1 = 1$ by $a = 2$ and then increase $c_1 = 3$ by $b = 3$. Also, we can increase $c_2 = 3$ by $b = 3$ and increase $c_3 = 4$ by $a = 2$. The array $c$ will become $[6, 6, 6, 6]$, and the range is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "Dora 刚刚学会了编程语言 C++！\n\n然而，她完全误解了 C++ 的含义。她认为 C++ 是对含有 $n$ 个元素的数组 $c$ 进行两种加法操作。Dora 有两个整数 $a$ 和 $b$。在一次操作中，她可以选择以下操作之一进行。\n\n- 选择一个整数 $i$，满足 $1 \\leq i \\leq n$，并将 $c_i$ 增加 $a$。\n- 选择一个整数 $i$，满足 $1 \\leq i \\leq n$，并将 $c_i$ 增加 $b$。\n\n注意，$a$ 和 $b$ 是**常数**，并且它们可以相同。\n\n我们将数组 $d$ 的*极差*定义为 $\\max(d_i) - \\min(d_i)$。例如，数组 $[1, 2, 3, 4]$ 的极差为 $4 - 1 = 3$，数组 $[5, 2, 8, 2, 2, 1]$ 的极差为 $8 - 1 = 7$，数组 $[3, 3, 3]$ 的极差为 $3 - 3 = 0$。\n\n经过任意次操作（可能为 $0$ 次）后，Dora 计算新数组的极差。你需要帮助 Dora 使这个值最小，但由于 Dora 喜欢独自探索，你只需要告诉她最小值。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。接下来描述各个测试用例。\n\n每个测试用例的第一行包含三个整数 $n$、$a$ 和 $b$（$1 \\leq n \\leq 10^5$，$1 \\leq a, b \\leq 10^9$）——数组 $c$ 的长度以及两个常数的值。\n\n每个测试用例的第二行包含 $n$ 个整数 $c_1, c_2, \\ldots, c_n$（$1 \\leq c_i \\leq 10^9$）——数组 $c$ 的初始元素。\n\n保证所有测试用例中 $n$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——经过任意次操作后数组可能达到的最小极差。\n\n## 说明\n\n在第一个测试用例中，我们可以将 $c_1 = 1$ 增加 $a = 5$。此时数组 $c$ 变为 $[6, 3, 4, 4]$，极差为 $3$。注意，达到答案的方法不止一种。\n\n在第二个测试用例中，我们可以先将 $c_1 = 1$ 增加 $a = 2$，然后将 $c_1 = 3$ 增加 $b = 3$。此外，我们也可以将 $c_2 = 3$ 增加 $b = 3$，并将 $c_3 = 4$ 增加 $a = 2$。此时数组 $c$ 将变为 $[6, 6, 6, 6]$，极差为 $0$。",
   "samples": [
     {
       "input": "10\n4 5 5\n1 3 4 4\n4 2 3\n1 3 4 6\n4 7 7\n1 1 2 6\n3 15 9\n1 9 5\n3 18 12\n1 4 5\n7 27 36\n33 13 23 12 35 24 41\n10 6 9\n15 5 6 9 8 2 12 15 3 8\n2 1 1000000000\n1 1000000000\n6 336718728 709848696\n552806726 474775724 15129785 371139304 178408298 13106071\n6 335734893 671469786\n138885253 70095920 456876775 9345665 214704906 375508929\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:48:20.076Z"
+  "fetchedAt": "2026-10-30T21:48:20.076Z",
+  "translatedAt": "2026-11-03T16:10:11.713+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

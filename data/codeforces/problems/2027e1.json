@@ -4,7 +4,7 @@
   "contestId": 2027,
   "index": "E1",
   "title": "Bit Game (Easy Version)",
-  "titleZh": null,
+  "titleZh": "位运算游戏（简单版）",
   "url": "https://codeforces.com/contest/2027/problem/E1",
   "difficulty": 2800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of this problem. The only difference is that you need to output the winner of the game in this version, and the number of stones in each pile are fixed. You must solve both versions to be able to hack.**\n\nAlice and Bob are playing a familiar game where they take turns removing stones from $n$ piles. Initially, there are $x_i$ stones in the $i$-th pile, and it has an associated value $a_i$. A player can take $d$ stones away from the $i$-th pile if and only if both of the following conditions are met:\n\n- $1 \\le d \\le a_i$, and\n- $x \\, \\& \\, d = d$, where $x$ is the current number of stones in the $i$-th pile and $\\&$ denotes the [bitwise AND operation](https://en.wikipedia.org/wiki/Bitwise_operation#AND).\n\nThe player who cannot make a move loses, and Alice goes first.\n\nYou're given the $a_i$ and $x_i$ values for each pile, please determine who will win the game if both players play optimally.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains $n$ ($1 \\le n \\le 10^4$) — the number of piles.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\lt 2^{30}$).\n\nThe third line of each test case contains $n$ integers $x_1, x_2, \\ldots, x_n$ ($1 \\le x_i \\lt 2^{30}$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^4$.\n\n## Output\n\nPrint a single line with the winner's name. If Alice wins, print \"`Alice`\", otherwise print \"`Bob`\" (without quotes).\n\n## Note\n\nIn the first test case, neither player can take any stones from the first pile since there is no value of $d$ satisfying the conditions. For the second pile, to begin with, Alice can remove between $1$ and $6$ stones. No matter which move Alice performs, Bob can remove the rest of the stones on his turn. After Bob's move, there are no more moves that Alice can perform, so Bob wins.\n\nIn the second test case, here is one example of how the game might go. Alice moves first, and she decides to remove from the first pile. She cannot take $17$ stones, because $17 \\gt 10$, which fails the first condition. She cannot take $10$ stones, because $25 \\, \\& \\, 10 = 8$ which fails the second condition. One option is to take $9$ stones; now the pile has $16$ stones left. On Bob's turn he decides to take stones from the second pile; the only option here is to take all $4$. Now, no more stones can be taken from either of the first two piles, so Alice must take some stones from the last pile. She decides to take $12$ stones, and Bob then follows by taking the last $2$ stones on that pile. Since Alice now has no legal moves left, Bob wins. It can be shown that no matter which strategy Alice follows, Bob will always be able to win if he plays optimally.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。唯一的区别在于，本版本只需要输出游戏的胜者，并且每堆石子的数量是固定的。只有同时解决两个版本，才能进行 hack。**\n\nAlice 和 Bob 正在进行一个大家熟悉的游戏：他们轮流从 $n$ 堆石子中取走石子。初始时，第 $i$ 堆有 $x_i$ 颗石子，并且关联一个值 $a_i$。当且仅当以下两个条件都满足时，玩家可以从第 $i$ 堆中取走 $d$ 颗石子：\n\n- $1 \\le d \\le a_i$，并且\n- $x \\, \\& \\, d = d$，其中 $x$ 是第 $i$ 堆当前的石子数量，$\\&$ 表示[按位与运算](https://en.wikipedia.org/wiki/Bitwise_operation#AND)。\n\n无法进行操作的玩家输掉游戏，且 Alice 先手。\n\n给定每堆石子的 $a_i$ 和 $x_i$，请确定在双方都采取最优策略的情况下，谁将赢得游戏。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^4$）——石子堆的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\lt 2^{30}$）。\n\n每个测试用例的第三行包含 $n$ 个整数 $x_1, x_2, \\ldots, x_n$（$1 \\le x_i \\lt 2^{30}$）。\n\n保证所有测试用例的 $n$ 之和不超过 $10^4$。\n\n## 输出格式\n\n输出一行胜者的名字。如果 Alice 获胜，输出 “`Alice`”，否则输出 “`Bob`”（不含引号）。\n\n## 说明\n\n在第一个测试用例中，两个玩家都无法从第一堆中取走任何石子，因为不存在满足条件的 $d$。对于第二堆，开始时 Alice 可以取走 $1$ 到 $6$ 颗石子中的任意数量。无论 Alice 进行哪种操作，Bob 都可以在自己的回合取走剩下的石子。Bob 操作后，Alice 将无法再进行任何操作，因此 Bob 获胜。\n\n在第二个测试用例中，以下是一种可能的游戏过程。Alice 先手，并决定从第一堆中取走石子。她不能取走 $17$ 颗石子，因为 $17 \\gt 10$，不满足第一个条件。她也不能取走 $10$ 颗石子，因为 $25 \\, \\& \\, 10 = 8$，不满足第二个条件。一种选择是取走 $9$ 颗石子；此时该堆还剩下 $16$ 颗石子。轮到 Bob 时，他决定从第二堆中取走石子；此时唯一的选择是取走全部 $4$ 颗石子。现在，前两堆中都无法再取走石子，因此 Alice 必须从最后一堆中取走一些石子。她决定取走 $12$ 颗石子，随后 Bob 取走该堆中最后的 $2$ 颗石子。由于 Alice 此时已经没有合法操作可进行，Bob 获胜。可以证明，无论 Alice 采取何种策略，只要 Bob 采取最优策略，他总能获胜。",
   "samples": [
     {
       "input": "7\n2\n1 6\n10 7\n3\n10 8 15\n25 4 14\n4\n8 32 65 64\n7 45 126 94\n3\n20 40 1\n23 55 1\n5\n12345 9876 86419 8641 1\n6789 54321 7532 97532 1\n2\n20 64\n44 61\n3\n57 109 55\n69 90 85\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:02.241Z"
+  "fetchedAt": "2026-10-30T21:41:02.241Z",
+  "translatedAt": "2026-11-03T15:51:41.243+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

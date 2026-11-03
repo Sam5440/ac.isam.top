@@ -4,7 +4,7 @@
   "contestId": 2048,
   "index": "I1",
   "title": "Kevin and Puzzle (Easy Version)",
-  "titleZh": null,
+  "titleZh": "Kevin 和谜题（简单版）",
   "url": "https://codeforces.com/contest/2048/problem/I1",
   "difficulty": 3500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the easy version of the problem. The difference between the versions is that in this version, you need to find any one good array. You can hack only if you solved all versions of this problem.**\n\nKevin is visiting the Red Church, and he found a puzzle on the wall.\n\nFor an array $ a $, let $ c(l,r) $ indicate how many distinct numbers are among $ a_l, a_{l+1}, \\ldots, a_r $. In particular, if $ l \\gt r $, define $ c(l,r) = 0 $.\n\nYou are given a string $ s $ of length $ n $ consisting of letters $ \\texttt{L} $ and $ \\texttt{R} $ only. Let a non-negative array $ a $ be called *good*, if the following conditions hold for $ 1 \\leq i \\leq n $:\n\n- if $s_i=\\replacedVerb {L}$, then $c(1,i-1)=a_i$;\n- if $s_i=\\replacedVerb {R}$, then $c(i+1,n)=a_i$.\n\nIf there is a good array $a$, print any of the good arrays. Otherwise, report that no such arrays exists.\n\n## Input\n\nEach test contains multiple test cases. The first line contains a single integer $t$ ($1\\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2\\leq n\\leq 2\\cdot 10^5$) — the length of string $s$.\n\nThe second line of each test case contains a string $s$ with a length $n$, containing only English uppercase letters $\\replacedVerb {L}$ and $\\replacedVerb {R}$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, if a good array exists, print $n$ non-negative integers: a good array $a$. Otherwise, print a single integer $-1$.\n\nIf there are multiple arrays $a$ satisfying the conditions, you can output any of them.\n\n## Note\n\nIn the first test case, the array $[0,1,0]$ satisfies the conditions because:\n\n- When $i=1$, $s_i=\\replacedVerb {L}$, and $c(1,0)=0$;\n- When $i=2$, $s_i=\\replacedVerb {L}$, and $c(1,1)=1$, since there is only one distinct number in $a_1$;\n- When $i=3$, $s_i=\\replacedVerb {R}$, and $c(4,3)=0$.\n\nIn the second test case, another suitable answer is $[1,1,1]$.\n\nIn the third test case, it can be proven that there's no array satisfying the conditions.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版。简单版与困难版的区别在于：在本题中，你只需要找到任意一个满足条件的数组。只有解决了本题的所有版本后，才能进行 hack。**\n\nKevin 正在参观红教堂，他在墙上发现了一道谜题。\n\n对于一个数组 $ a $，令 $ c(l,r) $ 表示 $ a_l, a_{l+1}, \\ldots, a_r $ 中不同数字的个数。特别地，如果 $ l \\gt r $，则定义 $ c(l,r) = 0 $。\n\n给定一个长度为 $ n $ 的字符串 $ s $，其中只包含字母 $ \\texttt{L} $ 和 $ \\texttt{R} $。如果一个非负数组 $ a $ 满足以下条件，则称其为 *good* 数组。对于 $ 1 \\leq i \\leq n $：\n\n- 如果 $s_i=\\replacedVerb {L}$，则 $c(1,i-1)=a_i$；\n- 如果 $s_i=\\replacedVerb {R}$，则 $c(i+1,n)=a_i$。\n\n如果存在 good 数组 $a$，请输出任意一个；否则，报告不存在这样的数组。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含一个整数 $t$（$1\\le t \\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2\\leq n\\leq 2\\cdot 10^5$）——字符串 $s$ 的长度。\n\n每个测试用例的第二行包含一个长度为 $n$ 的字符串 $s$，只包含英文字母大写字母 $\\replacedVerb {L}$ 和 $\\replacedVerb {R}$。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果存在 good 数组，请输出 $n$ 个非负整数，表示数组 $a$。否则，输出一个整数 $-1$。\n\n如果有多个数组 $a$ 满足条件，可以输出其中任意一个。\n\n## 说明\n\n在第一个测试用例中，数组 $[0,1,0]$ 满足条件，原因如下：\n\n- 当 $i=1$ 时，$s_i=\\replacedVerb {L}$，且 $c(1,0)=0$；\n- 当 $i=2$ 时，$s_i=\\replacedVerb {L}$，且 $c(1,1)=1$，因为 $a_1$ 中只有一个不同的数字；\n- 当 $i=3$ 时，$s_i=\\replacedVerb {R}$，且 $c(4,3)=0$。\n\n在第二个测试用例中，另一个合适的答案是 $[1,1,1]$。\n\n在第三个测试用例中，可以证明不存在满足条件的数组。",
   "samples": [
     {
       "input": "4\n3\nLLR\n3\nRRL\n4\nRRLR\n5\nLLRLR\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:39:23.320Z"
+  "fetchedAt": "2026-10-30T21:39:23.320Z",
+  "translatedAt": "2026-11-03T14:53:29.781+08:00",
+  "translateModel": "gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2055,
   "index": "C",
   "title": "The Trail",
-  "titleZh": null,
+  "titleZh": "路径",
   "url": "https://codeforces.com/contest/2055/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*There are no mountains in Florida, and Florida Man cannot comprehend their existence. As such, he really needs your help with this one.*\n\nIn the wilderness lies a region of mountainous terrain represented as a rectangular grid with $n$ rows and $m$ columns. Each cell in the grid is identified by its position $(i, j)$, where $i$ is the row index and $j$ is the column index. The altitude of cell $(i, j)$ is denoted by $a_{i,j}$.\n\nHowever, this region has been tampered with. A path consisting of $n + m - 1$ cells, starting from the top-left corner $(1, 1)$ and ending at the bottom-right corner $(n, m)$, has been cleared. For every cell $(i, j)$ along this path, the altitude $a_{i,j}$ has been set to $0$. The path moves strictly via downward ($\\mathtt{D}$) or rightward ($\\mathtt{R}$) steps.\n\nTo restore the terrain to its original state, it is known that the region possessed a magical property before it was tampered with: all rows and all columns shared the same sum of altitudes. More formally, there exists an integer $x$ such that $\\sum_{j=1}^m a_{i, j} = x$ for all $1\\le i\\le n$, and $\\sum_{i=1}^n a_{i, j} = x$ for all $1\\le j\\le m$.\n\nYour task is to assign new altitudes to the cells on the path such that the above magical property is restored. It can be proven that a solution always exists. If there are multiple solutions that satisfy the property, any one of them may be provided.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\leq n, m \\leq 1000$) — the number of rows and columns in the grid.\n\nThe second line of each test case contains a string $s$ of length $n+m-2$ ($s_i = \\mathtt{D}$ or $s_i = \\mathtt{R}$) — the steps the path makes from $(1, 1)$ to $(n, m)$. The character $\\mathtt{D}$ represents a downward step, and $\\mathtt{R}$ represents a rightward step.\n\nThe $i$-th of the next $n$ lines each contain $m$ integers $a_{i,1}, a_{i, 2}, \\ldots, a_{i,m}$ ($-10^6 \\leq a_{i,j} \\leq 10^6$) — the altitude of each cell in the grid. It is guaranteed that if a cell $(i, j)$ lies on the path, then $a_{i,j} = 0$.\n\nIt is guaranteed that the sum of $n \\cdot m$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output $n$ lines of $m$ integers representing the restored grid of altitudes $b_{i, j}$. The altitudes must satisfy $-10^{15} \\leq b_{i,j} \\leq 10^{15}$, and additionally $a_{i,j} = b_{i,j}$ if $(i, j)$ is not on the path. If multiple solutions exist, output any of them.\n\n## Note\n\nIn the first test case, the grid has been filled such that every row and column contains the numbers $1, 2, 3$ in some order, resulting in a common sum of $6$.\n\nIn the second test case, the grid has been filled such that all rows and columns sum to $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "*佛罗里达州没有山脉，佛罗里达州人无法理解山脉的存在。因此，这次他真的需要你的帮助。*\n\n荒野中有一片山地，表示为一个有 $n$ 行、$m$ 列的矩形网格。网格中的每个格子由其位置 $(i, j)$ 标识，其中 $i$ 是行号，$j$ 是列号。格子 $(i, j)$ 的海拔记为 $a_{i,j}$。\n\n然而，这片区域遭到了破坏。一条由 $n + m - 1$ 个格子组成的路径从左上角 $(1, 1)$ 通往右下角 $(n, m)$，沿途格子的海拔 $a_{i,j}$ 均被设为 $0$。路径只能向下（$\\mathtt{D}$）或向右（$\\mathtt{R}$）移动。\n\n为了恢复地形原貌，已知这片区域在遭到破坏前具有一种神奇的性质：所有行和所有列的海拔总和都相同。更正式地说，存在一个整数 $x$，使得对于所有 $1\\le i\\le n$，都有 $\\sum_{j=1}^m a_{i, j} = x$；对于所有 $1\\le j\\le m$，都有 $\\sum_{i=1}^n a_{i, j} = x$。\n\n你的任务是为路径上的格子赋予新的海拔，使上述神奇性质恢复。可以证明，解总是存在。如果有多个满足条件的解，输出任意一个即可。\n\n## 输入格式\n\n每个输入包含多个测试用例。第一行包含测试用例数 $t$（$1 \\leq t \\leq 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\leq n, m \\leq 1000$）——网格的行数和列数。\n\n每个测试用例的第二行包含一个长度为 $n+m-2$ 的字符串 $s$（$s_i = \\mathtt{D}$ 或 $s_i = \\mathtt{R}$）——路径从 $(1, 1)$ 到 $(n, m)$ 所经过的步骤。字符 $\\mathtt{D}$ 表示向下移动，字符 $\\mathtt{R}$ 表示向右移动。\n\n接下来的 $n$ 行中，第 $i$ 行包含 $m$ 个整数 $a_{i,1}, a_{i, 2}, \\ldots, a_{i,m}$（$-10^6 \\leq a_{i,j} \\leq 10^6$）——网格中各个格子的海拔。保证路径上的格子 $(i, j)$ 满足 $a_{i,j} = 0$。\n\n保证所有测试用例的 $n \\cdot m$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 行，每行包含 $m$ 个整数，表示恢复后的海拔网格 $b_{i, j}$。海拔必须满足 $-10^{15} \\leq b_{i,j} \\leq 10^{15}$，并且对于不在路径上的格子 $(i, j)$，必须有 $a_{i,j} = b_{i,j}$。如果有多个解，输出任意一个即可。\n\n## 说明\n\n在第一个测试用例中，网格中的每一行和每一列都填入了 $1, 2, 3$，顺序可以不同，因此它们的总和均为 $6$。\n\n在第二个测试用例中，网格中的所有行和所有列的总和均为 $0$。",
   "samples": [
     {
       "input": "4\n3 3\nDRRD\n0 2 3\n0 0 0\n3 1 0\n4 5\nDRRRRDD\n0 1 0 2 3\n0 0 0 0 0\n-1 0 -3 -3 0\n0 0 0 -1 0\n2 3\nRRD\n0 0 0\n0 1 0\n5 5\nDDDDRRRR\n0 25 2 9 11\n0 6 13 20 22\n0 17 24 1 8\n0 3 10 12 19\n0 0 0 0 0\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:32:59.422Z"
+  "fetchedAt": "2026-10-30T21:32:59.422Z",
+  "translatedAt": "2026-11-03T14:52:53.381+08:00",
+  "translateModel": "gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": "arc177",
   "index": "E",
   "title": "Wrong Scoreboard",
-  "titleZh": null,
+  "titleZh": "错误的排行榜",
   "url": "https://atcoder.jp/contests/arc177/tasks/arc177_e",
   "difficulty": 3227,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 9000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nIn the AtCoder World Tour Finals 2800, $N$ contestants participated, and a total of five problems were presented. Each problem is assigned an integer score of at least $1$ point, and the problems are numbered so that the scores are **non-decreasing** from problem $1$ to problem $5$. There are no partial points. Similar to the usual AtCoder rules, ranking is done as follows. **In this problem, we do not consider the situation where multiple contestants have the same total score and penalty.**\n\nRankingThe contestant with the higher total score ranks higher. In case of a tie, the one with the smaller penalty ranks higher.\n\nNow, Aoki, a reporter covering the finals, noted the following information:\n\n1. The number of participants $N$.\n2. Which problems each contestant solved. $A_{i,j}=1$ means the $i$-th contestant $(1 \\leq i \\leq N)$ correctly solved problem $j$, and $A_{i,j}=0$ means they did not.\n3. The rank of each contestant. The $i$-th contestant $(1 \\leq i \\leq N)$ was ranked $R_i$-th.\n\nHowever, when he started writing the article, he realized he did not note the scores and penalties. Furthermore, he realized there might be inconsistencies in the information he noted. Now, solve the following problem.\n\n> Assume that he correctly noted information 1 and 2. Let $D_i$ be the actual rank of contestant $i$ $(1 \\leq i \\leq N)$, and find the minimum possible total squared error $(D_1 - R_1)^2 + (D_2 - R_2)^2 + \\dots + (D_N - R_N)^2$.\n\nYou have $T$ test cases to process.\n\n## Constraints\n\n- $1 \\leq T \\leq 10^5$\n- $2 \\leq N \\leq 3 \\times 10^5$\n- Each of $A_{i,1}, A_{i,2}, A_{i,3}, A_{i,4}, A_{i,5}$ is $0$ or $1$ $(1 \\leq i \\leq N)$.\n- The sum of $A_{i,1}, A_{i,2}, A_{i,3}, A_{i,4}, A_{i,5}$ is at least $1$ $(1 \\leq i \\leq N)$.\n- $1 \\leq R_i \\leq N$ $(1 \\leq i \\leq N)$\n- $R_1, R_2, \\dots, R_N$ are distinct.\n- The total value of $N$ across all test cases is at most $3 \\times 10^5$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format. Here $\\mathrm{case}_i$ represents the $i$-th test case $(1 \\leq i \\leq T)$.\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN\nA_{1,1} A_{1,2} A_{1,3} A_{1,4} A_{1,5}\nA_{2,1} A_{2,2} A_{2,3} A_{2,4} A_{2,5}\n\\vdots\nA_{N,1} A_{N,2} A_{N,3} A_{N,4} A_{N,5}\nR_1 R_2 \\cdots R_N\n```\n\n## Output\n\nPrint the answers.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n在 AtCoder World Tour Finals 2800 中，有 $N$ 名选手参赛，共设置了 5 道题。每道题的分值是至少为 $1$ 的整数，并且题目按照从题目 1 到题目 5 的顺序编号，使得分值**不递减**。不存在部分分。与通常的 AtCoder 规则类似，排名规则如下。**在本题中，不考虑多名选手总分和罚时均相同的情况。**\n\n排名\n\n总分更高的选手排名更高。若总分相同，则罚时更少的选手排名更高。\n\n现在，负责报道决赛的记者 Aoki 记录了以下信息：\n\n1. 参赛人数 $N$。\n2. 每位选手解出的题目。$A_{i,j}=1$ 表示第 $i$ 名选手 $(1 \\leq i \\leq N)$ 正确解出了第 $j$ 题，$A_{i,j}=0$ 表示没有解出。\n3. 每位选手的排名。第 $i$ 名选手 $(1 \\leq i \\leq N)$ 的排名为第 $R_i$ 名。\n\n然而，当他开始撰写报道时，发现自己没有记录题目的分值和罚时。此外，他还发现所记录的信息可能存在矛盾。现在，请解决以下问题。\n\n> 假设他正确记录了信息 1 和 2。令 $D_i$ 表示选手 $i$ $(1 \\leq i \\leq N)$ 的实际排名，求总平方误差 $(D_1 - R_1)^2 + (D_2 - R_2)^2 + \\dots + (D_N - R_N)^2$ 的最小可能值。\n\n你需要处理 $T$ 组测试数据。\n\n## 约束条件\n\n- $1 \\leq T \\leq 10^5$\n- $2 \\leq N \\leq 3 \\times 10^5$\n- 对于每个 $i$ $(1 \\leq i \\leq N)$，$A_{i,1}, A_{i,2}, A_{i,3}, A_{i,4}, A_{i,5}$ 均为 $0$ 或 $1$。\n- 对于每个 $i$ $(1 \\leq i \\leq N)$，$A_{i,1}, A_{i,2}, A_{i,3}, A_{i,4}, A_{i,5}$ 的和至少为 $1$。\n- $1 \\leq R_i \\leq N$ $(1 \\leq i \\leq N)$\n- $R_1, R_2, \\dots, R_N$ 互不相同。\n- 所有测试数据中 $N$ 的总和不超过 $3 \\times 10^5$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入读入，格式如下。其中，$\\mathrm{case}_i$ 表示第 $i$ 组测试数据 $(1 \\leq i \\leq T)$。\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每组测试数据的格式如下：\n\n```\nN\nA_{1,1} A_{1,2} A_{1,3} A_{1,4} A_{1,5}\nA_{2,1} A_{2,2} A_{2,3} A_{2,4} A_{2,5}\n\\vdots\nA_{N,1} A_{N,2} A_{N,3} A_{N,4} A_{N,5}\nR_1 R_2 \\cdots R_N\n```\n\n## 输出格式\n\n输出答案。",
   "samples": [
     {
       "input": "6\n4\n0 1 1 0 0\n1 0 0 1 0\n1 1 0 1 0\n1 0 1 0 0\n1 2 3 4\n8\n0 1 0 0 0\n1 1 0 1 0\n0 1 1 0 1\n1 0 0 0 0\n1 1 0 1 0\n0 1 0 0 0\n0 0 0 1 0\n0 1 1 1 1\n7 4 2 8 3 6 5 1\n6\n1 1 0 0 0\n0 0 1 0 0\n1 1 1 0 0\n0 0 0 1 0\n1 1 1 1 0\n0 0 0 0 1\n1 2 3 4 5 6\n6\n1 1 0 0 0\n0 0 1 0 0\n1 1 1 0 0\n0 0 0 1 0\n1 1 1 1 0\n0 0 0 0 1\n6 5 4 3 2 1\n20\n0 0 0 0 1\n0 0 1 0 0\n1 1 0 0 1\n1 0 1 0 1\n0 0 0 1 1\n0 0 1 1 1\n1 1 1 1 0\n1 1 0 1 0\n0 0 1 1 0\n1 0 1 0 0\n0 1 0 0 1\n0 1 1 1 1\n1 1 1 1 1\n0 1 0 1 0\n1 0 0 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 0 1 0\n1 1 1 0 1\n1 1 0 1 1\n7 18 3 5 19 11 13 2 4 10 14 15 17 6 16 9 8 12 1 20\n15\n0 0 1 1 0\n0 0 0 1 0\n0 0 0 0 1\n0 0 1 1 1\n1 1 0 0 1\n0 1 1 1 0\n1 1 1 1 1\n0 1 1 0 1\n1 1 0 1 0\n1 0 0 1 1\n1 0 1 0 0\n1 1 0 1 1\n0 1 0 1 0\n1 1 0 0 0\n0 1 0 0 1\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15\n",
@@ -21,5 +21,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:08:39.326Z"
+  "fetchedAt": "2026-10-30T21:08:39.326Z",
+  "translatedAt": "2026-11-03T16:15:26.602+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

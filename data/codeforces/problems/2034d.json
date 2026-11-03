@@ -4,7 +4,7 @@
   "contestId": 2034,
   "index": "D",
   "title": "Darius' Wisdom",
-  "titleZh": null,
+  "titleZh": "大流士的智慧",
   "url": "https://codeforces.com/contest/2034/problem/D",
   "difficulty": 1600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "[Darius the Great](https://en.wikipedia.org/wiki/Darius_the_Great) is constructing $n$ stone columns, each consisting of a base and between $0$, $1$, or $2$ inscription pieces stacked on top.\n\nIn each move, Darius can choose two columns $u$ and $v$ such that the difference in the number of inscriptions between these columns is exactly $1$, and transfer one inscription from the column with more inscriptions to the other one. It is guaranteed that at least one column contains exactly $1$ inscription.\n\n![image](https://espresso.codeforces.com/d4cdf6815b1220ffe2be57e8bcb7d42bfa773cfc.webp)\n\nSince beauty is the main pillar of historical buildings, Darius wants the columns to have ascending heights. To avoid excessive workers' efforts, he asks you to plan a sequence of **at most $n$** moves to arrange the columns in non-decreasing order based on the number of inscriptions. Minimizing the number of moves is **not required**.\n\n## Input\n\nThe first line contains an integer $t$ — the number of test cases. ($1 \\leq t \\leq 3000$)\n\nThe first line of each test case contains an integer $n$ — the number of stone columns. ($1 \\leq n \\leq 2 \\cdot 10^5$)\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$, where $a_i \\in \\{0,1,2\\}$ represents the initial number of inscriptions in the $i$-th column. It is guaranteed that at least one column has exactly $1$ inscription.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output an integer $k$ — the number of moves used to sort the columns. ($0 \\leq k \\leq n$)\n\nThen, output $k$ lines, each containing two integers $u_i$ and $v_i$ ($1 \\leq u_i, v_i \\leq n$), representing the indices of the columns involved in the $i$-th move. During each move, it must hold that $|a_{u_i} - a_{v_i}| = 1$, and one inscription is transferred from the column with more inscriptions to the other.\n\nIt can be proven that a valid solution always exists under the given constraints.\n\n## Note\n\nColumns state in the first test case:\n\n- Initial: $0, 2, 0, 1$\n- After the first move: $0, 1, 0, 2$\n- After the second move: $0, 0, 1, 2$\n\nColumns state in the second test case:\n\n- Initial: $1, 2, 0$\n- After the first move: $0, 2, 1$\n- After the second move: $0, 1, 2$\n\nIn the third test case, the column heights are already sorted in ascending order.",
-  "statementZhMd": null,
+  "statementZhMd": "[大流士大帝](https://en.wikipedia.org/wiki/Darius_the_Great) 正在建造 $n$ 根石柱，每根石柱都由一个底座以及堆叠在其上的 $0$、$1$ 或 $2$ 块铭文石组成。\n\n在一次操作中，大流士可以选择两根石柱 $u$ 和 $v$，要求这两根石柱上的铭文数量之差恰好为 $1$，然后将一块铭文从铭文较多的石柱转移到另一根石柱上。保证至少有一根石柱上恰好有 $1$ 块铭文。\n\n![image](https://espresso.codeforces.com/d4cdf6815b1220ffe2be57e8bcb7d42bfa773cfc.webp)\n\n由于美观是历史建筑的主要支柱，大流士希望石柱的高度按升序排列。为了避免工人付出过多努力，他请你规划一个**至多进行 $n$ 次**操作的方案，使石柱按照铭文数量非递减排列。不要求最小化操作次数。\n\n## 输入格式\n\n第一行包含一个整数 $t$ —— 测试用例的数量。($1 \\leq t \\leq 3000$)\n\n每个测试用例的第一行包含一个整数 $n$ —— 石柱的数量。($1 \\leq n \\leq 2 \\cdot 10^5$)\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$，其中 $a_i \\in \\{0,1,2\\}$ 表示第 $i$ 根石柱上初始的铭文数量。保证至少有一根石柱恰好有 $1$ 块铭文。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 $k$ —— 将石柱排序所使用的操作次数。($0 \\leq k \\leq n$)\n\n接下来输出 $k$ 行，每行包含两个整数 $u_i$ 和 $v_i$ ($1 \\leq u_i, v_i \\leq n$)，表示第 $i$ 次操作涉及的石柱编号。在每次操作中，都必须满足 $|a_{u_i} - a_{v_i}| = 1$，并将一块铭文从铭文较多的石柱转移到另一根石柱上。\n\n可以证明，在给定约束下，始终存在有效方案。\n\n## 说明\n\n第一个测试用例中的石柱状态：\n\n- 初始状态：$0, 2, 0, 1$\n- 第一次操作后：$0, 1, 0, 2$\n- 第二次操作后：$0, 0, 1, 2$\n\n第二个测试用例中的石柱状态：\n\n- 初始状态：$1, 2, 0$\n- 第一次操作后：$0, 2, 1$\n- 第二次操作后：$0, 1, 2$\n\n在第三个测试用例中，石柱的高度已经按升序排列。",
   "samples": [
     {
       "input": "3\n4\n0 2 0 1\n3\n1 2 0\n6\n0 1 1 2 2 2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:10.401Z"
+  "fetchedAt": "2026-10-30T21:40:10.401Z",
+  "translatedAt": "2026-11-03T15:02:12.588+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

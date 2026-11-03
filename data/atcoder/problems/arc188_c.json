@@ -4,7 +4,7 @@
   "contestId": "arc188",
   "index": "C",
   "title": "Honest or Liar or Confused",
-  "titleZh": null,
+  "titleZh": "诚实者、说谎者还是困惑者",
   "url": "https://atcoder.jp/contests/arc188/tasks/arc188_c",
   "difficulty": 2377,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere is a village with $N$ villagers numbered from $1$ to $N$. Each villager is honest or a liar. Additionally, some villagers are confused.\n\nYou have obtained $M$ testimonies from the villagers. Each testimony is given by $A_i$, $B_i$, $C_i$ for $i=1,2,\\ldots,M$, representing:\n\n- If $C_i=0$, villager $A_i$ testified that villager $B_i$ is honest.\n- If $C_i=1$, villager $A_i$ testified that villager $B_i$ is a liar.\n\nAll villagers know whether every other villager is honest or a liar, and you know that they made their testimonies to you according to the following rules:\n\n- An honest villager who is not confused always tells the truth.\n- A liar who is not confused always tells lies.\n- A confused honest villager always tells lies.\n- A confused liar always tells the truth.\n\nIn other words, if they are not confused, honest villagers always tell the truth, and liars always tell lies, but if they are confused, it is reversed.\n\nYou have decided to guess the set of villagers who are confused. Given a choice of villagers who are confused, whether the set of testimonies \"contradicts\" or not is determined. Here, a set of testimonies is said to contradict if, no matter how you assign honest or liar statuses to the villagers, there is at least one testimony that violates the villagers' testimony rules.\n\nFind a set of confused villagers such that the given set of testimonies does not contradict. If no such set of confused villagers exists, indicate that fact.\n\n## Constraints\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $0 \\leq M \\leq \\mathrm{min} \\lbrace 2 \\times 10^5,N(N-1) \\rbrace$\n- $1 \\leq A_i, B_i \\leq N$, $A_i \\neq B_i$\n- $A_i \\neq A_j$ or $B_i \\neq B_j$ for $i \\neq j$.\n- $C_i = 0$ or $1$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M\nA_1 B_1 C_1\nA_2 B_2 C_2\n\\vdots\nA_M B_M C_M\n```\n\n## Output\n\nIf there exists a set of confused villagers such that the given set of testimonies does not contradict, print a string of length $N$ representing the set of confused villagers. In this string, the $i$-th character should be `1` if villager $i$ is confused, and `0` otherwise.\n\nIf no such set of confused villagers exists, print `-1`.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有一个村庄，其中有 $N$ 名村民，编号为 $1$ 至 $N$。每名村民要么诚实，要么说谎。此外，还有一些村民处于困惑状态。\n\n你从村民那里获得了 $M$ 条证词。第 $i$ 条证词由 $A_i$、$B_i$、$C_i$ 表示，其中 $i=1,2,\\ldots,M$，含义如下：\n\n- 如果 $C_i=0$，村民 $A_i$ 声称村民 $B_i$ 是诚实者。\n- 如果 $C_i=1$，村民 $A_i$ 声称村民 $B_i$ 是说谎者。\n\n所有村民都知道其他每名村民是诚实者还是说谎者，并且你知道他们是按照以下规则向你作证的：\n\n- 未处于困惑状态的诚实者总是说真话。\n- 未处于困惑状态的说谎者总是说假话。\n- 处于困惑状态的诚实者总是说假话。\n- 处于困惑状态的说谎者总是说真话。\n\n换句话说，如果没有处于困惑状态，诚实者总是说真话，说谎者总是说假话；但如果处于困惑状态，则情况相反。\n\n你决定猜测处于困惑状态的村民集合。给定一个处于困惑状态的村民集合后，可以判断给出的证词集合是否“矛盾”。这里，如果无论如何为村民分配诚实者或说谎者的身份，都至少有一条证词违反村民的作证规则，则称证词集合存在矛盾。\n\n请找出一个处于困惑状态的村民集合，使得给出的证词集合不存在矛盾。如果不存在这样的处于困惑状态的村民集合，请说明这一事实。\n\n## 约束条件\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $0 \\leq M \\leq \\mathrm{min} \\lbrace 2 \\times 10^5,N(N-1) \\rbrace$\n- $1 \\leq A_i, B_i \\leq N$，$A_i \\neq B_i$\n- 对于 $i \\neq j$，有 $A_i \\neq A_j$ 或 $B_i \\neq B_j$。\n- $C_i = 0$ 或 $1$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN M\nA_1 B_1 C_1\nA_2 B_2 C_2\n\\vdots\nA_M B_M C_M\n```\n\n## 输出格式\n\n如果存在一个处于困惑状态的村民集合，使得给出的证词集合不存在矛盾，则输出一个长度为 $N$ 的字符串，表示处于困惑状态的村民集合。在该字符串中，第 $i$ 个字符应为 `1`，如果村民 $i$ 处于困惑状态；否则应为 `0`。\n\n如果不存在这样的处于困惑状态的村民集合，则输出 `-1`。",
   "samples": [
     {
       "input": "3 3\n1 2 1\n1 3 0\n2 3 0\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:01:51.617Z"
+  "fetchedAt": "2026-10-30T21:01:51.617Z",
+  "translatedAt": "2026-11-03T15:13:12.575+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2059,
   "index": "C",
   "title": "Customer Service",
-  "titleZh": null,
+  "titleZh": "客户服务",
   "url": "https://codeforces.com/contest/2059/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Nikyr has started working as a queue manager at the company \"Black Contour.\" He needs to choose the order of servicing customers. There are a total of $n$ queues, each initially containing $0$ people. In each of the next $n$ moments of time, there are **two sequential** events:\n\n1. New customers arrive in all queues. More formally, at the $j$-th moment of time, the number of people in the $i$-th queue increases by a **positive** integer $a_{i,j}$.\n2. Nikyr chooses **exactly one** of the $n$ queues to be served at that moment in time. The number of customers in this queue becomes $0$.\n\nLet the number of people in the $i$-th queue after all events be $x_i$. Nikyr wants MEX$^{\\dagger}$ of the collection $x_1, x_2, \\ldots, x_n$ to be as large as possible. Help him determine the maximum value he can achieve with an optimal order of servicing the queues.\n\n$^{\\dagger}$The minimum excluded (MEX) of a collection of integers $c_1, c_2, \\ldots, c_k$ is defined as the smallest non-negative integer $y$ which does not occur in the collection $c$.\n\nFor example:\n\n- $\\operatorname{MEX}([2,2,1])= 0$, since $0$ does not belong to the array.\n- $\\operatorname{MEX}([3,1,0,1]) = 2$, since $0$ and $1$ belong to the array, but $2$ does not.\n- $\\operatorname{MEX}([0,3,1,2]) = 4$, since $0$, $1$, $2$, and $3$ belong to the array, but $4$ does not.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 2 \\cdot 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 300$) — the number of queues and moments of time.\n\nThe $i$-th of the next $n$ lines contains $n$ integers $a_{i,1}, a_{i,2}, \\ldots, a_{i,n}$ ($1 \\le a_{i,j} \\le 10^9$) — the number of new customers in the $i$-th queue at each moment of time.\n\nIt is guaranteed that the sum of $n^2$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum value of $\\operatorname{MEX}([x_1, x_2, \\ldots, x_n])$ that can be achieved.\n\n## Note\n\nIn the first test case, the second queue can be served at time $1$, and the first queue at time $2$. There will be $x_1 = 0$ people left in the first queue and $x_2 = 1$ person left in the second queue. Therefore, the answer is $\\operatorname{MEX}([0, 1]) = 2$.\n\nIn the second test case, the first queue can be served both times. There will be $x_1 = 0$ people left in the first queue and $x_2 = 20$ people left in the second queue. Therefore, the answer is $\\operatorname{MEX}([0, 20]) = 1$.\n\nIn the third test case, the third queue can be served at time $1$, the second queue at time $2$, and the first queue at time $3$. There will be $x_1 = 0$ people left in the first queue, $x_2 = 1$ person left in the second queue, and $x_3 = 2$ people left in the third queue. Therefore, the answer is $\\operatorname{MEX}([0, 1, 2]) = 3$.",
-  "statementZhMd": null,
+  "statementZhMd": "Nikyr 最近开始在 \"Black Contour\" 公司担任队列管理员。他需要决定为顾客提供服务的顺序。一共有 $n$ 条队列，初始时每条队列中有 $0$ 个人。在接下来的 $n$ 个时刻中，每个时刻都会**先后相继**发生两个事件：\n\n1. 所有队列都会有新顾客到来。更形式化地说，在第 $j$ 个时刻，第 $i$ 条队列中的人数会增加一个**正**整数 $a_{i,j}$。\n2. Nikyr 会从这 $n$ 条队列中**恰好选择一条**在该时刻接受服务。这条队列中的顾客数将变为 $0$。\n\n设所有事件结束后第 $i$ 条队列中的人数为 $x_i$。Nikyr 希望集合 $x_1, x_2, \\ldots, x_n$ 的 MEX$^{\\dagger}$ 尽可能大。请帮他求出在最优的服务顺序下所能获得的最大值。\n\n$^{\\dagger}$整数集合 $c_1, c_2, \\ldots, c_k$ 的最小排除值（MEX）定义为没有在集合 $c$ 中出现过的最小非负整数 $y$。\n\n例如：\n\n- $\\operatorname{MEX}([2,2,1])= 0$，因为 $0$ 不在这个数组中。\n- $\\operatorname{MEX}([3,1,0,1]) = 2$，因为 $0$ 和 $1$ 在数组中出现过，而 $2$ 没有。\n- $\\operatorname{MEX}([0,3,1,2]) = 4$，因为 $0$、$1$、$2$ 和 $3$ 都在数组中出现过，而 $4$ 没有。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$ ($1 \\le t \\le 2 \\cdot 10^4$) —— 表示测试用例的数量。随后是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$ ($1 \\le n \\le 300$) —— 表示队列数和时刻数。\n\n接下来 $n$ 行中的第 $i$ 行包含 $n$ 个整数 $a_{i,1}, a_{i,2}, \\ldots, a_{i,n}$ ($1 \\le a_{i,j} \\le 10^9$) —— 表示第 $i$ 条队列在每个时刻新到来的顾客数。\n\n保证所有测试用例的 $n^2$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 所能达成的 $\\operatorname{MEX}([x_1, x_2, \\ldots, x_n])$ 的最大值。\n\n## 说明\n\n在第一个测试用例中，可以在时刻 $1$ 服务第二条队列，在时刻 $2$ 服务第一条队列。这样第一条队列中剩下 $x_1 = 0$ 个人，第二条队列中剩下 $x_2 = 1$ 个人。因此答案是 $\\operatorname{MEX}([0, 1]) = 2$。\n\n在第二个测试用例中，两个时刻都可以服务第一条队列。这样第一条队列中剩下 $x_1 = 0$ 个人，第二条队列中剩下 $x_2 = 20$ 个人。因此答案是 $\\operatorname{MEX}([0, 20]) = 1$。\n\n在第三个测试用例中，可以在时刻 $1$ 服务第三条队列，在时刻 $2$ 服务第二条队列，在时刻 $3$ 服务第一条队列。这样第一条队列中剩下 $x_1 = 0$ 个人，第二条队列中剩下 $x_2 = 1$ 个人，第三条队列中剩下 $x_3 = 2$ 个人。因此答案是 $\\operatorname{MEX}([0, 1, 2]) = 3$。",
   "samples": [
     {
       "input": "4\n2\n1 2\n2 1\n2\n10 10\n10 10\n3\n2 3 3\n4 4 1\n2 1 1\n4\n4 2 2 17\n1 9 3 1\n5 5 5 11\n1 2 1 1\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:32:34.776Z"
+  "fetchedAt": "2026-10-30T21:32:34.776Z",
+  "translatedAt": "2026-11-03T14:39:26.086+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

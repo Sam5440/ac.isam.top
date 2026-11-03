@@ -4,7 +4,7 @@
   "contestId": 2056,
   "index": "B",
   "title": "Find the Permutation",
-  "titleZh": null,
+  "titleZh": "寻找排列",
   "url": "https://codeforces.com/contest/2056/problem/B",
   "difficulty": 1300,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "You are given an undirected graph with $n$ vertices, labeled from $1$ to $n$. This graph encodes a hidden permutation$^{\\text{∗}}$ $p$ of size $n$. The graph is constructed as follows:\n\n- For every pair of integers $1 \\le i \\lt j \\le n$, an undirected edge is added between vertex $p_i$ and vertex $p_j$ if and only if $p_i \\lt p_j$. Note that the edge **is not added** between vertices $i$ and $j$, but between the vertices of their respective elements. Refer to the notes section for better understanding.\n\nYour task is to reconstruct and output the permutation $p$. It can be proven that permutation $p$ can be uniquely determined.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 1000$).\n\nThe $i$-th of the next $n$ lines contains a string of $n$ characters $g_{i, 1}g_{i, 2}\\ldots g_{i, n}$ ($g_{i, j} = \\mathtt{0}$ or $g_{i, j} = \\mathtt{1}$) — the adjacency matrix. $g_{i, j} = \\mathtt{1}$ if and only if there is an edge between vertex $i$ and vertex $j$.\n\nIt is guaranteed that there exists a permutation $p$ which generates the given graph. It is also guaranteed that the graph is undirected and has no self-loops, meaning $g_{i, j} = g_{j, i}$ and $g_{i, i} = \\mathtt{0}$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $1000$.\n\n## Output\n\nFor each test case, output $n$ integers $p_1, p_2, \\ldots, p_n$ representing the reconstructed permutation.\n\n## Note\n\nIn the first case $p = [1]$. Since there are no pairs $1 \\le i \\lt j \\le n$, there are no edges in the graph.\n\nThe graph in the second case is shown below. For example, when we choose $i = 3$ and $j = 4$, we add an edge between vertices $p_i = 1$ and $p_j = 3$, because $p_i \\lt p_j$. However, when we choose $i = 2$ and $j = 3$, $p_i = 2$ and $p_j = 1$, so $p_i \\lt p_j$ doesn't hold. Therefore, we don't add an edge between $2$ and $1$.\n\n![image](https://espresso.codeforces.com/5f1953d2774c0b1378a67cd9be1536c8978a3765.png)\n\nIn the third case, there are no edges in the graph, so there are no pairs of integers $1 \\le i \\lt j \\le n$ such that $p_i \\lt p_j$. Therefore, $p = [6, 5, 4, 3, 2, 1]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个有 $n$ 个顶点的无向图，顶点编号从 $1$ 到 $n$。这个图编码了一个长度为 $n$ 的隐藏排列$^{\\text{∗}}$ $p$。图按如下方式构造：\n\n- 对于每一对整数 $1 \\le i \\lt j \\le n$，当且仅当 $p_i \\lt p_j$ 时，在顶点 $p_i$ 和顶点 $p_j$ 之间添加一条无向边。注意，添加边的不是顶点 $i$ 和顶点 $j$，而是它们各自对应的元素所在的顶点。请参阅说明部分以更好地理解。\n\n你的任务是重建并输出排列 $p$。可以证明，排列 $p$ 可以被唯一确定。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是由 $1$ 到 $n$ 中 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中有 $4$）。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数量 $t$ ($1 \\le t \\le 500$)。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$ ($1 \\le n \\le 1000$)。\n\n接下来的 $n$ 行中，第 $i$ 行包含一个由 $n$ 个字符组成的字符串 $g_{i, 1}g_{i, 2}\\ldots g_{i, n}$（$g_{i, j} = \\mathtt{0}$ 或 $g_{i, j} = \\mathtt{1}$）——邻接矩阵。当且仅当顶点 $i$ 和顶点 $j$ 之间存在一条边时，$g_{i, j} = \\mathtt{1}$。\n\n保证存在一个排列 $p$ 可以生成给定的图。还保证该图是无向图且没有自环，即 $g_{i, j} = g_{j, i}$ 且 $g_{i, i} = \\mathtt{0}$。\n\n保证所有测试用例的 $n$ 之和不超过 $1000$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数 $p_1, p_2, \\ldots, p_n$，表示重建出的排列。\n\n## 说明\n\n在第一个测试用例中，$p = [1]$。由于不存在满足 $1 \\le i \\lt j \\le n$ 的数对，因此图中没有边。\n\n下图展示了第二个测试用例中的图。例如，当选择 $i = 3$ 和 $j = 4$ 时，由于 $p_i = 1$ 且 $p_j = 3$，满足 $p_i \\lt p_j$，因此我们在顶点 $1$ 和顶点 $3$ 之间添加一条边。而当选择 $i = 2$ 和 $j = 3$ 时，$p_i = 2$ 且 $p_j = 1$，因此 $p_i \\lt p_j$ 不成立，所以我们不会在顶点 $2$ 和顶点 $1$ 之间添加边。\n\n![image](https://espresso.codeforces.com/5f1953d2774c0b1378a67cd9be1536c8978a3765.png)\n\n在第三个测试用例中，图中没有边，因此不存在满足 $1 \\le i \\lt j \\le n$ 且 $p_i \\lt p_j$ 的整数对。因此，$p = [6, 5, 4, 3, 2, 1]$。",
   "samples": [
     {
       "input": "3\n1\n0\n5\n00101\n00101\n11001\n00001\n11110\n6\n000000\n000000\n000000\n000000\n000000\n000000\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:32:52.214Z"
+  "fetchedAt": "2026-10-30T21:32:52.214Z",
+  "translatedAt": "2026-11-03T14:52:50.986+08:00",
+  "translateModel": "gpt-6.1-sol"
 }

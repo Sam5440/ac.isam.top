@@ -4,7 +4,7 @@
   "contestId": 2035,
   "index": "C",
   "title": "Alya and Permutation",
-  "titleZh": null,
+  "titleZh": "Alya 与排列",
   "url": "https://codeforces.com/contest/2035/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Alya has been given a hard problem. Unfortunately, she is too busy running for student council. Please solve this problem for her.\n\nGiven an integer $n$, construct a permutation $p$ of integers $1, 2, \\ldots, n$ that maximizes the value of $k$ (which is initially $0$) after the following process.\n\nPerform $n$ operations, on the $i$-th operation ($i=1, 2, \\dots, n$),\n\n- If $i$ is odd, $k=k\\,\\&\\,p_i$, where $\\&$ denotes the [bitwise AND operation](https://en.wikipedia.org/wiki/Bitwise_operation#AND).\n- If $i$ is even, $k=k\\,|\\,p_i$, where $|$ denotes the [bitwise OR operation](https://en.wikipedia.org/wiki/Bitwise_operation#OR).\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\le t\\le 500$) — the number of test cases.\n\nThe only line of each test case contains a single integer $n$ ($5\\le n\\le 2 \\cdot 10^5$) — the length of the permutation.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the maximum value of $k$ in the first line and output the permutation $p_1, p_2,\\ldots, p_n$ in the second line.\n\nIf there are multiple such permutations, output any.\n\n## Note\n\nFor the first test case, the value of $k$ is determined as follows:\n\n$k = 0$ initially.\n\n- On the $1$st operation, $1$ is odd, so Alya sets $k$ to be $k\\&p_1 = 0\\&2 = 0$.\n- On the $2$nd operation, $2$ is even, so Alya sets $k$ to be $k|p_2 = 0|1 = 1$.\n- On the $3$rd operation, $3$ is odd, so Alya sets $k$ to be $k\\&p_3 = 1\\&3 = 1$.\n- On the $4$th operation, $4$ is even, so Alya sets $k$ to be $k|p_4 = 1|4 = 5$.\n- On the $5$th operation, $5$ is odd, so Alya sets $k$ to be $k\\&p_5 = 5\\&5 = 5$.\n\nThe final value of $k$ is $5$. It can be shown that the final value of $k$ is at most $5$ for all permutations of length $5$. Another valid output is $[2, 3, 1, 4, 5]$.\n\nFor the second test case, the final value of $k$ is $7$. It can be shown that the final value of $k$ is at most $7$ for all permutations of length $6$. Other valid outputs include $[2, 4, 1, 6, 3, 5]$ and $[5, 2, 6, 1, 3, 4]$.",
-  "statementZhMd": null,
+  "statementZhMd": "Alya 遇到了一道难题。不幸的是，她正忙着竞选学生会，无暇顾及。请帮她解决这道题。\n\n给定一个整数 $n$，构造一个由整数 $1, 2, \\ldots, n$ 组成的排列 $p$，使得经过以下过程后 $k$ 的值（初始为 $0$）最大。\n\n进行 $n$ 次操作，在第 $i$ 次操作（$i=1, 2, \\dots, n$）时，\n\n- 如果 $i$ 是奇数，则 $k=k\\,\\&\\,p_i$，其中 $\\&$ 表示[按位与运算](https://en.wikipedia.org/wiki/Bitwise_operation#AND)。\n- 如果 $i$ 是偶数，则 $k=k\\,|\\,p_i$，其中 $|$ 表示[按位或运算](https://en.wikipedia.org/wiki/Bitwise_operation#OR)。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\le t\\le 500$）—— 表示测试用例的数量。\n\n每个测试用例的唯一一行包含一个整数 $n$（$5\\le n\\le 2 \\cdot 10^5$）—— 表示排列的长度。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，第一行输出 $k$ 的最大值，第二行输出排列 $p_1, p_2,\\ldots, p_n$。\n\n如果有多个满足条件的排列，输出任意一个即可。\n\n## 说明\n\n对于第一个测试用例，$k$ 的值按如下方式确定：\n\n初始时 $k = 0$。\n\n- 第 $1$ 次操作，$1$ 是奇数，因此 Alya 将 $k$ 设为 $k\\&p_1 = 0\\&2 = 0$。\n- 第 $2$ 次操作，$2$ 是偶数，因此 Alya 将 $k$ 设为 $k|p_2 = 0|1 = 1$。\n- 第 $3$ 次操作，$3$ 是奇数，因此 Alya 将 $k$ 设为 $k\\&p_3 = 1\\&3 = 1$。\n- 第 $4$ 次操作，$4$ 是偶数，因此 Alya 将 $k$ 设为 $k|p_4 = 1|4 = 5$。\n- 第 $5$ 次操作，$5$ 是奇数，因此 Alya 将 $k$ 设为 $k\\&p_5 = 5\\&5 = 5$。\n\n$k$ 的最终值为 $5$。可以证明，对于所有长度为 $5$ 的排列，$k$ 的最终值都不超过 $5$。另一个合法的输出是 $[2, 3, 1, 4, 5]$。\n\n对于第二个测试用例，$k$ 的最终值为 $7$。可以证明，对于所有长度为 $6$ 的排列，$k$ 的最终值都不超过 $7$。其它合法的输出包括 $[2, 4, 1, 6, 3, 5]$ 和 $[5, 2, 6, 1, 3, 4]$。",
   "samples": [
     {
       "input": "6\n5\n6\n7\n8\n9\n10\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:02.544Z"
+  "fetchedAt": "2026-10-30T21:40:02.544Z",
+  "translatedAt": "2026-11-03T15:39:47.022+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

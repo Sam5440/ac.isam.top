@@ -4,7 +4,7 @@
   "contestId": 1993,
   "index": "D",
   "title": "Med-imize",
-  "titleZh": null,
+  "titleZh": "最大化中位数",
   "url": "https://codeforces.com/contest/1993/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Given two positive integers $n$ and $k$, and another array $a$ of $n$ integers.\n\nIn one operation, you can select any subarray of size $k$ of $a$, then remove it from the array without changing the order of other elements. More formally, let $(l, r)$ be an operation on subarray $a_l, a_{l+1}, \\ldots, a_r$ such that $r-l+1=k$, then performing this operation means replacing $a$ with $[a_1, \\ldots, a_{l-1}, a_{r+1}, \\ldots, a_n]$.\n\nFor example, if $a=[1,2,3,4,5]$ and we perform operation $(3,5)$ on this array, it will become $a=[1,2]$. Moreover, operation $(2, 4)$ results in $a=[1,5]$, and operation $(1,3)$ results in $a=[4,5]$.\n\nYou have to repeat the operation while the length of $a$ is greater than $k$ (which means $|a| \\gt k$). What is the largest possible median$^\\dagger$ of all remaining elements of the array $a$ after the process?\n\n$^\\dagger$The median of an array of length $n$ is the element whose index is $\\left \\lfloor (n+1)/2 \\right \\rfloor$ after we sort the elements in non-decreasing order. For example: $median([2,1,5,4,3]) = 3$, $median([5]) = 5$, and $median([6,8,2,4]) = 4$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le n, k \\le 5 \\cdot 10^5$).\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the largest median possible after performing the operations.\n\n## Note\n\nIn the first test case, you can select a subarray $(l, r)$ which can be either $(1, 3)$ or $(2, 4)$. Thus, two obtainable final arrays are $[3]$ and $[2]$. The former one has the larger median ($3 \\gt 2$) so the answer is $3$.\n\nIn the second test case, three obtainable final arrays are $[6, 4]$, $[3, 4]$, and $[3, 2]$. Their medians are $4$, $3$, and $2$ respectively. The answer is $4$.\n\nIn the third test case, only one element is left in the final array and it can be any element of the initial array. The largest one among them is $9$, so the answer is $9$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个正整数 $n$ 和 $k$，以及一个包含 $n$ 个整数的数组 $a$。\n\n一次操作中，你可以选择 $a$ 中任意一个长度为 $k$ 的子数组，然后将其从数组中删除，同时保持其他元素的顺序不变。更正式地，设 $(l, r)$ 表示子数组 $a_l, a_{l+1}, \\ldots, a_r$ 上的一次操作，其中 $r-l+1=k$，那么执行该操作意味着将 $a$ 替换为 $[a_1, \\ldots, a_{l-1}, a_{r+1}, \\ldots, a_n]$。\n\n例如，如果 $a=[1,2,3,4,5]$，并对该数组执行操作 $(3,5)$，数组将变为 $a=[1,2]$。此外，执行操作 $(2, 4)$ 后，数组变为 $a=[1,5]$；执行操作 $(1,3)$ 后，数组变为 $a=[4,5]$。\n\n当 $a$ 的长度大于 $k$（即 $|a| \\gt k$）时，你需要不断重复上述操作。经过这一过程后，数组 $a$ 中所有剩余元素的中位数$^\\dagger$ 最大可能是多少？\n\n$^\\dagger$长度为 $n$ 的数组的中位数，是将数组中的元素按非递减顺序排序后，下标为 $\\left \\lfloor (n+1)/2 \\right \\rfloor$ 的元素。例如：$median([2,1,5,4,3]) = 3$、$median([5]) = 5$，以及 $median([6,8,2,4]) = 4$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le n, k \\le 5 \\cdot 10^5$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——数组 $a$。\n\n保证所有测试用例中 $n$ 的总和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——执行操作后可能得到的最大中位数。\n\n## 说明\n\n在第一个测试用例中，可以选择的子数组 $(l, r)$ 可能是 $(1, 3)$ 或 $(2, 4)$。因此，最终数组可能为 $[3]$ 或 $[2]$。前者的中位数更大（$3 \\gt 2$），所以答案是 $3$。\n\n在第二个测试用例中，可能得到的三个最终数组为 $[6, 4]$、$[3, 4]$ 和 $[3, 2]$。它们的中位数分别为 $4$、$3$ 和 $2$。因此答案是 $4$。\n\n在第三个测试用例中，最终数组只剩下一个元素，并且它可以是初始数组中的任意一个元素。其中最大的元素是 $9$，所以答案是 $9$。",
   "samples": [
     {
       "input": "5\n4 3\n3 9 9 2\n5 3\n3 2 5 6 4\n7 1\n5 9 2 6 5 4 6\n8 2\n7 1 2 6 8 3 4 5\n4 5\n3 4 5 6\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:49:36.465Z"
+  "fetchedAt": "2026-10-30T21:49:36.465Z",
+  "translatedAt": "2026-11-03T16:05:54.609+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

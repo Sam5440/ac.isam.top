@@ -4,7 +4,7 @@
   "contestId": 2062,
   "index": "H",
   "title": "Galaxy Generator",
-  "titleZh": null,
+  "titleZh": "星系生成器",
   "url": "https://codeforces.com/contest/2062/problem/H",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "In a two-dimensional universe, a star can be represented by a point $(x,y)$ on a two-dimensional plane. Two stars are directly connected if and only if their $x$ or $y$ coordinates are the same, and there are no other stars on the line segment between them. Define a galaxy as a connected component composed of stars connected directly or indirectly (through other stars).\n\nFor a set of stars, its value is defined as the minimum number of galaxies that can be obtained after performing the following operation for any (possibly, zero) times: in each operation, you can select a point $(x,y)$ without stars. If a star can be directly connected to at least $3$ stars after creating it here, then you create a star here.\n\nYou are given a $n\\times n$ matrix $a$ consisting of $0$ and $1$ describing a set $S$ of stars. There is a star at $(x,y)$ if and only if $a_{x,y}=1$. Calculate the sum, modulo $10^9 + 7$, of the values of all non-empty subsets of $S$.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1 \\leq t \\leq 100$) — the number of test cases.\n\nFor each test case, the first line contains a single integer $n$ ($1 \\leq n \\leq 14$) — the size of matrix $a$.\n\nThen $n$ lines follow; the $i$-th line contains a string $a_i$ of length $n$ — the $i$-th row of matrix $a$.\n\nIt is guaranteed that the sum of $2^n$ over all test cases does not exceed $2^{14}$.\n\n## Output\n\nFor each test case, output the sum, modulo $10^9 + 7$, of the values of all non-empty subsets of $S$.\n\n## Note\n\nIn the first test case, $S$ is empty. $S$ has no non-empty subsets. So the answer is $0$.\n\nIn the second test case, $S = \\{(1,2),(2,1)\\}$. $S$ has $3$ non-empty subsets.\n\n- $\\{(1,2)\\}$ and $\\{(2,1)\\}$ — there is only one star in the set, forming $1$ galaxy.\n- $\\{(1,2),(2,1)\\}$ — two stars in the set are not connected, forming $2$ galaxies.\n\nSo the answer is $1+1+2=4$.\n\nIn the third test case, $S = \\{(1,2),(3,1),(3,3)\\}$. $S$ has $7$ non-empty subsets.\n\n- $\\{(1,2)\\}$, $\\{(3,1)\\}$, and $\\{(3,3)\\}$ — there is only one star in the set, forming $1$ galaxy.\n- $\\{(1,2),(3,1)\\}$ and $\\{(1,2),(3,3)\\}$ — two stars in the set are not connected, forming $2$ galaxies.\n- $\\{(3,1),(3,3)\\}$ — two stars in the set are connected, forming $1$ galaxy.\n- $\\{(1,2),(3,1),(3,3)\\}$ — initially, star $(1,2)$ is not in the galaxy formed by $(3,1)$ and $(3,3)$. You can make an operation creating a star at $(3,2)$ connecting to these three stars, forming $1$ galaxy.\n\nSo the answer is $1+1+1+2+2+1+1=9$.",
-  "statementZhMd": null,
+  "statementZhMd": "在二维宇宙中，一颗恒星可以用二维平面上的一个点 $(x,y)$ 来表示。当且仅当两颗恒星的 $x$ 坐标或 $y$ 坐标相同，且它们之间的线段上没有其它恒星时，这两颗恒星直接相连。定义一个星系为由直接或间接（通过其它恒星）相连的恒星组成的连通分量。\n\n对于一个恒星集合，它的价值定义为：执行以下操作任意次（可能为零次）后，所能得到的最少星系数量——每次操作中，你可以选择一个没有恒星的点 $(x,y)$，如果在这里创建恒星后，这颗恒星能与至少 $3$ 颗恒星直接相连，那么你就在这里创建一颗恒星。\n\n给定一个由 $0$ 和 $1$ 组成的 $n\\times n$ 矩阵 $a$，描述了一个恒星集合 $S$。点 $(x,y)$ 上存在恒星当且仅当 $a_{x,y}=1$。请计算 $S$ 的所有非空子集的价值之和，对 $10^9 + 7$ 取模。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 100$）——表示测试用例的数量。\n\n对于每组测试用例，第一行包含一个整数 $n$（$1 \\leq n \\leq 14$）——表示矩阵 $a$ 的大小。\n\n接下来 $n$ 行，第 $i$ 行包含一个长度为 $n$ 的字符串 $a_i$——表示矩阵 $a$ 的第 $i$ 行。\n\n保证所有测试用例的 $2^n$ 之和不超过 $2^{14}$。\n\n## 输出格式\n\n对于每组测试用例，输出 $S$ 的所有非空子集的价值之和，对 $10^9 + 7$ 取模。\n\n## 说明\n\n在第一组测试用例中，$S$ 为空。$S$ 没有非空子集。因此答案为 $0$。\n\n在第二组测试用例中，$S = \\{(1,2),(2,1)\\}$。$S$ 有 $3$ 个非空子集。\n\n- $\\{(1,2)\\}$ 和 $\\{(2,1)\\}$——集合中只有一颗恒星，形成 $1$ 个星系。\n- $\\{(1,2),(2,1)\\}$——集合中的两颗恒星互不相连，形成 $2$ 个星系。\n\n因此答案为 $1+1+2=4$。\n\n在第三组测试用例中，$S = \\{(1,2),(3,1),(3,3)\\}$。$S$ 有 $7$ 个非空子集。\n\n- $\\{(1,2)\\}$、$\\{(3,1)\\}$ 和 $\\{(3,3)\\}$——集合中只有一颗恒星，形成 $1$ 个星系。\n- $\\{(1,2),(3,1)\\}$ 和 $\\{(1,2),(3,3)\\}$——集合中的两颗恒星互不相连，形成 $2$ 个星系。\n- $\\{(3,1),(3,3)\\}$——集合中的两颗恒星相连，形成 $1$ 个星系。\n- $\\{(1,2),(3,1),(3,3)\\}$——初始时，恒星 $(1,2)$ 不在由 $(3,1)$ 和 $(3,3)$ 构成的星系中。你可以进行一次操作，在 $(3,2)$ 处创建一颗恒星，使其与这三颗恒星直接相连，从而形成 $1$ 个星系。\n\n因此答案为 $1+1+1+2+2+1+1=9$。",
   "samples": [
     {
       "input": "8\n1\n0\n2\n01\n10\n3\n010\n000\n101\n4\n0110\n1001\n1001\n0110\n11\n11111110111\n10000010010\n10111010011\n10111010011\n10111010001\n10000010000\n11111110101\n00000000111\n11011010011\n10010101100\n11101010100\n11\n11011111110\n10010000010\n00010111010\n10010111010\n01010111010\n11010000010\n01011111110\n11000000000\n01010000010\n01000111100\n00000001010\n11\n11010101001\n11001010100\n00000000110\n11111110010\n10000010010\n10111010110\n10111010111\n10111010010\n10000010110\n11111110100\n00000000000\n3\n111\n100\n111\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:32:17.986Z"
+  "fetchedAt": "2026-10-30T21:32:17.986Z",
+  "translatedAt": "2026-11-03T14:46:21.498+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

@@ -4,7 +4,7 @@
   "contestId": 2030,
   "index": "D",
   "title": "QED's Favorite Permutation",
-  "titleZh": null,
+  "titleZh": "QED 最喜欢的排列",
   "url": "https://codeforces.com/contest/2030/problem/D",
   "difficulty": 1700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "QED is given a permutation$^{\\text{∗}}$ $p$ of length $n$. He also has a string $s$ of length $n$ containing only characters $\\texttt{L}$ and $\\texttt{R}$. QED only likes permutations that are sorted in non-decreasing order. To sort $p$, he can select any of the following operations and perform them any number of times:\n\n- Choose an index $i$ such that $s_i = \\texttt{L}$. Then, swap $p_i$ and $p_{i-1}$. It is guaranteed that $s_1 \\neq \\texttt{L}$.\n- Choose an index $i$ such that $s_i = \\texttt{R}$. Then, swap $p_i$ and $p_{i+1}$. It is guaranteed that $s_n \\neq \\texttt{R}$.\n\nHe is also given $q$ queries. In each query, he selects an index $i$ and changes $s_i$ from $\\texttt{L}$ to $\\texttt{R}$ (or from $\\texttt{R}$ to $\\texttt{L}$). Note that the changes are **persistent**.\n\nAfter each query, he asks you if it is possible to sort $p$ in non-decreasing order by performing the aforementioned operations any number of times. Note that before answering each query, the permutation $p$ is reset to its original form.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nThe first line contains $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $q$ ($3 \\leq n \\leq 2 \\cdot 10^5$, $1 \\leq q \\leq 2 \\cdot 10^5$) – the length of the permutation and the number of queries.\n\nThe following line contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\leq p_i \\leq n$, $p$ is a permutation).\n\nThe following line contains $n$ characters $s_1s_2 \\ldots s_n$. It is guaranteed that $s_i$ is either $\\texttt{L}$ or $\\texttt{R}$, $s_1 = \\texttt{R}$, and $s_n = \\texttt{L}$.\n\nThe following $q$ lines contain an integer $i$ ($2 \\leq i \\leq n-1$), denoting that $s_i$ is changed from $\\texttt{L}$ to $\\texttt{R}$ (or from $\\texttt{R}$ to $\\texttt{L}$).\n\nIt is guaranteed that the sum of $n$ and $q$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each query, output \"`YES`\" (without quotes) if it is possible, and \"`NO`\" (without quotes) otherwise.\n\nYou can output \"`YES`\" and \"`NO`\" in any case (for example, strings \"`yES`\", \"`yes`\" and \"`Yes`\" will be recognized as a positive response).\n\n## Note\n\nIn the first testcase, $s = \\texttt{RRRLL}$ after the first query. QED may sort $p$ using the following operations:\n\n- Initially, $p = [1,4,2,5,3]$.\n- Select $i = 2$ and swap $p_2$ with $p_{3}$. Now, $p = [1,2,4,5,3]$.\n- Select $i = 5$ and swap $p_5$ with $p_{4}$. Now, $p = [1,2,4,3,5]$.\n- Select $i = 4$ and swap $p_4$ with $p_{3}$. Now, $p = [1,2,3,4,5]$, which is in non-decreasing order.\n\nIt can be shown that it is impossible to sort the array after all three updates of the first testcase.",
-  "statementZhMd": null,
+  "statementZhMd": "QED 得到了一个长度为 $n$ 的排列$^{\\text{∗}}$ $p$。他还有一个长度为 $n$、只包含字符 `L` 和 `R` 的字符串 $s$。QED 只喜欢按非递减顺序排列的排列。为了将 $p$ 排序，他可以选择以下任意一种操作并执行任意次：\n\n- 选择一个满足 $s_i = \\texttt{L}$ 的下标 $i$，然后交换 $p_i$ 和 $p_{i-1}$。保证 $s_1 \\neq \\texttt{L}$。\n- 选择一个满足 $s_i = \\texttt{R}$ 的下标 $i$，然后交换 $p_i$ 和 $p_{i+1}$。保证 $s_n \\neq \\texttt{R}$。\n\n此外，他还得到了 $q$ 次询问。对于每次询问，他选择一个下标 $i$，将 $s_i$ 从 `L` 修改为 `R`（或从 `R` 修改为 `L`）。注意，这些修改是**持久的**。\n\n每次询问后，他会询问你是否可以通过执行上述操作任意次，将 $p$ 排列为非递减顺序。注意，在回答每次询问之前，排列 $p$ 都会被重置为其初始状态。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$3 \\leq n \\leq 2 \\cdot 10^5$，$1 \\leq q \\leq 2 \\cdot 10^5$）——排列的长度和询问的数量。\n\n下一行包含 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$1 \\leq p_i \\leq n$，$p$ 是一个排列）。\n\n下一行包含 $n$ 个字符 $s_1s_2 \\ldots s_n$。保证 $s_i$ 要么是 `L`，要么是 `R`，且 $s_1 = \\texttt{R}$，$s_n = \\texttt{L}$。\n\n接下来的 $q$ 行每行包含一个整数 $i$（$2 \\leq i \\leq n-1$），表示将 $s_i$ 从 `L` 修改为 `R`（或从 `R` 修改为 `L`）。\n\n保证所有测试用例的 $n$ 之和与 $q$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每次询问，如果可以完成排序，输出“YES”（不含引号）；否则输出“NO”（不含引号）。\n\n你可以以任意大小写形式输出“YES”和“NO”（例如，字符串“`yES`”、“`yes`”和“`Yes`”都会被识别为肯定回答）。\n\n## 说明\n\n在第一个测试用例中，第一次询问后，$s = \\texttt{RRRLL}$。QED 可以通过以下操作将 $p$ 排序：\n\n- 初始时，$p = [1,4,2,5,3]$。\n- 选择 $i = 2$，交换 $p_2$ 和 $p_{3}$。此时，$p = [1,2,4,5,3]$。\n- 选择 $i = 5$，交换 $p_5$ 和 $p_{4}$。此时，$p = [1,2,4,3,5]$。\n- 选择 $i = 4$，交换 $p_4$ 和 $p_{3}$。此时，$p = [1,2,3,4,5]$，数组已经按非递减顺序排列。\n\n可以证明，在第一个测试用例的三次修改全部完成后，不可能将数组排序。",
   "samples": [
     {
       "input": "3\n5 3\n1 4 2 5 3\nRLRLL\n2\n4\n3\n8 5\n1 5 2 4 8 3 6 7\nRRLLRRRL\n4\n3\n5\n3\n4\n6 2\n1 2 3 4 5 6\nRLRLRL\n4\n5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:37.691Z"
+  "fetchedAt": "2026-10-30T21:40:37.691Z",
+  "translatedAt": "2026-11-03T15:46:54.483+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

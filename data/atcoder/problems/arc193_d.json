@@ -4,7 +4,7 @@
   "contestId": "arc193",
   "index": "D",
   "title": "Magnets",
-  "titleZh": null,
+  "titleZh": "磁铁",
   "url": "https://atcoder.jp/contests/arc193/tasks/arc193_d",
   "difficulty": 3240,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given two length-$N$ strings $A = A_1A_2 \\ldots A_N$ and $B = B_1B_2 \\ldots B_N$, each consisting of `0` and `1`.\n\nThere are $N$ squares aligned in a row from left to right. For $i = 1, 2, \\ldots, N$, the $i$-th square from the left is called square $i$. Initially, square $i$ contains a piece if $A_i =$ `1`, and no piece if $A_i =$ `0`.\n\nYou may repeat the following operation any number of times (possibly zero):\n\n- Choose an integer $i$ between $1$ and $N$, inclusive.\n- Move all pieces simultaneously one square closer to square $i$. That is, for each piece, let square $j$ be its current position and square $j'$ be its new position, and the following holds:\n- if $i < j$, then $j' = j-1$;\n  - if $i > j$, then $j' = j+1$;\n  - if $i = j$, then $j' = j$.\n\nDetermine whether it is possible to reach a configuration satisfying the following condition, and if it is possible, find the minimum number of operations needed to do so:\n\n> For every $i = 1, 2, \\ldots, N$, there is at least one piece in square $i$ if and only if $B_i =$ `1`.\n\nYou are given $T$ independent test cases. Print the answer for each of them.\n\n## Constraints\n\n- $1 \\leq T \\leq 2 \\times 10^5$\n- $1 \\leq N \\leq 10^6$\n- $T$ and $N$ are integers.\n- $A$ and $B$ are strings of length $N$, each consisting of `0` and `1`.\n- There exists $i$ such that $A_i =$ `1`.\n- There exists $i$ such that $B_i =$ `1`.\n- The sum of $N$ over all test cases is at most $10^6$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nHere, $\\mathrm{case}_i$ ($i=1,2,\\ldots,T$) denotes the $i$-th test case.\n\nEach test case is given in the following format:\n\n```\nN\nA\nB\n```\n\n## Output\n\nPrint $T$ lines. For each $i = 1, 2, \\ldots, T$, on the $i$-th line, print `-1` if it is impossible to reach a configuration satisfying the condition for the $i$-th test case. Otherwise, print the minimum number of operations needed.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定两个长度为 $N$ 的字符串 $A = A_1A_2 \\ldots A_N$ 和 $B = B_1B_2 \\ldots B_N$，每个字符串均由 `0` 和 `1` 组成。\n\n有 $N$ 个方格从左到右排成一行。对于 $i = 1, 2, \\ldots, N$，从左数第 $i$ 个方格称为方格 $i$。初始时，若 $A_i =$ `1`，则方格 $i$ 中有一个棋子；若 $A_i =$ `0`，则方格 $i$ 中没有棋子。\n\n你可以重复进行以下操作任意次（也可以为零次）：\n\n- 选择一个介于 $1$ 和 $N$ 之间（含两端）的整数 $i$。\n- 将所有棋子同时向方格 $i$ 移近一格。也就是说，对于每个棋子，设它当前位于方格 $j$，移动后位于方格 $j'$，则满足以下条件：\n- 若 $i < j$，则 $j' = j-1$；\n  - 若 $i > j$，则 $j' = j+1$；\n  - 若 $i = j$，则 $j' = j$。\n\n判断是否能达到满足以下条件的局面；若能，求出所需的最少操作次数：\n\n> 对于每个 $i = 1, 2, \\ldots, N$，方格 $i$ 中至少有一个棋子当且仅当 $B_i =$ `1`。\n\n给定 $T$ 组独立的测试用例。请对每组测试用例输出答案。\n\n## 约束条件\n\n- $1 \\leq T \\leq 2 \\times 10^5$\n- $1 \\leq N \\leq 10^6$\n- $T$ 和 $N$ 是整数。\n- $A$ 和 $B$ 是长度为 $N$ 的字符串，均由 `0` 和 `1` 组成。\n- 存在 $i$ 使得 $A_i =$ `1`。\n- 存在 $i$ 使得 $B_i =$ `1`。\n- 所有测试用例的 $N$ 之和不超过 $10^6$。\n\n## 输入格式\n\n输入由标准输入给出，格式如下：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n其中，$\\mathrm{case}_i$ ($i=1,2,\\ldots,T$) 表示第 $i$ 组测试用例。\n\n每组测试用例按如下格式给出：\n\n```\nN\nA\nB\n```\n\n## 输出格式\n\n输出共 $T$ 行。对于每个 $i = 1, 2, \\ldots, T$，在第 $i$ 行输出：若第 $i$ 组测试用例无法达到满足条件的局面，则输出 `-1`；否则输出所需的最少操作次数。",
   "samples": [
     {
       "input": "3\n8\n01001101\n00001011\n3\n010\n111\n20\n10100011011110101011\n00010001111101100000\n",
@@ -21,5 +21,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:00:20.067Z"
+  "fetchedAt": "2026-10-30T21:00:20.067Z",
+  "translatedAt": "2026-11-03T13:29:02.580+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

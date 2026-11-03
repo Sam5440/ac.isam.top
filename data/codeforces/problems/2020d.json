@@ -4,7 +4,7 @@
   "contestId": 2020,
   "index": "D",
   "title": "Connect the Dots",
-  "titleZh": null,
+  "titleZh": "连接点",
   "url": "https://codeforces.com/contest/2020/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "*One fine evening, Alice sat down to play the classic game \"Connect the Dots\", but with a twist.*\n\nTo play the game, Alice draws a straight line and marks $n$ points on it, indexed from $1$ to $n$. Initially, there are no arcs between the points, so they are all disjoint. After that, Alice performs $m$ operations of the following type:\n\n- She picks three integers $a_i$, $d_i$ ($1 \\le d_i \\le 10$), and $k_i$.\n- She selects points $a_i, a_i+d_i, a_i+2d_i, a_i+3d_i, \\ldots, a_i+k_i\\cdot d_i$ and connects each pair of these points with arcs.\n\nAfter performing all $m$ operations, she wants to know the number of connected components$^\\dagger$ these points form. Please help her find this number.\n\n$^\\dagger$ Two points are said to be in one connected component if there is a path between them via several (possibly zero) arcs and other points.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^5$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 2 \\cdot 10^5$, $1 \\le m \\le 2 \\cdot 10^5$).\n\nThe $i$-th of the following $m$ lines contains three integers $a_i$, $d_i$, and $k_i$ ($1 \\le a_i \\le a_i + k_i\\cdot d_i \\le n$, $1 \\le d_i \\le 10$, $0 \\le k_i \\le n$).\n\nIt is guaranteed that both the sum of $n$ and the sum of $m$ over all test cases do not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the number of connected components.\n\n## Note\n\nIn the first test case, there are $n = 10$ points. The first operation joins the points $1$, $3$, $5$, $7$, and $9$. The second operation joins the points $2$, $4$, $6$, $8$, and $10$. There are thus two connected components: $\\{1, 3, 5, 7, 9\\}$ and $\\{2, 4, 6, 8, 10\\}$.\n\nIn the second test case, there are $n = 100$ points. The only operation joins the points $19$, $21$, $23$, $25$, and $27$. Now all of them form a single connected component of size $5$. The other $95$ points form single-point connected components. Thus, the answer is $1 + 95 = 96$.\n\nIn the third test case, there are $n = 100$ points. After the operations, all odd points from $1$ to $79$ will be in one connected component of size $40$. The other $60$ points form single-point connected components. Thus, the answer is $1 + 60 = 61$.",
-  "statementZhMd": null,
+  "statementZhMd": "*一个晴朗的傍晚，Alice 坐下来玩经典游戏“连接点”，不过这次游戏有些不同。*\n\n为了进行游戏，Alice 在一条直线上画出 $n$ 个点，并将它们编号为 $1$ 到 $n$。初始时，点与点之间没有任何弧，因此它们彼此不连通。随后，Alice 进行 $m$ 次如下操作：\n\n- 她选择三个整数 $a_i$、$d_i$（$1 \\le d_i \\le 10$）和 $k_i$。\n- 她选取点 $a_i, a_i+d_i, a_i+2d_i, a_i+3d_i, \\ldots, a_i+k_i\\cdot d_i$，并将这些点中的每一对都用弧连接起来。\n\n完成全部 $m$ 次操作后，她想知道这些点形成的连通分量$^\\dagger$数量。请帮助她求出这个数量。\n\n$^\\dagger$ 如果两个点之间存在一条经过若干条（可能为零条）弧和其他点的路径，则称这两个点属于同一个连通分量。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^5$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 2 \\cdot 10^5$）。\n\n接下来的 $m$ 行中，第 $i$ 行包含三个整数 $a_i$、$d_i$ 和 $k_i$（$1 \\le a_i \\le a_i + k_i\\cdot d_i \\le n$，$1 \\le d_i \\le 10$，$0 \\le k_i \\le n$）。\n\n保证所有测试用例的 $n$ 之和以及 $m$ 之和均不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出连通分量的数量。\n\n## 说明\n\n在第一个测试用例中，有 $n = 10$ 个点。第一次操作将点 $1$、$3$、$5$、$7$ 和 $9$ 连接起来。第二次操作将点 $2$、$4$、$6$、$8$ 和 $10$ 连接起来。因此，共有两个连通分量：$\\{1, 3, 5, 7, 9\\}$ 和 $\\{2, 4, 6, 8, 10\\}$。\n\n在第二个测试用例中，有 $n = 100$ 个点。唯一的一次操作将点 $19$、$21$、$23$、$25$ 和 $27$ 连接起来。现在这些点形成了一个大小为 $5$ 的连通分量。其余 $95$ 个点分别形成单点连通分量。因此，答案为 $1 + 95 = 96$。\n\n在第三个测试用例中，有 $n = 100$ 个点。进行这些操作后，从 $1$ 到 $79$ 的所有奇数点将属于同一个大小为 $40$ 的连通分量。其余 $60$ 个点分别形成单点连通分量。因此，答案为 $1 + 60 = 61$。",
   "samples": [
     {
       "input": "3\n10 2\n1 2 4\n2 2 4\n100 1\n19 2 4\n100 3\n1 2 5\n7 2 6\n17 2 31\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:47:45.389Z"
+  "fetchedAt": "2026-10-30T21:47:45.389Z",
+  "translatedAt": "2026-11-03T16:05:44.335+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

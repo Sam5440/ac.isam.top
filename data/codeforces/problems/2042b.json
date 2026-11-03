@@ -4,7 +4,7 @@
   "contestId": 2042,
   "index": "B",
   "title": "Game with Colored Marbles",
-  "titleZh": null,
+  "titleZh": "彩色弹珠游戏",
   "url": "https://codeforces.com/contest/2042/problem/B",
   "difficulty": 900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Alice and Bob play a game. There are $n$ marbles, the $i$-th of them has color $c_i$. The players take turns; Alice goes first, then Bob, then Alice again, then Bob again, and so on.\n\nDuring their turn, a player **must** take **one** of the remaining marbles and remove it from the game. If there are no marbles left (all $n$ marbles have been taken), the game ends.\n\nAlice's score at the end of the game is calculated as follows:\n\n- she receives $1$ point for every color $x$ such that she has taken at least one marble of that color;\n- additionally, she receives $1$ point for every color $x$ such that she has taken **all** marbles of that color (of course, only colors present in the game are considered).\n\nFor example, suppose there are $5$ marbles, their colors are $[1, 3, 1, 3, 4]$, and the game goes as follows: Alice takes the $1$-st marble, then Bob takes the $3$-rd marble, then Alice takes the $5$-th marble, then Bob takes the $2$-nd marble, and finally, Alice takes the $4$-th marble. Then, Alice receives $4$ points: $3$ points for having at least one marble for colors $1$, $3$ and $4$, and $1$ point for having all marbles of color $4$. **Note that this strategy is not necessarily optimal for both players**.\n\nAlice wants to maximize her score at the end of the game. Bob wants to minimize it. Both players play optimally (i. e. Alice chooses a strategy which allows her to get as many points as possible, and Bob chooses a strategy which minimizes the amount of points Alice can get).\n\nCalculate Alice's score at the end of the game.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nEach test case consists of two lines:\n\n- the first line contains one integer $n$ ($1 \\le n \\le 1000$) — the number of marbles;\n- the second line contains $n$ integers $c_1, c_2, \\dots, c_n$ ($1 \\le c_i \\le n$) — the colors of the marbles.\n\nAdditional constraint on the input: the sum of $n$ over all test cases does not exceed $1000$.\n\n## Output\n\nFor each test case, print one integer — Alice's score at the end of the game, assuming that both players play optimally.\n\n## Note\n\nIn the second test case of the example, the colors of all marbles are distinct, so, no matter how the players act, Alice receives $4$ points for having all marbles of two colors, and no marbles of the third color.\n\nIn the third test case of the example, the colors of all marbles are the same, so, no matter how the players act, Alice receives $1$ point for having at least one (but not all) marble of color $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 玩一个游戏。共有 $n$ 个弹珠，其中第 $i$ 个弹珠的颜色为 $c_i$。两名玩家轮流行动；Alice 先行动，然后是 Bob，接着再次轮到 Alice，然后再次轮到 Bob，如此交替进行。\n\n在自己的回合中，玩家**必须**从剩余的弹珠中取出**一个**并将其移出游戏。如果已经没有剩余弹珠（所有 $n$ 个弹珠都已被取走），游戏结束。\n\n游戏结束时，Alice 的得分计算如下：\n\n- 对于每一种颜色 $x$，如果她至少取走了一个该颜色的弹珠，则获得 $1$ 分；\n- 此外，对于每一种颜色 $x$，如果她取走了该颜色的**全部**弹珠，则再获得 $1$ 分（当然，只考虑游戏中出现过的颜色）。\n\n例如，假设有 $5$ 个弹珠，它们的颜色为 $[1, 3, 1, 3, 4]$，并且游戏过程如下：Alice 取走第 $1$ 个弹珠，然后 Bob 取走第 $3$ 个弹珠，接着 Alice 取走第 $5$ 个弹珠，然后 Bob 取走第 $2$ 个弹珠，最后 Alice 取走第 $4$ 个弹珠。此时，Alice 获得 $4$ 分：因为她至少取走了颜色 $1$、$3$ 和 $4$ 的一个弹珠，获得 $3$ 分；并且她取走了颜色 $4$ 的全部弹珠，获得 $1$ 分。**注意，这种策略不一定对两名玩家都是最优的**。\n\nAlice 希望最大化游戏结束时自己的得分，而 Bob 希望将其最小化。两名玩家都会采取最优策略（即 Alice 选择能让自己获得尽可能多分数的策略，而 Bob 选择使 Alice 能获得的分数尽可能少的策略）。\n\n请计算在双方都采取最优策略的情况下，游戏结束时 Alice 的得分。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。\n\n每个测试用例由两行组成：\n\n- 第一行包含一个整数 $n$（$1 \\le n \\le 1000$）——弹珠的数量；\n- 第二行包含 $n$ 个整数 $c_1, c_2, \\dots, c_n$（$1 \\le c_i \\le n$）——弹珠的颜色。\n\n输入还满足以下额外约束：所有测试用例中的 $n$ 之和不超过 $1000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——在双方都采取最优策略的情况下，游戏结束时 Alice 的得分。\n\n## 说明\n\n在样例的第二个测试用例中，所有弹珠的颜色都互不相同，因此无论两名玩家如何行动，Alice 都会因为取走两种颜色的全部弹珠、且没有取走第三种颜色的弹珠而获得 $4$ 分。\n\n在样例的第三个测试用例中，所有弹珠的颜色都相同，因此无论两名玩家如何行动，Alice 都会因为至少取走了颜色 $4$ 的一个（但不是全部）弹珠而获得 $1$ 分。",
   "samples": [
     {
       "input": "3\n5\n1 3 1 3 4\n3\n1 2 3\n4\n4 4 4 4\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:56:01.937Z"
+  "fetchedAt": "2026-11-02T16:56:01.937Z",
+  "translatedAt": "2026-11-03T15:04:38.840+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

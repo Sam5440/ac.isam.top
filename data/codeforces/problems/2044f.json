@@ -4,7 +4,7 @@
   "contestId": 2044,
   "index": "F",
   "title": "Easy Demon Problem",
-  "titleZh": null,
+  "titleZh": "简单恶魔问题",
   "url": "https://codeforces.com/contest/2044/problem/F",
   "difficulty": 1900,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "For an arbitrary grid, Robot defines its *beauty* to be the sum of elements in the grid.\n\nRobot gives you an array $a$ of length $n$ and an array $b$ of length $m$. You construct a $n$ by $m$ grid $M$ such that $M_{i,j}=a_i\\cdot b_j$ for all $1 \\leq i \\leq n$ and $1 \\leq j \\leq m$.\n\nThen, Robot gives you $q$ queries, each consisting of a single integer $x$. For each query, determine whether or not it is possible to perform the following operation **exactly** once so that $M$ has a *beauty* of $x$:\n\n1. Choose integers $r$ and $c$ such that $1 \\leq r \\leq n$ and $1 \\leq c \\leq m$\n2. Set $M_{i,j}$ to be $0$ for all ordered pairs $(i,j)$ such that $i=r$, $j=c$, or both.\n\nNote that queries are **not persistent**, meaning that you do not actually set any elements to $0$ in the process — you are only required to output if it is possible to find $r$ and $c$ such that if the above operation is performed, the *beauty* of the grid will be $x$. Also, note that you must perform the operation for each query, even if the beauty of the original grid is already $x$.\n\n## Input\n\nThe first line contains three integers $n$, $m$, and $q$ ($1 \\leq n,m \\leq 2\\cdot 10^5, 1 \\leq q \\leq 5\\cdot 10^4$) — the length of $a$, the length of $b$, and the number of queries respectively.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\leq |a_i| \\leq n$).\n\nThe third line contains $m$ integers $b_1, b_2, \\ldots, b_m$ ($0 \\leq |b_i| \\leq m$).\n\nThe following $q$ lines each contain a single integer $x$ ($1 \\leq |x| \\leq 2\\cdot 10^5$), the beauty of the grid you wish to achieve by setting all elements in a row and a column to $0$.\n\n## Output\n\nFor each testcase, output \"`YES`\" (without quotes) if there is a way to perform the aforementioned operation such that the beauty is $x$, and \"`NO`\" (without quotes) otherwise.\n\nYou can output \"`YES`\" and \"`NO`\" in any case (for example, strings \"`yES`\", \"`yes`\" and \"`Yes`\" will be recognized as a positive response).\n\n## Note\n\nIn the second example, the grid is\n\n`0 -2 5 0 -3`\n\n`0 4 -10 0 6`\n\n`0 -6 15 0 -9`\n\n`0 0 0 0 0`\n\n`0 0 0 0 0`\n\nBy performing the operation with $r=4$ and $c=2$, we create the following grid:\n\n`0 0 5 0 -3`\n\n`0 0 -10 0 6`\n\n`0 0 15 0 -9`\n\n`0 0 0 0 0`\n\n`0 0 0 0 0`\n\nwhich has *beauty* $4$. Thus, we output `YES`.\n\nIn the second query, selecting $r=3$ and $c=5$ creates a grid with *beauty* $-3$.\n\nIn the third query, selecting $r=3$ and $c=3$ creates a grid with *beauty* $5$.",
-  "statementZhMd": null,
+  "statementZhMd": "对于任意一个网格，Robot 定义它的*美丽值*为网格中所有元素之和。\n\nRobot 给你一个长度为 $n$ 的数组 $a$ 和一个长度为 $m$ 的数组 $b$。你需要构造一个 $n$ 行 $m$ 列的网格 $M$，满足对于所有 $1 \\leq i \\leq n$ 和 $1 \\leq j \\leq m$，都有 $M_{i,j}=a_i\\cdot b_j$。\n\n然后，Robot 给你 $q$ 个询问，每个询问包含一个整数 $x$。对于每个询问，你需要判断是否可以**恰好**执行一次以下操作，使得 $M$ 的*美丽值*为 $x$：\n\n1. 选择整数 $r$ 和 $c$，满足 $1 \\leq r \\leq n$ 且 $1 \\leq c \\leq m$；\n2. 将所有满足 $i=r$、$j=c$ 或两者皆成立的有序对 $(i,j)$ 对应的 $M_{i,j}$ 置为 $0$。\n\n注意，询问之间是**非持久**的，也就是说你并不需要在过程中真的把任何元素置为 $0$ —— 你只需输出是否存在 $r$ 和 $c$，使得执行上述操作后网格的*美丽值*为 $x$。另外，注意每个询问都必须执行一次操作，即使原网格的美丽值已经等于 $x$。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$、$q$（$1 \\leq n,m \\leq 2\\cdot 10^5, 1 \\leq q \\leq 5\\cdot 10^4$）—— 分别表示 $a$ 的长度、$b$ 的长度和询问的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq |a_i| \\leq n$）。\n\n第三行包含 $m$ 个整数 $b_1, b_2, \\ldots, b_m$（$0 \\leq |b_i| \\leq m$）。\n\n接下来 $q$ 行，每行包含一个整数 $x$（$1 \\leq |x| \\leq 2\\cdot 10^5$），表示你希望通过将某一行和某一列的所有元素置为 $0$ 来达到的网格美丽值。\n\n## 输出格式\n\n对于每个测试用例，如果存在一种执行上述操作的方式使得美丽值为 $x$，输出 \"`YES`\"（不含引号）；否则输出 \"`NO`\"（不含引号）。\n\n你可以以任意大小写输出 \"`YES`\" 和 \"`NO`\"（例如，字符串 \"`yES`\"、\"`yes`\" 和 \"`Yes`\" 都会被视为肯定的回答）。\n\n## 说明\n\n在第二个样例中，网格为\n\n`0 -2 5 0 -3`\n\n`0 4 -10 0 6`\n\n`0 -6 15 0 -9`\n\n`0 0 0 0 0`\n\n`0 0 0 0 0`\n\n通过执行 $r=4$、$c=2$ 的操作，我们得到如下网格：\n\n`0 0 5 0 -3`\n\n`0 0 -10 0 6`\n\n`0 0 15 0 -9`\n\n`0 0 0 0 0`\n\n`0 0 0 0 0`\n\n其*美丽值*为 $4$。因此，我们输出 `YES`。\n\n在第二个询问中，选择 $r=3$、$c=5$ 可以得到*美丽值*为 $-3$ 的网格。\n\n在第三个询问中，选择 $r=3$、$c=3$ 可以得到*美丽值*为 $5$ 的网格。",
   "samples": [
     {
       "input": "3 3 6\n-2 3 -3\n-2 2 -1\n-1\n1\n-2\n2\n-3\n3\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:55:40.095Z"
+  "fetchedAt": "2026-11-02T16:55:40.095Z",
+  "translatedAt": "2026-11-03T14:57:09.743+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

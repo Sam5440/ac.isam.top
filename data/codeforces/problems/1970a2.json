@@ -4,7 +4,7 @@
   "contestId": 1970,
   "index": "A2",
   "title": "Balanced Unshuffle (Medium)",
-  "titleZh": null,
+  "titleZh": "平衡逆洗牌（中等）",
   "url": "https://codeforces.com/contest/1970/problem/A2",
   "difficulty": 2400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**The differences with the easy version of this problem are highlighted in bold.**\n\nA *parentheses sequence* is a string consisting of characters \"`(`\" and \"`)`\", for example \"`(()((`\".\n\nA *balanced parentheses sequence* is a parentheses sequence which can become a valid mathematical expression after inserting numbers and operations into it, for example \"`(()(()))`\".\n\nThe *balance* of a parentheses sequence is defined as the number of opening parentheses \"`(`\" minus the number of closing parentheses \"`)`\". For example, the balance of the sequence \"`(()((`\" is 3.\n\nA balanced parentheses sequence can also be defined as a parentheses sequence with balance 0 such that each of its prefixes has a non-negative balance.\n\nWe define the *balanced shuffle* operation that takes a parentheses sequence and returns a parentheses sequence as follows: first, for every character of the input sequence, we compute the balance of the prefix of the sequence *before* that character and write those down in a table together with the positions of the characters in the input sequence, for example:\n\n| Prefix balance | 0 | 1 | 2 | 1 | 2 | 3 | 2 | 1 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Position | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n| Character | `(` | `(` | `)` | `(` | `(` | `)` | `)` | `)` |\n\nThen, we sort the columns of this table in *increasing* order of prefix balance, breaking ties in *decreasing* order of position. In the above example, we get:\n\n| Prefix balance | 0 | 1 | 1 | 1 | 2 | 2 | 2 | 3 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Position | 1 | 8 | 4 | 2 | 7 | 5 | 3 | 6 |\n| Character | `(` | `)` | `(` | `(` | `)` | `(` | `)` | `)` |\n\nThe last row of this table forms another parentheses sequence, in this case \"`()(()())`\". This sequence is called the result of applying the balanced shuffle operation to the input sequence, or in short just the balanced shuffle of the input sequence.\n\n**Surprisingly, it turns out that the balanced shuffle of any balanced parentheses sequence is always another balanced parentheses sequence (we will omit the proof for brevity). Even more surprisingly, the balanced shuffles of two different balanced parentheses sequences are always different, therefore the balanced shuffle operation is a bijection on the set of balanced parentheses sequences of any given length (we will omit this proof, too).**\n\n**You are given a balanced parentheses sequence. Find its preimage: the balanced parentheses sequence the balanced shuffle of which is equal to the given sequence.**\n\n## Input\n\nThe only line of input contains a string $s$ consisting only of characters \"`(`\" and \"`)`\". This string is guaranteed to be a non-empty balanced parentheses sequence with its **length not exceeding $1\\,000$**.\n\n## Output\n\n**Print the balanced parentheses sequence $t$ such that the balanced shuffle of $t$ is equal to $s$. It is guaranteed that the answer always exists and is unique.**",
-  "statementZhMd": null,
+  "statementZhMd": "**本题与简单版的区别以粗体标出。**\n\n*括号序列*是一个只由字符“`(`”和“`)`”组成的字符串，例如“`(()((`”。\n\n*平衡括号序列*是这样一种括号序列：在其中插入数字和运算符后，可以变成一个合法的数学表达式，例如“`(()(()))`”。\n\n括号序列的*平衡值*定义为左括号“`(`”的数量减去右括号“`)`”的数量。例如，序列“`(()((`”的平衡值为 3。\n\n平衡括号序列也可以定义为：平衡值为 0，且它的每个前缀的平衡值都非负的括号序列。\n\n我们定义如下的*平衡洗牌*操作：输入一个括号序列，返回一个括号序列。首先，对于输入序列中的每个字符，计算该字符之前的前缀的平衡值，并将这些平衡值与输入序列中字符的位置一起记录在表格中，例如：\n\n| 前缀平衡值 | 0 | 1 | 2 | 1 | 2 | 3 | 2 | 1 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 位置 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n| 字符 | `(` | `(` | `)` | `(` | `(` | `)` | `)` | `)` |\n\n然后，我们按照前缀平衡值*递增*的顺序对表格中的列进行排序；当前缀平衡值相同时，按照位置*递减*的顺序排序。在上面的例子中，得到：\n\n| 前缀平衡值 | 0 | 1 | 1 | 1 | 2 | 2 | 2 | 3 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 位置 | 1 | 8 | 4 | 2 | 7 | 5 | 3 | 6 |\n| 字符 | `(` | `)` | `(` | `(` | `)` | `(` | `)` | `)` |\n\n表格的最后一行构成了另一个括号序列，在本例中为“`()(()())`”。这个序列称为对输入序列应用平衡洗牌操作的结果，简而言之，就是输入序列的平衡洗牌。\n\n**令人惊讶的是，任意平衡括号序列的平衡洗牌结果总是另一个平衡括号序列（为简洁起见，证明略去）。更加令人惊讶的是，两个不同的平衡括号序列的平衡洗牌结果总是不同的，因此，对于任意给定长度的平衡括号序列集合，平衡洗牌操作都是一个双射（该结论的证明同样略去）。**\n\n**给定一个平衡括号序列。请找出它的原像：即平衡洗牌结果等于给定序列的平衡括号序列。**\n\n## 输入格式\n\n输入仅一行，包含一个只由字符“`(`”和“`)`”组成的字符串 $s$。保证该字符串是一个非空的平衡括号序列，且其**长度不超过 $1\\,000$**。\n\n## 输出格式\n\n**输出平衡括号序列 $t$，使得 $t$ 的平衡洗牌结果等于 $s$。保证答案始终存在且唯一。**",
   "samples": [
     {
       "input": "()(()())\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:09:38.246Z"
+  "fetchedAt": "2026-11-02T17:09:38.246Z",
+  "translatedAt": "2026-11-03T16:16:53.635+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1984,
   "index": "E",
   "title": "Shuffle",
-  "titleZh": null,
+  "titleZh": "洗牌",
   "url": "https://codeforces.com/contest/1984/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Two hungry red pandas, Oscar and Lura, have a tree $T$ with $n$ nodes. They are willing to perform the following **shuffle procedure** on the whole tree $T$ **exactly once**. With this shuffle procedure, they will create a new tree out of the nodes of the old tree.\n\n1. Choose any node $V$ from the original tree $T$. Create a new tree $T_2$, with $V$ as the root.\n2. Remove $V$ from $T$, such that the original tree is split into one or more subtrees (or zero subtrees, if $V$ is the only node in $T$).\n3. Shuffle each subtree with the same procedure (again choosing any node as the root), then connect all shuffled subtrees' roots back to $V$ to finish constructing $T_2$.\n\nAfter this, Oscar and Lura are left with a new tree $T_2$. They can only eat leaves and are very hungry, so please find the maximum number of leaves over all trees that can be created in **exactly one** shuffle.\n\nNote that leaves are all nodes with degree $1$. Thus, the root may be considered as a leaf if it has only one child.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of every test case contains a single integer $n$ ($2 \\leq n \\leq 2 \\cdot 10^5$) — the number of nodes within the original tree $T$.\n\nThe next $n - 1$ lines each contain two integers $u$ and $v$ ($1 \\leq u, v \\leq n$) — an edge within the original tree $T$. The given edges form a tree.\n\nThe sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum number of leaves achievable with exactly one shuffle procedure on the whole tree.\n\n## Note\n\nIn the first test case, it can be shown that the maximum number of leaves is $4$. To accomplish this, we can start our shuffle with selecting node $3$ as the new root.\n\n![image](https://espresso.codeforces.com/3b6a15cedc736d9c72bd687c795e2536e7606d05.png)\n\nNext, we are left only with one subtree, in which we can select node $2$ to be the new root of that subtree.\n\n![image](https://espresso.codeforces.com/d9a2175b66b3bee6c2b6f8d8b203b85f674e5124.png)\n\nThis will force all $3$ remaining nodes to be leaves, and once we connect them back to our new root, the shuffled subtree looks like this:\n\n![image](https://espresso.codeforces.com/fdcf3a1a91a18d2474c68f47f6531b3c216bf03d.png)\n\nWe connect the shuffled subtree back to our new root of our new tree. Our final tree has four leaves (including the root), and looks like this:\n\n![image](https://espresso.codeforces.com/a7378f80e4393604cffbe5fbce5c8ac1ceb33ad2.png)\n\nIn our second test case, we have a line of five nodes. It can be shown that the maximum number of leaves after one shuffle is $3$. We can start off with node $2$, which forces node $1$ to become a leaf. Then, if we select node $4$ on the right side, we will also have nodes $3$ and $5$ as leaves.\n\nThe third test case is a star graph with six nodes. The number of leaves cannot increase, thus our answer will be $5$ (if we start the shuffling with the original root node).",
-  "statementZhMd": null,
+  "statementZhMd": "两只饥饿的小熊猫 Oscar 和 Lura 有一棵包含 $n$ 个节点的树 $T$。它们准备对整棵树 $T$ **恰好执行一次**以下的**洗牌过程**。通过这一过程，它们将利用原树中的节点构造出一棵新树。\n\n1. 从原树 $T$ 中任选一个节点 $V$。创建一棵以 $V$ 为根的新树 $T_2$。\n2. 从 $T$ 中移除 $V$，这样原树会被分成一棵或多棵子树（如果 $V$ 是 $T$ 中唯一的节点，则不会产生子树）。\n3. 对每棵子树使用相同的过程进行洗牌（再次任选一个节点作为根），然后将所有洗牌后子树的根重新连接到 $V$，从而完成 $T_2$ 的构造。\n\n完成后，Oscar 和 Lura 得到了一棵新树 $T_2$。它们只能吃叶子，而且现在非常饥饿，因此请你求出通过**恰好一次**洗牌过程能够构造出的所有树中，叶子数量的最大值。\n\n注意，叶子是所有度数为 $1$ 的节点。因此，如果根只有一个子节点，也可以将根视为叶子。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 2 \\cdot 10^5$）——原树 $T$ 中节点的数量。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\leq u, v \\leq n$）——原树 $T$ 中的一条边。给出的边构成一棵树。\n\n所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——通过恰好一次对整棵树执行洗牌过程所能得到的最大叶子数量。\n\n## 说明\n\n在第一个测试用例中，可以证明叶子数量的最大值为 $4$。为实现这一点，我们可以在洗牌开始时选择节点 $3$ 作为新根。\n\n![image](https://espresso.codeforces.com/3b6a15cedc736d9c72bd687c795e2536e7606d05.png)\n\n接下来，我们只剩下一棵子树，可以选择节点 $2$ 作为该子树的新根。\n\n![image](https://espresso.codeforces.com/d9a2175b66b3bee6c2b6f8d8b203b85f674e5124.png)\n\n这会使剩下的 $3$ 个节点全部成为叶子。将它们重新连接到新根后，洗牌后的子树如下所示：\n\n![image](https://espresso.codeforces.com/fdcf3a1a91a18d2474c68f47f6531b3c216bf03d.png)\n\n我们将洗牌后的子树重新连接到新树的根上。最终得到的树有四个叶子（包括根），如下所示：\n\n![image](https://espresso.codeforces.com/a7378f80e4393604cffbe5fbce5c8ac1ceb33ad2.png)\n\n在第二个测试用例中，我们有一条包含五个节点的链。可以证明，一次洗牌后叶子数量的最大值为 $3$。我们可以从节点 $2$ 开始，这会迫使节点 $1$ 成为叶子。然后，如果我们选择右侧的节点 $4$，节点 $3$ 和 $5$ 也会成为叶子。\n\n第三个测试用例是一棵包含六个节点的星形图。叶子数量无法增加，因此答案为 $5$（如果从原来的根节点开始洗牌）。",
   "samples": [
     {
       "input": "4\n5\n1 2\n1 3\n2 4\n2 5\n5\n1 2\n2 3\n3 4\n4 5\n6\n1 2\n1 3\n1 4\n1 5\n1 6\n10\n9 3\n8 1\n10 6\n8 5\n7 8\n4 6\n1 3\n10 1\n2 7\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:50:17.462Z"
+  "fetchedAt": "2026-10-30T21:50:17.462Z",
+  "translatedAt": "2026-11-03T16:09:41.930+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

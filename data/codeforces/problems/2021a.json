@@ -4,7 +4,7 @@
   "contestId": 2021,
   "index": "A",
   "title": "Meaning Mean",
-  "titleZh": null,
+  "titleZh": "均值的含义",
   "url": "https://codeforces.com/contest/2021/problem/A",
   "difficulty": 800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Pak Chanek has an array $a$ of $n$ positive integers. Since he is currently learning how to calculate the floored average of two numbers, he wants to practice it on his array $a$.\n\nWhile the array $a$ has at least two elements, Pak Chanek will perform the following three-step operation:\n\n1. Pick two different indices $i$ and $j$ ($1 \\leq i, j \\leq |a|$; $i \\neq j$), note that $|a|$ denotes the current size of the array $a$.\n2. Append $\\lfloor \\frac{a_i+a_j}{2} \\rfloor$$^{\\text{∗}}$ to the end of the array.\n3. Remove elements $a_i$ and $a_j$ from the array and concatenate the remaining parts of the array.\n\nFor example, suppose that $a=[5,4,3,2,1,1]$. If we choose $i=1$ and $j=5$, the resulting array will be $a=[4,3,2,1,3]$. If we choose $i=4$ and $j=3$, the resulting array will be $a=[5,4,1,1,2]$.\n\nAfter all operations, the array will consist of a single element $x$. Find the maximum possible value of $x$ if Pak Chanek performs the operations optimally.\n\n$^{\\text{∗}}$$\\lfloor x \\rfloor$ denotes the floor function of $x$, which is the greatest integer that is less than or equal to $x$. For example, $\\lfloor 6 \\rfloor = 6$, $\\lfloor 2.5 \\rfloor=2$, $\\lfloor -3.6 \\rfloor=-4$ and $\\lfloor \\pi \\rfloor=3$\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 5000$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 50$) — the length of the array $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the elements of the array $a$.\n\nDo note that the sum of $n$ over all test cases is not bounded.\n\n## Output\n\nFor each test case, output a single integer: the maximum possible value of $x$ after all numbers have been picked.\n\n## Note\n\nIn the first test case, the array is initially $a=[1,7,8,4,5]$. Pak Chanek will perform the following operations:\n\n1. Pick $i=1$ and $j=2$, then $a=[8,4,5,4]$.\n2. Pick $i=3$ and $j=2$, then $a=[8,4,4]$.\n3. Pick $i=2$ and $j=3$, then $a=[8,4]$.\n4. Pick $i=1$ and $j=2$, then $a=[6]$.\n\nAfter all the operations, the array consists of a single element $x=6$. It can be proven that there is no series of operations that results in $x$ greater than $6$ in the end.",
-  "statementZhMd": null,
+  "statementZhMd": "Pak Chanek 有一个包含 $n$ 个正整数的数组 $a$。由于他目前正在学习如何计算两个数的向下取整平均值，因此他想在数组 $a$ 上进行练习。\n\n当数组 $a$ 至少包含两个元素时，Pak Chanek 会执行以下三步操作：\n\n1. 选择两个不同的下标 $i$ 和 $j$（$1 \\leq i, j \\leq |a|$；$i \\neq j$）。注意，$|a|$ 表示数组 $a$ 当前的长度。\n2. 将 $$\\lfloor \\frac{a_i+a_j}{2} \\rfloor$$$^{\\text{∗}}$ 添加到数组末尾。\n3. 从数组中删除元素 $a_i$ 和 $a_j$，并将数组剩余的部分拼接起来。\n\n例如，假设 $a=[5,4,3,2,1,1]$。如果选择 $i=1$ 和 $j=5$，得到的数组将为 $a=[4,3,2,1,3]$。如果选择 $i=4$ 和 $j=3$，得到的数组将为 $a=[5,4,1,1,2]$。\n\n执行完所有操作后，数组将只包含一个元素 $x$。如果 Pak Chanek 以最优方式执行操作，求 $x$ 的最大可能值。\n\n$^{\\text{∗}}$$\\lfloor x \\rfloor$ 表示 $x$ 的向下取整，即小于或等于 $x$ 的最大整数。例如，$\\lfloor 6 \\rfloor = 6$、$\\lfloor 2.5 \\rfloor=2$、$\\lfloor -3.6 \\rfloor=-4$ 以及 $\\lfloor \\pi \\rfloor=3$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 5000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 50$）——数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——数组 $a$ 中的元素。\n\n请注意，所有测试用例的 $n$ 之和没有限制。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：所有数字均被选取后，$x$ 的最大可能值。\n\n## 说明\n\n在第一个测试用例中，数组初始为 $a=[1,7,8,4,5]$。Pak Chanek 将执行以下操作：\n\n1. 选择 $i=1$ 和 $j=2$，此时 $a=[8,4,5,4]$。\n2. 选择 $i=3$ 和 $j=2$，此时 $a=[8,4,4]$。\n3. 选择 $i=2$ 和 $j=3$，此时 $a=[8,4]$。\n4. 选择 $i=1$ 和 $j=2$，此时 $a=[6]$。\n\n执行完所有操作后，数组只包含一个元素 $x=6$。可以证明，不存在任何一系列操作能使最终的 $x$ 大于 $6$。",
   "samples": [
     {
       "input": "3\n5\n1 7 8 4 5\n3\n2 6 5\n5\n5 5 5 5 5\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:35.253Z"
+  "fetchedAt": "2026-10-30T21:41:35.253Z",
+  "translatedAt": "2026-11-03T15:52:19.866+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

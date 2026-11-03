@@ -4,7 +4,7 @@
   "contestId": 2085,
   "index": "A",
   "title": "Serval and String Theory",
-  "titleZh": null,
+  "titleZh": "Serval 与字符串理论",
   "url": "https://codeforces.com/contest/2085/problem/A",
   "difficulty": 900,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A string $r$ consisting only of lowercase Latin letters is called *universal* if and only if $r$ is lexicographically smaller$^{\\text{∗}}$ than the reversal$^{\\text{†}}$ of $r$.\n\nYou are given a string $s$ consisting of $n$ lowercase Latin letters. You are required to make $s$ *universal*. To achieve this, you can perform the following operation on $s$ **at most** $k$ times:\n\n- Choose two indices $i$ and $j$ ($1\\le i,j\\le n$), then swap $s_i$ and $s_j$. Note that if $i=j$, you do nothing.\n\nDetermine whether you can make $s$ *universal* by performing the above operation at most $k$ times.\n\n$^{\\text{∗}}$A string $a$ is lexicographically smaller than a string $b$ of the same length, if and only if the following holds: in the first position where $a$ and $b$ differ, the string $a$ has a letter that appears earlier in the alphabet than the corresponding letter in $b$. $^{\\text{†}}$The reversal of a string $r$ is the string obtained by writing $r$ from right to left. For example, the reversal of the string $\\texttt{abcad}$ is $\\texttt{dacba}$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1\\le n\\le 100$, $0\\le k\\le 10^4$) — the length of the string $s$, and the maximum number of operations you can perform.\n\nThe second line contains a string $s$ consisting of $n$ lowercase Latin letters.\n\n## Output\n\nFor each test case, print \"`YES`\" if it is possible to make $s$ *universal* by performing the operation at most $k$ times. Otherwise, print \"`NO`\".\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, $s$ will keep the same after any operations. However, the reversal of $\\texttt{a}$ is still $\\texttt{a}$, so it is impossible to make $s$ *universal*.\n\nIn the second test case, the string $\\texttt{rev}$ is lexicographically smaller than $\\texttt{ver}$. Thus, $s$ is already *universal*.\n\nIn the fifth test case, you can perform the operations as follows:\n\n1. Swap $s_4$ and $s_7$. After this operation, $s$ becomes $\\texttt{uniserval}$;\n2. Swap $s_1$ and $s_3$. After this operation, $s$ becomes $\\texttt{inuserval}$.\n\nAnd the string $\\texttt{inuserval}$ is *universal*.",
-  "statementZhMd": null,
+  "statementZhMd": "仅由小写拉丁字母组成的字符串 $r$ 被称为*泛用*（universal）字符串，当且仅当 $r$ 在字典序上小于$^{\\text{∗}}$它的反转$^{\\text{†}}$。\n\n给定一个由 $n$ 个小写拉丁字母组成的字符串 $s$。你需要使 $s$ 变为*泛用*的。为此，你可以对 $s$ 执行以下操作**至多** $k$ 次：\n\n- 选择两个下标 $i$ 和 $j$（$1\\le i,j\\le n$），然后交换 $s_i$ 和 $s_j$。注意，如果 $i=j$，那么你什么也不会做。\n\n请判断能否通过执行上述操作至多 $k$ 次，使 $s$ 变为*泛用*的。\n\n$^{\\text{∗}}$对于长度相同的两个字符串 $a$ 和 $b$，$a$ 在字典序上小于 $b$，当且仅当满足如下条件：在 $a$ 与 $b$ 第一个不同的位置上，$a$ 所含的字母在字母表中比 $b$ 对应的字母更靠前。$^{\\text{†}}$字符串 $r$ 的反转是指将 $r$ 从右往左书写得到的字符串。例如，字符串 $\\texttt{abcad}$ 的反转是 $\\texttt{dacba}$。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 500$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $k$（$1\\le n\\le 100$, $0\\le k\\le 10^4$）——分别表示字符串 $s$ 的长度，以及你能执行操作的最大次数。\n\n第二行包含一个由 $n$ 个小写拉丁字母组成的字符串 $s$。\n\n## 输出格式\n\n对于每组测试数据，如果可以通过执行操作至多 $k$ 次使 $s$ 变为*泛用*的，请输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n你可以以任意大小写输出答案。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定的回答。\n\n## 说明\n\n在第一组测试数据中，无论执行什么操作，$s$ 都保持不变。然而，$\\texttt{a}$ 的反转仍然是 $\\texttt{a}$，因此不可能使 $s$ 变为*泛用*的。\n\n在第二组测试数据中，字符串 $\\texttt{rev}$ 在字典序上小于 $\\texttt{ver}$。因此，$s$ 已经是*泛用*的。\n\n在第五组测试数据中，你可以按如下方式执行操作：\n\n1. 交换 $s_4$ 和 $s_7$。执行该操作后，$s$ 变为 $\\texttt{uniserval}$；\n2. 交换 $s_1$ 和 $s_3$。执行该操作后，$s$ 变为 $\\texttt{inuserval}$。\n\n而字符串 $\\texttt{inuserval}$ 是*泛用*的。",
   "samples": [
     {
       "input": "8\n1 10000\na\n3 3\nrev\n6 0\nstring\n6 0\ntheory\n9 2\nuniversal\n19 0\ncodeforcesecrofedoc\n19 1\ncodeforcesecrofedoc\n3 1\nzzz\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:30:49.298Z"
+  "fetchedAt": "2026-10-30T21:30:49.298Z",
+  "translatedAt": "2026-11-03T07:50:49.564+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash-Trial"
 }

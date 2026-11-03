@@ -4,7 +4,7 @@
   "contestId": 2005,
   "index": "B1",
   "title": "The Strict Teacher (Easy Version)",
-  "titleZh": null,
+  "titleZh": "严格的老师（简单版）",
   "url": "https://codeforces.com/contest/2005/problem/B1",
   "difficulty": 1000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of the problem. The only differences between the two versions are the constraints on $m$ and $q$. In this version, $m=2$ and $q=1$. You can make hacks only if both versions of the problem are solved.**\n\nNarek and Tsovak were busy preparing this round, so they have not managed to do their homework and decided to steal David's homework. Their strict teacher noticed that David has no homework and now wants to punish him. She hires other teachers to help her catch David. And now $m$ teachers together are chasing him. Luckily, the classroom is big, so David has many places to hide.\n\nThe classroom can be represented as a one-dimensional line with cells from $1$ to $n$, inclusive.\n\nAt the start, all $m$ teachers and David are in **distinct** cells. Then they make moves. During each move\n\n- David goes to an adjacent cell or stays at the current one.\n- Then, each of the $m$ teachers simultaneously goes to an adjacent cell or stays at the current one.\n\nThis continues until David is caught. David is caught if any of the teachers (possibly more than one) is located in the same cell as David. **Everyone sees others' moves, so they all act optimally.**\n\nYour task is to find how many moves it will take for the teachers to catch David if they all act optimally.\n\nActing optimally means the student makes his moves in a way that maximizes the number of moves the teachers need to catch him; and the teachers coordinate with each other to make their moves in a way that minimizes the number of moves they need to catch the student.\n\nAlso, as Narek and Tsovak think this task is easy, they decided to give you $q$ queries on David's position. **Note:** this is the easy version, and you are given **only one query**.\n\n## Input\n\nIn the first line of the input, you are given a single integer $t$ ($1 \\le t \\le 10^5$) — the number of test cases. The description of each test case follows.\n\nIn the first line of each test case, you are given three integers $n$, $m$, and $q$ ($3 \\le n \\le 10^9$, $m=2$, $q=1$) — the number of cells on the line, the number of teachers, and the number of queries.\n\nIn the second line of each test case, you are given $m$ distinct integers $b_1, b_2, \\ldots, b_m$ ($1 \\le b_i \\le n$) — the cell numbers of the teachers.\n\nIn the third line of each test case, you are given $q$ integers $a_1, a_2, \\ldots, a_q$ ($1 \\le a_i \\le n$) — David's cell number for every query.\n\nIt is guaranteed that for any $i$, $j$ such that $1 \\le i \\le m$ and $1 \\le j \\le q$, $b_i \\neq a_j$.\n\n## Output\n\nFor each test case, output $q$ lines, the $i$-th of them containing the answer of the $i$-th query.\n\n## Note\n\nIn the first example, the student can just stay at cell $2$. The teacher, initially located in cell $1$, can reach cell $2$ in one move. Therefore, the answer is $1$.\n\nIn the second example, the student should just stay at cell $1$. The teacher, initially located in cell $3$, can reach cell $1$ in two moves. Therefore, the answer is $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。两个版本之间唯一的区别在于 $m$ 和 $q$ 的约束。在本版本中，$m=2$ 且 $q=1$。只有在两个版本的问题都解决后，才可以进行 hack。**\n\nNarek 和 Tsovak 忙于准备本轮比赛，因此没能完成作业，于是决定偷走 David 的作业。他们严厉的老师发现 David 没有作业，现在想要惩罚他。她雇用了其他老师来帮助抓住 David。现在共有 $m$ 名老师一起追赶他。幸运的是，教室很大，所以 David 有很多地方可以躲藏。\n\n教室可以表示为一条一维直线，其上的格子编号从 $1$ 到 $n$（包括两端）。\n\n开始时，所有 $m$ 名老师和 David 都位于**不同的**格子中。随后他们开始移动。在每次移动中：\n\n- David 移动到相邻格子，或者停留在当前格子。\n- 然后，$m$ 名老师中的每一名同时移动到相邻格子，或者停留在当前格子。\n\n这一过程会持续到 David 被抓住为止。如果任意一名老师（可能不止一名）与 David 位于同一个格子中，则 David 被抓住。**所有人都能看到其他人的移动，因此他们都会采取最优策略。**\n\n你的任务是求在所有人都采取最优策略的情况下，老师需要经过多少次移动才能抓住 David。\n\n所谓采取最优策略，是指学生要以使老师抓住他所需移动次数最大的方式移动；而老师们则相互配合，以使抓住学生所需移动次数最小的方式移动。\n\n另外，由于 Narek 和 Tsovak 认为这道题很简单，他们决定针对 David 的位置向你提出 $q$ 次询问。**注意：这是本题的简单版本，你只会得到一个询问。**\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^5$）——测试用例的数量。接下来描述每个测试用例。\n\n每个测试用例的第一行包含三个整数 $n$、$m$ 和 $q$（$3 \\le n \\le 10^9$，$m=2$，$q=1$）——直线上格子的数量、老师的数量以及询问的数量。\n\n每个测试用例的第二行包含 $m$ 个互不相同的整数 $b_1, b_2, \\ldots, b_m$（$1 \\le b_i \\le n$）——老师所在的格子编号。\n\n每个测试用例的第三行包含 $q$ 个整数 $a_1, a_2, \\ldots, a_q$（$1 \\le a_i \\le n$）——每次询问中 David 所在的格子编号。\n\n保证对于任意满足 $1 \\le i \\le m$ 且 $1 \\le j \\le q$ 的 $i$、$j$，都有 $b_i \\neq a_j$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q$ 行，第 $i$ 行包含第 $i$ 次询问的答案。\n\n## 说明\n\n在第一个样例中，学生可以直接停留在格子 $2$。最初位于格子 $1$ 的老师可以在一次移动后到达格子 $2$。因此，答案是 $1$。\n\n在第二个样例中，学生应当直接停留在格子 $1$。最初位于格子 $3$ 的老师可以在两次移动后到达格子 $1$。因此，答案是 $2$。",
   "samples": [
     {
       "input": "3\n10 2 1\n1 4\n2\n8 2 1\n3 6\n1\n8 2 1\n3 6\n8\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:48:36.772Z"
+  "fetchedAt": "2026-10-30T21:48:36.772Z",
+  "translatedAt": "2026-11-03T16:01:50.331+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

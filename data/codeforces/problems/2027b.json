@@ -4,7 +4,7 @@
   "contestId": 2027,
   "index": "B",
   "title": "Stalin Sort",
-  "titleZh": null,
+  "titleZh": "斯大林排序",
   "url": "https://codeforces.com/contest/2027/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Stalin Sort is a humorous sorting algorithm designed to eliminate elements which are out of place instead of bothering to sort them properly, lending itself to an $\\mathcal{O}(n)$ time complexity.\n\nIt goes as follows: starting from the second element in the array, if it is strictly smaller than the previous element (ignoring those which have already been deleted), then delete it. Continue iterating through the array until it is sorted in non-decreasing order. For example, the array $[1, 4, 2, 3, 6, 5, 5, 7, 7]$ becomes $[1, 4, 6, 7, 7]$ after a Stalin Sort.\n\nWe define an array as *vulnerable* if you can sort it in **non-increasing** order by repeatedly applying a Stalin Sort to **any of its subarrays$^{\\text{∗}}$**, as many times as is needed.\n\nGiven an array $a$ of $n$ integers, determine the minimum number of integers which must be removed from the array to make it *vulnerable*.\n\n$^{\\text{∗}}$An array $a$ is a subarray of an array $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) elements from the beginning and several (possibly, zero or all) elements from the end.\n\n## Input\n\nEach test consists of several test cases. The first line contains a single integer $t$ ($1 \\le t \\le 500$) — the number of test cases. This is followed by descriptions of the test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2000$) — the size of the array.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2000$.\n\n## Output\n\nFor each test case, output a single integer — the minimum number of integers which must be removed from the array to make it *vulnerable*.\n\n## Note\n\nIn the first test case, the optimal answer is to remove the numbers $3$ and $9$. Then we are left with $a = [6, 4, 2, 5, 2]$. To show this array is vulnerable, we can first apply a Stalin Sort on the subarray $[4, 2, 5]$ to get $a = [6, 4, 5, 2]$ and then apply a Stalin Sort on the subarray $[6, 4, 5]$ to get $a = [6, 2]$, which is non-increasing.\n\nIn the second test case, the array is already non-increasing, so we don't have to remove any integers.",
-  "statementZhMd": null,
+  "statementZhMd": "斯大林排序是一种幽默的排序算法。它并不真正对元素进行排序，而是删除位置不正确的元素，因此时间复杂度为 $\\mathcal{O}(n)$。\n\n具体过程如下：从数组的第二个元素开始，如果当前元素严格小于前一个元素（忽略那些已经被删除的元素），就将其删除。继续遍历数组，直到数组按非递减顺序排列。例如，数组 $[1, 4, 2, 3, 6, 5, 5, 7, 7]$ 经过一次斯大林排序后会变为 $[1, 4, 6, 7, 7]$。\n\n如果可以通过对数组的**任意子数组$^{\\text{∗}}$**反复进行斯大林排序（次数不限，直到满足要求为止），使其按**非递增**顺序排列，则称该数组是*易受影响的*（*vulnerable*）。\n\n给定一个包含 $n$ 个整数的数组 $a$，请确定至少需要从数组中删除多少个整数，才能使其变为*易受影响的*。\n\n$^{\\text{∗}}$如果数组 $a$ 可以通过从数组 $b$ 的开头删除若干个（可能为零个或全部）元素，并从结尾删除若干个（可能为零个或全部）元素得到，则称数组 $a$ 是数组 $b$ 的子数组。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 500$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2000$）——数组的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——至少需要从数组中删除多少个整数，才能使其变为*易受影响的*。\n\n## 说明\n\n在第一个测试用例中，最优方案是删除数字 $3$ 和 $9$。此时剩下的数组为 $a = [6, 4, 2, 5, 2]$。为了说明该数组是*易受影响的*，我们可以先对其子数组 $[4, 2, 5]$ 进行斯大林排序，得到 $a = [6, 4, 5, 2]$；然后对其子数组 $[6, 4, 5]$ 进行斯大林排序，得到 $a = [6, 2]$，该数组按非递增顺序排列。\n\n在第二个测试用例中，数组已经按非递增顺序排列，因此不需要删除任何整数。",
   "samples": [
     {
       "input": "6\n7\n3 6 4 9 2 5 2\n5\n5 4 4 2 2\n8\n2 2 4 4 6 6 10 10\n1\n1000\n9\n6 8 9 10 12 9 7 5 4\n7\n300000000 600000000 400000000 900000000 200000000 400000000 200000000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:02.240Z"
+  "fetchedAt": "2026-10-30T21:41:02.240Z",
+  "translatedAt": "2026-11-03T15:49:19.690+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

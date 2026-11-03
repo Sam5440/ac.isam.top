@@ -4,7 +4,7 @@
   "contestId": 2071,
   "index": "C",
   "title": "Trapmigiano Reggiano",
-  "titleZh": null,
+  "titleZh": "陷阱帕玛森",
   "url": "https://codeforces.com/contest/2071/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "In an Italian village, a hungry mouse starts at vertex $\\textrm{st}$ on a given tree$^{\\text{∗}}$ with $n$ vertices.\n\nGiven a permutation $p$ of length $n$$^{\\text{†}}$, there are $n$ steps. For the $i$-th step:\n\n- A tempting piece of Parmesan cheese appears at vertex $p_i$. If the mouse is currently at vertex $p_i$, it will stay there and enjoy the moment. Otherwise, it will move along the simple path to vertex $p_i$ **by one edge**.\n\nYour task is to find such a permutation so that, after all $n$ steps, the mouse inevitably arrives at vertex $\\textrm{en}$, where a trap awaits.\n\nNote that the mouse must arrive at $\\textrm{en}$ after all $n$ steps, though it may pass through $\\textrm{en}$ earlier during the process.\n\n$^{\\text{∗}}$A tree is a connected graph without cycles. $^{\\text{†}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $\\textrm{st}$, and $\\textrm{en}$ ($1 \\le n \\le 10^5$; $1 \\le \\textrm{st}, \\textrm{en} \\le n$) — the number of vertices of the tree, the starting vertex, and the trap vertex.\n\nEach of the next $n - 1$ lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n$, $u \\neq v$) — the indices of the vertices connected by an edge.\n\nIt is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case:\n\n- If no such permutation exists, output $-1$.\n- Otherwise, output $n$ integers $p_1, p_2, \\ldots, p_n$, representing the order in which the cheese will appear at the vertices, ensuring the mouse will eventually be caught at vertex $\\textrm{en}$.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\nIn the first test case, there is only one permutation with length $n = 1$ that is $p = [1]$, which successfully catches the mouse:\n\n$$\\textrm{st} = 1 \\overset{p_1 = 1}{\\xrightarrow{\\hspace{1.3cm}}} 1 = \\textrm{en}.$$\n\nIn the second test case, one possible permutation with length $n = 2$ is $p = [1, 2]$:\n\n$$\\textrm{st} = 1 \\overset{p_1 = 1}{\\xrightarrow{\\hspace{1.3cm}}} 1 \\overset{p_2 = 2}{\\xrightarrow{\\hspace{1.3cm}}} 2 = \\textrm{en}.$$\n\nIn the third test case, one possible permutation with length $n = 3$ is $p = [3, 1, 2]$:\n\n$$\\textrm{st} = 2 \\overset{p_1 = 3}{\\xrightarrow{\\hspace{1.3cm}}} 3 \\overset{p_2 = 1}{\\xrightarrow{\\hspace{1.3cm}}} 2 \\overset{p_3 = 2}{\\xrightarrow{\\hspace{1.3cm}}} 2 = \\textrm{en}.$$$$$$",
-  "statementZhMd": null,
+  "statementZhMd": "在一座意大利村庄里，一只饥饿的老鼠从给定的 $n$ 个顶点的树$^{\\text{∗}}$上的顶点 $\\textrm{st}$ 出发。\n\n给定一个长度为 $n$ 的排列 $p$$^{\\text{†}}$，共进行 $n$ 个步骤。对于第 $i$ 个步骤：\n\n- 一块诱人的帕玛森奶酪出现在顶点 $p_i$。如果老鼠当前恰好在顶点 $p_i$，它就会留在原地尽情享受这一刻；否则，它会沿着通往顶点 $p_i$ 的简单路径**移动一条边**。\n\n你的任务是找出这样一个排列，使得在全部 $n$ 个步骤结束后，老鼠必然到达顶点 $\\textrm{en}$——那里有一个陷阱正等着它。\n\n注意，老鼠必须在全部 $n$ 个步骤结束后到达 $\\textrm{en}$，不过在此过程中它可以更早地经过 $\\textrm{en}$。\n\n$^{\\text{∗}}$树是不含环的连通图。$^{\\text{†}}$长度为 $n$ 的排列是由 $n$ 个 $1$ 到 $n$ 之间互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，而 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$n=3$ 但数组中出现了 $4$）。\n\n## 输入格式\n\n每个测试文件包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含三个整数 $n$、$\\textrm{st}$ 和 $\\textrm{en}$（$1 \\le n \\le 10^5$；$1 \\le \\textrm{st}, \\textrm{en} \\le n$）——分别表示树的顶点数、起始顶点和陷阱顶点。\n\n接下来 $n - 1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$，$u \\neq v$）——表示一条边所连接的两个顶点的编号。\n\n保证给出的边构成一棵树。\n\n保证所有测试数据的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每组测试数据：\n\n- 如果不存在这样的排列，输出 $-1$。\n- 否则，输出 $n$ 个整数 $p_1, p_2, \\ldots, p_n$，表示奶酪依次出现在各顶点的顺序，需保证老鼠最终在顶点 $\\textrm{en}$ 处被抓到。\n\n如果存在多组可行解，输出任意一组均可。\n\n## 说明\n\n在第一组测试数据中，长度为 $n = 1$ 的排列只有 $p = [1]$，它成功抓住了老鼠：\n\n$$\\textrm{st} = 1 \\overset{p_1 = 1}{\\xrightarrow{\\hspace{1.3cm}}} 1 = \\textrm{en}.$$\n\n在第二组测试数据中，一个可行的长度为 $n = 2$ 的排列是 $p = [1, 2]$：\n\n$$\\textrm{st} = 1 \\overset{p_1 = 1}{\\xrightarrow{\\hspace{1.3cm}}} 1 \\overset{p_2 = 2}{\\xrightarrow{\\hspace{1.3cm}}} 2 = \\textrm{en}.$$\n\n在第三组测试数据中，一个可行的长度为 $n = 3$ 的排列是 $p = [3, 1, 2]$：\n\n$$\\textrm{st} = 2 \\overset{p_1 = 3}{\\xrightarrow{\\hspace{1.3cm}}} 3 \\overset{p_2 = 1}{\\xrightarrow{\\hspace{1.3cm}}} 2 \\overset{p_3 = 2}{\\xrightarrow{\\hspace{1.3cm}}} 2 = \\textrm{en}.$$$$",
   "samples": [
     {
       "input": "4\n1 1 1\n2 1 2\n1 2\n3 2 2\n1 2\n2 3\n6 1 4\n1 2\n1 3\n4 5\n5 6\n1 4\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:31:36.222Z"
+  "fetchedAt": "2026-10-30T21:31:36.222Z",
+  "translatedAt": "2026-11-03T13:25:04.385+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

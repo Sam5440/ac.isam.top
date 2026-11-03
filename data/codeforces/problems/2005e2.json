@@ -4,7 +4,7 @@
   "contestId": 2005,
   "index": "E2",
   "title": "Subtangle Game (Hard Version)",
-  "titleZh": null,
+  "titleZh": "子矩形游戏（困难版）",
   "url": "https://codeforces.com/contest/2005/problem/E2",
   "difficulty": 2500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of the problem. The differences between the two versions are the constraints on all the variables. You can make hacks only if both versions of the problem are solved.**\n\nTsovak and Narek are playing a game. They have an array $a$ and a matrix $b$ of integers with $n$ rows and $m$ columns, numbered from $1$. The cell in the $i$-th row and the $j$-th column is $(i, j)$.\n\nThey are looking for the elements of $a$ in turns; Tsovak starts first. Each time a player looks for a cell in the matrix containing the current element of $a$ (Tsovak looks for the first, then Narek looks for the second, etc.). Let's say a player has chosen the cell $(r, c)$. The next player has to choose his cell in the submatrix starting at $(r + 1, c + 1)$ and ending in $(n, m)$ (the submatrix can be empty if $r=n$ or $c=m$). If a player cannot find such a cell (or the remaining submatrix is empty) or the array ends (the previous player has chosen the last element), then he loses.\n\nYour task is to determine the winner if the players play optimally.\n\n**Note: since the input is large, you may need to optimize input/output for this problem.**\n\nFor example, in C++, it is enough to use the following lines at the start of the *main()* function:\n\n```\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL); cout.tie(NULL);\n}\n```\n\n## Input\n\nThe first line of the input contains $t$ ($1 \\le t \\le 1500$) – the number of test cases.\n\nThe first line of each test case contains three integers $l$, $n$, and $m$ ($1 \\le l, n, m \\le 1500$) – the size of the array and the sizes of the matrix.\n\nThe second line contains $l$ integers $a_1, a_2, a_3, \\ldots a_l$ ($1 \\le a_i \\le n \\cdot m$) – the elements of the array $a$.\n\nThe $i$-th of the last $n$ lines contains $m$ integers $b_{i,1}, b_{i,2}, b_{i,3}, \\ldots b_{i,m}$ ($1 \\le b_{i,j} \\le n \\cdot m$) – representing the $i$-th row of the matrix.\n\nIt is guaranteed that the sum of $n \\cdot m$ over all test cases does not exceed $3 \\cdot 10^6$.\n\nIt is guaranteed that the sum of $l$ over all test cases does not exceed $1500$.\n\n## Output\n\nYou should output $t$ lines, the $i$-th of them containing a character representing the answer of the $i$-th test case: \"T\" if Tsovak wins or \"N\", otherwise (without quotes).\n\n## Note\n\nIn the first example, Tsovak starts by looking for $1$. There is only one occurrence of $1$ at $(1,1)$, so he chooses it. Then Narek needs to look for $2$ in the submatrix of $(2, 2)$, which consists of just the last two elements: $6$ and $2$. He chooses $2$, and then Tsovak loses since the array has ended.\n\nIn the second example, Tsovak needs to choose $1$. There is a $1$ at the cell $(n,m)$, so he chooses that cell. Then, since the submatrix of $(n + 1, m + 1)$ is empty, Narek cannot find $2$, so he loses.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。两个版本之间的区别在于所有变量的约束。只有在两个版本的问题都解决后，你才能进行 hack。**\n\nTsovak 和 Narek 正在进行一个游戏。他们有一个数组 $a$ 和一个包含 $n$ 行、$m$ 列整数的矩阵 $b$，行和列均从 $1$ 开始编号。第 $i$ 行第 $j$ 列的单元格记为 $(i, j)$。\n\n他们轮流在矩阵中寻找 $a$ 的元素，由 Tsovak 先手。每次，当前玩家都要在矩阵中寻找包含 $a$ 当前元素的单元格（Tsovak 寻找第一个元素，接着 Narek 寻找第二个元素，依此类推）。假设某位玩家选择了单元格 $(r, c)$，那么下一位玩家必须在左上角为 $(r + 1, c + 1)$、右下角为 $(n, m)$ 的子矩阵中选择单元格（当 $r=n$ 或 $c=m$ 时，该子矩阵可能为空）。如果某位玩家找不到这样的单元格（或剩余子矩阵为空），或者数组已经结束（前一位玩家选择了数组的最后一个元素），那么该玩家输掉游戏。\n\n请确定在双方采取最优策略时的获胜者。\n\n**说明：由于输入规模较大，你可能需要对本题的输入输出进行优化。**\n\n例如，在 C++ 中，只需在 `main()` 函数的开头加入以下代码即可：\n\n```\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(NULL); cout.tie(NULL);\n}\n```\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 1500$）——测试用例的数量。\n\n每个测试用例的第一行包含三个整数 $l$、$n$ 和 $m$（$1 \\le l, n, m \\le 1500$）——数组的长度以及矩阵的行数和列数。\n\n第二行包含 $l$ 个整数 $a_1, a_2, a_3, \\ldots a_l$（$1 \\le a_i \\le n \\cdot m$）——数组 $a$ 的元素。\n\n接下来的 $n$ 行中，第 $i$ 行包含 $m$ 个整数 $b_{i,1}, b_{i,2}, b_{i,3}, \\ldots b_{i,m}$（$1 \\le b_{i,j} \\le n \\cdot m$）——表示矩阵的第 $i$ 行。\n\n保证所有测试用例的 $n \\cdot m$ 之和不超过 $3 \\cdot 10^6$。\n\n保证所有测试用例的 $l$ 之和不超过 $1500$。\n\n## 输出格式\n\n输出 $t$ 行，第 $i$ 行包含一个字符，表示第 $i$ 个测试用例的答案：如果 Tsovak 获胜，输出字符 \"T\"；否则输出字符 \"N\"（不包括引号）。\n\n## 说明\n\n在第一个样例中，Tsovak 首先寻找 $1$。矩阵中只有一个 $1$，位于 $(1,1)$，因此他选择该单元格。接着，Narek 需要在从 $(2, 2)$ 开始的子矩阵中寻找 $2$，该子矩阵只包含最后两个元素：$6$ 和 $2$。他选择 $2$，随后由于数组已经结束，Tsovak 输掉了游戏。\n\n在第二个样例中，Tsovak 必须选择 $1$。单元格 $(n,m)$ 中有一个 $1$，因此他选择该单元格。接着，由于从 $(n + 1, m + 1)$ 开始的子矩阵为空，Narek 无法找到 $2$，因此他输掉了游戏。",
   "samples": [
     {
       "input": "3\n2 2 3\n1 2\n1 3 6\n4 6 2\n2 2 4\n1 2\n1 1 3 2\n4 2 5 1\n2 4 2\n1 2\n3 4\n5 6\n7 8\n8 8\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:48:36.774Z"
+  "fetchedAt": "2026-10-30T21:48:36.774Z",
+  "translatedAt": "2026-11-03T16:03:25.107+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

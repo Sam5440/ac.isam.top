@@ -4,7 +4,7 @@
   "contestId": 2030,
   "index": "C",
   "title": "A TRUE Battle",
-  "titleZh": null,
+  "titleZh": "一场真正的战斗",
   "url": "https://codeforces.com/contest/2030/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob are playing a game. There is a list of $n$ booleans, each of which is either `true` or `false`, given as a binary string $^{\\text{∗}}$ of length $n$ (where $\\texttt{1}$ represents `true`, and $\\texttt{0}$ represents `false`). Initially, there are no operators between the booleans.\n\nAlice and Bob will take alternate turns placing `and` or `or` between the booleans, with Alice going first. Thus, the game will consist of $n-1$ turns since there are $n$ booleans. Alice aims for the final statement to evaluate to `true`, while Bob aims for it to evaluate to `false`. Given the list of boolean values, determine whether Alice will win if both players play optimally.\n\nTo evaluate the final expression, repeatedly perform the following steps until the statement consists of a single `true` or `false`:\n\n- If the statement contains an `and` operator, choose any one and replace the subexpression surrounding it with its evaluation.\n- Otherwise, the statement contains an `or` operator. Choose any one and replace the subexpression surrounding the `or` with its evaluation.\n\nFor example, the expression\n\ntrue or false and false\n\nis evaluated as\n\ntrue or (false and false)\n\n$=$\n\ntrue or false\n\n$=$\n\ntrue\n\n. It can be shown that the result of any compound statement is unique.\n\n$^{\\text{∗}}$A binary string is a string that only consists of characters $\\texttt{0}$ and $\\texttt{1}$\n\n## Input\n\nThe first line contains $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains an integer $n$ ($2 \\leq n \\leq 2 \\cdot 10^5$) — the length of the string.\n\nThe second line contains a binary string of length $n$, consisting of characters $\\texttt{0}$ and $\\texttt{1}$ — the list of boolean values.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, output \"`YES`\" (without quotes) if Alice wins, and \"`NO`\" (without quotes) otherwise.\n\nYou can output \"`YES`\" and \"`NO`\" in any case (for example, strings \"`yES`\", \"`yes`\" and \"`Yes`\" will be recognized as a positive response).\n\n## Note\n\nIn the first testcase, Alice can place `and` between the two booleans. The game ends as there are no other places to place operators, and Alice wins because `true and true` is `true`.\n\nIn the second testcase, Alice can place `or` between the middle `true` and the left `false`. Bob can place `and` between the middle `true` and the right `false`. The statement `false or true and false` is `false`.\n\nNote that these examples may not be the best strategies for either Alice or Bob.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 正在玩一个游戏。有一个由 $n$ 个布尔值组成的列表，每个布尔值要么是 `true`，要么是 `false`，该列表由一个长度为 $n$ 的二进制字符串 $^{\\text{∗}}$ 给出（其中，`1` 表示 `true`，`0` 表示 `false`）。初始时，这些布尔值之间没有任何运算符。\n\nAlice 和 Bob 轮流在布尔值之间放置 `and` 或 `or`，Alice 先手。因此，由于有 $n$ 个布尔值，游戏将进行 $n-1$ 个回合。Alice 的目标是使最终语句的值为 `true`，而 Bob 的目标是使其值为 `false`。给定布尔值列表，判断在双方都采取最优策略的情况下，Alice 是否会获胜。\n\n为了计算最终表达式的值，重复执行以下步骤，直到语句只剩下一个 `true` 或 `false`：\n\n- 如果语句中包含 `and` 运算符，任选一个，将其两侧的子表达式替换为计算结果。\n- 否则，语句中包含 `or` 运算符。任选一个，将 `or` 两侧的子表达式替换为计算结果。\n\n例如，表达式\n\ntrue or false and false\n\n的计算过程如下：\n\ntrue or (false and false)\n\n$=$\n\ntrue or false\n\n$=$\n\ntrue\n\n。可以证明，任何复合语句的结果都是唯一的。\n\n$^{\\text{∗}}$二进制字符串是一个只由字符 `0` 和 `1` 组成的字符串。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 2 \\cdot 10^5$）——字符串的长度。\n\n第二行包含一个长度为 $n$ 的二进制字符串，由字符 `0` 和 `1` 组成——布尔值列表。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果 Alice 获胜，输出“`YES`”（不含引号）；否则输出“`NO`”（不含引号）。\n\n可以以任意大小写形式输出“`YES`”和“`NO`”（例如，字符串“`yES`”“`yes`”和“`Yes`”都会被判定为肯定回答）。\n\n## 说明\n\n在第一个测试用例中，Alice 可以在两个布尔值之间放置 `and`。由于没有其他可以放置运算符的位置，游戏结束；又因为 `true and true` 的结果为 `true`，所以 Alice 获胜。\n\n在第二个测试用例中，Alice 可以在中间的 `true` 和左侧的 `false` 之间放置 `or`。Bob 可以在中间的 `true` 和右侧的 `false` 之间放置 `and`。语句 `false or true and false` 的值为 `false`。\n\n注意，这些例子中的操作不一定是 Alice 或 Bob 的最佳策略。",
   "samples": [
     {
       "input": "5\n2\n11\n3\n010\n12\n101111111100\n10\n0111111011\n8\n01000010\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:37.691Z"
+  "fetchedAt": "2026-10-30T21:40:37.691Z",
+  "translatedAt": "2026-11-03T15:48:00.514+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

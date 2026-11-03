@@ -4,7 +4,7 @@
   "contestId": 2072,
   "index": "G",
   "title": "I've Been Flipping Numbers for 300 Years and Calculated the Sum",
-  "titleZh": null,
+  "titleZh": "我翻转了三百年数字，终于算出了和",
   "url": "https://codeforces.com/contest/2072/problem/G",
   "difficulty": 2200,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "After three hundred years of slime farming, Akito finally obtained the magical number $n$. Upon reaching the merchant, he wanted to exchange the number for gold, but the merchant gave the hero a quest.\n\nThe merchant said that for the quest, the skill $\\text{rev}(n, p)$ would be required, which Akito, by happy coincidence, had recently learned. $\\text{rev}(n, p)$ represents the following procedure:\n\n1. Write the number $n$ in base $p$, let this representation be $n = \\overline{n_{\\ell - 1} \\ldots n_1 n_0}$, where $\\ell$ is the length of the base $p$ representation of the number $n$.\n2. Reverse the base $p$ representation, let this be $m = \\overline{n_0 n_1 \\ldots n_{\\ell - 1}}$.\n3. Convert the number $m$ back to decimal and return it as the result.\n\nThe merchant's quest was to calculate the sum $x = \\sum\\limits_{p = 2}^{k} \\text{rev}(n, p)$. Since this number can be quite large, only the remainder of $x$ when divided by $10^9 + 7$ is required. The merchant also mentioned that the previous traveler had been calculating this sum for three hundred years and had not finished it. But you will help Akito finish it faster, right?\n\n## Input\n\nThe first line contains the number $t$ ($1 \\le t \\le 5000$) — the number of test cases.\n\nIn the only line of each test case, two numbers $n$ and $k$ are given ($1 \\le n \\le 3 \\cdot 10^5, 2 \\le k \\le 10^{18}$) — the magical number and the upper limit for summation.\n\nNote that **the sum of** $n$ **across all test cases is not bounded**.\n\n## Output\n\nFor each test case, you need to output a single number — the remainder of $x = \\sum\\limits_{p = 2}^{k} \\text{rev}(n, p)$ when divided by $10^9 + 7$.\n\n## Note\n\nIn the third test case, $n = 1$. The number one in any numeral system is represented by a single digit, which means $\\text{rev}(1, p) = 1$ for any $p \\ge 2$. Thus, $x = \\sum\\limits_{p = 2}^{k} 1 = \\sum\\limits_{p = 2}^{10} 1 = 10 - 2 + 1 = 9$.\n\nIn the fourth test case, $x = \\text{rev}(4, 2) + \\text{rev}(4, 3) + \\text{rev}(4, 4)$. Let's calculate each term:\n\n- $4 = 100_2 \\rightarrow \\text{rev}(4, 2) = 001_2 = 1$\n- $4 = 11_3 \\rightarrow \\text{rev}(4, 3) = 11_3 = 4$\n- $4 = 10_4 \\rightarrow \\text{rev}(4, 4) = 01_4 = 1$\n\nThus, $x = 1 + 4 + 1 = 6$.\n\nIn the seventh test case, $x = \\text{rev}(9, 2) + \\text{rev}(9, 3)$. Let's calculate each term:\n\n- $9 = 1001_2 \\rightarrow \\text{rev}(9, 2) = 1001_2 = 9$\n- $9 = 100_3 \\rightarrow \\text{rev}(9, 3) = 001_3 = 1$\n\nThus, $x = 9 + 1 = 10$.",
-  "statementZhMd": null,
+  "statementZhMd": "刷了三百年史莱姆之后，Akito 终于获得了神奇的数字 $n$。到达商人处后，他想用这个数字换取黄金，但商人给这位英雄布置了一个任务。\n\n商人说，完成这个任务需要用到技能 $\\text{rev}(n, p)$，而碰巧 Akito 最近刚学会了这个技能。$\\text{rev}(n, p)$ 表示以下过程：\n\n1. 将数字 $n$ 写成 $p$ 进制表示，设该表示为 $n = \\overline{n_{\\ell - 1} \\ldots n_1 n_0}$，其中 $\\ell$ 是数字 $n$ 的 $p$ 进制表示的长度。\n2. 将 $p$ 进制表示反转，设其为 $m = \\overline{n_0 n_1 \\ldots n_{\\ell - 1}}$。\n3. 将数字 $m$ 转回十进制并作为结果返回。\n\n商人的任务是计算和 $x = \\sum\\limits_{p = 2}^{k} \\text{rev}(n, p)$。由于这个数可能非常大，只需输出 $x$ 除以 $10^9 + 7$ 的余数。商人还提到，之前的一位旅行者算这个和已经算了三百年还没算完。但你会帮 Akito 更快地算完它，对吧？\n\n## 输入格式\n\n第一行包含数字 $t$（$1 \\le t \\le 5000$）—— 测试用例的数量。\n\n每个测试用例的唯一一行给出两个数字 $n$ 和 $k$（$1 \\le n \\le 3 \\cdot 10^5, 2 \\le k \\le 10^{18}$）—— 神奇的数字和求和的上限。\n\n注意，**所有测试用例的** $n$ **之和没有限制**。\n\n## 输出格式\n\n对于每个测试用例，你需要输出一个数 —— 即 $x = \\sum\\limits_{p = 2}^{k} \\text{rev}(n, p)$ 除以 $10^9 + 7$ 的余数。\n\n## 说明\n\n在第三个测试用例中，$n = 1$。数字一在任何进制下都由单个数位表示，这意味着对任意 $p \\ge 2$ 都有 $\\text{rev}(1, p) = 1$。因此，$x = \\sum\\limits_{p = 2}^{k} 1 = \\sum\\limits_{p = 2}^{10} 1 = 10 - 2 + 1 = 9$。\n\n在第四个测试用例中，$x = \\text{rev}(4, 2) + \\text{rev}(4, 3) + \\text{rev}(4, 4)$。我们来计算每一项：\n\n- $4 = 100_2 \\rightarrow \\text{rev}(4, 2) = 001_2 = 1$\n- $4 = 11_3 \\rightarrow \\text{rev}(4, 3) = 11_3 = 4$\n- $4 = 10_4 \\rightarrow \\text{rev}(4, 4) = 01_4 = 1$\n\n因此，$x = 1 + 4 + 1 = 6$。\n\n在第七个测试用例中，$x = \\text{rev}(9, 2) + \\text{rev}(9, 3)$。我们来计算每一项：\n\n- $9 = 1001_2 \\rightarrow \\text{rev}(9, 2) = 1001_2 = 9$\n- $9 = 100_3 \\rightarrow \\text{rev}(9, 3) = 001_3 = 1$\n\n因此，$x = 9 + 1 = 10$。",
   "samples": [
     {
       "input": "12\n3 2\n42 52\n1 10\n4 4\n16 2\n69 69\n9 3\n19 84\n9982 44353\n100000 1000000007\n17 30\n777 1000000000000000000\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:53:54.412Z"
+  "fetchedAt": "2026-11-02T16:53:54.412Z",
+  "translatedAt": "2026-11-03T13:28:17.810+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

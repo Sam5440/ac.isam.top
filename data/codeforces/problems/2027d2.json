@@ -4,7 +4,7 @@
   "contestId": 2027,
   "index": "D2",
   "title": "The Endspeaker (Hard Version)",
-  "titleZh": null,
+  "titleZh": "终焉演讲者（困难版）",
   "url": "https://codeforces.com/contest/2027/problem/D2",
   "difficulty": 2200,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of this problem. The only difference is that you need to also output the number of optimal sequences in this version. You must solve both versions to be able to hack.**\n\nYou're given an array $a$ of length $n$, and an array $b$ of length $m$ ($b_i \\gt b_{i+1}$ for all $1 \\le i \\lt m$). Initially, the value of $k$ is $1$. Your aim is to make the array $a$ empty by performing one of these two operations repeatedly:\n\n- Type $1$ — If the value of $k$ is less than $m$ and the array $a$ is **not empty**, you can increase the value of $k$ by $1$. This does not incur any cost.\n- Type $2$ — You remove a non-empty prefix of array $a$, such that its sum does not exceed $b_k$. This incurs a cost of $m - k$.\n\nYou need to minimize the total cost of the operations to make array $a$ empty. If it's impossible to do this through any sequence of operations, output $-1$. Otherwise, output the minimum total cost of the operations, and the number of sequences of operations which yield this minimum cost modulo $10^9 + 7$.\n\nTwo sequences of operations are considered different if you choose a different type of operation at any step, or the size of the removed prefix is different at any step.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n, m \\le 3 \\cdot 10^5$, $\\boldsymbol{1 \\le n \\cdot m \\le 3 \\cdot 10^5}$).\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$).\n\nThe third line of each test case contains $m$ integers $b_1, b_2, \\ldots, b_m$ ($1 \\le b_i \\le 10^9$).\n\nIt is also guaranteed that $b_i \\gt b_{i+1}$ for all $1 \\le i \\lt m$.\n\nIt is guaranteed that the sum of $\\boldsymbol{n \\cdot m}$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if it's possible to make $a$ empty, then output two integers. The first should be the minimum total cost of the operations, and the second should be the number of sequences of operations which achieve this minimum cost, modulo $10^9 + 7$.\n\nIf there is no possible sequence of operations which makes $a$ empty, then output a single integer $-1$.\n\n## Note\n\nIn the first test case, there are $3$ optimal sequences of operations which yield a total cost of $1$:\n\n- All $3$ sequences begin with a type $2$ operation, removing the prefix $[9]$ to make $a = [3, 4, 3]$, incurring a cost of $1$. Then, we perform a type $1$ operation to increase the value of $k$ by $1$. All subsequent operations now incur a cost of $0$.\n- One sequence continues by removing the prefixes $[3, 4]$ then $[3]$.\n- Another sequence continues by removing the prefixes $[3]$ then $[4, 3]$.\n- Another sequence continues by removing the prefixes $[3]$ then $[4]$ then $[3]$.\n\nIn the second test case, it's impossible to remove any prefix of the array since $a_1 \\gt b_1$, so array $a$ cannot be made empty by any sequence of operations.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。唯一的区别是，在本版本中你还需要输出最优序列的数量。只有同时解决两个版本后，才能进行破解。**\n\n给定一个长度为 $n$ 的数组 $a$，以及一个长度为 $m$ 的数组 $b$（对于所有 $1 \\le i \\lt m$，均有 $b_i \\gt b_{i+1}$）。初始时，$k$ 的值为 $1$。你的目标是通过反复执行以下两种操作之一，使数组 $a$ 变为空：\n\n- 类型 $1$ — 如果 $k$ 的值小于 $m$ 且数组 $a$ **非空**，你可以将 $k$ 的值增加 $1$。此操作不产生任何代价。\n- 类型 $2$ — 删除数组 $a$ 的一个非空前缀，使其元素之和不超过 $b_k$。此操作的代价为 $m - k$。\n\n你需要最小化将数组 $a$ 变为空所需操作的总代价。如果不存在任何可行的操作序列，输出 $-1$。否则，输出操作的最小总代价，以及能够达到该最小总代价的操作序列数量，结果对 $10^9 + 7$ 取模。\n\n如果在任意一步中选择的操作类型不同，或删除的前缀长度不同，则认为两个操作序列不同。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 1000$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 3 \\cdot 10^5$，$\\boldsymbol{1 \\le n \\cdot m \\le 3 \\cdot 10^5}$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n每个测试用例的第三行包含 $m$ 个整数 $b_1, b_2, \\ldots, b_m$（$1 \\le b_i \\le 10^9$）。\n\n保证对于所有 $1 \\le i \\lt m$，均有 $b_i \\gt b_{i+1}$。\n\n保证所有测试用例的 $\\boldsymbol{n \\cdot m}$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果可以将数组 $a$ 变为空，则输出两个整数。第一个整数应为操作的最小总代价，第二个整数应为达到该最小总代价的操作序列数量，结果对 $10^9 + 7$ 取模。\n\n如果不存在能将数组 $a$ 变为空的操作序列，则输出一个整数 $-1$。\n\n## 说明\n\n在第一个测试用例中，共有 $3$ 个能够得到总代价 $1$ 的最优序列：\n\n- 这 $3$ 个序列都以一次类型 $2$ 操作开始，删除前缀 $[9]$，使得 $a = [3, 4, 3]$，代价为 $1$。随后，我们执行一次类型 $1$ 操作，将 $k$ 的值增加 $1$。之后的所有操作代价均为 $0$。\n- 其中一个序列接下来删除前缀 $[3, 4]$，然后删除前缀 $[3]$。\n- 另一个序列接下来删除前缀 $[3]$，然后删除前缀 $[4, 3]$。\n- 还有一个序列接下来依次删除前缀 $[3]$、$[4]$ 和 $[3]$。\n\n在第二个测试用例中，由于 $a_1 \\gt b_1$，无法删除数组的任何前缀，因此无法通过任何操作序列将数组 $a$ 变为空。",
   "samples": [
     {
       "input": "5\n4 2\n9 3 4 3\n11 7\n1 2\n20\n19 18\n10 2\n2 5 2 1 10 3 2 9 9 6\n17 9\n10 11\n2 2 2 2 2 2 2 2 2 2\n20 18 16 14 12 10 8 6 4 2 1\n1 6\n10\n32 16 8 4 2 1\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:02.240Z"
+  "fetchedAt": "2026-10-30T21:41:02.240Z",
+  "translatedAt": "2026-11-03T15:45:48.094+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2011,
   "index": "E",
   "title": "Rock-Paper-Scissors Bot",
-  "titleZh": null,
+  "titleZh": "石头剪刀布机器人",
   "url": "https://codeforces.com/contest/2011/problem/E",
   "difficulty": null,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Rock-Paper-Scissors is a game for two players. It is played in rounds. During each round, every player chooses one of three moves: Rock, Paper, or Scissors. Depending on the chosen moves, the following happens:\n\n- if one player chooses Rock and the other player chooses Paper, the player who chooses Paper wins and gets a point;\n- if one player chooses Scissors and the other player chooses Paper, the player who chooses Scissors wins and gets a point;\n- if one player chooses Scissors and the other player chooses Rock, the player who chooses Rock wins and gets a point;\n- and if both players choose the same move, nobody wins and nobody gets a point.\n\nMonocarp decided to play against a bot. During the game, Monocarp noticed that the bot's behavior is very predictable:\n\n- in the first round, it chooses Rock;\n- in every round except the first, it chooses the move that beats the opponent's move in the previous round (for example, if in the previous round its opponent played Scissors, then the bot chooses Rock now).\n\nMonocarp has a favorite string $s$, consisting of the characters `R`, `P`, and/or `S`. Monocarp decided to play a series of rounds against the bot. However, he wants both of the following conditions to be met:\n\n- the final score is in favor of Monocarp (i. e., the number of rounds he won is strictly greater than the number of rounds the bot won);\n- the string $s$ appears as a **contiguous substring** in the sequence of the bot's moves (where `R` denotes Rock, `P` denotes Paper, and `S` denotes Scissors).\n\nHelp Monocarp and calculate the minimum number of rounds he needs to play against the bot to satisfy both of the aforementioned conditions.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe only line of each test case contains a string $s$ ($1 \\le |s| \\le 2 \\cdot 10^5$), consisting of the characters `R`, `P`, and/or `S`.\n\nAdditional constraint on the input: the sum of the lengths of the strings $s$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the minimum number of rounds Monocarp needs to play against the bot to satisfy both of the aforementioned conditions.\n\n## Note\n\nIn the first example, Monocarp can play `PPR`, then the bot's moves are `RSS`, and the score is $2:1$ in favor of Monocarp.\n\nIn the second example, Monocarp can play `P`, then the bot's moves are `R`, and the score is $1:0$ in favor of Monocarp.\n\nIn the third example, Monocarp can play `RPR`, then the bot's moves are `RPS`, and the score is $1:0$ in favor of Monocarp.\n\nIn the fourth example, Monocarp can play `RRRSPR`, then the bot's moves are `RPPPRS`, and the score is $3:2$ in favor of Monocarp.\n\nIn the fifth example, Monocarp can play `PRRSPRS`, then the bot's moves are `RSPPRSP`, and the score is $6:1$ in favor of Monocarp.\n\nIn the sixth example, Monocarp can play `PRRRS`, then the bot's moves are `RSPPP`, and the score is $3:2$ in favor of Monocarp.\n\nIn the seventh example, Monocarp can play `RSR`, then the bot's moves are `RPR`, and the score is $1:0$ in favor of Monocarp.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n石头剪刀布是一个双人游戏。游戏分多个回合进行。在每个回合中，每位玩家都会选择三种手势之一：石头、布或剪刀。根据双方选择的手势，会发生以下情况：\n\n- 如果一位玩家选择石头，另一位玩家选择布，那么选择布的玩家获胜并得到一分；\n- 如果一位玩家选择剪刀，另一位玩家选择布，那么选择剪刀的玩家获胜并得到一分；\n- 如果一位玩家选择剪刀，另一位玩家选择石头，那么选择石头的玩家获胜并得到一分；\n- 如果双方选择相同的手势，则无人获胜，双方都不得分。\n\nMonocarp 决定与一个机器人对战。在游戏过程中，Monocarp 发现机器人的行为非常容易预测：\n\n- 在第一回合，它选择石头；\n- 除第一回合外，在每个回合中，它都会选择能够击败对手上一回合所选手势的手势（例如，如果上一回合对手选择了剪刀，那么机器人这一回合就会选择石头）。\n\nMonocarp 有一个喜欢的字符串 $s$，它由字符 `R`、`P` 和/或 `S` 组成。Monocarp 决定与机器人进行若干回合的对战。但是，他希望同时满足以下两个条件：\n\n- 最终比分对 Monocarp 有利（即，他获胜的回合数严格多于机器人获胜的回合数）；\n- 字符串 $s$ 作为一个**连续子串**出现在机器人的手势序列中（其中，`R` 表示石头，`P` 表示布，`S` 表示剪刀）。\n\n请帮助 Monocarp 计算：为了满足上述两个条件，他至少需要与机器人进行多少回合的对战。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例仅包含一行，其中有一个字符串 $s$（$1 \\le |s| \\le 2 \\cdot 10^5$），由字符 `R`、`P` 和/或 `S` 组成。\n\n输入还有以下限制：所有测试用例中字符串 $s$ 的长度之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——为了满足上述两个条件，Monocarp 至少需要与机器人进行的对战回合数。\n\n## 说明\n\n在第一个样例中，Monocarp 可以依次选择 `PPR`，此时机器人的手势为 `RSS`，比分为 $2:1$，Monocarp 获胜。\n\n在第二个样例中，Monocarp 可以选择 `P`，此时机器人的手势为 `R`，比分为 $1:0$，Monocarp 获胜。\n\n在第三个样例中，Monocarp 可以依次选择 `RPR`，此时机器人的手势为 `RPS`，比分为 $1:0$，Monocarp 获胜。\n\n在第四个样例中，Monocarp 可以依次选择 `RRRSPR`，此时机器人的手势为 `RPPPRS`，比分为 $3:2$，Monocarp 获胜。\n\n在第五个样例中，Monocarp 可以依次选择 `PRRSPRS`，此时机器人的手势为 `RSPPRSP`，比分为 $6:1$，Monocarp 获胜。\n\n在第六个样例中，Monocarp 可以依次选择 `PRRRS`，此时机器人的手势为 `RSPPP`，比分为 $3:2$，Monocarp 获胜。\n\n在第七个样例中，Monocarp 可以依次选择 `RSR`，此时机器人的手势为 `RPR`，比分为 $1:0$，Monocarp 获胜。",
   "samples": [
     {
       "input": "7\nSS\nR\nRPS\nRPPP\nSPPRSP\nPPP\nPR\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:01:51.904Z"
+  "fetchedAt": "2026-11-02T17:01:51.904Z",
+  "translatedAt": "2026-11-03T15:52:18.923+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

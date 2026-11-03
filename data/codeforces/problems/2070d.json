@@ -4,7 +4,7 @@
   "contestId": 2070,
   "index": "D",
   "title": "Tree Jumps",
-  "titleZh": null,
+  "titleZh": "树上跳跃",
   "url": "https://codeforces.com/contest/2070/problem/D",
   "difficulty": 1600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a rooted tree, consisting of $n$ vertices. The vertices in the tree are numbered from $1$ to $n$, and the root is the vertex $1$. Let $d_x$ be the distance (the number of edges on the shortest path) from the root to the vertex $x$.\n\nThere is a chip that is initially placed at the root. You can perform the following operation as many times as you want (possibly zero):\n\n- move the chip from the current vertex $v$ to a vertex $u$ such that $d_u = d_v + 1$. If $v$ is the root, you can choose any vertex $u$ meeting this constraint; however, if $v$ is not the root, $u$ should not be a neighbor of $v$ (there should be no edge connecting $v$ and $u$).\n\n![image](https://espresso.codeforces.com/a7d174838967f0e86ed147de172773441c0044e7.png)\n\nFor example, in the tree above, the following chip moves are possible: $1 \\rightarrow 2$, $1 \\rightarrow 5$, $2 \\rightarrow 7$, $5 \\rightarrow 3$, $5 \\rightarrow 4$, $3 \\rightarrow 6$, $7 \\rightarrow 6$.\n\nA sequence of vertices is **valid** if you can move the chip in such a way that it visits all vertices from the sequence (and only them), in the order they are given in the sequence.\n\nYour task is to calculate the number of valid vertex sequences. Since the answer might be large, print it modulo $998244353$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 3 \\cdot 10^5$).\n\nThe second line contains $n-1$ integers $p_2, p_3, \\dots, p_n$ ($1 \\le p_i \\lt i$), where $p_i$ is the parent of the $i$-th vertex in the tree. Vertex $1$ is the root.\n\nAdditional constraint on the input: the sum of $n$ over all test cases doesn't exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the number of valid vertex sequences, taken modulo $998244353$.\n\n## Note\n\nIn the first example, the following sequences are valid: $[1]$, $[1, 2]$, $[1, 4]$, $[1, 4, 3]$.\n\nIn the second example, the following sequences are valid: $[1]$, $[1, 2]$.\n\nIn the third example, the following sequences are valid: $[1]$, $[1, 2]$, $[1, 2, 7]$, $[1, 2, 7, 6]$, $[1, 5]$, $[1, 5, 3]$, $[1, 5, 3, 6]$, $[1, 5, 4]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵包含 $n$ 个顶点的有根树。树中的顶点编号为 $1$ 到 $n$，根为顶点 $1$。设 $d_x$ 为从根到顶点 $x$ 的距离（最短路径上的边数）。\n\n有一颗棋子初始时放在根上。你可以任意多次（也可以为零次）执行以下操作：\n\n- 将棋子从当前顶点 $v$ 移动到某个满足 $d_u = d_v + 1$ 的顶点 $u$。如果 $v$ 是根，你可以选择任意满足该约束的顶点 $u$；但如果 $v$ 不是根，那么 $u$ 不能是 $v$ 的邻居（即 $v$ 和 $u$ 之间不能有边相连）。\n\n![image](https://espresso.codeforces.com/a7d174838967f0e86ed147de172773441c0044e7.png)\n\n例如，在上面的树中，以下棋子移动是可行的：$1 \\rightarrow 2$、$1 \\rightarrow 5$、$2 \\rightarrow 7$、$5 \\rightarrow 3$、$5 \\rightarrow 4$、$3 \\rightarrow 6$、$7 \\rightarrow 6$。\n\n如果一个顶点序列是**合法的**，指你可以按序列中给定的顺序移动棋子，使其恰好访问该序列中的所有顶点（且仅访问这些顶点）。\n\n你的任务是计算合法顶点序列的数量。由于答案可能很大，请输出其对 $998244353$ 取模后的结果。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 3 \\cdot 10^5$）。\n\n第二行包含 $n-1$ 个整数 $p_2, p_3, \\dots, p_n$（$1 \\le p_i \\lt i$），其中 $p_i$ 表示树中第 $i$ 个顶点的父亲。顶点 $1$ 是根。\n\n输入的附加约束：所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——合法顶点序列的数量，对 $998244353$ 取模。\n\n## 说明\n\n在第一个样例中，以下序列是合法的：$[1]$、$[1, 2]$、$[1, 4]$、$[1, 4, 3]$。\n\n在第二个样例中，以下序列是合法的：$[1]$、$[1, 2]$。\n\n在第三个样例中，以下序列是合法的：$[1]$、$[1, 2]$、$[1, 2, 7]$、$[1, 2, 7, 6]$、$[1, 5]$、$[1, 5, 3]$、$[1, 5, 3, 6]$、$[1, 5, 4]$。",
   "samples": [
     {
       "input": "3\n4\n1 2 1\n3\n1 2\n7\n1 2 2 1 4 5\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:54:03.321Z"
+  "fetchedAt": "2026-11-02T16:54:03.321Z",
+  "translatedAt": "2026-11-03T13:26:40.108+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

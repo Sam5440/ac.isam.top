@@ -4,7 +4,7 @@
   "contestId": 2002,
   "index": "D2",
   "title": "DFS Checker (Hard Version)",
-  "titleZh": null,
+  "titleZh": "DFS 检查器（困难版）",
   "url": "https://codeforces.com/contest/2002/problem/D2",
   "difficulty": 2300,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the hard version of the problem. In this version, you are given a generic tree and the constraints on $n$ and $q$ are higher. You can make hacks only if both versions of the problem are solved.**\n\nYou are given a rooted tree consisting of $n$ vertices. The vertices are numbered from $1$ to $n$, and the root is the vertex $1$. You are also given a permutation $p_1, p_2, \\ldots, p_n$ of $[1,2,\\ldots,n]$.\n\nYou need to answer $q$ queries. For each query, you are given two integers $x$, $y$; you need to swap $p_x$ and $p_y$ and determine if $p_1, p_2, \\ldots, p_n$ is a valid DFS order$^\\dagger$ of the given tree.\n\nPlease note that the swaps are **persistent** through queries.\n\n$^\\dagger$ A DFS order is found by calling the following $\\texttt{dfs}$ function on the given tree.\n\n```\ndfs_order = []\n\nfunction dfs(v):\n    append v to the back of dfs_order\n    pick an arbitrary permutation s of children of v\n    for child in s:\n        dfs(child)\ndfs(1)\n```\n\nNote that the DFS order is not unique.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1\\le t\\le10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$, $q$ ($2\\le n\\le 3\\cdot 10^5$, $2\\le q\\le 10^5$) — the number of vertices in the tree and the number of queries.\n\nThe next line contains $n-1$ integers $a_2,a_3,\\ldots,a_n$ ($1\\le a_i \\lt i$) — the parent of each vertex in the given tree.\n\nThe next line contains $n$ integers $p_1,p_2,\\ldots,p_n$ ($1\\le p_i\\le n$, all $p_i$ are distinct) — the initial permutation $p$.\n\nThe next $q$ lines each contain two integers $x$, $y$ ($1\\le x,y\\le n,x\\neq y$) — the positions of the elements to swap in the permutation.\n\nIt is guaranteed that the sum of all $n$ does not exceed $3\\cdot 10^5$, and the sum of all $q$ does not exceed $10^5$.\n\n## Output\n\nFor each test case, print $q$ lines corresponding to the $q$ queries. For each query, output $\\texttt{YES}$ if there is a DFS order that exactly equals the current permutation, and output $\\texttt{NO}$ otherwise.\n\nYou can output $\\texttt{Yes}$ and $\\texttt{No}$ in any case (for example, strings $\\texttt{yEs}$, $\\texttt{yes}$, $\\texttt{Yes}$, and $\\texttt{YES}$ will be recognized as a positive response).\n\n## Note\n\nIn the first test case, the permutation $p_1, p_2, \\ldots, p_n$ after each modification is $[1,3,2],[1,2,3],[3,2,1]$, respectively. The first two permutations are valid DFS orders; the third is not a DFS order.\n\nIn the second test case, the permutation $p_1, p_2, \\ldots, p_n$ after each modification is $[1,2,5,4,3,6,7],[1,3,5,4,2,6,7],[1,3,7,4,2,6,5],[1,3,7,6,2,4,5]$, respectively.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。在此版本中，给定的是一棵一般树，并且 $n$ 和 $q$ 的约束更高。只有在两个版本的问题都解决后，才能进行 hack。**\n\n给定一棵由 $n$ 个顶点组成的有根树。顶点编号从 $1$ 到 $n$，根节点为顶点 $1$。同时给定一个 $[1,2,\\ldots,n]$ 的排列 $p_1, p_2, \\ldots, p_n$。\n\n你需要回答 $q$ 次询问。每次询问给出两个整数 $x$、$y$；你需要交换 $p_x$ 和 $p_y$，并判断 $p_1, p_2, \\ldots, p_n$ 是否是给定树的一个合法 DFS 序列$^\\dagger$。\n\n请注意，每次询问中的交换都会对后续询问持续生效。\n\n$^\\dagger$ DFS 序列通过在给定树上调用以下 $``dfs``$ 函数得到。\n\n```text\ndfs_order = []\n\nfunction dfs(v):\n    append v to the back of dfs_order\n    pick an arbitrary permutation s of children of v\n    for child in s:\n        dfs(child)\ndfs(1)\n```\n\n注意，DFS 序列并不唯一。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1\\le t\\le10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$、$q$（$2\\le n\\le 3\\cdot 10^5$，$2\\le q\\le 10^5$）——树中的顶点数和询问数。\n\n下一行包含 $n-1$ 个整数 $a_2,a_3,\\ldots,a_n$（$1\\le a_i \\lt i$）——给定树中每个顶点的父节点。\n\n下一行包含 $n$ 个整数 $p_1,p_2,\\ldots,p_n$（$1\\le p_i\\le n$，所有 $p_i$ 互不相同）——初始排列 $p$。\n\n接下来的 $q$ 行每行包含两个整数 $x$、$y$（$1\\le x,y\\le n,x\\neq y$）——排列中需要交换的两个元素的位置。\n\n保证所有测试用例的 $n$ 之和不超过 $3\\cdot 10^5$，所有测试用例的 $q$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q$ 行，分别对应 $q$ 次询问。对于每次询问，如果存在一个 DFS 序列恰好等于当前排列，则输出 $`YES`$；否则输出 $`NO`$。\n\n你可以以任意大小写形式输出 $`Yes`$ 和 $`No`$（例如，字符串 $`yEs`$、$`yes`$、$`Yes`$ 和 $`YES`$ 都会被识别为肯定回答）。\n\n## 说明\n\n在第一个测试用例中，每次修改后排列 $p_1, p_2, \\ldots, p_n$ 分别为 $[1,3,2],[1,2,3],[3,2,1]$。前两个排列是合法的 DFS 序列；第三个不是 DFS 序列。\n\n在第二个测试用例中，每次修改后排列 $p_1, p_2, \\ldots, p_n$ 分别为 $[1,2,5,4,3,6,7],[1,3,5,4,2,6,7],[1,3,7,4,2,6,5],[1,3,7,6,2,4,5]$。",
   "samples": [
     {
       "input": "3\n3 3\n1 1\n1 2 3\n2 3\n3 2\n1 3\n7 4\n1 1 2 2 3 3\n1 2 3 4 5 6 7\n3 5\n2 5\n3 7\n4 6\n5 4\n1 1 3 4\n2 3 4 5 1\n5 1\n4 5\n3 4\n2 3\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:48:53.785Z"
+  "fetchedAt": "2026-10-30T21:48:53.785Z",
+  "translatedAt": "2026-11-03T16:03:56.537+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2027,
   "index": "E2",
   "title": "Bit Game (Hard Version)",
-  "titleZh": null,
+  "titleZh": "位运算游戏（困难版）",
   "url": "https://codeforces.com/contest/2027/problem/E2",
   "difficulty": 3100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of this problem. The only difference is that you need to output the number of choices of games where Bob wins in this version, where the number of stones in each pile are not fixed. You must solve both versions to be able to hack.**\n\nAlice and Bob are playing a familiar game where they take turns removing stones from $n$ piles. Initially, there are $x_i$ stones in the $i$-th pile, and it has an associated value $a_i$. A player can take $d$ stones away from the $i$-th pile if and only if both of the following conditions are met:\n\n- $1 \\le d \\le a_i$, and\n- $x \\, \\& \\, d = d$, where $x$ is the current number of stones in the $i$-th pile and $\\&$ denotes the [bitwise AND operation](https://en.wikipedia.org/wiki/Bitwise_operation#AND).\n\nThe player who cannot make a move loses, and Alice goes first.\n\nYou're given the $a_i$ values of each pile, but the number of stones in the $i$-th pile has not been determined yet. For the $i$-th pile, $x_i$ can be any integer between $1$ and $b_i$, inclusive. That is, you can choose an array $x_1, x_2, \\ldots, x_n$ such that the condition $1 \\le x_i \\le b_i$ is satisfied for all piles.\n\nYour task is to count the number of games where Bob wins if both players play optimally. Two games are considered different if the number of stones in any pile is different, i.e., the arrays of $x$ differ in at least one position.\n\nSince the answer can be very large, please output the result modulo $10^9 + 7$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains $n$ ($1 \\le n \\le 10^4$) — the number of piles.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\lt 2^{30}$).\n\nThe third line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\le b_i \\lt 2^{30}$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^4$.\n\n## Output\n\nOutput a single integer, the number of games where Bob wins, modulo $10^9 + 7$.\n\n## Note\n\nIn the first test case, no matter which values of $x_2$ and $x_3$ we choose, the second and third piles will always be chosen exactly once before no more stones can be taken from them. If $x_1 = 2$, then no stones can be taken from it, so Bob will make the last move. If $x_1 = 1$ or $x_1 = 3$, then exactly one move can be made on that pile, so Alice will make the last move. So Bob wins when $x = [2, 1, 1]$ or $x = [2, 1, 2]$ or $x = [2, 2, 1]$ or $x = [2, 2, 2]$.\n\nIn the second test case, Bob wins when $x_1 = 14$ or $x_1 = 30$ by removing $14 - k$ stones, where $k$ is the number of stones Alice removes on her turn. Bob also wins when $x_1 = 16$ or $x_1 = 32$ since Alice does not have any moves to begin with.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。唯一的区别是，在这个版本中，由于每堆石子的数量并不固定，你需要输出 Bob 获胜的游戏方案数量。你必须同时解决简单版和困难版，才能进行 hack。**\n\nAlice 和 Bob 正在进行一个熟悉的游戏：他们轮流从 $n$ 堆石子中取走石子。初始时，第 $i$ 堆有 $x_i$ 颗石子，并且该堆石子有一个对应的值 $a_i$。当且仅当满足以下两个条件时，玩家才能从第 $i$ 堆取走 $d$ 颗石子：\n\n- $1 \\le d \\le a_i$，以及\n- $x \\, \\& \\, d = d$，其中 $x$ 是第 $i$ 堆当前的石子数，\\& 表示[按位与运算](https://en.wikipedia.org/wiki/Bitwise_operation#AND)。\n\n无法进行操作的玩家输掉游戏，且 Alice 先手。\n\n现在给定每堆石子的 $a_i$ 值，但第 $i$ 堆的石子数量尚未确定。对于第 $i$ 堆，$x_i$ 可以是 $1$ 到 $b_i$ 之间的任意整数（包括 $1$ 和 $b_i$）。也就是说，你可以选择一个数组 $x_1, x_2, \\ldots, x_n$，使得对于所有石堆都满足 $1 \\le x_i \\le b_i$。\n\n你的任务是计算在双方都采取最优策略的情况下，Bob 获胜的游戏数量。如果任意一堆石子的数量不同，也就是说两个数组 $x$ 至少有一个位置不同，则认为是不同的游戏。\n\n由于答案可能非常大，请将结果对 $10^9 + 7$ 取模后输出。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来给出各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^4$）——石堆的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\lt 2^{30}$）。\n\n每个测试用例的第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$1 \\le b_i \\lt 2^{30}$）。\n\n保证所有测试用例中 $n$ 的总和不超过 $10^4$。\n\n## 输出格式\n\n输出一个整数，表示 Bob 获胜的游戏数量，对 $10^9 + 7$ 取模。\n\n## 说明\n\n在第一个测试用例中，无论我们如何选择 $x_2$ 和 $x_3$ 的值，第二堆和第三堆都一定会恰好被选择一次，之后便无法再从其中取走石子。如果 $x_1 = 2$，则无法从第一堆取走石子，因此 Bob 将进行最后一次操作。如果 $x_1 = 1$ 或 $x_1 = 3$，则第一堆恰好可以进行一次操作，因此 Alice 将进行最后一次操作。因此，当 $x = [2, 1, 1]$、$[2, 1, 2]$、$[2, 2, 1]$ 或 $[2, 2, 2]$ 时，Bob 获胜。\n\n在第二个测试用例中，当 $x_1 = 14$ 或 $x_1 = 30$ 时，Bob 可以通过取走 $14 - k$ 颗石子获胜，其中 $k$ 是 Alice 在她的回合中取走的石子数。当 $x_1 = 16$ 或 $x_1 = 32$ 时，Bob 也会获胜，因为 Alice 一开始没有任何可执行的操作。",
   "samples": [
     {
       "input": "7\n3\n1 2 3\n3 2 2\n1\n13\n45\n5\n5 4 7 8 6\n4 4 5 5 5\n4\n6 4 8 8\n12 13 14 12\n3\n92856133 46637598 12345678\n29384774 73775896 87654321\n2\n65 12\n110 31\n4\n677810235 275091182 428565855 720629731\n74522416 889934149 3394714 230851724\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:41:02.241Z"
+  "fetchedAt": "2026-10-30T21:41:02.241Z",
+  "translatedAt": "2026-11-03T15:43:58.537+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2041,
   "index": "M",
   "title": "Selection Sort",
-  "titleZh": null,
+  "titleZh": "选择排序",
   "url": "https://codeforces.com/contest/2041/problem/M",
   "difficulty": 2000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "![image](https://espresso.codeforces.com/c890509ce2af8567113a1a2d4b388e8763870e18.png)\n\nEvery student enrolled in the algorithms course is required to submit an assignment this week. The task is to implement an $O(n^2)$-time algorithm to sort $n$ given integers in non-decreasing order. Alice has already completed her assignment, and her implementation is shown below.\n\n```\nint alice_sort(int *s, int n){\n  for(int i = 0; i < n; ++i){\n    for(int j = i + 1; j < n; ++j){\n      if(s[i] > s[j]){\n        int swap = s[i];\n        s[i] = s[j];\n        s[j] = swap;\n      }\n    }\n  }\n  return 0;\n}\n```\n\nWhile you have access to Alice's code, you prefer not to simply copy it. Instead, you want to use Alice's sorting function as a building block for your own solution. There are two ways as listed below you can utilize her function, but each of them can be applied at most **once**. The order in which these two operations are invoked can be arbitrary.\n\n- Prefix sort: choose a length $i \\in \\{1, 2, \\ldots, n\\}$ and call $\\texttt{alicesort(}s, i\\texttt{)}$. This sorts the first $i$ elements in the array $s$.\n- Suffix sort: choose a length $i \\in \\{1, 2, \\ldots, n\\}$ and call $\\texttt{alicesort(}s+n-i, i\\texttt{)}$. This sorts the last $i$ elements in the array $s$.\n\nDue to the time complexity of the sorting algorithm, the cost of performing either a prefix or suffix sort is $i^2$, where $i$ is the length of the chosen subarray. Your goal is to determine the minimum cost to sort the input array $s$ of $n$ integers in non-decreasing order using Alice's function, following the rules mentioned above.\n\nFor example, Let $s=[3,2,5,5,4,1]$. We can first perform a suffix sort of length $4$, and the array becomes $[3,2,1,4,5,5]$. Then, we perform a prefix sort of length $3$, and the array becomes $[1,2,3,4,5,5]$, which is a sorted array. The cost is $4^2+3^2=25$. Here is another example, let $s=[4,3,2,1]$. We can complete the sorting by performing only a prefix sort of length $4$, and the cost is $4^2=16$.\n\n## Input\n\nThe first line contains exactly one integer $n$ which indicates the number of integers in the array $s$. The second line contains the $n$ integers in $s=[s_0, s_1, \\ldots, s_{n-1}]$.\n\n- $1 \\le n \\le 10^6$\n- For all $i$ ($0\\le i \\lt n$), $0\\le s_i \\lt 2^{31}-1$.\n\n## Output\n\nOutput an integer on a line, indicating the minimum cost to sort the input array $s$ of $n$ integers in non-decreasing order using Alice's function, following the rules mentioned above.",
-  "statementZhMd": null,
+  "statementZhMd": "![image](https://espresso.codeforces.com/c890509ce2af8567113a1a2d4b388e8763870e18.png)\n\n算法课程中的每位学生都必须在本周提交一份作业。作业要求实现一个时间复杂度为 $O(n^2)$ 的算法，将给定的 $n$ 个整数按非递减顺序排序。Alice 已经完成了她的作业，下面是她的实现。\n\n```\nint alice_sort(int *s, int n){\n  for(int i = 0; i < n; ++i){\n    for(int j = i + 1; j < n; ++j){\n      if(s[i] > s[j]){\n        int swap = s[i];\n        s[i] = s[j];\n        s[j] = swap;\n      }\n    }\n  }\n  return 0;\n}\n```\n\n虽然你可以使用 Alice 的代码，但你不想直接照搬它。相反，你希望将 Alice 的排序函数作为构建自己算法的基础。你可以通过以下两种方式使用她的函数，但每种方式最多只能使用**一次**。调用这两种操作的顺序可以任意。\n\n- 前缀排序：选择一个长度 $i \\in \\{1, 2, \\ldots, n\\}$，调用 `\\texttt{alicesort(}s, i\\texttt{)}`。该操作会对数组 $s$ 的前 $i$ 个元素进行排序。\n- 后缀排序：选择一个长度 $i \\in \\{1, 2, \\ldots, n\\}$，调用 `\\texttt{alicesort(}s+n-i, i\\texttt{)}`。该操作会对数组 $s$ 的后 $i$ 个元素进行排序。\n\n由于该排序算法的时间复杂度，执行一次前缀排序或后缀排序的代价为 $i^2$，其中 $i$ 是所选子数组的长度。你的目标是确定：按照上述规则使用 Alice 的函数，将输入数组 $s$ 中的 $n$ 个整数按非递减顺序排序所需的最小代价。\n\n例如，设 $s=[3,2,5,5,4,1]$。我们可以先执行长度为 $4$ 的后缀排序，此时数组变为 $[3,2,1,4,5,5]$。然后执行长度为 $3$ 的前缀排序，此时数组变为 $[1,2,3,4,5,5]$，数组已经有序。总代价为 $4^2+3^2=25$。再例如，设 $s=[4,3,2,1]$。我们只需执行一次长度为 $4$ 的前缀排序即可完成排序，代价为 $4^2=16$。\n\n## 输入格式\n\n第一行恰好包含一个整数 $n$，表示数组 $s$ 中整数的个数。第二行包含数组 $s=[s_0, s_1, \\ldots, s_{n-1}]$ 中的 $n$ 个整数。\n\n- $1 \\le n \\le 10^6$\n- 对于所有 $i$（$0\\le i \\lt n$），满足 $0\\le s_i \\lt 2^{31}-1$。\n\n## 输出格式\n\n在一行中输出一个整数，表示按照上述规则使用 Alice 的函数，将输入数组 $s$ 按非递减顺序排序所需的最小代价。",
   "samples": [
     {
       "input": "6\n3 2 5 5 4 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:00:36.746Z"
+  "fetchedAt": "2026-11-02T17:00:36.746Z",
+  "translatedAt": "2026-11-03T15:05:54.010+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

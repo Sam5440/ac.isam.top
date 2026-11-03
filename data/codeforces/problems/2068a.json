@@ -4,7 +4,7 @@
   "contestId": 2068,
   "index": "A",
   "title": "Condorcet Elections",
-  "titleZh": null,
+  "titleZh": "Condorcet Elections",
   "url": "https://codeforces.com/contest/2068/problem/A",
   "difficulty": 2300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "It is a municipality election year. Even though the leader of the country has not changed for two decades, the elections are always transparent and fair.\n\nThere are $n$ political candidates, numbered from $1$ to $n$, contesting the right to govern. The elections happen using a variation of the Ranked Voting System. In their ballot, each voter will rank all $n$ candidates from most preferable to least preferable. That is, each vote is a permutation of $\\{1, 2, \\ldots, n\\}$, where the first element of the permutation corresponds to the most preferable candidate.\n\nWe say that candidate $a$ defeats candidate $b$ if in more than half of the votes candidate $a$ is more preferable than candidate $b$.\n\nAs the election is fair and transparent, the state television has already decreed a list of $m$ facts—the $i$-th fact being \"candidate $a_i$ has defeated candidate $b_i$\"—all before the actual election!\n\nYou are in charge of the election commission and tallying up the votes. You need to present a list of votes that produces the outcome advertised on television, or to determine that it is not possible. However, you are strongly encouraged to find a solution, or you might upset higher-ups.\n\n## Input\n\nThe first line contains integers $n$ and $m$ ($2 \\le n \\le 50$, $1 \\le m \\le \\frac{n(n-1)}{2}$) — the number of parties and the number of pairs with known election outcomes.\n\nThe $i$-th of the following $m$ lines contains two integers $a_i$ and $b_i$ ($1 \\le a_i, b_i \\le n$, $a_i \\ne b_i$) — candidate $a_i$ defeats candidate $b_i$.\n\nEach unordered pair $\\{a_i, b_i\\}$ is given at most once.\n\n## Output\n\nPrint $\\texttt{YES}$ if there is a list of votes matching the facts advertised on television. Otherwise, print $\\texttt{NO}$.\n\nIf there is a valid list of votes, print one such list in the following lines.\n\nPrint the number $k$ of votes cast ($1 \\le k \\le 50\\,000$). It can be shown that if there is a valid list of votes, there is one with at most $50\\,000$ votes.\n\nThen print $k$ lines. The $i$-th of these lines consists of a permutation of $\\{1, 2, \\ldots, n\\}$ describing the $i$-th vote. The first number in the permutation is the most preferable candidate and the last one is the least preferable candidate.\n\nFor $1\\le i\\le m$, $a_i$ shall appear earlier than $b_i$ in more than $k{/}2$ of the $k$ permutations. For pairs of candidates $\\{a, b\\}$ not appearing in the election requirements list, the outcome can be arbitrary, including neither of $a$ and $b$ defeating the other.\n\n## Note\n\nIn the **second sample**, Observe that candidate $1$ defeats candidate $2$ because it goes earlier in two out of three voters' permutations, which is more than half of all votes. Similarly, candidate $2$ defeats candidate $3$, and candidate $3$ defeats candidate $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\": \"孔多塞选举\", \"bodyZh\": \"这是一个市政选举年。尽管国家的领导人二十年来从未更换，但选举始终是透明且公正的。\\n\\n有 $n$ 名政治候选人，编号从 $1$ 到 $n$，角逐治理国家的权利。选举采用排名投票制的一种变体进行。在选票上，每位选民会将所有 $n$ 名候选人按从最偏好到最不偏好的顺序排名。也就是说，每张选票是 $\\{1, 2, \\ldots, n\\}$ 的一个排列，排列的第一个元素对应最偏好的候选人。\\n\\n如果在超过半数的选票中候选人 $a$ 比候选人 $b$ 更受偏好，我们就说候选人 $a$ 击败了候选人 $b$。\\n\\n由于选举公正透明，国家电视台在实际选举之前就已经公布了一份包含 $m$ 条事实的清单——第 $i$ 条事实是“候选人 $a_i$ 已经击败了候选人 $b_i$”！\\n\\n你负责选举委员会的工作，并统计选票。你需要给出一份能够产生电视台所宣传结果的选票列表，或者判断这是不可能的。不过，强烈建议你找到一组解，否则你可能会惹恼上级。\\n\\n## 输入格式\\n\\n第一行包含两个整数 $n$ 和 $m$（$2 \\\\le n \\\\le 50$，$1 \\\\le m \\\\le \\\\frac{n(n-1)}{2}$）——分别表示党派的数量和已知选举结果的候选人对数。\\n\\n接下来 $m$ 行中的第 $i$ 行包含两个整数 $a_i$ 和 $b_i$（$1 \\\\le a_i, b_i \\\\le n$，$a_i \\\\ne b_i$）——表示候选人 $a_i$ 击败了候选人 $b_i$。\\n\\n每个无序对 $\\\\{a_i, b_i\\\\}$ 至多出现一次。\\n\\n## 输出格式\\n\\n如果存在一份与电视台宣传的事实相符的选票列表，输出 $\\\\texttt{YES}$；否则，输出 $\\\\texttt{NO}$。\\n\\n如果存在合法的选票列表，请在接下来的行中输出其中一种方案。\\n\\n输出投出的选票数量 $k$（$1 \\\\le k \\\\le 50\\\\,000$）。可以证明，如果存在合法的选票列表，那么一定存在一张选票数量不超过 $50\\\\,000$ 的方案。\\n\\n然后输出 $k$ 行。其中第 $i$ 行由一个描述第 $i$ 张选票的 $\\\\{1, 2, \\\\ldots, n\\\\}$ 的排列组成。排列中的第一个数字是最偏好的候选人，最后一个数字是最不偏好的候选人。\\n\\n对于 $1\\\\le i\\\\le m$，$a_i$ 应当在这 $k$ 个排列中的超过 $k{/}2$ 个排列里出现在 $b_i$ 之前。对于未出现在选举要求列表中的候选人对 $\\\\{a, b\\\\}$，其结果可以是任意的，包括 $a$ 和 $b$ 都没有击败对方的情况。\\n\\n## 说明\\n\\n在**第二个样例**中，注意到候选人 $1$ 击败了候选人 $2$，因为在三位选民的排列中有两位将候选人 $1$ 排在更前面，超过了所有选票的一半。类似地，候选人 $2$ 击败了候选人 $3$，而候选人 $3$ 击败了候选人 $1$。\"}",
   "samples": [
     {
       "input": "2 1\n1 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T16:54:21.471Z"
+  "fetchedAt": "2026-11-02T16:54:21.471Z",
+  "translatedAt": "2026-11-03T13:22:02.762+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

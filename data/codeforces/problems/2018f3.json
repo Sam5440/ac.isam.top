@@ -4,7 +4,7 @@
   "contestId": 2018,
   "index": "F3",
   "title": "Speedbreaker Counting (Hard Version)",
-  "titleZh": null,
+  "titleZh": "减速带计数（困难版）",
   "url": "https://codeforces.com/contest/2018/problem/F3",
   "difficulty": 3100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 10000,
   "memoryLimitMb": 1024,
   "statementMd": "*[NightHawk22 - Isolation](https://soundcloud.com/vepium/nighthawk22-isolation-official-limbo-remix)*⠀\n\n**This is the hard version of the problem. In the three versions, the constraints on $n$ and the time limit are different. You can make hacks only if all the versions of the problem are solved.**\n\nThis is the statement of **Problem D1B**:\n\n- There are $n$ cities in a row, numbered $1, 2, \\ldots, n$ left to right.You win if, for each $i$, you conquer city $i$ at a time no later than $a_i$. A winning strategy may or may not exist, also depending on the starting city. How many starting cities allow you to win?\n- At time $1$, you conquer exactly one city, called the *starting city*.\n  - At time $2, 3, \\ldots, n$, you can choose a city adjacent to the ones conquered so far and conquer it.\n\nFor each $0 \\leq k \\leq n$, count the number of arrays of positive integers $a_1, a_2, \\ldots, a_n$ such that\n\n- $1 \\leq a_i \\leq n$ for each $1 \\leq i \\leq n$;\n- the answer to **Problem D1B** is $k$.\n\nThe answer can be very large, so you have to calculate it modulo a given prime $p$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 3000$). The description of the test cases follows.\n\nThe only line of each test case contains two integers $n$, $p$ ($1 \\le n \\le 3000$, $10^8 \\leq p \\leq 10^9$, $p$ is prime) — the number of cities and the modulo.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3000$.\n\n## Output\n\nFor each test case, output $n+1$ integers: the $i$-th integer should be the number of arrays that satisfy the conditions for $k = i-1$.\n\n## Note\n\nIn the first test case,\n\n- arrays with $1$ good starting city: $[1]$.\n\nIn the second test case,\n\n- arrays with $0$ good starting cities: $[1, 1]$;\n- arrays with $1$ good starting city: $[1, 2]$, $[2, 1]$;\n- arrays with $2$ good starting cities: $[2, 2]$.\n\nIn the third test case,\n\n- arrays with $0$ good starting cities: $[1, 1, 1]$, $[1, 1, 2]$, $[1, 1, 3]$, $[1, 2, 1]$, $[1, 2, 2]$, $[1, 3, 1]$, $[1, 3, 2]$, $[2, 1, 1]$, $[2, 1, 2]$, $[2, 2, 1]$, $[2, 2, 2]$, $[2, 3, 1]$, $[2, 3, 2]$, $[3, 1, 1]$;\n- arrays with $1$ good starting city: $[1, 2, 3]$, $[1, 3, 3]$, $[2, 1, 3]$, $[3, 1, 2]$, $[3, 1, 3]$, $[3, 2, 1]$, $[3, 3, 1]$;\n- arrays with $2$ good starting cities: $[2, 2, 3]$, $[2, 3, 3]$, $[3, 2, 2]$, $[3, 3, 2]$;\n- arrays with $3$ good starting cities: $[3, 2, 3]$, $[3, 3, 3]$.",
-  "statementZhMd": null,
+  "statementZhMd": "*[NightHawk22 - Isolation](https://soundcloud.com/vepium/nighthawk22-isolation-official-limbo-remix)*\n\n**这是本题的困难版本。在这三个版本中，$n$ 的约束和时间限制不同。只有在解决本题的所有版本后，才能进行 hack。**\n\n以下是 **问题 D1B** 的题面：\n\n- 有 $n$ 座城市排成一行，从左到右编号为 $1, 2, \\ldots, n$。如果对于每个 $i$，你都能在不晚于时刻 $a_i$ 时攻占城市 $i$，那么你就获胜。获胜策略可能存在，也可能不存在，这还取决于起始城市。请问有多少个起始城市可以让你获胜？\n- 在时刻 $1$，你恰好攻占一座城市，称为*起始城市*。\n  - 在时刻 $2, 3, \\ldots, n$，你可以选择一座与已攻占城市相邻的城市并将其攻占。\n\n对于每个 $0 \\leq k \\leq n$，请计算满足以下条件的正整数数组 $a_1, a_2, \\ldots, a_n$ 的数量：\n\n- 对于每个 $1 \\leq i \\leq n$，满足 $1 \\leq a_i \\leq n$；\n- **问题 D1B** 的答案为 $k$。\n\n答案可能非常大，因此请对给定的质数 $p$ 取模后输出。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例数量 $t$（$1 \\leq t \\leq 3000$）。接下来是各测试用例的描述。\n\n每组测试用例仅一行，包含两个整数 $n, p$（$1 \\leq n \\leq 3000$，$10^8 \\leq p \\leq 10^9$，$p$ 为质数）——城市数量和模数。\n\n保证所有测试用例的 $n$ 之和不超过 $3000$。\n\n## 输出格式\n\n对于每组测试用例，输出 $n+1$ 个整数：第 $i$ 个整数应为满足 $k = i-1$ 的条件的数组数量。\n\n## 说明\n\n在第一组测试用例中，\n\n- 有 $1$ 个可行起始城市的数组：[1]。\n\n在第二组测试用例中，\n\n- 有 $0$ 个可行起始城市的数组：[1, 1]；\n- 有 $1$ 个可行起始城市的数组：[1, 2]、[2, 1]；\n- 有 $2$ 个可行起始城市的数组：[2, 2]。\n\n在第三组测试用例中，\n\n- 有 $0$ 个可行起始城市的数组：[1, 1, 1]、[1, 1, 2]、[1, 1, 3]、[1, 2, 1]、[1, 2, 2]、[1, 3, 1]、[1, 3, 2]、[2, 1, 1]、[2, 1, 2]、[2, 2, 1]、[2, 2, 2]、[2, 3, 1]、[2, 3, 2]、[3, 1, 1]；\n- 有 $1$ 个可行起始城市的数组：[1, 2, 3]、[1, 3, 3]、[2, 1, 3]、[3, 1, 2]、[3, 1, 3]、[3, 2, 1]、[3, 3, 1]；\n- 有 $2$ 个可行起始城市的数组：[2, 2, 3]、[2, 3, 3]、[3, 2, 2]、[3, 3, 2]；\n- 有 $3$ 个可行起始城市的数组：[3, 2, 3]、[3, 3, 3]。",
   "samples": [
     {
       "input": "11\n1 998244353\n2 998244353\n3 998244353\n4 998244353\n5 998244353\n6 998244353\n7 998244353\n8 998244353\n9 998244353\n10 102275857\n10 999662017\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:48:03.100Z"
+  "fetchedAt": "2026-10-30T21:48:03.100Z",
+  "translatedAt": "2026-11-03T15:57:15.981+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

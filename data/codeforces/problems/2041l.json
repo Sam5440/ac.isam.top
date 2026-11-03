@@ -4,14 +4,14 @@
   "contestId": 2041,
   "index": "L",
   "title": "Building Castle",
-  "titleZh": null,
+  "titleZh": "建造城堡",
   "url": "https://codeforces.com/contest/2041/problem/L",
   "difficulty": 2900,
   "tags": [],
   "timeLimitMs": 10000,
   "memoryLimitMb": 1024,
   "statementMd": "A-Ju has a gorgeous castle in which she often enjoys living. However, she gets tired of living in the castle for a long time. Thus, she decides to rebuild her castle into some specific shape to make her it more beautiful.\n\nLet's say we represent A-Ju's castle as a **2D convex polygon**$^{\\text{∗}}$ on the 2D plane. A-Ju aims to rebuild her castle into a **point symmetric** convex polygon. Here, a polygon is point symmetric if there exists a center $c$ such that for every point $p$ in the polygon, the reflection $p^\\prime$ of $p$ across $c$ is also in the polygon.\n\nWhile designing an arbitrary point symmetric convex polygon shape is easy, the cost of rebuilding is very high. After some estimation, A-Ju found that the cost of rebuilding is proportional to the area of the symmetric difference$^{\\text{†}}$ between the original castle and the new castle. See the following figure for an example:\n\n![image](https://espresso.codeforces.com/4d8f7b71588e44144633b92232de66410285f64d.png)\n\nIn the example above, A-Ju's castle is a shape of the convex polygon formed by points $(3, 7) - (2, 1) - (6, 3)$. After rebuilding her castle into the shape of the polygon formed by $(3, 7) - (\\frac{7}{3}, 3) - (\\frac{13}{3}, \\frac{1}{3}) - (5, \\frac{13}{3})$, the area of the symmetric difference between these two polygons will be $\\frac{11}{3}$. The difference can be calculated as the sum of the additional area (represented by the green grid region) and the shaved area (represented by the red line region).\n\nPlease write a program that helps A-Ju design a blueprint of the new castle, such that the area of the symmetric difference between the original one and the new one is minimized. You only need to output the minimum value since A-Ju wants to estimate her cost first.\n\n$^{\\text{∗}}$A polygon $P$ is convex if for every two points $p, q \\in P$, the line segment connecting them is also contained in $P$, i.e., $tp + (1-t)q \\in P$ for all $t \\in [0, 1]$. Equivalently, it is a polygon whose interior angles are all less than $180^{\\circ}$.\n\n$^{\\text{†}}$The symmetric difference of two polygons is the part of the 2D plane that belongs to exactly one polygon.\n\n## Input\n\nThe first line contains an integer $n$, representing the number of vertices of the polygon that forms A-Ju's castle.\n\nThen, $n$ lines follow, the $i$-th of which contains two integers $x_i, y_i$, representing the coordinates of the $i$-th vertex. The vertices are given in a counterclockwise order.\n\n- $3\\leq n\\leq 500$\n- $|x_i|, |y_i|\\leq 10^4$\n- The vertices are given in a counterclockwise order and are guaranteed to form a convex polygon without three collinear points.\n\n## Output\n\nPrint a single real number in one line, representing the minimum area of the symmetric difference between the original castle and the new castle.\n\nYour answer will be accepted if the absolute or relative error does not exceed $10^{-4}$. Formally, let your answer be $a$, and the jury's answer be $b$. Your answer is considered correct if $\\frac{|a-b|}{\\max(1,|b|)}\\le 10^{-4}$.",
-  "statementZhMd": null,
+  "statementZhMd": "A-Ju 有一座华丽的城堡，她经常喜欢住在里面。然而，长时间住在城堡里后，她感到有些厌倦。因此，她决定将城堡重新建造成某种特定的形状，使它变得更加美丽。\n\n我们将 A-Ju 的城堡表示为二维平面上的一个**二维凸多边形**$^{\\text{∗}}$。A-Ju 希望将城堡重新建造成一个**中心对称**的凸多边形。这里，如果存在一个中心 $c$，使得对于多边形中的每个点 $p$，点 $p$ 关于 $c$ 的对称点 $p^\\prime$ 也在该多边形中，则称一个多边形是中心对称的。\n\n虽然设计任意形状的中心对称凸多边形并不困难，但重建的费用非常高。经过估算，A-Ju 发现重建费用与原城堡和新城堡之间的对称差集$^{\\text{†}}$的面积成正比。下面的图片展示了一个例子：\n\n![image](https://espresso.codeforces.com/4d8f7b71588e44144633b92232de66410285f64d.png)\n\n在上面的例子中，A-Ju 的城堡是由点 $(3, 7) - (2, 1) - (6, 3)$ 形成的凸多边形。将城堡重建为由 $(3, 7) - (\\frac{7}{3}, 3) - (\\frac{13}{3}, \\frac{1}{3}) - (5, \\frac{13}{3})$ 形成的多边形后，这两个多边形之间的对称差集面积为 $\\frac{11}{3}$。该面积可以计算为新增面积（绿色网格区域）与削减面积（红色线条区域）之和。\n\n请编写程序，帮助 A-Ju 设计新城堡的蓝图，使原城堡与新城堡之间的对称差集面积最小。由于 A-Ju 想先估算费用，你只需要输出最小值。\n\n$^{\\text{∗}}$如果对于多边形 $P$ 中的任意两个点 $p, q \\in P$，连接它们的线段也完全包含在 $P$ 中，即对于所有 $t \\in [0, 1]$，都有 $tp + (1-t)q \\in P$，则称多边形 $P$ 是凸的。等价地说，它是一个所有内角都小于 $180^{\\circ}$ 的多边形。\n\n$^{\\text{†}}$两个多边形的对称差集是指属于两个多边形中恰好一个的二维平面部分。\n\n## 输入格式\n\n第一行包含一个整数 $n$，表示构成 A-Ju 城堡的多边形的顶点数。\n\n接下来 $n$ 行，第 $i$ 行包含两个整数 $x_i, y_i$，表示多边形第 $i$ 个顶点的坐标。顶点按照逆时针顺序给出。\n\n- $3\\leq n\\leq 500$\n- $|x_i|, |y_i|\\leq 10^4$\n- 顶点按照逆时针顺序给出，并且保证它们构成一个不存在三点共线的凸多边形。\n\n## 输出格式\n\n在一行中输出一个实数，表示原城堡与新城堡之间的对称差集面积的最小值。\n\n如果你的答案与标准答案的绝对误差或相对误差不超过 $10^{-4}$，则答案将被接受。形式化地说，设你的答案为 $a$，评测器的答案为 $b$。当且仅当 $\\frac{|a-b|}{\\max(1,|b|)}\\le 10^{-4}$ 时，你的答案被认为是正确的。",
   "samples": [
     {
       "input": "3\n2 1\n6 3\n3 7\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:00:36.743Z"
+  "fetchedAt": "2026-11-02T17:00:36.743Z",
+  "translatedAt": "2026-11-03T15:07:03.115+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2025,
   "index": "B",
   "title": "Binomial Coefficients, Kind Of",
-  "titleZh": null,
+  "titleZh": "二项式系数，差不多吧",
   "url": "https://codeforces.com/contest/2025/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Recently, akshiM met a task that needed binomial coefficients to solve. He wrote a code he usually does that looked like this:\n\n```\n    for (int n = 0; n < N; n++) { // loop over n from 0 to N-1 (inclusive)\n        C[n][0] = 1;\n        C[n][n] = 1;\n        for (int k = 1; k < n; k++) // loop over k from 1 to n-1 (inclusive)\n            C[n][k] = C[n][k - 1] + C[n - 1][k - 1];\n    }\n```\n\nUnfortunately, he made an error, since the right formula is the following:\n\n```\n            C[n][k] = C[n - 1][k] + C[n - 1][k - 1]\n```\n\nBut his team member keblidA is interested in values that were produced using the wrong formula. Please help him to calculate these coefficients for $t$ various pairs $(n_i, k_i)$. Note that they should be calculated according to the first (wrong) formula.\n\nSince values $C[n_i][k_i]$ may be too large, print them modulo $10^9 + 7$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^5$) — the number of pairs. Next, $t$ pairs are written in two lines.\n\nThe second line contains $t$ integers $n_1, n_2, \\dots, n_t$ ($2 \\le n_i \\le 10^5$).\n\nThe third line contains $t$ integers $k_1, k_2, \\dots, k_t$ ($1 \\le k_i \\lt n_i$).\n\n## Output\n\nPrint $t$ integers $C[n_i][k_i]$ modulo $10^9 + 7$.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，akshiM 遇到了一道需要使用二项式系数来解决的题目。他编写了自己通常会写的代码，内容如下：\n\n```\n    for (int n = 0; n < N; n++) { // loop over n from 0 to N-1 (inclusive)\n        C[n][0] = 1;\n        C[n][n] = 1;\n        for (int k = 1; k < n; k++) // loop over k from 1 to n-1 (inclusive)\n            C[n][k] = C[n][k - 1] + C[n - 1][k - 1];\n    }\n```\n\n不幸的是，他犯了一个错误，因为正确的公式应该是：\n\n```\n            C[n][k] = C[n - 1][k] + C[n - 1][k - 1]\n```\n\n但是，他的队友 keblidA 对使用错误公式计算得到的数值很感兴趣。请帮助他计算 $t$ 个不同的数对 $(n_i, k_i)$ 对应的系数。注意，这些系数应当按照第一个（错误的）公式计算。\n\n由于 $C[n_i][k_i]$ 的值可能非常大，请将它们对 $10^9 + 7$ 取模后输出。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^5$）——数对的数量。接下来将在两行中给出 $t$ 个数对。\n\n第二行包含 $t$ 个整数 $n_1, n_2, \\dots, n_t$（$2 \\le n_i \\le 10^5$）。\n\n第三行包含 $t$ 个整数 $k_1, k_2, \\dots, k_t$（$1 \\le k_i \\lt n_i$）。\n\n## 输出格式\n\n输出 $t$ 个整数 $C[n_i][k_i]$ 对 $10^9 + 7$ 取模后的结果。",
   "samples": [
     {
       "input": "7\n2 5 5 100000 100000 100000 100000\n1 2 3 1 33333 66666 99999\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:01:31.345Z"
+  "fetchedAt": "2026-11-02T17:01:31.345Z",
+  "translatedAt": "2026-11-03T15:52:16.014+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

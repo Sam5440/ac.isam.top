@@ -4,7 +4,7 @@
   "contestId": 2030,
   "index": "F",
   "title": "Orangutan Approved Subarrays",
-  "titleZh": null,
+  "titleZh": "猩猩认可的子数组",
   "url": "https://codeforces.com/contest/2030/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "Suppose you have an array $b$. Initially, you also have a set $S$ that contains all distinct elements of $b$. The array $b$ is called *orangutan-approved* if it can be **emptied** by repeatedly performing the following operation:\n\n- In one operation, select indices $l$ and $r$ ($1 \\leq l \\leq r \\leq |b|$) such that $v = b_l = b_{l+1} = \\ldots = b_r$ and $v$ is present in $S$. Remove $v$ from $S$, and simultaneously remove all $b_i$ such that $l \\leq i \\leq r$. Then, reindex the elements $b_{r+1}, b_{r+2}, \\ldots$ as $b_l, b_{l+1}, \\ldots$ accordingly.\n\nYou are given an array $a$ of length $n$ and $q$ queries.\n\nEach query consists of two indices $l$ and $r$ ($1 \\le l \\le r \\le n$), and you need to determine whether or not the subarray $a_{l}, a_{l+1}, \\ldots, a_r$ is *orangutan-approved*.\n\n## Input\n\nThe first line contains $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains integers $n$ and $q$ ($1 \\leq n,q \\leq 2 \\cdot 10^5$) — the size of $a$ and the number of queries, respectively.\n\nThe following line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq n$) — the elements of the array $a$.\n\nThe following $q$ lines contain two integers $l$ and $r$ — the endpoints of the subarray for each query ($1 \\leq l \\leq r \\leq n$).\n\nIt is guaranteed that the sum of $n$ and $q$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each query, output \"`YES`\" (without quotes) if the subarray from $l$ to $r$ is *orangutan-approved*, and \"`NO`\" (without quotes) otherwise.\n\nYou can output \"`YES`\" and \"`NO`\" in any case (for example, strings \"`yES`\", \"`yes`\" and \"`Yes`\" will be recognized as a positive response).\n\n## Note\n\nIn the first query of the first testcase, the answer is `YES`.\n\n- Initially, $S=\\{1,2\\}$ and $b=[1,2,2,1]$\n- Select $l=2$ and $r=3$. Since $b_2=b_3=2$ is in $S$, we may erase $b_2$ and $b_3$ from the array, as well as erasing $2$ from $S$. The set $S$ becomes $\\{1\\}$ and the array becomes $[1,1]$.\n- Select $l=1$ and $r=2$. Since $b_1=b_2=1$ is in $S$, we may erase $b_1$ and $b_2$ from the array, as well as erasing $1$ from $S$. The set $S$ becomes $\\{\\}$ and the array becomes $[]$.\n- Since the array is now empty, we can say the original array is orangutan-approved.\n\nIn the first query of the second testcase, the answer is `NO`, because it can be shown that the subarray $[2,1,2,1]$ cannot become empty through any sequence of valid operations.",
-  "statementZhMd": null,
+  "statementZhMd": "假设你有一个数组 $b$。初始时，你还有一个集合 $S$，其中包含 $b$ 的所有不同元素。如果数组 $b$ 可以通过反复执行以下操作将其**清空**，则称数组 $b$ 是*猩猩认可的*：\n\n- 在一次操作中，选择下标 $l$ 和 $r$（$1 \\leq l \\leq r \\leq |b|$），使得 $v = b_l = b_{l+1} = \\ldots = b_r$，且 $v$ 存在于 $S$ 中。将 $v$ 从 $S$ 中移除，同时移除所有满足 $l \\leq i \\leq r$ 的 $b_i$。然后相应地将元素 $b_{r+1}, b_{r+2}, \\ldots$ 重新编号为 $b_l, b_{l+1}, \\ldots$。\n\n给定一个长度为 $n$ 的数组 $a$ 和 $q$ 次询问。\n\n每次询问包含两个下标 $l$ 和 $r$（$1 \\leq l \\leq r \\leq n$），你需要判断子数组 $a_{l}, a_{l+1}, \\ldots, a_r$ 是否是*猩猩认可的*。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$1 \\leq n,q \\leq 2 \\cdot 10^5$）——数组 $a$ 的长度和询问的数量。\n\n下一行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq n$）——数组 $a$ 的元素。\n\n接下来的 $q$ 行中，每行包含两个整数 $l$ 和 $r$，表示每次询问中子数组的端点（$1 \\leq l \\leq r \\leq n$）。\n\n保证所有测试用例的 $n$ 之和与 $q$ 之和均不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每次询问，如果从 $l$ 到 $r$ 的子数组是*猩猩认可的*，输出 `YES`（不含引号）；否则输出 `NO`（不含引号）。\n\n你可以以任意大小写形式输出 `YES` 和 `NO`（例如，字符串 `yES`、`yes` 和 `Yes` 都会被识别为肯定 პასუხ）。\n\n## 说明\n\n在第一个测试用例的第一次询问中，答案是 `YES`。\n\n- 初始时，$S=\\{1,2\\}$ 且 $b=[1,2,2,1]$\n- 选择 $l=2$ 和 $r=3$。由于 $b_2=b_3=2$ 且 $2$ 在 $S$ 中，我们可以从数组中擦除 $b_2$ 和 $b_3$，并从 $S$ 中擦除 $2$。此时集合 $S$ 变为 $\\{1\\}$，数组变为 $[1,1]$。\n- 选择 $l=1$ 和 $r=2$。由于 $b_1=b_2=1$ 且 $1$ 在 $S$ 中，我们可以从数组中擦除 $b_1$ 和 $b_2$，并从 $S$ 中擦除 $1$。此时集合 $S$ 变为空集，数组变为 $[]$。\n- 由于数组现在为空，因此可以认为原数组是猩猩认可的。\n\n在第二个测试用例的第一次询问中，答案是 `NO`，因为可以证明子数组 $[2,1,2,1]$ 无法通过任何一系列合法操作变为空数组。",
   "samples": [
     {
       "input": "3\n4 2\n1 2 2 1\n1 4\n1 3\n5 3\n1 2 1 2 1\n2 5\n3 5\n1 3\n8 4\n1 2 3 2 1 3 2 3\n1 5\n2 8\n3 5\n6 8\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:40:37.692Z"
+  "fetchedAt": "2026-10-30T21:40:37.692Z",
+  "translatedAt": "2026-11-03T15:48:46.140+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

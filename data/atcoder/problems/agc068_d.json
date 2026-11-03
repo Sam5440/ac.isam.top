@@ -4,7 +4,7 @@
   "contestId": "agc068",
   "index": "D",
   "title": "Sum of Hash of Lexmin",
-  "titleZh": null,
+  "titleZh": "字典序最小排列的哈希值之和",
   "url": "https://atcoder.jp/contests/agc068/tasks/agc068_d",
   "difficulty": 3559,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere is a rooted tree $T$ with $N$ vertices numbered from $1$ to $N$. Vertex $1$ is the root, and the parent of vertex $i$ ($2 \\leq i \\leq N$) is $P_i$ ($P_i < i$).\n\nA permutation $x = (x_1, x_2, \\cdots, x_N)$ of $(1, 2, \\cdots, N)$ is judged to be a **good** permutation or not by the following criteria.\n\n- Consider the following operation on $x$.\n- Choose two adjacent elements $u$ and $v$ in $x$ such that $u$ and $v$ are in an ancestor-descendant relationship in $T$. It does not matter which is the ancestor and which is the descendant. Then, swap $u$ and $v$.\n- If it is possible to obtain a permutation that is lexicographically strictly smaller than the initial state by performing the above operation zero or more times, $x$ is **not** a good permutation. If it is impossible to obtain a permutation lexicographically smaller than the initial state by any such operations, $x$ is a good permutation.\n\nYou are given a positive integer $B$. For a permutation $x$, define $\\operatorname{hash}(x) = \\sum_{1 \\leq i \\leq N} B^{i-1} \\times x_i$.\n\nFind the sum of $\\operatorname{hash}(x)$ over all good permutations $x$, modulo $998244353$.\n\nWhat is lexicographical order on sequences? A sequence $S = (S_1, S_2, \\ldots, S_{|S|})$ is said to be **lexicographically smaller** than a sequence $T = (T_1, T_2, \\ldots, T_{|T|})$ if and only if 1. or 2. below holds. Here, $|S|$ and $|T|$ denote the lengths of $S$ and $T$, respectively. $|S| \\lt |T|$ and $(S_1, S_2, \\ldots, S_{|S|}) = (T_1, T_2, \\ldots, T_{|S|})$. There exists an integer $1 \\leq i \\leq \\min\\{ |S|, |T| \\}$ such that the following two statements hold. $(S_1, S_2, \\ldots, S_{i-1}) = (T_1, T_2, \\ldots, T_{i-1})$. $S_i$ is smaller than $T_i$ (as a number).\n\n## Constraints\n\n- $2 \\leq N \\leq 100$\n- $1 \\leq B < 998244353$\n- $1 \\leq P_i < i$ ($2 \\leq i \\leq N$)\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN B\nP_2 P_3 \\cdots P_N\n```\n\n## Output\n\nPrint the answer.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有一棵包含 $N$ 个顶点的有根树 $T$，顶点编号为 $1$ 至 $N$。顶点 $1$ 是根，顶点 $i$（$2 \\leq i \\leq N$）的父节点为 $P_i$（$P_i < i$）。\n\n对于 $(1, 2, \\cdots, N)$ 的一个排列 $x = (x_1, x_2, \\cdots, x_N)$，按照以下条件判断其是否为**优秀**排列。\n\n- 对 $x$ 执行以下操作。\n- 选择 $x$ 中相邻的两个元素 $u$ 和 $v$，使得 $u$ 和 $v$ 在 $T$ 中具有祖先-后代关系。无需区分谁是祖先、谁是后代。然后交换 $u$ 和 $v$。\n- 如果可以执行上述操作零次或多次，得到一个字典序严格小于初始状态的排列，则 $x$ **不是优秀**排列。如果无论执行多少次上述操作，都无法得到字典序小于初始状态的排列，则 $x$ 是优秀排列。\n\n给定一个正整数 $B$。对于排列 $x$，定义\n$\\operatorname{hash}(x) = \\sum_{1 \\leq i \\leq N} B^{i-1} \\times x_i$。\n\n求所有优秀排列 $x$ 的 $\\operatorname{hash}(x)$ 之和，并对 $998244353$ 取模。\n\n序列的字典序是什么？当且仅当以下 1. 或 2. 成立时，称序列 $S = (S_1, S_2, \\ldots, S_{|S|})$ 的字典序小于序列 $T = (T_1, T_2, \\ldots, T_{|T|})$。其中，$|S|$ 和 $|T|$ 分别表示序列的长度。\n\n1. $|S| \\lt |T|$ 且 $(S_1, S_2, \\ldots, S_{|S|}) = (T_1, T_2, \\ldots, T_{|S|})$。\n2. 存在整数 $1 \\leq i \\leq \\min\\{ |S|, |T| \\}$，使得以下两个条件成立。\n   - $(S_1, S_2, \\ldots, S_{i-1}) = (T_1, T_2, \\ldots, T_{i-1})$。\n   - $S_i$ 小于 $T_i$（作为数字）。\n\n## 约束条件\n\n- $2 \\leq N \\leq 100$\n- $1 \\leq B < 998244353$\n- $1 \\leq P_i < i$（$2 \\leq i \\leq N$）\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN B\nP_2 P_3 \\cdots P_N\n```\n\n## 输出格式\n\n输出答案。",
   "samples": [
     {
       "input": "3 100\n1 1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:02:50.247Z"
+  "fetchedAt": "2026-10-30T21:02:50.247Z",
+  "translatedAt": "2026-11-03T15:53:53.608+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

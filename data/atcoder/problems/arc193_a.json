@@ -4,7 +4,7 @@
   "contestId": "arc193",
   "index": "A",
   "title": "Complement Interval Graph",
-  "titleZh": null,
+  "titleZh": "补区间图",
   "url": "https://atcoder.jp/contests/arc193/tasks/arc193_a",
   "difficulty": 1234,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nFor integers $l, r$, let $[l, r]$ denote the set of all integers from $l$ through $r$. That is, $[l, r] = \\lbrace l, l+1, l+2, \\ldots, r-1, r\\rbrace$.\n\nYou are given $N$ pairs of integers $(L_1, R_1), (L_2, R_2), \\ldots, (L_N, R_N)$. Based on these pairs, consider an undirected graph $G$ defined as follows:\n\n- It has $N$ vertices numbered $1, 2, \\ldots, N$.\n- For all $i, j \\in [1, N]$, there is an undirected edge between vertices $i$ and $j$ if and only if the intersection of $[L_i, R_i]$ and $[L_j, R_j]$ is empty.\n\nIn addition, for each $i = 1, 2, \\ldots, N$, define the weight of vertex $i$ to be $W_i$.\n\nYou are given $Q$ queries about $G$. Process these queries in the order they are given. For each $i = 1, 2, \\ldots, Q$, the $i$-th query is the following:\n\n> You are given integers $s_i$ and $t_i$ (both between $1$ and $N$, inclusive) such that $s_i \\neq t_i$. Determine whether there exists a path from vertex $s_i$ to vertex $t_i$ in $G$. If it exists, print the minimum possible **weight** of such a path.\n\nHere, the weight of a path from vertex $s$ to vertex $t$ is defined as the sum of the weights of the vertices on that path (including both endpoints $s$ and $t$).\n\n## Constraints\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $1 \\leq W_i \\leq 10^9$\n- $1 \\leq L_i \\leq R_i \\leq 2N$\n- $1 \\leq s_i, t_i \\leq N$\n- $s_i \\neq t_i$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nW_1 W_2 \\cdots W_N\nL_1 R_1\nL_2 R_2\n\\vdots\nL_N R_N\nQ\ns_1 t_1\ns_2 t_2\n\\vdots\ns_Q t_Q\n```\n\n## Output\n\nPrint $Q$ lines. For each $i = 1, 2, \\ldots, Q$, on the $i$-th line, if there exists a path from vertex $s_i$ to vertex $t_i$, print the minimum possible weight of such a path, and print `-1` otherwise.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n对于整数 $l, r$，令 $[l, r]$ 表示从 $l$ 到 $r$ 的所有整数构成的集合。也就是说，$[l, r] = \\lbrace l, l+1, l+2, \\ldots, r-1, r\\rbrace$。\n\n给定 $N$ 个整数对 $(L_1, R_1), (L_2, R_2), \\ldots, (L_N, R_N)$。基于这些数对，考虑如下定义的无向图 $G$：\n\n- 图 $G$ 有 $N$ 个顶点，编号为 $1, 2, \\ldots, N$。\n- 对于所有的 $i, j \\in [1, N]$，当且仅当 $[L_i, R_i]$ 与 $[L_j, R_j]$ 的交集为空时，顶点 $i$ 和顶点 $j$ 之间存在一条无向边。\n\n此外，对于每个 $i = 1, 2, \\ldots, N$，定义顶点 $i$ 的权值为 $W_i$。\n\n给定关于 $G$ 的 $Q$ 个询问，请按给定顺序依次处理这些询问。对于每个 $i = 1, 2, \\ldots, Q$，第 $i$ 个询问如下：\n\n> 给定满足 $s_i \\neq t_i$ 的整数 $s_i$ 和 $t_i$（均在 $1$ 到 $N$ 之间，包含两端）。请判断 $G$ 中是否存在从顶点 $s_i$ 到顶点 $t_i$ 的路径。若存在，输出该路径的最小可能**权值**。\n\n这里，从顶点 $s$ 到顶点 $t$ 的路径的权值定义为该路径上所有顶点的权值之和（包括两个端点 $s$ 和 $t$）。\n\n## 约束条件\n\n- $2 \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $1 \\leq W_i \\leq 10^9$\n- $1 \\leq L_i \\leq R_i \\leq 2N$\n- $1 \\leq s_i, t_i \\leq N$\n- $s_i \\neq t_i$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入由标准输入以如下格式给出：\n\n```\nN\nW_1 W_2 \\cdots W_N\nL_1 R_1\nL_2 R_2\n\\vdots\nL_N R_N\nQ\ns_1 t_1\ns_2 t_2\n\\vdots\ns_Q t_Q\n```\n\n## 输出格式\n\n输出 $Q$ 行。对于每个 $i = 1, 2, \\ldots, Q$，在第 $i$ 行中，如果存在从顶点 $s_i$ 到顶点 $t_i$ 的路径，输出该路径的最小可能权值；否则输出 `-1`。",
   "samples": [
     {
       "input": "5\n5 1 4 2 2\n2 4\n1 2\n7 8\n4 5\n2 7\n3\n1 4\n4 3\n5 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:00:14.876Z"
+  "fetchedAt": "2026-10-30T21:00:14.876Z",
+  "translatedAt": "2026-11-03T13:29:02.372+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }

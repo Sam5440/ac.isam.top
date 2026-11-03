@@ -4,7 +4,7 @@
   "contestId": "abc394",
   "index": "G",
   "title": "Dense Buildings",
-  "titleZh": null,
+  "titleZh": "高楼林立",
   "url": "https://atcoder.jp/contests/abc394/tasks/abc394_g",
   "difficulty": 2031,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere is a city divided into $H \\times W$ blocks in the north-south-east-west directions, and there is exactly one building in each block.\nSpecifically, in the block at the $i$-th row from the north $(1\\leq i\\leq H)$ and the $j$-th column from the west $(1\\leq j\\leq W)$ (hereafter referred to as block $(i,j)$), there is a building of $F_{i,j}$ floors.\n\nTakahashi has two ways of moving. If he is on the $X$-th floor $(1\\leq X\\leq F_{i,j})$ of the building in block $(i,j)$, he can:\n\n- Move up or down one floor within the same building using **stairs**. If $X=1$, he cannot move down; if $X=F_{i,j}$, he cannot move up.\n- Choose a building with at least $X$ floors in a cardinally adjacent block, and move to the $X$-th floor of that building using a **(sky) walkway**.\n\nHere, two blocks $(i,j)$ and $(i',j')$ are cardinally adjacent if and only if $\\lvert i - i'\\rvert + \\lvert j - j'\\rvert = 1$.\n\nYou are given $Q$ queries to be answered. The $i$-th query $(1\\leq i\\leq Q)$ is the following.\n\n> Find the minimum possible number of times that Takahashi uses **stairs** to move from the $Y_i$-th floor of the building in block $(A_i,B_i)$ to the $Z_i$-th floor of the building in block $(C_i,D_i)$.\n> The count of times using stairs is incremented each time he moves up or down one floor, possibly multiple times within the same building. (For example, moving from the 1st floor to the 6th floor of a building counts as $5$ uses of stairs.)\n> Note that he does not have to minimize the number of times he uses walkways.\n\n## Constraints\n\n- $1\\leq H \\leq 500$\n- $1\\leq W \\leq 500$\n- $1\\leq F_{i,j} \\leq 10^6$\n- $1\\leq Q\\leq 2\\times 10^5$\n- $1\\leq A_i,C_i\\leq H$\n- $1\\leq B_i,D_i\\leq W$\n- $1\\leq Y_i\\leq F_{A_i,B_i}$\n- $1\\leq Z_i\\leq F_{C_i,D_i}$\n- $(A_i,B_i,Y_i)\\neq (C_i,D_i,Z_i)$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nH W\nF_{1,1} F_{1,2} \\ldots F_{1,W}\nF_{2,1} F_{2,2} \\ldots F_{2,W}\n\\vdots\nF_{H,1} F_{H,2} \\ldots F_{H,W}\nQ\nA_1 B_1 Y_1 C_1 D_1 Z_1\nA_2 B_2 Y_2 C_2 D_2 Z_2\n\\vdots\nA_Q B_Q Y_Q C_Q D_Q Z_Q\n```\n\n## Output\n\nPrint $Q$ lines. The $i$-th line should contain the answer to the $i$-th query as an integer.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有一座城市在东西南北方向上被划分为 $H \\times W$ 个街区，每个街区中恰好有一栋建筑。\n具体来说，在从北数第 $i$ 行 $(1\\leq i\\leq H)$、从西数第 $j$ 列 $(1\\leq j\\leq W)$ 的街区（以下称为街区 $(i,j)$）中，有一栋 $F_{i,j}$ 层的建筑。\n\n高桥有两种移动方式。当他位于街区 $(i,j)$ 中建筑的第 $X$ 层 $(1\\leq X\\leq F_{i,j})$ 时，他可以：\n\n- 使用**楼梯**在同一栋建筑内向上或向下移动一层。若 $X=1$，则他不能向下移动；若 $X=F_{i,j}$，则他不能向上移动。\n- 选择一个相邻街区中层数至少为 $X$ 的建筑，使用**（空中）连廊**移动到该建筑的第 $X$ 层。\n\n这里，当且仅当 $\\lvert i - i'\\rvert + \\lvert j - j'\\rvert = 1$ 时，称两个街区 $(i,j)$ 与 $(i',j')$ 相邻。\n\n你需要回答 $Q$ 个询问。第 $i$ 个询问 $(1\\leq i\\leq Q)$ 如下：\n\n> 求高桥从街区 $(A_i,B_i)$ 中建筑的第 $Y_i$ 层移动到街区 $(C_i,D_i)$ 中建筑的第 $Z_i$ 层时，使用**楼梯**次数的最小可能值。\n> 每当他向上或向下移动一层，使用楼梯的次数就增加一次，在同一栋建筑内可能多次移动。（例如，在一栋建筑内从第 1 层移动到第 6 层计为使用楼梯 $5$ 次。）\n> 注意，他不必使使用连廊的次数最少。\n\n## 约束条件\n\n- $1\\leq H \\leq 500$\n- $1\\leq W \\leq 500$\n- $1\\leq F_{i,j} \\leq 10^6$\n- $1\\leq Q\\leq 2\\times 10^5$\n- $1\\leq A_i,C_i\\leq H$\n- $1\\leq B_i,D_i\\leq W$\n- $1\\leq Y_i\\leq F_{A_i,B_i}$\n- $1\\leq Z_i\\leq F_{C_i,D_i}$\n- $(A_i,B_i,Y_i)\\neq (C_i,D_i,Z_i)$\n- 输入中的所有值均为整数。\n\n## 输入格式\n\n输入通过标准输入按以下格式给出：\n\n```\nH W\nF_{1,1} F_{1,2} \\ldots F_{1,W}\nF_{2,1} F_{2,2} \\ldots F_{2,W}\n\\vdots\nF_{H,1} F_{H,2} \\ldots F_{H,W}\nQ\nA_1 B_1 Y_1 C_1 D_1 Z_1\nA_2 B_2 Y_2 C_2 D_2 Z_2\n\\vdots\nA_Q B_Q Y_Q C_Q D_Q Z_Q\n```\n\n## 输出格式\n\n输出 $Q$ 行。第 $i$ 行应包含一个整数，表示第 $i$ 个询问的答案。",
   "samples": [
     {
       "input": "3 3\n12 10 6\n1 1 3\n8 6 7\n2\n1 1 10 3 1 6\n1 1 6 1 2 4\n",
@@ -21,5 +21,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:00:22.222Z"
+  "fetchedAt": "2026-10-30T21:00:22.222Z",
+  "translatedAt": "2026-11-03T13:29:42.440+08:00",
+  "translateModel": "zcode/GLM-5.3-Flash"
 }
