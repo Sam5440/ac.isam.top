@@ -1,5 +1,6 @@
 import { httpGet } from './http.mjs';
 import { loadHtml, nodesToMd, preText, inlineMd } from './html2md.mjs';
+import { normalizeMathMarks, sanitizeText } from '../../lib/render.js';
 
 const KENKOO = 'https://kenkoooo.com/atcoder/resources';
 const ATCODER = 'https://atcoder.jp';
@@ -168,7 +169,9 @@ export async function fetchAtCoderStatement(contestId, problemId) {
     });
   }
 
-  const statementMd = sections.join('\n\n').trim();
+  // 旧页面按字面量输出 \(…\) / \[…\] TeX 定界符，HTML 实体解析偶发控制字符
+  // 与 nbsp，入库前与站内渲染同口径清洗归一（lib/render.js）。
+  const statementMd = normalizeMathMarks(sanitizeText(sections.join('\n\n').trim()));
   if (!statementMd && samples.length === 0) throw new Error('empty statement');
 
   return { statementMd, samples, timeLimitMs, memoryLimitMb, points, language };

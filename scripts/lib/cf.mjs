@@ -1,5 +1,6 @@
 import { httpGet } from './http.mjs';
 import { loadHtml, nodesToMd, preText, inlineMd } from './html2md.mjs';
+import { sanitizeText } from '../../lib/render.js';
 
 const CF = 'https://codeforces.com';
 const UA =
@@ -52,7 +53,7 @@ export function cfProblemUrl(contestId, index) {
  */
 export function normalizeCfMath(md) {
   if (!md) return md;
-  return String(md)
+  return sanitizeText(String(md))
     .replace(/\$\$\$\$\$\$([\s\S]+?)\$\$\$\$\$\$/g, (_, t) => `$$${t}$$`)
     .replace(/\$\$\$([\s\S]+?)\$\$\$/g, (_, t) => `$${t}$`);
 }

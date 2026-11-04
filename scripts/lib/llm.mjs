@@ -66,6 +66,38 @@ export async function pingLLM(cfg) {
 }
 
 /** 从模型输出中尽力解析 JSON 对象。 */
+/** 字符串感知的控制字符转义：LLM 偶发在 JSON 字符串值里输出原始换行/ESC，
+    JSON.parse 直接失败 → 兜底路径曾把整段原始 JSON 文本当译文入库（存量
+    483 题二次编码的根因）。扫描时跟踪 in-string 状态，把字符串内的原始
+    控制字符换成合法转义后再解析。 */
+function parseLenientJson(t) {
+  try {
+    return JSON.parse(t);
+  } catch {}
+  let out = '';
+  let inStr = false;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (inStr && c === '\\') {
+      out += c + (t[i + 1] ?? '');
+      i++;
+      continue;
+    }
+    if (c === '"') inStr = !inStr;
+    if (inStr && c.charCodeAt(0) < 0x20) {
+      out +=
+        c === '\n' ? '\\n' : c === '\r' ? '\\r' : c === '\t' ? '\\t' : '';
+      continue;
+    }
+    out += c;
+  }
+  try {
+    return JSON.parse(out);
+  } catch {
+    return null;
+  }
+}
+
 function extractJson(text) {
   let t = String(text).trim();
   const fence = t.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
@@ -73,11 +105,7 @@ function extractJson(text) {
   const first = t.indexOf('{');
   const last = t.lastIndexOf('}');
   if (first === -1 || last <= first) return null;
-  try {
-    return JSON.parse(t.slice(first, last + 1));
-  } catch {
-    return null;
-  }
+  return parseLenientJson(t.slice(first, last + 1));
 }
 
 const STATEMENT_SYSTEM = `你是顶级算法竞赛选手兼技术翻译，负责把算法竞赛题面从英文（或日文）翻译成简体中文。
