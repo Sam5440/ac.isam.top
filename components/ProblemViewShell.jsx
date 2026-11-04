@@ -128,7 +128,13 @@ export function ContestSidebar({ contest, current }) {
 export function ProblemCompiler({ contest, current }) {
   const problems = compilerProblems(contest?.problemsList ?? []);
   if (!problems.length) return null;
-  return <CompilerDock problems={problems} day={String(current.contestId)} />;
+  return (
+    <CompilerDock
+      problems={problems}
+      day={String(current.contestId)}
+      currentCode={current.id}
+    />
+  );
 }
 
 /**

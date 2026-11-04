@@ -105,13 +105,16 @@ const CONSOLE_CAP = 200 * 1024;
 const MIN_PANEL_W = 360;
 const MIN_CONSOLE_H = 144;
 
-export default function CompilerDock({ problems, day }) {
+export default function CompilerDock({ problems, day, currentCode }) {
   const { openSettings } = useSettings();
   const [mounted, setMounted] = useState(false);
   const [cp, setCp] = useState(null); // 编译器偏好
   const [open, setOpen] = useState(false);
   const [lang, setLang] = useState("cpp");
-  const [probIdx, setProbIdx] = useState(0);
+  // 默认选中当前浏览的题目（找不到时回落到第一题）
+  const [probIdx, setProbIdx] = useState(() =>
+    Math.max(0, (problems ?? []).findIndex((p) => p.code === currentCode)),
+  );
   const [mode, setMode] = useState("samples");
   const [code, setCode] = useState("");
   const [runState, setRunState] = useState("idle"); // idle | running | waiting-input
@@ -154,6 +157,13 @@ export default function CompilerDock({ problems, day }) {
 
   const problem = problems?.[probIdx] ?? null;
 
+  // 跟随当前浏览的题目：站内路由切题（切换条 / 侧栏跳转）时同步选题，
+  // 样例、草稿、自定义样例等按 probIdx 的既有 effect 自动随动
+  useEffect(() => {
+    if (!currentCode) return;
+    const idx = (problems ?? []).findIndex((p) => p.code === currentCode);
+    if (idx >= 0) setProbIdx(idx);
+  }, [currentCode, problems]);
   // 编程键盘可见：移动端 + 设置开启 + 面板展开 + 未被临时收起（点编辑器恢复）。
   // 需在早退 return 之前算好：系统键盘开关联动 effect 的依赖要用它
   const kbVisible = isMobile && !!cp?.mobileKeyboard && open && !kbHidden;
