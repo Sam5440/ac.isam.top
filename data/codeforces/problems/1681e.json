@@ -4,7 +4,7 @@
   "contestId": 1681,
   "index": "E",
   "title": "Labyrinth Adventures",
-  "titleZh": null,
+  "titleZh": "迷宫探险",
   "url": "https://codeforces.com/contest/1681/problem/E",
   "difficulty": 2600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 512,
   "statementMd": "You found a map of a weirdly shaped labyrinth. The map is a grid, consisting of $n$ rows and $n$ columns. The rows of the grid are numbered from $1$ to $n$ from bottom to top. The columns of the grid are numbered from $1$ to $n$ from left to right.\n\nThe labyrinth has $n$ layers. The first layer is the bottom left corner (cell $(1, 1)$). The second layer consists of all cells that are in the grid and adjacent to the first layer by a side or a corner. The third layer consists of all cells that are in the grid and adjacent to the second layer by a side or a corner. And so on.\n\nThe labyrinth with $5$ layers, for example, is shaped as follows:\n\n![image](https://espresso.codeforces.com/2549be6ebd0543ccc216f26476df5f98dacf3c3e.png)\n\nThe layers are separated from one another with walls. However, there are doors in these walls.\n\nEach layer (except for layer $n$) has exactly two doors to the next layer. One door is placed on the top wall of the layer and another door is placed on the right wall of the layer. For each layer from $1$ to $n-1$ you are given positions of these two doors. The doors can be passed in both directions: either from layer $i$ to layer $i+1$ or from layer $i+1$ to layer $i$.\n\nIf you are standing in some cell, you can move to an adjacent by a side cell if a wall doesn't block your move (e.g. you can't move to a cell in another layer if there is no door between the cells).\n\nNow you have $m$ queries of sort: what's the minimum number of moves one has to make to go from cell $(x_1, y_1)$ to cell $(x_2, y_2)$.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 10^5$) — the number of layers in the labyrinth.\n\nThe $i$-th of the next $n-1$ lines contains four integers $d_{1,x}, d_{1,y}, d_{2,x}$ and $d_{2,y}$ ($1 \\le d_{1,x}, d_{1,y}, d_{2,x}, d_{2,y} \\le n$) — the coordinates of the doors. Both cells are on the $i$-th layer. The first cell is adjacent to the top wall of the $i$-th layer by a side — that side is where the door is. The second cell is adjacent to the right wall of the $i$-th layer by a side — that side is where the door is.\n\nThe next line contains a single integer $m$ ($1 \\le m \\le 2 \\cdot 10^5$) — the number of queries.\n\nThe $j$-th of the next $m$ lines contains four integers $x_1, y_1, x_2$ and $y_2$ ($1 \\le x_1, y_1, x_2, y_2 \\le n$) — the coordinates of the cells in the $j$-th query.\n\n## Output\n\nFor each query, print a single integer — the minimum number of moves one has to make to go from cell $(x_1, y_1)$ to cell $(x_2, y_2)$.\n\n## Note\n\nHere is the map of the labyrinth from the second example. The doors are marked red.\n\n![image](https://espresso.codeforces.com/7834b5757bb64fd6cb3b88b07459f22a6e411edd.png)",
-  "statementZhMd": null,
+  "statementZhMd": "你发现了一张形状奇特的迷宫地图。这张地图是一个由 $n$ 行 $n$ 列组成的网格。网格的行从下到上编号为 $1$ 到 $n$，列从左到右编号为 $1$ 到 $n$。\n\n这个迷宫有 $n$ 层。第一层是左下角的单元格（单元格 $(1, 1)$）。第二层由网格中所有与第一层通过边或角相邻的单元格组成。第三层由网格中所有与第二层通过边或角相邻的单元格组成。以此类推。\n\n例如，一个有 $5$ 层的迷宫形状如下：\n\n![image](https://espresso.codeforces.com/2549be6ebd0543ccc216f26476df5f98dacf3c3e.png)\n\n各层之间由墙隔开，但这些墙上有门。\n\n除了第 $n$ 层之外，每一层恰好有两扇通往下一层的门。一扇门位于该层的上方墙壁上，另一扇门位于该层的右方墙壁上。对于从 $1$ 到 $n-1$ 的每一层，给出这两扇门的位置。这些门可以双向通行：既可以从第 $i$ 层前往第 $i+1$ 层，也可以从第 $i+1$ 层返回第 $i$ 层。\n\n如果你站在某个单元格中，那么当墙没有阻挡移动时，你可以移动到一个通过边相邻的单元格（例如，如果两个单元格之间没有门，就不能移动到另一个层中的单元格）。\n\n现在有 $m$ 个询问：从单元格 $(x_1, y_1)$ 移动到单元格 $(x_2, y_2)$ 至少需要多少步？\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 10^5$），表示迷宫的层数。\n\n接下来的 $n-1$ 行中，第 $i$ 行包含四个整数 $d_{1,x}, d_{1,y}, d_{2,x}$ 和 $d_{2,y}$（$1 \\le d_{1,x}, d_{1,y}, d_{2,x}, d_{2,y} \\le n$），表示门的位置。两个单元格都位于第 $i$ 层。第一个单元格通过一条边与第 $i$ 层的上方墙壁相邻，该边所在的位置就是门的位置。第二个单元格通过一条边与第 $i$ 层的右方墙壁相邻，该边所在的位置就是门的位置。\n\n下一行包含一个整数 $m$（$1 \\le m \\le 2 \\cdot 10^5$），表示询问的数量。\n\n接下来的 $m$ 行中，第 $j$ 行包含四个整数 $x_1, y_1, x_2$ 和 $y_2$（$1 \\le x_1, y_1, x_2, y_2 \\le n$），表示第 $j$ 个询问中的两个单元格的坐标。\n\n## 输出格式\n\n对于每个询问，输出一个整数，表示从单元格 $(x_1, y_1)$ 移动到单元格 $(x_2, y_2)$ 至少需要的步数。\n\n## 说明\n\n下面是第二个样例中的迷宫地图。门用红色标出。\n\n![image](https://espresso.codeforces.com/7834b5757bb64fd6cb3b88b07459f22a6e411edd.png)",
   "samples": [
     {
       "input": "2\n1 1 1 1\n10\n1 1 1 1\n1 1 1 2\n1 1 2 1\n1 1 2 2\n1 2 1 2\n1 2 2 1\n1 2 2 2\n2 1 2 1\n2 1 2 2\n2 2 2 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:01:30.596Z"
+  "fetchedAt": "2026-11-02T18:01:30.596Z",
+  "translatedAt": "2026-11-04T03:25:10.175+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

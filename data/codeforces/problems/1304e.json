@@ -4,7 +4,7 @@
   "contestId": 1304,
   "index": "E",
   "title": "1-Trees and Queries",
-  "titleZh": null,
+  "titleZh": "1-树与查询",
   "url": "https://codeforces.com/contest/1304/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Gildong was hiking a mountain, walking by millions of trees. Inspired by them, he suddenly came up with an interesting idea for trees in data structures: *What if we add another edge in a tree?*\n\nThen he found that such tree-like graphs are called *1-trees*. Since Gildong was bored of solving too many tree problems, he wanted to see if similar techniques in trees can be used in 1-trees as well. Instead of solving it by himself, he's going to test you by providing queries on 1-trees.\n\nFirst, he'll provide you a tree (not 1-tree) with $n$ vertices, then he will ask you $q$ queries. Each query contains $5$ integers: $x$, $y$, $a$, $b$, and $k$. This means you're asked to determine if there exists a path from vertex $a$ to $b$ that contains exactly $k$ edges after adding a bidirectional edge between vertices $x$ and $y$. **A path can contain the same vertices and same edges multiple times**. All queries are independent of each other; i.e. the added edge in a query is removed in the next query.\n\n## Input\n\nThe first line contains an integer $n$ ($3 \\le n \\le 10^5$), the number of vertices of the tree.\n\nNext $n-1$ lines contain two integers $u$ and $v$ ($1 \\le u,v \\le n$, $u \\ne v$) each, which means there is an edge between vertex $u$ and $v$. All edges are bidirectional and distinct.\n\nNext line contains an integer $q$ ($1 \\le q \\le 10^5$), the number of queries Gildong wants to ask.\n\nNext $q$ lines contain five integers $x$, $y$, $a$, $b$, and $k$ each ($1 \\le x,y,a,b \\le n$, $x \\ne y$, $1 \\le k \\le 10^9$) – the integers explained in the description. It is guaranteed that the edge between $x$ and $y$ does not exist in the original tree.\n\n## Output\n\nFor each query, print \"`YES`\" if there exists a path that contains exactly $k$ edges from vertex $a$ to $b$ after adding an edge between vertices $x$ and $y$. Otherwise, print \"`NO`\".\n\nYou can print each letter in any case (upper or lower).\n\n## Note\n\nThe image below describes the tree (circles and solid lines) and the added edges for each query (dotted lines).\n\n![image](https://espresso.codeforces.com/43c4d33e53de0a48d2202432612668468291c616.png)\n\nPossible paths for the queries with \"`YES`\" answers are:\n\n- $1$-st query: $1$ – $3$ – $2$\n- $2$-nd query: $1$ – $2$ – $3$\n- $4$-th query: $3$ – $4$ – $2$ – $3$ – $4$ – $2$ – $3$ – $4$ – $2$ – $3$",
-  "statementZhMd": null,
+  "statementZhMd": "Gildong 在山中徒步，沿途经过数百万棵树。受到这些树的启发，他突然对数据结构中的树产生了一个有趣的想法：*如果我们在一棵树中再添加一条边会怎样？*\n\n后来他发现，这样的类树图被称为 *1-树*。由于 Gildong 已经厌倦了解决太多树相关的问题，他想看看树中的类似技巧是否也能用于 1-树。与其自己解决这个问题，他决定通过在 1-树上提供查询来考验你。\n\n首先，他会给你一棵树（而不是 1-树），其中有 $n$ 个顶点，然后提出 $q$ 个查询。每个查询包含 $5$ 个整数：$x$、$y$、$a$、$b$ 和 $k$。这表示在顶点 $x$ 和 $y$ 之间添加一条双向边后，需要判断是否存在一条从顶点 $a$ 到 $b$ 的路径，且恰好包含 $k$ 条边。**一条路径可以多次经过相同的顶点和相同的边**。所有查询彼此独立；也就是说，一个查询中添加的边会在下一个查询前被移除。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$3 \\le n \\le 10^5$），表示树的顶点数。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n$，$u \\ne v$），表示顶点 $u$ 和顶点 $v$ 之间存在一条边。所有边均为双向边且互不相同。\n\n下一行包含一个整数 $q$（$1 \\le q \\le 10^5$），表示 Gildong 想要提出的查询数。\n\n接下来的 $q$ 行中，每行包含五个整数 $x$、$y$、$a$、$b$ 和 $k$（$1 \\le x,y,a,b \\le n$，$x \\ne y$，$1 \\le k \\le 10^9$），这些整数的含义如题目描述所述。保证原树中不存在顶点 $x$ 和 $y$ 之间的边。\n\n## 输出格式\n\n对于每个查询，如果在顶点 $x$ 和 $y$ 之间添加一条边后，存在一条从顶点 $a$ 到 $b$ 且恰好包含 $k$ 条边的路径，则输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n每个字母可以使用任意大小写形式输出。\n\n## 说明\n\n下图描述了这棵树（圆圈和实线）以及每个查询中添加的边（虚线）。\n\n![image](https://espresso.codeforces.com/43c4d33e53de0a48d2202432612668468291c616.png)\n\n对于答案为 \"`YES`\" 的查询，一些可行路径如下：\n\n- 第 $1$ 个查询：$1$ – $3$ – $2$\n- 第 $2$ 个查询：$1$ – $2$ – $3$\n- 第 $4$ 个查询：$3$ – $4$ – $2$ – $3$ – $4$ – $2$ – $3$ – $4$ – $2$ – $3",
   "samples": [
     {
       "input": "5\n1 2\n2 3\n3 4\n4 5\n5\n1 3 1 2 2\n1 4 1 3 2\n1 4 1 3 3\n4 2 3 3 9\n5 2 3 3 9\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:56:33.653Z"
+  "fetchedAt": "2026-10-30T23:56:33.653Z",
+  "translatedAt": "2026-11-04T04:54:28.999+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

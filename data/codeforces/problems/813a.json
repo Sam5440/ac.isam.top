@@ -4,7 +4,7 @@
   "contestId": 813,
   "index": "A",
   "title": "The Contest",
-  "titleZh": null,
+  "titleZh": "比赛",
   "url": "https://codeforces.com/contest/813/problem/A",
   "difficulty": 1100,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Pasha is participating in a contest on one well-known website. This time he wants to win the contest and will do anything to get to the first place!\n\nThis contest consists of $*n*$ problems, and Pasha solves $*i*$th problem in $*a*_{*i*}$ time units (his solutions are always correct). At any moment of time he can be thinking about a solution to only one of the problems (that is, he cannot be solving two problems at the same time). The time Pasha spends to send his solutions is negligible. **Pasha can send any number of solutions at the same moment.**\n\nUnfortunately, there are too many participants, and the website is not always working. Pasha received the information that the website will be working only during $*m*$ time periods, $*j*$th period is represented by its starting moment $*l*_{*j*}$ and ending moment $*r*_{*j*}$. Of course, Pasha can send his solution only when the website is working. In other words, Pasha can send his solution at some moment $*T*$ iff there exists a period $*x*$ such that $*l*_{*x*} ≤ *T* ≤ *r*_{*x*}$.\n\nPasha wants to know his best possible result. We need to tell him the minimal moment of time by which he is able to have **solutions to all problems submitted**, if he acts optimally, or say that it's impossible no matter how Pasha solves the problems.\n\n## Input\n\nThe first line contains one integer $*n* (1 ≤ *n* ≤ 1000)$ — the number of problems. The second line contains $*n*$ integers $*a*_{*i*} (1 ≤ *a*_{*i*} ≤ 10^{5})$ — the time Pasha needs to solve $*i*$th problem.\n\nThe third line contains one integer $*m* (0 ≤ *m* ≤ 1000)$ — the number of periods of time when the website is working. Next $*m*$ lines represent these periods. $*j*$th line contains two numbers $*l*_{*j*}$ and $*r*_{*j*} (1 ≤ *l*_{*j*} < *r*_{*j*} ≤ 10^{5})$ — the starting and the ending moment of $*j*$th period.\n\n**It is guaranteed that the periods are not intersecting and are given in chronological order, so for every $*j* > 1$ the condition $*l*_{*j*} > *r*_{*j* - 1}$ is met.**\n\n## Output\n\nIf Pasha can solve and submit all the problems before the end of the contest, print the minimal moment of time by which he can have all the solutions submitted.\n\nOtherwise print \"-1\" (without brackets).\n\n## Note\n\nIn the first example Pasha can act like this: he solves the second problem in 4 units of time and sends it immediately. Then he spends 3 time units to solve the first problem and sends it 7 time units after the contest starts, because at this moment the website starts working again.\n\nIn the second example Pasha invents the solution only after the website stops working for the last time.\n\nIn the third example Pasha sends the solution exactly at the end of the first period.",
-  "statementZhMd": null,
+  "statementZhMd": "帕沙正在某个知名网站上参加一场比赛。这一次他想赢得比赛，并且愿意竭尽全力夺得第一名！\n\n这场比赛由 $*n*$ 道题组成，帕沙解决第 $*i*$ 道题需要 $*a*_{*i*}$ 个时间单位（他的解答总是正确的）。在任意时刻，他最多只能思考一道题的解法（也就是说，他不能同时解决两道题）。帕沙提交解答所花费的时间可以忽略不计。**帕沙可以在同一时刻提交任意数量的解答。**\n\n不幸的是，参赛者太多了，而且该网站并不总是正常运行。帕沙得知网站只会在 $*m*$ 个时间段内运行，第 $*j*$ 个时间段由其开始时刻 $*l*_{*j*}$ 和结束时刻 $*r*_{*j*}$ 表示。当然，帕沙只能在网站运行时提交解答。换句话说，当且仅当存在某个时间段 $*x*$ 满足 $*l*_{*x*} ≤ *T* ≤ *r*_{*x*}$ 时，帕沙才能在时刻 $*T*$ 提交解答。\n\n帕沙想知道自己能取得的最好成绩。如果他采取最优策略，请你告诉他最早能让**所有题目的解答都已提交**的时刻；如果无论他如何解决题目都不可能做到，则报告这一情况。\n\n## 输入格式\n\n第一行包含一个整数 $*n* (1 ≤ *n* ≤ 1000)$ —— 题目数量。第二行包含 $*n*$ 个整数 $*a*_{*i*} (1 ≤ *a*_{*i*} ≤ 10^{5})$ —— 帕沙解决第 $*i*$ 道题所需的时间。\n\n第三行包含一个整数 $*m* (0 ≤ *m* ≤ 1000)$ —— 网站运行的时间段数量。接下来 $*m*$ 行描述这些时间段。第 $*j*$ 行包含两个数 $*l*_{*j}$ 和 $*r*_{*j}$ (1 ≤ *l*_{*j*} < *r*_{*j*} ≤ 10^{5})$ —— 第 $*j*$ 个时间段的开始时刻和结束时刻。\n\n**保证这些时间段互不相交，且按照时间顺序给出，因此对于每个 $*j* > 1$，均满足条件 $*l*_{*j} > *r*_{*j - 1}$。**\n\n## 输出格式\n\n如果帕沙能够在比赛结束前解决并提交所有题目，请输出使所有解答都已提交的最早时刻。\n\n否则输出 `-1`。\n\n## 说明\n\n在第一个样例中，帕沙可以这样行动：他用 4 个时间单位解决第二道题，并立即提交。然后他花费 3 个时间单位解决第一道题，并在比赛开始 7 个时间单位后提交，因为此时网站再次开始运行。\n\n在第二个样例中，帕沙直到网站最后一次停止运行后才想出解法。\n\n在第三个样例中，帕沙恰好在第一个时间段结束时提交解答。",
   "samples": [
     {
       "input": "2\n3 4\n2\n1 4\n7 9\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:50:21.765Z"
+  "fetchedAt": "2026-11-02T19:50:21.765Z",
+  "translatedAt": "2026-11-04T06:13:09.661+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

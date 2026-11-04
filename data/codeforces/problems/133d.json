@@ -4,14 +4,14 @@
   "contestId": 133,
   "index": "D",
   "title": "Piet",
-  "titleZh": null,
+  "titleZh": "Piet",
   "url": "https://codeforces.com/contest/133/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Piet is one of the most known visual esoteric programming languages. The programs in Piet are constructed from colorful blocks of pixels and interpreted using pretty complicated rules. In this problem we will use a subset of Piet language with simplified rules.\n\nThe program will be a rectangular image consisting of colored and black pixels. The color of each pixel will be given by an integer number between 0 and 9, inclusive, with 0 denoting black. A block of pixels is defined as a rectangle of pixels of the same color (not black). It is guaranteed that all connected groups of colored pixels of the same color will form rectangular blocks. Groups of black pixels can form arbitrary shapes.\n\nThe program is interpreted using movement of instruction pointer (IP) which consists of three parts:\n\n- current block pointer (BP); note that there is no concept of current pixel within the block;\n- direction pointer (DP) which can point left, right, up or down;\n- block chooser (CP) which can point to the left or to the right from the direction given by DP; in absolute values CP can differ from DP by 90 degrees counterclockwise or clockwise, respectively.\n\nInitially BP points to the block which contains the top-left corner of the program, DP points to the right, and CP points to the left (see the orange square on the image below).\n\nOne step of program interpretation changes the state of IP in a following way. The interpreter finds the furthest edge of the current color block in the direction of the DP. From all pixels that form this edge, the interpreter selects the furthest one in the direction of **CP**. After this, BP attempts to move from this pixel into the next one in the direction of DP. If the next pixel belongs to a colored block, this block becomes the current one, and two other parts of IP stay the same. It the next pixel is black or outside of the program, BP stays the same but two other parts of IP change. If CP was pointing to the left, now it points to the right, and DP stays the same. If CP was pointing to the right, now it points to the left, and DP is rotated 90 degrees clockwise.\n\nThis way BP will never point to a black block (it is guaranteed that top-left pixel of the program will not be black).\n\nYou are given a Piet program. You have to figure out which block of the program will be current after $*n*$ steps.\n\n## Input\n\nThe first line of the input contains two integer numbers $*m*$ ($1 ≤ *m* ≤ 50$) and $*n*$ ($1 ≤ *n* ≤ 5·10^{7}$). Next $*m*$ lines contain the rows of the program. All the lines have the same length between 1 and 50 pixels, and consist of characters `0-9`. The first character of the first line will not be equal to 0.\n\n## Output\n\nOutput the color of the block which will be current after $*n*$ steps of program interpretation.\n\n## Note\n\nIn the first example IP changes in the following way. After step 1 block 2 becomes current one and stays it after two more steps. After step 4 BP moves to block 3, after step 7 — to block 4, and finally after step 10 BP returns to block 1.\n\n![image](https://espresso.codeforces.com/1288135b71f412979dcc2217d697bf78bdb1cf80.png)\n\nThe sequence of states of IP is shown on the image: the arrows are traversed clockwise, the main arrow shows direction of DP, the side one — the direction of CP.",
-  "statementZhMd": null,
+  "statementZhMd": "Piet 是最知名的视觉化深奥编程语言之一。Piet 程序由彩色像素块构成，并使用相当复杂的规则进行解释。在本题中，我们将使用 Piet 语言的一个子集，并采用简化后的规则。\n\n程序是一张由彩色像素和黑色像素组成的矩形图像。每个像素的颜色由一个介于 0 和 9（含）之间的整数表示，其中 0 表示黑色。像素块定义为由相同颜色（非黑色）的像素组成的矩形。保证所有颜色相同且相互连通的彩色像素组都会构成矩形块。黑色像素组可以形成任意形状。\n\n程序通过指令指针（IP）的移动来解释，IP 由以下三个部分组成：\n\n- 当前块指针（BP）；注意，块内不存在当前像素这一概念；\n- 方向指针（DP），可以指向左、右、上或下；\n- 块选择器（CP），相对于 DP 指向左侧或右侧；从绝对方向来看，CP 分别可以与 DP 相差 90 度逆时针或顺时针。\n\n初始时，BP 指向包含程序左上角的块，DP 指向右方，CP 指向左方（见下方图片中的橙色方块）。\n\n程序解释的一步会按照以下方式改变 IP 的状态。解释器沿 DP 的方向找到当前颜色块最远的边。从构成该边的所有像素中，解释器选择沿 **CP** 方向最远的像素。然后，BP 尝试从该像素沿 DP 的方向移动到下一个像素。如果下一个像素属于某个彩色块，则该块成为当前块，IP 的另外两个部分保持不变。如果下一个像素是黑色或位于程序外部，则 BP 保持不变，但 IP 的另外两个部分发生变化。如果 CP 指向左方，则现在 CP 改为指向右方，而 DP 保持不变。如果 CP 指向右方，则现在 CP 改为指向左方，并且 DP 顺时针旋转 90 度。\n\n这样，BP 永远不会指向黑色块（保证程序的左上角像素不是黑色）。\n\n给定一个 Piet 程序。请确定经过 $*n*$ 步后，程序当前所在的块。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*m*$（$1 ≤ *m* ≤ 50$）和 $*n*$（$1 ≤ *n* ≤ 5·10^{7}$）。接下来的 $*m*$ 行包含程序的各行。所有行的长度都相同，介于 1 和 50 个像素之间，并且由字符 `0-9` 组成。第一行的第一个字符不等于 0。\n\n## 输出格式\n\n输出经过 $*n*$ 步程序解释后当前所在块的颜色。\n\n## 说明\n\n在第一个样例中，IP 的变化如下。第 1 步后，块 2 成为当前块，并在之后的两步中保持不变。第 4 步时，BP 移动到块 3；第 7 步时，移动到块 4；最后在第 10 步时，BP 返回块 1。\n\n![image](https://espresso.codeforces.com/1288135b71f412979dcc2217d697bf78bdb1cf80.png)\n\nIP 的状态序列如图所示：箭头沿顺时针方向经过，主箭头表示 DP 的方向，侧箭头表示 CP 的方向。",
   "samples": [
     {
       "input": "2 10\n12\n43\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:32:51.899Z"
+  "fetchedAt": "2026-10-31T02:32:51.899Z",
+  "translatedAt": "2026-11-04T07:44:56.181+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

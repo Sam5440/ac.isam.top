@@ -4,7 +4,7 @@
   "contestId": 1975,
   "index": "C",
   "title": "Chamo and Mocha's Array",
-  "titleZh": null,
+  "titleZh": "Chamo 与 Mocha 的数组",
   "url": "https://codeforces.com/contest/1975/problem/C",
   "difficulty": 1200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Mocha likes arrays, so before her departure, Chamo gave her an array $a$ consisting of $n$ positive integers as a gift.\n\nMocha doesn't like arrays containing different numbers, so Mocha decides to use magic to change the array. Mocha can perform the following three-step operation some (possibly, zero) times:\n\n1. Choose indices $l$ and $r$ ($1 \\leq l \\lt r \\leq n$)\n2. Let $x$ be the median$^\\dagger$ of the subarray $[a_l, a_{l+1},\\ldots, a_r]$\n3. Set all values $a_l, a_{l+1},\\ldots, a_r$ to $x$\n\nSuppose $a=[1,2,3,4,5]$ initially:\n\n- If Mocha chooses $(l,r)=(3,4)$ in the first operation, then $x=3$, the array will be changed into $a=[1,2,3,3,5]$.\n- If Mocha chooses $(l,r)=(1,3)$ in the first operation, then $x=2$, the array will be changed into $a=[2,2,2,4,5]$.\n\nMocha will perform the operation until the array contains only the same number. Mocha wants to know what is the maximum possible value of this number.\n\n$^\\dagger$ The median in an array $b$ of length $m$ is an element that occupies position number $\\lfloor \\frac{m+1}{2} \\rfloor$ after we sort the elements in non-decreasing order. For example, the median of $[3,1,4,1,5]$ is $3$ and the median of $[5,25,20,24]$ is $20$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1\\leq t\\leq 500$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2\\leq n\\leq 10^5$) — the length of the array $a$.\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1\\leq a_i \\leq 10^9$) — the elements of the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output the maximum value of the number.\n\n## Note\n\nIn the first test case, $a=[1,2]$. Mocha can only choose the interval $(l,r)=(1,2)$. The array will be changed to $a=[1,1]$. Therefore, the answer is $1$.\n\nIn the second test case, Mocha can perform the following operations:\n\n- Choose the interval $(l,r)=(4,5)$, then $a=[1,2,3,4,4]$.\n- Choose the interval $(l,r)=(3,5)$, then $a=[1,2,4,4,4]$.\n- Choose the interval $(l,r)=(1,5)$, then $a=[4,4,4,4,4]$.\n\nThe array contains only the same number, which is $4$. It can be proven that the maximum value of the final number cannot be greater than $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "Mocha 喜欢数组，因此在离开之前，Chamo 送给她一个由 $n$ 个正整数组成的数组 $a$ 作为礼物。\n\nMocha 不喜欢包含不同数字的数组，因此她决定使用魔法改变这个数组。Mocha 可以进行以下三步操作任意次（也可以进行零次）：\n\n1. 选择下标 $l$ 和 $r$（$1 \\leq l \\lt r \\leq n$）。\n2. 令 $x$ 为子数组 $[a_l, a_{l+1},\\ldots,a_r]$ 的中位数$^\\dagger$。\n3. 将所有 $a_l, a_{l+1},\\ldots,a_r$ 的值设为 $x$。\n\n假设初始时 $a=[1,2,3,4,5]$：\n\n- 如果 Mocha 在第一次操作中选择 $(l,r)=(3,4)$，那么 $x=3$，数组将变为 $a=[1,2,3,3,5]$。\n- 如果 Mocha 在第一次操作中选择 $(l,r)=(1,3)$，那么 $x=2$，数组将变为 $a=[2,2,2,4,5]$。\n\nMocha 将不断进行操作，直到数组中只包含同一个数字。Mocha 想知道这个数字可能取得的最大值。\n\n$^\\dagger$ 长度为 $m$ 的数组 $b$ 的中位数，是将其中的元素按非递减顺序排序后，位于第 $\\lfloor \\frac{m+1}{2} \\rfloor$ 个位置的元素。例如，$[3,1,4,1,5]$ 的中位数是 $3$，而 $[5,25,20,24]$ 的中位数是 $20$。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1\\leq t\\leq 500$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2\\leq n\\leq 10^5$）——数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1\\leq a_i \\leq 10^9$）——数组 $a$ 中的元素。\n\n保证所有测试用例中 $n$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出该数字可能取得的最大值。\n\n## 说明\n\n在第一个测试用例中，$a=[1,2]$。Mocha 只能选择区间 $(l,r)=(1,2)$。数组将变为 $a=[1,1]$。因此，答案是 $1$。\n\n在第二个测试用例中，Mocha 可以进行以下操作：\n\n- 选择区间 $(l,r)=(4,5)$，此时 $a=[1,2,3,4,4]$。\n- 选择区间 $(l,r)=(3,5)$，此时 $a=[1,2,4,4,4]$。\n- 选择区间 $(l,r)=(1,5)$，此时 $a=[4,4,4,4,4]$。\n\n此时数组中只包含同一个数字，即 $4$。可以证明，最终数字的最大值不可能大于 $4$。",
   "samples": [
     {
       "input": "2\n2\n1 2\n5\n1 2 3 4 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:57:23.578Z"
+  "fetchedAt": "2026-10-30T21:57:23.578Z",
+  "translatedAt": "2026-11-04T02:09:26.394+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

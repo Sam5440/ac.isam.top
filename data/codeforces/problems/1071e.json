@@ -4,7 +4,7 @@
   "contestId": 1071,
   "index": "E",
   "title": "Rain Protection",
-  "titleZh": null,
+  "titleZh": "雨水防护",
   "url": "https://codeforces.com/contest/1071/problem/E",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 256,
   "statementMd": "A lot of people dream of convertibles (also often called cabriolets). Some of convertibles, however, don't have roof at all, and are vulnerable to rain. This is why Melon Ask, the famous inventor, decided to create a rain protection mechanism for convertibles.\n\nThe workplace of the mechanism is a part of plane just above the driver. Its functional part consists of two rails with sliding endpoints of a piece of stretching rope. For the sake of simplicity we can consider this as a pair of parallel segments in a plane with the rope segment, whose endpoints we are free to choose as any points on these rails segments.\n\n![image](https://espresso.codeforces.com/8b8036a2ee42aff747bbb6b7857027a8db5fa5ea.png)\n\nThe algorithmic part of the mechanism detects each particular raindrop and predicts when and where it reaches the plane. At this exact moment the rope segment must contain the raindrop point (so the rope adsorbs the raindrop).\n\nYou are given the initial position of the rope endpoints and all information about raindrops. You are to choose the minimal possible speed $v$ of the endpoints sliding (both endpoints can slide in any direction along their segments independently of each other) in such a way that it is possible to catch all raindrops moving both endpoints with speed not greater than $v$, or find out that it's impossible no matter how high the speed is.\n\n## Input\n\nThe first line contains three integers $n$, $w$ and $h$ ($1 \\le n \\le 10^5$, $1\\le w, h \\le 10^3$), meaning that there are $n$ raindrops, and two rails are represented as segments connecting $(0, 0)$ and $(w, 0)$ and connecting $(0, h)$ and $(w, h)$.\n\nThe second line contains two integers $e_1$ and $e_2$, meaning that the initial (that is, at the moment $t = 0$) positions of the endpoints are $(e_1, 0)$ and $(e_2, h)$ ($0\\le e_1, e_2\\le w$).\n\nThe $i$-th of the following $n$ lines contains three integers $t_i$, $x_i$ and $y_i$ ($1\\le t_i\\le 10^5$, $0\\le x_i \\le w$, $0 \\lt y_i \\lt h$) meaning that the $i$-th raindrop touches the plane at the point $(x_i, y_i)$ at the time moment $t_i$. It is guaranteed that $t_i \\le t_{i+1}$ for all valid $i$.\n\n## Output\n\nIf it is impossible to catch all raindrops, print $-1$.\n\nOtherwise, print the least possible maximum speed of the rope endpoints for which it is possible to catch them all. Your answer is considered correct if the absolute or relative error doesn't exceed $10^{-4}$.\n\nFormally, let your answer be $a$, and the jury's answer be $b$. Your answer is considered correct if $\\frac{|a - b|}{\\max{(1, |b|)}} \\le 10^{-4}$.\n\n## Note\n\nThat is how one can act in the first sample test:\n\n![image](https://espresso.codeforces.com/8665aeb3e1728f5d887aa5ee2b3569f58ae65748.png)\n\nHere is the same for the second:\n\n![image](https://espresso.codeforces.com/af46769f219a3d6a5b48930be1503257599de652.png)",
-  "statementZhMd": null,
+  "statementZhMd": "很多人梦想拥有敞篷车（也常被称为 cabriolet）。然而，有些敞篷车甚至完全没有车顶，因此容易被雨淋到。这就是著名发明家 Melon Ask 决定为敞篷车发明雨水防护装置的原因。\n\n该装置的工作区域是驾驶员正上方的一部分平面。它的功能部分由两条导轨组成，一段可伸缩绳子的两个端点分别可以沿导轨滑动。为简单起见，我们可以将其看作平面内的一对平行线段，以及一段绳子；绳子的两个端点可以自由选择为这两条导轨线段上的任意点。\n\n![image](https://espresso.codeforces.com/8b8036a2ee42aff747bbb6b7857027a8db5fa5ea.png)\n\n该装置的算法部分能够检测每一滴特定的雨滴，并预测它何时、何地到达该平面。在这一时刻，绳子必须包含雨滴所在的点（这样绳子就能接住雨滴）。\n\n给定绳子两个端点的初始位置以及所有雨滴的信息。你需要选择端点滑动的最小可能速度 $v$（两个端点都可以沿各自的线段独立地向任意方向滑动），使得能够以不超过 $v$ 的速度移动两个端点并接住所有雨滴；或者判断无论速度多高都不可能接住所有雨滴。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$w$ 和 $h$（$1 \\le n \\le 10^5$，$1\\le w, h \\le 10^3$），表示共有 $n$ 滴雨，且两条导轨分别是连接 $(0, 0)$ 和 $(w, 0)$ 的线段，以及连接 $(0, h)$ 和 $(w, h)$ 的线段。\n\n第二行包含两个整数 $e_1$ 和 $e_2$，表示两个端点的初始位置（即在时刻 $t = 0$ 时）分别为 $(e_1, 0)$ 和 $(e_2, h)$（$0\\le e_1, e_2\\le w$）。\n\n接下来的 $n$ 行中，第 $i$ 行包含三个整数 $t_i$、$x_i$ 和 $y_i$（$1\\le t_i\\le 10^5$，$0\\le x_i \\le w$，$0 \\lt y_i \\lt h$），表示第 $i$ 滴雨在时刻 $t_i$ 到达平面上的点 $(x_i, y_i)$。保证对于所有合法的 $i$，都有 $t_i \\le t_{i+1}$。\n\n## 输出格式\n\n如果无法接住所有雨滴，输出 $-1$。\n\n否则，输出能够接住所有雨滴时，绳子端点所需的最大速度的最小可能值。如果你的答案与标准答案的绝对误差或相对误差不超过 $10^{-4}$，则视为正确。\n\n形式化地，设你的答案为 $a$，评测答案为 $b$。当且仅当 \\(\\frac{|a - b|}{\\max{(1, |b|)}} \\le 10^{-4}\\) 时，你的答案被认为是正确的。\n\n## 说明\n\n在第一个样例测试中，可以按照如下方式行动：\n\n![image](https://espresso.codeforces.com/8665aeb3e1728f5d887aa5ee2b3569f58ae65748.png)\n\n第二个样例的情况如下：\n\n![image](https://espresso.codeforces.com/af46769f219a3d6a5b48930be1503257599de652.png)",
   "samples": [
     {
       "input": "3 5 5\n0 0\n1 1 4\n2 2 4\n3 3 4\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:19:48.788Z"
+  "fetchedAt": "2026-10-31T00:19:48.788Z",
+  "translatedAt": "2026-11-04T05:31:39.039+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

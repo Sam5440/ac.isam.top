@@ -4,7 +4,7 @@
   "contestId": 1742,
   "index": "F",
   "title": "Smaller",
-  "titleZh": null,
+  "titleZh": "更小",
   "url": "https://codeforces.com/contest/1742/problem/F",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Alperen has two strings, 𝑠s and 𝑡t which are both initially equal to \"`a`\".\n\nHe will perform 𝑞q operations of two types on the given strings:\n\n- 1𝑘𝑥1kx — Append the string 𝑥x exactly 𝑘k times at the end of string 𝑠s. In other words, 𝑠:=𝑠+𝑥+⋯+𝑥𝑘 timess:=s+x+⋯+x⏟k times.\n- 2𝑘𝑥2kx — Append the string 𝑥x exactly 𝑘k times at the end of string 𝑡t. In other words, 𝑡:=𝑡+𝑥+⋯+𝑥𝑘 timest:=t+x+⋯+x⏟k times.\n\nAfter each operation, determine if it is possible to **rearrange** the characters of 𝑠s and 𝑡t such that 𝑠s is lexicographically smaller†† than 𝑡t.\n\nNote that the strings change after performing each operation and **don't** go back to their initial states.\n\n†† Simply speaking, the lexicographical order is the order in which words are listed in a dictionary. A formal definition is as follows: string 𝑝p is lexicographically smaller than string 𝑞q if there exists a position 𝑖i such that 𝑝𝑖<𝑞𝑖pi<qi, and for all 𝑗<𝑖j<i, 𝑝𝑗=𝑞𝑗pj=qj. If no such 𝑖i exists, then 𝑝p is lexicographically smaller than 𝑞q if the length of 𝑝p is less than the length of 𝑞q. For example, 𝚊𝚋𝚍𝚌<𝚊𝚋𝚎abdc<abe and 𝚊𝚋𝚌<𝚊𝚋𝚌𝚍abc<abcd, where we write 𝑝<𝑞p<q if 𝑝p is lexicographically smaller than 𝑞q.\n\n## Input\n\nThe first line of the input contains an integer 𝑡t (1≤𝑡≤1041≤t≤104) — the number of test cases.\n\nThe first line of each test case contains an integer 𝑞q (1≤𝑞≤105)(1≤q≤105) — the number of operations Alperen will perform.\n\nThen 𝑞q lines follow, each containing two positive integers 𝑑d and 𝑘k (1≤𝑑≤21≤d≤2; 1≤𝑘≤1051≤k≤105) and a non-empty string 𝑥x consisting of lowercase English letters — the type of the operation, the number of times we will append string 𝑥x and the string we need to append respectively.\n\nIt is guaranteed that the sum of 𝑞q over all test cases doesn't exceed 105105 and that the sum of lengths of all strings 𝑥x in the input doesn't exceed 5⋅1055⋅105.\n\n## Output\n\nFor each operation, output \"`YES`\", if it is possible to arrange the elements in both strings in such a way that 𝑠s is lexicographically smaller than 𝑡t and \"`NO`\" otherwise.\n\n## Note\n\nIn the first test case, the strings are initially 𝑠=s= \"`a`\" and 𝑡=t= \"`a`\".\n\nAfter the first operation the string 𝑡t becomes \"`aaa`\". Since \"`a`\" is already lexicographically smaller than \"`aaa`\", the answer for this operation should be \"`YES`\".\n\nAfter the second operation string 𝑠s becomes \"`aaa`\", and since 𝑡t is also equal to \"`aaa`\", we can't arrange 𝑠s in any way such that it is lexicographically smaller than 𝑡t, so the answer is \"`NO`\".\n\nAfter the third operation string 𝑡t becomes \"`aaaaaa`\" and 𝑠s is already lexicographically smaller than it so the answer is \"`YES`\".\n\nAfter the fourth operation 𝑠s becomes \"`aaabb`\" and there is no way to make it lexicographically smaller than \"`aaaaaa`\" so the answer is \"`NO`\".\n\nAfter the fifth operation the string 𝑡t becomes \"`aaaaaaabcaabcaabca`\", and we can rearrange the strings to: \"`bbaaa`\" and \"`caaaaaabcaabcaabaa`\" so that 𝑠s is lexicographically smaller than 𝑡t, so we should answer \"`YES`\".",
-  "statementZhMd": null,
+  "statementZhMd": "Alperen 有两个字符串 $s$ 和 $t$，它们初始时都等于 `a`。\n\n他将对给定的字符串执行 $q$ 次以下两种操作之一：\n\n- `1 k x` —— 将字符串 $x$ 在字符串 $s$ 的末尾追加恰好 $k$ 次。换句话说，$s:=s+x+\\cdots+x$（共 $k$ 次）。\n- `2 k x` —— 将字符串 $x$ 在字符串 $t$ 的末尾追加恰好 $k$ 次。换句话说，$t:=t+x+\\cdots+x$（共 $k$ 次）。\n\n每次操作后，判断是否可以**重新排列**字符串 $s$ 和 $t$ 中的字符，使得 $s$ 按字典序严格小于†† $t$。\n\n注意，字符串会在每次操作后发生变化，并且**不会**恢复到初始状态。\n\n†† 简单来说，字典序就是单词在词典中的排列顺序。形式化地说，如果存在一个位置 $i$，使得 $p_i<q_i$，并且对于所有 $j<i$，都有 $p_j=q_j$，则称字符串 $p$ 按字典序小于字符串 $q$。如果不存在这样的位置 $i$，那么当且仅当 $p$ 的长度小于 $q$ 的长度时，称 $p$ 按字典序小于 $q$。例如，$𝚊𝚋𝚍𝚌<𝚊𝚋𝚎$ 和 $𝚊𝚋𝚌<𝚊𝚋𝚌𝚍$，其中我们用 $p<q$ 表示字符串 $p$ 按字典序小于字符串 $q$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $q$（$1\\le q\\le 10^5$）——Alperen 将执行的操作数量。\n\n接下来 $q$ 行，每行包含两个正整数 $d$ 和 $k$（$1\\le d\\le 2$；$1\\le k\\le 10^5$）以及一个由小写英文字母组成的非空字符串 $x$，分别表示操作类型、字符串 $x$ 的追加次数以及需要追加的字符串。\n\n保证所有测试用例的 $q$ 之和不超过 $10^5$，并且输入中所有字符串 $x$ 的长度之和不超过 $5\\cdot 10^5$。\n\n## 输出格式\n\n对于每次操作，如果可以通过某种方式排列两个字符串中的字符，使得 $s$ 按字典序小于 $t$，则输出 `YES`；否则输出 `NO`。\n\n## 说明\n\n在第一个测试用例中，字符串初始为 $s=$ `a`，$t=$ `a`。\n\n第一次操作后，字符串 $t$ 变为 `aaa`。由于 `a` 已经按字典序小于 `aaa`，因此这次操作的答案应为 `YES`。\n\n第二次操作后，字符串 $s$ 变为 `aaa`。由于 $t$ 也等于 `aaa`，我们无法以任何方式重新排列 $s$ 和 $t$，使得 $s$ 按字典序小于 $t$，因此答案为 `NO`。\n\n第三次操作后，字符串 $t$ 变为 `aaaaaa`，而 $s$ 已经按字典序小于它，因此答案为 `YES`。\n\n第四次操作后，字符串 $s$ 变为 `aaabb`，无法使其按字典序小于 `aaaaaa`，因此答案为 `NO`。\n\n第五次操作后，字符串 $t$ 变为 `aaaaaaabcaabcaabca`。我们可以将两个字符串重新排列为 `bbaaa` 和 `caaaaaabcaabcaabaa`，使得 $s$ 按字典序小于 $t$，因此答案应为 `YES`。",
   "samples": [
     {
       "input": "3\n5\n2 1 aa\n1 2 a\n2 3 a\n1 2 b\n2 3 abca\n2\n1 5 mihai\n2 2 buiucani\n3\n1 5 b\n2 3 a\n2 4 paiu\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:49:58.342Z"
+  "fetchedAt": "2026-11-02T17:49:58.342Z",
+  "translatedAt": "2026-11-04T03:11:58.376+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

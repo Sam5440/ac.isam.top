@@ -4,14 +4,14 @@
   "contestId": 716,
   "index": "E",
   "title": "Digit Tree",
-  "titleZh": null,
+  "titleZh": "数字树",
   "url": "https://codeforces.com/contest/716/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "ZS the Coder has a large tree. It can be represented as an undirected connected graph of $*n*$ vertices numbered from $0$ to $*n* - 1$ and $*n* - 1$ edges between them. There is a single **nonzero** digit written on each edge.\n\nOne day, ZS the Coder was bored and decided to investigate some properties of the tree. He chose a positive integer $*M*$, which is **coprime** to $10$, i.e. ![image](https://espresso.codeforces.com/fa46c78ff9ecabee5b4e74c357a3aee84f6f4f54.png).\n\nZS consider an **ordered pair** of distinct vertices $(*u*, *v*)$ *interesting* when if he would follow the shortest path from vertex $*u*$ to vertex $*v*$ and write down all the digits he encounters on his path in the same order, he will get a decimal representaion of an integer divisible by $*M*$.\n\nFormally, ZS consider an ordered pair of distinct vertices $(*u*, *v*)$ interesting if the following states true:\n\n- Let $*a*_{1} = *u*, *a*_{2}, ..., *a*_{*k*} = *v*$ be the sequence of vertices on the shortest path from $*u*$ to $*v*$ in the order of encountering them;\n- Let $*d*_{*i*}$ ($1 ≤ *i* < *k*$) be the digit written on the edge between vertices $*a*_{*i*}$ and $*a*_{*i* + 1}$;\n- The integer ![image](https://espresso.codeforces.com/190a896ddf6cde6da388fdc81f0ddc179ba13787.png) is divisible by $*M*$.\n\nHelp ZS the Coder find the number of interesting pairs!\n\n## Input\n\nThe first line of the input contains two integers, $*n*$ and $*M*$ ($2 ≤ *n* ≤ 100 000$,$1 ≤ *M* ≤ 10^{9}$, ![image](https://espresso.codeforces.com/04163f181aee6ea0709922af5a3f8cc700b28f61.png)) — the number of vertices and the number ZS has chosen respectively.\n\nThe next $*n* - 1$ lines contain three integers each. $*i*$-th of them contains $*u*_{*i*}, *v*_{*i*}$ and $*w*_{*i*}$, denoting an edge between vertices $*u*_{*i*}$ and $*v*_{*i*}$ with digit $*w*_{*i*}$ written on it ($0 ≤ *u*_{*i*}, *v*_{*i*} < *n*,  1 ≤ *w*_{*i*} ≤ 9$).\n\n## Output\n\nPrint a single integer — the number of interesting (by ZS the Coder's consideration) pairs.\n\n## Note\n\nIn the first sample case, the interesting pairs are $(0, 4), (1, 2), (1, 5), (3, 2), (2, 5), (5, 2), (3, 5)$. The numbers that are formed by these pairs are $14, 21, 217, 91, 7, 7, 917$ respectively, which are all multiples of $7$. Note that $(2, 5)$ and $(5, 2)$ are considered different.\n\n![image](https://espresso.codeforces.com/6a2fbbeb0bf87381288fdd784d6fa2b5e356e9b0.png)\n\nIn the second sample case, the interesting pairs are $(4, 0), (0, 4), (3, 2), (2, 3), (0, 1), (1, 0), (4, 1), (1, 4)$, and $6$ of these pairs give the number $33$ while $2$ of them give the number $3333$, which are all multiples of $11$.\n\n![image](https://espresso.codeforces.com/b7e4311b56cf89412696c183ad12eb9272db4d95.png)",
-  "statementZhMd": null,
+  "statementZhMd": "ZS the Coder 有一棵很大的树。它可以表示为一张无向连通图，包含编号为 $*0*$ 到 $*n* - 1$ 的 $*n*$ 个顶点，以及连接它们的 $*n* - 1$ 条边。每条边上都写有一个**非零**数字。\n\n一天，ZS the Coder 感到无聊，于是决定研究这棵树的一些性质。他选择了一个正整数 $*M*$，满足与 $10$ **互质**，即 ![image](https://espresso.codeforces.com/fa46c78ff9ecabee5b4e74c357a3aee84f6f4f54.png)。\n\n当 ZS the Coder 沿着从顶点 $*u*$ 到顶点 $*v*$ 的最短路径行走，并按照经过的顺序记录路径上的所有数字后，得到的十进制整数能够被 $*M*$ 整除时，他称不同顶点组成的**有序对** $(*u*, *v*)$ 是*有趣的*。\n\n形式化地说，若以下条件成立，则 ZS the Coder 认为不同顶点组成的有序对 $(*u*, *v*)$ 是有趣的：\n\n- 设从 $*u*$ 到 $*v*$ 的最短路径上按经过顺序排列的顶点序列为 $*a*_{1} = *u*, *a*_{2}, ..., *a*_{*k*} = *v*$；\n- 设顶点 $*a*_{*i*}$ 和 $*a*_{*i* + 1}$ 之间的边上写有数字 $*d*_{*i}$（$1 ≤ *i* < *k*$）；\n- 整数 ![image](https://espresso.codeforces.com/190a896ddf6cde6da388fdc81f0ddc179ba13787.png) 能够被 $*M*$ 整除。\n\n请帮助 ZS the Coder 找出有趣的有序对数量！\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*M*$（$2 ≤ *n* ≤ 100 000$，$1 ≤ *M* ≤ 10^{9}$，![image](https://espresso.codeforces.com/04163f181aee6ea0709922af5a3f8cc700b28f61.png)）——顶点数量以及 ZS 选择的整数 $M$。\n\n接下来 $*n* - 1$ 行，每行包含三个整数。其中第 $*i*$ 行包含 $*u*_{*i*}, *v*_{*i*}$ 和 $*w*_{*i*}$，表示顶点 $*u*_{*i*}$ 和 $*v*_{*i*}$ 之间有一条边，且边上写有数字 $*w*_{*i*}$（$0 ≤ *u*_{*i*}, *v*_{*i*} < *n*,  1 ≤ *w*_{*i*} ≤ 9$）。\n\n## 输出格式\n\n输出一个整数——有趣的有序对数量。\n\n## 说明\n\n在第一个样例中，有趣的有序对为 $(0, 4), (1, 2), (1, 5), (3, 2), (2, 5), (5, 2), (3, 5)$。这些有序对形成的数字依次为 $14, 21, 217, 91, 7, 7, 917$，它们都能被 $7$ 整除。注意，$(2, 5)$ 和 $(5, 2)$ 被视为不同的有序对。\n\n![image](https://espresso.codeforces.com/6a2fbbeb0bf87381288fdd784d6fa2b5e356e9b0.png)\n\n在第二个样例中，有趣的有序对为 $(4, 0), (0, 4), (3, 2), (2, 3), (0, 1), (1, 0), (4, 1), (1, 4)$，其中 $6$ 个有序对形成数字 $33$，另外 $2$ 个形成数字 $3333$，它们都能被 $11$ 整除。\n\n![image](https://espresso.codeforces.com/b7e4311b56cf89412696c183ad12eb9272db4d95.png)",
   "samples": [
     {
       "input": "6 7\n0 1 2\n4 2 4\n2 0 1\n3 0 9\n2 5 7\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:04:22.365Z"
+  "fetchedAt": "2026-10-31T01:04:22.365Z",
+  "translatedAt": "2026-11-04T06:26:55.234+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

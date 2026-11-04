@@ -4,7 +4,7 @@
   "contestId": 1965,
   "index": "E",
   "title": "Connected Cubes",
-  "titleZh": null,
+  "titleZh": "连通立方体",
   "url": "https://codeforces.com/contest/1965/problem/E",
   "difficulty": 3100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n \\cdot m$ unit cubes currently in positions $(1, 1, 1)$ through $(n, m, 1)$. Each of these cubes is one of $k$ colors. You want to add additional cubes at any integer coordinates such that the subset of cubes of each color is connected, where two cubes are considered connected if they share a face.\n\nIn other words, for every pair of cubes of the same color $c$, it should be possible to travel from one to the other, moving only through cubes of color $c$ that share a face.\n\nThe existing cubes are currently in the corner of a room. There are colorless cubes completely filling the planes $x = 0$, $y = 0$, and $z = 0$, preventing you from placing additional cubes there or at any negative coordinates.\n\n![image](https://espresso.codeforces.com/37cca5403f601be594278fde35b2e85a20300b7f.png)\n\nFind a solution that uses at most $4 \\cdot 10^5$ additional cubes (not including the cubes that are currently present), or determine that there is no solution. It can be shown that under the given constraints, if there is a solution, there is one using at most $4 \\cdot 10^5$ additional cubes.\n\n## Input\n\nThe first line of the input contains three integers $n$, $m$, and $k$ ($2 \\le n, m, k \\le 50$) — the number of rows and columns of cubes, and the number of colors, respectively.\n\nThe $i$-th of the next $n$ lines contains $m$ integers. The $j$-th of these is $a_{ij}$ ($1 \\le a_{ij} \\le k$) — the color of the cube at position $(i, j, 1)$. For every color from $1$ to $k$, it is guaranteed that there is at least one cube in the input of that color.\n\n## Output\n\nIf there is no solution, print a single integer $-1$.\n\nOtherwise, the first line of output should contain a single integer $p$ ($0 \\le p \\le 4 \\cdot 10^5$) — the number of additional cubes you will add.\n\nThe next $p$ lines should contain four integers $x$, $y$, $z$ and $c$ ($1 \\le x, y, z \\le 10^6$, $1 \\le c \\le k$) — indicating that you are adding a cube with color $c$ at position $(x, y, z)$.\n\nNo two cubes in the output should have the same coordinates, and no cube in the output should have the same coordinates as any cube in the input.\n\nIf there are multiple solutions, print any.\n\n## Note\n\nThe image in the statement corresponds to the first example case, with $\\text{red} = 1$, $\\text{blue} = 2$, $\\text{green} = 3$.",
-  "statementZhMd": null,
+  "statementZhMd": "目前有 $n \\cdot m$ 个单位立方体，分别位于从 $(1, 1, 1)$ 到 $(n, m, 1)$ 的位置。每个立方体属于 $k$ 种颜色中的一种。你需要在任意整数坐标处添加一些立方体，使得每种颜色的立方体构成一个连通集合；如果两个立方体拥有公共面，则认为它们相连。\n\n换句话说，对于每一对颜色为 $c$ 的立方体，都应当能够从其中一个移动到另一个，且移动过程中只能经过颜色为 $c$ 且彼此拥有公共面的立方体。\n\n现有的立方体位于房间的角落。平面 $x = 0$、$y = 0$ 和 $z = 0$ 被无色立方体完全填充，这些无色立方体阻止你在这些平面上或任何负坐标处放置额外的立方体。\n\n![image](https://espresso.codeforces.com/37cca5403f601be594278fde35b2e85a20300b7f.png)\n\n请找出一种使用不超过 $4 \\cdot 10^5$ 个额外立方体（不包括当前已经存在的立方体）的方案，或者确定不存在这样的方案。可以证明，在给定约束下，如果存在方案，则一定存在一个使用不超过 $4 \\cdot 10^5$ 个额外立方体的方案。\n\n## 输入格式\n\n输入的第一行包含三个整数 $n$、$m$ 和 $k$（$2 \\le n, m, k \\le 50$）——立方体网格的行数、列数和颜色数。\n\n接下来的 $n$ 行中，第 $i$ 行包含 $m$ 个整数。其中第 $j$ 个整数为 $a_{ij}$（$1 \\le a_{ij} \\le k$）——位于 $(i, j, 1)$ 位置的立方体的颜色。保证对于从 $1$ 到 $k$ 的每种颜色，输入中至少存在一个该颜色的立方体。\n\n## 输出格式\n\n如果不存在方案，输出一个整数 $-1$。\n\n否则，输出的第一行应包含一个整数 $p$（$0 \\le p \\le 4 \\cdot 10^5$）——你要添加的额外立方体数量。\n\n接下来的 $p$ 行中，每行应包含四个整数 $x$、$y$、$z$ 和 $c$（$1 \\le x, y, z \\le 10^6$，$1 \\le c \\le k$）——表示在位置 $(x, y, z)$ 添加一个颜色为 $c$ 的立方体。\n\n输出中的任意两个立方体不能具有相同的坐标，且输出中的立方体不能与输入中的任何立方体具有相同的坐标。\n\n如果有多种方案，输出任意一种即可。\n\n## 说明\n\n题目中的图片对应第一个样例，其中 $\\text{red} = 1$、$\\text{blue} = 2$、$\\text{green} = 3$。",
   "samples": [
     {
       "input": "3 4 3\n3 2 3 1\n1 1 1 1\n1 3 3 2\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:58:08.088Z"
+  "fetchedAt": "2026-10-30T21:58:08.088Z",
+  "translatedAt": "2026-11-04T02:17:29.944+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

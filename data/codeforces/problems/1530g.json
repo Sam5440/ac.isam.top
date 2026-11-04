@@ -4,7 +4,7 @@
   "contestId": 1530,
   "index": "G",
   "title": "What a Reversal",
-  "titleZh": null,
+  "titleZh": "一次翻转",
   "url": "https://codeforces.com/contest/1530/problem/G",
   "difficulty": 3300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "You have two strings $a$ and $b$ of equal length $n$ consisting of characters `0` and `1`, and an integer $k$.\n\nYou need to make strings $a$ and $b$ equal.\n\nIn one step, you can choose any substring of $a$ containing exactly $k$ characters `1` (and arbitrary number of characters `0`) and reverse it. Formally, if $a = a_1 a_2 \\ldots a_n$, you can choose any integers $l$ and $r$ ($1 \\le l \\le r \\le n$) such that there are exactly $k$ ones among characters $a_l, a_{l+1}, \\ldots, a_r$, and set $a$ to $a_1 a_2 \\ldots a_{l-1} a_r a_{r-1} \\ldots a_l a_{r+1} a_{r+2} \\ldots a_n$.\n\nFind a way to make $a$ equal to $b$ using at most $4n$ reversals of the above kind, or determine that such a way doesn't exist. The number of reversals doesn't have to be minimized.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 2000$). Description of the test cases follows.\n\nEach test case consists of three lines. The first line of each test case contains two integers $n$ and $k$ ($1 \\le n \\le 2000$; $0 \\le k \\le n$).\n\nThe second line contains string $a$ of length $n$.\n\nThe third line contains string $b$ of the same length. Both strings consist of characters `0` and `1`.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2000$.\n\n## Output\n\nFor each test case, if it's impossible to make $a$ equal to $b$ in at most $4n$ reversals, print a single integer $-1$.\n\nOtherwise, print an integer $m$ ($0 \\le m \\le 4n$), denoting the number of reversals in your sequence of steps, followed by $m$ pairs of integers $l_i, r_i$ ($1 \\le l_i \\le r_i \\le n$), denoting the boundaries of the substrings of $a$ to be reversed, in chronological order. Each substring must contain exactly $k$ ones at the moment of reversal.\n\nNote that $m$ doesn't have to be minimized. If there are multiple answers, print any.\n\n## Note\n\nIn the first test case, after the first reversal $a = $ `011010`, after the second reversal $a = $ `010110`, after the third reversal $a = $ `010101`.",
-  "statementZhMd": null,
+  "statementZhMd": "你有两个长度相等的字符串 $a$ 和 $b$，它们仅由字符 `0` 和 `1` 组成，另有一个整数 $k$。\n\n你需要使字符串 $a$ 和 $b$ 相等。\n\n每一步中，你可以选择 $a$ 的一个恰好包含 $k$ 个字符 `1` 的子串（其中可以包含任意数量的字符 `0`），并将其翻转。形式化地说，如果 $a = a_1 a_2 \\ldots a_n$，你可以选择任意整数 $l$ 和 $r$（$1 \\le l \\le r \\le n$），使得字符 $a_l, a_{l+1}, \\ldots, a_r$ 中恰好有 $k$ 个 `1`，然后将 $a$ 变为 $a_1 a_2 \\ldots a_{l-1} a_r a_{r-1} \\ldots a_l a_{r+1} a_{r+2} \\ldots a_n$。\n\n请找出一种至多使用 $4n$ 次上述翻转的方法，使 $a$ 与 $b$ 相等；或者判断不存在这样的方法。不要求最小化翻转次数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 2000$）。接下来是各测试用例的描述。\n\n每个测试用例由三行组成。每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 2000$；$0 \\le k \\le n$）。\n\n第二行包含长度为 $n$ 的字符串 $a$。\n\n第三行包含长度相同的字符串 $b$。两个字符串都仅由字符 `0` 和 `1` 组成。\n\n保证所有测试用例的 $n$ 之和不超过 $2000$。\n\n## 输出格式\n\n对于每个测试用例，如果无法在至多 $4n$ 次翻转内使 $a$ 与 $b$ 相等，输出一个整数 $-1$。\n\n否则，先输出一个整数 $m$（$0 \\le m \\le 4n$），表示操作序列中的翻转次数；随后输出 $m$ 对整数 $l_i, r_i$（$1 \\le l_i \\le r_i \\le n$），按时间顺序表示要翻转的子串的边界。每次翻转时，对应的子串必须恰好包含 $k$ 个 `1`。\n\n注意，$m$ 不必最小。如果有多种答案，输出任意一种即可。\n\n## 说明\n\n在第一个测试用例中，第一次翻转后 $a = $ `011010`，第二次翻转后 $a = $ `010110`，第三次翻转后 $a = $ `010101`。",
   "samples": [
     {
       "input": "6\n6 1\n101010\n010101\n6 3\n101010\n010101\n6 0\n101010\n010101\n6 6\n101010\n010101\n4 2\n0000\n1111\n9 2\n011100101\n101001011\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:32:29.044Z"
+  "fetchedAt": "2026-10-30T23:32:29.044Z",
+  "translatedAt": "2026-11-04T03:49:02.441+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

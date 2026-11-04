@@ -4,7 +4,7 @@
   "contestId": 1762,
   "index": "C",
   "title": "Binary Strings are Fun",
-  "titleZh": null,
+  "titleZh": "二进制字符串很有趣",
   "url": "https://codeforces.com/contest/1762/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A binary string$^\\dagger$ $b$ of odd length $m$ is *good* if $b_i$ is the median$^\\ddagger$ of $b[1,i]^\\S$ for all **odd** indices $i$ ($1 \\leq i \\leq m$).\n\nFor a binary string $a$ of length $k$, a binary string $b$ of length $2k-1$ is an *extension* of $a$ if $b_{2i-1}=a_i$ for all $i$ such that $1 \\leq i \\leq k$. For example, `1001011` and `1101001` are *extensions* of the string `1001`. String $x=$`1011011` is not an *extension* of string $y=$`1001` because $x_3 \\neq y_2$. Note that there are $2^{k-1}$ different *extensions* of $a$.\n\nYou are given a binary string $s$ of length $n$. Find the sum of the number of *good* *extensions* over all prefixes of $s$. In other words, find $\\sum_{i=1}^{n} f(s[1,i])$, where $f(x)$ gives number of *good* *extensions* of string $x$. Since the answer can be quite large, you only need to find it modulo $998\\,244\\,353$.\n\n$^\\dagger$ A binary string is a string whose elements are either $\\mathtt{0}$ or $\\mathtt{1}$.\n\n$^\\ddagger$ For a binary string $a$ of length $2m-1$, the median of $a$ is the (unique) element that occurs at least $m$ times in $a$.\n\n$^\\S$ $a[l,r]$ denotes the string of length $r-l+1$ which is formed by the concatenation of $a_l,a_{l+1},\\ldots,a_r$ in that order.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$), where $n$ is the length of the binary string $s$.\n\nThe second line of each test case contains the binary string $s$ of length $n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the answer modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first and second test cases, $f(s[1,1])=1$.\n\nIn the third test case, the answer is $f(s[1,1])+f(s[1,2])=1+2=3$.\n\nIn the fourth test case, the answer is $f(s[1,1])+f(s[1,2])+f(s[1,3])=1+1+1=3$.\n\n$f(\\mathtt{11})=2$ because two *good* *extensions* are possible: `101` and `111`.\n\n$f(\\mathtt{01})=1$ because only one *good* *extension* is possible: `011`.",
-  "statementZhMd": null,
+  "statementZhMd": "长度为奇数 $m$ 的二进制字符串$^\\dagger$ $b$ 被称为*优秀*，当且仅当对于所有**奇数**下标 $i$（$1 \\leq i \\leq m$），$b_i$ 都是 $b[1,i]$ 的中位数$^\\ddagger$。\n\n对于长度为 $k$ 的二进制字符串 $a$，长度为 $2k-1$ 的二进制字符串 $b$ 被称为 $a$ 的*扩展*，当且仅当对于所有满足 $1 \\leq i \\leq k$ 的 $i$，都有 $b_{2i-1}=a_i$。例如，`1001011` 和 `1101001` 都是字符串 `1001` 的*扩展*。字符串 $x=$`1011011` 不是字符串 $y=$`1001` 的*扩展*，因为 $x_3 \\neq y_2$。注意，$a$ 有 $2^{k-1}$ 个不同的*扩展*。\n\n给定一个长度为 $n$ 的二进制字符串 $s$。请求出 $s$ 的所有前缀的*优秀扩展*数量之和。换言之，请求出 $\\sum_{i=1}^{n} f(s[1,i])$，其中 $f(x)$ 表示字符串 $x$ 的*优秀扩展*数量。由于答案可能非常大，你只需要求出答案对 $998\\,244\\,353$ 取模后的结果。\n\n$^\\dagger$ 二进制字符串是指其中每个元素都为 $\\mathtt{0}$ 或 $\\mathtt{1}$ 的字符串。\n\n$^\\ddagger$ 对于长度为 $2m-1$ 的二进制字符串 $a$，$a$ 的中位数是其中出现次数至少为 $m$ 次的那个（唯一的）元素。\n\n$^\\S$ $a[l,r]$ 表示一个长度为 $r-l+1$ 的字符串，它由 $a_l,a_{l+1},\\ldots,a_r$ 按此顺序拼接而成。\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\leq t \\leq 10^4$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 2 \\cdot 10^5$），表示二进制字符串 $s$ 的长度。\n\n每个测试用例的第二行包含长度为 $n$ 的二进制字符串 $s$。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，输出答案对 $998\\,244\\,353$ 取模后的结果。\n\n## 说明\n\n在第一和第二个测试用例中，$f(s[1,1])=1$。\n\n在第三个测试用例中，答案为 $f(s[1,1])+f(s[1,2])=1+2=3$。\n\n在第四个测试用例中，答案为 $f(s[1,1])+f(s[1,2])+f(s[1,3])=1+1+1=3$。\n\n$f(\\mathtt{11})=2$，因为有两种可能的*优秀扩展*：`101` 和 `111`。\n\n$f(\\mathtt{01})=1$，因为只有一种可能的*优秀扩展*：`011`。",
   "samples": [
     {
       "input": "6\n1\n1\n1\n0\n2\n11\n3\n010\n9\n101101111\n37\n1011011111011010000011011111111011111\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:43:34.412Z"
+  "fetchedAt": "2026-10-30T22:43:34.412Z",
+  "translatedAt": "2026-11-04T03:03:27.024+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

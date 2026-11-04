@@ -4,14 +4,14 @@
   "contestId": 624,
   "index": "C",
   "title": "Graph and String",
-  "titleZh": null,
+  "titleZh": "图与字符串",
   "url": "https://codeforces.com/contest/624/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "One day student Vasya was sitting on a lecture and mentioned a string $*s*_{1}*s*_{2}... *s*_{*n*}$, consisting of letters \"`a`\", \"`b`\" and \"`c`\" that was written on his desk. As the lecture was boring, Vasya decided to complete the picture by composing a graph $*G*$ with the following properties:\n\n- $*G*$ has exactly $*n*$ vertices, numbered from $1$ to $*n*$.\n- For all pairs of vertices $*i*$ and $*j*$, where $*i* ≠ *j*$, there is an edge connecting them **if and only if** characters $*s*_{*i*}$ and $*s*_{*j*}$ are either equal or neighbouring in the alphabet. That is, letters in pairs \"`a`\"-\"`b`\" and \"`b`\"-\"`c`\" are neighbouring, while letters \"`a`\"-\"`c`\" are not.\n\nVasya painted the resulting graph near the string and then erased the string. Next day Vasya's friend Petya came to a lecture and found some graph at his desk. He had heard of Vasya's adventure and now he wants to find out whether it could be the original graph $*G*$, painted by Vasya. In order to verify this, Petya needs to know whether there exists a string $*s*$, such that if Vasya used this $*s*$ he would produce the given graph $*G*$.\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*m*$ ![image](https://espresso.codeforces.com/d9b4bc3978958320dd1cfa0ea1aae00fedf442fb.png) — the number of vertices and edges in the graph found by Petya, respectively.\n\nEach of the next $*m*$ lines contains two integers $*u*_{*i*}$ and $*v*_{*i*}$ $(1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*, *u*_{*i*} ≠ *v*_{*i*})$ — the edges of the graph $*G*$. It is guaranteed, that there are no multiple edges, that is any pair of vertexes appear in this list no more than once.\n\n## Output\n\nIn the first line print \"`Yes`\" (without the quotes), if the string $*s*$ Petya is interested in really exists and \"`No`\" (without the quotes) otherwise.\n\nIf the string $*s*$ exists, then print it on the second line of the output. The length of $*s*$ must be exactly $*n*$, it must consist of only letters \"`a`\", \"`b`\" and \"`c`\" only, and the graph built using this string must coincide with $*G*$. If there are multiple possible answers, you may print any of them.\n\n## Note\n\nIn the first sample you are given a graph made of two vertices with an edge between them. So, these vertices can correspond to both the same and adjacent letters. Any of the following strings `\"`aa`\"`, `\"`ab`\"`, `\"`ba`\"`, `\"`bb`\"`, `\"`bc`\"`, `\"`cb`\"`, `\"`cc`\"` meets the graph's conditions.\n\nIn the second sample the first vertex is connected to all three other vertices, but these three vertices are not connected with each other. That means that they must correspond to distinct letters that are not adjacent, but that is impossible as there are only two such letters: a and c.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n一天，学生 Vasya 坐在讲座上，注意到课桌上写着一个由字母 \"a\"、\"b\" 和 \"c\" 组成的字符串 $*s*_{1}*s*_{2}... *s*_{*n*}$。由于讲座十分无聊，Vasya 决定通过构造一个具有以下性质的图 $*G*$ 来完成这幅图：\n\n- $*G*$ 恰好有 $*n*$ 个顶点，编号为 1 到 $*n*$。\n- 对于任意两个顶点 $*i*$ 和 $*j*$，其中 $*i* ≠ *j*$，当且仅当字符 $*s*_{*i*}$ 和 $*s*_{*j*}$ 相同或在字母表中相邻时，它们之间才有一条边。也就是说，字母对 \"a\"-\"b\" 和 \"b\"-\"c\" 中的字母相邻，而 \"a\"-\"c\" 中的字母不相邻。\n\nVasya 将得到的图画在字符串旁边，然后擦掉了字符串。第二天，Vasya 的朋友 Petya 来上课，并在自己的课桌上发现了一个图。他听说了 Vasya 的经历，现在想判断这个图是否可能是 Vasya 画出的原图 $*G*$。为此，Petya 需要知道是否存在一个字符串 $*s*$，使得如果 Vasya 使用这个字符串 $*s*$，就会得到给定的图 $*G*$。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*m*$ ![image](https://espresso.codeforces.com/d9b4bc3978958320dd1cfa0ea1aae00fedf442fb.png) — 分别表示 Petya 发现的图中的顶点数和边数。\n\n接下来的 $*m*$ 行中，每行包含两个整数 $*u*_{*i*}$ 和 $*v*_{*i*}$ $(1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*, *u*_{*i*} ≠ *v*_{*i*})$，表示图 $*G*$ 中的一条边。保证不存在重边，即任意一对顶点在该列表中最多出现一次。\n\n## 输出格式\n\n第一行输出 \"`Yes`\"（不含引号），如果 Petya 感兴趣的字符串 $*s*$ 确实存在；否则输出 \"`No`\"（不含引号）。\n\n如果字符串 $*s*$ 存在，则在输出的第二行打印它。$*s*$ 的长度必须恰好为 $*n*$，且只能由字母 \"a\"、\"b\" 和 \"c\" 组成，并且使用该字符串构造出的图必须与 $*G*$ 完全一致。如果有多个可能的答案，可以输出其中任意一个。\n\n## 说明\n\n在第一个样例中，给定的图由两个通过一条边相连的顶点组成。因此，这两个顶点既可以对应相同的字母，也可以对应相邻的字母。以下字符串中的任意一个都满足图的条件：`\"aa`\"`、`\"ab`\"`、`\"ba`\"`、`\"bb`\"`、`\"bc`\"`、`\"cb`\"`、`\"cc`\"`。\n\n在第二个样例中，第一个顶点与另外三个顶点都相连，但这三个顶点之间互不相连。这意味着它们必须对应三个互不相同且不相邻的字母，但这是不可能的，因为只有两个这样的字母：a 和 c。",
   "samples": [
     {
       "input": "2 1\n1 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:15:14.945Z"
+  "fetchedAt": "2026-10-31T01:15:14.945Z",
+  "translatedAt": "2026-11-04T06:38:24.991+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

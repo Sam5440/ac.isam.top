@@ -4,7 +4,7 @@
   "contestId": 1523,
   "index": "F",
   "title": "Favorite Game",
-  "titleZh": null,
+  "titleZh": "最喜欢的游戏",
   "url": "https://codeforces.com/contest/1523/problem/F",
   "difficulty": 3300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "![image](https://espresso.codeforces.com/85b32fed972d2da61bd5369ae6eea6bb84cb437b.png)\n\nAfter William is done with work for the day, he enjoys playing his favorite video game.\n\nThe game happens in a 2D world, starting at turn $0$. William can pick any cell in the game world and spawn in it. Then, each turn, William may remain at his current location or move from the current location (x, y) to one of the following locations: (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1).\n\nTo accelerate movement the game has $n$ fast travel towers. $i$-th tower is located at location ($xa_i, ya_i$). To be able to instantly travel to the tower from any location in the game world it must first be activated. Activation of tower $i$ happens at the moment when the player is in cell ($xa_i, ya_i$) after this the tower remains active throughout the entire game.\n\nWilliam also knows that the game has $m$ quests. $i$-th quest can be completed instantly by being at location ($xb_i, yb_i$) on turn $t_i$.\n\nWilliam wants to find out the maximal number of quests he will be able to complete by optimally traversing the game world.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($0 \\le n \\le 14, 1 \\le m \\le 100$), which are the number of towers and the number of quests, respectively.\n\nEach of the next $n$ lines contains two integers $xa_i, ya_i$ ($1 \\le xa_i, ya_i \\le 10^6$), which are the coordinates of fast travel towers.\n\nEach of the next $m$ lines contains two integers $xb_i$, $yb_i$ and $t_i$ ($1 \\le xb_i, yb_i \\le 10^6$, $1 \\le t_i \\le 10^9$), which are the coordinates of quests and the turn at which it may be completed.\n\nIt is guaranteed that all locations in a test are different.\n\n## Output\n\nPrint a single number  — the maximal number of quests William will be able to complete.\n\n## Note\n\nIn the first sample test one of the possible sequences of William's actions is as follows:\n\n- Spawn at $(3, 2)$\n- On turn $1$ move to $(4, 2)$\n- On turn $2$ move to $(5, 2)$. By visiting this cell William activates tower number $3$.\n- On turn $3$ move to $(5, 1)$, where he waits for $1$ turn to complete the $2$nd quest\n- On turn $5$ move to $(5, 2)$\n- On turn $6$ move to $(5, 3)$\n- On turn $7$ move to $(5, 4)$\n- On turn $8$ move to $(5, 5)$\n- On turn $9$ move to $(4, 5)$\n- On turn $10$ move to $(3, 5)$. By moving to this location William will complete the $4$th quest\n- On turn $10$ instantly move to an already activated fast travel tower at $(5, 2)$\n- On turn $11$ move to $(6, 2)$. By moving to this location William will complete the $3$rd quest\n- William will not be able to complete the quest number $1$, because the tower at $(2, 3)$ was not activated",
-  "statementZhMd": null,
+  "statementZhMd": "![image](https://espresso.codeforces.com/85b32fed972d2da61bd5369ae6eea6bb84cb437b.png)\n\nWilliam 一天的工作结束后，喜欢玩他最喜欢的电子游戏。\n\n游戏发生在一个二维世界中，从回合 $0$ 开始。William 可以选择游戏世界中的任意一个格子并在其中出生。之后，在每个回合中，William 可以留在当前位置，也可以从当前位置 (x, y) 移动到以下位置之一：(x + 1, y)、(x - 1, y)、(x, y + 1)、(x, y - 1)。\n\n为了加快移动速度，游戏中有 $n$ 座快速旅行塔。第 $i$ 座塔位于位置 ($xa_i, ya_i$)。若想从游戏世界中的任意位置瞬间移动到某座塔，必须先将其激活。当玩家位于格子 ($xa_i, ya_i$) 的时刻，塔 $i$ 会被激活，此后该塔在整个游戏过程中始终保持激活状态。\n\nWilliam 还知道游戏中有 $m$ 个任务。第 $i$ 个任务可以通过在回合 $t_i$ 位于位置 ($xb_i, yb_i$) 来立即完成。\n\nWilliam 想知道，通过最优地在游戏世界中移动，他最多可以完成多少个任务。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$0 \\le n \\le 14, 1 \\le m \\le 100$），分别表示快速旅行塔和任务的数量。\n\n接下来的 $n$ 行中，每行包含两个整数 $xa_i, ya_i$（$1 \\le xa_i, ya_i \\le 10^6$），表示快速旅行塔的坐标。\n\n接下来的 $m$ 行中，每行包含两个整数 $xb_i, yb_i$ 和 $t_i$（$1 \\le xb_i, yb_i \\le 10^6, 1 \\le t_i \\le 10^9$），表示任务的坐标以及可以完成该任务的回合。\n\n保证测试数据中的所有位置均不相同。\n\n## 输出格式\n\n输出一个数 —— William 最多可以完成的任务数量。\n\n## 说明\n\n在第一组样例测试中，William 可以采取以下行动序列：\n\n- 在 $(3, 2)$ 出生\n- 在回合 $1$ 移动到 $(4, 2)$\n- 在回合 $2$ 移动到 $(5, 2)$。通过访问这个格子，William 激活了第 $3$ 座塔。\n- 在回合 $3$ 移动到 $(5, 1)$，并在那里等待 $1$ 个回合以完成第 $2$ 个任务\n- 在回合 $5$ 移动到 $(5, 2)$\n- 在回合 $6$ 移动到 $(5, 3)$\n- 在回合 $7$ 移动到 $(5, 4)$\n- 在回合 $8$ 移动到 $(5, 5)$\n- 在回合 $9$ 移动到 $(4, 5)$\n- 在回合 $10$ 移动到 $(3, 5)$。通过移动到这个位置，William 完成了第 $4$ 个任务。\n- 在回合 $10$ 瞬间移动到位于 $(5, 2)$ 的一座已激活快速旅行塔\n- 在回合 $11$ 移动到 $(6, 2)$。通过移动到这个位置，William 完成了第 $3$ 个任务\n- William 无法完成第 $1$ 个任务，因为位于 $(2, 3)$ 的塔尚未激活",
   "samples": [
     {
       "input": "3 4\n1 1\n2 3\n5 2\n2 2 12\n5 1 4\n6 2 11\n3 5 10\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:33:14.625Z"
+  "fetchedAt": "2026-10-30T23:33:14.625Z",
+  "translatedAt": "2026-11-04T03:50:32.954+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

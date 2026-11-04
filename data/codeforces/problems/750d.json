@@ -4,7 +4,7 @@
   "contestId": 750,
   "index": "D",
   "title": "New Year and Fireworks",
-  "titleZh": null,
+  "titleZh": "新年与烟花",
   "url": "https://codeforces.com/contest/750/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "One tradition of welcoming the New Year is launching fireworks into the sky. Usually a launched firework flies vertically upward for some period of time, then explodes, splitting into several parts flying in different directions. Sometimes those parts also explode after some period of time, splitting into even more parts, and so on.\n\nLimak, who lives in an infinite grid, has a single firework. The behaviour of the firework is described with a recursion depth $*n*$ and a duration for each level of recursion $*t*_{1}, *t*_{2}, ..., *t*_{*n*}$. Once Limak launches the firework in some cell, the firework starts moving upward. After covering $*t*_{1}$ cells (including the starting cell), it explodes and splits into two parts, each moving in the direction changed by $45$ degrees (see the pictures below for clarification). So, one part moves in the top-left direction, while the other one moves in the top-right direction. Each part explodes again after covering $*t*_{2}$ cells, splitting into two parts moving in directions again changed by $45$ degrees. The process continues till the $*n*$-th level of recursion, when all $2^{*n* - 1}$ existing parts explode and disappear without creating new parts. After a few levels of recursion, it's possible that some parts will be at the same place and at the same time — it is allowed and such parts do not crash.\n\nBefore launching the firework, Limak must make sure that nobody stands in cells which will be visited at least once by the firework. Can you count the number of those cells?\n\n## Input\n\nThe first line of the input contains a single integer $*n*$ ($1 ≤ *n* ≤ 30$) — the total depth of the recursion.\n\nThe second line contains $*n*$ integers $*t*_{1}, *t*_{2}, ..., *t*_{*n*}$ ($1 ≤ *t*_{*i*} ≤ 5$). On the $*i*$-th level each of $2^{*i* - 1}$ parts will cover $*t*_{*i*}$ cells before exploding.\n\n## Output\n\nPrint one integer, denoting the number of cells which will be visited at least once by any part of the firework.\n\n## Note\n\nFor the first sample, the drawings below show the situation after each level of recursion. Limak launched the firework from the bottom-most red cell. It covered $*t*_{1} = 4$ cells (marked red), exploded and divided into two parts (their further movement is marked green). All explosions are marked with an '`X`' character. On the last drawing, there are $4$ red, $4$ green, $8$ orange and $23$ pink cells. So, the total number of visited cells is $4 + 4 + 8 + 23 = 39$.\n\n![image](https://espresso.codeforces.com/6d5411250fe0253d482a0e94389cd90176ba1c67.png)\n\nFor the second sample, the drawings below show the situation after levels $4$, $5$ and $6$. The middle drawing shows directions of all parts that will move in the next level.\n\n![image](https://espresso.codeforces.com/5fd1fe84f88c6fa5da49baf5f1504d37adbad122.png)",
-  "statementZhMd": null,
+  "statementZhMd": "欢迎新年的传统之一，是向天空发射烟花。通常，发射出的烟花会先竖直向上飞行一段时间，然后爆炸，分裂成若干个向不同方向飞行的部分。有时，这些部分也会在经过一段时间后爆炸，分裂成更多部分，如此不断进行。\n\n生活在无限网格中的 Limak 有一枚烟花。烟花的行为由递归深度 $*n*$ 以及每一层递归的持续时间 $*t*_{1}, *t*_{2}, ..., *t*_{*n*}$ 描述。Limak 将烟花从某个格子发射后，烟花开始向上移动。移动经过 $*t*_{1}$ 个格子（包括起始格子）后，烟花爆炸并分裂成两个部分，每个部分的移动方向都会改变 $45$ 度（具体情况请参见下面的图片）。因此，其中一个部分会向左上方移动，另一个部分会向右上方移动。每个部分在移动经过 $*t*_{2}$ 个格子后再次爆炸，分裂成两个方向再次改变 $45$ 度的部分。这个过程一直持续到第 $*n*$ 层递归：此时，现存的全部 $2^{*n* - 1}$ 个部分都会爆炸并消失，不再产生新的部分。在递归进行若干层后，可能会有一些部分在同一时间处于同一位置——这是允许的，这些部分不会相撞。\n\n在发射烟花之前，Limak 必须确保没有人站在烟花至少会经过一次的格子中。你能计算出这些格子的数量吗？\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 30$），表示递归的总深度。\n\n第二行包含 $*n*$ 个整数 $*t*_{1}, *t*_{2}, ..., *t*_{*n*}$（$1 ≤ *t*_{*i*} ≤ 5$）。在第 $*i*$ 层，每个 $2^{*i* - 1}$ 个部分都会经过 $*t*_{*i*}$ 个格子后爆炸。\n\n## 输出格式\n\n输出一个整数，表示至少被烟花的任意部分经过一次的格子数量。\n\n## 说明\n\n对于第一个样例，下面的图片展示了每一层递归结束后的情况。Limak 从最底部的红色格子发射烟花。烟花经过了 $*t*_{1} = 4$ 个格子（标记为红色），然后爆炸并分裂成两个部分（它们之后的移动用绿色标记）。所有爆炸都用字符 '`X`' 标记。在最后一张图中，有 $4$ 个红色格子、$4$ 个绿色格子、$8$ 个橙色格子和 $23$ 个粉色格子。因此，经过的格子总数为 $4 + 4 + 8 + 23 = 39$。\n\n![image](https://espresso.codeforces.com/6d5411250fe0253d482a0e94389cd90176ba1c67.png)\n\n对于第二个样例，下面的图片展示了第 $4$、$5$ 和第 $6$ 层结束后的情况。中间的图片展示了所有部分在下一层中移动时的方向。\n\n![image](https://espresso.codeforces.com/5fd1fe84f88c6fa5da49baf5f1504d37adbad122.png)",
   "samples": [
     {
       "input": "4\n4 2 2 3\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:59:17.816Z"
+  "fetchedAt": "2026-10-31T00:59:17.816Z",
+  "translatedAt": "2026-11-04T06:21:26.311+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

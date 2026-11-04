@@ -4,7 +4,7 @@
   "contestId": 989,
   "index": "D",
   "title": "A Shade of Moonlight",
-  "titleZh": null,
+  "titleZh": "月光的一抹色彩",
   "url": "https://codeforces.com/contest/989/problem/D",
   "difficulty": 2500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "* Gathering darkness shrouds the woods and the world. The moon sheds its light on the boat and the river.\"To curtain off the moonlight should be hardly possible; the shades present its mellow beauty and restful nature.\" Intonates Mino.\"See? The clouds are coming.\" Kanno gazes into the distance.\"That can't be better,\" Mino turns to Kanno. *\n\nThe sky can be seen as a one-dimensional axis. The moon is at the origin whose coordinate is $0$.\n\nThere are $n$ clouds floating in the sky. Each cloud has the same length $l$. The $i$-th initially covers the range of $(x_i, x_i + l)$ (**endpoints excluded**). Initially, it moves at a velocity of $v_i$, which equals either $1$ or $-1$.\n\nFurthermore, no pair of clouds intersect initially, that is, for all $1 \\leq i \\lt j \\leq n$, $\\lvert x_i - x_j \\rvert \\geq l$.\n\nWith a wind velocity of $w$, the velocity of the $i$-th cloud becomes $v_i + w$. That is, its coordinate increases by $v_i + w$ during each unit of time. Note that the wind can be strong and clouds can change their direction.\n\nYou are to help Mino count the number of pairs $(i, j)$ ($i \\lt j$), such that with a proper choice of wind velocity $w$ not exceeding $w_\\mathrm{max}$ in absolute value (possibly negative and/or fractional), the $i$-th and $j$-th clouds both cover the moon at the same future moment. This $w$ doesn't need to be the same across different pairs.\n\n## Input\n\nThe first line contains three space-separated integers $n$, $l$, and $w_\\mathrm{max}$ ($1 \\leq n \\leq 10^5$, $1 \\leq l, w_\\mathrm{max} \\leq 10^8$) — the number of clouds, the length of each cloud and the maximum wind speed, respectively.\n\nThe $i$-th of the following $n$ lines contains two space-separated integers $x_i$ and $v_i$ ($-10^8 \\leq x_i \\leq 10^8$, $v_i \\in \\{-1, 1\\}$) — the initial position and the velocity of the $i$-th cloud, respectively.\n\nThe input guarantees that for all $1 \\leq i \\lt j \\leq n$, $\\lvert x_i - x_j \\rvert \\geq l$.\n\n## Output\n\nOutput one integer — the number of unordered pairs of clouds such that it's possible that clouds from each pair cover the moon at the same future moment with a proper choice of wind velocity $w$.\n\n## Note\n\nIn the first example, the initial positions and velocities of clouds are illustrated below.\n\n![image](https://espresso.codeforces.com/dbf90a43ebbe6d4229a3f771820cebff26cb75e3.png)\n\nThe pairs are:\n\n- $(1, 3)$, covering the moon at time $2.5$ with $w = -0.4$;\n- $(1, 4)$, covering the moon at time $3.5$ with $w = -0.6$;\n- $(1, 5)$, covering the moon at time $4.5$ with $w = -0.7$;\n- $(2, 5)$, covering the moon at time $2.5$ with $w = -2$.\n\nBelow is the positions of clouds at time $2.5$ with $w = -0.4$. At this moment, the $1$-st and $3$-rd clouds both cover the moon.\n\n![image](https://espresso.codeforces.com/17324125ede024cbab6be620a1e81a73e011c7b6.png)\n\nIn the second example, the only pair is $(1, 4)$, covering the moon at time $15$ with $w = 0$.\n\nNote that all the times and wind velocities given above are just examples among infinitely many choices.",
-  "statementZhMd": null,
+  "statementZhMd": "*渐浓的黑暗笼罩着森林与世界。月光洒在小船和河流上。“想要遮住月光几乎是不可能的；阴影衬托出它柔和的美丽与宁静的本质。”美浓说道。“看，云来了。”菅野凝视着远方。“那再好不过了。”美浓转向菅野。*\n\n天空可以看作一条一维坐标轴。月亮位于原点，其坐标为 $0$。\n\n天空中漂浮着 $n$ 朵云。每朵云的长度均为 $l$。第 $i$ 朵云初始时覆盖区间 $(x_i, x_i + l)$（**不包括端点**）。初始时，它以速度 $v_i$ 移动，其中 $v_i$ 等于 $1$ 或 $-1$。\n\n此外，任意两朵云初始时都不相交，即对于所有 $1 \\leq i \\lt j \\leq n$，均有 $\\lvert x_i - x_j \\rvert \\geq l$。\n\n当风速为 $w$ 时，第 $i$ 朵云的速度变为 $v_i + w$。也就是说，在每个单位时间内，它的坐标增加 $v_i + w$。注意，风力可能很强，因此云朵可能改变运动方向。\n\n请帮助美浓统计满足以下条件的云朵对 $(i, j)$（$i \\lt j$）的数量：存在一个绝对值不超过 $w_\\mathrm{max}$ 的合适风速 $w$（可以为负数和/或分数），使得第 $i$ 朵云和第 $j$ 朵云在未来的同一时刻都覆盖月亮。不同的云朵对可以选择不同的 $w$。\n\n## 输入格式\n\n第一行包含三个用空格分隔的整数 $n$、$l$ 和 $w_\\mathrm{max}$（$1 \\leq n \\leq 10^5$，$1 \\leq l, w_\\mathrm{max} \\leq 10^8$），分别表示云朵的数量、每朵云的长度以及最大风速。\n\n接下来的 $n$ 行中，第 $i$ 行包含两个用空格分隔的整数 $x_i$ 和 $v_i$（$-10^8 \\leq x_i \\leq 10^8$，$v_i \\in \\{-1, 1\\}$），分别表示第 $i$ 朵云的初始位置和速度。\n\n输入保证对于所有 $1 \\leq i \\lt j \\leq n$，均有 $\\lvert x_i - x_j \\rvert \\geq l$。\n\n## 输出格式\n\n输出一个整数，即满足以下条件的无序云朵对数量：通过为每一对选择合适的风速 $w$，该对中的两朵云有可能在同一未来时刻覆盖月亮。\n\n## 说明\n\n在第一个样例中，云朵的初始位置和速度如下图所示。\n\n![image](https://espresso.codeforces.com/dbf90a43ebbe6d4229a3f771820cebff26cb75e3.png)\n\n满足条件的云朵对为：\n\n- $(1, 3)$，在时刻 $2.5$、风速 $w = -0.4$ 时覆盖月亮；\n- $(1, 4)$，在时刻 $3.5$、风速 $w = -0.6$ 时覆盖月亮；\n- $(1, 5)$，在时刻 $4.5$、风速 $w = -0.7$ 时覆盖月亮；\n- $(2, 5)$，在时刻 $2.5$、风速 $w = -2$ 时覆盖月亮。\n\n下面展示了在风速 $w = -0.4$ 时，时刻 $2.5$ 的云朵位置。此时，第 $1$ 朵云和第 $3$ 朵云都覆盖着月亮。\n\n![image](https://espresso.codeforces.com/17324125ede024cbab6be620a1e81a73e011c7b6.png)\n\n在第二个样例中，唯一满足条件的云朵对是 $(1, 4)$，它们在时刻 $15$、风速 $w = 0$ 时覆盖月亮。\n\n注意，上述给出的时间和风速都只是无穷多种选择中的示例。",
   "samples": [
     {
       "input": "5 1 2\n-2 1\n2 1\n3 -1\n5 -1\n7 -1\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:29:23.349Z"
+  "fetchedAt": "2026-10-31T00:29:23.349Z",
+  "translatedAt": "2026-11-04T05:39:11.699+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

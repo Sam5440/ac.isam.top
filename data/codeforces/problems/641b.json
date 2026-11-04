@@ -4,7 +4,7 @@
   "contestId": 641,
   "index": "B",
   "title": "Little Artem and Matrix",
-  "titleZh": null,
+  "titleZh": "小阿尔乔姆与矩阵",
   "url": "https://codeforces.com/contest/641/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Little Artem likes electronics. He can spend lots of time making different schemas and looking for novelties in the nearest electronics store. The new control element was delivered to the store recently and Artem immediately bought it.\n\nThat element can store information about the matrix of integers size $*n* × *m*$. There are $*n* + *m*$ inputs in that element, i.e. each row and each column can get the signal. When signal comes to the input corresponding to some row, this row cyclically shifts to the left, that is the first element of the row becomes last element, second element becomes first and so on. When signal comes to the input corresponding to some column, that column shifts cyclically to the top, that is first element of the column becomes last element, second element becomes first and so on. Rows are numbered with integers from $1$ to $*n*$ from top to bottom, while columns are numbered with integers from $1$ to $*m*$ from left to right.\n\nArtem wants to carefully study this element before using it. For that purpose he is going to set up an experiment consisting of $*q*$ turns. On each turn he either sends the signal to some input or checks what number is stored at some position of the matrix.\n\nArtem has completed his experiment and has written down the results, but he has lost the chip! Help Artem find any initial matrix that will match the experiment results. It is guaranteed that experiment data is consistent, which means at least one valid matrix exists.\n\n## Input\n\nThe first line of the input contains three integers $*n*$, $*m*$ and $*q*$ ($1 ≤ *n*, *m* ≤ 100, 1 ≤ *q* ≤ 10 000$) — dimensions of the matrix and the number of turns in the experiment, respectively.\n\nNext $*q*$ lines contain turns descriptions, one per line. Each description starts with an integer $*t*_{*i*}$ ($1 ≤ *t*_{*i*} ≤ 3$) that defines the type of the operation. For the operation of first and second type integer $*r*_{*i*}$ ($1 ≤ *r*_{*i*} ≤ *n*$) or $*c*_{*i*}$ ($1 ≤ *c*_{*i*} ≤ *m*$) follows, while for the operations of the third type three integers $*r*_{*i*}$, $*c*_{*i*}$ and $*x*_{*i*}$ ($1 ≤ *r*_{*i*} ≤ *n*$, $1 ≤ *c*_{*i*} ≤ *m*$, $- 10^{9} ≤ *x*_{*i*} ≤ 10^{9}$) are given.\n\nOperation of the first type ($*t*_{*i*} = 1$) means that signal comes to the input corresponding to row $*r*_{*i*}$, that is it will shift cyclically. Operation of the second type ($*t*_{*i*} = 2$) means that column $*c*_{*i*}$ will shift cyclically. Finally, operation of the third type means that at this moment of time cell located in the row $*r*_{*i*}$ and column $*c*_{*i*}$ stores value $*x*_{*i*}$.\n\n## Output\n\nPrint the description of any valid initial matrix as $*n*$ lines containing $*m*$ integers each. All output integers should not exceed $10^{9}$ by their absolute value.\n\nIf there are multiple valid solutions, output any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "小阿尔乔姆喜欢电子学。他可以花费大量时间制作各种电路图，并在附近的电子商店里寻找新奇的东西。最近商店里进了一种新的控制元件，阿尔乔姆立即买下了它。\n\n这种元件可以存储一个大小为 $*n* × *m*$ 的整数矩阵的信息。该元件有 $*n* + *m*$ 个输入端，也就是说，每一行和每一列都可以接收信号。当与某一行对应的输入端接收到信号时，该行会循环左移，即该行的第一个元素变为最后一个元素，第二个元素变为第一个元素，依此类推。当与某一列对应的输入端接收到信号时，该列会循环上移，即该列的第一个元素变为最后一个元素，第二个元素变为第一个元素，依此类推。行从上到下编号为 $1$ 到 $*n*$，列从左到右编号为 $1$ 到 $*m*$。\n\n阿尔乔姆想在使用这个元件之前仔细研究它。为此，他准备进行一个包含 $*q*$ 个操作的实验。每次操作中，他要么向某个输入端发送信号，要么检查矩阵某个位置上存储的数字。\n\n阿尔乔姆已经完成了实验并记录了结果，但他把芯片弄丢了！请帮助阿尔乔姆找出任意一个与实验结果相符的初始矩阵。保证实验数据是一致的，即至少存在一个合法的矩阵。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*$、$*m*$ 和 $*q*$（$1 ≤ *n*, *m* ≤ 100$，$1 ≤ *q* ≤ 10 000$），分别表示矩阵的行数、列数以及实验中的操作次数。\n\n接下来 $*q*$ 行每行描述一次操作。每个描述以一个整数 $*t*_{*i*}$（$1 ≤ *t*_{*i*} ≤ 3$）开头，表示操作类型。对于第一类和第二类操作，后面分别给出整数 $*r*_{*i*}$（$1 ≤ *r*_{*i*} ≤ *n*$）或 $*c*_{*i*}$（$1 ≤ *c*_{*i*} ≤ *m*$）；对于第三类操作，后面给出三个整数 $*r*_{*i*}$、$*c*_{*i*}$ 和 $*x*_{*i*}$（$1 ≤ *r*_{*i*} ≤ *n*$，$1 ≤ *c*_{*i*} ≤ *m*$，$- 10^{9} ≤ *x*_{*i*} ≤ 10^{9}$）。\n\n第一类操作（$*t*_{*i*} = 1$）表示向与行 $*r*_{*i*}$ 对应的输入端发送信号，即该行将进行循环移位。第二类操作（$*t*_{*i*} = 2$）表示列 $*c*_{*i*}$ 将进行循环移位。最后，第三类操作表示在此时刻，位于行 $*r*_{*i*}$、列 $*c*_{*i*}$ 的单元格中存储的值为 $*x*_{*i*}$。\n\n## 输出格式\n\n输出任意一个合法的初始矩阵，包含 $*n*$ 行，每行 $*m*$ 个整数。所有输出整数的绝对值均不得超过 $10^{9}$。\n\n如果存在多个合法解，输出任意一个即可。",
   "samples": [
     {
       "input": "2 2 6\n2 1\n2 2\n3 1 1 1\n3 2 2 2\n3 1 2 8\n3 2 1 8\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:13:29.319Z"
+  "fetchedAt": "2026-10-31T01:13:29.319Z",
+  "translatedAt": "2026-11-04T06:36:15.137+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

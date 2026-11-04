@@ -4,7 +4,7 @@
   "contestId": 1031,
   "index": "B",
   "title": "Curiosity Has No Limits",
-  "titleZh": null,
+  "titleZh": "好奇心没有极限",
   "url": "https://codeforces.com/contest/1031/problem/B",
   "difficulty": 1500,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "When Masha came to math classes today, she saw two integer sequences of length $n - 1$ on the blackboard. Let's denote the elements of the first sequence as $a_i$ ($0 \\le a_i \\le 3$), and the elements of the second sequence as $b_i$ ($0 \\le b_i \\le 3$).\n\nMasha became interested if or not there is an integer sequence of length $n$, which elements we will denote as $t_i$ ($0 \\le t_i \\le 3$), so that for every $i$ ($1 \\le i \\le n - 1$) the following is true:\n\n- $a_i = t_i | t_{i + 1}$ (where $|$ denotes the [bitwise OR operation](https://en.wikipedia.org/wiki/Bitwise_operation#OR)) and\n- $b_i = t_i \\& t_{i + 1}$ (where $\\&$ denotes the [bitwise AND operation](https://en.wikipedia.org/wiki/Bitwise_operation#AND)).\n\nThe question appeared to be too difficult for Masha, so now she asked you to check whether such a sequence $t_i$ of length $n$ exists. If it exists, find such a sequence. If there are multiple such sequences, find any of them.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 10^5$) — the length of the sequence $t_i$.\n\nThe second line contains $n - 1$ integers $a_1, a_2, \\ldots, a_{n-1}$ ($0 \\le a_i \\le 3$) — the first sequence on the blackboard.\n\nThe third line contains $n - 1$ integers $b_1, b_2, \\ldots, b_{n-1}$ ($0 \\le b_i \\le 3$) — the second sequence on the blackboard.\n\n## Output\n\nIn the first line print \"`YES`\" (without quotes), if there is a sequence $t_i$ that satisfies the conditions from the statements, and \"`NO`\" (without quotes), if there is no such sequence.\n\nIf there is such a sequence, on the second line print $n$ integers $t_1, t_2, \\ldots, t_n$ ($0 \\le t_i \\le 3$) — the sequence that satisfies the statements conditions.\n\nIf there are multiple answers, print any of them.\n\n## Note\n\nIn the first example it's easy to see that the sequence from output satisfies the given conditions:\n\n- $t_1 | t_2 = (01_2) | (11_2) = (11_2) = 3 = a_1$ and $t_1 \\& t_2 = (01_2) \\& (11_2) = (01_2) = 1 = b_1$;\n- $t_2 | t_3 = (11_2) | (10_2) = (11_2) = 3 = a_2$ and $t_2 \\& t_3 = (11_2) \\& (10_2) = (10_2) = 2 = b_2$;\n- $t_3 | t_4 = (10_2) | (00_2) = (10_2) = 2 = a_3$ and $t_3 \\& t_4 = (10_2) \\& (00_2) = (00_2) = 0 = b_3$.\n\nIn the second example there is no such sequence.",
-  "statementZhMd": null,
+  "statementZhMd": "当玛莎今天来到数学课时，她看到黑板上有两个长度为 $n - 1$ 的整数序列。将第一个序列的元素记为 $a_i$（$0 \\le a_i \\le 3$），将第二个序列的元素记为 $b_i$（$0 \\le b_i \\le 3$）。\n\n玛莎想知道，是否存在一个长度为 $n$ 的整数序列，其元素记为 $t_i$（$0 \\le t_i \\le 3$），使得对于每个 $i$（$1 \\le i \\le n - 1$），以下条件均成立：\n\n- $a_i = t_i | t_{i + 1}$（其中 $|$ 表示[按位或运算](https://en.wikipedia.org/wiki/Bitwise_operation#OR)）；\n- $b_i = t_i \\& t_{i + 1}$（其中 $\\&$ 表示[按位与运算](https://en.wikipedia.org/wiki/Bitwise_operation#AND)）。\n\n这个问题对玛莎来说太难了，所以她请你判断是否存在这样的长度为 $n$ 的序列 $t_i$。如果存在，请找出这样一个序列。如果有多个这样的序列，输出任意一个即可。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 10^5$）——序列 $t_i$ 的长度。\n\n第二行包含 $n - 1$ 个整数 $a_1, a_2, \\ldots, a_{n-1}$（$0 \\le a_i \\le 3$）——黑板上的第一个序列。\n\n第三行包含 $n - 1$ 个整数 $b_1, b_2, \\ldots, b_{n-1}$（$0 \\le b_i \\le 3$）——黑板上的第二个序列。\n\n## 输出格式\n\n如果存在满足题面条件的序列 $t_i$，第一行输出 `YES`（不含引号）；如果不存在，输出 `NO`（不含引号）。\n\n如果存在这样的序列，在第二行输出 $n$ 个整数 $t_1, t_2, \\ldots, t_n$（$0 \\le t_i \\le 3$）——满足题面条件的序列。\n\n如果有多个答案，输出任意一个即可。\n\n## 说明\n\n在第一个样例中，很容易验证输出中的序列满足给定条件：\n\n- $t_1 | t_2 = (01_2) | (11_2) = (11_2) = 3 = a_1$，且 $t_1 \\& t_2 = (01_2) \\& (11_2) = (01_2) = 1 = b_1$；\n- $t_2 | t_3 = (11_2) | (10_2) = (11_2) = 3 = a_2$，且 $t_2 \\& t_3 = (11_2) \\& (10_2) = (10_2) = 2 = b_2$；\n- $t_3 | t_4 = (10_2) | (00_2) = (10_2) = 2 = a_3$，且 $t_3 \\& t_4 = (10_2) \\& (00_2) = (00_2) = 0 = b_3$。\n\n在第二个样例中，不存在这样的序列。",
   "samples": [
     {
       "input": "4\n3 3 2\n1 2 0\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:26:12.823Z"
+  "fetchedAt": "2026-10-31T00:26:12.823Z",
+  "translatedAt": "2026-11-04T05:27:48.822+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1250,
   "index": "M",
   "title": "SmartGarden",
-  "titleZh": null,
+  "titleZh": "智能花园",
   "url": "https://codeforces.com/contest/1250/problem/M",
   "difficulty": 2500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Berland Gardeners United Inc. hired you for the project called \"SmartGarden\". The main feature of this project is automatic garden watering.\n\nFormally the garden can be represented as a square of $n \\times n$ cells with rows numbered $1$ to $n$ from top to bottom and columns numbered $1$ to $n$ from left to right. Each cell of the garden contains either a plant or a slab.\n\nIt's known that slabs are located on the main diagonal of the matrix representing the garden, and in the cells that are below the main diagonal and share a side with at least one cell of the main diagonal. All the remaining cells of the garden are filled with plants.\n\n![image](https://espresso.codeforces.com/780b84f1bd4106fe9ff4ed8e9459170ddb84cb87.png) Example of the garden for $n=5$.\n\nDuring implementation of the project you created a smart robot that takes a list of commands as an input, which are processed one by one. Each command contains:\n\n- a list of horizontal lines (rows in the matrix representing the garden);\n- a list of vertical lines (columns in the matrix representing the garden).\n\nWhile executing each command robot waters only cells in the intersection of specified rows and specified columns. So, if you specify $r$ rows and $c$ columns, then exactly $r \\cdot c$ cells will be watered.\n\nIn the demo for the customer you have tuned robot in such a way that it waters all the garden. To do that you prepared a single command containing all $n$ rows and all $n$ columns.\n\nUnfortunately, 5 hours before the demo for your customer it turned out that the CEO of Berland Gardeners United Inc. was going to take part in it. Moreover, most probably he will be standing on a garden slab during the demo!\n\nNow you need to create a list of commands for the robot so that it waters all the plants and doesn't water any cell containing a slab. Since it's only a beta version of \"SmartGarden\", the total number of commands shouldn't exceed $50$.\n\nCreate a program that, for a given size of the garden, will find a list of no more than $50$ commands that allow the robot to water all the plants in the garden without watering the slabs. It is allowed to water a plant several times.\n\n## Input\n\nThe first and the only line of the input contains a single integer $n$ ($2 \\le n \\le 5000$), where $n$ is the size of the garden.\n\n## Output\n\nIn the first line print the total number of commands for the robot $k$ ($1 \\le k \\le 50$). In the next $2 \\cdot k$ lines print all the commands. Each command should be specified by $2$ lines. The first line of each command should describe rows in the command and the second line should describe columns in the command. Each of these $2$ lines should have the following format:\n\n- the first number of the line should specify the total number of items $x$ in the appropriate list;\n- then $x$ **distinct** numbers follow, where each number is in the range $1 \\dots n$ and describes a chosen row for the first line and a chosen column for the second line.\n\nIf there are multiple ways to water the garden, print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "Berland Gardeners United Inc. 聘请你参与名为“SmartGarden”的项目。该项目的主要功能是自动浇灌花园。\n\n形式化地说，花园可以表示为一个由 $n \\times n$ 个单元格组成的正方形，行从上到下编号为 $1$ 到 $n$，列从左到右编号为 $1$ 到 $n$。花园的每个单元格中 либо 是植物，或者是石板。\n\n已知石板位于表示花园的矩阵的主对角线上，以及主对角线下方且与主对角线上的至少一个单元格共享一条边的单元格中。花园的其余所有单元格都种有植物。\n\n![image](https://espresso.codeforces.com/780b84f1bd4106fe9ff4ed8e9459170ddb84cb87.png) $n=5$ 时的花园示例。\n\n在项目实施过程中，你制作了一个智能机器人。它以一个命令列表作为输入，并按顺序逐个执行这些命令。每条命令包含：\n\n- 一组水平线（即表示花园的矩阵中的行）；\n- 一组垂直线（即表示花园的矩阵中的列）。\n\n在执行每条命令时，机器人只会浇灌指定行与指定列的交叉单元格。因此，如果指定了 $r$ 行和 $c$ 列，那么恰好会有 $r \\cdot c$ 个单元格被浇灌。\n\n在向客户演示时，你已经将机器人调整为浇灌整个花园。为此，你准备了一条包含全部 $n$ 行和全部 $n$ 列的命令。\n\n不幸的是，在面向客户的演示开始前 5 小时，你得知 Berland Gardeners United Inc. 的 CEO 将参加此次演示。而且，他很可能会在演示期间站在花园的石板上！\n\n现在，你需要为机器人创建一个命令列表，使其浇灌所有植物，并且不浇灌任何包含石板的单元格。由于“SmartGarden”目前只是测试版本，命令总数不能超过 $50$。\n\n请编写一个程序，对于给定的花园大小，找出一个不超过 $50$ 条命令的命令列表，使机器人能够浇灌花园中的所有植物，同时不浇灌石板。允许多次浇灌同一株植物。\n\n## 输入格式\n\n输入仅一行，包含一个整数 $n$（$2 \\le n \\le 5000$），表示花园的大小。\n\n## 输出格式\n\n第一行输出机器人的命令总数 $k$（$1 \\le k \\le 50$）。接下来的 $2 \\cdot k$ 行输出所有命令。每条命令需要用 $2$ 行描述。每条命令的第一行应描述该命令中的行，第二行应描述该命令中的列。这 $2$ 行中的每一行都应具有以下格式：\n\n- 行中的第一个数字应指定相应列表中元素的总数 $x$；\n- 接下来是 $x$ 个**互不相同**的数字，其中每个数字都在 $1 \\dots n$ 范围内，第一行中的数字表示所选的行，第二行中的数字表示所选的列。\n\n如果有多种浇灌花园的方法，输出其中任意一种即可。",
   "samples": [
     {
       "input": "2\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:02:08.423Z"
+  "fetchedAt": "2026-11-02T19:02:08.423Z",
+  "translatedAt": "2026-11-04T04:57:05.573+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

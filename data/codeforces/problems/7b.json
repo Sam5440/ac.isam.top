@@ -4,7 +4,7 @@
   "contestId": 7,
   "index": "B",
   "title": "Memory Manager",
-  "titleZh": null,
+  "titleZh": "内存管理器",
   "url": "https://codeforces.com/contest/7/problem/B",
   "difficulty": 1600,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 64,
   "statementMd": "There is little time left before the release of the first national operating system BerlOS. Some of its components are not finished yet — the memory manager is among them. According to the developers' plan, in the first release the memory manager will be very simple and rectilinear. It will support three operations:\n\n- `alloc n` — to allocate $*n*$ bytes of the memory and return the allocated block's identifier $*x*$;\n- `erase x` — to erase the block with the identifier $*x*$;\n- `defragment` — to defragment the free memory, bringing all the blocks as close to the beginning of the memory as possible and preserving their respective order;\n\nThe memory model in this case is very simple. It is a sequence of $*m*$ bytes, numbered for convenience from the first to the $*m*$-th.\n\nThe first operation `alloc n` takes as the only parameter the size of the memory block that is to be allocated. While processing this operation, a free block of $*n*$ successive bytes is being allocated in the memory. If the amount of such blocks is more than one, the block closest to the beginning of the memory (i.e. to the first byte) is prefered. All these bytes are marked as not free, and the memory manager returns a 32-bit integer numerical token that is the identifier of this block. If it is impossible to allocate a free block of this size, the function returns `NULL`.\n\nThe second operation `erase x` takes as its parameter the identifier of some block. This operation frees the system memory, marking the bytes of this block as free for further use. In the case when this identifier does not point to the previously allocated block, which has not been erased yet, the function returns `ILLEGAL_ERASE_ARGUMENT`.\n\nThe last operation `defragment` does not have any arguments and simply brings the occupied memory sections closer to the beginning of the memory without changing their respective order.\n\nIn the current implementation you are to use successive integers, starting with 1, as identifiers. Each successful `alloc` operation procession should return following number. Unsuccessful `alloc` operations do not affect numeration.\n\nYou are to write the implementation of the memory manager. You should output the returned value for each `alloc` command. You should also output `ILLEGAL_ERASE_ARGUMENT` for all the failed `erase` commands.\n\n## Input\n\nThe first line of the input data contains two positive integers $*t*$ and $*m*$ ($1 ≤ *t* ≤ 100;1 ≤ *m* ≤ 100$), where $*t*$ — the amount of operations given to the memory manager for processing, and $*m*$ — the available memory size in bytes. Then there follow $*t*$ lines where the operations themselves are given. The first operation is `alloc n` ($1 ≤ *n* ≤ 100$), where $*n*$ is an integer. The second one is `erase x`, where $*x*$ is an arbitrary 32-bit integer numerical token. The third operation is `defragment`.\n\n## Output\n\nOutput the sequence of lines. Each line should contain either the result of `alloc` operation procession , or `ILLEGAL_ERASE_ARGUMENT` as a result of failed `erase` operation procession. Output lines should go in the same order in which the operations are processed. Successful procession of `alloc` operation should return integers, starting with 1, as the identifiers of the allocated blocks.",
-  "statementZhMd": null,
+  "statementZhMd": "在第一个国家级操作系统 BerlOS 发布前，剩余的时间已经不多了。它的一些组件还没有完成——内存管理器就是其中之一。根据开发者的计划，在第一个版本中，内存管理器将会非常简单直接。它支持以下三种操作：\n\n- `alloc n` —— 分配 $*n*$ 字节的内存，并返回所分配内存块的标识符 $*x*$；\n- `erase x` —— 删除标识符为 $*x*$ 的内存块；\n- `defragment` —— 整理空闲内存，使所有内存块尽可能靠近内存起始位置，同时保持它们原有的相对顺序；\n\n这里的内存模型非常简单。它是一个包含 $*m*$ 个字节的序列，为方便起见，这些字节从第一个到第 $*m*$ 个依次编号。\n\n第一个操作 `alloc n` 只有一个参数，即要分配的内存块大小。处理该操作时，系统会在内存中分配一段连续的、包含 $*n*$ 个字节的空闲空间。如果这样的空间有多个，则选择最靠近内存起始位置（即第一个字节）的那一段。所有这些字节都会被标记为非空闲状态，并且内存管理器会返回一个 32 位整数标识符，作为该内存块的标识。如果无法分配指定大小的空闲空间，则函数返回 `NULL`。\n\n第二个操作 `erase x` 的参数是某个内存块的标识符。该操作会释放系统内存，将该内存块所占用的字节标记为空闲，以便后续使用。如果该标识符不对应某个此前已分配且尚未被删除的内存块，则函数返回 `ILLEGAL_ERASE_ARGUMENT`。\n\n最后一个操作 `defragment` 不带任何参数，其作用只是将已占用的内存区域尽可能向内存起始位置移动，同时不改变它们原有的相对顺序。\n\n在当前实现中，你需要使用从 1 开始的连续整数作为标识符。每次成功执行 `alloc` 操作时，都应返回下一个编号。执行失败的 `alloc` 操作不会影响编号的分配。\n\n你需要实现这个内存管理器。对于每条 `alloc` 命令，你都应输出其返回值；对于所有执行失败的 `erase` 命令，还应输出 `ILLEGAL_ERASE_ARGUMENT`。\n\n## 输入格式\n\n输入数据的第一行包含两个正整数 $*t*$ 和 $*m*$（$1 ≤ *t* ≤ 100;1 ≤ *m* ≤ 100$），其中 $*t*$ 表示需要由内存管理器处理的操作数，$*m*$ 表示可用内存的字节数。接下来有 $*t*$ 行，每行给出一个操作。操作有以下三种形式：`alloc n`（$1 ≤ *n* ≤ 100$），其中 $*n*$ 是一个整数；`erase x`，其中 $*x*$ 是任意的 32 位整数标识符；以及 `defragment`。\n\n## 输出格式\n\n输出若干行。每行应包含执行 `alloc` 操作的结果，或作为执行失败的 `erase` 操作结果的 `ILLEGAL_ERASE_ARGUMENT`。输出行的顺序应与操作的执行顺序相同。成功执行 `alloc` 操作时，应返回从 1 开始的整数，作为所分配内存块的标识符。",
   "samples": [
     {
       "input": "6 10\nalloc 5\nalloc 3\nerase 1\nalloc 6\ndefragment\nalloc 6\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:25:42.388Z"
+  "fetchedAt": "2026-11-02T20:25:42.388Z",
+  "translatedAt": "2026-11-04T08:01:31.355+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

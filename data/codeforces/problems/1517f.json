@@ -4,7 +4,7 @@
   "contestId": 1517,
   "index": "F",
   "title": "Reunion",
-  "titleZh": null,
+  "titleZh": "重聚",
   "url": "https://codeforces.com/contest/1517/problem/F",
   "difficulty": 3200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "It is reported that the 2050 Conference will be held in Yunqi Town in Hangzhou from April 23 to 25, including theme forums, morning jogging, camping and so on.\n\nThe relationship between the $n$ volunteers of the 2050 Conference can be represented by a tree (a connected undirected graph with $n$ vertices and $n-1$ edges). The $n$ vertices of the tree corresponds to the $n$ volunteers and are numbered by $1,2,\\ldots, n$.\n\nWe define the distance between two volunteers $i$ and $j$, dis$(i,j)$ as the number of edges on the shortest path from vertex $i$ to vertex $j$ on the tree. dis$(i,j)=0$ whenever $i=j$.\n\nSome of the volunteers can attend the on-site reunion while others cannot. If for some volunteer $x$ and nonnegative integer $r$, all volunteers whose distance to $x$ is no more than $r$ can attend the on-site reunion, a forum with radius $r$ can take place. The *level* of the on-site reunion is defined as the maximum possible radius of any forum that can take place.\n\nAssume that each volunteer can attend the on-site reunion with probability $\\frac{1}{2}$ and these events are independent. Output the expected level of the on-site reunion. When no volunteer can attend, the level is defined as $-1$. When all volunteers can attend, the level is defined as $n$.\n\n## Input\n\nThe first line contains a single integer $n$ ($2\\le n\\le 300$) denoting the number of volunteers.\n\nEach of the next $n-1$ lines contains two integers $a$ and $b$ denoting an edge between vertex $a$ and vertex $b$.\n\n## Output\n\nOutput the expected level modulo $998\\,244\\,353$.\n\nFormally, let $M = 998\\,244\\,353$. It can be shown that the answer can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $p \\cdot q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot q \\equiv p \\pmod{M}$.\n\n## Note\n\nFor the first example, the following table shows all possible outcomes. $yes$ means the volunteer can attend the on-site reunion and $no$ means he cannot attend. $$\\begin{array}{cccc} 1 & 2 & 3 & level\\\\ yes & yes & yes & 3\\\\ yes & yes & no & 1\\\\ yes & no & yes & 0\\\\ yes & no & no & 0\\\\ no & yes & yes & 1\\\\ no & yes & no & 0\\\\ no & no & yes & 0\\\\ no & no & no & -1\\\\ \\end{array}$$ The expected level is $\\frac{3+1+1+(-1)}{2^3}=\\frac{1}{2}$.",
-  "statementZhMd": null,
+  "statementZhMd": "据报道，2050 会议将于 4 月 23 日至 25 日在杭州云栖小镇举行，活动包括主题论坛、晨跑、露营等。\n\n2050 会议的 $n$ 名志愿者之间的关系可以用一棵树表示（即一个包含 $n$ 个顶点和 $n-1$ 条边的连通无向图）。树中的 $n$ 个顶点分别对应 $n$ 名志愿者，编号为 $1,2,\\ldots, n$。\n\n我们将志愿者 $i$ 和 $j$ 之间的距离记为 dis$(i,j)$，表示树上从顶点 $i$ 到顶点 $j$ 的最短路径上的边数。当 $i=j$ 时，dis$(i,j)=0$。\n\n部分志愿者可以参加线下重聚，而其他志愿者无法参加。如果对于某个志愿者 $x$ 和非负整数 $r$，所有与 $x$ 的距离不超过 $r$ 的志愿者都可以参加线下重聚，则可以举办一个半径为 $r$ 的论坛。线下重聚的**级别**定义为能够举办的论坛的最大半径。\n\n假设每名志愿者都以概率 $\\frac{1}{2}$ 参加线下重聚，且这些事件相互独立。请输出线下重聚级别的期望值。当没有志愿者可以参加时，级别定义为 $-1$；当所有志愿者都可以参加时，级别定义为 $n$。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2\\le n\\le 300$），表示志愿者的数量。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $a$ 和 $b$，表示顶点 $a$ 和顶点 $b$ 之间有一条边。\n\n## 输出格式\n\n输出线下重聚级别期望值对 $998\\,244\\,353$ 取模后的结果。\n\n形式化地，令 $M = 998\\,244\\,353$。可以证明答案可以表示为最简分数 $\\frac{p}{q}$，其中 $p$ 和 $q$ 为整数，且 $q \\not \\equiv 0 \\pmod{M}$。请输出满足 $p \\cdot q^{-1} \\bmod M$ 的整数。换句话说，输出一个满足 $0 \\le x \\lt M$ 且 $x \\cdot q \\equiv p \\pmod{M}$ 的整数 $x$。\n\n## 说明\n\n对于第一个样例，下面的表格展示了所有可能的结果。$$\\begin{array}{cccc} 1 & 2 & 3 & level\\\\ yes & yes & yes & 3\\\\ yes & yes & no & 1\\\\ yes & no & yes & 0\\\\ yes & no & no & 0\\\\ no & yes & yes & 1\\\\ no & yes & no & 0\\\\ no & no & yes & 0\\\\ no & no & no & -1\\\\ \\end{array}$$ 期望级别为 $\\frac{3+1+1+(-1)}{2^3}=\\frac{1}{2}$。",
   "samples": [
     {
       "input": "3\n1 2\n2 3\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:33:29.082Z"
+  "fetchedAt": "2026-10-30T23:33:29.082Z",
+  "translatedAt": "2026-11-04T03:57:56.793+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

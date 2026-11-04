@@ -4,7 +4,7 @@
   "contestId": 798,
   "index": "E",
   "title": "Mike and code of a permutation",
-  "titleZh": null,
+  "titleZh": "Mike 与排列的编码",
   "url": "https://codeforces.com/contest/798/problem/E",
   "difficulty": 3000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Mike has discovered a new way to encode permutations. If he has a permutation $*P* = [*p*_{1}, *p*_{2}, ..., *p*_{*n*}]$, he will encode it in the following way:\n\nDenote by $*A* = [*a*_{1}, *a*_{2}, ..., *a*_{*n*}]$ a sequence of length $*n*$ which will represent the code of the permutation. For each $*i*$ from $1$ to $*n*$ sequentially, he will choose the smallest unmarked $*j*$ ($1 ≤ *j* ≤ *n*$) such that $*p*_{*i*} < *p*_{*j*}$ and will assign to $*a*_{*i*}$ the number $*j*$ (in other words he performs $*a*_{*i*} = *j*$) and will mark $*j*$. If there is no such $*j*$, he'll assign to $*a*_{*i*}$ the number $- 1$ (he performs $*a*_{*i*} =  - 1$).\n\nMike forgot his original permutation but he remembers its code. Your task is simple: find **any** permutation such that its code is the same as the code of Mike's original permutation.\n\nYou may assume that there will always be at least one valid permutation.\n\n## Input\n\nThe first line contains single integer $*n*$ ($1 ≤ *n* ≤ 500 000$) — length of permutation.\n\nThe second line contains $*n*$ space-separated integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ *n*$ or $*a*_{*i*} =  - 1$) — the code of Mike's permutation.\n\nYou may assume that all positive values from $*A*$ are different.\n\n## Output\n\nIn first and only line print $*n*$ numbers $*p*_{1}, *p*_{2}, ..., *p*_{*n*}$ ($1 ≤ *p*_{*i*} ≤ *n*$) — a permutation $*P*$ which has the same code as the given one. Note that numbers in permutation are distinct.\n\n## Note\n\nFor the permutation from the first example:\n\n$*i* = 1$, the smallest $*j*$ is $2$ because $*p*_{2} = 6 > *p*_{1} = 2$.\n\n$*i* = 2$, there is no $*j*$ because $*p*_{2} = 6$ is the greatest element in the permutation.\n\n$*i* = 3$, the smallest $*j*$ is $1$ because $*p*_{1} = 2 > *p*_{3} = 1$.\n\n$*i* = 4$, the smallest $*j*$ is $5$ ($2$ was already marked) because $*p*_{5} = 5 > *p*_{4} = 4$.\n\n$*i* = 5$, there is no $*j*$ because $2$ is already marked.\n\n$*i* = 6$, the smallest $*j*$ is $4$ because $*p*_{4} = 4 > *p*_{6} = 3$.",
-  "statementZhMd": null,
+  "statementZhMd": "Mike 发明了一种新的排列编码方式。假设他有一个排列 $*P* = [*p*_{1}, *p*_{2}, ..., *p*_{*n*}]$，他会按照如下方式对其进行编码：\n\n令 $*A* = [*a*_{1}, *a*_{2}, ..., *a*_{*n*}]$ 为一个长度为 $*n*$ 的序列，它表示该排列的编码。对于每个从 $1$ 到 $*n*$ 的 $*i*$，依次选择满足 $*p*_{*i*} < *p*_{*j*}$ 的最小未标记 $*j*$（$1 ≤ *j* ≤ *n*$），并令 $*a*_{*i*}$ 等于 $*j*$（换句话说，执行 $*a*_{*i*} = *j*$），然后标记 $*j*$。如果不存在这样的 $*j*$，则令 $*a*_{*i*}$ 等于 $- 1$（执行 $*a*_{*i*} =  - 1$）。\n\nMike 忘记了原来的排列，但他记得它的编码。你的任务很简单：找出**任意一个**排列，使其编码与 Mike 原来排列的编码相同。\n\n可以保证至少存在一个合法的排列。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 500 000$），表示排列的长度。\n\n第二行包含 $*n*$ 个用空格分隔的整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ *n*$ 或 $*a*_{*i*} =  - 1$），表示 Mike 的排列的编码。\n\n可以保证 $*A*$ 中所有正数值互不相同。\n\n## 输出格式\n\n在唯一一行中输出 $*n*$ 个整数 $*p*_{1}, *p*_{2}, ..., *p*_{*n*}$（$1 ≤ *p*_{*i*} ≤ *n*$），表示一个与给定编码相同的排列 $*P*$。注意，排列中的数字互不相同。\n\n## 说明\n\n对于第一个样例中的排列：\n\n$*i* = 1$ 时，最小的 $*j*$ 是 $2$，因为 $*p*_{2} = 6 > *p*_{1} = 2$。\n\n$*i* = 2$ 时，不存在这样的 $*j*$，因为 $*p*_{2} = 6$ 是排列中的最大元素。\n\n$*i* = 3$ 时，最小的 $*j*$ 是 $1$，因为 $*p*_{1} = 2 > *p*_{3} = 1$。\n\n$*i* = 4$ 时，最小的 $*j*$ 是 $5$（$2$ 已经被标记），因为 $*p*_{5} = 5 > *p*_{4} = 4$。\n\n$*i* = 5$ 时，不存在这样的 $*j*$，因为 $2$ 已经被标记。\n\n$*i* = 6$ 时，最小的 $*j*$ 是 $4$，因为 $*p*_{4} = 4 > *p*_{6} = 3$。",
   "samples": [
     {
       "input": "6\n2 -1 1 5 -1 4\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:53:22.883Z"
+  "fetchedAt": "2026-10-31T00:53:22.883Z",
+  "translatedAt": "2026-11-04T06:10:40.401+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

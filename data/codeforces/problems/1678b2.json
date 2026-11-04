@@ -4,7 +4,7 @@
   "contestId": 1678,
   "index": "B2",
   "title": "Tokitsukaze and Good 01-String (hard version)",
-  "titleZh": null,
+  "titleZh": "Tokitsukaze 与 Good 01-String（困难版）",
   "url": "https://codeforces.com/contest/1678/problem/B2",
   "difficulty": 1800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*This is the hard version of the problem. The only difference between the two versions is that the harder version asks additionally for a minimum number of subsegments.*\n\nTokitsukaze has a binary string $s$ of length $n$, consisting only of zeros and ones, $n$ is **even**.\n\nNow Tokitsukaze divides $s$ into **the minimum number** of **contiguous** subsegments, and for each subsegment, all bits in each subsegment are the same. After that, $s$ is considered good if the lengths of all subsegments are even.\n\nFor example, if $s$ is \"`11001111`\", it will be divided into \"`11`\", \"`00`\" and \"`1111`\". Their lengths are $2$, $2$, $4$ respectively, which are all even numbers, so \"`11001111`\" is good. Another example, if $s$ is \"`1110011000`\", it will be divided into \"`111`\", \"`00`\", \"`11`\" and \"`000`\", and their lengths are $3$, $2$, $2$, $3$. Obviously, \"`1110011000`\" is not good.\n\nTokitsukaze wants to make $s$ good by changing the values of some positions in $s$. Specifically, she can perform the operation any number of times: change the value of $s_i$ to '`0`' or '`1`' ($1 \\leq i \\leq n$). Can you tell her the minimum number of operations to make $s$ good? **Meanwhile, she also wants to know the minimum number of subsegments that $s$ can be divided into among all solutions with the minimum number of operations.**\n\n## Input\n\nThe first contains a single positive integer $t$ ($1 \\leq t \\leq 10\\,000$) — the number of test cases.\n\nFor each test case, the first line contains a single integer $n$ ($2 \\leq n \\leq 2 \\cdot 10^5$) — the length of $s$, it is guaranteed that $n$ is even.\n\nThe second line contains a binary string $s$ of length $n$, consisting only of zeros and ones.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single line with two integers — the minimum number of operations to make $s$ good, and the minimum number of subsegments that $s$ can be divided into among all solutions with the minimum number of operations.\n\n## Note\n\nIn the first test case, one of the ways to make $s$ good is the following.\n\nChange $s_3$, $s_6$ and $s_7$ to '`0`', after that $s$ becomes \"`1100000000`\", it can be divided into \"`11`\" and \"`00000000`\", which lengths are $2$ and $8$ respectively, the number of subsegments of it is $2$. There are other ways to operate $3$ times to make $s$ good, such as \"`1111110000`\", \"`1100001100`\", \"`1111001100`\", the number of subsegments of them are $2$, $4$, $4$ respectively. It's easy to find that the minimum number of subsegments among all solutions with the minimum number of operations is $2$.\n\nIn the second, third and fourth test cases, $s$ is good initially, so no operation is required.",
-  "statementZhMd": null,
+  "statementZhMd": "*这是本题的困难版本。两个版本之间的唯一区别是，困难版本还要求求出子段数量的最小值。*\n\nTokitsukaze 有一个长度为 $n$ 的二进制字符串 $s$，其中只包含零和一，且 $n$ 是**偶数**。\n\n现在，Tokitsukaze 将 $s$ 划分为**最少数量**的**连续**子段，并且对于每个子段，该子段中的所有字符都相同。之后，如果所有子段的长度都是偶数，则称 $s$ 是好的。\n\n例如，如果 $s$ 是“`11001111`”，它将被划分为“`11`”、“`00`”和“`1111`”。它们的长度分别为 $2$、$2$、$4$，均为偶数，因此“`11001111`”是好的。再例如，如果 $s$ 是“`1110011000`”，它将被划分为“`111`”、“`00`”、“`11`”和“`000`”，它们的长度分别为 $3$、$2$、$2$、$3$。显然，“`1110011000`”不是好的。\n\nTokitsukaze 想通过修改 $s$ 中某些位置的值，使 $s$ 变得好。具体来说，她可以进行任意次以下操作：将 $s_i$ 的值修改为“`0`”或“`1`”（$1 \\leq i \\leq n$）。请你告诉她使 $s$ 变好所需的最少操作次数。**同时，她还想知道在所有使用最少操作次数的方案中，$s$ 能被划分成的子段数量的最小值。**\n\n## 输入格式\n\n第一行包含一个正整数 $t$（$1 \\leq t \\leq 10\\,000$）——测试用例的数量。\n\n对于每个测试用例，第一行包含一个整数 $n$（$2 \\leq n \\leq 2 \\cdot 10^5$）——$s$ 的长度，保证 $n$ 为偶数。\n\n第二行包含一个长度为 $n$ 的二进制字符串 $s$，其中只包含零和一。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一行，包含两个整数——使 $s$ 变好所需的最少操作次数，以及在所有使用最少操作次数的方案中，$s$ 能被划分成的子段数量的最小值。\n\n## 说明\n\n在第一个测试用例中，使 $s$ 变好的方法之一如下。\n\n将 $s_3$、$s_6$ 和 $s_7$ 修改为“`0`”后，$s$ 变为“`1100000000`”，它可以被划分为“`11`”和“`00000000`”，它们的长度分别为 $2$ 和 $8$，子段数量为 $2$。还有其他进行 $3$ 次操作使 $s$ 变好的方法，例如“`1111110000`”、“`1100001100`”、“`1111001100`”，它们的子段数量分别为 $2$、$4$、$4$。很容易发现，在所有使用最少操作次数的方案中，子段数量的最小值为 $2$。\n\n在第二、第三和第四个测试用例中，$s$ 初始时就是好的，因此不需要进行任何操作。",
   "samples": [
     {
       "input": "5\n10\n1110011000\n8\n11001111\n2\n00\n2\n11\n6\n100110\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:02:12.547Z"
+  "fetchedAt": "2026-10-30T23:02:12.547Z",
+  "translatedAt": "2026-11-04T03:25:44.187+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

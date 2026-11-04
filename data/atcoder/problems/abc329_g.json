@@ -4,7 +4,7 @@
   "contestId": "abc329",
   "index": "G",
   "title": "Delivery on Tree",
-  "titleZh": null,
+  "titleZh": "树上的配送",
   "url": "https://atcoder.jp/contests/abc329/tasks/abc329_g",
   "difficulty": 2995,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given a binary tree with $N$ vertices. The vertices are numbered $1$ to $N$, with vertex $1$ being the root. The $i$-th edge $(1\\leq i \\leq N-1)$ connects vertex $i+1$ and vertex $P_i\\ (\\leq i)$ bidirectionally.\n\nThere are one basket and $M$ balls on this tree. The balls are numbered $1$ to $M$, and each ball $j$ has a designated **start vertex** $S_j$ and **goal vertex** $T_j$. Initially, the basket is empty and placed at vertex $1$, and the balls are placed at their respective start vertices.\n\nYou can perform the following operation any number of times in any order.\n\n- Let $v$ be the current vertex where the basket is placed. Do one of the following:\n- Choose one edge connected to vertex $v$, and move the basket along that edge to the adjacent vertex. The balls inside the basket move together with it.\n  - Choose a ball with the start vertex $v$ that is still placed at $v$, and put it into the basket. This operation can only be performed if the basket contains fewer than $K$ balls (that is, the basket cannot contain $K+1$ or more balls).\n  - Choose a ball with the goal vertex $v$ from the basket and take it out, placing it at vertex $v$.\n\nA sequence of operations is called a **good operation sequence** if and only if the basket is eventually empty and placed at vertex $1$, and the balls are eventually placed at their respective goal vertices.\n\nSince it is tiring to move the basket many times, the basket's movement path should traverse each edge exactly twice before returning to vertex $1$. Find the number, modulo $998244353$, of those paths such that a good operation sequence exists following that path.\n\n## Constraints\n\n- $2\\leq N \\leq 10^4$\n- $1\\leq M \\leq 2\\times 10^5$\n- $1\\leq K \\leq 10^3$\n- $1\\leq P_i \\leq i$\n- For every $v\\ (1\\leq v \\leq N)$, there are at most two $i$'s such that $P_i=v$.\n- $1\\leq S_j, T_j \\leq N$\n- $S_j \\neq T_j$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M K\nP_1 P_2 \\dots P_{N-1}\nS_1 T_1\nS_2 T_2\n\\vdots\nS_M T_M\n```\n\n## Output\n\nPrint the number, modulo $998244353$, of paths traversing every edge exactly twice before returning to vertex $1$ such that a good operation sequence exists following that path.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一棵有 $N$ 个顶点的二叉树。顶点编号为 $1$ 至 $N$，其中顶点 $1$ 是根。第 $i$ 条边 $(1\\leq i \\leq N-1)$ 将顶点 $i+1$ 与顶点 $P_i\\ (\\leq i)$ 双向连接。\n\n这棵树上有一个篮子和 $M$ 个球。球的编号为 $1$ 至 $M$，每个球 $j$ 都有指定的**起点** $S_j$ 和**终点** $T_j$。初始时，篮子为空并位于顶点 $1$，各个球分别位于自己的起点。\n\n你可以以任意顺序执行任意次以下操作。\n\n- 设篮子当前位于顶点 $v$。执行以下操作之一：\n- 选择一条与顶点 $v$ 相连的边，将篮子沿该边移动到相邻顶点。篮子中的球也会随之一起移动。\n  - 选择一个起点为顶点 $v$ 且仍位于顶点 $v$ 的球，将其放入篮子。仅当篮子中球的数量小于 $K$ 时才能执行此操作（也就是说，篮子中不能有 $K+1$ 个或更多的球）。\n  - 从篮子中选择一个终点为顶点 $v$ 的球，将其取出并放置在顶点 $v$。\n\n当且仅当最终篮子为空且位于顶点 $1$，并且所有球都位于各自的终点时，一系列操作才被称为**有效操作序列**。\n\n由于移动篮子很多次会很累，因此在返回顶点 $1$ 之前，篮子的移动路径应当恰好经过每条边两次。求满足沿该路径存在有效操作序列的路径数量，结果对 $998244353$ 取模。\n\n## 约束条件\n\n- $2\\leq N \\leq 10^4$\n- $1\\leq M \\leq 2\\times 10^5$\n- $1\\leq K \\leq 10^3$\n- $1\\leq P_i \\leq i$\n- 对于每个 $v\\ (1\\leq v \\leq N)$，满足 $P_i=v$ 的 $i$ 至多有两个。\n- $1\\leq S_j, T_j \\leq N$\n- $S_j \\neq T_j$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入给出，格式如下：\n\n```\nN M K\nP_1 P_2 \\dots P_{N-1}\nS_1 T_1\nS_2 T_2\n\\vdots\nS_M T_M\n```\n\n## 输出格式\n\n输出在返回顶点 $1$ 之前恰好经过每条边两次，且沿该路径存在有效操作序列的路径数量，结果对 $998244353$ 取模。",
   "samples": [
     {
       "input": "5 2 1\n1 1 3 3\n2 4\n5 3\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:11:37.392Z"
+  "fetchedAt": "2026-10-30T21:11:37.392Z",
+  "translatedAt": "2026-11-04T02:29:34.587+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

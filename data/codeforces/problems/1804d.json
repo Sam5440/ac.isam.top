@@ -4,7 +4,7 @@
   "contestId": 1804,
   "index": "D",
   "title": "Accommodation",
-  "titleZh": null,
+  "titleZh": "住宿安排",
   "url": "https://codeforces.com/contest/1804/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Annie is an amateur photographer. She likes to take pictures of giant residential buildings at night. She just took a picture of a huge rectangular building that can be seen as a table of $n \\times m$ windows. That means that the building has $n$ floors and each floor has exactly $m$ windows. Each window is either dark or bright, meaning there is light turned on in the room behind it.\n\nAnnies knows that each apartment in this building is either one-bedroom or two-bedroom. Each one-bedroom apartment has exactly one window representing it on the picture, and each two-bedroom apartment has exactly two **consecutive** windows on the same floor. Moreover, the value of $m$ is guaranteed to be divisible by $4$ and it is known that each floor has exactly $\\frac{m}{4}$ two-bedroom apartments and exactly $\\frac{m}{2}$ one-bedroom apartments. The actual layout of apartments is unknown and can be different for each floor.\n\nAnnie considers an apartment to be occupied if **at least one** of its windows is bright. She now wonders, what are the minimum and maximum possible number of occupied apartments if judged by the given picture?\n\nFormally, for each of the floors, she comes up with some particular apartments layout with exactly $\\frac{m}{4}$ two-bedroom apartments (two consecutive windows) and $\\frac{m}{2}$ one-bedroom apartments (single window). She then counts the total number of apartments that have at least one bright window. What is the minimum and maximum possible number she can get?\n\n## Input\n\nThe first line of the input contains two positive integers $n$ and $m$ ($1 \\leq n \\cdot m \\leq 5 \\cdot 10^5$) — the number of floors in the building and the number of windows per floor, respectively. It is guaranteed that $m$ is divisible by $4$.\n\nThen follow $n$ lines containing $m$ characters each. The $j$-th character of the $i$-th line is \"`0`\" if the $j$-th window on the $i$-th floor is dark, and is \"`1`\" if this window is bright.\n\n## Output\n\nPrint two integers, the minimum possible number of occupied apartments and the maximum possible number of occupied apartments, assuming each floor can have an individual layout of $\\frac{m}{4}$ two-bedroom and $\\frac{m}{2}$ one-bedroom apartments.\n\n## Note\n\nIn the first example, each floor consists of one two-bedroom apartment and two one-bedroom apartments.\n\nThe following apartment layout achieves the minimum possible number of occupied apartments equal to $7$.\n\n```\n|0 1|0|0|\n|1 1|0|0|\n|0|1 1|0|\n|1|0 1|0|\n|1|0|1 1|\n```\n\nThe following apartment layout achieves the maximum possible number of occupied apartments equal to $10$.\n\n```\n|0 1|0|0|\n|1|1 0|0|\n|0 1|1|0|\n|1|0 1|0|\n|1 0|1|1|\n```",
-  "statementZhMd": null,
+  "statementZhMd": "安妮是一名业余摄影师。她喜欢在夜晚拍摄巨大的住宅楼。她刚刚拍摄了一栋巨大的矩形建筑，这栋建筑可以看作一个 $n \\times m$ 的窗户表格。也就是说，这栋建筑有 $n$ 层，每层恰好有 $m$ 扇窗户。每扇窗户要么是暗的，要么是亮的，这表示窗户后面的房间是否开着灯。\n\n安妮知道，这栋建筑中的每套公寓要么是单居室，要么是双居室。每套单居室公寓在照片中恰好对应一扇窗户，而每套双居室公寓恰好对应同一层中连续的两扇窗户。此外，保证 $m$ 可以被 $4$ 整除，并且已知每层恰好有 $\\frac{m}{4}$ 套双居室公寓和 $\\frac{m}{2}$ 套单居室公寓。公寓的实际布局未知，并且每层的布局可能不同。\n\n如果一套公寓中**至少有一扇**窗户是亮的，安妮就认为这套公寓有人居住。现在她想知道，根据给定的照片，可能有人居住的公寓数量最少和最多分别是多少？\n\n形式化地说，对于每一层，她都可以安排一种公寓布局，其中恰好有 $\\frac{m}{4}$ 套双居室公寓（对应连续的两扇窗户）和 $\\frac{m}{2}$ 套单居室公寓（对应单独的一扇窗户）。然后，她统计至少有一扇亮窗户的公寓总数。她能够得到的最小值和最大值是多少？\n\n## 输入格式\n\n输入的第一行包含两个正整数 $n$ 和 $m$（$1 \\leq n \\cdot m \\leq 5 \\cdot 10^5$），分别表示建筑的层数和每层的窗户数。保证 $m$ 可以被 $4$ 整除。\n\n接下来 $n$ 行，每行包含 $m$ 个字符。第 $i$ 行的第 $j$ 个字符为 \"`0`\"，表示第 $i$ 层的第 $j$ 扇窗户是暗的；为 \"`1`\"，表示这扇窗户是亮的。\n\n## 输出格式\n\n输出两个整数：在每层均可以采用独立的、包含 $\\frac{m}{4}$ 套双居室公寓和 $\\frac{m}{2}$ 套单居室公寓的布局时，可能有人居住的公寓数量的最小值和最大值。\n\n## 说明\n\n在第一个样例中，每层由一套双居室公寓和两套单居室公寓组成。\n\n下面的公寓布局可以得到等于 $7$ 的最小可能有人居住的公寓数量。\n\n```\n|0 1|0|0|\n|1 1|0|0|\n|0|1 1|0|\n|1|0 1|0|\n|1|0|1 1|\n```\n\n下面的公寓布局可以得到等于 $10$ 的最大可能有人居住的公寓数量。\n\n```\n|0 1|0|0|\n|1|1 0|0|\n|0 1|1|0|\n|1|0 1|0|\n|1 0|1|1|\n```",
   "samples": [
     {
       "input": "5 4\n0100\n1100\n0110\n1010\n1011\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:33:50.839Z"
+  "fetchedAt": "2026-10-30T22:33:50.839Z",
+  "translatedAt": "2026-11-04T02:53:49.883+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

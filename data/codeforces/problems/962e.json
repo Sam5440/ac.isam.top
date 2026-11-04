@@ -4,7 +4,7 @@
   "contestId": 962,
   "index": "E",
   "title": "Byteland, Berland and Disputed Cities",
-  "titleZh": null,
+  "titleZh": "拜特兰、贝尔兰与争议城市",
   "url": "https://codeforces.com/contest/962/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The cities of Byteland and Berland are located on the axis $Ox$. In addition, on this axis there are also disputed cities, which belong to each of the countries in their opinion. Thus, on the line $Ox$ there are three types of cities:\n\n- the cities of Byteland,\n- the cities of Berland,\n- disputed cities.\n\nRecently, the project BNET has been launched — a computer network of a new generation. Now the task of the both countries is to connect the cities so that the network of this country is *connected*.\n\nThe countries agreed to connect *the pairs* of cities with BNET cables in such a way that:\n\n- If you look at the *only* cities of Byteland and the disputed cities, then in the resulting set of cities, any city should be reachable from any other one by one or more cables,\n- If you look at the *only* cities of Berland and the disputed cities, then in the resulting set of cities, any city should be reachable from any other one by one or more cables.\n\nThus, it is necessary to choose a set of pairs of cities to connect by cables in such a way that both conditions are satisfied simultaneously. Cables allow bi-directional data transfer. Each cable connects exactly two distinct cities.\n\nThe cost of laying a cable from one city to another is equal to the distance between them. Find the minimum total cost of laying a set of cables so that two subsets of cities (Byteland and disputed cities, Berland and disputed cities) are connected.\n\nEach city is a point on the line $Ox$. It is technically possible to connect the cities $a$ and $b$ with a cable so that the city $c$ ($a \\lt c \\lt b$) is not connected to this cable, where $a$, $b$ and $c$ are simultaneously coordinates of the cities $a$, $b$ and $c$.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^{5}$) — the number of cities.\n\nThe following $n$ lines contains an integer $x_i$ and the letter $c_i$ ($-10^{9} \\le x_i \\le 10^{9}$) — the coordinate of the city and its type. If the city belongs to Byteland, $c_i$ equals to '`B`'. If the city belongs to Berland, $c_i$ equals to «`R`». If the city is disputed, $c_i$ equals to '`P`'.\n\nAll cities have distinct coordinates. Guaranteed, that the cities are given in the increasing order of their coordinates.\n\n## Output\n\nPrint the minimal total length of such set of cables, that if we delete all Berland cities ($c_i$='`R`'), it will be possible to find a way from any remaining city to any other remaining city, moving only by cables. Similarly, if we delete all Byteland cities ($c_i$='`B`'), it will be possible to find a way from any remaining city to any other remaining city, moving only by cables.\n\n## Note\n\nIn the first example, you should connect the first city with the second, the second with the third, and the third with the fourth. The total length of the cables will be $5 + 3 + 4 = 12$.\n\nIn the second example there are no disputed cities, so you need to connect all the neighboring cities of Byteland and all the neighboring cities of Berland. The cities of Berland have coordinates $10, 21, 32$, so to connect them you need two cables of length $11$ and $11$. The cities of Byteland have coordinates $14$ and $16$, so to connect them you need one cable of length $2$. Thus, the total length of all cables is $11 + 11 + 2 = 24$.",
-  "statementZhMd": null,
+  "statementZhMd": "拜特兰和贝尔兰的城市位于 $Ox$ 轴上。此外，该轴上还存在一些争议城市，它们在各自国家看来都属于本国。因此，直线 $Ox$ 上共有三类城市：\n\n- 拜特兰的城市；\n- 贝尔兰的城市；\n- 争议城市。\n\n最近，BNET 项目启动了——这是新一代的计算机网络。现在，两国的任务是连接城市，使得本国的网络是*连通的*。\n\n两国同意使用 BNET 电缆连接*城市对*，并满足以下条件：\n\n- 只考虑拜特兰的城市和争议城市时，在得到的城市集合中，任意城市都可以通过一条或多条电缆到达其他任意城市；\n- 只考虑贝尔兰的城市和争议城市时，在得到的城市集合中，任意城市都可以通过一条或多条电缆到达其他任意城市。\n\n因此，需要选择一些城市对用电缆连接，使上述两个条件同时满足。电缆支持双向数据传输。每条电缆恰好连接两个不同的城市。\n\n铺设一条连接两个城市的电缆的费用等于这两个城市之间的距离。请找出铺设一组电缆的最小总费用，使得两个城市子集（拜特兰的城市与争议城市、贝尔兰的城市与争议城市）都连通。\n\n每个城市都是直线 $Ox$ 上的一个点。实际上，可以用一条电缆连接城市 $a$ 和 $b$，且城市 $c$（$a \\lt c \\lt b$）不与这条电缆相连，其中 $a$、$b$ 和 $c$ 同时表示这些城市的坐标。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^{5}$）——城市的数量。\n\n接下来的 $n$ 行中，每行包含一个整数 $x_i$ 和一个字母 $c_i$（$-10^{9} \\le x_i \\le 10^{9}$）——城市的坐标及其类型。如果城市属于拜特兰，则 $c_i$ 等于 '`B`'；如果城市属于贝尔兰，则 $c_i$ 等于 «`R`»；如果城市是争议城市，则 $c_i$ 等于 '`P`'。\n\n所有城市的坐标各不相同。保证城市按照坐标递增的顺序给出。\n\n## 输出格式\n\n输出这样一组电缆的最小总长度：删除所有贝尔兰城市（$c_i$='`R`'）后，可以仅通过电缆从任意一个剩余城市到达其他任意剩余城市；类似地，删除所有拜特兰城市（$c_i$='`B`'）后，也可以仅通过电缆从任意一个剩余城市到达其他任意剩余城市。\n\n## 说明\n\n在第一个样例中，应当连接第一个城市和第二个城市、第二个城市和第三个城市、第三个城市和第四个城市。电缆的总长度为 $5 + 3 + 4 = 12$。\n\n在第二个样例中，没有争议城市，因此需要连接拜特兰中所有相邻的城市，以及贝尔兰中所有相邻的城市。贝尔兰的城市坐标为 $10, 21, 32$，因此需要使用两条长度为 $11$ 和 $11$ 的电缆将它们连接起来。拜特兰的城市坐标为 $14$ 和 $16$，因此需要使用一条长度为 $2$ 的电缆将它们连接起来。因此，所有电缆的总长度为 $11 + 11 + 2 = 24$。",
   "samples": [
     {
       "input": "4\n-5 R\n0 P\n3 P\n7 B\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:35:51.507Z"
+  "fetchedAt": "2026-11-02T19:35:51.507Z",
+  "translatedAt": "2026-11-04T05:43:38.196+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

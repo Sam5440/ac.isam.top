@@ -4,7 +4,7 @@
   "contestId": 767,
   "index": "B",
   "title": "The Queue",
-  "titleZh": null,
+  "titleZh": "队列",
   "url": "https://codeforces.com/contest/767/problem/B",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Finally! Vasya have come of age and that means he can finally get a passport! To do it, he needs to visit the passport office, but it's not that simple. There's only one receptionist at the passport office and people can queue up long before it actually opens. Vasya wants to visit the passport office tomorrow.\n\nHe knows that the receptionist starts working after $*t*_{*s*}$ minutes have passed after midnight and closes after $*t*_{*f*}$ minutes have passed after midnight (so that $(*t*_{*f*} - 1)$ is the last minute when the receptionist is still working). The receptionist spends exactly $*t*$ minutes on each person in the queue. If the receptionist would stop working within $*t*$ minutes, he stops serving visitors (other than the one he already serves).\n\nVasya also knows that exactly $*n*$ visitors would come tomorrow. For each visitor Vasya knows the point of time when he would come to the passport office. Each visitor queues up and doesn't leave until he was served. If the receptionist is free when a visitor comes (in particular, if the previous visitor was just served and the queue is empty), the receptionist begins to serve the newcomer immediately.\n\n![image](https://espresso.codeforces.com/9b4a83d8f6d5409fc88077d7ef97dcbfe63822f2.png) \"Reception 1\"\n\nFor each visitor, the point of time when he would come to the passport office is positive. Vasya can come to the office at the time zero (that is, at midnight) if he needs so, but he can come to the office only at integer points of time. If Vasya arrives at the passport office at the same time with several other visitors, he yields to them and stand in the queue after the last of them.\n\nVasya wants to come at such point of time that he will be served by the receptionist, and he would spend the minimum possible time in the queue. Help him!\n\n## Input\n\nThe first line contains three integers: the point of time when the receptionist begins to work $*t*_{*s*}$, the point of time when the receptionist stops working $*t*_{*f*}$ and the time the receptionist spends on each visitor $*t*$. The second line contains one integer $*n*$ — the amount of visitors ($0 ≤ *n* ≤ 100 000$). The third line contains positive integers in non-decreasing order — the points of time when the visitors arrive to the passport office.\n\nAll times are set in minutes and do not exceed $10^{12}$; it is guaranteed that $*t*_{*s*} < *t*_{*f*}$. It is also guaranteed that Vasya can arrive at the passport office at such a point of time that he would be served by the receptionist.\n\n## Output\n\nPrint single non-negative integer — the point of time when Vasya should arrive at the passport office. If Vasya arrives at the passport office at the same time with several other visitors, he yields to them and queues up the last. If there are many answers, you can print any of them.\n\n## Note\n\nIn the first example the first visitor comes exactly at the point of time when the receptionist begins to work, and he is served for two minutes. At 12 minutes after the midnight the receptionist stops serving the first visitor, and if Vasya arrives at this moment, he will be served immediately, because the next visitor would only come at 13 minutes after midnight.\n\nIn the second example, Vasya has to come before anyone else to be served.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n终于！Vasya 已经成年了，这意味着他终于可以办理护照了！为此，他需要前往护照办公室，但事情并没有那么简单。护照办公室只有一名接待员，而且人们可能会在办公室实际开放很久之前就排起长队。Vasya 想要明天前往护照办公室。\n\n他知道，接待员会在午夜后经过 $*t*_{*s*}$ 分钟时开始工作，并会在午夜后经过 $*t*_{*f*}$ 分钟时停止工作（因此，$(*t*_{*f*} - 1)$ 是接待员仍在工作的最后一分钟）。接待员为队列中的每个人恰好花费 $*t*$ 分钟。如果接待员将在 $*t*$ 分钟内停止工作，他就不会再接待新的访客（已经正在接待的访客除外）。\n\nVasya 还知道，明天恰好会有 $*n*$ 名访客到来。对于每名访客，Vasya 都知道他到达护照办公室的时间。每名访客都会排队，并且在接受服务前不会离开。如果某名访客到达时接待员空闲（特别地，如果上一名访客刚刚接受完服务且队列为空），接待员会立即开始为这名新访客服务。\n\n![image](https://espresso.codeforces.com/9b4a83d8f6d5409fc88077d7ef97dcbfe63822f2.png) \"Reception 1\"\n\n每名访客到达护照办公室的时间都是正数。Vasya 可以在时间零（即午夜）到达办公室（如果有需要），但他只能在整数时刻到达。如果 Vasya 与其他几名访客同时到达护照办公室，他会让他们先进入队列，排在他们中的最后一人之后。\n\nVasya 希望选择一个时刻到达，使得他能够接受接待员的服务，并且在队列中等待的时间尽可能短。请帮助他！\n\n## 输入格式\n\n第一行包含三个整数：接待员开始工作的时刻 $*t*_{*s*}$、接待员停止工作的时刻 $*t*_{*f*}$，以及接待员为每名访客花费的时间 $*t*$。第二行包含一个整数 $*n*$ —— 访客数量（$0 ≤ *n* ≤ 100 000$）。第三行包含若干个按非递减顺序排列的正整数 —— 访客到达护照办公室的时刻。\n\n所有时间均以分钟为单位，且不超过 $10^{12}$；保证 $*t*_{*s*} < *t*_{*f*}$。同时保证 Vasya 可以在某个时刻到达护照办公室并接受接待员的服务。\n\n## 输出格式\n\n输出一个非负整数 —— Vasya 应到达护照办公室的时刻。如果 Vasya 与其他几名访客同时到达护照办公室，他会让他们先进入队列，排在队伍最后。如果有多个答案，输出其中任意一个即可。\n\n## 说明\n\n在第一个样例中，第一名访客恰好在接待员开始工作的时刻到达，并接受了两分钟的服务。在午夜后第 12 分钟，接待员停止为第一名访客服务；如果 Vasya 在此时到达，他将立即接受服务，因为下一名访客要到午夜后第 13 分钟才会到达。\n\n在第二个样例中，Vasya 必须赶在所有人之前到达，才能接受服务。",
   "samples": [
     {
       "input": "10 15 2\n2\n10 13\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:57:30.558Z"
+  "fetchedAt": "2026-10-31T00:57:30.558Z",
+  "translatedAt": "2026-11-04T06:18:08.862+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

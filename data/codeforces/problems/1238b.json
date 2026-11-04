@@ -4,7 +4,7 @@
   "contestId": 1238,
   "index": "B",
   "title": "Kill 'Em All",
-  "titleZh": null,
+  "titleZh": "杀光他们",
   "url": "https://codeforces.com/contest/1238/problem/B",
   "difficulty": 1300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Ivan plays an old action game called Heretic. He's stuck on one of the final levels of this game, so he needs some help with killing the monsters.\n\nThe main part of the level is a large corridor (so large and narrow that it can be represented as an infinite coordinate line). The corridor is divided into two parts; let's assume that the point $x = 0$ is where these parts meet.\n\nThe right part of the corridor is filled with $n$ monsters — for each monster, its initial coordinate $x_i$ is given (and since all monsters are in the right part, every $x_i$ is positive).\n\nThe left part of the corridor is filled with crusher traps. If some monster enters the left part of the corridor or the origin (so, its current coordinate becomes **less than or equal** to $0$), it gets instantly killed by a trap.\n\nThe main weapon Ivan uses to kill the monsters is the Phoenix Rod. It can launch a missile that explodes upon impact, obliterating every monster caught in the explosion and throwing all other monsters away from the epicenter. Formally, suppose that Ivan launches a missile so that it explodes in the point $c$. Then every monster is either killed by explosion or pushed away. Let some monster's current coordinate be $y$, then:\n\n- if $c = y$, then the monster is killed;\n- if $y \\lt c$, then the monster is pushed $r$ units to the left, so its current coordinate becomes $y - r$;\n- if $y \\gt c$, then the monster is pushed $r$ units to the right, so its current coordinate becomes $y + r$.\n\nIvan is going to kill the monsters as follows: choose some integer point $d$ and launch a missile into that point, then wait until it explodes and all the monsters which are pushed to the left part of the corridor are killed by crusher traps, then, if at least one monster is still alive, choose another integer point (probably the one that was already used) and launch a missile there, and so on.\n\nWhat is the minimum number of missiles Ivan has to launch in order to kill all of the monsters? You may assume that every time Ivan fires the Phoenix Rod, he chooses the impact point optimally.\n\nYou have to answer $q$ independent queries.\n\n## Input\n\nThe first line contains one integer $q$ ($1 \\le q \\le 10^5$) — the number of queries.\n\nThe first line of each query contains two integers $n$ and $r$ ($1 \\le n, r \\le 10^5$) — the number of enemies and the distance that the enemies are thrown away from the epicenter of the explosion.\n\nThe second line of each query contains $n$ integers $x_i$ ($1 \\le x_i \\le 10^5$) — the initial positions of the monsters.\n\nIt is guaranteed that sum of all $n$ over all queries does not exceed $10^5$.\n\n## Output\n\nFor each query print one integer — the minimum number of shots from the Phoenix Rod required to kill all monsters.\n\n## Note\n\nIn the first test case, Ivan acts as follows:\n\n- choose the point $3$, the first monster dies from a crusher trap at the point $-1$, the second monster dies from the explosion, the third monster is pushed to the point $7$;\n- choose the point $7$, the third monster dies from the explosion.\n\nIn the second test case, Ivan acts as follows:\n\n- choose the point $5$, the first and fourth monsters die from the explosion, the second monster is pushed to the point $1$, the third monster is pushed to the point $2$;\n- choose the point $2$, the first monster dies from a crusher trap at the point $0$, the second monster dies from the explosion.",
-  "statementZhMd": null,
+  "statementZhMd": "伊万正在玩一款名为 Heretic 的老式动作游戏。他被困在游戏的最终关卡之一，因此需要一些帮助来消灭怪物。\n\n关卡的主体部分是一条很长的走廊（它长而狭窄，可以表示为一条无限延伸的坐标轴）。走廊被分为两部分；假设点 $x = 0$ 是这两部分的交界处。\n\n走廊的右半部分中有 $n$ 个怪物——对于每个怪物，给定其初始坐标 $x_i$（由于所有怪物都在右半部分，因此每个 $x_i$ 都是正数）。\n\n走廊的左半部分布满了碾压陷阱。如果某个怪物进入走廊的左半部分或原点（也就是说，它当前的坐标变为**小于或等于** $0$），它就会被陷阱立即杀死。\n\n伊万用来消灭怪物的主要武器是凤凰之杖。它可以发射一枚导弹，导弹在命中时爆炸，消灭爆炸范围内的所有怪物，并将其他所有怪物推离爆炸中心。形式化地说，假设伊万发射一枚导弹，使其在点 $c$ 爆炸。那么每个怪物要么被爆炸杀死，要么被推开。若某个怪物当前的坐标为 $y$，则：\n\n- 如果 $c = y$，那么该怪物被杀死；\n- 如果 $y \\lt c$，那么该怪物被向左推 $r$ 个单位，其当前坐标变为 $y - r$；\n- 如果 $y \\gt c$，那么该怪物被向右推 $r$ 个单位，其当前坐标变为 $y + r$。\n\n伊万将按如下方式消灭怪物：选择某个整数点 $d$，向该点发射一枚导弹，然后等待导弹爆炸，并等待所有被推入走廊左半部分的怪物被碾压陷阱杀死；之后，如果仍有至少一个怪物存活，就再选择一个整数点（可能是之前已经使用过的点）并向那里发射一枚导弹，如此继续。\n\n为了杀死所有怪物，伊万至少需要发射多少枚导弹？可以假设伊万每次发射凤凰之杖时，都会最优地选择导弹的命中点。\n\n你需要回答 $q$ 个相互独立的询问。\n\n## 输入格式\n\n第一行包含一个整数 $q$（$1 \\le q \\le 10^5$），表示询问的数量。\n\n每个询问的第一行包含两个整数 $n$ 和 $r$（$1 \\le n, r \\le 10^5$），分别表示敌人的数量以及敌人被推离爆炸中心的距离。\n\n每个询问的第二行包含 $n$ 个整数 $x_i$（$1 \\le x_i \\le 10^5$），表示怪物的初始位置。\n\n保证所有询问中的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个询问，输出一个整数——杀死所有怪物所需的最少凤凰之杖射击次数。\n\n## 说明\n\n在第一个测试用例中，伊万进行如下操作：\n\n- 选择点 $3$，第一个怪物在点 $-1$ 处被碾压陷阱杀死，第二个怪物被爆炸杀死，第三个怪物被推到点 $7$；\n- 选择点 $7$，第三个怪物被爆炸杀死。\n\n在第二个测试用例中，伊万进行如下操作：\n\n- 选择点 $5$，第一个和第四个怪物被爆炸杀死，第二个怪物被推到点 $1$，第三个怪物被推到点 $2$；\n- 选择点 $2$，第一个怪物在点 $0$ 处被碾压陷阱杀死，第二个怪物被爆炸杀死。",
   "samples": [
     {
       "input": "2\n3 2\n1 3 5\n4 1\n5 2 3 5\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:02:46.814Z"
+  "fetchedAt": "2026-11-02T19:02:46.814Z",
+  "translatedAt": "2026-11-04T05:01:00.357+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

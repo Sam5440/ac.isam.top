@@ -4,7 +4,7 @@
   "contestId": 343,
   "index": "C",
   "title": "Read Time",
-  "titleZh": null,
+  "titleZh": "读取时间",
   "url": "https://codeforces.com/contest/343/problem/C",
   "difficulty": 1900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Mad scientist Mike does not use slow hard disks. His modification of a hard drive has not one, but $*n*$ different heads that can read data in parallel.\n\nWhen viewed from the side, Mike's hard drive is an endless array of tracks. The tracks of the array are numbered from left to right with integers, starting with 1. In the initial state the $*i*$-th reading head is above the track number $*h*_{*i*}$. For each of the reading heads, the hard drive's firmware can move the head exactly one track to the right or to the left, or leave it on the current track. During the operation each head's movement does not affect the movement of the other heads: the heads can change their relative order; there can be multiple reading heads above any of the tracks. A track is considered read if at least one head has visited this track. In particular, all of the tracks numbered $*h*_{1}$, $*h*_{2}$, $...$, $*h*_{*n*}$ have been read at the beginning of the operation.\n\n![image](https://espresso.codeforces.com/ca9f4791774195cd732cefa3624a34c47835fa8a.png)\n\nMike needs to read the data on $*m*$ distinct tracks with numbers $*p*_{1}$, $*p*_{2}$, $...$, $*p*_{*m*}$. Determine the minimum time the hard drive firmware needs to move the heads and read all the given tracks. Note that an arbitrary number of other tracks can also be read.\n\n## Input\n\nThe first line of the input contains two space-separated integers $*n*$, $*m*$ ($1 ≤ *n*, *m* ≤ 10^{5}$) — the number of disk heads and the number of tracks to read, accordingly. The second line contains $*n*$ distinct integers $*h*_{*i*}$ in ascending order ($1 ≤ *h*_{*i*} ≤ 10^{10}$, $*h*_{*i*} < *h*_{*i* + 1}$) — the initial positions of the heads. The third line contains $*m*$ distinct integers $*p*_{*i*}$ in ascending order ($1 ≤ *p*_{*i*} ≤ 10^{10}$, $*p*_{*i*} < *p*_{*i* + 1}$) - the numbers of tracks to read.\n\nPlease, do not use the `%lld` specifier to read or write 64-bit integers in С++. It is recommended to use the `cin`, `cout` streams or the `%I64d` specifier.\n\n## Output\n\nPrint a single number — the minimum time required, in seconds, to read all the needed tracks.\n\n## Note\n\nThe first test coincides with the figure. In this case the given tracks can be read in 2 seconds in the following way:\n\n1. during the first second move the 1-st head to the left and let it stay there;\n2. move the second head to the left twice;\n3. move the third head to the right twice (note that the 6-th track has already been read at the beginning).\n\nOne cannot read the tracks in 1 second as the 3-rd head is at distance 2 from the 8-th track.",
-  "statementZhMd": null,
+  "statementZhMd": "疯狂科学家 Mike 不使用缓慢的硬盘。他对硬盘进行了改造，使其拥有 $*n*$ 个不同的磁头，可以并行读取数据。\n\n从侧面看，Mike 的硬盘是一组无限延伸的磁道。磁道从左到右编号，编号从 1 开始。在初始状态，第 $*i*$ 个读写磁头位于编号为 $*h*_{*i*}$ 的磁道上。对于每个读写磁头，硬盘固件可以让它恰好向右或向左移动一个磁道，或者停留在当前磁道。在操作过程中，每个磁头的移动不会影响其他磁头的移动：磁头可以改变彼此的相对顺序，也可以有多个磁头位于同一个磁道上。如果至少有一个磁头访问过某条磁道，则称该磁道已被读取。特别地，在操作开始时，编号为 $*h*_{1}$、$*h*_{2}$、$...$、$*h*_{*n*}$ 的所有磁道都已被读取。\n\n![image](https://espresso.codeforces.com/ca9f4791774195cd732cefa3624a34c47835fa8a.png)\n\nMike 需要读取编号为 $*p*_{1}$、$*p*_{2}$、$...$、$*p*_{*m*}$ 的 $*m*$ 条互不相同的磁道上的数据。请确定硬盘固件移动磁头并读取所有给定磁道所需的最短时间。注意，也可以读取任意数量的其他磁道。\n\n## 输入格式\n\n输入的第一行包含两个用空格分隔的整数 $*n*$、$*m*$（$1 ≤ *n*, *m* ≤ 10^{5}$），分别表示磁头数量和需要读取的磁道数量。第二行包含 $*n*$ 个按升序排列的互不相同的整数 $*h*_{*i*}$（$1 ≤ *h*_{*i*} ≤ 10^{10}$，$*h*_{*i* + 1}$）——磁头的初始位置。第三行包含 $*m*$ 个按升序排列的互不相同的整数 $*p*_{*i*}$（$1 ≤ *p*_{*i*} ≤ 10^{10}$，$*p*_{*i* + 1}$）——需要读取的磁道编号。\n\n请不要在 C++ 中使用 `%lld` 格式说明符来读写 64 位整数。建议使用 `cin`、`cout` 流，或使用 `%I64d` 格式说明符。\n\n## 输出格式\n\n输出一个整数，表示读取所有所需磁道所需的最短时间，单位为秒。\n\n## 说明\n\n第一个测试与图示相对应。在此情况下，可以按以下方式在 2 秒内读取给定磁道：\n\n1. 第一秒，让第 1 个磁头向左移动，并使其停在那里；\n2. 让第 2 个磁头向左移动两次；\n3. 让第 3 个磁头向右移动两次（注意，第 6 条磁道在操作开始时就已经被读取了）。\n\n无法在 1 秒内读取这些磁道，因为第 3 个磁头距离第 8 条磁道还有 2 格。",
   "samples": [
     {
       "input": "3 4\n2 5 6\n1 3 6 8\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:59:37.196Z"
+  "fetchedAt": "2026-10-31T01:59:37.196Z",
+  "translatedAt": "2026-11-04T07:19:43.100+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

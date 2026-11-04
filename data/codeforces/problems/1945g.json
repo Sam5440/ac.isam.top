@@ -4,7 +4,7 @@
   "contestId": 1945,
   "index": "G",
   "title": "Cook and Porridge",
-  "titleZh": null,
+  "titleZh": "厨师与粥",
   "url": "https://codeforces.com/contest/1945/problem/G",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Finally, lunchtime!\n\n$n$ schoolchildren have lined up in a long queue at the cook's tent for porridge. The cook will be serving porridge for $D$ minutes. The schoolchild standing in the $i$-th position in the queue has a priority of $k_i$ and eats one portion of porridge in $s_i$ minutes.\n\n**At the beginning** of each minute of the break, the cook serves the first schoolchild in the queue one portion of porridge, after which the schoolchild goes to eat their portion. If the $i$-th schoolchild is served a portion at the beginning of the $x$-th minute, then they will return to the queue **at the end** of the $(x + s_i)$-th minute.\n\nWhen the $i$-th schoolchild returns to the queue, the schoolchildren at the end of the queue whose priority is **strictly lower** than that of the $i$-th schoolchild must let them pass. Thus, they will stand in the queue behind the last schoolchild whose priority is **not lower** than their own. That is, behind the last schoolchild $j$ with $k_j \\ge k_i$. If there is no such schoolchild in the queue, the $i$-th schoolchild will stand at the front of the queue.\n\nIf several schoolchildren return at the same time, they will return to the queue in ascending order of their $s_i$.\n\nFor example, if $n = 3$, $D = 3$, $k = [2, 3, 2]$, and $s = [2, 1, 3]$, the serving will occur as follows:\n\n- At the beginning of minute $1$, the students in the queue are $[1, 2, 3]$, and student $1$ is served porridge;\n- at the beginning of minute $2$, the students in the queue are $[2, 3]$, and student $2$ is served porridge;\n- at the beginning of minute $3$, the student in the queue is $[3]$, and student $3$ is served porridge;\n- at the end of minute $3$, student $2$ returns to the queue, and the queue becomes $[2]$;\n- at the end of minute $3$, student $1$ returns to the queue, and the queue becomes $[2, 1]$, as his priority is lower.\n\nDetermine the minimum number of minutes after the start of the break that each schoolchild will receive porridge at least once, or report that this will not happen within $D$ minutes.\n\n## Input\n\nEach test consists of several test cases. The first line contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases. This is followed by a description of the test cases.\n\nThe first line of each test case contains two integers $n$ and $D$ ($1 \\le n \\le 2 \\cdot 10^5$, $1 \\le D \\le 3\\cdot 10^5$) — the number of schoolchildren in the queue and the break time, respectively.\n\nThe next $n$ lines contain two integers $k_i$ and $s_i$ ($1 \\le k_i, s_i, \\le 10^9$) — the priority and the time to eat one portion of porridge for the respective schoolchild. The schoolchildren are given in the order they stand in the queue (from the front to the end).\n\nIt is guaranteed that the sum of the values of $n$ for all input data sets does not exceed $2\\cdot 10^5$. Similarly, it is guaranteed that the sum of the values of $D$ for all input data sets does not exceed $3\\cdot 10^5$.\n\n## Output\n\nFor each test case, output the minimum number of minutes after which each schoolchild will receive porridge at least once. If this does not happen within the break time, output $-1$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n终于到午餐时间了！\n\n$n$ 名学生在厨师的帐篷前排成了一条长队，等待领取粥。厨师将在 $D$ 分钟内为学生供应粥。队列中站在第 $i$ 个位置的学生优先级为 $k_i$，吃完一份粥需要 $s_i$ 分钟。\n\n在休息时间的**每分钟开始时**，厨师会给队首的学生供应一份粥，随后该学生离开队列去吃粥。如果第 $i$ 名学生在第 $x$ 分钟开始时领到一份粥，那么他将在第 $(x + s_i)$ 分钟**结束时**回到队列中。\n\n当第 $i$ 名学生回到队列时，队列末尾中所有优先级**严格低于**该学生的学生都必须让他通过。因此，他会站在队列中最后一个优先级不低于自己的学生后面。也就是说，他会站在满足 $k_j \\ge k_i$ 的最后一名学生 $j$ 的后面。如果队列中不存在这样的学生，第 $i$ 名学生将站到队首。\n\n如果有多名学生同时回到队列，他们将按照 $s_i$ 的升序依次回到队列。\n\n例如，当 $n = 3$、$D = 3$、$k = [2, 3, 2]$ 且 $s = [2, 1, 3]$ 时，供应粥的过程如下：\n\n- 在第 $1$ 分钟开始时，队列中的学生为 $[1, 2, 3]$，学生 $1$ 领取了粥；\n- 在第 $2$ 分钟开始时，队列中的学生为 $[2, 3]$，学生 $2$ 领取了粥；\n- 在第 $3$ 分钟开始时，队列中的学生为 $[3]$，学生 $3$ 领取了粥；\n- 在第 $3$ 分钟结束时，学生 $2$ 回到队列，队列变为 $[2]$；\n- 在第 $3$ 分钟结束时，学生 $1$ 回到队列，队列变为 $[2, 1]$，因为他的优先级较低。\n\n请确定从休息开始后经过多少分钟，每名学生至少能领取一次粥；如果在 $D$ 分钟内无法做到，则报告这一情况。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $D$（$1 \\le n \\le 2 \\cdot 10^5$，$1 \\le D \\le 3\\cdot 10^5$）——队列中的学生人数和休息时间。\n\n接下来的 $n$ 行中，每行包含两个整数 $k_i$ 和 $s_i$（$1 \\le k_i, s_i, \\le 10^9$）——对应学生的优先级和吃完一份粥所需的时间。学生按照他们在队列中的顺序给出（从队首到队尾）。\n\n保证所有输入数据中 $n$ 的总和不超过 $2\\cdot 10^5$。同样保证所有输入数据中 $D$ 的总和不超过 $3\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出每名学生至少领取一次粥所需的最少分钟数。如果在休息时间内无法做到，输出 $-1$。",
   "samples": [
     {
       "input": "7\n3 3\n2 2\n3 1\n2 3\n5 10\n10 3\n7 1\n11 3\n5 1\n6 1\n5 20\n4 2\n7 2\n8 5\n1 5\n3 1\n5 17\n1 3\n8 2\n8 3\n2 2\n1 1\n5 14\n8 2\n4 2\n1 3\n8 3\n6 4\n1 11\n4 5\n5 14\n8 2\n4 2\n1 3\n8 3\n6 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:16:37.650Z"
+  "fetchedAt": "2026-11-02T17:16:37.650Z",
+  "translatedAt": "2026-11-04T02:17:39.630+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

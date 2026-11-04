@@ -4,7 +4,7 @@
   "contestId": 1858,
   "index": "E1",
   "title": "Rollbacks (Easy Version)",
-  "titleZh": null,
+  "titleZh": "回滚（简单版）",
   "url": "https://codeforces.com/contest/1858/problem/E1",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "*This is an easy version of this problem. The only difference between the versions is that you have to solve the hard version in online mode. You can make hacks only if both versions of the problem are solved.*\n\nYou have an array $a$, which is initially empty. You need to process queries of the following types:\n\n- `+` $x$ — add the integer $x$ to the end of the array $a$.\n- `-` $k$ — remove the last $k$ numbers from the array $a$.\n- `!` — roll back the last active change (i.e., make the array $a$ the way it was before the change). In this problem, only queries of the first two types (`+` and `-`) are considered as changes.\n- `?` — find the number of distinct numbers in the array $a$.\n\n## Input\n\nThe first line contains an integer $q$ ($1 \\leq q \\leq 10^6$) — the number of queries.\n\nThe next $q$ lines contain the queries as described above.\n\nIt is guaranteed that\n\n- in the queries of the first type, $1 \\le x \\le 10^6$;\n- in the queries of the second type, $k \\ge 1$ and $k$ does not exceed the current length of the array $a$;\n- at the moment of the queries of the third type, there is at least one query of the first or of the second type that can be rolled back.\n\nIt is also guaranteed that the number of queries of the fourth type (`?`) does not exceed $10^5$.\n\n## Output\n\nFor each query of the fourth type output one integer — the number of distinct elements in array $a$ at the moment of query.\n\n## Note\n\nIn the first example array $a$ changes as follows:\n\n1. After the first query, $a=[1]$.\n2. After the second query, $a=[1,2]$.\n3. After the third query, $a=[1,2,2]$.\n4. At the moment of the fourth query, there are $2$ distinct intergers in the array $a$: $1$ and $2$.\n5. After the fifth query, $a=[1,2]$ (rolled back the change `+ 2`).\n6. After the sixth query, $a=[1,2,3]$.\n7. After the seventh query, $a=[1]$.\n8. At the moment of the eigth query, there is only one $1$ in the array $a$.\n9. After the ninth query, $a=[1,1]$.\n10. At the moment of the tenth query, there are only two $1$ in the array $a$.\n\nIn the second example array $a$ changes as follows:\n\n1. After the first query, $a=[1]$.\n2. After the second query, $a=[1,1\\,000\\,000]$.\n3. At the moment of the third query, there are $2$ distinct intergers in the array $a$: $1$ and $1\\,000\\,000$.\n4. After the fourth query, $a=[1]$ (rolled back the change `+ 1000000`).\n5. After the fifth query, $a=[]$ (rolled back the change `+ 1`).\n6. At the moment of the sixth query, there are no integers in the array $a$, so the answer to this query is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "*这是本题的简单版本。两个版本之间唯一的区别是：在困难版本中，你需要以在线模式解决问题。只有在两个版本的问题都解决后，才能进行 hack。*\n\n你有一个数组 $a$，初始为空。你需要处理以下类型的查询：\n\n- `+` $x$ — 将整数 $x$ 添加到数组 $a$ 的末尾。\n- `-` $k$ — 从数组 $a$ 中删除最后 $k$ 个数。\n- `!` — 回滚上一次仍有效的修改（即将数组 $a$ 恢复到该修改之前的状态）。在本题中，只有前两种查询（`+` 和 `-`）会被视为修改。\n- `?` — 求数组 $a$ 中不同数字的数量。\n\n## 输入格式\n\n第一行包含一个整数 $q$（$1 \\leq q \\leq 10^6$）——查询的数量。\n\n接下来 $q$ 行包含上述格式的查询。\n\n保证：\n\n- 对于第一种查询，$1 \\leq x \\leq 10^6$；\n- 对于第二种查询，$k \\geq 1$，且 $k$ 不超过当前数组 $a$ 的长度；\n- 在第三种查询执行时，至少存在一个可以回滚的第一种或第二种查询。\n\n此外，还保证第四种查询（`?`）的数量不超过 $10^5$。\n\n## 输出格式\n\n对于每个第四种查询，输出一个整数——查询时数组 $a$ 中不同元素的数量。\n\n## 说明\n\n在第一个样例中，数组 $a$ 的变化如下：\n\n1. 第一次查询后，$a=[1]$。\n2. 第二次查询后，$a=[1,2]$。\n3. 第三次查询后，$a=[1,2,2]$。\n4. 在第四次查询时，数组 $a$ 中有 $2$ 个不同的数字：$1$ 和 $2$。\n5. 第五次查询后，$a=[1,2]$（回滚修改 `+ 2`）。\n6. 第六次查询后，$a=[1,2,3]$。\n7. 第七次查询后，$a=[1]$。\n8. 在第八次查询时，数组 $a$ 中只有一个 $1$。\n9. 第九次查询后，$a=[1,1]$。\n10. 在第十次查询时，数组 $a$ 中只有两个 $1$。\n\n在第二个样例中，数组 $a$ 的变化如下：\n\n1. 第一次查询后，$a=[1]$。\n2. 第二次查询后，$a=[1,1\\,000\\,000]$。\n3. 在第三次查询时，数组 $a$ 中有 $2$ 个不同的数字：$1$ 和 $1\\,000\\,000$。\n4. 第四次查询后，$a=[1]$（回滚修改 `+ 1000000`）。\n5. 第五次查询后，$a=[]$（回滚修改 `+ 1`）。\n6. 在第六次查询时，数组 $a$ 中没有数字，因此该查询的答案为 $0$。",
   "samples": [
     {
       "input": "10\n+ 1\n+ 2\n+ 2\n?\n!\n+ 3\n- 2\n?\n+ 1\n?\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:17:18.007Z"
+  "fetchedAt": "2026-10-30T22:17:18.007Z",
+  "translatedAt": "2026-11-04T02:36:51.909+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

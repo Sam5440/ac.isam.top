@@ -4,7 +4,7 @@
   "contestId": 572,
   "index": "B",
   "title": "Order Book",
-  "titleZh": null,
+  "titleZh": "订单簿",
   "url": "https://codeforces.com/contest/572/problem/B",
   "difficulty": 1300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "In this task you need to process a set of stock exchange orders and use them to create *order book*.\n\nAn *order* is an instruction of some participant to buy or sell stocks on stock exchange. The order number $*i*$ has price $*p*_{*i*}$, direction $*d*_{*i*}$ — buy or sell, and integer $*q*_{*i*}$. This means that the participant is ready to buy or sell $*q*_{*i*}$ stocks at price $*p*_{*i*}$ for one stock. A value $*q*_{*i*}$ is also known as a *volume* of an order.\n\nAll orders with the same price $*p*$ and direction $*d*$ are merged into one *aggregated* order with price $*p*$ and direction $*d*$. The volume of such order is a sum of volumes of the initial orders.\n\nAn order book is a list of aggregated orders, the first part of which contains sell orders sorted by price in descending order, the second contains buy orders also sorted by price in descending order.\n\nAn order book of depth $*s*$ contains $*s*$ best aggregated orders for each direction. A buy order is better if it has higher price and a sell order is better if it has lower price. If there are less than $*s*$ aggregated orders for some direction then all of them will be in the final order book.\n\nYou are given $*n*$ stock exhange orders. Your task is to print order book of depth $*s*$ for these orders.\n\n## Input\n\nThe input starts with two positive integers $*n*$ and $*s*$ ($1 ≤ *n* ≤ 1000, 1 ≤ *s* ≤ 50$), the number of orders and the book depth.\n\nNext $*n*$ lines contains a letter $*d*_{*i*}$ (either '`B`' or '`S`'), an integer $*p*_{*i*}$ ($0 ≤ *p*_{*i*} ≤ 10^{5}$) and an integer $*q*_{*i*}$ ($1 ≤ *q*_{*i*} ≤ 10^{4}$) — direction, price and volume respectively. The letter '`B`' means buy, '`S`' means sell. The price of any sell order is higher than the price of any buy order.\n\n## Output\n\nPrint no more than $2*s*$ lines with aggregated orders from order book of depth $*s*$. The output format for orders should be the same as in input.\n\n## Note\n\nDenote *(x, y)* an order with price $*x*$ and volume $*y*$. There are 3 aggregated buy orders (10, 3), (20, 4), (25, 10) and two sell orders (50, 8), (40, 1) in the sample.\n\nYou need to print no more than two best orders for each direction, so you shouldn't print the order (10 3) having the worst price among buy orders.",
-  "statementZhMd": null,
+  "statementZhMd": "在本题中，你需要处理一组证券交易所订单，并使用它们创建一个*订单簿*。\n\n*订单*是某位参与者在证券交易所买入或卖出股票的指令。编号为 $*i*$ 的订单价格为 $*p*_{*i*}$，方向 $*d*_{*i*}$——买入或卖出，以及整数 $*q*_{*i*}$。这表示该参与者愿意以每股 $*p*_{*i*}$ 的价格买入或卖出 $*q*_{*i*}$ 股股票。$*q*_{*i*}$ 的值也称为订单的*数量*。\n\n所有价格 $*p*$ 和方向 $*d*$ 相同的订单会合并为一个价格为 $*p*$、方向为 $*d*$ 的*聚合订单*。该订单的数量为所有初始订单数量之和。\n\n订单簿是一个聚合订单列表，其中第一部分包含按价格降序排列的卖出订单，第二部分包含同样按价格降序排列的买入订单。\n\n深度为 $*s*$ 的订单簿包含每个方向上 $*s*$ 个最优的聚合订单。买入订单的价格越高越优，卖出订单的价格越低越优。如果某个方向的聚合订单少于 $*s*$ 个，则最终订单簿将包含该方向的全部聚合订单。\n\n给定 $*n*$ 个证券交易所订单，请输出这些订单深度为 $*s*$ 的订单簿。\n\n## 输入格式\n\n输入的第一行包含两个正整数 $*n*$ 和 $*s*$（$1 ≤ *n* ≤ 1000, 1 ≤ *s* ≤ 50$），分别表示订单数量和订单簿深度。\n\n接下来 $*n*$ 行每行包含一个字母 $*d*_{*i*}$（为 '`B`' 或 '`S`'）、一个整数 $*p*_{*i*}$（$0 ≤ *p*_{*i*} ≤ 10^{5}$）和一个整数 $*q*_{*i*}$（$1 ≤ *q*_{*i*} ≤ 10^{4}$），分别表示方向、价格和数量。字母 '`B`' 表示买入，字母 '`S`' 表示卖出。任意卖出订单的价格都高于任意买入订单的价格。\n\n## 输出格式\n\n输出订单簿深度为 $*s*$ 的聚合订单，输出行数不超过 $2*s*$。订单的输出格式应与输入相同。\n\n## 说明\n\n用 *(x, y)* 表示价格为 $x$、数量为 $y$ 的订单。样例中有 3 个聚合买入订单 (10, 3)、(20, 4)、(25, 10)，以及两个卖出订单 (50, 8)、(40, 1)。\n\n你需要为每个方向输出不超过两个最优订单，因此不应输出买入订单中价格最差的订单 (10 3)。",
   "samples": [
     {
       "input": "6 2\nB 10 3\nS 50 2\nS 40 1\nS 50 6\nB 20 4\nB 25 10\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:23:28.690Z"
+  "fetchedAt": "2026-10-31T01:23:28.690Z",
+  "translatedAt": "2026-11-04T06:46:28.053+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

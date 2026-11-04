@@ -4,14 +4,14 @@
   "contestId": 1869,
   "index": "C",
   "title": "Fill in the Matrix",
-  "titleZh": null,
+  "titleZh": "填充矩阵",
   "url": "https://codeforces.com/contest/1869/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is an empty matrix $M$ of size $n\\times m$.\n\nZhongkao examination is over, and Daniel would like to do some puzzle games. He is going to fill in the matrix $M$ using permutations of length $m$. That is, each row of $M$ must be a permutation of length $m^\\dagger$.\n\nDefine the *value* of the $i$-th column in $M$ as $v_i=\\operatorname{MEX}(M_{1,i},M_{2,i},\\ldots,M_{n,i})^\\ddagger$. Since Daniel likes diversity, the *beauty* of $M$ is $s=\\operatorname{MEX}(v_1,v_2,\\cdots,v_m)$.\n\nYou have to help Daniel fill in the matrix $M$ and **maximize** its beauty.\n\n$^\\dagger$ A permutation of length $m$ is an array consisting of $m$ distinct integers from $0$ to $m-1$ in arbitrary order. For example, $[1,2,0,4,3]$ is a permutation, but $[0,1,1]$ is not a permutation ($1$ appears twice in the array), and $[0,1,3]$ is also not a permutation ($m-1=2$ but there is $3$ in the array).\n\n$^\\ddagger$ The $\\operatorname{MEX}$ of an array is the smallest non-negative integer that does not belong to the array. For example, $\\operatorname{MEX}(2,2,1)=0$ because $0$ does not belong to the array, and $\\operatorname{MEX}(0,3,1,2)=4$ because $0$, $1$, $2$ and $3$ appear in the array, but $4$ does not.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1\\le t\\le 1000$) — the number of test cases. The description of test cases follows.\n\nThe only line of each test case contains two integers $n$ and $m$ ($1\\le n,m\\le 2\\cdot 10^5$) — the size of the matrix.\n\nIt is guaranteed that the sum of $n\\cdot m$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, in the first line output a single integer — the maximum beauty of $M$.\n\nThen output the matrix $M$ of size $n\\times m$ — the matrix you find.\n\nIf there are multiple solutions, you may output any of them.\n\n## Note\n\nIn the first test case:\n\n- $v_1=\\operatorname{MEX}(1,0,1,0)=2$;\n- $v_2=\\operatorname{MEX}(0,2,0,2)=1$;\n- $v_3=\\operatorname{MEX}(2,1,2,1)=0$.\n\nTherefore, $s=\\operatorname{MEX}(2,1,0)=3$.\n\nIt can be shown that $3$ is the maximum possible beauty of $M$.\n\nIn the second test case, any permutation will make $s=2$.\n\nIn the third test case:\n\n- $v_1=\\operatorname{MEX}(3,5,1,4,4,2)=0$;\n- $v_2=\\operatorname{MEX}(0,2,3,1,2,4)=5$;\n- $v_3=\\operatorname{MEX}(1,1,2,3,5,0)=4$;\n- $v_4=\\operatorname{MEX}(4,0,4,2,3,5)=1$;\n- $v_5=\\operatorname{MEX}(2,4,5,5,0,1)=3$;\n- $v_6=\\operatorname{MEX}(5,3,0,0,1,3)=2$.\n\nTherefore, $s=\\operatorname{MEX}(0,5,4,1,3,2)=6$.",
-  "statementZhMd": null,
+  "statementZhMd": "有一个大小为 $n\\times m$ 的空矩阵 $M$。\n\n中考结束后，Daniel 想玩一些益智游戏。他打算使用长度为 $m$ 的排列填充矩阵 $M$。也就是说，$M$ 的每一行都必须是一个长度为 $m^\\dagger$ 的排列。\n\n定义 $M$ 的第 $i$ 列的*值*为 $v_i=\\operatorname{MEX}(M_{1,i},M_{2,i},\\ldots,M_{n,i})^\\ddagger$。由于 Daniel 喜欢多样性，$M$ 的*美丽度*为 $s=\\operatorname{MEX}(v_1,v_2,\\cdots,v_m)$。\n\n请帮助 Daniel 填充矩阵 $M$，并使其美丽度**最大化**。\n\n$^\\dagger$ 长度为 $m$ 的排列是一个由 $0$ 到 $m-1$ 中的 $m$ 个互不相同的整数以任意顺序组成的数组。例如，$[1,2,0,4,3]$ 是一个排列，但 $[0,1,1]$ 不是排列（数组中 $1$ 出现了两次），$[0,1,3]$ 也不是排列（$m-1=2$，但数组中出现了 $3$）。\n\n$^\\ddagger$ 一个数组的 $\\operatorname{MEX}$ 是不属于该数组的最小非负整数。例如，$\\operatorname{MEX}(2,2,1)=0$，因为 $0$ 不属于该数组；而 $\\operatorname{MEX}(0,3,1,2)=4$，因为数组中出现了 $0$、$1$、$2$ 和 $3$，但没有出现 $4$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1\\le t\\le 1000$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例仅包含一行，其中有两个整数 $n$ 和 $m$（$1\\le n,m\\le 2\\cdot 10^5$）——矩阵的大小。\n\n保证所有测试用例的 $n\\cdot m$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，首先输出一行，其中包含一个整数——$M$ 的最大美丽度。\n\n然后输出大小为 $n\\times m$ 的矩阵 $M$——你构造出的矩阵。\n\n如果有多个答案，输出其中任意一个即可。\n\n## 说明\n\n在第一个测试用例中：\n\n- $v_1=\\operatorname{MEX}(1,0,1,0)=2$；\n- $v_2=\\operatorname{MEX}(0,2,0,2)=1$；\n- $v_3=\\operatorname{MEX}(2,1,2,1)=0$。\n\n因此，$s=\\operatorname{MEX}(2,1,0)=3$。\n\n可以证明，$3$ 是 $M$ 可能达到的最大美丽度。\n\n在第二个测试用例中，任意一个排列都会使 $s=2$。\n\n在第三个测试用例中：\n\n- $v_1=\\operatorname{MEX}(3,5,1,4,4,2)=0$；\n- $v_2=\\operatorname{MEX}(0,2,3,1,2,4)=5$；\n- $v_3=\\operatorname{MEX}(1,1,2,3,5,0)=4$；\n- $v_4=\\operatorname{MEX}(4,0,4,2,3,5)=1$；\n- $v_5=\\operatorname{MEX}(2,4,5,5,0,1)=3$；\n- $v_6=\\operatorname{MEX}(5,3,0,0,1,3)=2$。\n\n因此，$s=\\operatorname{MEX}(0,5,4,1,3,2)=6$。",
   "samples": [
     {
       "input": "4\n4 3\n1 16\n6 6\n2 1\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:16:24.832Z"
+  "fetchedAt": "2026-10-30T22:16:24.832Z",
+  "translatedAt": "2026-11-04T02:34:35.225+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

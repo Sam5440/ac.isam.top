@@ -4,7 +4,7 @@
   "contestId": 203,
   "index": "D",
   "title": "Hit Ball",
-  "titleZh": null,
+  "titleZh": "击球",
   "url": "https://codeforces.com/contest/203/problem/D",
   "difficulty": 1700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "When Valera was playing football on a stadium, it suddenly began to rain. Valera hid in the corridor under the grandstand not to get wet. However, the desire to play was so great that he decided to train his hitting the ball right in this corridor. Valera went back far enough, put the ball and hit it. The ball bounced off the walls, the ceiling and the floor corridor and finally hit the exit door. As the ball was wet, it left a spot on the door. Now Valera wants to know the coordinates for this spot.\n\nLet's describe the event more formally. The ball will be considered a point in space. The door of the corridor will be considered a rectangle located on plane $*xOz*$, such that the lower left corner of the door is located at point $(0, 0, 0)$, and the upper right corner is located at point $(*a*, 0, *b*)$ . The corridor will be considered as a rectangular parallelepiped, infinite in the direction of increasing coordinates of $*y*$. In this corridor the floor will be considered as plane $*xOy*$, and the ceiling as plane, parallel to $*xOy*$ and passing through point $(*a*, 0, *b*)$. We will also assume that one of the walls is plane $*yOz*$, and the other wall is plane, parallel to $*yOz*$ and passing through point $(*a*, 0, *b*)$.\n\nWe'll say that the ball hit the door when its coordinate $*y*$ was equal to $0$. Thus the coordinates of the spot are point $(*x*_{0}, 0, *z*_{0})$, where $0 ≤ *x*_{0} ≤ *a*, 0 ≤ *z*_{0} ≤ *b*$. To hit the ball, Valera steps away from the door at distance $*m*$ and puts the ball in the center of the corridor at point ![image](https://espresso.codeforces.com/4c2f11493ea210fe11ac6861f1085dd5f9435332.png). After the hit the ball flies at speed $(*v*_{*x*}, *v*_{*y*}, *v*_{*z*})$. This means that if the ball has coordinates $(*x*, *y*, *z*)$, then after one second it will have coordinates $(*x* + *v*_{*x*}, *y* + *v*_{*y*}, *z* + *v*_{*z*})$.\n\nSee image in notes for clarification.\n\nWhen the ball collides with the ceiling, the floor or a wall of the corridor, it bounces off in accordance with the laws of reflection (the angle of incidence equals the angle of reflection). In the problem we consider the ideal physical model, so we can assume that there is no air resistance, friction force, or any loss of energy.\n\n## Input\n\nThe first line contains three space-separated integers $*a*, *b*, *m*$ $(1 ≤ *a*, *b*, *m* ≤ 100)$. The first two integers specify point $(*a*, 0, *b*)$, through which the ceiling and one of the corridor walls pass. The third integer is the distance at which Valera went away from the door.\n\nThe second line has three space-separated integers $*v*_{*x*}, *v*_{*y*}, *v*_{*z*}$ $(|*v*_{*x*}|, |*v*_{*y*}|, |*v*_{*z*}| ≤ 100, *v*_{*y*} < 0, *v*_{*z*} ≥ 0)$ — the speed of the ball after the hit.\n\nIt is guaranteed that the ball hits the door.\n\n## Output\n\nPrint two real numbers $*x*_{0}, *z*_{0}$ — the $*x*$ and $*z*$ coordinates of point $(*x*_{0}, 0, *z*_{0})$, at which the ball hits the exit door. The answer will be considered correct, if its absolute or relative error does not exceed $10 ^{ - 6}$.\n\n## Note\n\n![image](https://espresso.codeforces.com/9d97cf044b3b1f256a3b2aa857e858c62b35104c.png)",
-  "statementZhMd": null,
+  "statementZhMd": "当 Valera 在体育场踢足球时，突然下起了雨。为了不被淋湿，Valera 躲进了看台下的走廊。然而，他踢球的愿望如此强烈，以至于决定就在这条走廊里练习射门。Valera 往后退了足够远的距离，放好球并将其踢出。球在走廊的墙壁、天花板和地板之间反弹，最终击中了出口的门。由于球是湿的，它在门上留下了一个印记。现在 Valera 想知道这个印记的坐标。\n\n下面对这一过程进行更形式化的描述。将球视为空间中的一个点。走廊的门视为位于平面 $*xOz*$ 上的一个矩形，门的左下角位于点 $(0, 0, 0)$，右上角位于点 $(*a*, 0, *b*)$。走廊视为一个沿 $*y*$ 坐标增大的方向无限延伸的长方体。在这条走廊中，地板视为平面 $*xOy*$，天花板视为一个平行于 $*xOy*$ 且经过点 $(*a*, 0, *b*)$ 的平面。我们还假设其中一面墙是平面 $*yOz*$，另一面墙是一个平行于 $*yOz*$ 且经过点 $(*a*, 0, *b*)$ 的平面。\n\n当球的 $*y*$ 坐标等于 $0$ 时，我们称球击中了门。因此，印记的坐标为点 $(*x*_{0}, 0, *z*_{0})$，其中 $0 ≤ *x*_{0} ≤ *a*, 0 ≤ *z*_{0} ≤ *b*$。为了击球，Valera 从门处退后距离 $*m*$，并将球放在走廊的中心点 ![image](https://espresso.codeforces.com/4c2f11493ea210fe11ac6861f1085dd5f9435332.png)。击球后，球以速度 $(*v*_{*x*}, *v*_{*y*}, *v*_{*z*})$ 飞行。这意味着，如果球的坐标为 $(*x*, *y*, *z*)$，那么一秒后它的坐标将变为 $(*x* + *v*_{*x*}, *y* + *v*_{*y*}, *z* + *v*_{*z*})$。\n\n详见说明中的图片。\n\n当球与走廊的天花板、地板或墙壁碰撞时，它会按照反射定律反弹（入射角等于反射角）。在本题所考虑的理想物理模型中，可以认为不存在空气阻力、摩擦力，也没有任何能量损失。\n\n## 输入格式\n\n第一行包含三个以空格分隔的整数 $*a*, *b*, *m*$ $(1 ≤ *a*, *b*, *m* ≤ 100)$。前两个整数确定点 $(*a*, 0, *b*)$，天花板和走廊的一面墙都经过该点。第三个整数表示 Valera 从门处退后的距离。\n\n第二行包含三个以空格分隔的整数 $*v*_{*x*}, *v*_{*y*}, *v*_{*z*}$ $(|*v*_{*x*}|, |*v*_{*y*}|, |*v*_{*z*}| ≤ 100, *v*_{*y*} < 0, *v*_{*z*} ≥ 0)$，表示击球后球的速度。\n\n保证球会击中门。\n\n## 输出格式\n\n输出两个实数 $*x*_{0}, *z*_{0}$，表示球击中出口门的点 $(*x*_{0}, 0, *z*_{0})$ 的 $*x*$ 坐标和 $*z*$ 坐标。如果答案的绝对误差或相对误差不超过 $10 ^{ - 6}$，则认为答案正确。\n\n## 说明\n\n![image](https://espresso.codeforces.com/9d97cf044b3b1f256a3b2aa857e858c62b35104c.png)",
   "samples": [
     {
       "input": "7 2 11\n3 -11 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:21:53.170Z"
+  "fetchedAt": "2026-10-31T02:21:53.170Z",
+  "translatedAt": "2026-11-04T07:36:41.668+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

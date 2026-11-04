@@ -4,7 +4,7 @@
   "contestId": 1335,
   "index": "C",
   "title": "Two Teams Composing",
-  "titleZh": null,
+  "titleZh": "组建两支队伍",
   "url": "https://codeforces.com/contest/1335/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You have $n$ students under your control and you have to compose **exactly two teams** consisting of some subset of your students. Each student had his own skill, the $i$-th student skill is denoted by an integer $a_i$ (different students can have the same skills).\n\nSo, about the teams. Firstly, these two teams should have the same size. Two more constraints:\n\n- The first team should consist of students with **distinct** skills (i.e. all skills in the first team are unique).\n- The second team should consist of students with **the same** skills (i.e. all skills in the second team are equal).\n\nNote that it is permissible that some student of the first team has the same skill as a student of the second team.\n\nConsider some examples (skills are given):\n\n- $[1, 2, 3]$, $[4, 4]$ is not a good pair of teams because sizes should be the same;\n- $[1, 1, 2]$, $[3, 3, 3]$ is not a good pair of teams because the first team should not contain students with the same skills;\n- $[1, 2, 3]$, $[3, 4, 4]$ is not a good pair of teams because the second team should contain students with the same skills;\n- $[1, 2, 3]$, $[3, 3, 3]$ is a good pair of teams;\n- $[5]$, $[6]$ is a good pair of teams.\n\nYour task is to find the maximum possible size $x$ for which it is possible to compose a valid pair of teams, where each team size is $x$ (skills in the first team needed to be unique, skills in the second team should be the same between them). A student cannot be part of more than one team.\n\nYou have to answer $t$ independent test cases.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. Then $t$ test cases follow.\n\nThe first line of the test case contains one integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of students. The second line of the test case contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n$), where $a_i$ is the skill of the $i$-th student. Different students can have the same skills.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$ ($\\sum n \\le 2 \\cdot 10^5$).\n\n## Output\n\nFor each test case, print the answer — the maximum possible size $x$ for which it is possible to compose a valid pair of teams, where each team size is $x$.\n\n## Note\n\nIn the first test case of the example, it is possible to construct two teams of size $3$: the first team is $[1, 2, 4]$ and the second team is $[4, 4, 4]$. Note, that there are some other ways to construct two valid teams of size $3$.",
-  "statementZhMd": null,
+  "statementZhMd": "你手下有 $n$ 名学生，需要从中选出一些学生组成**恰好两支队伍**。每名学生都有自己的技能值，第 $i$ 名学生的技能值用整数 $a_i$ 表示（不同学生的技能值可能相同）。\n\n下面介绍队伍的要求。首先，两支队伍的人数必须相同。此外还需满足以下两个条件：\n\n- 第一支队伍中的学生技能值必须**互不相同**（即第一支队伍中的所有技能值都不重复）。\n- 第二支队伍中的学生技能值必须**全部相同**（即第二支队伍中的所有技能值都相等）。\n\n注意，第一支队伍中的某名学生与第二支队伍中的某名学生拥有相同的技能值是允许的。\n\n下面给出一些例子（括号中为技能值）：\n\n- $[1, 2, 3]$、$[4, 4]$ 不是一组合法的队伍，因为两支队伍的人数必须相同；\n- $[1, 1, 2]$、$[3, 3, 3]$ 不是一组合法的队伍，因为第一支队伍中不能有技能值相同的学生；\n- $[1, 2, 3]$、$[3, 4, 4]$ 不是一组合法的队伍，因为第二支队伍中的学生技能值必须全部相同；\n- $[1, 2, 3]$、$[3, 3, 3]$ 是一组合法的队伍；\n- $[5]$、$[6]$ 是一组合法的队伍。\n\n你的任务是求最大的 $x$，使得可以组成一组合法的队伍，并且两支队伍的人数都为 $x$（第一支队伍中的技能值必须互不相同，第二支队伍中的技能值必须全部相同）。一名学生不能同时属于两支队伍。\n\n你需要回答 $t$ 个相互独立的测试用例。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$），表示测试用例的数量。接下来给出 $t$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$），表示学生人数。第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le n$），其中 $a_i$ 表示第 $i$ 名学生的技能值。不同学生的技能值可能相同。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$（$\\sum n \\le 2 \\cdot 10^5$）。\n\n## 输出格式\n\n对于每个测试用例，输出答案——能够组成合法队伍且两支队伍人数均为 $x$ 时，$x$ 的最大值。\n\n## 说明\n\n在样例的第一个测试用例中，可以组成两支人数为 $3$ 的队伍：第一支队伍为 $[1, 2, 4]$，第二支队伍为 $[4, 4, 4]$。注意，组成两支人数为 $3$ 的合法队伍还有其他方式。",
   "samples": [
     {
       "input": "4\n7\n4 2 4 1 4 3 4\n5\n2 1 5 4 3\n1\n1\n4\n1 1 1 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:53:25.208Z"
+  "fetchedAt": "2026-11-02T18:53:25.208Z",
+  "translatedAt": "2026-11-04T04:35:59.599+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

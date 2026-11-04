@@ -4,7 +4,7 @@
   "contestId": 1951,
   "index": "B",
   "title": "Battle Cows",
-  "titleZh": null,
+  "titleZh": "奶牛对战",
   "url": "https://codeforces.com/contest/1951/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "[*The HU - Shireg Shireg*](https://youtu.be/SNCx4n2m5_o)ඞ\n\nThere are $n$ cows participating in a coding tournament. Cow $i$ has a Cowdeforces rating of $a_i$ (all distinct), and is initially in position $i$. The tournament consists of $n-1$ matches as follows:\n\n- The first match is between the cow in position $1$ and the cow in position $2$.\n- Subsequently, each match $i$ is between the cow in position $i+1$ and the winner of match $i-1$.\n- In each match, the cow with the higher Cowdeforces rating wins and proceeds to the next match.\n\nYou are the owner of cow $k$. For you, winning the tournament is not important; rather, you want your cow to win in as many matches as possible. As an acquaintance of the tournament organizers, you can ask them to swap the position of your cow with another cow **only once**, or you can choose to do nothing.\n\nFind the maximum number of wins your cow can achieve.\n\n## Input\n\nEach test contains multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($2 \\le n \\le 10^5, 1 \\le k \\le n$) — the number of cows and your cow's index.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the Cowdeforces rating of the cows. It is guaranteed that $a_i$'s are pairwise different.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, print one integer: the maximum number of wins cow $k$ can achieve if you choose to swap (or do nothing) optimally.\n\n## Note\n\nIn the first test case, it is optimal to do nothing. Let $a'$ be the Cowdeforces rating of the cows in the original order (with your cow's rating bolded), then\n\n- Initially, $a' = [\\mathbf{12}, 10, 14, 11, 8, 3]$.\n- Your cow plays against the cow with Cowdeforces rating $10$ and wins. $a' = [\\mathbf{12}, 14, 11, 8, 3]$.\n- Your cow plays against the cow with Cowdeforces rating $14$ and loses.\n\nIn total, your cow wins $1$ match.\n\nIn the second test case, it is optimal to swap your cow to position $3$. Then, let $a'$ be the Cowdeforces rating of the cows in the order after the swap.\n\n- Initially, $a' = [7, 2, \\mathbf{12}, 10, 727, 13]$.\n- The cow with Cowdeforces rating $7$ plays against the cow with Cowdeforces rating $2$ and wins. $a' = [7, \\mathbf{12}, 10, 727, 13]$.\n- The cow with Cowdeforces rating $7$ plays against your cow, and your cow wins. $a' = [\\mathbf{12}, 10, 727, 13]$.\n- Your cow plays against the cow with Cowdeforces rating $10$ and wins. $a' = [\\mathbf{12}, 727, 13]$.\n- Your cow plays against the cow with Cowdeforces rating $727$ and loses.\n\nIn total, your cow wins $2$ matches.",
-  "statementZhMd": null,
+  "statementZhMd": "[*The HU - Shireg Shireg*](https://youtu.be/SNCx4n2m5_o)ඞ\n\n有 $n$ 头奶牛参加一场编程锦标赛。奶牛 $i$ 的 Cowdeforces 评分为 $a_i$（所有评分均不相同），初始时位于位置 $i$。锦标赛由 $n-1$ 场比赛组成，具体如下：\n\n- 第一场比赛由位于位置 $1$ 和位置 $2$ 的奶牛进行。\n- 此后，第 $i$ 场比赛由位于位置 $i+1$ 的奶牛与第 $i-1$ 场比赛的获胜者进行。\n- 在每场比赛中，Cowdeforces 评分较高的奶牛获胜，并进入下一场比赛。\n\n你是奶牛 $k$ 的主人。对你来说，赢得整场锦标赛并不重要；相反，你希望自己的奶牛尽可能赢得更多场比赛。作为锦标赛组织者的熟人，你可以请求他们**至多一次**将你的奶牛与另一头奶牛交换位置，也可以选择什么都不做。\n\n求你的奶牛最多能赢得多少场比赛。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 10^5, 1 \\le k \\le n$）——奶牛的数量以及你的奶牛的编号。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——各头奶牛的 Cowdeforces 评分。保证 $a_i$ 两两不同。\n\n保证所有测试用例中 $n$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：在最优地选择交换（或不交换）的情况下，奶牛 $k$ 能赢得的最大比赛场数。\n\n## 说明\n\n在第一个测试用例中，最优策略是什么都不做。设 $a'$ 表示奶牛的原始顺序（将你的奶牛的评分加粗），则：\n\n- 初始时，$a' = [\\mathbf{12}, 10, 14, 11, 8, 3]$。\n- 你的奶牛与 Cowdeforces 评分为 $10$ 的奶牛比赛并获胜。$a' = [\\mathbf{12}, 14, 11, 8, 3]$。\n- 你的奶牛与 Cowdeforces 评分为 $14$ 的奶牛比赛并落败。\n\n总计，你的奶牛赢得了 $1$ 场比赛。\n\n在第二个测试用例中，最优策略是将你的奶牛交换到位置 $3$。设 $a'$ 表示交换后奶牛的排列顺序。\n\n- 初始时，$a' = [7, 2, \\mathbf{12}, 10, 727, 13]$。\n- Cowdeforces 评分为 $7$ 的奶牛与评分为 $2$ 的奶牛比赛并获胜。$a' = [7, \\mathbf{12}, 10, 727, 13]$。\n- Cowdeforces 评分为 $7$ 的奶牛与你的奶牛比赛，你的奶牛获胜。$a' = [\\mathbf{12}, 10, 727, 13]$。\n- 你的奶牛与 Cowdeforces 评分为 $10$ 的奶牛比赛并获胜。$a' = [\\mathbf{12}, 727, 13]$。\n- 你的奶牛与 Cowdeforces 评分为 $727$ 的奶牛比赛并落败。\n\n总计，你的奶牛赢得了 $2$ 场比赛。",
   "samples": [
     {
       "input": "3\n6 1\n12 10 14 11 8 3\n6 5\n7 2 727 10 12 13\n2 2\n1000000000 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:58:34.609Z"
+  "fetchedAt": "2026-10-30T21:58:34.609Z",
+  "translatedAt": "2026-11-04T02:12:57.405+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

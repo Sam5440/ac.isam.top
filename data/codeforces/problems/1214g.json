@@ -4,7 +4,7 @@
   "contestId": 1214,
   "index": "G",
   "title": "Feeling Good",
-  "titleZh": null,
+  "titleZh": "感觉良好",
   "url": "https://codeforces.com/contest/1214/problem/G",
   "difficulty": 3200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "Recently biologists came to a fascinating conclusion about how to find a chameleon mood. Consider chameleon body to be a rectangular table $n \\times m$, each cell of which may be green or blue and may change between these two colors. We will denote as $(x, y)$ ($1 \\leq x \\leq n$, $1 \\leq y \\leq m$) the cell in row $x$ and column $y$.\n\nLet us define a chameleon *good mood certificate* to be four cells which are corners of some subrectangle of the table, such that colors in opposite cells among these four are similar, and at the same time not all of the four cell colors are similar. Formally, it is a group of four cells $(x_1, y_1)$, $(x_1, y_2)$, $(x_2, y_1)$, $(x_2, y_2)$ for some $1 \\leq x_1 \\lt x_2 \\leq n$, $1 \\leq y_1 \\lt y_2 \\leq m$, that colors of $(x_1, y_1)$ and $(x_2, y_2)$ coincide and colors of $(x_1, y_2)$ and $(x_2, y_1)$ coincide, but not all of the four cells share the same color. It was found that whenever such four cells are present, chameleon is in good mood, and vice versa: if there are no such four cells, chameleon is in bad mood.\n\nYou are asked to help scientists write a program determining the mood of chameleon. Let us consider that initially all cells of chameleon are green. After that chameleon coloring may change several times. On one change, colors of contiguous segment of some table row are replaced with the opposite. Formally, each color change is defined by three integers $a$, $l$, $r$ ($1 \\leq a \\leq n$, $1 \\leq l \\leq r \\leq m$). On such change colors of all cells $(a, b)$ such that $l \\leq b \\leq r$ are replaced with the opposite.\n\nWrite a program that reports mood of the chameleon after each change. Additionally, if the chameleon mood is good, program should find out any four numbers $x_1$, $y_1$, $x_2$, $y_2$ such that four cells $(x_1, y_1)$, $(x_1, y_2)$, $(x_2, y_1)$, $(x_2, y_2)$ are the good mood certificate.\n\n## Input\n\nThe first line of input contains three integers $n$, $m$, $q$ ($1 \\leq n, m \\leq 2000$, $1 \\leq q \\leq 500\\,000$), the sizes of the table and the number of changes respectively.\n\nEach of the following $q$ lines contains 3 integers $a_i$, $l_i$, $r_i$ ($1 \\leq a_i \\leq n$, $1 \\leq l_i \\leq r_i \\leq m$), describing $i$-th coloring change.\n\n## Output\n\nPrint $q$ lines. In the $i$-th line report the chameleon mood after first $i$ color changes for all $1 \\leq i \\leq q$.\n\nIf chameleon is in bad mood, print the only integer $-1$.\n\nOtherwise, print four integers $x_1$, $y_1$, $x_2$, $y_2$ ($1 \\leq x_1 \\lt x_2 \\leq n$, $1 \\leq y_1 \\lt y_2 \\leq m$) such that four cells $(x_1, y_1)$, $(x_1, y_2)$, $(x_2, y_1)$, $(x_2, y_2)$ are the good mood certificate. If there are several ways to choose such four integers, print any valid one.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，生物学家对于如何判断变色龙的心情得出了一个有趣的结论。将变色龙的身体看作一个 $n \\times m$ 的矩形表格，其中每个单元格可以是绿色或蓝色，并且可能在这两种颜色之间改变。我们将第 $x$ 行第 $y$ 列的单元格记为 $(x, y)$（$1 \\leq x \\leq n$，$1 \\leq y \\leq m$）。\n\n我们将变色龙的*好心情证明*定义为表格中某个子矩形的四个角上的单元格，满足这四个单元格中相对的两个单元格颜色相同，同时四个单元格的颜色并不完全相同。形式化地说，对于某些 $1 \\leq x_1 \\lt x_2 \\leq n$、$1 \\leq y_1 \\lt y_2 \\leq m$，四个单元格 $(x_1, y_1)$、$(x_1, y_2)$、$(x_2, y_1)$、$(x_2, y_2)$ 满足：$(x_1, y_1)$ 和 $(x_2, y_2)$ 的颜色相同，$(x_1, y_2)$ 和 $(x_2, y_1)$ 的颜色相同，但这四个单元格并非全部具有相同的颜色。研究发现，只要存在这样的四个单元格，变色龙就会心情良好；反之，如果不存在这样的四个单元格，变色龙就会心情糟糕。\n\n请帮助科学家编写程序，判断变色龙的心情。初始时，变色龙的所有单元格均为绿色。之后，变色龙的颜色可能会改变多次。每次改变时，某一行中的一个连续单元格段会变为相反的颜色。形式化地说，每次颜色变化由三个整数 $a$、$l$、$r$（$1 \\leq a \\leq n$，$1 \\leq l \\leq r \\leq m$）定义。进行这次变化时，所有满足 $l \\leq b \\leq r$ 的单元格 $(a, b)$ 的颜色都会变为相反颜色。\n\n请编写程序，在每次变化后报告变色龙的心情。此外，如果变色龙心情良好，程序还应找出任意四个数 $x_1$、$y_1$、$x_2$、$y_2$，使得四个单元格 $(x_1, y_1)$、$(x_1, y_2)$、$(x_2, y_1)$、$(x_2, y_2)$ 构成一个好心情证明。\n\n## 输入格式\n\n输入的第一行包含三个整数 $n$、$m$、$q$（$1 \\leq n, m \\leq 2000$，$1 \\leq q \\leq 500\\,000$），分别表示表格的大小以及变化次数。\n\n接下来的 $q$ 行中，每行包含 3 个整数 $a_i$、$l_i$、$r_i$（$1 \\leq a_i \\leq n$，$1 \\leq l_i \\leq r_i \\leq m$），描述第 $i$ 次颜色变化。\n\n## 输出格式\n\n输出 $q$ 行。第 $i$ 行应报告前 $i$ 次颜色变化完成后变色龙的心情，其中 $1 \\leq i \\leq q$。\n\n如果变色龙心情糟糕，输出唯一的整数 $-1$。\n\n否则，输出四个整数 $x_1$、$y_1$、$x_2$、$y_2$（$1 \\leq x_1 \\lt x_2 \\leq n$，$1 \\leq y_1 \\lt y_2 \\leq m$），使得四个单元格 $(x_1, y_1)$、$(x_1, y_2)$、$(x_2, y_1)$、$(x_2, y_2)$ 构成一个好心情证明。如果存在多种选择这四个整数的方式，输出任意一种合法方案即可。",
   "samples": [
     {
       "input": "2 2 6\n1 1 1\n2 2 2\n2 1 1\n1 2 2\n2 2 2\n1 1 1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:05:16.700Z"
+  "fetchedAt": "2026-10-31T00:05:16.700Z",
+  "translatedAt": "2026-11-04T05:03:23.016+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

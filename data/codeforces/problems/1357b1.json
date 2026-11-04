@@ -4,7 +4,7 @@
   "contestId": 1357,
   "index": "B1",
   "title": "\"Is the bit string balanced?\" oracle",
-  "titleZh": null,
+  "titleZh": "“位字符串是否平衡？”oracle",
   "url": "https://codeforces.com/contest/1357/problem/B1",
   "difficulty": null,
   "tags": [
@@ -13,8 +13,10 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Implement a quantum oracle on $N$ qubits which checks whether the input bit string is balanced, i.e., whether it has exactly $\\frac{N}{2}$ zeros and $\\frac{N}{2}$ ones in it.\n\nYour operation should take the following inputs:\n\n- an array of $N \\le 10$ qubits \"inputs\" in an arbitrary state. $N$ will be an even number.\n- a qubit \"output\" in an arbitrary state.\n\nYour operation should perform a unitary transformation on those qubits that can be described by its effect on the basis states: if \"inputs\" is in the basis state $|x\\rangle$ and \"output\" is in the basis state $|y\\rangle$, the result of applying the operation should be $|x\\rangle|y \\oplus f(x)\\rangle$, where $f(x) = 1$ if the bit string $x$ has the same number of zeros and ones in it, and $0$ otherwise.\n\nFor example, if the qubits passed to your operation are in the state $\\frac{1}{\\sqrt{2}}(|01\\rangle + |00\\rangle)_x \\otimes |0\\rangle_y$, the state of the system after applying the operation should be $\\frac{1}{\\sqrt{2}}(|01\\rangle_x\\otimes |1\\rangle_y + |00\\rangle_x |0\\rangle_y)$.\n\nYour code should have the following signature (note that your operation should have Adjoint and Controlled variants defined for it; `is Adj+Ctl` in the operation signature will generate them automatically based on your code):\n\n```\nnamespace Solution {\n    open Microsoft.Quantum.Intrinsic;\n\n    operation Solve (inputs : Qubit[], output : Qubit) : Unit is Adj+Ctl {\n        // your code here\n    }\n}\n```\n\nYour code is not allowed to use measurements or arbitrary rotation gates. This operation can be implemented using just the X gate and its controlled variants (possibly with multiple qubits as controls).",
-  "statementZhMd": null,
+  "statementZhMd": "实现一个作用于 $N$ 个量子比特的量子 oracle，用于检查输入位字符串是否平衡，即其中是否恰好包含 $\\frac{N}{2}$ 个零和 $\\frac{N}{2}$ 个一。\n\n你的操作应接收以下输入：\n\n- 处于任意状态的 $N \\le 10$ 个量子比特数组 \"inputs\"。$N$ 将是偶数。\n- 处于任意状态的一个量子比特 \"output\"。\n\n你的操作应对这些量子比特执行一个酉变换。该变换在基态上的作用如下：如果 \"inputs\" 处于基态 $|x\\rangle$，且 \"output\" 处于基态 $|y\\rangle$，那么应用该操作后的结果应为 $|x\\rangle|y \\oplus f(x)\\rangle$，其中当位字符串 $x$ 中零和一的数量相同时，$f(x) = 1$；否则 $f(x) = 0$。\n\n例如，如果传入你的操作的量子比特处于状态 $\\frac{1}{\\sqrt{2}}(|01\\rangle + |00\\rangle)_x \\otimes |0\\rangle_y$，则应用该操作后，系统的状态应为 $\\frac{1}{\\sqrt{2}}(|01\\rangle_x\\otimes |1\\rangle_y + |00\\rangle_x |0\\rangle_y)$。\n\n你的代码应具有以下签名（注意，你的操作还应定义 Adjoint 和 Controlled 变体；在操作签名中使用 `is Adj+Ctl` 将根据你的代码自动生成它们）：\n\n```\nnamespace Solution {\n    open Microsoft.Quantum.Intrinsic;\n\n    operation Solve (inputs : Qubit[], output : Qubit) : Unit is Adj+Ctl {\n        // your code here\n    }\n}\n```\n\n你的代码不得使用测量或任意旋转门。该操作只使用 X 门及其受控变体即可实现（可能使用多个量子比特作为控制）。",
   "samples": [],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:51:58.047Z"
+  "fetchedAt": "2026-11-02T18:51:58.047Z",
+  "translatedAt": "2026-11-04T04:28:12.625+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

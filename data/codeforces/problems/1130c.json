@@ -4,7 +4,7 @@
   "contestId": 1130,
   "index": "C",
   "title": "Connect",
-  "titleZh": null,
+  "titleZh": "连接",
   "url": "https://codeforces.com/contest/1130/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Alice lives on a flat planet that can be modeled as a square grid of size $n \\times n$, with rows and columns enumerated from $1$ to $n$. We represent the cell at the intersection of row $r$ and column $c$ with ordered pair $(r, c)$. Each cell in the grid is either *land* or *water*.\n\n![image](https://espresso.codeforces.com/e23260ca84ea65c1afac5deea5995132ef8b59e2.png) An example planet with $n = 5$. It also appears in the first sample test.\n\nAlice resides in *land* cell $(r_1, c_1)$. She wishes to travel to *land* cell $(r_2, c_2)$. At any moment, she may move to one of the cells adjacent to where she is—in one of the four directions (i.e., up, down, left, or right).\n\nUnfortunately, Alice cannot swim, and there is no viable transportation means other than by foot (i.e., she can walk only on *land*). As a result, Alice's trip may be impossible.\n\nTo help Alice, you plan to create **at most one** tunnel between some two *land* cells. The tunnel will allow Alice to freely travel between the two endpoints. Indeed, creating a tunnel is a lot of effort: the cost of creating a tunnel between cells $(r_s, c_s)$ and $(r_t, c_t)$ is $(r_s-r_t)^2 + (c_s-c_t)^2$.\n\nFor now, your task is to find the minimum possible cost of creating at most one tunnel so that Alice could travel from $(r_1, c_1)$ to $(r_2, c_2)$. If no tunnel needs to be created, the cost is $0$.\n\n## Input\n\nThe first line contains one integer $n$ ($1 \\leq n \\leq 50$) — the width of the square grid.\n\nThe second line contains two space-separated integers $r_1$ and $c_1$ ($1 \\leq r_1, c_1 \\leq n$) — denoting the cell where Alice resides.\n\nThe third line contains two space-separated integers $r_2$ and $c_2$ ($1 \\leq r_2, c_2 \\leq n$) — denoting the cell to which Alice wishes to travel.\n\nEach of the following $n$ lines contains a string of $n$ characters. The $j$-th character of the $i$-th such line ($1 \\leq i, j \\leq n$) is `0` if $(i, j)$ is *land* or `1` if $(i, j)$ is *water*.\n\nIt is guaranteed that $(r_1, c_1)$ and $(r_2, c_2)$ are *land*.\n\n## Output\n\nPrint an integer that is the minimum possible cost of creating at most one tunnel so that Alice could travel from $(r_1, c_1)$ to $(r_2, c_2)$.\n\n## Note\n\nIn the first sample, a tunnel between cells $(1, 4)$ and $(4, 5)$ should be created. The cost of doing so is $(1-4)^2 + (4-5)^2 = 10$, which is optimal. This way, Alice could walk from $(1, 1)$ to $(1, 4)$, use the tunnel from $(1, 4)$ to $(4, 5)$, and lastly walk from $(4, 5)$ to $(5, 5)$.\n\nIn the second sample, clearly a tunnel between cells $(1, 3)$ and $(3, 1)$ needs to be created. The cost of doing so is $(1-3)^2 + (3-1)^2 = 8$.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 生活在一个平面星球上，这个星球可以建模为一个大小为 $n \\times n$ 的方格网，行和列的编号均为 $1$ 到 $n$。行号为 $r$、列号为 $c$ 的单元格表示为有序对 $(r, c)$。网格中的每个单元格要么是*陆地*，要么是*水域*。\n\n![image](https://espresso.codeforces.com/e23260ca84ea65c1afac5deea5995132ef8b59e2.png) 一个 $n = 5$ 的星球示例。它也出现在第一个样例中。\n\nAlice 位于*陆地*单元格 $(r_1, c_1)$。她希望前往*陆地*单元格 $(r_2, c_2)$。在任意时刻，她都可以移动到与当前位置相邻的单元格，即向上、向下、向左或向右移动。\n\n不幸的是，Alice 不会游泳，除了步行以外没有其他可行的交通方式（也就是说，她只能在*陆地*上行走）。因此，Alice 可能无法完成这次旅行。\n\n为了帮助 Alice，你计划在两个*陆地*单元格之间修建**至多一条**隧道。隧道建成后，Alice 可以在两个端点之间自由通行。事实上，修建隧道需要付出很大的努力：在单元格 $(r_s, c_s)$ 和 $(r_t, c_t)$ 之间修建隧道的代价为 $(r_s-r_t)^2 + (c_s-c_t)^2$。\n\n现在，你的任务是求修建至多一条隧道后，使 Alice 能够从 $(r_1, c_1)$ 到达 $(r_2, c_2)$ 的最小代价。如果不需要修建隧道，代价为 $0$。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 50$），表示方格网的边长。\n\n第二行包含两个空格分隔的整数 $r_1$ 和 $c_1$（$1 \\leq r_1, c_1 \\leq n$），表示 Alice 所在的单元格。\n\n第三行包含两个空格分隔的整数 $r_2$ 和 $c_2$（$1 \\leq r_2, c_2 \\leq n$），表示 Alice 希望前往的单元格。\n\n接下来的 $n$ 行中，每行包含一个长度为 $n$ 的字符串。第 $i$ 行字符串中的第 $j$ 个字符（$1 \\leq i, j \\leq n$）为 `0` 时，表示 $(i, j)$ 是*陆地*；为 `1` 时，表示 $(i, j)$ 是*水域*。\n\n保证 $(r_1, c_1)$ 和 $(r_2, c_2)$ 是*陆地*。\n\n## 输出格式\n\n输出一个整数，表示修建至多一条隧道后，使 Alice 能够从 $(r_1, c_1)$ 到达 $(r_2, c_2)$ 的最小代价。\n\n## 说明\n\n在第一个样例中，应当在单元格 $(1, 4)$ 和 $(4, 5)$ 之间修建一条隧道。修建隧道的代价为 $(1-4)^2 + (4-5)^2 = 10$，这是最优方案。这样，Alice 可以从 $(1, 1)$ 步行到 $(1, 4)$，通过隧道从 $(1, 4)$ 到达 $(4, 5)$，最后从 $(4, 5)$ 步行到 $(5, 5)$。\n\n在第二个样例中，显然需要在单元格 $(1, 3)$ 和 $(3, 1)$ 之间修建一条隧道。修建隧道的代价为 $(1-3)^2 + (3-1)^2 = 8$。",
   "samples": [
     {
       "input": "5\n1 1\n5 5\n00001\n11111\n00111\n00110\n00110\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:14:24.731Z"
+  "fetchedAt": "2026-10-31T00:14:24.731Z",
+  "translatedAt": "2026-11-04T05:27:39.535+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

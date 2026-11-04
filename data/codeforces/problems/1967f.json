@@ -4,7 +4,7 @@
   "contestId": 1967,
   "index": "F",
   "title": "Next and Prev",
-  "titleZh": null,
+  "titleZh": "后继与前驱",
   "url": "https://codeforces.com/contest/1967/problem/F",
   "difficulty": 3200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 15000,
   "memoryLimitMb": 1024,
   "statementMd": "Let $p_1, \\ldots, p_n$ be a permutation of $[1, \\ldots, n]$.\n\nLet the $q$-subsequence of $p$ be a permutation of $[1, q]$, whose elements are in the same relative order as in $p_1, \\ldots, p_n$. That is, we extract all elements not exceeding $q$ together from $p$ in the original order, and they make the $q$-subsequence of $p$.\n\nFor a given array $a$, let $pre(i)$ be the largest value satisfying $pre(i) \\lt i$ and $a_{pre(i)} \\gt a_i$. If it does not exist, let $pre(i) = -10^{100}$. Let $nxt(i)$ be the smallest value satisfying $nxt(i) \\gt i$ and $a_{nxt(i)} \\gt a_i$. If it does not exist, let $nxt(i) = 10^{100}$.\n\nFor each $q$ such that $1 \\leq q \\leq n$, let $a_1, \\ldots, a_q$ be the $q$-subsequence of $p$. For each $i$ such that $1 \\leq i \\leq q$, $pre(i)$ and $nxt(i)$ will be calculated as defined. Then, you will be given some integer values of $x$, and for each of them you have to calculate $\\sum\\limits_{i=1}^q \\min(nxt(i) - pre(i), x)$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1\\le t\\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\leq n \\leq 3\\cdot 10^5$) — the length of the permutation.\n\nThe second line of each test case contains $n$ integers $p_1, \\ldots, p_n$ ($1 \\leq p_i \\leq n$) — the initial permutation.\n\nThen, for each $q$ such that $1 \\leq q \\leq n$ in ascending order, you will be given an integer $k$ ($0 \\leq k \\leq 10^5$), representing the number of queries for the $q$-subsequence. Then $k$ numbers in a line follow: each of them is the value of $x$ for a single query ($1 \\leq x \\leq q$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3\\cdot 10^5$ and the sum of $k$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, for each query, print a single line with an integer: the answer to the query.\n\n## Note\n\nThe $1$-subsequence is $[1]$, and $pre=[-10^{100}]$, $nxt=[10^{100}]$. $ans(1)=\\min(10^{100}-(-10^{100}),1)=1$.\n\nThe $5$-subsequence is $[1,4,3,2,5]$, and $pre=[-10^{100},-10^{100},2,3,-10^{100}]$, $nxt=[2,5,5,5,10^{100}]$. $ans(1)=5,ans(2)=10,ans(3)=14$.",
-  "statementZhMd": null,
+  "statementZhMd": "设 $p_1, \\ldots, p_n$ 是 $[1, \\ldots, n]$ 的一个排列。\n\n定义 $p$ 的 $q$-子序列为 $[1, q]$ 的一个排列，且其中元素在 $p_1, \\ldots, p_n$ 中的相对顺序保持不变。也就是说，我们按照原顺序从 $p$ 中提取所有不超过 $q$ 的元素，它们构成 $p$ 的 $q$-子序列。\n\n对于给定的数组 $a$，令 $pre(i)$ 表示满足 $pre(i) \\lt i$ 且 $a_{pre(i)} \\gt a_i$ 的最大值。如果不存在这样的值，则令 $pre(i) = -10^{100}$。令 $nxt(i)$ 表示满足 $nxt(i) \\gt i$ 且 $a_{nxt(i)} \\gt a_i$ 的最小值。如果不存在这样的值，则令 $nxt(i) = 10^{100}$。\n\n对于每个满足 $1 \\leq q \\leq n$ 的 $q$，令 $a_1, \\ldots, a_q$ 为 $p$ 的 $q$-子序列。对于每个满足 $1 \\leq i \\leq q$ 的 $i$，按照上述定义计算 $pre(i)$ 和 $nxt(i)$。然后，你会得到若干个整数值 $x$，对于每个值都需要计算 $\\sum\\limits_{i=1}^q \\min(nxt(i) - pre(i), x)$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1\\le t\\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 3\\cdot 10^5$）——排列的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $p_1, \\ldots, p_n$（$1 \\leq p_i \\leq n$）——初始排列。\n\n然后，对于每个按升序排列的满足 $1 \\leq q \\leq n$ 的 $q$，会给出一个整数 $k$（$0 \\leq k \\leq 10^5$），表示针对该 $q$-子序列的查询数量。接下来一行包含 $k$ 个数，其中每个数是一次查询中的 $x$ 值（$1 \\leq x \\leq q$）。\n\n保证所有测试用例的 $n$ 之和不超过 $3\\cdot 10^5$，且所有测试用例的 $k$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例中的每次查询，输出一行一个整数，表示该查询的答案。\n\n## 说明\n\n$1$-子序列为 $[1]$，且 $pre=[-10^{100}]$，$nxt=[10^{100}]$。$ans(1)=\\min(10^{100}-(-10^{100}),1)=1$。\n\n$5$-子序列为 $[1,4,3,2,5]$，且 $pre=[-10^{100},-10^{100},2,3,-10^{100}]$，$nxt=[2,5,5,5,10^{100}]$。$ans(1)=5,ans(2)=10,ans(3)=14$。",
   "samples": [
     {
       "input": "1\n7\n6 1 4 3 2 5 7\n1 1\n0\n1 3\n1 2\n3 1 2 3\n1 3\n2 2 6\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:57:50.781Z"
+  "fetchedAt": "2026-10-30T21:57:50.781Z",
+  "translatedAt": "2026-11-04T02:09:27.684+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

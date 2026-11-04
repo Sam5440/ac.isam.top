@@ -4,7 +4,7 @@
   "contestId": 1256,
   "index": "B",
   "title": "Minimize the Permutation",
-  "titleZh": null,
+  "titleZh": "最小化排列",
   "url": "https://codeforces.com/contest/1256/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a permutation of length $n$. Recall that the permutation is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2, 3, 1, 5, 4]$ is a permutation, but $[1, 2, 2]$ is not a permutation ($2$ appears twice in the array) and $[1, 3, 4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nYou can perform at most $n-1$ operations with the given permutation (it is possible that you don't perform any operations at all). The $i$-th operation allows you to swap elements of the given permutation on positions $i$ and $i+1$. **Each operation can be performed at most once**. The operations can be performed in arbitrary order.\n\nYour task is to find the lexicographically minimum possible permutation obtained by performing some of the given operations in some order.\n\nYou can see the definition of the lexicographical order in the notes section.\n\nYou have to answer $q$ independent test cases.\n\nFor example, let's consider the permutation $[5, 4, 1, 3, 2]$. The minimum possible permutation we can obtain is $[1, 5, 2, 4, 3]$ and we can do it in the following way:\n\n1. perform the second operation (swap the second and the third elements) and obtain the permutation $[5, 1, 4, 3, 2]$;\n2. perform the fourth operation (swap the fourth and the fifth elements) and obtain the permutation $[5, 1, 4, 2, 3]$;\n3. perform the third operation (swap the third and the fourth elements) and obtain the permutation $[5, 1, 2, 4, 3]$.\n4. perform the first operation (swap the first and the second elements) and obtain the permutation $[1, 5, 2, 4, 3]$;\n\nAnother example is $[1, 2, 4, 3]$. The minimum possible permutation we can obtain is $[1, 2, 3, 4]$ by performing the third operation (swap the third and the fourth elements).\n\n## Input\n\nThe first line of the input contains one integer $q$ ($1 \\le q \\le 100$) — the number of test cases. Then $q$ test cases follow.\n\nThe first line of the test case contains one integer $n$ ($1 \\le n \\le 100$) — the number of elements in the permutation.\n\nThe second line of the test case contains $n$ distinct integers from $1$ to $n$ — the given permutation.\n\n## Output\n\nFor each test case, print the answer on it — the lexicograhically minimum possible permutation obtained by performing some of the given operations in some order.\n\n## Note\n\nRecall that the permutation $p$ of length $n$ is lexicographically less than the permutation $q$ of length $n$ if there is such index $i \\le n$ that for all $j$ from $1$ to $i - 1$ the condition $p_j = q_j$ is satisfied, and $p_i \\lt q_i$. For example:\n\n- $p = [1, 3, 5, 2, 4]$ is less than $q = [1, 3, 5, 4, 2]$ (such $i=4$ exists, that $p_i \\lt q_i$ and for each $j \\lt i$ holds $p_j = q_j$),\n- $p = [1, 2]$ is less than $q = [2, 1]$ (such $i=1$ exists, that $p_i \\lt q_i$ and for each $j \\lt i$ holds $p_j = q_j$).",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的排列。回顾一下，排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2, 3, 1, 5, 4]$ 是一个排列，但 $[1, 2, 2]$ 不是排列（数组中 $2$ 出现了两次），$[1, 3, 4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n对于给定的排列，你最多可以进行 $n-1$ 次操作（也可以一次操作都不进行）。第 $i$ 次操作允许你交换给定排列中位置 $i$ 和位置 $i+1$ 上的元素。**每次操作最多只能执行一次**。这些操作可以按任意顺序执行。\n\n你的任务是找出通过按某种顺序执行给定操作中的一部分后，能够得到的字典序最小的排列。\n\n字典序的定义可以在说明部分中查看。\n\n你需要回答 $q$ 个相互独立的测试用例。\n\n例如，考虑排列 $[5, 4, 1, 3, 2]$。我们能够得到的最小排列是 $[1, 5, 2, 4, 3]$，可以按以下方式操作：\n\n1. 执行第二次操作（交换第二个和第三个元素），得到排列 $[5, 1, 4, 3, 2]$；\n2. 执行第四次操作（交换第四个和第五个元素），得到排列 $[5, 1, 4, 2, 3]$；\n3. 执行第三次操作（交换第三个和第四个元素），得到排列 $[5, 1, 2, 4, 3]$；\n4. 执行第一次操作（交换第一个和第二个元素），得到排列 $[1, 5, 2, 4, 3]$。\n\n另一个例子是 $[1, 2, 4, 3]$。通过执行第三次操作（交换第三个和第四个元素），我们可以得到最小排列 $[1, 2, 3, 4]$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $q$（$1 \\le q \\le 100$），表示测试用例的数量。接下来是 $q$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 100$），表示排列中元素的数量。\n\n每个测试用例的第二行包含 $n$ 个互不相同的、范围在 $1$ 到 $n$ 之间的整数，表示给定的排列。\n\n## 输出格式\n\n对于每个测试用例，输出该测试用例的答案，即通过按某种顺序执行给定操作中的一部分后能够得到的字典序最小的排列。\n\n## 说明\n\n回顾一下，如果存在某个下标 $i \\le n$，使得对于从 $1$ 到 $i - 1$ 的所有 $j$，均满足条件 $p_j = q_j$，并且 $p_i \\lt q_i$，则长度为 $n$ 的排列 $p$ 的字典序小于排列 $q$。例如：\n\n- $p = [1, 3, 5, 2, 4]$ 小于 $q = [1, 3, 5, 4, 2]$（存在这样的 $i=4$，使得 $p_i \\lt q_i$，并且对于每个 $j \\lt i$ 都有 $p_j = q_j$）；\n- $p = [1, 2]$ 小于 $q = [2, 1]$（存在这样的 $i=1$，使得 $p_i \\lt q_i$，并且对于每个 $j \\lt i$ 都有 $p_j = q_j$）。",
   "samples": [
     {
       "input": "4\n5\n5 4 1 3 2\n4\n1 2 4 3\n1\n1\n4\n4 3 2 1\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:01:45.204Z"
+  "fetchedAt": "2026-11-02T19:01:45.204Z",
+  "translatedAt": "2026-11-04T04:56:21.844+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 923,
   "index": "D",
   "title": "Picking Strings",
-  "titleZh": null,
+  "titleZh": "选择字符串",
   "url": "https://codeforces.com/contest/923/problem/D",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Alice has a string consisting of characters '`A`', '`B`' and '`C`'. Bob can use the following transitions on any substring of our string in any order any number of times:\n\n- `A` ![image](https://espresso.codeforces.com/70a0795f45d32287dba0eb83fc4a3f470c6e5537.png) `BC`\n- `B` ![image](https://espresso.codeforces.com/70a0795f45d32287dba0eb83fc4a3f470c6e5537.png) `AC`\n- `C` ![image](https://espresso.codeforces.com/70a0795f45d32287dba0eb83fc4a3f470c6e5537.png) `AB`\n- `AAA` ![image](https://espresso.codeforces.com/70a0795f45d32287dba0eb83fc4a3f470c6e5537.png) empty string\n\nNote that a substring is one or more consecutive characters. For given queries, determine whether it is possible to obtain the target string from source.\n\n## Input\n\nThe first line contains a string $*S*$ ($1 ≤ |*S*| ≤ 10^{5}$). The second line contains a string $*T*$ ($1 ≤ |*T*| ≤ 10^{5}$), each of these strings consists only of uppercase English letters '`A`', '`B`' and '`C`'.\n\nThe third line contains the number of queries $*Q*$ ($1 ≤ *Q* ≤ 10^{5}$).\n\nThe following $*Q*$ lines describe queries. The $*i*$-th of these lines contains four space separated integers $*a*_{*i*}$, $*b*_{*i*}$, $*c*_{*i*}$, $*d*_{*i*}$. These represent the $*i*$-th query: is it possible to create $*T*[*c*_{*i*}..*d*_{*i*}]$ from $*S*[*a*_{*i*}..*b*_{*i*}]$ by applying the above transitions finite amount of times?\n\nHere, $*U*[*x*..*y*]$ is a substring of $*U*$ that begins at index $*x*$ (indexed from 1) and ends at index $*y*$. In particular, $*U*[1..|*U*|]$ is the whole string $*U*$.\n\nIt is guaranteed that $1 ≤ *a* ≤ *b* ≤ |*S*|$ and $1 ≤ *c* ≤ *d* ≤ |*T*|$.\n\n## Output\n\nPrint a string of $*Q*$ characters, where the $*i*$-th character is '`1`' if the answer to the $*i*$-th query is positive, and '`0`' otherwise.\n\n## Note\n\nIn the first query we can achieve the result, for instance, by using transitions ![image](https://espresso.codeforces.com/2c164f8b6e335aa51b97bbd019ca0d7326927314.png).\n\nThe third query asks for changing `AAB` to `A` — but in this case we are not able to get rid of the character '`B`'.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 有一个仅由字符 `A`、`B` 和 `C` 组成的字符串。Bob 可以按照任意顺序、任意次数，在该字符串的任意子串上使用以下变换：\n\n- `A` ![image](https://espresso.codeforces.com/70a0795f45d32287dba0eb83fc4a3f470c6e5537.png) `BC`\n- `B` ![image](https://espresso.codeforces.com/70a0795f45d32287dba0eb83fc4a3f470c6e5537.png) `AC`\n- `C` ![image](https://espresso.codeforces.com/70a0795f45d32287dba0eb83fc4a3f470c6e5537.png) `AB`\n- `AAA` ![image](https://espresso.codeforces.com/70a0795f45d32287dba0eb83fc4a3f470c6e5537.png) 空字符串\n\n注意，子串是指一个或多个连续的字符。对于给定的询问，请判断是否可以从源字符串得到目标字符串。\n\n## 输入格式\n\n第一行包含一个字符串 $*S*$（$1 ≤ |*S*| ≤ 10^{5}$）。第二行包含一个字符串 $*T*$（$1 ≤ |*T*| ≤ 10^{5}$）。这两个字符串均只由大写英文字母 `A`、`B` 和 `C` 组成。\n\n第三行包含询问数量 $*Q*$（$1 ≤ *Q* ≤ 10^{5}$）。\n\n接下来的 $*Q*$ 行描述各个询问。第 $*i*$ 行包含四个以空格分隔的整数 $*a*_{*i}$、$*b*_{*i}$、$*c*_{*i}$、$*d*_{*i}$。它们表示第 $*i*$ 个询问：是否可以通过有限次应用上述变换，从 $*S*[*a*_{*i*}..*b*_{*i*}]$ 得到 $*T*[*c*_{*i*}..*d*_{*i*}]$？\n\n这里，$*U*[*x*..*y*]$ 表示字符串 $*U*$ 的一个子串，其起始位置为 $*x*$（下标从 1 开始），结束位置为 $*y*$。特别地，$*U*[1..|*U*|]$ 表示整个字符串 $*U*$。\n\n保证 $1 ≤ *a* ≤ *b* ≤ |*S*|$ 且 $1 ≤ *c* ≤ *d* ≤ |*T*|$。\n\n## 输出格式\n\n输出一个由 $*Q*$ 个字符组成的字符串，其中第 $*i*$ 个字符为 `1` 表示第 $*i*$ 个询问的答案为肯定，否则为 `0`。\n\n## 说明\n\n在第一个询问中，例如可以使用变换 ![image](https://espresso.codeforces.com/2c164f8b6e335aa51b97bbd019ca0d7326927314.png) 得到目标字符串。\n\n第三个询问要求将 `AAB` 变为 `A` —— 但在这种情况下，我们无法去掉字符 `B`。",
   "samples": [
     {
       "input": "AABCCBAAB\nABCB\n5\n1 3 1 2\n2 2 2 4\n7 9 1 1\n3 4 2 3\n4 5 1 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:36:58.194Z"
+  "fetchedAt": "2026-10-31T00:36:58.194Z",
+  "translatedAt": "2026-11-04T05:54:00.239+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

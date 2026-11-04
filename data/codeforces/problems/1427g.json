@@ -4,7 +4,7 @@
   "contestId": 1427,
   "index": "G",
   "title": "One Billion Shades of Grey",
-  "titleZh": null,
+  "titleZh": "十亿种灰色",
   "url": "https://codeforces.com/contest/1427/problem/G",
   "difficulty": 3300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You have to paint with shades of grey the tiles of an $n\\times n$ wall. The wall has $n$ rows of tiles, each with $n$ tiles.\n\nThe tiles on the boundary of the wall (i.e., on the first row, last row, first column and last column) are already painted and you shall not change their color. All the other tiles are not painted. Some of the tiles are broken, you shall not paint those tiles. It is guaranteed that the tiles on the boundary are not broken.\n\nYou shall paint all the non-broken tiles that are not already painted. When you paint a tile you can choose from $10^9$ shades of grey, indexed from $1$ to $10^9$. You can paint multiple tiles with the same shade. Formally, painting the wall is equivalent to assigning a shade (an integer between $1$ and $10^9$) to each non-broken tile that is not already painted.\n\nThe contrast between two tiles is the absolute value of the difference between the shades of the two tiles. The total contrast of the wall is the sum of the contrast of all the pairs of adjacent non-broken tiles (two tiles are adjacent if they share a side).\n\nCompute the minimum possible total contrast of the wall.\n\n## Input\n\nThe first line contains $n$ ($3\\le n\\le 200$) – the number of rows and columns.\n\nThen $n$ lines, each containing $n$ integers, follow. The $i$-th of these lines describe the $i$-th row of tiles. It contains the $n$ integers $a_{ij}$ ($-1\\le a_{ij} \\le 10^9)$. The value of $a_{ij}$ described the tile on the $i$-th row and $j$-th column:\n\n- If $a_{ij}=0$, then the tile is not painted and shall be painted.\n- If $a_{ij}=-1$, then the tile is broken and shall not be painted.\n- If $1\\le a_{ij}\\le 10^9$, then the tile is already painted with the shade $a_{ij}$.\n\nIt is guaranteed that the tiles on the boundary are already painted, the tiles not on the boundary are not already painted, and the tiles on the boundary are not broken.\n\n## Output\n\nPrint a single integer – the minimum possible total contrast of the wall.\n\n## Note\n\n**Explanation of the first testcase:** The initial configuration of the tiles is (tiles to paint are denoted by `?`):\n\n1 7 6 4 ? 6 1 1 1\n\nA possible way to paint the tile achieving the minimum possible contrast of $26$ is:\n\n1 7 6 4 5 6 1 1 1\n\n**Explanation of the second testcase:** Since all tiles are either painted or broken, there is nothing to do. The total contrast is $396$.\n\n**Explanation of the third testcase:** The initial configuration of the tiles is (tiles to paint are denoted by `?`):\n\n6 6 5 4 4 6 ? ? ? 4 7 ? ? ? 3 8 ? ? ? 2 8 8 1 2 2\n\nA possible way to paint the tiles achieving the minimum possible contrast of $34$ is:\n\n6 6 5 4 4 6 6 5 4 4 7 7 5 3 3 8 8 2 2 2 8 8 1 2 2",
-  "statementZhMd": null,
+  "statementZhMd": "你需要用不同深浅的灰色为一面 $n\\times n$ 的墙上的瓷砖涂色。这面墙有 $n$ 行瓷砖，每行有 $n$ 块瓷砖。\n\n墙边界上的瓷砖（即第一行、最后一行、第一列和最后一列上的瓷砖）已经涂色，你不能更改它们的颜色。其他所有瓷砖都尚未涂色。有些瓷砖已经损坏，你不能为这些瓷砖涂色。保证边界上的瓷砖没有损坏。\n\n你需要为所有未损坏且尚未涂色的瓷砖涂色。为一块瓷砖涂色时，你可以从 $10^9$ 种灰色中选择一种，编号从 $1$ 到 $10^9$。多块瓷砖可以使用相同的灰色。形式化地说，为墙涂色等价于：为每一块未损坏且尚未涂色的瓷砖分配一种灰色（一个介于 $1$ 和 $10^9$ 之间的整数）。\n\n两块瓷砖之间的对比度定义为它们颜色编号之差的绝对值。整面墙的总对比度是所有相邻的未损坏瓷砖对的对比度之和（如果两块瓷砖有一条公共边，则称它们相邻）。\n\n请计算墙的总对比度可能达到的最小值。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$3\\le n\\le 200$），表示行数和列数。\n\n接下来有 $n$ 行，每行包含 $n$ 个整数。这些整数描述第 $i$ 行的瓷砖，其中第 $i$ 行包含 $n$ 个整数 $a_{ij}$（$-1\\le a_{ij} \\le 10^9$）。$a_{ij}$ 的值描述第 $i$ 行第 $j$ 列的瓷砖：\n\n- 如果 $a_{ij}=0$，则该瓷砖尚未涂色，需要为其涂色。\n- 如果 $a_{ij}=-1$，则该瓷砖已经损坏，不能为其涂色。\n- 如果 $1\\le a_{ij}\\le 10^9$，则该瓷砖已经涂上了编号为 $a_{ij}$ 的灰色。\n\n保证边界上的瓷砖已经涂色，不在边界上的瓷砖尚未涂色，并且边界上的瓷砖没有损坏。\n\n## 输出格式\n\n输出一个整数，即墙的总对比度可能达到的最小值。\n\n## 说明\n\n**第一个测试用例的解释：**瓷砖的初始状态如下（用 `?` 表示需要涂色的瓷砖）：\n\n1 7 6 4 ? 6 1 1 1\n\n一种能够使总对比度达到最小值 $26$ 的涂色方案如下：\n\n1 7 6 4 5 6 1 1 1\n\n**第二个测试用例的解释：**由于所有瓷砖都已经涂色或已经损坏，因此无需进行任何操作。总对比度为 $396$。\n\n**第三个测试用例的解释：**瓷砖的初始状态如下（用 `?` 表示需要涂色的瓷砖）：\n\n6 6 5 4 4 6 ? ? ? 4 7 ? ? ? 3 8 ? ? ? 2 8 8 1 2 2\n\n一种能够使总对比度达到最小值 $34$ 的涂色方案如下：\n\n6 6 5 4 4 6 6 5 4 4 7 7 5 3 3 8 8 2 2 2 8 8 1 2 2",
   "samples": [
     {
       "input": "3\n1 7 6\n4 0 6\n1 1 1\n",
@@ -39,5 +39,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:42:38.575Z"
+  "fetchedAt": "2026-10-30T23:42:38.575Z",
+  "translatedAt": "2026-11-04T04:20:30.430+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

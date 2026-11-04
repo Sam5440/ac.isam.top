@@ -4,7 +4,7 @@
   "contestId": 919,
   "index": "F",
   "title": "A Game With Numbers",
-  "titleZh": null,
+  "titleZh": "数字游戏",
   "url": "https://codeforces.com/contest/919/problem/F",
   "difficulty": 2600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Imagine that Alice is playing a card game with her friend Bob. They both have exactly $8$ cards and there is an integer on each card, ranging from $0$ to $4$. In each round, Alice or Bob in turns choose two cards from different players, let them be $a$ and $b$, where $a$ is the number on the player's card, and $b$ is the number on the opponent's card. It is necessary that $a \\cdot b \\ne 0$. Then they calculate $c = (a + b) \\bmod 5$ and replace the number $a$ with $c$. The player who ends up with numbers on all $8$ cards being $0$, wins.\n\nNow Alice wants to know who wins in some situations. She will give you her cards' numbers, Bob's cards' numbers and the person playing the first round. Your task is to determine who wins if both of them choose the best operation in their rounds.\n\n## Input\n\nThe first line contains one positive integer $T$ ($1 \\leq T \\leq 100\\,000$), denoting the number of situations you need to consider.\n\nThe following lines describe those $T$ situations. For each situation:\n\n- The first line contains a non-negative integer $f$ ($0 \\leq f \\leq 1$), where $f = 0$ means that Alice plays first and $f = 1$ means Bob plays first.\n- The second line contains $8$ non-negative integers $a_1, a_2, \\ldots, a_8$ ($0 \\leq a_i \\leq 4$), describing Alice's cards.\n- The third line contains $8$ non-negative integers $b_1, b_2, \\ldots, b_8$ ($0 \\leq b_i \\leq 4$), describing Bob's cards.\n\nWe guarantee that if $f=0$, we have $\\sum_{i=1}^{8}a_i \\ne 0$. Also when $f=1$, $\\sum_{i=1}^{8}b_i \\ne 0$ holds.\n\n## Output\n\nOutput $T$ lines. For each situation, determine who wins. Output\n\n- \"`Alice`\" (without quotes) if Alice wins.\n- \"`Bob`\" (without quotes) if Bob wins.\n- \"`Deal`\" (without quotes) if it gets into a deal, i.e. no one wins.\n\n## Note\n\nIn the first situation, Alice has all her numbers $0$. So she wins immediately.\n\nIn the second situation, Bob picks the numbers $4$ and $1$. Because we have $(4 + 1) \\bmod 5 = 0$, Bob wins after this operation.\n\nIn the third situation, Alice picks the numbers $1$ and $4$. She wins after this operation.\n\nIn the fourth situation, we can prove that it falls into a loop.",
-  "statementZhMd": null,
+  "statementZhMd": "想象一下，Alice 正在和她的朋友 Bob 玩一个纸牌游戏。他们各自恰好有 $8$ 张牌，每张牌上都有一个 $0$ 到 $4$ 之间的整数。每一轮中，Alice 和 Bob 轮流从双方各选择一张牌，设它们分别为 $a$ 和 $b$，其中 $a$ 是当前玩家牌上的数字，$b$ 是对手牌上的数字。必须满足 $a \\cdot b \\ne 0$。然后，他们计算 $c = (a + b) \\bmod 5$，并将数字 $a$ 替换为 $c$。最终使自己全部 $8$ 张牌上的数字都变为 $0$ 的玩家获胜。\n\n现在，Alice 想知道在一些情况下谁会获胜。她会告诉你她的牌上的数字、Bob 的牌上的数字以及第一轮由谁进行。你的任务是确定在双方都为自己的回合选择最佳操作时，谁会获胜。\n\n## 输入格式\n\n第一行包含一个正整数 $T$（$1 \\leq T \\leq 100\\,000$），表示需要考虑的情况数。\n\n接下来的若干行描述这 $T$ 种情况。对于每种情况：\n\n- 第一行包含一个非负整数 $f$（$0 \\leq f \\leq 1$）。其中，$f = 0$ 表示 Alice 先进行，$f = 1$ 表示 Bob 先进行。\n- 第二行包含 $8$ 个非负整数 $a_1, a_2, \\ldots, a_8$（$0 \\leq a_i \\leq 4$），表示 Alice 的牌。\n- 第三行包含 $8$ 个非负整数 $b_1, b_2, \\ldots, b_8$（$0 \\leq b_i \\leq 4$），表示 Bob 的牌。\n\n保证当 $f=0$ 时，$\u0000sum_{i=1}^{8}a_i \\ne 0$。当 $f=1$ 时，$\u0000sum_{i=1}^{8}b_i \\ne 0$ 也成立。\n\n## 输出格式\n\n输出 $T$ 行。对于每种情况，判断谁会获胜。输出\n\n- \"`Alice`\"（不含引号），如果 Alice 获胜。\n- \"`Bob`\"（不含引号），如果 Bob 获胜。\n- \"`Deal`\"（不含引号），如果进入和局，即没有任何一方获胜。\n\n## 说明\n\n在第一种情况中，Alice 的所有数字都是 $0$，因此她立即获胜。\n\n在第二种情况中，Bob 选择数字 $4$ 和 $1$。由于 $(4 + 1) \\bmod 5 = 0$，Bob 在这次操作后获胜。\n\n在第三种情况中，Alice 选择数字 $1$ 和 $4$。她在这次操作后获胜。\n\n在第四种情况中，可以证明游戏会陷入循环。",
   "samples": [
     {
       "input": "4\n1\n0 0 0 0 0 0 0 0\n1 2 3 4 1 2 3 4\n1\n0 0 0 1 0 0 0 0\n0 0 0 0 4 0 0 0\n0\n1 0 0 0 0 0 0 0\n0 0 0 4 0 0 2 0\n1\n1 1 1 1 1 1 1 1\n1 1 1 1 1 1 1 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:37:13.653Z"
+  "fetchedAt": "2026-10-31T00:37:13.653Z",
+  "translatedAt": "2026-11-04T05:51:07.159+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

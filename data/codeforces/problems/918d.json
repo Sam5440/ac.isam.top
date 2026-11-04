@@ -4,14 +4,14 @@
   "contestId": 918,
   "index": "D",
   "title": "MADMAX",
-  "titleZh": null,
+  "titleZh": "疯狂的麦克斯",
   "url": "https://codeforces.com/contest/918/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "As we all know, Max is the best video game player among her friends. Her friends were so jealous of hers, that they created an actual game just to prove that she's not the best at games. The game is played on a directed acyclic graph (a DAG) with $*n*$ vertices and $*m*$ edges. There's a character written on each edge, a lowercase English letter.\n\n![image](https://espresso.codeforces.com/8b2dc9851ecba8e71163103ca0adb4574b2c7682.png)\n\nMax and Lucas are playing the game. Max goes first, then Lucas, then Max again and so on. Each player has a marble, initially located at some vertex. Each player in his/her turn should move his/her marble along some edge (a player can move the marble from vertex $*v*$ to vertex $*u*$ if there's an outgoing edge from $*v*$ to $*u*$). If the player moves his/her marble from vertex $*v*$ to vertex $*u*$, the \"character\" of that round is the character written on the edge from $*v*$ to $*u*$. There's one additional rule; the ASCII code of character of round $*i*$ should be **greater than or equal** to the ASCII code of character of round $*i* - 1$ (for $*i* > 1$). The rounds are numbered for both players together, i. e. Max goes in odd numbers, Lucas goes in even numbers. The player that can't make a move loses the game. The marbles may be at the same vertex at the same time.\n\nSince the game could take a while and Lucas and Max have to focus on finding Dart, they don't have time to play. So they asked you, if they both play optimally, who wins the game?\n\nYou have to determine the winner of the game for all initial positions of the marbles.\n\n## Input\n\nThe first line of input contains two integers $*n*$ and $*m*$ ($2 ≤ *n* ≤ 100$, ![image](https://espresso.codeforces.com/37372be2fa973707a2359c140f9c1f1a0de5fb71.png)).\n\nThe next $*m*$ lines contain the edges. Each line contains two integers $*v*$, $*u*$ and a lowercase English letter $*c*$, meaning there's an edge from $*v*$ to $*u*$ written $*c*$ on it ($1 ≤ *v*, *u* ≤ *n*$, $*v* ≠ *u*$). There's at most one edge between any pair of vertices. It is guaranteed that the graph is acyclic.\n\n## Output\n\nPrint $*n*$ lines, a string of length $*n*$ in each one. The $*j*$-th character in $*i*$-th line should be 'A' if Max will win the game in case her marble is initially at vertex $*i*$ and Lucas's marble is initially at vertex $*j*$, and 'B' otherwise.\n\n## Note\n\nHere's the graph in the first sample test case:\n\n![image](https://espresso.codeforces.com/92d945d66a123e7f89374b24e1686438c9152373.png)\n\nHere's the graph in the second sample test case:\n\n![image](https://espresso.codeforces.com/b8ecce7d0fd2a43e40fd4a8e851c2cc8a7872bb2.png)",
-  "statementZhMd": null,
+  "statementZhMd": "众所周知，Max 是她的朋友中最优秀的电子游戏玩家。她的朋友们非常嫉妒她，于是他们专门制作了一款真正的游戏，只是为了证明她并不是最擅长游戏的人。游戏在一个有向无环图（DAG）上进行，该图有 $*n*$ 个顶点和 $*m*$ 条边。每条边上都写有一个字符，且该字符是一个小写英文字母。\n\n![image](https://espresso.codeforces.com/8b2dc9851ecba8e71163103ca0adb4574b2c7682.png)\n\nMax 和 Lucas 正在进行游戏。Max 先行动，然后是 Lucas，接着再次轮到 Max，如此交替进行。每位玩家都有一个棋子，初始时位于某个顶点。在自己的回合中，每位玩家都必须沿一条边移动自己的棋子（如果存在一条从顶点 $*v*$ 到顶点 $*u*$ 的出边，则玩家可以将棋子从顶点 $*v*$ 移动到顶点 $*u*$）。如果玩家将棋子从顶点 $*v*$ 移动到顶点 $*u*$，则该回合的“字符”就是从 $*v*$ 到 $*u*$ 的边上所写的字符。还有一条额外规则：第 $*i*$ 个回合的字符的 ASCII 码必须 **大于等于** 第 $*i* - 1$ 个回合的字符的 ASCII 码（对于 $*i* > 1$）。两个玩家的回合统一编号，即 Max 在奇数回合行动，Lucas 在偶数回合行动。无法进行移动的玩家输掉游戏。两个棋子可以同时位于同一个顶点。\n\n由于游戏可能会持续很长时间，而 Lucas 和 Max 还必须专心寻找 Dart，他们没有时间亲自进行游戏。因此他们想知道：如果双方都采取最优策略，谁会赢得游戏？\n\n你需要确定所有棋子初始位置组合下的游戏胜者。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*m*$（$2 ≤ *n* ≤ 100$，![image](https://espresso.codeforces.com/37372be2fa973707a2359c140f9c1f1a0de5fb71.png)）。\n\n接下来的 $*m*$ 行描述边。每行包含两个整数 $*v*$、$*u*$ 和一个小写英文字母 $*c*$，表示存在一条从 $*v*$ 到 $*u*$ 的边，且边上写有字符 $*c*$（$1 ≤ *v*, *u* ≤ *n*$，$*v* ≠ *u*$）。任意一对顶点之间至多有一条边。保证该图是无环的。\n\n## 输出格式\n\n输出 $*n*$ 行，每行包含一个长度为 $*n*$ 的字符串。如果 Max 的棋子初始位于顶点 $*i*$，而 Lucas 的棋子初始位于顶点 $*j*$，则第 $*i*$ 行的第 $*j*$ 个字符应为 'A'，表示 Max 会获胜；否则应为 'B'。\n\n## 说明\n\n下面是第一个样例测试用例中的图：\n\n![image](https://espresso.codeforces.com/92d945d66a123e7f89374b24e1686438c9152373.png)\n\n下面是第二个样例测试用例中的图：\n\n![image](https://espresso.codeforces.com/b8ecce7d0fd2a43e40fd4a8e851c2cc8a7872bb2.png)",
   "samples": [
     {
       "input": "4 4\n1 2 b\n1 3 a\n2 4 c\n3 4 b\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:37:21.179Z"
+  "fetchedAt": "2026-10-31T00:37:21.179Z",
+  "translatedAt": "2026-11-04T05:49:54.781+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

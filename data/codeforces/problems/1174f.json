@@ -4,7 +4,7 @@
   "contestId": 1174,
   "index": "F",
   "title": "Ehab and the Big Finale",
-  "titleZh": null,
+  "titleZh": "Ehab 与大结局",
   "url": "https://codeforces.com/contest/1174/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*This is an interactive problem.*\n\nYou're given a tree consisting of $n$ nodes, rooted at node $1$. A tree is a connected graph with no cycles.\n\nWe chose a hidden node $x$. In order to find this node, you can ask queries of two types:\n\n- `d` $u$ ($1 \\le u \\le n$). We will answer with the distance between nodes $u$ and $x$. The distance between two nodes is the number of edges in the shortest path between them.\n- `s` $u$ ($1 \\le u \\le n$). We will answer with the second node on the path from $u$ to $x$. However, there's a plot twist. If $u$ is **not** an ancestor of $x$, you'll receive \"`Wrong answer`\" verdict!\n\nNode $a$ is called an ancestor of node $b$ if $a \\ne b$ and the shortest path from node $1$ to node $b$ passes through node $a$. **Note that in this problem a node is not an ancestor of itself**.\n\nCan you find $x$ in no more than $36$ queries? The hidden node is fixed in each test beforehand and does not depend on your queries.\n\n## Input\n\nThe first line contains the integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of nodes in the tree.\n\nEach of the next $n-1$ lines contains two space-separated integers $u$ and $v$ ($1 \\le u,v \\le n$) that mean there's an edge between nodes $u$ and $v$. It's guaranteed that the given graph is a tree.\n\n## Output\n\nTo print the answer, print \"`! x`\" (without quotes).\n\n## Interaction\n\nTo ask a question, print it in one of the formats above:\n\n- `d` $u$ ($1 \\le u \\le n$), or\n- `s` $u$ ($1 \\le u \\le n$).\n\nAfter each question, you should read the answer: either the distance or the second vertex on the path, as mentioned in the legend.\n\nIf we answer with $-1$ instead of a valid answer, that means you exceeded the number of queries, made an invalid query, or violated the condition in the second type of queries. Exit immediately after receiving $-1$ and you will see `Wrong answer` verdict. Otherwise, you can get an arbitrary verdict because your solution will continue to read from a closed stream.\n\nAfter printing a query, do not forget to output end of line and flush the output. Otherwise, you will get `Idleness limit exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- See the documentation for other languages.\n\n**Hacks:**\n\nThe first line should contain two integers $n$ and $x$ ($2 \\le n \\le 2 \\cdot 10^5$, $1 \\le x \\le n$).\n\nEach of the next $n-1$ lines should contain two integers $u$ and $v$ ($1 \\le u,v \\le n$) that mean there is an edge between nodes $u$ and $v$. The edges must form a tree.\n\n## Note\n\nIn the first example, the hidden node is node $5$.\n\n![image](https://espresso.codeforces.com/b60786d0104f38ed666bd76a9753c3c6bb531ed7.png)\n\nWe first ask about the distance between node $x$ and node $2$. The answer is $3$, so node $x$ is either $4$ or $5$. We then ask about the second node in the path from node $3$ to node $x$. Note here that node $3$ is an ancestor of node $5$. We receive node $5$ as the answer. Finally, we report that the hidden node is node $5$.",
-  "statementZhMd": null,
+  "statementZhMd": "*这是一道交互题。*\n\n给定一棵包含 $n$ 个节点、以节点 $1$ 为根的树。树是一个无环的连通图。\n\n我们选定了一个隐藏节点 $x$。为了找到这个节点，你可以提出以下两种类型的询问：\n\n- `d` $u$（$1 \\le u \\le n$）。我们将回答节点 $u$ 与 $x$ 之间的距离。两个节点之间的距离是它们之间最短路径上的边数。\n- `s` $u$（$1 \\le u \\le n$）。我们将回答从 $u$ 到 $x$ 的路径上的第二个节点。不过，这里有一个特殊之处：如果 $u$ **不是** $x$ 的祖先，你将收到“`Wrong answer`”判定！\n\n如果节点 $1$ 到节点 $b$ 的最短路径经过节点 $a$，且 $a \\ne b$，则称节点 $a$ 是节点 $b$ 的祖先。**注意，在本题中，节点不是自身的祖先。**\n\n你能否在不超过 $36$ 次询问内找到 $x$？隐藏节点会在每组测试数据开始前固定，并且不会根据你的询问发生变化。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——树中节点的数量。\n\n接下来的 $n-1$ 行中，每行包含两个用空格分隔的整数 $u$ 和 $v$（$1 \\le u,v \\le n$），表示节点 $u$ 和节点 $v$ 之间存在一条边。保证给出的图是一棵树。\n\n## 输出格式\n\n要输出答案，请输出 `! x`（不含引号）。\n\n## 交互\n\n要提出询问，请按照以下格式之一输出：\n\n- `d` $u$（$1 \\le u \\le n$），或\n- `s` $u$（$1 \\le u \\le n$）。\n\n每次询问后，你都应读入答案：根据上面的说明，答案可能是距离或路径上的第二个节点。\n\n如果我们返回 $-1$ 而不是有效答案，这意味着你超出了询问次数限制、提出了无效询问，或违反了第二种询问的条件。收到 $-1$ 后请立即退出，否则你的程序将继续从已关闭的输入流中读取数据，并可能得到任意判定。\n\n输出询问后，不要忘记输出换行并刷新输出。否则，你将收到 `Idleness limit exceeded`。可以使用：\n\n- C++：`fflush(stdout)` 或 `cout.flush()`；\n- Java：`System.out.flush()`；\n- Pascal：`flush(output)`；\n- Python：`stdout.flush()`；\n- 其他语言请参阅相关文档。\n\n**黑客数据：**\n\n第一行应包含两个整数 $n$ 和 $x$（$2 \\le n \\le 2 \\cdot 10^5$，$1 \\le x \\le n$）。\n\n接下来的 $n-1$ 行中，每行应包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n$），表示节点 $u$ 和节点 $v$ 之间存在一条边。所有边必须构成一棵树。\n\n## 说明\n\n在第一个样例中，隐藏节点是节点 $5$。\n\n![image](https://espresso.codeforces.com/b60786d0104f38ed666bd76a9753c3c6bb531ed7.png)\n\n我们首先询问节点 $x$ 与节点 $2$ 之间的距离。答案是 $3$，因此节点 $x$ 可能是节点 $4$ 或节点 $5$。随后，我们询问从节点 $3$ 到节点 $x$ 的路径上的第二个节点。注意，此时节点 $3$ 是节点 $5$ 的祖先。我们得到的答案是节点 $5$。最后，我们报告隐藏节点是节点 $5$。",
   "samples": [
     {
       "input": "5\n1 2\n1 3\n3 4\n3 5\n3\n5\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:09:50.787Z"
+  "fetchedAt": "2026-10-31T00:09:50.787Z",
+  "translatedAt": "2026-11-04T05:10:22.862+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

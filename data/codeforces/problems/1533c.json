@@ -4,7 +4,7 @@
   "contestId": 1533,
   "index": "C",
   "title": "Sweets",
-  "titleZh": null,
+  "titleZh": "糖果",
   "url": "https://codeforces.com/contest/1533/problem/C",
   "difficulty": null,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Anya came to her friend's birthday party. There are $n$ delicious sweets on a circle table (for convenience, we will number them from $1$ to $n$ in clockwise direction). For each of the sweets, it is known whether Anya likes it or not. Anya decided that she should eat all the sweets that are on the table, and she likes them.\n\nHowever, eating all the sweets in some random order is too boring. Therefore, Anya came up with a game that will make the process of eating sweets more interesting.\n\nThe game is played according to the following rules:\n\n- if there are no sweets that Anya likes left on the table, then the game ends;\n- at the very beginning of the game, if there is at least one sweet on the table that Anya wants to eat, she eats the sweet number $1$;\n- after Anya has eaten some sweet, she counts $k$ sweets clockwise, starting from the next sweet in the circle, and eats the $k$-th sweet in the count (if there are less than $k$ sweets in the circle, some sweets can participate in the count more than once, and the last sweet in the count is picked). Obviously, the sweets that have already been eaten do not participate in the count.\n\nFor example, let $6$ sweets be arranged in a circle, Anya likes sweets $4$, $5$ and $6$, $k = 4$. Then the game goes as follows:\n\n1. initially there are sweets $[1, 2, 3, 4, 5, 6]$ on the table, Anya chooses the sweet number $1$.\n2. Anya eats the sweet number $1$, after that, there are sweets $[2, 3, 4, 5, 6]$ on the table. Anya counts $4$ sweets, starting with the $2$-nd sweet, and stops at the $5$-th sweet.\n3. Anya eats the $5$-th sweet, after that, there are sweets $[2, 3, 4, 6]$ on the table. Anya counts $4$ sweets, starting with the $6$-th sweet, and stops at the $4$-th sweet.\n4. Anya eats the sweet number $4$, after that, there are sweets $[2, 3, 6]$ on the table. Anya counts $4$ sweets, starting with the $6$-th sweet, and stops at the $6$-th sweet.\n5. Anya eats the sweet number $6$, after that, there are sweets $[2, 3]$ on the table. There are no sweets that Anya likes on the table, so the game ends.\n\nYour task is to calculate the number of sweets that Anya will eat.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 5000$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 5000$) — the number of sweets and the parameter $k$.\n\nThe next line contains the string $s$, where $s_i = 1$ if Anya likes $i$-th sweet, and $s_i = 0$ otherwise.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5000$.\n\n## Output\n\nFor each test case, print one integer — the number of sweets that Anya will eat.\n\n## Note\n\nThe first test case of the example is described in the statement.",
-  "statementZhMd": null,
+  "statementZhMd": "安雅来参加朋友的生日聚会。圆桌上有 $n$ 颗美味的糖果（为方便起见，我们按顺时针方向将它们编号为 $1$ 到 $n$）。对于每颗糖果，已知安雅是否喜欢它。安雅决定吃掉桌上所有她喜欢的糖果。\n\n不过，按某种随机顺序吃掉所有糖果太无聊了。因此，安雅想出了一个游戏，让吃糖果的过程变得更有趣。\n\n游戏按照以下规则进行：\n\n- 如果桌上已经没有安雅喜欢的糖果，游戏结束；\n- 游戏开始时，如果桌上至少有一颗安雅想吃的糖果，她就吃掉编号为 $1$ 的糖果；\n- 安雅吃掉某颗糖果后，从圆环中下一颗糖果开始顺时针数 $k$ 颗糖果，并吃掉数到的第 $k$ 颗糖果（如果圆环中的糖果少于 $k$ 颗，某些糖果可能会被重复计数，最后数到的糖果就是被选中的糖果）。显然，已经被吃掉的糖果不会参与计数。\n\n例如，圆桌上有 $6$ 颗糖果，安雅喜欢糖果 $4$、$5$ 和 $6$，且 $k = 4$。游戏过程如下：\n\n1. 开始时桌上有糖果 $[1, 2, 3, 4, 5, 6]$，安雅选择糖果 $1$。\n2. 安雅吃掉糖果 $1$ 后，桌上剩下糖果 $[2, 3, 4, 5, 6]$。安雅从第 $2$ 颗糖果开始数 $4$ 颗，最后数到第 $5$ 颗糖果。\n3. 安雅吃掉糖果 $5$ 后，桌上剩下糖果 $[2, 3, 4, 6]$。安雅从第 $6$ 颗糖果开始数 $4$ 颗，最后数到第 $4$ 颗糖果。\n4. 安雅吃掉糖果 $4$ 后，桌上剩下糖果 $[2, 3, 6]$。安雅从第 $6$ 颗糖果开始数 $4$ 颗，最后数到第 $6$ 颗糖果。\n5. 安雅吃掉糖果 $6$ 后，桌上剩下糖果 $[2, 3]$。桌上已经没有安雅喜欢的糖果，因此游戏结束。\n\n你的任务是计算安雅会吃掉多少颗糖果。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 5000$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 5000$）——糖果的数量和参数 $k$。\n\n下一行包含字符串 $s$，其中当安雅喜欢第 $i$ 颗糖果时，$s_i = 1$；否则 $s_i = 0$。\n\n保证所有测试用例的 $n$ 之和不超过 $5000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——安雅会吃掉的糖果数量。\n\n## 说明\n\n样例中的第一个测试用例已在题目描述中说明。",
   "samples": [
     {
       "input": "4\n6 4\n000111\n7 3\n0000100\n3 2\n000\n5 1\n10011\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:24:24.701Z"
+  "fetchedAt": "2026-11-02T18:24:24.701Z",
+  "translatedAt": "2026-11-04T03:51:26.477+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

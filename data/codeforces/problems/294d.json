@@ -4,7 +4,7 @@
   "contestId": 294,
   "index": "D",
   "title": "Shaass and Painter Robot",
-  "titleZh": null,
+  "titleZh": "Shaass 和画家机器人",
   "url": "https://codeforces.com/contest/294/problem/D",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Shaass thinks a kitchen with all white floor tiles is so boring. His kitchen floor is made of $*n*·*m*$ square tiles forming a $*n* × *m*$ rectangle. Therefore he's decided to color some of the tiles in black so that the floor looks like a checkerboard, which is no two side-adjacent tiles should have the same color.\n\nShaass wants to use a painter robot to color the tiles. In the beginning the robot is standing in a border tile $(*x*_{*s*}, *y*_{*s*})$ facing a diagonal direction (i.e. upper-left, upper-right, down-left or down-right). As the robot walks in the kitchen he paints every tile he passes even if it's painted before. Painting each tile consumes one unit of black paint. If at any moment the robot hits a wall of the kitchen he changes his direction according the reflection rules. Note that a tile gets painted when the robot enters the tile from another tile, in other words changing direction in the same tile doesn't lead to any painting. The first tile the robot is standing on, is also painted.\n\nThe robot stops painting the first moment the floor is checkered. Given the dimensions of the kitchen and the position of the robot, find out the amount of paint the robot consumes before it stops painting the floor.\n\nLet's consider an examples depicted below.\n\n![image](https://espresso.codeforces.com/1d8cc7c7d9b3a7ea81a177e2826f1dda25fc12b7.png)\n\nIf the robot starts at tile number 1 (the tile $(1, 1)$) of the left grid heading to down-right it'll pass tiles 1354236 and consumes 7 units of black paint on his way until he stops at tile number 6. But if it starts at tile number 1 in the right grid heading to down-right it will get stuck in a loop painting tiles 1, 2, and 3.\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*m*$, $(2 ≤ *n*, *m* ≤ 10^{5})$. The second line contains two integers $*x*_{*s*}$ and $*y*_{*s*}$ $(1 ≤ *x*_{*s*} ≤ *n*, 1 ≤ *y*_{*s*} ≤ *m*)$ and the direction robot is facing initially. Direction is one of the strings: \"`UL`\" (upper-left direction), \"`UR`\" (upper-right), \"`DL`\" (down-left) or \"`DR`\" (down-right).\n\nNote, that record $(*x*_{*s*}, *y*_{*s*})$ denotes the tile that is located at the $*x*_{*s*}$-th row from the top and at the $*y*_{*s*}$-th column from the left of the kitchen.\n\nIt's guaranteed that the starting position will be a border tile (a tile with less than four side-adjacent tiles).\n\n## Output\n\nPrint the amount of paint the robot consumes to obtain a checkered kitchen floor. Or print `-1` if it never happens.\n\nPlease do not use the `%lld` specificator to read or write 64-bit integers in С++. It is preferred to use the `cin`, `cout` streams or the `%I64d` specificator.",
-  "statementZhMd": null,
+  "statementZhMd": "Shaass 认为厨房里全是白色地砖非常无聊。他的厨房地面由 $*n*·*m*$ 块方形地砖组成，形成一个 $*n* × *m*$ 的矩形。因此，他决定将其中一些地砖涂成黑色，使地面看起来像棋盘，即任意两个边相邻的地砖都不能具有相同的颜色。\n\nShaass 想使用一台画家机器人来给地砖上色。开始时，机器人站在边界地砖 $(*x*_{*s*}, *y*_{*s*})$ 上，面朝对角线方向（即左上、右上、左下或右下）。机器人在厨房中移动时，会将经过的每一块地砖都涂色，即使该地砖之前已经被涂过。涂每块地砖都会消耗一单位黑色涂料。如果机器人在任意时刻撞到厨房的墙，它会根据反射规则改变方向。注意，机器人进入一块地砖时才会将其涂色；换句话说，在同一块地砖上改变方向不会导致涂色。机器人最初站立的地砖也会被涂色。\n\n机器人会在地面第一次变成棋盘状的时刻停止涂色。给定厨房的尺寸和机器人的位置，求机器人停止涂色前消耗的涂料量。\n\n下面是一个例子。\n\n![image](https://espresso.codeforces.com/1d8cc7c7d9b3a7ea81a177e2826f1dda25fc12b7.png)\n\n如果机器人从左侧网格中的编号 1（地砖 $(1, 1)$）出发，朝右下方向移动，那么它会依次经过地砖 1354236，并在到达编号 6 的地砖并停止之前消耗 7 单位黑色涂料。但如果它从右侧网格中的编号 1 出发，朝右下方向移动，那么它会陷入一个循环，不断涂色地砖 1、2 和 3。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*m*$，$(2 ≤ *n*, *m* ≤ 10^{5})$。第二行包含两个整数 $*x*_{*s*}$ 和 $*y*_{*s*}$ $(1 ≤ *x*_{*s*} ≤ *n*, 1 ≤ *y*_{*s*} ≤ *m*)$，以及机器人初始面对的方向。方向是以下字符串之一：\"`UL`\"（左上方向）、\"`UR`\"（右上方向）、\"`DL`\"（左下方向）或 \"`DR`\"（右下方向）。\n\n注意，坐标 $(*x*_{*s*}, *y*_{*s*})$ 表示位于厨房从上往下第 $*x*_{*s*}$ 行、从左往右第 $*y*_{*s*}$ 列的地砖。\n\n保证起始位置位于边界地砖上（即边相邻地砖少于四块的地砖）。\n\n## 输出格式\n\n输出机器人为了使厨房地面变成棋盘状而消耗的涂料量。如果这种情况永远不会发生，则输出 `-1`。\n\n请不要在 С++ 中使用 `%lld` 格式说明符读取或输出 64 位整数。建议使用 `cin`、`cout` 流，或者使用 `%I64d` 格式说明符。",
   "samples": [
     {
       "input": "3 4\n1 1 DR\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:06:46.118Z"
+  "fetchedAt": "2026-10-31T02:06:46.118Z",
+  "translatedAt": "2026-11-04T07:33:02.680+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": "arc164",
   "index": "D",
   "title": "1D Coulomb",
-  "titleZh": null,
+  "titleZh": "一维库仑",
   "url": "https://atcoder.jp/contests/arc164/tasks/arc164_d",
   "difficulty": 1963,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nConsider the following problem for a string $s$ of length $2N$ formed by $N$ `+` and $N$ `-`, and let $p(s)$ denote the answer.\n\n> There are $2N$ balls lined up at positions $x=1,2,3,\\ldots , 2N$ on a number line, of which $N$ have a charge of $+1$ and the remaining $N$ have a charge of $-1$. The arrangement of the charges of the balls is represented by $s$. If the $i$-th character of $s$ is `+`, a ball with a charge of $+1$ is placed at $x=i$; if it is `-`, a ball with a charge of $-1$ is placed at $x=i$.\n> \n> Each ball starts motion simultaneously according to the following rules. Here, we call the direction where smaller numbers are located on the number line \"left\", and the direction where larger numbers are located \"right\".\n> \n> - For each ball, define $F$ at each moment by the following formula: $F=\\lbrace$ $($the sum of the charges of the balls strictly to the left of itself$)$ $-$ $($the sum of the charges of the balls strictly to the right of itself$)$ $\\rbrace$ $\\times$ $($the charge of itself$)$.\n> - At each moment, each ball moves to the right if $F$ is positive, and to the left if $F$ is negative, at a speed of $1$ per second.\n> - If a ball with a charge of $+1$ and a ball with a charge of $-1$ exist at the same coordinate simultaneously, they cancel out each other and disappear.\n> \n> Then, what is the sum of the distances moved by the balls after they start motion and before they disappear (the distance moved by a ball is the absolute difference between the coordinates where it starts and where it disappears)?\n\nYou are given a string $T$ of length $2N$ consisting of `+`, `-`, and `?`. Find the sum of $p(s)$ over all strings $s$ formed by $N$ `+` and $N$ `-` that can be obtained by replacing each `?` in $T$ with `+` or `-`, modulo $998244353$.\n\nUnder the given constraints and the rules of motion, it can be shown that all balls disappear in finite time, that the value of $F$ for each ball does not become $0$ until that ball disappears, that there is no moment when three or more balls are at the same coordinate simultaneously, and that $p(s)$ is an integer.\n\n## Constraints\n\n- $1\\leq N\\leq 3000$\n- $N$ is an integer.\n- $|T|=2N$\n- Each character of $T$ is either `+`, `-`, or `?`, and there are at most $N$ `+` and at most $N$ `-`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nT\n```\n\n## Output\n\nPrint the answer modulo $998244353$, as an integer.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n考虑一个长度为 $2N$、由 $N$ 个 `+` 和 $N$ 个 `-` 组成的字符串 $s$，记答案为 $p(s)$。\n\n> 数轴上位置 $x=1,2,3,\\ldots , 2N$ 依次排列着 $2N$ 个球，其中 $N$ 个球带有电荷 $+1$，剩余 $N$ 个球带有电荷 $-1$。球的电荷排列由 $s$ 表示。如果 $s$ 的第 $i$ 个字符是 `+`，则在 $x=i$ 处放置一个电荷为 $+1$ 的球；如果是 `-`，则在 $x=i$ 处放置一个电荷为 $-1$ 的球。\n> \n> 所有球同时按照以下规则开始运动。这里，将数轴上数字较小的方向称为“左”，数字较大的方向称为“右”。\n> \n> - 对于每个球，在每个时刻按照以下公式定义 $F$：$F=\\lbrace$ $($the sum of the charges of the balls strictly to the left of itself$)$ $-$ $($the sum of the charges of the balls strictly to the right of itself$)$ $\\rbrace$ $\\times$ $($the charge of itself$)$。\n> - 在每个时刻，如果 $F$ 为正，该球以每秒 $1$ 的速度向右移动；如果 $F$ 为负，则以每秒 $1$ 的速度向左移动。\n> - 如果一个电荷为 $+1$ 的球和一个电荷为 $-1$ 的球同时位于同一坐标，则它们相互抵消并消失。\n> \n> 那么，求所有球开始运动后、消失前移动距离之和（一个球移动的距离是它开始运动时所在坐标与消失时所在坐标之差的绝对值）。\n\n给定一个长度为 $2N$、由 `+`、`-` 和 `?` 组成的字符串 $T$。求将 $T$ 中的每个 `?` 替换为 `+` 或 `-` 后，得到的所有由 $N$ 个 `+` 和 $N$ 个 `-` 组成的字符串 $s$ 的 $p(s)$ 之和，结果对 $998244353$ 取模。\n\n在给定的约束和运动规则下，可以证明所有球都会在有限时间内消失；在某个球消失之前，该球的 $F$ 值不会变为 $0$；不存在三个或更多球同时位于同一坐标的时刻；并且 $p(s)$ 是整数。\n\n## 约束条件\n\n- $1\\leq N\\leq 3000$\n- $N$ 是整数。\n- $|T|=2N$\n- $T$ 的每个字符都是 `+`、`-` 或 `?`，且 `+` 的数量不超过 $N$，`-` 的数量不超过 $N$。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nT\n```\n\n## 输出格式\n\n输出一个整数，表示答案对 $998244353$ 取模后的结果。",
   "samples": [
     {
       "input": "2\n+??-\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:17:22.303Z"
+  "fetchedAt": "2026-10-30T21:17:22.303Z",
+  "translatedAt": "2026-11-04T02:52:02.779+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

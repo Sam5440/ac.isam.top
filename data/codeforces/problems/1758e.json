@@ -4,7 +4,7 @@
   "contestId": 1758,
   "index": "E",
   "title": "Tick, Tock",
-  "titleZh": null,
+  "titleZh": "滴答，滴答",
   "url": "https://codeforces.com/contest/1758/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Tannhaus, the clockmaker in the town of Winden, makes mysterious clocks that measure time in $h$ hours numbered from $0$ to $h-1$. One day, he decided to make a puzzle with these clocks.\n\nThe puzzle consists of an $n \\times m$ grid of clocks, and each clock always displays some hour exactly (that is, it doesn't lie between two hours). In one move, he can choose any row or column and shift all clocks in that row or column one hour forward$^\\dagger$.\n\nThe grid of clocks is called *solvable* if it is possible to make all the clocks display the same time.\n\nWhile building his puzzle, Tannhaus suddenly got worried that it might not be possible to make the grid solvable. Some cells of the grid have clocks already displaying a certain initial time, while the rest of the cells are empty.\n\nGiven the partially completed grid of clocks, find the number of ways$^\\ddagger$ to assign clocks in the empty cells so that the grid is solvable. The answer can be enormous, so compute it modulo $10^9 + 7$.\n\n$^\\dagger$ If a clock currently displays hour $t$ and is shifted one hour forward, then the clock will instead display hour $(t+1) \\bmod h$.\n\n$^\\ddagger$ Two assignments are different if there exists some cell with a clock that displays a different time in both arrangements.\n\n## Input\n\nThe first line of input contains $t$ ($1 \\leq t \\leq 5 \\cdot 10^4$) — the number of test cases.\n\nThe first line of each test case consists of 3 integers $n$, $m$, and $h$ ($1 \\leq n, m \\leq 2 \\cdot 10^5$; $1 \\leq h \\leq 10^9$) — the number of rows in the grid, the number of columns in the grid, and the number of the hours in the day respectively.\n\nThe next $n$ lines each contain $m$ integers, describing the clock grid. The integer $x$ ($-1 \\leq x \\lt h$) in the $i$-th row and the $j$-th column represents the initial hour of the corresponding clock, or if $x = -1$, an empty cell.\n\nIt is guaranteed that the sum of $n \\cdot m$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the number of ways to assign clocks in the empty cells so that the grid is solvable. The answer can be huge, so output it modulo $10^9 + 7$.\n\n## Note\n\nFor the first sample, this is a possible configuration for the clocks:\n\n| 1 | 0 | 3 |\n| --- | --- | --- |\n| 0 | 3 | 2 |\n\nThis is solvable since we can:\n\n1. Move the middle column forward one hour.\n2. Move the third column forward one hour.\n3. Move the third column forward one hour.\n4. Move the second row forward one hour.\n\nAfter that all the clocks show one hour.\n\nFor the second test case, it can be shown that there are no possible solvable clock configurations.",
-  "statementZhMd": null,
+  "statementZhMd": "Tannhaus 是 Winden 镇的钟表匠，他制作的神秘时钟用于测量一天中的 $h$ 个小时，这些小时编号为 $0$ 到 $h-1$。一天，他决定用这些时钟制作一个谜题。\n\n这个谜题由一个 $n \\times m$ 的时钟网格组成，每个时钟始终会准确显示某个小时（也就是说，它不会停留在两个小时之间）。每次操作中，他可以选择任意一行或一列，并将该行或该列中的所有时钟向前调一小时$^\\dagger$。\n\n如果可以通过若干次操作使所有时钟显示相同的时间，则称这个时钟网格是*可解的*。\n\n在制作谜题时，Tannhaus 突然担心这个网格可能无法变得可解。网格中的一些格子已经有时钟并显示着某个初始时间，而其余格子为空。\n\n给定一个部分完成的时钟网格，请求出为所有空格子分配时钟，使网格变得可解的方案数$^\\ddagger$。答案可能非常大，请将其对 $10^9 + 7$ 取模。\n\n$^\\dagger$ 如果某个时钟当前显示小时 $t$，并将其向前调一小时，那么它将显示小时 $(t+1) \\bmod h$。\n\n$^\\ddagger$ 如果存在某个格子，在两种安排中其中的时钟显示不同的时间，则认为这两种安排不同。\n\n## 输入\n\n输入的第一行包含整数 $t$（$1 \\leq t \\leq 5 \\cdot 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含 3 个整数 $n$、$m$ 和 $h$（$1 \\leq n, m \\leq 2 \\cdot 10^5$；$1 \\leq h \\leq 10^9$）——网格的行数、列数以及一天中的小时数。\n\n接下来的 $n$ 行中，每行包含 $m$ 个整数，描述时钟网格。第 $i$ 行第 $j$ 列中的整数 $x$（$-1 \\leq x \\lt h$）表示对应时钟的初始时间；如果 $x = -1$，则表示该格子为空。\n\n保证所有测试用例的 $n \\cdot m$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出为所有空格子分配时钟，使网格变得可解的方案数。答案可能非常大，请将其对 $10^9 + 7$ 取模。\n\n## 说明\n\n对于第一个样例，时钟可以配置为：\n\n| 1 | 0 | 3 |\n| --- | --- | --- |\n| 0 | 3 | 2 |\n\n这是可解的，因为我们可以进行以下操作：\n\n1. 将中间一列向前调一小时。\n2. 将第三列向前调一小时。\n3. 将第三列向前调一小时。\n4. 将第二行向前调一小时。\n\n之后，所有时钟都会显示一小时。\n\n对于第二个测试用例，可以证明不存在可行的时钟配置。",
   "samples": [
     {
       "input": "5\n2 3 4\n1 0 -1\n-1 -1 2\n2 2 10\n1 2\n3 5\n4 5 1024\n1 -1 -1 -1 -1\n-1 -1 -1 1000 -1\n-1 -1 -1 -1 69\n420 -1 -1 999 -1\n3 3 3\n-1 -1 1\n2 -1 1\n2 -1 2\n3 3 3\n1 -1 2\n-1 0 -1\n-1 1 0\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:43:52.587Z"
+  "fetchedAt": "2026-10-30T22:43:52.587Z",
+  "translatedAt": "2026-11-04T03:08:10.907+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

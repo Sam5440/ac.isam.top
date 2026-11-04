@@ -4,7 +4,7 @@
   "contestId": 659,
   "index": "F",
   "title": "Polycarp and Hay",
-  "titleZh": null,
+  "titleZh": "Polycarp 和干草",
   "url": "https://codeforces.com/contest/659/problem/F",
   "difficulty": 2000,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "The farmer Polycarp has a warehouse with hay, which can be represented as an $*n* × *m*$ rectangular table, where $*n*$ is the number of rows, and $*m*$ is the number of columns in the table. Each cell of the table contains a haystack. The height in meters of the hay located in the $*i*$-th row and the $*j*$-th column is equal to an integer $*a*_{*i*, *j*}$ and coincides with the number of cubic meters of hay in the haystack, because all cells have the size of the base $1 × 1$. Polycarp has decided to tidy up in the warehouse by removing an arbitrary integer amount of cubic meters of hay from the top of each stack. You can take different amounts of hay from different haystacks. Besides, it is allowed not to touch a stack at all, or, on the contrary, to remove it completely. If a stack is completely removed, the corresponding cell becomes empty and no longer contains the stack.\n\nPolycarp wants the following requirements to hold after the reorganization:\n\n- the total amount of hay remaining in the warehouse must be **equal** to $*k*$,\n- the heights of all stacks (i.e., cells containing a non-zero amount of hay) should be the same,\n- the height of at least one stack must remain the same as it was,\n- for the stability of the remaining structure all the stacks should form one connected region.\n\nThe two stacks are considered adjacent if they share a side in the table. The area is called connected if from any of the stack in the area you can get to any other stack in this area, moving only to adjacent stacks. In this case two adjacent stacks necessarily belong to the same area.\n\nHelp Polycarp complete this challenging task or inform that it is impossible.\n\n## Input\n\nThe first line of the input contains three integers $*n*$, $*m*$ ($1 ≤ *n*, *m* ≤ 1000$) and $*k*$ ($1 ≤ *k* ≤ 10^{18}$) — the number of rows and columns of the rectangular table where heaps of hay are lain and the required total number cubic meters of hay after the reorganization.\n\nThen $*n*$ lines follow, each containing $*m*$ positive integers $*a*_{*i*, *j*}$ ($1 ≤ *a*_{*i*, *j*} ≤ 10^{9}$), where $*a*_{*i*, *j*}$ is equal to the number of cubic meters of hay making the hay stack on the $*i*$-th row and $*j*$-th column of the table.\n\n## Output\n\nIn the first line print \"`YES`\" (without quotes), if Polycarpus can perform the reorganisation and \"`NO`\" (without quotes) otherwise. If the answer is \"`YES`\" (without quotes), then in next $*n*$ lines print $*m*$ numbers — the heights of the remaining hay stacks. All the remaining non-zero values should be equal, represent a connected area and at least one of these values shouldn't be altered.\n\nIf there are multiple answers, print any of them.\n\n## Note\n\nIn the first sample non-zero values make up a connected area, their values do not exceed the initial heights of hay stacks. All the non-zero values equal $7$, and their number is $5$, so the total volume of the remaining hay equals the required value $*k* = 7·5 = 35$. At that the stack that is on the second line and third row remained unaltered.",
-  "statementZhMd": null,
+  "statementZhMd": "农夫 Polycarp 有一个存放干草的仓库，可以表示为一个 $*n* × *m*$ 的矩形表格，其中 $*n*$ 是表格的行数，$*m*$ 是表格的列数。表格中的每个单元格都包含一堆干草。位于第 $*i*$ 行、第 $*j*$ 列的干草堆高度（以米为单位）等于整数 $*a*_{*i*, *j}$，并且由于所有单元格的底面积都是 $1 × 1$，它也等于该干草堆中的干草体积（立方米）。Polycarp 决定整理仓库：从每堆干草的顶部移除任意整数立方米的干草。不同干草堆可以移除不同数量的干草。也可以完全不触碰某堆干草，或者反过来将其全部移除。如果一堆干草被完全移除，相应的单元格将变为空，不再包含干草堆。\n\nPolycarp 希望整理后满足以下要求：\n\n- 仓库中剩余干草的总量必须**等于** $*k*$；\n- 所有干草堆（即包含非零数量干草的单元格）的高度必须相同；\n- 至少有一堆干草的高度保持不变；\n- 为了保证剩余结构的稳定性，所有干草堆必须组成一个连通区域。\n\n如果两堆干草在表格中共享一条边，则称它们相邻。如果对于区域中的任意一堆干草，都可以只经过相邻的干草堆到达该区域中的任意另一堆干草，则称该区域是连通的。在这种情况下，两堆相邻的干草必然属于同一个区域。\n\n请帮助 Polycarp 完成这项艰巨的任务，或者判断这是不可能的。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*$、$*m*$（$1 ≤ *n*, *m* ≤ 1000$）和 $*k*$（$1 ≤ *k* ≤ 10^{18}$）——存放干草的矩形表格的行数和列数，以及整理后所需的干草总量（立方米）。\n\n接下来有 $*n*$ 行，每行包含 $*m*$ 个正整数 $*a*_{*i*, *j}$（$1 ≤ *a*_{*i*, *j} ≤ 10^{9}$），其中 $*a*_{*i*, *j}$ 等于表格第 $*i*$ 行、第 $*j*$ 列的干草堆所含的干草体积（立方米）。\n\n## 输出格式\n\n如果 Polycarp 可以完成整理，则在第一行输出“`YES`”（不含引号），否则输出“`NO`”（不含引号）。如果答案为“`YES`”（不含引号），则接下来的 $*n*$ 行中输出 $*m*$ 个数——剩余干草堆的高度。所有剩余的非零值必须相等，组成一个连通区域，并且其中至少有一个值没有改变。\n\n如果有多个答案，输出任意一个即可。\n\n## 说明\n\n在第一个样例中，非零值组成了一个连通区域，并且它们的值不超过初始干草堆的高度。所有非零值都等于 $7$，其数量为 $5$，因此剩余干草的总体积等于所需的值 $*k* = 7·5 = 35$。同时，位于第二行第三列的干草堆保持了原样。",
   "samples": [
     {
       "input": "2 3 35\n10 4 9\n9 9 7\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:12:08.454Z"
+  "fetchedAt": "2026-10-31T01:12:08.454Z",
+  "translatedAt": "2026-11-04T06:34:33.933+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

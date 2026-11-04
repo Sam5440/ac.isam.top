@@ -4,7 +4,7 @@
   "contestId": 852,
   "index": "C",
   "title": "Property",
-  "titleZh": null,
+  "titleZh": "财产",
   "url": "https://codeforces.com/contest/852/problem/C",
   "difficulty": 2100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 500,
   "memoryLimitMb": 256,
   "statementMd": "Bill is a famous mathematician in BubbleLand. Thanks to his revolutionary math discoveries he was able to make enough money to build a beautiful house. Unfortunately, for not paying property tax on time, court decided to punish Bill by making him lose a part of his property.\n\nBill’s property can be observed as a convex regular $2*n*$-sided polygon $*A*_{0} *A*_{1}... *A*_{2*n* - 1} *A*_{2*n*},  *A*_{2*n*} =  *A*_{0}$, with sides of the exactly 1 meter in length.\n\nCourt rules for removing part of his property are as follows:\n\n- Split every edge $*A*_{*k*} *A*_{*k* + 1},  *k* = 0... 2*n* - 1$ in $*n*$ equal parts of size $1 / *n*$ with points $*P*_{0}, *P*_{1}, ..., *P*_{*n* - 1}$\n- On every edge $*A*_{2*k*} *A*_{2*k* + 1},  *k* = 0... *n* - 1$ court will choose one point $*B*_{2*k*} =  *P*_{*i*}$ for some $*i* = 0, ...,  *n* - 1$ such that ![image](https://espresso.codeforces.com/82be7fdb09b6214407fa34174365142e65a61665.png)\n- On every edge $*A*_{2*k* + 1}*A*_{2*k* + 2},  *k* = 0...*n* - 1$ Bill will choose one point $*B*_{2*k* + 1} =  *P*_{*i*}$ for some $*i* = 0, ...,  *n* - 1$ such that ![image](https://espresso.codeforces.com/3212ccd11483d157eac0daeb0ef542d5197e2cee.png)\n- Bill gets to keep property inside of $2*n*$-sided polygon $*B*_{0} *B*_{1}... *B*_{2*n* - 1}$\n\nLuckily, Bill found out which $*B*_{2*k*}$ points the court chose. Even though he is a great mathematician, his house is very big and he has a hard time calculating. Therefore, he is asking you to help him choose points so he maximizes area of property he can keep.\n\n## Input\n\nThe first line contains one integer number $*n* (2 ≤ *n* ≤ 50000)$, representing number of edges of $2*n*$-sided polygon.\n\nThe second line contains $*n*$ distinct integer numbers $*B*_{2*k*} (0 ≤ *B*_{2*k*} ≤ *n* - 1,  *k* = 0... *n* - 1)$ separated by a single space, representing points the court chose. If $*B*_{2*k*} = *i*$, the court chose point $*P*_{*i*}$ on side $*A*_{2*k*} *A*_{2*k* + 1}$.\n\n## Output\n\nOutput contains $*n*$ distinct integers separated by a single space representing points $*B*_{1}, *B*_{3}, ..., *B*_{2*n* - 1}$ Bill should choose in order to maximize the property area. If there are multiple solutions that maximize the area, return any of them.\n\n## Note\n\nTo maximize area Bill should choose points: $*B*_{1} = *P*_{0}$, $*B*_{3} = *P*_{2}$, $*B*_{5} = *P*_{1}$\n\n![image](https://espresso.codeforces.com/2f6820e290c879f16d07d79d039cecea64b7cbb8.png)",
-  "statementZhMd": null,
+  "statementZhMd": "比尔是泡泡国著名的数学家。由于他在数学领域的革命性发现，他赚到了足够的钱，建造了一座美丽的房子。遗憾的是，由于没有按时缴纳财产税，法院决定惩罚比尔，没收他的一部分财产。\n\n比尔的财产可以看作一个凸正 $2*n*$ 边形 $*A*_{0} *A*_{1}... *A*_{2*n* - 1} *A*_{2*n*},  *A*_{2*n*} =  *A*_{0}$，其每条边的长度恰好为 1 米。\n\n法院制定了如下没收其部分财产的规则：\n\n- 将每条边 $*A*_{*k*} *A*_{*k* + 1},  *k* = 0... 2*n* - 1$ 等分为 $*n*$ 段，每段长度为 $1 / *n*$，分点记为 $*P*_{0}, *P*_{1}, ..., *P*_{*n* - 1}$。\n- 对于每条边 $*A*_{2*k*} *A*_{2*k* + 1},  *k* = 0... *n* - 1$，法院将选择一个点 $*B*_{2*k*} =  *P*_{*i*}$，其中 $*i* = 0, ...,  *n* - 1$，满足 ![image](https://espresso.codeforces.com/82be7fdb09b6214407fa34174365142e65a61665.png)\n- 对于每条边 $*A*_{2*k* + 1}*A*_{2*k* + 2},  *k* = 0...*n* - 1$，比尔将选择一个点 $*B*_{2*k* + 1} =  *P*_{*i}$，其中 $*i* = 0, ...,  *n* - 1$，满足 ![image](https://espresso.codeforces.com/3212ccd11483d157eac0daeb0ef542d5197e2cee.png)\n- 比尔保留 $2*n*$ 边形 $*B*_{0} *B*_{1}... *B*_{2*n* - 1}$ 内部的财产。\n\n幸运的是，比尔得知了法院选择的 $*B*_{2*k*}$ 点。尽管他是一位伟大的数学家，但他的房子非常大，计算起来十分困难。因此，他请求你帮助他选择点，使他能够保留的财产面积最大。\n\n## 输入格式\n\n第一行包含一个整数 $*n* (2 ≤ *n* ≤ 50000)$，表示 $2*n*$ 边形的边数的一半。\n\n第二行包含 $*n*$ 个互不相同的整数 $*B*_{2*k*} (0 ≤ *B*_{2*k*} ≤ *n* - 1,  *k* = 0... *n* - 1)$，整数之间用一个空格分隔，表示法院选择的点。如果 $*B*_{2*k*} = *i*$，则法院在边 $*A*_{2*k*} *A*_{2*k* + 1}$ 上选择了点 $*P*_{*i*}$。\n\n## 输出格式\n\n输出 $*n*$ 个用一个空格分隔的互不相同的整数，表示比尔为了使保留的财产面积最大而应选择的点 $*B*_{1}, *B*_{3}, ..., *B*_{2*n* - 1}$。如果有多个方案都能使面积最大，输出其中任意一个即可。\n\n## 说明\n\n为了使面积最大，比尔应选择以下点：$*B*_{1} = *P*_{0}$、$*B*_{3} = *P*_{2}$、$*B*_{5} = *P*_{1}$\n\n![image](https://espresso.codeforces.com/2f6820e290c879f16d07d79d039cecea64b7cbb8.png)",
   "samples": [
     {
       "input": "3\n0 1 2\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:43:58.257Z"
+  "fetchedAt": "2026-11-02T19:43:58.257Z",
+  "translatedAt": "2026-11-04T06:05:20.602+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

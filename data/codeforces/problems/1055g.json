@@ -4,7 +4,7 @@
   "contestId": 1055,
   "index": "G",
   "title": "Jellyfish Nightmare",
-  "titleZh": null,
+  "titleZh": "水母噩梦",
   "url": "https://codeforces.com/contest/1055/problem/G",
   "difficulty": 3500,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Bob has put on some weight recently. In order to lose weight a bit, Bob has decided to swim regularly in the pool. However, the day before he went to the pool for the first time he had a weird dream. In this dream Bob was swimming along one of the pool's lanes, but also there were some jellyfish swimming around him. It's worth mentioning that jellyfish have always been one of Bob's deepest childhood fears.\n\nLet us assume the following physical model for Bob's dream.\n\n1. The pool's lane is an area of the plane between lines $x=0$ and $x=w$. Bob is not allowed to swim outside of the lane, but he may touch its bounding lines if he wants.\n2. The jellyfish are very small, but in Bob's dream they are extremely swift. Each jellyfish has its area of activity around it. Those areas are circles of various radii, with the jellyfish sitting in their centers. The areas of activity of two jellyfish may overlap and one area of activity may even be fully contained within another one.\n3. Bob has a shape of a convex polygon.\n4. Unfortunately, Bob's excess weight has made him very clumsy, and as a result he can't rotate his body while swimming. So he swims in a parallel translation pattern. However at any given moment of time he can choose any direction of his movement.\n5. Whenever Bob swims into a jellyfish's activity area, it will immediately notice him and sting him very painfully. We assume that Bob has swum into the activity area if at some moment of time the intersection of his body with the jellyfish's activity area had a positive area (for example, if they only touch, the jellyfish does not notice Bob).\n6. Once a jellyfish stung Bob, it happily swims away and no longer poses any threat to Bob.\n\nBob wants to swim the lane to its end and get stung the least possible number of times. He will start swimming on the line $y=-h$, and finish on the line $y=h$ where $h = 10^{10}$.\n\n## Input\n\nThe first line contains two integers $n$ and $w$ ($3 \\le n \\le 200, 1 \\le w \\le 30000$) — the number of vertices in the polygon that constitutes the Bob's shape and the width of the swimming pool lane.\n\nEach of the next $n$ lines contains two integers $x_i$ and $y_i$ ($0 \\le x_i \\le w, 0 \\le y_i \\le 30000$) — the coordinates of corresponding vertex of the polygon. The vertices in the polygon are given in counterclockwise order. It is guaranteed that the given polygon is strictly convex.\n\nThe next line contains an only integer $m$ ($0 \\le m \\le 200$) — the number of the jellyfish in the pool.\n\nEach of the next $m$ lines contains three integers ($x_i$, $y_i$, $r_i$ ($0 \\le x_i \\le w, 0 \\le y_i \\le 30000, 1 \\le r_i \\le 30000$) — coordinates of the $i$-th jellyfish in the pool and the radius of her activity. It is guaranteed, that no two jellyfish are located in the same point.\n\n## Output\n\nOutput a single integer — the least possible number of jellyfish that will sting Bob.\n\n## Note\n\nVisualization of the possible solutions to the first and the second sample test cases are below:\n\n![image](https://espresso.codeforces.com/2126f1f13ab850e8aaf57da1339f4407a8c012ad.png) ![image](https://espresso.codeforces.com/7e915e66cfd03193ae6c084aa9d5c8efdcfa1b8c.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Bob 最近胖了一些。为了减轻体重，Bob 决定定期去游泳池游泳。然而，在他第一次去游泳池的前一天，他做了一个奇怪的梦。在梦中，Bob 正沿着游泳池的一条泳道游泳，但周围还有一些水母。值得一提的是，水母一直是 Bob 童年时期最深的恐惧之一。\n\n让我们对 Bob 的梦作如下物理建模。\n\n1. 游泳池的泳道是平面上两条直线 $x=0$ 和 $x=w$ 之间的区域。Bob 不允许游到泳道外，但如果他愿意，可以触碰泳道的边界线。\n2. 水母的体型非常小，但在 Bob 的梦中，它们的行动极其迅速。每只水母周围都有一个活动区域。这些活动区域是半径各不相同的圆，水母位于圆心。两只水母的活动区域可能重叠，一个活动区域甚至可能完全包含在另一个活动区域内。\n3. Bob 的身体形状是一个凸多边形。\n4. 不幸的是，Bob 的体重增加使他变得非常笨拙，因此他游泳时无法转动身体。所以，他只能以平移的方式游泳。不过，在任意时刻，他都可以选择移动的任意方向。\n5. 每当 Bob 游入某只水母的活动区域时，水母都会立即发现他，并狠狠地蜇他。我们认为，当某个时刻 Bob 的身体与水母活动区域的交集面积为正时，Bob 就游入了该活动区域（例如，如果两者只是接触，水母不会发现 Bob）。\n6. 水母蜇过 Bob 后，就会开心地游走，不再对 Bob 构成任何威胁。\n\nBob 想游过整条泳道到达终点，并使自己被蜇的次数尽可能少。他将从直线 $y=-h$ 出发，并在直线 $y=h$ 处结束，其中 $h = 10^{10}$。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $w$（$3 \\le n \\le 200, 1 \\le w \\le 30000$）——构成 Bob 身体形状的多边形的顶点数，以及游泳池泳道的宽度。\n\n接下来的 $n$ 行中，每行包含两个整数 $x_i$ 和 $y_i$（$0 \\le x_i \\le w, 0 \\le y_i \\le 30000$）——多边形对应顶点的坐标。多边形的顶点按逆时针顺序给出。保证给定的多边形严格凸。\n\n下一行包含一个整数 $m$（$0 \\le m \\le 200$）——泳池中水母的数量。\n\n接下来的 $m$ 行中，每行包含三个整数 $x_i$、$y_i$ 和 $r_i$（$0 \\le x_i \\le w, 0 \\le y_i \\le 30000, 1 \\le r_i \\le 30000$）——第 $i$ 只水母在泳池中的坐标及其活动区域的半径。保证不存在两只水母位于同一点。\n\n## 输出格式\n\n输出一个整数——会蜇 Bob 的水母数量的最小值。\n\n## 说明\n\n下面给出了第一组和第二组样例测试数据的可能解的可视化结果：\n\n![image](https://espresso.codeforces.com/2126f1f13ab850e8aaf57da1339f4407a8c012ad.png) ![image](https://espresso.codeforces.com/7e915e66cfd03193ae6c084aa9d5c8efdcfa1b8c.png)",
   "samples": [
     {
       "input": "4 4\n0 0\n2 0\n2 2\n0 2\n3\n1 1 1\n3 5 1\n1 9 1\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:22:42.622Z"
+  "fetchedAt": "2026-10-31T00:22:42.622Z",
+  "translatedAt": "2026-11-04T05:26:24.791+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

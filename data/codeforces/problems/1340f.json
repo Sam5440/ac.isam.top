@@ -4,7 +4,7 @@
   "contestId": 1340,
   "index": "F",
   "title": "Nastya and CBS",
-  "titleZh": null,
+  "titleZh": "Nastya 与 CBS",
   "url": "https://codeforces.com/contest/1340/problem/F",
   "difficulty": 3300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "* Nastya is a competitive programmer, but she is only studying now. Recently, Denis told her about the way to check if the string is correct bracket sequence. After that, unexpectedly, Nastya came up with a much more complex problem that Denis couldn't solve. Can you solve it? *\n\nA string $s$ is given. It consists of $k$ kinds of pairs of brackets. Each bracket has the form $t$  — it is an integer, such that $1 \\leq |t| \\leq k$. If the bracket has a form $t$, then:\n\n- If $t \\gt 0$, then it's an opening bracket of the type $t$.\n- If $t \\lt 0$, then it's a closing bracket of the type $-t$.\n\nThus, there are $k$ types of pairs of brackets in total.\n\nThe queries need to be answered:\n\n1. Replace the bracket at position $i$ with the bracket of the form $t$.\n2. Check if the substring from the $l$-th to $r$-th position (including) is the correct bracket sequence.\n\nRecall the definition of the correct bracket sequence:\n\n- An empty sequence is correct.\n- If $A$ and $B$ are two correct bracket sequences, then their concatenation \"$A$ $B$\" is also correct bracket sequence.\n- If $A$ is the correct bracket sequence, $c$ $(1 \\leq c \\leq k)$ is a type of brackets, then the sequence \"$c$ $A$ $-c$\" is also correct bracket sequence.\n\n## Input\n\nThe first line contains an integer $n$ $(1 \\leq n \\leq 10^5)$  — length of string and $k$ $(1 \\leq k \\leq n)$  — the number of kinds of pairs of brackets.\n\nThe second line contains string $s$ of length $n$  — $n$ integers $s_1, s_2, \\ldots, s_n$ $(1 \\leq |s_i| \\leq k)$\n\nThe third line contains single integer $q$ $(1 \\leq q \\leq 10^5)$  — the number of queries.\n\nEach of the following $q$ lines describes the queries:\n\n- $1$ $i$ $t$ - query of the $1$ type $(1 \\leq i \\leq n, 1 \\leq |t| \\leq k)$.\n- $2$ $l$ $r$ - query of the $2$ type $(1 \\leq l \\leq r \\leq n)$.\n\n## Output\n\nFor each query of $2$ type, output \"`Yes`\" if the substring from the query is the correct bracket sequence and \"`No`\", otherwise.\n\nAll letters can be displayed in any case.\n\n## Note\n\nIn the fourth test, initially, the string is not a correct bracket sequence, so the answer to the first query is \"`No`\". After two changes it will be equal to \"`$1$ $-1$`\", so it is a correct bracket sequence and the answer to the fourth query is \"`Yes`\".",
-  "statementZhMd": null,
+  "statementZhMd": "* Nastya 是一名竞赛程序员，但她目前还在学习。最近，Denis 告诉她如何判断一个字符串是否为合法括号序列。之后，Nastya 出人意料地提出了一个更加复杂、连 Denis 都无法解决的问题。你能解决它吗？ *\n\n给定一个字符串 $s$。它由 $k$ 种括号对组成。每个括号的形式为 $t$，其中 $t$ 是一个整数，满足 $1 \\leq |t| \\leq k$。如果括号的形式为 $t$，那么：\n\n- 如果 $t \\gt 0$，那么它是类型为 $t$ 的左括号。\n- 如果 $t \\lt 0$，那么它是类型为 $-t$ 的右括号。\n\n因此，一共有 $k$ 种括号对。\n\n需要处理以下查询：\n\n1. 将位置 $i$ 处的括号替换为形式为 $t$ 的括号。\n2. 判断从第 $l$ 个位置到第 $r$ 个位置（包含两端）的子串是否为合法括号序列。\n\n回顾合法括号序列的定义：\n\n- 空序列是合法的。\n- 如果 $A$ 和 $B$ 是两个合法括号序列，那么它们的拼接 \"$A$ $B$\" 也是合法括号序列。\n- 如果 $A$ 是合法括号序列，$c$ $(1 \\leq c \\leq k)$ 是一种括号类型，那么序列 \"$c$ $A$ $-c$\" 也是合法括号序列。\n\n## 输入格式\n\n第一行包含两个整数 $n$ $(1 \\leq n \\leq 10^5)$ 和 $k$ $(1 \\leq k \\leq n)$，分别表示字符串的长度和括号的种类数。\n\n第二行包含长度为 $n$ 的字符串 $s$，即 $n$ 个整数 $s_1, s_2, \\ldots, s_n$ $(1 \\leq |s_i| \\leq k)$。\n\n第三行包含一个整数 $q$ $(1 \\leq q \\leq 10^5)$，表示查询的数量。\n\n接下来的 $q$ 行中的每一行描述一个查询：\n\n- $1$ $i$ $t$：类型为 $1$ 的查询 $(1 \\leq i \\leq n, 1 \\leq |t| \\leq k)$。\n- $2$ $l$ $r$：类型为 $2$ 的查询 $(1 \\leq l \\leq r \\leq n)$。\n\n## 输出格式\n\n对于每个类型为 $2$ 的查询，如果该查询对应的子串是合法括号序列，则输出“`Yes`”，否则输出“`No`”。\n\n字母可以使用任意大小写形式输出。\n\n## 说明\n\n在第四个测试中，初始字符串不是合法括号序列，因此第一次查询的答案是“`No`”。经过两次修改后，它将变为“`$1$ $-1$`”，因此这是一个合法括号序列，第四次查询的答案是“`Yes`”。",
   "samples": [
     {
       "input": "2 1\n1 -1\n1\n2 1 2\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:51:34.644Z"
+  "fetchedAt": "2026-10-30T23:51:34.644Z",
+  "translatedAt": "2026-11-04T04:39:03.080+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

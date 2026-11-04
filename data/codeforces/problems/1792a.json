@@ -4,7 +4,7 @@
   "contestId": 1792,
   "index": "A",
   "title": "GamingForces",
-  "titleZh": null,
+  "titleZh": "游戏力量",
   "url": "https://codeforces.com/contest/1792/problem/A",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp is playing a computer game. He's going to kill $n$ monsters, the $i$-th of them has $h_i$ health.\n\nMonocarp's character has two spells, either of which he can cast an arbitrary number of times (possibly, zero) and in an arbitrary order:\n\n- choose exactly two alive monsters and decrease their health by $1$;\n- choose a single monster and kill it.\n\nWhen a monster's health becomes $0$, it dies.\n\nWhat's the minimum number of spell casts Monocarp should perform in order to kill all monsters?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of testcases.\n\nThe first line of each testcase contains a single integer $n$ ($1 \\le n \\le 100$) — the number of monsters.\n\nThe second line contains $n$ integers $h_1, h_2, \\dots, h_n$ ($1 \\le h_i \\le 100$) — the health of each monster.\n\nThe sum of $n$ over all testcases doesn't exceed $2 \\cdot 10^4$.\n\n## Output\n\nFor each testcase, print a single integer — the minimum number of spell casts Monocarp should perform in order to kill all monsters.\n\n## Note\n\nIn the first testcase, the initial health list is $[1, 2, 1, 2]$. Three spells are casted:\n\n- the first spell on monsters $1$ and $2$ — monster $1$ dies, monster $2$ has now health $1$, new health list is $[0, 1, 1, 2]$;\n- the first spell on monsters $3$ and $4$ — monster $3$ dies, monster $4$ has now health $1$, new health list is $[0, 1, 0, 1]$;\n- the first spell on monsters $2$ and $4$ — both monsters $2$ and $4$ die.\n\nIn the second testcase, the initial health list is $[2, 4, 2]$. Three spells are casted:\n\n- the first spell on monsters $1$ and $3$ — both monsters have health $1$ now, new health list is $[1, 4, 1]$;\n- the second spell on monster $2$ — monster $2$ dies, new health list is $[1, 0, 1]$;\n- the first spell on monsters $1$ and $3$ — both monsters $1$ and $3$ die.\n\nIn the third testcase, the initial health list is $[1, 2, 3, 4, 5]$. Five spells are casted. The $i$-th of them kills the $i$-th monster with the second spell. Health list sequence: $[1, 2, 3, 4, 5]$ $\\rightarrow$ $[0, 2, 3, 4, 5]$ $\\rightarrow$ $[0, 0, 3, 4, 5]$ $\\rightarrow$ $[0, 0, 0, 4, 5]$ $\\rightarrow$ $[0, 0, 0, 0, 5]$ $\\rightarrow$ $[0, 0, 0, 0, 0]$.",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 正在玩一款电脑游戏。他将要消灭 $n$ 只怪物，其中第 $i$ 只怪物的生命值为 $h_i$。\n\nMonocarp 的角色有两个法术，每个法术都可以施放任意次（可以为零次），且施放顺序任意：\n\n- 选择恰好两只存活的怪物，使它们的生命值各减少 $1$；\n- 选择一只怪物并将其消灭。\n\n当一只怪物的生命值变为 $0$ 时，它会死亡。\n\n为了消灭所有怪物，Monocarp 至少需要施放多少次法术？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 100$）——怪物的数量。\n\n第二行包含 $n$ 个整数 $h_1, h_2, \\dots, h_n$（$1 \\le h_i \\le 100$）——每只怪物的生命值。\n\n所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^4$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——为了消灭所有怪物，Monocarp 至少需要施放的法术次数。\n\n## 说明\n\n在第一个测试用例中，初始生命值列表为 $[1, 2, 1, 2]$。共施放了三个法术：\n\n- 第一个法术作用于怪物 $1$ 和 $2$——怪物 $1$ 死亡，怪物 $2$ 的生命值变为 $1$，新的生命值列表为 $[0, 1, 1, 2]$；\n- 第一个法术作用于怪物 $3$ 和 $4$——怪物 $3$ 死亡，怪物 $4$ 的生命值变为 $1$，新的生命值列表为 $[0, 1, 0, 1]$；\n- 第一个法术作用于怪物 $2$ 和 $4$——怪物 $2$ 和 $4$ 均死亡。\n\n在第二个测试用例中，初始生命值列表为 $[2, 4, 2]$。共施放了三个法术：\n\n- 第一个法术作用于怪物 $1$ 和 $3$——两只怪物的生命值都变为 $1$，新的生命值列表为 $[1, 4, 1]$；\n- 第二个法术作用于怪物 $2$——怪物 $2$ 死亡，新的生命值列表为 $[1, 0, 1]$；\n- 第一个法术作用于怪物 $1$ 和 $3$——怪物 $1$ 和 $3$ 均死亡。\n\n在第三个测试用例中，初始生命值列表为 $[1, 2, 3, 4, 5]$。共施放了五个法术。第 $i$ 个法术使用第二种法术消灭第 $i$ 只怪物。生命值列表的变化过程为：$[1, 2, 3, 4, 5]$ $\\rightarrow$ $[0, 2, 3, 4, 5]$ $\\rightarrow$ $[0, 0, 3, 4, 5]$ $\\rightarrow$ $[0, 0, 0, 4, 5]$ $\\rightarrow$ $[0, 0, 0, 0, 5]$ $\\rightarrow$ $[0, 0, 0, 0, 0]$。",
   "samples": [
     {
       "input": "3\n4\n1 2 1 2\n3\n2 4 2\n5\n1 2 3 4 5\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:38:26.780Z"
+  "fetchedAt": "2026-11-02T17:38:26.780Z",
+  "translatedAt": "2026-11-04T03:00:15.054+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

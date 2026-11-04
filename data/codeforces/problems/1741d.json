@@ -4,7 +4,7 @@
   "contestId": 1741,
   "index": "D",
   "title": "Masha and a Beautiful Tree",
-  "titleZh": null,
+  "titleZh": "Masha 与一棵美丽的树",
   "url": "https://codeforces.com/contest/1741/problem/D",
   "difficulty": 1300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The girl named Masha was walking in the forest and found a complete binary tree of height $n$ and a permutation $p$ of length $m=2^n$.\n\nA complete binary tree of height $n$ is a rooted tree such that every vertex except the leaves has exactly two sons, and the length of the path from the root to any of the leaves is $n$. The picture below shows the complete binary tree for $n=2$.\n\nA permutation is an array consisting of $n$ different integers from $1$ to $n$. For example, [$2,3,1,5,4$] is a permutation, but [$1,2,2$] is not ($2$ occurs twice), and [$1,3,4$] is also not a permutation ($n=3$, but there is $4$ in the array).\n\nLet's enumerate $m$ leaves of this tree from left to right. The leaf with the number $i$ contains the value $p_i$ ($1 \\le i \\le m$).\n\nFor example, if $n = 2$, $p = [3, 1, 4, 2]$, the tree will look like this:\n\n![image](https://espresso.codeforces.com/52db4e69d135641644f7a657f3efed8e31f17ffe.png)\n\nMasha considers a tree *beautiful* if the values in its leaves are ordered from left to right in increasing order.\n\nIn one operation, Masha can choose any non-leaf vertex of the tree and swap its left and right sons (along with their subtrees).\n\nFor example, if Masha applies this operation to the root of the tree discussed above, it will take the following form:\n\n![image](https://espresso.codeforces.com/f79f1fccffc3b9829ffebebc98441c077f76e010.png)\n\nHelp Masha understand if she can make a tree *beautiful* in a certain number of operations. If she can, then output the minimum number of operations to make the tree *beautiful*.\n\n## Input\n\nThe first line contains single integer $t$ ($1 \\le t \\le 10^4$) — number of test cases.\n\nIn each test case, the first line contains an integer $m$ ($1 \\le m \\le 262144$), which is a power of two  — the size of the permutation $p$.\n\nThe second line contains $m$ integers: $p_1, p_2, \\dots, p_m$ ($1 \\le p_i \\le m$) — the permutation $p$.\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case in a separate line, print the minimum possible number of operations for which Masha will be able to make the tree *beautiful* or `-1`, if this is not possible.\n\n## Note\n\nConsider the first test.\n\nIn the first test case, you can act like this (the vertex to which the operation is applied at the current step is highlighted in purple):\n\n![image](https://espresso.codeforces.com/a02edad53289724d1cb8ffc75390d49892561b55.png)![image](https://espresso.codeforces.com/83eaacfa78a5cf9f9e4abe78b6da9f678d2b1ab3.png)![image](https://espresso.codeforces.com/f42c011add6978d56b1a7f59441b4b9e4f8c3cf1.png)![image](https://espresso.codeforces.com/b0e374a1e2c83a14496a54d80054976fff43f008.png)\n\nIt can be shown that it is impossible to make a tree *beautiful* in fewer operations.\n\nIn the second test case, it can be shown that it is impossible to make a tree *beautiful*.\n\nIn the third test case, the tree is already *beautiful*.",
-  "statementZhMd": null,
+  "statementZhMd": "女孩 Masha 在森林里散步时，发现了一棵高度为 $n$ 的完全二叉树，以及一个长度为 $m=2^n$ 的排列 $p$。\n\n高度为 $n$ 的完全二叉树是一棵有根树，其中除了叶子节点以外，每个顶点恰好有两个儿子，并且从根到任意叶子的路径长度都是 $n$。下图展示了 $n=2$ 时的完全二叉树。\n\n排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数构成的数组。例如，[$2,3,1,5,4$] 是一个排列，但 [$1,2,2$] 不是（$2$ 出现了两次），[$1,3,4$] 也不是一个排列（$n=3$，但数组中出现了 $4$）。\n\n我们从左到右为这棵树的 $m$ 个叶子编号。编号为 $i$ 的叶子包含值 $p_i$（$1 \\le i \\le m$）。\n\n例如，当 $n = 2$、$p = [3, 1, 4, 2]$ 时，这棵树如下所示：\n\n![image](https://espresso.codeforces.com/52db4e69d135641644f7a657f3efed8e31f17ffe.png)\n\n如果树的叶子中的值从左到右按递增顺序排列，Masha 就认为这棵树是*美丽的*。\n\n一次操作中，Masha 可以选择树中的任意一个非叶子顶点，并交换它的左右儿子（以及它们各自的子树）。\n\n例如，如果 Masha 对上述树的根应用一次操作，树将变成如下形式：\n\n![image](https://espresso.codeforces.com/f79f1fccffc3b9829ffebebc98441c077f76e010.png)\n\n请帮助 Masha 判断她能否通过一定次数的操作使树变得*美丽*。如果可以，请输出使树变得*美丽*所需的最少操作次数。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n对于每个测试用例，第一行包含一个整数 $m$（$1 \\le m \\le 262144$），其中 $m$ 是 $2$ 的幂——排列 $p$ 的长度。\n\n第二行包含 $m$ 个整数：$p_1, p_2, \\dots, p_m$（$1 \\le p_i \\le m$）——排列 $p$。\n\n保证所有测试用例中 $m$ 的总和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，单独一行输出 Masha 能够使树变得*美丽*时所需的最少操作次数；如果无法做到，则输出 `-1`。\n\n## 说明\n\n考虑第一个测试用例。\n\n在第一个测试用例中，可以进行如下操作（当前步骤中被应用操作的顶点以紫色突出显示）：\n\n![image](https://espresso.codeforces.com/a02edad53289724d1cb8ffc75390d49892561b55.png)![image](https://espresso.codeforces.com/83eaacfa78a5cf9f9e4abe78b6da9f678d2b1ab3.png)![image](https://espresso.codeforces.com/f42c011add6978d56b1a7f59441b4b9e4f8c3cf1.png)![image](https://espresso.codeforces.com/b0e374a1e2c83a14496a54d80054976fff43f008.png)\n\n可以证明，不可能通过更少的操作使树变得*美丽*。\n\n在第二个测试用例中，可以证明不可能使树变得*美丽*。\n\n在第三个测试用例中，树已经是*美丽的*。",
   "samples": [
     {
       "input": "4\n8\n6 5 7 8 4 3 1 2\n4\n3 1 4 2\n1\n1\n8\n7 8 4 3 1 2 6 5\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:05.649Z"
+  "fetchedAt": "2026-11-02T17:50:05.649Z",
+  "translatedAt": "2026-11-04T03:12:11.403+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

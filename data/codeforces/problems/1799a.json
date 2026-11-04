@@ -4,7 +4,7 @@
   "contestId": 1799,
   "index": "A",
   "title": "Recent Actions",
-  "titleZh": null,
+  "titleZh": "Recent Actions",
   "url": "https://codeforces.com/contest/1799/problem/A",
   "difficulty": 800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "On Codeforces the \"Recent Actions\" field shows the last $n$ posts with recent actions.\n\nInitially, there are posts $1, 2, \\ldots, n$ in the field (this is in order from top to down). Also there are infinitely many posts not in the field, numbered with integers $n + 1, n + 2, \\ldots$.\n\nWhen recent action happens in the post $p$:\n\n- If it is in the \"Recent Actions\" field, it moves from its position to the top position.\n- Otherwise, it is added to the top position, and the post on the down position is removed from the \"Recent Actions\" field.\n\nYou know, that the next $m$ recent actions will happen in the posts $p_1, p_2, \\ldots, p_m$ ($n + 1 \\leq p_i \\leq n + m$) in the moments of time $1, 2, \\ldots, m$. **Note**, that recent actions only happen with posts with numbers $\\geq n + 1$.\n\nFor each post $i$ ($1 \\leq i \\leq n$), find the first time it will be removed from the \"Recent Actions\" field or say, that it won't be removed.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases. Descriptions of test cases follow.\n\nThe first line of each test case contains two integers $n$, $m$ ($1 \\leq n, m \\leq 5 \\cdot 10^4$) — the size of the \"Recent Actions\" field and the number of actions.\n\nThe next line contains $m$ integers $p_1, p_2, \\ldots, p_m$ ($n + 1 \\leq p_i \\leq n + m$).\n\nIt is guaranteed, that the sum of $n$ and the sum of $m$ for all test cases does not exceed $5 \\cdot 10^4$.\n\n## Output\n\nFor each test case print $n$ integers $t_1, t_2, \\ldots, t_n$, where $t_i=-1$ if the post $i$ won't be removed or $t_i$ equals to the first moment of time the post $i$ will be removed ($1 \\leq t_i \\leq m$).\n\n## Note\n\nIn the first test case, the only post $1$ will be removed at the moment $1$ and replaced by the post $2$.\n\nIn the second test case the \"Recent Actions\" field will be (given an order from top to down):\n\n1. Before moment $1$: $[1, 2, 3]$, after moment $1$: $[5, 1, 2]$. Post number $3$ was removed.\n2. Before moment $2$: $[5, 1, 2]$, after moment $2$: $[4, 5, 1]$. Post number $2$ was removed.\n\nPost number $1$ won't be removed.\n\nIn the third test case the \"Recent Actions\" field will be (given an order from top to down):\n\n1. Before moment $1$: $[1, 2, 3, 4]$, after moment $1$: $[5, 1, 2, 3]$. Post number $4$ was removed.\n2. Before moment $2$: $[5, 1, 2, 3]$, after moment $2$: $[9, 5, 1, 2]$. Post number $3$ was removed.\n3. Before moment $3$: $[9, 5, 1, 2]$, after moment $3$: $[9, 5, 1, 2]$. Nothing was changed.\n4. Before moment $4$: $[9, 5, 1, 2]$, after moment $4$: $[5, 9, 1, 2]$. The order was changed.\n5. Before moment $5$: $[5, 9, 1, 2]$, after moment $5$: $[7, 5, 9, 1]$. Post number $2$ was removed.\n\nPost number $1$ won't be removed.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"最近操作\",\"bodyZh\":\"在 Codeforces 上，“Recent Actions”区域会显示最近有操作的 $n$ 篇帖子。\\n\\n最初，区域中有帖子 $1, 2, \\\\ldots, n$（从上到下排列）。此外，还有无限多篇不在该区域中的帖子，编号为整数 $n + 1, n + 2, \\\\ldots$。\\n\\n当帖子 $p$ 发生最近操作时：\\n\\n- 如果它在“Recent Actions”区域中，则将其从原位置移动到顶部。\\n- 否则，将其添加到顶部，并从“Recent Actions”区域中移除位于底部的帖子。\\n\\n已知接下来 $m$ 次最近操作将分别在时刻 $1, 2, \\\\ldots, m$ 发生于帖子 $p_1, p_2, \\\\ldots, p_m$（$n + 1 \\\\leq p_i \\\\leq n + m$）。**注意**，最近操作只会发生在编号 $\\geq n + 1$ 的帖子上。\\n\\n对于每篇帖子 $i$（$1 \\\\leq i \\\\leq n$），请找出它第一次从“Recent Actions”区域中被移除的时刻；如果它不会被移除，请说明这一点。\\n\\n## 输入格式\\n\\n第一行包含一个整数 $t$（$1 \\\\leq t \\\\leq 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\\n\\n每个测试用例的第一行包含两个整数 $n, m$（$1 \\\\leq n, m \\\\leq 5 \\\\cdot 10^4$）——“Recent Actions”区域的大小和操作次数。\\n\\n下一行包含 $m$ 个整数 $p_1, p_2, \\\\ldots, p_m$（$n + 1 \\\\leq p_i \\\\leq n + m$）。\\n\\n保证所有测试用例的 $n$ 之和以及 $m$ 之和均不超过 $5 \\\\cdot 10^4$。\\n\\n## 输出格式\\n\\n对于每个测试用例，输出 $n$ 个整数 $t_1, t_2, \\\\ldots, t_n$。如果帖子 $i$ 不会被移除，则 $t_i=-1$；否则，$t_i$ 等于帖子 $i$ 第一次被移除的时刻（$1 \\\\leq t_i \\\\leq m$）。\\n\\n## 说明\\n\\n在第一个测试用例中，唯一的帖子 $1$ 会在时刻 $1$ 被移除，并由帖子 $2$ 替代。\\n\\n在第二个测试用例中，“Recent Actions”区域的内容如下（按照从上到下的顺序给出）：\\n\\n1. 时刻 $1$ 之前：$[1, 2, 3]$；时刻 $1$ 之后：$[5, 1, 2]$。帖子 $3$ 被移除。\\n2. 时刻 $2$ 之前：$[5, 1, 2]$；时刻 $2$ 之后：$[4, 5, 1]$。帖子 $2$ 被移除。\\n\\n帖子 $1$ 不会被移除。\\n\\n在第三个测试用例中，“Recent Actions”区域的内容如下（按照从上到下的顺序给出）：\\n\\n1. 时刻 $1$ 之前：$[1, 2, 3, 4]$；时刻 $1$ 之后：$[5, 1, 2, 3]$。帖子 $4$ 被移除。\\n2. 时刻 $2$ 之前：$[5, 1, 2, 3]$；时刻 $2$ 之后：$[9, 5, 1, 2]$。帖子 $3$ 被移除。\\n3. 时刻 $3$ 之前：$[9, 5, 1, 2]$；时刻 $3$ 之后：$[9, 5, 1, 2]$。没有任何变化。\\n4. 时刻 $4$ 之前：$[9, 5, 1, 2]$；时刻 $4$ 之后：$[5, 9, 1, 2]$。顺序发生了变化。\\n5. 时刻 $5$ 之前：$[5, 9, 1, 2]$；时刻 $5$ 之后：$[7, 5, 9, 1]$。帖子 $2$ 被移除。\\n\\n帖子 $1$ 不会被移除。\"}",
   "samples": [
     {
       "input": "10\n1 1\n2\n3 2\n5 4\n4 5\n5 9 9 5 7\n5 5\n6 7 8 9 10\n3 4\n4 4 4 4\n4 4\n5 5 6 6\n3 5\n4 5 5 5 4\n4 20\n5 5 24 24 24 5 6 7 8 9 10 12 13 14 15 16 17 18 19 20\n5 7\n7 8 7 11 7 12 10\n6 7\n8 11 7 8 8 8 12\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:34:19.049Z"
+  "fetchedAt": "2026-10-30T22:34:19.049Z",
+  "translatedAt": "2026-11-04T03:00:30.010+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

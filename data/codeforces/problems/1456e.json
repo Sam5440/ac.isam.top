@@ -4,7 +4,7 @@
   "contestId": 1456,
   "index": "E",
   "title": "XOR-ranges",
-  "titleZh": null,
+  "titleZh": "XOR 区间",
   "url": "https://codeforces.com/contest/1456/problem/E",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Given integers $c_{0}, c_{1}, \\ldots, c_{k-1}$ we can define the cost of a number $0 \\le x \\lt 2^{k}$ as $p(x) = \\sum_{i=0}^{k-1} \\left( \\left\\lfloor \\frac{x}{2^{i}} \\right\\rfloor \\bmod 2 \\right) \\cdot c_{i}$. In other words, the cost of number $x$ is the sum of $c_{i}$ over the bits of $x$ which are equal to one.\n\nLet's define the cost of array $a$ of length $n \\ge 2$ with elements from $[0, 2^{k})$ as follows: $cost(a) = \\sum_{i=1}^{n - 1} p(a_{i} \\oplus a_{i+1})$, where $\\oplus$ denotes [bitwise exclusive OR](https://en.wikipedia.org/wiki/Exclusive_or) operation.\n\nYou have to construct an array of length $n$ with minimal cost, given that each element should belong to the given segment: $l_{i} \\le a_{i} \\le r_{i}$.\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($2 \\le n \\le 50$, $1 \\le k \\le 50$) — the size of an array and bit length of the numbers in question.\n\nNext $n$ lines contain the restrictions for elements of the array: the $i$-th line contains two integers $l_{i}$ and $r_{i}$ ($0 \\le l_{i} \\le r_{i} \\lt 2^{k}$).\n\nThe last line contains integers $c_{0}, c_{1}, \\ldots, c_{k-1}$ ($0 \\le c_{i} \\le 10^{12}$).\n\n## Output\n\nOutput one integer — the minimal cost of an array satisfying all the restrictions.\n\n## Note\n\nIn the first example there is only one array satisfying all the restrictions — $[3, 5, 6, 1]$ — and its cost is equal to $cost([3, 5, 6, 1]) = p(3 \\oplus 5) + p(5 \\oplus 6) + p(6 \\oplus 1) = p(6) + p(3) + p(7) = (c_{1} + c_{2}) + (c_{0} + c_{1}) + (c_{0} + c_{1} + c_{2}) = (2 + 7) + (5 + 2) + (5 + 2 + 7) = 30$.\n\nIn the second example the only optimal array is $[2, 3, 6]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定整数 $c_{0}, c_{1}, \\ldots, c_{k-1}$，我们可以将一个 $0 \\le x \\lt 2^{k}$ 的数的代价定义为 $p(x) = \\sum_{i=0}^{k-1} \\left( \\left\\lfloor \\frac{x}{2^{i}} \\right\\rfloor \\bmod 2 \\right) \\cdot c_{i}$。换句话说，数字 $x$ 的代价是其二进制表示中所有值为 1 的位所对应的 $c_{i}$ 之和。\n\n对于长度为 $n \\ge 2$ 且元素均属于 $[0, 2^{k})$ 的数组 $a$，定义其代价如下：$cost(a) = \\sum_{i=1}^{n - 1} p(a_{i} \\oplus a_{i+1})$，其中 $\\oplus$ 表示[按位异或](https://en.wikipedia.org/wiki/Exclusive_or)运算。\n\n请构造一个长度为 $n$ 的数组，使其代价最小，并且每个元素都满足给定的区间限制：$l_{i} \\le a_{i} \\le r_{i}$。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 50$，$1 \\le k \\le 50$）——数组的长度以及所涉及数字的二进制位数。\n\n接下来 $n$ 行描述数组元素的限制：第 $i$ 行包含两个整数 $l_{i}$ 和 $r_{i}$（$0 \\le l_{i} \\le r_{i} \\lt 2^{k}$）。\n\n最后一行包含整数 $c_{0}, c_{1}, \\ldots, c_{k-1}$（$0 \\le c_{i} \\le 10^{12}$）。\n\n## 输出格式\n\n输出一个整数——满足所有限制的数组的最小代价。\n\n## 说明\n\n在第一个样例中，只有一个数组满足所有限制，即 $[3, 5, 6, 1]$，其代价为 $cost([3, 5, 6, 1]) = p(3 \\oplus 5) + p(5 \\oplus 6) + p(6 \\oplus 1) = p(6) + p(3) + p(7) = (c_{1} + c_{2}) + (c_{0} + c_{1}) + (c_{0} + c_{1} + c_{2}) = (2 + 7) + (5 + 2) + (5 + 2 + 7) = 30$。\n\n在第二个样例中，唯一的最优数组是 $[2, 3, 6]$。",
   "samples": [
     {
       "input": "4 3\n3 3\n5 5\n6 6\n1 1\n5 2 7\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:39:19.833Z"
+  "fetchedAt": "2026-10-30T23:39:19.833Z",
+  "translatedAt": "2026-11-04T04:26:12.433+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

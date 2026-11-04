@@ -4,14 +4,14 @@
   "contestId": 779,
   "index": "F",
   "title": "Peterson Polyglot",
-  "titleZh": null,
+  "titleZh": "彼得森多语者",
   "url": "https://codeforces.com/contest/779/problem/F",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Peterson loves to learn new languages, but his favorite hobby is making new ones. Language is a set of words, and word is a sequence of lowercase Latin letters.\n\nPeterson makes new language every morning. It is difficult task to store the whole language, so Peterson have invented new data structure for storing his languages which is called broom. Broom is rooted tree with edges marked with letters. Initially broom is represented by the only vertex — the root of the broom. When Peterson wants to add new word to the language he stands at the root and processes the letters of new word one by one. Consider that Peterson stands at the vertex $*u*$. If there is an edge from $*u*$ marked with current letter, Peterson goes through this edge. Otherwise Peterson adds new edge from $*u*$ to the new vertex $*v*$, marks it with the current letter and goes through the new edge. Size of broom is the number of vertices in it.\n\nIn the evening after working day Peterson can't understand the language he made this morning. It is too difficult for bored Peterson and he tries to make it simpler. Simplification of the language is the process of erasing some letters from some words of this language. Formally, Peterson takes some positive integer $*p*$ and erases $*p*$-th letter from all the words of this language having length at least $*p*$. Letters in words are indexed starting by 1. Peterson considers that simplification should change at least one word, i.e. there has to be at least one word of length at least $*p*$. Peterson tries to make his language as simple as possible, so he wants to choose $*p*$ such that the size of the broom for his simplified language is as small as possible.\n\nPeterson is pretty annoyed with this task so he asks you for help. Write a program to find the smallest possible size of the broom and integer $*p*$.\n\n## Input\n\nThe first line of input contains integer $*n*$ ($2 ≤ *n* ≤ 3·10^{5}$) — the size of the broom.\n\nNext $*n* - 1$ lines describe the broom: $*i*$-th of them contains integers $*u*_{*i*}$, $*v*_{*i*}$ and letter $*x*_{*i*}$ — describing the edge from $*u*_{*i*}$ to $*v*_{*i*}$ marked with letter $*x*_{*i*}$.\n\nVertices are numbered from 1 to $*n*$. All $*x*_{*i*}$ are lowercase latin letters. Vertex 1 is the root of the broom.\n\nEdges describe correct broom which is made from Peterson's language.\n\n## Output\n\nThe first line of output should contain the minimum possible size of the broom after its simplification. The second line of output should contain integer $*p*$ to choose. If there are several suitable $*p*$ values, print the smallest one.\n\n## Note\n\n![image](https://espresso.codeforces.com/34e91571f3b5d54da921c76053c7a4709d59d1bc.png)\n\nBroom from the second sample test can be built using language \"piece\", \"of\", \"pie\", \"pretty\", \"prefix\". Its simplification with $*p* = 2$ obtains the language of words \"pece\", \"o\", \"pe\", \"petty\", \"pefix\". This language gives us the broom with minimum possible size.",
-  "statementZhMd": null,
+  "statementZhMd": "彼得森喜欢学习新的语言，但他最喜欢的爱好是创造新的语言。语言是单词的集合，而单词是小写拉丁字母组成的序列。\n\n彼得森每天早晨都会创造一种新的语言。完整存储整个语言是一项困难的任务，因此彼得森发明了一种用于存储语言的新数据结构，称为扫帚树（broom）。扫帚树是一棵边上标有字母的有根树。最初，扫帚树只由一个顶点——扫帚树的根组成。当彼得森想要向语言中添加一个新单词时，他从根开始，逐个处理新单词中的字母。假设彼得森当前位于顶点 $*u*$。如果从 $*u*$ 出发存在一条标有当前字母的边，彼得森就沿着这条边前进。否则，彼得森会从 $*u*$ 向一个新顶点 $*v*$ 添加一条边，在这条边上标记当前字母，然后沿着新边前进。扫帚树的大小是其中顶点的数量。\n\n一天的工作结束后，彼得森无法理解自己早晨创造的语言。这对无聊的彼得森来说太困难了，于是他试图让语言变得更简单。语言简化的过程是从语言中的某些单词中删除一些字母。形式化地说，彼得森选取一个正整数 $*p*$，并从语言中所有长度至少为 $*p*$ 的单词中删除第 $*p*$ 个字母。单词中的字母从 1 开始编号。彼得森认为简化必须至少改变一个单词，即至少存在一个长度不小于 $*p*$ 的单词。彼得森希望让语言尽可能简单，因此他想选择一个 $*p*$，使简化后语言对应的扫帚树大小尽可能小。\n\n彼得森对这项任务十分苦恼，因此向你寻求帮助。请编写程序，求出扫帚树可能达到的最小大小以及整数 $*p*$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$2 ≤ *n* ≤ 3·10^{5}$），表示扫帚树的大小。\n\n接下来的 $*n* - 1$ 行描述这棵扫帚树：其中第 $*i*$ 行包含整数 $*u*_{*i}$、$*v*_{*i}$ 以及字母 $*x*_{*i}$，表示一条从 $*u*_{*i}$ 到 $*v*_{*i}$、标有字母 $*x*_{*i}$ 的边。\n\n顶点编号为 1 到 $*n*$。所有 $*x*_{*i}$ 都是小写拉丁字母。顶点 1 是扫帚树的根。\n\n这些边描述了一棵由彼得森的语言构造出的合法扫帚树。\n\n## 输出格式\n\n输出的第一行应包含简化后扫帚树可能达到的最小大小。输出的第二行应包含应选择的整数 $*p*$。如果有多个合适的 $*p*$，输出其中最小的一个。\n\n## 说明\n\n![image](https://espresso.codeforces.com/34e91571f3b5d54da921c76053c7a4709d59d1bc.png)\n\n第二个样例测试中的扫帚树可以由语言“piece”、“of”、“pie”、“pretty”、“prefix”构造。取 $*p* = 2$ 进行简化后，得到的语言为“pece”、“o”、“pe”、“petty”、“pefix”。该语言对应的扫帚树大小达到了可能的最小值。",
   "samples": [
     {
       "input": "5\n1 2 c\n2 3 a\n3 4 t\n2 5 t\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:54:52.853Z"
+  "fetchedAt": "2026-10-31T00:54:52.853Z",
+  "translatedAt": "2026-11-04T06:18:17.233+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1889,
   "index": "B",
   "title": "Doremy's Connecting Plan",
-  "titleZh": null,
+  "titleZh": "Doremy 的连接计划",
   "url": "https://codeforces.com/contest/1889/problem/B",
   "difficulty": 1700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Doremy lives in a country consisting of $n$ cities numbered from $1$ to $n$, with $a_i$ people living in the $i$-th city. It can be modeled as an undirected graph with $n$ nodes.\n\nInitially, there are no edges in the graph. Now Doremy wants to make the graph *connected*.\n\nTo do this, she can add an edge between $i$ and $j$ if\n\n$$ \\sum_{k \\in S} a_k \\ge i\\cdot j \\cdot c, $$\n\nwhere $S$ is the set of all the nodes that are currently in the same connected component of either $i$ or $j$, and $c$ is a given constant.\n\nCan Doremy make the graph connected?\n\nTwo nodes $(i, j)$ are in the same connected component if there exists a path from $i$ to $j$. A graph is connected if all its nodes are in the same connected component.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line contains two integers $n$, $c$ ($2\\le n\\le 2\\cdot 10^5$, $1 \\le c \\le 10^6$) — the number of nodes and the constant.\n\nThe second line of each test case contains $ n $ integers $ a_1,a_2,\\ldots,a_n $ ($0 \\le a_i \\le 10^{12}$) — the number of people living in the $i$-th city.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print \"`YES`\" (without quotes), if it is possible to make the graph connected, and \"`NO`\" (without quotes) otherwise.\n\nYou can print letters in any case (upper or lower).\n\n## Note\n\nIn the first test case, Doremy can add edges in the following order:\n\n1. Add $(1,2)$. This operation is valid because $a_1 + a_2 = 20 \\ge i\\cdot j \\cdot c = 20$.\n2. Add $(1,3)$. This operation is valid because $a_1 + a_2 + a_3 = 35 \\ge i \\cdot j \\cdot c = 30$.\n3. Add $(1,4)$. This operation is valid because $a_1 + a_2 + a_3 + a_4 = 45 \\ge i \\cdot j \\cdot c = 40$.\n\nIn the second test case, Doremy can add edge $(1,2)$ because $a_1 + a_2 =2 \\ge 1 \\cdot 2 \\cdot 1$. After that, the graph is connected.\n\nIn the third test case, Doremy can add edges in the order $(5,4)$, $(5,3)$, $(5,2)$ and $(5,1)$.\n\nIn the fourth test case, Doremy cannot add any edge at all.",
-  "statementZhMd": null,
+  "statementZhMd": "Doremy 居住在一个由 $n$ 个城市组成的国家中，这些城市编号为 $1$ 到 $n$，第 $i$ 个城市有 $a_i$ 人。这个国家可以建模为一个包含 $n$ 个节点的无向图。\n\n初始时，图中没有任何边。现在 Doremy 想要使图变得*连通*。\n\n为此，当且仅当\n\n$$ \\sum_{k \\in S} a_k \\ge i\\cdot j \\cdot c, $$\n\n她可以在 $i$ 和 $j$ 之间添加一条边，其中 $S$ 是当前与 $i$ 或 $j$ 属于同一个连通分量的所有节点组成的集合，$c$ 是给定的常数。\n\nDoremy 能否使图变得连通？\n\n如果存在一条从节点 $(i, j)$ 到节点的路径，则这两个节点 $(i, j)$ 位于同一个连通分量中。如果图中的所有节点都位于同一个连通分量中，则称该图是连通的。\n\n## 输入格式\n\n输入包含多组测试用例。第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\n\n每组测试用例的第一行包含两个整数 $n$、$c$（$2\\le n\\le 2\\cdot 10^5$，$1 \\le c \\le 10^6$）——节点的数量和常数。\n\n每组测试用例的第二行包含 $ n $ 个整数 $ a_1,a_2,\\ldots,a_n $（$0 \\le a_i \\le 10^{12}$）——第 $i$ 个城市居住的人数。\n\n保证所有测试用例中 $n$ 的总和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，如果可以使图变得连通，输出“`YES`”（不含引号），否则输出“`NO`”（不含引号）。\n\n输出的字母可以是任意大小写形式。\n\n## 说明\n\n在第一个测试用例中，Doremy 可以按照以下顺序添加边：\n\n1. 添加 $(1,2)$。该操作是有效的，因为 $a_1 + a_2 = 20 \\ge i\\cdot j \\cdot c = 20$。\n2. 添加 $(1,3)$。该操作是有效的，因为 $a_1 + a_2 + a_3 = 35 \\ge i\\cdot j \\cdot c = 30$。\n3. 添加 $(1,4)$。该操作是有效的，因为 $a_1 + a_2 + a_3 + a_4 = 45 \\ge i\\cdot j \\cdot c = 40$。\n\n在第二个测试用例中，Doremy 可以添加边 $(1,2)$，因为 $a_1 + a_2 =2 \\ge 1 \\cdot 2 \\cdot 1$。之后，图就变得连通了。\n\n在第三个测试用例中，Doremy 可以按照 $(5,4)$、$(5,3)$、$(5,2)$ 和 $(5,1)$ 的顺序添加边。\n\n在第四个测试用例中，Doremy 一条边也无法添加。",
   "samples": [
     {
       "input": "7\n4 10\n0 20 15 10\n2 1\n1 1\n5 1\n0 1 0 4 199\n5 2\n1 1 3 1 1\n5 5\n5 6 1 10 2\n5 1000000\n1000000000000 1000000000000 1000000000000 1000000000000 1000000000000\n3 1\n0 0 2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:14:53.456Z"
+  "fetchedAt": "2026-10-30T22:14:53.456Z",
+  "translatedAt": "2026-11-04T02:30:12.714+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

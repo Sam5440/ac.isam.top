@@ -4,7 +4,7 @@
   "contestId": 1547,
   "index": "D",
   "title": "Co-growing Sequence",
-  "titleZh": null,
+  "titleZh": "共增长序列",
   "url": "https://codeforces.com/contest/1547/problem/D",
   "difficulty": 1300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "A sequence of non-negative integers $a_1, a_2, \\dots, a_n$ is called *growing* if for all $i$ from $1$ to $n - 1$ all ones (of binary representation) in $a_i$ are in the places of ones (of binary representation) in $a_{i + 1}$ (in other words, $a_i \\:\\&\\: a_{i + 1} = a_i$, where $\\&$ denotes [bitwise AND](https://en.wikipedia.org/wiki/Bitwise_operation#AND)). If $n = 1$ then the sequence is considered *growing* as well.\n\nFor example, the following four sequences are growing:\n\n- $[2, 3, 15, 175]$ — in binary it's $[10_2, 11_2, 1111_2, 10101111_2]$;\n- $[5]$ — in binary it's $[101_2]$;\n- $[1, 3, 7, 15]$ — in binary it's $[1_2, 11_2, 111_2, 1111_2]$;\n- $[0, 0, 0]$ — in binary it's $[0_2, 0_2, 0_2]$.\n\nThe following three sequences are non-growing:\n\n- $[3, 4, 5]$ — in binary it's $[11_2, 100_2, 101_2]$;\n- $[5, 4, 3]$ — in binary it's $[101_2, 100_2, 011_2]$;\n- $[1, 2, 4, 8]$ — in binary it's $[0001_2, 0010_2, 0100_2, 1000_2]$.\n\nConsider two sequences of non-negative integers $x_1, x_2, \\dots, x_n$ and $y_1, y_2, \\dots, y_n$. Let's call this pair of sequences *co-growing* if the sequence $x_1 \\oplus y_1, x_2 \\oplus y_2, \\dots, x_n \\oplus y_n$ is *growing* where $\\oplus$ denotes [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\nYou are given a sequence of integers $x_1, x_2, \\dots, x_n$. Find the lexicographically minimal sequence $y_1, y_2, \\dots, y_n$ such that sequences $x_i$ and $y_i$ are co-growing.\n\nThe sequence $a_1, a_2, \\dots, a_n$ is lexicographically smaller than the sequence $b_1, b_2, \\dots, b_n$ if there exists $1 \\le k \\le n$ such that $a_i = b_i$ for any $1 \\le i \\lt k$ but $a_k \\lt b_k$.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$). Then $t$ test cases follow.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — length of the sequence $x_i$.\n\nThe second line contains $n$ integers $x_1, x_2, \\dots, x_n$ ($0 \\le x_i \\lt 2^{30}$) — elements of the sequence $x_i$.\n\nIt is guaranteed that the sum of $n$ overall all test cases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print $n$ integers $y_1, y_2, \\dots, y_n$ ($0 \\le y_i \\lt 2^{30}$) — lexicographically minimal sequence such that such that it's co-growing with given sequence $x_i$.",
-  "statementZhMd": null,
+  "statementZhMd": "一个非负整数序列 $a_1, a_2, \\dots, a_n$ 被称为*增长序列*，当对于从 $1$ 到 $n - 1$ 的所有 $i$，$a_i$ 的二进制表示中的所有 1 都出现在 $a_{i + 1}$ 的二进制表示中（换句话说，$a_i \\:\\&\\: a_{i + 1} = a_i$，其中 & 表示[按位与](https://en.wikipedia.org/wiki/Bitwise_operation#AND)。当 $n = 1$ 时，该序列也被视为*增长序列*。\n\n例如，以下四个序列都是增长序列：\n\n- $[2, 3, 15, 175]$ —— 用二进制表示为 $[10_2, 11_2, 1111_2, 10101111_2]$；\n- $[5]$ —— 用二进制表示为 $[101_2]$；\n- $[1, 3, 7, 15]$ —— 用二进制表示为 $[1_2, 11_2, 111_2, 1111_2]$；\n- $[0, 0, 0]$ —— 用二进制表示为 $[0_2, 0_2, 0_2]$。\n\n以下三个序列不是增长序列：\n\n- $[3, 4, 5]$ —— 用二进制表示为 $[11_2, 100_2, 101_2]$；\n- $[5, 4, 3]$ —— 用二进制表示为 $[101_2, 100_2, 011_2]$；\n- $[1, 2, 4, 8]$ —— 用二进制表示为 $[0001_2, 0010_2, 0100_2, 1000_2]$。\n\n给定两个非负整数序列 $x_1, x_2, \\dots, x_n$ 和 $y_1, y_2, \\dots, y_n$。如果序列 $x_1 \\oplus y_1, x_2 \\oplus y_2, \\dots, x_n \\oplus y_n$ 是*增长序列*，则称这两个序列是*共同增长的*，其中 $\\oplus$ 表示[按位异或](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n给定一个整数序列 $x_1, x_2, \\dots, x_n$。请找出满足序列 $x_i$ 和 $y_i$ 共同增长的字典序最小的序列 $y_1, y_2, \\dots, y_n$。\n\n如果存在 $1 \\le k \\le n$，使得对于任意 $1 \\le i \\lt k$ 都有 $a_i = b_i$，且 $a_k \\lt b_k$，则称序列 $a_1, a_2, \\dots, a_n$ 的字典序小于序列 $b_1, b_2, \\dots, b_n$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）。接下来是 $t$ 组测试数据。\n\n每组测试数据的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——序列 $x_i$ 的长度。\n\n第二行包含 $n$ 个整数 $x_1, x_2, \\dots, x_n$（$0 \\le x_i \\lt 2^{30}$）——序列 $x_i$ 的元素。\n\n保证所有测试数据中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出 $n$ 个整数 $y_1, y_2, \\dots, y_n$（$0 \\le y_i \\lt 2^{30}$）——满足与给定序列 $x_i$ 共同增长的字典序最小序列。",
   "samples": [
     {
       "input": "5\n4\n1 3 7 15\n4\n1 2 4 8\n5\n1 2 3 4 5\n4\n11 13 15 1\n1\n0\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:23:15.312Z"
+  "fetchedAt": "2026-11-02T18:23:15.312Z",
+  "translatedAt": "2026-11-04T03:45:27.687+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

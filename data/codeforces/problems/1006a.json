@@ -4,7 +4,7 @@
   "contestId": 1006,
   "index": "A",
   "title": "Adjacent Replacements",
-  "titleZh": null,
+  "titleZh": "相邻替换",
   "url": "https://codeforces.com/contest/1006/problem/A",
   "difficulty": 800,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Mishka got an integer array $a$ of length $n$ as a birthday present (what a surprise!).\n\nMishka doesn't like this present and wants to change it somehow. He has invented an algorithm and called it \"Mishka's Adjacent Replacements Algorithm\". This algorithm can be represented as a sequence of steps:\n\n- Replace each occurrence of $1$ in the array $a$ with $2$;\n- Replace each occurrence of $2$ in the array $a$ with $1$;\n- Replace each occurrence of $3$ in the array $a$ with $4$;\n- Replace each occurrence of $4$ in the array $a$ with $3$;\n- Replace each occurrence of $5$ in the array $a$ with $6$;\n- Replace each occurrence of $6$ in the array $a$ with $5$;\n- $\\dots$\n- Replace each occurrence of $10^9 - 1$ in the array $a$ with $10^9$;\n- Replace each occurrence of $10^9$ in the array $a$ with $10^9 - 1$.\n\nNote that the dots in the middle of this algorithm mean that Mishka applies these replacements for each pair of adjacent integers ($2i - 1, 2i$) for each $i \\in\\{1, 2, \\ldots, 5 \\cdot 10^8\\}$ as described above.\n\nFor example, for the array $a = [1, 2, 4, 5, 10]$, the following sequence of arrays represents the algorithm:\n\n$[1, 2, 4, 5, 10]$ $\\rightarrow$ (replace all occurrences of $1$ with $2$) $\\rightarrow$ $[2, 2, 4, 5, 10]$ $\\rightarrow$ (replace all occurrences of $2$ with $1$) $\\rightarrow$ $[1, 1, 4, 5, 10]$ $\\rightarrow$ (replace all occurrences of $3$ with $4$) $\\rightarrow$ $[1, 1, 4, 5, 10]$ $\\rightarrow$ (replace all occurrences of $4$ with $3$) $\\rightarrow$ $[1, 1, 3, 5, 10]$ $\\rightarrow$ (replace all occurrences of $5$ with $6$) $\\rightarrow$ $[1, 1, 3, 6, 10]$ $\\rightarrow$ (replace all occurrences of $6$ with $5$) $\\rightarrow$ $[1, 1, 3, 5, 10]$ $\\rightarrow$ $\\dots$ $\\rightarrow$ $[1, 1, 3, 5, 10]$ $\\rightarrow$ (replace all occurrences of $10$ with $9$) $\\rightarrow$ $[1, 1, 3, 5, 9]$. The later steps of the algorithm do not change the array.\n\nMishka is very lazy and he doesn't want to apply these changes by himself. But he is very interested in their result. Help him find it.\n\n## Input\n\nThe first line of the input contains one integer number $n$ ($1 \\le n \\le 1000$) — the number of elements in Mishka's birthday present (surprisingly, an array).\n\nThe second line of the input contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$) — the elements of the array.\n\n## Output\n\nPrint $n$ integers — $b_1, b_2, \\dots, b_n$, where $b_i$ is the final value of the $i$-th element of the array after applying \"Mishka's Adjacent Replacements Algorithm\" to the array $a$. Note that you cannot change the order of elements in the array.\n\n## Note\n\nThe first example is described in the problem statement.",
-  "statementZhMd": null,
+  "statementZhMd": "Mishka 收到了一份生日礼物：一个长度为 $n$ 的整数数组 $a$（真是令人惊讶！）。\n\nMishka 不喜欢这份礼物，想对它做一些修改。他发明了一种算法，并将其命名为 \"Mishka's Adjacent Replacements Algorithm\"。该算法可以表示为以下步骤：\n\n- 将数组 $a$ 中每个 $1$ 替换为 $2$；\n- 将数组 $a$ 中每个 $2$ 替换为 $1$；\n- 将数组 $a$ 中每个 $3$ 替换为 $4$；\n- 将数组 $a$ 中每个 $4$ 替换为 $3$；\n- 将数组 $a$ 中每个 $5$ 替换为 $6$；\n- 将数组 $a$ 中每个 $6$ 替换为 $5$；\n- $\\dots$\n- 将数组 $a$ 中每个 $10^9 - 1$ 替换为 $10^9$；\n- 将数组 $a$ 中每个 $10^9$ 替换为 $10^9 - 1$。\n\n注意，算法中间的省略号表示：对于每个 $i \\in\\{1, 2, \\ldots, 5 \\cdot 10^8\\}$，Mishka 都会按照上述方式对相邻整数对 $(2i - 1, 2i)$ 执行替换。\n\n例如，对于数组 $a = [1, 2, 4, 5, 10]$，该算法的执行过程如下：\n\n$[1, 2, 4, 5, 10]$ $\\rightarrow$（将所有 $1$ 替换为 $2$）$\\rightarrow$ $[2, 2, 4, 5, 10]$ $\\rightarrow$（将所有 $2$ 替换为 $1$）$\\rightarrow$ $[1, 1, 4, 5, 10]$ $\\rightarrow$（将所有 $3$ 替换为 $4$）$\\rightarrow$ $[1, 1, 4, 5, 10]$ $\\rightarrow$（将所有 $4$ 替换为 $3$）$\\rightarrow$ $[1, 1, 3, 5, 10]$ $\\rightarrow$（将所有 $5$ 替换为 $6$）$\\rightarrow$ $[1, 1, 3, 6, 10]$ $\\rightarrow$（将所有 $6$ 替换为 $5$）$\\rightarrow$ $[1, 1, 3, 5, 10]$ $\\rightarrow$ $\\dots$ $\\rightarrow$ $[1, 1, 3, 5, 10]$ $\\rightarrow$（将所有 $10$ 替换为 $9$）$\\rightarrow$ $[1, 1, 3, 5, 9]$。算法后续的步骤不会再改变数组。\n\nMishka 很懒，不想亲自执行这些替换，但他非常想知道替换后的结果。请帮助他求出最终结果。\n\n## 输入格式\n\n输入的第一行包含一个整数 $n$（$1 \\le n \\le 1000$），表示 Mishka 生日礼物中元素的数量（令人惊讶的是，这是一个数组）。\n\n输入的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$），表示数组中的元素。\n\n## 输出格式\n\n输出 $n$ 个整数 $b_1, b_2, \\dots, b_n$，其中 $b_i$ 表示对数组 $a$ 应用 \"Mishka's Adjacent Replacements Algorithm\" 后，数组第 $i$ 个元素的最终值。注意，不能改变数组中元素的顺序。\n\n## 说明\n\n第一个样例已在题目描述中说明。",
   "samples": [
     {
       "input": "5\n1 2 4 5 10\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:34:10.104Z"
+  "fetchedAt": "2026-11-02T19:34:10.104Z",
+  "translatedAt": "2026-11-04T05:35:12.969+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

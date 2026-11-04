@@ -4,7 +4,7 @@
   "contestId": 542,
   "index": "F",
   "title": "Quest",
-  "titleZh": null,
+  "titleZh": "任务",
   "url": "https://codeforces.com/contest/542/problem/F",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp is making a quest for his friends. He has already made $*n*$ tasks, for each task the boy evaluated how interesting it is as an integer $*q*_{*i*}$, and the time $*t*_{*i*}$ in minutes needed to complete the task.\n\nAn interesting feature of his quest is: each participant should get the task that is best suited for him, depending on his preferences. The task is chosen based on an interactive quiz that consists of some questions. The player should answer these questions with \"yes\" or \"no\". Depending on the answer to the question, the participant either moves to another question or goes to one of the tasks that are in the quest. In other words, the quest is a binary tree, its nodes contain questions and its leaves contain tasks.\n\nWe know that answering any of the questions that are asked before getting a task takes exactly one minute from the quest player. Polycarp knows that his friends are busy people and they can't participate in the quest for more than $*T*$ minutes. Polycarp wants to choose some of the $*n*$ tasks he made, invent the corresponding set of questions for them and use them to form an interactive quiz as a binary tree so that no matter how the player answers quiz questions, he spends at most $*T*$ minutes on completing the whole quest (that is, answering all the questions and completing the task). Specifically, the quest can contain zero questions and go straight to the task. Each task can only be used once (i.e., the people who give different answers to questions should get different tasks).\n\nPolycarp wants the total \"interest\" value of the tasks involved in the quest to be as large as possible. Help him determine the maximum possible total interest value of the task considering that the quest should be completed in $*T*$ minutes at any variant of answering questions.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*T*$ ($1 ≤ *n* ≤ 1000$, $1 ≤ *T* ≤ 100$) — the number of tasks made by Polycarp and the maximum time a quest player should fit into.\n\nNext $*n*$ lines contain two integers $*t*_{*i*}, *q*_{*i*}$ ($1 ≤ *t*_{*i*} ≤ *T*$, $1 ≤ *q*_{*i*} ≤ 1000$) each — the time in minutes needed to complete the $*i*$-th task and its interest value.\n\n## Output\n\nPrint a single integer — the maximum possible total interest value of all the tasks in the quest.\n\n## Note\n\nIn the first sample test all the five tasks can be complemented with four questions and joined into one quest.\n\nIn the second sample test it is impossible to use all the five tasks, but you can take two of them, the most interesting ones.\n\nIn the third sample test the optimal strategy is to include only the second task into the quest.\n\nHere is the picture that illustrates the answers to the sample tests. The blue circles represent the questions, the two arrows that go from every circle represent where a person goes depending on his answer to that question. The tasks are the red ovals.\n\n![image](https://espresso.codeforces.com/f97e6272831f8a54fec4cbaf8219a63aea601d95.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 正在为他的朋友们制作一个冒险任务。他已经制作了 $*n*$ 个任务，对于每个任务，他都将其趣味度评估为整数 $*q*_{*i*}$，并记录了完成该任务所需的时间 $*t*_{*i*}$（分钟）。\n\n他的冒险任务有一个有趣的特点：每位参与者都应该根据自己的偏好获得最适合自己的任务。任务是通过一个由若干问题组成的交互式问答来选择的。玩家需要用“yes”或“no”回答这些问题。根据问题的回答，参与者要么前往另一个问题，要么前往冒险任务中的某个任务。换句话说，这个冒险任务是一棵二叉树，其节点包含问题，叶子包含任务。\n\n我们知道，在获得任务之前回答所有问题，恰好需要冒险任务玩家花费一分钟。Polycarp 知道他的朋友们都很忙，他们参与冒险任务的时间不能超过 $*T*$ 分钟。Polycarp 希望从制作的 $*n*$ 个任务中选择一些，为它们设计相应的问题，并将其组成一棵交互式问答二叉树，使得无论玩家如何回答问题，他完成整个冒险任务（即回答所有问题并完成任务）所花费的时间都不超过 $*T*$ 分钟。特别地，冒险任务可以不包含任何问题，直接进入任务。每个任务最多只能使用一次（也就是说，对问题给出不同答案的人应该获得不同的任务）。\n\nPolycarp 希望使冒险任务中所包含的所有任务的总“趣味度”尽可能大。请帮助他确定，在考虑冒险任务必须在任意回答情况下都能于 $*T*$ 分钟内完成的前提下，任务的最大可能总趣味度。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*T*$（$1 ≤ *n* ≤ 1000$，$1 ≤ *T* ≤ 100$）——Polycarp 制作的任务数量，以及冒险任务玩家必须在其中完成冒险任务的最长时间。\n\n接下来的 $*n*$ 行中，每行包含两个整数 $*t*_{*i*}, *q*_{*i*}$（$1 ≤ *t*_{*i*} ≤ *T*$，$1 ≤ *q*_{*i*} ≤ 1000$）——完成第 $*i*$ 个任务所需的时间（分钟）及其趣味度。\n\n## 输出格式\n\n输出一个整数——冒险任务中所有任务的最大可能总趣味度。\n\n## 说明\n\n在第一个样例中，全部五个任务都可以配上四个问题，并组成一个冒险任务。\n\n在第二个样例中，不可能使用全部五个任务，但可以选择其中两个，也就是趣味度最高的两个任务。\n\n在第三个样例中，最优策略是只将第二个任务加入冒险任务。\n\n下面的图片展示了样例测试的答案。蓝色圆形表示问题，从每个圆形出发的两条箭头表示一个人根据回答所前往的位置。任务用红色椭圆表示。\n\n![image](https://espresso.codeforces.com/f97e6272831f8a54fec4cbaf8219a63aea601d95.png)",
   "samples": [
     {
       "input": "5 5\n1 1\n1 1\n2 2\n3 3\n4 4\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:28:11.410Z"
+  "fetchedAt": "2026-10-31T01:28:11.410Z",
+  "translatedAt": "2026-11-04T06:50:52.060+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

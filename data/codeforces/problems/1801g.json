@@ -4,7 +4,7 @@
   "contestId": 1801,
   "index": "G",
   "title": "A task for substrings",
-  "titleZh": null,
+  "titleZh": "子串任务",
   "url": "https://codeforces.com/contest/1801/problem/G",
   "difficulty": 3400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 1024,
   "statementMd": "Philip is very fond of tasks on the lines. He had already solved all the problems known to him, but this was not enough for him. Therefore, Philip decided to come up with his own task.\n\nTo do this, he took the string $t$ and a set of $n$ strings $s_1$, $s_2$, $s_3$, ..., $s_n$. Philip has $m$ queries, in the $i$th of them, Philip wants to take a substring of the string $t$ from $l_i$th to $r_i$th character, and count the number of its substrings that match some string from the set. More formally, Philip wants to count the number of pairs of positions $a$, $b$, such that $l_i \\le a \\le b \\le r_i$, and the substring of the string $t$ from $a$th to $b$th character coincides with some string $s_j$ from the set.\n\nA substring of the string $t$ from $a$th to $b$th character is a string obtained from $t$ by removing the $a - 1$ character from the beginning and $|t| - b$ characters from the end, where $|t|$ denotes the length of the string $t$.\n\nPhilip has already solved this problem, but can you?\n\n## Input\n\nThe first line contains two positive integers $n$ and $m$ ($1 \\le n, m \\le 500\\,000$) — the number of rows in the set and the number of queries.\n\nThe second line contains a single string $t$ consisting of lowercase letters of the English alphabet ($1 \\le |t| \\le 5 \\cdot 10^6$).\n\nThe following $n$ lines describe the strings from the set. In the $i$th of them, a single string $s_i$ is given, consisting of lowercase letters of the English alphabet. Denote by $S$ the total length of all strings from the set. It is guaranteed that $S \\le 10^6$, as well as that all strings of $s_i$ are different.\n\nIn the following lines, queries are entered. The $i$th of them contains two positive integers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le |t|$) — the left and right border of the substring $t$ from the $i$-th query.\n\n## Output\n\nIn a single line, print $m$ integers, $i$th of them should be equal to the answers to the $i$th query.\n\n## Note\n\nIn the first example, the first query requires the entire string to count the number of substrings that are included in the set. The substrings $[1, 3]$ and $[4, 6]$ coincide with the string \"aba\". The substrings match with the string \"a\" $[1, 1]$, $[3, 3]$, $[5, 5]$, $[7, 7]$. The substring $[3, 4]$ matches the string \"ac\". In total, it turns out that 7 substrings of the string \"abacaba\" match the strings from the set.\n\nIn the second query, a substring from position 1 to position 3 is taken from the source string, this is the string \"aba\". The string \"aba\" enters it 1 time, the string \"a\" enters it 2 times and the string \"ac\" does not enter it once as a substring. In the third query, a substring from the 2nd to the 7th position is taken from the source string, this is the string \"bacaba\". The string \"aba\" is included in it 1 time, the string \"a\" is included 3 times and the string \"ac\" is included 1 time as a substring.",
-  "statementZhMd": null,
+  "statementZhMd": "Philip 非常喜欢处理字符串的题目。他已经解决了所有已知的相关问题，但这对他来说还不够。因此，Philip 决定自己设计一道题。\n\n为此，他取了字符串 $t$ 和一个包含 $n$ 个字符串 $s_1$、$s_2$、$s_3$、...、$s_n$ 的集合。Philip 有 $m$ 个询问，在第 $i$ 个询问中，他希望取出字符串 $t$ 从第 $l_i$ 个字符到第 $r_i$ 个字符组成的子串，并统计其中有多少个子串与集合中的某个字符串匹配。更形式化地说，Philip 希望统计满足 $l_i \\le a \\le b \\le r_i$ 的位置对 $a$、$b$ 的数量，使得字符串 $t$ 从第 $a$ 个字符到第 $b$ 个字符组成的子串与集合中的某个字符串 $s_j$ 相同。\n\n字符串 $t$ 从第 $a$ 个字符到第 $b$ 个字符组成的子串，是通过从 $t$ 的开头删除 $a - 1$ 个字符、从末尾删除 $|t| - b$ 个字符后得到的字符串，其中 $|t|$ 表示字符串的长度。\n\nPhilip 已经解决了这个问题，但你能解决它吗？\n\n## 输入格式\n\n第一行包含两个正整数 $n$ 和 $m$（$1 \\le n, m \\le 500\\,000$）——集合中字符串的数量和询问的数量。\n\n第二行包含一个字符串 $t$，由英文字母表中的小写字母组成（$1 \\le |t| \\le 5 \\cdot 10^6$）。\n\n接下来的 $n$ 行描述集合中的字符串。第 $i$ 行包含一个字符串 $s_i$，由英文字母表中的小写字母组成。用 $S$ 表示集合中所有字符串的总长度。保证 $S \\le 10^6$，并且所有字符串 $s_i$ 两两不同。\n\n接下来的若干行输入询问。第 $i$ 个询问包含两个正整数 $l_i$ 和 $r_i$（$1 \\le l_i \\le r_i \\le |t|$）——第 $i$ 个询问中字符串 $t$ 的子串的左端点和右端点。\n\n## 输出格式\n\n在一行中输出 $m$ 个整数，其中第 $i$ 个整数应等于第 $i$ 个询问的答案。\n\n## 说明\n\n在第一个样例中，第一个询问要求在整个字符串中统计包含于集合中的子串数量。子串 [1, 3] 和 [4, 6] 与字符串 “aba” 相同。子串 [1, 1]、[3, 3]、[5, 5]、[7, 7] 与字符串 “a” 相同。子串 [3, 4] 与字符串 “ac” 相同。总计有 7 个字符串 “abacaba” 的子串与集合中的字符串匹配。\n\n在第二个询问中，从原字符串中取出位置 1 到位置 3 的子串，即字符串 “aba”。字符串 “aba” 在其中出现 1 次，字符串 “a” 出现 2 次，而字符串 “ac” 没有作为子串出现。\n\n在第三个询问中，从原字符串中取出位置 2 到位置 7 的子串，即字符串 “bacaba”。字符串 “aba” 在其中出现 1 次，字符串 “a” 出现 3 次，字符串 “ac” 作为子串出现 1 次。",
   "samples": [
     {
       "input": "3 5\nabacaba\naba\na\nac\n1 7\n1 3\n2 7\n2 5\n4 5\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:34:09.425Z"
+  "fetchedAt": "2026-10-30T22:34:09.425Z",
+  "translatedAt": "2026-11-04T02:57:24.429+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

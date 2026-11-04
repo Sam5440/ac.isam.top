@@ -4,7 +4,7 @@
   "contestId": 1750,
   "index": "F",
   "title": "Majority",
-  "titleZh": null,
+  "titleZh": "多数",
   "url": "https://codeforces.com/contest/1750/problem/F",
   "difficulty": 2700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "Everyone was happy coding, until suddenly a power shortage happened and the best competitive programming site went down. Fortunately, a system administrator bought some new equipment recently, including some UPSs. Thus there are some servers that are still online, but we need all of them to be working in order to keep the round rated.\n\nImagine the servers being a binary string $s$ of length $n$. If the $i$-th server is online, then $s_i = 1$, and $s_i = 0$ otherwise.\n\nA system administrator can do the following operation called *electricity spread*, that consists of the following phases:\n\n- Select two servers at positions $1 \\le i \\lt j \\le n$ such that both are online (i.e. $s_i=s_j=1$). The spread starts only from online servers.\n- Check if we have enough power to make the spread. We consider having enough power if the number of turned on servers in range $[i, j]$ is at least the number of turned off servers in range $[i, j]$. More formally, check whether $2 \\cdot (s_i + s_{i+1} + \\ldots + s_j) \\ge j - i + 1$.\n- If the check is positive, turn on all the offline servers in range $[i, j]$. More formally, make $s_k := 1$ for all $k$ from $i$ to $j$.\n\nWe call a binary string $s$ of length $n$ *rated* if we can turn on all servers (i.e. make $s_i = 1$ for $1 \\le i \\le n$) using the electricity spread operation any number of times (possibly, $0$). Your task is to find the number of rated strings of length $n$ modulo $m$.\n\n## Input\n\nThe first and only line contains two integers $n$ and $m$ ($1 \\le n \\le 5000$, $10 \\le m \\le 10^9$) — the length of the string and the required module.\n\n## Output\n\nPrint a single integer — the number of rated binary strings of length $n$. Since this number can be large, print it modulo $m$.\n\n## Note\n\nIn the first example, the only rated string is `11`. So the answer is $1$.\n\nIn the second example, the rated strings are:\n\n- `111`;\n- `101`, because we can perform an operation with $i = 1$ and $j = 3$.\n\nSo the answer is $2$.\n\nIn the third sample, the rated strings are:\n\n- `1001`;\n- `1111`;\n- `1011`;\n- `1101`.\n\nSo the answer is $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "大家都在愉快地编程，直到突然发生了停电事故，最好的竞赛编程网站也因此宕机了。幸运的是，系统管理员最近购买了一些新设备，其中包括一些 UPS。因此，仍有一些服务器在线，但我们需要让所有服务器都正常工作，才能使本场比赛继续计分。\n\n将服务器表示为一个长度为 $n$ 的二进制字符串 $s$。如果第 $i$ 台服务器在线，则 $s_i = 1$；否则 $s_i = 0$。\n\n系统管理员可以执行以下称为*电力扩散*的操作，该操作由以下几个阶段组成：\n\n- 选择位置 $1 \\le i \\lt j \\le n$ 的两台服务器，要求它们都在线（即 $s_i=s_j=1$）。扩散只能从在线服务器开始。\n- 检查是否有足够的电力进行扩散。如果区间 $[i, j]$ 中已开启的服务器数量不少于已关闭的服务器数量，则认为电力足够。更正式地说，检查是否满足 $2 \\cdot (s_i + s_{i+1} + \\ldots + s_j) \\ge j - i + 1$。\n- 如果检查结果为肯定，则开启区间 $[i, j]$ 中所有处于关闭状态的服务器。更正式地说，对从 $i$ 到 $j$ 的所有 $k$，令 $s_k := 1$。\n\n如果可以使用任意次电力扩散操作（也可以是 $0$ 次）开启所有服务器（即对 $1 \\le i \\le n$ 都有 $s_i = 1$），则称长度为 $n$ 的二进制字符串 $s$ 是*合格的*。你的任务是求长度为 $n$ 的合格字符串数量，结果对 $m$ 取模。\n\n## 输入格式\n\n唯一一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 5000$，$10 \\le m \\le 10^9$）——字符串的长度和指定的模数。\n\n## 输出格式\n\n输出一个整数——长度为 $n$ 的合格二进制字符串数量。由于这个数可能很大，请输出它对 $m$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，唯一的合格字符串是 `11`。因此答案是 $1$。\n\n在第二个样例中，合格字符串有：\n\n- `111`；\n- `101`，因为我们可以令 $i = 1$、$j = 3$ 执行一次操作。\n\n因此答案是 $2$。\n\n在第三个样例中，合格字符串有：\n\n- `1001`；\n- `1111`；\n- `1011`；\n- `1101`。\n\n因此答案是 $4$。",
   "samples": [
     {
       "input": "2 100\n",
@@ -41,5 +41,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:44:18.674Z"
+  "fetchedAt": "2026-10-30T22:44:18.674Z",
+  "translatedAt": "2026-11-04T03:09:59.250+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

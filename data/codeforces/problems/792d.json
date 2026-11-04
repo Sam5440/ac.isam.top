@@ -4,7 +4,7 @@
   "contestId": 792,
   "index": "D",
   "title": "Paths in a Complete Binary Tree",
-  "titleZh": null,
+  "titleZh": "完全二叉树中的路径",
   "url": "https://codeforces.com/contest/792/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "$*T*$ is a complete binary tree consisting of $*n*$ vertices. It means that exactly one vertex is a root, and each vertex is either a leaf (and doesn't have children) or an inner node (and has exactly two children). All leaves of a complete binary tree have the same depth (distance from the root). So $*n*$ is a number such that $*n* + 1$ is a power of $2$.\n\nIn the picture you can see a complete binary tree with $*n* = 15$.\n\n![image](https://espresso.codeforces.com/7cf45e9d9e44d8d0a3972224b62a35dd86b5f1b3.png)\n\nVertices are numbered from $1$ to $*n*$ in a special recursive way: we recursively assign numbers to all vertices from the left subtree (if current vertex is not a leaf), then assign a number to the current vertex, and then recursively assign numbers to all vertices from the right subtree (if it exists). In the picture vertices are numbered exactly using this algorithm. It is clear that for each size of a complete binary tree exists exactly one way to give numbers to all vertices. This way of numbering is called *symmetric*.\n\nYou have to write a program that for given $*n*$ answers $*q*$ queries to the tree.\n\nEach query consists of an integer number $*u*_{*i*}$ ($1 ≤ *u*_{*i*} ≤ *n*$) and a string $*s*_{*i*}$, where $*u*_{*i*}$ is the number of vertex, and $*s*_{*i*}$ represents the path starting from this vertex. String $*s*_{*i*}$ doesn't contain any characters other than '`L`', '`R`' and '`U`', which mean traverse to the left child, to the right child and to the parent, respectively. Characters from $*s*_{*i*}$ have to be processed from left to right, considering that $*u*_{*i*}$ is the vertex where the path starts. If it's impossible to process a character (for example, to go to the left child of a leaf), then you have to skip it. The answer is the number of vertex where the path represented by $*s*_{*i*}$ ends.\n\nFor example, if $*u*_{*i*} = 4$ and $*s*_{*i*} =$«`UURL`», then the answer is $10$.\n\n## Input\n\nThe first line contains two integer numbers $*n*$ and $*q*$ ($1 ≤ *n* ≤ 10^{18}$, $*q* ≥ 1$). $*n*$ is such that $*n* + 1$ is a power of $2$.\n\nThe next $2*q*$ lines represent queries; each query consists of two consecutive lines. The first of these two lines contains $*u*_{*i*}$ ($1 ≤ *u*_{*i*} ≤ *n*$), the second contains non-empty string $*s*_{*i*}$. $*s*_{*i*}$ doesn't contain any characters other than '`L`', '`R`' and '`U`'.\n\nIt is guaranteed that the sum of lengths of $*s*_{*i*}$ (for each $*i*$ such that $1 ≤ *i* ≤ *q*$) doesn't exceed $10^{5}$.\n\n## Output\n\nPrint $*q*$ numbers, $*i*$-th number must be the answer to the $*i*$-th query.",
-  "statementZhMd": null,
+  "statementZhMd": "$*T*$ 是一棵由 $*n*$ 个顶点组成的完全二叉树。这意味着恰好有一个顶点是根，并且每个顶点要么是叶子（没有子节点），要么是内部节点（恰好有两个子节点）。完全二叉树的所有叶子深度（与根的距离）都相同。因此，$*n*$ 满足 $*n* + 1$ 是 $2$ 的幂。\n\n下图展示了一棵 $*n* = 15$ 的完全二叉树。\n\n![image](https://espresso.codeforces.com/7cf45e9d9e44d8d0a3972224b62a35dd86b5f1b3.png)\n\n顶点按照一种特殊的递归方式从 $1$ 到 $*n*$ 编号：如果当前顶点不是叶子，则先递归地为左子树中的所有顶点编号，然后为当前顶点编号，最后递归地为右子树中的所有顶点编号（如果右子树存在）。图中的顶点正是按照该算法编号的。显然，对于每一种大小的完全二叉树，都恰好存在一种为所有顶点编号的方式。这种编号方式称为“对称”编号。\n\n你需要编写一个程序，对于给定的 $*n*$，回答树上的 $*q*$ 个询问。\n\n每个询问由一个整数 $*u*_{*i*}$（$1 ≤ *u*_{*i*} ≤ *n*$）和一个字符串 $*s*_{*i*}$ 组成，其中 $*u*_{*i*}$ 是顶点的编号，$*s*_{*i*}$ 表示从该顶点开始的一条路径。字符串 $*s*_{*i*}$ 只包含 '`L`'、'`R`' 和 '`U`'，分别表示移动到左子节点、移动到右子节点和移动到父节点。需要从左到右处理 $*s*_{*i*}$ 中的字符，并将 $*u*_{*i*}$ 视为路径的起点。如果某个字符无法处理（例如，要移动到叶子的左子节点），则跳过该字符。答案是由 $*s*_{*i*}$ 表示的路径结束时所在顶点的编号。\n\n例如，如果 $*u*_{*i*} = 4$ 且 $*s*_{*i*} =$ «`UURL`」，则答案为 $10$。\n\n## 输入\n\n第一行包含两个整数 $*n*$ 和 $*q*$（$1 ≤ *n* ≤ 10^{18}$，$*q* ≥ 1$）。$*n*$ 满足 $*n* + 1$ 是 $2$ 的幂。\n\n接下来的 $2*q*$ 行表示询问；每个询问由连续的两行组成。其中第一行包含 $*u*_{*i*}$（$1 ≤ *u*_{*i*} ≤ *n*$），第二行包含非空字符串 $*s*_{*i*}$。$*s*_{*i*}$ 只包含 '`L`'、'`R`' 和 '`U`'。\n\n保证所有 $*s*_{*i*}$ 的长度之和（对于满足 $1 ≤ *i* ≤ *q*$ 的每个 $*i*$）不超过 $10^{5}$。\n\n## 输出\n\n输出 $*q*$ 个数字，第 $*i*$ 个数字必须是第 $*i*$ 个询问的答案。",
   "samples": [
     {
       "input": "15 2\n4\nUURL\n8\nLRLLLLLLLL\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:50:59.592Z"
+  "fetchedAt": "2026-11-02T19:50:59.592Z",
+  "translatedAt": "2026-11-04T06:16:11.273+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

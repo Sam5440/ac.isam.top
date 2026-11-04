@@ -4,7 +4,7 @@
   "contestId": "arc170",
   "index": "E",
   "title": "BDFS",
-  "titleZh": null,
+  "titleZh": "BDFS",
   "url": "https://atcoder.jp/contests/arc170/tasks/arc170_e",
   "difficulty": 3174,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given integers $N$ and $P$.\n\nThere is a graph with $N$ vertices and $N$ edges, where each vertex is labeled $1$ to $N$. The $i$-th edge connects vertices $i$ and $i+1$ bidirectionally. Here, vertex $N+1$ refers to vertex $1$.\n\nPerform the following algorithm to obtain a sequence $D=(D_1,D_2,\\ldots,D_N)$ of length $N$:\n\n- Set an integer sequence $D$ of length $N$ to $D=(D_1,\\ldots,D_N)=(-1,\\ldots,-1)$. Also, set a sequence $Q$ of number pairs to $Q=((1,0))$. Repeat the following process while $Q$ is not empty:\n- Let $(v,d)$ be the first element of $Q$. Remove this element.\n  - If $D_v = -1$, then set $D_v := d$, and for each vertex $x$ adjacent to vertex $v$ such that $D_x=-1$, perform the following process. If there are multiple such $x$ that satisfy the condition, process them in ascending order of vertex number:\n  - With probability $\\frac{P}{100}$, add $(x,d+1)$ to the **front** of $Q$.\n    - If $(x,d+1)$ was not added to the front of $Q$, add it to the **end** of $Q$.\n\nFind the expected value of the sum of the elements of the final sequence $D$ obtained, modulo $998244353$.\n\nSolve each of the $T$ test cases given.\n\nDefinition of expected value $\\text{mod } 998244353$ It can be proved that the expected value to be found is always a rational number. Furthermore, the constraints of this problem guarantee that if that value is expressed as an irreducible fraction $\\frac{P}{Q}$, then $Q$ is not divisible by $998244353$. Here, there is a unique integer $R$ between $0$ and $998244352$, inclusive, such that $R\\times Q \\equiv P\\pmod{998244353}$. Provide this $R$ as the answer.\n\n## Constraints\n\n- $1 \\leq T \\leq 10^4$\n- $3 \\leq N \\leq 10^{18}$\n- $1\\leq P \\leq 99$\n- All input numbers are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\vdots\n\\mathrm{case}_T\n```\n\nEach case is given in the following format:\n\n```\nN P\n```\n\n## Output\n\nPrint $T$ lines. The $i$-th line $(1 \\leq i \\leq T)$ should contain the answer for the $i$-th test case.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定整数 $N$ 和 $P$。\n\n有一个包含 $N$ 个顶点和 $N$ 条边的图，其中每个顶点的编号为 $1$ 至 $N$。第 $i$ 条边双向连接顶点 $i$ 和 $i+1$。其中，顶点 $N+1$ 指的是顶点 $1$。\n\n执行以下算法，得到一个长度为 $N$ 的序列 $D=(D_1,D_2,\\ldots,D_N)$：\n\n- 将长度为 $N$ 的整数序列 $D$ 设为 $D=(D_1,\\ldots,D_N)=(-1,\\ldots,-1)$。同时，将一个由数对组成的序列 $Q$ 设为 $Q=((1,0))$。当 $Q$ 不为空时，重复执行以下过程：\n- 令 $(v,d)$ 为 $Q$ 的第一个元素，并移除该元素。\n  - 如果 $D_v = -1$，则设 $D_v := d$，并按照以下过程处理所有与顶点 $v$ 相邻且满足 $D_x=-1$ 的顶点 $x$。如果有多个满足条件的 $x$，则按照顶点编号升序处理：\n  - 以概率 $\\frac{P}{100}$，将 $(x,d+1)$ 添加到 $Q$ 的**开头**。\n    - 如果没有将 $(x,d+1)$ 添加到 $Q$ 的开头，则将其添加到 $Q$ 的**末尾**。\n\n求最终得到的序列 $D$ 中所有元素之和的期望值，并对 $998244353$ 取模。\n\n请解决给出的 $T$ 个测试用例。\n\n期望值 $\\text{mod }998244353$ 的定义 可以证明，要求的期望值始终是一个有理数。此外，本题的约束保证：若将该值表示为最简分数 $\\frac{P}{Q}$，则 $Q$ 不会被 $998244353$ 整除。此时，存在唯一一个满足 $0$ 到 $998244352$（包含端点）的整数 $R$，使得 $R\\times Q \\equiv P\\pmod{998244353}$。请输出该 $R$ 作为答案。\n\n## 约束条件\n\n- $1 \\leq T \\leq 10^4$\n- $3 \\leq N \\leq 10^{18}$\n- $1\\leq P \\leq 99$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nT\n\\mathrm{case}_1\n\\vdots\n\\mathrm{case}_T\n```\n\n每个测试用例按以下格式给出：\n\n```\nN P\n```\n\n## 输出格式\n\n输出 $T$ 行。第 $i$ 行 $(1 \\leq i \\leq T)$ 应包含第 $i$ 个测试用例的答案。",
   "samples": [
     {
       "input": "3\n3 50\n4 1\n1000000000000000000 70\n",
@@ -21,5 +21,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:10:41.735Z"
+  "fetchedAt": "2026-10-30T21:10:41.735Z",
+  "translatedAt": "2026-11-04T02:21:05.271+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

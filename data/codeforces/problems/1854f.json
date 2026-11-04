@@ -4,7 +4,7 @@
   "contestId": 1854,
   "index": "F",
   "title": "Mark and Spaceship",
-  "titleZh": null,
+  "titleZh": "马克与宇宙飞船",
   "url": "https://codeforces.com/contest/1854/problem/F",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "Mark loves to move fast. So he made a spaceship that works in $4$-dimensional space.\n\nHe wants to use the spaceship to complete missions as fast as possible. In each mission, the spaceship starts at $(0, 0, 0, 0)$ and needs to end up at $(a, b, c, d)$. To do this, he instructs the spaceship's computer to execute a series of moves, where each move is a unit step in one of the eight cardinal directions: $(\\pm 1, 0, 0, 0)$, $(0, \\pm 1, 0, 0)$, $(0, 0, \\pm 1, 0)$, $(0, 0, 0, \\pm 1)$.\n\nUnfortunately, he also moved fast when building the spaceship, so there is a bug in the spaceship's code. The first move will be executed once, the second move will be executed twice, the third move will be executed thrice, and so on. In general, the $i$-th move will be executed $i$ times.\n\nFor any four integers $a, b, c, d$, let $f(a, b, c, d)$ be the minimum number of moves of a mission that ends up at $(a, b, c, d)$. Compute the sum of $f(a, b, c, d)$ over all points (with integer coordinates) such that $-A\\le a\\le A$, $-B\\le b\\le B$, $-C\\le c\\le C$, $-D\\le d\\le D$.\n\n## Input\n\nThe only line of the input contains the four integers $A, B, C, D$ ($0\\le A,B,C,D\\le 1000$).\n\n## Output\n\nPrint the sum of $f(a, b, c, d)$ over the set of points described in the statement.\n\n## Note\n\nIn the first sample, one has to compute $f(-1, 0, 0, 0)+f(0, 0, 0, 0) + f(1, 0, 0, 0) = 1 + 0 + 1 = 2$.\n\nIn the second sample, one has to compute the sum of $f(a, b, c, d)$ over $27$ different points $(a, b, c, d)$. Let us describe the value of $f(a, b, c, d)$ for some of them:\n\n- It holds $f(-1, 0, 0, -1)=3$ and it may be achieved with the following sequence of moves (an arrow $\\xrightarrow{\\pm i}$ denotes that the move is performed on the $i$-th coordinate): $$(0, 0, 0, 0) \\xrightarrow{-1} (-1, 0, 0, 0) \\xrightarrow{+4} (-1, 0, 0, 2) \\xrightarrow{-4} (-1, 0, 0, -1).$$\n- It holds $f(1, 1, 0, 1) = 5$ and it may be achieved with the following sequence of moves: $$(0, 0, 0, 0) \\xrightarrow{+1} (1, 0, 0, 0) \\xrightarrow{-2} (1, -2, 0, 0) \\xrightarrow{+2} (1, 1, 0, 0) \\xrightarrow{-4} (1, 1, 0, -4) \\xrightarrow{+4} (1, 1, 0, 1).$$\n\nIn the third sample, one has to compute the sum of $f(a, b, c, d)$ over $7\\cdot5\\cdot 9\\cdot 3$ points. One of them is $(3, 2, 4, 1)$. It holds $f(3, 2, 4, 1) = 4$ and it may be achieved with the following sequence of moves: $$(0, 0, 0, 0) \\xrightarrow{+4} (0, 0, 0, 1) \\xrightarrow{+2} (0, 2, 0, 1) \\xrightarrow{+1} (3, 2, 0, 1) \\xrightarrow{+3} (3, 2, 4, 1).$$",
-  "statementZhMd": null,
+  "statementZhMd": "马克喜欢快速移动。因此，他制造了一艘能够在 $4$ 维空间中运行的宇宙飞船。\n\n他想使用这艘宇宙飞船尽可能快地完成任务。在每项任务中，宇宙飞船从 $(0, 0, 0, 0)$ 出发，需要最终到达 $(a, b, c, d)$。为此，他让宇宙飞船的计算机执行一系列移动，其中每次移动都是八个坐标轴方向之一上的单位步长：$(\\pm 1, 0, 0, 0)$、$(0, \\pm 1, 0, 0)$、$(0, 0, \\pm 1, 0)$、$(0, 0, 0, \\pm 1)$。\n\n遗憾的是，他在制造宇宙飞船时也操之过急，因此宇宙飞船的代码中存在一个 bug。第一次移动会执行一次，第二次移动会执行两次，第三次移动会执行三次，以此类推。一般来说，第 $i$ 次移动会执行 $i$ 次。\n\n对于任意四个整数 $a, b, c, d$，令 $f(a, b, c, d)$ 表示最终到达 $(a, b, c, d)$ 的任务所需的最少移动次数。请计算所有满足 $-A\\le a\\le A$、$-B\\le b\\le B$、$-C\\le c\\le C$、$-D\\le d\\le D$ 的点（坐标均为整数）对应的 $f(a, b, c, d)$ 之和。\n\n## 输入格式\n\n输入仅一行，包含四个整数 $A, B, C, D$（$0\\le A,B,C,D\\le 1000$）。\n\n## 输出格式\n\n输出题目描述中的点集上所有 $f(a, b, c, d)$ 的总和。\n\n## 说明\n\n在第一个样例中，需要计算 $f(-1, 0, 0, 0)+f(0, 0, 0, 0) + f(1, 0, 0, 0) = 1 + 0 + 1 = 2$。\n\n在第二个样例中，需要计算 $27$ 个不同点 $(a, b, c, d)$ 对应的 $f(a, b, c, d)$ 之和。下面介绍其中一些点对应的 $f(a, b, c, d)$ 的值：\n\n- 有 $f(-1, 0, 0, -1)=3$，可以通过以下移动序列实现（箭头 $\\xrightarrow{\\pm i}$ 表示该移动在第 $i$ 个坐标上执行）：$$(0, 0, 0, 0) \\xrightarrow{-1} (-1, 0, 0, 0) \\xrightarrow{+4} (-1, 0, 0, 2) \\xrightarrow{-4} (-1, 0, 0, -1).$$\n- 有 $f(1, 1, 0, 1) = 5$，可以通过以下移动序列实现：$$(0, 0, 0, 0) \\xrightarrow{+1} (1, 0, 0, 0) \\xrightarrow{-2} (1, -2, 0, 0) \\xrightarrow{+2} (1, 1, 0, 0) \\xrightarrow{-4} (1, 1, 0, -4) \\xrightarrow{+4} (1, 1, 0, 1).$$\n\n在第三个样例中，需要计算 $7\\cdot5\\cdot 9\\cdot 3$ 个点对应的 $f(a, b, c, d)$ 之和。其中一个点是 $(3, 2, 4, 1)$。有 $f(3, 2, 4, 1) = 4$，可以通过以下移动序列实现：$$(0, 0, 0, 0) \\xrightarrow{+4} (0, 0, 0, 1) \\xrightarrow{+2} (0, 2, 0, 1) \\xrightarrow{+1} (3, 2, 0, 1) \\xrightarrow{+3} (3, 2, 4, 1).$$",
   "samples": [
     {
       "input": "1 0 0 0\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:17:43.408Z"
+  "fetchedAt": "2026-10-30T22:17:43.408Z",
+  "translatedAt": "2026-11-04T02:38:40.032+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

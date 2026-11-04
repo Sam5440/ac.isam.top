@@ -4,7 +4,7 @@
   "contestId": 1741,
   "index": "G",
   "title": "Kirill and Company",
-  "titleZh": null,
+  "titleZh": "Kirill 和公司",
   "url": "https://codeforces.com/contest/1741/problem/G",
   "difficulty": 2200,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Kirill lives on a connected undirected graph of $n$ vertices and $m$ edges at vertex $1$. One fine evening he gathered $f$ friends, the $i$-th friend lives at the vertex $h_i$. So all friends are now in the vertex $1$, the $i$-th friend must get to his home to the vertex $h_i$.\n\nThe evening is about to end and it is time to leave. It turned out that $k$ ($k \\le 6$) of his friends have no cars, and they would have to walk if no one gives them a ride. One friend with a car can give a ride to **any** number of friends without cars, but only if he can give them a ride by driving along one of the **shortest** paths to his house.\n\nFor example, in the graph below, a friend from vertex $h_i=5$ can give a ride to friends from the following sets of vertices: $[2, 3]$, $[2, 4]$, $[2]$, $[3]$, $[4]$, but can't give a ride to friend from vertex $6$ or a set $[3, 4]$.\n\n![image](https://espresso.codeforces.com/3b7d5c62413efff86dc2fa5e96e00b1c236aabdd.png) The vertices where friends without cars live are highlighted in green, and with cars — in red.\n\nKirill wants as few friends as possible to have to walk. Help him find the **minimum** possible number.\n\n## Input\n\nThe first line of input data contains an integer $t$ ($1 \\le t \\le 10^3$) — the number of test cases in the test.\n\nThe first line of the test case contains two integers $n$ and $m$ ($2 \\le n \\le 10^4$, $n-1 \\le m \\le min (10^4, $$ \\frac{n \\cdot (n - 1)}{2} $$)$) — the number of vertices and edges, respectively.\n\nThe next $m$ lines of the test case contain a description of the edges, two integers each $u$ and $v$ ($1 \\le u, v \\le n$, $u \\ne v$) — indexes of vertices connected by an edge. It is guaranteed that there is at most one edge between any pair of vertices (i.e. no multiple edges in the graph).\n\nThen follows line containing the number $f$ ($1 \\le f \\le 10^4$) — the number of Kirill's friends.\n\nThe next line of the test case contains $f$ integers: $h_1, h_2, \\dots, h_f$ ($2 \\le h_i \\le n$) — the vertices in which they live. Some vertices may be repeated.\n\nThe next line of the set contains the number $k$ ($1 \\le k \\le min(6, f)$) — the number of friends without cars.\n\nThe last line of each test case contains $k$ integers: $p_1, p_2, \\dots, p_k$ ($1 \\le p_i \\le f$, $p_i \\lt p_{i+1}$) — indexes of friends without cars.\n\nIt is guaranteed that the sum of $n$ over all cases does not exceed $10^4$, as well as the sums of $m$ and $f$.\n\n## Output\n\nOutput $t$ lines, each of which contains the answer to the corresponding test case. As an answer, output a single integer — **the minimum** possible number of friends who will have to walk.\n\n## Note\n\nThe first test case of the first example is explained in the statement.\n\nIn the second test case of the first example, two friends with cars live at vertex $5$, one can give a ride to friends from vertices $2$ and $3$, and the second from vertex $4$, only a friend from vertex $6$ will have to walk.",
-  "statementZhMd": null,
+  "statementZhMd": "Kirill 住在一个有 $n$ 个顶点和 $m$ 条边的连通无向图中，他位于顶点 $1$。一天傍晚，他召集了 $f$ 个朋友，第 $i$ 个朋友住在顶点 $h_i$。因此现在所有朋友都位于顶点 $1$，第 $i$ 个朋友必须回到自己的家，也就是顶点 $h_i$。\n\n夜晚即将结束，是时候离开了。结果发现，他的朋友中有 $k$ 个（$k \\le 6$）没有汽车；如果没有人载他们，他们就只能步行。一个有汽车的朋友可以载**任意数量**的没有汽车的朋友，但前提是他能够沿着通往自己家的某一条**最短**路径载他们回家。\n\n例如，在下面的图中，住在顶点 $h_i=5$ 的朋友可以载来自以下顶点集合的朋友：$[2, 3]$、$[2, 4]$、$[2]$、$[3]$、$[4]$，但不能载来自顶点 $6$ 的朋友，也不能同时载来自顶点集合 $[3, 4]$ 的朋友。\n\n![image](https://espresso.codeforces.com/3b7d5c62413efff86dc2fa5e96e00b1c236aabdd.png) 没有汽车的朋友所居住的顶点以绿色标出，有汽车的朋友所居住的顶点以红色标出。\n\nKirill 希望尽可能少的朋友需要步行。请帮助他求出可能的最少人数。\n\n## 输入格式\n\n输入数据的第一行包含一个整数 $t$（$1 \\le t \\le 10^3$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 10^4$，$n-1 \\le m \\le min (10^4, $$ \\frac{n \\cdot (n - 1)}{2} $$)$）——顶点数和边数。\n\n接下来的 $m$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$，$u \\ne v$），表示一条边连接的两个顶点的编号。保证任意一对顶点之间至多有一条边（即图中没有重边）。\n\n接下来一行包含一个整数 $f$（$1 \\le f \\le 10^4$）——Kirill 的朋友数量。\n\n测试用例的下一行包含 $f$ 个整数：$h_1, h_2, \\dots, h_f$（$2 \\le h_i \\le n$）——他们所居住的顶点。某些顶点可能被重复给出。\n\n接下来一行包含一个整数 $k$（$1 \\le k \\le min(6, f)$）——没有汽车的朋友数量。\n\n每个测试用例的最后一行包含 $k$ 个整数：$p_1, p_2, \\dots, p_k$（$1 \\le p_i \\le f$，$p_i \\lt p_{i+1}$）——没有汽车的朋友的编号。\n\n保证所有测试用例的 $n$ 之和不超过 $10^4$，$m$ 之和以及 $f$ 之和也不超过 $10^4$。\n\n## 输出格式\n\n输出 $t$ 行，每行包含对应测试用例的答案。答案为一个整数——**必须步行的朋友数**的最小可能值。\n\n## 说明\n\n第一个样例的第一个测试用例已在题目描述中解释。\n\n在第一个样例的第二个测试用例中，有两位住在顶点 $5$ 的朋友拥有汽车：其中一位可以载来自顶点 $2$ 和 $3$ 的朋友，另一位只能载来自顶点 $4$ 的朋友，因此只有来自顶点 $6$ 的朋友需要步行。",
   "samples": [
     {
       "input": "3\n6 7\n1 2\n2 3\n2 4\n3 5\n4 5\n3 6\n6 5\n5\n2 3 4 5 6\n4\n1 2 3 5\n6 7\n1 2\n2 3\n2 4\n3 5\n4 5\n3 6\n6 5\n6\n2 3 4 5 6 5\n4\n1 2 3 5\n4 4\n1 2\n1 3\n2 3\n3 4\n3\n3 4 2\n2\n1 3\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:05.654Z"
+  "fetchedAt": "2026-11-02T17:50:05.654Z",
+  "translatedAt": "2026-11-04T03:11:19.564+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

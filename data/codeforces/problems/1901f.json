@@ -4,7 +4,7 @@
   "contestId": 1901,
   "index": "F",
   "title": "Landscaping",
-  "titleZh": null,
+  "titleZh": "地形平整",
   "url": "https://codeforces.com/contest/1901/problem/F",
   "difficulty": 2900,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are appointed to a very important task: you are in charge of flattening one specific road.\n\nThe road can be represented as a polygonal line starting at $(0, 0)$, ending at $(n - 1, 0)$ and consisting of $n$ vertices (including starting and ending points). The coordinates of the $i$-th vertex of the polyline are $(i, a_i)$.\n\n\"Flattening\" road is equivalent to choosing some line segment from $(0, y_0)$ to $(n - 1, y_1)$ such that all points of the polyline are below the chosen segment (or on the same height). Values $y_0$ and $y_1$ **may be real**.\n\nYou can imagine that the road has some dips and pits, and you start pouring pavement onto it until you make the road flat. Points $0$ and $n - 1$ have infinitely high walls, so pavement doesn't fall out of segment $[0, n - 1]$.\n\n![image](https://espresso.codeforces.com/63243ad80fc2fc355ed20867a93d66b6523e77e1.png)\n\nThe *cost* of flattening the road is equal to the area between the chosen segment and the polyline. You want to minimize the cost, that's why the flattened road is not necessary horizontal.\n\nBut there is a problem: your data may be too old, so you sent a person to measure new heights. The person goes from $0$ to $n - 1$ and sends you new heights $b_i$ of each vertex $i$ of the polyline.\n\nSince measuring new heights may take a while, and you don't know when you'll be asked, calculate the minimum cost (and corresponding $y_0$ and $y_1$) to flatten the road after each new height $b_i$ you get.\n\n## Input\n\nThe first line contains a single integer $n$ ($3 \\le n \\le 2 \\cdot 10^5$) — the number of vertices of the polyline.\n\nThe second line contains $n$ integers $a_0, a_1, \\dots, a_{n - 1}$ ($0 \\le a_i \\le 10^9$; $a_0 = a_{n - 1} = 0$) — the heights of the corresponding vertices.\n\nThe third line contains $n$ integers $b_0, b_1, \\dots, b_{n - 1}$ ($0 \\le b_i \\le 10^9$; $b_0 = b_{n - 1} = 0$) — the new heights of the corresponding vertices.\n\n## Output\n\nPrint $n$ numbers: as the $i$-th number ($0$-indexed) print $y_0 + y_1$ of the \"best segment\" (i. e. the sum of coordinates of the segment that gives the minimum cost) if you already know actual heights $b_0, \\dots, b_i$.\n\nIf there are several \"best segments\", print the minimum possible $y_0 + y_1$ among them.\n\nYour answer is considered correct if its absolute or relative error does not exceed $10^{-9}$.\n\nFormally, let your answer be $x$, and the jury's answer be $y$. Your answer is accepted if and only if $\\frac{|x - y|}{\\max{(1, |y|)}} \\le 10^{-9}$.\n\n## Note\n\nThe first answer in the first example is shown on the picture above.\n\nYou can achieve the second answer with the following \"best segment\":\n\n![image](https://espresso.codeforces.com/3bd58cb7a8e67390881853c3067eeeeff0ec2d91.png)\n\nYou can achieve the third answer using the following \"best segment\":\n\n![image](https://espresso.codeforces.com/b4e4ffb246306d290e9d0f97d4e439e866039e2c.png)\n\nYou can achieve the fourth answer with the \"best segment\" shown below:\n\n![image](https://espresso.codeforces.com/0334407d0b78761748f278867363f2e92e342516.png)",
-  "statementZhMd": null,
+  "statementZhMd": "你接到了一项非常重要的任务：负责将一条特定的道路夷为平地。\n\n这条道路可以表示为一条折线：起点为 $(0, 0)$，终点为 $(n - 1, 0)$，由 $n$ 个顶点组成（包括起点和终点）。折线的第 $i$ 个顶点坐标为 $(i, a_i)$。\n\n“夷平”道路等价于选择一条从 $(0, y_0)$ 到 $(n - 1, y_1)$ 的线段，使得折线上的所有点都位于所选线段的下方（或与其等高）。$y_0$ 和 $y_1$ **可以是实数**。\n\n你可以想象道路上有一些凹陷和坑洼，而你不断向道路上铺设路面，直到将道路夷平。点 $0$ 和 $n - 1$ 处有无限高的墙，因此路面不会从区间 $[0, n - 1]$ 中流出。\n\n![image](https://espresso.codeforces.com/63243ad80fc2fc355ed20867a93d66b6523e77e1.png)\n\n夷平道路的*代价*等于所选线段与折线之间的面积。你的目标是最小化代价，因此夷平后的道路不一定是水平的。\n\n但现在有一个问题：你的数据可能已经过时，所以你派人去测量新的高度。这个人从 $0$ 走到 $n - 1$，并向你发送折线上每个顶点 $i$ 的新高度 $b_i$。\n\n由于测量新高度可能需要一段时间，而你不知道自己会在什么时候被询问，请在每次获得一个新的高度 $b_i$ 后，计算夷平道路所需的最小代价（以及对应的 $y_0$ 和 $y_1$）。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$3 \\le n \\le 2 \\cdot 10^5$）——折线的顶点数。\n\n第二行包含 $n$ 个整数 $a_0, a_1, \\dots, a_{n - 1}$（$0 \\le a_i \\le 10^9$；$a_0 = a_{n - 1} = 0$）——对应顶点的高度。\n\n第三行包含 $n$ 个整数 $b_0, b_1, \\dots, b_{n - 1}$（$0 \\le b_i \\le 10^9$；$b_0 = b_{n - 1} = 0$）——对应顶点的新高度。\n\n## 输出格式\n\n输出 $n$ 个数：第 $i$ 个数（下标从 $0$ 开始）应为在你已经知道实际高度 $b_0, \\dots, b_i$ 的情况下，“最佳线段”（即能使代价最小的线段）的 $y_0 + y_1$，也就是该线段两个端点纵坐标之和。\n\n如果存在多个“最佳线段”，输出其中 $y_0 + y_1$ 的最小值。\n\n如果你的答案为 $x$，评测答案为 $y$，当且仅当 $\\frac{|x - y|}{\\max{(1, |y|)}} \\le 10^{-9}$ 时，你的答案会被判定为正确。\n\n## 说明\n\n第一个样例中的答案如上图所示。\n\n可以使用如下的“最佳线段”得到第二个答案：\n\n![image](https://espresso.codeforces.com/3bd58cb7a8e67390881853c3067eeeeff0ec2d91.png)\n\n可以使用如下的“最佳线段”得到第三个答案：\n\n![image](https://espresso.codeforces.com/b4e4ffb246306d290e9d0f97d4e439e866039e2c.png)\n\n可以使用下图所示的“最佳线段”得到第四个答案：\n\n![image](https://espresso.codeforces.com/0334407d0b78761748f278867363f2e92e342516.png)",
   "samples": [
     {
       "input": "5\n0 5 1 3 0\n0 1 3 2 0\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:19:30.823Z"
+  "fetchedAt": "2026-11-02T17:19:30.823Z",
+  "translatedAt": "2026-11-04T02:27:17.845+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

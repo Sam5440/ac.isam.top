@@ -4,7 +4,7 @@
   "contestId": 1466,
   "index": "I",
   "title": "The Riddle of the Sphinx",
-  "titleZh": null,
+  "titleZh": "斯芬克斯之谜",
   "url": "https://codeforces.com/contest/1466/problem/I",
   "difficulty": 3400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*What walks on four feet in the morning, two in the afternoon, and three at night?*\n\n*This is an interactive problem. This problem doesn't support hacks.*\n\nSphinx's duty is to guard the city of Thebes by making sure that no unworthy traveler crosses its gates. Only the ones who answer her riddle timely and correctly (or get an acc for short) are allowed to pass. As of those who fail, no one heard of them ever again...\n\nSo you don't have a choice but to solve the riddle. Sphinx has an array $a_1, a_2, \\ldots, a_n$ of **nonnegative** integers **strictly smaller** than $2^b$ and asked you to find the maximum value among its elements. Of course, she will not show you the array, but she will give you $n$ and $b$. As it is impossible to answer this riddle blindly, you can ask her some questions. For given $i, y$, she'll answer you whether $a_i$ is **bigger** than $y$. As sphinxes are not very patient, you can ask at most $3 \\cdot (n + b) $ such questions.\n\nAlthough cunning, sphinxes are honest. Even though the array **can change** between your queries, answers to the previously asked questions will remain valid.\n\n## Input\n\nThe first line contains two integers $n$ and $b$ ($1 \\leq n, b \\leq 200$). The remaining parts of the input will be given throughout the interaction process.\n\n## Interaction\n\nIn each round your program must output a single line with an integer $i$ ($0 \\leq i \\leq n$) and a binary string of length **exactly** $b$ denoting the **binary representation** of $y$ (most significant bit first).\n\nIf $i \\gt 0$, this line encodes the question: *Is $a_i$ bigger than $y$?*. There should be at most $3 \\cdot (n+b)$ such lines; after each of them, the interactor will print `yes` or `no` in a single line.\n\nIf $i = 0$, this is the last round of interaction, after which your program should terminate, and $y$ should be the maximal value among the elements of Sphinx's array. Note that this round **does not** count to the query limit.\n\nNote that the interactor **is adaptive**.\n\nAfter printing a query, do not forget to output the end of the line and flush the output. Otherwise, you will get `Idleness limit exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see the documentation for other languages.\n\nIf your solution does not correctly follow the interaction guideline above, it may receive an arbitrary verdict. Otherwise, your program will receive the `Wrong Answer` judgment if it reports the wrong maximum.\n\n## Note\n\nIn all examples, the sequence is **fixed** beforehand.\n\nIn the first example, the sequence is $2, 1, 4, 0, 6$.\n\nIn the second example, the sequence is $0, 0, 0, 0$.\n\nIn the third example, the sequence is $0$.\n\nNote that if the interactor was adaptive, then the interaction in the first and the third example would not be sufficient to return the correct value of maximum.",
-  "statementZhMd": null,
+  "statementZhMd": "*早晨用四只脚走路，下午用两只脚走路，晚上用三只脚走路的是什么？*\n\n*这是一道交互题。本题不支持 hacks。*\n\n斯芬克斯的职责是守护底比斯城，确保没有不配进入的旅行者通过城门。只有那些及时且正确地回答她的谜语的人（简称获得 acc）才被允许通过。至于那些失败的人，此后再也没有人听说过他们……\n\n所以你别无选择，只能解开这个谜语。斯芬克斯有一个由 $a_1, a_2, \\ldots, a_n$ 个**非负**整数构成的数组，这些整数都**严格小于** $2^b$，她要求你找出数组元素中的最大值。当然，她不会向你展示数组，但会告诉你 $n$ 和 $b$。由于不可能盲目地回答这个谜语，你可以向她提问。对于给定的 $i, y$，她会回答你 $a_i$ 是否**大于** $y$。由于斯芬克斯并没有那么耐心，你最多可以提问 $3 \\cdot (n + b) $ 次。\n\n斯芬克斯虽然狡猾，但很诚实。即使数组可能在你的两次提问之间发生变化，之前所提问题的答案仍然会保持有效。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $b$（$1 \\leq n, b \\leq 200$）。输入的其余部分将在交互过程中给出。\n\n## 交互\n\n在每一轮中，你的程序必须输出一行，其中包含一个整数 $i$（$0 \\leq i \\leq n$）和一个长度**恰好为** $b$ 的二进制字符串，表示 $y$ 的**二进制表示**（最高有效位在前）。\n\n如果 $i \\gt 0$，这一行表示询问：* $a_i$ 是否大于 $y$？* 这样的询问最多可以有 $3 \\cdot (n + b)$ 行；每次询问后，交互器会在单独一行中输出 `yes` 或 `no`。\n\n如果 $i = 0$，这是交互的最后一轮，此后你的程序应当终止，并且此时的 $y$ 应为斯芬克斯数组中的最大值。注意，这一轮**不计入**询问次数限制。\n\n注意，交互器是**自适应的**。\n\n输出询问后，不要忘记输出行末并刷新输出。否则你将收到 `Idleness limit exceeded`。为此，请使用：\n\n- `fflush(stdout)` 或 `cout.flush()`（C++）；\n- `System.out.flush()`（Java）；\n- `flush(output)`（Pascal）；\n- `stdout.flush()`（Python）；\n- 其他语言请参见相应文档。\n\n如果你的解法没有正确遵循上述交互规则，可能会得到任意判定。否则，如果你报告的最大值错误，你的程序将收到 `Wrong Answer` 判定。\n\n## 说明\n\n在所有样例中，序列都是预先固定的。\n\n在第一个样例中，序列为 $2, 1, 4, 0, 6$。\n\n在第二个样例中，序列为 $0, 0, 0, 0$。\n\n在第三个样例中，序列为 $0$。\n\n注意，如果交互器是自适应的，那么第一个样例和第三个样例中的交互过程将不足以返回正确的最大值。",
   "samples": [
     {
       "input": "5 3\n\nyes\n\nno\n\nno\n\nno\n\nno\n\nyes\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:38:42.662Z"
+  "fetchedAt": "2026-10-30T23:38:42.662Z",
+  "translatedAt": "2026-11-04T04:06:47.840+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

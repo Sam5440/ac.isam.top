@@ -4,7 +4,7 @@
   "contestId": 269,
   "index": "C",
   "title": "Flawed Flow",
-  "titleZh": null,
+  "titleZh": "有缺陷的流",
   "url": "https://codeforces.com/contest/269/problem/C",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Emuskald considers himself a master of flow algorithms. Now he has completed his most ingenious program yet — it calculates the maximum flow in an undirected graph. The graph consists of $*n*$ vertices and $*m*$ edges. Vertices are numbered from 1 to $*n*$. Vertices $1$ and $*n*$ being the source and the sink respectively.\n\nHowever, his max-flow algorithm seems to have a little flaw — it only finds the flow volume for each edge, but not its direction. Help him find for each edge the direction of the flow through this edges. Note, that the resulting flow should be correct maximum flow.\n\nMore formally. You are given an undirected graph. For each it's undirected edge ($*a*_{*i*}$, $*b*_{*i*}$) you are given the flow volume $*c*_{*i*}$. You should direct all edges in such way that the following conditions hold:\n\n1. for each vertex $*v*$ $(1 < *v* < *n*)$, sum of $*c*_{*i*}$ of incoming edges is equal to the sum of $*c*_{*i*}$ of outcoming edges;\n2. vertex with number $1$ has no incoming edges;\n3. the obtained directed graph **does not have cycles**.\n\n## Input\n\nThe first line of input contains two space-separated integers $*n*$ and $*m*$ ($2 ≤ *n* ≤ 2·10^{5}$, $*n* - 1 ≤ *m* ≤ 2·10^{5}$), the number of vertices and edges in the graph. The following $*m*$ lines contain three space-separated integers $*a*_{*i*}$, $*b*_{*i*}$ and $*c*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$, $*a*_{*i*} ≠ *b*_{*i*}$, $1 ≤ *c*_{*i*} ≤ 10^{4}$), which means that there is an undirected edge from $*a*_{*i*}$ to $*b*_{*i*}$ with flow volume $*c*_{*i*}$.\n\nIt is guaranteed that there are no two edges connecting the same vertices; the given graph is connected; a solution always exists.\n\n## Output\n\nOutput $*m*$ lines, each containing one integer $*d*_{*i*}$, which should be 0 if the direction of the $*i*$-th edge is $*a*_{*i*} → *b*_{*i*}$ (the flow goes from vertex $*a*_{*i*}$ to vertex $*b*_{*i*}$) and should be 1 otherwise. The edges are numbered from 1 to $*m*$ in the order they are given in the input.\n\nIf there are several solutions you can print any of them.\n\n## Note\n\nIn the first test case, 10 flow units pass through path ![image](https://espresso.codeforces.com/609340f155794c4e9eebcd9cdfa23c73cf982f28.png), and 5 flow units pass directly from source to sink: ![image](https://espresso.codeforces.com/04481aced8a9d501ae5d785ab654c542ff5497a1.png).",
-  "statementZhMd": null,
+  "statementZhMd": "Emuskald 自认为是流算法大师。现在，他终于完成了自己最精妙的程序——它可以计算无向图中的最大流。该图由 $*n*$ 个顶点和 $*m*$ 条边组成。顶点编号为 1 到 $*n*$，其中顶点 1 和 $*n*$ 分别是源点和汇点。\n\n然而，他的最大流算法似乎存在一个小问题——它只能求出每条边上的流量，而无法确定流量的方向。请帮助他求出每条边上流量的方向。注意，最终得到的流必须是正确的最大流。\n\n更形式化地说，你得到了一个无向图。对于每条无向边（$*a*_{*i*}$，$*b*_{*i*}$），给定其流量 $*c*_{*i*}$。你需要为所有边确定方向，使得以下条件成立：\n\n1. 对于每个顶点 $*v*$（$1 < *v* < *n*$），所有入边的 $*c*_{*i*}$ 之和等于所有出边的 $*c*_{*i*}$ 之和；\n2. 编号为 1 的顶点没有入边；\n3. 得到的有向图**不存在环**。\n\n## 输入格式\n\n输入的第一行包含两个以空格分隔的整数 $*n*$ 和 $*m*$（$2 ≤ *n* ≤ 2·10^{5}$，$*n* - 1 ≤ *m* ≤ 2·10^{5}$），表示图中的顶点数和边数。接下来的 $*m*$ 行中，每行包含三个以空格分隔的整数 $*a*_{*i*}$、$*b*_{*i*}$ 和 $*c*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$，$*a*_{*i*} ≠ *b*_{*i*}$，$1 ≤ *c*_{*i*} ≤ 10^{4}$），表示顶点 $*a*_{*i*}$ 和 $*b*_{*i*}$ 之间有一条流量为 $*c*_{*i*}$ 的无向边。\n\n保证不存在连接相同顶点的两条边；给定的图是连通的；并且保证一定存在解。\n\n## 输出格式\n\n输出 $*m*$ 行，每行包含一个整数 $*d*_{*i*}$。如果第 $*i*$ 条边的方向为 $*a*_{*i*} → *b*_{*i*}$（流量从顶点 $*a*_{*i*}$ 流向顶点 $*b*_{*i*}$），则 $*d*_{*i*}$ 应为 0；否则应为 1。边按照输入中的顺序编号为 1 到 $*m*$。\n\n如果存在多个解，输出任意一个即可。\n\n## 说明\n\n在第一个测试用例中，10 个流量单位沿路径 ![image](https://espresso.codeforces.com/609340f155794c4e9eebcd9cdfa23c73cf982f28.png) 通过，另外 5 个流量单位直接从源点流向汇点：![image](https://espresso.codeforces.com/04481aced8a9d501ae5d785ab654c542ff5497a1.png)。",
   "samples": [
     {
       "input": "3 3\n3 2 10\n1 2 10\n3 1 5\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:11:30.284Z"
+  "fetchedAt": "2026-10-31T02:11:30.284Z",
+  "translatedAt": "2026-11-04T07:30:18.220+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

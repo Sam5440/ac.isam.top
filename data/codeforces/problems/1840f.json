@@ -4,7 +4,7 @@
   "contestId": 1840,
   "index": "F",
   "title": "Railguns",
-  "titleZh": null,
+  "titleZh": "轨道炮",
   "url": "https://codeforces.com/contest/1840/problem/F",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Tema is playing a very interesting computer game.\n\nDuring the next mission, Tema's character found himself on an unfamiliar planet. Unlike Earth, this planet is flat and can be represented as an $n \\times m$ rectangle.\n\nTema's character is located at the point with coordinates $(0, 0)$. In order to successfully complete the mission, he needs to reach the point with coordinates $(n, m)$ alive.\n\nLet the character of the computer game be located at the coordinate $(i, j)$. Every second, **starting from the first**, Tema can:\n\n- either use vertical hyperjump technology, after which his character will end up at coordinate $(i + 1, j)$ at the end of the second;\n- or use horizontal hyperjump technology, after which his character will end up at coordinate $(i, j + 1)$ at the end of the second;\n- or Tema can choose not to make a hyperjump, in which case his character will not move during this second;\n\nThe aliens that inhabit this planet are very dangerous and hostile. Therefore, they will shoot from their railguns $r$ times.\n\nEach shot completely penetrates one coordinate vertically or horizontally. If the character is in the line of its impact at the time of the shot **(at the end of the second)**, he dies.\n\nSince Tema looked at the game's source code, he knows complete information about each shot — the time, the penetrated coordinate, and the direction of the shot.\n\nWhat is the **minimum** time for the character to reach the desired point? If he is doomed to die and cannot reach the point with coordinates $(n, m)$, output $-1$.\n\n## Input\n\nThe first line of the input contains a single integer $T$ ($1 \\le T \\le 10^4$) — the number of test cases.\n\nThen follow the descriptions of the test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\cdot m \\le 10^4$) — the size of the planet, its height and width.\n\nThe second line of each test case contains a single integer $r$ ($1 \\le r \\le 100$) — the number of shots.\n\nThen follow $r$ lines, each describing one shot.\n\nA shot is described by three integers $t$, $d$, $coord$. Where $t$ is the second at which the shot will be fired ($1 \\le t \\le 10^9$). $d$ is the direction of the shot ($d = 1$ denotes a horizontal shot, $d = 2$ denotes a vertical shot). $coord$ is the size of the penetrated coordinate ($0 \\le coord \\le n$ for $d = 1$, $0 \\le coord \\le m$ for $d = 2$).\n\nThe sum of the products $n \\cdot m$ over all test cases does not exceed $10^4$.\n\n## Output\n\nFor each test case, output a single number — the **minimum** time for the character to reach the coordinate $(n, m)$, or $-1$ if he is doomed to die.\n\n## Note\n\nIn the first test case, the character can move as follows: $(0, 0) \\rightarrow (0, 1) \\rightarrow (0, 2) \\rightarrow (0, 3) \\rightarrow (0, 3) \\rightarrow (1, 3)$.\n\nIn the second test case, the character will not be able to leave the *rectangle* that will be completely penetrated by shots at the second $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "题目描述\n\nTema 正在玩一款非常有趣的电脑游戏。\n\n在接下来的任务中，Tema 的角色发现自己身处一颗陌生的星球。与地球不同，这颗星球是平的，可以表示为一个 $n \\times m$ 的矩形。\n\nTema 的角色位于坐标 $(0, 0)$。为了成功完成任务，他需要活着到达坐标 $(n, m)$。\n\n设电脑游戏中的角色位于坐标 $(i, j)$。从第一秒开始，每秒结束时，Tema 可以进行以下操作之一：\n\n- 使用垂直超跳技术，经过这一秒后，角色将位于坐标 $(i + 1, j)$；\n- 使用水平超跳技术，经过这一秒后，角色将位于坐标 $(i, j + 1)$；\n- 选择不进行超跳，此时角色在这一秒内不会移动；\n\n这颗星球上的外星人非常危险且充满敌意。因此，他们将使用轨道炮射击 $r$ 次。\n\n每次射击都会完全贯穿一条竖直或水平的坐标线。如果角色在射击时位于其射击轨迹上**（即该秒结束时）**，他就会死亡。\n\n由于 Tema 看过游戏的源代码，他知道每次射击的完整信息——射击时间、被贯穿的坐标以及射击方向。\n\n角色到达目标点所需的**最短**时间是多少？如果他注定会死亡，无法到达坐标 $(n, m)$，输出 $-1$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $T$（$1 \\le T \\le 10^4$）——测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\cdot m \\le 10^4$）——星球的大小，即高度和宽度。\n\n每个测试用例的第二行包含一个整数 $r$（$1 \\le r \\le 100$）——射击次数。\n\n接下来 $r$ 行，每行描述一次射击。\n\n每次射击由三个整数 $t$、$d$、$coord$ 描述。其中，$t$ 表示射击发生的时间（$1 \\le t \\le 10^9$）。$d$ 表示射击方向（$d = 1$ 表示水平射击，$d = 2$ 表示竖直射击）。$coord$ 表示被贯穿的坐标值（当 $d = 1$ 时，$0 \\le coord \\le n$；当 $d = 2$ 时，$0 \\le coord \\le m$）。\n\n所有测试用例的 $n \\cdot m$ 之和不超过 $10^4$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——角色到达坐标 $(n, m)$ 所需的**最短**时间；如果他注定会死亡，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，角色可以按照以下方式移动：$(0, 0) \\rightarrow (0, 1) \\rightarrow (0, 2) \\rightarrow (0, 3) \\rightarrow (0, 3) \\rightarrow (1, 3)$。\n\n在第二个测试用例中，角色无法离开在第 $2$ 秒被射击完全贯穿的*矩形*。",
   "samples": [
     {
       "input": "5\n1 3\n4\n1 2 0\n2 2 1\n3 2 2\n4 1 1\n3 3\n6\n2 1 0\n2 1 1\n2 1 2\n2 2 0\n2 2 1\n2 2 2\n2 1\n3\n7 1 2\n2 1 1\n7 2 1\n2 2\n5\n9 1 2\n3 2 0\n5 1 2\n4 2 2\n7 1 0\n4 6\n7\n6 1 2\n12 1 3\n4 1 0\n17 2 3\n1 2 6\n16 2 6\n3 2 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:28:00.072Z"
+  "fetchedAt": "2026-11-02T17:28:00.072Z",
+  "translatedAt": "2026-11-04T02:43:12.686+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

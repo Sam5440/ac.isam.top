@@ -4,7 +4,7 @@
   "contestId": 280,
   "index": "D",
   "title": "k-Maximum Subsequence Sum",
-  "titleZh": null,
+  "titleZh": "k-最大子序列和",
   "url": "https://codeforces.com/contest/280/problem/D",
   "difficulty": 2800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Consider integer sequence $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$. You should run queries of two types:\n\n- The query format is \"$0$ $*i*$ $*val*$\". In reply to this query you should make the following assignment: $*a*_{*i*} = *val*$.\n- The query format is \"$1$ $*l*$ $*r*$ $*k*$\". In reply to this query you should print the maximum sum of at most $*k*$ non-intersecting subsegments of sequence $*a*_{*l*}, *a*_{*l* + 1}, ..., *a*_{*r*}$. Formally, you should choose at most $*k*$ pairs of integers $(*x*_{1}, *y*_{1}), (*x*_{2}, *y*_{2}), ..., (*x*_{*t*}, *y*_{*t*})$ $(*l* ≤ *x*_{1} ≤ *y*_{1} < *x*_{2} ≤ *y*_{2} < ... < *x*_{*t*} ≤ *y*_{*t*} ≤ *r*; *t* ≤ *k*)$ such that the sum $*a*_{*x*_{1}} + *a*_{*x*_{1} + 1} + ... + *a*_{*y*_{1}} + *a*_{*x*_{2}} + *a*_{*x*_{2} + 1} + ... + *a*_{*y*_{2}} + ... + *a*_{*x*_{*t*}} + *a*_{*x*_{*t*} + 1} + ... + *a*_{*y*_{*t*}}$ is as large as possible. Note that you should choose at most $*k*$ subsegments. Particularly, you can choose 0 subsegments. In this case the described sum considered equal to zero.\n\n## Input\n\nThe first line contains integer $*n*$ $(1 ≤ *n* ≤ 10^{5})$, showing how many numbers the sequence has. The next line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ $(|*a*_{*i*}| ≤ 500)$.\n\nThe third line contains integer $*m*$ $(1 ≤ *m* ≤ 10^{5})$ — the number of queries. The next $*m*$ lines contain the queries in the format, given in the statement.\n\nAll changing queries fit into limits: $1 ≤ *i* ≤ *n*$, $|*val*| ≤ 500$.\n\nAll queries to count the maximum sum of at most $*k*$ non-intersecting subsegments fit into limits: $1 ≤ *l* ≤ *r* ≤ *n*$, $1 ≤ *k* ≤ 20$. It is guaranteed that the number of the queries to count the maximum sum of at most $*k*$ non-intersecting subsegments doesn't exceed $10000$.\n\n## Output\n\nFor each query to count the maximum sum of at most $*k*$ non-intersecting subsegments print the reply — the maximum sum. Print the answers to the queries in the order, in which the queries follow in the input.\n\n## Note\n\nIn the first query of the first example you can select a single pair $(1, 9)$. So the described sum will be 17.\n\nLook at the second query of the first example. How to choose two subsegments? (1, 3) and (7, 9)? Definitely not, the sum we could get from (1, 3) and (7, 9) is 20, against the optimal configuration (1, 7) and (9, 9) with 25.\n\nThe answer to the third query is 0, we prefer select nothing if all of the numbers in the given interval are negative.",
-  "statementZhMd": null,
+  "statementZhMd": "考虑整数序列 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$。你需要处理两种类型的查询：\n\n- 查询格式为 \"$0$ $*i*$ $*val*$\"。对于此查询，你需要执行赋值操作：$*a*_{*i*} = *val*$。\n- 查询格式为 \"$1$ $*l*$ $*r*$ $*k*$\"。对于此查询，你需要输出序列 $*a*_{*l*}, *a*_{*l* + 1}, ..., *a*_{*r*}$ 中至多 $*k*$ 个互不相交子段的最大和。形式化地说，你需要选择至多 $*k*$ 对整数 $(*x*_{1}, *y*_{1}), (*x*_{2}, *y*_{2}), ..., (*x*_{*t*}, *y*_{*t*})$ $(*l* ≤ *x*_{1} ≤ *y*_{1} < *x*_{2} ≤ *y*_{2} < ... < *x*_{*t*} ≤ *y*_{*t*} ≤ *r*; *t* ≤ *k*)$，使得和 $*a*_{*x*_{1}} + *a*_{*x*_{1} + 1} + ... + *a*_{*y*_{1}} + *a*_{*x*_{2}} + *a*_{*x*_{2} + 1} + ... + *a*_{*y*_{2}} + ... + *a*_{*x*_{*t*}} + *a*_{*x*_{*t*} + 1} + ... + *a*_{*y*_{*t*}}$ 尽可能大。注意，你需要选择至多 $*k*$ 个子段。特别地，你可以选择 $0$ 个子段。在这种情况下，上述和被视为 $0$。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$ $(1 ≤ *n* ≤ 10^{5})$，表示序列中有多少个数。下一行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ $(|*a*_{*i*}| ≤ 500)$。\n\n第三行包含一个整数 $*m*$ $(1 ≤ *m* ≤ 10^{5})$，表示查询的数量。接下来的 $*m*$ 行包含题目描述中所给格式的查询。\n\n所有修改查询均满足以下限制：$1 ≤ *i* ≤ *n*$，$|*val*| ≤ 500$。\n\n所有求至多 $*k*$ 个互不相交子段最大和的查询均满足以下限制：$1 ≤ *l* ≤ *r* ≤ *n*$，$1 ≤ *k* ≤ 20$。保证求至多 $*k*$ 个互不相交子段最大和的查询数量不超过 $10000$。\n\n## 输出格式\n\n对于每个求至多 $*k*$ 个互不相交子段最大和的查询，输出其答案，即最大和。按照查询在输入中出现的顺序输出答案。\n\n## 说明\n\n在第一个样例的第一个查询中，你可以选择单个数对 $(1, 9)$。因此上述和为 17。\n\n来看第一个样例的第二个查询。选择两个子段 $(1, 3)$ 和 $(7, 9)$ 怎么样？当然不行，这两个子段能得到的和为 20，而最优方案是选择 $(1, 7)$ 和 $(9, 9)$，其和为 25。\n\n第三个查询的答案是 0；如果给定区间中的所有数都是负数，我们最好什么都不选。",
   "samples": [
     {
       "input": "9\n9 -8 9 -1 -1 -1 9 -8 9\n3\n1 1 9 1\n1 1 9 2\n1 4 6 3\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:09:54.708Z"
+  "fetchedAt": "2026-10-31T02:09:54.708Z",
+  "translatedAt": "2026-11-04T07:26:45.157+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

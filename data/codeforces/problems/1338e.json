@@ -4,7 +4,7 @@
   "contestId": 1338,
   "index": "E",
   "title": "JYPnation",
-  "titleZh": null,
+  "titleZh": "JYP国",
   "url": "https://codeforces.com/contest/1338/problem/E",
   "difficulty": 3500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "*Due to the success of TWICE, JYP Entertainment has earned countless money and emerged as the biggest entertainment firm by market capitalization. Therefore, the boss, JYP, has decided to create a new nation and has appointed you to provide a design diagram.*\n\nThe new nation consists of $n$ cities and some roads between them. JYP has given some restrictions:\n\n- To guarantee efficiency while avoiding chaos, **for any $2$ different cities $A$ and $B$, there is exactly one road between them, and it is one-directional. There are no roads connecting a city to itself**.\n- The logo of rivaling companies should not appear in the plan, that is, **there does not exist** $4$ **distinct cities** $A$,$B$,$C$,$D$ **, such that the following configuration occurs.**\n\n![image](https://espresso.codeforces.com/8a841793acfd181cd3e39204573fe7212188a989.png)\n\nJYP has given criteria for your diagram. For two cities $A$,$B$, let $dis(A,B)$ be the smallest number of roads you have to go through to get from $A$ to $B$. If it is not possible to walk from $A$ to $B$, $dis(A,B) = 614n$. Then, the efficiency value is defined to be the sum of $dis(A,B)$ for all ordered pairs of distinct cities $(A,B)$.\n\n**Note that $dis(A,B)$ doesn't have to be equal to $dis(B,A)$**.\n\nYou have drawn a design diagram that satisfies JYP's restrictions. Find the sum of $dis(A,B)$ over all ordered pairs of cities $(A,B)$ with $A\\neq B$.\n\n**Note that the input is given in compressed form. But even though it is compressed, you'd better use fast input.**\n\n## Input\n\nThe first line contains a single integer $n$ ($4 \\le n \\le 8000$, $n \\equiv 0 \\pmod{4}$) — the number of cities.\n\nA binary matrix is encrypted in the following format. Each of $n$ next lines contains $\\frac{n}{4}$ one-digit hexadecimal numbers (that is, these numbers can be represented either as digits from $0$ to $9$ or as uppercase Latin letters from $A$ to $F$). Binary representation of each of these numbers denotes next $4$ elements of the matrix in the corresponding row. For example, if the number $B$ is given, then the corresponding elements are $1011$, and if the number is $5$, then the corresponding elements are $0101$.\n\nAfter you obtain the decrypted binary matrix, the $j$-th character of the $i$-th row is $1$ if the one-directional road between cities $i$ and $j$ is directed from $i$ to $j$, and $0$ otherwise. It is guaranteed that the graph satisfies the restrictions mentioned above.\n\n## Output\n\nOutput one integer, representing the sum of $dis(A,B)$ over all ordered pairs of cities $(A,B)$ with $A\\neq B$.\n\n## Note\n\nThe first example corresponds to the matrix:\n\n$\\begin{matrix} 0111 \\\\ 0010 \\\\ 0001 \\\\ 0100 \\\\ \\end{matrix}$\n\nWhich corresponds to this graph:\n\n![image](https://espresso.codeforces.com/027db29d2dc3ff1669e237364e678bda7cecb86c.png)\n\n$dis(1,2)=dis(1,3)=dis(1,4)=dis(2,3)=dis(3,4)=dis(4,2)=1$\n\n$dis(2,4)=dis(4,3)=dis(3,2)=2$\n\n$dis(2,1)=dis(3,1)=dis(4,1)=2456$\n\nTherefore the answer for the diagram is $7380$.",
-  "statementZhMd": null,
+  "statementZhMd": "由于 TWICE 的成功，JYP Entertainment 赚取了数不清的钱，并凭借市值成为最大的娱乐公司。因此，老板 JYP 决定建立一个新的国家，并任命你来提供一份设计图。\n\n这个新国家由 $n$ 座城市以及连接它们的一些道路组成。JYP 提出了以下限制条件：\n\n- 为了保证效率并避免混乱，**对于任意 $2$ 座不同的城市 $A$ 和 $B$，它们之间恰好有一条道路，且这条道路是单向的。不存在连接一座城市自身的道路**。\n- 竞争公司的标志不应出现在设计图中，也就是说，**不存在** $4$ **座互不相同的城市** $A$、$B$、$C$、$D$ **，使得出现如下配置。**\n\n![image](https://espresso.codeforces.com/8a841793acfd181cd3e39204573fe7212188a989.png)\n\nJYP 为你的设计图制定了评判标准。对于两座城市 $A$、$B$，令 $dis(A,B)$ 表示从 $A$ 到 $B$ 需要经过的最少道路数。如果无法从 $A$ 走到 $B$，则 $dis(A,B) = 614n$。于是，效率值定义为所有不同城市的有序对 $(A,B)$ 的 $dis(A,B)$ 之和。\n\n**注意，$dis(A,B)$ 不一定等于 $dis(B,A)$。**\n\n你已经画出了一张满足 JYP 限制条件的设计图。请求出所有满足 $A\\neq B$ 的城市有序对 $(A,B)$ 的 $dis(A,B)$ 之和。\n\n**注意，输入以压缩形式给出。尽管如此，你最好使用快速输入。**\n\n## 输入格式\n\n第一行包含一个整数 $n$（$4 \\le n \\le 8000$，$n \\equiv 0 \\pmod{4}$）——城市的数量。\n\n一个二进制矩阵按照以下格式加密。接下来的 $n$ 行中，每行包含 $\\frac{n}{4}$ 个一位十六进制数（也就是说，这些数可以表示为 $0$ 到 $9$ 的数字或 $A$ 到 $F$ 的大写英文字母）。每个数的二进制表示对应矩阵中该行接下来的 $4$ 个元素。例如，如果给出字符 $B$，则对应的元素为 $1011$；如果给出字符 $5$，则对应的元素为 $0101$。\n\n得到解密后的二进制矩阵后，第 $i$ 行的第 $j$ 个字符为 $1$，当且仅当城市 $i$ 和城市 $j$ 之间的单向道路方向为从 $i$ 指向 $j$；否则为 $0$。保证该图满足上述限制条件。\n\n## 输出格式\n\n输出一个整数，表示所有满足 $A\\neq B$ 的城市有序对 $(A,B)$ 的 $dis(A,B)$ 之和。\n\n## 说明\n\n第一个样例对应的矩阵为：\n\n$\\begin{matrix} 0111 \\\\ 0010 \\\\ 0001 \\\\ 0100 \\\\end{matrix}$\n\n其对应的图如下：\n\n![image](https://espresso.codeforces.com/027db29d2dc3ff1669e237364e678bda7cecb86c.png)\n\n$dis(1,2)=dis(1,3)=dis(1,4)=dis(2,3)=dis(3,4)=dis(4,2)=1$\n\n$dis(2,4)=dis(4,3)=dis(3,2)=2$\n\n$dis(2,1)=dis(3,1)=dis(4,1)=2456$\n\n因此，该设计图的答案为 $7380$。",
   "samples": [
     {
       "input": "4\n7\n2\n1\n4\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:54:53.929Z"
+  "fetchedAt": "2026-10-30T23:54:53.929Z",
+  "translatedAt": "2026-11-04T04:41:57.923+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

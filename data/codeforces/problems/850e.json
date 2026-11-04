@@ -4,7 +4,7 @@
   "contestId": 850,
   "index": "E",
   "title": "Random Elections",
-  "titleZh": null,
+  "titleZh": "随机选举",
   "url": "https://codeforces.com/contest/850/problem/E",
   "difficulty": 2800,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "The presidential election is coming in Bearland next year! Everybody is so excited about this!\n\nSo far, there are three candidates, Alice, Bob, and Charlie.\n\nThere are $*n*$ citizens in Bearland. The election result will determine the life of all citizens of Bearland for many years. Because of this great responsibility, each of $*n*$ citizens will choose one of six orders of preference between Alice, Bob and Charlie uniformly at random, independently from other voters.\n\nThe government of Bearland has devised a function to help determine the outcome of the election given the voters preferences. More specifically, the function is ![image](https://espresso.codeforces.com/9f777253eb96ac0cbbb7c8e17df025ee3288f568.png) (takes $*n*$ boolean numbers and returns a boolean number). The function also obeys the following property: $*f*(1 - *x*_{1}, 1 - *x*_{2}, ..., 1 - *x*_{*n*}) = 1 - *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$.\n\nThree rounds will be run between each pair of candidates: Alice and Bob, Bob and Charlie, Charlie and Alice. In each round, $*x*_{*i*}$ will be equal to $1$, if $*i*$-th citizen prefers the first candidate to second in this round, and $0$ otherwise. After this, $*y* = *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$ will be calculated. If $*y* = 1$, the first candidate will be declared as winner in this round. If $*y* = 0$, the second will be the winner, respectively.\n\nDefine the probability that there is a candidate who won two rounds as $*p*$. $*p*·6^{*n*}$ is always an integer. Print the value of this integer modulo $10^{9} + 7 = 1 000 000 007$.\n\n## Input\n\nThe first line contains one integer $*n*$ ($1 ≤ *n* ≤ 20$).\n\nThe next line contains a string of length $2^{*n*}$ of zeros and ones, representing function $*f*$. Let $*b*_{*k*}(*x*)$ the $*k*$-th bit in binary representation of $*x*$, $*i*$-th (0-based) digit of this string shows the return value of $*f*(*b*_{1}(*i*), *b*_{2}(*i*), ..., *b*_{*n*}(*i*))$.\n\nIt is guaranteed that $*f*(1 - *x*_{1}, 1 - *x*_{2}, ..., 1 - *x*_{*n*}) = 1 - *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$ for any values of $*x*_{1}, *x*_{2}, *ldots*, *x*_{*n*}$.\n\n## Output\n\nOutput one integer — answer to the problem.\n\n## Note\n\nIn first sample, result is always fully determined by the first voter. In other words, $*f*(*x*_{1}, *x*_{2}, *x*_{3}) = *x*_{1}$. Thus, any no matter what happens, there will be a candidate who won two rounds (more specifically, the candidate who is at the top of voter 1's preference list), so $*p* = 1$, and we print $1·6^{3} = 216$.",
-  "statementZhMd": null,
+  "statementZhMd": "明年，熊国即将举行总统选举！所有人都对此感到非常兴奋！\n\n目前有三位候选人：Alice、Bob 和 Charlie。\n\n熊国有 $*n*$ 位公民。选举结果将在未来许多年内决定所有熊国公民的生活。由于责任重大，每位 $*n*$ 位公民都会从 Alice、Bob 和 Charlie 的六种偏好顺序中等概率、相互独立地选择一种。\n\n熊国政府设计了一个函数，用于根据选民的偏好决定选举结果。更具体地说，该函数为 ![image](https://espresso.codeforces.com/9f777253eb96ac0cbbb7c8e17df025ee3288f568.png)（接受 $*n*$ 个布尔数并返回一个布尔数）。该函数还满足以下性质：$*f*(1 - *x*_{1}, 1 - *x*_{2}, ..., 1 - *x*_{*n*}) = 1 - *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$。\n\n每两位候选人之间将进行一轮比赛：Alice 与 Bob、Bob 与 Charlie、Charlie 与 Alice。在每一轮中，如果第 $*i*$ 位公民更偏好本轮的第一位候选人而不是第二位候选人，则 $*x*_{*i}$ 等于 $1$，否则等于 $0$。随后计算 $*y* = *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$。如果 $*y* = 1$，则第一位候选人赢得本轮；如果 $*y* = 0$，则第二位候选人赢得本轮。\n\n将有一位候选人赢得两轮的概率定义为 $*p*$。$*p*·6^{*n*}$ 始终为整数。请输出该整数对 $10^{9} + 7 = 1 000 000 007$ 取模后的值。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 20$）。\n\n下一行包含一个长度为 $2^{*n*}$、由 $0$ 和 $1$ 组成的字符串，表示函数 $*f*$。令 $*b*_{*k*}(*x*)$ 表示 $*x*$ 的二进制表示中的第 $*k*$ 位，字符串中第 $*i*$（从 $0$ 开始）位表示函数 $*f*(*b*_{1}(*i*), *b*_{2}(*i*), ..., *b*_{*n*}(*i*))$ 的返回值。\n\n保证对于任意 $*x*_{1}, *x*_{2}, *ldots*, *x*_{*n*}$ 的取值，都有 $*f*(1 - *x*_{1}, 1 - *x*_{2}, ..., 1 - *x*_{*n*}) = 1 - *f*(*x*_{1}, *x*_{2}, ..., *x*_{*n*})$。\n\n## 输出格式\n\n输出一个整数，即问题的答案。\n\n## 说明\n\n在第一个样例中，结果始终完全由第一位选民决定。换句话说，$*f*(*x*_{1}, *x*_{2}, *x*_{3}) = *x*_{1}$。因此，无论发生什么情况，都会有一位候选人赢得两轮（更具体地说，是第一位选民偏好顺序中排在首位的候选人），所以 $*p* = 1$，我们输出 $1·6^{3} = 216$。",
   "samples": [
     {
       "input": "3\n01010101\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:47:07.044Z"
+  "fetchedAt": "2026-10-31T00:47:07.044Z",
+  "translatedAt": "2026-11-04T06:02:36.639+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

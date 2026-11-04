@@ -4,7 +4,7 @@
   "contestId": 332,
   "index": "E",
   "title": "Binary Key",
-  "titleZh": null,
+  "titleZh": "二进制密钥",
   "url": "https://codeforces.com/contest/332/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Let's assume that $*p*$ and $*q*$ are strings of positive length, called the *container* and the *key* correspondingly, string $*q*$ only consists of characters 0 and 1. Let's take a look at a simple algorithm that extracts *message* $*s*$ from the given container $*p*$:\n\n```\ni = 0;\nj = 0;\ns = <>;\nwhile i is less than the length of the string p\n{\n    if q[j] == 1, then add to the right of string s character p[i];\n    increase variables i, j by one;\n    if the value of the variable j equals the length of the string q, then j = 0;\n}\n```\n\nIn the given pseudocode $*i*$, $*j*$ are integer variables, $*s*$ is a string, '`=`' is an assignment operator, '`==`' is a comparison operation, '`[]`' is the operation of obtaining the string character with the preset index, '`<>`' is an empty string. We suppose that in all strings the characters are numbered starting from zero.\n\nWe understand that implementing such algorithm is quite easy, so your task is going to be slightly different. You need to construct the lexicographically minimum key of length $*k*$, such that when it is used, the algorithm given above extracts message $*s*$ from container $*p*$ (otherwise find out that such key doesn't exist).\n\n## Input\n\nThe first two lines of the input are non-empty strings $*p*$ and $*s*$ ($1 ≤ |*p*| ≤ 10^{6}$, $1 ≤ |*s*| ≤ 200$), describing the container and the message, correspondingly. The strings can contain any characters with the ASCII codes from 32 to 126, inclusive.\n\nThe third line contains a single integer $*k*$ ($1 ≤ *k* ≤ 2000)$ — the key's length.\n\n## Output\n\nPrint the required key (string of length $*k*$, consisting only of characters 0 and 1). If the key doesn't exist, print the single character 0.\n\n## Note\n\nString $*x* = *x*_{1}*x*_{2}... *x*_{*p*}$ is *lexicographically smaller* than string $*y* = *y*_{1}*y*_{2}... *y*_{*q*}$, if either $*p* < *q*$ and $*x*_{1} = *y*_{1}, *x*_{2} = *y*_{2}, ... , *x*_{*p*} = *y*_{*p*}$, or there exists such integer $*r*$ ($0 ≤ *r* < *min*(*p*, *q*))$ that $*x*_{1} = *y*_{1}, *x*_{2} = *y*_{2}, ... , *x*_{*r*} = *y*_{*r*}$ and $*x*_{*r* + 1} < *y*_{*r* + 1}$. Symbols are compared according to their ASCII codes.",
-  "statementZhMd": null,
+  "statementZhMd": "假设 $*p*$ 和 $*q*$ 是长度为正的字符串，分别称为*容器*和*密钥*，其中字符串 $*q*$ 只由字符 0 和 1 组成。下面来看看一个从给定容器 $*p*$ 中提取*消息* $*s*$ 的简单算法：\n\n```\ni = 0;\nj = 0;\ns = <>;\nwhile i is less than the length of the string p\n{\n    if q[j] == 1, then add to the right of string s character p[i];\n    increase variables i, j by one;\n    if the value of the variable j equals the length of the string q, then j = 0;\n}\n```\n\n在给出的伪代码中，$*i*$、$*j*$ 是整数变量，$*s*$ 是字符串，'`=`' 是赋值运算符，'`==`' 是比较运算，'`[]`' 是获取指定索引处字符串字符的运算，'`<>`' 表示空字符串。我们假设所有字符串中的字符都从 0 开始编号。\n\n我们认为，实现上述算法相当容易，因此你的任务会稍有不同。你需要构造一个长度为 $*k*$ 的字典序最小的密钥，使得使用该密钥时，上述算法能够从容器 $*p*$ 中提取出消息 $*s*$（否则需要判断不存在这样的密钥）。\n\n## 输入格式\n\n输入的前两行是两个非空字符串 $*p*$ 和 $*s*$（$1 ≤ |*p*| ≤ 10^{6}$，$1 ≤ |*s*| ≤ 200$），分别表示容器和消息。这些字符串可以包含 ASCII 码在 32 到 126（包含）之间的任意字符。\n\n第三行包含一个整数 $*k*$（$1 ≤ *k* ≤ 2000)$，表示密钥的长度。\n\n## 输出格式\n\n输出所需的密钥（一个长度为 $*k*$、只由字符 0 和 1 组成的字符串）。如果密钥不存在，则输出单个字符 0。\n\n## 说明\n\n如果满足以下任一条件，则字符串 $*x* = *x*_{1}*x*_{2}... *x*_{*p*}$ 的字典序小于字符串 $*y* = *y*_{1}*y*_{2}... *y*_{*q*}$：$*p* < *q*$ 且 $*x*_{1} = *y*_{1}, *x*_{2} = *y*_{2}, ... , *x*_{*p*} = *y*_{*p*}$；或者存在整数 $*r*$（$0 ≤ *r* < *min*(*p*, *q*)$），使得 $*x*_{1} = *y*_{1}, *x*_{2} = *y*_{2}, ... , *x*_{*r*} = *y*_{*r*}$ 且 $*x*_{*r* + 1} < *y*_{*r* + 1}$。字符按照其 ASCII 码进行比较。",
   "samples": [
     {
       "input": "abacaba\naba\n6\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:01:11.816Z"
+  "fetchedAt": "2026-10-31T02:01:11.816Z",
+  "translatedAt": "2026-11-04T07:21:07.519+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

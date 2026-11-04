@@ -4,7 +4,7 @@
   "contestId": 1142,
   "index": "B",
   "title": "Lynyrd Skynyrd",
-  "titleZh": null,
+  "titleZh": "Lynyrd Skynyrd",
   "url": "https://codeforces.com/contest/1142/problem/B",
   "difficulty": 2000,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Recently Lynyrd and Skynyrd went to a shop where Lynyrd bought a permutation $p$ of length $n$, and Skynyrd bought an array $a$ of length $m$, consisting of integers from $1$ to $n$.\n\nLynyrd and Skynyrd became bored, so they asked you $q$ queries, each of which has the following form: \"does the subsegment of $a$ from the $l$-th to the $r$-th positions, inclusive, have a subsequence that is a cyclic shift of $p$?\" Please answer the queries.\n\nA *permutation* of length $n$ is a sequence of $n$ integers such that each integer from $1$ to $n$ appears exactly once in it.\n\nA *cyclic shift* of a permutation $(p_1, p_2, \\ldots, p_n)$ is a permutation $(p_i, p_{i + 1}, \\ldots, p_{n}, p_1, p_2, \\ldots, p_{i - 1})$ for some $i$ from $1$ to $n$. For example, a permutation $(2, 1, 3)$ has three distinct cyclic shifts: $(2, 1, 3)$, $(1, 3, 2)$, $(3, 2, 1)$.\n\nA *subsequence* of a subsegment of array $a$ from the $l$-th to the $r$-th positions, inclusive, is a sequence $a_{i_1}, a_{i_2}, \\ldots, a_{i_k}$ for some $i_1, i_2, \\ldots, i_k$ such that $l \\leq i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\leq r$.\n\n## Input\n\nThe first line contains three integers $n$, $m$, $q$ ($1 \\le n, m, q \\le 2 \\cdot 10^5$) — the length of the permutation $p$, the length of the array $a$ and the number of queries.\n\nThe next line contains $n$ integers from $1$ to $n$, where the $i$-th of them is the $i$-th element of the permutation. Each integer from $1$ to $n$ appears exactly once.\n\nThe next line contains $m$ integers from $1$ to $n$, the $i$-th of them is the $i$-th element of the array $a$.\n\nThe next $q$ lines describe queries. The $i$-th of these lines contains two integers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le m$), meaning that the $i$-th query is about the subsegment of the array from the $l_i$-th to the $r_i$-th positions, inclusive.\n\n## Output\n\nPrint a single string of length $q$, consisting of $0$ and $1$, the digit on the $i$-th positions should be $1$, if the subsegment of array $a$ from the $l_i$-th to the $r_i$-th positions, inclusive, contains a subsequence that is a cyclic shift of $p$, and $0$ otherwise.\n\n## Note\n\nIn the first example the segment from the $1$-st to the $5$-th positions is $1, 2, 3, 1, 2$. There is a subsequence $1, 3, 2$ that is a cyclic shift of the permutation. The subsegment from the $2$-nd to the $6$-th positions also contains a subsequence $2, 1, 3$ that is equal to the permutation. The subsegment from the $3$-rd to the $5$-th positions is $3, 1, 2$, there is only one subsequence of length $3$ ($3, 1, 2$), but it is not a cyclic shift of the permutation.\n\nIn the second example the possible cyclic shifts are $1, 2$ and $2, 1$. The subsegment from the $1$-st to the $2$-nd positions is $1, 1$, its subsequences are not cyclic shifts of the permutation. The subsegment from the $2$-nd to the $3$-rd positions is $1, 2$, it coincides with the permutation. The subsegment from the $3$ to the $4$ positions is $2, 2$, its subsequences are not cyclic shifts of the permutation.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，Lynyrd 和 Skynyrd 去了一家商店。Lynyrd 买了一个长度为 $n$ 的排列 $p$，而 Skynyrd 买了一个长度为 $m$ 的数组 $a$，其中的整数均在 $1$ 到 $n$ 之间。\n\nLynyrd 和 Skynyrd 感到无聊，于是他们向你提出了 $q$ 个询问，每个询问的形式如下：“数组 $a$ 从第 $l$ 个位置到第 $r$ 个位置（包含两端）组成的子段中，是否存在一个是 $p$ 的循环移位的子序列？”请回答这些询问。\n\n长度为 $n$ 的*排列*是一个由 $n$ 个整数组成的序列，其中 $1$ 到 $n$ 的每个整数恰好出现一次。\n\n排列 $(p_1, p_2, \\ldots, p_n)$ 的*循环移位*是指对于某个 $1$ 到 $n$ 之间的 $i$，排列 $(p_i, p_{i + 1}, \\ldots, p_{n}, p_1, p_2, \\ldots, p_{i - 1})$。例如，排列 $(2, 1, 3)$ 有三个不同的循环移位：$(2, 1, 3)$、$(1, 3, 2)$ 和 $(3, 2, 1)$。\n\n数组 $a$ 从第 $l$ 个位置到第 $r$ 个位置（包含两端）的子段的*子序列*是指，对于某些 $i_1, i_2, \\ldots, i_k$，满足 $l \\leq i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\leq r$ 的序列 $a_{i_1}, a_{i_2}, \\ldots, a_{i_k}$。\n\n## 输入\n\n第一行包含三个整数 $n$、$m$ 和 $q$（$1 \\leq n, m, q \\leq 2 \\cdot 10^5$），分别表示排列 $p$ 的长度、数组 $a$ 的长度以及询问的数量。\n\n第二行包含 $n$ 个 $1$ 到 $n$ 之间的整数，其中第 $i$ 个整数是排列中的第 $i$ 个元素。$1$ 到 $n$ 的每个整数恰好出现一次。\n\n第三行包含 $m$ 个 $1$ 到 $n$ 之间的整数，其中第 $i$ 个整数是数组 $a$ 的第 $i$ 个元素。\n\n接下来的 $q$ 行描述询问。第 $i$ 行包含两个整数 $l_i$ 和 $r_i$（$1 \\leq l_i \\leq r_i \\leq m$），表示第 $i$ 个询问针对数组从第 $l_i$ 个位置到第 $r_i$ 个位置（包含两端）的子段。\n\n## 输出\n\n输出一个长度为 $q$ 的字符串，仅由 $0$ 和 $1$ 组成。如果数组 $a$ 从第 $l_i$ 个位置到第 $r_i$ 个位置（包含两端）的子段中包含一个是 $p$ 的循环移位的子序列，则第 $i$ 个位置上的字符应为 $1$，否则应为 $0$。\n\n## 说明\n\n在第一个样例中，从第 $1$ 个位置到第 $5$ 个位置的子段为 $1, 2, 3, 1, 2$。其中存在子序列 $1, 3, 2$，它是该排列的一个循环移位。从第 $2$ 个位置到第 $6$ 个位置的子段中也包含子序列 $2, 1, 3$，它与该排列相同。从第 $3$ 个位置到第 $5$ 个位置的子段为 $3, 1, 2$，其中只有一个长度为 $3$ 的子序列（$3, 1, 2$），但它不是该排列的循环移位。\n\n在第二个样例中，可能的循环移位为 $1, 2$ 和 $2, 1$。从第 $1$ 个位置到第 $2$ 个位置的子段为 $1, 1$，其中的子序列都不是该排列的循环移位。从第 $2$ 个位置到第 $3$ 个位置的子段为 $1, 2$，它与该排列相同。从第 $3$ 个位置到第 $4$ 个位置的子段为 $2, 2$，其中的子序列都不是该排列的循环移位。",
   "samples": [
     {
       "input": "3 6 3\n2 1 3\n1 2 3 1 2 3\n1 5\n2 6\n3 5\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:13:35.762Z"
+  "fetchedAt": "2026-10-31T00:13:35.762Z",
+  "translatedAt": "2026-11-04T05:21:21.547+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

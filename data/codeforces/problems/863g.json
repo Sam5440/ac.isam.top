@@ -4,14 +4,14 @@
   "contestId": 863,
   "index": "G",
   "title": "Graphic Settings",
-  "titleZh": null,
+  "titleZh": "图形设置",
   "url": "https://codeforces.com/contest/863/problem/G",
   "difficulty": 3200,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Recently Ivan bought a new computer. Excited, he unpacked it and installed his favourite game. With his old computer Ivan had to choose the worst possible graphic settings (because otherwise the framerate would be really low), but now he wants to check, maybe his new computer can perform well even with the best possible graphics?\n\nThere are $*m*$ graphics parameters in the game. $*i*$-th parameter can be set to any positive integer from $1$ to $*a*_{*i*}$, and initially is set to $*b*_{*i*}$ ($*b*_{*i*} ≤ *a*_{*i*}$). So there are ![image](https://espresso.codeforces.com/d17cddb5b1a0e3249ccc45df1ee5a6d7b87bbca4.png) different combinations of parameters. Ivan can increase or decrease any of these parameters by $1$; after that the game will be restarted with new parameters (and Ivan will have the opportunity to check chosen combination of parameters).\n\nIvan wants to try all $*p*$ possible combinations. Also he wants to return to the initial settings after trying all combinations, because he thinks that initial settings can be somehow best suited for his hardware. But Ivan doesn't really want to make a lot of restarts.\n\nSo he wants you to tell the following:\n\n- If there exists a way to make exactly $*p*$ changes (each change either decreases or increases some parameter by $1$) to try all possible combinations and return to initial combination, then Ivan wants to know this way.\n- Otherwise, if there exists a way to make exactly $*p* - 1$ changes to try all possible combinations (including the initial one), then Ivan wants to know this way.\n\nHelp Ivan by showing him the way to change parameters!\n\n## Input\n\nThe first line of input contains one integer number $*m*$ ($1 ≤ *m* ≤ 6$).\n\nThe second line contains $*m*$ integer numbers $*a*_{1}, *a*_{2}, ..., *a*_{*m*}$ ($2 ≤ *a*_{*i*} ≤ 1000$). It is guaranteed that ![image](https://espresso.codeforces.com/0ada6082392fb845829961539792ec286cdb5a27.png).\n\nThe third line contains $*m*$ integer numbers $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$ ($1 ≤ *b*_{*i*} ≤ *a*_{*i*}$).\n\n## Output\n\nIf there is a way to make exactly $*p*$ changes (each change either decreases or increases some parameter by $1$) to try all possible combinations and return to initial combination, then output `Cycle` in the first line. Then $*p*$ lines must follow, each desribing a change. The line must be either `inc x` (increase parameter $*x*$ by $1$) or `dec x` (decrease it).\n\nOtherwise, if there is a way to make exactly $*p* - 1$ changes to try all possible combinations (including the initial one), then output `Path` in the first line. Then $*p* - 1$ lines must follow, each describing the change the same way as mentioned above.\n\nOtherwise, output `No`.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，Ivan 买了一台新电脑。他兴奋地拆开电脑并安装了自己最喜欢的游戏。以前使用旧电脑时，Ivan 不得不选择最差的画面设置（否则帧率会非常低），但现在他想确认一下：也许他的新电脑即使在最佳画面设置下也能运行良好？\n\n游戏中有 $*m*$ 个图形参数。第 $*i*$ 个参数可以设置为从 $1$ 到 $*a*_{*i*}$ 的任意正整数，初始值为 $*b*_{*i*}$（$*b*_{*i*} ≤ *a*_{*i*}$）。因此，一共有 ![image](https://espresso.codeforces.com/d17cddb5b1a0e3249ccc45df1ee5a6d7b87bbca4.png) 种不同的参数组合。Ivan 可以将任意一个参数增加或减少 $1$；完成操作后，游戏会使用新的参数重新启动（此时 Ivan 就可以检查所选择的参数组合）。\n\nIvan 想要尝试全部 $*p*$ 种可能的组合。同时，他还想在尝试完所有组合后恢复到初始设置，因为他认为初始设置可能最适合自己的硬件。不过，Ivan 并不想进行太多次重启。\n\n因此，他希望你告诉他以下内容：\n\n- 如果存在一种方法，恰好进行 $*p*$ 次修改（每次修改都将某个参数减少或增加 $1$），尝试所有可能的组合并回到初始组合，那么 Ivan 希望知道这种方法。\n- 否则，如果存在一种方法，恰好进行 $*p* - 1$ 次修改，尝试所有可能的组合（包括初始组合），那么 Ivan 希望知道这种方法。\n\n请帮助 Ivan 展示修改参数的方法！\n\n## 输入格式\n\n输入的第一行包含一个整数 $*m*$（$1 ≤ *m* ≤ 6$）。\n\n第二行包含 $*m*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*m*}$（$2 ≤ *a*_{*i*} ≤ 1000$）。保证 ![image](https://espresso.codeforces.com/0ada6082392fb845829961539792ec286cdb5a27.png)。\n\n第三行包含 $*m*$ 个整数 $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$（$1 ≤ *b*_{*i*} ≤ *a*_{*i*}$）。\n\n## 输出格式\n\n如果存在一种方法，恰好进行 $*p*$ 次修改（每次修改都将某个参数减少或增加 $1$），尝试所有可能的组合并回到初始组合，则在第一行输出 `Cycle`。接下来输出 $*p*$ 行，每行描述一次修改。每行必须是 `inc x`（将参数 $*x*$ 增加 $1$）或 `dec x`（将参数 $*x*$ 减少 $1$）。\n\n否则，如果存在一种方法，恰好进行 $*p* - 1$ 次修改，尝试所有可能的组合（包括初始组合），则在第一行输出 `Path`。接下来输出 $*p* - 1$ 行，每行按照上述方式描述一次修改。\n\n否则，输出 `No`。",
   "samples": [
     {
       "input": "1\n3\n1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:43:41.789Z"
+  "fetchedAt": "2026-11-02T19:43:41.789Z",
+  "translatedAt": "2026-11-04T06:01:11.548+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1408,
   "index": "A",
   "title": "Circle Coloring",
-  "titleZh": null,
+  "titleZh": "圆环着色",
   "url": "https://codeforces.com/contest/1408/problem/A",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given three sequences: $a_1, a_2, \\ldots, a_n$; $b_1, b_2, \\ldots, b_n$; $c_1, c_2, \\ldots, c_n$.\n\nFor each $i$, $a_i \\neq b_i$, $a_i \\neq c_i$, $b_i \\neq c_i$.\n\nFind a sequence $p_1, p_2, \\ldots, p_n$, that satisfy the following conditions:\n\n- $p_i \\in \\{a_i, b_i, c_i\\}$\n- $p_i \\neq p_{(i \\mod n) + 1}$.\n\nIn other words, for each element, you need to choose one of the three possible values, such that no two adjacent elements (where we consider elements $i,i+1$ adjacent for $i \\lt n$ and also elements $1$ and $n$) will have equal value.\n\nIt can be proved that in the given constraints solution always exists. You don't need to minimize/maximize anything, you need to find any proper sequence.\n\n## Input\n\nThe first line of input contains one integer $t$ ($1 \\leq t \\leq 100$): the number of test cases.\n\nThe first line of each test case contains one integer $n$ ($3 \\leq n \\leq 100$): the number of elements in the given sequences.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 100$).\n\nThe third line contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\leq b_i \\leq 100$).\n\nThe fourth line contains $n$ integers $c_1, c_2, \\ldots, c_n$ ($1 \\leq c_i \\leq 100$).\n\nIt is guaranteed that $a_i \\neq b_i$, $a_i \\neq c_i$, $b_i \\neq c_i$ for all $i$.\n\n## Output\n\nFor each test case, print $n$ integers: $p_1, p_2, \\ldots, p_n$ ($p_i \\in \\{a_i, b_i, c_i\\}$, $p_i \\neq p_{i \\mod n + 1}$).\n\nIf there are several solutions, you can print any.\n\n## Note\n\nIn the first test case $p = [1, 2, 3]$.\n\nIt is a correct answer, because:\n\n- $p_1 = 1 = a_1$, $p_2 = 2 = b_2$, $p_3 = 3 = c_3$\n- $p_1 \\neq p_2 $, $p_2 \\neq p_3 $, $p_3 \\neq p_1$\n\nAll possible correct answers to this test case are: $[1, 2, 3]$, $[1, 3, 2]$, $[2, 1, 3]$, $[2, 3, 1]$, $[3, 1, 2]$, $[3, 2, 1]$.\n\nIn the second test case $p = [1, 2, 1, 2]$.\n\nIn this sequence $p_1 = a_1$, $p_2 = a_2$, $p_3 = a_3$, $p_4 = a_4$. Also we can see, that no two adjacent elements of the sequence are equal.\n\nIn the third test case $p = [1, 3, 4, 3, 2, 4, 2]$.\n\nIn this sequence $p_1 = a_1$, $p_2 = a_2$, $p_3 = b_3$, $p_4 = b_4$, $p_5 = b_5$, $p_6 = c_6$, $p_7 = c_7$. Also we can see, that no two adjacent elements of the sequence are equal.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定三个序列：$a_1, a_2, \\ldots, a_n$、$b_1, b_2, \\ldots, b_n$ 和 $c_1, c_2, \\ldots, c_n$。\n\n对于每个 $i$，均满足 $a_i \\neq b_i$、$a_i \\neq c_i$、$b_i \\neq c_i$。\n\n请找出一个序列 $p_1, p_2, \\ldots, p_n$，满足以下条件：\n\n- $p_i \\in \\{a_i, b_i, c_i\\}$\n- $p_i \\neq p_{(i \\mod n) + 1}$。\n\n换句话说，对于每个元素，都需要从三个可能的值中选择一个，使得任意两个相邻元素（对于 $i \\lt n$，元素 $i$ 和 $i+1$ 相邻，同时元素 $1$ 和 $n$ 也相邻）的值都不相等。\n\n可以证明，在给定的约束条件下，解总是存在。你不需要最小化或最大化任何内容，只需找出任意一个满足条件的序列。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 100$），表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$3 \\leq n \\leq 100$），表示给定序列中元素的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq 100$）。\n\n第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$1 \\leq b_i \\leq 100$）。\n\n第四行包含 $n$ 个整数 $c_1, c_2, \\ldots, c_n$（$1 \\leq c_i \\leq 100$）。\n\n保证对于所有 $i$，均满足 $a_i \\neq b_i$、$a_i \\neq c_i$、$b_i \\neq c_i$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数：$p_1, p_2, \\ldots, p_n$（$p_i \\in \\{a_i, b_i, c_i\\}$，$p_i \\neq p_{i \\mod n + 1}$）。\n\n如果有多个解，可以输出任意一个。\n\n## 说明\n\n在第一个测试用例中，$p = [1, 2, 3]$。\n\n这是一个正确答案，因为：\n\n- $p_1 = 1 = a_1$，$p_2 = 2 = b_2$，$p_3 = 3 = c_3$\n- $p_1 \\neq p_2 $，$p_2 \\neq p_3 $，$p_3 \\neq p_1$\n\n该测试用例的所有可能正确答案为：$[1, 2, 3]$、$[1, 3, 2]$、$[2, 1, 3]$、$[2, 3, 1]$、$[3, 1, 2]$、$[3, 2, 1]$。\n\n在第二个测试用例中，$p = [1, 2, 1, 2]$。\n\n在该序列中，$p_1 = a_1$、$p_2 = a_2$、$p_3 = a_3$、$p_4 = a_4$。同时可以看出，序列中没有两个相邻元素相等。\n\n在第三个测试用例中，$p = [1, 3, 4, 3, 2, 4, 2]$。\n\n在该序列中，$p_1 = a_1$、$p_2 = a_2$、$p_3 = b_3$、$p_4 = b_4$、$p_5 = b_5$、$p_6 = c_6$、$p_7 = c_7$。同时可以看出，序列中没有两个相邻元素相等。",
   "samples": [
     {
       "input": "5\n3\n1 1 1\n2 2 2\n3 3 3\n4\n1 2 1 2\n2 1 2 1\n3 4 3 4\n7\n1 3 3 1 1 1 1\n2 4 4 3 2 2 4\n4 2 2 2 4 4 2\n3\n1 2 1\n2 3 3\n3 1 2\n10\n1 1 1 2 2 2 3 3 3 1\n2 2 2 3 3 3 1 1 1 2\n3 3 3 1 1 1 2 2 2 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:45:10.675Z"
+  "fetchedAt": "2026-10-30T23:45:10.675Z",
+  "translatedAt": "2026-11-04T04:21:02.175+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

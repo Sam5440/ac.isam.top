@@ -4,7 +4,7 @@
   "contestId": 538,
   "index": "D",
   "title": "Weird Chess",
-  "titleZh": null,
+  "titleZh": "奇异国际象棋",
   "url": "https://codeforces.com/contest/538/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Igor has been into chess for a long time and now he is sick of the game by the ordinary rules. He is going to think of new rules of the game and become world famous.\n\nIgor's chessboard is a square of size $*n* × *n*$ cells. Igor decided that simple rules guarantee success, that's why his game will have only one type of pieces. Besides, all pieces in his game are of the same color. The possible moves of a piece are described by a set of *shift vectors*. The next passage contains a formal description of available moves.\n\nLet the rows of the board be numbered from top to bottom and the columns be numbered from left to right from 1 to $*n*$. Let's assign to each square a pair of integers $(*x*, *y*)$ — the number of the corresponding column and row. Each of the possible moves of the piece is defined by a pair of integers $(*dx*, *dy*)$; using this move, the piece moves from the field $(*x*, *y*)$ to the field $(*x* + *dx*, *y* + *dy*)$. You can perform the move if the cell $(*x* + *dx*, *y* + *dy*)$ is within the boundaries of the board and doesn't contain another piece. Pieces that stand on the cells other than $(*x*, *y*)$ and $(*x* + *dx*, *y* + *dy*)$ are not important when considering the possibility of making the given move (for example, like when a knight moves in usual chess).\n\nIgor offers you to find out what moves his chess piece can make. He placed several pieces on the board and for each unoccupied square he told you whether it is attacked by any present piece (i.e. whether some of the pieces on the field can move to that cell). Restore a possible set of shift vectors of the piece, or else determine that Igor has made a mistake and such situation is impossible for any set of shift vectors.\n\n## Input\n\nThe first line contains a single integer $*n*$ ($1 ≤ *n* ≤ 50$).\n\nThe next $*n*$ lines contain $*n*$ characters each describing the position offered by Igor. The $*j*$-th character of the $*i*$-th string can have the following values:\n\n- `o` — in this case the field $(*i*, *j*)$ is occupied by a piece and the field may or may not be attacked by some other piece;\n- `x` — in this case field $(*i*, *j*)$ is attacked by some piece;\n- `.` — in this case field $(*i*, *j*)$ isn't attacked by any piece.\n\nIt is guaranteed that there is at least one piece on the board.\n\n## Output\n\nIf there is a valid set of moves, in the first line print a single word '`YES`' (without the quotes). Next, print the description of the set of moves of a piece in the form of a $(2*n* - 1) × (2*n* - 1)$ board, the center of the board has a piece and symbols '`x`' mark cells that are attacked by it, in a format similar to the input. See examples of the output for a full understanding of the format. If there are several possible answers, print any of them.\n\nIf a valid set of moves does not exist, print a single word '`NO`'.\n\n## Note\n\nIn the first sample test the piece is a usual chess rook, and in the second sample test the piece is a usual chess knight.",
-  "statementZhMd": null,
+  "statementZhMd": "伊戈尔痴迷国际象棋已经很久了，现在他已经厌倦了普通规则下的游戏。他打算设计一套新的游戏规则，并因此闻名世界。\n\n伊戈尔的棋盘是一个大小为 $*n* × *n*$ 的方格棋盘。他认为简单的规则才能保证成功，因此他的游戏中将只有一种棋子。此外，游戏中的所有棋子颜色都相同。棋子的可能移动由一组*位移向量*描述。下面将对可执行的移动进行形式化说明。\n\n棋盘的行从上到下编号，列从左到右编号，编号范围均为 1 到 $*n*$。我们为每个方格分配一对整数 $(*x*, *y*)$，分别表示对应的列号和行号。棋子的每一种可能移动都由一对整数 $(*dx*, *dy*)$ 定义；使用该移动时，棋子从方格 $(*x*, *y*)$ 移动到方格 $(*x* + *dx*, *y* + *dy*)$。当且仅当方格 $(*x* + *dx*, *y* + *dy*)$ 在棋盘范围内且不包含其他棋子时，才能执行该移动。在判断能否进行给定移动时，除 $(*x*, *y*)$ 和 $(*x* + *dx*, *y* + *dy*)$ 之外的方格上的棋子都无关紧要（例如，普通国际象棋中的马就是如此）。\n\n伊戈尔想让你找出他的棋子可以执行哪些移动。他在棋盘上放置了若干棋子，并对每个未占用的方格告诉你它是否受到某个已有棋子的攻击（即棋盘上的某个棋子是否可以移动到该方格）。请还原出一组可能的棋子位移向量；如果伊戈尔犯了错误，判断这种情况对于任何位移向量集合是否都不可能。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 50$）。\n\n接下来的 $*n*$ 行每行包含 $*n*$ 个字符，描述伊戈尔给出的棋盘情况。第 $*i*$ 个字符串的第 $*j*$ 个字符可能为以下值之一：\n\n- `o` —— 此时方格 $(*i*, *j*)$ 被一个棋子占据，并且该方格可能受到其他棋子的攻击，也可能不受攻击；\n- `x` —— 此时方格 $(*i*, *j*)$ 受到某个棋子的攻击；\n- `.` —— 此时方格 $(*i*, *j*)$ 不受任何棋子的攻击。\n\n保证棋盘上至少有一个棋子。\n\n## 输出格式\n\n如果存在一组有效的移动，第一行输出一个单词 '`YES`'（不含引号）。接下来，以一个 $(2*n* - 1) × (2*n* - 1)$ 的棋盘形式输出棋子的移动集合描述：棋盘中心放置一个棋子，符号 '`x`' 表示受到该棋子攻击的方格，格式与输入类似。完整格式请参见输出样例。如果有多种可能的答案，输出任意一种即可。\n\n如果不存在有效的移动集合，输出一个单词 '`NO`'。\n\n## 说明\n\n在第一个样例中，该棋子是普通国际象棋中的车；在第二个样例中，该棋子是普通国际象棋中的马。",
   "samples": [
     {
       "input": "5\noxxxx\nx...x\nx...x\nx...x\nxxxxo\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:28:28.727Z"
+  "fetchedAt": "2026-10-31T01:28:28.727Z",
+  "translatedAt": "2026-11-04T06:51:16.503+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

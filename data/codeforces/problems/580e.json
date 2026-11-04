@@ -4,7 +4,7 @@
   "contestId": 580,
   "index": "E",
   "title": "Kefa and Watch",
-  "titleZh": null,
+  "titleZh": "Kefa 与手表",
   "url": "https://codeforces.com/contest/580/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "One day Kefa the parrot was walking down the street as he was on the way home from the restaurant when he saw something glittering by the road. As he came nearer he understood that it was a watch. He decided to take it to the pawnbroker to earn some money.\n\nThe pawnbroker said that each watch contains a serial number represented by a string of digits from $0$ to $9$, and the more quality checks this number passes, the higher is the value of the watch. The check is defined by three positive integers $*l*$, $*r*$ and $*d*$. The watches pass a check if a substring of the serial number from $*l*$ to $*r*$ has period $*d*$. Sometimes the pawnbroker gets distracted and Kefa changes in some substring of the serial number all digits to $*c*$ in order to increase profit from the watch.\n\nThe seller has a lot of things to do to begin with and with Kefa messing about, he gave you a task: to write a program that determines the value of the watch.\n\nLet us remind you that number $*x*$ is called a period of string $*s*$ ($1 ≤ *x* ≤ |*s*|$), if $*s*_{*i*}  =  *s*_{*i* + *x*}$ for all $*i*$ from 1 to $|*s*|  -  *x*$.\n\n## Input\n\nThe first line of the input contains three positive integers $*n*$, $*m*$ and $*k*$ ($1 ≤ *n* ≤ 10^{5}$, $1 ≤ *m* + *k* ≤ 10^{5}$) — the length of the serial number, the number of change made by Kefa and the number of quality checks.\n\nThe second line contains a serial number consisting of $*n*$ digits.\n\nThen $*m* + *k*$ lines follow, containing either checks or changes.\n\nThe changes are given as 1 $*l*$ $*r*$ $*c*$ ($1 ≤ *l* ≤ *r* ≤ *n*$, $0 ≤ *c* ≤ 9$). That means that Kefa changed all the digits from the $*l*$-th to the $*r*$-th to be $*c*$.\n\nThe checks are given as 2 $*l*$ $*r*$ $*d*$ ($1 ≤ *l* ≤ *r* ≤ *n*$, $1 ≤ *d* ≤ *r* - *l* + 1$).\n\n## Output\n\nFor each check on a single line print \"`YES`\" if the watch passed it, otherwise print \"`NO`\".\n\n## Note\n\nIn the first sample test two checks will be made. In the first one substring \"12\" is checked on whether or not it has period 1, so the answer is \"`NO`\". In the second one substring \"88\", is checked on whether or not it has period 1, and it has this period, so the answer is \"`YES`\".\n\nIn the second statement test three checks will be made. The first check processes substring \"3493\", which doesn't have period 2. Before the second check the string looks as \"334334\", so the answer to it is \"`YES`\". And finally, the third check processes substring \"8334\", which does not have period 1.",
-  "statementZhMd": null,
+  "statementZhMd": "一天，鹦鹉 Kefa 从餐馆回家的路上沿街行走时，看到了路边有什么东西在闪闪发光。他走近后发现那是一块手表。于是他决定把它拿到当铺去换钱。\n\n当铺老板说，每块手表都有一个由 $0$ 到 $9$ 的数字组成的字符串表示的序列号。这个序列号通过的质量检测越多，手表的价值就越高。一次检测由三个正整数 *l*、*r* 和 *d* 定义。如果序列号从 *l* 到 *r* 的子串具有周期 *d*，则手表通过这次检测。有时当铺老板会分心，而 Kefa 会将序列号的某个子串中的所有数字都改为 *c*，以提高这块手表的利润。\n\n当铺老板本来就有很多事情要做，再加上 Kefa 的捣乱，于是他给了你一个任务：编写程序来确定这块手表的价值。\n\n我们提醒你，如果对于所有从 1 到 |*s*|  -  *x* 的 *i*，都有 *s*_{*i*}  =  *s*_{*i* + *x*}，则称数字 *x* 是字符串 *s* 的一个周期（$1 ≤ *x* ≤ |*s*|$）。\n\n## 输入格式\n\n输入的第一行包含三个正整数 *n*、*m* 和 *k*（$1 ≤ *n* ≤ 10^{5}$，$1 ≤ *m* + *k* ≤ 10^{5}$）——序列号的长度、Kefa 进行的修改次数以及质量检测的次数。\n\n第二行包含一个由 *n* 个数字组成的序列号。\n\n接下来 *m* + *k* 行，每行表示一次检测或修改。\n\n修改操作表示为 1 *l* *r* *c*（$1 ≤ *l* ≤ *r* ≤ *n*$，$0 ≤ *c* ≤ 9$）。这表示 Kefa 将从第 *l* 位到第 *r* 位的所有数字都改为 *c*。\n\n检测操作表示为 2 *l* *r* *d*（$1 ≤ *l* ≤ *r* ≤ *n*$，$1 ≤ *d* ≤ *r* - *l* + 1$）。\n\n## 输出格式\n\n对于每次检测，在单独一行输出“`YES`”（如果手表通过了检测），否则输出“`NO`”。\n\n## 说明\n\n在第一个样例中会进行两次检测。第一次检测的是子串 \"12\" 是否具有周期 1，因此答案是“`NO`”。第二次检测的是子串 \"88\" 是否具有周期 1，它确实具有该周期，因此答案是“`YES`”。\n\n在第二个样例中会进行三次检测。第一次检测的子串是 \"3493\"，它不具有周期 2。在第二次检测之前，字符串变为 \"334334\"，因此答案是“`YES`”。最后，第三次检测的子串是 \"8334\"，它不具有周期 1。",
   "samples": [
     {
       "input": "3 1 2\n112\n2 2 3 1\n1 1 3 8\n2 1 2 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:22:33.154Z"
+  "fetchedAt": "2026-10-31T01:22:33.154Z",
+  "translatedAt": "2026-11-04T06:45:08.572+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

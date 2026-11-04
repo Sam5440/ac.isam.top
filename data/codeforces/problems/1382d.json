@@ -4,14 +4,14 @@
   "contestId": 1382,
   "index": "D",
   "title": "Unmerge",
-  "titleZh": null,
+  "titleZh": "反合并",
   "url": "https://codeforces.com/contest/1382/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Let $a$ and $b$ be two arrays of lengths $n$ and $m$, respectively, with no elements in common. We can define a new array $\\mathrm{merge}(a,b)$ of length $n+m$ recursively as follows:\n\n- If one of the arrays is empty, the result is the other array. That is, $\\mathrm{merge}(\\emptyset,b)=b$ and $\\mathrm{merge}(a,\\emptyset)=a$. In particular, $\\mathrm{merge}(\\emptyset,\\emptyset)=\\emptyset$.\n- If both arrays are non-empty, and $a_1 \\lt b_1$, then $\\mathrm{merge}(a,b)=[a_1]+\\mathrm{merge}([a_2,\\ldots,a_n],b)$. That is, we delete the first element $a_1$ of $a$, merge the remaining arrays, then add $a_1$ to the beginning of the result.\n- If both arrays are non-empty, and $a_1 \\gt b_1$, then $\\mathrm{merge}(a,b)=[b_1]+\\mathrm{merge}(a,[b_2,\\ldots,b_m])$. That is, we delete the first element $b_1$ of $b$, merge the remaining arrays, then add $b_1$ to the beginning of the result.\n\nThis algorithm has the nice property that if $a$ and $b$ are sorted, then $\\mathrm{merge}(a,b)$ will also be sorted. For example, it is used as a subroutine in merge-sort. For this problem, however, we will consider the same procedure acting on non-sorted arrays as well. For example, if $a=[3,1]$ and $b=[2,4]$, then $\\mathrm{merge}(a,b)=[2,3,1,4]$.\n\nA permutation is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nThere is a permutation $p$ of length $2n$. Determine if there exist two arrays $a$ and $b$, each of length $n$ and with no elements in common, so that $p=\\mathrm{merge}(a,b)$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\le t\\le 1000$)  — the number of test cases. Next $2t$ lines contain descriptions of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le 2000$).\n\nThe second line of each test case contains $2n$ integers $p_1,\\ldots,p_{2n}$ ($1\\le p_i\\le 2n$). It is guaranteed that $p$ is a permutation.\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $2000$.\n\n## Output\n\nFor each test case, output \"`YES`\" if there exist arrays $a$, $b$, each of length $n$ and with no common elements, so that $p=\\mathrm{merge}(a,b)$. Otherwise, output \"`NO`\".\n\n## Note\n\nIn the first test case, $[2,3,1,4]=\\mathrm{merge}([3,1],[2,4])$.\n\nIn the second test case, we can show that $[3,1,2,4]$ is not the merge of two arrays of length $2$.\n\nIn the third test case, $[3,2,6,1,5,7,8,4]=\\mathrm{merge}([3,2,8,4],[6,1,5,7])$.\n\nIn the fourth test case, $[1,2,3,4,5,6]=\\mathrm{merge}([1,3,6],[2,4,5])$, for example.",
-  "statementZhMd": null,
+  "statementZhMd": "设 $a$ 和 $b$ 分别是长度为 $n$ 和 $m$ 的两个数组，且它们没有相同的元素。我们可以递归地定义一个长度为 $n+m$ 的新数组 $\\mathrm{merge}(a,b)$，如下所示：\n\n- 如果其中一个数组为空，则结果为另一个数组。也就是说，$\\mathrm{merge}(\\emptyset,b)=b$ 且 $\\mathrm{merge}(a,\\emptyset)=a$。特别地，$\\mathrm{merge}(\\emptyset,\\emptyset)=\\emptyset$。\n- 如果两个数组都非空，且 $a_1 \\lt b_1$，则 $\\mathrm{merge}(a,b)=[a_1]+\\mathrm{merge}([a_2,\\ldots,a_n],b)$。也就是说，删除 $a$ 的第一个元素 $a_1$，合并剩余的数组，然后将 $a_1$ 添加到结果的开头。\n- 如果两个数组都非空，且 $a_1 \\gt b_1$，则 $\\mathrm{merge}(a,b)=[b_1]+\\mathrm{merge}(a,[b_2,\\ldots,b_m])$。也就是说，删除 $b$ 的第一个元素 $b_1$，合并剩余的数组，然后将 $b_1$ 添加到结果的开头。\n\n该算法有一个很好的性质：如果 $a$ 和 $b$ 都已排序，那么 $\\mathrm{merge}(a,b)$ 也会有序。例如，归并排序就将其作为子程序使用。不过在本题中，我们也会考虑对未排序数组执行相同的过程。例如，当 $a=[3,1]$ 且 $b=[2,4]$ 时，$\\mathrm{merge}(a,b)=[2,3,1,4]$。\n\n排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n给定一个长度为 $2n$ 的排列 $p$。请判断是否存在两个长度均为 $n$ 且没有相同元素的数组 $a$ 和 $b$，使得 $p=\\mathrm{merge}(a,b)$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\le t\\le 1000$）——测试用例的数量。接下来的 $2t$ 行包含各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 2000$）。\n\n每个测试用例的第二行包含 $2n$ 个整数 $p_1,\\ldots,p_{2n}$（$1\\le p_i\\le 2n$）。保证 $p$ 是一个排列。\n\n保证所有测试用例中 $n$ 的总和不超过 $2000$。\n\n## 输出格式\n\n对于每个测试用例，如果存在两个长度均为 $n$ 且没有相同元素的数组 $a$ 和 $b$，使得 $p=\\mathrm{merge}(a,b)$，输出 `YES`；否则输出 `NO`。\n\n## 说明\n\n在第一个测试用例中，$[2,3,1,4]=\\mathrm{merge}([3,1],[2,4])$。\n\n在第二个测试用例中，可以证明 $[3,1,2,4]$ 不可能是两个长度为 $2$ 的数组合并得到的结果。\n\n在第三个测试用例中，$[3,2,6,1,5,7,8,4]=\\mathrm{merge}([3,2,8,4],[6,1,5,7])$。\n\n在第四个测试用例中，例如，$[1,2,3,4,5,6]=\\mathrm{merge}([1,3,6],[2,4,5])$。",
   "samples": [
     {
       "input": "6\n2\n2 3 1 4\n2\n3 1 2 4\n4\n3 2 6 1 5 7 8 4\n3\n1 2 3 4 5 6\n4\n6 1 3 7 4 5 8 2\n6\n4 3 2 5 1 11 9 12 8 6 10 7\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:47:23.164Z"
+  "fetchedAt": "2026-10-30T23:47:23.164Z",
+  "translatedAt": "2026-11-04T04:30:41.351+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

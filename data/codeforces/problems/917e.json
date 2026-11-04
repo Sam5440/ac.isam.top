@@ -4,7 +4,7 @@
   "contestId": 917,
   "index": "E",
   "title": "Upside Down",
-  "titleZh": null,
+  "titleZh": "颠倒世界",
   "url": "https://codeforces.com/contest/917/problem/E",
   "difficulty": 3400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "As we all know, Eleven has special abilities. Thus, Hopper convinced her to close the gate to the Upside Down World with her mind. Upside down monsters like to move between the worlds, so they are going to attack Hopper and Eleven in order to make them stop. The monsters live in the vines. The vines form a tree with $*n*$ vertices, numbered from $1$ through $*n*$. There's a lowercase English letter written in each tunnel (edge).\n\n![image](https://espresso.codeforces.com/066866a19462ac485ac3911e51a91db4817e7c17.png)\n\nUpside down is a magical world. There are $*m*$ types of monsters in upside down, numbered from $1$ through $*m*$. Each type of monster has a special word that gives them powers. The special word of type $*i*$ is $*s*_{*i*}$. There are $*q*$ monsters in upside down. Each one is at a junction (vertex) and is going to some other junction. If monster of type $*k*$ goes from junction $*i*$ to junction $*j*$, the power it gains is the number of times it sees its special world ($*s*_{*k*}$) consecutively in the tunnels. More formally:\n\nIf $*f*(*i*, *j*)$ is the string we get when we concatenate the letters written in the tunnels on the shortest path from $*i*$ to $*j*$, then the power the monster gains is the number of occurrences of $*s*_{*k*}$ in $*f*(*i*, *j*)$.\n\nHopper and Eleven want to get prepared, so for each monster, they want to know the power the monster gains after moving.\n\n## Input\n\nThe first line of input contains three integers, $*n*, *m*$ and $*q*$ ($2 ≤ *n* ≤ 10^{5}$, $1 ≤ *m*, *q* ≤ 10^{5}$).\n\nThe next $*n* - 1$ lines contain the tunnels (edges). Each line contains two integers $*v*$ and $*u*$ ($1 ≤ *v*, *u* ≤ *n*$, $*v* ≠ *u*$) and a lowercase English letter $*c*$, meaning there's a tunnel connecting junctions $*v*$ and $*u*$ written $*c*$ in it. It is guaranteed that the given graph is a tree.\n\nThe next $*m*$ lines contain the special words. $*i*$-th line of them contains a single string $*s*_{*i*}$ ($1 ≤ |*s*_{*i*}| ≤ 10^{5}$), consisting of lowercase English letters. It is guaranteed that $|*s*_{1}| + |*s*_{2}| + ... + |*s*_{*m*}| ≤ 10^{5}$).\n\nThe next $*q*$ lines contain the monsters. Each line contains three integers $*i*$, $*j*$ and $*k*$ ($1 ≤ *i*, *j* ≤ *n*$, $*i* ≠ *j*$, $1 ≤ *k* ≤ *m*$), meaning a monster of type $*k*$ is going from junction number $*i*$ to junction number $*j*$.\n\n## Output\n\nPrint $*q*$ lines. $*i*$-th line should contain a single integer, the power the $*i*$-th monster gains after moving.",
-  "statementZhMd": null,
+  "statementZhMd": "众所周知，Eleven 拥有特殊能力。因此，Hopper 说服她用意念关闭通往颠倒世界的大门。颠倒世界的怪物喜欢在两个世界之间移动，所以它们打算攻击 Hopper 和 Eleven，以阻止他们。怪物生活在藤蔓中。藤蔓构成了一棵有 $*n*$ 个顶点的树，顶点编号从 $1$ 到 $*n*$。每条隧道（边）上都写有一个小写英文字母。\n\n![image](https://espresso.codeforces.com/066866a19462ac485ac3911e51a91db4817e7c17.png)\n\n颠倒世界是一个神奇的世界。其中有 $*m*$ 种怪物，编号从 $1$ 到 $*m*$。每种怪物都有一个能赋予它们力量的特殊单词。第 $*i*$ 种怪物的特殊单词是 $*s*_{*i*}$。颠倒世界中有 $*q*$ 个怪物。每个怪物都位于某个路口（顶点），并将前往另一个路口。如果第 $*k*$ 种怪物从路口 $*i*$ 前往路口 $*j*$，那么它获得的力量是在隧道中连续看到其特殊单词（$*s*_{*k*}$）的次数。更正式地说：\n\n如果 $*f*(*i*, *j*)$ 是将从 $*i*$ 到 $*j*$ 的最短路径上隧道中写有的字母依次拼接得到的字符串，那么该怪物获得的力量就是 $*s*_{*k*}$ 在 $*f*(*i*, *j*)$ 中出现的次数。\n\nHopper 和 Eleven 想做好准备，因此对于每个怪物，他们都想知道该怪物移动后获得的力量。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*, *m*$ 和 $*q*$（$2 ≤ *n* ≤ 10^{5}$，$1 ≤ *m*, *q* ≤ 10^{5}$）。\n\n接下来的 $*n*$ - 1 行描述隧道（边）。每行包含两个整数 $*v*$ 和 $*u*$（$1 ≤ *v*, *u* ≤ *n*$，$*v* ≠ *u*$）以及一个小写英文字母 $*c*$，表示有一条连接路口 $*v*$ 和 $*u*$ 的隧道，隧道上写有 $*c*$。保证给出的图是一棵树。\n\n接下来的 $*m*$ 行包含特殊单词。其中第 $*i*$ 行包含一个字符串 $*s*_{*i*}$（$1 ≤ |*s*_{*i*}| ≤ 10^{5}$），由小写英文字母组成。保证 $|*s*_{*1}| + |*s*_{*2}| + ... + |*s*_{*m*}| ≤ 10^{5}$。\n\n接下来的 $*q*$ 行包含怪物的信息。每行包含三个整数 $*i*$、$*j*$ 和 $*k*$（$1 ≤ *i*, *j* ≤ *n*$，$*i* ≠ *j*$，$1 ≤ *k* ≤ *m*$），表示一个第 $*k*$ 种怪物正从编号为 $*i*$ 的路口前往编号为 $*j*$ 的路口。\n\n## 输出格式\n\n输出 $*q*$ 行。第 $*i*$ 行应包含一个整数，表示第 $*i*$ 个怪物移动后获得的力量。",
   "samples": [
     {
       "input": "6 4 5\n1 6 b\n2 3 a\n1 2 b\n5 3 b\n4 5 b\na\nb\nbb\naa\n1 2 1\n6 2 3\n1 6 2\n4 5 4\n1 6 2\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:37:29.531Z"
+  "fetchedAt": "2026-10-31T00:37:29.531Z",
+  "translatedAt": "2026-11-04T05:59:24.851+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

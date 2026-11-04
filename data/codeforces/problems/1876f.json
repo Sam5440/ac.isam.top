@@ -4,7 +4,7 @@
   "contestId": 1876,
   "index": "F",
   "title": "Indefinite Clownfish",
-  "titleZh": null,
+  "titleZh": "性别不定的小丑鱼",
   "url": "https://codeforces.com/contest/1876/problem/F",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3500,
   "memoryLimitMb": 512,
   "statementMd": "Pak Chanek has just bought an empty fish tank and he has been dreaming to fill it with his favourite kind of fish, clownfish. Pak Chanek likes clownfish because of their ability to change their genders on demand. Because of the size of his fish tank, Pak Chanek wants to buy exactly $k$ clownfish to fill the tank.\n\nPak Chanek goes to the local fish shop. The shop provides $n$ clownfish numbered from $1$ to $n$, with clownfish $i$ having a size of $a_i$. Initially, every clownfish in the store does not have an assigned gender, but has the ability to be assigned to two possible clownfish genders, female or male.\n\nThe store has a procedure which Pak Chanek should follow to buy clownfish. The shop owner will point at each clownfish sequentially from $1$ to $n$ and for each clownfish, she asks Pak Chanek whether to buy it or not. Each time Pak Chanek is asked, he must declare whether to buy the currently asked clownfish or not, before the shop owner moves on to the next clownfish. If Pak Chanek declares to buy the currently asked clownfish, he must also declare the gender to be assigned to that clownfish immediately. When assigning the gender for the currently asked clownfish, the following conditions must be satisfied:\n\n- If Pak Chanek assigns it to be female and he has bought a female clownfish before, then the size of the current one must be exactly $1$ **bigger** than the last female one.\n- If Pak Chanek assigns it to be male and he has bought a male clownfish before, then the size of the current one must be exactly $1$ **smaller** than the last male one.\n\nPak Chanek wants to buy exactly $k$ clownfish such that:\n\n- There is at least one female clownfish and one male clownfish.\n- Among the $k$ clownfish Pak Chanek buys, the mean size of the female clownfish is equal to the mean size of the male clownfish.\n\nLet $l$ and $r$ respectively be the minimum and maximum **index** of a clownfish Pak Chanek buys. What is the minimum possible value of $r-l$?\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($2 \\leq k \\leq n \\leq 2\\cdot10^5$) — the number of clownfish in the shop and the number of clownfish Pak Chanek has to buy.\n\nThe second line contains $n$ integers $a_1,a_2,a_3,\\ldots,a_n$ ($1\\leq a_i\\leq n$) — the size of each clownfish.\n\n## Output\n\nAn integer representing the minimum possible value of $r-l$. If it is impossible to buy exactly $k$ clownfish and satisfy the problem's condition, print $-1$.\n\n## Note\n\nIn the first example, Pak Chanek can do the following:\n\n1. Do not buy clownfish $1$.\n2. Buy clownfish $2$ and assign it as male.\n3. Buy clownfish $3$ and assign it as female.\n4. Buy clownfish $4$ and assign it as male.\n5. Buy clownfish $5$ and assign it as male.\n6. Do not buy clownfish $6$.\n7. Buy clownfish $7$ and assign it as male.\n8. Buy clownfish $8$ and assign it as female.\n9. Do not buy clownfish $9$.\n\nThen, we get that:\n\n- The mean size among the $2$ female clownfish Pak Chanek buys is $\\frac{2+3}{2} = 2.5$.\n- The mean size among the $4$ male clownfish Pak Chanek buys is $\\frac{4+3+2+1}{4} = 2.5$.\n- $l=2$, $r=8$, $r-l=6$.\n\nThere are no better strategies.",
-  "statementZhMd": null,
+  "statementZhMd": "Pak Chanek 刚买了一个空鱼缸，他一直梦想着用自己最喜欢的鱼——小丑鱼来填满它。Pak Chanek 喜欢小丑鱼，是因为它们能够按需改变性别。由于鱼缸的大小有限，Pak Chanek 想要恰好购买 $k$ 条小丑鱼来填满鱼缸。\n\nPak Chanek 来到当地的鱼店。鱼店提供了 $n$ 条编号为 $1$ 到 $n$ 的小丑鱼，其中第 $i$ 条小丑鱼的大小为 $a_i$。最初，店里的每条小丑鱼都没有被分配性别，但可以被分配为雌性或雄性中的一种。\n\n鱼店有一套 Pak Chanek 必须遵守的购买流程。店主会按照从 $1$ 到 $n$ 的顺序依次指向每条小丑鱼，并询问 Pak Chanek 是否要购买它。每次被询问时，在店主继续指向下一条小丑鱼之前，Pak Chanek 必须立即声明是否购买当前的小丑鱼。如果 Pak Chanek 声明购买当前的小丑鱼，他还必须立即声明为它分配的性别。为当前小丑鱼分配性别时，必须满足以下条件：\n\n- 如果 Pak Chanek 将其分配为雌性，且之前已经购买过一条雌性小丑鱼，那么当前小丑鱼的大小必须恰好比上一条雌性小丑鱼**大** $1$。\n- 如果 Pak Chanek 将其分配为雄性，且之前已经购买过一条雄性小丑鱼，那么当前小丑鱼的大小必须恰好比上一条雄性小丑鱼**小** $1$。\n\nPak Chanek 想要购买恰好 $k$ 条小丑鱼，并满足：\n\n- 至少有一条雌性小丑鱼和一条雄性小丑鱼。\n- 在 Pak Chanek 购买的 $k$ 条小丑鱼中，雌性小丑鱼的平均大小等于雄性小丑鱼的平均大小。\n\n令 $l$ 和 $r$ 分别为 Pak Chanek 购买的小丑鱼的最小和最大**编号**。$r-l$ 的最小可能值是多少？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$2 \\leq k \\leq n \\leq 2\\cdot10^5$）——鱼店中小丑鱼的数量，以及 Pak Chanek 必须购买的小丑鱼数量。\n\n第二行包含 $n$ 个整数 $a_1,a_2,a_3,\\ldots,a_n$（$1\\leq a_i\\leq n$）——每条小丑鱼的大小。\n\n## 输出格式\n\n输出一个整数，表示 $r-l$ 的最小可能值。如果无法购买恰好 $k$ 条小丑鱼并满足题目条件，则输出 $-1$。\n\n## 说明\n\n在第一个样例中，Pak Chanek 可以进行如下操作：\n\n1. 不购买第 $1$ 条小丑鱼。\n2. 购买第 $2$ 条小丑鱼，并将其分配为雄性。\n3. 购买第 $3$ 条小丑鱼，并将其分配为雌性。\n4. 购买第 $4$ 条小丑鱼，并将其分配为雄性。\n5. 购买第 $5$ 条小丑鱼，并将其分配为雄性。\n6. 不购买第 $6$ 条小丑鱼。\n7. 购买第 $7$ 条小丑鱼，并将其分配为雄性。\n8. 购买第 $8$ 条小丑鱼，并将其分配为雌性。\n9. 不购买第 $9$ 条小丑鱼。\n\n于是：\n\n- Pak Chanek 购买的 $2$ 条雌性小丑鱼的平均大小为 $\\frac{2+3}{2} = 2.5$。\n- Pak Chanek 购买的 $4$ 条雄性小丑鱼的平均大小为 $\\frac{4+3+2+1}{4} = 2.5$。\n- $l=2$，$r=8$，$r-l=6$。\n\n不存在更优的方案。",
   "samples": [
     {
       "input": "9 6\n2 4 2 3 2 4 1 3 4\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:15:50.766Z"
+  "fetchedAt": "2026-10-30T22:15:50.766Z",
+  "translatedAt": "2026-11-04T02:31:02.421+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

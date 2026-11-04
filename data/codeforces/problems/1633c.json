@@ -4,7 +4,7 @@
   "contestId": 1633,
   "index": "C",
   "title": "Kill the Monster",
-  "titleZh": null,
+  "titleZh": "消灭怪物",
   "url": "https://codeforces.com/contest/1633/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp is playing a computer game. In this game, his character fights different monsters.\n\nA fight between a character and a monster goes as follows. Suppose the character initially has health $h_C$ and attack $d_C$; the monster initially has health $h_M$ and attack $d_M$. The fight consists of several steps:\n\n1. the character attacks the monster, decreasing the monster's health by $d_C$;\n2. the monster attacks the character, decreasing the character's health by $d_M$;\n3. the character attacks the monster, decreasing the monster's health by $d_C$;\n4. the monster attacks the character, decreasing the character's health by $d_M$;\n5. and so on, until the end of the fight.\n\nThe fight ends when someone's health becomes non-positive (i. e. $0$ or less). If the monster's health becomes non-positive, the character wins, otherwise the monster wins.\n\nMonocarp's character currently has health equal to $h_C$ and attack equal to $d_C$. He wants to slay a monster with health equal to $h_M$ and attack equal to $d_M$. Before the fight, Monocarp can spend up to $k$ coins to upgrade his character's weapon and/or armor; each upgrade costs exactly one coin, each weapon upgrade increases the character's attack by $w$, and each armor upgrade increases the character's health by $a$.\n\nCan Monocarp's character slay the monster if Monocarp spends coins on upgrades optimally?\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 5 \\cdot 10^4$) — the number of test cases. Each test case consists of three lines:\n\nThe first line contains two integers $h_C$ and $d_C$ ($1 \\le h_C \\le 10^{15}$; $1 \\le d_C \\le 10^9$) — the character's health and attack;\n\nThe second line contains two integers $h_M$ and $d_M$ ($1 \\le h_M \\le 10^{15}$; $1 \\le d_M \\le 10^9$) — the monster's health and attack;\n\nThe third line contains three integers $k$, $w$ and $a$ ($0 \\le k \\le 2 \\cdot 10^5$; $0 \\le w \\le 10^4$; $0 \\le a \\le 10^{10}$) — the maximum number of coins that Monocarp can spend, the amount added to the character's attack with each weapon upgrade, and the amount added to the character's health with each armor upgrade, respectively.\n\nThe sum of $k$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print `YES` if it is possible to slay the monster by optimally choosing the upgrades. Otherwise, print `NO`.\n\n## Note\n\nIn the first example, Monocarp can spend one coin to upgrade weapon (damage will be equal to $5$), then health during battle will change as follows: $(h_C, h_M) = (25, 9) \\rightarrow (25, 4) \\rightarrow (5, 4) \\rightarrow (5, -1)$. The battle ended with Monocarp's victory.\n\nIn the second example, Monocarp has no way to defeat the monster.\n\nIn the third example, Monocarp has no coins, so he can't buy upgrades. However, the initial characteristics are enough for Monocarp to win.\n\nIn the fourth example, Monocarp has $4$ coins. To defeat the monster, he has to spend $2$ coins to upgrade weapon and $2$ coins to upgrade armor.",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 正在玩一款电脑游戏。在这款游戏中，他的角色会与不同的怪物战斗。\n\n角色与怪物之间的战斗过程如下。假设角色初始生命值为 $h_C$，攻击力为 $d_C$；怪物初始生命值为 $h_M$，攻击力为 $d_M$。战斗由若干步骤组成：\n\n1. 角色攻击怪物，使怪物的生命值减少 $d_C$；\n2. 怪物攻击角色，使角色的生命值减少 $d_M$；\n3. 角色攻击怪物，使怪物的生命值减少 $d_C$；\n4. 怪物攻击角色，使角色的生命值减少 $d_M$；\n5. 以此类推，直到战斗结束。\n\n当任意一方的生命值变为非正数（即 $0$ 或更低）时，战斗结束。如果怪物的生命值变为非正数，则角色获胜，否则怪物获胜。\n\nMonocarp 的角色当前生命值为 $h_C$，攻击力为 $d_C$。他想要击败一个生命值为 $h_M$、攻击力为 $d_M$ 的怪物。在战斗开始前，Monocarp 最多可以花费 $k$ 枚硬币来升级角色的武器和/或护甲；每次升级恰好花费一枚硬币，每次武器升级使角色的攻击力增加 $w$，每次护甲升级使角色的生命值增加 $a$。\n\n如果合理地花费硬币进行升级，Monocarp 的角色能否击败这个怪物？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 5 \\cdot 10^4$）——测试用例的数量。每个测试用例由三行组成：\n\n第一行包含两个整数 $h_C$ 和 $d_C$（$1 \\le h_C \\le 10^{15}$；$1 \\le d_C \\le 10^9$）——角色的生命值和攻击力；\n\n第二行包含两个整数 $h_M$ 和 $d_M$（$1 \\le h_M \\le 10^{15}$；$1 \\le d_M \\le 10^9$）——怪物的生命值和攻击力；\n\n第三行包含三个整数 $k$、$w$ 和 $a$（$0 \\le k \\le 2 \\cdot 10^5$；$0 \\le w \\le 10^4$；$0 \\le a \\le 10^{10}$）——Monocarp 最多可以花费的硬币数量、每次武器升级为角色攻击力增加的数值，以及每次护甲升级为角色生命值增加的数值。\n\n所有测试用例中的 $k$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果通过合理选择升级方式可以击败怪物，则输出 `YES`。否则，输出 `NO`。\n\n## 说明\n\n在第一个样例中，Monocarp 可以花费一枚硬币升级武器（伤害将变为 $5$），之后战斗中的生命值变化如下：$(h_C, h_M) = (25, 9) \\rightarrow (25, 4) \\rightarrow (5, 4) \\rightarrow (5, -1)$。战斗以 Monocarp 的胜利告终。\n\n在第二个样例中，Monocarp 没有办法击败怪物。\n\n在第三个样例中，Monocarp 没有硬币，因此无法购买升级。不过，他的初始属性已经足以获胜。\n\n在第四个样例中，Monocarp 有 $4$ 枚硬币。为了击败怪物，他必须花费 $2$ 枚硬币升级武器，并花费另外 $2$ 枚硬币升级护甲。",
   "samples": [
     {
       "input": "4\n25 4\n9 20\n1 1 10\n25 4\n12 20\n1 1 10\n100 1\n45 2\n0 4 10\n9 2\n69 2\n4 2 7\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:11:21.280Z"
+  "fetchedAt": "2026-11-02T18:11:21.280Z",
+  "translatedAt": "2026-11-04T03:32:57.351+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

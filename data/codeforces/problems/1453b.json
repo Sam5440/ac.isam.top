@@ -4,7 +4,7 @@
   "contestId": 1453,
   "index": "B",
   "title": "Suffix Operations",
-  "titleZh": null,
+  "titleZh": "后缀操作",
   "url": "https://codeforces.com/contest/1453/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 512,
   "statementMd": "Gildong has an interesting machine that has an array $a$ with $n$ integers. The machine supports two kinds of operations:\n\n1. Increase all elements of a suffix of the array by $1$.\n2. Decrease all elements of a suffix of the array by $1$.\n\nA suffix is a subsegment (contiguous elements) of the array that contains $a_n$. In other words, for all $i$ where $a_i$ is included in the subsegment, all $a_j$'s where $i \\lt j \\le n$ must also be included in the subsegment.\n\nGildong wants to make all elements of $a$ equal — he will always do so using the minimum number of operations necessary. To make his life even easier, before Gildong starts using the machine, you have the option of changing one of the integers in the array to any other integer. You are allowed to leave the array unchanged. You want to minimize the number of operations Gildong performs. With your help, what is the minimum number of operations Gildong will perform?\n\nNote that even if you change one of the integers in the array, you should **not** count that as one of the operations because Gildong did not perform it.\n\n## Input\n\nEach test contains one or more test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$).\n\nEach test case contains two lines. The first line of each test case consists of an integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of elements of the array $a$.\n\nThe second line of each test case contains $n$ integers. The $i$-th integer is $a_i$ ($-5 \\cdot 10^8 \\le a_i \\le 5 \\cdot 10^8$).\n\nIt is guaranteed that the sum of $n$ in all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print one integer — the minimum number of operations Gildong has to perform in order to make all elements of the array equal.\n\n## Note\n\nIn the first case, all elements of the array are already equal. Therefore, we do not change any integer and Gildong will perform zero operations.\n\nIn the second case, we can set $a_3$ to be $0$, so that the array becomes $[-1,0,0]$. Now Gildong can use the $2$-nd operation once on the suffix starting at $a_2$, which means $a_2$ and $a_3$ are decreased by $1$, making all elements of the array $-1$.\n\nIn the third case, we can set $a_1$ to $96$, so that the array becomes $[96,96,97,95]$. Now Gildong needs to:\n\n- Use the $2$-nd operation on the suffix starting at $a_3$ once, making the array $[96,96,96,94]$.\n- Use the $1$-st operation on the suffix starting at $a_4$ $2$ times, making the array $[96,96,96,96]$.\n\nIn the fourth case, we can change the array into $[-3,-3,-2,1]$. Now Gildong needs to:\n\n- Use the $2$-nd operation on the suffix starting at $a_4$ $3$ times, making the array $[-3,-3,-2,-2]$.\n- Use the $2$-nd operation on the suffix starting at $a_3$ once, making the array $[-3,-3,-3,-3]$.",
-  "statementZhMd": null,
+  "statementZhMd": "Gildong 有一台有趣的机器，其中有一个包含 $n$ 个整数的数组 $a$。这台机器支持以下两种操作：\n\n1. 将数组某个后缀中的所有元素加 $1$。\n2. 将数组某个后缀中的所有元素减 $1$。\n\n后缀是数组的一个包含 $a_n$ 的子段（连续元素）。换句话说，对于子段中包含的所有 $a_i$，所有满足 $i \\lt j \\le n$ 的 $a_j$ 也必须包含在该子段中。\n\nGildong 希望使 $a$ 中的所有元素都相等——他总是会使用达到这一目标所需的最少操作次数。为了让他的工作更加轻松，在 Gildong 开始使用机器之前，你可以选择将数组中的一个整数修改为任意其他整数。你也可以选择不修改数组。你的目标是使 Gildong 执行的操作次数最少。在你的帮助下，Gildong 最少需要执行多少次操作？\n\n注意，即使你修改了数组中的一个整数，也**不应**将此次修改计入操作次数，因为这不是 Gildong 执行的操作。\n\n## 输入格式\n\n每个测试包含一个或多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。\n\n每个测试用例包含两行。每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$），表示数组 $a$ 中元素的数量。\n\n每个测试用例的第二行包含 $n$ 个整数。第 $i$ 个整数为 $a_i$（$-5 \\cdot 10^8 \\le a_i \\le 5 \\cdot 10^8$）。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，即 Gildong 使数组中的所有元素相等所需执行的最少操作次数。\n\n## 说明\n\n在第一个测试用例中，数组中的所有元素已经相等。因此，我们不修改任何整数，Gildong 将执行 $0$ 次操作。\n\n在第二个测试用例中，我们可以将 $a_3$ 设置为 $0$，使数组变为 $[-1,0,0]$。现在 Gildong 可以在从 $a_2$ 开始的后缀上使用一次第 $2$ 种操作，即将 $a_2$ 和 $a_3$ 都减 $1$，从而使数组中的所有元素都变为 $-1$。\n\n在第三个测试用例中，我们可以将 $a_1$ 设置为 $96$，使数组变为 $[96,96,97,95]$。现在 Gildong 需要：\n\n- 在从 $a_3$ 开始的后缀上使用一次第 $2$ 种操作，使数组变为 $[96,96,96,94]$。\n- 在从 $a_4$ 开始的后缀上使用 $2$ 次第 $1$ 种操作，使数组变为 $[96,96,96,96]$。\n\n在第四个测试用例中，我们可以将数组变为 $[-3,-3,-2,1]$。现在 Gildong 需要：\n\n- 在从 $a_4$ 开始的后缀上使用 $3$ 次第 $2$ 种操作，使数组变为 $[-3,-3,-2,-2]$。\n- 在从 $a_3$ 开始的后缀上使用一次第 $2$ 种操作，使数组变为 $[-3,-3,-3,-3]$。",
   "samples": [
     {
       "input": "7\n2\n1 1\n3\n-1 0 2\n4\n99 96 97 95\n4\n-3 -5 -2 1\n6\n1 4 3 2 4 1\n5\n5 0 0 0 5\n9\n-367741579 319422997 -415264583 -125558838 -300860379 420848004 294512916 -383235489 425814447\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:39:28.706Z"
+  "fetchedAt": "2026-10-30T23:39:28.706Z",
+  "translatedAt": "2026-11-04T04:10:19.807+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

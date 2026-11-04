@@ -4,7 +4,7 @@
   "contestId": 1729,
   "index": "C",
   "title": "Jumping on Tiles",
-  "titleZh": null,
+  "titleZh": "在方块上跳跃",
   "url": "https://codeforces.com/contest/1729/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp was given a row of tiles. Each tile contains one lowercase letter of the Latin alphabet. The entire sequence of tiles forms the string $s$.\n\nIn other words, you are given a string $s$ consisting of lowercase Latin letters.\n\nInitially, Polycarp is on the **first** tile of the row and wants to get to the **last** tile by jumping on the tiles. Jumping from $i$-th tile to $j$-th tile has a cost equal to $|index(s_i) - index(s_j)|$, where $index(c)$ is the index of the letter $c$ in the alphabet (for example, $index($'`a`'$)=1$, $index($'`b`'$)=2$, ..., $index($'`z`'$)=26$) .\n\nPolycarp wants to get to the $n$-th tile for the minimum total cost, but at the same time make **maximum** number of jumps.\n\nIn other words, among all possible ways to get to the last tile for the **minimum** total cost, he will choose the one with the **maximum** number of jumps.\n\nPolycarp can visit each tile **at most once**.\n\nPolycarp asks you to help — print the sequence of indices of string $s$ on which he should jump.\n\n## Input\n\nThe first line of the input contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases in the test.\n\nEach test case is given by the string $s$ ($2 \\le |s| \\le 2 \\cdot 10^5$), where $|s|$ — is the length of string $s$. The string $s$ consists of lowercase Latin letters.\n\nIt is guaranteed that the sum of string lengths $s$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nThe answer to each test case consists of two lines.\n\nIn the first line print two integers $cost$, $m$, where $cost$ is the minimum total cost of the path, and $m$ is the maximum number of visited tiles Polycarp can make to get to $n$-th tiles for the minimum total cost $cost$ (i.e. the number of jumps is $m-1$).\n\nIn the next line print $m$ different numbers $j_1, j_2, \\dots, j_m$ ($1 \\le j_i \\le |s|$) — the sequence of indices of the tiles Polycarp will jump on. The first number in the sequence must be $1$ (that is, $j_1=1$) and the last number must be the value of $|s|$ (that is, $j_m=|s|$).\n\nIf there are multiple answers, print any of them.\n\n## Note\n\nIn the first test case, the required path corresponds to the picture:\n\n![image](https://espresso.codeforces.com/3ae6fa30459102598f018cecd4ffbbffa371cc8e.png)\n\nIn this case, the minimum possible total cost of the path is achieved. Since $index($'`l`'$)=12$, $index($'`o`'$)=15$, $index($'`g`'$)=7$, $index($'`i`'$)=9$, $index($'`c`'$)=3$, then the total cost of the path is $|12-9|+|9-7|+|7-3|=3+2+4=9$.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 得到了一排方块。每个方块上都写有一个小写拉丁字母。整排方块组成字符串 $s$。\n\n换句话说，给定一个由小写拉丁字母组成的字符串 $s$。\n\n起初，Polycarp 位于这一排方块的**第一个**方块上，他希望通过在方块之间跳跃到达**最后一个**方块。从第 $i$ 个方块跳到第 $j$ 个方块的代价为 $|index(s_i) - index(s_j)|$，其中 $index(c)$ 表示字母 $c$ 在字母表中的编号（例如，$index($'`a`'$)=1$，$index($'`b`'$)=2$，……，$index($'`z`'$)=26$）。\n\nPolycarp 希望以最小的总代价到达第 $n$ 个方块，同时还要使跳跃次数**最多**。\n\n换句话说，在所有以**最小**总代价到达最后一个方块的方案中，他会选择跳跃次数**最多**的方案。\n\nPolycarp 每个方块**至多经过一次**。\n\nPolycarp 请你帮助他——输出他应该跳跃经过的字符串 $s$ 的下标序列。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例给出一个字符串 $s$（$2 \\le |s| \\le 2 \\cdot 10^5$），其中 $|s|$ 表示字符串 $s$ 的长度。字符串 $s$ 由小写拉丁字母组成。\n\n保证所有测试用例的字符串长度之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n每个测试用例的答案包含两行。\n\n第一行输出两个整数 `cost`、`m`，其中 `cost` 是路径的最小总代价，`m` 是 Polycarp 在以最小总代价 `cost` 到达第 $n$ 个方块时能够经过的方块数量的最大值（即跳跃次数为 $m-1$）。\n\n下一行输出 $m$ 个互不相同的整数 $j_1, j_2, \\dots, j_m$（$1 \\le j_i \\le |s|$）——Polycarp 将要跳跃经过的方块下标序列。序列中的第一个数必须为 $1$（即 $j_1=1$），最后一个数必须为 $|s|$（即 $j_m=|s|$）。\n\n如果有多个答案，输出其中任意一个即可。\n\n## 说明\n\n在第一个测试用例中，所需路径如图所示：\n\n![image](https://espresso.codeforces.com/3ae6fa30459102598f018cecd4ffbbffa371cc8e.png)\n\n在这个方案中，路径的总代价达到了可能的最小值。由于 $index($'`l`'$)=12$、$index($'`o`'$)=15$、$index($'`g`'$)=7$、$index($'`i`'$)=9$、$index($'`c`'$)=3$，因此路径的总代价为 $|12-9|+|9-7|+|7-3|=3+2+4=9$。",
   "samples": [
     {
       "input": "6\nlogic\ncodeforces\nbca\naaaaaaaaaaa\nadbaadabad\nto\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:44.128Z"
+  "fetchedAt": "2026-11-02T17:50:44.128Z",
+  "translatedAt": "2026-11-04T03:11:58.793+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

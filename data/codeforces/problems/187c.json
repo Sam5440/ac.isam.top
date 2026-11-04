@@ -4,7 +4,7 @@
   "contestId": 187,
   "index": "C",
   "title": "Weak Memory",
-  "titleZh": null,
+  "titleZh": "弱记忆",
   "url": "https://codeforces.com/contest/187/problem/C",
   "difficulty": 2000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Zart PMP is qualified for ICPC World Finals in Harbin, China. After team excursion to Sun Island Park for snow sculpture art exposition, PMP should get back to buses before they leave. But the park is really big and he does not know how to find them.\n\nThe park has $*n*$ intersections numbered $1$ through $*n*$. There are $*m*$ bidirectional roads that connect some pairs of these intersections. At $*k*$ intersections, ICPC volunteers are helping the teams and showing them the way to their destinations. Locations of volunteers are fixed and distinct.\n\nWhen PMP asks a volunteer the way to bus station, he/she can tell him the whole path. But the park is fully covered with ice and snow and everywhere looks almost the same. So PMP can only memorize at most $*q*$ intersections after each question (excluding the intersection they are currently standing). He always tells volunteers about his weak memory and if there is no direct path of length (in number of roads) at most $*q*$ that leads to bus station, the volunteer will guide PMP to another volunteer (who is at most $*q*$ intersections away, of course). ICPC volunteers know the area very well and always tell PMP the best way. So if there exists a way to bus stations, PMP will definitely find it.\n\nPMP's initial location is intersection $*s*$ and the buses are at intersection $*t*$. There will always be a volunteer at intersection $*s*$. Your job is to find out the minimum $*q*$ which guarantees that PMP can find the buses.\n\n## Input\n\nThe first line contains three space-separated integers $*n*, *m*, *k*$ ($2 ≤ *n* ≤ 10^{5}, 0 ≤ *m* ≤ 2·10^{5}, 1 ≤ *k* ≤ *n*$) — the number of intersections, roads and volunteers, respectively. Next line contains $*k*$ distinct space-separated integers between $1$ and $*n*$ inclusive — the numbers of cities where volunteers are located.\n\nNext $*m*$ lines describe the roads. The $*i*$-th of these lines contains two space-separated integers $*u*_{*i*}, *v*_{*i*}$ ($1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*, *u*_{*i*} ≠ *v*_{*i*}$) — two intersections that $*i*$-th road connects. There will be at most one road between any two intersections.\n\nLast line of input contains two space-separated integers $*s*, *t*$ ($1 ≤ *s*, *t* ≤ *n*, *s* ≠ *t*$) — the initial location of PMP and the location of the buses. It might not always be possible to reach $*t*$ from $*s*$.\n\nIt is guaranteed that there is always a volunteer at intersection $*s*$.\n\n## Output\n\nPrint on the only line the answer to the problem — the minimum value of $*q*$ which guarantees that PMP can find the buses. If PMP cannot reach the buses at all, output -1 instead.\n\n## Note\n\nThe first sample is illustrated below. Blue intersections are where volunteers are located. If PMP goes in the path of dashed line, it can reach the buses with $*q* = 3$:\n\n![image](https://espresso.codeforces.com/a1f626be4f756a007133181452aa752498ded077.png)\n\nIn the second sample, PMP uses intersection 6 as an intermediate intersection, thus the answer is 3.",
-  "statementZhMd": null,
+  "statementZhMd": "Zart PMP 获得了在中国哈尔滨举行的 ICPC 世界总决赛参赛资格。在前往太阳岛公园参观雪雕艺术展后，PMP 需要在公交车离开前回到车上。然而，公园非常大，他不知道该如何找到公交车。\n\n公园中有 $*n*$ 个编号为 $1$ 至 $*n*$ 的路口。有 $*m*$ 条双向道路连接其中的部分路口。在 $*k*$ 个路口处，ICPC 志愿者正在帮助各支队伍，并为他们指引前往目的地的道路。志愿者的位置固定且互不相同。\n\n当 PMP 向志愿者询问前往公交车站的路线时，志愿者可以告诉他完整的路径。但公园里到处都覆盖着冰雪，四周看起来几乎一模一样。因此，PMP 每次询问后最多只能记住 $*q*$ 个路口（不包括他当前所在的路口）。他总会告诉志愿者自己的记忆力很差；如果不存在一条长度（道路数量）不超过 $*q*$、可以直接通往公交车站的路径，志愿者就会引导 PMP 前往另一名志愿者所在处（当然，距离不超过 $*q*$ 个路口）。ICPC 志愿者非常熟悉当地情况，并且总会告诉 PMP 最优的路线。因此，只要存在前往公交车站的方法，PMP 就一定能够找到它们。\n\nPMP 的初始位置是路口 $*s*$，公交车位于路口 $*t*$。路口 $*s*$ 处一定有一名志愿者。你的任务是求出能够保证 PMP 找到公交车的最小 $*q*$。\n\n## 输入格式\n\n第一行包含三个用空格分隔的整数 $*n*, *m*, *k*$（$2 ≤ *n* ≤ 10^{5}, 0 ≤ *m* ≤ 2·10^{5}, 1 ≤ *k* ≤ *n*$）——路口、道路和志愿者的数量。下一行包含 $*k*$ 个互不相同的、介于 $1$ 和 $*n*$（包含边界）之间的整数——志愿者所在路口的编号。\n\n接下来的 $*m*$ 行描述道路。第 $*i*$ 行包含两个用空格分隔的整数 $*u*_{*i*}, *v*_{*i*}$（$1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*, *u*_{*i*} ≠ *v*_{*i*}$）——第 $*i*$ 条道路连接的两个路口。任意两个路口之间至多有一条道路。\n\n输入的最后一行包含两个用空格分隔的整数 $*s*, *t*$（$1 ≤ *s*, *t* ≤ *n*, *s* ≠ *t*$）——PMP 的初始位置和公交车所在位置。从 $*s*$ 出发不一定能够到达 $*t*$。\n\n保证路口 $*s*$ 处一定有一名志愿者。\n\n## 输出格式\n\n在唯一一行中输出题目的答案——能够保证 PMP 找到公交车的 $*q*$ 的最小值。如果 PMP 根本无法到达公交车，则输出 -1。\n\n## 说明\n\n第一个样例如下图所示。蓝色路口表示志愿者所在的位置。如果 PMP 沿着虚线所示的路径前进，则在 $*q* = 3$ 时可以到达公交车：\n\n![image](https://espresso.codeforces.com/a1f626be4f756a007133181452aa752498ded077.png)\n\n在第二个样例中，PMP 使用路口 6 作为中间路口，因此答案为 3。",
   "samples": [
     {
       "input": "6 6 3\n1 3 6\n1 2\n2 3\n4 2\n5 6\n4 5\n3 4\n1 6\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:24:00.575Z"
+  "fetchedAt": "2026-10-31T02:24:00.575Z",
+  "translatedAt": "2026-11-04T07:40:06.356+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

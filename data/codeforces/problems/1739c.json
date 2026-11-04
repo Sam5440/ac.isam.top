@@ -4,7 +4,7 @@
   "contestId": 1739,
   "index": "C",
   "title": "Card Game",
-  "titleZh": null,
+  "titleZh": "卡牌游戏",
   "url": "https://codeforces.com/contest/1739/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Consider a game with $n$ cards ($n$ is even). Each card has a number written on it, between $1$ and $n$. All numbers on the cards are different. We say that a card with number $x$ is stronger than a card with number $y$ if $x \\gt y$.\n\nTwo players, Alex and Boris, play this game. In the beginning, each of them receives exactly $\\frac{n}{2}$ cards, so each card belongs to exactly one player. Then, they take turns. Alex goes first, then Boris, then Alex again, and so on.\n\nOn a player's turn, he must play **exactly one** of his cards. Then, if the opponent doesn't have any cards **stronger** than the card played, the opponent loses, and the game ends. Otherwise, the opponent has to play a stronger card (exactly one card as well). These two cards are removed from the game, and the turn ends. If there are no cards left, the game ends in a draw; otherwise it's the opponent's turn.\n\nConsider all possible ways to distribute the cards between two players, so that each of them receives exactly half of the cards. You have to calculate three numbers:\n\n- the number of ways to distribute the cards so that Alex wins;\n- the number of ways to distribute the cards so that Boris wins;\n- the number of ways to distribute the cards so that the game ends in a draw.\n\nYou may assume that both players play optimally (i. e. if a player can win no matter how his opponent plays, he wins). Two ways to distribute the cards are different if there is at least one card such that, in one of these ways, it is given to Alex, and in the other way, it is given to Boris.\n\nFor example, suppose $n = 4$, Alex receives the cards $[2, 3]$, and Boris receives the cards $[1, 4]$. Then the game may go as follows:\n\n- if Alex plays the card $2$, then Boris has to respond with the card $4$. Then, Alex's turn ends, and Boris' turn starts. Boris has only one card left, which is $1$; he plays it, and Alex responds with the card $3$. So, the game ends in a draw;\n- if Alex plays the card $3$, then Boris has to respond with the card $4$. Then, Alex's turn ends, and Boris' turn starts. Boris has only one card left, which is $1$; he plays it, and Alex responds with the card $2$. So, the game ends in a draw.\n\nSo, in this case, the game ends in a draw.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 30$) — the number of test cases.\n\nThen, $t$ lines follow. The $i$-th line contains one **even** integer $n$ ($2 \\le n \\le 60$).\n\n## Output\n\nFor each test case, print three integers:\n\n- the number of ways to distribute the cards so that Alex wins;\n- the number of ways to distribute the cards so that Boris wins;\n- the number of ways to distribute the cards so that the game ends in a draw.\n\n**Since the answers can be large, print them modulo $998244353$**.\n\n## Note\n\nIn the first test case, Alex wins if he receives the card $2$ (he plays it, and Boris cannot respond). If Alex receives the card $1$, the game ends in a draw.\n\nIn the second test case:\n\n- Alex wins if he receives the cards $[3, 4]$, $[2, 4]$ or $[1, 4]$;\n- Boris wins if Alex receives the cards $[1, 2]$ or $[1, 3]$;\n- the game ends in a draw if Alex receives the cards $[2, 3]$.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 张卡牌（$n$ 为偶数）。每张卡牌上写有一个介于 $1$ 和 $n$ 之间的数字，且所有卡牌上的数字互不相同。如果一张卡牌上的数字为 $x$，另一张卡牌上的数字为 $y$，且 $x \\gt y$，那么我们称数字为 $x$ 的卡牌比数字为 $y$ 的卡牌更强。\n\n两名玩家 Alex 和 Boris 进行这个游戏。开始时，他们每人恰好获得 $\\frac{n}{2}$ 张卡牌，因此每张卡牌恰好属于其中一名玩家。随后，两人轮流进行操作。Alex 先手，然后是 Boris，接着又是 Alex，如此交替进行。\n\n在一名玩家的回合中，他必须打出自己的一张卡牌。接下来，如果对手没有任何比所打出的卡牌**更强**的卡牌，则对手输掉游戏，游戏结束。否则，对手必须打出一张更强的卡牌（同样恰好一张）。这两张卡牌将从游戏中移除，本回合结束。如果没有剩余卡牌，游戏以平局结束；否则轮到对手进行回合。\n\n考虑将卡牌分配给两名玩家的所有可能方式，使得每人恰好获得一半的卡牌。你需要计算以下三个数：\n\n- 使 Alex 获胜的分配方式数；\n- 使 Boris 获胜的分配方式数；\n- 使游戏以平局结束的分配方式数。\n\n你可以假设两名玩家都会采取最优策略（即，如果一名玩家无论对手如何行动都能获胜，那么他就会获胜）。如果存在至少一张卡牌，在一种分配方式中它被分给 Alex，而在另一种分配方式中它被分给 Boris，则称这两种分配方式不同。\n\n例如，假设 $n = 4$，Alex 获得卡牌 $[2, 3]$，Boris 获得卡牌 $[1, 4]$。那么游戏可能按以下方式进行：\n\n- 如果 Alex 打出卡牌 $2$，那么 Boris 必须用卡牌 $4$ 应对。随后，Alex 的回合结束，Boris 的回合开始。Boris 只剩下一张卡牌，即 $1$；他打出这张卡牌，而 Alex 用卡牌 $3$ 应对。因此，游戏以平局结束；\n- 如果 Alex 打出卡牌 $3$，那么 Boris 必须用卡牌 $4$ 应对。随后，Alex 的回合结束，Boris 的回合开始。Boris 只剩下一张卡牌，即 $1$；他打出这张卡牌，而 Alex 用卡牌 $2$ 应对。因此，游戏以平局结束。\n\n所以，在这种情况下，游戏以平局结束。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 30$）——测试用例的数量。\n\n接下来有 $t$ 行。第 $i$ 行包含一个**偶数** $n$（$2 \\le n \\le 60$）。\n\n## 输出格式\n\n对于每个测试用例，输出三个整数：\n\n- 使 Alex 获胜的卡牌分配方式数；\n- 使 Boris 获胜的卡牌分配方式数；\n- 使游戏以平局结束的卡牌分配方式数。\n\n**由于答案可能很大，请将其对 $998244353$ 取模后输出。**\n\n## 说明\n\n在第一个测试用例中，如果 Alex 获得卡牌 $2$，则 Alex 获胜（他打出这张卡牌，而 Boris 无法应对）。如果 Alex 获得卡牌 $1$，则游戏以平局结束。\n\n在第二个测试用例中：\n\n- 如果 Alex 获得卡牌 $[3, 4]$、$[2, 4]$ 或 $[1, 4]$，则 Alex 获胜；\n- 如果 Alex 获得卡牌 $[1, 2]$ 或 $[1, 3]$，则 Boris 获胜；\n- 如果 Alex 获得卡牌 $[2, 3]$，则游戏以平局结束。",
   "samples": [
     {
       "input": "5\n2\n4\n6\n8\n60\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:14.707Z"
+  "fetchedAt": "2026-11-02T17:50:14.707Z",
+  "translatedAt": "2026-11-04T03:19:06.566+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

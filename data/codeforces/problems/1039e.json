@@ -4,7 +4,7 @@
   "contestId": 1039,
   "index": "E",
   "title": "Summer Oenothera Exhibition",
-  "titleZh": null,
+  "titleZh": "夏季月见草展览",
   "url": "https://codeforces.com/contest/1039/problem/E",
   "difficulty": 3400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 512,
   "statementMd": "While some people enjoy spending their time solving programming contests, Dina prefers taking beautiful pictures. As soon as Byteland Botanical Garden announced Summer Oenothera Exhibition she decided to test her new camera there.\n\nThe exhibition consists of $l = 10^{100}$ Oenothera species arranged in a row and consecutively numbered with integers from $0$ to $l - 1$. Camera lens allows to take a photo of $w$ species on it, i.e. Dina can take a photo containing flowers with indices from $x$ to $x + w - 1$ for some integer $x$ between $0$ and $l - w$. We will denote such photo with $[x, x + w - 1]$.\n\nShe has taken $n$ photos, the $i$-th of which (in chronological order) is $[x_i, x_i + w - 1]$ in our notation. She decided to build a time-lapse video from these photos once she discovered that Oenothera blossoms open in the evening.\n\nDina takes each photo and truncates it, leaving its segment containing exactly $k$ flowers, then she composes a video of these photos keeping their original order and voilà, a beautiful artwork has been created!\n\nA scene is a contiguous sequence of photos such that the set of flowers on them is the same. The change between two scenes is called a *cut*. For example, consider the first photo contains flowers $[1, 5]$, the second photo contains flowers $[3, 7]$ and the third photo contains flowers $[8, 12]$. If $k = 3$, then Dina can truncate the first and the second photo into $[3, 5]$, and the third photo into $[9, 11]$. First two photos form a scene, third photo also forms a scene and the transition between these two scenes which happens between the second and the third photos is a cut. If $k = 4$, then each of the transitions between photos has to be a cut.\n\nDina wants the number of cuts to be as small as possible. Please help her! Calculate the minimum possible number of cuts for different values of $k$.\n\n## Input\n\nThe first line contains three positive integer $n$, $w$, $q$ ($1 \\leq n, q \\leq 100\\,000$, $1 \\leq w \\leq 10^9$) — the number of taken photos, the number of flowers on a single photo and the number of queries.\n\nNext line contains $n$ non-negative integers $x_i$ ($0 \\le x_i \\le 10^9$) — the indices of the leftmost flowers on each of the photos.\n\nNext line contains $q$ positive integers $k_i$ ($1 \\le k_i \\le w$) — the values of $k$ for which you have to solve the problem.\n\nIt's guaranteed that all $k_i$ are distinct.\n\n## Output\n\nPrint $q$ integers — for each width of the truncated photo $k_i$, the minimum number of cuts that is possible.",
-  "statementZhMd": null,
+  "statementZhMd": "有些人喜欢把时间花在解决编程竞赛题上，而 Dina 更喜欢拍摄美丽的照片。Byteland 植物园宣布举办夏季月见草展览后，她决定在那里测试自己的新相机。\n\n展览由 $l = 10^{100}$ 种月见草组成，它们排成一行，并使用从 $0$ 到 $l - 1$ 的整数依次编号。相机镜头一次可以拍摄 $w$ 种月见草，也就是说，对于某个介于 $0$ 和 $l - w$ 之间的整数 $x$，Dina 可以拍摄包含编号从 $x$ 到 $x + w - 1$ 的花朵的照片。我们将这样的照片记为 $[x, x + w - 1]$。\n\n她一共拍摄了 $n$ 张照片，其中第 $i$ 张照片（按时间顺序）在我们的记号中为 $[x_i, x_i + w - 1]$。当她发现月见草会在傍晚开放后，她决定用这些照片制作延时摄影视频。\n\nDina 会处理每一张照片，将其截取为恰好包含 $k$ 朵花的线段，然后按照原始顺序将这些照片合成为视频。就这样，一件美丽的艺术品诞生了！\n\n一个场景是照片的一个连续序列，且这些照片中的花朵集合完全相同。两个场景之间的变化称为一次 *剪辑*。例如，假设第一张照片包含花朵 $[1, 5]$，第二张照片包含花朵 $[3, 7]$，第三张照片包含花朵 $[8, 12]$。如果 $k = 3$，那么 Dina 可以将第一张和第二张照片都截取为 $[3, 5]$，将第三张照片截取为 $[9, 11]$。前两张照片构成一个场景，第三张照片也构成一个场景，而这两个场景之间发生在第二张和第三张照片之间的转换就是一次剪辑。如果 $k = 4$，那么每两张相邻照片之间的转换都必须是一次剪辑。\n\nDina 希望剪辑次数尽可能少。请帮助她！对于不同的 $k$，计算可能的最少剪辑次数。\n\n## 输入格式\n\n第一行包含三个正整数 $n$、$w$、$q$（$1 \\leq n, q \\leq 100\\,000$，$1 \\leq w \\leq 10^9$）——拍摄的照片数量、单张照片中的花朵数量以及询问数量。\n\n第二行包含 $n$ 个非负整数 $x_i$（$0 \\leq x_i \\leq 10^9$）——每张照片中最左侧花朵的编号。\n\n第三行包含 $q$ 个正整数 $k_i$（$1 \\leq k_i \\leq w$）——需要解决的问题中 $k$ 的取值。\n\n保证所有 $k_i$ 互不相同。\n\n## 输出格式\n\n输出 $q$ 个整数——对于每个截取后照片的宽度 $k_i$，输出可能的最少剪辑次数。",
   "samples": [
     {
       "input": "3 6 5\n2 4 0\n1 2 3 4 5\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:24:01.463Z"
+  "fetchedAt": "2026-10-31T00:24:01.463Z",
+  "translatedAt": "2026-11-04T05:31:46.918+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

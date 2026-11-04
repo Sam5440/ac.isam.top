@@ -4,7 +4,7 @@
   "contestId": 250,
   "index": "B",
   "title": "Restoring IPv6",
-  "titleZh": null,
+  "titleZh": "还原 IPv6 地址",
   "url": "https://codeforces.com/contest/250/problem/B",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "An IPv6-address is a 128-bit number. For convenience, this number is recorded in blocks of 16 bits in hexadecimal record, the blocks are separated by colons — 8 blocks in total, each block has four hexadecimal digits. Here is an example of the correct record of a IPv6 address: \"`0124:5678:90ab:cdef:0124:5678:90ab:cdef`\". We'll call such format of recording an IPv6-address *full*.\n\nBesides the full record of an IPv6 address there is a *short* record format. The record of an IPv6 address can be shortened by removing one or more leading zeroes at the beginning of each block. However, each block should contain at least one digit in the short format. For example, the leading zeroes can be removed like that: \"`a56f:00d3:0000:0124:0001:f19a:1000:0000`\" $→$ \"`a56f:d3:0:0124:01:f19a:1000:00`\". There are more ways to shorten zeroes in this IPv6 address.\n\nSome IPv6 addresses contain long sequences of zeroes. Continuous sequences of 16-bit zero blocks can be shortened to \"`::`\". A sequence can consist of one or several **consecutive blocks**, with all 16 bits equal to 0.\n\nYou can see examples of zero block shortenings below:\n\n- \"`a56f:00d3:0000:0124:0001:0000:0000:0000`\" $→$ \"`a56f:00d3:0000:0124:0001::`\";\n- \"`a56f:0000:0000:0124:0001:0000:1234:0ff0`\" $→$ \"`a56f::0124:0001:0000:1234:0ff0`\";\n- \"`a56f:0000:0000:0000:0001:0000:1234:0ff0`\" $→$ \"`a56f:0000::0000:0001:0000:1234:0ff0`\";\n- \"`a56f:00d3:0000:0124:0001:0000:0000:0000`\" $→$ \"`a56f:00d3:0000:0124:0001::0000`\";\n- \"`0000:0000:0000:0000:0000:0000:0000:0000`\" $→$ \"`::`\".\n\nIt is not allowed to shorten zero blocks in the address more than once. This means that the short record can't contain the sequence of characters \"`::`\" more than once. Otherwise, it will sometimes be impossible to determine the number of zero blocks, each represented by a double colon.\n\nThe format of the record of the IPv6 address after removing the leading zeroes and shortening the zero blocks is called *short*.\n\nYou've got several short records of IPv6 addresses. Restore their full record.\n\n## Input\n\nThe first line contains a single integer $*n*$ — the number of records to restore ($1 ≤ *n* ≤ 100$).\n\nEach of the following $*n*$ lines contains a string — the short IPv6 addresses. Each string only consists of string characters \"`0123456789abcdef:`\".\n\nIt is guaranteed that each short address is obtained by the way that is described in the statement from some full IPv6 address.\n\n## Output\n\nFor each short IPv6 address from the input print its full record on a separate line. Print the full records for the short IPv6 addresses in the order, in which the short records follow in the input.",
-  "statementZhMd": null,
+  "statementZhMd": "IPv6 地址是一个 128 位的数字。为方便起见，该数字以十六进制形式记录为 16 位一组，各组之间用冒号分隔——总共 8 组，每组包含 4 个十六进制数字。下面是一个正确记录 IPv6 地址的示例：\"`0124:5678:90ab:cdef:0124:5678:90ab:cdef`\"。我们将这种 IPv6 地址的记录格式称为*完整格式*。\n\n除了 IPv6 地址的完整格式外，还有一种*简写格式*。在 IPv6 地址的记录中，可以移除每组开头的一个或多个零。但是，在简写格式中，每组至少应包含一个数字。例如，可以像下面这样移除开头的零：\"`a56f:00d3:0000:0124:0001:f19a:1000:0000`\" $→$ \"`a56f:d3:0:0124:01:f19a:1000:00`\"。对于这个 IPv6 地址，还有其他移除零的方式。\n\n一些 IPv6 地址包含很长的零序列。连续的 16 位零分组可以简写为 \"`::`\"。这样的序列可以由一个或多个**连续分组**组成，其中所有 16 位都等于 0。\n\n下面是一些缩短零分组的示例：\n\n- \"`a56f:00d3:0000:0124:0001:0000:0000:0000`\" $→$ \"`a56f:00d3:0000:0124:0001::`\"；\n- \"`a56f:0000:0000:0124:0001:0000:1234:0ff0`\" $→$ \"`a56f::0124:0001:0000:1234:0ff0`\"；\n- \"`a56f:0000:0000:0000:0001:0000:1234:0ff0`\" $→$ \"`a56f:0000::0000:0001:0000:1234:0ff0`\"；\n- \"`a56f:00d3:0000:0124:0001:0000:0000:0000`\" $→$ \"`a56f:00d3:0000:0124:0001::0000`\"；\n- \"`0000:0000:0000:0000:0000:0000:0000:0000`\" $→$ \"`::`\"。\n\n不允许在一个地址中多次缩短零分组。这意味着简写格式中不能包含超过一次的 \"`::`\" 字符序列。否则，有时将无法确定每个双冒号所表示的零分组数量。\n\n移除开头的零并缩短零分组后得到的 IPv6 地址记录格式称为*简写格式*。\n\n现在给出若干 IPv6 地址的简写格式。请还原它们的完整格式。\n\n## 输入格式\n\n第一行包含一个整数 $*n* — 要还原的记录数量（$1 ≤ *n* ≤ 100$）。\n\n接下来的 $*n*$ 行中，每行包含一个字符串——IPv6 地址的简写格式。每个字符串仅由字符 \"`0123456789abcdef:`\" 组成。\n\n保证每个简写地址都可以按照题目描述的方式从某个 IPv6 地址的完整格式得到。\n\n## 输出格式\n\n对于输入中的每个 IPv6 简写地址，分别输出其完整格式，每个地址占一行。按照简写地址在输入中出现的顺序输出对应的完整格式。",
   "samples": [
     {
       "input": "6\na56f:d3:0:0124:01:f19a:1000:00\na56f:00d3:0000:0124:0001::\na56f::0124:0001:0000:1234:0ff0\na56f:0000::0000:0001:0000:1234:0ff0\n::\n0ea::4d:f4:6:0\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:15:32.821Z"
+  "fetchedAt": "2026-10-31T02:15:32.821Z",
+  "translatedAt": "2026-11-04T07:33:45.895+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1750,
   "index": "A",
   "title": "Indirect Sort",
-  "titleZh": null,
+  "titleZh": "间接排序",
   "url": "https://codeforces.com/contest/1750/problem/A",
   "difficulty": 800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a permutation $a_1, a_2, \\ldots, a_n$ of size $n$, where each integer from $1$ to $n$ appears **exactly once**.\n\nYou can do the following operation any number of times (possibly, zero):\n\n- Choose any three indices $i, j, k$ ($1 \\le i \\lt j \\lt k \\le n$).\n- If $a_i \\gt a_k$, replace $a_i$ with $a_i + a_j$. Otherwise, swap $a_j$ and $a_k$.\n\nDetermine whether you can make the array $a$ sorted in non-descending order.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 5000$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($3 \\le n \\le 10$) — the length of the array $a$.\n\nThe second line contains $n$ integers $a_1,a_2,\\dots,a_n$ ($1 \\le a_i \\le n$, $a_i \\neq a_j$ if $i \\neq j$) — the elements of the array $a$.\n\n## Output\n\nFor each test case, output \"`Yes`\" (without quotes) if the array can be sorted in non-descending order, and \"`No`\" (without quotes) otherwise.\n\nYou can output \"`Yes`\" and \"`No`\" in any case (for example, strings \"`YES`\", \"`yEs`\" and \"`yes`\" will be recognized as a positive response).\n\n## Note\n\nIn the first test case, $[1,2,3]$ is already sorted in non-descending order.\n\nIn the second test case, we can choose $i = 1,j = 2,k = 3$. Since $a_1 \\le a_3$, swap $a_2$ and $a_3$, the array then becomes $[1,2,3]$, which is sorted in non-descending order.\n\nIn the seventh test case, we can do the following operations successively:\n\n- Choose $i = 5,j = 6,k = 7$. Since $a_5 \\le a_7$, swap $a_6$ and $a_7$, the array then becomes $[1,2,6,7,4,5,3]$.\n- Choose $i = 5,j = 6,k = 7$. Since $a_5 \\gt a_7$, replace $a_5$ with $a_5+a_6=9$, the array then becomes $[1,2,6,7,9,5,3]$.\n- Choose $i = 2,j = 5,k = 7$. Since $a_2 \\le a_7$, swap $a_5$ and $a_7$, the array then becomes $[1,2,6,7,3,5,9]$.\n- Choose $i = 2,j = 4,k = 6$. Since $a_2 \\le a_6$, swap $a_4$ and $a_6$, the array then becomes $[1,2,6,5,3,7,9]$.\n- Choose $i = 1,j = 3,k = 5$. Since $a_1 \\le a_5$, swap $a_3$ and $a_5$, the array then becomes $[1,2,3,5,6,7,9]$, which is sorted in non-descending order.\n\nIn the third, the fourth, the fifth and the sixth test cases, it can be shown that the array cannot be sorted in non-descending order.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的排列 $a_1, a_2, \\ldots, a_n$，其中从 $1$ 到 $n$ 的每个整数都**恰好出现一次**。\n\n你可以进行以下操作任意次（也可以一次都不进行）：\n\n- 选择任意三个下标 $i, j, k$（$1 \\le i \\lt j \\lt k \\le n$）。\n- 如果 $a_i \\gt a_k$，则将 $a_i$ 替换为 $a_i + a_j$；否则，交换 $a_j$ 和 $a_k$。\n\n判断是否可以通过上述操作将数组 $a$ 排列为非递减序列。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 5000$），表示测试用例的数量。接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$3 \\le n \\le 10$），表示数组 $a$ 的长度。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\dots,a_n$（$1 \\le a_i \\le n$，当 $i \\neq j$ 时有 $a_i \\neq a_j$），表示数组 $a$ 的元素。\n\n## 输出格式\n\n对于每个测试用例，如果可以将数组排列为非递减序列，输出 `Yes`（不含引号）；否则输出 `No`（不含引号）。\n\n你可以使用任意大小写形式输出 `Yes` 和 `No`（例如，字符串 `YES`、`yEs` 和 `yes` 都会被识别为肯定 პასუხ）。\n\n## 说明\n\n在第一个测试用例中，$[1,2,3]$ 已经是非递减序列。\n\n在第二个测试用例中，我们可以选择 $i = 1,j = 2,k = 3$。由于 $a_1 \\le a_3$，交换 $a_2$ 和 $a_3$，数组将变为 $[1,2,3]$，这就是一个非递减序列。\n\n在第七个测试用例中，我们可以依次进行以下操作：\n\n- 选择 $i = 5,j = 6,k = 7$。由于 $a_5 \\le a_7$，交换 $a_6$ 和 $a_7$，数组将变为 $[1,2,6,7,4,5,3]$。\n- 选择 $i = 5,j = 6,k = 7$。由于 $a_5 \\gt a_7$，将 $a_5$ 替换为 $a_5+a_6=9$，数组将变为 $[1,2,6,7,9,5,3]$。\n- 选择 $i = 2,j = 5,k = 7$。由于 $a_2 \\le a_7$，交换 $a_5$ 和 $a_7$，数组将变为 $[1,2,6,7,3,5,9]$。\n- 选择 $i = 2,j = 4,k = 6$。由于 $a_2 \\le a_6$，交换 $a_4$ 和 $a_6$，数组将变为 $[1,2,6,5,3,7,9]$。\n- 选择 $i = 1,j = 3,k = 5$。由于 $a_1 \\le a_5$，交换 $a_3$ 和 $a_5$，数组将变为 $[1,2,3,5,6,7,9]$，这是一个非递减序列。\n\n可以证明，在第三、第四、第五和第六个测试用例中，无法将数组排列为非递减序列。",
   "samples": [
     {
       "input": "7\n3\n1 2 3\n3\n1 3 2\n7\n5 3 4 7 6 2 1\n7\n7 6 5 4 3 2 1\n5\n2 1 4 5 3\n5\n2 1 3 4 5\n7\n1 2 6 7 4 3 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:44:18.671Z"
+  "fetchedAt": "2026-10-30T22:44:18.671Z",
+  "translatedAt": "2026-11-04T03:09:54.264+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1418,
   "index": "B",
   "title": "Negative Prefixes",
-  "titleZh": null,
+  "titleZh": "负前缀",
   "url": "https://codeforces.com/contest/1418/problem/B",
   "difficulty": 1300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array a, consisting of n integers.\n\nEach position i (1≤i≤n) of the array is either locked or unlocked. You can take the values on the unlocked positions, rearrange them in any order and place them back into the unlocked positions. You are not allowed to remove any values, add the new ones or rearrange the values on the locked positions. You are allowed to leave the values in the same order as they were.\n\nFor example, let a=[−1,1,3_,2,−2_,1,−4,0_], the underlined positions are locked. You can obtain the following arrays:\n\n- [−1,1,3_,2,−2_,1,−4,0_];\n- [−4,−1,3_,2,−2_,1,1,0_];\n- [1,−1,3_,2,−2_,1,−4,0_];\n- [1,2,3_,−1,−2_,−4,1,0_];\n- and some others.\n\nLet p be a sequence of prefix sums of the array a after the rearrangement. So p1=a1, p2=a1+a2, p3=a1+a2+a3, …, pn=a1+a2+⋯+an.\n\nLet k be the maximum j (1≤j≤n) such that pj<0. If there are no j such that pj<0, then k=0.\n\nYour goal is to rearrange the values in such a way that k is minimum possible.\n\nOutput the array a after the rearrangement such that the value k for it is minimum possible. If there are multiple answers then print any of them.\n\n## Input\n\nThe first line contains a single integer t (1≤t≤1000) — the number of testcases.\n\nThen t testcases follow.\n\nThe first line of each testcase contains a single integer n (1≤n≤100) — the number of elements in the array a.\n\nThe second line of each testcase contains n integers a1,a2,…,an (−105≤ai≤105) — the initial array a.\n\nThe third line of each testcase contains n integers l1,l2,…,ln (0≤li≤1), where li=0 means that the position i is unlocked and li=1 means that the position i is locked.\n\n## Output\n\nPrint n integers — the array a after the rearrangement. Value k (the maximum j such that pj<0 (or 0 if there are no such j)) should be minimum possible. For each locked position the printed value should be equal to the initial one. The values on the unlocked positions should be an arrangement of the initial ones.\n\nIf there are multiple answers then print any of them.\n\n## Note\n\nIn the first testcase you can rearrange all values however you want but any arrangement will result in k=0. For example, for an arrangement [1,2,3], p=[1,3,6], so there are no j such that pj<0. Thus, k=0.\n\nIn the second testcase you are not allowed to rearrange any elements. Thus, the printed array should be exactly the same as the initial one.\n\nIn the third testcase the prefix sums for the printed array are p=[−8,−14,−13,−9,−5,2,0]. The maximum j is 5, thus k=5. There are no arrangements such that k<5.\n\nIn the fourth testcase p=[−4,−4,−3,3,6].\n\nIn the fifth testcase p=[−1,3,10,2,12,11].",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个由 $n$ 个整数构成的数组 $a$。\n\n数组中的每个位置 $i$（$1≤i≤n$）要么被锁定，要么未被锁定。你可以取出未锁定位置上的值，以任意顺序重新排列，并将它们放回未锁定的位置。你不能删除任何值、添加新值，也不能重新排列锁定位置上的值。当然，你也可以保持这些值原来的顺序不变。\n\n例如，设 $a=[−1,1,3_,2,−2_,1,−4,0_]$，带下划线的位置表示锁定位置。你可以得到以下数组：\n\n- [−1,1,3_,2,−2_,1,−4,0_]；\n- [−4,−1,3_,2,−2_,1,1,0_]；\n- [1,−1,3_,2,−2_,1,−4,0_]；\n- [1,2,3_,−1,−2_,−4,1,0_]；\n- 以及其他一些数组。\n\n令 $p$ 表示重新排列数组 $a$ 后的前缀和序列。因此，$p1=a1$，$p2=a1+a2$，$p3=a1+a2+a3$，…，$pn=a1+a2+⋯+an$。\n\n令 $k$ 为满足 $pj<0$ 的最大 $j$（$1≤j≤n$）。如果不存在满足条件的 $j$，则 $k=0$。\n\n你的目标是重新排列这些值，使得 $k$ 尽可能小。\n\n输出重新排列后的数组 $a$，使其对应的 $k$ 达到可能的最小值。如果有多个答案，输出任意一个即可。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1≤t≤1000$）——测试用例的数量。\n\n接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1≤n≤100$）——数组 $a$ 中元素的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a1,a2,…,an$（$−105≤ai≤105$）——初始数组 $a$。\n\n每个测试用例的第三行包含 $n$ 个整数 $l1,l2,…,ln$（$0≤li≤1$）。其中，$li=0$ 表示位置 $i$ 未被锁定，$li=1$ 表示位置 $i$ 被锁定。\n\n## 输出格式\n\n输出 $n$ 个整数——重新排列后的数组 $a$。对于该数组，值 $k$（满足 $pj<0$ 的最大 $j$；如果不存在这样的 $j$，则为 $0$）应达到可能的最小值。对于每个锁定位置，输出的值必须与初始值相同。未锁定位置上的值必须是初始值的某种排列。\n\n如果有多个答案，输出任意一个即可。\n\n## 说明\n\n在第一个测试用例中，你可以任意重新排列所有值，但任何排列都会得到 $k=0$。例如，对于排列 [1,2,3]，$p=[1,3,6]$，不存在满足 $pj<0$ 的 $j$。因此，$k=0$。\n\n在第二个测试用例中，你不能重新排列任何元素。因此，输出的数组应与初始数组完全相同。\n\n在第三个测试用例中，输出数组的前缀和为 $p=[−8,−14,−13,−9,−5,2,0]$。最大值 $j$ 为 $5$，因此 $k=5$。不存在使 $k<5$ 的排列方式。\n\n在第四个测试用例中，$p=[−4,−4,−3,3,6]$。\n\n在第五个测试用例中，$p=[−1,3,10,2,12,11]$。",
   "samples": [
     {
       "input": "5\n3\n1 3 2\n0 0 0\n4\n2 -3 4 -1\n1 1 1 1\n7\n-8 4 -2 -6 4 7 1\n1 0 0 0 1 1 0\n5\n0 1 -4 6 3\n0 0 0 1 1\n6\n-1 7 10 4 -8 -1\n1 0 0 0 0 1\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:44:24.577Z"
+  "fetchedAt": "2026-11-02T18:44:24.577Z",
+  "translatedAt": "2026-11-04T04:21:51.316+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

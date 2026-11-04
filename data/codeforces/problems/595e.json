@@ -4,14 +4,14 @@
   "contestId": 595,
   "index": "E",
   "title": "Edo and Magnets",
-  "titleZh": null,
+  "titleZh": "Edo 与磁铁",
   "url": "https://codeforces.com/contest/595/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Edo has got a collection of $*n*$ refrigerator magnets!\n\nHe decided to buy a refrigerator and hang the magnets on the door. The shop can make the refrigerator with any size of the door that meets the following restrictions: the refrigerator door must be rectangle, and both the length and the width of the door must be **positive integers**.\n\nEdo figured out how he wants to place the magnets on the refrigerator. He introduced a system of coordinates on the plane, where each magnet is represented as a rectangle with sides parallel to the coordinate axes.\n\nNow he wants to remove no more than $*k*$ magnets (he may choose to keep all of them) and attach all remaining magnets to the refrigerator door, and the area of ​​the door should be as small as possible. A magnet is considered to be attached to the refrigerator door if **its center** lies on the door or on its boundary. The relative positions of all the remaining magnets must correspond to the plan.\n\nLet us explain the last two sentences. Let's suppose we want to hang two magnets on the refrigerator. If the magnet in the plan has coordinates of the lower left corner ($*x*_{1}$, $*y*_{1}$) and the upper right corner ($*x*_{2}$, $*y*_{2}$), then its center is located at (![image](https://espresso.codeforces.com/15b7b5483b9db195f6637e0bc7dde6abb369865f.png), ![image](https://espresso.codeforces.com/cbee1cead1e07167011ef519a9905f52719e785b.png)) (may not be integers). By saying the relative position should correspond to the plan we mean that the only available operation is translation, i.e. the vector connecting the centers of two magnets in the original plan, must be equal to the vector connecting the centers of these two magnets on the refrigerator.\n\n**The sides of the refrigerator door must also be parallel to coordinate axes.**\n\n## Input\n\nThe first line contains two integers $*n*$ and $*k*$ ($1 ≤ *n* ≤ 100 000$, $0 ≤ *k* ≤ *min*(10, *n* - 1)$) — the number of magnets that Edo has and the maximum number of magnets Edo may not place on the refrigerator.\n\nNext $*n*$ lines describe the initial plan of placing magnets. Each line contains four integers $*x*_{1}, *y*_{1}, *x*_{2}, *y*_{2}$ ($1 ≤ *x*_{1} < *x*_{2} ≤ 10^{9}$, $1 ≤ *y*_{1} < *y*_{2} ≤ 10^{9}$) — the coordinates of the lower left and upper right corners of the current magnet. The magnets can partially overlap or even fully coincide.\n\n## Output\n\nPrint a single integer — the minimum area of the door of refrigerator, which can be used to place at least $*n* - *k*$ magnets, preserving the relative positions.\n\n## Note\n\nIn the first test sample it is optimal to remove either the first or the third magnet. If we remove the first magnet, the centers of two others will lie at points (2.5, 2.5) and (3.5, 3.5). Thus, it is enough to buy a fridge with door width 1 and door height 1, the area of the door also equals one, correspondingly.\n\nIn the second test sample it doesn't matter which magnet to remove, the answer will not change — we need a fridge with door width 8 and door height 8.\n\nIn the third sample you cannot remove anything as $*k* = 0$.",
-  "statementZhMd": null,
+  "statementZhMd": "Edo 有一 collection of $*n*$ 个冰箱磁铁！\n\n他决定购买一台冰箱，并将这些磁铁挂在门上。商店可以制作任意尺寸的冰箱门，但必须满足以下限制：冰箱门必须是矩形，并且门的长和宽都必须是**正整数**。\n\nEdo 已经确定了将磁铁放置在冰箱上的方案。他在平面上建立了一个坐标系，其中每个磁铁都表示为一个边平行于坐标轴的矩形。\n\n现在，他希望移除不超过 $*k*$ 个磁铁（也可以一个都不移除），并将所有剩余的磁铁安装到冰箱门上，使冰箱门的面积尽可能小。如果一个磁铁的**中心**位于冰箱门内部或边界上，则认为该磁铁已安装在冰箱门上。所有剩余磁铁的相对位置必须与方案一致。\n\n下面解释最后两句话。假设我们想要将两个磁铁挂在冰箱上。如果方案中某个磁铁的左下角坐标为（$*x*_{1}$，$*y*_{1}$），右上角坐标为（$*x*_{2}$，$*y*_{2}$），那么它的中心位于 (![image](https://espresso.codeforces.com/15b7b5483b9db195f6637e0bc7dde6abb369865f.png), ![image](https://espresso.codeforces.com/cbee1cead1e07167011ef519a9905f52719e785b.png))（可能不是整数点）。所谓相对位置必须与方案一致，是指唯一允许的操作是平移，即原方案中两个磁铁中心之间的向量，必须等于这两个磁铁在冰箱上的中心之间的向量。\n\n**冰箱门的边也必须平行于坐标轴。**\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*k*$（$1 ≤ *n* ≤ 100 000$，$0 ≤ *k* ≤ *min*(10, *n* - 1)$）——Edo 拥有的磁铁数量，以及 Edo 最多可以不放置在冰箱上的磁铁数量。\n\n接下来 $*n*$ 行描述磁铁的初始放置方案。每行包含四个整数 $*x*_{1}, *y*_{1}, *x*_{2}, *y*_{2}$（$1 ≤ *x*_{1} < *x*_{2} ≤ 10^{9}$，$1 ≤ *y*_{1} < *y*_{2} ≤ 10^{9}$）——当前磁铁左下角和右上角的坐标。磁铁之间可能部分重叠，甚至可能完全重合。\n\n## 输出格式\n\n输出一个整数——能够放置至少 $*n* - *k*$ 个磁铁且保持相对位置的冰箱门的最小面积。\n\n## 说明\n\n在第一个样例中，移除第一个或第三个磁铁均可得到最优解。如果移除第一个磁铁，那么另外两个磁铁的中心将位于点 (2.5, 2.5) 和 (3.5, 3.5)。因此，只需购买一个门宽为 1、高为 1 的冰箱，冰箱门的面积也相应为 1。\n\n在第二个样例中，无论移除哪个磁铁，答案都不会改变——我们需要一个门宽为 8、高为 8 的冰箱。\n\n在第三个样例中，由于 $*k* = 0$，无法移除任何磁铁。",
   "samples": [
     {
       "input": "3 1\n1 1 2 2\n2 2 3 3\n3 3 4 4\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:19:24.184Z"
+  "fetchedAt": "2026-10-31T01:19:24.184Z",
+  "translatedAt": "2026-11-04T06:42:43.437+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

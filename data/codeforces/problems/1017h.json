@@ -4,7 +4,7 @@
   "contestId": 1017,
   "index": "H",
   "title": "The Films",
-  "titleZh": null,
+  "titleZh": "电影",
   "url": "https://codeforces.com/contest/1017/problem/H",
   "difficulty": 3300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "In \"`The Man in the High Castle`\" world, there are $m$ different film endings.\n\nAbendsen owns a storage and a shelf. At first, he has $n$ ordered films on the shelf. In the $i$-th month he will do:\n\n1. Empty the storage.\n2. Put $k_i \\cdot m$ films into the storage, $k_i$ films for each ending.\n3. He will think about a question: if he puts all the films from the shelf into the storage, then randomly picks $n$ films (from all the films in the storage) and rearranges them on the shelf, what is the probability that sequence of endings in $[l_i, r_i]$ on the shelf will not be changed? Notice, he just thinks about this question, so the shelf will not actually be changed.\n\nAnswer all Abendsen's questions.\n\nLet the probability be fraction $P_i$. Let's say that the total number of ways to take $n$ films from the storage for $i$-th month is $A_i$, so $P_i \\cdot A_i$ is always an integer. Print for each month $P_i \\cdot A_i \\pmod {998244353}$.\n\n$998244353$ is a prime number and it is equal to $119 \\cdot 2^{23} + 1$.\n\nIt is guaranteed that there will be only no more than $100$ different $k$ values.\n\n## Input\n\nThe first line contains three integers $n$, $m$, and $q$ ($1 \\le n, m, q \\le 10^5$, $n+q\\leq 10^5$) — the number of films on the shelf initially, the number of endings, and the number of months.\n\nThe second line contains $n$ integers $e_1, e_2, \\ldots, e_n$ ($1\\leq e_i\\leq m$) — the ending of the $i$-th film on the shelf.\n\nEach of the next $q$ lines contains three integers $l_i$, $r_i$, and $k_i$ ($1 \\le l_i \\le r_i \\le n, 0 \\le k_i \\le 10^5$) — the $i$-th query.\n\nIt is guaranteed that there will be only no more than $100$ different $k$ values.\n\n## Output\n\nPrint the answer for each question in a separate line.\n\n## Note\n\nIn the first sample in the second query, after adding $2 \\cdot m$ films into the storage, the storage will look like this: $\\{1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4\\}$.\n\nThere are $26730$ total ways of choosing the films so that $e_l, e_{l+1}, \\ldots, e_r$ will not be changed, for example, $[1, 2, 3, 2, 2]$ and $[1, 2, 3, 4, 3]$ are such ways.\n\nThere are $2162160$ total ways of choosing the films, so you're asked to print $(\\frac{26730}{2162160} \\cdot 2162160) \\mod 998244353 = 26730$.",
-  "statementZhMd": null,
+  "statementZhMd": "在“`The Man in the High Castle`”的世界中，有 $m$ 种不同的电影结局。\n\nAbendsen 拥有一个储藏室和一个架子。起初，架子上按顺序放着 $n$ 部电影。在第 $i$ 个月，他会进行以下操作：\n\n1. 清空储藏室。\n2. 将 $k_i \\cdot m$ 部电影放入储藏室，每种结局放入 $k_i$ 部。\n3. 他思考这样一个问题：如果将架子上的所有电影都放入储藏室，然后从储藏室中的所有电影里随机取出 $n$ 部，并按顺序重新放到架子上，那么架子上区间 $[l_i, r_i]$ 中的结局序列不发生变化的概率是多少？注意，他只是思考这个问题，因此架子实际上不会发生变化。\n\n请回答 Abendsen 的所有问题。\n\n设该概率为分数 $P_i$。设第 $i$ 个月从储藏室中取出 $n$ 部电影的总方案数为 $A_i$，则 $P_i \\cdot A_i$ 始终为整数。对于每个月，输出 $P_i \\cdot A_i \\pmod {998244353}$。\n\n$998244353$ 是一个质数，且等于 $119 \\cdot 2^{23} + 1$。\n\n保证不同的 $k$ 值不超过 $100$ 个。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$ 和 $q$（$1 \\le n, m, q \\le 10^5$，$n+q\\leq 10^5$）——初始时架子上的电影数量、结局数量以及月份数。\n\n第二行包含 $n$ 个整数 $e_1, e_2, \\ldots, e_n$（$1\\leq e_i\\leq m$）——架子上第 $i$ 部电影的结局。\n\n接下来的 $q$ 行中，每行包含三个整数 $l_i$、$r_i$ 和 $k_i$（$1 \\le l_i \\le r_i \\le n, 0 \\le k_i \\le 10^5$）——第 $i$ 个询问。\n\n保证不同的 $k$ 值不超过 $100$ 个。\n\n## 输出格式\n\n对于每个问题，单独一行输出答案。\n\n## 说明\n\n在第一个样例的第二个询问中，向储藏室中加入 $2 \\cdot m$ 部电影后，储藏室将如下所示：$\\{1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4\\}$。\n\n共有 $26730$ 种取法可以使 $e_l, e_{l+1}, \\ldots, e_r$ 不发生变化，例如 $[1, 2, 3, 2, 2]$ 和 $[1, 2, 3, 4, 3]$ 就是这样的取法。\n\n共有 $2162160$ 种取法，因此需要输出 $(\\frac{26730}{2162160} \\cdot 2162160) \\mod 998244353 = 26730$。",
   "samples": [
     {
       "input": "6 4 4\n1 2 3 4 4 4\n1 4 0\n1 3 2\n1 4 2\n1 5 2\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:27:10.212Z"
+  "fetchedAt": "2026-10-31T00:27:10.212Z",
+  "translatedAt": "2026-11-04T05:34:16.546+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

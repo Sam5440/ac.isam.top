@@ -4,7 +4,7 @@
   "contestId": 1583,
   "index": "E",
   "title": "Moment of Bloom",
-  "titleZh": null,
+  "titleZh": "绽放时刻",
   "url": "https://codeforces.com/contest/1583/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "*She does her utmost to flawlessly carry out a person's last rites and preserve the world's balance of yin and yang.*\n\nHu Tao, being the little prankster she is, has tried to scare you with this graph problem! You are given a connected undirected graph of $n$ nodes with $m$ edges. You also have $q$ queries. Each query consists of two nodes $a$ and $b$.\n\nInitially, all edges in the graph have a weight of $0$. For each query, you must choose a simple path starting from $a$ and ending at $b$. Then you add $1$ to every edge along this path. Determine if it's possible, after processing all $q$ queries, for all edges in this graph to have an even weight. If so, output the choice of paths for each query.\n\nIf it is not possible, determine the smallest number of extra queries you could add to make it possible. It can be shown that this number will not exceed $10^{18}$ under the given constraints.\n\nA simple path is defined as any path that does not visit a node more than once.\n\nAn edge is said to have an even weight if its value is divisible by $2$.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\leq n \\leq 3 \\cdot 10^5$, $n-1 \\leq m \\leq \\min{\\left(\\frac{n(n-1)}{2}, 3 \\cdot 10^5\\right)}$).\n\nEach of the next $m$ lines contains two integers $x$ and $y$ ($1 \\leq x, y \\leq n$, $x\\neq y$) indicating an undirected edge between node $x$ and $y$. The input will not contain self-loops or duplicate edges, and the provided graph will be connected.\n\nThe next line contains a single integer $q$ ($1 \\leq q \\leq 3 \\cdot 10^5$).\n\nEach of the next $q$ lines contains two integers $a$ and $b$ ($1 \\leq a, b \\leq n, a \\neq b$), the description of each query.\n\nIt is guaranteed that $nq \\leq 3 \\cdot 10^5$.\n\n## Output\n\nIf it is possible to force all edge weights to be even, print \"`YES`\" on the first line, followed by $2q$ lines indicating the choice of path for each query in the same order the queries are given. For each query, the first line should contain a single integer $x$: the number of nodes in the chosen path. The next line should then contain $x$ spaced separated integers $p_i$ indicating the path you take ($p_1 = a, p_x = b$ and all numbers should fall between $1$ and $n$). This path cannot contain duplicate nodes and must be a valid simple path in the graph.\n\nIf it is impossible to force all edge weights to be even, print \"`NO`\" on the first line and the minimum number of added queries on the second line.\n\n## Note\n\nHere is what the queries look like for the first test case (red corresponds to the 1st query, blue 2nd query, and green 3rd query):\n\n![image](https://espresso.codeforces.com/f49e9e328ba6e2f8341a4c8a06420022541356f5.png)\n\nNotice that every edge in the graph is part of either $0$ or $2$ colored query edges.\n\nThe graph in the second test case looks like this:\n\n![image](https://espresso.codeforces.com/46a164013af6d72857a06d088e48613c2428cb74.png)\n\nThere does not exist an assignment of paths that will force all edges to have even weights with the given queries. One must add at least $2$ new queries to obtain a set of queries that can satisfy the condition.",
-  "statementZhMd": null,
+  "statementZhMd": "*她竭尽全力，完美地完成一个人的葬礼，并维持世界阴阳的平衡。*\n\n胡桃一如既往地喜欢恶作剧，这次她试图用这道图论题吓唬你！给定一个有 $n$ 个节点、$m$ 条边的连通无向图。你还需要处理 $q$ 个询问，每个询问由两个节点 $a$ 和 $b$ 组成。\n\n初始时，图中的所有边权均为 $0$。对于每个询问，你必须选择一条从 $a$ 开始、以 $b$ 结束的简单路径，然后将路径上的每条边的权值都加 $1$。请判断在处理完全部 $q$ 个询问后，是否可以使图中的所有边权均为偶数。如果可以，请输出每个询问所选择的路径。\n\n如果不可能，请求出至少还需要添加多少个询问才能使其成为可能。可以证明，在给定约束下，这个数不会超过 $10^{18}$。\n\n简单路径定义为不重复经过任何节点的路径。\n\n如果一条边的权值可以被 $2$ 整除，则称其权值为偶数。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 3 \\cdot 10^5$，$n-1 \\leq m \\leq \\min{\\left(\\frac{n(n-1)}{2}, 3 \\cdot 10^5\\right)}$）。\n\n接下来的 $m$ 行中，每行包含两个整数 $x$ 和 $y$（$1 \\leq x, y \\leq n$，$x\\neq y$），表示节点 $x$ 和节点 $y$ 之间存在一条无向边。输入中不会有自环或重边，且给出的图保证是连通的。\n\n下一行包含一个整数 $q$（$1 \\leq q \\leq 3 \\cdot 10^5$）。\n\n接下来的 $q$ 行中，每行包含两个整数 $a$ 和 $b$（$1 \\leq a, b \\leq n$，$a \\neq b$），表示一个询问。\n\n保证 $nq \\leq 3 \\cdot 10^5$。\n\n## 输出格式\n\n如果可以使所有边权均为偶数，首先输出 \"`YES`\"，随后输出 $2q$ 行，按照询问给出的顺序表示每个询问所选择的路径。对于每个询问，第一行应包含一个整数 $x$，表示所选路径上的节点数。下一行应包含 $x$ 个用空格分隔的整数 $p_i$，表示所选择的路径（$p_1 = a$，$p_x = b$，且所有数都在 $1$ 到 $n$ 之间）。该路径不能包含重复节点，并且必须是图中的一条合法简单路径。\n\n如果无法使所有边权均为偶数，首先输出 \"`NO`\"，第二行输出需要添加的最少询问数。\n\n## 说明\n\n以下是第一个测试用例中的询问示意图（红色对应第 1 个询问，蓝色对应第 2 个询问，绿色对应第 3 个询问）：\n\n![image](https://espresso.codeforces.com/f49e9e328ba6e2f8341a4c8a06420022541356f.png)\n\n注意，图中的每条边都恰好属于 $0$ 条或 $2$ 条带颜色的询问路径。\n\n第二个测试用例中的图如下：\n\n![image](https://espresso.codeforces.com/46a164013af6d72857a06d088e48613c2428cb74.png)\n\n对于给定的询问，不存在一种路径分配方案可以使所有边权均为偶数。至少需要添加 $2$ 个新询问，才能得到一组满足条件的询问。",
   "samples": [
     {
       "input": "6 7\n2 1\n2 3\n3 5\n1 4\n6 1\n5 6\n4 5\n3\n1 4\n5 1\n4 5\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:22:30.300Z"
+  "fetchedAt": "2026-10-30T23:22:30.300Z",
+  "translatedAt": "2026-11-04T03:40:07.267+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

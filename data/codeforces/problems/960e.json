@@ -4,7 +4,7 @@
   "contestId": 960,
   "index": "E",
   "title": "Alternating Tree",
-  "titleZh": null,
+  "titleZh": "交替树",
   "url": "https://codeforces.com/contest/960/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Given a tree with $n$ nodes numbered from $1$ to $n$. Each node $i$ has an associated value $V_i$.\n\nIf the simple path from $u_1$ to $u_m$ consists of $m$ nodes namely $u_1 \\rightarrow u_2 \\rightarrow u_3 \\rightarrow \\dots u_{m-1} \\rightarrow u_{m}$, then its alternating function $A(u_{1},u_{m})$ is defined as $A(u_{1},u_{m}) = \\sum\\limits_{i=1}^{m} (-1)^{i+1} \\cdot V_{u_{i}}$. A path can also have $0$ edges, i.e. $u_{1}=u_{m}$.\n\nCompute the sum of alternating functions of all unique simple paths. Note that the paths are directed: two paths are considered different if the starting vertices differ or the ending vertices differ. The answer may be large so compute it modulo $10^{9}+7$.\n\n## Input\n\nThe first line contains an integer $n$ $(2 \\leq n \\leq 2\\cdot10^{5} )$ — the number of vertices in the tree.\n\nThe second line contains $n$ space-separated integers $V_1, V_2, \\ldots, V_n$ ($-10^9\\leq V_i \\leq 10^9$) — values of the nodes.\n\nThe next $n-1$ lines each contain two space-separated integers $u$ and $v$ $(1\\leq u, v\\leq n, u \\neq v)$ denoting an edge between vertices $u$ and $v$. It is guaranteed that the given graph is a tree.\n\n## Output\n\nPrint the total sum of alternating functions of all unique simple paths modulo $10^{9}+7$.\n\n## Note\n\nConsider the first example.\n\nA simple path from node $1$ to node $2$: $1 \\rightarrow 2$ has alternating function equal to $A(1,2) = 1 \\cdot (-4)+(-1) \\cdot 1 = -5$.\n\nA simple path from node $1$ to node $3$: $1 \\rightarrow 3$ has alternating function equal to $A(1,3) = 1 \\cdot (-4)+(-1) \\cdot 5 = -9$.\n\nA simple path from node $2$ to node $4$: $2 \\rightarrow 1 \\rightarrow 4$ has alternating function $A(2,4) = 1 \\cdot (1)+(-1) \\cdot (-4)+1 \\cdot (-2) = 3$.\n\nA simple path from node $1$ to node $1$ has a single node $1$, so $A(1,1) = 1 \\cdot (-4) = -4$.\n\nSimilarly, $A(2, 1) = 5$, $A(3, 1) = 9$, $A(4, 2) = 3$, $A(1, 4) = -2$, $A(4, 1) = 2$, $A(2, 2) = 1$, $A(3, 3) = 5$, $A(4, 4) = -2$, $A(3, 4) = 7$, $A(4, 3) = 7$, $A(2, 3) = 10$, $A(3, 2) = 10$. So the answer is $(-5) + (-9) + 3 + (-4) + 5 + 9 + 3 + (-2) + 2 + 1 + 5 + (-2) + 7 + 7 + 10 + 10 = 40$.\n\nSimilarly $A(1,4)=-2, A(2,2)=1, A(2,1)=5, A(2,3)=10, A(3,3)=5, A(3,1)=9, A(3,2)=10, A(3,4)=7, A(4,4)=-2, A(4,1)=2, A(4,2)=3 , A(4,3)=7$ which sums upto 40.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵包含 $n$ 个节点的树，节点编号从 $1$ 到 $n$。每个节点 $i$ 关联一个值 $V_i$。\n\n如果从 $u_1$ 到 $u_m$ 的简单路径由 $m$ 个节点组成，即 $u_1 \\rightarrow u_2 \\rightarrow u_3 \\rightarrow \\dots u_{m-1} \\rightarrow u_{m}$，则其交替函数 $A(u_{1},u_{m})$ 定义为 $A(u_{1},u_{m}) = \\sum\\limits_{i=1}^{m} (-1)^{i+1} \\cdot V_{u_{i}}$。路径也可以包含 $0$ 条边，即 $u_{1}=u_{m}$。\n\n计算所有不同简单路径的交替函数之和。注意，路径是有向的：如果起点不同或终点不同，则认为两条路径不同。由于答案可能很大，请将其对 $10^{9}+7$ 取模。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\leq n \\leq 2\\cdot10^{5} $）——树中节点的数量。\n\n第二行包含 $n$ 个以空格分隔的整数 $V_1, V_2, \\ldots, V_n$（$-10^9\\leq V_i \\leq 10^9$）——各节点的值。\n\n接下来的 $n-1$ 行中，每行包含两个以空格分隔的整数 $u$ 和 $v$（$1\\leq u, v\\leq n, u \\neq v$），表示顶点 $u$ 和顶点 $v$ 之间存在一条边。保证给定的图是一棵树。\n\n## 输出格式\n\n输出所有不同简单路径的交替函数之和，对 $10^{9}+7$ 取模。\n\n## 说明\n\n考虑第一个样例。\n\n从节点 $1$ 到节点 $2$ 的简单路径为：$1 \\rightarrow 2$，其交替函数为 $A(1,2) = 1 \\cdot (-4)+(-1) \\cdot 1 = -5$。\n\n从节点 $1$ 到节点 $3$ 的简单路径为：$1 \\rightarrow 3$，其交替函数为 $A(1,3) = 1 \\cdot (-4)+(-1) \\cdot 5 = -9$。\n\n从节点 $2$ 到节点 $4$ 的简单路径为：$2 \\rightarrow 1 \\rightarrow 4$，其交替函数为 $A(2,4) = 1 \\cdot (1)+(-1) \\cdot (-4)+1 \\cdot (-2) = 3$。\n\n从节点 $1$ 到节点 $1$ 的简单路径只包含一个节点 $1$，因此 $A(1,1) = 1 \\cdot (-4) = -4$。\n\n类似地，$A(2, 1) = 5$、$A(3, 1) = 9$、$A(4, 2) = 3$、$A(1, 4) = -2$、$A(4, 1) = 2$、$A(2, 2) = 1$、$A(3, 3) = 5$、$A(4, 4) = -2$、$A(3, 4) = 7$、$A(4, 3) = 7$、$A(2, 3) = 10$、$A(3, 2) = 10$。因此答案为 $(-5) + (-9) + 3 + (-4) + 5 + 9 + 3 + (-2) + 2 + 1 + 5 + (-2) + 7 + 7 + 10 + 10 = 40$。\n\n同样地，$A(1,4)=-2, A(2,2)=1, A(2,1)=5, A(2,3)=10, A(3,3)=5, A(3,1)=9, A(3,2)=10, A(3,4)=7, A(4,4)=-2, A(4,1)=2, A(4,2)=3 , A(4,3)=7$，这些值之和为 40。",
   "samples": [
     {
       "input": "4\n-4 1 5 -2\n1 2\n1 3\n1 4\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:32:40.514Z"
+  "fetchedAt": "2026-10-31T00:32:40.514Z",
+  "translatedAt": "2026-11-04T05:43:37.836+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

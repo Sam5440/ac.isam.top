@@ -4,7 +4,7 @@
   "contestId": 1054,
   "index": "B",
   "title": "Appending Mex",
-  "titleZh": null,
+  "titleZh": "追加 Mex",
   "url": "https://codeforces.com/contest/1054/problem/B",
   "difficulty": 1000,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Initially Ildar has an empty array. He performs $n$ steps. On each step he takes a subset of integers already added to the array and appends the `mex` of this subset to the array.\n\nThe `mex` of an multiset of integers is the smallest **non-negative** integer not presented in the multiset. For example, the `mex` of the multiset $[0, 2, 3]$ is $1$, while the `mex` of the multiset $[1, 2, 1]$ is $0$.\n\nMore formally, on the step $m$, when Ildar already has an array $a_1, a_2, \\ldots, a_{m-1}$, he chooses some subset of indices $1 \\leq i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\lt m$ (possibly, empty), where $0 \\leq k \\lt m$, and appends the $mex(a_{i_1}, a_{i_2}, \\ldots a_{i_k})$ to the end of the array.\n\nAfter performing all the steps Ildar thinks that he might have made a mistake somewhere. He asks you to determine for a given array $a_1, a_2, \\ldots, a_n$ the minimum step $t$ such that he has definitely made a mistake on at least one of the steps $1, 2, \\ldots, t$, or determine that he could have obtained this array without mistakes.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\leq n \\leq 100\\,000$) — the number of steps Ildar made.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\leq a_i \\leq 10^9$) — the array Ildar obtained.\n\n## Output\n\nIf Ildar could have chosen the subsets on each step in such a way that the resulting array is $a_1, a_2, \\ldots, a_n$, print $-1$.\n\nOtherwise print a single integer $t$ — the smallest index of a step such that a mistake was made on at least one step among steps $1, 2, \\ldots, t$.\n\n## Note\n\nIn the first example it is possible that Ildar made no mistakes. Here is the process he could have followed.\n\n- $1$-st step. The initial array is empty. He can choose an empty subset and obtain $0$, because the `mex` of an empty set is $0$. Appending this value to the end he gets the array $[0]$.\n- $2$-nd step. The current array is $[0]$. He can choose a subset $[0]$ and obtain an integer $1$, because $mex(0) = 1$. Appending this value to the end he gets the array $[0,1]$.\n- $3$-rd step. The current array is $[0,1]$. He can choose a subset $[0,1]$ and obtain an integer $2$, because $mex(0,1) = 2$. Appending this value to the end he gets the array $[0,1,2]$.\n- $4$-th step. The current array is $[0,1,2]$. He can choose a subset $[0]$ and obtain an integer $1$, because $mex(0) = 1$. Appending this value to the end he gets the array $[0,1,2,1]$.\n\nThus, he can get the array without mistakes, so the answer is $-1$.\n\nIn the second example he has definitely made a mistake on the very first step, because he could not have obtained anything different from $0$.\n\nIn the third example he could have obtained $[0, 1, 2]$ without mistakes, but $239$ is definitely wrong.",
-  "statementZhMd": null,
+  "statementZhMd": "最初，Ildar 有一个空数组。他执行 $n$ 个步骤。在每个步骤中，他从数组中已经添加的整数中选取一个子集，并将该子集的 `mex` 追加到数组末尾。\n\n一个整数多重集合的 `mex` 是该多重集合中未出现的最小**非负**整数。例如，多重集合 $[0, 2, 3]$ 的 `mex` 是 $1$，而多重集合 $[1, 2, 1]$ 的 `mex` 是 $0$。\n\n更形式化地说，在第 $m$ 步，当 Ildar 已经拥有数组 $a_1, a_2, \\ldots, a_{m-1}$ 时，他选择一些下标的子集 $1 \\leq i_1 \\lt i_2 \\lt \\ldots \\lt i_k \\lt m$（可以为空），其中 $0 \\leq k \\lt m$，并将 $mex(a_{i_1}, a_{i_2}, \\ldots a_{i_k})$ 追加到数组末尾。\n\n完成所有步骤后，Ildar 认为自己可能在某一步犯了错误。他请你对于给定的数组 $a_1, a_2, \\ldots, a_n$，确定最小的步骤 $t$，使得可以确定他在步骤 $1, 2, \\ldots, t$ 中至少有一步犯了错误；或者确定他可以无误地得到这个数组。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 100\\,000$）——Ildar 执行的步骤数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\leq 10^9$）——Ildar 得到的数组。\n\n## 输出格式\n\n如果 Ildar 可以通过在每一步选择合适的子集，使最终得到的数组为 $a_1, a_2, \\ldots, a_n$，输出 $-1$。\n\n否则，输出一个整数 $t$——至少有一步犯错的步骤中，最小的步骤编号；也就是说，在步骤 $1, 2, \\ldots, t$ 中至少有一步发生了错误。\n\n## 说明\n\n在第一个样例中，Ildar 可能没有犯任何错误。以下是他可以采用的过程。\n\n- 第 $1$ 步。初始数组为空。他可以选择空子集并得到 $0$，因为空集的 `mex` 是 $0$。将该值追加到数组末尾后，数组变为 $[0]$。\n- 第 $2$ 步。当前数组为 $[0]$。他可以选择子集 $[0]$ 并得到整数 $1$，因为 $mex(0) = 1$。将该值追加到数组末尾后，数组变为 $[0,1]$。\n- 第 $3$ 步。当前数组为 $[0,1]$。他可以选择子集 $[0,1]$ 并得到整数 $2$，因为 $mex(0,1) = 2$。将该值追加到数组末尾后，数组变为 $[0,1,2]$。\n- 第 $4$ 步。当前数组为 $[0,1,2]$。他可以选择子集 $[0]$ 并得到整数 $1$，因为 $mex(0) = 1$。将该值追加到数组末尾后，数组变为 $[0,1,2,1]$。\n\n因此，他可以无误地得到该数组，所以答案是 $-1$。\n\n在第二个样例中，他在第一步就肯定犯了错误，因为他不可能得到除 $0$ 以外的任何值。\n\n在第三个样例中，他可以无误地得到 $[0, 1, 2]$，但 $239$ 肯定是错误的。",
   "samples": [
     {
       "input": "4\n0 1 2 1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:22:51.051Z"
+  "fetchedAt": "2026-10-31T00:22:51.051Z",
+  "translatedAt": "2026-11-04T05:39:05.079+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

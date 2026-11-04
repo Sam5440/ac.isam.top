@@ -4,7 +4,7 @@
   "contestId": 711,
   "index": "C",
   "title": "Coloring Trees",
-  "titleZh": null,
+  "titleZh": "给树染色",
   "url": "https://codeforces.com/contest/711/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "ZS the Coder and Chris the Baboon has arrived at Udayland! They walked in the park where $*n*$ trees grow. They decided to be naughty and color the trees in the park. The trees are numbered with integers from $1$ to $*n*$ from left to right.\n\nInitially, tree $*i*$ has color $*c*_{*i*}$. ZS the Coder and Chris the Baboon recognizes only $*m*$ different colors, so $0 ≤ *c*_{*i*} ≤ *m*$, where $*c*_{*i*} = 0$ means that tree $*i*$ is *uncolored*.\n\nZS the Coder and Chris the Baboon decides to color only the uncolored trees, i.e. the trees with $*c*_{*i*} = 0$. They can color each of them them in any of the $*m*$ colors from $1$ to $*m*$. Coloring the $*i*$-th tree with color $*j*$ requires exactly $*p*_{*i*, *j*}$ litres of paint.\n\nThe two friends define the *beauty* of a coloring of the trees as the **minimum** number of contiguous groups (each group contains some subsegment of trees) you can split all the $*n*$ trees into so that each group contains trees of the same color. For example, if the colors of the trees from left to right are $2, 1, 1, 1, 3, 2, 2, 3, 1, 3$, the beauty of the coloring is $7$, since we can partition the trees into $7$ contiguous groups of the same color : ${2}, {1, 1, 1}, {3}, {2, 2}, {3}, {1}, {3}$.\n\nZS the Coder and Chris the Baboon wants to color all uncolored trees so that the beauty of the coloring is **exactly** $*k*$. They need your help to determine the minimum amount of paint (in litres) needed to finish the job.\n\nPlease note that the friends can't color the trees that are already colored.\n\n## Input\n\nThe first line contains three integers, $*n*$, $*m*$ and $*k*$ ($1 ≤ *k* ≤ *n* ≤ 100$, $1 ≤ *m* ≤ 100$) — the number of trees, number of colors and beauty of the resulting coloring respectively.\n\nThe second line contains $*n*$ integers $*c*_{1}, *c*_{2}, ..., *c*_{*n*}$ ($0 ≤ *c*_{*i*} ≤ *m*$), the initial colors of the trees. $*c*_{*i*}$ equals to $0$ if the tree number $*i*$ is uncolored, otherwise the $*i*$-th tree has color $*c*_{*i*}$.\n\nThen $*n*$ lines follow. Each of them contains $*m*$ integers. The $*j*$-th number on the $*i*$-th of them line denotes $*p*_{*i*, *j*}$ ($1 ≤ *p*_{*i*, *j*} ≤ 10^{9}$) — the amount of litres the friends need to color $*i*$-th tree with color $*j*$. $*p*_{*i*, *j*}$'s are specified even for the initially colored trees, but such trees still can't be colored.\n\n## Output\n\nPrint a single integer, the minimum amount of paint needed to color the trees. If there are no valid tree colorings of beauty $*k*$, print $- 1$.\n\n## Note\n\nIn the first sample case, coloring the trees with colors $2, 1, 1$ minimizes the amount of paint used, which equals to $2 + 3 + 5 = 10$. Note that $1, 1, 1$ would not be valid because the beauty of such coloring equals to $1$ (${1, 1, 1}$ is a way to group the trees into a single group of the same color).\n\nIn the second sample case, all the trees are colored, but the beauty of the coloring is $3$, so there is no valid coloring, and the answer is $- 1$.\n\nIn the last sample case, all the trees are colored and the beauty of the coloring matches $*k*$, so no paint is used and the answer is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "ZS the Coder 和 Chris the Baboon 来到了 Udayland！他们在公园里散步，公园中生长着 $*n*$ 棵树。他们决定调皮一下，给公园里的树染色。这些树从左到右编号为 $1$ 到 $*n*$。\n\n最初，第 $*i*$ 棵树的颜色为 $*c*_{*i*}$。ZS the Coder 和 Chris the Baboon 只认识 $*m*$ 种不同的颜色，因此 $0 ≤ *c*_{*i*} ≤ *m*$，其中 $*c*_{*i*} = 0$ 表示第 $*i*$ 棵树未染色。\n\nZS the Coder 和 Chris the Baboon 决定只给未染色的树染色，即给 $*c*_{*i*} = 0$ 的树染色。他们可以将每棵这样的树染成 $1$ 到 $*m*$ 中的任意一种颜色。将第 $*i*$ 棵树染成颜色 $*j*$ 恰好需要 $*p*_{*i*, *j*}$ 升油漆。\n\n两位朋友将树的染色方案的**美丽度**定义为：将全部 $*n*$ 棵树划分成若干个连续组（每组包含树的某个子段），并使每组中的树颜色相同，所需的**最少**组数。例如，如果树从左到右的颜色为 $2, 1, 1, 1, 3, 2, 2, 3, 1, 3$，则染色方案的美丽度为 $7$，因为我们可以将这些树划分为 $7$ 个颜色相同的连续组：${2}, {1, 1, 1}, {3}, {2, 2}, {3}, {1}, {3}$。\n\nZS the Coder 和 Chris the Baboon 希望给所有未染色的树染色，使染色方案的美丽度**恰好**为 $*k*$。请你帮助他们确定完成这项工作所需的最少油漆量（升）。\n\n请注意，朋友们不能给已经染色的树重新染色。\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*m*$ 和 $*k*$（$1 ≤ *k* ≤ *n* ≤ 100$，$1 ≤ *m* ≤ 100$）——树的数量、颜色的数量以及最终染色方案的美丽度。\n\n第二行包含 $*n*$ 个整数 $*c*_{1}, *c*_{2}, ..., *c*_{*n*}$（$0 ≤ *c*_{*i*} ≤ *m*$），表示树的初始颜色。如果编号为 $*i*$ 的树未染色，则 $*c*_{*i*}$ 等于 $0$；否则第 $*i*$ 棵树的颜色为 $*c*_{*i*}$。\n\n接下来有 $*n*$ 行，每行包含 $*m*$ 个整数。其中，第 $*i*$ 行的第 $*j*$ 个数表示将第 $*i*$ 棵树染成颜色 $*j*$ 所需的油漆量 $*p*_{*i*, *j*}$（$1 ≤ *p*_{*i*, *j*} ≤ 10^{9}$，单位为升）。即使对于最初已经染色的树，也会给出对应的 $*p*_{*i*, *j*}$，但这些树仍然不能被重新染色。\n\n## 输出格式\n\n输出一个整数，表示给树染色所需的最少油漆量。如果不存在美丽度为 $*k*$ 的有效染色方案，则输出 $- 1$。\n\n## 说明\n\n在第一个样例中，将树染成颜色 $2, 1, 1$ 可以使所用油漆量最少，所需油漆量为 $2 + 3 + 5 = 10$。注意，染成 $1, 1, 1$ 是无效的，因为这种染色方案的美丽度为 $1$（${1, 1, 1}$ 可以作为一个颜色相同的单独分组）。\n\n在第二个样例中，所有树都已经染色，但染色方案的美丽度为 $3$，因此不存在有效的染色方案，答案为 $- 1$。\n\n在最后一个样例中，所有树都已经染色，且染色方案的美丽度恰好为 $*k*$，因此不需要使用油漆，答案为 $0$。",
   "samples": [
     {
       "input": "3 2 2\n0 0 0\n1 2\n3 4\n5 6\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:05:01.648Z"
+  "fetchedAt": "2026-10-31T01:05:01.648Z",
+  "translatedAt": "2026-11-04T06:29:53.775+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1346,
   "index": "C",
   "title": "Spring Cleaning",
-  "titleZh": null,
+  "titleZh": "春季大扫除",
   "url": "https://codeforces.com/contest/1346/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Tanya wants to organize her bookcase. There are $n$ bookshelves in the bookcase, the $i$-th bookshelf contains $a_i$ books on it. Tanya will be satisfied if **each bookshelf contains no more than $k$ books**.\n\nTanya can do one of the two following operations to achieve her goal:\n\n1. Choose exactly one bookshelf and put all the books from it in the storage room (i. e. choose some $i$ and assign $a_i := 0$). During this operation she spends $x$ seconds.\n2. Take **all** books from all $n$ bookshelves and distribute them between all $n$ bookshelves *evenly* (the definition of the term is given below). During this operation she spends $y$ seconds.\n\nConsider the sequence $a$ of $n$ **integers**. Then its *even* distribution is such a sequence $b$ of $n$ **integers** that the sum of $b$ equals the sum of $a$ and the value $max(b) - min(b)$ is the minimum possible.\n\nFor example, if the array $a=[5, 4, 3]$ then its *even* distribution is $b=[4, 4, 4]$. If $a=[1, 2, 3, 4]$ then its *even* distribution is $b=[2, 3, 3, 2]$ (or any permutation of this array).\n\nYour task is to find the minimum number of seconds Tanya has to spend to obtain the bookcase with no more than $k$ books on **each bookshelf**.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. Then $t$ test cases follow.\n\nThe first line of the test case contains four integers $n, k, x$ and $y$ ($1 \\le k \\le n \\le 2 \\cdot 10^5; 1 \\le x, y \\le 10^4$) — the number of bookshelves, the maximum required number of books on each bookshelf and the number of seconds Tanya spends during the first and the second operation respectively.\n\nThe second line of the test case contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n$), where $a_i$ is the number of books on the $i$-th bookshelf.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$ ($\\sum n \\le 2 \\cdot 10^5$).\n\n## Output\n\nFor each test case, print the answer — the minimum number of seconds Tanya has to spend to obtain the bookcase with no more than $k$ books on **each bookshelf**.\n\n## Note\n\nIn the first test case of the example, it's optimal to use the first operation on the fifth bookshelf. So the array $a$ becomes $[1, 2, 2, 3, 5] \\rightarrow [1, 2, 2, 3, 0]$.\n\nIn the second test case of the example, it's optimal to use the first operation on the second bookshelf and then use the second operation. So the array $a$ becomes $[1, 5, 1, 5, 5] \\rightarrow [1, 0, 1, 5, 5] \\rightarrow [2, 2, 3, 3, 2]$.\n\nIn the third test case of the example, it's optimal to use the second operation. So the array $a$ becomes $[1, 2, 5, 3, 5] \\rightarrow [4, 3, 3, 3, 3]$.\n\nIn the fourth test case of the example, it's optimal to use the first operation on the first and the second bookshelves. So the array $a$ becomes $[4, 4, 1, 1] \\rightarrow [0, 0, 1, 1]$.\n\nIn the fifth test case of the example, it's optimal to use the second operation. So the array $a$ becomes $[4, 4, 1, 1] \\rightarrow [2, 3, 2, 3]$.",
-  "statementZhMd": null,
+  "statementZhMd": "Tanya 想要整理她的书柜。书柜中有 $n$ 个书架，第 $i$ 个书架上有 $a_i$ 本书。如果**每个书架上的书不超过 $k$ 本**，Tanya 就会感到满意。\n\n为了达到目标，Tanya 可以进行以下两种操作之一：\n\n1. 选择一个书架，将其中的所有书放入储藏室（即选择某个 $i$ 并令 $a_i := 0$）。进行此操作需要花费 $x$ 秒。\n2. 将 $n$ 个书架上的**所有**书取出，并将它们*均匀地*分配到 $n$ 个书架上（该术语的定义见下文）。进行此操作需要花费 $y$ 秒。\n\n考虑由 $n$ 个**整数**组成的序列 $a$。它的*均匀分配*是一个由 $n$ 个**整数**组成的序列 $b$，满足 $b$ 的元素之和等于 $a$ 的元素之和，并且 $max(b) - min(b)$ 的值尽可能小。\n\n例如，如果数组 $a=[5, 4, 3]$，那么它的*均匀分配*为 $b=[4, 4, 4]$。如果 $a=[1, 2, 3, 4]$，那么它的*均匀分配*为 $b=[2, 3, 3, 2]$（或该数组的任意排列）。\n\n你的任务是求出 Tanya 将书柜变为**每个书架上不超过 $k$ 本书**所需花费的最少秒数。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来给出 $t$ 个测试用例。\n\n每个测试用例的第一行包含四个整数 $n, k, x$ 和 $y$（$1 \\le k \\le n \\le 2 \\cdot 10^5; 1 \\le x, y \\le 10^4$）——书架的数量、每个书架上所需的最大书籍数量，以及 Tanya 分别进行第一种和第二种操作所需花费的秒数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le n$），其中 $a_i$ 表示第 $i$ 个书架上的书籍数量。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$（$\\sum n \\le 2 \\cdot 10^5$）。\n\n## 输出格式\n\n对于每个测试用例，输出一个答案——Tanya 将书柜变为**每个书架上不超过 $k$ 本书**所需花费的最少秒数。\n\n## 说明\n\n在样例的第一个测试用例中，最优方案是在第五个书架上进行第一种操作。因此数组 $a$ 变为 $[1, 2, 2, 3, 5] \\rightarrow [1, 2, 2, 3, 0]$。\n\n在样例的第二个测试用例中，最优方案是在第二个书架上进行第一种操作，然后进行第二种操作。因此数组 $a$ 变为 $[1, 5, 1, 5, 5] \\rightarrow [1, 0, 1, 5, 5] \\rightarrow [2, 2, 3, 3, 2]$。\n\n在样例的第三个测试用例中，最优方案是进行第二种操作。因此数组 $a$ 变为 $[1, 2, 5, 3, 5] \\rightarrow [4, 3, 3, 3, 3]$。\n\n在样例的第四个测试用例中，最优方案是在第一个和第二个书架上进行第一种操作。因此数组 $a$ 变为 $[4, 4, 1, 1] \\rightarrow [0, 0, 1, 1]$。\n\n在样例的第五个测试用例中，最优方案是进行第二种操作。因此数组 $a$ 变为 $[4, 4, 1, 1] \\rightarrow [2, 3, 2, 3]$。",
   "samples": [
     {
       "input": "6\n5 4 3 5\n1 2 2 3 5\n5 3 4 5\n1 5 1 5 5\n5 4 5 6\n1 2 5 3 5\n4 3 2 10\n4 4 1 1\n4 3 10 2\n4 4 1 1\n4 1 5 4\n1 2 1 3\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:52:58.421Z"
+  "fetchedAt": "2026-11-02T18:52:58.421Z",
+  "translatedAt": "2026-11-04T04:31:12.176+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

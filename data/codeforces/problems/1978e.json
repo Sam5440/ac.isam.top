@@ -4,7 +4,7 @@
   "contestId": 1978,
   "index": "E",
   "title": "Computing Machine",
-  "titleZh": null,
+  "titleZh": "计算机器",
   "url": "https://codeforces.com/contest/1978/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Sasha has two binary strings $s$ and $t$ of the same length $n$, consisting of the characters `0` and `1`.\n\nThere is also a computing machine that can perform two types of operations on binary strings $a$ and $b$ of the same length $k$:\n\n1. If $a_{i} = a_{i + 2} =$ `0`, then you can assign $b_{i + 1} :=$ `1` ($1 \\le i \\le k - 2$).\n2. If $b_{i} = b_{i + 2} =$ `1`, then you can assign $a_{i + 1} :=$ `1` ($1 \\le i \\le k - 2$).\n\nSasha became interested in the following: if we consider the string $a=s_ls_{l+1}\\ldots s_r$ and the string $b=t_lt_{l+1}\\ldots t_r$, what is the maximum number of `1` characters in the string $a$ that can be obtained using the computing machine. Since Sasha is very curious but lazy, it is up to you to answer this question for several pairs $(l_i, r_i)$ that interest him.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 10^{4}$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the strings $s$ and $t$.\n\nThe second line of each test case contains a binary string $s$ of length $n$, consisting of the characters `0` and `1`.\n\nThe third line of each test case contains a binary string $t$ of length $n$, consisting of the characters `0` and `1`.\n\nThe fourth line of each test case contains a single integer $q$ ($1 \\le q \\le 2 \\cdot 10^5$) — the number of queries.\n\nThe $i$-th of the following lines contains two integers $l_{i}$ and $r_{i}$ ($1 \\le l_{i} \\le r_{i} \\le n$) — the boundaries of the $i$-th pair of substrings that interest Sasha.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$ and the sum of $q$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $q$ integers — the answers to all queries.\n\n## Note\n\nIn the first test case:\n\n- In the first query, $a =$ `11`, so the maximum number of `1` characters is $2$.\n- In the second query, $a =$ `111`, so the maximum number of `1` characters is $3$.\n\nIn the second test case:\n\n- In the first query, $a =$ `101` and $b =$ `110`. No operations can be performed, so the maximum number of `1` characters is $2$.\n- In the second query, $a =$ `1010` and $b =$ `1101`. Since $a_2 = a_4 =$ `0`, we can assign $b_3 :=$ `1`. Now $b_1 = b_3 =$ `1`, so we can assign $a_2 :=$ `1`. The string $a$ becomes `1110`, so the maximum number of `1` characters is $3$.",
-  "statementZhMd": null,
+  "statementZhMd": "Sasha 有两个长度均为 $n$ 的二进制字符串 $s$ 和 $t$，它们由字符 `0` 和 `1` 组成。\n\n此外，还有一台计算机器，可以对两个长度均为 $k$ 的二进制字符串 $a$ 和 $b$ 执行以下两种操作：\n\n1. 如果 $a_{i} = a_{i + 2} =$ `0`，那么可以将 $b_{i + 1} :=$ `1`（$1 \\le i \\le k - 2$）。\n2. 如果 $b_{i} = b_{i + 2} =$ `1`，那么可以将 $a_{i + 1} :=$ `1`（$1 \\le i \\le k - 2$）。\n\nSasha 对以下问题产生了兴趣：对于字符串 $a=s_ls_{l+1}\\ldots s_r$ 和字符串 $b=t_lt_{l+1}\\ldots t_r$，使用计算机器后，字符串 $a$ 中最多可以得到多少个 `1` 字符？由于 Sasha 非常好奇但又很懒，因此请你回答他感兴趣的若干对 $(l_i, r_i)$ 的询问。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^{4}$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——字符串 $s$ 和 $t$ 的长度。\n\n每个测试用例的第二行包含一个长度为 $n$ 的二进制字符串 $s$，由字符 `0` 和 `1` 组成。\n\n每个测试用例的第三行包含一个长度为 $n$ 的二进制字符串 $t$，由字符 `0` 和 `1` 组成。\n\n每个测试用例的第四行包含一个整数 $q$（$1 \\le q \\le 2 \\cdot 10^5$）——询问的数量。\n\n接下来的 $q$ 行中，第 $i$ 行包含两个整数 $l_{i}$ 和 $r_{i}$（$1 \\le l_{i} \\le r_{i} \\le n$）——Sasha 感兴趣的第 $i$ 对子串的边界。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$，且 $q$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q$ 个整数——所有询问的答案。\n\n## 说明\n\n在第一个测试用例中：\n\n- 对于第一个询问，$a =$ `11`，因此 `1` 字符的最大数量为 $2$。\n- 对于第二个询问，$a =$ `111`，因此 `1` 字符的最大数量为 $3$。\n\n在第二个测试用例中：\n\n- 对于第一个询问，$a =$ `101` 且 $b =$ `110`。无法执行任何操作，因此 `1` 字符的最大数量为 $2$。\n- 对于第二个询问，$a =$ `1010` 且 $b =$ `1101`。由于 $a_2 = a_4 =$ `0`，我们可以将 $b_3 :=$ `1`。此时 $b_1 = b_3 =$ `1`，因此可以将 $a_2 :=$ `1`。字符串 $a$ 变为 `1110`，所以 `1` 字符的最大数量为 $3$。",
   "samples": [
     {
       "input": "3\n4\n1111\n0000\n2\n1 2\n2 4\n4\n1010\n1101\n2\n1 3\n1 4\n6\n010101\n011010\n5\n2 3\n1 6\n2 5\n4 4\n3 6\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:57:06.873Z"
+  "fetchedAt": "2026-10-30T21:57:06.873Z",
+  "translatedAt": "2026-11-04T02:07:43.284+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 920,
   "index": "A",
   "title": "Water The Garden",
-  "titleZh": null,
+  "titleZh": "给花园浇水",
   "url": "https://codeforces.com/contest/920/problem/A",
   "difficulty": 1000,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "It is winter now, and Max decided it's about time he watered the garden.\n\nThe garden can be represented as $*n*$ consecutive garden beds, numbered from $1$ to $*n*$. $*k*$ beds contain water taps ($*i*$-th tap is located in the bed $*x*_{*i*}$), which, if turned on, start delivering water to neighbouring beds. If the tap on the bed $*x*_{*i*}$ is turned on, then after one second has passed, the bed $*x*_{*i*}$ will be watered; after two seconds have passed, the beds from the segment $[*x*_{*i*} - 1, *x*_{*i*} + 1]$ will be watered (if they exist); after $*j*$ seconds have passed **($*j*$ is an integer number)**, the beds from the segment $[*x*_{*i*} - (*j* - 1), *x*_{*i*} + (*j* - 1)]$ will be watered (if they exist). **Nothing changes during the seconds, so, for example, we can't say that the segment $[*x*_{*i*} - 2.5, *x*_{*i*} + 2.5]$ will be watered after $2.5$ seconds have passed; only the segment $[*x*_{*i*} - 2, *x*_{*i*} + 2]$ will be watered at that moment.**\n\n![image](https://espresso.codeforces.com/b708fecdfb8d8ab53a19865ec9979981caf68a46.png) The garden from test $1$. White colour denotes a garden bed without a tap, red colour — a garden bed with a tap.\n\n![image](https://espresso.codeforces.com/ed40706bef97707f5a0b1d41b49f2a34f16de9c3.png) The garden from test $1$ after $2$ seconds have passed after turning on the tap. White colour denotes an unwatered garden bed, blue colour — a watered bed.\n\nMax wants to **turn on all the water taps at the same moment**, and now he wonders, what is the minimum number of seconds that have to pass after he turns on some taps until the whole garden is watered. Help him to find the answer!\n\n## Input\n\nThe first line contains one integer $*t*$ — the number of test cases to solve ($1 ≤ *t* ≤ 200$).\n\nThen $*t*$ test cases follow. The first line of each test case contains two integers $*n*$ and $*k*$ ($1 ≤ *n* ≤ 200$, $1 ≤ *k* ≤ *n*$) — the number of garden beds and water taps, respectively.\n\nNext line contains $*k*$ integers $*x*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ *n*$) — the location of $*i*$-th water tap. It is guaranteed that for each ![image](https://espresso.codeforces.com/fe03c352479a1f92e4a3d577006ed0f1fff0ee43.png) condition $*x*_{*i* - 1} < *x*_{*i*}$ holds.\n\nIt is guaranteed that the sum of $*n*$ over all test cases doesn't exceed $200$.\n\n**Note that in hacks you have to set $*t* = 1$**.\n\n## Output\n\nFor each test case print one integer — the minimum number of seconds that have to pass after Max turns on some of the water taps, until the whole garden is watered.\n\n## Note\n\nThe first example consists of $3$ tests:\n\n1. There are $5$ garden beds, and a water tap in the bed $3$. If we turn it on, then after $1$ second passes, only bed $3$ will be watered; after $2$ seconds pass, beds $[1, 3]$ will be watered, and after $3$ seconds pass, everything will be watered.\n2. There are $3$ garden beds, and there is a water tap in each one. If we turn all of them on, then everything will be watered after $1$ second passes.\n3. There are $4$ garden beds, and only one tap in the bed $1$. It will take $4$ seconds to water, for example, bed $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "现在是冬天，Max 觉得是时候给花园浇水了。\n\n花园可以表示为 $*n*$ 个连续的花坛，编号从 $1$ 到 $*n*$。其中有 $*k*$ 个花坛装有水龙头（第 $*i*$ 个水龙头位于花坛 $*x*_{*i*}$ 中）。如果打开水龙头，它就会开始向相邻的花坛供水。\n\n如果打开位于花坛 $*x*_{*i*}$ 中的水龙头，那么经过 1 秒后，花坛 $*x*_{*i*}$ 会被浇到；经过 2 秒后，区间 $[*x*_{*i*} - 1, *x*_{*i*} + 1]$ 内的花坛会被浇到（如果这些花坛存在）；经过 $*j*$ 秒后 **（$*j*$ 是一个整数）**，区间 $[*x*_{*i*} - (*j* - 1), *x*_{*i*} + (*j* - 1)]$ 内的花坛会被浇到（如果这些花坛存在）。**在每一秒内不会发生任何变化，因此，例如，我们不能说经过 2.5 秒后区间 $[*x*_{*i*} - 2.5, *x*_{*i*} + 2.5]$ 会被浇到；在那一时刻，只有区间 $[*x*_{*i*} - 2, *x*_{*i*} + 2]$ 会被浇到。**\n\n![image](https://espresso.codeforces.com/b708fecdfb8d8ab53a19865ec9979981caf68a46.png) 测试 1 中的花园。白色表示没有水龙头的花坛，红色表示有水龙头的花坛。\n\n![image](https://espresso.codeforces.com/ed40706bef97707f5a0b1d41b49f2a34f16de9c3.png) 打开水龙头 2 秒后的测试 1 中的花园。白色表示未浇到水的花坛，蓝色表示已浇到水的花坛。\n\nMax 想要 **在同一时刻打开所有水龙头**，现在他想知道，打开水龙头后，至少经过多少秒才能让整个花园都被浇到。请帮助他找出答案！\n\n## 输入格式\n\n第一行包含一个整数 $*t*$——需要解决的测试用例数量（$1 ≤ *t* ≤ 200$）。\n\n接下来是 $*t*$ 个测试用例。每个测试用例的第一行包含两个整数 $*n*$ 和 $*k*$（$1 ≤ *n* ≤ 200$，$1 ≤ *k* ≤ *n*$）——花坛和水龙头的数量。\n\n下一行包含 $*k*$ 个整数 $*x*_{*i*}$（$1 ≤ *x*_{*i*} ≤ *n*$）——第 $*i*$ 个水龙头的位置。保证对于每个 ![image](https://espresso.codeforces.com/fe03c352479a1f92e4a3d577006ed0f1fff0ee43.png)，条件 $*x*_{*i* - 1} < *x*_{*i*}$ 都成立。\n\n保证所有测试用例中 $*n*$ 的总和不超过 $200$。\n\n**注意，在 hack 时必须令 $*t* = 1$。**\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——Max 打开所有水龙头后，直到整个花园都被浇到所需经过的最少秒数。\n\n## 说明\n\n第一个样例包含 3 个测试：\n\n1. 有 5 个花坛，水龙头位于花坛 3 中。打开水龙头后，经过 1 秒，只有花坛 3 被浇到；经过 2 秒，花坛 $[1, 3]$ 被浇到；经过 3 秒，所有花坛都会被浇到。\n2. 有 3 个花坛，并且每个花坛中都有一个水龙头。如果打开所有水龙头，那么经过 1 秒后所有花坛都会被浇到。\n3. 有 4 个花坛，只有花坛 1 中有一个水龙头。例如，要浇到花坛 4，需要 4 秒。",
   "samples": [
     {
       "input": "3\n5 1\n3\n3 3\n1 2 3\n4 1\n1\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:42:29.755Z"
+  "fetchedAt": "2026-11-02T19:42:29.755Z",
+  "translatedAt": "2026-11-04T05:55:41.520+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

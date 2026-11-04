@@ -4,7 +4,7 @@
   "contestId": 1499,
   "index": "E",
   "title": "Chaotic Merge",
-  "titleZh": null,
+  "titleZh": "混沌合并",
   "url": "https://codeforces.com/contest/1499/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given two strings $x$ and $y$, both consist only of lowercase Latin letters. Let $|s|$ be the length of string $s$.\n\nLet's call a sequence $a$ a merging sequence if it consists of exactly $|x|$ zeros and exactly $|y|$ ones in some order.\n\nA merge $z$ is produced from a sequence $a$ by the following rules:\n\n- if $a_i=0$, then remove a letter from the beginning of $x$ and append it to the end of $z$;\n- if $a_i=1$, then remove a letter from the beginning of $y$ and append it to the end of $z$.\n\nTwo merging sequences $a$ and $b$ are different if there is some position $i$ such that $a_i \\neq b_i$.\n\nLet's call a string $z$ *chaotic* if for all $i$ from $2$ to $|z|$ $z_{i-1} \\neq z_i$.\n\nLet $s[l,r]$ for some $1 \\le l \\le r \\le |s|$ be a substring of consecutive letters of $s$, starting from position $l$ and ending at position $r$ inclusive.\n\nLet $f(l_1, r_1, l_2, r_2)$ be the number of different merging sequences of $x[l_1,r_1]$ and $y[l_2,r_2]$ that produce *chaotic* merges. Note that only non-empty substrings of $x$ and $y$ are considered.\n\nCalculate $\\sum \\limits_{1 \\le l_1 \\le r_1 \\le |x| \\\\ 1 \\le l_2 \\le r_2 \\le |y|} f(l_1, r_1, l_2, r_2)$. Output the answer modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains a string $x$ ($1 \\le |x| \\le 1000$).\n\nThe second line contains a string $y$ ($1 \\le |y| \\le 1000$).\n\nBoth strings consist only of lowercase Latin letters.\n\n## Output\n\nPrint a single integer — the sum of $f(l_1, r_1, l_2, r_2)$ over $1 \\le l_1 \\le r_1 \\le |x|$ and $1 \\le l_2 \\le r_2 \\le |y|$ modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first example there are:\n\n- $6$ pairs of substrings \"`a`\" and \"`b`\", each with valid merging sequences \"`01`\" and \"`10`\";\n- $3$ pairs of substrings \"`a`\" and \"`bb`\", each with a valid merging sequence \"`101`\";\n- $4$ pairs of substrings \"`aa`\" and \"`b`\", each with a valid merging sequence \"`010`\";\n- $2$ pairs of substrings \"`aa`\" and \"`bb`\", each with valid merging sequences \"`0101`\" and \"`1010`\";\n- $2$ pairs of substrings \"`aaa`\" and \"`b`\", each with no valid merging sequences;\n- $1$ pair of substrings \"`aaa`\" and \"`bb`\" with a valid merging sequence \"`01010`\";\n\nThus, the answer is $6 \\cdot 2 + 3 \\cdot 1 + 4 \\cdot 1 + 2 \\cdot 2 + 2 \\cdot 0 + 1 \\cdot 1 = 24$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个字符串 $x$ 和 $y$，它们都只由小写拉丁字母组成。令 $|s|$ 表示字符串 $s$ 的长度。\n\n如果一个序列 $a$ 恰好由 $|x|$ 个 $0$ 和 $|y|$ 个 $1$ 以任意顺序组成，则称序列 $a$ 为一个合并序列。\n\n根据以下规则，可以由序列 $a$ 生成一个合并结果 $z$：\n\n- 如果 $a_i=0$，则从 $x$ 的开头取出一个字母，并将其追加到 $z$ 的末尾；\n- 如果 $a_i=1$，则从 $y$ 的开头取出一个字母，并将其追加到 $z$ 的末尾。\n\n如果存在某个位置 $i$ 使得 $a_i \\neq b_i$，则称两个合并序列 $a$ 和 $b$ 不同。\n\n如果对于从 $2$ 到 $|z|$ 的所有 $i$，均有 $z_{i-1} \\neq z_i$，则称字符串 $z$ 是*混沌的*。\n\n对于某个 $1 \\le l \\le r \\le |s|$，记 $s[l,r]$ 为字符串 $s$ 中从位置 $l$ 开始、到位置 $r$ 结束（包括两端）的连续字母子串。\n\n令 $f(l_1, r_1, l_2, r_2)$ 表示由 $x[l_1,r_1]$ 和 $y[l_2,r_2]$ 进行合并，并生成*混沌的*合并结果的不同合并序列数量。注意，只考虑非空的 $x$ 和 $y$ 的子串。\n\n计算以下结果：\n\n$\\sum \\limits_{1 \\le l_1 \\le r_1 \\le |x| \\\\\\ 1 \\le l_2 \\le r_2 \\le |y|} f(l_1, r_1, l_2, r_2)$。答案对 $998\\,244\\,353$ 取模后输出。\n\n## 输入格式\n\n第一行包含一个字符串 $x$（$1 \\le |x| \\le 1000$）。\n\n第二行包含一个字符串 $y$（$1 \\le |y| \\le 1000$）。\n\n两个字符串都只由小写拉丁字母组成。\n\n## 输出格式\n\n输出一个整数，即满足 $1 \\le l_1 \\le r_1 \\le |x|$ 且 $1 \\le l_2 \\le r_2 \\le |y|$ 的所有 $f(l_1, r_1, l_2, r_2) $ 之和，并对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个样例中：\n\n- 有 $6$ 对子串 `` `a` `` 和 `` `b` ``，每一对都有有效的合并序列 `` `01` `` 和 `` `10` ``；\n- 有 $3$ 对子串 `` `a` `` 和 `` `bb` ``，每一对都有有效的合并序列 `` `101` ``；\n- 有 $4$ 对子串 `` `aa` `` 和 `` `b` ``，每一对都有有效的合并序列 `` `010` ``；\n- 有 $2$ 对子串 `` `aa` `` 和 `` `bb` ``，每一对都有有效的合并序列 `` `0101` `` 和 `` `1010` ``；\n- 有 $2$ 对子串 `` `aaa` `` 和 `` `b` ``，它们都没有有效的合并序列；\n- 有 $1$ 对子串 `` `aaa` `` 和 `` `bb` ``，其有效合并序列为 `` `01010` ``。\n\n因此，答案为 $6 \\cdot 2 + 3 \\cdot 1 + 4 \\cdot 1 + 2 \\cdot 2 + 2 \\cdot 0 + 1 \\cdot 1 = 24$。",
   "samples": [
     {
       "input": "aaa\nbb\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:31:07.776Z"
+  "fetchedAt": "2026-11-02T18:31:07.776Z",
+  "translatedAt": "2026-11-04T03:58:49.327+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

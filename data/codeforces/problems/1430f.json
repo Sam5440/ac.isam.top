@@ -4,7 +4,7 @@
   "contestId": 1430,
   "index": "F",
   "title": "Realistic Gameplay",
-  "titleZh": null,
+  "titleZh": "逼真的游戏玩法",
   "url": "https://codeforces.com/contest/1430/problem/F",
   "difficulty": 2600,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Recently you've discovered a new shooter. They say it has realistic game mechanics.\n\nYour character has a gun with magazine size equal to $k$ and should exterminate $n$ waves of monsters. The $i$-th wave consists of $a_i$ monsters and happens from the $l_i$-th moment of time up to the $r_i$-th moments of time. All $a_i$ monsters spawn at moment $l_i$ and you have to exterminate all of them before the moment $r_i$ ends (you can kill monsters right at moment $r_i$). For every two consecutive waves, the second wave starts not earlier than the first wave ends (though the second wave can start at the same moment when the first wave ends) — formally, the condition $r_i \\le l_{i + 1}$ holds. Take a look at the notes for the examples to understand the process better.\n\nYou are confident in yours and your character's skills so you can assume that aiming and shooting are instant and you need exactly one bullet to kill one monster. But reloading takes exactly $1$ unit of time.\n\nOne of the realistic mechanics is a mechanic of reloading: when you reload you throw away the old magazine with all remaining bullets in it. That's why constant reloads may cost you excessive amounts of spent bullets.\n\nYou've taken a liking to this mechanic so now you are wondering: what is the minimum possible number of bullets you need to spend (both used and thrown) to exterminate all waves.\n\nNote that you don't throw the remaining bullets away after eradicating all monsters, and you start with a full magazine.\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($1 \\le n \\le 2000$; $1 \\le k \\le 10^9$) — the number of waves and magazine size.\n\nThe next $n$ lines contain descriptions of waves. The $i$-th line contains three integers $l_i$, $r_i$ and $a_i$ ($1 \\le l_i \\le r_i \\le 10^9$; $1 \\le a_i \\le 10^9$) — the period of time when the $i$-th wave happens and the number of monsters in it.\n\nIt's guaranteed that waves don't overlap (but may touch) and are given in the order they occur, i. e. $r_i \\le l_{i + 1}$.\n\n## Output\n\nIf there is no way to clear all waves, print $-1$. Otherwise, print the minimum possible number of bullets you need to spend (both used and thrown) to clear all waves.\n\n## Note\n\nIn the first example:\n\n- At the moment $2$, the first wave occurs and $6$ monsters spawn. You kill $3$ monsters and start reloading.\n- At the moment $3$, the second wave occurs and $3$ more monsters spawn. You kill remaining $3$ monsters from the first wave and start reloading.\n- At the moment $4$, you kill remaining $3$ monsters from the second wave.\n\nIn total, you'll spend $9$ bullets.\n\nIn the second example:\n\n- At moment $3$, the first wave occurs and $11$ monsters spawn. You kill $5$ monsters and start reloading.\n- At moment $4$, you kill $5$ more monsters and start reloading.\n- At moment $5$, you kill the last monster and start reloading throwing away old magazine with $4$ bullets.\n- At moment $10$, the second wave occurs and $15$ monsters spawn. You kill $5$ monsters and start reloading.\n- At moment $11$, you kill $5$ more monsters and start reloading.\n- At moment $12$, you kill last $5$ monsters.\n\nIn total, you'll spend $30$ bullets.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，你发现了一款新的射击游戏。据说它拥有逼真的游戏机制。\n\n你的角色有一把弹匣容量为 $k$ 的枪，需要消灭 $n$ 波怪物。第 $i$ 波包含 $a_i$ 只怪物，出现时间从时刻 $l_i$ 到时刻 $r_i$。这 $a_i$ 只怪物都会在时刻 $l_i$ 出现，你必须在时刻 $r_i$ 结束之前消灭它们（可以恰好在时刻 $r_i$ 消灭怪物）。对于任意相邻的两波怪物，后一波开始的时间不会早于前一波结束的时间（尽管后一波可以与前一波在同一时刻结束和开始），形式化地说，满足条件 $r_i \\le l_{i + 1}$。请阅读样例的说明，以更好地理解整个过程。\n\n你对自己和角色的能力很有信心，因此可以认为瞄准和射击都是瞬间完成的，并且消灭一只怪物恰好需要一发子弹。但换弹需要恰好 $1$ 个单位的时间。\n\n逼真的游戏机制之一就是换弹机制：换弹时，你会将旧弹匣连同其中剩余的所有子弹一起丢掉。因此，频繁换弹可能会导致你浪费大量子弹。\n\n你喜欢上了这一机制，现在你想知道：为了消灭所有波次的怪物，至少需要消耗多少发子弹（包括射出的子弹和丢弃的子弹）。\n\n注意，在消灭所有怪物后，你不会丢弃弹匣中剩余的子弹，并且开始时弹匣是满的。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 2000$；$1 \\le k \\le 10^9$）——波次数量和弹匣容量。\n\n接下来的 $n$ 行描述各波怪物。第 $i$ 行包含三个整数 $l_i$、$r_i$ 和 $a_i$（$1 \\le l_i \\le r_i \\le 10^9$；$1 \\le a_i \\le 10^9$）——第 $i$ 波怪物出现的时间段，以及其中的怪物数量。\n\n保证各波怪物互不重叠（但可能相接），并且按照出现顺序给出，即 $r_i \\le l_{i + 1}$。\n\n## 输出格式\n\n如果无法消灭所有波次的怪物，输出 $-1$。否则，输出为了消灭所有波次的怪物而至少需要消耗的子弹数（包括射出的子弹和丢弃的子弹）。\n\n## 说明\n\n在第一个样例中：\n\n- 在时刻 $2$，第一波怪物出现，共有 $6$ 只怪物。你消灭 $3$ 只怪物，然后开始换弹。\n- 在时刻 $3$，第二波怪物出现，又有 $3$ 只怪物出现。你消灭第一波中剩余的 $3$ 只怪物，然后开始换弹。\n- 在时刻 $4$，你消灭第二波中剩余的 $3$ 只怪物。\n\n总共需要消耗 $9$ 发子弹。\n\n在第二个样例中：\n\n- 在时刻 $3$，第一波怪物出现，共有 $11$ 只怪物。你消灭 $5$ 只怪物，然后开始换弹。\n- 在时刻 $4$，你又消灭 $5$ 只怪物，然后开始换弹。\n- 在时刻 $5$，你消灭最后一只怪物，然后开始换弹，并丢弃旧弹匣中剩余的 $4$ 发子弹。\n- 在时刻 $10$，第二波怪物出现，共有 $15$ 只怪物。你消灭 $5$ 只怪物，然后开始换弹。\n- 在时刻 $11$，你又消灭 $5$ 只怪物，然后开始换弹。\n- 在时刻 $12$，你消灭最后 $5$ 只怪物。\n\n总共需要消耗 $30$ 发子弹。",
   "samples": [
     {
       "input": "2 3\n2 3 6\n3 4 3\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:37:49.265Z"
+  "fetchedAt": "2026-11-02T18:37:49.265Z",
+  "translatedAt": "2026-11-04T04:16:55.467+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

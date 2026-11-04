@@ -4,7 +4,7 @@
   "contestId": 1244,
   "index": "D",
   "title": "Paint the Tree",
-  "titleZh": null,
+  "titleZh": "给树染色",
   "url": "https://codeforces.com/contest/1244/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree consisting of $n$ vertices. A tree is an undirected connected acyclic graph.\n\n![image](https://espresso.codeforces.com/08dda038b9a7b91c09fd02babea6bf8090251083.png) Example of a tree.\n\nYou have to paint each vertex into one of three colors. For each vertex, you know the cost of painting it in every color.\n\nYou have to paint the vertices so that any path consisting of exactly three distinct vertices does not contain any vertices with equal colors. In other words, let's consider all triples $(x, y, z)$ such that $x \\neq y, y \\neq z, x \\neq z$, $x$ is connected by an edge with $y$, and $y$ is connected by an edge with $z$. The colours of $x$, $y$ and $z$ should be pairwise distinct. Let's call a painting which meets this condition *good*.\n\nYou have to calculate the minimum cost of a *good* painting and find one of the optimal paintings. If there is no *good* painting, report about it.\n\n## Input\n\nThe first line contains one integer $n$ $(3 \\le n \\le 100\\,000)$ — the number of vertices.\n\nThe second line contains a sequence of integers $c_{1, 1}, c_{1, 2}, \\dots, c_{1, n}$ $(1 \\le c_{1, i} \\le 10^{9})$, where $c_{1, i}$ is the cost of painting the $i$-th vertex into the first color.\n\nThe third line contains a sequence of integers $c_{2, 1}, c_{2, 2}, \\dots, c_{2, n}$ $(1 \\le c_{2, i} \\le 10^{9})$, where $c_{2, i}$ is the cost of painting the $i$-th vertex into the second color.\n\nThe fourth line contains a sequence of integers $c_{3, 1}, c_{3, 2}, \\dots, c_{3, n}$ $(1 \\le c_{3, i} \\le 10^{9})$, where $c_{3, i}$ is the cost of painting the $i$-th vertex into the third color.\n\nThen $(n - 1)$ lines follow, each containing two integers $u_j$ and $v_j$ $(1 \\le u_j, v_j \\le n, u_j \\neq v_j)$ — the numbers of vertices connected by the $j$-th undirected edge. It is guaranteed that these edges denote a tree.\n\n## Output\n\nIf there is no *good* painting, print $-1$.\n\nOtherwise, print the minimum cost of a *good* painting in the first line. In the second line print $n$ integers $b_1, b_2, \\dots, b_n$ $(1 \\le b_i \\le 3)$, where the $i$-th integer should denote the color of the $i$-th vertex. If there are multiple good paintings with minimum cost, print any of them.\n\n## Note\n\nAll vertices should be painted in different colors in the first example. The optimal way to do it is to paint the first vertex into color $1$, the second vertex — into color $3$, and the third vertex — into color $2$. The cost of this painting is $3 + 2 + 1 = 6$.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一棵由 $n$ 个顶点组成的树。树是一种无向、连通且无环的图。\n\n![image](https://espresso.codeforces.com/08dda038b9a7b91c09fd02babea6bf8090251083.png) 一棵树的示例。\n\n你需要将每个顶点染成三种颜色中的一种。对于每个顶点，你都知道将其染成每种颜色所需的代价。\n\n你需要为这些顶点染色，使得任何恰好由三个不同顶点组成的路径中，都不存在颜色相同的顶点。换句话说，考虑所有满足以下条件的三元组 $(x, y, z)$：$x \\neq y, y \\neq z, x \\neq z$，$x$ 与 $y$ 之间有一条边相连，且 $y$ 与 $z$ 之间有一条边相连。$x$、$y$ 和 $z$ 的颜色应当两两不同。我们将满足该条件的染色方案称为*合法染色*。\n\n你需要计算一个*合法染色*的最小代价，并找出其中一种最优染色方案。如果不存在*合法染色*，请报告这一情况。\n\n## 输入格式\n\n第一行包含一个整数 $n$ $(3 \\le n \\le 100\\,000)$ —— 顶点数量。\n\n第二行包含一个整数序列 $c_{1, 1}, c_{1, 2}, \\dots, c_{1, n}$ $(1 \\le c_{1, i} \\le 10^{9})$，其中 $c_{1, i}$ 表示将第 $i$ 个顶点染成第一种颜色的代价。\n\n第三行包含一个整数序列 $c_{2, 1}, c_{2, 2}, \\dots, c_{2, n}$ $(1 \\le c_{2, i} \\le 10^{9})$，其中 $c_{2, i}$ 表示将第 $i$ 个顶点染成第二种颜色的代价。\n\n第四行包含一个整数序列 $c_{3, 1}, c_{3, 2}, \\dots, c_{3, n}$ $(1 \\le c_{3, i} \\le 10^{9})$，其中 $c_{3, i}$ 表示将第 $i$ 个顶点染成第三种颜色的代价。\n\n接下来 $(n - 1)$ 行，每行包含两个整数 $u_j$ 和 $v_j$ $(1 \\le u_j, v_j \\le n, u_j \\neq v_j)$ ——第 $j$ 条无向边所连接的顶点编号。保证这些边构成一棵树。\n\n## 输出格式\n\n如果不存在*合法染色*，输出 $-1$。\n\n否则，第一行输出*合法染色*的最小代价。第二行输出 $n$ 个整数 $b_1, b_2, \\dots, b_n$ $(1 \\le b_i \\le 3)$，其中第 $i$ 个整数表示第 $i$ 个顶点的颜色。如果存在多个代价最小的合法染色方案，输出任意一种即可。\n\n## 说明\n\n在第一个样例中，所有顶点都应染成不同的颜色。最优方案是将第一个顶点染成颜色 $1$，第二个顶点染成颜色 $3$，第三个顶点染成颜色 $2$。该染色方案的代价为 $3 + 2 + 1 = 6$。",
   "samples": [
     {
       "input": "3\n3 2 3\n4 3 2\n3 1 3\n1 2\n2 3\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:01:58.432Z"
+  "fetchedAt": "2026-10-31T00:01:58.432Z",
+  "translatedAt": "2026-11-04T04:57:01.269+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

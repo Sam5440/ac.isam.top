@@ -4,7 +4,7 @@
   "contestId": 730,
   "index": "B",
   "title": "Minimum and Maximum",
-  "titleZh": null,
+  "titleZh": "最小值和最大值",
   "url": "https://codeforces.com/contest/730/problem/B",
   "difficulty": 1800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "*This is an interactive problem. You have to use `flush` operation right after printing each line. For example, in C++ you should use function `fflush(stdout)`, in Java — `System.out.flush()`, in Pascal — `flush(output)` and in Python — `sys.stdout.flush()`.*\n\nIn this problem, you need to find maximal and minimal elements of an array. What could be simpler?\n\nYou can imagine that the jury has an array, and initially you know the only number $*n*$ — array's length.\n\nArray's elements are numbered from $1$ to $*n*$. You are allowed to compare two elements of the array by using their indices $*i*$ and $*j*$. There are three possible responses to this query: '`<`' (if $*a*_{*i*}$ is less than $*a*_{*j*}$), '`=`' (if $*a*_{*i*}$ is equal to $*a*_{*j*}$) and finally '`>`' (if $*a*_{*i*}$ is greater than $*a*_{*j*}$).\n\nIt's known that it's always possible to find both maximal and minimal elements of the array by using no more than ![image](https://espresso.codeforces.com/04eaae4fc2202f23bd8fbd55b81ed67710c40d1d.png) comparisons, where $⌈ *x*⌉$ is the result of rounding $*x*$ up.\n\nWrite the program that will find positions of the minimum and the maximum in the jury's array of length $*n*$, by using no more than $*f*(*n*)$ comparisons.\n\n## Interaction\n\nEach test for this problem will contain one or more arrays. You have to find positions of minimal and maximal elements for each of these arrays. The first line of the input contains integer $*T*$ ($1 ≤ *T* ≤ 1000$) — number of arrays in the test.\n\nThus, at the beginning, you program should read number $*T*$, and then it should solve the problem for $*T*$ jury's arrays one by one.\n\nThen input for each array goes. Firstly, your program has to read the number $*n*$ ($1 ≤ *n* ≤ 50$) — the length of the array. It will be provided in the next line of the input.\n\nFurther, your program can perform comparisons or report that the answer is found.\n\n- To perform a comparison, you have to output string of the following pattern «`? i j`» ($*i*$ and $*j*$ must be integer numbers from $1$ to $*n*$) — the indices of the elements to compare in the current query.\n- To report the indices of minimal and maximal elements of the hidden array, your program have to output a line in the form «`! i j`» ($*i*$ and $*j*$ must be integer numbers from $1$ to $*n*$), where $*i*$ is an index of the minimal element of array, and $*j*$ is an index of the maximal element of the array. If there are several possible answers to the problem, you can output any of them.\n\nThere are several possible responses for a comparison:\n\n- '`<`' — if $*a*_{*i*}$ is less than $*a*_{*j*}$,\n- '`=`' — if $*a*_{*i*}$ is equal to $*a*_{*j*}$,\n- '`>`' — if $*a*_{*i*}$ is greater than $*a*_{*j*}$.\n\nFor an array of length $*n*$ your program can make at most ![image](https://espresso.codeforces.com/04eaae4fc2202f23bd8fbd55b81ed67710c40d1d.png) comparisons. Note that the operation of reporting an answer («`! i j`» ) is not included into the value of $*f*(*n*)$.\n\nAfter the answer is reported, your program has to solve the problem for the next array or it should terminate if all $*T*$ arrays are processed.",
-  "statementZhMd": null,
+  "statementZhMd": "*这是一道交互题。每次输出一行后，都必须立即使用 `flush` 操作。例如，在 C++ 中应使用函数 `fflush(stdout)`，在 Java 中应使用 `System.out.flush()`，在 Pascal 中应使用 `flush(output)`，在 Python 中应使用 `sys.stdout.flush()`。*\n\n在本题中，你需要找出一个数组中的最大元素和最小元素。这还有什么难的呢？\n\n你可以想象评测程序有一个数组，而一开始你只知道一个数 $*n*$——数组的长度。\n\n数组中的元素编号从 $1$ 到 $*n*$。你可以通过使用下标 $*i*$ 和 $*j*$ 比较数组中的两个元素。对于一次询问，可能有以下三种回答：如果 $*a*_{*i*}$ 小于 $*a*_{*j*$，则回答 '`<`'；如果 $*a*_{*i*}$ 等于 $*a*_{*j*$，则回答 '`=`'；如果 $*a*_{*i*}$ 大于 $*a*_{*j*$，则回答 '`>`'。\n\n已知总能通过不超过 ![image](https://espresso.codeforces.com/04eaae4fc2202f23bd8fbd55b81ed67710c40d1d.png) 次比较找出数组中的最大元素和最小元素，其中 $⌈ *x*⌉$ 表示将 $*x*$ 向上取整后的结果。\n\n请编写程序，在不超过 $*f*(*n*)$ 次比较的情况下，找出评测程序中长度为 $*n*$ 的数组的最小值和最大值所在位置。\n\n## 交互\n\n本题的每个测试包含一个或多个数组。你需要找出每个数组中最小元素和最大元素所在的位置。测试的第一行包含一个整数 $*T*$（$1 ≤ *T* ≤ 1000$）——数组的数量。\n\n因此，程序开始时应读入整数 $*T*$，然后依次处理评测程序中的 $*T*$ 个数组。\n\n接下来是每个数组的输入。首先，程序需要读入一个整数 $*n*$（$1 ≤ *n* ≤ 50$）——数组的长度。该整数将在输入的下一行给出。\n\n之后，程序可以进行比较，或者报告答案已经找到。\n\n- 要进行比较，需要输出如下格式的字符串 «`? i j`»（$*i*$ 和 $*j*$ 必须是 $1$ 到 $*n*$ 之间的整数）——表示要在当前询问中比较的元素下标。\n- 要报告隐藏数组中最小元素和最大元素的下标，需要输出如下格式的一行 «`! i j`»（$*i*$ 和 $*j*$ 必须是 $1$ 到 $*n*$ 之间的整数），其中 $*i*$ 是数组中最小元素的下标，$*j*$ 是数组中最大元素的下标。如果有多个正确答案，可以输出其中任意一个。\n\n对于一次比较，可能有以下几种回答：\n\n- '`<`'——如果 $*a*_{*i*}$ 小于 $*a*_{*j*$；\n- '`=`'——如果 $*a*_{*i*}$ 等于 $*a*_{*j*$；\n- '`>`'——如果 $*a*_{*i*}$ 大于 $*a*_{*j*$。\n\n对于长度为 $*n*$ 的数组，程序最多可以进行 ![image](https://espresso.codeforces.com/04eaae4fc2202f23bd8fbd55b81ed67710c40d1d.png) 次比较。注意，报告答案的操作（«`! i j`»）不计入 $*f*(*n*)$。\n\n报告答案后，如果所有 $*T*$ 个数组都已处理完毕，程序应终止；否则应继续处理下一个数组。",
   "samples": [
     {
       "input": "2\n2\n \n>\n \n3\n \n=\n \n=\n \n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:51:31.935Z"
+  "fetchedAt": "2026-11-02T19:51:31.935Z",
+  "translatedAt": "2026-11-04T06:23:20.832+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

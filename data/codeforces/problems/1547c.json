@@ -4,7 +4,7 @@
   "contestId": 1547,
   "index": "C",
   "title": "Pair Programming",
-  "titleZh": null,
+  "titleZh": "双人编程",
   "url": "https://codeforces.com/contest/1547/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Monocarp and Polycarp are learning new programming techniques. Now they decided to try pair programming.\n\nIt's known that they have worked together on the same file for $n + m$ minutes. Every minute exactly one of them made one change to the file. Before they started, there were already $k$ lines written in the file.\n\nEvery minute exactly one of them does one of two actions: adds a new line to the end of the file or changes one of its lines.\n\nMonocarp worked in total for $n$ minutes and performed the sequence of actions $[a_1, a_2, \\dots, a_n]$. If $a_i = 0$, then he adds a new line to the end of the file. If $a_i \\gt 0$, then he changes the line with the number $a_i$. Monocarp performed actions strictly in this order: $a_1$, then $a_2$, ..., $a_n$.\n\nPolycarp worked in total for $m$ minutes and performed the sequence of actions $[b_1, b_2, \\dots, b_m]$. If $b_j = 0$, then he adds a new line to the end of the file. If $b_j \\gt 0$, then he changes the line with the number $b_j$. Polycarp performed actions strictly in this order: $b_1$, then $b_2$, ..., $b_m$.\n\nRestore their common sequence of actions of length $n + m$ such that all actions would be correct — there should be no changes to lines that do not yet exist. Keep in mind that in the common sequence Monocarp's actions should form the subsequence $[a_1, a_2, \\dots, a_n]$ and Polycarp's — subsequence $[b_1, b_2, \\dots, b_m]$. They can replace each other at the computer any number of times.\n\nLet's look at an example. Suppose $k = 3$. Monocarp first changed the line with the number $2$ and then added a new line (thus, $n = 2, \\: a = [2, 0]$). Polycarp first added a new line and then changed the line with the number $5$ (thus, $m = 2, \\: b = [0, 5]$).\n\nSince the initial length of the file was $3$, in order for Polycarp to change line number $5$ two new lines must be added beforehand. Examples of correct sequences of changes, in this case, would be $[0, 2, 0, 5]$ and $[2, 0, 0, 5]$. Changes $[0, 0, 5, 2]$ (wrong order of actions) and $[0, 5, 2, 0]$ (line $5$ cannot be edited yet) are not correct.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 1000$). Then $t$ test cases follow. Before each test case, there is an empty line.\n\nEach test case contains three lines. The first line contains three integers $k$, $n$, $m$ ($0 \\le k \\le 100$, $1 \\le n, m \\le 100$) — the initial number of lines in file and lengths of Monocarp's and Polycarp's sequences of changes respectively.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($0 \\le a_i \\le 300$).\n\nThe third line contains $m$ integers $b_1, b_2, \\dots, b_m$ ($0 \\le b_j \\le 300$).\n\n## Output\n\nFor each test case print any correct common sequence of Monocarp's and Polycarp's actions of length $n + m$ or `-1` if such sequence doesn't exist.",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 和 Polycarp 正在学习新的编程技巧。现在，他们决定尝试双人编程。\n\n已知他们共同编辑同一个文件，一共花费了 $n + m$ 分钟。每分钟恰好有一个人对文件进行一次修改。在他们开始之前，文件中已经有 $k$ 行内容。\n\n每分钟，恰好有一个人执行以下两种操作之一：在文件末尾添加一行，或修改文件中的某一行。\n\nMonocarp 总共工作了 $n$ 分钟，并按顺序执行了操作序列 $[a_1, a_2, \\dots, a_n]$。如果 $a_i = 0$，那么他会在文件末尾添加一行；如果 $a_i \\gt 0$，那么他会修改编号为 $a_i$ 的行。Monocarp 严格按照以下顺序执行操作：$a_1$、$a_2$、……、$a_n$。\n\nPolycarp 总共工作了 $m$ 分钟，并按顺序执行了操作序列 $[b_1, b_2, \\dots, b_m]$。如果 $b_j = 0$，那么他会在文件末尾添加一行；如果 $b_j \\gt 0$，那么他会修改编号为 $b_j$ 的行。Polycarp 严格按照以下顺序执行操作：$b_1$、$b_2$、……、$b_m$。\n\n请还原一个长度为 $n + m$ 的共同操作序列，使得所有操作都是合法的——不能修改尚不存在的行。注意，在共同操作序列中，Monocarp 的操作必须构成子序列 $[a_1, a_2, \\dots, a_n]$，Polycarp 的操作必须构成子序列 $[b_1, b_2, \\dots, b_m]$。他们可以任意次数地互相替换操作人员。\n\n让我们来看一个例子。假设 $k = 3$。Monocarp 先修改编号为 $2$ 的行，然后添加一行（因此，$n = 2, \\: a = [2, 0]$）。Polycarp 先添加一行，然后修改编号为 $5$ 的行（因此，$m = 2, \\: b = [0, 5]$）。\n\n由于文件的初始长度为 $3$，Polycarp 想要修改第 $5$ 行，就必须提前添加两行。此时，正确的操作序列例如有 $[0, 2, 0, 5]$ 和 $[2, 0, 0, 5]$。操作序列 $[0, 0, 5, 2]$（操作顺序错误）和 $[0, 5, 2, 0]$（第 $5$ 行尚不存在，无法修改）则是不正确的。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）。接下来有 $t$ 组测试用例。每组测试用例之前有一个空行。\n\n每组测试用例包含三行。第一行包含三个整数 $k$、$n$、$m$（$0 \\le k \\le 100$，$1 \\le n, m \\le 100$）——文件中的初始行数，以及 Monocarp 和 Polycarp 的操作序列长度。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$0 \\le a_i \\le 300$）。\n\n第三行包含 $m$ 个整数 $b_1, b_2, \\dots, b_m$（$0 \\le b_j \\le 300$）。\n\n## 输出格式\n\n对于每组测试用例，输出任意一个长度为 $n + m$ 的、由 Monocarp 和 Polycarp 的操作组成的正确共同操作序列；如果不存在这样的序列，则输出 `-1`。",
   "samples": [
     {
       "input": "5\n\n3 2 2\n2 0\n0 5\n\n4 3 2\n2 0 5\n0 6\n\n0 2 2\n1 0\n2 3\n\n5 4 4\n6 0 8 0\n0 7 0 9\n\n5 4 1\n8 7 8 0\n0\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:23:15.311Z"
+  "fetchedAt": "2026-11-02T18:23:15.311Z",
+  "translatedAt": "2026-11-04T03:52:08.208+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

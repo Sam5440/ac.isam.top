@@ -4,7 +4,7 @@
   "contestId": 630,
   "index": "M",
   "title": "Turn",
-  "titleZh": null,
+  "titleZh": "旋转",
   "url": "https://codeforces.com/contest/630/problem/M",
   "difficulty": 1800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 500,
   "memoryLimitMb": 64,
   "statementMd": "Vasya started working in a machine vision company of IT City. Vasya's team creates software and hardware for identification of people by their face.\n\nOne of the project's know-how is a camera rotating around its optical axis on shooting. People see an eye-catching gadget — a rotating camera — come up to it to see it better, look into it. And the camera takes their photo at that time. What could be better for high quality identification?\n\nBut not everything is so simple. The pictures from camera appear rotated too (on clockwise camera rotation frame the content becomes rotated counter-clockwise). But the identification algorithm can work only with faces that are just slightly deviated from vertical.\n\nVasya was entrusted to correct the situation — to rotate a captured image so that image would be minimally deviated from vertical. Requirements were severe. Firstly, the picture should be rotated only on angle divisible by 90 degrees to not lose a bit of information about the image. Secondly, the frames from the camera are so huge and FPS is so big that adequate rotation speed is provided by hardware FPGA solution only. And this solution can rotate only by 90 degrees clockwise. Of course, one can apply 90 degrees turn several times but for the sake of performance the number of turns should be minimized.\n\nHelp Vasya implement the program that by the given rotation angle of the camera can determine the minimum number of 90 degrees clockwise turns necessary to get a picture in which up direction deviation from vertical is minimum.\n\nThe next figure contains frames taken from an unrotated camera, then from rotated 90 degrees clockwise, then from rotated 90 degrees counter-clockwise. Arrows show direction to \"true up\".\n\n![image](https://espresso.codeforces.com/f321c00fdcb688f9004c13173a743b06c2618db4.png)\n\nThe next figure shows 90 degrees clockwise turn by FPGA hardware.\n\n![image](https://espresso.codeforces.com/458a2dacc4bab8212a4a12b5ccd4fcd472e3daf1.png)\n\n## Input\n\nThe only line of the input contains one integer $*x*$ ($- 10^{18} ≤ *x* ≤ 10^{18}$) — camera angle in degrees. Positive value denotes clockwise camera rotation, negative — counter-clockwise.\n\n## Output\n\nOutput one integer — the minimum required number of 90 degrees clockwise turns.\n\n## Note\n\nWhen the camera is rotated $60$ degrees counter-clockwise (the second example), an image from it is rotated $60$ degrees clockwise. One $90$ degrees clockwise turn of the image result in $150$ degrees clockwise total rotation and deviation from \"true up\" for one turn is $150$ degrees. Two $90$ degrees clockwise turns of the image result in $240$ degrees clockwise total rotation and deviation from \"true up\" for two turns is $120$ degrees because $240$ degrees clockwise equal to $120$ degrees counter-clockwise. Three $90$ degrees clockwise turns of the image result in $330$ degrees clockwise total rotation and deviation from \"true up\" for three turns is $30$ degrees because $330$ degrees clockwise equal to $30$ degrees counter-clockwise.\n\nFrom $60$, $150$, $120$ and $30$ degrees deviations the smallest is $30$, and it it achieved in three $90$ degrees clockwise turns.",
-  "statementZhMd": null,
+  "statementZhMd": "瓦西里开始在 IT City 的一家机器视觉公司工作。瓦西里的团队致力于研发通过人脸识别身份的软件和硬件。\n\n项目的一项核心技术是：拍摄时，摄像机可以绕其光轴旋转。人们看到这个引人注目的装置——一台旋转的摄像机——便会走近它，想要看得更清楚，并注视摄像机。而摄像机就在这时拍下他们的照片。还有什么能比这更有利于高质量的身份识别呢？\n\n但事情并没有这么简单。摄像机拍出的图像也会发生旋转（摄像机顺时针旋转时，画面中的内容会逆时针旋转）。然而，识别算法只能处理与竖直方向偏差很小的人脸。\n\n瓦西里受托解决这个问题——旋转拍摄得到的图像，使图像尽可能接近竖直方向。要求非常严格。首先，为了不损失图像中的任何信息，图像只能旋转 $90$ 度的整数倍。其次，摄像机的画面尺寸非常大，FPS 也非常高，因此只有硬件 FPGA 方案才能提供足够的旋转速度。而这种方案只能将图像顺时针旋转 $90$ 度。当然，可以多次进行 $90$ 度旋转，但出于性能考虑，应使旋转次数尽可能少。\n\n请帮助瓦西里编写程序：根据给定的摄像机旋转角度，确定至少需要将图像顺时针旋转 $90$ 度多少次，才能使图像中向上的方向与竖直方向的偏差最小。\n\n下图展示了摄像机未旋转时、顺时针旋转 $90$ 度时以及逆时针旋转 $90$ 度时拍摄的画面。箭头表示指向“真正的上方”的方向。\n\n![image](https://espresso.codeforces.com/f321c00fdcb688f9004c13173a743b06c2618db4.png)\n\n下图展示了 FPGA 硬件进行 $90$ 度顺时针旋转的过程。\n\n![image](https://espresso.codeforces.com/458a2dacc4bab8212a4a12b5ccd4fcd472e3daf1.png)\n\n## 输入格式\n\n输入仅一行，包含一个整数 $*x*$（$- 10^{18} ≤ *x* ≤ 10^{18}$），表示摄像机的旋转角度，单位为度。正数表示摄像机顺时针旋转，负数表示逆时针旋转。\n\n## 输出格式\n\n输出一个整数——所需的 $90$ 度顺时针旋转的最少次数。\n\n## 说明\n\n当摄像机逆时针旋转 $60$ 度时（第二个样例），它拍摄出的图像顺时针旋转了 $60$ 度。将图像顺时针旋转一次 $90$ 度后，总旋转角度为顺时针 $150$ 度，此时一次旋转对应的图像与“真正的上方”的偏差为 $150$ 度。将图像顺时针旋转两次 $90$ 度后，总旋转角度为顺时针 $240$ 度，此时偏差为 $120$ 度，因为顺时针 $240$ 度等价于逆时针 $120$ 度。将图像顺时针旋转三次 $90$ 度后，总旋转角度为顺时针 $330$ 度，此时偏差为 $30$ 度，因为顺时针 $330$ 度等价于逆时针 $30$ 度。\n\n在 $60$、$150$、$120$ 和 $30$ 度的偏差中，最小的是 $30$ 度，并且它在顺时针旋转三次 $90$ 度后取得。",
   "samples": [
     {
       "input": "60\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:58:58.898Z"
+  "fetchedAt": "2026-11-02T19:58:58.898Z",
+  "translatedAt": "2026-11-04T06:45:48.594+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

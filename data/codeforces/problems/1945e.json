@@ -4,7 +4,7 @@
   "contestId": 1945,
   "index": "E",
   "title": "Binary Search",
-  "titleZh": null,
+  "titleZh": "二分查找",
   "url": "https://codeforces.com/contest/1945/problem/E",
   "difficulty": 1700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Anton got bored during the hike and wanted to solve something. He asked Kirill if he had any new problems, and of course, Kirill had one.\n\nYou are given a permutation $p$ of size $n$, and a number $x$ that needs to be found. A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nYou decided that you are a cool programmer, so you will use an advanced algorithm for the search — binary search. However, you forgot that for binary search, the array must be sorted.\n\nYou did not give up and decided to apply this algorithm anyway, and in order to get the correct answer, you can perform the following operation **no more than** $2$ times before running the algorithm: choose the indices $i$, $j$ ($1\\le i, j \\le n$) and swap the elements at positions $i$ and $j$.\n\nAfter that, the binary search is performed. At the beginning of the algorithm, two variables $l = 1$ and $r = n + 1$ are declared. Then the following loop is executed:\n\n1. If $r - l = 1$, end the loop\n2. $m = \\lfloor \\frac{r + l}{2} \\rfloor$\n3. If $p_m \\le x$, assign $l = m$, otherwise $r = m$.\n\nThe goal is to rearrange the numbers in the permutation before the algorithm so that after the algorithm is executed, $p_l$ is equal to $x$. It can be shown that $2$ operations are always sufficient.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 2\\cdot 10^4$) — the number of test cases. Then follow the descriptions of the test cases.\n\nThe first line of each test case contains two integers $n$ and $x$ ($1 \\le x \\le n \\le 2\\cdot 10^5$) — the length of the permutation and the number to be found.\n\nThe second line contains the permutation $p$ separated by spaces ($1 \\le p_i \\le n$).\n\nIt is guaranteed that the sum of the values of $n$ for all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output an integer $k$ ($0 \\le k \\le 2$) on the first line — the number of operations performed by you. In the next $k$ lines, output $2$ integers $i$, $j$ ($1 \\le i, j \\le n$) separated by a space, indicating that you are swapping the elements at positions $i$ and $j$.\n\nNote that you do not need to minimize the number of operations.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nAnton 在徒步旅行时感到无聊，想找点事情做。他问 Kirill 是否有新题目，当然，Kirill 确实有一道。\n\n给定一个长度为 $n$ 的排列 $p$，以及一个需要查找的数字 $x$。长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n你认为自己是一名优秀的程序员，因此决定使用一种高级的查找算法——二分查找。然而，你忘记了二分查找要求数组必须有序。\n\n你没有放弃，而是决定无论如何都应用该算法。为了得到正确答案，在运行算法之前，你可以执行以下操作**不超过** $2$ 次：选择下标 $i$、$j$（$1\\le i, j \\le n$），交换位置 $i$ 和位置 $j$ 上的元素。\n\n之后执行二分查找。算法开始时，声明两个变量 $l = 1$ 和 $r = n + 1$。然后执行以下循环：\n\n1. 如果 $r - l = 1$，结束循环。\n2. $m = \\lfloor \\frac{r + l}{2} \\rfloor$\n3. 如果 $p_m \\le x$，则令 $l = m$；否则令 $r = m$。\n\n目标是在执行算法之前重新排列排列中的数字，使得算法执行结束后，$p_l$ 等于 $x$。可以证明，$2$ 次操作总是足够的。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 2\\cdot 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $x$（$1 \\le x \\le n \\le 2\\cdot 10^5$）——排列的长度以及要查找的数字。\n\n第二行包含由空格分隔的排列 $p$（$1 \\le p_i \\le n$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，第一行输出一个整数 $k$（$0 \\le k \\le 2$）——你执行的操作次数。接下来的 $k$ 行中，每行输出两个由空格分隔的整数 $i$、$j$（$1 \\le i, j \\le n$），表示交换位置 $i$ 和位置 $j$ 上的元素。\n\n注意，你不需要最小化操作次数。",
   "samples": [
     {
       "input": "5\n6 3\n1 2 3 4 5 6\n6 5\n3 1 6 5 2 4\n5 1\n3 5 4 2 1\n6 3\n4 3 1 5 2 6\n3 2\n3 2 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:16:37.647Z"
+  "fetchedAt": "2026-11-02T17:16:37.647Z",
+  "translatedAt": "2026-11-04T02:14:58.058+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

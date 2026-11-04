@@ -4,7 +4,7 @@
   "contestId": 981,
   "index": "G",
   "title": "Magic multisets",
-  "titleZh": null,
+  "titleZh": "魔法多重集",
   "url": "https://codeforces.com/contest/981/problem/G",
   "difficulty": 2500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "In the School of Magic in Dirtpolis a lot of interesting objects are studied on Computer Science lessons.\n\nConsider, for example, the magic multiset. If you try to add an integer to it that is already presented in the multiset, each element in the multiset duplicates. For example, if you try to add the integer $2$ to the multiset $\\{1, 2, 3, 3\\}$, you will get $\\{1, 1, 2, 2, 3, 3, 3, 3\\}$.\n\nIf you try to add an integer that is not presented in the multiset, it is simply added to it. For example, if you try to add the integer $4$ to the multiset $\\{1, 2, 3, 3\\}$, you will get $\\{1, 2, 3, 3, 4\\}$.\n\nAlso consider an array of $n$ initially empty magic multisets, enumerated from $1$ to $n$.\n\nYou are to answer $q$ queries of the form \"add an integer $x$ to all multisets with indices $l, l + 1, \\ldots, r$\" and \"compute the sum of sizes of multisets with indices $l, l + 1, \\ldots, r$\". The answers for the second type queries can be large, so print the answers modulo $998244353$.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\leq n, q \\leq 2 \\cdot 10^{5}$) — the number of magic multisets in the array and the number of queries, respectively.\n\nThe next $q$ lines describe queries, one per line. Each line starts with an integer $t$ ($1 \\leq t \\leq 2$) — the type of the query. If $t$ equals $1$, it is followed by three integers $l$, $r$, $x$ ($1 \\leq l \\leq r \\leq n$, $1 \\leq x \\leq n$) meaning that you should add $x$ to all multisets with indices from $l$ to $r$ inclusive. If $t$ equals $2$, it is followed by two integers $l$, $r$ ($1 \\leq l \\leq r \\leq n$) meaning that you should compute the sum of sizes of all multisets with indices from $l$ to $r$ inclusive.\n\n## Output\n\nFor each query of the second type print the sum of sizes of multisets on the given segment.\n\nThe answers can be large, so print them modulo $998244353$.\n\n## Note\n\nIn the first example after the first two queries the multisets are equal to $[\\{1, 2\\},\\{1, 2\\},\\{\\},\\{\\}]$, after the third query they are equal to $[\\{1, 1, 2, 2\\},\\{1, 1, 2, 2\\},\\{1\\},\\{1\\}]$.\n\nIn the second example the first multiset evolves as follows:\n\n$\\{\\} \\to \\{3\\} \\to \\{3, 3\\} \\to \\{2, 3, 3\\} \\to \\{1, 2, 3, 3\\} \\to \\{1, 1, 2, 2, 3, 3, 3, 3\\}$.",
-  "statementZhMd": null,
+  "statementZhMd": "在 Dirtpolis 的魔法学校里，计算机科学课上会学习许多有趣的对象。\n\n例如，考虑魔法多重集。如果你尝试向其中加入一个已经存在于多重集中的整数，那么多重集中的每个元素都会变为原来的两份。例如，如果尝试向多重集 $\\{1, 2, 3, 3\\}$ 中加入整数 $2$，将得到 $\\{1, 1, 2, 2, 3, 3, 3, 3\\}$。\n\n如果你尝试加入一个多重集中不存在的整数，那么它只会被简单地加入多重集中。例如，如果尝试向多重集 $\\{1, 2, 3, 3\\}$ 中加入整数 $4$，将得到 $\\{1, 2, 3, 3, 4\\}$。\n\n现在考虑一个由 $n$ 个初始为空的魔法多重集组成的数组，它们的编号从 $1$ 到 $n$。\n\n你需要回答 $q$ 个查询，查询有以下两种形式：“将整数 $x$ 加入编号为 $l, l + 1, \\ldots, r$ 的所有多重集”以及“计算编号为 $l, l + 1, \\ldots, r$ 的所有多重集的大小之和”。第二种查询的答案可能很大，请将答案对 $998244353$ 取模后输出。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\le n, q \\le 2 \\cdot 10^{5}$）——数组中魔法多重集的数量以及查询的数量。\n\n接下来的 $q$ 行每行描述一个查询。每行首先包含一个整数 $t$（$1 \\le t \\le 2$）——查询的类型。\n\n如果 $t$ 等于 $1$，接下来有三个整数 $l$、$r$、$x$（$1 \\le l \\le r \\le n$，$1 \\le x \\le n$），表示将 $x$ 加入编号从 $l$ 到 $r$（包括两端）的所有多重集。\n\n如果 $t$ 等于 $2$，接下来有两个整数 $l$、$r$（$1 \\le l \\le r \\le n$），表示计算编号从 $l$ 到 $r$（包括两端）的所有多重集的大小之和。\n\n## 输出格式\n\n对于每个第二种查询，输出给定区间内所有多重集的大小之和。\n\n答案可能很大，请将其对 $998244353$ 取模后输出。\n\n## 说明\n\n在第一个样例中，前两个查询执行后，多重集变为 $[\\{1, 2\\},\\{1, 2\\},\\{\\},\\{\\}]$；第三个查询执行后，多重集变为 $[\\{1, 1, 2, 2\\},\\{1, 1, 2, 2\\},\\{1\\},\\{1\\}]$。\n\n在第二个样例中，第一个多重集的变化过程如下：\n\n$\\{\\} \\to \\{3\\} \\to \\{3, 3\\} \\to \\{2, 3, 3\\} \\to \\{1, 2, 3, 3\\} \\to \\{1, 1, 2, 2, 3, 3, 3, 3\\}$。",
   "samples": [
     {
       "input": "4 4\n1 1 2 1\n1 1 2 2\n1 1 4 1\n2 1 4\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:31:35.443Z"
+  "fetchedAt": "2026-10-31T00:31:35.443Z",
+  "translatedAt": "2026-11-04T05:43:26.031+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

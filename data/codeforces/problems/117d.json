@@ -4,7 +4,7 @@
   "contestId": 117,
   "index": "D",
   "title": "Not Quick Transformation",
-  "titleZh": null,
+  "titleZh": "不快速变换",
   "url": "https://codeforces.com/contest/117/problem/D",
   "difficulty": 2500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 256,
   "statementMd": "Let $*a*$ be an array consisting of $*n*$ numbers. The array's elements are numbered from $1$ to $*n*$, $*even*$ is an array consisting of the numerals whose numbers are even in $*a*$ ($*even*_{*i*} = *a*_{2*i*}$, $1 ≤ 2*i* ≤ *n*$), $*odd*$ is an array consisting of the numberals whose numbers are odd in $*а*$ ($*odd*_{*i*} = *a*_{2*i* - 1}$, $1 ≤ 2*i* - 1 ≤ *n*$). Then let's define the transformation of array $*F*(*a*)$ in the following manner:\n\n- if $*n* > 1$, $*F*(*a*) = *F*(*odd*) + *F*(*even*)$, where operation \"$+$\" stands for the arrays' concatenation (joining together)\n- if $*n* = 1$, $*F*(*a*) = *a*$\n\nLet $*a*$ be an array consisting of $*n*$ numbers $1, 2, 3, ..., *n*$. Then $*b*$ is the result of applying the transformation to the array $*a*$ (so $*b* = *F*(*a*)$). You are given $*m*$ queries $(*l*, *r*, *u*, *v*)$. Your task is to find for each query the sum of numbers $*b*_{*i*}$, such that $*l* ≤ *i* ≤ *r*$ and $*u* ≤ *b*_{*i*} ≤ *v*$. You should print the query results modulo $*mod*$.\n\n## Input\n\nThe first line contains three integers $*n*$, $*m*$, $*mod*$ ($1 ≤ *n* ≤ 10^{18}, 1 ≤ *m* ≤ 10^{5}, 1 ≤ *mod* ≤ 10^{9}$). Next $*m*$ lines describe the queries. Each query is defined by four integers $*l*$, $*r*$, $*u*$, $*v*$ ($1 ≤ *l* ≤ *r* ≤ *n*$, $1 ≤ *u* ≤ *v* ≤ 10^{18}$).\n\nPlease do not use the `%lld` specificator to read or write 64-bit integers in C++. Use `%I64d` specificator.\n\n## Output\n\nPrint $*m*$ lines each containing an integer — remainder modulo $*mod*$ of the query result.\n\n## Note\n\nLet's consider the first example. First let's construct an array $*b* = *F*(*a*) = *F*([1, 2, 3, 4])$.\n\n- Step 1. $*F*([1, 2, 3, 4]) = *F*([1, 3]) + *F*([2, 4])$\n- Step 2. $*F*([1, 3]) = *F*([1]) + *F*([3]) = [1] + [3] = [1, 3]$\n- Step 3. $*F*([2, 4]) = *F*([2]) + *F*([4]) = [2] + [4] = [2, 4]$\n- Step 4. $*b* = *F*([1, 2, 3, 4]) = *F*([1, 3]) + *F*([2, 4]) = [1, 3] + [2, 4] = [1, 3, 2, 4]$\n\nThus\n\n*b* = [1, 3, 2, 4]\n\n. Let's consider the first query\n\n*l* = 2, *r* = 3, *u* = 4, *v* = 5\n\n. The second and third positions in the array\n\n*b*\n\ndo not have numbers in the range\n\n[4, 5]\n\n, so the sum obviously equals zero. Let's consider the second query\n\n*l* = 2, *r* = 4, *u* = 1, *v* = 3\n\n. The second and third positions have two numbers that belong to the range\n\n[1, 3]\n\n, their sum equals 5.",
-  "statementZhMd": null,
+  "statementZhMd": "令 $*a*$ 是一个由 $*n*$ 个数字组成的数组。数组元素的编号从 $1$ 到 $*n*$，$*even*$ 是由 $*a*$ 中编号为偶数的元素组成的数组（$*even*_{*i*} = *a*_{2*i*}$，$1 ≤ 2*i* ≤ *n*$），$*odd*$ 是由 $*а*$ 中编号为奇数的元素组成的数组（$*odd*_{*i*} = *a*_{2*i* - 1}$，$1 ≤ 2*i* - 1 ≤ *n*$）。接下来，我们按如下方式定义数组变换 $*F*(*a*)$：\n\n- 当 $*n* > 1$ 时，$*F*(*a*) = *F*(*odd*) + *F*(*even*)$，其中运算“$+$”表示数组的连接（拼接）。\n- 当 $*n* = 1$ 时，$*F*(*a*) = *a*$。\n\n令 $*a*$ 是一个由 $1, 2, 3, ..., *n*$ 组成的数组。令 $*b*$ 为对数组 $*a*$ 应用上述变换后的结果（即 $*b* = *F*(*a*)$）。现在给出 $*m*$ 个查询 $(*l*, *r*, *u*, *v*)$。对于每个查询，你需要求出满足 $*l* ≤ *i* ≤ *r*$ 且 $*u* ≤ *b*_{*i*} ≤ *v*$ 的所有 $*b*_{*i*}$ 之和。请将每个查询的结果对 $*mod*$ 取模后输出。\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*m*$、$*mod*$（$1 ≤ *n* ≤ 10^{18}, 1 ≤ *m* ≤ 10^{5}, 1 ≤ *mod* ≤ 10^{9}$）。接下来 $*m*$ 行描述查询。每个查询由四个整数 $*l*$、$*r*$、$*u*$、$*v*$ 定义（$1 ≤ *l* ≤ *r* ≤ *n*$，$1 ≤ *u* ≤ *v* ≤ 10^{18}$）。\n\n在 C++ 中读写 64 位整数时，请不要使用 `%lld` 格式说明符。请使用 `%I64d` 格式说明符。\n\n## 输出格式\n\n输出 $*m*$ 行，每行包含一个整数，即查询结果对 $*mod*$ 取模后的余数。\n\n## 说明\n\n考虑第一个样例。首先构造数组 $*b* = *F*(*a*) = *F*([1, 2, 3, 4])$。\n\n- 步骤 1。$*F*([1, 2, 3, 4]) = *F*([1, 3]) + *F*([2, 4])$\n- 步骤 2。$*F*([1, 3]) = *F*([1]) + *F*([3]) = [1] + [3] = [1, 3]$\n- 步骤 3。$*F*([2, 4]) = *F*([2]) + *F*([4]) = [2] + [4] = [2, 4]$\n- 步骤 4。$*b* = *F*([1, 2, 3, 4]) = *F*([1, 3]) + *F*([2, 4]) = [1, 3] + [2, 4] = [1, 3, 2, 4]$\n\n因此\n\n$*b* = [1, 3, 2, 4]$\n\n考虑第一个查询\n\n$*l* = 2, *r* = 3, *u* = 4, *v* = 5$\n\n数组 $*b*$ 的第二个和第三个位置上的数字都不在区间 $[4, 5]$ 内，因此总和显然为零。再考虑第二个查询\n\n$*l* = 2, *r* = 4, *u* = 1, *v* = 3$\n\n第二个和第三个位置上的两个数字属于区间 $[1, 3]$，它们的和为 5。",
   "samples": [
     {
       "input": "4 5 10000\n2 3 4 5\n2 4 1 3\n1 2 2 4\n2 3 3 5\n1 3 3 4\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:34:45.888Z"
+  "fetchedAt": "2026-10-31T02:34:45.888Z",
+  "translatedAt": "2026-11-04T07:47:11.497+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

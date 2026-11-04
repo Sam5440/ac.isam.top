@@ -4,14 +4,14 @@
   "contestId": 1345,
   "index": "C",
   "title": "Hilbert's Hotel",
-  "titleZh": null,
+  "titleZh": "希尔伯特的旅馆",
   "url": "https://codeforces.com/contest/1345/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Hilbert's Hotel is a very unusual hotel since the number of rooms is infinite! In fact, there is exactly one room for every integer, **including zero and negative integers**. Even stranger, the hotel is currently at full capacity, meaning there is exactly one guest in every room. The hotel's manager, David Hilbert himself, decides he wants to shuffle the guests around because he thinks this will create a vacancy (a room without a guest).\n\nFor any integer $k$ and positive integer $n$, let $k\\bmod n$ denote the remainder when $k$ is divided by $n$. More formally, $r=k\\bmod n$ is the smallest non-negative integer such that $k-r$ is divisible by $n$. It always holds that $0\\le k\\bmod n\\le n-1$. For example, $100\\bmod 12=4$ and $(-1337)\\bmod 3=1$.\n\nThen the shuffling works as follows. There is an array of $n$ integers $a_0,a_1,\\ldots,a_{n-1}$. Then for each integer $k$, the guest in room $k$ is moved to room number $k+a_{k\\bmod n}$.\n\nAfter this shuffling process, determine if there is still exactly one guest assigned to each room. That is, there are no vacancies or rooms with multiple guests.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of test cases. Next $2t$ lines contain descriptions of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le 2\\cdot 10^5$) — the length of the array.\n\nThe second line of each test case contains $n$ integers $a_0,a_1,\\ldots,a_{n-1}$ ($-10^9\\le a_i\\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single line containing \"`YES`\" if there is exactly one guest assigned to each room after the shuffling process, or \"`NO`\" otherwise. You can print each letter in any case (upper or lower).\n\n## Note\n\nIn the first test case, every guest is shifted by $14$ rooms, so the assignment is still unique.\n\nIn the second test case, even guests move to the right by $1$ room, and odd guests move to the left by $1$ room. We can show that the assignment is still unique.\n\nIn the third test case, every fourth guest moves to the right by $1$ room, and the other guests move to the right by $5$ rooms. We can show that the assignment is still unique.\n\nIn the fourth test case, guests $0$ and $1$ are both assigned to room $3$.\n\nIn the fifth test case, guests $1$ and $2$ are both assigned to room $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "希尔伯特的旅馆是一家非常特别的旅馆，因为它的房间数量是无限的！事实上，每个整数都有一个对应的房间，**包括零和负整数**。更奇怪的是，旅馆目前已经住满了，也就是说每个房间中恰好有一位客人。旅馆经理大卫·希尔伯特本人决定重新安排客人的房间，因为他认为这样可以产生一个空房间（没有客人的房间）。\n\n对于任意整数 $k$ 和正整数 $n$，令 $k\\bmod n$ 表示 $k$ 除以 $n$ 所得的余数。更正式地说，$r=k\\bmod n$ 是满足 $k-r$ 能被 $n$ 整除的最小非负整数。总有 $0\\le k\\bmod n\\le n-1$。例如，$100\\bmod 12=4$，而 $(-1337)\\bmod 3=1$。\n\n接下来，客人的重新安排过程如下。有一个长度为 $n$ 的整数数组 $a_0,a_1,\\ldots,a_{n-1}$。对于每个整数 $k$，房间 $k$ 中的客人会被移动到编号为 $k+a_{k\\bmod n}$ 的房间。\n\n在这一重新安排过程结束后，判断是否仍然恰好每个房间中都有一位客人。也就是说，既没有空房间，也没有任何房间中有多位客人。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。接下来的 $2t$ 行包含各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 2\\cdot 10^5$）——数组的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_0,a_1,\\ldots,a_{n-1}$（$-10^9\\le a_i\\le 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一行。如果重新安排过程结束后每个房间中恰好有一位客人，则输出 \"`YES`\"；否则输出 \"`NO`\"。输出的每个字母可以使用任意大小写形式。\n\n## 说明\n\n在第一个测试用例中，每位客人都向后移动了 $14$ 个房间，因此分配仍然是唯一的。\n\n在第二个测试用例中，偶数编号的客人向右移动 $1$ 个房间，奇数编号的客人向左移动 $1$ 个房间。可以证明，分配仍然是唯一的。\n\n在第三个测试用例中，每四位客人中的一位向右移动 $1$ 个房间，其余客人向右移动 $5$ 个房间。可以证明，分配仍然是唯一的。\n\n在第四个测试用例中，客人 $0$ 和 $1$ 都被分配到了房间 $3$。\n\n在第五个测试用例中，客人 $1$ 和 $2$ 都被分配到了房间 $2$。",
   "samples": [
     {
       "input": "6\n1\n14\n2\n1 -1\n4\n5 5 5 1\n3\n3 2 1\n2\n0 1\n5\n-239 -2 -100 -3 -11\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:51:09.198Z"
+  "fetchedAt": "2026-10-30T23:51:09.198Z",
+  "translatedAt": "2026-11-04T04:44:04.943+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1392,
   "index": "F",
   "title": "Omkar and Landslide",
-  "titleZh": null,
+  "titleZh": "奥姆卡尔和滑坡",
   "url": "https://codeforces.com/contest/1392/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Omkar is standing at the foot of Celeste mountain. The summit is $n$ meters away from him, and he can see all of the mountains up to the summit, so for all $1 \\leq j \\leq n$ he knows that the height of the mountain at the point $j$ meters away from himself is $h_j$ meters. It turns out that for all $j$ satisfying $1 \\leq j \\leq n - 1$, $h_j \\lt h_{j + 1}$ (meaning that heights are strictly increasing).\n\nSuddenly, a landslide occurs! While the landslide is occurring, the following occurs: every minute, if $h_j + 2 \\leq h_{j + 1}$, then one square meter of dirt will slide from position $j + 1$ to position $j$, so that $h_{j + 1}$ is decreased by $1$ and $h_j$ is increased by $1$. These changes occur simultaneously, so for example, if $h_j + 2 \\leq h_{j + 1}$ and $h_{j + 1} + 2 \\leq h_{j + 2}$ for some $j$, then $h_j$ will be increased by $1$, $h_{j + 2}$ will be decreased by $1$, and $h_{j + 1}$ will be both increased and decreased by $1$, meaning that in effect $h_{j + 1}$ is unchanged during that minute.\n\nThe landslide ends when there is no $j$ such that $h_j + 2 \\leq h_{j + 1}$. Help Omkar figure out what the values of $h_1, \\dots, h_n$ will be after the landslide ends. It can be proven that under the given constraints, the landslide will always end in finitely many minutes.\n\nNote that because of the large amount of input, it is recommended that your code uses fast IO.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\leq n \\leq 10^6$).\n\nThe second line contains $n$ integers $h_1, h_2, \\dots, h_n$ satisfying $0 \\leq h_1 \\lt h_2 \\lt \\dots \\lt h_n \\leq 10^{12}$ — the heights.\n\n## Output\n\nOutput $n$ integers, where the $j$-th integer is the value of $h_j$ after the landslide has stopped.\n\n## Note\n\nInitially, the mountain has heights $2, 6, 7, 8$.\n\nIn the first minute, we have $2 + 2 \\leq 6$, so $2$ increases to $3$ and $6$ decreases to $5$, leaving $3, 5, 7, 8$.\n\nIn the second minute, we have $3 + 2 \\leq 5$ and $5 + 2 \\leq 7$, so $3$ increases to $4$, $5$ is unchanged, and $7$ decreases to $6$, leaving $4, 5, 6, 8$.\n\nIn the third minute, we have $6 + 2 \\leq 8$, so $6$ increases to $7$ and $8$ decreases to $7$, leaving $4, 5, 7, 7$.\n\nIn the fourth minute, we have $5 + 2 \\leq 7$, so $5$ increases to $6$ and $7$ decreases to $6$, leaving $4, 6, 6, 7$.\n\nIn the fifth minute, we have $4 + 2 \\leq 6$, so $4$ increases to $5$ and $6$ decreases to $5$, leaving $5, 5, 6, 7$.\n\nIn the sixth minute, nothing else can change so the landslide stops and our answer is $5, 5, 6, 7$.",
-  "statementZhMd": null,
+  "statementZhMd": "奥姆卡尔正站在塞莱斯特山脚下。山顶距离他 $n$ 米，他可以看到直到山顶的整座山，因此对于所有 $1 \\leq j \\leq n$，他都知道距离自己 $j$ 米处的山高为 $h_j$ 米。事实证明，对于所有满足 $1 \\leq j \\leq n - 1$ 的 $j$，都有 $h_j \\lt h_{j + 1}$（也就是说，山高严格递增）。\n\n突然，滑坡发生了！滑坡发生期间，每分钟都会进行如下操作：如果满足 $h_j + 2 \\leq h_{j + 1}$，则有一立方米的土方会从位置 $j + 1$ 滑到位置 $j$，于是 $h_{j + 1}$ 减少 $1$，而 $h_j$ 增加 $1$。这些变化是同时发生的。例如，如果对于某个 $j$，满足 $h_j + 2 \\leq h_{j + 1}$ 且 $h_{j + 1} + 2 \\leq h_{j + 2}$，那么 $h_j$ 会增加 $1$，$h_{j + 2}$ 会减少 $1$，而 $h_{j + 1}$ 同时增加和减少 $1$，因此在这一分钟内实际上保持不变。\n\n当不存在满足 $h_j + 2 \\leq h_{j + 1}$ 的 $j$ 时，滑坡结束。请帮助奥姆卡尔求出滑坡结束后 $h_1, \\dots, h_n$ 的值。可以证明，在给定约束条件下，滑坡总会在有限分钟内结束。\n\n注意，由于输入数据量很大，建议在代码中使用快速 IO。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 10^6$）。\n\n第二行包含 $n$ 个整数 $h_1, h_2, \\dots, h_n$，满足 $0 \\leq h_1 \\lt h_2 \\lt \\dots \\lt h_n \\leq 10^{12}$——山高。\n\n## 输出格式\n\n输出 $n$ 个整数，其中第 $j$ 个整数表示滑坡停止后 $h_j$ 的值。\n\n## 说明\n\n初始时，山的高度为 $2, 6, 7, 8$。\n\n第一分钟，由于 $2 + 2 \\leq 6$，因此 $2$ 增加到 $3$，而 $6$ 减少到 $5$，山高变为 $3, 5, 7, 8$。\n\n第二分钟，由于 $3 + 2 \\leq 5$ 且 $5 + 2 \\leq 7$，因此 $3$ 增加到 $4$，$5$ 保持不变，$7$ 减少到 $6$，山高变为 $4, 5, 6, 8$。\n\n第三分钟，由于 $6 + 2 \\leq 8$，因此 $6$ 增加到 $7$，而 $8$ 减少到 $7$，山高变为 $4, 5, 7, 7$。\n\n第四分钟，由于 $5 + 2 \\leq 7$，因此 $5$ 增加到 $6$，而 $7$ 减少到 $6$，山高变为 $4, 6, 6, 7$。\n\n第五分钟，由于 $4 + 2 \\leq 6$，因此 $4$ 增加到 $5$，而 $6$ 减少到 $5$，山高变为 $5, 5, 6, 7$。\n\n第六分钟，没有其他变化可以发生，因此滑坡停止，答案为 $5, 5, 6, 7$。",
   "samples": [
     {
       "input": "4\n2 6 7 8\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:46:44.231Z"
+  "fetchedAt": "2026-10-30T23:46:44.231Z",
+  "translatedAt": "2026-11-04T04:25:39.404+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

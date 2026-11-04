@@ -4,7 +4,7 @@
   "contestId": 859,
   "index": "D",
   "title": "Third Month Insanity",
-  "titleZh": null,
+  "titleZh": "第三个月疯狂",
   "url": "https://codeforces.com/contest/859/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The annual college sports-ball tournament is approaching, which for trademark reasons we'll refer to as Third Month Insanity. There are a total of $2^{*N*}$ teams participating in the tournament, numbered from $1$ to $2^{*N*}$. The tournament lasts $*N*$ rounds, with each round eliminating half the teams. The first round consists of $2^{*N* - 1}$ games, numbered starting from $1$. In game $*i*$, team $2·*i* - 1$ will play against team $2·*i*$. The loser is eliminated and the winner advances to the next round (there are no ties). Each subsequent round has half as many games as the previous round, and in game $*i*$ the winner of the previous round's game $2·*i* - 1$ will play against the winner of the previous round's game $2·*i*$.\n\nEvery year the office has a pool to see who can create the best bracket. A bracket is a set of winner predictions for every game. For games in the first round you may predict either team to win, but for games in later rounds the winner you predict must also be predicted as a winner in the previous round. Note that the bracket is fully constructed before any games are actually played. Correct predictions in the first round are worth $1$ point, and correct predictions in each subsequent round are worth twice as many points as the previous, so correct predictions in the final game are worth $2^{*N* - 1}$ points.\n\nFor every pair of teams in the league, you have estimated the probability of each team winning if they play against each other. Now you want to construct a bracket with the maximum possible expected score.\n\n## Input\n\nInput will begin with a line containing $*N*$ ($2 ≤ *N* ≤ 6$).\n\n$2^{*N*}$ lines follow, each with $2^{*N*}$ integers. The $*j*$-th column of the $*i*$-th row indicates the percentage chance that team $*i*$ will defeat team $*j*$, unless $*i* = *j*$, in which case the value will be $0$. It is guaranteed that the $*i*$-th column of the $*j*$-th row plus the $*j*$-th column of the $*i*$-th row will add to exactly $100$.\n\n## Output\n\nPrint the maximum possible expected score over all possible brackets. Your answer must be correct to within an absolute or relative error of $10^{ - 9}$.\n\nFormally, let your answer be $*a*$, and the jury's answer be $*b*$. Your answer will be considered correct, if ![image](https://espresso.codeforces.com/d9eaa1eb5c0113a563036232d18ed097f799eecd.png).\n\n## Note\n\nIn the first example, you should predict teams $1$ and $4$ to win in round $1$, and team $1$ to win in round $2$. Recall that the winner you predict in round $2$ must also be predicted as a winner in round $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "年度大学体育球赛锦标赛即将开始。出于商标方面的原因，我们将其称为“第三个月疯狂”。共有 $2^{*N*}$ 支队伍参加比赛，编号为 $1$ 到 $2^{*N*}$。比赛共进行 $*N*$ 轮，每轮淘汰一半的队伍。第一轮共有 $2^{*N* - 1}$ 场比赛，比赛编号从 $1$ 开始。在第 $*i*$ 场比赛中，编号为 $2·*i* - 1$ 的队伍将与编号为 $2·*i*$ 的队伍对战。败者被淘汰，胜者晋级下一轮（比赛不存在平局）。之后的每一轮比赛数量都是上一轮的一半，在第 $*i*$ 场比赛中，上一轮第 $2·*i* - 1$ 场比赛的胜者将与上一轮第 $2·*i*$ 场比赛的胜者对战。\n\n每年办公室都会组织一个竞猜活动，看看谁能制定出最好的对阵表。对阵表是对每场比赛胜者的预测集合。对于第一轮的比赛，你可以预测任意一支队伍获胜；但对于之后轮次的比赛，你预测的胜者也必须被预测为上一轮比赛的胜者。注意，对阵表必须在所有比赛实际开始之前完整制定。\n\n第一轮中预测正确可得 $1$ 分，之后每一轮中预测正确所得分数都是上一轮的两倍，因此预测最终比赛正确可得 $2^{*N* - 1}$ 分。\n\n对于联赛中的每一对队伍，你都估计了它们彼此对战时各自获胜的概率。现在，你希望构造一个最大化期望得分的对阵表。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*N*$（$2 ≤ *N* ≤ 6$）。\n\n接下来有 $2^{*N*}$ 行，每行包含 $2^{*N*}$ 个整数。第 $*i*$ 行第 $*j*$ 列表示队伍 $*i*$ 击败队伍 $*j*$ 的概率百分比；如果 $*i* = *j*$，则该值为 $0$。保证第 $*j*$ 行第 $*i*$ 列的值与第 $*i*$ 行第 $*j*$ 列的值之和恰好为 $100$。\n\n## 输出格式\n\n输出所有可能的对阵表中的最大期望得分。你的答案与标准答案的绝对误差或相对误差不超过 $10^{ - 9}$。\n\n形式化地，设你的答案为 $*a*$，评测程序的答案为 $*b*$。如果 ![image](https://espresso.codeforces.com/d9eaa1eb5c0113a563036232d18ed097f799eecd.png)，则你的答案将被视为正确。\n\n## 说明\n\n在第一个样例中，你应预测队伍 $1$ 和队伍 $4$ 在第 $1$ 轮获胜，并预测队伍 $1$ 在第 $2$ 轮获胜。请注意，你在第 $2$ 轮预测的获胜队伍也必须在第 $1$ 轮中被预测为获胜队伍。",
   "samples": [
     {
       "input": "2\n0 40 100 100\n60 0 40 40\n0 60 0 45\n0 60 55 0\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:44:55.630Z"
+  "fetchedAt": "2026-10-31T00:44:55.630Z",
+  "translatedAt": "2026-11-04T06:04:48.390+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1477,
   "index": "D",
   "title": "Nezzar and Hidden Permutations",
-  "titleZh": null,
+  "titleZh": "Nezzar 与隐藏排列",
   "url": "https://codeforces.com/contest/1477/problem/D",
   "difficulty": 2800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "Nezzar designs a brand new game \"Hidden Permutations\" and shares it with his best friend, Nanako.\n\nAt the beginning of the game, Nanako and Nezzar both know integers $n$ and $m$. The game goes in the following way:\n\n- Firstly, Nezzar hides two permutations $p_1,p_2,\\ldots,p_n$ and $q_1,q_2,\\ldots,q_n$ of integers from $1$ to $n$, and Nanako secretly selects $m$ unordered pairs $(l_1,r_1),(l_2,r_2),\\ldots,(l_m,r_m)$;\n- After that, Nanako sends his chosen pairs to Nezzar;\n- On receiving those $m$ unordered pairs, Nezzar checks if there exists $1 \\le i \\le m$, such that $(p_{l_i}-p_{r_i})$ and $(q_{l_i}-q_{r_i})$ have different signs. If so, Nezzar instantly loses the game and gets a score of $-1$. Otherwise, the score Nezzar gets is equal to the number of indices $1 \\le i \\le n$ such that $p_i \\neq q_i$.\n\nHowever, Nezzar accidentally knows Nanako's unordered pairs and decides to take advantage of them. Please help Nezzar find out two permutations $p$ and $q$ such that the score is maximized.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 5 \\cdot 10^5$) — the number of test cases.\n\nThe first line of each test case contains two integers $n,m$ ($1 \\le n \\le 5 \\cdot 10^5, 0 \\le m \\le \\min(\\frac{n(n-1)}{2},5 \\cdot 10^5)$).\n\nThen $m$ lines follow, $i$-th of them contains two integers $l_i,r_i$ ($1 \\le l_i,r_i \\le n$, $l_i \\neq r_i$), describing the $i$-th unordered pair Nanako chooses. It is guaranteed that all $m$ unordered pairs are distinct.\n\nIt is guaranteed that the sum of $n$ for all test cases does not exceed $5 \\cdot 10^5$, and the sum of $m$ for all test cases does not exceed $5\\cdot 10^5$.\n\n## Output\n\nFor each test case, print two permutations $p_1,p_2,\\ldots,p_n$ and $q_1,q_2,\\ldots,q_n$ such that the score Nezzar gets is maximized.\n\n## Note\n\nFor first test case, for each pair given by Nanako:\n\n- for the first pair $(1,2)$: $p_1 - p_2 = 1 - 2 = -1$, $q_1 - q_2 = 3 - 4 = -1$, they have the same sign;\n- for the second pair $(3,4)$: $p_3 - p_4 = 3 - 4 = -1$, $q_3 - q_4 = 1 - 2 = -1$, they have the same sign.\n\nAs Nezzar does not lose instantly, Nezzar gains the score of $4$ as $p_i \\neq q_i$ for all $1 \\leq i \\leq 4$. Obviously, it is the maximum possible score Nezzar can get.",
-  "statementZhMd": null,
+  "statementZhMd": "Nezzar 设计了一款全新的游戏“隐藏排列”，并将它分享给了他最好的朋友 Nanako。\n\n游戏开始时，Nanako 和 Nezzar 都知道整数 $n$ 和 $m$。游戏规则如下：\n\n- 首先，Nezzar 隐藏两个由 $1$ 到 $n$ 组成的排列 $p_1,p_2,\\ldots,p_n$ 和 $q_1,q_2,\\ldots,q_n$，而 Nanako 秘密地选择 $m$ 个无序对 $(l_1,r_1),(l_2,r_2),\\ldots,(l_m,r_m)$；\n- 然后，Nanako 将他选择的无序对发送给 Nezzar；\n- 收到这 $m$ 个无序对后，Nezzar 检查是否存在某个 $1 \\le i \\le m$，使得 $(p_{l_i}-p_{r_i})$ 和 $(q_{l_i}-q_{r_i})$ 的符号不同。如果存在，Nezzar 将立即输掉游戏并获得 $-1$ 分。否则，Nezzar 获得的分数等于满足 $1 \\le i \\le n$ 且 $p_i \\neq q_i$ 的下标数量。\n\n然而，Nezzar 意外地得知了 Nanako 选择的无序对，并决定利用这些信息。请帮助 Nezzar 找出两个排列 $p$ 和 $q$，使得分数最大。\n\n## 输入\n\n第一行包含一个整数 $t$（$1 \\le t \\le 5 \\cdot 10^5$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n,m$（$1 \\le n \\le 5 \\cdot 10^5, 0 \\le m \\le \\min(\\frac{n(n-1)}{2},5 \\cdot 10^5)$）。\n\n接下来 $m$ 行，第 $i$ 行包含两个整数 $l_i,r_i$（$1 \\le l_i,r_i \\le n, l_i \\neq r_i$），表示 Nanako 选择的第 $i$ 个无序对。\n\n保证所有 $m$ 个无序对互不相同。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$，且 $m$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，输出两个排列 $p_1,p_2,\\ldots,p_n$ 和 $q_1,q_2,\\ldots,q_n$，使得 Nezzar 获得的分数最大。\n\n## 说明\n\n对于第一个测试用例，Nanako 给出的每个无序对满足：\n\n- 对于第一个无序对 $(1,2)$：$p_1 - p_2 = 1 - 2 = -1$，$q_1 - q_2 = 3 - 4 = -1$，它们的符号相同；\n- 对于第二个无序对 $(3,4)$：$p_3 - p_4 = 3 - 4 = -1$，$q_3 - q_4 = 1 - 2 = -1$，它们的符号相同。\n\n由于 Nezzar 没有立即输掉游戏，且对于所有 $1 \\le i \\le 4$ 都有 $p_i \\neq q_i$，因此 Nezzar 获得了 $4$ 分。显然，这是 Nezzar 能获得的最大分数。",
   "samples": [
     {
       "input": "3\n4 2\n1 2\n3 4\n6 4\n1 2\n1 3\n3 5\n3 6\n2 1\n1 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:38:01.661Z"
+  "fetchedAt": "2026-10-30T23:38:01.661Z",
+  "translatedAt": "2026-11-04T04:05:11.747+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

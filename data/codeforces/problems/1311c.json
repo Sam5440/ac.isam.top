@@ -4,7 +4,7 @@
   "contestId": 1311,
   "index": "C",
   "title": "Perform the Combo",
-  "titleZh": null,
+  "titleZh": "完成连招",
   "url": "https://codeforces.com/contest/1311/problem/C",
   "difficulty": 1300,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You want to perform the combo on your opponent in one popular fighting game. The combo is the string $s$ consisting of $n$ lowercase Latin letters. To perform the combo, you have to press all buttons in the order they appear in $s$. I.e. if $s=$\"`abca`\" then you have to press '`a`', then '`b`', '`c`' and '`a`' again.\n\nYou know that you will spend $m$ wrong tries to perform the combo and during the $i$-th try you will make a mistake right after $p_i$-th button ($1 \\le p_i \\lt n$) (i.e. you will press first $p_i$ buttons right and start performing the combo from the beginning). It is guaranteed that during the $m+1$-th try you press all buttons right and finally perform the combo.\n\nI.e. if $s=$\"`abca`\", $m=2$ and $p = [1, 3]$ then the sequence of pressed buttons will be '`a`' (**here** you're making a mistake and start performing the combo from the beginning), '`a`', '`b`', '`c`', (**here** you're making a mistake and start performing the combo from the beginning), '`a`' (**note that at this point you will not perform the combo because of the mistake**), '`b`', '`c`', '`a`'.\n\nYour task is to calculate for each button (letter) the number of times you'll press it.\n\nYou have to answer $t$ independent test cases.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThen $t$ test cases follow.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\le n \\le 2 \\cdot 10^5$, $1 \\le m \\le 2 \\cdot 10^5$) — the length of $s$ and the number of tries correspondingly.\n\nThe second line of each test case contains the string $s$ consisting of $n$ lowercase Latin letters.\n\nThe third line of each test case contains $m$ integers $p_1, p_2, \\dots, p_m$ ($1 \\le p_i \\lt n$) — the number of characters pressed right during the $i$-th try.\n\nIt is guaranteed that the sum of $n$ and the sum of $m$ both does not exceed $2 \\cdot 10^5$ ($\\sum n \\le 2 \\cdot 10^5$, $\\sum m \\le 2 \\cdot 10^5$).\n\nIt is guaranteed that the answer for each letter does not exceed $2 \\cdot 10^9$.\n\n## Output\n\nFor each test case, print the answer — $26$ integers: the number of times you press the button '`a`', the number of times you press the button '`b`', $\\dots$, the number of times you press the button '`z`'.\n\n## Note\n\nThe first test case is described in the problem statement. Wrong tries are \"`a`\", \"`abc`\" and the final try is \"`abca`\". The number of times you press '`a`' is $4$, '`b`' is $2$ and '`c`' is $2$.\n\nIn the second test case, there are five wrong tries: \"`co`\", \"`codeforc`\", \"`cod`\", \"`co`\", \"`codeforce`\" and the final try is \"`codeforces`\". The number of times you press '`c`' is $9$, '`d`' is $4$, '`e`' is $5$, '`f`' is $3$, '`o`' is $9$, '`r`' is $3$ and '`s`' is $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "你想在一款热门格斗游戏中对对手施展连招。连招是由 $n$ 个小写拉丁字母组成的字符串 $s$。为了施展连招，你必须按照字母在 $s$ 中出现的顺序按下所有按钮。也就是说，如果 $s=$\"`abca`\"，那么你必须依次按下 '`a`'、'`b`'、'`c`'，然后再次按下 '`a`'。\n\n你知道自己会进行 $m$ 次错误尝试，并且在第 $i$ 次尝试中，你会在按对第 $p_i$ 个按钮后立即犯错（$1 \\le p_i \\lt n$）（也就是说，你会先正确按下前 $p_i$ 个按钮，然后从头开始进行连招）。保证在第 $m+1$ 次尝试中，你会正确按下所有按钮并最终完成连招。\n\n也就是说，如果 $s=$\"`abca`\"，$m=2$ 且 $p = [1, 3]$，那么按下的按钮序列将是 '`a`'（**此处**你犯错并从头开始进行连招）、'`a`'、'`b`'、'`c`'（**此处**你犯错并从头开始进行连招）、'`a`'（**注意，此时由于犯错，你不会完成连招**）、'`b`'、'`c`'、'`a`'。\n\n你的任务是计算每个按钮（字母）被按下的次数。\n\n你需要回答 $t$ 个相互独立的测试用例。\n\n## 输入\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 2 \\cdot 10^5$，$1 \\le m \\le 2 \\cdot 10^5$）——分别表示 $s$ 的长度和尝试次数。\n\n每个测试用例的第二行包含一个由 $n$ 个小写拉丁字母组成的字符串 $s$。\n\n每个测试用例的第三行包含 $m$ 个整数 $p_1, p_2, \\dots, p_m$（$1 \\le p_i \\lt n$）——第 $i$ 次尝试中正确按下的字符数。\n\n保证所有测试用例的 $n$ 之和以及 $m$ 之和均不超过 $2 \\cdot 10^5$（$\\sum n \\le 2 \\cdot 10^5$，$\\sum m \\le 2 \\cdot 10^5$）。\n\n保证每个字母的答案不超过 $2 \\cdot 10^9$。\n\n## 输出\n\n对于每个测试用例，输出答案——$26$ 个整数：按下按钮 '`a`' 的次数、按下按钮 '`b`' 的次数、……、按下按钮 '`z`' 的次数。\n\n## 说明\n\n第一个测试用例在题目描述中已有说明。错误尝试对应的字符串为 '`a`'、'`abc`'，最后一次尝试对应的字符串为 '`abca`'。按下 '`a`' 的次数为 $4$，按下 '`b`' 的次数为 $2$，按下 '`c`' 的次数为 $2$。\n\n在第二个测试用例中，有五次错误尝试：'`co`'、'`codeforc`'、'`cod`'、'`co`'、'`codeforce`'，最后一次尝试对应的字符串为 '`codeforces`'。按下 '`c`' 的次数为 $9$，按下 '`d`' 的次数为 $4$，按下 '`e`' 的次数为 $5$，按下 '`f`' 的次数为 $3$，按下 '`o`' 的次数为 $9$，按下 '`r`' 的次数为 $3$，按下 '`s`' 的次数为 $1$。",
   "samples": [
     {
       "input": "3\n4 2\nabca\n1 3\n10 5\ncodeforces\n2 8 3 2 9\n26 10\nqwertyuioplkjhgfdsazxcvbnm\n20 10 1 2 3 5 10 5 9 4\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:54:45.179Z"
+  "fetchedAt": "2026-11-02T18:54:45.179Z",
+  "translatedAt": "2026-11-04T04:51:00.156+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

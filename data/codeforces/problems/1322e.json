@@ -4,7 +4,7 @@
   "contestId": 1322,
   "index": "E",
   "title": "Median Mountain Range",
-  "titleZh": null,
+  "titleZh": "中位数山脉",
   "url": "https://codeforces.com/contest/1322/problem/E",
   "difficulty": 3300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Berland — is a huge country with diverse geography. One of the most famous natural attractions of Berland is the \"Median mountain range\". This mountain range is $n$ mountain peaks, located on one straight line and numbered in order of $1$ to $n$. The height of the $i$-th mountain top is $a_i$.\n\n\"Median mountain range\" is famous for the so called *alignment of mountain peaks* happening to it every day. At the moment of alignment simultaneously for each mountain from $2$ to $n - 1$ its height becomes equal to the median height among it and two neighboring mountains. Formally, if before the alignment the heights were equal $b_i$, then after the alignment new heights $a_i$ are as follows: $a_1 = b_1$, $a_n = b_n$ and for all $i$ from $2$ to $n - 1$ $a_i = \\texttt{median}(b_{i-1}, b_i, b_{i+1})$. The median of three integers is the second largest number among them. For example, $\\texttt{median}(5,1,2) = 2$, and $\\texttt{median}(4,2,4) = 4$.\n\nRecently, Berland scientists have proved that whatever are the current heights of the mountains, the alignment process will stabilize sooner or later, i.e. at some point the altitude of the mountains won't changing after the alignment any more. The government of Berland wants to understand how soon it will happen, i.e. to find the value of $c$ — how many alignments will occur, which will change the height of at least one mountain. Also, the government of Berland needs to determine the heights of the mountains after $c$ alignments, that is, find out what heights of the mountains stay forever. Help scientists solve this important problem!\n\n## Input\n\nThe first line contains integers $n$ ($1 \\le n \\le 500\\,000$) — the number of mountains.\n\nThe second line contains integers $a_1, a_2, a_3, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — current heights of the mountains.\n\n## Output\n\nIn the first line print $c$ — the number of alignments, which change the height of at least one mountain.\n\nIn the second line print $n$ integers — the final heights of the mountains after $c$ alignments.\n\n## Note\n\nIn the first example, the heights of the mountains at index $1$ and $5$ never change. Since the median of $1$, $2$, $1$ is $1$, the second and the fourth mountains will have height 1 after the first alignment, and since the median of $2$, $1$, $2$ is $2$, the third mountain will have height 2 after the first alignment. This way, after one alignment the heights are $1$, $1$, $2$, $1$, $1$. After the second alignment the heights change into $1$, $1$, $1$, $1$, $1$ and never change from now on, so there are only $2$ alignments changing the mountain heights.\n\nIn the third examples the alignment doesn't change any mountain height, so the number of alignments changing any height is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "Berland 是一个地理环境多样的巨大国家。Berland 最著名的自然景观之一是“中位数山脉”。这条山脉由 $n$ 座山峰组成，它们位于同一直线上，并按顺序编号为 $1$ 到 $n$。第 $i$ 座山峰的高度为 $a_i$。\n\n“中位数山脉”因每天都会发生所谓的*山峰对齐*而闻名。在对齐过程中，对于 $2$ 到 $n - 1$ 的每一座山峰，其高度会同时变为它自身与两座相邻山峰的高度的中位数。形式化地说，若对齐前各山峰的高度为 $b_i$，则对齐后新的高度 $a_i$ 如下：$a_1 = b_1$，$a_n = b_n$，并且对于所有 $i$（$2$ 到 $n - 1$），都有 $a_i = \\texttt{median}(b_{i-1}, b_i, b_{i+1})$。三个整数的中位数是其中第二大的数。例如，`\\texttt{median}(5,1,2) = 2`，而 `\\texttt{median}(4,2,4) = 4`。\n\n最近，Berland 的科学家证明，无论山峰当前的高度如何，对齐过程最终都会稳定下来，也就是说，在某个时刻进行一次对齐后，所有山峰的高度都不再发生变化。Berland 政府希望了解这一过程会多快发生，即求出 $c$ 的值——会发生多少次至少改变一座山峰高度的对齐。同时，Berland 政府还需要确定进行 $c$ 次对齐后山峰的高度，也就是求出之后永远保持不变的山峰高度。请帮助科学家解决这一重要问题！\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 500\\,000$）——山峰的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, a_3, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——山峰当前的高度。\n\n## 输出格式\n\n第一行输出 $c$——会改变至少一座山峰高度的对齐次数。\n\n第二行输出 $n$ 个整数——进行 $c$ 次对齐后山峰的最终高度。\n\n## 说明\n\n在第一个样例中，编号为 $1$ 和 $5$ 的山峰高度从未改变。由于 $1$、$2$、$1$ 的中位数是 $1$，因此第二座和第四座山峰在第一次对齐后高度变为 $1$；又由于 $2$、$1$、$2$ 的中位数是 $2$，因此第三座山峰在第一次对齐后高度变为 $2$。这样，进行一次对齐后，高度变为 $1$、$1$、$2$、$1$、$1$。进行第二次对齐后，高度变为 $1$、$1$、$1$、$1$、$1$，并且此后不再改变，因此总共有 $2$ 次对齐改变了山峰高度。\n\n在第三个样例中，对齐不会改变任何山峰的高度，因此改变任意山峰高度的对齐次数为 $0$。",
   "samples": [
     {
       "input": "5\n1 2 1 2 1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:55:24.997Z"
+  "fetchedAt": "2026-10-30T23:55:24.997Z",
+  "translatedAt": "2026-11-04T04:41:21.577+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

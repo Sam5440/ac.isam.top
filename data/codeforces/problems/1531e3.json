@@ -4,7 +4,7 @@
   "contestId": 1531,
   "index": "E3",
   "title": "Сортировка слиянием",
-  "titleZh": null,
+  "titleZh": "归并排序",
   "url": "https://codeforces.com/contest/1531/problem/E3",
   "difficulty": null,
   "tags": [
@@ -12,7 +12,7 @@
     "binary search"
   ],
   "statementMd": "Рассмотрим следующий код сортировки слиянием на языке Python:\n\n```\ndef sort(a):\n  n = len(a)\n  b = [0 for i in range(n)]\n  log = []\n\n  def mergeSort(l, r):\n    if r - l <= 1:\n      return\n    m = (l + r) >> 1\n    mergeSort(l, m)\n    mergeSort(m, r)\n    i, j, k = l, m, l\n    while i < m and j < r:\n      if a[i] < a[j]:\n        log.append('0')\n        b[k] = a[i]\n        i += 1\n      else:\n        log.append('1')\n        b[k] = a[j]\n        j += 1\n      k += 1\n    while i < m:\n      b[k] = a[i]\n      i += 1\n      k += 1\n    while j < r:\n      b[k] = a[j]\n      j += 1\n      k += 1\n    for p in range(l, r):\n      a[p] = b[p]\n\n  mergeSort(0, n)\n  return \"\".join(log)\n```\n\nКак можно заметить, этот код использует логирование — важнейший инструмент разработки.\n\nСтарший разработчик ВКонтакте Вася сгенерировал перестановку $a$ (массив из $n$ различных целых чисел от $1$ до $n$), дал её на вход функции `sort` и получил на выходе строку $s$. На следующий день строку $s$ Вася нашёл, а перестановка $a$ потерялась.\n\nВася хочет восстановить любую перестановку $a$ такую, что вызов функции `sort` от неё даст ту же строку $s$. Помогите ему!\n\n## Input\n\nВвод содержит непустую строку $s$, состоящую из символов `0` и `1`.\n\n**В этой версии задачи** для любого теста существует перестановка длины не более $10^5$, удовлетворяющая условию. Тем не менее, ваш ответ может иметь любую длину, в том числе превышающую $10^5$.\n\n## Output\n\nВ первой строке выведите целое число $n$ — длину перестановки.\n\nВо второй строке выведите $n$ различных целых чисел $a_0, a_1, \\ldots, a_{n-1}$ ($1 \\le a_i \\le n$) — элементы перестановки.\n\nЕсли существует несколько вариантов ответа, выведите любой из них.",
-  "statementZhMd": null,
+  "statementZhMd": "考虑以下使用 Python 编写的归并排序代码：\n\n```\ndef sort(a):\n  n = len(a)\n  b = [0 for i in range(n)]\n  log = []\n\n  def mergeSort(l, r):\n    if r - l <= 1:\n      return\n    m = (l + r) >> 1\n    mergeSort(l, m)\n    mergeSort(m, r)\n    i, j, k = l, m, l\n    while i < m and j < r:\n      if a[i] < a[j]:\n        log.append('0')\n        b[k] = a[i]\n        i += 1\n      else:\n        log.append('1')\n        b[k] = a[j]\n        j += 1\n      k += 1\n    while i < m:\n      b[k] = a[i]\n      i += 1\n      k += 1\n    while j < r:\n      b[k] = a[j]\n      j += 1\n      k += 1\n    for p in range(l, r):\n      a[p] = b[p]\n\n  mergeSort(0, n)\n  return \"\".join(log)\n```\n\n可以注意到，这段代码使用了日志记录——这是开发过程中非常重要的工具。\n\nVK 的高级开发工程师 Vasya 生成了一个排列 $a$（由 $1$ 到 $n$ 的 $n$ 个互不相同的整数构成的数组），将其作为函数 `sort` 的输入，并得到了字符串 $s$ 作为输出。第二天，Vasya 找到了字符串 $s$，但排列 $a$ 丢失了。\n\nVasya 希望恢复任意一个排列 $a$，使得对它调用函数 `sort` 后得到相同的字符串 $s$。请帮助他！\n\n## 输入格式\n\n输入包含一个非空字符串 $s$，由字符 `0` 和 `1` 组成。\n\n**在本题版本中**，对于每个测试数据，都存在一个长度不超过 $10^5$ 且满足条件的排列。不过，你输出的排列长度可以是任意值，包括超过 $10^5$。\n\n## 输出格式\n\n第一行输出一个整数 $n$——排列的长度。\n\n第二行输出 $n$ 个互不相同的整数 $a_0, a_1, \\ldots, a_{n-1}$（$1 \\le a_i \\le n$）——排列的元素。\n\n如果有多种答案，输出其中任意一种即可。",
   "samples": [
     {
       "input": "00000000000000000000000000000000\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:24:41.621Z"
+  "fetchedAt": "2026-11-02T18:24:41.621Z",
+  "translatedAt": "2026-11-04T03:49:58.537+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

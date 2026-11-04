@@ -4,7 +4,7 @@
   "contestId": 1861,
   "index": "C",
   "title": "Queries for the Array",
-  "titleZh": null,
+  "titleZh": "数组查询",
   "url": "https://codeforces.com/contest/1861/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp had an array $a$ consisting of integers. Initially, **this array was empty**.\n\nMonocarp performed three types of queries to this array:\n\n- choose an integer and append it **to the end of the array**. Each time Monocarp performed a query of this type, he wrote out a character `+`;\n- remove **the last element** from the array. Each time Monocarp performed a query of this type, he wrote out a character `-`. Monocarp never performed this query on an empty array;\n- check if the array is sorted in non-descending order, i.,e. $a_1 \\le a_2 \\le \\dots \\le a_k$, where $k$ is the number of elements in the array currently. **Every array with less than $2$ elements is considered sorted**. If the array was sorted by the time Monocarp was performing that query, he wrote out a character `1`. Otherwise, he wrote out a character `0`.\n\nYou are given a sequence $s$ of $q$ characters `0`, `1`, `+` and/or `-`. These are the characters that were written out by Monocarp, given in the exact order he wrote them out.\n\nYou have to check if this sequence is consistent, i. e. it was possible for Monocarp to perform the queries so that the sequence of characters he wrote out is exactly $s$.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case consists of one line containing the string $s$ ($1 \\le |s| \\le 2 \\cdot 10^5$). This string consists of characters `0`, `1`, `+` and/or `-`. This is the sequence of characters written by Monocarp, in the order he wrote them.\n\nAdditional constraints on the input:\n\n- for every prefix of $s$, the number of characters `+` on it is not less than the number of characters `-` on it. In other words, if Monocarp actually performed these queries, he would never try to remove the last element from the empty array;\n- the sum of $|s|$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print `YES` if it was possible for Monocarp to perform the queries so that the sequence of characters he wrote is exactly $s$. Otherwise, print `NO`.\n\nYou can print each letter in any register.\n\n## Note\n\nIn the first test case, Monocarp could perform the following sequence of queries:\n\n- add the integer $13$;\n- add the integer $37$;\n- check that the current array $[13, 37]$ is sorted in non-descending order (and it is sorted).\n\nIn the fifth test case, Monocarp could perform the following sequence of queries:\n\n- add the integer $3$;\n- add the integer $2$;\n- check that the current array $[3, 2]$ is sorted (it is not);\n- remove the last element;\n- add the integer $3$;\n- check that the current array $[3, 3]$ is sorted (it is);\n- remove the last element;\n- add the integer $-5$;\n- check that the current array $[3, -5]$ is sorted (it is not).\n\nIn all other test cases of the example test, it is impossible for Monocarp to write the sequence $s$ when performing the queries according to the statement.",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 有一个由整数构成的数组 $a$。最初，**这个数组为空**。\n\nMonocarp 对这个数组执行三种类型的操作：\n\n- 选择一个整数，并将其**追加到数组末尾**。每次 Monocarp 执行此类操作时，他都会写下一个字符 `+`；\n- **删除数组的最后一个元素**。每次 Monocarp 执行此类操作时，他都会写下一个字符 `-`。Monocarp 从不对空数组执行此操作；\n- 检查数组是否按非递减顺序排列，即 $a_1 \\le a_2 \\le \\dots \\le a_k$，其中 $k$ 是当前数组中的元素个数。**少于 $2$ 个元素的数组都被视为有序**。如果 Monocarp 执行该操作时数组有序，他就写下字符 `1`；否则写下字符 `0`。\n\n给定一个由 $q$ 个字符 `0`、`1`、`+` 和/或 `-` 组成的序列 $s$。这些字符是 Monocarp 写下的字符，顺序与他写下它们的顺序完全一致。\n\n请判断该序列是否一致，即 Monocarp 是否可能执行一系列操作，使得他写下的字符序列恰好为 $s$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例包含一行，其中有一个字符串 $s$（$1 \\le |s| \\le 2 \\cdot 10^5$）。该字符串由字符 `0`、`1`、`+` 和/或 `-` 组成，表示 Monocarp 按照写下顺序记录的字符序列。\n\n输入还满足以下约束：\n\n- 对于 $s$ 的每个前缀，其中字符 `+` 的数量不少于字符 `-` 的数量。换句话说，如果 Monocarp 确实执行了这些操作，他将永远不会尝试从空数组中删除最后一个元素；\n- 所有测试用例的 $|s|$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果 Monocarp 可能执行一系列操作，使得他写下的字符序列恰好为 $s$，输出 `YES`；否则输出 `NO`。\n\n每个字母的大小写均可任意。\n\n## 说明\n\n在第一个测试用例中，Monocarp 可以执行以下操作序列：\n\n- 添加整数 $13$；\n- 添加整数 $37$；\n- 检查当前数组 $[13, 37]$ 是否按非递减顺序排列（确实有序）。\n\n在第五个测试用例中，Monocarp 可以执行以下操作序列：\n\n- 添加整数 $3$；\n- 添加整数 $2$；\n- 检查当前数组 $[3, 2]$ 是否有序（无序）；\n- 删除最后一个元素；\n- 添加整数 $3$；\n- 检查当前数组 $[3, 3]$ 是否有序（有序）；\n- 删除最后一个元素；\n- 添加整数 $-5$；\n- 检查当前数组 $[3, -5]$ 是否有序（无序）。\n\n在示例测试中的其他所有测试用例中，Monocarp 都不可能按照题目描述执行操作并写下序列 $s$。",
   "samples": [
     {
       "input": "7\n++1\n+++1--0\n+0\n0\n++0-+1-+0\n++0+-1+-0\n+1-+0\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:26:17.163Z"
+  "fetchedAt": "2026-11-02T17:26:17.163Z",
+  "translatedAt": "2026-11-04T02:45:37.861+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

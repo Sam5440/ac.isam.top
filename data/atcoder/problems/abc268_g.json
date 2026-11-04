@@ -4,7 +4,7 @@
   "contestId": "abc268",
   "index": "G",
   "title": "Random Student ID",
-  "titleZh": null,
+  "titleZh": "随机学生证号",
   "url": "https://atcoder.jp/contests/abc268/tasks/abc268_g",
   "difficulty": 2311,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nTakahashi Elementary School has $N$ new students. For $i = 1, 2, \\ldots, N$, the name of the $i$-th new student is $S_i$ (which is a string consisting of lowercase English letters). The names of the $N$ new students are distinct.\n\nThe $N$ students will be assigned a student ID $1, 2, 3, \\ldots, N$ in **ascending lexicographical order** of their names. However, instead of the ordinary order of lowercase English letters where `a` is the minimum and `z` is the maximum, we use the following order:\n\n- First, Principal Takahashi chooses a string $P$ from the $26!$ permutations of the string `abcdefghijklmnopqrstuvwxyz` of length $26$, uniformly at random.\n- The lowercase English characters that occur earlier in $P$ are considered smaller.\n\nFor each of the $N$ students, find the expected value, modulo $998244353$, of the student ID assigned (see Notes).\n\nWhat is the lexicographical order? A string $S = S_1S_2\\ldots S_{|S|}$ is said to be **lexicographically smaller** than a string $T = T_1T_2\\ldots T_{|T|}$ if one of the following 1. and 2. holds. Here, $|S|$ and $|T|$ denote the lengths of $S$ and $T$, respectively. $|S| \\lt |T|$ and $S_1S_2\\ldots S_{|S|} = T_1T_2\\ldots T_{|S|}$. There exists an integer $1 \\leq i \\leq \\min\\lbrace |S|, |T| \\rbrace$ satisfying the following two conditions: $S_1S_2\\ldots S_{i-1} = T_1T_2\\ldots T_{i-1}$ $S_i$ is a smaller character than $T_i$.\n\n## Note\n\nWe can prove that the sought expected value is always a rational number. Moreover, under the Constraints of this problem, when the value is represented as $\\frac{P}{Q}$ by two coprime integers $P$ and $Q$, we can prove that there is a unique integer $R$ such that $R \\times Q \\equiv P\\pmod{998244353}$ and $0 \\leq R \\lt 998244353$. Find such $R$.\n\n## Constraints\n\n- $2 \\leq N$\n- $N$ is an integer.\n- $S_i$ is a string of length at least $1$ consisting of lowercase English letters.\n- The sum of lengths of the given strings is at most $5 \\times 10^5$.\n- $i \\neq j \\Rightarrow S_i \\neq S_j$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nS_1\nS_2\n\\vdots\nS_N\n```\n\n## Output\n\nPrint $N$ lines. For each $i = 1, 2, \\ldots, N$, the $i$-th line should contain the expected value, modulo $998244353$, of the student ID assigned to Student $i$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n高桥小学有 $N$ 名新生。对于 $i = 1, 2, \\ldots, N$，第 $i$ 名新生的姓名为 $S_i$（由小写英文字母组成的字符串）。这 $N$ 名新生的姓名互不相同。\n\n将按照姓名的**字典序升序**为这 $N$ 名学生分配学生证号 $1, 2, 3, \\ldots, N$。不过，与通常将 `a` 视为最小、`z` 视为最大的英文字母顺序不同，我们采用以下顺序：\n\n- 首先，校长高桥从长度为 $26$ 的字符串 `abcdefghijklmnopqrstuvwxyz` 的 $26!$ 种排列中等概率随机选择一个字符串 $P$。\n- 在 $P$ 中出现位置越靠前的小写英文字母，被认为越小。\n\n请求出每名学生所获得的学生证号的期望值，并对 $998244353$ 取模（见说明）。\n\n什么是字典序？对于字符串 $S = S_1S_2\\ldots S_{|S|}$ 和 $T = T_1T_2\\ldots T_{|T|}$，如果以下 1. 和 2. 中的任意一项成立，则称字符串 $S$ 的字典序**小于**字符串 $T$ 的字典序。其中，$|S|$ 和 $|T|$ 分别表示它们的长度。\n\n1. $|S| \\lt |T|$ 且 $S_1S_2\\ldots S_{|S|} = T_1T_2\\ldots T_{|S|}$。\n2. 存在整数 $1 \\leq i \\leq \\min\\lbrace |S|, |T| \\rbrace$，使得以下两个条件同时成立：$S_1S_2\\ldots S_{i-1} = T_1T_2\\ldots T_{i-1}$，且 $S_i$ 是比 $T_i$ 更小的字符。\n\n## 说明\n\n可以证明，所求的期望值总是有理数。此外，在本题的约束条件下，若将该值表示为两个互质整数之比 $\\frac{P}{Q}$，则可以证明存在唯一的整数 $R$，满足 $R \\times Q \\equiv P\\pmod{998244353}$ 且 $0 \\leq R \\lt 998244353$。请求出这样的 $R$。\n\n## 约束条件\n\n- $2 \\leq N$\n- $N$ 是整数。\n- $S_i$ 是长度至少为 $1$ 且仅由小写英文字母组成的字符串。\n- 给定字符串的长度之和不超过 $5 \\times 10^5$。\n- $i \\neq j \\Rightarrow S_i \\neq S_j$\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nS_1\n\\vdots\nS_N\n```\n\n## 输出格式\n\n输出 $N$ 行。对于每个 $i = 1, 2, \\ldots, N$，第 $i$ 行应包含第 $i$ 名学生所获得的学生证号的期望值，并对 $998244353$ 取模。",
   "samples": [
     {
       "input": "3\na\naa\nab\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:28:36.582Z"
+  "fetchedAt": "2026-10-30T21:28:36.582Z",
+  "translatedAt": "2026-11-04T03:12:25.942+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

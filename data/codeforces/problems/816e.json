@@ -4,14 +4,14 @@
   "contestId": 816,
   "index": "E",
   "title": "Karen and Supermarket",
-  "titleZh": null,
+  "titleZh": "Karen 和超市",
   "url": "https://codeforces.com/contest/816/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "On the way home, Karen decided to stop by the supermarket to buy some groceries.\n\n![image](https://espresso.codeforces.com/b46fa3ae5b56c53378373ef8f1873c50c8c7c64f.png)\n\nShe needs to buy a lot of goods, but since she is a student her budget is still quite limited. In fact, she can only spend up to $*b*$ dollars.\n\nThe supermarket sells $*n*$ goods. The $*i*$-th good can be bought for $*c*_{*i*}$ dollars. Of course, each good can only be bought once.\n\nLately, the supermarket has been trying to increase its business. Karen, being a loyal customer, was given $*n*$ coupons. If Karen purchases the $*i*$-th good, she can use the $*i*$-th coupon to decrease its price by $*d*_{*i*}$. Of course, a coupon cannot be used without buying the corresponding good.\n\nThere is, however, a constraint with the coupons. For all $*i* ≥ 2$, in order to use the $*i*$-th coupon, Karen must also use the $*x*_{*i*}$-th coupon (which may mean using even more coupons to satisfy the requirement for that coupon).\n\nKaren wants to know the following. What is the maximum number of goods she can buy, without exceeding her budget $*b*$?\n\n## Input\n\nThe first line of input contains two integers $*n*$ and $*b*$ ($1 ≤ *n* ≤ 5000$, $1 ≤ *b* ≤ 10^{9}$), the number of goods in the store and the amount of money Karen has, respectively.\n\nThe next $*n*$ lines describe the items. Specifically:\n\n- The $*i*$-th line among these starts with two integers, $*c*_{*i*}$ and $*d*_{*i*}$ ($1 ≤ *d*_{*i*} < *c*_{*i*} ≤ 10^{9}$), the price of the $*i*$-th good and the discount when using the coupon for the $*i*$-th good, respectively.\n- If $*i* ≥ 2$, this is followed by another integer, $*x*_{*i*}$ ($1 ≤ *x*_{*i*} < *i*$), denoting that the $*x*_{*i*}$-th coupon must also be used before this coupon can be used.\n\n## Output\n\nOutput a single integer on a line by itself, the number of different goods Karen can buy, without exceeding her budget.\n\n## Note\n\nIn the first test case, Karen can purchase the following $4$ items:\n\n- Use the first coupon to buy the first item for $10 - 9 = 1$ dollar.\n- Use the third coupon to buy the third item for $12 - 2 = 10$ dollars.\n- Use the fourth coupon to buy the fourth item for $20 - 18 = 2$ dollars.\n- Buy the sixth item for $2$ dollars.\n\nThe total cost of these goods is $15$, which falls within her budget. Note, for example, that she cannot use the coupon on the sixth item, because then she should have also used the fifth coupon to buy the fifth item, which she did not do here.\n\nIn the second test case, Karen has enough money to use all the coupons and purchase everything.",
-  "statementZhMd": null,
+  "statementZhMd": "在回家的路上，Karen 决定顺便去超市买些日用品。\n\n![image](https://espresso.codeforces.com/b46fa3ae5b56c53378373ef8f1873c50c8c7c64f.png)\n\n她需要购买很多商品，但由于她还是一名学生，预算相当有限。事实上，她最多只能花费 $*b*$ 美元。\n\n超市出售 $*n*$ 件商品。第 $*i*$ 件商品的价格为 $*c*_{*i*}$ 美元。当然，每件商品最多只能购买一次。\n\n最近，超市一直在努力扩大经营。作为一名忠实顾客，Karen 获得了 $*n*$ 张优惠券。如果 Karen 购买第 $*i*$ 件商品，她可以使用第 $*i*$ 张优惠券，使其价格减少 $*d*_{*i*}$ 美元。当然，不购买对应商品就不能使用优惠券。\n\n不过，优惠券有一个限制。对于所有 $*i* ≥ 2$，为了使用第 $*i*$ 张优惠券，Karen 还必须使用第 $*x*_{*i*}$ 张优惠券（这可能意味着还需要使用更多优惠券来满足该优惠券的使用条件）。\n\nKaren 想知道：在不超过预算 $*b*$ 的前提下，她最多可以买多少件商品？\n\n## 约束条件\n\n输入的第一行包含两个整数 $*n*$ 和 $*b*$（$1 ≤ *n* ≤ 5000$，$1 ≤ *b* ≤ 10^{9}$），分别表示超市中的商品数量和 Karen 拥有的金额。\n\n接下来的 $*n*$ 行描述商品。具体来说：\n\n- 其中第 $*i*$ 行以两个整数 $*c*_{*i*}$ 和 $*d*_{*i*}$（$1 ≤ *d*_{*i*} < *c*_{*i*} ≤ 10^{9}$）开头，分别表示第 $*i*$ 件商品的价格，以及使用第 $*i*$ 件商品的优惠券时获得的折扣。\n- 如果 $*i* ≥ 2$，该行后面还会有另一个整数 $*x*_{*i*}$（$1 ≤ *x*_{*i*} < *i*$），表示在使用这张优惠券之前，还必须使用第 $*x*_{*i*}$ 张优惠券。\n\n## 输出格式\n\n输出一个整数，表示 Karen 在不超过预算的前提下可以买到的不同商品的最大数量。\n\n## 说明\n\n在第一个测试用例中，Karen 可以购买以下 $4$ 件商品：\n\n- 使用第一张优惠券，以 $10 - 9 = 1$ 美元的价格购买第一件商品。\n- 使用第三张优惠券，以 $12 - 2 = 10$ 美元的价格购买第三件商品。\n- 使用第四张优惠券，以 $20 - 18 = 2$ 美元的价格购买第四件商品。\n- 以 $2$ 美元的价格购买第六件商品。\n\n这些商品的总花费为 $15$ 美元，不超过她的预算。例如，她不能对第六件商品使用优惠券，因为这样她还必须使用第五张优惠券购买第五件商品，而在这里她并没有这样做。\n\n在第二个测试用例中，Karen 有足够的钱使用所有优惠券并购买所有商品。",
   "samples": [
     {
       "input": "6 16\n10 9\n10 5 1\n12 2 1\n20 18 3\n10 2 3\n2 1 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:50:11.295Z"
+  "fetchedAt": "2026-10-31T00:50:11.295Z",
+  "translatedAt": "2026-11-04T06:07:04.979+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

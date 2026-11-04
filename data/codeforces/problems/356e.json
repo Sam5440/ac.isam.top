@@ -4,7 +4,7 @@
   "contestId": 356,
   "index": "E",
   "title": "Xenia and String Problem",
-  "titleZh": null,
+  "titleZh": "Xenia 与字符串问题",
   "url": "https://codeforces.com/contest/356/problem/E",
   "difficulty": 3000,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Xenia the coder went to The Olympiad of Informatics and got a string problem. Unfortunately, Xenia isn't fabulous in string algorithms. Help her solve the problem.\n\n*String* $*s*$ is a sequence of characters $*s*_{1}*s*_{2}... *s*_{|*s*|}$, where record $|*s*|$ shows the length of the string.\n\n*Substring* $*s*[*i*... *j*]$ of string $*s*$ is string $*s*_{*i*}*s*_{*i* + 1}... *s*_{*j*}$.\n\nString $*s*$ is a *Gray* string, if it meets the conditions:\n\n- the length of string $|*s*|$ is odd;\n- character ![image](https://espresso.codeforces.com/8e6b1a9676618e32d345c927043ed569ea92b254.png) occurs exactly once in the string;\n- either $|*s*| = 1$, or substrings ![image](https://espresso.codeforces.com/4d1de60169f554a3770ebe424729b3e1fc656e35.png) and ![image](https://espresso.codeforces.com/4fbabe3d7c046e7c2326c48d5b882d5348e2b803.png) are the same and are Gray strings.\n\nFor example, strings \"`abacaba`\", \"`xzx`\", \"`g`\" are Gray strings and strings \"`aaa`\", \"`xz`\", \"`abaxcbc`\" are not.\n\nThe *beauty* of string $*p*$ is the sum of the squares of the lengths of all substrings of string $*p*$ that are Gray strings. In other words, consider all pairs of values $*i*, *j*$ $(1 ≤ *i* ≤ *j* ≤ |*p*|)$. If substring $*p*[*i*... *j*]$ is a Gray string, you should add $(*j* - *i* + 1)^{2}$ to the beauty.\n\nXenia has got string $*t*$ consisting of lowercase English letters. She is allowed to replace at most one letter of the string by any other English letter. The task is to get a string of maximum beauty.\n\n## Input\n\nThe first line contains a non-empty string $*t*$ $(1 ≤ |*t*| ≤ 10^{5})$. String $*t*$ only consists of lowercase English letters.\n\n## Output\n\nPrint the sought maximum beauty value Xenia can get.\n\nPlease do not use the `%lld` specifier to read or write 64-bit integers in С++. It is preferred to use the `cin`, `cout` streams or the `%I64d` specifier.\n\n## Note\n\nIn the first test sample the given string can be transformed into string $*p*$ = \"`zbz`\". Such string contains Gray strings as substrings $*p*[1... 1]$, $*p*[2... 2]$, $*p*[3... 3]$ и $*p*[1... 3]$. In total, the beauty of string $*p*$ gets equal to $1^{2} + 1^{2} + 1^{2} + 3^{2} = 12$. You can't obtain a more beautiful string.\n\nIn the second test case it is not necessary to perform any operation. The initial string has the maximum possible beauty.",
-  "statementZhMd": null,
+  "statementZhMd": "Xenia 这位程序员参加了信息学奥林匹克竞赛，并遇到了一道字符串问题。遗憾的是，Xenia 并不擅长字符串算法。请帮助她解决这个问题。\n\n*字符串* $*s*$ 是一个字符序列 $*s*_{1}*s*_{2}... *s*_{|*s*|}$，其中记号 $|*s*|$ 表示字符串的长度。\n\n字符串 $*s*$ 的*子串* $*s*[*i*... *j*]$ 是字符串 $*s*_{*i*}*s*_{*i* + 1}... *s*_{*j*}$。\n\n如果字符串 $*s*$ 满足以下条件，则称其为*格雷字符串*：\n\n- 字符串的长度 $|*s*|$ 是奇数；\n- 字符 ![image](https://espresso.codeforces.com/8e6b1a9676618e32d345c927043ed569ea92b254.png) 在字符串中恰好出现一次；\n- $|*s*| = 1$，或者子串 ![image](https://espresso.codeforces.com/4d1de60169f554a3770ebe424729b3e1fc656e35.png) 和 ![image](https://espresso.codeforces.com/4fbabe3d7c046e7c2326c48d5b882d5348e2b803.png) 相同，并且它们都是格雷字符串。\n\n例如，字符串 \"`abacaba`\"、\"`xzx`\"、\"`g`\" 是格雷字符串，而字符串 \"`aaa`\"、\"`xz`\"、\"`abaxcbc`\" 不是格雷字符串。\n\n字符串 $*p*$ 的*美丽度*定义为 $*p*$ 的所有格雷字符串子串的长度平方之和。换句话说，考虑所有满足 $1 ≤ *i* ≤ *j* ≤ |*p*|$ 的数对 $*i*, *j*$。如果子串 $*p*[*i*... *j*]$ 是格雷字符串，则应将 $(*j* - *i* + 1)^{2}$ 加到美丽度中。\n\nXenia 得到了一个由小写英文字母组成的字符串 $*t*$。她可以将字符串中的至多一个字母替换为任意其他英文字母。请你求出她能够得到的美丽度最大的字符串。\n\n## 输入格式\n\n第一行包含一个非空字符串 $*t*$ $(1 ≤ |*t*| ≤ 10^{5})$。字符串 $*t*$ 仅由小写英文字母组成。\n\n## 输出格式\n\n输出 Xenia 能够得到的最大美丽度。\n\n请不要在 C++ 中使用 `%lld` 格式说明符读写 64 位整数。建议使用 `cin`、`cout` 流，或使用 `%I64d` 格式说明符。\n\n## 说明\n\n在第一个样例中，给定的字符串可以被转换为字符串 $*p*$ = \"`zbz`\"。该字符串包含的格雷字符串子串有 $*p*[1... 1]$、$*p*[2... 2]$、$*p*[3... 3]$ 和 $*p*[1... 3]$。因此，字符串 $*p*$ 的美丽度为 $1^{2} + 1^{2} + 1^{2} + 3^{2} = 12$。无法得到美丽度更大的字符串。\n\n在第二个测试用例中，不需要进行任何操作。初始字符串已经具有可能的最大美丽度。",
   "samples": [
     {
       "input": "zzz\n",
@@ -42,5 +42,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:56:40.645Z"
+  "fetchedAt": "2026-10-31T01:56:40.645Z",
+  "translatedAt": "2026-11-04T07:18:12.544+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

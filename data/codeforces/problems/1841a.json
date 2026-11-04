@@ -4,7 +4,7 @@
   "contestId": 1841,
   "index": "A",
   "title": "Game with Board",
-  "titleZh": null,
+  "titleZh": "棋盘游戏",
   "url": "https://codeforces.com/contest/1841/problem/A",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Alice and Bob play a game. They have a blackboard; initially, there are $n$ integers written on it, and each integer is equal to $1$.\n\nAlice and Bob take turns; Alice goes first. On their turn, the player has to choose several (**at least two**) **equal** integers on the board, wipe them and write a new integer which is equal to their sum.\n\nFor example, if the board currently contains integers $\\{1, 1, 2, 2, 2, 3\\}$, then the following moves are possible:\n\n- choose two integers equal to $1$, wipe them and write an integer $2$, then the board becomes $\\{2, 2, 2, 2, 3\\}$;\n- choose two integers equal to $2$, wipe them and write an integer $4$, then the board becomes $\\{1, 1, 2, 3, 4\\}$;\n- choose three integers equal to $2$, wipe them and write an integer $6$, then the board becomes $\\{1, 1, 3, 6\\}$.\n\nIf a player cannot make a move (all integers on the board are different), that player **wins the game**.\n\nDetermine who wins if both players play optimally.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 99$) — the number of test cases.\n\nEach test case consists of one line containing one integer $n$ ($2 \\le n \\le 100$) — the number of integers equal to $1$ on the board.\n\n## Output\n\nFor each test case, print `Alice` if Alice wins when both players play optimally. Otherwise, print `Bob`.\n\n## Note\n\nIn the first test case, $n = 3$, so the board initially contains integers $\\{1, 1, 1\\}$. We can show that Bob can always win as follows: there are two possible first moves for Alice.\n\n- if Alice chooses two integers equal to $1$, wipes them and writes $2$, the board becomes $\\{1, 2\\}$. Bob cannot make a move, so he wins;\n- if Alice chooses three integers equal to $1$, wipes them and writes $3$, the board becomes $\\{3\\}$. Bob cannot make a move, so he wins.\n\nIn the second test case, $n = 6$, so the board initially contains integers $\\{1, 1, 1, 1, 1, 1\\}$. Alice can win by, for example, choosing two integers equal to $1$, wiping them and writing $2$ on the first turn. Then the board becomes $\\{1, 1, 1, 1, 2\\}$, and there are three possible responses for Bob:\n\n- if Bob chooses four integers equal to $1$, wipes them and writes $4$, the board becomes $\\{2,4\\}$. Alice cannot make a move, so she wins;\n- if Bob chooses three integers equal to $1$, wipes them and writes $3$, the board becomes $\\{1,2,3\\}$. Alice cannot make a move, so she wins;\n- if Bob chooses two integers equal to $1$, wipes them and writes $2$, the board becomes $\\{1, 1, 2, 2\\}$. Alice can continue by, for example, choosing two integers equal to $2$, wiping them and writing $4$. Then the board becomes $\\{1,1,4\\}$. The only possible response for Bob is to choose two integers equal to $1$ and write $2$ instead of them; then the board becomes $\\{2,4\\}$, Alice cannot make a move, so she wins.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nAlice 和 Bob 玩一个游戏。他们有一块黑板；最初，黑板上写有 $n$ 个整数，且每个整数都等于 $1$。\n\nAlice 和 Bob 轮流进行操作，Alice 先手。在自己的回合中，玩家必须选择黑板上若干个（**至少两个**）**相等**的整数，将它们擦去，并写下一个等于这些整数之和的新整数。\n\n例如，如果黑板上当前有整数集合 $\\{1, 1, 2, 2, 2, 3\\}$，那么可以进行以下操作：\n\n- 选择两个等于 $1$ 的整数，将它们擦去并写下整数 $2$，此时黑板变为 $\\{2, 2, 2, 2, 3\\}$；\n- 选择两个等于 $2$ 的整数，将它们擦去并写下整数 $4$，此时黑板变为 $\\{1, 1, 2, 3, 4\\}$；\n- 选择三个等于 $2$ 的整数，将它们擦去并写下整数 $6$，此时黑板变为 $\\{1, 1, 3, 6\\}$。\n\n如果一个玩家无法进行操作（黑板上的所有整数都各不相同），那么该玩家**赢得游戏**。\n\n假设双方都采取最优策略，判断谁能获胜。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 99$）——测试用例的数量。\n\n每个测试用例包含一行，其中有一个整数 $n$（$2 \\le n \\le 100$）——黑板上等于 $1$ 的整数数量。\n\n## 输出格式\n\n对于每个测试用例，如果双方都采取最优策略时 Alice 获胜，则输出 `Alice`。否则，输出 `Bob`。\n\n## 说明\n\n在第一个测试用例中，$n = 3$，因此黑板初始包含整数 $\\{1, 1, 1\\}$。可以证明 Bob 总能获胜，过程如下：Alice 的第一步有两种可能的操作。\n\n- 如果 Alice 选择两个等于 $1$ 的整数，将它们擦去并写下 $2$，黑板变为 $\\{1, 2\\}$。Bob 无法进行操作，因此 Bob 获胜；\n- 如果 Alice 选择三个等于 $1$ 的整数，将它们擦去并写下 $3$，黑板变为 $\\{3\\}$。Bob 无法进行操作，因此 Bob 获胜。\n\n在第二个测试用例中，$n = 6$，因此黑板初始包含整数 $\\{1, 1, 1, 1, 1, 1\\}$。例如，Alice 可以在第一回合选择两个等于 $1$ 的整数，将它们擦去并写下 $2$，从而获胜。此时黑板变为 $\\{1, 1, 1, 1, 2\\}$，Bob 有三种可能的应对方式：\n\n- 如果 Bob 选择四个等于 $1$ 的整数，将它们擦去并写下 $4$，黑板变为 $\\{2,4\\}$。Alice 无法进行操作，因此 Alice 获胜；\n- 如果 Bob 选择三个等于 $1$ 的整数，将它们擦去并写下 $3$，黑板变为 $\\{1,2,3\\}$。Alice 无法进行操作，因此 Alice 获胜；\n- 如果 Bob 选择两个等于 $1$ 的整数，将它们擦去并写下 $2$，黑板变为 $\\{1, 1, 2, 2\\}$。Alice 可以继续选择两个等于 $2$ 的整数，将它们擦去并写下 $4$。此时黑板变为 $\\{1,1,4\\}$。Bob 唯一可能的应对是选择两个等于 $1$ 的整数，并用 $2$ 替换它们；此时黑板变为 $\\{2,4\\}$，Alice 无法进行操作，因此 Alice 获胜。",
   "samples": [
     {
       "input": "2\n3\n6\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:27:53.085Z"
+  "fetchedAt": "2026-11-02T17:27:53.085Z",
+  "translatedAt": "2026-11-04T02:44:07.220+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

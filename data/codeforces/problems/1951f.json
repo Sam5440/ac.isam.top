@@ -4,7 +4,7 @@
   "contestId": 1951,
   "index": "F",
   "title": "Inversion Composition",
-  "titleZh": null,
+  "titleZh": "逆序对复合",
   "url": "https://codeforces.com/contest/1951/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "[*My Chemical Romance - Disenchanted*](https://youtu.be/j_MlBCb9-m8)ඞ\n\nYou are given a permutation $p$ of size $n$, as well as a non-negative integer $k$. You need to construct a permutation $q$ of size $n$ such that $\\operatorname{inv}(q) + \\operatorname{inv}(q \\cdot p) = k {}^\\dagger {}^\\ddagger$, or determine if it is impossible to do so.\n\n${}^\\dagger$ For two permutations $p$ and $q$ of the same size $n$, the permutation $w = q \\cdot p$ is such that $w_i = q_{p_i}$ for all $1 \\le i \\le n$.\n\n${}^\\ddagger$ For a permutation $p$ of size $n$, the function $\\operatorname{inv}(p)$ returns the number of inversions of $p$, i.e. the number of pairs of indices $1 \\le i \\lt j \\le n$ such that $p_i \\gt p_j$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le n \\le 3 \\cdot 10^5, 0 \\le k \\le n(n - 1)$) — the size of $p$ and the target number of inversions.\n\nThe second line of each test case contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\le p_i \\le n$, $p_i$'s are pairwise distinct) — the given permutation $p$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print on one line `\"YES\"` if there exists a permutation $q$ that satisfies the given condition, or `\"NO\"` if there is no such permutation.\n\nIf the answer is `\"YES\"`, on the second line, print $n$ integers $q_1, q_2, \\ldots, q_n$ that represent such a satisfactory permutation $q$. If there are multiple such $q$'s, print any of them.\n\n## Note\n\nIn the first test case, we have $q \\cdot p = [2, 1, 3]$, $\\operatorname{inv}(q) = 3$, and $\\operatorname{inv}(q \\cdot p) = 1$.\n\nIn the fourth test case, we have $q \\cdot p = [9, 1, 8, 5, 7, 6, 4, 3, 2]$, $\\operatorname{inv}(q) = 24$, and $\\operatorname{inv}(q \\cdot p) = 27$.",
-  "statementZhMd": null,
+  "statementZhMd": "[*My Chemical Romance - Disenchanted*](https://youtu.be/j_MlBCb9-m8)ඞ\n\n给定一个长度为 $n$ 的排列 $p$，以及一个非负整数 $k$。你需要构造一个长度为 $n$ 的排列 $q$，使得 $\\operatorname{inv}(q) + \\operatorname{inv}(q \\cdot p) = k {}^\\dagger {}^\\ddagger$，或者判断是否无法构造。\n\n${}^\\dagger$ 对于两个长度均为 $n$ 的排列 $p$ 和 $q$，排列 $w = q \\cdot p$ 满足：对于所有 $1 \\le i \\le n$，$w_i = q_{p_i}$。\n\n${}^\\ddagger$ 对于一个长度为 $n$ 的排列 $p$，函数 $\\operatorname{inv}(p)$ 返回排列 $p$ 的逆序对数量，即满足 $1 \\le i \\lt j \\le n$ 且 $p_i \\gt p_j$ 的下标对 $(i, j)$ 的数量。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 3 \\cdot 10^5, 0 \\le k \\le n(n - 1)$）——排列 $p$ 的长度以及目标逆序对数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$1 \\le p_i \\le n$，$p_i$ 两两不同）——给定的排列 $p$。\n\n保证所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一行：如果存在满足条件的排列 $q$，输出 `\"YES\"`；如果不存在，输出 `\"NO\"`。\n\n如果答案为 `\"YES\"`，在第二行输出 $n$ 个整数 $q_1, q_2, \\ldots, q_n$，表示一个满足条件的排列 $q$。如果有多个满足条件的 $q$，输出任意一个即可。\n\n## 说明\n\n在第一个测试用例中，有 $q \\cdot p = [2, 1, 3]$，$\\operatorname{inv}(q) = 3$，以及 $\\operatorname{inv}(q \\cdot p) = 1$。\n\n在第四个测试用例中，有 $q \\cdot p = [9, 1, 8, 5, 7, 6, 4, 3, 2]$，$\\operatorname{inv}(q) = 24$，以及 $\\operatorname{inv}(q \\cdot p) = 27$。",
   "samples": [
     {
       "input": "5\n3 4\n2 3 1\n5 5\n2 3 5 1 4\n6 11\n5 1 2 3 4 6\n9 51\n3 1 4 2 5 6 7 8 9\n1 0\n1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:58:34.610Z"
+  "fetchedAt": "2026-10-30T21:58:34.610Z",
+  "translatedAt": "2026-11-04T02:13:30.341+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

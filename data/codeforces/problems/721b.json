@@ -4,7 +4,7 @@
   "contestId": 721,
   "index": "B",
   "title": "Passwords",
-  "titleZh": null,
+  "titleZh": "密码",
   "url": "https://codeforces.com/contest/721/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Vanya is managed to enter his favourite site Codehorses. Vanya uses $*n*$ distinct passwords for sites at all, however he can't remember which one exactly he specified during Codehorses registration.\n\nVanya will enter passwords in order of non-decreasing their lengths, and he will enter passwords of same length in arbitrary order. Just when Vanya will have entered the correct password, he is immediately authorized on the site. Vanya will not enter any password twice.\n\nEntering any passwords takes one second for Vanya. But if Vanya will enter wrong password $*k*$ times, then he is able to make the next try only $5$ seconds after that. Vanya makes each try immediately, that is, at each moment when Vanya is able to enter password, he is doing that.\n\nDetermine how many seconds will Vanya need to enter Codehorses in the best case for him (if he spends minimum possible number of second) and in the worst case (if he spends maximum possible amount of seconds).\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*k*$ ($1 ≤ *n*, *k* ≤ 100$) — the number of Vanya's passwords and the number of failed tries, after which the access to the site is blocked for $5$ seconds.\n\nThe next $*n*$ lines contains passwords, one per line — pairwise distinct non-empty strings consisting of latin letters and digits. Each password length does not exceed $100$ characters.\n\nThe last line of the input contains the Vanya's Codehorses password. It is guaranteed that the Vanya's Codehorses password is equal to some of his $*n*$ passwords.\n\n## Output\n\nPrint two integers — time (in seconds), Vanya needs to be authorized to Codehorses in the best case for him and in the worst case respectively.\n\n## Note\n\nConsider the first sample case. As soon as all passwords have the same length, Vanya can enter the right password at the first try as well as at the last try. If he enters it at the first try, he spends exactly $1$ second. Thus in the best case the answer is $1$. If, at the other hand, he enters it at the last try, he enters another $4$ passwords before. He spends $2$ seconds to enter first $2$ passwords, then he waits $5$ seconds as soon as he made $2$ wrong tries. Then he spends $2$ more seconds to enter $2$ wrong passwords, again waits $5$ seconds and, finally, enters the correct password spending $1$ more second. In summary in the worst case he is able to be authorized in $15$ seconds.\n\nConsider the second sample case. There is no way of entering passwords and get the access to the site blocked. As soon as the required password has length of $2$, Vanya enters all passwords of length $1$ anyway, spending $2$ seconds for that. Then, in the best case, he immediately enters the correct password and the answer for the best case is $3$, but in the worst case he enters wrong password of length $2$ and only then the right one, spending $4$ seconds at all.",
-  "statementZhMd": null,
+  "statementZhMd": "Vanya 成功进入了他最喜欢的网站 Codehorses。Vanya 总共为各个网站使用 $*n*$ 个互不相同的密码，但他记不清自己在注册 Codehorses 时具体使用的是哪一个密码。\n\nVanya 会按照密码长度非递减的顺序输入密码，对于长度相同的密码，他可以按任意顺序输入。当 Vanya 输入正确密码时，他会立即获得网站的授权。Vanya 不会重复输入任何密码。\n\n输入任意密码都需要 Vanya 花费 1 秒。但如果 Vanya 连续输入错误密码达到 $*k*$ 次，那么他必须在 5 秒后才能进行下一次尝试。Vanya 每次都会立即进行尝试，也就是说，每当 Vanya 可以输入密码时，他就会立即输入密码。\n\n请确定 Vanya 在对自己最有利的情况下（花费最少时间）和最不利的情况下（花费最多时间）进入 Codehorses 所需的秒数。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*k*$（$1 ≤ *n*, *k* ≤ 100$）——Vanya 的密码数量，以及连续输入多少次错误密码后网站会被锁定 5 秒。\n\n接下来的 $*n*$ 行每行包含一个密码。所有密码两两不同，且都是由拉丁字母和数字组成的非空字符串。每个密码的长度不超过 100 个字符。\n\n输入的最后一行包含 Vanya 在 Codehorses 上使用的密码。保证 Vanya 在 Codehorses 上使用的密码等于他的某一个 $*n*$ 个密码。\n\n## 输出格式\n\n输出两个整数，分别表示 Vanya 在对自己最有利和最不利的情况下获得 Codehorses 授权所需的时间（秒数）。\n\n## 说明\n\n考虑第一个样例。由于所有密码的长度都相同，Vanya 既可以在第一次尝试时输入正确密码，也可以在最后一次尝试时输入正确密码。如果他第一次就输入正确密码，那么恰好只需花费 $1$ 秒。因此，最优情况下的答案是 $1$。\n\n另一方面，如果他最后一次才输入正确密码，那么在此之前他还要输入另外 $4$ 个密码。他先花费 $2$ 秒输入前 $2$ 个密码；由于连续输入了 $2$ 个错误密码，他随后等待 $5$ 秒。然后他又花费 $2$ 秒输入 $2$ 个错误密码，再次等待 $5$ 秒，最后再花费 $1$ 秒输入正确密码。总计在最坏情况下，他需要 $15$ 秒才能获得授权。\n\n考虑第二个样例。不存在输入密码并使网站被锁定的方法。由于正确密码的长度为 $2$，Vanya 无论如何都会先输入所有长度为 $1$ 的密码，共花费 $2$ 秒。最优情况下，他随后立即输入正确密码，因此最优情况下的答案为 $3$；但在最坏情况下，他会先输入一个长度为 $2$ 的错误密码，然后才输入正确密码，总共花费 $4$ 秒。",
   "samples": [
     {
       "input": "5 2\ncba\nabc\nbb1\nabC\nABC\nabc\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:04:00.895Z"
+  "fetchedAt": "2026-10-31T01:04:00.895Z",
+  "translatedAt": "2026-11-04T06:25:33.634+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

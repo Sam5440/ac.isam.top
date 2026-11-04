@@ -4,7 +4,7 @@
   "contestId": 177,
   "index": "D2",
   "title": "Encrypting Messages",
-  "titleZh": null,
+  "titleZh": "加密消息",
   "url": "https://codeforces.com/contest/177/problem/D2",
   "difficulty": 1500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The Smart Beaver from ABBYY invented a new message encryption method and now wants to check its performance. Checking it manually is long and tiresome, so he decided to ask the ABBYY Cup contestants for help.\n\nA message is a sequence of $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$. Encryption uses a key which is a sequence of $*m*$ integers $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$ ($*m* ≤ *n*$). All numbers from the message and from the key belong to the interval from $0$ to $*c* - 1$, inclusive, and all the calculations are performed modulo $*c*$.\n\nEncryption is performed in $*n* - *m* + 1$ steps. On the first step we add to each number $*a*_{1}, *a*_{2}, ..., *a*_{*m*}$ a corresponding number $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$. On the second step we add to each number $*a*_{2}, *a*_{3}, ..., *a*_{*m* + 1}$ (changed on the previous step) a corresponding number $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$. And so on: on step number $*i*$ we add to each number $*a*_{*i*}, *a*_{*i* + 1}, ..., *a*_{*i* + *m* - 1}$ a corresponding number $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$. The result of the encryption is the sequence $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ after $*n* - *m* + 1$ steps.\n\nHelp the Beaver to write a program that will encrypt messages in the described manner.\n\n## Input\n\nThe first input line contains three integers $*n*$, $*m*$ and $*c*$, separated by single spaces.\n\nThe second input line contains $*n*$ integers $*a*_{*i*}$ ($0 ≤ *a*_{*i*} < *c*$), separated by single spaces — the original message.\n\nThe third input line contains $*m*$ integers $*b*_{*i*}$ ($0 ≤ *b*_{*i*} < *c*$), separated by single spaces — the encryption key.\n\nThe input limitations for getting 30 points are:\n\n- $1 ≤ *m* ≤ *n* ≤ 10^{3}$\n- $1 ≤ *c* ≤ 10^{3}$\n\nThe input limitations for getting 100 points are:\n\n- $1 ≤ *m* ≤ *n* ≤ 10^{5}$\n- $1 ≤ *c* ≤ 10^{3}$\n\n## Output\n\nPrint $*n*$ space-separated integers — the result of encrypting the original message.\n\n## Note\n\nIn the first sample the encryption is performed in two steps: after the first step $*a* = (0, 0, 0, 1)$ (remember that the calculations are performed modulo 2), after the second step $*a* = (0, 1, 1, 0)$, and that is the answer.",
-  "statementZhMd": null,
+  "statementZhMd": "ABBYY 的 Smart Beaver 发明了一种新的消息加密方法，现在想要检查它的性能。手动检查既漫长又乏味，因此他决定向 ABBYY Cup 的参赛者寻求帮助。\n\n一条消息是由 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ 组成的序列。加密使用一个密钥，该密钥是由 $*m*$ 个整数 $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$ 组成的序列（$*m* ≤ *n*$）。消息和密钥中的所有数字都属于区间 $0$ 到 $*c* - 1$（包括两端），并且所有计算均在模 $*c*$ 意义下进行。\n\n加密分为 $*n* - *m* + 1$ 步进行。第一步，将 $*a*_{1}, *a*_{2}, ..., *a*_{*m*}$ 中的每个数分别加上对应的 $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$。第二步，将 $*a*_{2}, *a*_{3}, ..., *a*_{*m* + 1}$（在上一步中改变后的值）中的每个数分别加上对应的 $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$。以此类推：在第 $*i*$ 步中，将 $*a*_{*i*}, *a*_{*i* + 1}, ..., *a*_{*i* + *m* - 1}$ 中的每个数分别加上对应的 $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$。完成 $*n* - *m* + 1$ 步后的 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ 序列就是加密结果。\n\n请帮助 Beaver 编写程序，以所描述的方式加密消息。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*$、$*m*$ 和 $*c*$，用单个空格分隔。\n\n输入的第二行包含 $*n*$ 个整数 $*a*_{*i*}$（$0 ≤ *a*_{*i*} < *c*$），用单个空格分隔，表示原始消息。\n\n输入的第三行包含 $*m*$ 个整数 $*b*_{*i*}$（$0 ≤ *b*_{*i*} < *c*$），用单个空格分隔，表示加密密钥。\n\n获得 30 分所需的输入限制：\n\n- $1 ≤ *m* ≤ *n* ≤ 10^{3}$\n- $1 ≤ *c* ≤ 10^{3}$\n\n获得 100 分所需的输入限制：\n\n- $1 ≤ *m* ≤ *n* ≤ 10^{5}$\n- $1 ≤ *c* ≤ 10^{3}$\n\n## 输出格式\n\n输出 $*n*$ 个用空格分隔的整数，即加密原始消息后的结果。\n\n## 说明\n\n在第一个样例中，加密分两步进行：第一步后 $*a* = (0, 0, 0, 1)$（请记住，计算是在模 2 意义下进行的）；第二步后 $*a* = (0, 1, 1, 0)$，这就是答案。",
   "samples": [
     {
       "input": "4 3 2\n1 1 1 1\n1 1 1\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:15:04.144Z"
+  "fetchedAt": "2026-11-02T20:15:04.144Z",
+  "translatedAt": "2026-11-04T07:39:51.428+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

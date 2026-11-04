@@ -4,7 +4,7 @@
   "contestId": 860,
   "index": "E",
   "title": "Arkady and a Nobody-men",
-  "titleZh": null,
+  "titleZh": "Arkady 与无名小卒们",
   "url": "https://codeforces.com/contest/860/problem/E",
   "difficulty": 2700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Arkady words in a large company. There are $*n*$ employees working in a system of a strict hierarchy. Namely, each employee, with an exception of the CEO, has exactly one immediate manager. The CEO is a manager (through a chain of immediate managers) of all employees.\n\nEach employee has an integer rank. The CEO has rank equal to $1$, each other employee has rank equal to the rank of his immediate manager plus $1$.\n\nArkady has a good post in the company, however, he feels that he is nobody in the company's structure, and there are a lot of people who can replace him. He introduced the value of *replaceability*. Consider an employee $*a*$ and an employee $*b*$, the latter being manager of $*a*$ (not necessarily immediate). Then the replaceability $*r*(*a*, *b*)$ of $*a*$ with respect to $*b*$ is the number of subordinates (not necessarily immediate) of the manager $*b*$, whose rank is not greater than the rank of $*a*$. Apart from replaceability, Arkady introduced the value of *negligibility*. The negligibility $*z*_{*a*}$ of employee $*a*$ equals the sum of his replaceabilities with respect to all his managers, i.e. ![image](https://espresso.codeforces.com/c9b51304b26642c1d07806425b6214f5b99f782b.png), where the sum is taken over all his managers $*b*$.\n\nArkady is interested not only in negligibility of himself, but also in negligibility of all employees in the company. Find the negligibility of each employee for Arkady.\n\n## Input\n\nThe first line contains single integer $*n*$ ($1 ≤ *n* ≤ 5·10^{5}$) — the number of employees in the company.\n\nThe second line contains $*n*$ integers $*p*_{1}, *p*_{2}, ..., *p*_{*n*}$ ($0 ≤ *p*_{*i*} ≤ *n*$), where $*p*_{*i*} = 0$ if the $*i*$-th employee is the CEO, otherwise $*p*_{*i*}$ equals the id of the immediate manager of the employee with id $*i*$. The employees are numbered from $1$ to $*n*$. It is guaranteed that there is exactly one $0$ among these values, and also that the CEO is a manager (not necessarily immediate) for all the other employees.\n\n## Output\n\nPrint $*n*$ integers — the negligibilities of all employees in the order of their ids: $*z*_{1}, *z*_{2}, ..., *z*_{*n*}$.\n\n## Note\n\nConsider the first example:\n\n- The CEO has no managers, thus $*z*_{1} = 0$.\n- $*r*(2, 1) = 2$ (employees $2$ and $4$ suit the conditions, employee $3$ has too large rank). Thus $*z*_{2} = *r*(2, 1) = 2$.\n- Similarly, $*z*_{4} = *r*(4, 1) = 2$.\n- $*r*(3, 2) = 1$ (employee $3$ is a subordinate of $2$ and has suitable rank). $*r*(3, 1) = 3$ (employees $2$, $3$, $4$ suit the conditions). Thus $*z*_{3} = *r*(3, 2) + *r*(3, 1) = 4$.",
-  "statementZhMd": null,
+  "statementZhMd": "Arkady 在一家大型公司工作。公司中有 $*n*$ 名员工，组织结构是严格的层级体系。具体来说，除 CEO 外，每名员工恰好有一名直属上司。CEO 通过直属上司链条管理着所有员工。\n\n每名员工都有一个整数级别。CEO 的级别为 $1$，其他每名员工的级别都等于其直属上司的级别加 $1$。\n\nArkady 在公司中身居要职，但他觉得自己在公司的结构中无足轻重，而且有很多人可以取代他。于是，他定义了“可替代性”这一指标。考虑员工 $*a*$ 和员工 $*b*$，其中后者是前者的上司（不一定是直属上司）。那么，员工 $*a*$ 相对于员工 $*b*$ 的可替代性 $*r*(*a*, *b*)$，是员工 $*b*$ 的下属中级别不大于员工 $*a*$ 级别的人数。除此之外，Arkady 还定义了“无足轻重度”这一指标。员工 $*a*$ 的无足轻重度 $*z*_{*a*}$ 等于他相对于所有上司的可替代性之和，即 ![image](https://espresso.codeforces.com/c9b51304b26642c1d07806425b6214f5b99f782b.png)，其中求和遍历员工 $*a*$ 的所有上司 $*b*$。\n\nArkady 不仅想知道自己的无足轻重度，还想知道公司中所有员工的无足轻重度。请你求出每名员工的无足轻重度。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 5·10^{5}$）——公司中的员工数量。\n\n第二行包含 $*n*$ 个整数 $*p*_{1}, *p*_{2}, ..., *p*_{*n*}$（$0 ≤ *p*_{*i*} ≤ *n*$）。如果第 $*i*$ 名员工是 CEO，则 $*p*_{*i*} = 0$；否则，$*p*_{*i*}$ 等于编号为 $*i*$ 的员工的直属上司编号。员工编号为 $1$ 至 $*n*$。保证这些值中恰好有一个 $0$，并且 CEO 是其他所有员工的上司（不一定是直属上司）。\n\n## 输出格式\n\n按员工编号顺序输出 $*n*$ 个整数——所有员工的无足轻重度：$*z*_{1}, *z*_{2}, ..., *z*_{*n*$}。\n\n## 说明\n\n考虑第一个样例：\n\n- CEO 没有上司，因此 $*z*_{1} = 0$。\n- $*r*(2, 1) = 2$（员工 $2$ 和 $4$ 满足条件，员工 $3$ 的级别过高）。因此 $*z*_{2} = *r*(2, 1) = 2$。\n- 同理，$*z*_{4} = *r*(4, 1) = 2$。\n- $*r*(3, 2) = 1$（员工 $3$ 是员工 $2$ 的下属，且级别符合条件）。$*r*(3, 1) = 3$（员工 $2$、$3$、$4$ 满足条件）。因此 $*z*_{3} = *r*(3, 2) + *r*(3, 1) = 4$。",
   "samples": [
     {
       "input": "4\n0 1 2 1\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:44:40.010Z"
+  "fetchedAt": "2026-10-31T00:44:40.010Z",
+  "translatedAt": "2026-11-04T06:00:46.876+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 715,
   "index": "D",
   "title": "Create a Maze",
-  "titleZh": null,
+  "titleZh": "创建迷宫",
   "url": "https://codeforces.com/contest/715/problem/D",
   "difficulty": 3100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "ZS the Coder loves mazes. Your job is to create one so that he can play with it. A maze consists of $*n* × *m*$ rooms, and the rooms are arranged in $*n*$ rows (numbered from the top to the bottom starting from $1$) and $*m*$ columns (numbered from the left to the right starting from $1$). The room in the $*i*$-th row and $*j*$-th column is denoted by $(*i*, *j*)$. A player starts in the room $(1, 1)$ and wants to reach the room $(*n*, *m*)$.\n\nEach room has four doors (except for ones at the maze border), one on each of its walls, and two adjacent by the wall rooms shares the same door. Some of the doors are locked, which means it is impossible to pass through the door. For example, if the door connecting $(*i*, *j*)$ and $(*i*, *j* + 1)$ is locked, then we can't go from $(*i*, *j*)$ to $(*i*, *j* + 1)$. Also, one can only travel between the rooms downwards (from the room $(*i*, *j*)$ to the room $(*i* + 1, *j*)$) or rightwards (from the room $(*i*, *j*)$ to the room $(*i*, *j* + 1)$) provided the corresponding door is not locked.\n\n![image](https://espresso.codeforces.com/da825c734f91a205fb60ed4701c20b1370986107.png) This image represents a maze with some doors locked. The colored arrows denotes all the possible paths while a red cross denotes a locked door.\n\nZS the Coder considers a maze to have *difficulty* $*x*$ if there is exactly $*x*$ ways of travelling from the room $(1, 1)$ to the room $(*n*, *m*)$. Two ways are considered different if they differ by the sequence of rooms visited while travelling.\n\nYour task is to create a maze such that its difficulty is exactly equal to $*T*$. In addition, ZS the Coder doesn't like large mazes, so the size of the maze and the number of locked doors are limited. Sounds simple enough, right?\n\n## Input\n\nThe first and only line of the input contains a single integer $*T*$ ($1 ≤ *T* ≤ 10^{18}$), the difficulty of the required maze.\n\n## Output\n\nThe first line should contain two integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 50$) — the number of rows and columns of the maze respectively.\n\nThe next line should contain a single integer $*k*$ ($0 ≤ *k* ≤ 300$) — the number of locked doors in the maze.\n\nThen, $*k*$ lines describing locked doors should follow. Each of them should contain four integers, $*x*_{1}, *y*_{1}, *x*_{2}, *y*_{2}$. This means that the door connecting room $(*x*_{1}, *y*_{1})$ and room $(*x*_{2}, *y*_{2})$ is locked. Note that room $(*x*_{2}, *y*_{2})$ should be adjacent either to the right or to the bottom of $(*x*_{1}, *y*_{1})$, i.e. $*x*_{2} + *y*_{2}$ should be equal to $*x*_{1} + *y*_{1} + 1$. There should not be a locked door that appears twice in the list.\n\nIt is guaranteed that at least one solution exists. If there are multiple solutions, print any of them.\n\n## Note\n\nHere are how the sample input and output looks like. The colored arrows denotes all the possible paths while a red cross denotes a locked door.\n\nIn the first sample case:\n\n![image](https://espresso.codeforces.com/52ef6546f3c591beb695cf158acf0ef4e029cfa9.png)\n\nIn the second sample case:\n\n![image](https://espresso.codeforces.com/da825c734f91a205fb60ed4701c20b1370986107.png)",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nZS the Coder 喜欢迷宫。你的任务是创建一个迷宫供他玩耍。一个迷宫由 $*n* × *m*$ 个房间组成，这些房间排列成 $*n*$ 行（从上到下编号，起始编号为 $1$）和 $*m*$ 列（从左到右编号，起始编号为 $1$）。第 $*i*$ 行第 $*j*$ 列的房间记为 $(*i*, *j*)$。玩家从房间 $(1, 1)$ 出发，希望到达房间 $(*n*, *m*)$。\n\n每个房间有四扇门（迷宫边界上的房间除外），每面墙上各有一扇门；相邻的两个房间共用同一扇门。其中一些门被锁住，这意味着无法通过这些门。例如，如果连接 $(*i*, *j*)$ 和 $(*i*, *j* + 1)$ 的门被锁住，那么我们就无法从 $(*i*, *j*)$ 前往 $(*i*, *j* + 1)$。此外，只有当相应的门未被锁住时，才能向下移动（从房间 $(*i*, *j*)$ 到房间 $(*i* + 1, *j*)$）或向右移动（从房间 $(*i*, *j*)$ 到房间 $(*i*, *j* + 1)$）。\n\n![image](https://espresso.codeforces.com/da825c734f91a205fb60ed4701c20b1370986107.png) 这张图片表示了一个有一些门被锁住的迷宫。彩色箭头表示所有可能的路径，红色叉号表示被锁住的门。\n\n如果从房间 $(1, 1)$ 到房间 $(*n*, *m*)$ 恰好有 $*x*$ 种走法，ZS the Coder 就认为该迷宫的*难度*为 $*x*$。如果两种走法经过的房间序列不同，则认为它们是不同的走法。\n\n你的任务是创建一个难度恰好等于 $*T*$ 的迷宫。此外，ZS the Coder 不喜欢过大的迷宫，因此迷宫的大小和被锁住的门的数量都受到限制。听起来很简单，对吧？\n\n## 输入格式\n\n输入的第一行也是唯一一行包含一个整数 $*T*$（$1 ≤ *T* ≤ 10^{18}$），表示所需迷宫的难度。\n\n## 输出格式\n\n第一行应包含两个整数 $*n*$ 和 $*m*$（$1 ≤ *n*, *m* ≤ 50$），分别表示迷宫的行数和列数。\n\n下一行应包含一个整数 $*k*$（$0 ≤ *k* ≤ 300$），表示被锁住的门的数量。\n\n接下来应有 $*k*$ 行描述被锁住的门。每行应包含四个整数 $*x*_{1}, *y*_{1}, *x*_{2}, *y*_{2}$。这表示连接房间 $(*x*_{1}, *y*_{1})$ 和房间 $(*x*_{2}, *y*_{2})$ 的门被锁住。注意，房间 $(*x*_{2}, *y*_{2})$ 必须与房间 $(*x*_{1}, *y*_{1})$ 相邻，且位于其右侧或下方，即 $*x*_{2} + *y*_{2}$ 应等于 $*x*_{1} + *y*_{1} + 1$。列表中不应重复出现同一扇被锁住的门。\n\n保证至少存在一个解。如果有多个解，输出任意一个即可。\n\n## 说明\n\n以下是样例输入和输出的示意。彩色箭头表示所有可能的路径，红色叉号表示被锁住的门。\n\n在第一个样例中：\n\n![image](https://espresso.codeforces.com/52ef6546f3c591beb695cf158acf0ef4e029cfa9.png)\n\n在第二个样例中：\n\n![image](https://espresso.codeforces.com/da825c734f91a205fb60ed4701c20b1370986107.png)",
   "samples": [
     {
       "input": "3\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:04:28.984Z"
+  "fetchedAt": "2026-10-31T01:04:28.984Z",
+  "translatedAt": "2026-11-04T06:25:50.861+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1189,
   "index": "C",
   "title": "Candies!",
-  "titleZh": null,
+  "titleZh": "糖果！",
   "url": "https://codeforces.com/contest/1189/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Consider a sequence of digits of length $2^k$ $[a_1, a_2, \\ldots, a_{2^k}]$. We perform the following operation with it: replace pairs $(a_{2i+1}, a_{2i+2})$ with $(a_{2i+1} + a_{2i+2})\\bmod 10$ for $0\\le i \\lt 2^{k-1}$. For every $i$ where $a_{2i+1} + a_{2i+2}\\ge 10$ we get a candy! As a result, we will get a sequence of length $2^{k-1}$.\n\nLess formally, we partition sequence of length $2^k$ into $2^{k-1}$ pairs, each consisting of 2 numbers: the first pair consists of the first and second numbers, the second of the third and fourth $\\ldots$, the last pair consists of the ($2^k-1$)-th and ($2^k$)-th numbers. For every pair such that sum of numbers in it is at least $10$, we get a candy. After that, we replace every pair of numbers with a remainder of the division of their sum by $10$ (and don't change the order of the numbers).\n\nPerform this operation with a resulting array until it becomes of length $1$. Let $f([a_1, a_2, \\ldots, a_{2^k}])$ denote the number of candies we get in this process.\n\nFor example: if the starting sequence is $[8, 7, 3, 1, 7, 0, 9, 4]$ then:\n\nAfter the first operation the sequence becomes $[(8 + 7)\\bmod 10, (3 + 1)\\bmod 10, (7 + 0)\\bmod 10, (9 + 4)\\bmod 10]$ $=$ $[5, 4, 7, 3]$, and we get $2$ candies as $8 + 7 \\ge 10$ and $9 + 4 \\ge 10$.\n\nAfter the second operation the sequence becomes $[(5 + 4)\\bmod 10, (7 + 3)\\bmod 10]$ $=$ $[9, 0]$, and we get one more candy as $7 + 3 \\ge 10$.\n\nAfter the final operation sequence becomes $[(9 + 0) \\bmod 10]$ $=$ $[9]$.\n\nTherefore, $f([8, 7, 3, 1, 7, 0, 9, 4]) = 3$ as we got $3$ candies in total.\n\nYou are given a sequence of digits of length $n$ $s_1, s_2, \\ldots s_n$. You have to answer $q$ queries of the form $(l_i, r_i)$, where for $i$-th query you have to output $f([s_{l_i}, s_{l_i+1}, \\ldots, s_{r_i}])$. It is guaranteed that $r_i-l_i+1$ is of form $2^k$ for some nonnegative integer $k$.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 10^5$) — the length of the sequence.\n\nThe second line contains $n$ digits $s_1, s_2, \\ldots, s_n$ ($0 \\le s_i \\le 9$).\n\nThe third line contains a single integer $q$ ($1 \\le q \\le 10^5$) — the number of queries.\n\nEach of the next $q$ lines contains two integers $l_i$, $r_i$ ($1 \\le l_i \\le r_i \\le n$) — $i$-th query. It is guaranteed that $r_i-l_i+1$ is a nonnegative integer power of $2$.\n\n## Output\n\nOutput $q$ lines, in $i$-th line output single integer — $f([s_{l_i}, s_{l_i + 1}, \\ldots, s_{r_i}])$, answer to the $i$-th query.\n\n## Note\n\nThe first example illustrates an example from the statement.\n\n$f([7, 3, 1, 7]) = 1$: sequence of operations is $[7, 3, 1, 7] \\to [(7 + 3)\\bmod 10, (1 + 7)\\bmod 10]$ $=$ $[0, 8]$ and one candy as $7 + 3 \\ge 10$ $\\to$ $[(0 + 8) \\bmod 10]$ $=$ $[8]$, so we get only $1$ candy.\n\n$f([9]) = 0$ as we don't perform operations with it.",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一个长度为 $2^k$ 的数字序列 $[a_1, a_2, \\ldots, a_{2^k}]$。我们对它执行以下操作：对于 $0\\le i \\lt 2^{k-1}$，将数对 $(a_{2i+1}, a_{2i+2})$ 替换为 $(a_{2i+1} + a_{2i+2})\\bmod 10$。对于每个满足 $a_{2i+1} + a_{2i+2}\\ge 10$ 的 $i$，我们会得到一颗糖果！操作完成后，我们将得到一个长度为 $2^{k-1}$ 的序列。\n\n更形式化地说，我们将长度为 $2^k$ 的序列划分为 $2^{k-1}$ 个数对，每个数对包含 2 个数字：第一个数对由第一个和第二个数字组成，第二个数对由第三个和第四个数字组成，\\ldots，最后一个数对由第 $2^k-1$ 个和第 $2^k$ 个数字组成。对于其中数字之和至少为 $10$ 的每个数对，我们会得到一颗糖果。之后，将每个数对中的两个数字替换为它们之和除以 $10$ 的余数（数字的顺序不变）。\n\n对得到的数组重复执行该操作，直到其长度变为 $1$。令 $f([a_1, a_2, \\ldots, a_{2^k}])$ 表示在这一过程中得到的糖果总数。\n\n例如：如果初始序列为 $[8, 7, 3, 1, 7, 0, 9, 4]$，那么：\n\n第一次操作后，序列变为 $[(8 + 7)\\bmod 10, (3 + 1)\\bmod 10, (7 + 0)\\bmod 10, (9 + 4)\\bmod 10]$ $=$ $[5, 4, 7, 3]$，并且由于 $8 + 7 \\ge 10$ 和 $9 + 4 \\ge 10$，我们得到 $2$ 颗糖果。\n\n第二次操作后，序列变为 $[(5 + 4)\\bmod 10, (7 + 3)\\bmod 10]$ $=$ $[9, 0]$，并且由于 $7 + 3 \\ge 10$，我们又得到一颗糖果。\n\n最后一次操作后，序列变为 $[(9 + 0) \\bmod 10]$ $=$ $[9]$。\n\n因此，$f([8, 7, 3, 1, 7, 0, 9, 4]) = 3$，因为我们总共得到了 $3$ 颗糖果。\n\n给定一个长度为 $n$ 的数字序列 $s_1, s_2, \\ldots s_n$。你需要回答 $q$ 个形如 $(l_i, r_i)$ 的询问，对于第 $i$ 个询问，输出 $f([s_{l_i}, s_{l_i+1}, \\ldots, s_{r_i}])$。保证 $r_i-l_i+1$ 的形式为某个非负整数 $k$ 的 $2^k$。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 10^5$）——序列的长度。\n\n第二行包含 $n$ 个数字 $s_1, s_2, \\ldots, s_n$（$0 \\le s_i \\le 9$）。\n\n第三行包含一个整数 $q$（$1 \\le q \\le 10^5$）——询问的数量。\n\n接下来的 $q$ 行中，每行包含两个整数 $l_i, r_i$（$1 \\le l_i \\le r_i \\le n$）——第 $i$ 个询问。保证 $r_i-l_i+1$ 是某个非负整数次幂 $2^k$。\n\n## 输出格式\n\n输出 $q$ 行，第 $i$ 行输出一个整数——$f([s_{l_i}, s_{l_i + 1}, \\ldots, s_{r_i}])$，即第 $i$ 个询问的答案。\n\n## 说明\n\n第一个样例展示了题面中的例子。\n\n$f([7, 3, 1, 7]) = 1$：操作序列为 $[7, 3, 1, 7] \\to [(7 + 3)\\bmod 10, (1 + 7)\\bmod 10]$ $=$ $[0, 8]$，由于 $7 + 3 \\ge 10$，得到一颗糖果；随后变为 $[(0 + 8) \\bmod 10]$ $=$ $[8]$，因此我们只得到 $1$ 颗糖果。\n\n$f([9]) = 0$，因为我们不会对它执行任何操作。",
   "samples": [
     {
       "input": "8\n8 7 3 1 7 0 9 4\n3\n1 8\n2 5\n7 7\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:08:29.800Z"
+  "fetchedAt": "2026-10-31T00:08:29.800Z",
+  "translatedAt": "2026-11-04T05:07:12.727+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

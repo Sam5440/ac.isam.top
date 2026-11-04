@@ -4,7 +4,7 @@
   "contestId": 1346,
   "index": "F",
   "title": "Dune II: Battle For Arrakis",
-  "titleZh": null,
+  "titleZh": "沙丘 II：阿拉基斯之战",
   "url": "https://codeforces.com/contest/1346/problem/F",
   "difficulty": 2000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You're at the last mission in one very old and very popular strategy game Dune II: Battle For Arrakis. The map of the mission can be represented as a rectangular matrix of size $n \\times m$. Initially, there are $a_{i, j}$ units of your army in the cell $(i, j)$.\n\nYou want to prepare for the final battle, so you want to move all your army into **exactly one cell** of the map (i.e. $nm-1$ cells should contain $0$ units of the army and the remaining cell should contain the entire army).\n\nTo do this, you can do some (possibly, zero) number of moves. During one move, you can select **exactly one unit** from some cell and move it to one of the adjacent **by side** cells. I.e. from the cell $(i, j)$ you can move the unit to cells:\n\n- $(i - 1, j)$;\n- $(i, j - 1)$;\n- $(i + 1, j)$;\n- $(i, j + 1)$.\n\nOf course, you want to move all your army into **exactly one cell** as fast as possible. So, you want to know the **minimum** number of moves you need to do that.\n\nAnd, of course, life goes on, so the situation on the map changes. There are $q$ updates, the $i$-th update is denoted by three integers $x, y, z$. This update affects the army in the cell $(x, y)$: after this update, the number of units in the cell $(x, y)$ becomes $z$ (i.e. you replace $a_{x, y}$ with $z$).\n\nAlso, you want to determine, for each $i$, the **minimum** number of moves needed to move your entire army into **exactly one cell** with the first $i$ updates applied to the initial map. In other words, the map after the $i$-th update equals the **initial** map with the first $i$ updates applied to it.\n\n## Input\n\nThe first line of the input contains three integers $n, m$ and $q$ ($1 \\le n, m \\le 1000; 1 \\le q \\le 5000$) — the size of the matrix and the number of updates correspondingly.\n\nThe next $n$ lines contain $m$ integers each, where the $j$-th integer in the $i$-th line is $a_{i, j}$ ($1 \\le a_{i, j} \\le 10^9$) — the number of units in the cell $(i, j)$.\n\nThe next $q$ lines contain three integers each, where the $i$-th line contains three integers $x_i, y_i$ and $z_i$ ($1 \\le x_i \\le n; 1 \\le y_i \\le m; 1 \\le z_i \\le 10^9$) — the cell in which the number of units updates and the new number of units in this cell correspondingly.\n\n## Output\n\nPrint $q+1$ integers $r_0, r_1, r_2, \\dots, r_n$, where $r_0$ is the **minimum** number of moves you need to move all your army into **exactly one cell**, and $r_i$ for all $i$ from $1$ to $q$ is the **minimum** number of moves you need to move all your army into **exactly one cell** after the first $i$ updates.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在进行非常古老且广受欢迎的策略游戏《沙丘 II：阿拉基斯之战》的最后一个任务。任务地图可以表示为一个大小为 $n \\times m$ 的矩阵。初始时，地图的单元格 $(i, j)$ 中有 $a_{i, j}$ 个你的部队单位。\n\n你想为最终战斗做好准备，因此希望将所有部队移动到地图中的**恰好一个单元格**中（即 $nm-1$ 个单元格应包含 $0$ 个部队单位，剩下的那个单元格应包含全部部队）。\n\n为此，你可以进行任意次（也可以是零次）移动。每次移动中，你可以从某个单元格中选取**恰好一个单位**，并将其移动到一个上下左右**相邻**的单元格中。也就是说，可以将单元从单元格 $(i, j)$ 移动到以下单元格之一：\n\n- $(i - 1, j)$；\n- $(i, j - 1)$；\n- $(i + 1, j)$；\n- $(i, j + 1)$。\n\n当然，你希望尽快将所有部队移动到**恰好一个单元格**中。因此，你需要求出完成这一目标所需的**最少**移动次数。\n\n当然，生活仍在继续，地图上的情况也会发生变化。共有 $q$ 次更新，第 $i$ 次更新由三个整数 $x, y, z$ 表示。该更新会影响单元格 $(x, y)$ 中的部队：更新后，单元格 $(x, y)$ 中的单位数量变为 $z$（即将 $a_{x, y}$ 替换为 $z$）。\n\n此外，对于每个 $i$，你还需要确定在初始地图应用前 $i$ 次更新后，将全部部队移动到**恰好一个单元格**所需的**最少**移动次数。换句话说，第 $i$ 次更新后的地图等于在初始地图上应用前 $i$ 次更新得到的地图。\n\n## 输入格式\n\n输入的第一行包含三个整数 $n$、$m$ 和 $q$（$1 \\le n, m \\le 1000; 1 \\le q \\le 5000$），分别表示矩阵的大小和更新次数。\n\n接下来的 $n$ 行中，每行包含 $m$ 个整数，其中第 $i$ 行的第 $j$ 个整数为 $a_{i, j}$（$1 \\le a_{i, j} \\le 10^9$），表示单元格 $(i, j)$ 中的单位数量。\n\n接下来的 $q$ 行中，每行包含三个整数，第 $i$ 行包含三个整数 $x_i$、$y_i$ 和 $z_i$（$1 \\le x_i \\le n; 1 \\le y_i \\le m; 1 \\le z_i \\le 10^9$），分别表示单位数量发生更新的单元格以及该单元格中的新单位数量。\n\n## 输出格式\n\n输出 $q+1$ 个整数 $r_0, r_1, r_2, \\dots, r_n$，其中 $r_0$ 是将全部部队移动到**恰好一个单元格**所需的**最少**移动次数；对于从 $1$ 到 $q$ 的所有 $i$，$r_i$ 是在应用前 $i$ 次更新后，将全部部队移动到**恰好一个单元格**所需的**最少**移动次数。",
   "samples": [
     {
       "input": "3 3 1\n1 2 3\n2 1 2\n1 1 2\n2 3 100\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:52:58.426Z"
+  "fetchedAt": "2026-11-02T18:52:58.426Z",
+  "translatedAt": "2026-11-04T04:42:01.162+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

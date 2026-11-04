@@ -4,7 +4,7 @@
   "contestId": 482,
   "index": "D",
   "title": "Random Function and Tree",
-  "titleZh": null,
+  "titleZh": "随机函数与树",
   "url": "https://codeforces.com/contest/482/problem/D",
   "difficulty": 2700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You have a rooted tree consisting of $*n*$ vertices. Let's number them with integers from $1$ to $*n*$ inclusive. The root of the tree is the vertex $1$. For each $*i* > 1$ direct parent of the vertex $*i*$ is $*p*_{*i*}$. We say that vertex $*i*$ is child for its direct parent $*p*_{*i*}$.\n\nYou have initially painted all the vertices with red color. You like to repaint some vertices of the tree. To perform painting you use the function `paint` that you call with the root of the tree as an argument. Here is the pseudocode of this function:\n\n```\ncount = 0 // global integer variable\n\nrnd() { // this function is used in paint code\n    return 0 or 1 equiprobably\n}\n\npaint(s) {\n    if (count is even) then paint s with white color\n    else paint s with black color\n\n    count = count + 1\n\n    if rnd() = 1 then children = [array of vertex s children in ascending order of their numbers]\n    else children = [array of vertex s children in descending order of their numbers]\n\n    for child in children { // iterating over children array\n        if rnd() = 1 then paint(child) // calling paint recursively\n    }\n}\n```\n\nAs a result of this function, some vertices may change their colors to white or black and some of them may remain red.\n\nYour task is to determine the number of distinct possible colorings of the vertices of the tree. We will assume that the coloring is possible if there is a nonzero probability to get this coloring with a single call of $*paint*(1)$. We assume that the colorings are different if there is a pair of vertices that are painted with different colors in these colorings. Since the required number may be very large, find its remainder of division by $1000000007$ ($10^{9} + 7$).\n\n## Input\n\nThe first line contains a single integer $*n*$ ($2 ≤ *n* ≤ 10^{5}$) — the number of vertexes in the tree.\n\nThe second line contains $*n* - 1$ integers $*p*_{2}, *p*_{3}, ..., *p*_{*n*}$ ($1 ≤ *p*_{*i*} < *i*$). Number $*p*_{*i*}$ is the parent of vertex $*i*$.\n\n## Output\n\nPrint a single integer — the answer to the problem modulo $1000000007$ ($10^{9} + 7$)\n\n## Note\n\nAll possible coloring patterns of the first sample are given below.\n\n![image](https://espresso.codeforces.com/f1983908c1c40675b1613d81b93d5040cad5b35b.png)",
-  "statementZhMd": null,
+  "statementZhMd": "你有一棵由 $*n*$ 个顶点组成的有根树。我们用从 $1$ 到 $*n*$ 的整数为它们编号。树的根是顶点 $1$。对于每个 $*i* > 1$，顶点 $*i*$ 的直接父节点是 $*p*_{*i*}$。我们称顶点 $*i*$ 是其直接父节点 $*p*_{*i*}$ 的子节点。\n\n初始时，所有顶点都被涂成红色。你希望重新涂​​色树中的一些顶点。为了进行涂色，你使用函数 `paint`，并以树的根作为参数调用它。以下是该函数的伪代码：\n\n```\ncount = 0 // global integer variable\n\nrnd() { // this function is used in paint code\n    return 0 or 1 equiprobably\n}\n\npaint(s) {\n    if (count is even) then paint s with white color\n    else paint s with black color\n\n    count = count + 1\n\n    if rnd() = 1 then children = [array of vertex s children in ascending order of their numbers]\n    else children = [array of vertex s children in descending order of their numbers]\n\n    for child in children { // iterating over children array\n        if rnd() = 1 then paint(child) // calling paint recursively\n    }\n}\n```\n\n函数执行结束后，一些顶点可能会变为白色或黑色，而另一些顶点可能仍为红色。\n\n你的任务是确定树的顶点所能形成的不同染色数量。如果通过一次调用 $*paint*(1)$ 得到某种染色的概率非零，我们就认为这种染色是可能的。如果存在一对顶点，在两种染色中的颜色不同，则认为这两种染色不同。由于所求数量可能非常大，请求出它除以 $1000000007$（$10^{9} + 7$）所得的余数。\n\n## 输入\n\n第一行包含一个整数 $*n*$（$2 ≤ *n* ≤ 10^{5}$）——树中顶点的数量。\n\n第二行包含 $*n*$ - 1 个整数 $*p*_{2}, *p*_{3}, ..., *p*_{*n*}$（$1 ≤ *p*_{*i*} < *i*$）。整数 $*p*_{*i*}$ 表示顶点 $*i*$ 的父节点。\n\n## 输出\n\n输出一个整数——答案对 $1000000007$（$10^{9} + 7$）取模后的结果。\n\n## 说明\n\n下方给出了第一个样例的所有可能染色方案。\n\n![image](https://espresso.codeforces.com/f1983908c1c40675b1613d81b93d5040cad5b35b.png)",
   "samples": [
     {
       "input": "4\n1 2 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:37:20.883Z"
+  "fetchedAt": "2026-10-31T01:37:20.883Z",
+  "translatedAt": "2026-11-04T07:03:11.393+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

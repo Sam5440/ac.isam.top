@@ -4,7 +4,7 @@
   "contestId": 1443,
   "index": "E",
   "title": "Long Permutation",
-  "titleZh": null,
+  "titleZh": "长排列",
   "url": "https://codeforces.com/contest/1443/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "A permutation is a sequence of integers from $1$ to $n$ of length $n$ containing each number exactly once. For example, $[1]$, $[4, 3, 5, 1, 2]$, $[3, 2, 1]$ — are permutations, and $[1, 1]$, $[4, 3, 1]$, $[2, 3, 4]$ — no.\n\nPermutation $a$ is lexicographically smaller than permutation $b$ (they have the same length $n$), if in the first index $i$ in which they differ, $a[i] \\lt b[i]$. For example, the permutation $[1, 3, 2, 4]$ is lexicographically smaller than the permutation $[1, 3, 4, 2]$, because the first two elements are equal, and the third element in the first permutation is smaller than in the second.\n\nThe next permutation for a permutation $a$ of length $n$ — is the lexicographically smallest permutation $b$ of length $n$ that lexicographically larger than $a$. For example:\n\n- for permutation $[2, 1, 4, 3]$ the next permutation is $[2, 3, 1, 4]$;\n- for permutation $[1, 2, 3]$ the next permutation is $[1, 3, 2]$;\n- for permutation $[2, 1]$ next permutation does not exist.\n\nYou are given the number $n$ — the length of the initial permutation. The initial permutation has the form $a = [1, 2, \\ldots, n]$. In other words, $a[i] = i$ ($1 \\le i \\le n$).\n\nYou need to process $q$ queries of two types:\n\n- $1$ $l$ $r$: query for the sum of all elements on the segment $[l, r]$. More formally, you need to find $a[l] + a[l + 1] + \\ldots + a[r]$.\n- $2$ $x$: $x$ times replace the current permutation with the next permutation. For example, if $x=2$ and the current permutation has the form $[1, 3, 4, 2]$, then we should perform such a chain of replacements $[1, 3, 4, 2] \\rightarrow [1, 4, 2, 3] \\rightarrow [1, 4, 3, 2]$.\n\nFor each query of the $1$-st type output the required sum.\n\n## Input\n\nThe first line contains two integers $n$ ($2 \\le n \\le 2 \\cdot 10^5$) and $q$ ($1 \\le q \\le 2 \\cdot 10^5$), where $n$ — the length of the initial permutation, and $q$ — the number of queries.\n\nThe next $q$ lines contain a single query of the $1$-st or $2$-nd type. The $1$-st type query consists of three integers $1$, $l$ and $r$ $(1 \\le l \\le r \\le n)$, the $2$-nd type query consists of two integers $2$ and $x$ $(1 \\le x \\le 10^5)$.\n\nIt is guaranteed that all requests of the $2$-nd type are possible to process.\n\n## Output\n\nFor each query of the $1$-st type, output on a separate line one integer — the required sum.\n\n## Note\n\nInitially, the permutation has the form $[1, 2, 3, 4]$. Queries processing is as follows:\n\n1. $2 + 3 + 4 = 9$;\n2. $[1, 2, 3, 4] \\rightarrow [1, 2, 4, 3] \\rightarrow [1, 3, 2, 4] \\rightarrow [1, 3, 4, 2]$;\n3. $1 + 3 = 4$;\n4. $4 + 2 = 6$",
-  "statementZhMd": null,
+  "statementZhMd": "排列是一个长度为 $n$ 的整数序列，其中包含从 $1$ 到 $n$ 的每个数且恰好各出现一次。例如，$[1]$、$[4, 3, 5, 1, 2]$、$[3, 2, 1]$ 是排列，而 $[1, 1]$、$[4, 3, 1]$、$[2, 3, 4]$ 不是排列。\n\n如果排列 $a$ 和排列 $b$ 的长度均为 $n$，且在它们不同的第一个位置 $i$ 处满足 $a[i] \\lt b[i]$，则称排列 $a$ 在字典序上小于排列 $b$。例如，排列 $[1, 3, 2, 4]$ 在字典序上小于排列 $[1, 3, 4, 2]$，因为它们的前两个元素相同，而第一个排列的第三个元素小于第二个排列的第三个元素。\n\n对于一个长度为 $n$ 的排列 $a$，其下一个排列是字典序上大于 $a$ 的所有长度为 $n$ 的排列中字典序最小的排列。例如：\n\n- 对于排列 $[2, 1, 4, 3]$，下一个排列是 $[2, 3, 1, 4]$；\n- 对于排列 $[1, 2, 3]$，下一个排列是 $[1, 3, 2]$；\n- 对于排列 $[2, 1]$，不存在下一个排列。\n\n给定一个数 $n$，表示初始排列的长度。初始排列的形式为 $a = [1, 2, \\ldots, n]$。换句话说，$a[i] = i$（$1 \\le i \\le n$）。\n\n你需要处理 $q$ 个两种类型的查询：\n\n- $1$ $l$ $r$：查询区间 $[l, r]$ 上所有元素的和。更正式地说，你需要计算 $a[l] + a[l + 1] + \\ldots + a[r]$。\n- $2$ $x$：将当前排列替换为下一个排列，共进行 $x$ 次。例如，如果 $x=2$ 且当前排列为 $[1, 3, 4, 2]$，那么需要执行如下替换链：$[1, 3, 4, 2] \\rightarrow [1, 4, 2, 3] \\rightarrow [1, 4, 3, 2]$。\n\n对于每个第 $1$ 类查询，输出所需的和。\n\n## 输入格式\n\n第一行包含两个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）和 $q$（$1 \\le q \\le 2 \\cdot 10^5$），其中 $n$ 表示初始排列的长度，$q$ 表示查询的数量。\n\n接下来的 $q$ 行每行包含一个第 $1$ 类或第 $2$ 类查询。第 $1$ 类查询由三个整数 $1$、$l$ 和 $r$ 组成（$1 \\le l \\le r \\le n$），第 $2$ 类查询由两个整数 $2$ 和 $x$ 组成（$1 \\le x \\le 10^5$）。\n\n保证所有第 $2$ 类查询都可以完成处理。\n\n## 输出格式\n\n对于每个第 $1$ 类查询，在单独的一行中输出一个整数，即所需的和。\n\n## 说明\n\n初始时，排列的形式为 $[1, 2, 3, 4]$。查询处理过程如下：\n\n1. $2 + 3 + 4 = 9$；\n2. $[1, 2, 3, 4] \\rightarrow [1, 2, 4, 3] \\rightarrow [1, 3, 2, 4] \\rightarrow [1, 3, 4, 2]$；\n3. $1 + 3 = 4$；\n4. $4 + 2 = 6$",
   "samples": [
     {
       "input": "4 4\n1 2 4\n2 3\n1 1 2\n1 3 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:41:32.812Z"
+  "fetchedAt": "2026-10-30T23:41:32.812Z",
+  "translatedAt": "2026-11-04T04:19:29.836+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

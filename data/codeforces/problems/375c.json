@@ -4,7 +4,7 @@
   "contestId": 375,
   "index": "C",
   "title": "Circling Round Treasures",
-  "titleZh": null,
+  "titleZh": "围绕宝藏画圈",
   "url": "https://codeforces.com/contest/375/problem/C",
   "difficulty": 2600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You have a map as a rectangle table. Each cell of the table is either an obstacle, or a treasure with a certain price, or a bomb, or an empty cell. Your initial position is also given to you.\n\nYou can go from one cell of the map to a side-adjacent one. At that, you are not allowed to go beyond the borders of the map, enter the cells with treasures, obstacles and bombs. To pick the treasures, you need to build a closed path (starting and ending in the starting cell). The closed path mustn't contain any cells with bombs inside. Let's assume that the sum of the treasures' values that are located inside the closed path equals $*v*$, and besides, you've made $*k*$ single moves (from one cell to another) while you were going through the path, then such path brings you the profit of $*v* - *k*$ rubles.\n\nYour task is to build a closed path that doesn't contain any bombs and brings maximum profit.\n\nNote that the path can have self-intersections. In order to determine if a cell lies inside a path or not, use the following algorithm:\n\n1. Assume that the table cells are points on the plane (the table cell on the intersection of the $*i*$-th column and the $*j*$-th row is point $(*i*, *j*)$). And the given path is a closed polyline that goes through these points.\n2. You need to find out if the point $*p*$ of the table that is not crossed by the polyline lies inside the polyline.\n3. Let's draw a ray that starts from point $*p*$ and does not intersect other points of the table (such ray must exist).\n4. Let's count the number of segments of the polyline that intersect the painted ray. If this number is odd, we assume that point $*p*$ (and consequently, the table cell) lie inside the polyline (path). Otherwise, we assume that it lies outside.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ $(1 ≤ *n*, *m* ≤ 20)$ — the sizes of the table. Next $*n*$ lines each contains $*m*$ characters — the description of the table. The description means the following:\n\n- character \"`B`\" is a cell with a bomb;\n- character \"`S`\" is the starting cell, you can assume that it's empty;\n- digit $*c*$ (`1-8`) is treasure with index $*c*$;\n- character \"`.`\" is an empty cell;\n- character \"`#`\" is an obstacle.\n\nAssume that the map has $*t*$ treasures. Next $*t*$ lines contain the prices of the treasures. The $*i*$-th line contains the price of the treasure with index $*i*$, $*v*_{*i*}$ $( - 200 ≤ *v*_{*i*} ≤ 200)$. It is guaranteed that the treasures are numbered from 1 to $*t*$. It is guaranteed that the map has not more than 8 objects in total. Objects are bombs and treasures. It is guaranteed that the map has exactly one character \"`S`\".\n\n## Output\n\nPrint a single integer — the maximum possible profit you can get.\n\n## Note\n\nIn the first example the answer will look as follows.\n\n![image](https://espresso.codeforces.com/9cf4ac525766382f936b2a7a1bb7d553ba7e5b99.png)\n\nIn the second example the answer will look as follows.\n\n![image](https://espresso.codeforces.com/eeaab367f6adf4e0c9d8823fb86bfcbd06b623fb.png)\n\nIn the third example you cannot get profit.\n\nIn the fourth example you cannot get profit as you cannot construct a closed path with more than one cell.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一张矩形地图。地图中的每个格子要么是障碍物，要么是具有一定价格的宝藏，要么是炸弹，要么是空格子。地图还会给出你的初始位置。\n\n你可以从一个格子移动到与其边相邻的格子。移动时，不允许越过地图边界，也不允许进入含有宝藏、障碍物或炸弹的格子。为了拾取宝藏，你需要构造一条闭合路径（从起点出发并最终回到起点）。闭合路径内部不能包含任何炸弹格子。假设位于闭合路径内部的宝藏价值总和为 $*v*$，并且你沿着路径经过了 $*k*$ 次单步移动（从一个格子移动到另一个格子），那么这条路径带来的收益为 $*v* - *k*$ 卢布。\n\n你的任务是构造一条不包含任何炸弹且收益最大的闭合路径。\n\n注意，路径可以自相交。为了判断某个格子是否位于路径内部，请使用以下算法：\n\n1. 假设地图中的格子是平面上的点（位于第 $*i*$ 列和第 $*j*$ 行交点处的地图格子是点 $(*i*, *j*)$）。给定的路径是一条经过这些点的闭合折线。\n2. 需要判断地图中未被折线经过的点 $*p*$ 是否位于折线内部。\n3. 从点 $*p*$ 出发画一条射线，使其不与地图中的其他点相交（这样的射线一定存在）。\n4. 统计折线与所画射线相交的线段数量。如果该数量为奇数，则认为点 $*p*$（从而对应的地图格子）位于折线（路径）内部；否则认为它位于折线外部。\n\n## 输入\n\n第一行包含两个整数 $*n*$ 和 $*m*$ $(1 ≤ *n*, *m* ≤ 20)$，表示地图的大小。接下来 $*n*$ 行，每行包含 $*m*$ 个字符，表示地图。字符含义如下：\n\n- 字符 \"`B`\" 表示该格子中有炸弹；\n- 字符 \"`S`\" 表示起始格子，可以认为该格子为空；\n- 数字 $*c*$（`1-8`）表示编号为 $*c*$ 的宝藏；\n- 字符 \"`.`\" 表示空格子；\n- 字符 \"`#`\" 表示障碍物。\n\n设地图中有 $*t*$ 个宝藏。接下来 $*t*$ 行包含各个宝藏的价格。第 $*i*$ 行包含编号为 $*i*$ 的宝藏的价格 $*v*_{*i*}$ $( - 200 ≤ *v*_{*i*} ≤ 200)$。保证宝藏的编号从 1 到 $*t*$。保证地图中总共不超过 8 个对象。对象包括炸弹和宝藏。保证地图中恰好有一个字符 \"`S`\"。\n\n## 输出\n\n输出一个整数，表示你能够获得的最大收益。\n\n## 说明\n\n在第一个样例中，答案如下图所示。\n\n![image](https://espresso.codeforces.com/9cf4ac525766382f936b2a7a1bb7d553ba7e5b99.png)\n\n在第二个样例中，答案如下图所示。\n\n![image](https://espresso.codeforces.com/eeaab367f6adf4e0c9d8823fb86bfcbd06b623fb.png)\n\n在第三个样例中，你无法获得收益。\n\n在第四个样例中，由于无法构造包含超过一个格子的闭合路径，因此你无法获得收益。",
   "samples": [
     {
       "input": "4 4\n....\n.S1.\n....\n....\n10\n",
@@ -39,5 +39,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:54:06.780Z"
+  "fetchedAt": "2026-10-31T01:54:06.780Z",
+  "translatedAt": "2026-11-04T07:14:47.349+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

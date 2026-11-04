@@ -4,7 +4,7 @@
   "contestId": 1838,
   "index": "B",
   "title": "Minimize Permutation Subarrays",
-  "titleZh": null,
+  "titleZh": "最小化排列子数组数量",
   "url": "https://codeforces.com/contest/1838/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a permutation $p$ of size $n$. You want to minimize the number of subarrays of $p$ that are permutations. In order to do so, you must perform the following operation **exactly** once:\n\n- Select integers $i$, $j$, where $1 \\le i, j \\le n$, then\n- Swap $p_i$ and $p_j$.\n\nFor example, if $p = [5, 1, 4, 2, 3]$ and we choose $i = 2$, $j = 3$, the resulting array will be $[5, 4, 1, 2, 3]$. If instead we choose $i = j = 5$, the resulting array will be $[5, 1, 4, 2, 3]$.\n\nWhich choice of $i$ and $j$ will minimize the number of subarrays that are permutations?\n\nA permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nAn array $a$ is a subarray of an array $b$ if $a$ can be obtained from $b$ by the deletion of several (possibly, zero or all) elements from the beginning and several (possibly, zero or all) elements from the end.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($3 \\le n \\le 2\\cdot 10^5$) — the size of the permutation.\n\nThe next line of each test case contains $n$ integers $p_1, p_2, \\ldots p_n$ ($1 \\le p_i \\le n$, all $p_i$ are distinct) — the elements of the permutation $p$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output two integers $i$ and $j$ ($1 \\le i, j \\le n$)  — the indices to swap in $p$.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\nFor the first test case, there are four possible arrays after the swap:\n\n- If we swap $p_1$ and $p_2$, we get the array $[2, 1, 3]$, which has 3 subarrays that are permutations ($[1]$, $[2, 1]$, $[2, 1, 3]$).\n- If we swap $p_1$ and $p_3$, we get the array $[3, 2, 1]$, which has 3 subarrays that are permutations ($[1]$, $[2, 1]$, $[3, 2, 1]$).\n- If we swap $p_2$ and $p_3$, we get the array $[1, 3, 2]$, which has 2 subarrays that are permutations ($[1]$, $[1, 3, 2]$).\n- If we swap any element with itself, we get the array $[1, 2, 3]$, which has 3 subarrays that are permutations ($[1]$, $[1, 2]$, $[1, 2, 3]$).\n\nSo the best swap to make is positions $2$ and $3$.\n\nFor the third sample case, after we swap elements at positions $2$ and $5$, the resulting array is $[1, 4, 2, 5, 3]$. The only subarrays that are permutations are $[1]$ and $[1, 4, 2, 5, 3]$. We can show that this is minimal.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个长度为 $n$ 的排列 $p$。你希望最小化 $p$ 中属于排列的子数组数量。为此，你必须**恰好**执行一次以下操作：\n\n- 选择整数 $i$、$j$，其中 $1 \\le i, j \\le n$，然后\n- 交换 $p_i$ 和 $p_j$。\n\n例如，如果 $p = [5, 1, 4, 2, 3]$，并选择 $i = 2$、$j = 3$，则得到的数组为 $[5, 4, 1, 2, 3]$。如果选择 $i = j = 5$，则得到的数组仍为 $[5, 1, 4, 2, 3]$。\n\n选择怎样的 $i$ 和 $j$，才能使属于排列的子数组数量最少？\n\n长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中存在 $4$）。\n\n如果可以通过从数组 $b$ 的开头删除若干个（可以为零个或全部）元素，并从末尾删除若干个（可以为零个或全部）元素得到数组 $a$，则称数组 $a$ 是数组 $b$ 的子数组。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$3 \\le n \\le 2\\cdot 10^5$）——排列的长度。\n\n每个测试用例的下一行包含 $n$ 个整数 $p_1, p_2, \\ldots p_n$（$1 \\le p_i \\le n$，所有 $p_i$ 互不相同）——排列 $p$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出两个整数 $i$ 和 $j$（$1 \\le i, j \\le n$）——在 $p$ 中需要交换的下标。\n\n如果有多个答案，输出任意一个即可。\n\n## 说明\n\n对于第一个测试用例，交换后有四种可能的数组：\n\n- 如果交换 $p_1$ 和 $p_2$，得到数组 $[2, 1, 3]$，其中有 3 个子数组属于排列（$[1]$、$[2, 1]$、$[2, 1, 3]$）。\n- 如果交换 $p_1$ 和 $p_3$，得到数组 $[3, 2, 1]$，其中有 3 个子数组属于排列（$[1]$、$[2, 1]$、$[3, 2, 1]$）。\n- 如果交换 $p_2$ 和 $p_3$，得到数组 $[1, 3, 2]$，其中有 2 个子数组属于排列（$[1]$、$[1, 3, 2]$）。\n- 如果将任意元素与自身交换，得到数组 $[1, 2, 3]$，其中有 3 个子数组属于排列（$[1]$、$[1, 2]$、$[1, 2, 3]$）。\n\n因此，最佳交换是交换位置 $2$ 和 $3$。\n\n对于第三个样例，交换位置 $2$ 和 $5$ 的元素后，得到的数组为 $[1, 4, 2, 5, 3]$。其中只有 $[1]$ 和 $[1, 4, 2, 5, 3]$ 是排列。可以证明这是最优的。",
   "samples": [
     {
       "input": "8\n3\n1 2 3\n3\n1 3 2\n5\n1 3 2 5 4\n6\n4 5 6 1 2 3\n9\n8 7 6 3 2 1 4 5 9\n10\n7 10 5 1 9 8 3 2 6 4\n10\n8 5 10 9 2 1 3 4 6 7\n10\n2 3 5 7 10 1 8 6 4 9\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:24:46.656Z"
+  "fetchedAt": "2026-10-30T22:24:46.656Z",
+  "translatedAt": "2026-11-04T02:54:02.323+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 237,
   "index": "B",
   "title": "Young Table",
-  "titleZh": null,
+  "titleZh": "Young 表",
   "url": "https://codeforces.com/contest/237/problem/B",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You've got table $*a*$, consisting of $*n*$ rows, numbered from 1 to $*n*$. The $*i*$-th line of table $*a*$ contains $*c*_{*i*}$ cells, at that for all $*i*$ $(1 < *i* ≤ *n*)$ holds $*c*_{*i*} ≤ *c*_{*i* - 1}$.\n\nLet's denote $*s*$ as the total number of cells of table $*a*$, that is, ![image](https://espresso.codeforces.com/bd129e27196559cfc89badba70236d7b9c287ca8.png). We know that each cell of the table contains a single integer from $1$ to $*s*$, at that all written integers are distinct.\n\nLet's assume that the cells of the $*i*$-th row of table $*a*$ are numbered from 1 to $*c*_{*i*}$, then let's denote the number written in the $*j*$-th cell of the $*i*$-th row as $*a*_{*i*, *j*}$. Your task is to perform several swap operations to rearrange the numbers in the table so as to fulfill the following conditions:\n\n1. for all $*i*, *j*$ $(1 < *i* ≤ *n*; 1 ≤ *j* ≤ *c*_{*i*})$ holds $*a*_{*i*, *j*} > *a*_{*i* - 1, *j*}$;\n2. for all $*i*, *j*$ $(1 ≤ *i* ≤ *n*; 1 < *j* ≤ *c*_{*i*})$ holds $*a*_{*i*, *j*} > *a*_{*i*, *j* - 1}$.\n\nIn one swap operation you are allowed to choose two different cells of the table and swap the recorded there numbers, that is the number that was recorded in the first of the selected cells before the swap, is written in the second cell after it. Similarly, the number that was recorded in the second of the selected cells, is written in the first cell after the swap.\n\nRearrange the numbers in the required manner. Note that you are allowed to perform any number of operations, but not more than $*s*$. You do not have to minimize the number of operations.\n\n## Input\n\nThe first line contains a single integer $*n*$ $(1 ≤ *n* ≤ 50)$ that shows the number of rows in the table. The second line contains $*n*$ space-separated integers $*c*_{*i*}$ $(1 ≤ *c*_{*i*} ≤ 50; *c*_{*i*} ≤ *c*_{*i* - 1})$ — the numbers of cells on the corresponding rows.\n\nNext $*n*$ lines contain table $*а*$. The $*i*$-th of them contains $*c*_{*i*}$ space-separated integers: the $*j*$-th integer in this line represents $*a*_{*i*, *j*}$.\n\nIt is guaranteed that all the given numbers $*a*_{*i*, *j*}$ are positive and do not exceed $*s*$. It is guaranteed that all $*a*_{*i*, *j*}$ are distinct.\n\n## Output\n\nIn the first line print a single integer $*m*$ $(0 ≤ *m* ≤ *s*)$, representing the number of performed swaps.\n\nIn the next $*m*$ lines print the description of these swap operations. In the $*i*$-th line print four space-separated integers $*x*_{*i*}, *y*_{*i*}, *p*_{*i*}, *q*_{*i*}$ $(1 ≤ *x*_{*i*}, *p*_{*i*} ≤ *n*; 1 ≤ *y*_{*i*} ≤ *c*_{*x*_{*i*}}; 1 ≤ *q*_{*i*} ≤ *c*_{*p*_{*i*}})$. The printed numbers denote swapping the contents of cells $*a*_{*x*_{*i*}, *y*_{*i*}}$ and $*a*_{*p*_{*i*}, *q*_{*i*}}$. Note that a swap operation can change the contents of **distinct** table cells. Print the swaps in the order, in which they should be executed.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个表格 $*a*$，它由 $*n*$ 行组成，行编号从 1 到 $*n*$。表格 $*a*$ 的第 $*i*$ 行包含 $*c*_{*i*}$ 个单元格，并且对于所有 $*i*$ $(1 < *i* ≤ *n*)$，都有 $*c*_{*i*} ≤ *c*_{*i* - 1}$。\n\n令 $*s*$ 表示表格 $*a*$ 中单元格的总数，即 ![image](https://espresso.codeforces.com/bd129e27196559cfc89badba70236d7b9c287ca8.png)。已知表格中的每个单元格都包含一个从 $1$ 到 $*s*$ 的整数，并且所有写入的整数互不相同。\n\n假设表格 $*a*$ 第 $*i*$ 行的单元格编号从 1 到 $*c*_{*i*}$，我们将第 $*i*$ 行第 $*j*$ 个单元格中写入的数字记为 $*a*_{*i*, *j*}$。你的任务是执行若干次交换操作，重新排列表格中的数字，使其满足以下条件：\n\n1. 对于所有 $*i*, *j*$ $(1 < *i* ≤ *n*; 1 ≤ *j* ≤ *c*_{*i*})$，都有 $*a*_{*i*, *j*} > *a*_{*i* - 1, *j*}$；\n2. 对于所有 $*i*, *j*$ $(1 ≤ *i* ≤ *n*; 1 < *j* ≤ *c*_{*i*})$，都有 $*a*_{*i*, *j*} > *a*_{*i*, *j* - 1}$。\n\n在一次交换操作中，你可以选择表格中的两个不同单元格，并交换其中记录的数字。也就是说，交换前第一个选定单元格中的数字会在交换后写入第二个单元格；同样地，交换前第二个选定单元格中的数字会在交换后写入第一个单元格。\n\n请以要求的方式重新排列这些数字。注意，你可以执行任意次操作，但不能超过 $*s*$ 次。不需要使操作次数最少。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$ $(1 ≤ *n* ≤ 50)$，表示表格中的行数。第二行包含 $*n*$ 个以空格分隔的整数 $*c*_{*i*}$ $(1 ≤ *c*_{*i*} ≤ 50; *c*_{*i*} ≤ *c*_{*i* - 1})$，表示对应行中的单元格数量。\n\n接下来的 $*n*$ 行包含表格 $*а*$。其中第 $*i*$ 行包含 $*c*_{*i*}$ 个以空格分隔的整数：该行中的第 $*j*$ 个整数表示 $*a*_{*i*, *j*}$。\n\n保证所有给出的数字 $*a*_{*i*, *j*}$ 都是正数且不超过 $*s*$。保证所有 $*a*_{*i*, *j*}$ 互不相同。\n\n## 输出格式\n\n第一行输出一个整数 $*m*$ $(0 ≤ *m* ≤ *s*)$，表示执行的交换操作次数。\n\n接下来的 $*m*$ 行输出这些交换操作的描述。第 $*i*$ 行输出四个以空格分隔的整数 $*x*_{*i*}, *y*_{*i*}, *p*_{*i*}, *q*_{*i*}$ $(1 ≤ *x*_{*i*}, *p*_{*i*} ≤ *n*; 1 ≤ *y*_{*i*} ≤ *c*_{*x*_{*i*}}; 1 ≤ *q*_{*i*} ≤ *c*_{*p*_{*i*}})$。这些数字表示交换单元格 $*a*_{*x*_{*i*}, *y*_{*i*}}$ 和 $*a*_{*p*_{*i*}, *q*_{*i*}}$ 中的内容。注意，交换操作可以改变表格中**不同**单元格的内容。请按照应执行的顺序输出这些交换操作。",
   "samples": [
     {
       "input": "3\n3 2 1\n4 3 5\n6 1\n2\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:16:42.409Z"
+  "fetchedAt": "2026-10-31T02:16:42.409Z",
+  "translatedAt": "2026-11-04T07:37:08.864+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

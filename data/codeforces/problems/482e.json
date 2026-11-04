@@ -4,7 +4,7 @@
   "contestId": 482,
   "index": "E",
   "title": "ELCA",
-  "titleZh": null,
+  "titleZh": "ELCA",
   "url": "https://codeforces.com/contest/482/problem/E",
   "difficulty": 3200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 256,
   "statementMd": "You have a root tree containing $*n*$ vertexes. Let's number the tree vertexes with integers from $1$ to $*n*$. The tree root is in the vertex $1$.\n\nEach vertex (except fot the tree root) $*v*$ has a direct ancestor $*p*_{*v*}$. Also each vertex $*v*$ has its integer value $*s*_{*v*}$.\n\nYour task is to perform following queries:\n\n- **P** $*v*$ $*u*$ ($*u* ≠ *v*$). If $*u*$ isn't in subtree of $*v*$, you must perform the assignment $*p*_{*v*} = *u*$. Otherwise you must perform assignment $*p*_{*u*} = *v*$. Note that after this query the graph continues to be a tree consisting of $*n*$ vertexes.\n- **V** $*v*$ $*t*$. Perform assignment $*s*_{*v*} = *t*$.\n\nYour task is following. Before starting performing queries and after each query you have to calculate expected value written on the lowest common ancestor of two equiprobably selected vertices $*i*$ and $*j*$. Here lowest common ancestor of $*i*$ and $*j*$ is the deepest vertex that lies on the both of the path from the root to vertex $*i*$ and the path from the root to vertex $*j*$. Please note that the vertices $*i*$ and $*j*$ can be the same (in this case their lowest common ancestor coincides with them).\n\n## Input\n\nThe first line of the input contains integer $*n*$ ($2 ≤ *n* ≤ 5·10^{4}$) — the number of the tree vertexes.\n\nThe second line contains $*n* - 1$ integer $*p*_{2}, *p*_{3}, ..., *p*_{*n*}$ ($1 ≤ *p*_{*i*} ≤ *n*$) — the description of the tree edges. It is guaranteed that those numbers form a tree.\n\nThe third line contains $*n*$ integers — $*s*_{1}, *s*_{2}, ... *s*_{*n*}$ ($0 ≤ *s*_{*i*} ≤ 10^{6}$) — the values written on each vertex of the tree.\n\nThe next line contains integer $*q*$ ($1 ≤ *q* ≤ 5·10^{4}$) — the number of queries. Each of the following $*q*$ lines contains the description of the query in the format described in the statement. It is guaranteed that query arguments $*u*$ and $*v*$ lie between $1$ and $*n*$. It is guaranteed that argument $*t*$ in the queries of type **V** meets limits $0 ≤ *t* ≤ 10^{6}$.\n\n## Output\n\nPrint $*q* + 1$ number — the corresponding expected values. Your answer will be considered correct if its absolute or relative error doesn't exceed $10^{ - 9}$.\n\n## Note\n\nNote that in the query **P** $*v*$ $*u*$ if $*u*$ lies in subtree of $*v*$ you must perform assignment $*p*_{*u*} = *v*$. An example of such case is the last query in the sample.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一棵包含 $*n*$ 个顶点的有根树。我们用 $1$ 到 $*n*$ 的整数为树中的顶点编号。树根是顶点 $1$。\n\n每个顶点（树根除外）$*v*$ 都有一个直接父节点 $*p*_{*v*}$。此外，每个顶点 $*v*$ 还有一个整数值 $*s*_{*v*}$。\n\n你的任务是执行以下查询：\n\n- **P** $*v*$ $*u*$（$*u* ≠ *v*$）。如果 $*u*$ 不在 $*v*$ 的子树中，则执行赋值 $*p*_{*v*} = *u*$。否则执行赋值 $*p*_{*u*} = *v*$。注意，执行此查询后，该图仍然是一棵包含 $*n*$ 个顶点的树。\n- **V** $*v*$ $*t*$。执行赋值 $*s*_{*v*} = *t*$。\n\n你的任务如下：在开始执行查询之前，以及每次执行查询之后，都要计算从所有顶点中等概率选取两个顶点 $*i*$ 和 $*j*$ 后，它们的最近公共祖先上所写的值的期望值。这里，$*i*$ 和 $*j*$ 的最近公共祖先是指同时位于从根到顶点 $*i*$ 的路径以及从根到顶点 $*j*$ 的路径上的最深顶点。请注意，顶点 $*i*$ 和 $*j*$ 可以相同（此时它们的最近公共祖先就是它们自身）。\n\n## 输入\n\n输入的第一行包含一个整数 $*n*$（$2 ≤ *n* ≤ 5·10^{4}$），表示树中顶点的数量。\n\n第二行包含 $*n* - 1$ 个整数 $*p*_{2}, *p*_{3}, ..., *p*_{*n*}$（$1 ≤ *p*_{*i*} ≤ *n*$），表示树边的描述。保证这些数字构成一棵树。\n\n第三行包含 $*n*$ 个整数——$*s*_{1}, *s*_{2}, ... *s*_{*n*}$（$0 ≤ *s*_{*i*} ≤ 10^{6}$），表示树中每个顶点上写的值。\n\n下一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 5·10^{4}$），表示查询的数量。接下来的 $*q*$ 行中的每一行都按照题面所述的格式给出一个查询。保证查询参数 $*u*$ 和 $*v*$ 均在 $1$ 到 $*n*$ 之间。保证类型为 **V** 的查询中的参数 $*t*$ 满足 $0 ≤ *t* ≤ 10^{6}$。\n\n## 输出\n\n输出 $*q* + 1$ 个数，分别表示对应的期望值。如果答案的绝对误差或相对误差不超过 $10^{ - 9}$，则视为正确。\n\n## 说明\n\n注意，在查询 **P** $*v*$ $*u*$ 中，如果 $*u*$ 位于 $*v*$ 的子树中，则必须执行赋值 $*p*_{*u*} = *v*$。样例中的最后一个查询就是这种情况。",
   "samples": [
     {
       "input": "5\n1 2 2 1\n1 2 3 4 5\n5\nP 3 4\nP 4 5\nV 2 3\nP 5 2\nP 1 4\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:37:20.884Z"
+  "fetchedAt": "2026-10-31T01:37:20.884Z",
+  "translatedAt": "2026-11-04T06:59:15.950+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

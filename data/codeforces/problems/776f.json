@@ -4,7 +4,7 @@
   "contestId": 776,
   "index": "F",
   "title": "Sherlock's bet to Moriarty",
-  "titleZh": null,
+  "titleZh": "夏洛克与莫里亚蒂的赌约",
   "url": "https://codeforces.com/contest/776/problem/F",
   "difficulty": 2800,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Sherlock met Moriarty for a final battle of wits. He gave him a regular $*n*$ sided convex polygon. In addition to it, he gave him certain diagonals to form regions on the polygon. It was guaranteed that the diagonals did not intersect in interior points.\n\nHe took each of the region and calculated its importance value. Importance value for a region formed by vertices $*a*_{1}, *a*_{2}, ... , *a*_{*x*}$ of the polygon will be given by $2^{*a*_{1}} + 2^{*a*_{2}} + ... + 2^{*a*_{*x*}}$. Then, he sorted these regions on the basis of their importance value in ascending order. After that he assigned each region an index from $1$ to $*k*$, where $*k*$ is the number of regions, and index of region is its position in the sorted array calculated above.\n\nHe wants Moriarty to color the regions using not more than $20$ colors, such that two regions have same color only if all the simple paths between these two regions have at least one region with color value less than the color value assigned to these regions. Simple path between two regions $*f*$ and $*h*$ is a sequence of regions $*r*_{1}, *r*_{2}, ... *r*_{*t*}$ such that $*r*_{1} = *f*$, $*r*_{*t*} = *h*$, for each $1 ≤ *i* < *t*$ regions $*r*_{*i*}$ and $*r*_{*i* + 1}$ share an edge, and $*r*_{*i*} = *r*_{*j*}$ if and only if $*i* = *j*$.\n\nMoriarty couldn't answer and asks Sherlock to solve it himself. Help Sherlock in doing so.\n\n## Input\n\nFirst line contains two integers $*n*$ and $*m*$ ($3 ≤ *n* ≤ 100000$, $0 ≤ *m* ≤ *n* - 3$), the number of vertices in the polygon and the number of diagonals added.\n\nEach of the next $*m*$ lines contains two integers $*a*$ and $*b*$ ($1 ≤ *a*, *b* ≤ *n*$), describing a diagonal between vertices $*a*$ and $*b*$. It is guaranteed that the diagonals are correct, i. e. $*a*$ and $*b*$ don't coincide and are not neighboring. It is guaranteed that the diagonals do not intersect.\n\n## Output\n\nLet the number of regions be $*k*$.\n\nOutput $*k*$ space-separated integers, each between $1$ and $20$, representing the colors of the regions in the order of increasing importance.\n\nIf there are multiple answers, print any of them. It can be shown that at least one answer exists.\n\n## Note\n\nIn 2nd input, regions formed in order after sorting will be $(1, 2, 3)$, $(1, 3, 4)$, $(1, 4, 5)$, $(1, 5, 6)$, i.e, region $(1, 2, 3)$ is first region followed by region $(1, 3, 4)$ and so on.\n\nSo, we can color regions $1$ and $3$ with same color, as region number $2$ is on the path from $1$ to $3$ and it has color $1$ which is less than color of $1$ and $3$, i.e., color number $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "夏洛克与莫里亚蒂进行了一场最终的智力对决。他给了莫里亚蒂一个正 $*n*$ 边凸多边形，并在其中添加了一些对角线，将多边形划分成若干区域。保证这些对角线不会在内部相交。\n\n他计算了每个区域的重要性值。对于由多边形顶点 $*a*_{1}, *a*_{2}, ... , *a*_{*x*}$ 构成的区域，其重要性值定义为 $2^{*a*_{1}} + 2^{*a*_{2}} + ... + 2^{*a*_{*x*}}$。随后，他按照重要性值的升序排列这些区域。之后，他为每个区域分配一个从 $1$ 到 $*k*$ 的编号，其中 $*k*$ 是区域总数，区域的编号就是它在上述排序数组中的位置。\n\n他希望莫里亚蒂使用不超过 $20$ 种颜色为这些区域染色，使得只有当两个区域之间的所有简单路径中都至少存在一个区域，其颜色值小于这两个区域所使用的颜色值时，这两个区域才能使用相同的颜色。两个区域 $*f*$ 和 $*h*$ 之间的简单路径是一个区域序列 $*r*_{1}, *r*_{2}, ... *r*_{*t*}$，满足 $*r*_{1} = *f*$、$*r*_{*t*} = *h*$；对于每个 $1 ≤ *i* < *t*$，区域 $*r*_{*i*}$ 和 $*r*_{*i* + 1}$ 共享一条边；并且当且仅当 $*i* = *j*$ 时，才有 $*r*_{*i*} = *r*_{*j*$。\n\n莫里亚蒂无法回答，于是请夏洛克亲自解决这个问题。请帮助夏洛克完成任务。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$（$3 ≤ *n* ≤ 100000$，$0 ≤ *m* ≤ *n* - 3$），分别表示多边形的顶点数和添加的对角线数。\n\n接下来的 $*m*$ 行中，每行包含两个整数 $*a*$ 和 $*b*$（$1 ≤ *a*, *b* ≤ *n*$），表示连接顶点 $*a*$ 和 $*b*$ 的一条对角线。保证这些对角线合法，即 $*a*$ 和 $*b*$ 不相同且不相邻。保证这些对角线不会相交。\n\n## 输出格式\n\n设区域数量为 $*k*$。\n\n输出 $*k*$ 个以空格分隔的整数，每个整数在 $1$ 到 $20$ 之间，表示按照重要性值升序排列的区域的颜色。\n\n如果有多个答案，输出任意一个即可。可以证明，至少存在一个答案。\n\n## 说明\n\n在第二个输入样例中，排序后形成的区域依次为 $(1, 2, 3)$、$(1, 3, 4)$、$(1, 4, 5)$、$(1, 5, 6)$，也就是说，区域 $(1, 2, 3)$ 是第一个区域，接着是区域 $(1, 3, 4)$，以此类推。\n\n因此，可以将区域 $1$ 和 $3$ 染成相同的颜色，因为从区域 $1$ 到区域 $3$ 的路径上会经过区域 $2$，而区域 $2$ 的颜色为 $1$，小于区域 $1$ 和 $3$ 的颜色，即颜色编号 $2$。",
   "samples": [
     {
       "input": "4 1\n1 3\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:55:17.746Z"
+  "fetchedAt": "2026-10-31T00:55:17.746Z",
+  "translatedAt": "2026-11-04T06:14:30.146+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

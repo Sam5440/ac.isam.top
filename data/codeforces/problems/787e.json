@@ -4,14 +4,14 @@
   "contestId": 787,
   "index": "E",
   "title": "Till I Collapse",
-  "titleZh": null,
+  "titleZh": "直到我倒下",
   "url": "https://codeforces.com/contest/787/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Rick and Morty want to find MR. PBH and they can't do it alone. So they need of Mr. Meeseeks. They Have generated $*n*$ Mr. Meeseeks, standing in a line numbered from $1$ to $*n*$. Each of them has his own color. $*i*$-th Mr. Meeseeks' color is $*a*_{*i*}$.\n\nRick and Morty are gathering their army and they want to divide Mr. Meeseeks into some squads. They don't want their squads to be too colorful, so each squad should have Mr. Meeseeks of at most $*k*$ different colors. Also each squad should be a continuous subarray of Mr. Meeseeks in the line. Meaning that for each $1 ≤ *i* ≤ *e* ≤ *j* ≤ *n*$, if Mr. Meeseeks number $*i*$ and Mr. Meeseeks number $*j*$ are in the same squad then Mr. Meeseeks number $*e*$ should be in that same squad.\n\n![image](https://espresso.codeforces.com/ddccfa4d4cd81e14f5522d6b4bd93043f50e0e84.png)\n\nAlso, each squad needs its own presidio, and building a presidio needs money, so they want the total number of squads to be minimized.\n\nRick and Morty haven't finalized the exact value of $*k*$, so in order to choose it, for each $*k*$ between $1$ and $*n*$ (inclusive) need to know the minimum number of presidios needed.\n\n## Input\n\nThe first line of input contains a single integer $*n*$ ($1 ≤ *n* ≤ 10^{5}$) — number of Mr. Meeseeks.\n\nThe second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ separated by spaces ($1 ≤ *a*_{*i*} ≤ *n*$) — colors of Mr. Meeseeks in order they standing in a line.\n\n## Output\n\nIn the first and only line of input print $*n*$ integers separated by spaces. $*i*$-th integer should be the minimum number of presidios needed if the value of $*k*$ is $*i*$.\n\n## Note\n\nFor the first sample testcase, some optimal ways of dividing army into squads for each $*k*$ are:\n\n1. $[1], [3], [4], [3, 3]$\n2. $[1], [3, 4, 3, 3]$\n3. $[1, 3, 4, 3, 3]$\n4. $[1, 3, 4, 3, 3]$\n5. $[1, 3, 4, 3, 3]$\n\nFor the second testcase, some optimal ways of dividing army into squads for each $*k*$ are:\n\n1. $[1], [5], [7], [8], [1], [7], [6], [1]$\n2. $[1, 5], [7, 8], [1, 7], [6, 1]$\n3. $[1, 5, 7], [8], [1, 7, 6, 1]$\n4. $[1, 5, 7, 8], [1, 7, 6, 1]$\n5. $[1, 5, 7, 8, 1, 7, 6, 1]$\n6. $[1, 5, 7, 8, 1, 7, 6, 1]$\n7. $[1, 5, 7, 8, 1, 7, 6, 1]$\n8. $[1, 5, 7, 8, 1, 7, 6, 1]$",
-  "statementZhMd": null,
+  "statementZhMd": "Rick 和 Morty 想找到 PBH 先生，但他们无法独自做到。因此，他们需要 Meeseeks 先生的帮助。他们生成了 $*n*$ 个 Meeseeks 先生，并将他们排成一列，编号从 $1$ 到 $*n*$。每个 Meeseeks 先生都有自己的颜色。第 $*i*$ 个 Meeseeks 先生的颜色为 $*a*_{*i*}$。\n\nRick 和 Morty 正在集结他们的军队，并希望将 Meeseeks 先生分成若干小队。他们不希望小队的颜色过于丰富，因此每个小队中最多只能有 $*k*$ 种不同的颜色。此外，每个小队都必须是队列中的一个连续子数组。也就是说，对于任意 $1 ≤ *i* ≤ *e* ≤ *j* ≤ *n*$，如果编号为 $*i*$ 和 $*j*$ 的 Meeseeks 先生在同一个小队中，那么编号为 $*e*$ 的 Meeseeks 先生也必须在该小队中。\n\n![image](https://espresso.codeforces.com/ddccfa4d4cd81e14f5522d6b4bd93043f50e0e84.png)\n\n此外，每个小队都需要自己的据点，而建造据点需要花费金钱，因此他们希望使小队的总数最少。\n\nRick 和 Morty 还没有确定 $*k*$ 的确切值，因此为了选择它，对于每个 $1$ 到 $*n*$（包含两端）之间的 $*k*$，他们都需要知道所需据点的最少数量。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$）——Meeseeks 先生的数量。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$，整数之间以空格分隔（$1 ≤ *a*_{*i*} ≤ *n*$）——按照他们在线列中的顺序给出的 Meeseeks 先生的颜色。\n\n## 输出格式\n\n在输入的第一行且唯一一行中输出 $*n*$ 个整数，整数之间以空格分隔。第 $*i*$ 个整数应为 $*k*$ 的值为 $*i*$ 时所需据点的最少数量。\n\n## 说明\n\n对于第一个样例测试用例，针对每个 $*k*$，将军队划分为小队的一些最优方案如下：\n\n1. $[1], [3], [4], [3, 3]$\n2. $[1], [3, 4, 3, 3]$\n3. $[1, 3, 4, 3, 3]$\n4. $[1, 3, 4, 3, 3]$\n5. $[1, 3, 4, 3, 3]$\n\n对于第二个样例测试用例，针对每个 $*k*$，将军队划分为小队的一些最优方案如下：\n\n1. $[1], [5], [7], [8], [1], [7], [6], [1]$\n2. $[1, 5], [7, 8], [1, 7], [6, 1]$\n3. $[1, 5, 7], [8], [1, 7, 6, 1]$\n4. $[1, 5, 7, 8], [1, 7, 6, 1]$\n5. $[1, 5, 7, 8, 1, 7, 6, 1]$\n6. $[1, 5, 7, 8, 1, 7, 6, 1]$\n7. $[1, 5, 7, 8, 1, 7, 6, 1]$\n8. $[1, 5, 7, 8, 1, 7, 6, 1]$",
   "samples": [
     {
       "input": "5\n1 3 4 3 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:54:19.923Z"
+  "fetchedAt": "2026-10-31T00:54:19.923Z",
+  "translatedAt": "2026-11-04T06:16:15.628+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1450,
   "index": "D",
   "title": "Rating Compression",
-  "titleZh": null,
+  "titleZh": "评分压缩",
   "url": "https://codeforces.com/contest/1450/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "On the competitive programming platform CodeCook, every person has a rating graph described by an array of integers $a$ of length $n$. You are now updating the infrastructure, so you've created a program to compress these graphs.\n\nThe program works as follows. Given an integer parameter $k$, the program takes the minimum of each contiguous subarray of length $k$ in $a$.\n\nMore formally, for an array $a$ of length $n$ and an integer $k$, define the $k$-compression array of $a$ as an array $b$ of length $n-k+1$, such that $$b_j =\\min_{j\\le i\\le j+k-1}a_i$$\n\nFor example, the $3$-compression array of $[1, 3, 4, 5, 2]$ is $[\\min\\{1, 3, 4\\}, \\min\\{3, 4, 5\\}, \\min\\{4, 5, 2\\}]=[1, 3, 2].$\n\nA permutation of length $m$ is an array consisting of $m$ distinct integers from $1$ to $m$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($m=3$ but there is $4$ in the array).\n\nA $k$-compression array will make CodeCook users happy if it will be a permutation. Given an array $a$, determine for all $1\\leq k\\leq n$ if CodeCook users will be happy after a $k$-compression of this array or not.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\leq t\\leq 10^4$) — the number of test cases.\n\nThe first line of the description of each test case contains a single integer $n$ ($1\\leq n\\leq 3\\cdot 10^5$) — the length of the array.\n\nThe second line of the description of each test case contains $n$ integers $a_1,\\ldots,a_n$ ($1\\leq a_i\\leq n$) — the elements of the array.\n\nIt is guaranteed, that the sum of $n$ for all test cases does not exceed $3\\cdot 10^5$.\n\n## Output\n\nFor each test case, print a binary string of length $n$.\n\nThe $k$-th character of the string should be $1$ if CodeCook users will be happy after a $k$-compression of the array $a$, and $0$ otherwise.\n\n## Note\n\nIn the first test case, $a=[1, 5, 3, 4, 2]$.\n\n- The $1$-compression of $a$ is $[1, 5, 3, 4, 2]$ and it is a permutation.\n- The $2$-compression of $a$ is $[1, 3, 3, 2]$ and it is not a permutation, since $3$ appears twice.\n- The $3$-compression of $a$ is $[1, 3, 2]$ and it is a permutation.\n- The $4$-compression of $a$ is $[1, 2]$ and it is a permutation.\n- The $5$-compression of $a$ is $[1]$ and it is a permutation.",
-  "statementZhMd": null,
+  "statementZhMd": "在竞赛编程平台 CodeCook 上，每个人都有一个由长度为 $n$ 的整数数组 $a$ 描述的评分图。现在，你正在更新基础设施，因此编写了一个程序来压缩这些图。\n\n程序的工作方式如下。给定一个整数参数 $k$，程序会求出 $a$ 中每个长度为 $k$ 的连续子数组的最小值。\n\n更正式地，对于长度为 $n$ 的数组 $a$ 和整数 $k$，将 $a$ 的 $k$-压缩数组定义为长度为 $n-k+1$ 的数组 $b$，满足 $$b_j =\\min_{j\\le i\\le j+k-1}a_i$$\n\n例如，$[1, 3, 4, 5, 2]$ 的 $3$-压缩数组为 $[\\min\\{1, 3, 4\\}, \\min\\{3, 4, 5\\}, \\min\\{4, 5, 2\\}]=[1, 3, 2]$。\n\n长度为 $m$ 的排列是一个由 $1$ 到 $m$ 中的 $m$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$m=3$，但数组中出现了 $4$）。\n\n如果一个 $k$-压缩数组是排列，那么它将使 CodeCook 用户感到满意。给定数组 $a$，请判断对于所有 $1\\leq k\\leq n$，对该数组进行 $k$-压缩后 CodeCook 用户是否会感到满意。\n\n## 输入\n\n第一行包含一个整数 $t$（$1\\leq t\\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\leq n\\leq 3\\cdot 10^5$）——数组的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,\\ldots,a_n$（$1\\leq a_i\\leq n$）——数组中的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $3\\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，输出一个长度为 $n$ 的二进制字符串。\n\n如果对数组 $a$ 进行 $k$-压缩后 CodeCook 用户会感到满意，则字符串的第 $k$ 个字符应为 $1$，否则应为 $0$。\n\n## 说明\n\n在第一个测试用例中，$a=[1, 5, 3, 4, 2]$。\n\n- $1$-压缩数组为 $[1, 5, 3, 4, 2]$，它是一个排列。\n- $2$-压缩数组为 $[1, 3, 3, 2]$，它不是一个排列，因为 $3$ 出现了两次。\n- $3$-压缩数组为 $[1, 3, 2]$，它是一个排列。\n- $4$-压缩数组为 $[1, 2]$，它是一个排列。\n- $5$-压缩数组为 $[1]$，它是一个排列。",
   "samples": [
     {
       "input": "5\n5\n1 5 3 4 2\n4\n1 3 2 1\n5\n1 3 3 3 2\n10\n1 2 3 4 5 6 7 8 9 10\n3\n3 3 2\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:40:53.851Z"
+  "fetchedAt": "2026-10-30T23:40:53.851Z",
+  "translatedAt": "2026-11-04T04:09:55.375+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

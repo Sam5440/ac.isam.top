@@ -4,7 +4,7 @@
   "contestId": 952,
   "index": "G",
   "title": "Puzzling Language",
-  "titleZh": null,
+  "titleZh": "令人费解的语言",
   "url": "https://codeforces.com/contest/952/problem/G",
   "difficulty": 2200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "In this problem you will write a simple code generator for a 2D programming language derived from [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck).\n\nThe code in this language is a rectangular grid of characters '.' and 'X'. The code is converted to a Brainfuck program as follows: the characters are read in the usual order (top to bottom, left to right), and each 'X' character is converted a Brainfuck instruction to be executed. The instruction is defined by the left, top and right neighbors of the 'X' character using the following conversion table:\n\n![image](https://espresso.codeforces.com/3df07c064c0d1b9fa0c4174054f138ca4d252e02.png)\n\nYou are given a string. Output a program in the described language which prints this string.\n\nYou can download the language interpreter used for judging here: [https://assets.codeforces.com/rounds/952/puzzling-interpreter.cpp](https://assets.codeforces.com/rounds/952/puzzling-interpreter.cpp) (use C++11 to compile the code). Note several implementation details:\n\n- The first step of the language interpretation is conversion to a Brainfuck program, which is then executed.\n- The code must be rectangular, with all lines of the same length. It can have at most 10,000 lines and 10,000 columns, and can have at most 500,000 'X' characters.\n- The code has toroidal topology, i.e. the 'X' on the first line will have top neighbor in the last line.\n- Brainfuck interpreter has 30000 memory cells which store integers from 0 to 255 with increment/decrement done modulo 256.\n- Console input (`,` command) is allowed in Brainfuck code but has no effect when executed.\n\n## Input\n\nThe input consists of a single string of characters with ASCII codes between 33 ('!') and 122 ('z'), inclusive. The length of the string is between 1 and 10 characters, inclusive.\n\n## Output\n\nOutput a program in the described language which, when executed, will print the given message.\n\n## Note\n\nThe example corresponds to the following Brainfuck program:\n\n```\n       -\n      >+<\n     >+++<\n    >+++++<\n   >+++++++<\n  >+++++++++<\n >+++++++++++<\n\n<             >\n.\n.\n.\n```\n\nThe triangular block decrements the first memory cell and sets the value of the second memory cell to 36 - the ASCII code of '$' character. The next line after the triangular block moves the memory pointer to the second memory cell, and the next three lines print the '$' character three times.",
-  "statementZhMd": null,
+  "statementZhMd": "在本题中，你需要为一种源自 [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) 的二维编程语言编写一个简单的代码生成器。\n\n这种语言的代码是由字符 `.` 和 `X` 组成的矩形网格。代码按如下方式转换为 Brainfuck 程序：按照通常的顺序（从上到下、从左到右）读取字符，并将每个 `X` 字符转换为一条需要执行的 Brainfuck 指令。该指令由 `X` 字符左侧、上方和右侧的邻居按照以下转换表确定：\n\n![image](https://espresso.codeforces.com/3df07c064c0d1b9fa0c4174054f138ca4d252e02.png)\n\n给定一个字符串。请输出一段使用上述语言编写的程序，使其输出这个字符串。\n\n你可以在此处下载评测时使用的语言解释器：[https://assets.codeforces.com/rounds/952/puzzling-interpreter.cpp](https://assets.codeforces.com/rounds/952/puzzling-interpreter.cpp)（请使用 C++11 编译代码）。请注意以下实现细节：\n\n- 语言解释的第一步是将代码转换为 Brainfuck 程序，然后执行该程序。\n- 代码必须是矩形的，即所有行的长度必须相同。代码最多可以有 10,000 行、10,000 列，并且最多可以有 500,000 个 `X` 字符。\n- 代码具有环面拓扑，也就是说，第一行中的 `X` 的上方邻居是最后一行中的对应字符。\n- Brainfuck 解释器有 30000 个内存单元，每个单元存储的整数范围为 0 到 255，递增和递减操作均按模 256 执行。\n- Brainfuck 代码中允许使用控制台输入（`,` 命令），但执行时该命令不会产生任何效果。\n\n## 输入格式\n\n输入包含一个字符串，其中的字符 ASCII 码在 33（`'!'`）到 122（`'z'`）之间（含两端）。字符串长度在 1 到 10 之间（含两端）。\n\n## 输出格式\n\n输出一段使用上述语言编写的程序，使其执行时输出给定的字符串。\n\n## 说明\n\n该样例对应于以下 Brainfuck 程序：\n\n```\n       -\n      >+<\n     >+++<\n    >+++++<\n   >+++++++<\n  >+++++++++<\n >+++++++++++<\n\n<             >\n.\n.\n.\n```\n\n三角形部分将第一个内存单元的值减一，并将第二个内存单元的值设为 36，即字符 `$` 的 ASCII 码。三角形部分之后的下一行将内存指针移动到第二个内存单元，接下来的三行会将字符 `$` 输出三次。",
   "samples": [
     {
       "input": "$$$\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:41:57.304Z"
+  "fetchedAt": "2026-11-02T19:41:57.304Z",
+  "translatedAt": "2026-11-04T05:45:28.271+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

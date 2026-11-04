@@ -4,7 +4,7 @@
   "contestId": 1696,
   "index": "D",
   "title": "Permutation Graph",
-  "titleZh": null,
+  "titleZh": "排列图",
   "url": "https://codeforces.com/contest/1696/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "A permutation is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nYou are given a permutation of $1,2,\\dots,n$, $[a_1,a_2,\\dots,a_n]$. For integers $i$, $j$ such that $1\\le i \\lt j\\le n$, define $\\operatorname{mn}(i,j)$ as $\\min\\limits_{k=i}^j a_k$, and define $\\operatorname{mx}(i,j)$ as $\\max\\limits_{k=i}^j a_k$.\n\nLet us build an undirected graph of $n$ vertices, numbered $1$ to $n$. For every pair of integers $1\\le i \\lt j\\le n$, if $\\operatorname{mn}(i,j)=a_i$ and $\\operatorname{mx}(i,j)=a_j$ both holds, or $\\operatorname{mn}(i,j)=a_j$ and $\\operatorname{mx}(i,j)=a_i$ both holds, add an undirected edge of length $1$ between vertices $i$ and $j$.\n\nIn this graph, find the length of the shortest path from vertex $1$ to vertex $n$. We can prove that $1$ and $n$ will always be connected via some path, so a shortest path always exists.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 5\\cdot 10^4$). Description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($1\\le n\\le 2.5\\cdot 10^5$).\n\nThe second line of each test case contains $n$ integers $a_1$, $a_2$, $\\ldots$, $a_n$ ($1\\le a_i\\le n$). It's guaranteed that $a$ is a permutation of $1$, $2$, $\\dots$, $n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5\\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single line containing one integer — the length of the shortest path from $1$ to $n$.\n\n## Note\n\nThe following are illustrations of constructed graphs in example test cases.\n\n![image](https://espresso.codeforces.com/23ac7eac2626012e1176e6a474bcddd7527e9b54.png) the constructed graph in test case 1\n\n![image](https://espresso.codeforces.com/f57faad40e8aee779ed9c890f8f93d4338ac75c7.png) the constructed graph in test case 2\n\n![image](https://espresso.codeforces.com/de134bc8ff4e8b932f7ba7604e3331e7056fff84.png) the constructed graph in test case 3\n\n![image](https://espresso.codeforces.com/265279a5a3582a0f08c7ea513c4fd415822e8307.png) the constructed graph in test case 4\n\n![image](https://espresso.codeforces.com/5ae99685b014d58f39d443714dd35e50bad6f6cc.png) the constructed graph in test case 5",
-  "statementZhMd": null,
+  "statementZhMd": "一个排列是由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中存在 $4$）。\n\n给定一个由 $1,2,\\dots,n$ 组成的排列 $[a_1,a_2,\\dots,a_n]$。对于满足 $1\\le i \\lt j\\le n$ 的整数 $i$、$j$，定义 $\\operatorname{mn}(i,j)$ 为 $\\min\\limits_{k=i}^j a_k$，定义 $\\operatorname{mx}(i,j)$ 为 $\\max\\limits_{k=i}^j a_k$。\n\n现在构建一个含有 $n$ 个顶点的无向图，顶点编号为 $1$ 到 $n$。对于每一对满足 $1\\le i \\lt j\\le n$ 的整数 $i$、$j$，如果以下两种情况之一成立：$\\operatorname{mn}(i,j)=a_i$ 且 $\\operatorname{mx}(i,j)=a_j$，或者 $\\operatorname{mn}(i,j)=a_j$ 且 $\\operatorname{mx}(i,j)=a_i$，则在顶点 $i$ 和 $j$ 之间添加一条长度为 $1$ 的无向边。\n\n在这个图中，求从顶点 $1$ 到顶点 $n$ 的最短路径长度。可以证明，顶点 $1$ 和顶点 $n$ 总是能够通过某条路径连接，因此最短路径一定存在。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 5\\cdot 10^4$）。接下来给出各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 2.5\\cdot 10^5$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1$、$a_2$、$\\ldots$、$a_n$（$1\\le a_i\\le n$）。保证 $a$ 是 $1$、$2$、$\\dots$、$n$ 的一个排列。\n\n保证所有测试用例中 $n$ 的总和不超过 $5\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一行一个整数——从 $1$ 到 $n$ 的最短路径长度。\n\n## 说明\n\n下面展示了样例测试用例中构造出的图。\n\n![image](https://espresso.codeforces.com/23ac7eac2626012e1176e6a474bcddd7527e9b54.png) 测试用例 1 中构造的图\n\n![image](https://espresso.codeforces.com/f57faad40e8aee779ed9c890f8f93d4338ac75c7.png) 测试用例 2 中构造的图\n\n![image](https://espresso.codeforces.com/de134bc8ff4e8b932f7ba7604e3331e7056fff84.png) 测试用例 3 中构造的图\n\n![image](https://espresso.codeforces.com/265279a5a3582a0f08c7ea513c4fd415822e8307.png) 测试用例 4 中构造的图\n\n![image](https://espresso.codeforces.com/5ae99685b014d58f39d443714dd35e50bad6f6cc.png) 测试用例 5 中构造的图",
   "samples": [
     {
       "input": "5\n1\n1\n2\n1 2\n5\n1 4 2 3 5\n5\n2 1 5 3 4\n10\n7 4 8 1 6 10 3 5 2 9\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:00:28.915Z"
+  "fetchedAt": "2026-10-30T23:00:28.915Z",
+  "translatedAt": "2026-11-04T03:21:53.478+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

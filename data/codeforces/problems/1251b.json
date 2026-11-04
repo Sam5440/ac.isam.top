@@ -4,7 +4,7 @@
   "contestId": 1251,
   "index": "B",
   "title": "Binary Palindromes",
-  "titleZh": null,
+  "titleZh": "二进制回文串",
   "url": "https://codeforces.com/contest/1251/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A palindrome is a string $t$ which reads the same backward as forward (formally, $t[i] = t[|t| + 1 - i]$ for all $i \\in [1, |t|]$). Here $|t|$ denotes the length of a string $t$. For example, the strings `010`, `1001` and `0` are palindromes.\n\nYou have $n$ binary strings $s_1, s_2, \\dots, s_n$ (each $s_i$ consists of zeroes and/or ones). You can swap any pair of characters any number of times (possibly, zero). Characters can be either from the same string or from different strings — there are no restrictions.\n\nFormally, in one move you:\n\n- choose four integer numbers $x, a, y, b$ such that $1 \\le x, y \\le n$ and $1 \\le a \\le |s_x|$ and $1 \\le b \\le |s_y|$ (where $x$ and $y$ are string indices and $a$ and $b$ are positions in strings $s_x$ and $s_y$ respectively),\n- swap (exchange) the characters $s_x[a]$ and $s_y[b]$.\n\nWhat is the maximum number of strings you can make palindromic simultaneously?\n\n## Input\n\nThe first line contains single integer $Q$ ($1 \\le Q \\le 50$) — the number of test cases.\n\nThe first line on each test case contains single integer $n$ ($1 \\le n \\le 50$) — the number of binary strings you have.\n\nNext $n$ lines contains binary strings $s_1, s_2, \\dots, s_n$ — one per line. It's guaranteed that $1 \\le |s_i| \\le 50$ and all strings constist of zeroes and/or ones.\n\n## Output\n\nPrint $Q$ integers — one per test case. The $i$-th integer should be the maximum number of palindromic strings you can achieve simultaneously performing zero or more swaps on strings from the $i$-th test case.\n\n## Note\n\nIn the first test case, $s_1$ is palindrome, so the answer is $1$.\n\nIn the second test case you can't make all three strings palindromic at the same time, but you can make any pair of strings palindromic. For example, let's make $s_1 = \\text{0110}$, $s_2 = \\text{111111}$ and $s_3 = \\text{010000}$.\n\nIn the third test case we can make both strings palindromic. For example, $s_1 = \\text{11011}$ and $s_2 = \\text{100001}$.\n\nIn the last test case $s_2$ is palindrome and you can make $s_1$ palindrome, for example, by swapping $s_1[2]$ and $s_1[3]$.",
-  "statementZhMd": null,
+  "statementZhMd": "回文串是指一个从后往前读与从前往后读相同的字符串 $t$（形式化地，对于所有 $i \\in [1, |t|]$，都有 $t[i] = t[|t| + 1 - i]$）。其中，$|t|$ 表示字符串 $t$ 的长度。例如，字符串 `010`、`1001` 和 `0` 都是回文串。\n\n现在有 $n$ 个二进制字符串 $s_1, s_2, \\dots, s_n$（每个 $s_i$ 只由若干个零和/或一组成）。你可以交换任意一对字符任意多次（也可以一次都不交换）。字符可以来自同一个字符串，也可以来自不同的字符串——不作任何限制。\n\n形式化地说，在一次操作中，你需要：\n\n- 选择四个整数 $x, a, y, b$，满足 $1 \\le x, y \\le n$ 且 $1 \\le a \\le |s_x|$、$1 \\le b \\le |s_y|$（其中 $x$ 和 $y$ 是字符串的编号，$a$ 和 $b$ 分别是字符串 $s_x$ 和 $s_y$ 中的位置）；\n- 交换（互换）字符 $s_x[a]$ 和 $s_y[b]$。\n\n最多能同时将多少个字符串变成回文串？\n\n## 输入格式\n\n第一行包含一个整数 $Q$（$1 \\le Q \\le 50$），表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 50$），表示给定的二进制字符串数量。\n\n接下来的 $n$ 行包含二进制字符串 $s_1, s_2, \\dots, s_n$，每行一个。保证 $1 \\le |s_i| \\le 50$，且所有字符串均只由零和/或一组成。\n\n## 输出格式\n\n输出 $Q$ 个整数，每个测试用例对应一个。第 $i$ 个整数表示对于第 $i$ 个测试用例，通过对字符串执行零次或多次交换后，最多能同时得到的回文串数量。\n\n## 说明\n\n在第一个测试用例中，$s_1$ 本身就是回文串，因此答案为 $1$。\n\n在第二个测试用例中，无法同时使三个字符串都成为回文串，但可以使任意两个字符串成为回文串。例如，可以令 $s_1 = \\text{0110}$、$s_2 = \\text{111111}$、$s_3 = \\text{010000}$。\n\n在第三个测试用例中，可以使两个字符串都成为回文串。例如，令 $s_1 = \\text{11011}$、$s_2 = \\text{100001}$。\n\n在最后一个测试用例中，$s_2$ 是回文串，并且可以通过交换 $s_1[2]$ 和 $s_1[3]$ 使 $s_1$ 成为回文串。",
   "samples": [
     {
       "input": "4\n1\n0\n3\n1110\n100110\n010101\n2\n11111\n000001\n2\n001\n11100111\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:02:01.152Z"
+  "fetchedAt": "2026-11-02T19:02:01.152Z",
+  "translatedAt": "2026-11-04T05:00:24.213+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1270,
   "index": "D",
   "title": "Strange Device",
-  "titleZh": null,
+  "titleZh": "奇怪的设备",
   "url": "https://codeforces.com/contest/1270/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "**This problem is interactive**.\n\nWe have hidden an array $a$ of $n$ **pairwise different** numbers (this means that no two numbers are equal). You can get some information about this array using a new device you just ordered on Amazon.\n\nThis device can answer queries of the following form: in response to the positions of $k$ different elements of the array, it will return the position and value of the $m$-th among them in the ascending order.\n\nUnfortunately, the instruction for the device was lost during delivery. However, you remember $k$, but don't remember $m$. Your task is to find $m$ using queries to this device.\n\nYou can ask **not more than $n$ queries**.\n\nNote that the array $a$ and number $m$ are fixed before the start of the interaction and don't depend on your queries. In other words, **interactor is not adaptive**.\n\nNote that you don't have to minimize the number of queries, and you don't need to guess array $a$. You just have to guess $m$.\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($1\\le k \\lt n \\le 500$) — the length of the array and the number of the elements in the query.\n\nIt is guaranteed that number $m$ satisfies $1\\le m \\le k$, elements $a_1, a_2, \\dots, a_n$ of the array satisfy $0\\le a_i \\le 10^9$, and all of them are different.\n\n## Interaction\n\nYou begin the interaction by reading $n$ and $k$.\n\nTo ask a question about elements on positions $x_1, x_2, \\dots, x_k$, in a separate line output\n\n$?$ $x_1$ $x_2$ $x_3$ ... $x_k$\n\nNumbers in the query have to satisfy $1 \\le x_i \\le n$, and all $x_i$ have to be different. Don't forget to 'flush', to get the answer.\n\nIn response, you will receive two integers $pos$ and $a_{pos}$ — the position in the array $a$ of the $m$-th in ascending order element among $a_{x_1}, a_{x_2}, \\dots, a_{x_k}$, and the element on this position.\n\nIn case your query is invalid or you asked more than $n$ queries, the program will print $-1$ and will finish interaction. You will receive a **Wrong answer** verdict. Make sure to exit immediately to avoid getting other verdicts.\n\nWhen you determine $m$, output\n\n$!$ $m$\n\nAfter printing a query do not forget to output end of line and flush the output. Otherwise, you will get `Idleness limit exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see documentation for other languages.\n\n**Hack format**\n\nFor the hacks use the following format:\n\nThe first line has to contain three integers $n, k, m$ ($1 \\le m \\le k \\lt n \\le 500$) — the length of the array, number of elements in the query, and which in the ascending order number the device returns.\n\nIn the next line output $n$ integers $a_1, a_2, \\dots, a_n$ ($0\\le a_i \\le 10^9$) — the elements of the array. They have to be pairwise different.\n\n## Note\n\nIn the example, $n = 4$, $k = 3$, $m = 3$, $a = [2, 0, 1, 9]$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是一道交互题**。\n\n我们隐藏了一个由 $n$ 个**两两不同**的数字组成的数组 $a$（这意味着任意两个数字都不相等）。你可以使用刚从亚马逊订购的新设备获取有关该数组的一些信息。\n\n该设备可以回答如下形式的询问：给出数组中 $k$ 个不同元素的位置，它会按照这些元素的值升序排列，并返回其中第 $m$ 个元素的位置和值。\n\n不幸的是，设备的使用说明在运输过程中丢失了。不过，你还记得 $k$，却不记得 $m$。你的任务是通过向设备提问来找出 $m$。\n\n你最多可以询问 $n$ 次。\n\n注意，数组 $a$ 和数字 $m$ 在交互开始前就已经确定，并且不会根据你的询问而改变。换句话说，**交互器不是自适应的**。\n\n注意，你不需要最小化询问次数，也不需要猜出数组 $a$。你只需要猜出 $m$。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$1\\le k \\lt n \\le 500$）——数组的长度以及每次询问中元素的个数。\n\n保证数字 $m$ 满足 $1\\le m \\le k$，数组中的元素 $a_1, a_2, \\dots, a_n$ 满足 $0\\le a_i \\le 10^9$，并且所有元素都互不相同。\n\n## 交互\n\n交互开始时，先读入 $n$ 和 $k$。\n\n若要询问位置 $x_1, x_2, \\dots, x_k$ 上的元素，请在单独一行输出\n\n$?$ $x_1$ $x_2$ $x_3$ ... $x_k$\n\n询问中的数字必须满足 $1 \\le x_i \\le n$，且所有 $x_i$ 必须互不相同。不要忘记执行“刷新（flush）”，以获取回答。\n\n作为回答，你将收到两个整数 $pos$ 和 $a_{pos}$——在 $a_{x_1}, a_{x_2}, \\dots, a_{x_k}$ 中按升序排列的第 $m$ 个元素在数组 $a$ 中的位置，以及该位置上的元素值。\n\n如果你的询问无效，或询问次数超过 $n$ 次，程序将输出 $-1$ 并结束交互。你将得到 **Wrong answer** 判定。请确保立即退出，以避免得到其他判定。\n\n当你确定了 $m$ 后，输出\n\n$!$ $m$\n\n输出询问后不要忘记输出换行并刷新输出。否则，你将得到 `Idleness limit exceeded`。为此，请使用：\n\n- `fflush(stdout)` 或 `cout.flush()`（C++）；\n- `System.out.flush()`（Java）；\n- `flush(output)`（Pascal）；\n- `stdout.flush()`（Python）；\n- 其他语言请参阅相应文档。\n\n**Hack 格式**\n\n对于 hacks，请使用以下格式：\n\n第一行包含三个整数 $n, k, m$（$1 \\le m \\le k \\lt n \\le 500$）——数组的长度、每次询问中元素的个数，以及设备返回按升序排列后的第几个元素。\n\n下一行输出 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$0\\le a_i \\le 10^9$）——数组中的元素。它们必须两两不同。\n\n## 说明\n\n在样例中，$n = 4$，$k = 3$，$m = 3$，$a = [2, 0, 1, 9]$。",
   "samples": [
     {
       "input": "4 3\n4 9\n4 9\n4 9\n1 2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:00:00.817Z"
+  "fetchedAt": "2026-10-31T00:00:00.817Z",
+  "translatedAt": "2026-11-04T04:49:04.447+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

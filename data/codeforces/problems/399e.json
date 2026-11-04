@@ -4,14 +4,14 @@
   "contestId": 399,
   "index": "E",
   "title": "Tree and Array",
-  "titleZh": null,
+  "titleZh": "树与数组",
   "url": "https://codeforces.com/contest/399/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "User ainta likes trees. This time he is going to make an undirected tree with $*n*$ vertices numbered by integers from $1$ to $*n*$. The tree is weighted, so each edge of the tree will have some integer weight.\n\nAlso he has an array $*t*$: $*t*[1], *t*[2], ..., *t*[*n*]$. At first all the elements of the array are initialized to $0$. Then for each edge connecting vertices $*u*$ and $*v*$ ($*u* < *v*$) of the tree with weight $*c*$, ainta adds value $*c*$ to the elements $*t*[*u*], *t*[*u* + 1], ..., *t*[*v* - 1], *t*[*v*]$ of array $*t*$.\n\nLet's assume that $*d*(*u*, *v*)$ is the total weight of edges on the shortest path between vertex $*u*$ and vertex $*v*$. User ainta calls a pair of integers $*x*, *y*$ ($1 ≤ *x* < *y* ≤ *n*$) *good* if and only if $*d*(*x*, *y*) = *t*[*x*] + *t*[*x* + 1] + ... + *t*[*y* - 1] + *t*[*y*]$.\n\nUser ainta wants to make at least ![image](https://espresso.codeforces.com/ff3debcd979cb1dbc17aecf1e75e31f997a019f8.png) good pairs, but he couldn't make a proper tree. Help ainta to find such a tree.\n\n## Input\n\nThe first line contains a single integer $*n*$ ($5 ≤ *n* ≤ 10^{5}$).\n\n## Output\n\nPrint $*n* - 1$ lines containing the description of the edges. The $*i*$-th line should contain three space-separated integers $*u*_{*i*}, *v*_{*i*}, *c*_{*i*}$ ($1 ≤ *u*_{*i*} < *v*_{*i*} ≤ *n*; 1 ≤ *c*_{*i*} ≤ 10^{5}$) — two vertices connected by the edge, and the weight of the edge.\n\nNext print ![image](https://espresso.codeforces.com/ff3debcd979cb1dbc17aecf1e75e31f997a019f8.png) lines containing the good pairs. The $*k*$-th line should contain two space-separated integers $*x*_{*k*}$ and $*y*_{*k*}$ ($1 ≤ *x*_{*k*} < *y*_{*k*} ≤ *n*$). Of course, $*x*_{*k*}, *y*_{*k*}$ must be a good pair. All pairs should be distinct — that is, for all $*j*, *k*$ ![image](https://espresso.codeforces.com/c6a49d75d528a56e2ceb8fbc8357292970294cff.png), $*x*_{*j*} ≠ *x*_{*k*}$ or $*y*_{*j*} ≠ *y*_{*k*}$ must be satisfied.\n\nIf there are many correct solutions, print any of them.\n\n## Note\n\n$⌊*x*⌋$ is the largest integer not greater than $*x*$.\n\nYou can find the definition of a tree by the following link: `http://en.wikipedia.org/wiki/Tree_(graph_theory)`\n\nYou can also find the definition of the shortest path by the following link: `http://en.wikipedia.org/wiki/Shortest_path_problem`\n\nThe tree and the array $*t*$ in the sample output look like this:\n\n![image](https://espresso.codeforces.com/c8fe1b9618dab29c903d188ed687214b29865c8f.png)",
-  "statementZhMd": null,
+  "statementZhMd": "User ainta 喜欢树。这次，他打算构造一棵具有 $*n*$ 个顶点的无向树，顶点编号为 $1$ 到 $*n*$ 的整数。树是带权的，因此树的每条边都具有一个整数权值。\n\n此外，他还有一个数组 $*t*$：$*t*[1], *t*[2], ..., *t*[*n*]$。初始时，数组中的所有元素都被初始化为 $0$。随后，对于树中连接顶点 $*u*$ 和 $*v*$（$*u* < *v*$）且权值为 $*c*$ 的每条边，ainta 都会将 $*c*$ 加到数组 $*t*$ 的元素 $*t*[*u*], *t*[*u* + 1], ..., *t*[*v* - 1], *t*[*v*]$ 上。\n\n设 $*d*(*u*, *v*)$ 表示顶点 $*u*$ 与顶点 $*v*$ 之间最短路径上所有边的权值之和。当且仅当 $*d*(*x*, *y*) = *t*[*x*] + *t*[*x* + 1] + ... + *t*[*y* - 1] + *t*[*y*]$ 时，User ainta 称整数对 $*x*, *y*$（$1 ≤ *x* < *y* ≤ *n*$）是一个**好数对**。\n\nUser ainta 希望构造出至少 ![image](https://espresso.codeforces.com/ff3debcd979cb1dbc17aecf1e75e31f997a019f8.png) 个好数对，但他无法构造出合适的树。请帮助 ainta 找到这样一棵树。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$5 ≤ *n* ≤ 10^{5}$）。\n\n## 输出格式\n\n输出 $*n* - 1$ 行，每行描述一条边。第 $*i*$ 行应包含三个以空格分隔的整数 $*u*_{*i*}, *v*_{*i*}, *c*_{*i*}$（$1 ≤ *u*_{*i*} < *v*_{*i*} ≤ *n*; 1 ≤ *c*_{*i*} ≤ 10^{5}$），表示由该边连接的两个顶点以及边的权值。\n\n接下来输出 ![image](https://espresso.codeforces.com/ff3debcd979cb1dbc17aecf1e75e31f997a019f8.png) 行，表示这些好数对。第 $*k*$ 行应包含两个以空格分隔的整数 $*x*_{*k*}$ 和 $*y*_{*k*}$（$1 ≤ *x*_{*k*} < *y*_{*k*} ≤ *n*$）。当然，$*x*_{*k*}, *y*_{*k*}$ 必须是一个好数对。所有数对必须互不相同——也就是说，对于任意 $*j*, *k*$，必须满足 ![image](https://espresso.codeforces.com/c6a49d75d528a56e2ceb8fbc8357292970294cff.png)，即 $*x*_{*j*} ≠ *x*_{*k*}$ 或 $*y*_{*j*} ≠ *y*_{*k*}$。\n\n如果有多种正确的方案，输出任意一种即可。\n\n## 说明\n\n$⌊*x*⌋$ 表示不大于 $*x*$ 的最大整数。\n\n你可以通过以下链接查看树的定义：`http://en.wikipedia.org/wiki/Tree_(graph_theory)`\n\n你也可以通过以下链接查看最短路径的定义：`http://en.wikipedia.org/wiki/Shortest_path_problem`\n\n样例输出中的树和数组 $*t*$ 如下所示：\n\n![image](https://espresso.codeforces.com/c8ef1b9618dab29c903d188ed687214b29865c8f.png)",
   "samples": [
     {
       "input": "7\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:49:46.337Z"
+  "fetchedAt": "2026-10-31T01:49:46.337Z",
+  "translatedAt": "2026-11-04T07:12:50.788+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

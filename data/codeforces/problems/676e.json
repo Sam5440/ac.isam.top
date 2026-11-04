@@ -4,7 +4,7 @@
   "contestId": 676,
   "index": "E",
   "title": "The Last Fight Between Human and AI",
-  "titleZh": null,
+  "titleZh": "人类与 AI 的最后一战",
   "url": "https://codeforces.com/contest/676/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "100 years have passed since the last victory of the man versus computer in Go. Technologies made a huge step forward and robots conquered the Earth! It's time for the final fight between human and robot that will decide the faith of the planet.\n\nThe following game was chosen for the fights: initially there is a polynomial\n\n$*P*(*x*) = *a*_{*n*}*x*^{*n*} + *a*_{*n* - 1}*x*^{*n* - 1} + ... + *a*_{1}*x* + *a*_{0},$\n\nwith yet undefined coefficients and the integer\n\n*k*\n\n. Players alternate their turns. At each turn, a player pick some index\n\n*j*\n\n, such that coefficient\n\n*a*<sub>*j*</sub>\n\nthat stay near\n\n*x*<sup>*j*</sup>\n\nis not determined yet and sets it to\n\nany\n\nvalue (integer or real, positive or negative,\n\n0\n\nis also allowed). Computer moves first. The human will be declared the winner if and only if the resulting polynomial will be divisible by\n\n*Q*(*x*) = *x* - *k*\n\n.\n\nPolynomial $*P*(*x*)$ is said to be divisible by polynomial $*Q*(*x*)$ if there exists a representation $*P*(*x*) = *B*(*x*)*Q*(*x*)$, where $*B*(*x*)$ is also some polynomial.\n\nSome moves have been made already and now you wonder, is it true that human can guarantee the victory if he plays optimally?\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*k*$ ($1 ≤ *n* ≤ 100 000, |*k*| ≤ 10 000$) — the size of the polynomial and the integer $*k*$.\n\nThe $*i*$-th of the following $*n* + 1$ lines contain character '`?`' if the coefficient near $*x*^{*i* - 1}$ is yet undefined or the integer value $*a*_{*i*}$, if the coefficient is already known ($- 10 000 ≤ *a*_{*i*} ≤ 10 000$). Each of integers $*a*_{*i*}$ (and even $*a*_{*n*}$) may be equal to $0$.\n\nPlease note, that it's not guaranteed that you are given the position of the game where it's computer's turn to move.\n\n## Output\n\nPrint \"`Yes`\" (without quotes) if the human has winning strategy, or \"`No`\" (without quotes) otherwise.\n\n## Note\n\nIn the first sample, computer set $*a*_{0}$ to $- 1$ on the first move, so if human can set coefficient $*a*_{1}$ to $0.5$ and win.\n\nIn the second sample, all coefficients are already set and the resulting polynomial is divisible by $*x* - 100$, so the human has won.",
-  "statementZhMd": null,
+  "statementZhMd": "距离人类在围棋中战胜计算机已经过去了 100 年。科技取得了巨大的进步，机器人征服了地球！现在，是决定这个星球命运的人类与机器人之间的最终决战时刻。\n\n双方选择了下面这个游戏进行对决：初始时有一个多项式\n\n$*P*(*x*) = *a*_{*n*}*x*^{*n*} + *a*_{*n* - 1}*x*^{*n* - 1} + ... + *a*_{*1*}*x* + *a*_{*0*},$\n\n其中系数尚未确定，以及一个整数\n\n*k*\n\n。双方轮流行动。每次行动时，玩家选择某个下标\n\n*j*\n\n，使得位于\n\n*x*<sup>*j*</sup>\n\n旁的系数\n\n*a*<sub>*j*</sub>\n\n尚未确定，并将其设为任意值（可以是整数或实数，可以为正数或负数，也可以为\n\n0\n\n）。计算机先手。当且仅当最终得到的多项式能被\n\n*Q*(*x*) = *x* - *k*\n\n整除时，人类获胜。\n\n如果存在某个多项式\n\n$*B*(*x*)$\n\n，使得\n\n$*P*(*x*) = *B*(*x*)*Q*(*x*)$，\n\n则称多项式 $*P*(*x*)$ 能被多项式 $*Q*(*x*)$ 整除。\n\n现在，游戏已经进行了一些步骤。你想知道：如果人类采取最优策略，他是否能够保证获胜？\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*k*$（$1 ≤ *n* ≤ 100 000，|*k*| ≤ 10 000$）——多项式的次数和整数 $*k*$。\n\n接下来的 $*n* + 1$ 行中，第 $*i*$ 行包含字符 '`?`'，表示 $*x*^{*i* - 1}$ 的系数尚未确定；或者包含整数值 $*a*_{*i*}$，表示该系数已经确定（$- 10 000 ≤ *a*_{*i*} ≤ 10 000$）。每个整数 $*a*_{*i*}$（甚至包括 $*a*_{*n*}$）都可能等于 $0$。\n\n请注意，题目不保证给出的局面一定轮到计算机行动。\n\n## 输出格式\n\n如果人类有必胜策略，输出 \"`Yes`\"（不含引号）；否则输出 \"`No`\"（不含引号）。\n\n## 说明\n\n在第一个样例中，计算机第一步将 $*a*_{0}$ 设为 $- 1$，因此如果人类能将系数 $*a*_{1}$ 设为 $0.5$，就可以获胜。\n\n在第二个样例中，所有系数都已经确定，且最终得到的多项式能被 $*x* - 100$ 整除，因此人类已经获胜。",
   "samples": [
     {
       "input": "1 2\n-1\n?\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:09:24.847Z"
+  "fetchedAt": "2026-10-31T01:09:24.847Z",
+  "translatedAt": "2026-11-04T06:35:15.046+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

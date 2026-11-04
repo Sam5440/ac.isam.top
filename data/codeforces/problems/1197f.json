@@ -4,7 +4,7 @@
   "contestId": 1197,
   "index": "F",
   "title": "Coloring Game",
-  "titleZh": null,
+  "titleZh": "染色游戏",
   "url": "https://codeforces.com/contest/1197/problem/F",
   "difficulty": 2700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "Alice and Bob want to play a game. They have $n$ colored paper strips; the $i$-th strip is divided into $a_i$ cells numbered from $1$ to $a_i$. Each cell can have one of $3$ colors.\n\nIn the beginning of the game, Alice and Bob put $n$ chips, the $i$-th chip is put in the $a_i$-th cell of the $i$-th strip. Then they take turns, Alice is first. Each player during their turn has to choose one chip and move it $1$, $2$ or $3$ cells backwards (i. e. if the current cell is $x$, then the chip can be moved to the cell $x - 1$, $x - 2$ or $x - 3$). There are two restrictions: the chip cannot leave the borders of the strip (for example, if the current cell is $3$, then you can't move the chip $3$ cells backwards); and some moves may be prohibited because of color of the current cell (a matrix $f$ with size $3 \\times 3$ is given, where $f_{i, j} = 1$ if it is possible to move the chip $j$ cells backwards from the cell which has color $i$, or $f_{i, j} = 0$ if such move is prohibited). The player who cannot make a move loses the game.\n\nInitially some cells may be uncolored. Bob can color all uncolored cells as he wants (but he cannot leave any cell uncolored). Let's call a coloring *good* if Bob can win the game no matter how Alice acts, if the cells are colored according to this coloring. Two colorings are different if at least one cell is colored in different colors in these two colorings.\n\nBob wants you to calculate the number of good colorings. Can you do it for him?\n\nSince the answer can be really large, you have to print it modulo $998244353$.\n\n## Input\n\nThe first line contains one integer $n$ — the number of paper strips ($1 \\le n \\le 1000$).\n\nThe second line contains $n$ integers $a_1$, $a_2$, ..., $a_n$ ($1 \\le a_i \\le 10^9$), where $a_i$ is the number of cells in the $i$-th strip.\n\nThe third line contains one integer $m$ ($1 \\le m \\le 1000$) — the number of cells that are already colored.\n\nThen $m$ lines follow, each describing an already colored cell. The $i$-th of these lines contains three integers $x_i$, $y_i$ and $c_i$ ($1 \\le x_i \\le n$, $1 \\le y_i \\le a_{x_i}$, $1 \\le c_i \\le 3$) denoting that the cell $y_i$ in the strip $x_i$ has color $c_i$. It is guaranteed that if $i \\ne j$, then either $x_i \\ne x_j$ or $y_i \\ne y_j$ (or both).\n\nThen $3$ lines follow, $i$-th line containing $3$ numbers $f_{i, 1}$, $f_{i, 2}$, $f_{i, 3}$ ($0 \\le f_{i, j} \\le 1$). If $f_{i, j} = 1$, then it is possible to move the chip $j$ cells backwards from the cell having color $i$; if $f_{i, j} = 0$, then such move is impossible.\n\n## Output\n\nPrint one integer: the number of good colorings, taken modulo $998244353$.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 想要进行一个游戏。他们有 $n$ 条彩色纸带，第 $i$ 条纸带被分成 $a_i$ 个编号为 $1$ 到 $a_i$ 的格子。每个格子可以被涂成 $3$ 种颜色中的一种。\n\n游戏开始时，Alice 和 Bob 放置 $n$ 枚棋子，第 $i$ 枚棋子放在第 $i$ 条纸带的第 $a_i$ 个格子中。随后两人轮流行动，Alice 先手。每名玩家在自己的回合中必须选择一枚棋子，并将其向后移动 $1$、$2$ 或 $3$ 个格子（即，如果棋子当前位于第 $x$ 个格子，则可以将其移动到第 $x - 1$、$x - 2$ 或 $x - 3$ 个格子）。移动有以下两条限制：棋子不能移出纸带的边界（例如，如果棋子当前位于第 $3$ 个格子，则不能将其向后移动 $3$ 个格子）；此外，某些移动可能会因为当前格子的颜色而被禁止（给定一个大小为 $3 \\times 3$ 的矩阵 $f$，如果 $f_{i, j} = 1$，则表示可以从颜色为 $i$ 的格子向后移动 $j$ 个格子；如果 $f_{i, j} = 0$，则表示禁止进行这样的移动）。无法进行移动的玩家输掉游戏。\n\n开始时，部分格子可能没有着色。Bob 可以按照自己的意愿为所有未着色的格子着色（但不能留下任何未着色的格子）。如果按照某种着色方案为格子着色后，无论 Alice 如何行动，Bob 都能够赢得游戏，则称该着色方案为*优秀*的。若至少有一个格子的颜色不同，则两个着色方案不同。\n\nBob 希望你计算优秀着色方案的数量。你能帮助他吗？\n\n由于答案可能非常大，请将其对 $998244353$ 取模后输出。\n\n## 输入格式\n\n第一行包含一个整数 $n$，表示纸带的数量（$1 \\le n \\le 1000$）。\n\n第二行包含 $n$ 个整数 $a_1$, $a_2$, ..., $a_n$（$1 \\le a_i \\le 10^9$），其中 $a_i$ 表示第 $i$ 条纸带上的格子数量。\n\n第三行包含一个整数 $m$（$1 \\le m \\le 1000$），表示已经着色的格子数量。\n\n接下来 $m$ 行，每行描述一个已经着色的格子。其中第 $i$ 行包含三个整数 $x_i$、$y_i$ 和 $c_i$（$1 \\le x_i \\le n$，$1 \\le y_i \\le a_{x_i}$，$1 \\le c_i \\le 3$），表示第 $x_i$ 条纸带的第 $y_i$ 个格子被涂成颜色 $c_i$。保证对于 $i \\ne j$，必有 $x_i \\ne x_j$ 或 $y_i \\ne y_j$（或两者均成立）。\n\n接下来是 $3$ 行，第 $i$ 行包含 $3$ 个数 $f_{i, 1}$、$f_{i, 2}$、$f_{i, 3}$（$0 \\le f_{i, j} \\le 1$）。如果 $f_{i, j} = 1$，则表示可以从颜色为 $i$ 的格子向后移动 $j$ 个格子；如果 $f_{i, j} = 0$，则表示无法进行这样的移动。\n\n## 输出格式\n\n输出一个整数：优秀着色方案的数量，结果对 $998244353$ 取模。",
   "samples": [
     {
       "input": "3\n3 4 5\n2\n1 1 1\n2 2 2\n1 1 1\n1 0 0\n0 1 1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:09:43.807Z"
+  "fetchedAt": "2026-11-02T19:09:43.807Z",
+  "translatedAt": "2026-11-04T05:05:20.182+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

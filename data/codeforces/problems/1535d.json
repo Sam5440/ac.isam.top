@@ -4,7 +4,7 @@
   "contestId": 1535,
   "index": "D",
   "title": "Playoff Tournament",
-  "titleZh": null,
+  "titleZh": "季后赛锦标赛",
   "url": "https://codeforces.com/contest/1535/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "$2^k$ teams participate in a playoff tournament. The tournament consists of $2^k - 1$ games. They are held as follows: first of all, the teams are split into pairs: team $1$ plays against team $2$, team $3$ plays against team $4$ (exactly in this order), and so on (so, $2^{k-1}$ games are played in that phase). When a team loses a game, it is eliminated, and each game results in elimination of one team (there are no ties). After that, only $2^{k-1}$ teams remain. If only one team remains, it is declared the champion; otherwise, $2^{k-2}$ games are played: in the first one of them, the winner of the game \"$1$ vs $2$\" plays against the winner of the game \"$3$ vs $4$\", then the winner of the game \"$5$ vs $6$\" plays against the winner of the game \"$7$ vs $8$\", and so on. This process repeats until only one team remains.\n\nFor example, this picture describes the chronological order of games with $k = 3$:\n\n![image](https://espresso.codeforces.com/4aa3cebb3b0666d76a81db0493d30fd7c13b5899.png)\n\nLet the string $s$ consisting of $2^k - 1$ characters describe the results of the games in chronological order as follows:\n\n- if $s_i$ is `0`, then the team with lower index wins the $i$-th game;\n- if $s_i$ is `1`, then the team with greater index wins the $i$-th game;\n- if $s_i$ is `?`, then the result of the $i$-th game is unknown (any team could win this game).\n\nLet $f(s)$ be the number of *possible winners* of the tournament described by the string $s$. A team $i$ is a *possible winner* of the tournament if it is possible to replace every `?` with either `1` or `0` in such a way that team $i$ is the champion.\n\nYou are given the initial state of the string $s$. You have to process $q$ queries of the following form:\n\n- $p$ $c$ — replace $s_p$ with character $c$, and print $f(s)$ as the result of the query.\n\n## Input\n\nThe first line contains one integer $k$ ($1 \\le k \\le 18$).\n\nThe second line contains a string consisting of $2^k - 1$ characters — the initial state of the string $s$. Each character is either `?`, `0`, or `1`.\n\nThe third line contains one integer $q$ ($1 \\le q \\le 2 \\cdot 10^5$) — the number of queries.\n\nThen $q$ lines follow, the $i$-th line contains an integer $p$ and a character $c$ ($1 \\le p \\le 2^k - 1$; $c$ is either `?`, `0`, or `1`), describing the $i$-th query.\n\n## Output\n\nFor each query, print one integer — $f(s)$.",
-  "statementZhMd": null,
+  "statementZhMd": "$2^k$ 支队伍参加一场季后赛锦标赛。锦标赛共进行 $2^k - 1$ 场比赛。比赛按如下方式进行：首先，将队伍两两分组：队伍 $1$ 与队伍 $2$ 比赛，队伍 $3$ 与队伍 $4$ 比赛（严格按照这个顺序），依此类推（这一阶段共进行 $2^{k-1}$ 场比赛）。当一支队伍输掉一场比赛时，它将被淘汰，每场比赛恰好淘汰一支队伍（不存在平局）。此后只剩下 $2^{k-1}$ 支队伍。如果只剩下一支队伍，则宣布它为冠军；否则，将进行 $2^{k-2}$ 场比赛：其中第一场比赛由“$1$ vs $2$”的胜者与“$3$ vs $4$”的胜者进行，然后由“$5$ vs $6$”的胜者与“$7$ vs $8$”的胜者进行比赛，依此类推。这个过程不断重复，直到只剩下一支队伍。\n\n例如，下面的图片描述了 $k = 3$ 时比赛的时间顺序：\n\n![image](https://espresso.codeforces.com/4aa3cebb3b0666d76a81db0493d30fd7c13b5899.png)\n\n令字符串 $s$ 由 $2^k - 1$ 个字符组成，并按照如下方式描述比赛按时间顺序进行的结果：\n\n- 如果 $s_i$ 是 `0`，则编号较小的队伍赢得第 $i$ 场比赛；\n- 如果 $s_i$ 是 `1`，则编号较大的队伍赢得第 $i$ 场比赛；\n- 如果 $s_i$ 是 `?`，则第 $i$ 场比赛的结果未知（任意一支队伍都可能获胜）。\n\n令 $f(s)$ 表示由字符串 $s$ 描述的锦标赛中*可能获胜的队伍*数量。如果可以将每个 `?` 替换为 `1` 或 `0`，使得队伍 $i$ 成为冠军，则称队伍 $i$ 是锦标赛的*可能获胜者*。\n\n给定字符串 $s$ 的初始状态。你需要处理 $q$ 个如下形式的询问：\n\n- $p$ $c$ — 将 $s_p$ 替换为字符 $c$，并输出询问后的 $f(s)$。\n\n## 输入格式\n\n第一行包含一个整数 $k$（$1 \\le k \\le 18$）。\n\n第二行包含一个由 $2^k - 1$ 个字符组成的字符串，即字符串 $s$ 的初始状态。每个字符都是 `?`、`0` 或 `1`。\n\n第三行包含一个整数 $q$（$1 \\le q \\le 2 \\cdot 10^5$），表示询问的数量。\n\n接下来 $q$ 行，每行包含一个整数 $p$ 和一个字符 $c$（$1 \\le p \\le 2^k - 1$；$c$ 为 `?`、`0` 或 `1`），描述第 $i$ 个询问。\n\n## 输出格式\n\n对于每个询问，输出一个整数，即 $f(s)$。",
   "samples": [
     {
       "input": "3\n0110?11\n6\n5 1\n6 ?\n7 ?\n1 ?\n5 ?\n1 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:23:55.794Z"
+  "fetchedAt": "2026-11-02T18:23:55.794Z",
+  "translatedAt": "2026-11-04T03:51:32.911+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

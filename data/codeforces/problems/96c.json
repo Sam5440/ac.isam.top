@@ -4,14 +4,14 @@
   "contestId": 96,
   "index": "C",
   "title": "Hockey",
-  "titleZh": null,
+  "titleZh": "曲棍球",
   "url": "https://codeforces.com/contest/96/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Petya loves hockey very much. One day, as he was watching a hockey match, he fell asleep. Petya dreamt of being appointed to change a hockey team's name. Thus, Petya was given the original team name $*w*$ and the collection of forbidden substrings $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$. All those strings consist of uppercase and lowercase Latin letters. String $*w*$ has the length of $|*w*|$, its characters are numbered from $1$ to $|*w*|$.\n\nFirst Petya should find all the occurrences of forbidden substrings in the $*w*$ string. During the search of substrings the case of letter shouldn't be taken into consideration. That is, strings \"`aBC`\" and \"`ABc`\" are considered equal.\n\nAfter that Petya should perform the replacement of all letters covered by the occurrences. More formally: a letter in the position $*i*$ should be replaced by any other one if for position $*i*$ in string $*w*$ there exist pair of indices $*l*, *r*$ ($1 ≤ *l* ≤ *i* ≤ *r* ≤ |*w*|$) such that substring $*w*[*l* ... *r*]$ is contained in the collection $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$, when using case insensitive comparison. During the replacement the letter's case should remain the same. Petya is not allowed to replace the letters that aren't covered by any forbidden substring.\n\nLetter $*letter*$ (uppercase or lowercase) is considered lucky for the hockey players. That's why Petya should perform the changes so that the $*letter*$ occurred in the resulting string as many times as possible. Help Petya to find such resulting string. If there are several such strings, find the one that comes first lexicographically.\n\nNote that the process of replacements is not repeated, it occurs only once. That is, if after Petya's replacements the string started to contain new occurrences of bad substrings, Petya pays no attention to them.\n\n## Input\n\nThe first line contains the only integer $*n*$ ($1 ≤ *n* ≤ 100$) — the number of forbidden substrings in the collection. Next $*n*$ lines contain these substrings. The next line contains string $*w*$. All those $*n* + 1$ lines are non-empty strings consisting of uppercase and lowercase Latin letters whose length does not exceed $100$. The last line contains a lowercase letter $*letter*$.\n\n## Output\n\nOutput the only line — Petya's resulting string with the maximum number of letters $*letter*$. If there are several answers then output the one that comes first lexicographically.\n\nThe lexicographical comparison is performed by the standard < operator in modern programming languages. The line $*a*$ is lexicographically smaller than the line $*b*$, if $*a*$ is a prefix of $*b*$, or there exists such an $*i*$ ($1 ≤ *i* ≤ |*a*|$), that $*a*_{*i*} < *b*_{*i*}$, and for any $*j*$ ($1 ≤ *j* < *i*$) $*a*_{*j*} = *b*_{*j*}$. $|*a*|$ stands for the length of string $*a*$.",
-  "statementZhMd": null,
+  "statementZhMd": "Petya 非常喜欢曲棍球。一天，他在观看一场曲棍球比赛时睡着了。Petya 梦见自己被任命为一支曲棍球队更改队名。因此，Petya 得到了球队原来的名称 $*w*$ 以及禁用子串集合 $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$。所有这些字符串都由大写和小写拉丁字母组成。字符串 $*w*$ 的长度为 $|*w*|$，其字符编号从 $1$ 到 $|*w*|$。\n\n首先，Petya 应找出字符串 $*w*$ 中所有禁用子串的出现位置。在查找子串时不考虑字母的大小写。也就是说，字符串 \"`aBC`\" 和 \"`ABc`\" 被视为相等。\n\n之后，Petya 应替换所有被这些出现位置覆盖的字母。更正式地说，如果对于字符串 $*w*$ 中的位置 $*i*$，存在一对下标 $*l*, *r*$（$1 ≤ *l* ≤ *i* ≤ *r* ≤ |*w*|$），使得子串 $*w*[*l* ... *r*]$（忽略大小写比较时）包含在集合 $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$ 中，则位置 $*i*$ 的字母应被替换为任意其他字母。替换时，字母的大小写必须保持不变。Petya 不能替换没有被任何禁用子串覆盖的字母。\n\n字母 $*letter*$（大写或小写）被认为能给曲棍球运动员带来好运。因此，Petya 应进行替换，使得 $*letter*$ 在最终字符串中出现的次数尽可能多。请帮助 Petya 找到这样的最终字符串。如果有多个这样的字符串，请找出其中字典序最小的一个。\n\n注意，替换过程不会重复进行，只执行一次。也就是说，如果 Petya 替换后字符串中出现了新的禁用子串，Petya 不会对此采取任何措施。\n\n## 输入\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 100$）——集合中禁用子串的数量。接下来的 $*n*$ 行包含这些子串。下一行包含字符串 $*w*$。这 $*n* + 1$ 行中的所有字符串均为非空字符串，由大写和小写拉丁字母组成，且长度不超过 $100$。最后一行包含一个小写字母 $*letter*$。\n\n## 输出\n\n输出唯一一行——Petya 的最终字符串，使其中 $*letter*$ 的数量最多。如果有多个答案，则输出其中字典序最小的一个。\n\n字典序比较采用现代编程语言中的标准 < 运算符。如果满足以下任一条件，则字符串 $*a*$ 的字典序小于字符串 $*b*$：$*a*$ 是 $*b*$ 的前缀；或者存在某个 $*i*$（$1 ≤ *i* ≤ |*a*|$），使得 $*a*_{*i*$} < *b*_{*i*}$，且对于任意 $*j*$（$1 ≤ *j* < *i*$），都有 $*a*_{*j*$} = *b*_{*j*$}。$|*a*|$ 表示字符串 $*a*$ 的长度。",
   "samples": [
     {
       "input": "3\nbers\nucky\nelu\nPetrLoveLuckyNumbers\nt\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:41:17.733Z"
+  "fetchedAt": "2026-10-31T02:41:17.733Z",
+  "translatedAt": "2026-11-04T08:03:34.856+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

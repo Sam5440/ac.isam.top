@@ -4,7 +4,7 @@
   "contestId": 1823,
   "index": "F",
   "title": "Random Walk",
-  "titleZh": null,
+  "titleZh": "随机游走",
   "url": "https://codeforces.com/contest/1823/problem/F",
   "difficulty": 2600,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree consisting of $n$ vertices and $n - 1$ edges, and each vertex $v$ has a counter $c(v)$ assigned to it.\n\nInitially, there is a chip placed at vertex $s$ and all counters, except $c(s)$, are set to $0$; $c(s)$ is set to $1$.\n\nYour goal is to place the chip at vertex $t$. You can achieve it by a series of moves. Suppose right now the chip is placed at the vertex $v$. In one move, you do the following:\n\n1. choose one of neighbors $to$ of vertex $v$ **uniformly at random** ($to$ is neighbor of $v$ if and only if there is an edge $\\{v, to\\}$ in the tree);\n2. move the chip to vertex $to$ and increase $c(to)$ by $1$;\n\nYou'll repeat the move above until you reach the vertex $t$.\n\nFor each vertex $v$ calculate the *expected value* of $c(v)$ modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains three integers $n$, $s$ and $t$ ($2 \\le n \\le 2 \\cdot 10^5$; $1 \\le s, t \\le n$; $s \\neq t$) — number of vertices in the tree and the starting and finishing vertices.\n\nNext $n - 1$ lines contain edges of the tree: one edge per line. The $i$-th line contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$; $u_i \\neq v_i$), denoting the edge between the nodes $u_i$ and $v_i$.\n\nIt's guaranteed that the given edges form a tree.\n\n## Output\n\nPrint $n$ numbers: *expected values* of $c(v)$ modulo $998\\,244\\,353$ for each $v$ from $1$ to $n$.\n\nFormally, let $M = 998\\,244\\,353$. It can be shown that the answer can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $p \\cdot q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot q \\equiv p \\pmod{M}$.\n\n## Note\n\nThe tree from the first example is shown below:\n\n![image](https://espresso.codeforces.com/1f97a4e744573216618dcb13f8bba740ea24f70f.png)\n\nLet's calculate expected value $E[c(1)]$:\n\n- $P(c(1) = 0) = 0$, since $c(1)$ is set to $1$ from the start.\n- $P(c(1) = 1) = \\frac{1}{2}$, since there is the only one series of moves that leads $c(1) = 1$. It's $1 \\rightarrow 2 \\rightarrow 3$ with probability $1 \\cdot \\frac{1}{2}$.\n- $P(c(1) = 2) = \\frac{1}{4}$: the only path is $1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 3$.\n- $P(c(1) = 3) = \\frac{1}{8}$: the only path is $1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 3$.\n- $P(c(1) = i) = \\frac{1}{2^i}$ in general case.\n\nAs a result, $E[c(1)] = \\sum\\limits_{i=1}^{\\infty}{i \\frac{1}{2^i}} = 2$.\n\nImage of tree in second test ![image](https://espresso.codeforces.com/a6d9e24f187028a288c6de81a8219a6ae7bd5b0b.png)\n\nImage of tree in third test ![image](https://espresso.codeforces.com/0e0dceee3908824901afe2711f77ecc859ce10bd.png)",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵由 $n$ 个顶点和 $n - 1$ 条边组成的树，每个顶点 $v$ 都有一个计数器 $c(v)$。\n\n初始时，一个棋子位于顶点 $s$，除了 $c(s)$ 之外的所有计数器都设为 $0$；$c(s)$ 被设为 $1$。\n\n你的目标是将棋子移动到顶点 $t$。你可以通过一系列移动来实现这一目标。假设当前棋子位于顶点 $v$。一次移动按以下步骤进行：\n\n1. **等概率随机**选择顶点 $v$ 的一个邻居 `to`（当且仅当树中存在边 $\\{v, to\\}$ 时，`to` 是 $v$ 的邻居）；\n2. 将棋子移动到顶点 `to`，并将 $c(to)$ 增加 $1$。\n\n重复上述移动，直到到达顶点 $t$。\n\n对于每个顶点 $v$，计算 $c(v)$ 的*期望值*对 $998\\,244\\,353$ 取模后的结果。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$s$ 和 $t$（$2 \\le n \\le 2 \\cdot 10^5$；$1 \\le s, t \\le n$；$s \\neq t$）——树的顶点数，以及起点和终点。\n\n接下来 $n - 1$ 行描述树的边，每行一条边。第 $i$ 行包含两个整数 $u_i$ 和 $v_i$（$1 \\le u_i, v_i \\le n$；$u_i \\neq v_i$），表示连接顶点 $u_i$ 和 $v_i$ 的边。\n\n保证给出的边构成一棵树。\n\n## 输出格式\n\n输出 $n$ 个数，依次表示顶点 $1$ 到 $n$ 的 $c(v)$ 的期望值对 $998\\,244\\,353$ 取模后的结果。\n\n形式化地，令 $M = 998\\,244\\,353$。可以证明，答案能够表示为最简分数 $\\frac{p}{q}$，其中 $p$ 和 $q$ 为整数，且 $q \\not \\equiv 0 \\pmod{M}$。输出满足以下条件的整数 $p \\cdot q^{-1} \\bmod M$。换句话说，输出一个整数 $x$，满足 $0 \\le x \\lt M$ 且 $x \\cdot q \\equiv p \\pmod{M}$。\n\n## 说明\n\n第一个样例中的树如下图所示：\n\n![image](https://espresso.codeforces.com/1f97a4e744573216618dcb13f8bba740ea24f70f.png)\n\n让我们计算 $E[c(1)]$：\n\n- $P(c(1) = 0) = 0$，因为 $c(1)$ 从一开始就被设为 $1$。\n- $P(c(1) = 1) = \\frac{1}{2}$，因为只有一种移动序列会使 $c(1) = 1$。它是 $1 \\rightarrow 2 \\rightarrow 3$，其概率为 $1 \\cdot \\frac{1}{2}$。\n- $P(c(1) = 2) = \\frac{1}{4}$：唯一的路径是 $1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 3$。\n- $P(c(1) = 3) = \\frac{1}{8}$：唯一的路径是 $1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 1 \\rightarrow_{1} 2 \\rightarrow_{0.5} 3$。\n- 一般情况下，$P(c(1) = i) = \\frac{1}{2^i}$。\n\n因此，$E[c(1)] = \\sum\\limits_{i=1}^{\\infty}{i \\frac{1}{2^i}} = 2$。\n\n第二个测试中的树如下图所示：[图片](https://espresso.codeforces.com/a6d9e24f187028a288c6de81a8219a6ae7bd5b0b.png)\n\n第三个测试中的树如下图所示：[图片](https://espresso.codeforces.com/0e0dceee3908824901afe2711f77ecc859ce10bd.png)",
   "samples": [
     {
       "input": "3 1 3\n1 2\n2 3\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:26:19.302Z"
+  "fetchedAt": "2026-10-30T22:26:19.302Z",
+  "translatedAt": "2026-11-04T02:48:59.491+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

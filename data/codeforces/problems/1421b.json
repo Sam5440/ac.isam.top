@@ -4,7 +4,7 @@
   "contestId": 1421,
   "index": "B",
   "title": "Putting Bricks in the Wall",
-  "titleZh": null,
+  "titleZh": "在墙上砌砖",
   "url": "https://codeforces.com/contest/1421/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*Pink Floyd are pulling a prank on Roger Waters. They know he doesn't like [walls](https://www.youtube.com/watch?v=YR5ApYxkU-U), he wants to be able to walk freely, so they are blocking him from exiting his room which can be seen as a grid.*\n\nRoger Waters has a square grid of size $n\\times n$ and he wants to traverse his grid from the upper left ($1,1$) corner to the lower right corner ($n,n$). Waters can move from a square to any other square adjacent by a side, as long as he is still in the grid. Also except for the cells ($1,1$) and ($n,n$) every cell has a value $0$ or $1$ in it.\n\nBefore starting his traversal he will pick either a $0$ or a $1$ and will be able to only go to cells values in which are equal to the digit he chose. The starting and finishing cells ($1,1$) and ($n,n$) are exempt from this rule, he may go through them regardless of picked digit. Because of this the cell ($1,1$) takes value the letter '`S`' and the cell ($n,n$) takes value the letter '`F`'.\n\nFor example, in the first example test case, he can go from ($1, 1$) to ($n, n$) by using the zeroes on this path: ($1, 1$), ($2, 1$), ($2, 2$), ($2, 3$), ($3, 3$), ($3, 4$), ($4, 4$)\n\nThe rest of the band (Pink Floyd) wants Waters to not be able to do his traversal, so while he is not looking they will **invert at most two cells** in the grid (from $0$ to $1$ or vice versa). They are afraid they will not be quick enough and asked for your help in choosing the cells. ** Note that you cannot invert cells $(1, 1)$ and $(n, n)$**.\n\nWe can show that there always exists a solution for the given constraints.\n\nAlso note that Waters will pick his digit of the traversal after the band has changed his grid, so he must not be able to reach ($n,n$) no matter what digit he picks.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 50$). Description of the test cases follows.\n\nThe first line of each test case contains one integers $n$ ($3 \\le n \\le 200$).\n\nThe following $n$ lines of each test case contain the binary grid, square ($1, 1$) being colored in '`S`' and square ($n, n$) being colored in '`F`'.\n\nThe sum of values of $n$ doesn't exceed $200$.\n\n## Output\n\nFor each test case output on the first line an integer $c$ ($0 \\le c \\le 2$)  — the number of inverted cells.\n\nIn $i$-th of the following $c$ lines, print the coordinates of the $i$-th cell you inverted. You may not invert the same cell twice. ** Note that you cannot invert cells $(1, 1)$ and $(n, n)$**.\n\n## Note\n\nFor the first test case, after inverting the cell, we get the following grid:\n\n```\nS010\n0001\n1001\n111F\n```",
-  "statementZhMd": null,
+  "statementZhMd": "*Pink Floyd 正在捉弄 Roger Waters。他们知道他不喜欢[墙](https://www.youtube.com/watch?v=YR5ApYxkU-U)，他希望能够自由行走，因此他们阻止他离开自己的房间，而这个房间可以看作一个网格。*\n\nRoger Waters 有一个大小为 $n\\times n$ 的方格网格，他想要从网格的左上角 ($1,1$) 走到右下角 ($n,n$)。Waters 可以从一个方格移动到任意一个与其共享边的相邻方格，只要移动后仍在网格内。此外，除了单元格 ($1,1$) 和 ($n,n$) 之外，每个单元格中都有一个值 $0$ 或 $1$。\n\n在开始行走之前，他会选择 $0$ 或 $1$ 中的一个，并且只能走到值等于所选数字的单元格。起点和终点 ($1,1$) 与 ($n,n$) 不受此规则限制，无论选择了哪个数字，他都可以经过这两个单元格。因此，单元格 ($1,1$) 的值为字母 '`S`'，单元格 ($n,n$) 的值为字母 '`F`'。\n\n例如，在第一个样例测试中，他可以沿着以下路径使用值为 $0$ 的单元格，从 ($1, 1$) 走到 ($n, n$)：($1, 1$)、($2, 1$)、($2, 2$)、($2, 3$)、($3, 3$)、($3, 4$)、($4, 4$)。\n\n乐队的其他成员（Pink Floyd）不希望 Waters 完成这次行走，因此他们打算趁他不注意时**至多翻转网格中的两个单元格**（将 $0$ 变为 $1$，或将 $1$ 变为 $0$）。他们担心自己来不及完成操作，于是请你帮忙选择要翻转的单元格。**注意，你不能翻转单元格 $(1, 1)$ 和 $(n, n)$。**\n\n可以证明，在给定约束下，总是存在一个解决方案。\n\n还需要注意，Waters 会在乐队修改网格之后才选择行走时使用的数字，因此无论他选择哪个数字，都不能到达 ($n,n$)。\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 50$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$3 \\le n \\le 200$）。\n\n接下来的 $n$ 行描述该测试用例中的二进制网格，其中方格 ($1, 1$) 被标记为 '`S`'，方格 ($n, n$) 被标记为 '`F`'。\n\n所有测试用例的 $n$ 之和不超过 $200$。\n\n## 输出\n\n对于每个测试用例，第一行输出一个整数 $c$（$0 \\le c \\le 2$）——翻转的单元格数量。\n\n接下来的 $c$ 行中，第 $i$ 行输出你翻转的第 $i$ 个单元格的坐标。不能翻转同一个单元格两次。**注意，你不能翻转单元格 $(1, 1)$ 和 $(n, n)$。**\n\n## 说明\n\n对于第一个测试用例，翻转单元格后，我们得到如下网格：\n\n```\nS010\n0001\n1001\n111F\n```",
   "samples": [
     {
       "input": "3\n4\nS010\n0001\n1000\n111F\n3\nS10\n101\n01F\n5\nS0101\n00000\n01111\n11111\n0001F\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:42:57.473Z"
+  "fetchedAt": "2026-10-30T23:42:57.473Z",
+  "translatedAt": "2026-11-04T04:20:44.973+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 193,
   "index": "C",
   "title": "Hamming Distance",
-  "titleZh": null,
+  "titleZh": "汉明距离",
   "url": "https://codeforces.com/contest/193/problem/C",
   "difficulty": 2400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*Hamming distance* between strings $*a*$ and $*b*$ of equal length (denoted by $*h*(*a*, *b*)$) is equal to the number of distinct integers $*i*$ $(1 ≤ *i* ≤ |*a*|)$, such that $*a*_{*i*} ≠ *b*_{*i*}$, where $*a*_{*i*}$ is the $*i*$-th symbol of string $*a*$, $*b*_{*i*}$ is the $*i*$-th symbol of string $*b*$. For example, the Hamming distance between strings \"`aba`\" and \"`bba`\" equals $1$, they have different first symbols. For strings \"`bbba`\" and \"`aaab`\" the Hamming distance equals $4$.\n\nJohn Doe had a paper on which four strings of equal length $*s*_{1}$, $*s*_{2}$, $*s*_{3}$ and $*s*_{4}$ were written. Each string $*s*_{*i*}$ consisted only of lowercase letters \"`a`\" and \"`b`\". John found the Hamming distances between all pairs of strings he had. Then he lost the paper with the strings but he didn't lose the Hamming distances between all pairs.\n\nHelp John restore the strings; find some four strings $*s*'_{1}$, $*s*'_{2}$, $*s*'_{3}, *s*'_{4}$ of equal length that consist only of lowercase letters \"`a`\" and \"`b`\", such that the pairwise Hamming distances between them are the same as between John's strings. More formally, set $*s*'_{*i*}$ must satisfy the condition ![image](https://espresso.codeforces.com/c4229770f30b6c0798b505843e2db014514a7205.png).\n\nTo make the strings easier to put down on a piece of paper, you should choose among all suitable sets of strings the one that has strings of **minimum length**.\n\n## Input\n\nThe first line contains space-separated integers $*h*(*s*_{1}, *s*_{2})$, $*h*(*s*_{1}, *s*_{3})$, $*h*(*s*_{1}, *s*_{4})$. The second line contains space-separated integers $*h*(*s*_{2}, *s*_{3})$ and $*h*(*s*_{2}, *s*_{4})$. The third line contains the single integer $*h*(*s*_{3}, *s*_{4})$.\n\nAll given integers $*h*(*s*_{*i*}, *s*_{*j*})$ are non-negative and do not exceed $10^{5}$. It is guaranteed that at least one number $*h*(*s*_{*i*}, *s*_{*j*})$ is positive.\n\n## Output\n\nPrint -1 if there's no suitable set of strings.\n\nOtherwise print on the first line number $*len*$ — the length of each string. On the $*i*$-th of the next four lines print string $*s*'_{*i*}$. If there are multiple sets with the minimum length of the strings, print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "字符串 $*a*$ 和 $*b*$ 等长时，它们之间的*汉明距离*（记为 $*h*(*a*, *b*)$）等于满足以下条件的不同整数 $*i*$ $(1 ≤ *i* ≤ |*a*|)$ 的数量：$*a*_{*i*} ≠ *b*_{*i*}$。其中，$*a*_{*i*}$ 是字符串 $*a*$ 的第 $*i*$ 个字符，$*b*_{*i*}$ 是字符串 $*b*$ 的第 $*i*$ 个字符。例如，字符串 \"`aba`\" 和 \"`bba`\" 之间的汉明距离为 $1$，因为它们的第一个字符不同。对于字符串 \"`bbba`\" 和 \"`aaab`\"，汉明距离为 $4$。\n\nJohn Doe 有一张纸，上面写有四个等长的字符串 $*s*_{1}$、$*s*_{2}$、$*s*_{3}$ 和 $*s*_{4}$。每个字符串 $*s*_{*i*}$ 只由小写字母 \"`a`\" 和 \"`b`\" 组成。John 求出了他所拥有的字符串中所有字符串对之间的汉明距离。后来他弄丢了写有这些字符串的纸，但仍然记得所有字符串对之间的汉明距离。\n\n请帮助 John 还原这些字符串：找出四个等长的字符串 $*s*'_{1}$、$*s*'_{2}$、$*s*'_{3}$、$*s*'_{4}$，它们只由小写字母 \"`a`\" 和 \"`b`\" 组成，并且任意两者之间的汉明距离与 John 原来的字符串中对应字符串对之间的汉明距离相同。更正式地说，集合 $*s*'_{*i*}$ 必须满足以下条件 ![image](https://espresso.codeforces.com/c4229770f30b6c0798b505843e2db014514a7205.png)。\n\n为了便于将字符串写在纸上，请在所有满足条件的字符串集合中，选择字符串**长度最小**的一组。\n\n## 输入\n\n第一行包含三个用空格分隔的整数 $*h*(*s*_{1}, *s*_{2})$、$*h*(*s*_{1}, *s*_{3})$、$*h*(*s*_{1}, *s*_{4})$。第二行包含两个用空格分隔的整数 $*h*(*s*_{2}, *s*_{3})$ 和 $*h*(*s*_{2}, *s*_{4})$。第三行包含一个整数 $*h*(*s*_{3}, *s*_{4})$。\n\n所有给出的整数 $*h*(*s*_{*i*}, *s*_{*j*})$ 均为非负数，且不超过 $10^{5}$。保证至少有一个数 $*h*(*s*_{*i*}, *s*_{*j*})$ 为正数。\n\n## 输出\n\n如果不存在合适的字符串集合，输出 -1。\n\n否则，第一行输出整数 $*len*$，表示每个字符串的长度。接下来的四行中，第 $*i*$ 行输出字符串 $*s*'_{*i*}$。如果存在多组长度最小的字符串，输出其中任意一组即可。",
   "samples": [
     {
       "input": "4 4 4\n4 4\n4\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:23:19.707Z"
+  "fetchedAt": "2026-10-31T02:23:19.707Z",
+  "translatedAt": "2026-11-04T07:37:45.199+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

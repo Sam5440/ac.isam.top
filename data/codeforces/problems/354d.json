@@ -4,7 +4,7 @@
   "contestId": 354,
   "index": "D",
   "title": "Transferring Pyramid",
-  "titleZh": null,
+  "titleZh": "传递金字塔",
   "url": "https://codeforces.com/contest/354/problem/D",
   "difficulty": 2900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Vasya and Petya are using an interesting data storing structure: a pyramid.\n\nThe pyramid consists of $*n*$ rows, the $*i*$-th row contains $*i*$ cells. Each row is shifted half a cell to the left relative to the previous row. The cells are numbered by integers from 1 to ![image](https://espresso.codeforces.com/5e54199c623e6698508e30637903d25ae30f0d42.png) as shown on the picture below.\n\nAn example of a pyramid at $*n* = 5$ is:\n\n![image](https://espresso.codeforces.com/31141e183e25c84a2d719254fc413c2c38675cbc.png)\n\nThis data structure can perform operations of two types:\n\n1. Change the value of a specific cell. It is described by three integers: $\"*t* *i* *v*\"$, where $*t* = 1$ (the type of operation), $*i*$ — the number of the cell to change and $*v*$ the value to assign to the cell.\n2. Change the value of some subpyramid. The picture shows a highlighted subpyramid with the top in cell $5$. It is described by $*s* + 2$ numbers: $\"*t* *i* *v*_{1} *v*_{2} ... *v*_{*s*}\"$, where $*t* = 2$, $*i*$ — the number of the top cell of the pyramid, $*s*$ — the size of the subpyramid (the number of cells it has), $*v*_{*j*}$ — the value you should assign to the $*j*$-th cell of the subpyramid.\n\nFormally: a subpyramid with top at the $*i*$-th cell of the $*k*$-th row (the $5$-th cell is the second cell of the third row) will contain cells from rows from $*k*$ to $*n*$, the $(*k* + *p*)$-th row contains cells from the $*i*$-th to the $(*i* + *p*)$-th ($0 ≤ *p* ≤ *n* - *k*$).\n\nVasya and Petya had two identical pyramids. Vasya changed some cells in his pyramid and he now wants to send his changes to Petya. For that, he wants to find a sequence of operations at which Petya can repeat all Vasya's changes. Among all possible sequences, Vasya has to pick the minimum one (the one that contains the fewest numbers).\n\nYou have a pyramid of $*n*$ rows with $*k*$ changed cells. Find the sequence of operations which result in **each of the $*k*$ changed cells being changed by at least one operation**. Among all the possible sequences pick **the one that contains the fewest numbers**.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*k*$ ($1 ≤ *n*, *k* ≤ 10^{5}$).\n\nThe next $*k*$ lines contain the coordinates of the modified cells $*r*_{*i*}$ and $*c*_{*i*}$ $(1 ≤ *c*_{*i*} ≤ *r*_{*i*} ≤ *n*)$ — the row and the cell's number in the row. All cells are distinct.\n\n## Output\n\nPrint a single number showing how many numbers the final sequence has.\n\n## Note\n\nOne of the possible solutions of the first sample consists of two operations:\n\n$2 4 *v*_{4} *v*_{7} *v*_{8}$\n\n$2 6 *v*_{6} *v*_{9} *v*_{10}$\n\nThe picture shows the changed cells color-highlighted. The subpyramid used by the first operation is highlighted blue and the subpyramid used by the first operation is highlighted yellow:\n\n![image](https://espresso.codeforces.com/b94154aa23cf9599f28f9e48e25d1c413c2730f4.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Vasya 和 Petya 使用一种有趣的数据存储结构：金字塔。\n\n金字塔由 $*n*$ 行组成，第 $*i*$ 行包含 $*i*$ 个单元格。每一行相对于前一行向左偏移半个单元格。单元格的编号为从 1 到 ![image](https://espresso.codeforces.com/5e54199c623e6698508e30637903d25ae30f0d42.png) 的整数，如下图所示。\n\n当 $*n* = 5$ 时，金字塔的示例如下：\n\n![image](https://espresso.codeforces.com/31141e183e25c84a2d719254fc413c2c38675cbc.png)\n\n这种数据结构可以执行以下两种操作：\n\n1. 修改指定单元格的值。该操作由三个整数描述：$\"*t* *i* *v*\"$，其中 $*t* = 1$（操作类型），$*i*$ 表示要修改的单元格编号，$*v*$ 表示要赋给该单元格的值。\n2. 修改某个子金字塔的值。下图展示了一个顶点位于单元格 5 的高亮子金字塔。该操作由 $*s* + 2$ 个数字描述：$\"*t* *i* *v*_{1} *v*_{2} ... *v*_{*s*}\"$，其中 $*t* = 2$，$*i*$ 表示金字塔顶端单元格的编号，$*s*$ 表示子金字塔的大小（即其中包含的单元格数量），$*v*_{*j*}$ 表示应赋给子金字塔中第 $*j*$ 个单元格的值。\n\n形式化地说：一个顶点位于第 $*k*$ 行第 $*i*$ 个单元格的子金字塔（第 $5$ 个单元格是第三行的第二个单元格）将包含从第 $*k*$ 行到第 $*n*$ 行的单元格，其中第 $(*k* + *p*)$ 行包含从第 $*i*$ 个到第 $(*i* + *p*)$ 个单元格（$0 ≤ *p* ≤ *n*$ - $*k*$）。\n\nVasya 和 Petya 有两个完全相同的金字塔。Vasya 修改了自己金字塔中的一些单元格，现在他想将这些修改发送给 Petya。为此，他希望找到一个操作序列，使 Petya 可以重复 Vasya 的所有修改。在所有可能的序列中，Vasya 必须选择最短的一个（即包含数字数量最少的序列）。\n\n现在给定一个有 $*n*$ 行、其中有 $*k*$ 个单元格被修改过的金字塔。请找出一个操作序列，使得这 $*k*$ 个被修改的单元格中的**每一个都至少被某个操作修改一次**。在所有可能的序列中，选择**包含数字数量最少的一个**。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*k*$（$1 ≤ *n*, *k* ≤ 10^{5}$）。\n\n接下来的 $*k*$ 行包含被修改单元格的坐标 $*r*_{*i*}$ 和 $*c*_{*i*}$（$1 ≤ *c*_{*i*} ≤ *r*_{*i*} ≤ *n*$），分别表示行号以及该单元格在所在行中的编号。所有单元格均不相同。\n\n## 输出格式\n\n输出一个整数，表示最终序列中包含的数字数量。\n\n## 说明\n\n第一组样例的一种可能解包含两个操作：\n\n$2 4 *v*_{4} *v*_{7} *v*_{8}$\n\n$2 6 *v*_{6} *v*_{9} *v*_{10}$\n\n图片中用不同颜色高亮显示了被修改的单元格。第一个操作使用的子金字塔以蓝色高亮显示，第一个操作使用的子金字塔以黄色高亮显示：\n\n![image](https://espresso.codeforces.com/b94154aa23cf9599f28f9e48e25d1c413c2730f4.png)",
   "samples": [
     {
       "input": "4 5\n3 1\n3 3\n4 1\n4 3\n4 4\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:56:57.814Z"
+  "fetchedAt": "2026-10-31T01:56:57.814Z",
+  "translatedAt": "2026-11-04T07:18:38.849+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

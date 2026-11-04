@@ -4,7 +4,7 @@
   "contestId": 1504,
   "index": "B",
   "title": "Flip the Bits",
-  "titleZh": null,
+  "titleZh": "翻转比特",
   "url": "https://codeforces.com/contest/1504/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "There is a binary string $a$ of length $n$. In one operation, you can select any prefix of $a$ with an **equal** number of $0$ and $1$ symbols. Then all symbols in the prefix are inverted: each $0$ becomes $1$ and each $1$ becomes $0$.\n\nFor example, suppose $a=0111010000$.\n\n- In the first operation, we can select the prefix of length $8$ since it has four $0$'s and four $1$'s: $[01110100]00\\to [10001011]00$.\n- In the second operation, we can select the prefix of length $2$ since it has one $0$ and one $1$: $[10]00101100\\to [01]00101100$.\n- It is illegal to select the prefix of length $4$ for the third operation, because it has three $0$'s and one $1$.\n\nCan you transform the string $a$ into the string $b$ using some finite number of operations (possibly, none)?\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le 3\\cdot 10^5$) — the length of the strings $a$ and $b$.\n\nThe following two lines contain strings $a$ and $b$ of length $n$, consisting of symbols $0$ and $1$.\n\nThe sum of $n$ across all test cases does not exceed $3\\cdot 10^5$.\n\n## Output\n\nFor each test case, output \"`YES`\" if it is possible to transform $a$ into $b$, or \"`NO`\" if it is impossible. You can print each letter in any case (upper or lower).\n\n## Note\n\nThe first test case is shown in the statement.\n\nIn the second test case, we transform $a$ into $b$ by using zero operations.\n\nIn the third test case, there is no legal operation, so it is impossible to transform $a$ into $b$.\n\nIn the fourth test case, here is one such transformation:\n\n- Select the length $2$ prefix to get $100101010101$.\n- Select the length $12$ prefix to get $011010101010$.\n- Select the length $8$ prefix to get $100101011010$.\n- Select the length $4$ prefix to get $011001011010$.\n- Select the length $6$ prefix to get $100110011010$.\n\nIn the fifth test case, the only legal operation is to transform $a$ into $111000$. From there, the only legal operation is to return to the string we started with, so we cannot transform $a$ into $b$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有一个长度为 $n$ 的二进制字符串 $a$。在一次操作中，你可以选择 $a$ 的任意一个前缀，要求该前缀中 $0$ 和 $1$ 的数量相等。然后将此前缀中的所有字符翻转：每个 $0$ 变为 $1$，每个 $1$ 变为 $0$。\n\n例如，设 $a=0111010000$。\n\n- 第一次操作中，我们可以选择长度为 $8$ 的前缀，因为其中有四个 $0$ 和四个 $1$：$[01110100]00\\to [10001011]00$。\n- 第二次操作中，我们可以选择长度为 $2$ 的前缀，因为其中有一个 $0$ 和一个 $1$：$[10]00101100\\to [01]00101100$。\n- 第三次操作中不能选择长度为 $4$ 的前缀，因为其中有三个 $0$ 和一个 $1$。\n\n你能否通过有限次操作（也可以不进行任何操作）将字符串 $a$ 变为字符串 $b$？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\le t\\le 10^4$），表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 3\\cdot 10^5$），表示字符串 $a$ 和 $b$ 的长度。\n\n接下来的两行分别包含长度为 $n$ 的字符串 $a$ 和 $b$，仅由字符 $0$ 和 $1$ 组成。\n\n所有测试用例的 $n$ 之和不超过 $3\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果可以将 $a$ 变为 $b$，输出“`YES`”；否则输出“`NO`”。每个字母可以使用任意大小写形式输出。\n\n## 说明\n\n第一个测试用例在题目描述中进行了说明。\n\n在第二个测试用例中，我们不进行任何操作即可将 $a$ 变为 $b$。\n\n在第三个测试用例中，不存在任何合法操作，因此无法将 $a$ 变为 $b$。\n\n在第四个测试用例中，下面是一种可行的变换过程：\n\n- 选择长度为 $2$ 的前缀，得到 $100101010101$。\n- 选择长度为 $12$ 的前缀，得到 $011010101010$。\n- 选择长度为 $8$ 的前缀，得到 $100101011010$。\n- 选择长度为 $4$ 的前缀，得到 $011001011010$。\n- 选择长度为 $6$ 的前缀，得到 $100110011010$。\n\n在第五个测试用例中，唯一的合法操作是将 $a$ 变为 $111000$。从该字符串出发，唯一的合法操作会将其变回初始字符串，因此无法将 $a$ 变为 $b$。",
   "samples": [
     {
       "input": "5\n10\n0111010000\n0100101100\n4\n0000\n0000\n3\n001\n000\n12\n010101010101\n100110011010\n6\n000111\n110100\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:34:28.550Z"
+  "fetchedAt": "2026-10-30T23:34:28.550Z",
+  "translatedAt": "2026-11-04T04:02:45.036+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

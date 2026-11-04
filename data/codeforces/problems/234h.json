@@ -4,7 +4,7 @@
   "contestId": 234,
   "index": "H",
   "title": "Merging Two Decks",
-  "titleZh": null,
+  "titleZh": "合并两副牌",
   "url": "https://codeforces.com/contest/234/problem/H",
   "difficulty": 2000,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are two decks of cards lying on the table in front of you, some cards in these decks lay face up, some of them lay face down. You want to merge them into one deck in which each card is face down. You're going to do it in two stages.\n\nThe first stage is to merge the two decks in such a way that the relative order of the cards from the same deck doesn't change. That is, for any two different cards $*i*$ and $*j*$ in one deck, if card $*i*$ lies above card $*j*$, then after the merge card $*i*$ must also be above card $*j*$.\n\nThe second stage is performed on the deck that resulted from the first stage. At this stage, the executed operation is the turning operation. In one turn you can take a few of the top cards, turn all of them, and put them back. Thus, each of the taken cards gets turned and the order of these cards is reversed. That is, the card that was on the bottom before the turn, will be on top after it.\n\nYour task is to make sure that all the cards are lying face down. Find such an order of merging cards in the first stage and the sequence of turning operations in the second stage, that make all the cards lie face down, and the number of turns is minimum.\n\n## Input\n\nThe first input line contains a single integer $*n*$ — the number of cards in the first deck $(1 ≤ *n* ≤ 10^{5})$.\n\nThe second input line contains $*n*$ integers, separated by single spaces $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ $(0 ≤ *a*_{*i*} ≤ 1)$. Value $*a*_{*i*}$ equals 0, if the $*i*$-th card is lying face down, and 1, if the card is lying face up. The cards are given in the order from the topmost one to the bottommost one.\n\nThe third input line contains integer $*m*$ — the number of cards in the second deck $(1 ≤ *m* ≤ 10^{5})$.\n\nThe fourth input line contains $*m*$ integers, separated by single spaces $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$ $(0 ≤ *b*_{*i*} ≤ 1)$. Value $*b*_{*i*}$ equals 0, if the $*i*$-th card is lying face down, and 1, if the card is lying face up. The cards are given in the order from the topmost to the bottommost.\n\n## Output\n\nIn the first line print $*n* + *m*$ space-separated integers — the numbers of the cards in the order, in which they will lie after the first stage. List the cards from top to bottom. The cards from the first deck should match their indexes from $1$ to $*n*$ in the order from top to bottom. The cards from the second deck should match their indexes, increased by $*n*$, that is, numbers from $*n* + 1$ to $*n* + *m*$ in the order from top to bottom.\n\nIn the second line print a single integer $*x*$ — the minimum number of turn operations you need to make all cards in the deck lie face down. In the third line print $*x*$ integers: $*c*_{1}, *c*_{2}, ..., *c*_{*x*}$ $(1 ≤ *c*_{*i*} ≤ *n* + *m*)$, each of them represents the number of cards to take from the top of the deck to perform a turn operation. Print the operations in the order, in which they should be performed.\n\nIf there are multiple optimal solutions, print any of them. It is guaranteed that the minimum number of operations doesn't exceed $6·10^{5}$.",
-  "statementZhMd": null,
+  "statementZhMd": "桌上有两副牌，其中一些牌正面朝上，另一些牌正面朝下。你希望将它们合并成一副牌，并使每张牌都正面朝下。整个过程分为两个阶段。\n\n第一阶段是将两副牌合并，同时保证同一副牌中各张牌的相对顺序不变。也就是说，对于同一副牌中的任意两张不同的牌 $*i*$ 和 $*j*$，如果牌 $*i*$ 位于牌 $*j*$ 的上方，那么合并后牌 $*i*$ 也必须位于牌 $*j*$ 的上方。\n\n第二阶段在第一阶段得到的牌堆上进行。此阶段可以执行翻转操作。一次操作中，你可以取出顶部的若干张牌，将它们整体翻转后放回。因此，被取出的每张牌都会翻面，并且这些牌的顺序会反转。也就是说，翻转前位于底部的牌，在翻转后会位于顶部。\n\n你的任务是确保所有牌最终都正面朝下。请找出第一阶段中牌的合并顺序，以及第二阶段中的翻转操作序列，使所有牌都正面朝下，并且翻转次数最少。\n\n## 输入\n\n第一行包含一个整数 $*n*$——第一副牌中的牌数 $(1 ≤ *n* ≤ 10^{5})$。\n\n第二行包含 $*n*$ 个由单个空格分隔的整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ $(0 ≤ *a*_{*i*} ≤ 1)$。如果第 $*i*$ 张牌正面朝下，则 $*a*_{*i*}$ 的值为 0；如果该牌正面朝上，则其值为 1。牌按照从顶部到下部的顺序给出。\n\n第三行包含一个整数 $*m*$——第二副牌中的牌数 $(1 ≤ *m* ≤ 10^{5})$。\n\n第四行包含 $*m*$ 个由单个空格分隔的整数 $*b*_{1}, *b*_{2}, ..., *b*_{*m*}$ $(0 ≤ *b*_{*i*} ≤ 1)$。如果第 $*i*$ 张牌正面朝下，则 $*b*_{*i*}$ 的值为 0；如果该牌正面朝上，则其值为 1。牌按照从顶部到下部的顺序给出。\n\n## 输出\n\n第一行输出 $*n* + *m*$ 个由空格分隔的整数，表示第一阶段结束后牌的排列顺序。按照从顶部到底部的顺序输出这些牌。第一副牌中的牌应分别对应从 1 到 $*n*$ 的编号，并按照从顶部到底部的顺序编号。第二副牌中的牌应在其编号上加上 $*n*$，即编号为 $*n* + 1$ 到 $*n* + *m*$。\n\n第二行输出一个整数 $*x*$——为了使牌堆中的所有牌都正面朝下，所需的最少翻转操作次数。第三行输出 $*x*$ 个整数：$*c*_{1}, *c*_{2}, ..., *c*_{*x*}$ $(1 ≤ *c*_{*i*} ≤ *n* + *m*)$，其中每个整数表示一次翻转操作中需要从牌堆顶部取出的牌数。按照操作执行的顺序输出这些整数。\n\n如果存在多个最优解，输出任意一个即可。保证最少操作次数不超过 $6·10^{5}$。",
   "samples": [
     {
       "input": "3\n1 0 1\n4\n1 1 1 1\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:14:21.986Z"
+  "fetchedAt": "2026-11-02T20:14:21.986Z",
+  "translatedAt": "2026-11-04T07:38:36.140+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

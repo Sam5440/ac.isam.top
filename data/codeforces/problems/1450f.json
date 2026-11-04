@@ -4,7 +4,7 @@
   "contestId": 1450,
   "index": "F",
   "title": "The Struggling Contestant",
-  "titleZh": null,
+  "titleZh": "苦苦挣扎的选手",
   "url": "https://codeforces.com/contest/1450/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "To help those contestants who struggle a lot in contests, the headquarters of Codeforces are planning to introduce Division 5. In this new division, the tags of all problems will be announced prior to the round to help the contestants.\n\nThe contest consists of $n$ problems, where the tag of the $i$-th problem is denoted by an integer $a_i$.\n\nYou want to AK (solve all problems). To do that, you must solve the problems in some order. To make the contest funnier, you created extra limitations on yourself. You do not want to solve two problems consecutively with the same tag since it is boring. Also, you are afraid of big jumps in difficulties while solving them, so you want to minimize the number of times that you solve two problems consecutively that are not adjacent in the contest order.\n\nFormally, your solve order can be described by a permutation $p$ of length $n$. The **cost** of a permutation is defined as the number of indices $i$ ($1\\le i \\lt n$) where $|p_{i+1}-p_i| \\gt 1$. You have the requirement that $a_{p_i}\\ne a_{p_{i+1}}$ for all $1\\le i \\lt n$.\n\nYou want to know the minimum possible cost of permutation that satisfies the requirement. If no permutations meet this requirement, you should report about it.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\leq t\\leq 10^4$) — the number of test cases.\n\nThe first line of the description of each test case contains a single integer $n$ ($1 \\le n \\le 10^5$) — the number of problems in the contest.\n\nThe next line contains $n$ integers $a_1,a_2,\\ldots a_n$ ($1 \\le a_i \\le n$) — the tags of the problems.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, if there are no permutations that satisfy the required condition, print $-1$. Otherwise, print the minimum possible cost of a permutation that satisfies the required condition.\n\n## Note\n\nIn the first test case, let $p=[5, 4, 3, 2, 1, 6]$. The cost is $1$ because we jump from $p_5=1$ to $p_6=6$, and $|6-1| \\gt 1$. This permutation is valid because we don't solve problems with the same tag twice in a row. We cannot find a permutation with a cost smaller than $1$.\n\nIn the second test case, let $p=[1,5,2,4,3]$. The cost is $3$ because $|p_2-p_1| \\gt 1$, $|p_3-p_2| \\gt 1$, and $|p_4-p_3| \\gt 1$. The permutation is valid because we don't solve problems with the same tag twice in a row. We cannot find a permutation with a cost smaller than $3$.\n\nIn the third test case, for any order of solving the problems, we will solve two problems with the same tag consecutively, so the answer is $-1$.",
-  "statementZhMd": null,
+  "statementZhMd": "为了帮助那些在比赛中苦苦挣扎的选手，Codeforces 总部计划引入 Division 5。在这个新的分组中，所有题目的标签都会在比赛开始前公布，以帮助参赛者。\n\n比赛由 $n$ 道题组成，其中第 $i$ 道题的标签用整数 $a_i$ 表示。\n\n你想要 AK（解决所有题目）。为此，你必须按照某种顺序解决这些题目。为了让比赛更有趣，你给自己增加了一些限制。你不想连续解决两道标签相同的题，因为那样很无聊。此外，你害怕在解题过程中难度出现较大的跳跃，因此你希望最小化连续解决的两道题在比赛中的编号不相邻的次数。\n\n形式化地说，你的解题顺序可以用一个长度为 $n$ 的排列 $p$ 表示。排列的**代价**定义为满足 $|p_{i+1}-p_i| \\gt 1$ 的下标 $i$（$1\\leq i \\lt n$）的数量。你还必须满足对于所有 $1\\leq i \\lt n$，都有 $a_{p_i}\\ne a_{p_{i+1}}$。\n\n你需要求满足要求的排列的最小可能代价。如果不存在满足要求的排列，请报告这一情况。\n\n## 输入\n\n第一行包含一个整数 $t$（$1\\leq t\\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^5$）——比赛中的题目数量。\n\n下一行包含 $n$ 个整数 $a_1,a_2,\\ldots a_n$（$1 \\le a_i \\le n$）——题目的标签。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出\n\n对于每个测试用例，如果不存在满足要求的排列，输出 $-1$。否则，输出满足要求的排列的最小可能代价。\n\n## 说明\n\n在第一个测试用例中，可以取 $p=[5, 4, 3, 2, 1, 6]$。代价为 $1$，因为从 $p_5=1$ 跳到 $p_6=6$ 时，满足 $|6-1| \\gt 1$。这个排列是合法的，因为我们没有连续两次解决标签相同的题目。无法找到代价小于 $1$ 的排列。\n\n在第二个测试用例中，可以取 $p=[1,5,2,4,3]$。代价为 $3$，因为 $|p_2-p_1| \\gt 1$、$|p_3-p_2| \\gt 1$ 且 $|p_4-p_3| \\gt 1$。这个排列是合法的，因为我们没有连续两次解决标签相同的题目。无法找到代价小于 $3$ 的排列。\n\n在第三个测试用例中，无论以何种顺序解决题目，我们都会连续解决两道标签相同的题，因此答案为 $-1$。",
   "samples": [
     {
       "input": "4\n6\n2 1 2 3 1 1\n5\n1 1 1 2 2\n8\n7 7 2 7 7 1 8 7\n10\n1 2 3 4 1 1 2 3 4 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:40:53.852Z"
+  "fetchedAt": "2026-10-30T23:40:53.852Z",
+  "translatedAt": "2026-11-04T04:11:58.804+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1406,
   "index": "C",
   "title": "Link Cut Centroids",
-  "titleZh": null,
+  "titleZh": "连接切换中心",
   "url": "https://codeforces.com/contest/1406/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 512,
   "statementMd": "Fishing Prince loves trees, and he especially loves trees with only one centroid. The tree is a connected graph without cycles.\n\nA vertex is a **centroid** of a tree only when you cut this vertex (remove it and remove all edges from this vertex), the size of the largest connected component of the remaining graph is the smallest possible.\n\nFor example, the centroid of the following tree is $2$, because when you cut it, the size of the largest connected component of the remaining graph is $2$ and it can't be smaller.\n\n![image](https://espresso.codeforces.com/e26bc5c65a2b0cd51716f7c5c8261180cb5715fe.png)\n\nHowever, in some trees, there might be more than one centroid, for example:\n\n![image](https://espresso.codeforces.com/69ba15bed324eb45c0e873be5b6e6a4f6a7f3989.png)\n\nBoth vertex $1$ and vertex $2$ are centroids because the size of the largest connected component is $3$ after cutting each of them.\n\nNow Fishing Prince has a tree. He should cut one edge of the tree (it means to remove the edge). After that, he should add one edge. The resulting graph after these two operations should be a tree. He can add the edge that he cut.\n\nHe wants the centroid of the resulting tree to be unique. Help him and find any possible way to make the operations. It can be proved, that at least one such way always exists.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains an integer $t$ ($1\\leq t\\leq 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($3\\leq n\\leq 10^5$) — the number of vertices.\n\nEach of the next $n-1$ lines contains two integers $x, y$ ($1\\leq x,y\\leq n$). It means, that there exists an edge connecting vertices $x$ and $y$.\n\nIt's guaranteed that the given graph is a tree.\n\nIt's guaranteed that the sum of $n$ for all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, print two lines.\n\nIn the first line print two integers $x_1, y_1$ ($1 \\leq x_1, y_1 \\leq n$), which means you cut the edge between vertices $x_1$ and $y_1$. There should exist edge connecting vertices $x_1$ and $y_1$.\n\nIn the second line print two integers $x_2, y_2$ ($1 \\leq x_2, y_2 \\leq n$), which means you add the edge between vertices $x_2$ and $y_2$.\n\nThe graph after these two operations should be a tree.\n\nIf there are multiple solutions you can print any.\n\n## Note\n\nNote that you can add the same edge that you cut.\n\nIn the first test case, after cutting and adding the same edge, the vertex $2$ is still the only centroid.\n\nIn the second test case, the vertex $2$ becomes the only centroid after cutting the edge between vertices $1$ and $3$ and adding the edge between vertices $2$ and $3$.",
-  "statementZhMd": null,
+  "statementZhMd": "Fishing Prince 喜欢树，尤其喜欢只有一个重心的树。树是一种无环的连通图。\n\n当删除一个顶点及其关联的所有边后，如果剩余图中最大连通分量的大小达到所有可能情况中的最小值，则称该顶点是这棵树的**重心**。\n\n例如，下面这棵树的重心是 $2$，因为删除它后，剩余图中最大连通分量的大小为 $2$，并且无法更小。\n\n![image](https://espresso.codeforces.com/e26bc5c65a2b0cd51716f7c5c8261180cb5715fe.png)\n\n然而，有些树可能有多个重心，例如：\n\n![image](https://espresso.codeforces.com/69ba15bed324eb45c0e873be5b6e6a4f6a7f3989.png)\n\n顶点 $1$ 和顶点 $2$ 都是重心，因为删除其中任意一个后，最大连通分量的大小都是 $3$。\n\n现在 Fishing Prince 有一棵树。他需要删除树中的一条边（即移除这条边），然后再添加一条边。完成这两次操作后得到的图必须仍然是一棵树。他可以添加刚刚删除的那条边。\n\n他希望操作后得到的树只有一个重心。请帮助他找到任意一种可行的操作方案。可以证明，至少存在一种满足条件的方案。\n\n## 输入格式\n\n输入包含多个测试用例。第一行包含一个整数 $t$（$1\\leq t\\leq 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$3\\leq n\\leq 10^5$）——顶点的数量。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $x, y$（$1\\leq x,y\\leq n$），表示存在一条连接顶点 $x$ 和顶点 $y$ 的边。\n\n保证给出的图是一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出两行。\n\n第一行输出两个整数 $x_1, y_1$（$1 \\leq x_1, y_1 \\leq n$），表示删除顶点 $x_1$ 和顶点 $y_1$ 之间的边。图中必须存在连接顶点 $x_1$ 和顶点 $y_1$ 的边。\n\n第二行输出两个整数 $x_2, y_2$（$1 \\leq x_2, y_2 \\leq n$），表示添加顶点 $x_2$ 和顶点 $y_2$ 之间的边。\n\n完成这两次操作后的图必须是一棵树。\n\n如果有多个解，输出任意一个即可。\n\n## 说明\n\n注意，你可以添加刚刚删除的同一条边。\n\n在第一个测试用例中，删除并添加同一条边后，顶点 $2$ 仍然是唯一的重心。\n\n在第二个测试用例中，删除顶点 $1$ 和顶点 $3$ 之间的边，并添加顶点 $2$ 和顶点 $3$ 之间的边后，顶点 $2$ 成为唯一的重心。",
   "samples": [
     {
       "input": "2\n5\n1 2\n1 3\n2 4\n2 5\n6\n1 2\n1 3\n1 4\n2 5\n2 6\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:45:27.616Z"
+  "fetchedAt": "2026-10-30T23:45:27.616Z",
+  "translatedAt": "2026-11-04T04:25:24.785+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

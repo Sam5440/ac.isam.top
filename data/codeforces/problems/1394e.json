@@ -4,7 +4,7 @@
   "contestId": 1394,
   "index": "E",
   "title": "Boboniu and Banknote Collection",
-  "titleZh": null,
+  "titleZh": "Boboniu 与纸币收藏",
   "url": "https://codeforces.com/contest/1394/problem/E",
   "difficulty": 3500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*No matter what trouble you're in, don't be afraid, but face it with a smile.*\n\n*I've made another billion dollars!*\n\n* — Boboniu*\n\nBoboniu has issued his currencies, named Bobo Yuan. Bobo Yuan (BBY) is a series of currencies. Boboniu gives each of them a positive integer identifier, such as BBY-1, BBY-2, etc.\n\nBoboniu has a BBY collection. His collection looks like a sequence. For example:\n\n![image](https://espresso.codeforces.com/cc58eb001fee58dd9838da6f9968c3d16f18575b.png)\n\nWe can use sequence $a=[1,2,3,3,2,1,4,4,1]$ of length $n=9$ to denote it.\n\nNow Boboniu wants to *fold* his collection. You can imagine that Boboniu stick his collection to a long piece of paper and fold it between currencies:\n\n![image](https://espresso.codeforces.com/b7784e5ff2cb1e3ba617a45850b2fa12f92ae949.png)\n\nBoboniu will only fold the same identifier of currencies together. In other words, if $a_i$ is folded over $a_j$ ($1\\le i,j\\le n$), then $a_i=a_j$ must hold. Boboniu doesn't care if you follow this rule in the process of folding. But once it is finished, the rule should be obeyed.\n\nA formal definition of *fold* is described in notes.\n\nAccording to the picture above, you can *fold* $a$ two times. In fact, you can *fold* $a=[1,2,3,3,2,1,4,4,1]$ at most two times. So the maximum number of folds of it is $2$.\n\nAs an international fan of Boboniu, you're asked to calculate the maximum number of folds.\n\nYou're given a sequence $a$ of length $n$, for each $i$ ($1\\le i\\le n$), you need to calculate the maximum number of folds of $[a_1,a_2,\\ldots,a_i]$.\n\n## Input\n\nThe first line contains an integer $n$ ($1\\le n\\le 10^5$).\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1\\le a_i\\le n$).\n\n## Output\n\nPrint $n$ integers. The $i$-th of them should be equal to the maximum number of folds of $[a_1,a_2,\\ldots,a_i]$.\n\n## Note\n\nFormally, for a sequence $a$ of length $n$, let's define the *folding sequence* as a sequence $b$ of length $n$ such that:\n\n- $b_i$ ($1\\le i\\le n$) is either $1$ or $-1$.\n- Let $p(i)=[b_i=1]+\\sum_{j=1}^{i-1}b_j$. For all $1\\le i \\lt j\\le n$, if $p(i)=p(j)$, then $a_i$ should be equal to $a_j$.\n\n($[A]$ is the value of boolean expression $A$. i. e. $[A]=1$ if $A$ is true, else $[A]=0$).\n\nNow we define the number of folds of $b$ as $f(b)=\\sum_{i=1}^{n-1}[b_i\\ne b_{i+1}]$.\n\nThe maximum number of folds of $a$ is $F(a)=\\max\\{ f(b)\\mid b \\text{ is a folding sequence of }a \\}$.",
-  "statementZhMd": null,
+  "statementZhMd": "*无论你身处何种困境，都不要害怕，而要面带微笑地面对它。*\n\n*我又赚了十亿美元！*\n\n*— Boboniu*\n\nBoboniu 发行了自己的货币，名为 Bobo Yuan。Bobo Yuan（BBY）是一系列货币。Boboniu 为每种货币赋予一个正整数标识符，例如 BBY-1、BBY-2 等。\n\nBoboniu 收藏了一些 BBY。他的收藏看起来像一个序列。例如：\n\n![image](https://espresso.codeforces.com/cc58eb001fee58dd9838da6f9968c3d16f18575b.png)\n\n我们可以用长度为 $n=9$ 的序列 $a=[1,2,3,3,2,1,4,4,1]$ 来表示它。\n\n现在 Boboniu 想要*折叠*他的收藏。你可以想象 Boboniu 将他的收藏粘在一张长纸上，并在货币之间进行折叠：\n\n![image](https://espresso.codeforces.com/b7784e5ff2cb1e3ba617a45850b2fa12f92ae949.png)\n\nBoboniu 只会将标识符相同的货币折叠到一起。换句话说，如果 $a_i$ 折叠到了 $a_j$ 上（$1\\le i,j\\le n$），那么必须满足 $a_i=a_j$。在折叠过程中，Boboniu 不在意你是否遵守这一规则。但折叠完成后，必须满足该规则。\n\n*折叠*的形式化定义见说明部分。\n\n根据上图，你可以将 $a$ 折叠两次。事实上，序列 $a=[1,2,3,3,2,1,4,4,1]$ 最多可以折叠两次。因此，它的最大折叠次数为 $2$。\n\n作为 Boboniu 的国际粉丝，你需要计算最大折叠次数。\n\n给定一个长度为 $n$ 的序列 $a$，对于每个 $i$（$1\\le i\\le n$），你需要计算 $[a_1,a_2,\\ldots,a_i]$ 的最大折叠次数。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1\\le n\\le 10^5$）。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1\\le a_i\\le n$）。\n\n## 输出格式\n\n输出 $n$ 个整数。第 $i$ 个整数应等于 $[a_1,a_2,\\ldots,a_i]$ 的最大折叠次数。\n\n## 说明\n\n形式化地，对于一个长度为 $n$ 的序列 $a$，我们将*折叠序列*定义为一个长度为 $n$ 的序列 $b$，满足：\n\n- $b_i$（$1\\le i\\le n$）要么为 $1$，要么为 $-1$。\n- 令 $p(i)=[b_i=1]+\\sum_{j=1}^{i-1}b_j$。对于所有 $1\\le i \\lt j\\le n$，如果 $p(i)=p(j)$，则应满足 $a_i=a_j$。\n\n（$[A]$ 表示布尔表达式 $A$ 的值，即当 $A$ 为真时 $[A]=1$，否则 $[A]=0$。）\n\n现在定义 $b$ 的折叠次数为 $f(b)=\\sum_{i=1}^{n-1}[b_i\\ne b_{i+1}]$。\n\n$a$ 的最大折叠次数为 $F(a)=\\max\\{ f(b)\\mid b \\text{ is a folding sequence of }a \\}$。",
   "samples": [
     {
       "input": "9\n1 2 3 3 2 1 4 4 1\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:46:28.101Z"
+  "fetchedAt": "2026-10-30T23:46:28.101Z",
+  "translatedAt": "2026-11-04T04:23:16.018+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 907,
   "index": "B",
   "title": "Tic-Tac-Toe",
-  "titleZh": null,
+  "titleZh": "井字棋",
   "url": "https://codeforces.com/contest/907/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Two bears are playing tic-tac-toe via mail. It's boring for them to play usual tic-tac-toe game, so they are a playing modified version of this game. Here are its rules.\n\nThe game is played on the following field.\n\n![image](https://espresso.codeforces.com/619bef70c6bd3376c64bcad65130a7cec7bd4713.png)\n\nPlayers are making moves by turns. At first move a player can put his chip in any cell of any small field. For following moves, there are some restrictions: if during last move the opposite player put his chip to cell with coordinates $(*x*_{*l*}, *y*_{*l*})$ in some small field, the next move should be done in one of the cells of the small field with coordinates $(*x*_{*l*}, *y*_{*l*})$. For example, if in the first move a player puts his chip to lower left cell of central field, then the second player on his next move should put his chip into some cell of lower left field (pay attention to the first test case). If there are no free cells in the required field, the player can put his chip to any empty cell on any field.\n\nYou are given current state of the game and coordinates of cell in which the last move was done. You should find all cells in which the current player can put his chip.\n\nA hare works as a postman in the forest, he likes to foul bears. Sometimes he changes the game field a bit, so the current state of the game could be unreachable. However, after his changes the cell where the last move was done is not empty. You don't need to find if the state is unreachable or not, just output possible next moves according to the rules.\n\n## Input\n\nFirst 11 lines contains descriptions of table with 9 rows and 9 columns which are divided into 9 small fields by spaces and empty lines. Each small field is described by 9 characters without spaces and empty lines. character \"`x`\" (ASCII-code 120) means that the cell is occupied with chip of the first player, character \"`o`\" (ASCII-code 111) denotes a field occupied with chip of the second player, character \".\" (ASCII-code 46) describes empty cell.\n\nThe line after the table contains two integers $*x*$ and $*y*$ ($1 ≤ *x*, *y* ≤ 9$). They describe coordinates of the cell in table where the last move was done. Rows in the table are numbered from up to down and columns are numbered from left to right.\n\nIt's guaranteed that cell where the last move was done is filled with \"`x`\" or \"`o`\". Also, it's guaranteed that there is at least one empty cell. It's not guaranteed that current state of game is reachable.\n\n## Output\n\nOutput the field in same format with characters \"`!`\" (ASCII-code 33) on positions where the current player can put his chip. All other cells should not be modified.\n\n## Note\n\nIn the first test case the first player made a move to lower left cell of central field, so the second player can put a chip only to cells of lower left field.\n\nIn the second test case the last move was done to upper left cell of lower central field, however all cells in upper left field are occupied, so the second player can put his chip to any empty cell.\n\nIn the third test case the last move was done to central cell of central field, so current player can put his chip to any cell of central field, which is already occupied, so he can move anywhere. Pay attention that this state of the game is unreachable.",
-  "statementZhMd": null,
+  "statementZhMd": "两只熊通过邮件下井字棋。普通的井字棋对它们来说太无聊了，因此它们在玩这个游戏的一个改版。规则如下。\n\n游戏在下面的棋盘上进行。\n\n![image](https://espresso.codeforces.com/619bef70c6bd3376c64bcad65130a7cec7bd4713.png)\n\n玩家轮流进行操作。第一步时，玩家可以将自己的棋子放入任意一个小棋盘的任意格子中。之后的操作有一些限制：如果上一回合中，对手将棋子放入了某个小棋盘中坐标为 $(*x*_{*l*}, *y*_{*l*})$ 的格子，那么下一步必须在坐标为 $(*x*_{*l*}, *y*_{*l*})$ 的小棋盘中的某个格子进行。例如，如果第一步中某位玩家将棋子放入了中央小棋盘的左下角格子，那么第二位玩家下一步就必须将棋子放入左下方的小棋盘中的某个格子（请注意第一个样例）。如果指定的小棋盘中没有空闲格子，那么玩家可以将棋子放入任意小棋盘中的任意空格。\n\n给定游戏的当前状态，以及上一步落子的格子的坐标。请找出当前玩家可以落子的所有格子。\n\n一只兔子在森林里当邮递员，它喜欢捉弄熊。有时它会稍微改变游戏棋盘，因此游戏当前状态可能无法通过正常游戏过程得到。不过，在它修改之后，上一步落子的格子仍然不为空。你不需要判断当前状态是否可达，只需按照规则输出所有可能的下一步。\n\n## 输入格式\n\n前 11 行描述了一个由 9 行 9 列组成的棋盘，这些行和列被空格和空行划分为 9 个小棋盘。每个小棋盘由 9 个不含空格和空行的字符描述。字符 \"`x`\"（ASCII 码为 120）表示该格被第一位玩家的棋子占据，字符 \"`o`\"（ASCII 码为 111）表示该格被第二位玩家的棋子占据，字符 \".\"（ASCII 码为 46）表示空格。\n\n棋盘之后的一行包含两个整数 $*x*$ 和 $*y*$（$1 ≤ *x*, *y* ≤ 9$）。它们表示上一步落子的格子在棋盘中的坐标。棋盘的行从上到下编号，列从左到右编号。\n\n保证上一步落子的格子中填有 \"`x`\" 或 \"`o`\"。同时保证至少存在一个空格。不保证当前游戏状态是可达的。\n\n## 输出格式\n\n以相同格式输出棋盘，并在当前玩家可以落子的格子位置输出字符 \"`!`\"。其他所有格子均不得修改。\n\n## 说明\n\n在第一个样例中，第一位玩家在中央小棋盘的左下角格子落子，因此第二位玩家只能在左下方的小棋盘中的格子落子。\n\n在第二个样例中，上一步落子在下方中央小棋盘的左上角格子中，但左上方小棋盘中的所有格子都已被占据，因此第二位玩家可以在任意空格落子。\n\n在第三个样例中，上一步落子在中央小棋盘的中心格子中，因此当前玩家可以在中央小棋盘的任意格子落子；但该小棋盘已经被占满，所以他可以在任意位置落子。请注意，这个游戏状态是不可达的。",
   "samples": [
     {
       "input": "... ... ...\n... ... ...\n... ... ...\n\n... ... ...\n... ... ...\n... x.. ...\n\n... ... ...\n... ... ...\n... ... ...\n6 4\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:38:37.794Z"
+  "fetchedAt": "2026-10-31T00:38:37.794Z",
+  "translatedAt": "2026-11-04T06:00:23.698+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,14 +4,14 @@
   "contestId": 867,
   "index": "D",
   "title": "Gotta Go Fast",
-  "titleZh": null,
+  "titleZh": "必须快点",
   "url": "https://codeforces.com/contest/867/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You're trying to set the record on your favorite video game. The game consists of $*N*$ levels, which must be completed sequentially in order to beat the game. You usually complete each level as fast as possible, but sometimes finish a level slower. Specifically, you will complete the $*i*$-th level in either $*F*_{*i*}$ seconds or $*S*_{*i*}$ seconds, where $*F*_{*i*} < *S*_{*i*}$, and there's a $*P*_{*i*}$ percent chance of completing it in $*F*_{*i*}$ seconds. After completing a level, you may decide to either continue the game and play the next level, or reset the game and start again from the first level. Both the decision and the action are instant.\n\nYour goal is to complete all the levels sequentially in at most $*R*$ total seconds. You want to minimize the expected amount of time playing before achieving that goal. If you continue and reset optimally, how much total time can you expect to spend playing?\n\n## Input\n\nThe first line of input contains integers $*N*$ and $*R*$ ![image](https://espresso.codeforces.com/d2c79d4856c2464abf3fa2fd0cd97903b776e041.png), the number of levels and number of seconds you want to complete the game in, respectively. $*N*$ lines follow. The $*i*$th such line contains integers $*F*_{*i*}, *S*_{*i*}, *P*_{*i*}$ $(1 ≤ *F*_{*i*} < *S*_{*i*} ≤ 100, 80 ≤ *P*_{*i*} ≤ 99)$, the fast time for level $*i*$, the slow time for level $*i*$, and the probability (as a percentage) of completing level $*i*$ with the fast time.\n\n## Output\n\nPrint the total expected time. Your answer must be correct within an absolute or relative error of $10^{ - 9}$.\n\nFormally, let your answer be $*a*$, and the jury's answer be $*b*$. Your answer will be considered correct, if ![image](https://espresso.codeforces.com/d9eaa1eb5c0113a563036232d18ed097f799eecd.png).\n\n## Note\n\nIn the first example, you never need to reset. There's an $81%$ chance of completing the level in $2$ seconds and a $19%$ chance of needing $8$ seconds, both of which are within the goal time. The expected time is $0.81·2 + 0.19·8 = 3.14$.\n\nIn the second example, you should reset after the first level if you complete it slowly. On average it will take $0.25$ slow attempts before your first fast attempt. Then it doesn't matter whether you complete the second level fast or slow. The expected time is $0.25·30 + 20 + 0.85·3 + 0.15·9 = 31.4$.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在尝试为自己最喜欢的视频游戏创造纪录。游戏由 $*N*$ 个关卡组成，必须按顺序完成所有关卡才能通关。通常你会尽可能快地完成每个关卡，但有时完成某个关卡会花费更长时间。具体来说，你将用 $*F*_{*i*}$ 秒或 $*S*_{*i*}$ 秒完成第 $*i*$ 个关卡，其中 $*F*_{*i*} < *S*_{*i*}$，并且有 $*P*_{*i*}$% 的概率用 $*F*_{*i*}$ 秒完成。完成一个关卡后，你可以选择继续游戏并进行下一个关卡，或重置游戏并从第一个关卡重新开始。这两个决策及其执行都是瞬时完成的。\n\n你的目标是在总计不超过 $*R*$ 秒的时间内按顺序完成所有关卡。你希望在达成目标前进行游戏的期望时间最少。如果你以最优方式选择继续或重置，预计总共需要进行多长时间的游戏？\n\n## 输入格式\n\n输入的第一行包含整数 $*N*$ 和 $*R*$ ![image](https://espresso.codeforces.com/d2c79d4856c2464abf3fa2fd0cd97903b776e041.png)，分别表示关卡数量以及你希望在多少秒内通关。\n\n接下来有 $*N*$ 行。第 $*i*$ 行包含整数 $*F*_{*i*}, *S*_{*i*}, *P*_{*i*}$ $(1 ≤ *F*_{*i*} < *S*_{*i*} ≤ 100, 80 ≤ *P*_{*i*} ≤ 99)$，分别表示第 $*i*$ 个关卡的快速完成时间、慢速完成时间，以及以快速时间完成该关卡的概率（百分比）。\n\n## 输出格式\n\n输出总期望时间。你的答案的绝对误差或相对误差不超过 $10^{ - 9}$。\n\n形式化地，设你的答案为 $*a*$，评测程序的答案为 $*b*$。如果 ![image](https://espresso.codeforces.com/d9eaa1eb5c0113a563036232d18ed097f799eecd.png)，则你的答案将被判定为正确。\n\n## 说明\n\n在第一个样例中，你永远不需要重置。有 $81%$ 的概率在 $2$ 秒内完成关卡，有 $19%$ 的概率需要 $8$ 秒完成，这两种情况都在目标时间以内。期望时间为 $0.81·2 + 0.19·8 = 3.14$。\n\n在第二个样例中，如果第一个关卡完成得较慢，你应该重置。平均而言，在第一次快速完成之前，需要经历 $0.25$ 次慢速尝试。之后，第二个关卡无论快速完成还是慢速完成都无关紧要。期望时间为 $0.25·30 + 20 + 0.85·3 + 0.15·9 = 31.4$。",
   "samples": [
     {
       "input": "1 8\n2 8 81\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:43:33.944Z"
+  "fetchedAt": "2026-10-31T00:43:33.944Z",
+  "translatedAt": "2026-11-04T06:01:13.034+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

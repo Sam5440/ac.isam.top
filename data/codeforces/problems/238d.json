@@ -4,7 +4,7 @@
   "contestId": 238,
   "index": "D",
   "title": "Tape Programming",
-  "titleZh": null,
+  "titleZh": "磁带编程",
   "url": "https://codeforces.com/contest/238/problem/D",
   "difficulty": 2900,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a programming language in which every program is a non-empty sequence of \"`<`\" and \"`>`\" signs and digits. Let's explain how the interpreter of this programming language works. A program is interpreted using movement of instruction pointer (IP) which consists of two parts.\n\n- Current character pointer (CP);\n- Direction pointer (DP) which can point left or right;\n\nInitially CP points to the leftmost character of the sequence and DP points to the right.\n\nWe repeat the following steps until the first moment that CP points to somewhere outside the sequence.\n\n- If CP is pointing to a digit the interpreter prints that digit then CP moves one step according to the direction of DP. After that the value of the printed digit in the sequence decreases by one. If the printed digit was $0$ then it cannot be decreased therefore it's erased from the sequence and the length of the sequence decreases by one.\n- If CP is pointing to \"`<`\" or \"`>`\" then the direction of DP changes to \"left\" or \"right\" correspondingly. Then CP moves one step according to DP. If the new character that CP is pointing to is \"`<`\" or \"`>`\" then the previous character will be erased from the sequence.\n\nIf at any moment the CP goes outside of the sequence the execution is terminated.\n\nIt's obvious the every program in this language terminates after some steps.\n\nWe have a sequence $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$ of \"`<`\", \"`>`\" and digits. You should answer $*q*$ queries. Each query gives you $*l*$ and $*r*$ and asks how many of each digit will be printed if we run the sequence $*s*_{*l*}, *s*_{*l* + 1}, ..., *s*_{*r*}$ as an independent program in this language.\n\n## Input\n\nThe first line of input contains two integers $*n*$ and $*q*$ $(1 ≤ *n*, *q* ≤ 10^{5})$ — represents the length of the sequence $*s*$ and the number of queries.\n\nThe second line contains $*s*$, a sequence of \"`<`\", \"`>`\" and digits (`0..9`) written from left to right. Note, that the characters of $*s*$ are not separated with spaces.\n\nThe next $*q*$ lines each contains two integers $*l*_{*i*}$ and $*r*_{*i*}$ $(1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*)$ — the $*i*$-th query.\n\n## Output\n\nFor each query print $10$ space separated integers: $*x*_{0}, *x*_{1}, ..., *x*_{9}$ where $*x*_{*i*}$ equals the number of times the interpreter prints $*i*$ while running the corresponding program. Print answers to the queries in the order they are given in input.",
-  "statementZhMd": null,
+  "statementZhMd": "有一种编程语言，其中每个程序都是由“`<`”“`>`”符号和数字组成的非空序列。下面介绍这种编程语言的解释器是如何工作的。程序通过指令指针（IP）的移动来解释执行，IP 由两部分组成：\n\n- 当前字符指针（CP）；\n- 方向指针（DP），可以指向左或右。\n\n初始时，CP 指向序列中最左侧的字符，DP 指向右方。\n\n重复执行以下步骤，直到 CP 首次指向序列之外的位置：\n\n- 如果 CP 指向一个数字，解释器会输出该数字，然后 CP 按照 DP 的方向移动一步。之后，序列中刚刚输出的数字减一。如果输出的数字是 $0$，则无法再减一，因此将其从序列中删除，序列长度减一。\n- 如果 CP 指向“`<`”或“`>`”，则 DP 的方向分别变为“左”或“右”。然后 CP 按照 DP 的方向移动一步。如果 CP 指向的新字符是“`<`”或“`>`”，则前一个字符会从序列中删除。\n\n如果 CP 在任何时刻移到序列之外，执行就会终止。\n\n显然，这种语言中的每个程序都会在若干步之后终止。\n\n给定一个由“`<`”“`>`”和数字组成的序列 $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$。你需要回答 $*q*$ 个询问。每个询问给出 $*l*$ 和 $*r*$，询问将序列 $*s*_{*l*}, *s*_{*l* + 1}, ..., *s*_{*r*}$ 作为该语言中的一个独立程序运行时，每个数字分别会被输出多少次。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*q*$ $(1 ≤ *n*, *q* ≤ 10^{5})$，分别表示序列 $*s*$ 的长度和询问的数量。\n\n第二行包含 $*s*$，即一个由“`<`”“`>`”和数字组成的序列（`0..9`），字符从左到右给出。注意，$*s*$ 中的字符之间没有空格。\n\n接下来的 $*q*$ 行中，每行包含两个整数 $*l*_{*i*}$ 和 $*r*_{*i*}$ $(1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*)$，表示第 $*i*$ 个询问。\n\n## 输出格式\n\n对于每个询问，输出 $10$ 个用空格分隔的整数：$*x*_{0}, *x*_{1}, ..., *x*_{9}$，其中 $*x*_{*i*}$ 表示运行对应程序时，解释器输出数字 $*i*$ 的次数。按照输入中给出的顺序输出各个询问的答案。",
   "samples": [
     {
       "input": "7 4\n1>3>22<\n1 3\n4 7\n7 7\n1 7\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:16:35.067Z"
+  "fetchedAt": "2026-10-31T02:16:35.067Z",
+  "translatedAt": "2026-11-04T07:34:45.651+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

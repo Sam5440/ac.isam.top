@@ -4,7 +4,7 @@
   "contestId": 1028,
   "index": "D",
   "title": "Order book",
-  "titleZh": null,
+  "titleZh": "订单簿",
   "url": "https://codeforces.com/contest/1028/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let's consider a simplified version of order book of some stock. The order book is a list of orders (offers) from people that want to buy or sell one unit of the stock, each order is described by *direction* (`BUY` or `SELL`) and price.\n\nAt every moment of time, every `SELL` offer has higher price than every `BUY` offer.\n\n**In this problem no two ever existed orders will have the same price.**\n\nThe lowest-price `SELL` order and the highest-price `BUY` order are called the *best offers*, marked with black frames on the picture below.\n\n![image](https://espresso.codeforces.com/778909826a3b7aa52c1bfb0b871c8217cd2de3fc.png) The presented order book says that someone wants to sell the product at price $12$ and it's the best `SELL` offer because the other two have higher prices. The best `BUY` offer has price $10$.\n\nThere are two possible actions in this orderbook:\n\n1. Somebody adds a new order of some direction with some price.\n2. Somebody accepts the best possible `SELL` or `BUY` offer (makes a deal). It's impossible to accept not the best `SELL` or `BUY` offer (to make a deal at worse price). After someone accepts the offer, it is removed from the orderbook forever.\n\nIt is allowed to add new `BUY` order only with prices less than the best `SELL` offer (if you want to buy stock for higher price, then instead of adding an order you should accept the best `SELL` offer). Similarly, one couldn't add a new `SELL` order with price less or equal to the best `BUY` offer. For example, you can't add a new offer \"`SELL` $20$\" if there is already an offer \"`BUY` $20$\" or \"`BUY` $25$\" — in this case you just accept the best `BUY` offer.\n\nYou have a damaged order book log (in the beginning the are no orders in book). Every action has one of the two types:\n\n1. \"`ADD` $p$\" denotes adding a new order with price $p$ and unknown direction. The order must not contradict with orders still not removed from the order book.\n2. \"`ACCEPT` $p$\" denotes accepting an existing best offer with price $p$ and unknown direction.\n\nThe directions of all actions are lost. Information from the log isn't always enough to determine these directions. Count the number of ways to correctly restore all `ADD` action directions so that all the described conditions are satisfied at any moment. Since the answer could be large, output it modulo $10^9 + 7$. If it is impossible to correctly restore directions, then output $0$.\n\n## Input\n\nThe first line contains an integer $n$ ($1 \\le n \\le 363\\,304$) — the number of actions in the log.\n\nEach of the next $n$ lines contains a string \"`ACCEPT`\" or \"`ADD`\" and an integer $p$ ($1 \\le p \\le 308\\,983\\,066$), describing an action type and price.\n\nAll `ADD` actions have different prices. For `ACCEPT` action it is guaranteed that the order with the same price has already been added but has not been accepted yet.\n\n## Output\n\nOutput the number of ways to restore directions of `ADD` actions modulo $10^9 + 7$.\n\n## Note\n\nIn the first example each of orders may be `BUY` or `SELL`.\n\nIn the second example the order with price $1$ has to be `BUY` order, the order with the price $3$ has to be `SELL` order.",
-  "statementZhMd": null,
+  "statementZhMd": "让我们考虑某种股票的订单簿的简化版本。订单簿是一个订单（报价）列表，其中的每个订单来自想要买入或卖出一单位股票的人，每个订单由*方向*（`BUY` 或 `SELL`）和价格描述。\n\n在任意时刻，每个 `SELL` 报价的价格都高于每个 `BUY` 报价的价格。\n\n**在本题中，任何曾经存在过的两个订单的价格都不会相同。**\n\n价格最低的 `SELL` 订单和价格最高的 `BUY` 订单称为*最佳报价*，如下图中用黑框标出的报价。\n\n![image](https://espresso.codeforces.com/778909826a3b7aa52c1bfb0b871c8217cd2de3fc.png) 图中的订单簿表示有人想以价格 $12$ 卖出该商品，并且这是最佳 `SELL` 报价，因为另外两个报价的价格更高。最佳 `BUY` 报价的价格为 $10$。\n\n订单簿中有两种可能的操作：\n\n1. 某人以某个方向和某个价格添加一个新订单。\n2. 某人接受最佳的 `SELL` 或 `BUY` 报价（达成交易）。不可能接受不是最佳的 `SELL` 或 `BUY` 报价（即以更差的价格达成交易）。某人接受报价后，该报价将从订单簿中永久移除。\n\n只有当价格低于最佳 `SELL` 报价时，才允许添加新的 `BUY` 订单（如果想以更高的价格买入股票，那么应该接受最佳 `SELL` 报价，而不是添加订单）。类似地，不能添加价格小于或等于最佳 `BUY` 报价的新的 `SELL` 订单。例如，如果已经存在价格为 $20$ 或 $25$ 的 `BUY` 报价，就不能添加新的“`SELL` $20$”报价——此时你只能接受最佳的 `BUY` 报价。\n\n你有一份损坏的订单簿日志（开始时订单簿为空）。每个操作有以下两种类型之一：\n\n1. “`ADD` $p$”表示添加一个价格为 $p$、但方向未知的新订单。该订单不能与订单簿中仍未被移除的订单相矛盾。\n2. “`ACCEPT` $p$”表示接受一个价格为 $p$、但方向未知的现有最佳报价。\n\n所有操作的方向信息都丢失了。日志中的信息并不总能唯一确定这些方向。请计算为所有 `ADD` 操作恢复方向的方案数，使得任意时刻都满足上述所有条件。由于答案可能很大，请输出其对 $10^9 + 7$ 取模后的结果。如果无法正确恢复方向，则输出 $0$。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 363\\,304$），表示日志中的操作数量。\n\n接下来的 $n$ 行中，每行包含一个字符串“`ACCEPT`”或“`ADD`”以及一个整数 $p$（$1 \\le p \\le 308\\,983\\,066$），表示操作类型和价格。\n\n所有 `ADD` 操作的价格都不同。对于 `ACCEPT` 操作，保证具有相同价格的订单已经被添加，但尚未被接受。\n\n## 输出格式\n\n输出恢复 `ADD` 操作方向的方案数，对 $10^9 + 7$ 取模。\n\n## 说明\n\n在第一个样例中，每个订单都可以是 `BUY` 或 `SELL`。\n\n在第二个样例中，价格为 $1$ 的订单必须是 `BUY` 订单，价格为 $3$ 的订单必须是 `SELL` 订单。",
   "samples": [
     {
       "input": "6\nADD 1\nACCEPT 1\nADD 2\nACCEPT 2\nADD 3\nACCEPT 3\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:26:29.203Z"
+  "fetchedAt": "2026-10-31T00:26:29.203Z",
+  "translatedAt": "2026-11-04T05:37:34.073+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1091,
   "index": "H",
   "title": "New Year and the Tricolore Recreation",
-  "titleZh": null,
+  "titleZh": "新年与三色旗重现",
   "url": "https://codeforces.com/contest/1091/problem/H",
   "difficulty": 3200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob play a game on a grid with $n$ rows and infinitely many columns. In each row, there are three tokens, blue, white and red one. **Before** the game starts and **after every move**, the following two conditions must hold:\n\n- Any two tokens are not in the same cell.\n- In each row, the blue token is to the left of the white token, and the red token is to the right of the white token.\n\nFirst, they pick a positive integer $f$, whose value is valid for the whole game. Second, the starting player is chosen and makes his or her first turn. Then players take alternating turns. The player who is unable to make a move loses.\n\nDuring a move, a player first selects an integer $k$ that is either a prime number or a product of two (not necessarily distinct) primes. The smallest possible values of $k$ are thus $2, 3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 19, \\dots$. Furthermore, $k$ must not be equal to the previously picked integer $f$. Each turn, a move is performed in exactly one of the rows.\n\nIf it is Alice's turn, she chooses a single blue token and moves it $k$ cells to the right. Alternatively, she may move both the blue and the white token in the same row by the same amount $k$ to the right.\n\nOn the other hand, Bob selects a single red token and moves it $k$ cells to the left. Similarly, he may also move the white and the red token in the corresponding row by $k$ to the left.\n\nNote that Alice may never move a red token, while Bob may never move a blue one. Remember that after a move, the two conditions on relative positions of the tokens must still hold.\n\nBoth players play optimally. Given the initial state of the board, determine who wins for two games: if Alice starts and if Bob starts.\n\n## Input\n\nThe first line contains a two integers $n$ and $f$ ($1 \\leq n \\leq 10^5$, $2 \\leq f \\leq 2 \\cdot 10^5$) — the number of rows and the forbidden move, respectively.\n\nEach of the next $n$ lines contains three integers $b_i$, $w_i$, $r_i$ ($-10^5 \\leq b_i \\lt w_i \\lt r_i \\leq 10^5$) — the number of column in which the blue, white and red token lies in the $i$-th row, respectively.\n\n## Output\n\nOutput two lines.\n\nThe first line should contain the name of the winner when Alice starts, and the second line should contain the name of the winner when Bob starts.\n\n## Note\n\nThe first example is as follows:\n\nWhen Alice starts, she can win by moving the blue and white token to right by $2$ cells, getting into position $2~5~9$. Regardless of what Bob does, Alice will have one more move and then the game is over. For instance, he can move both the red and white token by $2$ cells to the left, reaching state $2~3~7$. Alice can then move blue and white token by $2$ to move into $4~5~7$, where no more moves are possible.\n\nIf Bob starts, he gains enough advantage to win. For instance, he may move the red token by $3$ to the left, getting into position $0~3~6$. Alice can, for example, move the blue token by $2$, which is countered by Bob by moving the red token by $2$. The game ends in position $2~3~4$.\n\nIn the second example, it is forbidden to move by $2$, but this doesn't stop Alice from winning! She can move the blue and white token by $4$, getting into position $4~7~9$. Now Bob has no move, since moving by $2$ is forbidden.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 在一个有 $n$ 行、列数无限的网格上进行游戏。每行有三个棋子，分别为蓝色、白色和红色。**在游戏开始之前**以及**每次移动之后**，必须满足以下两个条件：\n\n- 任意两个棋子都不在同一个格子中。\n- 在每一行中，蓝色棋子位于白色棋子的左侧，红色棋子位于白色棋子的右侧。\n\n首先，他们选择一个正整数 $f$，其值在整个游戏过程中保持不变。然后确定先手玩家，并由其进行第一回合。之后双方轮流行动。无法进行移动的玩家输掉游戏。\n\n在一次移动中，玩家首先选择一个整数 $k$，它要么是质数，要么是两个质数的乘积（这两个质数可以相同）。因此，$k$ 的最小可能取值为 2、3、4、5、6、7、9、10、11、13、14、15、17、19、……此外，$k$ 不能等于之前选定的整数 $f$。每个回合中，玩家必须恰好在其中一行进行一次移动。\n\n如果轮到 Alice，她可以选择一个蓝色棋子并将其向右移动 $k$ 格。或者，她也可以将同一行中的蓝色棋子和白色棋子同时向右移动 $k$ 格。\n\n另一方面，Bob 可以选择一个红色棋子并将其向左移动 $k$ 格。类似地，他也可以将对应行中的白色棋子和红色棋子同时向左移动 $k$ 格。\n\n注意，Alice 永远不能移动红色棋子，而 Bob 永远不能移动蓝色棋子。请记住，移动后棋子之间的相对位置仍必须满足上述两个条件。\n\n双方均采取最优策略。给定棋盘的初始状态，请分别判断以下两种游戏中谁会获胜：Alice 先手，以及 Bob 先手。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $f$（$1 \\leq n \\leq 10^5$，$2 \\leq f \\leq 2 \\cdot 10^5$），分别表示行数和禁用的移动步长。\n\n接下来的 $n$ 行中，每行包含三个整数 $b_i$、$w_i$、$r_i$（$-10^5 \\leq b_i \\lt w_i \\lt r_i \\leq 10^5$），分别表示第 $i$ 行中蓝色、白色和红色棋子所在的列号。\n\n## 输出格式\n\n输出两行。\n\n第一行应包含 Alice 先手时获胜者的名字，第二行应包含 Bob 先手时获胜者的名字。\n\n## 说明\n\n第一个样例如下：\n\n当 Alice 先手时，她可以将蓝色和白色棋子向右移动 $2$ 格，从而得到位置 $2~5~9$，并以此获胜。无论 Bob 如何行动，Alice 都还可以再移动一次，随后游戏结束。例如，Bob 可以将红色和白色棋子同时向左移动 $2$ 格，得到状态 $2~3~7$。然后 Alice 可以将蓝色和白色棋子向右移动 $2$ 格，得到位置 $4~5~7$，此时无法再进行移动。\n\n当 Bob 先手时，他拥有足够的优势并最终获胜。例如，他可以将红色棋子向左移动 $3$ 格，得到位置 $0~3~6$。Alice 可以将蓝色棋子移动 $2$ 格，Bob 则可以通过将红色棋子移动 $2$ 格来应对。最终游戏在位置 $2~3~4$ 结束。\n\n在第二个样例中，禁止移动 $2$ 格，但这并不能阻止 Alice 获胜！她可以将蓝色和白色棋子向右移动 $4$ 格，得到位置 $4~7~9$。此时 Bob 无法移动，因为移动 $2$ 格是被禁止的。",
   "samples": [
     {
       "input": "1 6\n0 3 9\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:18:25.217Z"
+  "fetchedAt": "2026-10-31T00:18:25.217Z",
+  "translatedAt": "2026-11-04T05:24:20.608+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

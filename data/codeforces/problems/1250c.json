@@ -4,7 +4,7 @@
   "contestId": 1250,
   "index": "C",
   "title": "Trip to Saint Petersburg",
-  "titleZh": null,
+  "titleZh": "圣彼得堡之旅",
   "url": "https://codeforces.com/contest/1250/problem/C",
   "difficulty": 2100,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "You are planning your trip to Saint Petersburg. After doing some calculations, you estimated that you will have to spend $k$ rubles each day you stay in Saint Petersburg — you have to rent a flat, to eat at some local cafe, et cetera. So, if the day of your arrival is $L$, and the day of your departure is $R$, you will have to spend $k(R - L + 1)$ rubles in Saint Petersburg.\n\nYou don't want to spend a lot of money on your trip, so you decided to work in Saint Petersburg during your trip. There are $n$ available projects numbered from $1$ to $n$, the $i$-th of them lasts from the day $l_i$ to the day $r_i$ inclusive. If you choose to participate in the $i$-th project, then you have to stay and work in Saint Petersburg for the entire time this project lasts, but you get paid $p_i$ rubles for completing it.\n\nNow you want to come up with an optimal trip plan: you have to choose the day of arrival $L$, the day of departure $R$ and the set of projects $S$ to participate in so that all the following conditions are met:\n\n- your trip lasts at least one day (formally, $R \\ge L$);\n- you stay in Saint Petersburg for the duration of every project you have chosen (formally, for each $s \\in S$ $L \\le l_s$ and $R \\ge r_s$);\n- your total profit is **strictly positive** and maximum possible (formally, you have to maximize the value of $\\sum \\limits_{s \\in S} p_s - k(R - L + 1)$, and this value should be positive).\n\nYou may assume that no matter how many projects you choose, you will still have time and ability to participate in all of them, even if they overlap.\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($1 \\le n \\le 2\\cdot10^5$, $1 \\le k \\le 10^{12}$) — the number of projects and the amount of money you have to spend during each day in Saint Petersburg, respectively.\n\nThen $n$ lines follow, each containing three integers $l_i$, $r_i$, $p_i$ ($1 \\le l_i \\le r_i \\le 2\\cdot10^5$, $1 \\le p_i \\le 10^{12}$) — the starting day of the $i$-th project, the ending day of the $i$-th project, and the amount of money you get paid if you choose to participate in it, respectively.\n\n## Output\n\nIf it is impossible to plan a trip with **strictly positive** profit, print the only integer $0$.\n\nOtherwise, print two lines. The first line should contain four integers $p$, $L$, $R$ and $m$ — the maximum profit you can get, the starting day of your trip, the ending day of your trip and the number of projects you choose to complete, respectively. The second line should contain $m$ *distinct* integers $s_1$, $s_2$, ..., $s_{m}$ — the projects you choose to complete, listed in arbitrary order. If there are multiple answers with maximum profit, print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在计划前往圣彼得堡的旅行。经过一些计算，你估计在圣彼得堡停留期间每天需要花费 $k$ 卢布——你需要租住公寓、在当地咖啡馆吃饭，等等。因此，如果你在第 $L$ 天抵达，并在第 $R$ 天离开，那么你将在圣彼得堡花费 $k(R - L + 1)$ 卢布。\n\n你不想在旅行上花费太多钱，因此决定在旅行期间于圣彼得堡工作。现在有 $n$ 个可参与的项目，编号从 $1$ 到 $n$，其中第 $i$ 个项目持续时间为从第 $l_i$ 天到第 $r_i$ 天（含首尾）。如果你选择参加第 $i$ 个项目，那么你必须在该项目持续的整个期间内留在圣彼得堡并工作，但完成该项目后你将获得 $p_i$ 卢布的报酬。\n\n现在你想制定一个最优的旅行计划：你需要选择抵达日 $L$、离开日 $R$ 以及要参加的项目集合 $S$，使得满足以下所有条件：\n\n- 旅行至少持续一天（形式化地说，$R \\ge L$）；\n- 对于每个你选择的项目，你都在圣彼得堡停留了该项目的整个持续时间（形式化地说，对于每个 $s \\in S$，都有 $L \\le l_s$ 且 $R \\ge r_s$）；\n- 总收益为**严格正数**且尽可能大（形式化地说，你需要最大化 $\\sum \\limits_{s \\in S} p_s - k(R - L + 1)$ 的值，并且该值应为正数）。\n\n你可以假设，无论选择多少个项目，你都有足够的时间和能力参加所有这些项目，即使它们之间存在重叠。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 2\\cdot10^5$，$1 \\le k \\le 10^{12}$）——项目数量，以及你在圣彼得堡每天需要花费的金额。\n\n接下来 $n$ 行，每行包含三个整数 $l_i$、$r_i$、$p_i$（$1 \\le l_i \\le r_i \\le 2\\cdot10^5$，$1 \\le p_i \\le 10^{12}$）——第 $i$ 个项目的开始日期、结束日期，以及选择参加该项目后获得的报酬。\n\n## 输出格式\n\n如果无法制定出总收益**严格为正数**的旅行计划，请输出唯一的整数 $0$。\n\n否则，输出两行。第一行应包含四个整数 $p$、$L$、$R$ 和 $m$——你能获得的最大收益、旅行的开始日期、旅行的结束日期，以及你选择完成的项目数量。第二行应包含 $m$ 个*互不相同*的整数 $s_1$、$s_2$、...、$s_{m}$——你选择完成的项目，顺序任意。如果存在多个最大收益的答案，输出其中任意一个即可。",
   "samples": [
     {
       "input": "4 5\n1 1 3\n3 3 11\n5 5 17\n7 7 4\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:02:08.408Z"
+  "fetchedAt": "2026-11-02T19:02:08.408Z",
+  "translatedAt": "2026-11-04T04:59:57.407+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

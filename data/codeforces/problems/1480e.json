@@ -4,14 +4,14 @@
   "contestId": 1480,
   "index": "E",
   "title": "Continuous City",
-  "titleZh": null,
+  "titleZh": "连续城市",
   "url": "https://codeforces.com/contest/1480/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Some time ago Homer lived in a beautiful city. There were $n$ blocks numbered from $1$ to $n$ and $m$ directed roads between them. Each road had a positive length, and each road went from the block with the smaller index to the block with the larger index. For every two (different) blocks, there was at most one road between them.\n\nHomer discovered that for some two numbers $L$ and $R$ the city was $(L, R)$-*continuous*.\n\nThe city is said to be $(L, R)$-continuous, if\n\n1. all paths from block $1$ to block $n$ are of length between $L$ and $R$ (inclusive); and\n2. for every $L \\leq d \\leq R$, there is **exactly one** path from block $1$ to block $n$ whose length is $d$.\n\nA path from block $u$ to block $v$ is a sequence $u = x_0 \\to x_1 \\to x_2 \\to \\dots \\to x_k = v$, where there is a road from block $x_{i-1}$ to block $x_{i}$ for every $1 \\leq i \\leq k$. The length of a path is the sum of lengths over all roads in the path. Two paths $x_0 \\to x_1 \\to \\dots \\to x_k$ and $y_0 \\to y_1 \\to \\dots \\to y_l$ are different, if $k \\neq l$ or $x_i \\neq y_i$ for some $0 \\leq i \\leq \\min\\{k, l\\}$.\n\nAfter moving to another city, Homer only remembers the two special numbers $L$ and $R$ but forgets the numbers $n$ and $m$ of blocks and roads, respectively, and how blocks are connected by roads. However, he believes the number of blocks should be no larger than $32$ (because the city was small).\n\nAs the best friend of Homer, please tell him whether it is possible to find a $(L, R)$-continuous city or not.\n\n## Input\n\nThe single line contains two integers $L$ and $R$ ($1 \\leq L \\leq R \\leq 10^6$).\n\n## Output\n\nIf it is impossible to find a $(L, R)$-continuous city within $32$ blocks, print \"`NO`\" in a single line.\n\nOtherwise, print \"`YES`\" in the first line followed by a description of a $(L, R)$-continuous city.\n\nThe second line should contain two integers $n$ ($2 \\leq n \\leq 32$) and $m$ ($1 \\leq m \\leq \\frac {n(n-1)} 2$), where $n$ denotes the number of blocks and $m$ denotes the number of roads.\n\nThen $m$ lines follow. The $i$-th of the $m$ lines should contain three integers $a_i$, $b_i$ ($1 \\leq a_i \\lt b_i \\leq n$) and $c_i$ ($1 \\leq c_i \\leq 10^6$) indicating that there is a directed road from block $a_i$ to block $b_i$ of length $c_i$.\n\nIt is required that for every two blocks, there should be **no more than 1** road connecting them. That is, for every $1 \\leq i \\lt j \\leq m$, either $a_i \\neq a_j$ or $b_i \\neq b_j$.\n\n## Note\n\nIn the first example there is only one path from block $1$ to block $n = 2$, and its length is $1$.\n\nIn the second example there are three paths from block $1$ to block $n = 5$, which are $1 \\to 2 \\to 5$ of length $4$, $1 \\to 3 \\to 5$ of length $5$ and $1 \\to 4 \\to 5$ of length $6$.",
-  "statementZhMd": null,
+  "statementZhMd": "很久以前，Homer 生活在一座美丽的城市中。城市里有 $n$ 个街区，编号从 $1$ 到 $n$，街区之间有 $m$ 条有向道路。每条道路的长度均为正数，并且每条道路都从编号较小的街区通向编号较大的街区。对于任意两个（不同的）街区，它们之间至多有一条道路。\n\nHomer 发现，对于某两个数 $L$ 和 $R$，这座城市是 $(L, R)$-*连续*的。\n\n如果满足以下条件，则称城市是 $(L, R)$-连续的：\n\n1. 从街区 $1$ 到街区 $n$ 的所有路径长度都在 $L$ 到 $R$（包括 $L$ 和 $R$）之间；以及\n2. 对于每个 $L \\leq d \\leq R$，恰好存在一条从街区 $1$ 到街区 $n$ 且长度为 $d$ 的路径。\n\n从街区 $u$ 到街区 $v$ 的一条路径是一个序列 $u = x_0 \\to x_1 \\to x_2 \\to \\dots \\to x_k = v$，其中对于每个 $1 \\leq i \\leq k$，都存在一条从街区 $x_{i-1}$ 到街区 $x_i$ 的道路。路径的长度是路径上所有道路长度之和。如果 $k \\neq l$，或者对于某个 $0 \\leq i \\leq \\min\\{k, l\\}$ 有 $x_i \\neq y_i$，则称路径 $x_0 \\to x_1 \\to \\dots \\to x_k$ 和 $y_0 \\to y_1 \\to \\dots \\to y_l$ 不同。\n\n搬到另一座城市后，Homer 只记得两个特殊的数 $L$ 和 $R$，却忘记了街区数 $n$、道路数 $m$，以及街区之间通过道路连接的方式。不过，他认为街区数应该不超过 $32$（因为这座城市很小）。\n\n作为 Homer 最好的朋友，请你告诉他，是否有可能找到一座 $(L, R)$-连续的城市。\n\n## 输入格式\n\n一行包含两个整数 $L$ 和 $R$（$1 \\leq L \\leq R \\leq 10^6$）。\n\n## 输出格式\n\n如果无法在不超过 $32$ 个街区的城市中找到满足条件的 $(L, R)$-连续城市，则在一行中输出 \"`NO`\"。\n\n否则，第一行输出 \"`YES`\"，随后输出一座 $(L, R)$-连续城市的描述。\n\n第二行应包含两个整数 $n$（$2 \\leq n \\leq 32$）和 $m$（$1 \\leq m \\leq \\frac {n(n-1)} 2$），其中 $n$ 表示街区数，$m$ 表示道路数。\n\n接下来 $m$ 行，每行包含三个整数 $a_i$、$b_i$（$1 \\leq a_i \\lt b_i \\leq n$）和 $c_i$（$1 \\leq c_i \\leq 10^6$），表示存在一条从街区 $a_i$ 到街区 $b_i$ 的长度为 $c_i$ 的有向道路。\n\n要求任意两个街区之间**至多有 1 条**道路。也就是说，对于任意 $1 \\leq i \\lt j \\leq m$，必须满足 $a_i \\neq a_j$ 或 $b_i \\neq b_j$。\n\n## 说明\n\n在第一个样例中，从街区 $1$ 到街区 $n = 2$ 只有一条路径，其长度为 $1$。\n\n在第二个样例中，从街区 $1$ 到街区 $n = 5$ 有三条路径，分别是长度为 $4$ 的 $1 \\to 2 \\to 5$、长度为 $5$ 的 $1 \\to 3 \\to 5$，以及长度为 $6$ 的 $1 \\to 4 \\to 5$。",
   "samples": [
     {
       "input": "1 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:37:38.410Z"
+  "fetchedAt": "2026-10-30T23:37:38.410Z",
+  "translatedAt": "2026-11-04T04:05:25.842+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

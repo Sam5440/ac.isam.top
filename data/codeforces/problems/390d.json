@@ -4,7 +4,7 @@
   "contestId": 390,
   "index": "D",
   "title": "Inna and Sweet Matrix",
-  "titleZh": null,
+  "titleZh": "Inna 与甜蜜矩阵",
   "url": "https://codeforces.com/contest/390/problem/D",
   "difficulty": null,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Inna loves sweets very much. That's why she decided to play a game called \"Sweet Matrix\".\n\nInna sees an $*n* × *m*$ matrix and $*k*$ candies. We'll index the matrix rows from $1$ to $*n*$ and the matrix columns from $1$ to $*m*$. We'll represent the cell in the $*i*$-th row and $*j*$-th column as $(*i*, *j*)$. Two cells $(*i*, *j*)$ and $(*p*, *q*)$ of the matrix are *adjacent* if $|*i* - *p*| + |*j* - *q*| = 1$. A *path* is a sequence of the matrix cells where each pair of neighbouring cells in the sequence is adjacent. We'll call the number of cells in the sequence the path's length.\n\nEach cell of the matrix can have at most one candy. Initiallly, all the cells are empty. Inna is trying to place each of the $*k*$ candies in the matrix one by one. For each candy Inna chooses cell $(*i*, *j*)$ that will contains the candy, and also chooses the path that starts in cell $(1, 1)$ and ends in cell $(*i*, *j*)$ and doesn't contain any candies. After that Inna moves the candy along the path from cell $(1, 1)$ to cell $(*i*, *j*)$, where the candy stays forever. If at some moment Inna can't choose a path for the candy, she loses. If Inna can place all the candies in the matrix in the described manner, then her penalty equals the sum of lengths of all the paths she has used.\n\nHelp Inna to minimize the penalty in the game.\n\n## Input\n\nThe first line of the input contains three integers $*n*$, $*m*$ and $*k*$ $(1 ≤ *n*, *m* ≤ 50, 1 ≤ *k* ≤ *n*·*m*)$.\n\n## Output\n\nIn the first line print an integer — Inna's minimum penalty in the game.\n\nIn the next $*k*$ lines print the description of the path for each candy. The description of the path of the candy that is placed $*i*$-th should follow on the $*i*$-th line. The description of a path is a sequence of cells. Each cell must be written in the format $(*i*, *j*)$, where $*i*$ is the number of the row and $*j*$ is the number of the column. You are allowed to print extra whitespaces in the line. If there are multiple optimal solutions, print any of them.\n\nPlease follow the output format strictly! If your program passes the first pretest, then the output format is correct.\n\n## Note\n\nNote to the sample. Initially the matrix is empty. Then Inna follows her first path, the path penalty equals the number of cells in it — 3. Note that now no path can go through cell (2, 2), as it now contains a candy. The next two candies go to cells (1, 2) and (2, 1). Inna simply leaves the last candy at cell (1, 1), the path contains only this cell. The total penalty is: 3 + 2 + 2 + 1 = 8.\n\nNote that Inna couldn't use cell (1, 1) to place, for instance, the third candy as in this case she couldn't have made the path for the fourth candy.",
-  "statementZhMd": null,
+  "statementZhMd": "Inna 非常喜欢糖果。因此，她决定玩一个名为“甜蜜矩阵”的游戏。\n\nInna 面前有一个 $*n* × *m*$ 的矩阵和 $*k*$ 颗糖果。我们将矩阵的行编号为 $1$ 到 $*n*$，列编号为 $1$ 到 $*m*$。第 $*i*$ 行第 $*j*$ 列的单元格表示为 $(*i*, *j*)$。如果矩阵中的两个单元格 $(*i*, *j*)$ 和 $(*p*, *q*)$ 满足 $|*i* - *p*| + |*j* - *q*| = 1$，则称它们相邻。路径是矩阵单元格组成的序列，其中序列中每一对相邻的单元格都彼此相邻。我们将序列中单元格的数量称为该路径的长度。\n\n每个单元格中至多可以放置一颗糖果。初始时，所有单元格都是空的。Inna 试图依次将 $*k*$ 颗糖果放入矩阵中。对于每颗糖果，Inna 选择一个用于放置糖果的单元格 $(*i*, *j*)$，并选择一条从单元格 $(1, 1)$ 开始、在单元格 $(*i*, *j*)$ 结束且不包含任何糖果的路径。随后，Inna 沿着这条路径将糖果从单元格 $(1, 1)$ 移动到单元格 $(*i*, *j*)$，糖果将永久留在那里。如果在某个时刻 Inna 无法为糖果选择一条路径，她就会输掉游戏。如果 Inna 能够按照上述方式放置所有糖果，则她的惩罚值等于她所使用的所有路径长度之和。\n\n请帮助 Inna 最小化游戏中的惩罚值。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*$、$*m*$ 和 $*k*$（$1 ≤ *n*, *m* ≤ 50$，$1 ≤ *k* ≤ *n*·*m*$）。\n\n## 输出格式\n\n第一行输出一个整数，即 Inna 在游戏中的最小惩罚值。\n\n接下来的 $*k*$ 行输出每颗糖果的路径描述。第 $*i*$ 行应描述第 $*i*$ 个放置的糖果所经过的路径。路径描述是一个单元格序列。每个单元格必须以 $(*i*, *j*)$ 的格式书写，其中 $*i*$ 是行号，$*j*$ 是列号。每行中可以输出额外的空格。如果存在多个最优解，输出其中任意一个即可。\n\n请严格遵循输出格式！如果你的程序通过了第一个预测试，则说明输出格式正确。\n\n## 说明\n\n样例说明：初始时矩阵为空。随后 Inna 按照第一条路径移动糖果，路径的惩罚值等于其中单元格的数量，即 3。注意，此时任何路径都不能经过单元格 (2, 2)，因为其中已经放置了一颗糖果。接下来的两颗糖果分别被放置在单元格 (1, 2) 和 (2, 1) 中。Inna 只需将最后一颗糖果留在单元格 (1, 1) 中，此时路径仅包含该单元格。总惩罚值为：3 + 2 + 2 + 1 = 8。\n\n注意，如果 Inna 例如将第三颗糖果放在单元格 (1, 1) 中，那么她将无法为第四颗糖果构造路径。",
   "samples": [
     {
       "input": "4 4 4\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:50:44.075Z"
+  "fetchedAt": "2026-10-31T01:50:44.075Z",
+  "translatedAt": "2026-11-04T07:16:23.229+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

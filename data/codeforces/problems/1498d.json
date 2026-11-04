@@ -4,7 +4,7 @@
   "contestId": 1498,
   "index": "D",
   "title": "Bananas in a Microwave",
-  "titleZh": null,
+  "titleZh": "微波炉里的香蕉",
   "url": "https://codeforces.com/contest/1498/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You have a malfunctioning microwave in which you want to put some bananas. You have $n$ time-steps before the microwave stops working completely. At each time-step, it displays a new operation.\n\nLet $k$ be the number of bananas in the microwave currently. Initially, $k = 0$. In the $i$-th operation, you are given three parameters $t_i$, $x_i$, $y_i$ in the input. Based on the value of $t_i$, you must do one of the following:\n\n**Type 1**: ($t_i=1$, $x_i$, $y_i$) — pick an $a_i$, such that $0 \\le a_i \\le y_i$, and perform the following update $a_i$ times: $k:=\\lceil (k + x_i) \\rceil$.\n\n**Type 2**: ($t_i=2$, $x_i$, $y_i$) — pick an $a_i$, such that $0 \\le a_i \\le y_i$, and perform the following update $a_i$ times: $k:=\\lceil (k \\cdot x_i) \\rceil$.\n\nNote that **$x_i$ can be a fractional value**. See input format for more details. Also, $\\lceil x \\rceil$ is the smallest integer $\\ge x$.\n\nAt the $i$-th time-step, you must apply the $i$-th operation exactly once.\n\nFor each $j$ such that $1 \\le j \\le m$, output the earliest time-step at which you can create **exactly** $j$ bananas. If you cannot create **exactly** $j$ bananas, output $-1$.\n\n## Input\n\nThe first line contains two space-separated integers $n$ $(1 \\le n \\le 200)$ and $m$ $(2 \\le m \\le 10^5)$.\n\nThen, $n$ lines follow, where the $i$-th line denotes the operation for the $i$-th timestep. Each such line contains three space-separated integers $t_i$, $x'_i$ and $y_i$ ($1 \\le t_i \\le 2$, $1\\le y_i\\le m$).\n\nNote that you are given $x'_i$, which is $10^5 \\cdot x_i$. Thus, to obtain $x_i$, use the formula $x_i= \\dfrac{x'_i} {10^5}$.\n\nFor **type 1** operations, $1 \\le x'_i \\le 10^5 \\cdot m$, and for **type 2** operations, $10^5 \\lt x'_i \\le 10^5 \\cdot m$.\n\n## Output\n\nPrint $m$ integers, where the $i$-th integer is the earliest time-step when you can obtain **exactly** $i$ bananas (or $-1$ if it is impossible).\n\n## Note\n\nIn the **first sample input**, let us see how to create $16$ number of bananas in three timesteps. Initially, $k=0$.\n\n- In timestep 1, we choose $a_1=2$, so we apply the type 1 update — $k := \\lceil(k+3)\\rceil$ — two times. Hence, $k$ is now 6.\n- In timestep 2, we choose $a_2=0$, hence value of $k$ remains unchanged.\n- In timestep 3, we choose $a_3=1$, so we are applying the type 1 update $k:= \\lceil(k+10)\\rceil$ once. Hence, $k$ is now 16.\n\nIt can be shown that $k=16$ cannot be reached in fewer than three timesteps with the given operations.\n\nIn the **second sample input**, let us see how to create $17$ number of bananas in two timesteps. Initially, $k=0$.\n\n- In timestep 1, we choose $a_1=1$, so we apply the type 1 update — $k := \\lceil(k+3.99999)\\rceil$ — once. Hence, $k$ is now 4.\n- In timestep 2, we choose $a_2=1$, so we apply the type 2 update — $k := \\lceil(k\\cdot 4.12345)\\rceil$ — once. Hence, $k$ is now 17.\n\nIt can be shown that $k=17$ cannot be reached in fewer than two timesteps with the given operations.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一台故障的微波炉，想在里面放一些香蕉。微波炉还可以运行 $n$ 个时间步，之后将彻底停止工作。在每个时间步，它都会显示一个新的操作。\n\n设当前微波炉中的香蕉数量为 $k$。初始时，$k = 0$。在第 $i$ 个操作中，输入会给出三个参数 $t_i$、$x_i$、$y_i$。根据 $t_i$ 的值，你必须执行以下操作之一：\n\n**类型 1**：($t_i=1$, $x_i$, $y_i$) —— 选择一个 $a_i$，满足 $0 \\le a_i \\le y_i$，并执行以下更新 $a_i$ 次：$k:=\\lceil (k + x_i) \\rceil$。\n\n**类型 2**：($t_i=2$, $x_i$, $y_i$) —— 选择一个 $a_i$，满足 $0 \\le a_i \\le y_i$，并执行以下更新 $a_i$ 次：$k:=\\lceil (k \\cdot x_i) \\rceil$。\n\n注意，**$x_i$ 可能是小数**。更多细节请参阅输入格式。此外，$\\lceil x \\rceil$ 表示大于等于 $x$ 的最小整数。\n\n在第 $i$ 个时间步，你必须恰好执行第 $i$ 个操作一次。\n\n对于每个满足 $1 \\le j \\le m$ 的 $j$，输出能够得到**恰好** $j$ 个香蕉的最早时间步。如果无法得到**恰好** $j$ 个香蕉，则输出 $-1$。\n\n## 输入格式\n\n第一行包含两个用空格分隔的整数 $n$ $(1 \\le n \\le 200)$ 和 $m$ $(2 \\le m \\le 10^5)$。\n\n接下来有 $n$ 行，其中第 $i$ 行表示第 $i$ 个时间步的操作。每行包含三个用空格分隔的整数 $t_i$、$x'_i$ 和 $y_i$（$1 \\le t_i \\le 2$，$1\\le y_i\\le m$）。\n\n注意，输入给出的是 $x'_i$，满足 $x'_i=10^5 \\cdot x_i$。因此，使用以下公式可以得到 $x_i$：$x_i= \\dfrac{x'_i} {10^5}$。\n\n对于**类型 1**操作，$1 \\le x'_i \\le 10^5 \\cdot m$；对于**类型 2**操作，$10^5 \\lt x'_i \\le 10^5 \\cdot m$。\n\n## 输出格式\n\n输出 $m$ 个整数，其中第 $i$ 个整数表示能够得到**恰好** $i$ 个香蕉的最早时间步（如果无法得到，则输出 $-1$）。\n\n## 说明\n\n在**第一个样例输入**中，下面说明如何在三个时间步内得到 16 个香蕉。初始时，$k=0$。\n\n- 在时间步 1 中，我们选择 $a_1=2$，因此执行两次类型 1 更新——$k := \\lceil(k+3)\\rceil$。于是，当前 $k$ 变为 6。\n- 在时间步 2 中，我们选择 $a_2=0$，因此 $k$ 的值保持不变。\n- 在时间步 3 中，我们选择 $a_3=1$，因此执行一次类型 1 更新 $k:= \\lceil(k+10)\\rceil$。于是，当前 $k$ 变为 16。\n\n可以证明，根据给定的操作，无法在少于三个时间步内得到 $k=16$。\n\n在**第二个样例输入**中，下面说明如何在两个时间步内得到 17 个香蕉。初始时，$k=0$。\n\n- 在时间步 1 中，我们选择 $a_1=1$，因此执行一次类型 1 更新——$k := \\lceil(k+3.99999)\\rceil$。于是，当前 $k$ 变为 4。\n- 在时间步 2 中，我们选择 $a_2=1$，因此执行一次类型 2 更新——$k := \\lceil(k\\cdot 4.12345)\\rceil$。于是，当前 $k$ 变为 17。\n\n可以证明，根据给定的操作，无法在少于两个时间步内得到 $k=17$。",
   "samples": [
     {
       "input": "3 20\n1 300000 2\n2 400000 2\n1 1000000 3\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:35:01.634Z"
+  "fetchedAt": "2026-10-30T23:35:01.634Z",
+  "translatedAt": "2026-11-04T03:55:53.774+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

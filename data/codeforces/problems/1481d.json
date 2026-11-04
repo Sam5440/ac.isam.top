@@ -4,7 +4,7 @@
   "contestId": 1481,
   "index": "D",
   "title": "AB Graph",
-  "titleZh": null,
+  "titleZh": "AB 图",
   "url": "https://codeforces.com/contest/1481/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Your friend Salem is Warawreh's brother and only loves math and geometry problems. He has solved plenty of such problems, but according to Warawreh, in order to graduate from university he has to solve more graph problems. Since Salem is not good with graphs he asked your help with the following problem.\n\n![image](https://espresso.codeforces.com/48abf51540365194e87685feb34af97df0b4c976.png)\n\nYou are given a complete directed graph with $n$ vertices without self-loops. In other words, you have $n$ vertices and each pair of vertices $u$ and $v$ ($u \\neq v$) has both directed edges $(u, v)$ and $(v, u)$.\n\nEvery directed edge of the graph is labeled with a single character: either '`a`' or '`b`' (edges $(u, v)$ and $(v, u)$ may have different labels).\n\nYou are also given an integer $m \\gt 0$. You should find a path of length $m$ such that the string obtained by writing out edges' labels when going along the path is a **palindrome**. The length of the path is the number of edges in it.\n\n**You can visit the same vertex and the same directed edge any number of times**.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 500$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\leq n \\leq 1000$; $1 \\leq m \\leq 10^{5}$) — the number of vertices in the graph and desirable length of the palindrome.\n\nEach of the next $n$ lines contains $n$ characters. The $j$-th character of the $i$-th line describes the character on the edge that is going from node $i$ to node $j$.\n\nEvery character is either '`a`' or '`b`' if $i \\neq j$, or '`*`' if $i = j$, since the graph doesn't contain self-loops.\n\nIt's guaranteed that the sum of $n$ over test cases doesn't exceed $1000$ and the sum of $m$ doesn't exceed $10^5$.\n\n## Output\n\nFor each test case, if it is possible to find such path, print \"`YES`\" and the path itself as a sequence of $m + 1$ integers: indices of vertices in the path in the appropriate order. If there are several valid paths, print any of them.\n\nOtherwise, (if there is no answer) print \"`NO`\".\n\n## Note\n\nThe graph from the first three test cases is shown below:\n\n![image](https://espresso.codeforces.com/a9d094080362a1478a3a7fa940a5751a994e1c13.png)\n\nIn the first test case, the answer sequence is $[1,2]$ which means that the path is:\n\n$$1 \\xrightarrow{\\text{b}} 2$$\n\nSo the string that is obtained by the given path is `b`.\n\nIn the second test case, the answer sequence is $[2,1,3,2]$ which means that the path is:\n\n$$2 \\xrightarrow{\\text{b}} 1 \\xrightarrow{\\text{a}} 3 \\xrightarrow{\\text{b}} 2$$\n\nSo the string that is obtained by the given path is `bab`.\n\nIn the third test case, the answer sequence is $[1,3,1,3,1]$ which means that the path is:\n\n$$1 \\xrightarrow{\\text{a}} 3 \\xrightarrow{\\text{a}} 1 \\xrightarrow{\\text{a}} 3 \\xrightarrow{\\text{a}} 1$$\n\nSo the string that is obtained by the given path is `aaaa`.\n\nThe string obtained in the fourth test case is `abaaba`.",
-  "statementZhMd": null,
+  "statementZhMd": "你的朋友 Salem 是 Warawreh 的兄弟，只喜欢数学和几何问题。他已经解决了许多这类问题，但在 Warawreh 看来，为了从大学毕业，他还必须解决更多图论问题。由于 Salem 不擅长图论，因此他向你求助解决以下问题。\n\n![image](https://espresso.codeforces.com/48abf51540365194e87685feb34af97df0b4c976.png)\n\n给定一个包含 $n$ 个顶点且没有自环的完全有向图。换句话说，图中有 $n$ 个顶点，并且对于每一对顶点 $u$ 和 $v$（$u \\neq v$），都存在有向边 $(u, v)$ 和 $(v, u)$。\n\n图中的每条有向边都标有一个字符：要么是 '`a`'，要么是 '`b`'（边 $(u, v)$ 和 $(v, u)$ 的标签可能不同）。\n\n给定一个整数 $m \\gt 0$。你需要找到一条长度为 $m$ 的路径，使得沿路径经过的边的标签组成的字符串是一个**回文串**。路径的长度定义为其中边的数量。\n\n**你可以任意多次访问同一个顶点和同一条有向边。**\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 500$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 1000$；$1 \\leq m \\leq 10^{5}$）——图中顶点的数量以及所需回文串的长度。\n\n接下来的 $n$ 行中，每行包含 $n$ 个字符。第 $i$ 行的第 $j$ 个字符描述从顶点 $i$ 到顶点 $j$ 的边上的字符。\n\n当 $i \\neq j$ 时，每个字符都是 '`a`' 或 '`b`'；当 $i = j$ 时，字符为 '`*`'，因为图中不包含自环。\n\n保证所有测试用例的 $n$ 之和不超过 $1000，且 $m$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果可以找到满足条件的路径，输出“`YES`”，并在下一行输出该路径，即按经过顺序输出 $m + 1$ 个整数，表示路径上的顶点编号。如果有多个合法路径，输出任意一个即可。\n\n否则（如果不存在答案），输出“`NO`”。\n\n## 说明\n\n前 3 个测试用例中的图如下所示：\n\n![image](https://espresso.codeforces.com/a9d094080362a1478a3a7fa940a5751a994e1c13.png)\n\n在第一个测试用例中，答案序列为 $[1,2]$，这表示路径为：\n\n$$1 \\xrightarrow{\\text{b}} 2$$\n\n因此，由该路径得到的字符串为 `b`。\n\n在第二个测试用例中，答案序列为 $[2,1,3,2]$，这表示路径为：\n\n$$2 \\xrightarrow{\\text{b}} 1 \\xrightarrow{\\text{a}} 3 \\xrightarrow{\\text{b}} 2$$\n\n因此，由该路径得到的字符串为 `bab`。\n\n在第三个测试用例中，答案序列为 $[1,3,1,3,1]$，这表示路径为：\n\n$$1 \\xrightarrow{\\text{a}} 3 \\xrightarrow{\\text{a}} 1 \\xrightarrow{\\text{a}} 3 \\xrightarrow{\\text{a}} 1$$\n\n因此，由该路径得到的字符串为 `aaaa`。\n\n第四个测试用例得到的字符串为 `abaaba`。",
   "samples": [
     {
       "input": "5\n3 1\n*ba\nb*b\nab*\n3 3\n*ba\nb*b\nab*\n3 4\n*ba\nb*b\nab*\n4 6\n*aaa\nb*ba\nab*a\nbba*\n2 6\n*a\nb*\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:37:29.957Z"
+  "fetchedAt": "2026-10-30T23:37:29.957Z",
+  "translatedAt": "2026-11-04T04:08:20.610+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

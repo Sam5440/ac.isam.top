@@ -4,7 +4,7 @@
   "contestId": 1451,
   "index": "F",
   "title": "Nullify The Matrix",
-  "titleZh": null,
+  "titleZh": "将矩阵归零",
   "url": "https://codeforces.com/contest/1451/problem/F",
   "difficulty": 2700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Jeel and Ashish play a game on an $n \\times m$ matrix. The rows are numbered $1$ to $n$ from top to bottom and the columns are numbered $1$ to $m$ from left to right. They play turn by turn. Ashish goes **first**.\n\nInitially, each cell of the matrix contains a non-negative integer. Each turn, a player must perform **all** of the following actions in order.\n\n- Choose a starting cell $(r_1, c_1)$ with **non-zero** value.\n- Choose a finishing cell $(r_2, c_2)$ such that $r_1 \\leq r_2$ and $c_1 \\leq c_2$.\n- Decrease the value of the starting cell by some positive non-zero integer.\n- Pick any of the shortest paths between the two cells and either increase, decrease or leave the values of cells on this path unchanged. Note that:\n- a shortest path is one that passes through the least number of cells;\n  - all cells on this path **excluding** the starting cell, but the finishing cell may be modified;\n  - the resulting value of each cell must be a non-negative integer;\n  - the cells are modified independently and not necessarily by the same value.\n\nIf the starting and ending cells are the same, then as per the rules, the value of the cell is decreased. No other operations are performed.\n\nThe game ends when all the values become zero. The player who is unable to make a move loses. It can be shown that the game will end in a finite number of moves if both players play optimally.\n\nGiven the initial matrix, if both players play optimally, can you predict who will win?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10$) — the number of test cases. The description of each test case is as follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\leq n, m \\leq 100$) — the dimensions of the matrix.\n\nThe next $n$ lines contain $m$ space separated integers $a_{i,j}$ ($0 \\leq a_{i,j} \\leq 10^6$) — the values of each cell of the matrix.\n\n## Output\n\nFor each test case, if Ashish wins the game, print \"`Ashish`\", otherwise print \"`Jeel`\" (without the quotes).\n\n## Note\n\nIn the first test case, the only cell of the matrix is 0. There are no moves Ashish can make. Jeel is the winner.\n\nIn the second test case, Ashish can choose $(r_1, c_1) = (r_2, c_2) = (1,3)$ and reduce the cell to $0$, leaving $[0, 0, 0]$. Jeel cannot perform any moves. Ashish wins.",
-  "statementZhMd": null,
+  "statementZhMd": "Jeel 和 Ashish 在一个 $n \\times m$ 的矩阵上进行游戏。矩阵的行从上到下编号为 $1$ 到 $n$，列从左到右编号为 $1$ 到 $m$。他们轮流进行操作，Ashish **先手**。\n\n初始时，矩阵的每个单元格中都包含一个非负整数。每个回合中，玩家必须按顺序执行以下**所有**操作。\n\n- 选择一个值为**非零**的起始单元格 $(r_1, c_1)$。\n- 选择一个终止单元格 $(r_2, c_2)$，满足 $r_1 \\leq r_2$ 且 $c_1 \\leq c_2$。\n- 将起始单元格的值减少一个正的非零整数。\n- 在这两个单元格之间的所有最短路径中任选一条，并对路径上的单元格的值进行增加、减少或保持不变。注意：\n  - 最短路径是指经过单元格数量最少的路径；\n  - 路径上的所有单元格都可以被修改，但**不包括**起始单元格；终止单元格可以被修改；\n  - 修改后每个单元格的值必须是非负整数；\n  - 各个单元格的修改相互独立，不必修改相同的数值。\n\n如果起始单元格和终止单元格相同，则根据规则，该单元格的值会被减少，不会执行其他操作。\n\n当所有单元格的值都变为零时，游戏结束。无法进行操作的玩家输掉游戏。可以证明，如果双方都采取最优策略，游戏将在有限步内结束。\n\n给定初始矩阵，在双方都采取最优策略的情况下，请判断谁将获胜。\n\n## 输入\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10$）——测试用例的数量。每个测试用例的描述如下。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\leq n, m \\leq 100$）——矩阵的尺寸。\n\n接下来的 $n$ 行中，每行包含 $m$ 个用空格分隔的整数 $a_{i,j}$（$0 \\leq a_{i,j} \\leq 10^6$）——每个单元格的值。\n\n## 输出\n\n对于每个测试用例，如果 Ashish 赢得游戏，则输出 `Ashish`，否则输出 `Jeel`（不含引号）。\n\n## 说明\n\n在第一个测试用例中，矩阵只有一个值为 0 的单元格。Ashish 无法进行任何操作，因此 Jeel 获胜。\n\n在第二个测试用例中，Ashish 可以选择 $(r_1, c_1) = (r_2, c_2) = (1,3)$，将该单元格的值减少为 $0$，得到 $[0, 0, 0]$。Jeel 无法进行任何操作，因此 Ashish 获胜。",
   "samples": [
     {
       "input": "4\n1 1\n0\n1 3\n0 0 5\n2 2\n0 1\n1 0\n3 3\n1 2 3\n4 5 6\n7 8 9\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:40:45.338Z"
+  "fetchedAt": "2026-10-30T23:40:45.338Z",
+  "translatedAt": "2026-11-04T04:14:45.631+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

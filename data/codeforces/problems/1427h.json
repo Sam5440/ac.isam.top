@@ -4,7 +4,7 @@
   "contestId": 1427,
   "index": "H",
   "title": "Prison Break",
-  "titleZh": null,
+  "titleZh": "越狱",
   "url": "https://codeforces.com/contest/1427/problem/H",
   "difficulty": 3500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "A prisoner wants to escape from a prison. The prison is represented by the interior of the convex polygon with vertices $P_1, P_2, P_3, \\ldots, P_{n+1}, P_{n+2}, P_{n+3}$. It holds $P_1=(0,0)$, $P_{n+1}=(0, h)$, $P_{n+2}=(-10^{18}, h)$ and $P_{n+3}=(-10^{18}, 0)$.\n\n![image](https://espresso.codeforces.com/72aa36661219d0bec36a24a08ebfffc810dc58ae.png)\n\nThe prison walls $P_{n+1}P_{n+2}$, $P_{n+2}P_{n+3}$ and $P_{n+3}P_1$ are very high and the prisoner is not able to climb them. Hence his only chance is to reach a point on one of the walls $P_1P_2, P_2P_3,\\dots, P_{n}P_{n+1}$ and escape from there. On the perimeter of the prison, there are two guards. The prisoner moves at speed $1$ while the guards move, **remaining always on the perimeter of the prison**, with speed $v$.\n\nIf the prisoner reaches a point of the perimeter where there is a guard, the guard kills the prisoner. If the prisoner reaches a point of the part of the perimeter he is able to climb and there is no guard there, he escapes immediately. Initially the prisoner is at the point $(-10^{17}, h/2)$ and the guards are at $P_1$.\n\nFind the minimum speed $v$ such that the guards can guarantee that the prisoner will not escape (assuming that both the prisoner and the guards move optimally).\n\n**Notes:**\n\n- At any moment, the guards and the prisoner can see each other.\n- The \"climbing part\" of the escape takes no time.\n- You may assume that both the prisoner and the guards can change direction and velocity instantly and that they both have perfect reflexes (so they can react instantly to whatever the other one is doing).\n- The two guards can plan ahead how to react to the prisoner movements.\n\n## Input\n\nThe first line of the input contains $n$ ($1 \\le n \\le 50$).\n\nThe following $n+1$ lines describe $P_1, P_2,\\dots, P_{n+1}$. The $i$-th of such lines contain two integers $x_i$, $y_i$ ($0\\le x_i, y_i\\le 1,000$) — the coordinates of $P_i=(x_i, y_i)$.\n\nIt is guaranteed that $P_1=(0,0)$ and $x_{n+1}=0$. The polygon with vertices $P_1,P_2,\\dots, P_{n+1}, P_{n+2}, P_{n+3}$ (where $P_{n+2}, P_{n+3}$ shall be constructed as described in the statement) is guaranteed to be convex and such that there is no line containing three of its vertices.\n\n## Output\n\nPrint a single real number, the minimum speed $v$ that allows the guards to guarantee that the prisoner will not escape. Your answer will be considered correct if its relative or absolute error does not exceed $10^{-6}$.",
-  "statementZhMd": null,
+  "statementZhMd": "囚犯想要逃离一座监狱。这座监狱由凸多边形 $P_1, P_2, P_3, \\ldots, P_{n+1}, P_{n+2}, P_{n+3}$ 的内部表示。其中 $P_1=(0,0)$，$P_{n+1}=(0, h)$，$P_{n+2}=(-10^{18}, h)$，$P_{n+3}=(-10^{18}, 0)$。\n\n![image](https://espresso.codeforces.com/72aa36661219d0bec36a24a08ebfffc810dc58ae.png)\n\n监狱的墙壁 $P_{n+1}P_{n+2}$、$P_{n+2}P_{n+3}$ 和 $P_{n+3}P_1$ 非常高，囚犯无法攀爬。因此，他唯一的机会是到达墙壁 $P_1P_2, P_2P_3,\\dots, P_{n}P_{n+1}$ 上的某个点，并从那里逃脱。监狱的周界上有两名警卫。囚犯以速度 $1$ 移动，而警卫以速度 $v$ 移动，并且**始终位于监狱的周界上**。\n\n如果囚犯到达周界上警卫所在的位置，警卫就会杀死囚犯。如果囚犯到达自己能够攀爬的周界部分，且那里没有警卫，他就会立即逃脱。初始时，囚犯位于点 $(-10^{17}, h/2)$，两名警卫均位于 $P_1$。\n\n求警卫能够保证囚犯无法逃脱的最小速度 $v$（假设囚犯和警卫都会采取最优策略）。\n\n**说明：**\n\n- 在任意时刻，警卫和囚犯都能看到彼此。\n- 逃脱时攀爬的过程不耗时。\n- 你可以假设囚犯和警卫都能瞬间改变方向和速度，并且他们都有完美的反应能力（因此能够对对方的任何行动立即作出反应）。\n- 两名警卫可以提前规划如何应对囚犯的行动。\n\n## 输入格式\n\n输入的第一行包含一个整数 $n$（$1 \\le n \\le 50$）。\n\n接下来的 $n+1$ 行描述 $P_1, P_2,\\dots, P_{n+1}$。其中第 $i$ 行包含两个整数 $x_i, y_i$（$0\\le x_i, y_i\\le 1,000$），表示点 $P_i=(x_i, y_i)$ 的坐标。\n\n保证 $P_1=(0,0)$ 且 $x_{n+1}=0$。由顶点 $P_1,P_2,\\dots, P_{n+1}, P_{n+2}, P_{n+3}$ 组成的多边形（其中 $P_{n+2}, P_{n+3}$ 按题面描述构造）保证是凸多边形，且不存在一条直线经过其中三个顶点。\n\n## 输出格式\n\n输出一个实数，即能够保证囚犯无法逃脱的最小速度 $v$。如果答案的相对误差或绝对误差不超过 $10^{-6}$，则答案将被判定为正确。",
   "samples": [
     {
       "input": "2\n0 0\n223 464\n0 749\n",
@@ -46,5 +46,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:42:38.575Z"
+  "fetchedAt": "2026-10-30T23:42:38.575Z",
+  "translatedAt": "2026-11-04T04:17:07.611+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

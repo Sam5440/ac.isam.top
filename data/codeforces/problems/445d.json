@@ -4,14 +4,14 @@
   "contestId": 445,
   "index": "D",
   "title": "DZY Loves FFT",
-  "titleZh": null,
+  "titleZh": "DZY 喜欢 FFT",
   "url": "https://codeforces.com/contest/445/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*DZY loves Fast Fourier Transformation, and he enjoys using it.*\n\nFast Fourier Transformation is an algorithm used to calculate convolution. Specifically, if $*a*$, $*b*$ and $*c*$ are sequences with length $*n*$, which are indexed from $0$ to $*n* - 1$, and\n\n![image](https://espresso.codeforces.com/954d85f8c44a768d0814c95b7202d2f2d8b5fc92.png)\n\nWe can calculate $*c*$ fast using Fast Fourier Transformation.\n\nDZY made a little change on this formula. Now\n\n![image](https://espresso.codeforces.com/09afa7cc3a89ee532dca56e03f335bb766d7af37.png)\n\nTo make things easier, $*a*$ is a permutation of integers from $1$ to $*n*$, and $*b*$ is a sequence only containing $0$ and $1$. Given $*a*$ and $*b*$, DZY needs your help to calculate $*c*$.\n\nBecause he is naughty, DZY provides a special way to get $*a*$ and $*b*$. What you need is only three integers $*n*$, $*d*$, $*x*$. After getting them, use the code below to generate $*a*$ and $*b*$.\n\n```\n//x is 64-bit variable;\nfunction getNextX() {\n    x = (x * 37 + 10007) % 1000000007;\n    return x;\n}\nfunction initAB() {\n    for(i = 0; i < n; i = i + 1){\n        a[i] = i + 1;\n    }\n    for(i = 0; i < n; i = i + 1){\n        swap(a[i], a[getNextX() % (i + 1)]);\n    }\n    for(i = 0; i < n; i = i + 1){\n        if (i < d)\n            b[i] = 1;\n        else\n            b[i] = 0;\n    }\n    for(i = 0; i < n; i = i + 1){\n        swap(b[i], b[getNextX() % (i + 1)]);\n    }\n}\n```\n\nOperation `x % y` denotes remainder after division $*x*$ by $*y*$. Function `swap(x, y)` swaps two values $*x*$ and $*y*$.\n\n## Input\n\nThe only line of input contains three space-separated integers $*n*, *d*, *x* (1 ≤ *d* ≤ *n* ≤ 100000; 0 ≤ *x* ≤ 1000000006)$. Because DZY is naughty, $*x*$ can't be equal to $27777500$.\n\n## Output\n\nOutput $*n*$ lines, the $*i*$-th line should contain an integer $*c*_{*i* - 1}$.\n\n## Note\n\nIn the first sample, $*a*$ is $[1 3 2]$, $*b*$ is $[1 0 0]$, so $*c*_{0} = *max*(1·1) = 1$, $*c*_{1} = *max*(1·0, 3·1) = 3$, $*c*_{2} = *max*(1·0, 3·0, 2·1) = 2$.\n\nIn the second sample, $*a*$ is $[2 1 4 5 3]$, $*b*$ is $[1 1 1 0 1]$.\n\nIn the third sample, $*a*$ is $[5 2 1 4 3]$, $*b*$ is $[1 1 1 1 0]$.",
-  "statementZhMd": null,
+  "statementZhMd": "DZY 喜欢快速傅里叶变换，并且喜欢使用它。\n\n快速傅里叶变换是一种用于计算卷积的算法。具体来说，如果 $*a*$、$*b*$ 和 $*c*$ 是长度为 $*n*$、下标从 $0$ 到 $*n* - 1$ 的序列，并且\n\n![image](https://espresso.codeforces.com/954d85f8c44a768d0814c95b7202d2f2d8b5fc92.png)\n\n我们可以使用快速傅里叶变换快速计算 $*c*$。\n\nDZY 对这个公式做了一点修改。现在\n\n![image](https://espresso.codeforces.com/09afa7cc3a89ee532dca56e03f335bb766d7af37.png)\n\n为了简化问题，$*a*$ 是 $1$ 到 $*n*$ 的一个排列，而 $*b*$ 是一个只包含 $0$ 和 $1$ 的序列。给定 $*a*$ 和 $*b*$，DZY 需要你帮助计算 $*c*$。\n\n由于 DZY 很调皮，他提供了一种特殊的方式来获取 $*a*$ 和 $*b*$。你只需要知道三个整数 $*n*$、$*d*$、$*x*$。得到它们后，使用下面的代码生成 $*a*$ 和 $*b*$。\n\n```\n//x is 64-bit variable;\nfunction getNextX() {\n    x = (x * 37 + 10007) % 1000000007;\n    return x;\n}\nfunction initAB() {\n    for(i = 0; i < n; i = i + 1){\n        a[i] = i + 1;\n    }\n    for(i = 0; i < n; i = i + 1){\n        swap(a[i], a[getNextX() % (i + 1)]);\n    }\n    for(i = 0; i < n; i = i + 1){\n        if (i < d)\n            b[i] = 1;\n        else\n            b[i] = 0;\n    }\n    for(i = 0; i < n; i = i + 1){\n        swap(b[i], b[getNextX() % (i + 1)]);\n    }\n}\n```\n\n操作 `x % y` 表示 $*x*$ 除以 $*y*$ 后所得的余数。函数 `swap(x, y)` 会交换两个值 $*x*$ 和 $*y*$。\n\n## 输入格式\n\n输入的唯一一行包含三个用空格分隔的整数 $*n*, *d*, *x* (1 ≤ *d* ≤ *n* ≤ 100000; 0 ≤ *x* ≤ 1000000006)$。由于 DZY 很调皮，$*x*$ 不能等于 $27777500$。\n\n## 输出格式\n\n输出 $*n*$ 行，第 $*i*$ 行应包含一个整数 $*c*_{*i* - 1}$。\n\n## 说明\n\n在第一个样例中，$*a*$ 为 $[1 3 2]$，$*b*$ 为 $[1 0 0]$，因此 $*c*_{0} = *max*(1·1) = 1$，$*c*_{1} = *max*(1·0, 3·1) = 3$，$*c*_{2} = *max*(1·0, 3·0, 2·1) = 2$。\n\n在第二个样例中，$*a*$ 为 $[2 1 4 5 3]$，$*b*$ 为 $[1 1 1 0 1]$。\n\n在第三个样例中，$*a*$ 为 $[5 2 1 4 3]$，$*b*$ 为 $[1 1 1 1 0]$。",
   "samples": [
     {
       "input": "3 1 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:43:00.665Z"
+  "fetchedAt": "2026-10-31T01:43:00.665Z",
+  "translatedAt": "2026-11-04T07:07:26.931+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

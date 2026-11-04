@@ -4,7 +4,7 @@
   "contestId": 1821,
   "index": "D",
   "title": "Black Cells",
-  "titleZh": null,
+  "titleZh": "黑色单元格",
   "url": "https://codeforces.com/contest/1821/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "You are playing with a really long strip consisting of $10^{18}$ white cells, numbered from left to right as $0$, $1$, $2$ and so on. You are controlling a special pointer that is initially in cell $0$. Also, you have a \"Shift\" button you can press and hold.\n\nIn one move, you can do one of three actions:\n\n- move the pointer to the right (from cell $x$ to cell $x + 1$);\n- press and hold the \"Shift\" button;\n- release the \"Shift\" button: the moment you release \"Shift\", all cells that were visited while \"Shift\" was pressed are colored in black.\n\n(Of course, you can't press Shift if you already hold it. Similarly, you can't release Shift if you haven't pressed it.)\n\nYour goal is to color at least $k$ cells, but there is a restriction: you are given $n$ segments $[l_i, r_i]$ — you can color cells only inside these segments, i. e. you can color the cell $x$ if and only if $l_i \\le x \\le r_i$ for some $i$.\n\nWhat is the minimum number of moves you need to make in order to color at least $k$ cells black?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le n \\le 2 \\cdot 10^5$; $1 \\le k \\le 10^9$) — the number of segments and the desired number of black cells, respectively.\n\nThe second line contains $n$ integers $l_1, l_2, \\dots, l_n$ ($1 \\le l_1 \\lt l_2 \\lt \\dots \\lt l_n \\le 10^9$), where $l_i$ is the left border of the $i$-th segment.\n\nThe third line contains $n$ integers $r_1, r_2, \\dots, r_n$ ($1 \\le r_i \\le 10^9$; $l_i \\le r_i \\lt l_{i + 1} - 1$), where $r_i$ is the right border of the $i$-th segment.\n\nAdditional constraints on the input:\n\n- every cell belongs to at most one segment;\n- the sum of $n$ doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the minimum number of moves to color at least $k$ cells black, or $-1$ if it's impossible.\n\n## Note\n\nIn the first test case, one of the optimal sequences of operations is the following:\n\n1. Move right: pointer is moving into cell $1$;\n2. Press Shift;\n3. Release Shift: cell $1$ is colored black;\n4. Move right: pointer is moving into cell $2$;\n5. Move right: pointer is moving into cell $3$;\n6. Press Shift;\n7. Move right: pointer is moving into cell $4$;\n8. Release Shift: cells $3$ and $4$ are colored in black.\n\nWe've colored $3$ cells in $8$ moves.\n\nIn the second test case, we can color at most $8$ cells, while we need $20$ cell to color.\n\nIn the third test case, one of the optimal sequences of operations is the following:\n\n1. Move right: pointer is moving into cell $1$;\n2. Move right: pointer is moving into cell $2$;\n3. Move right: pointer is moving into cell $3$;\n4. Press Shift;\n5. Move right: pointer is moving into cell $4$;\n6. Move right: pointer is moving into cell $5$;\n7. Release Shift: cells $3$, $4$ and $5$ are colored in black.\n\nWe've colored $3$ cells in $7$ moves.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在操作一条非常长的带状区域，它由 $10^{18}$ 个白色单元格组成，从左到右编号为 $0$、$1$、$2$，以此类推。你控制着一个特殊指针，它初始位于单元格 $0$。此外，你还有一个可以按下并保持按下状态的“Shift”按钮。\n\n一次操作中，你可以执行以下三种动作之一：\n\n- 将指针向右移动（从单元格 $x$ 移动到单元格 $x + 1$）；\n- 按下并保持“Shift”按钮；\n- 松开“Shift”按钮：松开“Shift”的瞬间，所有在按下“Shift”期间访问过的单元格都会被染成黑色。\n\n（当然，如果已经按下了 Shift，就不能再次按下。同样地，如果没有按下 Shift，也不能将其松开。）\n\n你的目标是将至少 $k$ 个单元格染成黑色，但存在一个限制：给定 $n$ 个线段 $[l_i, r_i]$，你只能将这些线段内的单元格染色，也就是说，当且仅当对于某个 $i$ 满足 $l_i \\le x \\le r_i$ 时，才能将单元格 $x$ 染色。\n\n为了将至少 $k$ 个单元格染成黑色，最少需要执行多少次操作？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 2 \\cdot 10^5$；$1 \\le k \\le 10^9$）——线段的数量以及所需染成黑色的单元格数量。\n\n第二行包含 $n$ 个整数 $l_1, l_2, \\dots, l_n$（$1 \\le l_1 \\lt l_2 \\lt \\dots \\lt l_n \\le 10^9$），其中 $l_i$ 是第 $i$ 个线段的左端点。\n\n第三行包含 $n$ 个整数 $r_1, r_2, \\dots, r_n$（$1 \\le r_i \\le 10^9$；$l_i \\le r_i \\lt l_{i + 1} - 1$），其中 $r_i$ 是第 $i$ 个线段的右端点。\n\n输入还满足以下额外约束：\n\n- 每个单元格至多属于一个线段；\n- 所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出将至少 $k$ 个单元格染成黑色所需的最少操作次数；如果无法做到，输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，以下是一种最优操作序列：\n\n1. 向右移动：指针移动到单元格 $1$；\n2. 按下 Shift；\n3. 松开 Shift：单元格 $1$ 被染成黑色；\n4. 向右移动：指针移动到单元格 $2$；\n5. 向右移动：指针移动到单元格 $3$；\n6. 按下 Shift；\n7. 向右移动：指针移动到单元格 $4$；\n8. 松开 Shift：单元格 $3$ 和 $4$ 被染成黑色。\n\n我们通过 $8$ 次操作将 $3$ 个单元格染成了黑色。\n\n在第二个测试用例中，最多只能将 $8$ 个单元格染成黑色，但我们需要染色 $20$ 个单元格。\n\n在第三个测试用例中，以下是一种最优操作序列：\n\n1. 向右移动：指针移动到单元格 $1$；\n2. 向右移动：指针移动到单元格 $2$；\n3. 向右移动：指针移动到单元格 $3$；\n4. 按下 Shift；\n5. 向右移动：指针移动到单元格 $4$；\n6. 向右移动：指针移动到单元格 $5$；\n7. 松开 Shift：单元格 $3$、$4$ 和 $5$ 被染成黑色。\n\n我们通过 $7$ 次操作将 $3$ 个单元格染成了黑色。",
   "samples": [
     {
       "input": "4\n2 3\n1 3\n1 4\n4 20\n10 13 16 19\n11 14 17 20\n2 3\n1 3\n1 10\n2 4\n99 999999999\n100 1000000000\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:35:23.432Z"
+  "fetchedAt": "2026-11-02T17:35:23.432Z",
+  "translatedAt": "2026-11-04T02:52:00.115+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

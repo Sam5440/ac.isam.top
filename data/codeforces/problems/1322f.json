@@ -4,7 +4,7 @@
   "contestId": 1322,
   "index": "F",
   "title": "Assigning Fares",
-  "titleZh": null,
+  "titleZh": "分配票价区",
   "url": "https://codeforces.com/contest/1322/problem/F",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 512,
   "statementMd": "Mayor of city M. decided to launch several new metro lines during 2020. Since the city has a very limited budget, it was decided not to dig new tunnels but to use the existing underground network.\n\nThe tunnel system of the city M. consists of $n$ metro stations. The stations are connected with $n - 1$ bidirectional tunnels. Between every two stations $v$ and $u$ there is exactly one simple path. Each metro line the mayor wants to create is a simple path between stations $a_i$ and $b_i$. Metro lines can intersects freely, that is, they can share common stations or even common tunnels. However, it's not yet decided which of two directions each line will go. More precisely, between the stations $a_i$ and $b_i$ the trains will go either from $a_i$ to $b_i$, or from $b_i$ to $a_i$, but not simultaneously.\n\nThe city $M$ uses complicated faring rules. Each station is assigned with a positive integer $c_i$ — the fare zone of the station. The cost of travel from $v$ to $u$ is defined as $c_u - c_v$ roubles. Of course, such travel only allowed in case there is a metro line, the trains on which go from $v$ to $u$. Mayor doesn't want to have any travels with a negative cost, so it was decided to assign directions of metro lines and station fare zones in such a way, that fare zones are strictly increasing during any travel on any metro line.\n\nMayor wants firstly assign each station a fare zone and then choose a lines direction, such that all fare zones are increasing along any line. In connection with the approaching celebration of the day of the city, the mayor wants to assign fare zones so that the maximum $c_i$ will be as low as possible. Please help mayor to design a new assignment or determine if it's impossible to do. Please note that you only need to assign the fare zones optimally, you don't need to print lines' directions. This way, you solution will be considered correct if there will be a way to assign directions of every metro line, so that the fare zones will be strictly increasing along any movement of the trains.\n\n## Input\n\nThe first line contains an integers $n$, $m$ ($2 \\le n, \\le 500\\,000,\\ 1 \\le m \\le 500\\,000$) — the number of stations in the city and the number of metro lines.\n\nEach of the following $n-1$ lines describes another metro tunnel. Each tunnel is described with integers $v_i$, $u_i$ ($1 \\le v_i,\\ u_i \\le n$, $v_i \\ne u_i$). It's guaranteed, that there is exactly one simple path between any two stations.\n\nEach of the following $m$ lines describes another metro line. Each line is described with integers $a_i$, $b_i$ ($1 \\le a_i,\\ b_i \\le n$, $a_i \\neq b_i$).\n\n## Output\n\nIn the first line print integer $k$ — the maximum fare zone used.\n\nIn the next line print integers $c_1, c_2, \\ldots, c_n$ ($1 \\le c_i \\le k$)  — stations' fare zones.\n\nIn case there are several possible answers, print any of them. In case it's impossible to assign fare zones, print \"`-1`\".\n\n## Note\n\nIn the first example, line $1 \\rightarrow 3$ goes through the stations 1, 2, 3 in this order. In this order the fare zones of the stations are increasing. Since this line has 3 stations, at least three fare zones are needed. So the answer 1, 2, 3 is optimal.\n\nIn the second example, it's impossible to assign fare zones to be consistent with a metro lines.",
-  "statementZhMd": null,
+  "statementZhMd": "M 市市长决定在 2020 年期间开通几条新的地铁线路。由于城市的预算非常有限，市政府决定不挖掘新的隧道，而是使用现有的地下网络。\n\nM 市的隧道系统由 $n$ 个地铁站组成。这些车站之间由 $n - 1$ 条双向隧道连接。任意两个车站 $v$ 和 $u$ 之间恰好存在一条简单路径。市长想要开通的每条地铁线路都是车站 $a_i$ 和 $b_i$ 之间的一条简单路径。地铁线路之间可以任意相交，也就是说，它们可以经过相同的车站，甚至可以共用相同的隧道。不过，每条线路的行驶方向尚未确定。更准确地说，列车将在车站 $a_i$ 和 $b_i$ 之间行驶，方向要么是从 $a_i$ 到 $b_i$，要么是从 $b_i$ 到 $a_i$，但不能同时采用两个方向。\n\nM 市采用复杂的票价规则。每个车站都被分配一个正整数 $c_i$，表示该车站所属的票价区。从 $v$ 到 $u$ 的行程费用定义为 $c_u - c_v$ 卢布。当然，只有存在一条列车从 $v$ 开往 $u$ 的地铁线路时，才允许进行这样的行程。市长不希望出现费用为负数的行程，因此决定为地铁线路分配方向，并为车站分配票价区，使得沿任意地铁线路行驶时，票价区都严格递增。\n\n市长希望先为每个车站分配一个票价区，然后选择各条线路的方向，使得沿任意线路行驶时票价区都严格递增。由于城市日临近，市长希望分配票价区，使得最大的 $c_i$ 尽可能小。请帮助市长设计一种新的分配方案，或者判断是否无法做到。请注意，你只需要最优地分配票价区，而不需要输出各条线路的方向。如果存在一种为每条地铁线路分配方向的方案，使得列车行驶过程中票价区严格递增，那么你的答案就会被判定为正确。\n\n## 输入格式\n\n第一行包含整数 $n$、$m$（$2 \\le n, \\le 500\\,000,\\ 1 \\le m \\le 500\\,000$），分别表示城市中的车站数和地铁线路数。\n\n接下来的 $n-1$ 行中的每一行描述一条地铁隧道。每条隧道由整数 $v_i$、$u_i$（$1 \\le v_i,\\ u_i \\le n$，$v_i \\ne u_i$）描述。保证任意两个车站之间恰好存在一条简单路径。\n\n接下来的 $m$ 行中的每一行描述一条地铁线路。每条线路由整数 $a_i$、$b_i$（$1 \\le a_i,\\ b_i \\le n$，$a_i \\neq b_i$）描述。\n\n## 输出格式\n\n第一行输出整数 $k$，表示使用的最大票价区编号。\n\n第二行输出整数 $c_1, c_2, \\ldots, c_n$（$1 \\le c_i \\le k$），表示各车站所属的票价区。\n\n如果有多种可行答案，输出任意一种即可。如果无法分配票价区，输出 `-1`。\n\n## 说明\n\n在第一个样例中，线路 $1 \\rightarrow 3$ 依次经过车站 1、2、3。在这个顺序下，车站的票价区是递增的。由于这条线路经过 3 个车站，因此至少需要 3 个票价区。所以答案 1、2、3 是最优的。\n\n在第二个样例中，不可能分配出与地铁线路相容的票价区。",
   "samples": [
     {
       "input": "3 1\n1 2\n2 3\n1 3\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:55:24.997Z"
+  "fetchedAt": "2026-10-30T23:55:24.997Z",
+  "translatedAt": "2026-11-04T04:41:13.540+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

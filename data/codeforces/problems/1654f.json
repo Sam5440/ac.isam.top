@@ -4,7 +4,7 @@
   "contestId": 1654,
   "index": "F",
   "title": "Minimal String Xoration",
-  "titleZh": null,
+  "titleZh": "字典序最小的异或字符串",
   "url": "https://codeforces.com/contest/1654/problem/F",
   "difficulty": 2800,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "You are given an integer $n$ and a string $s$ consisting of $2^n$ lowercase letters of the English alphabet. The characters of the string $s$ are $s_0s_1s_2\\cdots s_{2^n-1}$.\n\nA string $t$ of length $2^n$ (whose characters are denoted by $t_0t_1t_2\\cdots t_{2^n-1}$) is a *xoration* of $s$ if there exists an integer $j$ ($0\\le j \\leq 2^n-1$) such that, for each $0 \\leq i \\leq 2^n-1$, $t_i = s_{i \\oplus j}$ (where $\\oplus$ denotes the operation [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)).\n\nFind the lexicographically minimal *xoration* of $s$.\n\nA string $a$ is lexicographically smaller than a string $b$ if and only if one of the following holds:\n\n- $a$ is a prefix of $b$, but $a \\ne b$;\n- in the first position where $a$ and $b$ differ, the string $a$ has a letter that appears earlier in the alphabet than the corresponding letter in $b$.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 18$).\n\nThe second line contains a string $s$ consisting of $2^n$ lowercase letters of the English alphabet.\n\n## Output\n\nPrint a single line containing the lexicographically minimal xoration of $s$.\n\n## Note\n\nIn the first test, the lexicographically minimal xoration $t$ of $s =$\"`acba`\" is \"`abca`\". It's a xoration because, for $j = 3$,\n\n- $t_0 = s_{0 \\oplus j} = s_3 =$ \"`a`\";\n- $t_1 = s_{1 \\oplus j} = s_2 =$ \"`b`\";\n- $t_2 = s_{2 \\oplus j} = s_1 =$ \"`c`\";\n- $t_3 = s_{3 \\oplus j} = s_0 =$ \"`a`\".\n\nThere isn't any xoration of $s$ lexicographically smaller than \"\n\nabca\n\n\".\n\nIn the second test, the minimal string xoration corresponds to choosing $j = 4$ in the definition of xoration.\n\nIn the third test, the minimal string xoration corresponds to choosing $j = 11$ in the definition of xoration.\n\nIn the fourth test, the minimal string xoration corresponds to choosing $j = 10$ in the definition of xoration.\n\nIn the fifth test, the minimal string xoration corresponds to choosing either $j = 0$ or $j = 1$ in the definition of xoration.",
-  "statementZhMd": null,
+  "statementZhMd": "你得到一个整数 $n$ 和一个由 $2^n$ 个英文字母小写字母组成的字符串 $s$。字符串 $s$ 的字符依次为 $s_0s_1s_2\\cdots s_{2^n-1}$。\n\n如果存在一个整数 $j$（$0\\le j \\leq 2^n-1$），使得对于每个 $0 \\leq i \\leq 2^n-1$，都有 $t_i = s_{i \\oplus j}$（其中 $\\oplus$ 表示[按位异或](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)运算），那么一个长度为 $2^n$ 的字符串 $t$（其字符依次记为 $t_0t_1t_2\\cdots t_{2^n-1}$）就是 $s$ 的一个*异或字符串*。\n\n请找出 $s$ 的字典序最小的*异或字符串*。\n\n当且仅当满足以下任一条件时，字符串 $a$ 的字典序小于字符串 $b$：\n\n- $a$ 是 $b$ 的前缀，且 $a \\ne b$；\n- 在 $a$ 和 $b$ 首个不同的位置，$a$ 中的字母在字母表中早于 $b$ 中对应的字母。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 18$）。\n\n第二行包含一个由 $2^n$ 个英文字母小写字母组成的字符串 $s$。\n\n## 输出格式\n\n输出一行，包含 $s$ 的字典序最小的异或字符串。\n\n## 说明\n\n在第一个测试用例中，$s =$\"`acba`\" 的字典序最小异或字符串 $t$ 是 \"`abca`\"。当 $j = 3$ 时，它满足异或字符串的定义，因为：\n\n- $t_0 = s_{0 \\oplus j} = s_3 =$ \"`a`\"；\n- $t_1 = s_{1 \\oplus j} = s_2 =$ \"`b`\"；\n- $t_2 = s_{2 \\oplus j} = s_1 =$ \"`c`\"；\n- $t_3 = s_{3 \\oplus j} = s_0 =$ \"`a`\"。\n\n不存在字典序比 \"`abca`\" 更小的 $s$ 的异或字符串。\n\n在第二个测试用例中，最小异或字符串对应于定义中的 $j = 4$。\n\n在第三个测试用例中，最小异或字符串对应于定义中的 $j = 11$。\n\n在第四个测试用例中，最小异或字符串对应于定义中的 $j = 10$。\n\n在第五个测试用例中，选择定义中的 $j = 0$ 或 $j = 1$ 均可得到最小异或字符串。",
   "samples": [
     {
       "input": "2\nacba\n",
@@ -49,5 +49,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:10:32.398Z"
+  "fetchedAt": "2026-10-30T23:10:32.398Z",
+  "translatedAt": "2026-11-04T03:29:45.835+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

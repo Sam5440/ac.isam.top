@@ -4,7 +4,7 @@
   "contestId": 1321,
   "index": "C",
   "title": "Remove Adjacent",
-  "titleZh": null,
+  "titleZh": "删除相邻字符",
   "url": "https://codeforces.com/contest/1321/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a string $s$ consisting of lowercase Latin letters. Let the length of $s$ be $|s|$. You may perform several operations on this string.\n\nIn one operation, you can choose some index $i$ and **remove** the $i$-th character of $s$ ($s_i$) if **at least one** of its adjacent characters is the *previous* letter in the Latin alphabet for $s_i$. For example, the *previous* letter for `b` is `a`, the *previous* letter for `s` is `r`, the letter `a` has no *previous* letters. Note that after each removal the length of the string decreases by one. So, the index $i$ should satisfy the condition $1 \\le i \\le |s|$ during each operation.\n\nFor the character $s_i$ adjacent characters are $s_{i-1}$ and $s_{i+1}$. The first and the last characters of $s$ both have only one adjacent character (unless $|s| = 1$).\n\nConsider the following example. Let $s=$ `bacabcab`.\n\n1. During the first move, you can remove the first character $s_1=$ `b` because $s_2=$ `a`. Then the string becomes $s=$ `acabcab`.\n2. During the second move, you can remove the fifth character $s_5=$ `c` because $s_4=$ `b`. Then the string becomes $s=$ `acabab`.\n3. During the third move, you can remove the sixth character $s_6=$'`b`' because $s_5=$ `a`. Then the string becomes $s=$ `acaba`.\n4. During the fourth move, the only character you can remove is $s_4=$ `b`, because $s_3=$ `a` (or $s_5=$ `a`). The string becomes $s=$ `acaa` and you cannot do anything with it.\n\nYour task is to find the maximum possible number of characters you can remove if you choose the sequence of operations optimally.\n\n## Input\n\nThe first line of the input contains one integer $|s|$ ($1 \\le |s| \\le 100$) — the length of $s$.\n\nThe second line of the input contains one string $s$ consisting of $|s|$ lowercase Latin letters.\n\n## Output\n\nPrint one integer — the maximum possible number of characters you can remove if you choose the sequence of moves optimally.\n\n## Note\n\nThe first example is described in the problem statement. Note that the sequence of moves provided in the statement is not the only, but it can be shown that the maximum possible answer to this test is $4$.\n\nIn the second example, you can remove all but one character of $s$. The only possible answer follows.\n\n1. During the first move, remove the third character $s_3=$ `d`, $s$ becomes `bca`.\n2. During the second move, remove the second character $s_2=$ `c`, $s$ becomes `ba`.\n3. And during the third move, remove the first character $s_1=$ `b`, $s$ becomes `a`.",
-  "statementZhMd": null,
+  "statementZhMd": "你得到一个由小写拉丁字母组成的字符串 $s$。令 $s$ 的长度为 $|s|$。你可以对该字符串进行若干次操作。\n\n在一次操作中，你可以选择某个下标 $i$，并在满足以下条件时**删除** $s$ 的第 $i$ 个字符（$s_i$）：它的相邻字符中**至少有一个**是拉丁字母表中位于 $s_i$ **前一个**的字母。例如，`b` 的前一个字母是 `a`，`s` 的前一个字母是 `r`，而字母 `a` 没有前一个字母。注意，每次删除后字符串的长度都会减少 $1$。因此，在每次操作中，下标 $i$ 都应满足 $1 \\le i \\le |s|$。\n\n对于字符 $s_i$，它的相邻字符是 $s_{i-1}$ 和 $s_{i+1}$。字符串的第一个和最后一个字符都只有一个相邻字符（除非 $|s| = 1$）。\n\n考虑下面的例子。设 $s=$ `bacabcab`。\n\n1. 第一步，你可以删除第一个字符 $s_1=$ `b`，因为 $s_2=$ `a`。此时字符串变为 $s=$ `acabcab`。\n2. 第二步，你可以删除第五个字符 $s_5=$ `c`，因为 $s_4=$ `b`。此时字符串变为 $s=$ `acabab`。\n3. 第三步，你可以删除第六个字符 $s_6=$'`b`'，因为 $s_5=$ `a`。此时字符串变为 $s=$ `acaba`。\n4. 第四步，唯一可以删除的字符是 $s_4=$ `b`，因为 $s_3=$ `a`（或者 $s_5=$ `a`）。此时字符串变为 $s=$ `acaa`，之后无法再进行任何操作。\n\n你的任务是：如果你以最优方式选择操作顺序，求最多可以删除多少个字符。\n\n## 输入格式\n\n输入的第一行包含一个整数 $|s|$（$1 \\le |s| \\le 100$），表示字符串 $s$ 的长度。\n\n输入的第二行包含一个由 $|s|$ 个小写拉丁字母组成的字符串 $s$。\n\n## 输出格式\n\n输出一个整数，表示如果以最优方式选择操作顺序，最多可以删除的字符数。\n\n## 说明\n\n第一个样例在题目描述中进行了说明。注意，题目描述中给出的操作顺序并不是唯一的，但可以证明该测试的最大答案为 $4$。\n\n在第二个样例中，你可以删除 $s$ 中除一个字符以外的所有字符。唯一可能的答案随即得到。\n\n1. 第一步，删除第三个字符 $s_3=$ `d`，此时 $s$ 变为 `bca`。\n2. 第二步，删除第二个字符 $s_2=$ `c`，此时 $s$ 变为 `ba`。\n3. 第三步，删除第一个字符 $s_1=$ `b`，此时 $s$ 变为 `a`。",
   "samples": [
     {
       "input": "8\nbacabcab\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:55:34.007Z"
+  "fetchedAt": "2026-10-30T23:55:34.007Z",
+  "translatedAt": "2026-11-04T04:43:25.276+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

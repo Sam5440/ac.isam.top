@@ -4,7 +4,7 @@
   "contestId": "abc317",
   "index": "Ex",
   "title": "Walk",
-  "titleZh": null,
+  "titleZh": "行走",
   "url": "https://atcoder.jp/contests/abc317/tasks/abc317_h",
   "difficulty": 3426,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nWe have a directed graph with $N$ vertices numbered $1$ to $N$. The graph has no multi-edges but can have self-loops. Also, every edge in the graph satisfies the following condition.\n\n- If the edge goes from vertex $s$ to vertex $t$, then $s$ and $t$ satisfy at least one of $0 \\leq t - s\\leq 2$ and $t = 1$.\n\nThe presence or absence of an edge in the graph is represented by sequences $A, B, C, D$, each of length $N$. Each element of $A, B, C, D$ has the following meaning. (Let $A_n$ denote the $n$-th element of $A$; the same applies to $B_n, C_n, D_n$.)\n\n- $A_n$ is $1$ if there is an edge from vertex $n$ to vertex $n$, and $0$ otherwise.\n- $B_n$ is $1$ if there is an edge from vertex $n$ to vertex $n+1$, and $0$ otherwise. (Here, $B_N = 0$.)\n- $C_n$ is $1$ if there is an edge from vertex $n$ to vertex $n+2$, and $0$ otherwise. (Here, $C_{N-1} = C_N = 0$.)\n- $D_n$ is $1$ if there is an edge from vertex $n$ to vertex $1$, and $0$ otherwise. (Here, $D_1 = A_1$.)\n\nIn the given graph, find the number, modulo $998244353$, of walks with $K$ edges starting at vertex $1$ and ending at vertex $N$.\n\nHere, a walk with $K$ edges starting at vertex $1$ and ending at vertex $N$ is a sequence of vertices $v_0 = 1, v_1, \\dots, v_K = N$ such that for each $i$ $(0 \\leq i \\lt K)$ there is an edge from vertex $v_i$ to vertex $v_{i + 1}$. Two walks are distinguished when they differ as sequences.\n\n## Constraints\n\n- $2 \\leq N \\leq 5 \\times 10^4$\n- $1 \\leq K \\leq 5 \\times 10^5$\n- $A_i, B_i, C_i, D_i \\in \\lbrace 0, 1 \\rbrace$\n- $A_1 = D_1$\n- $B_N = C_{N-1} = C_N = 0$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN K\nA_1 A_2 \\dots A_N\nB_1 B_2 \\dots B_N\nC_1 C_2 \\dots C_N\nD_1 D_2 \\dots D_N\n```\n\n## Output\n\nPrint the number, modulo $998244353$, of walks of length $K$ starting at vertex $1$ and ending at vertex $N$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个有向图，包含编号为 $1$ 到 $N$ 的 $N$ 个顶点。图中不存在重边，但可能存在自环。此外，图中的每条边都满足以下条件。\n\n- 如果一条边从顶点 $s$ 指向顶点 $t$，那么 $s$ 和 $t$ 至少满足 $0 \\leq t - s\\leq 2$ 与 $t = 1$ 中的一个条件。\n\n图中边的存在与否由长度均为 $N$ 的序列 $A, B, C, D$ 表示。$A, B, C, D$ 中每个元素的含义如下。（令 $A_n$ 表示 $A$ 的第 $n$ 个元素；$B_n, C_n, D_n$ 同理。）\n\n- 如果存在从顶点 $n$ 到顶点 $n$ 的边，则 $A_n$ 为 $1$，否则为 $0$。\n- 如果存在从顶点 $n$ 到顶点 $n+1$ 的边，则 $B_n$ 为 $1$，否则为 $0$。（此处 $B_N = 0$。）\n- 如果存在从顶点 $n$ 到顶点 $n+2$ 的边，则 $C_n$ 为 $1$，否则为 $0$。（此处 $C_{N-1} = C_N = 0$。）\n- 如果存在从顶点 $n$ 到顶点 $1$ 的边，则 $D_n$ 为 $1$，否则为 $0$。（此处 $D_1 = A_1$。）\n\n请求出在给定图中，从顶点 $1$ 出发、经过 $K$ 条边并到达顶点 $N$ 的行走方案数，结果对 $998244353$ 取模。\n\n这里，从顶点 $1$ 出发、经过 $K$ 条边并到达顶点 $N$ 的行走，是指满足以下条件的顶点序列 $v_0 = 1, v_1, \\dots, v_K = N$：对于每个 $i$ $(0 \\leq i \\lt K)$，都存在一条从顶点 $v_i$ 到顶点 $v_{i + 1}$ 的边。当两个行走对应的顶点序列不同时，认为它们是不同的行走。\n\n## 约束条件\n\n- $2 \\leq N \\leq 5 \\times 10^4$\n- $1 \\leq K \\leq 5 \\times 10^5$\n- $A_i, B_i, C_i, D_i \\in \\lbrace 0, 1 \\rbrace$\n- $A_1 = D_1$\n- $B_N = C_{N-1} = C_N = 0$\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN K\nA_1 A_2 \\dots A_N\nB_1 B_2 \\dots B_N\nC_1 C_2 \\dots C_N\nD_1 D_2 \\dots D_N\n```\n\n## 输出格式\n\n输出从顶点 $1$ 出发、经过 $K$ 条边并到达顶点 $N$ 的行走方案数，结果对 $998244353$ 取模。",
   "samples": [
     {
       "input": "3 3\n1 0 1\n1 1 0\n1 0 0\n1 0 1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:16:26.410Z"
+  "fetchedAt": "2026-10-30T21:16:26.410Z",
+  "translatedAt": "2026-11-04T02:36:57.622+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 643,
   "index": "E",
   "title": "Bear and Destroying Subtrees",
-  "titleZh": null,
+  "titleZh": "熊与摧毁子树",
   "url": "https://codeforces.com/contest/643/problem/E",
   "difficulty": 2700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "Limak is a little grizzly bear. He will once attack Deerland but now he can only destroy trees in role-playing games. Limak starts with a tree with one vertex. The only vertex has index $1$ and is a root of the tree.\n\nSometimes, a game chooses a subtree and allows Limak to attack it. When a subtree is attacked then each of its edges is destroyed with probability ![image](https://espresso.codeforces.com/eb946338365d9781f7d2e9ec692c26702d0ae3a7.png), independently of other edges. Then, Limak gets the penalty — an integer equal to the height of the subtree after the attack. The height is defined as the maximum number of edges on the path between the root of the subtree and any vertex in the subtree.\n\nYou must handle queries of two types.\n\n- `1 v` denotes a query of the first type. A new vertex appears and its parent is $*v*$. A new vertex has the next available index (so, new vertices will be numbered $2, 3, ...$).\n- `2 v` denotes a query of the second type. For a moment let's assume that the game allows Limak to attack a subtree rooted in $*v*$. Then, what would be the expected value of the penalty Limak gets after the attack?\n\nIn a query of the second type, Limak doesn't actually attack the subtree and thus the query doesn't affect next queries.\n\n## Input\n\nThe first line of the input contains one integer $*q*$ ($1 ≤ *q* ≤ 500 000$) — the number of queries.\n\nThen, $*q*$ lines follow. The $*i*$-th of them contains two integers $*type*_{*i*}$ and $*v*_{*i*}$ ($1 ≤ *type*_{*i*} ≤ 2$). If $*type*_{*i*} = 1$ then $*v*_{*i*}$ denotes a parent of a new vertex, while if $*type*_{*i*} = 2$ then you should print the answer for a subtree rooted in $*v*_{*i*}$.\n\nIt's guaranteed that there will be at least $1$ query of the second type, that is, the output won't be empty.\n\nIt's guaranteed that just before the $*i*$-th query a vertex $*v*_{*i*}$ already exists.\n\n## Output\n\nFor each query of the second type print one real number —the expected value of the penalty if Limak attacks the given subtree. Your answer will be considered correct if its absolute or relative error does not exceed $10^{ - 6}$.\n\nNamely: let's assume that your answer is $*a*$, and the answer of the jury is $*b*$. The checker program will consider your answer correct if ![image](https://espresso.codeforces.com/fb10c3e3b874552413ba93d1cdf2971c83f2ebe0.png).\n\n## Note\n\nBelow, you can see the drawing for the first sample. Red circles denote queries of the second type.\n\n![image](https://espresso.codeforces.com/5faa3cb62f996e1841db4dfbb7c2b128dfe18b04.png)",
-  "statementZhMd": null,
+  "statementZhMd": "<statement>\nLimak 是一只小灰熊。他总有一天会进攻 Deerland，但现在他只能在角色扮演游戏中摧毁树木。Limak 一开始拥有一棵只有一个顶点的树。唯一的顶点编号为 $1$，并且是这棵树的根。\n\n有时，游戏会选择一棵子树，并允许 Limak 攻击它。当一棵子树受到攻击时，其中的每条边都会以 ![image](https://espresso.codeforces.com/eb946338365d9781f7d2e9ec692c26702d0ae3a7.png) 的概率被摧毁，且各条边相互独立。随后，Limak 会受到惩罚——一个等于攻击后子树高度的整数。高度定义为子树根节点与子树中任意顶点之间路径上的最大边数。\n\n你需要处理两种类型的查询。\n\n- `1 v` 表示第一种查询。一个新顶点出现，其父节点为 $*v*$。新顶点的编号为当前可用的最小编号（因此新顶点的编号将依次为 $2, 3, ...$）。\n- `2 v` 表示第二种查询。暂且假设游戏允许 Limak 攻击以 $*v*$ 为根的子树，那么攻击后 Limak 获得的惩罚的期望值是多少？\n\n在第二种查询中，Limak 实际上不会攻击该子树，因此该查询不会影响后续查询。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 500 000$）——查询的数量。\n\n接下来 $*q*$ 行中的第 $*i*$ 行包含两个整数 $*type*_{*i*}$ 和 $*v*_{*i*}$（$1 ≤ *type*_{*i*} ≤ 2$）。如果 $*type*_{*i*} = 1$，则 $*v*_{*i*}$ 表示新顶点的父节点；如果 $*type*_{*i*} = 2$，则你需要输出以 $*v*_{*i*}$ 为根的子树对应的答案。\n\n保证至少存在一个第二种查询，即输出不会为空。\n\n保证在第 $*i*$ 次查询之前，顶点 $*v*_{*i*}$ 已经存在。\n\n## 输出格式\n\n对于每个第二种查询，输出一个实数——如果 Limak 攻击给定子树，他所获得惩罚的期望值。如果你的答案与标准答案的绝对误差或相对误差不超过 $10^{ - 6}$，则会被判定为正确。\n\n具体来说，假设你的答案为 $*a*$，标准答案为 $*b*$。评测程序将在 ![image](https://espresso.codeforces.com/fb10c3e3b874552413ba93d1cdf2971c83f2ebe0.png) 时判定你的答案正确。\n\n## 说明\n\n下面给出了第一个样例的示意图。红色圆圈表示第二种查询。\n\n![image](https://espresso.codeforces.com/5faa3cb62f996e1841db4dfbb7c2b128dfe18b04.png)\n</statement>",
   "samples": [
     {
       "input": "7\n1 1\n1 1\n2 1\n1 2\n1 3\n2 2\n2 1\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:13:20.776Z"
+  "fetchedAt": "2026-10-31T01:13:20.776Z",
+  "translatedAt": "2026-11-04T06:36:14.080+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

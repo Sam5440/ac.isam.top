@@ -4,7 +4,7 @@
   "contestId": 1741,
   "index": "C",
   "title": "Minimize the Thickness",
-  "titleZh": null,
+  "titleZh": "最小化厚度",
   "url": "https://codeforces.com/contest/1741/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a sequence $a=[a_1,a_2,\\dots,a_n]$ consisting of $n$ **positive** integers.\n\nLet's call a group of consecutive elements a *segment*. Each *segment* is characterized by two indices: the index of its left end and the index of its right end. Denote by $a[l,r]$ a *segment* of the sequence $a$ with the left end in $l$ and the right end in $r$, i.e. $a[l,r]=[a_l, a_{l+1}, \\dots, a_r]$.\n\nFor example, if $a=[31,4,15,92,6,5]$, then $a[2,5]=[4,15,92,6]$, $a[5,5]=[6]$, $a[1,6]=[31,4,15,92,6,5]$ are *segments*.\n\nWe split the given sequence $a$ into *segments* so that:\n\n- each element is in **exactly** one *segment*;\n- the sums of elements for all *segments* are **equal**.\n\nFor example, if $a$ = [$55,45,30,30,40,100$], then such a sequence can be split into three *segments*: $a[1,2]=[55,45]$, $a[3,5]=[30, 30, 40]$, $a[6,6]=[100]$. Each element belongs to exactly *segment*, the sum of the elements of each *segment* is $100$.\n\nLet's define *thickness* of split as the length of the longest *segment*. For example, the thickness of the split from the example above is $3$.\n\nFind the minimum thickness among all possible splits of the given sequence of $a$ into *segments* in the required way.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 100$) — the number of test cases.\n\nEach test case is described by two lines.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2000$) — the length of the sequence $a$.\n\nThe second line of each test case contains exactly $n$ integers: $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^6$) — elements of the sequence $a$.\n\nIt is guaranteed that the sum of $n$ for all test cases does not exceed $2000$.\n\n## Output\n\nFor each test case, output one integer — the minimum possible thickness of a split of the sequence $a$ into *segments*.\n\nNote that there always exist a split, you can always consider whole sequence as one segment.\n\n## Note\n\nThe split in the first test case is explained in the statement, it can be shown that it is optimal.\n\nIn the second test case, it is possible to split into *segments* only by leaving a single *segment*. Then the thickness of this split is equal to the length of the entire sequence, that is, $4$.\n\nIn the third test case, the optimal split will be $[10, 55], [35, 30], [65]$. The thickness of the split equals to $2$.\n\nIn the fourth test case possible splits are:\n\n- $[4] + [1, 1, 1, 1] + [4]$;\n- $[4, 1, 1] + [1, 1, 4]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个**正**整数组成的序列 $a=[a_1,a_2,\\dots,a_n]$。\n\n我们将一组连续的元素称为一个*段*。每个*段*由两个下标确定：左端点的下标和右端点的下标。用 $a[l,r]$ 表示序列 $a$ 中左端点为 $l$、右端点为 $r$ 的一个*段*，即 $a[l,r]=[a_l, a_{l+1}, \\dots, a_r]$。\n\n例如，如果 $a=[31,4,15,92,6,5]$，那么 $a[2,5]=[4,15,92,6]$、$a[5,5]=[6]$、$a[1,6]=[31,4,15,92,6,5]$ 都是*段*。\n\n我们需要将给定的序列 $a$ 划分成若干个*段*，使得：\n\n- 每个元素**恰好**属于一个*段*；\n- 所有*段*中元素的和均相等。\n\n例如，对于 $a$ = [$55,45,30,30,40,100$]，可以将其划分成三个*段*：$a[1,2]=[55,45]$、$a[3,5]=[30, 30, 40]$、$a[6,6]=[100]$。每个元素都恰好属于一个*段*，且每个*段*中元素的和都是 $100$。\n\n我们将划分的*厚度*定义为最长*段*的长度。例如，上述划分的厚度为 $3$。\n\n请在所有满足要求的序列 $a$ 的*段*划分中，求可能的最小厚度。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 100$）——测试用例的数量。\n\n每个测试用例包含两行。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2000$）——序列 $a$ 的长度。\n\n每个测试用例的第二行包含恰好 $n$ 个整数：$a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^6$）——序列中的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $2000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——将序列 $a$ 划分成满足要求的若干个*段*时，可能达到的最小厚度。\n\n注意，划分总是存在的，因为可以直接将整个序列看作一个*段*。\n\n## 说明\n\n第一个测试用例中的划分已在题目描述中解释，可以证明这是最优划分。\n\n在第二个测试用例中，只有将整个序列作为一个*段*时才能完成划分。因此，该划分的厚度等于整个序列的长度，即 $4$。\n\n在第三个测试用例中，最优划分为 $[10, 55], [35, 30], [65]$。该划分的厚度为 $2$。\n\n在第四个测试用例中，可能的划分有：\n\n- $[4] + [1, 1, 1, 1] + [4]$；\n- $[4, 1, 1] + [1, 1, 4]$。",
   "samples": [
     {
       "input": "4\n6\n55 45 30 30 40 100\n4\n10 23 7 13\n5\n10 55 35 30 65\n6\n4 1 1 1 1 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:05.647Z"
+  "fetchedAt": "2026-11-02T17:50:05.647Z",
+  "translatedAt": "2026-11-04T03:09:50.833+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

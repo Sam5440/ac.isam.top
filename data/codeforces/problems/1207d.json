@@ -4,7 +4,7 @@
   "contestId": 1207,
   "index": "D",
   "title": "Number Of Permutations",
-  "titleZh": null,
+  "titleZh": "排列数量",
   "url": "https://codeforces.com/contest/1207/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a sequence of $n$ pairs of integers: $(a_1, b_1), (a_2, b_2), \\dots , (a_n, b_n)$. This sequence is called bad if it is sorted in non-descending order by first elements or if it is sorted in non-descending order by second elements. Otherwise the sequence is good. There are examples of good and bad sequences:\n\n- $s = [(1, 2), (3, 2), (3, 1)]$ is bad because the sequence of first elements is sorted: $[1, 3, 3]$;\n- $s = [(1, 2), (3, 2), (1, 2)]$ is bad because the sequence of second elements is sorted: $[2, 2, 2]$;\n- $s = [(1, 1), (2, 2), (3, 3)]$ is bad because both sequences (the sequence of first elements and the sequence of second elements) are sorted;\n- $s = [(1, 3), (3, 3), (2, 2)]$ is good because neither the sequence of first elements $([1, 3, 2])$ nor the sequence of second elements $([3, 3, 2])$ is sorted.\n\nCalculate the number of permutations of size $n$ such that after applying this permutation to the sequence $s$ it turns into a good sequence.\n\nA permutation $p$ of size $n$ is a sequence $p_1, p_2, \\dots , p_n$ consisting of $n$ distinct integers from $1$ to $n$ ($1 \\le p_i \\le n$). If you apply permutation $p_1, p_2, \\dots , p_n$ to the sequence $s_1, s_2, \\dots , s_n$ you get the sequence $s_{p_1}, s_{p_2}, \\dots , s_{p_n}$. For example, if $s = [(1, 2), (1, 3), (2, 3)]$ and $p = [2, 3, 1]$ then $s$ turns into $[(1, 3), (2, 3), (1, 2)]$.\n\n## Input\n\nThe first line contains one integer $n$ ($1 \\le n \\le 3 \\cdot 10^5$).\n\nThe next $n$ lines contains description of sequence $s$. The $i$-th line contains two integers $a_i$ and $b_i$ ($1 \\le a_i, b_i \\le n$) — the first and second elements of $i$-th pair in the sequence.\n\n**The sequence $s$ may contain equal elements**.\n\n## Output\n\nPrint the number of permutations of size $n$ such that after applying this permutation to the sequence $s$ it turns into a good sequence. Print the answer modulo $998244353$ (a prime number).\n\n## Note\n\nIn first test case there are six permutations of size $3$:\n\n1. if $p = [1, 2, 3]$, then $s = [(1, 1), (2, 2), (3, 1)]$ — bad sequence (sorted by first elements);\n2. if $p = [1, 3, 2]$, then $s = [(1, 1), (3, 1), (2, 2)]$ — bad sequence (sorted by second elements);\n3. if $p = [2, 1, 3]$, then $s = [(2, 2), (1, 1), (3, 1)]$ — good sequence;\n4. if $p = [2, 3, 1]$, then $s = [(2, 2), (3, 1), (1, 1)]$ — good sequence;\n5. if $p = [3, 1, 2]$, then $s = [(3, 1), (1, 1), (2, 2)]$ — bad sequence (sorted by second elements);\n6. if $p = [3, 2, 1]$, then $s = [(3, 1), (2, 2), (1, 1)]$ — good sequence.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个整数对组成的序列：$(a_1, b_1), (a_2, b_2), \\dots , (a_n, b_n)$。如果该序列按第一元素非降序排列，或者按第二元素非降序排列，则称其为坏序列。否则称其为好序列。下面是好序列和坏序列的例子：\n\n- $s = [(1, 2), (3, 2), (3, 1)]$ 是坏序列，因为第一元素组成的序列已经有序：$[1, 3, 3]$；\n- $s = [(1, 2), (3, 2), (1, 2)]$ 是坏序列，因为第二元素组成的序列已经有序：$[2, 2, 2]$；\n- $s = [(1, 1), (2, 2), (3, 3)]$ 是坏序列，因为两个序列（第一元素组成的序列和第二元素组成的序列）都已经有序；\n- $s = [(1, 3), (3, 3), (2, 2)]$ 是好序列，因为第一元素组成的序列 $([1, 3, 2])$ 和第二元素组成的序列 $([3, 3, 2])$ 都不是有序的。\n\n请计算有多少个大小为 $n$ 的排列，使得将该排列应用于序列 $s$ 后，得到的序列是好序列。\n\n大小为 $n$ 的排列 $p$ 是一个由 $n$ 个互不相同的 $1$ 到 $n$ 之间的整数组成的序列 $p_1, p_2, \\dots , p_n$（$1 \\le p_i \\le n$）。将排列 $p_1, p_2, \\dots , p_n$ 应用于序列 $s_1, s_2, \\dots , s_n$ 后，得到序列 $s_{p_1}, s_{p_2}, \\dots , s_{p_n}$。例如，如果 $s = [(1, 2), (1, 3), (2, 3)]$ 且 $p = [2, 3, 1]$，那么 $s$ 将变为 $[(1, 3), (2, 3), (1, 2)]$。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^5$）。\n\n接下来的 $n$ 行描述序列 $s$。第 $i$ 行包含两个整数 $a_i$ 和 $b_i$（$1 \\le a_i, b_i \\le n$），分别表示序列中第 $i$ 个整数对的第一元素和第二元素。\n\n**序列 $s$ 中可能包含相同的元素。**\n\n## 输出格式\n\n输出大小为 $n$ 的排列的数量，使得将该排列应用于序列 $s$ 后，得到的序列是好序列。由于答案可能很大，请将答案对 $998244353$（一个质数）取模后输出。\n\n## 说明\n\n在第一个测试用例中，大小为 $3$ 的排列共有六个：\n\n1. 如果 $p = [1, 2, 3]$，则 $s = [(1, 1), (2, 2), (3, 1)]$ —— 坏序列（按第一元素有序）；\n2. 如果 $p = [1, 3, 2]$，则 $s = [(1, 1), (3, 1), (2, 2)]$ —— 坏序列（按第二元素有序）；\n3. 如果 $p = [2, 1, 3]$，则 $s = [(2, 2), (1, 1), (3, 1)]$ —— 好序列；\n4. 如果 $p = [2, 3, 1]$，则 $s = [(2, 2), (3, 1), (1, 1)]$ —— 好序列；\n5. 如果 $p = [3, 1, 2]$，则 $s = [(3, 1), (1, 1), (2, 2)]$ —— 坏序列（按第二元素有序）；\n6. 如果 $p = [3, 2, 1]$，则 $s = [(3, 1), (2, 2), (1, 1)]$ —— 好序列。",
   "samples": [
     {
       "input": "3\n1 1\n2 2\n3 1\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:09:19.445Z"
+  "fetchedAt": "2026-11-02T19:09:19.445Z",
+  "translatedAt": "2026-11-04T05:09:14.172+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

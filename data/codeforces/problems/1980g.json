@@ -4,7 +4,7 @@
   "contestId": 1980,
   "index": "G",
   "title": "Yasya and the Mysterious Tree",
-  "titleZh": null,
+  "titleZh": "Yasya 与神秘的树",
   "url": "https://codeforces.com/contest/1980/problem/G",
   "difficulty": 2300,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 512,
   "statementMd": "Yasya was walking in the forest and accidentally found a tree with $n$ vertices. A tree is a connected undirected graph with no cycles.\n\nNext to the tree, the girl found an ancient manuscript with $m$ queries written on it. The queries can be of two types.\n\nThe first type of query is described by the integer $y$. The weight of **each** edge in the tree is replaced by the [bitwise exclusive OR](http://tiny.cc/xor_wiki_eng) of the weight of that edge and the integer $y$.\n\nThe second type is described by the vertex $v$ and the integer $x$. Yasya chooses a vertex $u$ ($1 \\le u \\le n$, $u \\neq v$) and mentally draws a bidirectional edge of weight $x$ from $v$ to $u$ in the tree.\n\nThen Yasya finds a simple cycle in the resulting graph and calculates the [bitwise exclusive OR](http://tiny.cc/xor_wiki_eng) of all the edges in it. She wants to choose a vertex $u$ such that the calculated value is **maximum**. This calculated value will be the answer to the query. It can be shown that such a cycle exists and is unique under the given constraints (independent of the choice of $u$). If an edge between $v$ and $u$ already existed, a simple cycle is the path $v \\to u \\to v$.\n\nNote that the second type of query is performed *mentally*, meaning the tree does **not** change in any way after it.\n\nHelp Yasya answer all the queries.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe descriptions of the test cases follow.\n\nThe first line of each test case contains two integers $n$, $m$ ($2 \\le n \\le 2 \\cdot 10^5$, $1 \\le m \\le 2 \\cdot 10^5$) — the number of vertices in the tree and the number of queries.\n\nThe next $n - 1$ lines of each test case contain three integers $v$, $u$, $w$ ($1 \\le v, u \\le n$, $1 \\le w \\le 10^9$) — the ends of some edge in the tree and its weight.\n\nIt is guaranteed that the given set of edges forms a tree.\n\nThe next $m$ lines of each test case describe the queries:\n\n- `^` $y$ ($1 \\le y \\le 10^9$) — parameter of the first type query;\n- `?` $v$ $x$ ($1 \\le v \\le n$, $1 \\le x \\le 10^9$) — parameters of the second type query.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$. The same is guaranteed for $m$.\n\n## Output\n\nFor each test case, output the answers to the queries of the second type.",
-  "statementZhMd": null,
+  "statementZhMd": "Yasya 在森林中行走时，偶然发现了一棵有 $n$ 个顶点的树。树是一种无环的连通无向图。\n\n在树旁边，女孩发现了一份写有 $m$ 个查询的古老手稿。查询有以下两种类型。\n\n第一类查询由整数 $y$ 描述。树中**每一条**边的权值都会被替换为该边原权值与整数 $y$ 的[按位异或](http://tiny.cc/xor_wiki_eng)结果。\n\n第二类查询由顶点 $v$ 和整数 $x$ 描述。Yasya 选择一个顶点 $u$（$1 \\le u \\le n$，$u \\neq v$），并在脑海中向树中添加一条从 $v$ 到 $u$、权值为 $x$ 的双向边。\n\n然后，Yasya 在得到的图中找到一个简单环，并计算该环上所有边权的[按位异或](http://tiny.cc/xor_wiki_eng)结果。她希望选择一个顶点 $u$，使计算出的值**最大**。这个计算出的值就是该查询的答案。可以证明，在给定约束下，这样的环存在且唯一（与 $u$ 的选择无关）。如果 $v$ 和 $u$ 之间原本已经存在一条边，那么简单环就是路径 $v \\to u \\to v$。\n\n注意，第二类查询是以*脑内模拟*的方式执行的，这意味着查询执行后树不会发生任何变化。\n\n请帮助 Yasya 回答所有查询。\n\n## 输入\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$、$m$（$2 \\le n \\le 2 \\cdot 10^5$，$1 \\le m \\le 2 \\cdot 10^5$）——树中顶点的数量和查询的数量。\n\n接下来的 $n - 1$ 行中，每行包含三个整数 $v$、$u$、$w$（$1 \\le v, u \\le n$，$1 \\le w \\le 10^9$）——树中一条边的两个端点及其权值。\n\n保证给出的边构成一棵树。\n\n接下来的 $m$ 行描述查询：\n\n- `^` $y$（$1 \\le y \\le 10^9$）——第一类查询的参数；\n- `?` $v$ $x$（$1 \\le v \\le n$，$1 \\le x \\le 10^9$）——第二类查询的参数。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。$m$ 的总和同样不超过 $2 \\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，输出所有第二类查询的答案。",
   "samples": [
     {
       "input": "2\n3 7\n1 2 1\n3 1 8\n^ 5\n? 2 9\n^ 1\n? 1 10\n^ 6\n? 3 1\n? 2 9\n5 6\n1 2 777\n3 2 2812\n4 1 16\n5 3 1000000000\n^ 4\n? 3 123\n? 5 1000000000\n^ 1000000000\n? 1 908070\n? 2 1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:09:03.845Z"
+  "fetchedAt": "2026-11-02T17:09:03.845Z",
+  "translatedAt": "2026-11-04T02:08:43.894+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1217,
   "index": "E",
   "title": "Sum Queries?",
-  "titleZh": null,
+  "titleZh": "求和查询？",
   "url": "https://codeforces.com/contest/1217/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let's define a *balanced* multiset the following way. Write down the sum of all elements of the multiset in its decimal representation. For each position of that number check if the multiset includes at least one element such that the digit of the element and the digit of the sum at that position are the same. If that holds for every position, then the multiset is *balanced*. Otherwise it's *unbalanced*.\n\nFor example, multiset $\\{20, 300, 10001\\}$ is *balanced* and multiset $\\{20, 310, 10001\\}$ is *unbalanced*:\n\n![image](https://espresso.codeforces.com/c2deea8a264ab37a16f8003002d775f21845f232.png)\n\nThe red digits mark the elements and the positions for which these elements have the same digit as the sum. The sum of the first multiset is $10321$, every position has the digit required. The sum of the second multiset is $10331$ and the second-to-last digit doesn't appear in any number, thus making the multiset *unbalanced*.\n\nYou are given an array $a_1, a_2, \\dots, a_n$, consisting of $n$ integers.\n\nYou are asked to perform some queries on it. The queries can be of two types:\n\n- $1~i~x$ — replace $a_i$ with the value $x$;\n- $2~l~r$ — find the ***unbalanced*** subset of the multiset of the numbers $a_l, a_{l + 1}, \\dots, a_r$ with the minimum sum, or report that no *unbalanced* subset exists.\n\nNote that the empty multiset is *balanced*.\n\nFor each query of the second type print the lowest sum of the *unbalanced* subset. Print `-1` if no *unbalanced* subset exists.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($1 \\le n, m \\le 2 \\cdot 10^5$) — the number of elements in the array and the number of queries, respectively.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\lt 10^9$).\n\nEach of the following $m$ lines contains a query of one of two types:\n\n- $1~i~x$ ($1 \\le i \\le n$, $1 \\le x \\lt 10^9$) — replace $a_i$ with the value $x$;\n- $2~l~r$ ($1 \\le l \\le r \\le n$) — find the ***unbalanced*** subset of the multiset of the numbers $a_l, a_{l + 1}, \\dots, a_r$ with the lowest sum, or report that no *unbalanced* subset exists.\n\nIt is guaranteed that there is at least one query of the second type.\n\n## Output\n\nFor each query of the second type print the lowest sum of the *unbalanced* subset. Print `-1` if no *unbalanced* subset exists.\n\n## Note\n\nAll the subsets of multiset $\\{20, 300, 10001\\}$ are *balanced*, thus the answer is `-1`.\n\nThe possible *unbalanced* subsets in the third query are $\\{20, 310\\}$ and $\\{20, 310, 10001\\}$. The lowest sum one is $\\{20, 310\\}$. Note that you are asked to choose a subset, not a subsegment, thus the chosen elements might not be adjancent in the array.\n\nThe fourth query includes only the empty subset and subset $\\{20\\}$. Both of them are *balanced*.\n\nThe last query includes the empty subset and the subsets $\\{20\\}$, $\\{20\\}$ and $\\{20, 20\\}$. Only $\\{20, 20\\}$ is *unbalanced*, its sum is $40$. Note that you are asked to choose a multiset, thus it might include equal elements.",
-  "statementZhMd": null,
+  "statementZhMd": "我们按如下方式定义一个*平衡*多重集。将多重集中所有元素的和写成十进制表示。对于该数的每一位，检查多重集中是否至少包含一个元素，使得该元素在对应位置上的数字与总和在该位置上的数字相同。如果每一位都满足这一条件，那么这个多重集就是*平衡*的；否则就是*不平衡*的。\n\n例如，多重集 $\\{20, 300, 10001\\}$ 是*平衡*的，而多重集 $\\{20, 310, 10001\\}$ 是*不平衡*的：\n\n![image](https://espresso.codeforces.com/c2deea8a264ab37a16f8003002d775f21845f232.png)\n\n红色数字标出了元素，以及这些元素与总和在对应位置上相同的数字。第一个多重集的和为 $10321$，每一位都有所需的数字。第二个多重集的和为 $10331$，倒数第二位的数字没有出现在任何数中，因此该多重集是*不平衡*的。\n\n给定一个由 $n$ 个整数 $a_1, a_2, \\dots, a_n$ 组成的数组。\n\n你需要对它执行若干次查询。查询有以下两种类型：\n\n- $1~i~x$ — 将 $a_i$ 替换为 $x$；\n- $2~l~r$ — 在由数 $a_l, a_{l + 1}, \\dots, a_r$ 构成的多重集中，寻找和最小的***不平衡***子多重集；如果不存在***不平衡***子多重集，则报告这一情况。\n\n注意，空多重集是*平衡*的。\n\n对于每个第二类查询，输出***不平衡***子多重集的最小和。如果不存在***不平衡***子多重集，则输出 `-1`。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 2 \\cdot 10^5$），分别表示数组中元素的数量和查询的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\lt 10^9$）。\n\n接下来的 $m$ 行中，每行包含以下两种类型之一的查询：\n\n- $1~i~x$（$1 \\le i \\le n$, $1 \\le x \\lt 10^9$）— 将 $a_i$ 替换为 $x$；\n- $2~l~r$（$1 \\le l \\le r \\le n$）— 在由数 $a_l, a_{l + 1}, \\dots, a_r$ 构成的多重集中，寻找和最小的***不平衡***子多重集；如果不存在***不平衡***子多重集，则报告这一情况。\n\n保证至少存在一个第二类查询。\n\n## 输出格式\n\n对于每个第二类查询，输出***不平衡***子多重集的最小和。如果不存在***不平衡***子多重集，则输出 `-1`。\n\n## 说明\n\n多重集 $\\{20, 300, 10001\\}$ 的所有子多重集都是*平衡*的，因此答案为 `-1`。\n\n第三个查询中的可能的***不平衡***子多重集为 $\\{20, 310\\}$ 和 $\\{20, 310, 10001\\}$。其中和最小的是 $\\{20, 310\\}$。注意，你需要选择的是一个子多重集，而不是一个子段，因此所选元素在数组中不一定相邻。\n\n第四个查询只包含空子集和子集 $\\{20\\}$。它们都是*平衡*的。\n\n最后一个查询包含空子集，以及子集 $\\{20\\}$、$\\{20\\}$ 和 $\\{20, 20\\}$。只有 $\\{20, 20\\}$ 是*不平衡*的，其和为 $40$。注意，你需要选择的是一个多重集，因此其中可以包含相等的元素。",
   "samples": [
     {
       "input": "4 5\n300 10001 20 20\n2 1 3\n1 1 310\n2 1 3\n2 3 3\n2 3 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:08:50.425Z"
+  "fetchedAt": "2026-11-02T19:08:50.425Z",
+  "translatedAt": "2026-11-04T05:01:15.297+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

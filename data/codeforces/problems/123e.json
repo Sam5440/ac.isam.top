@@ -4,7 +4,7 @@
   "contestId": 123,
   "index": "E",
   "title": "Maze",
-  "titleZh": null,
+  "titleZh": "迷宫",
   "url": "https://codeforces.com/contest/123/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A maze is represented by a tree (an undirected graph, where exactly one way exists between each pair of vertices). In the maze the entrance vertex and the exit vertex are chosen with some probability. The exit from the maze is sought by Deep First Search. If there are several possible ways to move, the move is chosen equiprobably. Consider the following pseudo-code:\n\n```\nDFS(x)\n    if x == exit vertex then\n        finish search\n    flag[x] <- TRUE\n    random shuffle the vertices' order in V(x) // here all permutations have equal probability to be chosen\n    for i <- 1 to length[V] do\n        if flag[V[i]] = FALSE then\n            count++;\n            DFS(y);\n    count++;\n```\n\n$*V*(*x*)$ is the list vertices adjacent to $*x*$. The $*flag*$ array is initially filled as `FALSE`. $*DFS*$ initially starts with a parameter of an entrance vertex. When the search is finished, variable $*count*$ will contain the number of moves.\n\nYour task is to count the mathematical expectation of the number of moves one has to do to exit the maze.\n\n## Input\n\nThe first line determines the number of vertices in the graph $*n*$ ($1 ≤ *n* ≤ 10^{5}$). The next $*n* - 1$ lines contain pairs of integers $*a*_{*i*}$ and $*b*_{*i*}$, which show the existence of an edge between $*a*_{*i*}$ and $*b*_{*i*}$ vertices ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$). It is guaranteed that the given graph is a tree.\n\nNext $*n*$ lines contain pairs of non-negative numbers $*x*_{*i*}$ and $*y*_{*i*}$, which represent the probability of choosing the $*i*$-th vertex as an entrance and exit correspondingly. The probabilities to choose vertex $*i*$ as an entrance and an exit equal ![image](https://espresso.codeforces.com/a73c036480835f8a2e503c184293d5e5bd3dbda3.png) and ![image](https://espresso.codeforces.com/b895588b3f4daa45cd2c1e9adde5ff651dda00bc.png) correspondingly. The sum of all $*x*_{*i*}$ and the sum of all $*y*_{*i*}$ are positive and do not exceed $10^{6}$.\n\n## Output\n\nPrint the expectation of the number of moves. The absolute or relative error should not exceed $10^{ - 9}$.\n\n## Note\n\nIn the first sample the entrance vertex is always 1 and the exit vertex is always 2.\n\nIn the second sample the entrance vertex is always 1 and the exit vertex with the probability of 2/5 will be 2 of with the probability if 3/5 will be 3. The mathematical expectations for the exit vertices 2 and 3 will be equal (symmetrical cases). During the first move one can go to the exit vertex with the probability of 0.5 or to go to a vertex that's not the exit vertex with the probability of 0.5. In the first case the number of moves equals 1, in the second one it equals 3. The total mathematical expectation is counted as $2 / 5 × (1 × 0.5 + 3 × 0.5) + 3 / 5 × (1 × 0.5 + 3 × 0.5)$",
-  "statementZhMd": null,
+  "statementZhMd": "迷宫由一棵树表示（即一个无向图，其中任意两个顶点之间恰好存在一条路径）。在迷宫中，入口顶点和出口顶点按照一定的概率选取。通过深度优先搜索寻找迷宫的出口。如果有多种可行的移动方式，则等概率地选择其中一种。考虑以下伪代码：\n\n```\nDFS(x)\n    if x == exit vertex then\n        finish search\n    flag[x] <- TRUE\n    random shuffle the vertices' order in V(x) // here all permutations have equal probability to be chosen\n    for i <- 1 to length[V] do\n        if flag[V[i]] = FALSE then\n            count++;\n            DFS(y);\n    count++;\n```\n\n$*V*(*x*)$ 是与 $*x*$ 相邻的顶点列表。数组 $*flag*$ 初始时全部填充为 `FALSE`。$*DFS*$ 初始时以入口顶点作为参数调用。搜索结束时，变量 $*count*$ 将包含移动次数。\n\n你的任务是计算走出迷宫所需移动次数的数学期望。\n\n## 输入格式\n\n第一行包含图中的顶点数 $*n*$（$1 ≤ *n* ≤ 10^{5}$）。接下来的 $*n*$ - 1 行中，每行包含两个整数 $*a*_{*i}$ 和 $*b*_{*i}$，表示顶点 $*a*_{*i}$ 和 $*b*_{*i}$ 之间存在一条边（$1 ≤ *a*_{*i}, *b*_{*i} ≤ *n*$）。保证给出的图是一棵树。\n\n接下来的 $*n*$ 行中，每行包含两个非负数 $*x*_{*i}$ 和 $*y*_{*i}$，分别表示选择第 $*i*$ 个顶点作为入口和出口的概率。选择顶点 $*i*$ 作为入口和出口的概率分别等于 ![image](https://espresso.codeforces.com/a73c036480835f8a2e503c184293d5e5bd3dbda3.png) 和 ![image](https://espresso.codeforces.com/b895588b3f4daa45cd2c1e9adde5ff651dda00bc.png)。所有 $*x*_{*i}$ 的总和以及所有 $*y*_{*i}$ 的总和均为正数且不超过 $10^{6}$。\n\n## 输出格式\n\n输出移动次数的数学期望。绝对误差或相对误差不应超过 $10^{ - 9}$。\n\n## 说明\n\n在第一个样例中，入口顶点始终为 1，出口顶点始终为 2。\n\n在第二个样例中，入口顶点始终为 1；出口顶点有 $2/5$ 的概率为 2，有 $3/5$ 的概率为 3。出口顶点为 2 和 3 时的数学期望相同（这两种情况具有对称性）。第一次移动时，以 0.5 的概率可以移动到出口顶点，以 0.5 的概率可以移动到非出口顶点。在前一种情况下，移动次数为 1；在后一种情况下，移动次数为 3。因此，总数学期望为 $2 / 5 × (1 × 0.5 + 3 × 0.5) + 3 / 5 × (1 × 0.5 + 3 × 0.5)$。",
   "samples": [
     {
       "input": "2\n1 2\n0 1\n1 0\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:34:07.934Z"
+  "fetchedAt": "2026-10-31T02:34:07.934Z",
+  "translatedAt": "2026-11-04T07:47:37.293+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

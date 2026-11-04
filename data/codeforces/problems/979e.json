@@ -4,7 +4,7 @@
   "contestId": 979,
   "index": "E",
   "title": "Kuro and Topological Parity",
-  "titleZh": null,
+  "titleZh": "Kuro 与拓扑奇偶性",
   "url": "https://codeforces.com/contest/979/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Kuro has recently won the \"Most intelligent cat ever\" contest. The three friends then decided to go to Katie's home to celebrate Kuro's winning. After a big meal, they took a small break then started playing games.\n\nKuro challenged Katie to create a game with only a white paper, a pencil, a pair of scissors and a lot of arrows (you can assume that the number of arrows is infinite). Immediately, Katie came up with the game called *Topological Parity*.\n\nThe paper is divided into $n$ pieces enumerated from $1$ to $n$. Shiro has painted some pieces with some color. Specifically, the $i$-th piece has color $c_{i}$ where $c_{i} = 0$ defines black color, $c_{i} = 1$ defines white color and $c_{i} = -1$ means that the piece hasn't been colored yet.\n\nThe rules of the game is simple. Players must put some arrows between some pairs of different pieces in such a way that for each arrow, the number in the piece it starts from is less than the number of the piece it ends at. Also, two different pieces can only be connected by **at most** one arrow. After that the players must choose the color ($0$ or $1$) for each of the unpainted pieces. The score of a valid way of putting the arrows and coloring pieces is defined as the number of paths of pieces of alternating colors. For example, $[1 \\to 0 \\to 1 \\to 0]$, $[0 \\to 1 \\to 0 \\to 1]$, $[1]$, $[0]$ are valid paths and will be counted. You can only travel from piece $x$ to piece $y$ if and only if there is an arrow from $x$ to $y$.\n\nBut Kuro is not fun yet. He loves parity. Let's call his favorite parity $p$ where $p = 0$ stands for \"even\" and $p = 1$ stands for \"odd\". He wants to put the arrows and choose colors in such a way that the score has the parity of $p$.\n\nIt seems like there will be so many ways which satisfy Kuro. He wants to count the number of them but this could be a very large number. Let's help him with his problem, but print it modulo $10^{9} + 7$.\n\n## Input\n\nThe first line contains two integers $n$ and $p$ ($1 \\leq n \\leq 50$, $0 \\leq p \\leq 1$) — the number of pieces and Kuro's wanted parity.\n\nThe second line contains $n$ integers $c_{1}, c_{2}, ..., c_{n}$ ($-1 \\leq c_{i} \\leq 1$) — the colors of the pieces.\n\n## Output\n\nPrint a single integer — the number of ways to put the arrows and choose colors so the number of valid paths of alternating colors has the parity of $p$.\n\n## Note\n\nIn the first example, there are $6$ ways to color the pieces and add the arrows, as are shown in the figure below. The scores are $3, 3, 5$ for the first row and $5, 3, 3$ for the second row, both from left to right.\n\n![image](https://espresso.codeforces.com/b8d50e4973c7852fe55e994da0f070052e507568.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Kuro 最近赢得了“史上最聪明的猫”比赛。于是，三位朋友决定去 Katie 家庆祝 Kuro 获胜。吃完丰盛的饭菜后，他们稍作休息，便开始玩游戏。\n\nKuro 挑战 Katie：只用一张白纸、一支铅笔、一把剪刀和许多箭头（可以认为箭头的数量是无限的）来设计一个游戏。Katie 立即想出了一个名为 *Topological Parity* 的游戏。\n\n这张纸被分成 $n$ 个片段，编号为 $1$ 到 $n$。Shiro 给其中一些片段涂上了颜色。具体来说，第 $i$ 个片段的颜色为 $c_{i}$，其中 $c_{i} = 0$ 表示黑色，$c_{i} = 1$ 表示白色，而 $c_{i} = -1$ 表示该片段尚未着色。\n\n游戏规则很简单。玩家必须在一些不同片段的有序对之间放置若干箭头，使得对于每个箭头，它起点所在片段的编号小于终点所在片段的编号。此外，两个不同的片段之间**至多**只能连接一支箭头。之后，玩家必须为每个未着色的片段选择颜色（$0$ 或 $1$）。一种合法的放置箭头并为片段着色的方案，其得分定义为颜色交替的片段路径数量。例如，$[1 \\to 0 \\to 1 \\to 0]$、$[0 \\to 1 \\to 0 \\to 1]$、$[1]$、$[0]$ 都是合法路径，并会被计数。当且仅当存在从片段 $x$ 指向片段 $y$ 的箭头时，才能从片段 $x$ 移动到片段 $y$。\n\n但 Kuro 还不满足。他喜欢奇偶性。令他最喜欢的奇偶性为 $p$，其中 $p = 0$ 表示“偶数”，$p = 1$ 表示“奇数”。他希望以一种方式放置箭头并选择颜色，使得得分的奇偶性为 $p$。\n\n满足 Kuro 要求的方案似乎会有很多种。他想要统计这些方案的数量，但这个数量可能会非常大。请帮助他解决这个问题，并将答案对 $10^{9} + 7$ 取模。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $p$（$1 \\leq n \\leq 50$，$0 \\leq p \\leq 1$）——片段数量以及 Kuro 希望的奇偶性。\n\n第二行包含 $n$ 个整数 $c_{1}, c_{2}, ..., c_{n}$（$-1 \\leq c_{i} \\leq 1$）——各片段的颜色。\n\n## 输出格式\n\n输出一个整数——放置箭头并选择颜色，使颜色交替的合法路径数量的奇偶性为 $p$ 的方案数。\n\n## 说明\n\n在第一个样例中，共有 $6$ 种为片段着色并添加箭头的方式，如下图所示。第一行从左到右的得分分别为 $3, 3, 5$，第二行从左到右的得分分别为 $5, 3, 3$。\n\n![image](https://espresso.codeforces.com/b8d50e4973c7852fe55e994da0f070052e507568.png)",
   "samples": [
     {
       "input": "3 1\n-1 0 1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:31:51.589Z"
+  "fetchedAt": "2026-10-31T00:31:51.589Z",
+  "translatedAt": "2026-11-04T05:44:01.296+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

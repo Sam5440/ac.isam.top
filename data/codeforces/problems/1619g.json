@@ -4,7 +4,7 @@
   "contestId": 1619,
   "index": "G",
   "title": "Unusual Minesweeper",
-  "titleZh": null,
+  "titleZh": "非同寻常的扫雷",
   "url": "https://codeforces.com/contest/1619/problem/G",
   "difficulty": 2000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp is very fond of playing the game Minesweeper. Recently he found a similar game and there are such rules.\n\nThere are mines on the field, for each the coordinates of its location are known ($x_i, y_i$). Each mine has a lifetime in seconds, after which it will explode. After the explosion, the mine also detonates all mines vertically and horizontally at a distance of $k$ (two perpendicular lines). As a result, we get an explosion on the field in the form of a \"plus\" symbol ('**+**'). Thus, one explosion can cause new explosions, and so on.\n\nAlso, Polycarp can detonate anyone mine every second, starting from zero seconds. After that, a chain reaction of explosions also takes place. Mines explode **instantly** and also **instantly** detonate other mines according to the rules described above.\n\nPolycarp wants to set a new record and asks you to help him calculate in what minimum number of seconds all mines can be detonated.\n\n## Input\n\nThe first line of the input contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases in the test.\n\nAn empty line is written in front of each test suite.\n\nNext comes a line that contains integers $n$ and $k$ ($1 \\le n \\le 2 \\cdot 10^5$, $0 \\le k \\le 10^9$) — the number of mines and the distance that hit by mines during the explosion, respectively.\n\nThen $n$ lines follow, the $i$-th of which describes the $x$ and $y$ coordinates of the $i$-th mine and the time until its explosion ($-10^9 \\le x, y \\le 10^9$, $0 \\le timer \\le 10^9$). It is guaranteed that all mines have different coordinates.\n\nIt is guaranteed that the sum of the values $n$ over all test cases in the test does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nPrint $t$ lines, each of the lines must contain the answer to the corresponding set of input data  — the minimum number of seconds it takes to explode all the mines.\n\n## Note\n\n![image](https://espresso.codeforces.com/b54edbbac5e8e00269b5594b5d0b049aadf51020.png) Picture from examples\n\nFirst example:\n\n- $0$ second: we explode a mine at the cell $(2, 2)$, it does not detonate any other mine since $k=0$.\n- $1$ second: we explode the mine at the cell $(0, 1)$, and the mine at the cell $(0, 0)$ explodes itself.\n- $2$ second: we explode the mine at the cell $(1, 1)$, and the mine at the cell $(1, 0)$ explodes itself.\n\nSecond example:\n\n- $0$ second: we explode a mine at the cell $(2, 2)$ we get:\n\n![image](https://espresso.codeforces.com/2801f4738af5fd4af5d46fa774b162bed5319cd2.png)\n\n- $1$ second: the mine at coordinate $(0, 0)$ explodes and since $k=2$ the explosion detonates mines at the cells $(0, 1)$ and $(1, 0)$, and their explosions detonate the mine at the cell $(1, 1)$ and there are no mines left on the field.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 非常喜欢玩扫雷游戏。最近，他发现了一个类似的游戏，其规则如下。\n\n棋盘上有一些地雷，每个地雷的位置坐标 $(x_i, y_i)$ 已知。每个地雷都有一个以秒为单位的寿命，寿命结束后它会爆炸。地雷爆炸后，还会引爆位于其垂直和水平方向、距离为 $k$ 的所有地雷（两条相互垂直的直线）。因此，棋盘上的一次爆炸会呈现为“加号”符号（'**+**'）的形状。一次爆炸可能引发新的爆炸，如此不断连锁进行。\n\n此外，Polycarp 可以从 $0$ 秒开始，每秒引爆任意一个地雷。引爆后同样会发生上述规则所描述的爆炸连锁反应。\n\n地雷会**瞬间**爆炸，也会根据上述规则**瞬间**引爆其他地雷。\n\nPolycarp 想要创造新的纪录，请你帮他计算出引爆所有地雷所需的最少秒数。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每组测试数据的前面有一个空行。\n\n接下来一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 2 \\cdot 10^5$，$0 \\le k \\le 10^9$）——地雷的数量，以及爆炸时地雷能够击中的距离。\n\n接下来有 $n$ 行，第 $i$ 行描述第 $i$ 个地雷的 $x$、$y$ 坐标以及距离其爆炸的时间（$-10^9 \\le x, y \\le 10^9$，$0 \\le timer \\le 10^9$）。保证所有地雷的坐标互不相同。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n输出 $t$ 行，每行包含对应测试数据的答案——引爆所有地雷所需的最少秒数。\n\n## 说明\n\n![image](https://espresso.codeforces.com/b54edbbac5e8e00269b5594b5d0b049aadf51020.png) 样例中的图片\n\n第一个样例：\n\n- $0$ 秒：我们引爆位于单元格 $(2, 2)$ 的地雷。由于 $k=0$，它不会引爆其他地雷。\n- $1$ 秒：我们引爆位于单元格 $(0, 1)$ 的地雷，位于单元格 $(0, 0)$ 的地雷自行爆炸。\n- $2$ 秒：我们引爆位于单元格 $(1, 1)$ 的地雷，位于单元格 $(1, 0)$ 的地雷自行爆炸。\n\n第二个样例：\n\n- $0$ 秒：我们引爆位于单元格 $(2, 2)$ 的地雷，得到：\n\n![image](https://espresso.codeforces.com/2801f4738af5fd4af5d46fa774b162bed5319cd2.png)\n\n- $1$ 秒：位于坐标 $(0, 0)$ 的地雷爆炸。由于 $k=2$，爆炸引爆了位于单元格 $(0, 1)$ 和 $(1, 0)$ 的地雷；它们的爆炸又引爆了位于单元格 $(1, 1)$ 的地雷，此时棋盘上不再有地雷。",
   "samples": [
     {
       "input": "3\n\n5 0\n0 0 1\n0 1 4\n1 0 2\n1 1 3\n2 2 9\n\n5 2\n0 0 1\n0 1 4\n1 0 2\n1 1 3\n2 2 9\n\n6 1\n1 -1 3\n0 -1 9\n0 1 7\n-1 0 1\n-1 1 9\n-1 -1 7\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:12:24.712Z"
+  "fetchedAt": "2026-11-02T18:12:24.712Z",
+  "translatedAt": "2026-11-04T03:36:52.852+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

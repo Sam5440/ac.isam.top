@@ -4,7 +4,7 @@
   "contestId": 1198,
   "index": "A",
   "title": "MP3",
-  "titleZh": null,
+  "titleZh": "MP3",
   "url": "https://codeforces.com/contest/1198/problem/A",
   "difficulty": 1600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "One common way of digitalizing sound is to record sound intensity at particular time moments. For each time moment intensity is recorded as a non-negative integer. Thus we can represent a sound file as an array of $n$ non-negative integers.\n\nIf there are exactly $K$ distinct values in the array, then we need $k = \\lceil \\log_{2} K \\rceil$ bits to store each value. It then takes $nk$ bits to store the whole file.\n\nTo reduce the memory consumption we need to apply some compression. One common way is to reduce the number of possible intensity values. We choose two integers $l \\le r$, and after that all intensity values are changed in the following way: if the intensity value is within the range $[l;r]$, we don't change it. If it is less than $l$, we change it to $l$; if it is greater than $r$, we change it to $r$. You can see that we lose some low and some high intensities.\n\nYour task is to apply this compression in such a way that the file fits onto a disk of size $I$ bytes, and the number of changed elements in the array is minimal possible.\n\nWe remind you that $1$ byte contains $8$ bits.\n\n$k = \\lceil log_{2} K \\rceil$ is the smallest integer such that $K \\le 2^{k}$. In particular, if $K = 1$, then $k = 0$.\n\n## Input\n\nThe first line contains two integers $n$ and $I$ ($1 \\le n \\le 4 \\cdot 10^{5}$, $1 \\le I \\le 10^{8}$) — the length of the array and the size of the disk in bytes, respectively.\n\nThe next line contains $n$ integers $a_{i}$ ($0 \\le a_{i} \\le 10^{9}$) — the array denoting the sound file.\n\n## Output\n\nPrint a single integer — the minimal possible number of changed elements.\n\n## Note\n\nIn the first example we can choose $l=2, r=3$. The array becomes `2 2 2 3 3 3`, the number of distinct elements is $K=2$, and the sound file fits onto the disk. Only two values are changed.\n\nIn the second example the disk is larger, so the initial file fits it and no changes are required.\n\nIn the third example we have to change both 1s or both 3s.",
-  "statementZhMd": null,
+  "statementZhMd": "数字化声音的一种常见方式是在特定的时间点记录声音强度。对于每个时间点，记录的强度是一个非负整数。因此，我们可以用一个包含 $n$ 个非负整数的数组表示一个声音文件。\n\n如果数组中恰好有 $K$ 个不同的值，那么存储每个值需要 $k = \\lceil \\log_{2} K \\rceil$ 位。存储整个文件则需要 $nk$ 位。\n\n为了减少内存占用，我们需要进行压缩。一种常见的方法是减少可能的强度值数量。我们选择两个整数 $l \\le r$，然后按照以下方式修改所有强度值：如果强度值在区间 $[l;r]$ 内，则不进行修改；如果小于 $l$，则将其修改为 $l$；如果大于 $r$，则将其修改为 $r$。可以看出，这样会损失一些较低和较高的强度信息。\n\n你的任务是进行压缩，使文件能够存储在容量为 $I$ 字节的磁盘上，并且使数组中被修改的元素数量尽可能少。\n\n请注意，1 字节包含 8 位。\n\n$k = \\lceil log_{2} K \\rceil$ 是满足 $K \\le 2^{k}$ 的最小整数。特别地，当 $K = 1$ 时，$k = 0$。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $I$（$1 \\le n \\le 4 \\cdot 10^{5}$，$1 \\le I \\le 10^{8}$）——数组的长度以及磁盘的容量（单位为字节）。\n\n第二行包含 $n$ 个整数 $a_{i}$（$0 \\le a_{i} \\le 10^{9}$）——表示声音文件的数组。\n\n## 输出格式\n\n输出一个整数——被修改元素数量的最小值。\n\n## 说明\n\n在第一个样例中，我们可以选择 $l=2, r=3$。数组变为 `2 2 2 3 3 3`，不同元素的数量为 $K=2$，并且声音文件可以存储在磁盘上。只有两个值被修改。\n\n在第二个样例中，磁盘容量更大，因此原始文件可以存储在磁盘上，不需要进行任何修改。\n\n在第三个样例中，我们必须修改两个 1 或两个 3。",
   "samples": [
     {
       "input": "6 1\n2 1 2 3 4 3\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:07:54.973Z"
+  "fetchedAt": "2026-10-31T00:07:54.973Z",
+  "translatedAt": "2026-11-04T05:07:59.009+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

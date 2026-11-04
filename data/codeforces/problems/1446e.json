@@ -4,7 +4,7 @@
   "contestId": 1446,
   "index": "E",
   "title": "Long Recovery",
-  "titleZh": null,
+  "titleZh": "漫长恢复",
   "url": "https://codeforces.com/contest/1446/problem/E",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "A patient has been infected with an unknown disease. His body can be seen as an infinite grid of triangular cells which looks as follows:\n\n![image](https://espresso.codeforces.com/a7d6b49046fa4b8e76aa260dc95b651bb60c3fad.png)\n\nTwo cells are neighboring if they share a side. Therefore, each cell ($x$, $y$) has exactly three neighbors:\n\n- ($x+1$, $y$)\n- ($x-1$, $y$)\n- ($x+1$, $y-1$) if $x$ is even and ($x-1$, $y+1$) otherwise.\n\nInitially some cells are infected, all the others are healthy. The process of recovery begins. Each second, for **exactly one** cell (even though there might be multiple cells that could change its state) one of the following happens:\n\n- A healthy cell with at least $2$ infected neighbors also becomes infected.\n- An infected cell with at least $2$ healthy neighbors also becomes healthy.\n\nIf no such cell exists, the process of recovery stops. Patient is considered recovered if the process of recovery has stopped and all the cells are healthy.\n\nWe're interested in a **worst-case** scenario: is it possible that the patient never recovers, or if it's not possible, what is the maximum possible duration of the recovery process?\n\n## Input\n\nThe first line contains one integer $n$ $(1 \\leq n \\leq 250000)$  — the number of infected cells.\n\nThe $i$-th of the next $n$ lines contains two space-separated integers $x_i$ and $y_i$ $(0 \\leq x_i, y_i \\lt 500)$, meaning that cell $(x_i, y_i)$ is infected. All cells $(x_i, y_i)$ are distinct, and all other cells are considered healthy.\n\n## Output\n\nIf it is possible that the organism never fully recovers from the disease, print `SICK`. Otherwise, you should print `RECOVERED` and in the next line an integer $k$  — the longest possible recovery period, modulo $998244353$.\n\n## Note\n\nFor the first testcase, the following drawings describe the longest possible recovery process. It can be proven that there are no recovery periods of length $5$ or longer, and the organism always recovers in this testcase.\n\n![image](https://espresso.codeforces.com/c5d285a4bae281134b213e8703721a46322146e2.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/d6d28f0d1a78faa331c4223e5102119cc6db9cc0.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/6c4cf2f2d3c2964d16892f9da9aaa57bab19d45c.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/af53b4020eba6dc695c7a7fc0620c723faf22f30.png) $\\hspace{40pt} \\downarrow$\n\n$\\hspace{15pt}$ RECOVERED\n\nFor the second testcase, it is possible for the cells $(2, 0)$, $(2, 1)$, $(0, 1)$ to become infected. After that, no cell can change its state, so the answer is `SICK`, as not all of the cells are healthy.",
-  "statementZhMd": null,
+  "statementZhMd": "患者感染了一种未知的疾病。他的身体可以看作由三角形网格组成的无限网格，如下所示：\n\n![image](https://espresso.codeforces.com/a7d6b49046fa4b8e76aa260dc95b651bb60c3fad.png)\n\n如果两个网格共用一条边，则称它们相邻。因此，每个单元格 ($x$, $y$) 恰好有三个相邻单元格：\n\n- ($x+1$, $y$)\n- ($x-1$, $y$)\n- ($x+1$, $y-1$)（如果 $x$ 为偶数），否则为 ($x-1$, $y+1$)。\n\n初始时，一些单元格被感染，其余单元格均为健康状态。恢复过程开始。每秒钟，**恰好选择一个**单元格（即使有多个单元格可以改变状态），并发生以下情况之一：\n\n- 一个至少有 $2$ 个被感染相邻单元格的健康单元格也变为感染状态。\n- 一个至少有 $2$ 个健康相邻单元格的被感染单元格变为健康状态。\n\n如果不存在满足条件的单元格，恢复过程就会停止。当恢复过程停止且所有单元格都处于健康状态时，认为患者已经康复。\n\n我们关心的是**最坏情况**：患者是否可能永远无法康复？如果不可能，那么恢复过程的最长可能持续时间是多少？\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 250000$）——被感染单元格的数量。\n\n接下来的 $n$ 行中，第 $i$ 行包含两个用空格分隔的整数 $x_i$ 和 $y_i$（$0 \\leq x_i, y_i \\lt 500$），表示单元格 $(x_i, y_i)$ 被感染。所有单元格 $(x_i, y_i)$ 两两不同，其他所有单元格均视为健康状态。\n\n## 输出格式\n\n如果存在患者永远无法完全康复的情况，输出 `SICK`。否则，输出 `RECOVERED`，并在下一行输出一个整数 $k$——最长可能的恢复时长对 $998244353$ 取模后的结果。\n\n## 说明\n\n对于第一个测试用例，下面的图示描述了最长可能的恢复过程。可以证明，恢复过程的长度不可能达到 $5$ 或更长，并且在这个测试用例中患者总能康复。\n\n![image](https://espresso.codeforces.com/c5d285a4bae281134b213e8703721a46322146e2.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/d6d28f0d1a78faa331c4223e5102119cc6db9cc0.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/6c4cf2f2d3c2964d16892f9da9aaa57bab19d45c.png) $\\hspace{40pt} \\downarrow$ ![image](https://espresso.codeforces.com/af53b4020eba6dc695c7a7fc0620c723faf22f30.png) $\\hspace{40pt} \\downarrow$\n\n$\\hspace{15pt}$ RECOVERED\n\n对于第二个测试用例，单元格 $(2, 0)$、$(2, 1)$、$(0, 1)$ 可能变为感染状态。此后，没有单元格可以改变状态，因此答案为 `SICK`，因为并非所有单元格都处于健康状态。",
   "samples": [
     {
       "input": "4\n0 0\n1 0\n2 0\n0 1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:41:09.574Z"
+  "fetchedAt": "2026-10-30T23:41:09.574Z",
+  "translatedAt": "2026-11-04T04:13:28.286+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

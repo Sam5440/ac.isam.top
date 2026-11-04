@@ -4,7 +4,7 @@
   "contestId": 1044,
   "index": "C",
   "title": "Optimal Polygon Perimeter",
-  "titleZh": null,
+  "titleZh": "最优多边形周长",
   "url": "https://codeforces.com/contest/1044/problem/C",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given $n$ points on the plane. The polygon formed from all the $n$ points is **strictly convex**, that is, the polygon is convex, and there are no three collinear points (i.e. lying in the same straight line). The points are numbered from $1$ to $n$, in clockwise order.\n\nWe define the distance between two points $p_1 = (x_1, y_1)$ and $p_2 = (x_2, y_2)$ as their Manhattan distance: $$d(p_1, p_2) = |x_1 - x_2| + |y_1 - y_2|.$$\n\nFurthermore, we define the perimeter of a polygon, as the sum of Manhattan distances between all adjacent pairs of points on it; if the points on the polygon are ordered as $p_1, p_2, \\ldots, p_k$ $(k \\geq 3)$, then the perimeter of the polygon is $d(p_1, p_2) + d(p_2, p_3) + \\ldots + d(p_k, p_1)$.\n\nFor some parameter $k$, let's consider all the polygons that can be formed from the given set of points, having **any** $k$ vertices, such that the polygon is **not** self-intersecting. For each such polygon, let's consider its perimeter. Over all such perimeters, we define $f(k)$ to be the maximal perimeter.\n\nPlease note, when checking whether a polygon is self-intersecting, that the edges of a polygon are still drawn as straight lines. For instance, in the following pictures:\n\n![image](https://espresso.codeforces.com/77a141e0f0724802c689c3c04783d0bf42fbf3d3.png)\n\nIn the middle polygon, the order of points ($p_1, p_3, p_2, p_4$) is not valid, since it is a self-intersecting polygon. The right polygon (whose edges resemble the Manhattan distance) has the same order and is not self-intersecting, but we consider edges as straight lines. The correct way to draw this polygon is ($p_1, p_2, p_3, p_4$), which is the left polygon.\n\nYour task is to compute $f(3), f(4), \\ldots, f(n)$. In other words, find the maximum possible perimeter for each possible number of points (i.e. $3$ to $n$).\n\n## Input\n\nThe first line contains a single integer $n$ ($3 \\leq n \\leq 3\\cdot 10^5$) — the number of points.\n\nEach of the next $n$ lines contains two integers $x_i$ and $y_i$ ($-10^8 \\leq x_i, y_i \\leq 10^8$) — the coordinates of point $p_i$.\n\nThe set of points is guaranteed to be convex, all points are distinct, the points are ordered in clockwise order, and there will be no three collinear points.\n\n## Output\n\nFor each $i$ ($3\\leq i\\leq n$), output $f(i)$.\n\n## Note\n\nIn the first example, for $f(3)$, we consider four possible polygons:\n\n- ($p_1, p_2, p_3$), with perimeter $12$.\n- ($p_1, p_2, p_4$), with perimeter $8$.\n- ($p_1, p_3, p_4$), with perimeter $12$.\n- ($p_2, p_3, p_4$), with perimeter $12$.\n\nFor $f(4)$, there is only one option, taking all the given points. Its perimeter $14$.\n\nIn the second example, there is only one possible polygon. Its perimeter is $8$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定平面上的 $n$ 个点。由这 $n$ 个点组成的多边形是**严格凸的**，即该多边形是凸多边形，并且不存在三个共线的点（即位于同一直线上）。这些点按顺时针顺序编号为 $1$ 到 $n$。\n\n我们将两个点 $p_1 = (x_1, y_1)$ 和 $p_2 = (x_2, y_2)$ 之间的距离定义为它们的曼哈顿距离： $$d(p_1, p_2) = |x_1 - x_2| + |y_1 - y_2|.$$ \n\n此外，我们将多边形的周长定义为其所有相邻点对之间的曼哈顿距离之和；如果多边形上的点按 $p_1, p_2, \\ldots, p_k$ $(k \\geq 3)$ 的顺序排列，那么该多边形的周长为 $d(p_1, p_2) + d(p_2, p_3) + \\ldots + d(p_k, p_1)$。\n\n对于某个参数 $k$，考虑从给定点集中选取**任意** $k$ 个顶点组成的所有多边形，并要求多边形**不自相交**。对于每个这样的多边形，考虑其周长。在所有这些周长中，定义 $f(k)$ 为最大的周长。\n\n请注意，在判断多边形是否自相交时，多边形的边仍然按照直线绘制。例如，在下图中：\n\n![image](https://espresso.codeforces.com/77a141e0f0724802c689c3c04783d0bf42fbf3d3.png)\n\n中间的多边形中，点的顺序（$p_1, p_3, p_2, p_4$）是不合法的，因为它是一个自相交多边形。右侧多边形的顺序相同，其边看起来类似于曼哈顿距离，但它并不自相交；然而，我们规定边必须是直线。正确绘制这个多边形的方式是（$p_1, p_2, p_3, p_4$），即左侧的多边形。\n\n你的任务是计算 $f(3), f(4), \\ldots, f(n)$。换句话说，对于每一种可能的点数（即从 $3$ 到 $n$），求出可能的最大周长。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$3 \\leq n \\leq 3\\cdot 10^5$）——点的数量。\n\n接下来的 $n$ 行中，每行包含两个整数 $x_i$ 和 $y_i$（$-10^8 \\leq x_i, y_i \\leq 10^8$）——点 $p_i$ 的坐标。\n\n保证给定的点集是凸的，所有点互不相同，点按顺时针顺序排列，并且不存在三个共线的点。\n\n## 输出格式\n\n对于每个 $i$（$3\\leq i\\leq n$），输出 $f(i)$。\n\n## 说明\n\n在第一个样例中，对于 $f(3)$，我们考虑四种可能的多边形：\n\n- （$p_1, p_2, p_3$），周长为 $12$。\n- （$p_1, p_2, p_4$），周长为 $8$。\n- （$p_1, p_3, p_4$），周长为 $12$。\n- （$p_2, p_3, p_4$），周长为 $12$。\n\n对于 $f(4)$，只有一种选择，即使用给定的所有点。其周长为 $14$。\n\n在第二个样例中，只有一种可能的多边形。其周长为 $8$。",
   "samples": [
     {
       "input": "4\n2 4\n4 3\n3 0\n1 3\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:23:20.393Z"
+  "fetchedAt": "2026-10-31T00:23:20.393Z",
+  "translatedAt": "2026-11-04T05:27:04.761+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

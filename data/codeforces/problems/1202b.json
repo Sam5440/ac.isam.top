@@ -4,7 +4,7 @@
   "contestId": 1202,
   "index": "B",
   "title": "You Are Given a Decimal String...",
-  "titleZh": null,
+  "titleZh": "给定一个十进制字符串……",
   "url": "https://codeforces.com/contest/1202/problem/B",
   "difficulty": 1700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Suppose you have a special $x$-$y$-counter. This counter can store some value as a decimal number; at first, the counter has value $0$.\n\nThe counter performs the following algorithm: it prints its lowest digit and, after that, adds either $x$ or $y$ to its value. So all sequences this counter generates are starting from $0$. For example, a $4$-$2$-counter can act as follows:\n\n1. it prints $0$, and adds $4$ to its value, so the current value is $4$, and the output is $0$;\n2. it prints $4$, and adds $4$ to its value, so the current value is $8$, and the output is $04$;\n3. it prints $8$, and adds $4$ to its value, so the current value is $12$, and the output is $048$;\n4. it prints $2$, and adds $2$ to its value, so the current value is $14$, and the output is $0482$;\n5. it prints $4$, and adds $4$ to its value, so the current value is $18$, and the output is $04824$.\n\nThis is only one of the possible outputs; for example, the same counter could generate $0246802468024$ as the output, if we chose to add $2$ during each step.\n\nYou wrote down a printed sequence from one of such $x$-$y$-counters. But the sequence was corrupted and several elements from the sequence could be erased.\n\nNow you'd like to recover data you've lost, but you don't even know the type of the counter you used. You have a decimal string $s$ — the remaining data of the sequence.\n\nFor all $0 \\le x, y \\lt 10$, calculate the minimum number of digits you have to insert in the string $s$ to make it a possible output of the $x$-$y$-counter. Note that you can't change the order of digits in string $s$ or erase any of them; only insertions are allowed.\n\n## Input\n\nThe first line contains a single string $s$ ($1 \\le |s| \\le 2 \\cdot 10^6$, $s_i \\in \\{\\text{0} - \\text{9}\\}$) — the remaining data you have. It's guaranteed that $s_1 = 0$.\n\n## Output\n\nPrint a $10 \\times 10$ matrix, where the $j$-th integer ($0$-indexed) on the $i$-th line ($0$-indexed too) is equal to the minimum number of digits you have to insert in the string $s$ to make it a possible output of the $i$-$j$-counter, or $-1$ if there is no way to do so.\n\n## Note\n\nLet's take, for example, $4$-$3$-counter. One of the possible outcomes the counter could print is $0(4)8(1)4(7)0$ (lost elements are in the brackets).\n\nOne of the possible outcomes a $2$-$3$-counter could print is $0(35)8(1)4(7)0$.\n\nThe $6$-$8$-counter could print exactly the string $0840$.",
-  "statementZhMd": null,
+  "statementZhMd": "假设你有一个特殊的 $x$-$y$ 计数器。这个计数器可以将某个值存储为十进制数；初始时，计数器的值为 $0$。\n\n计数器执行以下算法：输出它的个位数字，然后将其值增加 $x$ 或 $y$。因此，计数器生成的所有序列都从 $0$ 开始。例如，一个 $4$-$2$ 计数器可以按如下方式运行：\n\n1. 输出 $0$，并将其值增加 $4$，因此当前值为 $4$，输出结果为 $0$；\n2. 输出 $4$，并将其值增加 $4$，因此当前值为 $8$，输出结果为 $04$；\n3. 输出 $8$，并将其值增加 $4$，因此当前值为 $12$，输出结果为 $048$；\n4. 输出 $2$，并将其值增加 $2$，因此当前值为 $14$，输出结果为 $0482$；\n5. 输出 $4$，并将其值增加 $4$，因此当前值为 $18$，输出结果为 $04824$。\n\n这只是所有可能输出中的一种。例如，如果每一步都选择增加 $2$，同一个计数器也可以生成输出 $0246802468024$。\n\n你记录下了某个 $x$-$y$ 计数器输出的序列。但这段序列遭到了破坏，其中的若干元素可能被删除了。\n\n现在你想要恢复丢失的数据，但你甚至不知道所使用的计数器类型。你有一个十进制字符串 $s$，表示序列中剩余的数据。\n\n对于所有满足 $0 \\le x, y \\lt 10$ 的情况，计算至少需要向字符串 $s$ 中插入多少个数字，才能使其成为对应 $x$-$y$ 计数器的一种可能输出。注意，你不能改变字符串 $s$ 中数字的顺序，也不能删除其中的任何数字；只允许插入数字。\n\n## 输入\n\n第一行包含一个字符串 $s$（$1 \\le |s| \\le 2 \\cdot 10^6$，$s_i \\in \\{\\text{0} - \\text{9}\\}$），表示你拥有的剩余数据。保证 $s_1 = 0$。\n\n## 输出\n\n输出一个 $10 \\times 10$ 的矩阵，其中第 $i$ 行（也从 $0$ 开始）中第 $j$ 个整数（下标从 $0$ 开始）表示：为了使字符串 $s$ 成为 $i$-$j$ 计数器的一种可能输出，至少需要插入的数字个数；如果无法做到，则输出 $-1$。\n\n## 说明\n\n例如，考虑一个 $4$-$3$ 计数器。该计数器可能输出的结果之一是 $0(4)8(1)4(7)0$（丢失的元素位于括号中）。\n\n一个 $2$-$3$ 计数器可能输出 $0(35)8(1)4(7)0$。\n\n$6$-$8$ 计数器可以恰好输出字符串 $0840$。",
   "samples": [
     {
       "input": "0840\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:09:35.180Z"
+  "fetchedAt": "2026-11-02T19:09:35.180Z",
+  "translatedAt": "2026-11-04T05:04:55.995+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

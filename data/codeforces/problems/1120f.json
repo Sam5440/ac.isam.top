@@ -4,7 +4,7 @@
   "contestId": 1120,
   "index": "F",
   "title": "Secret Letters",
-  "titleZh": null,
+  "titleZh": "秘密信件",
   "url": "https://codeforces.com/contest/1120/problem/F",
   "difficulty": 3100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Little W and Little P decided to send letters to each other regarding the most important events during a day. There are $n$ events during a day: at time moment $t_i$ something happens to the person $p_i$ ($p_i$ is either `W` or `P`, denoting Little W and Little P, respectively), so he needs to immediately send a letter to the other person. They can send a letter using one of the two ways:\n\n- Ask Friendly O to deliver the letter directly. Friendly O takes $d$ acorns for each letter.\n- Leave the letter at Wise R's den. Wise R values free space, so he takes $c \\cdot T$ acorns for storing a letter for a time segment of length $T$. The recipient can take a letter from Wise R either when he leaves his own letter at Wise R's den, or at time moment $t_{n + 1}$, when everybody comes to Wise R for a tea. It is not possible to take a letter from Wise R's den at other time moments. The friends can store as many letters at Wise R's den as they want, paying for each one separately.\n\nHelp the friends determine the minimum possible total cost of sending all letters.\n\n## Input\n\nThe first line contains three integers $n, c, d$ ($1 \\leq n \\leq 10^5$, $1 \\leq c \\leq 10^2$, $1 \\leq d \\leq 10^8$) — the number of letters, the cost of storing a letter for one time unit at Wise R's den and the cost of delivering a letter via Friendly O.\n\nThe next $n$ describe the events. The $i$-th of them contains an integer $t_i$ and a character $p_i$ ($0 \\leq t_i \\leq 10^6$, $p_i$ is either `W` or `P`) — the time the $i$-th event happens and the person the event happens to.\n\nThe last line contains a single integer $t_{n + 1}$ ($0 \\leq t_{n+1} \\leq 10^6$) — the time when everybody comes to Wise R for a tea and takes all remaining letters.\n\nIt is guaranteed that $t_i \\lt t_{i + 1}$ for all $i$ from $1$ to $n$.\n\n## Output\n\nPrint a single integer — the minimum possible cost of delivery of all letters.\n\n## Note\n\nOne of optimal solutions in the first example:\n\n- At time moment 0 Little P leaves the letter at Wise R's den.\n- At time moment 1 Little W leaves his letter at Wise R's den and takes Little P's letter. This letter is at the den from time moment 0 to time moment 1, it costs $1$ acorn.\n- At time moment 3 Little P sends his letter via Friendly O, it costs $4$ acorns.\n- At time moment 5 Little P leaves his letter at the den, receiving Little W's letter which storage costs 4 acorns.\n- At time moment 8 Little P leaves one more letter at the den.\n- At time moment 10 Little W comes to the den for a tea and receives the two letters, paying 5 and 2 acorns.\n\nThe total cost of delivery is thus $1 + 4 + 4 + 5 + 2 = 16$ acorns.",
-  "statementZhMd": null,
+  "statementZhMd": "小 W 和小 P 决定就一天中发生的最重要事件互相寄信。一天中有 $n$ 个事件：在时刻 $t_i$，人物 $p_i$ 身上发生了某件事（$p_i$ 为 `W` 或 `P`，分别表示小 W 和小 P），因此他需要立即给另一人寄一封信。他们可以通过以下两种方式寄信：\n\n- 请友好的 O 直接递送信件。友好的 O 每递送一封信收取 $d$ 颗橡子。\n- 将信留在聪明的 R 的巢穴中。聪明的 R 珍惜空闲空间，因此对于存放一封信、时长为 $T$ 的时间段，他会收取 $c \\cdot T$ 颗橡子。收信人可以在他将自己的信留在聪明的 R 的巢穴中时取走信件，也可以在时刻 $t_{n + 1}$ 大家来聪明的 R 那里喝茶时取走信件。在其他时刻无法从聪明的 R 的巢穴中取信。朋友们可以在聪明的 R 的巢穴中存放任意多封信，但每封信都要单独付费。\n\n请帮助他们计算寄出所有信件所需的最小总费用。\n\n## 输入格式\n\n第一行包含三个整数 $n, c, d$（$1 \\leq n \\leq 10^5$，$1 \\leq c \\leq 10^2$，$1 \\leq d \\leq 10^8$）——信件数量、在聪明的 R 的巢穴中存放一封信一个时间单位的费用，以及通过友好的 O 递送一封信的费用。\n\n接下来 $n$ 行描述这些事件。第 $i$ 行包含一个整数 $t_i$ 和一个字符 $p_i$（$0 \\leq t_i \\leq 10^6$，$p_i$ 为 `W` 或 `P`）——第 $i$ 个事件发生的时刻，以及该事件发生在谁身上。\n\n最后一行包含一个整数 $t_{n+1}$（$0 \\leq t_{n+1} \\leq 10^6$）——大家来聪明的 R 那里喝茶并取走所有剩余信件的时刻。\n\n保证对于 $i=1$ 到 $n$ 的所有 $i$，均有 $t_i \\lt t_{i + 1}$。\n\n## 输出格式\n\n输出一个整数——递送所有信件所需的最小费用。\n\n## 说明\n\n第一个样例的一种最优方案如下：\n\n- 在时刻 0，小 P 将信留在聪明的 R 的巢穴中。\n- 在时刻 1，小 W 将自己的信留在聪明的 R 的巢穴中，并取走小 P 的信。这封信从时刻 0 存放到时刻 1，费用为 $1$ 颗橡子。\n- 在时刻 3，小 P 通过友好的 O 寄出自己的信，费用为 $4$ 颗橡子。\n- 在时刻 5，小 P 将自己的信留在巢穴中，并取走小 W 的信，该信的存放费用为 $4$ 颗橡子。\n- 在时刻 8，小 P 又将一封信留在巢穴中。\n- 在时刻 10，小 W 来巢穴喝茶，并取走这两封信，费用分别为 $5$ 和 $2$ 颗橡子。\n\n因此，递送信件的总费用为 $1 + 4 + 4 + 5 + 2 = 16$ 颗橡子。",
   "samples": [
     {
       "input": "5 1 4\n0 P\n1 W\n3 P\n5 P\n8 P\n10\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:14:48.029Z"
+  "fetchedAt": "2026-10-31T00:14:48.029Z",
+  "translatedAt": "2026-11-04T05:20:24.218+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

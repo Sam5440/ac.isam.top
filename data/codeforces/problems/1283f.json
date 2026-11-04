@@ -4,7 +4,7 @@
   "contestId": 1283,
   "index": "F",
   "title": "DIY Garland",
-  "titleZh": null,
+  "titleZh": "自制花环",
   "url": "https://codeforces.com/contest/1283/problem/F",
   "difficulty": 2200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp has decided to decorate his room because the New Year is soon. One of the main decorations that Polycarp will install is the garland he is going to solder himself.\n\nSimple garlands consisting of several lamps connected by one wire are too boring for Polycarp. He is going to solder a garland consisting of $n$ lamps and $n - 1$ wires. Exactly one lamp will be connected to power grid, and power will be transmitted from it to other lamps by the wires. Each wire connectes exactly two lamps; one lamp is called **the main lamp** for this wire (the one that gets power from some other wire and transmits it to this wire), the other one is called **the auxiliary lamp** (the one that gets power from this wire). Obviously, each lamp has at most one wire that brings power to it (and this lamp is the auxiliary lamp for this wire, and the main lamp for all other wires connected directly to it).\n\nEach lamp has a brightness value associated with it, the $i$-th lamp has brightness $2^i$. We define the **importance** of the wire as the sum of brightness values over all lamps that become disconnected from the grid if the wire is cut (and all other wires are still working).\n\nPolycarp has drawn the scheme of the garland he wants to make (the scheme depicts all $n$ lamp and $n - 1$ wires, and the lamp that will be connected directly to the grid is marked; the wires are placed in such a way that the power can be transmitted to each lamp). After that, Polycarp calculated the importance of each wire, enumerated them from $1$ to $n - 1$ in descending order of their importance, and then wrote the index of the main lamp for each wire (in the order from the first wire to the last one).\n\nThe following day Polycarp bought all required components of the garland and decided to solder it — but he could not find the scheme. Fortunately, Polycarp found the list of indices of main lamps for all wires. Can you help him restore the original scheme?\n\n## Input\n\nThe first line contains one integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of lamps.\n\nThe second line contains $n - 1$ integers $a_1$, $a_2$, ..., $a_{n - 1}$ ($1 \\le a_i \\le n$), where $a_i$ is the index of the main lamp for the $i$-th wire (wires are numbered in descending order of importance).\n\n## Output\n\nIf it is impossible to restore the original scheme, print one integer $-1$.\n\nOtherwise print the scheme as follows. In the first line, print one integer $k$ ($1 \\le k \\le n$) — the index of the lamp that is connected to the power grid. Then print $n - 1$ lines, each containing two integers $x_i$ and $y_i$ ($1 \\le x_i, y_i \\le n$, $x_i \\ne y_i$) — the indices of the lamps connected by some wire. The descriptions of the wires (and the lamps connected by a wire) can be printed in any order. The printed description must correspond to a scheme of a garland such that Polycarp could have written the list $a_1$, $a_2$, ..., $a_{n - 1}$ from it. If there are multiple such schemes, output any of them.\n\n## Note\n\nThe scheme for the first example (R denotes the lamp connected to the grid, the numbers on wires are their importance values):\n\n![image](https://espresso.codeforces.com/572cac8d95f161c744e51eb67cd74b52c4c01a67.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 决定装饰自己的房间，因为新年就要到了。Polycarp 将安装的主要装饰之一，是他打算亲自焊接的花环。\n\n由若干盏灯通过一根电线连接而成的简单花环对 Polycarp 来说太无聊了。他打算焊接一个由 $n$ 盏灯和 $n - 1$ 根电线组成的花环。其中恰好有一盏灯连接到电网，电力将通过电线从这盏灯传输到其他灯。每根电线恰好连接两盏灯；其中一盏灯被称为这根电线的**主灯**（从其他电线获得电力，并将电力传输到这根电线的灯），另一盏被称为**辅助灯**（从这根电线获得电力的灯）。显然，每盏灯至多有一根将电力传输给它的电线（这盏灯是该电线的辅助灯，同时也是所有其他直接连接到它的电线的主灯）。\n\n每盏灯都有一个与之关联的亮度值，第 $i$ 盏灯的亮度为 $2^i$。如果切断某根电线（其他电线仍正常工作）后，某些灯与电网断开连接，则将这些灯的亮度值之和定义为这根电线的**重要性**。\n\nPolycarp 画出了他想要制作的花环的结构图（图中描绘了全部 $n$ 盏灯和 $n - 1$ 根电线，并标出了将直接连接到电网的灯；电线的连接方式保证电力可以传输到每一盏灯）。之后，Polycarp 计算出每根电线的重要性，按照重要性从大到小将它们编号为 $1$ 到 $n - 1$，然后依次写下每根电线的主灯编号（顺序从第一根电线到最后一根）。\n\n第二天，Polycarp 买齐了制作花环所需的所有零件，准备开始焊接——但他找不到那张结构图了。幸运的是，Polycarp 找到了所有电线的主灯编号列表。你能帮助他恢复原来的结构图吗？\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$），表示灯的数量。\n\n第二行包含 $n - 1$ 个整数 $a_1$、$a_2$、...、$a_{n - 1}$（$1 \\le a_i \\le n$），其中 $a_i$ 是第 $i$ 根电线的主灯编号（电线按照重要性从大到小编号）。\n\n## 输出格式\n\n如果无法恢复原来的结构图，输出一个整数 $-1$。\n\n否则，按如下格式输出结构图。在第一行输出一个整数 $k$（$1 \\le k \\le n$），表示连接到电网的灯的编号。然后输出 $n - 1$ 行，每行包含两个整数 $x_i$ 和 $y_i$（$1 \\le x_i, y_i \\le n$，$x_i \\ne y_i$），表示某根电线连接的两盏灯的编号。电线的描述（以及一根电线连接的两盏灯）可以按任意顺序输出。输出的描述必须对应一个花环结构，使得 Polycarp 可以从该结构得到列表 $a_1$、$a_2$、...、$a_{n - 1}$。如果存在多个这样的结构，输出任意一个即可。\n\n## 说明\n\n第一个样例的结构图如下（R 表示连接到电网的灯，电线上的数字表示它们的重要性）：\n\n![image](https://espresso.codeforces.com/572cac8d95f161c744e51eb67cd74b52c4c01a67.png)",
   "samples": [
     {
       "input": "6\n3 6 3 1 5\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:00:42.807Z"
+  "fetchedAt": "2026-11-02T19:00:42.807Z",
+  "translatedAt": "2026-11-04T04:52:04.815+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

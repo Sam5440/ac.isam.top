@@ -4,7 +4,7 @@
   "contestId": 1742,
   "index": "E",
   "title": "Scuza",
-  "titleZh": null,
+  "titleZh": "借口",
   "url": "https://codeforces.com/contest/1742/problem/E",
   "difficulty": 1200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Timur has a stairway with 𝑛n steps. The 𝑖i-th step is 𝑎𝑖ai meters higher than its predecessor. The first step is 𝑎1a1 meters higher than the ground, and the ground starts at 00 meters.\n\n![image](https://espresso.codeforces.com/397398c944e94083d796d12d70475f10a0f0e26c.png) The stairs for the first test case.\n\nTimur has 𝑞q questions, each denoted by an integer 𝑘1,…,𝑘𝑞k1,…,kq. For each question 𝑘𝑖ki, you have to print the maximum possible height Timur can achieve by climbing the steps if his legs are of length 𝑘𝑖ki. Timur can only climb the 𝑗j-th step if his legs are of length at least 𝑎𝑗aj. In other words, 𝑘𝑖≥𝑎𝑗ki≥aj for each step 𝑗j climbed.\n\nNote that you should answer each question independently.\n\n## Input\n\nThe first line contains a single integer 𝑡t (1≤𝑡≤1001≤t≤100) — the number of test cases.\n\nThe first line of each test case contains two integers 𝑛,𝑞n,q (1≤𝑛,𝑞≤2⋅1051≤n,q≤2⋅105) — the number of steps and the number of questions, respectively.\n\nThe second line of each test case contains 𝑛n integers (1≤𝑎𝑖≤1091≤ai≤109) — the height of the steps.\n\nThe third line of each test case contains 𝑞q integers (0≤𝑘𝑖≤1090≤ki≤109) — the numbers for each question.\n\nIt is guaranteed that the sum of 𝑛n does not exceed 2⋅1052⋅105, and the sum of 𝑞q does not exceed 2⋅1052⋅105.\n\n## Output\n\nFor each test case, output a single line containing 𝑞q integers, the answer for each question.\n\nPlease note, that the answer for some questions won't fit into 32-bit integer type, so you should use at least 64-bit integer type in your programming language (like `long long` for C++).\n\n## Note\n\nConsider the first test case, pictured in the statement.\n\n- If Timur's legs have length 11, then he can only climb stair 11, so the highest he can reach is 11 meter.\n- If Timur's legs have length 22 or 44, then he can only climb stairs 11, 22, and 33, so the highest he can reach is 1+2+1=41+2+1=4 meters.\n- If Timur's legs have length 99 or 1010, then he can climb the whole staircase, so the highest he can reach is 1+2+1+5=91+2+1+5=9 meters.\n\nIn the first question of the second test case, Timur has no legs, so he cannot go up even a single step. `:(`",
-  "statementZhMd": null,
+  "statementZhMd": "Timur 有一段由 $n$ 级台阶组成的楼梯。第 $i$ 级台阶比前一级高 $a_i$ 米。第一级台阶比地面高 $a_1$ 米，地面的高度为 $0$ 米。\n\n![image](https://espresso.codeforces.com/397398c944e94083d796d12d70475f10a0f0e26c.png) 第一组测试用例中的楼梯。\n\nTimur 有 $q$ 个问题，每个问题由一个整数 $k_1,\\ldots,k_q$ 表示。对于每个问题 $k_i$，请输出 Timur 在腿长为 $k_i$ 的情况下，通过攀爬台阶所能达到的最大高度。只有当腿长至少为 $a_j$ 时，Timur 才能爬上第 $j$ 级台阶。换句话说，对于攀爬的每一级台阶 $j$，都必须满足 $k_i \\ge a_j$。\n\n注意，每个问题都应独立回答。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\le t\\le 100$）——测试用例的数量。\n\n每组测试用例的第一行包含两个整数 $n,q$（$1\\le n,q\\le 2\\cdot 10^5$）——台阶数和问题数。\n\n每组测试用例的第二行包含 $n$ 个整数（$1\\le a_i\\le 10^9$）——各级台阶的高度。\n\n每组测试用例的第三行包含 $q$ 个整数（$0\\le k_i\\le 10^9$）——每个问题中的数值。\n\n保证所有测试用例中 $n$ 的总和不超过 $2\\cdot 10^5$，且 $q$ 的总和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一行，包含 $q$ 个整数，分别表示每个问题的答案。\n\n请注意，某些问题的答案可能无法用 32 位整数类型表示，因此请在编程语言中至少使用 64 位整数类型（例如 C++ 中的 `long long`）。\n\n## 说明\n\n考虑题目描述中的第一组测试用例。\n\n- 如果 Timur 的腿长为 $1$，那么他只能爬上第 $1$ 级台阶，因此他能达到的最高高度为 $1$ 米。\n- 如果 Timur 的腿长为 $2$ 或 $4$，那么他只能爬上第 $1$、$2$、$3$ 级台阶，因此他能达到的最高高度为 $1+2+1=4$ 米。\n- 如果 Timur 的腿长为 $9$ 或 $10$，那么他可以爬完整段楼梯，因此他能达到的最高高度为 $1+2+1+5=9$ 米。\n\n在第二组测试用例的第一个问题中，Timur 没有腿，因此连一级台阶也无法爬上。`:(`",
   "samples": [
     {
       "input": "3\n4 5\n1 2 1 5\n1 2 4 9 10\n2 2\n1 1\n0 1\n3 1\n1000000000 1000000000 1000000000\n1000000000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:49:58.341Z"
+  "fetchedAt": "2026-11-02T17:49:58.341Z",
+  "translatedAt": "2026-11-04T03:11:10.419+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

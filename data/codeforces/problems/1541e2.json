@@ -4,14 +4,14 @@
   "contestId": 1541,
   "index": "E2",
   "title": "Converging Array (Hard Version)",
-  "titleZh": null,
+  "titleZh": "收敛数组（困难版本）",
   "url": "https://codeforces.com/contest/1541/problem/E2",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of the problem. The only difference is that in this version $1 \\le q \\le 10^5$. You can make hacks only if both versions of the problem are solved.**\n\nThere is a process that takes place on arrays $a$ and $b$ of length $n$ and length $n-1$ respectively.\n\nThe process is an infinite sequence of operations. Each operation is as follows:\n\n- First, choose a random integer $i$ ($1 \\le i \\le n-1$).\n- Then, simultaneously set $a_i = \\min\\left(a_i, \\frac{a_i+a_{i+1}-b_i}{2}\\right)$ and $a_{i+1} = \\max\\left(a_{i+1}, \\frac{a_i+a_{i+1}+b_i}{2}\\right)$ without any rounding (so values may become non-integer).\n\nSee notes for an example of an operation.\n\nIt can be proven that array $a$ converges, i. e. for each $i$ there exists a limit $a_i$ converges to. Let function $F(a, b)$ return the value $a_1$ converges to after a process on $a$ and $b$.\n\nYou are given array $b$, but not array $a$. However, you are given a third array $c$. Array $a$ is good if it contains only **integers** and satisfies $0 \\leq a_i \\leq c_i$ for $1 \\leq i \\leq n$.\n\nYour task is to count the number of good arrays $a$ where $F(a, b) \\geq x$ for $q$ values of $x$. Since the number of arrays can be very large, print it modulo $10^9+7$.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 100$).\n\nThe second line contains $n$ integers $c_1, c_2 \\ldots, c_n$ ($0 \\le c_i \\le 100$).\n\nThe third line contains $n-1$ integers $b_1, b_2, \\ldots, b_{n-1}$ ($0 \\le b_i \\le 100$).\n\nThe fourth line contains a single integer $q$ ($1 \\le q \\le 10^5$).\n\nThe fifth line contains $q$ space separated integers $x_1, x_2, \\ldots, x_q$ ($-10^5 \\le x_i \\le 10^5$).\n\n## Output\n\nOutput $q$ integers, where the $i$-th integer is the answer to the $i$-th query, i. e. the number of good arrays $a$ where $F(a, b) \\geq x_i$ modulo $10^9+7$.\n\n## Note\n\nThe following explanation assumes $b = [2, 1]$ and $c=[2, 3, 4]$ (as in the sample).\n\nExamples of arrays $a$ that are **not** good:\n\n- $a = [3, 2, 3]$ is not good because $a_1 \\gt c_1$;\n- $a = [0, -1, 3]$ is not good because $a_2 \\lt 0$.\n\nOne possible good array $a$ is $[0, 2, 4]$. We can show that no operation has any effect on this array, so $F(a, b) = a_1 = 0$.\n\nAnother possible good array $a$ is $[0, 1, 4]$. In a single operation with $i = 1$, we set $a_1 = \\min(\\frac{0+1-2}{2}, 0)$ and $a_2 = \\max(\\frac{0+1+2}{2}, 1)$. So, after a single operation with $i = 1$, $a$ becomes equal to $[-\\frac{1}{2}, \\frac{3}{2}, 4]$. We can show that no operation has any effect on this array, so $F(a, b) = -\\frac{1}{2}$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。与简单版本的唯一区别是，在本版本中 $1 \\le q \\le 10^5$。只有在两个版本的问题都解决后才能进行 hack。**\n\n有一个过程作用于长度分别为 $n$ 和 $n-1$ 的数组 $a$ 和 $b$。\n\n该过程由无限次操作组成。每次操作如下：\n\n- 首先，随机选择一个整数 $i$（$1 \\le i \\le n-1$）。\n- 然后，同时执行 $a_i = \\min\\left(a_i, \\frac{a_i+a_{i+1}-b_i}{2}\\right)$ 和 $a_{i+1} = \\max\\left(a_{i+1}, \\frac{a_i+a_{i+1}+b_i}{2}\\right)$，不进行任何取整（因此数值可能变为非整数）。\n\n操作示例请参见说明部分。\n\n可以证明，数组 $a$ 会收敛，即对于每个 $i$，$a_i$ 都存在极限。令函数 $F(a, b)$ 表示对数组 $a$ 和 $b$ 执行该过程后，$a_1$ 收敛到的值。\n\n现在给定数组 $b$，但没有给定数组 $a$。不过，你还会得到第三个数组 $c$。如果数组 $a$ 只包含**整数**，并且对于 $1 \\leq i \\leq n$ 满足 $0 \\leq a_i \\leq c_i$，则称数组 $a$ 是好的。\n\n对于 $q$ 个 $x$ 的取值，你需要计算满足 $F(a, b) \\geq x$ 的好数组 $a$ 的数量。由于数组数量可能非常大，请将答案对 $10^9+7$ 取模后输出。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 100$）。\n\n第二行包含 $n$ 个整数 $c_1, c_2 \\ldots, c_n$（$0 \\leq c_i \\leq 100$）。\n\n第三行包含 $n-1$ 个整数 $b_1, b_2, \\ldots, b_{n-1}$（$0 \\leq b_i \\leq 100$）。\n\n第四行包含一个整数 $q$（$1 \\leq q \\leq 10^5$）。\n\n第五行包含 $q$ 个以空格分隔的整数 $x_1, x_2, \\ldots, x_q$（$-10^5 \\leq x_i \\leq 10^5$）。\n\n## 输出格式\n\n输出 $q$ 个整数，其中第 $i$ 个整数是第 $i$ 个询问的答案，即满足 $F(a, b) \\geq x_i$ 的好数组 $a$ 的数量，结果对 $10^9+7$ 取模。\n\n## 说明\n\n以下解释假设 $b = [2, 1]$ 且 $c=[2, 3, 4]$（与样例中相同）。\n\n以下是一些**不是**好数组的例子：\n\n- $a = [3, 2, 3]$ 不是好数组，因为 $a_1 \\gt c_1$；\n- $a = [0, -1, 3]$ 不是好数组，因为 $a_2 \\lt 0$。\n\n一个可能的好数组 $a$ 是 $[0, 2, 4]$。可以证明，任何操作都不会对这个数组产生影响，因此 $F(a, b) = a_1 = 0$。\n\n另一个可能的好数组 $a$ 是 $[0, 1, 4]$。当进行一次 $i = 1$ 的操作时，我们将 $a_1 = \\min(\\frac{0+1-2}{2}, 0)$，并将 $a_2 = \\max(\\frac{0+1+2}{2}, 1)$。因此，在进行一次 $i = 1$ 的操作后，$a$ 变为 $[-\\frac{1}{2}, \\frac{3}{2}, 4]$。可以证明，任何操作都不会对这个数组产生影响，因此 $F(a, b) = -\\frac{1}{2}$。",
   "samples": [
     {
       "input": "3\n2 3 4\n2 1\n5\n-1 0 1 -100000 100000\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:30:24.105Z"
+  "fetchedAt": "2026-10-30T23:30:24.105Z",
+  "translatedAt": "2026-11-04T03:46:42.232+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1043,
   "index": "G",
   "title": "Speckled Band",
-  "titleZh": null,
+  "titleZh": "斑点带",
   "url": "https://codeforces.com/contest/1043/problem/G",
   "difficulty": 3500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 512,
   "statementMd": "Ildar took a band (a thin strip of cloth) and colored it. Formally, the band has $n$ cells, each of them is colored into one of $26$ colors, so we can denote each color with one of the lowercase letters of English alphabet.\n\nIldar decided to take some segment of the band $[l, r]$ ($1 \\le l \\le r \\le n$) he likes and cut it from the band. So he will create a new band that can be represented as a string $t = s_l s_{l+1} \\ldots s_r$.\n\nAfter that Ildar will play the following game: he cuts the band $t$ into some new bands and counts the number of different bands among them. Formally, Ildar chooses $1 \\le k \\le |t|$ indexes $1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_k = |t|$ and cuts $t$ to $k$ bands-strings $t_1 t_2 \\ldots t_{i_1}, t_{i_1 + 1} \\ldots t_{i_2}, \\ldots, {t_{i_{k-1} + 1}} \\ldots t_{i_k}$ and counts the number of different bands among them. He wants to know the minimal possible number of different bands he can get under the constraint that at least one band repeats at least two times. The result of the game is this number. If it is impossible to cut $t$ in such a way, the result of the game is `-1`.\n\nUnfortunately Ildar hasn't yet decided which segment he likes, but he has $q$ segments-candidates $[l_1, r_1]$, $[l_2, r_2]$, ..., $[l_q, r_q]$. Your task is to calculate the result of the game for each of them.\n\n## Input\n\nThe first line contains one integer $n$ ($1 \\le n \\le 200\\,000$) — the length of the band Ildar has.\n\nThe second line contains a string $s$ consisting of $n$ lowercase English letters — the band Ildar has.\n\nThe third line contains a single integer $q$ ($1 \\le q \\le 200\\,000$) — the number of segments Ildar has chosen as candidates.\n\nEach of the next $q$ lines contains two integer integers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le n$) denoting the ends of the $i$-th segment.\n\n## Output\n\nOutput $q$ lines, where the $i$-th of them should contain the result of the game on the segment $[l_i, r_i]$.\n\n## Note\n\nConsider the first example.\n\nIf Ildar chooses the segment $[1, 6]$, he cuts a string $t = abcabc$. If he cuts $t$ into two bands $abc$ and $abc$, the band $abc$ repeats two times and the number of different tapes is $1$. So, the result of this game is $1$.\n\nIf Ildar chooses the segment $[4, 7]$, he cuts a string $t = abcd$. It is impossible to cut this band in such a way that there is at least one band repeating at least two times. So, the result of this game is $-1$.\n\nIf Ildar chooses the segment $[3, 6]$, he cuts a string $t = cabc$. If he cuts $t$ into three bands $c$, $ab$ and $c$, the band $c$ repeats two times and the number of different bands is $2$. So, the result of this game is $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "伊尔达拿来一条带子（狭长的布条）并给它染上了颜色。形式化地说，这条带子有 $n$ 个单元格，每个单元格被染成 $26$ 种颜色中的一种，因此我们可以用英文字母表中的小写字母表示每种颜色。\n\n伊尔达决定从带子中取出一段他喜欢的区间 $[l, r]$（$1 \\le l \\le r \\le n$）并将其剪下。因此，他会得到一条可以表示为字符串 $t = s_l s_{l+1} \\ldots s_r$ 的新带子。\n\n之后，伊尔达会进行如下游戏：他将带子 $t$ 剪成若干条新带子，并统计其中不同带子的数量。形式化地说，伊尔达选择 $1 \\le k \\le |t|$ 个下标 $1 \\le i_1 \\lt i_2 \\lt \\ldots \\lt i_k = |t|$，并将 $t$ 剪成 $k$ 条带子，即字符串 $t_1 t_2 \\ldots t_{i_1}, t_{i_1 + 1} \\ldots t_{i_2}, \\ldots, {t_{i_{k-1} + 1}} \\ldots t_{i_k}$，然后统计其中不同带子的数量。他希望在至少有一条带子重复出现至少两次的约束下，知道能够得到的不同带子数量的最小值。这个数就是游戏的结果。如果无法以这种方式剪切 $t$，则游戏结果为 `-1`。\n\n遗憾的是，伊尔达还没有决定自己喜欢哪一段带子，但他有 $q$ 个候选区间 $[l_1, r_1]$、$[l_2, r_2]$、...、$[l_q, r_q]$。你的任务是计算每个候选区间对应的游戏结果。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 200\\,000$），表示伊尔达拥有的带子的长度。\n\n第二行包含一个由 $n$ 个小写英文字母组成的字符串 $s$，表示伊尔达拥有的带子。\n\n第三行包含一个整数 $q$（$1 \\le q \\le 200\\,000$），表示伊尔达选出的候选区间数量。\n\n接下来的 $q$ 行中，每行包含两个整数 $l_i$ 和 $r_i$（$1 \\le l_i \\le r_i \\le n$），表示第 $i$ 个区间的两个端点。\n\n## 输出格式\n\n输出 $q$ 行，其中第 $i$ 行应包含区间 $[l_i, r_i]$ 对应的游戏结果。\n\n## 说明\n\n考虑第一个样例。\n\n如果伊尔达选择区间 $[1, 6]$，他会得到字符串 $t = abcabc$。如果将 $t$ 剪成两条带子 $abc$ 和 $abc$，带子 $abc$ 重复出现了两次，不同带子的数量为 $1$。因此，这个游戏的结果为 $1$。\n\n如果伊尔达选择区间 $[4, 7]$，他会得到字符串 $t = abcd$。无法以至少有一条带子重复出现至少两次的方式剪切这条带子。因此，游戏结果为 $-1$。\n\n如果伊尔达选择区间 $[3, 6]$，他会得到字符串 $t = cabc$。如果将 $t$ 剪成三条带子 $c$、$ab$ 和 $c$，带子 $c$ 重复出现了两次，不同带子的数量为 $2$。因此，这个游戏的结果为 $2$。",
   "samples": [
     {
       "input": "9\nabcabcdce\n7\n1 6\n4 7\n5 9\n6 9\n1 9\n3 6\n4 4\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:23:28.388Z"
+  "fetchedAt": "2026-10-31T00:23:28.388Z",
+  "translatedAt": "2026-11-04T05:32:07.386+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

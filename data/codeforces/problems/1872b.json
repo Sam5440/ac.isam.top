@@ -4,7 +4,7 @@
   "contestId": 1872,
   "index": "B",
   "title": "The Corridor or There and Back Again",
-  "titleZh": null,
+  "titleZh": "走廊，或往返而行",
   "url": "https://codeforces.com/contest/1872/problem/B",
   "difficulty": 900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are in a corridor that extends infinitely to the right, divided into square rooms. You start in room $1$, proceed to room $k$, and then return to room $1$. You can choose the value of $k$. Moving to an adjacent room takes $1$ second.\n\nAdditionally, there are $n$ traps in the corridor: the $i$-th trap is located in room $d_i$ and will be activated $s_i$ seconds **after you enter the room** $\\boldsymbol{d_i}$. Once a trap is activated, you cannot enter or exit a room with that trap.\n\n![image](https://espresso.codeforces.com/4a475052d80979e37e210a06fea30965500d1c28.png) A schematic representation of a possible corridor and your path to room $k$ and back.\n\nDetermine the maximum value of $k$ that allows you to travel from room $1$ to room $k$ and then return to room $1$ safely.\n\nFor instance, if $n=1$ and $d_1=2, s_1=2$, you can proceed to room $k=2$ and return safely (the trap will activate at the moment $1+s_1=1+2=3$, it can't prevent you to return back). But if you attempt to reach room $k=3$, the trap will activate at the moment $1+s_1=1+2=3$, preventing your return (you would attempt to enter room $2$ on your way back at second $3$, but the activated trap would block you). Any larger value for $k$ is also not feasible. Thus, the answer is $k=2$.\n\n## Input\n\nThe first line of the input contains an integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nThe descriptions of the test cases follow.\n\nThe first line of each test case description contains an integer $n$ ($1 \\le n \\le 100$) — the number of traps.\n\nThe following $n$ lines of each test case description present two integers $d_i$ and $s_i$ ($1 \\le d_i, s_i \\le 200$) — the parameters of a trap (you must leave room $d_i$ strictly before $s_i$ seconds have passed since entering this room). It's possible for multiple traps to occupy a single room (the values of $d_i$ can be repeated).\n\n## Output\n\nFor each test case, print the maximum value of $k$ that allows you to travel to room $k$ and return to room $1$ without encountering an active trap.\n\n## Note\n\nThe first test case is explained in the problem statement above.\n\nIn the second test case, the second trap prevents you from achieving $k\\ge6$. If $k\\ge6$, the second trap will activate at the moment $3+s_2=3+3=6$ (the time you enter room $4$ plus $s_2$). In the case of $k\\ge6$, you will return to room $4$ at time $7$ or later. The trap will be active at that time. It can be shown that room $k=5$ can be reached without encountering an active trap.\n\nIn the third test case, you can make it to room $299$ and then immediately return to room $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "你位于一条无限向右延伸、被划分为方形房间的走廊中。你从房间 $1$ 出发，前往房间 $k$，然后返回房间 $1$。你可以自行选择 $k$ 的值。移动到相邻房间需要 $1$ 秒。\n\n此外，走廊中还有 $n$ 个陷阱：第 $i$ 个陷阱位于房间 $d_i$，并且会在你**进入房间** $\\boldsymbol{d_i}$ 后经过 $s_i$ 秒时启动。陷阱启动后，你将无法进入或离开装有该陷阱的房间。\n\n![image](https://espresso.codeforces.com/4a475052d80979e37e210a06fea30965500d1c28.png) 走廊及你前往房间 $k$ 再返回的路径示意图。\n\n请确定能够让你安全地从房间 $1$ 前往房间 $k$，再返回房间 $1$ 的最大 $k$ 值。\n\n例如，当 $n=1$，且 $d_1=2, s_1=2$ 时，你可以前往房间 $k=2$ 并安全返回（陷阱将在时刻 $1+s_1=1+2=3$ 启动，但它不会阻止你返回）。但是，如果你尝试到达房间 $k=3$，陷阱将在时刻 $1+s_1=1+2=3$ 启动，从而阻止你返回（你将在第 $3$ 秒返回时尝试进入房间 $2$，但此时已经启动的陷阱会阻止你进入）。更大的 $k$ 值也都无法实现。因此，答案是 $k=2$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例描述的第一行包含一个整数 $n$（$1 \\le n \\le 100$）——陷阱的数量。\n\n接下来的 $n$ 行中，每行包含两个整数 $d_i$ 和 $s_i$（$1 \\le d_i, s_i \\le 200$）——一个陷阱的参数（你必须严格在进入房间 $d_i$ 后经过 $s_i$ 秒之前离开该房间）。同一个房间中可能存在多个陷阱（$d_i$ 的值可能重复）。\n\n## 输出格式\n\n对于每个测试用例，输出能够让你前往房间 $k$，再返回房间 $1$ 且不遇到已启动陷阱的最大 $k$ 值。\n\n## 说明\n\n第一个测试用例已在题目描述中进行了解释。\n\n在第二个测试用例中，第二个陷阱会阻止你达到 $k\\ge6$。当 $k\\ge6$ 时，第二个陷阱将在时刻 $3+s_2=3+3=6$ 启动（即你进入房间 $4$ 的时刻加上 $s_2$）。当 $k\\ge6$ 时，你将在第 $7$ 秒或更晚返回房间 $4$。此时陷阱已经启动。可以证明，到达房间 $k=5$ 时不会遇到已启动的陷阱。\n\n在第三个测试用例中，你可以到达房间 $299$，然后立即返回房间 $1$。",
   "samples": [
     {
       "input": "7\n1\n2 2\n3\n2 8\n4 3\n5 2\n1\n200 200\n4\n1 20\n5 9\n3 179\n100 1\n2\n10 1\n1 18\n2\n1 1\n1 2\n3\n1 3\n1 1\n1 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:25:48.839Z"
+  "fetchedAt": "2026-11-02T17:25:48.839Z",
+  "translatedAt": "2026-11-04T02:42:30.362+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

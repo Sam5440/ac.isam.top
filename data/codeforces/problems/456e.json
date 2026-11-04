@@ -4,14 +4,14 @@
   "contestId": 456,
   "index": "E",
   "title": "Civilization",
-  "titleZh": null,
+  "titleZh": "文明",
   "url": "https://codeforces.com/contest/456/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Andrew plays a game called \"Civilization\". Dima helps him.\n\nThe game has $*n*$ cities and $*m*$ bidirectional roads. The cities are numbered from $1$ to $*n*$. Between any pair of cities there either is a single (unique) path, or there is no path at all. A path is such a sequence of distinct cities $*v*_{1}, *v*_{2}, ..., *v*_{*k*}$, that there is a road between any contiguous cities $*v*_{*i*}$ and $*v*_{*i* + 1}$ ($1 ≤ *i* < *k*$). The length of the described path equals to $(*k* - 1)$. We assume that two cities lie in the same region if and only if, there is a path connecting these two cities.\n\nDuring the game events of two types take place:\n\n1. Andrew asks Dima about the length of the longest path in the region where city $*x*$ lies.\n2. Andrew asks Dima to merge the region where city $*x*$ lies with the region where city $*y*$ lies. If the cities lie in the same region, then no merging is needed. Otherwise, you need to merge the regions as follows: choose a city from the first region, a city from the second region and connect them by a road so as to minimize the length of the longest path in the resulting region. If there are multiple ways to do so, you are allowed to choose any of them.\n\nDima finds it hard to execute Andrew's queries, so he asks you to help him. Help Dima.\n\n## Input\n\nThe first line contains three integers $*n*$, $*m*$, $*q*$ ($1 ≤ *n* ≤ 3·10^{5}$; $0 ≤ *m* < *n*$; $1 ≤ *q* ≤ 3·10^{5}$) — the number of cities, the number of the roads we already have and the number of queries, correspondingly.\n\nEach of the following $*m*$ lines contains two integers, $*a*_{*i*}$ and $*b*_{*i*}$ ($*a*_{*i*} ≠ *b*_{*i*};$ $1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$). These numbers represent the road between cities $*a*_{*i*}$ and $*b*_{*i*}$. There can be at most one road between two cities.\n\nEach of the following $*q*$ lines contains one of the two events in the following format:\n\n- $1$ $*x*_{*i*}$. It is the request Andrew gives to Dima to find the length of the maximum path in the region that contains city $*x*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ *n*$).\n- $2$ $*x*_{*i*}$ $*y*_{*i*}$. It is the request Andrew gives to Dima to merge the region that contains city $*x*_{*i*}$ and the region that contains city $*y*_{*i*}$ ($1 ≤ *x*_{*i*}, *y*_{*i*} ≤ *n*$). Note, that $*x*_{*i*}$ can be equal to $*y*_{*i*}$.\n\n\n## Output\n\nFor each event of the first type print the answer on a separate line.",
-  "statementZhMd": null,
+  "statementZhMd": "安德鲁正在玩一款名为“Civilization”的游戏。迪马在帮助他。\n\n游戏中有 $*n*$ 座城市和 $*m*$ 条双向道路。城市编号为 $1$ 至 $*n*$。任意两座城市之间要么存在唯一的一条路径，要么不存在路径。路径是由互不相同的城市 $*v*_{1}, *v*_{2}, ..., *v*_{*k*}$ 组成的序列，其中任意相邻的城市 $*v*_{*i*}$ 和 $*v*_{*i* + 1}$ 之间都有一条道路（$1 ≤ *i* < *k*$）。上述路径的长度等于 $(*k* - 1)$。如果且仅当两座城市之间存在一条路径相连时，我们认为它们位于同一个区域。\n\n游戏过程中会发生以下两种事件：\n\n1. 安德鲁询问迪马，城市 $*x*$ 所在区域中的最长路径长度。\n2. 安德鲁要求迪马合并城市 $*x*$ 所在的区域与城市 $*y*$ 所在的区域。如果两座城市位于同一个区域，则无需进行合并。否则，需要按照以下方式合并这两个区域：从第一个区域中选择一座城市，从第二个区域中选择一座城市，并在它们之间修建一条道路，使得合并后区域中的最长路径长度最小。如果有多种方案，任选一种即可。\n\n迪马觉得处理安德鲁的询问很困难，因此他请求你帮助他。请帮助迪马。\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*m*$、$*q*$（$1 ≤ *n* ≤ 3·10^{5}$；$0 ≤ *m* < *n*$；$1 ≤ *q* ≤ 3·10^{5}$），分别表示城市数量、已有道路数量和询问数量。\n\n接下来的 $*m*$ 行中，每行包含两个整数 $*a*_{*i*}$ 和 $*b*_{*i*}$（$*a*_{*i*} ≠ *b*_{*i*}$；$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$）。它们表示一条连接城市 $*a*_{*i*}$ 和 $*b*_{*i*}$ 的道路。任意两座城市之间至多有一条道路。\n\n接下来的 $*q*$ 行中，每行包含以下两种格式之一的事件：\n\n- $1$ $*x*_{*i*}$：这是安德鲁给迪马的请求，要求找出包含城市 $*x*_{*i*}$ 的区域中的最长路径长度（$1 ≤ *x*_{*i*} ≤ *n*$）。\n- $2$ $*x*_{*i*}$ $*y*_{*i*}$：这是安德鲁给迪马的请求，要求合并包含城市 $*x*_{*i*}$ 的区域和包含城市 $*y*_{*i*}$ 的区域（$1 ≤ *x*_{*i*}, *y*_{*i*} ≤ *n*$）。注意，$*x*_{*i*}$ 可能等于 $*y*_{*i*}$。\n\n## 输出格式\n\n对于每个第一类事件，在单独一行中输出答案。",
   "samples": [
     {
       "input": "6 0 6\n2 1 2\n2 3 4\n2 5 6\n2 3 2\n2 5 3\n1 1\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:40:16.371Z"
+  "fetchedAt": "2026-10-31T01:40:16.371Z",
+  "translatedAt": "2026-11-04T07:02:52.156+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

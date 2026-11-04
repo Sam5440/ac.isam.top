@@ -4,7 +4,7 @@
   "contestId": 1548,
   "index": "A",
   "title": "Web of Lies",
-  "titleZh": null,
+  "titleZh": "谎言之网",
   "url": "https://codeforces.com/contest/1548/problem/A",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*When you play the game of thrones, you win, or you die. There is no middle ground.*Cersei Lannister, *A Game of Thrones* by George R. R. Martin\n\nThere are $n$ nobles, numbered from $1$ to $n$. Noble $i$ has a power of $i$. There are also $m$ \"friendships\". A friendship between nobles $a$ and $b$ is always mutual.\n\nA noble is defined to be *vulnerable* if both of the following conditions are satisfied:\n\n- the noble has at least one friend, and\n- **all** of that noble's friends have a higher power.\n\nYou will have to process the following three types of queries.\n\n1. Add a friendship between nobles $u$ and $v$.\n2. Remove a friendship between nobles $u$ and $v$.\n3. Calculate the answer to the following process.\n\nThe process: all vulnerable nobles are simultaneously killed, and all their friendships end. Then, it is possible that new nobles become vulnerable. The process repeats itself until no nobles are vulnerable. It can be proven that the process will end in finite time. After the process is complete, you need to calculate the number of remaining nobles.\n\nNote that the results of the process are **not** carried over between queries, that is, every process starts with all nobles being alive!\n\n## Input\n\nThe first line contains the integers $n$ and $m$ ($1 \\le n \\le 2\\cdot 10^5$, $0 \\le m \\le 2\\cdot 10^5$) — the number of nobles and number of original friendships respectively.\n\nThe next $m$ lines each contain the integers $u$ and $v$ ($1 \\le u,v \\le n$, $u \\ne v$), describing a friendship. No friendship is listed twice.\n\nThe next line contains the integer $q$ ($1 \\le q \\le 2\\cdot {10}^{5}$) — the number of queries.\n\nThe next $q$ lines contain the queries themselves, each query has one of the following three formats.\n\n- $1$ $u$ $v$ ($1 \\le u,v \\le n$, $u \\ne v$) — add a friendship between $u$ and $v$. It is guaranteed that $u$ and $v$ are not friends at this moment.\n- $2$ $u$ $v$ ($1 \\le u,v \\le n$, $u \\ne v$) — remove a friendship between $u$ and $v$. It is guaranteed that $u$ and $v$ are friends at this moment.\n- $3$ — print the answer to the process described in the statement.\n\n## Output\n\nFor each type $3$ query print one integer to a new line. It is guaranteed that there will be at least one type $3$ query.\n\n## Note\n\nConsider the first example. In the first type 3 query, we have the diagram below.\n\nIn the first round of the process, noble $1$ is weaker than all of his friends ($2$ and $3$), and is thus killed. No other noble is vulnerable in round 1. In round 2, noble $3$ is weaker than his only friend, noble $4$, and is therefore killed. At this point, the process ends, and the answer is $2$.\n\n![image](https://espresso.codeforces.com/483bb69a9e0172a45f351cb5e2f302d79332da72.png)\n\nIn the second type 3 query, the only surviving noble is $4$.\n\nThe second example consists of only one type $3$ query. In the first round, two nobles are killed, and in the second round, one noble is killed. The final answer is $1$, since only one noble survives.\n\n![image](https://espresso.codeforces.com/30e26ef380f9ffa399c28c4afc4f8f65b32290fd.png)",
-  "statementZhMd": null,
+  "statementZhMd": "*当你参与权力的游戏时，要么赢，要么死。没有中间地带。*乔治·R·R·马丁《权力的游戏》中的瑟曦·兰尼斯特\n\n有 $n$ 位贵族，编号为 $1$ 至 $n$。贵族 $i$ 的力量为 $i$。此外，还有 $m$ 条“友谊关系”。贵族 $a$ 和贵族 $b$ 之间的友谊关系总是相互的。\n\n如果一位贵族同时满足以下两个条件，则称其为*脆弱的*：\n\n- 该贵族至少有一位朋友；\n- **该贵族的所有朋友的力量都比他高。**\n\n你需要处理以下三种查询。\n\n1. 在贵族 $u$ 和贵族 $v$ 之间添加一条友谊关系。\n2. 移除贵族 $u$ 和贵族 $v$ 之间的友谊关系。\n3. 计算以下过程的答案。\n\n过程如下：所有脆弱的贵族同时被杀死，他们的所有友谊关系也随之结束。此后，可能会有新的贵族变得脆弱。重复这一过程，直到不存在脆弱的贵族为止。\n\n可以证明，该过程会在有限时间内结束。过程完成后，你需要计算剩余贵族的数量。\n\n注意，过程的结果**不会**在查询之间保留，也就是说，每次过程开始时所有贵族都是存活的！\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 2\\cdot 10^5$，$0 \\le m \\le 2\\cdot 10^5$）——贵族的数量和初始友谊关系的数量。\n\n接下来的 $m$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n$，$u \\ne v$），表示一条友谊关系。不会重复列出同一条友谊关系。\n\n接下来一行包含一个整数 $q$（$1 \\le q \\le 2\\cdot {10}^{5}$）——查询的数量。\n\n接下来的 $q$ 行包含查询，每个查询具有以下三种格式之一。\n\n- $1$ $u$ $v$（$1 \\le u,v \\le n$，$u \\ne v$）——在贵族 $u$ 和贵族 $v$ 之间添加一条友谊关系。保证此时 $u$ 和 $v$ 不是朋友。\n- $2$ $u$ $v$（$1 \\le u,v \\le n$，$u \\ne v$）——移除贵族 $u$ 和贵族 $v$ 之间的友谊关系。保证此时 $u$ 和 $v$ 是朋友。\n- $3$——输出题目描述中的过程的答案。\n\n## 输出格式\n\n对于每个类型 $3$ 的查询，输出一个整数并换行。保证至少存在一个类型 $3$ 的查询。\n\n## 说明\n\n考虑第一个样例。在第一次类型 $3$ 的查询中，图示如下。\n\n在过程的第一轮中，贵族 $1$ 的所有朋友（贵族 $2$ 和贵族 $3$）都比他强，因此贵族 $1$ 被杀死。第一轮中没有其他贵族是脆弱的。在第二轮中，贵族 $3$ 的唯一朋友贵族 $4$ 比他强，因此贵族 $3$ 被杀死。此时过程结束，答案为 $2$。\n\n![image](https://espresso.codeforces.com/483bb69a9e0172a45f351cb5e2f302d79332da72.png)\n\n在第二次类型 $3$ 的查询中，唯一幸存的贵族是 $4$。\n\n第二个样例只包含一个类型 $3$ 的查询。第一轮中有两位贵族被杀死，第二轮中有一位贵族被杀死。最终答案为 $1$，因为只有一位贵族存活。\n\n![image](https://espresso.codeforces.com/30e26ef380f9ffa399c28c4afc4f8f65b32290fd.png)",
   "samples": [
     {
       "input": "4 3\n2 1\n1 3\n3 4\n4\n3\n1 2 3\n2 3 1\n3\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:29:40.792Z"
+  "fetchedAt": "2026-10-30T23:29:40.792Z",
+  "translatedAt": "2026-11-04T03:46:24.874+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

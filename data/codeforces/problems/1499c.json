@@ -4,7 +4,7 @@
   "contestId": 1499,
   "index": "C",
   "title": "Minimum Grid Path",
-  "titleZh": null,
+  "titleZh": "最小网格路径",
   "url": "https://codeforces.com/contest/1499/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let's say you are standing on the $XY$-plane at point $(0, 0)$ and you want to reach point $(n, n)$.\n\nYou can move only in two directions:\n\n- to the *right*, i. e. horizontally and in the direction that increase your $x$ coordinate,\n- or *up*, i. e. vertically and in the direction that increase your $y$ coordinate.\n\nIn other words, your path will have the following structure:\n\n- initially, you choose to go to the right or up;\n- then you go some **positive integer** distance in the chosen direction (distances can be chosen independently);\n- after that you change your direction (from right to up, or from up to right) and repeat the process.\n\nYou don't like to change your direction too much, so you will make no more than $n - 1$ direction changes.\n\nAs a result, your path will be a polygonal chain from $(0, 0)$ to $(n, n)$, consisting of **at most** $n$ line segments where each segment has positive integer length and vertical and horizontal segments alternate.\n\nNot all paths are equal. You have $n$ integers $c_1, c_2, \\dots, c_n$ where $c_i$ is the cost of the $i$-th segment.\n\nUsing these costs we can define the *cost of the path* as the sum of lengths of the segments of this path multiplied by their cost, i. e. if the path consists of $k$ segments ($k \\le n$), then the cost of the path is equal to $\\sum\\limits_{i=1}^{k}{c_i \\cdot length_i}$ (segments are numbered from $1$ to $k$ in the order they are in the path).\n\nFind the path of the minimum cost and print its cost.\n\n## Input\n\nThe first line contains the single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nThe first line of each test case contains the single integer $n$ ($2 \\le n \\le 10^5$).\n\nThe second line of each test case contains $n$ integers $c_1, c_2, \\dots, c_n$ ($1 \\le c_i \\le 10^9$) — the costs of each segment.\n\nIt's guaranteed that the total sum of $n$ doesn't exceed $10^5$.\n\n## Output\n\nFor each test case, print the minimum possible cost of the path from $(0, 0)$ to $(n, n)$ consisting of at most $n$ alternating segments.\n\n## Note\n\nIn the first test case, to reach $(2, 2)$ you need to make at least one turn, so your path will consist of exactly $2$ segments: one horizontal of length $2$ and one vertical of length $2$. The cost of the path will be equal to $2 \\cdot c_1 + 2 \\cdot c_2 = 26 + 176 = 202$.\n\nIn the second test case, one of the optimal paths consists of $3$ segments: the first segment of length $1$, the second segment of length $3$ and the third segment of length $2$.\n\nThe cost of the path is $1 \\cdot 2 + 3 \\cdot 3 + 2 \\cdot 1 = 13$.\n\nIn the third test case, one of the optimal paths consists of $4$ segments: the first segment of length $1$, the second one — $1$, the third one — $4$, the fourth one — $4$. The cost of the path is $1 \\cdot 4 + 1 \\cdot 3 + 4 \\cdot 2 + 4 \\cdot 1 = 19$.",
-  "statementZhMd": null,
+  "statementZhMd": "假设你站在 $XY$ 平面上的点 $(0, 0)$，并且想要到达点 $(n, n)$。\n\n你只能沿两个方向移动：\n\n- 向*右*，即水平方向，且使你的 $x$ 坐标增加；\n- 或向*上*，即竖直方向，且使你的 $y$ 坐标增加。\n\n换句话说，你的路径具有如下结构：\n\n- 首先，你选择向右或向上移动；\n- 然后沿所选方向移动一段**正整数**距离（每段距离可以独立选择）；\n- 之后改变方向（从向右变为向上，或从向上变为向右），并重复这一过程。\n\n你不希望过于频繁地改变方向，因此最多改变 $n - 1$ 次方向。\n\n因此，你的路径将是一条从 $(0, 0)$ 到 $(n, n)$ 的折线，由**至多** $n$ 条线段组成，其中每条线段的长度都是正整数，并且水平线段与竖直线段交替出现。\n\n并非所有路径都相同。你有 $n$ 个整数 $c_1, c_2, \\dots, c_n$，其中 $c_i$ 表示第 $i$ 条线段的单位代价。\n\n利用这些代价，我们可以将*路径的代价*定义为路径中各线段长度与其代价乘积之和，即若路径由 $k$ 条线段组成（$k \\le n$），则路径的代价等于 $\\sum\\limits_{i=1}^{k}{c_i \\cdot length_i}$（线段按照它们在路径中的顺序从 $1$ 到 $k$ 编号）。\n\n请找出代价最小的路径，并输出其代价。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 10^5$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $c_1, c_2, \\dots, c_n$（$1 \\le c_i \\le 10^9$）——每条线段的代价。\n\n保证所有测试用例中的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出从 $(0, 0)$ 到 $(n, n)$、由至多 $n$ 条交替线段组成的路径的最小可能代价。\n\n## 说明\n\n在第一个测试用例中，要到达 $(2, 2)$，至少需要转向一次，因此你的路径将恰好由 $2$ 条线段组成：一条长度为 $2$ 的水平线段和一条长度为 $2$ 的竖直线段。路径的代价等于 $2 \\cdot c_1 + 2 \\cdot c_2 = 26 + 176 = 202$。\n\n在第二个测试用例中，一条最优路径由 $3$ 条线段组成：第一条线段长度为 $1$，第二条线段长度为 $3$，第三条线段长度为 $2$。\n\n路径的代价为 $1 \\cdot 2 + 3 \\cdot 3 + 2 \\cdot 1 = 13$。\n\n在第三个测试用例中，一条最优路径由 $4$ 条线段组成：第一条线段长度为 $1$，第二条长度为 $1$，第三条长度为 $4$，第四条长度为 $4$。路径的代价为 $1 \\cdot 4 + 1 \\cdot 3 + 4 \\cdot 2 + 4 \\cdot 1 = 19$。",
   "samples": [
     {
       "input": "3\n2\n13 88\n3\n2 3 1\n5\n4 3 2 1 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:31:07.771Z"
+  "fetchedAt": "2026-11-02T18:31:07.771Z",
+  "translatedAt": "2026-11-04T04:07:34.998+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

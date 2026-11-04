@@ -4,14 +4,14 @@
   "contestId": 104,
   "index": "D",
   "title": "Russian Roulette",
-  "titleZh": null,
+  "titleZh": "俄罗斯轮盘",
   "url": "https://codeforces.com/contest/104/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "After all the events in Orlando we all know, Sasha and Roma decided to find out who is still the team's biggest loser. Thankfully, Masha found somewhere a revolver with a rotating cylinder of $*n*$ bullet slots able to contain exactly $*k*$ bullets, now the boys have a chance to resolve the problem once and for all.\n\nSasha selects any $*k*$ out of $*n*$ slots he wishes and puts bullets there. Roma spins the cylinder so that every of $*n*$ possible cylinder's shifts is equiprobable. Then the game starts, the players take turns, Sasha starts: he puts the gun to his head and shoots. If there was no bullet in front of the trigger, the cylinder shifts by one position and the weapon is given to Roma for make the same move. The game continues until someone is shot, the survivor is the winner.\n\nSasha does not want to lose, so he must choose slots for bullets in such a way as to minimize the probability of its own loss. Of all the possible variant he wants to select the lexicographically minimal one, where an empty slot is lexicographically less than a charged one.\n\nMore formally, the cylinder of $*n*$ bullet slots able to contain $*k*$ bullets can be represented as a string of $*n*$ characters. Exactly $*k*$ of them are \"`X`\" (charged slots) and the others are \"`.`\" (uncharged slots).\n\nLet us describe the process of a shot. Suppose that the trigger is in front of the first character of the string (the first slot). If a shot doesn't kill anyone and the cylinder shifts, then the string shifts left. So the first character becomes the last one, the second character becomes the first one, and so on. But the trigger doesn't move. It will be in front of the first character of the resulting string.\n\nAmong all the strings that give the minimal probability of loss, Sasha choose the lexicographically minimal one. According to this very string, he charges the gun. You have to help Sasha to charge the gun. For that, each $*x*_{*i*}$ query must be answered: is there a bullet in the positions $*x*_{*i*}$?\n\n## Input\n\nThe first line contains three integers $*n*$, $*k*$ and $*p*$ ($1 ≤ *n* ≤ 10^{18}, 0 ≤ *k* ≤ *n*, 1 ≤ *p* ≤ 1000$) — the number of slots in the cylinder, the number of bullets and the number of queries. Then follow $*p*$ lines; they are the queries. Each line contains one integer $*x*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ *n*$) the number of slot to describe.\n\nPlease do not use the %lld specificator to read or write 64-bit numbers in С++. It is preferred to use cin, cout streams or the %I64d specificator.\n\n## Output\n\nFor each query print \"`.`\" if the slot should be empty and \"`X`\" if the slot should be charged.\n\n## Note\n\nThe lexicographical comparison of is performed by the < operator in modern programming languages. The $*a*$ string is lexicographically less that the $*b*$ string, if there exists such $*i*$ ($1 ≤ *i* ≤ *n*$), that $*a*_{*i*} < *b*_{*i*}$, and for any $*j*$ ($1 ≤ *j* < *i*$) $*a*_{*j*} = *b*_{*j*}$.",
-  "statementZhMd": null,
+  "statementZhMd": "在奥兰多发生了众所周知的那些事件之后，Sasha 和 Roma 决定 выяснить谁仍然是队伍中最大的倒霉蛋。幸运的是，Masha 不知从哪里找到了一把左轮手枪，其旋转弹巢有 $*n*$ 个弹槽，恰好可以装入 $*k*$ 发子弹。现在，男孩们有机会一劳永逸地解决这个问题了。\n\nSasha 从 $*n*$ 个弹槽中任选 $*k*$ 个，并将子弹装入其中。Roma 旋转弹巢，使得弹巢的 $*n*$ 种可能位移等概率出现。然后游戏开始，玩家轮流进行操作，由 Sasha 先手：他将枪口对准自己的头部并扣动扳机。如果扳机前方没有子弹，弹巢向前转动一格，然后将武器交给 Roma 执行相同的操作。游戏持续进行，直到有人中枪，幸存者获胜。\n\nSasha 不想输，因此他必须选择一种装弹方式，使自己输掉的概率最小。在所有可能的方案中，他希望选择字典序最小的方案，其中空槽的字典序小于装有子弹的槽。\n\n更正式地说，一个有 $*n*$ 个弹槽且能装入 $*k*$ 发子弹的弹巢可以表示为一个长度为 $*n*$ 的字符串。其中恰好有 $*k*$ 个字符是 \"`X`\"（已装弹的槽），其余字符是 \"`.`\"（未装弹的槽）。\n\n下面描述一次射击的过程。假设扳机位于字符串第一个字符（第一个弹槽）的前方。如果射击没有击中任何人，并且弹巢发生转动，那么字符串向左移动。因此，第一个字符变为最后一个字符，第二个字符变为第一个字符，以此类推。但扳机不会移动，它仍然位于变化后的字符串第一个字符的前方。\n\n在所有能够使输掉的概率最小的字符串中，Sasha 选择字典序最小的那个字符串。他将按照这个字符串给枪装弹。请你帮助 Sasha 完成装弹。对于每个 $*x*_{*i*}$ 询问，需要回答位置 $*x*_{*i*}$ 是否有子弹。\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*k*$ 和 $*p*$（$1 ≤ *n* ≤ 10^{18}, 0 ≤ *k* ≤ *n*, 1 ≤ *p* ≤ 1000$）——弹巢中的弹槽数量、子弹数量以及询问数量。接下来有 $*p*$ 行，每行包含一个询问。每行包含一个整数 $*x*_{*i*}$（$1 ≤ *x*_{*i*} ≤ *n*$），表示要查询的弹槽编号。\n\n请不要在 C++ 中使用 %lld 格式说明符读写 64 位整数。建议使用 cin、cout 流，或使用 %I64d 格式说明符。\n\n## 输出格式\n\n对于每个询问，如果该弹槽应为空，输出 \"`.`\"；如果该弹槽应装有子弹，输出 \"`X`\"。\n\n## 说明\n\n字典序比较由现代编程语言中的 < 运算符执行。如果存在某个 $*i*$（$1 ≤ *i* ≤ *n*$），使得 $*a*_{*i*} < *b*_{*i*}$，且对于任意 $*j*$（$1 ≤ *j* < *i*$）都有 $*a*_{*j*} = *b*_{*j*}$，则字符串 $*a*$ 的字典序小于字符串 $*b*$。",
   "samples": [
     {
       "input": "3 1 3\n1\n2\n3\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:39:22.603Z"
+  "fetchedAt": "2026-10-31T02:39:22.603Z",
+  "translatedAt": "2026-11-04T07:50:03.336+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

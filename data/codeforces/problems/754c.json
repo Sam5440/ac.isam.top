@@ -4,7 +4,7 @@
   "contestId": 754,
   "index": "C",
   "title": "Vladik and chat",
-  "titleZh": null,
+  "titleZh": "Vladik 与聊天",
   "url": "https://codeforces.com/contest/754/problem/C",
   "difficulty": 2200,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Recently Vladik discovered a new entertainment — coding bots for social networks. He would like to use machine learning in his bots so now he want to prepare some learning data for them.\n\nAt first, he need to download $*t*$ chats. Vladik coded a script which should have downloaded the chats, however, something went wrong. In particular, some of the messages have no information of their sender. It is known that if a person sends several messages in a row, they all are merged into a single message. It means that **there could not be two or more messages in a row with the same sender**. Moreover, **a sender never mention himself in his messages**.\n\nVladik wants to recover senders of all the messages so that each two neighboring messages will have different senders and no sender will mention himself in his messages.\n\nHe has no idea of how to do this, and asks you for help. Help Vladik to recover senders in each of the chats!\n\n## Input\n\nThe first line contains single integer $*t*$ ($1 ≤ *t* ≤ 10$) — the number of chats. The $*t*$ chats follow. Each chat is given in the following format.\n\nThe first line of each chat description contains single integer $*n*$ ($1 ≤ *n* ≤ 100$) — the number of users in the chat.\n\nThe next line contains $*n*$ space-separated distinct usernames. Each username consists of lowercase and uppercase English letters and digits. The usernames can't start with a digit. Two usernames are different even if they differ only with letters' case. The length of username is positive and doesn't exceed $10$ characters.\n\nThe next line contains single integer $*m*$ ($1 ≤ *m* ≤ 100$) — the number of messages in the chat. The next $*m*$ line contain the messages in the following formats, one per line:\n\n- `<username>:<text>` — the format of a message with known sender. The username should appear in the list of usernames of the chat.\n- `<?>:<text>` — the format of a message with unknown sender.\n\nThe text of a message can consist of lowercase and uppercase English letter, digits, characters `'.'` (dot), `','` (comma), `'!'` (exclamation mark), `'?'` (question mark) and `' '` (space). The text doesn't contain trailing spaces. The length of the text is positive and doesn't exceed $100$ characters.\n\nWe say that a text mention a user if his username appears in the text as a word. In other words, the username appears in a such a position that the two characters before and after its appearance either do not exist or are not English letters or digits. For example, the text \"`Vasya, masha13 and Kate!`\" can mention users \"`Vasya`\", \"`masha13`\", \"`and`\" and \"`Kate`\", but not \"`masha`\".\n\nIt is guaranteed that in each chat **no known sender mention himself in his messages** and there are no two neighboring messages with the same known sender.\n\n## Output\n\nPrint the information about the $*t*$ chats in the following format:\n\nIf it is not possible to recover senders, print single line \"`Impossible`\" for this chat. Otherwise print $*m*$ messages in the following format:\n\n`<username>:<text>`\n\nIf there are multiple answers, print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，Vladik 发现了一种新的娱乐方式——为社交网络编写机器人。他想在自己的机器人中使用机器学习，因此现在需要为它们准备一些训练数据。\n\n首先，他需要下载 $*t*$ 个聊天记录。Vladik 编写了一个用于下载聊天记录的脚本，但是出了些问题。具体来说，部分消息缺少发送者信息。已知，如果某个人连续发送了多条消息，这些消息会被合并为一条消息。这意味着**不可能存在连续两条或更多条消息由同一个发送者发送**。此外，**发送者从不在自己的消息中提及自己**。\n\nVladik 希望恢复所有消息的发送者，使得每两条相邻消息的发送者都不同，并且没有发送者会在自己的消息中提及自己。\n\n他不知道该如何完成这件事，因此向你求助。请帮助 Vladik 恢复每个聊天记录中消息的发送者！\n\n## 输入格式\n\n第一行包含一个整数 $*t*$（$1 ≤ *t* ≤ 10$）——聊天记录的数量。接下来是 $*t*$ 个聊天记录，每个聊天记录的格式如下。\n\n每个聊天记录的第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 100$）——聊天中的用户数量。\n\n下一行包含 $*n*$ 个用空格分隔的不同用户名。每个用户名由英文字母（大小写均可）和数字组成，且不能以数字开头。即使两个用户名仅字母大小写不同，它们也被视为不同的用户名。用户名长度为正数，且不超过 $10$ 个字符。\n\n下一行包含一个整数 $*m*$（$1 ≤ *m* ≤ 100$）——聊天中的消息数量。接下来的 $*m*$ 行每行包含一条消息，格式如下：\n\n- `<username>:<text>`——发送者已知的消息格式。该用户名应出现在聊天的用户名列表中。\n- `<?>:<text>`——发送者未知的消息格式。\n\n消息文本可以由英文字母（大小写均可）、数字、字符 `'.'`（句号）、`','`（逗号）、`'!'`（感叹号）、`'?'`（问号）和 `' '`（空格）组成。文本不包含末尾空格。文本长度为正数，且不超过 $100$ 个字符。\n\n如果某个用户的用户名作为一个单词出现在文本中，则称该文本提及了该用户。换句话说，该用户名出现的位置满足：其前后两个字符（如果存在）都不是英文字母或数字。例如，文本 \"`Vasya, masha13 and Kate!`\" 可以提及用户 \"`Vasya`\"、\"`masha13`\"、\"`and`\" 和 \"`Kate`\"，但不能提及用户 \"`masha`\"。\n\n保证每个聊天记录中，**没有已知发送者在自己的消息中提及自己**，并且不存在连续两条消息由同一个已知发送者发送。\n\n## 输出格式\n\n按照以下格式输出 $*t*$ 个聊天记录的信息：\n\n如果无法恢复发送者，则对于该聊天记录输出一行 \"`Impossible`\"。否则，按照以下格式输出 $*m*$ 条消息：\n\n`<username>:<text>`\n\n如果有多个答案，输出其中任意一个即可。",
   "samples": [
     {
       "input": "1\n2\nVladik netman\n2\n?: Hello, Vladik!\n?: Hi\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:59:00.792Z"
+  "fetchedAt": "2026-10-31T00:59:00.792Z",
+  "translatedAt": "2026-11-04T06:21:13.829+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

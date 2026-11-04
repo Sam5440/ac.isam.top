@@ -4,7 +4,7 @@
   "contestId": 1398,
   "index": "E",
   "title": "Two Types of Spells",
-  "titleZh": null,
+  "titleZh": "两种类型的法术",
   "url": "https://codeforces.com/contest/1398/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3500,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp plays a computer game (yet again). In this game, he fights monsters using magic spells.\n\nThere are two types of spells: *fire* spell of power $x$ deals $x$ damage to the monster, and *lightning* spell of power $y$ deals $y$ damage to the monster and **doubles** the damage of the next spell Polycarp casts. Each spell can be cast **only once per battle**, but Polycarp can cast them in any order.\n\nFor example, suppose that Polycarp knows three spells: a fire spell of power $5$, a lightning spell of power $1$, and a lightning spell of power $8$. There are $6$ ways to choose the order in which he casts the spells:\n\n- first, second, third. This order deals $5 + 1 + 2 \\cdot 8 = 22$ damage;\n- first, third, second. This order deals $5 + 8 + 2 \\cdot 1 = 15$ damage;\n- second, first, third. This order deals $1 + 2 \\cdot 5 + 8 = 19$ damage;\n- second, third, first. This order deals $1 + 2 \\cdot 8 + 2 \\cdot 5 = 27$ damage;\n- third, first, second. This order deals $8 + 2 \\cdot 5 + 1 = 19$ damage;\n- third, second, first. This order deals $8 + 2 \\cdot 1 + 2 \\cdot 5 = 20$ damage.\n\nInitially, Polycarp knows $0$ spells. His spell set changes $n$ times, each time he either learns a new spell or forgets an already known one. After each change, calculate the maximum possible damage Polycarp may deal using the spells he knows.\n\n## Input\n\nThe first line contains one integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of changes to the spell set.\n\nEach of the next $n$ lines contains two integers $tp$ and $d$ ($0 \\le tp_i \\le 1$; $-10^9 \\le d \\le 10^9$; $d_i \\neq 0$) — the description of the change. If $tp_i$ if equal to $0$, then Polycarp learns (or forgets) a fire spell, otherwise he learns (or forgets) a lightning spell.\n\nIf $d_i \\gt 0$, then Polycarp learns a spell of power $d_i$. Otherwise, Polycarp forgets a spell with power $-d_i$, and it is guaranteed that he knew that spell before the change.\n\nIt is guaranteed that the powers of all spells Polycarp knows after each change are different (Polycarp never knows two spells with the same power).\n\n## Output\n\nAfter each change, print the maximum damage Polycarp can deal with his current set of spells.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 又一次玩起了电脑游戏。在这个游戏中，他使用魔法攻击怪物。\n\n法术有两种类型：威力为 $x$ 的*火焰*法术会对怪物造成 $x$ 点伤害；威力为 $y$ 的*闪电*法术会对怪物造成 $y$ 点伤害，并且会使 Polycarp 施放的下一个法术造成的伤害**翻倍**。每个法术在每场战斗中都只能施放**一次**，但 Polycarp 可以以任意顺序施放它们。\n\n例如，假设 Polycarp 知道三个法术：一个威力为 $5$ 的火焰法术、一个威力为 $1$ 的闪电法术，以及一个威力为 $8$ 的闪电法术。选择施放顺序的方式共有 $6$ 种：\n\n- 第一个、第二个、第三个。该顺序造成 $5 + 1 + 2 \\cdot 8 = 22$ 点伤害；\n- 第一个、第三个、第二个。该顺序造成 $5 + 8 + 2 \\cdot 1 = 15$ 点伤害；\n- 第二个、第一个、第三个。该顺序造成 $1 + 2 \\cdot 5 + 8 = 19$ 点伤害；\n- 第二个、第三个、第一个。该顺序造成 $1 + 2 \\cdot 8 + 2 \\cdot 5 = 27$ 点伤害；\n- 第三个、第一个、第二个。该顺序造成 $8 + 2 \\cdot 5 + 1 = 19$ 点伤害；\n- 第三个、第二个、第一个。该顺序造成 $8 + 2 \\cdot 1 + 2 \\cdot 5 = 20$ 点伤害。\n\n起初，Polycarp 知道 $0$ 个法术。他的法术集合会变化 $n$ 次，每次他要么学会一个新法术，要么忘记一个已经知道的法术。每次变化后，请计算 Polycarp 使用当前所知道的法术最多能够造成多少伤害。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——法术集合变化的次数。\n\n接下来的 $n$ 行中，每行包含两个整数 $tp$ 和 $d$（$0 \\le tp_i \\le 1$；$-10^9 \\le d \\le 10^9$；$d_i \\neq 0$）——一次变化的描述。如果 $tp_i$ 等于 $0$，那么 Polycarp 学会（或忘记）一个火焰法术，否则他学会（或忘记）一个闪电法术。\n\n如果 $d_i \\gt 0$，那么 Polycarp 学会一个威力为 $d_i$ 的法术。否则，Polycarp 忘记一个威力为 $-d_i$ 的法术，并且保证在此次变化之前他知道这个法术。\n\n保证 Polycarp 在每次变化后所知道的所有法术的威力均不相同（Polycarp 从不会知道两个威力相同的法术）。\n\n## 输出格式\n\n每次变化后，输出 Polycarp 使用当前法术集合最多能够造成的伤害。",
   "samples": [
     {
       "input": "6\n1 5\n0 10\n1 -5\n0 5\n1 11\n0 -10\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:44:55.868Z"
+  "fetchedAt": "2026-11-02T18:44:55.868Z",
+  "translatedAt": "2026-11-04T04:23:06.227+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

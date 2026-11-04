@@ -4,14 +4,14 @@
   "contestId": 889,
   "index": "C",
   "title": "Maximum Element",
-  "titleZh": null,
+  "titleZh": "最大元素",
   "url": "https://codeforces.com/contest/889/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "One day Petya was solving a very interesting problem. But although he used many optimization techniques, his solution still got Time limit exceeded verdict. Petya conducted a thorough analysis of his program and found out that his function for finding maximum element in an array of $*n*$ positive integers was too slow. Desperate, Petya decided to use a somewhat unexpected optimization using parameter $*k*$, so now his function contains the following code:\n\n```\nint fast_max(int n, int a[]) {\n    int ans = 0;\n    int offset = 0;\n    for (int i = 0; i < n; ++i)\n        if (ans < a[i]) {\n            ans = a[i];\n            offset = 0;\n        } else {\n            offset = offset + 1;\n            if (offset == k)\n                return ans;\n        }\n    return ans;\n}\n```\n\nThat way the function iteratively checks array elements, storing the intermediate maximum, and if after $*k*$ consecutive iterations that maximum has not changed, it is returned as the answer.\n\nNow Petya is interested in fault rate of his function. He asked you to find the number of permutations of integers from $1$ to $*n*$ such that the return value of his function on those permutations is not equal to $*n*$. Since this number could be very big, output the answer modulo $10^{9} + 7$.\n\n## Input\n\nThe only line contains two integers $*n*$ and $*k*$ ($1 ≤ *n*, *k* ≤ 10^{6}$), separated by a space — the length of the permutations and the parameter $*k*$.\n\n## Output\n\nOutput the answer to the problem modulo $10^{9} + 7$.\n\n## Note\n\nPermutations from second example:\n\n$[4, 1, 2, 3, 5]$, $[4, 1, 3, 2, 5]$, $[4, 2, 1, 3, 5]$, $[4, 2, 3, 1, 5]$, $[4, 3, 1, 2, 5]$, $[4, 3, 2, 1, 5]$.",
-  "statementZhMd": null,
+  "statementZhMd": "一天，Petya 正在解决一道非常有趣的问题。然而，尽管他使用了许多优化技巧，他的解法仍然得到了超出时间限制的判定。Petya 对程序进行了彻底分析，发现自己用于求一个包含 $*n*$ 个正整数的数组中最大元素的函数太慢了。绝望之下，Petya 决定使用一种有些出人意料的优化方法，引入参数 $*k*$，于是他的函数现在包含以下代码：\n\n```\nint fast_max(int n, int a[]) {\n    int ans = 0;\n    int offset = 0;\n    for (int i = 0; i < n; ++i)\n        if (ans < a[i]) {\n            ans = a[i];\n            offset = 0;\n        } else {\n            offset = offset + 1;\n            if (offset == k)\n                return ans;\n        }\n    return ans;\n}\n```\n\n这样，该函数会逐个检查数组元素，保存当前的最大值；如果连续经过 $*k*$ 次迭代后该最大值仍未改变，就将其作为答案返回。\n\n现在，Petya 想知道他的函数出错的概率。他请你求出满足以下条件的排列数量：将这些排列作为函数的输入时，函数的返回值不等于 $*n*$。由于这个数量可能非常大，请输出答案对 $10^{9} + 7$ 取模后的结果。\n\n## 输入格式\n\n唯一一行包含两个整数 $*n*$ 和 $*k*$（$1 ≤ *n*, *k* ≤ 10^{6}$），由空格分隔，分别表示排列的长度和参数 $*k*$。\n\n## 输出格式\n\n输出答案对 $10^{9} + 7$ 取模后的结果。\n\n## 说明\n\n第二个样例中的排列：\n\n$[4, 1, 2, 3, 5]$、$[4, 1, 3, 2, 5]$、$[4, 2, 1, 3, 5]$、$[4, 2, 3, 1, 5]$、$[4, 3, 1, 2, 5]$、$[4, 3, 2, 1, 5]$。",
   "samples": [
     {
       "input": "5 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:41:37.605Z"
+  "fetchedAt": "2026-10-31T00:41:37.605Z",
+  "translatedAt": "2026-11-04T05:55:02.832+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

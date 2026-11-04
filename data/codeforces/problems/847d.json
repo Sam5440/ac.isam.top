@@ -4,7 +4,7 @@
   "contestId": 847,
   "index": "D",
   "title": "Dog Show",
-  "titleZh": null,
+  "titleZh": "狗狗表演",
   "url": "https://codeforces.com/contest/847/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A new dog show on TV is starting next week. On the show dogs are required to demonstrate bottomless stomach, strategic thinking and self-preservation instinct. You and your dog are invited to compete with other participants and naturally you want to win!\n\nOn the show a dog needs to eat as many bowls of dog food as possible (bottomless stomach helps here). Dogs compete separately of each other and the rules are as follows:\n\nAt the start of the show the dog and the bowls are located on a line. The dog starts at position $*x* = 0$ and $*n*$ bowls are located at positions $*x* = 1, *x* = 2, ..., *x* = *n*$. The bowls are numbered from $1$ to $*n*$ from left to right. After the show starts the dog immediately begins to run to the right to the first bowl.\n\nThe food inside bowls is not ready for eating at the start because it is too hot (dog's self-preservation instinct prevents eating). More formally, the dog can eat from the $*i*$-th bowl after $*t*_{*i*}$ seconds from the start of the show or later.\n\nIt takes dog 1 second to move from the position $*x*$ to the position $*x* + 1$. The dog is not allowed to move to the left, the dog runs only to the right with the constant speed 1 distance unit per second. When the dog reaches a bowl (say, the bowl $*i*$), the following cases are possible:\n\n- the food had cooled down (i.e. it passed at least $*t*_{*i*}$ seconds from the show start): the dog immediately eats the food and runs to the right without any stop,\n- the food is hot (i.e. it passed less than $*t*_{*i*}$ seconds from the show start): the dog has two options: to wait for the $*i*$-th bowl, eat the food and continue to run at the moment $*t*_{*i*}$ or to skip the $*i*$-th bowl and continue to run to the right without any stop.\n\nAfter $*T*$ seconds from the start the show ends. If the dog reaches a bowl of food at moment $*T*$ the dog can not eat it. The show stops before $*T*$ seconds if the dog had run to the right of the last bowl.\n\nYou need to help your dog create a strategy with which the maximum possible number of bowls of food will be eaten in $*T*$ seconds.\n\n## Input\n\nTwo integer numbers are given in the first line - $*n*$ and $*T*$ ($1 ≤ *n* ≤ 200 000$, $1 ≤ *T* ≤ 2·10^{9}$) — the number of bowls of food and the time when the dog is stopped.\n\nOn the next line numbers $*t*_{1}, *t*_{2}, ..., *t*_{*n*}$ ($1 ≤ *t*_{*i*} ≤ 10^{9}$) are given, where $*t*_{*i*}$ is the moment of time when the $*i*$-th bowl of food is ready for eating.\n\n## Output\n\nOutput a single integer — the maximum number of bowls of food the dog will be able to eat in $*T*$ seconds.\n\n## Note\n\nIn the first example the dog should skip the second bowl to eat from the two bowls (the first and the third).",
-  "statementZhMd": null,
+  "statementZhMd": "电视上将于下周开始一档新的狗狗表演节目。在节目中，狗狗需要展示无底洞般的胃口、战略思维以及自我保护本能。你和你的狗狗受邀与其他参赛者一较高下，自然是想要赢得比赛！\n\n在节目中，狗狗需要尽可能多地吃掉狗粮碗（无底洞般的胃口在这里会派上用场）。狗狗们彼此独立地进行比赛，规则如下：\n\n节目开始时，狗狗和狗粮碗位于一条直线上。狗狗从位置 $*x* = 0$ 出发，$*n*$ 个碗分别位于位置 $*x* = 1, *x* = 2, ..., *x* = *n*$。碗从左到右编号为 $1$ 到 $*n*$。节目开始后，狗狗立即开始向右跑向第一个碗。\n\n碗中的食物在节目开始时还不能食用，因为温度太高（狗狗的自我保护本能会阻止它进食）。更正式地说，狗狗只能在节目开始经过 $*t*_{*i*}$ 秒之后（包括这一时刻）吃第 $*i*$ 个碗中的食物。\n\n狗狗从位置 $*x*$ 移动到位置 $*x* + 1$ 需要 1 秒。狗狗不能向左移动，只能以每秒 1 个距离单位的恒定速度向右奔跑。当狗狗到达某个碗（例如第 $*i*$ 个碗）时，可能出现以下情况：\n\n- 食物已经冷却（即从节目开始起已经经过至少 $*t*_{*i*}$ 秒）：狗狗立即吃掉食物，然后不停留，继续向右奔跑；\n- 食物仍然很热（即从节目开始起经过的时间少于 $*t*_{*i*}$ 秒）：狗狗有两种选择：等待第 $*i*$ 个碗，在时刻 $*t*_{*i*}$ 吃掉食物并继续奔跑；或者跳过第 $*i*$ 个碗，不停留，继续向右奔跑。\n\n节目将在开始后的 $*T*$ 秒结束。如果狗狗恰好在时刻 $*T*$ 到达某个装有食物的碗，则不能吃掉它。如果狗狗已经跑到最后一个碗的右侧，节目会在 $*T*$ 秒之前结束。\n\n请帮助你的狗狗制定一种策略，使它能够在 $*T*$ 秒内吃掉尽可能多碗食物。\n\n## 输入格式\n\n第一行给出两个整数 $*n*$ 和 $*T*$（$1 ≤ *n* ≤ 200 000$，$1 ≤ *T* ≤ 2·10^{9}$）——狗粮碗的数量以及狗狗被停止的时间。\n\n下一行给出 $*n*$ 个数 $*t*_{1}, *t*_{2}, ..., *t*_{*n*}$（$1 ≤ *t*_{*i*} ≤ 10^{9}$），其中 $*t*_{*i*}$ 表示第 $*i*$ 个碗中的食物可以食用的时刻。\n\n## 输出格式\n\n输出一个整数——狗狗在 $*T*$ 秒内能够吃掉的最多碗食物数量。\n\n## 说明\n\n在第一个样例中，狗狗应该跳过第二个碗，从两个碗（第一个和第三个）中吃掉食物。",
   "samples": [
     {
       "input": "3 5\n1 5 3\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:49:18.986Z"
+  "fetchedAt": "2026-11-02T19:49:18.986Z",
+  "translatedAt": "2026-11-04T06:01:53.555+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

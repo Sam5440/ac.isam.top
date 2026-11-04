@@ -4,7 +4,7 @@
   "contestId": 1257,
   "index": "E",
   "title": "The Contest",
-  "titleZh": null,
+  "titleZh": "比赛",
   "url": "https://codeforces.com/contest/1257/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "A team of three programmers is going to play a contest. The contest consists of $n$ problems, numbered from $1$ to $n$. Each problem is printed on a separate sheet of paper. The participants have decided to divide the problem statements into three parts: the first programmer took some prefix of the statements (some number of first paper sheets), the third contestant took some suffix of the statements (some number of last paper sheets), and the second contestant took all remaining problems. But something went wrong — the statements were printed in the wrong order, so the contestants have received the problems in some random order.\n\nThe first contestant has received problems $a_{1, 1}, a_{1, 2}, \\dots, a_{1, k_1}$. The second one has received problems $a_{2, 1}, a_{2, 2}, \\dots, a_{2, k_2}$. The third one has received all remaining problems ($a_{3, 1}, a_{3, 2}, \\dots, a_{3, k_3}$).\n\nThe contestants don't want to play the contest before they redistribute the statements. They want to redistribute them so that the first contestant receives some prefix of the problemset, the third contestant receives some suffix of the problemset, and the second contestant receives all the remaining problems.\n\nDuring one move, some contestant may give one of their problems to other contestant. What is the minimum number of moves required to redistribute the problems?\n\n**It is possible that after redistribution some participant (or even two of them) will not have any problems**.\n\n## Input\n\nThe first line contains three integers $k_1, k_2$ and $k_3$ ($1 \\le k_1, k_2, k_3 \\le 2 \\cdot 10^5, k_1 + k_2 + k_3 \\le 2 \\cdot 10^5$) — the number of problems initially taken by the first, the second and the third participant, respectively.\n\nThe second line contains $k_1$ integers $a_{1, 1}, a_{1, 2}, \\dots, a_{1, k_1}$ — the problems initially taken by the first participant.\n\nThe third line contains $k_2$ integers $a_{2, 1}, a_{2, 2}, \\dots, a_{2, k_2}$ — the problems initially taken by the second participant.\n\nThe fourth line contains $k_3$ integers $a_{3, 1}, a_{3, 2}, \\dots, a_{3, k_3}$ — the problems initially taken by the third participant.\n\nIt is guaranteed that no problem has been taken by two (or three) participants, and each integer $a_{i, j}$ meets the condition $1 \\le a_{i, j} \\le n$, where $n = k_1 + k_2 + k_3$.\n\n## Output\n\nPrint one integer — the minimum number of moves required to redistribute the problems so that the first participant gets the prefix of the problemset, the third participant gets the suffix of the problemset, and the second participant gets all of the remaining problems.\n\n## Note\n\nIn the first example the third contestant should give the problem $2$ to the first contestant, so the first contestant has $3$ first problems, the third contestant has $1$ last problem, and the second contestant has $1$ remaining problem.\n\nIn the second example the distribution of problems is already valid: the first contestant has $3$ first problems, the third contestant has $1$ last problem, and the second contestant has $2$ remaining problems.\n\nThe best course of action in the third example is to give all problems to the third contestant.\n\nThe best course of action in the fourth example is to give all problems to the second contestant.",
-  "statementZhMd": null,
+  "statementZhMd": "一支由三名程序员组成的队伍将参加一场比赛。比赛包含 $n$ 道题目，编号从 $1$ 到 $n$。每道题目都印在一张单独的纸上。参赛者决定将题面分成三部分：第一名参赛者拿走题面的某个前缀（最前面的若干张纸），第三名参赛者拿走题面的某个后缀（最后面的若干张纸），第二名参赛者拿走剩下的所有题目。然而出了些问题——题面被按照错误的顺序打印，因此参赛者拿到的题目顺序是随机的。\n\n第一名参赛者拿到了题目 $a_{1, 1}, a_{1, 2}, \\dots, a_{1, k_1}$。第二名参赛者拿到了题目 $a_{2, 1}, a_{2, 2}, \\dots, a_{2, k_2}$。第三名参赛者拿到了所有剩余的题目（$a_{3, 1}, a_{3, 2}, \\dots, a_{3, k_3}$）。\n\n在重新分配题面之前，参赛者们不想开始比赛。他们希望重新分配题面，使第一名参赛者拿到题集的某个前缀，第三名参赛者拿到题集的某个后缀，而第二名参赛者拿到剩下的所有题目。\n\n一次操作中，某名参赛者可以将自己的一道题目交给另一名参赛者。重新分配题目所需的最少操作次数是多少？\n\n**重新分配后，某名参赛者（甚至两名参赛者）可能不会拿到任何题目。**\n\n## 输入格式\n\n第一行包含三个整数 $k_1$、$k_2$ 和 $k_3$（$1 \\le k_1, k_2, k_3 \\le 2 \\cdot 10^5, k_1 + k_2 + k_3 \\le 2 \\cdot 10^5$），分别表示第一、第二和第三名参赛者最初拿到的题目数量。\n\n第二行包含 $k_1$ 个整数 $a_{1, 1}, a_{1, 2}, \\dots, a_{1, k_1}$，表示第一名参赛者最初拿到的题目。\n\n第三行包含 $k_2$ 个整数 $a_{2, 1}, a_{2, 2}, \\dots, a_{2, k_2}$，表示第二名参赛者最初拿到的题目。\n\n第四行包含 $k_3$ 个整数 $a_{3, 1}, a_{3, 2}, \\dots, a_{3, k_3}$，表示第三名参赛者最初拿到的题目。\n\n保证没有题目被两名（或三名）参赛者同时拿到，并且每个整数 $a_{i, j}$ 都满足 $1 \\le a_{i, j} \\le n$，其中 $n = k_1 + k_2 + k_3$。\n\n## 输出格式\n\n输出一个整数——重新分配题目所需的最少操作次数，使第一名参赛者拿到题集的前缀，第三名参赛者拿到题集的后缀，而第二名参赛者拿到剩下的所有题目。\n\n## 说明\n\n在第一个样例中，第三名参赛者应将题目 $2$ 交给第一名参赛者。这样，第一名参赛者就拥有最前面的 $3$ 道题目，第三名参赛者拥有最后面的 $1$ 道题目，而第二名参赛者拥有剩下的 $1$ 道题目。\n\n在第二个样例中，题目的分配已经满足要求：第一名参赛者拥有最前面的 $3$ 道题目，第三名参赛者拥有最后面的 $1$ 道题目，而第二名参赛者拥有剩下的 $2$ 道题目。\n\n在第三个样例中，最好的做法是将所有题目都交给第三名参赛者。\n\n在第四个样例中，最好的做法是将所有题目都交给第二名参赛者。",
   "samples": [
     {
       "input": "2 1 2\n3 1\n4\n2 5\n",
@@ -39,5 +39,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:01:38.283Z"
+  "fetchedAt": "2026-11-02T19:01:38.283Z",
+  "translatedAt": "2026-11-04T05:00:41.360+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

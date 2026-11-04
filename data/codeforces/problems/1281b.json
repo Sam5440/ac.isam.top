@@ -4,7 +4,7 @@
   "contestId": 1281,
   "index": "B",
   "title": "Azamon Web Services",
-  "titleZh": null,
+  "titleZh": "Azamon 网络服务",
   "url": "https://codeforces.com/contest/1281/problem/B",
   "difficulty": 1600,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Your friend Jeff Zebos has been trying to run his new online company, but it's not going very well. He's not getting a lot of sales on his website which he decided to call **Azamon**. His big problem, you think, is that he's not ranking high enough on the search engines. If only he could rename his products to have better names than his competitors, then he'll be at the top of the search results and will be a millionaire.\n\nAfter doing some research, you find out that search engines only sort their results lexicographically. If your friend could rename his products to lexicographically smaller strings than his competitor's, then he'll be at the top of the rankings!\n\nTo make your strategy less obvious to his competitors, you decide to swap no more than two letters of the product names.\n\nPlease help Jeff to find improved names for his products that are lexicographically smaller than his competitor's!\n\nGiven the string $s$ representing Jeff's product name and the string $c$ representing his competitor's product name, find a way to swap **at most one pair** of characters in $s$ (that is, find two distinct indices $i$ and $j$ and swap $s_i$ and $s_j$) such that the resulting new name becomes strictly lexicographically smaller than $c$, or determine that it is impossible.\n\n**Note:** String $a$ is strictly lexicographically smaller than string $b$ if and only if one of the following holds:\n\n- $a$ is a proper prefix of $b$, that is, $a$ is a prefix of $b$ such that $a \\neq b$;\n- There exists an integer $1 \\le i \\le \\min{(|a|, |b|)}$ such that $a_i \\lt b_i$ and $a_j = b_j$ for $1 \\le j \\lt i$.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1 \\le t \\le 1500$) denoting the number of test cases. The next lines contain descriptions of the test cases.\n\nEach test case consists of a single line containing two space-separated strings $s$ and $c$ ($2 \\le |s| \\le 5000, 1 \\le |c| \\le 5000$). The strings $s$ and $c$ consists of uppercase English letters.\n\nIt is guaranteed that the sum of $|s|$ in the input is at most $5000$ and the sum of the $|c|$ in the input is at most $5000$.\n\n## Output\n\nFor each test case, output a single line containing a single string, which is either\n\n- the new name which is obtained after swapping no more than one pair of characters that is strictly lexicographically smaller than $c$. In case there are many possible such strings, you can output any of them;\n- three dashes (the string \"`---`\" without quotes) if it is impossible.\n\n## Note\n\nIn the first test case, it is possible to swap the second and the fourth letters of the string and the resulting string \"`AMAZON`\" is lexicographically smaller than \"`APPLE`\".\n\nIt is impossible to improve the product's name in the second test case and satisfy all conditions.\n\nIn the third test case, it is possible not to swap a pair of characters. The name \"`APPLE`\" is lexicographically smaller than \"`BANANA`\". Note that there are other valid answers, e.g., \"`APPEL`\".",
-  "statementZhMd": null,
+  "statementZhMd": "你的朋友 Jeff Zebos 一直在努力经营他的新在线公司，但进展并不顺利。他的网站销售额并不高，而他决定将网站命名为 **Azamon**。你认为他面临的最大问题是：在搜索引擎中的排名不够高。如果他能把自己的产品重命名为比竞争对手更好的名字，那么他就能出现在搜索结果顶部，并成为百万富翁。\n\n经过一番调查，你发现搜索引擎只会按照字典序对搜索结果进行排序。如果你的朋友能把产品重命名为字典序小于竞争对手产品名的字符串，那么他就能在排名中位居前列！\n\n为了不让竞争对手轻易看出你的策略，你决定对产品名称中的字母最多交换一次。\n\n请帮助 Jeff 找到字典序小于竞争对手产品名的改进后的产品名称！\n\n给定表示 Jeff 产品名称的字符串 $s$ 和表示竞争对手产品名称的字符串 $c$，请找出一种方法，在 $s$ 中交换**至多一对**字符（也就是说，找到两个不同的下标 $i$ 和 $j$，交换 $s_i$ 和 $s_j$），使得到的新名称严格按字典序小于 $c$；如果无法做到，则确定这是不可能的。\n\n**说明：** 当且仅当以下条件之一成立时，字符串 $a$ 严格按字典序小于字符串 $b$：\n\n- $a$ 是 $b$ 的真前缀，即 $a$ 是 $b$ 的前缀且 $a \\neq b$；\n- 存在一个整数 $1 \\le i \\le \\min{(|a|, |b|)}$，使得 $a_i \\lt b_i$，并且对于 $1 \\le j \\lt i$ 有 $a_j = b_j$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 1500$），表示测试用例的数量。接下来的若干行包含各个测试用例的描述。\n\n每个测试用例包含一行，其中有两个由空格分隔的字符串 $s$ 和 $c$（$2 \\le |s| \\le 5000$，$1 \\le |c| \\le 5000$）。字符串 $s$ 和 $c$ 由大写英文字母组成。\n\n保证所有测试用例中 $|s|$ 的总和不超过 $5000$，且 $|c|$ 的总和不超过 $5000$。\n\n## 输出格式\n\n对于每个测试用例，输出一行一个字符串，该字符串为以下两者之一：\n\n- 交换至多一对字符后得到的、严格按字典序小于 $c$ 的新名称。如果有多个满足条件的字符串，可以输出其中任意一个；\n- 如果无法做到，则输出三个短横线（不带引号的字符串 \"`---`\"）。\n\n## 说明\n\n在第一个测试用例中，可以交换字符串的第二个和第四个字母，得到字符串 \"`AMAZON`\"，它按字典序小于 \"`APPLE`\"。\n\n在第二个测试用例中，不可能改进产品名称并同时满足所有条件。\n\n在第三个测试用例中，可以不交换任何一对字符。名称 \"`APPLE`\" 按字典序小于 \"`BANANA`\"。注意，也存在其他满足条件的答案，例如 \"`APPEL`\"。",
   "samples": [
     {
       "input": "3\nAZAMON APPLE\nAZAMON AAAAAAAAAAALIBABA\nAPPLE BANANA\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:59:21.819Z"
+  "fetchedAt": "2026-10-30T23:59:21.819Z",
+  "translatedAt": "2026-11-04T04:56:44.981+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

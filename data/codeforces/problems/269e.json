@@ -4,7 +4,7 @@
   "contestId": 269,
   "index": "E",
   "title": "String Theory",
-  "titleZh": null,
+  "titleZh": "字符串理论",
   "url": "https://codeforces.com/contest/269/problem/E",
   "difficulty": 3100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Emuskald is an innovative musician and always tries to push the boundaries of music production. Now he has come up with an idea for a revolutionary musical instrument — a rectangular harp.\n\nA rectangular harp is a rectangle $*n* × *m*$ consisting of $*n*$ rows and $*m*$ columns. The rows are numbered 1 to $*n*$ from top to bottom. Similarly the columns are numbered 1 to $*m*$ from left to right. String pins are spaced evenly across every side, one per unit. Thus there are $*n*$ pins on the left and right sides of the harp and $*m*$ pins on its top and bottom. The harp has exactly $*n* + *m*$ different strings, each string connecting two different pins, each on a different side of the harp.\n\nEmuskald has ordered his apprentice to construct the first ever rectangular harp. However, he didn't mention that no two strings can cross, otherwise it would be impossible to play the harp. Two strings cross if the segments connecting their pins intersect. To fix the harp, Emuskald can perform operations of two types:\n\n1. pick two different columns and swap their pins on each side of the harp, not changing the pins that connect each string;\n2. pick two different rows and swap their pins on each side of the harp, not changing the pins that connect each string;\n\nIn the following example, he can fix the harp by swapping two columns:\n\n![image](https://espresso.codeforces.com/d291af53b444c8e00b38a0c12f3a9ebe43ad409a.png)\n\nHelp Emuskald complete his creation and find the permutations how the rows and columns of the harp need to be rearranged, or tell that it is impossible to do so. He can detach and reattach each string to its pins, so the physical layout of the strings doesn't matter.\n\n## Input\n\nThe first line of input contains two space-separated integers numbers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 10^{5}$), the height and width of the harp in units. Each of the following $*n* + *m*$ lines contains 4 space-separated tokens, describing a single string: two symbols $*a*_{*i*}$, $*b*_{*i*}$ and two integer numbers $*p*_{*i*}$, $*q*_{*i*}$. The pair $*a*_{*i*}$, $*p*_{*i*}$ describes the first pin, and the pair $*b*_{*i*}$, $*q*_{*i*}$ describes the second pin of the string;\n\nA pair $*s*$, $*x*$ describes the position of a single pin in a following way:\n\n1. $*s*$ is equal to one of the symbols \"`L`\", \"`T`\", \"`R`\" or \"`B`\" (without quotes), which means that the pin is positioned on the left, top, right or bottom side of the harp accordingly;\n2. $*x*$ is equal to the number of the row, if the pin is on the left or right border of the harp, and to the number of the column, if the pin is on the top or bottom border of the harp.\n\nIt is guaranteed that no two different strings are connected to the same pin.\n\n## Output\n\nIf it is possible to rearrange the rows and columns to fix the harp, on the first line output $*n*$ space-separated integers — the old numbers of rows now placed from top to bottom in the fixed harp. On the second line, output $*m*$ space-separated integers — the old numbers of columns now placed from left to right in the fixed harp.\n\nIf it is impossible to rearrange the rows and columns to fix the harp, output \"`No solution`\" (without quotes).",
-  "statementZhMd": null,
+  "statementZhMd": "Emuskald 是一位富有创新精神的音乐家，总是尝试突破音乐制作的界限。现在，他又提出了一种革命性的乐器构想——矩形竖琴。\n\n矩形竖琴是一个由 $*n* × *m*$ 个单位组成的矩形，包括 $*n*$ 行和 $*m*$ 列。行从上到下编号为 1 到 $*n*$，列从左到右编号为 1 到 $*m*$。竖琴的每条边上都均匀分布着弦钉，每单位长度放置一个。因此，竖琴的左右两侧各有 $*n*$ 个弦钉，上下两侧各有 $*m*$ 个弦钉。竖琴中恰好有 $*n* + *m*$ 根不同的弦，每根弦连接两个不同的弦钉，且这两个弦钉位于竖琴的不同侧面。\n\nEmuskald 委托他的学徒建造第一把矩形竖琴。然而，他没有说明任何两根弦都不能相交，否则竖琴将无法演奏。若连接两根弦两端弦钉的线段相交，则称这两根弦相交。为了修复竖琴，Emuskald 可以执行以下两种操作：\n\n1. 选择两列，交换它们在竖琴每一侧的弦钉，同时不改变连接每根弦的弦钉；\n2. 选择两行，交换它们在竖琴每一侧的弦钉，同时不改变连接每根弦的弦钉；\n\n在下面的例子中，他可以通过交换两列来修复竖琴：\n\n![image](https://espresso.codeforces.com/d291af53b444c8e00b38a0c12f3a9ebe43ad409a.png)\n\n请帮助 Emuskald 完成他的作品，找出需要如何重新排列竖琴的行和列，或者判断这是不可能的。他可以将每根弦从弦钉上拆下并重新连接，因此弦的实际布局并不重要。\n\n## 输入\n\n输入的第一行包含两个用空格分隔的整数 numbers $*n*$ 和 $*m*$（$1 ≤ *n*, *m* ≤ 10^{5}$），分别表示竖琴的高度和宽度（单位为单位长度）。接下来的 $*n* + *m*$ 行中，每行包含 4 个用空格分隔的记号，用于描述一根弦：两个符号 $*a*_{*i}$、$*b*_{*i}$ 和两个整数 $*p*_{*i}$、$*q*_{*i}$。数对 $*a*_{*i}$、$*p*_{*i}$ 描述这根弦的第一个弦钉，数对 $*b*_{*i}$、$*q*_{*i}$ 描述这根弦的第二个弦钉；\n\n数对 $*s*$、$*x*$ 按照以下方式描述一个弦钉的位置：\n\n1. $*s*$ 等于符号 \"`L`\"、\"`T`\"、\"`R`\" 或 \"`B`\" 中的一个（不含引号），分别表示该弦钉位于竖琴的左侧、顶部、右侧或底部；\n2. 如果弦钉位于竖琴的左边界或右边界，则 $*x*$ 等于其所在的行号；如果弦钉位于顶部或底部边界，则 $*x*$ 等于其所在的列号。\n\n保证没有两根不同的弦连接到同一个弦钉。\n\n## 输出\n\n如果可以通过重新排列行和列来修复竖琴，则第一行输出 $*n*$ 个用空格分隔的整数，表示修复后的竖琴中从上到下排列的原行编号。第二行输出 $*m*$ 个用空格分隔的整数，表示修复后的竖琴中从左到右排列的原列编号。\n\n如果无法通过重新排列行和列来修复竖琴，则输出 \"`No solution`\"（不含引号）。",
   "samples": [
     {
       "input": "3 4\nL T 1 3\nL B 2 2\nL B 3 3\nT R 1 2\nT B 2 1\nT R 4 1\nB R 4 3\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:11:30.286Z"
+  "fetchedAt": "2026-10-31T02:11:30.286Z",
+  "translatedAt": "2026-11-04T07:28:15.089+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

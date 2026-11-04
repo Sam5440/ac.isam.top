@@ -4,14 +4,14 @@
   "contestId": 860,
   "index": "C",
   "title": "Tests Renumeration",
-  "titleZh": null,
+  "titleZh": "测试文件重新编号",
   "url": "https://codeforces.com/contest/860/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The All-Berland National Olympiad in Informatics has just ended! Now Vladimir wants to upload the contest from the Olympiad as a gym to a popular Codehorses website.\n\nUnfortunately, the archive with Olympiad's data is a mess. For example, the files with tests are named arbitrary without any logic.\n\nVladimir wants to rename the files with tests so that their names are distinct integers starting from $1$ without any gaps, namely, \"`1`\", \"`2`\", ..., \"$*n*$', where $*n*$ is the total number of tests.\n\nSome of the files contain tests from statements (examples), while others contain regular tests. It is possible that there are no examples, and it is possible that all tests are examples. Vladimir wants to rename the files so that the examples are the first several tests, all all the next files contain regular tests only.\n\nThe only operation Vladimir can perform is the \"`move`\" command. Vladimir wants to write a script file, each of the lines in which is \"`move file_1 file_2`\", that means that the file \"`file_1`\" is to be renamed to \"`file_2`\". If there is a file \"`file_2`\" at the moment of this line being run, then this file is to be rewritten. After the line \"`move file_1 file_2`\" the file \"`file_1`\" doesn't exist, but there is a file \"`file_2`\" with content equal to the content of \"`file_1`\" before the \"`move`\" command.\n\nHelp Vladimir to write the script file with the minimum possible number of lines so that after this script is run:\n\n- all examples are the first several tests having filenames \"`1`\", \"`2`\", ..., \"$*e*$\", where $*e*$ is the total number of examples;\n- all other files contain regular tests with filenames \"`e + 1`\", \"`e + 2`\", ..., \"$*n*$\", where $*n*$ is the total number of all tests.\n\n## Input\n\nThe first line contains single integer $*n*$ ($1 ≤ *n* ≤ 10^{5}$) — the number of files with tests.\n\n$*n*$ lines follow, each describing a file with test. Each line has a form of \"`name_i type_i`\", where \"`name_i`\" is the filename, and \"`type_i`\" equals \"`1`\", if the $*i*$-th file contains an example test, and \"`0`\" if it contains a regular test. Filenames of each file are strings of digits and small English letters with length from $1$ to $6$ characters. The filenames are guaranteed to be distinct.\n\n## Output\n\nIn the first line print the minimum number of lines in Vladimir's script file.\n\nAfter that print the script file, each line should be \"`move file_1 file_2`\", where \"`file_1`\" is an existing at the moment of this line being run filename, and \"`file_2`\" — is a string of digits and small English letters with length from $1$ to $6$.",
-  "statementZhMd": null,
+  "statementZhMd": "全伯兰国家信息学奥林匹克竞赛刚刚结束！现在，Vladimir 想要将奥林匹克竞赛中的比赛上传到热门的 Codehorses 网站，并将其作为一个 gym。\n\n不幸的是，奥林匹克竞赛的数据存档一团糟。例如，测试文件的命名完全没有规律。\n\nVladimir 想要重新命名测试文件，使它们的文件名成为从 $1$ 开始、连续且没有间隔的不同整数，即 \"`1`\"、\"`2`\"、……、\"$*n*$\"，其中 $*n*$ 是测试的总数。\n\n有些文件中包含题面中的测试（样例），而另一些文件中包含正式测试。可能不存在样例，也可能所有测试都是样例。Vladimir 希望重新命名文件，使样例成为前几个测试，后面的所有文件只包含正式测试。\n\nVladimir 唯一可以执行的操作是 \"`move`\" 命令。Vladimir 想要编写一个脚本文件，其中每一行都是 \"`move file_1 file_2`\"，表示将文件 \"`file_1`\" 重命名为 \"`file_2`\"。如果执行该行时存在文件 \"`file_2`\"，则该文件将被覆盖。执行 \"`move file_1 file_2`\" 后，文件 \"`file_1`\" 不再存在，但会有一个文件 \"`file_2`\"，其内容与执行 \"`move`\" 命令前的 \"`file_1`\" 相同。\n\n请帮助 Vladimir 编写一个行数尽可能少的脚本文件，使得脚本执行完毕后：\n\n- 所有样例都是前几个测试，文件名为 \"`1`\"、\"`2`\"、……、\"$*e*$\"，其中 $*e*$ 是样例的总数；\n- 所有其他文件都包含正式测试，文件名为 \"`e + 1`\"、\"`e + 2`\"、……、\"$*n*$\"，其中 $*n*$ 是所有测试的总数。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$），表示测试文件的数量。\n\n接下来 $*n*$ 行，每行描述一个测试文件。每行的格式为 \"`name_i type_i`\"，其中 \"`name_i`\" 是文件名，若第 $*i*$ 个文件包含样例测试，则 \"`type_i`\" 等于 \"`1`\"；若包含正式测试，则 \"`type_i`\" 等于 \"`0`\"。每个文件的文件名都是由数字和小写英文字母组成的、长度为 $1$ 到 $6$ 的字符串。保证文件名两两不同。\n\n## 输出格式\n\n第一行输出 Vladimir 的脚本文件所需的最少行数。\n\n之后输出脚本文件，每行应为 \"`move file_1 file_2`\"，其中 \"`file_1`\" 是执行该行时存在的文件名，而 \"`file_2`\" 是一个由数字和小写英文字母组成、长度为 $1$ 到 $6$ 的字符串。",
   "samples": [
     {
       "input": "5\n01 0\n2 1\n2extra 0\n3 1\n99 0\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:44:40.009Z"
+  "fetchedAt": "2026-10-31T00:44:40.009Z",
+  "translatedAt": "2026-11-04T06:00:08.021+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

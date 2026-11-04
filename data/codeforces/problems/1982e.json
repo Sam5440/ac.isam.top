@@ -4,7 +4,7 @@
   "contestId": 1982,
   "index": "E",
   "title": "Number of k-good subarrays",
-  "titleZh": null,
+  "titleZh": "$k$-good 子数组的数量",
   "url": "https://codeforces.com/contest/1982/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let $bit(x)$ denote the number of ones in the binary representation of a non-negative integer $x$.\n\nA subarray of an array is called *$k$-good* if it consists only of numbers with no more than $k$ ones in their binary representation, i.e., a subarray $(l, r)$ of array $a$ is good if for any $i$ such that $l \\le i \\le r$ condition $bit(a_{i}) \\le k$ is satisfied.\n\nYou are given an array $a$ of length $n$, consisting of consecutive non-negative integers starting from $0$, i.e., $a_{i} = i$ for $0 \\le i \\le n - 1$ (in $0$-based indexing). You need to count the number of *$k$-good* subarrays in this array.\n\nAs the answer can be very large, output it modulo $10^{9} + 7$.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 10^{4}$) — the number of test cases. The following lines describe the test cases.\n\nThe single line of each test case contains two integers $n$, $k$ ($1 \\le n \\le 10^{18}, 1 \\le k \\le 60$).\n\n## Output\n\nFor each test case, output a single integer — the number of *$k$-good* subarrays modulo $10^{9} + 7$.\n\n## Note\n\nFor the first test case $a = [0, 1, 2, 3, 4, 5]$, $k = 1$.\n\nTo find the answer, let's write all the numbers in binary representation:\n\n$$a = [\\color{green}{000}, \\color{green}{001}, \\color{green}{010}, \\color{red}{011}, \\color{green}{100}, \\color{red}{101}]$$\n\nFrom this, it can be seen that the numbers $3$ and $5$ have $2 \\ge (k = 1)$ ones in their binary representation, so the answer should include all subarrays that do not contain either $3$ or $5$, which are the subarrays (in $0$-based indexing): ($0$, $0$), ($0$, $1$), ($0$, $2$), ($1$, $1$), ($1$, $2$), ($2$, $2$), ($4$, $4$).",
-  "statementZhMd": null,
+  "statementZhMd": "设 $bit(x)$ 表示非负整数 $x$ 的二进制表示中 1 的个数。\n\n如果一个数组的子数组只由二进制表示中 1 的个数不超过 $k$ 的数字组成，则称其为 *$k$-good* 子数组。也就是说，数组 $a$ 的子数组 $(l, r)$ 是 good 的，当且仅当对于所有满足 $l \\le i \\le r$ 的 $i$，均满足条件 $bit(a_{i}) \\le k$。\n\n给定一个长度为 $n$ 的数组 $a$，它由从 $0$ 开始的连续非负整数构成，即在从 $0$ 开始的下标中，$a_{i} = i$，其中 $0 \\le i \\le n - 1$。请你计算该数组中 *$k$-good* 子数组的数量。\n\n由于答案可能非常大，请输出答案对 $10^{9} + 7$ 取模后的结果。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^{4}$）——测试用例的数量。接下来的各行描述每个测试用例。\n\n每个测试用例仅包含一行，包含两个整数 $n$ 和 $k$（$1 \\le n \\le 10^{18}, 1 \\le k \\le 60$）。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——*$k$-good* 子数组的数量对 $10^{9} + 7$ 取模后的结果。\n\n## 说明\n\n对于第一个测试用例，$a = [0, 1, 2, 3, 4, 5]$，$k = 1$。\n\n为了求出答案，我们将所有数字写成二进制形式：\n\n$$a = [\\color{green}{000}, \\color{green}{001}, \\color{green}{010}, \\color{red}{011}, \\color{green}{100}, \\color{red}{101}]$$\n\n由此可见，数字 $3$ 和 $5$ 的二进制表示中均有 $2 \\ge (k = 1)$ 个 1，因此答案应包含所有不含 $3$ 或 $5$ 的子数组。在从 $0$ 开始的下标中，这些子数组为：($0$, $0$)、($0$, $1$)、($0$, $2$)、($1$, $1$)、($1$, $2$)、($2$, $2$)、($4$, $4$)。",
   "samples": [
     {
       "input": "10\n6 1\n16 2\n1 1\n3 1\n31 3\n14 1\n1337 5\n100000 20\n795569939321040850 56\n576460752303423268 59\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:56:43.918Z"
+  "fetchedAt": "2026-10-30T21:56:43.918Z",
+  "translatedAt": "2026-11-04T02:07:21.602+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

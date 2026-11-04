@@ -4,7 +4,7 @@
   "contestId": 799,
   "index": "G",
   "title": "Cut the pie",
-  "titleZh": null,
+  "titleZh": "切蛋糕",
   "url": "https://codeforces.com/contest/799/problem/G",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Arkady reached the $*n*$-th level in Township game, so Masha decided to bake a pie for him! Of course, the pie has a shape of convex $*n*$-gon, i.e. a polygon with $*n*$ vertices.\n\nArkady decided to cut the pie in two equal in area parts by cutting it by a straight line, so that he can eat one of them and give the other to Masha. There is a difficulty because Arkady has already put a knife at some point of the pie, so he now has to cut the pie by a straight line passing trough this point.\n\nHelp Arkady: find a line that passes through the point Arkady has put a knife into and cuts the pie into two parts of equal area, or determine that it's impossible. Your program has to quickly answer many queries with the same pie, but different points in which Arkady puts a knife.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*q*$ ($3 ≤ *n* ≤ 10^{4}$, $1 ≤ *q* ≤ 10^{5}$) — the number of vertices in the pie and the number of queries.\n\n$*n*$ line follow describing the polygon vertices in clockwise order. The $*i*$-th of these line contains two integers $*x*_{*i*}$ and $*y*_{*i*}$ ($- 10^{6} ≤ *x*_{*i*}, *y*_{*i*} ≤ 10^{6}$) — the coordinates of the $*i*$-th vertex. It is guaranteed that the polygon is strictly convex, in particular, no three vertices line on the same line.\n\nAn empty line follows.\n\n$*q*$ lines follow describing the query points. The $*i*$-th of these lines contain two integers $*x*_{*i*}$ and $*y*_{*i*}$ ($- 10^{6} ≤ *x*_{*i*}, *y*_{*i*} ≤ 10^{6}$) — the coordinates of the point in which Arkady puts the knife in the $*i*$-th query. In is guaranteed that in each query the given point is strictly inside the polygon, in particular, is not on its edges.\n\n## Output\n\nFor each query print single integer — the polar angle of the line that is the answer for the corresponding query, in radians. The angle should be in the segment $[0;π]$, the angles are measured from the direction of $*OX*$ axis in counter-clockwise order. For example, the polar angle of the $*OY*$ axis is ![image](https://espresso.codeforces.com/7813100388622a69c767d297b453832a9df166fb.png). If there is no answer in that query, print `-1`.\n\nIf there are several answers, print any of them. Your answer is considered correct if the difference between the areas of the parts divided by the total area of the polygon doesn't exceed $10^{ - 4}$ by absolute value. In other words, if $*a*$ and $*b*$ are the areas of the parts after the cut, then your answer is correct if and only of ![image](https://espresso.codeforces.com/66732d29ae8aa4996ab1b0496838647802874bed.png).",
-  "statementZhMd": null,
+  "statementZhMd": "Arkady 在 Township 游戏中达到了第 $*n*$ 级，因此 Masha 决定为他烤一个馅饼！当然，这个馅饼是一个凸 $*n*$ 边形，即一个具有 $*n*$ 个顶点的多边形。\n\nArkady 决定用一条直线将馅饼切成面积相等的两部分，这样他可以吃掉其中一部分，并将另一部分给 Masha。但现在有一个困难：Arkady 已经把刀放在了馅饼内部的某个点上，因此他必须用一条经过该点的直线来切割馅饼。\n\n请帮助 Arkady：找出一条经过他放刀的点、并将馅饼切成面积相等两部分的直线，或者判断这是不可能的。你的程序需要对同一个馅饼快速回答大量询问，但每次询问中 Arkady 放刀的位置不同。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*q*$（$3 ≤ *n* ≤ 10^{4}$，$1 ≤ *q* ≤ 10^{5}$）——馅饼的顶点数和询问数。\n\n接下来 $*n*$ 行描述多边形的顶点，顶点按照顺时针顺序给出。这些行中的第 $*i*$ 行包含两个整数 $*x*_{*i*}$ 和 $*y*_{*i*}$（$- 10^{6} ≤ *x*_{*i*}, *y*_{*i*} ≤ 10^{6}$）——第 $*i*$ 个顶点的坐标。保证该多边形严格凸，即特别地，不存在三个顶点在同一直线上。\n\n接下来有一个空行。\n\n接下来 $*q*$ 行描述询问点。这些行中的第 $*i*$ 行包含两个整数 $*x*_{*i*}$ 和 $*y*_{*i*}$（$- 10^{6} ≤ *x*_{*i*}, *y*_{*i*} ≤ 10^{6}$）——在第 $*i*$ 次询问中 Arkady 放刀的点的坐标。保证每次询问中给出的点都严格位于多边形内部，特别地，不在多边形的边上。\n\n## 输出格式\n\n对于每次询问，输出一个整数——对应询问的答案直线的极角，单位为弧度。角度应位于区间 $[0;π]$ 内，角度从 $*OX*$ 轴的正方向开始，按逆时针方向测量。例如，$*OY*$ 轴的极角为 ![image](https://espresso.codeforces.com/7813100388622a69c767d297b453832a9df166fb.png)。如果该询问不存在答案，输出 `-1`。\n\n如果有多个答案，输出其中任意一个即可。若切割后两部分面积之差与多边形总面积的比值的绝对值不超过 $10^{ - 4}$，则你的答案被认为是正确的。换句话说，如果切割后两部分的面积分别为 $*a*$ 和 $*b*$，那么当且仅当 ![image](https://espresso.codeforces.com/66732d29ae8aa4996ab1b0496838647802874bed.png) 时，你的答案被认为是正确的。",
   "samples": [
     {
       "input": "3 1\n0 0\n0 3\n3 0\n\n1 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:53:14.216Z"
+  "fetchedAt": "2026-10-31T00:53:14.216Z",
+  "translatedAt": "2026-11-04T06:14:21.224+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1517,
   "index": "E",
   "title": "Group Photo",
-  "titleZh": null,
+  "titleZh": "合影",
   "url": "https://codeforces.com/contest/1517/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "In the 2050 Conference, some people from the competitive programming community meet together and are going to take a photo. The $n$ people form a line. They are numbered from $1$ to $n$ from left to right. Each of them either holds a cardboard with the letter '`C`' or a cardboard with the letter '`P`'.\n\nLet $C=\\{c_1,c_2,\\dots,c_m\\}$ $(c_1 \\lt c_2 \\lt \\ldots \\lt c_m)$ be the set of people who hold cardboards of '`C`'. Let $P=\\{p_1,p_2,\\dots,p_k\\}$ $(p_1 \\lt p_2 \\lt \\ldots \\lt p_k)$ be the set of people who hold cardboards of '`P`'. The photo is good if and only if it satisfies the following constraints:\n\n1. $C\\cup P=\\{1,2,\\dots,n\\}$\n2. $C\\cap P =\\emptyset $.\n3. $c_i-c_{i-1}\\leq c_{i+1}-c_i(1 \\lt i \\lt m)$.\n4. $p_i-p_{i-1}\\geq p_{i+1}-p_i(1 \\lt i \\lt k)$.\n\nGiven an array $a_1,\\ldots, a_n$, please find the number of good photos satisfying the following condition: $$\\sum\\limits_{x\\in C} a_x \\lt \\sum\\limits_{y\\in P} a_y.$$\n\nThe answer can be large, so output it modulo $998\\,244\\,353$. Two photos are different if and only if there exists at least one person who holds a cardboard of '`C`' in one photo but holds a cardboard of '`P`' in the other.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 200\\,000$). Description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1\\leq n\\leq 200\\,000$).\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $200\\,000$.\n\n## Output\n\nFor each test case, output the answer modulo $998\\,244\\,353$ in a separate line.\n\n## Note\n\nFor the first test case, there are $10$ possible good photos satisfying the condition: `PPPPP`, `CPPPP`, `PCPPP`, `CCPPP`, `PCCPP`, `PCPCP`, `PPPPC`, `CPPPC`, `PCPPC`, `PPPCC`.\n\nFor the second test case, there are $7$ possible good photos satisfying the condition: `PPPP`, `PCPP`, `PCCP`, `PPPC`, `PCPC`, `PPCC`, `PCCC`.",
-  "statementZhMd": null,
+  "statementZhMd": "在 2050 会议上，竞赛编程社区的一些人聚在一起，准备拍照。这 $n$ 个人排成一列，从左到右编号为 $1$ 到 $n$。每个人要么举着写有字母 `C` 的纸牌，要么举着写有字母 `P` 的纸牌。\n\n设 $C=\\{c_1,c_2,\\dots,c_m\\}$ $(c_1 \\lt c_2 \\lt \\ldots \\lt c_m)$ 为举着 `C` 纸牌的人的编号集合。设 $P=\\{p_1,p_2,\\dots,p_k\\}$ $(p_1 \\lt p_2 \\lt \\ldots \\lt p_k)$ 为举着 `P` 纸牌的人的编号集合。当且仅当满足以下条件时，这张照片是好的：\n\n1. $C\\cup P=\\{1,2,\\dots,n\\}$\n2. $C\\cap P =\\emptyset $。\n3. $c_i-c_{i-1}\\leq c_{i+1}-c_i(1 \\lt i \\lt m)$。\n4. $p_i-p_{i-1}\\geq p_{i+1}-p_i(1 \\lt i \\lt k)$。\n\n给定一个数组 $a_1,\\ldots, a_n$，请找出满足以下条件的好的照片数量：$$\\sum\\limits_{x\\in C} a_x \\lt \\sum\\limits_{y\\in P} a_y.$$ \n\n答案可能很大，请将其对 $998\\,244\\,353$ 取模后输出。当且仅当存在至少一个人，在一张照片中举着 `C` 纸牌而在另一张照片中举着 `P` 纸牌时，认为两张照片不同。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 200\\,000$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\leq n\\leq 200\\,000$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $200\\,000$。\n\n## 输出格式\n\n对于每个测试用例，单独一行输出答案对 $998\\,244\\,353$ 取模后的结果。\n\n## 说明\n\n对于第一个测试用例，共有 $10$ 张满足条件的好的照片：`PPPPP`、`CPPPP`、`PCPPP`、`CCPPP`、`PCCPP`、`PCPCP`、`PPPPC`、`CPPPC`、`PCPPC`、`PPPCC`。\n\n对于第二个测试用例，共有 $7$ 张满足条件的好的照片：`PPPP`、`PCPP`、`PCCP`、`PPPC`、`PCPC`、`PPCC`、`PCCC`。",
   "samples": [
     {
       "input": "3\n5\n2 1 2 1 1\n4\n9 2 2 2\n1\n998244353\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:33:29.081Z"
+  "fetchedAt": "2026-10-30T23:33:29.081Z",
+  "translatedAt": "2026-11-04T03:54:57.792+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

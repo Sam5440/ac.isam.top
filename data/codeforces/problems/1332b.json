@@ -4,7 +4,7 @@
   "contestId": 1332,
   "index": "B",
   "title": "Composite Coloring",
-  "titleZh": null,
+  "titleZh": "合数染色",
   "url": "https://codeforces.com/contest/1332/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "A positive integer is called *composite* if it can be represented as a product of two positive integers, both greater than $1$. For example, the following numbers are composite: $6$, $4$, $120$, $27$. The following numbers aren't: $1$, $2$, $3$, $17$, $97$.\n\nAlice is given a sequence of $n$ composite numbers $a_1,a_2,\\ldots,a_n$.\n\nShe wants to choose an integer $m \\le 11$ and color each element one of $m$ colors from $1$ to $m$ so that:\n\n- for each color from $1$ to $m$ there is at least one element of this color;\n- each element is colored and colored exactly one color;\n- the greatest common divisor of any two elements that are colored the same color is greater than $1$, i.e. $\\gcd(a_i, a_j) \\gt 1$ for each pair $i, j$ if these elements are colored the same color.\n\nNote that equal elements can be colored different colors — you just have to choose one of $m$ colors for each of the indices from $1$ to $n$.\n\nAlice showed already that if all $a_i \\le 1000$ then she can always solve the task by choosing some $m \\le 11$.\n\nHelp Alice to find the required coloring. Note that you don't have to minimize or maximize the number of colors, you just have to find the solution with some $m$ from $1$ to $11$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases. Then the descriptions of the test cases follow.\n\nThe first line of the test case contains a single integer $n$ ($1 \\le n \\le 1000$) — the amount of numbers in a sequence $a$.\n\nThe second line of the test case contains $n$ composite integers $a_1,a_2,\\ldots,a_n$ ($4 \\le a_i \\le 1000$).\n\nIt is guaranteed that the sum of $n$ over all test cases doesn't exceed $10^4$.\n\n## Output\n\nFor each test case print $2$ lines. The first line should contain a single integer $m$ ($1 \\le m \\le 11$) — the number of used colors. Consider colors to be numbered from $1$ to $m$. The second line should contain any coloring that satisfies the above conditions. Print $n$ integers $c_1, c_2, \\dots, c_n$ ($1 \\le c_i \\le m$), where $c_i$ is the color of the $i$-th element. If there are multiple solutions then you can print any of them. Note that you don't have to minimize or maximize the number of colors, you just have to find the solution with some $m$ from $1$ to $11$.\n\nRemember that each color from $1$ to $m$ should be used at least once. Any two elements of the same color should not be coprime (i.e. their GCD should be greater than $1$).\n\n## Note\n\nIn the first test case, $\\gcd(6,10)=2$, $\\gcd(6,15)=3$ and $\\gcd(10,15)=5$. Therefore, it's valid to color all elements the same color. Note that there are other colorings which satisfy Alice's requirement in this test case.\n\nIn the second test case there is only one element of each color, so the coloring definitely satisfies Alice's requirement.",
-  "statementZhMd": null,
+  "statementZhMd": "如果一个正整数可以表示为两个都大于 $1$ 的正整数之积，则称其为*合数*。例如，以下数字是合数：$6$、$4$、$120$、$27$。以下数字不是合数：$1$、$2$、$3$、$17$、$97$。\n\nAlice 得到了一个由 $n$ 个合数组成的序列 $a_1,a_2,\\ldots,a_n$。\n\n她希望选择一个整数 $m \\le 11$，并将每个元素染成 $1$ 到 $m$ 中的一种颜色，使得：\n\n- 对于 $1$ 到 $m$ 中的每种颜色，至少有一个元素被染成该颜色；\n- 每个元素都被染色，且恰好被染成一种颜色；\n- 任意两个被染成相同颜色的元素的最大公约数都大于 $1$，即对于任意一对下标 $i, j$，如果对应元素被染成相同颜色，则有 $\\gcd(a_i, a_j) \\gt 1$。\n\n注意，相等的元素可以被染成不同的颜色——你只需要为每个下标 $1$ 到 $n$ 选择一种颜色即可。\n\nAlice 已经证明，如果所有 $a_i \\le 1000$，那么她总能选择某个 $m \\le 11$ 完成任务。\n\n请帮助 Alice 找到所需的染色方案。注意，你不需要最小化或最大化颜色数量，只需要找到一个满足条件且 $m$ 在 $1$ 到 $11$ 之间的解。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 1000$）——序列 $a$ 中数字的数量。\n\n第二行包含 $n$ 个合数 $a_1,a_2,\\ldots,a_n$（$4 \\le a_i \\le 1000$）。\n\n保证所有测试用例的 $n$ 之和不超过 $10^4$。\n\n## 输出格式\n\n对于每个测试用例输出 $2$ 行。第一行应包含一个整数 $m$（$1 \\le m \\le 11$）——使用的颜色数量。颜色编号为 $1$ 到 $m$。第二行应包含任意一种满足上述条件的染色方案。输出 $n$ 个整数 $c_1, c_2, \\dots, c_n$（$1 \\le c_i \\le m$），其中 $c_i$ 表示第 $i$ 个元素的颜色。如果有多个解，可以输出任意一种。注意，你不需要最小化或最大化颜色数量，只需要找到一个满足条件且 $m$ 在 $1$ 到 $11$ 之间的解。\n\n请记住，$1$ 到 $m$ 的每种颜色都至少要被使用一次。任意两个颜色相同的元素都不应互质（即它们的最大公约数应大于 $1$）。\n\n## 说明\n\n在第一个测试用例中，$\\gcd(6,10)=2$、$\\gcd(6,15)=3$ 且 $\\gcd(10,15)=5$。因此，将所有元素染成同一种颜色是合法的。注意，在这个测试用例中还存在其他满足 Alice 要求的染色方案。\n\n在第二个测试用例中，每种颜色只有一个元素，因此该染色方案一定满足 Alice 的要求。",
   "samples": [
     {
       "input": "3\n3\n6 10 15\n2\n4 9\n23\n437 519 865 808 909 391 194 291 237 395 323 365 511 497 781 737 871 559 731 697 779 841 961\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:53:21.405Z"
+  "fetchedAt": "2026-10-30T23:53:21.405Z",
+  "translatedAt": "2026-11-04T04:37:52.258+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

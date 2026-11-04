@@ -4,14 +4,14 @@
   "contestId": 1189,
   "index": "D2",
   "title": "Add on a Tree: Revolution",
-  "titleZh": null,
+  "titleZh": "树上的加法：革命",
   "url": "https://codeforces.com/contest/1189/problem/D2",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "**Note that this is the second problem of the two similar problems. You can hack this problem if you solve it. But you can hack the previous problem only if you solve both problems.**\n\nYou are given a tree with $n$ nodes. In the beginning, $0$ is written on all edges. In one operation, you can choose any $2$ distinct **leaves** $u$, $v$ and any **integer** number $x$ and add $x$ to values written on all edges on the simple path between $u$ and $v$. **Note that in previous subtask $x$ was allowed to be any real, here it has to be integer**.\n\nFor example, on the picture below you can see the result of applying two operations to the graph: adding $2$ on the path from $7$ to $6$, and then adding $-1$ on the path from $4$ to $5$.\n\n![image](https://espresso.codeforces.com/e1076bf3b099b563b18ddcef65ef14c1e0801b86.png)\n\nYou are given some configuration of **nonnegative integer pairwise different even** numbers, written on the edges. For a given configuration determine if it is possible to achieve it with these operations, and, if it is possible, output the sequence of operations that leads to the given configuration. Constraints on the operations are listed in the output format section.\n\nLeave is a node of a tree of degree $1$. Simple path is a path that doesn't contain any node twice.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 1000$) — the number of nodes in a tree.\n\nEach of the next $n-1$ lines contains three integers $u$, $v$, $val$ ($1 \\le u, v \\le n$, $u \\neq v$, $0 \\le val \\le 10\\,000$), meaning that there is an edge between nodes $u$ and $v$ with $val$ written on it. It is guaranteed that these edges form a tree. It is guaranteed that all $val$ numbers are **pairwise different and even**.\n\n## Output\n\nIf there aren't any sequences of operations which lead to the given configuration, output \"`NO`\".\n\nIf it exists, output \"`YES`\" in the first line. In the second line output $m$ — number of operations you are going to apply ($0 \\le m \\le 10^5$). **Note that you don't have to minimize the number of the operations!**\n\nIn the next $m$ lines output the operations in the following format:\n\n$u, v, x$ ($1 \\le u, v \\le n$, $u \\not = v$, $x$ — integer, $-10^9 \\le x \\le 10^9$), where $u, v$ — leaves, $x$ — number we are adding.\n\nIt is guaranteed that if there exists a sequence of operations producing given configuration, then there exists a sequence of operations producing given configuration, satisfying all the conditions above.\n\n## Note\n\nThe configuration from the first sample is drawn below, and it is impossible to achieve.\n\n![image](https://espresso.codeforces.com/f311784916cbe2a58ee6c965f2ba5afc8a98178b.png)\n\nThe sequence of operations from the second sample is illustrated below.\n\n![image](https://espresso.codeforces.com/81f9edba7399d090b6257d093b84eeb9f0ad8ee8.png)",
-  "statementZhMd": null,
+  "statementZhMd": "**注意，这是两个相似题目中的第二题。如果你解决了本题，就可以对本题进行 hack；但只有同时解决这两道题，才能对前一道题进行 hack。**\n\n给定一棵有 $n$ 个节点的树。初始时，所有边上都写着 $0$。一次操作中，你可以选择任意两个不同的**叶子** $u$、$v$，以及任意一个**整数** $x$，将 $x$ 加到 $u$ 和 $v$ 之间的简单路径上的所有边的数值中。**注意，在前一个子任务中，$x$ 可以是任意实数，而在本题中它必须是整数。**\n\n例如，下图展示了对该图进行两次操作后的结果：先将 $2$ 加到从 $7$ 到 $6$ 的路径上，然后将 $-1$ 加到从 $4$ 到 $5$ 的路径上。\n\n![image](https://espresso.codeforces.com/e1076bf3b099b563b18ddcef65ef14c1e0801b86.png)\n\n现在给定边上的一个配置，其中的数均为**非负、两两不同的偶数**。请判断是否可以通过上述操作得到该配置；如果可以，请输出一系列能够得到该配置的操作。操作的限制条件列于输出格式部分。\n\n叶子是树中度数为 $1$ 的节点。简单路径是不重复经过任何节点的路径。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 1000$）——树中节点的数量。\n\n接下来的 $n-1$ 行中，每行包含三个整数 $u$、$v$、$val$（$1 \\le u, v \\le n$，$u \\neq v$，$0 \\le val \\le 10\\,000$），表示节点 $u$ 和节点 $v$ 之间有一条边，且该边上写有 $val$。保证这些边构成一棵树。保证所有 $val$ 两两不同且均为**偶数**。\n\n## 输出格式\n\n如果不存在任何能够得到给定配置的操作序列，输出“`NO`”。\n\n如果存在，第一行输出“`YES`”。第二行输出 $m$——你将要执行的操作数量（$0 \\le m \\le 10^5$）。**注意，你不需要最小化操作数量！**\n\n接下来的 $m$ 行按照以下格式输出操作：\n\n$u, v, x$（$1 \\le u, v \\le n$，$u \\not = v$，$x$ 为整数，$-10^9 \\le x \\le 10^9$），其中 $u$、$v$ 为叶子，$x$ 为要添加的数值。\n\n保证：如果存在能够得到给定配置的操作序列，那么一定存在一个满足上述所有条件的操作序列。\n\n## 说明\n\n第一个样例中的配置如下图所示，这是无法实现的。\n\n![image](https://espresso.codeforces.com/f311784916cbe2a58ee6c965f2ba5afc8a98178b2.png)\n\n第二个样例中的操作序列如下图所示。\n\n![image](https://espresso.codeforces.com/81f9edba7399d090b6257d093b84eeb9f0ad8ee8.png)",
   "samples": [
     {
       "input": "5\n1 2 2\n2 3 4\n3 4 10\n3 5 18\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:08:29.803Z"
+  "fetchedAt": "2026-10-31T00:08:29.803Z",
+  "translatedAt": "2026-11-04T05:07:38.577+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

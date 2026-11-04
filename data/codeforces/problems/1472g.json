@@ -4,7 +4,7 @@
   "contestId": 1472,
   "index": "G",
   "title": "Moving to the Capital",
-  "titleZh": null,
+  "titleZh": "前往首都",
   "url": "https://codeforces.com/contest/1472/problem/G",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ cities in Berland. The city numbered $1$ is the capital. Some pairs of cities are connected by a **one-way** road of length 1.\n\nBefore the trip, Polycarp for each city found out the value of $d_i$ — the shortest distance from the capital (the $1$-st city) to the $i$-th city.\n\nPolycarp begins his journey in the city with number $s$ and, being in the $i$-th city, chooses one of the following actions:\n\n1. Travel from the $i$-th city to the $j$-th city if there is a road from the $i$-th city to the $j$-th and $d_i \\lt d_j$;\n2. Travel from the $i$-th city to the $j$-th city if there is a road from the $i$-th city to the $j$-th and $d_i \\geq d_j$;\n3. Stop traveling.\n\nSince the government of Berland does not want all people to come to the capital, so Polycarp **no more than once** can take the second action from the list. in other words, he can perform the second action $0$ or $1$ time during his journey. Polycarp, on the other hand, wants to be as close to the capital as possible.\n\n![image](https://espresso.codeforces.com/efeb2ded0d8f2e89bc8c6f9808ff144b517b573c.png)\n\nFor example, if $n = 6$ and the cities are connected, as in the picture above, then Polycarp could have made the following travels (not all possible options):\n\n- $2 \\rightarrow 5 \\rightarrow 1 \\rightarrow 2 \\rightarrow 5$;\n- $3 \\rightarrow 6 \\rightarrow 2$;\n- $1 \\rightarrow 3 \\rightarrow 6 \\rightarrow 2 \\rightarrow 5$.\n\nPolycarp wants for each starting city $i$ to find out how close he can get to the capital. More formally: he wants to find the minimal value of $d_j$ that Polycarp can get from the city $i$ to the city $j$ according to the rules described above.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases. Then $t$ test cases follow.\n\nEach test case is preceded by an empty line.\n\nThe first line of each test case contains two integers $n$ ($2 \\leq n \\leq 2 \\cdot 10^5$) and $m$ ($1 \\leq m \\leq 2 \\cdot 10^5$) — number of cities and roads, respectively.\n\nThis is followed by $m$ lines describing the roads. Each road is characterized by two integers $u$ and $v$ ($1 \\leq u, v \\leq n, u \\ne v$) — the numbers of cities connected by a **one-way** road.\n\nIt is guaranteed that the sums of $n$ and $m$ over all test cases do not exceed $2 \\cdot 10^5$.\n\nIt is guaranteed that for each pair of different cities $(u, v)$ there is at most one road from $u$ to $v$ (but a pair of roads from $u$ to $v$ and from $v$ to $u$ — is valid).\n\nIt is guaranteed that there is a path from the capital to all cities.\n\n## Output\n\nFor each test case, on a separate line output $n$ numbers, the $i$-th of which is equal to the minimum possible distance from the capital to the city where Polycarp ended his journey.",
-  "statementZhMd": null,
+  "statementZhMd": "贝尔兰有 $n$ 座城市。编号为 $1$ 的城市是首都。部分城市对之间由长度为 $1$ 的**单向**道路连接。\n\n在旅行开始前，Polycarp 求出了每座城市的值 $d_i$——从首都（第 $1$ 座城市）到第 $i$ 座城市的最短距离。\n\nPolycarp 从编号为 $s$ 的城市开始旅行。当他位于第 $i$ 座城市时，可以选择以下操作之一：\n\n1. 如果存在一条从第 $i$ 座城市通往第 $j$ 座城市的道路，且 $d_i \\lt d_j$，则前往第 $j$ 座城市；\n2. 如果存在一条从第 $i$ 座城市通往第 $j$ 座城市的道路，且 $d_i \\geq d_j$，则前往第 $j$ 座城市；\n3. 停止旅行。\n\n由于贝尔兰政府不希望所有人都来到首都，因此 Polycarp **最多只能进行一次**列表中的第二种操作。换句话说，在整个旅程中，他可以进行 $0$ 次或 $1$ 次第二种操作。另一方面，Polycarp 希望尽可能接近首都。\n\n![image](https://espresso.codeforces.com/efeb2ded0d8f2e89bc8c6f9808ff144b517b573c.png)\n\n例如，如果 $n = 6$，且城市之间的连接方式如上图所示，那么 Polycarp 可以进行如下旅行（这里只列出部分可能的方案）：\n\n- $2 \\rightarrow 5 \\rightarrow 1 \\rightarrow 2 \\rightarrow 5$；\n- $3 \\rightarrow 6 \\rightarrow 2$；\n- $1 \\rightarrow 3 \\rightarrow 6 \\rightarrow 2 \\rightarrow 5$。\n\n对于每个起始城市 $i$，Polycarp 希望知道自己能够距离首都多近。更正式地说：按照上述规则，Polycarp 从城市 $i$ 出发到达城市 $j$ 后，求所有可能的 $d_j$ 中的最小值。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例前有一个空行。\n\n每个测试用例的第一行包含两个整数 $n$（$2 \\leq n \\leq 2 \\cdot 10^5$）和 $m$（$1 \\leq m \\leq 2 \\cdot 10^5$）——城市和道路的数量。\n\n接下来 $m$ 行描述道路。每条道路由两个整数 $u$ 和 $v$（$1 \\leq u, v \\leq n$，$u \\ne v$）表示，即由一条**单向**道路连接的两个城市编号。\n\n保证所有测试用例的 $n$ 之和以及 $m$ 之和均不超过 $2 \\cdot 10^5$。\n\n保证对于每一对不同的城市 $(u, v)$，至多存在一条从 $u$ 到 $v$ 的道路（但同时存在从 $u$ 到 $v$ 和从 $v$ 到 $u$ 的两条道路是允许的）。\n\n保证首都可以到达所有城市。\n\n## 输出格式\n\n对于每个测试用例，单独一行输出 $n$ 个数字，其中第 $i$ 个数字等于 Polycarp 结束旅行时所在城市到首都的最小可能距离。",
   "samples": [
     {
       "input": "3\n\n6 7\n1 2\n1 3\n2 5\n2 4\n5 1\n3 6\n6 2\n\n2 2\n1 2\n2 1\n\n6 8\n1 2\n1 5\n2 6\n6 1\n2 3\n3 4\n4 2\n5 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:35:42.491Z"
+  "fetchedAt": "2026-11-02T18:35:42.491Z",
+  "translatedAt": "2026-11-04T04:06:04.014+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

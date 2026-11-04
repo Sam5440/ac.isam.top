@@ -4,7 +4,7 @@
   "contestId": 1442,
   "index": "E",
   "title": "Black, White and Grey Tree",
-  "titleZh": null,
+  "titleZh": "黑白灰树",
   "url": "https://codeforces.com/contest/1442/problem/E",
   "difficulty": 3000,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a tree with each vertex coloured white, black or grey. You can remove elements from the tree by selecting a subset of vertices in a single connected component and removing them and their adjacent edges from the graph. The only restriction is that you are not allowed to select a subset containing a white and a black vertex at once.\n\nWhat is the minimum number of removals necessary to remove all vertices from the tree?\n\n## Input\n\nEach test contains multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 100\\,000$), denoting the number of test cases, followed by a description of the test cases.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 200\\,000$): the number of vertices in the tree.\n\nThe second line of each test case contains $n$ integers $a_v$ ($0 \\le a_v \\le 2$): colours of vertices. Gray vertices have $a_v=0$, white have $a_v=1$, black have $a_v=2$.\n\nEach of the next $n-1$ lines contains two integers $u, v$ ($1 \\le u, v \\le n$): tree edges.\n\nThe sum of all $n$ throughout the test is guaranteed to not exceed $200\\,000$.\n\n## Output\n\nFor each test case, print one integer: the minimum number of operations to solve the problem.\n\n## Note\n\n![image](https://espresso.codeforces.com/db2fd64a62f1771a6b24c79e8292e1e7b0799ad7.png)\n\nIn the first test case, both vertices are white, so you can remove them at the same time.\n\n![image](https://espresso.codeforces.com/14ea94c5be50c1ad4289dacf0ed2daf3d75dbb8a.png)\n\nIn the second test case, three operations are enough. First, we need to remove both black vertices (2 and 4), then separately remove vertices 1 and 3. We can't remove them together because they end up in different connectivity components after vertex 2 is removed.\n\n![image](https://espresso.codeforces.com/dd210123a3e88e285161cdcc3db8772feef69c63.png)\n\nIn the third test case, we can remove vertices 1, 2, 3, 4 at the same time, because three of them are white and one is grey. After that, we can remove vertex 5.\n\n![image](https://espresso.codeforces.com/9bedb72f0162f0217f71da42a1d30f03ae37e9d4.png)\n\nIn the fourth test case, three operations are enough. One of the ways to solve the problem is to remove all black vertices at once, then remove white vertex 7, and finally, remove connected white vertices 1 and 3.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵树，其中每个顶点被染成白色、黑色或灰色。你可以通过选择同一个连通分量中的一个顶点子集，并将这些顶点及其相邻的边从图中删除，来移除树中的元素。唯一的限制是，所选择的子集中不能同时包含白色顶点和黑色顶点。\n\n将树中的所有顶点都删除，至少需要多少次删除操作？\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 100\\,000$），表示测试用例的数量，接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 200\\,000$），表示树中顶点的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_v$（$0 \\le a_v \\le 2$），表示顶点的颜色。灰色顶点满足 $a_v=0$，白色顶点满足 $a_v=1$，黑色顶点满足 $a_v=2$。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $u, v$（$1 \\le u, v \\le n$），表示树中的一条边。\n\n保证所有测试用例的 $n$ 之和不超过 $200\\,000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：解决该问题所需的最少操作次数。\n\n## 说明\n\n![image](https://espresso.codeforces.com/db2fd64a62f1771a6b24c79e8292e1e7b0799ad7.png)\n\n在第一个测试用例中，两个顶点都是白色的，因此可以同时删除它们。\n\n![image](https://espresso.codeforces.com/14ea94c5be50c1ad4289dacf0ed2daf3d75dbb8a.png)\n\n在第二个测试用例中，三次操作就足够了。首先，我们需要删除两个黑色顶点（2 和 4），然后分别删除顶点 1 和 3。我们不能同时删除它们，因为删除顶点 2 后，它们会处于不同的连通分量中。\n\n![image](https://espresso.codeforces.com/dd210123a3e88e285161cdcc3db8772feef69c63.png)\n\n在第三个测试用例中，我们可以同时删除顶点 1、2、3、4，因为其中三个是白色的，一个是灰色的。之后，我们可以删除顶点 5。\n\n![image](https://espresso.codeforces.com/9bedb72f0162f0217f71da42a1d30f03ae37e9d4.png)\n\n在第四个测试用例中，三次操作就足够了。一种解决方法是首先一次性删除所有黑色顶点，然后删除白色顶点 7，最后删除相连的白色顶点 1 和 3。",
   "samples": [
     {
       "input": "4\n2\n1 1\n1 2\n4\n1 2 1 2\n1 2\n2 3\n3 4\n5\n1 1 0 1 2\n1 2\n2 3\n3 4\n3 5\n8\n1 2 1 2 2 2 1 2\n1 3\n2 3\n3 4\n4 5\n5 6\n5 7\n5 8\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:41:39.641Z"
+  "fetchedAt": "2026-10-30T23:41:39.641Z",
+  "translatedAt": "2026-11-04T04:14:11.933+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

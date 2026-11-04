@@ -4,7 +4,7 @@
   "contestId": "abc280",
   "index": "Ex",
   "title": "Substring Sort",
-  "titleZh": null,
+  "titleZh": "子串排序",
   "url": "https://atcoder.jp/contests/abc280/tasks/abc280_h",
   "difficulty": 3307,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given $N$ strings $S_1,S_2,\\ldots, S_N$. Let $M = \\displaystyle\\sum_{i=1}^N \\frac{|S_i|(|S_i|+1)}{2}$.\nFor a string $S$ and integers $L$ and $R$, let us denote by $S[L, R]$ the substring consisting of the $L$-th through $R$-th characters of $S$.\n\nA sequence of triples of integers $((K_1, L_1, R_1), (K_2, L_2, R_2), \\ldots, (K_M, L_M, R_M))$ of length $M$ satisfies the following conditions:\n\n- The $M$ elements are pairwise distinct.\n- For all $1 \\leq i \\leq M$, it holds that $1 \\leq K_i \\leq N$ and $1 \\leq L_i \\leq R_i \\leq |S_{K_i}|$.\n- For all $1 \\leq i \\leq j \\leq M$, it holds that $S_{K_i}[L_i, R_i] \\leq S_{K_j}[L_j, R_j]$ in the lexicographical order.\n\nYou are given $Q$ integers $x_1,x_2,\\ldots, x_Q$ between $1$ and $M$, inclusive. For each $1 \\leq i \\leq Q$, find a possible instance of $(K_{x_i}, L_{x_i}, R_{x_i})$. We can prove that there always exists a sequence of triples that satisfies the conditions. If multiple triples satisfy the conditions, print any of them. In addition, among different $x_i$'s, the conforming sequence of triples does not have to be common.\n\nWhat is the lexicographical order? Two strings $S$ and $T$ are said to be $S \\leq T$ in the lexicographical order if and only if one of the following conditions is satisfied: $|S| \\leq |T|$ and $S = T[1, |S|]$. There exists $1\\leq k\\leq \\min(|S|, |T|)$ such that the $i$-th characters of $S$ and $T$ are the same for all $1\\leq i\\leq k-1$, and the $k$-th character of $S$ is alphabetically strictly smaller than that of $T$.\n\n## Constraints\n\n- $1 \\leq N \\leq 10^5$\n- $1 \\leq \\lvert S_i\\rvert \\leq 10^5$\n- $\\displaystyle\\sum_{i=1}^N \\lvert S_i\\rvert\\leq 10^5$\n- $1 \\leq Q \\leq 2\\times 10^5$\n- $1 \\leq x_1<x_2<\\cdots<x_Q \\leq \\displaystyle\\sum_{i=1}^N \\frac{|S_i|(|S_i|+1)}{2}$\n- $N,Q,x_1,x_2,\\ldots,x_Q$ are integers.\n- $S_i$ is a string consisting of lowercase English letters.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nS_1\nS_2\n\\vdots\nS_N\nQ\nx_1 x_2 \\ldots x_Q\n```\n\n## Output\n\nPrint $Q$ lines. The $i$-th line should contain an instance of conforming $(K_{x_i}, L_{x_i}, R_{x_i})$, separated by spaces. If multiple triples satisfy the conditions, print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定 $N$ 个字符串 $S_1,S_2,\\ldots, S_N$。令 $M = \\displaystyle\\sum_{i=1}^N \\frac{|S_i|(|S_i|+1)}{2}$。\n对于字符串 $S$ 以及整数 $L$ 和 $R$，用 $S[L, R]$ 表示由 $S$ 的第 $L$ 个字符到第 $R$ 个字符组成的子串。\n\n长度为 $M$ 的整数三元组序列 $((K_1, L_1, R_1), (K_2, L_2, R_2), \\ldots, (K_M, L_M, R_M))$ 满足以下条件：\n\n- 这 $M$ 个元素两两不同。\n- 对于所有 $1 \\leq i \\leq M$，均有 $1 \\leq K_i \\leq N$ 且 $1 \\leq L_i \\leq R_i \\leq |S_{K_i}|$。\n- 对于所有 $1 \\leq i \\leq j \\leq M$，均有 $S_{K_i}[L_i, R_i] \\leq S_{K_j}[L_j, R_j]$（按字典序）。\n\n给定 $Q$ 个介于 $1$ 和 $M$（含）之间的整数 $x_1,x_2,\\ldots, x_Q$。对于每个 $1 \\leq i \\leq Q$，请找出一个可能的 $(K_{x_i}, L_{x_i}, R_{x_i})$。可以证明，一定存在满足条件的三元组序列。如果有多个三元组满足条件，输出其中任意一个即可。此外，对于不同的 $x_i$，所对应的三元组序列不必相同。\n\n什么是字典序？当且仅当满足以下条件之一时，称字符串 $S$ 按字典序小于等于 $T$：$|S| \\leq |T|$ 且 $S = T[1, |S|]$；或者存在 $1\\leq k\\leq \\min(|S|, |T|)$，使得对于所有 $1\\leq i\\leq k-1$，$S$ 和 $T$ 的第 $i$ 个字符均相同，并且 $S$ 的第 $k$ 个字符在字母表中严格小于 $T$ 的第 $k$ 个字符。\n\n## 约束条件\n\n- $1 \\leq N \\leq 10^5$\n- $1 \\leq \\lvert S_i\\rvert \\leq 10^5$\n- $\\displaystyle\\sum_{i=1}^N \\lvert S_i\\rvert\\leq 10^5$\n- $1 \\leq Q \\leq 2\\times 10^5$\n- $1 \\leq x_1<x_2<\\cdots<x_Q \\leq \\displaystyle\\sum_{i=1}^N \\frac{|S_i|(|S_i|+1)}{2}$\n- $N,Q,x_1,x_2,\\ldots,x_Q$ 均为整数。\n- $S_i$ 是由小写英文字母组成的字符串。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nS_1\nS_2\n\\vdots\nS_N\nQ\nx_1 x_2 \\ldots x_Q\n```\n\n## 输出格式\n\n输出 $Q$ 行。第 $i$ 行应包含一个符合条件的 $(K_{x_i}, L_{x_i}, R_{x_i})$，各项之间用空格分隔。如果有多个三元组满足条件，输出其中任意一个即可。",
   "samples": [
     {
       "input": "2\nabab\ncab\n2\n5 14\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:26:46.733Z"
+  "fetchedAt": "2026-10-30T21:26:46.733Z",
+  "translatedAt": "2026-11-04T03:06:49.529+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

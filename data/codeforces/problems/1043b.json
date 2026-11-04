@@ -4,7 +4,7 @@
   "contestId": 1043,
   "index": "B",
   "title": "Lost Array",
-  "titleZh": null,
+  "titleZh": "遗失的数组",
   "url": "https://codeforces.com/contest/1043/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Bajtek, known for his unusual gifts, recently got an integer array $x_0, x_1, \\ldots, x_{k-1}$.\n\nUnfortunately, after a huge array-party with his extraordinary friends, he realized that he'd lost it. After hours spent on searching for a new toy, Bajtek found on the arrays producer's website another array $a$ of length $n + 1$. As a formal description of $a$ says, $a_0 = 0$ and for all other $i$ ($1 \\le i \\le n$) $a_i = x_{(i-1)\\bmod k} + a_{i-1}$, where $p \\bmod q$ denotes the remainder of division $p$ by $q$.\n\nFor example, if the $x = [1, 2, 3]$ and $n = 5$, then:\n\n- $a_0 = 0$,\n- $a_1 = x_{0\\bmod 3}+a_0=x_0+0=1$,\n- $a_2 = x_{1\\bmod 3}+a_1=x_1+1=3$,\n- $a_3 = x_{2\\bmod 3}+a_2=x_2+3=6$,\n- $a_4 = x_{3\\bmod 3}+a_3=x_0+6=7$,\n- $a_5 = x_{4\\bmod 3}+a_4=x_1+7=9$.\n\nSo, if the $x = [1, 2, 3]$ and $n = 5$, then $a = [0, 1, 3, 6, 7, 9]$.\n\nNow the boy hopes that he will be able to restore $x$ from $a$! Knowing that $1 \\le k \\le n$, help him and find all possible values of $k$ — possible lengths of the lost array.\n\n## Input\n\nThe first line contains exactly one integer $n$ ($1 \\le n \\le 1000$) — the length of the array $a$, excluding the element $a_0$.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^6$).\n\nNote that $a_0$ is always $0$ and is not given in the input.\n\n## Output\n\nThe first line of the output should contain one integer $l$ denoting the number of correct lengths of the lost array.\n\nThe second line of the output should contain $l$ integers — possible lengths of the lost array in **increasing** order.\n\n## Note\n\nIn the first example, any $k$ is suitable, since $a$ is an arithmetic progression.\n\nPossible arrays $x$:\n\n- $[1]$\n- $[1, 1]$\n- $[1, 1, 1]$\n- $[1, 1, 1, 1]$\n- $[1, 1, 1, 1, 1]$\n\nIn the second example, Bajtek's array can have three or five elements.\n\nPossible arrays $x$:\n\n- $[1, 2, 2]$\n- $[1, 2, 2, 1, 2]$\n\nFor example, $k = 4$ is bad, since it leads to $6 + x_0 = 8$ and $0 + x_0 = 1$, which is an obvious contradiction.\n\nIn the third example, only $k = n$ is good.\n\nArray $[1, 4, -2]$ satisfies the requirements.\n\nNote that $x_i$ may be negative.",
-  "statementZhMd": null,
+  "statementZhMd": "Bajtek 因其非同寻常的天赋而闻名，最近他得到一个整数数组 $x_0, x_1, \\ldots, x_{k-1}$。\n\n不幸的是，在和他那些非凡的朋友们举行了一场盛大的数组派对后，他发现自己把这个数组弄丢了。经过数小时寻找新的玩具，Bajtek 在数组生产商的网站上找到了另一个长度为 $n + 1$ 的数组 $a$。根据对 $a$ 的正式描述，$a_0 = 0$，并且对于所有其他的 $i$（$1 \\le i \\le n$），都有 $a_i = x_{(i-1)\\bmod k} + a_{i-1}$，其中 $p \\bmod q$ 表示 $p$ 除以 $q$ 的余数。\n\n例如，当 $x = [1, 2, 3]$ 且 $n = 5$ 时：\n\n- $a_0 = 0$；\n- $a_1 = x_{0\\bmod 3}+a_0=x_0+0=1$；\n- $a_2 = x_{1\\bmod 3}+a_1=x_1+1=3$；\n- $a_3 = x_{2\\bmod 3}+a_2=x_2+3=6$；\n- $a_4 = x_{3\\bmod 3}+a_3=x_0+6=7$；\n- $a_5 = x_{4\\bmod 3}+a_4=x_1+7=9$。\n\n因此，当 $x = [1, 2, 3]$ 且 $n = 5$ 时，$a = [0, 1, 3, 6, 7, 9]$。\n\n现在，这个男孩希望能够从 $a$ 中恢复出 $x$！已知 $1 \\le k \\le n$，请帮助他找出所有可能的 $k$ 值——也就是遗失数组的所有可能长度。\n\n## 输入格式\n\n第一行恰好包含一个整数 $n$（$1 \\le n \\le 1000$），表示数组 $a$ 的长度（不包括元素 $a_0$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^6$）。\n\n注意，$a_0$ 始终为 $0$，不会在输入中给出。\n\n## 输出格式\n\n输出的第一行应包含一个整数 $l$，表示遗失数组的正确长度数量。\n\n输出的第二行应包含 $l$ 个整数，表示遗失数组可能的长度，按**递增**顺序排列。\n\n## 说明\n\n在第一个样例中，任意 $k$ 都是合适的，因为 $a$ 是等差数列。\n\n可能的数组 $x$：\n\n- $[1]$\n- $[1, 1]$\n- $[1, 1, 1]$\n- $[1, 1, 1, 1]$\n- $[1, 1, 1, 1, 1]$\n\n在第二个样例中，Bajtek 的数组可以包含三个或五个元素。\n\n可能的数组 $x$：\n\n- $[1, 2, 2]$\n- $[1, 2, 2, 1, 2]$\n\n例如，$k = 4$ 是不行的，因为它会得到 $6 + x_0 = 8$ 和 $0 + x_0 = 1$，这显然是矛盾的。\n\n在第三个样例中，只有 $k = n$ 是可行的。\n\n数组 $[1, 4, -2]$ 满足要求。\n\n注意，$x_i$ 可能为负数。",
   "samples": [
     {
       "input": "5\n1 2 3 4 5\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:23:28.384Z"
+  "fetchedAt": "2026-10-31T00:23:28.384Z",
+  "translatedAt": "2026-11-04T05:26:34.135+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

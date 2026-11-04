@@ -4,7 +4,7 @@
   "contestId": 1859,
   "index": "F",
   "title": "Teleportation in Byteland",
-  "titleZh": null,
+  "titleZh": "Teleportation in Byteland",
   "url": "https://codeforces.com/contest/1859/problem/F",
   "difficulty": 3200,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 512,
   "statementMd": "There are $n$ cities in Byteland, some of which are connected by roads, which can be traversed in any direction. The $i$-th road has its own hardness parameter $w_i$. Time spent on traversing a road with its hardness equal to $w_i$ is $\\lceil\\frac{w_i}{c}\\rceil$, where $c$ is the current driving skill.\n\nThe travel network of Byteland is a tree. In other words, between any pair of cities, there is exactly one path that passes through each city at most once.\n\nIn some cities you can visit driving courses. A single course takes $T$ time to complete, and after completing the course the driver's skill $c$ is increased by $2$ times. Notice that the time $T$ required to complete a course is the same in all cities, and courses can be completed in the same city more than once.\n\nYou need to answer the $q$ queries: what is the minimum time it takes to get from the city $a$ to city $b$ if you start the travelling with driving skill $c = 1$?\n\n## Input\n\nEach test contains multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $T$ ($1 \\le n \\le 10^5, 1 \\le T \\le 10^6$) - the number of cities and time required to complete a single driving course.\n\nThe following $n - 1$ lines each contain three integers $u_i$, $v_i$ and $w_i$ ($1 \\le u_i, v_i \\le n, 1 \\le w_i \\le 10^6, u_i \\neq v_i$), which mean that there exists a road connecting towns $u_i$ and $v_i$ with hardness equal to $w_i$ .\n\nThe next line contains a binary string $s$ of length $n$, consisting only of symbols $0$ and $1$. If $s_i = 1$ ($1 \\le i \\le n$), then you can visit driving courses in the $i$-th city. If $s_i = 0$ ($1 \\le i \\le n$), then you cannot visit driving courses in the $i$-th city.\n\nThe next line contains a single integer $q$ ($1 \\le q \\le 10^5$) — the number of queries you are required to answer.\n\nThe next $q$ lines contain two integers $a_j$, $b_j$ ($1 \\le a_j, b_j \\le n, 1 \\le j \\le q$) — the cities you are required to process in the $j$-th query.\n\nIt is guaranteed that the given graph is a tree. It is guaranteed that the sum of $n$ and the sum of $q$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each query, print one integer in a separate line — the minimum time it takes to get in the corresponding query.\n\n## Note\n\nIn the only query of the first test case, it is optimal to ignore the driving courses. Then the minimum time required is equal to the distance between vertexes $1$ and $2$, which is $1$.\n\nIn the first query of the second test case, we can spend $3$ time in city number $1$ visiting the driving courses, then go to vertex $5$. Then the minimum time required is $3 + \\lceil\\frac{5}{2}\\rceil + \\lceil\\frac{10}{2}\\rceil = 11$.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"拜特兰的传送\",\"bodyZh\":\"## 题目描述\\n\\n拜特兰有 $n$ 座城市，其中一些城市之间由道路连接，道路可以双向通行。第 $i$ 条道路有一个硬度参数 $w_i$。驾驶技能为 $c$ 时，通过硬度为 $w_i$ 的道路所需的时间为 $\\lceil\\\\frac{w_i}{c}\\\\rceil$。\\n\\n拜特兰的交通网络是一棵树。换句话说，任意一对城市之间恰好存在一条路径，且该路径上的每座城市最多经过一次。\\n\\n在一些城市中，你可以参加驾驶课程。完成一门课程需要花费 $T$ 的时间，完成课程后，驾驶员的技能 $c$ 会变为原来的 $2$ 倍。注意，在所有城市中，完成一门课程所需的时间 $T$ 都相同，并且可以在同一座城市中多次完成课程。\\n\\n你需要回答 $q$ 个询问：如果开始旅行时驾驶技能 $c = 1$，从城市 $a$ 到城市 $b$ 所需的最短时间是多少？\\n\\n## 输入格式\\n\\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\\\le t \\\\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\\n\\n每个测试用例的第一行包含两个整数 $n$ 和 $T$（$1 \\\\le n \\\\le 10^5, 1 \\\\le T \\\\le 10^6$）——城市的数量以及完成一门驾驶课程所需的时间。\\n\\n接下来的 $n - 1$ 行中，每行包含三个整数 $u_i$、$v_i$ 和 $w_i$（$1 \\\\le u_i, v_i \\\\le n, 1 \\\\le w_i \\\\le 10^6, u_i \\\\neq v_i$），表示城市 $u_i$ 和城市 $v_i$ 之间有一条硬度为 $w_i$ 的道路。\\n\\n下一行包含一个长度为 $n$ 的二进制字符串 $s$，仅由字符 $0$ 和 $1$ 组成。如果 $s_i = 1$（$1 \\\\le i \\\\le n$），则可以在第 $i$ 座城市参加驾驶课程；如果 $s_i = 0$（$1 \\\\le i \\\\le n$），则不能在第 $i$ 座城市参加驾驶课程。\\n\\n下一行包含一个整数 $q$（$1 \\\\le q \\\\le 10^5$）——需要回答的询问数量。\\n\\n接下来的 $q$ 行中，每行包含两个整数 $a_j$、$b_j$（$1 \\\\le a_j, b_j \\\\le n, 1 \\\\le j \\\\le q$）——第 $j$ 个询问中的两座城市。\\n\\n保证给出的图是一棵树。\\n保证所有测试用例的 $n$ 之和以及 $q$ 之和均不超过 $10^5$。\\n\\n## 输出格式\\n\\n对于每个询问，单独输出一行一个整数——对应询问中到达目的地所需的最短时间。\\n\\n## 说明\\n\\n在第一个测试用例的唯一一个询问中，最优方案是不参加驾驶课程。此时所需的最短时间等于顶点 $1$ 和 $2$ 之间的距离，即 $1$。\\n\\n在第二个测试用例的第一个询问中，我们可以在城市 $1$ 花费 $3$ 的时间参加驾驶课程，然后前往顶点 $5$。此时所需的最短时间为 $3 + \\\\lceil\\\\frac{5}{2}\\\\rceil + \\\\lceil\\\\frac{10}{2}\\\\rceil = 11$。\"}",
   "samples": [
     {
       "input": "2\n2 3\n1 2 1\n11\n1\n1 2\n5 3\n1 4 5\n1 3 8\n2 3 8\n4 5 10\n11001\n5\n1 5\n2 5\n5 1\n3 4\n4 2\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:17:09.363Z"
+  "fetchedAt": "2026-10-30T22:17:09.363Z",
+  "translatedAt": "2026-11-04T02:36:53.783+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

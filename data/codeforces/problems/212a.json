@@ -4,7 +4,7 @@
   "contestId": 212,
   "index": "A",
   "title": "Privatization",
-  "titleZh": null,
+  "titleZh": "私有化",
   "url": "https://codeforces.com/contest/212/problem/A",
   "difficulty": 3000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a developed network of flights between Berland and Beerland. All of them belong to the Berland state company BerAvia. Each flight connects some Berland city with some Beerland city. For each flight airplanes fly in both directions.\n\nChanges are coming to Berland — the state decided to privatize BerAvia, namely, to sell out all flights to $*t*$ private companies. Each of these companies wants to get the maximal number of flights, so if the Berland flights are sold unevenly, Berland can be accused of partiality. Berland Government decided to sell the flights as evenly as possible between the $*t*$ companies.\n\nThe *unevenness* of the distribution of flights between companies is calculated as follows. For each city $*i*$ (both Berland and Beerland) we'll calculate the value of\n\n![image](https://espresso.codeforces.com/b4427f82004dc8971736e076c8f4688d6a4d4740.png)\n\nwhere\n\n*a*<sub>*ij*</sub>\n\nis the number of flights from city\n\n*i*\n\n, which belong to company\n\n*j*\n\n. The sum of\n\n*w*<sub>*i*</sub>\n\nfor all cities in both countries is called the unevenness of the distribution. The distribution with the minimal unevenness is the most even one.\n\nHelp the Berland government come up with the most even distribution plan of selling flights.\n\n## Input\n\nThe first input line contains four integers $*n*, *m*, *k*$ and $*t*$ ($1 ≤ *n*, *m*, *t* ≤ 200;1 ≤ *k* ≤ 5000$), where $*n*, *m*$ are the numbers of cities in Berland and Beerland, correspondingly, $*k*$ is the number of flights between them, and $*t*$ is the number of private companies. Next $*k*$ lines describe the flights, one per line, as pairs of positive integers $*x*_{*i*}, *y*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ *n*;1 ≤ *y*_{*i*} ≤ *m*$), where $*x*_{*i*}$ and $*y*_{*i*}$ are the indexes of cities in Berland and Beerland, correspondingly, connected by the $*i*$-th flight. There is at most one flight between any pair of cities, each flight connects cities of different countries. The cities in Berland are indexed from 1 to $*n*$, and in Beerland — from 1 to $*m*$.\n\n## Output\n\nPrint the unevenness of the sought plan on the first line. On the second line print a sequence of $*k*$ integers $*c*_{1}, *c*_{2}, ..., *c*_{*k*}$ ($1 ≤ *c*_{*i*} ≤ *t*$), where $*c*_{*i*}$ is the index of the company that should buy the $*i*$-th flight. Assume that the flights are indexed from 1 to $*k*$ in the order they appear in the input. If there are multiple solutions, print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nBerland 与 Beerland 之间已经建立了发达的航班网络。所有航班都属于 Berland 国有公司 BerAvia。每个航班连接一座 Berland 城市和一座 Beerland 城市。每个航班都有往返两个方向。\n\nBerland 即将发生变化——国家决定将 BerAvia 私有化，即把所有航班出售给 $*t*$ 家私营公司。每家公司都希望获得尽可能多的航班，因此，如果 Berland 的航班分配不均，就可能被指责为偏袒。Berland 政府决定在 $*t*$ 家公司之间尽可能均匀地出售这些航班。\n\n公司之间航班分配的*不均衡度*计算如下。对于每座城市 $*i*$（包括 Berland 和 Beerland 的城市），计算以下值：\n\n![image](https://espresso.codeforces.com/b4427f82004dc8971736e076c8f4688d6a4d4740.png)\n\n其中，\n\n*a*<sub>*ij*</sub>\n\n表示从城市\n\n*i*\n\n出发、属于公司\n\n*j*\n\n的航班数量。所有国家的所有城市对应的\n\n*w*<sub>*i*</sub>\n\n之和称为航班分配的不均衡度。不均衡度最小的分配方案是最均匀的方案。\n\n请帮助 Berland 政府制定最均匀的航班出售方案。\n\n## 输入格式\n\n输入的第一行包含四个整数 $*n*, *m*, *k*$ 和 $*t*$（$1 ≤ *n*, *m*, *t* ≤ 200;1 ≤ *k* ≤ 5000$），其中 $*n*$ 和 $*m*$ 分别表示 Berland 和 Beerland 的城市数量，$*k*$ 表示两国之间的航班数量，$*t*$ 表示私营公司的数量。接下来的 $*k*$ 行每行描述一个航班，每行包含一对正整数 $*x*_{*i*}, *y*_{*i*}$（$1 ≤ *x*_{*i*} ≤ *n*;1 ≤ *y*_{*i*} ≤ *m*$），其中 $*x*_{*i*}$ 和 $*y*_{*i*}$ 分别是与第 $*i*$ 个航班相连的 Berland 和 Beerland 城市的编号。任意一对城市之间至多有一个航班，且每个航班连接两个不同国家的城市。Berland 的城市编号为 1 至 $*n*$，Beerland 的城市编号为 1 至 $*m*$。\n\n## 输出格式\n\n第一行输出所求方案的不均衡度。第二行输出 $*k*$ 个整数 $*c*_{1}, *c*_{2}, ..., *c*_{*k*}$，其中（$1 ≤ *c*_{*i*} ≤ *t*$）$*c*_{*i*}$ 表示应购买第 $*i*$ 个航班的公司编号。假设航班按照它们在输入中出现的顺序编号为 1 至 $*k*$。如果有多个解，输出任意一个即可。",
   "samples": [
     {
       "input": "3 5 8 2\n1 4\n1 3\n3 3\n1 2\n1 1\n2 1\n1 5\n2 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:21:10.577Z"
+  "fetchedAt": "2026-10-31T02:21:10.577Z",
+  "translatedAt": "2026-11-04T07:42:34.136+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

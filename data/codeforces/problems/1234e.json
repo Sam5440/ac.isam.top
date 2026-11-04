@@ -4,7 +4,7 @@
   "contestId": 1234,
   "index": "E",
   "title": "Special Permutations",
-  "titleZh": null,
+  "titleZh": "特殊排列",
   "url": "https://codeforces.com/contest/1234/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let's define $p_i(n)$ as the following permutation: $[i, 1, 2, \\dots, i - 1, i + 1, \\dots, n]$. This means that the $i$-th permutation is **almost identity** (i.e. which maps every element to itself) permutation but the element $i$ is on the first position. Examples:\n\n- $p_1(4) = [1, 2, 3, 4]$;\n- $p_2(4) = [2, 1, 3, 4]$;\n- $p_3(4) = [3, 1, 2, 4]$;\n- $p_4(4) = [4, 1, 2, 3]$.\n\nYou are given an array $x_1, x_2, \\dots, x_m$ ($1 \\le x_i \\le n$).\n\nLet $pos(p, val)$ be the position of the element $val$ in $p$. So, $pos(p_1(4), 3) = 3, pos(p_2(4), 2) = 1, pos(p_4(4), 4) = 1$.\n\nLet's define a function $f(p) = \\sum\\limits_{i=1}^{m - 1} |pos(p, x_i) - pos(p, x_{i + 1})|$, where $|val|$ is the absolute value of $val$. This function means the sum of distances between adjacent elements of $x$ in $p$.\n\nYour task is to calculate $f(p_1(n)), f(p_2(n)), \\dots, f(p_n(n))$.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $m$ ($2 \\le n, m \\le 2 \\cdot 10^5$) — the number of elements in each permutation and the number of elements in $x$.\n\nThe second line of the input contains $m$ integers (**$m$, not $n$**) $x_1, x_2, \\dots, x_m$ ($1 \\le x_i \\le n$), where $x_i$ is the $i$-th element of $x$. Elements of $x$ can repeat and appear in arbitrary order.\n\n## Output\n\nPrint $n$ integers: $f(p_1(n)), f(p_2(n)), \\dots, f(p_n(n))$.\n\n## Note\n\nConsider the first example:\n\n$x = [1, 2, 3, 4]$, so\n\n- for the permutation $p_1(4) = [1, 2, 3, 4]$ the answer is $|1 - 2| + |2 - 3| + |3 - 4| = 3$;\n- for the permutation $p_2(4) = [2, 1, 3, 4]$ the answer is $|2 - 1| + |1 - 3| + |3 - 4| = 4$;\n- for the permutation $p_3(4) = [3, 1, 2, 4]$ the answer is $|2 - 3| + |3 - 1| + |1 - 4| = 6$;\n- for the permutation $p_4(4) = [4, 1, 2, 3]$ the answer is $|2 - 3| + |3 - 4| + |4 - 1| = 5$.\n\nConsider the second example:\n\n$x = [2, 1, 5, 3, 5]$, so\n\n- for the permutation $p_1(5) = [1, 2, 3, 4, 5]$ the answer is $|2 - 1| + |1 - 5| + |5 - 3| + |3 - 5| = 9$;\n- for the permutation $p_2(5) = [2, 1, 3, 4, 5]$ the answer is $|1 - 2| + |2 - 5| + |5 - 3| + |3 - 5| = 8$;\n- for the permutation $p_3(5) = [3, 1, 2, 4, 5]$ the answer is $|3 - 2| + |2 - 5| + |5 - 1| + |1 - 5| = 12$;\n- for the permutation $p_4(5) = [4, 1, 2, 3, 5]$ the answer is $|3 - 2| + |2 - 5| + |5 - 4| + |4 - 5| = 6$;\n- for the permutation $p_5(5) = [5, 1, 2, 3, 4]$ the answer is $|3 - 2| + |2 - 1| + |1 - 4| + |4 - 1| = 8$.",
-  "statementZhMd": null,
+  "statementZhMd": "定义 $p_i(n)$ 如下：$[i, 1, 2, \\dots, i - 1, i + 1, \\dots, n]$。这意味着第 $i$ 个排列是一个**几乎为恒等**（即将每个元素映射到自身）的排列，只不过元素 $i$ 位于第一位。示例：\n\n- $p_1(4) = [1, 2, 3, 4]$；\n- $p_2(4) = [2, 1, 3, 4]$；\n- $p_3(4) = [3, 1, 2, 4]$；\n- $p_4(4) = [4, 1, 2, 3]$。\n\n给定一个数组 $x_1, x_2, \\dots, x_m$（$1 \\le x_i \\le n$）。\n\n令 $pos(p, val)$ 表示元素 $val$ 在排列 $p$ 中的位置。因此，$pos(p_1(4), 3) = 3, pos(p_2(4), 2) = 1, pos(p_4(4), 4) = 1$。\n\n定义函数 $f(p) = \\sum\\limits_{i=1}^{m - 1} |pos(p, x_i) - pos(p, x_{i + 1})|$，其中 $|val|$ 表示 $val$ 的绝对值。该函数表示 $x$ 中相邻元素在 $p$ 中的位置距离之和。\n\n你的任务是计算 $f(p_1(n)), f(p_2(n)), \\dots, f(p_n(n))$。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $m$（$2 \\le n, m \\le 2 \\cdot 10^5$），分别表示每个排列中的元素数量以及 $x$ 中的元素数量。\n\n输入的第二行包含 $m$ 个整数（**是 $m$，不是 $n$**）$x_1, x_2, \\dots, x_m$（$1 \\le x_i \\le n$），其中 $x_i$ 是 $x$ 的第 $i$ 个元素。$x$ 中的元素可以重复，且可以按任意顺序出现。\n\n## 输出格式\n\n输出 $n$ 个整数：$f(p_1(n)), f(p_2(n)), \\dots, f(p_n(n))$。\n\n## 说明\n\n考虑第一个样例：\n\n$x = [1, 2, 3, 4]$，因此\n\n- 对于排列 $p_1(4) = [1, 2, 3, 4]$，答案为 $|1 - 2| + |2 - 3| + |3 - 4| = 3$；\n- 对于排列 $p_2(4) = [2, 1, 3, 4]$，答案为 $|2 - 1| + |1 - 3| + |3 - 4| = 4$；\n- 对于排列 $p_3(4) = [3, 1, 2, 4]$，答案为 $|2 - 3| + |3 - 1| + |1 - 4| = 6$；\n- 对于排列 $p_4(4) = [4, 1, 2, 3]$，答案为 $|2 - 3| + |3 - 4| + |4 - 1| = 5$。\n\n考虑第二个样例：\n\n$x = [2, 1, 5, 3, 5]$，因此\n\n- 对于排列 $p_1(5) = [1, 2, 3, 4, 5]$，答案为 $|2 - 1| + |1 - 5| + |5 - 3| + |3 - 5| = 9$；\n- 对于排列 $p_2(5) = [2, 1, 3, 4, 5]$，答案为 $|1 - 2| + |2 - 5| + |5 - 3| + |3 - 5| = 8$；\n- 对于排列 $p_3(5) = [3, 1, 2, 4, 5]$，答案为 $|3 - 2| + |2 - 5| + |5 - 1| + |1 - 5| = 12$；\n- 对于排列 $p_4(5) = [4, 1, 2, 3, 5]$，答案为 $|3 - 2| + |2 - 5| + |5 - 4| + |4 - 5| = 6$；\n- 对于排列 $p_5(5) = [5, 1, 2, 3, 4]$，答案为 $|3 - 2| + |2 - 1| + |1 - 4| + |4 - 1| = 8$。",
   "samples": [
     {
       "input": "4 4\n1 2 3 4\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:02:54.445Z"
+  "fetchedAt": "2026-11-02T19:02:54.445Z",
+  "translatedAt": "2026-11-04T04:58:32.707+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

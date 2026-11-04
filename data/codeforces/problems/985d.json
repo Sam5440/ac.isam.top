@@ -4,7 +4,7 @@
   "contestId": 985,
   "index": "D",
   "title": "Sand Fortress",
-  "titleZh": null,
+  "titleZh": "沙堡",
   "url": "https://codeforces.com/contest/985/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are going to the beach with the idea to build the greatest sand castle ever in your head! The beach is not as three-dimensional as you could have imagined, it can be decribed as a line of spots to pile up sand pillars. Spots are numbered $1$ through infinity from left to right.\n\nObviously, there is not enough sand on the beach, so you brought $*n*$ packs of sand with you. Let height $*h*_{*i*}$ of the sand pillar on some spot $*i*$ be the number of sand packs you spent on it. **You can't split a sand pack to multiple pillars, all the sand from it should go to a single one.** There is a fence of height equal to the height of pillar with $*H*$ sand packs to the left of the first spot and you should prevent sand from going over it.\n\nFinally you ended up with the following conditions to building the castle:\n\n- $*h*_{1} ≤ *H*$: no sand from the leftmost spot should go over the fence;\n- For any ![image](https://espresso.codeforces.com/759a40f66b7756c8c552aa9eba265b46676afca5.png) $|*h*_{*i*} - *h*_{*i* + 1}| ≤ 1$: large difference in heights of two neighboring pillars can lead sand to fall down from the higher one to the lower, you really don't want this to happen;\n- ![image](https://espresso.codeforces.com/72efe19561bd30eb9a2d4d6f86449bcbb93f464b.png): you want to spend all the sand you brought with you.\n\nAs you have infinite spots to build, it is always possible to come up with some valid castle structure. Though you want the castle to be as compact as possible.\n\nYour task is to calculate the minimum number of spots you can occupy so that all the aforementioned conditions hold.\n\n## Input\n\nThe only line contains two integer numbers $*n*$ and $*H*$ ($1 ≤ *n*, *H* ≤ 10^{18}$) — the number of sand packs you have and the height of the fence, respectively.\n\n## Output\n\nPrint the minimum number of spots you can occupy so the all the castle building conditions hold.\n\n## Note\n\nHere are the heights of some valid castles:\n\n- $*n* = 5, *H* = 2, [2, 2, 1, 0, ...], [2, 1, 1, 1, 0, ...], [1, 0, 1, 2, 1, 0, ...]$\n- $*n* = 6, *H* = 8, [3, 2, 1, 0, ...], [2, 2, 1, 1, 0, ...], [0, 1, 0, 1, 2, 1, 1, 0...]$ (this one has $5$ spots occupied)\n\nThe first list for both cases is the optimal answer, $3$ spots are occupied in them.\n\nAnd here are some invalid ones:\n\n- $*n* = 5, *H* = 2, [3, 2, 0, ...], [2, 3, 0, ...], [1, 0, 2, 2, ...]$\n- $*n* = 6, *H* = 8, [2, 2, 2, 0, ...], [6, 0, ...], [1, 4, 1, 0...], [2, 2, 1, 0, ...]$",
-  "statementZhMd": null,
+  "statementZhMd": "你怀揣着建造有史以来最伟大沙堡的想法来到海滩！海滩并不像你想象的那样是三维的，它可以被描述为一条用于堆积沙柱的位置所组成的直线。位置从左到右编号为 $1$ 到无穷大。\n\n显然，海滩上的沙子不够用，所以你带来了 $*n*$ 包沙子。设位置 $*i*$ 上沙柱的高度 $*h*_{*i*}$ 为你用于堆建该沙柱的沙子包数。**你不能将一包沙子分给多个沙柱，这包沙子中的所有沙子都必须用于同一个沙柱。** 第一个位置的左侧有一面高度等于使用 $*H*$ 包沙子堆成的沙柱高度的围栏，你需要防止沙子越过它。\n\n最终，你得到了以下建造沙堡的条件：\n\n- $*h*_{1} ≤ *H*$：最左侧位置的沙子不能越过围栏；\n- 对于任意 ![image](https://espresso.codeforces.com/759a40f66b7756c8c552aa9eba265b46676afca5.png) $|*h*_{*i*} - *h*_{*i* + 1}| ≤ 1$：相邻两个沙柱的高度差过大可能导致沙子从较高的沙柱落到较低的沙柱上，你绝不希望发生这种情况；\n- ![image](https://espresso.codeforces.com/72efe19561bd30eb9a2d4d6f86449bcbb93f464b.png)：你希望用完带来的所有沙子。\n\n由于有无穷多个位置可以建造沙堡，因此总能构造出某种满足条件的沙堡结构。不过，你希望沙堡尽可能紧凑。\n\n你的任务是计算满足上述所有条件时，至少需要占用多少个位置。\n\n## 输入格式\n\n唯一一行包含两个整数 $*n*$ 和 $*H*$（$1 ≤ *n*, *H* ≤ 10^{18}$）——你拥有的沙子包数和围栏的高度。\n\n## 输出格式\n\n输出满足所有建造沙堡条件时至少需要占用的位置数。\n\n## 说明\n\n以下是一些合法沙堡的高度：\n\n- $*n* = 5, *H* = 2, [2, 2, 1, 0, ...], [2, 1, 1, 1, 0, ...], [1, 0, 1, 2, 1, 0, ...]$\n- $*n* = 6, *H* = 8, [3, 2, 1, 0, ...], [2, 2, 1, 1, 0, ...], [0, 1, 0, 1, 2, 1, 1, 0...]$（这个结构占用了 $5$ 个位置）\n\n对于两种情况，第一个列表都是最优答案，它们均占用了 $3$ 个位置。\n\n以下是一些不合法的结构：\n\n- $*n* = 5, *H* = 2, [3, 2, 0, ...], [2, 3, 0, ...], [1, 0, 2, 2, ...]$\n- $*n* = 6, *H* = 8, [2, 2, 2, 0, ...], [6, 0, ...], [1, 4, 1, 0...], [2, 2, 1, 0, ...]$",
   "samples": [
     {
       "input": "5 2\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:35:22.218Z"
+  "fetchedAt": "2026-11-02T19:35:22.218Z",
+  "translatedAt": "2026-11-04T05:45:09.789+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

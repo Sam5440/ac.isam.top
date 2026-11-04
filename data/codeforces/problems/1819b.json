@@ -4,7 +4,7 @@
   "contestId": 1819,
   "index": "B",
   "title": "The Butcher",
-  "titleZh": null,
+  "titleZh": "屠夫",
   "url": "https://codeforces.com/contest/1819/problem/B",
   "difficulty": 1900,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Anton plays his favorite game \"Defense of The Ancients 2\" for his favorite hero — The Butcher. Now he wants to make his own dinner. To do this he will take a rectangle of height $h$ and width $w$, then make a vertical or horizontal cut so that both resulting parts have integer sides. After that, he will put one of the parts in the box and cut the other again, and so on.\n\nMore formally, a rectangle of size $h \\times w$ can be cut into two parts of sizes $x \\times w$ and $(h - x) \\times w$, where $x$ is an integer from $1$ to $(h - 1)$, or into two parts of sizes $h \\times y$ and $h \\times (w - y)$, where $y$ is an integer from $1$ to $(w - 1)$.\n\nHe will repeat this operation $n - 1$ times, and then put the remaining rectangle into the box too. Thus, the box will contain $n$ rectangles, of which $n - 1$ rectangles were put in the box as a result of the cuts, and the $n$-th rectangle is the one that the Butcher has left after all $n - 1$ cuts.\n\nUnfortunately, Butcher forgot the numbers $h$ and $w$, but he still has $n$ rectangles mixed in random order. Note that Butcher **didn't rotate the rectangles**, but only shuffled them. Now he wants to know all possible pairs $(h, w)$ from which this set of rectangles can be obtained. And you have to help him do it!\n\nIt is guaranteed that there exists at least one pair $(h, w)$ from which this set of rectangles can be obtained.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of rectangles obtained.\n\nThe $i$-th of the next $n$ lines contains two integers $a_i$ and $b_i$ ($1 \\le a_i, b_i \\le 10^6$) — the height and width of the $i$-th rectangle.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, on the first line output a single integer $m$ — the number of pairs $(h, w)$ denoting the sizes of rectangles from which the given rectangles can be obtained. Two rectangles are considered different if they have different heights or widths.\n\nOn each of the following $m$ lines print output integers $h_i$ and $w_i$ — the height and width of the rectangle from which the given rectangles can be obtained. You can output the rectangles in any order.\n\n## Note\n\nIn the first test case, Butcher could only have a rectangle of size $4 \\times 5$. Then the cuts could look like this (first the green cut was made, then the red one):\n\n![image](https://espresso.codeforces.com/9775e0102a78191a35fe439c0e66f50bf52f8aef.png)\n\nIn the second test case, Butcher could have either a rectangle of $1 \\times 3$ or $3 \\times 1$. The cuts would have looked like this (first the green cut was made, then the red cut):\n\n![image](https://espresso.codeforces.com/6e90d25875f6c63953ac6a855e538b7e6347e696.png)\n\nIn the third test case, Butcher did not make any cuts, so the rectangle is $10 \\times 10$.",
-  "statementZhMd": null,
+  "statementZhMd": "安东喜欢用自己最喜欢的英雄——屠夫——玩自己最喜欢的游戏《Dota 2》。现在，他想要制作自己的晚餐。为此，他拿来一个高为 $h$、宽为 $w$ 的矩形，然后进行一次竖直或水平切割，使得切割后得到的两部分的边长均为整数。之后，他会将其中一部分放入箱子，再次切割另一部分，如此反复。\n\n更正式地说，一个大小为 $h \\times w$ 的矩形可以被切割成大小为 $x \\times w$ 和 $(h - x) \\times w$ 的两部分，其中 $x$ 是从 $1$ 到 $(h - 1)$ 的整数；也可以被切割成大小为 $h \\times y$ 和 $h \\times (w - y)$ 的两部分，其中 $y$ 是从 $1$ 到 $(w - 1)$ 的整数。\n\n他会重复这一操作 $n - 1$ 次，然后也将剩下的矩形放入箱子。因此，箱子中将有 $n$ 个矩形，其中 $n - 1$ 个矩形是切割后放入箱子的，而第 $n$ 个矩形则是屠夫进行完 $n - 1$ 次切割后剩下的矩形。\n\n不幸的是，屠夫忘记了数字 $h$ 和 $w$，但他仍然拥有这 $n$ 个顺序随机的矩形。注意，屠夫**没有旋转矩形**，只是将它们打乱了顺序。现在，他想知道所有可能的 $(h, w)$，使得这组矩形可以由其得到。请你帮助他完成这件事！\n\n保证至少存在一组 $(h, w)$，使得给定的矩形可以由其得到。\n\n## 输入格式\n\n每个测试由多个测试用例组成。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来给出各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——得到的矩形数量。\n\n接下来的 $n$ 行中，第 $i$ 行包含两个整数 $a_i$ 和 $b_i$（$1 \\le a_i, b_i \\le 10^6$）——第 $i$ 个矩形的高和宽。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，第一行输出一个整数 $m$——满足条件的 $(h, w)$ 的数量，即可以得到给定矩形的初始矩形的尺寸数量。若两个矩形的高或宽不同，则认为它们不同。\n\n接下来的 $m$ 行中，输出两个整数 $h_i$ 和 $w_i$——可以得到给定矩形的初始矩形的高和宽。可以按任意顺序输出这些矩形。\n\n## 说明\n\n在第一个测试用例中，屠夫只能拥有一个大小为 $4 \\times 5$ 的矩形。随后进行的切割可能如下图所示（先进行绿色切割，再进行红色切割）：\n\n![image](https://espresso.codeforces.com/9775e0102a78191a35fe439c0e66f50bf52f8aef.png)\n\n在第二个测试用例中，屠夫可能拥有大小为 $1 \\times 3$ 或 $3 \\times 1$ 的矩形。随后进行的切割可能如下图所示（先进行绿色切割，再进行红色切割）：\n\n![image](https://espresso.codeforces.com/6e90d25875f6c63953ac6a855e538b7e6347e696.png)\n\n在第三个测试用例中，屠夫没有进行任何切割，因此矩形大小为 $10 \\times 10$。",
   "samples": [
     {
       "input": "4\n3\n1 2\n3 5\n1 3\n3\n1 1\n1 1\n1 1\n1\n10 10\n4\n3 2\n5 5\n2 2\n8 7\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:26:37.118Z"
+  "fetchedAt": "2026-10-30T22:26:37.118Z",
+  "translatedAt": "2026-11-04T02:53:53.820+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

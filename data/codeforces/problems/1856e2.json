@@ -4,7 +4,7 @@
   "contestId": 1856,
   "index": "E2",
   "title": "PermuTree (hard version)",
-  "titleZh": null,
+  "titleZh": "PermuTree（困难版）",
   "url": "https://codeforces.com/contest/1856/problem/E2",
   "difficulty": 2700,
   "tags": [
@@ -21,7 +21,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the hard version of the problem. The differences between the two versions are the constraint on $n$ and the time limit. You can make hacks only if both versions of the problem are solved.**\n\nYou are given a tree with $n$ vertices rooted at vertex $1$.\n\nFor some permutation$^\\dagger$ $a$ of length $n$, let $f(a)$ be the number of pairs of vertices $(u, v)$ such that $a_u \\lt a_{\\operatorname{lca}(u, v)} \\lt a_v$. Here, $\\operatorname{lca}(u,v)$ denotes the [lowest common ancestor](https://en.wikipedia.org/wiki/Lowest_common_ancestor) of vertices $u$ and $v$.\n\nFind the maximum possible value of $f(a)$ over all permutations $a$ of length $n$.\n\n$^\\dagger$ A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 10^6$).\n\nThe second line contains $n - 1$ integers $p_2,p_3,\\ldots,p_n$ ($1 \\le p_i \\lt i$) indicating that there is an edge between vertices $i$ and $p_i$.\n\n## Output\n\nOutput the maximum value of $f(a)$.\n\n## Note\n\nThe tree in the first test:\n\n![image](https://espresso.codeforces.com/1f10963ce42748594dc364ee332507d7b0f4b423.png)\n\nOne possible optimal permutation $a$ is $[2, 1, 4, 5, 3]$ with $4$ suitable pairs of vertices:\n\n- $(2, 3)$, since $\\operatorname{lca}(2, 3) = 1$ and $1 \\lt 2 \\lt 4$,\n- $(2, 4)$, since $\\operatorname{lca}(2, 4) = 1$ and $1 \\lt 2 \\lt 5$,\n- $(2, 5)$, since $\\operatorname{lca}(2, 5) = 1$ and $1 \\lt 2 \\lt 3$,\n- $(5, 4)$, since $\\operatorname{lca}(5, 4) = 3$ and $3 \\lt 4 \\lt 5$.\n\nThe tree in the third test:\n\n![image](https://espresso.codeforces.com/f8bdd46040c270d8b7d6e369b44cd6d4c758603c.png)\n\nThe tree in the fourth test:\n\n![image](https://espresso.codeforces.com/d27b9a173bfc9e92877bcfb0c431235b23681931.png)",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。两个版本之间的区别在于 $n$ 的约束和时间限制。只有在两个版本的问题都解决后，才能进行 hack。**\n\n给定一棵有 $n$ 个顶点、以顶点 $1$ 为根的树。\n\n对于一个长度为 $n$ 的排列$^\\dagger$ $a$，令 $f(a)$ 表示满足以下条件的顶点对 $(u, v)$ 的数量：$a_u \\lt a_{\\operatorname{lca}(u, v)} \\lt a_v$。其中，$\\operatorname{lca}(u,v)$ 表示顶点 $u$ 和 $v$ 的[最近公共祖先](https://en.wikipedia.org/wiki/Lowest_common_ancestor)。\n\n求所有长度为 $n$ 的排列 $a$ 中，$f(a)$ 的最大值。\n\n$^\\dagger$ 长度为 $n$ 的排列是一个由 $n$ 个互不相同的、介于 $1$ 到 $n$ 之间的整数构成的数组，顺序任意。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 10^6$）。\n\n第二行包含 $n - 1$ 个整数 $p_2,p_3,\\ldots,p_n$（$1 \\le p_i \\lt i$），表示顶点 $i$ 和顶点 $p_i$ 之间存在一条边。\n\n## 输出格式\n\n输出 $f(a)$ 的最大值。\n\n## 说明\n\n第一个测试中的树：\n\n![image](https://espresso.codeforces.com/1f10963ce42748594dc364ee332507d7b0f4b423.png)\n\n一种可能的最优排列 $a$ 是 $[2, 1, 4, 5, 3]$，其中有 $4$ 对符合条件的顶点：\n\n- $(2, 3)$，因为 $\\operatorname{lca}(2, 3) = 1$ 且 $1 \\lt 2 \\lt 4$；\n- $(2, 4)$，因为 $\\operatorname{lca}(2, 4) = 1$ 且 $1 \\lt 2 \\lt 5$；\n- $(2, 5)$，因为 $\\operatorname{lca}(2, 5) = 1$ 且 $1 \\lt 2 \\lt 3$；\n- $(5, 4)$，因为 $\\operatorname{lca}(5, 4) = 3$ 且 $3 \\lt 4 \\lt 5$。\n\n第三个测试中的树：\n\n![image](https://espresso.codeforces.com/f8bdd46040c270d8b7d6e369b44cd6d4c758603c.png)\n\n第四个测试中的树：\n\n![image](https://espresso.codeforces.com/d27b9a173bfc9e92877bcfb0c431235b23681931.png)",
   "samples": [
     {
       "input": "5\n1 1 3 3\n",
@@ -45,5 +45,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:17:25.692Z"
+  "fetchedAt": "2026-10-30T22:17:25.692Z",
+  "translatedAt": "2026-11-04T02:38:31.351+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

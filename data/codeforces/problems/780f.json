@@ -4,7 +4,7 @@
   "contestId": 780,
   "index": "F",
   "title": "Axel and Marston in Bitland",
-  "titleZh": null,
+  "titleZh": "Bitland 中的 Axel 和 Marston",
   "url": "https://codeforces.com/contest/780/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "A couple of friends, Axel and Marston are travelling across the country of Bitland. There are $*n*$ towns in Bitland, with some pairs of towns connected by one-directional roads. Each road in Bitland is either a pedestrian road or a bike road. There can be multiple roads between any pair of towns, and may even be a road from a town to itself. However, no pair of roads shares the starting and the destination towns along with their types simultaneously.\n\nThe friends are now located in the town 1 and are planning the travel route. Axel enjoys walking, while Marston prefers biking. In order to choose a route diverse and equally interesting for both friends, they have agreed upon the following procedure for choosing the road types during the travel:\n\n- The route starts with a pedestrian route.\n- Suppose that a beginning of the route is written in a string $*s*$ of letters P (pedestrain road) and B (biking road). Then, the string ![image](https://espresso.codeforces.com/0c47731f8ef5064b94fbe8facf6404dbd51c3c7e.png) is appended to $*s*$, where ![image](https://espresso.codeforces.com/0c47731f8ef5064b94fbe8facf6404dbd51c3c7e.png) stands for the string $*s*$ with each character changed to opposite (that is, all pedestrian roads changed to bike roads, and vice versa).\n\nIn the first few steps the route will look as follows: P, PB, PBBP, PBBPBPPB, PBBPBPPBBPPBPBBP, and so on.\n\nAfter that the friends start travelling from the town 1 via Bitlandian roads, choosing the next road according to the next character of their route type each time. If it is impossible to choose the next road, the friends terminate their travel and fly home instead.\n\nHelp the friends to find the longest possible route that can be travelled along roads of Bitland according to the road types choosing procedure described above. If there is such a route with more than $10^{18}$ roads in it, print -1 instead.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ ($1 ≤ *n* ≤ 500$, $0 ≤ *m* ≤ 2*n*^{2}$) — the number of towns and roads in Bitland respectively.\n\nNext $*m*$ lines describe the roads. $*i*$-th of these lines contains three integers $*v*_{*i*}$, $*u*_{*i*}$ and $*t*_{*i*}$ ($1 ≤ *v*_{*i*}, *u*_{*i*} ≤ *n*$, $0 ≤ *t*_{*i*} ≤ 1$), where $*v*_{*i*}$ and $*u*_{*i*}$ denote start and destination towns indices of the $*i*$-th road, and $*t*_{*i*}$ decribes the type of $*i*$-th road (0 for a pedestrian road, 1 for a bike road). It is guaranteed that for each pair of distinct indices $*i*$, $*j*$ such that $1 ≤ *i*, *j* ≤ *m*$, either $*v*_{*i*} ≠ *v*_{*j*}$, or $*u*_{*i*} ≠ *u*_{*j*}$, or $*t*_{*i*} ≠ *t*_{*j*}$ holds.\n\n## Output\n\nIf it is possible to find a route with length strictly greater than $10^{18}$, print -1. Otherwise, print the maximum length of a suitable path.\n\n## Note\n\nIn the first sample we can obtain a route of length 3 by travelling along the road 1 from town 1 to town 2, and then following the road 2 twice from town 2 to itself.\n\nIn the second sample we can obtain an arbitrarily long route by travelling the road 1 first, and then choosing road 2 or 3 depending on the necessary type.",
-  "statementZhMd": null,
+  "statementZhMd": "Axel 和 Marston 是一对朋友，他们正在穿越 Bitland。Bitland 中有 $*n*$ 个城镇，其中一些城镇对之间由单向道路连接。Bitland 中的每条道路要么是步行道路，要么是自行车道路。任意两个城镇之间可以有多条道路，甚至一个城镇到自身也可以有道路。但是，不存在两条道路的起点、终点以及道路类型同时相同。\n\n两位朋友现在位于城镇 1，并计划制定旅行路线。Axel 喜欢步行，而 Marston 更喜欢骑自行车。为了选择一条对两位朋友来说都丰富且有趣的路线，他们约定按照以下过程选择旅行中的道路类型：\n\n- 路线以步行道路开始。\n- 假设路线的一个前缀由字母 P（步行道路）和 B（自行车道路）组成的字符串 $*s*$ 表示。接下来，将字符串 ![image](https://espresso.codeforces.com/0c47731f8ef5064b94fbe8facf6404dbd51c3c7e.png) 添加到 $*s*$ 的末尾，其中 ![image](https://espresso.codeforces.com/0c47731f8ef5064b94fbe8facf6404dbd51c3c7e.png) 表示将字符串 $*s*$ 中的每个字符替换为相反字符后得到的字符串（即将所有步行道路替换为自行车道路，反之亦然）。\n\n在最初的几步中，路线将如下所示：P、PB、PBBP、PBBPBPPB、PBBPBPPBBPPBPBBP，依此类推。\n\n之后，两位朋友从城镇 1 出发，沿 Bitland 的道路旅行，每次根据路线类型字符串中的下一个字符选择下一条道路。如果无法选择符合要求的下一条道路，他们将终止旅行并乘飞机回家。\n\n请帮助两位朋友找出一条能够按照上述道路类型选择过程在 Bitland 的道路上行驶的最长路线。如果存在长度超过 $10^{18}$ 条道路的路线，请输出 -1。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$（$1 ≤ *n* ≤ 500$，$0 ≤ *m* ≤ 2*n*^{2}$），分别表示 Bitland 中的城镇数和道路数。\n\n接下来的 $*m*$ 行描述道路。第 $*i*$ 行包含三个整数 $*v*_{*i*}$、$*u*_{*i*}$ 和 $*t*_{*i*}$（$1 ≤ *v*_{*i*}, *u*_{*i*} ≤ *n*$，$0 ≤ *t*_{*i*} ≤ 1$），其中 $*v*_{*i*}$ 和 $*u*_{*i*}$ 分别表示第 $*i*$ 条道路的起点和终点城镇编号，$*t*_{*i*}$ 表示第 $*i*$ 条道路的类型（0 表示步行道路，1 表示自行车道路）。保证对于任意两个不同的下标 $*i*$、$*j*$（$1 ≤ *i*, *j* ≤ *m*$），下列条件至少有一个成立：$*v*_{*i*} ≠ *v*_{*j*}$、$*u*_{*i*} ≠ *u*_{*j*}$ 或 $*t*_{*i*} ≠ *t*_{*j*}$。\n\n## 输出格式\n\n如果可以找到长度严格大于 $10^{18}$ 的路线，输出 -1。否则，输出符合条件的路线的最大长度。\n\n## 说明\n\n在第一个样例中，可以从城镇 1 沿道路 1 前往城镇 2，然后沿道路 2 从城镇 2 到自身两次，从而得到一条长度为 3 的路线。\n\n在第二个样例中，可以先沿道路 1 行驶，之后根据所需的道路类型选择道路 2 或道路 3，从而得到一条任意长的路线。",
   "samples": [
     {
       "input": "2 2\n1 2 0\n2 2 1\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:54:43.810Z"
+  "fetchedAt": "2026-10-31T00:54:43.810Z",
+  "translatedAt": "2026-11-04T06:15:18.079+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

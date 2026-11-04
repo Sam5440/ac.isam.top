@@ -4,14 +4,14 @@
   "contestId": 1424,
   "index": "C",
   "title": "Dušan's Railway",
-  "titleZh": null,
+  "titleZh": "Dušan's Railway",
   "url": "https://codeforces.com/contest/1424/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "As you may already know, Dušan is keen on playing with railway models. He has a big map with cities that are connected with railways. His map can be seen as a graph where vertices are cities and the railways connecting them are the edges. So far, the graph corresponding to his map is a tree. As you already know, a tree is a connected acyclic undirected graph.\n\nHe is curious to find out whether his railway can be optimized somehow. He wants to add so-called *shortcuts*, which are also railways connecting pairs of cities. This shortcut will *represent* the railways in the unique path in the tree between the pair of cities it connects. Since Dušan doesn't like repeating the railways, he has also defined good paths in his newly obtained network (notice that after adding the shortcuts, his graph is no more a tree). He calls a path *good*, if no edge appears more than once, either as a regular railway edge or as an edge represented by some shortcut (Every shortcut in a good path has length 1, but uses up all the edges it represents - they can't appear again in that path). Having defined good paths, he defines *good distance* between two cities to be the length of the shortest good path between them. Finally, the *shortcutting diameter* of his network is the largest good distance between any two cities.\n\nNow he is curious to find out whether it is possible to achieve shortcutting diameter less or equal than $k$, while adding as few shortcuts as possible.\n\n**Your solution should add no more than $\\mathbf{10 \\cdot n}$ shortcuts.**\n\n## Input\n\nThe first line in the standard input contains an integer $n$ ($1 \\le n \\le 10^4$), representing the number of the cities in Dušan's railway map, and an integer k ($3 \\le k \\le n$) representing the shortcutting diameter that he wants to achieve.\n\nEach of the following $n - 1$ lines will contain two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n, u_i \\neq v_i$), meaning that there is a railway between cities $u_i$ and $v_i$.\n\n## Output\n\nThe first line of the output should contain a number $t$ representing the number of the shortcuts that were added.\n\nEach of the following $t$ lines should contain two integers $u_i$ and $v_i$, signifying that a shortcut is added between cities $u_i$ and $v_i$.\n\n## Note\n\nNotice that adding a shortcut between all cities and city 1 will make a graph theoretic diameter become 2. On the other hand, the paths obtained that way might not be good, since some of the edges might get duplicated. In the example, adding a shortcut between all cities and city 1 doesn't create a valid solution, because for cities 5 and 10 the path that uses shortcuts 5-1 and 1-10 is not valid because it uses edges 1-2, 2-3, 3-4, 4-5 twice.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"杜尚的铁路\",\"bodyZh\":\"众所周知，杜尚喜欢摆弄铁路模型。他有一张很大的地图，上面有通过铁路连接起来的城市。这张地图可以看作一张图，其中顶点代表城市，连接城市的铁路代表边。到目前为止，与他的地图对应的图是一棵树。正如你所知，树是一种连通、无环的无向图。\\n\\n他很想知道自己的铁路是否可以进行某种优化。他希望添加一些所谓的*捷径*，它们同样是连接一对城市的铁路。这条捷径将*代表*树中连接它所连接的两个城市的唯一一条路径上的所有铁路。由于杜尚不喜欢重复使用铁路，他还为新得到的网络定义了*有效路径*（注意，添加捷径后，他的图不再是一棵树）。如果一条路径中没有任何一条边出现超过一次，则称其为*有效路径*；这里的边既包括普通铁路边，也包括某条捷径所代表的边（有效路径中的每条捷径长度均为 1，但会占用它所代表的全部边——这些边不能再次出现在该路径中）。\\n\\n定义了有效路径后，他将两个城市之间的*有效距离*定义为它们之间最短有效路径的长度。最后，他将网络的*捷径直径*定义为任意两个城市之间有效距离的最大值。\\n\\n现在，他想知道是否可以在添加尽可能少的捷径的同时，使捷径直径小于或等于 $k$。\\n\\n**你的方案添加的捷径数量不得超过 $\\mathbf{10 \\cdot n}$。**\\n\\n## 输入格式\\n\\n标准输入的第一行包含两个整数 $n$（$1 \\\\le n \\\\le 10^4$）和 k（$3 \\\\le k \\\\le n$）。$n$ 表示杜尚铁路地图中的城市数量，k 表示他希望达到的捷径直径。\\n\\n接下来的 $n - 1$ 行中，每行包含两个整数 $u_i$ 和 $v_i$（$1 \\\\le u_i, v_i \\\\le n, u_i \\\\neq v_i$），表示城市 $u_i$ 和城市 $v_i$ 之间有一条铁路。\\n\\n## 输出格式\\n\\n输出的第一行应包含一个整数 $t$，表示添加的捷径数量。\\n\\n接下来的 $t$ 行中，每行应包含两个整数 $u_i$ 和 $v_i$，表示在城市 $u_i$ 和城市 $v_i$ 之间添加一条捷径。\\n\\n## 说明\\n\\n注意，在所有城市与城市 1 之间添加捷径后，图论意义下的直径将变为 2。另一方面，这样得到的路径可能不是有效路径，因为某些边可能会被重复使用。在样例中，在所有城市与城市 1 之间添加捷径并不能构成有效方案，因为对于城市 5 和城市 10，使用捷径 5-1 和 1-10 的路径是无效的：它重复使用了边 1-2、2-3、3-4、4-5。\"}",
   "samples": [
     {
       "input": "10 3\n1 2\n2 3\n3 4\n4 5\n5 6\n6 7\n7 8\n8 9\n9 10\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:43:44.083Z"
+  "fetchedAt": "2026-11-02T18:43:44.083Z",
+  "translatedAt": "2026-11-04T04:19:26.725+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

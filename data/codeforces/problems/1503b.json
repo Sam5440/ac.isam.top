@@ -4,7 +4,7 @@
   "contestId": 1503,
   "index": "B",
   "title": "3-Coloring",
-  "titleZh": null,
+  "titleZh": "三染色",
   "url": "https://codeforces.com/contest/1503/problem/B",
   "difficulty": 1700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "**This is an interactive problem.**\n\nAlice and Bob are playing a game. There is $n\\times n$ grid, initially empty. We refer to the cell in row $i$ and column $j$ by $(i, j)$ for $1\\le i, j\\le n$. There is an infinite supply of tokens that come in $3$ colors labelled $1$, $2$, and $3$.\n\nThe game proceeds with turns as follows. Each turn begins with Alice naming one of the three colors, let's call it $a$. Then, Bob chooses a color $b\\ne a$, chooses an empty cell, and places a token of color $b$ on that cell.\n\nWe say that there is a **conflict** if there exist two adjacent cells containing tokens of the same color. Two cells are considered adjacent if they share a common edge.\n\nIf at any moment there is a conflict, Alice wins. Otherwise, if $n^2$ turns are completed (so that the grid becomes full) without any conflicts, Bob wins.\n\nWe have a proof that Bob has a winning strategy. Play the game as Bob and win.\n\nThe interactor is **adaptive**. That is, Alice's color choices can depend on Bob's previous moves.\n\n## Interaction\n\nThe interaction begins by reading a single integer $n$ ($2\\le n\\le 100$) — the size of the grid.\n\nThe turns of the game follow. You should begin each turn by reading an integer $a$ ($1\\le a\\le 3$) — Alice's chosen color.\n\nThen you must print three integers $b,i,j$ ($1\\le b\\le 3,b\\ne a, 1\\le i,j\\le n$) — denoting that Bob puts a token of color $b$ in the cell $(i, j)$. The cell $(i, j)$ must not contain a token from a previous turn. If your move is invalid or loses the game, the interaction is terminated and you will receive a **Wrong Answer** verdict.\n\nAfter $n^2$ turns have been completed, make sure to exit immediately to avoid getting unexpected verdicts.\n\nAfter printing something do not forget to output end of line and flush the output. Otherwise, you will get **Idleness limit exceeded**. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see documentation for other languages.\n\n**Hack Format**\n\nTo hack, use the following format.\n\nThe first line contains a single integer $n$ ($2\\le n\\le 100$).\n\nThe second line contains $n^2$ integers $a_1,\\ldots,a_{n^2}$ ($1\\le a_i\\le 3$), where $a_i$ denotes Alice's color on the $i$-th turn.\n\nThe interactor might deviate from the list of colors in your hack, but only if it forces Bob to lose.\n\n## Note\n\nThe final grid from the sample is pictured below. Bob wins because there are no two adjacent cells with tokens of the same color. $$\\begin{matrix}2&3\\\\3&1\\end{matrix}$$\n\nThe sample is only given to demonstrate the input and output format. It is not guaranteed to represent an optimal strategy for Bob or the real behavior of the interactor.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是一道交互题。**\n\nAlice 和 Bob 正在进行一个游戏。有一个 $n\\times n$ 的网格，初始时为空。我们用 $(i, j)$ 表示第 $i$ 行第 $j$ 列的单元格，其中 $1\\le i, j\\le n$。有无限供应的令牌，令牌有 $3$ 种颜色，分别标记为 $1$、$2$ 和 $3$。\n\n游戏按如下方式进行。每一轮开始时，Alice 说出三种颜色中的一种，记为 $a$。然后，Bob 选择一种满足 $b\\ne a$ 的颜色，并选择一个空单元格，在该单元格中放置一个颜色为 $b$ 的令牌。\n\n如果存在两个相邻的单元格，其中的令牌颜色相同，则称出现了**冲突**。如果两个单元格有公共边，则称它们相邻。\n\n如果在任何时刻出现冲突，Alice 获胜。否则，如果在没有出现任何冲突的情况下完成了 $n^2$ 轮游戏（此时网格已填满），则 Bob 获胜。\n\n我们已经证明 Bob 存在必胜策略。请以 Bob 的身份进行游戏并获胜。\n\n交互器是**自适应的**。也就是说，Alice 选择的颜色可能取决于 Bob 之前的操作。\n\n## 交互\n\n交互开始时，读入一个整数 $n$（$2\\le n\\le 100$），表示网格的大小。\n\n接下来进行游戏的各轮操作。每一轮开始时，你需要读入一个整数 $a$（$1\\le a\\le 3$），表示 Alice 选择的颜色。\n\n然后你必须输出三个整数 $b,i,j$（$1\\le b\\le 3,b\\ne a, 1\\le i,j\\le n$），表示 Bob 将颜色为 $b$ 的令牌放入单元格 $(i, j)$。单元格 $(i, j)$ 不能包含之前轮次放置的令牌。如果你的操作无效或导致游戏失败，交互将终止，并且你会收到 **Wrong Answer** 判定。\n\n完成 $n^2$ 轮操作后，请立即退出，以避免收到意外的判定结果。\n\n每次输出后不要忘记输出换行并刷新输出缓冲区。否则，你将收到 **Idleness limit exceeded**。为此，请使用：\n\n- `fflush(stdout)` 或 `cout.flush()`（C++）；\n- `System.out.flush()`（Java）；\n- `flush(output)`（Pascal）；\n- `stdout.flush()`（Python）；\n- 其他语言请参阅相应文档。\n\n**黑客格式**\n\n进行黑客测试时，请使用以下格式。\n\n第一行包含一个整数 $n$（$2\\le n\\le 100$）。\n\n第二行包含 $n^2$ 个整数 $a_1,\\ldots,a_{n^2}$（$1\\le a_i\\le 3$），其中 $a_i$ 表示第 $i$ 轮中 Alice 选择的颜色。\n\n交互器可能会偏离黑客数据中给出的颜色序列，但只有在这会迫使 Bob 失败时才会如此。\n\n## 说明\n\n样例中的最终网格如下图所示。由于不存在两个相邻且令牌颜色相同的单元格，因此 Bob 获胜。\n$$\\begin{matrix}2&3\\\\3&1\\end{matrix}$$\n\n样例仅用于展示输入和输出格式。不保证它代表 Bob 的最优策略或交互器的实际行为。",
   "samples": [
     {
       "input": "2\n1\n\n2\n\n1\n\n3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:34:35.932Z"
+  "fetchedAt": "2026-10-30T23:34:35.932Z",
+  "translatedAt": "2026-11-04T04:01:29.240+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1906,
   "index": "I",
   "title": "Contingency Plan 2",
-  "titleZh": null,
+  "titleZh": "应急预案 2",
   "url": "https://codeforces.com/contest/1906/problem/I",
   "difficulty": 2900,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 1024,
   "statementMd": "You are working as a manager in The ICPC Company. In the company building, there are $N$ computers (numbered from $1$ to $N$). There are $N - 1$ cables, numbered from $1$ to $N - 1$, that connect all the computers into a single network. Cable $i$ connects computer $U_i$ and $V_i$. Each cable can be set into emergency mode, where cable $i$ only transfers data from computer $U_i$ to computer $V_i$, but not the other way around. During a disaster, it is mandatory for all cables to be in emergency mode.\n\nThrough your research, you discover a new way to determine the vulnerability of a network. You want to add zero or more new cables to the current network such that it is **not vulnerable** during a disaster. Your network is not vulnerable if and only if there is **exactly one** permutation of $1$ to $N$ such that $u$ appears before $v$ in the permutation for all cables that connect computer $u$ and $v$. In other words, it should have exactly one topological order.\n\nThe following illustration shows examples of not vulnerable networks and vulnerable networks.\n\n![image](https://espresso.codeforces.com/a6a5a3dfe0c32878482528bfa470af552e8605e5.png)\n\nFor the not vulnerable networks, the only permutation that satisfies the requirement for the networks on the left and on the right are $[1, 2, 3]$ and $[3, 1, 2]$, respectively. Meanwhile, for the vulnerable networks, there are $2$ permutations that satisfy the requirement for the network on the left: $[1, 2, 3]$ and $[3, 1, 2]$; while there is no permutation that satisfies the requirement for the network on the right.\n\nYou are interested in the minimum number of new cables that should be added to the current network such that it is not vulnerable during a disaster. Furthermore, you want to know, which pairs of computers should be connected by using the minimum number of cables. If there are several ways to connect, you can connect in any way of your choice. Under the given constraints, it can be proven that there exists a way to make the network not vulnerable.\n\n## Input\n\nThe first line consists of an integer $N$ ($2 \\leq N \\leq 100\\,000$).\n\nEach of the next $N - 1$ lines consists of two integers $U_i$ $V_i$ ($1 \\leq U_i, V_i \\leq N$). The input edges form a tree.\n\n## Output\n\nThe first line consists of an integer, representing the minimum number of new cables that should be added to the current network such that it is no longer vulnerable during a disaster. Denote this number as $K$ and the new cables are numbered from $1$ to $K$.\n\nIf $K$ is not $0$, then output $K$ lines. Each of the next $K$ lines consists of two integers $A_i$ $B_i$, representing the computers that are connected by the new cable $i$. During a disaster, new cable $i$ only transfers data from computer $A_i$ to computer $B_i$, but not the other way around. If there exist several solutions, you can output any of them.\n\n## Note\n\n*Explanation for the sample input/output #3*\n\nThe following illustration shows the original network and the new network with the added cables during a disaster. The only permutation that satisfies the requirement is $[1, 2, 3, 4, 5]$.\n\n![image](https://espresso.codeforces.com/6408d1a248dccd91ff4903b49d6da8569a680451.png)",
-  "statementZhMd": null,
+  "statementZhMd": "你是 The ICPC Company 的一名经理。公司大楼内有 $N$ 台计算机（编号从 $1$ 到 $N$）。有 $N - 1$ 条线缆，编号从 $1$ 到 $N - 1$，将所有计算机连接成一个单一网络。线缆 $i$ 连接计算机 $U_i$ 和 $V_i$。每条线缆都可以设置为应急模式，在该模式下，线缆 $i$ 只能从计算机 $U_i$ 向计算机 $V_i$ 传输数据，而不能反向传输。在灾难期间，所有线缆都必须处于应急模式。\n\n通过研究，你发现了一种判断网络脆弱性的新方法。你希望向当前网络中添加零条或多条新线缆，使其在灾难期间**不脆弱**。当且仅当存在**恰好一个** $1$ 到 $N$ 的排列，使得对于所有连接计算机 $u$ 和 $v$ 的线缆，$u$ 在排列中都出现在 $v$ 之前时，你的网络才不脆弱。换句话说，网络应当恰好有一个拓扑序。\n\n下图展示了不脆弱网络和脆弱网络的示例。\n\n![image](https://espresso.codeforces.com/a6a3a5dfe0c32878482528bfa470af552e8605e5.png)\n\n对于不脆弱网络，左图和右图中的网络分别只有排列 $[1, 2, 3]$ 和 $[3, 1, 2]$ 满足要求。与此同时，对于脆弱网络，左图中的网络有 $2$ 个满足要求的排列：$[1, 2, 3]$ 和 $[3, 1, 2]$；而右图中的网络不存在满足要求的排列。\n\n你希望知道，为了使当前网络在灾难期间不脆弱，至少需要添加多少条新线缆。此外，你还想知道在使用最少线缆的情况下，应当连接哪些计算机。如果存在多种连接方式，你可以任选一种。在给定约束下，可以证明一定存在一种方法使网络变得不脆弱。\n\n## 输入格式\n\n第一行包含一个整数 $N$（$2 \\leq N \\leq 100\\,000$）。\n\n接下来的 $N - 1$ 行中，每行包含两个整数 $U_i$ 和 $V_i$（$1 \\leq U_i, V_i \\leq N$）。输入中的边构成一棵树。\n\n## 输出格式\n\n第一行输出一个整数，表示为了使当前网络在灾难期间不再脆弱，至少需要添加的新线缆数量。将该数量记为 $K$，新线缆编号从 $1$ 到 $K$。\n\n如果 $K$ 不为 $0$，则输出 $K$ 行。接下来的 $K$ 行中，每行包含两个整数 $A_i$ 和 $B_i$，表示新线缆 $i$ 连接的计算机。在灾难期间，新线缆 $i$ 只能从计算机 $A_i$ 向计算机 $B_i$ 传输数据，而不能反向传输。如果存在多种方案，你可以输出任意一种。\n\n## 说明\n\n*样例输入输出 #3 的解释*\n\n下图展示了原网络以及在灾难期间添加新线缆后的网络。满足要求的唯一排列是 $[1, 2, 3, 4, 5]$。\n\n![image](https://espresso.codeforces.com/6408d1a248dccd91ff4903b49d6da8569a680451.png)",
   "samples": [
     {
       "input": "3\n1 2\n3 2\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:19:14.687Z"
+  "fetchedAt": "2026-11-02T17:19:14.687Z",
+  "translatedAt": "2026-11-04T02:32:24.457+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

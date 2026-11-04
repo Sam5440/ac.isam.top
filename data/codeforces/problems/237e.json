@@ -4,7 +4,7 @@
   "contestId": 237,
   "index": "E",
   "title": "Build String",
-  "titleZh": null,
+  "titleZh": "构造字符串",
   "url": "https://codeforces.com/contest/237/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You desperately need to build some string $*t*$. For that you've got $*n*$ more strings $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$. To build string $*t*$, you are allowed to perform exactly $|*t*|$ ($|*t*|$ is the length of string $*t*$) operations on these strings. Each operation looks like that:\n\n1. choose any non-empty string from strings $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$;\n2. choose an arbitrary character from the chosen string and write it on a piece of paper;\n3. remove the chosen character from the chosen string.\n\nNote that after you perform the described operation, the total number of characters in strings $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$ decreases by 1. We are assumed to build string $*t*$, if the characters, written on the piece of paper, in the order of performed operations form string $*t*$.\n\nThere are other limitations, though. For each string $*s*_{*i*}$ you know number $*a*_{*i*}$ — the maximum number of characters you are allowed to delete from string $*s*_{*i*}$. You also know that each operation that results in deleting a character from string $*s*_{*i*}$, costs $*i*$ rubles. That is, an operation on string $*s*_{1}$ is the cheapest (it costs $1$ ruble), and the operation on string $*s*_{*n*}$ is the most expensive one (it costs $*n*$ rubles).\n\nYour task is to count the minimum amount of money (in rubles) you will need to build string $*t*$ by the given rules. Consider the cost of building string $*t*$ to be the sum of prices of the operations you use.\n\n## Input\n\nThe first line of the input contains string $*t*$ — the string that you need to build.\n\nThe second line contains a single integer $*n*$ $(1 ≤ *n* ≤ 100)$ — the number of strings to which you are allowed to apply the described operation. Each of the next $*n*$ lines contains a string and an integer. The $*i*$-th line contains space-separated string $*s*_{*i*}$ and integer $*a*_{*i*}$ $(0 ≤ *a*_{*i*} ≤ 100)$. Number $*a*_{*i*}$ represents the maximum number of characters that can be deleted from string $*s*_{*i*}$.\n\nAll strings in the input only consist of lowercase English letters. All strings are non-empty. The lengths of all strings do not exceed $100$ characters.\n\n## Output\n\nPrint a single number — the minimum money (in rubles) you need in order to build string $*t*$. If there is no solution, print -1.\n\n## Note\n\nNotes to the samples:\n\nIn the first sample from the first string you should take characters \"`b`\" and \"`z`\" with price $1$ ruble, from the second string characters \"`a`\", \"`e`\" и \"`b`\" with price $2$ rubles. The price of the string $*t*$ in this case is $2·1 + 3·2 = 8$.\n\nIn the second sample from the first string you should take two characters \"`a`\" with price $1$ ruble, from the second string character \"`c`\" with price $2$ rubles, from the third string two characters \"`a`\" with price $3$ rubles, from the fourth string two characters \"`b`\" with price $4$ rubles. The price of the string $*t*$ in this case is $2·1 + 1·2 + 2·3 + 2·4 = 18$.\n\nIn the third sample the solution doesn't exist because there is no character \"`y`\" in given strings.",
-  "statementZhMd": null,
+  "statementZhMd": "你急需构造出字符串 $*t*$。为此，你有 $*n*$ 个字符串 $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$。为了构造字符串 $*t*$，你可以对这些字符串进行恰好 $|*t*|$ 次操作（$|*t*|$ 是字符串 $*t*$ 的长度）。每次操作如下：\n\n1. 从字符串 $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$ 中选择任意一个非空字符串；\n2. 从选中的字符串中选择任意一个字符，并将其写在纸上；\n3. 从选中的字符串中删除所选字符。\n\n注意，执行上述操作后，字符串 $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$ 中的字符总数会减少 1。若按操作执行顺序写在纸上的字符组成字符串 $*t*$，则认为我们成功构造了字符串 $*t*$。\n\n不过，还有一些限制。对于每个字符串 $*s*_{*i}$，你知道一个数 $*a*_{*i}$——允许从字符串 $*s*_{*i}$ 中删除的字符数量上限。你还知道，每次从字符串 $*s*_{*i}$ 中删除字符的操作需要花费 $*i*$ 卢布。也就是说，对字符串 $*s*_{1}$ 的操作最便宜（花费 1 卢布），对字符串 $*s*_{*n*}$ 的操作最昂贵（花费 $*n*$ 卢布）。\n\n你的任务是计算按照给定规则构造字符串 $*t*$ 所需的最少金额（卢布）。构造字符串 $*t*$ 的费用定义为所使用的所有操作的价格之和。\n\n## 输入格式\n\n输入的第一行包含字符串 $*t*$——需要构造的字符串。\n\n第二行包含一个整数 $*n*$ $(1 ≤ *n* ≤ 100)$——允许执行上述操作的字符串数量。接下来的 $*n*$ 行中，每行包含一个字符串和一个整数。第 $*i*$ 行包含以空格分隔的字符串 $*s*_{*i*}$ 和整数 $*a*_{*i*}$ $(0 ≤ *a*_{*i*} ≤ 100)$。数字 $*a*_{*i*}$ 表示最多可以从字符串 $*s*_{*i*}$ 中删除的字符数量。\n\n输入中的所有字符串仅由小写英文字母组成。所有字符串均非空。所有字符串的长度均不超过 100 个字符。\n\n## 输出格式\n\n输出一个数——构造字符串 $*t*$ 所需的最少金额（卢布）。如果无解，输出 -1。\n\n## 说明\n\n样例说明：\n\n在第一个样例中，应从第一个字符串中取出字符 “`b`” 和 “`z`”，每个字符花费 1 卢布；从第二个字符串中取出字符 “`a`”、 “`e`” 和 “`b`”，每个字符花费 2 卢布。此时构造字符串 $*t*$ 的费用为 $2·1 + 3·2 = 8$。\n\n在第二个样例中，应从第一个字符串中取出两个字符 “`a`”，每个字符花费 1 卢布；从第二个字符串中取出字符 “`c`”，花费 2 卢布；从第三个字符串中取出两个字符 “`a`”，每个字符花费 3 卢布；从第四个字符串中取出两个字符 “`b`”，每个字符花费 4 卢布。总费用为 $2·1 + 1·2 + 2·3 + 2·4 = 18$。\n\n在第三个样例中无解，因为给定的字符串中不存在字符 “`y`”。",
   "samples": [
     {
       "input": "bbaze\n3\nbzb 2\naeb 3\nba 10\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:16:42.412Z"
+  "fetchedAt": "2026-10-31T02:16:42.412Z",
+  "translatedAt": "2026-11-04T07:34:12.185+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

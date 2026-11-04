@@ -4,7 +4,7 @@
   "contestId": "arc172",
   "index": "F",
   "title": "Walking",
-  "titleZh": null,
+  "titleZh": "行走",
   "url": "https://atcoder.jp/contests/arc172/tasks/arc172_f",
   "difficulty": 3474,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThe Kingdom of AtCoder has $2N$ intersections labeled with numbers from $1$ to $2N$. Additionally, there are three types of **one-way** roads in the kingdom:\n\n- **Type A:** For each $2 \\leq i \\leq N$, there is a road from intersection $2i-3$ to intersection $2i-1$.\n- **Type B:** For each $2 \\leq i \\leq N$, there is a road from intersection $2i-2$ to intersection $2i$.\n- **Type C:** For each $1 \\leq i \\leq N$, there is a road connecting intersection $2i-1$ and intersection $2i$ with direction $s_i$.\n\nHere, $s_i$ is `X` or `Y`, where direction `X` means the road goes from intersection $2i-1$ to intersection $2i$, and direction `Y` means it goes from intersection $2i$ to intersection $2i-1$.\n\nTakahashi wants to **walk** several times so that for each $1 \\leq i \\leq N$, the direction of Type-C road connecting intersections $2i-1$ and $2i$ will be $t_i$.\n\n> **What is a walk?**\n> \n> Start at any intersection and repeat the following action zero or more times:\n> \n> - If it is possible to proceed to a Type-C road from the current intersection, walk along the Type-C road to the next intersection.\n> - Otherwise, if it is possible to proceed to a Type-A or B road from the current intersection, walk along that road to the next intersection.\n> \n> Then, reverse the directions of all Type-C roads that were passed.\n\nCalculate the minimum number of walks needed to achieve the goal and provide one method to achieve the goal in the minimum number of walks. Under the constraints of this problem, it can be proved that the goal can be achieved in a finite number of walks.\n\n## Constraints\n\n- $N$ is an integer such that $1 \\leq N \\leq 4000$.\n- Each of $s_1, s_2, \\dots, s_N$ is `X` or `Y`.\n- Each of $t_1, t_2, \\dots, t_N$ is `X` or `Y`.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\ns_1 s_2 \\cdots s_N\nt_1 t_2 \\cdots t_N\n```\n\n## Output\n\nPrint your solution in the following format, where $X$ is the number of walks, and the $i$-th walk $(1 \\leq i \\leq X)$ starts at intersection $a_i$ and finishes at intersection $b_i$.\n\n```\nX\na_1 b_1\na_2 b_2\n\\vdots\na_X b_X\n```",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nAtCoder 王国有 $2N$ 个路口，编号为 $1$ 至 $2N$。此外，王国中还有以下三种**单向**道路：\n\n- **A 类：** 对于每个 $2 \\leq i \\leq N$，有一条从路口 $2i-3$ 通往路口 $2i-1$ 的道路。\n- **B 类：** 对于每个 $2 \\leq i \\leq N$，有一条从路口 $2i-2$ 通往路口 $2i$ 的道路。\n- **C 类：** 对于每个 $1 \\leq i \\leq N$，有一条连接路口 $2i-1$ 和路口 $2i$、方向为 $s_i$ 的道路。\n\n其中，$s_i$ 为 `X` 或 `Y`。方向 `X` 表示道路从路口 $2i-1$ 通往路口 $2i$，方向 `Y` 表示道路从路口 $2i$ 通往路口 $2i-1$。\n\n高桥想要**行走**若干次，使得对于每个 $1 \\leq i \\leq N$，连接路口 $2i-1$ 和路口 $2i$ 的 C 类道路的方向变为 $t_i$。\n\n> **什么是行走？**\n> \n> 从任意一个路口出发，重复以下操作零次或多次：\n> \n> - 如果当前路口可以通向 C 类道路，则沿着 C 类道路走到下一个路口。\n> - 否则，如果当前路口可以通向 A 类或 B 类道路，则沿着该道路走到下一个路口。\n> \n> 然后，将所有经过的 C 类道路的方向反转。\n\n请计算达到目标所需的最少行走次数，并给出一种用最少行走次数达到目标的方法。在本题的约束条件下，可以证明目标一定能在有限次行走后达成。\n\n## 约束条件\n\n- $N$ 是满足 $1 \\leq N \\leq 4000$ 的整数。\n- $s_1, s_2, \\dots, s_N$ 中的每一个都是 `X` 或 `Y`。\n- $t_1, t_2, \\dots, t_N$ 中的每一个都是 `X` 或 `Y`。\n\n## 输入格式\n\n输入从标准输入中按以下格式给出：\n\n```\nN\ns_1 s_2 \\cdots s_N\nt_1 t_2 \\cdots t_N\n```\n\n## 输出格式\n\n请按照以下格式输出你的方案，其中 $X$ 表示行走次数，第 $i$ 次行走 $(1 \\leq i \\leq X)$ 从路口 $a_i$ 出发，在路口 $b_i$ 结束。\n\n```\nX\na_1 b_1\na_2 b_2\n\\vdots\na_X b_X\n```",
   "samples": [
     {
       "input": "5\nXYXYX\nXXYXX\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:10:11.671Z"
+  "fetchedAt": "2026-10-30T21:10:11.671Z",
+  "translatedAt": "2026-11-04T02:26:39.266+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

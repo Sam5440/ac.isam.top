@@ -4,14 +4,14 @@
   "contestId": 876,
   "index": "D",
   "title": "Sorting the Coins",
-  "titleZh": null,
+  "titleZh": "硬币排序",
   "url": "https://codeforces.com/contest/876/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 512,
   "statementMd": "Recently, Dima met with Sasha in a philatelic store, and since then they are collecting coins together. Their favorite occupation is to sort collections of coins. Sasha likes having things in order, that is why he wants his coins to be arranged in a row in such a way that firstly come coins out of circulation, and then come coins still in circulation.\n\nFor arranging coins Dima uses the following algorithm. One step of his algorithm looks like the following:\n\n1. He looks through all the coins from left to right;\n2. If he sees that the $*i*$-th coin is still in circulation, and $(*i* + 1)$-th coin is already out of circulation, he exchanges these two coins and continues watching coins from $(*i* + 1)$-th.\n\nDima repeats the procedure above until it happens that no two coins were exchanged during this procedure. Dima calls *hardness of ordering* the number of steps required for him according to the algorithm above to sort the sequence, e.g. the number of times he looks through the coins from the very beginning. For example, for the ordered sequence hardness of ordering equals one.\n\nToday Sasha invited Dima and proposed him a game. First he puts $*n*$ coins in a row, all of them are out of circulation. Then Sasha chooses one of the coins out of circulation and replaces it with a coin in circulation for $*n*$ times. During this process Sasha constantly asks Dima what is the hardness of ordering of the sequence.\n\nThe task is more complicated because Dima should not touch the coins and he should determine hardness of ordering in his mind. Help Dima with this task.\n\n## Input\n\nThe first line contains single integer $*n*$ ($1 ≤ *n* ≤ 300 000$) — number of coins that Sasha puts behind Dima.\n\nSecond line contains $*n*$ distinct integers $*p*_{1}, *p*_{2}, ..., *p*_{*n*}$ ($1 ≤ *p*_{*i*} ≤ *n*$) — positions that Sasha puts coins in circulation to. At first Sasha replaces coin located at position $*p*_{1}$, then coin located at position $*p*_{2}$ and so on. Coins are numbered from left to right.\n\n## Output\n\nPrint $*n* + 1$ numbers $*a*_{0}, *a*_{1}, ..., *a*_{*n*}$, where $*a*_{0}$ is a hardness of ordering at the beginning, $*a*_{1}$ is a hardness of ordering after the first replacement and so on.\n\n## Note\n\nLet's denote as `O` coin out of circulation, and as `X` — coin is circulation.\n\nAt the first sample, initially in row there are coins that are not in circulation, so Dima will look through them from left to right and won't make any exchanges.\n\nAfter replacement of the first coin with a coin in circulation, Dima will exchange this coin with next three times and after that he will finally look through the coins and finish the process.\n\n`XOOO` $→$ `OOOX`\n\nAfter replacement of the third coin, Dima's actions look this way:\n\n`XOXO` $→$ `OXOX` $→$ `OOXX`\n\nAfter replacement of the fourth coin, Dima's actions look this way:\n\n`XOXX` $→$ `OXXX`\n\nFinally, after replacement of the second coin, row becomes consisting of coins that are in circulation and Dima will look through coins from left to right without any exchanges.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，Dima 在一家集邮商店遇到了 Sasha，从那以后，他们开始一起收集硬币。他们最喜欢的事情就是整理硬币收藏。Sasha 喜欢井然有序的事物，因此他希望将硬币排成一行，使得首先是已经退出流通的硬币，然后是仍在流通的硬币。\n\n为了整理硬币，Dima 使用如下算法。算法的一步如下：\n\n1. 他从左到右查看所有硬币；\n2. 如果他发现第 $*i*$ 枚硬币仍在流通，而第 $(*i* + 1)$ 枚硬币已经退出流通，那么他就交换这两枚硬币，并继续从第 $(*i* + 1)$ 枚硬币开始查看。\n\nDima 不断重复上述过程，直到在某次过程中没有交换任何两枚硬币。Dima 将按照上述算法对序列进行排序所需的步骤数称为“排序难度”，也就是他从头到尾查看硬币的次数。例如，对于已经有序的序列，排序难度等于 1。\n\n今天，Sasha 邀请 Dima 玩一个游戏。开始时，他将 $*n*$ 枚硬币排成一行，所有硬币都已经退出流通。然后，Sasha 选择一枚已经退出流通的硬币，并将其替换为一枚仍在流通的硬币，共进行 $*n*$ 次。在此过程中，Sasha 不断询问 Dima 当前序列的排序难度。\n\n问题变得更加复杂，因为 Dima 不能实际移动硬币，而必须在脑中确定排序难度。请帮助 Dima 完成这个任务。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 300 000$），表示 Sasha 放在 Dima 面前的硬币数量。\n\n第二行包含 $*n*$ 个互不相同的整数 $*p*_{1}, *p*_{2}, ..., *p*_{*n*}$（$1 ≤ *p*_{*i*} ≤ *n*$），表示 Sasha 将哪些位置的硬币替换为仍在流通的硬币。首先，Sasha 将位于位置 $*p*_{1}$ 的硬币替换，然后将位于位置 $*p*_{2}$ 的硬币替换，依此类推。硬币从左到右编号。\n\n## 输出格式\n\n输出 $*n* + 1$ 个数 $*a*_{0}, *a*_{1}, ..., *a*_{*n*}$，其中 $*a*_{0}$ 是开始时的排序难度，$*a*_{1}$ 是第一次替换后的排序难度，依此类推。\n\n## 说明\n\n我们用 `O` 表示已经退出流通的硬币，用 `X` 表示仍在流通的硬币。\n\n在第一个样例中，初始时整行都是已经退出流通的硬币，因此 Dima 会从左到右查看它们，但不会进行任何交换。\n\n将第一枚硬币替换为仍在流通的硬币后，Dima 会将它与后面的硬币交换三次，之后他会再次查看整行硬币并结束这一过程。\n\n`XOOO` $→$ `OOOX`\n\n将第三枚硬币替换后，Dima 的操作如下：\n\n`XOXO` $→$ `OXOX` $→$ `OOXX`\n\n将第四枚硬币替换后，Dima 的操作如下：\n\n`XOXX` $→$ `OXXX`\n\n最后，将第二枚硬币替换后，整行都变成了仍在流通的硬币，Dima 会从左到右查看硬币，且不会进行任何交换。",
   "samples": [
     {
       "input": "4\n1 3 4 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:42:29.690Z"
+  "fetchedAt": "2026-10-31T00:42:29.690Z",
+  "translatedAt": "2026-11-04T05:59:30.175+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

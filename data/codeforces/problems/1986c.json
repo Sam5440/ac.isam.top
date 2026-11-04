@@ -4,7 +4,7 @@
   "contestId": 1986,
   "index": "C",
   "title": "Update Queries",
-  "titleZh": null,
+  "titleZh": "更新查询",
   "url": "https://codeforces.com/contest/1986/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let's consider the following simple problem. You are given a string $s$ of length $n$, consisting of lowercase Latin letters, as well as an array of indices $ind$ of length $m$ ($1 \\leq ind_i \\leq n$) and a string $c$ of length $m$, consisting of lowercase Latin letters. Then, in order, you perform the update operations, namely, during the $i$-th operation, you set $s_{ind_i} = c_i$. Note that you perform all $m$ operations from the first to the last.\n\nOf course, if you change the order of indices in the array $ind$ and/or the order of letters in the string $c$, you can get different results. Find the lexicographically smallest string $s$ that can be obtained after $m$ update operations, if you can rearrange the indices in the array $ind$ and the letters in the string $c$ as you like.\n\nA string $a$ is lexicographically less than a string $b$ if and only if one of the following conditions is met:\n\n- $a$ is a prefix of $b$, but $a \\neq b$;\n- in the first position where $a$ and $b$ differ, the symbol in string $a$ is earlier in the alphabet than the corresponding symbol in string $b$.\n\n## Input\n\nEach test consists of several sets of input data. The first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of sets of input data. Then follows their description.\n\nThe first line of each set of input data contains two integers $n$ and $m$ ($1 \\leq n, m \\leq 10^5$) — the length of the string $s$ and the number of updates.\n\nThe second line of each set of input data contains a string $s$ of length $n$, consisting of lowercase Latin letters.\n\nThe third line of each set of input data contains $m$ integers $ind_1, ind_2, \\ldots, ind_m$ ($1 \\leq ind_i \\leq n$) — the array of indices $ind$.\n\nThe fourth line of each set of input data contains a string $c$ of length $m$, consisting of lowercase Latin letters.\n\nIt is guaranteed that the sum of $n$ over all sets of input data does not exceed $2 \\cdot 10^5$. Similarly, the sum of $m$ over all sets of input data does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each set of input data, output the lexicographically smallest string $s$ that can be obtained by rearranging the indices in the array $ind$ and the letters in the string $c$ as you like.\n\n## Note\n\nIn the first set of input data, you can leave the array $ind$ and the string $c$ unchanged and simply perform all operations in that order.\n\nIn the second set of input data, you can set the array $ind = [1, 1, 4, 2]$ and $c =$ \"`zczw`\". Then the string $s$ will change as follows: $meow \\rightarrow zeow \\rightarrow ceow \\rightarrow ceoz \\rightarrow cwoz$.\n\nIn the third set of input data, you can leave the array $ind$ unchanged and set $c = $ \"`admn`\". Then the string $s$ will change as follows: $abacaba \\rightarrow abacaba \\rightarrow abdcaba \\rightarrow abdcmba \\rightarrow abdcmbn$.",
-  "statementZhMd": null,
+  "statementZhMd": "让我们考虑如下简单的问题。给定一个长度为 $n$ 的字符串 $s$，其中只包含小写拉丁字母；给定一个长度为 $m$ 的下标数组 $ind$（$1 \\leq ind_i \\leq n$）；以及一个长度为 $m$、只包含小写拉丁字母的字符串 $c$。随后，按照顺序执行更新操作，即在第 $i$ 次操作中，将 $s_{ind_i}$ 设为 $c_i$。注意，所有 $m$ 次操作都按从第一次到最后一次的顺序执行。\n\n当然，如果改变数组 $ind$ 中下标的顺序和/或字符串 $c$ 中字母的顺序，最终可能得到不同的结果。现在，如果你可以任意重排数组 $ind$ 中的下标以及字符串 $c$ 中的字母，求执行 $m$ 次更新操作后能够得到的字典序最小的字符串 $s$。\n\n当且仅当满足以下条件之一时，字符串 $a$ 的字典序小于字符串 $b$：\n\n- $a$ 是 $b$ 的前缀，且 $a \\neq b$；\n- 在 $a$ 和 $b$ 首个不同的位置，字符串 $a$ 中的字符在字母表中早于字符串 $b$ 中对应的字符。\n\n## 输入格式\n\n每个测试由若干组输入数据组成。第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——输入数据的组数。接下来描述这些输入数据。\n\n每组输入数据的第一行包含两个整数 $n$ 和 $m$（$1 \\leq n, m \\leq 10^5$）——字符串 $s$ 的长度以及更新操作的次数。\n\n每组输入数据的第二行包含一个长度为 $n$ 的字符串 $s$，其中只包含小写拉丁字母。\n\n每组输入数据的第三行包含 $m$ 个整数 $ind_1, ind_2, \\ldots, ind_m$（$1 \\leq ind_i \\leq n$）——下标数组 $ind$。\n\n每组输入数据的第四行包含一个长度为 $m$ 的字符串 $c$，其中只包含小写拉丁字母。\n\n保证所有输入数据中 $n$ 的总和不超过 $2 \\cdot 10^5$。同样保证所有输入数据中 $m$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组输入数据，输出通过任意重排数组 $ind$ 中的下标以及字符串 $c$ 中的字母后，能够得到的字典序最小的字符串 $s$。\n\n## 说明\n\n在第一组输入数据中，可以保持数组 $ind$ 和字符串 $c$ 不变，直接按照给定顺序执行所有操作。\n\n在第二组输入数据中，可以设置数组 $ind = [1, 1, 4, 2]$，并令 $c =$ \"`zczw`\"。此时字符串 $s$ 的变化过程如下：$meow \\rightarrow zeow \\rightarrow ceow \\rightarrow ceoz \\rightarrow cwoz$。\n\n在第三组输入数据中，可以保持数组 $ind$ 不变，并令 $c = $ \"`admn`\"。此时字符串 $s$ 的变化过程如下：$abacaba \\rightarrow abacaba \\rightarrow abdcaba \\rightarrow abdcmba \\rightarrow abdcmbn$。",
   "samples": [
     {
       "input": "4\n1 2\na\n1 1\ncb\n4 4\nmeow\n1 2 1 4\nzcwz\n7 4\nabacaba\n1 3 5 7\ndamn\n7 10\ntraktor\n7 6 5 4 3 2 1 6 4 2\ncodeforces\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:08:45.677Z"
+  "fetchedAt": "2026-11-02T17:08:45.677Z",
+  "translatedAt": "2026-11-04T02:11:49.745+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

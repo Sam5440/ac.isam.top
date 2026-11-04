@@ -4,7 +4,7 @@
   "contestId": 1750,
   "index": "E",
   "title": "Bracket Cost",
-  "titleZh": null,
+  "titleZh": "括号成本",
   "url": "https://codeforces.com/contest/1750/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Daemon Targaryen decided to stop looking like a Metin2 character. He turned himself into the most beautiful thing, a bracket sequence.\n\nFor a bracket sequence, we can do two kind of operations:\n\n- Select one of its substrings$^\\dagger$ and cyclic shift it to the right. For example, after a cyclic shift to the right, \"`(())`\" will become \"`)(()`\";\n- Insert any bracket, opening '`(`' or closing '`)`', wherever you want in the sequence.\n\nWe define the *cost* of a bracket sequence as the **minimum** number of such operations to make it balanced$^\\ddagger$.\n\nGiven a bracket sequence $s$ of length $n$, find the sum of costs across all its $\\frac{n(n+1)}{2}$ non-empty substrings. Note that for each substring we calculate the cost **independently**.\n\n$^\\dagger$ A string $a$ is a substring of a string $b$ if $a$ can be obtained from $b$ by deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.\n\n$^\\ddagger$ A sequence of brackets is called balanced if one can turn it into a valid math expression by adding characters $+$ and $1$. For example, sequences \"`(())()`\", \"`()`\", and \"`(()(()))`\" are balanced, while \"`)(`\", \"`(()`\", and \"`(()))(`\" are not.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 10^5$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the bracket sequence.\n\nThe second line of each test case contains a string $s$, consisting only of characters '`(`' and '`)`', of length $n$ — the bracket sequence.\n\nIt is guaranteed that sum of $n$ across all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the sum of costs of all substrings of $s$.\n\n## Note\n\nIn the first test case, there is the only substring \"`)`\". Its cost is $1$ because we can insert '`(`' to the beginning of this substring and get a string \"`()`\", that is a balanced string.\n\nIn the second test case, the cost of each substring of length one is $1$. The cost of a substring \"`)(`\" is $1$ because we can cyclically shift it to right and get a string \"`()`\". The cost of strings \"`)()`\" and \"`()(`\" is $1$ because its enough to insert one bracket to each of them. The cost of substring \"`)()(`\" is $1$ because we can cyclically shift it to right and get a string \"`()()`\". So there are $4 + 2 + 2 + 1 = 9$ substring of cost $1$ and $1$ substring of cost $0$. So the sum of the costs is $9$.\n\nIn the third test case,\n\n- \"`(`\", the cost is $1$;\n- \"`()`\", the cost is $0$;\n- \"`())`\", the cost is $1$;\n- \"`)`\", the cost is $1$;\n- \"`))`\", the cost is $2$;\n- \"`)`\", the cost is $1$.\n\nSo the sum of the costs is $6$.",
-  "statementZhMd": null,
+  "statementZhMd": "Daemon Targaryen 决定不再让自己看起来像《Metin2》中的角色。他把自己变成了最美丽的东西——一个括号序列。\n\n对于括号序列，我们可以进行以下两种操作：\n\n- 选择其中的一个子串$^\\dagger$，将其循环右移。例如，循环右移后，`(())` 会变成 `)(()`；\n- 在序列中的任意位置插入一个括号，可以是左括号 `(`，也可以是右括号 `)`。\n\n我们将一个括号序列的*成本*定义为将其变为平衡括号序列$^\\ddagger$所需的上述操作次数的**最小值**。\n\n给定一个长度为 $n$ 的括号序列 $s$，求其所有 $\\frac{n(n+1)}{2}$ 个非空子串的成本之和。注意，对于每个子串，我们都要**独立地**计算其成本。\n\n$^\\dagger$ 如果字符串 $a$ 可以通过从字符串 $b$ 的开头删除若干个（可以为零个或全部）字符，并从结尾删除若干个（可以为零个或全部）字符得到，则称 $a$ 是 $b$ 的子串。\n\n$^\\ddagger$ 如果一个括号序列可以通过添加字符 `+` 和 `1` 将其变为一个合法的数学表达式，则称该括号序列是平衡的。例如，`(())()`、`()` 和 `(()(()))` 是平衡的，而 `)(`、`(()` 和 `(()))(` 不是平衡的。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 10^5$），表示测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 2 \\cdot 10^5$），表示括号序列的长度。\n\n每个测试用例的第二行包含一个长度为 $n$ 的字符串 $s$，仅由字符 `(` 和 `)` 组成，表示括号序列。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示 $s$ 的所有子串的成本之和。\n\n## 说明\n\n在第一个测试用例中，只有一个子串 `)`。它的成本为 $1$，因为我们可以在该子串的开头插入 `(`，得到字符串 `()`，这是一个平衡括号序列。\n\n在第二个测试用例中，所有长度为 $1$ 的子串的成本均为 $1$。子串 `)(` 的成本为 $1$，因为我们可以将其循环右移，得到字符串 `()`。字符串 `)()` 和 `()(` 的成本为 $1$，因为只需向其中插入一个括号。子串 `)()(` 的成本为 $1$，因为我们可以将其循环右移，得到字符串 `()()`。因此，有 $4 + 2 + 2 + 1 = 9$ 个成本为 $1$ 的子串，以及 $1$ 个成本为 $0$ 的子串。所以成本之和为 $9$。\n\n在第三个测试用例中，\n\n- `(` 的成本为 $1$；\n- `()` 的成本为 $0$；\n- `())` 的成本为 $1$；\n- `)` 的成本为 $1$；\n- `))` 的成本为 $2$；\n- `)` 的成本为 $1$。\n\n因此，成本之和为 $6$。",
   "samples": [
     {
       "input": "5\n1\n)\n4\n)()(\n3\n())\n5\n(((((\n10\n)(())))())\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:44:18.673Z"
+  "fetchedAt": "2026-10-30T22:44:18.673Z",
+  "translatedAt": "2026-11-04T03:08:28.445+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

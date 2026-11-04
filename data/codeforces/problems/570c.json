@@ -4,7 +4,7 @@
   "contestId": 570,
   "index": "C",
   "title": "Replacement",
-  "titleZh": null,
+  "titleZh": "替换",
   "url": "https://codeforces.com/contest/570/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Daniel has a string $*s*$, consisting of lowercase English letters and period signs (characters '`.`'). Let's define the operation of *replacement* as the following sequence of steps: find a substring \"`..`\" (two consecutive periods) in string $*s*$, of all occurrences of the substring let's choose the first one, and replace this substring with string \"`.`\". In other words, during the replacement operation, the first two consecutive periods are replaced by one. If string $*s*$ contains no two consecutive periods, then nothing happens.\n\nLet's define $*f*(*s*)$ as the minimum number of operations of *replacement* to perform, so that the string does not have any two consecutive periods left.\n\nYou need to process $*m*$ queries, the $*i*$-th results in that the character at position $*x*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ *n*$) of string $*s*$ is assigned value $*c*_{*i*}$. After each operation you have to calculate and output the value of $*f*(*s*)$.\n\nHelp Daniel to process all queries.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 300 000$) the length of the string and the number of queries.\n\nThe second line contains string $*s*$, consisting of $*n*$ lowercase English letters and period signs.\n\nThe following $*m*$ lines contain the descriptions of queries. The $*i*$-th line contains integer $*x*_{*i*}$ and $*c*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ *n*$, $*c*_{*i*}$ — a lowercas English letter or a period sign), describing the query of assigning symbol $*c*_{*i*}$ to position $*x*_{*i*}$.\n\n## Output\n\nPrint $*m*$ numbers, one per line, the $*i*$-th of these numbers must be equal to the value of $*f*(*s*)$ after performing the $*i*$-th assignment.\n\n## Note\n\nNote to the first sample test (replaced periods are enclosed in square brackets).\n\nThe original string is \"`.b..bz....`\".\n\n- after the first query $*f*($`hb..bz....`$)$ = 4 (\"`hb[..]bz....`\" $→$ \"`hb.bz[..]..`\" $→$ \"`hb.bz[..].`\" $→$ \"`hb.bz[..]`\" $→$ \"`hb.bz.`\")\n- after the second query $*f*($`hbс.bz....`$)$ = 3 (\"`hbс.bz[..]..`\" $→$ \"`hbс.bz[..].`\" $→$ \"`hbс.bz[..]`\" $→$ \"`hbс.bz.`\")\n- after the third query $*f*($`hbс.bz..f.`$)$ = 1 (\"`hbс.bz[..]f.`\" $→$ \"`hbс.bz.f.`\")\n\nNote to the second sample test.\n\nThe original string is \"`.cc.`\".\n\n- after the first query: $*f*($`..c.`$)$ = 1 (\"`[..]c.`\" $→$ \"`.c.`\")\n- after the second query: $*f*($`....`$)$ = 3 (\"`[..]..`\" $→$ \"`[..].`\" $→$ \"`[..]`\" $→$ \"`.`\")\n- after the third query: $*f*($`.a..`$)$ = 1 (\"`.a[..]`\" $→$ \"`.a.`\")\n- after the fourth query: $*f*($`aa..`$)$ = 1 (\"`aa[..]`\" $→$ \"`aa.`\")",
-  "statementZhMd": null,
+  "statementZhMd": "Daniel 有一个字符串 $*s*$，由小写英文字母和句点（字符 '`.'`）组成。我们将*替换*操作定义为以下步骤：在字符串 $*s*$ 中找到子串 \"`..`\"（两个连续的句点），如果存在多个这样的子串，则选择最靠前的一个，并将该子串替换为字符串 \"`.`\"。换句话说，在一次替换操作中，最前面的两个连续句点会被替换为一个句点。如果字符串 $*s*$ 中不存在两个连续的句点，则不进行任何操作。\n\n定义 $*f*(*s*)$ 为执行若干次*替换*操作，使字符串中不再存在两个连续句点所需的最少操作次数。\n\n你需要处理 $*m*$ 次查询，第 $*i*$ 次查询会将字符串 $*s*$ 中位置 $*x*_{*i}$（$1 ≤ *x*_{*i} ≤ *n*$）的字符赋值为 $*c*_{*i}$。每次操作后，你都需要计算并输出 $*f*(*s*)$ 的值。\n\n请帮助 Daniel 处理所有查询。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$（$1 ≤ *n*, *m* ≤ 300 000$），分别表示字符串的长度和查询次数。\n\n第二行包含字符串 $*s*$，由 $*n*$ 个小写英文字母和句点组成。\n\n接下来的 $*m*$ 行描述查询。第 $*i*$ 行包含整数 $*x*_{*i}$ 和 $*c*_{*i}$（$1 ≤ *x*_{*i} ≤ *n*$，$*c*_{*i}$ 是一个小写英文字母或句点），表示将位置 $*x*_{*i}$ 的字符赋值为符号 $*c*_{*i}$。\n\n## 输出格式\n\n输出 $*m*$ 个数，每行一个。第 $*i*$ 个数必须等于执行第 $*i*$ 次赋值操作后 $*f*(*s*)$ 的值。\n\n## 说明\n\n第一个样例的说明（被替换的句点用方括号括起）。\n\n原字符串为 \"`.b..bz....`\"。\n\n- 第一次查询后 $*f*($`hb..bz....`$)$ = 4（\"`hb[..]bz....`\" → \"`hb.bz[..]..`\" → \"`hb.bz[..].`\" → \"`hb.bz[..]`\" → \"`hb.bz.`\"）\n- 第二次查询后 $*f*($`hbс.bz....`$)$ = 3（\"`hbс.bz[..]..`\" → \"`hbс.bz[..].`\" → \"`hbс.bz[..]`\" → \"`hbс.bz.`\"）\n- 第三次查询后 $*f*($`hbс.bz..f.`$)$ = 1（\"`hbс.bz[..]f.`\" → \"`hbс.bz.f.`\"）\n\n第二个样例的说明。\n\n原字符串为 \"`.cc.`\"。\n\n- 第一次查询后：$*f*($`..c.`$)$ = 1（\"`[..]c.`\" → \"`.c.`\"）\n- 第二次查询后：$*f*($`....`$)$ = 3（\"`[..]..`\" → \"`[..].`\" → \"`[..]`\" → \"`.`\"）\n- 第三次查询后：$*f*($`.a..`$)$ = 1（\"`.a[..]`\" → \"`.a.`\"）\n- 第四次查询后：$*f*($`aa..`$)$ = 1（\"`aa[..]`\" → \"`aa.`\"）",
   "samples": [
     {
       "input": "10 3\n.b..bz....\n1 h\n3 c\n9 f\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:23:46.712Z"
+  "fetchedAt": "2026-10-31T01:23:46.712Z",
+  "translatedAt": "2026-11-04T06:57:41.321+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

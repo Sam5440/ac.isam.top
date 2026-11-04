@@ -4,7 +4,7 @@
   "contestId": 576,
   "index": "E",
   "title": "Painting Edges",
-  "titleZh": null,
+  "titleZh": "给边染色",
   "url": "https://codeforces.com/contest/576/problem/E",
   "difficulty": 3300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 600,
   "statementMd": "*Note the unusual memory limit for this problem.*\n\nYou are given an undirected graph consisting of $*n*$ vertices and $*m*$ edges. The vertices are numbered with integers from $1$ to $*n*$, the edges are numbered with integers from $1$ to $*m*$. Each edge can be unpainted or be painted in one of the $*k*$ colors, which are numbered with integers from $1$ to $*k*$. Initially, none of the edges is painted in any of the colors.\n\nYou get queries of the form \"Repaint edge $*e*_{*i*}$ to color $*c*_{*i*}$\". At any time the graph formed by the edges of the same color must be bipartite. If after the repaint this condition is violated, then the query is considered to be invalid and edge $*e*_{*i*}$ keeps its color. Otherwise, edge $*e*_{*i*}$ is repainted in color $*c*_{*i*}$, and the query is considered to valid.\n\nRecall that the graph is called *bipartite* if the set of its vertices can be divided into two parts so that no edge connected vertices of the same parts.\n\nFor example, suppose you are given a triangle graph, that is a graph with three vertices and edges $(1, 2)$, $(2, 3)$ and $(3, 1)$. Suppose that the first two edges are painted color $1$, and the third one is painted color $2$. Then the query of \"repaint the third edge in color $1$\" will be incorrect because after its execution the graph formed by the edges of color $1$ will not be bipartite. On the other hand, it is possible to repaint the second edge in color $2$.\n\nYou receive $*q*$ queries. For each query, you should either apply it, and report that the query is valid, or report that the query is invalid.\n\n## Input\n\nThe first line contains integers $*n*$, $*m*$, $*k*$, $*q*$ ($2 ≤ *n* ≤ 5·10^{5}$, $1 ≤ *m*, *q* ≤ 5·10^{5}$, $1 ≤ *k* ≤ 50$) — the number of vertices, the number of edges, the number of colors and the number of queries.\n\nThen follow $*m*$ edges of the graph in the form $*a*_{*i*}$, $*b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$).\n\nThen follow $*q*$ queries of the form $*e*_{*i*}$, $*c*_{*i*}$ ($1 ≤ *e*_{*i*} ≤ *m*$, $1 ≤ *c*_{*i*} ≤ *k*$).\n\nIt is guaranteed that the graph doesn't contain multiple edges and loops.\n\n## Output\n\nFor each query print \"`YES`\" (without the quotes), if it is valid, or \"`NO`\" (without the quotes), if this query destroys the bipartivity of the graph formed by the edges of some color.",
-  "statementZhMd": null,
+  "statementZhMd": "*注意本题特殊的内存限制。*\n\n给定一个包含 $*n*$ 个顶点和 $*m*$ 条边的无向图。顶点编号为 $1$ 到 $*n*$，边编号为 $1$ 到 $*m*$。每条边可以不着色，也可以被染成 $*k*$ 种颜色中的一种，颜色编号为 $1$ 到 $*k*$。初始时，没有任何边被染成这些颜色中的任意一种。\n\n你会收到形如“将边 $*e*_{*i*}$ 重新染成颜色 $*c*_{*i*}$”的查询。在任何时刻，由相同颜色的边组成的图都必须是二分图。如果重新染色后不满足这一条件，则该查询无效，边 $*e*_{*i*}$ 保持原来的颜色。否则，边 $*e*_{*i*}$ 会被重新染成颜色 $*c*_{*i*}$，该查询有效。\n\n回忆一下，如果可以将图中的顶点划分为两个部分，使得不存在连接同一部分中两个顶点的边，则称该图为二分图。\n\n例如，假设给定一个三角形图，即包含三个顶点和边 $(1, 2)$、$(2, 3)$、$(3, 1)$ 的图。假设前两条边被染成颜色 $1$，第三条边被染成颜色 $2$。此时，查询“将第三条边重新染成颜色 $1$”是无效的，因为执行后由颜色 $1$ 的边组成的图将不再是二分图。另一方面，可以将第二条边重新染成颜色 $2$。\n\n你会收到 $*q*$ 个查询。对于每个查询，你需要执行该查询并报告其有效，或者报告其无效。\n\n## 输入格式\n\n第一行包含整数 $*n*$、$*m*$、$*k*$、$*q*$（$2 ≤ *n* ≤ 5·10^{5}$，$1 ≤ *m*, *q* ≤ 5·10^{5}$，$1 ≤ *k* ≤ 50$）——顶点数、边数、颜色数和查询数。\n\n接下来 $*m*$ 行，每行包含两个整数 $*a*_{*i*}$、$*b*_{*i*}$，表示图中的一条边（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$）。\n\n接下来 $*q*$ 行，每行包含两个整数 $*e*_{*i*}$、$*c*_{*i*}$，表示一个查询（$1 ≤ *e*_{*i*} ≤ *m*$，$1 ≤ *c*_{*i*} ≤ *k*$）。\n\n保证图中不存在重边和自环。\n\n## 输出格式\n\n对于每个查询，如果该查询有效，输出“`YES`”（不含引号）；如果该查询会破坏某种颜色的边所组成的图的二分性，则输出“`NO`”（不含引号）。",
   "samples": [
     {
       "input": "3 3 2 5\n1 2\n2 3\n1 3\n1 1\n2 1\n3 2\n3 1\n2 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:23:07.172Z"
+  "fetchedAt": "2026-10-31T01:23:07.172Z",
+  "translatedAt": "2026-11-04T06:46:08.496+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

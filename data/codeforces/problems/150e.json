@@ -4,7 +4,7 @@
   "contestId": 150,
   "index": "E",
   "title": "Freezing with Style",
-  "titleZh": null,
+  "titleZh": "风格冻结",
   "url": "https://codeforces.com/contest/150/problem/E",
   "difficulty": 3000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 256,
   "statementMd": "This winter is so... well, you've got the idea :-) The Nvodsk road system can be represented as $*n*$ junctions connected with $*n* - 1$ bidirectional roads so that there is a path between any two junctions. The organizers of some event want to choose a place to accommodate the participants (junction $*v*$), and the place to set up the contests (junction $*u*$). Besides, at the one hand, they want the participants to walk about the city and see the neighbourhood (that's why the distance between $*v*$ and $*u*$ should be no less than $*l*$). On the other hand, they don't want the participants to freeze (so the distance between $*v*$ and $*u*$ should be no more than $*r*$). Besides, for every street we know its beauty — some integer from $0$ to $10^{9}$. Your task is to choose the path that fits in the length limits and has the largest average beauty. We shall define the average beauty as a median of sequence of the beauties of all roads along the path.\n\nWe can put it more formally like that: let there be a path with the length $*k*$. Let $*a*_{*i*}$ be a non-decreasing sequence that contains exactly $*k*$ elements. Each number occurs there exactly the number of times a road with such beauty occurs along on path. We will represent the path median as number $*a*_{⌊*k* / 2⌋}$, assuming that **indexation starting from zero** is used. $⌊*x*⌋$ — is number $*х*$, rounded down to the nearest integer.\n\nFor example, if $*a* = {0, 5, 12}$, then the median equals to $5$, and if $*a* = {0, 5, 7, 12}$, then the median is number $7$.\n\nIt is guaranteed that there will be at least one path with the suitable quantity of roads.\n\n## Input\n\nThe first line contains three integers $*n*$, $*l*$, $*r*$ ($1 ≤ *l* ≤ *r* < *n* ≤ 10^{5}$).\n\nNext $*n* - 1$ lines contain descriptions of roads of the Nvodsk, each line contains three integers $*a*_{*i*}$, $*b*_{*i*}$, $*c*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$, $0 ≤ *c*_{*i*} ≤ 10^{9}$, $*a*_{*i*} ≠ *b*_{*i*}$) — junctions $*a*_{*i*}$ and $*b*_{*i*}$ are connected with a street whose beauty equals $*c*_{*i*}$.\n\n## Output\n\nPrint two integers — numbers of the junctions, where to accommodate the participants and set up the contests, correspondingly. If there are multiple optimal variants, print any of them.\n\n## Note\n\nIn the first sample all roads have the same beauty. That means that all paths of the positive length have the same median. Thus, any path with length from $3$ to $4$, inclusive will be valid for us.\n\nIn the second sample the city looks like that: 1 - 2 - 3 - 4 - 5 - 6. Two last roads are more valuable and we should choose any path that contains both of them and has the suitable length. It is either the path between $2$ and $6$ or the path between $3$ and $6$.",
-  "statementZhMd": null,
+  "statementZhMd": "今年冬天真是……好吧，你懂的 :-) Nvodsk 的道路系统可以表示为 $*n*$ 个路口，这些路口由 $*n* - 1$ 条双向道路连接，并且任意两个路口之间都存在一条路径。某项活动的组织者希望选择一个地方接待参与者（路口 $*v*$），以及一个地方举办比赛（路口 $*u*$）。一方面，他们希望参与者能够在城市中四处走走，看看周边环境（因此 $*v*$ 和 $*u*$ 之间的距离应不少于 $*l*$）。另一方面，他们又不希望参与者冻坏（因此 $*v*$ 和 $*u*$ 之间的距离应不超过 $*r*$）。此外，我们知道每条道路的美观度——一个介于 $0$ 和 $10^{9}$ 之间的整数。你的任务是选择一条长度符合限制且平均美观度最大的路径。我们将平均美观度定义为路径上所有道路美观度序列的中位数。\n\n更正式地说：设一条路径的长度为 $*k*$。令 $*a*_{*i*}$ 为一个非递减序列，其中恰好包含 $*k*$ 个元素。对于路径上的每条道路，其美观度在该序列中恰好出现相应的次数。我们将路径的中位数定义为 $*a*_{⌊*k* / 2⌋}$，并假设**下标从零开始**。$⌊*x*⌋$ 表示将 $*х*$ 向下取整到最接近的整数。\n\n例如，如果 $*a* = {0, 5, 12}$，那么中位数等于 $5$；如果 $*a* = {0, 5, 7, 12}$，那么中位数为 $7$。\n\n保证至少存在一条包含合适数量道路的路径。\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*l*$、$*r*$（$1 ≤ *l* ≤ *r* < *n* ≤ 10^{5}$）。\n\n接下来 $*n* - 1$ 行描述 Nvodsk 的道路。每行包含三个整数 $*a*_{*i*}$、$*b*_{*i*}$、$*c*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$，$0 ≤ *c*_{*i*} ≤ 10^{9}$，$*a*_{*i*}$ ≠ $*b*_{*i*}$），表示路口 $*a*_{*i*}$ 和 $*b*_{*i*}$ 之间有一条道路，其美观度为 $*c*_{*i*}$。\n\n## 输出格式\n\n输出两个整数，分别表示用于接待参与者和举办比赛的路口编号。如果存在多个最优方案，输出任意一个即可。\n\n## 说明\n\n在第一个样例中，所有道路的美观度都相同。这意味着所有正长度路径的中位数都相同。因此，任意一条长度在 $3$ 到 $4$（含）之间的路径都满足要求。\n\n在第二个样例中，城市形如：1 - 2 - 3 - 4 - 5 - 6。最后两条道路更有价值，因此我们应选择一条同时包含它们且长度合适的路径。可选路径为 2 和 6 之间的路径，或 3 和 6 之间的路径。",
   "samples": [
     {
       "input": "6 3 4\n1 2 1\n2 3 1\n3 4 1\n4 5 1\n5 6 1\n",
@@ -41,5 +41,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:29:10.317Z"
+  "fetchedAt": "2026-10-31T02:29:10.317Z",
+  "translatedAt": "2026-11-04T07:45:53.946+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

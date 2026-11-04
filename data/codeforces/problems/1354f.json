@@ -4,7 +4,7 @@
   "contestId": 1354,
   "index": "F",
   "title": "Summoning Minions",
-  "titleZh": null,
+  "titleZh": "召唤小兵",
   "url": "https://codeforces.com/contest/1354/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 512,
   "statementMd": "Polycarp plays a computer game. In this game, the players summon armies of magical minions, which then fight each other.\n\nPolycarp can summon $n$ different minions. The initial power level of the $i$-th minion is $a_i$, and when it is summoned, all previously summoned minions' power levels are increased by $b_i$. The minions can be summoned in any order.\n\nUnfortunately, Polycarp cannot have more than $k$ minions under his control. To get rid of unwanted minions after summoning them, he may destroy them. Each minion can be summoned (and destroyed) only once.\n\nPolycarp's goal is to summon the strongest possible army. Formally, he wants to maximize the sum of power levels of all minions under his control (those which are summoned and not destroyed).\n\nHelp Polycarp to make up a plan of actions to summon the strongest possible army!\n\n## Input\n\nThe first line contains one integer $T$ ($1 \\le T \\le 75$) — the number of test cases.\n\nEach test case begins with a line containing two integers $n$ and $k$ ($1 \\le k \\le n \\le 75$) — the number of minions availible for summoning, and the maximum number of minions that can be controlled by Polycarp, respectively.\n\nThen $n$ lines follow, the $i$-th line contains $2$ integers $a_i$ and $b_i$ ($1 \\le a_i \\le 10^5$, $0 \\le b_i \\le 10^5$) — the parameters of the $i$-th minion.\n\n## Output\n\nFor each test case print the optimal sequence of actions as follows:\n\nFirstly, print $m$ — the number of actions which Polycarp has to perform ($0 \\le m \\le 2n$). Then print $m$ integers $o_1$, $o_2$, ..., $o_m$, where $o_i$ denotes the $i$-th action as follows: if the $i$-th action is to summon the minion $x$, then $o_i = x$, and if the $i$-th action is to destroy the minion $x$, then $o_i = -x$. Each minion can be summoned at most once and cannot be destroyed before being summoned (and, obviously, cannot be destroyed more than once). The number of minions in Polycarp's army should be not greater than $k$ after every action.\n\nIf there are multiple optimal sequences, print any of them.\n\n## Note\n\nConsider the example test.\n\nIn the first test case, Polycarp can summon the minion $2$ with power level $7$, then summon the minion $1$, which will increase the power level of the previous minion by $3$, then destroy the minion $1$, and finally, summon the minion $5$. After this, Polycarp will have two minions with power levels of $10$.\n\nIn the second test case, Polycarp can control only one minion, so he should choose the strongest of them and summon it.\n\nIn the third test case, Polycarp is able to summon and control all five minions.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 正在玩一款电脑游戏。在这款游戏中，玩家会召唤魔法小兵组成军队，然后让它们彼此战斗。\n\nPolycarp 可以召唤 $n$ 个不同的小兵。第 $i$ 个小兵的初始战斗力为 $a_i$，而当它被召唤时，所有之前已召唤的小兵的战斗力都会增加 $b_i$。小兵可以按任意顺序召唤。\n\n遗憾的是，Polycarp 控制的小兵数量不能超过 $k$。召唤小兵后，为了摆脱不需要的小兵，他可以将其摧毁。每个小兵最多只能被召唤（以及摧毁）一次。\n\nPolycarp 的目标是召唤出尽可能强大的军队。形式化地说，他希望最大化所有由他控制的小兵（已召唤且未被摧毁的小兵）的战斗力之和。\n\n请帮助 Polycarp 制定一套行动方案，召唤出尽可能强大的军队！\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\le T \\le 75$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 75$）——可供召唤的小兵数量，以及 Polycarp 最多可以控制的小兵数量。\n\n接下来 $n$ 行，第 $i$ 行包含 $2$ 个整数 $a_i$ 和 $b_i$（$1 \\le a_i \\le 10^5$，$0 \\le b_i \\le 10^5$）——第 $i$ 个小兵的参数。\n\n## 输出格式\n\n对于每个测试用例，按如下方式输出最优行动序列：\n\n首先，输出 $m$——Polycarp 需要执行的行动数量（$0 \\le m \\le 2n$）。然后输出 $m$ 个整数 $o_1$、$o_2$、..., $o_m$，其中 $o_i$ 表示第 $i$ 个行动，具体如下：如果第 $i$ 个行动是召唤小兵 $x$，则 $o_i = x$；如果第 $i$ 个行动是摧毁小兵 $x$，则 $o_i = -x$。每个小兵最多被召唤一次，且不能在被召唤前摧毁（显然，也不能被摧毁超过一次）。每次行动后，Polycarp 军队中的小兵数量都不能超过 $k$。\n\n如果存在多个最优序列，输出任意一个即可。\n\n## 说明\n\n考虑样例测试。\n\n在第一个测试用例中，Polycarp 可以先召唤战斗力为 $7$ 的小兵 $2$，然后召唤小兵 $1$，这会使之前召唤的小兵的战斗力增加 $3$；接着摧毁小兵 $1$，最后召唤小兵 $5$。此后，Polycarp 将拥有两个战斗力为 $10$ 的小兵。\n\n在第二个测试用例中，Polycarp 只能控制一个小兵，因此他应当选择其中战斗力最强的小兵并召唤它。\n\n在第三个测试用例中，Polycarp 可以召唤并控制全部五个小兵。",
   "samples": [
     {
       "input": "3\n5 2\n5 3\n7 0\n5 0\n4 0\n10 0\n2 1\n10 100\n50 10\n5 5\n1 5\n2 4\n3 3\n4 2\n5 1\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:52:13.523Z"
+  "fetchedAt": "2026-11-02T18:52:13.523Z",
+  "translatedAt": "2026-11-04T04:34:45.654+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

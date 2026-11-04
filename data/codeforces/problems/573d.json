@@ -4,7 +4,7 @@
   "contestId": 573,
   "index": "D",
   "title": "Bear and Cavalry",
-  "titleZh": null,
+  "titleZh": "熊与骑兵",
   "url": "https://codeforces.com/contest/573/problem/D",
   "difficulty": 3000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Would you want to fight against bears riding horses? Me neither.\n\nLimak is a grizzly bear. He is general of the dreadful army of Bearland. The most important part of an army is cavalry of course.\n\nCavalry of Bearland consists of $*n*$ warriors and $*n*$ horses. $*i*$-th warrior has strength $*w*_{*i*}$ and $*i*$-th horse has strength $*h*_{*i*}$. Warrior together with his horse is called a unit. Strength of a unit is equal to multiplied strengths of warrior and horse. Total strength of cavalry is equal to sum of strengths of all $*n*$ units. Good assignment of warriors and horses makes cavalry truly powerful.\n\nInitially, $*i*$-th warrior has $*i*$-th horse. You are given $*q*$ queries. In each query two warriors swap their horses with each other.\n\nGeneral Limak must be ready for every possible situation. What if warriors weren't allowed to ride their own horses? After each query find the maximum possible strength of cavalry if we consider assignments of all warriors to all horses that no warrior is assigned to his own horse (it can be proven that for $*n* ≥ 2$ there is always at least one correct assignment).\n\nNote that we can't leave a warrior without a horse.\n\n## Input\n\nThe first line contains two space-separated integers, $*n*$ and $*q*$ ($2 ≤ *n* ≤ 30 000$, $1 ≤ *q* ≤ 10 000$).\n\nThe second line contains $*n*$ space-separated integers, $*w*_{1}, *w*_{2}, ..., *w*_{*n*}$ ($1 ≤ *w*_{*i*} ≤ 10^{6}$) — strengths of warriors.\n\nThe third line contains $*n*$ space-separated integers, $*h*_{1}, *h*_{2}, ..., *h*_{*n*}$ ($1 ≤ *h*_{*i*} ≤ 10^{6}$) — strengths of horses.\n\nNext $*q*$ lines describe queries. $*i*$-th of them contains two space-separated integers $*a*_{*i*}$ and $*b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$, $*a*_{*i*} ≠ *b*_{*i*}$), indices of warriors who swap their horses with each other.\n\n## Output\n\nPrint $*q*$ lines with answers to queries. In $*i*$-th line print the maximum possible strength of cavalry after first $*i*$ queries.\n\n## Note\n\nClarification for the first sample:\n\n`Warriors: 1 10 100 1000``Horses: 3 7 2 5 `\n\nAfter first query situation looks like the following:\n\n`Warriors: 1 10 100 1000``Horses: 3 5 2 7 `\n\nWe can get $1·2 + 10·3 + 100·7 + 1000·5 = 5732$ (note that no hussar takes his own horse in this assignment).\n\nAfter second query we get back to initial situation and optimal assignment is $1·2 + 10·3 + 100·5 + 1000·7 = 7532$.\n\nClarification for the second sample. After first query:\n\n`Warriors: 7 11 5``Horses: 2 3 1`\n\nOptimal assignment is $7·1 + 11·2 + 5·3 = 44$.\n\nThen after second query $7·3 + 11·2 + 5·1 = 48$.\n\nFinally $7·2 + 11·3 + 5·1 = 52$.",
-  "statementZhMd": null,
+  "statementZhMd": "你想与骑着马的熊作战吗？我也不想。\n\nLimak 是一只灰熊。他是可怕的熊之国军队的将军。当然，军队中最重要的部分是骑兵。\n\n熊之国的骑兵由 $*n*$ 名战士和 $*n*$ 匹马组成。第 $*i*$ 名战士的力量为 $*w*_{*i*}$，第 $*i*$ 匹马的力量为 $*h*_{*i*}$。战士与他的马合在一起称为一个单位。一个单位的力量等于战士力量与马匹力量的乘积。骑兵的总力量等于所有 $*n*$ 个单位的力量之和。合理地分配战士和马匹，可以使骑兵真正强大。\n\n初始时，第 $*i*$ 名战士拥有第 $*i*$ 匹马。现在给出 $*q*$ 次询问。每次询问中，两名战士交换各自的马匹。\n\nLimak 将军必须为每一种可能的情况做好准备。如果不允许战士骑自己的马呢？对于每次询问，请计算在将所有战士分配给所有马匹，且没有任何战士被分配到自己的马匹的前提下，骑兵所能达到的最大力量（可以证明，当 $*n* ≥ 2$ 时，始终至少存在一种合法分配方案）。\n\n注意：不能让任何战士没有马匹。\n\n## 输入格式\n\n第一行包含两个用空格分隔的整数 $*n*$ 和 $*q*$（$2 ≤ *n* ≤ 30 000$，$1 ≤ *q* ≤ 10 000$）。\n\n第二行包含 $*n*$ 个用空格分隔的整数 $*w*_{1}, *w*_{2}, ..., *w*_{*n*}$（$1 ≤ *w*_{*i*} ≤ 10^{6}$），表示战士的力量。\n\n第三行包含 $*n*$ 个用空格分隔的整数 $*h*_{1}, *h*_{2}, ..., *h*_{*n*}$（$1 ≤ *h*_{*i*} ≤ 10^{6}$），表示马匹的力量。\n\n接下来 $*q*$ 行描述询问。第 $*i*$ 行包含两个用空格分隔的整数 $*a*_{*i*}$ 和 $*b*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$，$*a*_{*i*} ≠ *b*_{*i*}$），表示交换马匹的两名战士的编号。\n\n## 输出格式\n\n输出 $*q*$ 行，每行一个询问的答案。第 $*i*$ 行输出进行前 $*i*$ 次询问后，骑兵所能达到的最大力量。\n\n## 说明\n\n第一个样例的解释：\n\n`Warriors: 1 10 100 1000``Horses: 3 7 2 5 `\n\n第一次询问后，情况如下：\n\n`Warriors: 1 10 100 1000``Horses: 3 5 2 7 `\n\n我们可以得到 $1·2 + 10·3 + 100·7 + 1000·5 = 5732$（注意，在这种分配方案中没有骑兵骑自己的马）。\n\n第二次询问后，我们回到了初始情况，此时最优分配为 $1·2 + 10·3 + 100·5 + 1000·7 = 7532$。\n\n第二个样例的解释。第一次询问后：\n\n`Warriors: 7 11 5``Horses: 2 3 1`\n\n最优分配为 $7·1 + 11·2 + 5·3 = 44$。\n\n第二次询问后，$7·3 + 11·2 + 5·1 = 48$。\n\n最后，$7·2 + 11·3 + 5·1 = 52$。",
   "samples": [
     {
       "input": "4 2\n1 10 100 1000\n3 7 2 5\n2 4\n2 4\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:23:21.233Z"
+  "fetchedAt": "2026-10-31T01:23:21.233Z",
+  "translatedAt": "2026-11-04T06:46:51.292+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

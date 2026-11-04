@@ -4,7 +4,7 @@
   "contestId": 1404,
   "index": "C",
   "title": "Fixed Point Removal",
-  "titleZh": null,
+  "titleZh": "固定点删除",
   "url": "https://codeforces.com/contest/1404/problem/C",
   "difficulty": 2300,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Let $a_1, \\ldots, a_n$ be an array of $n$ positive integers. In one operation, you can choose an index $i$ such that $a_i = i$, and remove $a_i$ from the array (after the removal, the remaining parts are concatenated).\n\nThe weight of $a$ is defined as the maximum number of elements you can remove.\n\nYou must answer $q$ independent queries $(x, y)$: after replacing the $x$ first elements of $a$ and the $y$ last elements of $a$ by $n+1$ (making them impossible to remove), what would be the weight of $a$?\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n, q \\le 3 \\cdot 10^5$)  — the length of the array and the number of queries.\n\nThe second line contains $n$ integers $a_1$, $a_2$, ..., $a_n$ ($1 \\leq a_i \\leq n$) — elements of the array.\n\nThe $i$-th of the next $q$ lines contains two integers $x$ and $y$ ($x, y \\ge 0$ and $x+y \\lt n$).\n\n## Output\n\nPrint $q$ lines, $i$-th line should contain a single integer  — the answer to the $i$-th query.\n\n## Note\n\nExplanation of the first query:\n\nAfter making first $x = 3$ and last $y = 1$ elements impossible to remove, $a$ becomes $[\\times, \\times, \\times, 9, 5, 4, 6, 5, 7, 8, 3, 11, \\times]$ (we represent $14$ as $\\times$ for clarity).\n\nHere is a strategy that removes $5$ elements (the element removed is colored in red):\n\n- $[\\times, \\times, \\times, 9, \\color{red}{5}, 4, 6, 5, 7, 8, 3, 11, \\times]$\n- $[\\times, \\times, \\times, 9, 4, 6, 5, 7, 8, 3, \\color{red}{11}, \\times]$\n- $[\\times, \\times, \\times, 9, 4, \\color{red}{6}, 5, 7, 8, 3, \\times]$\n- $[\\times, \\times, \\times, 9, 4, 5, 7, \\color{red}{8}, 3, \\times]$\n- $[\\times, \\times, \\times, 9, 4, 5, \\color{red}{7}, 3, \\times]$\n- $[\\times, \\times, \\times, 9, 4, 5, 3, \\times]$ (final state)\n\nIt is impossible to remove more than $5$ elements, hence the weight is $5$.",
-  "statementZhMd": null,
+  "statementZhMd": "设 $a_1, \\ldots, a_n$ 是一个由 $n$ 个正整数组成的数组。一次操作中，你可以选择一个下标 $i$，满足 $a_i = i$，并从数组中删除 $a_i$（删除后，剩余部分会拼接在一起）。\n\n数组 $a$ 的权重定义为你最多可以删除的元素数量。\n\n你需要回答 $q$ 个相互独立的询问 $(x, y)$：将 $a$ 的前 $x$ 个元素和后 $y$ 个元素替换为 $n+1$（使它们无法被删除）后，数组 $a$ 的权重是多少？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\le n, q \\le 3 \\cdot 10^5$）——数组的长度以及询问的数量。\n\n第二行包含 $n$ 个整数 $a_1$、$a_2$、...、$a_n$（$1 \\leq a_i \\leq n$）——数组中的元素。\n\n接下来的 $q$ 行中，第 $i$ 行包含两个整数 $x$ 和 $y$（$x, y \\ge 0$ 且 $x+y \\lt n$）。\n\n## 输出格式\n\n输出 $q$ 行，第 $i$ 行应包含一个整数——第 $i$ 个询问的答案。\n\n## 说明\n\n第一个询问的解释：\n\n将前 $x = 3$ 个元素和后 $y = 1$ 个元素设置为无法删除后，$a$ 变为 $[\\times, \\times, \\times, 9, 5, 4, 6, 5, 7, 8, 3, 11, \\times]$（为便于说明，我们用 $\\times$ 表示 $14$）。\n\n以下是一种可以删除 $5$ 个元素的策略（被删除的元素以红色标出）：\n\n- $[\\times, \\times, \\times, 9, \\color{red}{5}, 4, 6, 5, 7, 8, 3, 11, \\times]$\n- $[\\times, \\times, \\times, 9, 4, 6, 5, 7, 8, 3, \\color{red}{11}, \\times]$\n- $[\\times, \\times, \\times, 9, 4, \\color{red}{6}, 5, 7, 8, 3, \\times]$\n- $[\\times, \\times, \\times, 9, 4, 5, 7, \\color{red}{8}, 3, \\times]$\n- $[\\times, \\times, \\times, 9, 4, 5, \\color{red}{7}, 3, \\times]$\n- $[\\times, \\times, \\times, 9, 4, 5, 3, \\times]$（最终状态）\n\n不可能删除超过 $5$ 个元素，因此权重为 $5$。",
   "samples": [
     {
       "input": "13 5\n2 2 3 9 5 4 6 5 7 8 3 11 13\n3 1\n0 0\n2 4\n5 0\n0 12\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:45:43.256Z"
+  "fetchedAt": "2026-10-30T23:45:43.256Z",
+  "translatedAt": "2026-11-04T04:28:10.063+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

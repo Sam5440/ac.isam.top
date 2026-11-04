@@ -4,7 +4,7 @@
   "contestId": 1513,
   "index": "B",
   "title": "AND Sequences",
-  "titleZh": null,
+  "titleZh": "AND 序列",
   "url": "https://codeforces.com/contest/1513/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A sequence of $n$ non-negative integers ($n \\ge 2$) $a_1, a_2, \\dots, a_n$ is called good if for all $i$ from $1$ to $n-1$ the following condition holds true: $$a_1 \\: \\& \\: a_2 \\: \\& \\: \\dots \\: \\& \\: a_i = a_{i+1} \\: \\& \\: a_{i+2} \\: \\& \\: \\dots \\: \\& \\: a_n,$$ where $\\&$ denotes the [bitwise AND operation](https://en.wikipedia.org/wiki/Bitwise_operation#AND).\n\nYou are given an array $a$ of size $n$ ($n \\geq 2$). Find the number of permutations $p$ of numbers ranging from $1$ to $n$, for which the sequence $a_{p_1}$, $a_{p_2}$, ... ,$a_{p_n}$ is good. Since this number can be large, output it modulo $10^9+7$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$), denoting the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the size of the array.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 10^9$) — the elements of the array.\n\nIt is guaranteed that the sum of $n$ over all test cases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nOutput $t$ lines, where the $i$-th line contains the number of good permutations in the $i$-th test case modulo $10^9 + 7$.\n\n## Note\n\nIn the first test case, since all the numbers are equal, whatever permutation we take, the sequence is good. There are a total of $6$ permutations possible with numbers from $1$ to $3$: $[1,2,3]$, $[1,3,2]$, $[2,1,3]$, $[2,3,1]$, $[3,1,2]$, $[3,2,1]$.\n\nIn the second test case, it can be proved that no permutation exists for which the sequence is good.\n\nIn the third test case, there are a total of $36$ permutations for which the sequence is good. One of them is the permutation $[1,5,4,2,3]$ which results in the sequence $s=[0,0,3,2,0]$. This is a good sequence because\n\n- $ s_1 = s_2 \\: \\& \\: s_3 \\: \\& \\: s_4 \\: \\& \\: s_5 = 0$,\n- $ s_1 \\: \\& \\: s_2 = s_3 \\: \\& \\: s_4 \\: \\& \\: s_5 = 0$,\n- $ s_1 \\: \\& \\: s_2 \\: \\& \\: s_3 = s_4 \\: \\& \\: s_5 = 0$,\n- $ s_1 \\: \\& \\: s_2 \\: \\& \\: s_3 \\: \\& \\: s_4 = s_5 = 0$.",
-  "statementZhMd": null,
+  "statementZhMd": "长度为 $n$（$n \\ge 2$）的非负整数序列 $a_1, a_2, \\dots, a_n$ 被称为良好的，当且仅当对于从 $1$ 到 $n-1$ 的所有 $i$，以下条件均成立：$$a_1 \\: \\& \\: a_2 \\: \\& \\: \\dots \\: \\& \\: a_i = a_{i+1} \\: \\& \\: a_{i+2} \\: \\& \\: \\dots \\: \\& \\: a_n,$$其中 $\\&$ 表示[按位 AND 运算](https://en.wikipedia.org/wiki/Bitwise_operation#AND)。\n\n给定一个大小为 $n$ 的数组 $a$（$n \\geq 2$）。请找出满足序列 $a_{p_1}$、$a_{p_2}$、...、$a_{p_n}$ 为良好序列的、由 $1$ 到 $n$ 的数字组成的排列 $p$ 的数量。由于答案可能很大，请将其对 $10^9+7$ 取模后输出。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$），表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 2 \\cdot 10^5$），表示数组的大小。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\leq 10^9$），表示数组中的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n输出 $t$ 行，其中第 $i$ 行包含第 $i$ 个测试用例中的良好排列数量，结果对 $10^9 + 7$ 取模。\n\n## 说明\n\n在第一个测试用例中，由于所有数字都相等，无论选择哪种排列，得到的序列都是良好的。由 $1$ 到 $3$ 的数字组成的排列一共有 $6$ 种：$[1,2,3]$、$[1,3,2]$、$[2,1,3]$、$[2,3,1]$、$[3,1,2]$、$[3,2,1]$。\n\n在第二个测试用例中，可以证明不存在任何使序列良好的排列。\n\n在第三个测试用例中，一共有 $36$ 个排列可以使序列良好。其中一种排列是 $[1,5,4,2,3]$，该排列得到的序列为 $s=[0,0,3,2,0]$。这是一个良好序列，因为\n\n- $ s_1 = s_2 \\: \\& \\: s_3 \\: \\& \\: s_4 \\: \\& \\: s_5 = 0$，\n- $ s_1 \\: \\& \\: s_2 = s_3 \\: \\& \\: s_4 \\: \\& \\: s_5 = 0$，\n- $ s_1 \\: \\& \\: s_2 \\: \\& \\: s_3 = s_4 \\: \\& \\: s_5 = 0$，\n- $ s_1 \\: \\& \\: s_2 \\: \\& \\: s_3 \\: \\& \\: s_4 = s_5 = 0$。",
   "samples": [
     {
       "input": "4\n3\n1 1 1\n5\n1 2 3 4 5\n5\n0 2 0 3 0\n4\n1 3 5 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:34:05.847Z"
+  "fetchedAt": "2026-10-30T23:34:05.847Z",
+  "translatedAt": "2026-11-04T03:55:06.814+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

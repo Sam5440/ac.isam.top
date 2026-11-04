@@ -4,7 +4,7 @@
   "contestId": 1674,
   "index": "D",
   "title": "A-B-C Sort",
-  "titleZh": null,
+  "titleZh": "A-B-C 排序",
   "url": "https://codeforces.com/contest/1674/problem/D",
   "difficulty": 1200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given three arrays $a$, $b$ and $c$. Initially, array $a$ consists of $n$ elements, arrays $b$ and $c$ are empty.\n\nYou are performing the following algorithm that consists of two steps:\n\n- Step $1$: while $a$ is not empty, you take *the last element* from $a$ and move it *in the middle* of array $b$. If $b$ currently has odd length, you can choose: place the element from $a$ to the left or to the right of the middle element of $b$. As a result, $a$ becomes empty and $b$ consists of $n$ elements.\n- Step $2$: while $b$ is not empty, you take *the middle element* from $b$ and move it *to the end* of array $c$. If $b$ currently has even length, you can choose which of two middle elements to take. As a result, $b$ becomes empty and $c$ now consists of $n$ elements.\n\nRefer to the Note section for examples.\n\nCan you make array $c$ sorted in non-decreasing order?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 2 \\cdot 10^4$) — the number of test cases. Next $t$ cases follow.\n\nThe first line of each test case contains the single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of array $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^6$) — the array $a$ itself.\n\nIt's guaranteed that the sum of $n$ doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test, print `YES` (case-insensitive), if you can make array $c$ sorted in non-decreasing order. Otherwise, print `NO` (case-insensitive).\n\n## Note\n\nIn the first test case, we can do the following for $a = [3, 1, 5, 3]$:\n\nStep $1$:\n\n| $a$ | $[3, 1, 5, 3]$ | $\\Rightarrow$ | $[3, 1, 5]$ | $\\Rightarrow$ | $[3, 1]$ | $\\Rightarrow$ | $[3]$ | $\\Rightarrow$ | $[]$ |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| $b$ | $[]$ |   | $[\\underline{3}]$ |   | $[3, \\underline{5}]$ |   | $[3, \\underline{1}, 5]$ |   | $[3, \\underline{3}, 1, 5]$ |\n\nStep $2$:\n\n| $b$ | $[3, 3, \\underline{1}, 5]$ | $\\Rightarrow$ | $[3, \\underline{3}, 5]$ | $\\Rightarrow$ | $[\\underline{3}, 5]$ | $\\Rightarrow$ | $[\\underline{5}]$ | $\\Rightarrow$ | $[]$ |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| $c$ | $[]$ |   | $[1]$ |   | $[1, 3]$ |   | $[1, 3, 3]$ |   | $[1, 3, 3, 5]$ |\n\nAs a result, array $c = [1, 3, 3, 5]$ and it's sorted.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定三个数组 $a$、$b$ 和 $c$。初始时，数组 $a$ 由 $n$ 个元素组成，数组 $b$ 和 $c$ 为空。\n\n你需要执行由以下两个步骤组成的算法：\n\n- 步骤 $1$：当 $a$ 非空时，取出 $a$ 的*最后一个元素*，并将其移动到数组 $b$ 的*中间位置*。如果此时 $b$ 的长度为奇数，你可以选择将从 $a$ 中取出的元素放在 $b$ 的中间元素左侧或右侧。最终，$a$ 变为空，$b$ 由 $n$ 个元素组成。\n- 步骤 $2$：当 $b$ 非空时，取出 $b$ 的*中间元素*，并将其移动到数组 $c$ 的*末尾*。如果此时 $b$ 的长度为偶数，你可以选择取出两个中间元素中的任意一个。最终，$b$ 变为空，$c$ 由 $n$ 个元素组成。\n\n具体示例请参见“说明”部分。\n\n你能否使数组 $c$ 按非递减顺序排列？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 2 \\cdot 10^4$）——测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^6$）——数组 $a$ 本身。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果可以使数组 $c$ 按非递减顺序排列，则输出 `YES`（不区分大小写）；否则输出 `NO`（不区分大小写）。\n\n## 说明\n\n在第一个测试用例中，对于 $a = [3, 1, 5, 3]$，我们可以进行如下操作：\n\n步骤 $1$：\n\n| $a$ | $[3, 1, 5, 3]$ | $\\Rightarrow$ | $[3, 1, 5]$ | $\\Rightarrow$ | $[3, 1]$ | $\\Rightarrow$ | $[3]$ | $\\Rightarrow$ | $[]$ |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| $b$ | $[]$ |   | $[\\underline{3}]$ |   | $[3, \\underline{5}]$ |   | $[3, \\underline{1}, 5]$ |   | $[3, \\underline{3}, 1, 5]$ |\n\n步骤 $2$：\n\n| $b$ | $[3, 3, \\underline{1}, 5]$ | $\\Rightarrow$ | $[3, \\underline{3}, 5]$ | $\\Rightarrow$ | $[\\underline{3}, 5]$ | $\\Rightarrow$ | $[\\underline{5}]$ | $\\Rightarrow$ | $[]$ |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| $c$ | $[]$ |   | $[1]$ |   | $[1, 3]$ |   | $[1, 3, 3]$ |   | $[1, 3, 3, 5]$ |\n\n最终，数组 $c = [1, 3, 3, 5]$，它是有序的。",
   "samples": [
     {
       "input": "3\n4\n3 1 5 3\n3\n3 2 1\n1\n7331\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:02:03.301Z"
+  "fetchedAt": "2026-11-02T18:02:03.301Z",
+  "translatedAt": "2026-11-04T03:25:01.980+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

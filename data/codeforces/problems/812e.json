@@ -4,7 +4,7 @@
   "contestId": 812,
   "index": "E",
   "title": "Sagheer and Apple Tree",
-  "titleZh": null,
+  "titleZh": "Sagheer 与苹果树",
   "url": "https://codeforces.com/contest/812/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Sagheer is playing a game with his best friend Soliman. He brought a tree with $*n*$ nodes numbered from $1$ to $*n*$ and rooted at node $1$. The $*i*$-th node has $*a*_{*i*}$ apples. This tree has a special property: the lengths of all paths from the root to any leaf have the same parity (i.e. all paths have even length or all paths have odd length).\n\nSagheer and Soliman will take turns to play. Soliman will make the first move. The player who can't make a move loses.\n\nIn each move, the current player will pick a single node, take a non-empty subset of apples from it and do one of the following two things:\n\n1. eat the apples, if the node is a leaf.\n2. move the apples to one of the children, if the node is non-leaf.\n\nBefore Soliman comes to start playing, Sagheer will make **exactly one change** to the tree. He will pick two different nodes $*u*$ and $*v*$ and swap the apples of $*u*$ with the apples of $*v*$.\n\nCan you help Sagheer count the number of ways to make the swap (i.e. to choose $*u*$ and $*v*$) after which he will win the game if both players play optimally? $(*u*, *v*)$ and $(*v*, *u*)$ are considered to be the same pair.\n\n## Input\n\nThe first line will contain one integer $*n*$ ($2 ≤ *n* ≤ 10^{5})$ — the number of nodes in the apple tree.\n\nThe second line will contain $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ 10^{7}$) — the number of apples on each node of the tree.\n\nThe third line will contain $*n* - 1$ integers $*p*_{2}, *p*_{3}, ..., *p*_{*n*}$ ($1 ≤ *p*_{*i*} ≤ *n*$) — the parent of each node of the tree. Node $*i*$ has parent $*p*_{*i*}$ (for $2 ≤ *i* ≤ *n*$). Node $1$ is the root of the tree.\n\nIt is guaranteed that the input describes a valid tree, and the lengths of all paths from the root to any leaf will have the same parity.\n\n## Output\n\nOn a single line, print the number of different pairs of nodes $(*u*, *v*)$, $*u* ≠ *v*$ such that if they start playing after swapping the apples of both nodes, Sagheer will win the game. $(*u*, *v*)$ and $(*v*, *u*)$ are considered to be the same pair.\n\n## Note\n\nIn the first sample, Sagheer can only win if he swapped node $1$ with node $3$. In this case, both leaves will have $2$ apples. If Soliman makes a move in a leaf node, Sagheer can make the same move in the other leaf. If Soliman moved some apples from a root to a leaf, Sagheer will eat those moved apples. Eventually, Soliman will not find a move.\n\nIn the second sample, There is no swap that will make Sagheer win the game.\n\nNote that Sagheer must make the swap even if he can win with the initial tree.",
-  "statementZhMd": null,
+  "statementZhMd": "Sagheer 正在和他最好的朋友 Soliman 玩一个游戏。他带来了一棵有 $*n*$ 个节点的树，节点编号为 $1$ 到 $*n*$，根节点为 $1$。第 $*i*$ 个节点上有 $*a*_{*i*}$ 个苹果。这棵树具有一个特殊性质：从根节点到任意叶子的所有路径长度的奇偶性都相同（即所有路径长度都是偶数，或者都是奇数）。\n\nSagheer 和 Soliman 将轮流进行游戏。Soliman 先手。无法进行操作的玩家输掉游戏。\n\n在每次操作中，当前玩家选择一个节点，从该节点取出一个非空的苹果子集，并执行以下两种操作之一：\n\n1. 如果该节点是叶子，则吃掉这些苹果。\n2. 如果该节点不是叶子，则将这些苹果移动到它的某个子节点。\n\n在 Soliman 开始游戏之前，Sagheer 将对这棵树进行**恰好一次修改**。他选择两个不同的节点 $*u*$ 和 $*v*$，并交换节点 $*u*$ 与节点 $*v*$ 上的苹果数量。\n\n如果双方都采取最优策略，你能帮助 Sagheer 统计交换后他能够赢得游戏的交换方案数量吗（即选择 $*u*$ 和 $*v*$ 的方案数）？$(*u*, *v*)$ 和 $(*v*, *u*)$ 被视为同一对。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$2 ≤ *n* ≤ 10^{5}$）——苹果树中的节点数量。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ 10^{7}$）——每个节点上的苹果数量。\n\n第三行包含 $*n* - 1$ 个整数 $*p*_{2}, *p*_{3}, ..., *p*_{*n*}$（$1 ≤ *p*_{*i*} ≤ *n*$）——树中每个节点的父节点。节点 $*i*$ 的父节点为 $*p*_{*i*}$（对于 $2 ≤ *i* ≤ *n*$）。节点 $1$ 是树的根节点。\n\n保证输入描述了一棵合法的树，并且从根节点到任意叶子的所有路径长度的奇偶性都相同。\n\n## 输出格式\n\n在一行中输出满足以下条件的不同节点对 $(*u*, *v*)$ 的数量：交换两个节点上的苹果后开始游戏，Sagheer 将获胜，其中 $*u* ≠ *v*$。$(*u*, *v*)$ 和 $(*v*, *u*)$ 被视为同一对。\n\n## 说明\n\n在第一个样例中，只有交换节点 $1$ 和节点 $3$ 时 Sagheer 才能获胜。此时，两片叶子上都有 $2$ 个苹果。如果 Soliman 在一个叶子节点上进行操作，Sagheer 可以在另一个叶子节点上进行相同的操作。如果 Soliman 将一些苹果从根节点移动到一个叶子节点，Sagheer 就会吃掉这些被移动的苹果。最终，Soliman 将无法进行操作。\n\n在第二个样例中，不存在任何能够使 Sagheer 获胜的交换方案。\n\n注意，即使 Sagheer 在初始树上就能获胜，他也必须进行交换。",
   "samples": [
     {
       "input": "3\n2 2 3\n1 1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:50:37.170Z"
+  "fetchedAt": "2026-10-31T00:50:37.170Z",
+  "translatedAt": "2026-11-04T06:16:20.353+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

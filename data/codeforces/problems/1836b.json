@@ -4,7 +4,7 @@
   "contestId": 1836,
   "index": "B",
   "title": "Astrophysicists",
-  "titleZh": null,
+  "titleZh": "天体物理学家",
   "url": "https://codeforces.com/contest/1836/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "In many, many years, far, far away, there will be a launch of the first flight to Mars. To celebrate the success, $n$ astrophysicists working on the project will be given bonuses of a total value of $k$ gold coins.\n\nYou have to distribute the money among the astrophysicists, and to make it easier, you have to assign bonuses in silver coins. Each gold coin is worth $g$ silver coins, so you have to distribute all $k \\cdot g$ silver coins among $n$ people.\n\nUnfortunately, the company has some financial troubles right now. Therefore, instead of paying the number of silver coins written on the bonus, they decided to round this amount to the nearest integer number of gold coins.\n\nThe rounding procedure is as follows. If an astrophysicist has bonus equal to $x$ silver coins, and we denote $r = x \\bmod g$, then:\n\n- If $r \\geq \\lceil \\frac{g}{2} \\rceil$, the astrophysicist receives $x + (g - r)$ silver coins;\n- Otherwise, an astrophysicists receives $x - r$ silver coins.\n\nNote that due to rounding, the total sum of actually paid money is not, in general, equal to $k \\cdot g$ silver coins. The operation $a \\bmod b$ denotes the remainder of the division of $a$ by $b$. Sum of values before rounding\n\nhas to be equal to $k \\cdot g$ silver coins\n\n, but some workers can be assigned $0$ silver coins.\n\nYou aim to distribute the bonuses so that the company saves as many silver coins due to rounding as possible. Please note that there is always a distribution in which the company spends no more than $k \\cdot g$ silver coins.\n\n## Input\n\nIn the first line of input, there is one integer $t$ ($1 \\leq t \\leq 10^4$) denoting the number of test cases.\n\nEach of the following $t$ lines describes one test case and contains three integers $n$, $k$, $g$ ($1 \\le n \\le 10^9$, $0 \\le k \\le 10^9$, $2 \\le g \\le 10^9$) — respectively the number of astrophysicists in the company, total number of gold coins to assign and the number of silver coins that one gold coin corresponds to.\n\n## Output\n\nIn a separate line for each test case, output a single integer — the maximum number of silver coins that could be saved due to rounding.\n\n## Note\n\nIn the first test case, one of the optimal assignments could be the following:\n\n- First person: $x = 30$ silver coins: company pays $0$, saves $30$ silver coins,\n- Second person: $x = 140$ silver coins: company pays $100$, saves $40$ silver coins,\n- Third person: $x = 130$ silver coins: company pays $100$, saves $30$ silver coins.\n\nIn the second test case, we could have the following assignment:\n\n- First person: $x = 8$ silver coins: company pays $14$, spends extra $6$ silver coins,\n- Second person: $x = 6$ silver coins: company pays $0$, saves $6$ silver coins.\n\nIf the bonuses are assigned to $7$ silver coins for both astrophysicists, then the company would have to pay an additional gold coin to cover the bonuses.",
-  "statementZhMd": null,
+  "statementZhMd": "很多很多年以后，在遥远的地方，人类将发射首个前往火星的航班。为了庆祝这次成功，参与该项目的 $n$ 名天体物理学家将获得总价值为 $k$ 枚金币的奖金。\n\n你需要在这些天体物理学家之间分配奖金。为了便于操作，你需要以银币为单位分配奖金。每枚金币价值 $g$ 枚银币，因此你需要将全部 $k \\cdot g$ 枚银币分配给 $n$ 个人。\n\n不幸的是，公司目前正面临一些财务问题。因此，他们决定不按照奖金上写明的银币数量支付，而是将该数量四舍五入为最接近的整数枚金币。\n\n四舍五入过程如下。如果某位天体物理学家的奖金为 $x$ 枚银币，并令 $r = x \\bmod g$，那么：\n\n- 如果 $r \\geq \\lceil \\frac{g}{2} \\rceil$，该天体物理学家将收到 $x + (g - r)$ 枚银币；\n- 否则，该天体物理学家将收到 $x - r$ 枚银币。\n\n注意，由于四舍五入，实际支付金额的总和通常并不等于 $k \\cdot g$ 枚银币。运算 $a \\bmod b$ 表示 $a$ 除以 $b$ 的余数。四舍五入前的数值总和必须等于 $k \\cdot g$ 枚银币，但可以给某些员工分配 $0$ 枚银币。\n\n你的目标是分配奖金，使公司因四舍五入而节省的银币数量尽可能多。请注意，总能找到一种分配方案，使公司实际支出的银币不超过 $k \\cdot g$ 枚。\n\n## 输入\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$），表示测试用例的数量。\n\n接下来的 $t$ 行中，每行描述一个测试用例，包含三个整数 $n$、$k$、$g$（$1 \\leq n \\leq 10^9$，$0 \\leq k \\leq 10^9$，$2 \\leq g \\leq 10^9$），分别表示公司的天体物理学家数量、需要分配的金币总数，以及一枚金币对应的银币数量。\n\n## 输出\n\n对于每个测试用例，单独输出一行一个整数，即因四舍五入最多可以节省的银币数量。\n\n## 说明\n\n在第一个测试用例中，一种最优分配方案如下：\n\n- 第一个人：$x = 30$ 枚银币，公司支付 $0$ 枚银币，节省 $30$ 枚银币；\n- 第二个人：$x = 140$ 枚银币，公司支付 $100$ 枚银币，节省 $40$ 枚银币；\n- 第三个人：$x = 130$ 枚银币，公司支付 $100$ 枚银币，节省 $30$ 枚银币。\n\n在第二个测试用例中，可以采用如下分配方案：\n\n- 第一个人：$x = 8$ 枚银币，公司支付 $14$ 枚银币，额外支出 $6$ 枚银币；\n- 第二个人：$x = 6$ 枚银币，公司支付 $0$ 枚银币，节省 $6$ 枚银币。\n\n如果给两位天体物理学家各分配 $7$ 枚银币，公司将不得不额外支付一枚金币来支付这些奖金。",
   "samples": [
     {
       "input": "5\n3 3 100\n2 1 14\n91 2 13\n36 16 6\n73 8 22\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:24:55.211Z"
+  "fetchedAt": "2026-10-30T22:24:55.211Z",
+  "translatedAt": "2026-11-04T02:41:52.369+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

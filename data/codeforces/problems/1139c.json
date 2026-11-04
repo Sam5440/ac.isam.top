@@ -4,7 +4,7 @@
   "contestId": 1139,
   "index": "C",
   "title": "Edgy Trees",
-  "titleZh": null,
+  "titleZh": "棱角分明的树",
   "url": "https://codeforces.com/contest/1139/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree (a connected undirected graph without cycles) of $n$ vertices. Each of the $n - 1$ edges of the tree is colored in either black or red.\n\nYou are also given an integer $k$. Consider sequences of $k$ vertices. Let's call a sequence $[a_1, a_2, \\ldots, a_k]$ *good* if it satisfies the following criterion:\n\n- We will walk a path (possibly visiting same edge/vertex multiple times) on the tree, starting from $a_1$ and ending at $a_k$.\n- Start at $a_1$, then go to $a_2$ using the shortest path between $a_1$ and $a_2$, then go to $a_3$ in a similar way, and so on, until you travel the shortest path between $a_{k-1}$ and $a_k$.\n- If you walked over at least one black edge during this process, then the sequence is good.\n\n![image](https://espresso.codeforces.com/6a3d4d9a4b0794f6c1cce0ebced5fe1e66ad945c.png)\n\nConsider the tree on the picture. If $k=3$ then the following sequences are good: $[1, 4, 7]$, $[5, 5, 3]$ and $[2, 3, 7]$. The following sequences are not good: $[1, 4, 6]$, $[5, 5, 5]$, $[3, 7, 3]$.\n\nThere are $n^k$ sequences of vertices, count how many of them are good. Since this number can be quite large, print it modulo $10^9+7$.\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($2 \\le n \\le 10^5$, $2 \\le k \\le 100$), the size of the tree and the length of the vertex sequence.\n\nEach of the next $n - 1$ lines contains three integers $u_i$, $v_i$ and $x_i$ ($1 \\le u_i, v_i \\le n$, $x_i \\in \\{0, 1\\}$), where $u_i$ and $v_i$ denote the endpoints of the corresponding edge and $x_i$ is the color of this edge ($0$ denotes red edge and $1$ denotes black edge).\n\n## Output\n\nPrint the number of good sequences modulo $10^9 + 7$.\n\n## Note\n\nIn the first example, all sequences ($4^4$) of length $4$ **except** the following are good:\n\n- $[1, 1, 1, 1]$\n- $[2, 2, 2, 2]$\n- $[3, 3, 3, 3]$\n- $[4, 4, 4, 4]$\n\nIn the second example, all edges are red, hence there aren't any good sequences.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵有 $n$ 个顶点的树（一种无环的连通无向图）。树中的 $n - 1$ 条边分别被染成黑色或红色。\n\n同时给定一个整数 $k$。考虑长度为 $k$ 的顶点序列。如果一个序列 $[a_1, a_2, \\ldots, a_k]$ 满足以下条件，则称其为*好序列*：\n\n- 我们将在树上沿着一条路径行走（过程中可能多次经过同一条边或同一个顶点），从 $a_1$ 出发，最终到达 $a_k$。\n- 从 $a_1$ 出发，沿着 $a_1$ 和 $a_2$ 之间的最短路径到达 $a_2$，然后以类似的方式前往 $a_3$，依此类推，直到沿着 $a_{k-1}$ 和 $a_k$ 之间的最短路径行走完毕。\n- 如果在这个过程中经过了至少一条黑色边，那么该序列就是好序列。\n\n![image](https://espresso.codeforces.com/6a3d4d9a4b0794f6c1cce0ebced5fe1e66ad945c.png)\n\n考虑图片中的树。当 $k=3$ 时，以下序列是好序列：$[1, 4, 7]$、$[5, 5, 3]$ 和 $[2, 3, 7]$。以下序列不是好序列：$[1, 4, 6]$、$[5, 5, 5]$、$[3, 7, 3]$。\n\n共有 $n^k$ 个顶点序列，请计算其中好序列的数量。由于答案可能很大，请将其对 $10^9+7$ 取模后输出。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 10^5$，$2 \\le k \\le 100$），分别表示树的大小和顶点序列的长度。\n\n接下来的 $n - 1$ 行中，每行包含三个整数 $u_i$、$v_i$ 和 $x_i$（$1 \\le u_i, v_i \\le n$，$x_i \\in \\{0, 1\\}$），其中 $u_i$ 和 $v_i$ 表示对应边的两个端点，$x_i$ 表示该边的颜色（$0$ 表示红色边，$1$ 表示黑色边）。\n\n## 输出格式\n\n输出好序列的数量对 $10^9 + 7$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，长度为 $4$ 的所有序列（共 $4^4$ 个）中，除了以下序列之外，其余都是好序列：\n\n- $[1, 1, 1, 1]$\n- $[2, 2, 2, 2]$\n- $[3, 3, 3, 3]$\n- $[4, 4, 4, 4]$\n\n在第二个样例中，所有边都是红色的，因此不存在好序列。",
   "samples": [
     {
       "input": "4 4\n1 2 1\n2 3 1\n3 4 1\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:13:43.427Z"
+  "fetchedAt": "2026-10-31T00:13:43.427Z",
+  "translatedAt": "2026-11-04T05:18:40.421+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

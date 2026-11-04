@@ -4,7 +4,7 @@
   "contestId": 1838,
   "index": "D",
   "title": "Bracket Walk",
-  "titleZh": null,
+  "titleZh": "括号行走",
   "url": "https://codeforces.com/contest/1838/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "There is a string $s$ of length $n$ consisting of the characters '`(`' and '`)`'. You are walking on this string. You start by standing on top of the first character of $s$, and you want to make a sequence of moves such that you end on the $n$-th character. In one step, you can move one space to the left (if you are not standing on the first character), or one space to the right (if you are not standing on the last character). You may not stay in the same place, however you may visit any character, including the first and last character, **any** number of times.\n\nAt each point in time, you write down the character you are currently standing on. We say the string is *walkable* if there exists some sequence of moves that take you from the first character to the last character, such that the string you write down is a regular bracket sequence.\n\nA regular bracket sequence is a bracket sequence that can be transformed into a correct arithmetic expression by inserting characters '`1`' and '`+`' between the original characters of the sequence. For example, bracket sequences \"`()()`\", \"`(())`\" are regular (the resulting expressions are: \"`(1)+(1)`\", \"`((1+1)+1)`\"), and \"`)(`\" and \"`(`\" are not.\n\n![image](https://espresso.codeforces.com/32a2088f1518c58fd6b82d4b9724e1c35573ca6c.png)One possible valid walk on $s=\\mathtt{(())()))}$. The red dot indicates your current position, and the red string indicates the string you have written down. Note that the red string is a regular bracket sequence at the end of the process.\n\nYou are given $q$ queries. Each query flips the value of a character from '`(`' to '`)`' or vice versa. After each query, determine whether the string is walkable.\n\nQueries are **cumulative**, so the effects of each query carry on to future queries.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $q$ ($1 \\le n, q \\le 2\\cdot 10^5$) — the size of the string and the number of queries, respectively.\n\nThe second line of the input contains a string $s$ of size $n$, consisting of the characters '`(`' and '`)`' — the initial bracket string.\n\nEach of the next $q$ lines contains a single integer $i$ ($1\\le i \\le n$) — the index of the character to flip for that query.\n\n## Output\n\nFor each query, print \"`YES`\" if the string is walkable after that query, and \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first example:\n\n- After the first query, the string is `(())()()()`. This string is a regular bracket sequence, so it is walkable by simply moving to the right.\n- After the second query, the string is `(())()))()`. If you move right once, then left once, then walk right until you hit the end of the string, you produce the string `(((())()))()`, which is a regular bracket sequence.\n- After the third query, the string is `()))()))()`. We can show that this string is not walkable.\n\nIn the second example, the strings after the queries are\n\n())\n\nand\n\n()(\n\n, neither of which are walkable.",
-  "statementZhMd": null,
+  "statementZhMd": "有一个长度为 $n$ 的字符串 $s$，仅由字符 '`(`' 和 '`)`' 组成。你正在这个字符串上行走。开始时，你站在 $s$ 的第一个字符上，并希望通过一系列移动最终到达第 $n$ 个字符。在一步移动中，你可以向左移动一个位置（如果你当前不在第一个字符上），或者向右移动一个位置（如果你当前不在最后一个字符上）。你不能停留在原地，但可以访问任意字符，包括第一个和最后一个字符，且次数不限。\n\n在每个时刻，你都会记下当前站立位置上的字符。如果存在某个移动序列，使你从第一个字符到达最后一个字符，并且你记下的字符串是一个正规括号序列，则称该字符串是*可行走的*。\n\n正规括号序列是指这样一种括号序列：在其原有字符之间插入字符 '`1`' 和 '`+`' 后，可以变成一个正确的算术表达式。例如，括号序列 \"`()()`\" 和 \"`(())`\" 是正规括号序列（得到的表达式分别为 \"`(1)+(1)`\" 和 \"`((1+1)+1)`\"），而 \"`)(`\" 和 \"`(`\" 不是。\n\n![image](https://espresso.codeforces.com/32a2088f1518c58fd6b82d4b9724e1c35573ca6c.png)在 $s=\\mathtt{(())()))}$ 上的一种可行走法。红点表示当前位置，红色字符串表示你已经记下的字符串。注意，在过程结束时，红色字符串是一个正规括号序列。\n\n给定 $q$ 次查询。每次查询将一个字符从 '`(`' 翻转为 '`)`'，或从 '`)`' 翻转为 '`(`'。每次查询后，判断该字符串是否可行走。\n\n查询是**累积的**，即每次查询的影响都会保留到之后的查询中。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $q$（$1 \\le n, q \\le 2\\cdot 10^5$），分别表示字符串的长度和查询次数。\n\n输入的第二行包含一个长度为 $n$ 的字符串 $s$，由字符 '`(`' 和 '`)`' 组成，表示初始括号字符串。\n\n接下来的 $q$ 行每行包含一个整数 $i$（$1\\le i \\le n$），表示本次查询要翻转的字符下标。\n\n## 输出格式\n\n对于每次查询，如果查询后字符串可行走，则输出 \"`YES`\"，否则输出 \"`NO`\"。\n\n输出答案时可以使用任意大小写形式。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定回答。\n\n## 说明\n\n在第一个样例中：\n\n- 第一次查询后，字符串为 `(())()()()`. 该字符串本身就是一个正规括号序列，因此只需一直向右移动即可使其可行走。\n- 第二次查询后，字符串为 `(())()))()`. 如果先向右移动一次，再向左移动一次，然后一直向右走到字符串末尾，你记下的字符串将为 `(((())()))()`，这是一个正规括号序列。\n- 第三次查询后，字符串为 `()))()))()`. 可以证明该字符串不可行走。\n\n在第二个样例中，查询后的字符串为\n\n`())`\n\n和\n\n`)(`,\n\n二者均不可行走。",
   "samples": [
     {
       "input": "10 9\n(())()()))\n9\n7\n2\n6\n3\n6\n7\n4\n8\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:24:46.657Z"
+  "fetchedAt": "2026-10-30T22:24:46.657Z",
+  "translatedAt": "2026-11-04T02:45:53.796+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

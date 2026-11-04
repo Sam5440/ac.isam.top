@@ -4,7 +4,7 @@
   "contestId": 1626,
   "index": "D",
   "title": "Martial Arts Tournament",
-  "titleZh": null,
+  "titleZh": "武术锦标赛",
   "url": "https://codeforces.com/contest/1626/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp is planning to host a martial arts tournament. There will be three divisions based on weight: lightweight, middleweight and heavyweight. The winner of each division will be determined by a single elimination system.\n\nIn particular, that implies that the number of participants in each division should be a power of two. Additionally, each division should have a non-zero amount of participants.\n\n$n$ participants have registered for the tournament so far, the $i$-th of them weighs $a_i$. To split participants into divisions, Monocarp is going to establish two integer weight boundaries $x$ and $y$ ($x \\lt y$).\n\nAll participants who weigh strictly less than $x$ will be considered lightweight. All participants who weigh greater or equal to $y$ will be considered heavyweight. The remaining participants will be considered middleweight.\n\nIt's possible that the distribution doesn't make the number of participants in each division a power of two. It can also lead to empty divisions. To fix the issues, Monocarp can invite an arbitrary number of participants to each division.\n\nNote that Monocarp can't kick out any of the $n$ participants who have already registered for the tournament.\n\nHowever, he wants to invite as little extra participants as possible. Help Monocarp to choose $x$ and $y$ in such a way that the total amount of extra participants required is as small as possible. Output that amount.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of testcases.\n\nThe first line of each testcase contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of the registered participants.\n\nThe second line of each testcase contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n$) — the weights of the registered participants.\n\nThe sum of $n$ over all testcases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, print a single integer — the smallest number of extra participants Monocarp is required to invite after he chooses the weight boundaries $x$ and $y$.\n\n## Note\n\nIn the first testcase of the example, Monocarp can choose $x=2$ and $y=3$. Lightweight, middleweight and heavyweight divisions will have $2$, $1$ and $1$ participants, respectively. They all are powers of two, so no extra participants are required.\n\nIn the second testcase of the example, regardless of the choice of $x$ and $y$, one division will have $1$ participant, the rest will have $0$. Thus, Monocarp will have to invite $1$ participant into both of the remaining divisions.\n\nIn the third testcase of the example, Monocarp can choose $x=1$ and $y=2$. Lightweight, middleweight and heavyweight divisions will have $0$, $3$ and $3$ participants, respectively. So an extra participant is needed in each division.\n\nIn the fourth testcase of the example, Monocarp can choose $x=8$ and $y=9$. Lightweight, middleweight and heavyweight divisions will have $8$, $0$ and $0$ participants, respectively. Middleweight and heavyweight division need an extra participant each.",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 计划举办一场武术锦标赛。比赛将根据体重分为三个组别：轻量级、中量级和重量级。每个组别的冠军将通过单败淘汰制决出。\n\n具体来说，这意味着每个组别的参赛者人数都应当是 $2$ 的幂。此外，每个组别都必须至少有一名参赛者。\n\n目前已有 $n$ 名参赛者报名参加比赛，其中第 $i$ 名参赛者的体重为 $a_i$。为了将参赛者分入各组别，Monocarp 将确定两个整数体重边界 $x$ 和 $y$（$x \\lt y$）。\n\n所有体重严格小于 $x$ 的参赛者将被分入轻量级。所有体重大于等于 $y$ 的参赛者将被分入重量级。其余参赛者将被分入中量级。\n\n这样分组后，每个组别的参赛者人数可能不是 $2$ 的幂，也可能导致某些组别为空。为解决这些问题，Monocarp 可以向每个组别邀请任意数量的参赛者。\n\n注意，Monocarp 不能将已经报名的 $n$ 名参赛者中的任何一人淘汰。\n\n然而，他希望邀请的额外参赛者尽可能少。请帮助 Monocarp 选择 $x$ 和 $y$，使得所需邀请的额外参赛者总数最少。输出这个最小数量。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——已报名的参赛者数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le n$）——已报名参赛者的体重。\n\n所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——Monocarp 选择体重边界 $x$ 和 $y$ 后，必须邀请的额外参赛者数量的最小值。\n\n## 说明\n\n在样例的第一个测试用例中，Monocarp 可以选择 $x=2$ 和 $y=3$。轻量级、中量级和重量级分别有 $2$、$1$ 和 $1$ 名参赛者。它们都是 $2$ 的幂，因此不需要邀请额外参赛者。\n\n在样例的第二个测试用例中，无论如何选择 $x$ 和 $y$，都会有一个组别包含 $1$ 名参赛者，其余两个组别均为空。因此，Monocarp 必须分别向另外两个组别各邀请 $1$ 名参赛者。\n\n在样例的第三个测试用例中，Monocarp 可以选择 $x=1$ 和 $y=2$。轻量级、中量级和重量级分别有 $0$、$3$ 和 $3$ 名参赛者。因此，每个组别都需要邀请 $1$ 名额外参赛者。\n\n在样例的第四个测试用例中，Monocarp 可以选择 $x=8$ 和 $y=9$。轻量级、中量级和重量级分别有 $8$、$0$ 和 $0$ 名参赛者。中量级和重量级各需要邀请 $1$ 名额外参赛者。",
   "samples": [
     {
       "input": "4\n4\n3 1 2 1\n1\n1\n6\n2 2 2 1 1 1\n8\n6 3 6 3 6 3 6 6\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:11:31.042Z"
+  "fetchedAt": "2026-11-02T18:11:31.042Z",
+  "translatedAt": "2026-11-04T03:34:42.321+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

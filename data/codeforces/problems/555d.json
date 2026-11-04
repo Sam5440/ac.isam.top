@@ -4,7 +4,7 @@
   "contestId": 555,
   "index": "D",
   "title": "Case of a Top Secret",
-  "titleZh": null,
+  "titleZh": "绝密案件",
   "url": "https://codeforces.com/contest/555/problem/D",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Andrewid the Android is a galaxy-famous detective. Now he is busy with a top secret case, the details of which are not subject to disclosure.\n\nHowever, he needs help conducting one of the investigative experiment. There are $*n*$ pegs put on a plane, they are numbered from $1$ to $*n*$, the coordinates of the $*i*$-th of them are $(*x*_{*i*}, 0)$. Then, we tie to the bottom of one of the pegs a weight on a tight rope of length $*l*$ (thus, its coordinates will be equal to $(*x*_{*i*},  - *l*)$, where $*i*$ is the number of the used peg). Then the weight is pushed to the right, so that it starts to rotate counterclockwise. At the same time, if the weight during rotation touches some of the other pegs, it then begins to rotate around that peg. Suppose that each peg itself is very thin and does not affect the rope length while weight is rotating around it.\n\n![image](https://espresso.codeforces.com/9f13820811911ef071989ae90a83032f2f91a7bd.png)\n\nMore formally, if at some moment the segment of the rope contains one or more pegs in addition to the peg around which the weight is rotating, the weight will then rotate around the farthermost one of them on a shorter segment of a rope. In particular, if the segment of the rope touches some peg by its endpoint, it is considered that the weight starts to rotate around that peg on a segment of the rope of length $0$.\n\nAt some moment the weight will begin to rotate around some peg, without affecting the rest of the pegs. Andrewid interested in determining the number of this peg.\n\nAndrewid prepared $*m*$ queries containing initial conditions for pushing the weight, help him to determine for each of them, around what peg the weight will eventually rotate.\n\n## Input\n\nThe first line contains integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 2·10^{5}$) — the number of pegs and queries.\n\nThe next line contains $*n*$ integers $*x*_{1}, *x*_{2}, ..., *x*_{*n*}$ ($- 10^{9} ≤ *x*_{*i*} ≤ 10^{9}$) — the coordinates of the pegs. It is guaranteed that the coordinates of all the pegs are distinct integers.\n\nNext $*m*$ lines contain the descriptions of the queries of pushing the weight, each consists of two integers $*a*_{*i*}$ ($1 ≤ *a*_{*i*} ≤ *n*$) and $*l*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ 10^{9}$) — the number of the starting peg and the length of the rope.\n\n## Output\n\nPrint $*m*$ lines, the $*i*$-th line should contain the number of the peg around which the weight will eventually rotate after the $*i*$-th push.\n\n## Note\n\nPicture to the first sample test:\n\n![image](https://espresso.codeforces.com/ace772e1ae9ea67da745f3150ca63b1060848531.png)\n\nPicture to the second sample test:\n\n![image](https://espresso.codeforces.com/9377883f52cbf2c7e7a652fea8a3f09ea1990863.png)\n\nNote that in the last query weight starts to rotate around the peg 1 attached to a rope segment of length 0.",
-  "statementZhMd": null,
+  "statementZhMd": "Andrewid 是一名银河系闻名的侦探。现在，他正忙于调查一起绝密案件，其详情不便公开。\n\n然而，他需要帮助来进行一项调查实验。平面上有 $*n*$ 个钉子，编号从 $1$ 到 $*n*$，第 $*i*$ 个钉子的坐标为 $(*x*_{*i*}, 0)$。接着，将一个重物用一根长度为 $*l*$ 的绷紧绳子系在其中一个钉子的底部（因此，若使用的钉子编号为 $*i*$，重物的坐标将为 $(*x*_{*i*},  - *l*)$）。然后将重物向右推动，使其开始逆时针旋转。同时，如果重物在旋转过程中碰到了其他钉子，它就会开始绕该钉子旋转。假设每个钉子本身都非常细，因此重物绕其旋转时不会影响绳子的长度。\n\n![image](https://espresso.codeforces.com/9f13820811911ef071989ae90a83032f2f91a7bd.png)\n\n更正式地说，如果在某一时刻，绳子的线段上除当前旋转中心钉子外还包含一个或多个钉子，那么重物将改为绕其中距离最远的钉子旋转，并且绳子的长度会缩短。特别地，如果绳子的线段端点碰到了某个钉子，则认为重物开始绕该钉子旋转，且绳长为 $0$。\n\n在某个时刻，重物将开始绕某个钉子旋转，而不再影响其余钉子。Andrewid 想确定这个钉子的编号。\n\nAndrewid 准备了 $*m*$ 个查询，其中包含推动重物的初始条件。请帮助他确定对于每个查询，重物最终会绕哪个钉子旋转。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$（$1 ≤ *n*, *m* ≤ 2·10^{5}$）——钉子的数量和查询的数量。\n\n下一行包含 $*n*$ 个整数 $*x*_{1}, *x*_{2}, ..., *x*_{*n*}$（$- 10^{9} ≤ *x*_{*i*} ≤ 10^{9}$）——钉子的坐标。保证所有钉子的坐标都是互不相同的整数。\n\n接下来的 $*m*$ 行包含推动重物的查询描述，每个查询由两个整数 $*a*_{*i*}$（$1 ≤ *a*_{*i*} ≤ *n*$）和 $*l*_{*i*}$（$1 ≤ *l*_{*i*} ≤ 10^{9}$）组成，分别表示起始钉子的编号和绳子的长度。\n\n## 输出格式\n\n输出 $*m*$ 行，第 $*i*$ 行应包含重物在第 $*i*$ 次推动后最终会绕其旋转的钉子的编号。\n\n## 说明\n\n第一个样例的示意图：\n\n![image](https://espresso.codeforces.com/ace772e1ae9ea67da745f3150ca63b1060848531.png)\n\n第二个样例的示意图：\n\n![image](https://espresso.codeforces.com/9377883f52cbf2c7e7a652fea8a3f09ea1990863.png)\n\n注意，在最后一个查询中，重物开始绕钉子 1 旋转，此时绳子的长度为 0。",
   "samples": [
     {
       "input": "3 2\n0 3 5\n2 3\n1 8\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:25:09.162Z"
+  "fetchedAt": "2026-10-31T01:25:09.162Z",
+  "translatedAt": "2026-11-04T06:52:58.498+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 954,
   "index": "C",
   "title": "Matrix Walk",
-  "titleZh": null,
+  "titleZh": "矩阵行走",
   "url": "https://codeforces.com/contest/954/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "There is a matrix $*A*$ of size $*x* × *y*$ filled with integers. For every ![image](https://espresso.codeforces.com/e87325918316c52884e4063f23cf77cfe475ee7c.png), ![image](https://espresso.codeforces.com/b2547b0e9acdacd0f9e1ca13295a4cc301cde743.png) $*A*_{*i*, *j*} = *y*(*i* - 1) + *j*$. Obviously, every integer from $[1..*xy*]$ occurs exactly once in this matrix.\n\nYou have traversed some path in this matrix. Your path can be described as a sequence of visited cells $*a*_{1}$, $*a*_{2}$, ..., $*a*_{*n*}$ denoting that you started in the cell containing the number $*a*_{1}$, then moved to the cell with the number $*a*_{2}$, and so on.\n\nFrom the cell located in $*i*$-th line and $*j*$-th column (we denote this cell as $(*i*, *j*)$) you can move into one of the following cells:\n\n1. $(*i* + 1, *j*)$ — only if $*i* < *x*$;\n2. $(*i*, *j* + 1)$ — only if $*j* < *y*$;\n3. $(*i* - 1, *j*)$ — only if $*i* > 1$;\n4. $(*i*, *j* - 1)$ — only if $*j* > 1$.\n\nNotice that making a move requires you to go to an adjacent cell. It is not allowed to stay in the same cell. You don't know $*x*$ and $*y*$ exactly, but you have to find any possible values for these numbers such that you could start in the cell containing the integer $*a*_{1}$, then move to the cell containing $*a*_{2}$ (in one step), then move to the cell containing $*a*_{3}$ (also in one step) and so on. Can you choose $*x*$ and $*y*$ so that they don't contradict with your sequence of moves?\n\n## Input\n\nThe first line contains one integer number $*n*$ ($1 ≤ *n* ≤ 200000$) — the number of cells you visited on your path (if some cell is visited twice, then it's listed twice).\n\nThe second line contains $*n*$ integers $*a*_{1}$, $*a*_{2}$, ..., $*a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ 10^{9}$) — the integers in the cells on your path.\n\n## Output\n\nIf all possible values of $*x*$ and $*y*$ such that $1 ≤ *x*, *y* ≤ 10^{9}$ contradict with the information about your path, print `NO`.\n\nOtherwise, print `YES` in the first line, and in the second line print the values $*x*$ and $*y*$ such that your path was possible with such number of lines and columns in the matrix. Remember that they must be positive integers not exceeding $10^{9}$.\n\n## Note\n\nThe matrix and the path on it in the first test looks like this:\n\n![image](https://espresso.codeforces.com/190a823a508d8dcf4bd86277a5f22b80210849c6.png)\n\nAlso there exist multiple correct answers for both the first and the third examples.",
-  "statementZhMd": null,
+  "statementZhMd": "<题目描述>\n\n有一个大小为 $*x* × *y*$、由整数填充的矩阵 $*A*$。对于任意 ![image](https://espresso.codeforces.com/e87325918316c52884e4063f23cf77cfe475ee7c.png)，![image](https://espresso.codeforces.com/b2547b0e9acdacd0f9e1ca13295a4cc301cde743.png)，有 $*A*_{*i*, *j*} = *y*(*i* - 1) + *j*$。显然，$[1..*xy*]$ 中的每个整数都恰好在该矩阵中出现一次。\n\n你在这个矩阵中走过了某条路径。你的路径可以表示为一系列访问过的单元格 $*a*_{1}$、$*a*_{2}$、...、$*a*_{*n*}$，表示你从包含数字 $*a*_{1}$ 的单元格出发，然后移动到包含数字 $*a*_{2}$ 的单元格，以此类推。\n\n从位于第 $*i*$ 行、第 $*j*$ 列的单元格（记为 $(*i*, *j*)$）出发，你可以移动到以下单元格之一：\n\n1. $(*i* + 1, *j*)$ —— 仅当 $*i* < *x*$ 时；\n2. $(*i*, *j* + 1)$ —— 仅当 $*j* < *y*$ 时；\n3. $(*i* - 1, *j*)$ —— 仅当 $*i* > 1$ 时；\n4. $(*i*, *j* - 1)$ —— 仅当 $*j* > 1$ 时。\n\n注意，每次移动都必须前往相邻单元格，不允许停留在同一个单元格中。你并不知道 $*x*$ 和 $*y*$ 的确切值，但需要找出这两个数的任意一组可能取值，使得你可以从包含整数 $*a*_{1}$ 的单元格出发，一步移动到包含整数 $*a*_{2}$ 的单元格，再一步移动到包含整数 $*a*_{3}$ 的单元格，以此类推。你能否选择 $*x*$ 和 $*y*$，使它们与给出的移动序列不矛盾？\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 200000$）——你访问过的单元格数量（如果某个单元格被访问了两次，则会在序列中列出两次）。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}$、$*a*_{2}$、...、$*a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ 10^{9}$）——路径上各单元格中的整数。\n\n## 输出格式\n\n如果所有满足 $1 ≤ *x*$、$*y* ≤ 10^{9}$ 的 $*x*$ 和 $*y*$ 都与路径信息矛盾，则输出 `NO`。\n\n否则，第一行输出 `YES`，第二行输出 $*x*$ 和 $*y*$ 的值，使得在具有这样行数和列数的矩阵中可以实现给定路径。请记住，它们必须是正整数且不超过 $10^{9}$。\n\n## 说明\n\n第一个测试用例中的矩阵及其路径如下所示：\n\n![image](https://espresso.codeforces.com/190a823a508d8dcf4bd86277a5f22b80210849c6.png)\n\n对于第一个和第三个样例，都存在多个正确答案。",
   "samples": [
     {
       "input": "8\n1 2 3 6 9 8 5 2\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:41:49.148Z"
+  "fetchedAt": "2026-11-02T19:41:49.148Z",
+  "translatedAt": "2026-11-04T05:46:07.759+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

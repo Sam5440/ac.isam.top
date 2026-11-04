@@ -4,7 +4,7 @@
   "contestId": 223,
   "index": "D",
   "title": "Spider",
-  "titleZh": null,
+  "titleZh": "蜘蛛",
   "url": "https://codeforces.com/contest/223/problem/D",
   "difficulty": 3000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "A plane contains a not necessarily convex polygon without self-intersections, consisting of $*n*$ vertexes, numbered from 1 to $*n*$. There is a spider sitting on the border of the polygon, the spider can move like that:\n\n1. *Transfer.* The spider moves from the point $*p*_{1}$ with coordinates $(*x*_{1}, *y*_{1})$, lying on the polygon border, to the point $*p*_{2}$ with coordinates $(*x*_{2}, *y*_{2})$, also lying on the border. The spider can't go beyond the polygon border as it transfers, that is, the spider's path from point $*p*_{1}$ to point $*p*_{2}$ goes along the polygon border. It's up to the spider to choose the direction of walking round the polygon border (clockwise or counterclockwise).\n2. *Descend.* The spider moves from point $*p*_{1}$ with coordinates $(*x*_{1}, *y*_{1})$ to point $*p*_{2}$ with coordinates $(*x*_{2}, *y*_{2})$, at that points $*p*_{1}$ and $*p*_{2}$ must lie on one vertical straight line ($*x*_{1} = *x*_{2}$), point $*p*_{1}$ must be not lower than point $*p*_{2}$ ($*y*_{1} ≥ *y*_{2}$) and segment $*p*_{1}*p*_{2}$ mustn't have points, located strictly outside the polygon (specifically, the segment can have common points with the border).\n\nInitially the spider is located at the polygon vertex with number $*s*$. Find the length of the shortest path to the vertex number $*t*$, consisting of transfers and descends. The distance is determined by the usual Euclidean metric ![image](https://espresso.codeforces.com/6baab5b704b6a658e3f847ecb20041ff7332455c.png).\n\n## Input\n\nThe first line contains integer $*n*$ ($3 ≤ *n* ≤ 10^{5}$) — the number of vertexes of the given polygon. Next $*n*$ lines contain two space-separated integers each — the coordinates of the polygon vertexes. The vertexes are listed in the counter-clockwise order. The coordinates of the polygon vertexes do not exceed $10^{4}$ in their absolute value.\n\nThe last line contains two space-separated integers $*s*$ and $*t*$ ($1 ≤ *s*, *t* ≤ *n*$) — the start and the end vertexes of the sought shortest way.\n\nConsider the polygon vertexes numbered in the order they are given in the input, that is, the coordinates of the first vertex are located on the second line of the input and the coordinates of the $*n*$-th vertex are on the $(*n* + 1)$-th line. It is guaranteed that the given polygon is simple, that is, it contains no self-intersections or self-tangencies.\n\n## Output\n\nIn the output print a single real number — the length of the shortest way from vertex $*s*$ to vertex $*t*$. The answer is considered correct, if its absolute or relative error does not exceed $10^{ - 6}$.\n\n## Note\n\nIn the first sample the spider transfers along the side that connects vertexes 1 and 4.\n\nIn the second sample the spider doesn't have to transfer anywhere, so the distance equals zero.\n\nIn the third sample the best strategy for the spider is to transfer from vertex 3 to point (2,3), descend to point (2,1), and then transfer to vertex 1.",
-  "statementZhMd": null,
+  "statementZhMd": "平面上有一个不一定是凸的、没有自交的多边形，由 $*n*$ 个顶点组成，顶点编号为 1 到 $*n*$。一只蜘蛛位于多边形的边界上，它可以进行以下移动：\n\n1. *转移。* 蜘蛛从坐标为 $(*x*_{1}, *y*_{1})$ 的点 $*p*_{1}$ 移动到坐标为 $(*x*_{2}, *y*_{2})$ 的点 $*p*_{2}$，其中两点都位于多边形边界上。转移过程中蜘蛛不能离开多边形边界，也就是说，蜘蛛从点 $*p*_{1}$ 到点 $*p*_{2}$ 的路径沿多边形边界进行。蜘蛛可以自行选择沿多边形边界行走的方向（顺时针或逆时针）。\n2. *下降。* 蜘蛛从坐标为 $(*x*_{1}, *y*_{1})$ 的点 $*p*_{1}$ 移动到坐标为 $(*x*_{2}, *y*_{2})$ 的点 $*p*_{2}$，其中点 $*p*_{1}$ 和点 $*p*_{2}$ 必须位于同一条竖直直线上（$*x*_{1} = *x*_{2}$），点 $*p*_{1}$ 的位置不能低于点 $*p*_{2}$（$*y*_{1} ≥ *y*_{2}$），并且线段 $*p*_{1}*p*_{2}$ 不能包含任何严格位于多边形外部的点（特别地，该线段可以与多边形边界有公共点）。\n\n初始时，蜘蛛位于编号为 $*s*$ 的多边形顶点。请找出一条由转移和下降组成的、到达编号为 $*t*$ 的顶点的最短路径。距离按照通常的欧几里得度量计算 ![image](https://espresso.codeforces.com/6baab5b704b6a658e3f847ecb20041ff7332455c.png)。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$3 ≤ *n* ≤ 10^{5}$），表示给定多边形的顶点数。接下来的 $*n*$ 行中，每行包含两个用空格分隔的整数，表示多边形顶点的坐标。顶点按照逆时针顺序给出。多边形顶点坐标的绝对值不超过 $10^{4}$。\n\n最后一行包含两个用空格分隔的整数 $*s*$ 和 $*t*$（$1 ≤ *s*, *t* ≤ *n*$），表示所求最短路径的起点和终点顶点。\n\n多边形顶点的编号按照输入中的顺序确定，即第一个顶点的坐标位于输入的第二行，第 $*n*$ 个顶点的坐标位于输入的第 $(*n* + 1)$ 行。保证给定的多边形是简单多边形，即不存在自交或自切。\n\n## 输出格式\n\n输出一个实数，即从顶点 $*s*$ 到顶点 $*t*$ 的最短路径长度。如果答案的绝对误差或相对误差不超过 $10^{ - 6}$，则认为答案正确。\n\n## 说明\n\n在第一个样例中，蜘蛛沿连接顶点 1 和 4 的边进行转移。\n\n在第二个样例中，蜘蛛无需进行任何转移，因此距离为零。\n\n在第三个样例中，蜘蛛的最佳策略是从顶点 3 转移到点 (2,3)，下降到点 (2,1)，然后转移到顶点 1。",
   "samples": [
     {
       "input": "4\n0 0\n1 0\n1 1\n0 1\n1 4\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:18:27.555Z"
+  "fetchedAt": "2026-10-31T02:18:27.555Z",
+  "translatedAt": "2026-11-04T07:36:49.916+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

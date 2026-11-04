@@ -4,7 +4,7 @@
   "contestId": 610,
   "index": "E",
   "title": "Alphabet Permutations",
-  "titleZh": null,
+  "titleZh": "字母排列",
   "url": "https://codeforces.com/contest/610/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a string $*s*$ of length $*n*$, consisting of first $*k*$ lowercase English letters.\n\nWe define a *$*c*$-repeat* of some string $*q*$ as a string, consisting of $*c*$ copies of the string $*q*$. For example, string \"`acbacbacbacb`\" is a $4$-repeat of the string \"`acb`\".\n\nLet's say that string $*a*$ contains string $*b*$ as a subsequence, if string $*b*$ can be obtained from $*a*$ by erasing some symbols.\n\nLet $*p*$ be a string that represents some permutation of the first $*k*$ lowercase English letters. We define function $*d*(*p*)$ as the smallest integer such that a $*d*(*p*)$-repeat of the string $*p*$ contains string $*s*$ as a subsequence.\n\nThere are $*m*$ operations of one of two types that can be applied to string $*s*$:\n\n1. Replace all characters at positions from $*l*_{*i*}$ to $*r*_{*i*}$ by a character $*c*_{*i*}$.\n2. For the given $*p*$, that is a permutation of first $*k*$ lowercase English letters, find the value of function $*d*(*p*)$.\n\nAll operations are performed sequentially, in the order they appear in the input. Your task is to determine the values of function $*d*(*p*)$ for all operations of the second type.\n\n## Input\n\nThe first line contains three positive integers $*n*$, $*m*$ and $*k*$ ($1 ≤ *n* ≤ 200 000, 1 ≤ *m* ≤ 20000, 1 ≤ *k* ≤ 10$) — the length of the string $*s*$, the number of operations and the size of the alphabet respectively. The second line contains the string $*s*$ itself.\n\nEach of the following lines $*m*$ contains a description of some operation:\n\n1. Operation of the first type starts with $1$ followed by a triple $*l*_{*i*}$, $*r*_{*i*}$ and $*c*_{*i*}$, that denotes replacement of all characters at positions from $*l*_{*i*}$ to $*r*_{*i*}$ by character $*c*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$, $*c*_{*i*}$ is one of the first $*k*$ lowercase English letters).\n2. Operation of the second type starts with $2$ followed by a permutation of the first $*k*$ lowercase English letters.\n\n## Output\n\nFor each query of the second type the value of function $*d*(*p*)$.\n\n## Note\n\nAfter the first operation the string $*s*$ will be `abbbbba`.\n\nIn the second operation the answer is $6$-repeat of `abc`: `ABcaBcaBcaBcaBcAbc`.\n\nAfter the third operation the string $*s*$ will be `abbcbba`.\n\nIn the fourth operation the answer is $5$-repeat of `cba`: `cbAcBacBaCBacBA`.\n\nUppercase letters means the occurrences of symbols from the string $*s*$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $*n*$ 的字符串 $*s*$，该字符串由前 $*k*$ 个小写英文字母组成。\n\n我们将字符串 $*q*$ 的 *$*c*$-重复* 定义为由 $*c*$ 个字符串 $*q*$ 拼接而成的字符串。例如，字符串 \"`acbacbacbacb`\" 是字符串 \"`acb`\" 的 $4$-重复。\n\n如果字符串 $*b*$ 可以通过删除字符串 $*a*$ 中的一些字符得到，则称字符串 $*a*$ 包含字符串 $*b*$ 作为子序列。\n\n设 $*p*$ 是一个表示前 $*k*$ 个小写英文字母的某个排列的字符串。我们定义函数 $*d*(*p*)$ 为满足以下条件的最小整数：字符串 $*p*$ 的 $*d*(*p*)$-重复包含字符串 $*s*$ 作为子序列。\n\n有 $*m*$ 个操作，操作可以分为以下两种类型，并作用于字符串 $*s*$：\n\n1. 将位置从 $*l*_{*i*}$ 到 $*r*_{*i*}$ 的所有字符替换为字符 $*c*_{*i*$}。\n2. 对于给定的 $*p*$（它是前 $*k*$ 个小写英文字母的一个排列），求函数 $*d*(*p*)$ 的值。\n\n所有操作均按照输入中的顺序依次执行。你的任务是求出所有第二类操作中函数 $*d*(*p*)$ 的值。\n\n## 输入格式\n\n第一行包含三个正整数 $*n*$、$*m*$ 和 $*k*$（$1 ≤ *n* ≤ 200 000, 1 ≤ *m* ≤ 20000, 1 ≤ *k* ≤ 10$）——字符串 $*s*$ 的长度、操作数量以及字母表大小。第二行包含字符串 $*s*$ 本身。\n\n接下来的 $*m*$ 行每行描述一个操作：\n\n1. 第一类操作以 $1$ 开头，后跟三个数 $*l*_{*i*}$、$*r*_{*i*}$ 和 $*c*_{*i*}$，表示将位置从 $*l*_{*i*}$ 到 $*r*_{*i*}$ 的所有字符替换为字符 $*c*_{*i*}$（$1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$，$*c*_{*i*}$ 是前 $*k*$ 个小写英文字母之一）。\n2. 第二类操作以 $2$ 开头，后跟前 $*k*$ 个小写英文字母的一个排列。\n\n## 输出格式\n\n对于每个第二类操作，输出函数 $*d*(*p*)$ 的值。\n\n## 说明\n\n执行第一次操作后，字符串 $*s*$ 将变为 `abbbbba`。\n\n第二次操作的答案是 `abc` 的 $6$-重复：`ABcaBcaBcaBcaBcAbc`。\n\n执行第三次操作后，字符串 $*s*$ 将变为 `abbcbba`。\n\n第四次操作的答案是 `cba` 的 $5$-重复：`cbAcBacBaCBacBA`。\n\n大写字母表示字符串 $*s*$ 中对应字符的出现位置。",
   "samples": [
     {
       "input": "7 4 3\nabacaba\n1 3 5 b\n2 abc\n1 4 4 c\n2 cba\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:17:48.358Z"
+  "fetchedAt": "2026-10-31T01:17:48.358Z",
+  "translatedAt": "2026-11-04T06:40:52.362+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

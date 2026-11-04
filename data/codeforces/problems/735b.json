@@ -4,7 +4,7 @@
   "contestId": 735,
   "index": "B",
   "title": "Urbanization",
-  "titleZh": null,
+  "titleZh": "城市化",
   "url": "https://codeforces.com/contest/735/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Local authorities have heard a lot about combinatorial abilities of Ostap Bender so they decided to ask his help in the question of urbanization. There are $*n*$ people who plan to move to the cities. The wealth of the $*i*$ of them is equal to $*a*_{*i*}$. Authorities plan to build two cities, first for $*n*_{1}$ people and second for $*n*_{2}$ people. Of course, each of $*n*$ candidates can settle in only one of the cities. Thus, first some subset of candidates of size $*n*_{1}$ settle in the first city and then some subset of size $*n*_{2}$ is chosen among the remaining candidates and the move to the second city. All other candidates receive an official refuse and go back home.\n\nTo make the statistic of local region look better in the eyes of their bosses, local authorities decided to pick subsets of candidates in such a way that **the sum of arithmetic mean** of wealth of people in each of the cities is as large as possible. Arithmetic mean of wealth in one city is the sum of wealth $*a*_{*i*}$ among all its residents divided by the number of them ($*n*_{1}$ or $*n*_{2}$ depending on the city). The division should be done in real numbers without any rounding.\n\nPlease, help authorities find the optimal way to pick residents for two cities.\n\n## Input\n\nThe first line of the input contains three integers $*n*$, $*n*_{1}$ and $*n*_{2}$ ($1 ≤ *n*, *n*_{1}, *n*_{2} ≤ 100 000$, $*n*_{1} + *n*_{2} ≤ *n*$) — the number of candidates who want to move to the cities, the planned number of residents of the first city and the planned number of residents of the second city.\n\nThe second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ 100 000$), the $*i*$-th of them is equal to the wealth of the $*i*$-th candidate.\n\n## Output\n\nPrint one real value — the maximum possible sum of arithmetic means of wealth of cities' residents. You answer will be considered correct if its absolute or relative error does not exceed $10^{ - 6}$.\n\nNamely: let's assume that your answer is $*a*$, and the answer of the jury is $*b*$. The checker program will consider your answer correct, if ![image](https://espresso.codeforces.com/c97ba2000ebfad962bff7ffd8d043594f5ae1086.png).\n\n## Note\n\nIn the first sample, one of the optimal solutions is to move candidate $1$ to the first city and candidate $2$ to the second.\n\nIn the second sample, the optimal solution is to pick candidates $3$ and $4$ for the first city, and candidate $2$ for the second one. Thus we obtain $(*a*_{3} + *a*_{4}) / 2 + *a*_{2} = (3 + 2) / 2 + 4 = 6.5$",
-  "statementZhMd": null,
+  "statementZhMd": "# 题目描述\n\n地方当局听说了很多关于奥斯塔普·本德尔组合数学能力的传闻，于是决定请他帮忙解决城市化问题。有 $*n*$ 个人计划搬到城市居住。其中第 $*i*$ 个人的财富为 $*a*_{*i*}$。当局计划建造两座城市，第一座容纳 $*n*_{1}$ 人，第二座容纳 $*n*_{2}$ 人。当然，每位候选人只能定居在其中一座城市。因此，首先从候选人中选出一个大小为 $*n*_{1}$ 的子集，让他们定居在第一座城市；然后再从剩余候选人中选出一个大小为 $*n*_{2}$ 的子集，让他们搬到第二座城市。其他候选人会收到官方的拒绝通知并回家。\n\n为了让当地统计数据在上级眼中更加漂亮，地方当局决定以一种方式选择候选人子集，使得**两座城市居民财富的算术平均数之和**尽可能大。某座城市居民财富的算术平均数，是该城市所有居民的财富之和除以居民人数（根据城市不同，人数为 $*n*_{1}$ 或 $*n*_{2}$）。除法应在实数范围内进行，不进行任何取整。\n\n请帮助当局找出为两座城市选择居民的最优方案。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*$、$*n*_{1}$ 和 $*n*_{2}$（$1 ≤ *n*, *n*_{1}, *n*_{2} ≤ 100 000$，$*n*_{1} + *n*_{2} ≤ *n*$）——希望搬到城市的候选人数、计划居住在第一座城市的人数以及计划居住在第二座城市的人数。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ 100 000$），其中第 $*i*$ 个数等于第 $*i*$ 位候选人的财富。\n\n## 输出格式\n\n输出一个实数——城市居民财富的算术平均数之和的最大可能值。如果你的答案与标准答案的绝对误差或相对误差不超过 $10^{ - 6}$，则会被判定为正确。\n\n具体来说，假设你的答案为 $*a*$，标准答案为 $*b*$。检查程序将在且仅在下图所示条件成立时认为你的答案正确：![image](https://espresso.codeforces.com/c97ba2000ebfad962bff7ffd8d043594f5ae1086.png)。\n\n## 说明\n\n在第一个样例中，一种最优方案是将候选人 $1$ 安排到第一座城市，将候选人 $2$ 安排到第二座城市。\n\n在第二个样例中，最优方案是选择候选人 $3$ 和 $4$ 前往第一座城市，选择候选人 $2$ 前往第二座城市。因此结果为 $(*a*_{3} + *a*_{4}) / 2 + *a*_{2} = (3 + 2) / 2 + 4 = 6.5$。",
   "samples": [
     {
       "input": "2 1 1\n1 5\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:02:29.696Z"
+  "fetchedAt": "2026-10-31T01:02:29.696Z",
+  "translatedAt": "2026-11-04T06:22:58.633+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

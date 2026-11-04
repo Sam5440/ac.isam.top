@@ -4,7 +4,7 @@
   "contestId": 1690,
   "index": "C",
   "title": "Restoring the Duration of Tasks",
-  "titleZh": null,
+  "titleZh": "恢复任务的执行时长",
   "url": "https://codeforces.com/contest/1690/problem/C",
   "difficulty": 800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Recently, Polycarp completed $n$ successive tasks.\n\nFor each completed task, the time $s_i$ is known when it was given, no two tasks were given at the same time. Also given is the time $f_i$ when the task was completed. For each task, there is an unknown value $d_i$ ($d_i \\gt 0$) — **duration of task execution**.\n\nIt is known that the tasks were completed in the order in which they came. Polycarp performed the tasks as follows:\n\n- As soon as the very first task came, Polycarp immediately began to carry it out.\n- If a new task arrived before Polycarp finished the previous one, he put the new task at the end of the queue.\n- When Polycarp finished executing the next task and the queue was not empty, he **immediately** took a new task from the head of the queue (if the queue is empty — he just waited for the next task).\n\nFind $d_i$ (duration) of each task.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe descriptions of the input data sets follow.\n\nThe first line of each test case contains one integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$).\n\nThe second line of each test case contains exactly $n$ integers $s_1 \\lt s_2 \\lt \\dots \\lt s_n$ ($0 \\le s_i \\le 10^9$).\n\nThe third line of each test case contains exactly $n$ integers $f_1 \\lt f_2 \\lt \\dots \\lt f_n$ ($s_i \\lt f_i \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each of $t$ test cases print $n$ positive integers $d_1, d_2, \\dots, d_n$ — the duration of each task.\n\n## Note\n\nFirst test case:\n\nThe queue is empty at the beginning: $[ ]$. And that's where the first task comes in. At time $2$, Polycarp finishes doing the first task, so the duration of the first task is $2$. The queue is empty so Polycarp is just waiting.\n\nAt time $3$, the second task arrives. And at time $7$, the third task arrives, and now the queue looks like this: $[7]$.\n\nAt the time $10$, Polycarp finishes doing the second task, as a result, the duration of the second task is $7$.\n\nAnd at time $10$, Polycarp immediately starts doing the third task and finishes at time $11$. As a result, the duration of the third task is $1$.\n\n![image](https://espresso.codeforces.com/4d8d30010c8200c28b2f4fd019c3cdaff426b5cf.png) An example of the first test case.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，Polycarp 完成了 $n$ 个连续的任务。\n\n对于每个已完成的任务，已知它被分配时的时间 $s_i$，且没有两个任务在同一时刻被分配。同时还给出了任务完成的时间 $f_i$。对于每个任务，存在一个未知值 $d_i$（$d_i \\gt 0$）——**任务的执行时长**。\n\n已知任务是按照它们到达的顺序完成的。Polycarp 按照以下方式执行任务：\n\n- 一旦第一个任务到达，Polycarp 就立即开始执行它。\n- 如果新任务在 Polycarp 完成前一个任务之前到达，他会将新任务放到队列末尾。\n- 当 Polycarp 完成当前任务且队列不为空时，他会**立即**从队首取出一个新任务（如果队列为空，则等待下一个任务）。\n\n求出每个任务的 $d_i$（执行时长）。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n接下来给出各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）。\n\n每个测试用例的第二行包含恰好 $n$ 个整数 $s_1 \\lt s_2 \\lt \\dots \\lt s_n$（$0 \\le s_i \\le 10^9$）。\n\n每个测试用例的第三行包含恰好 $n$ 个整数 $f_1 \\lt f_2 \\lt \\dots \\lt f_n$（$s_i \\lt f_i \\le 10^9$）。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个正整数 $d_1, d_2, \\dots, d_n$——每个任务的执行时长。\n\n## 说明\n\n第一个测试用例：\n\n开始时队列为空：$[ ]$。此时第一个任务到达。在时间 $2$，Polycarp 完成了第一个任务，因此第一个任务的执行时长为 $2$。队列为空，所以 Polycarp 只能等待。\n\n在时间 $3$，第二个任务到达。在时间 $7$，第三个任务到达，此时队列如下：$[7]$。\n\n在时间 $10$，Polycarp 完成了第二个任务，因此第二个任务的执行时长为 $7$。\n\n在时间 $10$，Polycarp 立即开始执行第三个任务，并在时间 $11$ 完成。因此，第三个任务的执行时长为 $1$。\n\n![image](https://espresso.codeforces.com/4d8d30010c8200c28b2f4fd019c3cdaff426b5cf.png) 第一个测试用例的示例。",
   "samples": [
     {
       "input": "4\n3\n0 3 7\n2 10 11\n2\n10 15\n11 16\n9\n12 16 90 195 1456 1569 3001 5237 19275\n13 199 200 260 9100 10000 10914 91066 5735533\n1\n0\n1000000000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:00:55.144Z"
+  "fetchedAt": "2026-11-02T18:00:55.144Z",
+  "translatedAt": "2026-11-04T03:21:55.262+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

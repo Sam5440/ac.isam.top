@@ -4,7 +4,7 @@
   "contestId": 1061,
   "index": "D",
   "title": "TV Shows",
-  "titleZh": null,
+  "titleZh": "电视节目",
   "url": "https://codeforces.com/contest/1061/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ TV shows you want to watch. Suppose the whole time is split into equal parts called \"minutes\". The $i$-th of the shows is going from $l_i$-th to $r_i$-th minute, both ends inclusive.\n\nYou need a TV to watch a TV show and you can't watch two TV shows which air at the same time on the same TV, so it is possible you will need multiple TVs in some minutes. For example, if segments $[l_i, r_i]$ and $[l_j, r_j]$ intersect, then shows $i$ and $j$ can't be watched simultaneously on one TV.\n\nOnce you start watching a show on some TV it is not possible to \"move\" it to another TV (since it would be too distracting), or to watch another show on the same TV until this show ends.\n\nThere is a TV Rental shop near you. It rents a TV for $x$ rupees, and charges $y$ ($y \\lt x$) rupees for every extra minute you keep the TV. So in order to rent a TV for minutes $[a; b]$ you will need to pay $x + y \\cdot (b - a)$.\n\nYou can assume, that taking and returning of the TV doesn't take any time and doesn't distract from watching other TV shows. Find the minimum possible cost to view all shows. Since this value could be too large, print it modulo $10^9 + 7$.\n\n## Input\n\nThe first line contains integers $n$, $x$ and $y$ ($1 \\le n \\le 10^5$, $1 \\le y \\lt x \\le 10^9$) — the number of TV shows, the cost to rent a TV for the first minute and the cost to rent a TV for every subsequent minute.\n\nEach of the next $n$ lines contains two integers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le 10^9$) denoting the start and the end minute of the $i$-th TV show.\n\n## Output\n\nPrint exactly one integer — the minimum cost to view all the shows taken modulo $10^9 + 7$.\n\n## Note\n\nIn the first example, the optimal strategy would be to rent $3$ TVs to watch:\n\n- Show $[1, 2]$ on the first TV,\n- Show $[4, 10]$ on the second TV,\n- Shows $[2, 4], [5, 9], [10, 11]$ on the third TV.\n\nThis way the cost for the first TV is $4 + 3 \\cdot (2 - 1) = 7$, for the second is $4 + 3 \\cdot (10 - 4) = 22$ and for the third is $4 + 3 \\cdot (11 - 2) = 31$, which gives $60$ int total.\n\nIn the second example, it is optimal watch each show on a new TV.\n\nIn third example, it is optimal to watch both shows on a new TV. Note that the answer is to be printed modulo $10^9 + 7$.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 个你想观看的电视节目。假设总时间被划分为若干个相等的部分，称为“分钟”。第 $i$ 个电视节目从第 $l_i$ 分钟播放到第 $r_i$ 分钟，且包含两端。\n\n观看电视节目需要一台电视，并且你不能在同一台电视上同时观看两个正在播放的电视节目，因此在某些分钟内你可能需要多台电视。例如，如果线段 $[l_i, r_i]$ 和 $[l_j, r_j]$ 相交，那么节目 $i$ 和节目 $j$ 就不能在同一台电视上同时观看。\n\n一旦你开始在某台电视上观看一个节目，就不能将其“转移”到另一台电视上（因为这会造成太多干扰），也不能在该节目结束前使用同一台电视观看其他节目。\n\n你附近有一家电视租赁店。租用一台电视需要支付 $x$ 卢比，并且每额外使用一分钟需要支付 $y$ 卢比（$y \\lt x$）。因此，要租用一台电视覆盖分钟区间 $[a; b]$，你需要支付 $x + y \\cdot (b - a)$。\n\n你可以认为取用和归还电视不需要任何时间，也不会干扰观看其他电视节目。请找出观看完所有节目的最小可能费用。由于该值可能非常大，请输出其对 $10^9 + 7$ 取模后的结果。\n\n## 输入格式\n\n第一行包含整数 $n$、$x$ 和 $y$（$1 \\le n \\le 10^5$，$1 \\le y \\lt x \\le 10^9$）——电视节目的数量、租用电视第一分钟的费用，以及租用电视之后每一分钟的费用。\n\n接下来的 $n$ 行中，每行包含两个整数 $l_i$ 和 $r_i$（$1 \\le l_i \\le r_i \\le 10^9$），表示第 $i$ 个电视节目的开始分钟和结束分钟。\n\n## 输出格式\n\n输出恰好一个整数——观看完所有节目所需的最小费用对 $10^9 + 7$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，最优策略是租用 $3$ 台电视来观看：\n\n- 在第一台电视上观看节目 $[1, 2]$；\n- 在第二台电视上观看节目 $[4, 10]$；\n- 在第三台电视上观看节目 $[2, 4]$、$[5, 9]$ 和 $[10, 11]$。\n\n这样，第一台电视的费用为 $4 + 3 \\cdot (2 - 1) = 7$，第二台电视的费用为 $4 + 3 \\cdot (10 - 4) = 22$，第三台电视的费用为 $4 + 3 \\cdot (11 - 2) = 31$，总费用为 $60$。\n\n在第二个样例中，最优方案是每个节目都租用一台新的电视观看。\n\n在第三个样例中，最优方案是分别租用一台新的电视观看两个节目。注意，答案需要对 $10^9 + 7$ 取模。",
   "samples": [
     {
       "input": "5 4 3\n1 2\n4 10\n2 4\n10 11\n5 9\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:21:57.362Z"
+  "fetchedAt": "2026-10-31T00:21:57.362Z",
+  "translatedAt": "2026-11-04T05:25:04.722+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

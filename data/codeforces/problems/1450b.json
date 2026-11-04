@@ -4,7 +4,7 @@
   "contestId": 1450,
   "index": "B",
   "title": "Balls of Steel",
-  "titleZh": null,
+  "titleZh": "钢铁球",
   "url": "https://codeforces.com/contest/1450/problem/B",
   "difficulty": 1000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You have $n$ **distinct** points $(x_1, y_1),\\ldots,(x_n,y_n)$ on the plane and a non-negative integer parameter $k$. Each point is a microscopic steel ball and $k$ is the attract power of a ball when it's charged. The attract power is the same for all balls.\n\nIn one operation, you can select a ball $i$ to charge it. Once charged, **all** balls with Manhattan distance at most $k$ from ball $i$ move to the position of ball $i$. Many balls may have the same coordinate after an operation.\n\nMore formally, for all balls $j$ such that $|x_i - x_j| + |y_i - y_j| \\le k$, we assign $x_j:=x_i$ and $y_j:=y_i$.\n\n![image](https://espresso.codeforces.com/de36500cad32d8833b7289a7a5e37caa1adfb598.png) An example of an operation. After charging the ball in the center, two other balls move to its position. On the right side, the red dot in the center is the common position of those balls.\n\nYour task is to find the minimum number of operations to move all balls to the same position, or report that this is impossible.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 100$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$, $k$ ($2 \\le n \\le 100$, $0 \\le k \\le 10^6$) — the number of balls and the attract power of all balls, respectively.\n\nThe following $n$ lines describe the balls' coordinates. The $i$-th of these lines contains two integers $x_i$, $y_i$ ($0 \\le x_i, y_i \\le 10^5$) — the coordinates of the $i$-th ball.\n\nIt is guaranteed that all points are **distinct**.\n\n## Output\n\nFor each test case print a single integer — the minimum number of operations to move all balls to the same position, or $-1$ if it is impossible.\n\n## Note\n\nIn the first test case, there are three balls at $(0, 0)$, $(3, 3)$, and $(1, 1)$ and the attract power is $2$. It is possible to move two balls together with one operation, but not all three balls together with any number of operations.\n\nIn the second test case, there are three balls at $(6, 7)$, $(8, 8)$, and $(6, 9)$ and the attract power is $3$. If we charge any ball, the other two will move to the same position, so we only require one operation.\n\nIn the third test case, there are four balls at $(0, 0)$, $(0, 1)$, $(0, 2)$, and $(0, 3)$, and the attract power is $1$. We can show that it is impossible to move all balls to the same position with a sequence of operations.",
-  "statementZhMd": null,
+  "statementZhMd": "平面上有 $n$ 个**互不相同**的点 $(x_1, y_1),\\ldots,(x_n,y_n)$，以及一个非负整数参数 $k$。每个点都是一个微型钢球，$k$ 是钢球充电后的吸引力。所有钢球的吸引力都相同。\n\n在一次操作中，你可以选择一个钢球 $i$ 并为其充电。充电后，所有与钢球 $i$ 的曼哈顿距离不超过 $k$ 的钢球都会移动到钢球 $i$ 所在的位置。一次操作后，多个钢球可能拥有相同的坐标。\n\n更正式地，对于所有满足 $|x_i - x_j| + |y_i - y_j| \\le k$ 的钢球 $j$，将 $x_j:=x_i$ 且 $y_j:=y_i$。\n\n![image](https://espresso.codeforces.com/de36500cad32d8833b7289a7a5e37caa1adfb598.png) 一次操作的示例。为位于中心的钢球充电后，另外两个钢球移动到了它的位置。右侧图中，中心的红点就是这些钢球的共同位置。\n\n你的任务是求出将所有钢球移动到同一位置所需的最少操作次数；如果无法做到，则报告这一点。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 100$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$、$k$（$2 \\le n \\le 100$，$0 \\le k \\le 10^6$）——钢球的数量以及所有钢球的吸引力。\n\n接下来的 $n$ 行描述钢球的坐标。其中第 $i$ 行包含两个整数 $x_i$、$y_i$（$0 \\le x_i, y_i \\le 10^5$）——第 $i$ 个钢球的坐标。\n\n保证所有点**互不相同**。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——将所有钢球移动到同一位置所需的最少操作次数；如果无法做到，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，有三个钢球分别位于 $(0, 0)$、$(3, 3)$ 和 $(1, 1)$，吸引力为 $2$。可以通过一次操作将其中两个钢球移动到一起，但无论进行多少次操作，都无法将三个钢球移动到一起。\n\n在第二个测试用例中，有三个钢球分别位于 $(6, 7)$、$(8, 8)$ 和 $(6, 9)$，吸引力为 $3$。无论为哪个钢球充电，另外两个钢球都会移动到同一位置，因此只需要一次操作。\n\n在第三个测试用例中，有四个钢球分别位于 $(0, 0)$、$(0, 1)$、$(0, 2)$ 和 $(0, 3)$，吸引力为 $1$。可以证明，通过一系列操作无法将所有钢球移动到同一位置。",
   "samples": [
     {
       "input": "3\n3 2\n0 0\n3 3\n1 1\n3 3\n6 7\n8 8\n6 9\n4 1\n0 0\n0 1\n0 2\n0 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:40:53.850Z"
+  "fetchedAt": "2026-10-30T23:40:53.850Z",
+  "translatedAt": "2026-11-04T04:10:04.552+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 414,
   "index": "C",
   "title": "Mashmokh and Reverse Operation",
-  "titleZh": null,
+  "titleZh": "Mashmokh 与反转操作",
   "url": "https://codeforces.com/contest/414/problem/C",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "*Mashmokh's boss, Bimokh, didn't like Mashmokh. So he fired him. Mashmokh decided to go to university and participate in ACM instead of finding a new job. He wants to become a member of Bamokh's team. In order to join he was given some programming tasks and one week to solve them. Mashmokh is not a very experienced programmer. Actually he is not a programmer at all. So he wasn't able to solve them. That's why he asked you to help him with these tasks. One of these tasks is the following.*\n\nYou have an array $*a*$ of length $2^{*n*}$ and $*m*$ queries on it. The $*i*$-th query is described by an integer $*q*_{*i*}$. In order to perform the $*i*$-th query you must:\n\n- split the array into $2^{*n* - *q*_{*i*}}$ parts, where each part is a subarray consisting of $2^{*q*_{*i*}}$ numbers; the $*j*$-th subarray $(1 ≤ *j* ≤ 2^{*n* - *q*_{*i*}})$ should contain the elements $*a*[(*j* - 1)·2^{*q*_{*i*}} + 1], *a*[(*j* - 1)·2^{*q*_{*i*}} + 2], ..., *a*[(*j* - 1)·2^{*q*_{*i*}} + 2^{*q*_{*i*}}]$;\n- reverse each of the subarrays;\n- join them into a single array in the same order (this array becomes new array $*a*$);\n- output the number of inversions in the new $*a*$.\n\nGiven initial array $*a*$ and all the queries. Answer all the queries. Please, note that the changes from some query is saved for further queries.\n\n## Input\n\nThe first line of input contains a single integer $*n* (0 ≤ *n* ≤ 20)$.\n\nThe second line of input contains $2^{*n*}$ space-separated integers $*a*[1], *a*[2], ..., *a*[2^{*n*}] (1 ≤ *a*[*i*] ≤ 10^{9})$, the initial array.\n\nThe third line of input contains a single integer $*m* (1 ≤ *m* ≤ 10^{6})$.\n\nThe fourth line of input contains $*m*$ space-separated integers $*q*_{1}, *q*_{2}, ..., *q*_{*m*} (0 ≤ *q*_{*i*} ≤ *n*)$, the queries.\n\n**Note**: since the size of the input and output could be very large, don't use slow output techniques in your language. For example, do not use input and output streams (cin, cout) in C++.\n\n## Output\n\nOutput $*m*$ lines. In the $*i*$-th line print the answer (the number of inversions) for the $*i*$-th query.\n\n## Note\n\nIf we reverse an array $*x*[1], *x*[2], ..., *x*[*n*]$ it becomes new array $*y*[1], *y*[2], ..., *y*[*n*]$, where $*y*[*i*] = *x*[*n* - *i* + 1]$ for each $*i*$.\n\nThe number of inversions of an array $*x*[1], *x*[2], ..., *x*[*n*]$ is the number of pairs of indices $*i*, *j*$ such that: $*i* < *j*$ and $*x*[*i*] > *x*[*j*]$.",
-  "statementZhMd": null,
+  "statementZhMd": "*Mashmokh 的老板 Bimokh 不喜欢 Mashmokh，于是解雇了他。Mashmokh 决定去上大学并参加 ACM，而不是寻找一份新工作。他想成为 Bamokh 队伍的一员。为了加入队伍，他得到了一些编程任务，并有一周的时间来解决它们。Mashmokh 不是一名经验丰富的程序员。事实上，他根本不是程序员。所以他无法解决这些任务。这就是为什么他请求你帮助他完成这些任务。其中一个任务如下。*\n\n你有一个长度为 $*a*$ 的数组 $*a*$，以及对它进行的 $*m*$ 次查询。第 $*i*$ 次查询由一个整数 $*q*_{*i*}$ 描述。为了执行第 $*i*$ 次查询，你必须：\n\n- 将数组分成 $2^{*n* - *q*_{*i*}}$ 个部分，其中每个部分是一个包含 $2^{*q*_{*i*}}$ 个数的子数组；第 $*j*$ 个子数组 $(1 ≤ *j* ≤ 2^{*n* - *q*_{*i*}})$ 应包含元素 $*a*[(*j* - 1)·2^{*q*_{*i*}} + 1], *a*[(*j* - 1)·2^{*q*_{*i*}} + 2], ..., *a*[(*j* - 1)·2^{*q*_{*i*}} + 2^{*q*_{*i*}}]$；\n- 将每个子数组分别反转；\n- 按照原顺序将它们连接成一个数组（该数组成为新的数组 $*a*$）；\n- 输出新数组 $*a*$ 中逆序对的数量。\n\n给定初始数组 $*a*$ 和所有查询，请回答所有查询。请注意，某次查询产生的变化会保留，并影响后续查询。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n* (0 ≤ *n* ≤ 20)$。\n\n输入的第二行包含 $2^{*n*}$ 个用空格分隔的整数 $*a*[1], *a*[2], ..., *a*[2^{*n*}] (1 ≤ *a*[*i*] ≤ 10^{9})$，表示初始数组。\n\n输入的第三行包含一个整数 $*m* (1 ≤ *m* ≤ 10^{6})$。\n\n输入的第四行包含 $*m*$ 个用空格分隔的整数 $*q*_{1}, *q*_{2}, ..., *q*_{*m*} (0 ≤ *q*_{*i*} ≤ *n*)$，表示查询。\n\n**说明**：由于输入和输出的规模可能很大，请不要在所使用的语言中采用较慢的输入输出方式。例如，在 C++ 中不要使用输入输出流（cin、cout）。\n\n## 输出格式\n\n输出 $*m*$ 行。第 $*i*$ 行输出第 $*i*$ 次查询的答案（逆序对的数量）。\n\n## 说明\n\n如果将数组 $*x*[1], *x*[2], ..., *x*[*n*]$ 反转，它将变成新的数组 $*y*[1], *y*[2], ..., *y*[*n*]$，其中对于每个 $*i*$，$*y*[*i*] = *x*[*n* - *i* + 1]$。\n\n数组 $*x*[1], *x*[2], ..., *x*[*n*]$ 的逆序对数量，是满足以下条件的下标对 $*i*, *j*$ 的数量：$*i* < *j*$ 且 $*x*[*i*] > *x*[*j*$。",
   "samples": [
     {
       "input": "2\n2 1 4 3\n4\n1 2 0 2\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:48:09.292Z"
+  "fetchedAt": "2026-10-31T01:48:09.292Z",
+  "translatedAt": "2026-11-04T07:15:20.193+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

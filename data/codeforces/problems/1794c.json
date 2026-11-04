@@ -4,7 +4,7 @@
   "contestId": 1794,
   "index": "C",
   "title": "Scoring Subsequences",
-  "titleZh": null,
+  "titleZh": "子序列评分",
   "url": "https://codeforces.com/contest/1794/problem/C",
   "difficulty": 1300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "The *score* of a sequence $[s_1, s_2, \\ldots, s_d]$ is defined as $\\displaystyle \\frac{s_1\\cdot s_2\\cdot \\ldots \\cdot s_d}{d!}$, where $d!=1\\cdot 2\\cdot \\ldots \\cdot d$. In particular, the score of an empty sequence is $1$.\n\nFor a sequence $[s_1, s_2, \\ldots, s_d]$, let $m$ be the maximum score among all its subsequences. Its *cost* is defined as the maximum length of a subsequence with a score of $m$.\n\nYou are given a **non-decreasing** sequence $[a_1, a_2, \\ldots, a_n]$ of integers of length $n$. In other words, the condition $a_1 \\leq a_2 \\leq \\ldots \\leq a_n$ is satisfied. For each $k=1, 2, \\ldots , n$, find the cost of the sequence $[a_1, a_2, \\ldots , a_k]$.\n\nA sequence $x$ is a subsequence of a sequence $y$ if $x$ can be obtained from $y$ by deletion of several (possibly, zero or all) elements.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1\\le n\\le 10^5$) — the length of the given sequence.\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1\\le a_i\\leq n$) — the given sequence. It is guaranteed that its elements are in non-decreasing order.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5\\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers — the costs of sequences $[a_1, a_2, \\ldots , a_k]$ in ascending order of $k$.\n\n## Note\n\nIn the first test case:\n\n- The maximum score among the subsequences of $[1]$ is $1$. The subsequences $[1]$ and $[]$ (the empty sequence) are the only ones with this score. Thus, the cost of $[1]$ is $1$.\n- The maximum score among the subsequences of $[1, 2]$ is $2$. The only subsequence with this score is $[2]$. Thus, the cost of $[1, 2]$ is $1$.\n- The maximum score among the subsequences of $[1, 2, 3]$ is $3$. The subsequences $[2, 3]$ and $[3]$ are the only ones with this score. Thus, the cost of $[1, 2, 3]$ is $2$.\n\nTherefore, the answer to this case is $1\\:\\:1\\:\\:2$, which are the costs of $[1], [1, 2]$ and $[1, 2, 3]$ in this order.",
-  "statementZhMd": null,
+  "statementZhMd": "一个序列 $[s_1, s_2, \\ldots, s_d]$ 的*得分*定义为 $\\displaystyle \\frac{s_1\\cdot s_2\\cdot \\ldots \\cdot s_d}{d!}$，其中 $d!=1\\cdot 2\\cdot \\ldots \\cdot d$。特别地，空序列的得分为 $1$。\n\n对于序列 $[s_1, s_2, \\ldots, s_d]$，令 $m$ 为其所有子序列中的最大得分。其*代价*定义为得分为 $m$ 的子序列的最大长度。\n\n给定一个长度为 $n$ 的整数**非递减**序列 $[a_1, a_2, \\ldots , a_n]$。换句话说，满足条件 $a_1 \\leq a_2 \\leq \\ldots \\leq a_n$。对于每个 $k=1, 2, \\ldots , n$，求序列 $[a_1, a_2, \\ldots , a_k]$ 的代价。\n\n如果序列 $x$ 可以通过删除序列 $y$ 中的若干个元素（可以删除零个或全部元素）得到，则称序列 $x$ 是序列 $y$ 的子序列。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 10^5$）——给定序列的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots ,a_n$（$1\\le a_i\\leq n$）——给定的序列。保证其中的元素按非递减顺序排列。\n\n保证所有测试用例的 $n$ 之和不超过 $5\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，按 $k$ 递增的顺序输出 $n$ 个整数——序列 $[a_1, a_2, \\ldots , a_k]$ 的代价。\n\n## 说明\n\n在第一个测试用例中：\n\n- $[1]$ 的所有子序列中的最大得分为 $1$。得分为该值的子序列只有 $[1]$ 和 $[]$（空序列）。因此，$[1]$ 的代价为 $1$。\n- $[1, 2]$ 的所有子序列中的最大得分为 $2$。只有子序列 $[2]$ 的得分为该值。因此，$[1, 2]$ 的代价为 $1$。\n- $[1, 2, 3]$ 的所有子序列中的最大得分为 $3$。得分为该值的子序列只有 $[2, 3]$ 和 $[3]$。因此，$[1, 2, 3]$ 的代价为 $2$。\n\n因此，该测试用例的答案为 $1\\:\\:1\\:\\:2$，依次表示 $[1]$、$[1, 2]$ 和 $[1, 2, 3]$ 的代价。",
   "samples": [
     {
       "input": "3\n3\n1 2 3\n2\n1 1\n5\n5 5 5 5 5\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:34:44.815Z"
+  "fetchedAt": "2026-10-30T22:34:44.815Z",
+  "translatedAt": "2026-11-04T02:59:53.255+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

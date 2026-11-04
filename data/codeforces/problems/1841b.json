@@ -4,7 +4,7 @@
   "contestId": 1841,
   "index": "B",
   "title": "Keep it Beautiful",
-  "titleZh": null,
+  "titleZh": "保持美丽",
   "url": "https://codeforces.com/contest/1841/problem/B",
   "difficulty": 1000,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "The array $[a_1, a_2, \\dots, a_k]$ is called *beautiful* if it is possible to remove several (maybe zero) elements from the beginning of the array and insert all these elements to the back of the array in the same order in such a way that the resulting array is sorted in non-descending order.\n\nIn other words, the array $[a_1, a_2, \\dots, a_k]$ is *beautiful* if there exists an integer $i \\in [0, k-1]$ such that the array $[a_{i+1}, a_{i+2}, \\dots, a_{k-1}, a_k, a_1, a_2, \\dots, a_i]$ is sorted in non-descending order.\n\nFor example:\n\n- $[3, 7, 7, 9, 2, 3]$ is *beautiful*: we can remove four first elements and insert them to the back in the same order, and we get the array $[2, 3, 3, 7, 7, 9]$, which is sorted in non-descending order;\n- $[1, 2, 3, 4, 5]$ is *beautiful*: we can remove zero first elements and insert them to the back, and we get the array $[1, 2, 3, 4, 5]$, which is sorted in non-descending order;\n- $[5, 2, 2, 1]$ is not *beautiful*.\n\n**Note that any array consisting of zero elements or one element is *beautiful***.\n\nYou are given an array $a$, which is initially **empty**. You have to process $q$ queries to it. During the $i$-th query, you will be given one integer $x_i$, and you have to do the following:\n\n- if you can append the integer $x_i$ to the **back** of the array $a$ so that the array $a$ stays *beautiful*, you have to append it;\n- otherwise, do nothing.\n\nAfter each query, report whether you appended the given integer $x_i$, or not.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case consists of two lines. The first line contains one integer $q$ ($1 \\le q \\le 2 \\cdot 10^5$) — the number of queries. The second line contains $q$ integers $x_1, x_2, \\dots, x_q$ ($0 \\le x_i \\le 10^9$).\n\nAdditional constraint on the input: the sum of $q$ over all test cases does not exceed $2 \\cdot 10^5$).\n\n## Output\n\nFor each test case, print one string consisting of exactly $q$ characters. The $i$-th character of the string should be `1` if you appended the integer during the $i$-th query; otherwise, it should be `0`.\n\n## Note\n\nConsider the first test case of the example. Initially, the array is $[]$.\n\n- trying to append an integer $3$. The array $[3]$ is beautiful, so we append $3$;\n- trying to append an integer $7$. The array $[3, 7]$ is beautiful, so we append $7$;\n- trying to append an integer $7$. The array $[3, 7, 7]$ is beautiful, so we append $7$;\n- trying to append an integer $9$. The array $[3, 7, 7, 9]$ is beautiful, so we append $9$;\n- trying to append an integer $2$. The array $[3, 7, 7, 9, 2]$ is beautiful, so we append $2$;\n- trying to append an integer $4$. The array $[3, 7, 7, 9, 2, 4]$ is not beautiful, so we don't append $4$;\n- trying to append an integer $6$. The array $[3, 7, 7, 9, 2, 6]$ is not beautiful, so we don't append $6$;\n- trying to append an integer $3$. The array $[3, 7, 7, 9, 2, 3]$ is beautiful, so we append $3$;\n- trying to append an integer $4$. The array $[3, 7, 7, 9, 2, 3, 4]$ is not beautiful, so we don't append $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "数组 $[a_1, a_2, \\dots, a_k]$ 被称为*美丽的*，如果可以从数组的开头移除若干个（也可以是零个）元素，并按照原有顺序将这些元素全部插入到数组末尾，使得到的数组按非递减顺序排列。\n\n换句话说，如果存在整数 $i \\in [0, k-1]$，使得数组 $[a_{i+1}, a_{i+2}, \\dots, a_{k-1}, a_k, a_1, a_2, \\dots, a_i]$ 按非递减顺序排列，那么数组 $[a_1, a_2, \\dots, a_k]$ 就是*美丽的*。\n\n例如：\n\n- $[3, 7, 7, 9, 2, 3]$ 是*美丽的*：我们可以移除开头的四个元素，并按照原有顺序将它们插入到末尾，得到数组 $[2, 3, 3, 7, 7, 9]$，该数组按非递减顺序排列；\n- $[1, 2, 3, 4, 5]$ 是*美丽的*：我们可以不移除任何元素，得到数组 $[1, 2, 3, 4, 5]$，该数组按非递减顺序排列；\n- $[5, 2, 2, 1]$ 不是*美丽的*。\n\n**注意，由零个元素或一个元素组成的数组都是*美丽的*。**\n\n给定一个数组 $a$，它初始时**为空**。你需要对它进行 $q$ 次查询。在第 $i$ 次查询中，你会得到一个整数 $x_i$，需要进行以下操作：\n\n- 如果可以将整数 $x_i$ 添加到数组 $a$ 的**末尾**，并使数组 $a$ 保持*美丽*，则将其添加进去；\n- 否则，什么也不做。\n\n每次查询后，输出是否添加了给定的整数 $x_i$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例包含两行。第一行包含一个整数 $q$（$1 \\le q \\le 2 \\cdot 10^5$）——查询的数量。第二行包含 $q$ 个整数 $x_1, x_2, \\dots, x_q$（$0 \\le x_i \\le 10^9$）。\n\n输入还满足以下额外约束：所有测试用例的 $q$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个恰好由 $q$ 个字符组成的字符串。字符串的第 $i$ 个字符应当是 `1`，如果你在第 $i$ 次查询中添加了该整数；否则应当是 `0`。\n\n## 说明\n\n考虑样例中的第一个测试用例。初始时，数组为 $[]$。\n\n- 尝试添加整数 $3$。数组 $[3]$ 是美丽的，因此添加 $3$；\n- 尝试添加整数 $7$。数组 $[3, 7]$ 是美丽的，因此添加 $7$；\n- 尝试添加整数 $7$。数组 $[3, 7, 7]$ 是美丽的，因此添加 $7$；\n- 尝试添加整数 $9$。数组 $[3, 7, 7, 9]$ 是美丽的，因此添加 $9$；\n- 尝试添加整数 $2$。数组 $[3, 7, 7, 9, 2]$ 是美丽的，因此添加 $2$；\n- 尝试添加整数 $4$。数组 $[3, 7, 7, 9, 2, 4]$ 不是美丽的，因此不添加 $4$；\n- 尝试添加整数 $6$。数组 $[3, 7, 7, 9, 2, 6]$ 不是美丽的，因此不添加 $6$；\n- 尝试添加整数 $3$。数组 $[3, 7, 7, 9, 2, 3]$ 是美丽的，因此添加 $3$；\n- 尝试添加整数 $4$。数组 $[3, 7, 7, 9, 2, 3, 4]$ 不是美丽的，因此不添加 $4$。",
   "samples": [
     {
       "input": "3\n9\n3 7 7 9 2 4 6 3 4\n5\n1 1 1 1 1\n5\n3 2 1 2 3\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:27:53.086Z"
+  "fetchedAt": "2026-11-02T17:27:53.086Z",
+  "translatedAt": "2026-11-04T02:43:10.972+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1696,
   "index": "E",
   "title": "Placing Jinas",
-  "titleZh": null,
+  "titleZh": "放置 Jina 娃娃",
   "url": "https://codeforces.com/contest/1696/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "We say an infinite sequence $a_{0}, a_{1}, a_2, \\ldots$ is **non-increasing** if and only if for all $i\\ge 0$, $a_i \\ge a_{i+1}$.\n\nThere is an infinite right and down grid. The upper-left cell has coordinates $(0,0)$. Rows are numbered $0$ to infinity from top to bottom, columns are numbered from $0$ to infinity from left to right.\n\nThere is also a **non-increasing** infinite sequence $a_{0}, a_{1}, a_2, \\ldots$. You are given $a_0$, $a_1$, $\\ldots$, $a_n$; for all $i \\gt n$, $a_i=0$. For every pair of $x$, $y$, the cell with coordinates $(x,y)$ (which is located at the intersection of $x$-th row and $y$-th column) is white if $y \\lt a_x$ and black otherwise.\n\nInitially there is one doll named Jina on $(0,0)$. You can do the following operation.\n\n- Select one doll on $(x,y)$. Remove it and place a doll on $(x,y+1)$ and place a doll on $(x+1,y)$.\n\nNote that multiple dolls can be present at a cell at the same time; in one operation, you remove only one. Your goal is to make all white cells contain $0$ dolls.\n\nWhat's the minimum number of operations needed to achieve the goal? Print the answer modulo $10^9+7$.\n\n## Input\n\nThe first line of input contains one integer $n$ ($1\\le n\\le 2\\cdot 10^5$).\n\nThe second line of input contains $n+1$ integers $a_0,a_1,\\ldots,a_n$ ($0\\le a_i\\le 2\\cdot 10^5$).\n\nIt is guaranteed that the sequence $a$ is **non-increasing**.\n\n## Output\n\nPrint one integer — the answer to the problem, modulo $10^9+7$.\n\n## Note\n\nConsider the first example. In the given grid, cells $(0,0),(0,1),(1,0),(1,1)$ are white, and all other cells are black. Let us use triples to describe the grid: triple $(x,y,z)$ means that there are $z$ dolls placed on cell $(x,y)$. Initially the state of the grid is $(0,0,1)$.\n\nOne of the optimal sequence of operations is as follows:\n\n- Do the operation with $(0,0)$. Now the state of the grid is $(1,0,1),(0,1,1)$.\n- Do the operation with $(0,1)$. Now the state of the grid is $(1,0,1),(1,1,1),(0,2,1)$.\n- Do the operation with $(1,0)$. Now the state of the grid is $(1,1,2),(0,2,1),(2,0,1)$.\n- Do the operation with $(1,1)$. Now the state of the grid is $(1,1,1),(0,2,1),(2,0,1),(1,2,1),(2,1,1)$.\n- Do the operation with $(1,1)$. Now the state of the grid is $(0,2,1),(2,0,1),(1,2,2),(2,1,2)$.\n\nNow all white cells contain $0$ dolls, so we have achieved the goal with $5$ operations.",
-  "statementZhMd": null,
+  "statementZhMd": "我们称无限序列 $a_{0}, a_{1}, a_2, \\ldots$ 是**非递增**的，当且仅当对于所有 $i\\ge 0$，都有 $a_i \\ge a_{i+1}$。\n\n有一个无限向右、向下延伸的网格。左上角的单元格坐标为 $(0,0)$。行从上到下编号为 $0$ 至无穷，列从左到右编号为 $0$ 至无穷。\n\n另有一个**非递增**的无限序列 $a_{0}, a_{1}, a_2, \\ldots$。给定 $a_0$、$a_1$、$\\ldots$、$a_n$；对于所有 $i \\gt n$，$a_i=0$。对于任意 $x$、$y$，坐标为 $(x,y)$ 的单元格（位于第 $x$ 行与第 $y$ 列的交点）在 $y \\lt a_x$ 时为白色，否则为黑色。\n\n初始时，$(0,0)$ 上有一个名为 Jina 的娃娃。你可以进行以下操作。\n\n- 选择位于 $(x,y)$ 的一个娃娃。将其移除，并在 $(x,y+1)$ 和 $(x+1,y)$ 处各放置一个娃娃。\n\n注意，同一个单元格中可以同时存在多个娃娃；一次操作只会移除一个娃娃。你的目标是使所有白色单元格中都不含娃娃。\n\n达到目标所需的最少操作次数是多少？请输出答案对 $10^9+7$ 取模后的结果。\n\n## 输入格式\n\n输入的第一行包含一个整数 $n$（$1\\le n\\le 2\\cdot 10^5$）。\n\n输入的第二行包含 $n+1$ 个整数 $a_0,a_1,\\ldots,a_n$（$0\\le a_i\\le 2\\cdot 10^5$）。\n\n保证序列 $a$ 是**非递增**的。\n\n## 输出格式\n\n输出一个整数——问题的答案对 $10^9+7$ 取模后的结果。\n\n## 说明\n\n考虑第一个样例。在给定的网格中，单元格 $(0,0),(0,1),(1,0),(1,1)$ 是白色的，其他所有单元格都是黑色的。我们用三元组描述网格：三元组 $(x,y,z)$ 表示单元格 $(x,y)$ 中放置了 $z$ 个娃娃。初始时网格状态为 $(0,0,1)$。\n\n以下是一种最优的操作序列：\n\n- 对 $(0,0)$ 执行操作。此时网格状态为 $(1,0,1),(0,1,1)$。\n- 对 $(0,1)$ 执行操作。此时网格状态为 $(1,0,1),(1,1,1),(0,2,1)$。\n- 对 $(1,0)$ 执行操作。此时网格状态为 $(1,1,2),(0,2,1),(2,0,1)$。\n- 对 $(1,1)$ 执行操作。此时网格状态为 $(1,1,1),(0,2,1),(2,0,1),(1,2,1),(2,1,1)$。\n- 对 $(1,1)$ 执行操作。此时网格状态为 $(0,2,1),(2,0,1),(1,2,2),(2,1,2)$。\n\n此时所有白色单元格中都不含娃娃，因此我们通过 $5$ 次操作达成了目标。",
   "samples": [
     {
       "input": "2\n2 2 0\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:00:28.915Z"
+  "fetchedAt": "2026-10-30T23:00:28.915Z",
+  "translatedAt": "2026-11-04T03:20:33.634+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

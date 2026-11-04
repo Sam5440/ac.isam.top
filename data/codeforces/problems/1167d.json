@@ -4,7 +4,7 @@
   "contestId": 1167,
   "index": "D",
   "title": "Bicolored RBS",
-  "titleZh": null,
+  "titleZh": "双色括号序列（RBS）",
   "url": "https://codeforces.com/contest/1167/problem/D",
   "difficulty": 1500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A string is called *bracket sequence* if it does not contain any characters other than \"`(`\" and \"`)`\". A bracket sequence is called *regular* (shortly, RBS) if it is possible to obtain correct arithmetic expression by inserting characters \"`+`\" and \"`1`\" into this sequence. For example, \"``\", \"`(())`\" and \"`()()`\" are RBS and \"`)(`\" and \"`(()`\" are not.\n\nWe can see that each opening bracket in RBS is paired with some closing bracket, and, using this fact, we can define **nesting depth** of the RBS as maximum number of bracket pairs, such that the $2$-nd pair lies inside the $1$-st one, the $3$-rd one — inside the $2$-nd one and so on. For example, nesting depth of \"``\" is $0$, \"`()()()`\" is $1$ and \"`()((())())`\" is $3$.\n\nNow, you are given RBS $s$ of even length $n$. You should color each bracket of $s$ into one of two colors: red or blue. Bracket sequence $r$, consisting only of red brackets, should be RBS, and bracket sequence, consisting only of blue brackets $b$, should be RBS. Any of them can be empty. You are not allowed to reorder characters in $s$, $r$ or $b$. No brackets can be left uncolored.\n\nAmong all possible variants you should choose one that **minimizes maximum** of $r$'s and $b$'s nesting depth. If there are multiple solutions you can print any of them.\n\n## Input\n\nThe first line contains an even integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the length of RBS $s$.\n\nThe second line contains regular bracket sequence $s$ ($|s| = n$, $s_i \\in \\{$\"`(`\", \"`)`\"$\\}$).\n\n## Output\n\nPrint single string $t$ of length $n$ consisting of \"`0`\"-s and \"`1`\"-s. If $t_i$ is equal to `0` then character $s_i$ belongs to RBS $r$, otherwise $s_i$ belongs to $b$.\n\n## Note\n\nIn the first example one of optimal solutions is $s = $ \"$\\color{blue}{()}$\". $r$ is empty and $b = $ \"$()$\". The answer is $\\max(0, 1) = 1$.\n\nIn the second example it's optimal to make $s = $ \"$\\color{red}{(}\\color{blue}{(}\\color{red}{)}\\color{blue}{)}$\". $r = b = $ \"$()$\" and the answer is $1$.\n\nIn the third example we can make $s = $ \"$\\color{red}{(}\\color{blue}{((}\\color{red}{)()}\\color{blue}{)())}$\". $r = $ \"$()()$\" and $b = $ \"$(()())$\" and the answer is $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "如果一个字符串中不包含除 `(` 和 `)` 之外的任何字符，则称其为*括号序列*。如果可以通过向括号序列中插入字符 `+` 和 `1`，使其成为一个正确的算术表达式，则称该括号序列是*正规括号序列*（简称 RBS）。例如，``、`(())` 和 `()()` 是 RBS，而 `)(` 和 `(()` 不是。\n\n我们可以发现，RBS 中的每个左括号都与某个右括号配对。利用这一事实，我们可以将 RBS 的**嵌套深度**定义为满足以下条件的括号对数量的最大值：第 $2$ 个括号对位于第 $1$ 个括号对内部，第 $3$ 个括号对位于第 $2$ 个括号对内部，依此类推。例如，`` 的嵌套深度为 $0$，`()()()` 的嵌套深度为 $1`，而 `()((())())` 的嵌套深度为 $3$。\n\n现在，给定一个长度为偶数 $n$ 的 RBS $s$。你需要将 $s$ 中的每个括号染成两种颜色之一：红色或蓝色。只由红色括号组成的括号序列 $r$ 应为 RBS，只由蓝色括号组成的括号序列 $b$ 也应为 RBS。它们中的任意一个都可以为空。你不能改变 $s$、$r$ 或 $b$ 中字符的顺序，也不能让任何括号不被染色。\n\n在所有可能的方案中，你需要选择一个使 $r$ 和 $b$ 的嵌套深度的**最大值最小**的方案。如果有多个方案，输出任意一个即可。\n\n## 输入格式\n\n第一行包含一个偶数 $n$（$2 \\le n \\le 2 \\cdot 10^5$），表示 RBS $s$ 的长度。\n\n第二行包含一个正规括号序列 $s$（$|s| = n$，$s_i \\in \\{$\"`(`\"，\"`)`\"$\\}$）。\n\n## 输出格式\n\n输出一个长度为 $n$、仅由 `0` 和 `1` 组成的字符串 $t$。如果 $t_i$ 等于 `0`，则字符 $s_i$ 属于 RBS $r$；否则，字符 $s_i$ 属于 $b$。\n\n## 说明\n\n在第一个样例中，一种最优方案是 $s = $ \"$\\color{blue}{()}$\"。此时 $r$ 为空，$b = $ \"$()$\"。答案为 $\\max(0, 1) = 1$。\n\n在第二个样例中，最优方案是令 $s = $ \"$\\color{red}{(}\\color{blue}{(}\\color{red}{)}\\color{blue}{)}$\"。此时 $r = b = $ \"$()$\"，答案为 $1$。\n\n在第三个样例中，可以令 $s = $ \"$\\color{red}{(}\\color{blue}{((}\\color{red}{)()}\\color{blue}{)())}$\"。此时 $r = $ \"$()()$\"，$b = $ \"$(()())$\"，答案为 $2$。",
   "samples": [
     {
       "input": "2\n()\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:16:25.210Z"
+  "fetchedAt": "2026-11-02T19:16:25.210Z",
+  "translatedAt": "2026-11-04T05:14:01.751+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

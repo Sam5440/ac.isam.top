@@ -4,7 +4,7 @@
   "contestId": 1100,
   "index": "E",
   "title": "Andrew and Taxi",
-  "titleZh": null,
+  "titleZh": "安德鲁与出租车",
   "url": "https://codeforces.com/contest/1100/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Andrew prefers taxi to other means of transport, but recently most taxi drivers have been acting inappropriately. In order to earn more money, taxi drivers started to drive in circles. Roads in Andrew's city are one-way, and people are not necessary able to travel from one part to another, but it pales in comparison to insidious taxi drivers.\n\nThe mayor of the city decided to change the direction of certain roads so that the taxi drivers wouldn't be able to increase the cost of the trip endlessly. More formally, if the taxi driver is on a certain crossroads, they wouldn't be able to reach it again if he performs a nonzero trip.\n\nTraffic controllers are needed in order to change the direction the road goes. For every road it is known how many traffic controllers are needed to change the direction of the road to the opposite one. It is allowed to change the directions of roads one by one, meaning that each traffic controller can participate in reversing two or more roads.\n\nYou need to calculate the minimum number of traffic controllers that you need to hire to perform the task and the list of the roads that need to be reversed.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\leq n \\leq 100\\,000$, $1 \\leq m \\leq 100\\,000$) — the number of crossroads and the number of roads in the city, respectively.\n\nEach of the following $m$ lines contain three integers $u_{i}$, $v_{i}$ and $c_{i}$ ($1 \\leq u_{i}, v_{i} \\leq n$, $1 \\leq c_{i} \\leq 10^9$, $u_{i} \\ne v_{i}$) — the crossroads the road starts at, the crossroads the road ends at and the number of traffic controllers required to reverse this road.\n\n## Output\n\nIn the first line output two integers the minimal amount of traffic controllers required to complete the task and amount of roads $k$ which should be reversed. $k$ should not be minimized.\n\nIn the next line output $k$ integers separated by spaces — numbers of roads, the directions of which should be reversed. The roads are numerated from $1$ in the order they are written in the input. If there are many solutions, print any of them.\n\n## Note\n\nThere are two simple cycles in the first example: $1 \\rightarrow 5 \\rightarrow 2 \\rightarrow 1$ and $2 \\rightarrow 3 \\rightarrow 4 \\rightarrow 5 \\rightarrow 2$. One traffic controller can only reverse the road $2 \\rightarrow 1$ and he can't destroy the second cycle by himself. Two traffic controllers can reverse roads $2 \\rightarrow 1$ and $2 \\rightarrow 3$ which would satisfy the condition.\n\nIn the second example one traffic controller can't destroy the cycle $ 1 \\rightarrow 3 \\rightarrow 2 \\rightarrow 1 $. With the help of three controllers we can, for example, reverse roads $1 \\rightarrow 3$ ,$ 2 \\rightarrow 4$, $1 \\rightarrow 5$.",
-  "statementZhMd": null,
+  "statementZhMd": "安德鲁喜欢乘坐出租车胜过其他交通方式，但最近大多数出租车司机的行为都很不规范。为了赚取更多的钱，出租车司机开始绕圈行驶。安德鲁所在城市的道路都是单向的，人们不一定能够从一个地方到达另一个地方，但这与狡猾的出租车司机相比根本不算什么。\n\n市长决定改变某些道路的方向，使出租车司机无法无限增加行程费用。更正式地说，如果出租车司机位于某个路口，那么在进行一次非零行程后，他将无法再次到达该路口。\n\n改变道路方向需要交通管理员。对于每条道路，都已知将其方向改为相反方向所需的交通管理员数量。允许逐条改变道路的方向，这意味着每名交通管理员可以参与反转两条或更多道路。\n\n你需要计算完成这项任务所需雇用的交通管理员的最少数量，以及需要反转的道路列表。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 100\\,000$，$1 \\leq m \\leq 100\\,000$）——城市中的路口数量和道路数量。\n\n接下来的 $m$ 行中，每行包含三个整数 $u_{i}$、$v_{i}$ 和 $c_{i}$（$1 \\leq u_{i}, v_{i} \\leq n$，$1 \\leq c_{i} \\leq 10^9$，$u_{i} \\ne v_{i}$）——道路的起点路口、终点路口，以及反转这条道路所需的交通管理员数量。\n\n## 输出格式\n\n第一行输出两个整数：完成任务所需的最少交通管理员数量，以及应当反转的道路数量 $k$。不要求最小化 $k$。\n\n下一行输出 $k$ 个用空格分隔的整数——需要反转方向的道路编号。道路按照输入中的顺序从 $1$ 开始编号。如果有多种方案，输出任意一种即可。\n\n## 说明\n\n第一个样例中有两个简单环：$1 \\rightarrow 5 \\rightarrow 2 \\rightarrow 1$ 和 $2 \\rightarrow 3 \\rightarrow 4 \\rightarrow 5 \\rightarrow 2$。一名交通管理员只能反转道路 $2 \\rightarrow 1$，无法独自破坏第二个环。两名交通管理员可以反转道路 $2 \\rightarrow 1$ 和 $2 \\rightarrow 3$，这样就能满足条件。\n\n在第二个样例中，一名交通管理员无法破坏环 $ 1 \\rightarrow 3 \\rightarrow 2 \\rightarrow 1 $。借助三名交通管理员，例如我们可以反转道路 $1 \\rightarrow 3$、$2 \\rightarrow 4$、$1 \\rightarrow 5$。",
   "samples": [
     {
       "input": "5 6\n2 1 1\n5 2 6\n2 3 2\n3 4 3\n4 5 5\n1 5 4\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:17:47.423Z"
+  "fetchedAt": "2026-10-31T00:17:47.423Z",
+  "translatedAt": "2026-11-04T05:21:35.421+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1729,
   "index": "G",
   "title": "Cut Substrings",
-  "titleZh": null,
+  "titleZh": "切割子串",
   "url": "https://codeforces.com/contest/1729/problem/G",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given two non-empty strings $s$ and $t$, consisting of Latin letters.\n\nIn one move, you can choose an occurrence of the string $t$ in the string $s$ and replace it with dots.\n\nYour task is to remove all occurrences of the string $t$ in the string $s$ in the minimum number of moves, and also calculate how many **different** sequences of moves of the minimum length exist.\n\nTwo sequences of moves are considered different if the sets of indices at which the removed occurrences of the string $t$ in $s$ begin differ. For example, the sets $\\{1, 2, 3\\}$ and $\\{1, 2, 4\\}$ are considered different, the sets $\\{2, 4, 6\\}$ and $\\{2, 6\\}$ — too, but sets $\\{3, 5\\}$ and $\\{5, 3\\}$ — not.\n\nFor example, let the string $s =$ \"`abababacababa`\" and the string $t =$ \"`aba`\". We can remove all occurrences of the string $t$ in $2$ moves by cutting out the occurrences of the string $t$ at the $3$th and $9$th positions. In this case, the string $s$ is an example of the form \"`ab...bac...ba`\". It is also possible to cut occurrences of the string $t$ at the $3$th and $11$th positions. There are two different sequences of minimum length moves.\n\nSince the answer can be large, output it modulo $10^9 + 7$.\n\n## Input\n\nThe first line of the input contains a single integer $q$ ($1 \\le q \\le 50$) — the number of test cases. The descriptions of the sets follow.\n\nThe first line of each set contains a non-empty string $s$ ($1 \\le |s| \\le 500$) consisting of lowercase Latin letters.\n\nThe second line of each set contains a non-empty string $t$ ($1 \\le |t| \\le 500$) consisting of lowercase Latin letters.\n\nIt is guaranteed that the sum of string lengths $s$ over all test cases does not exceed $500$. Similarly, it is guaranteed that the sum of string lengths $t$ over all test cases does not exceed $500$.\n\n## Output\n\nFor each test case print two integers — the minimum number of moves and the number of different optimal sequences, modulo $10^9 + 7$.\n\n## Note\n\nThe first test case is explained in the statement.\n\nIn the second case, it is enough to cut any of the four occurrences.\n\nIn the third case, string $s$ is the concatenation of two strings $t =$ \"`xyz`\", so there is a unique optimal sequence of $2$ moves.\n\nIn the fourth and sixth cases, the string $s$ initially contains no occurrences of the string $t$.\n\nIn the fifth case, the string $s$ contains exactly one occurrence of the string $t$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个非空字符串 $s$ 和 $t$，它们由拉丁字母组成。\n\n一次操作中，你可以选择字符串 $s$ 中字符串 $t$ 的一个出现位置，并将其替换为点号。\n\n你的任务是用最少的操作次数移除字符串 $s$ 中所有字符串 $t$ 的出现，并计算有多少种**不同的**最短操作序列。\n\n如果移除的字符串 $t$ 在 $s$ 中的起始位置集合不同，则认为两种操作序列不同。例如，集合 $\\{1, 2, 3\\}$ 和 $\\{1, 2, 4\\}$ 被认为是不同的，集合 $\\{2, 4, 6\\}$ 和 $\\{2, 6\\}$ 也被认为是不同的，但集合 $\\{3, 5\\}$ 和 $\\{5, 3\\}$ 不同的不是两种集合，即它们被认为相同。\n\n例如，设字符串 $s =$ \"`abababacababa`\"，字符串 $t =$ \"`aba`\"。我们可以通过在第 $3$ 个和第 $9$ 个位置切除字符串 $t$ 的出现，用 $2$ 次操作移除字符串 $s$ 中所有字符串 $t$ 的出现。此时，字符串 $s$ 可以表示为 \"`ab...bac...ba`\"。也可以在第 $3$ 个和第 $11$ 个位置切除字符串 $t$ 的出现。因此，最短操作序列共有两种。\n\n由于答案可能很大，请将其对 $10^9 + 7$ 取模后输出。\n\n## 题目描述\n\n## 输入格式\n\n输入的第一行包含一个整数 $q$（$1 \\le q \\le 50$）——测试用例的数量。接下来给出各个测试用例的描述。\n\n每个测试用例的第一行包含一个非空字符串 $s$（$1 \\le |s| \\le 500$），由小写拉丁字母组成。\n\n每个测试用例的第二行包含一个非空字符串 $t$（$1 \\le |t| \\le 500$），由小写拉丁字母组成。\n\n保证所有测试用例中字符串 $s$ 的长度之和不超过 $500$。同样保证所有测试用例中字符串 $t$ 的长度之和不超过 $500$。\n\n## 输出格式\n\n对于每个测试用例，输出两个整数——最少操作次数，以及不同的最优操作序列数量（对 $10^9 + 7$ 取模）。\n\n## 说明\n\n第一个测试用例已在题目描述中解释。\n\n在第二个测试用例中，切除四个出现位置中的任意一个即可。\n\n在第三个测试用例中，字符串 $s$ 是两个字符串 $t =$ \"`xyz`\" 的拼接，因此恰好存在一种长度为 $2$ 的最优操作序列。\n\n在第四个和第六个测试用例中，字符串 $s$ 初始时不包含字符串 $t$ 的任何出现。\n\n在第五个测试用例中，字符串 $s$ 恰好包含字符串 $t$ 的一个出现。",
   "samples": [
     {
       "input": "8\nabababacababa\naba\nddddddd\ndddd\nxyzxyz\nxyz\nabc\nabcd\nabacaba\nabaca\nabc\ndef\naaaaaaaa\na\naaaaaaaa\naa\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:44.134Z"
+  "fetchedAt": "2026-11-02T17:50:44.134Z",
+  "translatedAt": "2026-11-04T03:17:13.169+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

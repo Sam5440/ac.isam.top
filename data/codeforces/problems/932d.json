@@ -4,7 +4,7 @@
   "contestId": 932,
   "index": "D",
   "title": "Tree",
-  "titleZh": null,
+  "titleZh": "树",
   "url": "https://codeforces.com/contest/932/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a node of the tree with index $1$ and with weight $0$. Let $*cnt*$ be the number of nodes in the tree at any instant (initially, $*cnt*$ is set to $1$). Support $*Q*$ queries of following two types:\n\n- ![image](https://espresso.codeforces.com/3c53d1886cd6252f58663221e2b5768b1981acff.png) Add a new node (index $*cnt* + 1$) with weight $*W*$ and add edge between node $*R*$ and this node.\n- ![image](https://espresso.codeforces.com/3ca7b8a948d44b13bf24c54f54602fe3dbc94f6d.png) Output the maximum length of sequence of nodes which\n- starts with $*R*$.\n  - Every node in the sequence is an ancestor of its predecessor.\n  - Sum of weight of nodes in sequence does not exceed $*X*$.\n  - For some nodes $*i*, *j*$ that are consecutive in the sequence if $*i*$ is an ancestor of $*j*$ then $*w*[*i*] ≥ *w*[*j*]$ and there should not exist a node $*k*$ on simple path from $*i*$ to $*j*$ such that $*w*[*k*] ≥ *w*[*j*]$\n\nThe tree is rooted at node $1$ at any instant.\n\n**Note that the queries are given in a modified way.**\n\n## Input\n\nFirst line containing the number of queries $*Q*$ $(1 ≤ *Q* ≤ 400000)$.\n\nLet $*last*$ be the answer for previous query of type $2$ (initially $*last*$ equals $0$).\n\nEach of the next $*Q*$ lines contains a query of following form:\n\n- 1 p q ($1 ≤ *p*, *q* ≤ 10^{18}$): This is query of first type where ![image](https://espresso.codeforces.com/23caaf5370a4d35b830e404cf70088925e1a9749.png) and ![image](https://espresso.codeforces.com/92f7f390372274897cb1fbe68b8e5fcbbbd9710c.png). It is guaranteed that $1 ≤ *R* ≤ *cnt*$ and $0 ≤ *W* ≤ 10^{9}$.\n- 2 p q ($1 ≤ *p*, *q* ≤ 10^{18}$): This is query of second type where ![image](https://espresso.codeforces.com/23caaf5370a4d35b830e404cf70088925e1a9749.png) and ![image](https://espresso.codeforces.com/07ae7521dbc6857c85e4d6cc6df38a9db5a96d28.png). It is guaranteed that $1 ≤ *R* ≤ *cnt*$ and $0 ≤ *X* ≤ 10^{15}$.\n\n![image](https://espresso.codeforces.com/5f9a3eda18f3a09bbf898be93ace22143cf6584a.png) denotes bitwise XOR of $*a*$ and $*b*$.\n\nIt is guaranteed that at least one query of type 2 exists.\n\n## Output\n\nOutput the answer to each query of second type in separate line.\n\n## Note\n\nIn the first example,\n\n$*last* = 0$\n\n- Query 1: 1 1 1, Node $2$ with weight $1$ is added to node $1$.\n\n- Query 2: 2 2 0, No sequence of nodes starting at $2$ has weight less than or equal to $0$. $*last* = 0$\n\n- Query 3: 2 2 1, Answer is $1$ as sequence will be ${2}$. $*last* = 1$\n\n- Query 4: 1 2 1, Node $3$ with weight $1$ is added to node $2$.\n\n- Query 5: 2 3 1, Answer is $1$ as sequence will be ${3}$. Node $2$ cannot be added as sum of weights cannot be greater than $1$. $*last* = 1$\n\n- Query 6: 2 3 3, Answer is $2$ as sequence will be ${3, 2}$. $*last* = 2$",
-  "statementZhMd": null,
+  "statementZhMd": "你得到一棵树中的一个节点，其编号为 $1$，权重为 $0$。令 $*cnt*$ 表示树中当前节点的数量（初始时，$*cnt*$ 被设为 $1$）。请支持以下两种类型的 $*Q*$ 次查询：\n\n- ![image](https://espresso.codeforces.com/3c53d1886cd6252f58663221e2b5768b1981acff.png) 添加一个新节点（编号为 $*cnt* + 1$），其权重为 $*W*$，并在节点 $*R*$ 与该节点之间添加一条边。\n- ![image](https://espresso.codeforces.com/3ca7b8a948d44b13bf24c54f54602fe3dbc94f6d.png) 输出满足以下条件的节点序列的最大长度：\n  - 以 $*R*$ 开始。\n  - 序列中的每个节点都是其前一个节点的祖先。\n  - 序列中节点的权重之和不超过 $*X*$。\n  - 对于序列中相邻的某些节点 $*i*, *j*$，如果 $*i*$ 是 $*j*$ 的祖先，则必须满足 $*w*[*i*] ≥ *w*[*j*]$，并且从 $*i*$ 到 $*j*$ 的简单路径上不存在节点 $*k*$，使得 $*w*[*k*] ≥ *w*[*j*]$。\n\n在任意时刻，这棵树都以节点 $1$ 为根。\n\n**注意，查询以一种经过修改的方式给出。**\n\n## 输入格式\n\n第一行包含查询次数 $*Q*$ $(1 ≤ *Q* ≤ 400000)$。\n\n令 $*last*$ 表示上一次类型 2 查询的答案（初始时 $*last*$ 等于 $0$）。\n\n接下来的 $*Q*$ 行每行包含以下形式的一次查询：\n\n- 1 p q ($1 ≤ *p*, *q* ≤ 10^{18}$)：这是一次类型 1 的查询，其中 ![image](https://espresso.codeforces.com/23caaf5370a4d35b830e404cf70088925e1a9749.png) 且 ![image](https://espresso.codeforces.com/92f7f390372274897cb1fbe68b8e5fcbbbd9710c.png)。保证 $1 ≤ *R* ≤ *cnt*$ 且 $0 ≤ *W* ≤ 10^{9}$。\n- 2 p q ($1 ≤ *p*, *q* ≤ 10^{18}$)：这是一次类型 2 的查询，其中 ![image](https://espresso.codeforces.com/23caaf5370a4d35b830e404cf70088925e1a9749.png) 且 ![image](https://espresso.codeforces.com/07ae7521dbc6857c85e4d6cc6df38a9db5a96d28.png)。保证 $1 ≤ *R* ≤ *cnt*$ 且 $0 ≤ *X* ≤ 10^{15}$。\n\n![image](https://espresso.codeforces.com/5f9a3eda18f3a09bbf898be93ace22143cf6584a.png) 表示 $*a*$ 和 $*b*$ 的按位异或。\n\n保证至少存在一次类型 2 的查询。\n\n## 输出格式\n\n对于每次类型 2 的查询，输出一行答案。\n\n## 说明\n\n在第一个样例中，\n\n$*last* = 0$\n\n- 查询 1：1 1 1，将权重为 $1$ 的节点 $2$ 添加到节点 $1$。\n\n- 查询 2：2 2 0，从节点 $2$ 开始的序列中不存在权重之和小于等于 $0$ 的序列。$*last* = 0$\n\n- 查询 3：2 2 1，答案为 $1$，因为序列可以是 ${2}$。$*last* = 1$\n\n- 查询 4：1 2 1，将权重为 $1$ 的节点 $3$ 添加到节点 $2$。\n\n- 查询 5：2 3 1，答案为 $1$，因为序列可以是 ${3}$。由于权重之和不能大于 $1$，因此不能加入节点 $2$。$*last* = 1$\n\n- 查询 6：2 3 3，答案为 $2$，因为序列可以是 ${3, 2}$。$*last* = 2$",
   "samples": [
     {
       "input": "6\n1 1 1\n2 2 0\n2 2 1\n1 3 0\n2 2 0\n2 2 2\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:35:59.823Z"
+  "fetchedAt": "2026-10-31T00:35:59.823Z",
+  "translatedAt": "2026-11-04T05:54:13.461+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

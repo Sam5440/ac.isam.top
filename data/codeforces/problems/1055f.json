@@ -4,7 +4,7 @@
   "contestId": 1055,
   "index": "F",
   "title": "Tree and XOR",
-  "titleZh": null,
+  "titleZh": "树与异或",
   "url": "https://codeforces.com/contest/1055/problem/F",
   "difficulty": 2900,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a connected undirected graph without cycles (that is, a tree) of $n$ vertices, moreover, there is a non-negative integer written on every edge.\n\nConsider all pairs of vertices $(v, u)$ (that is, there are exactly $n^2$ such pairs) and for each pair calculate the bitwise exclusive or (`xor`) of all integers on edges of the simple path between $v$ and $u$. If the path consists of one vertex only, then xor of all integers on edges of this path is equal to $0$.\n\nSuppose we sorted the resulting $n^2$ values in non-decreasing order. You need to find the $k$-th of them.\n\nThe definition of `xor` is as follows.\n\nGiven two integers $x$ and $y$, consider their binary representations (possibly with leading zeros): $x_k \\dots x_2 x_1 x_0$ and $y_k \\dots y_2 y_1 y_0$ (where $k$ is any number so that all bits of $x$ and $y$ can be represented). Here, $x_i$ is the $i$-th bit of the number $x$ and $y_i$ is the $i$-th bit of the number $y$. Let $r = x \\oplus y$ be the result of the `xor` operation of $x$ and $y$. Then $r$ is defined as $r_k \\dots r_2 r_1 r_0$ where:\n\n$$ r_i = \\left\\{ \\begin{aligned} 1, ~ \\text{if} ~ x_i \\ne y_i \\\\ 0, ~ \\text{if} ~ x_i = y_i \\end{aligned} \\right. $$\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($2 \\le n \\le 10^6$, $1 \\le k \\le n^2$) — the number of vertices in the tree and the number of path in the list with non-decreasing order.\n\nEach of the following $n - 1$ lines contains two integers $p_i$ and $w_i$ ($1 \\le p_i \\le i$, $0 \\le w_i \\lt 2^{62}$) — the ancestor of vertex $i + 1$ and the weight of the corresponding edge.\n\n## Output\n\nPrint one integer: $k$-th smallest xor of a path in the tree.\n\n## Note\n\nThe tree in the second sample test looks like this:\n\n![image](https://espresso.codeforces.com/e10d92e277c1983c82ed2d4f8243a67b8e91230a.png)\n\nFor such a tree in total $9$ paths exist:\n\n1. $1 \\to 1$ of value $0$\n2. $2 \\to 2$ of value $0$\n3. $3 \\to 3$ of value $0$\n4. $2 \\to 3$ (goes through $1$) of value $1 = 2 \\oplus 3$\n5. $3 \\to 2$ (goes through $1$) of value $1 = 2 \\oplus 3$\n6. $1 \\to 2$ of value $2$\n7. $2 \\to 1$ of value $2$\n8. $1 \\to 3$ of value $3$\n9. $3 \\to 1$ of value $3$",
-  "statementZhMd": null,
+  "statementZhMd": "给定一张包含 $n$ 个顶点的无环连通无向图（即一棵树），并且每条边上都写有一个非负整数。\n\n考虑所有顶点对 $(v, u)$（也就是说，这样的顶点对恰好有 $n^2$ 个），对于每个顶点对，计算 $v$ 与 $u$ 之间简单路径上的所有边的整数的按位异或（`xor`）结果。如果路径只包含一个顶点，那么该路径上所有边的异或结果为 $0$。\n\n假设将得到的 $n^2$ 个值按非递减顺序排序。请找出其中第 $k$ 个值。\n\n`xor` 的定义如下。\n\n给定两个整数 $x$ 和 $y$，考虑它们的二进制表示（可以包含前导零）：$x_k \\dots x_2 x_1 x_0$ 和 $y_k \\dots y_2 y_1 y_0$（其中 $k$ 是一个能够表示 $x$ 和 $y$ 的所有二进制位的任意数）。这里，$x_i$ 是数字 $x$ 的第 $i$ 位，$y_i$ 是数字 $y$ 的第 $i$ 位。令 $r = x \\oplus y$ 为对 $x$ 和 $y$ 执行 `xor` 运算的结果。那么，$r$ 定义为 $r_k \\dots r_2 r_1 r_0$，其中：\n\n$$ r_i = \\left\\{ \\begin{aligned} 1, ~ \\text{if} ~ x_i \\ne y_i \\\\ 0, ~ \\text{if} ~ x_i = y_i \\end{aligned} \\right. $$\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 10^6$，$1 \\le k \\le n^2$）——树中的顶点数，以及按非递减顺序排列的路径列表中的路径数量。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $p_i$ 和 $w_i$（$1 \\le p_i \\le i$，$0 \\le w_i \\lt 2^{62}$）——顶点 $i + 1$ 的祖先，以及对应边的权值。\n\n## 输出格式\n\n输出一个整数：树中路径的第 $k$ 小异或值。\n\n## 说明\n\n第二个样例测试中的树如下所示：\n\n![image](https://espresso.codeforces.com/e10d92e277c1983c82ed2d4f8243a67b8e91230a.png)\n\n对于这样的树，总共存在 $9$ 条路径：\n\n1. $1 \\to 1$，值为 $0$\n2. $2 \\to 2$，值为 $0$\n3. $3 \\to 3$，值为 $0$\n4. $2 \\to 3$（经过 $1$），值为 $1 = 2 \\oplus 3$\n5. $3 \\to 2$（经过 $1$），值为 $1 = 2 \\oplus 3$\n6. $1 \\to 2$，值为 $2$\n7. $2 \\to 1$，值为 $2$\n8. $1 \\to 3$，值为 $3$\n9. $3 \\to 1$，值为 $3$",
   "samples": [
     {
       "input": "2 1\n1 3\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:22:42.621Z"
+  "fetchedAt": "2026-10-31T00:22:42.621Z",
+  "translatedAt": "2026-11-04T05:26:04.724+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

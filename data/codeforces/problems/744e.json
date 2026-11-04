@@ -4,7 +4,7 @@
   "contestId": 744,
   "index": "E",
   "title": "Hongcow Masters the Cyclic Shift",
-  "titleZh": null,
+  "titleZh": "Hongcow 精通循环移位",
   "url": "https://codeforces.com/contest/744/problem/E",
   "difficulty": 3200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "Hongcow's teacher heard that Hongcow had learned about the cyclic shift, and decided to set the following problem for him.\n\nYou are given a list of $*n*$ strings $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$ contained in the list $*A*$.\n\nA list $*X*$ of strings is called *stable* if the following condition holds.\n\nFirst, a *message* is defined as a concatenation of some elements of the list $*X*$. You can use an arbitrary element as many times as you want, and you may concatenate these elements in any arbitrary order. Let $*S*_{*X*}$ denote the set of of all messages you can construct from the list. Of course, this set has infinite size if your list is nonempty.\n\nCall a single message *good* if the following conditions hold:\n\n- Suppose the message is the concatenation of $*k*$ strings $*w*_{1}, *w*_{2}, ..., *w*_{*k*}$, where each $*w*_{*i*}$ is an element of $*X*$.\n- Consider the $|*w*_{1}| + |*w*_{2}| + ... + |*w*_{*k*}|$ cyclic shifts of the string. Let $*m*$ be the number of these cyclic shifts of the string that are elements of $*S*_{*X*}$.\n- A message is good if and only if $*m*$ is exactly equal to $*k*$.\n\nThe list $*X*$ is called stable if and only if every element of $*S*_{*X*}$ is good.\n\nLet $*f*(*L*)$ be $1$ if $*L*$ is a stable list, and $0$ otherwise.\n\nFind the sum of $*f*(*L*)$ where $*L*$ is a nonempty **contiguous sublist** of $*A*$ (there are ![image](https://espresso.codeforces.com/0b0b565bd465946012b94a3352374c5c2e43a837.png) contiguous sublists in total).\n\n## Input\n\nThe first line of input will contain a single integer $*n*$ ($1 ≤ *n* ≤ 30$), denoting the number of strings in the list.\n\nThe next $*n*$ lines will each contain a string $*s*_{*i*}$ (![image](https://espresso.codeforces.com/0572fabe17204a0fb749e0fcc597a2a56c47620e.png)).\n\n## Output\n\nPrint a single integer, the number of nonempty **contiguous sublists** that are stable.\n\n## Note\n\nFor the first sample, there are $10$ sublists to consider. Sublists [\"`a`\", \"`ab`\", \"`b`\"], [\"`ab`\", \"`b`\", \"`bba`\"], and [\"`a`\", \"`ab`\", \"`b`\", \"`bba`\"] are not stable. The other seven sublists are stable.\n\nFor example, $*X*$ = [\"`a`\", \"`ab`\", \"`b`\"] is not stable, since the message \"`ab`\" + \"`ab`\" = \"`abab`\" has four cyclic shifts [\"`abab`\", \"`baba`\", \"`abab`\", \"`baba`\"], which are all elements of $*S*_{*X*}$.",
-  "statementZhMd": null,
+  "statementZhMd": "Hongcow 的老师听说 Hongcow 学习了循环移位，于是决定给他出如下题目。\n\n给定列表 $*A*$，其中包含 $*n*$ 个字符串 $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$。\n\n如果字符串列表 $*X*$ 满足以下条件，则称其为*稳定的*。\n\n首先，将由列表 $*X*$ 中若干个元素拼接而成的字符串定义为一条*消息*。你可以任意多次使用任意元素，也可以按照任意顺序拼接这些元素。令 $*S*_{*X*}$ 表示由该列表构造出的所有消息组成的集合。当然，当列表非空时，这个集合的大小是无限的。\n\n如果一条消息满足以下条件，则称其为*好的*：\n\n- 假设该消息由 $*k*$ 个字符串 $*w*_{1}, *w*_{2}, ..., *w*_{*k*}$ 拼接而成，其中每个 $*w*_{*i*}$ 都是 $*X*$ 中的一个元素。\n- 考虑该字符串的 $|*w*_{1}| + |*w*_{2}| + ... + |*w*_{*k*}|$ 个循环移位。令 $*m*$ 为其中属于 $*S*_{*X*}$ 的循环移位数量。\n- 当且仅当 $*m*$ 恰好等于 $*k*$ 时，这条消息是好的。\n\n当且仅当 $*S*_{*X*}$ 中的每一条消息都是好的时，列表 $*X*$ 才称为稳定的。\n\n令 $*f*(*L*)$ 表示：如果 $*L*$ 是稳定列表，则值为 $1$，否则为 $0$。\n\n求所有 $*L*$ 为非空**连续子列表**的 $*f*(*L*)$ 之和（总共有 ![image](https://espresso.codeforces.com/0b0b565bd465946012b94a3352374c5c2e43a837.png) 个连续子列表）。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 30$），表示列表中的字符串数量。\n\n接下来的 $*n*$ 行中，每行包含一个字符串 $*s*_{*i*}$（![image](https://espresso.codeforces.com/0572fabe17204a0fb749e0fcc597a2a56c47620e.png)）。\n\n## 输出格式\n\n输出一个整数，即稳定的非空**连续子列表**的数量。\n\n## 说明\n\n对于第一个样例，需要考虑 $10$ 个子列表。子列表 [\"`a`\", \"`ab`\", \"`b`\"]、[\"`ab`\", \"`b`\", \"`bba`\"] 和 [\"`a`\", \"`ab`\", \"`b`\", \"`bba`\"] 不稳定。其他七个子列表都是稳定的。\n\n例如，$*X*$ = [\"`a`\", \"`ab`\", \"`b`\"] 不是稳定的，因为消息 \"`ab`\" + \"`ab`\" = \"`abab`\" 有四个循环移位 [\"`abab`\", \"`baba`\", \"`abab`\", \"`baba`\"]，它们全部属于 $*S*_{*X*}$。",
   "samples": [
     {
       "input": "4\na\nab\nb\nbba\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:00:08.731Z"
+  "fetchedAt": "2026-10-31T01:00:08.731Z",
+  "translatedAt": "2026-11-04T06:21:37.609+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

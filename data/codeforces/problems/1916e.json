@@ -4,7 +4,7 @@
   "contestId": 1916,
   "index": "E",
   "title": "Happy Life in University",
-  "titleZh": null,
+  "titleZh": "大学里的快乐生活",
   "url": "https://codeforces.com/contest/1916/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 512,
   "statementMd": "Egor and his friend Arseniy are finishing school this year and will soon enter university. And since they are very responsible guys, they have started preparing for admission already.\n\nFirst of all, they decided to take care of where they will live for the long four years of study, and after visiting the university's website, they found out that the university dormitory can be represented as a root tree with $n$ vertices with the root at vertex $1$. In the tree, each vertex represents a recreation with some type of activity $a_i$. The friends need to choose $2$ recreations (not necessarily different) in which they will settle. The guys are convinced that the more the value of the following function $f(u, v) = diff(u, lca(u, v)) \\cdot diff(v, lca(u, v))$, the more fun their life will be. Help Egor and Arseniy and find the maximum value of $f(u, v)$ among all pairs of recreations!\n\n$^{\\dagger} diff(u, v)$ — the number of different activities listed on the simple path from vertex $u$ to vertex $v$.\n\n$^{\\dagger} lca(u, v)$ — a vertex $p$ such that it is at the maximum distance from the root and is a parent of both vertex $u$ and vertex $v$.\n\n## Input\n\nEach test consists of several test cases. The first line contains a single integer $t$ ($1 \\le t \\le 10^5$) — the number of test cases. Then follows the description of the test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 3 \\cdot 10^{5}$).\n\nThe second line of each test case contains ${n - 1}$ integers $p_2, p_3, \\ldots,p_n$ ($1 \\le p_i \\le i - 1$), where $p_i$ — the parent of vertex $i$.\n\nThe third line of each test case contains ${n}$ integers $a_1, a_2, \\ldots,a_n$ ($1 \\le a_i \\le n$), where $a_i$ — the number of the activity located at vertex $i$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the maximum value of $f(u, v)$ for all pairs of recreations $(u, v)$.\n\n## Note\n\nConsider the fourth test case. The tree has the following structure:\n\n![image](https://espresso.codeforces.com/947988d0a788becb23c9d8c30448e9c51c38c2f2.png)\n\nAll recreations are colored. The same colors mean that the activities in the recreations match. Consider the pair of vertices $(11, 12)$, $lca(11, 12) = 1$. Write down all activities on the path from $11$ to $1$ — $[11, 5, 1, 11]$, among them there are $3$ different activities, so $diff(11, 1) = 3$. Also write down all activities on the path from $12$ to $1$ — $[7, 8, 2, 11]$, among them there are $4$ different activities, so $diff(12, 1) = 4$. We get that $f(11, 12) = diff(12, 1) \\cdot diff(11, 1) = 4 \\cdot 3 = 12$, which is the answer for this tree. It can be shown that a better answer is impossible to obtain.",
-  "statementZhMd": null,
+  "statementZhMd": "Egor 和他的朋友 Arseniy 今年即将毕业，并很快就要进入大学。由于他们都是非常有责任心的人，所以已经开始为入学做准备了。\n\n首先，他们决定解决未来四年漫长学习生活中的住宿问题。在浏览大学网站后，他们了解到，大学宿舍可以表示为一棵有 $n$ 个顶点的有根树，根为顶点 $1$。树中的每个顶点代表一个休闲场所，并设有某种类型的活动 $a_i$。两位朋友需要选择 $2$ 个休闲场所（不一定不同）居住。他们认为，下面函数的值越大，他们的生活就会越有趣：$f(u, v) = diff(u, lca(u, v)) \\cdot diff(v, lca(u, v))$。请帮助 Egor 和 Arseniy，求所有休闲场所对中 $f(u, v)$ 的最大值！\n\n$^{\\dagger} diff(u, v)$ —— 从顶点 $u$ 到顶点 $v$ 的简单路径上出现的不同活动的数量。\n\n$^{\\dagger} lca(u, v)$ —— 满足以下条件的顶点 $p$：它到根的距离最大，并且是顶点 $u$ 和顶点 $v$ 的父节点。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^5$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^{5}$）。\n\n每个测试用例的第二行包含 ${n - 1}$ 个整数 $p_2, p_3, \\ldots,p_n$（$1 \\le p_i \\le i - 1$），其中 $p_i$ 表示顶点 $i$ 的父节点。\n\n每个测试用例的第三行包含 ${n}$ 个整数 $a_1, a_2, \\ldots,a_n$（$1 \\le a_i \\le n$），其中 $a_i$ 表示位于顶点 $i$ 的活动编号。\n\n保证所有测试用例中 $n$ 的总和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出所有休闲场所对 $(u, v)$ 中 $f(u, v)$ 的最大值。\n\n## 说明\n\n考虑第四个测试用例。该树的结构如下：\n\n![image](https://espresso.codeforces.com/947988d0a788becb23c9d8c30448e9c51c38c2f2.png)\n\n所有休闲场所均已着色。颜色相同表示这些休闲场所中的活动相同。考虑顶点对 $(11, 12)$，此时 $lca(11, 12) = 1$。写出从 $11$ 到 $1$ 的路径上的所有活动：$[11, 5, 1, 11]$，其中有 $3$ 种不同的活动，因此 $diff(11, 1) = 3$。再写出从 $12$ 到 $1$ 的路径上的所有活动：$[7, 8, 2, 11]$，其中有 $4$ 种不同的活动，因此 $diff(12, 1) = 4$。于是有 $f(11, 12) = diff(12, 1) \\cdot diff(11, 1) = 4 \\cdot 3 = 12$，这就是该树的答案。可以证明不可能得到更大的答案。",
   "samples": [
     {
       "input": "4\n2\n1\n1 2\n7\n1 1 2 2 3 3\n6 5 2 3 6 5 6\n13\n1 1 1 2 2 2 3 3 4 5 6 6\n2 2 2 1 4 9 7 2 5 2 1 11 2\n12\n1 1 1 2 2 3 4 4 7 7 6\n11 2 1 11 12 8 5 8 8 5 11 7\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:07:06.332Z"
+  "fetchedAt": "2026-10-30T22:07:06.332Z",
+  "translatedAt": "2026-11-04T02:22:35.340+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

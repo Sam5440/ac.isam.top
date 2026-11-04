@@ -4,7 +4,7 @@
   "contestId": 1515,
   "index": "H",
   "title": "Phoenix and Bits",
-  "titleZh": null,
+  "titleZh": "凤凰与位",
   "url": "https://codeforces.com/contest/1515/problem/H",
   "difficulty": 3500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Phoenix loves playing with bits — specifically, by using the bitwise operations `AND`, `OR`, and `XOR`. He has $n$ integers $a_1, a_2, \\dots, a_n$, and will perform $q$ of the following queries:\n\n1. replace all numbers $a_i$ where $l \\le a_i \\le r$ with $a_i$ `AND` $x$;\n2. replace all numbers $a_i$ where $l \\le a_i \\le r$ with $a_i$ `OR` $x$;\n3. replace all numbers $a_i$ where $l \\le a_i \\le r$ with $a_i$ `XOR` $x$;\n4. output how many **distinct** integers $a_i$ where $l \\le a_i \\le r$.\n\nFor each query, Phoenix is given $l$, $r$, and $x$. Note that he is considering the values of the numbers, not their indices.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n \\le 2 \\cdot 10^5$; $1 \\le q \\le 10^5$) — the number of integers and the number of queries, respectively.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($0 \\le a_i \\lt 2^{20}$) — the integers that Phoenix starts with.\n\nThe next $q$ lines contain the queries. For each query, the first integer of each line is $t$ ($1 \\le t \\le 4$) — the type of query.\n\nIf $t \\in \\{1, 2, 3\\}$, then three integers $l_i$, $r_i$, and $x_i$ will follow ($0 \\le l_i, r_i, x_i \\lt 2^{20}$; $l_i \\le r_i$).\n\nOtherwise, if $t=4$, two integers $l_i$ and $r_i$ will follow ($0 \\le l_i \\le r_i \\lt 2^{20}$).\n\nIt is guaranteed that there is at least one query where $t=4$.\n\n## Output\n\nPrint the answer for each query where $t=4$.\n\n## Note\n\nIn the first example:\n\n- For the first query, $2$ is replaced by $2$ `AND` $2 = 2$ and $3$ is replaced with $3$ `AND` $2 = 2$. The set of numbers is $\\{1, 2, 4, 5\\}$.\n- For the second query, there are $3$ distinct numbers between $2$ and $5$: $2$, $4$, and $5$.\n- For the third query, $2$ is replaced by $2$ `XOR` $3 = 1$, $4$ is replaced by $4$ `XOR` $3 = 7$, and $5$ is replaced by $5$ `XOR` $3 = 6$. The set of numbers is $\\{1, 6, 7\\}$.\n- For the fourth query, there are $2$ distinct numbers between $1$ and $6$: $1$ and $6$.\n- For the fifth query, $1$ is replaced by $1$ `OR` $8 = 9$. The set of numbers is $\\{6, 7, 9\\}$.\n- For the sixth query, there is one distinct number between $8$ and $10$: $9$.",
-  "statementZhMd": null,
+  "statementZhMd": "凤凰喜欢玩位运算——具体来说，是使用位运算 `AND`、`OR` 和 `XOR`。他有 $n$ 个整数 $a_1, a_2, \\dots, a_n$，并将执行 $q$ 次以下查询之一：\n\n1. 将所有满足 $l \\le a_i \\le r$ 的数 $a_i$ 替换为 $a_i$ `AND` $x$；\n2. 将所有满足 $l \\le a_i \\le r$ 的数 $a_i$ 替换为 $a_i$ `OR` $x$；\n3. 将所有满足 $l \\le a_i \\le r$ 的数 $a_i$ 替换为 $a_i$ `XOR` $x$；\n4. 输出满足 $l \\le a_i \\le r$ 的 **不同** 整数 $a_i$ 的数量。\n\n对于每次查询，凤凰都会得到 $l$、$r$ 和 $x$。注意，他考虑的是数字的值，而不是它们的下标。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\le n \\le 2 \\cdot 10^5$；$1 \\le q \\le 10^5$），分别表示整数的数量和查询的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$0 \\le a_i \\lt 2^{20}$），表示凤凰最初拥有的整数。\n\n接下来的 $q$ 行包含查询。每次查询所在行的第一个整数为 $t$（$1 \\le t \\le 4$），表示查询的类型。\n\n如果 $t \\in \\{1, 2, 3\\}$，接下来会给出三个整数 $l_i$、$r_i$ 和 $x_i$（$0 \\le l_i, r_i, x_i \\lt 2^{20}$；$l_i \\le r_i$）。\n\n否则，如果 $t=4$，接下来会给出两个整数 $l_i$ 和 $r_i$（$0 \\le l_i \\le r_i \\lt 2^{20}$）。\n\n保证至少存在一次满足 $t=4$ 的查询。\n\n## 输出格式\n\n对于每个 $t=4$ 的查询，输出其答案。\n\n## 说明\n\n在第一个样例中：\n\n- 对于第一次查询，$2$ 被替换为 $2$ `AND` $2 = 2$，$3$ 被替换为 $3$ `AND` $2 = 2$。数字集合为 $\\{1, 2, 4, 5\\}$。\n- 对于第二次查询，介于 $2$ 和 $5$ 之间的不同数字有 $3$ 个：$2$、$4$ 和 $5$。\n- 对于第三次查询，$2$ 被替换为 $2$ `XOR` $3 = 1$，$4$ 被替换为 $4$ `XOR` $3 = 7$，$5$ 被替换为 $5$ `XOR` $3 = 6$。数字集合为 $\\{1, 6, 7\\}$。\n- 对于第四次查询，介于 $1$ 和 $6$ 之间的不同数字有 $2$ 个：$1$ 和 $6$。\n- 对于第五次查询，$1$ 被替换为 $1$ `OR` $8 = 9$。数字集合为 $\\{6, 7, 9\\}$。\n- 对于第六次查询，介于 $8$ 和 $10$ 之间的不同数字有 $1$ 个：$9$。",
   "samples": [
     {
       "input": "5 6\n5 4 3 2 1\n1 2 3 2\n4 2 5\n3 2 5 3\n4 1 6\n2 1 1 8\n4 8 10\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:33:45.817Z"
+  "fetchedAt": "2026-10-30T23:33:45.817Z",
+  "translatedAt": "2026-11-04T03:53:14.268+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

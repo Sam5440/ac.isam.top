@@ -4,7 +4,7 @@
   "contestId": 1481,
   "index": "B",
   "title": "New Colony",
-  "titleZh": null,
+  "titleZh": "新殖民地",
   "url": "https://codeforces.com/contest/1481/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "After reaching your destination, you want to build a new colony on the new planet. Since this planet has many mountains and the colony must be built on a flat surface you decided to flatten the mountains using boulders (you are still dreaming so this makes sense to you).\n\n![image](https://espresso.codeforces.com/8f4e82e0c4a0d9a2560c231feb5f8feb3f09aebb.png)\n\nYou are given an array $h_1, h_2, \\dots, h_n$, where $h_i$ is the height of the $i$-th mountain, and $k$ — the number of boulders you have.\n\nYou will start throwing boulders from the top of the first mountain one by one and they will roll as follows (let's assume that the height of the current mountain is $h_i$):\n\n- if $h_i \\ge h_{i + 1}$, the boulder will roll to the next mountain;\n- if $h_i \\lt h_{i + 1}$, the boulder will stop rolling and increase the mountain height by $1$ ($h_i = h_i + 1$);\n- if the boulder reaches the last mountain it will fall to the waste collection system and disappear.\n\nYou want to find the position of the $k$-th boulder or determine that it will fall into the waste collection system.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 100$) — the number of test cases.\n\nEach test case consists of two lines. The first line in each test case contains two integers $n$ and $k$ ($1 \\le n \\le 100$; $1 \\le k \\le 10^9$) — the number of mountains and the number of boulders.\n\nThe second line contains $n$ integers $h_1, h_2, \\dots, h_n$ ($1 \\le h_i \\le 100$) — the height of the mountains.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $100$.\n\n## Output\n\nFor each test case, print $-1$ if the $k$-th boulder will fall into the collection system. Otherwise, print the position of the $k$-th boulder.\n\n## Note\n\nLet's simulate the first case:\n\n- The first boulder starts at $i = 1$; since $h_1 \\ge h_2$ it rolls to $i = 2$ and stops there because $h_2 \\lt h_3$.\n- The new heights are $[4,2,2,3]$.\n- The second boulder starts at $i = 1$; since $h_1 \\ge h_2$ the boulder rolls to $i = 2$; since $h_2 \\ge h_3$ the boulder rolls to $i = 3$ and stops there because $h_3 \\lt h_4$.\n- The new heights are $[4,2,3,3]$.\n- The third boulder starts at $i = 1$; since $h_1 \\ge h_2$ it rolls to $i = 2$ and stops there because $h_2 \\lt h_3$.\n- The new heights are $[4,3,3,3]$.\n\nThe positions where each boulder stopped are the following: $[2,3,2]$.\n\nIn the second case, all $7$ boulders will stop right at the first mountain rising its height from $1$ to $8$.\n\nThe third case is similar to the first one but now you'll throw $5$ boulders. The first three will roll in the same way as in the first test case. After that, mountain heights will be equal to $[4, 3, 3, 3]$, that's why the other two boulders will fall into the collection system.\n\nIn the fourth case, the first and only boulders will fall straight into the collection system.",
-  "statementZhMd": null,
+  "statementZhMd": "到达目的地后，你想在这颗新星球上建立一个新的殖民地。由于这颗星球上有许多山脉，而殖民地必须建在平坦的地面上，因此你决定使用巨石来削平山脉（你仍在做梦，所以这在你看来是合理的）。\n\n![image](https://espresso.codeforces.com/8f4e82e0c4a0d9a2560c231feb5f8feb3f09aebb.png)\n\n给定一个数组 $h_1, h_2, \\dots, h_n$，其中 $h_i$ 表示第 $i$ 座山的高度，以及 $k$——你拥有的巨石数量。\n\n你将从第一座山的顶部开始，逐个投下巨石，它们将按照如下方式滚动（设当前山的高度为 $h_i$）：\n\n- 如果 $h_i \\ge h_{i + 1}$，巨石将滚向下一座山；\n- 如果 $h_i \\lt h_{i + 1}$，巨石将停止滚动，并使这座山的高度增加 $1$（$h_i = h_i + 1$）；\n- 如果巨石到达最后一座山，它将掉入废物收集系统并消失。\n\n请找出第 $k$ 个巨石停止的位置，或者判断它是否会掉入废物收集系统。\n\n## 输入\n\n第一行包含一个整数 $t$（$1 \\le t \\le 100$）——测试用例的数量。\n\n每个测试用例包含两行。每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 100$；$1 \\le k \\le 10^9$）——山的数量和巨石的数量。\n\n第二行包含 $n$ 个整数 $h_1, h_2, \\dots, h_n$（$1 \\le h_i \\le 100$）——各座山的高度。\n\n保证所有测试用例的 $n$ 之和不超过 $100$。\n\n## 输出\n\n对于每个测试用例，如果第 $k$ 个巨石将掉入收集系统，则输出 $-1$。否则，输出第 $k$ 个巨石停止的位置。\n\n## 说明\n\n让我们模拟第一个测试用例：\n\n- 第一个巨石从 $i = 1$ 开始；由于 $h_1 \\ge h_2$，它滚到 $i = 2$，并在那里停止，因为 $h_2 \\lt h_3$。\n- 新的高度为 $[4,2,2,3]$。\n- 第二个巨石从 $i = 1$ 开始；由于 $h_1 \\ge h_2$，巨石滚到 $i = 2$；由于 $h_2 \\ge h_3$，巨石滚到 $i = 3$，并在那里停止，因为 $h_3 \\lt h_4$。\n- 新的高度为 $[4,2,3,3]$。\n- 第三个巨石从 $i = 1$ 开始；由于 $h_1 \\ge h_2$，它滚到 $i = 2$，并在那里停止，因为 $h_2 \\lt h_3$。\n- 新的高度为 $[4,3,3,3]$。\n\n每个巨石停止的位置如下：$[2,3,2]$。\n\n在第二个测试用例中，全部 $7$ 个巨石都会停在第一座山上，使其高度从 $1$ 增加到 $8$。\n\n第三个测试用例与第一个类似，但这次将投下 $5$ 个巨石。前三个巨石的滚动过程与第一个测试用例相同。之后，山的高度将变为 $[4, 3, 3, 3]$，因此剩下的两个巨石会掉入收集系统。\n\n在第四个测试用例中，第一个也是唯一一个巨石将直接掉入收集系统。",
   "samples": [
     {
       "input": "4\n4 3\n4 1 2 3\n2 7\n1 8\n4 5\n4 1 2 3\n3 1\n5 3 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:37:29.956Z"
+  "fetchedAt": "2026-10-30T23:37:29.956Z",
+  "translatedAt": "2026-11-04T04:03:26.091+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1761,
   "index": "F2",
   "title": "Anti-median (Hard Version)",
-  "titleZh": null,
+  "titleZh": "Anti-median (Hard Version)",
   "url": "https://codeforces.com/contest/1761/problem/F2",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of the problem. The only difference between the two versions is the constraint on $n$. You can make hacks only if all versions of the problem are solved.**\n\nLet's call an array $a$ of odd length $2m+1$ (with $m \\ge 1$) **bad**, if element $a_{m+1}$ is equal to the median of this array. In other words, the array is bad if, after sorting it, the element at $m+1$-st position remains the same.\n\nLet's call a permutation $p$ of integers from $1$ to $n$ **anti-median**, if every its subarray of odd length $\\ge 3$ is not bad.\n\nYou are already given values of some elements of the permutation. Find the number of ways to set unknown values to obtain an **anti-median** permutation. As this number can be very large, find it modulo $10^9+7$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$)  — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains a single integer $n$ $(2 \\le n \\le 10^6)$  — the length of the permutation.\n\nThe second line of each test case contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\le p_i \\le n$, or $p_i = -1$)  — the elements of the permutation. If $p_i \\neq -1$, it's given, else it's unknown. It's guaranteed that if for some $i \\neq j$ holds $p_i \\neq -1, p_j \\neq -1$, then $p_i \\neq p_j$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output a single integer  — the number of ways to set unknown values to obtain an **anti-median** permutation, modulo $10^9+7$.\n\n## Note\n\nIn the first test case, both $[1, 2]$ and $[2, 1]$ are anti-median.\n\nIn the second test case, permutations $[1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2]$ are anti-median. The remaining two permutations, $[1, 2, 3]$, $[3, 2, 1]$, are bad arrays on their own, as their median, $2$, is in their middle.\n\nIn the third test case, $[1, 2, 3, 4]$ isn't anti-median, as it contains bad subarray $[1, 2, 3]$.\n\nIn the fourth test case, the only anti-median array you can get is $[5, 6, 3, 4, 1, 2]$.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"反中位数（困难版）\",\"bodyZh\":\"**这是本题的困难版本。两个版本之间唯一的区别是 $n$ 的约束。只有在解决了本题的所有版本后，才能进行 hack。**\\n\\n如果一个长度为 $2m+1$（其中 $m \\\\ge 1$）的数组 $a$ 满足元素 $a_{m+1}$ 等于该数组的中位数，则称其为**坏数组**。换句话说，如果将数组排序后，第 $m+1$ 个位置上的元素保持不变，则该数组是坏数组。\\n\\n如果一个由 $1$ 到 $n$ 的整数构成的排列 $p$ 的所有长度为奇数且 $\\ge 3$ 的子数组都不是坏数组，则称排列 $p$ 为**反中位数排列**。\\n\\n现在已经给出了排列中某些元素的值。请计算将未知元素赋值后得到**反中位数排列**的方案数。由于答案可能很大，请将其对 $10^9+7$ 取模。\\n\\n## 输入格式\\n\\n第一行包含一个整数 $t$（$1 \\\\le t \\\\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\\n\\n每个测试用例的第一行包含一个整数 $n$（$2 \\\\le n \\\\le 10^6$）——排列的长度。\\n\\n每个测试用例的第二行包含 $n$ 个整数 $p_1, p_2, \\\\ldots, p_n$（$1 \\\\le p_i \\\\le n$，或 $p_i = -1$）——排列中的元素。如果 $p_i \\\\neq -1$，则该元素的值已给出，否则该元素未知。保证对于任意 $i \\\\neq j$，如果 $p_i \\\\neq -1$ 且 $p_j \\\\neq -1$，则有 $p_i \\\\neq p_j$。\\n\\n保证所有测试用例中 $n$ 的总和不超过 $10^6$。\\n\\n## 输出格式\\n\\n对于每个测试用例，输出一个整数——将未知元素赋值后得到**反中位数排列**的方案数，答案对 $10^9+7$ 取模。\\n\\n## 说明\\n\\n在第一个测试用例中，$[1, 2]$ 和 $[2, 1]$ 都是反中位数排列。\\n\\n在第二个测试用例中，排列 $[1, 3, 2]$、$[2, 1, 3]$、$[2, 3, 1]$、$[3, 1, 2]$ 都是反中位数排列。剩下的两个排列 $[1, 2, 3]$、$[3, 2, 1]$ 本身就是坏数组，因为它们的中位数 $2$ 位于中间位置。\\n\\n在第三个测试用例中，$[1, 2, 3, 4]$ 不是反中位数排列，因为它包含坏子数组 $[1, 2, 3]$。\\n\\n在第四个测试用例中，唯一能够得到的反中位数数组是 $[5, 6, 3, 4, 1, 2]$。\"}",
   "samples": [
     {
       "input": "5\n2\n-1 -1\n3\n-1 -1 -1\n4\n1 2 3 4\n6\n-1 -1 3 4 -1 -1\n8\n-1 -1 -1 -1 -1 -1 -1 -1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:43:43.225Z"
+  "fetchedAt": "2026-10-30T22:43:43.225Z",
+  "translatedAt": "2026-11-04T03:06:59.315+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,14 +4,14 @@
   "contestId": 497,
   "index": "C",
   "title": "Distributing Parts",
-  "titleZh": null,
+  "titleZh": "分配角色",
   "url": "https://codeforces.com/contest/497/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are an assistant director in a new musical play. The play consists of $*n*$ musical parts, each part must be performed by exactly one actor. After the casting the director chose $*m*$ actors who can take part in the play. Your task is to assign the parts to actors. However, there are several limitations.\n\nFirst, each actor has a certain voice range and there are some parts that he cannot sing. Formally, there are two integers for each actor, $*c*_{*i*}$ and $*d*_{*i*}$ ($*c*_{*i*} ≤ *d*_{*i*}$) — the pitch of the lowest and the highest note that the actor can sing. There also are two integers for each part — $*a*_{*j*}$ and $*b*_{*j*}$ ($*a*_{*j*} ≤ *b*_{*j*}$) — the pitch of the lowest and the highest notes that are present in the part. The $*i*$-th actor can perform the $*j*$-th part if and only if $*c*_{*i*} ≤ *a*_{*j*} ≤ *b*_{*j*} ≤ *d*_{*i*}$, i.e. each note of the part is in the actor's voice range.\n\nAccording to the contract, the $*i*$-th actor can perform at most $*k*_{*i*}$ parts. Besides, you are allowed not to give any part to some actors (then they take part in crowd scenes).\n\nThe rehearsal starts in two hours and you need to do the assignment quickly!\n\n## Input\n\nThe first line contains a single integer $*n*$ — the number of parts in the play ($1 ≤ *n* ≤ 10^{5}$).\n\nNext $*n*$ lines contain two space-separated integers each, $*a*_{*j*}$ and $*b*_{*j*}$ — the range of notes for the $*j*$-th part ($1 ≤ *a*_{*j*} ≤ *b*_{*j*} ≤ 10^{9}$).\n\nThe next line contains a single integer $*m*$ — the number of actors ($1 ≤ *m* ≤ 10^{5}$).\n\nNext $*m*$ lines contain three space-separated integers each, $*c*_{*i*}$, $*d*_{*i*}$ and $*k*_{*i*}$ — the range of the $*i*$-th actor and the number of parts that he can perform ($1 ≤ *c*_{*i*} ≤ *d*_{*i*} ≤ 10^{9}$, $1 ≤ *k*_{*i*} ≤ 10^{9}$).\n\n## Output\n\nIf there is an assignment that meets all the criteria aboce, print a single word \"`YES`\" (without the quotes) in the first line.\n\nIn the next line print $*n*$ space-separated integers. The $*i*$-th integer should be the number of the actor who should perform the $*i*$-th part. If there are multiple correct assignments, print any of them.\n\nIf there is no correct assignment, print a single word \"`NO`\" (without the quotes).",
-  "statementZhMd": null,
+  "statementZhMd": "你是一部新音乐剧的助理导演。这部音乐剧由 $*n*$ 个角色组成，每个角色必须恰好由一名演员出演。选角结束后，导演选出了 $*m*$ 名可以参加演出的演员。你的任务是将这些角色分配给演员。不过，这其中存在一些限制。\n\n首先，每名演员都有一定的音域，因此有些角色他无法演唱。形式化地说，对于每名演员，有两个整数 $*c*_{*i*}$ 和 $*d*_{*i*}$（$*c*_{*i*} ≤ *d*_{*i*}$），分别表示该演员能够演唱的最低音和最高音。对于每个角色，也有两个整数 $*a*_{*j*}$ 和 $*b*_{*j*}$（$*a*_{*j*} ≤ *b*_{*j*}$），分别表示该角色中出现的最低音和最高音。当且仅当 $*c*_{*i*} ≤ *a*_{*j*} ≤ *b*_{*j*} ≤ *d*_{*i*}$ 时，第 $*i*$ 名演员才能出演第 $*j*$ 个角色；也就是说，该角色中的每个音符都在演员的音域内。\n\n根据合同，第 $*i*$ 名演员最多可以出演 $*k*_{*i*}$ 个角色。此外，允许不给某些演员分配任何角色（此时他们可以参加群众场面）。\n\n排练将在两小时后开始，你需要尽快完成分配！\n\n## 输入格式\n\n第一行包含一个整数 $*n*$，表示音乐剧中的角色数量（$1 ≤ *n* ≤ 10^{5}$）。\n\n接下来 $*n*$ 行，每行包含两个用空格分隔的整数 $*a*_{*j*}$ 和 $*b*_{*j*}$，表示第 $*j*$ 个角色的音符范围（$1 ≤ *a*_{*j*} ≤ *b*_{*j*} ≤ 10^{9}$）。\n\n下一行包含一个整数 $*m*$，表示演员数量（$1 ≤ *m* ≤ 10^{5}$）。\n\n接下来 $*m*$ 行，每行包含三个用空格分隔的整数 $*c*_{*i*}$、$*d*_{*i*}$ 和 $*k*_{*i*}$，表示第 $*i*$ 名演员的音域以及他能够出演的角色数量（$1 ≤ *c*_{*i*} ≤ *d*_{*i*} ≤ 10^{9}$，$1 ≤ *k*_{*i*} ≤ 10^{9}$）。\n\n## 输出格式\n\n如果存在满足所有条件的分配方案，第一行输出一个单词 \"`YES`\"（不含引号）。\n\n下一行输出 $*n*$ 个用空格分隔的整数。第 $*i*$ 个整数应为出演第 $*i*$ 个角色的演员编号。如果有多个正确的分配方案，输出任意一个即可。\n\n如果不存在正确的分配方案，输出一个单词 \"`NO`\"（不含引号）。",
   "samples": [
     {
       "input": "3\n1 3\n2 4\n3 5\n2\n1 4 2\n2 5 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:34:03.344Z"
+  "fetchedAt": "2026-10-31T01:34:03.344Z",
+  "translatedAt": "2026-11-04T07:03:39.448+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

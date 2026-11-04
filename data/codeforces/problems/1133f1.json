@@ -4,7 +4,7 @@
   "contestId": 1133,
   "index": "F1",
   "title": "Spanning Tree with Maximum Degree",
-  "titleZh": null,
+  "titleZh": "最大度数生成树",
   "url": "https://codeforces.com/contest/1133/problem/F1",
   "difficulty": 1600,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an undirected unweighted connected graph consisting of $n$ vertices and $m$ edges. It is guaranteed that there are no self-loops or multiple edges in the given graph.\n\nYour task is to find **any** spanning tree of this graph such that the maximum degree over all vertices is maximum possible. Recall that the degree of a vertex is the number of edges incident to it.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\le n \\le 2 \\cdot 10^5$, $n - 1 \\le m \\le min(2 \\cdot 10^5, \\frac{n(n-1)}{2})$) — the number of vertices and edges, respectively.\n\nThe following $m$ lines denote edges: edge $i$ is represented by a pair of integers $v_i$, $u_i$ ($1 \\le v_i, u_i \\le n$, $u_i \\ne v_i$), which are the indices of vertices connected by the edge. There are no loops or multiple edges in the given graph, i. e. for each pair ($v_i, u_i$) there are no other pairs ($v_i, u_i$) or ($u_i, v_i$) in the list of edges, and for each pair $(v_i, u_i)$ the condition $v_i \\ne u_i$ is satisfied.\n\n## Output\n\nPrint $n-1$ lines describing the edges of a spanning tree such that the maximum degree over all vertices is maximum possible. Make sure that the edges of the printed spanning tree form some subset of the input edges (order doesn't matter and edge $(v, u)$ is considered the same as the edge $(u, v)$).\n\nIf there are multiple possible answers, print any of them.\n\n## Note\n\nPicture corresponding to the first example: ![image](https://espresso.codeforces.com/3a8d1688c0bdf10804012227ba99c68d627acd90.png)\n\nIn this example the number of edges of spanning tree incident to the vertex $3$ is $3$. It is the maximum degree over all vertices of the spanning tree. It is easy to see that we cannot obtain a better answer.\n\nPicture corresponding to the second example: ![image](https://espresso.codeforces.com/55d8d825e49b9d20df52c96228a19d220bcd963d.png)\n\nIn this example the number of edges of spanning tree incident to the vertex $1$ is $3$. It is the maximum degree over all vertices of the spanning tree. It is easy to see that we cannot obtain a better answer.\n\nPicture corresponding to the third example: ![image](https://espresso.codeforces.com/43278e43162c10f66d929244313dcafea9b624b4.png)\n\nIn this example the number of edges of spanning tree incident to the vertex $2$ is $4$. It is the maximum degree over all vertices of the spanning tree. It is easy to see that we cannot obtain a better answer. But because this example is symmetric, we can choose almost the same spanning tree but with vertex $5$ instead of $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个由 $n$ 个顶点和 $m$ 条边组成的无向无权连通图。保证给定图中不存在自环或重边。\n\n你的任务是找出该图的**任意一棵生成树**，使得所有顶点中的最大度数尽可能大。回忆一下，顶点的度数是与该顶点相连的边数。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 2 \\cdot 10^5$，$n - 1 \\le m \\le min(2 \\cdot 10^5, \\frac{n(n-1)}{2})$），分别表示顶点数和边数。\n\n接下来的 $m$ 行描述图中的边：第 $i$ 条边由一对整数 $v_i$、$u_i$（$1 \\le v_i, u_i \\le n$，$u_i \\ne v_i$）表示，代表编号为 $v_i$ 和 $u_i$ 的两个顶点之间存在一条边。给定图中不存在自环或重边，即对于每一对（$v_i, u_i$），边列表中不存在其他的（$v_i, u_i$）或（$u_i, v_i$），并且对于每一对（$v_i, u_i$）都满足 $v_i \\ne u_i$。\n\n## 输出格式\n\n输出 $n-1$ 行，描述一棵生成树，使得所有顶点中的最大度数尽可能大。请确保输出的生成树中的边均为输入边的子集（边的顺序任意，边 $(v, u)$ 与边 $(u, v)$ 被视为同一条边）。\n\n如果有多种可能的答案，输出任意一种即可。\n\n## 说明\n\n第一组样例对应的图片：![image](https://espresso.codeforces.com/3a8d1688c0bdf10804012227ba99c68d627acd90.png)\n\n在该样例中，与顶点 $3$ 相连的生成树边数为 $3$。这是该生成树所有顶点中的最大度数。显然，我们无法得到更优的答案。\n\n第二组样例对应的图片：![image](https://espresso.codeforces.com/55d8d825e49b9d20df52c96228a19d220bcd963d.png)\n\n在该样例中，与顶点 $1$ 相连的生成树边数为 $3$。这是该生成树所有顶点中的最大度数。显然，我们无法得到更优的答案。\n\n第三组样例对应的图片：![image](https://espresso.codeforces.com/43278e43162c10f66d929244313dcafea9b624b4.png)\n\n在该样例中，与顶点 $2$ 相连的生成树边数为 $4$。这是该生成树所有顶点中的最大度数。显然，我们无法得到更优的答案。但由于该样例具有对称性，我们也可以选择几乎相同的生成树，只需将顶点 $2$ 换成顶点 $5$。",
   "samples": [
     {
       "input": "5 5\n1 2\n2 3\n3 5\n4 3\n1 5\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:18:04.456Z"
+  "fetchedAt": "2026-11-02T19:18:04.456Z",
+  "translatedAt": "2026-11-04T05:20:56.168+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

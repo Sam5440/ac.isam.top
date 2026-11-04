@@ -4,7 +4,7 @@
   "contestId": 1799,
   "index": "F",
   "title": "Halve or Subtract",
-  "titleZh": null,
+  "titleZh": "减半或减法",
   "url": "https://codeforces.com/contest/1799/problem/F",
   "difficulty": 2700,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You have an array of positive integers $a_1, a_2, \\ldots, a_n$, of length $n$. You are also given a positive integer $b$.\n\nYou are allowed to perform the following operations (possibly several) times in any order:\n\n1. Choose some $1 \\le i \\le n$, and replace $a_i$ with $\\lceil \\frac{a_i}{2} \\rceil$. Here, $\\lceil x \\rceil$ denotes the smallest integer not less than $x$.\n2. Choose some $1 \\le i \\le n$, and replace $a_i$ with $\\max(a_i - b, 0)$.\n\nHowever, you must also follow these rules:\n\n- You can perform at most $k_1$ operations of type 1 in total.\n- You can perform at most $k_2$ operations of type 2 in total.\n- For all $1 \\le i \\le n$, you can perform at most $1$ operation of type 1 on element $a_i$.\n- For all $1 \\le i \\le n$, you can perform at most $1$ operation of type 2 on element $a_i$.\n\nThe *cost* of an array is the sum of its elements. Find the minimum cost of $a$ you can achieve by performing these operations.\n\n## Input\n\nInput consists of multiple test cases. The first line contains a single integer $t$, the number of test cases ($1 \\le t \\le 5000$).\n\nThe first line of each test case contains $n$, $b$, $k_1$, and $k_2$ ($1 \\le n \\le 5000$, $1 \\le b \\le 10^9$, $0 \\le k_1, k_2 \\le n$).\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ describing the array $a$ ($1 \\le a_i \\le 10^9$).\n\nIt is guaranteed the sum of $n$ over all test cases does not exceed $5000$.\n\n## Output\n\nFor each test case, print the minimum cost of $a$ you can achieve by performing the operations.\n\n## Note\n\nIn the first test case, you can do the following:\n\n- Perform operation 2 on element $a_3$. It changes from $5$ to $3$.\n- Perform operation 1 on element $a_1$. It changes from $9$ to $5$.\n\nAfter these operations, the array is $a = [5, 3, 3]$ has a cost $5 + 3 + 3 = 11$. We can show that this is the minimum achievable cost.\n\nIn the second test case, note that we are not allowed to perform operation 1 more than once on $a_1$. So it is optimal to apply operation 1 once to each $a_1$ and $a_2$. Alternatively we could apply operation 1 only once to $a_1$, since it has no effect on $a_2$.\n\nIn the third test case, here is one way to achieve a cost of $23$:\n\n- Apply operation 1 to $a_4$. It changes from $19$ to $10$.\n- Apply operation 2 to $a_4$. It changes from $10$ to $7$.\n\nAfter these operations, $a = [2, 8, 3, 7, 3]$. The cost of $a$ is $2 + 8 + 3 + 7 + 3 = 23$. We can show that this is the minimum achievable cost.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个长度为 $n$ 的正整数数组 $a_1, a_2, \\ldots, a_n$。此外，你还得到了一个正整数 $b$。\n\n你可以按照任意顺序进行以下操作（可以进行多次）：\n\n1. 选择某个 $1 \\le i \\le n$，将 $a_i$ 替换为 $\\lceil \\frac{a_i}{2} \\rceil$。其中，$\\lceil x \\rceil$ 表示不小于 $x$ 的最小整数。\n2. 选择某个 $1 \\le i \\le n$，将 $a_i$ 替换为 $\\max(a_i - b, 0)$。\n\n但是，你还必须遵守以下规则：\n\n- 总共最多可以进行 $k_1$ 次类型 1 的操作。\n- 总共最多可以进行 $k_2$ 次类型 2 的操作。\n- 对于所有 $1 \\le i \\le n$，在元素 $a_i$ 上最多可以进行 $1$ 次类型 1 的操作。\n- 对于所有 $1 \\le i \\le n$，在元素 $a_i$ 上最多可以进行 $1$ 次类型 2 的操作。\n\n一个数组的*代价*定义为其所有元素之和。请你求出通过进行上述操作，能够得到的 $a$ 的最小代价。\n\n## 输入格式\n\n输入包含多组测试数据。第一行包含一个整数 $t$，表示测试数据的组数（$1 \\le t \\le 5000$）。\n\n每组测试数据的第一行包含 $n$、$b$、$k_1$ 和 $k_2$（$1 \\le n \\le 5000$，$1 \\le b \\le 10^9$，$0 \\le k_1, k_2 \\le n$）。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$，表示数组 $a$（$1 \\le a_i \\le 10^9$）。\n\n保证所有测试数据中 $n$ 的总和不超过 $5000$。\n\n## 输出格式\n\n对于每组测试数据，输出通过进行上述操作能够得到的 $a$ 的最小代价。\n\n## 说明\n\n在第一组测试数据中，可以进行以下操作：\n\n- 对元素 $a_3$ 进行操作 2。它会从 $5$ 变为 $3$。\n- 对元素 $a_1$ 进行操作 1。它会从 $9$ 变为 $5$。\n\n进行这些操作后，数组为 $a = [5, 3, 3]$，其代价为 $5 + 3 + 3 = 11$。可以证明这是能够达到的最小值。\n\n在第二组测试数据中，注意到我们不允许对 $a_1$ 进行超过一次操作 1。因此，最优方案是分别对 $a_1$ 和 $a_2$ 进行一次操作 1。或者，也可以只对 $a_1$ 进行一次操作 1，因为对 $a_2$ 进行操作 1 不会产生任何效果。\n\n在第三组测试数据中，以下是一种达到代价 $23$ 的方法：\n\n- 对 $a_4$ 进行操作 1。它会从 $19$ 变为 $10$。\n- 对 $a_4$ 进行操作 2。它会从 $10$ 变为 $7$。\n\n进行这些操作后，数组为 $a = [2, 8, 3, 7, 3]$。数组 $a$ 的代价为 $2 + 8 + 3 + 7 + 3 = 23$。可以证明这是能够达到的最小值。",
   "samples": [
     {
       "input": "7\n3 2 1 1\n9 3 5\n2 1 2 0\n1000000000 1\n5 3 1 1\n2 8 3 19 3\n6 9 4 2\n1 2 3 4 5 6\n3 10 3 3\n1 2 3\n5 1 0 0\n999999999 999999999 999999999 999999999 999999999\n5 5 4 3\n5 9 10 7 4\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:34:19.052Z"
+  "fetchedAt": "2026-10-30T22:34:19.052Z",
+  "translatedAt": "2026-11-04T03:00:49.529+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

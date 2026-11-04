@@ -4,7 +4,7 @@
   "contestId": 1172,
   "index": "D",
   "title": "Nauuo and Portals",
-  "titleZh": null,
+  "titleZh": "Nauuo 与传送门",
   "url": "https://codeforces.com/contest/1172/problem/D",
   "difficulty": 2900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Nauuo is a girl who loves playing games related to portals.\n\nOne day she was playing a game as follows.\n\nIn an $n\\times n$ grid, the rows are numbered from $1$ to $n$ from top to bottom, the columns are numbered from $1$ to $n$ from left to right. We denote a cell on the intersection of the $r$-th row and $c$-th column as $(r,c)$.\n\nA portal is **a pair of** doors. You can travel from one of them to another without changing your direction. More formally, if you *walk into* a cell with a door, you will teleport to the cell with the other door of the same portal and then *walk into* the *next cell* facing the original direction. There **can not** be more than one doors in a single cell.\n\nThe \"*next cell*\" is the nearest cell in the direction you are facing. For example, if you are facing bottom, the *next cell* of $(2,5)$ is $(3,5)$.\n\nIf you *walk into* a cell without a door, you must *walk into* the *next cell* after that without changing the direction. If the *next cell* does not exist, you must exit the grid.\n\nYou have to set some (possibly zero) portals in the grid, so that if you *walk into* $(i,1)$ facing right, you will eventually exit the grid from $(r_i,n)$, if you *walk into* $(1, i)$ facing bottom, you will exit the grid from $(n,c_i)$.\n\nIt is guaranteed that both $r_{1..n}$ and $c_{1..n}$ are **permutations** of $n$ elements. A permutation of $n$ elements is a sequence of numbers $p_1,p_2,\\ldots,p_n$ in which every integer from $1$ to $n$ appears exactly once.\n\nShe got confused while playing the game, can you help her to find a solution?\n\n## Input\n\nThe first line contains a single integer $n$ ($1\\le n\\le 1000$) — the side length of the grid.\n\nThe second line contains $n$ integers $r_1,r_2,\\ldots,r_n$ ($1\\le r_i\\le n$) — if you walk into $(i,1)$ facing right, you should exit the grid from $(r_i,n)$. It is guaranteed that $r_{1..n}$ is a permutation of $n$ elements.\n\nThe third line contains $n$ integers $c_1,c_2,\\ldots,c_n$ ($1\\le c_i\\le n$) — if you walk into $(1,i)$ facing bottom, you should exit the grid from $(n,c_i)$. It is guaranteed that $c_{1..n}$ is a permutation of $n$ elements.\n\n## Output\n\nIf it is impossible to satisfy the rule, print the only number $-1$.\n\nOtherwise the first line should contain a single integer $m$ ($0\\le m\\le\\frac{n^2}2$) — the number of portals you set.\n\nIn the following $m$ lines, each line should contain four integers $x_1,y_1,x_2,y_2$, represents that you set a portal consisting of two doors in $(x_1,y_1)$ and $(x_2,y_2)$.\n\nIf there are multiple answers, print any. You do **not** have to minimize $m$.\n\n## Note\n\n**Example 1**\n\nThe cells with the same letter are a portal. You can set portals in this way:\n\n![image](https://espresso.codeforces.com/711718d9fc622b7fca8195aeafd0e9200bb7222a.png)\n\nIt satisfies the rule, because:\n\n![image](https://espresso.codeforces.com/aad4a35975547e8ee675a87c670f4da729163d75.png)\n\n**Example 2**\n\nYou can set portals in this way:\n\n![image](https://espresso.codeforces.com/27a94e2eaa7368721f7d8748f968e6ea5cf7c7b7.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Nauuo 是一个喜欢玩传送门相关游戏的女孩。\n\n一天，她正在玩这样一个游戏。\n\n在一个 $n\\times n$ 的网格中，行从上到下编号为 $1$ 至 $n$，列从左到右编号为 $1$ 至 $n$。第 $r$ 行第 $c$ 列的单元格记为 $(r,c)$。\n\n一个传送门是**一对**门。你可以在两扇门之间移动，且方向不会改变。更正式地说，如果你*走入*一个有门的单元格，你会被传送到同一传送门的另一扇门所在的单元格，然后面朝原来的方向*走入下一个单元格*。一个单元格中**不能**有多于一扇门。\n\n“*下一个单元格*”是你所面朝方向上最近的单元格。例如，如果你面朝下方，则 $(2,5)$ 的*下一个单元格*是 $(3,5)$。\n\n如果你*走入*一个没有门的单元格，你必须保持方向不变，继续*走入*其后的*下一个单元格*。如果*下一个单元格*不存在，你必须离开网格。\n\n你需要在网格中设置一些（可以为零个）传送门，使得：如果你面朝右方走入 $(i,1)$，最终将从 $(r_i,n)$ 离开网格；如果你面朝下方走入 $(1,i)$，最终将从 $(n,c_i)$ 离开网格。\n\n保证 $r_{1..n}$ 和 $c_{1..n}$ 都是由 $n$ 个元素组成的**排列**。由 $n$ 个元素组成的排列是一个数列 $p_1,p_2,\\ldots,p_n$，其中 $1$ 到 $n$ 的每个整数都恰好出现一次。\n\n她在玩游戏时遇到了困惑，你能帮她找到一种方案吗？\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1\\le n\\le 1000$），表示网格的边长。\n\n第二行包含 $n$ 个整数 $r_1,r_2,\\ldots,r_n$（$1\\le r_i\\le n$）。如果你面朝右方走入 $(i,1)$，则应从 $(r_i,n)$ 离开网格。保证 $r_{1..n}$ 是由 $n$ 个元素组成的排列。\n\n第三行包含 $n$ 个整数 $c_1,c_2,\\ldots,c_n$（$1\\le c_i\\le n$）。如果你面朝下方走入 $(1,i)$，则应从 $(n,c_i)$ 离开网格。保证 $c_{1..n}$ 是由 $n$ 个元素组成的排列。\n\n## 输出格式\n\n如果无法满足要求，输出唯一的数字 $-1$。\n\n否则，第一行应包含一个整数 $m$（$0\\le m\\le\\frac{n^2}2$），表示你设置的传送门数量。\n\n接下来的 $m$ 行中，每行包含四个整数 $x_1,y_1,x_2,y_2$，表示你在 $(x_1,y_1)$ 和 $(x_2,y_2)$ 中设置了一个由两扇门组成的传送门。\n\n如果有多种答案，输出任意一种即可。你不需要最小化 $m$。\n\n## 说明\n\n**样例 1**\n\n字母相同的单元格构成一个传送门。你可以按如下方式设置传送门：\n\n![image](https://espresso.codeforces.com/711718d9fc622b7fca8195aeafd0e9200bb7222a.png)\n\n它满足要求，因为：\n\n![image](https://espresso.codeforces.com/aad4a35975547e8ee675a87c670f4da729163d75.png)\n\n**样例 2**\n\n你可以按如下方式设置传送门：\n\n![image](https://espresso.codeforces.com/27a94e2eaa7368721f7d8748f968e6ea5cf7c7b7.png)",
   "samples": [
     {
       "input": "3\n1 3 2\n3 1 2\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:10:08.475Z"
+  "fetchedAt": "2026-10-31T00:10:08.475Z",
+  "translatedAt": "2026-11-04T05:09:14.644+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

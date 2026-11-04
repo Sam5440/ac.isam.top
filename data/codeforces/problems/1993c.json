@@ -4,7 +4,7 @@
   "contestId": 1993,
   "index": "C",
   "title": "Light Switches",
-  "titleZh": null,
+  "titleZh": "灯光开关",
   "url": "https://codeforces.com/contest/1993/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is an apartment consisting of $n$ rooms, each with its light **initially turned off**.\n\nTo control the lights in these rooms, the owner of the apartment decided to install chips in the rooms so that each room has exactly one chip, and the chips are installed at different times. Specifically, these times are represented by the array $a_1, a_2, \\ldots, a_n$, where $a_i$ is the time (in minutes) at which a chip is installed in the $i$-th room.\n\nAs soon as a chip is installed, it changes the room's light status every $k$ minutes — it turns on the light for $k$ minutes, then turns it off for the next $k$ minutes, then turns it back on for the next $k$ minutes, and so on. In other words, the light status is changed by the chip at minute $a_i$, $a_i + k$, $a_i + 2k$, $a_i + 3k$, $\\ldots$ for the $i$-th room.\n\nWhat is the earliest moment when all rooms in the apartment have their lights turned on?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 2 \\cdot 10^5$) — the number of rooms in the apartment and the period of the chips.\n\nThe second line contains $n$ **distinct** integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the moments when the chips are installed.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the answer to the question (in minutes). If there is no such moment that the lights are turned on in all the rooms, print $-1$ instead.\n\n## Note\n\nIn the first test case, all lights will be on by the minute $5$ without any of them being turned off by the chips. The answer is $5$.\n\nIn the second test case, due to $k=3$, the $1$-st light will be on at minutes $2, 3, 4, 8, 9, 10, 14, \\ldots$; meanwhile, the $4$-th light will be on at minutes $5, 6, 7, 11, 12, 13, 17, \\ldots$. These two sequences don't have any number in common, so they will never be on at the same time.\n\nIn the third test case, it can be seen that the $1$-st and $2$-nd lights will be turned off at minutes $6$ and $7$, but the chips will turn them back on at minutes $9$ and $10$. The $3$-rd and $4$-th lights will also be on at minute $10$, so the answer is $10$.",
-  "statementZhMd": null,
+  "statementZhMd": "公寓由 $n$ 个房间组成，每个房间的灯**初始时均为关闭状态**。\n\n为了控制这些房间里的灯，公寓的主人决定在每个房间内安装一个芯片，因此每个房间恰好有一个芯片，并且这些芯片的安装时间各不相同。具体来说，这些时间由数组 $a_1, a_2, \\ldots, a_n$ 表示，其中 $a_i$ 是在第 $i$ 个房间安装芯片的时间（单位：分钟）。\n\n芯片一安装完成，就会每隔 $k$ 分钟改变一次房间的灯光状态——灯亮 $k$ 分钟，接着熄灭 $k$ 分钟，然后再亮 $k$ 分钟，如此循环。换句话说，对于第 $i$ 个房间，芯片会在时刻 $a_i$、$a_i + k$、$a_i + 2k$、$a_i + 3k$、$\\ldots$ 改变灯光状态。\n\n所有房间的灯同时亮起的最早时刻是多少？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 2 \\cdot 10^5$）——公寓中房间的数量和芯片的周期。\n\n第二行包含 $n$ 个**互不相同**的整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——芯片的安装时刻。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——问题的答案（单位：分钟）。如果不存在所有房间的灯同时亮起的时刻，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，到第 $5$ 分钟时所有灯都会亮起，并且在此之前没有任何灯被芯片关闭。答案为 $5$。\n\n在第二个测试用例中，由于 $k=3$，第 $1$ 个房间的灯会在第 $2、3、4、8、9、10、14、\\ldots$ 分钟亮起；与此同时，第 $4$ 个房间的灯会在第 $5、6、7、11、12、13、17、\\ldots$ 分钟亮起。这两个序列没有任何公共元素，因此它们永远不会同时亮起。\n\n在第三个测试用例中，可以看出第 $1$ 个和第 $2$ 个房间的灯分别会在第 $6$ 分钟和第 $7$ 分钟被关闭，但芯片会分别在第 $9$ 分钟和第 $10$ 分钟将它们重新打开。第 $3$ 个和第 $4$ 个房间的灯在第 $10$ 分钟也处于亮起状态，因此答案为 $10$。",
   "samples": [
     {
       "input": "9\n4 4\n2 3 4 5\n4 3\n2 3 4 5\n4 3\n3 4 8 9\n3 3\n6 2 1\n1 1\n1\n7 5\n14 34 6 25 46 7 17\n6 5\n40 80 99 60 90 50\n6 5\n64 40 50 68 70 10\n2 1\n1 1000000000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:49:36.462Z"
+  "fetchedAt": "2026-10-30T21:49:36.462Z",
+  "translatedAt": "2026-11-04T02:11:49.155+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

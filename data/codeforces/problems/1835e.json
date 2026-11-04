@@ -4,7 +4,7 @@
   "contestId": 1835,
   "index": "E",
   "title": "Old Mobile",
-  "titleZh": null,
+  "titleZh": "老式手机",
   "url": "https://codeforces.com/contest/1835/problem/E",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "During the latest mission of the starship U.S.S. Coder, Captain Jan Bitovsky was accidentally teleported to the surface of an unknown planet.\n\nTrying to find his way back, Jan found an artifact from planet Earth's ancient civilization — a mobile device capable of interstellar calls created by Byterola. Unfortunately, there was another problem. Even though Jan, as a representative of humans, knew perfectly the old notation of the cell phone numbers, the symbols on the device's keyboard were completely worn down and invisible to the human eye. The old keyboards had exactly $m + 1$ buttons, one for each digit from the base $m$ numerical system, and one single backspace button allowing one to erase the last written digit (if nothing was written on the screen, then this button does nothing, but it's still counted as pressed).\n\nJan would like to communicate with his crew. He needs to type a certain number (also from the base $m$ numerical system, that is, digits from $0$ to $m - 1$). He wants to know the expected number of button presses necessary to contact the U.S.S. Coder. Jan always chooses the most optimal buttons based on his current knowledge. Buttons are indistinguishable until pressed. Help him!\n\n## Input\n\nIn the first line of input, there are two integer numbers $n$ and $m$ ($1 \\le n \\le 10^6$, $2 \\le m \\le 10^3$) — the length of the number to U.S.S. Coder and the base of the numerical system.\n\nIn the next and the last input line, there are $n$ integers between $0$ and $m - 1$: the number to type in the base $m$ numerical system.\n\n## Output\n\nOutput the expected number of button presses modulo $1\\,000\\,000\\,007$.\n\nFormally, let $M = 1\\,000\\,000\\,007$. It can be shown that the answer can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $p \\cdot q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot q \\equiv p \\pmod{M}$.\n\n## Note\n\nIn the first example, two digits ($0$ and $1$) and a backspace button are available on the keyboard. Jan has no way of knowing which one is which, so he presses a random one.\n\nWith probability $\\frac{1}{3}$, he presses $0$ and manages to type the crew's number.\n\nWith probability $\\frac{1}{3}$, he presses backspace, and nothing happens. Then with probability $\\frac{1}{2}$ he manages to press $0$ (finishing the process). Otherwise, with probability $\\frac{1}{2}$, he types $1$, which he then needs to remove with backspace and hit the last button, which has to be $0$. In this case, he needs $4$ button presses.\n\nAt last, he might press the $1$ button first, also with probability $\\frac{1}{3}$. Then, if he presses the backspace with a chance of $50\\%$, he is all set and only needs to press the last button (3 presses in total). In the worst case, he would press the $0$ button first and need to remove both with backspace, then finally type the number $0$ (5 presses in total).\n\nWe get the expected value of $\\frac{16}{6}$. The modular inverse of $6$ modulo $1\\;000\\;000\\;007$ is $166666668$, so $16 \\cdot 166666668 = 666666674 \\mod \\; 1\\;000\\;000\\;007$",
-  "statementZhMd": null,
+  "statementZhMd": "在星舰 U.S.S. Coder 最近的一次任务中，舰长 Jan Bitovsky 意外地被传送到了一个未知星球的表面。\n\n为了找到回去的路，Jan 发现了来自地球古代文明的一件遗物——由 Byterola 制造的、能够进行星际通话的移动设备。不幸的是，另一个问题随之而来。尽管 Jan 作为人类的代表，非常熟悉旧式手机号码的表示方法，但设备键盘上的符号已经完全磨损，人类肉眼无法看见。旧式键盘恰好有 $m + 1$ 个按钮：分别对应 $m$ 进制数字系统中的每个数字各一个，以及一个退格按钮，用于擦除最后输入的数字（如果屏幕上没有输入任何内容，则该按钮不会产生任何效果，但仍会被计作一次按下）。\n\nJan 想要与他的船员取得联系。他需要输入一个数字（同样采用 $m$ 进制数字系统，即由 $0$ 到 $m - 1$ 的数字组成）。他想知道联系 U.S.S. Coder 所需按下按钮次数的期望值。Jan 总是会根据当前已掌握的信息，选择最优的按钮。按钮在被按下之前无法区分。请帮助他！\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 10^6$，$2 \\le m \\le 10^3$），分别表示 U.S.S. Coder 的号码长度以及数字系统的基数。\n\n输入的下一行也是最后一行，包含 $n$ 个介于 $0$ 和 $m - 1$ 之间的整数：需要输入的 $m$ 进制数字。\n\n## 输出格式\n\n输出按下按钮次数的期望值对 $1\\,000\\,000\\,007$ 取模后的结果。\n\n形式化地，设 $M = 1\\,000\\,000\\,007$。可以证明，答案可以表示为最简分数 $\\frac{p}{q}$，其中 $p$ 和 $q$ 为整数，且 $q \\not \\equiv 0 \\pmod{M}$。输出满足 $0 \\le x \\lt M$ 且 $x \\cdot q \\equiv p \\pmod{M}$ 的整数 $x$，也就是输出 $p \\cdot q^{-1} \\bmod M$。\n\n## 说明\n\n在第一个样例中，键盘上有两个数字按钮（$0$ 和 $1$）以及一个退格按钮。Jan 无法知道它们分别对应什么，因此他会随机按下一个按钮。\n\n以 $\\frac{1}{3}$ 的概率，他按下 $0$，成功输入船员的号码。\n\n以 $\\frac{1}{3}$ 的概率，他按下退格按钮，但什么也没有发生。随后，他以 $\\frac{1}{2}$ 的概率按下 $0$（输入过程结束）。否则，以 $\\frac{1}{2}$ 的概率，他输入 $1$，然后需要用退格按钮将其删除，再按下最后一个按钮，而最后一个按钮必定是 $0$。在这种情况下，他需要按下 $4$ 次按钮。\n\n最后，他也可能以 $\\frac{1}{3}$ 的概率先按下 $1$。此时，如果他以 $50\\%$ 的概率按下退格按钮，那么就完成了，只需要再按下最后一个按钮（总共按下 $3$ 次）。最坏的情况下，他会先按下 $0$，然后需要用退格按钮将这两个数字都删除，最后再输入数字 $0$（总共按下 $5$ 次）。\n\n我们得到期望值 $\\frac{16}{6}$。$6$ 模 $1\\,000\\,000\\,007$ 的乘法逆元是 $166666668$，因此 $16 \\cdot 166666668 = 666666674 \\mod \\; 1\\,000\\,000\\,007$。",
   "samples": [
     {
       "input": "1 2\n0\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:25:04.399Z"
+  "fetchedAt": "2026-10-30T22:25:04.399Z",
+  "translatedAt": "2026-11-04T02:42:45.114+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

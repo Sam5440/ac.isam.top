@@ -4,14 +4,14 @@
   "contestId": 108,
   "index": "C",
   "title": "Dorm Water Supply",
-  "titleZh": null,
+  "titleZh": "宿舍供水",
   "url": "https://codeforces.com/contest/108/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "The German University in Cairo (GUC) dorm houses are numbered from $1$ to $*n*$. Underground water pipes connect these houses together. Each pipe has certain direction (water can flow only in this direction and not vice versa), and diameter (which characterizes the maximal amount of water it can handle).\n\nFor each house, there is at most one pipe going into it and at most one pipe going out of it. With the new semester starting, GUC student and dorm resident, Lulu, wants to install tanks and taps at the dorms. For every house with an outgoing water pipe and without an incoming water pipe, Lulu should install a water tank at that house. For every house with an incoming water pipe and without an outgoing water pipe, Lulu should install a water tap at that house. Each tank house will convey water to all houses that have a sequence of pipes from the tank to it. Accordingly, each tap house will receive water originating from some tank house.\n\nIn order to avoid pipes from bursting one week later (like what happened last semester), Lulu also has to consider the diameter of the pipes. The amount of water each tank conveys should not exceed the diameter of the pipes connecting a tank to its corresponding tap. Lulu wants to find the maximal amount of water that can be safely conveyed from each tank to its corresponding tap.\n\n## Input\n\nThe first line contains two space-separated integers $*n*$ and $*p*$ $(1 ≤ *n* ≤ 1000, 0 ≤ *p* ≤ *n*)$ — the number of houses and the number of pipes correspondingly.\n\nThen $*p*$ lines follow — the description of $*p*$ pipes. The $*i*$-th line contains three integers $*a*_{*i*}$ $*b*_{*i*}$ $*d*_{*i*}$, indicating a pipe of diameter $*d*_{*i*}$ going from house $*a*_{*i*}$ to house $*b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*, *a*_{*i*} ≠ *b*_{*i*}, 1 ≤ *d*_{*i*} ≤ 10^{6}$).\n\nIt is guaranteed that for each house there is at most one pipe going into it and at most one pipe going out of it.\n\n## Output\n\nPrint integer $*t*$ in the first line — the number of tank-tap pairs of houses.\n\nFor the next $*t*$ lines, print 3 integers per line, separated by spaces: $*tank*_{*i*}$, $*tap*_{*i*}$, and $*diameter*_{*i*}$, where $*tank*_{*i*} ≠ *tap*_{*i*}$ ($1 ≤ *i* ≤ *t*$). Here $*tank*_{*i*}$ and $*tap*_{*i*}$ are indexes of tank and tap houses respectively, and $*diameter*_{*i*}$ is the maximum amount of water that can be conveyed. All the $*t*$ lines should be ordered (increasingly) by $*tank*_{*i*}$.",
-  "statementZhMd": null,
+  "statementZhMd": "开罗德国大学（GUC）的宿舍楼编号为 $1$ 到 $*n*$。地下水管将这些宿舍楼连接起来。每根水管都有确定的方向（水只能沿该方向流动，不能反向流动）和直径（表示其能够输送的最大水量）。\n\n对于每栋宿舍楼，最多只有一根水管通入，最多只有一根水管通出。新学期开始之际，GUC 学生兼宿舍居民 Lulu 想要在宿舍楼安装水箱和水龙头。对于每栋有出水管但没有进水管的宿舍楼，Lulu 应在该楼安装一个水箱。对于每栋有进水管但没有出水管的宿舍楼，Lulu 应在该楼安装一个水龙头。每个水箱所在的宿舍楼都会向所有能够通过一系列水管从该水箱到达的宿舍楼输送水。因此，每个水龙头所在的宿舍楼都会接收到来自某个水箱所在宿舍楼的水。\n\n为了避免水管在一周后爆裂（上学期就发生过这种情况），Lulu 还必须考虑水管的直径。每个水箱输送的水量不能超过连接该水箱和其对应水龙头的水管直径。Lulu 想要找出能够从每个水箱安全输送到其对应水龙头的最大水量。\n\n## 输入格式\n\n第一行包含两个用空格分隔的整数 $*n*$ 和 $*p*$ $(1 ≤ *n* ≤ 1000, 0 ≤ *p* ≤ *n*)$，分别表示宿舍楼的数量和水管的数量。\n\n接下来 $*p*$ 行描述 $*p*$ 根水管。第 $*i*$ 行包含三个整数 $*a*_{*i*}$、$*b*_{*i*}$ 和 $*d*_{*i*}$，表示一根直径为 $*d*_{*i*}$、从宿舍楼 $*a*_{*i*}$ 通向宿舍楼 $*b*_{*i*}$ 的水管（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*, *a*_{*i*} ≠ *b*_{*i*}, 1 ≤ *d*_{*i*} ≤ 10^{6}$）。\n\n保证每栋宿舍楼最多有一根水管通入，最多有一根水管通出。\n\n## 输出格式\n\n第一行输出整数 $*t*$，表示水箱与水龙头宿舍楼对的数量。\n\n接下来的 $*t*$ 行中，每行输出 3 个用空格分隔的整数：$*tank*_{*i*}$、$*tap*_{*i*}$ 和 $*diameter*_{*i*}$，其中 $*tank*_{*i*} ≠ *tap*_{*i*}$（$1 ≤ *i* ≤ *t*$）。这里，$*tank*_{*i*}$ 和 $*tap*_{*i*}$ 分别是水箱和水龙头所在宿舍楼的编号，$*diameter*_{*i*}$ 是能够输送的最大水量。所有 $*t*$ 行应按照 $*tank*_{*i*}$ 的递增顺序排列。",
   "samples": [
     {
       "input": "3 2\n1 2 10\n2 3 20\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:38:19.972Z"
+  "fetchedAt": "2026-10-31T02:38:19.972Z",
+  "translatedAt": "2026-11-04T07:50:57.176+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

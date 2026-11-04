@@ -4,7 +4,7 @@
   "contestId": 105,
   "index": "E",
   "title": "Lift and Throw",
-  "titleZh": null,
+  "titleZh": "举起与投掷",
   "url": "https://codeforces.com/contest/105/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "You are given a straight half-line divided into segments of unit length, which we will call positions. The positions are numbered by positive integers that start with $1$ from the end of half-line, i. e. $1$, $2$, $3$ and so on. The distance between the positions is the absolute difference between the respective numbers.\n\nLaharl, Etna and Flonne occupy some positions on the half-line and they want to get to the position with the largest possible number. They are originally placed in different positions.\n\nEach of the characters can perform each of the following actions **no more than once**:\n\n- Move a certain distance.\n- Grab another character and lift him above the head.\n- Throw the lifted character a certain distance.\n\nEach character has a *movement range* parameter. They can only move to free positions, assuming that distance between those positions doesn't exceed the movement range.\n\nOne character can lift another character if the distance between the two characters equals $1$, and no one already holds that another character. We can assume that the lifted character moves to the same position as the person who has lifted him, and the position in which he stood before becomes free. A lifted character cannot perform any actions and the character that holds him cannot walk.\n\nAlso, each character has a *throwing range* parameter. It is the distance at which this character can throw the one lifted above his head. He can only throw a character to a free position, and only when there is a lifted character.\n\nWe accept the situation when one person grabs another one who in his turn has the third character in his hands. This forms a \"column\" of three characters. For example, Laharl can hold Etna while Etna holds Flonne. In this case, Etna and the Flonne cannot perform any actions, and Laharl can only throw Etna (together with Flonne) at some distance.\n\nLaharl, Etna and Flonne perform actions in any order. They perform actions in turns, that is no two of them can do actions at the same time.\n\nDetermine the maximum number of position at least one of the characters can reach. That is, such maximal number $*x*$ so that one of the characters can reach position $*x*$.\n\n## Input\n\nThe first line contains three integers: Laharl's position, his movement range and throwing range. The second and the third lines describe Etna's and Flonne's parameters correspondingly in the similar form. It is guaranteed that the three characters occupy distinct positions. All numbers in the input are between $1$ and $10$, inclusive.\n\n## Output\n\nPrint a single number — the maximum ordinal number of position which either Laharl, Etna or Flonne can reach.\n\n## Note\n\nLet us explain how to reach position $15$ in the sample.\n\nInitially Laharl occupies position $9$, Etna — position $4$ and Flonne — position $2$.\n\nFirst Laharl moves to position $6$.\n\nThen Flonne moves to position $5$ and grabs Etna.\n\nLaharl grabs Flonne and throws to position $9$.\n\nFlonne throws Etna to position $12$.\n\nEtna moves to position $15$.",
-  "statementZhMd": null,
+  "statementZhMd": "有一条直的半无限线段，被划分为长度为 $1$ 的若干段，我们将这些位置称为位置。位置从半无限线段的端点开始，用正整数编号，即 $1$、$2$、$3$ 等。两个位置之间的距离是它们编号之差的绝对值。\n\nLaharl、Etna 和 Flonne 分别位于半无限线段上的某些位置，他们想要到达编号尽可能大的位置。他们最初位于不同的位置。\n\n每个角色都可以执行以下每种操作**至多一次**：\n\n- 移动一定的距离。\n- 抓住另一个角色并将其举过头顶。\n- 将被举起的角色投掷一段距离。\n\n每个角色都有一个*移动范围*参数。他们只能移动到空闲的位置，并且移动前后位置之间的距离不能超过其移动范围。\n\n当两个角色之间的距离恰好为 $1$，且没有其他人已经抓住其中被抓的那个角色时，一个角色可以将另一个角色举起。我们可以认为，被举起的角色会移动到举起他的人的同一位置，而他原来所在的位置变为空闲。被举起的角色不能执行任何操作，而举起其他角色的人不能行走。\n\n此外，每个角色都有一个*投掷范围*参数，表示该角色可以将举过头顶的角色投掷的距离。只有在有角色被举起时，他才能将其投掷到一个空闲的位置。\n\n我们允许一个人抓住另一个角色，而后者又将第三个角色抓在手中。这会形成一个由三个角色组成的“柱状体”。例如，Laharl 可以举起 Etna，而 Etna 同时举着 Flonne。在这种情况下，Etna 和 Flonne 都不能执行任何操作，而 Laharl 只能将 Etna（以及 Flonne）一起投掷到某个位置。\n\nLaharl、Etna 和 Flonne 可以按任意顺序执行操作。他们按照回合行动，即任意时刻不能有两个人同时执行操作。\n\n请确定至少有一个角色能够到达的位置编号的最大值。也就是说，求最大的数 *x*，使得其中一个角色能够到达位置 *x*。\n\n## 输入格式\n\n第一行包含三个整数：Laharl 的位置、他的移动范围和投掷范围。第二行和第三行分别以相同的形式描述 Etna 和 Flonne 的参数。保证三个角色所处的位置各不相同。输入中的所有数字均在 $1$ 到 $10$（含）之间。\n\n## 输出格式\n\n输出一个数——Laharl、Etna 或 Flonne 能够到达的位置编号的最大值。\n\n## 说明\n\n下面说明样例中如何到达位置 $15$。\n\n初始时，Laharl 位于位置 $9$，Etna 位于位置 $4$，Flonne 位于位置 $2$。\n\n首先，Laharl 移动到位置 $6$。\n\n然后，Flonne 移动到位置 $5$，并抓住 Etna。\n\nLaharl 抓住 Flonne，并将其投掷到位置 $9$。\n\nFlonne 将 Etna 投掷到位置 $12$。\n\nEtna 移动到位置 $15$。",
   "samples": [
     {
       "input": "9 3 3\n4 3 1\n2 3 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:39:04.798Z"
+  "fetchedAt": "2026-10-31T02:39:04.798Z",
+  "translatedAt": "2026-11-04T07:49:29.722+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 869,
   "index": "E",
   "title": "The Untended Antiquity",
-  "titleZh": null,
+  "titleZh": "无人照料的古迹",
   "url": "https://codeforces.com/contest/869/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "*Adieu l'ami.*\n\nKoyomi is helping Oshino, an acquaintance of his, to take care of an open space around the abandoned Eikou Cram School building, Oshino's makeshift residence.\n\nThe space is represented by a rectangular grid of $*n* × *m*$ cells, arranged into $*n*$ rows and $*m*$ columns. The $*c*$-th cell in the $*r*$-th row is denoted by $(*r*, *c*)$.\n\nOshino places and removes barriers **around** rectangular areas of cells. Specifically, an action denoted by \"$1 *r*_{1} *c*_{1} *r*_{2} *c*_{2}$\" means Oshino's placing barriers around a rectangle with two corners being $(*r*_{1}, *c*_{1})$ and $(*r*_{2}, *c*_{2})$ and sides parallel to squares sides. Similarly, \"$2 *r*_{1} *c*_{1} *r*_{2} *c*_{2}$\" means Oshino's removing barriers around the rectangle. **Oshino ensures that no barriers staying on the ground share any common points, nor do they intersect with boundaries of the $*n* × *m*$ area.**\n\nSometimes Koyomi tries to walk from one cell to another carefully without striding over barriers, in order to avoid damaging various items on the ground. \"$3 *r*_{1} *c*_{1} *r*_{2} *c*_{2}$\" means that Koyomi tries to walk from $(*r*_{1}, *c*_{1})$ to $(*r*_{2}, *c*_{2})$ without crossing barriers.\n\nAnd you're here to tell Koyomi the feasibility of each of his attempts.\n\n## Input\n\nThe first line of input contains three space-separated integers $*n*$, $*m*$ and $*q*$ ($1 ≤ *n*, *m* ≤ 2 500$, $1 ≤ *q* ≤ 100 000$) — the number of rows and columns in the grid, and the total number of Oshino and Koyomi's actions, respectively.\n\nThe following $*q*$ lines each describes an action, containing five space-separated integers $*t*$, $*r*_{1}$, $*c*_{1}$, $*r*_{2}$, $*c*_{2}$ ($1 ≤ *t* ≤ 3$, $1 ≤ *r*_{1}, *r*_{2} ≤ *n*$, $1 ≤ *c*_{1}, *c*_{2} ≤ *m*$) — the type and two coordinates of an action. Additionally, the following holds depending on the value of $*t*$:\n\n- If $*t* = 1$: $2 ≤ *r*_{1} ≤ *r*_{2} ≤ *n* - 1$, $2 ≤ *c*_{1} ≤ *c*_{2} ≤ *m* - 1$;\n- If $*t* = 2$: $2 ≤ *r*_{1} ≤ *r*_{2} ≤ *n* - 1$, $2 ≤ *c*_{1} ≤ *c*_{2} ≤ *m* - 1$, the specified group of barriers exist on the ground before the removal.\n- If $*t* = 3$: no extra restrictions.\n\n## Output\n\nFor each of Koyomi's attempts (actions with $*t* = 3$), output one line — containing \"`Yes`\" (without quotes) if it's feasible, and \"`No`\" (without quotes) otherwise.\n\n## Note\n\nFor the first example, the situations of Koyomi's actions are illustrated below.\n\n![image](https://espresso.codeforces.com/fb439c428436e7e2fa680b135339e7954dc8c350.png)",
-  "statementZhMd": null,
+  "statementZhMd": "*Adieu l'ami.*\n\nKoyomi 正在帮助他的熟人 Oshino 照料废弃的 Eikou 补习学校建筑周围的一片空地，这里也是 Oshino 的临时住所。\n\n这片空地被表示为一个由 $*n* × *m*$ 个单元格组成的矩形网格，共有 $*n*$ 行和 $*m*$ 列。第 $*r*$ 行第 $*c*$ 列的单元格记为 $(*r*, *c*)$。\n\nOshino 会在矩形单元格区域的**周围**放置或移除障碍物。具体来说，记作“$1 *r*_{1} *c*_{1} *r*_{2} *c*_{2}$”的操作表示 Oshino 在两个角为 $(*r*_{1}, *c*_{1})$ 和 $(*r*_{2}, *c*_{2})$、且边平行于单元格边的矩形周围放置障碍物。类似地，“$2 *r*_{1} *c*_{1} *r*_{2} *c*_{2}$”表示 Oshino 移除该矩形周围的障碍物。**Oshino 保证，留在地面上的障碍物之间没有任何公共点，且它们不会与 $*n* × *m*$ 区域的边界相交。**\n\n有时，为了避免损坏地面上的各种物品，Koyomi 会尝试在不跨越障碍物的情况下从一个单元格走到另一个单元格。“$3 *r*_{1} *c*_{1} *r*_{2} *c*_{2}$”表示 Koyomi 尝试从 $(*r*_{1}, *c*_{1})$ 走到 $(*r*_{2}, *c*_{2})$，且途中不能穿过障碍物。\n\n现在，请你判断 Koyomi 每次尝试是否可行。\n\n## 输入格式\n\n输入的第一行包含三个以空格分隔的整数 $*n*$、$*m*$ 和 $*q*$（$1 ≤ *n*, *m* ≤ 2 500$，$1 ≤ *q* ≤ 100 000$），分别表示网格的行数、列数，以及 Oshino 和 Koyomi 的操作总数。\n\n接下来的 $*q*$ 行每行描述一个操作，包含五个以空格分隔的整数 $*t*$、$*r*_{1}$、$*c*_{1}$、$*r*_{2}$、$*c*_{2}$（$1 ≤ *t* ≤ 3$，$1 ≤ *r*_{1}, *r*_{2} ≤ *n*$，$1 ≤ *c*_{1}, *c*_{2} ≤ *m*$），分别表示操作的类型以及操作涉及的两个坐标。根据 $*t*$ 的值，还需满足以下条件：\n\n- 如果 $*t* = 1$：$2 ≤ *r*_{1} ≤ *r*_{2} ≤ *n* - 1$，$2 ≤ *c*_{1} ≤ *c*_{2} ≤ *m* - 1$；\n- 如果 $*t* = 2$：$2 ≤ *r*_{1} ≤ *r*_{2} ≤ *n* - 1$，$2 ≤ *c*_{1} ≤ *c*_{2} ≤ *m* - 1$，且指定的一组障碍物在移除前确实存在于地面上；\n- 如果 $*t* = 3$：没有额外限制。\n\n## 输出格式\n\n对于 Koyomi 的每次尝试（即 $*t* = 3$ 的操作），输出一行：如果该尝试可行，输出“`Yes`”（不含引号）；否则输出“`No`”（不含引号）。\n\n## 说明\n\n对于第一个样例，Koyomi 各次操作时的情况如下图所示。\n\n![image](https://espresso.codeforces.com/fb439c428436e7e2fa680b135339e7954dc8c350.png)",
   "samples": [
     {
       "input": "5 6 5\n1 2 2 4 5\n1 3 3 3 3\n3 4 4 1 1\n2 2 2 4 5\n3 1 1 4 4\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:43:07.196Z"
+  "fetchedAt": "2026-10-31T00:43:07.196Z",
+  "translatedAt": "2026-11-04T06:03:42.439+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

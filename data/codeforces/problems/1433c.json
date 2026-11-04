@@ -4,7 +4,7 @@
   "contestId": 1433,
   "index": "C",
   "title": "Dominant Piranha",
-  "titleZh": null,
+  "titleZh": "主导食人鱼",
   "url": "https://codeforces.com/contest/1433/problem/C",
   "difficulty": 900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ piranhas with sizes $a_1, a_2, \\ldots, a_n$ in the aquarium. Piranhas are numbered from left to right in order they live in the aquarium.\n\nScientists of the Berland State University want to find if there is **dominant** piranha in the aquarium. The piranha is called **dominant** if it can eat all the other piranhas in the aquarium (except itself, of course). Other piranhas will do nothing while the **dominant** piranha will eat them.\n\nBecause the aquarium is pretty narrow and long, the piranha can eat only one of the adjacent piranhas during one move. Piranha can do as many moves as it needs (or as it can). More precisely:\n\n- The piranha $i$ can eat the piranha $i-1$ if the piranha $i-1$ exists and $a_{i - 1} \\lt a_i$.\n- The piranha $i$ can eat the piranha $i+1$ if the piranha $i+1$ exists and $a_{i + 1} \\lt a_i$.\n\nWhen the piranha $i$ eats some piranha, its **size increases by one** ($a_i$ becomes $a_i + 1$).\n\nYour task is to find **any dominant** piranha in the aquarium or determine if there are no such piranhas.\n\nNote that you have to find **any** (exactly one) dominant piranha, you don't have to find all of them.\n\nFor example, if $a = [5, 3, 4, 4, 5]$, then the third piranha can be **dominant**. Consider the sequence of its moves:\n\n- The piranha eats the second piranha and $a$ becomes $[5, \\underline{5}, 4, 5]$ (the underlined piranha is our candidate).\n- The piranha eats the third piranha and $a$ becomes $[5, \\underline{6}, 5]$.\n- The piranha eats the first piranha and $a$ becomes $[\\underline{7}, 5]$.\n- The piranha eats the second piranha and $a$ becomes $[\\underline{8}]$.\n\nYou have to answer $t$ independent test cases.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 2 \\cdot 10^4$) — the number of test cases. Then $t$ test cases follow.\n\nThe first line of the test case contains one integer $n$ ($2 \\le n \\le 3 \\cdot 10^5$) — the number of piranhas in the aquarium. The second line of the test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$), where $a_i$ is the size of the $i$-th piranha.\n\nIt is guaranteed that the sum of $n$ does not exceed $3 \\cdot 10^5$ ($\\sum n \\le 3 \\cdot 10^5$).\n\n## Output\n\nFor each test case, print the answer: `-1` if there are no dominant piranhas in the aquarium or **index** of **any** dominant piranha otherwise. If there are several answers, you can print any.\n\n## Note\n\nThe first test case of the example is described in the problem statement.\n\nIn the second test case of the example, there are no dominant piranhas in the aquarium.\n\nIn the third test case of the example, the fourth piranha can firstly eat the piranha to the left and the aquarium becomes $[4, 4, 5, 4]$, then it can eat any other piranha in the aquarium.",
-  "statementZhMd": null,
+  "statementZhMd": "水族馆中有 $n$ 条大小分别为 $a_1, a_2, \\ldots, a_n$ 的食人鱼。食人鱼按照它们在水族馆中的生活位置从左到右编号。\n\n别尔兰国立大学的科学家们想要判断水族馆中是否存在一条**主导**食人鱼。如果某条食人鱼能够吃掉水族馆中的所有其他食人鱼（当然不包括自己），那么这条食人鱼就被称为**主导**食人鱼。其他食人鱼不会做任何事情，而**主导**食人鱼会吃掉它们。\n\n由于水族馆又窄又长，每次移动时，食人鱼只能吃掉一条相邻的食人鱼。食人鱼可以进行任意多次移动（或者在它能够移动的情况下尽可能多地移动）。更准确地说：\n\n- 如果食人鱼 $i-1$ 存在且 $a_{i - 1} \\lt a_i$，那么食人鱼 $i$ 可以吃掉食人鱼 $i-1$。\n- 如果食人鱼 $i+1$ 存在且 $a_{i + 1} \\lt a_i$，那么食人鱼 $i$ 可以吃掉食人鱼 $i+1$。\n\n当食人鱼 $i$ 吃掉某条食人鱼时，它的**大小增加 $1$**（$a_i$ 变为 $a_i + 1$）。\n\n你的任务是找出水族馆中的**任意一条主导**食人鱼，或者判断不存在这样的食人鱼。\n\n注意，你只需要找出**任意一条（恰好一条）**主导食人鱼，而不需要找出所有主导食人鱼。\n\n例如，当 $a = [5, 3, 4, 4, 5]$ 时，第三条食人鱼可能是**主导**食人鱼。考虑它的移动过程：\n\n- 这条食人鱼吃掉第二条食人鱼，$a$ 变为 $[5, \\underline{5}, 4, 5]$（带下划线的食人鱼是我们的候选者）。\n- 这条食人鱼吃掉第三条食人鱼，$a$ 变为 $[5, \\underline{6}, 5]$。\n- 这条食人鱼吃掉第一条食人鱼，$a$ 变为 $[\\underline{7}, 5]$。\n- 这条食人鱼吃掉第二条食人鱼，$a$ 变为 $[\\underline{8}]$。\n\n你需要回答 $t$ 个相互独立的测试用例。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 2 \\cdot 10^4$）——测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 3 \\cdot 10^5$）——水族馆中食人鱼的数量。第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$），其中 $a_i$ 表示第 $i$ 条食人鱼的大小。\n\n保证所有测试用例中 $n$ 的总和不超过 $3 \\cdot 10^5$（$\\sum n \\le 3 \\cdot 10^5$）。\n\n## 输出格式\n\n对于每个测试用例，输出答案：如果水族馆中不存在主导食人鱼，则输出 `-1`；否则输出**任意一条**主导食人鱼的**编号**。如果有多个答案，可以输出其中任意一个。\n\n## 说明\n\n样例中的第一个测试用例在题目描述中进行了说明。\n\n在样例中的第二个测试用例中，水族馆中不存在主导食人鱼。\n\n在样例中的第三个测试用例中，第四条食人鱼可以先吃掉左边的食人鱼，此时水族馆变为 $[4, 4, 5, 4]$，然后它就可以吃掉水族馆中的任意其他食人鱼。",
   "samples": [
     {
       "input": "6\n5\n5 3 4 4 5\n3\n1 1 1\n5\n4 4 3 4 4\n5\n5 5 4 3 2\n3\n1 1 2\n5\n5 4 3 5 5\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:37:33.166Z"
+  "fetchedAt": "2026-11-02T18:37:33.166Z",
+  "translatedAt": "2026-11-04T04:23:09.577+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

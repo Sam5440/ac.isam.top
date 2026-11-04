@@ -4,7 +4,7 @@
   "contestId": 1612,
   "index": "C",
   "title": "Chat Ban",
-  "titleZh": null,
+  "titleZh": "聊天禁言",
   "url": "https://codeforces.com/contest/1612/problem/C",
   "difficulty": 1300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "You are a usual chat user on the most famous streaming platform. Of course, there are some moments when you just want to chill and spam something.\n\nMore precisely, you want to spam the emote triangle of size $k$. It consists of $2k-1$ messages. The first message consists of one emote, the second one — of two emotes, ..., the $k$-th one — of $k$ emotes, the $k+1$-th one — of $k-1$ emotes, ..., and the last one — of one emote.\n\nFor example, the emote triangle for $k=3$ consists of $5$ messages:\n\n![image](https://espresso.codeforces.com/0a910e5b3823e020640804bc9388e980f7232972.png)\n\nOf course, most of the channels have auto moderation. Auto moderator of the current chat will ban you right after you spam at least $x$ emotes in succession (you can assume you are the only user in the chat). Now you are interested — how many messages will you write before getting banned? Or maybe you will not get banned at all (i.e. will write all $2k-1$ messages and complete your emote triangle successfully)? Note that if you get banned as a result of writing a message, this message is also counted.\n\nYou have to answer $t$ independent test cases.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The next $t$ lines describe test cases.\n\nThe only line of the test case contains integers $k$ and $x$ ($1 \\le k \\le 10^9; 1 \\le x \\le 10^{18}$).\n\n## Output\n\nFor each test case, print the number of messages you will write before getting banned for the corresponding values $k$ and $x$.\n\n## Note\n\nLet's analyze the test cases of the example.\n\n1. In the first test case, you write three messages containing $1$, $2$ and $3$ emotes respectively, and since $1 + 2 + 3 \\ge 6$, you get banned after that.\n2. In the second test case, you write four messages containing $1$, $2$, $3$ and $4$ emotes respectively, and since $1 + 2 + 3 + 4 \\ge 7$, you get banned after that.\n3. In the third test case, you write one message containing exactly $1$ emote. It doesn't get you banned, since $1 \\lt 2$, but you have already finished posting your emote triangle. So you wrote one message successfully.\n4. In the fourth test case, you write four messages containing $1$, $2$, $3$ and $2$ emotes respectively, and since $1 + 2 + 3 + 2 \\ge 7$, you get banned after that.\n5. In the fifth test case, you write three messages containing $1$, $2$ and $1$ emote respectively. It doesn't get you banned, since $1 + 2 + 1 \\lt 5$, but you have already finished posting your emote triangle. So you wrote three messages successfully.\n6. In the sixth test case, since $x = 1$, you get banned as soon as you send your first message.\n7. The seventh test case is too large to analyze, so we'll skip it.",
-  "statementZhMd": null,
+  "statementZhMd": "你是最著名的直播平台上的一名普通聊天用户。当然，有时你只是想放松一下并刷屏。\n\n更准确地说，你想刷出一个大小为 $k$ 的表情三角形。它由 $2k-1$ 条消息组成。第一条消息包含一个表情，第二条包含两个表情，……第 $k$ 条包含 $k$ 个表情，第 $k+1$ 条包含 $k-1$ 个表情，……最后一条包含一个表情。\n\n例如，$k=3$ 时，表情三角形由 $5$ 条消息组成：\n\n![image](https://espresso.codeforces.com/0a910e5b3823e020640804bc9388e980f7232972.png)\n\n当然，大多数频道都有自动管理机制。当前聊天的自动管理机器人会在你连续刷出至少 $x$ 个表情后立即将你禁言（你可以假设聊天中只有你一名用户）。现在你想知道——在被禁言前你会发送多少条消息？或者你可能根本不会被禁言（即发送完全部 $2k-1$ 条消息并成功完成表情三角形）？注意，如果你因发送某条消息而被禁言，这条消息也要计入统计。\n\n你需要回答 $t$ 个相互独立的测试用例。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来的 $t$ 行描述各个测试用例。\n\n每个测试用例仅包含一行，含有整数 $k$ 和 $x$（$1 \\le k \\le 10^9; 1 \\le x \\le 10^{18}$）。\n\n## 输出格式\n\n对于每个测试用例，输出在对应的 $k$ 和 $x$ 下被禁言前发送的消息数量。\n\n## 说明\n\n让我们分析样例中的测试用例。\n\n1. 在第一个测试用例中，你依次发送了包含 $1$、$2$ 和 $3$ 个表情的三条消息。由于 $1 + 2 + 3 \\ge 6$，你在发送这条消息后被禁言。\n2. 在第二个测试用例中，你依次发送了包含 $1$、$2$、$3$ 和 $4$ 个表情的四条消息。由于 $1 + 2 + 3 + 4 \\ge 7$，你在发送这条消息后被禁言。\n3. 在第三个测试用例中，你发送了一条恰好包含 $1$ 个表情的消息。由于 $1 \\lt 2$，它没有使你被禁言，但你已经完成了表情三角形的发送。因此你成功发送了 $1$ 条消息。\n4. 在第四个测试用例中，你依次发送了包含 $1$、$2$、$3$ 和 $2$ 个表情的四条消息。由于 $1 + 2 + 3 + 2 \\ge 7$，你在发送这条消息后被禁言。\n5. 在第五个测试用例中，你依次发送了包含 $1$、$2$ 和 $1$ 个表情的三条消息。由于 $1 + 2 + 1 \\lt 5$，它没有使你被禁言，但你已经完成了表情三角形的发送。因此你成功发送了 $3$ 条消息。\n6. 在第六个测试用例中，由于 $x = 1$，你在发送第一条消息后立即被禁言。\n7. 第七个测试用例中的数值太大，难以分析，所以我们跳过它。",
   "samples": [
     {
       "input": "7\n4 6\n4 7\n1 2\n3 7\n2 5\n100 1\n1000000000 923456789987654321\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:13:15.645Z"
+  "fetchedAt": "2026-11-02T18:13:15.645Z",
+  "translatedAt": "2026-11-04T03:37:11.520+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

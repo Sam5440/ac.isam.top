@@ -4,7 +4,7 @@
   "contestId": 1520,
   "index": "F1",
   "title": "Guess the K-th Zero (Easy version)",
-  "titleZh": null,
+  "titleZh": "猜第 K 个零（简单版）",
   "url": "https://codeforces.com/contest/1520/problem/F1",
   "difficulty": 1600,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "**This is an interactive problem.**\n\n**This is an easy version of the problem. The difference from the hard version is that in the easy version $t=1$ and the number of queries is limited to $20$.**\n\nPolycarp is playing a computer game. In this game, an array consisting of zeros and ones is hidden. Polycarp wins if he guesses the position of the $k$-th zero from the left $t$ times.\n\nPolycarp can make no more than $20$ requests of the following type:\n\n- `?` $l$ $r$ — find out the sum of all elements in positions from $l$ to $r$ ($1 \\le l \\le r \\le n$) inclusive.\n\n*In this (easy version) of the problem, this paragraph doesn't really make sense since $t=1$ always.* To make the game more interesting, each guessed zero turns into one and the game continues on the changed array. More formally, if the position of the $k$-th zero was $x$, then after Polycarp guesses this position, the $x$-th element of the array will be replaced from $0$ to $1$. Of course, this feature affects something only for $t \\gt 1$.\n\nHelp Polycarp win the game.\n\n## Interaction\n\nFirst, your program must read two integers $n$ and $t$ ($1 \\le n \\le 2 \\cdot 10^5$, $t=1$).\n\nThen $t$ lines follow, each of which contains one integer $k$ ($1 \\le k \\le n$). It is guaranteed that at the moment of the request the array contains at least $k$ zeros. In order to get the next value of $k$, you must output the answer for the current value of $k$.\n\nAfter that, you can make no more than $20$ requests.\n\nUse the following format to output the answer (it is not a request, it doesn't count in $20$):\n\n- `!` $x$ — position of the $k$-th zero.\n\nPositions in the array are numbered from left to right from $1$ to $n$ inclusive.\n\nAfter printing $t$ answers, your program should exit immediately.\n\nIn this task, the interactor is **not adaptive**. This means that within the same test, the hidden array and the queries **do not change**.\n\nIn case of an incorrect query, `-1` will be displayed. When this value is received, your program must immediately exit normally (for example, by calling `exit(0)`), otherwise, the testing system may issue an arbitrary verdict.\n\nIf the number of requests is exceeded, the verdict *wrong answer* will be displayed.\n\nYour solution may get the verdict *Idleness limit exceeded* if you don't print anything or forget to flush the output buffer.\n\nTo flush the output buffer, you need to do the following immediately after the query output and the end-of-line character:\n\n- `fflush(stdout)` or `cout.flush()` in C ++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see the documentation for other languages.\n\n**Hacks**\n\nUse the following format for hacks:\n\nOn the first line print the string $s$ ($1 \\le |s| \\le 2 \\cdot 10^5$), consisting of zeros and ones, and an integer $t$ ($t = 1$) — hidden array and number of requests, respectively. In the next $t$ lines output the number $k$ ($1 \\le k \\le |s|$).\n\nThe hacked solution will not have direct access to the hidden array.\n\n## Note\n\nIn the first test, the $[1, 0, 1, 1, 0, 1]$ array is hidden. In this test $k=2$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是一道交互题。**\n\n**这是本题的简单版本。与困难版本的区别在于，简单版本中 $t=1$，且查询次数限制为 $20$ 次。**\n\nPolycarp 正在玩一个电脑游戏。游戏中隐藏着一个由 0 和 1 组成的数组。如果他能猜出从左侧起第 $k$ 个零的位置 $t$ 次，就能赢得游戏。\n\nPolycarp 最多可以进行 $20$ 次以下类型的查询：\n\n- `?` $l$ $r$ —— 查询位置 $l$ 到 $r$（包括两端）上的所有元素之和（$1 \\le l \\le r \\le n$）。\n\n*在本题的简单版本中，由于始终有 $t=1$，这一段实际上没有意义。* 为了让游戏更有趣，每次猜出的零都会变成一，游戏将在修改后的数组上继续进行。更正式地说，如果第 $k$ 个零的位置是 $x$，那么在 Polycarp 猜出这个位置后，数组的第 $x$ 个元素将从 $0$ 替换为 $1$。当然，只有在 $t \\gt 1$ 时，这一特性才会产生影响。\n\n请帮助 Polycarp 赢得游戏。\n\n## 交互\n\n首先，你的程序必须读入两个整数 $n$ 和 $t$（$1 \\le n \\le 2 \\cdot 10^5$，$t=1$）。\n\n接下来有 $t$ 行，每行包含一个整数 $k$（$1 \\le k \\le n$）。保证在发出请求时，数组中至少包含 $k$ 个零。为了获取下一个 $k$ 的值，你必须先输出当前 $k$ 的答案。\n\n之后，你最多可以进行 $20$ 次查询。\n\n请使用以下格式输出答案（这不是查询，不计入 $20$ 次查询）：\n\n- `!` $x$ —— 第 $k$ 个零的位置。\n\n数组中的位置从左到右编号为 $1$ 到 $n$（包括两端）。\n\n输出 $t$ 个答案后，你的程序应立即退出。\n\n在本题中，交互器**不是自适应的**。这意味着在同一个测试中，隐藏数组和查询**不会改变**。\n\n如果查询不正确，将显示 `-1`。当接收到此值时，你的程序必须立即正常退出（例如调用 `exit(0)`），否则测试系统可能会给出任意评测结果。\n\n如果超过查询次数限制，将显示 *wrong answer*。\n\n如果你没有输出任何内容，或忘记刷新输出缓冲区，你的解法可能会得到 *Idleness limit exceeded* 评测结果。\n\n要刷新输出缓冲区，你需要在输出查询和行末符之后立即执行以下操作：\n\n- `fflush(stdout)` 或 `cout.flush()`（C ++）；\n- `System.out.flush()`（Java）；\n- `flush(output)`（Pascal）；\n- `stdout.flush()`（Python）；\n- 其他语言请参见相应文档。\n\n**Hack**\n\nHack 时请使用以下格式：\n\n第一行输出字符串 $s$（$1 \\le |s| \\le 2 \\cdot 10^5$），它由 0 和 1 组成；同时输出整数 $t$（$t = 1$），分别表示隐藏数组和请求次数。接下来的 $t$ 行输出整数 $k$（$1 \\le k \\le |s|$）。\n\n被 Hack 的解法将无法直接访问隐藏数组。\n\n## 说明\n\n在第一个测试中，隐藏的数组为 $[1, 0, 1, 1, 0, 1]$。在这个测试中 $k=2$。",
   "samples": [
     {
       "input": "6 1\n2\n\n2\n\n1\n\n1\n\n0\n\n0\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:24:55.327Z"
+  "fetchedAt": "2026-11-02T18:24:55.327Z",
+  "translatedAt": "2026-11-04T04:04:33.661+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

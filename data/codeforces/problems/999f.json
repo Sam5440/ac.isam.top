@@ -4,7 +4,7 @@
   "contestId": 999,
   "index": "F",
   "title": "Cards and Joy",
-  "titleZh": null,
+  "titleZh": "卡片与快乐",
   "url": "https://codeforces.com/contest/999/problem/F",
   "difficulty": 2000,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ players sitting at the card table. Each player has a favorite number. The favorite number of the $j$-th player is $f_j$.\n\nThere are $k \\cdot n$ cards on the table. Each card contains a single integer: the $i$-th card contains number $c_i$. Also, you are given a sequence $h_1, h_2, \\dots, h_k$. Its meaning will be explained below.\n\nThe players have to distribute all the cards in such a way that each of them will hold exactly $k$ cards. After all the cards are distributed, each player counts the number of cards he has that contains his favorite number. The joy level of a player equals $h_t$ if the player holds $t$ cards containing his favorite number. If a player gets no cards with his favorite number (i.e., $t=0$), his joy level is $0$.\n\nPrint the maximum possible total joy levels of the players after the cards are distributed. Note that the sequence $h_1, \\dots, h_k$ is the same for all the players.\n\n## Input\n\nThe first line of input contains two integers $n$ and $k$ ($1 \\le n \\le 500, 1 \\le k \\le 10$) — the number of players and the number of cards each player will get.\n\nThe second line contains $k \\cdot n$ integers $c_1, c_2, \\dots, c_{k \\cdot n}$ ($1 \\le c_i \\le 10^5$) — the numbers written on the cards.\n\nThe third line contains $n$ integers $f_1, f_2, \\dots, f_n$ ($1 \\le f_j \\le 10^5$) — the favorite numbers of the players.\n\nThe fourth line contains $k$ integers $h_1, h_2, \\dots, h_k$ ($1 \\le h_t \\le 10^5$), where $h_t$ is the joy level of a player if he gets exactly $t$ cards with his favorite number written on them. It is guaranteed that the condition $h_{t - 1} \\lt h_t$ holds for each $t \\in [2..k]$.\n\n## Output\n\nPrint one integer — the maximum possible total joy levels of the players among all possible card distributions.\n\n## Note\n\nIn the first example, one possible optimal card distribution is the following:\n\n- Player $1$ gets cards with numbers $[1, 3, 8]$;\n- Player $2$ gets cards with numbers $[2, 2, 8]$;\n- Player $3$ gets cards with numbers $[2, 2, 8]$;\n- Player $4$ gets cards with numbers $[5, 5, 5]$.\n\nThus, the answer is $2 + 6 + 6 + 7 = 21$.\n\nIn the second example, no player can get a card with his favorite number. Thus, the answer is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 名玩家围坐在牌桌旁。每名玩家都有一个喜欢的数字。第 $j$ 名玩家喜欢的数字为 $f_j$。\n\n桌上有 $k \\cdot n$ 张卡片。每张卡片上写有一个整数：第 $i$ 张卡片上写有数字 $c_i$。此外，给定一个序列 $h_1, h_2, \\dots, h_k$。其含义将在下文解释。\n\n玩家需要分配所有卡片，使得每名玩家恰好拿到 $k$ 张卡片。卡片分配完毕后，每名玩家统计自己拿到的、写有其喜欢数字的卡片数量。如果一名玩家拿到了 $t$ 张写有其喜欢数字的卡片，那么他的快乐值为 $h_t$。如果一名玩家没有拿到写有其喜欢数字的卡片（即 $t=0$），那么他的快乐值为 $0$。\n\n请输出分配卡片后所有玩家快乐值之和的最大可能值。注意，序列 $h_1, \\dots, h_k$ 对所有玩家都相同。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 500, 1 \\le k \\le 10$），分别表示玩家数量以及每名玩家将获得的卡片数量。\n\n第二行包含 $k \\cdot n$ 个整数 $c_1, c_2, \\dots, c_{k \\cdot n}$（$1 \\le c_i \\le 10^5$），表示卡片上写的数字。\n\n第三行包含 $n$ 个整数 $f_1, f_2, \\dots, f_n$（$1 \\le f_j \\le 10^5$），表示每名玩家喜欢的数字。\n\n第四行包含 $k$ 个整数 $h_1, h_2, \\dots, h_k$（$1 \\le h_t \\le 10^5$），其中 $h_t$ 表示一名玩家恰好拿到 $t$ 张写有其喜欢数字的卡片时的快乐值。保证对于每个 $t \\in [2..k]$，均满足条件 $h_{t - 1} \\lt h_t$。\n\n## 输出格式\n\n输出一个整数，即所有可能的卡片分配方案中，玩家快乐值之和的最大值。\n\n## 说明\n\n在第一个样例中，一种可能的最优卡片分配如下：\n\n- 玩家 $1$ 获得数字为 $[1, 3, 8]$ 的卡片；\n- 玩家 $2$ 获得数字为 $[2, 2, 8]$ 的卡片；\n- 玩家 $3$ 获得数字为 $[2, 2, 8]$ 的卡片；\n- 玩家 $4$ 获得数字为 $[5, 5, 5]$ 的卡片。\n\n因此，答案为 $2 + 6 + 6 + 7 = 21$。\n\n在第二个样例中，没有玩家能够拿到写有自己喜欢数字的卡片。因此，答案为 $0$。",
   "samples": [
     {
       "input": "4 3\n1 3 2 8 5 5 8 2 2 8 5 2\n1 2 2 5\n2 6 7\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:34:59.903Z"
+  "fetchedAt": "2026-11-02T19:34:59.903Z",
+  "translatedAt": "2026-11-04T05:38:32.332+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

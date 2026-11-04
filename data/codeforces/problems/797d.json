@@ -4,7 +4,7 @@
   "contestId": 797,
   "index": "D",
   "title": "Broken BST",
-  "titleZh": null,
+  "titleZh": "损坏的二叉搜索树",
   "url": "https://codeforces.com/contest/797/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Let $*T*$ be arbitrary binary tree — tree, every vertex of which has no more than two children. Given tree is rooted, so there exists only one vertex which doesn't have a parent — it's the root of a tree. Every vertex has an integer number written on it. Following algorithm is run on every value from the tree $*T*$:\n\n1. Set pointer to the root of a tree.\n2. Return success if the value in the current vertex is equal to the number you are looking for\n3. Go to the left child of the vertex if the value in the current vertex is greater than the number you are looking for\n4. Go to the right child of the vertex if the value in the current vertex is less than the number you are looking for\n5. Return fail if you try to go to the vertex that doesn't exist\n\nHere is the pseudo-code of the described algorithm:\n\n```\nbool find(TreeNode t, int x) {\n    if (t == null)\n        return false;\n    if (t.value == x)\n        return true;\n    if (x < t.value)\n        return find(t.left, x);\n    else\n        return find(t.right, x);\n}\nfind(root, x);\n```\n\nThe described algorithm works correctly if the tree is binary search tree (i.e. for each node the values of left subtree are less than the value in the node, the values of right subtree are greater than the value in the node). But it can return invalid result if tree is not a binary search tree.\n\nSince the given tree is not necessarily a binary search tree, not all numbers can be found this way. Your task is to calculate, how many times the search will fail being running on every value from the tree.\n\nIf the tree has multiple vertices with the same values on them then you should run algorithm on every one of them separately.\n\n## Input\n\nFirst line contains integer number $*n*$ ($1 ≤ *n* ≤ 10^{5}$) — number of vertices in the tree.\n\nEach of the next $*n*$ lines contains $3$ numbers $*v*$, $*l*$, $*r*$ ($0 ≤ *v* ≤ 10^{9}$) — value on current vertex, index of the left child of the vertex and index of the right child of the vertex, respectively. If some child doesn't exist then number $- 1$ is set instead. Note that different vertices of the tree may contain the same values.\n\n## Output\n\nPrint number of times when search algorithm will fail.\n\n## Note\n\nIn the example the root of the tree in vertex $2$. Search of numbers $5$ and $15$ will return fail because on the first step algorithm will choose the subtree which doesn't contain numbers you are looking for.",
-  "statementZhMd": null,
+  "statementZhMd": "设 $*T*$ 是一棵任意的二叉树——即每个顶点至多有两个子节点的树。给定的树是有根树，因此只有一个没有父节点的顶点——它就是树的根。每个顶点上都写有一个整数。对于树 $*T*$ 中的每个值，都会运行以下算法：\n\n1. 将指针设为树的根节点。\n2. 如果当前顶点中的值等于要查找的数，则返回成功。\n3. 如果当前顶点中的值大于要查找的数，则转到该顶点的左子节点。\n4. 如果当前顶点中的值小于要查找的数，则转到该顶点的右子节点。\n5. 如果尝试转到不存在的顶点，则返回失败。\n\n下面是上述算法的伪代码：\n\n```\nbool find(TreeNode t, int x) {\n    if (t == null)\n        return false;\n    if (t.value == x)\n        return true;\n    if (x < t.value)\n        return find(t.left, x);\n    else\n        return find(t.right, x);\n}\nfind(root, x);\n```\n\n当树是一棵二叉搜索树时，上述算法能够正确工作（即对于每个节点，左子树中的值都小于该节点中的值，右子树中的值都大于该节点中的值）。但如果树不是二叉搜索树，算法可能返回错误的结果。\n\n由于给定的树不一定是二叉搜索树，因此并非所有数都能通过这种方式找到。你的任务是计算：对树中的每个值运行搜索时，搜索失败的次数。\n\n如果树中有多个顶点具有相同的值，则应分别对每个顶点运行一次算法。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$）——树中顶点的数量。\n\n接下来的 $*n*$ 行中，每行包含 $3$ 个数 $*v*$、$*l*$、$*r*$（$0 ≤ *v* ≤ 10^{9}$）——当前顶点上的值、该顶点的左子节点编号和右子节点编号。如果某个子节点不存在，则对应位置为 $- 1$。注意，树中的不同顶点可能包含相同的值。\n\n## 输出格式\n\n输出搜索算法失败的次数。\n\n## 说明\n\n在该样例中，树的根是顶点 $2$。搜索数字 $5$ 和 $15$ 时会失败，因为在第一步中，算法会选择不包含要查找数字的子树。",
   "samples": [
     {
       "input": "3\n15 -1 -1\n10 1 3\n5 -1 -1\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:50:51.798Z"
+  "fetchedAt": "2026-11-02T19:50:51.798Z",
+  "translatedAt": "2026-11-04T06:10:41.267+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

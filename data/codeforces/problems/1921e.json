@@ -4,7 +4,7 @@
   "contestId": 1921,
   "index": "E",
   "title": "Eat the Chip",
-  "titleZh": null,
+  "titleZh": "吃掉棋子",
   "url": "https://codeforces.com/contest/1921/problem/E",
   "difficulty": 1600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob are playing a game on a checkered board. The board has $h$ rows, numbered from top to bottom, and $w$ columns, numbered from left to right. Both players have a chip each. Initially, Alice's chip is located at the cell with coordinates $(x_a, y_a)$ (row $x_a$, column $y_a$), and Bob's chip is located at $(x_b, y_b)$. It is guaranteed that the initial positions of the chips do not coincide. Players take turns making moves, with Alice starting.\n\nOn her turn, Alice can move her chip one cell down or one cell down-right or down-left (diagonally). Bob, on the other hand, moves his chip one cell up, up-right, or up-left. It is not allowed to make moves that go beyond the board boundaries.\n\nMore formally, if at the beginning of Alice's turn she is in the cell with coordinates $(x_a, y_a)$, then she can move her chip to one of the cells $(x_a + 1, y_a)$, $(x_a + 1, y_a - 1)$, or $(x_a + 1, y_a + 1)$. Bob, on his turn, from the cell $(x_b, y_b)$ can move to $(x_b - 1, y_b)$, $(x_b - 1, y_b - 1)$, or $(x_b - 1, y_b + 1)$. The new chip coordinates $(x', y')$ must satisfy the conditions $1 \\le x' \\le h$ and $1 \\le y' \\le w$.\n\n![image](https://espresso.codeforces.com/d84e97b980ff74c5bb717a3d34d4c05a4b10e64a.png) Example game state. Alice plays with the white chip, Bob with the black one. Arrows indicate possible moves.\n\nA player immediately wins if they place their chip in a cell occupied by the other player's chip. If either player cannot make a move (Alice—if she is in the last row, i.e. $x_a = h$, Bob—if he is in the first row, i.e. $x_b = 1$), the game immediately ends in a draw.\n\nWhat will be the outcome of the game if both opponents play optimally?\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. This is followed by the description of the test cases.\n\nEach test case consists of a single line containing six integers $h$, $w$, $x_a$, $y_a$, $x_b$, $y_b$ ($1 \\le x_a, x_b \\le h \\le 10^6$, $1 \\le y_a, y_b \\le w \\le 10^9$) — the dimensions of the board and the initial positions of Alice's and Bob's chips. It is guaranteed that either $x_a \\ne x_b$ or $y_a \\ne y_b$.\n\nIt is guaranteed that the sum of $h$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output `\"Alice\"` if Alice wins, `\"Bob\"` if Bob wins, and `\"Draw\"` if neither player can secure a victory. You can output each letter in any case (lowercase or uppercase). For example, the strings `\"bOb\"`, `\"bob\"`, `\"Bob\"`, and `\"BOB\"` will be accepted as Bob's victory.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 正在一块棋盘上进行游戏。棋盘有 $h$ 行，从上到下编号；有 $w$ 列，从左到右编号。两位玩家各有一个棋子。初始时，Alice 的棋子位于坐标为 $(x_a, y_a)$ 的格子（第 $x_a$ 行，第 $y_a$ 列），Bob 的棋子位于 $(x_b, y_b)$。保证两个棋子的初始位置不重合。双方轮流移动棋子，由 Alice 先手。\n\n在自己的回合中，Alice 可以将她的棋子向下、向右下或向左下移动一格（斜向移动）。而 Bob 可以将他的棋子向上、向右上或向左上移动一格。不允许移动到棋盘边界之外。\n\n更正式地说，如果 Alice 回合开始时位于坐标 $(x_a, y_a)$ 的格子，那么她可以将棋子移动到以下格子之一：$(x_a + 1, y_a)$、$(x_a + 1, y_a - 1)$ 或 $(x_a + 1, y_a + 1)$。Bob 回合时，如果位于格子 $(x_b, y_b)$，则可以移动到 $(x_b - 1, y_b)$、$(x_b - 1, y_b - 1)$ 或 $(x_b - 1, y_b + 1)$。移动后的棋子坐标 $(x', y')$ 必须满足条件 $1 \\le x' \\le h$ 且 $1 \\le y' \\le w$。\n\n![image](https://espresso.codeforces.com/d84e97b980ff74c5bb717a3d34d4c05a4b10e64a.png) 示例游戏状态。Alice 使用白色棋子，Bob 使用黑色棋子。箭头表示可能的移动方向。\n\n如果一名玩家将自己的棋子移动到另一名玩家棋子所在的格子上，则该玩家立即获胜。如果任意一名玩家无法移动（Alice 无法移动的情况是她位于最后一行，即 $x_a = h$；Bob 无法移动的情况是他位于第一行，即 $x_b = 1$），游戏立即以平局结束。\n\n如果双方都采取最优策略，游戏结果会是什么？\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例包含一行，包含六个整数 $h$、$w$、$x_a$、$y_a$、$x_b$、$y_b$（$1 \\le x_a, x_b \\le h \\le 10^6$，$1 \\le y_a, y_b \\le w \\le 10^9$）——棋盘的尺寸以及 Alice 和 Bob 的棋子初始位置。保证 $x_a \\ne x_b$ 或 $y_a \\ne y_b$。\n\n保证所有测试用例的 $h$ 之和不超过 $10^6$。\n\n## 输出\n\n对于每个测试用例，如果 Alice 获胜，输出 `\"Alice\"`；如果 Bob 获胜，输出 `\"Bob\"`；如果双方都无法确保获胜，输出 `\"Draw\"`。每个字母的大小写均可任意（大写或小写）。例如，字符串 `\"bOb\"`、`\"bob\"`、`\"Bob\"` 和 `\"BOB\"` 都会被接受为 Bob 获胜。",
   "samples": [
     {
       "input": "12\n6 5 2 2 5 3\n4 1 2 1 4 1\n1 4 1 3 1 1\n5 5 1 4 5 2\n4 4 1 1 4 4\n10 10 1 6 10 8\n10 10 2 6 10 7\n10 10 9 1 8 1\n10 10 8 1 10 2\n10 10 1 1 2 1\n10 10 1 3 4 1\n10 10 3 1 1 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:18:13.777Z"
+  "fetchedAt": "2026-11-02T17:18:13.777Z",
+  "translatedAt": "2026-11-04T02:21:01.061+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1783,
   "index": "C",
   "title": "Yet Another Tournament",
-  "titleZh": null,
+  "titleZh": "又一个锦标赛",
   "url": "https://codeforces.com/contest/1783/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are participating in Yet Another Tournament. There are $n + 1$ participants: you and $n$ other opponents, numbered from $1$ to $n$.\n\nEach two participants will play against each other exactly once. If the opponent $i$ plays against the opponent $j$, he wins if and only if $i \\gt j$.\n\nWhen the opponent $i$ plays against you, everything becomes a little bit complicated. In order to get a win against opponent $i$, you need to prepare for the match for at least $a_i$ minutes — otherwise, you lose to that opponent.\n\nYou have $m$ minutes in total to prepare for matches, but you can prepare for only one match at one moment. In other words, if you want to win against opponents $p_1, p_2, \\dots, p_k$, you need to spend $a_{p_1} + a_{p_2} + \\dots + a_{p_k}$ minutes for preparation — and if this number is greater than $m$, you cannot achieve a win against all of these opponents at the same time.\n\nThe final place of each contestant is equal to the number of contestants with strictly more wins $+$ $1$. For example, if $3$ contestants have $5$ wins each, $1$ contestant has $3$ wins and $2$ contestants have $1$ win each, then the first $3$ participants will get the $1$-st place, the fourth one gets the $4$-th place and two last ones get the $5$-th place.\n\nCalculate the minimum possible place (lower is better) you can achieve if you can't prepare for the matches more than $m$ minutes in total.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 5 \\cdot 10^5$; $0 \\le m \\le \\sum\\limits_{i=1}^{n}{a_i}$) — the number of your opponents and the total time you have for preparation.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\dots, a_n$ ($0 \\le a_i \\le 1000$), where $a_i$ is the time you need to prepare in order to win against the $i$-th opponent.\n\nIt's guaranteed that the total sum of $n$ over all test cases doesn't exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the minimum possible place you can take if you can prepare for the matches no more than $m$ minutes in total.\n\n## Note\n\nIn the first test case, you can prepare to all opponents, so you'll win $4$ games and get the $1$-st place, since all your opponents win no more than $3$ games.\n\nIn the second test case, you can prepare against the second opponent and win. As a result, you'll have $1$ win, opponent $1$ — $1$ win, opponent $2$ — $1$ win, opponent $3$ — $3$ wins. So, opponent $3$ will take the $1$-st place, and all other participants, including you, get the $2$-nd place.\n\nIn the third test case, you have no time to prepare at all, so you'll lose all games. Since each opponent has at least $1$ win, you'll take the last place (place $6$).\n\nIn the fourth test case, you have no time to prepare, but you can still win against the first opponent. As a result, opponent $1$ has no wins, you have $1$ win and all others have at least $2$ wins. So your place is $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在参加又一个锦标赛。共有 $n + 1$ 名参赛者：你和 $n$ 名其他对手，他们的编号为 $1$ 到 $n$。\n\n每两名参赛者之间恰好进行一次比赛。如果对手 $i$ 与对手 $j$ 比赛，则当且仅当 $i \\gt j$ 时，对手 $i$ 获胜。\n\n当对手 $i$ 与你比赛时，情况会变得稍微复杂一些。为了战胜对手 $i$，你需要至少准备 $a_i$ 分钟，否则你将输给该对手。\n\n你总共有 $m$ 分钟用于准备比赛，但在同一时刻你只能准备一场比赛。换句话说，如果你想战胜对手 $p_1, p_2, \\dots, p_k$，就需要花费 $a_{p_1} + a_{p_2} + \\dots + a_{p_k}$ 分钟进行准备；如果这个总时间超过 $m$，你就无法同时战胜所有这些对手。\n\n每位参赛者的最终名次等于胜场数严格多于自己的参赛者数量 $+$ $1$。例如，如果有 $3$ 名参赛者各自取得了 $5$ 场胜利，$1$ 名参赛者取得了 $3$ 场胜利，另有 $2$ 名参赛者各自取得了 $1$ 场胜利，那么前 $3$ 名参赛者并列第 $1$ 名，第四名参赛者获得第 $4$ 名，最后两名参赛者获得第 $5$ 名。\n\n请计算在总准备时间不超过 $m$ 分钟的情况下，你能够取得的最小名次（名次越小越好）。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 5 \\cdot 10^5$；$0 \\le m \\le \\sum\\limits_{i=1}^{n}{a_i}$）——对手的数量以及你用于准备的总时间。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$0 \\le a_i \\le 1000$），其中 $a_i$ 表示你为了战胜第 $i$ 名对手所需的准备时间。\n\n保证所有测试用例中 $n$ 的总和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出在总准备时间不超过 $m$ 分钟的情况下，你能够取得的最小名次。\n\n## 说明\n\n在第一个测试用例中，你可以为所有对手进行准备，因此你将赢得 $4$ 场比赛并取得第 $1$ 名，因为你的所有对手最多赢得 $3$ 场比赛。\n\n在第二个测试用例中，你可以准备与第二名对手的比赛并获胜。结果是，你取得 $1$ 场胜利，对手 $1$ 取得 $1$ 场胜利，对手 $2$ 取得 $1$ 场胜利，对手 $3$ 取得 $3$ 场胜利。因此，对手 $3$ 获得第 $1$ 名，而包括你在内的所有其他参赛者均获得第 $2$ 名。\n\n在第三个测试用例中，你完全没有时间进行准备，因此会输掉所有比赛。由于每名对手至少取得 $1$ 场胜利，你将获得最后一名（第 $6$ 名）。\n\n在第四个测试用例中，你没有时间进行准备，但仍然可以战胜第一名对手。结果是，对手 $1$ 没有胜场，你取得 $1$ 场胜利，而其他所有对手至少取得 $2$ 场胜利。因此你的名次是第 $4$ 名。",
   "samples": [
     {
       "input": "5\n4 401\n100 100 200 1\n3 2\n1 2 3\n5 0\n1 1 1 1 1\n4 0\n0 1 1 1\n4 4\n1 2 2 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:38:49.614Z"
+  "fetchedAt": "2026-11-02T17:38:49.614Z",
+  "translatedAt": "2026-11-04T03:06:06.883+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

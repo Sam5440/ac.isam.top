@@ -4,7 +4,7 @@
   "contestId": 1899,
   "index": "G",
   "title": "Unusual Entertainment",
-  "titleZh": null,
+  "titleZh": "非同寻常的娱乐",
   "url": "https://codeforces.com/contest/1899/problem/G",
   "difficulty": 1900,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "A *tree* is a connected graph without cycles.\n\nA *permutation* is an array consisting of $n$ distinct integers from $1$ to $n$ in any order. For example, $[5, 1, 3, 2, 4]$ is a permutation, but $[2, 1, 1]$ is not a permutation (as $1$ appears twice in the array) and $[1, 3, 2, 5]$ is also not a permutation (as $n = 4$, but $5$ is present in the array).\n\nAfter a failed shoot in the BrMeast video, Alex fell into depression. Even his birthday did not make him happy. However, after receiving a gift from Timofey, Alex's mood suddenly improved. Now he spent days playing with the gifted constructor. Recently, he came up with an unusual entertainment.\n\nAlex builds a tree from his constructor, consisting of $n$ vertices numbered from $1$ to $n$, with the root at vertex $1$. Then he writes down each integer from $1$ to $n$ in some order, obtaining a permutation $p$. After that, Alex comes up with $q$ triples of integers $l, r, x$. For each triple, he tries to determine if there is at least one descendant of vertex $x$ among the vertices $p_l, p_{l+1}, \\ldots, p_r$.\n\nA vertex $u$ is a descendant of vertex $v$ if and only if $\\mathrm{dist}(1, v) + \\mathrm{dist}(v, u) = \\mathrm{dist}(1, u)$, where $\\mathrm{dist}(a, b)$ is the distance between vertices $a$ and $b$. In other words, vertex $v$ must be on the path from the root to vertex $u$.\n\nAlex told Zakhar about this entertainment. Now Alex tells his friend $q$ triples as described above, hoping that Zakhar can check for the presence of a descendant. Zakhar is very sleepy, so he turned to you for help. Help Zakhar answer all of Alex's questions and finally go to sleep.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n, q$ ($1 \\le n, q \\le 10^5$) — the number of vertices in the tree and the number of questions, respectively.\n\nEach of the next $n - 1$ lines contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$), indicating that there is an edge between vertices $u_i$ and $v_i$ (it is guaranteed that the resulting graph is a tree).\n\nThe next line contains $n$ integers $p_1, p_2, \\dots, p_n$ ($1 \\le p_i \\le n$) — the permutation $p$ (it is guaranteed that each integer from $1$ to $n$ appears exactly once).\n\nThen follow $q$ lines describing Alex's questions. The $i$-th line contains three integers $l, r, x$ ($1 \\le l \\le r \\le n$, $1 \\le x \\le n$), as described in the statement.\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ over all test cases do not exceed $10^5$.\n\n## Output\n\nFor each of Alex's questions, print \"`Yes`\" (without quotes) if the described descendant exists, otherwise print \"`No`\" (without quotes).\n\nYou can output the answer in any case (for example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as a positive answer).",
-  "statementZhMd": null,
+  "statementZhMd": "一棵*树*是一个无环的连通图。\n\n*排列*是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[5, 1, 3, 2, 4]$ 是一个排列，但 $[2, 1, 1]$ 不是排列（因为数组中 $1$ 出现了两次），$[1, 3, 2, 5]$ 也不是排列（因为 $n = 4$，但数组中出现了 $5$）。\n\n在 BrMeast 视频中一次失败的射击后，Alex 陷入了抑郁。即使是他的生日也没能让他开心。然而，在收到 Timofey 送的礼物后，Alex 的心情突然好转了。现在，他花了好几天时间玩这个礼物中的拼装玩具。最近，他想出了一个不同寻常的娱乐活动。\n\nAlex 用拼装玩具搭建了一棵树，包含 $n$ 个编号为 $1$ 到 $n$ 的顶点，根为顶点 $1$。然后，他按某种顺序写下 $1$ 到 $n$ 中的每个整数，得到一个排列 $p$。之后，Alex 提出了 $q$ 个整数三元组 $l, r, x$。对于每个三元组，他试图判断顶点 $p_l, p_{l+1}, \\ldots, p_r$ 中是否至少有一个顶点是顶点 $x$ 的后代。\n\n当且仅当 $\\mathrm{dist}(1, v) + \\mathrm{dist}(v, u) = \\mathrm{dist}(1, u)$ 时，顶点 $u$ 是顶点 $v$ 的后代，其中 $\\mathrm{dist}(a, b)$ 表示顶点 $a$ 和顶点 $b$ 之间的距离。换句话说，顶点 $v$ 必须位于从根到顶点 $u$ 的路径上。\n\nAlex 将这个娱乐活动告诉了 Zakhar。现在，Alex 把上述 $q$ 个三元组告诉他的朋友，希望 Zakhar 能够检查是否存在后代。Zakhar 非常困，于是向你寻求帮助。请帮助 Zakhar 回答 Alex 的所有问题，让他最终可以睡觉。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n, q$（$1 \\le n, q \\le 10^5$）——树中顶点的数量和问题的数量。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $u_i$ 和 $v_i$（$1 \\le u_i, v_i \\le n$），表示顶点 $u_i$ 和顶点 $v_i$ 之间存在一条边（保证得到的图是一棵树）。\n\n下一行包含 $n$ 个整数 $p_1, p_2, \\dots, p_n$（$1 \\le p_i \\le n$）——排列 $p$（保证 $1$ 到 $n$ 的每个整数恰好出现一次）。\n\n接下来有 $q$ 行描述 Alex 的问题。第 $i$ 行包含三个整数 $l, r, x$（$1 \\le l \\le r \\le n$，$1 \\le x \\le n$），具体含义如题目描述所述。\n\n保证所有测试用例中 $n$ 的总和以及 $q$ 的总和均不超过 $10^5$。\n\n## 输出格式\n\n对于 Alex 的每个问题，如果存在题目描述中的后代，输出“`Yes`”（不含引号）；否则输出“`No`”（不含引号）。\n\n你可以使用任意大小写形式输出答案（例如，字符串“`yEs`”、 “`yes`”、 “`Yes`”和“`YES`”都会被识别为肯定答案）。",
   "samples": [
     {
       "input": "3\n3 5\n1 2\n2 3\n1 2 3\n1 2 2\n1 2 3\n2 3 1\n1 2 3\n2 3 3\n10 10\n2 6\n2 7\n2 4\n1 7\n2 8\n10 6\n8 5\n9 4\n3 4\n10 2 5 9 1 7 6 4 3 8\n8 9 8\n7 8 1\n7 10 6\n4 8 9\n5 5 10\n7 10 1\n9 9 2\n9 10 6\n6 6 2\n10 10 6\n1 1\n1\n1 1 1\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:19:40.835Z"
+  "fetchedAt": "2026-11-02T17:19:40.835Z",
+  "translatedAt": "2026-11-04T02:28:31.417+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

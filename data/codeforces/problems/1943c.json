@@ -4,7 +4,7 @@
   "contestId": 1943,
   "index": "C",
   "title": "Tree Compass",
-  "titleZh": null,
+  "titleZh": "树罗盘",
   "url": "https://codeforces.com/contest/1943/problem/C",
   "difficulty": 2300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree with $n$ vertices numbered $1, 2, \\ldots, n$. Initially, all vertices are colored white.\n\nYou can perform the following two-step operation:\n\n1. Choose a vertex $v$ ($1 \\leq v \\leq n$) and a distance $d$ ($0 \\leq d \\leq n-1$).\n2. For all vertices $u$ ($1 \\leq u \\leq n$) such that $\\text{dist}^\\dagger(u,v)=d$, color $u$ black.\n\nConstruct a sequence of operations to color all the nodes in the tree black using the minimum possible number of operations. It can be proven that it is always possible to do so using at most $n$ operations.\n\n$^\\dagger$ $\\text{dist}(x, y)$ denotes the number of edges on the (unique) simple path between vertices $x$ and $y$ on the tree.\n\n## Input\n\nEach test contains multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 200$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^3$) — the number of vertices of the tree.\n\nThe following $n - 1$ lines of each test case describe the edges of the tree. The $i$-th of these lines contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$, $u_i \\neq v_i$), the indices of the vertices connected by the $i$-th edge.\n\nIt is guaranteed that the given edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^3$.\n\n## Output\n\nFor each test case, first output a single integer $op$ $(1 \\le op \\le n)$, the minimum number of operations needed to color all vertices of the tree black.\n\nThen, output $op$ lines, each containing $2$ integers. The $i$-th line should contain the values of $v$ and $d$ chosen for the $i$-th operation ($1 \\le v \\le n$, $0 \\le d \\le n - 1$)\n\nYou must guarantee that at the end of $op$ operations, all vertices are colored black.\n\nIf there are multiple solutions, you may output any one of them.\n\n## Note\n\nIn the first test case, there is only one possible operation, and performing it gives us a valid answer.\n\nIn the second test case, the first operation colors vertex $2$ black, and the second operation colors vertex $1$ black. It can be shown that it is impossible to color both vertices black in one operation, so the minimum number of operations needed is $2$. Another possible solution is to use the $2$ operations: $(u, r) = (1, 0)$ and $(u, r) = (2, 0)$.\n\nIn the third test case, the first operation colors vertices $2$, $3$ and $4$ black, and the second operation colors vertex $1$ black. Again, it can be shown that it is impossible to color all vertices black in $1$ operation, so the minimum number of operations needed is $2$.\n\nIn the fourth test case, the first operation colors vertices $4$, $1$ and $7$ black, the second operation colors vertices $2$, $5$ and $6$ black while the third operation colors vertices $3$ and $7$ black. Notice that it is allowed to color vertex $7$ black twice.\n\nThus, each node was marked at least once, with node $7$ marked twice. It can be shown that it is impossible to color all vertices black in fewer than $3$ moves.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵包含 $n$ 个顶点的树，顶点编号为 $1, 2, \\ldots, n$。初始时，所有顶点均为白色。\n\n你可以执行以下两步操作：\n\n1. 选择一个顶点 $v$（$1 \\leq v \\leq n$）和一个距离 $d$（$0 \\leq d \\leq n-1$）。\n2. 对于所有满足 $\\text{dist}^\\dagger(u,v)=d$ 的顶点 $u$（$1 \\leq u \\leq n$），将 $u$ 染成黑色。\n\n请构造一个操作序列，使树中的所有顶点都被染成黑色，并且所使用的操作次数尽可能少。可以证明，始终可以在不超过 $n$ 次操作内完成。\n\n$^\\dagger$ $\\text{dist}(x, y)$ 表示树上顶点 $x$ 和顶点 $y$ 之间的（唯一）简单路径所包含的边数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 200$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 2 \\cdot 10^3$）——树中顶点的数量。\n\n接下来的 $n - 1$ 行描述树的边。第 $i$ 行包含两个整数 $u_i$ 和 $v_i$（$1 \\leq u_i, v_i \\leq n$，$u_i \\neq v_i$），表示第 $i$ 条边连接的两个顶点的编号。\n\n保证给出的边构成一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^3$。\n\n## 输出格式\n\n对于每个测试用例，首先输出一个整数 $op$（$1 \\leq op \\leq n$），表示将树中的所有顶点染成黑色所需的最少操作次数。\n\n然后输出 $op$ 行，每行包含 $2$ 个整数。第 $i$ 行应包含第 $i$ 次操作所选择的 $v$ 和 $d$（$1 \\leq v \\leq n$，$0 \\leq d \\leq n - 1$）。\n\n必须保证执行完 $op$ 次操作后，所有顶点都被染成黑色。\n\n如果有多种方案，可以输出任意一种。\n\n## 说明\n\n在第一个测试用例中，只有一种可能的操作，执行该操作即可得到一个有效答案。\n\n在第二个测试用例中，第一次操作将顶点 $2$ 染成黑色，第二次操作将顶点 $1$ 染成黑色。可以证明，不可能通过一次操作将两个顶点都染成黑色，因此所需的最少操作次数为 $2$。另一种可行方案是使用以下 $2$ 次操作：$(u, r) = (1, 0)$ 和 $(u, r) = (2, 0)$。\n\n在第三个测试用例中，第一次操作将顶点 $2$、$3$ 和 $4$ 染成黑色，第二次操作将顶点 $1$ 染成黑色。同样可以证明，不可能通过 $1$ 次操作将所有顶点染成黑色，因此所需的最少操作次数为 $2$。\n\n在第四个测试用例中，第一次操作将顶点 $4$、$1$ 和 $7$ 染成黑色，第二次操作将顶点 $2$、$5$ 和 $6$ 染成黑色，第三次操作将顶点 $3$ 和 $7$ 染成黑色。注意，允许将顶点 $7$ 重复染成黑色。\n\n因此，每个顶点都至少被标记了一次，其中顶点 $7$ 被标记了两次。可以证明，不可能使用少于 $3$ 次操作将所有顶点染成黑色。",
   "samples": [
     {
       "input": "4\n1\n2\n1 2\n4\n1 2\n1 3\n1 4\n7\n2 7\n3 2\n6 4\n5 7\n1 6\n6 7\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:58:59.721Z"
+  "fetchedAt": "2026-10-30T21:58:59.721Z",
+  "translatedAt": "2026-11-04T02:21:43.391+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1292,
   "index": "C",
   "title": "Xenon's Attack on the Gangs",
-  "titleZh": null,
+  "titleZh": "Xenon 对帮派的攻击",
   "url": "https://codeforces.com/contest/1292/problem/C",
   "difficulty": 2300,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "[*INSPION FullBand Master - INSPION*](https://www.youtube.com/watch?v=kwsciXm_7sA)\n\n[*INSPION - IOLITE-SUNSTONE*](https://www.youtube.com/watch?v=kwsciXm_7sA)\n\nOn another floor of the A.R.C. Markland-N, the young man Simon \"Xenon\" Jackson, takes a break after finishing his project early (as always). Having a lot of free time, he decides to put on his legendary hacker \"X\" instinct and fight against the gangs of the cyber world.\n\nHis target is a network of $n$ small gangs. This network contains exactly $n - 1$ direct links, each of them connecting two gangs together. The links are placed in such a way that every pair of gangs is connected through a sequence of direct links.\n\nBy mining data, Xenon figured out that the gangs used a form of cross-encryption to avoid being busted: every link was assigned an integer from $0$ to $n - 2$ such that all assigned integers are distinct and every integer was assigned to some link. If an intruder tries to access the encrypted data, they will have to surpass $S$ password layers, with $S$ being defined by the following formula:\n\n$$S = \\sum_{1 \\leq u \\lt v \\leq n} mex(u, v)$$\n\nHere, $mex(u, v)$ denotes the smallest non-negative integer that does not appear on any link on the unique simple path from gang $u$ to gang $v$.\n\nXenon doesn't know the way the integers are assigned, but it's not a problem. He decides to let his AI's instances try all the passwords on his behalf, but before that, he needs to know the maximum possible value of $S$, so that the AIs can be deployed efficiently.\n\nNow, Xenon is out to write the AI scripts, and he is expected to finish them in two hours. Can you find the maximum possible $S$ before he returns?\n\n## Input\n\nThe first line contains an integer $n$ ($2 \\leq n \\leq 3000$), the number of gangs in the network.\n\nEach of the next $n - 1$ lines contains integers $u_i$ and $v_i$ ($1 \\leq u_i, v_i \\leq n$; $u_i \\neq v_i$), indicating there's a direct link between gangs $u_i$ and $v_i$.\n\nIt's guaranteed that links are placed in such a way that each pair of gangs will be connected by exactly one simple path.\n\n## Output\n\nPrint the maximum possible value of $S$ — the number of password layers in the gangs' network.\n\n## Note\n\nIn the first example, one can achieve the maximum $S$ with the following assignment:\n\n![image](https://espresso.codeforces.com/638dfcc9819948956ce6d4a0c7ceba099203fdc0.png)\n\nWith this assignment, $mex(1, 2) = 0$, $mex(1, 3) = 2$ and $mex(2, 3) = 1$. Therefore, $S = 0 + 2 + 1 = 3$.\n\nIn the second example, one can achieve the maximum $S$ with the following assignment:\n\n![image](https://espresso.codeforces.com/065740667c8647c707ad619f58cd0a29b572e6b8.png)\n\nWith this assignment, all non-zero mex value are listed below:\n\n- $mex(1, 3) = 1$\n- $mex(1, 5) = 2$\n- $mex(2, 3) = 1$\n- $mex(2, 5) = 2$\n- $mex(3, 4) = 1$\n- $mex(4, 5) = 3$\n\nTherefore, $S = 1 + 2 + 1 + 2 + 1 + 3 = 10$.",
-  "statementZhMd": null,
+  "statementZhMd": "[*INSPION FullBand Master - INSPION*](https://www.youtube.com/watch?v=kwsciXm_7sA)\n\n[*INSPION - IOLITE-SUNSTONE*](https://www.youtube.com/watch?v=kwsciXm_7sA)\n\n在 A.R.C. Markland-N 的另一层，年轻人 Simon \"Xenon\" Jackson 一如既往地提前完成了项目，正在休息。由于有大量空闲时间，他决定发挥自己传奇黑客“X”的直觉，与网络世界中的帮派展开对抗。\n\n他的目标是一个由 $n$ 个小帮派组成的网络。该网络恰好包含 $n - 1$ 条直接连接，每条连接将两个帮派连接起来。这些连接的设置方式保证任意两个帮派之间都可以通过一系列直接连接互相到达。\n\n通过挖掘数据，Xenon 发现这些帮派使用了一种交叉加密形式来避免被抓捕：每条连接都被分配了一个从 $0$ 到 $n - 2$ 的整数，并且所有被分配的整数互不相同，每个整数都恰好被分配给某条连接。如果入侵者试图访问加密数据，就必须突破 $S$ 层密码，其中 $S$ 的定义如下：\n\n$$S = \\sum_{1 \\leq u \\lt v \\leq n} mex(u, v)$$\n\n其中，$mex(u, v)$ 表示从帮派 $u$ 到帮派 $v$ 的唯一简单路径上的所有连接中没有出现的最小非负整数。\n\nXenon 不知道这些整数的分配方式，但这并不是问题。他决定让自己的 AI 实例代替他尝试所有密码，但在此之前，他需要知道 $S$ 的最大可能值，以便高效地部署这些 AI。\n\n现在，Xenon 要开始编写 AI 脚本，并预计在两小时内完成。在他回来之前，你能求出 $S$ 的最大可能值吗？\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\leq n \\leq 3000$），表示网络中的帮派数量。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $u_i$ 和 $v_i$（$1 \\leq u_i, v_i \\leq n$；$u_i \\neq v_i$），表示帮派 $u_i$ 和帮派 $v_i$ 之间存在一条直接连接。\n\n保证这些连接的设置方式使得任意两个帮派之间恰好存在一条简单路径。\n\n## 输出格式\n\n输出 $S$ 的最大可能值——帮派网络中的密码层数。\n\n## 说明\n\n在第一个样例中，可以通过如下分配方式取得 $S$ 的最大值：\n\n![image](https://espresso.codeforces.com/638dfcc9819948956ce6d4a0c7ceba099203fdc0.png)\n\n在这种分配下，$mex(1, 2) = 0$，$mex(1, 3) = 2$，$mex(2, 3) = 1$。因此，$S = 0 + 2 + 1 = 3$。\n\n在第二个样例中，可以通过如下分配方式取得 $S$ 的最大值：\n\n![image](https://espresso.codeforces.com/065740667c8647c707ad619f58cd0a29b572e6b8.png)\n\n在这种分配下，所有非零的 mex 值如下所示：\n\n- $mex(1, 3) = 1$\n- $mex(1, 5) = 2$\n- $mex(2, 3) = 1$\n- $mex(2, 5) = 2$\n- $mex(3, 4) = 1$\n- $mex(4, 5) = 3$\n\n因此，$S = 1 + 2 + 1 + 2 + 1 + 3 = 10$。",
   "samples": [
     {
       "input": "3\n1 2\n2 3\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:57:17.277Z"
+  "fetchedAt": "2026-10-30T23:57:17.277Z",
+  "translatedAt": "2026-11-04T04:46:05.095+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

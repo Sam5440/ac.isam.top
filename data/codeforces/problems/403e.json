@@ -4,7 +4,7 @@
   "contestId": 403,
   "index": "E",
   "title": "Two Rooted Trees",
-  "titleZh": null,
+  "titleZh": "两棵有根树",
   "url": "https://codeforces.com/contest/403/problem/E",
   "difficulty": 2900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "You have two rooted undirected trees, each contains $*n*$ vertices. Let's number the vertices of each tree with integers from $1$ to $*n*$. The root of each tree is at vertex $1$. The edges of the first tree are painted blue, the edges of the second one are painted red. For simplicity, let's say that the first tree is blue and the second tree is red.\n\nEdge ${*x*, *y*}$ is called bad for edge ${*p*, *q*}$ if two conditions are fulfilled:\n\n1. The color of edge ${*x*, *y*}$ is different from the color of edge ${*p*, *q*}$.\n2. Let's consider the tree of the same color that edge ${*p*, *q*}$ is. Exactly one of vertices $*x*$, $*y*$ lies both in the subtree of vertex $*p*$ and in the subtree of vertex $*q*$.\n\nIn this problem, your task is to simulate the process described below. The process consists of several stages:\n\n1. On each stage edges of exactly one color are deleted.\n2. On the first stage, exactly one blue edge is deleted.\n3. Let's assume that at the stage $*i*$ we've deleted edges ${*u*_{1}, *v*_{1}}$, ${*u*_{2}, *v*_{2}}$, $...$, ${*u*_{*k*}, *v*_{*k*}}$. At the stage $*i* + 1$ we will delete all undeleted bad edges for edge ${*u*_{1}, *v*_{1}}$, then we will delete all undeleted bad edges for edge ${*u*_{2}, *v*_{2}}$ and so on until we reach edge ${*u*_{*k*}, *v*_{*k*}}$.\n\nFor each stage of deleting edges determine what edges will be removed on the stage. Note that the definition of a bad edge always considers the initial tree before it had any edges removed.\n\n## Input\n\nThe first line contains integer $*n*$ ($2 ≤ *n* ≤ 2·10^{5}$) — the number of vertices in each tree.\n\nThe next line contains $*n* - 1$ positive integers $*a*_{2}, *a*_{3}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ *n*; *a*_{*i*} ≠ *i*$) — the description of edges of the first tree. Number $*a*_{*i*}$ means that the first tree has an edge connecting vertex $*a*_{*i*}$ and vertex $*i*$.\n\nThe next line contains $*n* - 1$ positive integers $*b*_{2}, *b*_{3}, ..., *b*_{*n*}$ ($1 ≤ *b*_{*i*} ≤ *n*; *b*_{*i*} ≠ *i*$) — the description of the edges of the second tree. Number $*b*_{*i*}$ means that the second tree has an edge connecting vertex $*b*_{*i*}$ and vertex $*i*$.\n\nThe next line contains integer $*idx*$ ($1 ≤ *idx* < *n*$) — the index of the blue edge that was removed on the first stage. Assume that the edges of each tree are numbered with numbers from $1$ to $*n* - 1$ in the order in which they are given in the input.\n\n## Output\n\nFor each stage of removing edges print its description. Each description must consist of exactly two lines. If this is the stage when blue edges are deleted, then the first line of the description must contain word $*Blue*$, otherwise — word $*Red*$. In the second line print the indexes of the edges that will be deleted on this stage in the increasing order.\n\n## Note\n\nFor simplicity let's assume that all edges of the root tree received some direction, so that all vertices are reachable from vertex $1$. Then a *subtree* of vertex $*v*$ is a set of vertices reachable from vertex $*v*$ in the resulting directed graph (vertex $*v*$ is also included in the set).",
-  "statementZhMd": null,
+  "statementZhMd": "有两棵有根无向树，每棵树都包含 $*n*$ 个顶点。我们将每棵树的顶点编号为 $1$ 到 $*n*$ 的整数。每棵树的根都是顶点 $1$。第一棵树的边被涂成蓝色，第二棵树的边被涂成红色。为简便起见，我们称第一棵树为蓝树，第二棵树为红树。\n\n如果满足以下两个条件，则称边 ${*x*, *y*}$ 对边 ${*p*, *q*}$ 是坏边：\n\n1. 边 ${*x*, *y*}$ 的颜色与边 ${*p*, *q*}$ 的颜色不同。\n2. 考虑与边 ${*p*, *q*}$ 颜色相同的树。顶点 $*x*$、$*y*$ 中恰有一个顶点同时位于顶点 $*p*$ 的子树和顶点 $*q*$ 的子树中。\n\n在本题中，你需要模拟下面描述的过程。该过程由若干个阶段组成：\n\n1. 每个阶段只删除一种颜色的边。\n2. 在第一阶段，恰好删除一条蓝边。\n3. 假设在第 $*i*$ 阶段，我们删除了边 ${*u*_{1}, *v*_{1}}$、${*u*_{2}, *v*_{2}}$、$...$、${*u*_{*k*}, *v*_{*k*}}$。在第 $*i*$ + 1 阶段，我们将先删除所有对于边 ${*u*_{1}, *v*_{1}}$ 仍未删除的坏边，然后删除所有对于边 ${*u*_{2}, *v*_{2}}$ 仍未删除的坏边，依此类推，直到处理边 ${*u*_{*k*}, *v*_{*k*}}$。\n\n对于每个删除边的阶段，确定该阶段将删除哪些边。注意，坏边的定义始终基于删除任何边之前的初始树。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$2 ≤ *n* ≤ 2·10^{5}$），表示每棵树中的顶点数。\n\n下一行包含 $*n* - 1$ 个正整数 $*a*_{2}, *a*_{3}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ *n*; *a*_{*i*} ≠ *i*$），表示第一棵树的边。数字 $*a*_{*i*}$ 表示第一棵树中存在一条连接顶点 $*a*_{*i*}$ 和顶点 $*i*$ 的边。\n\n下一行包含 $*n* - 1$ 个正整数 $*b*_{2}, *b*_{3}, ..., *b*_{*n*}$（$1 ≤ *b*_{*i*} ≤ *n*; *b*_{*i*} ≠ *i*$），表示第二棵树的边。数字 $*b*_{*i*}$ 表示第二棵树中存在一条连接顶点 $*b*_{*i*}$ 和顶点 $*i*$ 的边。\n\n下一行包含一个整数 $*idx*$（$1 ≤ *idx* < *n*$），表示第一阶段被删除的蓝边的编号。假设每棵树的边都按照其在输入中给出的顺序编号为 $1$ 到 $*n* - 1$。\n\n## 输出格式\n\n对于每个删除边的阶段，输出该阶段的描述。每个描述必须恰好包含两行。如果该阶段删除的是蓝边，则描述的第一行必须包含单词 $*Blue*$；否则，必须包含单词 $*Red*$。第二行按递增顺序输出该阶段将被删除的边的编号。\n\n## 说明\n\n为简便起见，假设根树中的所有边都被赋予了方向，使得所有顶点都可以从顶点 $1$ 到达。那么，顶点 $*v*$ 的*子树*是从顶点 $*v*$ 出发在所得有向图中可以到达的顶点集合（顶点 $*v*$ 本身也包含在该集合中）。",
   "samples": [
     {
       "input": "5\n1 1 1 1\n4 2 1 1\n3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:49:13.357Z"
+  "fetchedAt": "2026-10-31T01:49:13.357Z",
+  "translatedAt": "2026-11-04T07:13:00.928+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

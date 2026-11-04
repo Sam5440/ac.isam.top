@@ -4,14 +4,14 @@
   "contestId": 92,
   "index": "E",
   "title": "Ski Base",
-  "titleZh": null,
+  "titleZh": "滑雪基地",
   "url": "https://codeforces.com/contest/92/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A ski base is planned to be built in Walrusland. Recently, however, the project is still in the constructing phase. A large land lot was chosen for the construction. It contains $*n*$ ski junctions, numbered from $1$ to $*n*$. Initially the junctions aren't connected in any way.\n\nIn the constructing process $*m*$ bidirectional ski roads will be built. The roads are built one after another: first the road number $1$ will be built, then the road number $2$, and so on. The $*i*$-th road connects the junctions with numbers $*a*_{*i*}$ and $*b*_{*i*}$.\n\nTrack is the route with the following properties:\n\n- The route is closed, that is, it begins and ends in one and the same junction.\n- The route contains at least one road.\n- The route doesn't go on one road more than once, however it can visit any junction any number of times.\n\nLet's consider the ski base as a non-empty set of roads that can be divided into one or more tracks so that exactly one track went along each road of the chosen set. Besides, each track can consist only of roads from the chosen set. Ski base doesn't have to be connected.\n\nTwo ski bases are considered different if they consist of different road sets.\n\nAfter building each new road the Walrusland government wants to know the number of variants of choosing a ski base based on some subset of the already built roads. The government asks you to help them solve the given problem.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ ($2 ≤ *n* ≤ 10^{5}, 1 ≤ *m* ≤ 10^{5}$). They represent the number of junctions and the number of roads correspondingly. Then on $*m*$ lines follows the description of the roads in the order in which they were built. Each road is described by a pair of integers $*a*_{*i*}$ and $*b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*, *a*_{*i*} ≠ *b*_{*i*}$) — the numbers of the connected junctions. There could be more than one road between a pair of junctions.\n\n## Output\n\nPrint $*m*$ lines: the $*i*$-th line should represent the number of ways to build a ski base after the end of construction of the road number $*i*$. The numbers should be printed modulo $1000000009$ ($10^{9} + 9$).\n\n## Note\n\nLet us have 3 junctions and 4 roads between the junctions have already been built (as after building all the roads in the sample): 1 and 3, 2 and 3, 2 roads between junctions 1 and 2. The land lot for the construction will look like this:\n\n![image](https://espresso.codeforces.com/3903cd5bf561b3b633f178807161cd1afbfaa70f.png)\n\nThe land lot for the construction will look in the following way:\n\n![image](https://espresso.codeforces.com/3903cd5bf561b3b633f178807161cd1afbfaa70f.png)\n\nWe can choose a subset of roads in three ways:\n\n![image](https://espresso.codeforces.com/25a8a5b512656ba0f8e99bc0c844c59214895e87.png)\n\nIn the first and the second ways you can choose one path, for example, 1 - 2 - 3 - 1. In the first case you can choose one path 1 - 2 - 1.",
-  "statementZhMd": null,
+  "statementZhMd": "滑雪基地计划在海象国建造。然而，最近该项目仍处于施工阶段。人们选定了一大片土地用于建设，其中包含 $*n*$ 个滑雪路口，编号从 $1$ 到 $*n*$。起初，这些路口之间没有任何连接。\n\n在施工过程中，将修建 $*m*$ 条双向滑雪道路。道路按照顺序逐条修建：先修建编号为 $1$ 的道路，然后是编号为 $2$ 的道路，依此类推。第 $*i*$ 条道路连接编号为 $*a*_{*i*}$ 和 $*b*_{*i*}$ 的两个路口。\n\n路线具有以下性质：\n\n- 路线是闭合的，即它在同一个路口开始和结束。\n- 路线至少包含一条道路。\n- 路线不会经过同一条道路超过一次，但可以任意多次经过同一个路口。\n\n我们将滑雪基地定义为一个非空的道路集合，该集合可以被划分为一条或多条路线，使得所选集合中的每条道路恰好属于一条路线。此外，每条路线只能由所选集合中的道路组成。滑雪基地不必是连通的。\n\n如果两个滑雪基地包含的道路集合不同，则认为它们不同。\n\n每修建一条新道路后，海象国政府都希望知道：从当前已经修建的道路中选取某个子集作为滑雪基地，共有多少种不同的方案。请你帮助政府解决这个问题。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$（$2 ≤ *n* ≤ 10^{5}, 1 ≤ *m* ≤ 10^{5}$），分别表示路口数量和道路数量。接下来 $*m*$ 行按照道路的修建顺序描述这些道路。每条道路由一对整数 $*a*_{*i*}$ 和 $*b*_{*i*}$ 描述（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*, *a*_{*i*} ≠ *b*_{*i*}$），表示相连的两个路口的编号。同一对路口之间可能有多条道路。\n\n## 输出格式\n\n输出 $*m*$ 行：第 $*i*$ 行应表示在第 $*i*$ 条道路修建完成后，建造滑雪基地的方案数。答案对 $1000000009$（$10^{9} + 9$）取模。\n\n## 说明\n\n设有 3 个路口，且已经修建了 4 条道路（即样例中所有道路修建完成后的情况）：路口 1 和 3 之间有一条道路，路口 2 和 3 之间有一条道路，路口 1 和 2 之间有 2 条道路。用于建设的土地如下图所示：\n\n![image](https://espresso.codeforces.com/3903cd5bf561b3b633f178807161cd1afbfaa70f.png)\n\n用于建设的土地如下图所示：\n\n![image](https://espresso.codeforces.com/3903cd5bf561b3b633f178807161cd1afbfaa70f.png)\n\n我们可以用三种方式选择道路子集：\n\n![image](https://espresso.codeforces.com/25a8a5b512656ba0f8e99bc0c844c59214895e87.png)\n\n在第一种和第二种方式中，你可以选择一条路线，例如 1 - 2 - 3 - 1。在第一种情况下，你可以选择一条路线 1 - 2 - 1。",
   "samples": [
     {
       "input": "3 4\n1 3\n2 3\n1 2\n1 2\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:42:21.710Z"
+  "fetchedAt": "2026-10-31T02:42:21.710Z",
+  "translatedAt": "2026-11-04T07:53:05.948+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

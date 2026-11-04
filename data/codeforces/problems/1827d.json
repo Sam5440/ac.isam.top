@@ -4,7 +4,7 @@
   "contestId": 1827,
   "index": "D",
   "title": "Two Centroids",
-  "titleZh": null,
+  "titleZh": "两个重心",
   "url": "https://codeforces.com/contest/1827/problem/D",
   "difficulty": 2800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 1024,
   "statementMd": "You are given a tree (an undirected connected acyclic graph) which initially only contains vertex $1$. There will be several queries to the given tree. In the $i$-th query, vertex $i + 1$ will appear and be connected to vertex $p_i$ ($1 \\le p_i \\le i$).\n\nAfter each query, please find out the least number of operations required to make the current tree has **two** centroids. In one operation, you can add **one** vertex and **one** edge to the tree such that it remains a tree.\n\nA vertex is called a centroid if its removal splits the tree into subtrees with at most $\\lfloor \\frac{n}{2} \\rfloor$ vertices each, with $n$ as the number of vertices of the tree. For example, the centroid of the following tree is $3$ because the biggest subtree after removing the centroid has $2$ vertices.\n\n![image](https://espresso.codeforces.com/8c4749abd85e9e2e5cbf8117acfce77e1f795f57.png)\n\nIn the next tree, vertex $1$ and $2$ are both centroids.\n\n![image](https://espresso.codeforces.com/6439e0d3ee354f9306d31a8fa5c32ea82d11530c.png)\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 5 \\cdot 10^{5}$) — the number of nodes of the final tree.\n\nThe second line of each test case contains $n - 1$ integers $p_1, p_2, \\ldots, p_{n - 1}$ ($1 \\le p_i \\le i$) — the index of the vertex that is connected to vertex $i + 1$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^{5}$.\n\n## Output\n\nFor each test case, output $n - 1$ integers. The $i$-th integer is the answer to the $i$-th query — the least number of operations required to make the current tree have two centroids.\n\nWe can show that an answer always exists.\n\n## Note\n\nThe illustrations below are of the fourth example test case.\n\nAfter the third query:\n\n![image](https://espresso.codeforces.com/08062775b681f3ceee4aec6a9760e566499f8552.png)\n\nThe tree already has vertices $2$ and $3$ as centroids, so no operations are needed.\n\nAfter the fourth query:\n\n![image](https://espresso.codeforces.com/344a7dfa33d0858e0a8df11ee69aa307b0995aeb.png)\n\nAdding vertex $x$ to the tree makes vertices $2$ and $3$ centroids. Only one operation is needed.\n\nAfter the fifth query:\n\n![image](https://espresso.codeforces.com/78299d920708a9c102ed56d7bd4058279e874ac5.png)\n\nAdding vertex $x$ and $y$ to the tree makes vertices $5$ and $2$ centroids. Two operations are needed.\n\nAfter the sixth query:\n\n![image](https://espresso.codeforces.com/817675b670035030bd5c09bd493cbb002513a972.png)\n\nAdding vertex $x$, $y$, and $z$ to the tree makes vertices $5$ and $2$ centroids. Three operations are needed.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵树（一种无向、连通且无环的图），初始时树中只有顶点 $1$。接下来会对这棵树进行若干次查询。在第 $i$ 次查询中，顶点 $i + 1$ 将出现，并与顶点 $p_i$ 相连（$1 \\le p_i \\le i$）。\n\n每次查询后，请求出使当前树拥有**两个**重心所需的最少操作次数。一次操作中，你可以向树中添加**一个**顶点和**一条**边，并且添加后仍需是一棵树。\n\n如果移除某个顶点后，树被分成的每棵子树都至多包含 $\\lfloor \\frac{n}{2} \\rfloor$ 个顶点，其中 $n$ 为树中顶点的数量，则称该顶点为重心。例如，下面这棵树的重心是 $3$，因为移除重心后，最大的子树包含 $2$ 个顶点。\n\n![image](https://espresso.codeforces.com/8c4749abd85e9e2e5cbf8117acfce77e1f795f57.png)\n\n在下面这棵树中，顶点 $1$ 和 $2$ 都是重心。\n\n![image](https://espresso.codeforces.com/6439e0d3ee354f9306d31a8fa5c32ea82d11530c.png)\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 5 \\cdot 10^{5}$）——最终树中的节点数。\n\n每个测试用例的第二行包含 $n - 1$ 个整数 $p_1, p_2, \\ldots, p_{n - 1}$（$1 \\le p_i \\le i$）——与顶点 $i + 1$ 相连的顶点编号。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^{5}$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n - 1$ 个整数。第 $i$ 个整数是第 $i$ 次查询的答案，即使当前树拥有两个重心所需的最少操作次数。\n\n可以证明，答案总是存在。\n\n## 说明\n\n下面的图示对应第四个样例测试用例。\n\n第三次查询后：\n\n![image](https://espresso.codeforces.com/08062775b681f3ceee4aec6a9760e566499f8552.png)\n\n此时树已经拥有顶点 $2$ 和 $3$ 这两个重心，因此不需要进行任何操作。\n\n第四次查询后：\n\n![image](https://espresso.codeforces.com/344a7dfa33d0858e0a8df11ee69aa307b0995aeb.png)\n\n向树中添加顶点 $x$ 后，顶点 $2$ 和 $3$ 成为重心。只需进行一次操作。\n\n第五次查询后：\n\n![image](https://espresso.codeforces.com/78299d920708a9c102ed56d7bd4058279e874ac5.png)\n\n向树中添加顶点 $x$ 和 $y$ 后，顶点 $5$ 和 $2$ 成为重心。需要进行两次操作。\n\n第六次查询后：\n\n![image](https://espresso.codeforces.com/817675b670035030bd5c09bd493cbb002513a972.png)\n\n向树中添加顶点 $x$、$y$ 和 $z$ 后，顶点 $5$ 和 $2$ 成为重心。需要进行三次操作。",
   "samples": [
     {
       "input": "5\n2\n1\n3\n1 1\n4\n1 2 3\n7\n1 2 3 2 5 2\n10\n1 2 2 4 5 5 7 8 9\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:25:45.611Z"
+  "fetchedAt": "2026-10-30T22:25:45.611Z",
+  "translatedAt": "2026-11-04T02:55:48.043+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

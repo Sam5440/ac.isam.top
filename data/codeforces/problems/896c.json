@@ -4,7 +4,7 @@
   "contestId": 896,
   "index": "C",
   "title": "Willem, Chtholly and Seniorious",
-  "titleZh": null,
+  "titleZh": "Willem、Chtholly 与 Seniorious",
   "url": "https://codeforces.com/contest/896/problem/C",
   "difficulty": 2600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*— Willem...— What's the matter?— It seems that there's something wrong with Seniorious...— I'll have a look...*\n\n![image](https://espresso.codeforces.com/f0c1a165961ac7b1495e448614d25cba032c5952.png)\n\nSeniorious is made by linking special talismans in particular order.\n\nAfter over 500 years, the carillon is now in bad condition, so Willem decides to examine it thoroughly.\n\nSeniorious has $*n*$ pieces of talisman. Willem puts them in a line, the $*i*$-th of which is an integer $*a*_{*i*}$.\n\nIn order to maintain it, Willem needs to perform $*m*$ operations.\n\nThere are four types of operations:\n\n- $1 *l* *r* *x*$: For each $*i*$ such that $*l* ≤ *i* ≤ *r*$, assign $*a*_{*i*} + *x*$ to $*a*_{*i*}$.\n- $2 *l* *r* *x*$: For each $*i*$ such that $*l* ≤ *i* ≤ *r*$, assign $*x*$ to $*a*_{*i*}$.\n- $3 *l* *r* *x*$: Print the $*x*$-th smallest number in the index range $[*l*, *r*]$, i.e. the element at the $*x*$-th position if all the elements $*a*_{*i*}$ such that $*l* ≤ *i* ≤ *r*$ are taken and sorted into an array of non-decreasing integers. It's guaranteed that $1 ≤ *x* ≤ *r* - *l* + 1$.\n- $4 *l* *r* *x* *y*$: Print the sum of the $*x*$-th power of $*a*_{*i*}$ such that $*l* ≤ *i* ≤ *r*$, modulo $*y*$, i.e. ![image](https://espresso.codeforces.com/bb452ebe2c68ca0f9c697357e053ba4e4b93c89e.png).\n\n## Input\n\nThe only line contains four integers $*n*, *m*, *seed*, *v*_{*max*}$ ($1 ≤ *n*, *m* ≤ 10^{5}, 0 ≤ *seed* < 10^{9} + 7, 1 ≤ *vmax* ≤ 10^{9}$).\n\nThe initial values and operations are generated using following pseudo code:\n\n```\ndef rnd():\n\n    ret = seed\n    seed = (seed * 7 + 13) mod 1000000007\n    return ret\n\nfor i = 1 to n:\n\n    a[i] = (rnd() mod vmax) + 1\n\nfor i = 1 to m:\n\n    op = (rnd() mod 4) + 1\n    l = (rnd() mod n) + 1\n    r = (rnd() mod n) + 1\n\n    if (l > r):\n         swap(l, r)\n\n    if (op == 3):\n        x = (rnd() mod (r - l + 1)) + 1\n    else:\n        x = (rnd() mod vmax) + 1\n\n    if (op == 4):\n        y = (rnd() mod vmax) + 1\n```\n\nHere $*op*$ is the type of the operation mentioned in the legend.\n\n## Output\n\nFor each operation of types $3$ or $4$, output a line containing the answer.\n\n## Note\n\nIn the first example, the initial array is ${8, 9, 7, 2, 3, 1, 5, 6, 4, 8}$.\n\nThe operations are:\n\n- $2 6 7 9$\n- $1 3 10 8$\n- $4 4 6 2 4$\n- $1 4 5 8$\n- $2 1 7 1$\n- $4 7 9 4 4$\n- $1 2 7 9$\n- $4 5 8 1 1$\n- $2 5 7 5$\n- $4 3 10 8 5$",
-  "statementZhMd": null,
+  "statementZhMd": "*— Willem……— 怎么了？— Seniorious 好像出问题了……— 我来看看……*\n\n![image](https://espresso.codeforces.com/f0c1a165961ac7b1495e448614d25cba032c5952.png)\n\nSeniorious 是按照特定顺序连接特殊护符制成的。\n\n经过 500 多年的时间，八音盒如今状况不佳，因此 Willem 决定对它进行彻底检查。\n\nSeniorious 有 $*n*$ 个护符。Willem 将它们排成一列，其中第 $*i*$ 个护符是一个整数 $*a*_{*i*}$。\n\n为了维护它，Willem 需要执行 $*m*$ 次操作。\n\n操作有以下四种类型：\n\n- $1 *l* *r* *x*$：对于满足 $*l* ≤ *i* ≤ *r*$ 的每个 $*i*$，将 $*a*_{*i*}$ 赋值为 $*a*_{*i*} + *x*$。\n- $2 *l* *r* *x*$：对于满足 $*l* ≤ *i* ≤ *r*$ 的每个 $*i*$，将 $*a*_{*i*}$ 赋值为 $*x*$。\n- $3 *l* *r* *x*$：输出下标范围 $[*l*, *r*]$ 内第 $*x*$ 小的数，即取出所有满足 $*l* ≤ *i* ≤ *r*$ 的 $*a*_{*i*}$，将其按非降序排列后位于第 $*x*$ 个位置的元素。保证 $1 ≤ *x* ≤ *r* - *l* + 1$。\n- $4 *l* *r* *x* *y*$：输出满足 $*l* ≤ *i* ≤ *r*$ 的 $*a*_{*i*}$ 的 $*x*$ 次幂之和对 $*y*$ 取模的结果，即 ![image](https://espresso.codeforces.com/bb452ebe2c68ca0f9c697357e053ba4e4b93c89e.png)。\n\n## 输入格式\n\n唯一一行包含四个整数 $*n*, *m*, *seed*, *v*_{*max*}$（$1 ≤ *n*, *m* ≤ 10^{5}, 0 ≤ *seed* < 10^{9} + 7, 1 ≤ *vmax* ≤ 10^{9}$）。\n\n初始值和操作按照以下伪代码生成：\n\n```\ndef rnd():\n\n    ret = seed\n    seed = (seed * 7 + 13) mod 1000000007\n    return ret\n\nfor i = 1 to n:\n\n    a[i] = (rnd() mod vmax) + 1\n\nfor i = 1 to m:\n\n    op = (rnd() mod 4) + 1\n    l = (rnd() mod n) + 1\n    r = (rnd() mod n) + 1\n\n    if (l > r):\n         swap(l, r)\n\n    if (op == 3):\n        x = (rnd() mod (r - l + 1)) + 1\n    else:\n        x = (rnd() mod vmax) + 1\n\n    if (op == 4):\n        y = (rnd() mod vmax) + 1\n```\n\n其中，$*op*$ 表示操作说明中所述的操作类型。\n\n## 输出格式\n\n对于每个类型 $3$ 或 $4$ 的操作，输出一行包含答案。\n\n## 说明\n\n在第一个样例中，初始数组为 ${8, 9, 7, 2, 3, 1, 5, 6, 4, 8}$。\n\n操作如下：\n\n- $2 6 7 9$\n- $1 3 10 8$\n- $4 4 6 2 4$\n- $1 4 5 8$\n- $2 1 7 1$\n- $4 7 9 4 4$\n- $1 2 7 9$\n- $4 5 8 1 1$\n- $2 5 7 5$\n- $4 3 10 8 5$",
   "samples": [
     {
       "input": "10 10 7 9\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:40:55.896Z"
+  "fetchedAt": "2026-10-31T00:40:55.896Z",
+  "translatedAt": "2026-11-04T05:59:06.143+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

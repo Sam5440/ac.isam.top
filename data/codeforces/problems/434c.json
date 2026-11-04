@@ -4,14 +4,14 @@
   "contestId": 434,
   "index": "C",
   "title": "Tachibana Kanade's Tofu",
-  "titleZh": null,
+  "titleZh": "立华奏的豆腐",
   "url": "https://codeforces.com/contest/434/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "Tachibana Kanade likes Mapo Tofu very much. One day, the canteen cooked all kinds of tofu to sell, but not all tofu is Mapo Tofu, only those spicy enough can be called Mapo Tofu.\n\nEach piece of tofu in the canteen is given a $*m*$-based number, all numbers are in the range $[*l*, *r*]$ ($*l*$ and $*r*$ being $*m*$-based numbers), and for every $*m*$-based integer in the range $[*l*, *r*]$, there exists a piece of tofu with that number.\n\nTo judge what tofu is Mapo Tofu, Tachibana Kanade chose $*n*$ $*m*$-based number strings, and assigned a value to each string. If a string appears in the number of a tofu, the value of the string will be added to the value of that tofu. If a string appears multiple times, then the value is also added that many times. Initially the value of each tofu is zero.\n\nTachibana Kanade considers tofu with values no more than $*k*$ to be Mapo Tofu. So now Tachibana Kanade wants to know, how many pieces of tofu are Mapo Tofu?\n\n## Input\n\nThe first line contains three integers $*n*$, $*m*$ and $*k* (1 ≤ *n* ≤ 200; 2 ≤ *m* ≤ 20; 1 ≤ *k* ≤ 500)$. Where $*n*$ denotes the number of strings, $*m*$ denotes the base used, and $*k*$ denotes the limit of the value for Mapo Tofu.\n\nThe second line represents the number $*l*$. The first integer in the line is $*len*$ $(1 ≤ *len* ≤ 200)$, describing the length (number of digits in base $*m*$) of $*l*$. Then follow $*len*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*len*} (0 ≤ *a*_{*i*} < *m*; *a*_{1} > 0)$ separated by spaces, representing the digits of $*l*$, with $*a*_{1}$ being the highest digit and $*a*_{*len*}$ being the lowest digit.\n\nThe third line represents the number $*r*$ in the same format as $*l*$. It is guaranteed that $1 ≤ *l* ≤ *r*$.\n\nThen follow $*n*$ lines, each line describing a number string. The $*i*$-th line contains the $*i*$-th number string and $*v*_{*i*}$ — the value of the $*i*$-th string ($1 ≤ *v*_{*i*} ≤ 200$). All number strings are described in almost the same format as $*l*$, the only difference is number strings may contain necessary leading zeros (see the first example). The sum of the lengths of all number strings does not exceed $200$.\n\n## Output\n\nOutput the number of pieces of Mapo Tofu modulo $1000000007$ $(10^{9} + 7)$. The answer should be a decimal integer.\n\n## Note\n\nIn the first sample, 10, 11 and 100 are the only three decimal numbers in $[1, 100]$ with a value greater than 1. Here the value of 1 is 1 but not 2, since numbers cannot contain leading zeros and thus cannot be written as \"`01`\".\n\nIn the second sample, no numbers in the given interval have a value greater than 12.\n\nIn the third sample, 110000 and 110001 are the only two binary numbers in the given interval with a value no greater than 6.",
-  "statementZhMd": null,
+  "statementZhMd": "立华奏非常喜欢麻婆豆腐。一天，食堂制作了各种各样的豆腐出售，但并不是所有豆腐都是麻婆豆腐，只有足够辣的豆腐才能被称为麻婆豆腐。\n\n食堂中的每块豆腐都被赋予了一个 $*m*$ 进制数，所有数都在区间 $[*l*, *r*]$ 内（$*l*$ 和 $*r*$ 是 $*m*$ 进制数），并且对于区间 $[*l*, *r*]$ 内的每个 $*m*$ 进制整数，都存在一块编号为该数的豆腐。\n\n为了判断哪些豆腐是麻婆豆腐，立华奏选择了 $*n*$ 个 $*m*$ 进制数字字符串，并为每个字符串赋予一个值。如果某个字符串出现在一块豆腐的编号中，则该字符串的值会被加到这块豆腐的值上。如果某个字符串出现多次，则其值也会被重复加上相应次数。初始时，每块豆腐的值都是零。\n\n立华奏认为值不超过 $*k*$ 的豆腐是麻婆豆腐。现在她想知道，共有多少块豆腐是麻婆豆腐？\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*m*$ 和 $*k* (1 ≤ *n* ≤ 200; 2 ≤ *m* ≤ 20; 1 ≤ *k* ≤ 500)$。其中，$*n*$ 表示字符串的数量，$*m*$ 表示所使用的进制，$*k*$ 表示被判定为麻婆豆腐的值的上限。\n\n第二行表示数字 $*l*$。该行的第一个整数是 $*len*$ $(1 ≤ *len* ≤ 200)$，表示 $*l*$ 的长度（即 $*m*$ 进制下的位数）。接下来是 $*len*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*len*} (0 ≤ *a*_{*i*} < *m*; *a*_{1} > 0)$，以空格分隔，表示 $*l*$ 的各位数字，其中 $*a*_{1}$ 是最高位，$*a*_{*len*}$ 是最低位。\n\n第三行以与 $*l*$ 相同的格式表示数字 $*r*$。保证 $1 ≤ *l* ≤ *r*$。\n\n接下来是 $*n*$ 行，每行描述一个数字字符串。第 $*i*$ 行包含第 $*i*$ 个数字字符串及其值 $*v*_{*i*}$，即该字符串的值为 $1 ≤ *v*_{*i*} ≤ 200$。所有数字字符串的描述格式与 $*l*$ 基本相同，唯一的区别是数字字符串可能包含必要的前导零（见第一个样例）。所有数字字符串的长度之和不超过 $200$。\n\n## 输出格式\n\n输出区间内值不超过 $*k*$ 的豆腐数量，对 $1000000007$ $(10^{9} + 7)$ 取模。答案应为一个十进制整数。\n\n## 说明\n\n在第一个样例中，区间 $[1, 100]$ 中只有 10、11 和 100 这三个十进制数的值大于 1。这里数字 1 的值为 1 而不是 2，因为数字不能包含前导零，因此不能写成 `01`。\n\n在第二个样例中，给定区间内没有任何数字的值大于 12。\n\n在第三个样例中，给定区间内只有 110000 和 110001 这两个二进制数的值不超过 6。",
   "samples": [
     {
       "input": "2 10 1\n1 1\n3 1 0 0\n1 1 1\n1 0 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:44:37.592Z"
+  "fetchedAt": "2026-10-31T01:44:37.592Z",
+  "translatedAt": "2026-11-04T07:13:57.288+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

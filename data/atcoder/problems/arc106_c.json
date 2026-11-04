@@ -4,7 +4,7 @@
   "contestId": "arc106",
   "index": "C",
   "title": "Solutions",
-  "titleZh": null,
+  "titleZh": "解法",
   "url": "https://atcoder.jp/contests/arc106/tasks/arc106_c",
   "difficulty": 1225,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nTwo segments $[L_1:R_1]$ and $[L_2:R_2]$ are said to *intersect* when $L_1 \\leq R_2$ and $L_2 \\leq R_1$ holds.\n\nConsider the following problem $P$:\n\n```\nInput: N segments [L_1: R_1], \\cdots, [L_N:R_N]\n       L_1, L_2, \\cdots, L_N, R_1, R_2, \\cdots, R_N are pairwise distinct.\nOutput: the maximum number of segments that can be chosen so that no two of them intersect.\n```\n\nTakahashi has implemented a program that works as follows:\n\n```\nSort the given segments in the increasing order of R_i and let the result be [L_{p_1}:R_{p_1}], [L_{p_2}:R_{p_2}], \\cdots , [L_{p_N}:R_{p_N}].\nFor each i = 1, 2, \\cdots , N, do the following:\n  Choose [L_{p_i}:R_{p_i}] if it intersects with none of the segments chosen so far.\nPrint the number of chosen segments.\n```\n\nAoki, on the other hand, has implemented a program that works as follows:\n\n```\nSort the given segments in the increasing order of L_i and let the result be [L_{p_1}:R_{p_1}], [L_{p_2}:R_{p_2}], \\cdots , [L_{p_N}:R_{p_N}].\nFor each i = 1, 2, \\cdots , N, do the following:\n  Choose [L_{p_i}:R_{p_i}] if it intersects with none of the segments chosen so far.\nPrint the number of chosen segments.\n```\n\nGiven are integers $N$ and $M$. Construct an input for the problem $P$, consisting of $N$ segments, such that the following holds:\n\n$$ (\\text{The value printed by Takahashi's program}) - (\\text{The value printed by Aoki's program}) = M $$\n\n## Constraints\n\n- All values in input are integers.\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $-N \\leq M \\leq N$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M\n```\n\n## Output\n\nIf there is no set of $N$ segments that satisfies the condition, print `-1`.\n\nOtherwise, print $N$ lines as follows:\n\n```\nL_1 R_1\nL_2 R_2\n  \\vdots\nL_N R_N\n```\n\nHere, $[L_1:R_1], \\cdots, [L_N:R_N]$ must satisfy the following:\n\n- $1 \\leq L_i < R_i \\leq 10^9$\n- $L_i \\neq L_j$ ($i \\neq j$)\n- $R_i \\neq R_j$ ($i \\neq j$)\n- $L_i \\neq R_j$\n- $L_1, \\cdots , L_N , R_1, \\cdots , R_N$ are integers (21:46 added)\n\nIf there are multiple answers, any of them will be accepted.\n\nBe sure to print a newline at the end of the output.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n当 $L_1 \\leq R_2$ 且 $L_2 \\leq R_1$ 时，称两个线段 $[L_1:R_1]$ 和 $[L_2:R_2]$ *相交*。\n\n考虑以下问题 $P$：\n\n```\nInput: N segments [L_1: R_1], \\cdots, [L_N:R_N]\n       L_1, L_2, \\cdots, L_N, R_1, R_2, \\cdots, R_N are pairwise distinct.\nOutput: the maximum number of segments that can be chosen so that no two of them intersect.\n```\n\nTakahashi 编写了一个程序，其运行方式如下：\n\n```\nSort the given segments in the increasing order of R_i and let the result be [L_{p_1}:R_{p_1}], [L_{p_2}:R_{p_2}], \\cdots, [L_{p_N}:R_{p_N}].\nFor each i = 1, 2, \\cdots , N, do the following:\n  Choose [L_{p_i}:R_{p_i}] if it intersects with none of the segments chosen so far.\nPrint the number of chosen segments.\n```\n\n另一方面，Aoki 编写了一个程序，其运行方式如下：\n\n```\nSort the given segments in the increasing order of L_i and let the result be [L_{p_1}:R_{p_1}], [L_{p_2}:R_{p_2}], \\cdots, [L_{p_N}:R_{p_N}].\nFor each i = 1, 2, \\cdots , N, do the following:\n  Choose [L_{p_i}:R_{p_i}] if it intersects with none of the segments chosen so far.\nPrint the number of chosen segments.\n```\n\n给定整数 $N$ 和 $M$。请构造问题 $P$ 的一个输入，该输入由 $N$ 个线段组成，并满足以下条件：\n\n$$ (\\text{The value printed by Takahashi's program}) - (\\text{The value printed by Aoki's program}) = M $$\n\n## 约束条件\n\n- 输入中的所有值均为整数。\n- $1 \\leq N \\leq 2 \\times 10^5$\n- $-N \\leq M \\leq N$\n\n## 输入格式\n\n输入通过标准输入给出，格式如下：\n\n```\nN M\n```\n\n## 输出格式\n\n如果不存在满足条件的 $N$ 个线段，输出 `-1`。\n\n否则，按以下格式输出 $N$ 行：\n\n```\nL_1 R_1\nL_2 R_2\n  \\vdots\nL_N R_N\n```\n\n其中，$[L_1:R_1], \\cdots, [L_N:R_N]$ 必须满足以下条件：\n\n- $1 \\leq L_i < R_i \\leq 10^9$\n- $L_i \\neq L_j$ ($i \\neq j$)\n- $R_i \\neq R_j$ ($i \\neq j$)\n- $L_i \\neq R_j$\n- $L_1, \\cdots , L_N , R_1, \\cdots , R_N$ 均为整数（21:46 添加）\n\n如果有多个答案，输出其中任意一个即可。\n\n请务必在输出末尾换行。",
   "samples": [
     {
       "input": "5 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:04:12.577Z"
+  "fetchedAt": "2026-10-30T22:04:12.577Z",
+  "translatedAt": "2026-11-04T04:16:24.659+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1494,
   "index": "E",
   "title": "A-Z Graph",
-  "titleZh": null,
+  "titleZh": "A-Z 图",
   "url": "https://codeforces.com/contest/1494/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a directed graph consisting of $n$ vertices. Each directed edge (or arc) labeled with a single character. Initially, the graph is empty.\n\nYou should process $m$ queries with it. Each query is one of three types:\n\n- \"`$+$ $u$ $v$ $c$`\" — add arc from $u$ to $v$ with label $c$. It's guaranteed that there is no arc $(u, v)$ in the graph at this moment;\n- \"`$-$ $u$ $v$`\" — erase arc from $u$ to $v$. It's guaranteed that the graph contains arc $(u, v)$ at this moment;\n- \"`$?$ $k$`\" — find the sequence of $k$ vertices $v_1, v_2, \\dots, v_k$ such that there exist both routes $v_1 \\to v_2 \\to \\dots \\to v_k$ and $v_k \\to v_{k - 1} \\to \\dots \\to v_1$ and if you write down characters along both routes you'll get the same string. You can visit the same vertices any number of times.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\le n \\le 2 \\cdot 10^5$; $1 \\le m \\le 2 \\cdot 10^5$) — the number of vertices in the graph and the number of queries.\n\nThe next $m$ lines contain queries — one per line. Each query is one of three types:\n\n- \"`$+$ $u$ $v$ $c$`\" ($1 \\le u, v \\le n$; $u \\neq v$; $c$ is a lowercase Latin letter);\n- \"`$-$ $u$ $v$`\" ($1 \\le u, v \\le n$; $u \\neq v$);\n- \"`$?$ $k$`\" ($2 \\le k \\le 10^5$).\n\nIt's guaranteed that you don't add multiple edges and erase only existing edges. Also, there is at least one query of the third type.\n\n## Output\n\nFor each query of the third type, print `YES` if there exist the sequence $v_1, v_2, \\dots, v_k$ described above, or `NO` otherwise.\n\n## Note\n\nIn the first query of the third type $k = 3$, we can, for example, choose a sequence $[1, 2, 3]$, since $1 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 3$ and $3 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 1$.\n\nIn the second query of the third type $k = 2$, and we can't find sequence $p_1, p_2$ such that arcs $(p_1, p_2)$ and $(p_2, p_1)$ have the same characters.\n\nIn the third query of the third type, we can, for example, choose a sequence $[1, 2, 3, 2, 1]$, where $1 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 3 \\xrightarrow{\\text{d}} 2 \\xrightarrow{\\text{c}} 1$.",
-  "statementZhMd": null,
+  "statementZhMd": "你得到了一个由 $n$ 个顶点组成的有向图。每条有向边（或称弧）都标有一个字符。初始时，图为空。\n\n你需要处理 $m$ 次查询。每次查询属于以下三种类型之一：\n\n- \"`$+$ $u$ $v$ $c$`\" —— 添加一条从 $u$ 到 $v$、标签为 $c$ 的弧。保证此时图中不存在弧 $(u, v)$；\n- \"`$-$ $u$ $v$`\" —— 删除从 $u$ 到 $v$ 的弧。保证此时图中存在弧 $(u, v)$；\n- \"`$?$ $k$`\" —— 查找一个由 $k$ 个顶点组成的序列 $v_1, v_2, \\dots, v_k$，使得同时存在路径 $v_1 \\to v_2 \\to \\dots \\to v_k$ 和 $v_k \\to v_{k - 1} \\to \\dots \\to v_1$，并且沿两条路径依次写下边上的字符后得到的字符串相同。允许任意次访问同一个顶点。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 2 \\cdot 10^5$；$1 \\le m \\le 2 \\cdot 10^5$）——图中的顶点数和查询数。\n\n接下来的 $m$ 行每行包含一个查询。每个查询属于以下三种类型之一：\n\n- \"`$+$ $u$ $v$ $c$`\"（$1 \\le u, v \\le n$；$u \\neq v$；$c$ 是一个小写拉丁字母）；\n- \"`$-$ $u$ $v$`\"（$1 \\le u, v \\le n$；$u \\neq v$）；\n- \"`$?$ $k$`\"（$2 \\le k \\le 10^5$）。\n\n保证不会添加重边，且只会删除当前存在的边。此外，至少存在一次第三种类型的查询。\n\n## 输出格式\n\n对于每个第三种类型的查询，如果存在上述序列 $v_1, v_2, \\dots, v_k$，输出 `YES`；否则输出 `NO`。\n\n## 说明\n\n在第一次第三种类型的查询中，$k = 3$。例如，我们可以选择序列 $[1, 2, 3]$，因为 $1 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 3$，且 $3 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 1$。\n\n在第二次第三种类型的查询中，$k = 2$，我们无法找到序列 $p_1, p_2$，使得弧 $(p_1, p_2)$ 和 $(p_2, p_1)$ 上的字符相同。\n\n在第三次第三种类型的查询中，例如可以选择序列 $[1, 2, 3, 2, 1]$，其中 $1 \\xrightarrow{\\text{a}} 2 \\xrightarrow{\\text{b}} 3 \\xrightarrow{\\text{d}} 2 \\xrightarrow{\\text{c}} 1$。",
   "samples": [
     {
       "input": "3 11\n+ 1 2 a\n+ 2 3 b\n+ 3 2 a\n+ 2 1 b\n? 3\n? 2\n- 2 1\n- 3 2\n+ 2 1 c\n+ 3 2 d\n? 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:31:15.486Z"
+  "fetchedAt": "2026-11-02T18:31:15.486Z",
+  "translatedAt": "2026-11-04T04:00:03.502+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

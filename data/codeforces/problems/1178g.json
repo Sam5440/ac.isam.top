@@ -4,7 +4,7 @@
   "contestId": 1178,
   "index": "G",
   "title": "The Awesomest Vertex",
-  "titleZh": null,
+  "titleZh": "最棒的顶点",
   "url": "https://codeforces.com/contest/1178/problem/G",
   "difficulty": 3000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a rooted tree on $n$ vertices. The vertices are numbered from $1$ to $n$; the root is the vertex number $1$.\n\nEach vertex has two integers associated with it: $a_i$ and $b_i$. We denote the set of all ancestors of $v$ (including $v$ itself) by $R(v)$. The *awesomeness* of a vertex $v$ is defined as\n\n$$\\left| \\sum_{w \\in R(v)} a_w\\right| \\cdot \\left|\\sum_{w \\in R(v)} b_w\\right|,$$\n\nwhere $|x|$ denotes the absolute value of $x$.\n\nProcess $q$ queries of one of the following forms:\n\n- `1 v x` — increase $a_v$ by a positive integer $x$.\n- `2 v` — report the maximum *awesomeness* in the subtree of vertex $v$.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\leq n \\leq 2\\cdot 10^5, 1 \\leq q \\leq 10^5$) — the number of vertices in the tree and the number of queries, respectively.\n\nThe second line contains $n - 1$ integers $p_2, p_3, \\dots, p_n$ ($1 \\leq p_i \\lt i$), where $p_i$ means that there is an edge between vertices $i$ and $p_i$.\n\nThe third line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($-5000 \\leq a_i \\leq 5000$), the initial values of $a_i$ for each vertex.\n\nThe fourth line contains $n$ integers $b_1, b_2, \\dots, b_n$ ($-5000 \\leq b_i \\leq 5000$), the values of $b_i$ for each vertex.\n\nEach of the next $q$ lines describes a query. It has one of the following forms:\n\n- `1 v x` ($1 \\leq v \\leq n$, $1\\leq x \\leq 5000$).\n- `2 v` ($1 \\leq v \\leq n$).\n\n## Output\n\nFor each query of the second type, print a single line with the maximum *awesomeness* in the respective subtree.\n\n## Note\n\nThe initial *awesomeness* of the vertices is $[100, 91, 57, 64, 57]$. The most *awesome* vertex in the subtree of vertex $1$ (the first query) is $1$, and the most *awesome* vertex in the subtree of vertex $2$ (the second query) is $2$.\n\nAfter the first update (the third query), the *awesomeness* changes to $[100, 169, 57, 160, 57]$ and thus the most *awesome* vertex in the whole tree (the fourth query) is now $2$.\n\nAfter the second update (the fifth query), the *awesomeness* becomes $[100, 234, 57, 240, 152]$, hence the most *awesome* vertex (the sixth query) is now $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "你得到了一个包含 $n$ 个顶点的有根树。顶点编号从 $1$ 到 $n$，根是编号为 $1$ 的顶点。\n\n每个顶点都关联两个整数：$a_i$ 和 $b_i$。我们用 $R(v)$ 表示顶点 $v$ 的所有祖先（包括顶点 $v$ 自身）的集合。顶点 $v$ 的*厉害程度*定义为\n\n$$\\left| \\sum_{w \\in R(v)} a_w\\right| \\cdot \\left|\\sum_{w \\in R(v)} b_w\\right|,$$\n\n其中，$|x|$ 表示 $x$ 的绝对值。\n\n请处理 $q$ 个以下形式之一的查询：\n\n- `1 v x` — 将 $a_v$ 增加正整数 $x$。\n- `2 v` — 输出顶点 $v$ 的子树中最大的*厉害程度*。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\leq n \\leq 2\\cdot 10^5, 1 \\leq q \\leq 10^5$）——树中的顶点数和查询数。\n\n第二行包含 $n - 1$ 个整数 $p_2, p_3, \\dots, p_n$（$1 \\leq p_i \\lt i$），其中 $p_i$ 表示顶点 $i$ 与顶点 $p_i$ 之间存在一条边。\n\n第三行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$-5000 \\leq a_i \\leq 5000$），表示每个顶点的 $a_i$ 初始值。\n\n第四行包含 $n$ 个整数 $b_1, b_2, \\dots, b_n$（$-5000 \\leq b_i \\leq 5000$），表示每个顶点的 $b_i$ 值。\n\n接下来的 $q$ 行每行描述一个查询，查询形式如下：\n\n- `1 v x`（$1 \\leq v \\leq n$, $1\\leq x \\leq 5000$）。\n- `2 v`（$1 \\leq v \\leq n$）。\n\n## 输出格式\n\n对于每个第二种查询，输出对应子树中的最大*厉害程度*，每个查询输出一行。\n\n## 说明\n\n各顶点初始的*厉害程度*为 $[100, 91, 57, 64, 57]$。在顶点 $1$ 的子树中（第一次查询），最*厉害*的顶点是 $1$；在顶点 $2$ 的子树中（第二次查询），最*厉害*的顶点是 $2$。\n\n第一次更新（第三次查询）后，各顶点的*厉害程度*变为 $[100, 169, 57, 160, 57]$，因此整棵树中最*厉害*的顶点（第四次查询）变为 $2$。\n\n第二次更新（第五次查询）后，各顶点的*厉害程度*变为 $[100, 234, 57, 240, 152]$，因此最*厉害*的顶点（第六次查询）变为 $4$。",
   "samples": [
     {
       "input": "5 6\n1 1 2 2\n10 -3 -7 -3 -10\n10 3 9 3 6\n2 1\n2 2\n1 2 6\n2 1\n1 2 5\n2 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:09:33.950Z"
+  "fetchedAt": "2026-10-31T00:09:33.950Z",
+  "translatedAt": "2026-11-04T05:04:41.552+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

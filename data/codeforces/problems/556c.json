@@ -4,14 +4,14 @@
   "contestId": 556,
   "index": "C",
   "title": "Case of Matryoshkas",
-  "titleZh": null,
+  "titleZh": "套娃事件",
   "url": "https://codeforces.com/contest/556/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Andrewid the Android is a galaxy-famous detective. He is now investigating the case of vandalism at the exhibition of contemporary art.\n\nThe main exhibit is a construction of $*n*$ matryoshka dolls that can be nested one into another. The matryoshka dolls are numbered from $1$ to $*n*$. A matryoshka with a smaller number can be nested in a matryoshka with a higher number, two matryoshkas can not be directly nested in the same doll, but there may be chain nestings, for example, $1 → 2 → 4 → 5$.\n\nIn one second, you can perform one of the two following operations:\n\n- Having a matryoshka $*a*$ that isn't nested in any other matryoshka and a matryoshka $*b*$, such that $*b*$ doesn't contain any other matryoshka and is not nested in any other matryoshka, you may put $*a*$ in $*b*$;\n- Having a matryoshka $*a*$ directly contained in matryoshka $*b*$, such that $*b*$ is not nested in any other matryoshka, you may get $*a*$ out of $*b*$.\n\nAccording to the modern aesthetic norms the matryoshka dolls on display were assembled in a specific configuration, i.e. as several separate chains of nested matryoshkas, but the criminal, following the mysterious plan, took out all the dolls and assembled them into a single large chain ($1 → 2 → ... → *n*$). In order to continue the investigation Andrewid needs to know in what minimum time it is possible to perform this action.\n\n## Input\n\nThe first line contains integers $*n*$ ($1 ≤ *n* ≤ 10^{5}$) and $*k*$ ($1 ≤ *k* ≤ 10^{5}$) — the number of matryoshkas and matryoshka chains in the initial configuration.\n\nThe next $*k*$ lines contain the descriptions of the chains: the $*i*$-th line first contains number $*m*_{*i*}$ ($1 ≤ *m*_{*i*} ≤ *n*$), and then $*m*_{*i*}$ numbers $*a*_{*i*1}, *a*_{*i*2}, ..., *a*_{*im*_{*i*}}$ — the numbers of matryoshkas in the chain (matryoshka $*a*_{*i*1}$ is nested into matryoshka $*a*_{*i*2}$, that is nested into matryoshka $*a*_{*i*3}$, and so on till the matryoshka $*a*_{*im*_{*i*}}$ that isn't nested into any other matryoshka).\n\nIt is guaranteed that $*m*_{1} + *m*_{2} + ... + *m*_{*k*} = *n*$, the numbers of matryoshkas in all the chains are distinct, in each chain the numbers of matryoshkas follow in the ascending order.\n\n## Output\n\nIn the single line print the minimum number of seconds needed to assemble one large chain from the initial configuration.\n\n## Note\n\nIn the first sample test there are two chains: $1 → 2$ and $3$. In one second you can nest the first chain into the second one and get $1 → 2 → 3$.\n\nIn the second sample test you need to disassemble all the three chains into individual matryoshkas in 2 + 1 + 1 = 4 seconds and then assemble one big chain in 6 seconds.",
-  "statementZhMd": null,
+  "statementZhMd": "安德鲁伊德是银河系闻名的侦探。现在，他正在调查当代艺术展览遭到破坏的案件。\n\n展览的主要展品是由 $*n*$ 个可以相互嵌套的套娃组成的。套娃的编号为 $1$ 到 $*n*$。编号较小的套娃可以嵌套在编号较大的套娃中，两个套娃不能直接嵌套在同一个套娃中，但可以形成链式嵌套，例如 $1 → 2 → 4 → 5$。\n\n每秒可以执行以下两种操作之一：\n\n- 有一个未嵌套在任何其他套娃中的套娃 $*a*$，以及一个不包含任何其他套娃且未嵌套在任何其他套娃中的套娃 $*b*$，可以将 $*a*$ 放入 $*b*$ 中；\n- 有一个直接包含在套娃 $*b*$ 中的套娃 $*a*$，且 $*b*$ 未嵌套在任何其他套娃中，可以将 $*a*$ 从 $*b*$ 中取出。\n\n根据现代审美规范，展出的套娃原本按照特定配置组装，即形成若干条相互独立的嵌套链。然而，罪犯按照神秘计划取出了所有套娃，并将它们组装成一条大的链（$1 → 2 → ... → *n*$）。为了继续调查，安德鲁伊德需要知道完成这一操作所需的最短时间。\n\n## 输入格式\n\n第一行包含整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$）和 $*k*$（$1 ≤ *k* ≤ 10^{5}$）——套娃的数量，以及初始配置中的套娃链数量。\n\n接下来的 $*k*$ 行描述这些链：第 $*i*$ 行首先包含一个整数 $*m*_{*i*}$（$1 ≤ *m*_{*i*} ≤ *n*$），然后包含 $*m*_{*i*}$ 个整数 $*a*_{*i*1}, *a*_{*i*2}, ..., *a*_{*im*_{*i*}}$——该链中的套娃编号（套娃 $*a*_{*i*1}$ 嵌套在套娃 $*a*_{*i*2}$ 中，后者又嵌套在套娃 $*a*_{*i*3}$ 中，以此类推，直到套娃 $*a*_{*im*_{*i*}}$，它未嵌套在任何其他套娃中）。\n\n保证 $*m*_{1} + *m*_{2} + ... + *m*_{*k*} = *n*$，所有链中的套娃编号各不相同，并且每条链中的套娃编号均按升序排列。\n\n## 输出格式\n\n在一行中输出从初始配置组装出一条大链所需的最少秒数。\n\n## 说明\n\n在第一个样例中，有两条链：$1 → 2$ 和 $3$。一秒内，可以将第一条链嵌套到第二条链中，从而得到 $1 → 2 → 3$。\n\n在第二个样例中，需要先将三条链全部拆解成单独的套娃，共耗时 $2 + 1 + 1 = 4$ 秒，然后再用 $6$ 秒组装成一条大链。",
   "samples": [
     {
       "input": "3 2\n2 1 2\n1 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:25:00.508Z"
+  "fetchedAt": "2026-10-31T01:25:00.508Z",
+  "translatedAt": "2026-11-04T06:50:50.396+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

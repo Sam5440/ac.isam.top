@@ -4,7 +4,7 @@
   "contestId": 724,
   "index": "C",
   "title": "Ray Tracing",
-  "titleZh": null,
+  "titleZh": "光线追踪",
   "url": "https://codeforces.com/contest/724/problem/C",
   "difficulty": 1800,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $*k*$ sensors located in the rectangular room of size $*n* × *m*$ meters. The $*i*$-th sensor is located at point $(*x*_{*i*}, *y*_{*i*})$. All sensors are located at distinct points strictly inside the rectangle.\n\nOpposite corners of the room are located at points $(0, 0)$ and $(*n*, *m*)$. Walls of the room are parallel to coordinate axes.\n\nAt the moment $0$, from the point $(0, 0)$ the laser ray is released in the direction of point $(1, 1)$. The ray travels with a speed of ![image](https://espresso.codeforces.com/bfe16f27ebc966df6f10ba356a1547b6e7242dd7.png) meters per second. Thus, the ray will reach the point $(1, 1)$ in exactly one second after the start.\n\nWhen the ray meets the wall it's reflected by the rule that the angle of incidence is equal to the angle of reflection. If the ray reaches any of the four corners, it immediately stops.\n\nFor each sensor you have to determine the first moment of time when the ray will pass through the point where this sensor is located. If the ray will never pass through this point, print $- 1$ for such sensors.\n\n## Input\n\nThe first line of the input contains three integers $*n*$, $*m*$ and $*k*$ ($2 ≤ *n*, *m* ≤ 100 000$, $1 ≤ *k* ≤ 100 000$) — lengths of the room's walls and the number of sensors.\n\nEach of the following $*k*$ lines contains two integers $*x*_{*i*}$ and $*y*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ *n* - 1$, $1 ≤ *y*_{*i*} ≤ *m* - 1$) — coordinates of the sensors. It's guaranteed that no two sensors are located at the same point.\n\n## Output\n\nPrint $*k*$ integers. The $*i*$-th of them should be equal to the number of seconds when the ray first passes through the point where the $*i*$-th sensor is located, or $- 1$ if this will never happen.\n\n## Note\n\nIn the first sample, the ray will consequently pass through the points $(0, 0)$, $(1, 1)$, $(2, 2)$, $(3, 3)$. Thus, it will stop at the point $(3, 3)$ after $3$ seconds.\n\n![image](https://espresso.codeforces.com/c9062b2691bfcc243bd935c3d42e3aaf4b984148.png)\n\nIn the second sample, the ray will consequently pass through the following points: $(0, 0)$, $(1, 1)$, $(2, 2)$, $(3, 3)$, $(2, 4)$, $(1, 3)$, $(0, 2)$, $(1, 1)$, $(2, 0)$, $(3, 1)$, $(2, 2)$, $(1, 3)$, $(0, 4)$. The ray will stop at the point $(0, 4)$ after $12$ seconds. It will reflect at the points $(3, 3)$, $(2, 4)$, $(0, 2)$, $(2, 0)$ and $(3, 1)$.\n\n![image](https://espresso.codeforces.com/f7b736704b4c47b73a05359265c3173d5d58824c.png)",
-  "statementZhMd": null,
+  "statementZhMd": "房间内有 $*k*$ 个传感器，房间是一个大小为 $*n* × *m*$ 米的矩形。第 $*i*$ 个传感器位于点 $(*x*_{*i*}, *y*_{*i*})$。所有传感器都位于矩形内部的不同点上。\n\n房间的两个相对角分别位于点 $(0, 0)$ 和 $(*n*, *m*)$。房间的墙壁与坐标轴平行。\n\n在时刻 $0$，一束激光从点 $(0, 0)$ 发出，方向指向点 $(1, 1)$。光线的速度为 ![image](https://espresso.codeforces.com/bfe16f27ebc966df6f10ba356a1547b6e7242dd7.png) 米每秒。因此，光线将在发出后恰好 $1$ 秒到达点 $(1, 1)$。\n\n当光线遇到墙壁时，会按照入射角等于反射角的规则发生反射。如果光线到达四个角中的任意一个，它将立即停止。\n\n对于每个传感器，请确定光线第一次经过该传感器所在点的时刻。如果光线永远不会经过该点，请输出 $- 1$。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*$、$*m*$ 和 $*k*$（$2 ≤ *n*, *m* ≤ 100 000$，$1 ≤ *k* ≤ 100 000$），分别表示房间墙壁的长度和传感器的数量。\n\n接下来的 $*k*$ 行中，每行包含两个整数 $*x*_{*i*}$ 和 $*y*_{*i*}$（$1 ≤ *x*_{*i*} ≤ *n* - 1$，$1 ≤ *y*_{*i*} ≤ *m* - 1$），表示第 $*i*$ 个传感器的坐标。保证没有两个传感器位于同一点。\n\n## 输出格式\n\n输出 $*k*$ 个整数。第 $*i*$ 个整数应为光线第一次经过第 $*i*$ 个传感器所在点时经过的秒数；如果光线永远不会经过该点，则输出 $- 1$。\n\n## 说明\n\n在第一个样例中，光线依次经过点 $(0, 0)$、$(1, 1)$、$(2, 2)$、$(3, 3)$。因此，它会在 $3$ 秒后于点 $(3, 3)$ 停止。\n\n![image](https://espresso.codeforces.com/c9062b2691bfcc243bd935c3d42e3aaf4b984148.png)\n\n在第二个样例中，光线依次经过以下点：$(0, 0)$、$(1, 1)$、$(2, 2)$、$(3, 3)$、$(2, 4)$、$(1, 3)$、$(0, 2)$、$(1, 1)$、$(2, 0)$、$(3, 1)$、$(2, 2)$、$(1, 3)$、$(0, 4)$。光线会在 $12$ 秒后于点 $(0, 4)$ 停止。它会在点 $(3, 3)$、$(2, 4)$、$(0, 2)$、$(2, 0)$ 和 $(3, 1)$ 处发生反射。\n\n![image](https://espresso.codeforces.com/f7b736704b4c47b73a05359265c3173d5d58824c.png)",
   "samples": [
     {
       "input": "3 3 4\n1 1\n1 2\n2 1\n2 2\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:03:35.694Z"
+  "fetchedAt": "2026-10-31T01:03:35.694Z",
+  "translatedAt": "2026-11-04T06:29:18.344+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

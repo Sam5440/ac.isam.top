@@ -4,7 +4,7 @@
   "contestId": 804,
   "index": "D",
   "title": "Expected diameter of a tree",
-  "titleZh": null,
+  "titleZh": "树的期望直径",
   "url": "https://codeforces.com/contest/804/problem/D",
   "difficulty": 2500,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Pasha is a good student and one of MoJaK's best friends. He always have a problem to think about. Today they had a talk about the following problem.\n\nWe have a forest (acyclic undirected graph) with $*n*$ vertices and $*m*$ edges. There are $*q*$ queries we should answer. In each query two vertices $*v*$ and $*u*$ are given. Let $*V*$ be the set of vertices in the connected component of the graph that contains $*v*$, and $*U*$ be the set of vertices in the connected component of the graph that contains $*u*$. Let's add an edge between some vertex ![image](https://espresso.codeforces.com/16564d5ea985b3a19b9c976c45a3584ab34a332e.png) and some vertex in ![image](https://espresso.codeforces.com/7ee9276c1951e3f1f15d7dc61a5012fa00d1ca1c.png) and compute the value $*d*$ of the resulting component. If the resulting component is a tree, the value $*d*$ is the *diameter* of the component, and it is equal to `-1` otherwise. What is the expected value of $*d*$, if we choose vertices $*a*$ and $*b*$ from the sets uniformly at random?\n\nCan you help Pasha to solve this problem?\n\nThe *diameter* of the component is the maximum *distance* among some pair of vertices in the component. The *distance* between two vertices is the minimum number of edges on some path between the two vertices.\n\nNote that queries don't add edges to the initial forest.\n\n## Input\n\nThe first line contains three integers $*n*$, $*m*$ and $*q*$($1 ≤ *n*, *m*, *q* ≤ 10^{5}$) — the number of vertices, the number of edges in the graph and the number of queries.\n\nEach of the next $*m*$ lines contains two integers $*u*_{*i*}$ and $*v*_{*i*}$ ($1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*$), that means there is an edge between vertices $*u*_{*i*}$ and $*v*_{*i*}$.\n\nIt is guaranteed that the given graph is a forest.\n\nEach of the next $*q*$ lines contains two integers $*u*_{*i*}$ and $*v*_{*i*}$ ($1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*$) — the vertices given in the $*i*$-th query.\n\n## Output\n\nFor each query print the expected value of $*d*$ as described in the problem statement.\n\nYour answer will be considered correct if its absolute or relative error does not exceed $10^{ - 6}$. Let's assume that your answer is $*a*$, and the jury's answer is $*b*$. The checker program will consider your answer correct, if ![image](https://espresso.codeforces.com/c97ba2000ebfad962bff7ffd8d043594f5ae1086.png).\n\n## Note\n\nIn the first example the vertices $1$ and $3$ are in the same component, so the answer for the first query is `-1`. For the second query there are two options to add the edge: one option is to add the edge $1 - 2$, the other one is $2 - 3$. In both ways the resulting diameter is $2$, so the answer is $2$.\n\nIn the second example the answer for the first query is obviously `-1`. The answer for the second query is the average of three cases: for added edges $1 - 2$ or $1 - 3$ the diameter is $3$, and for added edge $1 - 4$ the diameter is $2$. Thus, the answer is ![image](https://espresso.codeforces.com/f12c59a7dfd20580ff1e8e5eeab9ecd19cb3c3f1.png).",
-  "statementZhMd": null,
+  "statementZhMd": "Pasha 是一名优秀的学生，也是 MoJaK 最好的朋友之一。他总是有问题需要思考。今天，他们讨论了下面这个问题。\n\n给定一个有 $*n*$ 个顶点和 $*m*$ 条边的森林（无环无向图）。我们需要回答 $*q*$ 个询问。每次询问给出两个顶点 $*v*$ 和 $*u*$。令 $*V*$ 表示包含 $*v*$ 的连通分量中的顶点集合，令 $*U*$ 表示包含 $*u*$ 的连通分量中的顶点集合。现在，在 ![image](https://espresso.codeforces.com/16564d5ea985b3a19b9c976c45a3584ab34a332e.png) 中选择一个顶点，在 ![image](https://espresso.codeforces.com/7ee9276c1951e3f1f15d7dc61a5012fa00d1ca1c.png) 中选择一个顶点，并在它们之间添加一条边，然后计算所得连通分量的值 $*d*$。如果所得连通分量是一棵树，则 $*d*$ 是该连通分量的*直径*；否则，$*d*$ 等于 `-1`。如果我们从集合中均匀随机地选择顶点 $*a*$ 和 $*b*$，$*d*$ 的期望值是多少？\n\n你能帮助 Pasha 解决这个问题吗？\n\n连通分量的*直径*是该连通分量中某一对顶点之间的最大*距离*。两个顶点之间的*距离*是它们之间某条路径上边数的最小值。\n\n注意，询问不会向初始森林中添加边。\n\n## 约束条件\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*m*$ 和 $*q*$（$1 ≤ *n*, *m*, *q* ≤ 10^{5}$）——图中顶点、边和询问的数量。\n\n接下来的 $*m*$ 行中，每行包含两个整数 $*u*_{*i*}$ 和 $*v*_{*i*}$（$1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*$），表示顶点 $*u*_{*i*}$ 和 $*v*_{*i*}$ 之间存在一条边。\n\n保证给定的图是一个森林。\n\n接下来的 $*q*$ 行中，每行包含两个整数 $*u*_{*i*}$ 和 $*v*_{*i*}$（$1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*$）——第 $*i*$ 次询问中给出的顶点。\n\n## 输出格式\n\n对于每次询问，输出题目描述中所定义的 $*d*$ 的期望值。\n\n如果你的答案与标准答案的绝对误差或相对误差不超过 $10^{ - 6}$，则会被判定为正确。设你的答案为 $*a*$，标准答案为 $*b*$。评测程序会在 ![image](https://espresso.codeforces.com/c97ba2000ebfad962bff7ffd8d043594f5ae1086.png) 时判定你的答案正确。\n\n## 说明\n\n在第一个样例中，顶点 $1$ 和 $3$ 属于同一个连通分量，因此第一次询问的答案是 `-1`。对于第二次询问，有两种添加边的方案：一种是在 $1 - 2$ 之间添加边，另一种是在 $2 - 3$ 之间添加边。无论采用哪种方案，所得直径都为 $2$，因此答案为 $2$。\n\n在第二个样例中，第一次询问的答案显然是 `-1`。第二次询问的答案是三种情况的平均值：当添加边 $1 - 2$ 或 $1 - 3$ 时，直径为 $3$；当添加边 $1 - 4$ 时，直径为 $2$。因此，答案为 ![image](https://espresso.codeforces.com/f12c59a7dfd20580ff1e8e5eeab9ecd19cb3c3f1.png)。",
   "samples": [
     {
       "input": "3 1 2\n1 3\n3 1\n2 3\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:52:51.814Z"
+  "fetchedAt": "2026-10-31T00:52:51.814Z",
+  "translatedAt": "2026-11-04T06:09:50.195+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1433,
   "index": "G",
   "title": "Reducing Delivery Cost",
-  "titleZh": null,
+  "titleZh": "降低配送成本",
   "url": "https://codeforces.com/contest/1433/problem/G",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are a mayor of Berlyatov. There are $n$ districts and $m$ two-way roads between them. The $i$-th road connects districts $x_i$ and $y_i$. The cost of travelling along this road is $w_i$. There is some path between each pair of districts, so the city is connected.\n\nThere are $k$ delivery routes in Berlyatov. The $i$-th route is going from the district $a_i$ to the district $b_i$. There is one courier on each route and the courier will always choose the **cheapest** (minimum by total cost) path from the district $a_i$ to the district $b_i$ to deliver products.\n\nThe route can go from the district to itself, some couriers routes can coincide (**and you have to count them independently**).\n\nYou can make at most one road to have cost zero (i.e. you choose at most one road and change its cost with $0$).\n\nLet $d(x, y)$ be the cheapest cost of travel between districts $x$ and $y$.\n\nYour task is to find the minimum total courier routes cost you can achieve, if you optimally select the some road and change its cost with $0$. In other words, you have to find the minimum possible value of $\\sum\\limits_{i = 1}^{k} d(a_i, b_i)$ after applying the operation described above optimally.\n\n## Input\n\nThe first line of the input contains three integers $n$, $m$ and $k$ ($2 \\le n \\le 1000$; $n - 1 \\le m \\le min(1000, \\frac{n(n-1)}{2})$; $1 \\le k \\le 1000$) — the number of districts, the number of roads and the number of courier routes.\n\nThe next $m$ lines describe roads. The $i$-th road is given as three integers $x_i$, $y_i$ and $w_i$ ($1 \\le x_i, y_i \\le n$; $x_i \\ne y_i$; $1 \\le w_i \\le 1000$), where $x_i$ and $y_i$ are districts the $i$-th road connects and $w_i$ is its cost. It is guaranteed that there is some path between each pair of districts, so the city is connected. It is also guaranteed that there is at most one road between each pair of districts.\n\nThe next $k$ lines describe courier routes. The $i$-th route is given as two integers $a_i$ and $b_i$ ($1 \\le a_i, b_i \\le n$) — the districts of the $i$-th route. The route can go from the district to itself, some couriers routes can coincide (**and you have to count them independently**).\n\n## Output\n\nPrint one integer — the **minimum** total courier routes cost you can achieve (i.e. the minimum value $\\sum\\limits_{i=1}^{k} d(a_i, b_i)$, where $d(x, y)$ is the cheapest cost of travel between districts $x$ and $y$) if you can make some (**at most one**) road cost zero.\n\n## Note\n\nThe picture corresponding to the first example:\n\n![image](https://espresso.codeforces.com/dd6264604ca62d1661d8f99d2f2b1fb9a8cdb6c9.png)\n\nThere, you can choose either the road $(2, 4)$ or the road $(4, 6)$. Both options lead to the total cost $22$.\n\nThe picture corresponding to the second example:\n\n![image](https://espresso.codeforces.com/0f66480d7e9a87a3883290f099a20828ce429c70.png)\n\nThere, you can choose the road $(3, 4)$. This leads to the total cost $13$.",
-  "statementZhMd": null,
+  "statementZhMd": "你是 Berlyatov 的市长。这里有 $n$ 个区域，以及连接它们的 $m$ 条双向道路。第 $i$ 条道路连接区域 $x_i$ 和 $y_i$。沿这条道路通行的费用为 $w_i$。任意两个区域之间都存在路径，因此该城市是连通的。\n\nBerlyatov 有 $k$ 条配送路线。第 $i$ 条路线从区域 $a_i$ 前往区域 $b_i$。每条路线都有一名快递员，并且快递员总会选择从区域 $a_i$ 到区域 $b_i$ 的**最便宜**（总费用最小）路径来配送商品。\n\n路线可以从一个区域前往其自身，且多条快递路线可能完全相同（**必须分别计数**）。\n\n你至多可以将一条道路的费用变为零（即至多选择一条道路，并将其费用修改为 $0$）。\n\n令 $d(x, y)$ 表示区域 $x$ 与区域 $y$ 之间的最便宜通行费用。\n\n你的任务是：如果最优地选择一条道路并将其费用变为 $0$，求能够实现的快递路线总费用的最小值。换句话说，你需要求出执行上述操作后，$\\sum\\limits_{i = 1}^{k} d(a_i, b_i)$ 的最小可能值。\n\n## 输入格式\n\n输入的第一行包含三个整数 $n$、$m$ 和 $k$（$2 \\le n \\le 1000$；$n - 1 \\le m \\le min(1000, \\frac{n(n-1)}{2})$；$1 \\le k \\le 1000$），分别表示区域数量、道路数量和快递路线数量。\n\n接下来的 $m$ 行描述道路。第 $i$ 条道路由三个整数 $x_i$、$y_i$ 和 $w_i$（$1 \\le x_i, y_i \\le n$；$x_i \\ne y_i$；$1 \\le w_i \\le 1000$）表示，其中 $x_i$ 和 $y_i$ 是第 $i$ 条道路连接的区域，$w_i$ 是其费用。保证任意两个区域之间都存在路径，即城市是连通的。还保证任意两个区域之间至多有一条道路。\n\n接下来的 $k$ 行描述快递路线。第 $i$ 条路线由两个整数 $a_i$ 和 $b_i$（$1 \\le a_i, b_i \\le n$）表示，即第 $i$ 条路线的起点和终点区域。路线可以从一个区域前往其自身，多条快递路线可能完全相同（**必须分别计数**）。\n\n## 输出格式\n\n输出一个整数——能够实现的快递路线总费用的**最小值**（即，如果可以将某条（**至多一条**）道路的费用变为零，$\\sum\\limits_{i=1}^{k} d(a_i, b_i)$ 的最小值，其中 $d(x, y)$ 表示区域 $x$ 与区域 $y$ 之间的最便宜通行费用）。\n\n## 说明\n\n第一个样例对应的图片：\n\n![image](https://espresso.codeforces.com/dd6264604ca62d1661d8f99d2f2b1fb9a8cdb6c9.png)\n\n在该图中，你可以选择道路 $(2, 4)$ 或道路 $(4, 6)$。这两种选择都会使总费用变为 $22$。\n\n第二个样例对应的图片：\n\n![image](https://espresso.codeforces.com/0f66480d7e9a87a3883290f099a20828ce429c70.png)\n\n在该图中，你可以选择道路 $(3, 4)$。这样总费用将变为 $13$。",
   "samples": [
     {
       "input": "6 5 2\n1 2 5\n2 3 7\n2 4 4\n4 5 2\n4 6 8\n1 6\n5 3\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:37:33.172Z"
+  "fetchedAt": "2026-11-02T18:37:33.172Z",
+  "translatedAt": "2026-11-04T04:17:29.720+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

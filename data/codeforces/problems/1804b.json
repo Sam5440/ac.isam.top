@@ -4,7 +4,7 @@
   "contestId": 1804,
   "index": "B",
   "title": "Vaccination",
-  "titleZh": null,
+  "titleZh": "疫苗接种",
   "url": "https://codeforces.com/contest/1804/problem/B",
   "difficulty": 1000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Ethan runs a vaccination station to help people combat the seasonal flu. He analyses the historical data in order to develop an optimal strategy for vaccine usage.\n\nConsider there are $n$ patients coming to the station on a particular day. The $i$-th patient comes at the moment $t_i$. We know that each of these patients can be asked to wait for no more than $w$ time moments. That means the $i$-th patient can get vaccine at moments $t_i, t_i + 1, \\ldots, t_i + w$.\n\nVaccines come in packs, each pack consists of $k$ doses. Each patient needs exactly one dose. Packs are stored in a special fridge. After a pack is taken out of the fridge and opened, it can no longer be put back. The lifetime of the vaccine outside the fridge is $d$ moments of time. Thus, if the pack was taken out of the fridge and opened at moment $x$, its doses can be used to vaccinate patients at moments $x, x + 1, \\ldots, x + d$. At moment $x + d + 1$ all the remaining unused doses of this pack are thrown away.\n\nAssume that the vaccination station has enough staff to conduct an arbitrary number of operations at every moment of time. What is the minimum number of vaccine packs required to vaccinate all $n$ patients?\n\n## Input\n\nThe first line of the input contains the number of test cases $t$ ($1 \\leq t \\leq 10^4$). Then follow $t$ descriptions of the test cases.\n\nThe first line of each test case contains four integers $n$, $k$, $d$ and $w$ ($1 \\leq n, k \\leq 2 \\cdot 10^5$, $0 \\leq d, w \\leq 10^6$). They are the number of patients, the number of doses per vaccine pack, the number of moments of time the vaccine can live outside the fridge, and the number of moments of time each of the patients can wait, respectively.\n\nThe second line of each test case contains a non-decreasing sequence $t_1, t_2, \\ldots, t_n$ ($0 \\leq t_1 \\leq t_2 \\leq \\ldots \\leq t_n \\leq 10^6$). The $i$-th element of this sequence is the moment when the $i$-th patient comes to the vaccination station.\n\nIt is guaranteed that the sum of $n$ over all test cases won't exceed $2 \\cdot 10^5$.\n\n## Output\n\nOutput one integer, the minimum number of vaccine packs required to vaccinate all $n$ patients.\n\n## Note\n\nIn the first example, the first pack can be opened at moment $1$ to vaccinate patient $1$. The vaccine is durable enough to be used at moments $2$ and $3$ for patients $2$ and $3$, respectively. Then the staff needs to ask patients $4$ and $5$ to wait for moment $13$. At moment $13$ the staff opens the second vaccine pack and serves patients $4$ and $5$. Finally, the last patient comes at moment $18$ and immediately gets the last dose of the second pack while it is still fine.\n\nIn the second example, the vaccine should be used exactly at the moment it is taken out of the fridge. Moreover, all the patients want to be served at exactly the same moment they come. That means the staff needs to open two packs at moment $3$ and use five doses on patients $1$, $2$, $3$, $4$, and $5$. There will be three doses left ouf of these two packs but they can't be used for patient $6$. When patient $6$ comes at moment $4$ the staff needs to open a new pack just to use only one dose out of it.",
-  "statementZhMd": null,
+  "statementZhMd": "Ethan 经营着一个疫苗接种站，帮助人们应对季节性流感。他分析历史数据，以制定最优的疫苗使用策略。\n\n假设某天有 $n$ 名患者来到接种站。第 $i$ 名患者在时刻 $t_i$ 到达。我们知道，每名患者最多可以被要求等待 $w$ 个时刻。也就是说，第 $i$ 名患者可以在时刻 $t_i, t_i + 1, \\ldots, t_i + w$ 接种疫苗。\n\n疫苗以整包的形式提供，每包包含 $k$ 剂疫苗。每名患者恰好需要一剂疫苗。疫苗包存放在特殊的冰箱中。一旦疫苗包从冰箱中取出并打开，就不能再放回冰箱。疫苗离开冰箱后的保质期为 $d$ 个时刻。因此，如果疫苗包在时刻 $x$ 从冰箱中取出并打开，那么其中的疫苗可以在时刻 $x, x + 1, \\ldots, x + d$ 为患者接种。在时刻 $x + d + 1$，该疫苗包中所有剩余的未使用疫苗都将被丢弃。\n\n假设接种站有足够的工作人员，可以在每个时刻进行任意数量的操作。为了给所有 $n$ 名患者接种疫苗，至少需要多少包疫苗？\n\n## 输入格式\n\n输入的第一行包含测试用例的数量 $t$（$1 \\leq t \\leq 10^4$）。接下来是 $t$ 个测试用例的描述。\n\n每个测试用例的第一行包含四个整数 $n$、$k$、$d$ 和 $w$（$1 \\leq n, k \\leq 2 \\cdot 10^5$，$0 \\leq d, w \\leq 10^6$）。它们分别表示患者数量、每包疫苗的剂量数、疫苗离开冰箱后可以存放的时刻数，以及每名患者最多可以等待的时刻数。\n\n每个测试用例的第二行包含一个非递减序列 $t_1, t_2, \\ldots, t_n$（$0 \\leq t_1 \\leq t_2 \\leq \\ldots \\leq t_n \\leq 10^6$）。该序列的第 $i$ 个元素表示第 $i$ 名患者到达接种站的时刻。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n输出一个整数，表示为所有 $n$ 名患者接种疫苗所需的最少疫苗包数量。\n\n## 说明\n\n在第一个样例中，可以在时刻 $1$ 打开第一包疫苗，为患者 $1$ 接种。疫苗的保质期足够长，可以分别在时刻 $2$ 和 $3$ 为患者 $2$ 和患者 $3$ 接种。随后，工作人员需要让患者 $4$ 和患者 $5$ 等待到时刻 $13$。在时刻 $13$，工作人员打开第二包疫苗，为患者 $4$ 和患者 $5$ 接种。最后一名患者在时刻 $18$ 到达，并立即使用第二包疫苗中的最后一剂，此时疫苗仍然有效。\n\n在第二个样例中，疫苗必须在从冰箱中取出的时刻立即使用。此外，所有患者都希望在到达时刻恰好接受接种。这意味着工作人员需要在时刻 $3$ 打开两包疫苗，并为患者 $1$、$2$、$3$、$4$ 和 $5$ 使用其中的五剂疫苗。这两包疫苗还剩下三剂，但无法用于患者 $6$。当患者 $6$ 在时刻 $4$ 到达时，工作人员需要打开一包新的疫苗，而这包疫苗只使用一剂。",
   "samples": [
     {
       "input": "5\n6 3 5 3\n1 2 3 10 11 18\n6 4 0 0\n3 3 3 3 3 4\n9 10 2 2\n0 1 2 3 4 5 6 7 8\n3 10 3 6\n10 20 30\n5 5 4 4\n0 2 4 6 8\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:33:50.838Z"
+  "fetchedAt": "2026-10-30T22:33:50.838Z",
+  "translatedAt": "2026-11-04T02:52:58.172+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

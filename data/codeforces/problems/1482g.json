@@ -4,7 +4,7 @@
   "contestId": 1482,
   "index": "G",
   "title": "Vabank",
-  "titleZh": null,
+  "titleZh": "Vabank",
   "url": "https://codeforces.com/contest/1482/problem/G",
   "difficulty": 3200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Gustaw is the chief bank manager in a huge bank. He has unlimited access to the database system of the bank, in a few clicks he can move any amount of money from the bank's reserves to his own private account. However, the bank uses some fancy AI fraud detection system that makes stealing more difficult.\n\nGustaw knows that the anti-fraud system just detects any operation that exceeds some fixed limit $M$ euros and these operations are checked manually by a number of clerks. Thus, any fraud operation exceeding this limit is detected, while any smaller operation gets unnoticed.\n\nGustaw doesn't know the limit $M$ and wants to find it out. In one operation, he can choose some integer $X$ and try to move $X$ euros from the bank's reserves to his own account. Then, the following happens.\n\n- If $X \\le M$, the operation is unnoticed and Gustaw's account balance raises by $X$ euros.\n- Otherwise, if $X \\gt M$, the fraud is detected and cancelled. Moreover, Gustaw has to pay $X$ euros from his own account as a fine. If he has less than $X$ euros on the account, he is fired and taken to the police.\n\nInitially Gustaw has $1$ euro on his account. Help him find the exact value of $M$ in no more than $105$ operations without getting him fired.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$).\n\nFor each test case, there is no input prior to your first query, but you can be sure that $M$ is integer, and $0 \\le M \\le 10^{14}$.\n\n## Output\n\nFor each test case, when you know the exact value of $M$, print a single line with format \"`!` $M$\". After that your program should proceed to the next test case or terminate, if it is the last one.\n\n## Interaction\n\nWhen you want to make an operation, print a single line with format \"`?` $X$\", denoting that you try to move $X$ euros ($1 \\le X \\le 10^{14}$). As a response, read a single line that can take the following values:\n\n- \"`Lucky!`\", if $X \\le M$. Your balance raises by $X$.\n- \"`Fraudster!`\", if $X \\gt M$. Your balance decreases by $X$.\n- \"`Fired!`\", if $X \\gt M$, but you can't pay $X$ euros of fine. In this case your program must terminate immediately. You also get this response if you exceed the number of queries.\n\nYou can make at most $105$ such queries in each test case.\n\nAfter printing a query do not forget to output end of line and flush the output. Otherwise, you will get `Idleness limit exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see documentation for other languages.\n\n**Hacks**\n\nTo make a hack, prepare an input in the following format.\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nEach test case is described with a line containing a single integer $M$ ($0 \\le M \\le 10^{14}$).\n\n## Note\n\nIn the example $M = 5$, so the operation with $X = 6$ is detected. At this moment, Gustaw's balance is $16$ euros, so he just pays fine.",
-  "statementZhMd": null,
+  "statementZhMd": "Gustaw 是一家大型银行的首席经理。他可以无限制地访问银行的数据库系统，只需点击几下，就能将任意金额的资金从银行储备转入自己的私人账户。然而，银行使用了某种先进的 AI 欺诈检测系统，使得盗取资金变得更加困难。\n\nGustaw 知道，反欺诈系统只会检测超过某个固定上限 $M$ 欧元的操作，而这些操作会由若干名职员进行人工审核。因此，任何超过该上限的欺诈操作都会被检测到，而任何更小的操作都不会被发现。\n\nGustaw 不知道上限 $M$，他想找出它。在一次操作中，他可以选择某个整数 $X$，尝试将 $X$ 欧元从银行储备转入自己的账户。接下来会发生以下情况。\n\n- 如果 $X \\le M$，操作不会被发现，Gustaw 的账户余额增加 $X$ 欧元。\n- 否则，如果 $X \\gt M$，欺诈行为会被检测到，操作被取消。此外，Gustaw 必须从自己的账户中支付 $X$ 欧元的罚款。如果账户余额少于 $X$ 欧元，他将被解雇并被交给警方。\n\nGustaw 初始时账户中有 $1$ 欧元。请帮助他在不被解雇的情况下，通过不超过 $105$ 次操作找出 $M$ 的准确值。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 1000$）。\n\n对于每个测试用例，在进行第一次查询之前没有输入，但可以保证 $M$ 是整数，且 $0 \\le M \\le 10^{14}$。\n\n## 输出格式\n\n对于每个测试用例，当你得知 $M$ 的准确值后，输出一行，格式为 \"`!` $M$\"。之后，如果这是最后一个测试用例，你的程序应当终止；否则应继续处理下一个测试用例。\n\n## 交互\n\n当你想进行一次操作时，输出一行，格式为 \"`?` $X$\"，表示你尝试转移 $X$ 欧元（$1 \\le X \\le 10^{14}$）。作为回应，读取一行，其内容可能为以下值之一：\n\n- \"`Lucky!`\"，如果 $X \\le M$。你的余额增加 $X$。\n- \"`Fraudster!`\"，如果 $X \\gt M$。你的余额减少 $X$。\n- \"`Fired!`\"，如果 $X \\gt M$，但你无法支付 $X$ 欧元的罚款。此时你的程序必须立即终止。如果你超过了查询次数限制，也会收到此响应。\n\n每个测试用例中最多可以进行 $105$ 次这样的查询。\n\n输出查询后不要忘记输出换行并刷新输出。否则，你将收到 `Idleness limit exceeded`。可以使用：\n\n- `fflush(stdout)` 或 `cout.flush()`（C++）；\n- `System.out.flush()`（Java）；\n- `flush(output)`（Pascal）；\n- `stdout.flush()`（Python）；\n- 其他语言请参阅相关文档。\n\n**黑客测试**\n\n进行 hack 时，请准备如下格式的输入。\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例数量。\n\n每个测试用例占一行，包含一个整数 $M$（$0 \\le M \\le 10^{14}$）。\n\n## 说明\n\n样例中 $M = 5$，因此 $X = 6$ 的操作会被检测到。此时，Gustaw 的账户余额为 $16$ 欧元，因此他可以支付罚款。",
   "samples": [
     {
       "input": "1\n\nLucky!\n\nLucky!\n\nLucky!\n\nLucky!\n\nLucky!\n\nFraudster!\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:37:21.219Z"
+  "fetchedAt": "2026-10-30T23:37:21.219Z",
+  "translatedAt": "2026-11-04T04:00:42.163+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

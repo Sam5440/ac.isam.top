@@ -4,7 +4,7 @@
   "contestId": 1106,
   "index": "E",
   "title": "Lunar New Year and Red Envelopes",
-  "titleZh": null,
+  "titleZh": "农历新年与红包",
   "url": "https://codeforces.com/contest/1106/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "*Lunar New Year is approaching, and Bob is going to receive some red envelopes with countless money!* But collecting money from red envelopes is a time-consuming process itself.\n\nLet's describe this problem in a mathematical way. Consider a timeline from time $1$ to $n$. The $i$-th red envelope will be available from time $s_i$ to $t_i$, inclusive, and contain $w_i$ coins. If Bob chooses to collect the coins in the $i$-th red envelope, he can do it only in an **integer** point of time between $s_i$ and $t_i$, inclusive, and he can't collect any more envelopes until time $d_i$ (inclusive) after that. Here $s_i \\leq t_i \\leq d_i$ holds.\n\nBob is a greedy man, he collects coins greedily — whenever he can collect coins at some integer time $x$, he collects the available red envelope with the maximum number of coins. If there are multiple envelopes with the same maximum number of coins, Bob would choose the one whose parameter $d$ is the **largest**. If there are still multiple choices, Bob will choose one from them randomly.\n\nHowever, Alice — his daughter — doesn't want her father to get too many coins. She could disturb Bob at no more than $m$ integer time moments. If Alice decides to disturb Bob at time $x$, he could not do anything at time $x$ and resumes his usual strategy at the time $x + 1$ (inclusive), which may lead to missing some red envelopes.\n\nCalculate the minimum number of coins Bob would get if Alice disturbs him optimally.\n\n## Input\n\nThe first line contains three non-negative integers $n$, $m$ and $k$ ($1 \\leq n \\leq 10^5$, $0 \\leq m \\leq 200$, $1 \\leq k \\leq 10^5$), denoting the length of the timeline, the number of times Alice can disturb Bob and the total number of red envelopes, respectively.\n\nThe following $k$ lines describe those $k$ red envelopes. The $i$-th line contains four positive integers $s_i$, $t_i$, $d_i$ and $w_i$ ($1 \\leq s_i \\leq t_i \\leq d_i \\leq n$, $1 \\leq w_i \\leq 10^9$) — the time segment when the $i$-th envelope is available, the time moment Bob can continue collecting after collecting the $i$-th envelope, and the number of coins in this envelope, respectively.\n\n## Output\n\nOutput one integer — the minimum number of coins Bob would get if Alice disturbs him optimally.\n\n## Note\n\nIn the first sample, Alice has no chance to disturb Bob. Therefore Bob will collect the coins in the red envelopes at time $1$ and $5$, collecting $13$ coins in total.\n\nIn the second sample, Alice should disturb Bob at time $1$. Therefore Bob skips the first envelope, collects the second one and can not do anything after that. So the answer is $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "农历新年即将到来，Bob 将要收到装有数不尽钱财的红包！但从红包中收钱本身就是一个耗时的过程。\n\n让我们用数学方式描述这个问题。考虑从时间 $1$ 到 $n$ 的时间线。第 $i$ 个红包在从时间 $s_i$ 到 $t_i$（含）之间可领取，其中包含 $w_i$ 枚硬币。如果 Bob 选择领取第 $i$ 个红包，他只能在 $s_i$ 到 $t_i$（含）之间的某个**整数**时刻领取，并且在此之后直到时间 $d_i$（含）之前，他都不能再领取其他红包。这里满足 $s_i \\leq t_i \\leq d_i$。\n\nBob 是个贪心的人，他会贪心地收取硬币——每当他能在某个整数时刻 $x$ 领取红包时，他会选择当前可领取且硬币数量最多的红包。如果有多个红包包含相同数量的最多硬币，Bob 会选择参数 $d$ **最大**的那个红包。如果仍有多个选择，Bob 会从中随机选择一个。\n\n然而，Alice——他的女儿——不希望父亲获得太多硬币。她可以在不超过 $m$ 个整数时刻打扰 Bob。如果 Alice 决定在时间 $x$ 打扰 Bob，那么他在时间 $x$ 无法做任何事情，并会在时间 $x + 1$（含）恢复其通常的策略，这可能会导致错过一些红包。\n\n请计算如果 Alice 采取最优策略进行打扰，Bob 最少能获得多少枚硬币。\n\n## 输入格式\n\n第一行包含三个非负整数 $n$、$m$ 和 $k$（$1 \\leq n \\leq 10^5$，$0 \\leq m \\leq 200$，$1 \\leq k \\leq 10^5$），分别表示时间线的长度、Alice 可以打扰 Bob 的次数以及红包总数。\n\n接下来的 $k$ 行描述这 $k$ 个红包。第 $i$ 行包含四个正整数 $s_i$、$t_i$、$d_i$ 和 $w_i$（$1 \\leq s_i \\leq t_i \\leq d_i \\leq n$，$1 \\leq w_i \\leq 10^9$），分别表示第 $i$ 个红包的可领取时间段、领取第 $i$ 个红包后 Bob 可以继续领取红包的时间点，以及该红包中的硬币数量。\n\n## 输出格式\n\n输出一个整数——如果 Alice 采取最优策略进行打扰，Bob 最少能获得的硬币数量。\n\n## 说明\n\n在第一个样例中，Alice 没有机会打扰 Bob。因此 Bob 会在时间 $1$ 和 $5$ 领取红包，总共获得 $13$ 枚硬币。\n\n在第二个样例中，Alice 应该在时间 $1$ 打扰 Bob。因此 Bob 会跳过第一个红包，领取第二个红包，之后便无法再做任何事情。因此答案为 $2$。",
   "samples": [
     {
       "input": "5 0 2\n1 3 4 5\n2 5 5 8\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:17:14.027Z"
+  "fetchedAt": "2026-10-31T00:17:14.027Z",
+  "translatedAt": "2026-11-04T05:21:31.383+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

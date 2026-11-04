@@ -4,7 +4,7 @@
   "contestId": 1096,
   "index": "E",
   "title": "The Top Scorer",
-  "titleZh": null,
+  "titleZh": "最高得分者",
   "url": "https://codeforces.com/contest/1096/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Hasan loves playing games and has recently discovered a game called TopScore. In this soccer-like game there are $p$ players doing penalty shoot-outs. Winner is the one who scores the most. **In case of ties, one of the top-scorers will be declared as the winner randomly with equal probability.**\n\nThey have just finished the game and now are waiting for the result. But there's a tiny problem! The judges have lost the paper of scores! Fortunately they have calculated sum of the scores before they get lost and also for some of the players they have remembered a lower bound on how much they scored. However, the information about the bounds is private, so Hasan only got to know his bound.\n\nAccording to the available data, he knows that his score is at least $r$ and sum of the scores is $s$.\n\nThus the final state of the game can be represented in form of sequence of $p$ integers $a_1, a_2, \\dots, a_p$ ($0 \\le a_i$) — player's scores. Hasan is player number $1$, so $a_1 \\ge r$. Also $a_1 + a_2 + \\dots + a_p = s$. Two states are considered different if there exists some position $i$ such that the value of $a_i$ differs in these states.\n\n**Once again, Hasan doesn't know the exact scores (he doesn't know his exact score as well). So he considers each of the final states to be equally probable to achieve.**\n\nHelp Hasan find the probability of him winning.\n\nIt can be shown that it is in the form of $\\frac{P}{Q}$ where $P$ and $Q$ are non-negative integers and $Q \\ne 0$, $P \\le Q$. Report the value of $P \\cdot Q^{-1} \\pmod {998244353}$.\n\n## Input\n\nThe only line contains three integers $p$, $s$ and $r$ ($1 \\le p \\le 100$, $0 \\le r \\le s \\le 5000$) — the number of players, the sum of scores of all players and Hasan's score, respectively.\n\n## Output\n\nPrint a single integer — the probability of Hasan winning.\n\nIt can be shown that it is in the form of $\\frac{P}{Q}$ where $P$ and $Q$ are non-negative integers and $Q \\ne 0$, $P \\le Q$. Report the value of $P \\cdot Q^{-1} \\pmod {998244353}$.\n\n## Note\n\nIn the first example Hasan can score $3$, $4$, $5$ or $6$ goals. If he scores $4$ goals or more than he scores strictly more than his only opponent. If he scores $3$ then his opponent also scores $3$ and Hasan has a probability of $\\frac 1 2$ to win the game. Thus, overall he has the probability of $\\frac 7 8$ to win.\n\nIn the second example even Hasan's lower bound on goal implies him scoring more than any of his opponents. Thus, the resulting probability is $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "Hasan 喜欢玩游戏，最近发现了一款名为 TopScore 的游戏。在这款类似足球的游戏中，有 $p$ 名玩家进行点球大战。得分最多的人获胜。**如果出现平局，将以相同的概率随机从得分最高的玩家中选出一人作为胜者。**\n\n他们刚刚结束了比赛，现在正在等待结果。但有一个小问题！裁判弄丢了记录得分的纸。幸运的是，在纸张丢失之前，他们已经计算出了所有得分的总和，并且还记住了部分玩家得分的下界。不过，关于这些下界的信息是私密的，所以 Hasan 只知道自己的得分下界。\n\n根据现有信息，他知道自己的得分至少为 $r$，且所有得分之和为 $s$。\n\n因此，比赛的最终状态可以表示为一个由 $p$ 个整数组成的序列 $a_1, a_2, \\dots, a_p$（$0 \\le a_i$）——表示各个玩家的得分。Hasan 是编号为 $1$ 的玩家，因此 $a_1 \\ge r$。此外，$a_1 + a_2 + \\dots + a_p = s$。如果存在某个位置 $i$，使得两个状态中的 $a_i$ 不同，则认为这两个状态不同。\n\n**再强调一次，Hasan 不知道确切的得分（包括他自己的确切得分）。因此，他认为每一种最终状态出现的概率都相同。**\n\n请帮助 Hasan 求出他获胜的概率。\n\n可以证明，该概率可以表示为 $\\frac{P}{Q}$，其中 $P$ 和 $Q$ 是非负整数，且 $Q \\ne 0$，$P \\le Q$。请输出 $P \\cdot Q^{-1} \\pmod {998244353}$ 的值。\n\n## 输入格式\n\n唯一一行包含三个整数 $p$、$s$ 和 $r$（$1 \\le p \\le 100$，$0 \\le r \\le s \\le 5000$）——玩家数量、所有玩家得分之和以及 Hasan 的得分下界。\n\n## 输出格式\n\n输出一个整数——Hasan 获胜的概率。\n\n可以证明，该概率可以表示为 $\\frac{P}{Q}$，其中 $P$ 和 $Q$ 是非负整数，且 $Q \\ne 0$，$P \\le Q$。请输出 $P \\cdot Q^{-1} \\pmod {998244353}$ 的值。\n\n## 说明\n\n在第一个样例中，Hasan 可以得到 $3$、$4$、$5$ 或 $6$ 分。当他得到 $4$ 分或更多时，他的得分严格高于唯一的对手。如果他得到 $3$ 分，那么他的对手也会得到 $3$ 分，此时 Hasan 有 $\\frac 1 2$ 的概率赢得比赛。因此，总体而言，他获胜的概率为 $\\frac 7 8$。\n\n在第二个样例中，即使 Hasan 的得分下界也意味着他的得分高于所有对手。因此，最终的概率为 $1$。",
   "samples": [
     {
       "input": "2 6 3\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:25:08.676Z"
+  "fetchedAt": "2026-11-02T19:25:08.676Z",
+  "translatedAt": "2026-11-04T05:34:12.410+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

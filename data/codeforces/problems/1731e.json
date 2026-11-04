@@ -4,7 +4,7 @@
   "contestId": 1731,
   "index": "E",
   "title": "Graph Cost",
-  "titleZh": null,
+  "titleZh": "图的代价",
   "url": "https://codeforces.com/contest/1731/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an initially empty undirected graph with $n$ nodes, numbered from $1$ to $n$ (i. e. $n$ nodes and $0$ edges). You want to add $m$ edges to the graph, so the graph won't contain any self-loop or multiple edges.\n\nIf an edge connecting two nodes $u$ and $v$ is added, its weight must be equal to the greatest common divisor of $u$ and $v$, i. e. $\\gcd(u, v)$.\n\nIn order to add edges to the graph, you can repeat the following process any number of times (possibly zero):\n\n- choose an integer $k \\ge 1$;\n- add exactly $k$ edges to the graph, each having a weight equal to $k + 1$. Adding these $k$ edges costs $k + 1$ in total.\n\nNote that you can't create self-loops or multiple edges. Also, if you can't add $k$ edges of weight $k + 1$, you can't choose such $k$.\n\nFor example, if you can add $5$ more edges to the graph of weight $6$, you may add them, and it will cost $6$ for the whole pack of $5$ edges. But if you can only add $4$ edges of weight $6$ to the graph, you can't perform this operation for $k = 5$.\n\nGiven two integers $n$ and $m$, find the minimum total cost to form a graph of $n$ vertices and exactly $m$ edges using the operation above. If such a graph can't be constructed, output $-1$.\n\nNote that the final graph may consist of several connected components.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\leq t \\leq 10^4$). Description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\leq n \\leq 10^6$; $1 \\leq m \\leq \\frac{n(n-1)}{2}$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, print the minimum cost to build the graph, or $-1$ if you can't build such a graph.\n\n## Note\n\nIn the first test case, we can add an edge between the vertices $2$ and $4$ with $\\gcd = 2$. This is the only possible way to add $1$ edge that will cost $2$.\n\nIn the second test case, there is no way to add $10$ edges, so the answer is $-1$.\n\nIn the third test case, we can add the following edges:\n\n- $k = 1$: edge of weight $2$ between vertices $2$ and $4$ ($\\gcd(2, 4) = 2$). Cost: $2$;\n- $k = 1$: edge of weight $2$ between vertices $4$ and $6$ ($\\gcd(4, 6) = 2$). Cost: $2$;\n- $k = 2$: edges of weight $3$: $(3, 6)$ and $(3, 9)$ ($\\gcd(3, 6) = \\gcd(3, 9) = 3$). Cost: $3$.\n\nAs a result, we added $1 + 1 + 2 = 4$ edges with total cost $2 + 2 + 3 = 7$, which is the minimal possible cost.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个初始为空的无向图，其中有 $n$ 个节点，编号从 $1$ 到 $n$（即有 $n$ 个节点和 $0$ 条边）。你需要向图中添加 $m$ 条边，使图中不包含自环或重边。\n\n如果添加一条连接节点 $u$ 和 $v$ 的边，则其权值必须等于 $u$ 和 $v$ 的最大公约数，即 $\\gcd(u, v)$。\n\n为了向图中添加边，你可以重复进行以下操作任意次（也可以一次都不进行）：\n\n- 选择一个整数 $k \\ge 1$；\n- 向图中添加恰好 $k$ 条边，且每条边的权值都等于 $k + 1$。添加这 $k$ 条边的总费用为 $k + 1$。\n\n注意，你不能创建自环或重边。此外，如果无法添加 $k$ 条权值为 $k + 1$ 的边，则不能选择这样的 $k$。\n\n例如，如果图中还可以添加 $5$ 条权值为 $6$ 的边，那么你可以添加它们，并且整组 $5$ 条边的费用为 $6$。但是，如果图中只能添加 $4$ 条权值为 $6$ 的边，则不能执行 $k = 5$ 的操作。\n\n给定两个整数 $n$ 和 $m$，请使用上述操作构造一个有 $n$ 个顶点和恰好 $m$ 条边的图，并求所需的最小总费用。如果无法构造这样的图，则输出 $-1$。\n\n注意，最终的图可能由多个连通分量组成。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\leq t \\leq 10^4$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 10^6$；$1 \\leq m \\leq \\frac{n(n-1)}{2}$）。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出构造图所需的最小费用；如果无法构造出这样的图，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，我们可以添加一条连接顶点 $2$ 和 $4$ 的边，其 $\\gcd = 2$。这是添加 $1$ 条边时唯一费用为 $2$ 的方式。\n\n在第二个测试用例中，不存在添加 $10$ 条边的方法，因此答案为 $-1$。\n\n在第三个测试用例中，我们可以添加以下边：\n\n- $k = 1$：添加一条连接顶点 $2$ 和 $4$ 的权值为 $2$ 的边（$\\gcd(2, 4) = 2$）。费用：$2$；\n- $k = 1$：添加一条连接顶点 $4$ 和 $6$ 的权值为 $2$ 的边（$\\gcd(4, 6) = 2$）。费用：$2$；\n- $k = 2$：添加两条权值为 $3$ 的边：$(3, 6)$ 和 $(3, 9)$（$\\gcd(3, 6) = \\gcd(3, 9) = 3$）。费用：$3$。\n\n最终，我们添加了 $1 + 1 + 2 = 4$ 条边，总费用为 $2 + 2 + 3 = 7$，这是可能达到的最小费用。",
   "samples": [
     {
       "input": "4\n4 1\n6 10\n9 4\n10 11\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:51:46.434Z"
+  "fetchedAt": "2026-10-30T22:51:46.434Z",
+  "translatedAt": "2026-11-04T03:02:37.402+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

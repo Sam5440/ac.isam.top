@@ -4,7 +4,7 @@
   "contestId": 1179,
   "index": "A",
   "title": "Valeriy and Deque",
-  "titleZh": null,
+  "titleZh": "Valeriy 和双端队列",
   "url": "https://codeforces.com/contest/1179/problem/A",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 256,
   "statementMd": "Recently, on the course of algorithms and data structures, Valeriy learned how to use a deque. He built a deque filled with $n$ elements. The $i$-th element is $a_i$ ($i$ = $1, 2, \\ldots, n$). He gradually takes the first two leftmost elements from the deque (let's call them $A$ and $B$, respectively), and then does the following: if $A \\gt B$, he writes $A$ to the beginning and writes $B$ to the end of the deque, otherwise, he writes to the beginning $B$, and $A$ writes to the end of the deque. We call this sequence of actions an operation.\n\nFor example, if deque was $[2, 3, 4, 5, 1]$, on the operation he will write $B=3$ to the beginning and $A=2$ to the end, so he will get $[3, 4, 5, 1, 2]$.\n\nThe teacher of the course, seeing Valeriy, who was passionate about his work, approached him and gave him $q$ queries. Each query consists of the singular number $m_j$ $(j = 1, 2, \\ldots, q)$. It is required for each query to answer which two elements he will pull out on the $m_j$-th operation.\n\nNote that **the queries are independent** and for each query the numbers $A$ and $B$ should be **printed in the order in which they will be pulled out of the deque**.\n\n*Deque* is a data structure representing a list of elements where insertion of new elements or deletion of existing elements can be made from both sides.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($2 \\leq n \\leq 10^5$, $0 \\leq q \\leq 3 \\cdot 10^5$) — the number of elements in the deque and the number of queries. The second line contains $n$ integers $a_1$, $a_2$, ..., $a_n$, where $a_i$ $(0 \\leq a_i \\leq 10^9)$ — the deque element in $i$-th position. The next $q$ lines contain one number each, meaning $m_j$ ($1 \\leq m_j \\leq 10^{18}$).\n\n## Output\n\nFor each teacher's query, output two numbers $A$ and $B$ — the numbers that Valeriy pulls out of the deque for the $m_j$-th operation.\n\n## Note\n\n1. $[1, 2, 3, 4, 5]$ — on the first operation, $A$ and $B$ are $1$ and $2$, respectively.So, $2$ we write to the beginning of the deque, and $1$ — to the end.We get the following status of the deque: $[2, 3, 4, 5, 1]$.\n2. $[2, 3, 4, 5, 1] \\Rightarrow A = 2, B = 3$.\n3. $[3, 4, 5, 1, 2]$\n4. $[4, 5, 1, 2, 3]$\n5. $[5, 1, 2, 3, 4]$\n6. $[5, 2, 3, 4, 1]$\n7. $[5, 3, 4, 1, 2]$\n8. $[5, 4, 1, 2, 3]$\n9. $[5, 1, 2, 3, 4]$\n10. $[5, 2, 3, 4, 1] \\Rightarrow A = 5, B = 2$.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，在算法与数据结构课程中，Valeriy 学会了如何使用双端队列。他创建了一个包含 $n$ 个元素的双端队列。第 $i$ 个元素为 $a_i$（$i$ = $1, 2, \\ldots, n$）。他会逐渐从双端队列中取出最左侧的两个元素（分别称为 $A$ 和 $B$），然后进行如下操作：如果 $A \\gt B$，就将 $A$ 放回队首，并将 $B$ 放到队尾；否则，就将 $B$ 放到队首，并将 $A$ 放到队尾。我们将这一系列动作称为一次操作。\n\n例如，如果双端队列为 $[2, 3, 4, 5, 1]$，在这次操作中，他会将 $B=3$ 放到队首，并将 $A=2$ 放到队尾，因此得到 $[3, 4, 5, 1, 2]$。\n\n课程老师看到热衷于学习的 Valeriy 后，走过来给了他 $q$ 个询问。每个询问只包含一个数 $m_j$（$j = 1, 2, \\ldots, q$）。对于每个询问，需要回答在第 $m_j$ 次操作中，他会取出哪两个元素。\n\n注意，**各个询问相互独立**，并且对于每个询问，都应当按照元素从双端队列中取出的顺序输出 $A$ 和 $B$。\n\n*双端队列*是一种数据结构，其中可以从两端插入新元素或删除已有元素。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$2 \\le n \\le 10^5$，$0 \\le q \\le 3 \\cdot 10^5$）——双端队列中元素的数量以及询问的数量。第二行包含 $n$ 个整数 $a_1$、$a_2$、..., $a_n$，其中 $a_i$（$0 \\le a_i \\le 10^9$）表示双端队列中第 $i$ 个位置的元素。接下来的 $q$ 行每行包含一个数，表示 $m_j$（$1 \\le m_j \\le 10^{18}$）。\n\n## 输出格式\n\n对于老师的每个询问，输出两个数 $A$ 和 $B$——Valeriy 在第 $m_j$ 次操作中从双端队列中取出的两个元素。\n\n## 说明\n\n1. $[1, 2, 3, 4, 5]$——在第一次操作中，取出的 $A$ 和 $B$ 分别为 $1$ 和 $2$。因此，我们将 $2$ 放到双端队列的队首，将 $1$ 放到队尾。双端队列变为：$[2, 3, 4, 5, 1]$。\n2. $[2, 3, 4, 5, 1] \\Rightarrow A = 2, B = 3$。\n3. $[3, 4, 5, 1, 2]$\n4. $[4, 5, 1, 2, 3]$\n5. $[5, 1, 2, 3, 4]$\n6. $[5, 2, 3, 4, 1]$\n7. $[5, 3, 4, 1, 2]$\n8. $[5, 4, 1, 2, 3]$\n9. $[5, 1, 2, 3, 4]$\n10. $[5, 2, 3, 4, 1] \\Rightarrow A = 5, B = 2$。",
   "samples": [
     {
       "input": "5 3\n1 2 3 4 5\n1\n2\n10\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:09:24.875Z"
+  "fetchedAt": "2026-10-31T00:09:24.875Z",
+  "translatedAt": "2026-11-04T05:08:31.695+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

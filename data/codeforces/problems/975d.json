@@ -4,7 +4,7 @@
   "contestId": 975,
   "index": "D",
   "title": "Ghosts",
-  "titleZh": null,
+  "titleZh": "幽灵",
   "url": "https://codeforces.com/contest/975/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Ghosts live in harmony and peace, they travel the space without any purpose other than scare whoever stands in their way.\n\nThere are $n$ ghosts in the universe, they move in the $OXY$ plane, each one of them has its own velocity that does not change in time: $\\overrightarrow{V} = V_{x}\\overrightarrow{i} + V_{y}\\overrightarrow{j}$ where $V_{x}$ is its speed on the $x$-axis and $V_{y}$ is on the $y$-axis.\n\nA ghost $i$ has experience value $EX_i$, which represent how many ghosts tried to scare him in his past. Two ghosts scare each other if they were in the same cartesian point at a moment of time.\n\nAs the ghosts move with constant speed, after some moment of time there will be no further scaring (*what a relief!*) and the experience of ghost kind $GX = \\sum_{i=1}^{n} EX_i$ will never increase.\n\nTameem is a red giant, he took a picture of the cartesian plane at a certain moment of time $T$, and magically all the ghosts were aligned on a line of the form $y = a \\cdot x + b$. You have to compute what will be the experience index of the ghost kind $GX$ in the indefinite future, this is your task for today.\n\nNote that when Tameem took the picture, $GX$ may already be greater than $0$, because many ghosts may have scared one another at any moment between $[-\\infty, T]$.\n\n## Input\n\nThe first line contains three integers $n$, $a$ and $b$ ($1 \\leq n \\leq 200000$, $1 \\leq |a| \\leq 10^9$, $0 \\le |b| \\le 10^9$) — the number of ghosts in the universe and the parameters of the straight line.\n\nEach of the next $n$ lines contains three integers $x_i$, $V_{xi}$, $V_{yi}$ ($-10^9 \\leq x_i \\leq 10^9$, $-10^9 \\leq V_{x i}, V_{y i} \\leq 10^9$), where $x_i$ is the current $x$-coordinate of the $i$-th ghost (and $y_i = a \\cdot x_i + b$).\n\nIt is guaranteed that no two ghosts share the same initial position, in other words, it is guaranteed that for all $(i,j)$ $x_i \\neq x_j$ for $i \\ne j$.\n\n## Output\n\nOutput one line: experience index of the ghost kind $GX$ in the indefinite future.\n\n## Note\n\nThere are four collisions $(1,2,T-0.5)$, $(1,3,T-1)$, $(2,4,T+1)$, $(3,4,T+0.5)$, where $(u,v,t)$ means a collision happened between ghosts $u$ and $v$ at moment $t$. At each collision, each ghost gained one experience point, this means that $GX = 4 \\cdot 2 = 8$.\n\nIn the second test, all points will collide when $t = T + 1$.\n\n![image](https://espresso.codeforces.com/632930388686f4065fba42f9dba9a1c12c028844.png)\n\nThe red arrow represents the 1-st ghost velocity, orange represents the 2-nd ghost velocity, and blue represents the 3-rd ghost velocity.",
-  "statementZhMd": null,
+  "statementZhMd": "幽灵们和谐而安宁地生活着，它们在空间中漫无目的地移动，唯一的目的就是吓唬挡在它们路上的任何人。\n\n宇宙中有 $n$ 个幽灵，它们在 $OXY$ 平面上移动，每个幽灵都有一个不会随时间改变的速度：$\\overrightarrow{V} = V_{x}\\overrightarrow{i} + V_{y}\\overrightarrow{j}$，其中 $V_{x}$ 是它在 $x$ 轴方向上的速度，$V_{y}$ 是它在 $y$ 轴方向上的速度。\n\n幽灵 $i$ 有一个经验值 $EX_i$，表示过去曾经试图吓唬它的幽灵数量。如果两个幽灵在某个时刻位于同一个笛卡尔坐标点，那么它们就会互相吓唬。\n\n由于幽灵们以恒定速度移动，在某个时刻之后将不会再发生吓唬事件（*真是令人欣慰！*），幽灵种族的经验值 $GX = \\sum_{i=1}^{n} EX_i$ 也将不再增加。\n\nTameem 是一颗红巨星，他在某个时刻 $T$ 拍摄了一张笛卡尔平面的照片，神奇的是，所有幽灵都排列在形如 $y = a \\cdot x + b$ 的直线上。你的任务是计算在无限远的未来，幽灵种族的经验值 $GX$ 将是多少。\n\n注意，在 Tameem 拍摄照片时，$GX$ 可能已经大于 $0$，因为在 $[-\\infty, T]$ 之间的某个时刻，许多幽灵可能已经互相吓唬过。\n\n## 输入\n\n第一行包含三个整数 $n$、$a$ 和 $b$（$1 \\leq n \\leq 200000$，$1 \\leq |a| \\leq 10^9$，$0 \\le |b| \\le 10^9$）——宇宙中幽灵的数量以及直线的参数。\n\n接下来的 $n$ 行中，每行包含三个整数 $x_i$、$V_{xi}$、$V_{yi}$（$-10^9 \\leq x_i \\leq 10^9$，$-10^9 \\leq V_{x i}, V_{y i} \\leq 10^9$），其中 $x_i$ 是第 $i$ 个幽灵当前的 $x$ 坐标（且 $y_i = a \\cdot x_i + b$）。\n\n保证任意两个幽灵的初始位置不同，换句话说，对于所有的 $(i,j)$，当 $i \\ne j$ 时均有 $x_i \\neq x_j$。\n\n## 输出格式\n\n输出一行：无限远的未来中幽灵种族的经验值 $GX$。\n\n## 说明\n\n共有四次碰撞 $(1,2,T-0.5)$、$(1,3,T-1)$、$(2,4,T+1)$、$(3,4,T+0.5)$，其中 $(u,v,t)$ 表示幽灵 $u$ 和幽灵 $v$ 在时刻 $t$ 发生碰撞。每次碰撞中，每个幽灵都会获得一点经验值，这意味着 $GX = 4 \\cdot 2 = 8$。\n\n在第二个测试中，所有点将在 $t = T + 1$ 时发生碰撞。\n\n![image](https://espresso.codeforces.com/632930388686f4065fba42f9dba9a1c12c028844.png)\n\n红色箭头表示第 1 个幽灵的速度，橙色表示第 2 个幽灵的速度，蓝色表示第 3 个幽灵的速度。",
   "samples": [
     {
       "input": "4 1 1\n1 -1 -1\n2 1 1\n3 1 1\n4 -1 -1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:32:00.847Z"
+  "fetchedAt": "2026-10-31T00:32:00.847Z",
+  "translatedAt": "2026-11-04T05:43:43.567+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

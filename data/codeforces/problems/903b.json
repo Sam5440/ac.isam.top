@@ -4,7 +4,7 @@
   "contestId": 903,
   "index": "B",
   "title": "The Modcrab",
-  "titleZh": null,
+  "titleZh": "Modcrab",
   "url": "https://codeforces.com/contest/903/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Vova is again playing some computer game, now an RPG. In the game Vova's character received a quest: to slay the fearsome monster called Modcrab.\n\nAfter two hours of playing the game Vova has tracked the monster and analyzed its tactics. The Modcrab has $*h*_{2}$ health points and an attack power of $*a*_{2}$. Knowing that, Vova has decided to buy a lot of strong healing potions and to prepare for battle.\n\nVova's character has $*h*_{1}$ health points and an attack power of $*a*_{1}$. Also he has a large supply of healing potions, each of which increases his current amount of health points by $*c*_{1}$ when Vova drinks a potion. All potions are identical to each other. It is guaranteed that $*c*_{1} > *a*_{2}$.\n\nThe battle consists of multiple phases. In the beginning of each phase, Vova can either attack the monster (thus reducing its health by $*a*_{1}$) or drink a healing potion (it increases Vova's health by $*c*_{1}$; **Vova's health can exceed $*h*_{1}$**). Then, **if the battle is not over yet**, the Modcrab attacks Vova, reducing his health by $*a*_{2}$. The battle ends when Vova's (or Modcrab's) health drops to $0$ or lower. It is possible that the battle ends in a middle of a phase after Vova's attack.\n\nOf course, Vova wants to win the fight. But also he wants to do it as fast as possible. So he wants to make up a strategy that will allow him to win the fight after the minimum possible number of phases.\n\nHelp Vova to make up a strategy! You may assume that Vova never runs out of healing potions, and that he can always win.\n\n## Input\n\nThe first line contains three integers $*h*_{1}$, $*a*_{1}$, $*c*_{1}$ ($1 ≤ *h*_{1}, *a*_{1} ≤ 100$, $2 ≤ *c*_{1} ≤ 100$) — Vova's health, Vova's attack power and the healing power of a potion.\n\nThe second line contains two integers $*h*_{2}$, $*a*_{2}$ ($1 ≤ *h*_{2} ≤ 100$, $1 ≤ *a*_{2} < *c*_{1}$) — the Modcrab's health and his attack power.\n\n## Output\n\nIn the first line print one integer $*n*$ denoting the minimum number of phases required to win the battle.\n\nThen print $*n*$ lines. $*i*$-th line must be equal to `HEAL` if Vova drinks a potion in $*i*$-th phase, or `STRIKE` if he attacks the Modcrab.\n\nThe strategy must be valid: Vova's character must not be defeated before slaying the Modcrab, and the monster's health must be $0$ or lower after Vova's last action.\n\nIf there are multiple optimal solutions, print any of them.\n\n## Note\n\nIn the first example Vova's character must heal before or after his first attack. Otherwise his health will drop to zero in $2$ phases while he needs $3$ strikes to win.\n\nIn the second example no healing needed, two strikes are enough to get monster to zero health and win with $6$ health left.",
-  "statementZhMd": null,
+  "statementZhMd": "Vova 又在玩一款电脑游戏，这次是一款 RPG。在游戏中，Vova 的角色接到了一个任务：消灭名为 Modcrab 的可怕怪物。\n\n经过两个小时的游戏，Vova 找到了这个怪物，并分析了它的战术。Modcrab 拥有 $*h*_{2}$ 点生命值和 $*a*_{2}$ 点攻击力。得知这些信息后，Vova 决定购买大量强力治疗药水，为战斗做好准备。\n\nVova 的角色拥有 $*h*_{1}$ 点生命值和 $*a*_{1}$ 点攻击力。他还有大量治疗药水，每当 Vova 喝下一瓶药水时，当前生命值就会增加 $*c*_{1}$。所有药水都完全相同。保证 $*c*_{1} > *a*_{2}$。\n\n战斗由多个阶段组成。在每个阶段开始时，Vova 可以攻击怪物（使其生命值减少 $*a*_{1}$），或者喝下一瓶治疗药水（使 Vova 的生命值增加 $*c*_{1}$；**Vova 的生命值可以超过 $*h*_{1}$**）。然后，**如果战斗尚未结束**，Modcrab 会攻击 Vova，使他的生命值减少 $*a*_{2}$。当 Vova 或 Modcrab 的生命值降至 $0$ 或以下时，战斗结束。在 Vova 攻击后，战斗可能会在一个阶段中途结束。\n\n当然，Vova 希望赢得战斗。但同时，他也希望尽快完成战斗。因此，他想制定一个策略，使自己能够在最少的阶段数后赢得战斗。\n\n请帮助 Vova 制定一个策略！你可以假设 Vova 永远不会用完治疗药水，并且他总能赢得战斗。\n\n## 输入\n\n第一行包含三个整数 $*h*_{1}$、$*a*_{1}$、$*c*_{1}$（$1 ≤ *h*_{1}, *a*_{1} ≤ 100$，$2 ≤ *c*_{1} ≤ 100$）——Vova 的生命值、Vova 的攻击力以及药水的治疗量。\n\n第二行包含两个整数 $*h*_{2}$、$*a*_{2}$（$1 ≤ *h*_{2} ≤ 100$，$1 ≤ *a*_{2} < *c*_{1}$）——Modcrab 的生命值和攻击力。\n\n## 输出\n\n第一行输出一个整数 $*n*$，表示赢得战斗所需的最少阶段数。\n\n接下来输出 $*n*$ 行。第 $*i*$ 行必须为 `HEAL`，表示 Vova 在第 $*i*$ 个阶段喝下一瓶药水；或者为 `STRIKE`，表示他攻击 Modcrab。\n\n策略必须有效：在消灭 Modcrab 之前，Vova 的角色不能被击败，并且在 Vova 的最后一个行动之后，怪物的生命值必须小于或等于 $0$。\n\n如果有多个最优解，输出任意一个即可。\n\n## 说明\n\n在第一个样例中，Vova 的角色必须在第一次攻击之前或之后进行治疗。否则，他的生命值会在 $2$ 个阶段后降至 $0$，而他需要进行 $3$ 次攻击才能获胜。\n\n在第二个样例中不需要治疗，进行两次攻击就足以将怪物的生命值降至 $0$，并且 Vova 还剩下 $6$ 点生命值。",
   "samples": [
     {
       "input": "10 6 100\n17 5\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:42:54.476Z"
+  "fetchedAt": "2026-11-02T19:42:54.476Z",
+  "translatedAt": "2026-11-04T05:53:08.161+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

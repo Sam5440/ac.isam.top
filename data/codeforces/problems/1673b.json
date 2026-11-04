@@ -4,7 +4,7 @@
   "contestId": 1673,
   "index": "B",
   "title": "A Perfectly Balanced String?",
-  "titleZh": null,
+  "titleZh": "完美平衡的字符串？",
   "url": "https://codeforces.com/contest/1673/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Let's call a string $s$ perfectly balanced if for all possible triplets $(t,u,v)$ such that $t$ is a non-empty substring of $s$ and $u$ and $v$ are characters present in $s$, the difference between the frequencies of $u$ and $v$ in $t$ is not more than $1$.\n\nFor example, the strings \"`aba`\" and \"`abc`\" are perfectly balanced but \"`abb`\" is not because for the triplet (\"`bb`\",'`a`','`b`'), the condition is not satisfied.\n\nYou are given a string $s$ consisting of lowercase English letters only. Your task is to determine whether $s$ is perfectly balanced or not.\n\nA string $b$ is called a substring of another string $a$ if $b$ can be obtained by deleting some characters (possibly $0$) from the start and some characters (possibly $0$) from the end of $a$.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1\\leq t\\leq 2\\cdot 10^4$) denoting the number of testcases.\n\nEach of the next $t$ lines contain a single string $s$ ($1\\leq |s|\\leq 2\\cdot 10^5$), consisting of lowercase English letters.\n\nIt is guaranteed that the sum of $|s|$ over all testcases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print \"`YES`\" if $s$ is a perfectly balanced string, and \"`NO`\" otherwise.\n\nYou may print each letter in any case (for example, `\"YES\"`, `\"Yes\"`, `\"yes\"`, `\"yEs\"` will all be recognized as positive answer).\n\n## Note\n\nLet $f_t(c)$ represent the frequency of character $c$ in string $t$.\n\nFor the first testcase we have\n\n| $t$ | $f_t(a)$ | $f_t(b)$ |\n| --- | --- | --- |\n| $a$ | $1$ | $0$ |\n| $ab$ | $1$ | $1$ |\n| $aba$ | $2$ | $1$ |\n| $b$ | $0$ | $1$ |\n| $ba$ | $1$ | $1$ |\n\nIt can be seen that for any substring $t$ of $s$, the difference between $f_t(a)$ and $f_t(b)$ is not more than $1$. Hence the string $s$ is perfectly balanced.\n\nFor the second testcase we have\n\n| $t$ | $f_t(a)$ | $f_t(b)$ |\n| --- | --- | --- |\n| $a$ | $1$ | $0$ |\n| $ab$ | $1$ | $1$ |\n| $abb$ | $1$ | $2$ |\n| $b$ | $0$ | $1$ |\n| $bb$ | $0$ | $2$ |\n\nIt can be seen that for the substring $t=bb$, the difference between $f_t(a)$ and $f_t(b)$ is $2$ which is greater than $1$. Hence the string $s$ is not perfectly balanced.\n\nFor the third testcase we have\n\n| $t$ | $f_t(a)$ | $f_t(b)$ | $f_t(c)$ |\n| --- | --- | --- | --- |\n| $a$ | $1$ | $0$ | $0$ |\n| $ab$ | $1$ | $1$ | $0$ |\n| $abc$ | $1$ | $1$ | $1$ |\n| $b$ | $0$ | $1$ | $0$ |\n| $bc$ | $0$ | $1$ | $1$ |\n| $c$ | $0$ | $0$ | $1$ |\n\nIt can be seen that for any substring $t$ of $s$ and any two characters $u,v\\in\\{a,b,c\\}$, the difference between $f_t(u)$ and $f_t(v)$ is not more than $1$. Hence the string $s$ is perfectly balanced.",
-  "statementZhMd": null,
+  "statementZhMd": "如果对于所有可能的三元组 $(t,u,v)$，其中 $t$ 是 $s$ 的非空子串，$u$ 和 $v$ 是 $s$ 中出现的字符，$u$ 和 $v$ 在 $t$ 中出现次数之差都不超过 $1$，那么我们称字符串 $s$ 是完美平衡的。\n\n例如，字符串 \"`aba`\" 和 \"`abc`\" 是完美平衡的，但 \"`abb`\" 不是，因为对于三元组 (\"`bb`\",'`a`','`b`')，该条件不成立。\n\n给定一个仅由小写英文字母组成的字符串 $s$。你的任务是判断 $s$ 是否是完美平衡的。\n\n如果字符串 $b$ 可以通过从字符串 $a$ 的开头删除若干个字符（可以删除 $0$ 个），并从末尾删除若干个字符（可以删除 $0$ 个）得到，则称字符串 $b$ 是字符串 $a$ 的子串。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1\\leq t\\leq 2\\cdot 10^4$），表示测试用例的数量。\n\n接下来的 $t$ 行中，每行包含一个字符串 $s$（$1\\leq |s|\\leq 2\\cdot 10^5$），字符串仅由小写英文字母组成。\n\n保证所有测试用例的 $|s|$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果 $s$ 是完美平衡的字符串，输出 \"`YES`\"，否则输出 \"`NO`\"。\n\n每个字母可以使用任意大小写输出（例如，`\"YES\"`、`\"Yes\"`、`\"yes\"`、`\"yEs\"` 都会被识别为肯定答案）。\n\n## 说明\n\n对于第一个测试用例，有\n\n| $t$ | $f_t(a)$ | $f_t(b)$ |\n| --- | --- | --- |\n| $a$ | $1$ | $0$ |\n| $ab$ | $1$ | $1$ |\n| $aba$ | $2$ | $1$ |\n| $b$ | $0$ | $1$ |\n| $ba$ | $1$ | $1$ |\n\n可以看出，对于 $s$ 的任意子串 $t$，$f_t(a)$ 和 $f_t(b)$ 之差都不超过 $1$。因此字符串 $s$ 是完美平衡的。\n\n对于第二个测试用例，有\n\n| $t$ | $f_t(a)$ | $f_t(b)$ |\n| --- | --- | --- |\n| $a$ | $1$ | $0$ |\n| $ab$ | $1$ | $1$ |\n| $abb$ | $1$ | $2$ |\n| $b$ | $0$ | $1$ |\n| $bb$ | $0$ | $2$ |\n\n可以看出，对于子串 $t=bb$，$f_t(a)$ 和 $f_t(b)$ 之差为 $2$，大于 $1$。因此字符串 $s$ 不是完美平衡的。\n\n对于第三个测试用例，有\n\n| $t$ | $f_t(a)$ | $f_t(b)$ | $f_t(c)$ |\n| --- | --- | --- | --- |\n| $a$ | $1$ | $0$ | $0$ |\n| $ab$ | $1$ | $1$ | $0$ |\n| $abc$ | $1$ | $1$ | $1$ |\n| $b$ | $0$ | $1$ | $0$ |\n| $bc$ | $0$ | $1$ | $1$ |\n| $c$ | $0$ | $0$ | $1$ |\n\n可以看出，对于 $s$ 的任意子串 $t$ 以及任意两个字符 $u,v\\in\\{a,b,c\\}$，$f_t(u)$ 和 $f_t(v)$ 之差都不超过 $1$。因此字符串 $s$ 是完美平衡的。",
   "samples": [
     {
       "input": "5\naba\nabb\nabc\naaaaa\nabcba\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:02:29.858Z"
+  "fetchedAt": "2026-10-30T23:02:29.858Z",
+  "translatedAt": "2026-11-04T03:28:09.256+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1037,
   "index": "H",
   "title": "Security",
-  "titleZh": null,
+  "titleZh": "安全",
   "url": "https://codeforces.com/contest/1037/problem/H",
   "difficulty": 3200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Some programming website is establishing a secure communication protocol. For security reasons, they want to choose several more or less random strings.\n\nInitially, they have a string $s$ consisting of lowercase English letters. Now they want to choose $q$ strings using the following steps, and you are to help them.\n\n1. A string $x$ consisting of lowercase English letters and integers $l$ and $r$ ($1 \\leq l \\leq r \\leq |s|$) are chosen.\n2. Consider all non-empty distinct substrings of the $s_l s_{l + 1} \\ldots s_r$, that is all distinct strings $s_i s_{i+1} \\ldots s_{j}$ where $l \\le i \\le j \\le r$. Among all of them choose all strings that are lexicographically greater than $x$.\n3. If there are no such strings, you should print $-1$. Otherwise print the lexicographically smallest among them.\n\nString $a$ is lexicographically less than string $b$, if either $a$ is a prefix of $b$ and $a \\ne b$, or there exists such a position $i$ ($1 \\le i \\le min(|a|, |b|)$), such that $a_i \\lt b_i$ and for all $j$ ($1 \\le j \\lt i$) $a_j = b_j$. Here $|a|$ denotes the length of the string $a$.\n\n## Input\n\nThe first line of input contains a non-empty string $s$ ($1 \\leq |s| \\leq 10^{5}$) consisting of lowercase English letters.\n\nThe second line contains an integer $q$ ($1 \\le q \\le 2 \\cdot 10^5$) — the number of strings to select.\n\nEach of the next $q$ lines contains two integers $l$, $r$ ($1 \\leq l \\leq r \\leq |s|$) and a non-empty string $x$ consisting of lowercase English letters. The total length of strings $x$ for all queries does not exceed $2 \\cdot 10^{5}$.\n\n## Output\n\nOutput $q$ lines, each of them should contain the desired string or $-1$, if there is no such string.\n\n## Note\n\nConsider the first example.\n\nThe string $s$ is \"`baa`\". The queries are as follows.\n\n1. We consider the substring $s_1 s_2$ that is \"`ba`\". It has substrings \"`b`\", \"`a`\" and \"`ba`\", since none of them is greater than the query string \"`ba`\", the answer is $-1$.\n2. We consider substring \"`aa`\". Among its substrings only \"`aa`\" is greater than the query string \"`a`\". So the answer is \"`aa`\".\n3. We consider substring \"`ba`\". Out of \"`b`\", \"`a`\" and \"`ba`\" only \"`ba`\" is greater than the query string \"`b`\", so the answer is \"`ba`\".\n4. We consider substring \"`aa`\". No substring of \"`aa`\" is greater than the query string \"`aa`\" so the answer is $-1$.\n5. We consider substring \"`baa`\" and it has (among others) substrings \"`ba`\", \"`baa`\" which are greater than the query string \"`b`\". Since \"`ba`\" is lexicographically smaller than \"`baa`\", the answer is \"`ba`\".",
-  "statementZhMd": null,
+  "statementZhMd": "某编程网站正在建立一种安全通信协议。出于安全原因，他们希望选择若干个或多或少随机的字符串。\n\n最初，他们有一个由小写英文字母组成的字符串 $s$。现在，他们希望通过以下步骤选择 $q$ 个字符串，请你帮助他们完成这一过程。\n\n1. 选择一个由小写英文字母组成的字符串 $x$，以及两个整数 $l$ 和 $r$（$1 \\leq l \\leq r \\leq |s|$）。\n2. 考虑 $s_l s_{l + 1} \\ldots s_r$ 的所有非空且互不相同的子串，即所有满足 $l \\le i \\le j \\le r$ 的不同字符串 $s_i s_{i+1} \\ldots s_{j}$。在这些字符串中，选出所有字典序大于 $x$ 的字符串。\n3. 如果不存在这样的字符串，输出 $-1$；否则，输出其中字典序最小的字符串。\n\n如果满足以下任一条件，则称字符串 $a$ 的字典序小于字符串 $b$：$a$ 是 $b$ 的前缀且 $a \\ne b$；或者存在某个位置 $i$（$1 \\leq i \\leq min(|a|, |b|)$），使得 $a_i \\lt b_i$，并且对于所有 $j$（$1 \\leq j \\lt i$），都有 $a_j = b_j$。其中，$|a|$ 表示字符串的长度。\n\n## 输入格式\n\n输入的第一行包含一个非空字符串 $s$（$1 \\leq |s| \\leq 10^{5}$），由小写英文字母组成。\n\n第二行包含一个整数 $q$（$1 \\leq q \\leq 2 \\cdot 10^5$）——需要选择的字符串数量。\n\n接下来的 $q$ 行中，每行包含两个整数 $l$、$r$（$1 \\leq l \\leq r \\leq |s|$）以及一个由小写英文字母组成的非空字符串 $x$。所有查询中字符串 $x$ 的总长度不超过 $2 \\cdot 10^{5}$。\n\n## 输出格式\n\n输出 $q$ 行，每行包含所需的字符串；如果不存在这样的字符串，则输出 $-1$。\n\n## 说明\n\n考虑第一个样例。\n\n字符串 $s$ 为 \"`baa`\"。查询如下。\n\n1. 我们考虑子串 $s_1 s_2$，即 \"`ba`\"。它的子串有 \"`b`\"、\"`a`\" 和 \"`ba`\"，由于其中没有一个字典序大于查询字符串 \"`ba`\"，答案为 $-1$。\n2. 我们考虑子串 \"`aa`\"。在它的子串中，只有 \"`aa`\" 的字典序大于查询字符串 \"`a`\"。因此答案为 \"`aa`\"。\n3. 我们考虑子串 \"`ba`\"。在 \"`b`\"、\"`a`\" 和 \"`ba`\" 中，只有 \"`ba`\" 的字典序大于查询字符串 \"`b`\"，因此答案为 \"`ba`\"。\n4. 我们考虑子串 \"`aa`\"。\"`aa`\" 的任何子串的字典序都不大于查询字符串 \"`aa`\"，因此答案为 $-1$。\n5. 我们考虑子串 \"`baa`\"，其中包含子串 \"`ba`\"、\"`baa`\" 等，它们的字典序都大于查询字符串 \"`b`\"。由于 \"`ba`\" 的字典序小于 \"`baa`\"，答案为 \"`ba`\"。",
   "samples": [
     {
       "input": "baa\n5\n1 2 ba\n2 3 a\n1 2 b\n2 3 aa\n1 3 b\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:24:19.902Z"
+  "fetchedAt": "2026-10-31T00:24:19.902Z",
+  "translatedAt": "2026-11-04T05:37:14.785+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

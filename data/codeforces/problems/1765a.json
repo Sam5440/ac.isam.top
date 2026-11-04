@@ -4,7 +4,7 @@
   "contestId": 1765,
   "index": "A",
   "title": "Access Levels",
-  "titleZh": null,
+  "titleZh": "访问级别",
   "url": "https://codeforces.com/contest/1765/problem/A",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "BerSoft is the biggest IT corporation in Berland, and Monocarp is the head of its security department. This time, he faced the most difficult task ever.\n\nBasically, there are n developers working at BerSoft, numbered from 1 to n. There are m documents shared on the internal network, numbered from 1 to m. There is a table of access requirements a such that ai,j (the j-th element of the i-th row) is 1 if the i-th developer should have access to the j-th document, and 0 if they should have no access to it.\n\nIn order to restrict the access, Monocarp is going to perform the following actions:\n\n- choose the number of access groups k≥1;\n- assign each document an access group (an integer from 1 to k) and the required access level (an integer from 1 to 109);\n- assign each developer k integer values (from 1 to 109) — their access levels for each of the access groups.\n\nThe developer i has access to the document j if their access level for the access group of the document is greater than or equal to the required access level of the document.\n\nWhat's the smallest number of access groups Monocarp can choose so that it's possible to assign access groups and access levels in order to satisfy the table of access requirements?\n\n## Input\n\nThe first line contains two integers n and m (1≤n,m≤500) — the number of developers and the number of documents.\n\nEach of the next n lines contains a binary string of length m — the table of access requirements. The j-th element of the i-th row is 1 if the i-th developer should have access to the j-th document, and 0 if they should have no access to it.\n\n## Output\n\nThe first line should contain a single integer k — the smallest number of access groups Monocarp can choose so that it's possible to assign access groups and access levels in order to satisfy the table of access requirements.\n\nThe second line should contain m integers from 1 to k — the access groups of the documents.\n\nThe third line should contain m integers from 1 to 109 — the required access levels of the documents.\n\nThe i-th of the next n lines should contain k integers from 1 to 109 — the access level of the i-th developer on each of the access groups.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\nIn the first example, we assign the documents to different access groups. Both documents have level 2 in their access group. This way, we can assign the developers, who need the access, level 2, and the developers, who have to have no access, level 1.\n\nIf they had the same access group, it would be impossible to assign access levels to developers 1 and 3. Developer 1 should've had a lower level than developer 3 in this group to not be able to access document 1. At the same time, developer 3 should've had a lower level than developer 1 in this group to not be able to access document 2. Since they can't both have lower level than each other, it's impossible to have only one access group.\n\nIn the second example, it's possible to assign all documents to the same access group.",
-  "statementZhMd": null,
+  "statementZhMd": "BerSoft 是 Berland 最大的 IT 企业，而 Monocarp 是其安全部门的负责人。这一次，他遇到了有史以来最困难的任务。\n\n简单来说，BerSoft 有 $n$ 名开发者，编号从 1 到 $n$。内部网络上共享着 $m$ 份文档，编号从 1 到 $m$。有一个访问要求表 $a$，其中 $a_{i,j}$（第 $i$ 行的第 $j$ 个元素）为 1，表示第 $i$ 名开发者应当能够访问第 $j$ 份文档；为 0，表示其不应当能够访问该文档。\n\n为了限制访问权限，Monocarp 将执行以下操作：\n\n- 选择访问组的数量 $k≥1$；\n- 为每份文档分配一个访问组（一个从 1 到 $k$ 的整数）以及所需的访问级别（一个从 1 到 $10^9$ 的整数）；\n- 为每名开发者分配 $k$ 个整数值（范围从 1 到 $10^9$），分别表示其在每个访问组中的访问级别。\n\n如果开发者在该文档所属访问组中的访问级别大于或等于该文档所需的访问级别，则该开发者可以访问该文档。\n\nMonocarp 为了能够分配访问组和访问级别，使其满足访问要求表，最少需要选择多少个访问组？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$1≤n,m≤500$），分别表示开发者的数量和文档的数量。\n\n接下来的 $n$ 行中，每行包含一个长度为 $m$ 的二进制字符串，表示访问要求表。第 $i$ 行的第 $j$ 个字符为 1，表示第 $i$ 名开发者应当能够访问第 $j$ 份文档；为 0，表示其不应当能够访问该文档。\n\n## 输出格式\n\n第一行应输出一个整数 $k$，表示 Monocarp 为了能够分配访问组和访问级别，使其满足访问要求表，所能选择的最少访问组数量。\n\n第二行应输出 $m$ 个范围在 1 到 $k$ 之间的整数，表示每份文档所属的访问组。\n\n第三行应输出 $m$ 个范围在 1 到 $10^9$ 之间的整数，表示每份文档所需的访问级别。\n\n接下来的 $n$ 行中，第 $i$ 行应包含 $k$ 个范围在 1 到 $10^9$ 之间的整数，表示第 $i$ 名开发者在各个访问组中的访问级别。\n\n如果有多种答案，输出任意一种即可。\n\n## 说明\n\n在第一个样例中，我们将两份文档分别分配给不同的访问组。两份文档在各自访问组中的级别均为 2。这样，我们可以将需要访问相应文档的开发者的级别设为 2，将不应访问相应文档的开发者的级别设为 1。\n\n如果两份文档属于同一个访问组，那么就无法为开发者 1 和开发者 3 分配合适的级别。为了使开发者 1 无法访问文档 1，开发者 1 在该访问组中的级别应低于开发者 3。同时，为了使开发者 3 无法访问文档 2，开发者 3 的级别应低于开发者 1。由于两者不可能同时低于对方，因此只使用一个访问组是不可能的。\n\n在第二个样例中，可以将所有文档分配到同一个访问组。",
   "samples": [
     {
       "input": "3 2\n01\n11\n10\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:48:50.135Z"
+  "fetchedAt": "2026-11-02T17:48:50.135Z",
+  "translatedAt": "2026-11-04T03:07:13.563+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

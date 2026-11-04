@@ -4,7 +4,7 @@
   "contestId": 97,
   "index": "D",
   "title": "Robot in Basement",
-  "titleZh": null,
+  "titleZh": "地下室里的机器人",
   "url": "https://codeforces.com/contest/97/problem/D",
   "difficulty": 2700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "The Professor has lost his home robot yet again. After some thinking Professor understood that he had left the robot in the basement.\n\nThe basement in Professor's house is represented by a rectangle $*n* × *m*$, split into $1 × 1$ squares. Some squares are walls which are impassable; other squares are passable. You can get from any passable square to any other passable square moving through edge-adjacent passable squares. One passable square is the exit from the basement. The robot is placed exactly in one passable square. Also the robot may be placed in the exit square.\n\nProfessor is scared of going to the dark basement looking for the robot at night. However, he has a basement plan and the robot's remote control. Using the remote, Professor can send signals to the robot to shift one square left, right, up or down. When the robot receives a signal, it moves in the required direction if the robot's neighboring square in the given direction is passable. Otherwise, the robot stays idle.\n\nProfessor wrote a sequence of $*k*$ commands on a piece of paper. He thinks that the sequence can lead the robot out of the basement, wherever it's initial position might be. Professor programmed another robot to press the required buttons on the remote according to the notes on the piece of paper. Professor was just about to run the program and go to bed, when he had an epiphany.\n\nExecuting each command takes some energy and Professor doesn't want to get huge electricity bill at the end of the month. That's why he wants to find in the sequence he has written out the minimal possible prefix that would guarantee to lead the robot out to the exit after the prefix is fulfilled. And that's the problem Professor challenges you with at this late hour.\n\n## Input\n\nThe first line contains three integers $*n*$, $*m*$ and $*k*$ ($3 ≤ *n*, *m* ≤ 150$, $1 ≤ *k* ≤ 10^{5}$). Next $*n*$ lines contain $*m*$ characters each — that is the Professor's basement's description: \"`#`\" stands for a wall, \"`.`\" stands for a passable square and \"`E`\" stands for the exit from the basement (this square also is passable). It is possible to get from each passable square to the exit, all squares located by the $*n* × *m*$ rectangle's perimeter are the walls. Exactly one square is the exit from the basement. The last line contains $*k*$ characters, the description of the sequence of commands that Professor has written out on a piece of paper. \"`L`\", \"`R`\", \"`U`\", \"`D`\" stand for commands left, right, up and down correspondingly.\n\n## Output\n\nPrint in the output file the length of the smallest possible prefix that will lead the robot to the exit square. In other words, wherever the robot had been positioned initially, it should be positioned in the exit square **after all** the commands from the prefix are fulfilled (during doing commands the robot can come and leave the exit square, but only the last position of the robot is interesting for us). If Professor is mistaken and no prefix (including the whole sequence) can bring the robot to the exit, print \"-1\" (without the quotes). If there is the only passable square and it is the exit, print \"0\" (without the quotes).",
-  "statementZhMd": null,
+  "statementZhMd": "教授又一次弄丢了家里的机器人。思考了一番后，教授明白自己把机器人落在了地下室里。\n\n教授家的地下室可以表示为一个 $*n* × *m*$ 的矩形，被划分为若干个 $1 × 1$ 的正方形。其中一些正方形是无法通行的墙，其他正方形则可以通行。通过沿边相邻的可通行正方形，可以从任意一个可通行正方形到达任意另一个可通行正方形。其中一个可通行正方形是地下室的出口。机器人被放置在某一个可通行正方形中，且机器人也可能被放置在出口所在的正方形中。\n\n教授害怕晚上进入漆黑的地下室寻找机器人。然而，他有地下室的平面图和机器人的遥控器。使用遥控器，教授可以向机器人发送信号，使其向左、右、上或下移动一个正方形。当机器人收到信号时，如果指定方向上的相邻正方形可以通行，它就会向该方向移动；否则机器人保持不动。\n\n教授在一张纸上写下了长度为 $*k*$ 的指令序列。他认为，无论机器人的初始位置在哪里，这个序列都能让机器人走出地下室。教授编写了另一个机器人，让它按照纸上的指令按下遥控器上相应的按钮。教授正准备运行程序然后去睡觉时，突然灵光一现。\n\n执行每条指令都需要消耗能量，教授不想在月底收到巨额电费。因此，他想在自己写下的序列中找到一个最短的前缀，使得执行完该前缀后，无论机器人最初位于何处，都一定能到达出口。这就是教授在这个深夜向你提出的问题。\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*m*$ 和 $*k*$（$3 ≤ *n*, *m* ≤ 150$, $1 ≤ *k* ≤ 10^{5}$）。接下来的 $*n*$ 行每行包含 $*m*$ 个字符，描述教授的地下室：\"`#`\" 表示墙，\"`.`\" 表示可通行的正方形，\"`E`\" 表示地下室的出口（该正方形也可以通行）。从每个可通行的正方形都可以到达出口，位于 $*n* × *m*$ 矩形边界上的所有正方形都是墙。地下室中恰好有一个出口。最后一行包含 $*k*$ 个字符，表示教授写在纸上的指令序列。\"`L`\"、\"`R`\"、\"`U`\" 和 \"`D`\" 分别表示向左、向右、向上和向下移动。\n\n## 输出格式\n\n输出最短前缀的长度，使得该前缀能让机器人到达出口所在的正方形。换句话说，无论机器人最初位于何处，执行完该前缀中的所有指令后，它都应位于出口所在的正方形（执行指令的过程中，机器人可以离开并再次进入出口所在的正方形，但我们只关心机器人的最终位置）。如果教授判断错误，不存在任何前缀（包括整个指令序列）能够让机器人到达出口，则输出 \"-1\"（不含引号）。如果只有一个可通行的正方形且它就是出口，则输出 \"0\"（不含引号）。",
   "samples": [
     {
       "input": "5 5 7\n#####\n#...#\n#...#\n#E..#\n#####\nUULLDDR\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:41:02.186Z"
+  "fetchedAt": "2026-10-31T02:41:02.186Z",
+  "translatedAt": "2026-11-04T07:50:13.703+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

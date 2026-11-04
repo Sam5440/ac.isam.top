@@ -4,7 +4,7 @@
   "contestId": 1768,
   "index": "B",
   "title": "Quick Sort",
-  "titleZh": null,
+  "titleZh": "快速排序",
   "url": "https://codeforces.com/contest/1768/problem/B",
   "difficulty": 900,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a permutation$^\\dagger$ $p$ of length $n$ and a positive integer $k \\le n$.\n\nIn one operation, you:\n\n- Choose $k$ **distinct** elements $p_{i_1}, p_{i_2}, \\ldots, p_{i_k}$.\n- Remove them and then add them sorted in increasing order to the end of the permutation.\n\nFor example, if $p = [2,5,1,3,4]$ and $k = 2$ and you choose $5$ and $3$ as the elements for the operation, then $[2, \\color{red}{5}, 1, \\color{red}{3}, 4] \\rightarrow [2, 1, 4, \\color{red}{3},\\color{red}{5}]$.\n\nFind the minimum number of operations needed to sort the permutation in increasing order. It can be proven that it is always possible to do so.\n\n$^\\dagger$ A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($2 \\le n \\le 10^5$, $1 \\le k \\le n$).\n\nThe second line of each test case contains $n$ integers $p_1,p_2,\\ldots, p_n$ ($1 \\le p_i \\le n$). It is guaranteed that $p$ is a permutation.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case output a single integer — the minimum number of operations needed to sort the permutation. It can be proven that it is always possible to do so.\n\n## Note\n\nIn the first test case, the permutation is already sorted.\n\nIn the second test case, you can choose element $3$, and the permutation will become sorted as follows: $[\\color{red}{3}, 1, 2] \\rightarrow [1, 2, \\color{red}{3}]$.\n\nIn the third test case, you can choose elements $3$ and $4$, and the permutation will become sorted as follows: $[1, \\color{red}{3}, 2, \\color{red}{4}] \\rightarrow [1, 2, \\color{red}{3},\\color{red}{4}]$.\n\nIn the fourth test case, it can be shown that it is impossible to sort the permutation in $1$ operation. However, if you choose elements $2$ and $1$ in the first operation, and choose elements $3$ and $4$ in the second operation, the permutation will become sorted as follows: $[\\color{red}{2}, 3, \\color{red}{1}, 4] \\rightarrow [\\color{blue}{3}, \\color{blue}{4}, \\color{red}{1}, \\color{red}{2}] \\rightarrow [1,2, \\color{blue}{3}, \\color{blue}{4}]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的排列$^\\dagger$ $p$ 和一个正整数 $k \\le n$。\n\n一次操作中，你需要：\n\n- 选择 $k$ 个**互不相同**的元素 $p_{i_1}, p_{i_2}, \\ldots, p_{i_k}$。\n- 删除这些元素，然后将它们按递增顺序排列，并添加到排列的末尾。\n\n例如，当 $p = [2,5,1,3,4]$、$k = 2$，并选择 $5$ 和 $3$ 作为操作中的元素时，变换如下：$[2, \\color{red}{5}, 1, \\color{red}{3}, 4] \\rightarrow [2, 1, 4, \\color{red}{3},\\color{red}{5}]$。\n\n求将排列按递增顺序排序所需的最少操作次数。可以证明总是能够完成排序。\n\n$^\\dagger$ 长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 10^5$，$1 \\le k \\le n$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $p_1,p_2,\\ldots, p_n$（$1 \\le p_i \\le n$）。保证 $p$ 是一个排列。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——将排列排序所需的最少操作次数。可以证明总是能够完成排序。\n\n## 说明\n\n在第一个测试用例中，排列已经有序。\n\n在第二个测试用例中，可以选择元素 $3$，排列将按如下方式变为有序：$[\\color{red}{3}, 1, 2] \\rightarrow [1, 2, \\color{red}{3}]$。\n\n在第三个测试用例中，可以选择元素 $3$ 和 $4$，排列将按如下方式变为有序：$[1, \\color{red}{3}, 2, \\color{red}{4}] \\rightarrow [1, 2, \\color{red}{3},\\color{red}{4}]$。\n\n在第四个测试用例中，可以证明无法通过 $1$ 次操作将排列排序。然而，如果第一次操作选择元素 $2$ 和 $1$，第二次操作选择元素 $3$ 和 $4$，排列将按如下方式变为有序：$[\\color{red}{2}, 3, \\color{red}{1}, 4] \\rightarrow [\\color{blue}{3}, \\color{blue}{4}, \\color{red}{1}, \\color{red}{2}] \\rightarrow [1,2, \\color{blue}{3}, \\color{blue}{4}]$。",
   "samples": [
     {
       "input": "4\n3 2\n1 2 3\n3 1\n3 1 2\n4 2\n1 3 2 4\n4 2\n2 3 1 4\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:43:12.159Z"
+  "fetchedAt": "2026-10-30T22:43:12.159Z",
+  "translatedAt": "2026-11-04T03:06:28.569+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

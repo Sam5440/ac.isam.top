@@ -4,7 +4,7 @@
   "contestId": 988,
   "index": "F",
   "title": "Rain and Umbrellas",
-  "titleZh": null,
+  "titleZh": "雨与雨伞",
   "url": "https://codeforces.com/contest/988/problem/F",
   "difficulty": 2100,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp lives on a coordinate line at the point $x = 0$. He goes to his friend that lives at the point $x = a$. Polycarp can move only from left to right, he can pass one unit of length each second.\n\nNow it's raining, so some segments of his way are in the rain. Formally, it's raining on $n$ non-intersecting segments, the $i$-th segment which is in the rain is represented as $[l_i, r_i]$ ($0 \\le l_i \\lt r_i \\le a$).\n\nThere are $m$ umbrellas lying on the line, the $i$-th umbrella is located at point $x_i$ ($0 \\le x_i \\le a$) and has weight $p_i$. When Polycarp begins his journey, he doesn't have any umbrellas.\n\nDuring his journey from $x = 0$ to $x = a$ Polycarp can pick up and throw away umbrellas. Polycarp picks up and throws down any umbrella instantly. He can carry any number of umbrellas at any moment of time. Because Polycarp doesn't want to get wet, he must carry at least one umbrella while he moves from $x$ to $x + 1$ if a segment $[x, x + 1]$ is in the rain (i.e. if there exists some $i$ such that $l_i \\le x$ and $x + 1 \\le r_i$).\n\nThe condition above is the only requirement. For example, it is possible to go without any umbrellas to a point where some rain segment starts, pick up an umbrella at this point and move along with an umbrella. Polycarp can swap umbrellas while he is in the rain.\n\nEach unit of length passed increases Polycarp's fatigue by the sum of the weights of umbrellas he carries while moving.\n\nCan Polycarp make his way from point $x = 0$ to point $x = a$? If yes, find the minimum total fatigue after reaching $x = a$, if Polycarp picks up and throws away umbrellas optimally.\n\n## Input\n\nThe first line contains three integers $a$, $n$ and $m$ ($1 \\le a, m \\le 2000, 1 \\le n \\le \\lceil\\frac{a}{2}\\rceil$) — the point at which Polycarp's friend lives, the number of the segments in the rain and the number of umbrellas.\n\nEach of the next $n$ lines contains two integers $l_i$ and $r_i$ ($0 \\le l_i \\lt r_i \\le a$) — the borders of the $i$-th segment under rain. **It is guaranteed that there is no pair of intersecting segments**. In other words, for each pair of segments $i$ and $j$ either $r_i \\lt l_j$ or $r_j \\lt l_i$.\n\nEach of the next $m$ lines contains two integers $x_i$ and $p_i$ ($0 \\le x_i \\le a$, $1 \\le p_i \\le 10^5$) — the location and the weight of the $i$-th umbrella.\n\n## Output\n\nPrint \"`-1`\" (without quotes) if Polycarp can't make his way from point $x = 0$ to point $x = a$. Otherwise print one integer — the minimum total fatigue after reaching $x = a$, if Polycarp picks up and throws away umbrellas optimally.\n\n## Note\n\nIn the first example the only possible strategy is to take the fourth umbrella at the point $x = 1$, keep it till the point $x = 7$ (the total fatigue at $x = 7$ will be equal to $12$), throw it away, move on from $x = 7$ to $x = 8$ without an umbrella, take the third umbrella at $x = 8$ and keep it till the end (the total fatigue at $x = 10$ will be equal to $14$).\n\nIn the second example the only possible strategy is to take the first umbrella, move with it till the point $x = 9$, throw it away and proceed without an umbrella till the end.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nPolycarp 生活在数轴上的点 $x = 0$ 处。他要去位于点 $x = a$ 处的朋友家。Polycarp 只能从左向右移动，每秒可以经过一个单位长度。\n\n现在正在下雨，因此他的路上有一些线段处于降雨中。形式化地说，有 $n$ 个互不相交的线段正在下雨，第 $i$ 个下雨线段表示为 $[l_i, r_i]$（$0 \\le l_i \\lt r_i \\le a$）。\n\n数轴上有 $m$ 把雨伞，第 $i$ 把雨伞位于点 $x_i$（$0 \\le x_i \\le a$），重量为 $p_i$。Polycarp 出发时没有携带任何雨伞。\n\n在从 $x = 0$ 前往 $x = a$ 的过程中，Polycarp 可以捡起和丢弃雨伞。捡起或丢下任意一把雨伞都可以瞬间完成。他可以在任意时刻携带任意数量的雨伞。由于 Polycarp 不想被淋湿，当他从 $x$ 移动到 $x + 1$ 时，如果线段 $[x, x + 1]$ 处于降雨中（即存在某个 $i$，使得 $l_i \\le x$ 且 $x + 1 \\le r_i$），则他必须至少携带一把雨伞。\n\n上述条件是唯一的要求。例如，可以不携带任何雨伞走到某个下雨线段的起点，在该点捡起一把雨伞，然后携带雨伞继续前进。Polycarp 在下雨时也可以更换雨伞。\n\nPolycarp 每经过一个单位长度，疲劳值就会增加他在移动过程中所携带的所有雨伞的重量之和。\n\nPolycarp 能否从点 $x = 0$ 走到点 $x = a$？如果可以，请找出在最优地捡起和丢弃雨伞的情况下，到达点 $x = a$ 后的最小总疲劳值。\n\n## 输入格式\n\n第一行包含三个整数 $a$、$n$ 和 $m$（$1 \\le a, m \\le 2000, 1 \\le n \\le \\lceil\\frac{a}{2}\\rceil$）——Polycarp 朋友所在的点、下雨线段的数量以及雨伞的数量。\n\n接下来的 $n$ 行中，每行包含两个整数 $l_i$ 和 $r_i$（$0 \\le l_i \\lt r_i \\le a$）——第 $i$ 个下雨线段的边界。**保证不存在一对相交的线段**。换句话说，对于每一对线段 $i$ 和 $j$，要么 $r_i \\lt l_j$，要么 $r_j \\lt l_i$。\n\n接下来的 $m$ 行中，每行包含两个整数 $x_i$ 和 $p_i$（$0 \\le x_i \\le a$，$1 \\le p_i \\le 10^5$）——第 $i$ 把雨伞的位置和重量。\n\n## 输出格式\n\n如果 Polycarp 无法从点 $x = 0$ 走到点 $x = a$，输出 \"`-1`\"（不含引号）。否则输出一个整数——在最优地捡起和丢弃雨伞的情况下，到达点 $x = a$ 后的最小总疲劳值。\n\n## 说明\n\n在第一个样例中，唯一可行的策略是在点 $x = 1$ 处拿起第四把雨伞，一直携带到点 $x = 7$（到达 $x = 7$ 时总疲劳值为 $12$），然后丢下它，从 $x = 7$ 走到 $x = 8$ 时不携带雨伞，在点 $x = 8$ 处拿起第三把雨伞并一直携带到终点（到达 $x = 10$ 时总疲劳值为 $14$）。\n\n在第二个样例中，唯一可行的策略是拿起第一把雨伞，携带它走到点 $x = 9$，然后丢下它，最后不携带雨伞继续前进。",
   "samples": [
     {
       "input": "10 2 4\n3 7\n8 10\n0 10\n3 4\n8 1\n1 2\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:35:15.292Z"
+  "fetchedAt": "2026-11-02T19:35:15.292Z",
+  "translatedAt": "2026-11-04T05:49:15.367+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

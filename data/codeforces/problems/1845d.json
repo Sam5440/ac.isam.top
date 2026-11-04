@@ -4,7 +4,7 @@
   "contestId": 1845,
   "index": "D",
   "title": "Rating System",
-  "titleZh": null,
+  "titleZh": "评分系统",
   "url": "https://codeforces.com/contest/1845/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are developing a rating system for an online game. Every time a player participates in a match, the player's rating changes depending on the results.\n\nInitially, the player's rating is $0$. There are $n$ matches; after the $i$-th match, the rating change is equal to $a_i$ (the rating increases by $a_i$ if $a_i$ is positive, or decreases by $|a_i|$ if it's negative. There are no zeros in the sequence $a$).\n\nThe system has an additional rule: for a fixed integer $k$, if a player's rating has reached the value $k$, it will never fall below it. Formally, if a player's rating at least $k$, and a rating change would make it less than $k$, then the rating will decrease **to exactly $k$**.\n\nYour task is to determine the value $k$ in such a way that the player's rating after all $n$ matches is the maximum possible (among all integer values of $k$). If there are multiple possible answers, you can print any of them.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 3 \\cdot 10^5$) — the number of matches.\n\nThe second line contains $n$ integer $a_1, a_2, \\dots, a_n$ ($-10^9 \\le a_i \\le 10^9$; $a_i \\ne 0$) — the rating change after the $i$-th match.\n\nThe sum of $n$ over all test cases doesn't exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print one integer $m$ ($-10^{18} \\le m \\le 10^{18}$) — the value of $k$ such that the rating of the player will be the maximum possible when using this value. It can be shown that at least one of the optimal answers meets the constraint $-10^{18} \\le m \\le 10^{18}$.\n\n## Note\n\nIn the first example, if $k=3$, then the rating changes as follows: $0 \\rightarrow 3 \\rightarrow 3 \\rightarrow 4 \\rightarrow 6$.\n\nIn the second example, if $k=0$, then the rating changes as follows: $0 \\rightarrow 0 \\rightarrow 0 \\rightarrow 0$.\n\nIn the third example, if $k=25$, then the rating changes as follows: $0 \\rightarrow 4 \\rightarrow 6$.\n\nIn the fourth example, if $k=6$, then the rating changes as follows: $0 \\rightarrow 5 \\rightarrow 6 \\rightarrow 6 \\rightarrow 8 \\rightarrow 7 \\rightarrow 6 \\rightarrow 8$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n你正在为一款在线游戏开发评分系统。每当玩家参加一场比赛时，玩家的评分会根据比赛结果发生变化。\n\n初始时，玩家的评分为 $0$。共有 $n$ 场比赛；第 $i$ 场比赛结束后，评分变化量等于 $a_i$（如果 $a_i$ 为正数，评分增加 $a_i$；如果为负数，评分减少 $|a_i|$）。序列 $a$ 中不存在 $0$。\n\n系统还有一条额外规则：对于固定整数 $k$，如果玩家的评分曾达到过 $k$，那么之后评分将永远不会低于 $k$。形式化地说，如果玩家当前评分至少为 $k$，而评分变化会使其低于 $k$，那么评分将**恰好下降到 $k$**。\n\n你的任务是确定整数 $k$，使得玩家参加完全部 $n$ 场比赛后的评分尽可能大（在所有整数 $k$ 中取最大值）。如果有多个可行答案，输出其中任意一个即可。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^5$）——比赛的场数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$-10^9 \\le a_i \\le 10^9$；$a_i \\ne 0$）——第 $i$ 场比赛后的评分变化量。\n\n所有测试用例中 $n$ 的总和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 $m$（$-10^{18} \\le m \\le 10^{18}$）——取该值作为 $k$ 时，玩家最终评分能够达到最大值。可以证明，至少有一个最优答案满足约束 $-10^{18} \\le m \\le 10^{18}$。\n\n## 说明\n\n在第一个样例中，如果 $k=3$，那么评分变化如下：$0 \\rightarrow 3 \\rightarrow 3 \\rightarrow 4 \\rightarrow 6$。\n\n在第二个样例中，如果 $k=0$，那么评分变化如下：$0 \\rightarrow 0 \\rightarrow 0 \\rightarrow 0$。\n\n在第三个样例中，如果 $k=25$，那么评分变化如下：$0 \\rightarrow 4 \\rightarrow 6$。\n\n在第四个样例中，如果 $k=6$，那么评分变化如下：$0 \\rightarrow 5 \\rightarrow 6 \\rightarrow 6 \\rightarrow 8 \\rightarrow 7 \\rightarrow 6 \\rightarrow 8$。",
   "samples": [
     {
       "input": "4\n4\n3 -2 1 2\n3\n-1 -2 -1\n2\n4 2\n7\n5 1 -3 2 -1 -2 2\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:27:34.242Z"
+  "fetchedAt": "2026-11-02T17:27:34.242Z",
+  "translatedAt": "2026-11-04T02:40:58.912+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

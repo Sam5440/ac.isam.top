@@ -4,7 +4,7 @@
   "contestId": 1784,
   "index": "E",
   "title": "Infinite Game",
-  "titleZh": null,
+  "titleZh": "无限游戏",
   "url": "https://codeforces.com/contest/1784/problem/E",
   "difficulty": 3100,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "Alice and Bob are playing an infinite game consisting of *sets*. Each set consists of *rounds*. In each round, one of the players wins. The first player to win two rounds in a set wins this set. Thus, a set always ends with the score of $2:0$ or $2:1$ in favor of one of the players.\n\nLet's call a *game scenario* a finite string $s$ consisting of characters '`a`' and '`b`'. Consider an infinite string formed with repetitions of string $s$: $sss \\ldots$ Suppose that Alice and Bob play rounds according to this infinite string, left to right. If a character of the string $sss \\ldots$ is '`a`', then Alice wins the round; if it's '`b`', Bob wins the round. As soon as one of the players wins two rounds, the set ends in their favor, and a new set starts from the next round.\n\nLet's define $a_i$ as the number of sets won by Alice among the first $i$ sets while playing according to the given scenario. Let's also define $r$ as the limit of ratio $\\frac{a_i}{i}$ as $i \\rightarrow \\infty$. If $r \\gt \\frac{1}{2}$, we'll say that scenario $s$ is *winning for Alice*. If $r = \\frac{1}{2}$, we'll say that scenario $s$ is *tied*. If $r \\lt \\frac{1}{2}$, we'll say that scenario $s$ is *winning for Bob*.\n\nYou are given a string $s$ consisting of characters '`a`', '`b`', and '`?`'. Consider all possible ways of replacing every '`?`' with '`a`' or '`b`' to obtain a string consisting only of characters '`a`' and '`b`'. Count how many of them result in a scenario winning for Alice, how many result in a tied scenario, and how many result in a scenario winning for Bob. Print these three numbers modulo $998\\,244\\,353$.\n\n## Input\n\nThe only line contains a single string $s$ ($1 \\le |s| \\le 200$), consisting of characters '`a`', '`b`', and '`?`'.\n\n## Output\n\nPrint three integers: how many ways result in a scenario winning for Alice, how many result in a tied scenario, and how many result in a scenario winning for Bob, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first example, there are four ways to replace the question marks:\n\n- $s = \\mathtt{aa}$: Alice wins every set $2:0$ — the scenario is winning for Alice;\n- $s = \\mathtt{ab}$: Alice and Bob win sets in turns, with the score of $2:1$ each — the scenario is tied;\n- $s = \\mathtt{ba}$: Bob and Alice win sets in turns, with the score of $2:1$ each — the scenario is tied;\n- $s = \\mathtt{bb}$: Bob wins every set $2:0$ — the scenario is winning for Bob.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 正在进行一场由若干个*盘*组成的无限游戏。每个盘由若干个*回合*组成。每个回合中，一名玩家获胜。在一个盘中率先赢得两回合的玩家赢得该盘。因此，一个盘结束时的比分总是对某位玩家有利的 $2:0$ 或 $2:1$。\n\n我们将由字符 '`a`' 和 '`b`' 组成的有限字符串 $s$ 称为一个*游戏场景*。考虑由字符串 $s$ 重复构成的无限字符串：$sss \\ldots$。假设 Alice 和 Bob 按照这个无限字符串从左到右进行回合。如果字符串 $sss \\ldots$ 中的某个字符是 '`a`'，则 Alice 赢得该回合；如果是 '`b`'，则 Bob 赢得该回合。当某位玩家赢得两回合时，该盘立即以其获胜结束，并从下一回合开始新的盘。\n\n定义 $a_i$ 为按照给定场景进行游戏时，在前 $i$ 个盘中 Alice 获胜的盘数。再定义 $r$ 为当 $i \\rightarrow \\infty$ 时比值 $\\frac{a_i}{i}$ 的极限。如果 $r \\gt \\frac{1}{2}$，我们称场景 $s$ *对 Alice 获胜*。如果 $r = \\frac{1}{2}$，我们称场景 $s$ *平局*。如果 $r \\lt \\frac{1}{2}$，我们称场景 $s$ *对 Bob 获胜*。\n\n给定一个由字符 '`a`'、'`b`' 和 '`?`' 组成的字符串 $s$。考虑将每个 '`?`' 替换为 '`a`' 或 '`b`' 的所有可能方式，从而得到一个只包含字符 '`a`' 和 '`b`' 的字符串。请统计其中有多少种替换方式得到对 Alice 获胜的场景、多少种得到平局场景，以及多少种得到对 Bob 获胜的场景。将这三个数对 $998\\,244\\,353$ 取模后输出。\n\n## 输入格式\n\n唯一一行包含一个字符串 $s$（$1 \\le |s| \\le 200$），由字符 '`a`'、'`b`' 和 '`?`' 组成。\n\n## 输出格式\n\n输出三个整数：分别表示得到对 Alice 获胜场景、平局场景和对 Bob 获胜场景的方式数，对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个样例中，替换问号共有四种方式：\n\n- $s = \\mathtt{aa}$：Alice 以 $2:0$ 赢得每个盘——该场景对 Alice 获胜；\n- $s = \\mathtt{ab}$：Alice 和 Bob 轮流赢得盘，每个盘的比分均为 $2:1$——该场景为平局；\n- $s = \\mathtt{ba}$：Bob 和 Alice 轮流赢得盘，每个盘的比分均为 $2:1$——该场景为平局；\n- $s = \\mathtt{bb}$：Bob 以 $2:0$ 赢得每个盘——该场景对 Bob 获胜。",
   "samples": [
     {
       "input": "??\n",
@@ -57,5 +57,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:35:37.939Z"
+  "fetchedAt": "2026-10-30T22:35:37.939Z",
+  "translatedAt": "2026-11-04T03:02:02.502+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

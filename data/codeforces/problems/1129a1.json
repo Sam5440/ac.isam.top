@@ -4,7 +4,7 @@
   "contestId": 1129,
   "index": "A1",
   "title": "Toy Train (Simplified)",
-  "titleZh": null,
+  "titleZh": "玩具火车（简化版）",
   "url": "https://codeforces.com/contest/1129/problem/A1",
   "difficulty": 1700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "***This is a simplified version of the task Toy Train. These two versions differ only in the constraints. Hacks for this version are disabled.***\n\nAlice received a set of Toy Train™ from Bob. It consists of one train and a connected railway network of $n$ stations, enumerated from $1$ through $n$. The train occupies one station at a time and travels around the network of stations in a circular manner. More precisely, the immediate station that the train will visit after station $i$ is station $i+1$ if $1 \\leq i \\lt n$ or station $1$ if $i = n$. It takes the train $1$ second to travel to its next station as described.\n\nBob gave Alice a fun task before he left: to deliver $m$ candies that are initially at some stations to their independent destinations using the train. The candies are enumerated from $1$ through $m$. Candy $i$ ($1 \\leq i \\leq m$), now at station $a_i$, should be delivered to station $b_i$ ($a_i \\neq b_i$).\n\n![image](https://espresso.codeforces.com/b0446d5fef91d9211f27892951cd7e0d35c9590d.png) The blue numbers on the candies correspond to $b_i$ values. The image corresponds to the $1$-st example.\n\nThe train has infinite capacity, and it is possible to load off any number of candies at a station. However, only **at most one** candy can be loaded from a station onto the train before it leaves the station. You can choose any candy at this station. The time it takes to move the candies is negligible.\n\nNow, Alice wonders how much time is needed for the train to deliver all candies. Your task is to find, for each station, the minimum time the train would need to deliver all the candies were it to start from there.\n\n## Input\n\nThe first line contains two space-separated integers $n$ and $m$ ($2 \\leq n \\leq 100$; $1 \\leq m \\leq 200$) — the number of stations and the number of candies, respectively.\n\nThe $i$-th of the following $m$ lines contains two space-separated integers $a_i$ and $b_i$ ($1 \\leq a_i, b_i \\leq n$; $a_i \\neq b_i$) — the station that initially contains candy $i$ and the destination station of the candy, respectively.\n\n## Output\n\nIn the first and only line, print $n$ space-separated integers, the $i$-th of which is the minimum time, in seconds, the train would need to deliver all the candies were it to start from station $i$.\n\n## Note\n\nConsider the second sample.\n\nIf the train started at station $1$, the optimal strategy is as follows.\n\n1. Load the first candy onto the train.\n2. Proceed to station $2$. This step takes $1$ second.\n3. Deliver the first candy.\n4. Proceed to station $1$. This step takes $1$ second.\n5. Load the second candy onto the train.\n6. Proceed to station $2$. This step takes $1$ second.\n7. Deliver the second candy.\n8. Proceed to station $1$. This step takes $1$ second.\n9. Load the third candy onto the train.\n10. Proceed to station $2$. This step takes $1$ second.\n11. Deliver the third candy.\n\nHence, the train needs $5$ seconds to complete the tasks.\n\nIf the train were to start at station $2$, however, it would need to move to station $1$ before it could load the first candy, which would take one additional second. Thus, the answer in this scenario is $5+1 = 6$ seconds.",
-  "statementZhMd": null,
+  "statementZhMd": "***这是 Toy Train 任务的简化版本。这两个版本的区别仅在于约束条件。本版本禁用 Hack。***\n\nAlice 从 Bob 那里收到了一套 Toy Train™。它由一列火车和一个包含 $n$ 个车站的连通铁路网络组成，车站编号为 $1$ 至 $n$。火车每次占据一个车站，并沿着车站网络循环行驶。更准确地说，火车从车站 $i$ 出发后将访问的下一个车站是：当 $1 \\leq i \\lt n$ 时为车站 $i+1$，当 $i = n$ 时为车站 $1$。按照上述方式，火车前往下一个车站需要 $1$ 秒。\n\nBob 离开前给 Alice 布置了一个有趣的任务：使用火车，将最初位于某些车站的 $m$ 颗糖果运送到各自的目的地。糖果编号为 $1$ 至 $m$。糖果 $i$（$1 \\leq i \\leq m$）当前位于车站 $a_i$，需要被运送到车站 $b_i$（$a_i \\neq b_i$）。\n\n![image](https://espresso.codeforces.com/b0446d5fef91d9211f27892951cd7e0d35c9590d.png) 糖果上的蓝色数字对应 $b_i$ 的值。该图片对应第 $1$ 个样例。\n\n火车的容量无限，并且可以在一个车站卸下任意数量的糖果。但是，在火车离开车站之前，最多只能从该车站装载一颗糖果。你可以选择该车站上的任意一颗糖果。搬运糖果所需的时间可以忽略不计。\n\n现在，Alice 想知道火车将所有糖果运送完毕需要多长时间。你的任务是对于每个车站，求出如果火车从该车站出发，运送完所有糖果所需的最短时间。\n\n## 输入\n\n第一行包含两个用空格分隔的整数 $n$ 和 $m$（$2 \\leq n \\leq 100$；$1 \\leq m \\leq 200$），分别表示车站数量和糖果数量。\n\n接下来的 $m$ 行中，第 $i$ 行包含两个用空格分隔的整数 $a_i$ 和 $b_i$（$1 \\leq a_i, b_i \\leq n$；$a_i \\neq b_i$），分别表示最初包含糖果 $i$ 的车站以及该糖果的目的地车站。\n\n## 输出\n\n在唯一一行中输出 $n$ 个用空格分隔的整数，其中第 $i$ 个整数表示如果火车从车站 $i$ 出发，运送完所有糖果所需的最短时间（单位：秒）。\n\n## 说明\n\n考虑第二个样例。\n\n如果火车从车站 $1$ 出发，最优策略如下。\n\n1. 将第一颗糖果装上火车。\n2. 前往车站 $2$。这一步需要 $1$ 秒。\n3. 卸下第一颗糖果。\n4. 前往车站 $1$。这一步需要 $1$ 秒。\n5. 将第二颗糖果装上火车。\n6. 前往车站 $2$。这一步需要 $1$ 秒。\n7. 卸下第二颗糖果。\n8. 前往车站 $1$。这一步需要 $1$ 秒。\n9. 将第三颗糖果装上火车。\n10. 前往车站 $2$。这一步需要 $1$ 秒。\n11. 卸下第三颗糖果。\n\n因此，火车需要 $5$ 秒来完成任务。\n\n然而，如果火车从车站 $2$ 出发，那么它必须先前往车站 $1$，之后才能装载第一颗糖果，这将额外花费一秒。因此，在这种情况下答案为 $5+1 = 6$ 秒。",
   "samples": [
     {
       "input": "5 7\n2 4\n5 1\n2 3\n3 4\n4 1\n5 3\n3 5\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:14:32.155Z"
+  "fetchedAt": "2026-10-31T00:14:32.155Z",
+  "translatedAt": "2026-11-04T05:25:41.374+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

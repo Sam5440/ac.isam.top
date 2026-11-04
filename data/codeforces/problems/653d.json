@@ -4,7 +4,7 @@
   "contestId": 653,
   "index": "D",
   "title": "Delivery Bears",
-  "titleZh": null,
+  "titleZh": "送货熊",
   "url": "https://codeforces.com/contest/653/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Niwel is a little golden bear. As everyone knows, bears live in forests, but Niwel got tired of seeing all the trees so he decided to move to the city.\n\nIn the city, Niwel took on a job managing bears to deliver goods. The city that he lives in can be represented as a directed graph with $*n*$ nodes and $*m*$ edges. Each edge has a weight capacity. A delivery consists of a bear carrying weights with their bear hands on a simple path from node $1$ to node $*n*$. The total weight that travels across a particular edge must not exceed the weight capacity of that edge.\n\nNiwel has **exactly** $*x*$ bears. In the interest of fairness, no bear can rest, and the weight that each bear carries must be exactly the same. However, each bear may take different paths if they like.\n\nNiwel would like to determine, what is the maximum amount of weight he can deliver (it's the sum of weights carried by bears). Find the maximum weight.\n\n## Input\n\nThe first line contains three integers $*n*$, $*m*$ and $*x*$ ($2 ≤ *n* ≤ 50$, $1 ≤ *m* ≤ 500$, $1 ≤ *x* ≤ 100 000$) — the number of nodes, the number of directed edges and the number of bears, respectively.\n\nEach of the following $*m*$ lines contains three integers $*a*_{*i*}$, $*b*_{*i*}$ and $*c*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$, $*a*_{*i*} ≠ *b*_{*i*}$, $1 ≤ *c*_{*i*} ≤ 1 000 000$). This represents a directed edge from node $*a*_{*i*}$ to $*b*_{*i*}$ with weight capacity $*c*_{*i*}$. There are no self loops and no multiple edges from one city to the other city. More formally, for each $*i*$ and $*j*$ that $*i* ≠ *j*$ it's guaranteed that $*a*_{*i*} ≠ *a*_{*j*}$ or $*b*_{*i*} ≠ *b*_{*j*}$. It is also guaranteed that there is at least one path from node 1 to node $*n*$.\n\n## Output\n\nPrint one real value on a single line — the maximum amount of weight Niwel can deliver if he uses exactly $*x*$ bears. Your answer will be considered correct if its absolute or relative error does not exceed $10^{ - 6}$.\n\nNamely: let's assume that your answer is $*a*$, and the answer of the jury is $*b*$. The checker program will consider your answer correct if ![image](https://espresso.codeforces.com/fb10c3e3b874552413ba93d1cdf2971c83f2ebe0.png).\n\n## Note\n\nIn the first sample, Niwel has three bears. Two bears can choose the path ![image](https://espresso.codeforces.com/7c0aa60a06309ef607b7159fd7f3687ea0d943ce.png), while one bear can choose the path ![image](https://espresso.codeforces.com/a26c2f3e93c9d9be6c21cb5d2bd6ac1f99f4ff55.png). Even though the bear that goes on the path ![image](https://espresso.codeforces.com/a26c2f3e93c9d9be6c21cb5d2bd6ac1f99f4ff55.png) can carry one unit of weight, in the interest of fairness, he is restricted to carry 0.5 units of weight. Thus, the total weight is 1.5 units overall. Note that even though Niwel can deliver more weight with just 2 bears, he must use exactly 3 bears on this day.",
-  "statementZhMd": null,
+  "statementZhMd": "Niwel 是一只小金熊。众所周知，熊生活在森林里，但 Niwel 看腻了满眼的树木，于是决定搬到城市里居住。\n\n在城市里，Niwel 找了一份管理熊运送货物的工作。他所居住的城市可以表示为一个有向图，包含 $*n*$ 个节点和 $*m*$ 条边。每条边都有一个重量容量。一次运送由一只熊沿着从节点 $1$ 到节点 $*n*$ 的简单路径，用熊掌搬运一定重量的货物完成。经过某条边的货物总重量不能超过该边的重量容量。\n\nNiwel **恰好**有 $*x*$ 只熊。为了公平起见，没有熊可以休息，并且每只熊搬运的重量必须完全相同。不过，每只熊可以选择不同的路径。\n\nNiwel 想知道他最多可以运送多少重量的货物（即所有熊搬运重量之和）。请计算这个最大重量。\n\n## 输入\n\n第一行包含三个整数 $*n*$、$*m*$ 和 $*x*$（$2 ≤ *n* ≤ 50$，$1 ≤ *m* ≤ 500$，$1 ≤ *x* ≤ 100 000$）——分别表示节点数、有向边数和熊的数量。\n\n接下来的 $*m*$ 行中，每行包含三个整数 $*a*_{*i}$、$*b*_{*i}$ 和 $*c*_{*i}$（$1 ≤ *a*_{*i}, *b*_{*i} ≤ *n*$，$*a*_{*i} ≠ *b*_{*i}$，$1 ≤ *c*_{*i} ≤ 1 000 000$）。这表示一条从节点 $*a*_{*i}$ 指向节点 $*b*_{*i}$ 的有向边，其重量容量为 $*c*_{*i}$。图中没有自环，也不存在从一个城市到另一个城市的重边。更形式化地，对于任意 $*i*$ 和 $*j*$（$*i* ≠ *j*$），保证 $*a*_{*i} ≠ *a*_{*j}$ 或 $*b*_{*i} ≠ *b*_{*j}$。此外，保证至少存在一条从节点 1 到节点 $*n*$ 的路径。\n\n## 输出\n\n在一行中输出一个实数——如果使用恰好 $*x*$ 只熊，Niwel 最多可以运送的货物重量。如果你的答案与标准答案的绝对误差或相对误差不超过 $10^{ - 6}$，则会被判定为正确。\n\n具体来说，假设你的答案为 $*a*$，标准答案为 $*b*$。评测程序将在以下条件满足时判定你的答案正确：![image](https://espresso.codeforces.com/fb10c3e3b874552413ba93d1cdf2971c83f2ebe0.png)。\n\n## 说明\n\n在第一个样例中，Niwel 有三只熊。其中两只熊可以选择路径 ![image](https://espresso.codeforces.com/7c0aa60a06309ef607b7159fd7f3687ea0d943ce.png)，另一只熊可以选择路径 ![image](https://espresso.codeforces.com/a26c2f3e93c9d9be6c21cb5d2bd6ac1f99f4ff55.png)。尽管选择路径 ![image](https://espresso.codeforces.com/a26c2f3e93c9d9be6c21cb5d2bd6ac1f99f4ff55.png) 的熊可以搬运 1 单位重量，但为了公平起见，它也只能搬运 0.5 单位重量。因此，总重量为 1.5 单位。注意，尽管 Niwel 只使用 2 只熊时可以运送更多重量，但这一天他必须恰好使用 3 只熊。",
   "samples": [
     {
       "input": "4 4 3\n1 2 2\n2 4 1\n1 3 1\n3 4 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:12:25.178Z"
+  "fetchedAt": "2026-10-31T01:12:25.178Z",
+  "translatedAt": "2026-11-04T06:37:20.081+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

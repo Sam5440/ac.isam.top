@@ -4,14 +4,14 @@
   "contestId": 495,
   "index": "E",
   "title": "Helping People",
-  "titleZh": null,
+  "titleZh": "帮助人们",
   "url": "https://codeforces.com/contest/495/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Malek is a rich man. He also is very generous. That's why he decided to split his money between poor people. A charity institute knows $*n*$ poor people numbered from $1$ to $*n*$. The institute gave Malek $*q*$ recommendations. A recommendation is a segment of people like $[*l*, *r*]$ which means the institute recommended that Malek gives one dollar to every person whose number is in this segment.\n\nHowever this charity has very odd rules about the recommendations. Because of those rules the recommendations are given in such a way that for every two recommendation $[*a*, *b*]$ and $[*c*, *d*]$ one of the following conditions holds:\n\n- The two segments are completely disjoint. More formally either $*a* ≤ *b* < *c* ≤ *d*$ or $*c* ≤ *d* < *a* ≤ *b*$\n- One of the two segments are inside another. More formally either $*a* ≤ *c* ≤ *d* ≤ *b*$ or $*c* ≤ *a* ≤ *b* ≤ *d*$.\n\nThe goodness of a charity is the value of maximum money a person has after Malek finishes giving his money. The institute knows for each recommendation what is the probability that Malek will accept it. They want to know the expected value of goodness of this charity. So they asked you for help.\n\nYou have been given the list of recommendations and for each recommendation the probability of it being accepted by Malek. You have also been given how much money each person initially has. You must find the expected value of goodness.\n\n## Input\n\nIn the first line two space-separated integers $*n*, *q*$ ($1 ≤ *n* ≤ 10^{5}$, $1 ≤ *q* ≤ 5000$) are given.\n\nIn the second line $*n*$ space-separated integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($0 ≤ *a*_{*i*} ≤ 10^{9}$) are given meaning that person number $*i*$ initially has $*a*_{*i*}$ dollars.\n\nEach of the next $*q*$ lines contains three space-separated numbers $*l*_{*i*}, *r*_{*i*}, *p*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$, $0 ≤ *p* ≤ 1$) where $*l*_{*i*}$ and $*r*_{*i*}$ are two integers describing the segment of recommendation and $*p*_{*i*}$ is a real number given with exactly three digits after decimal point which is equal to probability of Malek accepting this recommendation.\n\nNote that a segment may appear several times in recommendations.\n\n## Output\n\nOutput the sought value. Your answer will be considered correct if its absolute or relative error is less than $10^{ - 6}$.",
-  "statementZhMd": null,
+  "statementZhMd": "Malek 是一位富有的人，同时也非常慷慨。因此，他决定把自己的钱分给穷人。某慈善机构知道有 $*n*$ 位穷人，编号从 $1$ 到 $*n*$。该机构向 Malek 提出了 $*q*$ 条建议。一条建议是一个形如 $[*l*, *r*]$ 的人员区间，表示该机构建议 Malek 给编号位于此区间内的每个人一美元。\n\n然而，这个慈善机构对于建议有着非常奇怪的规定。由于这些规定，对于任意两条建议 $[*a*, *b*]$ 和 $[*c*, *d*]$，以下条件之一必定成立：\n\n- 两个区间完全不相交。更形式化地说，要么满足 $*a* ≤ *b* < *c* ≤ *d*$，要么满足 $*c* ≤ *d* < *a* ≤ *b*$。\n- 两个区间中的一个完全包含于另一个区间。更形式化地说，要么满足 $*a* ≤ *c* ≤ *d* ≤ *b*$，要么满足 $*c* ≤ *a* ≤ *b* ≤ *d*$。\n\n慈善机构的善意值定义为 Malek 发放完钱后，某个人所拥有的最大金额。该机构知道 Malek 接受每条建议的概率。他们想知道这个慈善机构的善意值的期望值。因此，他们向你寻求帮助。\n\n现在给出建议列表，以及 Malek 接受每条建议的概率。同时还给出了每个人最初拥有的金额。你需要求出善意值的期望值。\n\n## 输入格式\n\n第一行给出两个用空格分隔的整数 $*n*, *q*$（$1 ≤ *n* ≤ 10^{5}$，$1 ≤ *q* ≤ 5000$）。\n\n第二行给出 $*n*$ 个用空格分隔的整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$0 ≤ *a*_{*i*} ≤ 10^{9}$），表示编号为 $*i*$ 的人最初拥有 $*a*_{*i*}$ 美元。\n\n接下来的 $*q*$ 行中，每行包含三个用空格分隔的数 $*l*_{*i*}, *r*_{*i*}, *p*_{*i*}$（$1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$，$0 ≤ *p* ≤ 1$）。其中，$*l*_{*i*}$ 和 $*r*_{*i*}$ 是描述建议区间的两个整数，$*p*_{*i*}$ 是一个恰好包含三位小数的实数，表示 Malek 接受该建议的概率。\n\n注意，同一个区间可能会在建议中出现多次。\n\n## 输出格式\n\n输出所求的值。如果答案的绝对误差或相对误差小于 $10^{ - 6}$，则认为答案正确。",
   "samples": [
     {
       "input": "5 2\n1 7 2 4 3\n1 3 0.500\n2 2 0.500\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:34:18.619Z"
+  "fetchedAt": "2026-10-31T01:34:18.619Z",
+  "translatedAt": "2026-11-04T06:59:09.591+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

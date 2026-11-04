@@ -4,14 +4,14 @@
   "contestId": 378,
   "index": "E",
   "title": "Captains Mode",
-  "titleZh": null,
+  "titleZh": "队长模式",
   "url": "https://codeforces.com/contest/378/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Kostya is a progamer specializing in the discipline of Dota 2. Valve Corporation, the developer of this game, has recently released a new patch which turned the balance of the game upside down. Kostya, as the captain of the team, realizes that the greatest responsibility lies on him, so he wants to resort to the analysis of innovations patch from the mathematical point of view to choose the best heroes for his team in every game.\n\nA Dota 2 match involves two teams, each of them must choose some heroes that the players of the team are going to play for, and it is forbidden to choose the same hero several times, even in different teams. In large electronic sports competitions where Kostya's team is going to participate, the matches are held in the Captains Mode. In this mode the captains select the heroes by making one of two possible actions in a certain, predetermined order: pick or ban.\n\n- To pick a hero for the team. After the captain picks, the picked hero goes to his team (later one of a team members will play it) and can no longer be selected by any of the teams.\n- To ban a hero. After the ban the hero is not sent to any of the teams, but it still can no longer be selected by any of the teams.\n\nThe team captain may miss a pick or a ban. If he misses a pick, a random hero is added to his team from those that were available at that moment, and if he misses a ban, no hero is banned, as if there was no ban.\n\nKostya has already identified the strength of all the heroes based on the new patch fixes. Of course, Kostya knows the order of picks and bans. The strength of a team is the sum of the strengths of the team's heroes and both teams that participate in the match seek to maximize the difference in strengths in their favor. Help Kostya determine what team, the first one or the second one, has advantage in the match, and how large the advantage is.\n\n## Input\n\nThe first line contains a single integer $*n*$ ($2 ≤ *n* ≤ 100$) — the number of heroes in Dota 2.\n\nThe second line contains $*n*$ integers $*s*_{1}$, $*s*_{2}$, ..., $*s*_{*n*}$ ($1 ≤ *s*_{*i*} ≤ 10^{6}$) — the strengths of all the heroes.\n\nThe third line contains a single integer $*m*$ ($2 ≤ *m* ≤ *min*(*n*, 20)$) — the number of actions the captains of the team must perform.\n\nNext $*m*$ lines look like \"$*action* *team*$\", where $*action*$ is the needed action: a pick (represented as a \"`p`\") or a ban (represented as a \"`b`\"), and $*team*$ is the number of the team that needs to perform the action (number $1$ or $2$).\n\nIt is guaranteed that each team makes at least one pick. Besides, each team has the same number of picks and the same number of bans.\n\n## Output\n\nPrint a single integer — the difference between the strength of the first team and the strength of the second team if the captains of both teams will act optimally well.",
-  "statementZhMd": null,
+  "statementZhMd": "Kostya 是一名专攻 Dota 2 项目的职业电竞选手。该游戏的开发商 Valve Corporation 最近发布了一个新版本，彻底打破了游戏的平衡。作为队伍的队长，Kostya 意识到自己肩负着最大的责任，因此他希望从数学角度分析版本更新带来的变化，以便在每场比赛中为队伍选择最合适的英雄。\n\n一场 Dota 2 比赛由两支队伍参加，每支队伍都必须选择一些由本队选手使用的英雄，并且禁止多次选择同一个英雄，即使是由不同队伍选择也不允许。在 Kostya 的队伍将要参加的大型电子竞技比赛中，比赛采用队长模式进行。在该模式下，两位队长按照某个确定的预定顺序执行以下两种操作之一：选择或禁用。\n\n- 选择一名英雄加入队伍。队长选择后，该英雄将加入他的队伍（之后由队伍中的一名成员使用），并且任何队伍都不能再选择它。\n- 禁用一名英雄。禁用后，该英雄不会加入任何队伍，但任何队伍也不能再选择它。\n\n队伍队长可以跳过一次选择或禁用操作。如果他跳过选择操作，那么会从当时仍可用的英雄中随机选择一名加入他的队伍；如果他跳过禁用操作，则不会有英雄被禁用，效果与没有进行禁用操作相同。\n\nKostya 已经根据新版本的改动确定了所有英雄的实力。当然，Kostya 知道选择和禁用操作的顺序。队伍的实力等于该队所选英雄实力之和，并且参赛的两支队伍都会设法让实力差最大程度地有利于自己。请帮助 Kostya 确定比赛中占优势的是第一支队伍还是第二支队伍，以及优势有多大。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$ ($2 ≤ *n* ≤ 100$) —— Dota 2 中英雄的数量。\n\n第二行包含 $*n*$ 个整数 $*s*_{1}$, $*s*_{2}$, ..., $*s*_{*n*}$ ($1 ≤ *s*_{*i*} ≤ 10^{6}$) —— 所有英雄的实力。\n\n第三行包含一个整数 $*m*$ ($2 ≤ *m* ≤ *min*(*n*, 20)$) —— 两支队伍的队长需要执行的操作数量。\n\n接下来的 $*m*$ 行格式为 \"$*action* *team*$\"，其中 $*action*$ 是所需执行的操作：选择（用 `p` 表示）或禁用（用 `b` 表示），而 $*team*$ 是需要执行该操作的队伍编号（编号为 $1$ 或 $2$）。\n\n保证每支队伍至少进行一次选择操作。此外，两支队伍进行选择操作的次数相同，进行禁用操作的次数也相同。\n\n## 输出格式\n\n输出一个整数 —— 如果两支队伍的队长都采取最优策略，第一支队伍实力与第二支队伍实力之差。",
   "samples": [
     {
       "input": "2\n2 1\n2\np 1\np 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:53:43.193Z"
+  "fetchedAt": "2026-10-31T01:53:43.193Z",
+  "translatedAt": "2026-11-04T07:14:44.409+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

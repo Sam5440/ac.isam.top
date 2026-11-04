@@ -4,7 +4,7 @@
   "contestId": 47,
   "index": "E",
   "title": "Cannon",
-  "titleZh": null,
+  "titleZh": "加农炮",
   "url": "https://codeforces.com/contest/47/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Bertown is under siege! The attackers have blocked all the ways out and their cannon is bombarding the city. Fortunately, Berland intelligence managed to intercept the enemies' shooting plan. Let's introduce the Cartesian system of coordinates, the origin of which coincides with the cannon's position, the $*Ox*$ axis is directed rightwards in the city's direction, the $*Oy*$ axis is directed upwards (to the sky). The cannon will make $*n*$ more shots. The cannon balls' initial speeds are the same in all the shots and are equal to $*V*$, so that every shot is characterized by only one number $*alpha*_{*i*}$ which represents the angle at which the cannon fires. Due to the cannon's technical peculiarities this angle does not exceed $45$ angles ($π / 4$). We disregard the cannon sizes and consider the firing made from the point $(0, 0)$.\n\nThe balls fly according to the known physical laws of a body thrown towards the horizon at an angle:\n\n$*v*_{*x*}(*t*) = *V*·*cos*(*alpha*)$\n\n$*v*_{*y*}(*t*) = *V*·*sin*(*alpha*) – *g*·*t*$\n\n$*x*(*t*) = *V*·*cos*(*alpha*)·*t*$\n\n$*y*(*t*) = *V*·*sin*(*alpha*)·*t* – *g*·*t*^{2} / 2$\n\nThink of the acceleration of gravity $*g*$ as equal to $9.8$.\n\nBertown defends $*m*$ walls. The $*i*$-th wall is represented as a vertical segment $(*x*_{*i*}, 0) - (*x*_{*i*}, *y*_{*i*})$. When a ball hits a wall, it gets stuck in it and doesn't fly on. If a ball doesn't hit any wall it falls on the ground ($*y* = 0$) and stops. If the ball exactly hits the point $(*x*_{*i*}, *y*_{*i*})$, it is considered stuck.\n\nYour task is to find for each ball the coordinates of the point where it will be located in the end.\n\n## Input\n\nThe first line contains integers $*n*$ and $*V*$ ($1 ≤ *n* ≤ 10^{4}, 1 ≤ *V* ≤ 1000$) which represent the number of shots and the initial speed of every ball. The second line contains $*n*$ space-separated real numbers $*alpha*_{*i*}$ ($0 < *alpha*_{*i*} < π / 4$) which represent the angles in radians at which the cannon will fire. The third line contains integer $*m*$ ($1 ≤ *m* ≤ 10^{5}$) which represents the number of walls. Then follow $*m*$ lines, each containing two real numbers $*x*_{*i*}$ and $*y*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ 1000, 0 ≤ *y*_{*i*} ≤ 1000$) which represent the wall’s coordinates. All the real numbers have no more than 4 decimal digits. The walls may partially overlap or even coincide.\n\n## Output\n\nPrint $*n*$ lines containing two real numbers each — calculate for every ball the coordinates of its landing point. Your answer should have the relative or absolute error less than $10^{ - 4}$.",
-  "statementZhMd": null,
+  "statementZhMd": "贝尔镇正遭受围攻！攻击者封锁了所有出路，他们的大炮正在轰炸这座城市。幸运的是，贝尔兰情报部门成功截获了敌人的射击计划。建立笛卡尔坐标系，原点与大炮的位置重合，$*Ox*$ 轴向右（城市方向）延伸，$*Oy*$ 轴向上（天空方向）延伸。大炮还将发射 $*n*$ 发炮弹。所有炮弹的初速度均相同，等于 $*V*$，因此每次射击只由一个数 $*alpha*_{*i*}$ 表示，该数代表大炮的发射角度。由于大炮的技术特性，该角度不超过 45 度（$π / 4$）。忽略大炮自身的大小，认为炮弹均从点 $(0, 0)$ 发射。\n\n炮弹遵循已知的、以一定角度向水平方向抛出的物体的物理规律：\n\n$*v*_{*x*}(*t*) = *V*·*cos*(*alpha*)$\n\n$*v*_{*y*}(*t*) = *V*·*sin*(*alpha*) – *g*·*t*$\n\n$*x*(*t*) = *V*·*cos*(*alpha*)·*t*$\n\n$*y*(*t*) = *V*·*sin*(*alpha*)·*t* – *g*·*t*^{2} / 2$\n\n设重力加速度 $*g*$ 等于 $9.8$。\n\n贝尔镇设有 $*m*$ 面墙。第 $*i*$ 面墙表示为一条竖直线段 $(*x*_{*i*}, 0) - (*x*_{*i*}, *y*_{*i*})$。当炮弹撞上墙时，它会嵌在墙中，不再继续飞行。如果炮弹没有撞上任何墙，则会落在地面（$*y* = 0$）上并停止。如果炮弹恰好击中点 $(*x*_{*i*}, *y*_{*i*})$，则认为它嵌在墙中。\n\n你的任务是求出每发炮弹最终所在位置的坐标。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*V*$（$1 ≤ *n* ≤ 10^{4}, 1 ≤ *V* ≤ 1000$），分别表示射击次数和每发炮弹的初速度。第二行包含 $*n*$ 个以空格分隔的实数 $*alpha*_{*i*}$（$0 < *alpha*_{*i*} < π / 4$），表示大炮发射炮弹时的角度，单位为弧度。第三行包含一个整数 $*m*$（$1 ≤ *m* ≤ 10^{5}$），表示墙的数量。接下来 $*m*$ 行，每行包含两个实数 $*x*_{*i*}$ 和 $*y*_{*i*}$（$1 ≤ *x*_{*i*} ≤ 1000, 0 ≤ *y*_{*i*} ≤ 1000$），表示墙的坐标。所有实数的小数位数不超过 4 位。墙之间可能部分重叠，甚至完全重合。\n\n## 输出格式\n\n输出 $*n*$ 行，每行包含两个实数，分别表示每发炮弹最终落点的坐标。对于每个坐标，你的答案的相对误差或绝对误差必须小于 $10^{ - 4}$。",
   "samples": [
     {
       "input": "2 10\n0.7853\n0.3\n3\n5.0 5.0\n4.0 2.4\n6.0 1.9\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:55:23.975Z"
+  "fetchedAt": "2026-10-31T02:55:23.975Z",
+  "translatedAt": "2026-11-04T07:59:04.061+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

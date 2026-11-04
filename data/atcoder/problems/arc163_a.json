@@ -4,7 +4,7 @@
   "contestId": "arc163",
   "index": "A",
   "title": "Divide String",
-  "titleZh": null,
+  "titleZh": "划分字符串",
   "url": "https://atcoder.jp/contests/arc163/tasks/arc163_a",
   "difficulty": 373,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given a string $S$ of length $N$ consisting of lowercase English letters. Determine whether it is possible to divide $S$ into two or more consecutive substrings so that they are strictly increasing in lexicographical order.\n\nTo be precise, determine whether there is a sequence of strings $t=(t_1,t_2,\\dots,t_k)$ that satisfies all of the following conditions.\n\n- The length of the sequence $k$ is at least $2$.\n- $t_i$ is not empty. ($1 \\le i \\le k$)\n- Concatenating $t_1,t_2,\\dots,t_k$ in this order results in $S$.\n- $t_i$ is lexicographically smaller than $t_{i+1}$ for every integer $i$ such that $1 \\le i < k$.\n\nYou are given $T$ test cases. Find the answer for each of them.\n\nWhat is lexicographical order? A string $S = S_1S_2\\ldots S_{|S|}$ is said to be **lexicographically smaller** than a string $T = T_1T_2\\ldots T_{|T|}$ if either 1. or 2. below holds. Here, $|S|$ and $|T|$ represent the lengths of $S$ and $T$, respectively. $|S| \\lt |T|$ and $S_1S_2\\ldots S_{|S|} = T_1T_2\\ldots T_{|S|}$. There is an integer $1 \\leq i \\leq \\min\\lbrace |S|, |T| \\rbrace$ such that both of the following hold. $S_1S_2\\ldots S_{i-1} = T_1T_2\\ldots T_{i-1}$. The character $S_i$ comes before $T_i$ in alphabetical order.\n\n## Constraints\n\n- $1 \\le T \\le 2000$\n- $2 \\le N \\le 2000$\n- $S$ is a string of length $N$ consisting of lowercase English letters.\n- The sum of $N$ over all test cases in a single input does not exceed $2000$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nHere, $\\mathrm{case}_i$ represents the $i$-th test case. Each test case is given in the following format:\n\n```\nN\nS\n```\n\n## Output\n\nPrint $T$ lines.\n\nThe $i$-th line $(1 \\le i \\le T)$ should contain `Yes` if it is possible to divide $S$ in the $i$-th test case into substrings that satisfy the conditions, and `No` otherwise.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个由小写英文字母组成、长度为 $N$ 的字符串 $S$。判断是否可以将 $S$ 划分为两个或更多个连续子串，使这些子串按字典序严格递增。\n\n更准确地说，判断是否存在字符串序列 $t=(t_1,t_2,\\dots,t_k)$，满足以下所有条件。\n\n- 序列的长度 $k$ 至少为 $2$。\n- $t_i$ 不为空。（$1 \\le i \\le k$）\n- 按照 $t_1,t_2,\\dots,t_k$ 的顺序连接后得到 $S$。\n- 对于满足 $1 \\le i < k$ 的每个整数 $i$，$t_i$ 的字典序都小于 $t_{i+1}$。\n\n给定 $T$ 个测试用例。请分别求出每个测试用例的答案。\n\n什么是字典序？如果以下 1. 或 2. 中的任意一个条件成立，则称字符串 $S = S_1S_2\\ldots S_{|S|}$ 的字典序小于字符串 $T = T_1T_2\\ldots T_{|T|}$。其中，$|S|$ 和 $|T|$ 分别表示 $S$ 和 $T$ 的长度。\n\n1. $|S| \\lt |T|$，且 $S_1S_2\\ldots S_{|S|} = T_1T_2\\ldots T_{|S|}$。\n2. 存在整数 $1 \\leq i \\leq \\min\\lbrace |S|, |T| \\rbrace$，使得以下两个条件同时成立。\n   - $S_1S_2\\ldots S_{i-1} = T_1T_2\\ldots T_{i-1}$。\n   - 字符 $S_i$ 在字母表中的顺序早于 $T_i$。\n\n## 约束条件\n\n- $1 \\le T \\le 2000$\n- $2 \\le N \\le 2000$\n- $S$ 是一个由小写英文字母组成、长度为 $N$ 的字符串。\n- 单个输入中所有测试用例的 $N$ 之和不超过 $2000$。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n其中，$\\mathrm{case}_i$ 表示第 $i$ 个测试用例。每个测试用例按以下格式给出：\n\n```\nN\nS\n```\n\n## 输出格式\n\n输出 $T$ 行。\n\n第 $i$ 行（$1 \\le i \\le T$）应包含 `Yes`，如果可以将第 $i$ 个测试用例中的 $S$ 划分为满足条件的子串；否则应包含 `No`。",
   "samples": [
     {
       "input": "5\n4\nabac\n3\ncac\n2\nab\n12\nabababababab\n5\nedcba\n",
@@ -21,5 +21,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:17:31.948Z"
+  "fetchedAt": "2026-10-30T21:17:31.948Z",
+  "translatedAt": "2026-11-04T02:47:30.820+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

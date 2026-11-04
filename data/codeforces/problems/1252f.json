@@ -4,7 +4,7 @@
   "contestId": 1252,
   "index": "F",
   "title": "Regular Forestation",
-  "titleZh": null,
+  "titleZh": "规则造林",
   "url": "https://codeforces.com/contest/1252/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A forestation is an act of planting a bunch of trees to grow a forest, usually to replace a forest that had been cut down. Strangely enough, graph theorists have another idea on how to make a forest, i.e. by cutting down a tree!\n\nA tree is a graph of $N$ nodes connected by $N - 1$ edges. Let $u$ be a node in a tree $U$ which degree is at least $2$ (i.e. directly connected to at least $2$ other nodes in $U$). If we remove $u$ from $U$, then we will get two or more disconnected (smaller) trees, or also known as forest by graph theorists. In this problem, we are going to investigate a special forestation of a tree done by graph theorists.\n\nLet $V(S)$ be the set of nodes in a tree $S$ and $V(T)$ be the set of nodes in a tree $T$. Tree $S$ and tree $T$ are **identical** if there exists a bijection $f : V(S) \\rightarrow V(T)$ such that for all pairs of nodes $(s_i, s_j)$ in $V(S)$, $s_i$ and $s_j$ is connected by an edge in $S$ if and only if node $f(s_i)$ and $f(s_j)$ is connected by an edge in $T$. Note that $f(s) = t$ implies node $s$ in $S$ corresponds to node $t$ in $T$.\n\nWe call a node $u$ in a tree $U$ as a good cutting point if and only if the removal of $u$ from $U$ causes two or more disconnected trees, and all those disconnected trees are pairwise identical.\n\nGiven a tree $U$, your task is to determine whether there exists a good cutting point in $U$. If there is such a node, then you should output the maximum number of disconnected trees that can be obtained by removing exactly one good cutting point.\n\nFor example, consider the following tree of $13$ nodes.\n\n![image](https://espresso.codeforces.com/bef8841dabf25325183f17406ca02827ab4aa8a0.png)\n\nThere is exactly one good cutting point in this tree, i.e. node $4$. Observe that by removing node $4$, we will get three identical trees (in this case, line graphs), i.e. $\\{5, 1, 7, 13\\}$, $\\{8, 2, 11, 6\\}$, and $\\{3, 12, 9, 10\\}$, which are denoted by $A$, $B$, and $C$ respectively in the figure.\n\n- The bijection function between $A$ and $B$: $f(5) = 8$, $f(1) = 2$, $f(7) = 11$, and $f(13) = 6$.\n- The bijection function between $A$ and $C$: $f(5) = 3$, $f(1) = 12$, $f(7) = 9$, and $f(13) = 10$.\n- The bijection function between $B$ and $C$: $f(8) = 3$, $f(2) = 12$, $f(11) = 9$, and $f(6) = 10$.\n\nOf course, there exists other bijection functions for those trees.\n\n## Input\n\nInput begins with a line containting an integer: $N$ ($3 \\le N \\le 4000$) representing the number of nodes in the given tree. The next $N - 1$ lines each contains two integers: $a_i$ $b_i$ ($1 \\le a_i \\lt b_i \\le N$) representing an edge $(a_i,b_i)$ in the given tree. It is guaranteed that any two nodes in the given tree are connected to each other by a sequence of edges.\n\n## Output\n\nOutput in a line an integer representing the maximum number of disconnected trees that can be obtained by removing exactly one good cutting point, or output `-1` if there is no such good cutting point.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nThis is the example from the problem description.",
-  "statementZhMd": null,
+  "statementZhMd": "造林是种植大量树木以形成森林的行为，通常用于替代被砍伐的森林。出人意料的是，图论学家对于如何形成森林有另一种看法，那就是砍掉一棵树！\n\n一棵树是一个由 $N$ 个节点和 $N - 1$ 条边连接而成的图。设 $u$ 是树 $U$ 中度数至少为 $2$ 的节点（即在 $U$ 中与至少 $2$ 个其他节点直接相连）。如果从 $U$ 中移除 $u$，那么我们将得到两个或更多个互不连通的（更小的）树，这些树也被图论学家称为森林。在本题中，我们将研究一种由图论学家对树进行的特殊造林方式。\n\n设 $V(S)$ 是树 $S$ 中节点的集合，$V(T)$ 是树 $T$ 中节点的集合。如果存在一个双射 $f : V(S) \\rightarrow V(T)$，使得对于 $V(S)$ 中的任意节点对 $(s_i, s_j)$，$s_i$ 和 $s_j$ 在 $S$ 中由一条边相连，当且仅当节点 $f(s_i)$ 和 $f(s_j)$ 在 $T$ 中由一条边相连，则称树 $S$ 和树 $T$ **相同**。注意，$f(s) = t$ 表示树 $S$ 中的节点 $s$ 与树 $T$ 中的节点 $t$ 相对应。\n\n当且仅当从树 $U$ 中移除节点 $u$ 会得到两个或更多个互不连通的树，且这些互不连通的树两两相同时，我们称树 $U$ 中的节点 $u$ 是一个良好切割点。\n\n给定一棵树 $U$，你的任务是判断 $U$ 中是否存在良好切割点。如果存在这样的节点，则输出恰好移除一个良好切割点后所能得到的互不连通的树的最大数量。\n\n例如，考虑下面这棵包含 $13$ 个节点的树。\n\n![image](https://espresso.codeforces.com/bef8841dabf25325183f17406ca02827ab4aa8a0.png)\n\n这棵树中恰好有一个良好切割点，即节点 $4$。观察可知，移除节点 $4$ 后，我们将得到三棵相同的树（在本例中为链图），分别为 $\\{5, 1, 7, 13\\}$、$\\{8, 2, 11, 6\\}$ 和 $\\{3, 12, 9, 10\\}$，在图中分别记为 $A$、$B$ 和 $C$。\n\n- $A$ 与 $B$ 之间的双射函数：$f(5) = 8$、$f(1) = 2$、$f(7) = 11$，以及 $f(13) = 6$。\n- $A$ 与 $C$ 之间的双射函数：$f(5) = 3$、$f(1) = 12$、$f(7) = 9$，以及 $f(13) = 10$。\n- $B$ 与 $C$ 之间的双射函数：$f(8) = 3$、$f(2) = 12$、$f(11) = 9$，以及 $f(6) = 10$。\n\n当然，对于这些树，还存在其他双射函数。\n\n## 输入格式\n\n输入的第一行包含一个整数：$N$（$3 \\le N \\le 4000$），表示给定树中的节点数。接下来的 $N - 1$ 行中，每行包含两个整数：$a_i$ $b_i$（$1 \\le a_i \\lt b_i \\le N$），表示一条边 $(a_i,b_i)$。保证给定树中的任意两个节点之间都可以通过一系列边相互连通。\n\n## 输出格式\n\n输出一行一个整数，表示恰好移除一个良好切割点后所能得到的互不连通的树的最大数量；如果不存在良好切割点，则输出 `-1`。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n这就是题目描述中的示例。",
   "samples": [
     {
       "input": "13\n1 5\n1 7\n2 4\n2 8\n2 11\n3 12\n4 7\n4 12\n6 11\n7 13\n9 10\n9 12\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:01:53.916Z"
+  "fetchedAt": "2026-11-02T19:01:53.916Z",
+  "translatedAt": "2026-11-04T04:59:22.771+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

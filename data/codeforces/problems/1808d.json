@@ -4,7 +4,7 @@
   "contestId": 1808,
   "index": "D",
   "title": "Petya, Petya, Petr, and Palindromes",
-  "titleZh": null,
+  "titleZh": "Petya、Petya++、Petr# 与回文",
   "url": "https://codeforces.com/contest/1808/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "Petya and his friend, the robot Petya++, have a common friend — the cyborg Petr#. Sometimes Petr# comes to the friends for a cup of tea and tells them interesting problems.\n\nToday, Petr# told them the following problem.\n\nA palindrome is a sequence that reads the same from left to right as from right to left. For example, $[38, 12, 8, 12, 38]$, $[1]$, and $[3, 8, 8, 3]$ are palindromes.\n\nLet's call the *palindromicity* of a sequence $a_1, a_2, \\dots, a_n$ the minimum count of elements that need to be replaced to make this sequence a palindrome. For example, the palindromicity of the sequence $[38, 12, 8, 38, 38]$ is $1$ since it is sufficient to replace the number $38$ at the fourth position with the number $12$. And the palindromicity of the sequence $[3, 3, 5, 5, 5]$ is two since you can replace the first two threes with fives, and the resulting sequence $[5, 5, 5, 5, 5]$ is a palindrome.\n\nGiven a sequence $a$ of length $n$, and an **odd** integer $k$, you need to find the sum of palindromicity of all subarrays of length $k$, i. e., the sum of the palindromicity values for the sequences $a_i, a_{i+1}, \\dots, a_{i+k-1}$ for all $i$ from $1$ to $n-k+1$.\n\nThe students quickly solved the problem. Can you do it too?\n\n![image](https://espresso.codeforces.com/379c2d1eded22e3073b56466b9aa3830e8caa4d5.png)\n\n## Input\n\nThe first line of the input contains two integers $n$ and $k$ ($1 \\le n \\le 2 \\cdot 10^5$, $1 \\le k \\le n$, $k$ is odd) — the length of the sequence and the length of subarrays for which it is necessary to determine whether they are palindromes.\n\nThe second line of the input contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 2 \\cdot 10^5$) — the sequence itself.\n\n## Output\n\nOutput a single integer — the total palindromicity of all subarrays of length $k$.\n\n## Note\n\nIn the first example, the palindromicity of the subarray $[1, 2, 8, 2, 5]$ is $1$, the palindromicity of the string $[2, 8, 2, 5, 2]$ is also $1$, the palindromicity of the string $[8, 2, 5, 2, 8]$ is $0$, and the palindromicity of the string $[2, 5, 2, 8, 6]$ is $2$. The total palindromicity is $1+1+0+2 = 4$.\n\nIn the second example, the only substring of length $9$ coincides with the entire string, and its palindromicity is $0$, so the answer is also $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "Petya 和他的朋友机器人 Petya++ 有一位共同的朋友——半机械人 Petr#。有时 Petr# 会来找他们喝茶，并告诉他们一些有趣的问题。\n\n今天，Petr# 告诉了他们下面这个问题。\n\n如果一个序列从左到右读和从右到左读是相同的，那么这个序列就是回文。例如，$[38, 12, 8, 12, 38]$、$[1]$ 和 $[3, 8, 8, 3]$ 都是回文。\n\n我们将序列 $a_1, a_2, \\dots, a_n$ 的*回文度*定义为：为了将该序列变成回文，最少需要替换的元素个数。例如，序列 $[38, 12, 8, 38, 38]$ 的回文度为 $1$，因为只需将第四个位置上的数字 $38$ 替换为数字 $12$ 即可。序列 $[3, 3, 5, 5, 5]$ 的回文度为 $2$，因为可以将开头的两个 3 替换为 5，得到的序列 $[5, 5, 5, 5, 5]$ 就是一个回文。\n\n给定一个长度为 $n$ 的序列 $a$，以及一个**奇数** $k$，请你求出所有长度为 $k$ 的子数组的回文度之和，即对于从 $1$ 到 $n-k+1$ 的每个 $i$，求序列 $a_i, a_{i+1}, \\dots, a_{i+k-1}$ 的回文度，并将这些值相加。\n\n学生们很快就解决了这个问题。你也能做到吗？\n\n![image](https://espresso.codeforces.com/379c2d1eded22e3073b56466b9aa3830e8caa4d5.png)\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 2 \\cdot 10^5$，$1 \\le k \\le n$，$k$ 为奇数）——序列的长度，以及需要判断回文度的子数组长度。\n\n输入的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 2 \\cdot 10^5$）——序列本身。\n\n## 输出格式\n\n输出一个整数——所有长度为 $k$ 的子数组的回文度总和。\n\n## 说明\n\n在第一个样例中，子数组 $[1, 2, 8, 2, 5]$ 的回文度为 $1$，字符串 $[2, 8, 2, 5, 2]$ 的回文度也为 $1$，字符串 $[8, 2, 5, 2, 8]$ 的回文度为 $0$，字符串 $[2, 5, 2, 8, 6]$ 的回文度为 $2$。因此，回文度总和为 $1+1+0+2 = 4$。\n\n在第二个样例中，唯一的长度为 $9$ 的子串就是整个字符串，其回文度为 $0$，因此答案也是 $0$。",
   "samples": [
     {
       "input": "8 5\n1 2 8 2 5 2 8 6\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:33:24.583Z"
+  "fetchedAt": "2026-10-30T22:33:24.583Z",
+  "translatedAt": "2026-11-04T02:58:12.039+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

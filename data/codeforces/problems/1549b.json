@@ -4,7 +4,7 @@
   "contestId": 1549,
   "index": "B",
   "title": "Gregor and the Pawn Game",
-  "titleZh": null,
+  "titleZh": "Gregor 与兵的游戏",
   "url": "https://codeforces.com/contest/1549/problem/B",
   "difficulty": 800,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "There is a chessboard of size $n$ by $n$. The square in the $i$-th row from top and $j$-th column from the left is labelled $(i,j)$.\n\nCurrently, Gregor has some pawns in the $n$-th row. There are also enemy pawns in the $1$-st row. On one turn, Gregor moves one of **his** pawns. A pawn can move one square up (from $(i,j)$ to $(i-1,j)$) if there is no pawn in the destination square. Additionally, a pawn can move one square diagonally up (from $(i,j)$ to either $(i-1,j-1)$ or $(i-1,j+1)$) if and only if there is an enemy pawn in that square. The enemy pawn is also removed.\n\nGregor wants to know what is the maximum number of his pawns that can reach row $1$?\n\nNote that only Gregor takes turns in this game, and **the enemy pawns never move**. Also, when Gregor's pawn reaches row $1$, it is stuck and cannot make any further moves.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1\\le t\\le 2\\cdot 10^4$) — the number of test cases. Then $t$ test cases follow.\n\nEach test case consists of three lines. The first line contains a single integer $n$ ($2\\le n\\le 2\\cdot{10}^{5}$) — the size of the chessboard.\n\nThe second line consists of a string of binary digits of length $n$, where a $1$ in the $i$-th position corresponds to an enemy pawn in the $i$-th cell from the left, and $0$ corresponds to an empty cell.\n\nThe third line consists of a string of binary digits of length $n$, where a $1$ in the $i$-th position corresponds to a Gregor's pawn in the $i$-th cell from the left, and $0$ corresponds to an empty cell.\n\nIt is guaranteed that the sum of $n$ across all test cases is less than $2\\cdot{10}^{5}$.\n\n## Output\n\nFor each test case, print one integer: the **maximum** number of Gregor's pawns which can reach the $1$-st row.\n\n## Note\n\nIn the first example, Gregor can simply advance all $3$ of his pawns forward. Thus, the answer is $3$.\n\nIn the second example, Gregor can guarantee that all $4$ of his pawns reach the enemy row, by following the colored paths as demonstrated in the diagram below. Remember, only Gregor takes turns in this \"game\"!\n\n![image](https://espresso.codeforces.com/cfed1a133b4b2a9c7c47103f0985775059debde6.png)\n\nIn the third example, Gregor's only pawn is stuck behind the enemy pawn, and cannot reach the end.\n\nIn the fourth example, Gregor has no pawns, so the answer is clearly $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "有一个大小为 $n$ 行 $n$ 列的棋盘。从上往下数第 $i$ 行、从左往右数第 $j$ 列的格子标记为 $(i,j)$。\n\n目前，Gregor 在第 $n$ 行有一些兵。第 $1$ 行还有一些敌方的兵。每个回合中，Gregor 移动一个**自己的**兵。\n\n如果目标格为空，一个兵可以向上移动一格（从 $(i,j)$ 移动到 $(i-1,j)$）。此外，当且仅当目标格中有敌方的兵时，一个兵可以向左上方或右上方斜向移动一格（从 $(i,j)$ 移动到 $(i-1,j-1)$ 或 $(i-1,j+1)$）。敌方的兵也会被移除。\n\nGregor 想知道，最多有多少个自己的兵能够到达第 $1$ 行？\n\n注意，只有 Gregor 会进行操作，**敌方的兵永远不会移动**。此外，当 Gregor 的兵到达第 $1$ 行后，它就会被卡住，无法继续移动。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1\\le t\\le 2\\cdot 10^4$）——测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例包含三行。第一行包含一个整数 $n$（$2\\le n\\le 2\\cdot{10}^{5}$）——棋盘的大小。\n\n第二行包含一个长度为 $n$ 的二进制字符串，其中第 $i$ 个位置为 $1$ 表示从左数第 $i$ 个格子中有一个敌方的兵，为 $0$ 表示该格子为空。\n\n第三行包含一个长度为 $n$ 的二进制字符串，其中第 $i$ 个位置为 $1$ 表示从左数第 $i$ 个格子中有一个 Gregor 的兵，为 $0$ 表示该格子为空。\n\n保证所有测试用例的 $n$ 之和小于 $2\\cdot{10}^{5}$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：能够到达第 $1$ 行的 Gregor 的兵的**最大**数量。\n\n## 说明\n\n在第一个样例中，Gregor 可以直接让自己的 $3$ 个兵全部向前移动。因此，答案是 $3$。\n\n在第二个样例中，Gregor 可以按照下图所示的彩色路径进行操作，从而保证自己的全部 $4$ 个兵都到达敌方所在的行。请记住，在这个“游戏”中只有 Gregor 会进行操作！\n\n![image](https://espresso.codeforces.com/cfed1a133b4b2a9c7c47103f0985775059debde6.png)\n\n在第三个样例中，Gregor 唯一的兵被敌方的兵挡住，无法到达终点。\n\n在第四个样例中，Gregor 没有兵，因此答案显然是 $0$。",
   "samples": [
     {
       "input": "4\n3\n000\n111\n4\n1111\n1111\n3\n010\n010\n5\n11001\n00000\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:29:31.867Z"
+  "fetchedAt": "2026-10-30T23:29:31.867Z",
+  "translatedAt": "2026-11-04T03:46:54.601+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

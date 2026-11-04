@@ -4,7 +4,7 @@
   "contestId": 1401,
   "index": "F",
   "title": "Reverse and Swap",
-  "titleZh": null,
+  "titleZh": "反转与交换",
   "url": "https://codeforces.com/contest/1401/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a$ of length $2^n$. You should process $q$ queries on it. Each query has one of the following $4$ types:\n\n1. $Replace(x, k)$ — change $a_x$ to $k$;\n2. $Reverse(k)$ — reverse each subarray $[(i-1) \\cdot 2^k+1, i \\cdot 2^k]$ for all $i$ ($i \\ge 1$);\n3. $Swap(k)$ — swap subarrays $[(2i-2) \\cdot 2^k+1, (2i-1) \\cdot 2^k]$ and $[(2i-1) \\cdot 2^k+1, 2i \\cdot 2^k]$ for all $i$ ($i \\ge 1$);\n4. $Sum(l, r)$ — print the sum of the elements of subarray $[l, r]$.\n\nWrite a program that can quickly process given queries.\n\n## Input\n\nThe first line contains two integers $n$, $q$ ($0 \\le n \\le 18$; $1 \\le q \\le 10^5$) — the length of array $a$ and the number of queries.\n\nThe second line contains $2^n$ integers $a_1, a_2, \\ldots, a_{2^n}$ ($0 \\le a_i \\le 10^9$).\n\nNext $q$ lines contains queries — one per line. Each query has one of $4$ types:\n\n- \"$1$ $x$ $k$\" ($1 \\le x \\le 2^n$; $0 \\le k \\le 10^9$) — $Replace(x, k)$;\n- \"$2$ $k$\" ($0 \\le k \\le n$) — $Reverse(k)$;\n- \"$3$ $k$\" ($0 \\le k \\lt n$) — $Swap(k)$;\n- \"$4$ $l$ $r$\" ($1 \\le l \\le r \\le 2^n$) — $Sum(l, r)$.\n\nIt is guaranteed that there is at least one $Sum$ query.\n\n## Output\n\nPrint the answer for each $Sum$ query.\n\n## Note\n\nIn the first sample, initially, the array $a$ is equal to $\\{7,4,9,9\\}$.\n\nAfter processing the first query. the array $a$ becomes $\\{7,8,9,9\\}$.\n\nAfter processing the second query, the array $a_i$ becomes $\\{9,9,7,8\\}$\n\nTherefore, the answer to the third query is $9+7+8=24$.\n\nIn the second sample, initially, the array $a$ is equal to $\\{7,0,8,8,7,1,5,2\\}$. What happens next is:\n\n1. $Sum(3, 7)$ $\\to$ $8 + 8 + 7 + 1 + 5 = 29$;\n2. $Reverse(1)$ $\\to$ $\\{0,7,8,8,1,7,2,5\\}$;\n3. $Swap(2)$ $\\to$ $\\{1,7,2,5,0,7,8,8\\}$;\n4. $Sum(1, 6)$ $\\to$ $1 + 7 + 2 + 5 + 0 + 7 = 22$;\n5. $Reverse(3)$ $\\to$ $\\{8,8,7,0,5,2,7,1\\}$;\n6. $Replace(5, 16)$ $\\to$ $\\{8,8,7,0,16,2,7,1\\}$;\n7. $Sum(8, 8)$ $\\to$ $1$;\n8. $Swap(0)$ $\\to$ $\\{8,8,0,7,2,16,1,7\\}$.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个长度为 $2^n$ 的数组 $a$。你需要对它处理 $q$ 次查询。每次查询为以下 $4$ 种类型之一：\n\n1. $Replace(x, k)$ —— 将 $a_x$ 修改为 $k$；\n2. $Reverse(k)$ —— 对所有 $i$（$i \\ge 1$），将子数组 $[(i-1) \\cdot 2^k+1, i \\cdot 2^k]$ 反转；\n3. $Swap(k)$ —— 对所有 $i$（$i \\ge 1$），交换子数组 $[(2i-2) \\cdot 2^k+1, (2i-1) \\cdot 2^k]$ 与 $[(2i-1) \\cdot 2^k+1, 2i \\cdot 2^k]$；\n4. $Sum(l, r)$ —— 输出子数组 $[l, r]$ 中所有元素的和。\n\n请编写程序，快速处理给定的查询。\n\n## 输入格式\n\n第一行包含两个整数 $n, q$（$0 \\le n \\le 18$；$1 \\le q \\le 10^5$）——数组 $a$ 的长度和查询次数。\n\n第二行包含 $2^n$ 个整数 $a_1, a_2, \\ldots, a_{2^n}$（$0 \\le a_i \\le 10^9$）。\n\n接下来 $q$ 行，每行包含一个查询。每个查询为以下 $4$ 种类型之一：\n\n- \"$1$ $x$ $k$\"（$1 \\le x \\le 2^n$；$0 \\le k \\le 10^9$）—— $Replace(x, k)$；\n- \"$2$ $k$\"（$0 \\le k \\le n$）—— $Reverse(k)$；\n- \"$3$ $k$\"（$0 \\le k \\lt n$）—— $Swap(k)$；\n- \"$4$ $l$ $r$\"（$1 \\le l \\le r \\le 2^n$）—— $Sum(l, r)$。\n\n保证至少存在一个 $Sum$ 查询。\n\n## 输出格式\n\n对于每个 $Sum$ 查询，输出其答案。\n\n## 说明\n\n在第一个样例中，初始时数组 $a$ 等于 $\\{7,4,9,9\\}$。\n\n处理完第一个查询后，数组 $a$ 变为 $\\{7,8,9,9\\}$。\n\n处理完第二个查询后，数组 $a_i$ 变为 $\\{9,9,7,8\\}$。\n\n因此，第三个查询的答案为 $9+7+8=24$。\n\n在第二个样例中，初始时数组 $a$ 等于 $\\{7,0,8,8,7,1,5,2\\}$。接下来发生的操作如下：\n\n1. $Sum(3, 7)$ $\\to$ $8 + 8 + 7 + 1 + 5 = 29$；\n2. $Reverse(1)$ $\\to$ $\\{0,7,8,8,1,7,2,5\\}$；\n3. $Swap(2)$ $\\to$ $\\{1,7,2,5,0,7,8,8\\}$；\n4. $Sum(1, 6)$ $\\to$ $1 + 7 + 2 + 5 + 0 + 7 = 22$；\n5. $Reverse(3)$ $\\to$ $\\{8,8,7,0,5,2,7,1\\}$；\n6. $Replace(5, 16)$ $\\to$ $\\{8,8,7,0,16,2,7,1\\}$；\n7. $Sum(8, 8)$ $\\to$ $1$；\n8. $Swap(0)$ $\\to$ $\\{8,8,0,7,2,16,1,7\\}$。",
   "samples": [
     {
       "input": "2 3\n7 4 9 9\n1 2 8\n3 1\n4 2 4\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:45:50.689Z"
+  "fetchedAt": "2026-10-30T23:45:50.689Z",
+  "translatedAt": "2026-11-04T04:26:17.041+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

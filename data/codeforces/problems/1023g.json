@@ -4,7 +4,7 @@
   "contestId": 1023,
   "index": "G",
   "title": "Pisces",
-  "titleZh": null,
+  "titleZh": "双鱼座",
   "url": "https://codeforces.com/contest/1023/problem/G",
   "difficulty": 3400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "A group of researchers are studying fish population in a natural system of lakes and rivers. The system contains $n$ lakes connected by $n - 1$ rivers. Each river has integer length (in kilometers) and can be traversed in both directions. It is possible to travel between any pair of lakes by traversing the rivers (that is, the network of lakes and rivers form a tree).\n\nThere is an unknown number of indistinguishable fish living in the lakes. On day $1$, fish can be at arbitrary lakes. Fish can travel between lakes by swimming the rivers. Each fish can swim a river $l$ kilometers long in any direction in $l$ days. Further, each fish can stay any number of days in any particular lake it visits. No fish ever appear or disappear from the lake system. Each lake can accomodate any number of fish at any time.\n\nThe researchers made several observations. The $j$-th of these observations is \"on day $d_j$ there were at least $f_j$ distinct fish in the lake $p_j$\". Help the researchers in determining the smallest possible total number of fish living in the lake system that doesn't contradict the observations.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\leq n \\leq 10^5$) — the number of lakes in the system.\n\nThe next $n - 1$ lines describe the rivers. The $i$-th of these lines contains three integers $u_i$, $v_i$, $l_i$ ($1 \\leq u_i, v_i \\leq n$, $u_i \\neq v_i$, $1 \\leq l_i \\leq 10^3$) — $1$-based indices of lakes connected by the $i$-th river, and the length of this river.\n\nThe next line contains a single integer $k$ ($1 \\leq k \\leq 10^5$) — the number of observations.\n\nThe next $k$ lines describe the observations. The $j$-th of these lines contains three integers $d_j$, $f_j$, $p_j$ ($1 \\leq d_j \\leq 10^8$, $1 \\leq f_j \\leq 10^4$, $1 \\leq p_j \\leq n$) — the day, the number of fish, and the lake index of the $j$-th observation. No two observations happen on the same day at the same lake simultaneously.\n\n## Output\n\nPrint one integer — the smallest total number of fish not contradicting the observations.\n\n## Note\n\nIn the first example, there could be one fish swimming through lakes $2$, $1$, and $4$, and the second fish swimming through lakes $3$, $1$, and $2$.\n\nIn the second example a single fish can not possibly be part of all observations simultaneously, but two fish swimming $2 \\to 1 \\to 4$ and $3 \\to 1 \\to 5$ can.\n\nIn the third example one fish can move from lake $1$ to lake $5$, others staying in their lakes during all time: two fish in lake $4$, six fish in lake $5$, one fish in lake $3$. The system of lakes is shown on the picture.\n\n![image](https://espresso.codeforces.com/97b6a424f3777120e6c3f1d40386477f8becc41e.png)",
-  "statementZhMd": null,
+  "statementZhMd": "一组研究人员正在研究一个由湖泊和河流组成的自然系统中的鱼类数量。该系统包含 $n$ 个湖泊，由 $n - 1$ 条河流连接。每条河流的长度均为整数（单位：千米），并且可以双向通行。通过 traversing 河流，可以在任意两个湖泊之间通行（也就是说，湖泊和河流组成一棵树）。\n\n湖泊中生活着数量未知且彼此无法区分的鱼。在第 $1$ 天，鱼可以位于任意湖泊。鱼可以通过游过河流在湖泊之间移动。每条鱼游过一条长度为 $l$ 千米的河流，无论方向如何，都需要 $l$ 天。此外，每条鱼都可以在它到达的任意湖泊中停留任意天数。鱼不会凭空出现在湖泊系统中，也不会从中消失。任意时刻，每个湖泊都可以容纳任意数量的鱼。\n\n研究人员进行了若干次观测。第 $j$ 次观测的内容是：“在第 $d_j$ 天，湖泊 $p_j$ 中至少有 $f_j$ 条不同的鱼。”请帮助研究人员确定一个不与这些观测矛盾的湖泊系统中鱼的总数的最小值。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 10^5$）——系统中的湖泊数量。\n\n接下来的 $n - 1$ 行描述河流。第 $i$ 行包含三个整数 $u_i$、$v_i$、$l_i$（$1 \\leq u_i, v_i \\leq n$，$u_i \\neq v_i$，$1 \\leq l_i \\leq 10^3$）——由第 $i$ 条河流连接的湖泊的 1-based 编号，以及这条河流的长度。\n\n接下来一行包含一个整数 $k$（$1 \\leq k \\leq 10^5$）——观测次数。\n\n接下来的 $k$ 行描述观测。第 $j$ 行包含三个整数 $d_j$、$f_j$、$p_j$（$1 \\leq d_j \\leq 10^8$，$1 \\leq f_j \\leq 10^4$，$1 \\leq p_j \\leq n$）——第 $j$ 次观测发生的日期、鱼的数量以及湖泊编号。同一湖泊不会在同一天同时发生两次观测。\n\n## 输出格式\n\n输出一个整数——不与观测矛盾的鱼的总数的最小值。\n\n## 说明\n\n在第一个样例中，可以有一条鱼依次游过湖泊 $2$、$1$ 和 $4$，另一条鱼依次游过湖泊 $3$、$1$ 和 $2$。\n\n在第二个样例中，一条鱼不可能同时满足所有观测，但两条鱼分别沿着 $2 \\to 1 \\to 4$ 和 $3 \\to 1 \\to 5$ 移动即可满足所有观测。\n\n在第三个样例中，一条鱼可以从湖泊 $1$ 移动到湖泊 $5$，其余鱼在整个过程中都留在各自的湖泊中：湖泊 $4$ 中有两条鱼，湖泊 $5$ 中有六条鱼，湖泊 $3$ 中有一条鱼。湖泊系统如图所示。\n\n![image](https://espresso.codeforces.com/97b6a424f3777120e6c3f1d40386477f8becc41e.png)",
   "samples": [
     {
       "input": "4\n1 2 1\n1 3 1\n1 4 1\n5\n1 1 2\n1 1 3\n2 2 1\n3 1 4\n3 1 2\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:26:46.421Z"
+  "fetchedAt": "2026-10-31T00:26:46.421Z",
+  "translatedAt": "2026-11-04T05:44:07.388+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

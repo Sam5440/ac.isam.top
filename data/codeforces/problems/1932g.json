@@ -4,7 +4,7 @@
   "contestId": 1932,
   "index": "G",
   "title": "Moving Platforms",
-  "titleZh": null,
+  "titleZh": "移动平台",
   "url": "https://codeforces.com/contest/1932/problem/G",
   "difficulty": 2300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "There is a game where you need to move through a labyrinth. The labyrinth consists of $n$ platforms, connected by $m$ passages.\n\nEach platform is at some level $l_i$, an integer number from $0$ to $H - 1$. In a single step, if you are currently on platform $i$, you can stay on it, or move to another platform $j$. To move to platform $j$ they have to be connected by the passage, and their levels have to be the same, namely $l_i = l_j$.\n\nAfter each step, the levels of all platforms change. The new level of platform $i$ is calculated as $l'_i = (l_i + s_i) \\bmod H$, for all $i$.\n\nYou start on platform $1$. Find the minimum number of steps you need to get to platform $n$.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. Then the descriptions of the test cases follow.\n\nThe first line of each test case contains three integers $n$, $m$, and $H$ ($2 \\le n \\le 10^5$, $1 \\le m \\le 10^5$, $1 \\le H \\le 10^9$).\n\nThe second line contains $n$ integers $l_i$, the initial level of each platform ($0 \\le l_i \\le H-1$).\n\nThe third line contains $n$ integers $s_i$, the change of level for each platform ($0 \\le s_i \\le H-1$).\n\nNext $m$ lines contain a description of the passages. Each passage is described as a pair of integers — the platforms, connected by the passage. There is at most one passage connecting each pair of platforms, and there is no passage connecting a platform to itself.\n\nThe sum of $n$ for all tests does not exceed $10^5$, the sum of $m$ for all tests does not exceed $10^5$.\n\n## Output\n\nFor each test case, print a single integer, the minimum number of steps needed to get from platform $1$ to platform $n$.\n\nIf it is impossible to get to platform $n$, print $-1$.\n\n## Note\n\nThis is how levels of the platforms change, and what actions we need to perform in the first example.\n\n|   | **Platform 1** | **Platform 2** | **Platform 3** | **Action** |\n| --- | --- | --- | --- | --- |\n| **Step 1** | 1 | 9 | 4 | Stay on the platform 1 |\n| **Step 2** | 3 | 2 | 4 | Stay on the platform 1 |\n| **Step 3** | **5** | **5** | 4 | Move to the platform 2 |\n| **Step 4** | 7 | 8 | 4 | Stay on the platform 2 |\n| **Step 5** | 9 | 1 | 4 | Stay on the platform 2 |\n| **Step 6** | 1 | **4** | **4** | Move to the platform 3 |",
-  "statementZhMd": null,
+  "statementZhMd": "有一个游戏，你需要在迷宫中移动。迷宫由 $n$ 个平台组成，这些平台之间由 $m$ 条通道连接。\n\n每个平台都处于某个层级 $l_i$，它是一个介于 $0$ 和 $H - 1$ 之间的整数。每一步中，如果你当前位于平台 $i$，你可以留在原平台，也可以移动到另一个平台 $j$。要移动到平台 $j$，两个平台之间必须有通道连接，并且它们的层级必须相同，即 $l_i = l_j$。\n\n每一步结束后，所有平台的层级都会发生变化。平台 $i$ 的新层级计算方式为 $l'_i = (l_i + s_i) \\bmod H$，其中 $i$ 遍历所有平台。\n\n你从平台 $1$ 出发。请找出到达平台 $n$ 所需的最少步数。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含三个整数 $n$、$m$ 和 $H$（$2 \\le n \\le 10^5$，$1 \\le m \\le 10^5$，$1 \\le H \\le 10^9$）。\n\n第二行包含 $n$ 个整数 $l_i$，表示每个平台的初始层级（$0 \\le l_i \\le H-1$）。\n\n第三行包含 $n$ 个整数 $s_i$，表示每个平台的层级变化量（$0 \\le s_i \\le H-1$）。\n\n接下来的 $m$ 行描述各条通道。每条通道由一对整数表示，即由该通道连接的两个平台。任意一对平台之间最多有一条通道，且不存在连接平台自身的通道。\n\n所有测试用例的 $n$ 之和不超过 $10^5$，$m$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示从平台 $1$ 到达平台 $n$ 所需的最少步数。\n\n如果无法到达平台 $n$，输出 $-1$。\n\n## 说明\n\n下面展示了第一个样例中平台层级的变化，以及我们需要执行的操作。\n\n|   | **平台 1** | **平台 2** | **平台 3** | **操作** |\n| --- | --- | --- | --- | --- |\n| **第 1 步** | 1 | 9 | 4 | 留在平台 1 |\n| **第 2 步** | 3 | 2 | 4 | 留在平台 1 |\n| **第 3 步** | **5** | **5** | 4 | 移动到平台 2 |\n| **第 4 步** | 7 | 8 | 4 | 留在平台 2 |\n| **第 5 步** | 9 | 1 | 4 | 留在平台 2 |\n| **第 6 步** | 1 | **4** | **4** | 移动到平台 3 |",
   "samples": [
     {
       "input": "3\n3 3 10\n1 9 4\n2 3 0\n1 2\n3 2\n1 3\n2 1 10\n1 2\n4 6\n1 2\n8 7 25\n22 14 5 3 10 14 11 1\n9 5 4 10 7 16 18 18\n2 8\n6 3\n3 5\n7 5\n2 6\n1 4\n4 7\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:17:20.183Z"
+  "fetchedAt": "2026-11-02T17:17:20.183Z",
+  "translatedAt": "2026-11-04T02:25:28.481+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

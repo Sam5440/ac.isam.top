@@ -4,7 +4,7 @@
   "contestId": 1042,
   "index": "C",
   "title": "Array Product",
-  "titleZh": null,
+  "titleZh": "数组乘积",
   "url": "https://codeforces.com/contest/1042/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a$ consisting of $n$ integers. You can perform the following operations with it:\n\n1. Choose some positions $i$ and $j$ ($1 \\le i, j \\le n, i \\ne j$), write the value of $a_i \\cdot a_j$ into the $j$-th cell and **remove the number** from the $i$-th cell;\n2. Choose some position $i$ and **remove the number** from the $i$-th cell (this operation can be performed **no more than once and at any point of time, not necessarily in the beginning**).\n\nThe number of elements decreases by one after each operation. However, the indexing of positions stays the same. Deleted numbers can't be used in the later operations.\n\nYour task is to perform exactly $n - 1$ operations with the array in such a way that the only number that remains in the array is maximum possible. This number can be rather large, so instead of printing it you need to print **any** sequence of operations which leads to this maximum number. Read the output format to understand what exactly you need to print.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of elements in the array.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($-10^9 \\le a_i \\le 10^9$) — the elements of the array.\n\n## Output\n\nPrint $n - 1$ lines. The $k$-th line should contain one of the two possible operations.\n\nThe operation of the first type should look like this: $1~ i_k~ j_k$, where $1$ is the type of operation, $i_k$ and $j_k$ are the positions of the chosen elements.\n\nThe operation of the second type should look like this: $2~ i_k$, where $2$ is the type of operation, $i_k$ is the position of the chosen element. Note that there should be no more than one such operation.\n\nIf there are multiple possible sequences of operations leading to the maximum number — print **any** of them.\n\n## Note\n\nLet `X` be the removed number in the array. Let's take a look at all the examples:\n\nThe first example has, for example, the following sequence of transformations of the array: $[5, -2, 0, 1, -3] \\to [5, -2, X, 1, -3] \\to [X, -10, X, 1, -3] \\to$ $[X, X, X, -10, -3] \\to [X, X, X, X, 30]$. Thus, the maximum answer is $30$. **Note, that other sequences that lead to the answer $30$ are also correct**.\n\nThe second example has, for example, the following sequence of transformations of the array: $[5, 2, 0, 4, 0] \\to [5, 2, X, 4, 0] \\to [5, 2, X, 4, X] \\to [X, 10, X, 4, X] \\to$ $[X, X, X, 40, X]$. The following answer is also allowed:\n\n```\n1 5 3\n1 4 2\n1 2 1\n2 3\n```\n\nThen the sequence of transformations of the array will look like this: $[5, 2, 0, 4, 0] \\to [5, 2, 0, 4, X] \\to [5, 8, 0, X, X] \\to [40, X, 0, X, X] \\to$ $[40, X, X, X, X]$.\n\nThe third example can have the following sequence of transformations of the array: $[2, -1] \\to [2, X]$.\n\nThe fourth example can have the following sequence of transformations of the array: $[0, -10, 0, 0] \\to [X, 0, 0, 0] \\to [X, X, 0, 0] \\to [X, X, X, 0]$.\n\nThe fifth example can have the following sequence of transformations of the array: $[0, 0, 0, 0] \\to [X, 0, 0, 0] \\to [X, X, 0, 0] \\to [X, X, X, 0]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个整数构成的数组 $a$。你可以对它执行以下操作：\n\n1. 选择两个位置 $i$ 和 $j$（$1 \\le i, j \\le n, i \\ne j$），将 $a_i \\cdot a_j$ 的值写入第 $j$ 个单元格，并从第 $i$ 个单元格中**删除该数字**；\n2. 选择一个位置 $i$，从第 $i$ 个单元格中**删除该数字**（此操作**至多执行一次，并且可以在任意时刻执行，不一定要在开始时执行**）。\n\n每次操作后，元素数量都会减少一个。但是，位置的编号保持不变。被删除的数字不能在后续操作中使用。\n\n你的任务是对数组恰好执行 $n - 1$ 次操作，使得数组中最后剩下的唯一数字尽可能大。这个数字可能非常大，因此你不需要输出它，而是输出**任意一组能够得到这个最大数字的操作序列**。具体需要输出什么，请参阅输出格式。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$），表示数组中的元素个数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$-10^9 \\le a_i \\le 10^9$），表示数组中的元素。\n\n## 输出格式\n\n输出 $n - 1$ 行。第 $k$ 行应包含以下两种操作中的一种。\n\n第一类操作的格式如下：`1~ i_k~ j_k`，其中 $1$ 表示操作类型，$i_k$ 和 $j_k$ 表示所选元素的位置。\n\n第二类操作的格式如下：`2~ i_k`，其中 $2$ 表示操作类型，$i_k$ 表示所选元素的位置。注意，这种操作至多只能执行一次。\n\n如果存在多组能够得到最大数字的操作序列，输出其中任意一组即可。\n\n## 说明\n\n令 `X` 表示数组中被删除的数字。下面来看所有样例：\n\n第一个样例的一组操作序列如下：$[5, -2, 0, 1, -3] \\to [5, -2, X, 1, -3] \\to [X, -10, X, 1, -3] \\to$ $[X, X, X, -10, -3] \\to [X, X, X, X, 30]$。因此，最大答案为 $30$。**注意，其他能够得到答案 $30$ 的操作序列同样正确**。\n\n第二个样例的一组操作序列如下：$[5, 2, 0, 4, 0] \\to [5, 2, X, 4, 0] \\to [5, 2, X, 4, X] \\to [X, 10, X, 4, X] \\to$ $[X, X, X, 40, X]$。以下答案同样合法：\n\n```\n1 5 3\n1 4 2\n1 2 1\n2 3\n```\n\n此时数组的变化过程为：$[5, 2, 0, 4, 0] \\to [5, 2, 0, 4, X] \\to [5, 8, 0, X, X] \\to [40, X, 0, X, X] \\to$ $[40, X, X, X, X]$。\n\n第三个样例的一组操作序列如下：$[2, -1] \\to [2, X]$。\n\n第四个样例的一组操作序列如下：$[0, -10, 0, 0] \\to [X, 0, 0, 0] \\to [X, X, 0, 0] \\to [X, X, X, 0]$。\n\n第五个样例的一组操作序列如下：$[0, 0, 0, 0] \\to [X, 0, 0, 0] \\to [X, X, 0, 0] \\to [X, X, X, 0]$。",
   "samples": [
     {
       "input": "5\n5 -2 0 1 -3\n",
@@ -45,5 +45,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:23:37.046Z"
+  "fetchedAt": "2026-10-31T00:23:37.046Z",
+  "translatedAt": "2026-11-04T05:33:08.971+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

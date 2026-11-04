@@ -4,7 +4,7 @@
   "contestId": 1065,
   "index": "E",
   "title": "Side Transmutations",
-  "titleZh": null,
+  "titleZh": "侧向变换",
   "url": "https://codeforces.com/contest/1065/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Consider some set of distinct characters $A$ and some string $S$, consisting of exactly $n$ characters, where each character is present in $A$.\n\nYou are given an array of $m$ integers $b$ ($b_1 \\lt b_2 \\lt \\dots \\lt b_m$).\n\nYou are allowed to perform the following move on the string $S$:\n\n1. Choose some valid $i$ and set $k = b_i$;\n2. Take the first $k$ characters of $S = Pr_k$;\n3. Take the last $k$ characters of $S = Su_k$;\n4. Substitute the first $k$ characters of $S$ with the reversed $Su_k$;\n5. Substitute the last $k$ characters of $S$ with the reversed $Pr_k$.\n\nFor example, let's take a look at $S =$ \"`abcdefghi`\" and $k = 2$. $Pr_2 =$ \"`ab`\", $Su_2 =$ \"`hi`\". Reversed $Pr_2 =$ \"`ba`\", $Su_2 =$ \"`ih`\". Thus, the resulting $S$ is \"`ihcdefgba`\".\n\nThe move can be performed arbitrary number of times (possibly zero). Any $i$ can be selected multiple times over these moves.\n\nLet's call some strings $S$ and $T$ equal if and only if there exists such a sequence of moves to transmute string $S$ to string $T$. For the above example strings \"`abcdefghi`\" and \"`ihcdefgba`\" are equal. Also note that this implies $S = S$.\n\nThe task is simple. Count the number of distinct strings.\n\nThe answer can be huge enough, so calculate it modulo $998244353$.\n\n## Input\n\nThe first line contains three integers $n$, $m$ and $|A|$ ($2 \\le n \\le 10^9$, $1 \\le m \\le min(\\frac n 2, 2 \\cdot 10^5)$, $1 \\le |A| \\le 10^9$) — the length of the strings, the size of the array $b$ and the size of the set $A$, respectively.\n\nThe second line contains $m$ integers $b_1, b_2, \\dots, b_m$ ($1 \\le b_i \\le \\frac n 2$, $b_1 \\lt b_2 \\lt \\dots \\lt b_m$).\n\n## Output\n\nPrint a single integer — the number of distinct strings of length $n$ with characters from set $A$ modulo $998244353$.\n\n## Note\n\nHere are all the distinct strings for the first example. The chosen letters '`a`' and '`b`' are there just to show that the characters in $A$ are different.\n\n1. \"`aaa`\"\n2. \"`aab`\" = \"`baa`\"\n3. \"`aba`\"\n4. \"`abb`\" = \"`bba`\"\n5. \"`bab`\"\n6. \"`bbb`\"",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一个由互不相同的字符组成的集合 $A$，以及一个恰好由 $n$ 个字符组成的字符串 $S$，其中每个字符都存在于 $A$ 中。\n\n给定一个包含 $m$ 个整数的数组 $b$（$b_1 \\lt b_2 \\lt \\dots \\lt b_m$）。\n\n你可以对字符串 $S$ 执行以下操作：\n\n1. 选择一个合法的 $i$，并令 $k = b_i$；\n2. 取出 $S$ 的前 $k$ 个字符，记为 $S = Pr_k$；\n3. 取出 $S$ 的后 $k$ 个字符，记为 $Su_k$；\n4. 将 $S$ 的前 $k$ 个字符替换为 $Su_k$ 的反转；\n5. 将 $S$ 的后 $k$ 个字符替换为 $Pr_k$ 的反转。\n\n例如，考虑 $S =$ \"`abcdefghi`\" 且 $k = 2$。此时 $Pr_2 =$ \"`ab`\"，$Su_2 =$ \"`hi`\"。$Pr_2$ 的反转为 \"`ba`\"，$Su_2$ 的反转为 \"`ih`\"。因此，操作后的 $S$ 为 \"`ihcdefgba`\"。\n\n操作可以执行任意次数（也可以一次都不执行）。在这些操作中，可以多次选择同一个 $i$。\n\n当且仅当存在一系列这样的操作，能够将字符串 $S$ 变换为字符串 $T$ 时，我们称字符串 $S$ 和 $T$ 相等。对于上面的例子，字符串 \"`abcdefghi`\" 和 \"`ihcdefgba`\" 相等。注意，这也意味着 $S = S$。\n\n任务很简单。请计算不同字符串的数量。\n\n由于答案可能非常大，请将其对 $998244353$ 取模后输出。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$ 和 $|A|$（$2 \\le n \\le 10^9$，$1 \\le m \\le min(\\frac n 2, 2 \\cdot 10^5)$，$1 \\le |A| \\le 10^9$），分别表示字符串的长度、数组 $b$ 的大小以及集合 $A$ 的大小。\n\n第二行包含 $m$ 个整数 $b_1, b_2, \\dots, b_m$（$1 \\le b_i \\le \\frac n 2$，$b_1 \\lt b_2 \\lt \\dots \\lt b_m$）。\n\n## 输出格式\n\n输出一个整数，即由集合 $A$ 中的字符组成的长度为 $n$ 的不同字符串的数量，对 $998244353$ 取模。\n\n## 说明\n\n以下是第一个样例中的所有不同字符串。选择字符 '`a`' 和 '`b`' 只是为了说明 $A$ 中的字符互不相同。\n\n1. \"`aaa`\"\n2. \"`aab`\" = \"`baa`\"\n3. \"`aba`\"\n4. \"`abb`\" = \"`bba`\"\n5. \"`bab`\"\n6. \"`bbb`\"",
   "samples": [
     {
       "input": "3 1 2\n1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:26:47.102Z"
+  "fetchedAt": "2026-11-02T19:26:47.102Z",
+  "translatedAt": "2026-11-04T05:30:43.961+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

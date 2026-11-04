@@ -4,7 +4,7 @@
   "contestId": 1364,
   "index": "D",
   "title": "Ehab's Last Corollary",
-  "titleZh": null,
+  "titleZh": "Ehab 的最后一个推论",
   "url": "https://codeforces.com/contest/1364/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Given a connected undirected graph with $n$ vertices and an integer $k$, you have to either:\n\n- either find an independent set that has **exactly** $\\lceil\\frac{k}{2}\\rceil$ vertices.\n- or find a **simple** cycle of length **at most** $k$.\n\nAn independent set is a set of vertices such that no two of them are connected by an edge. A simple cycle is a cycle that doesn't contain any vertex twice.\n\nI have a proof that for any input you can always solve at least one of these problems, but it's left as an exercise for the reader.\n\n## Input\n\nThe first line contains three integers $n$, $m$, and $k$ ($3 \\le k \\le n \\le 10^5$, $n-1 \\le m \\le 2 \\cdot 10^5$) — the number of vertices and edges in the graph, and the parameter $k$ from the statement.\n\nEach of the next $m$ lines contains two integers $u$ and $v$ ($1 \\le u,v \\le n$) that mean there's an edge between vertices $u$ and $v$. It's guaranteed that the graph is connected and doesn't contain any self-loops or multiple edges.\n\n## Output\n\nIf you choose to solve the first problem, then on the first line print $1$, followed by a line containing $\\lceil\\frac{k}{2}\\rceil$ distinct integers not exceeding $n$, the vertices in the desired independent set.\n\nIf you, however, choose to solve the second problem, then on the first line print $2$, followed by a line containing one integer, $c$, representing the length of the found cycle, followed by a line containing $c$ distinct integers not exceeding $n$, the vertices in the desired cycle, **in the order they appear in the cycle**.\n\n## Note\n\nIn the first sample:\n\n![image](https://espresso.codeforces.com/30ec0d0b069debf55bfe3aba38c15fe035e200d6.png)\n\nNotice that printing the independent set $\\{2,4\\}$ is also OK, but printing the cycle $1-2-3-4$ isn't, because its length must be at most $3$.\n\nIn the second sample:\n\n![image](https://espresso.codeforces.com/49b31d8a4b5e8512fbcdd368e5a4a34445a020be.png)\n\nNotice that printing the independent set $\\{1,3\\}$ or printing the cycle $2-1-4$ is also OK.\n\nIn the third sample:\n\n![image](https://espresso.codeforces.com/45bb98eab0d3defca699e0516b015899cbd2225c.png)\n\nIn the fourth sample:\n\n![image](https://espresso.codeforces.com/0b423c3ffbcf9f02621ccf7efc14e8c656d80c8b.png)",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个含有 $n$ 个顶点的连通无向图和一个整数 $k$，你需要完成以下两项任务之一：\n\n- 找到一个恰好包含 $\u0000ceil\\frac{k}{2}\\rceil$ 个顶点的独立集。\n- 或者找到一个长度**至多为** $k$ 的**简单**环。\n\n独立集是一个顶点集合，其中任意两个顶点之间都没有边相连。简单环是一个不重复经过任何顶点的环。\n\n我已经证明，对于任意输入，你总能至少解决上述问题中的一个，不过这部分证明就留给读者作为练习。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$ 和 $k$（$3 \\le k \\le n \\le 10^5$，$n-1 \\le m \\le 2 \\cdot 10^5$）——图中的顶点数和边数，以及题目描述中的参数 $k$。\n\n接下来的 $m$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n$），表示顶点 $u$ 和顶点 $v$ 之间存在一条边。保证图是连通的，且不包含自环或重边。\n\n## 输出格式\n\n如果你选择解决第一个问题，那么第一行输出 $1$，接着输出一行，其中包含 $\u0000ceil\\frac{k}{2}\\rceil$ 个互不相同且不超过 $n$ 的整数，表示所找到的独立集中的顶点。\n\n如果你选择解决第二个问题，那么第一行输出 $2$，接着输出一行，其中包含一个整数 $c$，表示所找到的环的长度；然后输出一行，其中包含 $c$ 个互不相同且不超过 $n$ 的整数，表示所找到的环中的顶点，且这些顶点必须按照它们在环中出现的顺序输出。\n\n## 说明\n\n在第一个样例中：\n\n![image](https://espresso.codeforces.com/30ec0d0b069debf55bfe3aba38c15fe035e200d6.png)\n\n注意，输出独立集 $\\{2,4\\}$ 也是正确的，但输出环 $1-2-3-4$ 是错误的，因为它的长度必须至多为 $3$。\n\n在第二个样例中：\n\n![image](https://espresso.codeforces.com/49b31d8a4b5e8512fbcdd368e5a4a34445a020be.png)\n\n注意，输出独立集 $\\{1,3\\}$ 或输出环 $2-1-4$ 也都是正确的。\n\n在第三个样例中：\n\n![image](https://espresso.codeforces.com/45bb98eab0d3defca699e0516b015899cbd2225c.png)\n\n在第四个样例中：\n\n![image](https://espresso.codeforces.com/0b423c3ffbcf9f02621ccf7efc14e8c656d80c8b.png)",
   "samples": [
     {
       "input": "4 4 3\n1 2\n2 3\n3 4\n4 1\n",
@@ -43,5 +43,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:49:45.310Z"
+  "fetchedAt": "2026-10-30T23:49:45.310Z",
+  "translatedAt": "2026-11-04T04:31:45.480+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

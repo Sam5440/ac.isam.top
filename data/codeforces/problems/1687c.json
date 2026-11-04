@@ -4,7 +4,7 @@
   "contestId": 1687,
   "index": "C",
   "title": "Sanae and Giant Robot",
-  "titleZh": null,
+  "titleZh": "Sanae 与巨型机器人",
   "url": "https://codeforces.com/contest/1687/problem/C",
   "difficulty": 2500,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Is it really?! The robot only existing in my imagination?! The Colossal Walking Robot?!!— Kochiya Sanae\n\nSanae made a giant robot — Hisoutensoku, but something is wrong with it. To make matters worse, Sanae can not figure out how to stop it, and she is forced to fix it on-the-fly.\n\nThe state of a robot can be represented by an array of integers of length $n$. Initially, the robot is at state $a$. She wishes to turn it into state $b$.\n\nAs a great programmer, Sanae knows the art of copy-and-paste. In one operation, she can choose some segment from given segments, copy the segment from $b$ and paste it into **the same place** of the robot, replacing the original state there. However, she has to ensure that the sum of $a$ **does not change** after each copy operation in case the robot go haywire. Formally, Sanae can choose segment $[l,r]$ and assign $a_i = b_i$ ($l\\le i\\le r$) if $\\sum\\limits_{i=1}^n a_i$ does not change after the operation.\n\nDetermine whether it is possible for Sanae to successfully turn the robot from the initial state $a$ to the desired state $b$ with any (possibly, zero) operations.\n\n## Input\n\nEach test contains multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 2\\cdot 10^4$) — the number of test cases. The descriptions of the test cases follow.\n\nThe first line of each test case contains two integers $n$, $m$ ($2 \\leq n\\leq 2\\cdot 10^5$, $1 \\leq m\\leq 2\\cdot 10^5$) — the length of $a$, $b$ and the number of segments.\n\nThe second line contains $n$ intergers $a_1,a_2,\\ldots,a_n$ ($1 \\leq a_i \\leq 10^9$) — the initial state $a$.\n\nThe third line contains $n$ intergers $b_1,b_2,\\ldots,b_n$ ($1 \\leq b_i \\leq 10^9$) — the desired state $b$.\n\nThen $m$ lines follow, the $i$-th line contains two intergers $l_i,r_i$ ($1 \\leq l_i \\lt r_i \\leq n$) — the segments that can be copy-pasted by Sanae.\n\nIt is guaranteed that both the sum of $n$ and the sum of $m$ over all test cases does not exceed $2 \\cdot 10 ^ 5$.\n\n## Output\n\nFor each test case, print \"`YES`\" (without quotes) if $a$ can be turned into $b$, or \"`NO`\" (without quotes) otherwise.\n\nYou can output \"`YES`\" and \"`NO`\" in any case (for example, strings \"`yEs`\", \"`yes`\" and \"`Yes`\" will be recognized as a positive response).\n\n## Note\n\nTest case 1:\n\nOne possible way of turning $a$ to $b$:\n\nFirst, select $[1,3]$. After the operation, $a=[3,2,5,2,3]$.\n\nThen, select $[2,5]$. After the operation, $a=[3,2,5,4,1]=b$.\n\nTest case 2:\n\nIt can be shown that it is impossible to turn $a$ into $b$.",
-  "statementZhMd": null,
+  "statementZhMd": "真的？！机器人只是存在于我的想象中？！巨型行走机器人？！——洩矢诹访子\n\nSanae 制造了一台巨型机器人——Hisoutensoku，但它出了点问题。更糟糕的是，Sanae 无法弄清楚该如何让它停止，只能在运行过程中对它进行修理。\n\n机器人的状态可以表示为一个长度为 $n$ 的整数数组。最初，机器人的状态为 $a$。她希望将其变为状态 $b$。\n\n作为一名优秀的程序员，Sanae 掌握着复制和粘贴的技巧。在一次操作中，她可以从给定的若干个线段中选择一个，从 $b$ 中复制该线段，并将其粘贴到机器人状态中的**相同位置**，替换那里原有的状态。然而，为了防止机器人失控，她必须确保每次复制操作后 $a$ 的元素总和**不会发生变化**。形式化地说，Sanae 可以选择线段 $[l,r]$，并将 $a_i = b_i$（$l\\le i\\le r$），前提是操作后 $\\sum\\limits_{i=1}^n a_i$ 不发生变化。\n\n请判断 Sanae 是否可以通过任意次（可能为零次）操作，成功地将机器人从初始状态 $a$ 变为目标状态 $b$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 2\\cdot 10^4$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$、$m$（$2 \\leq n\\leq 2\\cdot 10^5$，$1 \\leq m\\leq 2\\cdot 10^5$）——$a$、$b$ 的长度以及线段的数量。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1 \\leq a_i \\leq 10^9$）——初始状态 $a$。\n\n第三行包含 $n$ 个整数 $b_1,b_2,\\ldots,b_n$（$1 \\leq b_i \\leq 10^9$）——目标状态 $b$。\n\n接下来 $m$ 行，第 $i$ 行包含两个整数 $l_i,r_i$（$1 \\leq l_i \\lt r_i \\leq n$）——Sanae 可以复制粘贴的线段。\n\n保证所有测试用例中 $n$ 的总和以及 $m$ 的总和均不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果可以将 $a$ 变为 $b$，输出 \"`YES`\"（不含引号）；否则输出 \"`NO`\"（不含引号）。\n\n你可以使用任意大小写输出 \"`YES`\" 和 \"`NO`\"（例如，字符串 \"`yEs`\"、\"`yes`\" 和 \"`Yes`\" 都会被识别为肯定回答）。\n\n## 说明\n\n测试用例 1：\n\n一种将 $a$ 变为 $b$ 的方法如下：\n\n首先，选择 $[1,3]$。操作后，$a=[3,2,5,2,3]$。\n\n然后，选择 $[2,5]$。操作后，$a=[3,2,5,4,1]=b$。\n\n测试用例 2：\n\n可以证明无法将 $a$ 变为 $b$。",
   "samples": [
     {
       "input": "2\n5 2\n1 5 4 2 3\n3 2 5 4 1\n1 3\n2 5\n5 2\n1 5 4 2 3\n3 2 4 5 1\n1 2\n2 4\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:01:22.099Z"
+  "fetchedAt": "2026-10-30T23:01:22.099Z",
+  "translatedAt": "2026-11-04T03:25:01.653+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

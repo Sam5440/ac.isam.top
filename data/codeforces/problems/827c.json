@@ -4,7 +4,7 @@
   "contestId": 827,
   "index": "C",
   "title": "DNA Evolution",
-  "titleZh": null,
+  "titleZh": "DNA 进化",
   "url": "https://codeforces.com/contest/827/problem/C",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Everyone knows that DNA strands consist of nucleotides. There are four types of nucleotides: \"`A`\", \"`T`\", \"`G`\", \"`C`\". A DNA strand is a sequence of nucleotides. Scientists decided to track evolution of a rare species, which DNA strand was string $*s*$ initially.\n\nEvolution of the species is described as a sequence of changes in the DNA. Every change is a change of some nucleotide, for example, the following change can happen in DNA strand \"`AAGC`\": the second nucleotide can change to \"`T`\" so that the resulting DNA strand is \"`ATGC`\".\n\nScientists know that some segments of the DNA strand can be affected by some unknown infections. They can represent an infection as a sequence of nucleotides. Scientists are interested if there are any changes caused by some infections. Thus they sometimes want to know the value of impact of some infection to some segment of the DNA. This value is computed as follows:\n\n- Let the infection be represented as a string $*e*$, and let scientists be interested in DNA strand segment starting from position $*l*$ to position $*r*$, inclusive.\n- Prefix of the string $*eee*...$ (i.e. the string that consists of infinitely many repeats of string $*e*$) is written under the string $*s*$ from position $*l*$ to position $*r*$, inclusive.\n- The value of impact is the number of positions where letter of string $*s*$ coincided with the letter written under it.\n\nBeing a developer, Innokenty is interested in bioinformatics also, so the scientists asked him for help. Innokenty is busy preparing VK Cup, so he decided to delegate the problem to the competitors. Help the scientists!\n\n## Input\n\nThe first line contains the string $*s*$ ($1 ≤ |*s*| ≤ 10^{5}$) that describes the initial DNA strand. It consists only of capital English letters \"`A`\", \"`T`\", \"`G`\" and \"`C`\".\n\nThe next line contains single integer $*q*$ ($1 ≤ *q* ≤ 10^{5}$) — the number of events.\n\nAfter that, $*q*$ lines follow, each describes one event. Each of the lines has one of two formats:\n\n- `1 x c`, where $*x*$ is an integer ($1 ≤ *x* ≤ |*s*|$), and $*c*$ is a letter \"`A`\", \"`T`\", \"`G`\" or \"`C`\", which means that there is a change in the DNA: the nucleotide at position $*x*$ is now $*c*$.\n- `2 l r e`, where $*l*$, $*r*$ are integers ($1 ≤ *l* ≤ *r* ≤ |*s*|$), and $*e*$ is a string of letters \"`A`\", \"`T`\", \"`G`\" and \"`C`\" ($1 ≤ |*e*| ≤ 10$), which means that scientists are interested in the value of impact of infection $*e*$ to the segment of DNA strand from position $*l*$ to position $*r*$, inclusive.\n\n## Output\n\nFor each scientists' query (second type query) print a single integer in a new line — the value of impact of the infection on the DNA.\n\n## Note\n\nConsider the first example. In the first query of second type all characters coincide, so the answer is $8$. In the second query we compare string \"`TTTTT...`\" and the substring \"`TGCAT`\". There are two matches. In the third query, after the DNA change, we compare string \"`TATAT...`\"' with substring \"`TGTAT`\". There are $4$ matches.",
-  "statementZhMd": null,
+  "statementZhMd": "众所周知，DNA 链由核苷酸组成。核苷酸有四种类型：\"`A`\"、\"`T`\"、\"`G`\"、\"`C`\"。DNA 链是由核苷酸组成的序列。科学家决定追踪一种稀有物种的进化，该物种最初的 DNA 链为字符串 $*s*$。\n\n该物种的进化过程由 DNA 的一系列变化描述。每次变化都会改变某个核苷酸。例如，对于 DNA 链 \"`AAGC`\"，第二个核苷酸可以变为 \"`T`\"，此时得到的 DNA 链就是 \"`ATGC`\"。\n\n科学家知道，DNA 链中的某些片段可能会受到某些未知感染的影响。他们可以用一个核苷酸序列来表示一种感染。科学家希望知道某些感染是否会引起变化。因此，他们有时想要知道某种感染对 DNA 某个片段的影响值。该值的计算方式如下：\n\n- 设感染由字符串 $*e*$ 表示，科学家关注 DNA 链中从位置 $*l*$ 到位置 $*r*$（包含两端）的片段。\n- 将字符串 $*eee*$...（即由字符串 $*e*$ 无限重复组成的字符串）的前缀写在字符串 $*s*$ 从位置 $*l*$ 到位置 $*r*$ 的下方。\n- 影响值就是字符串 $*s*$ 中的字符与其下方所写字符相同的位置数量。\n\n作为一名开发者，Innokenty 也对生物信息学感兴趣，因此科学家向他寻求帮助。Innokenty 正忙于准备 VK Cup，于是决定将这个问题交给参赛者。请帮助科学家！\n\n## 输入格式\n\n第一行包含字符串 $*s*$（$1 ≤ |*s*| ≤ 10^{5}$），表示初始 DNA 链。它只包含大写英文字母 \"`A`\"、\"`T`\"、\"`G`\" 和 \"`C`\"。\n\n下一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 10^{5}$）——事件的数量。\n\n接下来有 $*q*$ 行，每行描述一个事件。每行有以下两种格式之一：\n\n- `1 x c`，其中 $*x*$ 是一个整数（$1 ≤ *x* ≤ |*s*|$），$*c*$ 是字母 \"`A`\"、\"`T`\"、\"`G`\" 或 \"`C`\"，表示 DNA 发生变化：位置 $*x*$ 处的核苷酸变为 $*c*$。\n- `2 l r e`，其中 $*l*$、$*r*$ 是整数（$1 ≤ *l* ≤ *r* ≤ |*s*|$），$*e*$ 是由字母 \"`A`\"、\"`T`\" 和 \"`G`\"、\"`C`\" 组成的字符串（$1 ≤ |*e*| ≤ 10$），表示科学家希望知道感染 $*e*$ 对 DNA 链中从位置 $*l*$ 到位置 $*r*$（包含两端）的片段的影响值。\n\n## 输出格式\n\n对于每个科学家的查询（第二种类型的查询），在新的一行中输出一个整数——该感染对 DNA 的影响值。\n\n## 说明\n\n考虑第一个样例。在第一个第二类查询中，所有字符都相同，因此答案为 $8$。在第二个查询中，我们比较字符串 \"`TTTTT...`\" 和子串 \"`TGCAT`\"，其中有两个字符匹配。在第三个查询中，DNA 发生变化后，我们将字符串 \"`TATAT...`\" 与子串 \"`TGTAT`\" 进行比较，其中有 $4$ 个字符匹配。",
   "samples": [
     {
       "input": "ATGCATGC\n4\n2 1 8 ATGC\n2 2 6 TTT\n1 4 T\n2 2 6 TA\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:49:32.683Z"
+  "fetchedAt": "2026-10-31T00:49:32.683Z",
+  "translatedAt": "2026-11-04T06:04:52.894+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

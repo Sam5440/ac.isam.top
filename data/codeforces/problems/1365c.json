@@ -4,7 +4,7 @@
   "contestId": 1365,
   "index": "C",
   "title": "Rotation Matching",
-  "titleZh": null,
+  "titleZh": "旋转匹配",
   "url": "https://codeforces.com/contest/1365/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "After the mysterious disappearance of Ashish, his two favourite disciples Ishika and Hriday, were each left with one half of a secret message. These messages can each be represented by a permutation of size $n$. Let's call them $a$ and $b$.\n\nNote that a permutation of $n$ elements is a sequence of numbers $a_1, a_2, \\ldots, a_n$, in which every number from $1$ to $n$ appears exactly once.\n\nThe message can be decoded by an arrangement of sequence $a$ and $b$, such that the number of matching pairs of elements between them is maximum. A pair of elements $a_i$ and $b_j$ is said to match if:\n\n- $i = j$, that is, they are at the same index.\n- $a_i = b_j$\n\nHis two disciples are allowed to perform the following operation any number of times:\n\n- choose a number $k$ and cyclically shift one of the permutations to the left or right $k$ times.\n\nA single cyclic shift to the left on any permutation $c$ is an operation that sets $c_1:=c_2, c_2:=c_3, \\ldots, c_n:=c_1$ simultaneously. Likewise, a single cyclic shift to the right on any permutation $c$ is an operation that sets $c_1:=c_n, c_2:=c_1, \\ldots, c_n:=c_{n-1}$ simultaneously.\n\nHelp Ishika and Hriday find the maximum number of pairs of elements that match after performing the operation any (possibly zero) number of times.\n\n## Input\n\nThe first line of the input contains a single integer $n$ $(1 \\le n \\le 2 \\cdot 10^5)$ — the size of the arrays.\n\nThe second line contains $n$ integers $a_1$, $a_2$, ..., $a_n$ $(1 \\le a_i \\le n)$ — the elements of the first permutation.\n\nThe third line contains $n$ integers $b_1$, $b_2$, ..., $b_n$ $(1 \\le b_i \\le n)$ — the elements of the second permutation.\n\n## Output\n\nPrint the maximum number of matching pairs of elements after performing the above operations some (possibly zero) times.\n\n## Note\n\nFor the first case: $b$ can be shifted to the right by $k = 1$. The resulting permutations will be $\\{1, 2, 3, 4, 5\\}$ and $\\{1, 2, 3, 4, 5\\}$.\n\nFor the second case: The operation is not required. For all possible rotations of $a$ and $b$, the number of matching pairs won't exceed $1$.\n\nFor the third case: $b$ can be shifted to the left by $k = 1$. The resulting permutations will be $\\{1, 3, 2, 4\\}$ and $\\{2, 3, 1, 4\\}$. Positions $2$ and $4$ have matching pairs of elements. For all possible rotations of $a$ and $b$, the number of matching pairs won't exceed $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "在 Ashish 神秘失踪后，他最喜欢的两位弟子 Ishika 和 Hriday 各自得到了一半秘密消息。这些消息都可以表示为一个大小为 $n$ 的排列。我们将它们分别称为 $a$ 和 $b$。\n\n注意，$n$ 个元素的排列是一个由数字 $a_1, a_2, \\ldots, a_n$ 组成的序列，其中 $1$ 到 $n$ 的每个数字恰好出现一次。\n\n通过对序列 $a$ 和 $b$ 进行排列，可以解码出这条消息，使它们之间匹配的元素对数量最大。如果一对元素 $a_i$ 和 $b_j$ 满足以下条件，则称它们匹配：\n\n- $i = j$，即它们位于相同的下标。\n- $a_i = b_j$。\n\n两位弟子可以执行以下操作任意次：\n\n- 选择一个数 $k$，将其中一个排列向左或向右循环移动 $k$ 次。\n\n对任意排列 $c$ 进行一次向左循环移动，是指同时执行以下操作：$c_1:=c_2, c_2:=c_3, \\ldots, c_n:=c_1$。类似地，对任意排列 $c$ 进行一次向右循环移动，是指同时执行以下操作：$c_1:=c_n, c_2:=c_1, \\ldots, c_n:=c_{n-1}$。\n\n请帮助 Ishika 和 Hriday 求出执行任意次（也可以为零次）上述操作后，最多能有多少对元素匹配。\n\n## 输入格式\n\n输入的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——数组的大小。\n\n第二行包含 $n$ 个整数 $a_1, a_2, ..., a_n$（$1 \\le a_i \\le n$）——第一个排列中的元素。\n\n第三行包含 $n$ 个整数 $b_1, b_2, ..., b_n$（$1 \\le b_i \\le n$）——第二个排列中的元素。\n\n## 输出格式\n\n输出执行上述操作任意次（也可以为零次）后，匹配的元素对数量的最大值。\n\n## 说明\n\n对于第一种情况：可以将 $b$ 向右移动 $k = 1$ 次。得到的排列将分别为 $\\{1, 2, 3, 4, 5\\}$ 和 $\\{1, 2, 3, 4, 5\\}$。\n\n对于第二种情况：无需执行操作。对于 $a$ 和 $b$ 的所有可能旋转方式，匹配的元素对数量都不会超过 $1$。\n\n对于第三种情况：可以将 $b$ 向左移动 $k = 1$ 次。得到的排列将分别为 $\\{1, 3, 2, 4\\}$ 和 $\\{2, 3, 1, 4\\}$。下标 $2$ 和 $4$ 处的元素对匹配。对于 $a$ 和 $b$ 的所有可能旋转方式，匹配的元素对数量都不会超过 $2$。",
   "samples": [
     {
       "input": "5\n1 2 3 4 5\n2 3 4 5 1\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:49:38.312Z"
+  "fetchedAt": "2026-10-30T23:49:38.312Z",
+  "translatedAt": "2026-11-04T04:37:58.160+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,14 +4,14 @@
   "contestId": 714,
   "index": "C",
   "title": "Sonya and Queries",
-  "titleZh": null,
+  "titleZh": "Sonya 与查询",
   "url": "https://codeforces.com/contest/714/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Today Sonya learned about long integers and invited all her friends to share the fun. Sonya has an initially empty multiset with integers. Friends give her $*t*$ queries, each of one of the following type:\n\n1. $+$ $*a*_{*i*}$ — add non-negative integer $*a*_{*i*}$ to the multiset. Note, that she has a multiset, thus there may be many occurrences of the same integer.\n2. $-$ $*a*_{*i*}$ — delete a single occurrence of non-negative integer $*a*_{*i*}$ from the multiset. It's guaranteed, that there is at least one $*a*_{*i*}$ in the multiset.\n3. $?$ $*s*$ — count the number of integers in the multiset (with repetitions) that match some pattern $*s*$ consisting of $0$ and $1$. In the pattern, $0$ stands for the even digits, while $1$ stands for the odd. Integer $*x*$ matches the pattern $*s*$, if the parity of the $*i*$-th from the right digit in decimal notation matches the $*i*$-th from the right digit of the pattern. If the pattern is shorter than this integer, it's supplemented with $0$-s from the left. Similarly, if the integer is shorter than the pattern its decimal notation is supplemented with the $0$-s from the left.\n\nFor example, if the pattern is $*s* = 010$, than integers $92$, $2212$, $50$ and $414$ match the pattern, while integers $3$, $110$, $25$ and $1030$ do not.\n\n## Input\n\nThe first line of the input contains an integer $*t*$ ($1 ≤ *t* ≤ 100 000$) — the number of operation Sonya has to perform.\n\nNext $*t*$ lines provide the descriptions of the queries in order they appear in the input file. The $*i*$-th row starts with a character $*c*_{*i*}$ — the type of the corresponding operation. If $*c*_{*i*}$ is equal to '`+`' or '`-`' then it's followed by a space and an integer $*a*_{*i*}$ ($0 ≤ *a*_{*i*} < 10^{18}$) given without leading zeroes (unless it's `0`). If $*c*_{*i*}$ equals '`?`' then it's followed by a space and a sequence of zeroes and onse, giving the pattern of length no more than $18$.\n\nIt's guaranteed that there will be at least one query of type '`?`'.\n\nIt's guaranteed that any time some integer is removed from the multiset, there will be at least one occurrence of this integer in it.\n\n## Output\n\nFor each query of the third type print the number of integers matching the given pattern. Each integer is counted as many times, as it appears in the multiset at this moment of time.\n\n## Note\n\nConsider the integers matching the patterns from the queries of the third type. Queries are numbered in the order they appear in the input.\n\n1. $1$ and $241$.\n2. $361$.\n3. $101$ and $361$.\n4. $361$.\n5. $4000$.",
-  "statementZhMd": null,
+  "statementZhMd": "今天，Sonya 学习了长整数，并邀请所有朋友一起分享这份乐趣。Sonya 有一个初始为空的整数多重集合。朋友们会给她 $*t*$ 个查询，每个查询属于以下类型之一：\n\n1. $+$ $*a*_{*i*}$ — 将非负整数 $*a*_{*i*}$ 加入多重集合。注意，她使用的是多重集合，因此同一个整数可能出现多次。\n2. $-$ $*a*_{*i*}$ — 从多重集合中删除一个非负整数 $*a*_{*i*}$。保证多重集合中至少有一个 $*a*_{*i*}$。\n3. $?$ $*s*$ — 统计多重集合中（包括重复出现的整数）与某个由 $0$ 和 $1$ 组成的模式 $*s*$ 匹配的整数数量。在该模式中，$0$ 表示偶数位，$1$ 表示奇数位。如果整数 $*x*$ 的十进制表示中，从右数第 $*i*$ 位数字的奇偶性与模式中从右数第 $*i*$ 位数字相同，则称整数 $*x*$ 与模式 $*s*$ 匹配。如果模式长度小于该整数，则在模式左侧补上若干个 $0$。类似地，如果整数长度小于模式，则在整数十进制表示的左侧补上若干个 $0$。\n\n例如，当模式为 $*s* = 010$ 时，整数 $92$、$2212$、$50$ 和 $414$ 与该模式匹配，而整数 $3$、$110$、$25$ 和 $1030$ 不匹配。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*t*$（$1 ≤ *t* ≤ 100 000$）——Sonya 需要执行的操作数量。\n\n接下来的 $*t*$ 行按照输入文件中的顺序给出查询描述。第 $*i*$ 行以一个字符 $*c*_{*i*}$ 开头，表示对应操作的类型。如果 $*c*_{*i*}$ 等于 '`+`' 或 '`-`'，则其后跟一个空格和一个整数 $*a*_{*i*}$（$0 ≤ *a*_{*i*} < 10^{18}$），该整数不含前导零（除非它是 `0`）。如果 $*c*_{*i*}$ 等于 '`?`'，则其后跟一个空格和一个仅由 $0$ 和 $1$ 组成的序列，表示长度不超过 $18$ 的模式。\n\n保证至少存在一个类型为 '`?`' 的查询。\n\n保证每次从多重集合中删除某个整数时，多重集合中至少存在一个该整数。\n\n## 输出格式\n\n对于每个第三类查询，输出与给定模式匹配的整数数量。在当前时刻，多重集合中的每个整数按照其出现次数重复计数。\n\n## 说明\n\n考虑第三类查询中的模式所匹配的整数。查询按照其在输入中出现的顺序编号。\n\n1. $1$ 和 $241$。\n2. $361$。\n3. $101$ 和 $361$。\n4. $361$。\n5. $4000$。",
   "samples": [
     {
       "input": "12\n+ 1\n+ 241\n? 1\n+ 361\n- 241\n? 0101\n+ 101\n? 101\n- 101\n? 101\n+ 4000\n? 0\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:04:37.006Z"
+  "fetchedAt": "2026-10-31T01:04:37.006Z",
+  "translatedAt": "2026-11-04T06:26:49.188+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1807,
   "index": "F",
   "title": "Bouncy Ball",
-  "titleZh": null,
+  "titleZh": "弹跳球",
   "url": "https://codeforces.com/contest/1807/problem/F",
   "difficulty": 1700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a room that can be represented by a $n \\times m$ grid. There is a ball at position $(i_1, j_1)$ (the intersection of row $i_1$ and column $j_1$), and it starts going diagonally in one of the four directions:\n\n- The ball is going down and right, denoted by $\\texttt{DR}$; it means that after a step, the ball's location goes from $(i, j)$ to $(i+1, j+1)$.\n- The ball is going down and left, denoted by $\\texttt{DL}$; it means that after a step, the ball's location goes from $(i, j)$ to $(i+1, j-1)$.\n- The ball is going up and right, denoted by $\\texttt{UR}$; it means that after a step, the ball's location goes from $(i, j)$ to $(i-1, j+1)$.\n- The ball is going up and left, denoted by $\\texttt{UL}$; it means that after a step, the ball's location goes from $(i, j)$ to $(i-1, j-1)$.\n\nAfter each step, the ball maintains its direction unless it hits a wall (that is, the direction takes it out of the room's bounds in the next step). In this case, the ball's direction gets flipped along the axis of the wall; if the ball hits a corner, both directions get flipped. Any instance of this is called a *bounce*. The ball never stops moving.\n\n![image](https://espresso.codeforces.com/0b9dc8f09eea0d803bcd216ea36c9f8ddce7b63f.png)\n\nIn the above example, the ball starts at $(1, 7)$ and goes $\\texttt{DL}$ until it reaches the bottom wall, then it bounces and continues in the direction $\\texttt{UL}$. After reaching the left wall, the ball bounces and continues to go in the direction $\\texttt{UR}$. When the ball reaches the upper wall, it bounces and continues in the direction $\\texttt{DR}$. After reaching the bottom-right corner, it bounces **once** and continues in direction $\\texttt{UL}$, and so on.\n\nYour task is to find how many bounces the ball will go through until it reaches cell $(i_2, j_2)$ in the room, or report that it never reaches cell $(i_2, j_2)$ by printing $-1$.\n\nNote that the ball first goes in a cell and only after that bounces if it needs to.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases.\n\nThe first line of each test case contains six integers and a string $n, m, i_1, j_1, i_2, j_2, d$ ($2 \\leq n, m \\leq 25000$; $1 \\leq i_1, i_2 \\leq n$; $1 \\leq j_1, j_2 \\leq m$; $d \\in\\{ \\texttt{DR}, \\texttt{DL}, \\texttt{UR}, \\texttt{UL}\\}$) — the dimensions of the grid, the starting coordinates of the ball, the coordinates of the final cell and the starting direction of the ball.\n\nIt is guaranteed that the sum of $n \\cdot m$ over all test cases does not exceed $5 \\cdot 10^4$.\n\n## Output\n\nFor each test case, output a single integer — the number of bounces the ball does until it reaches cell $(i_2, j_2)$ for the first time, or $-1$ if the ball never reaches the final cell.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个可以表示为 $n \\times m$ 网格的房间。一个球位于位置 $(i_1, j_1)$（第 $i_1$ 行与第 $j_1$ 列的交点），并沿四个方向之一开始进行对角线运动：\n\n- 球向右下方运动，记为 $\\texttt{DR}$；这表示经过一步后，球的位置从 $(i, j)$ 变为 $(i+1, j+1)$。\n- 球向左下方运动，记为 $\\texttt{DL}$；这表示经过一步后，球的位置从 $(i, j)$ 变为 $(i+1, j-1)$。\n- 球向右上方运动，记为 $\\texttt{UR}$；这表示经过一步后，球的位置从 $(i, j)$ 变为 $(i-1, j+1)$。\n- 球向左上方运动，记为 $\\texttt{UL}$；这表示经过一步后，球的位置从 $(i, j)$ 变为 $(i-1, j-1)$。\n\n每一步之后，除非球撞到墙壁，否则它会保持原来的方向（也就是说，按照当前方向运动会使球在下一步离开房间的范围）。在这种情况下，球会沿着墙壁所在的轴翻转运动方向；如果球撞到角落，则两个方向都会翻转。上述任意一种情况都称为一次*反弹*。球永远不会停止运动。\n\n![image](https://espresso.codeforces.com/0b9dc8f09eea0d803bcd216ea36c9f8ddce7b63f.png)\n\n在上面的例子中，球从 $(1, 7)$ 开始，沿 $\\texttt{DL}$ 方向运动，直到碰到底部墙壁，然后反弹并沿 $\\texttt{UL}$ 方向继续运动。到达左侧墙壁后，球反弹并沿 $\\texttt{UR}$ 方向继续运动。当球到达上方墙壁时，它反弹并沿 $\\texttt{DR}$ 方向继续运动。到达右下角后，它反弹**一次**，并沿 $\\texttt{UL}$ 方向继续运动，以此类推。\n\n你的任务是求出球到达房间内的 $(i_2, j_2)$ 单元格之前会经历多少次反弹；如果球永远无法到达 $(i_2, j_2)$，则输出 $-1$。\n\n注意，球会先进入某个单元格，之后才会在需要时进行反弹。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 1000$）——测试用例的数量。\n\n每个测试用例的第一行包含六个整数和一个字符串 $n, m, i_1, j_1, i_2, j_2, d$（$2 \\leq n, m \\leq 25000$；$1 \\leq i_1, i_2 \\leq n$；$1 \\leq j_1, j_2 \\leq m$；$d \\in\\{ \\texttt{DR}, \\texttt{DL}, \\texttt{UR}, \\texttt{UL}\\}$）——网格的尺寸、球的起始坐标、目标单元格的坐标以及球的初始方向。\n\n保证所有测试用例的 $n \\cdot m$ 之和不超过 $5 \\cdot 10^4$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——球第一次到达单元格 $(i_2, j_2)$ 前所经历的反弹次数；如果球永远无法到达目标单元格，则输出 $-1$。",
   "samples": [
     {
       "input": "6\n5 7 1 7 2 4 DL\n5 7 1 7 3 2 DL\n3 3 1 3 2 2 UR\n2 4 2 1 2 2 DR\n4 3 1 1 1 3 UL\n6 4 1 2 3 4 DR\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:37:11.361Z"
+  "fetchedAt": "2026-11-02T17:37:11.361Z",
+  "translatedAt": "2026-11-04T02:54:47.622+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

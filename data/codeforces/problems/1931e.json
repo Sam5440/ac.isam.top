@@ -4,7 +4,7 @@
   "contestId": 1931,
   "index": "E",
   "title": "Anna and the Valentine's Day Gift",
-  "titleZh": null,
+  "titleZh": "安娜与情人节礼物",
   "url": "https://codeforces.com/contest/1931/problem/E",
   "difficulty": 1400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Sasha gave Anna a list $a$ of $n$ integers for Valentine's Day. Anna doesn't need this list, so she suggests destroying it by playing a game.\n\nPlayers take turns. Sasha is a gentleman, so he gives Anna the right to make the first move.\n\n- On her turn, **Anna must** choose an element $a_i$ from the list and *reverse* the sequence of its digits. For example, if Anna chose the element with a value of $42$, it would become $24$; if Anna chose the element with a value of $1580$, it would become $851$. Note that leading zeros are removed. After such a turn, the number of elements in the list does not change.\n- On his turn, **Sasha must** extract **two** elements $a_i$ and $a_j$ ($i \\ne j$) from the list, *concatenate* them in any order and insert the result back into the list. For example, if Sasha chose the elements equal to $2007$ and $19$, he would remove these two elements from the list and add the integer $200719$ or $192007$. After such a turn, the number of elements in the list decreases by $1$.\n\nPlayers can't skip turns. The game ends when Sasha can't make a move, i.e. **after** Anna's move there is **exactly** one number left in the list. If this integer is **not less than** $10^m$ (i.e., $\\ge 10^m$), Sasha wins. Otherwise, Anna wins.\n\nIt can be shown that the game will always end. Determine who will win if both players play optimally.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThen follows the description of the test cases.\n\nThe first line of each test case contains integers $n$, $m$ ($1 \\le n \\le 2 \\cdot 10^5$, $0 \\le m \\le 2 \\cdot 10^6$) — the number of integers in the list and the parameter determining when Sasha wins.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the list that Sasha gave to Anna.\n\nIt is guaranteed that the sum of $n$ for all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output:\n\n- \"`Sasha`\", if Sasha wins with optimal play;\n- \"`Anna`\", if Anna wins with optimal play.\n\n## Note\n\nConsider the first test case.\n\nAnna can reverse the integer $2$, then Sasha can concatenate the integers $2$ and $14$, obtaining the integer $214$, which is greater than $10^2 = 100$. If Anna had reversed the integer $14$, Sasha would have concatenated the integers $41$ and $2$, obtaining the integer $412$, which is greater than $10^2 = 100$. Anna has no other possible moves, so she loses.",
-  "statementZhMd": null,
+  "statementZhMd": "Sasha 在情人节送给 Anna 一个包含 $n$ 个整数的列表 $a$。Anna 不需要这个列表，因此她提议通过玩一个游戏来摧毁它。\n\n两名玩家轮流行动。Sasha 是一位绅士，所以他让 Anna 先手。\n\n- 在她的回合，**Anna 必须**从列表中选择一个元素 $a_i$，并将其数字序列*反转*。例如，如果 Anna 选择值为 $42$ 的元素，它将变为 $24$；如果她选择值为 $1580$ 的元素，它将变为 $851$。注意，前导零会被删除。完成这一回合后，列表中的元素数量不会改变。\n- 在他的回合，**Sasha 必须**从列表中取出**两个**元素 $a_i$ 和 $a_j$（$i \\ne j$），按任意顺序将它们*拼接*，然后把拼接结果放回列表中。例如，如果 Sasha 选择值为 $2007$ 和 $19$ 的两个元素，他会从列表中删除这两个元素，并加入整数 $200719$ 或 $192007$。完成这一回合后，列表中的元素数量减少 $1$。\n\n玩家不能跳过自己的回合。当 Sasha 无法行动时，游戏结束，也就是**在 Anna 行动后**，列表中**恰好**剩下一个数字。如果这个整数**不小于** $10^m$（即 $≥ 10^m$），Sasha 获胜。否则，Anna 获胜。\n\n可以证明，游戏一定会结束。请确定在双方都采取最优策略的情况下，谁将获胜。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含整数 $n$、$m$（$1 \\le n \\le 2 \\cdot 10^5$，$0 \\le m \\le 2 \\cdot 10^6$）——列表中整数的数量，以及决定 Sasha 获胜条件的参数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——Sasha 送给 Anna 的列表。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出：\n\n- \"`Sasha`\"，如果 Sasha 在最优策略下获胜；\n- \"`Anna`\"，如果 Anna 在最优策略下获胜。\n\n## 说明\n\n考虑第一个测试用例。\n\nAnna 可以将整数 $2$ 反转，然后 Sasha 可以将整数 $2$ 和 $14$ 拼接，得到整数 $214$，它大于 $10^2 = 100$。如果 Anna 反转整数 $14$，Sasha 则可以将整数 $41$ 和 $2$ 拼接，得到整数 $412$，它大于 $10^2 = 100$。Anna 没有其他可行的操作，因此她输掉了游戏。",
   "samples": [
     {
       "input": "9\n2 2\n14 2\n3 5\n9 56 1\n4 10\n1 2007 800 1580\n4 5\n5000 123 30 4\n10 10\n6 4 6 2 3 1 10 9 10 7\n1 1\n6\n1 1\n10\n8 9\n1 2 9 10 10 2 10 2\n4 5\n10 10 10 10\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:17:30.243Z"
+  "fetchedAt": "2026-11-02T17:17:30.243Z",
+  "translatedAt": "2026-11-04T02:20:35.678+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

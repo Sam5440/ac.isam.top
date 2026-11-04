@@ -4,7 +4,7 @@
   "contestId": 177,
   "index": "F1",
   "title": "Script Generation",
-  "titleZh": null,
+  "titleZh": "剧本生成",
   "url": "https://codeforces.com/contest/177/problem/F1",
   "difficulty": 1800,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The Smart Beaver from ABBYY was offered a job of a screenwriter for the ongoing TV series. In particular, he needs to automate the hard decision: which main characters will get married by the end of the series.\n\nThere are $*n*$ single men and $*n*$ single women among the main characters. An opinion poll showed that viewers like several couples, and a marriage of any of them will make the audience happy. The Smart Beaver formalized this fact as $*k*$ triples of numbers $(*h*, *w*, *r*)$, where $*h*$ is the index of the man, $*w*$ is the index of the woman, and $*r*$ is the measure of the audience's delight in case of the marriage of this couple. The same poll showed that the marriage of any other couple will leave the audience indifferent, so the screenwriters decided not to include any such marriages in the plot.\n\nThe script allows you to arrange several marriages between the heroes or not to arrange marriages at all. A subset of some of the $*k*$ marriages is considered acceptable if each man and each woman is involved in at most one marriage of the subset (the series won't allow any divorces). The value of the acceptable set of marriages is the total delight the spectators will get from the marriages included in this set.\n\nObviously, there is a finite number of acceptable sets, and they all describe some variants of the script. The screenwriters do not want to choose a set with maximum value — it would make the plot too predictable. So the Smart Beaver offers the following option: sort all the acceptable sets in increasing order of value and choose the $*t*$-th set from the sorted list. Thus, $*t* = 1$ corresponds to a plot without marriages, $*t* = 2$ — to a single marriage resulting in minimal delight for the audience, and so on.\n\nHelp the Beaver to implement the algorithm for selecting the desired set.\n\n## Input\n\nThe first input line contains integers $*n*$, $*k*$ and $*t*$ ($1 ≤ *k* ≤ *min*(100, *n*^{2})$, $1 ≤ *t* ≤ 2·10^{5}$), separated by single spaces. Next $*k*$ lines contain triples of integers $(*h*, *w*, *r*)$ $(1 ≤ *h*, *w* ≤ *n*; 1 ≤ *r* ≤ 1000)$, separated by single spaces, which describe the possible marriages. It is guaranteed that the input data is correct: $*t*$ doesn't exceed the total number of acceptable sets, and each pair $(*h*, *w*)$ is present in at most one triple.\n\nThe input limitations for getting 30 points are:\n\n- $1 ≤ *n* ≤ 5$\n\nThe input limitations for getting 100 points are:\n\n- $1 ≤ *n* ≤ 20$\n\n## Output\n\nPrint a single number — the value of the $*t*$-th acceptable variant.\n\n## Note\n\nThe figure shows 7 acceptable sets of marriages that exist in the first sample.\n\n![image](https://espresso.codeforces.com/33d1e09346ea22aeb7aac7a465c996c492e0b681.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Smart Beaver 来自 ABBYY，受聘担任一部正在播出的电视剧的编剧。具体来说，他需要将一个艰难的决定自动化：到电视剧结尾时，哪些主要角色会结婚。\n\n主要角色中有 $*n*$ 名单身男性和 $*n*$ 名单身女性。一次民意调查显示，观众喜欢若干对情侣，其中任何一对结婚都会让观众感到高兴。Smart Beaver 将这一事实形式化为 $*k*$ 个数字三元组 $(*h*, *w*, *r*)$，其中 $*h*$ 是男性的编号，$*w*$ 是女性的编号，$*r*$ 是这对情侣结婚时观众喜悦程度的度量。调查还显示，其他任意一对情侣结婚都不会给观众带来任何感觉，因此编剧决定不在剧情中安排这类婚姻。\n\n剧本允许安排主角之间的若干场婚姻，也可以完全不安排婚姻。如果一个集合中的每名男性和每名女性至多参与一场婚姻（电视剧中不允许离婚），则由这 $*k*$ 场婚姻中的若干场组成的子集被称为可接受的。一个可接受婚姻集合的价值，是该集合中所有婚姻给观众带来的喜悦程度之和。\n\n显然，可接受的集合数量是有限的，它们分别描述了剧本的不同方案。编剧不想选择价值最大的集合——这会让剧情变得过于可预测。因此，Smart Beaver 提出了如下方案：按照价值递增的顺序排列所有可接受集合，并选择排序后的第 $*t*$ 个集合。因此，$*t*$ = 1 对应没有婚姻的剧情，$*t*$ = 2 对应仅安排一场婚姻且该婚姻给观众带来的喜悦程度最小的剧情，依此类推。\n\n请帮助 Beaver 实现选择所需集合的算法。\n\n## 输入格式\n\n第一行包含整数 $*n*$、$*k*$ 和 $*t*$（$1 ≤ *k* ≤ *min*(100, *n*^{2})$，$1 ≤ *t*$ ≤ 2·10^{5}$），整数之间以单个空格分隔。接下来的 $*k*$ 行包含三个整数 $(*h*, *w*, *r*)$（$1 ≤ *h*、$*w* ≤ *n*$；$1 ≤ *r* ≤ 1000$），整数之间以单个空格分隔，表示可能的婚姻。保证输入数据合法：$*t*$ 不超过可接受集合的总数，并且每一对 $(*h*, *w*)$ 至多出现在一个三元组中。\n\n获得 30 分的输入限制：\n\n- $1 ≤ *n* ≤ 5$\n\n获得 100 分的输入限制：\n\n- $1 ≤ *n* ≤ 20$\n\n## 输出格式\n\n输出一个数——第 $*t*$ 个可接受方案的价值。\n\n## 说明\n\n下图展示了第一个样例中存在的 7 个可接受婚姻集合。\n\n![image](https://espresso.codeforces.com/33d1e09346ea22aeb7aac7a465c996c492e0b681.png)",
   "samples": [
     {
       "input": "2 4 3\n1 1 1\n1 2 2\n2 1 3\n2 2 7\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:15:04.152Z"
+  "fetchedAt": "2026-11-02T20:15:04.152Z",
+  "translatedAt": "2026-11-04T07:43:13.206+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

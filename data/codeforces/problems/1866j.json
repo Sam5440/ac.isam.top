@@ -4,7 +4,7 @@
   "contestId": 1866,
   "index": "J",
   "title": "Jackets and Packets",
-  "titleZh": null,
+  "titleZh": "夹克与包装袋",
   "url": "https://codeforces.com/contest/1866/problem/J",
   "difficulty": 2800,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Pak Chanek has $N$ jackets that are stored in a wardrobe. Pak Chanek's wardrobe has enough room for two stacks of jackets, namely the left stack and the right stack. Initially, all $N$ jackets are in the left stack, while the right stack is empty. Initially, the $i$-th jacket from the top of the left stack has colour $C_i$.\n\nPak Chanek wants to pack all of those jackets into some packets, such that the jackets in the same packet has the same colour. However, it is possible for two jackets with the same colour to be in different packets.\n\nPak Chanek can do two kinds of operations:\n\n- Pak Chanek can pick **any number of jackets from the top** from **one stack** as long as the colour is the same, then take those jackets out of the stack and pack them into a packet. This packing operation takes $X$ minutes, no matter how many jackets are packed.\n- Pak Chanek can move **one topmost jacket** from one stack to the top of the other stack (**possibly right to left or left to right**). This moving operation takes $Y$ minutes.\n\nDetermine the minimum time to pack all jackets!\n\n## Input\n\nThe first line contains three integers $N$, $X$, and $Y$ ($1 \\leq N \\leq 400$; $1\\leq X,Y\\leq10^9$) — the number of jackets, the time to do a packing operation, and the time to do a movement operation.\n\nThe second line contains $N$ integers $C_1, C_2, C_3, \\ldots, C_N$ ($1 \\leq C_i \\leq N$) — the colour of each jacket.\n\n## Output\n\nAn integer representing the minimum time to pack all jackets.\n\n## Note\n\nLet's denote the contents of the two stacks using arrays that represent the colours of the jackets in the stack from top to bottom. Initially, the two stacks form $[4, 4, 2, 4, 1, 2, 2, 1]$ and $[]$.\n\nPak Chanek can do the following sequence of operations:\n\n1. Movement from left to right. The two stacks become $[4, 2, 4, 1, 2, 2, 1]$ and $[4]$.\n2. Movement from left to right. The two stacks become $[2, 4, 1, 2, 2, 1]$ and $[4, 4]$.\n3. Packing for $1$ jacket from the top of the left stack. The two stacks become $[4, 1, 2, 2, 1]$ and $[4, 4]$.\n4. Movement from left to right. The two stacks become $[1, 2, 2, 1]$ and $[4, 4, 4]$.\n5. Movement from left to right. The two stacks become $[2, 2, 1]$ and $[1, 4, 4, 4]$.\n6. Packing for $2$ jackets from the top of the left stack. The two stacks become $[1]$ and $[1, 4, 4, 4]$.\n7. Movement from right to left. The two stacks become $[1, 1]$ and $[4, 4, 4]$.\n8. Packing for $3$ jackets from the top of the right stack. The two stacks become $[1, 1]$ and $[]$.\n9. Packing for $2$ jackets from the top of the left stack. The two stacks become $[]$ and $[]$.\n\nIn total, it requires a time of $2+2+7+2+2+7+2+7+7=38$ minutes to pack all jackets. It can be proven that there are no other ways that are faster.",
-  "statementZhMd": null,
+  "statementZhMd": "Pak Chanek 有 $N$ 件夹克，存放在一个衣柜中。Pak Chanek 的衣柜足够容纳两摞夹克，分别称为左摞和右摞。初始时，所有 $N$ 件夹克都在左摞中，右摞为空。初始时，左摞从顶部开始数的第 $i$ 件夹克的颜色为 $C_i$。\n\nPak Chanek 希望将所有夹克装入若干个包装袋中，使得同一个包装袋中的夹克颜色相同。不过，颜色相同的两件夹克可以被装入不同的包装袋中。\n\nPak Chanek 可以进行以下两种操作：\n\n- Pak Chanek 可以从**一摞夹克的顶部取出任意数量的夹克**，前提是这些夹克的颜色相同，然后将它们从这一摞中取出并装入一个包装袋。无论装入多少件夹克，这次装袋操作都需要 $X$ 分钟。\n- Pak Chanek 可以将**一摞夹克最顶部的一件夹克**移动到另一摞夹克的顶部（**可以从右摞移到左摞，也可以从左摞移到右摞**）。这次移动操作需要 $Y$ 分钟。\n\n请确定装好所有夹克所需的最短时间！\n\n## 输入格式\n\n第一行包含三个整数 $N$、$X$ 和 $Y$（$1 \\leq N \\leq 400$；$1\\leq X,Y\\leq10^9$），分别表示夹克的数量、进行一次装袋操作所需的时间，以及进行一次移动操作所需的时间。\n\n第二行包含 $N$ 个整数 $C_1$、$C_2$、$C_3$、$\\ldots$、$C_N$（$1 \\leq C_i \\leq N$），表示每件夹克的颜色。\n\n## 输出格式\n\n输出一个整数，表示装好所有夹克所需的最短时间。\n\n## 说明\n\n我们用数组表示两摞夹克的内容，数组中的颜色顺序为从顶部到底部。初始时，两摞夹克分别为 $[4, 4, 2, 4, 1, 2, 2, 1]$ 和 $[]$。\n\nPak Chanek 可以按如下顺序进行操作：\n\n1. 从左摞移动到右摞。两摞夹克变为 $[4, 2, 4, 1, 2, 2, 1]$ 和 $[4]$。\n2. 从左摞移动到右摞。两摞夹克变为 $[2, 4, 1, 2, 2, 1]$ 和 $[4, 4]$。\n3. 从左摞顶部装袋 $1$ 件夹克。两摞夹克变为 $[4, 1, 2, 2, 1]$ 和 $[4, 4]$。\n4. 从左摞移动到右摞。两摞夹克变为 $[1, 2, 2, 1]$ 和 $[4, 4, 4]$。\n5. 从左摞移动到右摞。两摞夹克变为 $[2, 2, 1]$ 和 $[1, 4, 4, 4]$。\n6. 从左摞顶部装袋 $2$ 件夹克。两摞夹克变为 $[1]$ 和 $[1, 4, 4, 4]$。\n7. 从右摞移动到左摞。两摞夹克变为 $[1, 1]$ 和 $[4, 4, 4]$。\n8. 从右摞顶部装袋 $3$ 件夹克。两摞夹克变为 $[1, 1]$ 和 $[]$。\n9. 从左摞顶部装袋 $2$ 件夹克。两摞夹克变为 $[]$ 和 $[]$。\n\n总计需要 $2+2+7+2+2+7+2+7+7=38$ 分钟才能装好所有夹克。可以证明不存在更快的方法。",
   "samples": [
     {
       "input": "8 7 2\n4 4 2 4 1 2 2 1\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:25:58.632Z"
+  "fetchedAt": "2026-11-02T17:25:58.632Z",
+  "translatedAt": "2026-11-04T02:34:02.020+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

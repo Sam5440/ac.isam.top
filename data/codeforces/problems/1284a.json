@@ -4,7 +4,7 @@
   "contestId": 1284,
   "index": "A",
   "title": "New Year and Naming",
-  "titleZh": null,
+  "titleZh": "新年与命名",
   "url": "https://codeforces.com/contest/1284/problem/A",
   "difficulty": 800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 1024,
   "statementMd": "Happy new year! The year 2020 is also known as *Year Gyeongja* (경자년, *gyeongja-nyeon*) in Korea. Where did the name come from? Let's briefly look at the *Gapja* system, which is traditionally used in Korea to name the years.\n\nThere are two sequences of $n$ strings $s_1, s_2, s_3, \\ldots, s_{n}$ and $m$ strings $t_1, t_2, t_3, \\ldots, t_{m}$. These strings contain only lowercase letters. There might be duplicates among these strings.\n\nLet's call a concatenation of strings $x$ and $y$ as the string that is obtained by writing down strings $x$ and $y$ one right after another without changing the order. For example, the concatenation of the strings \"`code`\" and \"`forces`\" is the string \"`codeforces`\".\n\nThe year 1 has a name which is the concatenation of the two strings $s_1$ and $t_1$. When the year increases by one, we concatenate the next two strings in order from each of the respective sequences. If the string that is currently being used is at the end of its sequence, we go back to the first string in that sequence.\n\nFor example, if $n = 3, m = 4, s = $`{\"a\", \"b\", \"c\"}`, $t =$ `{\"d\", \"e\", \"f\", \"g\"}`, the following table denotes the resulting year names. Note that the names of the years may repeat.\n\n![image](https://espresso.codeforces.com/3198ce01f17b143429b06a758b997fb36817be1e.png)\n\nYou are given two sequences of strings of size $n$ and $m$ and also $q$ queries. For each query, you will be given the current year. Could you find the name corresponding to the given year, according to the *Gapja* system?\n\n## Input\n\nThe first line contains two integers $n, m$ ($1 \\le n, m \\le 20$).\n\nThe next line contains $n$ strings $s_1, s_2, \\ldots, s_{n}$. Each string contains only lowercase letters, and they are separated by spaces. The length of each string is at least $1$ and at most $10$.\n\nThe next line contains $m$ strings $t_1, t_2, \\ldots, t_{m}$. Each string contains only lowercase letters, and they are separated by spaces. The length of each string is at least $1$ and at most $10$.\n\nAmong the given $n + m$ strings may be duplicates (that is, they are not necessarily all different).\n\nThe next line contains a single integer $q$ ($1 \\le q \\le 2\\,020$).\n\nIn the next $q$ lines, an integer $y$ ($1 \\le y \\le 10^9$) is given, denoting the year we want to know the name for.\n\n## Output\n\nPrint $q$ lines. For each line, print the name of the year as per the rule described above.\n\n## Note\n\nThe first example denotes the actual names used in the *Gapja* system. These strings usually are either a number or the name of some animal.",
-  "statementZhMd": null,
+  "statementZhMd": "新年快乐！2020 年在韩国也被称为 *Gyeongja 年*（경자년，*gyeongja-nyeon*）。这个名称是怎么来的呢？让我们简单了解一下韩国传统上用于给年份命名的 *Gapja* 系统。\n\n有两个字符串序列，分别包含 $n$ 个字符串 $s_1, s_2, s_3, \\ldots, s_{n}$ 和 $m$ 个字符串 $t_1, t_2, t_3, \\ldots, t_{m}$。这些字符串只包含小写字母。这些字符串之间可能存在重复。\n\n我们将字符串 $x$ 和 $y$ 的连接定义为：在不改变顺序的情况下，将字符串 $x$ 和 $y$ 首尾相连得到的字符串。例如，字符串 \"`code`\" 和 \"`forces`\" 的连接结果是字符串 \"`codeforces`\"。\n\n第 1 年的名称是字符串 $s_1$ 和 $t_1$ 的连接。当年份增加 1 时，我们分别从两个序列中按顺序取出下一个字符串进行连接。如果当前使用的字符串已经位于其所在序列的末尾，则回到该序列的第一个字符串。\n\n例如，当 $n = 3, m = 4, s = $`{\"a\", \"b\", \"c\"}`，$t =$ `{\"d\", \"e\", \"f\", \"g\"}` 时，下表表示生成的年份名称。注意，年份名称可能会重复。\n\n![image](https://espresso.codeforces.com/3198ce01f17b143429b06a758b997fb36817be1e.png)\n\n现在给定两个大小分别为 $n$ 和 $m$ 的字符串序列，以及 $q$ 个查询。对于每个查询，将给出当前年份。请你根据 *Gapja* 系统，找出给定年份对应的名称。\n\n## 输入格式\n\n第一行包含两个整数 $n, m$（$1 \\le n, m \\le 20$）。\n\n第二行包含 $n$ 个字符串 $s_1, s_2, \\ldots, s_{n}$。每个字符串只包含小写字母，字符串之间用空格分隔。每个字符串的长度至少为 1，至多为 10。\n\n第三行包含 $m$ 个字符串 $t_1, t_2, \\ldots, t_{m}$。每个字符串只包含小写字母，字符串之间用空格分隔。每个字符串的长度至少为 1，至多为 10。\n\n给出的 $n + m$ 个字符串中可能存在重复字符串（也就是说，它们不一定互不相同）。\n\n下一行包含一个整数 $q$（$1 \\le q \\le 2\\,020$）。\n\n接下来的 $q$ 行中，每行给出一个整数 $y$（$1 \\le y \\le 10^9$），表示我们想要查询其名称的年份。\n\n## 输出格式\n\n输出 $q$ 行。对于每一行，按照上述规则输出对应年份的名称。\n\n## 说明\n\n第一个样例表示 *Gapja* 系统中实际使用的名称。这些字符串通常是数字或某种动物的名称。",
   "samples": [
     {
       "input": "10 12\nsin im gye gap eul byeong jeong mu gi gyeong\nyu sul hae ja chuk in myo jin sa o mi sin\n14\n1\n2\n3\n4\n10\n11\n12\n13\n73\n2016\n2017\n2018\n2019\n2020\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:59:05.855Z"
+  "fetchedAt": "2026-10-30T23:59:05.855Z",
+  "translatedAt": "2026-11-04T04:50:01.191+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

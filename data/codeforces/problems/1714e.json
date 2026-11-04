@@ -4,7 +4,7 @@
   "contestId": 1714,
   "index": "E",
   "title": "Add Modulo 10",
-  "titleZh": null,
+  "titleZh": "加上个位数",
   "url": "https://codeforces.com/contest/1714/problem/E",
   "difficulty": 1400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array of n integers a1,a2,…,an\n\nYou can apply the following operation an arbitrary number of times:\n\n- select an index i (1≤i≤n) and replace the value of the element ai with the value ai+(aimod, where a_i \\bmod 10 is the remainder of the integer dividing a_i by 10.\n\nFor a single index (value i), this operation can be applied multiple times. If the operation is applied repeatedly to the same index, then the current value of a_i is taken into account each time. For example, if a_i=47 then after the first operation we get a_i=47+7=54, and after the second operation we get a_i=54+4=58.\n\nCheck if it is possible to make **all** array elements equal by applying multiple (possibly zero) operations.\n\nFor example, you have an array [6, 11].\n\n- Let's apply this operation to the first element of the array. Let's replace a_1 = 6 with a_1 + (a_1 \\bmod 10) = 6 + (6 \\bmod 10) = 6 + 6 = 12. We get the array [12, 11].\n- Then apply this operation to the second element of the array. Let's replace a_2 = 11 with a_2 + (a_2 \\bmod 10) = 11 + (11 \\bmod 10) = 11 + 1 = 12. We get the array [12, 12].\n\nThus, by applying 2 operations, you can make all elements of an array equal.\n\n## Input\n\nThe first line contains one integer t (1 \\le t \\le 10^4) — the number of test cases. What follows is a description of each test case.\n\nThe first line of each test case contains one integer n (1 \\le n \\le 2 \\cdot 10^5) — the size of the array.\n\nThe second line of each test case contains n integers a_i (0 \\le a_i \\le 10^9) — array elements.\n\nIt is guaranteed that the sum of n over all test cases does not exceed 2 \\cdot 10^5.\n\n## Output\n\nFor each test case print:\n\n- `YES` if it is possible to make all array elements equal;\n- `NO` otherwise.\n\nYou can print `YES` and `NO` in any case (for example, the strings `yEs`, `yes`, `Yes` and `YES` will be recognized as a positive answer) .\n\n## Note\n\nThe first test case is clarified above.\n\nIn the second test case, it is impossible to make all array elements equal.\n\nIn the third test case, you need to apply this operation once to all elements equal to 5.\n\nIn the fourth test case, you need to apply this operation to all elements until they become equal to 8.\n\nIn the fifth test case, it is impossible to make all array elements equal.\n\nIn the sixth test case, you need to apply this operation to all elements until they become equal to 102.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个包含 $n$ 个整数 $a_1,a_2,…,a_n$ 的数组。\n\n你可以任意次进行以下操作：\n\n- 选择一个下标 $i$（$1≤i≤n$），将元素 $a_i$ 的值替换为 $a_i+(a_i \\bmod 10)$，其中 a_i \\bmod 10 是整数 a_i 除以 10 的余数。\n\n对于同一个下标（即同一个值），可以多次进行该操作。如果连续对同一个下标进行操作，那么每次都要使用 $a_i$ 的当前值。例如，如果 $a_i=47$，第一次操作后得到 $a_i=47+7=54$，第二次操作后得到 $a_i=54+4=58$。\n\n请判断是否可以通过进行若干次操作（可以为零次）使数组中的**所有**元素都相等。\n\n例如，给定数组 [6, 11]。\n\n- 对数组的第一个元素进行操作。将 $a_1 = 6$ 替换为 $a_1 + (a_1 \\bmod 10) = 6 + (6 \\bmod 10) = 6 + 6 = 12$。得到数组 [12, 11]。\n- 然后对数组的第二个元素进行操作。将 $a_2 = 11$ 替换为 $a_2 + (a_2 \\bmod 10) = 11 + (11 \\bmod 10) = 11 + 1 = 12$。得到数组 [12, 12]。\n\n因此，通过进行 2 次操作，可以使数组中的所有元素相等。\n\n## 输入格式\n\n第一行包含一个整数 t（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是每个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 n（$1 \\le n \\le 2 \\cdot 10^5$）——数组的大小。\n\n每个测试用例的第二行包含 n 个整数 $a_i$（$0 \\le a_i \\le 10^9$）——数组中的元素。\n\n保证所有测试用例中 n 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例输出：\n\n- `YES`，如果可以使数组中的所有元素相等；\n- `NO`，否则。\n\n你可以使用任意大小写输出 `YES` 和 `NO`（例如，字符串 `yEs`、`yes`、`Yes` 和 `YES` 都会被识别为肯定答案）。\n\n## 说明\n\n第一个测试用例已在上文说明。\n\n在第二个测试用例中，不可能使数组中的所有元素相等。\n\n在第三个测试用例中，需要对所有等于 5 的元素各进行一次操作。\n\n在第四个测试用例中，需要对所有元素不断进行操作，直到它们都变为 8。\n\n在第五个测试用例中，不可能使数组中的所有元素相等。\n\n在第六个测试用例中，需要对所有元素不断进行操作，直到它们都变为 102。",
   "samples": [
     {
       "input": "10\n2\n6 11\n3\n2 18 22\n5\n5 10 5 10 5\n4\n1 2 4 8\n2\n4 5\n3\n93 96 102\n2\n40 6\n2\n50 30\n2\n22 44\n2\n1 5\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:53:48.326Z"
+  "fetchedAt": "2026-11-02T17:53:48.326Z",
+  "translatedAt": "2026-11-04T03:19:06.384+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1789,
   "index": "D",
   "title": "Serval and Shift-Shift-Shift",
-  "titleZh": null,
+  "titleZh": "Serval 与 Shift-Shift-Shift",
   "url": "https://codeforces.com/contest/1789/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Serval has two $n$-bit binary integer numbers $a$ and $b$. He wants to share those numbers with Toxel.\n\nSince Toxel likes the number $b$ more, Serval decides to change $a$ into $b$ by some (possibly zero) operations. In an operation, Serval can choose any **positive** integer $k$ between $1$ and $n$, and change $a$ into one of the following number:\n\n- $a\\oplus(a\\ll k)$\n- $a\\oplus(a\\gg k)$\n\nIn other words, the operation moves every bit of $a$ left or right by $k$ positions, where the overflowed bits are removed, and the missing bits are padded with $0$. The bitwise XOR of the shift result and the original $a$ is assigned back to $a$.\n\nServal does not have much time. He wants to perform **no more than** $n$ operations to change $a$ into $b$. Please help him to find out an operation sequence, or determine that it is impossible to change $a$ into $b$ in at most $n$ operations. You do **not need** to minimize the number of operations.\n\nIn this problem, $x\\oplus y$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) of $x$ and $y$. $a\\ll k$ and $a\\gg k$ denote the [logical left shift](https://en.wikipedia.org/wiki/Logical_shift) and [logical right shift](https://en.wikipedia.org/wiki/Logical_shift).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1\\le t\\le2\\cdot10^{3}$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le2\\cdot10^{3}$) — the number of bits in numbers $a$ and $b$.\n\nThe second and the third line of each test case contain a binary string of length $n$, representing $a$ and $b$, respectively. The strings contain only characters `0` and `1`.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot10^{3}$.\n\n## Output\n\nFor each test case, if it is impossible to change $a$ into $b$ in at most $n$ operations, print a single integer $-1$.\n\nOtherwise, in the first line, print the number of operations $m$ ($0\\le m\\le n$).\n\nIf $m \\gt 0$, in the second line, print $m$ integers $k_{1},k_{2},\\dots,k_{m}$ representing the operations. If $1\\le k_{i}\\le n$, it means logical left shift $a$ by $k_{i}$ positions. If $-n\\le k_{i}\\le-1$, it means logical right shift $a$ by $-k_{i}$ positions.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\nIn the first test case:\n\nThe first operation changes $a$ into $\\require{cancel}00111\\oplus\\cancel{001}11\\underline{000}=11111$.\n\nThe second operation changes $a$ into $\\require{cancel}11111\\oplus\\underline{00}111\\cancel{11}=11000$.\n\nThe bits with strikethroughs are overflowed bits that are removed. The bits with underline are padded bits.\n\nIn the second test case, $a$ is already equal to $b$, so no operations are needed.\n\nIn the third test case, it can be shown that $a$ cannot be changed into $b$.",
-  "statementZhMd": null,
+  "statementZhMd": "Serval 有两个 $n$ 位二进制整数 $a$ 和 $b$。他想把这两个数分享给 Toxel。\n\n由于 Toxel 更喜欢数字 $b$，Serval 决定通过若干次操作（可以为零次）将 $a$ 变为 $b$。在一次操作中，Serval 可以选择任意一个介于 $1$ 和 $n$ 之间的**正**整数 $k$，并将 $a$ 变为以下两个数中的一个：\n\n- $a\\oplus(a\\ll k)$\n- $a\\oplus(a\\gg k)$\n\n换句话说，一次操作会将 $a$ 的每一位向左或向右移动 $k$ 个位置，溢出的位会被移除，空缺的位用 $0$ 填充。随后，将移动后的结果与原来的 $a$ 进行按位异或，并将结果重新赋值给 $a$。\n\nServal 没有太多时间。他希望通过**不超过** $n$ 次操作将 $a$ 变为 $b$。请帮助他找出一个操作序列，或者判断是否不可能在不超过 $n$ 次操作内将 $a$ 变为 $b$。你**不需要**最小化操作次数。\n\n在本题中，$x\\oplus y$ 表示 $x$ 与 $y$ 的[按位异或运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。$a\\ll k$ 和 $a\\gg k$ 分别表示[逻辑左移](https://en.wikipedia.org/wiki/Logical_shift)和[逻辑右移](https://en.wikipedia.org/wiki/Logical_shift)。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1\\le t\\le2\\cdot10^{3}$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le2\\cdot10^{3}$），表示数字 $a$ 和 $b$ 的位数。\n\n每个测试用例的第二行和第三行分别包含一个长度为 $n$ 的二进制字符串，表示 $a$ 和 $b$。字符串仅包含字符 `0` 和 `1`。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot10^{3}$。\n\n## 输出格式\n\n对于每个测试用例，如果不可能在不超过 $n$ 次操作内将 $a$ 变为 $b$，输出一个整数 $-1$。\n\n否则，第一行输出操作次数 $m$（$0\\le m\\le n$）。\n\n如果 $m \\gt 0$，在第二行输出 $m$ 个整数 $k_{1},k_{2},\\dots,k_{m}$，表示执行的操作。如果 $1\\le k_{i}\\le n$，则表示将 $a$ 逻辑左移 $k_{i}$ 位。如果 $-n\\le k_{i}\\le-1$，则表示将 $a$ 逻辑右移 $-k_{i}$ 位。\n\n如果有多个方案，输出任意一个即可。\n\n## 说明\n\n在第一个测试用例中：\n\n第一次操作将 $a$ 变为 $\\require{cancel}00111\\oplus\\cancel{001}11\\underline{000}=11111$。\n\n第二次操作将 $a$ 变为 $\\require{cancel}11111\\oplus\\underline{00}111\\cancel{11}=11000$。\n\n带删除线的位是溢出的位，会被移除。带下划线的位是填充的位。\n\n在第二个测试用例中，$a$ 已经等于 $b$，因此不需要执行任何操作。\n\n在第三个测试用例中，可以证明无法将 $a$ 变为 $b$。",
   "samples": [
     {
       "input": "3\n5\n00111\n11000\n1\n1\n1\n3\n001\n000\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:35:03.259Z"
+  "fetchedAt": "2026-10-30T22:35:03.259Z",
+  "translatedAt": "2026-11-04T02:59:18.634+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

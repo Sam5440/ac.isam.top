@@ -4,7 +4,7 @@
   "contestId": "agc023",
   "index": "D",
   "title": "Go Home",
-  "titleZh": null,
+  "titleZh": "回家",
   "url": "https://atcoder.jp/contests/agc023/tasks/agc023_d",
   "difficulty": 3173,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "## Problem Statement\n\nThere are $N$ apartments along a number line, numbered $1$ through $N$. Apartment $i$ is located at coordinate $X_i$. Also, the office of AtCoder Inc. is located at coordinate $S$. Every employee of AtCoder lives in one of the $N$ apartments. There are $P_i$ employees who are living in Apartment $i$.\n\nAll employees of AtCoder are now leaving the office all together. Since they are tired from work, they would like to get home by the company's bus. AtCoder owns only one bus, but it can accommodate all the employees. This bus will leave coordinate $S$ with all the employees and move according to the following rule:\n\n- Everyone on the bus casts a vote on which direction the bus should proceed, positive or negative. (The bus is autonomous and has no driver.) Each person has one vote, and abstaining from voting is not allowed. Then, the bus moves a distance of $1$ in the direction with the greater number of votes. If a tie occurs, the bus moves in the negative direction. If there is an apartment at the coordinate of the bus after the move, all the employees who live there get off.\n- Repeat the operation above as long as there is one or more employees on the bus.\n\nFor a specific example, see Sample Input 1.\n\nThe bus takes one seconds to travel a distance of $1$. The time required to vote and get off the bus is ignorable.\n\nEvery employee will vote so that he himself/she herself can get off the bus at the earliest possible time. Strictly speaking, when a vote is taking place, each employee see which direction results in the earlier arrival at his/her apartment, assuming that all the employees follow the same strategy in the future. Based on this information, each employee makes the optimal choice, but if either direction results in the arrival at the same time, he/she casts a vote to the negative direction.\n\nFind the time the bus will take from departure to arrival at the last employees' apartment. It can be proved that, given the positions of the apartments, the numbers of employees living in each apartment and the initial position of the bus, the future movement of the bus is uniquely determined, and the process will end in a finite time.\n\n## Constraints\n\n- $1 \\leq N \\leq 10^5$\n- $1 \\leq S \\leq 10^9$\n- $1 \\leq X_1 < X_2 < ... < X_N \\leq 10^9$\n- $X_i \\neq S$ ( $1 \\leq i \\leq N$ )\n- $1 \\leq P_i \\leq 10^9$ ( $1 \\leq i \\leq N$ )\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN S\nX_1 P_1\nX_2 P_2\n:\nX_N P_N\n```\n\n## Output\n\nPrint the number of seconds the bus will take from departure to arrival at the last employees' apartment.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n数轴上有 $N$ 间公寓，编号为 $1$ 至 $N$。公寓 $i$ 位于坐标 $X_i$。此外，AtCoder Inc. 的办公室位于坐标 $S$。每名 AtCoder 员工都住在这 $N$ 间公寓中的一间里。住在公寓 $i$ 的员工有 $P_i$ 名。\n\n现在，AtCoder 的所有员工将一起离开办公室。由于工作劳累，他们想乘坐公司的巴士回家。AtCoder 只有一辆巴士，但它可以容纳所有员工。这辆巴士将载着所有员工从坐标 $S$ 出发，并按照以下规则行驶：\n\n- 巴士上的每个人都要投票决定巴士前进的方向，即正方向或负方向。（巴士是自动驾驶的，没有司机。）每个人只能投一票，不允许弃权。随后，巴士向得票数较多的方向移动 $1$ 的距离。如果双方票数相同，则巴士向负方向移动。如果巴士移动后所在的坐标处有公寓，所有住在那里的员工下车。\n- 只要巴士上还有一名或更多员工，就重复上述操作。\n\n具体示例请参见样例输入 1。\n\n巴士行驶距离 $1$ 所需的时间为 1 秒。投票和下车所需的时间可以忽略不计。\n\n每名员工都会进行投票，使自己能够尽早下车。严格地说，在进行投票时，每名员工都会假设今后所有员工都采取相同的策略，并判断选择哪个方向能更早到达自己所在的公寓。每名员工会基于这一信息做出最优选择；但如果选择两个方向到达的时间相同，则他/她会投票给负方向。\n\n请找出巴士从出发到最后一名员工所在公寓所需的时间。可以证明，给定公寓的位置、住在各公寓的员工人数以及巴士的初始位置，巴士未来的移动方式是唯一确定的，并且该过程会在有限时间内结束。\n\n## 约束条件\n\n- $1 \\leq N \\leq 10^5$\n- $1 \\leq S \\leq 10^9$\n- $1 \\leq X_1 < X_2 < ... < X_N \\leq 10^9$\n- $X_i \\neq S$ ( $1 \\leq i \\leq N$ )\n- $1 \\leq P_i \\leq 10^9$ ( $1 \\leq i \\leq N$ )\n- 输入中的所有值均为整数。\n\n## 输入格式\n\n输入从标准输入读入，格式如下：\n\n```\nN S\nX_1 P_1\nX_2 P_2\n:\nX_N P_N\n```\n\n## 输出格式\n\n输出巴士从出发到最后一名员工所在公寓所需的秒数。",
   "samples": [
     {
       "input": "3 2\n1 3\n3 4\n4 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:41:45.412Z"
+  "fetchedAt": "2026-10-30T22:41:45.412Z",
+  "translatedAt": "2026-11-04T05:42:32.397+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

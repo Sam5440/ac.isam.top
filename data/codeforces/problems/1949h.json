@@ -4,7 +4,7 @@
   "contestId": 1949,
   "index": "H",
   "title": "Division Avoidance",
-  "titleZh": null,
+  "titleZh": "避免分裂",
   "url": "https://codeforces.com/contest/1949/problem/H",
   "difficulty": 3100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A newly discovered organism can be represented as a set of cells on an infinite grid. There is a coordinate system on the grid such that each cell has two integer coordinates $x$ and $y$. A cell with coordinates $x=a$ and $y=b$ will be denoted as $(a, b)$.\n\nInitially, the organism consists of a single cell $(0, 0)$. Then zero or more *divisions* can happen. In one division, a cell $(a, b)$ is removed and replaced by two cells $(a+1, b)$ and $(a, b+1)$.\n\nFor example, after the first division, the organism always consists of two cells $(1, 0)$ and $(0, 1)$, and after the second division, it is either the three cells $(2, 0)$, $(1, 1)$ and $(0, 1)$, or the three cells $(1, 0)$, $(1, 1)$ and $(0, 2)$.\n\n**A division of a cell $(a, b)$ can only happen if the cells $(a+1, b)$ and $(a, b+1)$ are not yet part of the organism.** For example, the cell $(1, 0)$ cannot divide if the organism currently consists of the three cells $(1, 0)$, $(1, 1)$ and $(0, 2)$, since the cell $(1, 1)$ that would be one of the results of this division is already part of the organism.\n\nYou are given a set of forbidden cells ${(c_i, d_i)}$. Is it possible for the organism to contain none of those cells after zero or more divisions?\n\n## Input\n\nEach test contains multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 10\\,000$) — the number of test cases. The descriptions of the $t$ test cases follow.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 10^6$) — the number of forbidden cells.\n\nThe next $n$ lines contain two integers each. The $i$-th of such lines contains $c_i$ and $d_i$ ($0 \\le c_i, d_i \\le 10^9$) — the coordinates of the $i$-th forbidden cell. It is guaranteed that all forbidden cells are distinct.\n\nIt is guaranteed that the sum of values of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, print $\\texttt{YES}$ if it is possible for the organism to contain no forbidden cells after zero or more divisions. Otherwise, print $\\texttt{NO}$.\n\n## Note\n\nIn the **first test case**, dividing the following cells in the following order creates an organism without any forbidden cells: $(0, 0)$, $(1, 0)$, $(1, 1)$, $(0, 1)$, $(2, 1)$, $(2, 2)$, $(1, 2)$, $(1, 1)$. The following picture demonstrates how the organism changes during this process:\n\n![image](https://espresso.codeforces.com/05b6124cac6a7e6dc9501bbf9beed6d500031e4f.png)\n\nIn the **second test case**, you can see that, surprisingly, any organism always has at least one cell in the $0 \\le x, y \\le 3$ square, no matter how many divisions we do.",
-  "statementZhMd": null,
+  "statementZhMd": "一种新发现的生物可以表示为无限网格上的一组细胞。网格上有一个坐标系，因此每个细胞都有两个整数坐标 $x$ 和 $y$。坐标为 $x=a$ 且 $y=b$ 的细胞记作 $(a, b)$。\n\n初始时，生物由单个细胞 $(0, 0)$ 组成。随后可以进行零次或多次*分裂*。在一次分裂中，细胞 $(a, b)$ 被移除，并替换为两个细胞 $(a+1, b)$ 和 $(a, b+1)$。\n\n例如，第一次分裂后，生物总是由两个细胞 $(1, 0)$ 和 $(0, 1)$ 组成；第二次分裂后，生物可能由三个细胞 $(2, 0)$、$(1, 1)$ 和 $(0, 1)$ 组成，也可能由三个细胞 $(1, 0)$、$(1, 1)$ 和 $(0, 2)$ 组成。\n\n**只有当细胞 $(a+1, b)$ 和 $(a, b+1)$ 尚未成为生物的一部分时，细胞 $(a, b)$ 才能进行分裂。**例如，如果当前生物由三个细胞 $(1, 0)$、$(1, 1)$ 和 $(0, 2)$ 组成，则细胞 $(1, 0)$ 不能分裂，因为该分裂产生的细胞之一 $(1, 1)$ 已经属于生物的一部分。\n\n给定一组禁止出现的细胞 ${(c_i, d_i)}$。经过零次或多次分裂后，生物是否可能不包含其中任何一个细胞？\n\n## 输入\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10\\,000$）——测试用例的数量。接下来是 $t$ 个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^6$）——禁止出现的细胞数量。\n\n接下来的 $n$ 行每行包含两个整数。第 $i$ 行包含 $c_i$ 和 $d_i$（$0 \\le c_i, d_i \\le 10^9$）——第 $i$ 个禁止出现的细胞的坐标。\n\n保证所有禁止出现的细胞互不相同。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出\n\n对于每个测试用例，如果经过零次或多次分裂后，生物可能不包含任何禁止出现的细胞，输出 \\texttt{YES}。否则，输出 \\texttt{NO}。\n\n## 说明\n\n在**第一个测试用例**中，按照以下顺序分裂下列细胞，可以得到一个不包含任何禁止出现的细胞的生物：$(0, 0)$、$(1, 0)$、$(1, 1)$、$(0, 1)$、$(2, 1)$、$(2, 2)$、$(1, 2)$、$(1, 1)$。下图展示了这一过程中生物的变化：\n\n![image](https://espresso.codeforces.com/05b6124cac6a7e6dc9501bbf9beed6d500031e4f.png)\n\n在**第二个测试用例**中，你可以看到，无论进行多少次分裂，任意生物总会在 $0 \\le x, y \\le 3$ 的正方形区域内至少包含一个细胞。",
   "samples": [
     {
       "input": "2\n4\n0 0\n1 0\n0 1\n1 1\n16\n0 0\n0 1\n0 2\n0 3\n1 0\n1 1\n1 2\n1 3\n2 0\n2 1\n2 2\n2 3\n3 0\n3 1\n3 2\n3 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:11:09.438Z"
+  "fetchedAt": "2026-11-02T17:11:09.438Z",
+  "translatedAt": "2026-11-04T02:18:57.545+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

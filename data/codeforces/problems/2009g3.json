@@ -4,7 +4,7 @@
   "contestId": 2009,
   "index": "G3",
   "title": "Yunli's Subarray Queries (extreme version)",
-  "titleZh": null,
+  "titleZh": "云璃的子数组查询（极限版）",
   "url": "https://codeforces.com/contest/2009/problem/G3",
   "difficulty": 2700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the extreme version of the problem. In this version, the output of each query is different from the easy and hard versions. It is also guaranteed that $r \\geq l+k-1$ for all queries.**\n\nFor an arbitrary array $b$, Yunli can perform the following operation any number of times:\n\n- Select an index $i$. Set $b_i = x$ where $x$ is any integer she desires ($x$ is not limited to the interval $[1,n]$).\n\nDenote $f(b)$ as the minimum number of operations she needs to perform until there exists a consecutive subarray$^{\\text{∗}}$ of length at least $k$ in $b$.\n\nYunli is given an array $a$ of size $n$ and asks you $q$ queries. In each query, you must output $\\sum_{i=l}^{r-k+1} \\sum_{j=i+k-1}^{r} f([a_i, a_{i+1}, \\ldots, a_j])$.\n\n$^{\\text{∗}}$If there exists a consecutive subarray of length $k$ that starts at index $i$ ($1 \\leq i \\leq |b|-k+1$), then $b_j = b_{j-1} + 1$ for all $i \\lt j \\leq i+k-1$.\n\n## Input\n\nThe first line contains $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains three integers $n$, $k$, and $q$ ($1 \\leq k \\leq n \\leq 2 \\cdot 10^5$, $1 \\leq q \\leq 2 \\cdot 10^5$) — the length of the array, the length of the consecutive subarray, and the number of queries.\n\nThe following line contains $n$ integers $a_1, a_2, ..., a_n$ ($1 \\leq a_i \\leq n$).\n\nThe following $q$ lines contain two integers $l$ and $r$ ($1 \\leq l \\leq r \\leq n$, $r \\geq l+k-1$) — the bounds of the query.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$ and the sum of $q$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nOutput $\\sum_{i=l}^{r-k+1} \\sum_{j=i+k-1}^{r} f([a_i, a_{i+1}, \\ldots, a_j])$ for each query on a new line.\n\n## Note\n\nIn the first query of the first testcase, we can calculate the answer for the query through the following:\n\n- $i = 4$ and $j = 5$: $f([2, 1])=1$ because Yunli can set $b_2=3$, making a consecutive subarray of size $2$ in $1$ move.\n- $i = 4$ and $j = 6$: $f([2, 1, 2])=0$ because there is already a consecutive array of size $2$.\n- $i = 5$ and $j = 6$: $f([1, 2])=0$ because there is already a consecutive array of size $2$.\n\nThe answer to this query is $1+0+0=1$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的极限版本。在此版本中，每次查询的输出与简单版和困难版不同。此外，保证对于所有查询都有 $r \\geq l+k-1$。**\n\n对于任意数组 $b$，云璃可以执行以下操作任意次：\n\n- 选择一个下标 $i$。令 $b_i = x$，其中 $x$ 可以是她想要的任意整数（$x$ 不限于区间 $[1,n]$）。\n\n记 $f(b)$ 为她至少需要执行多少次操作，才能使 $b$ 中存在一个长度至少为 $k$ 的连续子数组$^{\\text{∗}}$。\n\n给定一个长度为 $n$ 的数组 $a$，现在有 $q$ 次询问。对于每次询问，需要输出 $\\sum_{i=l}^{r-k+1} \\sum_{j=i+k-1}^{r} f([a_i, a_{i+1}, \\ldots, a_j])$。\n\n$^{\\text{∗}}$如果存在一个从下标 $i$ 开始的长度为 $k$ 的连续子数组（$1 \\leq i \\leq |b|-k+1$），则对于所有 $i \\lt j \\leq i+k-1$，都有 $b_j = b_{j-1} + 1$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含三个整数 $n$、$k$ 和 $q$（$1 \\leq k \\leq n \\leq 2 \\cdot 10^5$，$1 \\leq q \\leq 2 \\cdot 10^5$）——数组的长度、连续子数组的长度以及询问的数量。\n\n下一行包含 $n$ 个整数 $a_1, a_2, ..., a_n$（$1 \\leq a_i \\leq n$）。\n\n接下来的 $q$ 行中，每行包含两个整数 $l$ 和 $r$（$1 \\leq l \\leq r \\leq n$，$r \\geq l+k-1$）——询问的左右边界。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$，且 $q$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每次询问，在新的一行输出 $\\sum_{i=l}^{r-k+1} \\sum_{j=i+k-1}^{r} f([a_i, a_{i+1}, \\ldots, a_j])$。\n\n## 说明\n\n在第一个测试用例的第一次询问中，可以按如下方式计算该询问的答案：\n\n- $i = 4$ 且 $j = 5$：$f([2, 1])=1$，因为云璃可以将 $b_2$ 设为 $3$，从而只需 1 次操作就能得到一个长度为 $2$ 的连续子数组。\n- $i = 4$ 且 $j = 6$：$f([2, 1, 2])=0$，因为其中已经存在一个长度为 $2$ 的连续数组。\n- $i = 5$ 且 $j = 6$：$f([1, 2])=0$，因为其中已经存在一个长度为 $2$ 的连续数组。\n\n该询问的答案为 $1+0+0=1$。",
   "samples": [
     {
       "input": "5\n7 2 4\n1 2 3 2 1 2 3\n4 6\n1 7\n2 7\n3 7\n8 4 2\n4 3 1 1 2 4 3 2\n3 6\n1 5\n5 4 2\n4 5 1 2 3\n1 4\n1 5\n10 4 8\n2 3 6 5 8 9 8 10 10 1\n2 7\n6 10\n1 9\n1 6\n3 9\n4 10\n2 10\n1 8\n10 7 4\n3 4 5 3 4 5 9 10 8 9\n1 9\n2 10\n1 10\n2 9\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:02:08.862Z"
+  "fetchedAt": "2026-11-02T17:02:08.862Z",
+  "translatedAt": "2026-11-04T02:06:30.938+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

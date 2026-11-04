@@ -4,14 +4,14 @@
   "contestId": 284,
   "index": "D",
   "title": "Cow Program",
-  "titleZh": null,
+  "titleZh": "奶牛程序",
   "url": "https://codeforces.com/contest/284/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Farmer John has just given the cows a program to play with! The program contains two integer variables, $*x*$ and $*y*$, and performs the following operations on a sequence $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ of positive integers:\n\n1. Initially, $*x* = 1$ and $*y* = 0$. If, after any step, $*x* ≤ 0$ or $*x* > *n*$, the program immediately terminates.\n2. The program increases both $*x*$ and $*y*$ by a value equal to $*a*_{*x*}$ simultaneously.\n3. The program now increases $*y*$ by $*a*_{*x*}$ while decreasing $*x*$ by $*a*_{*x*}$.\n4. The program executes steps 2 and 3 (first step 2, then step 3) repeatedly until it terminates (it may never terminate). So, the sequence of executed steps may start with: step 2, step 3, step 2, step 3, step 2 and so on.\n\nThe cows are not very good at arithmetic though, and they want to see how the program works. Please help them!\n\nYou are given the sequence $*a*_{2}, *a*_{3}, ..., *a*_{*n*}$. Suppose for each $*i*$ $(1 ≤ *i* ≤ *n* - 1)$ we run the program on the sequence $*i*, *a*_{2}, *a*_{3}, ..., *a*_{*n*}$. For each such run output the final value of $*y*$ if the program terminates or `-1` if it does not terminate.\n\n## Input\n\nThe first line contains a single integer, $*n*$ ($2 ≤ *n* ≤ 2·10^{5}$). The next line contains $*n* - 1$ space separated integers, $*a*_{2}, *a*_{3}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ 10^{9}$).\n\n## Output\n\nOutput $*n* - 1$ lines. On the $*i*$-th line, print the requested value when the program is run on the sequence $*i*, *a*_{2}, *a*_{3}, ...*a*_{*n*}$.\n\nPlease do not use the `%lld` specifier to read or write 64-bit integers in С++. It is preferred to use the `cin`, `cout` streams or the `%I64d` specifier.\n\n## Note\n\nIn the first sample\n\n1. For $*i* = 1,$ $*x*$ becomes ![image](https://espresso.codeforces.com/d87035805e6f1c669693d86603da6d89c5730833.png) and $*y*$ becomes $1 + 2 = 3$.\n2. For $*i* = 2,$ $*x*$ becomes ![image](https://espresso.codeforces.com/c59515a288e6cb9876590f520c031cb27e346525.png) and $*y*$ becomes $2 + 4 = 6.$\n3. For $*i* = 3,$ $*x*$ becomes ![image](https://espresso.codeforces.com/62b52a6cff2221e154a9c36f7bb277ad6475a1b6.png) and $*y*$ becomes $3 + 1 + 4 = 8.$",
-  "statementZhMd": null,
+  "statementZhMd": "农夫约翰刚刚给奶牛们一个程序玩！该程序包含两个整型变量 $*x*$ 和 $*y*$，并对由正整数组成的序列 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ 执行以下操作：\n\n1. 初始时，$*x* = 1$ 且 $*y* = 0$。每执行一步后，如果 $*x* ≤ 0$ 或 $*x* > *n*$，程序将立即终止。\n2. 程序将 $*x*$ 和 $*y*$ 同时增加一个值，该值等于 $*a*_{*x*}$。\n3. 接着，程序将 $*y*$ 增加 $*a*_{*x*}$，同时将 $*x*$ 减少 $*a*_{*x*}$。\n4. 程序重复执行步骤 2 和步骤 3（先执行步骤 2，再执行步骤 3），直到程序终止（也可能永远不会终止）。因此，执行的步骤序列可能以如下形式开始：步骤 2、步骤 3、步骤 2、步骤 3、步骤 2，等等。\n\n不过，奶牛们不太擅长算术，因此它们想看看这个程序是如何运行的。请帮助它们！\n\n给定序列 $*a*_{2}, *a*_{3}, ..., *a*_{*n*}$。对于每个 $*i*$（$1 ≤ *i* ≤ *n* - 1$），在序列 $*i*, *a*_{2}, *a*_{3}, ..., *a*_{*n*}$ 上运行一次程序。对于每次运行，如果程序终止，则输出 $*y*$ 的最终值；否则输出 `-1`。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$2 ≤ *n* ≤ 2·10^{5}$）。\n\n第二行包含 $*n* - 1$ 个以空格分隔的整数 $*a*_{2}, *a*_{3}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ 10^{9}$）。\n\n## 输出格式\n\n输出 $*n* - 1$ 行。第 $*i*$ 行输出程序在序列 $*i*, *a*_{2}, *a*_{3}, ...*a*_{*n*}$ 上运行时的所求值。\n\n请不要在 С++ 中使用 `%lld` 格式说明符来读写 64 位整数。建议使用 `cin`、`cout` 流或 `%I64d` 格式说明符。\n\n## 说明\n\n在第一个样例中：\n\n1. 当 $*i* = 1,$ 时，$*x*$ 变为 ![image](https://espresso.codeforces.com/d87035805e6f1c669693d86603da6d89c5730833.png)，而 $*y*$ 变为 $1 + 2 = 3$。\n2. 当 $*i* = 2,$ 时，$*x*$ 变为 ![image](https://espresso.codeforces.com/c59515a288e6cb9876590f520c031cb27e346525.png)，而 $*y*$ 变为 $2 + 4 = 6.$\n3. 当 $*i* = 3,$ 时，$*x*$ 变为 ![image](https://espresso.codeforces.com/62b52a6cff2221e154a9c36f7bb277ad6475a1b6.png)，而 $*y*$ 变为 $3 + 1 + 4 = 8.$",
   "samples": [
     {
       "input": "4\n2 4 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:08:02.745Z"
+  "fetchedAt": "2026-10-31T02:08:02.745Z",
+  "translatedAt": "2026-11-04T07:30:38.307+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

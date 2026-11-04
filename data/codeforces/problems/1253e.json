@@ -4,7 +4,7 @@
   "contestId": 1253,
   "index": "E",
   "title": "Antenna Coverage",
-  "titleZh": null,
+  "titleZh": "天线覆盖",
   "url": "https://codeforces.com/contest/1253/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "The mayor of the Central Town wants to modernize Central Street, represented in this problem by the $(Ox)$ axis.\n\nOn this street, there are $n$ antennas, numbered from $1$ to $n$. The $i$-th antenna lies on the position $x_i$ and has an initial scope of $s_i$: it covers all integer positions inside the interval $[x_i - s_i; x_i + s_i]$.\n\nIt is possible to increment the scope of any antenna by $1$, this operation costs $1$ coin. We can do this operation as much as we want (multiple times on the same antenna if we want).\n\nTo modernize the street, we need to make all integer positions from $1$ to $m$ inclusive covered by at least one antenna. Note that it is authorized to cover positions outside $[1; m]$, even if it's not required.\n\nWhat is the minimum amount of coins needed to achieve this modernization?\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($1 \\le n \\le 80$ and $n \\le m \\le 100\\ 000$).\n\nThe $i$-th of the next $n$ lines contains two integers $x_i$ and $s_i$ ($1 \\le x_i \\le m$ and $0 \\le s_i \\le m$).\n\nOn each position, there is at most one antenna (values $x_i$ are pairwise distinct).\n\n## Output\n\nYou have to output a single integer: the minimum amount of coins required to make all integer positions from $1$ to $m$ inclusive covered by at least one antenna.\n\n## Note\n\nIn the first example, here is a possible strategy:\n\n- Increase the scope of the first antenna by $40$, so that it becomes $2 + 40 = 42$. This antenna will cover interval $[43 - 42; 43 + 42]$ which is $[1; 85]$\n- Increase the scope of the second antenna by $210$, so that it becomes $4 + 210 = 214$. This antenna will cover interval $[300 - 214; 300 + 214]$, which is $[86; 514]$\n- Increase the scope of the third antenna by $31$, so that it becomes $10 + 31 = 41$. This antenna will cover interval $[554 - 41; 554 + 41]$, which is $[513; 595]$\n\nTotal cost is $40 + 210 + 31 = 281$. We can prove that it's the minimum cost required to make all positions from $1$ to $595$ covered by at least one antenna.\n\nNote that positions $513$ and $514$ are in this solution covered by two different antennas, but it's not important.\n\n—\n\nIn the second example, the first antenna already covers an interval $[0; 2]$ so we have nothing to do.\n\nNote that the only position that we needed to cover was position $1$; positions $0$ and $2$ are covered, but it's not important.",
-  "statementZhMd": null,
+  "statementZhMd": "市长希望对中央镇的中央大街进行现代化改造，在本题中，中央大街由 $(Ox)$ 轴表示。\n\n这条街上有 $n$ 根天线，编号从 $1$ 到 $n$。第 $i$ 根天线位于位置 $x_i$，初始覆盖范围为 $s_i$：它可以覆盖区间 $[x_i - s_i; x_i + s_i]$ 内的所有整数位置。\n\n可以将任意一根天线的覆盖范围增加 $1$，每次操作需要花费 $1$ 枚硬币。同一根天线可以进行任意多次该操作。\n\n为了完成街道现代化改造，需要使从 $1$ 到 $m$（包含两端）的所有整数位置都至少被一根天线覆盖。注意，即使没有要求，也允许覆盖 $[1; m]$ 之外的位置。\n\n达到这一目标所需的最少硬币数是多少？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 80$，$n \\le m \\le 100\\ 000$）。\n\n接下来的 $n$ 行中，第 $i$ 行包含两个整数 $x_i$ 和 $s_i$（$1 \\le x_i \\le m$，$0 \\le s_i \\le m$）。\n\n每个位置上至多有一根天线（即 $x_i$ 两两不同）。\n\n## 输出格式\n\n输出一个整数：使从 $1$ 到 $m$（包含两端）的所有整数位置都至少被一根天线覆盖所需的最少硬币数。\n\n## 说明\n\n在第一个样例中，以下是一种可行方案：\n\n- 将第一根天线的覆盖范围增加 $40$，使其变为 $2 + 40 = 42$。这根天线将覆盖区间 $[43 - 42; 43 + 42]$，即 $[1; 85]$\n- 将第二根天线的覆盖范围增加 $210$，使其变为 $4 + 210 = 214$。这根天线将覆盖区间 $[300 - 214; 300 + 214]$，即 $[86; 514]$\n- 将第三根天线的覆盖范围增加 $31$，使其变为 $10 + 31 = 41$。这根天线将覆盖区间 $[554 - 41; 554 + 41]$，即 $[513; 595]$\n\n总花费为 $40 + 210 + 31 = 281$。可以证明，这是使 $1$ 到 $595$ 的所有位置都被至少一根天线覆盖所需的最小花费。\n\n注意，在该方案中，位置 $513$ 和 $514$ 被两根不同的天线覆盖，但这并不重要。\n\n—\n\n在第二个样例中，第一根天线已经覆盖了区间 $[0; 2]$，因此我们无需进行任何操作。\n\n注意，我们唯一需要覆盖的位置是位置 $1$；位置 $0$ 和 $2$ 虽然也被覆盖，但这并不重要。",
   "samples": [
     {
       "input": "3 595\n43 2\n300 4\n554 10\n",
@@ -41,5 +41,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:01:29.044Z"
+  "fetchedAt": "2026-10-31T00:01:29.044Z",
+  "translatedAt": "2026-11-04T04:55:20.669+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

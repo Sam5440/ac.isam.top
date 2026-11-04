@@ -4,7 +4,7 @@
   "contestId": 241,
   "index": "F",
   "title": "Race",
-  "titleZh": null,
+  "titleZh": "竞速",
   "url": "https://codeforces.com/contest/241/problem/F",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The Old City is a rectangular city represented as an $*m* × *n*$ grid of blocks. This city contains many buildings, straight two-way streets and junctions. Each junction and each building is exactly one block. All the streets have width of one block and are either vertical or horizontal. There is a junction on both sides of each street. We call two blocks adjacent if and only if they share a common side. No two blocks of different streets are adjacent and no two junctions are adjacent.\n\nThere is an annual festival and as a part of it, The Old Peykan follows a special path in the city. This path starts from a block in a street, continues with many junctions and ends in a block of some street. For each street block, we know how much time it takes for the Old Peykan to go from this block to an adjacent block. Also the Old Peykan can go from each junction to its adjacent street blocks in one minute. Of course Old Peykan can't go to building blocks.\n\nWe know the initial position of the Old Peykan and the sequence of junctions that it passes to reach its destination. After passing all the junctions and reaching the destination, it will stay there forever. Your task is to find out where will the Old Peykan be $*k*$ minutes after it starts moving. Consider that The Old Peykan always follows the shortest path that passes through the given sequence of junctions and reaches the destination.\n\nNote that the Old Peykan may visit some blocks more than once.\n\n## Input\n\nThe first line of input contains three integers $*m*$, $*n*$ and $*k*$ $(3 ≤ *m*, *n* ≤ 100, 1 ≤ *k* ≤ 100000)$. Next $*m*$ lines are representing the city's map. Each of them containts $*n*$ characters, each character is a block:\n\n- Character \"`#`\" represents a building.\n- Digits \"`1`\", \"`2`\", $...$, \"`9`\" represent a block of an street and this digit means the number of minutes it takes for the Old Peykan to pass this block.\n- Characters \"`a`\", \"`b`\", $...$, \"`z`\" means that this block is a junction and this character is it's name. All the junction names are unique.\n\nConsider that all blocks have the coordinates: the $*j*$-th in the $*i*$-th line have coordinates $(*i*, *j*)$ $(1 ≤ *i* ≤ *m*, 1 ≤ *j* ≤ *n*)$.\n\nThe $(*m* + 2)$th line contains two integers $*r*_{*s*}$ and $*c*_{*s*}$ $(1 ≤ *r*_{*s*} ≤ *m*, 1 ≤ *c*_{*s*} ≤ *n*)$, string $*s*$ and another two integers $*r*_{*e*}$ and $*c*_{*e*}$ $(1 ≤ *r*_{*e*} ≤ *m*, 1 ≤ *c*_{*e*} ≤ *n*)$. The path starts from block $(*r*_{*s*}, *c*_{*s*})$, continues through junctions in the order that is specified by $*s*$ and will end in block $(*r*_{*e*}, *c*_{*e*})$. Length of $*s*$ is between $1$ and $1000$.\n\nIt's guaranteed that string $*s*$ denotes a correct path from the start position to the end position and string $*s*$ doesn't contain two consecutive equal letters. Also start position $(*r*_{*s*}, *c*_{*s*})$ and the end position $(*r*_{*e*}, *c*_{*e*})$ are street blocks.\n\n## Output\n\nIn a single line print two integers $*r*_{*f*}$ and $*c*_{*f*}$ — ($*r*_{*f*}, *c*_{*f*}$) being the position of the Old Peykan after exactly $*k*$ minutes.",
-  "statementZhMd": null,
+  "statementZhMd": "老城是一座矩形城市，可以表示为由 $*m* × *n*$ 个方块组成的网格。城市中有许多建筑物、笔直的双向街道和交叉口。每个交叉口和每栋建筑物恰好占据一个方块。所有街道的宽度均为一个方块，并且都是竖直或水平的。每条街道的两端各有一个交叉口。仅当两个方块拥有公共边时，才称这两个方块相邻。不同街道的方块之间不相邻，任意两个交叉口之间也不相邻。\n\n每年都会举办一次节日，作为节日活动的一部分，老派克汽车会沿着城市中的一条特殊路径行驶。这条路径从某条街道中的一个方块出发，经过若干个交叉口，最终到达某条街道中的一个方块。对于每个街道方块，我们知道老派克汽车从该方块行驶到相邻方块所需的时间。此外，老派克汽车从每个交叉口行驶到与其相邻的街道方块均需一分钟。当然，老派克汽车不能驶入建筑物方块。\n\n我们知道老派克汽车的初始位置，以及它为了到达目的地而经过的交叉口序列。在经过所有交叉口并到达目的地后，它将永远停留在那里。你的任务是确定老派克汽车开始移动后 $*k*$ 分钟所在的位置。注意，老派克汽车始终沿着经过给定交叉口序列并到达目的地的最短路径行驶。\n\n注意，老派克汽车可能会多次经过某些方块。\n\n## 输入\n\n输入的第一行包含三个整数 $*m*$、$*n*$ 和 $*k*$ $(3 ≤ *m*, *n* ≤ 100, 1 ≤ *k* ≤ 100000)$。接下来的 $*m*$ 行表示城市地图。每行包含 $*n*$ 个字符，每个字符代表一个方块：\n\n- 字符 \"`#`\" 表示建筑物。\n- 数字 \"`1`\"、\"`2`\"、$...$、\"`9`\" 表示街道方块，其中数字表示老派克汽车通过该方块所需的分钟数。\n- 字符 \"`a`\"、\"`b`\"、$...$、\"`z`\" 表示交叉口，该字符为交叉口的名称。所有交叉口的名称均不重复。\n\n所有方块的坐标定义如下：第 $*i*$ 行中的第 $*j*$ 个方块的坐标为 $(*i*, *j*)$ $(1 ≤ *i* ≤ *m*, 1 ≤ *j* ≤ *n*)$。\n\n第 $(*m* + 2)$ 行包含两个整数 $*r*_{*s*}$ 和 $*c*_{*s*}$ $(1 ≤ *r*_{*s*} ≤ *m*, 1 ≤ *c*_{*s*} ≤ *n*)$、字符串 $*s*$，以及另外两个整数 $*r*_{*e*}$ 和 $*c*_{*e*}$ $(1 ≤ *r*_{*e*} ≤ *m*, 1 ≤ *c*_{*e*} ≤ *n*)$。路径从方块 $(*r*_{*s*}, *c*_{*s*})$ 开始，按照 $*s*$ 指定的顺序经过交叉口，并最终到达方块 $(*r*_{*e*}, *c*_{*e*})$。$*s*$ 的长度在 $1$ 到 $1000$ 之间。\n\n保证字符串 $*s*$ 表示一条从起点到终点的正确路径，并且 $*s*$ 中不存在两个连续相同的字母。此外，起点 $(*r*_{*s*}, *c*_{*s*})$ 和终点 $(*r*_{*e*}, *c*_{*e*})$ 均为街道方块。\n\n## 输出\n\n在一行中输出两个整数 $*r*_{*f*}$ 和 $*c*_{*f*}$ ——老派克汽车在恰好行驶 $*k*$ 分钟后所在的位置为 $(*r*_{*f*}, *c*_{*f*})$。",
   "samples": [
     {
       "input": "3 10 12\n##########\n#z1a1111b#\n##########\n2 3 ab 2 8\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:08:35.924Z"
+  "fetchedAt": "2026-11-02T20:08:35.924Z",
+  "translatedAt": "2026-11-04T07:31:30.670+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

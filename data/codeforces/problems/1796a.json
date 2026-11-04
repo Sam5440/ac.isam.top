@@ -4,7 +4,7 @@
   "contestId": 1796,
   "index": "A",
   "title": "Typical Interview Problem",
-  "titleZh": null,
+  "titleZh": "典型面试题",
   "url": "https://codeforces.com/contest/1796/problem/A",
   "difficulty": 800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "The FB-string is formed as follows. Initially, it is empty. We go through all positive integers, starting from $1$, in ascending order, and do the following for each integer:\n\n- if the current integer is divisible by $3$, append `F` to the end of the FB-string;\n- if the current integer is divisible by $5$, append `B` to the end of the FB-string.\n\nNote that if an integer is divisible by both $3$ and $5$, we append `F`, and then `B`, not in the opposite order.\n\nThe first $10$ characters of the FB-string are `FBFFBFFBFB`: the first `F` comes from the integer $3$, the next character (`B`) comes from $5$, the next `F` comes from the integer $6$, and so on. It's easy to see that this string is infinitely long. Let $f_i$ be the $i$-th character of FB-string; so, $f_1$ is `F`, $f_2$ is `B`, $f_3$ is `F`, $f_4$ is `F`, and so on.\n\nYou are given a string $s$, consisting of characters `F` and/or `B`. You have to determine whether it is a substring (contiguous subsequence) of the FB-string. In other words, determine if it is possible to choose two integers $l$ and $r$ ($1 \\le l \\le r$) so that the string $f_l f_{l+1} f_{l+2} \\dots f_r$ is exactly $s$.\n\nFor example:\n\n- `FFB` is a substring of the FB-string: if we pick $l = 3$ and $r = 5$, the string $f_3 f_4 f_5$ is exactly `FFB`;\n- `BFFBFFBF` is a substring of the FB-string: if we pick $l = 2$ and $r = 9$, the string $f_2 f_3 f_4 \\dots f_9$ is exactly `BFFBFFBF`;\n- `BBB` is not a substring of the FB-string.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 2046$) — the number of test cases.\n\nEach test case consists of two lines. The first line contains one integer $k$ ($1 \\le k \\le 10$) — the number of characters in $s$. The second line contains $s$, which is a string of exactly $k$ characters. Each character of $s$ is either `F` or `B`.\n\n## Output\n\nFor each test case, print `YES` if $s$ is a substring of the FB-string, or `NO` otherwise.\n\nYou may print each letter in any case (`YES`, `yes`, `Yes` will all be recognized as positive answer, `NO`, `no` and `nO` will all be recognized as negative answer).",
-  "statementZhMd": null,
+  "statementZhMd": "FB 字符串的构造方式如下。初始时，它为空字符串。我们从 $1$ 开始，按升序遍历所有正整数，并对每个整数执行以下操作：\n\n- 如果当前整数能被 $3$ 整除，则在 FB 字符串末尾追加 `F`；\n- 如果当前整数能被 $5$ 整除，则在 FB 字符串末尾追加 `B`。\n\n注意，如果一个整数同时能被 $3$ 和 $5$ 整除，我们会先追加 `F`，再追加 `B`，而不是相反的顺序。\n\nFB 字符串的前 $10$ 个字符是 `FBFFBFFBFB`：第一个 `F` 来自整数 $3$，下一个字符（`B`）来自 $5$，下一个 `F` 来自整数 $6$，依此类推。显然，这个字符串是无限长的。令 $f_i$ 表示 FB 字符串中的第 $i$ 个字符；因此，$f_1$ 是 `F`，$f_2$ 是 `B`，$f_3$ 是 `F`，$f_4$ 是 `F`，依此类推。\n\n给定一个由字符 `F` 和/或 `B` 组成的字符串 $s$。你需要判断它是否是 FB 字符串的子串（连续子序列）。换句话说，需要判断是否可以选择两个整数 $l$ 和 $r$（$1 \\le l \\le r$），使得字符串 $f_l f_{l+1} f_{l+2} \\dots f_r$ 恰好等于 $s$。\n\n例如：\n\n- `FFB` 是 FB 字符串的子串：当我们选择 $l = 3$、$r = 5$ 时，字符串 $f_3 f_4 f_5$ 恰好是 `FFB`；\n- `BFFBFFBF` 是 FB 字符串的子串：当我们选择 $l = 2$、$r = 9$ 时，字符串 $f_2 f_3 f_4 \\dots f_9$ 恰好是 `BFFBFFBF`；\n- `BBB` 不是 FB 字符串的子串。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 2046$）——测试用例的数量。\n\n每个测试用例包含两行。第一行包含一个整数 $k$（$1 \\le k \\le 10$）——$s$ 中字符的数量。第二行包含字符串 $s$，它恰好由 $k$ 个字符组成。$s$ 中的每个字符都为 `F` 或 `B`。\n\n## 输出格式\n\n对于每个测试用例，如果 $s$ 是 FB 字符串的子串，则输出 `YES`；否则输出 `NO`。\n\n你可以使用任意大小写输出每个字母（`YES`、`yes`、`Yes` 都会被识别为肯定答案，`NO`、`no` 和 `nO` 都会被识别为否定答案）。",
   "samples": [
     {
       "input": "3\n3\nFFB\n8\nBFFBFFBF\n3\nBBB\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:37:50.475Z"
+  "fetchedAt": "2026-11-02T17:37:50.475Z",
+  "translatedAt": "2026-11-04T02:56:55.248+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

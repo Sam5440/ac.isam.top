@@ -4,7 +4,7 @@
   "contestId": 1869,
   "index": "B",
   "title": "2D Traveling",
-  "titleZh": null,
+  "titleZh": "二维旅行",
   "url": "https://codeforces.com/contest/1869/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Piggy lives on an infinite plane with the Cartesian coordinate system on it.\n\nThere are $n$ cities on the plane, numbered from $1$ to $n$, and the first $k$ cities are defined as *major cities*. The coordinates of the $i$-th city are $(x_i,y_i)$.\n\nPiggy, as a well-experienced traveller, wants to have a relaxing trip after Zhongkao examination. Currently, he is in city $a$, and he wants to travel to city $b$ by air. You can fly between any two cities, and you can visit several cities in any order while travelling, but the final destination must be city $b$.\n\nBecause of active trade between major cities, it's possible to travel by plane between them for free. Formally, the price of an air ticket $f(i,j)$ between two cities $i$ and $j$ is defined as follows:\n\n$$ f(i,j)= \\begin{cases} 0, & \\text{if cities }i \\text{ and }j \\text{ are both major cities} \\\\ |x_i-x_j|+|y_i-y_j|, & \\text{otherwise} \\end{cases} $$\n\nPiggy doesn't want to save time, but he wants to save money. So you need to tell him the **minimum** value of the total cost of all air tickets if he can take any number of flights.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains four integers $n$, $k$, $a$ and $b$ ($2\\le n\\le 2\\cdot 10^5$, $0\\le k\\le n$, $1\\le a,b\\le n$, $a\\ne b$) — the number of cities, the number of major cities and the numbers of the starting and the ending cities.\n\nThen $n$ lines follow, the $i$-th line contains two integers $x_i$ and $y_i$ ($-10^9\\le x_i,y_i\\le 10^9$) — the coordinates of the $i$-th city. The first $k$ lines describe major cities. It is guaranteed that all coordinates are pairwise distinct.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the minimum value of the total price of all air tickets.\n\n## Note\n\nIn the first test case:\n\n![image](https://espresso.codeforces.com/fa3d31be9cc4a298dcd292e118f7e219528bde35.png) *The major cities are marked red.*\n\nThe optimal way to choose the flights is: $3\\rightarrow 1 \\rightarrow 2 \\rightarrow 5$, which will cost $3+0+1=4$. Note that the flight $1\\rightarrow 2$ costs $0$, because both city $1$ and $2$ are major cities.\n\nIn the second test case, since there are only $2$ cities, the only way is to take a flight from city $1$ to $2$.\n\nIn the third test case, since city $2$ and $4$ are both major cities, Piggy can directly take a flight from city $2$ to $4$, which costs $0$.\n\nIn the fourth test case, Piggy can choose to take the following flights: $3\\rightarrow 2\\rightarrow 1$, and the cost is $11+11=22$.",
-  "statementZhMd": null,
+  "statementZhMd": "Piggy 生活在一个带有笛卡尔坐标系的无限平面上。\n\n平面上有 $n$ 座城市，编号从 $1$ 到 $n$，其中前 $k$ 座城市被定义为*主要城市*。第 $i$ 座城市的坐标为 $(x_i,y_i)$。\n\n作为一名经验丰富的旅行者，Piggy 想在中考结束后进行一次轻松的旅行。目前，他位于城市 $a$，并想乘飞机前往城市 $b$。任意两座城市之间都可以乘坐飞机，在旅行过程中可以按任意顺序访问若干座城市，但最终目的地必须是城市 $b$。\n\n由于主要城市之间贸易活跃，城市之间可以免费乘坐飞机。形式化地，城市 $i$ 和城市 $j$ 之间机票的价格 $f(i,j)$ 定义如下：\n\n$$ f(i,j)= \\begin{cases} 0, & \\text{if cities }i \\text{ and }j\\text{ are both major cities} \\\\ |x_i-x_j|+|y_i-y_j|, & \\text{otherwise} \\end{cases} $$\n\nPiggy 不在意节省时间，但希望节省费用。因此，请你告诉他在可以乘坐任意次航班的情况下，所有机票总费用的**最小值**。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含四个整数 $n$、$k$、$a$ 和 $b$（$2\\le n\\le 2\\cdot 10^5$，$0\\le k\\le n$，$1\\le a,b\\le n$，$a\\ne b$）——城市的数量、主要城市的数量、起点城市和终点城市的编号。\n\n接下来 $n$ 行，第 $i$ 行包含两个整数 $x_i$ 和 $y_i$（$-10^9\\le x_i,y_i\\le 10^9$）——第 $i$ 座城市的坐标。前 $k$ 行描述主要城市。\n\n保证所有城市的坐标两两不同。\n\n保证所有测试用例中 $n$ 的总和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——所有机票总价格的最小值。\n\n## 说明\n\n在第一个测试用例中：\n\n![image](https://espresso.codeforces.com/fa3d31be9cc4a298dcd292e118f7e219528bde35.png) *主要城市标记为红色。*\n\n选择航班的最优方案是：$3\\rightarrow 1 \\rightarrow 2 \\rightarrow 5$，费用为 $3+0+1=4$。注意，航班 $1\\rightarrow 2$ 的费用为 $0$，因为城市 $1$ 和城市 $2$ 都是主要城市。\n\n在第二个测试用例中，由于只有 $2$ 座城市，唯一的方案是从城市 $1$ 乘坐航班前往城市 $2$。\n\n在第三个测试用例中，由于城市 $2$ 和 $4$ 都是主要城市，Piggy 可以直接从城市 $2$ 乘坐航班前往城市 $4$，费用为 $0$。\n\n在第四个测试用例中，Piggy 可以选择乘坐以下航班：$3\\rightarrow 2\\rightarrow 1$，费用为 $11+11=22$。",
   "samples": [
     {
       "input": "5\n6 2 3 5\n0 0\n1 -2\n-2 1\n-1 3\n2 -2\n-3 -3\n2 0 1 2\n-1000000000 -1000000000\n1000000000 1000000000\n7 5 4 2\n154 147\n-154 -147\n123 456\n20 23\n43 20\n998 244\n353 100\n3 1 3 1\n0 10\n1 20\n2 30\n4 3 2 4\n0 0\n-100 100\n-1 -1\n-1 0\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:16:24.831Z"
+  "fetchedAt": "2026-10-30T22:16:24.831Z",
+  "translatedAt": "2026-11-04T02:38:37.345+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

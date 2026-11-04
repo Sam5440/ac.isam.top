@@ -4,7 +4,7 @@
   "contestId": 305,
   "index": "E",
   "title": "Playing with String",
-  "titleZh": null,
+  "titleZh": "字符串游戏",
   "url": "https://codeforces.com/contest/305/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Two people play the following string game. Initially the players have got some string $*s*$. The players move in turns, the player who cannot make a move loses.\n\nBefore the game began, the string is written on a piece of paper, one letter per cell.\n\n![image](https://espresso.codeforces.com/a1374fc35b0563cccca6fc1c537b6af6fd9e855f.png) An example of the initial situation at $*s*$ = \"`abacaba`\"\n\nA player's move is the sequence of actions:\n\n1. The player chooses one of the available pieces of paper with some string written on it. Let's denote it is $*t*$. Note that initially, only one piece of paper is available.\n2. The player chooses in the string $*t* = *t*_{1}*t*_{2}... *t*_{|*t*|}$ character in position $*i*$ $(1 ≤ *i* ≤ |*t*|)$ such that for some positive integer $*l*$ $(0 < *i* - *l*; *i* + *l* ≤ |*t*|)$ the following equations hold: $*t*_{*i* - 1} = *t*_{*i* + 1}$, $*t*_{*i* - 2} = *t*_{*i* + 2}$, ..., $*t*_{*i* - *l*} = *t*_{*i* + *l*}$.\n3. Player cuts the cell with the chosen character. As a result of the operation, he gets three new pieces of paper, the first one will contain string $*t*_{1}*t*_{2}... *t*_{*i* - 1}$, the second one will contain a string consisting of a single character $*t*_{*i*}$, the third one contains string $*t*_{*i* + 1}*t*_{*i* + 2}... *t*_{|*t*|}$.\n\n![image](https://espresso.codeforces.com/862186c4276633c28044eb842c9743833e442a2c.png) An example of making action $(*i* = 4)$ with string $*s*$ = «`abacaba`»\n\nYour task is to determine the winner provided that both players play optimally well. If the first player wins, find the position of character that is optimal to cut in his first move. If there are multiple positions, print the minimal possible one.\n\n## Input\n\nThe first line contains string $*s*$ ($1 ≤ |*s*| ≤ 5000$). It is guaranteed that string $*s*$ only contains lowercase English letters.\n\n## Output\n\nIf the second player wins, print in the single line \"`Second`\" (without the quotes). Otherwise, print in the first line \"`First`\" (without the quotes), and in the second line print the minimal possible winning move — integer $*i*$ $(1 ≤ *i* ≤ |*s*|)$.\n\n## Note\n\nIn the first sample the first player has multiple winning moves. But the minimum one is to cut the character in position $2$.\n\nIn the second sample the first player has no available moves.",
-  "statementZhMd": null,
+  "statementZhMd": "两个人进行如下的字符串游戏。开始时，玩家拥有一个字符串 $*s*$。两名玩家轮流行动，无法行动的玩家输掉游戏。\n\n在游戏开始前，字符串被写在一张纸上，每个单元格中写一个字符。\n\n![image](https://espresso.codeforces.com/a1374fc35b0563cccca6fc1c537b6af6fd9e855f.png) 当 $*s*$ = \"`abacaba`\" 时的初始状态示例\n\n玩家的一次操作包含以下步骤：\n\n1. 玩家从所有写有字符串且当前可用的纸片中选择一张。设其上的字符串为 $*t*$。注意，在游戏开始时，只有一张纸片可用。\n2. 玩家在字符串 $*t* = *t*_{1}*t*_{2}... *t*_{|*t*|}$ 中选择位置为 $*i*$ 的字符 $(1 ≤ *i* ≤ |*t*|)$，使得存在某个正整数 $*l*$ $(0 < *i* - *l*; *i* + *l* ≤ |*t*|)$，满足以下等式：$*t*_{*i* - 1} = *t*_{*i* + 1}$，$*t*_{*i* - 2} = *t*_{*i* + 2}$，...，$*t*_{*i* - *l*} = *t*_{*i* + *l}$。\n3. 玩家将选中的字符所在单元格剪下。操作完成后，他会得到三张新的纸片：第一张上写有字符串 $*t*_{1}*t*_{2}... *t*_{*i* - 1}$，第二张上写有仅由字符 $*t*_{*i*}$ 组成的字符串，第三张上写有字符串 $*t*_{*i* + 1}*t*_{*i* + 2}... *t*_{|*t*|}$。\n\n![image](https://espresso.codeforces.com/862186c4276633c28044eb842c9743833e442a2c.png) 对字符串 $*s*$ = «`abacaba`» 执行操作 $(*i* = 4)$ 的示例\n\n你的任务是确定在双方都采取最优策略的情况下谁将获胜。如果先手获胜，还需要找出他第一步操作中最优的字符位置。如果有多个位置，输出其中最小的一个。\n\n## 输入格式\n\n第一行包含一个字符串 $*s*$（$1 ≤ |*s*| ≤ 5000$）。保证字符串 $*s*$ 只包含小写英文字母。\n\n## 输出格式\n\n如果后手获胜，在单独一行输出 `Second`（不含引号）。否则，在第一行输出 `First`（不含引号），并在第二行输出最小的获胜操作位置——整数 $*i*$（$1 ≤ *i* ≤ |*s*|$）。\n\n## 说明\n\n在第一个样例中，先手有多个获胜操作。但其中最小的是剪下位置 $2$ 的字符。\n\n在第二个样例中，先手没有可执行的操作。",
   "samples": [
     {
       "input": "abacaba\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:05:18.995Z"
+  "fetchedAt": "2026-10-31T02:05:18.995Z",
+  "translatedAt": "2026-11-04T07:28:24.192+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

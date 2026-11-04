@@ -4,7 +4,7 @@
   "contestId": 1967,
   "index": "C",
   "title": "Fenwick Tree",
-  "titleZh": null,
+  "titleZh": "树状数组",
   "url": "https://codeforces.com/contest/1967/problem/C",
   "difficulty": 2300,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Let $\\operatorname{lowbit}(x)$ denote the value of the lowest binary bit of $x$, e.g. $\\operatorname{lowbit}(12)=4$, $\\operatorname{lowbit}(8)=8$.\n\nFor an array $a$ of length $n$, if an array $s$ of length $n$ satisfies $s_k=\\left(\\sum\\limits_{i=k-\\operatorname{lowbit}(k)+1}^{k}a_i\\right)\\bmod 998\\,244\\,353$ for all $k$, then $s$ is called the *Fenwick Tree* of $a$. Let's denote it as $s=f(a)$.\n\nFor a positive integer $k$ and an array $a$, $f^k(a)$ is defined as follows:\n\n$$ f^k(a)= \\begin{cases} f(a)&\\textrm{if }k=1\\\\ f(f^{k-1}(a))&\\textrm{otherwise.}\\\\ \\end{cases} $$\n\nYou are given an array $b$ of length $n$ and a positive integer $k$. Find an array $a$ that satisfies $0\\le a_i \\lt 998\\,244\\,353$ and $f^k(a)=b$. It can be proved that an answer always exists. If there are multiple possible answers, you may print any of them.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1\\le t\\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two positive integers $n$ ($1 \\leq n \\leq 2\\cdot 10^5$) and $k$ ($1\\le k\\le 10^9$), representing the length of the array and the number of times the function $f$ is performed.\n\nThe second line of each test case contains an array $b_1, b_2, \\ldots, b_n$ ($0\\le b_i \\lt 998\\,244\\,353$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single line, containing a valid array $a$ of length $n$.\n\n## Note\n\nIn the first test case, it can be seen that $f^1([1,1,1,1,1,1,1,1])=[1,2,1,4,1,2,1,8]$.\n\nIn the second test case, it can be seen that $f^2([1,2,3,4,5,6])=f^1([1,3,3,10,5,11])=[1,4,3,17,5,16]$.",
-  "statementZhMd": null,
+  "statementZhMd": "设 $\\operatorname{lowbit}(x)$ 表示 $x$ 的最低位二进制位的值，例如，$\\operatorname{lowbit}(12)=4$，$\\operatorname{lowbit}(8)=8$。\n\n对于一个长度为 $n$ 的数组 $a$，如果长度为 $n$ 的数组 $s$ 满足对于所有 $k$ 都有 $s_k=\\left(\\sum\\limits_{i=k-\\operatorname{lowbit}(k)+1}^{k}a_i\\right)\\bmod 998\\,244\\,353$，则称 $s$ 是 $a$ 的 *Fenwick Tree*。记作 $s=f(a)$。\n\n对于正整数 $k$ 和数组 $a$，$f^k(a)$ 定义如下：\n\n$$ f^k(a)= \\begin{cases} f(a)&\\textrm{if }k=1\\\\ f(f^{k-1}(a))&\\textrm{otherwise.}\\\\ \\end{cases} $$\n\n给定一个长度为 $n$ 的数组 $b$ 和一个正整数 $k$。请找出一个数组 $a$，满足 $0\\le a_i \\lt 998\\,244\\,353$ 且 $f^k(a)=b$。可以证明答案始终存在。如果有多个可能的答案，输出其中任意一个即可。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1\\le t\\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个正整数 $n$（$1 \\leq n \\leq 2\\cdot 10^5$）和 $k$（$1\\le k\\le 10^9$），分别表示数组的长度以及函数 $f$ 执行的次数。\n\n每个测试用例的第二行包含一个数组 $b_1, b_2, \\ldots, b_n$（$0\\le b_i \\lt 998\\,244\\,353$）。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一行，包含一个长度为 $n$ 的合法数组 $a$。\n\n## 说明\n\n在第一个测试用例中，可以看出 $f^1([1,1,1,1,1,1,1,1])=[1,2,1,4,1,2,1,8]$。\n\n在第二个测试用例中，可以看出 $f^2([1,2,3,4,5,6])=f^1([1,3,3,10,5,11])=[1,4,3,17,5,16]$。",
   "samples": [
     {
       "input": "2\n8 1\n1 2 1 4 1 2 1 8\n6 2\n1 4 3 17 5 16\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:57:50.780Z"
+  "fetchedAt": "2026-10-30T21:57:50.780Z",
+  "translatedAt": "2026-11-04T02:19:38.682+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

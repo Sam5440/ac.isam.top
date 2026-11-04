@@ -4,7 +4,7 @@
   "contestId": 1461,
   "index": "C",
   "title": "Random Events",
-  "titleZh": null,
+  "titleZh": "随机事件",
   "url": "https://codeforces.com/contest/1461/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Ron is a happy owner of a permutation $a$ of length $n$.\n\nA permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n![image](https://espresso.codeforces.com/51b141a8450deeca872c0738be37089dd64d5871.png)\n\nRon's permutation is subjected to $m$ experiments of the following type: ($r_i$, $p_i$). This means that elements in range $[1, r_i]$ (in other words, the prefix of length $r_i$) have to be sorted in ascending order with the probability of $p_i$. All experiments are performed in the same order in which they are specified in the input data.\n\nAs an example, let's take a look at a permutation $[4, 2, 1, 5, 3]$ and an experiment ($3, 0.6$). After such an experiment with the probability of $60\\%$ the permutation will assume the form $[1, 2, 4, 5, 3]$ and with a $40\\%$ probability it will remain unchanged.\n\nYou have to determine the probability of the permutation becoming completely sorted in ascending order after $m$ experiments.\n\n## Input\n\nEach test contains one or more test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 100$).\n\nThe first line of each test case contains two integers $n$ and $m$ $(1 \\le n, m \\le 10^5)$ — the length of the permutation and the number of experiments, respectively.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ $(1 \\le a_i \\le n)$ — contents of the permutation.\n\nThe following $m$ lines of each test case each contain an integer $r_i$ and a real number $p_i$ $(1 \\le r_i \\le n, 0 \\le p_i \\le 1)$ — the length of the prefix and the probability of it being sorted. All probabilities are given with at most $6$ decimal places.\n\nIt is guaranteed that the sum of $n$ and the sum of $m$ does not exceed $10^5$ ($\\sum n, \\sum m \\le 10^5$).\n\n## Output\n\nFor each test case, print a single number — the probability that after all experiments the permutation becomes sorted in ascending order. Your answer will be considered correct if its absolute or relative error does not exceed $10^{-6}$.\n\nFormally, let your answer be $a$, and the jury's answer be $b$. Your answer is accepted if and only if $\\frac{|a - b|}{\\max{(1, |b|)}} \\le 10^{-6}$.\n\n## Note\n\nExplanation of the first test case: It can be demonstrated that whether the final permutation is sorted or not depends solely on sorting being performed in the $(4, 0.6)$ experiment.",
-  "statementZhMd": null,
+  "statementZhMd": "Ron 幸运地拥有一个长度为 $n$ 的排列 $a$。\n\n长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中有 $4$）。\n\n![image](https://espresso.codeforces.com/51b141a8450deeca872c0738be37089dd64d5871.png)\n\nRon 的排列将依次进行 $m$ 次如下类型的实验：($r_i$, $p_i$)。这表示，以 $p_i$ 的概率，将区间 $[1, r_i]$ 中的元素（换句话说，即长度为 $r_i$ 的前缀）按升序排列。所有实验均按照输入数据中给出的顺序进行。\n\n例如，考虑排列 $[4, 2, 1, 5, 3]$ 和一次实验 ($3, 0.6$)。进行这次实验后，有 $60\\%$ 的概率排列会变为 $[1, 2, 4, 5, 3]$，有 $40\\%$ 的概率排列保持不变。\n\n请确定在进行 $m$ 次实验后，排列完全按升序排列的概率。\n\n## 输入格式\n\n每个测试包含一个或多个测试用例。第一行包含测试用例的数量 $t$ ($1 \\le t \\le 100$)。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$ ($1 \\le n, m \\le 10^5$) —— 排列的长度和实验次数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le n$) —— 排列的内容。\n\n接下来的 $m$ 行中，每行包含一个整数 $r_i$ 和一个实数 $p_i$ ($1 \\le r_i \\le n, 0 \\le p_i \\le 1$) —— 前缀的长度以及该前缀被排序的概率。所有概率最多包含 $6$ 位小数。\n\n保证所有测试用例的 $n$ 之和与 $m$ 之和均不超过 $10^5$（$\\sum n, \\sum m \\le 10^5$）。\n\n## 输出格式\n\n对于每个测试用例，输出一个数 —— 在所有实验完成后排列按升序排列的概率。如果答案的绝对误差或相对误差不超过 $10^{-6}$，则答案将被视为正确。\n\n形式化地，设你的答案为 $a$，评测答案为 $b$。当且仅当满足以下条件时，你的答案会被接受：$\\frac{|a - b|}{\\max{(1, |b|)}} \\le 10^{-6}$。\n\n## 说明\n\n第一个测试用例的解释：可以证明，最终排列是否有序，仅取决于是否在 ($4, 0.6$) 这次实验中进行了排序。",
   "samples": [
     {
       "input": "4\n4 3\n4 3 2 1\n1 0.3\n3 1\n4 0.6\n5 3\n4 2 1 3 5\n3 0.8\n4 0.6\n5 0.3\n6 5\n1 3 2 4 5 6\n4 0.9\n5 0.3\n2 0.4\n6 0.7\n3 0.5\n4 2\n1 2 3 4\n2 0.5\n4 0.1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:38:58.547Z"
+  "fetchedAt": "2026-10-30T23:38:58.547Z",
+  "translatedAt": "2026-11-04T04:09:30.185+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

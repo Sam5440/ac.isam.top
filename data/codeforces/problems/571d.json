@@ -4,7 +4,7 @@
   "contestId": 571,
   "index": "D",
   "title": "Campus",
-  "titleZh": null,
+  "titleZh": "校园",
   "url": "https://codeforces.com/contest/571/problem/D",
   "difficulty": 3100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Oscolcovo city has a campus consisting of $*n*$ student dormitories, $*n*$ universities and $*n*$ military offices. Initially, the $*i*$-th dormitory belongs to the $*i*$-th university and is assigned to the $*i*$-th military office.\n\nLife goes on and the campus is continuously going through some changes. The changes can be of four types:\n\n1. University $*a*_{*j*}$ merges with university $*b*_{*j*}$. After that all the dormitories that belonged to university $*b*_{*j*}$ are assigned to to university $*a*_{*j*}$, and university $*b*_{*j*}$ disappears.\n2. Military office $*c*_{*j*}$ merges with military office $*d*_{*j*}$. After that all the dormitories that were assigned to military office $*d*_{*j*}$, are assigned to military office $*c*_{*j*}$, and military office $*d*_{*j*}$ disappears.\n3. Students of university $*x*_{*j*}$ move in dormitories. Lets $*k*_{*x*_{*j*}}$ is the number of dormitories that belong to this university at the time when the students move in. Then the number of students in each dormitory of university $*x*_{*j*}$ increases by $*k*_{*x*_{*j*}}$ (note that the more dormitories belong to the university, the more students move in each dormitory of the university).\n4. Military office number $*y*_{*j*}$ conducts raids on all the dormitories assigned to it and takes all students from there.\n\nThus, at each moment of time each dormitory is assigned to exactly one university and one military office. Initially, all the dormitory are empty.\n\nYour task is to process the changes that take place in the campus and answer the queries, how many people currently live in dormitory $*q*_{*j*}$.\n\n## Input\n\nThe first line contains two integers, $*n*$ and $*m*$ $(1 ≤ *n*, *m* ≤ 5·10^{5})$ — the number of dormitories and the number of queries, respectively.\n\nNext $*m*$ lines contain the queries, each of them is given in one of the following formats:\n\n- «`U` $*a*_{*j*}$ $*b*_{*j*}$» — merging universities;\n- «`M` $*c*_{*j*}$ $*d*_{*j*}$» — merging military offices;\n- «`A` $*x*_{*j*}$» — students of university $*x*_{*j*}$ moving in the dormitories;\n- «`Z` $*y*_{*j*}$» — a raid in military office $*y*_{*j*}$;\n- «`Q` $*q*_{*j*}$» — a query asking the number of people in dormitory $*q*_{*j*}$.\n\nAll the numbers in the queries are positive integers and do not exceed\n\n*n*\n\n. It is guaranteed that at the moment of the query the universities and military offices, that are present in the query, exist.\n\n## Output\n\nIn the $*i*$-th line print the answer to the $*i*$-th query asking the number of people in the dormitory.\n\n## Note\n\nConsider the first sample test:\n\n- In the first query university 1 owns only dormitory 1, so after the query dormitory 1 will have 1 student.\n- After the third query university 1 owns dormitories 1 and 2.\n- The fourth query increases by 2 the number of students living in dormitories 1 and 2 that belong to university number 1. After that 3 students live in the first dormitory and 2 students live in the second dormitory.\n- At the fifth query the number of students living in dormitory 1, assigned to the military office 1, becomes zero.",
-  "statementZhMd": null,
+  "statementZhMd": "奥斯科尔科沃市有一个校园，由 $*n*$ 个学生宿舍、$*n*$ 所大学和 $*n*$ 个军事办公室组成。最初，第 $*i*$ 个宿舍属于第 $*i*$ 所大学，并分配给第 $*i*$ 个军事办公室。\n\n随着时间推移，校园不断发生变化。变化有以下四种类型：\n\n1. 大学 $*a*_{*j*}$ 与大学 $*b*_{*j*}$ 合并。合并后，所有原属于大学 $*b*_{*j*}$ 的宿舍都会被分配给大学 $*a*_{*j*}$，大学 $*b*_{*j*}$ 消失。\n2. 军事办公室 $*c*_{*j*}$ 与军事办公室 $*d*_{*j*}$ 合并。合并后，所有原分配给军事办公室 $*d*_{*j*}$ 的宿舍都会被分配给军事办公室 $*c*_{*j*}$，军事办公室 $*d*_{*j*}$ 消失。\n3. 大学 $*x*_{*j*}$ 的学生搬入宿舍。设学生搬入时属于该大学的宿舍数量为 $*k*_{*x*_{*j*}}$。那么，大学 $*x*_{*j*}$ 的每个宿舍中的学生人数都会增加 $*k*_{*x*_{*j*}}$（注意，属于该大学的宿舍越多，每个宿舍搬入的学生就越多）。\n4. 军事办公室 $*y*_{*j*}$ 对所有分配给它的宿舍进行突袭，并带走其中的所有学生。\n\n因此，在任意时刻，每个宿舍都恰好属于一所大学，并且恰好分配给一个军事办公室。初始时，所有宿舍都是空的。\n\n你的任务是处理校园中发生的变化，并回答查询：当前有多少人居住在宿舍 $*q*_{*j*}$ 中。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$ $(1 ≤ *n*, *m* ≤ 5·10^{5})$，分别表示宿舍数量和查询数量。\n\n接下来 $*m*$ 行中的每一行包含一个查询，格式为以下形式之一：\n\n- «`U` $*a*_{*j*}$ $*b*_{*j*}$» —— 合并大学；\n- «`M` $*c*_{*j*}$ $*d*_{*j*}$» —— 合并军事办公室；\n- «`A` $*x*_{*j*}$» —— 大学 $*x*_{*j*}$ 的学生搬入宿舍；\n- «`Z` $*y*_{*j*}$» —— 对军事办公室 $*y*_{*j*}$ 发动突袭；\n- «`Q` $*q*_{*j*}$» —— 查询宿舍中的人数。\n\n查询中的所有数字都是正整数，且不超过\n\n*n*\n\n。保证在查询执行时，查询中涉及的大学和军事办公室都存在。\n\n## 输出格式\n\n对于每一个询问宿舍人数的查询，在第 $*i*$ 行输出第 $*i*$ 个查询的答案。\n\n## 说明\n\n考虑第一个样例：\n\n- 在第一次查询时，大学 1 只拥有宿舍 1，因此查询后宿舍 1 中会有 1 名学生。\n- 第三次查询后，大学 1 拥有宿舍 1 和宿舍 2。\n- 第四次查询使属于大学 1 的宿舍 1 和宿舍 2 中的学生人数都增加 2。此后，第一宿舍中有 3 名学生，第二宿舍中有 2 名学生。\n- 在第五次查询时，分配给军事办公室 1 的宿舍 1 中的学生人数变为 0。",
   "samples": [
     {
       "input": "2 7\nA 1\nQ 1\nU 1 2\nA 1\nZ 1\nQ 1\nQ 2\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:23:37.989Z"
+  "fetchedAt": "2026-10-31T01:23:37.989Z",
+  "translatedAt": "2026-11-04T06:48:49.147+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

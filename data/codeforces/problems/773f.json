@@ -4,7 +4,7 @@
   "contestId": 773,
   "index": "F",
   "title": "Test Data Generation",
-  "titleZh": null,
+  "titleZh": "测试数据生成",
   "url": "https://codeforces.com/contest/773/problem/F",
   "difficulty": 3400,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "Test data generation is not an easy task! Often, generating big random test cases is not enough to ensure thorough testing of solutions for correctness.\n\nFor example, consider a problem from an old Codeforces round. Its input format looks roughly as follows:\n\n*The first line contains a single integer $*n*$ ($1 ≤ *n* ≤ *max*_{*n*}$) — the size of the set. The second line contains $*n*$ distinct integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ *max*_{*a*}$) — the elements of the set **in increasing order**.*\n\nIf you don't pay attention to the problem solution, it looks fairly easy to generate a good test case for this problem. Let $*n* = *max*_{*n*}$, take random distinct $*a*_{*i*}$ from 1 to $*max*_{*a*}$, sort them... Soon you understand that it's not that easy.\n\nHere is the actual problem solution. Let $*g*$ be the greatest common divisor of $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$. Let $*x* = *a*_{*n*} / *g* - *n*$. Then the correct solution outputs \"`Alice`\" if $*x*$ is odd, and \"`Bob`\" if $*x*$ is even.\n\nConsider two wrong solutions to this problem which differ from the correct one only in the formula for calculating $*x*$.\n\nThe first wrong solution calculates $*x*$ as $*x* = *a*_{*n*} / *g*$ (without subtracting $*n*$).\n\nThe second wrong solution calculates $*x*$ as $*x* = *a*_{*n*} - *n*$ (without dividing by $*g*$).\n\nA test case is interesting if it makes **both** wrong solutions output an incorrect answer.\n\nGiven $*max*_{*n*}$, $*max*_{*a*}$ and $*q*$, find the number of interesting test cases satisfying the constraints, and output it modulo $*q*$.\n\n## Input\n\nThe only line contains three integers $*max*_{*n*}$, $*max*_{*a*}$ and $*q*$ ($1 ≤ *max*_{*n*} ≤ 30 000$; $*max*_{*n*} ≤ *max*_{*a*} ≤ 10^{9}$; $10^{4} ≤ *q* ≤ 10^{5} + 129$).\n\n## Output\n\nOutput a single integer — the number of test cases which satisfy the constraints and make both wrong solutions output an incorrect answer, modulo $*q*$.\n\n## Note\n\nIn the first example, interesting test cases look as follows:\n\n```\n1              1              1              3\n2              4              6              2 4 6\n```",
-  "statementZhMd": null,
+  "statementZhMd": "生成测试数据并不是一件容易的事！很多时候，仅仅生成较大的随机测试用例，并不足以确保对解法进行充分的正确性测试。\n\n例如，考虑一道旧 Codeforces 比赛中的题目。它的输入格式大致如下：\n\n*第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ *max*_{*n*}$）——集合的大小。第二行包含 $*n*$ 个互不相同的整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ *max*_{*a*}$）——集合中的元素，且**按递增顺序排列**。*\n\n如果不关注题目的解法，看起来很容易为这道题生成一个好的测试用例。令 $*n* = *max*_{*n*}$，从 1 到 $*max*_{*a*}$ 中随机选取互不相同的 $*a*_{*i*}$，再将它们排序……很快你就会明白，事情并没有那么简单。\n\n下面是这道题的实际解法。令 $*g*$ 为 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ 的最大公约数。令 $*x* = *a*_{*n*} / *g* - *n*$。如果 $*x*$ 为奇数，正确解法输出“`Alice`”；如果 $*x*$ 为偶数，则输出“`Bob`”。\n\n考虑两个错误解法，它们与正确解法的区别仅在于计算 $*x*$ 的公式不同。\n\n第一个错误解法将 $*x*$ 计算为 $*x* = *a*_{*n*} / *g*$（没有减去 $*n*$）。\n\n第二个错误解法将 $*x*$ 计算为 $*x* = *a*_{*n*} - *n*$（没有除以 $*g*$）。\n\n如果一个测试用例能使**两个**错误解法都输出错误答案，则称该测试用例是有趣的。\n\n给定 $*max*_{*n}$、$*max*_{*a*}$ 和 $*q*$，求满足约束条件的有趣测试用例数量，并将结果对 $*q*$ 取模后输出。\n\n## 输入格式\n\n唯一一行包含三个整数 $*max*_{*n}$、$*max*_{*a*}$ 和 $*q*$（$1 ≤ *max*_{*n*} ≤ 30 000$；$*max*_{*n*} ≤ *max*_{*a*} ≤ 10^{9}$；$10^{4} ≤ *q* ≤ 10^{5} + 129$）。\n\n## 输出格式\n\n输出一个整数——满足约束条件且能使两个错误解法都输出错误答案的测试用例数量，对 $*q*$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，有趣的测试用例如下：\n\n```\n1              1              1              3\n2              4              6              2 4 6\n```",
   "samples": [
     {
       "input": "3 6 100000\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:55:26.111Z"
+  "fetchedAt": "2026-10-31T00:55:26.111Z",
+  "translatedAt": "2026-11-04T06:09:44.371+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

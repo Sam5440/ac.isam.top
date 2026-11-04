@@ -4,14 +4,14 @@
   "contestId": 996,
   "index": "F",
   "title": "Game",
-  "titleZh": null,
+  "titleZh": "游戏",
   "url": "https://codeforces.com/contest/996/problem/F",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Allen and Bessie are playing a simple number game. They both know a function $f: \\{0, 1\\}^n \\to \\mathbb{R}$, i. e. the function takes $n$ binary arguments and returns a real value. At the start of the game, the variables $x_1, x_2, \\dots, x_n$ are all set to $-1$. Each round, with equal probability, one of Allen or Bessie gets to make a move. A move consists of picking an $i$ such that $x_i = -1$ and either setting $x_i \\to 0$ or $x_i \\to 1$.\n\nAfter $n$ rounds all variables are set, and the game value resolves to $f(x_1, x_2, \\dots, x_n)$. Allen wants to maximize the game value, and Bessie wants to minimize it.\n\nYour goal is to help Allen and Bessie find the expected game value! They will play $r+1$ times though, so between each game, exactly one value of $f$ changes. In other words, between rounds $i$ and $i+1$ for $1 \\le i \\le r$, $f(z_1, \\dots, z_n) \\to g_i$ for some $(z_1, \\dots, z_n) \\in \\{0, 1\\}^n$. You are to find the expected game value in the beginning and after each change.\n\n## Input\n\nThe first line contains two integers $n$ and $r$ ($1 \\le n \\le 18$, $0 \\le r \\le 2^{18}$).\n\nThe next line contains $2^n$ integers $c_0, c_1, \\dots, c_{2^n-1}$ ($0 \\le c_i \\le 10^9$), denoting the initial values of $f$. More specifically, $f(x_0, x_1, \\dots, x_{n-1}) = c_x$, if $x = \\overline{x_{n-1} \\ldots x_0}$ in binary.\n\nEach of the next $r$ lines contains two integers $z$ and $g$ ($0 \\le z \\le 2^n - 1$, $0 \\le g \\le 10^9$). If $z = \\overline{z_{n-1} \\dots z_0}$ in binary, then this means to set $f(z_0, \\dots, z_{n-1}) \\to g$.\n\n## Output\n\nPrint $r+1$ lines, the $i$-th of which denotes the value of the game $f$ during the $i$-th round. Your answer must have absolute or relative error within $10^{-6}$.\n\nFormally, let your answer be $a$, and the jury's answer be $b$. Your answer is considered correct if $\\frac{|a - b|}{\\max{(1, |b|)}} \\le 10^{-6}$.\n\n## Note\n\nConsider the second test case. If Allen goes first, he will set $x_1 \\to 1$, so the final value will be $3$. If Bessie goes first, then she will set $x_1 \\to 0$ so the final value will be $2$. Thus the answer is $2.5$.\n\nIn the third test case, the game value will always be $1$ regardless of Allen and Bessie's play.",
-  "statementZhMd": null,
+  "statementZhMd": "Allen 和 Bessie 正在进行一个简单的数字游戏。他们都知道一个函数 $f: \\{0, 1\\}^n \\to \\mathbb{R}$，也就是说，该函数接受 $n$ 个二进制参数并返回一个实数值。游戏开始时，变量 $x_1, x_2, \\dots, x_n$ 均被设为 $-1$。每一轮中，Allen 或 Bessie 以相同的概率获得行动机会。一次行动包括选择一个满足 $x_i = -1$ 的 $i$，并将 $x_i$ 设为 $0$ 或 $1$。\n\n经过 $n$ 轮后，所有变量都被赋值，游戏值确定为 $f(x_1, x_2, \\dots, x_n)$。Allen 希望最大化游戏值，而 Bessie 希望最小化游戏值。\n\n你的任务是帮助 Allen 和 Bessie 求出期望游戏值！不过，他们将进行 $r+1$ 次游戏，因此在每两次游戏之间，恰好有一个 $f$ 的值发生变化。换句话说，在第 $i$ 次和第 $i+1$ 次游戏之间（对于 $1 \\le i \\le r$），对于某个 $(z_1, \\dots, z_n) \\in \\{0, 1\\}^n$，有 $f(z_1, \\dots, z_n) \\to g_i$。你需要求出初始时以及每次变化后的期望游戏值。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $r$（$1 \\le n \\le 18$，$0 \\le r \\le 2^{18}$）。\n\n第二行包含 $2^n$ 个整数 $c_0, c_1, \\dots, c_{2^n-1}$（$0 \\le c_i \\le 10^9$），表示 $f$ 的初始值。更具体地说，如果 $x = \\overline{x_{n-1} \\ldots x_0}$ 的二进制表示，则 $f(x_0, x_1, \\dots, x_{n-1}) = c_x$。\n\n接下来的 $r$ 行中，每行包含两个整数 $z$ 和 $g$（$0 \\le z \\le 2^n - 1$，$0 \\le g \\le 10^9$）。如果 $z = \\overline{z_{n-1} \\dots z_0}$ 的二进制表示，则这表示将 $f(z_0, \\dots, z_{n-1}) \\to g$。\n\n## 输出格式\n\n输出 $r+1$ 行，其中第 $i$ 行表示第 $i$ 次游戏中的游戏值。你的答案的绝对误差或相对误差必须不超过 $10^{-6}$。\n\n形式化地说，设你的答案为 $a$，评测程序的答案为 $b$。当且仅当 $\\frac{|a - b|}{\\max{(1, |b|)}} \\le 10^{-6}$ 时，你的答案会被判定为正确。\n\n## 说明\n\n考虑第二个样例。如果 Allen 先行动，他会将 $x_1 \\to 1$，因此最终值为 $3$。如果 Bessie 先行动，那么她会将 $x_1 \\to 0$，因此最终值为 $2$。所以答案为 $2.5$。\n\n在第三个样例中，无论 Allen 和 Bessie 如何行动，游戏值始终为 $1$。",
   "samples": [
     {
       "input": "2 2\n0 1 2 3\n2 5\n0 4\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:28:29.491Z"
+  "fetchedAt": "2026-10-31T00:28:29.491Z",
+  "translatedAt": "2026-11-04T05:37:36.731+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

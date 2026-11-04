@@ -4,7 +4,7 @@
   "contestId": 1291,
   "index": "B",
   "title": "Array Sharpening",
-  "titleZh": null,
+  "titleZh": "数组锐化",
   "url": "https://codeforces.com/contest/1291/problem/B",
   "difficulty": 1300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You're given an array $a_1, \\ldots, a_n$ of $n$ non-negative integers.\n\nLet's call it *sharpened* if and only if there exists an integer $1 \\le k \\le n$ such that $a_1 \\lt a_2 \\lt \\ldots \\lt a_k$ and $a_k \\gt a_{k+1} \\gt \\ldots \\gt a_n$. In particular, any strictly increasing or strictly decreasing array is *sharpened*. For example:\n\n- The arrays $[4]$, $[0, 1]$, $[12, 10, 8]$ and $[3, 11, 15, 9, 7, 4]$ are sharpened;\n- The arrays $[2, 8, 2, 8, 6, 5]$, $[0, 1, 1, 0]$ and $[2, 5, 6, 9, 8, 8]$ are **not** sharpened.\n\nYou can do the following operation as many times as you want: choose any **strictly positive** element of the array, and decrease it by one. Formally, you can choose any $i$ ($1 \\le i \\le n$) such that $a_i \\gt 0$ and assign $a_i := a_i - 1$.\n\nTell if it's possible to make the given array *sharpened* using some number (possibly zero) of these operations.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 15\\ 000$)  — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 3 \\cdot 10^5$).\n\nThe second line of each test case contains a sequence of $n$ non-negative integers $a_1, \\ldots, a_n$ ($0 \\le a_i \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single line containing \"`Yes`\" (without quotes) if it's possible to make the given array sharpened using the described operations, or \"`No`\" (without quotes) otherwise.\n\n## Note\n\nIn the first and the second test case of the first test, the given array is already sharpened.\n\nIn the third test case of the first test, we can transform the array into $[3, 11, 15, 9, 7, 4]$ (decrease the first element $97$ times and decrease the last element $4$ times). It is sharpened because $3 \\lt 11 \\lt 15$ and $15 \\gt 9 \\gt 7 \\gt 4$.\n\nIn the fourth test case of the first test, it's impossible to make the given array sharpened.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个由 $n$ 个非负整数组成的数组 $a_1, \\ldots, a_n$。\n\n当且仅当存在一个整数 $1 \\le k \\le n$，使得 $a_1 \\lt a_2 \\lt \\ldots \\lt a_k$ 且 $a_k \\gt a_{k+1} \\gt \\ldots \\gt a_n$ 时，我们称该数组是*锐化的（sharpened）*。特别地，任何严格递增或严格递减的数组都是*锐化的*。例如：\n\n- 数组 $[4]$、$[0, 1]$、$[12, 10, 8]$ 和 $[3, 11, 15, 9, 7, 4]$ 都是锐化的；\n- 数组 $[2, 8, 2, 8, 6, 5]$、$[0, 1, 1, 0]$ 和 $[2, 5, 6, 9, 8, 8]$ 都**不是**锐化的。\n\n你可以进行任意次（包括零次）如下操作：选择数组中的任意一个**严格为正**的元素，并将其减一。形式化地说，你可以选择任意满足 $1 \\le i \\le n$ 且 $a_i \\gt 0$ 的 $i$，并令 $a_i := a_i - 1$。\n\n请判断是否可以通过若干次上述操作，将给定数组变为*锐化的*。\n\n## 输入格式\n\n输入包含多组测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 15\\ 000$），表示测试用例的数量。接下来描述各个测试用例。\n\n每组测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^5$）。\n\n每组测试用例的第二行包含 $n$ 个非负整数 $a_1, \\ldots, a_n$（$0 \\le a_i \\le 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一行。如果可以通过上述操作将给定数组变为锐化的，则输出 \"`Yes`\"（不含引号）；否则输出 \"`No`\"（不含引号）。\n\n## 说明\n\n在第一个测试中的第一组和第二组测试用例中，给定数组已经是锐化的。\n\n在第一个测试中的第三组测试用例中，我们可以将数组变为 $[3, 11, 15, 9, 7, 4]$（将第一个元素减小 $97$ 次，并将最后一个元素减小 $4$ 次）。由于 $3 \\lt 11 \\lt 15$ 且 $15 \\gt 9 \\gt 7 \\gt 4$，该数组是锐化的。\n\n在第一个测试中的第四组测试用例中，不可能将数组变为锐化的。",
   "samples": [
     {
       "input": "10\n1\n248618\n3\n12 10 8\n6\n100 11 15 9 7 8\n4\n0 1 1 0\n2\n0 0\n2\n0 1\n2\n1 0\n2\n1 1\n3\n0 1 0\n3\n1 0 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:57:25.854Z"
+  "fetchedAt": "2026-10-30T23:57:25.854Z",
+  "translatedAt": "2026-11-04T04:45:41.836+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

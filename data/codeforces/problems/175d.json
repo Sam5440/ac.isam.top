@@ -4,7 +4,7 @@
   "contestId": 175,
   "index": "D",
   "title": "Plane of Tanks: Duel",
-  "titleZh": null,
+  "titleZh": "坦克大战：决斗",
   "url": "https://codeforces.com/contest/175/problem/D",
   "difficulty": 2400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Vasya plays the Plane of Tanks.\n\nTanks are described with the following attributes:\n\n- the number of hit points;\n- the interval between two gun shots (the time required to recharge the gun);\n- the probability that the gun shot will not pierce armor of the enemy tank;\n- the damage to the enemy's tank.\n\nThe gun damage is described with a segment $[*l*, *r*]$, where $*l*$ and $*r*$ are integer numbers. The potential gun damage $*x*$ is chosen with equal probability among all integer numbers of the segment $[*l*, *r*]$. If the shot pierces the armor of an enemy's tank then the enemy loses $*x*$ hit points. If the number of hit points becomes non-positive then the enemy tank is considered destroyed.\n\nIt is possible that the shot does not pierce the armor of a tank. In this case the number of hit points doesn't change. The probability that the armor will not be pierced is considered as the shooting tank attribute and does not depend on players' behavior.\n\nThe victory is near and there is only one enemy tank left. Vasya is ready for the battle — one more battle between the Good and the Evil is inevitable! Two enemies saw each other and each of them fired a shot at the same moment... The last battle has begun! Help Vasya to determine what is the probability that he will win the battle by destroying the enemy tank?\n\nIf both tanks are destroyed (after simultaneous shots), then Vasya is considered a winner. You can assume that each player fires a shot just after the gun recharge and each tank has infinite number of ammo.\n\n## Input\n\nThe first line contains five integer numbers separated with spaces describing Vasya's tank: the number of hit points $*hp*$ $(10 ≤ *hp* ≤ 200)$, the interval between two shots $*dt*$ $(1 ≤ *dt* ≤ 30)$, gun damage segment $*l*$ and $*r*$ $(10 ≤ *l* ≤ *r* ≤ 100)$, the probability that the enemy's tank armor will not be pierced $*p*$ $(0 ≤ *p* ≤ 100)$ (percents).\n\nThe second line describes the tank of Vasya's enemy in the same format.\n\n## Output\n\nPrint the only number with absolute or relative error no more than $10^{ - 4}$ — probability of Vasya's victory.\n\n## Note\n\nIn the first example both tanks are destroyed at once after the second shot. The probability of destroying the enemy tank is $1$.\n\nIn the second example Vasya's enemy tank fires the second shot before Vasya's tank, but has no time for the third shot. In order to destroy Vasya's tank it is necessary to fire two shots with damage 50. The probability of that event is ![image](https://espresso.codeforces.com/5b8cbead818d4c86d1b85c58f6f83a955392b329.png) = ![image](https://espresso.codeforces.com/3aa776870a184225f95e5a8de47bdeadf28fa805.png). Otherwise, Vasya wins.\n\nIn the third example Vasya's enemy tank fires three shots with probability of armor piercing $0.5$. In order to destroy Vasya's tank it is necessary that at least 2 of 3 shots pierce the armor of Vasya's tank. The probability of this event is $0.5$.",
-  "statementZhMd": null,
+  "statementZhMd": "瓦西亚正在玩《坦克大战》。\n\n坦克由以下属性描述：\n\n- 生命值；\n- 两次炮击之间的间隔（火炮重新装填所需的时间）；\n- 炮弹未能穿透敌方坦克装甲的概率；\n- 对敌方坦克造成的伤害。\n\n火炮伤害由区间 $[*l*, *r*]$ 表示，其中 $*l*$ 和 $*r*$ 为整数。炮弹的潜在伤害 $*x*$ 将以相同概率从区间 $[*l*, *r*]$ 的所有整数中选取。如果炮弹穿透了敌方坦克的装甲，则敌方坦克会损失 $*x*$ 点生命值。如果生命值变为非正数，则认为敌方坦克被摧毁。\n\n炮弹也可能无法穿透坦克装甲。在这种情况下，生命值不会发生变化。装甲未被穿透的概率是开火坦克的属性，与玩家的行为无关。\n\n胜利近在眼前，而敌方只剩下一辆坦克。瓦西亚已经准备好战斗——正义与邪恶之间的又一场战斗不可避免！两个敌人同时发现了对方，并在同一时刻开了一炮……最后的战斗开始了！请帮助瓦西亚计算他摧毁敌方坦克并赢得战斗的概率。\n\n如果两辆坦克在同时开火后都被摧毁，则认为瓦西亚获胜。你可以假设每位玩家都会在火炮装填完毕后立即开火，并且每辆坦克拥有无限数量的弹药。\n\n## 输入格式\n\n第一行包含五个用空格分隔的整数，描述瓦西亚的坦克：生命值 $*hp*$ $(10 ≤ *hp* ≤ 200)$，两次开火之间的间隔 $*dt*$ $(1 ≤ *dt* ≤ 30)$，火炮伤害区间的端点 $*l*$ 和 $*r*$ $(10 ≤ *l* ≤ *r* ≤ 100)$，以及敌方坦克装甲未被炮弹穿透的概率 $*p*$ $(0 ≤ *p* ≤ 100)$（百分比）。\n\n第二行以相同格式描述瓦西亚的敌方坦克。\n\n## 输出格式\n\n输出一个数，表示瓦西亚获胜的概率。若绝对误差或相对误差不超过 $10^{ - 4}$，则答案被认为是正确的。\n\n## 说明\n\n在第一个样例中，两辆坦克在第二次开火后同时被摧毁。摧毁敌方坦克的概率为 $1$。\n\n在第二个样例中，瓦西亚的敌方坦克会在瓦西亚的坦克之前进行第二次开火，但来不及进行第三次开火。要摧毁瓦西亚的坦克，必须用伤害为 50 的炮弹开火两次。该事件的概率为 ![image](https://espresso.codeforces.com/5b8cbead818d4c86d1b85c58f6f83a955392b329.png) = ![image](https://espresso.codeforces.com/3aa776870a184225f95e5a8de47bdeadf28fa805.png)。除此之外，瓦西亚都会获胜。\n\n在第三个样例中，瓦西亚的敌方坦克以 $0.5$ 的概率穿透装甲进行三次射击。要摧毁瓦西亚的坦克，必须有其中至少 2 发炮弹穿透瓦西亚坦克的装甲。该事件的概率为 $0.5$。",
   "samples": [
     {
       "input": "100 3 50 50 0\n100 3 50 50 0\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:26:16.363Z"
+  "fetchedAt": "2026-10-31T02:26:16.363Z",
+  "translatedAt": "2026-11-04T07:42:52.649+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

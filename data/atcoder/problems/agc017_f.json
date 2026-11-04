@@ -4,7 +4,7 @@
   "contestId": "agc017",
   "index": "F",
   "title": "Zigzag",
-  "titleZh": null,
+  "titleZh": "之字形",
   "url": "https://atcoder.jp/contests/agc017/tasks/agc017_f",
   "difficulty": 3417,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "## Problem Statement\n\nThere are $N(N+1)/2$ dots arranged to form an equilateral triangle whose sides consist of $N$ dots, as shown below. The $j$-th dot from the left in the $i$-th row from the top is denoted by $(i, j)$ ($1 \\leq i \\leq N$, $1 \\leq j \\leq i$). Also, we will call $(i+1, j)$ immediately lower-left to $(i, j)$, and $(i+1, j+1)$ immediately lower-right to $(i, j)$.\n\n![image](https://atcoder.jp/img/agc017/8d354fb1a389a0aa5b64ba93f6ca7801.png)\n\nTakahashi is drawing $M$ polygonal lines $L_1, L_2, ..., L_M$ by connecting these dots. Each $L_i$ starts at $(1, 1)$, and visits the dot that is immediately lower-left or lower-right to the current dots $N-1$ times. More formally, there exist $X_{i,1}, ..., X_{i,N}$ such that:\n\n- $L_i$ connects the $N$ points $(1, X_{i,1}), (2, X_{i,2}), ..., (N, X_{i,N})$, in this order.\n- For each $j=1, 2, ..., N-1$, either $X_{i,j+1} = X_{i,j}$ or $X_{i,j+1} = X_{i,j}+1$ holds.\n\nTakahashi would like to draw these lines so that no part of $L_{i+1}$ is to the left of $L_{i}$. That is, for each $j=1, 2, ..., N$, $X_{1,j} \\leq X_{2,j} \\leq ... \\leq X_{M,j}$ must hold.\n\nAdditionally, there are $K$ conditions on the shape of the lines that must be followed. The $i$-th condition is denoted by $(A_i, B_i, C_i)$, which means:\n\n- If $C_i=0$, $L_{A_i}$ must visit the immediately lower-left dot for the $B_i$-th move.\n- If $C_i=1$, $L_{A_i}$ must visit the immediately lower-right dot for the $B_i$-th move.\n\nThat is, $X_{A_i, {B_i}+1} = X_{A_i, B_i} + C_i$ must hold.\n\nIn how many ways can Takahashi draw $M$ polygonal lines? Find the count modulo $1000000007$.\n\n## Note\n\nBefore submission, it is strongly recommended to measure the execution time of your code using \"Custom Test\".\n\n## Constraints\n\n- $1 \\leq N \\leq 20$\n- $1 \\leq M \\leq 20$\n- $0 \\leq K \\leq (N-1)M$\n- $1 \\leq A_i \\leq M$\n- $1 \\leq B_i \\leq N-1$\n- $C_i = 0$ or $1$\n- No pair appears more than once as $(A_i, B_i)$.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN M K\nA_1 B_1 C_1\nA_2 B_2 C_2\n:\nA_K B_K C_K\n```\n\n## Output\n\nPrint the number of ways for Takahashi to draw $M$ polygonal lines, modulo $1000000007$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有 $N(N+1)/2$ 个点排列成一个等边三角形，其每条边由 $N$ 个点组成，如下图所示。从上往下数第 $i$ 行中从左往右数第 $j$ 个点记为 $(i, j)$（$1 \\leq i \\leq N$，$1 \\leq j \\leq i$）。此外，我们称 $(i+1, j)$ 是 $(i, j)$ 的紧邻左下方点，称 $(i+1, j+1)$ 是 $(i, j)$ 的紧邻右下方点。\n\n![image](https://atcoder.jp/img/agc017/8d354fb1a389a0aa5b64ba93f6ca7801.png)\n\n高桥通过连接这些点来绘制 $M$ 条折线 $L_1, L_2, ..., L_M$。每条 $L_i$ 都从 $(1, 1)$ 开始，并且连续 $N-1$ 次移动到当前点的紧邻左下方点或紧邻右下方点。更正式地说，存在 $X_{i,1}, ..., X_{i,N}$，使得：\n\n- $L_i$ 按此顺序连接这 $N$ 个点 $(1, X_{i,1}), (2, X_{i,2}), ..., (N, X_{i,N})$。\n- 对于每个 $j=1, 2, ..., N-1$，均有 $X_{i,j+1} = X_{i,j}$ 或 $X_{i,j+1} = X_{i,j}+1$。\n\n高桥希望绘制这些折线，使得 $L_{i+1}$ 的任何部分都不会位于 $L_i$ 的左侧。也就是说，对于每个 $j=1, 2, ..., N$，必须满足 $X_{1,j} \\leq X_{2,j} \\leq ... \\leq X_{M,j}$。\n\n此外，还有 $K$ 个必须满足的、关于折线形状的条件。第 $i$ 个条件记为 $(A_i, B_i, C_i)$，其含义如下：\n\n- 如果 $C_i=0$，则 $L_{A_i}$ 在第 $B_i$ 次移动时必须移动到紧邻左下方点。\n- 如果 $C_i=1$，则 $L_{A_i}$ 在第 $B_i$ 次移动时必须移动到紧邻右下方点。\n\n也就是说，必须满足 $X_{A_i, {B_i}+1} = X_{A_i, B_i} + C_i$。\n\n高桥绘制 $M$ 条折线的方法数是多少？请求出答案对 $1000000007$ 取模后的结果。\n\n## 说明\n\n提交前，强烈建议使用「Custom Test」测量代码的执行时间。\n\n## 约束条件\n\n- $1 \\leq N \\leq 20$\n- $1 \\leq M \\leq 20$\n- $0 \\leq K \\leq (N-1)M$\n- $1 \\leq A_i \\leq M$\n- $1 \\leq B_i \\leq N-1$\n- $C_i = 0$ 或 $1$\n- 不存在两个 $(A_i, B_i)$ 完全相同的条件。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN M K\nA_1 B_1 C_1\nA_2 B_2 C_2\n:\nA_K B_K C_K\n```\n\n## 输出格式\n\n输出高桥绘制 $M$ 条折线的方法数对 $1000000007$ 取模后的结果。",
   "samples": [
     {
       "input": "3 2 1\n1 2 0\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:56:07.201Z"
+  "fetchedAt": "2026-10-30T22:56:07.201Z",
+  "translatedAt": "2026-11-04T06:05:03.247+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

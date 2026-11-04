@@ -4,7 +4,7 @@
   "contestId": 1186,
   "index": "E",
   "title": "Vus the Cossack and a Field",
-  "titleZh": null,
+  "titleZh": "哥萨克人 Vus 和一个场地",
   "url": "https://codeforces.com/contest/1186/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Vus the Cossack has a field with dimensions $n \\times m$, which consists of \"`0`\" and \"`1`\". He is building an infinite field from this field. He is doing this in this way:\n\n1. He takes the current field and finds a new inverted field. In other words, the new field will contain \"`1`\" only there, where \"`0`\" was in the current field, and \"`0`\" there, where \"`1`\" was.\n2. To the current field, he adds the inverted field to the right.\n3. To the current field, he adds the inverted field to the bottom.\n4. To the current field, he adds the current field to the bottom right.\n5. He repeats it.\n\nFor example, if the initial field was:\n\n$\\begin{matrix} 1 & 0 & \\\\ 1 & 1 & \\\\ \\end{matrix}$\n\nAfter the first iteration, the field will be like this:\n\n$\\begin{matrix} 1 & 0 & 0 & 1 \\\\ 1 & 1 & 0 & 0 \\\\ 0 & 1 & 1 & 0 \\\\ 0 & 0 & 1 & 1 \\\\ \\end{matrix}$\n\nAfter the second iteration, the field will be like this:\n\n$\\begin{matrix} 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \\\\ 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 \\\\ 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 \\\\ 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 \\\\ 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 \\\\ 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \\\\ 1 & 1 & 0& 0 & 0 & 0 & 1 & 1 \\\\ \\end{matrix}$\n\nAnd so on...\n\nLet's numerate lines from top to bottom from $1$ to infinity, and columns from left to right from $1$ to infinity. We call the submatrix $(x_1, y_1, x_2, y_2)$ all numbers that have coordinates $(x, y)$ such that $x_1 \\leq x \\leq x_2$ and $y_1 \\leq y \\leq y_2$.\n\nThe Cossack needs sometimes to find the sum of all the numbers in submatrices. Since he is pretty busy right now, he is asking you to find the answers!\n\n## Input\n\nThe first line contains three integers $n$, $m$, $q$ ($1 \\leq n, m \\leq 1\\,000$, $1 \\leq q \\leq 10^5$) — the dimensions of the initial matrix and the number of queries.\n\nEach of the next $n$ lines contains $m$ characters $c_{ij}$ ($0 \\leq c_{ij} \\leq 1$) — the characters in the matrix.\n\nEach of the next $q$ lines contains four integers $x_1$, $y_1$, $x_2$, $y_2$ ($1 \\leq x_1 \\leq x_2 \\leq 10^9$, $1 \\leq y_1 \\leq y_2 \\leq 10^9$) — the coordinates of the upper left cell and bottom right cell, between which you need to find the sum of all numbers.\n\n## Output\n\nFor each query, print the answer.\n\n## Note\n\nThe first example is explained in the legend.",
-  "statementZhMd": null,
+  "statementZhMd": "哥萨克人 Vus 有一块大小为 $n \\times m$ 的场地，其中只包含 `0` 和 `1`。他正在用这块场地构造一块无限大的场地，具体过程如下：\n\n1. 取当前场地，并得到一个新的反转场地。也就是说，新场地中原当前场地为 `0` 的位置变为 `1`，原为 `1` 的位置变为 `0`。\n2. 将反转场地添加到当前场地的右侧。\n3. 将反转场地添加到当前场地的下方。\n4. 将当前场地添加到当前场地的右下方。\n5. 重复上述过程。\n\n例如，如果初始场地如下：\n\n$\\begin{matrix} 1 & 0 & \\\\ 1 & 1 & \\\\ \\end{matrix}$\n\n第一次迭代后，场地如下：\n\n$\\begin{matrix} 1 & 0 & 0 & 1 \\\\ 1 & 1 & 0 & 0 \\\\ 0 & 1 & 1 & 0 \\\\ 0 & 0 & 1 & 1 \\\\ \\end{matrix}$\n\n第二次迭代后，场地如下：\n\n$\\begin{matrix} 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \\\\ 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\\\ 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 \\\\ 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 \\\\ 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 \\\\ 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 \\\\ 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 \\\\ 1 & 1 & 0& 0 & 0 & 0 & 1 & 1 \\\\ \\end{matrix}$\n\n以此类推……\n\n我们将行从上到下编号为 $1$ 到无穷大，将列从左到右编号为 $1$ 到无穷大。我们将子矩阵 $(x_1, y_1, x_2, y_2)$ 定义为所有坐标为 $(x, y)$ 且满足 $x_1 \\leq x \\leq x_2$ 和 $y_1 \\leq y \\leq y_2$ 的元素组成的矩阵。\n\n哥萨克人有时需要求某些子矩阵中所有数字的和。由于他现在非常忙，因此请你帮他求出答案！\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$、$q$（$1 \\leq n, m \\leq 1\\,000$，$1 \\leq q \\leq 10^5$）——初始矩阵的大小以及询问数量。\n\n接下来的 $n$ 行中，每行包含 $m$ 个字符 $c_{ij}$（$0 \\leq c_{ij} \\leq 1$）——矩阵中的字符。\n\n接下来的 $q$ 行中，每行包含四个整数 $x_1$、$y_1$、$x_2$、$y_2$（$1 \\leq x_1 \\leq x_2 \\leq 10^9$，$1 \\leq y_1 \\leq y_2 \\leq 10^9$）——左上角单元格和右下角单元格的坐标，你需要求出这两个单元格所确定的子矩阵中所有数字的和。\n\n## 输出格式\n\n对于每个询问，输出答案。\n\n## 说明\n\n第一个样例已在题目描述中进行解释。",
   "samples": [
     {
       "input": "2 2 5\n10\n11\n1 1 8 8\n2 4 5 6\n1 2 7 8\n3 3 6 8\n5 6 7 8\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:08:46.579Z"
+  "fetchedAt": "2026-10-31T00:08:46.579Z",
+  "translatedAt": "2026-11-04T05:11:54.563+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

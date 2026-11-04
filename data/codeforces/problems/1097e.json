@@ -4,7 +4,7 @@
   "contestId": 1097,
   "index": "E",
   "title": "Egor and an RPG game",
-  "titleZh": null,
+  "titleZh": "Egor 与 RPG 游戏",
   "url": "https://codeforces.com/contest/1097/problem/E",
   "difficulty": 3400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "One Saturday afternoon Egor was playing his favorite RPG game. While discovering new lands and territories, he came across the following sign:\n\n![image](https://espresso.codeforces.com/296a0c670fd961bee5b9b6b8337127237e18c1ce.png)\n\nEgor is a passionate player, but he is an algorithmician as well. That's why he instantly spotted four common letters in two words on the sign above — if we *permute* the letters \"R\", \"E\", \"G\", \"O\" from the first word, we can obtain the letters \"O\", \"G\", \"R\", \"E\". Egor got inspired by the sign and right away he came up with a problem about permutations.\n\nYou are given a permutation of length $n$. You have to split it into some non-empty subsequences so that each element of the permutation belongs to exactly one subsequence. Each subsequence must be *monotonic* — that is, either increasing or decreasing.\n\nSequence is called to be a *subsequence* if it can be derived from permutation by deleting some (possibly none) elements without changing the order of the remaining elements.\n\nThe number of subsequences should be small enough — let $f(n)$ be the minimum integer $k$ such that every permutation of length $n$ can be partitioned into at most $k$ monotonic subsequences.\n\nYou need to split the permutation into at most $f(n)$ monotonic subsequences.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\leq t \\leq 10^5$) — the number of test cases.\n\n**You can only use $t = 1$ in hacks.**\n\nNext, descriptions of $t$ test cases come, each of them in the following format.\n\nThe first line of a single test case contains one integer $n$ ($1 \\leq n \\leq 10^5$) — the length of the permutation. The second line contains $n$ distinct integers $a_i$ ($1 \\leq a_i \\leq n$) — the permutation itself.\n\nThe sum of the values of $n$ over all test cases doesn't exceed $10^5$.\n\n## Output\n\nFor each test case print the answer in the following format:\n\nIn the first line print $k$ ($1 \\leq k \\leq f(n)$) — the number of the subsequences in the partition. In the next $k$ lines, print the descriptions of found subsequences. Each description should start with a number $l_i$ ($1 \\leq l_i \\leq n$) — the length of the corresponding subsequence, followed by $l_i$ integers — the values of this subsequence in the order in which they occur in the permutation.\n\nEach subsequence you output must be either increasing or decreasing.\n\nIn case there are multiple possible answers, print any of them.\n\n## Note\n\nIn the example, we can split:\n\n- $[4, 3, 1, 2]$ into $[4, 3, 1]$, $[2]$\n- $[4, 5, 6, 1, 3, 2]$ into $[4, 1]$, $[5, 6]$ and $[3, 2]$\n- $[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]$ into $[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]$\n\nSurely, there are many more answers possible.",
-  "statementZhMd": null,
+  "statementZhMd": "一个星期六的下午，Egor 正在玩他最喜欢的 RPG 游戏。在探索新的土地和领地时，他看到了下面的告示牌：\n\n![image](https://espresso.codeforces.com/296a0c670fd961bee5b9b6b8337127237e18c1ce.png)\n\nEgor 是一名狂热的玩家，同时也是一名算法爱好者。这就是为什么他立刻发现了上面告示牌中两个单词里的四个相同字母——如果我们将第一个单词中的字母 \"R\"、\"E\"、\"G\"、\"O\" 进行*排列*，就可以得到字母 \"O\"、\"G\"、\"R\"、\"E\"。Egor 从这个告示牌中获得了灵感，并立即想出了一个关于排列的问题。\n\n给定一个长度为 $n$ 的排列。你需要将它划分成若干个非空子序列，使得排列中的每个元素恰好属于其中一个子序列。每个子序列都必须是*单调的*——也就是说，它要么是递增的，要么是递减的。\n\n如果一个序列可以通过删除排列中的一些（也可以不删除）元素，且不改变剩余元素的顺序得到，则称这个序列为*子序列*。\n\n子序列的数量应当足够少——令 $f(n)$ 表示满足以下条件的最小整数 $k$：长度为 $n$ 的每个排列都可以被划分为至多 $k$ 个单调子序列。\n\n你需要将这个排列划分为至多 $f(n)$ 个单调子序列。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^5$）——测试用例的数量。\n\n**在提交 hack 时，只能使用 $t = 1$。**\n\n接下来是 $t$ 个测试用例的描述，每个测试用例的格式如下。\n\n单个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 10^5$）——排列的长度。第二行包含 $n$ 个互不相同的整数 $a_i$（$1 \\leq a_i \\leq n$）——排列本身。\n\n所有测试用例中 $n$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，按照以下格式输出答案：\n\n第一行输出 $k$（$1 \\leq k \\leq f(n)$）——划分中的子序列数量。接下来的 $k$ 行输出找到的子序列的描述。每个描述应以一个整数 $l_i$（$1 \\leq l_i \\leq n$）开头——对应子序列的长度，随后输出 $l_i$ 个整数——该子序列中的元素，顺序按照它们在排列中出现的顺序排列。\n\n你输出的每个子序列都必须是递增的或递减的。\n\n如果有多种可行答案，输出任意一种即可。\n\n## 说明\n\n在样例中，我们可以进行如下划分：\n\n- 将 $[4, 3, 1, 2]$ 划分为 $[4, 3, 1]$、$[2]$\n- 将 $[4, 5, 6, 1, 3, 2]$ 划分为 $[4, 1]$、$[5, 6]$ 和 $[3, 2]$\n- 将 $[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]$ 划分为 $[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]$\n\n当然，还存在许多其他可行答案。",
   "samples": [
     {
       "input": "3\n4\n4 3 1 2\n6\n4 5 6 1 3 2\n10\n1 2 3 4 5 6 7 8 9 10\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:18:15.775Z"
+  "fetchedAt": "2026-10-31T00:18:15.775Z",
+  "translatedAt": "2026-11-04T05:25:09.164+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

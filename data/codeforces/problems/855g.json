@@ -4,7 +4,7 @@
   "contestId": 855,
   "index": "G",
   "title": "Harry Vs Voldemort",
-  "titleZh": null,
+  "titleZh": "哈利对决伏地魔",
   "url": "https://codeforces.com/contest/855/problem/G",
   "difficulty": 3300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "After destroying all of Voldemort's Horcruxes, Harry and Voldemort are up for the final battle. They each cast spells from their wands and the spells collide.\n\nThe battle scene is Hogwarts, which can be represented in the form of a tree. There are, in total, $*n*$ places in Hogwarts joined using $*n* - 1$ undirected roads.\n\nRon, who was viewing this battle between Harry and Voldemort, wondered how many triplets of places $(*u*, *v*, *w*)$ are there such that if Harry is standing at place $*u*$ and Voldemort is standing at place $*v*$, their spells collide at a place $*w*$. This is possible for a triplet only when $*u*$, $*v*$ and $*w*$ are distinct, and there exist paths from $*u*$ to $*w*$ and from $*v*$ to $*w*$ which do not pass through the same roads.\n\nNow, due to the battle havoc, new paths are being added all the time. You have to tell Ron the answer after each addition.\n\nFormally, you are given a tree with $*n*$ vertices and $*n* - 1$ edges. $*q*$ new edges are being added between the nodes of the tree. After each addition you need to tell the number of triplets $(*u*, *v*, *w*)$ such that $*u*$, $*v*$ and $*w*$ are distinct and there exist two paths, one between $*u*$ and $*w*$, another between $*v*$ and $*w*$ such that these paths do not have an edge in common.\n\n## Input\n\nFirst line contains an integer $*n*$ ($1 ≤ *n* ≤ 10^{5}$), the number of places in Hogwarts.\n\nEach of the next $*n* - 1$ lines contains two space separated integers $*u*$ and $*v*$ ($1 ≤ *u*, *v* ≤ *n*$) indicating a road between places $*u*$ and $*v*$. It is guaranteed that the given roads form a connected tree.\n\nNext line contains a single integer $*q*$ ($1 ≤ *q* ≤ 10^{5}$), the number of new edges being added.\n\nEach of the next $*q*$ lines contains two space separated integers $*u*$ and $*v*$ ($1 ≤ *u*, *v* ≤ *n*$) representing the new road being added.\n\nNote that it is possible that a newly added road connects places that were connected by a road before. Also, a newly added road may connect a place to itself.\n\n## Output\n\nIn the first line print the value for the number of triplets before any changes occurred.\n\nAfter that print $*q*$ lines, a single integer $*ans*_{*i*}$ in each line containing the value for the number of triplets after $*i*$-th edge addition.\n\n## Note\n\nIn the first sample case, for the initial tree, we have $(1, 3, 2)$ and $(3, 1, 2)$ as the only possible triplets $(*u*, *v*, *w*)$.\n\nAfter addition of edge from $2$ to $3$, we have $(1, 3, 2)$, $(3, 1, 2)$, $(1, 2, 3)$ and $(2, 1, 3)$ as the possible triplets.",
-  "statementZhMd": null,
+  "statementZhMd": "摧毁了伏地魔的所有魂器后，哈利和伏地魔即将展开最终决战。他们分别挥动魔杖施放魔法，魔法在空中碰撞。\n\n战斗发生在霍格沃茨。霍格沃茨可以表示为一棵树，共有 $*n*$ 个地点，由 $*n* - 1$ 条无向道路连接。\n\n罗恩目睹了哈利和伏地魔之间的战斗，他想知道有多少个地点三元组 $(*u*, *v*, *w*)$ 满足：如果哈利站在地点 $*u*$，伏地魔站在地点 $*v*$，那么他们的魔法会在地点 $*w*$ 碰撞。一个三元组满足条件，当且仅当 $*u*$、$*v*$ 和 $*w*$ 两两不同，并且存在从 $*u*$ 到 $*w*$ 以及从 $*v*$ 到 $*w*$ 的路径，且这两条路径不经过同一条道路。\n\n然而，由于战斗造成的破坏，新的道路不断被添加。你需要在每次添加道路后告诉罗恩答案。\n\n形式化地说，给定一棵具有 $*n*$ 个顶点和 $*n* - 1$ 条边的树。接下来会在树的节点之间添加 $*q*$ 条新边。每次添加后，你需要输出满足以下条件的三元组 $(*u*, *v*, *w*)$ 的数量：$*u*$、$*v*$ 和 $*w*$ 两两不同，并且存在两条路径，一条连接 $*u*$ 和 $*w*$，另一条连接 $*v*$ 和 $*w*$，使得这两条路径没有公共边。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$），表示霍格沃茨中的地点数。\n\n接下来的 $*n* - 1$ 行中，每行包含两个用空格分隔的整数 $*u*$ 和 $*v*$（$1 ≤ *u*, *v* ≤ *n*$），表示地点之间的一条道路。保证给出的道路构成一棵连通树。\n\n下一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 10^{5}$），表示将要添加的新边数。\n\n接下来的 $*q*$ 行中，每行包含两个用空格分隔的整数 $*u*$ 和 $*v*$（$1 ≤ *u*, *v* ≤ *n*$），表示要添加的一条新道路。\n\n注意，新添加的道路可能连接两个此前已经由道路连接的地点。此外，新添加的道路也可能将某个地点与其自身连接。\n\n## 输出格式\n\n第一行输出在进行任何修改之前的三元组数量。\n\n接下来输出 $*q*$ 行，每行包含一个整数 $*ans*_{*i}$，表示添加第 $*i*$ 条边后，三元组的数量。\n\n## 说明\n\n在第一个样例中，对于初始树，唯一可能的三元组是 $(1, 3, 2)$ 和 $(3, 1, 2)$。\n\n添加从 $2$ 到 $3$ 的边后，可能的三元组变为 $(1, 3, 2)$、$(3, 1, 2)$、$(1, 2, 3)$ 和 $(2, 1, 3)$。",
   "samples": [
     {
       "input": "3\n1 2\n2 3\n1\n2 3\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:45:17.564Z"
+  "fetchedAt": "2026-10-31T00:45:17.564Z",
+  "translatedAt": "2026-11-04T06:07:09.307+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

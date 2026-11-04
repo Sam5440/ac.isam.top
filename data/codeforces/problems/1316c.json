@@ -4,7 +4,7 @@
   "contestId": 1316,
   "index": "C",
   "title": "Primitive Primes",
-  "titleZh": null,
+  "titleZh": "本原素数",
   "url": "https://codeforces.com/contest/1316/problem/C",
   "difficulty": 1800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "It is Professor R's last class of his teaching career. Every time Professor R taught a class, he gave a special problem for the students to solve. You being his favourite student, put your heart into solving it one last time.\n\nYou are given two polynomials $f(x) = a_0 + a_1x + \\dots + a_{n-1}x^{n-1}$ and $g(x) = b_0 + b_1x + \\dots + b_{m-1}x^{m-1}$, with positive integral coefficients. It is guaranteed that the cumulative GCD of the coefficients is equal to $1$ for both the given polynomials. In other words, $gcd(a_0, a_1, \\dots, a_{n-1}) = gcd(b_0, b_1, \\dots, b_{m-1}) = 1$. Let $h(x) = f(x)\\cdot g(x)$. Suppose that $h(x) = c_0 + c_1x + \\dots + c_{n+m-2}x^{n+m-2}$.\n\nYou are also given a prime number $p$. Professor R challenges you to find any $t$ such that $c_t$ isn't divisible by $p$. He guarantees you that under these conditions such $t$ always exists. If there are several such $t$, output any of them.\n\n**As the input is quite large, please use fast input reading methods.**\n\n## Input\n\nThe first line of the input contains three integers, $n$, $m$ and $p$ ($1 \\leq n, m \\leq 10^6, 2 \\leq p \\leq 10^9$),  — $n$ and $m$ are the number of terms in $f(x)$ and $g(x)$ respectively (one more than the degrees of the respective polynomials) and $p$ is the given prime number.\n\nIt is guaranteed that $p$ is prime.\n\nThe second line contains $n$ integers $a_0, a_1, \\dots, a_{n-1}$ ($1 \\leq a_{i} \\leq 10^{9}$) — $a_i$ is the coefficient of $x^{i}$ in $f(x)$.\n\nThe third line contains $m$ integers $b_0, b_1, \\dots, b_{m-1}$ ($1 \\leq b_{i} \\leq 10^{9}$)  — $b_i$ is the coefficient of $x^{i}$ in $g(x)$.\n\n## Output\n\nPrint a single integer $t$ ($0\\le t \\le n+m-2$)  — the appropriate power of $x$ in $h(x)$ whose coefficient isn't divisible by the given prime $p$. If there are multiple powers of $x$ that satisfy the condition, print any.\n\n## Note\n\nIn the first test case, $f(x)$ is $2x^2 + x + 1$ and $g(x)$ is $x + 2$, their product $h(x)$ being $2x^3 + 5x^2 + 3x + 2$, so the answer can be 1 or 2 as both 3 and 5 aren't divisible by 2.\n\nIn the second test case, $f(x)$ is $x + 2$ and $g(x)$ is $x + 3$, their product $h(x)$ being $x^2 + 5x + 6$, so the answer can be any of the powers as no coefficient is divisible by the given prime.",
-  "statementZhMd": null,
+  "statementZhMd": "教授 R 教学生涯的最后一节课即将结束。每次教授 R 授课时，他都会给学生们出一道特别的题目来解决。作为他最喜欢的学生，你决定最后一次全力以赴地解决这道题。\n\n给定两个多项式 $f(x) = a_0 + a_1x + \\dots + a_{n-1}x^{n-1}$ 和 $g(x) = b_0 + b_1x + \\dots + b_{m-1}x^{m-1}$，它们的系数均为正整数。保证对于给定的两个多项式，其系数的最大公约数均为 $1$。换句话说，$gcd(a_0, a_1, \\dots, a_{n-1}) = gcd(b_0, b_1, \\dots, b_{m-1}) = 1$。令 $h(x) = f(x)\\cdot g(x)$。设 $h(x) = c_0 + c_1x + \\dots + c_{n+m-2}x^{n+m-2}$。\n\n另外给定一个素数 $p$。教授 R 要求你找到任意一个 $t$，使得 $c_t$ 不被 $p$ 整除。他保证在上述条件下，这样的 $t$ 总是存在。如果有多个符合条件的 $t$，输出其中任意一个即可。\n\n**由于输入数据量较大，请使用快速输入方法。**\n\n## 输入格式\n\n输入的第一行包含三个整数 $n$、$m$ 和 $p$（$1 \\leq n, m \\leq 10^6, 2 \\leq p \\leq 10^9$），其中 $n$ 和 $m$ 分别是 $f(x)$ 和 $g(x)$ 中的项数（分别比对应多项式的次数多一），而 $p$ 是给定的素数。\n\n保证 $p$ 是素数。\n\n第二行包含 $n$ 个整数 $a_0, a_1, \\dots, a_{n-1}$（$1 \\leq a_{i} \\leq 10^9$），其中 $a_i$ 是 $f(x)$ 中 $x^{i}$ 的系数。\n\n第三行包含 $m$ 个整数 $b_0, b_1, \\dots, b_{m-1}$（$1 \\leq b_{i} \\leq 10^9$），其中 $b_i$ 是 $g(x)$ 中 $x^{i}$ 的系数。\n\n## 输出格式\n\n输出一个整数 $t$（$0\\le t \\le n+m-2$），表示 $h(x)$ 中系数不被给定素数 $p$ 整除的 $x$ 的幂次。如果有多个幂次满足条件，输出其中任意一个。\n\n## 说明\n\n在第一个测试用例中，$f(x)$ 为 $2x^2 + x + 1$，$g(x)$ 为 $x + 2$，它们的乘积 $h(x)$ 为 $2x^3 + 5x^2 + 3x + 2$，因此答案可以是 1 或 2，因为 3 和 5 都不能被 2 整除。\n\n在第二个测试用例中，$f(x)$ 为 $x + 2$，$g(x)$ 为 $x + 3$，它们的乘积 $h(x)$ 为 $x^2 + 5x + 6$，因此答案可以是任意一个幂次，因为没有一个系数能被给定的素数整除。",
   "samples": [
     {
       "input": "3 2 2\n1 1 2\n2 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:55:49.417Z"
+  "fetchedAt": "2026-10-30T23:55:49.417Z",
+  "translatedAt": "2026-11-04T04:52:41.268+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

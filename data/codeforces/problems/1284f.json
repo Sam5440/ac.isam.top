@@ -4,7 +4,7 @@
   "contestId": 1284,
   "index": "F",
   "title": "New Year and Social Network",
-  "titleZh": null,
+  "titleZh": "新年与社交网络",
   "url": "https://codeforces.com/contest/1284/problem/F",
   "difficulty": 3200,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 1024,
   "statementMd": "Donghyun's new social network service (SNS) contains $n$ users numbered $1, 2, \\ldots, n$. Internally, their network is a *tree graph*, so there are $n-1$ direct connections between each user. Each user can reach every other users by using some sequence of direct connections. From now on, we will denote this primary network as $T_1$.\n\nTo prevent a possible server breakdown, Donghyun created a backup network $T_2$, which also connects the same $n$ users via a tree graph. If a system breaks down, exactly one edge $e \\in T_1$ becomes unusable. In this case, Donghyun will protect the edge $e$ by picking another edge $f \\in T_2$, and add it to the existing network. This new edge should make the network be connected again.\n\nDonghyun wants to assign a replacement edge $f \\in T_2$ for as many edges $e \\in T_1$ as possible. However, since the backup network $T_2$ is fragile, $f \\in T_2$ can be assigned as the replacement edge for at most one edge in $T_1$. With this restriction, Donghyun wants to protect as many edges in $T_1$ as possible.\n\nFormally, let $E(T)$ be an edge set of the tree $T$. We consider a bipartite graph with two parts $E(T_1)$ and $E(T_2)$. For $e \\in E(T_1), f \\in E(T_2)$, there is an edge connecting $\\{e, f\\}$ if and only if graph $T_1 - \\{e\\} + \\{f\\}$ is a tree. You should find a maximum matching in this bipartite graph.\n\n## Input\n\nThe first line contains an integer $n$ ($2 \\le n \\le 250\\,000$), the number of users.\n\nIn the next $n-1$ lines, two integers $a_i$, $b_i$ ($1 \\le a_i, b_i \\le n$) are given. Those two numbers denote the indices of the vertices connected by the corresponding edge in $T_1$.\n\nIn the next $n-1$ lines, two integers $c_i$, $d_i$ ($1 \\le c_i, d_i \\le n$) are given. Those two numbers denote the indices of the vertices connected by the corresponding edge in $T_2$.\n\nIt is guaranteed that both edge sets form a tree of size $n$.\n\n## Output\n\nIn the first line, print the number $m$ ($0 \\leq m \\lt n$), the maximum number of edges that can be protected.\n\nIn the next $m$ lines, print four integers $a_i, b_i, c_i, d_i$. Those four numbers denote that the edge $(a_i, b_i)$ in $T_1$ is will be replaced with an edge $(c_i, d_i)$ in $T_2$.\n\nAll printed edges should belong to their respective network, and they should link to distinct edges in their respective network. If one removes an edge $(a_i, b_i)$ from $T_1$ and adds edge $(c_i, d_i)$ from $T_2$, the network should remain connected. The order of printing the edges or the order of vertices in each edge does not matter.\n\nIf there are several solutions, you can print any.",
-  "statementZhMd": null,
+  "statementZhMd": "Donghyun 的新社交网络服务（SNS）包含 $n$ 名用户，编号为 $1, 2, \\ldots, n$。从内部结构来看，他们的网络是一棵*树图*，因此每个用户之间共有 $n-1$ 条直接连接。每个用户都可以通过若干条直接连接组成的路径到达其他所有用户。从现在开始，我们将这个初始网络记为 $T_1$。\n\n为了防止服务器发生故障，Donghyun 创建了一个备用网络 $T_2$，它同样通过一棵树连接这 $n$ 名用户。如果系统发生故障，恰好有一条边 $e \\in T_1$ 变得不可用。此时，Donghyun 将从 $T_2$ 中选择另一条边 $f \\in T_2$，并将其添加到现有网络中。添加这条新边后，网络应重新连通。\n\nDonghyun 希望为 $T_1$ 中尽可能多的边指定替代边 $f \\in T_2$。然而，由于备用网络 $T_2$ 较为脆弱，同一条 $f \\in T_2$ 至多只能被指定为 $T_1$ 中一条边的替代边。在这一限制下，Donghyun 希望保护 $T_1$ 中尽可能多的边。\n\n形式化地，令 $E(T)$ 表示树 $T$ 的边集。我们考虑一个二分图，其两部分分别为 $E(T_1)$ 和 $E(T_2)$。对于 $e \\in E(T_1), f \\in E(T_2)$，当且仅当图 $T_1 - \\{e\\} + \\{f\\}$ 是一棵树时，在顶点对 $\\{e, f\\}$ 之间连一条边。\n\n你需要求出该二分图中的最大匹配。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\leq n \\leq 250\\,000$），表示用户数量。\n\n接下来的 $n-1$ 行中，每行给出两个整数 $a_i$, $b_i$（$1 \\leq a_i, b_i \\leq n$）。这两个数表示 $T_1$ 中对应边所连接的顶点编号。\n\n接下来的 $n-1$ 行中，每行给出两个整数 $c_i$, $d_i$（$1 \\leq c_i, d_i \\leq n$）。这两个数表示 $T_2$ 中对应边所连接的顶点编号。\n\n保证这两组边分别构成一棵大小为 $n$ 的树。\n\n## 输出格式\n\n第一行输出一个整数 $m$（$0 \\leq m \\lt n$），表示能够保护的边数的最大值。\n\n接下来的 $m$ 行中，每行输出四个整数 $a_i, b_i, c_i, d_i$。这四个数表示：将 $T_1$ 中的边 $(a_i, b_i)$ 替换为 $T_2$ 中的边 $(c_i, d_i)$。\n\n输出的所有边都必须属于各自对应的网络，并且在各自网络中互不相同。若从 $T_1$ 中删除边 $(a_i, b_i)$，再添加来自 $T_2$ 的边 $(c_i, d_i)$，则网络应保持连通。输出边的顺序以及每条边中两个顶点的顺序均不影响答案。\n\n如果存在多种方案，输出任意一种即可。",
   "samples": [
     {
       "input": "4\n1 2\n2 3\n4 3\n1 3\n2 4\n1 4\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:59:05.859Z"
+  "fetchedAt": "2026-10-30T23:59:05.859Z",
+  "translatedAt": "2026-11-04T04:50:26.070+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

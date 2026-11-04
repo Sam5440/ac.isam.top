@@ -4,7 +4,7 @@
   "contestId": 453,
   "index": "E",
   "title": "Little Pony and Lord Tirek",
-  "titleZh": null,
+  "titleZh": "小马宝莉与提雷克领主",
   "url": "https://codeforces.com/contest/453/problem/E",
   "difficulty": 3100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Lord Tirek is a centaur and the main antagonist in the season four finale episodes in the series \"My Little Pony: Friendship Is Magic\". In \"Twilight's Kingdom\" (Part 1), Tirek escapes from Tartarus and drains magic from ponies to grow stronger.\n\n![image](https://espresso.codeforces.com/17c6f1d27b14d38cbbefb898e384cb9b934e16db.png)\n\nThe core skill of Tirek is called Absorb Mana. It takes all mana from a magic creature and gives them to the caster.\n\nNow to simplify the problem, assume you have $*n*$ ponies (numbered from 1 to $*n*$). Each pony has three attributes:\n\n- $*s*_{*i*}$ : amount of mana that the pony has at time 0;\n- $*m*_{*i*}$ : maximum mana that the pony can have;\n- $*r*_{*i*}$ : mana regeneration per unit time.\n\nLord Tirek will do $*m*$ instructions, each of them can be described with three integers: $*t*_{*i*}, *l*_{*i*}, *r*_{*i*}$. The instruction means that at time $*t*_{*i*}$, Tirek will use Absorb Mana on ponies with numbers from $*l*_{*i*}$ to $*r*_{*i*}$ (both borders inclusive). We'll give you all the $*m*$ instructions in order, count how much mana Tirek absorbs for each instruction.\n\n## Input\n\nThe first line contains an integer $*n*$ ($1 ≤ *n* ≤ 10^{5}$) — the number of ponies. Each of the next $*n*$ lines contains three integers $*s*_{*i*}, *m*_{*i*}, *r*_{*i*}$ $(0 ≤ *s*_{*i*} ≤ *m*_{*i*} ≤ 10^{5}; 0 ≤ *r*_{*i*} ≤ 10^{5})$, describing a pony.\n\nThe next line contains an integer $*m*$ ($1 ≤ *m* ≤ 10^{5}$) — the number of instructions. Each of the next $*m*$ lines contains three integers $*t*_{*i*}, *l*_{*i*}, *r*_{*i*}$ $(0 ≤ *t*_{*i*} ≤ 10^{9}; 1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*)$, describing an instruction of Lord Tirek. The instructions are given in strictly increasing order of $*t*_{*i*}$ (all $*t*_{*i*}$ are distinct).\n\n## Output\n\nFor each instruction, output a single line which contains a single integer, the total mana absorbed in this instruction.\n\n## Note\n\nEvery pony starts with zero mana. For the first instruction, each pony has 5 mana, so you get 25 mana in total and each pony has 0 mana after the first instruction.\n\nFor the second instruction, pony 3 has 14 mana and other ponies have mana equal to their $*m*_{*i*}$.",
-  "statementZhMd": null,
+  "statementZhMd": "提雷克领主是一名半人马，也是系列《My Little Pony: Friendship Is Magic》第四季大结局中的主要反派。在《Twilight's Kingdom》（上）中，提雷克从塔尔塔罗斯逃脱，并吸收小马们的魔法来增强自己的力量。\n\n![image](https://espresso.codeforces.com/17c6f1d27b14d38cbbefb898e384cb9b934e16db.png)\n\n提雷克的核心技能叫作吸收魔力（Absorb Mana）。它会吸收一名魔法生物的全部魔力，并将其转移给施法者。\n\n现在，为了简化问题，假设你有 $*n*$ 匹小马（编号从 1 到 $*n*$）。每匹小马有以下三个属性：\n\n- $*s*_{*i*}$：该小马在时刻 0 的魔力值；\n- $*m*_{*i*}$：该小马能够拥有的最大魔力值；\n- $*r*_{*i*}$：单位时间内恢复的魔力值。\n\n提雷克将执行 $*m*$ 条指令，每条指令可以用三个整数 $*t*_{*i*}, *l*_{*i*}, *r*_{*i*}$ 描述。该指令表示在时刻 $*t*_{*i*}$，提雷克将对编号从 $*l*_{*i*}$ 到 $*r*_{*i*}$ 的小马使用吸收魔力（包括两个端点）。我们将按顺序给出全部 $*m*$ 条指令，请你计算每条指令中提雷克吸收的魔力值。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$），表示小马的数量。接下来的 $*n*$ 行中，每行包含三个整数 $*s*_{*i*}, *m*_{*i*}, *r*_{*i*}$（$0 ≤ *s*_{*i*} ≤ *m*_{*i*} ≤ 10^{5}; 0 ≤ *r*_{*i*} ≤ 10^{5}$），描述一匹小马。\n\n下一行包含一个整数 $*m*$（$1 ≤ *m* ≤ 10^{5}$），表示指令的数量。接下来的 $*m*$ 行中，每行包含三个整数 $*t*_{*i*}, *l*_{*i*}, *r*_{*i*}$（$0 ≤ *t*_{*i*} ≤ 10^{9}; 1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$），描述提雷克的一条指令。指令按照 $*t*_{*i*}$ 严格递增的顺序给出（所有 $*t*_{*i*}$ 互不相同）。\n\n## 输出格式\n\n对于每条指令，输出一行，其中包含一个整数，表示该条指令中吸收的魔力总量。\n\n## 说明\n\n每匹小马开始时的魔力都是 0。对于第一条指令，每匹小马都有 5 点魔力，因此总共可以吸收 25 点魔力，并且第一条指令执行后每匹小马的魔力都变为 0。\n\n对于第二条指令，小马 3 拥有 14 点魔力，其他小马的魔力等于各自的 $*m*_{*i*}$。",
   "samples": [
     {
       "input": "5\n0 10 1\n0 12 1\n0 20 1\n0 12 1\n0 10 1\n2\n5 1 5\n19 1 5\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:40:43.229Z"
+  "fetchedAt": "2026-10-31T01:40:43.229Z",
+  "translatedAt": "2026-11-04T07:03:55.817+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

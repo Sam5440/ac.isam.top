@@ -4,7 +4,7 @@
   "contestId": 715,
   "index": "B",
   "title": "Complete The Graph",
-  "titleZh": null,
+  "titleZh": "补全图",
   "url": "https://codeforces.com/contest/715/problem/B",
   "difficulty": 2300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "ZS the Coder has drawn an undirected graph of $*n*$ vertices numbered from $0$ to $*n* - 1$ and $*m*$ edges between them. Each edge of the graph is weighted, each weight is a **positive integer**.\n\nThe next day, ZS the Coder realized that some of the weights were erased! So he wants to reassign **positive integer** weight to each of the edges which weights were erased, so that the length of the shortest path between vertices $*s*$ and $*t*$ in the resulting graph is exactly $*L*$. Can you help him?\n\n## Input\n\nThe first line contains five integers $*n*, *m*, *L*, *s*, *t*$ ($2 ≤ *n* ≤ 1000,  1 ≤ *m* ≤ 10 000,  1 ≤ *L* ≤ 10^{9},  0 ≤ *s*, *t* ≤ *n* - 1,  *s* ≠ *t*$) — the number of vertices, number of edges, the desired length of shortest path, starting vertex and ending vertex respectively.\n\nThen, $*m*$ lines describing the edges of the graph follow. $*i*$-th of them contains three integers, $*u*_{*i*}, *v*_{*i*}, *w*_{*i*}$ ($0 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n* - 1,  *u*_{*i*} ≠ *v*_{*i*},  0 ≤ *w*_{*i*} ≤ 10^{9}$). $*u*_{*i*}$ and $*v*_{*i*}$ denote the endpoints of the edge and $*w*_{*i*}$ denotes its weight. If $*w*_{*i*}$ is equal to $0$ then the weight of the corresponding edge was erased.\n\nIt is guaranteed that there is at most one edge between any pair of vertices.\n\n## Output\n\nPrint \"`NO`\" (without quotes) in the only line if it's not possible to assign the weights in a required way.\n\nOtherwise, print \"`YES`\" in the first line. Next $*m*$ lines should contain the edges of the resulting graph, with weights assigned to edges which weights were erased. $*i*$-th of them should contain three integers $*u*_{*i*}$, $*v*_{*i*}$ and $*w*_{*i*}$, denoting an edge between vertices $*u*_{*i*}$ and $*v*_{*i*}$ of weight $*w*_{*i*}$. The edges of the new graph must coincide with the ones in the graph from the input. The weights that were not erased must remain unchanged whereas the new weights can be any **positive integer** not exceeding $10^{18}$.\n\nThe order of the edges in the output doesn't matter. The length of the shortest path between $*s*$ and $*t*$ must be equal to $*L*$.\n\nIf there are multiple solutions, print any of them.\n\n## Note\n\nHere's how the graph in the first sample case looks like :\n\n![image](https://espresso.codeforces.com/c0ce47e385b7ec9ee4e64f6c8e2728543e8bb39b.png)\n\nIn the first sample case, there is only one missing edge weight. Placing the weight of $8$ gives a shortest path from $0$ to $4$ of length $13$.\n\nIn the second sample case, there is only a single edge. Clearly, the only way is to replace the missing weight with $123456789$.\n\nIn the last sample case, there is no weights to assign but the length of the shortest path doesn't match the required value, so the answer is \"`NO`\".",
-  "statementZhMd": null,
+  "statementZhMd": "ZS the Coder 绘制了一个无向图，图中有 $*n*$ 个顶点，编号从 $0$ 到 $*n* - 1$，以及连接这些顶点的 $*m*$ 条边。图中的每条边都有一个权值，且每个权值都是**正整数**。\n\n第二天，ZS the Coder 发现有些边的权值被擦掉了！因此，他希望为这些权值被擦掉的边重新分配**正整数**权值，使得在得到的图中，顶点 $*s*$ 和 $*t*$ 之间的最短路径长度恰好为 $*L*$。你能帮助他吗？\n\n## 输入格式\n\n第一行包含五个整数 $*n*, *m*, *L*, *s*, *t*$（$2 ≤ *n* ≤ 1000,  1 ≤ *m* ≤ 10 000,  1 ≤ *L* ≤ 10^{9},  0 ≤ *s*, *t* ≤ *n* - 1,  *s* ≠ *t*$），分别表示顶点数、边数、期望的最短路径长度、起点和终点。\n\n接下来 $*m*$ 行描述图中的边。其中第 $*i*$ 行包含三个整数 $*u*_{*i*}, *v*_{*i*}, *w*_{*i*}$（$0 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n* - 1,  *u*_{*i*} ≠ *v*_{*i*},  0 ≤ *w*_{*i*} ≤ 10^{9}$）。$*u*_{*i*}$ 和 $*v*_{*i*}$ 表示边的两个端点，$*w*_{*i*}$ 表示该边的权值。如果 $*w*_{*i*}$ 等于 $0$，则表示对应边的权值被擦掉了。\n\n保证任意一对顶点之间至多有一条边。\n\n## 输出格式\n\n如果无法以要求的方式分配权值，则在唯一一行中输出 `NO`。\n\n否则，第一行输出 `YES`。接下来 $*m*$ 行应描述赋值后的图，其中被擦掉权值的边需要填入新的权值。第 $*i*$ 行应包含三个整数 $*u*_{*i*}$、$*v*_{*i*}$ 和 $*w*_{*i*}$，表示顶点 $*u*_{*i*}$ 和 $*v*_{*i*}$ 之间有一条权值为 $*w*_{*i*}$ 的边。新图中的边必须与输入图中的边完全一致。未被擦掉的权值必须保持不变，而新分配的权值可以是任意不超过 $10^{18}$ 的**正整数**。\n\n输出中的边可以按任意顺序排列。顶点 $*s*$ 和 $*t*$ 之间的最短路径长度必须等于 $*L*$。\n\n如果有多种解，输出任意一种即可。\n\n## 说明\n\n下面是第一个样例中图的示意图：\n\n![image](https://espresso.codeforces.com/c0ce47e385b7ec9ee4e64f6c8e2728543e8bb39b.png)\n\n在第一个样例中，只有一条边的权值缺失。将其权值设为 $8$ 后，从 $0$ 到 $4$ 的最短路径长度为 $13$。\n\n在第二个样例中，图中只有一条边。显然，唯一的方案是将缺失的权值设为 $123456789$。\n\n在最后一个样例中，没有需要分配的权值，但最短路径长度与要求的值不符，因此答案为 `NO`。",
   "samples": [
     {
       "input": "5 5 13 0 4\n0 1 5\n2 1 2\n3 2 3\n1 4 0\n4 3 4\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:04:28.981Z"
+  "fetchedAt": "2026-10-31T01:04:28.981Z",
+  "translatedAt": "2026-11-04T06:30:39.873+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

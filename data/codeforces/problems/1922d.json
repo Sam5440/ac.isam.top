@@ -4,7 +4,7 @@
   "contestId": 1922,
   "index": "D",
   "title": "Berserk Monsters",
-  "titleZh": null,
+  "titleZh": "狂暴怪物",
   "url": "https://codeforces.com/contest/1922/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp is playing a computer game (yet again). Guess what is he doing? That's right, killing monsters.\n\nThere are $n$ monsters in a row, numbered from $1$ to $n$. The $i$-th monster has two parameters: attack value equal to $a_i$ and defense value equal to $d_i$. In order to kill these monsters, Monocarp put a berserk spell on them, so they're attacking each other instead of Monocarp's character.\n\nThe fight consists of $n$ rounds. Every round, the following happens:\n\n- first, every alive monster $i$ deals $a_i$ damage to the **closest** alive monster to the left (if it exists) and the **closest** alive monster to the right (if it exists);\n- then, every alive monster $j$ which received more than $d_j$ damage **during this round** dies. I. e. the $j$-th monster dies if and only if its defense value $d_j$ is **strictly less** than the total damage it received **this round**.\n\nFor each round, calculate the number of monsters that will die during that round.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case consists of three lines:\n\n- the first line contains one integer $n$ ($1 \\le n \\le 3 \\cdot 10^5$);\n- the second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$);\n- the third line contains $n$ integers $d_1, d_2, \\dots, d_n$ ($1 \\le d_i \\le 10^9$).\n\nAdditional constraint on the input: the sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print $n$ integers. The $i$-th integer should be equal to the number of monsters that die during the $i$-th round.\n\n## Note\n\nExplanation for the first test case of the example:\n\nDuring the first round, the following happens:\n\n- the monster $1$ deals $3$ damage to the monster $2$;\n- the monster $2$ deals $4$ damage to the monster $1$ and the monster $3$;\n- the monster $3$ deals $7$ damage to the monster $2$ and the monster $4$;\n- the monster $4$ deals $5$ damage to the monster $3$ and the monster $5$;\n- the monster $5$ deals $10$ damage to the monster $4$;\n- the monster $1$ does not die, since it received $4$ damage and its defense is $4$;\n- the monster $2$ dies, since it received $10$ damage and its defense is $9$;\n- the monster $3$ dies, since it received $9$ damage and its defense is $1$;\n- the monster $4$ does not die, since it received $17$ damage and its defense is $18$;\n- the monster $5$ dies, since it received $5$ damage and its defense is $1$.\n\nAfter the first round, the monsters $1$ and $4$ stay alive.\n\nDuring the second round, the following happens:\n\n- the monster $1$ deals $3$ damage to the monster $4$;\n- the monster $4$ deals $5$ damage to the monster $1$;\n- the monster $1$ dies, since it received $5$ damage and its defense is $4$;\n- the monster $4$ does not die, since it received $3$ damage and its defense is $18$.\n\nDuring the next three rounds, only the $4$-th monster is alive, so nothing happens.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nMonocarp 又在玩电脑游戏了。他在做什么？没错，杀死怪物。\n\n有 $n$ 个怪物排成一排，编号从 $1$ 到 $n$。第 $i$ 个怪物有两个参数：攻击值为 $a_i$，防御值为 $d_i$。为了杀死这些怪物，Monocarp 对它们施放了狂暴 spell，于是它们开始互相攻击，而不是攻击 Monocarp 的角色。\n\n战斗由 $n$ 个回合组成。每个回合会发生以下事情：\n\n- 首先，每个存活的怪物 $i$ 对左侧**最近的**存活怪物（如果存在）和右侧**最近的**存活怪物（如果存在）各造成 $a_i$ 点伤害；\n- 然后，每个在**本回合中**受到的伤害超过 $d_j$ 的存活怪物 $j$ 死亡。也就是说，第 $j$ 个怪物死亡当且仅当它的防御值 $d_j$ **严格小于**它在**本回合**受到的总伤害。\n\n对于每个回合，计算该回合死亡的怪物数量。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例包含三行：\n\n- 第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^5$）；\n- 第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$）；\n- 第三行包含 $n$ 个整数 $d_1, d_2, \\dots, d_n$（$1 \\le d_i \\le 10^9$）。\n\n输入还满足：所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数。第 $i$ 个整数应等于第 $i$ 个回合死亡的怪物数量。\n\n## 说明\n\n样例中第一个测试用例的解释：\n\n在第一回合，发生了以下事情：\n\n- 怪物 $1$ 对怪物 $2$ 造成 $3$ 点伤害；\n- 怪物 $2$ 对怪物 $1$ 和怪物 $3$ 各造成 $4$ 点伤害；\n- 怪物 $3$ 对怪物 $2$ 和怪物 $4$ 各造成 $7$ 点伤害；\n- 怪物 $4$ 对怪物 $3$ 和怪物 $5$ 各造成 $5$ 点伤害；\n- 怪物 $5$ 对怪物 $4$ 造成 $10$ 点伤害；\n- 怪物 $1$ 不会死亡，因为它受到 $4$ 点伤害，而它的防御值为 $4$；\n- 怪物 $2$ 死亡，因为它受到 $10$ 点伤害，而它的防御值为 $9$；\n- 怪物 $3$ 死亡，因为它受到 $9$ 点伤害，而它的防御值为 $1$；\n- 怪物 $4$ 不会死亡，因为它受到 $17$ 点伤害，而它的防御值为 $18$；\n- 怪物 $5$ 死亡，因为它受到 $5$ 点伤害，而它的防御值为 $1$。\n\n第一回合后，怪物 $1$ 和 $4$ 存活。\n\n在第二回合，发生了以下事情：\n\n- 怪物 $1$ 对怪物 $4$ 造成 $3$ 点伤害；\n- 怪物 $4$ 对怪物 $1$ 造成 $5$ 点伤害；\n- 怪物 $1$ 死亡，因为它受到 $5$ 点伤害，而它的防御值为 $4$；\n- 怪物 $4$ 不会死亡，因为它受到 $3$ 点伤害，而它的防御值为 $18$。\n\n接下来的三个回合中，只有第 $4$ 个怪物存活，因此什么也不会发生。",
   "samples": [
     {
       "input": "3\n5\n3 4 7 5 10\n4 9 1 18 1\n2\n2 1\n1 3\n4\n1 1 2 4\n3 3 4 2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:18:04.245Z"
+  "fetchedAt": "2026-11-02T17:18:04.245Z",
+  "translatedAt": "2026-11-04T02:24:03.167+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

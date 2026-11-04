@@ -4,7 +4,7 @@
   "contestId": 1515,
   "index": "G",
   "title": "Phoenix and Odometers",
-  "titleZh": null,
+  "titleZh": "凤凰与里程表",
   "url": "https://codeforces.com/contest/1515/problem/G",
   "difficulty": 2700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "In Fire City, there are $n$ intersections and $m$ one-way roads. The $i$-th road goes from intersection $a_i$ to $b_i$ and has length $l_i$ miles.\n\nThere are $q$ cars that may only drive along those roads. The $i$-th car starts at intersection $v_i$ and has an odometer that begins at $s_i$, increments for each mile driven, and resets to $0$ whenever it reaches $t_i$. Phoenix has been tasked to drive cars along some roads (possibly none) and **return them to their initial intersection** with the odometer showing $0$.\n\nFor each car, please find if this is possible.\n\nA car may visit the same road or intersection an arbitrary number of times. The odometers don't stop counting the distance after resetting, so odometers may also be reset an arbitrary number of times.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $m$ ($2 \\le n \\le 2 \\cdot 10^5$; $1 \\le m \\le 2 \\cdot 10^5$) — the number of intersections and the number of roads, respectively.\n\nEach of the next $m$ lines contain three integers $a_i$, $b_i$, and $l_i$ ($1 \\le a_i, b_i \\le n$; $a_i \\neq b_i$; $1 \\le l_i \\le 10^9$) — the information about the $i$-th road. The graph is not necessarily connected. It is guaranteed that between any two intersections, there is at most one road for each direction.\n\nThe next line contains an integer $q$ ($1 \\le q \\le 2 \\cdot 10^5$) — the number of cars.\n\nEach of the next $q$ lines contains three integers $v_i$, $s_i$, and $t_i$ ($1 \\le v_i \\le n$; $0 \\le s_i \\lt t_i \\le 10^9$) — the initial intersection of the $i$-th car, the initial number on the $i$-th odometer, and the number at which the $i$-th odometer resets, respectively.\n\n## Output\n\nPrint $q$ answers. If the $i$-th car's odometer may be reset to $0$ by driving through some roads (possibly none) and returning to its starting intersection $v_i$, print `YES`. Otherwise, print `NO`.\n\n## Note\n\nThe illustration for the first example is below:\n\n![image](https://espresso.codeforces.com/6ec87e33890a583e4163dea8dd15ffb684c189b6.png)\n\nIn the first query, Phoenix can drive through the following cities: $1$ $\\rightarrow$ $2$ $\\rightarrow$ $3$ $\\rightarrow$ $1$ $\\rightarrow$ $2$ $\\rightarrow$ $3$ $\\rightarrow$ $1$. The odometer will have reset $3$ times, but it displays $0$ at the end.\n\nIn the second query, we can show that there is no way to reset the odometer to $0$ and return to intersection $1$.\n\nIn the third query, the odometer already displays $0$, so there is no need to drive through any roads.\n\nBelow is the illustration for the second example:\n\n![image](https://espresso.codeforces.com/63b6b182cfbd5cdae8074f48985c6395652e8114.png)",
-  "statementZhMd": null,
+  "statementZhMd": "在 Fire City 中，有 $n$ 个路口和 $m$ 条单向道路。第 $i$ 条道路从路口 $a_i$ 通往路口 $b_i$，长度为 $l_i$ 英里。\n\n有 $q$ 辆汽车，它们只能沿这些道路行驶。第 $i$ 辆汽车初始位于路口 $v_i$，其里程表初始读数为 $s_i$，每行驶一英里读数增加 $1$，并且每当读数达到 $t_i$ 时就会重置为 $0$。Phoenix 的任务是驾驶汽车沿某些道路行驶（也可以不行驶），并且**将它们返回到初始路口，同时使里程表显示 $0$**。\n\n对于每辆汽车，请判断是否能够做到这一点。\n\n汽车可以任意次经过同一条道路或同一个路口。里程表重置后不会停止累计行驶距离，因此里程表也可以被任意次重置。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 2 \\cdot 10^5$；$1 \\le m \\le 2 \\cdot 10^5$）——路口和道路的数量。\n\n接下来的 $m$ 行中，每行包含三个整数 $a_i$、$b_i$ 和 $l_i$（$1 \\le a_i, b_i \\le n$；$a_i \\neq b_i$；$1 \\le l_i \\le 10^9$）——第 $i$ 条道路的信息。图不一定连通。保证任意两个路口之间，每个方向至多有一条道路。\n\n接下来一行包含一个整数 $q$（$1 \\le q \\le 2 \\cdot 10^5$）——汽车的数量。\n\n接下来的 $q$ 行中，每行包含三个整数 $v_i$、$s_i$ 和 $t_i$（$1 \\le v_i \\le n$；$0 \\le s_i \\lt t_i \\le 10^9$）——第 $i$ 辆汽车的初始路口、第 $i$ 个里程表的初始读数，以及第 $i$ 个里程表重置时的读数。\n\n## 输出格式\n\n输出 $q$ 个答案。如果可以驾驶第 $i$ 辆汽车经过某些道路（也可以不经过），返回其初始路口 $v_i$，并使其里程表重置为 $0$，则输出 `YES`；否则输出 `NO`。\n\n## 说明\n\n第一个样例的示意图如下：\n\n![image](https://espresso.codeforces.com/6ec87e33890a583e4163dea8dd15ffb684c189b6.png)\n\n在第一个询问中，Phoenix 可以依次经过以下路口：$1$ $\\rightarrow$ $2$ $\\rightarrow$ $3$ $\\rightarrow$ $1$ $\\rightarrow$ $2$ $\\rightarrow$ $3$ $\\rightarrow$ $1$。里程表将重置 $3$ 次，但最终显示为 $0$。\n\n在第二个询问中，可以证明不存在既能将里程表重置为 $0$，又能返回路口 $1$ 的方法。\n\n在第三个询问中，里程表已经显示为 $0$，因此无需经过任何道路。\n\n下面是第二个样例的示意图：\n\n![image](https://espresso.codeforces.com/63b6b182cfbd5cdae8074f48985c6395652e8114.png)",
   "samples": [
     {
       "input": "4 4\n1 2 1\n2 3 1\n3 1 2\n1 4 3\n3\n1 1 3\n1 2 4\n4 0 1\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:33:45.817Z"
+  "fetchedAt": "2026-10-30T23:33:45.817Z",
+  "translatedAt": "2026-11-04T03:52:24.127+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

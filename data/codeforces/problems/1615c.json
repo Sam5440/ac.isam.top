@@ -4,7 +4,7 @@
   "contestId": 1615,
   "index": "C",
   "title": "Menorah",
-  "titleZh": null,
+  "titleZh": "光明节烛台",
   "url": "https://codeforces.com/contest/1615/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ candles on a Hanukkah menorah, and some of its candles are initially lit. We can describe which candles are lit with a binary string $s$, where the $i$-th candle is lit if and only if $s_i=1$.\n\n![image](https://espresso.codeforces.com/a64b634ae534f61590da22af0f8f1e6e4fa4900d.png)\n\nInitially, the candle lights are described by a string $a$. In an operation, you select a candle that is **currently lit**. By doing so, the candle you selected will remain lit, and every other candle will change (if it was lit, it will become unlit and if it was unlit, it will become lit).\n\nYou would like to make the candles look the same as string $b$. Your task is to determine if it is possible, and if it is, find the minimum number of operations required.\n\n## Input\n\nThe first line contains an integer $t$ ($1\\le t\\le 10^4$) — the number of test cases. Then $t$ cases follow.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le 10^5$) — the number of candles.\n\nThe second line contains a string $a$ of length $n$ consisting of symbols `0` and `1` — the initial pattern of lights.\n\nThe third line contains a string $b$ of length $n$ consisting of symbols `0` and `1` — the desired pattern of lights.\n\nIt is guaranteed that the sum of $n$ does not exceed $10^5$.\n\n## Output\n\nFor each test case, output the minimum number of operations required to transform $a$ to $b$, or $-1$ if it's impossible.\n\n## Note\n\nIn the first test case, the two strings are already equal, so we don't have to perform any operations.\n\nIn the second test case, we can perform a single operation selecting the second candle to transform $01$ into $11$.\n\nIn the third test case, it's impossible to perform any operations because there are no lit candles to select.\n\nIn the fourth test case, we can perform the following operations to transform $a$ into $b$:\n\n1. Select the $7$-th candle: $100010{\\color{red}1}11\\to 011101{\\color{red} 1}00$.\n2. Select the $2$-nd candle: $0{\\color{red} 1}1101100\\to 1{\\color{red} 1}0010011$.\n3. Select the $1$-st candle: ${\\color{red}1}10010011\\to {\\color{red}1}01101100$.\n\nIn the fifth test case, we can perform the following operations to transform $a$ into $b$:\n\n1. Select the $6$-th candle: $00101{\\color{red}1}011\\to 11010{\\color{red}1}100$\n2. Select the $2$-nd candle: $1{\\color{red}1}0101100\\to 0{\\color{red}1}1010011$\n3. Select the $8$-th candle: $0110100{\\color{red}1}1\\to 1001011{\\color{red}1}0$\n4. Select the $7$-th candle: $100101{\\color{red}1}10\\to 011010{\\color{red}1}01$",
-  "statementZhMd": null,
+  "statementZhMd": "有一座光明节烛台，上面有 $n$ 根蜡烛，其中一些蜡烛最初是点燃的。我们可以用一个二进制字符串 $s$ 描述哪些蜡烛被点燃：当且仅当 $s_i=1$ 时，第 $i$ 根蜡烛被点燃。\n\n![image](https://espresso.codeforces.com/a64b634ae534f61590da22af0f8f1e6e4fa4900d.png)\n\n初始时，蜡烛的状态由字符串 $a$ 描述。在一次操作中，你需要选择一根**当前已点燃**的蜡烛。被选择的蜡烛会保持点燃，而其他所有蜡烛都会改变状态（如果原来点燃，则变为熄灭；如果原来熄灭，则变为点燃）。\n\n你希望使蜡烛的状态与字符串 $b$ 相同。请判断是否可以做到，如果可以，求所需的最少操作次数。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 10^5$）——蜡烛的数量。\n\n第二行包含一个长度为 $n$ 的字符串 $a$，仅由符号 `0` 和 `1` 组成——蜡烛的初始状态。\n\n第三行包含一个长度为 $n$ 的字符串 $b$，仅由符号 `0` 和 `1` 组成——蜡烛的目标状态。\n\n保证所有测试用例中 $n$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出将 $a$ 转换为 $b$ 所需的最少操作次数；如果无法实现，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，两个字符串已经相同，因此无需进行任何操作。\n\n在第二个测试用例中，我们可以进行一次操作，选择第二根蜡烛，将 $01$ 转换为 $11$。\n\n在第三个测试用例中，由于没有可以选择的已点燃蜡烛，因此无法进行任何操作。\n\n在第四个测试用例中，我们可以进行以下操作将 $a$ 转换为 $b$：\n\n1. 选择第 $7$ 根蜡烛：$100010{\\color{red}1}11\\to 011101{\\color{red} 1}00$。\n2. 选择第 $2$ 根蜡烛：$0{\\color{red} 1}1101100\\to 1{\\color{red} 1}0010011$。\n3. 选择第 $1$ 根蜡烛：${\\color{red}1}10010011\\to {\\color{red}1}01101100$。\n\n在第五个测试用例中，我们可以进行以下操作将 $a$ 转换为 $b$：\n\n1. 选择第 $6$ 根蜡烛：$00101{\\color{red}1}011\\to 11010{\\color{red}1}100$\n2. 选择第 $2$ 根蜡烛：$1{\\color{red}1}0101100\\to 0{\\color{red}1}1010011$\n3. 选择第 $8$ 根蜡烛：$0110100{\\color{red}1}1\\to 1001011{\\color{red}1}0$\n4. 选择第 $7$ 根蜡烛：$100101{\\color{red}1}10\\to 011010{\\color{red}1}01$",
   "samples": [
     {
       "input": "5\n5\n11010\n11010\n2\n01\n11\n3\n000\n101\n9\n100010111\n101101100\n9\n001011011\n011010101\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:20:19.307Z"
+  "fetchedAt": "2026-10-30T23:20:19.307Z",
+  "translatedAt": "2026-11-04T03:36:11.371+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": "agc048",
   "index": "E",
   "title": "Strange Relation",
-  "titleZh": null,
+  "titleZh": "奇怪的关系",
   "url": "https://atcoder.jp/contests/agc048/tasks/agc048_e",
   "difficulty": 3819,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nFor an integer sequence of length $N$, $A=(A_1,A_2,\\cdots,A_N)$, and an integer $T$, let $f(A,T)$ defined as follows:\n\n- $f(A, T)$ is the lexicographically greatest integer sequence $x$ that satisfies all of the conditions below. Here, under the constraints in this problem, it can be proved that there always are sequences that satisfy the conditions and that the number of those sequences is finite. Thus, $f(A, T)$ can always be defined.\n- $x$ is a sequence of length $N$ consisting of non-negative integers.\n  - For each $i$ ($1 \\leq i \\leq N$), let $y_i$ be the number of indices $j$ such that $j<i$ and $A_j+T \\times x_j < A_i+T \\times x_i$. Then, $y_i=x_i$ holds.\n\nFor example, assume that $A=(6,5,1)$ and $T=3$. Then, the sequences $x$ that satisfy the conditions are: $(0,0,0)$, $(0,0,2)$, and $(0,1,0)$. Thus, the value of $f(A, T)$ is the lexicographically maximum among them: $(0,1,0)$.\n\nNow, Snuke has $N$ integer sequences $B_1,B_2,\\cdots,B_N$ and an integer $T$. Each of the sequences $B_i$ ($1 \\leq i \\leq N$) is an integer sequence of length $K$.\n\nHe will create an integer sequence $A$ of length $N$ and compute $f(A, T)$. The value of $A_i$ will be chosen from $B_{i,1},B_{i,2},\\cdots,B_{i,K}$. Here, if $B_i$ contains the same value multiple times, we will distinguish those occurrences; that is, there are $K^N$ ways to create $A$.\n\nFor every $i$ ($1 \\leq i \\leq N$), solve the following problem:\n\n- For all $K^N$ choices of $A$, we will compute $f(A,T)$ and record the value of its $i$-th element. Find the sum of these values, modulo $(10^9+7)$.\n\n## Constraints\n\n- $1 \\leq N \\leq 50$\n- $1 \\leq K \\leq 50$\n- $1 \\leq T \\leq 10^7$\n- $1 \\leq B_{i,j} \\leq 10^9$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN K T\nB_{1,1} B_{1,2} \\cdots B_{1,K}\nB_{2,1} B_{2,2} \\cdots B_{2,K}\n\\vdots\nB_{N,1} B_{N,2} \\cdots B_{N,K}\n```\n\n## Output\n\nFor every $i$, print the answer in its own line.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n对于一个长度为 $N$ 的整数序列 $A=(A_1,A_2,\\cdots,A_N)$ 和一个整数 $T$，定义 $f(A,T)$ 如下：\n\n- $f(A, T)$ 是满足以下所有条件的字典序最大的整数序列 $x$。在本题的约束条件下，可以证明，始终存在满足条件的序列，且这样的序列数量有限。因此，$f(A, T)$ 总是有定义的。\n- $x$ 是一个长度为 $N$、由非负整数组成的序列。\n  - 对于每个 $i$（$1 \\leq i \\leq N$），令 $y_i$ 为满足 $j<i$ 且 $A_j+T \\times x_j < A_i+T \\times x_i$ 的下标 $j$ 的数量。则有 $y_i=x_i$。\n\n例如，假设 $A=(6,5,1)$ 且 $T=3$。满足条件的序列 $x$ 有：$(0,0,0)$、$(0,0,2)$ 和 $(0,1,0)$。因此，$f(A, T)$ 的值是其中字典序最大的序列：$(0,1,0)$。\n\n现在，Snuke 有 $N$ 个整数序列 $B_1,B_2,\\cdots,B_N$ 和一个整数 $T$。每个序列 $B_i$（$1 \\leq i \\leq N$）都是长度为 $K$ 的整数序列。\n\n他将创建一个长度为 $N$ 的整数序列 $A$，并计算 $f(A, T)$。$A_i$ 的值将从 $B_{i,1},B_{i,2},\\cdots,B_{i,K}$ 中选择。这里，如果 $B_i$ 中多次出现相同的值，我们将区分这些出现位置；也就是说，创建 $A$ 的方式共有 $K^N$ 种。\n\n对于每个 $i$（$1 \\leq i \\leq N$），请解决以下问题：\n\n- 对于所有 $K^N$ 种 $A$ 的选择方式，我们都计算 $f(A,T)$，并记录其第 $i$ 个元素。求这些值之和对 $(10^9+7)$ 取模后的结果。\n\n## 约束条件\n\n- $1 \\leq N \\leq 50$\n- $1 \\leq K \\leq 50$\n- $1 \\leq T \\leq 10^7$\n- $1 \\leq B_{i,j} \\leq 10^9$\n\n## 输入格式\n\n输入从标准输入按照以下格式给出：\n\n```\nN K T\nB_{1,1} B_{1,2} \\cdots B_{1,K}\nB_{2,1} B_{2,2} \\cdots B_{2,K}\n\\vdots\nB_{N,1} B_{N,2} \\cdots B_{N,K}\n```\n\n## 输出格式\n\n对于每个 $i$，将答案各输出一行。",
   "samples": [
     {
       "input": "2 2 1\n1 2\n1 2\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:04:27.557Z"
+  "fetchedAt": "2026-10-30T22:04:27.557Z",
+  "translatedAt": "2026-11-04T04:20:34.317+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

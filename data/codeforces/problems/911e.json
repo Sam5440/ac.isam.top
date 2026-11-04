@@ -4,7 +4,7 @@
   "contestId": 911,
   "index": "E",
   "title": "Stack Sorting",
-  "titleZh": null,
+  "titleZh": "栈排序",
   "url": "https://codeforces.com/contest/911/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let's suppose you have an array $*a*$, a stack $*s*$ (initially empty) and an array $*b*$ (also initially empty).\n\nYou may perform the following operations until both $*a*$ and $*s*$ are empty:\n\n- Take the first element of $*a*$, push it into $*s*$ and remove it from $*a*$ (if $*a*$ is not empty);\n- Take the top element from $*s*$, append it to the end of array $*b*$ and remove it from $*s*$ (if $*s*$ is not empty).\n\nYou can perform these operations in arbitrary order.\n\nIf there exists a way to perform the operations such that array $*b*$ is sorted in non-descending order in the end, then array $*a*$ is called *stack-sortable*.\n\nFor example, $[3, 1, 2]$ is *stack-sortable*, because $*b*$ will be sorted if we perform the following operations:\n\n1. Remove $3$ from $*a*$ and push it into $*s*$;\n2. Remove $1$ from $*a*$ and push it into $*s*$;\n3. Remove $1$ from $*s*$ and append it to the end of $*b*$;\n4. Remove $2$ from $*a*$ and push it into $*s*$;\n5. Remove $2$ from $*s*$ and append it to the end of $*b*$;\n6. Remove $3$ from $*s*$ and append it to the end of $*b*$.\n\nAfter all these operations $*b* = [1, 2, 3]$, so $[3, 1, 2]$ is *stack-sortable*. $[2, 3, 1]$ is not *stack-sortable*.\n\nYou are given $*k*$ first elements of some permutation $*p*$ of size $*n*$ (recall that a permutation of size $*n*$ is an array of size $*n*$ where each integer from $1$ to $*n*$ occurs exactly once). You have to restore the remaining $*n* - *k*$ elements of this permutation so it is *stack-sortable*. If there are multiple answers, choose the answer such that $*p*$ is lexicographically maximal (an array $*q*$ is lexicographically greater than an array $*p*$ iff there exists some integer $*k*$ such that for every $*i* < *k*$ $*q*_{*i*} = *p*_{*i*}$, and $*q*_{*k*} > *p*_{*k*}$). **You may not swap or change any of first $*k*$ elements of the permutation**.\n\nPrint the lexicographically maximal permutation $*p*$ you can obtain.\n\nIf there exists no answer then output `-1`.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*k*$ ($2 ≤ *n* ≤ 200000$, $1 ≤ *k* < *n*$) — the size of a desired permutation, and the number of elements you are given, respectively.\n\nThe second line contains $*k*$ integers $*p*_{1}$, $*p*_{2}$, ..., $*p*_{*k*}$ ($1 ≤ *p*_{*i*} ≤ *n*$) — the first $*k*$ elements of $*p*$. These integers are pairwise distinct.\n\n## Output\n\nIf it is possible to restore a *stack-sortable* permutation $*p*$ of size $*n*$ such that the first $*k*$ elements of $*p*$ are equal to elements given in the input, print lexicographically maximal such permutation.\n\nOtherwise print `-1`.",
-  "statementZhMd": null,
+  "statementZhMd": "假设你有一个数组 $*a*$、一个栈 $*s*$（初始为空）以及一个数组 $*b*$（同样初始为空）。\n\n在 $*a*$ 和 $*s*$ 都为空之前，你可以执行以下操作：\n\n- 取出 $*a*$ 的第一个元素，将其压入 $*s*$，并将其从 $*a*$ 中删除（如果 $*a*$ 非空）；\n- 取出 $*s*$ 的栈顶元素，将其追加到数组 $*b*$ 的末尾，并将其从 $*s*$ 中删除（如果 $*s*$ 非空）。\n\n你可以以任意顺序执行这些操作。\n\n如果存在一种执行操作的方式，使得最终数组 $*b*$ 按非递减顺序排列，则称数组 $*a*$ 是*可栈排序的*。\n\n例如，$[3, 1, 2]$ 是*可栈排序的*，因为按照以下操作执行后，$*b*$ 将会有序：\n\n1. 从 $*a*$ 中取出 $3$，并将其压入 $*s*$；\n2. 从 $*a*$ 中取出 $1$，并将其压入 $*s*$；\n3. 从 $*s*$ 中取出 $1$，并将其追加到 $*b*$ 的末尾；\n4. 从 $*a*$ 中取出 $2$，并将其压入 $*s*$；\n5. 从 $*s*$ 中取出 $2$，并将其追加到 $*b*$ 的末尾；\n6. 从 $*s*$ 中取出 $3$，并将其追加到 $*b*$ 的末尾。\n\n执行完所有操作后，$*b* = [1, 2, 3]$，因此 $[3, 1, 2]$ 是*可栈排序的*。而 $[2, 3, 1]$ 不是*可栈排序的*。\n\n给定某个大小为 $*n*$ 的排列 $*p*$ 的前 $*k*$ 个元素（回顾一下，大小为 $*n*$ 的排列是一个大小为 $*n*$ 的数组，其中 $1$ 到 $*n*$ 的每个整数恰好出现一次）。你需要补全该排列中剩余的 $*n* - *k*$ 个元素，使其成为*可栈排序的*。如果有多个答案，选择使 $*p*$ 字典序最大的答案（如果存在某个整数 $*k*$，使得对于每个 $*i* < *k*$ 都有 $*q*_{*i*} = *p*_{*i*}$，且 $*q*_{*k*} > *p*_{*k*}$，则称数组 $*q*$ 的字典序大于数组 $*p*$）。**不得交换或修改排列的前 $*k*$ 个元素**。\n\n请输出你能够得到的字典序最大的排列 $*p*$。\n\n如果不存在答案，则输出 `-1`。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*k*$（$2 ≤ *n* ≤ 200000$，$1 ≤ *k* < *n*$）——所需排列的大小，以及给定元素的数量。\n\n第二行包含 $*k*$ 个整数 $*p*_{1}$、$*p*_{2}$、...、$*p*_{*k*}$（$1 ≤ *p*_{*i*} ≤ *n*$）——$*p*$ 的前 $*k*$ 个元素。这些整数两两不同。\n\n## 输出格式\n\n如果可以还原出一个大小为 $*n*$ 的*可栈排序的*排列 $*p*$，且 $*p*$ 的前 $*k*$ 个元素与输入给出的元素相同，则输出字典序最大的这种排列。\n\n否则输出 `-1`。",
   "samples": [
     {
       "input": "5 3\n3 2 1\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:42:47.557Z"
+  "fetchedAt": "2026-11-02T19:42:47.557Z",
+  "translatedAt": "2026-11-04T05:52:51.010+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

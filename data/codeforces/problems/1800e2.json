@@ -4,7 +4,7 @@
   "contestId": 1800,
   "index": "E2",
   "title": "Unforgivable Curse (hard version)",
-  "titleZh": null,
+  "titleZh": "不可饶恕的诅咒（困难版）",
   "url": "https://codeforces.com/contest/1800/problem/E2",
   "difficulty": 1500,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "**This is a complex version of the problem. This version has no additional restrictions on the number $k$.**\n\nThe chief wizard of the Wizengamot once caught the evil wizard Drahyrt, but the evil wizard has returned and wants revenge on the chief wizard. So he stole *spell* $s$ from his student Harry.\n\nThe *spell* — is a $n$-length string of lowercase Latin letters.\n\nDrahyrt wants to replace *spell* with an unforgivable curse — string $t$.\n\nDragirt, using ancient magic, can swap letters at a distance $k$ or $k+1$ in *spell* as many times as he wants. In other words, Drahyrt can change letters in positions $i$ and $j$ in *spell* $s$ if $|i-j|=k$ or $|i-j|=k+1$.\n\nFor example, if $k = 3, s = $ \"`talant`\" and $t = $ \"`atltna`\", Drahyrt can act as follows:\n\n- swap the letters at positions $1$ and $4$ to get *spell* \"`aaltnt`\".\n- swap the letters at positions $2$ and $6$ to get *spell* \"`atltna`\".\n\nYou are given *spells* $s$ and $t$. Can Drahyrt change *spell* $s$ to $t$?\n\n## Input\n\nThe first line of input gives a single integer $T$ ($1 \\le T \\le 10^4$) — the number of test cases in the test.\n\nDescriptions of the test cases are follow.\n\nThe first line contains two integers $n, k$ ($1 \\le n \\le 2 \\cdot 10^5$, $1 \\le k \\le 2 \\cdot 10^5$) — the length *spells* and the number $k$ such that Drahyrt can change letters in a spell at a distance $k$ or $k+1$.\n\nThe second line gives *spell* $s$ — a string of length $n$ consisting of lowercase Latin letters.\n\nThe third line gives *spell* $t$ — a string of length $n$ consisting of lowercase Latin letters.\n\nIt is guaranteed that the sum of $n$ values over all test cases does not exceed $2 \\cdot 10^5$. Note that there is no limit on the sum of $k$ values over all test cases.\n\n## Output\n\nFor each test case, output on a separate line \"`YES`\" if Drahyrt can change *spell* $s$ to $t$ and \"`NO`\" otherwise.\n\nYou can output the answer in any case (for example, lines \"`yEs`\", \"`yes`\", \"`Yes`\" and \"`YES`\" will be recognized as positive answer).\n\n## Note\n\nThe first case is explained in the condition.\n\nIn the second case, we can swap adjacent letters, so we can sort the string using bubble sorting, for example.\n\nIn the third case, we can show that from the string $s$ we cannot get the string $t$ by swapping letters at a distance of $6$ or $7$.\n\nIn the fourth case, for example, the following sequence of transformations is appropriate:\n\n- \"`accio`\" $\\rightarrow$ \"`aocic`\" $\\rightarrow$ \"`cocia`\" $\\rightarrow$ \"`iocca`\" $\\rightarrow$ \"`aocci`\" $\\rightarrow$ \"`aicco`\" $\\rightarrow$ \"`cicao`\"\n\nIn the fifth case, we can show that it is impossible to get the string $s$ from the string $t$.\n\nIn the sixth example, it is enough to swap the two outermost letters.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。本版本对 $k$ 的取值没有额外限制。**\n\nWizengamot 的首席巫师曾经抓住了邪恶巫师 Drahyrt，但邪恶巫师已经逃了出来，并想向首席巫师复仇。因此，他从自己的学生 Harry 那里偷走了*咒语* $s$。\n\n*咒语*是一个长度为 $n$ 的小写拉丁字母字符串。\n\nDrahyrt 想要将*咒语*替换为不可饶恕的诅咒——字符串 $t$。\n\nDrahyrt 可以使用古老的魔法，在*咒语*中任意次交换距离为 $k$ 或 $k+1$ 的字母。换句话说，如果 $|i-j|=k$ 或 $|i-j|=k+1$，Drahyrt 就可以交换*咒语* $s$ 中位置 $i$ 和位置 $j$ 上的字母。\n\n例如，当 $k = 3$、$s$ 为 \"`talant`\" 且 $t$ 为 \"`atltna`\" 时，Drahyrt 可以进行如下操作：\n\n- 交换位置 $1$ 和 $4$ 上的字母，得到*咒语* \"`aaltnt`\"。\n- 交换位置 $2$ 和 $6$ 上的字母，得到*咒语* \"`atltna`\"。\n\n给定*咒语* $s$ 和 $t$，请判断 Drahyrt 是否可以将*咒语* $s$ 变为 $t$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $T$（$1 \\le T \\le 10^4$），表示测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n, k$（$1 \\le n \\le 2 \\cdot 10^5$，$1 \\le k \\le 2 \\cdot 10^5$），分别表示*咒语*的长度，以及 Drahyrt 可以在*咒语*中交换距离为 $k$ 或 $k+1$ 的字母。\n\n第二行包含*咒语* $s$——一个长度为 $n$、仅由小写拉丁字母组成的字符串。\n\n第三行包含*咒语* $t$——一个长度为 $n$、仅由小写拉丁字母组成的字符串。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。注意，所有测试用例的 $k$ 之和没有限制。\n\n## 输出格式\n\n对于每个测试用例，输出一行。如果 Drahyrt 可以将*咒语* $s$ 变为 $t$，输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n答案可以使用任意大小写形式输出（例如，\"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定答案）。\n\n## 说明\n\n第一个测试用例已在题目描述中解释。\n\n在第二个测试用例中，我们可以交换相邻字母，因此可以使用冒泡排序对字符串进行排序。\n\n在第三个测试用例中，可以证明无法通过交换距离为 $6$ 或 $7$ 的字母，将字符串 $s$ 变为字符串 $t$。\n\n在第四个测试用例中，以下变换序列是可行的：\n\n- \"`accio`\" $\\rightarrow$ \"`aocic`\" $\\rightarrow$ \"`cocia`\" $\\rightarrow$ \"`iocca`\" $\\rightarrow$ \"`aocci`\" $\\rightarrow$ \"`aicco`\" $\\rightarrow$ \"`cicao`\"\n\n在第五个测试用例中，可以证明不可能从字符串 $t$ 得到字符串 $s$。\n\n在第六个样例中，只需交换最外侧的两个字母即可。",
   "samples": [
     {
       "input": "7\n6 3\ntalant\natltna\n7 1\nabacaba\naaaabbc\n12 6\nabracadabraa\navadakedavra\n5 3\naccio\ncicao\n5 4\nlumos\nmolus\n4 3\nuwjt\ntwju\n4 3\nkvpx\nvxpk\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:37:20.577Z"
+  "fetchedAt": "2026-11-02T17:37:20.577Z",
+  "translatedAt": "2026-11-04T03:00:07.260+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

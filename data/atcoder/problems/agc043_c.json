@@ -4,7 +4,7 @@
   "contestId": "agc043",
   "index": "C",
   "title": "Giant Graph",
-  "titleZh": null,
+  "titleZh": "巨型图",
   "url": "https://atcoder.jp/contests/agc043/tasks/agc043_c",
   "difficulty": 2872,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nGiven are simple undirected graphs $X$, $Y$, $Z$, with $N$ vertices each and $M_1$, $M_2$, $M_3$ edges, respectively. The vertices in $X$, $Y$, $Z$ are respectively called $x_1, x_2, \\dots, x_N$, $y_1, y_2, \\dots, y_N$, $z_1, z_2, \\dots, z_N$. The edges in $X$, $Y$, $Z$ are respectively $(x_{a_i}, x_{b_i})$, $(y_{c_i}, y_{d_i})$, $(z_{e_i}, z_{f_i})$.\n\nBased on $X$, $Y$, $Z$, we will build another undirected graph $W$ with $N^3$ vertices. There are $N^3$ ways to choose a vertex from each of the graphs $X$, $Y$, $Z$. Each of these choices corresponds to the vertices in $W$ one-to-one. Let $(x_i, y_j, z_k)$ denote the vertex in $W$ corresponding to the choice of $x_i, y_j, z_k$.\n\nWe will span edges in $W$ as follows:\n\n- For each edge $(x_u, x_v)$ in $X$ and each $w, l$, span an edge between $(x_u, y_w, z_l)$ and $(x_v, y_w, z_l)$.\n- For each edge $(y_u, y_v)$ in $Y$ and each $w, l$, span an edge between $(x_w, y_u, z_l)$ and $(x_w, y_v, z_l)$.\n- For each edge $(z_u, z_v)$ in $Z$ and each $w, l$, span an edge between $(x_w, y_l, z_u)$ and $(x_w, y_l, z_v)$.\n\nThen, let the weight of the vertex $(x_i, y_j, z_k)$ in $W$ be $1,000,000,000,000,000,000^{(i +j + k)} = 10^{18(i + j + k)}$. Find the maximum possible total weight of the vertices in an [independent set](https://en.wikipedia.org/wiki/Independent_set_(graph_theory)) in $W$, and print that total weight modulo $998,244,353$.\n\n## Constraints\n\n- $2 \\leq N \\leq 100,000$\n- $1 \\leq M_1, M_2, M_3 \\leq 100,000$\n- $1 \\leq a_i, b_i, c_i, d_i, e_i, f_i \\leq N$\n- $X$, $Y$, and $Z$ are simple, that is, they have no self-loops and no multiple edges.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nM_1\na_1 b_1\na_2 b_2\n\\vdots\na_{M_1} b_{M_1}\nM_2\nc_1 d_1\nc_2 d_2\n\\vdots\nc_{M_2} d_{M_2}\nM_3\ne_1 f_1\ne_2 f_2\n\\vdots\ne_{M_3} f_{M_3}\n```\n\n## Output\n\nPrint the maximum possible total weight of an independent set in $W$, modulo $998,244,353$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定三个各有 $N$ 个顶点的简单无向图 $X$、$Y$、$Z$，它们分别有 $M_1$、$M_2$、$M_3$ 条边。图 $X$、$Y$、$Z$ 中的顶点分别称为 $x_1, x_2, \\dots, x_N$、$y_1, y_2, \\dots, y_N$、$z_1, z_2, \\dots, z_N$。图 $X$、$Y$、$Z$ 中的边分别为 $(x_{a_i}, x_{b_i})$、$(y_{c_i}, y_{d_i})$、$(z_{e_i}, z_{f_i})$。\n\n基于 $X$、$Y$、$Z$，我们将构造另一个含有 $N^3$ 个顶点的无向图 $W$。从图 $X$、$Y$、$Z$ 中各选择一个顶点共有 $N^3$ 种方式。每一种选择都与 $W$ 中的一个顶点一一对应。令 $(x_i, y_j, z_k)$ 表示 $W$ 中与选择 $x_i$、$y_j$、$z_k$ 相对应的顶点。\n\n我们将按照以下方式在 $W$ 中添加边：\n\n- 对于 $X$ 中的每条边 $(x_u, x_v)$ 以及每一对 $w, l$，在 $(x_u, y_w, z_l)$ 与 $(x_v, y_w, z_l)$ 之间添加一条边。\n- 对于 $Y$ 中的每条边 $(y_u, y_v)$ 以及每一对 $w, l$，在 $(x_w, y_u, z_l)$ 与 $(x_w, y_v, z_l)$ 之间添加一条边。\n- 对于 $Z$ 中的每条边 $(z_u, z_v)$ 以及每一对 $w, l$，在 $(x_w, y_l, z_u)$ 与 $(x_w, y_l, z_v)$ 之间添加一条边。\n\n然后，令 $W$ 中顶点 $(x_i, y_j, z_k)$ 的权值为 $1,000,000,000,000,000,000^{(i +j + k)} = 10^{18(i + j + k)}$。求 $W$ 的一个[独立集](https://en.wikipedia.org/wiki/Independent_set_(graph_theory))中顶点权值之和的最大值，并输出该总权值对 $998,244,353$ 取模后的结果。\n\n## 约束条件\n\n- $2 \\leq N \\leq 100,000$\n- $1 \\leq M_1, M_2, M_3 \\leq 100,000$\n- $1 \\leq a_i, b_i, c_i, d_i, e_i, f_i \\leq N$\n- $X$、$Y$、$Z$ 均为简单图，即不含自环和重边。\n\n## 输入格式\n\n输入通过标准输入给出，格式如下：\n\n```\nN\nM_1\na_1 b_1\na_2 b_2\n\\vdots\na_{M_1} b_{M_1}\nM_2\nc_1 d_1\nc_2 d_2\n\\vdots\nc_{M_2} d_{M_2}\nM_3\ne_1 f_1\ne_2 f_2\n\\vdots\ne_{M_3} f_{M_3}\n```\n\n## 输出格式\n\n输出 $W$ 的一个独立集中顶点权值之和的最大值对 $998,244,353$ 取模后的结果。",
   "samples": [
     {
       "input": "2\n1\n1 2\n1\n1 2\n1\n1 2\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:14:14.027Z"
+  "fetchedAt": "2026-10-30T22:14:14.027Z",
+  "translatedAt": "2026-11-04T04:40:07.380+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 477,
   "index": "E",
   "title": "Dreamoon and Notepad",
-  "titleZh": null,
+  "titleZh": "Dreamoon 与记事本",
   "url": "https://codeforces.com/contest/477/problem/E",
   "difficulty": 3100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3500,
   "memoryLimitMb": 256,
   "statementMd": "Dreamoon has just created a document of hard problems using notepad.exe. The document consists of $*n*$ lines of text, $*a*_{*i*}$ denotes the length of the $*i*$-th line. He now wants to know what is the fastest way to move the cursor around because the document is really long.\n\nLet $(*r*, *c*)$ be a current cursor position, where $*r*$ is row number and $*c*$ is position of cursor in the row. We have $1 ≤ *r* ≤ *n*$ and $0 ≤ *c* ≤ *a*_{*r*}$.\n\nWe can use following six operations in notepad.exe to move our cursor assuming the current cursor position is at $(*r*, *c*)$:\n\n1. up key: the new cursor position $(*nr*, *nc*) = (*max*(*r* - 1, 1), *min*(*a*_{*nr*}, *c*))$\n2. down key: the new cursor position $(*nr*, *nc*) = (*min*(*r* + 1, *n*), *min*(*a*_{*nr*}, *c*))$\n3. left key: the new cursor position $(*nr*, *nc*) = (*r*, *max*(0, *c* - 1))$\n4. right key: the new cursor position $(*nr*, *nc*) = (*r*, *min*(*a*_{*nr*}, *c* + 1))$\n5. HOME key: the new cursor position $(*nr*, *nc*) = (*r*, 0)$\n6. END key: the new cursor position $(*nr*, *nc*) = (*r*, *a*_{*r*})$\n\nYou're given the document description ($*n*$ and sequence $*a*_{*i*}$) and $*q*$ queries from Dreamoon. Each query asks what minimal number of key presses is needed to move the cursor from $(*r*_{1}, *c*_{1})$ to $(*r*_{2}, *c*_{2})$.\n\n## Input\n\nThe first line contains an integer $*n*(1 ≤ *n* ≤ 400, 000)$ — the number of lines of text.\n\nThe second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}(1 ≤ *a*_{*i*} ≤ 10^{8})$.\n\nThe third line contains an integer $*q*(1 ≤ *q* ≤ 400, 000)$.\n\nEach of the next $*q*$ lines contains four integers $*r*_{1}, *c*_{1}, *r*_{2}, *c*_{2}$ representing a query ($1 ≤ *r*_{1}, *r*_{2} ≤ *n*, 0 ≤ *c*_{1} ≤ *a*_{*r*1}, 0 ≤ *c*_{2} ≤ *a*_{*r*2}$).\n\n## Output\n\nFor each query print the result of the query.\n\n## Note\n\nIn the first sample, the first query can be solved with keys: HOME, right.\n\nThe second query can be solved with keys: down, down, down, END, down.\n\nThe third query can be solved with keys: down, END, down.\n\nThe fourth query can be solved with keys: END, down.",
-  "statementZhMd": null,
+  "statementZhMd": "Dreamoon 刚刚使用 notepad.exe 创建了一份由难题组成的文档。该文档包含 $*n*$ 行文本，$*a*_{*i*}$ 表示第 $*i*$ 行的长度。现在，他想知道在这份很长的文档中移动光标的最快方法。\n\n设 $(*r*, *c*)$ 为当前光标位置，其中 $*r*$ 是行号，$*c*$ 是光标在该行中的位置。我们有 $1 ≤ *r* ≤ *n*$ 且 $0 ≤ *c* ≤ *a*_{*r*}$。\n\n假设当前光标位置为 $(*r*, *c*)$，我们可以使用 notepad.exe 中的以下六种操作来移动光标：\n\n1. 上方向键：新的光标位置 $(*nr*, *nc*) = (*max*(*r* - 1, 1), *min*(*a*_{*nr*}, *c*))$\n2. 下方向键：新的光标位置 $(*nr*, *nc*) = (*min*(*r* + 1, *n*), *min*(*a*_{*nr*}, *c*))$\n3. 左方向键：新的光标位置 $(*nr*, *nc*) = (*r*, *max*(0, *c* - 1))$\n4. 右方向键：新的光标位置 $(*nr*, *nc*) = (*r*, *min*(*a*_{*nr*}, *c* + 1))$\n5. HOME 键：新的光标位置 $(*nr*, *nc*) = (*r*, 0)$\n6. END 键：新的光标位置 $(*nr*, *nc*) = (*r*, *a*_{*r*})$\n\n给定文档描述（$*n*$ 和序列 $*a*_{*i*}$）以及 Dreamoon 的 $*q*$ 次询问。每次询问要求计算：将光标从 $(*r*_{1}, *c*_{1})$ 移动到 $(*r*_{2}, *c*_{2})$ 所需的最少按键次数。\n\n## 输入格式\n\n第一行包含一个整数 $*n*(1 ≤ *n* ≤ 400, 000)$，表示文本的行数。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}(1 ≤ *a*_{*i*} ≤ 10^{8})$。\n\n第三行包含一个整数 $*q*(1 ≤ *q* ≤ 400, 000)$。\n\n接下来的 $*q*$ 行中，每行包含四个整数 $*r*_{1}, *c*_{1}, *r*_{2}, *c*_{2}$，表示一次询问（$1 ≤ *r*_{1}, *r*_{2} ≤ *n*, 0 ≤ *c*_{1} ≤ *a*_{*r*1}, 0 ≤ *c*_{2} ≤ *a*_{*r*2}$）。\n\n## 输出格式\n\n对于每次询问，输出询问的答案。\n\n## 说明\n\n在第一个样例中，第一次询问可以通过以下按键完成：HOME、右方向键。\n\n第二次询问可以通过以下按键完成：下方向键、下方向键、下方向键、END、下方向键。\n\n第三次询问可以通过以下按键完成：下方向键、END、下方向键。\n\n第四次询问可以通过以下按键完成：END、下方向键。",
   "samples": [
     {
       "input": "9\n1 3 5 3 1 3 5 3 1\n4\n3 5 3 1\n3 3 7 3\n1 0 3 3\n6 0 7 3\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:37:52.201Z"
+  "fetchedAt": "2026-10-31T01:37:52.201Z",
+  "translatedAt": "2026-11-04T07:03:58.790+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

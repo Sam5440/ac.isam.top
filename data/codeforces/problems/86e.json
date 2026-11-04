@@ -4,7 +4,7 @@
   "contestId": 86,
   "index": "E",
   "title": "Long sequence",
-  "titleZh": null,
+  "titleZh": "长序列",
   "url": "https://codeforces.com/contest/86/problem/E",
   "difficulty": 2700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A sequence $*a*_{0}, *a*_{1}, ...$ is called a *recurrent binary sequence*, if each term $*a*_{*i*}$ $(*i* = 0, 1, ...)$ is equal to 0 or 1 and there exist coefficients ![image](https://espresso.codeforces.com/2cdbe5188f89f0cd5a6bb906a85007cdc9ecda4d.png) such that\n\n$*a*_{*n*} = *c*_{1}·*a*_{*n* - 1} + *c*_{2}·*a*_{*n* - 2} + ... + *c*_{*k*}·*a*_{*n* - *k*} (*mod* 2),$\n\nfor all\n\n*n* ≥ *k*\n\n. Assume that not all of\n\n*c*<sub>*i*</sub>\n\nare zeros.\n\nNote that such a sequence can be uniquely recovered from any $*k*$-tuple ${*a*_{*s*}, *a*_{*s* + 1}, ..., *a*_{*s* + *k* - 1}}$ and so it is periodic. Moreover, if a $*k*$-tuple contains only zeros, then the sequence contains only zeros, so this case is not very interesting. Otherwise the minimal period of the sequence is not greater than $2^{*k*} - 1$, as $*k*$-tuple determines next element, and there are $2^{*k*} - 1$ non-zero $*k*$-tuples. Let us call a sequence *long* if its minimal period is exactly $2^{*k*} - 1$. Your task is to find a long sequence for a given $*k*$, if there is any.\n\n## Input\n\nInput contains a single integer $*k*$ ($2 ≤ *k* ≤ 50$).\n\n## Output\n\nIf there is no long sequence for a given $*k*$, output \"-1\" (without quotes). Otherwise the first line of the output should contain $*k*$ integer numbers: $*c*_{1}, *c*_{2}, ..., *c*_{*k*}$ (coefficients). The second line should contain first $*k*$ elements of the sequence: $*a*_{0}, *a*_{1}, ..., *a*_{*k* - 1}$. All of them (elements and coefficients) should be equal to 0 or 1, and at least one $*c*_{*i*}$ has to be equal to 1.\n\nIf there are several solutions, output any.\n\n## Note\n\n1. In the first sample: $*c*_{1} = 1$, $*c*_{2} = 1$, so $*a*_{*n*} = *a*_{*n* - 1} + *a*_{*n* - 2} (*mod* 2)$. Thus the sequence will be:\n\n![image](https://espresso.codeforces.com/9e607bb053ab75d930dbe37f56aad04291e5b61e.png)\n\nso its period equals $3 = 2^{2} - 1$.\n\n2. In the second sample: $*c*_{1} = 0$, $*c*_{2} = 1$, $*c*_{3} = 1$, so $*a*_{*n*} = *a*_{*n* - 2} + *a*_{*n* - 3} (*mod* 2)$. Thus our sequence is:\n\n![image](https://espresso.codeforces.com/9358c328cb7a8b393aa2c72d363198b6b799839e.png)\n\nand its period equals $7 = 2^{3} - 1$.\n\nPeriods are colored.",
-  "statementZhMd": null,
+  "statementZhMd": "一个序列 $*a*_{0}, *a*_{1}, ...$ 被称为*递归二进制序列*，当且仅当其中每一项 $*a*_{*i*}$（$*i* = 0, 1, ...$）等于 0 或 1，并且存在系数 ![image](https://espresso.codeforces.com/2cdbe5188f89f0cd5a6bb906a85007cdc9ecda4d.png)，使得\n\n$*a*_{*n*} = *c*_{1}·*a*_{*n* - 1} + *c*_{2}·*a*_{*n* - 2} + ... + *c*_{*k*}·*a*_{*n* - *k*} (*mod* 2),$\n\n对所有\n\n*n* ≥ *k*\n\n均成立。假设并非所有的\n\n*c*<sub>*i*</sub>\n\n都为 0。\n\n注意，这样的序列可以由任意一个 $*k*$ 元组 ${*a*_{*s*}, *a*_{*s* + 1}, ..., *a*_{*s* + *k* - 1}}$ 唯一恢复，因此它是周期性的。此外，如果一个 $*k*$ 元组只包含 0，那么整个序列也只包含 0，因此这种情况并不有趣。否则，由于 $*k*$ 元组决定了下一个元素，而非零的 $*k*$ 元组共有 $2^{*k*} - 1$ 个，所以该序列的最小周期不超过 $2^{*k*} - 1$。如果一个序列的最小周期恰好为 $2^{*k*} - 1$，则称其为*长序列*。你的任务是对于给定的 $*k*$，找出一个长序列（如果存在）。\n\n## 输入格式\n\n输入包含一个整数 $*k*$（$2 ≤ *k* ≤ 50$）。\n\n## 输出格式\n\n如果给定的 $*k*$ 不存在长序列，输出“-1”（不含引号）。否则，输出的第一行应包含 $*k*$ 个整数：$*c*_{1}, *c*_{2}, ..., *c*_{*k*}$（系数）。第二行应包含该序列的前 $*k*$ 个元素：$*a*_{0}, *a*_{1}, ..., *a*_{*k* - 1}$。所有这些数（元素和系数）都应为 0 或 1，并且至少有一个 $*c*_{*i*}$ 等于 1。\n\n如果有多个解，输出任意一个即可。\n\n## 说明\n\n1. 在第一个样例中：$*c*_{1} = 1$，$*c*_{2} = 1$，因此 $*a*_{*n*} = *a*_{*n* - 1} + *a*_{*n* - 2} (*mod* 2)$。因此该序列为：\n\n![image](https://espresso.codeforces.com/9e607bb053ab75d930dbe37f56aad04291e5b61e.png)\n\n所以其周期等于 $3 = 2^{2} - 1$。\n\n2. 在第二个样例中：$*c*_{1} = 0$，$*c*_{2} = 1$，$*c*_{3} = 1$，因此 $*a*_{*n*} = *a*_{*n* - 2} + *a*_{*n* - 3} (*mod* 2)$。因此该序列为：\n\n![image](https://espresso.codeforces.com/9358c328cb7a8b393aa2c72d363198b6b799839e.png)\n\n其周期等于 $7 = 2^{3} - 1$。\n\n周期部分已用颜色标出。",
   "samples": [
     {
       "input": "2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:44:02.556Z"
+  "fetchedAt": "2026-10-31T02:44:02.556Z",
+  "translatedAt": "2026-11-04T07:52:11.471+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

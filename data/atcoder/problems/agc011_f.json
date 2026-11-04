@@ -4,7 +4,7 @@
   "contestId": "agc011",
   "index": "F",
   "title": "Train Service Planning",
-  "titleZh": null,
+  "titleZh": "列车运行计划",
   "url": "https://atcoder.jp/contests/agc011/tasks/agc011_f",
   "difficulty": 3863,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "## Problem Statement\n\nThere is a railroad in Takahashi Kingdom. The railroad consists of $N$ sections, numbered $1$, $2$, ..., $N$, and $N+1$ stations, numbered $0$, $1$, ..., $N$. Section $i$ directly connects the stations $i-1$ and $i$. A train takes exactly $A_i$ minutes to run through section $i$, regardless of direction. Each of the $N$ sections is either single-tracked over the whole length, or double-tracked over the whole length. If $B_i = 1$, section $i$ is single-tracked; if $B_i = 2$, section $i$ is double-tracked. Two trains running in opposite directions can cross each other on a double-tracked section, but not on a single-tracked section. Trains can also cross each other at a station.\n\nSnuke is creating the timetable for this railroad. In this timetable, the trains on the railroad run every $K$ minutes, as shown in the following figure. Here, bold lines represent the positions of trains running on the railroad. (See Sample 1 for clarification.)\n\n![image](https://atcoder.jp/img/agc011/a5c221ce77ab6ee8aee48e75a4e5c969.png)\n\nWhen creating such a timetable, find the minimum sum of the amount of time required for a train to depart station $0$ and reach station $N$, and the amount of time required for a train to depart station $N$ and reach station $0$. It can be proved that, if there exists a timetable satisfying the conditions in this problem, this minimum sum is always an integer.\n\nFormally, the times at which trains arrive and depart must satisfy the following:\n\n- Each train either departs station $0$ and is bound for station $N$, or departs station $N$ and is bound for station $0$.\n- Each train takes exactly $A_i$ minutes to run through section $i$. For example, if a train bound for station $N$ departs station $i-1$ at time $t$, the train arrives at station $i$ exactly at time $t+A_i$.\n- Assume that a train bound for station $N$ arrives at a station at time $s$, and departs the station at time $t$. Then, the next train bound for station $N$ arrives at the station at time $s+K$, and departs the station at time $t+K$. Additionally, the previous train bound for station $N$ arrives at the station at time $s-K$, and departs the station at time $t-K$. This must also be true for trains bound for station $0$.\n- Trains running in opposite directions must not be running on the same single-tracked section (except the stations at both ends) at the same time.\n\n## Constraints\n\n- $1 \\leq N \\leq 100000$\n- $1 \\leq K \\leq 10^9$\n- $1 \\leq A_i \\leq 10^9$\n- $A_i$ is an integer.\n- $B_i$ is either $1$ or $2$.\n\n## Partial Score\n\n- In the test set worth $500$ points, all the sections are single-tracked. That is, $B_i = 1$.\n- In the test set worth another $500$ points, $N \\leq 200$.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN K\nA_1 B_1\nA_2 B_2\n:\nA_N B_N\n```\n\n## Output\n\nPrint an integer representing the minimum sum of the amount of time required for a train to depart station $0$ and reach station $N$, and the amount of time required for a train to depart station $N$ and reach station $0$. If it is impossible to create a timetable satisfying the conditions, print $-1$ instead.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n高桥王国有一条铁路。这条铁路由 $N$ 个区间组成，编号为 $1$、$2$、...、$N$，以及 $N+1$ 个车站组成，编号为 $0$、$1$、...、$N$。区间 $i$ 直接连接车站 $i-1$ 和车站 $i$。列车通过区间 $i$ 恰好需要 $A_i$ 分钟，与行驶方向无关。$N$ 个区间中的每一个，要么全长为单线，要么全长为双线。如果 $B_i = 1$，则区间 $i$ 为单线；如果 $B_i = 2$，则区间 $i$ 为双线。在双线区间上，运行方向相反的两列列车可以交错通过，但在单线区间上不能。列车也可以在车站交错通过。\n\nSnuke 正在为这条铁路制定运行时刻表。在该时刻表中，铁路上的列车每隔 $K$ 分钟运行一次，如下图所示。图中，粗线表示正在铁路上运行的列车的位置。（样例 1 中有进一步说明。）\n\n![image](https://atcoder.jp/img/agc011/a5c221ce77ab6ee8aee48e75a4e5c969.png)\n\n在制定这样的时刻表时，请求出一列从车站 $0$ 出发并到达车站 $N$ 的列车所需时间，与一列从车站 $N$ 出发并到达车站 $0$ 的列车所需时间之和的最小值。可以证明，如果存在满足本题条件的时刻表，则这个最小和总是整数。\n\n形式化地说，列车到达和出发的时间必须满足以下条件：\n\n- 每列列车要么从车站 $0$ 出发并开往车站 $N$，要么从车站 $N$ 出发并开往车站 $0$。\n- 每列列车通过区间 $i$ 恰好需要 $A_i$ 分钟。例如，一列开往车站 $N$ 的列车在时刻 $t$ 从车站 $i-1$ 出发，则它将在恰好 $t+A_i$ 时刻到达车站 $i$。\n- 假设一列开往车站 $N$ 的列车在时刻 $s$ 到达某车站，并在时刻 $t$ 从该车站出发。那么，下一列开往车站 $N$ 的列车将在时刻 $s+K$ 到达该车站，并在时刻 $t+K$ 从该车站出发。此外，上一列开往车站 $N$ 的列车将在时刻 $s-K$ 到达该车站，并在时刻 $t-K$ 从该车站出发。开往车站 $0$ 的列车也必须满足同样的条件。\n- 行驶方向相反的列车不能在同一时刻运行于同一单线区间上（两端的车站除外）。\n\n## 约束条件\n\n- $1 \\leq N \\leq 100000$\n- $1 \\leq K \\leq 10^9$\n- $1 \\leq A_i \\leq 10^9$\n- $A_i$ 是整数。\n- $B_i$ 为 $1$ 或 $2$。\n\n## 部分分\n\n- 在总分为 $500$ 分的测试数据中，所有区间均为单线。也就是说，$B_i = 1$。\n- 在另外总分为 $500$ 分的测试数据中，$N \\leq 200$。\n\n## 输入格式\n\n输入从标准输入中以以下格式给出：\n\n```\nN K\nA_1 B_1\nA_2 B_2\n:\nA_N B_N\n```\n\n## 输出格式\n\n如果无法创建满足条件的时刻表，输出 `-1`；否则，输出一个整数，表示一列从车站 $0$ 出发并到达车站 $N$ 的列车所需时间，与一列从车站 $N$ 出发并到达车站 $0$ 的列车所需时间之和的最小值。",
   "samples": [
     {
       "input": "3 10\n4 1\n3 1\n4 1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:59:15.397Z"
+  "fetchedAt": "2026-10-30T22:59:15.397Z",
+  "translatedAt": "2026-11-04T06:25:20.357+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

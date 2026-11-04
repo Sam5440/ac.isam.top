@@ -4,7 +4,7 @@
   "contestId": 1208,
   "index": "H",
   "title": "Red Blue Tree",
-  "titleZh": null,
+  "titleZh": "红蓝树",
   "url": "https://codeforces.com/contest/1208/problem/H",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree of $n$ nodes. The tree is rooted at node $1$, which is not considered as a leaf regardless of its degree.\n\nEach leaf of the tree has one of the two colors: *red* or *blue*. Leaf node $v$ initially has color $s_{v}$.\n\nThe color of each of the internal nodes (including the root) is determined as follows.\n\n- Let $b$ be the number of *blue* immediate children, and $r$ be the number of *red* immediate children of a given vertex.\n- Then the color of this vertex is *blue* if and only if $b - r \\ge k$, otherwise *red*.\n\nInteger $k$ is a parameter that is same for all the nodes.\n\nYou need to handle the following types of queries:\n\n- `1 v`: print the color of node $v$;\n- `2 v c`: change the color of leaf $v$ to $c$ ($c = 0$ means red, $c = 1$ means blue);\n- `3 h`: update the current value of $k$ to $h$.\n\n## Input\n\nThe first line of the input consists of two integers $n$ and $k$ ($2 \\le n \\le 10^{5}$, $-n \\le k \\le n$) — the number of nodes and the initial parameter $k$.\n\nEach of the next $n - 1$ lines contains two integers $u$ and $v$ ($1 \\le u,v \\le n$), denoting that there is an edge between vertices $u$ and $v$.\n\nThe next line consists of $n$ space separated integers — the initial array $s$ ($-1 \\le s_i \\le 1$). $s_{i} = 0$ means that the color of node $i$ is red. $s_{i} = 1$ means that the color of node $i$ is blue. $s_{i} = -1$ means that the node $i$ is not a leaf.\n\nThe next line contains an integer $q$ ($1 \\le q \\le 10^5$), the number of queries.\n\n$q$ lines follow, each containing a query in one of the following queries:\n\n- `1 v` ($1 \\le v \\le n$): print the color of node $v$;\n- `2 v c` ($1 \\le v \\le n$, $c = 0$ or $c = 1$): change the color of leaf $v$ to $c$ ($c = 0$ means red, $c = 1$ means blue). It is guaranteed that $v$ is a leaf;\n- `3 h` ($-n \\le h \\le n$): update the current value of $k$ to $h$.\n\n## Output\n\nFor each query of the first type, print $0$ if the color of vertex $v$ is red, and $1$ otherwise.\n\n## Note\n\n**Figures:**(i) The initial tree (ii) The tree after the 3rd query (iii) The tree after the 7th query ![image](https://espresso.codeforces.com/2fb201495c9d51088a15e189bda2d109a146d9da.png)",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵有 $n$ 个节点的树。树以节点 $1$ 为根，无论其度数是多少，都不将其视为叶子节点。\n\n树中的每个叶子节点都有两种颜色之一：*红色*或*蓝色*。叶子节点 $v$ 的初始颜色为 $s_{v}$。\n\n每个内部节点（包括根节点）的颜色按照如下规则确定：\n\n- 对于给定的节点，设其直接子节点中*蓝色*节点的数量为 $b$，*红色*节点的数量为 $r$。\n- 当且仅当 $b - r \\ge k$ 时，该节点的颜色为*蓝色*，否则为*红色*。\n\n整数 $k$ 是所有节点共用的参数。\n\n你需要处理以下类型的查询：\n\n- `1 v`：输出节点 $v$ 的颜色；\n- `2 v c`：将叶子节点 $v$ 的颜色修改为 $c$（$c = 0$ 表示红色，$c = 1$ 表示蓝色）；\n- `3 h`：将当前 $k$ 的值修改为 $h$。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 10^{5}$，$-n \\le k \\le n$），分别表示节点数和初始参数 $k$。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n$），表示顶点 $u$ 和 $v$ 之间有一条边。\n\n下一行包含 $n$ 个以空格分隔的整数，即初始数组 $s$（$-1 \\le s_i \\le 1$）。$s_{i} = 0$ 表示节点 $i$ 的颜色为红色，$s_{i} = 1$ 表示节点 $i$ 的颜色为蓝色，$s_{i} = -1$ 表示节点 $i$ 不是叶子节点。\n\n下一行包含一个整数 $q$（$1 \\le q \\le 10^{5}$），表示查询的数量。\n\n接下来的 $q$ 行中，每行包含以下格式之一的查询：\n\n- `1 v`（$1 \\le v \\le n$）：输出节点 $v$ 的颜色；\n- `2 v c`（$1 \\le v \\le n$，$c = 0$ 或 $c = 1$）：将叶子节点 $v$ 的颜色修改为 $c$（$c = 0$ 表示红色，$c = 1$ 表示蓝色）。保证 $v$ 是叶子节点；\n- `3 h`（$-n \\le h \\le n$）：将当前 $k$ 的值修改为 $h$。\n\n## 输出格式\n\n对于每个第一类查询，如果顶点 $v$ 的颜色为红色，输出 $0$；否则输出 $1$。\n\n## 说明\n\n**图示：**(i) 初始树 (ii) 第 3 次查询后的树 (iii) 第 7 次查询后的树 ![image](https://espresso.codeforces.com/2fb201495c9d51088a15e189bda2d109a146d9da.png)",
   "samples": [
     {
       "input": "5 2\n1 2\n1 3\n2 4\n2 5\n-1 -1 0 1 0\n9\n1 1\n1 2\n3 -2\n1 1\n1 2\n3 1\n2 5 1\n1 1\n1 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:05:43.815Z"
+  "fetchedAt": "2026-10-31T00:05:43.815Z",
+  "translatedAt": "2026-11-04T05:09:46.500+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

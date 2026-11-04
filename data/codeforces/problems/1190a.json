@@ -4,7 +4,7 @@
   "contestId": 1190,
   "index": "A",
   "title": "Tokitsukaze and Discard Items",
-  "titleZh": null,
+  "titleZh": "Tokitsukaze 与丢弃物品",
   "url": "https://codeforces.com/contest/1190/problem/A",
   "difficulty": 1400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Recently, Tokitsukaze found an interesting game. Tokitsukaze had $n$ items at the beginning of this game. However, she thought there were too many items, so now she wants to discard $m$ ($1 \\le m \\le n$) special items of them.\n\nThese $n$ items are marked with indices from $1$ to $n$. In the beginning, the item with index $i$ is placed on the $i$-th position. Items are divided into several pages orderly, such that each page contains exactly $k$ positions and the last positions on the last page may be left empty.\n\nTokitsukaze would do the following operation: focus on the first special page that contains at least one special item, and at one time, Tokitsukaze would discard all special items on this page. After an item is discarded or moved, its old position would be empty, and then the item below it, if exists, would move up to this empty position. The movement may bring many items forward and even into previous pages, so Tokitsukaze would keep waiting until all the items stop moving, and then do the operation (i.e. check the special page and discard the special items) repeatedly until there is no item need to be discarded.\n\n![image](https://espresso.codeforces.com/b0630de2a7894beb259b030394db5c53e1ad83d3.png) Consider the first example from the statement: $n=10$, $m=4$, $k=5$, $p=[3, 5, 7, 10]$. The are two pages. Initially, the first page is *special* (since it is the first page containing a special item). So Tokitsukaze discards the special items with indices $3$ and $5$. After, the first page remains to be special. It contains $[1, 2, 4, 6, 7]$, Tokitsukaze discards the special item with index $7$. After, the second page is special (since it is the first page containing a special item). It contains $[9, 10]$, Tokitsukaze discards the special item with index $10$.\n\nTokitsukaze wants to know the number of operations she would do in total.\n\n## Input\n\nThe first line contains three integers $n$, $m$ and $k$ ($1 \\le n \\le 10^{18}$, $1 \\le m \\le 10^5$, $1 \\le m, k \\le n$) — the number of items, the number of special items to be discarded and the number of positions in each page.\n\nThe second line contains $m$ distinct integers $p_1, p_2, \\ldots, p_m$ ($1 \\le p_1 \\lt p_2 \\lt \\ldots \\lt p_m \\le n$) — the indices of special items which should be discarded.\n\n## Output\n\nPrint a single integer — the number of operations that Tokitsukaze would do in total.\n\n## Note\n\nFor the first example:\n\n- In the first operation, Tokitsukaze would focus on the first page $[1, 2, 3, 4, 5]$ and discard items with indices $3$ and $5$;\n- In the second operation, Tokitsukaze would focus on the first page $[1, 2, 4, 6, 7]$ and discard item with index $7$;\n- In the third operation, Tokitsukaze would focus on the second page $[9, 10]$ and discard item with index $10$.\n\nFor the second example, Tokitsukaze would focus on the second page $[6, 7, 8, 9, 10]$ and discard all special items at once.",
-  "statementZhMd": null,
+  "statementZhMd": "Tokitsukaze 最近发现了一个有趣的游戏。游戏开始时，Tokitsukaze 有 $n$ 个物品。然而，她认为物品太多了，所以现在她想要丢弃其中的 $m$ 个（$1 \\le m \\le n$）特殊物品。\n\n这 $n$ 个物品的编号从 $1$ 到 $n$。开始时，编号为 $i$ 的物品位于第 $i$ 个位置。物品按照顺序被分成若干页，使得每页恰好包含 $k$ 个位置，最后一页的末尾位置可能为空。\n\nTokitsukaze 将进行如下操作：找到第一个至少包含一个特殊物品的特殊页面，并在一次操作中丢弃该页面上的所有特殊物品。当一个物品被丢弃或移动后，它原来的位置将变为空，随后它下方的物品（如果存在）会向上移动到这个空位置。移动可能会使许多物品向前移动，甚至移动到前面的页面中，因此 Tokitsukaze 会一直等待，直到所有物品停止移动，然后重复进行操作（即检查特殊页面并丢弃特殊物品），直到不再有需要丢弃的物品。\n\n![image](https://espresso.codeforces.com/b0630de2a7894beb259b030394db5c53e1ad83d3.png) 考虑题面中的第一个样例：$n=10$，$m=4$，$k=5$，$p=[3, 5, 7, 10]$。共有两页。开始时，第一页是*特殊的*（因为它是第一个包含特殊物品的页面）。因此，Tokitsukaze 丢弃编号为 $3$ 和 $5$ 的特殊物品。之后，第一页仍然是特殊的。它包含物品 $[1, 2, 4, 6, 7]$，Tokitsukaze 丢弃编号为 $7$ 的特殊物品。之后，第二页是特殊的（因为它是第一个包含特殊物品的页面）。它包含物品 $[9, 10]$，Tokitsukaze 丢弃编号为 $10$ 的特殊物品。\n\nTokitsukaze 想知道她总共需要进行多少次操作。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$ 和 $k$（$1 \\le n \\le 10^{18}$，$1 \\le m \\le 10^5$，$1 \\le m, k \\le n$）——物品的数量、需要丢弃的特殊物品数量以及每页的位置数量。\n\n第二行包含 $m$ 个互不相同的整数 $p_1, p_2, \\ldots, p_m$（$1 \\le p_1 \\lt p_2 \\lt \\ldots \\lt p_m \\le n$）——需要丢弃的特殊物品的编号。\n\n## 输出格式\n\n输出一个整数——Tokitsukaze 总共需要进行的操作次数。\n\n## 说明\n\n对于第一个样例：\n\n- 在第一次操作中，Tokitsukaze 处理第一页 $[1, 2, 3, 4, 5]$，并丢弃编号为 $3$ 和 $5$ 的物品；\n- 在第二次操作中，Tokitsukaze 处理第一页 $[1, 2, 4, 6, 7]$，并丢弃编号为 $7$ 的物品；\n- 在第三次操作中，Tokitsukaze 处理第二页 $[9, 10]$，并丢弃编号为 $10$ 的物品。\n\n对于第二个样例，Tokitsukaze 处理第二页 $[6, 7, 8, 9, 10]$，并一次性丢弃其中所有的特殊物品。",
   "samples": [
     {
       "input": "10 4 5\n3 5 7 10\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:08:20.763Z"
+  "fetchedAt": "2026-10-31T00:08:20.763Z",
+  "translatedAt": "2026-11-04T05:05:15.405+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

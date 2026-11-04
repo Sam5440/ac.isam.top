@@ -4,7 +4,7 @@
   "contestId": 1097,
   "index": "F",
   "title": "Alex and a TV Show",
-  "titleZh": null,
+  "titleZh": "Alex 和电视节目",
   "url": "https://codeforces.com/contest/1097/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Alex decided to try his luck in TV shows. He once went to the quiz named \"*What's That Word?!*\". After perfectly answering the questions \"*How is a pseudonym commonly referred to in the Internet?*\" (\"Um... a *nick*?\"), *\"After which famous inventor we name the unit of the magnetic field strength?\"* (\"Um... Nikola Tesla?\") and \"*Which rock band performs \"How You Remind Me\"?*\" (\"Um... Nickelback?\"), he decided to apply to a little bit more difficult TV show: \"What's in This Multiset?!\".\n\nThe rules of this TV show are as follows: there are $n$ multisets numbered from $1$ to $n$. Each of them is initially empty. Then, $q$ events happen; each of them is in one of the four possible types:\n\n- `1 x v` — set the $x$-th multiset to a singleton $\\{v\\}$.\n- `2 x y z` — set the $x$-th multiset to a union of the $y$-th and the $z$-th multiset. For example: $\\{1, 3\\}\\cup\\{1, 4, 4\\}=\\{1, 1, 3, 4, 4\\}$.\n- `3 x y z` — set the $x$-th multiset to a product of the $y$-th and the $z$-th multiset. The product $A \\times B$ of two multisets $A$, $B$ is defined as $\\{ \\gcd(a, b)\\, \\mid\\, a \\in A,\\, b \\in B \\}$, where $\\gcd(p, q)$ is the greatest common divisor of $p$ and $q$. For example: $\\{2, 2, 3\\} \\times \\{1, 4, 6\\}=\\{1, 2, 2, 1, 2, 2, 1, 1, 3\\}$.\n- `4 x v` — the participant is asked how many times number $v$ occurs in the $x$-th multiset. As the quiz turned out to be too hard in the past, participants should now give the answers **modulo $2$ only**.\n\nNote, that $x$, $y$ and $z$ described above are not necessarily different. In events of types $2$ and $3$, the sum or the product is computed first, and then the assignment is performed.\n\nAlex is confused by the complicated rules of the show. Can you help him answer the requests of the $4$-th type?\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\leq n \\leq 10^5$, $1 \\leq q \\leq 10^6$) — the number of multisets and the number of events.\n\nEach of the following $q$ lines describes next event in the format given in statement. It's guaranteed that $1 \\leq x,y,z \\leq n$ and $1 \\leq v \\leq 7000$ always holds.\n\nIt's guaranteed that there will be at least one event of the $4$-th type.\n\n## Output\n\nPrint a string which consists of digits $0$ and $1$ only, and has length equal to the number of events of the $4$-th type. The $i$-th digit of the string should be equal to the answer for the $i$-th query of the $4$-th type.\n\n## Note\n\nHere is how the multisets look in the example test after each of the events; $i$ is the number of queries processed so far:\n\n![image](https://espresso.codeforces.com/5097cf33b6b26d599ebeaecec3d1804b33196ed2.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Alex 决定在电视节目中碰碰运气。他曾经参加过一个名为“*这是什么词？！*”的问答节目。在完美回答了“*在互联网中，化名通常被称为什么？*”（“呃……是 *nick*？”）、*“磁场强度的单位是以哪位著名发明家的名字命名的？”*（“呃……尼古拉·特斯拉？”）以及“*哪支摇滚乐队演唱了《How You Remind Me》？*”（“呃……Nickelback？”）之后，他决定报名参加一个稍微难一些的电视节目：“这是什么多重集合？！”\n\n这个电视节目的规则如下：有 $n$ 个编号从 $1$ 到 $n$ 的多重集合。它们最初都是空的。随后会发生 $q$ 个事件，每个事件属于以下四种类型之一：\n\n- `1 x v` — 将第 $x$ 个多重集合设置为单元素多重集合 $\\{v\\}$。\n- `2 x y z` — 将第 $x$ 个多重集合设置为第 $y$ 个和第 $z$ 个多重集合的并集。例如：$\\{1, 3\\}\\cup\\{1, 4, 4\\}=\\{1, 1, 3, 4, 4\\}$。\n- `3 x y z` — 将第 $x$ 个多重集合设置为第 $y$ 个和第 $z$ 个多重集合的乘积。两个多重集合 $A$、$B$ 的乘积 $A \\times B$ 定义为 $\\{ \\gcd(a, b)\\, \\mid\\, a \\in A,\\, b \\in B \\}$，其中 $\\gcd(p, q)$ 是 $p$ 和 $q$ 的最大公约数。例如：$\\{2, 2, 3\\} \\times \\{1, 4, 6\\}=\\{1, 2, 2, 1, 2, 2, 1, 1, 3\\}$。\n- `4 x v` — 询问数字 $v$ 在第 $x$ 个多重集合中出现了多少次。由于过去的题目结果证明过于困难，现在参与者只需给出答案对 **$2$ 取模** 的结果。\n\n注意，上述操作中的 $x$、$y$ 和 $z$ 不一定互不相同。在类型 $2$ 和 $3$ 的事件中，会先计算并集或乘积，然后再进行赋值。\n\nAlex 被这个节目的复杂规则弄糊涂了。你能帮助他回答类型 $4$ 的请求吗？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\leq n \\leq 10^5$，$1 \\leq q \\leq 10^6$），分别表示多重集合的数量和事件的数量。\n\n接下来的 $q$ 行中的每一行按照题面所述的格式描述一个事件。保证始终满足 $1 \\leq x,y,z \\leq n$ 且 $1 \\leq v \\leq 7000$。\n\n保证至少存在一个类型 $4$ 的事件。\n\n## 输出格式\n\n输出一个仅由数字 $0$ 和 $1$ 组成的字符串，其长度等于类型 $4$ 事件的数量。字符串的第 $i$ 个字符应等于第 $i$ 个类型 $4$ 查询的答案。\n\n## 说明\n\n下面展示了样例测试中每个事件执行后多重集合的状态；$i$ 表示截至目前已经处理的查询数量：\n\n![image](https://espresso.codeforces.com/5097cf33b6b26d599ebeaecec3d1804b33196ed2.png)",
   "samples": [
     {
       "input": "4 13\n1 1 1\n1 2 4\n1 3 6\n4 4 4\n1 4 4\n2 2 1 2\n2 3 3 4\n4 4 4\n3 2 2 3\n4 2 1\n4 2 2\n4 2 3\n4 2 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:18:15.776Z"
+  "fetchedAt": "2026-10-31T00:18:15.776Z",
+  "translatedAt": "2026-11-04T05:32:45.010+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

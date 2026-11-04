@@ -4,7 +4,7 @@
   "contestId": 76,
   "index": "C",
   "title": "Mutation",
-  "titleZh": null,
+  "titleZh": "突变",
   "url": "https://codeforces.com/contest/76/problem/C",
   "difficulty": 2700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Scientists of planet Olympia are conducting an experiment in mutation of primitive organisms. Genome of organism from this planet can be represented as a string of the first $*K*$ capital English letters. For each pair of types of genes they assigned $*a*_{*i*, *j*}$ — a risk of disease occurence in the organism provided that genes of these types are adjacent in the genome, where $*i*$ — the 1-based index of the first gene and $*j*$ — the index of the second gene. The gene 'A' has index 1, 'B' has index 2 and so on. For example, $*a*_{3, 2}$ stands for the risk of 'CB' fragment. Risk of disease occurence in the organism is equal to the sum of risks for each pair of adjacent genes in the genome.\n\nScientists have already obtained a base organism. Some new organisms can be obtained by mutation of this organism. Mutation involves removal of all genes of some particular types. Such removal increases the total risk of disease occurence additionally. For each type of genes scientists determined $*t*_{*i*}$ — the increasement of the total risk of disease occurence provided by removal of all genes having type with index $*i*$. For example, $*t*_{4}$ stands for the value of additional total risk increasement in case of removing all the 'D' genes.\n\nScientists want to find a number of different organisms that can be obtained from the given one which have the total risk of disease occurence not greater than $*T*$. They can use only the process of mutation described above. Two organisms are considered different if strings representing their genomes are different. Genome should contain at least one gene.\n\n## Input\n\nThe first line of the input contains three integer numbers $*N*$ ($1 ≤ *N* ≤ 200 000$) — length of the genome of base organism, $*K*$ ($1 ≤ *K* ≤ 22$) — the maximal index of gene type in the genome and $*T*$ ($1 ≤ *T* ≤ 2·10^{9}$) — maximal allowable risk of disease occurence. The second line contains the genome of the given organism. It is a string of the first $*K*$ capital English letters having length $*N*$.\n\nThe third line contains $*K*$ numbers $*t*_{1}, *t*_{2}, ..., *t*_{*K*}$, where $*t*_{*i*}$ is additional risk value of disease occurence provided by removing of all genes of the $*i*$-th type.\n\nThe following $*K*$ lines contain the elements of the given matrix $*a*_{*i*, *j*}$. The $*i*$-th line contains $*K*$ numbers. The $*j*$-th number of the $*i*$-th line stands for a risk of disease occurence for the pair of genes, first of which corresponds to the $*i*$-th letter and second of which corresponds to the $*j*$-th letter. The given matrix is **not** necessarily symmetrical.\n\nAll the numbers in the input are integer, non-negative and all of them except $*T*$ are not greater than $10^{9}$. It is guaranteed that the maximal possible risk of organism that can be obtained from the given organism is strictly smaller than $2^{31}$.\n\n## Output\n\nOutput the number of organisms that can be obtained from the base one and which have the total risk of disease occurence not greater than $*T*$.\n\n## Note\n\nExplanation: one can obtain the following organisms (risks are stated in brackets): BACAC (11), ACAC (10), BAA (5), B (6), AA (4).",
-  "statementZhMd": null,
+  "statementZhMd": "科学家们正在对奥林匹亚星球上的原始生物进行基因突变实验。该星球生物的基因组可以表示为由前 $*K*$ 个大写英文字母组成的字符串。对于每一对基因类型，他们定义了 $*a*_{*i*, *j*}$，表示当这两种类型的基因在基因组中相邻时，生物患病的风险，其中 $*i*$ 是第一个基因的编号（从 1 开始），$*j*$ 是第二个基因的编号。基因 `'A'` 的编号为 1，`'B'` 的编号为 2，依此类推。例如，$*a*_{3, 2}$ 表示片段 `'CB'` 所对应的风险。生物患病的风险等于其基因组中每一对相邻基因的风险之和。\n\n科学家们已经获得了一个基础生物。通过对该生物进行突变，可以得到一些新的生物。突变包括移除某一种特定类型的所有基因。这样的移除会额外增加患病的总风险。对于每一种基因类型，科学家们定义了 $*t*_{*i*}$，表示移除所有编号为 $*i*$ 的基因后，患病总风险的增加值。例如，$*t*_{4}$ 表示移除所有 `'D'` 基因时患病总风险的额外增加值。\n\n科学家们希望求出可以从给定基础生物得到的、患病总风险不超过 $*T*$ 的不同生物数量。他们只能使用上述过程进行突变。如果表示两个生物基因组的字符串不同，则认为这两个生物不同。基因组中至少应包含一个基因。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*N*$（$1 ≤ *N* ≤ 200 000$）——基础生物基因组的长度，$*K*$（$1 ≤ *K* ≤ 22$）——基因组中基因类型的最大编号，以及 $*T*$（$1 ≤ *T* ≤ 2·10^{9}$）——允许的最大患病风险。第二行包含给定生物的基因组。它是一个由前 $*K*$ 个大写英文字母组成、长度为 $*N*$ 的字符串。\n\n第三行包含 $*K*$ 个数 $*t*_{1}, *t*_{2}, ..., *t*_{*K}$，其中 $*t*_{*i*}$ 表示移除所有第 $*i*$ 种基因后患病风险的额外增加值。\n\n接下来的 $*K*$ 行包含给定矩阵 $*a*_{*i*, *j*}$ 的元素。第 $*i*$ 行包含 $*K*$ 个数。第 $i$ 行的第 $*j*$ 个数表示一对基因的患病风险，其中第一个基因对应第 $i$ 个字母，第二个基因对应第 $j$ 个字母。给定矩阵**不一定**是对称矩阵。\n\n输入中的所有数均为整数且非负，并且除 $*T*$ 外的所有数均不超过 $10^{9}$。保证从给定生物可以得到的生物的最大风险严格小于 $2^{31}$。\n\n## 输出格式\n\n输出可以从基础生物得到、且患病总风险不超过 $*T*$ 的生物数量。\n\n## 说明\n\n解释：可以得到以下生物（括号内为风险）：BACAC（11）、ACAC（10）、BAA（5）、B（6）、AA（4）。",
   "samples": [
     {
       "input": "5 3 13\nBACAC\n4 1 2\n1 2 3\n2 3 4\n3 4 10\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:16:01.386Z"
+  "fetchedAt": "2026-11-02T20:16:01.386Z",
+  "translatedAt": "2026-11-04T07:56:25.466+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

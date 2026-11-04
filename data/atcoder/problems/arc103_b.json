@@ -4,7 +4,7 @@
   "contestId": "abc111",
   "index": "D",
   "title": "Robot Arms",
-  "titleZh": null,
+  "titleZh": "机械臂",
   "url": "https://atcoder.jp/contests/abc111/tasks/arc103_b",
   "difficulty": 2677,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nSnuke is introducing a **robot arm** with the following properties to his factory:\n\n- The robot arm consists of $m$ **sections** and $m+1$ **joints**. The sections are numbered $1$, $2$, ..., $m$, and the joints are numbered $0$, $1$, ..., $m$. Section $i$ connects Joint $i-1$ and Joint $i$. The length of Section $i$ is $d_i$.\n- For each section, its **mode** can be specified individually. There are four modes: `L`, `R`, `D` and `U`. The mode of a section decides the direction of that section. If we consider the factory as a coordinate plane, the position of Joint $i$ will be determined as follows (we denote its coordinates as $(x_i, y_i)$):\n- $(x_0, y_0) = (0, 0)$.\n  - If the mode of Section $i$ is `L`, $(x_{i}, y_{i}) = (x_{i-1} - d_{i}, y_{i-1})$.\n  - If the mode of Section $i$ is `R`, $(x_{i}, y_{i}) = (x_{i-1} + d_{i}, y_{i-1})$.\n  - If the mode of Section $i$ is `D`, $(x_{i}, y_{i}) = (x_{i-1}, y_{i-1} - d_{i})$.\n  - If the mode of Section $i$ is `U`, $(x_{i}, y_{i}) = (x_{i-1}, y_{i-1} + d_{i})$.\n\nSnuke would like to introduce a robot arm so that the position of Joint $m$ can be matched with all of the $N$ points $(X_1, Y_1), (X_2, Y_2), ..., (X_N, Y_N)$ by properly specifying the modes of the sections. Is this possible? If so, find such a robot arm and how to bring Joint $m$ to each point $(X_j, Y_j)$.\n\n## Constraints\n\n- All values in input are integers.\n- $1 \\leq N \\leq 1000$\n- $-10^9 \\leq X_i \\leq 10^9$\n- $-10^9 \\leq Y_i \\leq 10^9$\n\n## Partial Score\n\n- In the test cases worth $300$ points, $-10 \\leq X_i \\leq 10$ and $-10 \\leq Y_i \\leq 10$ hold.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nX_1 Y_1\nX_2 Y_2\n:\nX_N Y_N\n```\n\n## Output\n\nIf the condition can be satisfied, follow the following format. If the condition cannot be satisfied, print `-1`.\n\n```\nm\nd_1 d_2 ... d_m\nw_1\nw_2\n:\nw_N\n```\n\n$m$ and $d_i$ are the configurations of the robot arm. Refer to the problem statement for what each of them means. Here, $1 \\leq m \\leq 40$ and $1 \\leq d_i \\leq 10^{12}$ must hold. Also, $m$ and $d_i$ must all be integers.\n\n$w_j$ is a string of length $m$ that represents the way to bring Joint $m$ of the robot arm to point $(X_j, Y_j)$. The $i$-th character of $w_j$ should be one of the letters `L`, `R`, `D` and `U`, representing the mode of Section $i$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nSnuke 想要在他的工厂中引入一台具有以下性质的**机械臂**：\n\n- 机械臂由 $m$ 个**部件**和 $m+1$ 个**关节**组成。部件编号为 $1$、$2$、...、$m$，关节编号为 $0$、$1$、...、$m$。部件 $i$ 连接关节 $i-1$ 和关节 $i$。部件 $i$ 的长度为 $d_i$。\n- 每个部件都可以单独指定其**模式**。共有四种模式：`L`、`R`、`D` 和 `U`。部件的模式决定了该部件的方向。将工厂看作一个坐标平面，关节 $i$ 的位置（记其坐标为 $(x_i, y_i)$）将按如下方式确定：\n- $(x_0, y_0) = (0, 0)$。\n  - 如果部件 $i$ 的模式为 `L`，则 $(x_{i}, y_{i}) = (x_{i-1} - d_{i}, y_{i-1})$。\n  - 如果部件 $i$ 的模式为 `R`，则 $(x_{i}, y_{i}) = (x_{i-1} + d_{i}, y_{i-1})$。\n  - 如果部件 $i$ 的模式为 `D`，则 $(x_{i}, y_{i}) = (x_{i-1}, y_{i-1} - d_{i})$。\n  - 如果部件 $i$ 的模式为 `U`，则 $(x_{i}, y_{i}) = (x_{i-1}, y_{i-1} + d_{i})$。\n\nSnuke 希望引入一台机械臂，使得通过适当地指定各部件的模式，关节 $m$ 的位置可以与 $N$ 个点 $(X_1, Y_1), (X_2, Y_2), ..., (X_N, Y_N)$ 中的任意一个重合。这是否可能？如果可能，请构造这样的机械臂，并给出使关节 $m$ 移动到每个点 $(X_j, Y_j)$ 的方法。\n\n## 约束条件\n\n- 输入中的所有值均为整数。\n- $1 \\leq N \\leq 1000$\n- $-10^9 \\leq X_i \\leq 10^9$\n- $-10^9 \\leq Y_i \\leq 10^9$\n\n## 部分分数\n\n- 在价值 $300$ 分的测试数据中，满足 $-10 \\leq X_i \\leq 10$ 且 $-10 \\leq Y_i \\leq 10$。\n\n## 输入格式\n\n从标准输入按以下格式输入：\n\n```\nN\nX_1 Y_1\nX_2 Y_2\n:\nX_N Y_N\n```\n\n## 输出格式\n\n如果可以满足条件，请按照以下格式输出。如果无法满足条件，请输出 `-1`。\n\n```\nm\nd_1 d_2 ... d_m\nw_1\nw_2\n:\nw_N\n```\n\n$m$ 和 $d_i$ 表示机械臂的构造方式。它们各自的含义请参阅题目描述。这里必须满足 $1 \\leq m \\leq 40$ 且 $1 \\leq d_i \\leq 10^{12}$。此外，$m$ 和所有 $d_i$ 都必须为整数。\n\n$w_j$ 是一个长度为 $m$ 的字符串，表示使机械臂的关节 $m$ 移动到点 $(X_j, Y_j)$ 的方法。$w_j$ 的第 $i$ 个字符应为字母 `L`、`R`、`D`、`U` 之一，表示部件 $i$ 的模式。",
   "samples": [
     {
       "input": "3\n-1 0\n0 3\n2 -1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:38:16.641Z"
+  "fetchedAt": "2026-10-30T22:38:16.641Z",
+  "translatedAt": "2026-11-04T05:31:14.128+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

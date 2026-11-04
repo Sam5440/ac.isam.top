@@ -4,7 +4,7 @@
   "contestId": 413,
   "index": "D",
   "title": "2048",
-  "titleZh": null,
+  "titleZh": "2048",
   "url": "https://codeforces.com/contest/413/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "The programmers from the R2 company love playing 2048. One day, they decided to invent their own simplified version of this game — $2^{*k*}$ on a stripe.\n\nImagine an infinite in one direction stripe, consisting of unit squares (the side of each square is equal to the height of the stripe). Each square can either be empty or contain some number.\n\nInitially, all squares are empty. Then at infinity one of the unit squares number 2 or 4 appears. Then the player presses a button once, and the appeared number begins to move towards the beginning of the stripe. Let's assume that some number $*x*$ moves to the beginning of the stripe, then it will stop if:\n\n1. it either gets in the first square of the stripe;\n2. or it is in the square that is preceded by a square with number $*y*$ $(*y* ≠ *x*)$. But if number $*x*$ at some point of time gets to the square with the same number then both numbers add to each other and result in $2*x*$. The new number $2*x*$ continues moving to the beginning of the stripe by the same rules.\n\nAfter the final stop of the number moving process, the infinity gets a new number 2 or 4 and the process repeats. Read the notes to the test samples to better understand the moving strategy.\n\nI guess you've understood that the game progress fully depends on the order in which numbers 2 and 4 appear. Let's look at some sequence of numbers 2 and 4 in the game. We assume that the sequence is *winning* if it results in at least one square getting the number greater or equal than $2^{*k*}$.\n\nThe goal of the game is to make up a winning sequence of $*n*$ numbers. But not everything is so simple, some numbers in the sequence are identified beforehand. You are given a sequence consisting of numbers 0, 2, 4. Count how many ways there are to replace each 0 of the sequence with 2 or 4 to get a winning sequence.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*k*$ $(1 ≤ *n* ≤ 2000; 3 ≤ *k* ≤ 11)$. The next line contains sequence of $*n*$ integers, each of them is either 0, or 2, or 4.\n\n## Output\n\nPrint a single integer — the number of ways to replace zeroes by numbers 2 or 4 to get a winning sequence. As this number can be rather large, print it modulo $1000000007$ $(10^{9} + 7)$.\n\n## Note\n\nConsider the first example. The beginning of the strip will look as follows:\n\n`2` $→$ `4` $→$ `8` $→$ `8 2` $→$ `8 4` $→$ `8 4 2` $→$ `16`.\n\nTo better understand the game, you can see the original game on `http://gabrielecirulli.github.io/2048/`. Please note that the game that is described on the strip is slightly different from the original game (when the two numbers add up in the original game, they do not keep moving). Be careful, the game is addictive, there isn't much time for the contest!",
-  "statementZhMd": null,
+  "statementZhMd": "程序员们来自 R2 公司，他们喜欢玩 2048。有一天，他们决定发明这个游戏的简化版本——$2^{*k*}$ on a stripe。\n\n想象一条向一个方向无限延伸的条带，它由单位方格组成（每个方格的边长等于条带的高度）。每个方格要么为空，要么包含某个数字。\n\n初始时，所有方格都是空的。然后，在条带的无限远端会出现数字 2 或 4。接着，玩家按下一次按钮，出现的数字便开始向条带的起点移动。假设某个数字 $*x*$ 向条带起点移动，那么它会在以下情况下停止：\n\n1. 它进入条带的第一个方格；\n2. 或者它位于一个方格中，而该方格前面紧邻着一个包含数字 $*y*$ $(*y* ≠ *x*)$ 的方格。但如果数字 $*x*$ 在某个时刻进入了一个包含相同数字的方格，那么两个数字会相加，得到 $2*x*$。新的数字 $2*x*$ 会按照相同的规则继续向条带起点移动。\n\n数字移动过程最终停止后，条带的无限远端会再次出现一个数字 2 或 4，然后重复上述过程。请阅读样例的说明，以更好地理解数字的移动策略。\n\n相信你已经明白，游戏的进行过程完全取决于数字 2 和 4 出现的顺序。现在考虑游戏中的某个由数字 2 和 4 组成的序列。如果该序列最终使至少一个方格中的数字大于或等于 $2^{*k*}$，我们就称这个序列是*获胜的*。\n\n游戏的目标是构造一个长度为 $*n*$ 的获胜序列。但事情并没有这么简单，因为序列中的一部分数字已经预先确定。给定一个由数字 0、2、4 组成的序列，请计算将序列中的每个 0 替换为 2 或 4 后，得到获胜序列的方案数。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*k*$ $(1 ≤ *n* ≤ 2000; 3 ≤ *k* ≤ 11)$。下一行包含一个长度为 $*n*$ 的整数序列，其中每个整数均为 0、2 或 4。\n\n## 输出格式\n\n输出一个整数——将所有 0 替换为数字 2 或 4 后得到获胜序列的方案数。由于这个数可能很大，请将其对 $1000000007$ $(10^{9} + 7)$ 取模后输出。\n\n## 说明\n\n考虑第一个样例。条带起点处的情况将如下所示：\n\n`2` $→$ `4` $→$ `8` $→$ `8 2` $→$ `8 4` $→$ `8 4 2` $→$ `16`。\n\n为了更好地理解这个游戏，你可以访问原版游戏：`http://gabrielecirulli.github.io/2048/`。请注意，题目中描述的条带游戏与原版游戏略有不同（在原版游戏中，两个数字相加后不会继续移动）。请务必小心，这个游戏很容易让人上瘾，比赛时间可不多了！",
   "samples": [
     {
       "input": "7 4\n2 2 4 2 2 2 2\n",
@@ -39,5 +39,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:48:17.370Z"
+  "fetchedAt": "2026-10-31T01:48:17.370Z",
+  "translatedAt": "2026-11-04T07:16:20.674+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

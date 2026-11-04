@@ -4,7 +4,7 @@
   "contestId": 1437,
   "index": "D",
   "title": "Minimal Height Tree",
-  "titleZh": null,
+  "titleZh": "最小高度树",
   "url": "https://codeforces.com/contest/1437/problem/D",
   "difficulty": 1600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp had a tree which consisted of $n$ vertices and was rooted at vertex $1$. He decided to study BFS ([Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)), so he ran BFS on his tree, starting from the root. BFS can be described by the following pseudocode:\n\n```\na = [] # the order in which vertices were processed\nq = Queue()\nq.put(1) # place the root at the end of the queue\nwhile not q.empty():\n    k = q.pop() # retrieve the first vertex from the queue\n    a.append(k) # append k to the end of the sequence in which vertices were visited\n    for y in g[k]: # g[k] is the list of all children of vertex k, sorted in ascending order\n        q.put(y)\n```\n\nMonocarp was fascinated by BFS so much that, in the end, he lost his tree. Fortunately, he still has a sequence of vertices, in which order vertices were visited by the BFS algorithm (the array `a` from the pseudocode). Monocarp knows that each vertex was visited exactly once (since they were put and taken from the queue exactly once). Also, he knows that all children of each vertex were viewed *in ascending order*.\n\nMonocarp knows that there are many trees (in the general case) with the same visiting order $a$, so he doesn't hope to restore his tree. Monocarp is okay with any tree that **has minimum height**.\n\n*The height* of a tree is the maximum depth of the tree's vertices, and the depth of a vertex is the number of edges in the path from the root to it. For example, the depth of vertex $1$ is $0$, since it's the root, and the depth of all root's children are $1$.\n\nHelp Monocarp to find any tree with given visiting order $a$ and minimum height.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n$; $a_i \\neq a_j$; $a_1 = 1$) — the order in which the vertices were visited by the BFS algorithm.\n\nIt's guaranteed that the total sum of $n$ over test cases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case print the minimum possible height of a tree with the given visiting order $a$.\n\n## Note\n\nIn the first test case, there is only one tree with the given visiting order:\n\n![image](https://espresso.codeforces.com/b293b1123957eaff414c059592d96a53244efdb7.png)\n\nIn the second test case, there is only one tree with the given visiting order as well:\n\n![image](https://espresso.codeforces.com/1420fda7c903dfd69b0658e0ba1a69c3a671d88f.png)\n\nIn the third test case, an optimal tree with the given visiting order is shown below:\n\n![image](https://espresso.codeforces.com/61b78f3e0f5eeab5bbb10e579c00dd80141fe794.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 有一棵包含 $n$ 个顶点、以顶点 $1$ 为根的树。他决定研究 BFS（[广度优先搜索](https://en.wikipedia.org/wiki/Breadth-first_search)），于是从根节点开始对这棵树运行 BFS。BFS 可以用以下伪代码描述：\n\n```\na = [] # the order in which vertices were processed\nq = Queue()\nq.put(1) # place the root at the end of the queue\nwhile not q.empty():\n    k = q.pop() # retrieve the first vertex from the queue\n    a.append(k) # append k to the end of the sequence in which vertices were visited\n    for y in g[k]: # g[k] is the list of all children of vertex k, sorted in ascending order\n        q.put(y)\n```\n\nMonocarp 对 BFS 十分着迷，以至于最后弄丢了他的树。幸运的是，他仍然保留了一个顶点序列，表示 BFS 算法访问各顶点的顺序（即伪代码中的数组 `a`）。Monocarp 知道每个顶点都恰好被访问一次（因为每个顶点都恰好入队和出队一次）。此外，他还知道每个顶点的所有子节点都是按*升序*访问的。\n\nMonocarp 知道通常情况下有许多棵树具有相同的访问顺序 $a$，所以他不指望还原出原来的树。对于任意一棵**高度最小**的树，Monocarp 都可以接受。\n\n*树的高度*是树中顶点的最大深度，而顶点的深度是从根到该顶点的路径上的边数。例如，顶点 $1$ 的深度是 $0$，因为它是根节点；根节点的所有子节点的深度都是 $1$。\n\n请帮助 Monocarp 找到一棵具有给定访问顺序 $a$ 且高度最小的树。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——树中顶点的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le n$；$a_i \\neq a_j$；$a_1 = 1$）——BFS 算法访问各顶点的顺序。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出具有给定访问顺序 $a$ 的树所能达到的最小高度。\n\n## 说明\n\n在第一个测试用例中，满足给定访问顺序的树只有一棵：\n\n![image](https://espresso.codeforces.com/b293b1123957eaff414c059592d96a53244efdb7.png)\n\n在第二个测试用例中，满足给定访问顺序的树同样只有一棵：\n\n![image](https://espresso.codeforces.com/1420fda7c903dfd69b0658e0ba1a69c3a671d88f.png)\n\n在第三个测试用例中，下面展示了一棵满足给定访问顺序的最优树：\n\n![image](https://espresso.codeforces.com/61b78f3e0f5eeab5bbb10e579c00dd80141fe794.png)",
   "samples": [
     {
       "input": "3\n4\n1 4 3 2\n2\n1 2\n3\n1 2 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:37:08.058Z"
+  "fetchedAt": "2026-11-02T18:37:08.058Z",
+  "translatedAt": "2026-11-04T04:15:04.826+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

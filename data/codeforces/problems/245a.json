@@ -4,7 +4,7 @@
   "contestId": 245,
   "index": "A",
   "title": "System Administrator",
-  "titleZh": null,
+  "titleZh": "系统管理员",
   "url": "https://codeforces.com/contest/245/problem/A",
   "difficulty": 800,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarpus is a system administrator. There are two servers under his strict guidance — $*a*$ and $*b*$. To stay informed about the servers' performance, Polycarpus executes commands \"`ping a`\" and \"`ping b`\". Each ping command sends exactly ten packets to the server specified in the argument of the command. Executing a program results in two integers $*x*$ and $*y*$ $(*x* + *y* = 10; *x*, *y* ≥ 0)$. These numbers mean that $*x*$ packets successfully reached the corresponding server through the network and $*y*$ packets were lost.\n\nToday Polycarpus has performed overall $*n*$ ping commands during his workday. Now for each server Polycarpus wants to know whether the server is \"alive\" or not. Polycarpus thinks that the server is \"alive\", if at least half of the packets that we send to this server reached it successfully along the network.\n\nHelp Polycarpus, determine for each server, whether it is \"alive\" or not by the given commands and their results.\n\n## Input\n\nThe first line contains a single integer $*n*$ $(2 ≤ *n* ≤ 1000)$ — the number of commands Polycarpus has fulfilled. Each of the following $*n*$ lines contains three integers — the description of the commands. The $*i*$-th of these lines contains three space-separated integers $*t*_{*i*}$, $*x*_{*i*}$, $*y*_{*i*}$ $(1 ≤ *t*_{*i*} ≤ 2; *x*_{*i*}, *y*_{*i*} ≥ 0; *x*_{*i*} + *y*_{*i*} = 10)$. If $*t*_{*i*} = 1$, then the $*i*$-th command is \"`ping a`\", otherwise the $*i*$-th command is \"`ping b`\". Numbers $*x*_{*i*}$, $*y*_{*i*}$ represent the result of executing this command, that is, $*x*_{*i*}$ packets reached the corresponding server successfully and $*y*_{*i*}$ packets were lost.\n\nIt is guaranteed that the input has at least one \"`ping a`\" command and at least one \"`ping b`\" command.\n\n## Output\n\nIn the first line print string \"`LIVE`\" (without the quotes) if server $*a*$ is \"alive\", otherwise print \"`DEAD`\" (without the quotes).\n\nIn the second line print the state of server $*b*$ in the similar format.\n\n## Note\n\nConsider the first test case. There 10 packets were sent to server $*a*$, 5 of them reached it. Therefore, at least half of all packets sent to this server successfully reached it through the network. Overall there were 10 packets sent to server $*b*$, 6 of them reached it. Therefore, at least half of all packets sent to this server successfully reached it through the network.\n\nConsider the second test case. There were overall 20 packages sent to server $*a*$, 10 of them reached it. Therefore, at least half of all packets sent to this server successfully reached it through the network. Overall 10 packets were sent to server $*b*$, 0 of them reached it. Therefore, less than half of all packets sent to this server successfully reached it through the network.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarpus 是一名系统管理员。在他的严格管理下有两台服务器——$*a*$ 和 $*b*$。为了了解服务器的运行状况，Polycarpus 会执行命令 \"`ping a`\" 和 \"`ping b`\"。每条 ping 命令都会向命令参数指定的服务器发送恰好 10 个数据包。执行一条命令后会得到两个整数 $*x*$ 和 $*y*$ $(*x* + *y* = 10; *x*, *y* ≥ 0)$。这些数字表示：$*x*$ 个数据包成功通过网络到达了相应的服务器，$*y*$ 个数据包丢失了。\n\n今天 Polycarpus 在工作期间总共执行了 $*n*$ 条 ping 命令。现在，他想知道每台服务器是否“存活”。如果发送给某台服务器的数据包中至少有一半成功通过网络到达该服务器，Polycarpus 就认为这台服务器是“存活”的。\n\n请根据给出的命令及其结果，判断每台服务器是否“存活”。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$ $(2 ≤ *n* ≤ 1000)$，表示 Polycarpus 执行的命令数量。接下来的 $*n*$ 行中，每行包含三个整数，描述一条命令。第 $*i*$ 行包含三个以空格分隔的整数 $*t*_{*i*}$、$*x*_{*i*}$、$*y*_{*i*}$ $(1 ≤ *t*_{*i*} ≤ 2; *x*_{*i*}, *y*_{*i*} ≥ 0; *x*_{*i*} + *y*_{*i*} = 10)$。如果 $*t*_{*i*} = 1$，则第 $*i*$ 条命令是 \"`ping a`\"；否则是 \"`ping b`\"。数字 $*x*_{*i*}$ 和 $*y*_{*i*}$ 表示执行该命令的结果，即 $*x*_{*i*}$ 个数据包成功到达相应的服务器，$*y*_{*i*}$ 个数据包丢失了。\n\n保证输入中至少包含一条 \"`ping a`\" 命令和一条 \"`ping b`\" 命令。\n\n## 输出格式\n\n第一行输出字符串 \"`LIVE`\"（不含引号），如果服务器 $*a*$ 是“存活”的；否则输出字符串 \"`DEAD`\"（不含引号）。\n\n第二行以相同格式输出服务器 $*b*$ 的状态。\n\n## 说明\n\n考虑第一个样例。有 10 个数据包被发送到服务器 $*a*$，其中 5 个到达了服务器。因此，发送给该服务器的数据包中至少有一半成功通过网络到达了服务器。总共有 10 个数据包被发送到服务器 $*b*$，其中 6 个到达了服务器。因此，发送给该服务器的数据包中至少有一半成功通过网络到达了服务器。\n\n考虑第二个样例。总共有 20 个数据包被发送到服务器 $*a*$，其中 10 个到达了服务器。因此，发送给该服务器的数据包中至少有一半成功通过网络到达了服务器。总共有 10 个数据包被发送到服务器 $*b*$，但其中没有一个到达。因此，发送给该服务器的数据包中少于一半成功通过网络到达了服务器。",
   "samples": [
     {
       "input": "2\n1 5 5\n2 6 4\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:08:27.358Z"
+  "fetchedAt": "2026-11-02T20:08:27.358Z",
+  "translatedAt": "2026-11-04T07:32:01.262+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

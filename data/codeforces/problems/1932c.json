@@ -4,7 +4,7 @@
   "contestId": 1932,
   "index": "C",
   "title": "LR-remainders",
-  "titleZh": null,
+  "titleZh": "LR-余数",
   "url": "https://codeforces.com/contest/1932/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a$ of length $n$, a positive integer $m$, and a string of commands of length $n$. Each command is either the character '`L`' or the character '`R`'.\n\nProcess all $n$ commands in the order they are written in the string $s$. Processing a command is done as follows:\n\n- First, output the remainder of the product of all elements of the array $a$ when divided by $m$.\n- Then, if the command is '`L`', remove the leftmost element from the array $a$, if the command is '`R`', remove the rightmost element from the array $a$.\n\nNote that after each move, the length of the array $a$ decreases by $1$, and after processing all commands, it will be empty.\n\nWrite a program that will process all commands in the order they are written in the string $s$ (from left to right).\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases in the input. Then descriptions of $t$ test cases follow.\n\nEach test case of the input is given by three lines.\n\nThe first line contains two integers $n$ and $m$ ($1 \\le n \\le 2\\cdot10^5, 1 \\le m \\le 10^4$) — the initial length of the array $a$ and the value to take the remainder by.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^4$) — the elements of the array $a$.\n\nThe third line contains a string $s$ consisting of $n$ characters '`L`' and '`R`'.\n\nIt is guaranteed that the sum of the values of $n$ for all test cases in a test does not exceed $2\\cdot10^5$.\n\n## Output\n\nFor each test case, output $n$ integers $b_1, b_2, \\dots, b_n$, where $b_i$ is the remainder when dividing the product of all elements of the current state of the array $a$ by $m$ at the beginning of the execution of the $i$-th command.\n\n## Note\n\nIn the first test case of the example:\n\n- $3 \\cdot 1 \\cdot 4 \\cdot 2 \\bmod 6 = 24 \\bmod 6 = 0$;\n- $s_1 = \\text{L}$, so we remove the first element and get the array $[1, 4, 2]$;\n- $1 \\cdot 4 \\cdot 2 \\bmod 6 = 8 \\bmod 6 = 2$;\n- $s_2 = \\text{R}$, so we remove the last element and get the array $[1, 4]$;\n- $1 \\cdot 4 \\bmod 6 = 4 \\bmod 6 = 4$;\n- $s_3 = \\text{R}$, so we remove the last element and get the array $[1]$;\n- $1 \\bmod 6 = 1$;\n- $s_4 = \\text{L}$, so we remove the first element and get an empty array.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的数组 $a$、一个正整数 $m$，以及一个长度为 $n$ 的命令字符串。每条命令要么是字符 '`L`'，要么是字符 '`R`'。\n\n按照字符串 $s$ 中的书写顺序处理全部 $n$ 条命令。处理一条命令的步骤如下：\n\n- 首先，输出数组 $a$ 中所有元素乘积除以 $m$ 所得的余数。\n- 然后，如果命令是 '`L`'，则从数组 $a$ 中删除最左侧的元素；如果命令是 '`R`'，则从数组 $a$ 中删除最右侧的元素。\n\n注意，每次操作后，数组 $a$ 的长度都会减少 $1$；处理完全部命令后，数组将变为空数组。\n\n请编写程序，按照字符串 $s$ 中命令的书写顺序（从左到右）处理全部命令。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——输入中的测试用例数量。接下来是 $t$ 个测试用例的描述。\n\n每个测试用例包含三行。\n\n第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 2\\cdot10^5, 1 \\le m \\le 10^4$）——数组 $a$ 的初始长度，以及要进行取余的数值。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^4$）——数组的元素。\n\n第三行包含一个由 $n$ 个字符 '`L`' 和 '`R`' 组成的字符串 $s$。\n\n保证所有测试用例中 $n$ 的总和不超过 $2\\cdot10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数 $b_1, b_2, \\dots, b_n$，其中 $b_i$ 表示在执行第 $i$ 条命令开始时，数组 $a$ 当前状态中所有元素的乘积除以 $m$ 所得的余数。\n\n## 说明\n\n在样例的第一个测试用例中：\n\n- $3 \\cdot 1 \\cdot 4 \\cdot 2 \\bmod 6 = 24 \\bmod 6 = 0$；\n- $s_1 = \\text{L}$，因此我们删除第一个元素，得到数组 $[1, 4, 2]$；\n- $1 \\cdot 4 \\cdot 2 \\bmod 6 = 8 \\bmod 6 = 2$；\n- $s_2 = \\text{R}$，因此我们删除最后一个元素，得到数组 $[1, 4]$；\n- $1 \\cdot 4 \\bmod 6 = 4 \\bmod 6 = 4$；\n- $s_3 = \\text{R}$，因此我们删除最后一个元素，得到数组 $[1]$；\n- $1 \\bmod 6 = 1$；\n- $s_4 = \\text{L}$，因此我们删除第一个元素，得到空数组。",
   "samples": [
     {
       "input": "4\n4 6\n3 1 4 2\nLRRL\n5 1\n1 1 1 1 1\nLLLLL\n6 8\n1 2 3 4 5 6\nRLLLRR\n1 10000\n10000\nR\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:17:20.178Z"
+  "fetchedAt": "2026-11-02T17:17:20.178Z",
+  "translatedAt": "2026-11-04T02:17:25.521+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

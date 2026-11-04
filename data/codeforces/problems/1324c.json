@@ -4,7 +4,7 @@
   "contestId": 1324,
   "index": "C",
   "title": "Frog Jumps",
-  "titleZh": null,
+  "titleZh": "青蛙跳跃",
   "url": "https://codeforces.com/contest/1324/problem/C",
   "difficulty": 1100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a frog staying to the left of the string $s = s_1 s_2 \\ldots s_n$ consisting of $n$ characters (to be more precise, the frog initially stays at the cell $0$). Each character of $s$ is either '`L`' or '`R`'. It means that if the frog is staying at the $i$-th cell and the $i$-th character is '`L`', the frog can jump only to the left. If the frog is staying at the $i$-th cell and the $i$-th character is '`R`', the frog can jump only to the right. **The frog can jump only to the right from the cell $0$**.\n\n**Note that the frog can jump into the same cell twice and can perform as many jumps as it needs**.\n\nThe frog wants to reach the $n+1$-th cell. The frog chooses some **positive integer** value $d$ **before the first jump** (and cannot change it later) and jumps by no more than $d$ cells at once. I.e. if the $i$-th character is '`L`' then the frog can jump to any cell in a range $[max(0, i - d); i - 1]$, and if the $i$-th character is '`R`' then the frog can jump to any cell in a range $[i + 1; min(n + 1; i + d)]$.\n\nThe frog doesn't want to jump far, so your task is to find the minimum possible value of $d$ such that the frog can reach the cell $n+1$ from the cell $0$ if it can jump by no more than $d$ cells at once. **It is guaranteed that it is always possible to reach $n+1$ from $0$**.\n\nYou have to answer $t$ independent test cases.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe next $t$ lines describe test cases. The $i$-th test case is described as a string $s$ consisting of at least $1$ and at most $2 \\cdot 10^5$ characters '`L`' and '`R`'.\n\nIt is guaranteed that the sum of lengths of strings over all test cases does not exceed $2 \\cdot 10^5$ ($\\sum |s| \\le 2 \\cdot 10^5$).\n\n## Output\n\nFor each test case, print the answer — the minimum possible value of $d$ such that the frog can reach the cell $n+1$ from the cell $0$ if it jumps by no more than $d$ at once.\n\n## Note\n\nThe picture describing the first test case of the example and one of the possible answers:\n\n![image](https://espresso.codeforces.com/3792fcac8b01d493591a870c91a14e62d2bb3961.png)\n\nIn the second test case of the example, the frog can only jump directly from $0$ to $n+1$.\n\nIn the third test case of the example, the frog can choose $d=3$, jump to the cell $3$ from the cell $0$ and then to the cell $4$ from the cell $3$.\n\nIn the fourth test case of the example, the frog can choose $d=1$ and jump $5$ times to the right.\n\nIn the fifth test case of the example, the frog can only jump directly from $0$ to $n+1$.\n\nIn the sixth test case of the example, the frog can choose $d=1$ and jump $2$ times to the right.",
-  "statementZhMd": null,
+  "statementZhMd": "有一只青蛙待在字符串 $s = s_1 s_2 \\ldots s_n$ 的左侧（更准确地说，青蛙最初位于编号为 $0$ 的格子）。$s$ 中的每个字符要么是 '`L`'，要么是 '`R`'。这表示：如果青蛙位于第 $i$ 个格子，且第 $i$ 个字符是 '`L`'，那么青蛙只能向左跳；如果青蛙位于第 $i$ 个格子，且第 $i$ 个字符是 '`R`'，那么青蛙只能向右跳。**青蛙从编号为 $0$ 的格子出发时只能向右跳。**\n\n**注意，青蛙可以两次跳入同一个格子，并且可以进行任意多次跳跃。**\n\n青蛙想到达编号为 $n+1$ 的格子。青蛙在第一次跳跃前选择一个**正整数** $d$（之后不能再改变），每次跳跃最多跨越 $d$ 个格子。也就是说，如果第 $i$ 个字符是 '`L`'，那么青蛙可以跳到区间 $[max(0, i - d); i - 1]$ 中的任意格子；如果第 $i$ 个字符是 '`R`'，那么青蛙可以跳到区间 $[i + 1; min(n + 1; i + d)]$ 中的任意格子。\n\n青蛙不希望一次跳得太远，因此请你求出满足以下条件的 $d$ 的最小值：当青蛙每次跳跃最多跨越 $d$ 个格子时，它可以从编号为 $0$ 的格子到达编号为 $n+1$ 的格子。**保证青蛙始终可以从 $0$ 到达 $n+1$。**\n\n你需要回答 $t$ 个相互独立的测试用例。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$），表示测试用例的数量。\n\n接下来的 $t$ 行描述各个测试用例。第 $i$ 个测试用例由一个字符串 $s$ 表示，该字符串由至少 $1$ 个、至多 $2 \\cdot 10^5$ 个字符 '`L`' 和 '`R`' 组成。\n\n保证所有测试用例中的字符串长度之和不超过 $2 \\cdot 10^5$（$\\sum |s| \\le 2 \\cdot 10^5$）。\n\n## 输出格式\n\n对于每个测试用例，输出答案——满足以下条件的 $d$ 的最小值：当青蛙每次跳跃最多跨越 $d$ 个格子时，它可以从编号为 $0$ 的格子到达编号为 $n+1$ 的格子。\n\n## 说明\n\n下图描述了样例中第一个测试用例的一种可行答案：\n\n![image](https://espresso.codeforces.com/3792fcac8b01d493591a870c91a14e62d2bb3961.png)\n\n在样例的第二个测试用例中，青蛙只能从 $0$ 直接跳到 $n+1$。\n\n在样例的第三个测试用例中，青蛙可以选择 $d=3$，从格子 $0$ 跳到格子 $3$，然后从格子 $3$ 跳到格子 $4$。\n\n在样例的第四个测试用例中，青蛙可以选择 $d=1$，向右跳跃 $5$ 次。\n\n在样例的第五个测试用例中，青蛙只能从 $0$ 直接跳到 $n+1$。\n\n在样例的第六个测试用例中，青蛙可以选择 $d=1$，向右跳跃 $2$ 次。",
   "samples": [
     {
       "input": "6\nLRLRRLL\nL\nLLR\nRRRR\nLLLLLL\nR\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:54:28.431Z"
+  "fetchedAt": "2026-11-02T18:54:28.431Z",
+  "translatedAt": "2026-11-04T04:47:48.024+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

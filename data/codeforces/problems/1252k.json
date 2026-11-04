@@ -4,7 +4,7 @@
   "contestId": 1252,
   "index": "K",
   "title": "Addition Robot",
-  "titleZh": null,
+  "titleZh": "加法机器人",
   "url": "https://codeforces.com/contest/1252/problem/K",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Adding two numbers several times is a time-consuming task, so you want to build a robot. The robot should have a string $S = S_1 S_2 \\dots S_N$ of $N$ characters on its memory that represents addition instructions. Each character of the string, $S_i$, is either '`A`' or '`B`'.\n\nYou want to be able to give $Q$ commands to the robot, each command is either of the following types:\n\n- 1 $L$ $R$. The robot should toggle all the characters of $S_i$ where $L \\le i \\le R$. Toggling a character means changing it to '`A`' if it was previously '`B`', or changing it to '`B`' if it was previously '`A`'.\n- 2 $L$ $R$ $A$ $B$. The robot should call $f(L, R, A, B)$ and return two integers as defined in the following pseudocode: `    function f(L, R, A, B):      FOR i from L to R        if S[i] = 'A'          A = A + B        else          B = A + B      return (A, B)  `\n\nYou want to implement the robot's expected behavior.\n\n## Input\n\nInput begins with a line containing two integers: $N$ $Q$ ($1 \\le N, Q \\le 100\\,000$) representing the number of characters in the robot's memory and the number of commands, respectively. The next line contains a string $S$ containing $N$ characters (each either '`A`' or '`B`') representing the initial string in the robot's memory. The next $Q$ lines each contains a command of the following types.\n\n- 1 $L$ $R$ ($1 \\le L \\le R \\le N$)\n- 2 $L$ $R$ $A$ $B$ ($1 \\le L \\le R \\le N$; $0 \\le A, B \\le 10^9$)\n\nThere is at least one command of the second type.\n\n## Output\n\nFor each command of the second type in the same order as input, output in a line two integers (separated by a single space), the value of $A$ and $B$ returned by $f(L, R, A, B)$, respectively. As this output can be large, you need to modulo the output by $1\\,000\\,000\\,007$.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nFor the first command, calling $f(L, R, A, B)$ causes the following:\n\n- Initially, $A = 1$ and $B = 1$.\n- At the end of $i = 1$, $A = 2$ and $B = 1$.\n- At the end of $i = 2$, $A = 2$ and $B = 3$.\n- At the end of $i = 3$, $A = 5$ and $B = 3$.\n- At the end of $i = 4$, $A = 8$ and $B = 3$.\n- At the end of $i = 5$, $A = 11$ and $B = 3$.\n\nTherefore, $f(L, R, A, B)$ will return $(11, 3)$.\n\nFor the second command, string $S$ will be updated to \"`ABBBB`\".\n\nFor the third command, the value of $A$ will always be $0$ and the value of $B$ will always be $1\\,000\\,000\\,000$. Therefore, $f(L, R, A, B)$ will return $(0, 1\\,000\\,000\\,000)$.",
-  "statementZhMd": null,
+  "statementZhMd": "将两个数相加多次是一项耗时的工作，因此你想要制造一个机器人。机器人的内存中应当存储一个由 $N$ 个字符组成的字符串 $S = S_1 S_2 \\dots S_N$，表示加法指令。字符串中的每个字符 $S_i$ 都是 '`A`' 或 '`B`'。\n\n你希望能够向机器人发送 $Q$ 条指令，每条指令属于以下两种类型之一：\n\n- 1 $L$ $R$。机器人应当翻转 $S_i$ 中满足 $L \\le i \\le R$ 的所有字符。翻转一个字符是指：如果它原来是 '`B`'，则将其改为 '`A`'；如果它原来是 '`A`'，则将其改为 '`B`'。\n- 2 $L$ $R$ $A$ $B$。机器人应当调用 $f(L, R, A, B)$，并返回伪代码中定义的两个整数：`    function f(L, R, A, B):      FOR i from L to R        if S[i] = 'A'          A = A + B        else          B = A + B      return (A, B)  `\n\n你需要实现机器人的预期行为。\n\n## 输入格式\n\n输入的第一行包含两个整数：$N$ $Q$（$1 \\le N, Q \\le 100\\,000$），分别表示机器人内存中的字符数量和指令数量。下一行包含一个长度为 $N$ 的字符串 $S$（每个字符均为 '`A`' 或 '`B`'），表示机器人内存中的初始字符串。接下来的 $Q$ 行中，每行包含一条属于以下类型之一的指令。\n\n- 1 $L$ $R$（$1 \\le L \\le R \\le N$）\n- 2 $L$ $R$ $A$ $B$（$1 \\le L \\le R \\le N$；$0 \\le A, B \\le 10^9$）\n\n至少存在一条第二种类型的指令。\n\n## 输出格式\n\n对于每条第二种类型的指令，按照输入中的顺序，在一行中输出两个整数（用一个空格分隔），分别表示 $f(L, R, A, B)$ 返回的 $A$ 和 $B$ 的值。由于输出结果可能很大，需要将输出对 $1\\,000\\,000\\,007$ 取模。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n对于第一条指令，调用 $f(L, R, A, B)$ 的过程如下：\n\n- 初始时，$A = 1$，$B = 1$。\n- 在 $i = 1$ 结束时，$A = 2$，$B = 1$。\n- 在 $i = 2$ 结束时，$A = 2$，$B = 3$。\n- 在 $i = 3$ 结束时，$A = 5$，$B = 3$。\n- 在 $i = 4$ 结束时，$A = 8$，$B = 3$。\n- 在 $i = 5$ 结束时，$A = 11$，$B = 3$。\n\n因此，$f(L, R, A, B)$ 将返回 $(11, 3)$。\n\n对于第二条指令，字符串 $S$ 将更新为 \"`ABBBB`\"。\n\n对于第三条指令，$A$ 的值始终为 $0$，而 $B$ 的值始终为 $1\\,000\\,000\\,000$。因此，$f(L, R, A, B)$ 将返回 $(0, 1\\,000\\,000\\,000)$。",
   "samples": [
     {
       "input": "5 3\nABAAA\n2 1 5 1 1\n1 3 5\n2 2 5 0 1000000000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:01:53.922Z"
+  "fetchedAt": "2026-11-02T19:01:53.922Z",
+  "translatedAt": "2026-11-04T04:55:07.834+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

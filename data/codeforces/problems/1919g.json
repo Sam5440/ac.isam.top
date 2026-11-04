@@ -4,7 +4,7 @@
   "contestId": 1919,
   "index": "G",
   "title": "Tree LGM",
-  "titleZh": null,
+  "titleZh": "树 LGM",
   "url": "https://codeforces.com/contest/1919/problem/G",
   "difficulty": 3500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "In TreeWorld, there is a popular two-player game played on a tree with $n$ vertices labelled from $1$ to $n$. In this game, the tournament leaders first choose a vertex to be the root of the tree and choose another vertex (possibly the same vertex as the root) to place a coin on. Then, each player will take turns moving the coin to any child$^\\dagger$ of the vertex that the coin is currently on. The first player who is unable to make a move loses.\n\nAlice wants to be a tree LGM, so she spends a lot of time studying the game. She wrote down an $n$ by $n$ matrix $s$, where $s_{i,j} = \\mathtt{1}$ if the first player can win with the root of the tree chosen to be vertex $i$, and the coin was initially placed on vertex $j$. Otherwise, $s_{i, j} = \\mathtt{0}$. Alice is a perfectionist, so she assumes that both players play perfectly in the game.\n\nHowever, she accidentally knocked her head on the way to the tournament and forgot what the tree looked like. Determine whether there exists a tree that satisfies the winning and losing states represented by matrix $s$, and if it exists, construct a valid tree.\n\n$^\\dagger$ A vertex $c$ is a child of vertex $u$ if there is an edge between $c$ and $u$, and $c$ does not lie on the unique simple path from the root to vertex $u$.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 5000$) — the number of vertices in the tree.\n\nEach of the next $n$ lines contains a string with $n$ characters, the $j$-th character of the $i$-th line representing $s_{i, j}$ ($s_{i, j} \\in \\{\\mathtt{0}, \\mathtt{1}\\}$) — the winning and losing states of the tree.\n\n## Output\n\nIf there is no tree satisfying the winning and losing states represented by matrix $s$, print a single line containing \"`NO`\".\n\nOtherwise, if there exists a tree satisfying matrix $s$, print \"`YES`\" on the first line, followed by $n - 1$ lines each containing two integers $u$ and $v$ ($1 \\le u, v \\le n$) representing that the tree has an edge between vertices $u$ and $v$.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\nIf there are multiple trees satisfying the winning and losing states represented by matrix $s$, print any of them.\n\n## Note\n\nIn the first test case, the line graph $1\\!-\\!4\\!-\\!2\\!-\\!3$ satisfies the winning and losing states represented by matrix $s$. For example, $s_{3,3} = 1$ as the first player can move the coin from $3\\rightarrow 2$, then the second player moves the coin from $2\\rightarrow 4$, and finally, the first player moves the coin from $4\\rightarrow 1$. At this point, $1$ has no children, so the second player is unable to make a move and loses. On the other hand, $s_{1,3} = 0$ as if $1$ is the root, then $3$ has no children so the first player is unable to make the first move and loses.\n\nIn the second test case, it is possible to prove that no tree satisfies the winning and losing states represented by matrix $s$.",
-  "statementZhMd": null,
+  "statementZhMd": "在 TreeWorld 中，有一个在一棵包含 $n$ 个顶点、顶点编号从 $1$ 到 $n$ 的树上进行的双人游戏。在这个游戏中，比赛组织者首先选择一个顶点作为树的根，并选择另一个顶点（也可以与根相同）放置一枚棋子。随后，两名玩家轮流将棋子移动到当前所在顶点的任意一个子节点$^\\dagger$。无法进行移动的玩家输掉游戏。\n\nAlice 想成为树 LGM，因此她花费了大量时间研究这个游戏。她记录了一个 $n$ 行 $n$ 列的矩阵 $s$，其中，如果将树的根选为顶点 $i$，并将棋子初始放置在顶点 $j$ 时先手能够获胜，则 $s_{i,j} = \\mathtt{1}$；否则，$s_{i, j} = \\mathtt{0}$。Alice 是个完美主义者，因此她假设双方都会在游戏中采取最优策略。\n\n然而，她在前往比赛的路上不小心撞到了头，忘记了树原来的形状。请判断是否存在一棵树，使其胜负状态符合矩阵 $s$；如果存在，请构造出这样一棵树。\n\n$^\\dagger$ 如果顶点 $c$ 与顶点 $u$ 之间有一条边，且 $c$ 不在从根到顶点 $u$ 的唯一简单路径上，则称顶点 $c$ 是顶点 $u$ 的子节点。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 5000$），表示树中的顶点数。\n\n接下来的 $n$ 行中，每行包含一个长度为 $n$ 的字符串，第 $i$ 行的第 $j$ 个字符表示 $s_{i, j}$（$s_{i, j} \\in \\{\\mathtt{0}, \\mathtt{1}\\}$），即树的胜负状态。\n\n## 输出格式\n\n如果不存在满足矩阵 $s$ 所表示的胜负状态的树，输出一行 `NO`。\n\n否则，如果存在满足矩阵 $s$ 的树，第一行输出 `YES`，接下来输出 $n - 1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$），表示树中顶点 $u$ 和顶点 $v$ 之间存在一条边。\n\n你可以使用任意大小写形式输出答案。例如，字符串 `yEs`、`yes`、`Yes` 和 `YES` 都会被识别为肯定回答。\n\n如果有多棵树满足矩阵 $s$ 所表示的胜负状态，输出其中任意一棵即可。\n\n## 说明\n\n在第一个测试用例中，路径图 $1\\!-\\!4\\!-\\!2\\!-\\!3$ 满足矩阵 $s$ 所表示的胜负状态。例如，$s_{3,3} = 1$，因为先手可以将棋子从 $3\\rightarrow 2$ 移动，然后后手将棋子从 $2\\rightarrow 4$ 移动，最后先手将棋子从 $4\\rightarrow 1$ 移动。此时，顶点 $1$ 没有子节点，因此后手无法进行移动并输掉游戏。另一方面，$s_{1,3} = 0$，因为如果将 $1$ 作为根，那么顶点 $3$ 没有子节点，先手无法进行第一次移动并输掉游戏。\n\n在第二个测试用例中，可以证明不存在满足矩阵 $s$ 所表示的胜负状态的树。",
   "samples": [
     {
       "input": "4\n1100\n0101\n0011\n0101\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:06:39.413Z"
+  "fetchedAt": "2026-10-30T22:06:39.413Z",
+  "translatedAt": "2026-11-04T02:24:06.662+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

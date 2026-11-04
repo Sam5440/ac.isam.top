@@ -4,14 +4,14 @@
   "contestId": 902,
   "index": "E",
   "title": "Bipartite Segments",
-  "titleZh": null,
+  "titleZh": "二分图区间",
   "url": "https://codeforces.com/contest/902/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an undirected graph with $*n*$ vertices. There are no edge-simple cycles with the even length in it. In other words, there are no cycles of even length that pass each edge at most once. Let's enumerate vertices from $1$ to $*n*$.\n\nYou have to answer $*q*$ queries. Each query is described by a segment of vertices $[*l*; *r*]$, and you have to count the number of its subsegments $[*x*; *y*]$ ($*l* ≤ *x* ≤ *y* ≤ *r*$), such that if we delete all vertices except the segment of vertices $[*x*; *y*]$ (including $*x*$ and $*y*$) and edges between them, the resulting graph is bipartite.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ ($1 ≤ *n* ≤ 3·10^{5}$, $1 ≤ *m* ≤ 3·10^{5}$) — the number of vertices and the number of edges in the graph.\n\nThe next $*m*$ lines describe edges in the graph. The $*i*$-th of these lines contains two integers $*a*_{*i*}$ and $*b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$; $*a*_{*i*} ≠ *b*_{*i*}$), denoting an edge between vertices $*a*_{*i*}$ and $*b*_{*i*}$. It is guaranteed that this graph does not contain edge-simple cycles of even length.\n\nThe next line contains a single integer $*q*$ ($1 ≤ *q* ≤ 3·10^{5}$) — the number of queries.\n\nThe next $*q*$ lines contain queries. The $*i*$-th of these lines contains two integers $*l*_{*i*}$ and $*r*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$) — the query parameters.\n\n## Output\n\nPrint $*q*$ numbers, each in new line: the $*i*$-th of them should be the number of subsegments $[*x*; *y*]$ ($*l*_{*i*} ≤ *x* ≤ *y* ≤ *r*_{*i*}$), such that the graph that only includes vertices from segment $[*x*; *y*]$ and edges between them is bipartite.\n\n## Note\n\nThe first example is shown on the picture below:\n\n![image](https://espresso.codeforces.com/318d2406e6eda825e4828c92499cdf332148286a.png)\n\nFor the first query, all subsegments of $[1; 3]$, except this segment itself, are suitable.\n\nFor the first query, all subsegments of $[4; 6]$, except this segment itself, are suitable.\n\nFor the third query, all subsegments of $[1; 6]$ are suitable, except $[1; 3]$, $[1; 4]$, $[1; 5]$, $[1; 6]$, $[2; 6]$, $[3; 6]$, $[4; 6]$.\n\nThe second example is shown on the picture below:\n\n![image](https://espresso.codeforces.com/653ddd1ad153020bf26d7288369e8fa95b6511cd.png)",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个含有 $*n*$ 个顶点的无向图。图中不存在偶数长度的边简单环。换句话说，不存在经过每条边至多一次的偶数长度环。我们将顶点编号为 $1$ 到 $*n*$。\n\n你需要回答 $*q*$ 个询问。每个询问由一个顶点区间 $[*l*; *r*]$ 描述，你需要统计其中满足以下条件的子区间 $[*x*; *y*]$（$*l* ≤ *x* ≤ *y* ≤ *r*$）的数量：删除除顶点区间 $[*x*; *y*]$（包括 $*x*$ 和 $*y*$）之外的所有顶点，以及与这些顶点相关的边后，得到的图是二分图。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$（$1 ≤ *n* ≤ 3·10^{5}$，$1 ≤ *m* ≤ 3·10^{5}$）——图中顶点和边的数量。\n\n接下来的 $*m*$ 行描述图中的边。其中第 $*i*$ 行包含两个整数 $*a*_{*i*}$ 和 $*b*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$；$*a*_{*i*} ≠ *b*_{*i*}$），表示一条连接顶点 $*a*_{*i*}$ 和 $*b*_{*i*}$ 的边。保证该图不包含偶数长度的边简单环。\n\n下一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 3·10^{5}$）——询问的数量。\n\n接下来的 $*q*$ 行包含询问。第 $*i*$ 行包含两个整数 $*l*_{*i*}$ 和 $*r*_{*i*}$（$1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$）——询问的参数。\n\n## 输出格式\n\n输出 $*q*$ 个数，每个数占一行：其中第 $*i*$ 个数应为满足以下条件的子区间 $[*x*; *y*]$（$*l*_{*i*} ≤ *x* ≤ *y* ≤ *r*_{*i*}$）的数量：只包含区间 $[*x*; *y*]$ 中顶点及其之间的边的图是二分图。\n\n## 说明\n\n第一个样例由下图展示：\n\n![image](https://espresso.codeforces.com/318d2406e6eda825e4828c92499cdf332148286a.png)\n\n对于第一个询问，$[1; 3]$ 的所有子区间都满足条件，除了区间本身。\n\n对于第一个询问，$[4; 6]$ 的所有子区间都满足条件，除了区间本身。\n\n对于第三个询问，$[1; 6]$ 的所有子区间都满足条件，除了 $[1; 3]$、$[1; 4]$、$[1; 5]$、$[1; 6]$、$[2; 6]$、$[3; 6]$、$[4; 6]$。\n\n第二个样例由下图展示：\n\n![image](https://espresso.codeforces.com/653ddd1ad153020bf26d7288369e8fa95b6511cd.png)",
   "samples": [
     {
       "input": "6 6\n1 2\n2 3\n3 1\n4 5\n5 6\n6 4\n3\n1 3\n4 6\n1 6\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:38:56.169Z"
+  "fetchedAt": "2026-10-31T00:38:56.169Z",
+  "translatedAt": "2026-11-04T05:53:09.001+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

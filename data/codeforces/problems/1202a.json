@@ -4,7 +4,7 @@
   "contestId": 1202,
   "index": "A",
   "title": "You Are Given Two Binary Strings...",
-  "titleZh": null,
+  "titleZh": "给定两个二进制字符串……",
   "url": "https://codeforces.com/contest/1202/problem/A",
   "difficulty": 1100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given two binary strings $x$ and $y$, which are binary representations of some two integers (let's denote these integers as $f(x)$ and $f(y)$). You can choose any integer $k \\ge 0$, calculate the expression $s_k = f(x) + f(y) \\cdot 2^k$ and write the binary representation of $s_k$ in **reverse order** (let's denote it as $rev_k$). For example, let $x = 1010$ and $y = 11$; you've chosen $k = 1$ and, since $2^1 = 10_2$, so $s_k = 1010_2 + 11_2 \\cdot 10_2 = 10000_2$ and $rev_k = 00001$.\n\nFor given $x$ and $y$, you need to choose such $k$ that $rev_k$ is **lexicographically minimal** (read notes if you don't know what does \"lexicographically\" means).\n\nIt's guaranteed that, with given constraints, $k$ exists and is finite.\n\n## Input\n\nThe first line contains a single integer $T$ ($1 \\le T \\le 100$) — the number of queries.\n\nNext $2T$ lines contain a description of queries: two lines per query. The first line contains one binary string $x$, consisting of no more than $10^5$ characters. Each character is either `0` or `1`.\n\nThe second line contains one binary string $y$, consisting of no more than $10^5$ characters. Each character is either `0` or `1`.\n\nIt's guaranteed, that $1 \\le f(y) \\le f(x)$ (where $f(x)$ is the integer represented by $x$, and $f(y)$ is the integer represented by $y$), both representations don't have any leading zeroes, the total length of $x$ over all queries doesn't exceed $10^5$, and the total length of $y$ over all queries doesn't exceed $10^5$.\n\n## Output\n\nPrint $T$ integers (one per query). For each query print such $k$ that $rev_k$ is lexicographically minimal.\n\n## Note\n\nThe first query was described in the legend.\n\nIn the second query, it's optimal to choose $k = 3$. The $2^3 = 1000_2$ so $s_3 = 10001_2 + 110_2 \\cdot 1000_2 = 10001 + 110000 = 1000001$ and $rev_3 = 1000001$. For example, if $k = 0$, then $s_0 = 10111$ and $rev_0 = 11101$, but $rev_3 = 1000001$ is lexicographically smaller than $rev_0 = 11101$.\n\nIn the third query $s_0 = 10$ and $rev_0 = 01$. For example, $s_2 = 101$ and $rev_2 = 101$. And $01$ is lexicographically smaller than $101$.\n\nThe quote from Wikipedia: \"To determine which of two strings of characters comes when arranging in *lexicographical order*, their first letters are compared. If they differ, then the string whose first letter comes earlier in the alphabet comes before the other string. If the first letters are the same, then the second letters are compared, and so on. If a position is reached where one string has no more letters to compare while the other does, then the first (shorter) string is deemed to come first in alphabetical order.\"",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个二进制字符串 $x$ 和 $y$，它们分别是某两个整数的二进制表示（将这两个整数记为 $f(x)$ 和 $f(y)$）。你可以选择任意整数 $k \\ge 0$，计算表达式 $s_k = f(x) + f(y) \\cdot 2^k$，并将 $s_k$ 的二进制表示**逆序**书写（将其记为 $rev_k$）。例如，设 $x = 1010$、$y = 11$；选择 $k = 1$，由于 $2^1 = 10_2$，因此 $s_k = 1010_2 + 11_2 \\cdot 10_2 = 10000_2$，且 $rev_k = 00001$。\n\n对于给定的 $x$ 和 $y$，你需要选择一个 $k$，使得 $rev_k$ 的**字典序最小**（如果你不知道“字典序”的含义，请阅读说明）。\n\n保证在给定约束下，满足条件的 $k$ 存在且有限。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\le T \\le 100$）——询问的数量。\n\n接下来的 $2T$ 行包含各个询问的描述：每个询问占两行。第一行包含一个二进制字符串 $x$，长度不超过 $10^5$。其中每个字符均为 `0` 或 `1`。\n\n第二行包含一个二进制字符串 $y$，长度不超过 $10^5$。其中每个字符均为 `0` 或 `1`。\n\n保证 $1 \\le f(y) \\le f(x)$（其中 $f(x)$ 是 $x$ 所表示的整数，$f(y)$ 是 $y$ 所表示的整数），且两种表示都不含前导零。所有询问中的 $x$ 的总长度不超过 $10^5$，所有询问中的 $y$ 的总长度不超过 $10^5$。\n\n## 输出格式\n\n输出 $T$ 个整数，每个询问输出一个。对于每个询问，输出使得 $rev_k$ 的字典序最小的 $k$。\n\n## 说明\n\n第一个询问已在题目描述中说明。\n\n在第二个询问中，选择 $k = 3$ 是最优的。由于 $2^3 = 1000_2$，因此 $s_3 = 10001_2 + 110_2 \\cdot 1000_2 = 10001 + 110000 = 1000001$，且 $rev_3 = 1000001$。例如，如果 $k = 0$，则 $s_0 = 10111$、$rev_0 = 11101$，但 $rev_3 = 1000001$ 的字典序小于 $rev_0 = 11101$。\n\n在第三个询问中，$s_0 = 10$，且 $rev_0 = 01$。例如，$s_2 = 101$，且 $rev_2 = 101$。而 $01$ 的字典序小于 $101$。\n\n维基百科中的引述：“要确定两个字符串在按*字典序*排列时的先后顺序，需要比较它们的第一个字符。如果不同，则字母表中排在前面的字符所在的字符串排在前面。如果第一个字符相同，则比较第二个字符，依此类推。如果比较到某个位置时，其中一个字符串已经没有更多字符，而另一个字符串仍有字符，则较短的字符串在字母顺序中排在前面。”",
   "samples": [
     {
       "input": "4\n1010\n11\n10001\n110\n1\n1\n1010101010101\n11110000\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:09:35.177Z"
+  "fetchedAt": "2026-11-02T19:09:35.177Z",
+  "translatedAt": "2026-11-04T05:06:06.206+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

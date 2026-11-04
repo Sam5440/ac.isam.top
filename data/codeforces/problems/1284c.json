@@ -4,7 +4,7 @@
   "contestId": 1284,
   "index": "C",
   "title": "New Year and Permutation",
-  "titleZh": null,
+  "titleZh": "新年与排列",
   "url": "https://codeforces.com/contest/1284/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 1024,
   "statementMd": "Recall that the permutation is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nA sequence $a$ is a subsegment of a sequence $b$ if $a$ can be obtained from $b$ by deletion of several (possibly, zero or all) elements from the beginning and several (possibly, zero or all) elements from the end. We will denote the subsegments as $[l, r]$, where $l, r$ are two integers with $1 \\le l \\le r \\le n$. This indicates the subsegment where $l-1$ elements from the beginning and $n-r$ elements from the end are deleted from the sequence.\n\nFor a permutation $p_1, p_2, \\ldots, p_n$, we define a *framed segment* as a subsegment $[l,r]$ where $\\max\\{p_l, p_{l+1}, \\dots, p_r\\} - \\min\\{p_l, p_{l+1}, \\dots, p_r\\} = r - l$. For example, for the permutation $(6, 7, 1, 8, 5, 3, 2, 4)$ some of its framed segments are: $[1, 2], [5, 8], [6, 7], [3, 3], [8, 8]$. In particular, a subsegment $[i,i]$ is always a framed segments for any $i$ between $1$ and $n$, inclusive.\n\nWe define the *happiness* of a permutation $p$ as the number of pairs $(l, r)$ such that $1 \\le l \\le r \\le n$, and $[l, r]$ is a framed segment. For example, the permutation $[3, 1, 2]$ has happiness $5$: all segments except $[1, 2]$ are framed segments.\n\nGiven integers $n$ and $m$, Jongwon wants to compute the sum of happiness for all permutations of length $n$, modulo the prime number $m$. Note that there exist $n!$ (factorial of $n$) different permutations of length $n$.\n\n## Input\n\nThe only line contains two integers $n$ and $m$ ($1 \\le n \\le 250\\,000$, $10^8 \\le m \\le 10^9$, $m$ is prime).\n\n## Output\n\nPrint $r$ ($0 \\le r \\lt m$), the sum of happiness for all permutations of length $n$, modulo a prime number $m$.\n\n## Note\n\nFor sample input $n=3$, let's consider all permutations of length $3$:\n\n- $[1, 2, 3]$, all subsegments are framed segment. Happiness is $6$.\n- $[1, 3, 2]$, all subsegments except $[1, 2]$ are framed segment. Happiness is $5$.\n- $[2, 1, 3]$, all subsegments except $[2, 3]$ are framed segment. Happiness is $5$.\n- $[2, 3, 1]$, all subsegments except $[2, 3]$ are framed segment. Happiness is $5$.\n- $[3, 1, 2]$, all subsegments except $[1, 2]$ are framed segment. Happiness is $5$.\n- $[3, 2, 1]$, all subsegments are framed segment. Happiness is $6$.\n\nThus, the sum of happiness is $6+5+5+5+5+6 = 32$.",
-  "statementZhMd": null,
+  "statementZhMd": "回忆一下，排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n如果序列 $a$ 可以通过从序列 $b$ 的开头删除若干个（可以是零个或全部）元素，并从结尾删除若干个（可以是零个或全部）元素得到，则称序列 $a$ 是序列 $b$ 的一个子段。我们将子段表示为 $[l, r]$，其中 $l, r$ 是满足 $1 \\le l \\le r \\le n$ 的两个整数。这表示从序列开头删除 $l-1$ 个元素，并从序列结尾删除 $n-r$ 个元素后得到的子段。\n\n对于排列 $p_1, p_2, \\ldots, p_n$，我们将满足以下条件的子段 $[l,r]$ 定义为一个*框定子段*：$\\max\\{p_l, p_{l+1}, \\dots, p_r\\} - \\min\\{p_l, p_{l+1}, \\dots, p_r\\} = r - l$。例如，对于排列 $(6, 7, 1, 8, 5, 3, 2, 4)$，它的一些框定子段为：$[1, 2], [5, 8], [6, 7], [3, 3], [8, 8]$。特别地，对于任意满足 $1$ 到 $n$ 的 $i$，子段 $[i,i]$ 总是一个框定子段。\n\n我们将排列 $p$ 的*快乐度*定义为满足 $1 \\le l \\le r \\le n$ 且 $[l, r]$ 是框定子段的数对 $(l, r)$ 的数量。例如，排列 $[3, 1, 2]$ 的快乐度为 $5$：除了 $[1, 2]$ 以外的所有子段都是框定子段。\n\n给定整数 $n$ 和 $m$，Jongwon 想要计算长度为 $n$ 的所有排列的快乐度之和，并对素数 $m$ 取模。注意，长度为 $n$ 的不同排列共有 $n!$（$n$ 的阶乘）个。\n\n## 输入格式\n\n唯一一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 250\\,000$，$10^8 \\le m \\le 10^9$，$m$ 是素数）。\n\n## 输出格式\n\n输出 $r$（$0 \\le r \\lt m$），即所有排列的快乐度之和对素数 $m$ 取模后的结果。\n\n## 说明\n\n对于样例输入 $n=3$，考虑所有长度为 $3$ 的排列：\n\n- $[1, 2, 3]$，所有子段都是框定子段。快乐度为 $6$。\n- $[1, 3, 2]$，除了 $[1, 2]$ 以外的所有子段都是框定子段。快乐度为 $5$。\n- $[2, 1, 3]$，除了 $[2, 3]$ 以外的所有子段都是框定子段。快乐度为 $5$。\n- $[2, 3, 1]$，除了 $[2, 3]$ 以外的所有子段都是框定子段。快乐度为 $5$。\n- $[3, 1, 2]$，除了 $[1, 2]$ 以外的所有子段都是框定子段。快乐度为 $5$。\n- $[3, 2, 1]$，所有子段都是框定子段。快乐度为 $6$。\n\n因此，快乐度之和为 $6+5+5+5+5+6 = 32$。",
   "samples": [
     {
       "input": "1 993244853\n",
@@ -44,5 +44,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:59:05.857Z"
+  "fetchedAt": "2026-10-30T23:59:05.857Z",
+  "translatedAt": "2026-11-04T04:49:46.486+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

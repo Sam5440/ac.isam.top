@@ -4,14 +4,14 @@
   "contestId": 1040,
   "index": "E",
   "title": "Network Safety",
-  "titleZh": null,
+  "titleZh": "网络安全",
   "url": "https://codeforces.com/contest/1040/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "The Metropolis computer network consists of $n$ servers, each has an encryption key in the range from $0$ to $2^k - 1$ assigned to it. Let $c_i$ be the encryption key assigned to the $i$-th server. Additionally, $m$ pairs of servers are directly connected via a data communication channel. Because of the encryption algorithms specifics, a data communication channel can only be considered safe if the two servers it connects have **distinct** encryption keys. The initial assignment of encryption keys is guaranteed to keep all data communication channels safe.\n\nYou have been informed that a new virus is actively spreading across the internet, and it is capable to change the encryption key of any server it infects. More specifically, the virus body contains some unknown number $x$ in the same aforementioned range, and when server $i$ is infected, its encryption key changes from $c_i$ to $c_i \\oplus x$, where $\\oplus$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\nSadly, you know neither the number $x$ nor which servers of Metropolis are going to be infected by the dangerous virus, so you have decided to count the number of such situations in which all data communication channels remain safe. Formally speaking, you need to find the number of pairs $(A, x)$, where $A$ is some (possibly empty) subset of the set of servers and $x$ is some number in the range from $0$ to $2^k - 1$, such that when all servers from the chosen subset $A$ and none of the others are infected by a virus containing the number $x$, all data communication channels remain safe. Since this number can be quite big, you are asked to find its remainder modulo $10^9 + 7$.\n\n## Input\n\nThe first line of input contains three integers $n$, $m$ and $k$ ($1 \\leq n \\leq 500\\,000$, $0 \\leq m \\leq \\min(\\frac{n(n - 1)}{2}, 500\\,000)$, $0 \\leq k \\leq 60$) — the number of servers, the number of pairs of servers directly connected by a data communication channel, and the parameter $k$, which defines the range of possible values for encryption keys.\n\nThe next line contains $n$ integers $c_i$ ($0 \\leq c_i \\leq 2^k - 1$), the $i$-th of which is the encryption key used by the $i$-th server.\n\nThe next $m$ lines contain two integers $u_i$ and $v_i$ each ($1 \\leq u_i, v_i \\leq n$, $u_i \\ne v_i$) denoting that those servers are connected by a data communication channel. It is guaranteed that each pair of servers appears in this list at most once.\n\n## Output\n\nThe only output line should contain a single integer — the number of safe infections of some subset of servers by a virus with some parameter, modulo $10^9 + 7$.\n\n## Note\n\nConsider the first example.\n\nPossible values for the number $x$ contained by the virus are $0$, $1$, $2$ and $3$.\n\nFor values $0$, $2$ and $3$ the virus can infect any subset of the set of servers, which gives us $16$ pairs for each values. A virus containing the number $1$ can infect either all of the servers, or none. This gives us $16 + 2 + 16 + 16 = 50$ pairs in total.",
-  "statementZhMd": null,
+  "statementZhMd": "都市计算机网络由 $n$ 台服务器组成，每台服务器都被分配了一个范围在 $0$ 到 $2^k - 1$ 之间的加密密钥。令 $c_i$ 表示分配给第 $i$ 台服务器的加密密钥。此外，还有 $m$ 对服务器通过数据通信信道直接相连。由于加密算法的特性，只有当一条数据通信信道连接的两台服务器拥有**不同的**加密密钥时，该信道才会被认为是安全的。初始的加密密钥分配保证所有数据通信信道都是安全的。\n\n你得知一种新病毒正在互联网上 активно传播，它能够修改感染到的任意服务器的加密密钥。更具体地说，病毒体内包含一个范围在上述区间内的未知数 $x$；当服务器 $i$ 被感染时，其加密密钥会从 $c_i$ 变为 $c_i \\oplus x$，其中 $\\oplus$ 表示[按位异或运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n遗憾的是，你既不知道数 $x$，也不知道都市中哪些服务器会感染这种危险的病毒，因此你决定统计所有数据通信信道仍然保持安全的情况数。形式化地说，你需要求出满足以下条件的二元组 $(A, x)$ 的数量：$A$ 是服务器集合的某个（可以为空的）子集，$x$ 是范围在 $0$ 到 $2^k - 1$ 之间的某个数；当选定子集 $A$ 中的所有服务器、且不在其中的服务器均未感染携带数 $x$ 的病毒时，所有数据通信信道仍然保持安全。由于这个数量可能很大，请求出其对 $10^9 + 7$ 取模后的结果。\n\n## 输入格式\n\n输入的第一行包含三个整数 $n$、$m$ 和 $k$（$1 \\leq n \\leq 500\\,000$，$0 \\leq m \\leq \\min(\\frac{n(n - 1)}{2}, 500\\,000)$，$0 \\leq k \\leq 60$），分别表示服务器的数量、通过数据通信信道直接相连的服务器对数，以及参数 $k$；参数 $k$ 决定加密密钥可能取值的范围。\n\n下一行包含 $n$ 个整数 $c_i$（$0 \\leq c_i \\leq 2^k - 1$），其中第 $i$ 个数表示第 $i$ 台服务器所使用的加密密钥。\n\n接下来的 $m$ 行中，每行包含两个整数 $u_i$ 和 $v_i$（$1 \\leq u_i, v_i \\leq n$，$u_i \\ne v_i$），表示这两台服务器通过数据通信信道相连。保证每一对服务器在该列表中至多出现一次。\n\n## 输出格式\n\n输出一行，包含一个整数——使用某个参数的病毒感染服务器的某个子集，且所有通信信道均保持安全的情况数，对 $10^9 + 7$ 取模后的结果。\n\n## 说明\n\n考虑第一个样例。\n\n病毒中包含的数 $x$ 可能为 $0$、$1$、$2$ 和 $3$。\n\n当数值为 $0$、$2$ 和 $3$ 时，病毒可以感染服务器集合的任意子集，对于每个数值都有 $16$ 个二元组。包含数值 $1$ 的病毒只能感染全部服务器或一台服务器都不感染。这总共得到 $16 + 2 + 16 + 16 = 50$ 个二元组。",
   "samples": [
     {
       "input": "4 4 2\n0 1 0 1\n1 2\n2 3\n3 4\n4 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:23:53.704Z"
+  "fetchedAt": "2026-10-31T00:23:53.704Z",
+  "translatedAt": "2026-11-04T05:35:52.216+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

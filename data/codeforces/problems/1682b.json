@@ -4,7 +4,7 @@
   "contestId": 1682,
   "index": "B",
   "title": "AND Sorting",
-  "titleZh": null,
+  "titleZh": "AND 排序",
   "url": "https://codeforces.com/contest/1682/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a permutation $p$ of integers from $0$ to $n-1$ (each of them occurs exactly once). Initially, the permutation is **not sorted** (that is, $p_i \\gt p_{i+1}$ for at least one $1 \\le i \\le n - 1$).\n\nThe permutation is called $X$-sortable for some non-negative integer $X$ if it is possible to sort the permutation by performing the operation below some finite number of times:\n\n- Choose two indices $i$ and $j$ $(1 \\le i \\lt j \\le n)$ such that $p_i \\& p_j = X$.\n- Swap $p_i$ and $p_j$.\n\nHere $\\&$ denotes the [bitwise AND operation](https://en.wikipedia.org/wiki/Bitwise_operation#AND).\n\nFind the **maximum** value of $X$ such that $p$ is $X$-sortable. It can be shown that there always exists some value of $X$ such that $p$ is $X$-sortable.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains a single integer $t$ $(1 \\le t \\le 10^4)$  — the number of test cases. Description of test cases follows.\n\nThe first line of each test case contains a single integer $n$ $(2 \\le n \\le 2 \\cdot 10^5)$  — the length of the permutation.\n\nThe second line of each test case contains $n$ integers $p_1, p_2, ..., p_n$ ($0 \\le p_i \\le n-1$, all $p_i$ are distinct)  — the elements of $p$. It is guaranteed that $p$ is not sorted.\n\nIt is guaranteed that the sum of $n$ over all cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case output a single integer — the maximum value of $X$ such that $p$ is $X$-sortable.\n\n## Note\n\nIn the first test case, the only $X$ for which the permutation is $X$-sortable are $X = 0$ and $X = 2$, maximum of which is $2$.\n\nSorting using $X = 0$:\n\n- Swap $p_1$ and $p_4$, $p = [2, 1, 3, 0]$.\n- Swap $p_3$ and $p_4$, $p = [2, 1, 0, 3]$.\n- Swap $p_1$ and $p_3$, $p = [0, 1, 2, 3]$.\n\nSorting using $X = 2$:\n\n- Swap $p_3$ and $p_4$, $p = [0, 1, 2, 3]$.\n\nIn the second test case, we must swap $p_1$ and $p_2$ which is possible only with $X = 0$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $0$ 到 $n-1$ 的整数构成的排列 $p$（每个整数恰好出现一次）。初始时，该排列**不是有序的**（也就是说，至少存在一个 $1 \\le i \\le n - 1$，使得 $p_i \\gt p_{i+1}$）。\n\n对于某个非负整数 $X$，如果可以通过有限次执行以下操作将排列排序，则称该排列是 $X$-可排序的：\n\n- 选择两个下标 $i$ 和 $j$ $(1 \\le i \\lt j \\le n)$，满足 $p_i \\& p_j = X$。\n- 交换 $p_i$ 和 $p_j$。\n\n其中，$\\&$ 表示[按位 AND 运算](https://en.wikipedia.org/wiki/Bitwise_operation#AND)。\n\n求使得 $p$ 是 $X$-可排序的 $X$ 的**最大值**。可以证明，总是存在某个使得 $p$ 是 $X$-可排序的 $X$。\n\n## 输入格式\n\n输入包含多组测试用例。第一行包含一个整数 $t$ $(1 \\le t \\le 10^4)$——测试用例的数量。接下来描述各测试用例。\n\n每组测试用例的第一行包含一个整数 $n$ $(2 \\le n \\le 2 \\cdot 10^5)$——排列的长度。\n\n第二行包含 $n$ 个整数 $p_1, p_2, ..., p_n$ $(0 \\le p_i \\le n-1$，且所有 $p_i$ 互不相同)——排列 $p$ 的元素。保证 $p$ 不是有序的。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数——使得 $p$ 是 $X$-可排序的 $X$ 的最大值。\n\n## 说明\n\n在第一组测试用例中，使排列成为 $X$-可排序的 $X$ 只有 $X = 0$ 和 $X = 2$，其中最大值为 $2$。\n\n使用 $X = 0$ 进行排序：\n\n- 交换 $p_1$ 和 $p_4$，$p = [2, 1, 3, 0]$。\n- 交换 $p_3$ 和 $p_4$，$p = [2, 1, 0, 3]$。\n- 交换 $p_1$ 和 $p_3$，$p = [0, 1, 2, 3]$。\n\n使用 $X = 2$ 进行排序：\n\n- 交换 $p_3$ 和 $p_4$，$p = [0, 1, 2, 3]$。\n\n在第二组测试用例中，我们必须交换 $p_1$ 和 $p_2$，而这只有在 $X = 0$ 时才可能实现。",
   "samples": [
     {
       "input": "4\n4\n0 1 3 2\n2\n1 0\n7\n0 1 2 3 5 6 4\n5\n0 3 2 1 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:01:56.923Z"
+  "fetchedAt": "2026-10-30T23:01:56.923Z",
+  "translatedAt": "2026-11-04T03:24:18.628+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

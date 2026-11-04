@@ -4,7 +4,7 @@
   "contestId": 1100,
   "index": "F",
   "title": "Ivan and Burgers",
-  "titleZh": null,
+  "titleZh": "伊万和汉堡",
   "url": "https://codeforces.com/contest/1100/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Ivan loves burgers and spending money. There are $n$ burger joints on the street where Ivan lives. Ivan has $q$ friends, and the $i$-th friend suggested to meet at the joint $l_i$ and walk to the joint $r_i$ $(l_i \\leq r_i)$. While strolling with the $i$-th friend Ivan can visit all joints $x$ which satisfy $l_i \\leq x \\leq r_i$.\n\nFor each joint Ivan knows the cost of the most expensive burger in it, it costs $c_i$ burles. Ivan wants to visit some subset of joints on his way, in each of them he will buy the most expensive burger and spend the most money. But there is a small issue: his card broke and instead of charging him for purchases, the amount of money on it changes as follows.\n\nIf Ivan had $d$ burles before the purchase and he spent $c$ burles at the joint, then after the purchase he would have $d \\oplus c$ burles, where $\\oplus$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\nCurrently Ivan has $2^{2^{100}} - 1$ burles and he wants to go out for a walk. Help him to determine the maximal amount of burles he can spend if he goes for a walk with the friend $i$. The amount of burles he spends is defined as the difference between the initial amount on his account and the final account.\n\n## Input\n\nThe first line contains one integer $n$ ($1 \\leq n \\leq 500\\,000$) — the number of burger shops.\n\nThe next line contains $n$ integers $c_1, c_2, \\ldots, c_n$ ($0 \\leq c_i \\leq 10^6$), where $c_i$ — the cost of the most expensive burger in the burger joint $i$.\n\nThe third line contains one integer $q$ ($1 \\leq q \\leq 500\\,000$) — the number of Ivan's friends.\n\nEach of the next $q$ lines contain two integers $l_i$ and $r_i$ ($1 \\leq l_i \\leq r_i \\leq n$) — pairs of numbers of burger shops between which Ivan will walk.\n\n## Output\n\nOutput $q$ lines, $i$-th of which containing the maximum amount of money Ivan can spend with the friend $i$.\n\n## Note\n\nIn the first test, in order to spend the maximum amount of money with the first and third friends, Ivan just needs to go into the first burger. With a second friend, Ivan just go to the third burger.\n\nIn the second test for a third friend (who is going to walk from the first to the third burger), there are only 8 options to spend money — $0$, $12$, $14$, $23$, $12 \\oplus 14 = 2$, $14 \\oplus 23 = 25$, $12 \\oplus 23 = 27$, $12 \\oplus 14 \\oplus 23 = 20$. The maximum amount of money it turns out to spend, if you go to the first and third burger — $12 \\oplus 23 = 27$.",
-  "statementZhMd": null,
+  "statementZhMd": "伊万喜欢汉堡，也喜欢花钱。伊万居住的街道上有 $n$ 家汉堡店。伊万有 $q$ 个朋友，第 $i$ 个朋友提议在第 $l_i$ 家汉堡店见面，然后走到第 $r_i$ 家汉堡店 $(l_i \\leq r_i)$。与第 $i$ 个朋友散步时，伊万可以经过所有满足 $l_i \\leq x \\leq r_i$ 的汉堡店 $x$。\n\n对于每家汉堡店，伊万都知道其中最贵汉堡的价格，第 $i$ 家店的价格为 $c_i$ 布尔斯。伊万想在途中选择一些汉堡店，并在每家选中的店里购买最贵的汉堡，以花费尽可能多的钱。但有一个小问题：他的银行卡坏了，不会直接扣除购买金额，而是按照如下方式改变卡中的余额。\n\n如果伊万购买前有 $d$ 布尔斯，并在汉堡店花费了 $c$ 布尔斯，那么购买后他将拥有 $d \\oplus c$ 布尔斯，其中 $\\oplus$ 表示[按位异或运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n目前伊万有 $2^{2^{100}} - 1$ 布尔斯，他想出去散步。请帮助他确定：如果与第 $i$ 个朋友散步，他最多可以花费多少布尔斯。伊万花费的金额定义为账户初始余额与最终余额之差。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 500\\,000$），表示汉堡店的数量。\n\n第二行包含 $n$ 个整数 $c_1, c_2, \\ldots, c_n$（$0 \\leq c_i \\leq 10^6$），其中 $c_i$ 表示第 $i$ 家汉堡店中最贵汉堡的价格。\n\n第三行包含一个整数 $q$（$1 \\leq q \\leq 500\\,000$），表示伊万朋友的数量。\n\n接下来的 $q$ 行中，每行包含两个整数 $l_i$ 和 $r_i$（$1 \\leq l_i \\leq r_i \\leq n$），表示伊万将要经过的汉堡店区间。\n\n## 输出格式\n\n输出 $q$ 行，第 $i$ 行包含伊万与第 $i$ 个朋友散步时最多可以花费的金额。\n\n## 说明\n\n在第一组测试中，为了与第一个和第三个朋友散步时花费最多的钱，伊万只需进入第一家汉堡店。与第二个朋友散步时，伊万只需去第三家汉堡店。\n\n在第二组测试中，对于第三个朋友（他将从第一家汉堡店走到第三家汉堡店），一共有 8 种花费方案——$0$、$12$、$14$、$23$、$12 \\oplus 14 = 2$、$14 \\oplus 23 = 25$、$12 \\oplus 23 = 27$、$12 \\oplus 14 \\oplus 23 = 20$。如果去第一家和第三家汉堡店，最多可以花费 $12 \\oplus 23 = 27$。",
   "samples": [
     {
       "input": "4\n7 2 3 4\n3\n1 4\n2 3\n1 3\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:17:47.424Z"
+  "fetchedAt": "2026-10-31T00:17:47.424Z",
+  "translatedAt": "2026-11-04T05:24:05.294+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

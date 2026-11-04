@@ -4,7 +4,7 @@
   "contestId": 1716,
   "index": "D",
   "title": "Chip Move",
-  "titleZh": null,
+  "titleZh": "芯片移动",
   "url": "https://codeforces.com/contest/1716/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a chip on the coordinate line. Initially, the chip is located at the point $0$. You can perform any number of moves; each move increases the coordinate of the chip by some positive integer (which is called *the length of the move*). The length of the first move you make should be divisible by $k$, the length of the second move — by $k+1$, the third — by $k+2$, and so on.\n\nFor example, if $k=2$, then the sequence of moves may look like this: $0 \\rightarrow 4 \\rightarrow 7 \\rightarrow 19 \\rightarrow 44$, because $4 - 0 = 4$ is divisible by $2 = k$, $7 - 4 = 3$ is divisible by $3 = k + 1$, $19 - 7 = 12$ is divisible by $4 = k + 2$, $44 - 19 = 25$ is divisible by $5 = k + 3$.\n\nYou are given two positive integers $n$ and $k$. Your task is to count the number of ways to reach the point $x$, starting from $0$, for every $x \\in [1, n]$. The number of ways can be very large, so print it modulo $998244353$. Two ways are considered different if they differ as sets of visited positions.\n\n## Input\n\nThe first (and only) line of the input contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 2 \\cdot 10^5$).\n\n## Output\n\nPrint $n$ integers — the number of ways to reach the point $x$, starting from $0$, for every $x \\in [1, n]$, taken modulo $998244353$.\n\n## Note\n\nLet's look at the first example:\n\nWays to reach the point $1$: $[0, 1]$;\n\nWays to reach the point $2$: $[0, 2]$;\n\nWays to reach the point $3$: $[0, 1, 3]$, $[0, 3]$;\n\nWays to reach the point $4$: $[0, 2, 4]$, $[0, 4]$;\n\nWays to reach the point $5$: $[0, 1, 5]$, $[0, 3, 5]$, $[0, 5]$;\n\nWays to reach the point $6$: $[0, 1, 3, 6]$, $[0, 2, 6]$, $[0, 4, 6]$, $[0, 6]$;\n\nWays to reach the point $7$: $[0, 2, 4, 7]$, $[0, 1, 7]$, $[0, 3, 7]$, $[0, 5, 7]$, $[0, 7]$;\n\nWays to reach the point $8$: $[0, 3, 5, 8]$, $[0, 1, 5, 8]$, $[0, 2, 8]$, $[0, 4, 8]$, $[0, 6, 8]$, $[0, 8]$.",
-  "statementZhMd": null,
+  "statementZhMd": "数轴上有一个芯片。初始时，芯片位于点 $0$。你可以进行任意次移动；每次移动都会将芯片的坐标增加一个正整数，这个整数称为*移动长度*。你进行的第一次移动的长度应当能被 $k$ 整除，第二次移动的长度应当能被 $k+1$ 整除，第三次移动的长度应当能被 $k+2$ 整除，依此类推。\n\n例如，当 $k=2$ 时，移动序列可以是：$0 \\rightarrow 4 \\rightarrow 7 \\rightarrow 19 \\rightarrow 44$，因为 $4 - 0 = 4$ 能被 $2 = k$ 整除，$7 - 4 = 3$ 能被 $3 = k + 1$ 整除，$19 - 7 = 12$ 能被 $4 = k + 2$ 整除，$44 - 19 = 25$ 能被 $5 = k + 3$ 整除。\n\n给定两个正整数 $n$ 和 $k$。请你计算对于每个 $x \\in [1, n]$，从 $0$ 出发到达点 $x$ 的方案数。方案数可能很大，因此请将结果对 $998244353$ 取模后输出。如果两种方案访问过的位置集合不同，则认为它们是不同的方案。\n\n## 输入格式\n\n输入的第一行（也是唯一一行）包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 2 \\cdot 10^5$）。\n\n## 输出格式\n\n输出 $n$ 个整数——对于每个 $x \\in [1, n]$，从 $0$ 出发到达点 $x$ 的方案数，对 $998244353$ 取模。\n\n## 说明\n\n让我们来看第一个样例：\n\n到达点 $1$ 的方案：$[0, 1]$；\n\n到达点 $2$ 的方案：$[0, 2]$；\n\n到达点 $3$ 的方案：$[0, 1, 3]$、$[0, 3]$；\n\n到达点 $4$ 的方案：$[0, 2, 4]$、$[0, 4]$；\n\n到达点 $5$ 的方案：$[0, 1, 5]$、$[0, 3, 5]$、$[0, 5]$；\n\n到达点 $6$ 的方案：$[0, 1, 3, 6]$、$[0, 2, 6]$、$[0, 4, 6]$、$[0, 6]$；\n\n到达点 $7$ 的方案：$[0, 2, 4, 7]$、$[0, 1, 7]$、$[0, 3, 7]$、$[0, 5, 7]$、$[0, 7]$；\n\n到达点 $8$ 的方案：$[0, 3, 5, 8]$、$[0, 1, 5, 8]$、$[0, 2, 8]$、$[0, 4, 8]$、$[0, 6, 8]$、$[0, 8]$。",
   "samples": [
     {
       "input": "8 1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:53:40.890Z"
+  "fetchedAt": "2026-11-02T17:53:40.890Z",
+  "translatedAt": "2026-11-04T03:19:17.676+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

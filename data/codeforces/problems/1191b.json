@@ -4,7 +4,7 @@
   "contestId": 1191,
   "index": "B",
   "title": "Tokitsukaze and Mahjong",
-  "titleZh": null,
+  "titleZh": "Tokitsukaze 与麻将",
   "url": "https://codeforces.com/contest/1191/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Tokitsukaze is playing a game derivated from Japanese mahjong. In this game, she has three tiles in her hand. Each tile she owns is a suited tile, which means it has a suit (**manzu**, **pinzu** or **souzu**) and a number (a digit ranged from $1$ to $9$). In this problem, we use one digit and one lowercase letter, which is the first character of the suit, to represent a suited tile. All possible suited tiles are represented as `1m`, `2m`, $\\ldots$, `9m`, `1p`, `2p`, $\\ldots$, `9p`, `1s`, `2s`, $\\ldots$, `9s`.\n\nIn order to win the game, she must have at least one **mentsu** (described below) in her hand, so sometimes she should draw extra suited tiles. After drawing a tile, the number of her tiles increases by one. She can draw any tiles she wants, including those already in her hand.\n\nDo you know the minimum number of extra suited tiles she needs to draw so that she can win?\n\nHere are some useful definitions in this game:\n\n- A **mentsu**, also known as meld, is formed by a **koutsu** or a **shuntsu**;\n- A **koutsu**, also known as triplet, is made of three identical tiles, such as `[1m, 1m, 1m]`, however, `[1m, 1p, 1s]` or `[1m, 4m, 7m]` is NOT a **koutsu**;\n- A **shuntsu**, also known as sequence, is made of three sequential numbered tiles in the same suit, such as `[1m, 2m, 3m]` and `[5s, 7s, 6s]`, however, `[9m, 1m, 2m]` or `[1m, 2p, 3s]` is NOT a **shuntsu**.\n\nSome examples:\n\n- `[2m, 3p, 2s, 4m, 1s, 2s, 4s]` — it contains no **koutsu** or **shuntsu**, so it includes no **mentsu**;\n- `[4s, 3m, 3p, 4s, 5p, 4s, 5p]` — it contains a **koutsu**, `[4s, 4s, 4s]`, but no **shuntsu**, so it includes a **mentsu**;\n- `[5p, 5s, 9m, 4p, 1s, 7p, 7m, 6p]` — it contains no **koutsu** but a **shuntsu**, `[5p, 4p, 6p]` or `[5p, 7p, 6p]`, so it includes a **mentsu**.\n\nNote that the order of tiles is unnecessary and you can assume the number of each type of suited tiles she can draw is infinite.\n\n## Input\n\nThe only line contains **three** strings — the tiles in Tokitsukaze's hand. For each string, the first character is a digit ranged from $1$ to $9$ and the second character is `m`, `p` or `s`.\n\n## Output\n\nPrint a single integer — the minimum number of extra suited tiles she needs to draw.\n\n## Note\n\nIn the first example, Tokitsukaze already has a **shuntsu**.\n\nIn the second example, Tokitsukaze already has a **koutsu**.\n\nIn the third example, Tokitsukaze can get a **shuntsu** by drawing one suited tile — `1p` or `4p`. The resulting tiles will be `[3p, 9m, 2p, 1p]` or `[3p, 9m, 2p, 4p]`.",
-  "statementZhMd": null,
+  "statementZhMd": "Tokitsukaze 正在玩一种源自日本麻将的游戏。在这个游戏中，她的手牌中有三张牌。她拥有的每张牌都是数牌，这意味着它具有一种花色（**manzu**、**pinzu** 或 **souzu**）和一个数字（从 $1$ 到 $9$ 的一位数字）。在本题中，我们使用一个数字和一个小写字母（花色的首字母）来表示一张数牌。所有可能的数牌表示为 `1m`、`2m`、$\\ldots$、`9m`、`1p`、`2p`、$\\ldots$、`9p`、`1s`、`2s`、$\\ldots$、`9s`。\n\n为了赢得游戏，她的手牌中必须至少有一个**面子**（如下所述），因此有时她需要摸取额外的数牌。摸牌后，她的牌数增加一张。她可以摸取任意牌，包括她手牌中已经有的牌。\n\n你能求出她至少需要摸取多少张额外的数牌才能获胜吗？\n\n下面是本游戏中的一些定义：\n\n- **面子**（mentsu，也称为 meld）由**刻子**或**顺子**组成；\n- **刻子**（koutsu，也称为 triplet）由三张完全相同的牌组成，例如 `[1m, 1m, 1m]`，但是 `[1m, 1p, 1s]` 或 `[1m, 4m, 7m]` **不是**一个**刻子**；\n- **顺子**（shuntsu，也称为 sequence）由同一花色中数字连续的三张牌组成，例如 `[1m, 2m, 3m]` 和 `[5s, 7s, 6s]`，但是 `[9m, 1m, 2m]` 或 `[1m, 2p, 3s]` **不是**一个**顺子**。\n\n以下是一些例子：\n\n- `[2m, 3p, 2s, 4m, 1s, 2s, 4s]` —— 它不包含**刻子**或**顺子**，因此不包含**面子**；\n- `[4s, 3m, 3p, 4s, 5p, 4s, 5p]` —— 它包含一个**刻子** `[4s, 4s, 4s]`，但不包含**顺子**，因此包含一个**面子**；\n- `[5p, 5s, 9m, 4p, 1s, 7p, 7m, 6p]` —— 它不包含**刻子**，但包含一个**顺子** `[5p, 4p, 6p]` 或 `[5p, 7p, 6p]`，因此包含一个**面子**。\n\n注意，牌的顺序并不重要，并且你可以假设她可以无限次摸取每种类型的数牌。\n\n## 输入格式\n\n唯一一行包含 **三个**字符串——Tokitsukaze 手牌中的牌。对于每个字符串，第一个字符是一个从 $1$ 到 $9$ 的数字，第二个字符是 `m`、`p` 或 `s`。\n\n## 输出格式\n\n输出一个整数——她至少需要摸取的额外数牌数量。\n\n## 说明\n\n在第一个样例中，Tokitsukaze 已经拥有一个**顺子**。\n\n在第二个样例中，Tokitsukaze 已经拥有一个**刻子**。\n\n在第三个样例中，Tokitsukaze 可以通过摸取一张数牌获得一个**顺子**——`1p` 或 `4p`。摸牌后的牌为 `[3p, 9m, 2p, 1p]` 或 `[3p, 9m, 2p, 4p]`。",
   "samples": [
     {
       "input": "1s 2s 3s\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:08:12.275Z"
+  "fetchedAt": "2026-10-31T00:08:12.275Z",
+  "translatedAt": "2026-11-04T05:07:23.250+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 893,
   "index": "F",
   "title": "Subtree Minimum Query",
-  "titleZh": null,
+  "titleZh": "子树最小值查询",
   "url": "https://codeforces.com/contest/893/problem/F",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a rooted tree consisting of $*n*$ vertices. Each vertex has a number written on it; number $*a*_{*i*}$ is written on vertex $*i*$.\n\nLet's denote $*d*(*i*, *j*)$ as the distance between vertices $*i*$ and $*j*$ in the tree (that is, the number of edges in the shortest path from $*i*$ to $*j*$). Also let's denote the *$*k*$-blocked subtree* of vertex $*x*$ as the set of vertices $*y*$ such that both these conditions are met:\n\n- $*x*$ is an ancestor of $*y*$ (every vertex is an ancestor of itself);\n- $*d*(*x*, *y*) ≤ *k*$.\n\nYou are given $*m*$ queries to the tree. $*i*$-th query is represented by two numbers $*x*_{*i*}$ and $*k*_{*i*}$, and the answer to this query is the minimum value of $*a*_{*j*}$ among such vertices $*j*$ such that $*j*$ belongs to $*k*_{*i*}$-blocked subtree of $*x*_{*i*}$.\n\nWrite a program that would process these queries quickly!\n\n**Note that the queries are given in a modified way**.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*r*$ ($1 ≤ *r* ≤ *n* ≤ 100000$) — the number of vertices in the tree and the index of the root, respectively.\n\nThe second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ 10^{9}$) — the numbers written on the vertices.\n\nThen $*n* - 1$ lines follow, each containing two integers $*x*$ and $*y*$ ($1 ≤ *x*, *y* ≤ *n*$) and representing an edge between vertices $*x*$ and $*y*$. It is guaranteed that these edges form a tree.\n\nNext line contains one integer $*m*$ ($1 ≤ *m* ≤ 10^{6}$) — the number of queries to process.\n\nThen $*m*$ lines follow, $*i*$-th line containing two numbers $*p*_{*i*}$ and $*q*_{*i*}$, which can be used to restore $*i*$-th query ($1 ≤ *p*_{*i*}, *q*_{*i*} ≤ *n*$).\n\n$*i*$-th query can be restored as follows:\n\nLet $*last*$ be the answer for previous query (or $0$ if $*i* = 1$). Then $*x*_{*i*} = ((*p*_{*i*} + *last*) *mod* *n*) + 1$, and $*k*_{*i*} = (*q*_{*i*} + *last*) *mod* *n*$.\n\n## Output\n\nPrint $*m*$ integers. $*i*$-th of them has to be equal to the answer to $*i*$-th query.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵由 $*n*$ 个顶点组成的有根树。每个顶点上写有一个数字，顶点 $*i*$ 上写有数字 $*a*_{*i*}$。\n\n将 $*d*(*i*, *j*)$ 表示为树中顶点 $*i*$ 和 $*j*$ 之间的距离（即从 $*i*$ 到 $*j*$ 的最短路径上的边数）。此外，将顶点 $*x*$ 的 *$*k*$-阻塞子树* 定义为满足以下两个条件的顶点 $*y*$ 的集合：\n\n- $*x*$ 是 $*y*$ 的祖先（每个顶点都是自己的祖先）；\n- $*d*(*x*, *y*) ≤ *k*$。\n\n现在给定树上的 $*m*$ 个查询。第 $*i*$ 个查询由两个数字 $*x*_{*i*}$ 和 $*k*_{*i*}$ 表示，查询答案是满足顶点 $*j*$ 属于顶点 $*x*_{*i*}$ 的 $*k*_{*i*}$-阻塞子树的所有顶点中，$*a*_{*j*}$ 的最小值。\n\n请编写程序，快速处理这些查询！\n\n**注意，查询以一种特殊的方式给出**。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*r*$（$1 ≤ *r* ≤ *n* ≤ 100000$）——树中顶点的数量和根的编号。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ 10^{9}$）——各顶点上写的数字。\n\n接下来 $*n* - 1$ 行，每行包含两个整数 $*x*$ 和 $*y*$（$1 ≤ *x*, *y* ≤ *n*$），表示顶点 $*x*$ 和顶点 $*y*$ 之间有一条边。保证这些边构成一棵树。\n\n下一行包含一个整数 $*m*$（$1 ≤ *m* ≤ 10^{6}$）——要处理的查询数量。\n\n接下来 $*m*$ 行，第 $*i*$ 行包含两个数字 $*p*_{*i*}$ 和 $*q*_{*i*}$，它们可用于还原第 $*i*$ 个查询（$1 ≤ *p*_{*i*}, *q*_{*i*} ≤ *n*$）。\n\n第 $*i*$ 个查询的还原方式如下：\n\n令 $*last*$ 表示上一个查询的答案（如果 $*i* = 1$，则为 $0$）。那么，$*x*_{*i*} = ((*p*_{*i*} + *last*) *mod* *n*) + 1$，且 $*k*_{*i*} = (*q*_{*i*} + *last*) *mod* *n*$。\n\n## 输出格式\n\n输出 $*m*$ 个整数。第 $*i*$ 个整数必须等于第 $*i*$ 个查询的答案。",
   "samples": [
     {
       "input": "5 2\n1 3 2 3 5\n2 3\n5 1\n3 4\n4 1\n2\n1 2\n2 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:43:02.280Z"
+  "fetchedAt": "2026-11-02T19:43:02.280Z",
+  "translatedAt": "2026-11-04T05:54:05.821+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

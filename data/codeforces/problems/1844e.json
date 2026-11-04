@@ -4,7 +4,7 @@
   "contestId": 1844,
   "index": "E",
   "title": "Great Grids",
-  "titleZh": null,
+  "titleZh": "优秀网格",
   "url": "https://codeforces.com/contest/1844/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "An $n \\times m$ grid of characters is called *great* if it satisfies these three conditions:\n\n- Each character is either '`A`', '`B`', or '`C`'.\n- Every $2 \\times 2$ contiguous subgrid contains all three different letters.\n- Any two cells that share a common edge contain different letters.\n\nLet $(x,y)$ denote the cell in the $x$-th row from the top and $y$-th column from the left.\n\nYou want to construct a great grid that satisfies $k$ constraints. Each constraint consists of two cells, $(x_{i,1},y_{i,1})$ and $(x_{i,2},y_{i,2})$, that share exactly one corner. You want your great grid to have the same letter in cells $(x_{i,1},y_{i,1})$ and $(x_{i,2},y_{i,2})$.\n\nDetermine whether there exists a great grid satisfying all the constraints.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^3$). The description of the test cases follows.\n\nThe first line of each test case contains three integers, $n$, $m$, and $k$ ($2 \\le n,m \\le 2 \\cdot 10^3$, $1 \\le k \\le 4 \\cdot 10^3$).\n\nEach of the next $k$ lines contains four integers, $x_{i,1}$, $y_{i,1}$, $x_{i,2}$, and $y_{i,2}$ ($1 \\le x_{i,1} \\lt x_{i,2} \\le n$, $1 \\le y_{i,1},y_{i,2} \\le m$). It is guaranteed that either $(x_{i,2},y_{i,2}) = (x_{i,1}+1,y_{i,1}+1)$ or $(x_{i,2},y_{i,2}) = (x_{i,1}+1,y_{i,1}-1)$.\n\nThe pairs of cells are pairwise distinct, i.e. for all $1 \\le i \\lt j \\le k$, it is **not** true that $x_{i,1} = x_{j,1}$, $y_{i,1} = y_{j,1}$, $x_{i,2} = x_{j,2}$, and $y_{i,2} = y_{j,2}$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^3$.\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $2 \\cdot 10^3$.\n\nIt is guaranteed that the sum of $k$ over all test cases does not exceed $4 \\cdot 10^3$.\n\n## Output\n\nFor each test case, output \"`YES`\" if a great grid satisfying all the constraints exists and \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, the following great grid satisfies all the constraints:\n\n| `B` | `A` | `B` | `C` |\n| --- | --- | --- | --- |\n| `C` | `B` | `C` | `A` |\n| `A` | `C` | `A` | `B` |\n\nIn the second test case, the two constraints imply that cells $(1,1)$ and $(2,2)$ have the same letter and cells $(1,2)$ and $(2,1)$ have the same letter, which makes it impossible for the only $2 \\times 2$ subgrid to contain all three different letters.",
-  "statementZhMd": null,
+  "statementZhMd": "一个 $n \\times m$ 的字符网格称为*优秀网格*，当且仅当满足以下三个条件：\n\n- 每个字符都是 '`A`'、'`B`' 或 '`C`'。\n- 每个连续的 $2 \\times 2$ 子网格都包含三个不同的字母。\n- 共享一条边的任意两个单元格所包含的字符都不同。\n\n令 $(x,y)$ 表示从上往下数第 $x$ 行、从左往右数第 $y$ 列的单元格。\n\n你需要构造一个满足 $k$ 个约束的优秀网格。每个约束由两个恰好共享一个角的单元格 $(x_{i,1},y_{i,1})$ 和 $(x_{i,2},y_{i,2})$ 组成。要求你的优秀网格中，单元格 $(x_{i,1},y_{i,1})$ 和 $(x_{i,2},y_{i,2})$ 中的字母相同。\n\n请判断是否存在满足所有约束的优秀网格。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^3$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含三个整数 $n$、$m$ 和 $k$（$2 \\le n,m \\le 2 \\cdot 10^3$，$1 \\le k \\le 4 \\cdot 10^3$）。\n\n接下来的 $k$ 行中，每行包含四个整数 $x_{i,1}$、$y_{i,1}$、$x_{i,2}$ 和 $y_{i,2}$（$1 \\le x_{i,1} \\lt x_{i,2} \\le n$，$1 \\le y_{i,1},y_{i,2} \\le m$）。保证以下两种情况之一成立：$(x_{i,2},y_{i,2}) = (x_{i,1}+1,y_{i,1}+1)$ 或 $(x_{i,2},y_{i,2}) = (x_{i,1}+1,y_{i,1}-1)$。\n\n这些单元格对两两不同，即对于所有 $1 \\le i \\lt j \\le k$，**不**存在同时满足 $x_{i,1} = x_{j,1}$、$y_{i,1} = y_{j,1}$、$x_{i,2} = x_{j,2}$ 和 $y_{i,2} = y_{j,2}$ 的情况。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^3$。\n\n保证所有测试用例的 $m$ 之和不超过 $2 \\cdot 10^3$。\n\n保证所有测试用例的 $k$ 之和不超过 $4 \\cdot 10^3$。\n\n## 输出格式\n\n对于每个测试用例，如果存在满足所有约束的优秀网格，输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n你可以用任意大小写形式输出答案。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被识别为肯定 პასუხ。\n\n## 说明\n\n在第一个测试用例中，下面的优秀网格满足所有约束：\n\n| `B` | `A` | `B` | `C` |\n| --- | --- | --- | --- |\n| `C` | `B` | `C` | `A` |\n| `A` | `C` | `A` | `B` |\n\n在第二个测试用例中，两个约束意味着单元格 $(1,1)$ 和 $(2,2)$ 中的字母相同，同时单元格 $(1,2)$ 和 $(2,1)$ 中的字母相同，这使得唯一的 $2 \\times 2$ 子网格不可能包含三个不同的字母。",
   "samples": [
     {
       "input": "4\n3 4 4\n1 1 2 2\n2 1 3 2\n1 4 2 3\n2 3 3 2\n2 7 2\n1 1 2 2\n1 2 2 1\n8 5 4\n1 2 2 1\n1 5 2 4\n7 1 8 2\n7 4 8 5\n8 5 4\n1 2 2 1\n1 5 2 4\n7 1 8 2\n7 5 8 4\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:24:22.296Z"
+  "fetchedAt": "2026-10-30T22:24:22.296Z",
+  "translatedAt": "2026-11-04T02:42:35.816+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1804,
   "index": "H",
   "title": "Code Lock",
-  "titleZh": null,
+  "titleZh": "密码锁",
   "url": "https://codeforces.com/contest/1804/problem/H",
   "difficulty": 3300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 512,
   "statementMd": "Lara has a safe that is locked with a circle-shaped code lock that consists of a rotating arrow, a static circumference around the arrow, an input screen, and an input button.\n\nThe circumference of the lock is split into $k$ equal sections numbered from $1$ to $k$ in clockwise order. Arrow always points to one of the sections. Each section is marked with one of the first $k$ letters of the English alphabet. No two sections are marked with the same letter.\n\nDue to the lock limitations, the safe's password is a string of length $n$ that consists of first $k$ letters of the English alphabet only. Lara enters the password by rotating the lock's arrow and pressing the input button. Initially, the lock's arrow points to section $1$ and the input screen is empty. In one second she can do one of the following actions.\n\n- Rotate the arrow one section clockwise. If the arrow was pointing at section $x \\lt k$ it will now point at section $x + 1$. If the arrow was pointing at section $k$ it will now point at section $1$.\n- Rotate the arrow one section counter-clockwise. If the arrow was pointing at section $x \\gt 1$ it will now point at section $x - 1$. If the arrow was pointing at section $1$ it will now point at section $k$.\n- Press the input button. The letter marked on the section that the arrow points to will be added to the content of the input screen.\n\nAs soon as the content of the input screen matches the password, the safe will open. Lara always enters her password in the minimum possible time.\n\nLara has recently found out that the safe can be re-programmed. She can take the first $k$ letters of the English alphabet and assign them to the sectors in any order she likes. Now she wants to re-arrange the letters in a way that will minimize the number of seconds it takes her to input the password. Compute this minimum number of seconds and the number of ways to assign letters, for which this minimum number of seconds is achieved.\n\nTwo ways to assign letters to sectors are considered to be distinct if there exists at least one sector $i$ that is assigned different letters.\n\n## Input\n\nThe first line of the input contains two integers $k$ and $n$ ($2 \\leq k \\leq 16$, $2 \\leq n \\leq 100\\,000$) — the number of sectors on the lock's circumference and the length of Lara's password, respectively.\n\nThe second line of the input contains a string of length $n$ that consists of the first $k$ lowercase letters of the English alphabet only. This string is the password.\n\n## Output\n\nOn the first line print minimum possible number of seconds it can take Lara to enter the password and open the safe if she assigns letters to sectors optimally.\n\nOn the second line print the number of ways to assign letters optimally.\n\n## Note\n\nThe initial states of optimal arrangements for the first example are shown in the figure below.\n\n![image](https://espresso.codeforces.com/d090ccb1b6f60c57e2711a05202c8a48bbd758fa.png)\n\nThe initial states of optimal arrangements for the second example are shown in the figure below.\n\n![image](https://espresso.codeforces.com/478bde4e227fffa1df2e7bb3e72575cf3a605349.png)\n\nThe initial states of optimal arrangements for the third example are shown in the figure below.\n\n![image](https://espresso.codeforces.com/60468cdff4a793c44895f947ed92782818af3c6a.png)",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nLara 有一个保险箱，保险箱由一个圆形密码锁锁住。密码锁由一个可旋转的指针、指针周围固定不动的圆周、输入屏幕和输入按钮组成。\n\n密码锁的圆周被分成 $k$ 个大小相等的区段，按顺时针方向编号为 $1$ 到 $k$。指针总是指向其中一个区段。每个区段上标有前 $k$ 个英文字母中的一个，且没有两个区段标有相同的字母。\n\n由于密码锁的限制，保险箱的密码是一个长度为 $n$ 的字符串，且只由前 $k$ 个英文字母组成。Lara 通过旋转密码锁的指针并按下输入按钮来输入密码。初始时，指针指向区段 $1$，输入屏幕为空。在 1 秒内，她可以执行以下操作之一。\n\n- 将指针顺时针旋转一个区段。如果指针原本指向区段 $x \\lt k$，那么它将指向区段 $x + 1$。如果指针原本指向区段 $k$，那么它将指向区段 $1$。\n- 将指针逆时针旋转一个区段。如果指针原本指向区段 $x \\gt 1$，那么它将指向区段 $x - 1$。如果指针原本指向区段 $1$，那么它将指向区段 $k$。\n- 按下输入按钮。指针所指区段上的字母将被添加到输入屏幕的内容中。\n\n一旦输入屏幕的内容与密码相同，保险箱就会打开。Lara 总是在可能的情况下用最短时间输入密码。\n\n最近，Lara 发现保险箱可以重新编程。她可以将前 $k$ 个英文字母以任意顺序分配给各个区段。现在，她希望重新排列这些字母，使输入密码所需的秒数最少。请计算这个最少秒数，以及能够达到该最少秒数的字母分配方式数。\n\n如果存在至少一个区段 $i$ 被分配了不同的字母，则认为两种字母分配方式不同。\n\n## 输入格式\n\n输入的第一行包含两个整数 $k$ 和 $n$（$2 \\leq k \\leq 16$，$2 \\leq n \\leq 100\\,000$），分别表示密码锁圆周上的区段数和 Lara 的密码长度。\n\n输入的第二行包含一个长度为 $n$ 的字符串，该字符串只由前 $k$ 个小写英文字母组成。这个字符串表示密码。\n\n## 输出格式\n\n第一行输出 Lara 以最优方式分配字母时，输入密码并打开保险箱所需的最少秒数。\n\n第二行输出能够达到最优结果的字母分配方式数。\n\n## 说明\n\n第一组样例中最优分配方式的初始状态如下图所示。\n\n![image](https://espresso.codeforces.com/d090ccb1b6f60c57e2711a05202c8a48bbd758fa.png)\n\n第二组样例中最优分配方式的初始状态如下图所示。\n\n![image](https://espresso.codeforces.com/478bde4e227fffa1df2e7bb3e72575cf3a605349.png)\n\n第三组样例中最优分配方式的初始状态如下图所示。\n\n![image](https://espresso.codeforces.com/60468cdff4a793c44895f947ed92782818af3c6a.png)",
   "samples": [
     {
       "input": "3 10\nabcabcabca\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:33:50.840Z"
+  "fetchedAt": "2026-10-30T22:33:50.840Z",
+  "translatedAt": "2026-11-04T02:53:07.643+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

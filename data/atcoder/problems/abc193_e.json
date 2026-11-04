@@ -4,7 +4,7 @@
   "contestId": "abc193",
   "index": "E",
   "title": "Oversleeping",
-  "titleZh": null,
+  "titleZh": "睡过头",
   "url": "https://atcoder.jp/contests/abc193/tasks/abc193_e",
   "difficulty": 1948,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nA train goes back and forth between Town $A$ and Town $B$. It departs Town $A$ at time $0$ and then repeats the following:\n\n- goes to Town $B$, taking $X$ seconds;\n- stops at Town $B$ for $Y$ seconds;\n- goes to Town $A$, taking $X$ seconds;\n- stops at Town $A$ for $Y$ seconds.\n\nMore formally, these intervals of time are half-open, that is, for each $n = 0, 1, 2, \\dots$:\n\n- at time $t$ such that $(2X + 2Y)n ≤ t < (2X + 2Y)n + X$, the train is going to Town $B$;\n- at time $t$ such that $(2X + 2Y)n + X ≤ t < (2X + 2Y)n + X + Y$, the train is stopping at Town $B$;\n- at time $t$ such that $(2X + 2Y)n + X + Y ≤ t < (2X + 2Y)n + 2X + Y$, the train is going to Town $A$;\n- at time $t$ such that $(2X + 2Y)n + 2X + Y ≤ t < (2X + 2Y)(n + 1)$, the train is stopping at Town $A$.\n\nTakahashi is thinking of taking this train to depart Town $A$ at time $0$ and getting off at Town $B$. After the departure, he will repeat the following:\n\n- be asleep for $P$ seconds;\n- be awake for $Q$ seconds.\n\nAgain, these intervals of time are half-open, that is, for each $n = 0, 1, 2, \\dots$:\n\n- at time $t$ such that $(P + Q)n ≤ t < (P + Q)n + P$, Takahashi is asleep;\n- at time $t$ such that $(P + Q)n + P ≤ t < (P + Q)(n + 1)$, Takahashi is awake.\n\nHe can get off the train at Town $B$ if it is stopping at Town $B$ and he is awake.\nDetermine whether he can get off at Town $B$. If he can, find the earliest possible time to do so.\nUnder the constraints of this problem, it can be proved that the earliest time is an integer.\n\nYou are given $T$ cases. Solve each of them.\n\n## Constraints\n\n- All values in input are integers.\n- $1 ≤ T ≤ 10$\n- $1 ≤ X ≤ 10^9$\n- $1 ≤ Y ≤ 500$\n- $1 ≤ P ≤ 10^9$\n- $1 ≤ Q ≤ 500$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nT\n\\rm case_1\n\\rm case_2\n\\hspace{9pt}\\vdots\n\\rm case_T\n```\n\nEach case is in the following format:\n\n```\nX Y P Q\n```\n\n## Output\n\nPrint $T$ lines.\nThe $i$-th line should contain the answer to $\\rm case_i$.\nIf there exists a time such that Takahashi can get off the train at Town $B$, the line should contain the earliest such time; otherwise, the line should contain `infinity`.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n一列火车在 $A$ 镇和 $B$ 镇之间往返运行。它在时刻 $0$ 从 $A$ 镇出发，之后重复进行以下过程：\n\n- 花费 $X$ 秒前往 $B$ 镇；\n- 在 $B$ 镇停留 $Y$ 秒；\n- 花费 $X$ 秒前往 $A$ 镇；\n- 在 $A$ 镇停留 $Y$ 秒。\n\n更正式地说，这些时间区间是半开区间，也就是说，对于每个 $n = 0, 1, 2, \\dots$：\n\n- 当时刻 $t$ 满足 $(2X + 2Y)n ≤ t < (2X + 2Y)n + X$ 时，火车正在前往 $B$ 镇；\n- 当时刻 $t$ 满足 $(2X + 2Y)n + X ≤ t < (2X + 2Y)n + X + Y$ 时，火车停靠在 $B$ 镇；\n- 当时刻 $t$ 满足 $(2X + 2Y)n + X + Y ≤ t < (2X + 2Y)n + 2X + Y$ 时，火车正在前往 $A$ 镇；\n- 当时刻 $t$ 满足 $(2X + 2Y)n + 2X + Y ≤ t < (2X + 2Y)(n + 1)$ 时，火车停靠在 $A$ 镇。\n\n高桥打算乘坐这列火车，在时刻 $0$ 从 $A$ 镇出发，并在 $B$ 镇下车。出发后，他会重复进行以下过程：\n\n- 睡眠 $P$ 秒；\n- 清醒 $Q$ 秒。\n\n同样地，这些时间区间是半开区间，也就是说，对于每个 $n = 0, 1, 2, \\dots$：\n\n- 当时刻 $t$ 满足 $(P + Q)n ≤ t < (P + Q)n + P$ 时，高桥处于睡眠状态；\n- 当时刻 $t$ 满足 $(P + Q)n + P ≤ t < (P + Q)(n + 1)$ 时，高桥处于清醒状态。\n\n当火车停靠在 $B$ 镇且高桥处于清醒状态时，他可以在 $B$ 镇下车。\n请判断他是否能够在 $B$ 镇下车。如果可以，请求出能够下车的最早时刻。\n在本题的约束条件下，可以证明最早时刻一定是整数。\n\n给定 $T$ 组测试数据。请分别求解每组数据。\n\n## 约束条件\n\n- 输入中的所有值均为整数。\n- $1 ≤ T ≤ 10$\n- $1 ≤ X ≤ 10^9$\n- $1 ≤ Y ≤ 500$\n- $1 ≤ P ≤ 10^9$\n- $1 ≤ Q ≤ 500$\n\n## 输入格式\n\n输入从标准输入中按照以下格式给出：\n\n```\nT\n\\rm case_1\n\\rm case_2\n\\hspace{9pt}\\vdots\n\\rm case_T\n```\n\n每组数据的格式如下：\n\n```\nX Y P Q\n```\n\n## 输出格式\n\n输出 $T$ 行。\n第 $i$ 行应包含 $\\rm case_i$ 的答案。\n如果存在某个时刻使得高桥可以在 $B$ 镇下车，则该行输出这样的最早时刻；否则输出 `infinity`。",
   "samples": [
     {
       "input": "3\n5 2 7 6\n1 1 3 1\n999999999 1 1000000000 1\n",
@@ -21,5 +21,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:55:34.410Z"
+  "fetchedAt": "2026-10-30T21:55:34.410Z",
+  "translatedAt": "2026-11-04T04:00:46.121+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

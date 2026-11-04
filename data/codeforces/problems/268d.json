@@ -4,7 +4,7 @@
   "contestId": 268,
   "index": "D",
   "title": "Wall Bars",
-  "titleZh": null,
+  "titleZh": "墙壁横杆",
   "url": "https://codeforces.com/contest/268/problem/D",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Manao is working for a construction company. Recently, an order came to build wall bars in a children's park. Manao was commissioned to develop a plan of construction, which will enable the company to save the most money.\n\nAfter reviewing the formal specifications for the wall bars, Manao discovered a number of controversial requirements and decided to treat them to the company's advantage. His resulting design can be described as follows:\n\n- Let's introduce some unit of length. The construction center is a pole of height $*n*$.\n- At heights $1, 2, ..., *n*$ exactly one horizontal bar sticks out from the pole. Each bar sticks in one of four pre-fixed directions.\n- A child can move from one bar to another if the distance between them does not exceed $*h*$ and they stick in the same direction. If a child is on the ground, he can climb onto any of the bars at height between $1$ and $*h*$. In Manao's construction a child should be able to reach at least one of the bars at heights $*n* - *h* + 1, *n* - *h* + 2, ..., *n*$ if he begins at the ground.\n\n![image](https://espresso.codeforces.com/b5f89256c1fdecb0e9c5f098a06054e87d5a357a.png) The figure to the left shows what a common set of wall bars looks like. The figure to the right shows Manao's construction\n\nManao is wondering how many distinct construction designs that satisfy his requirements exist. As this number can be rather large, print the remainder after dividing it by $1000000009 (10^{9} + 9)$. Two designs are considered distinct if there is such height $*i*$, that the bars on the height $*i*$ in these designs don't stick out in the same direction.\n\n## Input\n\nA single line contains two space-separated integers, $*n*$ and $*h*$ ($1 ≤ *n* ≤ 1000$, $1 ≤ *h* ≤ *min*(*n*, 30)$).\n\n## Output\n\nIn a single line print the remainder after dividing the number of designs by $1000000009 (10^{9} + 9)$.\n\n## Note\n\nConsider several designs for $*h* = 2$. A design with the first bar sticked out in direction $*d*_{1}$, the second — in direction $*d*_{2}$ and so on ($1 ≤ *d*_{*i*} ≤ 4$) is denoted as string $*d*_{1}$$*d*_{2}$$...$$*d*_{*n*}$.\n\nDesign \"1231\" (the first three bars are sticked out in different directions, the last one — in the same as first). A child can reach neither the bar at height 3 nor the bar at height 4.\n\nDesign \"414141\". A child can reach the bar at height 5. To do this, he should first climb at the first bar, then at the third and then at the fifth one. He can also reach bar at height 6 by the route second $→$ fourth $→$ sixth bars.\n\nDesign \"123333\". The child can't reach the upper two bars.\n\nDesign \"323323\". The bar at height 6 can be reached by the following route: first $→$ third $→$ fourth $→$ sixth bars.",
-  "statementZhMd": null,
+  "statementZhMd": "Manao 在一家建筑公司工作。最近，公司接到了一份为儿童公园建造墙壁横杆的订单。Manao 受委托制定施工方案，使公司能够节省尽可能多的资金。\n\n在查看墙壁横杆的正式规格后，Manao 发现其中有一些含糊的要求，于是决定从公司的利益出发对其进行处理。他设计的结构如下：\n\n- 设定一个长度单位。整个结构的中心是一根高度为 $*n*$ 的杆。\n- 在高度 $1, 2, ..., *n*$ 处各有一根水平横杆从中心杆伸出。每根横杆朝向四个预先固定的方向之一。\n- 如果两根横杆之间的高度差不超过 $*h*$，且它们朝向相同，那么孩子就可以从其中一根移动到另一根。如果孩子在地面上，那么他可以爬上高度在 $1$ 到 $*h*$ 之间的任意一根横杆。在 Manao 的结构中，如果孩子从地面出发，他必须能够到达高度 $*n* - *h* + 1, *n* - *h* + 2, ..., *n*$ 中至少一根横杆。\n\n![image](https://espresso.codeforces.com/b5f89256c1fdecb0e9c5f098a06054e87d5a357a.png) 左图展示了一组普通的墙壁横杆，右图展示了 Manao 的结构。\n\nManao 想知道满足这些要求的不同结构方案有多少种。由于这个数可能很大，请输出它除以 $1000000009 (10^{9} + 9)$ 所得的余数。如果存在某个高度 $*i*$，使得两个方案在高度 $*i*$ 处的横杆朝向不同，则认为这两个方案不同。\n\n## 输入格式\n\n一行包含两个用空格分隔的整数 $*n*$ 和 $*h*$（$1 ≤ *n* ≤ 1000$，$1 ≤ *h* ≤ *min*(*n*, 30)$）。\n\n## 输出格式\n\n一行输出方案数量除以 $1000000009 (10^{9} + 9)$ 所得的余数。\n\n## 说明\n\n考虑几种 $*h* = 2$ 时的结构。设第一根横杆朝向 $*d*_{1}$，第二根朝向 $*d*_{2}$，依此类推（$1 ≤ *d*_{*i*} ≤ 4$），则该结构表示为字符串 $*d*_{1}$$*d*_{2}$$...$$*d*_{*n*}$。\n\n结构 \"1231\"（前 3 根横杆朝向不同的方向，最后一根与第一根朝向相同）。孩子既无法到达高度 3 的横杆，也无法到达高度 4 的横杆。\n\n结构 \"414141\"。孩子可以到达高度 5 的横杆。为此，他应先爬上第一根横杆，然后到第三根，最后到第五根。他也可以通过第二根 $→$ 第四根 $→$ 第六根横杆的路线到达高度 6 的横杆。\n\n结构 \"123333\"。孩子无法到达最上面的两根横杆。\n\n结构 \"323323\"。孩子可以通过以下路线到达高度 6 的横杆：第一根 $→$ 第三根 $→$ 第四根 $→$ 第六根横杆。",
   "samples": [
     {
       "input": "5 1\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:11:39.453Z"
+  "fetchedAt": "2026-10-31T02:11:39.453Z",
+  "translatedAt": "2026-11-04T07:31:34.368+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

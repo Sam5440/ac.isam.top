@@ -4,7 +4,7 @@
   "contestId": 1405,
   "index": "A",
   "title": "Permutation Forgery",
-  "titleZh": null,
+  "titleZh": "排列伪造",
   "url": "https://codeforces.com/contest/1405/problem/A",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nLet $p$ be any permutation of length $n$. We define the **fingerprint** $F(p)$ of $p$ as the sorted array of sums of adjacent elements in $p$. More formally,\n\n$$F(p)=\\mathrm{sort}([p_1+p_2,p_2+p_3,\\ldots,p_{n-1}+p_n]).$$\n\nFor example, if $n=4$ and $p=[1,4,2,3],$ then the fingerprint is given by $F(p)=\\mathrm{sort}([1+4,4+2,2+3])=\\mathrm{sort}([5,6,5])=[5,5,6]$.\n\nYou are given a permutation $p$ of length $n$. Your task is to find a **different** permutation $p'$ with the same fingerprint. Two permutations $p$ and $p'$ are considered different if there is some index $i$ such that $p_i \\ne p'_i$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 668$). Description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2\\le n\\le 100$)  — the length of the permutation.\n\nThe second line of each test case contains $n$ integers $p_1,\\ldots,p_n$ ($1\\le p_i\\le n$). It is guaranteed that $p$ is a permutation.\n\n## Output\n\nFor each test case, output $n$ integers $p'_1,\\ldots, p'_n$ — a permutation such that $p'\\ne p$ and $F(p')=F(p)$.\n\nWe can prove that for every permutation satisfying the input constraints, a solution exists.\n\nIf there are multiple solutions, you may output any.\n\n## Note\n\nIn the first test case, $F(p)=\\mathrm{sort}([1+2])=[3]$.\n\nAnd $F(p')=\\mathrm{sort}([2+1])=[3]$.\n\nIn the second test case, $F(p)=\\mathrm{sort}([2+1,1+6,6+5,5+4,4+3])=\\mathrm{sort}([3,7,11,9,7])=[3,7,7,9,11]$.\n\nAnd $F(p')=\\mathrm{sort}([1+2,2+5,5+6,6+3,3+4])=\\mathrm{sort}([3,7,11,9,7])=[3,7,7,9,11]$.\n\nIn the third test case, $F(p)=\\mathrm{sort}([2+4,4+3,3+1,1+5])=\\mathrm{sort}([6,7,4,6])=[4,6,6,7]$.\n\nAnd $F(p')=\\mathrm{sort}([3+1,1+5,5+2,2+4])=\\mathrm{sort}([4,6,7,6])=[4,6,6,7]$.",
-  "statementZhMd": null,
+  "statementZhMd": "长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n设 $p$ 是任意一个长度为 $n$ 的排列。我们将 $p$ 的**指纹** $F(p)$ 定义为 $p$ 中相邻元素之和组成的有序数组。更正式地说，\n\n$$F(p)=\\mathrm{sort}([p_1+p_2,p_2+p_3,\\ldots,p_{n-1}+p_n]).$$\n\n例如，当 $n=4$ 且 $p=[1,4,2,3]$ 时，其指纹为 $F(p)=\\mathrm{sort}([1+4,4+2,2+3])=\\mathrm{sort}([5,6,5])=[5,5,6]$。\n\n给定一个长度为 $n$ 的排列 $p$。你的任务是找到一个与 $p$ **不同**且具有相同指纹的排列 $p'$。如果存在某个下标 $i$ 使得 $p_i \\ne p'_i$，则认为排列 $p$ 和 $p'$ 不同。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 668$）。接下来是各测试用例的描述。\n\n每组测试用例的第一行包含一个整数 $n$（$2\\le n\\le 100$）——排列的长度。\n\n每组测试用例的第二行包含 $n$ 个整数 $p_1,\\ldots, p_n$（$1\\le p_i\\le n$）。保证 $p$ 是一个排列。\n\n## 输出格式\n\n对于每组测试用例，输出 $n$ 个整数 $p'_1,\\ldots, p'_n$——一个满足 $p'\\ne p$ 且 $F(p')=F(p)$ 的排列。\n\n可以证明，对于满足输入约束的每个排列，都一定存在满足条件的解。\n\n如果有多个解，你可以输出其中任意一个。\n\n## 说明\n\n在第一个测试用例中，$F(p)=\\mathrm{sort}([1+2])=[3]$。\n\n而 $F(p')=\\mathrm{sort}([2+1])=[3]$。\n\n在第二个测试用例中，$F(p)=\\mathrm{sort}([2+1,1+6,6+5,5+4,4+3])=\\mathrm{sort}([3,7,11,9,7])=[3,7,7,9,11]$。\n\n而 $F(p')=\\mathrm{sort}([1+2,2+5,5+6,6+3,3+4])=\\mathrm{sort}([3,7,11,9,7])=[3,7,7,9,11]$。\n\n在第三个测试用例中，$F(p)=\\mathrm{sort}([2+4,4+3,3+1,1+5])=\\mathrm{sort}([6,7,4,6])=[4,6,6,7]$。\n\n而 $F(p')=\\mathrm{sort}([3+1,1+5,5+2,2+4])=\\mathrm{sort}([4,6,7,6])=[4,6,6,7]$。",
   "samples": [
     {
       "input": "3\n2\n1 2\n6\n2 1 6 5 4 3\n5\n2 4 3 1 5\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:45:36.110Z"
+  "fetchedAt": "2026-10-30T23:45:36.110Z",
+  "translatedAt": "2026-11-04T04:20:22.662+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

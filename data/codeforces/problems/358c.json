@@ -4,7 +4,7 @@
   "contestId": 358,
   "index": "C",
   "title": "Dima and Containers",
-  "titleZh": null,
+  "titleZh": "Dima 和容器",
   "url": "https://codeforces.com/contest/358/problem/C",
   "difficulty": 2000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Dima has a birthday soon! It's a big day! Saryozha's present to Dima is that Seryozha won't be in the room and won't disturb Dima and Inna as they celebrate the birthday. Inna's present to Dima is a stack, a queue and a deck.\n\nInna wants her present to show Dima how great a programmer he is. For that, she is going to give Dima commands one by one. There are two types of commands:\n\n1. Add a given number into one of containers. For the queue and the stack, you can add elements only to the end. For the deck, you can add elements to the beginning and to the end.\n2. Extract a number from each of at most three distinct containers. Tell all extracted numbers to Inna and then empty all containers. In the queue container you can extract numbers only from the beginning. In the stack container you can extract numbers only from the end. In the deck number you can extract numbers from the beginning and from the end. You cannot extract numbers from empty containers.\n\nEvery time Dima makes a command of the second type, Inna kisses Dima some (possibly zero) number of times. Dima knows Inna perfectly well, he is sure that this number equals the sum of numbers he extracts from containers during this operation.\n\nAs we've said before, Dima knows Inna perfectly well and he knows which commands Inna will give to Dima and the order of the commands. Help Dima find the strategy that lets him give as more kisses as possible for his birthday!\n\n## Input\n\nThe first line contains integer $*n*$ $(1 ≤ *n* ≤ 10^{5})$ — the number of Inna's commands. Then $*n*$ lines follow, describing Inna's commands. Each line consists an integer:\n\n1. Integer $*a*$ $(1 ≤ *a* ≤ 10^{5})$ means that Inna gives Dima a command to add number $*a*$ into one of containers.\n2. Integer $0$ shows that Inna asks Dima to make at most three extractions from different containers.\n\n## Output\n\nEach command of the input must correspond to one line of the output — Dima's action.\n\nFor the command of the first type (adding) print one word that corresponds to Dima's choice:\n\n- pushStack — add to the end of the stack;\n- pushQueue — add to the end of the queue;\n- pushFront — add to the beginning of the deck;\n- pushBack — add to the end of the deck.\n\nFor a command of the second type first print an integer $*k*$ $(0 ≤ *k* ≤ 3)$, that shows the number of extract operations, then print $*k*$ words separated by space. The words can be:\n\n- popStack — extract from the end of the stack;\n- popQueue — extract from the beginning of the line;\n- popFront — extract from the beginning from the deck;\n- popBack — extract from the end of the deck.\n\nThe printed operations mustn't extract numbers from empty containers. Also, they must extract numbers from distinct containers.\n\nThe printed sequence of actions must lead to the maximum number of kisses. If there are multiple sequences of actions leading to the maximum number of kisses, you are allowed to print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "Dima 的生日就要到了！这是一个重要的日子！Saryozha 送给 Dima 的礼物是：Seryozha 不会待在房间里，也不会在 Dima 和 Inna 庆祝生日时打扰他们。Inna 送给 Dima 的礼物是一个栈、一个队列和一个双端队列。\n\nInna 希望她的礼物能够向 Dima 展示他是一名多么出色的程序员。为此，她会逐条向 Dima 发出指令。指令有两种类型：\n\n1. 将一个给定的数字放入某个容器中。对于队列和栈，只能将元素添加到末尾。对于双端队列，可以将元素添加到开头或末尾。\n2. 从至多三个不同的容器中各取出一个数字。将所有取出的数字告诉 Inna，然后清空所有容器。在队列中只能从开头取出数字。在栈中只能从末尾取出数字。在双端队列中可以从开头或末尾取出数字。不能从空容器中取出数字。\n\n每当 Dima 执行第二种类型的指令时，Inna 会亲吻 Dima 若干次（可能为零次）。Dima 非常了解 Inna，他确定亲吻次数等于本次操作中从容器里取出的所有数字之和。\n\n正如前面所说，Dima 非常了解 Inna，并且知道 Inna 将会给出哪些指令以及指令的顺序。请帮助 Dima 找到一种策略，使他在生日时获得尽可能多的亲吻！\n\n## 输入格式\n\n第一行包含一个整数 $*n*$ $(1 ≤ *n* ≤ 10^{5})$ —— Inna 的指令数量。接下来有 $*n*$ 行，每行描述一条 Inna 的指令。每行包含一个整数：\n\n1. 整数 $*a*$ $(1 ≤ *a* ≤ 10^{5})$ 表示 Inna 要求 Dima 将数字 $*a*$ 放入某个容器中。\n2. 整数 $0$ 表示 Inna 要求 Dima 从不同的容器中至多取出三个数字。\n\n## 输出格式\n\n输入中的每条指令都必须对应输出中的一行，表示 Dima 的操作。\n\n对于第一种类型的指令（添加数字），输出一个单词，表示 Dima 的选择：\n\n- pushStack —— 将数字添加到栈的末尾；\n- pushQueue —— 将数字添加到队列的末尾；\n- pushFront —— 将数字添加到双端队列的开头；\n- pushBack —— 将数字添加到双端队列的末尾。\n\n对于第二种类型的指令，首先输出一个整数 $*k*$ $(0 ≤ *k* ≤ 3)$，表示取出操作的数量，然后输出 $*k*$ 个由空格分隔的单词。单词可以是：\n\n- popStack —— 从栈的末尾取出数字；\n- popQueue —— 从队列的开头取出数字；\n- popFront —— 从双端队列的开头取出数字；\n- popBack —— 从双端队列的末尾取出数字。\n\n输出的操作不能从空容器中取出数字。此外，它们必须从不同的容器中取出数字。\n\n输出的操作序列必须使获得的亲吻次数最大。如果有多个操作序列能够获得最大亲吻次数，可以输出其中任意一个。",
   "samples": [
     {
       "input": "10\n0\n1\n0\n1\n2\n0\n1\n2\n3\n0\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:56:25.677Z"
+  "fetchedAt": "2026-10-31T01:56:25.677Z",
+  "translatedAt": "2026-11-04T07:21:34.457+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

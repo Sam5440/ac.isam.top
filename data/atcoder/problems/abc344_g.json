@@ -4,7 +4,7 @@
   "contestId": "abc344",
   "index": "G",
   "title": "Points and Comparison",
-  "titleZh": null,
+  "titleZh": "点与比较",
   "url": "https://atcoder.jp/contests/abc344/tasks/abc344_g",
   "difficulty": 3032,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 10000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\n**Pay attention to the special input format.**\n\nThere are $N$ points $(X_i,Y_i)$ in the $xy$-plane. You are given these points in the input.\n\nAlso, $Q$ pairs of integers $(A_j,B_j)$ are given.\nDefine $f(A_j,B_j)$ as the number of indices $i$ satisfying $Y_i \\ge A_j \\times X_i + B_j$.\n\nFind $\\displaystyle \\sum^{Q}_{j=1} f(A_j,B_j)$.\n\nHere, $Q$ gets very large, so $(A_j,B_j)$ are not given directly.\nInstead, $G_0$, $R_a$, and $R_b$ are given, and $(A_j,B_j)$ are generated as follows:\n\n- First, for $n \\ge 0$, define $G_{n+1} = (48271 \\times G_n) \\mod (2^{31}-1)$.\n- For $j=1,2,\\dots,Q$, generate $(A_j,B_j)$ as follows:\n- $A_j = -R_a + (G_{3j - 2} \\mod (2 \\times R_a + 1) )$\n  - $B_j = -R_b + ((G_{3j - 1} \\times (2^{31}-1) + G_{3 j}) \\mod (2 \\times R_b + 1) )$\n\nFrom this method, it can be shown that $A_j$ and $B_j$ satisfy the following constraints:\n\n- $-R_a \\le A_j \\le R_a$\n- $-R_b \\le B_j \\le R_b$\n\n## Constraints\n\n- All input values are integers.\n- $1 \\le N \\le 5000$\n- $1 \\le Q \\le 10^7$\n- $|X_i|, |Y_i| \\le 10^8$\n- The pairs $(X_i,Y_i)$ are distinct.\n- $0 \\le G_0 < (2^{31}-1)$\n- $0 \\le R_a \\le 10^8$\n- $0 \\le R_b \\le 10^{16}$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_N Y_N\nQ\nG_0 R_a R_b\n```\n\n## Output\n\nPrint the answer as an integer.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n**请注意特殊的输入格式。**\n\n在 $xy$ 平面上有 $N$ 个点 $(X_i,Y_i)$。输入中会给出这些点。\n\n此外，还给出了 $Q$ 对整数 $(A_j,B_j)$。\n定义 $f(A_j,B_j)$ 为满足 $Y_i \\ge A_j \\times X_i + B_j$ 的下标 $i$ 的数量。\n\n求 $&#x2211;^{Q}_{j=1} f(A_j,B_j)$。\n\n由于 $Q$ 很大，因此不会直接给出 $(A_j,B_j)$。\n取而代之的是，给出 $G_0$、$R_a$ 和 $R_b$，并按如下方式生成 $(A_j,B_j)$：\n\n- 首先，对于 $n \\ge 0$，定义 $G_{n+1} = (48271 \\times G_n) \\mod (2^{31}-1)$。\n- 对于 $j=1,2,\\dots,Q$，按如下方式生成 $(A_j,B_j)$：\n- $A_j = -R_a + (G_{3j - 2} \\mod (2 \\times R_a + 1) )$\n  - $B_j = -R_b + ((G_{3j - 1} \\times (2^{31}-1) + G_{3 j}) \\mod (2 \\times R_b + 1) )$\n\n根据上述方法，可以证明 $A_j$ 和 $B_j$ 满足以下约束：\n\n- $-R_a \\le A_j \\le R_a$\n- $-R_b \\le B_j \\le R_b$\n\n## 约束条件\n\n- 所有输入值均为整数。\n- $1 \\le N \\le 5000$\n- $1 \\le Q \\le 10^7$\n- $|X_i|, |Y_i| \\le 10^8$\n- $(X_i,Y_i)$ 两两不同。\n- $0 \\le G_0 < (2^{31}-1)$\n- $0 \\le R_a \\le 10^8$\n- $0 \\le R_b \\le 10^{16}$\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_N Y_N\nQ\nG_0 R_a R_b\n```\n\n## 输出格式\n\n以整数形式输出答案。",
   "samples": [
     {
       "input": "7\n2 -2\n-1 -2\n0 1\n2 1\n-2 2\n1 2\n0 -1\n10\n1 5 5\n",
@@ -21,5 +21,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:09:55.902Z"
+  "fetchedAt": "2026-10-30T21:09:55.902Z",
+  "translatedAt": "2026-11-04T02:17:41.857+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

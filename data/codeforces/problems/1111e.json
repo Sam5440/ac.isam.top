@@ -4,7 +4,7 @@
   "contestId": 1111,
   "index": "E",
   "title": "Tree",
-  "titleZh": null,
+  "titleZh": "树",
   "url": "https://codeforces.com/contest/1111/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree with $n$ nodes and $q$ queries.\n\nEvery query starts with three integers $k$, $m$ and $r$, followed by $k$ nodes of the tree $a_1, a_2, \\ldots, a_k$. To answer a query, assume that the tree is rooted at $r$. We want to divide the $k$ given nodes into **at most** $m$ groups such that the following conditions are met:\n\n- Each node should be in exactly one group and each group should have at least one node.\n- In any group, there should be no two distinct nodes such that one node is an ancestor (direct or indirect) of the other.\n\nYou need to output the number of ways modulo $10^{9}+7$ for every query.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n, q \\le 10^{5}$) — the number of vertices in the tree and the number of queries, respectively.\n\nEach of the next $n-1$ lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n, u \\ne v$), denoting an edge connecting vertex $u$ and vertex $v$. It is guaranteed that the given graph is a tree.\n\nEach of the next $q$ lines starts with three integers $k$, $m$ and $r$ ($1 \\le k, r \\le n$, $1 \\le m \\le min(300,k)$) — the number of nodes, the maximum number of groups and the root of the tree for the current query, respectively. They are followed by $k$ distinct integers $a_1, a_2, \\ldots, a_k$ ($1 \\le a_i \\le n$), denoting the nodes of the current query.\n\nIt is guaranteed that the sum of $k$ over all queries does not exceed $10^{5}$.\n\n## Output\n\nPrint $q$ lines, where the $i$-th line contains the answer to the $i$-th query.\n\n## Note\n\nConsider the first example.\n\nIn the first query, we have to divide the three given nodes ($7$, $4$ and $3$), into the maximum of three groups assuming that the tree is rooted at $2$. When the tree is rooted at $2$, $4$ is an ancestor of both $3$ and $7$. So we can't put all the nodes into one group. There is only $1$ way to divide the given nodes into two groups, which are $[4]$ and $[3, 7]$. Also, there is only one way to divide the given nodes into three groups, which are $[7]$, $[4]$ and $[3]$. So, there are total $2$ ways to divide the given nodes into a maximum of three groups.\n\nIn the second query, when the tree is rooted at $4$, $6$ is an ancestor of $2$ and $2$ is an ancestor of $1$. So, we can't put all the given nodes into one group.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵包含 $n$ 个节点的树和 $q$ 个查询。\n\n每个查询首先包含三个整数 $k$、$m$ 和 $r$，随后是树中的 $k$ 个节点 $a_1, a_2, \\ldots, a_k$。为了回答一个查询，假设树以 $r$ 为根。我们希望将给定的 $k$ 个节点划分为**至多** $m$ 个组，并满足以下条件：\n\n- 每个节点必须恰好属于一个组，且每个组至少包含一个节点。\n- 对于任意一个组，其中不能存在两个不同的节点，使得其中一个节点是另一个节点的祖先（直接或间接）。\n\n对于每个查询，输出划分方案数对 $10^{9}+7$ 取模后的结果。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\le n, q \\le 10^{5}$）——树中节点的数量和查询的数量。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n, u \\ne v$），表示一条连接顶点 $u$ 和顶点 $v$ 的边。保证给出的图是一棵树。\n\n接下来的 $q$ 行中，每行首先包含三个整数 $k$、$m$ 和 $r$（$1 \\le k, r \\le n$, $1 \\le m \\le min(300,k)$）——当前查询中节点的数量、分组数量的上限以及树的根。随后是 $k$ 个互不相同的整数 $a_1, a_2, \\ldots, a_k$（$1 \\le a_i \\le n$），表示当前查询中的节点。\n\n保证所有查询中 $k$ 的总和不超过 $10^{5}$。\n\n## 输出格式\n\n输出 $q$ 行，其中第 $i$ 行包含第 $i$ 个查询的答案。\n\n## 说明\n\n考虑第一个样例。\n\n在第一个查询中，我们需要将给定的三个节点（$7$、$4$ 和 $3$）划分为至多三个组，并假设树以 $2$ 为根。当树以 $2$ 为根时，$4$ 是 $3$ 和 $7$ 的祖先。因此，不能将所有节点放入同一个组中。将给定节点划分为两个组时，只有 $1$ 种方案，即 $[4]$ 和 $[3, 7]$。将它们划分为三个组时，也只有一种方案，即 $[7]$、$[4]$ 和 $[3]$。因此，将给定节点划分为至多三个组共有 $2$ 种方案。\n\n在第二个查询中，当树以 $4$ 为根时，$6$ 是 $2$ 的祖先，而 $2$ 是 $1$ 的祖先。因此，不能将所有给定节点放入同一个组中。",
   "samples": [
     {
       "input": "7 2\n5 4\n2 6\n5 3\n1 2\n7 5\n4 6\n3 3 2 7 4 3\n3 1 4 6 2 1\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:16:42.204Z"
+  "fetchedAt": "2026-10-31T00:16:42.204Z",
+  "translatedAt": "2026-11-04T05:22:07.825+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

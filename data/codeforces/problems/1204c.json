@@ -4,7 +4,7 @@
   "contestId": 1204,
   "index": "C",
   "title": "Anna, Svyatoslav and Maps",
-  "titleZh": null,
+  "titleZh": "Anna、Svyatoslav 与地图",
   "url": "https://codeforces.com/contest/1204/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*The main characters have been omitted to be short.*\n\nYou are given a directed unweighted graph without loops with $n$ vertexes and a path in it (that path is not necessary simple) given by a sequence $p_1, p_2, \\ldots, p_m$ of $m$ vertexes; for each $1 \\leq i \\lt m$ there is an arc from $p_i$ to $p_{i+1}$.\n\nDefine the sequence $v_1, v_2, \\ldots, v_k$ of $k$ vertexes as *good*, if $v$ is a subsequence of $p$, $v_1 = p_1$, $v_k = p_m$, and $p$ is one of the shortest paths passing through the vertexes $v_1$, $\\ldots$, $v_k$ in that order.\n\nA sequence $a$ is a subsequence of a sequence $b$ if $a$ can be obtained from $b$ by deletion of several (possibly, zero or all) elements. It is obvious that the sequence $p$ is good but your task is to find the **shortest** good subsequence.\n\nIf there are multiple shortest good subsequences, output any of them.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 100$) — the number of vertexes in a graph.\n\nThe next $n$ lines define the graph by an adjacency matrix: the $j$-th character in the $i$-st line is equal to $1$ if there is an arc from vertex $i$ to the vertex $j$ else it is equal to $0$. It is guaranteed that the graph doesn't contain loops.\n\nThe next line contains a single integer $m$ ($2 \\le m \\le 10^6$) — the number of vertexes in the path.\n\nThe next line contains $m$ integers $p_1, p_2, \\ldots, p_m$ ($1 \\le p_i \\le n$) — the sequence of vertexes in the path. It is guaranteed that for any $1 \\leq i \\lt m$ there is an arc from $p_i$ to $p_{i+1}$.\n\n## Output\n\nIn the first line output a single integer $k$ ($2 \\leq k \\leq m$) — the length of the shortest good subsequence. In the second line output $k$ integers $v_1$, $\\ldots$, $v_k$ ($1 \\leq v_i \\leq n$) — the vertexes in the subsequence. If there are multiple shortest subsequences, print any. Any two consecutive numbers should be distinct.\n\n## Note\n\nBelow you can see the graph from the first example:\n\n![image](https://espresso.codeforces.com/3e0af0adb4ab1272fc9152aae8708228c6014c45.png)\n\nThe given path is passing through vertexes $1$, $2$, $3$, $4$. The sequence $1-2-4$ is good because it is the subsequence of the given path, its first and the last elements are equal to the first and the last elements of the given path respectively, and the shortest path passing through vertexes $1$, $2$ and $4$ in that order is $1-2-3-4$. Note that subsequences $1-4$ and $1-3-4$ aren't good because in both cases the shortest path passing through the vertexes of these sequences is $1-3-4$.\n\nIn the third example, the graph is full so any sequence of vertexes in which any two consecutive elements are distinct defines a path consisting of the same number of vertexes.\n\nIn the fourth example, the paths $1-2-4$ and $1-3-4$ are the shortest paths passing through the vertexes $1$ and $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "*为简洁起见，题目省略了主要角色。*\n\n给定一个含有 $n$ 个顶点的无环有向无权图，以及图中的一条路径（该路径不一定是简单路径）。这条路径由包含 $m$ 个顶点的序列 $p_1, p_2, \\ldots, p_m$ 给出；对于每个 $1 \\leq i \\lt m$，都存在一条从 $p_i$ 指向 $p_{i+1}$ 的弧。\n\n如果顶点序列 $v_1, v_2, \\ldots, v_k$（包含 $k$ 个顶点）满足以下条件，则称其为*良好的*：$v$ 是 $p$ 的子序列，$v_1 = p_1$，$v_k = p_m$，并且 $p$ 是按顺序经过顶点 $v_1$、$\\ldots$、$v_k$ 的所有最短路径之一。\n\n如果序列 $a$ 可以通过删除序列 $b$ 中的若干个（可能为零个或全部）元素得到，则称 $a$ 是 $b$ 的子序列。显然，序列 $p$ 是良好的，但你的任务是找出**最短的**良好子序列。\n\n如果有多个最短的良好子序列，输出任意一个即可。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\leq n \\leq 100$）——图中的顶点数。\n\n接下来的 $n$ 行通过邻接矩阵描述图：第 $i$ 行的第 $j$ 个字符在顶点 $i$ 到顶点 $j$ 之间存在弧时为 $1$，否则为 $0$。保证图中不含环。\n\n下一行包含一个整数 $m$（$2 \\leq m \\leq 10^6$）——路径中的顶点数。\n\n下一行包含 $m$ 个整数 $p_1, p_2, \\ldots, p_m$（$1 \\leq p_i \\leq n$）——路径中的顶点序列。保证对于任意 $1 \\leq i \\lt m$，都存在一条从 $p_i$ 指向 $p_{i+1}$ 的弧。\n\n## 输出格式\n\n第一行输出一个整数 $k$（$2 \\leq k \\leq m$）——最短良好子序列的长度。\n\n第二行输出 $k$ 个整数 $v_1$、$\\ldots$、$v_k$（$1 \\leq v_i \\leq n$）——子序列中的顶点。如果存在多个最短子序列，输出任意一个即可。任意两个相邻的数字都应当不同。\n\n## 说明\n\n下面给出了第一个样例中的图：\n\n![image](https://espresso.codeforces.com/3e0af0adb4ab1272fc9152aae8708228c6014c45.png)\n\n给定的路径经过顶点 $1$、$2$、$3$、$4$。序列 $1-2-4$ 是良好的，因为它是给定路径的子序列，首元素和末元素分别等于给定路径的首个和最后一个顶点，并且按顺序经过顶点 $1$、$2$、$4$ 的最短路径是 $1-2-3-4$。注意，子序列 $1-4$ 和 $1-3-4$ 都不是良好的，因为在这两种情况下，按顺序经过这些序列中顶点的最短路径都是 $1-3-4$。\n\n在第三个样例中，图是完全图，因此任意两个相邻元素不同的顶点序列都定义了一条路径，并且该路径包含相同数量的顶点。\n\n在第四个样例中，路径 $1-2-4$ 和 $1-3-4$ 都是经过顶点 $1$ 和 $4$ 的最短路径。",
   "samples": [
     {
       "input": "4\n0110\n0010\n0001\n1000\n4\n1 2 3 4\n",
@@ -41,5 +41,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:06:09.803Z"
+  "fetchedAt": "2026-10-31T00:06:09.803Z",
+  "translatedAt": "2026-11-04T05:05:15.322+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 985,
   "index": "F",
   "title": "Isomorphic Strings",
-  "titleZh": null,
+  "titleZh": "同构字符串",
   "url": "https://codeforces.com/contest/985/problem/F",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a string $*s*$ of length $*n*$ consisting of lowercase English letters.\n\nFor two given strings $*s*$ and $*t*$, say $*S*$ is the set of distinct characters of $*s*$ and $*T*$ is the set of distinct characters of $*t*$. The strings $*s*$ and $*t*$ are *isomorphic* if their lengths are equal and there is a one-to-one mapping (bijection) $*f*$ between $*S*$ and $*T*$ for which $*f*(*s*_{*i*}) = *t*_{*i*}$. Formally:\n\n1. $*f*(*s*_{*i*}) = *t*_{*i*}$ for any index $*i*$,\n2. for any character ![image](https://espresso.codeforces.com/06141837c12bacfca2f66fcc1aca9166afa1a5ce.png) there is exactly one character ![image](https://espresso.codeforces.com/8b0099ac39a2eb4880206793c01c80521177a489.png) that $*f*(*x*) = *y*$,\n3. for any character ![image](https://espresso.codeforces.com/8b0099ac39a2eb4880206793c01c80521177a489.png) there is exactly one character ![image](https://espresso.codeforces.com/06141837c12bacfca2f66fcc1aca9166afa1a5ce.png) that $*f*(*x*) = *y*$.\n\nFor example, the strings \"`aababc`\" and \"`bbcbcz`\" are isomorphic. Also the strings \"`aaaww`\" and \"`wwwaa`\" are isomorphic. The following pairs of strings are not isomorphic: \"`aab`\" and \"`bbb`\", \"`test`\" and \"`best`\".\n\nYou have to handle $*m*$ queries characterized by three integers $*x*, *y*, *len*$ ($1 ≤ *x*, *y* ≤ *n* - *len* + 1$). For each query check if two substrings $*s*[*x*... *x* + *len* - 1]$ and $*s*[*y*... *y* + *len* - 1]$ are isomorphic.\n\n## Input\n\nThe first line contains two space-separated integers $*n*$ and $*m*$ ($1 ≤ *n* ≤ 2·10^{5}$, $1 ≤ *m* ≤ 2·10^{5}$) — the length of the string $*s*$ and the number of queries.\n\nThe second line contains string $*s*$ consisting of $*n*$ lowercase English letters.\n\nThe following $*m*$ lines contain a single query on each line: $*x*_{*i*}$, $*y*_{*i*}$ and $*len*_{*i*}$ ($1 ≤ *x*_{*i*}, *y*_{*i*} ≤ *n*$, $1 ≤ *len*_{*i*} ≤ *n* - *max*(*x*_{*i*}, *y*_{*i*}) + 1$) — the description of the pair of the substrings to check.\n\n## Output\n\nFor each query in a separate line print \"`YES`\" if substrings $*s*[*x*_{*i*}... *x*_{*i*} + *len*_{*i*} - 1]$ and $*s*[*y*_{*i*}... *y*_{*i*} + *len*_{*i*} - 1]$ are isomorphic and \"`NO`\" otherwise.\n\n## Note\n\nThe queries in the example are following:\n\n1. substrings \"`a`\" and \"`a`\" are isomorphic: $*f*(*a*) = *a*$;\n2. substrings \"`ab`\" and \"`ca`\" are isomorphic: $*f*(*a*) = *c*$, $*f*(*b*) = *a*$;\n3. substrings \"`bac`\" and \"`aba`\" are not isomorphic since $*f*(*b*)$ and $*f*(*c*)$ must be equal to $*a*$ at same time;\n4. substrings \"`bac`\" and \"`cab`\" are isomorphic: $*f*(*b*) = *c*$, $*f*(*a*) = *a*$, $*f*(*c*) = *b*$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个由小写英文字母组成的、长度为 $*n*$ 的字符串 $*s*$。\n\n对于给定的两个字符串 $*s*$ 和 $*t*$，设 $*S*$ 为 $*s*$ 中不同字符组成的集合，$*T*$ 为 $*t*$ 中不同字符组成的集合。如果它们长度相等，并且存在一个 $*S*$ 与 $*T*$ 之间的一一映射（双射）$*f*$，使得 $*f*(*s*_{*i*}) = *t*_{*i*}$，则称字符串 $*s*$ 和 $*t*$ **同构**。形式化地说：\n\n1. 对于任意下标 $*i*$，都有 $*f*(*s*_{*i*}) = *t*_{*i*}$；\n2. 对于任意字符 ![image](https://espresso.codeforces.com/06141837c12bacfca2f66fcc1aca9166afa1a5ce.png)，恰好存在一个字符 ![image](https://espresso.codeforces.com/8b0099ac39a2eb4880206793c01c80521177a489.png)，满足 $*f*(*x*) = *y*$；\n3. 对于任意字符 ![image](https://espresso.codeforces.com/8b0099ac39a2eb4880206793c01c80521177a489.png)，恰好存在一个字符 ![image](https://espresso.codeforces.com/06141837c12bacfca2f66fcc1aca9166afa1a5ce.png)，满足 $*f*(*x*) = *y*$。\n\n例如，字符串 \"`aababc`\" 和 \"`bbcbcz`\" 是同构的。字符串 \"`aaaww`\" 和 \"`wwwaa`\" 也是同构的。以下字符串对不是同构的：\"`aab`\" 和 \"`bbb`\"，\"`test`\" 和 \"`best`\"。\n\n你需要处理 $*m*$ 个询问，每个询问由三个整数 $*x*, *y*, *len*$ 描述（$1 ≤ *x*, *y* ≤ *n* - *len* + 1$）。对于每个询问，判断两个子串 $*s*[*x*... *x* + *len* - 1]$ 和 $*s*[*y*... *y* + *len* - 1]$ 是否同构。\n\n## 输入格式\n\n第一行包含两个以空格分隔的整数 $*n*$ 和 $*m*$（$1 ≤ *n* ≤ 2·10^{5}$，$1 ≤ *m* ≤ 2·10^{5}$），分别表示字符串 $*s*$ 的长度和询问数量。\n\n第二行包含一个由 $*n*$ 个小写英文字母组成的字符串 $*s*$。\n\n接下来的 $*m*$ 行中，每行包含一个询问：$*x*_{*i*}$、$*y*_{*i*}$ 和 $*len*_{*i*}$（$1 ≤ *x*_{*i*}, *y*_{*i*} ≤ *n*$，$1 ≤ *len*_{*i*} ≤ *n* - *max*(*x*_{*i*}, *y*_{*i*}) + 1$），表示需要判断的两个子串。\n\n## 输出格式\n\n对于每个询问，单独输出一行。如果子串 $*s*[*x*_{*i*}... *x*_{*i*} + *len*_{*i*} - 1]$ 和 $*s*[*y*_{*i*}... *y*_{*i*} + *len*_{*i*} - 1]$ 同构，则输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n## 说明\n\n样例中的询问如下：\n\n1. 子串 \"`a`\" 和 \"`a`\" 是同构的：$*f*(*a*) = *a*$；\n2. 子串 \"`ab`\" 和 \"`ca`\" 是同构的：$*f*(*a*) = *c*$，$*f*(*b*) = *a*$；\n3. 子串 \"`bac`\" 和 \"`aba`\" 不是同构的，因为 $*f*(*b*)$ 和 $*f*(*c*)$ 必须同时等于 $*a*$；\n4. 子串 \"`bac`\" 和 \"`cab`\" 是同构的：$*f*(*b*) = *c*$，$*f*(*a*) = *a*$，$*f*(*c*) = *b*$。",
   "samples": [
     {
       "input": "7 4\nabacaba\n1 1 1\n1 4 2\n2 1 3\n2 4 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:35:22.223Z"
+  "fetchedAt": "2026-11-02T19:35:22.223Z",
+  "translatedAt": "2026-11-04T05:44:47.706+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

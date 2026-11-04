@@ -4,7 +4,7 @@
   "contestId": 533,
   "index": "D",
   "title": "Landmarks",
-  "titleZh": null,
+  "titleZh": "地标",
   "url": "https://codeforces.com/contest/533/problem/D",
   "difficulty": 3000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "We have an old building with $*n* + 2$ columns in a row. These columns support the ceiling. These columns are located in points with coordinates $0 = *x*_{0} < *x*_{1} < ... < *x*_{*n*} < *x*_{*n* + 1}$. The leftmost and the rightmost columns are special, we will call them *bearing*, the other columns are *ordinary*.\n\nFor each column we know its durability $*d*_{*i*}$. Let's consider an ordinary column with coordinate $*x*$. Let's assume that the coordinate of the closest to it column to the left (bearing or ordinary) is $*a*$ and the coordinate of the closest to it column to the right (also, bearing or ordinary) is $*b*$. In this task let's assume that this column supports the segment of the ceiling from point ![image](https://espresso.codeforces.com/9670c1b8ea2a42278bf13bfad9c19ee66fa35c24.png) to point ![image](https://espresso.codeforces.com/48944c57f1aa347e876ceb030a40985b5d3c4291.png) (here both fractions are considered as real division). If the length of the segment of the ceiling supported by the column exceeds $*d*_{*i*}$, then the column cannot support it and it crashes after a while, and after that the load is being redistributeed between the neighbouring columns according to the same principle.\n\n![image](https://espresso.codeforces.com/f734cdd02ed9543f24a80b358293f187d5bb8405.png)\n\nThus, ordinary columns will be crashing for some time until the process stops at some state. One can prove that the set of the remaining columns doesn't depend on the order in which columns crash. If there are only two bearing columns left in the end, then we assume that the whole construction crashes under the weight of the roof. But if at least one ordinary column stays in addition to the bearing ones, then the building doesn't crash.\n\nTo make the building stronger, we can add one extra ordinary column of arbitrary durability $*d*'$ at any (not necessarily integer) point $0 < *x*' < *x*_{*n* + 1}$. If point $*x*'$ is already occupied by an ordinary column, it is replaced by a new one.\n\nYour task is to find out: what minimal durability can the added column have so that the building doesn't crash?\n\n## Input\n\nThe first line contains integer $*n*$ ($1 ≤ *n* ≤ 10^{5}$) — the number of ordinary columns.\n\nThe second line contains $*n* + 2$ integers $*x*_{0}, *x*_{1}, ..., *x*_{*n*}, *x*_{*n* + 1}$ ($*x*_{0} = 0$, $*x*_{*i*} < *x*_{*i* + 1}$ for $0 ≤ *i* ≤ *n*$, $*x*_{*n* + 1} ≤ 10^{9}$) — the coordinates of the columns.\n\nThe third line contains $*n*$ integers $*d*_{1}, *d*_{2}, ..., *d*_{*n*}$ ($1 ≤ *d*_{*i*} ≤ 10^{9}$).\n\n## Output\n\nPrint a single number — the minimum possible durability of the column that you need to add in order to make the building stay. If you do not have to add the column, please print $0$. Your answer will be checked with the relative or absolute error $10^{ - 4}$.",
-  "statementZhMd": null,
+  "statementZhMd": "我们有一座老建筑，屋顶由一排 $*n* + 2$ 根柱子支撑。这些柱子所在位置的坐标为 $0 = *x*_{0} < *x*_{1} < ... < *x*_{*n*} < *x*_{*n* + 1}$。最左边和最右边的柱子是特殊柱子，我们称它们为承重柱，其余柱子称为普通柱。\n\n我们知道每根柱子的耐久度 $*d*_{*i*}$。考虑一根坐标为 $*x*$ 的普通柱。假设它左侧最近的柱子（承重柱或普通柱）的坐标为 $*a*$，右侧最近的柱子（同样可以是承重柱或普通柱）的坐标为 $*b*$。在本题中，我们认为这根柱子支撑屋顶上从点 ![image](https://espresso.codeforces.com/9670c1b8ea2a42278bf13bfad9c19ee66fa35c24.png) 到点 ![image](https://espresso.codeforces.com/48944c57f1aa347e876ceb030a40985b5d3c4291.png) 的线段（这里两个分式都视为实数除法）。如果柱子所支撑的屋顶线段长度超过 $*d*_{*i*}$，那么这根柱子无法支撑屋顶，并会在一段时间后倒塌；之后，负载会按照相同的原则在相邻柱子之间重新分配。\n\n![image](https://espresso.codeforces.com/f734cdd02ed9543f24a80b358293f187d5bb8405.png)\n\n因此，普通柱子会持续倒塌一段时间，直到系统达到某个稳定状态。可以证明，无论柱子倒塌的顺序如何，最终剩余的柱子集合都相同。如果最终只剩下两根承重柱，那么我们认为整个建筑会在屋顶重量下倒塌。但如果除了两根承重柱之外还至少剩下一根普通柱，那么建筑就不会倒塌。\n\n为了加固建筑，我们可以在任意点 $0 < *x*' < *x*_{*n* + 1}$（不一定是整数）添加一根耐久度任意的普通柱，其耐久度记为 $*d*'$。如果点 $*x*'$ 已经被一根普通柱占据，则用新柱子替换原来的柱子。\n\n你的任务是求出：为了使建筑不倒塌，新添加的柱子所需的最小耐久度是多少？\n\n## 约束条件\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$），表示普通柱子的数量。\n\n第二行包含 $*n* + 2$ 个整数 $*x*_{0}, *x*_{1}, ..., *x*_{*n*}, *x*_{*n* + 1}$（$*x*_{0} = 0$，$*x*_{*i*} < *x*_{*i* + 1}$，其中 $0 ≤ *i* ≤ *n*$，$*x*_{*n* + 1} ≤ 10^{9}$），表示各柱子的坐标。\n\n第三行包含 $*n*$ 个整数 $*d*_{1}, *d*_{2}, ..., *d*_{*n*}$（$1 ≤ *d*_{*i*} ≤ 10^{9}$）。\n\n## 输出格式\n\n输出一个数——为了使建筑保持稳定，需要添加的柱子的最小耐久度。如果无需添加柱子，请输出 $0$。你的答案会按照相对误差或绝对误差 $10^{ - 4}$ 进行判断。",
   "samples": [
     {
       "input": "2\n0 20 40 100\n15 40\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:29:02.355Z"
+  "fetchedAt": "2026-10-31T01:29:02.355Z",
+  "translatedAt": "2026-11-04T06:53:18.662+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

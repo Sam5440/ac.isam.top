@@ -4,7 +4,7 @@
   "contestId": 585,
   "index": "A",
   "title": "Gennady the Dentist",
-  "titleZh": null,
+  "titleZh": "牙医 Gennady",
   "url": "https://codeforces.com/contest/585/problem/A",
   "difficulty": 1800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Gennady is one of the best child dentists in Berland. Today $*n*$ children got an appointment with him, they lined up in front of his office.\n\nAll children love to cry loudly at the reception at the dentist. We enumerate the children with integers from $1$ to $*n*$ in the order they go in the line. Every child is associated with the value of his *cofidence* $*p*_{*i*}$. The children take turns one after another to come into the office; each time the child that is the first in the line goes to the doctor.\n\nWhile Gennady treats the teeth of the $*i*$-th child, the child is crying with the volume of $*v*_{*i*}$. At that the *confidence* of the first child in the line is reduced by the amount of $*v*_{*i*}$, the second one — by value $*v*_{*i*} - 1$, and so on. The children in the queue after the $*v*_{*i*}$-th child almost do not hear the crying, so their *confidence* remains unchanged.\n\nIf at any point in time the *confidence* of the $*j*$-th child is less than zero, he begins to cry with the volume of $*d*_{*j*}$ and leaves the line, running towards the exit, without going to the doctor's office. At this the *confidence* of all the children after the $*j*$-th one in the line is reduced by the amount of $*d*_{*j*}$.\n\nAll these events occur immediately one after the other in some order. Some cries may lead to other cries, causing a chain reaction. Once in the hallway it is quiet, the child, who is first in the line, goes into the doctor's office.\n\nHelp Gennady the Dentist to determine the numbers of kids, whose teeth he will cure. Print their numbers in the chronological order.\n\n## Input\n\nThe first line of the input contains a positive integer $*n*$ ($1 ≤ *n* ≤ 4000$) — the number of kids in the line.\n\nNext $*n*$ lines contain three integers each $*v*_{*i*}, *d*_{*i*}, *p*_{*i*}$ ($1 ≤ *v*_{*i*}, *d*_{*i*}, *p*_{*i*} ≤ 10^{6}$) — the volume of the cry in the doctor's office, the volume of the cry in the hall and the *confidence* of the $*i*$-th child.\n\n## Output\n\nIn the first line print number $*k*$ — the number of children whose teeth Gennady will cure.\n\nIn the second line print $*k*$ integers — the numbers of the children who will make it to the end of the line in the increasing order.\n\n## Note\n\nIn the first example, Gennady first treats the teeth of the first child who will cry with volume $4$. The confidences of the remaining children will get equal to $- 2, 1, 3, 1$, respectively. Thus, the second child also cries at the volume of $1$ and run to the exit. The confidence of the remaining children will be equal to $0, 2, 0$. Then the third child will go to the office, and cry with volume $5$. The other children won't bear this, and with a loud cry they will run to the exit.\n\nIn the second sample, first the first child goes into the office, he will cry with volume $4$. The confidence of the remaining children will be equal to $5,  - 1, 6, 8$. Thus, the third child will cry with the volume of $1$ and run to the exit. The confidence of the remaining children will be equal to $5, 5, 7$. After that, the second child goes to the office and cry with the volume of $5$. The confidences of the remaining children will be equal to $0, 3$. Then the fourth child will go into the office and cry with the volume of $2$. Because of this the confidence of the fifth child will be $1$, and he will go into the office last.",
-  "statementZhMd": null,
+  "statementZhMd": "Gennady 是 Berland 最优秀的儿童牙医之一。今天有 $*n*$ 个孩子预约了他的诊疗，他们排在诊室门前。\n\n所有孩子都喜欢在牙医诊室的接待处大声哭喊。我们按照孩子们排队的顺序，用 $1$ 到 $*n*$ 的整数为他们编号。每个孩子都有一个 *信心值* $*p*_{*i*}$。孩子们依次进入诊室；每次都是队伍最前面的孩子去看医生。\n\nGennady 为第 $*i*$ 个孩子治疗牙齿时，这个孩子会以音量 $*v*_{*i*}$ 哭喊。此时，队伍中第一个孩子的 *信心值* 会减少 $*v*_{*i*}$，第二个孩子会减少 $*v*_{*i*} - 1$，依此类推。排在队伍中第 $*v*_{*i*}$ 个孩子之后的孩子几乎听不到哭声，因此他们的 *信心值* 不变。\n\n如果在某个时刻，第 $*j*$ 个孩子的 *信心值* 小于零，他就会以音量 $*d*_{*j*}$ 开始哭喊，并离开队伍，跑向出口，而不会进入诊室。此时，队伍中排在第 $*j*$ 个孩子之后的所有孩子的 *信心值* 都会减少 $*d*_{*j*}$。\n\n所有这些事件会按照某种顺序一个接一个地立即发生。一些哭喊可能引发其他孩子哭喊，从而造成连锁反应。当走廊重新安静下来后，队伍最前面的孩子就会进入诊室。\n\n请帮助牙医 Gennady 确定他将为哪些孩子治疗牙齿。按时间顺序输出他们的编号。\n\n## 输入格式\n\n输入的第一行包含一个正整数 $*n*$（$1 ≤ *n* ≤ 4000$），表示队伍中孩子的数量。\n\n接下来的 $*n*$ 行中，每行包含三个整数 $*v*_{*i*}, *d*_{*i*}, *p*_{*i*}$（$1 ≤ *v*_{*i*}, *d*_{*i*}, *p*_{*i*} ≤ 10^{6}$），分别表示第 $*i*$ 个孩子在诊室中的哭喊音量、在走廊中的哭喊音量以及他的 *信心值*。\n\n## 输出格式\n\n第一行输出一个整数 $*k*$，表示 Gennady 将为其治疗牙齿的孩子数量。\n\n第二行输出 $*k*$ 个整数，表示最终能够排到队伍末尾的孩子的编号，按递增顺序排列。\n\n## 说明\n\n在第一个样例中，Gennady 首先为第一个孩子治疗牙齿，该孩子会以音量 $4$ 哭喊。其余孩子的信心值将分别变为 $- 2, 1, 3, 1$。因此，第二个孩子也会以音量 $1$ 哭喊并跑向出口。剩余孩子的信心值将变为 $0, 2, 0$。随后第三个孩子进入诊室，并以音量 $5$ 哭喊。其他孩子无法承受这一切，他们会大声哭喊并跑向出口。\n\n在第二个样例中，首先是第一个孩子进入诊室，他会以音量 $4$ 哭喊。其余孩子的信心值将变为 $5,  - 1, 6, 8$。因此，第三个孩子会以音量 $1$ 哭喊并跑向出口。剩余孩子的信心值将变为 $5, 5, 7$。之后第二个孩子进入诊室，并以音量 $5$ 哭喊。剩余孩子的信心值将变为 $0, 3$。然后第四个孩子进入诊室，并以音量 $2$ 哭喊。因此第五个孩子的信心值变为 $1$，他最后进入诊室。",
   "samples": [
     {
       "input": "5\n4 2 2\n4 1 2\n5 2 4\n3 3 5\n5 1 2\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:20:36.160Z"
+  "fetchedAt": "2026-10-31T01:20:36.160Z",
+  "translatedAt": "2026-11-04T06:43:20.508+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

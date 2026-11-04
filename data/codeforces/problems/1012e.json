@@ -4,7 +4,7 @@
   "contestId": 1012,
   "index": "E",
   "title": "Cycle sort",
-  "titleZh": null,
+  "titleZh": "循环排序",
   "url": "https://codeforces.com/contest/1012/problem/E",
   "difficulty": 3100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array of $n$ positive integers $a_1, a_2, \\dots, a_n$. You can perform the following operation any number of times: select several distinct indices $i_1, i_2, \\dots, i_k$ ($1 \\le i_j \\le n$) and move the number standing at the position $i_1$ to the position $i_2$, the number at the position $i_2$ to the position $i_3$, ..., the number at the position $i_k$ to the position $i_1$. In other words, the operation cyclically shifts elements: $i_1 \\to i_2 \\to \\ldots i_k \\to i_1$.\n\nFor example, if you have $n=4$, an array $a_1=10, a_2=20, a_3=30, a_4=40$, and you choose three indices $i_1=2$, $i_2=1$, $i_3=4$, then the resulting array would become $a_1=20, a_2=40, a_3=30, a_4=10$.\n\nYour goal is to make the array sorted in non-decreasing order with the minimum number of operations. The additional constraint is that the sum of cycle lengths over all operations should be less than or equal to a number $s$. If it's impossible to sort the array while satisfying that constraint, your solution should report that as well.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $s$ ($1 \\leq n \\leq 200\\,000$, $0 \\leq s \\leq 200\\,000$)—the number of elements in the array and the upper bound on the sum of cycle lengths.\n\nThe next line contains $n$ integers $a_1, a_2, \\dots, a_n$—elements of the array ($1 \\leq a_i \\leq 10^9$).\n\n## Output\n\nIf it's impossible to sort the array using cycles of total length not exceeding $s$, print a single number \"`-1`\" (quotes for clarity).\n\nOtherwise, print a single number $q$— the minimum number of operations required to sort the array.\n\nOn the next $2 \\cdot q$ lines print descriptions of operations in the order they are applied to the array. The description of $i$-th operation begins with a single line containing one integer $k$ ($1 \\le k \\le n$)—the length of the cycle (that is, the number of selected indices). The next line should contain $k$ distinct integers $i_1, i_2, \\dots, i_k$ ($1 \\le i_j \\le n$)—the indices of the cycle.\n\nThe sum of lengths of these cycles should be less than or equal to $s$, and the array should be sorted after applying these $q$ operations.\n\nIf there are several possible answers with the optimal $q$, print any of them.\n\n## Note\n\nIn the first example, it's also possible to sort the array with two operations of total length 5: first apply the cycle $1 \\to 4 \\to 1$ (of length 2), then apply the cycle $2 \\to 3 \\to 5 \\to 2$ (of length 3). However, it would be wrong answer as you're asked to use the minimal possible number of operations, which is 1 in that case.\n\nIn the second example, it's possible to the sort the array with two cycles of total length 4 ($1 \\to 2 \\to 1$ and $3 \\to 4 \\to 3$). However, it's impossible to achieve the same using shorter cycles, which is required by $s=3$.\n\nIn the third example, the array is already sorted, so no operations are needed. Total length of empty set of cycles is considered to be zero.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个包含 $n$ 个正整数 $a_1, a_2, \\dots, a_n$ 的数组。你可以进行任意次以下操作：选择若干个互不相同的下标 $i_1, i_2, \\dots, i_k$（$1 \\le i_j \\le n$），将位置 $i_1$ 上的数字移动到位置 $i_2$，将位置 $i_2$ 上的数字移动到位置 $i_3$，依此类推，最后将位置 $i_k$ 上的数字移动到位置 $i_1$。换句话说，该操作会循环移动元素：$i_1 \\to i_2 \\to \\ldots i_k \\to i_1$。\n\n例如，当 $n=4$，数组为 $a_1=10, a_2=20, a_3=30, a_4=40$，并选择三个下标 $i_1=2$、$i_2=1$、$i_3=4$ 时，操作后的数组为 $a_1=20, a_2=40, a_3=30, a_4=10$。\n\n你的目标是用最少的操作次数将数组按非递减顺序排序。除此之外，所有操作的循环长度之和必须小于等于 $s$。如果无法在满足该限制的情况下将数组排序，也需要报告这一情况。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $s$（$1 \\leq n \\leq 200\\,000$, $0 \\leq s \\leq 200\\,000$），分别表示数组中元素的数量以及循环长度之和的上限。\n\n下一行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$，表示数组中的元素（$1 \\leq a_i \\leq 10^9$）。\n\n## 输出格式\n\n如果无法使用循环长度总和不超过 $s$ 的操作将数组排序，输出一个数字 `-1`（引号仅为说明）。\n\n否则，输出一个数字 $q$，表示将数组排序所需的最少操作次数。\n\n接下来的 $2 \\cdot q$ 行按照操作应用于数组的顺序，输出这些操作的描述。第 $i$ 个操作的描述首先包含一行，其中有一个整数 $k$（$1 \\le k \\le n$），表示循环的长度（即所选下标的数量）。下一行应包含 $k$ 个互不相同的整数 $i_1, i_2, \\dots, i_k$（$1 \\le i_j \\le n$），表示该循环中的下标。\n\n这些循环的长度之和必须小于等于 $s$，并且应用这 $q$ 次操作后，数组应当有序。\n\n如果存在多个操作次数达到最优的答案，输出任意一个即可。\n\n## 说明\n\n在第一个样例中，也可以通过两次操作将数组排序，循环长度总和为 5：先应用循环 $1 \\to 4 \\to 1$（长度为 2），再应用循环 $2 \\to 3 \\to 5 \\to 2$（长度为 3）。然而，这样的答案是错误的，因为题目要求使用尽可能少的操作次数，而该情况下的最少操作次数为 1。\n\n在第二个样例中，可以通过两个循环将数组排序，循环长度总和为 4（$1 \\to 2 \\to 1$ 和 $3 \\to 4 \\to 3$）。但是，无法使用更短的循环实现排序，而 $s=3$ 要求循环长度总和不超过 3。\n\n在第三个样例中，数组已经有序，因此不需要进行任何操作。空循环集合的总长度被认为是零。",
   "samples": [
     {
       "input": "5 5\n3 2 3 1 1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:27:25.129Z"
+  "fetchedAt": "2026-10-31T00:27:25.129Z",
+  "translatedAt": "2026-11-04T05:36:10.470+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

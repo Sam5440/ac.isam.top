@@ -4,7 +4,7 @@
   "contestId": 1073,
   "index": "D",
   "title": "Berland Fair",
-  "titleZh": null,
+  "titleZh": "柏兰德集市",
   "url": "https://codeforces.com/contest/1073/problem/D",
   "difficulty": 1700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "XXI Berland Annual Fair is coming really soon! Traditionally fair consists of $n$ booths, arranged in a circle. The booths are numbered $1$ through $n$ clockwise with $n$ being adjacent to $1$. The $i$-th booths sells some candies for the price of $a_i$ burles per item. Each booth has an unlimited supply of candies.\n\nPolycarp has decided to spend at most $T$ burles at the fair. However, he has some plan in mind for his path across the booths:\n\n- at first, he visits booth number $1$;\n- if he has enough burles to buy **exactly one** candy from the current booth, then he buys it immediately;\n- then he proceeds to the next booth in the clockwise order (regardless of if he bought a candy or not).\n\nPolycarp's money is finite, thus the process will end once he can no longer buy candy at any booth.\n\nCalculate the number of candies Polycarp will buy.\n\n## Input\n\nThe first line contains two integers $n$ and $T$ ($1 \\le n \\le 2 \\cdot 10^5$, $1 \\le T \\le 10^{18}$) — the number of booths at the fair and the initial amount of burles Polycarp has.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$) — the price of the single candy at booth number $i$.\n\n## Output\n\nPrint a single integer — the total number of candies Polycarp will buy.\n\n## Note\n\nLet's consider the first example. Here are Polycarp's moves until he runs out of money:\n\n1. Booth $1$, buys candy for $5$, $T = 33$;\n2. Booth $2$, buys candy for $2$, $T = 31$;\n3. Booth $3$, buys candy for $5$, $T = 26$;\n4. Booth $1$, buys candy for $5$, $T = 21$;\n5. Booth $2$, buys candy for $2$, $T = 19$;\n6. Booth $3$, buys candy for $5$, $T = 14$;\n7. Booth $1$, buys candy for $5$, $T = 9$;\n8. Booth $2$, buys candy for $2$, $T = 7$;\n9. Booth $3$, buys candy for $5$, $T = 2$;\n10. Booth $1$, buys no candy, not enough money;\n11. Booth $2$, buys candy for $2$, $T = 0$.\n\nNo candy can be bought later. The total number of candies bought is $10$.\n\nIn the second example he has $1$ burle left at the end of his path, no candy can be bought with this amount.",
-  "statementZhMd": null,
+  "statementZhMd": "XXI 届柏兰德年度集市即将开幕！按照传统，集市由 $n$ 个摊位组成，这些摊位排列成一个圆环。摊位按顺时针方向编号为 $1$ 到 $n$，其中摊位 $n$ 与摊位 $1$ 相邻。第 $i$ 个摊位以每颗 $a_i$ 布尔的价格出售糖果。每个摊位的糖果供应都是无限的。\n\nPolycarp 决定最多在集市上花费 $T$ 布尔。不过，他已经规划好了在摊位间行走的路线：\n\n- 首先，他前往编号为 $1$ 的摊位；\n- 如果他有足够的布尔从当前摊位**恰好购买一颗**糖果，那么他会立即购买；\n- 然后，他按照顺时针方向前往下一个摊位（无论他是否购买了糖果）。\n\nPolycarp 的钱是有限的，因此当他在任何摊位都无法再购买糖果时，这个过程就会结束。\n\n请计算 Polycarp 总共会购买多少颗糖果。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $T$（$1 \\le n \\le 2 \\cdot 10^5$，$1 \\le T \\le 10^{18}$）——集市上的摊位数量以及 Polycarp 最初拥有的布尔数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$）——编号为 $i$ 的摊位中一颗糖果的价格。\n\n## 输出格式\n\n输出一个整数——Polycarp 总共会购买的糖果数量。\n\n## 说明\n\n考虑第一个样例。以下是 Polycarp 直到花光所有钱之前的行动：\n\n1. 摊位 $1$，花费 $5$ 购买糖果，此时 $T = 33$；\n2. 摊位 $2$，花费 $2$ 购买糖果，此时 $T = 31$；\n3. 摊位 $3$，花费 $5$ 购买糖果，此时 $T = 26$；\n4. 摊位 $1$，花费 $5$ 购买糖果，此时 $T = 21$；\n5. 摊位 $2$，花费 $2$ 购买糖果，此时 $T = 19$；\n6. 摊位 $3$，花费 $5$ 购买糖果，此时 $T = 14$；\n7. 摊位 $1$，花费 $5$ 购买糖果，此时 $T = 9$；\n8. 摊位 $2$，花费 $2$ 购买糖果，此时 $T = 7$；\n9. 摊位 $3$，花费 $5$ 购买糖果，此时 $T = 2$；\n10. 摊位 $1$，不购买糖果，钱不够；\n11. 摊位 $2$，花费 $2$ 购买糖果，此时 $T = 0$。\n\n之后无法再购买糖果。总共购买了 $10$ 颗糖果。\n\n在第二个样例中，他在路线结束时还剩下 $1$ 布尔，但用这笔钱无法购买任何糖果。",
   "samples": [
     {
       "input": "3 38\n5 2 5\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:26:21.813Z"
+  "fetchedAt": "2026-11-02T19:26:21.813Z",
+  "translatedAt": "2026-11-04T05:27:08.831+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

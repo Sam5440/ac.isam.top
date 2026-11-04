@@ -4,7 +4,7 @@
   "contestId": 955,
   "index": "E",
   "title": "Icicles",
-  "titleZh": null,
+  "titleZh": "冰柱",
   "url": "https://codeforces.com/contest/955/problem/E",
   "difficulty": 2900,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "Andrew's favourite Krakozyabra has recenly fled away and now he's eager to bring it back!\n\nAt the moment the refugee is inside an icy cave with $*n*$ icicles dangling from the ceiling located in integer coordinates numbered from $1$ to $*n*$. The distance between floor and the $*i*$-th icicle is equal to $*a*_{*i*}$.\n\nAndrew is free to choose an arbitrary integer point $*T*$ in range from $1$ to $*n*$ inclusive and at time instant $0$ launch a sound wave spreading into both sides (left and right) at the speed of one point per second. Any icicle touched by the wave starts falling at the same speed (that means that in a second the distance from floor to icicle decreases by one but cannot become less that zero). While distance from icicle to floor is more than zero, it is considered passable; as soon as it becomes zero, the icicle blocks the path and prohibits passing.\n\nKrakozyabra is initially (i.e. at time instant $0$) is located at point ![image](https://espresso.codeforces.com/eb946338365d9781f7d2e9ec692c26702d0ae3a7.png) and starts running in the right direction at the speed of one point per second. You can assume that events in a single second happen in the following order: first Krakozyabra changes its position, and only then the sound spreads and icicles fall; in particular, that means that if Krakozyabra is currently at point ![image](https://espresso.codeforces.com/888531a0e13807ef7dd73a80ad9f8310660a8f1f.png) and the falling (i.e. already touched by the sound wave) icicle at point $*i*$ is $1$ point from the floor, then Krakozyabra will pass it and find itself at ![image](https://espresso.codeforces.com/032de8ef739262586ef499646cfcdea1584e7a25.png) and only after that the icicle will finally fall and block the path.\n\nKrakozyabra is considered entrapped if there are fallen (i.e. with $*a*_{*i*} = 0$) icicles both to the left and to the right of its current position. Help Andrew find the minimum possible time it takes to entrap Krakozyabra by choosing the optimal value of $*T*$ or report that this mission is impossible.\n\n## Input\n\nThe first line contains the number of icicles $*n*$ $(2 ≤ *n* ≤ 10^{5})$.\n\nThe next line contains $*n*$ space-separated numbers $*a*_{*i*}$ $(1 ≤ *a*_{*i*} ≤ 10^{5})$ — the distances from floor to icicles.\n\n## Output\n\nPrint an only integer — the minimum time it takes to entrap Krakozyabra between two fallen icicles. If it is impossible, print $- 1$.\n\n## Note\n\nIn sample case one it's optimal to launch the sound wave from point $3$. Then in two seconds icicles $1$ and $5$ will start falling, and in one more seconds they will block the paths. Krakozyabra will be located at ![image](https://espresso.codeforces.com/36de0b98a41a7a3c26317908808c214e6d4ac3ff.png) at that time. Note that icicle number $3$ will also be fallen, so there will actually be two icicles blocking the path to the left.\n\nIn sample case two it is optimal to launch the wave from point $2$ and entrap Krakozyabra in $2$ seconds.\n\nIn sample case four the answer is impossible.",
-  "statementZhMd": null,
+  "statementZhMd": "Andrew 最喜欢的 Krakozyabra 最近逃走了，现在他迫切地想把它带回来！\n\n此时，这个逃亡者位于一个冰洞中。洞顶悬挂着 $*n*$ 根冰柱，它们位于整数坐标处，编号为 $1$ 到 $*n*$。地面到第 $*i*$ 根冰柱的距离为 $*a*_{*i*}$。\n\nAndrew 可以任意选择一个范围在 $1$ 到 $*n*$ 之间（含端点）的整数点 $*T*$，并在时刻 $0$ 发出声波。声波以每秒一个点的速度向左右两侧传播。任何被声波触碰到的冰柱都会以相同的速度开始下落（也就是说，经过一秒后，冰柱到地面的距离减少一，但不会小于零）。当冰柱到地面的距离大于零时，认为该处可以通行；一旦距离变为零，冰柱就会挡住道路，禁止通过。\n\nKrakozyabra 初始时（即在时刻 $0$）位于点 ![image](https://espresso.codeforces.com/eb946338365d9781f7d2e9ec692c26702d0ae3a7.png)，并以每秒一个点的速度开始向右奔跑。可以认为同一秒内的事件按以下顺序发生：首先 Krakozyabra 改变自己的位置，然后声波传播，冰柱下落；特别地，这意味着如果 Krakozyabra 当前位于点 ![image](https://espresso.codeforces.com/888531a0e13807ef7dd73a80ad9f8310660a8f1f.png)，且点 $*i*$ 处正在下落（即已经被声波触碰）的冰柱距地面还有 $1$ 个点的距离，那么 Krakozyabra 会越过它并到达 ![image](https://espresso.codeforces.com/032de8ef739262586ef499646cfcdea1584e7a25.png)，之后冰柱才会最终落下并挡住道路。\n\n如果 Krakozyabra 当前所在位置的左侧和右侧都存在已经落下的（即满足 $*a*_{*i*} = 0$ 的）冰柱，则认为 Krakozyabra 被困住了。请帮助 Andrew 选择最优的 $*T*$，求出困住 Krakozyabra 所需的最短时间，或者报告任务不可能完成。\n\n## 输入格式\n\n第一行包含冰柱的数量 $*n*$（$2 ≤ *n* ≤ 10^{5}$）。\n\n第二行包含 $*n*$ 个空格分隔的数 $*a*_{*i*}$（$1 ≤ *a*_{*i*} ≤ 10^{5}$）——地面到各根冰柱的距离。\n\n## 输出格式\n\n输出一个整数——将 Krakozyabra 困在两根已经落下的冰柱之间所需的最短时间。如果不可能，输出 $- 1$。\n\n## 说明\n\n在第一个样例中，最优做法是从点 $3$ 发出声波。两秒后，冰柱 $1$ 和 $5$ 开始下落，再过一秒，它们就会挡住道路。此时 Krakozyabra 将位于 ![image](https://espresso.codeforces.com/36de0b98a41a7a3c26317908808c214e6d4ac3ff.png) 处。注意，编号为 $3$ 的冰柱也会落下，因此实际上左侧道路上会有两根冰柱挡路。\n\n在第二个样例中，最优做法是从点 $2$ 发出声波，并在 $2$ 秒后困住 Krakozyabra。\n\n在第四个样例中，答案是不可能。",
   "samples": [
     {
       "input": "5\n1 4 3 5 1\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:33:06.002Z"
+  "fetchedAt": "2026-10-31T00:33:06.002Z",
+  "translatedAt": "2026-11-04T05:47:20.154+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

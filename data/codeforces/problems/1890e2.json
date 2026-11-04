@@ -4,14 +4,14 @@
   "contestId": 1890,
   "index": "E2",
   "title": "Doremy's Drying Plan (Hard Version)",
-  "titleZh": null,
+  "titleZh": "Doremy 的晾晒计划（困难版）",
   "url": "https://codeforces.com/contest/1890/problem/E2",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 4000,
   "memoryLimitMb": 1024,
   "statementMd": "**The only differences between the two versions of this problem are the constraint on $k$, the time limit and the memory limit. You can make hacks only if all versions of the problem are solved.**\n\nDoremy lives in a rainy country consisting of $n$ cities numbered from $1$ to $n$.\n\nThe weather broadcast predicted the distribution of rain in the next $m$ days. In the $i$-th day, it will rain in the cities in the interval $[l_i, r_i]$. A city is called dry if it will never rain in that city in the next $m$ days.\n\nIt turns out that Doremy has a special power. She can choose $k$ days, and during these days it will not rain. Doremy wants to calculate the maximum number of dry cities after using the special power.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line contains three integers $n$, $m$ and $k$ ($1\\le n\\le 2\\cdot 10^5$, $2 \\le m \\le 2\\cdot 10^5$, $2 \\le k \\le \\min(10, m)$) — the number of cities, the number of days, and the number of days of rain that Doremy can prevent.\n\nThen, $m$ lines follow. The $i$-th line contains two integers $l_i$, $r_i$ ($1\\le l_i\\le r_i\\le n$) — the rain coverage on day $i$.\n\nIt is guaranteed that the sum of $n$ and the sum of $m$ over all test cases do not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer — the maximum number of dry cities.\n\n## Note\n\nIn the first test case, if Doremy prevents\n\n- rain $1,2$, then city $2$ will be dry;\n- rain $2,3$, then no city will be dry;\n- rain $1,3$, then no city will be dry;\n\nSo there is at most $1$ dry city.\n\nIn the second test case, if Doremy prevents\n\n- rain $1,2$, then city $1,2$ will be dry;\n- rain $2,3$, then city $4,5$ will be dry;\n- rain $1,3$, then city $1,5$ will be dry.\n\nSo there are at most $2$ dry cities.\n\nIn the third test case, it is optimal to prevent rain $1,2,4,5$.\n\nIn the forth test case, there is always a day of rain that wets all the cities and cannot be prevented.",
-  "statementZhMd": null,
+  "statementZhMd": "**这两个版本之间唯一的区别在于 $k$ 的约束、时间限制和内存限制。只有在解决了本题的所有版本后，才能进行 hack。**\n\nDoremy 生活在一个多雨的国家，这个国家由 $n$ 个城市组成，城市编号从 $1$ 到 $n$。\n\n天气预报预测了接下来 $m$ 天的降雨分布。第 $i$ 天，编号位于区间 $[l_i, r_i]$ 内的城市会下雨。如果一个城市在接下来的 $m$ 天中都不会下雨，则称该城市是干燥的。\n\n事实证明，Doremy 拥有一种特殊能力。她可以选择 $k$ 天，在这些天中将不会下雨。Doremy 想计算使用特殊能力后最多能有多少个干燥的城市。\n\n## 输入格式\n\n输入包含多组测试用例。第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。接下来是各测试用例的描述。\n\n每组测试用例的第一行包含三个整数 $n$、$m$ 和 $k$（$1\\le n\\le 2\\cdot 10^5$，$2 \\le m \\le 2\\cdot 10^5$，$2 \\le k \\le \\min(10, m)$）——城市的数量、天数以及 Doremy 可以阻止降雨的天数。\n\n接下来 $m$ 行。第 $i$ 行包含两个整数 $l_i$、$r_i$（$1\\le l_i\\le r_i\\le n$）——第 $i$ 天的降雨覆盖范围。\n\n保证所有测试用例的 $n$ 之和以及 $m$ 之和均不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数——最多能有多少个干燥的城市。\n\n## 说明\n\n在第一组测试用例中，如果 Doremy 阻止：\n\n- 第 $1,2$ 天的降雨，则城市 $2$ 会保持干燥；\n- 第 $2,3$ 天的降雨，则没有城市会保持干燥；\n- 第 $1,3$ 天的降雨，则没有城市会保持干燥。\n\n因此最多有 $1$ 个干燥的城市。\n\n在第二组测试用例中，如果 Doremy 阻止：\n\n- 第 $1,2$ 天的降雨，则城市 $1,2$ 会保持干燥；\n- 第 $2,3$ 天的降雨，则城市 $4,5$ 会保持干燥；\n- 第 $1,3$ 天的降雨，则城市 $1,5$ 会保持干燥。\n\n因此最多有 $2$ 个干燥的城市。\n\n在第三组测试用例中，阻止第 $1,2,4,5$ 天的降雨是最优方案。\n\n在第四组测试用例中，总有一天的降雨会淋湿所有城市，而这一天无法被阻止。",
   "samples": [
     {
       "input": "6\n2 3 2\n1 2\n1 2\n1 1\n5 3 2\n1 3\n2 4\n3 5\n10 6 4\n1 5\n6 10\n2 2\n3 7\n5 8\n1 4\n100 6 5\n1 100\n1 100\n1 100\n1 100\n1 100\n1 100\n1000 2 2\n1 1\n1 1\n20 5 3\n9 20\n3 3\n10 11\n11 13\n6 18\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:08:42.909Z"
+  "fetchedAt": "2026-10-30T22:08:42.909Z",
+  "translatedAt": "2026-11-04T02:30:12.777+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

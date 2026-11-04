@@ -4,7 +4,7 @@
   "contestId": 1016,
   "index": "E",
   "title": "Rest In The Shades",
-  "titleZh": null,
+  "titleZh": "在阴影中休息",
   "url": "https://codeforces.com/contest/1016/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a light source on the plane. This source is so small that it can be represented as point. The light source is moving from point $(a, s_y)$ to the $(b, s_y)$ $(s_y \\lt 0)$ with speed equal to $1$ unit per second. The trajectory of this light source is a straight segment connecting these two points.\n\nThere is also a fence on $OX$ axis represented as $n$ segments $(l_i, r_i)$ (so the actual coordinates of endpoints of each segment are $(l_i, 0)$ and $(r_i, 0)$). The point $(x, y)$ is *in the shade* if segment connecting $(x,y)$ and the current position of the light source intersects or touches with any segment of the fence.\n\n![image](https://espresso.codeforces.com/08043a138579f0966572e296482472676833f216.png)\n\nYou are given $q$ points. For each point calculate total time of this point being in the shade, while the light source is moving from $(a, s_y)$ to the $(b, s_y)$.\n\n## Input\n\nFirst line contains three space separated integers $s_y$, $a$ and $b$ ($-10^9 \\le s_y \\lt 0$, $1 \\le a \\lt b \\le 10^9$) — corresponding coordinates of the light source.\n\nSecond line contains single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — number of segments in the fence.\n\nNext $n$ lines contain two integers per line: $l_i$ and $r_i$ ($1 \\le l_i \\lt r_i \\le 10^9$, $r_{i - 1} \\lt l_i$) — segments in the fence in increasing order. Segments don't intersect or touch each other.\n\nNext line contains single integer $q$ ($1 \\le q \\le 2 \\cdot 10^5$) — number of points to check.\n\nNext $q$ lines contain two integers per line: $x_i$ and $y_i$ ($1 \\le x_i, y_i \\le 10^9$) — points to process.\n\n## Output\n\nPrint $q$ lines. The $i$-th line should contain one real number — total time of the $i$-th point being in the shade, while the light source is moving from $(a, s_y)$ to the $(b, s_y)$. The answer is considered as correct if its absolute of relative error doesn't exceed $10^{-6}$.\n\n## Note\n\n- The 1-st point is always in the shade;\n- the 2-nd point is in the shade while light source is moving from $(3, -3)$ to $(6, -3)$;\n- the 3-rd point is in the shade while light source is at point $(6, -3)$.\n- the 4-th point is in the shade while light source is moving from $(1, -3)$ to $(2.5, -3)$ and at point $(6, -3)$;\n- the 5-th point is in the shade while light source is moving from $(1, -3)$ to $(2.5, -3)$ and from $(5.5, -3)$ to $(6, -3)$;",
-  "statementZhMd": null,
+  "statementZhMd": "平面上有一个光源。这个光源非常小，可以视为一个点。光源以每秒 $1$ 个单位的速度从点 $(a, s_y)$ 移动到点 $(b, s_y)$（$s_y \\lt 0$）。光源的轨迹是连接这两个点的线段。\n\n在 $OX$ 轴上还有一面围栏，由 $n$ 条线段 $(l_i, r_i)$ 表示（因此每条线段的端点实际坐标为 $(l_i, 0)$ 和 $(r_i, 0)$）。如果连接 $(x,y)$ 与光源当前位置的线段与围栏中的任意一条线段相交或接触，则称点 $(x, y)$ *处于阴影中*。\n\n![image](https://espresso.codeforces.com/08043a138579f0966572e296482472676833f216.png)\n\n给定 $q$ 个点。对于每个点，计算光源从 $(a, s_y)$ 移动到 $(b, s_y)$ 的过程中，该点处于阴影中的总时间。\n\n## 输入格式\n\n第一行包含三个用空格分隔的整数 $s_y$、$a$ 和 $b$（$-10^9 \\le s_y \\lt 0$，$1 \\le a \\lt b \\le 10^9$），分别表示光源的坐标。\n\n第二行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$），表示围栏中线段的数量。\n\n接下来 $n$ 行，每行包含两个整数 $l_i$ 和 $r_i$（$1 \\le l_i \\lt r_i \\le 10^9$，$r_{i - 1} \\lt l_i$），表示按递增顺序给出的围栏线段。线段之间既不相交，也不接触。\n\n接下来一行包含一个整数 $q$（$1 \\le q \\le 2 \\cdot 10^5$），表示需要检查的点的数量。\n\n接下来 $q$ 行，每行包含两个整数 $x_i$ 和 $y_i$（$1 \\le x_i, y_i \\le 10^9$），表示需要处理的点。\n\n## 输出格式\n\n输出 $q$ 行。第 $i$ 行应包含一个实数，表示光源从 $(a, s_y)$ 移动到 $(b, s_y)$ 的过程中，第 $i$ 个点处于阴影中的总时间。如果答案的绝对误差或相对误差不超过 $10^{-6}$，则认为答案正确。\n\n## 说明\n\n- 第 1 个点始终处于阴影中；\n- 第 2 个点在光源从 $(3, -3)$ 移动到 $(6, -3)$ 的过程中处于阴影中；\n- 第 3 个点在光源位于点 $(6, -3)$ 时处于阴影中；\n- 第 4 个点在光源从 $(1, -3)$ 移动到 $(2.5, -3)$ 的过程中以及光源位于点 $(6, -3)$ 时处于阴影中；\n- 第 5 个点在光源从 $(1, -3)$ 移动到 $(2.5, -3)$ 的过程中以及从 $(5.5, -3)$ 移动到 $(6, -3)$ 的过程中处于阴影中。",
   "samples": [
     {
       "input": "-3 1 6\n2\n2 4\n6 7\n5\n3 1\n1 3\n6 1\n6 4\n7 6\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:33:45.096Z"
+  "fetchedAt": "2026-11-02T19:33:45.096Z",
+  "translatedAt": "2026-11-04T05:34:12.956+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

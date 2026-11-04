@@ -4,7 +4,7 @@
   "contestId": 997,
   "index": "D",
   "title": "Cycles in product",
-  "titleZh": null,
+  "titleZh": "积图中的环",
   "url": "https://codeforces.com/contest/997/problem/D",
   "difficulty": 2900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 256,
   "statementMd": "Consider a tree (that is, an undirected connected graph without loops) $T_1$ and a tree $T_2$. Let's define their *cartesian product* $T_1 \\times T_2$ in a following way.\n\nLet $V$ be the set of vertices in $T_1$ and $U$ be the set of vertices in $T_2$.\n\nThen the set of vertices of graph $T_1 \\times T_2$ is $V \\times U$, that is, a set of ordered pairs of vertices, where the first vertex in pair is from $V$ and the second — from $U$.\n\nLet's draw the following edges:\n\n- Between $(v, u_1)$ and $(v, u_2)$ there is an undirected edge, if $u_1$ and $u_2$ are adjacent in $U$.\n- Similarly, between $(v_1, u)$ and $(v_2, u)$ there is an undirected edge, if $v_1$ and $v_2$ are adjacent in $V$.\n\nPlease see the notes section for the pictures of products of trees in the sample tests.\n\nLet's examine the graph $T_1 \\times T_2$. How much cycles (not necessarily simple) of length $k$ it contains? Since this number can be very large, print it modulo $998244353$.\n\nThe sequence of vertices $w_1$, $w_2$, ..., $w_k$, where $w_i \\in V \\times U$ called cycle, if any neighboring vertices are adjacent and $w_1$ is adjacent to $w_k$. Cycles that differ only by the cyclic shift or direction of traversal are still considered **different**.\n\n## Input\n\nFirst line of input contains three integers — $n_1$, $n_2$ and $k$ ($2 \\le n_1, n_2 \\le 4000$, $2 \\le k \\le 75$) — number of vertices in the first tree, number of vertices in the second tree and the cycle length respectively.\n\nThen follow $n_1 - 1$ lines describing the first tree. Each of this lines contains two integers — $v_i, u_i$ ($1 \\le v_i, u_i \\le n_1$), which define edges of the first tree.\n\nThen follow $n_2 - 1$ lines, which describe the second tree in the same format.\n\nIt is guaranteed, that given graphs are trees.\n\n## Output\n\nPrint one integer — number of cycles modulo $998244353$.\n\n## Note\n\nThe following three pictures illustrate graph, which are products of the trees from sample tests.\n\nIn the first example, the list of cycles of length $2$ is as follows:\n\n- «AB», «BA»\n- «BC», «CB»\n- «AD», «DA»\n- «CD», «DC»\n\n![image](https://espresso.codeforces.com/3331f619f35bbacce43883d747d920cfa72459f4.png) ![image](https://espresso.codeforces.com/59037cc5f09bf73f73a117311ff4330ae41a7860.png) ![image](https://espresso.codeforces.com/cb83a42fc52331266c233dc67312c1f42c04cd9f.png)",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一棵树（即一个无向连通且无自环的图）$T_1$ 和一棵树 $T_2$。我们按如下方式定义它们的*笛卡尔积* $T_1 \\times T_2$。\n\n设 $V$ 为 $T_1$ 的顶点集合，$U$ 为 $T_2$ 的顶点集合。\n\n图 $T_1 \\times T_2$ 的顶点集合为 $V \\times U$，即由有序顶点对组成的集合，其中每对顶点中的第一个来自 $V$，第二个来自 $U$。\n\n我们添加如下边：\n\n- 如果 $u_1$ 和 $u_2$ 在 $U$ 中相邻，则在 $(v, u_1)$ 和 $(v, u_2)$ 之间添加一条无向边。\n- 类似地，如果 $v_1$ 和 $v_2$ 在 $V$ 中相邻，则在 $(v_1, u)$ 和 $(v_2, u)$ 之间添加一条无向边。\n\n样例测试中树的笛卡尔积图示请参见说明部分。\n\n考虑图 $T_1 \\times T_2$。其中包含多少个长度为 $k$ 的环（不一定是简单环）？由于这个数可能非常大，请将其对 $998244353$ 取模后输出。\n\n若顶点序列 $w_1$、$w_2$、...、$w_k$ 满足 $w_i \\in V \\times U$，且任意相邻的两个顶点都相邻，并且 $w_1$ 与 $w_k$ 相邻，则称其为一个环。仅通过循环移位或改变遍历方向得到的环，仍视为**不同**的环。\n\n## 输入格式\n\n输入的第一行包含三个整数 $n_1$、$n_2$ 和 $k$（$2 \\le n_1, n_2 \\le 4000$，$2 \\le k \\le 75$），分别表示第一棵树的顶点数、第二棵树的顶点数以及环的长度。\n\n接下来 $n_1 - 1$ 行描述第一棵树。每行包含两个整数 $v_i$、$u_i$（$1 \\le v_i, u_i \\le n_1$），表示一条边。\n\n接下来 $n_2 - 1$ 行按照相同格式描述第二棵树。\n\n保证给出的图均为树。\n\n## 输出格式\n\n输出一个整数，即环的数量对 $998244353$ 取模后的结果。\n\n## 说明\n\n下面的三张图片展示了样例测试中树的笛卡尔积图。\n\n在第一个样例中，长度为 $2$ 的环列表如下：\n\n- «AB»、«BA»\n- «BC»、«CB»\n- «AD»、«DA»\n- «CD»、«DC»\n\n![image](https://espresso.codeforces.com/3331f619f35bbacce43883d747d920cfa72459f4.png) ![image](https://espresso.codeforces.com/59037cc5f09bf73f73a117311ff4330ae41a7860.png) ![image](https://espresso.codeforces.com/cb83a42fc52331266c233dc67312c1f42c04cd9f.png)",
   "samples": [
     {
       "input": "2 2 2\n1 2\n1 2\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:28:22.042Z"
+  "fetchedAt": "2026-10-31T00:28:22.042Z",
+  "translatedAt": "2026-11-04T05:39:53.083+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

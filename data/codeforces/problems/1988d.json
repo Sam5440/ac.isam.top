@@ -4,7 +4,7 @@
   "contestId": 1988,
   "index": "D",
   "title": "The Omnipotent Monster Killer",
-  "titleZh": null,
+  "titleZh": "全能的怪物杀手",
   "url": "https://codeforces.com/contest/1988/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "You, the monster killer, want to kill a group of monsters. The monsters are on a tree with $n$ vertices. On vertex with number $i$ ($1\\le i\\le n$), there is a monster with $a_i$ attack points. You want to battle with monsters for $10^{100}$ rounds.\n\nIn each round, the following happens in order:\n\n1. All living monsters attack you. Your health decreases by the sum of attack points of all living monsters.\n2. You select some (possibly all or none) monsters and kill them. After being killed, the monster will not be able to do any attacks in the future.\n\nThere is a restriction: in one round, you cannot kill two monsters that are directly connected by an edge.\n\nIf you choose what monsters to attack optimally, what is the smallest health decrement you can have after all rounds?\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). Description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1\\le n\\le 3\\cdot 10^5$).\n\nThe second line of each test case contains $n$ integers $a_1,\\ldots,a_n$ ($1\\le a_i\\le 10^{12}$).\n\nThe following $n-1$ lines each contain two integers $x,y$ ($1\\le x,y\\le n$), denoting an edge on the tree connecting vertex $x$ and $y$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3\\cdot 10^5$.\n\n## Output\n\nFor each test case, print one integer: the minimum possible health decrement.\n\n## Note\n\nIn the first test case, an optimal sequence of operations would be:\n\n- In the first round: first, receive the attack from the monster on vertex $1$, so your health decreases by $10^{12}$. Then kill the monster on vertex $1$.\n- In the second round to the $10^{100}$-th round: all monsters have been killed, so nothing happens.\n\nThe total health decrement is $10^{12}$.\n\nIn the second test case, an optimal sequence of operations would be:\n\n- In the first round: first, receive the attack from the monster on vertex $1,2,3,4,5$, so your health decreases by $47+15+32+29+23=146$. Then kill the monsters on vertex $1,4,5$.\n- In the second round: first, receive the attack from the monster on vertex $2,3$, so your health decreases by $15+32=47$. Then kill the monsters on vertex $2,3$.\n- In the third round to the $10^{100}$-th round: all monsters have been killed, so nothing happens.\n\nThe total health decrement is $193$.\n\nIn the third test case, an optimal sequence of operations would be:\n\n- In the first round: first, receive the attack from the monster on vertex $1,2,3,4,5,6,7$, so your health decreases by $8+10+2+3+5+7+4=39$. Then kill the monsters on vertex $1,3,6,7$.\n- In the second round: first, receive the attack from the monster on vertex $2,4,5$, so your health decreases by $10+3+5=18$. Then kill the monsters on vertex $2,4,5$.\n- In the third round to the $10^{100}$-th round: all monsters have been killed, so nothing happens.\n\nThe total health decrement is $57$.",
-  "statementZhMd": null,
+  "statementZhMd": "你是一名怪物杀手，想要消灭一群怪物。这些怪物位于一棵有 $n$ 个顶点的树上。编号为 $i$ 的顶点（$1\\le i\\le n$）上有一只攻击力为 $a_i$ 的怪物。你想与这些怪物进行 $10^{100}$ 轮战斗。\n\n每一轮按以下顺序进行：\n\n1. 所有存活的怪物攻击你。你的生命值减少所有存活怪物攻击力之和。\n2. 你选择一些怪物（可以是全部，也可以是一只都不选）并将它们消灭。怪物被消灭后，今后将无法进行任何攻击。\n\n有一个限制：在同一轮中，不能消灭两个由一条边直接连接的怪物。\n\n如果你以最优方式选择要攻击的怪物，那么在所有轮次结束后，你的生命值最少会减少多少？\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 3\\cdot 10^5$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,\\ldots,a_n$（$1\\le a_i\\le 10^{12}$）。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $x,y$（$1\\le x,y\\le n$），表示树上一条连接顶点 $x$ 和顶点 $y$ 的边。\n\n保证所有测试用例的 $n$ 之和不超过 $3\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：可能的最小生命值减少量。\n\n## 说明\n\n在第一个测试用例中，一种最优的操作序列如下：\n\n- 第一轮：首先，编号为 $1$ 的顶点上的怪物发动攻击，因此你的生命值减少 $10^{12}$。然后消灭编号为 $1$ 的顶点上的怪物。\n- 第二轮到第 $10^{100}$ 轮：所有怪物都已被消灭，因此什么也不会发生。\n\n生命值减少总量为 $10^{12}$。\n\n在第二个测试用例中，一种最优的操作序列如下：\n\n- 第一轮：首先，编号为 $1,2,3,4,5$ 的顶点上的怪物发动攻击，因此你的生命值减少 $47+15+32+29+23=146$。然后消灭编号为 $1,4,5$ 的顶点上的怪物。\n- 第二轮：首先，编号为 $2,3$ 的顶点上的怪物发动攻击，因此你的生命值减少 $15+32=47$。然后消灭编号为 $2,3$ 的顶点上的怪物。\n- 第三轮到第 $10^{100}$ 轮：所有怪物都已被消灭，因此什么也不会发生。\n\n生命值减少总量为 $193$。\n\n在第三个测试用例中，一种最优的操作序列如下：\n\n- 第一轮：首先，编号为 $1,2,3,4,5,6,7$ 的顶点上的怪物发动攻击，因此你的生命值减少 $8+10+2+3+5+7+4=39$。然后消灭编号为 $1,3,6,7$ 的顶点上的怪物。\n- 第二轮：首先，编号为 $2,4,5$ 的顶点上的怪物发动攻击，因此你的生命值减少 $10+3+5=18$。然后消灭编号为 $2,4,5$ 的顶点上的怪物。\n- 第三轮到第 $10^{100}$ 轮：所有怪物都已被消灭，因此什么也不会发生。\n\n生命值减少总量为 $57$。",
   "samples": [
     {
       "input": "3\n1\n1000000000000\n5\n47 15 32 29 23\n1 2\n1 3\n2 4\n2 5\n7\n8 10 2 3 5 7 4\n1 2\n1 4\n3 2\n5 3\n6 2\n7 5\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:50:01.261Z"
+  "fetchedAt": "2026-10-30T21:50:01.261Z",
+  "translatedAt": "2026-11-04T02:07:34.954+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

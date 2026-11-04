@@ -4,7 +4,7 @@
   "contestId": 1147,
   "index": "A",
   "title": "Hide and Seek",
-  "titleZh": null,
+  "titleZh": "躲猫猫",
   "url": "https://codeforces.com/contest/1147/problem/A",
   "difficulty": 1500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob are playing a game on a line with $n$ cells. There are $n$ cells labeled from $1$ through $n$. For each $i$ from $1$ to $n-1$, cells $i$ and $i+1$ are adjacent.\n\nAlice initially has a token on some cell on the line, and Bob tries to guess where it is.\n\nBob guesses a sequence of line cell numbers $x_1, x_2, \\ldots, x_k$ in order. In the $i$-th question, Bob asks Alice if her token is currently on cell $x_i$. That is, Alice can answer either \"`YES`\" or \"`NO`\" to each Bob's question.\n\n**At most one time** in this process, before or after answering a question, Alice is allowed to move her token from her current cell to some **adjacent** cell. Alice acted in such a way that she was able to answer \"`NO`\" to **all** of Bob's questions.\n\nNote that Alice can even move her token before answering the first question or after answering the last question. Alice can also choose to not move at all.\n\nYou are given $n$ and Bob's questions $x_1, \\ldots, x_k$. You would like to count the number of scenarios that let Alice answer \"`NO`\" to all of Bob's questions.\n\nLet $(a,b)$ denote a scenario where Alice starts at cell $a$ and ends at cell $b$. Two scenarios $(a_i, b_i)$ and $(a_j, b_j)$ are different if $a_i \\neq a_j$ or $b_i \\neq b_j$.\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($1 \\leq n,k \\leq 10^5$) — the number of cells and the number of questions Bob asked.\n\nThe second line contains $k$ integers $x_1, x_2, \\ldots, x_k$ ($1 \\leq x_i \\leq n$) — Bob's questions.\n\n## Output\n\nPrint a single integer, the number of scenarios that let Alice answer \"`NO`\" to all of Bob's questions.\n\n## Note\n\nThe notation $(i,j)$ denotes a scenario where Alice starts at cell $i$ and ends at cell $j$.\n\nIn the first example, the valid scenarios are $(1, 2), (2, 1), (2, 2), (2, 3), (3, 2), (3, 3), (3, 4), (4, 3), (4, 5)$. For example, $(3,4)$ is valid since Alice can start at cell $3$, stay there for the first three questions, then move to cell $4$ after the last question.\n\n$(4,5)$ is valid since Alice can start at cell $4$, stay there for the first question, the move to cell $5$ for the next two questions. Note that $(4,5)$ is only counted once, even though there are different questions that Alice can choose to do the move, but remember, we only count each pair of starting and ending positions once.\n\nIn the second example, Alice has no valid scenarios.\n\nIn the last example, all $(i,j)$ where $|i-j| \\leq 1$ except for $(42, 42)$ are valid scenarios.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 正在线性排列的 $n$ 个格子上进行游戏。格子编号从 $1$ 到 $n$。对于每个 $i$（$1$ 到 $n-1$），格子 $i$ 和格子 $i+1$ 相邻。\n\nAlice 最初将一个标记放在这条线上的某个格子中，而 Bob 试图猜出标记所在的位置。\n\nBob 按顺序给出一系列格子编号 $x_1, x_2, \\ldots, x_k$。在第 $i$ 次提问中，Bob 会询问 Alice，她的标记当前是否位于格子 $x_i$。也就是说，对于 Bob 的每次提问，Alice 都可以回答“`YES`”或“`NO`”。\n\n在整个过程中，Alice **至多可以进行一次移动**：在回答某次提问之前或之后，她可以将标记从当前格子移动到某个**相邻**格子。Alice 采取了一种策略，使得她能够对 Bob 的**所有**提问都回答“`NO`”。\n\n注意，Alice 甚至可以在回答第一次提问之前，或回答最后一次提问之后移动标记。Alice 也可以选择完全不移动。\n\n给定 $n$ 和 Bob 的提问 $x_1, \\ldots, x_k$，请你计算能够让 Alice 对所有 Bob 的提问都回答“`NO`”的场景数量。\n\n用 $(a,b)$ 表示 Alice 从格子 $a$ 开始，最终停留在格子 $b$ 的场景。如果 $a_i \\neq a_j$ 或 $b_i \\neq b_j$，则场景 $(a_i, b_i)$ 和 $(a_j, b_j)$ 不同。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$1 \\leq n,k \\leq 10^5$）——格子的数量以及 Bob 提出的提问数量。\n\n第二行包含 $k$ 个整数 $x_1, x_2, \\ldots, x_k$（$1 \\leq x_i \\leq n$）——Bob 的提问。\n\n## 输出格式\n\n输出一个整数，即能够让 Alice 对所有 Bob 的提问都回答“`NO`”的场景数量。\n\n## 说明\n\n记号 $(i,j)$ 表示 Alice 从格子 $i$ 开始并最终停留在格子 $j$ 的场景。\n\n在第一个样例中，有效场景为 $(1, 2), (2, 1), (2, 2), (2, 3), (3, 2), (3, 3), (3, 4), (4, 3), (4, 5)$。例如，$(3,4)$ 是有效的，因为 Alice 可以从格子 $3$ 开始，在前三次提问期间一直停留在那里，然后在最后一次提问之后移动到格子 $4$。\n\n$(4,5)$ 也是有效的，因为 Alice 可以从格子 $4$ 开始，在第一次提问期间停留在那里，然后移动到格子 $5$，以应对接下来的两次提问。注意，$(4,5)$ 只会被计数一次，尽管 Alice 可以选择在不同的提问时进行移动；请记住，我们只对每一对起始位置和最终位置计数一次。\n\n在第二个样例中，Alice 没有任何有效场景。\n\n在最后一个样例中，除了 $(42, 42)$ 之外，所有满足 $|i-j| \\leq 1$ 的 $(i,j)$ 都是有效场景。",
   "samples": [
     {
       "input": "5 3\n5 1 4\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:13:09.383Z"
+  "fetchedAt": "2026-10-31T00:13:09.383Z",
+  "translatedAt": "2026-11-04T05:11:43.252+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

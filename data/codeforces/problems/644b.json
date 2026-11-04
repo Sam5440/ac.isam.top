@@ -4,7 +4,7 @@
   "contestId": 644,
   "index": "B",
   "title": "Processing Queries",
-  "titleZh": null,
+  "titleZh": "处理查询",
   "url": "https://codeforces.com/contest/644/problem/B",
   "difficulty": 1700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "In this problem you have to simulate the workflow of one-thread server. There are $*n*$ queries to process, the $*i*$-th will be received at moment $*t*_{*i*}$ and needs to be processed for $*d*_{*i*}$ units of time. All $*t*_{*i*}$ are guaranteed to be distinct.\n\nWhen a query appears server may react in three possible ways:\n\n1. If server is free and query queue is empty, then server immediately starts to process this query.\n2. If server is busy and there are less than $*b*$ queries in the queue, then new query is added to the end of the queue.\n3. If server is busy and there are already $*b*$ queries pending in the queue, then new query is just rejected and will never be processed.\n\nAs soon as server finished to process some query, it picks new one from the queue (if it's not empty, of course). If a new query comes at some moment $*x*$, and the server finishes to process another query at exactly the same moment, we consider that first query is picked from the queue and only then new query appears.\n\nFor each query find the moment when the server will finish to process it or print `-1` if this query will be rejected.\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*b*$ ($1 ≤ *n*, *b* ≤ 200 000$) — the number of queries and the maximum possible size of the query queue.\n\nThen follow $*n*$ lines with queries descriptions (in chronological order). Each description consists of two integers $*t*_{*i*}$ and $*d*_{*i*}$ ($1 ≤ *t*_{*i*}, *d*_{*i*} ≤ 10^{9}$), where $*t*_{*i*}$ is the moment of time when the $*i*$-th query appears and $*d*_{*i*}$ is the time server needs to process it. It is guaranteed that $*t*_{*i* - 1} < *t*_{*i*}$ for all $*i* > 1$.\n\n## Output\n\nPrint the sequence of $*n*$ integers $*e*_{1}, *e*_{2}, ..., *e*_{*n*}$, where $*e*_{*i*}$ is the moment the server will finish to process the $*i*$-th query (queries are numbered in the order they appear in the input) or $- 1$ if the corresponding query will be rejected.\n\n## Note\n\nConsider the first sample.\n\n1. The server will start to process first query at the moment $2$ and will finish to process it at the moment $11$.\n2. At the moment $4$ second query appears and proceeds to the queue.\n3. At the moment $10$ third query appears. However, the server is still busy with query $1$, $*b* = 1$ and there is already query $2$ pending in the queue, so third query is just rejected.\n4. At the moment $11$ server will finish to process first query and will take the second query from the queue.\n5. At the moment $15$ fourth query appears. As the server is currently busy it proceeds to the queue.\n6. At the moment $19$ two events occur simultaneously: server finishes to proceed the second query and the fifth query appears. As was said in the statement above, first server will finish to process the second query, then it will pick the fourth query from the queue and only then will the fifth query appear. As the queue is empty fifth query is proceed there.\n7. Server finishes to process query number $4$ at the moment $21$. Query number $5$ is picked from the queue.\n8. Server finishes to process query number $5$ at the moment $22$.",
-  "statementZhMd": null,
+  "statementZhMd": "在本题中，你需要模拟一个单线程服务器的工作流程。服务器需要处理 $*n*$ 个查询，第 $*i*$ 个查询将在时刻 $*t*_{*i*}$ 到达，并且需要处理 $*d*_{*i*}$ 个时间单位。保证所有 $*t*_{*i*}$ 互不相同。\n\n当一个查询到达时，服务器可能有以下三种反应：\n\n1. 如果服务器空闲且查询队列为空，服务器立即开始处理该查询。\n2. 如果服务器正忙且队列中的查询少于 $*b*$ 个，则将新查询加入队列末尾。\n3. 如果服务器正忙且队列中已经有 $*b*$ 个等待处理的查询，则直接拒绝新查询，该查询将永远不会被处理。\n\n服务器一旦处理完某个查询，就会从队列中取出一个新的查询（当然，队列不为空时才会这样做）。如果一个新查询在时刻 $*x*$ 到达，同时服务器也恰好在该时刻处理完另一个查询，则认为服务器会先从队列中取出查询，然后新查询才到达。\n\n对于每个查询，求服务器处理完它的时刻；如果该查询被拒绝，则输出 `-1`。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*b*$（$1 ≤ *n*, *b* ≤ 200 000$）——查询的数量以及查询队列允许的最大长度。\n\n接下来 $*n*$ 行，每行描述一个查询（查询按到达时间的先后顺序给出）。每行包含两个整数 $*t*_{*i*}$ 和 $*d*_{*i*}$（$1 ≤ *t*_{*i*}, *d*_{*i*} ≤ 10^{9}$），其中 $*t*_{*i*}$ 表示第 $*i*$ 个查询到达的时刻，$*d*_{*i*}$ 表示服务器处理该查询所需的时间。保证对于所有 $*i* > 1$，都有 $*t*_{*i* - 1} < *t*_{*i*}$。\n\n## 输出格式\n\n输出 $*n*$ 个整数 $*e*_{*1}, *e*_{*2}, ..., *e*_{*n*$ 的序列，其中 $*e*_{*i*}$ 表示服务器处理完第 $*i*$ 个查询的时刻（查询按照它们在输入中出现的顺序编号）；如果对应的查询被拒绝，则输出 $- 1$。\n\n## 说明\n\n考虑第一个样例。\n\n1. 服务器在时刻 $2$ 开始处理第一个查询，并在时刻 $11$ 处理完它。\n2. 在时刻 $4$，第二个查询到达并进入队列。\n3. 在时刻 $10$，第三个查询到达。然而，服务器仍在处理查询 $1$，且 $*b* = 1$，队列中已经有查询 $2$ 在等待处理，因此第三个查询被直接拒绝。\n4. 在时刻 $11$，服务器处理完第一个查询，并从队列中取出第二个查询。\n5. 在时刻 $15$，第四个查询到达。由于服务器当前正忙，它进入队列。\n6. 在时刻 $19$，两个事件同时发生：服务器处理完第二个查询，同时第五个查询到达。正如题目描述中所说，服务器会先处理完第二个查询，然后从队列中取出第四个查询，最后第五个查询才到达。由于此时队列为空，第五个查询也进入队列。\n7. 服务器在时刻 $21$ 处理完第 $4$ 个查询，并从队列中取出第 $5$ 个查询。\n8. 服务器在时刻 $22$ 处理完第 $5$ 个查询。",
   "samples": [
     {
       "input": "5 1\n2 9\n4 8\n10 9\n15 2\n19 1\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:13:12.438Z"
+  "fetchedAt": "2026-10-31T01:13:12.438Z",
+  "translatedAt": "2026-11-04T06:38:43.388+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

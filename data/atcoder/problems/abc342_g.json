@@ -4,7 +4,7 @@
   "contestId": "abc342",
   "index": "G",
   "title": "Retroactive Range Chmax",
-  "titleZh": null,
+  "titleZh": "可追溯的区间 Chmax",
   "url": "https://atcoder.jp/contests/abc342/tasks/abc342_g",
   "difficulty": 2107,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given an integer sequence $A=(A_1,A_2,\\ldots,A_N)$ of length $N$.\n\nProcess $Q$ operations in order. There are three types of operations:\n\n- A type-1 operation is represented by a triple of integers $(l,r,x)$, which corresponds to replacing $A_i$ with $\\max\\lbrace A_i,x\\rbrace$ for each $i=l,l+1,\\ldots,r$.\n- A type-2 operation is represented by an integer $i$, which corresponds to canceling the $i$-th operation (it is guaranteed that the $i$-th operation is of type 1 and has not already been canceled). The new sequence $A$ can be obtained by performing all type-1 operations that have **not been canceled**, starting from the initial state.\n- A type-3 operation is represented by an integer $i$, which corresponds to printing the current value of $A_i$.\n\n## Constraints\n\n- $1\\leq N\\leq2\\times10^5$\n- $1\\leq A_i\\leq10^9\\ (1\\leq i\\leq N)$\n- $1\\leq Q\\leq2\\times10^5$\n- In a type-1 operation, $1\\leq l\\leq r\\leq N$ and $1\\leq x\\leq10^9$.\n- In a type-2 operation, $i$ is not greater than the number of operations given before, and $1\\leq i$.\n- In a type-2 operation, the $i$-th operation is of type 1.\n- In type-2 operations, the same $i$ does not appear multiple times.\n- In a type-3 operation, $1\\leq i\\leq N$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nA_1 A_2 \\ldots A_N\nQ\n\\operatorname{query}_1\n\\operatorname{query}_2\n\\vdots\n\\operatorname{query}_Q\n```\n\nHere, $\\operatorname{query}_k\\ (1\\leq k\\leq Q)$ represents the $k$-th operation, and depending on the type of the $k$-th operation, one of the following is given.\n\nFor a type-1 operation, the following is given, meaning that the $k$-th operation is a type-1 operation represented by $(l,r,x)$:\n\n```\n1 l r x\n```\n\nFor a type-2 operation, the following is given, meaning that the $k$-th operation is a type-2 operation represented by $i$:\n\n```\n2 i\n```\n\nFor a type-3 operation, the following is given, meaning that the $k$-th operation is a type-3 operation represented by $i$:\n\n```\n3 i\n```\n\n## Output\n\nLet $q$ be the number of type-3 operations. Print $q$ lines. The $i$-th line $(1\\leq i\\leq q)$ should contain the value that should be printed for the $i$-th given type-3 operation.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个长度为 $N$ 的整数序列 $A=(A_1,A_2,\\ldots,A_N)$。\n\n按顺序处理 $Q$ 个操作。操作有以下三种类型：\n\n- 类型 1 操作由整数三元组 $(l,r,x)$ 表示，其含义是对于每个 $i=l,l+1,\\ldots,r$，将 $A_i$ 替换为 $\\max\\lbrace A_i,x\\rbrace$。\n- 类型 2 操作由一个整数 $i$ 表示，其含义是取消第 $i$ 个操作（保证第 $i$ 个操作是类型 1 操作且尚未被取消）。新的序列 $A$ 可以通过从初始状态开始，仅执行所有**未被取消**的类型 1 操作得到。\n- 类型 3 操作由一个整数 $i$ 表示，其含义是输出当前 $A_i$ 的值。\n\n## 约束条件\n\n- $1\\leq N\\leq2\\times10^5$\n- $1\\leq A_i\\leq10^9\\ (1\\leq i\\leq N)$\n- $1\\leq Q\\leq2\\times10^5$\n- 在类型 1 操作中，$1\\leq l\\leq r\\leq N$ 且 $1\\leq x\\leq10^9$。\n- 在类型 2 操作中，$i$ 不大于此前给出的操作数，且 $1\\leq i$。\n- 在类型 2 操作中，第 $i$ 个操作是类型 1 操作。\n- 在类型 2 操作中，相同的 $i$ 不会出现多次。\n- 在类型 3 操作中，$1\\leq i\\leq N$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nA_1 A_2 \\ldots A_N\nQ\n\\operatorname{query}_1\n\\operatorname{query}_2\n\\vdots\n\\operatorname{query}_Q\n```\n\n其中，$\\operatorname{query}_k\\ (1\\leq k\\leq Q)$ 表示第 $k$ 个操作，根据第 $k$ 个操作的类型，给出以下格式之一。\n\n对于类型 1 操作，输入以下内容，表示第 $k$ 个操作是由 $(l,r,x)$ 表示的类型 1 操作：\n\n```\n1 l r x\n```\n\n对于类型 2 操作，输入以下内容，表示第 $k$ 个操作是由 $i$ 表示的类型 2 操作：\n\n```\n2 i\n```\n\n对于类型 3 操作，输入以下内容，表示第 $k$ 个操作是由 $i$ 表示的类型 3 操作：\n\n```\n3 i\n```\n\n## 输出格式\n\n设类型 3 操作的数量为 $q$。输出 $q$ 行。第 $i$ 行 $(1\\leq i\\leq q)$ 应包含对给出的第 $i$ 个类型 3 操作应输出的值。",
   "samples": [
     {
       "input": "6\n2 7 1 8 2 8\n15\n3 1\n3 3\n3 4\n1 1 5 4\n3 1\n3 3\n3 4\n1 3 6 9\n3 1\n3 3\n3 4\n2 4\n3 1\n3 3\n3 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:09:59.583Z"
+  "fetchedAt": "2026-10-30T21:09:59.583Z",
+  "translatedAt": "2026-11-04T02:19:58.565+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

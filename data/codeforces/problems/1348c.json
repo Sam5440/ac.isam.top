@@ -4,7 +4,7 @@
   "contestId": 1348,
   "index": "C",
   "title": "Phoenix and Distribution",
-  "titleZh": null,
+  "titleZh": "凤凰与分配",
   "url": "https://codeforces.com/contest/1348/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Phoenix has a string $s$ consisting of lowercase Latin letters. He wants to distribute all the letters of his string into $k$ **non-empty** strings $a_1, a_2, \\dots, a_k$ such that every letter of $s$ goes to exactly one of the strings $a_i$. The strings $a_i$ **do not** need to be substrings of $s$. Phoenix can distribute letters of $s$ and rearrange the letters within each string $a_i$ however he wants.\n\nFor example, if $s = $ `baba` and $k=2$, Phoenix may distribute the letters of his string in many ways, such as:\n\n- `ba` and `ba`\n- `a` and `abb`\n- `ab` and `ab`\n- `aa` and `bb`\n\nBut these ways are invalid:\n\n- `baa` and `ba`\n- `b` and `ba`\n- `baba` and empty string ($a_i$ should be non-empty)\n\nPhoenix wants to distribute the letters of his string $s$ into $k$ strings $a_1, a_2, \\dots, a_k$ to **minimize** the lexicographically maximum string among them, i. e. minimize $max(a_1, a_2, \\dots, a_k)$. Help him find the optimal distribution and print the minimal possible value of $max(a_1, a_2, \\dots, a_k)$.\n\nString $x$ is lexicographically less than string $y$ if either $x$ is a prefix of $y$ and $x \\ne y$, or there exists an index $i$ ($1 \\le i \\le min(|x|, |y|))$ such that $x_i$ < $y_i$ and for every $j$ $(1 \\le j \\lt i)$ $x_j = y_j$. Here $|x|$ denotes the length of the string $x$.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 1000$) — the number of test cases. Each test case consists of two lines.\n\nThe first line of each test case consists of two integers $n$ and $k$ ($1 \\le k \\le n \\le 10^5$) — the length of string $s$ and the number of non-empty strings, into which Phoenix wants to distribute letters of $s$, respectively.\n\nThe second line of each test case contains a string $s$ of length $n$ consisting only of lowercase Latin letters.\n\nIt is guaranteed that the sum of $n$ over all test cases is $\\le 10^5$.\n\n## Output\n\nPrint $t$ answers — one per test case. The $i$-th answer should be the minimal possible value of $max(a_1, a_2, \\dots, a_k)$ in the $i$-th test case.\n\n## Note\n\nIn the first test case, one optimal solution is to distribute `baba` into `ab` and `ab`.\n\nIn the second test case, one optimal solution is to distribute `baacb` into `abbc` and `a`.\n\nIn the third test case, one optimal solution is to distribute `baacb` into `ac`, `ab`, and `b`.\n\nIn the fourth test case, one optimal solution is to distribute `aaaaa` into `aa`, `aa`, and `a`.\n\nIn the fifth test case, one optimal solution is to distribute `aaxxzz` into `az`, `az`, `x`, and `x`.\n\nIn the sixth test case, one optimal solution is to distribute `phoenix` into `ehinopx`.",
-  "statementZhMd": null,
+  "statementZhMd": "凤凰有一个由小写拉丁字母组成的字符串 $s$。他想将字符串中的所有字母分配到 $k$ 个**非空**字符串 $a_1, a_2, \\dots, a_k$ 中，使得 $s$ 中的每个字母恰好被分配到其中一个字符串 $a_i$ 中。字符串 $a_i$ **不必**是 $s$ 的子串。凤凰可以任意分配 $s$ 中的字母，也可以任意重排每个字符串 $a_i$ 中的字母。\n\n例如，当 $s = $ `baba` 且 $k=2$ 时，凤凰可以用多种方式分配字符串中的字母，例如：\n\n- `ba` 和 `ba`\n- `a` 和 `abb`\n- `ab` 和 `ab`\n- `aa` 和 `bb`\n\n但以下分配方式是无效的：\n\n- `baa` 和 `ba`\n- `b` 和 `ba`\n- `baba` 和空字符串（$a_i$ 应为非空）\n\n凤凰希望将字符串 $s$ 中的字母分配到 $k$ 个字符串 $a_1, a_2, \\dots, a_k$ 中，使其中字典序最大的字符串尽可能小，即最小化 $max(a_1, a_2, \\dots, a_k)$。请帮助他找到最优分配，并输出 $max(a_1, a_2, \\dots, a_k)$ 的最小可能值。\n\n如果满足以下任一条件，则称字符串 $x$ 的字典序小于字符串 $y$：$x$ 是 $y$ 的前缀且 $x \\ne y$；或者存在一个下标 $i$（$1 \\le i \\le min(|x|, |y|)$），使得 $x_i$ < $y_i$，并且对于每个 $j$（$1 \\le j \\lt i$），都有 $x_j = y_j$。其中，$|x|$ 表示字符串的长度。\n\n## 输入格式\n\n输入包含多组测试数据。第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试数据的组数。每组测试数据包含两行。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 10^5$）——字符串 $s$ 的长度，以及凤凰希望将字符串 $s$ 分配成的非空字符串数量。\n\n每组测试数据的第二行包含一个长度为 $n$ 的字符串 $s$，其仅由小写拉丁字母组成。\n\n保证所有测试数据中 $n$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n输出 $t$ 个答案，每组测试数据输出一行。第 $i$ 个答案应为第 $i$ 组测试数据中 $max(a_1, a_2, \\dots, a_k)$ 的最小可能值。\n\n## 说明\n\n在第一组测试数据中，一种最优方案是将 `baba` 分配为 `ab` 和 `ab`。\n\n在第二组测试数据中，一种最优方案是将 `baacb` 分配为 `abbc` 和 `a`。\n\n在第三组测试数据中，一种最优方案是将 `baacb` 分配为 `ac`、`ab` 和 `b`。\n\n在第四组测试数据中，一种最优方案是将 `aaaaa` 分配为 `aa`、`aa` 和 `a`。\n\n在第五组测试数据中，一种最优方案是将 `aaxxzz` 分配为 `az`、`az`、`x` 和 `x`。\n\n在第六组测试数据中，一种最优方案是将 `phoenix` 分配为 `ehinopx`。",
   "samples": [
     {
       "input": "6\n4 2\nbaba\n5 2\nbaacb\n5 3\nbaacb\n5 3\naaaaa\n6 4\naaxxzz\n7 1\nphoenix\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:51:00.713Z"
+  "fetchedAt": "2026-10-30T23:51:00.713Z",
+  "translatedAt": "2026-11-04T04:35:04.883+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

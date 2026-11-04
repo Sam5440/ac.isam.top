@@ -4,7 +4,7 @@
   "contestId": 712,
   "index": "E",
   "title": "Memory and Casinos",
-  "titleZh": null,
+  "titleZh": "记忆与赌场",
   "url": "https://codeforces.com/contest/712/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "There are $*n*$ casinos lined in a row. If Memory plays at casino $*i*$, he has probability $*p*_{*i*}$ to win and move to the casino on the right ($*i* + 1$) or exit the row (if $*i* = *n*$), and a probability $1 - *p*_{*i*}$ to lose and move to the casino on the left ($*i* - 1$) or also exit the row (if $*i* = 1$).\n\nWe say that Memory *dominates* on the interval $*i*... *j*$ if he completes a walk such that,\n\n- He starts on casino $*i*$.\n- He never looses in casino $*i*$.\n- He finishes his walk by winning in casino $*j*$.\n\nNote that Memory can still walk left of the $1$-st casino and right of the casino $*n*$ and that always finishes the process.\n\nNow Memory has some requests, in one of the following forms:\n\n- $1$ $*i*$ $*a*$ $*b*$: Set ![image](https://espresso.codeforces.com/7c65ff564b7bd67e3c4217c4d4f10ca2a0d4a5db.png).\n- $2$ $*l*$ $*r*$: Print the probability that Memory will *dominate* on the interval $*l*... *r*$, i.e. compute the probability that Memory will first leave the segment $*l*... *r*$ after winning at casino $*r*$, if she starts in casino $*l*$.\n\nIt is guaranteed that at any moment of time $*p*$ is a **non-decreasing sequence**, i.e. $*p*_{*i*} ≤ *p*_{*i* + 1}$ for all $*i*$ from $1$ to $*n* - 1$.\n\nPlease help Memory by answering all his requests!\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*q*$($1 ≤ *n*, *q* ≤ 100 000$),  — number of casinos and number of requests respectively.\n\nThe next $*n*$ lines each contain integers $*a*_{*i*}$ and $*b*_{*i*}$ ($1 ≤ *a*_{*i*} < *b*_{*i*} ≤ 10^{9}$)  — ![image](https://espresso.codeforces.com/aace384c229fbeda934decdeec5e8838f2acfc06.png) is the probability $*p*_{*i*}$ of winning in casino $*i*$.\n\nThe next $*q*$ lines each contain queries of one of the types specified above ($1 ≤ *a* < *b* ≤ 10^{9}$, $1 ≤ *i* ≤ *n*$, $1 ≤ *l* ≤ *r* ≤ *n*$).\n\nIt's guaranteed that there will be at least one query of type $2$, i.e. the output will be non-empty. Additionally, it is guaranteed that $*p*$ forms a non-decreasing sequence at all times.\n\n## Output\n\nPrint a real number for every request of type $2$ — the probability that boy will \"dominate\" on that interval. Your answer will be considered correct if its absolute error does not exceed $10^{ - 4}$.\n\nNamely: let's assume that one of your answers is $*a*$, and the corresponding answer of the jury is $*b*$. The checker program will consider your answer correct if $|*a* - *b*| ≤ 10^{ - 4}$.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $*n*$ 家赌场排成一行。如果 Memory 在第 $*i*$ 家赌场进行游戏，他有概率 $*p*_{*i*}$ 获胜并移动到右边的赌场（$*i* + 1$），或者在 $*i* = *n*$ 时离开这一行；他还有概率 $1 - *p*_{*i*}$ 失败并移动到左边的赌场（$*i* - 1$），或者在 $*i* = 1$ 时离开这一行。\n\n如果 Memory 完成了一次满足以下条件的行走，我们称他在区间 $*i*... *j*$ 上**称霸**：\n\n- 他从第 $*i*$ 家赌场开始。\n- 他在第 $*i*$ 家赌场从未输过。\n- 他通过在第 $*j*$ 家赌场获胜来结束行走。\n\n注意，Memory 仍然可以走到第 1 家赌场的左边以及第 $*n*$ 家赌场的右边，并且这一过程总会结束。\n\n现在 Memory 有若干请求，形式如下：\n\n- $1$ $*i*$ $*a*$ $*b*$：设置 ![image](https://espresso.codeforces.com/7c65ff564b7bd67e3c4217c4d4f10ca2a0d4a5db.png)。\n- $2$ $*l*$ $*r*$：输出 Memory 在区间 $*l*... *r*$ 上**称霸**的概率，即如果他从第 $*l*$ 家赌场开始，计算他在第 $*r*$ 家赌场获胜后首次离开区间 $*l*... *r*$ 的概率。\n\n保证在任意时刻，$*p*$ 都是一个**非递减序列**，即对于从 $1$ 到 $*n* - 1$ 的所有 $*i*$，均有 $*p*_{*i*} ≤ *p*_{*i* + 1}$。\n\n请帮助 Memory 回答所有请求！\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*q*$（$1 ≤ *n*, *q* ≤ 100 000$），表示赌场的数量和请求的数量。\n\n接下来的 $*n*$ 行中，每行包含两个整数 $*a*_{*i*}$ 和 $*b*_{*i*}$（$1 ≤ *a*_{*i*} < *b*_{*i*} ≤ 10^{9}$），其中 ![image](https://espresso.codeforces.com/aace384c229fbeda934decdeec5e8838f2acfc06.png) 是在第 $*i*$ 家赌场获胜的概率 $*p*_{*i*}$。\n\n接下来的 $*q*$ 行中，每行包含一个上述类型的请求（$1 ≤ *a* < *b* ≤ 10^{9}$，$1 ≤ *i* ≤ *n*$，$1 ≤ *l* ≤ *r* ≤ *n*$）。\n\n保证至少有一个类型 $2$ 的请求，即输出不为空。此外，保证在任何时刻 $*p*$ 都构成一个非递减序列。\n\n## 输出格式\n\n对于每个类型 $2$ 的请求，输出一个实数，即 Memory 在对应区间上“称霸”的概率。如果你的答案与标准答案的绝对误差不超过 $10^{ - 4}$，则认为答案正确。\n\n具体来说，假设你的某个答案为 $*a*$，评测程序对应的答案为 $*b*$。如果 $|*a* - *b*| ≤ 10^{ - 4}$，检查程序将认为你的答案正确。",
   "samples": [
     {
       "input": "3 13\n1 3\n1 2\n2 3\n2 1 1\n2 1 2\n2 1 3\n2 2 2\n2 2 3\n2 3 3\n1 2 2 3\n2 1 1\n2 1 2\n2 1 3\n2 2 2\n2 2 3\n2 3 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:04:52.528Z"
+  "fetchedAt": "2026-10-31T01:04:52.528Z",
+  "translatedAt": "2026-11-04T06:26:52.180+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

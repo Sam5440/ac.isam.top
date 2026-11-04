@@ -4,7 +4,7 @@
   "contestId": 1054,
   "index": "C",
   "title": "Candies Distribution",
-  "titleZh": null,
+  "titleZh": "糖果分配",
   "url": "https://codeforces.com/contest/1054/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ children numbered from $1$ to $n$ in a kindergarten. Kindergarten teacher gave $a_i$ ($1 \\leq a_i \\leq n$) candies to the $i$-th child. Children were seated in a row in order from $1$ to $n$ from left to right and started eating candies.\n\nWhile the $i$-th child was eating candies, he calculated two numbers $l_i$ and $r_i$ — the number of children seating to the left of him that got more candies than he and the number of children seating to the right of him that got more candies than he, respectively.\n\nFormally, $l_i$ is the number of indices $j$ ($1 \\leq j \\lt i$), such that $a_i \\lt a_j$ and $r_i$ is the number of indices $j$ ($i \\lt j \\leq n$), such that $a_i \\lt a_j$.\n\nEach child told to the kindergarten teacher the numbers $l_i$ and $r_i$ that he calculated. Unfortunately, she forgot how many candies she has given to each child. So, she asks you for help: given the arrays $l$ and $r$ determine whether she could have given the candies to the children such that all children correctly calculated their values $l_i$ and $r_i$, or some of them have definitely made a mistake. If it was possible, find any way how she could have done it.\n\n## Input\n\nOn the first line there is a single integer $n$ ($1 \\leq n \\leq 1000$) — the number of children in the kindergarten.\n\nOn the next line there are $n$ integers $l_1, l_2, \\ldots, l_n$ ($0 \\leq l_i \\leq n$), separated by spaces.\n\nOn the next line, there are $n$ integer numbers $r_1, r_2, \\ldots, r_n$ ($0 \\leq r_i \\leq n$), separated by spaces.\n\n## Output\n\nIf there is no way to distribute the candies to the children so that all of them calculated their numbers correctly, print «`NO`» (without quotes).\n\nOtherwise, print «`YES`» (without quotes) on the first line. On the next line, print $n$ integers $a_1, a_2, \\ldots, a_n$, separated by spaces — the numbers of candies the children $1, 2, \\ldots, n$ received, respectively. Note that some of these numbers can be equal, but all numbers should satisfy the condition $1 \\leq a_i \\leq n$. The number of children seating to the left of the $i$-th child that got more candies than he should be equal to $l_i$ and the number of children seating to the right of the $i$-th child that got more candies than he should be equal to $r_i$. If there is more than one solution, find any of them.\n\n## Note\n\nIn the first example, if the teacher distributed $1$, $3$, $1$, $2$, $1$ candies to $1$-st, $2$-nd, $3$-rd, $4$-th, $5$-th child, respectively, then all the values calculated by the children are correct. For example, the $5$-th child was given $1$ candy, to the left of him $2$ children were given $1$ candy, $1$ child was given $2$ candies and $1$ child — $3$ candies, so there are $2$ children to the left of him that were given more candies than him.\n\nIn the second example it is impossible to distribute the candies, because the $4$-th child made a mistake in calculating the value of $r_4$, because there are no children to the right of him, so $r_4$ should be equal to $0$.\n\nIn the last example all children may have got the same number of candies, that's why all the numbers are $0$. Note that each child should receive at least one candy.",
-  "statementZhMd": null,
+  "statementZhMd": "幼儿园里有 $n$ 个孩子，编号从 $1$ 到 $n$。幼儿园老师给第 $i$ 个孩子分发了 $a_i$（$1 \\leq a_i \\leq n$）颗糖果。孩子们按照从左到右编号从 $1$ 到 $n$ 排成一排，并开始吃糖果。\n\n在吃糖果的过程中，第 $i$ 个孩子计算了两个数 $l_i$ 和 $r_i$——分别表示坐在他左边且糖果数量比他多的孩子数，以及坐在他右边且糖果数量比他多的孩子数。\n\n形式化地说，$l_i$ 是满足 $1 \\leq j \\lt i$、$a_i \\lt a_j$ 的下标 $j$ 的数量；$r_i$ 是满足 $i \\lt j \\leq n$、$a_i \\lt a_j$ 的下标 $j$ 的数量。\n\n每个孩子都将自己计算出的 $l_i$ 和 $r_i$ 告诉了幼儿园老师。不幸的是，老师忘记了自己给每个孩子分发了多少颗糖果。因此，她向你求助：给定数组 $l$ 和 $r$，判断她是否有可能以某种方式给孩子们分发糖果，使得所有孩子计算出的 $l_i$ 和 $r_i$ 都是正确的，还是其中一些孩子一定算错了。如果存在可行方案，请找出任意一种分配方式。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 1000$），表示幼儿园里的孩子数。\n\n第二行包含 $n$ 个整数 $l_1, l_2, \\ldots, l_n$（$0 \\leq l_i \\leq n$），相邻整数之间用空格分隔。\n\n第三行包含 $n$ 个整数 $r_1, r_2, \\ldots, r_n$（$0 \\leq r_i \\leq n$），相邻整数之间用空格分隔。\n\n## 输出格式\n\n如果不存在一种糖果分配方案，使得所有孩子计算出的数值都正确，输出「`NO`」（不含引号）。\n\n否则，第一行输出「`YES`」（不含引号）。第二行输出 $n$ 个整数 $a_1, a_2, \\ldots, a_n$，相邻整数之间用空格分隔，分别表示孩子 $1, 2, \\ldots, n$ 获得的糖果数。注意，其中一些数可以相等，但所有数都必须满足 $1 \\leq a_i \\leq n$。坐在第 $i$ 个孩子左边且糖果数量比他多的孩子数应等于 $l_i$，坐在第 $i$ 个孩子右边且糖果数量比他多的孩子数应等于 $r_i$。如果存在多个解，输出任意一个即可。\n\n## 说明\n\n在第一个样例中，如果老师分别给第 1、2、3、4、5 个孩子分发 $1$、$3$、$1$、$2$、$1$ 颗糖果，那么所有孩子计算出的数值都是正确的。例如，第 5 个孩子获得了 $1$ 颗糖果。在他左边，有 2 个孩子获得了 $1$ 颗糖果，1 个孩子获得了 $2$ 颗糖果，1 个孩子获得了 $3$ 颗糖果，因此左边有 2 个孩子获得的糖果比他多。\n\n在第二个样例中，不可能完成这样的糖果分配，因为第 4 个孩子计算 $r_4$ 时出错了：他的右边没有孩子，因此 $r_4$ 应该等于 $0$。\n\n在最后一个样例中，所有孩子都可能获得相同数量的糖果，因此所有数值都是 $0$。注意，每个孩子至少应获得一颗糖果。",
   "samples": [
     {
       "input": "5\n0 0 1 1 2\n2 0 1 0 0\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:22:51.052Z"
+  "fetchedAt": "2026-10-31T00:22:51.052Z",
+  "translatedAt": "2026-11-04T05:27:36.941+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

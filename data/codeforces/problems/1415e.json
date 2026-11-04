@@ -4,7 +4,7 @@
   "contestId": 1415,
   "index": "E",
   "title": "New Game Plus!",
-  "titleZh": null,
+  "titleZh": "新游戏 Plus！",
   "url": "https://codeforces.com/contest/1415/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Wabbit is playing a game with $n$ bosses numbered from $1$ to $n$. The bosses can be fought in any order. Each boss needs to be defeated **exactly once**. There is a parameter called **boss bonus** which is initially $0$.\n\nWhen the $i$-th boss is defeated, the current **boss bonus** is added to Wabbit's score, and then the value of the **boss bonus** increases by the point increment $c_i$. Note that $c_i$ can be negative, which means that other bosses now give fewer points.\n\nHowever, Wabbit has found a glitch in the game. At any point in time, he can reset the playthrough and start a New Game Plus playthrough. This will set the current **boss bonus** to $0$, while all defeated bosses remain defeated. The current score is also saved and does **not** reset to zero after this operation. This glitch can be used **at most** $k$ times. He can reset after defeating any number of bosses (including before or after defeating all of them), and he also can reset the game several times in a row without defeating any boss.\n\nHelp Wabbit determine the maximum score he can obtain if he has to defeat **all** $n$ bosses.\n\n## Input\n\nThe first line of input contains two spaced integers $n$ and $k$ ($1 \\leq n \\leq 5 \\cdot 10^5$, $0 \\leq k \\leq 5 \\cdot 10^5$), representing the number of bosses and the number of resets allowed.\n\nThe next line of input contains $n$ spaced integers $c_1,c_2,\\ldots,c_n$ ($-10^6 \\leq c_i \\leq 10^6$), the point increments of the $n$ bosses.\n\n## Output\n\nOutput a single integer, the maximum score Wabbit can obtain by defeating all $n$ bosses (this value may be negative).\n\n## Note\n\nIn the first test case, no resets are allowed. An optimal sequence of fights would be\n\n- Fight the first boss $(+0)$. Boss bonus becomes equal to $1$.\n- Fight the second boss $(+1)$. Boss bonus becomes equal to $2$.\n- Fight the third boss $(+2)$. Boss bonus becomes equal to $3$.\n\nThus the answer for the first test case is $0+1+2=3$.\n\nIn the second test case, it can be shown that one possible optimal sequence of fights is\n\n- Fight the fifth boss $(+0)$. Boss bonus becomes equal to $5$.\n- Fight the first boss $(+5)$. Boss bonus becomes equal to $4$.\n- Fight the second boss $(+4)$. Boss bonus becomes equal to $2$.\n- Fight the third boss $(+2)$. Boss bonus becomes equal to $-1$.\n- Reset. Boss bonus becomes equal to $0$.\n- Fight the fourth boss $(+0)$. Boss bonus becomes equal to $-4$.\n\nHence the answer for the second test case is $0+5+4+2+0=11$.",
-  "statementZhMd": null,
+  "statementZhMd": "Wabbit 正在玩一个有 $n$ 个 Boss 的游戏，Boss 的编号从 $1$ 到 $n$。Boss 可以按任意顺序挑战。每个 Boss **恰好**需要被击败一次。游戏中有一个称为 **Boss 加成** 的参数，其初始值为 $0$。\n\n当第 $i$ 个 Boss 被击败时，当前的 **Boss 加成** 会加到 Wabbit 的分数中，随后 **Boss 加成** 的值增加该 Boss 的分数增量 $c_i$。注意，$c_i$ 可能为负数，这意味着其他 Boss 现在提供的分数会减少。\n\n然而，Wabbit 发现了游戏中的一个漏洞。在任意时刻，他都可以重置本轮游戏并开始一轮 New Game Plus 游戏。这会将当前的 **Boss 加成** 设置为 $0$，但所有已经击败的 Boss 仍会保持被击败状态。当前分数也会被保存，在执行此操作后不会重置为零。这个漏洞最多可以使用 $k$ 次。他可以在击败任意数量的 Boss 后重置（包括在击败所有 Boss 之前或之后），也可以连续多次重置游戏而不击败任何 Boss。\n\n请帮助 Wabbit 求出在必须击败全部 $n$ 个 Boss 的情况下，他能够获得的最大分数。\n\n## 输入格式\n\n输入的第一行包含两个以空格分隔的整数 $n$ 和 $k$（$1 \\leq n \\leq 5 \\cdot 10^5$，$0 \\leq k \\leq 5 \\cdot 10^5$），分别表示 Boss 的数量和允许重置的次数。\n\n输入的下一行包含 $n$ 个以空格分隔的整数 $c_1,c_2,\\ldots,c_n$（$-10^6 \\leq c_i \\leq 10^6$），表示 $n$ 个 Boss 的分数增量。\n\n## 输出格式\n\n输出一个整数，表示 Wabbit 击败全部 $n$ 个 Boss 后能够获得的最大分数（该值可能为负数）。\n\n## 说明\n\n在第一个测试用例中，不允许进行重置。一种最优的挑战顺序如下：\n\n- 挑战第一个 Boss（$+0$）。Boss 加成变为 $1$。\n- 挑战第二个 Boss（$+1$）。Boss 加成变为 $2$。\n- 挑战第三个 Boss（$+2$）。Boss 加成变为 $3$。\n\n因此，第一个测试用例的答案为 $0+1+2=3$。\n\n在第二个测试用例中，可以证明以下挑战顺序是可能的一个最优方案：\n\n- 挑战第五个 Boss（$+0$）。Boss 加成变为 $5$。\n- 挑战第一个 Boss（$+5$）。Boss 加成变为 $4$。\n- 挑战第二个 Boss（$+4$）。Boss 加成变为 $2$。\n- 挑战第三个 Boss（$+2$）。Boss 加成变为 $-1$。\n- 重置。Boss 加成变为 $0$。\n- 挑战第四个 Boss（$+0$）。Boss 加成变为 $-4$。\n\n因此，第二个测试用例的答案为 $0+5+4+2+0=11$。",
   "samples": [
     {
       "input": "3 0\n1 1 1\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:43:37.933Z"
+  "fetchedAt": "2026-10-30T23:43:37.933Z",
+  "translatedAt": "2026-11-04T04:16:24.950+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

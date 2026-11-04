@@ -4,14 +4,14 @@
   "contestId": 1464,
   "index": "C",
   "title": "Poman Numbers",
-  "titleZh": null,
+  "titleZh": "波曼数字",
   "url": "https://codeforces.com/contest/1464/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You've got a string $S$ consisting of $n$ lowercase English letters from your friend. It turned out that this is a number written in *poman* numerals. The poman numeral system is long forgotten. All that's left is the algorithm to transform number from poman numerals to the numeral system familiar to us. Characters of $S$ are numbered from $1$ to $n$ from left to right. Let's denote the value of $S$ as $f(S)$, it is defined as follows:\n\n- If $|S| \\gt 1$, an arbitrary integer $m$ ($1 \\le m \\lt |S|$) is chosen, and it is defined that $f(S) = -f(S[1, m]) + f(S[m + 1, |S|])$, where $S[l, r]$ denotes the substring of $S$ from the $l$-th to the $r$-th position, inclusively.\n- Otherwise $S = c$, where $c$ is some English letter. Then $f(S) = 2^{pos(c)}$, where $pos(c)$ is the position of letter $c$ in the alphabet ($pos($`a`$) = 0$, $pos($`z`$) = 25$).\n\nNote that $m$ is chosen independently on each step.\n\nYour friend thinks it is possible to get $f(S) = T$ by choosing the right $m$ on every step. Is he right?\n\n## Input\n\nThe first line contains two integers $n$ and $T$ ($2 \\leq n \\leq 10^5$, $-10^{15} \\leq T \\leq 10^{15}$).\n\nThe second line contains a string $S$ consisting of $n$ lowercase English letters.\n\n## Output\n\nPrint \"`Yes`\" if it is possible to get the desired value. Otherwise, print \"`No`\".\n\nYou can print each letter in any case (upper or lower).\n\n## Note\n\nIn the second example, you cannot get $-7$. But you can get $1$, for example, as follows:\n\n1. First choose $m = 1$, then $f($`abc`$) = -f($`a`$) + f($`bc`$)$\n2. $f($`a`$) = 2^0 = 1$\n3. $f($`bc`$) = -f($`b`$) + f($`c`$) = -2^1 + 2^2 = 2$\n4. In the end $f($`abc`$) = -1 + 2 = 1$",
-  "statementZhMd": null,
+  "statementZhMd": "你从朋友那里得到一个由 $n$ 个小写英文字母组成的字符串 $S$。原来，这是一个用*波曼数字*表示的数字。波曼数字系统早已被遗忘。现在唯一留下的是一个将波曼数字转换为我们熟悉的数字系统的算法。$S$ 中的字符从左到右编号为 $1$ 到 $n$。我们将 $S$ 的值记为 $f(S)$，其定义如下：\n\n- 如果 $|S| \\gt 1$，选择一个任意整数 $m$（$1 \\le m \\lt |S|$），并定义 $f(S) = -f(S[1, m]) + f(S[m + 1, |S|])$，其中 $S[l, r]$ 表示字符串 $S$ 从第 $l$ 个位置到第 $r$ 个位置（包含两端）的子串。\n- 否则，$S = c$，其中 $c$ 是某个英文字母。此时，$f(S) = 2^{pos(c)}$，其中 $pos(c)$ 表示字母 $c$ 在字母表中的位置（$pos($`a`$) = 0$，$pos($`z`$) = 25$）。\n\n注意，在每一步中独立选择 $m$。\n\n你的朋友认为，只要在每一步选择合适的 $m$，就有可能得到 $f(S) = T$。他的想法正确吗？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $T$（$2 \\leq n \\leq 10^5$，$-10^{15} \\leq T \\leq 10^{15}$）。\n\n第二行包含一个由 $n$ 个小写英文字母组成的字符串 $S$。\n\n## 输出格式\n\n如果可以得到目标值，输出“`Yes`”；否则，输出“`No`”。\n\n每个字母可以使用任意大小写形式输出。\n\n## 说明\n\n在第二个样例中，你无法得到 $-7$。但是，例如可以通过以下方式得到 $1$：\n\n1. 首先选择 $m = 1$，则 $f($`abc`$) = -f($`a`$) + f($`bc`$)$\n2. $f($`a`$) = 2^0 = 1$\n3. $f($`bc`$) = -f($`b`$) + f($`c`$) = -2^1 + 2^2 = 2$\n4. 最终 $f($`abc`$) = -1 + 2 = 1$",
   "samples": [
     {
       "input": "2 -1\nba\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:38:50.246Z"
+  "fetchedAt": "2026-10-30T23:38:50.246Z",
+  "translatedAt": "2026-11-04T04:11:20.418+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

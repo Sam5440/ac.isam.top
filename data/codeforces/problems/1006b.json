@@ -4,7 +4,7 @@
   "contestId": 1006,
   "index": "B",
   "title": "Polycarp's Practice",
-  "titleZh": null,
+  "titleZh": "Polycarp 的练习",
   "url": "https://codeforces.com/contest/1006/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp is practicing his problem solving skill. He has a list of $n$ problems with difficulties $a_1, a_2, \\dots, a_n$, respectively. His plan is to practice for exactly $k$ days. Each day he has to solve at least one problem from his list. Polycarp solves the problems in the order they are given in his list, he cannot skip any problem from his list. He has to solve all $n$ problems in exactly $k$ days.\n\nThus, each day Polycarp solves a contiguous sequence of (consecutive) problems from the start of the list. He can't skip problems or solve them multiple times. As a result, in $k$ days he will solve all the $n$ problems.\n\nThe *profit* of the $j$-th day of Polycarp's practice is the maximum among all the difficulties of problems Polycarp solves during the $j$-th day (i.e. if he solves problems with indices from $l$ to $r$ during a day, then the *profit* of the day is $\\max\\limits_{l \\le i \\le r}a_i$). The *total profit* of his practice is the sum of the *profits* over all $k$ days of his practice.\n\nYou want to help Polycarp to get the maximum possible *total profit* over all valid ways to solve problems. Your task is to distribute all $n$ problems between $k$ days satisfying the conditions above in such a way, that the *total profit* is maximum.\n\nFor example, if $n = 8, k = 3$ and $a = [5, 4, 2, 6, 5, 1, 9, 2]$, one of the possible distributions with maximum *total profit* is: $[5, 4, 2], [6, 5], [1, 9, 2]$. Here the *total profit* equals $5 + 6 + 9 = 20$.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 2000$) — the number of problems and the number of days, respectively.\n\nThe second line of the input contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 2000$) — difficulties of problems in Polycarp's list, in the order they are placed in the list (i.e. in the order Polycarp will solve them).\n\n## Output\n\nIn the first line of the output print the maximum possible *total profit*.\n\nIn the second line print exactly $k$ positive integers $t_1, t_2, \\dots, t_k$ ($t_1 + t_2 + \\dots + t_k$ must equal $n$), where $t_j$ means the number of problems Polycarp will solve during the $j$-th day in order to achieve the maximum possible *total profit* of his practice.\n\nIf there are many possible answers, you may print any of them.\n\n## Note\n\nThe first example is described in the problem statement.\n\nIn the second example there is only one possible distribution.\n\nIn the third example the best answer is to distribute problems in the following way: $[1, 2000], [2000, 2]$. The *total profit* of this distribution is $2000 + 2000 = 4000$.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 正在练习自己的解题能力。他有一个包含 $n$ 道题目的列表，这些题目的难度分别为 $a_1, a_2, \\dots, a_n$。他的计划是整整练习 $k$ 天。每天他都必须从列表中至少解决一道题。Polycarp 按照题目在列表中的顺序解决问题，不能跳过列表中的任何题目。他必须在恰好 $k$ 天内解决全部 $n$ 道题。\n\n因此，每天 Polycarp 解决的是列表中从当前位置开始的一段连续题目。他不能跳过题目，也不能重复解决题目。这样，在 $k$ 天内他将解决全部 $n$ 道题。\n\nPolycarp 练习的第 $j$ 天的*收益*，是 Polycarp 在第 $j$ 天解决的所有题目的难度中的最大值（也就是说，如果他某天解决了编号从 $l$ 到 $r$ 的题目，那么这一天的*收益*就是 $\\max\\limits_{l \\le i \\le r}a_i$）。他练习的*总收益*是这 $k$ 天中每天*收益*之和。\n\n请你帮助 Polycarp，在所有合法的解题方式中获得尽可能大的*总收益*。你的任务是将全部 $n$ 道题分配到 $k$ 天，并满足上述条件，使得*总收益*最大。\n\n例如，当 $n = 8$、$k = 3$ 且 $a = [5, 4, 2, 6, 5, 1, 9, 2]$ 时，一种能够获得最大*总收益*的分配方式是：$[5, 4, 2], [6, 5], [1, 9, 2]$。此时*总收益*为 $5 + 6 + 9 = 20$。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 2000$），分别表示题目数量和天数。\n\n输入的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 2000$），表示 Polycarp 列表中题目的难度，顺序即为题目在列表中的顺序（也就是 Polycarp 解题的顺序）。\n\n## 输出格式\n\n输出的第一行打印可能的最大*总收益*。\n\n第二行打印恰好 $k$ 个正整数 $t_1, t_2, \\dots, t_k$（$t_1 + t_2 + \\dots + t_k$ 必须等于 $n$），其中 $t_j$ 表示为了使练习的*总收益*达到最大，Polycarp 在第 $j$ 天需要解决的题目数量。\n\n如果有多种答案，可以输出其中任意一种。\n\n## 说明\n\n第一个样例已在题目描述中说明。\n\n第二个样例中只有一种可能的分配方式。\n\n第三个样例的最佳方案是按如下方式分配题目：$[1, 2000], [2000, 2]$。该分配方式的*总收益*为 $2000 + 2000 = 4000$。",
   "samples": [
     {
       "input": "8 3\n5 4 2 6 5 1 9 2\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:34:10.106Z"
+  "fetchedAt": "2026-11-02T19:34:10.106Z",
+  "translatedAt": "2026-11-04T05:40:24.477+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

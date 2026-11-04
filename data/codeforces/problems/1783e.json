@@ -4,7 +4,7 @@
   "contestId": 1783,
   "index": "E",
   "title": "Game of the Year",
-  "titleZh": null,
+  "titleZh": "年度最佳游戏",
   "url": "https://codeforces.com/contest/1783/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp and Polycarp are playing a computer game. This game features $n$ bosses for the playing to kill, numbered from $1$ to $n$.\n\nThey will fight **each** boss the following way:\n\n- Monocarp makes $k$ attempts to kill the boss;\n- Polycarp makes $k$ attempts to kill the boss;\n- Monocarp makes $k$ attempts to kill the boss;\n- Polycarp makes $k$ attempts to kill the boss;\n- ...\n\nMonocarp kills the $i$-th boss on **his** $a_i$-th attempt. Polycarp kills the $i$-th boss on **his** $b_i$-th attempt. After one of them kills the $i$-th boss, they move on to the $(i+1)$-st boss. The attempt counters reset for both of them. Once one of them kills the $n$-th boss, the game ends.\n\nFind all values of $k$ from $1$ to $n$ such that Monocarp kills **all bosses**.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of testcases.\n\nThe first line of each testcase contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of bosses.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le n$) — the index of attempt Monocarp kills each boss on.\n\nThe third line contains $n$ integers $b_1, b_2, \\dots, b_n$ ($1 \\le b_i \\le n$) — the index of attempt Polycarp kills each boss on.\n\nThe sum of $n$ over all testcases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, print two lines. The first line should contain a single integer $\\mathit{cnt}$ — the number of values of $k$ from $1$ to $n$ such that Monocarp kills **all bosses**. The second line should contain $\\mathit{cnt}$ distinct integers — the values of $k$ themselves.\n\n## Note\n\nConsider the last testcase of the example.\n\nLet $k = 1$. First, Monocarp makes one attempt to kill the first boss. It's successful, since $a_1 = 1$. Then, Monocarp makes one attempt to kill the second boss. It's unsuccessful, since $a_2 \\gt 1$. So, Polycarp makes an attempt then. It's also unsuccessful, since $b_2 \\gt 1$. Then, Monocarp makes another attempt. It's still unsuccessful, since $a_2 \\gt 2$. This goes on until Polycarp finally kills the boss on his third attempt. Monocarp didn't kill this boss, thus, $k = 1$ isn't the answer.\n\nLet $k = 2$. Monocarp still kills the first boss on his first attempt. Then, he makes two unsuccessful attempts for the second boss. Then, Polycarp makes two unsuccessful attempts. Then, Monocarp makes two more attempts and kills the boss on his fourth attempt. The third boss is similar. First, two unsuccessful attempts by Monocarp. Then, two unsuccessful attempts by Polycarp. Then, Monocarp has two more attempts, but even his first one is successful, since $a_3 = 3$. The fourth boss is also killed by Monocarp. Thus, $k = 2$ is the answer.",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 和 Polycarp 正在玩一款电脑游戏。这款游戏中有 $n$ 个等待他们击败的 Boss，编号从 $1$ 到 $n$。\n\n他们将按照以下方式挑战 **每一个** Boss：\n\n- Monocarp 尝试 $k$ 次击败该 Boss；\n- Polycarp 尝试 $k$ 次击败该 Boss；\n- Monocarp 尝试 $k$ 次击败该 Boss；\n- Polycarp 尝试 $k$ 次击败该 Boss；\n- ……\n\nMonocarp 在**自己的**第 $a_i$ 次尝试中击败第 $i$ 个 Boss。Polycarp 在**自己的**第 $b_i$ 次尝试中击败第 $i$ 个 Boss。当其中一人击败第 $i$ 个 Boss 后，他们会继续挑战第 $(i+1)$ 个 Boss。此时，两人的尝试次数都会重置。当其中一人击败第 $n$ 个 Boss 后，游戏结束。\n\n请找出所有满足以下条件的 $k$：$1$ 到 $n$ 中的整数 $k$，使得 Monocarp 能够**击败所有 Boss**。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——Boss 的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le n$）——Monocarp 击败每个 Boss 所需的尝试次数。\n\n第三行包含 $n$ 个整数 $b_1, b_2, \\dots, b_n$（$1 \\le b_i \\le n$）——Polycarp 击败每个 Boss 所需的尝试次数。\n\n所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出两行。第一行包含一个整数 $\\mathit{cnt}$——满足条件的 $k$ 的数量，其中 $k$ 的取值范围为 $1$ 到 $n$。第二行包含 $\\mathit{cnt}$ 个互不相同的整数——这些 $k$ 的值。\n\n## 说明\n\n考虑样例中的最后一个测试用例。\n\n令 $k = 1$。首先，Monocarp 尝试一次击败第一个 Boss。由于 $a_1 = 1$，这次尝试成功了。接着，Monocarp 尝试一次击败第二个 Boss。由于 $a_2 \\gt 1$，这次尝试失败了。于是 Polycarp 进行一次尝试。由于 $b_2 \\gt 1$，这次尝试也失败了。然后，Monocarp 再次进行尝试。由于 $a_2 \\gt 2$，这次尝试仍然失败。这个过程持续进行，直到 Polycarp 最终在自己的第三次尝试中击败了该 Boss。Monocarp 没有击败这个 Boss，因此 $k = 1$ 不是答案。\n\n令 $k = 2$。Monocarp 仍然在自己的第一次尝试中击败了第一个 Boss。接着，他对第二个 Boss 进行了两次失败的尝试。然后，Polycarp 进行了两次失败的尝试。之后，Monocarp 又进行了两次尝试，并在自己的第四次尝试中击败了该 Boss。第三个 Boss 的情况类似。首先，Monocarp 进行了两次失败的尝试。然后，Polycarp 进行了两次失败的尝试。接着，Monocarp 又有两次尝试，但由于 $a_3 = 3$，他的第一次尝试就成功了。第四个 Boss 也被 Monocarp 击败。因此，$k = 2$ 是答案。",
   "samples": [
     {
       "input": "3\n3\n1 1 1\n2 3 1\n1\n1\n1\n4\n1 4 3 2\n3 3 4 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:38:49.617Z"
+  "fetchedAt": "2026-11-02T17:38:49.617Z",
+  "translatedAt": "2026-11-04T03:06:07.926+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

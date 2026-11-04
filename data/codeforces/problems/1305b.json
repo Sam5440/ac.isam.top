@@ -4,7 +4,7 @@
   "contestId": 1305,
   "index": "B",
   "title": "Kuroni and Simple Strings",
-  "titleZh": null,
+  "titleZh": "Kuroni 与简单字符串",
   "url": "https://codeforces.com/contest/1305/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*Now that Kuroni has reached 10 years old, he is a big boy and doesn't like arrays of integers as presents anymore. This year he wants a Bracket sequence as a Birthday present. More specifically, he wants a bracket sequence so complex that no matter how hard he tries, he will not be able to remove a simple subsequence!*\n\nWe say that a string formed by $n$ characters `'('` or `')'` is **simple** if its length $n$ is even and positive, its first $\\frac{n}{2}$ characters are `'('`, and its last $\\frac{n}{2}$ characters are `')'`. For example, the strings `()` and `(())` are simple, while the strings `)(` and `()()` are not simple.\n\nKuroni will be given a string formed by characters `'('` and `')'` (the given string is not necessarily simple). An operation consists of choosing a subsequence of the characters of the string that forms a simple string and removing all the characters of this subsequence from the string. **Note that this subsequence doesn't have to be continuous**. For example, he can apply the operation to the string `')()(()))'`, to choose a subsequence of bold characters, as it forms a simple string `'(())'`, delete these bold characters from the string and to get `'))()'`.\n\nKuroni has to perform the minimum possible number of operations on the string, in such a way that no more operations can be performed on the remaining string. The resulting string **does not** have to be empty.\n\nSince the given string is too large, Kuroni is unable to figure out how to minimize the number of operations. Can you help him do it instead?\n\nA sequence of characters $a$ is a subsequence of a string $b$ if $a$ can be obtained from $b$ by deletion of several (possibly, zero or all) characters.\n\n## Input\n\nThe only line of input contains a string $s$ ($1 \\le |s| \\le 1000$) formed by characters `'('` and `')'`, where $|s|$ is the length of $s$.\n\n## Output\n\nIn the first line, print an integer $k$  — the minimum number of operations you have to apply. Then, print $2k$ lines describing the operations in the following format:\n\nFor each operation, print a line containing an integer $m$  — the number of characters in the subsequence you will remove.\n\nThen, print a line containing $m$ integers $1 \\le a_1 \\lt a_2 \\lt \\dots \\lt a_m$  — the indices of the characters you will remove. All integers must be less than or equal to the length of the current string, and the corresponding subsequence must form a simple string.\n\nIf there are multiple valid sequences of operations with the smallest $k$, you may print any of them.\n\n## Note\n\nIn the first sample, the string is '`(()((`'. The operation described corresponds to deleting the bolded subsequence. The resulting string is '`(((`', and no more operations can be performed on it. Another valid answer is choosing indices $2$ and $3$, which results in the same final string.\n\nIn the second sample, it is already impossible to perform any operations.",
-  "statementZhMd": null,
+  "statementZhMd": "*如今 Kuroni 已经 10 岁了，他已经是个大孩子，不再喜欢把整数数组作为礼物了。今年，他想要一份括号序列作为生日礼物。更具体地说，他想要一份复杂到无论怎么努力都无法删除一个简单子序列的括号序列！*\n\n如果一个由 $n$ 个字符 `'('` 或 `')'` 构成的字符串满足以下条件，我们称它是**简单的**：长度 $n$ 为正偶数，前 $\frac{n}{2}$ 个字符是 `'('`，后 $\frac{n}{2}$ 个字符是 `')'`。例如，字符串 `()` 和 `(())` 是简单的，而字符串 `)(` 和 `()()` 不是简单的。\n\nKuroni 将得到一个由字符 `'('` 和 `')'` 构成的字符串（给定的字符串不一定是简单的）。一次操作包括选择字符串中的一个构成简单字符串的字符子序列，并从字符串中删除该子序列的所有字符。**注意，这个子序列不必是连续的**。例如，对于字符串 `)()(()))`，他可以选择由加粗字符组成的子序列，因为它构成简单字符串 `(())`；删除这些加粗字符后，得到字符串 `))()`。\n\nKuroni 需要以使剩余字符串无法再进行任何操作的方式，对字符串执行尽可能少次的操作。操作完成后得到的字符串**不必为空**。\n\n由于给定的字符串太长，Kuroni 无法计算如何使操作次数最少。你能帮助他吗？\n\n如果字符串 $a$ 可以通过删除字符串 $b$ 中的若干个（可能为零个或全部）字符得到，则称字符序列 $a$ 是字符串 $b$ 的子序列。\n\n## 输入格式\n\n输入仅一行，包含一个由字符 `'('` 和 `')'` 构成的字符串 $s$（$1 \\le |s| \\le 1000$），其中 $|s|$ 表示字符串 $s$ 的长度。\n\n## 输出格式\n\n第一行输出一个整数 $k$，表示你需要执行的最少操作次数。接下来输出 $2k$ 行，按照以下格式描述这些操作：\n\n对于每次操作，输出一行，其中包含一个整数 $m$，表示你要删除的子序列中的字符数。\n\n然后输出一行，其中包含 $m$ 个整数 $1 \\le a_1 \\lt a_2 \\lt \\dots \\lt a_m$，表示你要删除的字符的下标。所有整数都必须小于或等于当前字符串的长度，并且对应的子序列必须构成一个简单字符串。\n\n如果有多个操作次数为最少的合法操作序列，你可以输出其中任意一种。\n\n## 说明\n\n在第一个样例中，字符串为 `(()((`。题目中描述的操作对应于删除加粗的子序列。删除后得到字符串 `(((`，此时无法再进行任何操作。另一种合法答案是选择下标 $2$ 和 $3$，这样也会得到相同的最终字符串。\n\n在第二个样例中，已经无法进行任何操作。",
   "samples": [
     {
       "input": "(()((\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:56:25.823Z"
+  "fetchedAt": "2026-10-30T23:56:25.823Z",
+  "translatedAt": "2026-11-04T04:43:28.811+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

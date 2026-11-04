@@ -4,7 +4,7 @@
   "contestId": 817,
   "index": "E",
   "title": "Choosing The Commander",
-  "titleZh": null,
+  "titleZh": "选择指挥官",
   "url": "https://codeforces.com/contest/817/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "As you might remember from the previous round, Vova is currently playing a strategic game known as Rage of Empires.\n\nVova managed to build a large army, but forgot about the main person in the army - the commander. So he tries to hire a commander, and he wants to choose the person who will be respected by warriors.\n\nEach warrior is represented by his personality — an integer number $*p*_{*i*}$. Each commander has two characteristics — his personality $*p*_{*j*}$ and leadership $*l*_{*j*}$ (both are integer numbers). Warrior $*i*$ *respects* commander $*j*$ only if ![image](https://espresso.codeforces.com/8125d4c911c845cc506dda0bacc8675f2cf9f121.png) (![image](https://espresso.codeforces.com/b364f2e04c665b78b924ec10666327a4ef4635bc.png) is the bitwise excluding OR of $*x*$ and $*y*$).\n\nInitially Vova's army is empty. There are three different types of events that can happen with the army:\n\n- $1 *p*_{*i*}$ — one warrior with personality $*p*_{*i*}$ joins Vova's army;\n- $2 *p*_{*i*}$ — one warrior with personality $*p*_{*i*}$ leaves Vova's army;\n- $3 *p*_{*i*} *l*_{*i*}$ — Vova tries to hire a commander with personality $*p*_{*i*}$ and leadership $*l*_{*i*}$.\n\nFor each event of the third type Vova wants to know how many warriors (counting only those who joined the army and haven't left yet) *respect* the commander he tries to hire.\n\n## Input\n\nThe first line contains one integer $*q*$ ($1 ≤ *q* ≤ 100000$) — the number of events.\n\nThen $*q*$ lines follow. Each line describes the event:\n\n- $1 *p*_{*i*}$ ($1 ≤ *p*_{*i*} ≤ 10^{8}$) — one warrior with personality $*p*_{*i*}$ joins Vova's army;\n- $2 *p*_{*i*}$ ($1 ≤ *p*_{*i*} ≤ 10^{8}$) — one warrior with personality $*p*_{*i*}$ leaves Vova's army (it is guaranteed that there is at least one such warrior in Vova's army by this moment);\n- $3 *p*_{*i*} *l*_{*i*}$ ($1 ≤ *p*_{*i*}, *l*_{*i*} ≤ 10^{8}$) — Vova tries to hire a commander with personality $*p*_{*i*}$ and leadership $*l*_{*i*}$. There is at least one event of this type.\n\n## Output\n\nFor each event of the third type print one integer — the number of warriors who *respect* the commander Vova tries to hire in the event.\n\n## Note\n\nIn the example the army consists of two warriors with personalities $3$ and $4$ after first two events. Then Vova tries to hire a commander with personality $6$ and leadership $3$, and only one warrior respects him (![image](https://espresso.codeforces.com/3d8e4cd0a5c3c0cdc8b35097f3dc7317604240a6.png), and $2 < 3$, but ![image](https://espresso.codeforces.com/4e3eeab99fa495ecdcd103c68de47dd72943016f.png), and $5 ≥ 3$). Then warrior with personality $4$ leaves, and when Vova tries to hire that commander again, there are no warriors who respect him.",
-  "statementZhMd": null,
+  "statementZhMd": "正如你可能还记得上一轮比赛中的情节，Vova 目前正在玩一款名为《帝国时代》的策略游戏。\n\nVova 成功组建了一支庞大的军队，但忘记了军队中最重要的人——指挥官。因此，他想要雇佣一名指挥官，并希望选择一位能够得到战士们尊敬的人。\n\n每名战士由其性格——一个整数 $*p*_{*i*}$ 表示。每名指挥官有两个特征——其性格 $*p*_{*j*}$ 和领导力 $*l*_{*j*}$（两者均为整数）。当且仅当 ![image](https://espresso.codeforces.com/8125d4c911c845cc506dda0bacc8675f2cf9f121.png) 时，战士 $*i*$ 会*尊敬*指挥官 $*j*$（![image](https://espresso.codeforces.com/b364f2e04c665b78b924ec10666327a4ef4635bc.png) 表示 $*x*$ 与 $*y*$ 的按位异或）。\n\n起初，Vova 的军队是空的。军队中可能发生以下三种不同类型的事件：\n\n- $1 *p*_{*i*}$ — 一名性格为 $*p*_{*i*}$ 的战士加入 Vova 的军队；\n- $2 *p*_{*i*}$ — 一名性格为 $*p*_{*i*}$ 的战士离开 Vova 的军队；\n- $3 *p*_{*i*} *l*_{*i*}$ — Vova 尝试雇佣一名性格为 $*p*_{*i*}$、领导力为 $*l*_{*i*}$ 的指挥官。\n\n对于每个第三种类型的事件，Vova 想知道当前军队中有多少名战士（只统计已经加入军队且尚未离开的战士）会*尊敬*他尝试雇佣的指挥官。\n\n## 输入格式\n\n第一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 100000$），表示事件的数量。\n\n接下来 $*q*$ 行，每行描述一个事件：\n\n- $1 *p*_{*i*}$（$1 ≤ *p*_{*i*} ≤ 10^{8}$）— 一名性格为 $*p*_{*i*}$ 的战士加入 Vova 的军队；\n- $2 *p*_{*i*}$（$1 ≤ *p*_{*i*} ≤ 10^{8}$）— 一名性格为 $*p*_{*i*}$ 的战士离开 Vova 的军队（保证此时 Vova 的军队中至少有一名这样的战士）；\n- $3 *p*_{*i*} *l*_{*i*}$（$1 ≤ *p*_{*i*}, *l*_{*i*} ≤ 10^{8}$）— Vova 尝试雇佣一名性格为 $*p*_{*i*}$、领导力为 $*l*_{*i*}$ 的指挥官。至少存在一个这种类型的事件。\n\n## 输出格式\n\n对于每个第三种类型的事件，输出一个整数，即在该事件中 Vova 尝试雇佣的指挥官所能得到尊敬的战士数量。\n\n## 说明\n\n在样例中，经过前两个事件后，军队中有两名战士，他们的性格分别为 $3$ 和 $4$。随后，Vova 尝试雇佣一名性格为 $6$、领导力为 $3$ 的指挥官，只有一名战士尊敬他（![image](https://espresso.codeforces.com/3d8e4cd0a5c3c0cdc8b35097f3dc7317604240a6.png)，且 $2 < 3$；而 ![image](https://espresso.codeforces.com/4e3eeab99fa495ecdcd103c68de47dd72943016f.png)，且 $5 ≥ 3$）。随后，性格为 $4$ 的战士离开了军队；当 Vova 再次尝试雇佣这名指挥官时，没有战士尊敬他。",
   "samples": [
     {
       "input": "5\n1 3\n1 4\n3 6 3\n2 4\n3 6 3\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:50:13.024Z"
+  "fetchedAt": "2026-11-02T19:50:13.024Z",
+  "translatedAt": "2026-11-04T06:07:59.223+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

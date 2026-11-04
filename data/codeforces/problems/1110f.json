@@ -4,7 +4,7 @@
   "contestId": 1110,
   "index": "F",
   "title": "Nearest Leaf",
-  "titleZh": null,
+  "titleZh": "最近的叶子",
   "url": "https://codeforces.com/contest/1110/problem/F",
   "difficulty": 2600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Let's define the Eulerian traversal of a tree (a connected undirected graph without cycles) as follows: consider a depth-first search algorithm which traverses vertices of the tree and enumerates them in the order of visiting (only the first visit of each vertex counts). This function starts from the vertex number $1$ and then recursively runs from all vertices which are connected with an edge with the current vertex and are not yet visited in increasing numbers order. Formally, you can describe this function using the following pseudocode:\n\n```\nnext_id = 1\nid = array of length n filled with -1\nvisited = array of length n filled with false\n\nfunction dfs(v):\n    visited[v] = true\n    id[v] = next_id\n    next_id += 1\n    for to in neighbors of v in increasing order:\n        if not visited[to]:\n            dfs(to)\n```\n\nYou are given a weighted tree, the vertices of which were enumerated with integers from $1$ to $n$ using the algorithm described above.\n\nA *leaf* is a vertex of the tree which is connected with only one other vertex. In the tree given to you, the vertex $1$ is not a leaf. The distance between two vertices in the tree is the sum of weights of the edges on the simple path between them.\n\nYou have to answer $q$ queries of the following type: given integers $v$, $l$ and $r$, find the shortest distance from vertex $v$ to one of the leaves with indices from $l$ to $r$ inclusive.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($3 \\leq n \\leq 500\\,000, 1 \\leq q \\leq 500\\,000$) — the number of vertices in the tree and the number of queries, respectively.\n\nThe $(i - 1)$-th of the following $n - 1$ lines contains two integers $p_i$ and $w_i$ ($1 \\leq p_i \\lt i, 1 \\leq w_i \\leq 10^9$), denoting an edge between vertices $p_i$ and $i$ with the weight $w_i$.\n\nIt's guaranteed that the given edges form a tree and the vertices are enumerated in the Eulerian traversal order and that the vertex with index $1$ is not a leaf.\n\nThe next $q$ lines describe the queries. Each of them contains three integers $v_i$, $l_i$, $r_i$ ($1 \\leq v_i \\leq n, 1 \\leq l_i \\leq r_i \\leq n$), describing the parameters of the query. It is guaranteed that there is at least one leaf with index $x$ such that $l_i \\leq x \\leq r_i$.\n\n## Output\n\nOutput $q$ integers — the answers for the queries in the order they are given in the input.\n\n## Note\n\nIn the first example, the tree looks like this:\n\n![image](https://espresso.codeforces.com/f6ddbf3b038dd36738f75197ea09a67a82333053.png)\n\nIn the first query, the nearest leaf for the vertex $1$ is vertex $4$ with distance $3$. In the second query, the nearest leaf for vertex $5$ is vertex $5$ with distance $0$. In the third query the nearest leaf for vertex $4$ is vertex $4$; however, it is not inside interval $[1, 2]$ of the query. The only leaf in interval $[1, 2]$ is vertex $2$ with distance $13$ from vertex $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n我们按如下方式定义树（一个无环的连通无向图）的欧拉遍历：考虑一种深度优先搜索算法，它遍历树中的顶点，并按照访问顺序为顶点编号（每个顶点只计算第一次访问）。该函数从编号为 $1$ 的顶点开始，然后按照编号递增的顺序，从所有与当前顶点通过边相连且尚未访问的顶点递归运行。形式化地说，可以使用以下伪代码描述该函数：\n\n```\nnext_id = 1\nid = array of length n filled with -1\nvisited = array of length n filled with false\n\nfunction dfs(v):\n    visited[v] = true\n    id[v] = next_id\n    next_id += 1\n    for to in neighbors of v in increasing order:\n        if not visited[to]:\n            dfs(to)\n```\n\n给定一棵带权树，其顶点使用上述算法按照访问顺序编号为 $1$ 到 $n$。\n\n*叶子* 是指只与另一个顶点相连的树顶点。在给定的树中，顶点 $1$ 不是叶子。树中两个顶点之间的距离，是它们之间简单路径上所有边的权值之和。\n\n你需要回答 $q$ 个如下形式的询问：给定整数 $v$、$l$ 和 $r$，求顶点 $v$ 到编号在 $l$ 到 $r$（包括两端）之间的某个叶子的最短距离。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$3 \\leq n \\leq 500\\,000, 1 \\leq q \\leq 500\\,000$）——树中顶点的数量和询问的数量。\n\n接下来的 $n - 1$ 行中，第 $(i - 1)$ 行包含两个整数 $p_i$ 和 $w_i$（$1 \\leq p_i \\lt i, 1 \\leq w_i \\leq 10^9$），表示一条连接顶点 $p_i$ 和 $i$、权值为 $w_i$ 的边。\n\n保证给出的边构成一棵树，且顶点按照欧拉遍历顺序编号，同时编号为 $1$ 的顶点不是叶子。\n\n接下来的 $q$ 行描述询问。每行包含三个整数 $v_i$、$l_i$ 和 $r_i$（$1 \\leq v_i \\leq n, 1 \\leq l_i \\leq r_i \\leq n$），表示一次询问的参数。保证存在至少一个编号为 $x$ 的叶子满足 $l_i \\leq x \\leq r_i$。\n\n## 输出格式\n\n按输入中的顺序输出 $q$ 个整数——每个询问的答案。\n\n## 说明\n\n在第一个样例中，树的形状如下：\n\n![image](https://espresso.codeforces.com/f6ddbf3b038dd36738f75197ea09a67a82333053.png)\n\n在第一个询问中，顶点 $1$ 最近的叶子是顶点 $4$，距离为 $3$。在第二个询问中，顶点 $5$ 最近的叶子是顶点 $5$，距离为 $0$。在第三个询问中，顶点 $4$ 最近的叶子是顶点 $4$；但是它不在询问的区间 $[1, 2]$ 内。区间 $[1, 2]$ 中唯一的叶子是顶点 $2$，它到顶点 $4$ 的距离为 $13$。",
   "samples": [
     {
       "input": "5 3\n1 10\n1 1\n3 2\n3 3\n1 1 5\n5 4 5\n4 1 2\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:16:51.452Z"
+  "fetchedAt": "2026-10-31T00:16:51.452Z",
+  "translatedAt": "2026-11-04T05:19:05.157+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

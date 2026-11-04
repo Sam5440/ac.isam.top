@@ -4,7 +4,7 @@
   "contestId": 1799,
   "index": "E",
   "title": "City Union",
-  "titleZh": null,
+  "titleZh": "城市联结",
   "url": "https://codeforces.com/contest/1799/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given $n \\times m$ grid. Some cells are filled and some are empty.\n\nA *city* is a maximal (by inclusion) set of filled cells such that it is possible to get from any cell in the set to any other cell in the set by moving to adjacent (by side) cells, without moving into any cells not in the set. In other words, a city is a connected component of filled cells with edges between adjacent (by side) cells.\n\nInitially, there are **two cities** on the grid. You want to change some empty cells into filled cells so that both of the following are satisfied:\n\n- There is **one city** on the resulting grid.\n- The shortest path between any two filled cells, achievable only by moving onto filled cells, is equal to the Manhattan distance between them.\n\nThe *Manhattan distance* between two cells $(a, b)$ and $(c, d)$ is equal to $|a - c| + |b - d|$.\n\nFind a way to add filled cells that satisfies these conditions and minimizes the total number of filled cells.\n\n## Input\n\nInput consists of multiple test cases. The first line contains a single integer $t$, the number of test cases ($1 \\le t \\le 5000$).\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n, m \\le 50$, $nm \\geq 3$).\n\nThe next $n$ lines describe the grid. The $i$-th line contains a string $s_i$ of length $m$. $s_{i,j}$ is '`#`' if the cell in position $(i, j)$ is filled, and '`.`' if it is empty.\n\nIt is guaranteed that there are **exactly two cities** in the initial grid.\n\nIt is guaranteed that the sum of $n\\cdot m$ over all test cases does not exceed $25\\,000$.\n\n## Output\n\nFor each test case, output $n$ lines, each containing a string of length $m$, describing the grid you create in the same format as the input.\n\nIf there are multiple possible answers with the minimum number of filled cells print any.\n\n## Note\n\nIn the first test case, we can add a single filled cell between the two cities to connect them. We can verify that the second condition is satisfied.\n\nIn the second test case, we can also connect the cities with a single filled cell, while satisfying the second condition.\n\nIn the third test case, note that if we filled the 3 cells in the top left, the cities would be connected, but the second condition would not be satisfied for cells $(4, 2)$ and $(2, 4)$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个 $n \\times m$ 的网格。其中一些单元格被填充，另一些为空。\n\n*城市*是一个按包含关系极大的已填充单元格集合，满足：集合中的任意一个单元格都可以通过移动到边相邻的单元格，在不进入集合外任何单元格的情况下，到达集合中的任意其他单元格。换句话说，城市就是以边相邻单元格之间存在边构成的已填充单元格连通分量。\n\n初始网格中有**两个城市**。你希望将一些空单元格变为已填充单元格，使以下两个条件同时满足：\n\n- 最终网格中有**一个城市**。\n- 任意两个已填充单元格之间，只能移动到已填充单元格上所能达到的最短路径长度，等于它们之间的曼哈顿距离。\n\n单元格 $(a, b)$ 和 $(c, d)$ 之间的*曼哈顿距离*等于 $|a - c| + |b - d|$。\n\n请找出一种添加已填充单元格的方案，使其满足上述条件，并最小化最终已填充单元格的总数。\n\n## 输入格式\n\n输入包含多组测试数据。第一行包含一个整数 $t$，表示测试数据组数（$1 \\le t \\le 5000$）。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 50$，$nm \\geq 3$）。\n\n接下来的 $n$ 行描述网格。第 $i$ 行包含一个长度为 $m$ 的字符串 $s_i$。如果位置 $(i, j)$ 的单元格已填充，则 $s_{i,j}$ 为 '`#`'；如果为空，则 $s_{i,j}$ 为 '`.`'。\n\n保证初始网格中**恰好有两个城市**。\n\n保证所有测试数据的 $n\\cdot m$ 之和不超过 $25\\,000$。\n\n## 输出格式\n\n对于每组测试数据，输出 $n$ 行，每行包含一个长度为 $m$ 的字符串，以与输入相同的格式描述你构造出的网格。\n\n如果有多个满足条件且已填充单元格数量最少的答案，输出任意一个即可。\n\n## 说明\n\n在第一组测试数据中，我们可以在两个城市之间添加一个已填充单元格，将它们连接起来。可以验证，第二个条件也得到了满足。\n\n在第二组测试数据中，我们同样可以通过添加一个已填充单元格连接两个城市，同时满足第二个条件。\n\n在第三组测试数据中，注意如果我们将左上角的 3 个单元格填充，两个城市虽然会连接起来，但对于单元格 $(4, 2)$ 和 $(2, 4)$，第二个条件将无法满足。",
   "samples": [
     {
       "input": "11\n1 3\n#.#\n2 2\n.#\n#.\n4 4\n..##\n...#\n#...\n##..\n6 6\n.##...\n##....\n......\n....##\n.....#\n...###\n6 5\n.#..#\n.#..#\n.#..#\n.#.##\n.#...\n##...\n5 5\n#####\n#...#\n#.#.#\n#...#\n#####\n4 4\n.##.\n##.#\n#.##\n.##.\n5 5\n..###\n....#\n.....\n#....\n#....\n5 6\n.##...\n##....\n#....#\n....##\n...##.\n6 5\n..##.\n...##\n....#\n#....\n##...\n.##..\n5 4\n..##\n..#.\n..#.\n#...\n#...\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:34:19.052Z"
+  "fetchedAt": "2026-10-30T22:34:19.052Z",
+  "translatedAt": "2026-11-04T02:54:48.599+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

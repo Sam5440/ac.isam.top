@@ -4,7 +4,7 @@
   "contestId": 283,
   "index": "E",
   "title": "Cow Tennis Tournament",
-  "titleZh": null,
+  "titleZh": "奶牛网球锦标赛",
   "url": "https://codeforces.com/contest/283/problem/E",
   "difficulty": 2800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Farmer John is hosting a tennis tournament with his $*n*$ cows. Each cow has a skill level $*s*_{*i*}$, and no two cows having the same skill level. Every cow plays every other cow exactly once in the tournament, and each cow beats every cow with skill level lower than its own.\n\nHowever, Farmer John thinks the tournament will be demoralizing for the weakest cows who lose most or all of their matches, so he wants to flip some of the results. In particular, at $*k*$ different instances, he will take two integers $*a*_{*i*}, *b*_{*i*}$ $(*a*_{*i*} < *b*_{*i*})$ and flip all the results between cows with skill level between $*a*_{*i*}$ and $*b*_{*i*}$ inclusive. That is, for any pair $*x*, *y*$ ![image](https://espresso.codeforces.com/57add0354e27dbc2e3c27b74ec0078855596d12b.png) he will change the result of the match on the final scoreboard (so if $*x*$ won the match, the scoreboard will now display that $*y*$ won the match, and vice versa). It is possible that Farmer John will change the result of a match multiple times. It is not guaranteed that $*a*_{*i*}$ and $*b*_{*i*}$ are equal to some cow's skill level.\n\nFarmer John wants to determine how balanced he made the tournament results look. In particular, he wants to count the number of triples of cows $(*p*, *q*, *r*)$ for which the final leaderboard shows that cow $*p*$ beats cow $*q*$, cow $*q*$ beats cow $*r*$, and cow $*r*$ beats cow $*p*$. Help him determine this number.\n\nNote that two triples are considered different if they do not contain the same set of cows (i.e. if there is a cow in one triple that is not in the other).\n\n## Input\n\nOn the first line are two space-separated integers, $*n*$ and $*k*$ $(3 ≤ *n* ≤ 10^{5}; 0 ≤ *k* ≤ 10^{5})$. On the next line are $*n*$ space-separated distinct integers, $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$ $(1 ≤ *s*_{*i*} ≤ 10^{9})$, denoting the skill levels of the cows. On the next $*k*$ lines are two space separated integers, $*a*_{*i*}$ and $*b*_{*i*}$ $(1 ≤ *a*_{*i*} < *b*_{*i*} ≤ 10^{9})$ representing the changes Farmer John made to the scoreboard in the order he makes it.\n\n## Output\n\nA single integer, containing the number of triples of cows $(*p*, *q*, *r*)$ for which the final leaderboard shows that cow $*p*$ beats cow $*q*$, cow $*q*$ beats cow $*r*$, and cow $*r*$ beats cow $*p*$.\n\nPlease do not use the `%lld` specifier to read or write 64-bit integers in С++. It is preferred to use the `cin`, `cout` streams or the `%I64d` specifier.\n\n## Note\n\nIn the first sample, cow 3 > cow 1, cow 3 > cow 2, and cow 2 > cow 1. However, the results between cows 1 and 2 and cows 2 and 3 are flipped, so now FJ's results show that cow 1 > cow 2, cow 2 > cow 3, and cow 3 > cow 1, so cows 1, 2, and 3 form a balanced triple.",
-  "statementZhMd": null,
+  "statementZhMd": "农夫约翰正在举办一场有 $*n*$ 头奶牛参加的网球锦标赛。每头奶牛都有一个技能等级 $*s*_{*i*}$，且任意两头奶牛的技能等级都不相同。在锦标赛中，每头奶牛都会与其他每头奶牛恰好比赛一次，并且每头奶牛都会击败所有技能等级低于自己的奶牛。\n\n然而，农夫约翰认为，对于输掉大多数甚至全部比赛的弱小奶牛来说，这场锦标赛会打击它们的积极性，因此他想要翻转一些比赛结果。具体来说，在 $*k*$ 个不同的时刻，他会取两个整数 $*a*_{*i*}, *b*_{*i*}$ $(*a*_{*i*} < *b*_{*i*})$，并翻转技能等级在 $*a*_{*i*}$ 到 $*b*_{*i*}$（包含端点）之间的奶牛之间的所有比赛结果。也就是说，对于任意一对奶牛 $*x*$、$*y*$ ![image](https://espresso.codeforces.com/57add0354e27dbc2e3c27b74ec0078855596d12b.png)，他会改变最终记分牌上这场比赛的结果（因此，如果原本是 $*x*$ 赢得比赛，记分牌现在就会显示为 $*y*$ 获胜，反之亦然）。农夫约翰可能会多次改变同一场比赛的结果。不能保证 $*a*_{*i*}$ 和 $*b*_{*i*}$ 等于某头奶牛的技能等级。\n\n农夫约翰想要确定他把比赛结果调整得多么平衡。具体来说，他想统计有多少个奶牛三元组 $(*p*, *q*, *r*)$，使得最终排行榜显示奶牛 $*p*$ 击败奶牛 $*q*$，奶牛 $*q*$ 击败奶牛 $*r*$，并且奶牛 $*r*$ 击败奶牛 $*p*$。请帮助他计算这个数量。\n\n注意，如果两个三元组不包含相同的奶牛集合（即一个三元组中存在另一组三元组中没有的奶牛），则认为它们是不同的。\n\n## 输入格式\n\n第一行包含两个用空格分隔的整数 $*n*$ 和 $*k*$ $(3 ≤ *n* ≤ 10^{5}; 0 ≤ *k* ≤ 10^{5})$。第二行包含 $*n*$ 个用空格分隔的互不相同的整数 $*s*_{1}, *s*_{2}, ..., *s*_{*n*}$ $(1 ≤ *s*_{*i*} ≤ 10^{9})$，表示奶牛的技能等级。接下来的 $*k*$ 行中，每行包含两个用空格分隔的整数 $*a*_{*i*}$ 和 $*b*_{*i*}$ $(1 ≤ *a*_{*i*} < *b*_{*i*} ≤ 10^{9})$，按照农夫约翰修改记分牌的顺序表示这些修改。\n\n## 输出格式\n\n输出一个整数，表示满足以下条件的奶牛三元组 $(*p*, *q*, *r*)$ 的数量：最终排行榜显示奶牛 $*p*$ 击败奶牛 $*q*$，奶牛 $*q*$ 击败奶牛 $*r*$，并且奶牛 $*r*$ 击败奶牛 $*p*$。\n\n请不要在 C++ 中使用 `%lld` 格式说明符来读写 64 位整数。建议使用 `cin`、`cout` 流，或使用 `%I64d` 格式说明符。\n\n## 说明\n\n在第一个样例中，奶牛 3 > 奶牛 1，奶牛 3 > 奶牛 2，奶牛 2 > 奶牛 1。然而，奶牛 1 和奶牛 2 之间，以及奶牛 2 和奶牛 3 之间的比赛结果被翻转了，因此现在农夫约翰的结果显示为奶牛 1 > 奶牛 2，奶牛 2 > 奶牛 3，奶牛 3 > 奶牛 1，所以奶牛 1、2、3 构成了一个平衡三元组。",
   "samples": [
     {
       "input": "3 2\n1 2 3\n1 2\n2 3\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:08:10.599Z"
+  "fetchedAt": "2026-10-31T02:08:10.599Z",
+  "translatedAt": "2026-11-04T07:32:43.160+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1670,
   "index": "C",
   "title": "Where is the Pizza?",
-  "titleZh": null,
+  "titleZh": "披萨在哪里？",
   "url": "https://codeforces.com/contest/1670/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "While searching for the pizza, baby Hosssam came across two permutations $a$ and $b$ of length $n$.\n\nRecall that a permutation is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nBaby Hosssam forgot about the pizza and started playing around with the two permutations. While he was playing with them, some elements of the first permutation got mixed up with some elements of the second permutation, and to his surprise those elements also formed a permutation of size $n$.\n\nSpecifically, he mixed up the permutations to form a new array $c$ in the following way.\n\n- For each $i$ ($1\\le i\\le n$), he either made $c_i=a_i$ or $c_i=b_i$.\n- The array $c$ is a permutation.\n\nYou know permutations $a$, $b$, and values at some positions in $c$. Please count the number different permutations $c$ that are consistent with the described process and the given values. Since the answer can be large, print it modulo $10^9+7$.\n\nIt is guaranteed that there exists at least one permutation $c$ that satisfies all the requirements.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^5$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le 10^5$) — the length of the permutations.\n\nThe next line contains $n$ distinct integers $a_1,a_2,\\ldots,a_n$ ($1\\le a_i\\le n$) — the first permutation.\n\nThe next line contains $n$ distinct integers $b_1,b_2,\\ldots,b_n$ ($1\\le b_i\\le n$) — the second permutation.\n\nThe next line contains $n$ distinct integers $d_1,d_2,\\ldots,d_n$ ($d_i$ is either $0$, $a_i$, or $b_i$) — the description of the known values of $c$. If $d_i=0$, then there are no requirements on the value of $c_i$. Otherwise, it is required that $c_i=d_i$.\n\nIt is guaranteed that there exists at least one permutation $c$ that satisfies all the requirements.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the number of possible permutations $c$, modulo $10^9+7$.\n\n## Note\n\nIn the first test case, there are $4$ distinct permutation that can be made using the process: $[2,3,1,4,5,6,7]$, $[2,3,1,7,6,5,4]$, $[2,3,1,4,6,5,7]$, $[2,3,1,7,5,6,4]$.\n\nIn the second test case, there is only one distinct permutation that can be made using the process: $[1]$.\n\nIn the third test case, there are $2$ distinct permutation that can be made using the process: $[6,5,2,1,4,3]$, $[6,5,3,1,4,2]$.\n\nIn the fourth test case, there are $2$ distinct permutation that can be made using the process: $[1,2,8,7,4,3,6,5]$, $[1,6,4,7,2,3,8,5]$.\n\nIn the fifth test case, there is only one distinct permutation that can be made using the process: $[1,9,2,3,4,10,8,6,7,5]$.",
-  "statementZhMd": null,
+  "statementZhMd": "在寻找披萨时，小 Hosssam 遇到了两个长度为 $n$ 的排列 $a$ 和 $b$。\n\n回忆一下，排列是由 $1$ 到 $n$ 的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n小 Hosssam 忘记了披萨，开始摆弄这两个排列。在摆弄的过程中，第一个排列中的一些元素与第二个排列中的一些元素混合在了一起，令他惊讶的是，这些元素也组成了一个大小为 $n$ 的排列。\n\n具体来说，他按照以下方式混合这两个排列，形成一个新数组 $c$。\n\n- 对于每个 $i$（$1\\le i\\le n$），他选择令 $c_i=a_i$ 或 $c_i=b_i$。\n- 数组 $c$ 是一个排列。\n\n给定排列 $a$、$b$ 以及 $c$ 在某些位置上的值，请你计算满足上述构造过程和给定值的不同排列 $c$ 的数量。由于答案可能很大，请将其对 $10^9+7$ 取模后输出。\n\n保证至少存在一个排列 $c$ 满足所有要求。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^5$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 10^5$）——排列的长度。\n\n下一行包含 $n$ 个互不相同的整数 $a_1,a_2,\\ldots,a_n$（$1\\le a_i\\le n$）——第一个排列。\n\n下一行包含 $n$ 个互不相同的整数 $b_1,b_2,\\ldots,b_n$（$1\\le b_i\\le n$）——第二个排列。\n\n下一行包含 $n$ 个整数 $d_1,d_2,\\ldots,d_n$（$d_i$ 为 $0$、$a_i$ 或 $b_i$）——对 $c$ 的已知值的描述。如果 $d_i=0$，则不对 $c_i$ 的值作任何要求。否则，要求 $c_i=d_i$。\n\n保证至少存在一个排列 $c$ 满足所有要求。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出满足条件的排列 $c$ 的数量，对 $10^9+7$ 取模。\n\n## 说明\n\n在第一个测试用例中，通过上述过程可以构造出 $4$ 个不同的排列：$[2,3,1,4,5,6,7]$、$[2,3,1,7,6,5,4]$、$[2,3,1,4,6,5,7]$、$[2,3,1,7,5,6,4]$。\n\n在第二个测试用例中，通过上述过程只能构造出一个不同的排列：$[1]$。\n\n在第三个测试用例中，通过上述过程可以构造出 $2$ 个不同的排列：$[6,5,2,1,4,3]$、$[6,5,3,1,4,2]$。\n\n在第四个测试用例中，通过上述过程可以构造出 $2$ 个不同的排列：$[1,2,8,7,4,3,6,5]$、$[1,6,4,7,2,3,8,5]$。\n\n在第五个测试用例中，通过上述过程只能构造出一个不同的排列：$[1,9,2,3,4,10,8,6,7,5]$。",
   "samples": [
     {
       "input": "9\n7\n1 2 3 4 5 6 7\n2 3 1 7 6 5 4\n2 0 1 0 0 0 0\n1\n1\n1\n0\n6\n1 5 2 4 6 3\n6 5 3 1 4 2\n6 0 0 0 0 0\n8\n1 6 4 7 2 3 8 5\n3 2 8 1 4 5 6 7\n1 0 0 7 0 3 0 5\n10\n1 8 6 2 4 7 9 3 10 5\n1 9 2 3 4 10 8 6 7 5\n1 9 2 3 4 10 8 6 7 5\n7\n1 2 3 4 5 6 7\n2 3 1 7 6 5 4\n0 0 0 0 0 0 0\n5\n1 2 3 4 5\n1 2 3 4 5\n0 0 0 0 0\n5\n1 2 3 4 5\n1 2 3 5 4\n0 0 0 0 0\n3\n1 2 3\n3 1 2\n0 0 0\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:02:47.489Z"
+  "fetchedAt": "2026-10-30T23:02:47.489Z",
+  "translatedAt": "2026-11-04T03:26:21.366+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

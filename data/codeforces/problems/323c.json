@@ -4,7 +4,7 @@
   "contestId": 323,
   "index": "C",
   "title": "Two permutations",
-  "titleZh": null,
+  "titleZh": "两个排列",
   "url": "https://codeforces.com/contest/323/problem/C",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 512,
   "statementMd": "You are given two permutations $*p*$ and $*q*$, consisting of $*n*$ elements, and $*m*$ queries of the form: $*l*_{1}, *r*_{1}, *l*_{2}, *r*_{2}$ $(*l*_{1} ≤ *r*_{1}; *l*_{2} ≤ *r*_{2})$. The response for the query is the number of such integers from $1$ to $*n*$, that their position in the first permutation is in segment $[*l*_{1}, *r*_{1}]$ (borders included), and position in the second permutation is in segment $[*l*_{2}, *r*_{2}]$ (borders included too).\n\nA *permutation* of $*n*$ elements is the sequence of $*n*$ distinct integers, each not less than $1$ and not greater than $*n*$.\n\n*Position* of number $*v*$ $(1 ≤ *v* ≤ *n*)$ in permutation $*g*_{1}, *g*_{2}, ..., *g*_{*n*}$ is such number $*i*$, that $*g*_{*i*} = *v*$.\n\n## Input\n\nThe first line contains one integer $*n* (1 ≤ *n* ≤ 10^{6})$, the number of elements in both permutations. The following line contains $*n*$ integers, separated with spaces: $*p*_{1}, *p*_{2}, ..., *p*_{*n*} (1 ≤ *p*_{*i*} ≤ *n*)$. These are elements of the first permutation. The next line contains the second permutation $*q*_{1}, *q*_{2}, ..., *q*_{*n*}$ in same format.\n\nThe following line contains an integer $*m* (1 ≤ *m* ≤ 2·10^{5})$, that is the number of queries.\n\nThe following $*m*$ lines contain descriptions of queries one in a line. The description of the $*i*$-th query consists of four integers: $*a*, *b*, *c*, *d* (1 ≤ *a*, *b*, *c*, *d* ≤ *n*)$. Query parameters $*l*_{1}, *r*_{1}, *l*_{2}, *r*_{2}$ are obtained from the numbers $*a*, *b*, *c*, *d*$ using the following algorithm:\n\n1. Introduce variable $*x*$. If it is the first query, then the variable equals $0$, else it equals the response for the previous query plus one.\n2. Introduce function $*f*(*z*) = ((*z* - 1 + *x*) *mod* *n*) + 1$.\n3. Suppose $*l*_{1} = *min*(*f*(*a*), *f*(*b*)), *r*_{1} = *max*(*f*(*a*), *f*(*b*)), *l*_{2} = *min*(*f*(*c*), *f*(*d*)), *r*_{2} = *max*(*f*(*c*), *f*(*d*))$.\n\n## Output\n\nPrint a response for each query in a separate line.",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个由 $*n*$ 个元素组成的排列 $*p*$ 和 $*q*$，以及 $*m*$ 个形如 $*l*_{1}, *r*_{1}, *l*_{2}, *r*_{2}$ $(*l*_{1} ≤ *r*_{1}; *l*_{2} ≤ *r*_{2})$ 的询问。对于每个询问，需要回答满足以下条件的整数个数：它们在第一个排列中的位置位于区间 $[*l*_{1}, *r*_{1}]$ 内（包括端点），且在第二个排列中的位置位于区间 $[*l*_{2}, *r*_{2}]$ 内（同样包括端点）。\n\n$n$ 个元素的*排列*是一个由 $n$ 个互不相同的整数构成的序列，其中每个整数都不小于 $1$ 且不大于 $n$。\n\n数字 $*v*$ $(1 ≤ *v* ≤ *n*)$ 在排列 $*g*_{1}, *g*_{2}, ..., *g*_{*n*}$ 中的*位置*是满足 $*g*_{*i*} = *v*$ 的整数 $*i*$。\n\n## 输入格式\n\n第一行包含一个整数 $*n* (1 ≤ *n* ≤ 10^{6})$，表示两个排列中的元素个数。下一行包含 $*n*$ 个以空格分隔的整数：$*p*_{1}, *p*_{2}, ..., *p*_{*n*} (1 ≤ *p*_{*i*} ≤ *n*)$。它们是第一个排列的元素。下一行以相同格式包含第二个排列 $*q*_{1}, *q*_{2}, ..., *q*_{*n*}$。\n\n下一行包含一个整数 $*m* (1 ≤ *m* ≤ 2·10^{5})$，表示询问的数量。\n\n接下来的 $*m*$ 行每行包含一个询问的描述。第 $*i*$ 个询问的描述由四个整数组成：$*a*, *b*, *c*, *d* (1 ≤ *a*, *b*, *c*, *d* ≤ *n*)$。询问参数 $*l*_{1}, *r*_{1}, *l*_{2}, *r*_{2}$ 按照以下算法由数字 $*a*, *b*, *c*, *d*$ 得到：\n\n1. 引入变量 $*x*$。如果这是第一个询问，则该变量等于 $0$；否则等于上一个询问的答案加一。\n2. 引入函数 $*f*(*z*) = ((*z* - 1 + *x*) *mod* *n*) + 1$。\n3. 令 $*l*_{1} = *min*(*f*(*a*), *f*(*b*)), *r*_{1} = *max*(*f*(*a*), *f*(*b*)), *l*_{2} = *min*(*f*(*c*), *f*(*d*)), *r*_{2} = *max*(*f*(*c*), *f*(*d*))$。\n\n## 输出格式\n\n对于每个询问，单独输出一行答案。",
   "samples": [
     {
       "input": "3\n3 1 2\n3 2 1\n1\n1 2 3 3\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:02:00.833Z"
+  "fetchedAt": "2026-10-31T02:02:00.833Z",
+  "translatedAt": "2026-11-04T07:23:59.752+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

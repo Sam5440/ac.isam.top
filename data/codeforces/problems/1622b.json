@@ -4,7 +4,7 @@
   "contestId": 1622,
   "index": "B",
   "title": "Berland Music",
-  "titleZh": null,
+  "titleZh": "伯兰音乐",
   "url": "https://codeforces.com/contest/1622/problem/B",
   "difficulty": 1000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Berland Music is a music streaming service built specifically to support Berland local artist. Its developers are currently working on a song recommendation module.\n\nSo imagine Monocarp got recommended $n$ songs, numbered from $1$ to $n$. The $i$-th song had its predicted rating equal to $p_i$, where $1 \\le p_i \\le n$ and every integer from $1$ to $n$ appears exactly once. In other words, $p$ is a permutation.\n\nAfter listening to each of them, Monocarp pressed either a like or a dislike button. Let his vote sequence be represented with a string $s$, such that $s_i=0$ means that he disliked the $i$-th song, and $s_i=1$ means that he liked it.\n\nNow the service has to re-evaluate the song ratings in such a way that:\n\n- the new ratings $q_1, q_2, \\dots, q_n$ still form a permutation ($1 \\le q_i \\le n$; each integer from $1$ to $n$ appears exactly once);\n- every song that Monocarp liked should have a greater rating than every song that Monocarp disliked (formally, for all $i, j$ such that $s_i=1$ and $s_j=0$, $q_i \\gt q_j$ should hold).\n\nAmong all valid permutations $q$ find the one that has the smallest value of $\\sum\\limits_{i=1}^n |p_i-q_i|$, where $|x|$ is an absolute value of $x$.\n\nPrint the permutation $q_1, q_2, \\dots, q_n$. If there are multiple answers, you can print any of them.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of testcases.\n\nThe first line of each testcase contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of songs.\n\nThe second line of each testcase contains $n$ integers $p_1, p_2, \\dots, p_n$ ($1 \\le p_i \\le n$) — the permutation of the predicted ratings.\n\nThe third line contains a single string $s$, consisting of $n$ characters. Each character is either a $0$ or a $1$. $0$ means that Monocarp disliked the song, and $1$ means that he liked it.\n\nThe sum of $n$ over all testcases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, print a permutation $q$ — the re-evaluated ratings of the songs. If there are multiple answers such that $\\sum\\limits_{i=1}^n |p_i-q_i|$ is minimum possible, you can print any of them.\n\n## Note\n\nIn the first testcase, there exists only one permutation $q$ such that each liked song is rating higher than each disliked song: song $1$ gets rating $2$ and song $2$ gets rating $1$. $\\sum\\limits_{i=1}^n |p_i-q_i|=|1-2|+|2-1|=2$.\n\nIn the second testcase, Monocarp liked all songs, so all permutations could work. The permutation with the minimum sum of absolute differences is the permutation equal to $p$. Its cost is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "伯兰音乐是一项专门为支持伯兰本地艺术家而建立的音乐流媒体服务。其开发者目前正在开发歌曲推荐模块。\n\n假设 Monocarp 收到了 $n$ 首歌曲的推荐，编号从 $1$ 到 $n$。第 $i$ 首歌曲的预测评分为 $p_i$，其中 $1 \\le p_i \\le n$，且从 $1$ 到 $n$ 的每个整数都恰好出现一次。换句话说，$p$ 是一个排列。\n\n听完每首歌曲后，Monocarp 按下了喜欢或不喜欢按钮中的一个。用字符串 $s$ 表示他的投票序列，其中 $s_i=0$ 表示他不喜欢第 $i$ 首歌曲，$s_i=1$ 表示他喜欢第 $i$ 首歌曲。\n\n现在，服务需要以满足以下条件的方式重新评估歌曲评分：\n\n- 新评分 $q_1, q_2, \\dots, q_n$ 仍然构成一个排列（$1 \\le q_i \\le n$；从 $1$ 到 $n$ 的每个整数都恰好出现一次）；\n- Monocarp 喜欢的每首歌曲的评分都应高于他不喜欢的每首歌曲的评分（形式化地说，对于所有满足 $s_i=1$ 且 $s_j=0$ 的 $i, j$，都应满足 $q_i \\gt q_j$）。\n\n在所有合法的排列 $q$ 中，找出使得 $\\sum\\limits_{i=1}^n |p_i-q_i|$ 最小的排列，其中 $|x|$ 表示 $x$ 的绝对值。\n\n输出排列 $q_1, q_2, \\dots, q_n$。如果有多个答案，输出其中任意一个即可。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——歌曲的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $p_1, p_2, \\dots, p_n$（$1 \\le p_i \\le n$）——预测评分的排列。\n\n第三行包含一个长度为 $n$ 的字符串 $s$。其中每个字符都是 $0$ 或 $1$。$0$ 表示 Monocarp 不喜欢该歌曲，$1$ 表示他喜欢该歌曲。\n\n所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个排列 $q$——重新评估后的歌曲评分。如果存在多个使得 $\\sum\\limits_{i=1}^n |p_i-q_i|$ 达到最小值的答案，输出其中任意一个即可。\n\n## 说明\n\n在第一个测试用例中，只有一个排列 $q$ 能够满足每首喜欢的歌曲评分都高于每首不喜欢的歌曲评分：歌曲 $1$ 的评分为 $2$，歌曲 $2$ 的评分为 $1$。$\\sum\\limits_{i=1}^n |p_i-q_i|=|1-2|+|2-1|=2$。\n\n在第二个测试用例中，Monocarp 喜欢所有歌曲，因此所有排列都可以满足条件。使绝对值之和最小的排列就是与 $p$ 相同的排列，其代价为 $0$。",
   "samples": [
     {
       "input": "3\n2\n1 2\n10\n3\n3 1 2\n111\n8\n2 3 1 8 5 4 7 6\n01110001\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:11:46.906Z"
+  "fetchedAt": "2026-11-02T18:11:46.906Z",
+  "translatedAt": "2026-11-04T03:35:34.983+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

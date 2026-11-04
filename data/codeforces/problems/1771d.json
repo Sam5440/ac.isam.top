@@ -4,7 +4,7 @@
   "contestId": 1771,
   "index": "D",
   "title": "Hossam and (sub-)palindromic tree",
-  "titleZh": null,
+  "titleZh": "Hossam 与（子）回文树",
   "url": "https://codeforces.com/contest/1771/problem/D",
   "difficulty": 2100,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Hossam has an unweighted tree $G$ with letters in vertices.\n\nHossam defines $s(v, \\, u)$ as a string that is obtained by writing down all the letters on the unique simple path from the vertex $v$ to the vertex $u$ in the tree $G$.\n\nA string $a$ is a *subsequence* of a string $s$ if $a$ can be obtained from $s$ by deletion of several (possibly, zero) letters. For example, \"`dores`\", \"`cf`\", and \"`for`\" are subsequences of \"`codeforces`\", while \"`decor`\" and \"`fork`\" are not.\n\nA *palindrome* is a string that reads the same from left to right and from right to left. For example, \"`abacaba`\" is a palindrome, but \"`abac`\" is not.\n\nHossam defines a *sub-palindrome* of a string $s$ as a subsequence of $s$, that is a palindrome. For example, \"`k`\", \"`abba`\" and \"`abhba`\" are sub-palindromes of the string \"`abhbka`\", but \"`abka`\" and \"`cat`\" are not.\n\nHossam defines a *maximal sub-palindrome* of a string $s$ as a sub-palindrome of $s$, which has the maximal length among all sub-palindromes of $s$. For example, \"`abhbka`\" has only one maximal sub-palindrome — \"`abhba`\". But it may also be that the string has several maximum sub-palindromes: the string \"`abcd`\" has $4$ maximum sub-palindromes.\n\nHelp Hossam find the length of the longest maximal sub-palindrome among all $s(v, \\, u)$ in the tree $G$.\n\n**Note that the sub-palindrome is a subsequence, not a substring.**\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 200$) — the number of test cases.\n\nThe first line of each test case has one integer number $n$ ($1 \\le n \\le 2 \\cdot 10^3$) — the number of vertices in the graph.\n\nThe second line contains a string $s$ of length $n$, the $i$-th symbol of which denotes the letter on the vertex $i$. It is guaranteed that all characters in this string are lowercase English letters.\n\nThe next $n - 1$ lines describe the edges of the tree. Each edge is given by two integers $v$ and $u$ ($1 \\le v, \\, u \\le n$, $v \\neq u$). These two numbers mean that there is an edge $(v, \\, u)$ in the tree. It is guaranteed that the given edges form a tree.\n\nIt is guaranteed that sum of all $n$ doesn't exceed $2 \\cdot 10^3$.\n\n## Output\n\nFor each test case output one integer — the length of the longest maximal sub-palindrome among all $s(v, \\, u)$.\n\n## Note\n\nIn the first example the maximal subpalindromes are \"`aaa`\" with letters in vertices $1, \\, 3, \\, 5$, or \"`aca`\" with letters in vertices $1, \\, 4, \\, 5$.\n\n![image](https://espresso.codeforces.com/3239042d0537ea3dc01811c5f30a6fdd767b1bb1.png) The tree from the first example.\n\nIn the second example there is only one maximal palindrome \"`bacab`\" with letters in vertices $4, \\, 2, \\, 1, \\, 5, \\, 9$.\n\n![image](https://espresso.codeforces.com/78a4d78bcef2373e8d43f3fb7f19c404de5a90be.png) The tree from the second example.",
-  "statementZhMd": null,
+  "statementZhMd": "Hossam 有一棵无权树 $G$，树的顶点上标有字母。\n\nHossam 将 $s(v, \\, u)$ 定义为：沿树 $G$ 中从顶点 $v$ 到顶点 $u$ 的唯一简单路径，依次写下路径上所有顶点的字母所得到的字符串。\n\n如果字符串 $a$ 可以通过删除字符串 $s$ 中的若干个（可能为零个）字母得到，则称 $a$ 是字符串 $s$ 的一个*子序列*。例如，\"`dores`\"、\"`cf`\" 和 \"`for`\" 都是 \"`codeforces`\" 的子序列，而 \"`decor`\" 和 \"`fork`\" 不是。\n\n如果一个字符串从左到右读和从右到左读都相同，则称其为*回文串*。例如，\"`abacaba`\" 是回文串，而 \"`abac`\" 不是。\n\nHossam 将字符串 $s$ 的*子回文串*定义为 $s$ 的一个同时为回文串的子序列。例如，\"`k`\"、\"`abba`\" 和 \"`abhba`\" 都是字符串 \"`abhbka`\" 的子回文串，而 \"`abka`\" 和 \"`cat`\" 不是。\n\nHossam 将字符串 $s$ 的*最长子回文串*定义为：在所有子回文串中长度最大的子回文串。例如，\"`abhbka`\" 只有一个最长子回文串——\"`abhba`\"。但一个字符串也可能有多个最长子回文串：字符串 \"`abcd`\" 有 $4$ 个最长子回文串。\n\n请帮助 Hossam 求出树 $G$ 中所有 $s(v, \\, u)$ 的最长子回文串中的最大长度。\n\n**注意，子回文串是子序列，而不是子串。**\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 200$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^3$）——图中顶点的数量。\n\n第二行包含一个长度为 $n$ 的字符串 $s$，其中第 $i$ 个字符表示顶点 $i$ 上的字母。保证该字符串中的所有字符都是小写英文字母。\n\n接下来的 $n - 1$ 行描述树中的边。每条边由两个整数 $v$ 和 $u$ 给出（$1 \\le v, \\, u \\le n$，$v \\neq u$）。这两个数表示存在一条边 $(v, \\, u)$。保证给出的边构成一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^3$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——所有 $s(v, \\, u)$ 中最长子回文串的最大长度。\n\n## 说明\n\n在第一个样例中，最长子回文串为 \"`aaa`\"（对应顶点 $1$、$3$、$5$ 上的字母），或者 \"`aca`\"（对应顶点 $1$、$4$、$5$ 上的字母）。\n\n![image](https://espresso.codeforces.com/3239042d0537ea3dc01811c5f30a6fdd767b1bb1.png) 第一个样例中的树。\n\n在第二个样例中，只有一个最长回文串 \"`bacab`\"，对应顶点 $4$、$2$、$1$、$5$、$9$ 上的字母。\n\n![image](https://espresso.codeforces.com/78a4d78bcef2373e8d43f3fb7f19c404de5a90be.png) 第二个样例中的树。",
   "samples": [
     {
       "input": "2\n5\nabaca\n1 2\n1 3\n3 4\n4 5\n9\ncaabadedb\n1 2\n2 3\n2 4\n1 5\n5 6\n5 7\n5 8\n8 9\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:42:56.410Z"
+  "fetchedAt": "2026-10-30T22:42:56.410Z",
+  "translatedAt": "2026-11-04T03:03:53.725+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

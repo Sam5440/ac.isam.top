@@ -4,7 +4,7 @@
   "contestId": 1917,
   "index": "C",
   "title": "Watering an Array",
-  "titleZh": null,
+  "titleZh": "给数组浇水",
   "url": "https://codeforces.com/contest/1917/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You have an array of integers $a_1, a_2, \\ldots, a_n$ of length $n$. On the $i$-th of the next $d$ days you are going to do exactly one of the following two actions:\n\n- Add $1$ to each of the first $b_i$ elements of the array $a$ (i.e., set $a_j := a_j + 1$ for each $1 \\le j \\le b_i$).\n- Count the elements which are equal to their position (i.e., the $a_j = j$). Denote the number of such elements as $c$. Then, you add $c$ to your score, and reset the entire array $a$ to a $0$-array of length $n$ (i.e., set $[a_1, a_2, \\ldots, a_n] := [0, 0, \\ldots, 0]$).\n\nYour score is equal to $0$ in the beginning. Note that on each day you should perform exactly one of the actions above: you cannot skip a day or perform both actions on the same day.\n\nWhat is the maximum score you can achieve at the end?\n\nSince $d$ can be quite large, the sequence $b$ is given to you in the compressed format:\n\n- You are given a sequence of integers $v_1, v_2, \\ldots, v_k$. The sequence $b$ is a concatenation of infinitely many copies of $v$: $b = [v_1, v_2, \\ldots, v_k, v_1, v_2, \\ldots, v_k, \\ldots]$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^3$) — the number of test cases.\n\nThe first line of each test case contains three integers $n$, $k$ and $d$ ($1 \\le n \\le 2000$, $1 \\le k \\le 10^5$, $k \\le d \\le 10^9$) — the length of the array $a$, the length of the sequence $v$ and the number of days you are going to perform operations on.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le n$) — the array $a$.\n\nThe third line of each test case contains $k$ integers $v_1, v_2, \\ldots, v_k$ ($1 \\le v_i \\le n$) — the sequence $v$.\n\nIt is guaranteed that the sum of $n$ over all test cases doesn't exceed $2000$ and the sum of $k$ over all test cases doesn't exceed $10^5$.\n\n## Output\n\nFor each test case, output one integer: the maximum score you can achieve at the end of the $d$-th day.\n\n## Note\n\nIn the first test case, the sequence $b$ is equal to $[1, 3, 2, 3, 1, 3, 2, 3, \\ldots]$ and one of the optimal solutions for this case is as follows:\n\n- Perform the operation of the second type on the $1$-st day: your score increases by $3$ and array $a$ becomes equal to $[0, 0, 0]$.\n- Perform the operation of the first type on the $2$-nd day: array $a$ becomes equal to $[1, 1, 1]$.\n- Perform the operation of the first type on the $3$-rd day: array $a$ becomes equal to $[2, 2, 1]$.\n- Perform the operation of the second type on the $4$-th day: your score increases by $1$ and array $a$ becomes equal to $[0, 0, 0]$.\n\nIt can be shown that it is impossible to score more than $4$, so the answer is $4$.\n\nIn the second test case, the sequence $b$ is equal to $[6, 6, 6, 6, \\ldots]$. One of the ways to score $3$ is to perform operations of the first type on the $1$-st and the $3$-rd days and to perform an operation of the second type on the $2$-nd day.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个长度为 $n$ 的整数数组 $a_1, a_2, \\ldots, a_n$。在接下来的 $d$ 天中，第 $i$ 天你需要恰好执行以下两种操作之一：\n\n- 将数组 $a$ 的前 $b_i$ 个元素都加上 $1$（即对于每个 $1 \\le j \\le b_i$，令 $a_j := a_j + 1$）。\n- 统计数组中等于其位置的元素个数（即满足 $a_j = j$ 的元素）。将这些元素的数量记为 $c$。然后将 $c$ 加到你的得分中，并将整个数组 $a$ 重置为长度为 $n$ 的全零数组（即令 $[a_1, a_2, \\ldots, a_n] := [0, 0, \\ldots, 0]$）。\n\n初始时你的得分为 $0$。注意，每一天都必须恰好执行上述一种操作：不能跳过某一天，也不能在同一天执行两种操作。\n\n问在第 $d$ 天结束时，你能获得的最大得分是多少？\n\n由于 $d$ 可能很大，序列 $b$ 以压缩形式给出：\n\n- 给定一个整数序列 $v_1, v_2, \\ldots, v_k$。序列 $b$ 是由无限个序列 $v$ 拼接而成的：$b = [v_1, v_2, \\ldots, v_k, v_1, v_2, \\ldots, v_k, \\ldots]$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^3$）——测试用例的数量。\n\n每个测试用例的第一行包含三个整数 $n$、$k$ 和 $d$（$1 \\le n \\le 2000$，$1 \\le k \\le 10^5$，$k \\le d \\le 10^9$）——数组 $a$ 的长度、序列 $v$ 的长度，以及你需要执行操作的天数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\le a_i \\le n$）——数组 $a$。\n\n每个测试用例的第三行包含 $k$ 个整数 $v_1, v_2, \\ldots, v_k$（$1 \\le v_i \\le n$）——序列 $v$。\n\n保证所有测试用例的 $n$ 之和不超过 $2000$，且所有测试用例的 $k$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：在第 $d$ 天结束时你能获得的最大得分。\n\n## 说明\n\n在第一个测试用例中，序列 $b$ 等于 $[1, 3, 2, 3, 1, 3, 2, 3, \\ldots]$，这个测试用例的一种最优方案如下：\n\n- 第 $1$ 天执行第二种操作：得分增加 $3$，数组 $a$ 变为 $[0, 0, 0]$。\n- 第 $2$ 天执行第一种操作：数组 $a$ 变为 $[1, 1, 1]$。\n- 第 $3$ 天执行第一种操作：数组 $a$ 变为 $[2, 2, 1]$。\n- 第 $4$ 天执行第二种操作：得分增加 $1$，数组 $a$ 变为 $[0, 0, 0]$。\n\n可以证明，得分不可能超过 $4$，因此答案为 $4$。\n\n在第二个测试用例中，序列 $b$ 等于 $[6, 6, 6, 6, \\ldots]$。一种获得 $3$ 分的方法是在第 $1$ 天和第 $3$ 天执行第一种操作，并在第 $2$ 天执行第二种操作。",
   "samples": [
     {
       "input": "5\n3 4 4\n1 2 3\n1 3 2 3\n6 2 3\n6 1 2 4 1 5\n6 6\n5 1 1\n0 5 0 5 0\n5\n1 1 1\n1\n1\n3 4 6\n1 2 3\n1 3 2 3\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:06:58.045Z"
+  "fetchedAt": "2026-10-30T22:06:58.045Z",
+  "translatedAt": "2026-11-04T02:23:28.921+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 45,
   "index": "B",
   "title": "School",
-  "titleZh": null,
+  "titleZh": "学校",
   "url": "https://codeforces.com/contest/45/problem/B",
   "difficulty": 2200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $*n*$ students studying in the 6th grade, in group \"B\" of a berland secondary school. Every one of them has exactly one friend whom he calls when he has some news. Let us denote the friend of the person number $*i*$ by $*g*(*i*)$. Note that the friendships are not mutual, i.e. $*g*(*g*(*i*))$ is not necessarily equal to $*i*$.\n\nOn day $*i*$ the person numbered as $*a*_{*i*}$ learns the news with the rating of $*b*_{*i*}$ ($*b*_{*i*} ≥ 1$). He phones the friend immediately and tells it. While he is doing it, the news becomes old and its rating falls a little and becomes equal to $*b*_{*i*} - 1$. The friend does the same thing — he also calls his friend and also tells the news. The friend of the friend gets the news already rated as $*b*_{*i*} - 2$. It all continues until the rating of the news reaches zero as nobody wants to tell the news with zero rating.\n\nMore formally, everybody acts like this: if a person $*x*$ learns the news with a non-zero rating $*y*$, he calls his friend $*g*(*i*)$ and his friend learns the news with the rating of $*y* - 1$ and, if it is possible, continues the process.\n\nLet us note that during a day one and the same person may call his friend and tell him one and the same news with different ratings. Thus, the news with the rating of $*b*_{*i*}$ will lead to as much as $*b*_{*i*}$ calls.\n\nYour task is to count the values of $*res*_{*i*}$ — how many students learned their first news on day $*i*$.\n\nThe values of $*b*_{*i*}$ are known initially, whereas $*a*_{*i*}$ is determined from the following formula:\n\n![image](https://espresso.codeforces.com/954a046a1454471a1979abd434e22a350e34cf8d.png)\n\nwhere mod stands for the operation of taking the excess from the cleavage, $*res*_{0}$ is considered equal to zero and $*v*_{*i*}$ — some given integers.\n\n## Input\n\nThe first line contains two space-separated integers $*n*$ and $*m*$ ($2 ≤ *n*, *m* ≤ 10^{5}$) — the number of students and the number of days. The second line contains $*n*$ space-separated integers $*g*(*i*)$ ($1 ≤ *g*(*i*) ≤ *n*, *g*(*i*) ≠ *i*$) — the number of a friend of the $*i*$-th student. The third line contains $*m*$ space-separated integers $*v*_{*i*}$ ($1 ≤ *v*_{*i*} ≤ 10^{7}$). The fourth line contains $*m*$ space-separated integers $*b*_{*i*}$ ($1 ≤ *b*_{*i*} ≤ 10^{7}$).\n\n## Output\n\nPrint $*m*$ lines containing one number each. The $*i*$-th line should contain $*res*_{*i*}$ — for what number of students the first news they've learned over the $*m*$ days in question, was the news number $*i*$. The number of the news is the number of the day on which it can be learned. The days are numbered starting from one in the order in which they are given in the input file. Don't output $*res*_{0}$.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $*n*$ 名学生在别尔兰的一所中学六年级“B”班学习。每个人都有且仅有一位朋友，当他得到某条消息时会打电话告诉这位朋友。我们用 $*g*(*i*)$ 表示编号为 $*i*$ 的人的朋友。注意，朋友关系不是相互的，即 $*g*(*g*(*i*))$ 不一定等于 $*i*$。\n\n在第 $*i*$ 天，编号为 $*a*_{*i*}$ 的人得知了一条评分为 $*b*_{*i*}$ 的消息（$*b*_{*i*} ≥ 1$）。他立即给朋友打电话并告诉他这条消息。在传递过程中，消息会变旧，评分会降低一点，变为 $*b*_{*i*} - 1$。朋友也会做同样的事情——他给自己的朋友打电话，并告诉他这条消息。朋友的朋友得到这条消息时，评分已经是 $*b*_{*i*} - 2$。这个过程会一直持续，直到消息的评分变为零，因为没有人愿意传递评分为零的消息。\n\n更正式地说，每个人的行为如下：如果某人 $*x*$ 得知了一条评分为非零值 $*y*$ 的消息，他会给朋友 $*g*(*i*)$ 打电话，使他的朋友以 $*y* - 1$ 的评分得知这条消息；如果可能，该朋友会继续这一过程。\n\n需要注意的是，在一天内，同一个人可能会多次给他的朋友打电话，传递同一条但评分不同的消息。因此，评分为 $*b*_{*i*}$ 的消息将总共导致 $*b*_{*i*}$ 次通话。\n\n你的任务是计算 $*res*_{*i*}$ 的值——有多少名学生在第 $*i*$ 天第一次得知消息。\n\n$*b*_{*i*}$ 的值一开始就是已知的，而 $*a*_{*i*}$ 根据以下公式确定：\n\n![image](https://espresso.codeforces.com/954a046a1454471a1979abd434e22a350e34cf8d.png)\n\n其中，mod 表示取除法余数的运算，$*res*_{0}$ 被认为等于零，$*v*_{*i*}$ 是一些给定的整数。\n\n## 输入\n\n第一行包含两个用空格分隔的整数 $*n*$ 和 $*m*$（$2 ≤ *n*, *m* ≤ 10^{5}$）——学生人数和天数。\n\n第二行包含 $*n*$ 个用空格分隔的整数 $*g*(*i*)$（$1 ≤ *g*(*i*) ≤ *n*$，$*g*(*i*) ≠ *i*$）——第 $*i*$ 名学生的朋友的编号。\n\n第三行包含 $*m*$ 个用空格分隔的整数 $*v*_{*i*}$（$1 ≤ *v*_{*i*} ≤ 10^{7}$）。\n\n第四行包含 $*m*$ 个用空格分隔的整数 $*b*_{*i*}$（$1 ≤ *b*_{*i*} ≤ 10^{7}$）。\n\n## 输出\n\n输出 $*m*$ 行，每行包含一个整数。第 $*i*$ 行应包含 $*res*_{*i*}$——在所给出的 $*m*$ 天中，第一次得知消息的学生人数，其中他们第一次得知的是编号为 $*i*$ 的消息。消息的编号就是它被得知的日期编号。日期按照输入文件中的给出顺序从 1 开始编号。不要输出 $*res*_{0}$。",
   "samples": [
     {
       "input": "3 4\n2 3 1\n1 2 3 4\n1 2 3 4\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:22:45.062Z"
+  "fetchedAt": "2026-11-02T20:22:45.062Z",
+  "translatedAt": "2026-11-04T07:57:16.914+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

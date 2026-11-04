@@ -4,7 +4,7 @@
   "contestId": 1968,
   "index": "D",
   "title": "Permutation Game",
-  "titleZh": null,
+  "titleZh": "置换游戏",
   "url": "https://codeforces.com/contest/1968/problem/D",
   "difficulty": 1300,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Bodya and Sasha found a permutation $p_1,\\dots,p_n$ and an array $a_1,\\dots,a_n$. They decided to play a well-known \"Permutation game\".\n\nA permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nBoth of them chose a starting position in the permutation.\n\nThe game lasts $k$ turns. The players make moves simultaneously. On each turn, two things happen to each player:\n\n- If the current position of the player is $x$, his score increases by $a_x$.\n- Then the player either **stays** at his current position $x$ or **moves** from $x$ to $p_x$.\n\nThe winner of the game is the player with the higher score after exactly $k$ turns.\n\nKnowing Bodya's starting position $P_B$ and Sasha's starting position $P_S$, determine who wins the game if both players are trying to win.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of testcases.\n\nThe first line of each testcase contains integers $n$, $k$, $P_B$, $P_S$ ($1\\le P_B,P_S\\le n\\le 2\\cdot 10^5$, $1\\le k\\le 10^9$) — length of the permutation, duration of the game, starting positions respectively.\n\nThe next line contains $n$ integers $p_1,\\dots,p_n$ ($1 \\le p_i \\le n$) — elements of the permutation $p$.\n\nThe next line contains $n$ integers $a_1,\\dots,a_n$ ($1\\le a_i\\le 10^9$) — elements of array $a$.\n\nIt is guaranteed that the sum of values of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase output:\n\n- \"`Bodya`\" if Bodya wins the game.\n- \"`Sasha`\" if Sasha wins the game.\n- \"`Draw`\" if the players have the same score.\n\n## Note\n\nBelow you can find the explanation for the first testcase, where the game consists of $k=2$ turns.\n\n**Turn****Bodya's position****Bodya's score****Bodya's move****Sasha's position****Sasha's score****Sasha's move**first$3$$0 + a_3 = 0 + 5 = 5$stays on the same position$2$$0 + a_2 = 0 + 2 = 2$moves to $p_2=1$second$3$$5 + a_3 = 5 + 5 = 10$stays on the same position$1$$2 + a_1 = 2 + 7 = 9$stays on the same positionfinal results$3$$10$$1$$9$\n\nAs we may see, Bodya's score is greater, so he wins the game. It can be shown that Bodya always can win this game.",
-  "statementZhMd": null,
+  "statementZhMd": "Bodya 和 Sasha 找到了一个置换 $p_1,\\dots,p_n$ 和一个数组 $a_1,\\dots,a_n$。他们决定进行广为人知的“置换游戏”。\n\n长度为 $n$ 的置换是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个置换，但 $[1,2,2]$ 不是置换（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是置换（$n=3$，但数组中出现了 $4$）。\n\n他们分别选择了置换中的一个起始位置。\n\n游戏进行 $k$ 个回合。两名玩家同时行动。每个回合中，每名玩家都会依次进行以下两件事：\n\n- 如果玩家当前所在的位置为 $x$，则他的分数增加 $a_x$。\n- 然后，玩家可以选择**停留**在当前位置 $x$，也可以从 $x$ **移动**到 $p_x$。\n\n恰好进行 $k$ 个回合后，分数更高的玩家获胜。\n\n已知 Bodya 的起始位置为 $P_B$，Sasha 的起始位置为 $P_S$，请确定在两名玩家都试图获胜的情况下，谁能赢得游戏。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含整数 $n$、$k$、$P_B$、$P_S$（$1\\le P_B,P_S\\le n\\le 2\\cdot 10^5$，$1\\le k\\le 10^9$）——置换的长度、游戏的回合数以及两名玩家各自的起始位置。\n\n下一行包含 $n$ 个整数 $p_1,\\dots,p_n$（$1 \\le p_i \\le n$）——置换 $p$ 的元素。\n\n下一行包含 $n$ 个整数 $a_1,\\dots,a_n$（$1\\le a_i\\le 10^9$）——数组 $a$ 的元素。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出：\n\n- `Bodya`，如果 Bodya 赢得游戏。\n- `Sasha`，如果 Sasha 赢得游戏。\n- `Draw`，如果两名玩家的分数相同。\n\n## 说明\n\n下面给出了第一个测试用例的解释，其中游戏进行 $k=2$ 个回合。\n\n**回合****Bodya 的位置****Bodya 的分数****Bodya 的行动****Sasha 的位置****Sasha 的分数****Sasha 的行动**\n第一回合$3$$0 + a_3 = 0 + 5 = 5$停留在原位置$2$$0 + a_2 = 0 + 2 = 2$移动到 $p_2=1$\n第二回合$3$$5 + a_3 = 5 + 5 = 10$停留在原位置$1$$2 + a_1 = 2 + 7 = 9$停留在原位置\n最终结果$3$$10$$1$$9$\n\n可以看出，Bodya 的分数更高，因此他赢得了游戏。可以证明，Bodya 总能赢得这场游戏。",
   "samples": [
     {
       "input": "10\n4 2 3 2\n4 1 2 3\n7 2 5 6\n10 8 2 10\n3 1 4 5 2 7 8 10 6 9\n5 10 5 1 3 7 10 15 4 3\n2 1000000000 1 2\n1 2\n4 4\n8 10 4 1\n5 1 4 3 2 8 6 7\n1 1 2 1 2 100 101 102\n5 1 2 5\n1 2 4 5 3\n4 6 9 4 2\n4 2 3 1\n4 1 3 2\n6 8 5 3\n6 9 5 4\n6 1 3 5 2 4\n6 9 8 9 5 10\n4 8 4 2\n2 3 4 1\n5 2 8 7\n4 2 3 1\n4 1 3 2\n6 8 5 3\n2 1000000000 1 2\n1 2\n1000000000 2\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:09:55.935Z"
+  "fetchedAt": "2026-11-02T17:09:55.935Z",
+  "translatedAt": "2026-11-04T02:10:45.465+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

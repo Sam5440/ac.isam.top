@@ -4,7 +4,7 @@
   "contestId": 855,
   "index": "F",
   "title": "Nagini",
-  "titleZh": null,
+  "titleZh": "纳吉尼",
   "url": "https://codeforces.com/contest/855/problem/F",
   "difficulty": 3100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Nagini, being a horcrux You-know-who created with the murder of Bertha Jorkins, has accumulated its army of snakes and is launching an attack on Hogwarts school.\n\nHogwarts' entrance can be imagined as a straight line (x-axis) from $1$ to $10^{5}$. Nagini is launching various snakes at the Hogwarts entrance. Each snake lands parallel to the entrance, covering a segment at a distance $*k*$ from $*x* = *l*$ to $*x* = *r*$. Formally, each snake can be imagined as being a line segment between points $(*l*, *k*)$ and $(*r*, *k*)$. Note that $*k*$ can be both positive and negative, but not $0$.\n\nLet, at some $*x*$-coordinate $*x* = *i*$, there be snakes at point $(*i*, *y*_{1})$ and point $(*i*, *y*_{2})$, such that $*y*_{1} > 0$ and $*y*_{2} < 0$. Then, if for any point $(*i*, *y*_{3})$ containing a snake such that $*y*_{3} > 0$, $*y*_{1} ≤ *y*_{3}$ holds and for any point $(*i*, *y*_{4})$ containing a snake such that $*y*_{4} < 0$, $|*y*_{2}| ≤ |*y*_{4}|$ holds, then the danger value at coordinate $*x* = *i*$ is $*y*_{1} + |*y*_{2}|$. If no such $*y*_{1}$ and $*y*_{2}$ exist, danger value is $0$.\n\nHarry wants to calculate the danger value of various segments of the Hogwarts entrance. Danger value for a segment $[*l*, *r*)$ of the entrance can be calculated by taking the sum of danger values for each integer $*x*$-coordinate present in the segment.\n\nFormally, you have to implement two types of queries:\n\n- `1 l r k`: a snake is added parallel to entrance from $*x* = *l*$ to $*x* = *r*$ at y-coordinate $*y* = *k*$ ($*l*$ inclusive, $*r*$ exclusive).\n- `2 l r`: you have to calculate the danger value of segment $*l*$ to $*r*$ ($*l*$ inclusive, $*r*$ exclusive).\n\n## Input\n\nFirst line of input contains a single integer $*q*$ ($1 ≤ *q* ≤ 5·10^{4}$) denoting the number of queries.\n\nNext $*q*$ lines each describe a query. Each query description first contains the query type $*type*_{*i*}$ ($1 ≤ *type*_{*i*} ≤ 2$). This is followed by further description of the query. In case of the type being $1$, it is followed by integers $*l*_{*i*}, *r*_{*i*}$ and $*k*_{*i*}$ (![image](https://espresso.codeforces.com/19b17a77ae388bfef18ea5e1f5bac67f9c316e60.png), $- 10^{9} ≤ *k*_{*i*} ≤ 10^{9}$, $*k* ≠ 0$). Otherwise, it just contains two integers, $*l*_{*i*}$ and $*r*_{*i*}$ ($1 ≤ *l*_{*i*} < *r*_{*i*} ≤ 10^{5}$).\n\n## Output\n\nOutput the answer for each query of type 2 in a separate line.\n\n## Note\n\nIn the first sample case, the danger value for $*x*$-coordinates $1$ is $0$ as there is no $*y*_{2}$ satisfying the above condition for $*x* = 1$.\n\nDanger values for $*x*$-coordinates $2$ and $3$ is $10 + | - 7| = 17$.\n\nDanger values for $*x*$-coordinates $4$ to $9$ is again $0$ as there is no $*y*_{2}$ satisfying the above condition for these coordinates.\n\nThus, total danger value is $17 + 17 = 34$.",
-  "statementZhMd": null,
+  "statementZhMd": "纳吉尼是神秘人通过杀死伯莎·乔金斯创造的一个魂器。如今，它已经聚集起一支蛇群，正向霍格沃茨学校发起攻击。\n\n霍格沃茨的入口可以看作一条从 $1$ 到 $10^{5}$ 的直线（x 轴）。纳吉尼不断将各种蛇投向霍格沃茨的入口。每条蛇都平行于入口落下，覆盖从 $*x* = *l*$ 到 $*x* = *r*$、距离 $*k*$ 的一段线段。形式化地说，每条蛇都可以看作连接点 $(*l*, *k*)$ 和 $(*r*, *k*)$ 的线段。注意，$*k*$ 可以为正数或负数，但不能为 $0$。\n\n假设在某个 $*x*$ 坐标 $*x* = *i*$ 处，点 $(*i*, *y*_{1})$ 和点 $(*i*, *y*_{2})$ 上分别有蛇，其中 $*y*_{1} > 0$ 且 $*y*_{2} < 0$。如果对于点 $(*i*, *y*_{3})$ 上的任意一条蛇（其中 $*y*_{3} > 0$），均有 $*y*_{1} ≤ *y*_{3}$，并且对于点 $(*i*, *y*_{4})$ 上的任意一条蛇（其中 $*y*_{4} < 0$），均有 $|*y*_{2}| ≤ |*y*_{4}|$，则坐标 $*x* = *i*$ 处的危险值为 $*y*_{1} + |*y*_{2}|$。如果不存在这样的 $*y*_{1}$ 和 $*y*_{2}$，则危险值为 $0$。\n\nHarry 想计算霍格沃茨入口上各个区间的危险值。入口上区间 $[*l*, *r*)$ 的危险值可以通过将该区间内每个整数 $*x*$ 坐标处的危险值相加得到。\n\n形式化地说，你需要实现以下两种查询：\n\n- `1 l r k`：在 y 坐标 $*y* = *k*$ 处，添加一条从 $*x* = *l*$ 到 $*x* = *r*$、且平行于入口的蛇（包含 $*l*$，不包含 $*r*$）。\n- `2 l r`：计算入口上从 $*l*$ 到 $*r*$ 的区间的危险值（包含 $*l*$，不包含 $*r*$）。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 5·10^{4}$），表示查询的数量。\n\n接下来的 $*q*$ 行中的每一行描述一个查询。每个查询描述首先包含查询类型 $*type*_{*i}$（$1 ≤ *type*_{*i*} ≤ 2$）。之后根据类型给出进一步的描述。当类型为 $1$ 时，接下来是整数 $*l*_{*i*}, *r*_{*i*}$ 和 $*k*_{*i*}$ (![image](https://espresso.codeforces.com/19b17a77ae388bfef18ea5e1f5bac67f9c316e60.png)，$- 10^{9} ≤ *k*_{*i*} ≤ 10^{9}$，$*k* ≠ 0$）。否则，接下来仅包含两个整数 $*l*_{*i*}$ 和 $*r*_{*i*}$（$1 ≤ *l*_{*i*} < *r*_{*i*} ≤ 10^{5}$）。\n\n## 输出格式\n\n对于每个类型为 $2$ 的查询，单独输出一行答案。\n\n## 说明\n\n在第一个样例中，$*x*$ 坐标 $1$ 处的危险值为 $0$，因为对于 $*x* = 1$，不存在满足上述条件的 $*y*_{2}$。\n\n$*x*$ 坐标 $2$ 和 $3$ 处的危险值为 $10 + | - 7| = 17$。\n\n$*x*$ 坐标 $4$ 到 $9$ 处的危险值再次为 $0$，因为对于这些坐标，不存在满足上述条件的 $*y*_{2}$。\n\n因此，危险值总和为 $17 + 17 = 34$。",
   "samples": [
     {
       "input": "3\n1 1 10 10\n1 2 4 -7\n2 1 10\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:45:17.563Z"
+  "fetchedAt": "2026-10-31T00:45:17.563Z",
+  "translatedAt": "2026-11-04T06:01:16.424+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1285,
   "index": "E",
   "title": "Delete a Segment",
-  "titleZh": null,
+  "titleZh": "删除一个线段",
   "url": "https://codeforces.com/contest/1285/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -21,7 +21,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ segments on a $Ox$ axis $[l_1, r_1]$, $[l_2, r_2]$, ..., $[l_n, r_n]$. Segment $[l, r]$ covers all points from $l$ to $r$ inclusive, so all $x$ such that $l \\le x \\le r$.\n\nSegments can be placed *arbitrarily*  — be inside each other, coincide and so on. Segments can degenerate into points, that is $l_i=r_i$ is possible.\n\n*Union* of the set of segments is such a set of segments which covers exactly the same set of points as the original set. For example:\n\n- if $n=3$ and there are segments $[3, 6]$, $[100, 100]$, $[5, 8]$ then their union is $2$ segments: $[3, 8]$ and $[100, 100]$;\n- if $n=5$ and there are segments $[1, 2]$, $[2, 3]$, $[4, 5]$, $[4, 6]$, $[6, 6]$ then their union is $2$ segments: $[1, 3]$ and $[4, 6]$.\n\nObviously, a union is a set of pairwise non-intersecting segments.\n\nYou are asked to erase exactly one segment of the given $n$ so that the number of segments in the union of the rest $n-1$ segments is maximum possible.\n\nFor example, if $n=4$ and there are segments $[1, 4]$, $[2, 3]$, $[3, 6]$, $[5, 7]$, then:\n\n- erasing the first segment will lead to $[2, 3]$, $[3, 6]$, $[5, 7]$ remaining, which have $1$ segment in their union;\n- erasing the second segment will lead to $[1, 4]$, $[3, 6]$, $[5, 7]$ remaining, which have $1$ segment in their union;\n- erasing the third segment will lead to $[1, 4]$, $[2, 3]$, $[5, 7]$ remaining, which have $2$ segments in their union;\n- erasing the fourth segment will lead to $[1, 4]$, $[2, 3]$, $[3, 6]$ remaining, which have $1$ segment in their union.\n\nThus, you are required to erase the third segment to get answer $2$.\n\nWrite a program that will find the maximum number of segments in the union of $n-1$ segments if you erase any of the given $n$ segments.\n\n*Note that if there are multiple equal segments in the given set, then you can erase only one of them anyway. So the set after erasing will have exactly $n-1$ segments.*\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases in the test. Then the descriptions of $t$ test cases follow.\n\nThe first of each test case contains a single integer $n$ ($2 \\le n \\le 2\\cdot10^5$) — the number of segments in the given set. Then $n$ lines follow, each contains a description of a segment — a pair of integers $l_i$, $r_i$ ($-10^9 \\le l_i \\le r_i \\le 10^9$), where $l_i$ and $r_i$ are the coordinates of the left and right borders of the $i$-th segment, respectively.\n\nThe segments are given in an arbitrary order.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot10^5$.\n\n## Output\n\nPrint $t$ integers — the answers to the $t$ given test cases in the order of input. The answer is the maximum number of segments in the union of $n-1$ segments if you erase any of the given $n$ segments.",
-  "statementZhMd": null,
+  "statementZhMd": "数轴 $Ox$ 上有 $n$ 个线段 $[l_1, r_1]$、$[l_2, r_2]$、...、$[l_n, r_n]$。线段 $[l, r]$ 覆盖从 $l$ 到 $r$（包含端点）的所有点，即所有满足 $l \\le x \\le r$ 的 $x$。\n\n线段可以以*任意*方式放置——可以互相包含、重合等。线段也可以退化为点，即允许 $l_i=r_i$。\n\n一组线段的*并集*是这样一组线段：它覆盖的点集与原线段集合完全相同。例如：\n\n- 如果 $n=3$，线段为 $[3, 6]$、$[100, 100]$、$[5, 8]$，那么它们的并集包含 $2$ 个线段：$[3, 8]$ 和 $[100, 100]$；\n- 如果 $n=5$，线段为 $[1, 2]$、$[2, 3]$、$[4, 5]$、$[4, 6]$、$[6, 6]$，那么它们的并集包含 $2$ 个线段：$[1, 3]$ 和 $[4, 6]$。\n\n显然，并集中的线段两两不相交。\n\n现在要求你从给定的 $n$ 个线段中恰好删除一个，使剩余 $n-1$ 个线段的并集中的线段数量尽可能多。\n\n例如，若 $n=4$，线段为 $[1, 4]$、$[2, 3]$、$[3, 6]$、$[5, 7]$，那么：\n\n- 删除第一个线段后，剩余 $[2, 3]$、$[3, 6]$、$[5, 7]$，它们的并集包含 $1$ 个线段；\n- 删除第二个线段后，剩余 $[1, 4]$、$[3, 6]$、$[5, 7]$，它们的并集包含 $1$ 个线段；\n- 删除第三个线段后，剩余 $[1, 4]$、$[2, 3]$、$[5, 7]$，它们的并集包含 $2$ 个线段；\n- 删除第四个线段后，剩余 $[1, 4]$、$[2, 3]$、$[3, 6]$，它们的并集包含 $1$ 个线段。\n\n因此，应当删除第三个线段，得到答案 $2$。\n\n请编写程序，求出删除给定的 $n$ 个线段中的任意一个后，剩余 $n-1$ 个线段的并集中最多包含多少个线段。\n\n*注意，如果给定的线段集合中存在多个相同的线段，那么无论如何也只能删除其中一个。因此，删除后集合中恰好有 $n-1$ 个线段。*\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是 $t$ 个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2\\cdot10^5$）——给定集合中的线段数量。接下来 $n$ 行，每行包含一条线段的描述，即两个整数 $l_i$、$r_i$（$-10^9 \\le l_i \\le r_i \\le 10^9$），分别表示第 $i$ 条线段左端点和右端点的坐标。\n\n线段以任意顺序给出。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot10^5$。\n\n## 输出格式\n\n按输入顺序输出 $t$ 个整数——每个测试用例的答案。答案是删除给定的任意一个线段后，剩余 $n-1$ 个线段的并集中所包含的线段数量的最大值。",
   "samples": [
     {
       "input": "3\n4\n1 4\n2 3\n3 6\n5 7\n3\n5 5\n5 5\n5 5\n6\n3 3\n1 1\n5 5\n1 5\n2 2\n4 4\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:57:57.670Z"
+  "fetchedAt": "2026-10-30T23:57:57.670Z",
+  "translatedAt": "2026-11-04T04:52:35.079+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1255,
   "index": "B",
   "title": "Fridge Lockers",
-  "titleZh": null,
+  "titleZh": "冰箱锁",
   "url": "https://codeforces.com/contest/1255/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Hanh lives in a shared apartment. There are $n$ people (including Hanh) living there, each has a private fridge.\n\n$n$ fridges are secured by several steel chains. Each steel chain connects two **different** fridges and is protected by a digital lock. The owner of a fridge knows passcodes of all chains connected to it. A fridge can be open only if all chains connected to it are unlocked. For example, if a fridge has no chains connected to it at all, then any of $n$ people can open it.\n\n![image](https://espresso.codeforces.com/68e1abf04b28da31cf7c02ee4a2c85e921afb6c3.png) For exampe, in the picture there are $n=4$ people and $5$ chains. The first person knows passcodes of two chains: $1-4$ and $1-2$. The fridge $1$ can be open by its owner (the person $1$), also two people $2$ and $4$ (acting together) can open it.\n\nThe weights of these fridges are $a_1, a_2, \\ldots, a_n$. To make a steel chain connecting fridges $u$ and $v$, you have to pay $a_u + a_v$ dollars. Note that the landlord allows you to create **multiple chains connecting the same pair of fridges**.\n\nHanh's apartment landlord asks you to create exactly $m$ steel chains so that all fridges are private. A fridge is private if and only if, among $n$ people living in the apartment, only the owner can open it (i.e. no other person acting alone can do it). In other words, the fridge $i$ is not private if there exists the person $j$ ($i \\ne j$) that the person $j$ can open the fridge $i$.\n\nFor example, in the picture all the fridges are private. On the other hand, if there are $n=2$ fridges and only one chain (which connects them) then both fridges are not private (both fridges can be open not only by its owner but also by another person).\n\nOf course, the landlord wants to minimize the total cost of all steel chains to fulfill his request. Determine whether there exists any way to make exactly $m$ chains, and if yes, output any solution that minimizes the total cost.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $T$ ($1 \\le T \\le 10$). Then the descriptions of the test cases follow.\n\nThe first line of each test case contains two integers $n$, $m$ ($2 \\le n \\le 1000$, $1 \\le m \\le n$) — the number of people living in Hanh's apartment and the number of steel chains that the landlord requires, respectively.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 10^4$) — weights of all fridges.\n\n## Output\n\nFor each test case:\n\n- If there is no solution, print a single integer $-1$.\n- Otherwise, print a single integer $c$ — the minimum total cost. The $i$-th of the next $m$ lines contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$, $u_i \\ne v_i$), meaning that the $i$-th steel chain connects fridges $u_i$ and $v_i$. An arbitrary number of chains can be between a pair of fridges.\n\nIf there are multiple answers, print any.",
-  "statementZhMd": null,
+  "statementZhMd": "Hanh 住在一间合租公寓里。那里住着 $n$ 个人（包括 Hanh），每个人都有一个私人冰箱。\n\n$n$ 个冰箱由若干条钢链锁住。每条钢链连接两个**不同的**冰箱，并由一把数字锁保护。冰箱的所有者知道与其冰箱相连的所有钢链的密码。只有当与某个冰箱相连的所有钢链都被解锁时，这个冰箱才能被打开。例如，如果某个冰箱没有连接任何钢链，那么 $n$ 个人中的任意一个人都可以打开它。\n\n![image](https://espresso.codeforces.com/68e1abf04b28da31cf7c02ee4a2c85e921afb6c3.png) 例如，在图中有 $n=4$ 个人和 $5$ 条钢链。第一个人知道两条钢链 $1-4$ 和 $1-2$ 的密码。冰箱 $1$ 可以由它的所有者（第 $1$ 个人）打开，也可以由第 $2$ 个人和第 $4$ 个人（共同行动）打开。\n\n这些冰箱的重量分别为 $a_1, a_2, \\ldots, a_n$。为了制作一条连接冰箱 $u$ 和 $v$ 的钢链，需要支付 $a_u + a_v$ 美元。注意，房东允许在同一对冰箱之间制作**多条钢链**。\n\nHanh 公寓的房东要求你制作恰好 $m$ 条钢链，使所有冰箱都是私人的。当且仅当在住在公寓里的 $n$ 个人中，只有冰箱的所有者能够打开它时，这个冰箱才是私人的（也就是说，没有其他人能够单独打开它）。换句话说，如果存在某个人 $j$（$i \\ne j$）能够打开冰箱 $i$，那么冰箱 $i$ 就不是私人的。\n\n例如，在图中所有冰箱都是私人的。另一方面，如果有 $n=2$ 个冰箱且只有一条连接它们的钢链，那么两个冰箱都不是私人的（两个冰箱不仅可以由各自的所有者打开，也可以由另一个人打开）。\n\n当然，房东希望在满足要求的前提下，使所有钢链的总成本最小。请判断是否存在制作恰好 $m$ 条钢链的方法；如果存在，请输出任意一种总成本最小的方案。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $T$（$1 \\le T \\le 10$）。接下来给出各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$, $m$（$2 \\le n \\le 1000$，$1 \\le m \\le n$）——住在 Hanh 公寓中的人数，以及房东要求制作的钢链数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\le a_i \\le 10^4$）——所有冰箱的重量。\n\n## 输出格式\n\n对于每个测试用例：\n\n- 如果不存在可行方案，输出一个整数 $-1$。\n- 否则，输出一个整数 $c$——最小总成本。接下来的 $m$ 行中，第 $i$ 行包含两个整数 $u_i$ 和 $v_i$（$1 \\le u_i, v_i \\le n$，$u_i \\ne v_i$），表示第 $i$ 条钢链连接冰箱 $u_i$ 和 $v_i$。一对冰箱之间可以有任意数量的钢链。\n\n如果有多个答案，输出任意一个即可。",
   "samples": [
     {
       "input": "3\n4 4\n1 1 1 1\n3 1\n1 2 3\n3 3\n1 2 3\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:01:11.899Z"
+  "fetchedAt": "2026-10-31T00:01:11.899Z",
+  "translatedAt": "2026-11-04T04:54:49.054+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

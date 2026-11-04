@@ -4,7 +4,7 @@
   "contestId": 2001,
   "index": "D",
   "title": "Longest Max Min Subsequence",
-  "titleZh": null,
+  "titleZh": "最长极值子序列",
   "url": "https://codeforces.com/contest/2001/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an integer sequence $a_1, a_2, \\ldots, a_n$. Let $S$ be the set of all possible non-empty subsequences of $a$ without duplicate elements. Your goal is to find the longest sequence in $S$. If there are multiple of them, find the one that minimizes lexicographical order after multiplying terms at odd positions by $-1$.\n\nFor example, given $a = [3, 2, 3, 1]$, $S = \\{[1], [2], [3], [2, 1], [2, 3], [3, 1], [3, 2], [2, 3, 1], [3, 2, 1]\\}$. Then $[2, 3, 1]$ and $[3, 2, 1]$ would be the longest, and $[3, 2, 1]$ would be the answer since $[-3, 2, -1]$ is lexicographically smaller than $[-2, 3, -1]$.\n\nA sequence $c$ is a subsequence of a sequence $d$ if $c$ can be obtained from $d$ by the deletion of several (possibly, zero or all) elements.\n\nA sequence $c$ is lexicographically smaller than a sequence $d$ if and only if one of the following holds:\n\n- $c$ is a prefix of $d$, but $c \\ne d$;\n- in the first position where $c$ and $d$ differ, the sequence $c$ has a smaller element than the corresponding element in $d$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 5 \\cdot 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 3 \\cdot 10^5$) — the length of $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le n$) — the sequence $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the answer in the following format:\n\nOutput an integer $m$ in the first line — the length of $b$.\n\nThen output $m$ integers $b_1, b_2, \\ldots, b_m$ in the second line — the sequence $b$.\n\n## Note\n\nIn the first example, $S = \\{[1], [2], [3], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2], [2, 1, 3], [3, 2, 1]\\}$. Among them, $[2, 1, 3]$ and $[3, 2, 1]$ are the longest and $[-3, 2, -1]$ is lexicographical smaller than $[-2, 1, -3]$, so $[3, 2, 1]$ is the answer.\n\nIn the second example, $S = \\{[1]\\}$, so $[1]$ is the answer.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个整数序列 $a_1, a_2, \\ldots, a_n$。令 $S$ 为 $a$ 的所有不包含重复元素的非空子序列组成的集合。你的目标是找出 $S$ 中最长的序列。如果有多个最长序列，则找出将奇数位置上的元素乘以 $-1$ 后，字典序最小的序列。\n\n例如，给定 $a = [3, 2, 3, 1]$，$S = \\{[1], [2], [3], [2, 1], [2, 3], [3, 1], [3, 2], [2, 3, 1], [3, 2, 1]\\}$。其中 $[2, 3, 1]$ 和 $[3, 2, 1]$ 是最长的序列，而由于 $[-3, 2, -1]$ 的字典序小于 $[-2, 3, -1]$，因此答案是 $[3, 2, 1]$。\n\n如果可以通过删除序列 $d$ 中的若干个（可以为零个或全部）元素得到序列 $c$，则称序列 $c$ 是序列 $d$ 的子序列。\n\n当且仅当以下条件之一成立时，称序列 $c$ 的字典序小于序列 $d$：\n\n- $c$ 是 $d$ 的前缀，但 $c \\ne d$；\n- 在 $c$ 和 $d$ 第一个不同的位置，序列 $c$ 的元素小于 $d$ 中对应位置的元素。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 5 \\cdot 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^5$）——$a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le n$）——序列 $a$。\n\n保证所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，按以下格式输出答案：\n\n第一行输出一个整数 $m$——$b$ 的长度。\n\n第二行输出 $m$ 个整数 $b_1, b_2, \\ldots, b_m$——序列 $b$。\n\n## 说明\n\n在第一个样例中，$S = \\{[1], [2], [3], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2], [2, 1, 3], [3, 2, 1]\\}$。其中，$[2, 1, 3]$ 和 $[3, 2, 1]$ 是最长的序列，且 $[-3, 2, -1]$ 的字典序小于 $[-2, 1, -3]$，因此答案是 $[3, 2, 1]$。\n\n在第二个样例中，$S = \\{[1]\\}$，因此答案是 $[1]$。",
   "samples": [
     {
       "input": "4\n4\n3 2 1 3\n4\n1 1 1 1\n9\n3 2 1 3 2 1 3 2 1\n1\n1\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:49:02.819Z"
+  "fetchedAt": "2026-10-30T21:49:02.819Z",
+  "translatedAt": "2026-11-04T02:10:38.979+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

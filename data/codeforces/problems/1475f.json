@@ -4,7 +4,7 @@
   "contestId": 1475,
   "index": "F",
   "title": "Unusual Matrix",
-  "titleZh": null,
+  "titleZh": "非同寻常的矩阵",
   "url": "https://codeforces.com/contest/1475/problem/F",
   "difficulty": 1900,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given two binary square matrices $a$ and $b$ of size $n \\times n$. A matrix is called binary if each of its elements is equal to $0$ or $1$. You can do the following operations on the matrix $a$ **arbitrary** number of times (0 or more):\n\n- vertical `xor`. You choose the number $j$ ($1 \\le j \\le n$) and for all $i$ ($1 \\le i \\le n$) do the following: $a_{i, j} := a_{i, j} \\oplus 1$ ($\\oplus$ — is the operation [`xor`](https://en.wikipedia.org/wiki/Exclusive_or) (exclusive or)).\n- horizontal `xor`. You choose the number $i$ ($1 \\le i \\le n$) and for all $j$ ($1 \\le j \\le n$) do the following: $a_{i, j} := a_{i, j} \\oplus 1$.\n\nNote that the elements of the $a$ matrix change after each operation.\n\nFor example, if $n=3$ and the matrix $a$ is: $$ \\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 0 & 1 \\\\ 1 & 1 & 0 \\end{pmatrix} $$ Then the following sequence of operations shows an example of transformations:\n\n- vertical `xor`, $j=1$. $$ a= \\begin{pmatrix} 0 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{pmatrix} $$\n- horizontal `xor`, $i=2$. $$ a= \\begin{pmatrix} 0 & 1 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 1 & 0 \\end{pmatrix} $$\n- vertical `xor`, $j=2$. $$ a= \\begin{pmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix} $$\n\nCheck if there is a sequence of operations such that the matrix $a$ becomes equal to the matrix $b$.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases. Then $t$ test cases follow.\n\nThe first line of each test case contains one integer $n$ ($1 \\leq n \\leq 1000$) — the size of the matrices.\n\nThe following $n$ lines contain strings of length $n$, consisting of the characters '`0`' and '`1`' — the description of the matrix $a$.\n\nAn empty line follows.\n\nThe following $n$ lines contain strings of length $n$, consisting of the characters '`0`' and '`1`' — the description of the matrix $b$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $1000$.\n\n## Output\n\nFor each test case, output on a separate line:\n\n- \"`YES`\", there is such a sequence of operations that the matrix $a$ becomes equal to the matrix $b$;\n- \"`NO`\" otherwise.\n\nYou can output \"`YES`\" and \"`NO`\" in any case (for example, the strings `yEs`, `yes`, `Yes` and `YES` will be recognized as positive).\n\n## Note\n\nThe first test case is explained in the statements.\n\nIn the second test case, the following sequence of operations is suitable:\n\n- horizontal `xor`, $i=1$;\n- horizontal `xor`, $i=2$;\n- horizontal `xor`, $i=3$;\n\nIt can be proved that there is no sequence of operations in the third test case so that the matrix $a$ becomes equal to the matrix $b$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个大小为 $n \\times n$ 的二进制方阵 $a$ 和 $b$。如果一个矩阵中的每个元素都等于 $0$ 或 $1$，则称其为二进制矩阵。你可以对矩阵 $a$ 执行以下操作任意次（$0$ 次或更多次）：\n\n- 纵向 `xor`。选择一个数 $j$（$1 \\le j \\le n$），并对所有 $i$（$1 \\le i \\le n$）执行以下操作：$a_{i, j} := a_{i, j} \\oplus 1$（$\\oplus$ — [`xor`](https://en.wikipedia.org/wiki/Exclusive_or)（异或）运算）。\n- 横向 `xor`。选择一个数 $i$（$1 \\le i \\le n$），并对所有 $j$（$1 \\le j \\le n$）执行以下操作：$a_{i, j} := a_{i, j} \\oplus 1$。\n\n注意，矩阵 $a$ 中的元素会在每次操作后发生变化。\n\n例如，当 $n=3$ 且矩阵 $a$ 为：$$ \\begin{pmatrix} 1 & 1 & 0 \\\\ 0 & 0 & 1 \\\\ 1 & 1 & 0 \\end{pmatrix} $$ 时，下面的操作序列展示了一种变换过程：\n\n- 纵向 `xor`，$j=1$。$$ a= \\begin{pmatrix} 0 & 1 & 0 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{pmatrix} $$\n- 横向 `xor`，$i=2$。$$ a= \\begin{pmatrix} 0 & 1 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 1 & 0 \\end{pmatrix} $$\n- 纵向 `xor`，$j=2$。$$ a= \\begin{pmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix} $$\n\n判断是否存在一个操作序列，使矩阵 $a$ 变为矩阵 $b$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 1000$）——测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 1000$）——矩阵的大小。\n\n接下来的 $n$ 行包含长度为 $n$ 的字符串，仅由字符 '`0`' 和 '`1`' 组成——矩阵 $a$ 的描述。\n\n随后有一个空行。\n\n接下来的 $n$ 行包含长度为 $n$ 的字符串，仅由字符 '`0`' 和 '`1`' 组成——矩阵 $b$ 的描述。\n\n保证所有测试用例中的 $n$ 之和不超过 $1000$。\n\n## 输出格式\n\n对于每个测试用例，单独一行输出：\n\n- \"`YES`\"，如果存在这样的操作序列，使矩阵 $a$ 变为矩阵 $b$；\n- \"`NO`\"，否则。\n\n`YES` 和 `NO` 的大小写形式任意（例如，字符串 `yEs`、`yes`、`Yes` 和 `YES` 都会被识别为肯定答案）。\n\n## 说明\n\n第一个测试用例已在题目描述中解释。\n\n在第二个测试用例中，以下操作序列是可行的：\n\n- 横向 `xor`，$i=1$；\n- 横向 `xor`，$i=2$；\n- 横向 `xor`，$i=3$。\n\n可以证明，在第三个测试用例中，不存在任何操作序列能使矩阵 $a$ 变为矩阵 $b$。",
   "samples": [
     {
       "input": "3\n3\n110\n001\n110\n\n000\n000\n000\n3\n101\n010\n101\n\n010\n101\n010\n2\n01\n11\n\n10\n10\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:34:11.595Z"
+  "fetchedAt": "2026-11-02T18:34:11.595Z",
+  "translatedAt": "2026-11-04T04:05:53.076+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

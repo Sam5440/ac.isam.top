@@ -4,14 +4,14 @@
   "contestId": 1143,
   "index": "D",
   "title": "The Beatles",
-  "titleZh": null,
+  "titleZh": "披头士",
   "url": "https://codeforces.com/contest/1143/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Recently a Golden Circle of Beetlovers was found in Byteland. It is a circle route going through $n \\cdot k$ cities. The cities are numerated from $1$ to $n \\cdot k$, the distance between the neighboring cities is exactly $1$ km.\n\nSergey does not like beetles, he loves burgers. Fortunately for him, there are $n$ fast food restaurants on the circle, they are located in the $1$-st, the $(k + 1)$-st, the $(2k + 1)$-st, and so on, the $((n-1)k + 1)$-st cities, i.e. the distance between the neighboring cities with fast food restaurants is $k$ km.\n\nSergey began his journey at some city $s$ and traveled along the circle, making stops at cities each $l$ km ($l \\gt 0$), until he stopped in $s$ once again. Sergey then forgot numbers $s$ and $l$, but he remembers that the distance from the city $s$ to the nearest fast food restaurant was $a$ km, and the distance from the city he stopped at after traveling the first $l$ km from $s$ to the nearest fast food restaurant was $b$ km. Sergey always traveled in the same direction along the circle, but when he calculated distances to the restaurants, he considered both directions.\n\nNow Sergey is interested in two integers. The first integer $x$ is the minimum number of stops (excluding the first) Sergey could have done before returning to $s$. The second integer $y$ is the maximum number of stops (excluding the first) Sergey could have done before returning to $s$.\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($1 \\le n, k \\le 100\\,000$) — the number of fast food restaurants on the circle and the distance between the neighboring restaurants, respectively.\n\nThe second line contains two integers $a$ and $b$ ($0 \\le a, b \\le \\frac{k}{2}$) — the distances to the nearest fast food restaurants from the initial city and from the city Sergey made the first stop at, respectively.\n\n## Output\n\nPrint the two integers $x$ and $y$.\n\n## Note\n\nIn the first example the restaurants are located in the cities $1$ and $4$, the initial city $s$ could be $2$, $3$, $5$, or $6$. The next city Sergey stopped at could also be at cities $2, 3, 5, 6$. Let's loop through all possible combinations of these cities. If both $s$ and the city of the first stop are at the city $2$ (for example, $l = 6$), then Sergey is at $s$ after the first stop already, so $x = 1$. In other pairs Sergey needs $1, 2, 3$, or $6$ stops to return to $s$, so $y = 6$.\n\nIn the second example Sergey was at cities with fast food restaurant both initially and after the first stop, so $l$ is $2$, $4$, or $6$. Thus $x = 1$, $y = 3$.\n\nIn the third example there is only one restaurant, so the possible locations of $s$ and the first stop are: $(6, 8)$ and $(6, 4)$. For the first option $l = 2$, for the second $l = 8$. In both cases Sergey needs $x=y=5$ stops to go to $s$.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，拜特兰发现了一个披头士爱好者黄金圈。这是一条环形路线，途经 $n \\cdot k$ 座城市。城市编号从 $1$ 到 $n \\cdot k$，相邻城市之间的距离恰好为 $1$ 千米。\n\n谢尔盖不喜欢甲虫，他喜欢汉堡。幸运的是，环线上有 $n$ 家快餐店，它们分别位于第 $1$、第 $(k + 1)$、第 $(2k + 1)$、……、第 $((n-1)k + 1)$ 座城市，也就是说，相邻两家快餐店之间的距离为 $k$ 千米。\n\n谢尔盖从某座城市 $s$ 出发，沿环线以固定方向行进，每隔 $l$ 千米（$l \\gt 0$）在一座城市停下，直到再次停在 $s$。之后，谢尔盖忘记了 $s$ 和 $l$ 的数值，但他记得：城市 $s$ 到最近快餐店的距离为 $a$ 千米；从 $s$ 出发前进了第一个 $l$ 千米后所停城市到最近快餐店的距离为 $b$ 千米。谢尔盖始终沿环线的同一方向行进，但在计算到快餐店的距离时，他会考虑两个方向。\n\n现在谢尔盖想知道两个整数。第一个整数 $x$ 是在返回 $s$ 之前，他可能经过的最少停靠次数（不包括出发时的第一次停靠）；第二个整数 $y$ 是在返回 $s$ 之前，他可能经过的最多停靠次数（不包括出发时的第一次停靠）。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$1 \\le n, k \\le 100\\,000$）——快餐店的数量，以及相邻快餐店之间的距离。\n\n第二行包含两个整数 $a$ 和 $b$（$0 \\le a, b \\le \\frac{k}{2}$）——初始城市和谢尔盖第一次停下的城市到最近快餐店的距离。\n\n## 输出格式\n\n输出两个整数 $x$ 和 $y$。\n\n## 说明\n\n在第一个样例中，快餐店位于城市 $1$ 和 $4$，初始城市 $s$ 可能是 $2$、$3$、$5$ 或 $6$。谢尔盖第一次停下的城市也可能是 $2$、$3$、$5$ 或 $6$。枚举这些城市的所有可能组合。如果 $s$ 和第一次停下的城市都是城市 $2$（例如，$l = 6$），那么谢尔盖第一次停下后就已经回到了 $s$，因此 $x = 1$。对于其他城市组合，谢尔盖需要经过 $1$、$2$、$3$ 或 $6$ 次停靠才能返回 $s$，因此 $y = 6$。\n\n在第二个样例中，谢尔盖初始时和第一次停下后都位于有快餐店的城市，因此 $l$ 可能为 $2$、$4$ 或 $6$。所以 $x = 1$，$y = 3$。\n\n在第三个样例中，只有一家快餐店，因此 $s$ 和第一次停下的城市可能分别为 $(6, 8)$ 和 $(6, 4)$。对于第一种情况，$l = 2$；对于第二种情况，$l = 8$。在这两种情况下，谢尔盖都需要经过 $x=y=5$ 次停靠才能回到 $s$。",
   "samples": [
     {
       "input": "2 3\n1 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:13:26.499Z"
+  "fetchedAt": "2026-10-31T00:13:26.499Z",
+  "translatedAt": "2026-11-04T05:23:31.628+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

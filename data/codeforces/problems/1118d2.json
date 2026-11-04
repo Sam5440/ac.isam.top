@@ -4,7 +4,7 @@
   "contestId": 1118,
   "index": "D2",
   "title": "Coffee and Coursework (Hard Version)",
-  "titleZh": null,
+  "titleZh": "咖啡与课程作业（困难版）",
   "url": "https://codeforces.com/contest/1118/problem/D2",
   "difficulty": 1700,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "**The only difference between easy and hard versions is the constraints**.\n\nPolycarp has to write a coursework. The coursework consists of $m$ pages.\n\nPolycarp also has $n$ cups of coffee. The coffee in the $i$-th cup Polycarp has $a_i$ caffeine in it. Polycarp can drink some cups of coffee (each one no more than once). He can drink cups in **any order**. Polycarp drinks each cup **instantly** and **completely** (i.e. he cannot split any cup into several days).\n\nSurely, courseworks are not being written in a single day (in a perfect world of Berland, at least).\n\nLet's consider some day of Polycarp's work. Consider Polycarp drinks $k$ cups of coffee during this day and caffeine dosages of cups Polycarp drink during this day are $a_{i_1}, a_{i_2}, \\dots, a_{i_k}$. Then the first cup he drinks gives him energy to write $a_{i_1}$ pages of coursework, the second cup gives him energy to write $max(0, a_{i_2} - 1)$ pages, the third cup gives him energy to write $max(0, a_{i_3} - 2)$ pages, ..., the $k$-th cup gives him energy to write $max(0, a_{i_k} - k + 1)$ pages.\n\nIf Polycarp doesn't drink coffee during some day, he cannot write coursework at all that day.\n\nPolycarp has to finish his coursework as soon as possible (spend the minimum number of days to do it). Your task is to find out this number of days or say that it is impossible.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $m$ ($1 \\le n \\le 2 \\cdot 10^5$, $1 \\le m \\le 10^9$) — the number of cups of coffee and the number of pages in the coursework.\n\nThe second line of the input contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$), where $a_i$ is the caffeine dosage of coffee in the $i$-th cup.\n\n## Output\n\nIf it is impossible to write the coursework, print `-1`. Otherwise print the minimum number of days Polycarp needs to do it.\n\n## Note\n\nIn the first example Polycarp can drink fourth cup during first day (and write $1$ page), first and second cups during second day (and write $2 + (3 - 1) = 4$ pages), fifth cup during the third day (and write $2$ pages) and third cup during the fourth day (and write $1$ page) so the answer is $4$. It is obvious that there is no way to write the coursework in three or less days.\n\nIn the second example Polycarp can drink third, fourth and second cups during first day (and write $4 + (2 - 1) + (3 - 2) = 6$ pages) and sixth cup during second day (and write $4$ pages) so the answer is $2$. It is obvious that Polycarp cannot write the whole coursework in one day in this test.\n\nIn the third example Polycarp can drink all cups of coffee during first day and write $5 + (5 - 1) + (5 - 2) + (5 - 3) + (5 - 4) = 15$ pages of coursework.\n\nIn the fourth example Polycarp cannot drink all cups during first day and should drink one of them during the second day. So during first day he will write $5 + (5 - 1) + (5 - 2) + (5 - 3) = 14$ pages of coursework and during second day he will write $5$ pages of coursework. This is enough to complete it.\n\nIn the fifth example Polycarp cannot write the whole coursework at all, even if he will drink one cup of coffee during each day, so the answer is `-1`.",
-  "statementZhMd": null,
+  "statementZhMd": "**简单版与困难版之间唯一的区别是约束条件。**\n\nPolycarp 需要完成一份课程作业。这份课程作业共有 $m$ 页。\n\nPolycarp 还有 $n$ 杯咖啡。第 $i$ 杯咖啡中含有 $a_i$ 的咖啡因。Polycarp 可以饮用其中的一些咖啡（每杯最多饮用一次）。他可以按**任意顺序**饮用咖啡。Polycarp 饮用每杯咖啡都是**立即且全部**饮用（也就是说，他不能将一杯咖啡分到几天饮用）。\n\n当然，课程作业不可能在一天内完成（至少在理想的 Berland 世界中是这样）。\n\n考虑 Polycarp 工作的某一天。假设 Polycarp 在这一天饮用了 $k$ 杯咖啡，并且这一天饮用的咖啡因剂量依次为 $a_{i_1}, a_{i_2}, \\dots, a_{i_k}$。那么，他饮用的第一杯咖啡能让他完成 $a_{i_1}$ 页课程作业，第二杯咖啡能让他完成 $max(0, a_{i_2} - 1)$ 页，第三杯咖啡能让他完成 $max(0, a_{i_3} - 2)$ 页，……第 $k$ 杯咖啡能让他完成 $max(0, a_{i_k} - k + 1)$ 页。\n\n如果 Polycarp 在某天没有饮用咖啡，那么他在这一天完全无法完成课程作业。\n\nPolycarp 希望尽快完成课程作业（用最少的天数完成）。你的任务是求出这个最少天数，或者判断是否无法完成。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 2 \\cdot 10^5$，$1 \\le m \\le 10^9$）——咖啡的杯数和课程作业的页数。\n\n输入的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$），其中 $a_i$ 表示第 $i$ 杯咖啡中的咖啡因剂量。\n\n## 输出格式\n\n如果无法完成课程作业，输出 `-1`。否则，输出 Polycarp 完成课程作业所需的最少天数。\n\n## 说明\n\n在第一个样例中，Polycarp 可以在第一天饮用第四杯咖啡（并完成 $1$ 页），第二天饮用第一杯和第二杯咖啡（并完成 $2 + (3 - 1) = 4$ 页），第三天饮用第五杯咖啡（并完成 $2$ 页），第四天饮用第三杯咖啡（并完成 $1$ 页），因此答案是 $4$。显然，在三天或更少的时间内无法完成课程作业。\n\n在第二个样例中，Polycarp 可以在第一天饮用第三、第四和第二杯咖啡（并完成 $4 + (2 - 1) + (3 - 2) = 6$ 页），第二天饮用第六杯咖啡（并完成 $4$ 页），因此答案是 $2$。显然，在这个测试中，他无法在一天内完成全部课程作业。\n\n在第三个样例中，Polycarp 可以在第一天饮用所有咖啡，并完成 $5 + (5 - 1) + (5 - 2) + (5 - 3) + (5 - 4) = 15$ 页课程作业。\n\n在第四个样例中，Polycarp 无法在第一天饮用所有咖啡，因此需要在第二天饮用其中一杯。这样，第一天他将完成 $5 + (5 - 1) + (5 - 2) + (5 - 3) = 14$ 页课程作业，第二天将完成 $5$ 页课程作业。这足以完成课程作业。\n\n在第五个样例中，即使每天饮用一杯咖啡，Polycarp 也无法完成全部课程作业，因此答案是 `-1`。",
   "samples": [
     {
       "input": "5 8\n2 3 1 1 2\n",
@@ -43,5 +43,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:18:18.623Z"
+  "fetchedAt": "2026-11-02T19:18:18.623Z",
+  "translatedAt": "2026-11-04T05:21:42.136+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

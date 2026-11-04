@@ -4,7 +4,7 @@
   "contestId": 107,
   "index": "C",
   "title": "Arrangement",
-  "titleZh": null,
+  "titleZh": "排列",
   "url": "https://codeforces.com/contest/107/problem/C",
   "difficulty": 2400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "In the year 2500 the annual graduation ceremony in the German University in Cairo (GUC) has run smoothly for almost 500 years so far.\n\nThe most important part of the ceremony is related to the arrangement of the professors in the ceremonial hall.\n\nTraditionally GUC has $*n*$ professors. Each professor has his seniority level. All seniorities are different. Let's enumerate the professors from $1$ to $*n*$, with $1$ being the most senior professor and $*n*$ being the most junior professor.\n\nThe ceremonial hall has $*n*$ seats, one seat for each professor. Some places in this hall are meant for more senior professors than the others. More specifically, $*m*$ pairs of seats are in \"senior-junior\" relation, and the tradition requires that for all $*m*$ pairs of seats $(*a*_{*i*}, *b*_{*i*})$ the professor seated in \"senior\" position $*a*_{*i*}$ should be more senior than the professor seated in \"junior\" position $*b*_{*i*}$.\n\nGUC is very strict about its traditions, which have been carefully observed starting from year 2001. The tradition requires that:\n\n- The seating of the professors changes every year.\n- Year 2001 ceremony was using lexicographically first arrangement of professors in the ceremonial hall.\n- Each consecutive year lexicographically next arrangement of the professors is used.\n\nThe arrangement of the professors is the list of $*n*$ integers, where the first integer is the seniority of the professor seated in position number one, the second integer is the seniority of the professor seated in position number two, etc.\n\nGiven $*n*$, the number of professors, $*y*$, the current year and $*m*$ pairs of restrictions, output the arrangement of the professors for this year.\n\n## Input\n\nThe first line contains three integers $*n*$, $*y*$ and $*m*$ ($1 ≤ *n* ≤ 16, 2001 ≤ *y* ≤ 10^{18}, 0 ≤ *m* ≤ 100$) — the number of professors, the year for which the arrangement should be computed, and the number of pairs of seats for which the seniority relation should be kept, respectively.\n\nThe next $*m*$ lines contain one pair of integers each, \"$*a*_{*i*}$ $*b*_{*i*}$\", indicating that professor on the $*a*_{*i*}$-th seat is more senior than professor on the $*b*_{*i*}$-th seat ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*, *a*_{*i*} ≠ *b*_{*i*}$). Some pair may be listed more than once.\n\nPlease, do not use the `%lld` specificator to read or write 64-bit integers in С++. It is preferred to use the `cin` stream (you may also use the `%I64d` specificator).\n\n## Output\n\nPrint the order in which the professors should be seated in the requested year.\n\nIf by this year the GUC would have ran out of arrangements, or the given \"senior-junior\" relation are contradictory, print \"`The times have changed`\" (without quotes).\n\n## Note\n\nIn the first example the lexicographically first order of seating is 1 2 3.\n\nIn the third example the GUC will run out of arrangements after the year 3630800.\n\nIn the fourth example there are no valid arrangements for the seating.\n\nThe lexicographical comparison of arrangements is performed by the < operator in modern programming languages. The arrangement $*a*$ is lexicographically less that the arrangement $*b*$, if there exists such $*i*$ ($1 ≤ *i* ≤ *n*$), that $*a*_{*i*} < *b*_{*i*}$, and for any $*j*$ ($1 ≤ *j* < *i*$) $*a*_{*j*} = *b*_{*j*}$.",
-  "statementZhMd": null,
+  "statementZhMd": "2500 年，开罗德国大学（GUC）的年度毕业典礼至今已经顺利举行了近 500 年。\n\n典礼中最重要的环节是教授们在礼堂中的座次安排。\n\nGUC 传统上有 $*n*$ 位教授。每位教授都有自己的资历等级，且所有教授的资历等级各不相同。我们将教授按 $1$ 到 $*n*$ 编号，其中 $1$ 号教授资历最高，$*n*$ 号教授资历最低。\n\n礼堂中有 $*n*$ 个座位，每位教授对应一个座位。其中一些座位比其他座位更适合资历较高的教授。更具体地说，有 $*m*$ 对座位存在“资历高低”关系，传统要求对于全部 $*m*$ 对座位 $(*a*_{*i*}, *b*_{*i*})$，坐在“资历较高”位置 $*a*_{*i*}$ 上的教授必须比坐在“资历较低”位置 $*b*_{*i*}$ 上的教授资历更高。\n\nGUC 对其传统十分严格，从 2001 年开始就一直认真遵守。传统要求：\n\n- 教授们的座次每年都必须发生变化。\n- 2001 年的典礼采用礼堂中教授排列的字典序最小方案。\n- 此后每年都采用字典序上下一个的教授排列方案。\n\n教授的排列是一个包含 $*n*$ 个整数的列表，其中第一个整数表示坐在 1 号位置的教授的资历等级，第二个整数表示坐在 2 号位置的教授的资历等级，依此类推。\n\n给定 $*n*$（教授人数）、$*y*$（当前年份）以及 $*m*$ 对限制条件，请输出今年教授们的座次安排。\n\n## 输入格式\n\n第一行包含三个整数 $*n*$、$*y*$ 和 $*m*$（$1 ≤ *n* ≤ 16, 2001 ≤ *y* ≤ 10^{18}, 0 ≤ *m* ≤ 100$），分别表示教授人数、需要计算座次安排的年份，以及必须满足资历关系的座位对数量。\n\n接下来的 $*m*$ 行每行包含一对整数“$*a*_{*i*}$ $*b*_{*i*}$”，表示坐在第 $*a*_{*i*}$ 个座位上的教授资历高于坐在第 $*b*_{*i*}$ 个座位上的教授（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$，$*a*_{*i*} ≠ *b*_{*i*}$）。同一对座位可能会被重复列出。\n\n请不要在 C++ 中使用 `%lld` 格式说明符来读写 64 位整数。建议使用 `cin` 流（也可以使用 `%I64d` 格式说明符）。\n\n## 输出格式\n\n输出指定年份教授们的座次顺序。\n\n如果截至这一年 GUC 已经用尽了所有排列方案，或者给定的“资历高低”关系相互矛盾，请输出 `The times have changed`（不含引号）。\n\n## 说明\n\n在第一个样例中，字典序最小的座次顺序为 1 2 3。\n\n在第三个样例中，GUC 将在 3630800 年之后用尽所有排列方案。\n\n在第四个样例中，不存在合法的座次安排。\n\n排列的字典序比较由现代编程语言中的 < 运算符定义。如果存在某个 $*i*$（$1 ≤ *i* ≤ *n*$），使得 $*a*_{*i*} < *b*_{*i*}$，并且对于任意 $*j*$（$1 ≤ *j* < *i*$）都有 $*a*_{*j*} = *b*_{*j*}$，则称排列 $*a*$ 的字典序小于排列 $*b*$。",
   "samples": [
     {
       "input": "3 2001 2\n1 2\n2 3\n",
@@ -39,5 +39,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:38:36.117Z"
+  "fetchedAt": "2026-10-31T02:38:36.117Z",
+  "translatedAt": "2026-11-04T07:48:47.044+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

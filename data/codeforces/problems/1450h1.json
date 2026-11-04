@@ -4,7 +4,7 @@
   "contestId": 1450,
   "index": "H1",
   "title": "Multithreading (Easy Version)",
-  "titleZh": null,
+  "titleZh": "多线程（简单版）",
   "url": "https://codeforces.com/contest/1450/problem/H1",
   "difficulty": 2900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "**The only difference between the two versions of the problem is that there are no updates in the easy version.**\n\nThere are $n$ spools of thread placed on the rim of a circular table. The spools come in two types of thread: the first thread is black and the second thread is white.\n\nFor any two spools of the same color, you can attach them with a thread of that color in a straight line segment. Define a matching as a way to attach spools together so that each spool is attached to exactly one other spool.\n\nColoring is an assignment of colors (white and black) to the spools. A coloring is called **valid** if it has at least one matching. That is if the number of black spools and the number of white spools are both even.\n\nGiven a matching, we can find the number of times some white thread intersects some black thread. We compute the number of pairs of differently colored threads that intersect instead of the number of intersection points, so one intersection point may be counted multiple times if different pairs of threads intersect at the same point. If $c$ is a valid coloring, let $f(c)$ denote the minimum number of such intersections out of all possible matchings.\n\n![image](https://espresso.codeforces.com/6424a50f7ec7789c917510e8b0a2d3ecc33d48ac.png) The circle above is described by the coloring `bwbbbwww`. After matching the spools as shown, there is one intersection between differently colored threads. It can be proven that it is the minimum possible, so $f(\\text{bwbbbwww}) = 1$.\n\nYou are given a string $s$ representing an **unfinished** coloring, with black, white, and uncolored spools. A coloring $c$ is called $s$-reachable if you can achieve it by assigning colors to the uncolored spools of $s$ without changing the others.\n\nA coloring $c$ is chosen uniformly at random among all valid, $s$-reachable colorings. Compute the [expected value](https://en.wikipedia.org/wiki/Expected_value) of $f(c)$. You should find it by modulo $998244353$.\n\nWe can show that the answer can be written in the form $\\frac{p}{q}$ where $p$ and $q$ are relatively prime integers and $q\\not\\equiv 0\\pmod{998244353}$. The answer by modulo $998244353$ is equal to $(p\\cdot q^{-1})$ modulo $998244353$.\n\n## Input\n\nThe first line contains two integers $n$, $m$ ($2\\le n\\le 2\\cdot 10^5$, $n$ is even, $m=0$) — the number of spools and updates, respectively. There are no updates in the easy version, so it is always $0$.\n\nThe second line contains a string $s$ of length $n$ — the unfinished coloring of the spools. The $i$-th character will be '`w`', '`b`', or '`?`', describing if the $i$-th spool is white, black, or uncolored, respectively.\n\nIt is guaranteed there exists at least one uncolored spool.\n\n## Output\n\nPrint the expected value of $f(c)$ by modulo $998244353$.\n\n## Note\n\nThe first test corresponds closely to the image. Coloring '`?`' as '`w`' does not create a valid coloring because the number of black spools is odd. Then the only reachable valid coloring is '`bwbbbwww`' and $f(\\text{bwbbbwww}) = 1$, so the expected value is $1$.\n\nIt can be shown that the expected value for the second test is $\\frac{9}{16}$.",
-  "statementZhMd": null,
+  "statementZhMd": "**两个版本题目的唯一区别是，简单版中没有更新操作。**\n\n圆桌的边缘放置着 $n$ 个线轴。线轴中的线有两种：第一种线是黑色的，第二种线是白色的。\n\n对于任意两个颜色相同的线轴，可以用该颜色的线段将它们沿直线连接起来。定义一个匹配为一种连接线轴的方式，使得每个线轴恰好与另一个线轴相连。\n\n染色是指为线轴分配颜色（白色或黑色）。如果一种染色至少存在一个匹配，则称其为**有效**的。也就是说，黑色线轴的数量和白色线轴的数量都必须是偶数。\n\n给定一个匹配，我们可以求出某条白线与某条黑线相交的次数。我们统计的是相交的不同颜色线段对数，而不是交点的数量，因此如果不同的线段对在同一点相交，则该交点可能被重复计数。如果 $c$ 是一种有效染色，令 $f(c)$ 表示所有可能的匹配中上述相交次数的最小值。\n\n![image](https://espresso.codeforces.com/6424a50f7ec7789c917510e8b0a2d3ecc33d48ac.png) 上图中的圆由染色 `bwbbbwww` 描述。按照图中所示进行匹配后，不同颜色的线之间有一次相交。可以证明这是可能达到的最小值，因此 $f(\\text{bwbbbwww}) = 1$。\n\n给定一个表示**未完成**染色的字符串 $s$，其中包含黑色、白色和未染色的线轴。如果可以通过为 $s$ 中未染色的线轴分配颜色，且不改变其他线轴的颜色来得到染色 $c$，则称染色 $c$ 是 **$s$-可达的**。\n\n在所有有效且 $s$-可达的染色中等概率随机选择一种染色 $c$。求 $f(c)$ 的[期望值](https://en.wikipedia.org/wiki/Expected_value)。答案请对 $998244353$ 取模。\n\n可以证明答案可以表示为 $\\frac{p}{q}$，其中 $p$ 和 $q$ 互质，且 $q\\not\\equiv 0\\pmod{998244353}$。答案对 $998244353$ 取模后的值等于 $(p\\cdot q^{-1})$ 模 $998244353$ 的结果。\n\n## 输入格式\n\n第一行包含两个整数 $n$、$m$（$2\\le n\\le 2\\cdot 10^5$，$n$ 为偶数，$m=0$）——线轴的数量和更新操作的数量。简单版中没有更新操作，因此该值始终为 $0$。\n\n第二行包含一个长度为 $n$ 的字符串 $s$——未完成的染色。第 $i$ 个字符为 '`w`'、'`b`' 或 '`?`'，分别表示第 $i$ 个线轴为白色、黑色或未染色。\n\n保证至少存在一个未染色的线轴。\n\n## 输出格式\n\n输出 $f(c)$ 的期望值对 $998244353$ 取模后的结果。\n\n## 说明\n\n第一个测试与图片非常相似。将 '`?`' 染成 '`w`' 不会产生有效染色，因为黑色线轴的数量为奇数。因此，唯一可达的有效染色是 '`bwbbbwww`'，且 $f(\\text{bwbbbwww}) = 1$，所以期望值为 $1$。\n\n可以证明，第二个测试的期望值为 $\\frac{9}{16}$。",
   "samples": [
     {
       "input": "8 0\nbwbb?www\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:40:53.854Z"
+  "fetchedAt": "2026-10-30T23:40:53.854Z",
+  "translatedAt": "2026-11-04T04:10:19.327+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

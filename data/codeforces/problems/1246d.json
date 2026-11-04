@@ -4,14 +4,14 @@
   "contestId": 1246,
   "index": "D",
   "title": "Tree Factory",
-  "titleZh": null,
+  "titleZh": "Tree Factory",
   "url": "https://codeforces.com/contest/1246/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Bytelandian Tree Factory produces trees for all kinds of industrial applications. You have been tasked with optimizing the production of a certain type of tree for an especially large and important order.\n\nThe tree in question is a rooted tree with $n$ vertices labelled with distinct integers from $0$ to $n - 1$. The vertex labelled $0$ is the root of the tree, and for any non-root vertex $v$ the label of its parent $p(v)$ is less than the label of $v$.\n\nAll trees at the factory are made from bamboo blanks. A *bamboo* is a rooted tree such that each vertex has exactly one child, except for a single leaf vertex with no children. The vertices of a bamboo blank can be labelled arbitrarily before its processing is started.\n\nTo process a bamboo into another tree a single type of operation can be made: choose an arbitrary non-root vertex $v$ such that its parent $p(v)$ is not a root either. The operation consists of changing the parent of $v$ to its parent's parent $p(p(v))$. Note that parents of all other vertices remain unchanged, in particular, the subtree of $v$ does not change.\n\nEfficiency is crucial, hence you have to minimize the number of operations to make the desired tree from a bamboo blank. Construct any optimal sequence of operations to produce the desired tree.\n\nNote that the labelling of the resulting tree has to coincide with the labelling of the desired tree. Formally, the labels of the roots have to be equal, and for non-root vertices with the same label the labels of their parents should be the same.\n\nIt is guaranteed that for any test present in this problem an answer exists, and further, an optimal sequence contains at most $10^6$ operations. Note that **any hack that does not meet these conditions will be invalid**.\n\n## Input\n\nThe first line contains a single integer $n$ — the number of vertices in the tree ($2 \\leq n \\leq 10^5$).\n\nThe second line contains $n - 1$ integers $p(1), \\ldots, p(n - 1)$ — indices of parent vertices of $1, \\ldots, n - 1$ respectively ($0 \\leq p(i) \\lt i$).\n\n## Output\n\nIn the first line, print $n$ distinct integers $id_1, \\ldots, id_n$ — the initial labelling of the bamboo blank starting from the root vertex ($0 \\leq id_i \\lt n$).\n\nIn the second line, print a single integer $k$ — the number of operations in your sequence ($0 \\leq k \\leq 10^6$).\n\nIn the third line print $k$ integers $v_1, \\ldots, v_k$ describing operations in order. The $i$-th operation consists of changing $p(v_i)$ to $p(p(v_i))$. Each operation should be valid, i.e. neither $v_i$ nor $p(v_i)$ can be the root of the tree at the moment.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"树工厂\",\"bodyZh\":\"## 题目描述\\n\\nByteland 的树工厂为各种工业应用生产树。现在，你需要为一份特别庞大且重要的订单，优化某种树的生产过程。\\n\\n目标树是一棵有根树，包含 $n$ 个顶点，顶点分别被标记为 $0$ 到 $n - 1$ 的互不相同的整数。标记为 $0$ 的顶点是树的根，对于任意非根顶点 $v$，其父亲 $p(v)$ 的标记小于 $v$ 的标记。\\n\\n工厂中的所有树都由竹子毛坯制成。一根*竹子*是一棵有根树，其中每个顶点恰好有一个子节点，只有一个叶子顶点没有子节点。竹子毛坯中的顶点可以在开始加工前任意标记。\\n\\n将竹子加工成另一棵树时，只能进行一种操作：选择任意一个非根顶点 $v$，使得它的父亲 $p(v)$ 也不是根。该操作将 $v$ 的父亲修改为其原父亲的父亲 $p(p(v))$。注意，所有其他顶点的父亲均保持不变，特别地，$v$ 的子树不会发生变化。\\n\\n由于效率至关重要，你需要最小化从竹子毛坯得到目标树所需的操作次数。请构造任意一组最优操作序列，以生成目标树。\\n\\n注意，最终树的标记必须与目标树的标记一致。形式化地说，两棵树的根的标记必须相同，并且对于标记相同的非根顶点，它们的父亲标记也必须相同。\\n\\n保证对于本题中的每个测试数据，都存在答案，并且某个最优操作序列至多包含 $10^6$ 次操作。注意，**任何不满足这些条件的 hack 都将无效**。\\n\\n## 约束条件\\n\\n## 输入格式\\n\\n第一行包含一个整数 $n$ —— 树中顶点的数量（$2 \\leq n \\leq 10^5$）。\\n\\n第二行包含 $n - 1$ 个整数 $p(1), \\\\ldots, p(n - 1)$，分别表示顶点 $1, \\\\ldots, n - 1$ 的父亲顶点下标（$0 \\leq p(i) \\\\lt i$）。\\n\\n## 输出格式\\n\\n第一行输出 $n$ 个互不相同的整数 $id_1, \\\\ldots, id_n$ —— 从根顶点开始的竹子毛坯的初始标记（$0 \\\\leq id_i \\\\lt n$）。\\n\\n第二行输出一个整数 $k$ —— 操作序列中的操作次数（$0 \\\\leq k \\\\leq 10^6$）。\\n\\n第三行输出 $k$ 个整数 $v_1, \\\\ldots, v_k$，按顺序描述各次操作。第 $i$ 次操作是将 $p(v_i)$ 修改为 $p(p(v_i))$。每次操作都必须合法，即在操作进行时，$v_i$ 和 $p(v_i)$ 都不能是树的根。\"}",
   "samples": [
     {
       "input": "5\n0 0 1 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:01:43.658Z"
+  "fetchedAt": "2026-10-31T00:01:43.658Z",
+  "translatedAt": "2026-11-04T05:02:33.083+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

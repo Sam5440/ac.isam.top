@@ -4,7 +4,7 @@
   "contestId": 1266,
   "index": "H",
   "title": "Red-Blue Graph",
-  "titleZh": null,
+  "titleZh": "Red-Blue Graph",
   "url": "https://codeforces.com/contest/1266/problem/H",
   "difficulty": 3400,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "There is a directed graph on $n$ vertices numbered $1$ through $n$ where each vertex (except $n$) has two outgoing arcs, red and blue. At any point in time, exactly one of the arcs is *active* for each vertex. Initially, all blue arcs are active and there is a token located at vertex $1$. In one second, the vertex with token first switches its active arcs — the inactive arc becomes active and vice versa. Then, the token is moved along the active arc. When the token reaches the vertex $n$, it stops. It is guaranteed that $n$ is reachable via arcs from every vertex.\n\nYou are given $q$ queries. Each query contains a state of the graph — a pair $(v, s)$ of the following form:\n\n- $v$ is the vertex where the token is currently located;\n- $s$ is a string consisting of $n - 1$ characters. The $i$-th character corresponds to the color of the active edge leading from the $i$-th vertex (the character is '`R`' if red arc is active, otherwise the character is '`B`').\n\nFor each query, determine whether the given state is reachable from the initial state and the first time this configuration appears. Note that the two operations (change active arc and traverse it) are atomic — a state is not considered reached if it appears after changing the active arc but before traversing it.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\leq n \\leq 58$) — the number of vertices.\n\n$n-1$ lines follow, $i$-th of contains two space separated integers $b_i$ and $r_i$ ($1 \\leq b_i, r_i \\leq n$) representing a blue arc $(i, b_i)$ and red arc $(i, r_i)$, respectively. It is guaranteed that vertex $n$ is reachable from every vertex.\n\nThe next line contains a single integer $q$ ($1 \\leq q \\leq 5000$) — the number of queries.\n\nThen $q$ lines with queries follow. The $j$-th of these lines contains an integer $v$ ($1 \\leq v \\lt n$) and a string $s$ of length $n-1$ consiting only of characters '`R`' and '`B`'. The $i$-th of these characters is '`R`' if the red arc going from $i$ is active and '`B`' otherwise.\n\n## Output\n\nOutput $q$ lines, each containing answer to a single query.\n\nIf the state in the $i$-th query is unreachable, output the integer $-1$. Otherwise, output $t_i$ — the first time when the state appears (measured in seconds, starting from the initial state of the graph which appears in time $0$).\n\n## Note\n\nThe graph in the first example is depticed in the figure below.\n\n![image](https://espresso.codeforces.com/84be2cb4eb3130e1238892f1f1cd7d6e9c02a773.png)\n\nThe first $19$ queries denote the journey of the token. On the $19$-th move the token would reach the vertex $6$. The last two queries show states that are unreachable.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"红蓝图\",\"bodyZh\":\"有一个包含 $n$ 个顶点的有向图，顶点编号为 $1$ 到 $n$，其中每个顶点（$n$ 除外）都有两条出边，分别为红色和蓝色。在任意时刻，每个顶点恰有一条出边处于*激活*状态。初始时，所有蓝色出边均处于激活状态，并且一个令牌位于顶点 $1$。\\n\\n在一秒钟内，令牌所在的顶点首先切换其激活的出边——未激活的出边变为激活，反之亦然。然后，令牌沿着激活的出边移动。当令牌到达顶点 $n$ 时，移动停止。保证从每个顶点出发都可以通过有向边到达顶点 $n$。\\n\\n现在给出 $q$ 个询问。每个询问包含图的一种状态——一个形如 $(v, s)$ 的二元组，其中：\\n\\n- $v$ 是令牌当前所在的顶点；\\n- $s$ 是一个由 $n - 1$ 个字符组成的字符串。第 $i$ 个字符表示从第 $i$ 个顶点出发的激活边的颜色（如果红色出边处于激活状态，则该字符为 '`R`'，否则为 '`B`'）。\\n\\n对于每个询问，判断给定状态是否可以从初始状态到达，并确定该状态首次出现的时间。注意，两个操作（切换激活的出边和沿边移动）是原子的——如果某个状态只在切换激活的出边之后、沿边移动之前出现，则不认为到达了该状态。\\n\\n## 输入\\n\\n第一行包含一个整数 $n$（$2 \\leq n \\leq 58$）——顶点的数量。\\n\\n接下来 $n-1$ 行，第 $i$ 行包含两个用空格分隔的整数 $b_i$ 和 $r_i$（$1 \\leq b_i, r_i \\leq n$），分别表示蓝色出边 $(i, b_i)$ 和红色出边 $(i, r_i)$。保证从每个顶点都可以到达顶点 $n$。\\n\\n下一行包含一个整数 $q$（$1 \\leq q \\leq 5000$）——询问的数量。\\n\\n接下来是 $q$ 行询问。第 $j$ 行询问包含一个整数 $v$（$1 \\leq v \\\\lt n$）和一个长度为 $n-1$、仅由字符 '`R`' 和 '`B`' 组成的字符串 $s$。其中，第 $i$ 个字符为 '`R`' 表示从顶点 $i$ 出发的红色出边处于激活状态，为 '`B`' 则表示其未激活。\\n\\n## 输出\\n\\n输出 $q$ 行，每行包含一个询问的答案。\\n\\n如果第 $i$ 个询问中的状态无法到达，输出整数 $-1$。否则，输出 $t_i$——该状态首次出现的时间（以秒为单位，从初始图状态出现的时间 $0$ 开始计时）。\\n\\n## 说明\\n\\n第一个样例中的图如下图所示。\\n\\n![image](https://espresso.codeforces.com/84be2cb4eb3130e1238892f1f1cd7d6e9c02a773.png)\\n\\n前 $19$ 个询问表示令牌的移动过程。在第 $19$ 次移动中，令牌将到达顶点 $6$。最后两个询问表示无法到达的状态。\"}",
   "samples": [
     {
       "input": "6\n2 1\n5 5\n2 1\n6 3\n4 3\n21\n1 BBBBB\n1 RBBBB\n2 BBBBB\n5 BRBBB\n3 BRBBR\n1 BRRBR\n1 RRRBR\n2 BRRBR\n5 BBRBR\n4 BBRBB\n3 BBRRB\n2 BBBRB\n5 BRBRB\n3 BRBRR\n1 BRRRR\n1 RRRRR\n2 BRRRR\n5 BBRRR\n4 BBRRB\n2 BRBBB\n4 BRBBR\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:00:25.017Z"
+  "fetchedAt": "2026-10-31T00:00:25.017Z",
+  "translatedAt": "2026-11-04T04:49:26.385+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

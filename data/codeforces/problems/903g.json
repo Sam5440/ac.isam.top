@@ -4,7 +4,7 @@
   "contestId": 903,
   "index": "G",
   "title": "Yet Another Maxflow Problem",
-  "titleZh": null,
+  "titleZh": "又一个最大流问题",
   "url": "https://codeforces.com/contest/903/problem/G",
   "difficulty": 2700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "In this problem you will have to deal with a very special network.\n\nThe network consists of two parts: part $*A*$ and part $*B*$. Each part consists of $*n*$ vertices; $*i*$-th vertex of part $*A*$ is denoted as $*A*_{*i*}$, and $*i*$-th vertex of part $*B*$ is denoted as $*B*_{*i*}$.\n\nFor each index $*i*$ ($1 ≤ *i* < *n*$) there is a directed edge from vertex $*A*_{*i*}$ to vertex $*A*_{*i* + 1}$, and from $*B*_{*i*}$ to $*B*_{*i* + 1}$, respectively. Capacities of these edges are given in the input. Also there might be several directed edges going from part $*A*$ to part $*B*$ (but never from $*B*$ to $*A*$).\n\nYou have to calculate the [maximum flow value](https://en.wikipedia.org/wiki/Maximum_flow_problem) from $*A*_{1}$ to $*B*_{*n*}$ in this network. Capacities of edges connecting $*A*_{*i*}$ to $*A*_{*i* + 1}$ might sometimes change, and you also have to maintain the maximum flow value after these changes. Apart from that, the network is fixed (there are no changes in part $*B*$, no changes of edges going from $*A*$ to $*B*$, and no edge insertions or deletions).\n\nTake a look at the example and the notes to understand the structure of the network better.\n\n## Input\n\nThe first line contains three integer numbers $*n*$, $*m*$ and $*q*$ ($2 ≤ *n*, *m* ≤ 2·10^{5}$, $0 ≤ *q* ≤ 2·10^{5}$) — the number of vertices in each part, the number of edges going from $*A*$ to $*B*$ and the number of changes, respectively.\n\nThen $*n* - 1$ lines follow, $*i*$-th line contains two integers $*x*_{*i*}$ and $*y*_{*i*}$ denoting that the edge from $*A*_{*i*}$ to $*A*_{*i* + 1}$ has capacity $*x*_{*i*}$ and the edge from $*B*_{*i*}$ to $*B*_{*i* + 1}$ has capacity $*y*_{*i*}$ ($1 ≤ *x*_{*i*}, *y*_{*i*} ≤ 10^{9}$).\n\nThen $*m*$ lines follow, describing the edges from $*A*$ to $*B*$. Each line contains three integers $*x*$, $*y*$ and $*z*$ denoting an edge from $*A*_{*x*}$ to $*B*_{*y*}$ with capacity $*z*$ ($1 ≤ *x*, *y* ≤ *n*$, $1 ≤ *z* ≤ 10^{9}$). There might be multiple edges from $*A*_{*x*}$ to $*B*_{*y*}$.\n\nAnd then $*q*$ lines follow, describing a sequence of changes to the network. $*i*$-th line contains two integers $*v*_{*i*}$ and $*w*_{*i*}$, denoting that the capacity of the edge from $*A*_{*v*_{*i*}}$ to $*A*_{*v*_{*i*} + 1}$ is set to $*w*_{*i*}$ ($1 ≤ *v*_{*i*} < *n*$, $1 ≤ *w*_{*i*} ≤ 10^{9}$).\n\n## Output\n\nFirstly, print the maximum flow value in the original network. Then print $*q*$ integers, $*i*$-th of them must be equal to the maximum flow value after $*i*$-th change.\n\n## Note\n\nThis is the original network in the example:\n\n![image](https://espresso.codeforces.com/2cde6a73d42b3f76712d52ebfe4f6441bc5dc343.png)",
-  "statementZhMd": null,
+  "statementZhMd": "在本题中，你需要处理一个非常特殊的网络。\n\n该网络由两部分组成：部分 $*A*$ 和部分 $*B*$。每一部分都包含 $*n*$ 个顶点；部分 $*A*$ 的第 $*i*$ 个顶点记为 $*A*_{*i*}$，部分 $*B*$ 的第 $*i*$ 个顶点记为 $*B*_{*i*}$。\n\n对于每个下标 $*i*$（$1 ≤ *i* < *n*$），都有一条从顶点 $*A*_{*i*}$ 指向顶点 $*A*_{*i* + 1}$ 的有向边，以及一条从顶点 $*B*_{*i*}$ 指向顶点 $*B*_{*i* + 1}$ 的有向边。这些边的容量在输入中给出。此外，部分 $*A*$ 中可能有若干条指向部分 $*B*$ 的有向边（但绝不会有从 $*B*$ 指向 $*A*$ 的边）。\n\n你需要计算该网络中从 $*A*_{1}$ 到 $*B*_{*n*}$ 的[最大流值](https://en.wikipedia.org/wiki/Maximum_flow_problem)。部分 $*A*$ 中连接 $*A*_{*i*}$ 和 $*A*_{*i* + 1}$ 的边的容量可能会发生变化，你还需要在这些变化之后维护最大流值。除此之外，网络不会发生其他变化（部分 $*B*$ 中的边不会变化，从 $*A*$ 指向 $*B*$ 的边不会变化，也不会插入或删除边）。\n\n请参考样例和说明，以更好地理解该网络的结构。\n\n## 输入\n\n第一行包含三个整数 $*n*$、$*m*$ 和 $*q*$（$2 ≤ *n*, *m* ≤ 2·10^{5}$，$0 ≤ *q* ≤ 2·10^{5}$），分别表示每一部分中的顶点数、从 $*A*$ 指向 $*B*$ 的边数以及修改次数。\n\n接下来 $*n* - 1$ 行，第 $*i*$ 行包含两个整数 $*x*_{*i*}$ 和 $*y*_{*i*}$，表示从 $*A*_{*i*}$ 到 $*A*_{*i* + 1}$ 的边容量为 $*x*_{*i*}$，从 $*B*_{*i*}$ 到 $*B*_{*i* + 1}$ 的边容量为 $*y*_{*i*}$（$1 ≤ *x*_{*i*}, *y*_{*i*} ≤ 10^{9}$）。\n\n接下来 $*m*$ 行描述从 $*A*$ 到 $*B*$ 的边。每行包含三个整数 $*x*$、$*y*$ 和 $*z*$，表示一条从 $*A*_{*x*}$ 到 $*B*_{*y*}$、容量为 $*z*$ 的边（$1 ≤ *x*, *y* ≤ *n*$，$1 ≤ *z* ≤ 10^{9}$）。从 $*A*_{*x*}$ 到 $*B*_{*y*}$ 之间可能存在多条边。\n\n然后接下来 $*q*$ 行描述对网络的一系列修改。第 $*i*$ 行包含两个整数 $*v*_{*i*}$ 和 $*w*_{*i*}$，表示将从 $*A*_{*v*_{*i*}}$ 到 $*A*_{*v*_{*i*} + 1}$ 的边容量设为 $*w*_{*i*}$（$1 ≤ *v*_{*i*} < *n*$，$1 ≤ *w*_{*i*} ≤ 10^{9}$）。\n\n## 输出\n\n首先，输出原始网络中的最大流值。然后输出 $*q*$ 个整数，其中第 $*i*$ 个整数必须等于第 $*i*$ 次修改之后的最大流值。\n\n## 说明\n\n这是样例中的原始网络：\n\n![image](https://espresso.codeforces.com/2cde6a73d42b3f76712d52ebfe4f6441bc5dc343.png)",
   "samples": [
     {
       "input": "4 3 2\n1 2\n3 4\n5 6\n2 2 7\n1 4 8\n4 3 9\n1 100\n2 100\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:42:54.484Z"
+  "fetchedAt": "2026-11-02T19:42:54.484Z",
+  "translatedAt": "2026-11-04T05:55:11.379+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

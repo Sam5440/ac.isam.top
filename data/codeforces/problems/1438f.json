@@ -4,7 +4,7 @@
   "contestId": 1438,
   "index": "F",
   "title": "Olha and Igor",
-  "titleZh": null,
+  "titleZh": "奥尔哈和伊戈尔",
   "url": "https://codeforces.com/contest/1438/problem/F",
   "difficulty": 3000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "**This is an interactive problem.**\n\nIgor wants to find the key to Olha's heart. The problem is, that it's at the root of a binary tree.\n\nThere is a perfect binary tree of height $h$ consisting of $n = 2^{h} - 1$ nodes. The nodes have been assigned distinct labels from $1$ to $n$. However, **Igor only knows $h$ and does not know which label corresponds to which node**.\n\nTo find key to Olha's heart he needs to find the label assigned to the root by making queries of the following type **at most $n+420$ times**:\n\n- Select three **distinct** labels $u$, $v$ and $w$ ($1 \\leq u,v,w \\leq n$).\n- In response, Olha (the grader) will tell him the label of the **lowest common ancestor** of nodes labelled $u$ and $v$, if the tree was **rooted** at the node labelled $w$ instead.\n\nHelp Igor to find the root!\n\n**Note:** the grader is not adaptive: the labels are fixed before any queries are made.\n\n## Input\n\nThe first and only line contains a single integer $h$ ($3 \\le h \\le 18$) — the height of the tree.\n\n## Interaction\n\nYou begin the interaction by reading $h$.\n\nTo make a query for labels $u, v, w$, in a separate line output \"`? u v w`\".\n\nNumbers in the query have to satisfy $1 \\le u, v, w \\le n$. Additionally, $u \\ne v$, $u \\ne w$, and $v \\ne w$.\n\nIn response, you will receive $1 \\le x \\le n$, the label of the lowest common ancestor of $u$ and $v$, if the tree was rooted at $w$.\n\nIn case your query is invalid or you asked more than $n+420$ queries, program will print $-1$ and will finish interaction. You will receive **Wrong answer** verdict. Make sure to exit immediately to avoid getting other verdicts.\n\nWhen you determine the label assigned to the root, output \"! r\", where $r$ is the label of the root.\n\nAfter printing a query do not forget to output end of line and flush the output. Otherwise, you will get `Idleness limit exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see documentation for other languages.\n\n**Hack Format**\n\nTo hack, use the following format.\n\nThe first line should contain a single integer $h$ (height of the binary tree).\n\nOn the next line, output a permutation $p$ of size $n = 2^h - 1$. This represents a binary tree where the root is labelled $p_1$ and for $1 \\lt i \\le n$, the parent of $p_i$ is $p_{ \\lfloor{\\frac{i}{2}}\\rfloor }$.\n\n## Note\n\nThe labels corresponding to the tree in the example are [$4$,$7$,$2$,$6$,$1$,$5$,$3$], meaning the root is labelled $4$, and for $1 \\lt i \\le n$, the parent of $p_i$ is $p_{ \\lfloor{\\frac{i}{2}}\\rfloor }$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是一道交互题。**\n\n伊戈尔想要找到奥尔哈的心之钥匙。问题是，它位于一棵二叉树的根节点上。\n\n有一棵高度为 $h$、包含 $n = 2^{h} - 1$ 个节点的完美二叉树。节点被分别赋予了 $1$ 到 $n$ 的不同标签。然而，**伊戈尔只知道 $h$，并不知道每个标签对应哪个节点**。\n\n为了找到奥尔哈的心之钥匙，他需要通过进行至多 $n+420$ 次以下类型的询问，找出根节点的标签：\n\n- 选择三个**互不相同**的标签 $u$、$v$ 和 $w$（$1 \\leq u,v,w \\leq n$）。\n- 作为回应，如果将树以标签为 $w$ 的节点作为根，奥尔哈（评测器）会告诉他标签为 $u$ 和 $v$ 的节点的**最近公共祖先**的标签。\n\n请帮助伊戈尔找到根节点！\n\n**注意：**评测器不是自适应的：所有标签会在进行任何询问之前确定。\n\n## 输入格式\n\n唯一一行包含一个整数 $h$（$3 \\leq h \\leq 18$）——树的高度。\n\n## 交互\n\n交互开始时，读入 $h$。\n\n要对标签 $u$、$v$、$w$ 进行询问，请单独输出一行 ``? u v w``。\n\n询问中的数字必须满足 $1 \\leq u,v,w \\leq n$。此外，$u \\ne v$、$u \\ne w$ 且 $v \\ne w$。\n\n作为回应，你将收到一个整数 $1 \\leq x \\leq n$，表示如果将树以 $w$ 为根，$u$ 和 $v$ 的最近公共祖先的标签。\n\n如果你的询问无效，或者你进行了超过 $n+420$ 次询问，程序将输出 $-1$ 并结束交互。你将收到 **Wrong answer** 判定。请确保立即退出，以避免收到其他判定。\n\n当你确定根节点的标签后，输出 ``! r``，其中 $r$ 是根节点的标签。\n\n输出询问后不要忘记输出换行并刷新输出。否则，你将收到 `Idleness limit exceeded`。为此，请使用：\n\n- `fflush(stdout)` 或 `cout.flush()`（C++）；\n- `System.out.flush()`（Java）；\n- `flush(output)`（Pascal）；\n- `stdout.flush()`（Python）；\n- 其他语言请参阅相关文档。\n\n**Hack 格式**\n\n在进行 hack 时，请使用以下格式。\n\n第一行应包含一个整数 $h$（二叉树的高度）。\n\n下一行输出一个大小为 $n = 2^h - 1$ 的排列 $p$。该排列表示一棵二叉树：根节点的标签为 $p_1$，对于 $1 \\lt i \\le n$，$p_i$ 的父节点为 $p_{ \\lfloor{\\frac{i}{2}}\\rfloor }$。\n\n## 说明\n\n样例中与树对应的标签为 [$4$,$7$,$2$,$6$,$1$,$5$,$3$]，这意味着根节点的标签为 $4$，并且对于 $1 \\lt i \\le n$，$p_i$ 的父节点为 $p_{ \\lfloor{\\frac{i}{2}}\\rfloor }$。",
   "samples": [
     {
       "input": "3\n\n2\n\n7\n\n4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:42:03.830Z"
+  "fetchedAt": "2026-10-30T23:42:03.830Z",
+  "translatedAt": "2026-11-04T04:15:10.191+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

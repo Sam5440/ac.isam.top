@@ -4,7 +4,7 @@
   "contestId": 1766,
   "index": "F",
   "title": "MCF",
-  "titleZh": null,
+  "titleZh": "最小费用流",
   "url": "https://codeforces.com/contest/1766/problem/F",
   "difficulty": 2800,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a graph consisting of $n$ vertices and $m$ directed arcs. The $i$-th arc goes from the vertex $x_i$ to the vertex $y_i$, has capacity $c_i$ and weight $w_i$. No arc goes into the vertex $1$, and no arc goes from the vertex $n$. There are no cycles of negative weight in the graph (it is impossible to travel from any vertex to itself in such a way that the total weight of all arcs you go through is negative).\n\nYou have to assign each arc a flow (an integer between $0$ and its capacity, inclusive). For every vertex **except $1$ and $n$**, the total flow on the arcs going to this vertex must be equal to the total flow on the arcs going from that vertex. Let the flow on the $i$-th arc be $f_i$, then the cost of the flow is equal to $\\sum \\limits_{i = 1}^{m} f_i w_i$. You have to find a flow which **minimizes** the cost.\n\nSounds classical, right? Well, we have some additional constraints on the flow on every edge:\n\n- if $c_i$ is even, $f_i$ must be even;\n- if $c_i$ is odd, $f_i$ must be odd.\n\nCan you solve this problem?\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\le n \\le 100$; $1 \\le m \\le 200$).\n\nThen $m$ lines follow. The $i$-th of them contains four integers $x_i$, $y_i$, $c_i$, and $w_i$ ($1 \\le x_i \\le n - 1$; $2 \\le y_i \\le n$; $x_i \\ne y_i$; $1 \\le c_i \\le 100$; $-100 \\le w_i \\le 100$). These integers describe the $i$-th arc.\n\nAdditional constraints on the input:\n\n- there are no negative cycles in the graph.\n\n## Output\n\nIf a flow satisfying all of the constraints does not exist, print `Impossible`.\n\nOtherwise, print two lines:\n\n- the first line should contain one word `Possible`;\n- the second line should contain $m$ integers $f_1, f_2, \\dots, f_m$.\n\nIf there are multiple answers, print any of them. Note that the cost of the flow should be minimized.",
-  "statementZhMd": null,
+  "statementZhMd": "你得到了一个由 $n$ 个顶点和 $m$ 条有向弧组成的图。第 $i$ 条弧从顶点 $x_i$ 指向顶点 $y_i$，容量为 $c_i$，权重为 $w_i$。没有弧指向顶点 $1$，也没有弧从顶点 $n$ 指出。图中不存在负权环（不可能从任意顶点出发，以某种方式回到该顶点，且经过的所有弧的权重总和为负）。\n\n你需要为每条弧分配一个流量（一个介于 $0$ 和其容量之间的整数，包括边界）。对于**除 $1$ 和 $n$ 之外的每个顶点**，指向该顶点的弧上的总流量必须等于从该顶点指出的弧上的总流量。设第 $i$ 条弧上的流量为 $f_i$，则该流的费用等于 $\\sum \\limits_{i = 1}^{m} f_i w_i$。你需要找出一个使费用**最小**的流。\n\n听起来很经典，对吧？不过，我们还对每条边上的流量有一些额外限制：\n\n- 如果 $c_i$ 是偶数，则 $f_i$ 必须是偶数；\n- 如果 $c_i$ 是奇数，则 $f_i$ 必须是奇数。\n\n你能解决这个问题吗？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 100$；$1 \\le m \\le 200$）。\n\n接下来 $m$ 行，第 $i$ 行包含四个整数 $x_i$、$y_i$、$c_i$ 和 $w_i$（$1 \\le x_i \\le n - 1$；$2 \\le y_i \\le n$；$x_i \\ne y_i$；$1 \\le c_i \\le 100$；$-100 \\le w_i \\le 100$）。这些整数描述了第 $i$ 条弧。\n\n输入还满足以下条件：\n\n- 图中不存在负权环。\n\n## 输出格式\n\n如果不存在满足所有限制的流，输出 `Impossible`。\n\n否则，输出两行：\n\n- 第一行应包含一个单词 `Possible`；\n- 第二行应包含 $m$ 个整数 $f_1, f_2, \\dots, f_m$。\n\n如果有多个答案，输出任意一个即可。注意，所输出流的费用必须是最小的。",
   "samples": [
     {
       "input": "3 3\n1 2 3 -10\n1 2 3 -15\n2 3 2 0\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:48:22.976Z"
+  "fetchedAt": "2026-11-02T17:48:22.976Z",
+  "translatedAt": "2026-11-04T03:03:37.266+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

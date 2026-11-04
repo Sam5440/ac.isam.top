@@ -4,7 +4,7 @@
   "contestId": 1632,
   "index": "D",
   "title": "New Year Concert",
-  "titleZh": null,
+  "titleZh": "新年音乐会",
   "url": "https://codeforces.com/contest/1632/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "New Year is just around the corner, which means that in School 179, preparations for the concert are in full swing.\n\nThere are $n$ classes in the school, numbered from $1$ to $n$, the $i$-th class has prepared a scene of length $a_i$ minutes.\n\nAs the main one responsible for holding the concert, Idnar knows that if a concert has $k$ scenes of lengths $b_1$, $b_2$, $\\ldots$, $b_k$ minutes, then the audience will get bored if there exist two integers $l$ and $r$ such that $1 \\le l \\le r \\le k$ and $\\gcd(b_l, b_{l + 1}, \\ldots, b_{r - 1}, b_r) = r - l + 1$, where $\\gcd(b_l, b_{l + 1}, \\ldots, b_{r - 1}, b_r)$ is equal to the [greatest common divisor (GCD)](https://en.wikipedia.org/wiki/Greatest_common_divisor) of the numbers $b_l$, $b_{l + 1}$, $\\ldots$, $b_{r - 1}$, $b_r$.\n\nTo avoid boring the audience, Idnar can ask any number of times (possibly zero) for the $t$-th class ($1 \\le t \\le k$) to make a new scene $d$ minutes in length, where $d$ can be **any positive integer**. Thus, after this operation, $b_t$ is equal to $d$. Note that $t$ and $d$ can be different for each operation.\n\nFor a sequence of scene lengths $b_1$, $b_2$, $\\ldots$, $b_{k}$, let $f(b)$ be the minimum number of classes Idnar has to ask to change their scene if he wants to avoid boring the audience.\n\nIdnar hasn't decided which scenes will be allowed for the concert, so he wants to know the value of $f$ for each non-empty prefix of $a$. In other words, Idnar wants to know the values of $f(a_1)$, $f(a_1$,$a_2)$, $\\ldots$, $f(a_1$,$a_2$,$\\ldots$,$a_n)$.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of classes in the school.\n\nThe second line contains $n$ positive integers $a_1$, $a_2$, $\\ldots$, $a_n$ ($1 \\le a_i \\le 10^9$) — the lengths of the class scenes.\n\n## Output\n\nPrint a sequence of $n$ integers in a single line — $f(a_1)$, $f(a_1$,$a_2)$, $\\ldots$, $f(a_1$,$a_2$,$\\ldots$,$a_n)$.\n\n## Note\n\nIn the first test we can change $1$ to $2$, so the answer is $1$.\n\nIn the second test:\n\n- $[1]$ can be changed into $[2]$,\n- $[1, 4]$ can be changed into $[3, 4]$,\n- $[1, 4, 2]$ can be changed into $[2, 3, 2]$.",
-  "statementZhMd": null,
+  "statementZhMd": "新年即将到来，这意味着在 179 号学校，音乐会的准备工作正如火如荼地进行着。\n\n学校里有 $n$ 个班级，编号从 $1$ 到 $n$，第 $i$ 个班级准备了一个时长为 $a_i$ 分钟的节目。\n\n作为负责举办音乐会的主要负责人，Idnar 知道，如果一场音乐会有 $k$ 个节目，时长分别为 $b_1$、$b_2$、$\\ldots$、$b_k$ 分钟，那么当存在两个整数 $l$ 和 $r$，满足 $1 \\le l \\le r \\le k$ 且 $\\gcd(b_l, b_{l + 1}, \\ldots, b_{r - 1}, b_r) = r - l + 1$ 时，观众就会感到无聊。其中，$\\gcd(b_l, b_{l + 1}, \\ldots, b_{r - 1}, b_r)$ 表示数 $b_l$、$b_{l + 1}$、$\\ldots$、$b_{r - 1}$、$b_r$ 的[最大公约数（GCD）](https://en.wikipedia.org/wiki/Greatest_common_divisor)。\n\n为了避免观众感到无聊，Idnar 可以任意次（也可以一次都不）要求第 $t$ 个班级（$1 \\le t \\le k$）将节目改为时长为 $d$ 分钟的新节目，其中 $d$ 可以是**任意正整数**。进行该操作后，$b_t$ 将变为 $d$。注意，每次操作中的 $t$ 和 $d$ 可以不同。\n\n对于一个节目时长序列 $b_1$、$b_2$、$\\ldots$、$b_{k}$，令 $f(b)$ 表示 Idnar 为了避免观众感到无聊，最少需要要求多少个班级修改其节目。\n\nIdnar 还没有决定音乐会中将允许哪些节目，因此他希望知道 $a$ 的每个非空前缀对应的 $f$ 值。换句话说，Idnar 想知道 $f(a_1)$、$f(a_1$,$a_2)$、$\\ldots$、$f(a_1$,$a_2$,$\\ldots$,$a_n)$ 的值。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——学校中的班级数量。\n\n第二行包含 $n$ 个正整数 $a_1$、$a_2$、$\\ldots$、$a_n$（$1 \\le a_i \\le 10^9$）——各班级节目的时长。\n\n## 输出格式\n\n在一行中输出 $n$ 个整数——$f(a_1)$、$f(a_1$,$a_2)$、$\\ldots$、$f(a_1$,$a_2$,$\\ldots$,$a_n)$。\n\n## 说明\n\n在第一个测试中，我们可以将 $1$ 改为 $2$，因此答案为 $1$。\n\n在第二个测试中：\n\n- $[1]$ 可以改为 $[2]$；\n- $[1, 4]$ 可以改为 $[3, 4]$；\n- $[1, 4, 2]$ 可以改为 $[2, 3, 2]$。",
   "samples": [
     {
       "input": "1\n1\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:12:02.920Z"
+  "fetchedAt": "2026-10-30T23:12:02.920Z",
+  "translatedAt": "2026-11-04T03:32:38.843+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

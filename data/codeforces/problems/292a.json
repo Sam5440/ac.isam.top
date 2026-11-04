@@ -4,7 +4,7 @@
   "contestId": 292,
   "index": "A",
   "title": "SMSC",
-  "titleZh": null,
+  "titleZh": "SMSC",
   "url": "https://codeforces.com/contest/292/problem/A",
   "difficulty": 1100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Some large corporation where Polycarpus works has its own short message service center (SMSC). The center's task is to send all sorts of crucial information. Polycarpus decided to check the efficiency of the SMSC.\n\nFor that, he asked to give him the statistics of the performance of the SMSC for some period of time. In the end, Polycarpus got a list of $*n*$ tasks that went to the SMSC of the corporation. Each task was described by the time it was received by the SMSC and the number of text messages to send. More formally, the $*i*$-th task was described by two integers $*t*_{*i*}$ and $*c*_{*i*}$ — the receiving time (the second) and the number of the text messages, correspondingly.\n\nPolycarpus knows that the SMSC cannot send more than one text message per second. The SMSC uses a queue to organize its work. Consider a time moment $*x*$, the SMSC work at that moment as follows:\n\n1. If at the time moment $*x*$ the queue is not empty, then SMSC sends one message from the queue (SMSC gets the message from the head of the queue). Otherwise it doesn't send messages at the time moment $*x*$.\n2. If at the time moment $*x*$ SMSC receives a task, then it adds to the queue all the messages from this task (SMSC adds messages to the tail of the queue). Note, that the messages from the task cannot be send at time moment $*x*$. That's because the decision about sending message or not is made at point 1 before adding these messages to the queue.\n\nGiven the information about all $*n*$ tasks, Polycarpus wants to count two values: the time when the last text message was sent and the maximum size of the queue at some time. Help him count these two characteristics he needs to evaluate the efficiency of the SMSC.\n\n## Input\n\nThe first line contains a single integer $*n*$ $(1 ≤ *n* ≤ 10^{3})$ — the number of tasks of the SMSC. Next $*n*$ lines contain the tasks' descriptions: the $*i*$-th line contains two space-separated integers $*t*_{*i*}$ and $*c*_{*i*}$ $(1 ≤ *t*_{*i*}, *c*_{*i*} ≤ 10^{6})$ — the time (the second) when the $*i*$-th task was received and the number of messages to send, correspondingly.\n\nIt is guaranteed that all tasks were received at different moments of time. It is guaranteed that the tasks are sorted in the chronological order, that is, $*t*_{*i*} < *t*_{*i* + 1}$ for all integer $*i*$ $(1 ≤ *i* < *n*)$.\n\n## Output\n\nIn a single line print two space-separated integers — the time when the last text message was sent and the maximum queue size at a certain moment of time.\n\n## Note\n\nIn the first test sample:\n\n- second 1: the first message has appeared in the queue, the queue's size is 1;\n- second 2: the first message is sent, the second message has been received, the queue's size is 1;\n- second 3: the second message is sent, the queue's size is 0,\n\nThus, the maximum size of the queue is 1, the last message was sent at the second 3.",
-  "statementZhMd": null,
+  "statementZhMd": "某大型企业为其员工 Polycarpus 所在的公司建立了自己的短消息服务中心（SMSC）。该中心的任务是发送各种重要信息。Polycarpus 决定检查 SMSC 的工作效率。\n\n为此，他要求获取 SMSC 在某段时间内的工作统计数据。最终，Polycarpus 得到了一份发送到该公司 SMSC 的 $*n*$ 个任务的列表。每个任务由其到达 SMSC 的时间以及需要发送的文本消息数量描述。更正式地说，第 $*i*$ 个任务由两个整数 $*t*_{*i*}$ 和 $*c*_{*i*}$ 描述，分别表示接收时间（秒）和需要发送的文本消息数量。\n\nPolycarpus 知道，SMSC 每秒最多只能发送一条文本消息。SMSC 使用队列来组织工作。考虑时刻 $*x*$，SMSC 在该时刻的工作过程如下：\n\n1. 如果在时刻 $*x*$ 队列非空，则 SMSC 从队列中发送一条消息（SMSC 从队头取出消息）。否则，SMSC 在时刻 $*x*$ 不发送消息。\n2. 如果 SMSC 在时刻 $*x*$ 收到一个任务，则将该任务中的所有消息加入队列（SMSC 将消息加入队尾）。注意，该任务中的消息不能在时刻 $*x*$ 被发送。这是因为发送消息与否的决定在第 1 步中、将这些消息加入队列之前作出。\n\n给定所有 $*n*$ 个任务的信息，Polycarpus 想要计算两个值：最后一条文本消息被发送的时间，以及队列在某个时刻达到的最大长度。请帮助他计算这两个用于评估 SMSC 工作效率的特征值。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$ $(1 ≤ *n* ≤ 10^{3})$，表示 SMSC 的任务数。接下来 $*n*$ 行描述这些任务：第 $*i*$ 行包含两个以空格分隔的整数 $*t*_{*i*}$ 和 $*c*_{*i*}$ $(1 ≤ *t*_{*i*}, *c*_{*i*} ≤ 10^{6})$，分别表示第 $*i*$ 个任务被接收的时间（秒）和需要发送的消息数量。\n\n保证所有任务的接收时刻各不相同。保证任务按时间顺序给出，即对于所有整数 $*i*$ $(1 ≤ *i* < *n*)$，均有 $*t*_{*i*} < *t*_{*i* + 1}$。\n\n## 输出格式\n\n在一行中输出两个以空格分隔的整数：最后一条文本消息被发送的时间，以及队列在某个时刻达到的最大长度。\n\n## 说明\n\n在第一个样例中：\n\n- 第 1 秒：第一条消息进入队列，队列长度为 1；\n- 第 2 秒：第一条消息被发送，第二条消息被接收，队列长度为 1；\n- 第 3 秒：第二条消息被发送，队列长度为 0。\n\n因此，队列的最大长度为 1，最后一条消息在第 3 秒发送。",
   "samples": [
     {
       "input": "2\n1 1\n2 1\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:07:04.243Z"
+  "fetchedAt": "2026-10-31T02:07:04.243Z",
+  "translatedAt": "2026-11-04T07:25:09.707+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

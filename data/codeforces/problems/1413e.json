@@ -4,7 +4,7 @@
   "contestId": 1413,
   "index": "E",
   "title": "Solo mid Oracle",
-  "titleZh": null,
+  "titleZh": "中路神谕者",
   "url": "https://codeforces.com/contest/1413/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Meka-Naruto plays a computer game. His character has the following ability: given an enemy hero, deal $a$ instant damage to him, and then heal that enemy $b$ health points at the end of every second, for exactly $c$ seconds, starting one second after the ability is used. That means that if the ability is used at time $t$, the enemy's health decreases by $a$ at time $t$, and then increases by $b$ at time points $t + 1$, $t + 2$, ..., $t + c$ due to this ability.\n\nThe ability has a cooldown of $d$ seconds, i. e. if Meka-Naruto uses it at time moment $t$, next time he can use it is the time $t + d$. Please note that he can only use the ability at integer points in time, so all changes to the enemy's health also occur at integer times only.\n\nThe effects from different uses of the ability may stack with each other; that is, the enemy which is currently under $k$ spells gets $k\\cdot b$ amount of heal this time. Also, if several health changes occur at the same moment, they are all counted at once.\n\nNow Meka-Naruto wonders if he can kill the enemy by just using the ability each time he can (that is, every $d$ seconds). The enemy is killed if their health points become $0$ or less. Assume that the enemy's health is not affected in any way other than by Meka-Naruto's character ability. What is the maximal number of health points the enemy can have so that Meka-Naruto is able to kill them?\n\n## Input\n\nThe first line contains an integer $t$ ($1\\leq t\\leq 10^5$) standing for the number of testcases.\n\nEach test case is described with one line containing four numbers $a$, $b$, $c$ and $d$ ($1\\leq a, b, c, d\\leq 10^6$) denoting the amount of instant damage, the amount of heal per second, the number of heals and the ability cooldown, respectively.\n\n## Output\n\nFor each testcase in a separate line print $-1$ if the skill can kill an enemy hero with an arbitrary number of health points, otherwise print the maximal number of health points of the enemy that can be killed.\n\n## Note\n\nIn the first test case of the example each unit of damage is cancelled in a second, so Meka-Naruto cannot deal more than 1 damage.\n\nIn the fourth test case of the example the enemy gets:\n\n- $4$ damage ($1$-st spell cast) at time $0$;\n- $4$ damage ($2$-nd spell cast) and $3$ heal ($1$-st spell cast) at time $1$ (the total of $5$ damage to the initial health);\n- $4$ damage ($3$-nd spell cast) and $6$ heal ($1$-st and $2$-nd spell casts) at time $2$ (the total of $3$ damage to the initial health);\n- and so on.\n\nOne can prove that there is no time where the enemy gets the total of $6$ damage or more, so the answer is $5$. Please note how the health is recalculated: for example, $8$-health enemy would **not** die at time $1$, as if we first subtracted $4$ damage from his health and then considered him dead, before adding $3$ heal.\n\nIn the sixth test case an arbitrarily healthy enemy can be killed in a sufficient amount of time.\n\nIn the seventh test case the answer does not fit into a 32-bit integer type.",
-  "statementZhMd": null,
+  "statementZhMd": "Meka-Naruto 正在玩一款电脑游戏。他的角色拥有如下技能：指定一个敌方英雄，对其造成 $a$ 点即时伤害，然后在接下来的恰好 $c$ 秒内，于每秒结束时为该敌方英雄恢复 $b$ 点生命值，第一次恢复发生在技能使用后 1 秒。也就是说，如果技能在时刻 $t$ 使用，则敌人的生命值会在时刻 $t$ 减少 $a$，随后由于该技能的效果，在时刻 $t + 1$、$t + 2$、...、$t + c$ 分别增加 $b$。\n\n该技能的冷却时间为 $d$ 秒，也就是说，如果 Meka-Naruto 在时刻 $t$ 使用技能，那么他下一次可以使用该技能的时刻为 $t + d$。请注意，他只能在整数时刻使用技能，因此敌人生命值的所有变化也只会发生在整数时刻。\n\n多次使用技能产生的效果可以相互叠加；也就是说，如果敌人当前受到 $k$ 个技能效果的影响，那么此时会恢复 $k\\cdot b$ 点生命值。此外，如果同一时刻发生了多次生命值变化，则这些变化会同时计算。\n\n现在，Meka-Naruto 想知道，如果每次技能可用时都使用技能（即每隔 $d$ 秒使用一次），他是否能够击杀敌人。敌人的生命值变为 $0$ 或更低时，敌人就会死亡。假设敌人的生命值不会受到 Meka-Naruto 的角色技能之外的任何影响。敌人最多拥有多少生命值时，Meka-Naruto 仍然能够将其击杀？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\leq t\\leq 10^5$），表示测试用例的数量。\n\n每个测试用例占一行，包含四个数 $a$、$b$、$c$ 和 $d$（$1\\leq a, b, c, d\\leq 10^6$），分别表示即时伤害量、每秒恢复量、恢复次数以及技能冷却时间。\n\n## 输出格式\n\n对于每个测试用例，单独输出一行。如果该技能能够击杀拥有任意生命值的敌方英雄，则输出 $-1$；否则输出能够被击杀的敌人的最大生命值。\n\n## 说明\n\n在样例的第一个测试用例中，每一点伤害都会在一秒后被抵消，因此 Meka-Naruto 最多只能造成 1 点伤害。\n\n在样例的第四个测试用例中，敌人受到的效果如下：\n\n- 时刻 $0$：受到 $4$ 点伤害（第 $1$ 次施法）；\n- 时刻 $1$：受到 $4$ 点伤害（第 $2$ 次施法）和 $3$ 点治疗（第 $1$ 次施法），相对于初始生命值总共受到 $5$ 点伤害；\n- 时刻 $2$：受到 $4$ 点伤害（第 $3$ 次施法）和 $6$ 点治疗（第 $1$ 次和第 $2$ 次施法），相对于初始生命值总共受到 $3$ 点伤害；\n- 以此类推。\n\n可以证明，不存在敌人相对于初始生命值总共受到 $6$ 点或更多伤害的时刻，因此答案为 $5$。请注意生命值的计算方式：例如，拥有 $8$ 点生命值的敌人**不会**在时刻 $1$ 死亡，不能先从其生命值中减去 $4$ 点伤害、判定其死亡，再加上 $3$ 点治疗。 \n\n在样例的第六个测试用例中，只要经过足够长的时间，就可以击杀一个拥有任意多生命值的敌人。\n\n在样例的第七个测试用例中，答案无法用 32 位整数类型表示。",
   "samples": [
     {
       "input": "7\n1 1 1 1\n2 2 2 2\n1 2 3 4\n4 3 2 1\n228 21 11 3\n239 21 11 3\n1000000 1 1000000 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:43:46.845Z"
+  "fetchedAt": "2026-10-30T23:43:46.845Z",
+  "translatedAt": "2026-11-04T04:15:08.281+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

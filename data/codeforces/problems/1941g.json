@@ -4,7 +4,7 @@
   "contestId": 1941,
   "index": "G",
   "title": "Rudolf and Subway",
-  "titleZh": null,
+  "titleZh": "鲁道夫和地铁",
   "url": "https://codeforces.com/contest/1941/problem/G",
   "difficulty": 2000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Building bridges did not help Bernard, and he continued to be late everywhere. Then Rudolf decided to teach him how to use the subway.\n\nRudolf depicted the subway map as an undirected connected graph, without self-loops, where the vertices represent stations. There is at most one edge between any pair of vertices.\n\nTwo vertices are connected by an edge if it is possible to travel directly between the corresponding stations, bypassing other stations. The subway in the city where Rudolf and Bernard live has a color notation. This means that any edge between stations has a specific color. Edges of a specific color together form a subway line. A subway line **cannot** contain unconnected edges and forms a connected subgraph of the given subway graph.\n\nAn example of the subway map is shown in the figure.\n\n![image](https://espresso.codeforces.com/b0af87d2a044eb185daced5fb2ad367d83100951.png)\n\nRudolf claims that the route will be optimal if it passes through the minimum number of subway lines.\n\nHelp Bernard determine this minimum number for the given departure and destination stations.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThis is followed by descriptions of the test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\le n \\le 2 \\cdot 10^5, 1 \\le m \\le 2 \\cdot 10^5$) — the number of subway stations and the number of direct routes between stations (i.e., graph edges).\n\nThis is followed by $m$ lines — the description of the edges. Each line of the description contains three integers $u$, $v$, and $c$ ($1 \\le u, v \\le n, u \\ne v, 1 \\le c \\le 2 \\cdot 10^5$) — the numbers of the vertices between which there is an edge, and the color of this edge. It is guaranteed that edges of the same color form a connected subgraph of the given subway graph. There is at most one edge between a pair of any two vertices.\n\nThis is followed by two integers $b$ and $e$ ($1 \\le b, e \\le n$) — the departure and destination stations.\n\nThe sum of all $n$ over all test cases does not exceed $2 \\cdot 10^5$. The sum of all $m$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each testcase, output a single integer — the minimum number of subway lines through which the route from station $b$ to station $e$ can pass.\n\n## Note\n\nThe subway graph for the first example is shown in the figure in the problem statement.\n\nIn the first test case, from vertex $1$ to vertex $3$, you can travel along the path $1 \\rightarrow 2 \\rightarrow 3$, using only the green line.\n\nIn the second test case, from vertex $1$ to vertex $6$, you can travel along the path $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 6$, using the green and blue lines.\n\nIn the third test case, there is no need to travel from vertex $6$ to the same vertex, so the number of lines is $0$.\n\nIn the fourth test case, all edges of the graph belong to one line, so the answer is $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "修建桥梁并没有帮助 Bernard，他还是到处迟到。于是 Rudolf 决定教他如何乘坐地铁。\n\nRudolf 将地铁线路图描述为一个无向连通图，其中不含自环，顶点表示车站。任意两个顶点之间至多有一条边。\n\n如果可以在不经过其他车站的情况下，直接从对应的一个车站前往另一个车站，则这两个顶点之间存在一条边。Rudolf 和 Bernard 所居住的城市中的地铁采用颜色标记。这意味着车站之间的每条边都有一种特定的颜色。颜色相同的边共同组成一条地铁线路。一条地铁线路**不能**包含互不连通的边，并且这些边在给定的地铁图中构成一个连通子图。\n\n题目中的图片展示了一个地铁线路图示例。\n\n![image](https://espresso.codeforces.com/b0af87d2a044eb185daced5fb2ad367d83100951.png)\n\nRudolf 认为，如果一条路线经过的地铁线路数量最少，那么这条路线就是最优的。\n\n请帮助 Bernard 求出从给定出发站到目的站所需经过的最少地铁线路数量。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 2 \\cdot 10^5, 1 \\le m \\le 2 \\cdot 10^5$）——地铁站的数量以及车站之间的直达路线数量（即图中的边数）。\n\n接下来有 $m$ 行，每行描述一条边。每行包含三个整数 $u$、$v$ 和 $c$（$1 \\le u, v \\le n, u \\ne v, 1 \\le c \\le 2 \\cdot 10^5$）——这条边连接的两个顶点编号，以及这条边的颜色。保证颜色相同的边在给定的地铁图中构成一个连通子图。任意两个顶点之间至多有一条边。\n\n接下来一行包含两个整数 $b$ 和 $e$（$1 \\le b, e \\le n$）——出发站和目的站。\n\n所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。所有测试用例中 $m$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——从车站 $b$ 到车站 $e$ 的路线可以经过的最少地铁线路数量。\n\n## 说明\n\n第一个样例中的地铁图如题目描述中的图片所示。\n\n在第一个测试用例中，从顶点 $1$ 到顶点 $3$，可以沿路径 $1 \\rightarrow 2 \\rightarrow 3$ 行驶，只使用绿色线路。\n\n在第二个测试用例中，从顶点 $1$ 到顶点 $6$，可以沿路径 $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 6$ 行驶，使用绿色和蓝色线路。\n\n在第三个测试用例中，无需从顶点 $6$ 前往它本身，因此所需线路数量为 $0$。\n\n在第四个测试用例中，图中的所有边都属于同一条线路，因此答案为 $1$。",
   "samples": [
     {
       "input": "5\n6 6\n1 2 1\n2 3 1\n5 2 2\n2 4 2\n4 6 2\n3 6 3\n1 3\n6 6\n1 2 1\n2 3 1\n5 2 2\n2 4 2\n4 6 2\n3 6 3\n1 6\n6 6\n1 2 1\n2 3 1\n5 2 2\n2 4 2\n4 6 2\n3 6 3\n6 6\n4 3\n1 2 1\n1 3 1\n4 1 1\n2 3\n6 7\n1 2 43\n1 3 34\n4 6 43\n6 3 43\n2 3 43\n5 3 43\n4 5 43\n1 6\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:16:46.016Z"
+  "fetchedAt": "2026-11-02T17:16:46.016Z",
+  "translatedAt": "2026-11-04T02:16:32.702+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

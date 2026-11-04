@@ -4,14 +4,14 @@
   "contestId": 742,
   "index": "C",
   "title": "Arpa's loud Owf and Mehrdad's evil plan",
-  "titleZh": null,
+  "titleZh": "Arpa 响亮的 Owf 与 Mehrdad 的邪恶计划",
   "url": "https://codeforces.com/contest/742/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*As you have noticed, there are lovely girls in Arpa’s land.*\n\nPeople in Arpa's land are numbered from $1$ to $*n*$. Everyone has exactly one crush, $*i*$-th person's crush is person with the number $*crush*_{*i*}$.\n\n![image](https://espresso.codeforces.com/20529eb7f1d4e30940b606486759124a9c93edca.png)\n\nSomeday Arpa shouted *Owf* loudly from the top of the palace and a funny game started in Arpa's land. The rules are as follows.\n\nThe game consists of rounds. Assume person $*x*$ wants to start a round, he calls $*crush*_{*x*}$ and says: \"`Oww...wwf`\" (the letter `w` is repeated $*t*$ times) and cuts off the phone immediately. If $*t* > 1$ then $*crush*_{*x*}$ calls $*crush*_{*crush*_{*x*}}$ and says: \"`Oww...wwf`\" (the letter `w` is repeated $*t* - 1$ times) and cuts off the phone immediately. The round continues until some person receives an \"`Owf`\" ($*t* = 1$). This person is called the *Joon-Joon* of the round. There can't be two rounds at the same time.\n\nMehrdad has an evil plan to make the game more funny, he wants to find smallest $*t*$ ($*t* ≥ 1$) such that for each person $*x*$, if $*x*$ starts some round and $*y*$ becomes the Joon-Joon of the round, then by starting from $*y*$, $*x*$ would become the Joon-Joon of the round. Find such $*t*$ for Mehrdad if it's possible.\n\nSome strange fact in Arpa's land is that someone can be himself's crush (i.e. $*crush*_{*i*} = *i*$).\n\n## Input\n\nThe first line of input contains integer $*n*$ ($1 ≤ *n* ≤ 100$) — the number of people in Arpa's land.\n\nThe second line contains $*n*$ integers, $*i*$-th of them is $*crush*_{*i*}$ ($1 ≤ *crush*_{*i*} ≤ *n*$) — the number of $*i*$-th person's crush.\n\n## Output\n\nIf there is no $*t*$ satisfying the condition, print `-1`. Otherwise print such smallest $*t*$.\n\n## Note\n\nIn the first sample suppose $*t* = 3$.\n\nIf the first person starts some round:\n\nThe first person calls the second person and says \"`Owwwf`\", then the second person calls the third person and says \"`Owwf`\", then the third person calls the first person and says \"`Owf`\", so the first person becomes Joon-Joon of the round. So the condition is satisfied if $*x*$ is $1$.\n\nThe process is similar for the second and the third person.\n\nIf the fourth person starts some round:\n\nThe fourth person calls himself and says \"`Owwwf`\", then he calls himself again and says \"`Owwf`\", then he calls himself for another time and says \"`Owf`\", so the fourth person becomes Joon-Joon of the round. So the condition is satisfied when $*x*$ is $4$.\n\nIn the last example if the first person starts a round, then the second person becomes the Joon-Joon, and vice versa.",
-  "statementZhMd": null,
+  "statementZhMd": "*正如你所注意到的，Arpa 的土地上有许多可爱的女孩。*\n\nArpa 土地上的人编号为 $1$ 到 $*n*$。每个人恰好有一个暗恋对象，第 $*i*$ 个人暗恋的对象是编号为 $*crush*_{*i*}$ 的人。\n\n![image](https://espresso.codeforces.com/20529eb7f1d4e30940b606486759124a9c93edca.png)\n\n一天，Arpa 在宫殿顶端大声喊出了 *Owf*，Arpa 的土地上开始了一场有趣的游戏。游戏规则如下。\n\n游戏由若干轮组成。假设第 $*x*$ 个人想要开始一轮游戏，他会打电话给 $*crush*_{*x*}$，并说道：“`Oww...wwf`”（字母 `w` 重复 $*t*$ 次），然后立即挂断电话。如果 $*t* > 1$，那么 $*crush*_{*x*}$ 会打电话给 $*crush*_{*crush*_{*x*}}$，并说道：“`Oww...wwf`”（字母 `w` 重复 $*t* - 1$ 次），然后立即挂断电话。这一轮会持续进行，直到某个人收到“`Owf`”（$*t* = 1$）为止。这个人被称为本轮的 *Joon-Joon*。同一时间不能进行两轮游戏。\n\nMehrdad 有一个邪恶的计划，他想让这个游戏变得更有趣。他想找到最小的 $*t*$（$*t* ≥ 1$），使得对于每个人 $*x*$，如果 $*x*$ 开始一轮游戏并且 $*y*$ 成为该轮的 *Joon-Joon*，那么从 $*y*$ 开始一轮游戏时，$*x*$ 会成为该轮的 *Joon-Joon*。如果可能，请为 Mehrdad 找到这样的 $*t*$。\n\nArpa 的土地上还有一个奇怪的事实：某个人可能暗恋自己（即 $*crush*_{*i*} = *i*$）。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 100$）——Arpa 土地上的人数。\n\n第二行包含 $*n*$ 个整数，其中第 $*i*$ 个整数是 $*crush*_{*i*}$（$1 ≤ *crush*_{*i*} ≤ *n*$）——第 $*i*$ 个人暗恋对象的编号。\n\n## 输出格式\n\n如果不存在满足条件的 $*t*$，输出 `-1`。否则，输出这样的最小 $*t*$。\n\n## 说明\n\n在第一个样例中，假设 $*t* = 3$。\n\n如果第一个人开始一轮游戏：\n\n第一个人打电话给第二个人并说道“`Owwwf`”，然后第二个人打电话给第三个人并说道“`Owwf`”，接着第三个人打电话给第一个人并说道“`Owf`”，因此第一个人成为了本轮的 *Joon-Joon*。所以当 $*x*$ 为 $1$ 时，条件成立。\n\n对于第二个人和第三个人，过程类似。\n\n如果第四个人开始一轮游戏：\n\n第四个人打电话给自己并说道“`Owwwf`”，然后他再次打电话给自己并说道“`Owwf`”，接着他又一次打电话给自己并说道“`Owf`”，因此第四人成为了本轮的 *Joon-Joon*。所以当 $*x*$ 为 $*4*$ 时，条件成立。\n\n在最后一个样例中，如果第一个人开始一轮游戏，那么第二个人会成为 *Joon-Joon*，反之亦然。",
   "samples": [
     {
       "input": "4\n2 3 1 4\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:00:23.393Z"
+  "fetchedAt": "2026-10-31T01:00:23.393Z",
+  "translatedAt": "2026-11-04T06:22:34.364+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

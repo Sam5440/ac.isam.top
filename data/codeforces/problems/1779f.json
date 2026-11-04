@@ -4,7 +4,7 @@
   "contestId": 1779,
   "index": "F",
   "title": "Xorcerer's Stones",
-  "titleZh": null,
+  "titleZh": "异或法师的石子",
   "url": "https://codeforces.com/contest/1779/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "*Misha had been banned from playing chess for good since he was accused of cheating with an engine. Therefore, he retired and decided to become a xorcerer.*\n\nOne day, while taking a walk in a park, Misha came across a rooted tree with nodes numbered from $1$ to $n$. The root of the tree is node $1$.\n\nFor each $1\\le i\\le n$, node $i$ contains $a_i$ stones in it. Misha has recently learned a new spell in his *xorcery* class and wants to test it out. A spell consists of:\n\n- Choose some node $i$ ($1 \\leq i \\leq n$).\n- Calculate the [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) $x$ of all $a_j$ such that node $j$ is in the subtree of $i$ ($i$ belongs to its own subtree).\n- Set $a_j$ equal to $x$ for all nodes $j$ in the subtree of $i$.\n\nMisha can perform at most $2n$ spells and he wants to remove all stones from the tree. More formally, he wants $a_i=0$ to hold for each $1\\leq i \\leq n$. Can you help him perform the spells?\n\nA tree with $n$ nodes is a connected acyclic graph which contains $n-1$ edges. The subtree of node $i$ is the set of all nodes $j$ such that $i$ lies on the simple path from $1$ (the root) to $j$. We consider $i$ to be contained in its own subtree.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\leq n \\leq 2\\cdot 10^5$) — the size of the tree\n\nThe second line contains an array of integers $a_1,a_2,\\ldots, a_n$ ($0 \\leq a_i \\leq 31$), describing the number of stones in each node initially.\n\nThe third line contains an array of integers $p_2,p_3,\\ldots, p_n$ ($1 \\leq p_i \\leq i-1$), where $p_i$ means that there is an edge connecting $p_i$ and $i$.\n\n## Output\n\nIf there is not a valid sequence of spells, output $-1$.\n\nOtherwise, output a single integer $q$ ($0 \\leq q \\leq 2n$) in the first line — the number of performed spells.\n\nIn the second line output a sequence of integers $v_1,v_2,\\ldots,v_q$ ($1 \\leq v_i \\leq n$) — the $i$-th spell will be performed on the subtree of node $v_i$. Please note that order matters.\n\nIf multiple solutions exist, output any. You don't have to minimize the number of operations.\n\n## Note\n\nPlease refer to the following pictures for an explanation of the third test. Only the first $4$ spells are shown since the last $2$ do nothing. The first picture represents the tree initially with the number of stones for each node written above it in green. Changes applied by the current spell are highlighted in red.\n\n![image](https://espresso.codeforces.com/7178127b5cb6cb98bade000eca10567cd29a4430.png)",
-  "statementZhMd": null,
+  "statementZhMd": "*Misha 被指控使用引擎作弊，因此被永久禁止下棋。于是，他隐退江湖，决定成为一名异或法师。*\n\n一天，Misha 在公园散步时，遇到了一棵有根树，节点编号从 $1$ 到 $n$。树的根节点为 $1$。\n\n对于每个 $1\\le i\\le n$，节点 $i$ 中有 $a_i$ 颗石子。最近，Misha 在他的*异或魔法*课上学会了一个新法术，想要测试一下。一次施法包括：\n\n- 选择一个节点 $i$（$1 \\leq i \\leq n$）。\n- 计算节点 $i$ 的子树中所有 $a_j$ 的[按位异或](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)值 $x$（节点 $i$ 属于自己的子树）。\n- 将子树中的所有节点 $j$ 的 $a_j$ 都设为 $x$。\n\nMisha 最多可以施法 $2n$ 次，他想要移除树中的所有石子。更准确地说，他希望对于每个 $1\\leq i\\leq n$，都有 $a_i=0$。你能帮助他完成这些施法吗？\n\n一棵有 $n$ 个节点的树是一张包含 $n-1$ 条边的连通无环图。节点 $i$ 的子树是所有满足以下条件的节点 $j$ 的集合：节点 $i$ 位于从 $1$（根节点）到 $j$ 的简单路径上。我们认为节点 $i$ 包含在自己的子树中。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\leq n \\leq 2\\cdot 10^5$）——树的大小。\n\n第二行包含一个整数数组 $a_1,a_2,\\ldots, a_n$（$0 \\leq a_i \\leq 31$），表示每个节点初始的石子数量。\n\n第三行包含一个整数数组 $p_2,p_3,\\ldots, p_n$（$1 \\leq p_i \\leq i-1$），其中 $p_i$ 表示有一条边连接 $p_i$ 和 $i$。\n\n## 输出格式\n\n如果不存在合法的施法序列，输出 $-1$。\n\n否则，第一行输出一个整数 $q$（$0 \\leq q \\leq 2n$）——施法次数。\n\n第二行输出一个整数序列 $v_1,v_2,\\ldots,v_q$（$1 \\leq v_i \\leq n$）——第 $i$ 次施法将在节点 $v_i$ 的子树上进行。请注意，施法顺序很重要。\n\n如果存在多个解，输出任意一个即可。无需最小化操作次数。\n\n## 说明\n\n关于第三个测试用例的解释，请参考以下图片。由于最后 $2$ 次施法不会产生任何变化，因此图片中只展示了前 $4$ 次施法。第一张图片表示树的初始状态，每个节点上方用绿色标出了该节点的石子数量。当前施法所造成的变化用红色突出显示。\n\n![image](https://espresso.codeforces.com/7178127b5cb6cb98bade000eca10567cd29a4430.png)",
   "samples": [
     {
       "input": "2\n13 13\n1\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:36:05.056Z"
+  "fetchedAt": "2026-10-30T22:36:05.056Z",
+  "translatedAt": "2026-11-04T03:02:50.017+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

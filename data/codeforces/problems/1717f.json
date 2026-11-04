@@ -4,7 +4,7 @@
   "contestId": 1717,
   "index": "F",
   "title": "Madoka and The First Session",
-  "titleZh": null,
+  "titleZh": "Madoka 与第一次考试",
   "url": "https://codeforces.com/contest/1717/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Oh no, on the first exam Madoka got this hard problem:\n\nGiven integer $n$ and $m$ pairs of integers ($v_i, u_i$). Also there is an array $b_1, b_2, \\ldots, b_n$, **initially filled with zeros**.\n\nThen for each index $i$, where $1 \\leq i \\leq m$, perform either $b_{v_i} := b_{v_i} - 1$ and $b_{u_i} := b_{u_i} + 1$, or $b_{v_i} := b_{v_i} + 1$ and $b_{u_i} := b_{u_i} - 1$. Note that exactly one of these operations should be performed for every $i$.\n\nAlso there is an array $s$ of length $n$ consisting of $0$ and $1$. And there is an array $a_1, a_2, \\ldots, a_n$, where it is guaranteed, that if $s_i = 0$ holds, then $a_i = 0$.\n\nHelp Madoka and determine whenever it is possible to perform operations in such way that for every $i$, where $s_i = 1$ it holds that $a_i = b_i$. If it possible you should also provide Madoka with a way to perform operations.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\leq n \\leq 10000, 1 \\leq m \\leq 10000$) — the length of the array $a$ and the number of pair of integers.\n\nThe second line contains $n$ integers $s_1, s_2, \\ldots s_n$ ($0 \\le s_i \\le 1$) — the elements of the array $s$.\n\nThe third line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($|a_i| \\leq m$) — the elements of the array $a$. It is guaranteed that if $s_i = 0$ holds, then $a_i = 0$.\n\n$i$-th of the following $m$ lines contains two integers $v_i$ and $u_i$ ($1 \\leq v_i, u_i \\leq n, v_i \\ne u_i$) — the indexes of the elements of the array $b$ to which the operation is performed. It is also guaranteed that there are no two indices $i$ and $j$, where $1 \\le i \\lt j \\le m$, such that $(v_i, u_i) = (v_j, u_j)$ or $(v_i, u_i) = (u_j, v_j)$.\n\n## Output\n\nIn the first line print \"`YES`\" if it is possible to perform operations in the required way, and \"`NO`\" otherwise.\n\nYou may print each letter in any case (for example, \"`YES`\", \"`Yes`\", \"`yes`\", \"`yEs`\" will all be recognized as positive answer).\n\nIn case you printed \"`YES`\", print $m$ pairs of integers. If for pair $(v_i, u_i)$ we should perform $b_{v_i} := b_{v_i} - 1$ and $b_{u_i} := b_{u_i} + 1$, print $(v_i, u_i)$. Otherwise print $(u_i, v_i)$. If there are multiple ways to get the correct answer, you can print any of them.\n\nYou can print pairs in any order.\n\n## Note\n\nIn the first example, the array $b$ will change as follows: $[0,0,0,0,0] \\rightarrow [-1,0,0,1,0] \\rightarrow [-2,0,0,1,1] \\rightarrow [-2,0,1,0,1] \\rightarrow [-2,0,2,0,0] \\rightarrow [-2,0,2,1,-1]$. $a_i = b_i$ for all indices $i$ from $1$ to $5$.\n\nIn the second example, it is enough for us that $b_2 = 1$ at the end, since only $s_2 = 1$.\n\nIn the third example, the operations cannot be performed as required.",
-  "statementZhMd": null,
+  "statementZhMd": "糟糕，在第一次考试中，Madoka 遇到了这样一道难题：\n\n给定整数 $n$ 和 $m$ 对整数 $(v_i, u_i)$。此外，还有一个数组 $b_1, b_2, \\ldots, b_n$，**初始时全部填充为零**。\n\n随后，对于每个满足 $1 \\leq i \\leq m$ 的下标 $i$，执行以下两种操作中的一种：$b_{v_i} := b_{v_i} - 1$ 且 $b_{u_i} := b_{u_i} + 1$，或者 $b_{v_i} := b_{v_i} + 1$ 且 $b_{u_i} := b_{u_i} - 1$。注意，对于每个 $i$，必须恰好执行其中一种操作。\n\n此外，还有一个长度为 $n$、仅由 $0$ 和 $1$ 组成的数组 $s$，以及一个数组 $a_1, a_2, \\ldots, a_n$。保证当 $s_i = 0$ 时，有 $a_i = 0$。\n\n请帮助 Madoka 判断是否可以按照某种方式执行这些操作，使得对于所有满足 $s_i = 1$ 的 $i$，都有 $a_i = b_i$。如果可以，还需要给出一种执行操作的方案。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 10000, 1 \\leq m \\leq 10000$），分别表示数组 $a$ 的长度和整数对的数量。\n\n第二行包含 $n$ 个整数 $s_1, s_2, \\ldots s_n$（$0 \\leq s_i \\leq 1$），表示数组 $s$ 的元素。\n\n第三行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$|a_i| \\leq m$），表示数组 $a$ 的元素。保证当 $s_i = 0$ 时，有 $a_i = 0$。\n\n接下来的 $m$ 行中，第 $i$ 行包含两个整数 $v_i$ 和 $u_i$（$1 \\leq v_i, u_i \\leq n, v_i \\ne u_i$），表示将对数组 $b$ 的哪些元素执行操作。还保证不存在两个下标 $i$ 和 $j$（$1 \\leq i < j \\leq m$），使得 $(v_i, u_i) = (v_j, u_j)$ 或 $(v_i, u_i) = (u_j, v_j)$。\n\n## 输出格式\n\n第一行输出 `YES`，如果可以按照要求执行操作；否则输出 `NO`。\n\n每个字母的大小写均可任意，例如 `YES`、`Yes`、`yes`、`yEs` 都会被识别为肯定答案。\n\n如果输出了 `YES`，接下来输出 $m$ 对整数。对于整数对 $(v_i, u_i)$：\n\n- 如果应执行 $b_{v_i} := b_{v_i} - 1$ 且 $b_{u_i} := b_{u_i} + 1$，则输出 $(v_i, u_i)$；\n- 否则输出 $(u_i, v_i)$。\n\n如果有多种方式可以得到正确答案，输出任意一种即可。\n\n可以按照任意顺序输出这些整数对。\n\n## 说明\n\n在第一个样例中，数组 $b$ 的变化如下：$[0,0,0,0,0] \\rightarrow [-1,0,0,1,0] \\rightarrow [-2,0,0,1,1] \\rightarrow [-2,0,1,0,1] \\rightarrow [-2,0,2,0,0] \\rightarrow [-2,0,2,1,-1]$。对于从 $1$ 到 $5$ 的所有下标 $i$，均有 $a_i = b_i$。\n\n在第二个样例中，由于只有 $s_2 = 1$，所以只需保证最后 $b_2 = 1$ 即可。\n\n在第三个样例中，无法按要求执行这些操作。",
   "samples": [
     {
       "input": "5 5\n1 1 1 1 1\n-2 0 2 1 -1\n1 5\n1 4\n3 5\n3 4\n4 5\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:52:37.298Z"
+  "fetchedAt": "2026-10-30T22:52:37.298Z",
+  "translatedAt": "2026-11-04T03:17:30.669+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

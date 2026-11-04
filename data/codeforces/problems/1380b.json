@@ -4,7 +4,7 @@
   "contestId": 1380,
   "index": "B",
   "title": "Universal Solution",
-  "titleZh": null,
+  "titleZh": "通用解法",
   "url": "https://codeforces.com/contest/1380/problem/B",
   "difficulty": 1400,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Recently, you found a bot to play \"Rock paper scissors\" with. Unfortunately, the bot uses quite a simple algorithm to play: he has a string $s = s_1 s_2 \\dots s_{n}$ of length $n$ where each letter is either `R`, `S` or `P`.\n\nWhile initializing, the bot is choosing a starting index $pos$ ($1 \\le pos \\le n$), and then it can play any number of rounds. In the first round, he chooses \"Rock\", \"Scissors\" or \"Paper\" based on the value of $s_{pos}$:\n\n- if $s_{pos}$ is equal to `R` the bot chooses \"Rock\";\n- if $s_{pos}$ is equal to `S` the bot chooses \"Scissors\";\n- if $s_{pos}$ is equal to `P` the bot chooses \"Paper\";\n\nIn the second round, the bot's choice is based on the value of $s_{pos + 1}$. In the third round — on $s_{pos + 2}$ and so on. After $s_n$ the bot returns to $s_1$ and continues his game.\n\nYou plan to play $n$ rounds and you've already figured out the string $s$ but still don't know what is the starting index $pos$. But since the bot's tactic is so boring, you've decided to find $n$ choices to each round to maximize the average number of wins.\n\nIn other words, let's suggest your choices are $c_1 c_2 \\dots c_n$ and if the bot starts from index $pos$ then you'll win in $win(pos)$ rounds. Find $c_1 c_2 \\dots c_n$ such that $\\frac{win(1) + win(2) + \\dots + win(n)}{n}$ is maximum possible.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nNext $t$ lines contain test cases — one per line. The first and only line of each test case contains string $s = s_1 s_2 \\dots s_{n}$ ($1 \\le n \\le 2 \\cdot 10^5$; $s_i \\in \\{\\text{R}, \\text{S}, \\text{P}\\}$) — the string of the bot.\n\nIt's guaranteed that the total length of all strings in one test doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print $n$ choices $c_1 c_2 \\dots c_n$ to maximize the average number of wins. Print them in the same manner as the string $s$.\n\nIf there are multiple optimal answers, print any of them.\n\n## Note\n\nIn the first test case, the bot (wherever it starts) will always choose \"Rock\", so we can always choose \"Paper\". So, in any case, we will win all $n = 4$ rounds, so the average is also equal to $4$.\n\nIn the second test case:\n\n- if bot will start from $pos = 1$, then $(s_1, c_1)$ is draw, $(s_2, c_2)$ is draw and $(s_3, c_3)$ is draw, so $win(1) = 0$;\n- if bot will start from $pos = 2$, then $(s_2, c_1)$ is win, $(s_3, c_2)$ is win and $(s_1, c_3)$ is win, so $win(2) = 3$;\n- if bot will start from $pos = 3$, then $(s_3, c_1)$ is lose, $(s_1, c_2)$ is lose and $(s_2, c_3)$ is lose, so $win(3) = 0$;\n\nThe average is equal to $\\frac{0 + 3 + 0}{3} = 1$ and it can be proven that it's the maximum possible average.\n\nA picture from Wikipedia explaining \"Rock paper scissors\" game:\n\n![image](https://espresso.codeforces.com/ab57721bf5f3c424813f2beb435d9db777b38e66.png)",
-  "statementZhMd": null,
+  "statementZhMd": "最近，你找到了一个可以一起玩“石头剪刀布”的机器人。不幸的是，这个机器人采用了非常简单的游戏算法：它有一个长度为 $n$ 的字符串 $s = s_1 s_2 \\dots s_{n}$，其中每个字符都是 `R`、`S` 或 `P`。\n\n在初始化时，机器人会选择一个起始下标 $pos$（$1 \\le pos \\le n$），然后可以进行任意轮数的游戏。在第一轮中，它根据 $s_{pos}$ 的值选择“石头”、“剪刀”或“布”：\n\n- 如果 $s_{pos}$ 等于 `R`，机器人选择“石头”；\n- 如果 $s_{pos}$ 等于 `S`，机器人选择“剪刀”；\n- 如果 $s_{pos}$ 等于 `P`，机器人选择“布”。\n\n在第二轮中，机器人的选择基于 $s_{pos + 1}$ 的值；在第三轮中，基于 $s_{pos + 2}$ 的值，以此类推。经过 $s_n$ 后，机器人会返回 $s_1$，并继续进行游戏。\n\n你计划进行 $n$ 轮游戏，并且已经知道了字符串 $s$，但还不知道机器人的起始下标 $pos$。不过，由于机器人的策略非常无聊，你决定为每一轮选择一个出法，使获胜轮数的平均值最大。\n\n换句话说，假设你的选择为 $c_1 c_2 \\dots c_n$，如果机器人从下标 $pos$ 开始，那么你将在 $win(pos)$ 轮中获胜。请找出 $c_1 c_2 \\dots c_n$，使得 $\\frac{win(1) + win(2) + \\dots + win(n)}{n}$ 尽可能大。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。\n\n接下来 $t$ 行每行包含一个测试用例。每个测试用例仅包含一行，其中包含字符串 $s = s_1 s_2 \\dots s_{n}$（$1 \\le n \\le 2 \\cdot 10^5$；$s_i \\in \\{\\text{R}, \\text{S}, \\text{P}\\}$）——机器人的字符串。\n\n保证所有测试用例中的字符串长度之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个选择 $c_1 c_2 \\dots c_n$，使获胜轮数的平均值最大。按照与字符串 $s$ 相同的形式输出它们。\n\n如果有多个最优答案，输出任意一个即可。\n\n## 说明\n\n在第一个测试用例中，无论机器人从哪里开始，它总是选择“石头”，因此我们始终可以选择“布”。所以无论如何，我们都会赢得全部 $n = 4$ 轮，平均值也等于 $4$。\n\n在第二个测试用例中：\n\n- 如果机器人从 $pos = 1$ 开始，那么 $(s_1, c_1)$ 是平局，$(s_2, c_2)$ 是平局，$(s_3, c_3)$ 是平局，因此 $win(1) = 0$；\n- 如果机器人从 $pos = 2$ 开始，那么 $(s_2, c_1)$ 获胜，$(s_3, c_2)$ 获胜，$(s_1, c_3)$ 获胜，因此 $win(2) = 3$；\n- 如果机器人从 $pos = 3$ 开始，那么 $(s_3, c_1)$ 失败，$(s_1, c_2)$ 失败，$(s_2, c_3)$ 失败，因此 $win(3) = 0$。\n\n平均值等于 $\\frac{0 + 3 + 0}{3} = 1$，并且可以证明这是可能达到的最大平均值。\n\n维基百科上解释“石头剪刀布”游戏的图片：\n\n![image](https://espresso.codeforces.com/ab57721bf5f3c424813f2beb435d9db777b38e66.png)",
   "samples": [
     {
       "input": "3\nRRRR\nRSP\nS\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:45:20.842Z"
+  "fetchedAt": "2026-11-02T18:45:20.842Z",
+  "translatedAt": "2026-11-04T04:29:33.692+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

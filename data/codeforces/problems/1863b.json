@@ -4,7 +4,7 @@
   "contestId": 1863,
   "index": "B",
   "title": "Split Sort",
-  "titleZh": null,
+  "titleZh": "分割排序",
   "url": "https://codeforces.com/contest/1863/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a permutation$^{\\dagger}$ $p_1, p_2, \\ldots, p_n$ of integers $1$ to $n$.\n\nYou can change the current permutation by applying the following operation several (possibly, zero) times:\n\n- choose some $x$ ($2 \\le x \\le n$);\n- create a new permutation by:\n- first, writing down all elements of $p$ that are less than $x$, without changing their order;\n  - second, writing down all elements of $p$ that are greater than or equal to $x$, without changing their order;\n- replace $p$ with the newly created permutation.\n\nFor example, if the permutation used to be $[6, 4, 3, 5, 2, 1]$ and you choose $x = 4$, then you will first write down $[3, 2, 1]$, then append this with $[6, 4, 5]$. So the initial permutation will be replaced by $[3, 2, 1, 6, 4, 5]$.\n\nFind the minimum number of operations you need to achieve $p_i = i$ for $i = 1, 2, \\ldots, n$. We can show that it is always possible to do so.\n\n$^{\\dagger}$ A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 1000$). The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($1 \\le n \\le 100\\,000$).\n\nThe second line of each test case contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\le p_i \\le n$). It is guaranteed that $p_1, p_2, \\ldots, p_n$ is a permutation.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $100\\,000$.\n\n## Output\n\nFor each test case, output the answer on a separate line.\n\n## Note\n\nIn the first test case, $n = 1$ and $p_1 = 1$, so there is nothing left to do.\n\nIn the second test case, we can choose $x = 2$ and we immediately obtain $p_1 = 1$, $p_2 = 2$.\n\nIn the third test case, we can achieve the minimum number of operations in the following way:\n\n1. $x = 4$: $[6, 4, 3, 5, 2, 1] \\rightarrow [3, 2, 1, 6, 4, 5]$;\n2. $x = 6$: $[3, 2, 1, 6, 4, 5] \\rightarrow [3, 2, 1, 4, 5, 6]$;\n3. $x = 3$: $[3, 2, 1, 4, 5, 6] \\rightarrow [2, 1, 3, 4, 5, 6]$;\n4. $x = 2$: $[2, 1, 3, 4, 5, 6] \\rightarrow [1, 2, 3, 4, 5, 6]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $1$ 到 $n$ 组成的整数排列$^{\\dagger}$ $p_1, p_2, \\ldots, p_n$。\n\n你可以进行以下操作若干次（也可以进行零次）来改变当前排列：\n\n- 选择一个 $x$（$2 \\le x \\le n$）；\n- 按照以下步骤创建一个新排列：\n  - 首先，按原顺序写下 $p$ 中所有小于 $x$ 的元素；\n  - 然后，按原顺序写下 $p$ 中所有大于或等于 $x$ 的元素；\n- 用新创建的排列替换 $p$。\n\n例如，若当前排列为 $[6, 4, 3, 5, 2, 1]$，并选择 $x = 4$，那么首先写下 $[3, 2, 1]$，然后在其后追加 $[6, 4, 5]$。因此，初始排列将被替换为 $[3, 2, 1, 6, 4, 5]$。\n\n求使 $p_i = i$ 对于 $i = 1, 2, \\ldots, n$ 均成立所需的最少操作次数。可以证明，总是能够做到这一点。\n\n$^{\\dagger}$ 长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 1000$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 100\\,000$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$1 \\le p_i \\le n$）。保证 $p_1, p_2, \\ldots, p_n$ 是一个排列。\n\n保证所有测试用例的 $n$ 之和不超过 $100\\,000$。\n\n## 输出格式\n\n对于每个测试用例，输出一行答案。\n\n## 说明\n\n在第一个测试用例中，$n = 1$ 且 $p_1 = 1$，因此无需进行任何操作。\n\n在第二个测试用例中，我们可以选择 $x = 2$，立即得到 $p_1 = 1$、$p_2 = 2$。\n\n在第三个测试用例中，可以通过以下方式达到最少操作次数：\n\n1. $x = 4$：$[6, 4, 3, 5, 2, 1] \\rightarrow [3, 2, 1, 6, 4, 5]$；\n2. $x = 6$：$[3, 2, 1, 6, 4, 5] \\rightarrow [3, 2, 1, 4, 5, 6]$；\n3. $x = 3$：$[3, 2, 1, 4, 5, 6] \\rightarrow [2, 1, 3, 4, 5, 6]$；\n4. $x = 2$：$[2, 1, 3, 4, 5, 6] \\rightarrow [1, 2, 3, 4, 5, 6]$。",
   "samples": [
     {
       "input": "5\n1\n1\n2\n2 1\n6\n6 4 3 5 2 1\n3\n3 1 2\n19\n10 19 7 1 17 11 8 5 12 9 4 18 14 2 6 15 3 16 13\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:17:00.357Z"
+  "fetchedAt": "2026-10-30T22:17:00.357Z",
+  "translatedAt": "2026-11-04T02:37:46.381+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

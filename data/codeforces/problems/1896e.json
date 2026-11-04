@@ -4,7 +4,7 @@
   "contestId": 1896,
   "index": "E",
   "title": "Permutation Sorting",
-  "titleZh": null,
+  "titleZh": "排列排序",
   "url": "https://codeforces.com/contest/1896/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a permutation$^\\dagger$ $a$ of size $n$. We call an index $i$ *good* if $a_i=i$ is satisfied. After each second, we rotate all indices that are not good to the right by one position. Formally,\n\n- Let $s_1,s_2,\\ldots,s_k$ be the indices of $a$ that are **not** good in increasing order. That is, $s_j \\lt s_{j+1}$ and if index $i$ is not good, then there exists $j$ such that $s_j=i$.\n- For each $i$ from $1$ to $k$, we assign $a_{s_{(i \\% k+1)}} := a_{s_i}$ all at once.\n\nFor each $i$ from $1$ to $n$, find the first time that index $i$ becomes good.\n\n$^\\dagger$ A permutation is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 10^6$) — the size of permutation $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le n$) — the elements of permutation $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output a single line containing $n$ integers where the $i$-th integer represents the first time that index $i$ becomes good.\n\n## Note\n\nIn the first test case, $2$ and $5$ are already in the correct position so indices $2$ and $5$ become good at $0$ second. After $1$ second, a cyclic shift will be done with $s=[1, 3, 4]$, resulting in array $a=[1, 2, 3, 4, 5]$. Notice that indices $1$, $3$ and $4$ become good at $1$ second.\n\nIn the second test case, $5$ is already in the correct position, so index $5$ becomes good at $0$ second. After $1$ second, a cyclic shift will be done with $s=[1, 2, 3, 4, 6]$, resulting in array $a=[3, 2, 1, 4, 5, 6]$. Notice that indices $2$, $4$ and $6$ become good at $1$ second. After $2$ seconds, a cyclic shift will be done with $s=[1, 3]$, resulting in array $a=[1, 2, 3, 4, 5, 6]$. Notice that indices $1$ and $3$ become good at $2$ second.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个大小为 $n$ 的排列$^\\dagger$ $a$。如果满足 $a_i=i$，则称下标 $i$ 是*正确的*。每经过一秒，我们就将所有不正确的下标向右旋转一个位置。形式化地说：\n\n- 令 $s_1,s_2,\\ldots,s_k$ 为 $a$ 中所有**不正确**下标按升序排列的结果。也就是说，$s_j \\lt s_{j+1}$，并且如果下标 $i$ 不正确，则存在某个 $j$ 使得 $s_j=i$。\n- 对于从 $1$ 到 $k$ 的每个 $i$，同时执行赋值 $a_{s_{(i \\% k+1)}} := a_{s_i}$。\n\n对于从 $1$ 到 $n$ 的每个 $i$，求下标 $i$ 第一次变为正确的时间。\n\n$^\\dagger$ 排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^6$）——排列 $a$ 的大小。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le n$）——排列 $a$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出一行包含 $n$ 个整数，其中第 $i$ 个整数表示下标 $i$ 第一次变为正确的时间。\n\n## 说明\n\n在第一个测试用例中，$2$ 和 $5$ 已经处于正确位置，因此下标 $2$ 和 $5$ 在 $0$ 秒时变为正确。经过 $1$ 秒后，将对 $s=[1, 3, 4]$ 进行循环移位，得到数组 $a=[1, 2, 3, 4, 5]$。注意，下标 $1$、$3$ 和 $4$ 在 $1$ 秒时变为正确。\n\n在第二个测试用例中，$5$ 已经处于正确位置，因此下标 $5$ 在 $0$ 秒时变为正确。经过 $1$ 秒后，将对 $s=[1, 2, 3, 4, 6]$ 进行循环移位，得到数组 $a=[3, 2, 1, 4, 5, 6]$。注意，下标 $2$、$4$ 和 $6$ 在 $1$ 秒时变为正确。经过 $2$ 秒后，将对 $s=[1, 3]$ 进行循环移位，得到数组 $a=[1, 2, 3, 4, 5, 6]$。注意，下标 $1$ 和 $3$ 在 $2$ 秒时变为正确。",
   "samples": [
     {
       "input": "2\n5\n3 2 4 1 5\n6\n2 1 4 6 5 3\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:08:07.464Z"
+  "fetchedAt": "2026-10-30T22:08:07.464Z",
+  "translatedAt": "2026-11-04T02:34:43.303+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

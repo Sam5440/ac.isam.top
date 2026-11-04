@@ -4,7 +4,7 @@
   "contestId": 1266,
   "index": "C",
   "title": "Diverse Matrix",
-  "titleZh": null,
+  "titleZh": "多样矩阵",
   "url": "https://codeforces.com/contest/1266/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Let $a$ be a matrix of size $r \\times c$ containing positive integers, not necessarily distinct. Rows of the matrix are numbered from $1$ to $r$, columns are numbered from $1$ to $c$. We can construct an array $b$ consisting of $r + c$ integers as follows: for each $i \\in [1, r]$, let $b_i$ be the greatest common divisor of integers in the $i$-th row, and for each $j \\in [1, c]$ let $b_{r+j}$ be the greatest common divisor of integers in the $j$-th column.\n\nWe call the matrix **diverse** if all $r + c$ numbers $b_k$ ($k \\in [1, r + c]$) are pairwise distinct.\n\nThe **magnitude** of a matrix equals to the maximum of $b_k$.\n\nFor example, suppose we have the following matrix:\n\n$\\begin{pmatrix} 2 & 9 & 7\\\\ 4 & 144 & 84 \\end{pmatrix}$\n\nWe construct the array $b$:\n\n1. $b_1$ is the greatest common divisor of $2$, $9$, and $7$, that is $1$;\n2. $b_2$ is the greatest common divisor of $4$, $144$, and $84$, that is $4$;\n3. $b_3$ is the greatest common divisor of $2$ and $4$, that is $2$;\n4. $b_4$ is the greatest common divisor of $9$ and $144$, that is $9$;\n5. $b_5$ is the greatest common divisor of $7$ and $84$, that is $7$.\n\nSo $b = [1, 4, 2, 9, 7]$. All values in this array are distinct, so the matrix is diverse. The magnitude is equal to $9$.\n\nFor a given $r$ and $c$, find a diverse matrix that minimises the magnitude. If there are multiple solutions, you may output any of them. If there are no solutions, output a single integer $0$.\n\n## Input\n\nThe only line in the input contains two space separated integers $r$ and $c$ ($1 \\leq r,c \\leq 500$) — the number of rows and the number of columns of the matrix to be found.\n\n## Output\n\nIf there is no solution, output a single integer $0$.\n\nOtherwise, output $r$ rows. The $i$-th of them should contain $c$ space-separated integers, the $j$-th of which is $a_{i,j}$ — the positive integer in the $i$-th row and $j$-th column of a diverse matrix minimizing the magnitude.\n\nFurthermore, it must hold that $1 \\leq a_{i,j} \\leq 10^9$. It can be shown that if a solution exists, there is also a solution with this additional constraint (still having minimum possible magnitude).\n\n## Note\n\nIn the first example, the GCDs of rows are $b_1 = 4$ and $b_2 = 1$, and the GCDs of columns are $b_3 = 2$ and $b_4 = 3$. All GCDs are pairwise distinct and the maximum of them is $4$. Since the GCDs have to be distinct and at least $1$, it is clear that there are no diverse matrices of size $2 \\times 2$ with magnitude smaller than $4$.\n\nIn the second example, no matter what $a_{1,1}$ is, $b_1 = b_2$ will always hold, so there are no diverse matrices.",
-  "statementZhMd": null,
+  "statementZhMd": "设 $a$ 是一个大小为 $r \\times c$ 的矩阵，其中包含正整数，这些整数不一定互不相同。矩阵的行编号为 $1$ 至 $r$，列编号为 $1$ 至 $c$。我们按如下方式构造一个由 $r + c$ 个整数构成的数组 $b$：对于每个 $i \\in [1, r]$，令 $b_i$ 为第 $i$ 行中所有整数的最大公约数；对于每个 $j \\in [1, c]$，令 $b_{r+j}$ 为第 $j$ 列中所有整数的最大公约数。\n\n如果所有 $r + c$ 个数 $b_k$（$k \\in [1, r + c]$）两两不同，则称该矩阵是**多样的**。\n\n矩阵的**幅度**等于所有 $b_k$ 中的最大值。\n\n例如，假设我们有如下矩阵：\n\n$\\begin{pmatrix} 2 & 9 & 7\\\\ 4 & 144 & 84 \\end{pmatrix}$\n\n我们构造数组 $b$：\n\n1. $b_1$ 是 $2$、$9$ 和 $7$ 的最大公约数，即 $1$；\n2. $b_2$ 是 $4$、$144$ 和 $84$ 的最大公约数，即 $4$；\n3. $b_3$ 是 $2$ 和 $4$ 的最大公约数，即 $2$；\n4. $b_4$ 是 $9$ 和 $144$ 的最大公约数，即 $9$；\n5. $b_5$ 是 $7$ 和 $84$ 的最大公约数，即 $7$。\n\n因此 $b = [1, 4, 2, 9, 7]$。该数组中的所有值都互不相同，因此这个矩阵是多样的。其幅度等于 $9$。\n\n给定 $r$ 和 $c$，请找出一个幅度最小的多样矩阵。如果有多个解，可以输出其中任意一个。如果不存在解，请输出一个整数 $0$。\n\n## 输入格式\n\n输入的唯一一行包含两个由空格分隔的整数 $r$ 和 $c$（$1 \\leq r,c \\leq 500$），表示要构造的矩阵的行数和列数。\n\n## 输出格式\n\n如果不存在解，输出一个整数 $0$。\n\n否则，输出 $r$ 行。第 $i$ 行应包含 $c$ 个由空格分隔的整数，其中第 $j$ 个整数为 $a_{i,j}$，即幅度最小的多样矩阵中第 $i$ 行第 $j$ 列的正整数。\n\n此外，必须满足 $1 \\leq a_{i,j} \\leq 10^9$。可以证明，如果存在解，则一定存在一个满足此附加限制的解（且其幅度仍然为可能的最小值）。\n\n## 说明\n\n在第一个样例中，各行的最大公约数为 $b_1 = 4$ 和 $b_2 = 1$，各列的最大公约数为 $b_3 = 2$ 和 $b_4 = 3$。所有最大公约数都两两不同，其中的最大值为 $4$。由于最大公约数必须互不相同且至少为 $1$，显然不存在幅度小于 $4$ 的大小为 $2 \\times 2$ 的多样矩阵。\n\n在第二个样例中，无论 $a_{1,1}$ 取何值，始终有 $b_1 = b_2$，因此不存在多样矩阵。",
   "samples": [
     {
       "input": "2 2\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:00:25.014Z"
+  "fetchedAt": "2026-10-31T00:00:25.014Z",
+  "translatedAt": "2026-11-04T04:50:42.471+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

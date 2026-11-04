@@ -4,7 +4,7 @@
   "contestId": 1385,
   "index": "D",
   "title": "a-Good String",
-  "titleZh": null,
+  "titleZh": "a-好字符串",
   "url": "https://codeforces.com/contest/1385/problem/D",
   "difficulty": 1500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a string $s[1 \\dots n]$ consisting of lowercase Latin letters. It is guaranteed that $n = 2^k$ for some integer $k \\ge 0$.\n\nThe string $s[1 \\dots n]$ is called *$c$-good* if **at least one** of the following three conditions is satisfied:\n\n- The length of $s$ is $1$, and it consists of the character $c$ (i.e. $s_1=c$);\n- The length of $s$ is greater than $1$, the first half of the string consists of only the character $c$ (i.e. $s_1=s_2=\\dots=s_{\\frac{n}{2}}=c$) and the second half of the string (i.e. the string $s_{\\frac{n}{2} + 1}s_{\\frac{n}{2} + 2} \\dots s_n$) is a *$(c+1)$-good* string;\n- The length of $s$ is greater than $1$, the second half of the string consists of only the character $c$ (i.e. $s_{\\frac{n}{2} + 1}=s_{\\frac{n}{2} + 2}=\\dots=s_n=c$) and the first half of the string (i.e. the string $s_1s_2 \\dots s_{\\frac{n}{2}}$) is a *$(c+1)$-good* string.\n\nFor example: \"`aabc`\" is *'`a`'-good*, \"`ffgheeee`\" is *'`e`'-good*.\n\nIn one move, you can choose one index $i$ from $1$ to $n$ and replace $s_i$ with any lowercase Latin letter (any character from '`a`' to '`z`').\n\nYour task is to find the minimum number of moves required to obtain an *'`a`'-good* string from $s$ (i.e. *$c$-good string* for $c=$ '`a`'). It is guaranteed that the answer always exists.\n\nYou have to answer $t$ independent test cases.\n\nAnother example of an *'`a`'-good* string is as follows. Consider the string $s = $\"`cdbbaaaa`\". It is an *'`a`'-good* string, because:\n\n- the second half of the string (\"`aaaa`\") consists of only the character '`a`';\n- the first half of the string (\"`cdbb`\") is *'`b`'-good* string, because:\n- the second half of the string (\"`bb`\") consists of only the character '`b`';\n  - the first half of the string (\"`cd`\") is *'`c`'-good* string, because:\n  - the first half of the string (\"`c`\") consists of only the character '`c`';\n    - the second half of the string (\"`d`\") is *'`d`'-good* string.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 2 \\cdot 10^4$) — the number of test cases. Then $t$ test cases follow.\n\nThe first line of the test case contains one integer $n$ ($1 \\le n \\le 131~072$) — the length of $s$. It is guaranteed that $n = 2^k$ for some integer $k \\ge 0$. The second line of the test case contains the string $s$ consisting of $n$ lowercase Latin letters.\n\nIt is guaranteed that the sum of $n$ does not exceed $2 \\cdot 10^5$ ($\\sum n \\le 2 \\cdot 10^5$).\n\n## Output\n\nFor each test case, print the answer — the minimum number of moves required to obtain an *'`a`'-good* string from $s$ (i.e. *$c$-good string* with $c =$ '`a`'). It is guaranteed that the answer exists.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由小写拉丁字母组成的字符串 $s[1 \\dots n]$。保证对于某个整数 $k \\ge 0$，有 $n = 2^k$。\n\n如果以下三个条件中**至少有一个**满足，则称字符串 $s[1 \\dots n]$ 是 *$c$-好字符串*：\n\n- $s$ 的长度为 $1$，且它由字符 `c` 组成（即 $s_1=c$）；\n- $s$ 的长度大于 $1$，字符串的前半部分只由字符 `c` 组成（即 $s_1=s_2=\\dots=s_{\\frac{n}{2}}=c$），并且字符串的后半部分（即字符串 $s_{\\frac{n}{2} + 1}s_{\\frac{n}{2} + 2} \\dots s_n$）是一个 *$(c+1)$-好字符串*；\n- $s$ 的长度大于 $1$，字符串的后半部分只由字符 `c` 组成（即 $s_{\\frac{n}{2} + 1}=s_{\\frac{n}{2} + 2}=\\dots=s_n=c$），并且字符串的前半部分（即字符串 $s_1s_2 \\dots s_{\\frac{n}{2}}$）是一个 *$(c+1)$-好字符串*。\n\n例如，\"`aabc`\" 是 *'`a`'-好字符串*，\"`ffgheeee`\" 是 *'`e`'-好字符串*。\n\n一次操作中，你可以选择一个从 $1$ 到 $n$ 的下标 $i$，并将 $s_i$ 替换为任意小写拉丁字母（即从 '`a`' 到 '`z`' 的任意字符）。\n\n你的任务是求出将 $s$ 变为 *'`a`'-好字符串*（即 $c=$ '`a`' 的 *$c$-好字符串*）所需的最少操作次数。保证答案一定存在。\n\n你需要回答 $t$ 个相互独立的测试用例。\n\n下面是另一个 *'`a`'-好字符串* 的例子。考虑字符串 $s = $\"`cdbbaaaa`\"。它是一个 *'`a`'-好字符串*，因为：\n\n- 字符串的后半部分（\"`aaaa`\"）只由字符 '`a`' 组成；\n- 字符串的前半部分（\"`cdbb`\"）是一个 *'`b`'-好字符串*，因为：\n  - 字符串的后半部分（\"`bb`\"）只由字符 '`b`' 组成；\n  - 字符串的前半部分（\"`cd`\"）是一个 *'`c`'-好字符串*，因为：\n    - 字符串的前半部分（\"`c`\"）只由字符 '`c`' 组成；\n    - 字符串的后半部分（\"`d`\"）是一个 *'`d`'-好字符串*。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 2 \\cdot 10^4$），表示测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 131~072$），表示 $s$ 的长度。保证对于某个整数 $k \\ge 0$，有 $n = 2^k$。测试用例的第二行包含一个由 $n$ 个小写拉丁字母组成的字符串 $s$。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$（$\\sum n \\le 2 \\cdot 10^5$）。\n\n## 输出格式\n\n对于每个测试用例，输出答案——将 $s$ 变为 *'`a`'-好字符串*（即 $c =$ '`a`' 的 *$c$-好字符串*）所需的最少操作次数。保证答案一定存在。",
   "samples": [
     {
       "input": "6\n8\nbbdcaaaa\n8\nasdfghjk\n8\nceaaaabb\n8\nbbaaddcc\n1\nz\n2\nac\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:45:13.497Z"
+  "fetchedAt": "2026-11-02T18:45:13.497Z",
+  "translatedAt": "2026-11-04T04:30:29.772+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

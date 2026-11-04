@@ -4,14 +4,14 @@
   "contestId": 312,
   "index": "C",
   "title": "The Closest Pair",
-  "titleZh": null,
+  "titleZh": "最近点对",
   "url": "https://codeforces.com/contest/312/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Currently Tiny is learning Computational Geometry. When trying to solve a problem called \"The Closest Pair Of Points In The Plane\", he found that a code which gave a wrong time complexity got Accepted instead of Time Limit Exceeded.\n\nThe problem is the follows. Given $*n*$ points in the plane, find a pair of points between which the distance is minimized. Distance between $(*x*_{1}, *y*_{1})$ and $(*x*_{2}, *y*_{2})$ is ![image](https://espresso.codeforces.com/a0c6a684203590998776587e7f02c93ba5771038.png).\n\nThe pseudo code of the unexpected code is as follows:\n\n```\ninput n\nfor i from 1 to n\n    input the i-th point's coordinates into p[i]\nsort array p[] by increasing of x coordinate first and increasing of y coordinate second\nd=INF        //here INF is a number big enough\ntot=0\nfor i from 1 to n\n    for j from (i+1) to n\n        ++tot\n        if (p[j].x-p[i].x>=d) then break    //notice that \"break\" is only to be\n                                            //out of the loop \"for j\"\n        d=min(d,distance(p[i],p[j]))\noutput d\n```\n\nHere, $*tot*$ can be regarded as the running time of the code. Due to the fact that a computer can only run a limited number of operations per second, $*tot*$ should not be more than $*k*$ in order not to get Time Limit Exceeded.\n\nYou are a great hacker. Would you please help Tiny generate a test data and let the code get Time Limit Exceeded?\n\n## Input\n\nA single line which contains two space-separated integers $*n*$ and $*k*$ ($2 ≤ *n* ≤ 2000$, $1 ≤ *k* ≤ 10^{9}$).\n\n## Output\n\nIf there doesn't exist such a data which let the given code get TLE, print \"`no solution`\" (without quotes); else print $*n*$ lines, and the $*i*$-th line contains two integers $*x*_{*i*}, *y*_{*i*}$ $(|*x*_{*i*}|, |*y*_{*i*}| ≤ 10^{9})$ representing the coordinates of the $*i*$-th point.\n\nThe conditions below must be held:\n\n- All the points must be distinct.\n- $|*x*_{*i*}|, |*y*_{*i*}| ≤ 10^{9}$.\n- After running the given code, the value of $*tot*$ should be larger than $*k*$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n目前 Tiny 正在学习计算几何。在尝试解决一道名为“平面上最近点对”的题目时，他发现一份时间复杂度错误的代码竟然获得了 Accepted，而不是 Time Limit Exceeded。\n\n题目如下：给定平面上的 $*n*$ 个点，找出距离最小的一对点。点 $(*x*_{1}, *y*_{1})$ 与 $(*x*_{2}, *y*_{2})$ 之间的距离为 ![image](https://espresso.codeforces.com/a0c6a684203590998776587e7f02c93ba5771038.png)。\n\n这份意外通过的代码的伪代码如下：\n\n```\ninput n\nfor i from 1 to n\n    input the i-th point's coordinates into p[i]\nsort array p[] by increasing of x coordinate first and increasing of y coordinate second\nd=INF        //here INF is a number big enough\ntot=0\nfor i from 1 to n\n    for j from (i+1) to n\n        ++tot\n        if (p[j].x-p[i].x>=d) then break    //notice that \"break\" is only to be\n                                            //out of the loop \"for j\"\n        d=min(d,distance(p[i],p[j]))\noutput d\n```\n\n这里，$*tot*$ 可以视为该代码的运行时间。由于计算机每秒只能执行有限次操作，为了不超出时间限制，$*tot*$ 不应大于 $*k*$。\n\n你是一名出色的黑客。请你帮助 Tiny 生成一组测试数据，使这份代码获得 Time Limit Exceeded。\n\n## 输入格式\n\n一行包含两个用空格分隔的整数 $*n*$ 和 $*k*$（$2 ≤ *n* ≤ 2000$，$1 ≤ *k* ≤ 10^{9}$）。\n\n## 输出格式\n\n如果不存在能使给定代码超时的数据，输出 `no solution`（不含引号）；否则输出 $*n*$ 行，其中第 $*i*$ 行包含两个整数 $*x*_{*i*}, *y*_{*i*}$（$|*x*_{*i*}|, |*y*_{*i*}| ≤ 10^{9}$），表示第 $*i*$ 个点的坐标。\n\n必须满足以下条件：\n\n- 所有点必须互不相同。\n- $|*x*_{*i}|, |*y*_{*i}| ≤ 10^{9}$。\n- 运行给定代码后，$*tot*$ 的值应大于 $*k*$。",
   "samples": [
     {
       "input": "4 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:04:46.589Z"
+  "fetchedAt": "2026-10-31T02:04:46.589Z",
+  "translatedAt": "2026-11-04T07:23:01.381+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

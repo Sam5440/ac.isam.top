@@ -4,7 +4,7 @@
   "contestId": 1852,
   "index": "F",
   "title": "Panda Meetups",
-  "titleZh": null,
+  "titleZh": "熊猫聚会",
   "url": "https://codeforces.com/contest/1852/problem/F",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "The red pandas are in town to meet their relatives, the blue pandas! The town is modeled by a number line.\n\nThe pandas have already planned their meetup, but the schedule keeps changing. You are given $q$ updates of the form `x t c`.\n\n- If $c \\lt 0$, it means $|c|$ more **red** pandas enter the number line at position $x$ and time $t$. Then, each unit of time, they can each independently move one unit in either direction across the number line, or **not move at all**.\n- If $c \\gt 0$, it means that $c$ more **blue** pandas check position $x$ for red pandas at time $t$. If a blue panda does not meet a red panda at that specific location and time, they dejectedly leave the number line right away. If there is a red panda at a position at the same time a blue panda checks it, they form a friendship and leave the number line. Each red panda can form a friendship with **at most one** blue panda and vice versa.\n\nThe updates will be given in order of **non-decreasing** $x$ values. After each update, please print the maximum number of friendships if the red pandas move in an optimal order based on all the updates given in the input above (and including) this update.\n\nThe order in which a red panda moves can change between updates.\n\n## Input\n\nThe first line contains $q$ ($1 \\leq q \\leq 2 \\cdot 10^5$)  – the number of updates.\n\nThe $i$-th line of the next $q$ lines consists of $3$ integers $x_i$, $t_i$ and $c_i$ ($0 \\leq x_i \\leq 10^9$, $0 \\leq t_i \\leq 10^9$, $0 \\lt |c_i| \\leq 1000$) – the description of the $i$-th update.\n\nIt is guaranteed that the $x_i$ will be given in **non-decreasing** order.\n\n## Output\n\nAfter each update, print the maximum number of friendships that can be formed.\n\n## Note\n\nIn the first example, the number of friendships after each update can be optimized as follows:\n\n1. $3$ blue pandas now check for red pandas at position $0$ at time $6$. There are no red pandas anywhere, so there are no friendships.\n2. $5$ red pandas now appear at position $4$ and time $2$. $4$ of the red pandas can travel to position $0$ at time $6$, where $3$ of them can make friendships with the $3$ existing blue pandas.\n3. $6$ red pandas now appear at position $7$ and time $4$. No new blue pandas are added, so the maximum number of friendships is still $3$.\n4. $100$ blue pandas now appear at position $10$ and time $5$. No red pandas can reach them at a time of $5$, so no new friendships are created.\n5. $7$ blue pandas now appear at position $10$ and time $8$. $6$ of the red pandas at position $7$ and time $4$, along with $1$ red panda at position $4$ and time $2$, can reach $7$ of the blue pandas at position $10$ at time $8$, adding $7$ new friendships. This brings the total to $10$ friendships.",
-  "statementZhMd": null,
+  "statementZhMd": "红熊猫来到城里，与它们的亲戚蓝熊猫见面！这个城镇被建模为一条数轴。\n\n熊猫们已经计划好了见面安排，但日程一直在变化。你将获得 $q$ 次形如 `x t c` 的更新。\n\n- 如果 $c \\lt 0$，表示在位置 $x$、时间 $t$ 有 $|c|$ 只新的**红**熊猫进入数轴。此后，每经过一个单位时间，它们中的每一只都可以独立地沿数轴向任意方向移动一个单位，或者**不移动**。\n- 如果 $c \\gt 0$，表示有 $c$ 只新的**蓝**熊猫在时间 $t$ 检查位置 $x$ 是否有红熊猫。如果蓝熊猫在该特定位置和时间没有遇到红熊猫，它们会失落地立即离开数轴。如果蓝熊猫检查某个位置时，该位置同时有红熊猫，那么它们就会建立友谊并离开数轴。每只红熊猫至多能与一只蓝熊猫建立友谊，反之亦然。\n\n更新将按照 $x$ 值**非递减**的顺序给出。在每次更新之后，请输出在根据输入中给出的所有更新（包括当前更新）制定最优移动方案的情况下，最多能够建立的友谊数量。\n\n红熊猫移动的方案可以在不同更新之间改变。\n\n## 输入格式\n\n第一行包含一个整数 $q$（$1 \\leq q \\leq 2 \\cdot 10^5$）——更新的数量。\n\n接下来的 $q$ 行中，第 $i$ 行包含 $3$ 个整数 $x_i$、$t_i$ 和 $c_i$（$0 \\leq x_i \\leq 10^9$，$0 \\leq t_i \\leq 10^9$，$0 \\lt |c_i| \\leq 1000$）——第 $i$ 次更新的描述。\n\n保证 $x_i$ 将按照**非递减**的顺序给出。\n\n## 输出格式\n\n每次更新后，输出最多能够建立的友谊数量。\n\n## 说明\n\n在第一个样例中，每次更新后的友谊数量可以按如下方式进行最优安排：\n\n1. 现在有 $3$ 只蓝熊猫在时间 $6$ 检查位置 $0$ 是否有红熊猫。数轴上任何位置都没有红熊猫，因此没有建立友谊。\n2. 现在有 $5$ 只红熊猫在时间 $2$ 出现在位置 $4$。其中 $4$ 只红熊猫可以在时间 $6$ 到达位置 $0$，其中的 $3$ 只可以与已有的 $3$ 只蓝熊猫建立友谊。\n3. 现在有 $6$ 只红熊猫在时间 $4$ 出现在位置 $7$。没有新增蓝熊猫，因此最多的友谊数量仍为 $3$。\n4. 现在有 $100$ 只蓝熊猫在时间 $5$ 出现在位置 $10$。没有红熊猫能在时间 $5$ 到达它们所在的位置，因此没有建立新的友谊。\n5. 现在有 $7$ 只蓝熊猫在时间 $8$ 出现在位置 $10$。时间 $4$ 出现在位置 $7$ 的红熊猫中有 $6$ 只，以及时间 $2$ 出现在位置 $4$ 的红熊猫中有 $1$ 只，可以在时间 $8$ 到达位置 $10$，与 $7$ 只蓝熊猫建立友谊。这样总友谊数量达到 $10$。",
   "samples": [
     {
       "input": "5\n0 6 3\n4 2 -5\n7 4 -6\n10 5 100\n10 8 7\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:23:55.394Z"
+  "fetchedAt": "2026-10-30T22:23:55.394Z",
+  "translatedAt": "2026-11-04T02:46:01.751+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

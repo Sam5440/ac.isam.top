@@ -4,7 +4,7 @@
   "contestId": 1734,
   "index": "E",
   "title": "Rectangular Congruence",
-  "titleZh": null,
+  "titleZh": "矩形同余",
   "url": "https://codeforces.com/contest/1734/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a **prime** number $n$, and an array of $n$ integers $b_1,b_2,\\ldots, b_n$, where $0 \\leq b_i \\lt n$ for each $1 \\le i \\leq n$.\n\nYou have to find a matrix $a$ of size $n \\times n$ such that all of the following requirements hold:\n\n- $0 \\le a_{i,j} \\lt n$ for all $1 \\le i, j \\le n$.\n- $a_{r_1, c_1} + a_{r_2, c_2} \\not\\equiv a_{r_1, c_2} + a_{r_2, c_1} \\pmod n$ for all positive integers $r_1$, $r_2$, $c_1$, and $c_2$ such that $1 \\le r_1 \\lt r_2 \\le n$ and $1 \\le c_1 \\lt c_2 \\le n$.\n- $a_{i,i} = b_i$ for all $1 \\le i \\leq n$.\n\nHere $x \\not \\equiv y \\pmod m$ denotes that $x$ and $y$ give different remainders when divided by $m$.\n\nIf there are multiple solutions, output any. It can be shown that such a matrix always exists under the given constraints.\n\n## Input\n\nThe first line contains a single positive integer $n$ ($2 \\le n \\lt 350$).\n\nThe second line contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($0 \\le b_i \\lt n$) — the required values on the main diagonal of the matrix.\n\nIt is guaranteed that $n$ is **prime**.\n\n## Output\n\nPrint $n$ lines. On the $i$-th line, print $n$ integers $a_{i, 1}, a_{i, 2}, \\ldots, a_{i, n}$, each separated with a space.\n\nIf there are multiple solutions, output any.\n\n## Note\n\nIn the first example, the answer is valid because all entries are non-negative integers less than $n = 2$, and $a_{1,1}+a_{2,2} \\not\\equiv a_{1,2}+a_{2,1} \\pmod 2$ (because $a_{1,1}+a_{2,2} = 0 + 0 \\equiv 0 \\pmod 2$ and $a_{1,2}+a_{2,1} = 1 + 0 \\equiv 1 \\pmod 2 $). Moreover, the values on the main diagonals are equal to $0,0$ as required.\n\nIn the second example, the answer is correct because all entries are non-negative integers less than $n = 3$, and the second condition is satisfied for all quadruplets $(r_1, r_2, c_1, c_2)$. For example:\n\n- When $r_1=1$, $r_2=2$, $c_1=1$ and $c_2=2$, $a_{1,1}+a_{2,2} \\not\\equiv a_{1,2}+a_{2,1} \\pmod 3$ because $a_{1,1}+a_{2,2} = 1 + 1 \\equiv 2 \\pmod 3$ and $a_{1,2}+a_{2,1} = 2 + 1 \\equiv 0 \\pmod 3 $.\n- When $r_1=2$, $r_2=3$, $c_1=1$, and $c_2=3$, $a_{2,1}+a_{3,3} \\not\\equiv a_{2,3}+a_{3,1} \\pmod 3$ because $a_{2,1}+a_{3,3} = 1 + 1 \\equiv 2 \\pmod 3$ and $a_{2,3}+a_{3,1} = 0 + 1 \\equiv 1 \\pmod 3 $.\n\nMoreover, the values on the main diagonal are equal to $1,1,1$ as required.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个**素数** $n$，以及一个包含 $n$ 个整数的数组 $b_1,b_2,\\ldots, b_n$，其中对于每个 $1 \\le i \\le n$，都有 $0 \\leq b_i \\lt n$。\n\n请构造一个大小为 $n \\times n$ 的矩阵 $a$，使其满足以下所有要求：\n\n- 对于所有 $1 \\le i, j \\le n$，都有 $0 \\le a_{i,j} \\lt n$。\n- 对于所有正整数 $r_1$、$r_2$、$c_1$ 和 $c_2$，只要满足 $1 \\le r_1 \\lt r_2 \\le n$ 且 $1 \\le c_1 \\lt c_2 \\le n$，就有 $a_{r_1, c_1} + a_{r_2, c_2} \\not\\equiv a_{r_1, c_2} + a_{r_2, c_1} \\pmod n$。\n- 对于所有 $1 \\le i \\leq n$，都有 $a_{i,i} = b_i$。\n\n这里，$x \\not \\equiv y \\pmod m$ 表示 $x$ 和 $y$ 除以 $m$ 所得的余数不同。\n\n如果有多个解，输出任意一个即可。可以证明，在给定约束下，矩阵总是存在。\n\n## 输入格式\n\n第一行包含一个正整数 $n$（$2 \\le n \\lt 350$）。\n\n第二行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$0 \\le b_i \\lt n$）——矩阵主对角线上要求的值。\n\n保证 $n$ 是**素数**。\n\n## 输出格式\n\n输出 $n$ 行。第 $i$ 行输出 $n$ 个整数 $a_{i, 1}, a_{i, 2}, \\ldots, a_{i, n}$，相邻整数之间用空格分隔。\n\n如果有多个解，输出任意一个即可。\n\n## 说明\n\n在第一个样例中，答案是合法的，因为所有元素都是小于 $n = 2$ 的非负整数，并且 $a_{1,1}+a_{2,2} \\not\\equiv a_{1,2}+a_{2,1} \\pmod 2$（因为 $a_{1,1}+a_{2,2} = 0 + 0 \\equiv 0 \\pmod 2$，而 $a_{1,2}+a_{2,1} = 1 + 0 \\equiv 1 \\pmod 2$）。此外，主对角线上的值如要求的那样为 $0,0$。\n\n在第二个样例中，答案是正确的，因为所有元素都是小于 $n = 3$ 的非负整数，并且第二个条件对所有四元组 $(r_1, r_2, c_1, c_2)$ 都成立。例如：\n\n- 当 $r_1=1$、$r_2=2$、$c_1=1$ 且 $c_2=2$ 时，有 $a_{1,1}+a_{2,2} \\not\\equiv a_{1,2}+a_{2,1} \\pmod 3$，因为 $a_{1,1}+a_{2,2} = 1 + 1 \\equiv 2 \\pmod 3$，而 $a_{1,2}+a_{2,1} = 2 + 1 \\equiv 0 \\pmod 3$。\n- 当 $r_1=2$、$r_2=3$、$c_1=1$ 且 $c_2=3$ 时，有 $a_{2,1}+a_{3,3} \\not\\equiv a_{2,3}+a_{3,1} \\pmod 3$，因为 $a_{2,1}+a_{3,3} = 1 + 1 \\equiv 2 \\pmod 3$，而 $a_{2,3}+a_{3,1} = 0 + 1 \\equiv 1 \\pmod 3$。\n\n此外，主对角线上的值如要求的那样为 $1,1,1$。",
   "samples": [
     {
       "input": "2\n0 0\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:51:22.711Z"
+  "fetchedAt": "2026-10-30T22:51:22.711Z",
+  "translatedAt": "2026-11-04T03:14:09.409+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

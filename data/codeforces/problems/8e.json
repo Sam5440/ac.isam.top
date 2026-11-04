@@ -4,7 +4,7 @@
   "contestId": 8,
   "index": "E",
   "title": "Beads",
-  "titleZh": null,
+  "titleZh": "珠子",
   "url": "https://codeforces.com/contest/8/problem/E",
   "difficulty": 2600,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 64,
   "statementMd": "One Martian boy called Zorg wants to present a string of beads to his friend from the Earth — Masha. He knows that Masha likes two colours: blue and red, — and right in the shop where he has come, there is a variety of adornments with beads of these two colours. All the strings of beads have a small fastener, and if one unfastens it, one might notice that all the strings of beads in the shop are of the same length. Because of the peculiarities of the Martian eyesight, if Zorg sees one blue-and-red string of beads first, and then the other with red beads instead of blue ones, and blue — instead of red, he regards these two strings of beads as identical. In other words, Zorg regards as identical not only those strings of beads that can be derived from each other by the string turnover, but as well those that can be derived from each other by a mutual replacement of colours and/or by the string turnover.\n\nIt is known that all Martians are very orderly, and if a Martian sees some amount of objects, he tries to put them in good order. Zorg thinks that a red bead is smaller than a blue one. Let's put 0 for a red bead, and 1 — for a blue one. From two strings the Martian puts earlier the string with a red bead in the $*i*$-th position, providing that the second string has a blue bead in the $*i*$-th position, and the first two beads $*i* - 1$ are identical.\n\nAt first Zorg unfastens all the strings of beads, and puts them into small heaps so, that in each heap strings are identical, in his opinion. Then he sorts out the heaps and chooses the minimum string in each heap, in his opinion. He gives the unnecassary strings back to the shop assistant and says he doesn't need them any more. Then Zorg sorts out the remaining strings of beads and buys the string with index $*k*$.\n\nAll these manupulations will take Zorg a lot of time, that's why he asks you to help and find the string of beads for Masha.\n\n## Input\n\nThe input file contains two integers $*n*$ and $*k*$ ($2 ≤ *n* ≤ 50;1 ≤ *k* ≤ 10^{16}$) —the length of a string of beads, and the index of the string, chosen by Zorg.\n\n## Output\n\nOutput the $*k*$-th string of beads, putting 0 for a red bead, and 1 — for a blue one. If it s impossible to find the required string, output the only number `-1`.\n\n## Note\n\nLet's consider the example of strings of length 4 — 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110. Zorg will divide them into heaps: {0001, 0111, 1000, 1110}, {0010, 0100, 1011, 1101}, {0011, 1100}, {0101, 1010}, {0110, 1001}. Then he will choose the minimum strings of beads in each heap: 0001, 0010, 0011, 0101, 0110. The forth string — 0101.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n一个名叫 Zorg 的火星男孩想送给他的地球朋友 Masha 一串珠子。他知道 Masha 喜欢两种颜色：蓝色和红色；而在他来到的商店里，恰好有各种各样由这两种颜色的珠子组成的饰品。所有珠串都有一个小扣子，解开扣子后可以发现，商店里的所有珠串长度都相同。由于火星人视力的特殊性，如果 Zorg 先看到一串蓝红相间的珠串，然后又看到另一串，其中红色珠子替代了蓝色珠子，蓝色珠子替代了红色珠子，那么他会认为这两串珠子是相同的。换句话说，Zorg 认为不仅通过翻转珠串可以相互得到的珠串是相同的，通过互换两种颜色和/或翻转珠串可以相互得到的珠串也相同。\n\n众所周知，所有火星人都非常有条理；如果一个火星人看到了一些物品，他会尝试将它们按照一定顺序排列。Zorg 认为红色珠子小于蓝色珠子。我们用 0 表示红色珠子，用 1 表示蓝色珠子。对于两串珠子，如果第一串在第 $*i*$ 个位置上是红色珠子，而第二串在第 $*i*$ 个位置上是蓝色珠子，并且前 $*i* - 1$ 个珠子完全相同，那么火星人会将第一串排在第二串之前。\n\n首先，Zorg 解开所有珠串的扣子，并将它们分成若干小堆，使得在他看来，每一堆中的珠串都相同。然后，他将这些堆排序，并从每一堆中选出他认为最小的珠串。他把不需要的珠串还给店员，并表示自己不再需要它们。随后，Zorg 将剩下的珠串排序，并购买编号为 $*k*$ 的珠串。\n\n这些操作将花费 Zorg 很多时间，因此他请你帮忙找出他要送给 Masha 的珠串。\n\n## 输入格式\n\n输入文件包含两个整数 $*n*$ 和 $*k*$（$2 ≤ *n* ≤ 50;1 ≤ *k* ≤ 10^{16}$）——珠串的长度，以及 Zorg 所选择的珠串的编号。\n\n## 输出格式\n\n输出第 $*k*$ 个珠串，用 0 表示红色珠子，用 1 表示蓝色珠子。如果无法找到所需的珠串，输出唯一的数字 `-1`。\n\n## 说明\n\n考虑长度为 4 的珠串：0001、0010、0011、0100、0101、0110、0111、1000、1001、1010、1011、1100、1101、1110。Zorg 会将它们分成以下几堆：{0001, 0111, 1000, 1110}、{0010, 0100, 1011, 1101}、{0011, 1100}、{0101, 1010}、{0110, 1001}。然后，他会从每一堆中选出最小的珠串：0001、0010、0011、0101、0110。第四串是 0101。",
   "samples": [
     {
       "input": "4 4\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:25:35.789Z"
+  "fetchedAt": "2026-11-02T20:25:35.789Z",
+  "translatedAt": "2026-11-04T08:01:57.587+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

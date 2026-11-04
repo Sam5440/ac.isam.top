@@ -4,7 +4,7 @@
   "contestId": 641,
   "index": "E",
   "title": "Little Artem and Time Machine",
-  "titleZh": null,
+  "titleZh": "小阿尔乔姆和时间机器",
   "url": "https://codeforces.com/contest/641/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Little Artem has invented a time machine! He could go anywhere in time, but all his thoughts of course are with computer science. He wants to apply this time machine to a well-known data structure: multiset.\n\nArtem wants to create a basic multiset of integers. He wants these structure to support operations of three types:\n\n1. Add integer to the multiset. Note that the difference between set and multiset is that multiset may store several instances of one integer.\n2. Remove integer from the multiset. Only one instance of this integer is removed. Artem doesn't want to handle any exceptions, so he assumes that every time remove operation is called, that integer is presented in the multiset.\n3. Count the number of instances of the given integer that are stored in the multiset.\n\nBut what about time machine? Artem doesn't simply apply operations to the multiset one by one, he now travels to different moments of time and apply his operation there. Consider the following example.\n\n- First Artem adds integer $5$ to the multiset at the $1$-st moment of time.\n- Then Artem adds integer $3$ to the multiset at the moment $5$.\n- Then Artem asks how many $5$ are there in the multiset at moment $6$. The answer is $1$.\n- Then Artem returns back in time and asks how many integers $3$ are there in the set at moment $4$. Since $3$ was added only at moment $5$, the number of integers $3$ at moment $4$ equals to $0$.\n- Then Artem goes back in time again and removes $5$ from the multiset at moment $3$.\n- Finally Artyom asks at moment $7$ how many integers $5$ are there in the set. The result is $0$, since we have removed $5$ at the moment $3$.\n\nNote that Artem dislikes exceptions so much that he assures that after each change he makes all delete operations are applied only to element that is present in the multiset. The answer to the query of the third type is computed at the moment Artem makes the corresponding query and are not affected in any way by future changes he makes.\n\nHelp Artem implement time travellers multiset.\n\n## Input\n\nThe first line of the input contains a single integer $*n*$ ($1 ≤ *n* ≤ 100 000$) — the number of Artem's queries.\n\nThen follow $*n*$ lines with queries descriptions. Each of them contains three integers $*a*_{*i*}$, $*t*_{*i*}$ and $*x*_{*i*}$ ($1 ≤ *a*_{*i*} ≤ 3$, $1 ≤ *t*_{*i*}, *x*_{*i*} ≤ 10^{9}$) — type of the query, moment of time Artem travels to in order to execute this query and the value of the query itself, respectively. It's guaranteed that all moments of time are distinct and that after each operation is applied all operations of the first and second types are consistent.\n\n## Output\n\nFor each ask operation output the number of instances of integer being queried at the given moment of time.",
-  "statementZhMd": null,
+  "statementZhMd": "小阿尔乔姆发明了一台时间机器！他可以前往任何时间，但当然，他的所有想法都与计算机科学有关。他想将这台时间机器应用于一种众所周知的数据结构：多重集合。\n\n阿尔乔姆想创建一个由整数构成的基本多重集合。他希望该数据结构支持以下三种操作：\n\n1. 向多重集合中加入一个整数。注意，集合与多重集合的区别在于，多重集合中可以存储同一个整数的多个副本。\n2. 从多重集合中删除一个整数。只删除该整数的一个副本。阿尔乔姆不想处理任何异常，因此他保证每次执行删除操作时，该整数都存在于多重集合中。\n3. 询问多重集合中存储的给定整数的副本数量。\n\n但是，时间机器要如何应用呢？阿尔乔姆并不是按顺序逐一对多重集合执行操作，而是前往不同的时间点，并在那里执行操作。考虑下面的例子：\n\n- 首先，阿尔乔姆在第 $1$ 个时刻向多重集合中加入整数 $5$。\n- 然后，阿尔乔姆在时刻 $5$ 向多重集合中加入整数 $3$。\n- 接着，阿尔乔姆询问时刻 $6$ 的多重集合中有多少个 $5$。答案是 $1$。\n- 然后，阿尔乔姆回到过去，询问时刻 $4$ 的集合中有多少个整数 $3$。由于 $3$ 只在时刻 $5$ 被加入，因此时刻 $4$ 的集合中整数 $3$ 的数量为 $0$。\n- 接着，阿尔乔姆再次回到过去，在时刻 $3$ 从多重集合中删除 $5$。\n- 最后，阿尔乔姆在时刻 $7$ 询问集合中有多少个整数 $5$。结果是 $0$，因为我们在时刻 $3$ 删除了 $5$。\n\n注意，阿尔乔姆非常不喜欢异常，因此他保证在每次修改之后，所有删除操作都只会作用于当前多重集合中存在的元素。第三类查询的答案在阿尔乔姆执行对应查询的时刻计算，并且不会受到他之后进行的任何修改的影响。\n\n请帮助阿尔乔姆实现这个时间旅行多重集合。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 100 000$）——阿尔乔姆的查询数量。\n\n接下来 $*n*$ 行描述查询。每行包含三个整数 $*a*_{*i*}、$*t*_{*i*}$ 和 $*x*_{*i*}$（$1 ≤ *a*_{*i*} ≤ 3$，$1 ≤ *t*_{*i*}, *x*_{*i*} ≤ 10^{9}$）——分别表示查询类型、阿尔乔姆前往执行该查询的时刻，以及查询本身的值。保证所有时刻均不相同，并且在每次操作执行后，所有第一类和第二类操作都是合法的。\n\n## 输出格式\n\n对于每个询问操作，输出给定时刻多重集合中被查询整数的副本数量。",
   "samples": [
     {
       "input": "6\n1 1 5\n3 5 5\n1 2 5\n3 6 5\n2 3 5\n3 7 5\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:13:29.321Z"
+  "fetchedAt": "2026-10-31T01:13:29.321Z",
+  "translatedAt": "2026-11-04T06:33:17.308+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

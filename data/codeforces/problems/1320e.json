@@ -4,7 +4,7 @@
   "contestId": 1320,
   "index": "E",
   "title": "Treeland and Viruses",
-  "titleZh": null,
+  "titleZh": "树之国与病毒",
   "url": "https://codeforces.com/contest/1320/problem/E",
   "difficulty": 3000,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "There are $n$ cities in Treeland connected with $n - 1$ bidirectional roads in such that a way that any city is reachable from any other; in other words, the graph of cities and roads is a tree. Treeland is preparing for a seasonal virus epidemic, and currently, they are trying to evaluate different infection scenarios.\n\nIn each scenario, several cities are initially infected with different virus species. Suppose that there are $k_i$ virus species in the $i$-th scenario. Let us denote $v_j$ the initial city for the virus $j$, and $s_j$ the propagation speed of the virus $j$. The spread of the viruses happens in turns: first virus $1$ spreads, followed by virus $2$, and so on. After virus $k_i$ spreads, the process starts again from virus $1$.\n\nA spread turn of virus $j$ proceeds as follows. For each city $x$ not infected with any virus at the start of the turn, at the end of the turn it becomes infected with virus $j$ if and only if there is such a city $y$ that:\n\n- city $y$ was infected with virus $j$ at the start of the turn;\n- the path between cities $x$ and $y$ contains at most $s_j$ edges;\n- all cities on the path between cities $x$ and $y$ (excluding $y$) were uninfected with any virus at the start of the turn.\n\nOnce a city is infected with a virus, it stays infected indefinitely and can not be infected with any other virus. The spread stops once all cities are infected.\n\nYou need to process $q$ independent scenarios. Each scenario is described by $k_i$ virus species and $m_i$ important cities. For each important city determine which the virus it will be infected by in the end.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\leq n \\leq 2 \\cdot 10^5$) — the number of cities in Treeland.\n\nThe following $n - 1$ lines describe the roads. The $i$-th of these lines contains two integers $x_i$ and $y_i$ ($1 \\leq x_i, y_i \\leq n$) — indices of cities connecting by the $i$-th road. It is guaranteed that the given graph of cities and roads is a tree.\n\nThe next line contains a single integer $q$ ($1 \\leq q \\leq 2 \\cdot 10^5$) — the number of infection scenarios. $q$ scenario descriptions follow.\n\nThe description of the $i$-th scenario starts with a line containing two integers $k_i$ and $m_i$ ($1 \\leq k_i, m_i \\leq n$) — the number of virus species and the number of important cities in this scenario respectively. It is guaranteed that $\\sum_{i = 1}^ q k_i$ and $\\sum_{i = 1}^ q m_i$ do not exceed $2 \\cdot 10^5$.\n\nThe following $k_i$ lines describe the virus species. The $j$-th of these lines contains two integers $v_j$ and $s_j$ ($1 \\leq v_j \\leq n$, $1 \\leq s_j \\leq 10^6$) – the initial city and the propagation speed of the virus species $j$. It is guaranteed that the initial cities of all virus species within a scenario are distinct.\n\nThe following line contains $m_i$ distinct integers $u_1, \\ldots, u_{m_i}$ ($1 \\leq u_j \\leq n$) — indices of important cities.\n\n## Output\n\nPrint $q$ lines. The $i$-th line should contain $m_i$ integers — indices of virus species that cities $u_1, \\ldots, u_{m_i}$ are infected with at the end of the $i$-th scenario.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 个城市，Treeland 中有 $n - 1$ 条双向道路连接这些城市，使得任意城市都可以到达其他任意城市；换句话说，城市和道路构成的图是一棵树。Treeland 正在为季节性病毒流行做准备，目前他们正在评估不同的感染情景。\n\n在每个情景中，若干城市最初感染了不同种类的病毒。假设第 $i$ 个情景中有 $k_i$ 种病毒。令病毒 $j$ 的初始城市为 $v_j$，传播速度为 $s_j$。病毒的传播分轮进行：首先由病毒 1 传播，接着是病毒 2，以此类推。在病毒 $k_i$ 传播后，过程重新从病毒 1 开始。\n\n病毒 $j$ 的一次传播过程如下。对于在本轮开始时未感染任何病毒的每个城市 $x$，当且仅当存在一个城市 $y$ 满足以下条件时，该城市会在本轮结束时感染病毒 $j$：\n\n- 城市 $y$ 在本轮开始时感染了病毒 $j$；\n- 城市 $x$ 与城市 $y$ 之间的路径包含不超过 $s_j$ 条边；\n- 城市 $x$ 与城市 $y$ 之间的路径上（不包括 $y$）的所有城市在本轮开始时都未感染任何病毒。\n\n一旦某个城市感染了一种病毒，它将永久保持感染状态，且不能再感染其他病毒。当所有城市都被感染后，传播过程停止。\n\n你需要处理 $q$ 个相互独立的情景。每个情景由 $k_i$ 种病毒和 $m_i$ 个重要城市组成。对于每个重要城市，确定它最终会感染哪种病毒。\n\n## 输入\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 2 \\cdot 10^5$）——Treeland 中城市的数量。\n\n接下来的 $n - 1$ 行描述道路。第 $i$ 行包含两个整数 $x_i$ 和 $y_i$（$1 \\leq x_i, y_i \\leq n$）——第 $i$ 条道路连接的两个城市的编号。保证给出的城市和道路构成一棵树。\n\n下一行包含一个整数 $q$（$1 \\leq q \\leq 2 \\cdot 10^5$）——感染情景的数量。接下来有 $q$ 个情景的描述。\n\n第 $i$ 个情景的描述首先包含一行，其中有两个整数 $k_i$ 和 $m_i$（$1 \\leq k_i, m_i \\leq n$）——该情景中病毒的种类数和重要城市的数量。保证 $\\sum_{i = 1}^ q k_i$ 和 $\\sum_{i = 1}^ q m_i$ 均不超过 $2 \\cdot 10^5$。\n\n接下来的 $k_i$ 行描述病毒。第 $j$ 行包含两个整数 $v_j$ 和 $s_j$（$1 \\leq v_j \\leq n$，$1 \\leq s_j \\leq 10^6$）——病毒的初始城市和传播速度。保证同一情景中所有病毒的初始城市各不相同。\n\n接下来一行包含 $m_i$ 个互不相同的整数 $u_1, \\ldots, u_{m_i}$（$1 \\leq u_j \\leq n$）——重要城市的编号。\n\n## 输出\n\n输出 $q$ 行。第 $i$ 行应包含 $m_i$ 个整数——在第 $i$ 个情景结束时，城市 $u_1, \\ldots, u_{m_i}$ 所感染的病毒的编号。",
   "samples": [
     {
       "input": "7\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n3\n2 2\n4 1\n7 1\n1 3\n2 2\n4 3\n7 1\n1 3\n3 3\n1 1\n4 100\n7 100\n1 2 3\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:55:40.956Z"
+  "fetchedAt": "2026-10-30T23:55:40.956Z",
+  "translatedAt": "2026-11-04T04:48:23.756+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

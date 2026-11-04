@@ -4,14 +4,14 @@
   "contestId": 588,
   "index": "F",
   "title": "Duff in Mafia",
-  "titleZh": null,
+  "titleZh": "Duff 的黑手党",
   "url": "https://codeforces.com/contest/588/problem/F",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 6000,
   "memoryLimitMb": 256,
   "statementMd": "Duff is one if the heads of Mafia in her country, Andarz Gu. Andarz Gu has $*n*$ cities (numbered from 1 to $*n*$) connected by $*m*$ bidirectional roads (numbered by $1$ to $*m*$).\n\nEach road has a destructing time, and a color. $*i*$-th road connects cities $*v*_{*i*}$ and $*u*_{*i*}$ and its color is $*c*_{*i*}$ and its destructing time is $*t*_{*i*}$.\n\nMafia wants to destruct a *matching* in Andarz Gu. A *matching* is a subset of roads such that no two roads in this subset has common endpoint. They can destruct these roads in parallel, i. e. the total destruction time is a maximum over destruction times of all selected roads.\n\n![image](https://espresso.codeforces.com/e2707f8c83299670a1ac14c66af8ede93874d002.png)\n\nThey want two conditions to be satisfied:\n\n1. The remaining roads form a *proper coloring*.\n2. Destructing time of this matching is minimized.\n\nThe remaining roads after destructing this matching form a *proper coloring* if and only if no two roads of the same color have same endpoint, or, in the other words, edges of each color should form a *matching*.\n\nThere is no programmer in Mafia. That's why Duff asked for your help. Please help her and determine which matching to destruct in order to satisfied those conditions (or state that this is not possible).\n\n## Input\n\nThe first line of input contains two integers $*n*$ and $*m*$ ($2 ≤ *n* ≤ 5 × 10^{4}$ and $1 ≤ *m* ≤ 5 × 10^{4}$), number of cities and number of roads in the country.\n\nThe next $*m*$ lines contain the the roads. $*i* - *th*$ of them contains four integers $*v*_{*i*}, *u*_{*i*}, *c*_{*i*}$ and $*t*_{*i*}$ ($1 ≤ *v*_{*i*}, *u*_{*i*} ≤ *n*$, $*v*_{*i*} ≠ *u*_{*i*}$ and $1 ≤ *c*_{*i*}, *t*_{*i*} ≤ 10^{9}$ for each $1 ≤ *i* ≤ *m*$).\n\n## Output\n\nIn the first line of input, print \"`Yes`\" (without quotes) if satisfying the first condition is possible and \"`No`\" (without quotes) otherwise.\n\nIf it is possible, then you have to print two integers $*t*$ and $*k*$ in the second line, the minimum destructing time and the number of roads in the matching (![image](https://espresso.codeforces.com/891d95a6234e2219b0fb5b476f149110c8acc8c4.png)).\n\nIn the third line print $*k*$ distinct integers separated by spaces, indices of the roads in the matching in any order. Roads are numbered starting from one in order of their appearance in the input.\n\nIf there's more than one solution, print any of them.\n\n## Note\n\nGraph of Andarz Gu in the first sample case is as follows:\n\n![image](https://espresso.codeforces.com/6a860f5024e43552eb25d21e0d88289c021a85a9.png)\n\nA solution would be to destruct the roads with crosses.\n\nGraph of Andarz Gu in the second sample case is as follows:\n\n![image](https://espresso.codeforces.com/3c8b753b09178cc3dbe4edce788432f6d8130bb7.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Duff 是她所在国家安达尔古的黑手党首领之一。安达尔古有 $*n*$ 座城市（编号从 1 到 $*n*$），由 $*m*$ 条双向道路连接（编号为 $1$ 到 $*m*$）。\n\n每条道路都有一个拆除时间和一种颜色。第 $*i*$ 条道路连接城市 $*v*_{*i*}$ 和 $*u*_{*i*}$，其颜色为 $*c*_{*i*}$，拆除时间为 $*t*_{*i*}$。\n\n黑手党想要拆除安达尔古中的一个*匹配*。*匹配*是道路的一个子集，其中任意两条道路都没有公共端点。他们可以并行拆除这些道路，即总拆除时间等于所有被选道路拆除时间的最大值。\n\n![image](https://espresso.codeforces.com/e2707f8c83299670a1ac14c66af8ede93874d002.png)\n\n他们希望满足以下两个条件：\n\n1. 剩余的道路构成一个*合法着色*。\n2. 该匹配的拆除时间最小。\n\n拆除该匹配后的剩余道路构成*合法着色*，当且仅当任意两条同色道路都没有相同的端点。换句话说，每种颜色的边都应构成一个*匹配*。\n\n黑手党中没有程序员。因此，Duff 向你寻求帮助。请帮助她确定要拆除哪个匹配以满足上述条件（或者说明这是不可能的）。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*m*$（$2 ≤ *n* ≤ 5 × 10^{4}$，$1 ≤ *m* ≤ 5 × 10^{4}$），分别表示该国的城市数和道路数。\n\n接下来的 $*m*$ 行描述道路。其中第 $*i*$ 行包含四个整数 $*v*_{*i*}, *u*_{*i*}, *c*_{*i*}$ 和 $*t*_{*i*$}（$1 ≤ *v*_{*i*}, *u*_{*i*} ≤ *n*$，$*v*_{*i*} ≠ *u*_{*i*}$，且对于每个 $1 ≤ *i* ≤ *m*$，有 $1 ≤ *c*_{*i*}, *t*_{*i*} ≤ 10^{9}$）。\n\n## 输出格式\n\n如果可以满足第一个条件，则在第一行输出 \"`Yes`\"（不含引号），否则输出 \"`No`\"（不含引号）。\n\n如果可以满足条件，则在第二行输出两个整数 $*t*$ 和 $*k*$，分别表示最小拆除时间和匹配中道路的数量 (![image](https://espresso.codeforces.com/891d95a6234e2219b0fb5b476f149110c8acc8c4.png))。\n\n在第三行输出 $*k*$ 个用空格分隔的互不相同的整数，表示匹配中道路的编号，顺序任意。道路按照其在输入中出现的顺序从 1 开始编号。\n\n如果有多个解，输出任意一个即可。\n\n## 说明\n\n第一个样例中的安达尔古图如下：\n\n![image](https://espresso.codeforces.com/6a860f5024e43552eb25d21e0d88289c021a85a9.png)\n\n一种方案是拆除带有叉号的道路。\n\n第二个样例中的安达尔古图如下：\n\n![image](https://espresso.codeforces.com/3c8b753b09178cc3dbe4edce788432f6d8130bb7.png)",
   "samples": [
     {
       "input": "5 7\n2 1 3 7\n3 1 1 6\n5 4 1 8\n4 5 1 1\n3 2 2 3\n4 5 2 5\n2 3 2 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:20:10.436Z"
+  "fetchedAt": "2026-10-31T01:20:10.436Z",
+  "translatedAt": "2026-11-04T06:43:14.266+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

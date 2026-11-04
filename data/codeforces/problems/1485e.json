@@ -4,7 +4,7 @@
   "contestId": 1485,
   "index": "E",
   "title": "Move and Swap",
-  "titleZh": null,
+  "titleZh": "移动与交换",
   "url": "https://codeforces.com/contest/1485/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given $n - 1$ integers $a_2, \\dots, a_n$ and a tree with $n$ vertices rooted at vertex $1$. The leaves are all at the same distance $d$ from the root.\n\nRecall that a tree is a connected undirected graph without cycles. The distance between two vertices is the number of edges on the simple path between them. All non-root vertices with degree $1$ are leaves. If vertices $s$ and $f$ are connected by an edge and the distance of $f$ from the root is greater than the distance of $s$ from the root, then $f$ is called a child of $s$.\n\nInitially, there are a red coin and a blue coin on the vertex $1$. Let $r$ be the vertex where the red coin is and let $b$ be the vertex where the blue coin is. You should make $d$ moves. A move consists of three steps:\n\n- Move the red coin to any child of $r$.\n- Move the blue coin to any vertex $b'$ such that $dist(1, b') = dist(1, b) + 1$. Here $dist(x, y)$ indicates the length of the simple path between $x$ and $y$. Note that $b$ and $b'$ are not necessarily connected by an edge.\n- You can optionally swap the two coins (or skip this step).\n\nNote that $r$ and $b$ can be equal at any time, and there is no number written on the root.\n\nAfter each move, you gain $|a_r - a_b|$ points. What's the maximum number of points you can gain after $d$ moves?\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($2 \\leq n \\leq 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nThe second line of each test case contains $n-1$ integers $v_2, v_3, \\dots, v_n$ ($1 \\leq v_i \\leq n$, $v_i \\neq i$)  — the $i$-th of them indicates that there is an edge between vertices $i$ and $v_i$. It is guaranteed, that these edges form a tree.\n\nThe third line of each test case contains $n-1$ integers $a_2, \\dots, a_n$ ($1 \\leq a_i \\leq 10^9$) — the numbers written on the vertices.\n\nIt is guaranteed that the sum of $n$ for all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer: the maximum number of points you can gain after $d$ moves.\n\n## Note\n\nIn the first test case, an optimal solution is to:\n\n- move $1$: $r = 4$, $b = 2$; no swap;\n- move $2$: $r = 7$, $b = 6$; swap (after it $r = 6$, $b = 7$);\n- move $3$: $r = 11$, $b = 9$; no swap.\n\nThe total number of points is $|7 - 2| + |6 - 9| + |3 - 9| = 14$.\n\n![image](https://espresso.codeforces.com/850b624d859c38b193fbf1ef086fb5511b158710.png)\n\nIn the second test case, an optimal solution is to:\n\n- move $1$: $r = 2$, $b = 2$; no swap;\n- move $2$: $r = 3$, $b = 4$; no swap;\n- move $3$: $r = 5$, $b = 6$; no swap.\n\nThe total number of points is $|32 - 32| + |78 - 69| + |5 - 41| = 45$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定 $n - 1$ 个整数 $a_2, \\dots, a_n$，以及一棵以顶点 $1$ 为根、包含 $n$ 个顶点的树。所有叶子到根的距离均为 $d$。\n\n回顾一下，树是一个无环的连通无向图。两个顶点之间的距离是它们之间简单路径上的边数。所有非根且度数为 $1$ 的顶点都是叶子。若顶点 $s$ 和 $f$ 之间有一条边，且 $f$ 到根的距离大于 $s$ 到根的距离，则称 $f$ 是 $s$ 的一个子节点。\n\n初始时，顶点 $1$ 上有一枚红色棋子和一枚蓝色棋子。设红色棋子所在的顶点为 $r$，蓝色棋子所在的顶点为 $b$。你需要进行 $d$ 次移动。一次移动包含以下三个步骤：\n\n- 将红色棋子移动到 $r$ 的任意一个子节点。\n- 将蓝色棋子移动到任意一个满足 $dist(1, b') = dist(1, b) + 1$ 的顶点 $b'$。其中，$dist(x, y)$ 表示 $x$ 与 $y$ 之间简单路径的长度。注意，$b$ 和 $b'$ 不一定通过一条边直接相连。\n- 你可以选择交换两枚棋子（也可以跳过此步骤）。\n\n注意，在任何时刻，$r$ 和 $b$ 都可能相同，并且根上没有写有数字。\n\n每次移动后，你可以获得 $|a_r - a_b|$ 分。进行 $d$ 次移动后，你最多可以获得多少分？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——树中顶点的数量。\n\n每个测试用例的第二行包含 $n-1$ 个整数 $v_2, v_3, \\dots, v_n$（$1 \\le v_i \\le n$，$v_i \\neq i$）——其中第 $i$ 个数表示顶点 $i$ 与顶点 $v_i$ 之间有一条边。保证这些边构成一棵树。\n\n每个测试用例的第三行包含 $n-1$ 个整数 $a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$）——写在各顶点上的数字。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：进行 $d$ 次移动后可以获得的最大分数。\n\n## 说明\n\n在第一个测试用例中，一种最优方案如下：\n\n- 第 $1$ 次移动：$r = 4$，$b = 2$；不交换；\n- 第 $2$ 次移动：$r = 7$，$b = 6$；交换（交换后 $r = 6$，$b = 7$）；\n- 第 $3$ 次移动：$r = 11$，$b = 9$；不交换。\n\n获得的总分为 $|7 - 2| + |6 - 9| + |3 - 9| = 14$。\n\n![image](https://espresso.codeforces.com/850b624d859c38b193fbf1ef086fb5511b158710.png)\n\n在第二个测试用例中，一种最优方案如下：\n\n- 第 $1$ 次移动：$r = 2$，$b = 2$；不交换；\n- 第 $2$ 次移动：$r = 3$，$b = 4$；不交换；\n- 第 $3$ 次移动：$r = 5$，$b = 6$；不交换。\n\n获得的总分为 $|32 - 32| + |78 - 69| + |5 - 41| = 45$。",
   "samples": [
     {
       "input": "4\n14\n1 1 1 2 3 4 4 5 5 6 7 8 8\n2 3 7 7 6 9 5 9 7 3 6 6 5\n6\n1 2 2 3 4\n32 78 69 5 41\n15\n1 15 1 10 4 9 11 2 4 1 8 6 10 11\n62 13 12 43 39 65 42 86 25 38 19 19 43 62\n15\n11 2 7 6 9 8 10 1 1 1 5 3 15 2\n50 19 30 35 9 45 13 24 8 44 16 26 10 40\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:37:14.406Z"
+  "fetchedAt": "2026-10-30T23:37:14.406Z",
+  "translatedAt": "2026-11-04T04:03:24.459+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

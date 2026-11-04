@@ -4,7 +4,7 @@
   "contestId": 925,
   "index": "F",
   "title": "Parametric Circulation",
-  "titleZh": null,
+  "titleZh": "参数化循环流",
   "url": "https://codeforces.com/contest/925/problem/F",
   "difficulty": 3100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Vova has recently learned what a *circulaton* in a graph is. Recall the definition: let $G = (V, E)$ be a directed graph. A circulation $f$ is such a collection of non-negative real numbers $f_e$ ($e \\in E$), that for each vertex $v \\in V$ the following *conservation* condition holds:\n\n$$\\sum\\limits_{e \\in \\delta^{-}(v)} f_e = \\sum\\limits_{e \\in \\delta^{+}(v)} f_e$$\n\nwhere $\\delta^{+}(v)$ is the set of edges that end in the vertex $v$, and $\\delta^{-}(v)$ is the set of edges that start in the vertex $v$. In other words, for each vertex the total incoming flow should be equal to the total outcoming flow.\n\nLet a $lr$-circulation be such a circulation $f$ that for each edge the condition $l_e \\leq f_e \\leq r_e$ holds, where $l_e$ and $r_e$ for each edge $e \\in E$ are two non-negative real numbers denoting the lower and upper bounds on the value of the circulation on this edge $e$.\n\nVova can't stop thinking about applications of a new topic. Right now he thinks about the following *natural* question: let the graph be fixed, and each value $l_e$ and $r_e$ be a linear function of a real variable $t$:\n\n$$l_e(t) = a_e t + b_e$$ $$r_e(t) = c_e t + d_e$$\n\nNote that $t$ is the **same** for all edges.\n\nLet $t$ be chosen at random from uniform distribution on a segment $[0, 1]$. What is the probability of existence of $lr$-circulation in the graph?\n\n## Input\n\nThe first line contains two integers $n$, $m$ ($1 \\leq n \\leq 1000$, $1 \\leq m \\leq 2000$).\n\nEach of the next $m$ lines describes edges of the graph in the format $u_e$, $v_e$, $a_e$, $b_e$, $c_e$, $d_e$ ($1 \\leq u_e, v_e \\leq n$, $-10^4 \\leq a_e, c_e \\leq 10^4$, $0 \\leq b_e, d_e \\leq 10^4$), where $u_e$ and $v_e$ are the startpoint and the endpoint of the edge $e$, and the remaining 4 integers describe the linear functions for the upper and lower bound of circulation.\n\nIt is guaranteed that for any $t \\in [0, 1]$ and for any edge $e \\in E$ the following condition holds $0 \\leq l_e(t) \\leq r_e(t) \\leq 10^4$.\n\n## Output\n\nPrint a single real integer — the probability of existence of $lr$-circulation in the graph, given that $t$ is chosen uniformly at random from the segment $[0, 1]$. Your answer is considered correct if its absolute difference from jury's answer is not greater than $10^{-6}$.\n\n## Note\n\nIn the first example the conservation condition allows only circulations with equal values $f_e$ for all three edges. The value of circulation on the last edge should be $4$ whatever $t$ is chosen, so the probability is\n\n$$P(4 \\in [3, -4t + 7]~~\\&~~4 \\in [-2t + 5, t + 6]) = 0.25$$",
-  "statementZhMd": null,
+  "statementZhMd": "Vova 最近学会了图中的*循环流*是什么。回顾其定义：设 $G = (V, E)$ 是一个有向图。循环流 $f$ 是一组非负实数 $f_e$（$e \\in E$），并且对于每个顶点 $v \\in V$，都满足以下*守恒*条件：\n\n$$\\sum\\limits_{e \\in \\delta^{-}(v)} f_e = \\sum\\limits_{e \\in \\delta^{+}(v)} f_e$$\n\n其中，$\\delta^{+}(v)$ 是终点为顶点 $v$ 的边的集合，$\\delta^{-}(v)$ 是起点为顶点 $v$ 的边的集合。换句话说，对于每个顶点，流入的总流量应等于流出的总流量。\n\n若循环流 $f$ 对于每条边都满足 $l_e \\leq f_e \\leq r_e$，则称其为一个 $lr$-循环流。其中，对于每条边 $e \\in E$，$l_e$ 和 $r_e$ 是两个非负实数，分别表示该边 $e$ 上循环流取值的下界和上界。\n\nVova 忍不住思考这个新主题的应用。目前，他正在思考如下*自然*的问题：给定一个固定的图，并且每个 $l_e$ 和 $r_e$ 都是实变量 $t$ 的线性函数：\n\n$$l_e(t) = a_e t + b_e$$ $$r_e(t) = c_e t + d_e$$\n\n注意，所有边使用的 $t$ **都是同一个值**。\n\n从区间 $[0, 1]$ 上的均匀分布中随机选取 $t$。图中存在 $lr$-循环流的概率是多少？\n\n## 输入格式\n\n第一行包含两个整数 $n$、$m$（$1 \\leq n \\leq 1000$，$1 \\leq m \\leq 2000$）。\n\n接下来的 $m$ 行中，每行按照格式 $u_e$、$v_e$、$a_e$、$b_e$、$c_e$、$d_e$ 描述图中的一条边（$1 \\leq u_e, v_e \\leq n$，$-10^4 \\leq a_e, c_e \\leq 10^4$，$0 \\leq b_e, d_e \\leq 10^4$）。其中，$u_e$ 和 $v_e$ 分别是边 $e$ 的起点和终点，剩下的 4 个整数描述循环流上下界的线性函数。\n\n保证对于任意 $t \\in [0, 1]$ 以及任意边 $e \\in E$，均满足以下条件：\n\n$0 \\leq l_e(t) \\leq r_e(t) \\leq 10^4$。\n\n## 输出格式\n\n输出一个实数，即在 $t$ 从区间 $[0, 1]$ 上均匀选取的情况下，图中存在 $lr$-循环流的概率。如果你的答案与标准答案的绝对误差不超过 $10^{-6}$，则视为正确。\n\n## 说明\n\n在第一个样例中，守恒条件只允许所有三条边上的循环流取值相等。无论选择何种 $t$，最后一条边上的循环流取值都应为 $4$，因此概率为\n\n$$P(4 \\in [3, -4t + 7]~~\\&~~4 \\in [-2t + 5, t + 6]) = 0.25$$",
   "samples": [
     {
       "input": "3 3\n1 2 0 3 -4 7\n2 3 -2 5 1 6\n3 1 0 4 0 4\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:36:40.148Z"
+  "fetchedAt": "2026-10-31T00:36:40.148Z",
+  "translatedAt": "2026-11-04T05:44:24.555+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1166,
   "index": "F",
   "title": "Vicky's Delivery Service",
-  "titleZh": null,
+  "titleZh": "Vicky 的配送服务",
   "url": "https://codeforces.com/contest/1166/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "In a magical land there are $n$ cities conveniently numbered $1, 2, \\dots, n$. Some pairs of these cities are connected by magical colored roads. Magic is unstable, so at any time, new roads may appear between two cities.\n\nVicky the witch has been tasked with performing deliveries between some pairs of cities. However, Vicky is a beginner, so she can only complete a delivery if she can move from her starting city to her destination city through a *double rainbow*. A double rainbow is a sequence of cities $c_1, c_2, \\dots, c_k$ satisfying the following properties:\n\n- For each $i$ with $1 \\le i \\le k - 1$, the cities $c_i$ and $c_{i + 1}$ are connected by a road.\n- For each $i$ with $1 \\le i \\le \\frac{k - 1}{2}$, the roads connecting $c_{2i}$ with $c_{2i - 1}$ and $c_{2i + 1}$ have the same color.\n\nFor example if $k = 5$, the road between $c_1$ and $c_2$ must be the same color as the road between $c_2$ and $c_3$, and the road between $c_3$ and $c_4$ must be the same color as the road between $c_4$ and $c_5$.\n\nVicky has a list of events in chronological order, where each event is either a delivery she must perform, or appearance of a new road. Help her determine which of her deliveries she will be able to complete.\n\n## Input\n\nThe first line contains four integers $n$, $m$, $c$, and $q$ ($2 \\le n \\le 10^5$, $1 \\le m, c, q \\le 10^5$), denoting respectively the number of cities, the number of roads initially present, the number of different colors the roads can take, and the number of events.\n\nEach of the following $m$ lines contains three integers $x$, $y$, and $z$ ($1 \\le x, y \\le n$, $1 \\le z \\le c$), describing that there initially exists a bidirectional road with color $z$ between cities $x$ and $y$.\n\nThen $q$ lines follow, describing the events. Each event is one of the following two types:\n\n1. `+ x y z` ($1 \\le x, y \\le n$, $1 \\le z \\le c$), meaning a road with color $z$ appears between cities $x$ and $y$;\n2. `? x y` ($1 \\le x, y \\le n$), meaning you should determine whether Vicky can make a delivery starting at city $x$ and ending at city $y$. It is guaranteed that $x \\neq y$.\n\nIt is guaranteed that at any moment, there is at most one road connecting any pair of cities, and that no road connects a city to itself. It is guaranteed that the input contains at least one event of the second type.\n\n## Output\n\nFor each event of the second type, print a single line containing \"`Yes`\" (without quotes) if the delivery can be made, or a single line containing \"`No`\" (without quotes) otherwise.\n\n## Note\n\nThe following picture corresponds to the sample.\n\n![image](https://espresso.codeforces.com/c7b683a78281dcf38d264c27c8191cdcb3a91d1b.png)\n\nFor her first delivery, Vicky can use the sequence `1, 2, 3, 4` which is a double rainbow. However, she cannot complete the second delivery, as she can only reach city $3$. After adding the road between cities $1$ and $3$, she can now complete a delivery from city $4$ to city $1$ by using the double rainbow `4, 3, 1`.",
-  "statementZhMd": null,
+  "statementZhMd": "在一个神奇的国度里，有 $n$ 座城市，编号为 $1, 2, \\dots, n$。其中一些城市对之间由带有魔法颜色的道路连接。魔法并不稳定，因此任何时候，两个城市之间都可能出现新的道路。\n\n女巫 Vicky 接到任务，需要在一些城市对之间进行配送。然而，Vicky 还是个初学者，因此只有当她能够通过一条*双彩虹*从起点城市移动到目的地城市时，才能完成配送。双彩虹是一个满足以下性质的城市序列 $c_1, c_2, \\dots, c_k$：\n\n- 对于每个满足 $1 \\le i \\le k - 1$ 的 $i$，城市 $c_i$ 和 $c_{i + 1}$ 之间都有道路连接。\n- 对于每个满足 $1 \\le i \\le \\frac{k - 1}{2}$ 的 $i$，连接 $c_{2i}$ 与 $c_{2i - 1}$ 的道路和连接 $c_{2i}$ 与 $c_{2i + 1}$ 的道路颜色相同。\n\n例如，当 $k = 5$ 时，$c_1$ 和 $c_2$ 之间的道路必须与 $c_2$ 和 $c_3$ 之间的道路颜色相同，而 $c_3$ 和 $c_4$ 之间的道路必须与 $c_4$ 和 $c_5$ 之间的道路颜色相同。\n\nVicky 有一份按时间顺序排列的事件列表，其中每个事件要么是她必须完成的一次配送，要么是一条新道路的出现。请帮助她确定哪些配送能够完成。\n\n## 输入格式\n\n第一行包含四个整数 $n$、$m$、$c$ 和 $q$（$2 \\le n \\le 10^5$，$1 \\le m, c, q \\le 10^5$），分别表示城市数量、初始存在的道路数量、道路可能采用的不同颜色数量以及事件数量。\n\n接下来的 $m$ 行中，每行包含三个整数 $x$、$y$ 和 $z$（$1 \\le x, y \\le n$，$1 \\le z \\le c$），表示城市 $x$ 和城市 $y$ 之间初始存在一条颜色为 $z$ 的双向道路。\n\n接下来是 $q$ 行，描述这些事件。每个事件属于以下两种类型之一：\n\n1. `+ x y z`（$1 \\le x, y \\le n$，$1 \\le z \\le c$），表示城市 $x$ 和城市 $y$ 之间出现一条颜色为 $z$ 的道路；\n2. `? x y`（$1 \\le x, y \\le n$），表示需要判断 Vicky 是否能够从城市 $x$ 出发，在城市 $y$ 结束一次配送。保证 $x \\neq y$。\n\n保证在任意时刻，每对城市之间至多有一条道路，并且没有道路连接城市自身。保证输入中至少包含一个第二类事件。\n\n## 输出格式\n\n对于每个第二类事件，如果能够完成配送，输出一行包含 `Yes`（不含引号）；否则输出一行包含 `No`（不含引号）。\n\n## 说明\n\n下图对应样例。\n\n![image](https://espresso.codeforces.com/c7b683a78281dcf38d264c27c8191cdcb3a91d1b.png)\n\n对于第一次配送，Vicky 可以使用序列 `1, 2, 3, 4`，它是一条双彩虹。然而，她无法完成第二次配送，因为她只能到达城市 $3$。在城市 $1$ 和城市 $3$ 之间添加道路后，她现在可以通过双彩虹 `4, 3, 1` 完成从城市 $4$ 到城市 $1$ 的配送。",
   "samples": [
     {
       "input": "4 3 2 4\n1 2 1\n2 3 1\n3 4 2\n? 1 4\n? 4 1\n+ 3 1 2\n? 4 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:10:33.170Z"
+  "fetchedAt": "2026-10-31T00:10:33.170Z",
+  "translatedAt": "2026-11-04T05:11:10.131+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1154,
   "index": "F",
   "title": "Shovels Shop",
-  "titleZh": null,
+  "titleZh": "铲子商店",
   "url": "https://codeforces.com/contest/1154/problem/F",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ shovels in the nearby shop. The $i$-th shovel costs $a_i$ bourles.\n\nMisha has to buy **exactly** $k$ shovels. Each shovel can be bought **no more than once**.\n\nMisha can buy shovels by several purchases. During one purchase he can choose any subset of remaining (non-bought) shovels and buy this subset.\n\nThere are also $m$ special offers in the shop. The $j$-th of them is given as a pair $(x_j, y_j)$, and it means that if Misha buys **exactly** $x_j$ shovels **during one purchase** then $y_j$ **most cheapest** of them are for free (i.e. he will not pay for $y_j$ most cheapest shovels during the current purchase).\n\nMisha can use any offer any (possibly, zero) number of times, but he cannot use **more than one** offer during **one purchase** (but he can buy shovels without using any offers).\n\nYour task is to calculate the minimum cost of buying $k$ shovels, if Misha buys them optimally.\n\n## Input\n\nThe first line of the input contains three integers $n, m$ and $k$ ($1 \\le n, m \\le 2 \\cdot 10^5, 1 \\le k \\le min(n, 2000)$) — the number of shovels in the shop, the number of special offers and the number of shovels Misha has to buy, correspondingly.\n\nThe second line of the input contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 2 \\cdot 10^5$), where $a_i$ is the cost of the $i$-th shovel.\n\nThe next $m$ lines contain special offers. The $j$-th of them is given as a pair of integers $(x_i, y_i)$ ($1 \\le y_i \\le x_i \\le n$) and means that if Misha buys exactly $x_i$ shovels during some purchase, then he can take $y_i$ most cheapest of them for free.\n\n## Output\n\nPrint one integer — the minimum cost of buying $k$ shovels if Misha buys them optimally.\n\n## Note\n\nIn the first example Misha can buy shovels on positions $1$ and $4$ (both with costs $2$) during the first purchase and get one of them for free using the first or the third special offer. And then he can buy shovels on positions $3$ and $6$ (with costs $4$ and $3$) during the second purchase and get the second one for free using the first or the third special offer. Then he can buy the shovel on a position $7$ with cost $1$. So the total cost is $4 + 2 + 1 = 7$.\n\nIn the second example Misha can buy shovels on positions $1$, $2$, $3$, $4$ and $8$ (costs are $6$, $8$, $5$, $1$ and $2$) and get three cheapest (with costs $5$, $1$ and $2$) for free. And then he can buy shovels on positions $6$, $7$ and $9$ (all with costs $1$) without using any special offers. So the total cost is $6 + 8 + 1 + 1 + 1 = 17$.\n\nIn the third example Misha can buy four cheapest shovels without using any special offers and get the total cost $17$.",
-  "statementZhMd": null,
+  "statementZhMd": "附近的商店里有 $n$ 把铲子。第 $i$ 把铲子的价格为 $a_i$ 博勒。\n\nMisha 必须购买**恰好** $k$ 把铲子。每把铲子最多只能购买一次。\n\nMisha 可以分多次购买铲子。每次购买时，他可以从剩余的（尚未购买的）铲子中选择任意一个子集并购买。\n\n商店里还有 $m$ 个特别优惠。第 $j$ 个优惠由一对 $(x_j, y_j)$ 给出，表示如果 Misha 在**一次购买**中**恰好**购买 $x_j$ 把铲子，那么其中最便宜的 $y_j$ 把可以免费获得（也就是说，在当前购买中，他无需支付这 $y_j$ 把最便宜铲子的费用）。\n\nMisha 可以使用任意优惠任意（可能为零）次，但在**一次购买**中不能同时使用多个优惠（当然，他也可以在不使用任何优惠的情况下购买铲子）。\n\n你的任务是计算 Misha 采取最优策略购买 $k$ 把铲子时所需支付的最小费用。\n\n## 输入格式\n\n输入的第一行包含三个整数 $n$、$m$ 和 $k$（$1 \\le n, m \\le 2 \\cdot 10^5, 1 \\le k \\le min(n, 2000)$）——商店中铲子的数量、特别优惠的数量以及 Misha 必须购买的铲子数量。\n\n输入的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 2 \\cdot 10^5$），其中 $a_i$ 表示第 $i$ 把铲子的价格。\n\n接下来的 $m$ 行描述特别优惠。第 $j$ 个优惠由一对整数 $(x_i, y_i)$ 给出（$1 \\le y_i \\le x_i \\le n$），表示如果 Misha 在某次购买中恰好购买 $x_i$ 把铲子，那么他可以将其中最便宜的 $y_i$ 把免费获得。\n\n## 输出格式\n\n输出一个整数——Misha 采取最优策略购买 $k$ 把铲子时所需支付的最小费用。\n\n## 说明\n\n在第一个样例中，Misha 可以在第一次购买时购买第 $1$ 把和第 $4$ 把铲子（两者的价格均为 $2$），并使用第一个或第三个特别优惠将其中一把免费。然后，他可以在第二次购买时购买第 $3$ 把和第 $6$ 把铲子（价格分别为 $4$ 和 $3），并使用第一个或第三个特别优惠将第二把免费。最后，他可以购买价格为 $1$ 的第 $7$ 把铲子。因此总费用为 $4 + 2 + 1 = 7$。\n\n在第二个样例中，Misha 可以购买第 $1$、$2$、$3$、$4$ 和 $8$ 把铲子（价格分别为 $6$、$8$、$5$、$1$ 和 $2$），并将其中最便宜的三把（价格为 $5$、$1$ 和 $2$）免费获得。然后，他可以在不使用任何特别优惠的情况下购买第 $6$、$7$ 和 $9$ 把铲子（价格均为 $1$）。因此总费用为 $6 + 8 + 1 + 1 + 1 = 17$。\n\n在第三个样例中，Misha 可以不使用任何特别优惠，购买四把最便宜的铲子，总费用为 $17$。",
   "samples": [
     {
       "input": "7 4 5\n2 5 4 2 6 3 1\n2 1\n6 5\n2 1\n3 1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:17:25.929Z"
+  "fetchedAt": "2026-11-02T19:17:25.929Z",
+  "translatedAt": "2026-11-04T05:15:39.881+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

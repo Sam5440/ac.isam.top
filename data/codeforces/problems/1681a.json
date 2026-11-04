@@ -4,7 +4,7 @@
   "contestId": 1681,
   "index": "A",
   "title": "Game with Cards",
-  "titleZh": null,
+  "titleZh": "卡牌游戏",
   "url": "https://codeforces.com/contest/1681/problem/A",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob play a game. Alice has $n$ cards, the $i$-th of them has the integer $a_i$ written on it. Bob has $m$ cards, the $j$-th of them has the integer $b_j$ written on it.\n\nOn the first turn of the game, **the first player** chooses one of his/her cards and puts it on the table (plays it). On the second turn, **the second player** chooses one of his/her cards **such that the integer on it is greater than the integer on the card played on the first turn**, and plays it. On the third turn, **the first player** chooses one of his/her cards **such that the integer on it is greater than the integer on the card played on the second turn**, and plays it, and so on — the players take turns, and each player has to choose one of his/her cards with greater integer than the card played by the other player on the last turn.\n\nIf some player cannot make a turn, he/she loses.\n\nFor example, if Alice has $4$ cards with numbers $[10, 5, 3, 8]$, and Bob has $3$ cards with numbers $[6, 11, 6]$, the game may go as follows:\n\n- Alice can choose any of her cards. She chooses the card with integer $5$ and plays it.\n- Bob can choose any of his cards with number greater than $5$. He chooses a card with integer $6$ and plays it.\n- Alice can choose any of her cards with number greater than $6$. She chooses the card with integer $10$ and plays it.\n- Bob can choose any of his cards with number greater than $10$. He chooses a card with integer $11$ and plays it.\n- Alice can choose any of her cards with number greater than $11$, but she has no such cards, so she loses.\n\nBoth Alice and Bob play **optimally (if a player is able to win the game no matter how the other player plays, the former player will definitely win the game)**.\n\nYou have to answer two questions:\n\n- who wins if Alice is the first player?\n- who wins if Bob is the first player?\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 1000$) — the number of test cases. Each test case consists of four lines.\n\nThe first line of a test case contains one integer $n$ ($1 \\le n \\le 50$) — the number of cards Alice has.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 50$) — the numbers written on the cards that Alice has.\n\nThe third line contains one integer $m$ ($1 \\le m \\le 50$) — the number of Bob's cards.\n\nThe fourth line contains $m$ integers $b_1, b_2, \\dots, b_m$ ($1 \\le b_i \\le 50$) — the numbers on Bob's cards.\n\n## Output\n\nFor each test case, print two lines. The first line should be `Alice` if Alice wins when she is the first player; otherwise, the first line should be `Bob`. The second line should contain the name of the winner if Bob is the first player, in the same format.\n\n## Note\n\nLet's consider the first test case of the example.\n\nAlice has one card with integer $6$, Bob has two cards with numbers $[6, 8]$.\n\nIf Alice is the first player, she has to play the card with number $6$. Bob then has to play the card with number $8$. Alice has no cards left, so she loses.\n\nIf Bob is the first player, then no matter which of his cards he chooses on the first turn, Alice won't be able to play her card on the second turn, so she will lose.",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 正在进行一个游戏。Alice 有 $n$ 张卡片，其中第 $i$ 张卡片上写着整数 $a_i$。Bob 有 $m$ 张卡片，其中第 $j$ 张卡片上写着整数 $b_j$。\n\n在游戏的第一回合，**先手玩家**选择自己的一张卡片，并将其放在桌上（打出这张卡片）。在第二回合，**后手玩家**选择自己的一张卡片，**使其上的整数大于第一回合打出的卡片上的整数**，并将其打出。在第三回合，**先手玩家**选择自己的一张卡片，**使其上的整数大于第二回合打出的卡片上的整数**，并将其打出，以此类推——双方轮流行动，每位玩家都必须选择一张卡片，使其上的整数大于对方上一回合打出的卡片上的整数。\n\n如果某位玩家无法行动，则该玩家输掉游戏。\n\n例如，Alice 有 $4$ 张卡片，数字分别为 $[10, 5, 3, 8]$，Bob 有 $3$ 张卡片，数字分别为 $[6, 11, 6]$，游戏可能按如下方式进行：\n\n- Alice 可以选择她的任意一张卡片。她选择数字为 $5$ 的卡片并将其打出。\n- Bob 可以选择数字大于 $5$ 的任意一张卡片。他选择一张数字为 $6$ 的卡片并将其打出。\n- Alice 可以选择数字大于 $6$ 的任意一张卡片。她选择数字为 $10$ 的卡片并将其打出。\n- Bob 可以选择数字大于 $10$ 的任意一张卡片。他选择数字为 $11$ 的卡片并将其打出。\n- Alice 可以选择数字大于 $11$ 的任意一张卡片，但她没有这样的卡片，因此输掉游戏。\n\nAlice 和 Bob 都会**采取最优策略（如果某位玩家无论对手如何行动都能够获胜，那么该玩家一定会赢得游戏）**。\n\n你需要回答两个问题：\n\n- 如果 Alice 先手，谁会获胜？\n- 如果 Bob 先手，谁会获胜？\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。每个测试用例包含四行。\n\n测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 50$）——Alice 拥有的卡片数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 50$）——Alice 的卡片上写着的数字。\n\n第三行包含一个整数 $m$（$1 \\le m \\le 50$）——Bob 拥有的卡片数量。\n\n第四行包含 $m$ 个整数 $b_1, b_2, \\dots, b_m$（$1 \\le b_i \\le 50$）——Bob 的卡片上写着的数字。\n\n## 输出格式\n\n对于每个测试用例，输出两行。第一行如果 Alice 先手时获胜，则输出 `Alice`；否则输出 `Bob`。第二行按照相同格式输出 Bob 先手时的获胜者姓名。\n\n## 说明\n\n考虑样例中的第一个测试用例。\n\nAlice 有一张数字为 $6$ 的卡片，Bob 有两张数字为 $[6, 8]$ 的卡片。\n\n如果 Alice 先手，她必须打出数字为 $6$ 的卡片。然后 Bob 必须打出数字为 $8$ 的卡片。Alice 已经没有剩余卡片，因此输掉游戏。\n\n如果 Bob 先手，那么无论他在第一回合选择哪张卡片，Alice 都无法在第二回合打出她的卡片，因此她会输掉游戏。",
   "samples": [
     {
       "input": "4\n1\n6\n2\n6 8\n4\n1 3 3 7\n2\n4 2\n1\n50\n2\n25 50\n10\n1 2 3 4 5 6 7 8 9 10\n2\n5 15\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:01:30.589Z"
+  "fetchedAt": "2026-11-02T18:01:30.589Z",
+  "translatedAt": "2026-11-04T03:23:22.093+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

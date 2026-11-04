@@ -4,7 +4,7 @@
   "contestId": 215,
   "index": "C",
   "title": "Crosses",
-  "titleZh": null,
+  "titleZh": "十字形",
   "url": "https://codeforces.com/contest/215/problem/C",
   "difficulty": 2100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a board with a grid consisting of $*n*$ rows and $*m*$ columns, the rows are numbered from $1$ from top to bottom and the columns are numbered from $1$ from left to right. In this grid we will denote the cell that lies on row number $*i*$ and column number $*j*$ as $(*i*, *j*)$.\n\nA group of six numbers $(*a*, *b*, *c*, *d*, *x*_{0}, *y*_{0})$, where $0 ≤ *a*, *b*, *c*, *d*$, is a *cross*, and there is a set of cells that are assigned to it. Cell $(*x*, *y*)$ belongs to this set if **at least one** of two conditions are fulfilled:\n\n- $|*x*_{0} - *x*| ≤ *a*$ and $|*y*_{0} - *y*| ≤ *b*$\n- $|*x*_{0} - *x*| ≤ *c*$ and $|*y*_{0} - *y*| ≤ *d*$\n\n![image](https://espresso.codeforces.com/8b8cb7245f1bcca7db1800f51245585f57d4d677.png) The picture shows the cross $(0, 1, 1, 0, 2, 3)$ on the grid $3 × 4$.\n\nYour task is to find the number of different groups of six numbers, $(*a*, *b*, *c*, *d*, *x*_{0}, *y*_{0})$ that determine the crosses of an area equal to $*s*$, which are placed entirely on the grid. The cross is placed entirely on the grid, if any of its cells is in the range of the grid (that is for each cell $(*x*, *y*)$ of the cross $1 ≤ *x* ≤ *n*; 1 ≤ *y* ≤ *m*$ holds). The area of the cross is the number of cells it has.\n\n**Note that two crosses are considered distinct if the ordered groups of six numbers that denote them are distinct, even if these crosses coincide as sets of points.**\n\n## Input\n\nThe input consists of a single line containing three integers $*n*$, $*m*$ and $*s*$ ($1 ≤ *n*, *m* ≤ 500$, $1 ≤ *s* ≤ *n*·*m*$). The integers are separated by a space.\n\n## Output\n\nPrint a single integer — the number of distinct groups of six integers that denote crosses with area $*s*$ and that are fully placed on the $*n* × *m*$ grid.\n\nPlease, do not use the `%lld` specifier to read or write 64-bit integers in С++. It is preferred to use the cin, cout streams or the `%I64d` specifier.\n\n## Note\n\nIn the first sample the sought groups of six numbers are: $(0, 0, 0, 0, 1, 1)$, $(0, 0, 0, 0, 1, 2)$, $(0, 0, 0, 0, 2, 1)$, $(0, 0, 0, 0, 2, 2)$.\n\nIn the second sample the sought groups of six numbers are: $(0, 1, 1, 0, 2, 2)$, $(0, 1, 1, 0, 2, 3)$, $(1, 0, 0, 1, 2, 2)$, $(1, 0, 0, 1, 2, 3)$.",
-  "statementZhMd": null,
+  "statementZhMd": "棋盘上有一个由 $*n*$ 行和 $*m*$ 列组成的网格，行从上到下编号为 $1$ 到 $*n*$，列从左到右编号为 $1$ 到 $*m*$。我们将位于第 $*i*$ 行、第 $*j*$ 列的单元格记为 $(*i*, *j*)$。\n\n由六个数 $(*a*, *b*, *c*, *d*, *x*_{0}, *y*_{0})$ 组成的组合，其中 $0 ≤ *a*, *b*, *c*, *d*$，称为一个*十字形*，并且有一组单元格属于它。单元格 $(*x*, *y*)$ 属于该集合，当且仅当以下两个条件中至少有一个成立：\n\n- $|*x*_{0} - *x*| ≤ *a*$ 且 $|*y*_{0} - *y*| ≤ *b*$\n- $|*x*_{0} - *x*| ≤ *c*$ 且 $|*y*_{0} - *y*| ≤ *d*$\n\n![image](https://espresso.codeforces.com/8b8cb7245f1bcca7db1800f51245585f57d4d677.png) 图片展示了在 $3 × 4$ 网格上的十字形 $(0, 1, 1, 0, 2, 3)$。\n\n你的任务是求出有多少个不同的六元数组 $(*a*, *b*, *c*, *d*, *x*_{0}, *y*_{0})$，它们所确定的十字形面积等于 *s*，并且完全位于网格内。如果十字形的所有单元格都位于网格范围内，则称该十字形完全位于网格内（也就是说，对于十字形中的每个单元格 $(*x*, *y*)$，都满足 $1 ≤ *x* ≤ *n*; 1 ≤ *y* ≤ *m*$）。十字形的面积就是它所包含的单元格数量。\n\n**注意，即使两个十字形作为点集完全重合，只要表示它们的六元数组不同，就认为这两个十字形不同。**\n\n## 输入\n\n输入仅包含一行，其中有三个整数 *n*、*m* 和 *s*（$1 ≤ *n*, *m* ≤ 500$, $1 ≤ *s* ≤ *n*·*m*$）。整数之间用空格分隔。\n\n## 输出\n\n输出一个整数——面积为 *s* 且完全位于 *n* × *m* 网格内的不同六元数组的数量。\n\n请不要在 C++ 中使用 `%lld` 格式说明符读写 64 位整数。建议使用 cin、cout 流，或使用 `%I64d` 格式说明符。\n\n## 说明\n\n第一个样例中，所求的六元数组为：$(0, 0, 0, 0, 1, 1)$、$(0, 0, 0, 0, 1, 2)$、$(0, 0, 0, 0, 2, 1)$、$(0, 0, 0, 0, 2, 2)$。\n\n第二个样例中，所求的六元数组为：$(0, 1, 1, 0, 2, 2)$、$(0, 1, 1, 0, 2, 3)$、$(1, 0, 0, 1, 2, 2)$、$(1, 0, 0, 1, 2, 3)$。",
   "samples": [
     {
       "input": "2 2 1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:20:42.755Z"
+  "fetchedAt": "2026-10-31T02:20:42.755Z",
+  "translatedAt": "2026-11-04T07:39:03.899+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

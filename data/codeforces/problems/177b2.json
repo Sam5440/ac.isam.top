@@ -4,7 +4,7 @@
   "contestId": 177,
   "index": "B2",
   "title": "Rectangular Game",
-  "titleZh": null,
+  "titleZh": "矩形游戏",
   "url": "https://codeforces.com/contest/177/problem/B2",
   "difficulty": 1200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The Smart Beaver from ABBYY decided to have a day off. But doing nothing the whole day turned out to be too boring, and he decided to play a game with pebbles. Initially, the Beaver has $*n*$ pebbles. He arranges them in $*a*$ equal rows, each row has $*b*$ pebbles ($*a* > 1$). Note that the Beaver must use all the pebbles he has, i. e. $*n* = *a*·*b*$.\n\n![image](https://espresso.codeforces.com/f25eee75ac21daca6589d0afd71973b2ec1106f0.png)  10 pebbles are arranged in two rows, each row has 5 pebbles\n\nOnce the Smart Beaver has arranged the pebbles, he takes back any of the resulting rows (that is, $*b*$ pebbles) and discards all other pebbles. Then he arranges **all** his pebbles again (possibly choosing other values of $*a*$ and $*b*$) and takes back one row, and so on. The game continues until at some point the Beaver ends up with exactly one pebble.\n\nThe game process can be represented as a finite sequence of integers $*c*_{1}, ..., *c*_{*k*}$, where:\n\n- $*c*_{1} = *n*$\n- $*c*_{*i* + 1}$ is the number of pebbles that the Beaver ends up with after the $*i*$-th move, that is, the number of pebbles in a row after some arrangement of $*c*_{*i*}$ pebbles ($1 ≤ *i* < *k*$). Note that $*c*_{*i*} > *c*_{*i* + 1}$.\n- $*c*_{*k*} = 1$\n\nThe result of the game is the sum of numbers $*c*_{*i*}$. You are given $*n*$. Find the maximum possible result of the game.\n\n## Input\n\nThe single line of the input contains a single integer $*n*$ — the initial number of pebbles the Smart Beaver has.\n\nThe input limitations for getting 30 points are:\n\n- $2 ≤ *n* ≤ 50$\n\nThe input limitations for getting 100 points are:\n\n- $2 ≤ *n* ≤ 10^{9}$\n\n## Output\n\nPrint a single number — the maximum possible result of the game.\n\n## Note\n\nConsider the first example ($*c*_{1} = 10$). The possible options for the game development are:\n\n- Arrange the pebbles in 10 rows, one pebble per row. Then $*c*_{2} = 1$, and the game ends after the first move with the result of 11.\n- Arrange the pebbles in 5 rows, two pebbles per row. Then $*c*_{2} = 2$, and the game continues. During the second move we have two pebbles which can be arranged in a unique way (remember that you are not allowed to put all the pebbles in the same row!) — 2 rows, one pebble per row. $*c*_{3} = 1$, and the game ends with the result of 13.\n- Finally, arrange the pebbles in two rows, five pebbles per row. The same logic leads us to $*c*_{2} = 5, *c*_{3} = 1$, and the game ends with the result of 16 — the maximum possible result.",
-  "statementZhMd": null,
+  "statementZhMd": "ABBYY 的聪明海狸决定休息一天。但一整天什么都不做实在太无聊了，于是他决定玩一个石子游戏。最初，海狸有 $*n*$ 颗石子。他将石子排成 $*a*$ 行，每行有 $*b*$ 颗石子（$*a* > 1$）。注意，海狸必须使用所有石子，即 $*n* = *a*·*b*$。\n\n![image](https://espresso.codeforces.com/f25eee75ac21daca6589d0afd71973b2ec1106f0.png)  10 颗石子被排成两行，每行 5 颗石子\n\n排好石子后，聪明海狸取走排成的任意一行（即 $*b*$ 颗石子），丢弃其他所有石子。然后，他再次将**所有**石子排成若干行（$*a*$ 和 $*b*$ 的值可以改变），取走其中一行，如此反复。游戏持续进行，直到某一时刻海狸手中恰好剩下一颗石子。\n\n游戏过程可以表示为一个有限的整数序列 $*c*_{1}, ..., *c*_{*k*}$，其中：\n\n- $*c*_{1} = *n*$；\n- $*c*_{*i* + 1}$ 表示海狸在第 $*i*$ 次操作后剩下的石子数，也就是将 $*c*_{*i*}$ 颗石子排成若干行后其中一行的石子数（$1 ≤ *i* < *k*$）。注意，$*c*_{*i*} > *c*_{*i* + 1}$；\n- $*c*_{*k*} = 1$。\n\n游戏的结果是所有 $*c*_{*i*}$ 的总和。给定 $*n*$，求游戏结果的最大可能值。\n\n## 输入格式\n\n输入仅一行，包含一个整数 $*n*$，表示聪明海狸最初拥有的石子数。\n\n获得 30 分的输入限制：\n\n- $2 ≤ *n* ≤ 50$\n\n获得 100 分的输入限制：\n\n- $2 ≤ *n* ≤ 10^{9}$\n\n## 输出格式\n\n输出一个数，即游戏结果的最大可能值。\n\n## 说明\n\n考虑第一个样例（$*c*_{1} = 10$）。游戏过程有以下几种可能：\n\n- 将石子排成 10 行，每行 1 颗。此时 $*c*_{2} = 1$，游戏在第一次操作后结束，结果为 11。\n- 将石子排成 5 行，每行 2 颗。此时 $*c*_{2} = 2$，游戏继续进行。第二次操作时有 2 颗石子，它们只能以唯一的方式排放（注意，不允许将所有石子放在同一行中）——排成 2 行，每行 1 颗。此时 $*c*_{3} = 1$，游戏结束，结果为 13。\n- 最后，将石子排成两行，每行 5 颗。按照同样的逻辑，有 $*c*_{2} = 5, *c*_{3} = 1$，游戏结束，结果为 16——这是可能得到的最大结果。",
   "samples": [
     {
       "input": "10\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:15:04.136Z"
+  "fetchedAt": "2026-11-02T20:15:04.136Z",
+  "translatedAt": "2026-11-04T07:44:47.134+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

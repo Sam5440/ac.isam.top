@@ -4,7 +4,7 @@
   "contestId": 1034,
   "index": "C",
   "title": "Region Separation",
-  "titleZh": null,
+  "titleZh": "Region Separation",
   "url": "https://codeforces.com/contest/1034/problem/C",
   "difficulty": 2700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ cities in the Kingdom of Autumn, numbered from $1$ to $n$. People can travel between any two cities using $n-1$ two-directional roads.\n\nThis year, the government decides to separate the kingdom. There will be regions of different levels. The whole kingdom will be the region of level $1$. Each region of $i$-th level should be separated into several (at least two) regions of $i+1$-th level, unless $i$-th level is the last level. Each city should belong to exactly one region of each level and for any two cities in the same region, it should be possible to travel between them passing the cities in the same region only.\n\nAccording to research, for each city $i$, there is a value $a_i$, which describes the importance of this city. All regions of the same level should have an equal sum of city importances.\n\nYour task is to find how many plans there are to determine the separation of the regions that all the conditions are satisfied. Two plans are considered different if and only if their numbers of levels are different or there exist two cities in the same region of one level in one plan but in different regions of this level in the other plan. Since the answer may be very large, output it modulo $10^9+7$.\n\n## Input\n\nThe first line contains one integer $n$ ($1 \\leq n \\leq 10^6$) — the number of the cities.\n\nThe second line contains $n$ integers, the $i$-th of which is $a_i$ ($1 \\leq a_i \\leq 10^9$) — the value of each city.\n\nThe third line contains $n-1$ integers, $p_1, p_2, \\ldots, p_{n-1}$; $p_i$ ($p_i \\leq i$) describes a road between cities $p_i$ and $i+1$.\n\n## Output\n\nPrint one integer — the number of different plans modulo $10^9+7$.\n\n## Note\n\nFor the first example, there are $4$ different plans:\n\nPlan $1$: Level-$1$: $\\{1,2,3,4\\}$.\n\nPlan $2$: Level-$1$: $\\{1,2,3,4\\}$, Level-$2$: $\\{1,2\\}$,$\\{3,4\\}$.\n\nPlan $3$: Level-$1$: $\\{1,2,3,4\\}$, Level-$2$: $\\{1\\}$,$\\{2\\}$,$\\{3\\}$,$\\{4\\}$.\n\nPlan $4$: Level-$1$: $\\{1,2,3,4\\}$, Level-$2$: $\\{1,2\\}$,$\\{3,4\\}$, Level-$3$: $\\{1\\}$,$\\{2\\}$,$\\{3\\}$,$\\{4\\}$.\n\nFor the second example, there are $2$ different plans:\n\nPlan $1$: Level-$1$: $\\{1,2,3,4\\}$.\n\nPlan $2$: Level-$1$: $\\{1,2,3,4\\}$, Level-$2$: $\\{1\\}$,$\\{2\\}$,$\\{3\\}$,$\\{4\\}$.\n\nFor the third example, there are $3$ different plans:\n\nPlan $1$: Level-$1$: $\\{1,2,3,4\\}$.\n\nPlan $2$: Level-$1$: $\\{1,2,3,4\\}$, Level-$2$: $\\{1,2\\}$,$\\{3,4\\}$.\n\nPlan $3$: Level-$1$: $\\{1,2,3,4\\}$, Level-$2$: $\\{1,3\\}$,$\\{2\\}$,$\\{4\\}$.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"区域划分\",\"bodyZh\":\"秋之王国中有 $n$ 座城市，编号从 $1$ 到 $n$。人们可以通过 $n-1$ 条双向道路在任意两座城市之间通行。\\n\\n今年，政府决定对王国进行划分。划分后将存在不同层级的区域。整个王国是第 $1$ 层的一个区域。除最后一层外，第 $i$ 层的每个区域都应被划分为若干个（至少两个）第 $i+1$ 层的区域。每座城市在每一层中都必须恰好属于一个区域，并且对于同一区域中的任意两座城市，都应当能够只经过同一区域中的城市在它们之间通行。\\n\\n根据研究，对于每座城市 $i$，都有一个描述该城市重要程度的值 $a_i$。同一层的所有区域，其城市重要程度之和必须相等。\\n\\n你的任务是求满足所有条件的区域划分方案数。如果两个方案的层数不同，或者存在两座城市，使得它们在一个方案的某一层中属于同一区域，而在另一个方案的该层中属于不同区域，则认为这两个方案不同。由于答案可能很大，请输出对 $10^9+7$ 取模后的结果。\\n\\n## 输入格式\\n\\n第一行包含一个整数 $n$（$1 \\\\leq n \\\\leq 10^6$），表示城市的数量。\\n\\n第二行包含 $n$ 个整数，第 $i$ 个整数为 $a_i$（$1 \\\\leq a_i \\\\leq 10^9$），表示每座城市的值。\\n\\n第三行包含 $n-1$ 个整数 $p_1, p_2, \\\\ldots, p_{n-1}$；其中 $p_i$（$p_i \\\\leq i$）描述了一条连接城市 $p_i$ 和城市 $i+1$ 的道路。\\n\\n## 输出格式\\n\\n输出一个整数——不同方案的数量，对 $10^9+7$ 取模。\\n\\n## 说明\\n\\n对于第一个样例，共有 $4$ 种不同的方案：\\n\\n方案 $1$：第 $1$ 层：$\\{1,2,3,4\\\\}$。\\n\\n方案 $2$：第 $1$ 层：$\\{1,2,3,4\\\\}$，第 $2$ 层：$\\{1,2\\\\}$、$\\{3,4\\\\}$。\\n\\n方案 $3$：第 $1$ 层：$\\{1,2,3,4\\\\}$，第 $2$ 层：$\\{1\\\\}$、$\\{2\\\\}$、$\\{3\\\\}$、$\\{4\\\\}$。\\n\\n方案 $4$：第 $1$ 层：$\\{1,2,3,4\\\\}$，第 $2$ 层：$\\{1,2\\\\}$、$\\{3,4\\\\}$，第 $3$ 层：$\\{1\\\\}$、$\\{2\\\\}$、$\\{3\\\\}$、$\\{4\\\\}$。\\n\\n对于第二个样例，共有 $2$ 种不同的方案：\\n\\n方案 $1$：第 $1$ 层：$\\{1,2,3,4\\\\}$。\\n\\n方案 $2$：第 $1$ 层：$\\{1,2,3,4\\\\}$，第 $2$ 层：$\\{1\\\\}$、$\\{2\\\\}$、$\\{3\\\\}$、$\\{4\\\\}$。\\n\\n对于第三个样例，共有 $3$ 种不同的方案：\\n\\n方案 $1$：第 $1$ 层：$\\{1,2,3,4\\\\}$。\\n\\n方案 $2$：第 $1$ 层：$\\{1,2,3,4\\\\}$，第 $2$ 层：$\\{1,2\\\\}$、$\\{3,4\\\\}$。\\n\\n方案 $3$：第 $1$ 层：$\\{1,2,3,4\\\\}$，第 $2$ 层：$\\{1,3\\\\}$、$\\{2\\\\}$、$\\{4\\\\}$。\"}",
   "samples": [
     {
       "input": "4\n1 1 1 1\n1 2 3\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:24:27.280Z"
+  "fetchedAt": "2026-10-31T00:24:27.280Z",
+  "translatedAt": "2026-11-04T05:33:39.275+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

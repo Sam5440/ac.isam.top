@@ -4,7 +4,7 @@
   "contestId": 1444,
   "index": "D",
   "title": "Rectangular Polyline",
-  "titleZh": null,
+  "titleZh": "矩形折线",
   "url": "https://codeforces.com/contest/1444/problem/D",
   "difficulty": 2900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "One drew a closed polyline on a plane, that consisted only of vertical and horizontal segments (parallel to the coordinate axes). The segments alternated between horizontal and vertical ones (a horizontal segment was always followed by a vertical one, and vice versa). The polyline did not contain strict self-intersections, which means that in case any two segments shared a common point, that point was an endpoint for both of them (please consult the examples in the notes section).\n\nUnfortunately, the polyline was erased, and you only know the lengths of the horizonal and vertical segments. Please construct any polyline matching the description with such segments, or determine that it does not exist.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\leq t \\leq 200$) —the number of test cases.\n\nThe first line of each test case contains one integer $h$ ($1 \\leq h \\leq 1000$) — the number of horizontal segments. The following line contains $h$ integers $l_1, l_2, \\dots, l_h$ ($1 \\leq l_i \\leq 1000$) — lengths of the horizontal segments of the polyline, in arbitrary order.\n\nThe following line contains an integer $v$ ($1 \\leq v \\leq 1000$) — the number of vertical segments, which is followed by a line containing $v$ integers $p_1, p_2, \\dots, p_v$ ($1 \\leq p_i \\leq 1000$) — lengths of the vertical segments of the polyline, in arbitrary order.\n\n**Test cases are separated by a blank line**, and the sum of values $h + v$ over all test cases does not exceed $1000$.\n\n## Output\n\nFor each test case output `Yes`, if there exists at least one polyline satisfying the requirements, or `No` otherwise. If it does exist, in the following $n$ lines print the coordinates of the polyline vertices, in order of the polyline traversal: the $i$-th line should contain two integers $x_i$ and $y_i$ — coordinates of the $i$-th vertex.\n\nNote that, each polyline segment must be either horizontal or vertical, and the segments should alternate between horizontal and vertical. The coordinates should not exceed $10^9$ by their absolute value.\n\n## Note\n\nIn the first test case of the first example, the answer is `Yes` — for example, the following picture illustrates a square that satisfies the requirements:\n\n![image](https://espresso.codeforces.com/2a8fec15c30106fe805a918a6335f0159a2e4d83.png)\n\nIn the first test case of the second example, the desired polyline also exists. Note that, the polyline contains self-intersections, but only in the endpoints:\n\n![image](https://espresso.codeforces.com/6731e7fbbdf2812afef0b77be80d510171168fc6.png)\n\nIn the second test case of the second example, the desired polyline could be like the one below:\n\n![image](https://espresso.codeforces.com/7cbb8dc8b7943d78f2bb7b0e8165e6477ff67b04.png)\n\nNote that the following polyline is **not** a valid one, since it contains self-intersections that are not endpoints for some of the segments:\n\n![image](https://espresso.codeforces.com/e5131235d98e3020b2682a7f8675f95efe01ebf0.png)",
-  "statementZhMd": null,
+  "statementZhMd": "在平面上绘制了一条闭合折线，它仅由竖直和水平线段组成（即线段均平行于坐标轴）。这些线段在水平和竖直方向之间交替出现（水平线段后面总是紧接着竖直线段，反之亦然）。这条折线不包含严格意义上的自相交，也就是说，如果任意两条线段有公共点，那么该点必须同时是这两条线段的端点（请参阅说明中的样例）。\n\n不幸的是，这条折线被擦除了，现在只知道水平和竖直线段的长度。请构造一条满足描述且包含这些线段的任意折线，或者判断这样的折线不存在。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 200$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $h$（$1 \\leq h \\leq 1000$）——水平线段的数量。下一行包含 $h$ 个整数 $l_1, l_2, \\dots, l_h$（$1 \\leq l_i \\leq 1000$）——折线中水平线段的长度，顺序任意。\n\n下一行包含一个整数 $v$（$1 \\leq v \\leq 1000$）——竖直线段的数量。接下来一行包含 $v$ 个整数 $p_1, p_2, \\dots, p_v$（$1 \\leq p_i \\leq 1000$）——折线中竖直线段的长度，顺序任意。\n\n**测试用例之间由一个空行分隔**，并且所有测试用例的 $h + v$ 之和不超过 $1000$。\n\n## 输出格式\n\n对于每个测试用例，如果存在至少一条满足要求的折线，则输出 `Yes`，否则输出 `No`。如果存在这样的折线，则在接下来的 $n$ 行中按折线遍历顺序输出折线顶点的坐标：第 $i$ 行应包含两个整数 $x_i$ 和 $y_i$，表示第 $i$ 个顶点的坐标。\n\n注意，每条折线段都必须是水平或竖直的，并且线段应在水平和竖直方向之间交替出现。坐标的绝对值不应超过 $10^9$。\n\n## 说明\n\n在第一个样例的第一个测试用例中，答案为 `Yes`——例如，下面的图片展示了一个满足要求的正方形：\n\n![image](https://espresso.codeforces.com/2a8fec15c30106fe805a918a6335f0159a2e4d83.png)\n\n在第二个样例的第一个测试用例中，所需的折线同样存在。注意，该折线包含自相交，但自相交只发生在线段端点处：\n\n![image](https://espresso.codeforces.com/6731e7fbbdf2812afef0b77be80d510171168fc6.png)\n\n在第二个样例的第二个测试用例中，所需的折线可以如下图所示：\n\n![image](https://espresso.codeforces.com/7cbb8dc8b7943d78f2bb7b0e8165e6477ff67b04.png)\n\n注意，下面的折线不是有效的，因为它包含一些自相交，而这些交点并不是某些线段的端点：\n\n![image](https://espresso.codeforces.com/e5131235d98e3020b2682a7f8675f95efe01ebf0.png)",
   "samples": [
     {
       "input": "2\n2\n1 1\n2\n1 1\n\n2\n1 2\n2\n3 3\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:41:24.571Z"
+  "fetchedAt": "2026-10-30T23:41:24.571Z",
+  "translatedAt": "2026-11-04T04:16:19.818+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

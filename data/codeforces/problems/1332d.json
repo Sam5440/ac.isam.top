@@ -4,7 +4,7 @@
   "contestId": 1332,
   "index": "D",
   "title": "Walk on Matrix",
-  "titleZh": null,
+  "titleZh": "矩阵上的行走",
   "url": "https://codeforces.com/contest/1332/problem/D",
   "difficulty": 1700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Bob is playing a game named \"Walk on Matrix\".\n\nIn this game, player is given an $n \\times m$ matrix $A=(a_{i,j})$, i.e. the element in the $i$-th row in the $j$-th column is $a_{i,j}$. Initially, player is located at position $(1,1)$ with score $a_{1,1}$.\n\nTo reach the goal, position $(n,m)$, player can move right or down, i.e. move from $(x,y)$ to $(x,y+1)$ or $(x+1,y)$, as long as player is still on the matrix.\n\nHowever, each move changes player's score to the [bitwise AND](https://en.wikipedia.org/wiki/Bitwise_operation#AND) of the current score and the value at the position he moves to.\n\nBob can't wait to find out the maximum score he can get using the tool he recently learnt  — dynamic programming. Here is his algorithm for this problem.\n\n![image](https://espresso.codeforces.com/52569ca543bc97ed169bbc3ee5e3975b65a6b3b6.png)\n\nHowever, he suddenly realize that the algorithm above fails to output the maximum score for some matrix $A$. Thus, for any given non-negative integer $k$, he wants to find out an $n \\times m$ matrix $A=(a_{i,j})$ such that\n\n- $1 \\le n,m \\le 500$ (as Bob hates large matrix);\n- $0 \\le a_{i,j} \\le 3 \\cdot 10^5$ for all $1 \\le i\\le n,1 \\le j\\le m$ (as Bob hates large numbers);\n- the difference between the maximum score he can get and the output of his algorithm is **exactly** $k$.\n\nIt can be shown that for any given integer $k$ such that $0 \\le k \\le 10^5$, there exists a matrix satisfying the above constraints.\n\nPlease help him with it!\n\n## Input\n\nThe only line of the input contains one single integer $k$ ($0 \\le k \\le 10^5$).\n\n## Output\n\nOutput two integers $n$, $m$ ($1 \\le n,m \\le 500$) in the first line, representing the size of the matrix.\n\nThen output $n$ lines with $m$ integers in each line, $a_{i,j}$ in the $(i+1)$-th row, $j$-th column.\n\n## Note\n\nIn the first example, the maximum score Bob can achieve is $300000$, while the output of his algorithm is $300000$.\n\nIn the second example, the maximum score Bob can achieve is $7\\&3\\&3\\&3\\&7\\&3=3$, while the output of his algorithm is $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "Bob 正在玩一个名为“Walk on Matrix”的游戏。\n\n在这个游戏中，玩家会得到一个 $n \\times m$ 的矩阵 $A=(a_{i,j})$，其中第 $i$ 行第 $j$ 列的元素为 $a_{i,j}$。开始时，玩家位于位置 $(1,1)$，分数为 $a_{1,1}$。\n\n为了到达终点位置 $(n,m)$，玩家可以向右或向下移动，也就是说，可以从 $(x,y)$ 移动到 $(x,y+1)$ 或 $(x+1,y)$，前提是移动后仍在矩阵内。\n\n然而，每次移动都会将玩家的分数变为当前分数与移动到的位置上的数值的[按位与](https://en.wikipedia.org/wiki/Bitwise_operation#AND)。\n\nBob 迫不及待地想知道使用他最近学会的工具——动态规划——能够得到的最大分数。下面是他针对该问题的算法。\n\n![image](https://espresso.codeforces.com/52569ca543bc97ed169bbc3ee5e3975b65a6b3b6.png)\n\n然而，他突然意识到，对于某些矩阵 $A$，上述算法无法输出他能够得到的最大分数。因此，对于给定的非负整数 $k$，他想构造一个 $n \\times m$ 的矩阵 $A=(a_{i,j})$，满足：\n\n- $1 \\le n,m \\le 500$（因为 Bob 不喜欢大矩阵）；\n- 对于所有 $1 \\le i\\le n,1 \\le j\\le m$，都有 $0 \\le a_{i,j} \\le 3 \\cdot 10^5$（因为 Bob 不喜欢大数字）；\n- 他能够得到的最大分数与其算法输出结果之差**恰好为** $k$。\n\n可以证明，对于任意满足 $0 \\le k \\le 10^5$ 的整数 $k$，都存在满足上述条件的矩阵。\n\n请帮助他完成构造！\n\n## 输入格式\n\n输入仅一行，包含一个整数 $k$（$0 \\le k \\le 10^5$）。\n\n## 输出格式\n\n第一行输出两个整数 $n$、$m$（$1 \\le n,m \\le 500$），表示矩阵的大小。\n\n接下来输出 $n$ 行，每行包含 $m$ 个整数，第 $(i+1)$ 行第 $j$ 列的数值为 $a_{i,j}$。\n\n## 说明\n\n在第一个样例中，Bob 能够取得的最大分数为 $300000$，而其算法的输出结果也是 $300000$。\n\n在第二个样例中，Bob 能够取得的最大分数为 $7\\&3\\&3\\&3\\&7\\&3=3$，而其算法的输出结果为 $2$。",
   "samples": [
     {
       "input": "0\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:53:21.406Z"
+  "fetchedAt": "2026-10-30T23:53:21.406Z",
+  "translatedAt": "2026-11-04T04:37:49.667+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

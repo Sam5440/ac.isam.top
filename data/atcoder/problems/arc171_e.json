@@ -4,7 +4,7 @@
   "contestId": "arc171",
   "index": "E",
   "title": "Rookhopper's Tour",
-  "titleZh": null,
+  "titleZh": "Rookhopper 的巡游",
   "url": "https://atcoder.jp/contests/arc171/tasks/arc171_e",
   "difficulty": 3034,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nThere is a grid with $N$ rows and $N$ columns. Let $(i, j)$ denote the cell at the $i$-th row from the top and the $j$-th column from the left. Additionally, there is one black stone and $M$ white stones.\nYou will play a single-player game using these items.\n\nHere are the rules. Initially, you place the black stone at $(A, B)$. Then, you place each of the $M$ white stones on some cell of the grid. Here:\n\n- You cannot place a white stone at $(A, B)$.\n- You can place at most one white stone per row.\n- You can place at most one white stone per column.\n\nThen, you will perform the following operation until you cannot do so:\n\n- Assume the black stone is at $(i, j)$. Perform one of the four operations below:\n- If there is a white stone at $(i, k)$ where $(j < k)$, remove that white stone and move the black stone to $(i, k + 1)$.\n  - If there is a white stone at $(i, k)$ where $(j > k)$, remove that white stone and move the black stone to $(i, k - 1)$.\n  - If there is a white stone at $(k, j)$ where $(i < k)$, remove that white stone and move the black stone to $(k + 1, j)$.\n  - If there is a white stone at $(k, j)$ where $(i > k)$, remove that white stone and move the black stone to $(k - 1, j)$.\n  - Here, if the cell to which the black stone is to be moved does not exist, such a move cannot be made.\n\nThe following figure illustrates an example. Here, `B` represents the black stone, `W` represents a white stone, `.` represents an empty cell, and `O` represents a cell to which the black stone can be moved.\n\n```\n..O...\n..W...\n......\n......\n..B.WO\n......\n```\n\nYou win the game if all of the following conditions are satisfied when you finish performing the operation. Otherwise, you lose.\n\n- All white stones have been removed from the grid.\n- The black stone is placed at $(A, B)$.\n\nIn how many initial configurations of the $M$ white stones can you win the game by optimally performing the operation? Find the count modulo $998244353$.\n\n## Constraints\n\n- $2 \\leq M \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq A \\leq N$\n- $1 \\leq B \\leq N$\n- $N$, $M$, $A$, and $B$ are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN M A B\n```\n\n## Output\n\nPrint the number, modulo $998244353$, of possible configurations of the white stones that can lead to your victory.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n有一个 $N$ 行 $N$ 列的网格。用 $(i, j)$ 表示从上往下数第 $i$ 行、从左往右数第 $j$ 列的单元格。此外，还有一枚黑色棋子和 $M$ 枚白色棋子。\n你将使用这些棋子进行一场单人游戏。\n\n游戏规则如下。首先，将黑色棋子放置在 $(A, B)$。然后，将 $M$ 枚白色棋子分别放置在网格中的某个单元格内。需要满足：\n\n- 不能将白色棋子放置在 $(A, B)$。\n- 每行至多放置一枚白色棋子。\n- 每列至多放置一枚白色棋子。\n\n接下来，重复执行以下操作，直到无法执行为止：\n\n- 假设黑色棋子位于 $(i, j)$。可以执行以下四种操作之一：\n- 如果 $(i, k)$ 处有白色棋子，且 $(j < k)$，则移除该白色棋子，并将黑色棋子移动到 $(i, k + 1)$。\n  - 如果 $(i, k)$ 处有白色棋子，且 $(j > k)$，则移除该白色棋子，并将黑色棋子移动到 $(i, k - 1)$。\n  - 如果 $(k, j)$ 处有白色棋子，且 $(i < k)$，则移除该白色棋子，并将黑色棋子移动到 $(k + 1, j)$。\n  - 如果 $(k, j)$ 处有白色棋子，且 $(i > k)$，则移除该白色棋子，并将黑色棋子移动到 $(k - 1, j)$。\n  - 如果黑色棋子要移动到的单元格不存在，则无法执行该移动。\n\n下图展示了一个例子。其中，`B` 表示黑色棋子，`W` 表示白色棋子，`.` 表示空单元格，`O` 表示黑色棋子可以移动到的单元格。\n\n```\n..O...\n..W...\n......\n......\n..B.WO\n......\n```\n\n当操作结束时，如果满足以下所有条件，则你赢得游戏；否则，你输掉游戏。\n\n- 网格中的所有白色棋子都已被移除。\n- 黑色棋子位于 $(A, B)$。\n\n通过最优地执行操作，能够获胜的 $M$ 枚白色棋子的初始配置共有多少种？请将答案对 $998244353$ 取模后输出。\n\n## 约束条件\n\n- $2 \\leq M \\leq N \\leq 2 \\times 10^5$\n- $1 \\leq A \\leq N$\n- $1 \\leq B \\leq N$\n- $N$、$M$、$A$ 和 $B$ 均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN M A B\n```\n\n## 输出格式\n\n输出能够使你获胜的白色棋子配置数量，答案对 $998244353$ 取模。",
   "samples": [
     {
       "input": "6 4 2 3\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:10:25.980Z"
+  "fetchedAt": "2026-10-30T21:10:25.980Z",
+  "translatedAt": "2026-11-04T02:22:27.220+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

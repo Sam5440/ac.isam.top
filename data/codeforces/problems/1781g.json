@@ -4,7 +4,7 @@
   "contestId": 1781,
   "index": "G",
   "title": "Diverse Coloring",
-  "titleZh": null,
+  "titleZh": "多样染色",
   "url": "https://codeforces.com/contest/1781/problem/G",
   "difficulty": 3200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "In this problem, we will be working with rooted binary trees. A tree is called a rooted binary tree if it has a fixed root and every vertex has at most two children.\n\nLet's assign a color — white or blue — to each vertex of the tree, and call this assignment a *coloring* of the tree. Let's call a coloring *diverse* if every vertex has a neighbor (a parent or a child) colored into an opposite color compared to this vertex. It can be shown that any tree with at least two vertices allows a diverse coloring.\n\nLet's define the *disbalance* of a coloring as the absolute value of the difference between the number of white vertices and the number of blue vertices.\n\nNow to the problem. Initially, the tree consists of a single vertex with the number $1$ which is its root. Then, for each $i$ from $2$ to $n$, a new vertex $i$ appears in the tree, and it becomes a child of vertex $p_i$. It is guaranteed that after each step the tree will keep being a binary tree rooted at vertex $1$, that is, each vertex will have at most two children.\n\nAfter every new vertex is added, print the smallest value of disbalance over all possible diverse colorings of the current tree. Moreover, after adding the last vertex with the number $n$, also print a diverse coloring with the smallest possible disbalance as well.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices in the final tree.\n\nThe second line contains $n-1$ integers $p_2, p_3, \\ldots, p_n$ ($1 \\le p_i \\le i - 1$) — the numbers of parents of vertices $2, 3, \\ldots, n$. No integer appears more than twice among $p_2, p_3, \\ldots, p_n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print $n-1$ integers — the smallest value of disbalance over all possible diverse colorings of the tree after adding vertices $2, 3, \\ldots, n$.\n\nThen print a string of $n$ characters '`w`' and '`b`', describing a diverse coloring with the smallest possible disbalance for the whole tree after adding vertex $n$: the $i$-th character must be equal to '`w`' if vertex $i$ is colored white, and '`b`' if it's colored blue. The absolute value of the difference between the numbers of '`w`' and '`b`' characters must be equal to the last printed integer. Each vertex must have a parent or a child colored into the color opposite to the vertex's color.\n\n## Note\n\nIn the first test case, examples of diverse colorings with the smallest possible disbalances for all intermediate trees are illustrated below:\n\n![image](https://espresso.codeforces.com/c05e637beb38d010197f90f054a92ea025cafb11.png)",
-  "statementZhMd": null,
+  "statementZhMd": "在本题中，我们将处理有根二叉树。一棵树被称为有根二叉树，当且仅当它有一个固定的根，并且每个顶点至多有两个子节点。\n\n我们为树中的每个顶点指定一种颜色——白色或蓝色，并将这种指定称为树的一种*染色*。如果每个顶点都有一个邻居（父节点或子节点），且该邻居的颜色与该顶点不同，则称这种染色是*多样染色*。可以证明，任何包含至少两个顶点的树都存在多样染色。\n\n我们将一种染色的不平衡度定义为白色顶点数量与蓝色顶点数量之差的绝对值。\n\n现在来看题目。初始时，树只包含一个编号为 $1$ 的顶点，该顶点是根。然后，对于每个 $i$（从 $2$ 到 $n$），树中会出现一个新顶点 $i$，并且它成为顶点 $p_i$ 的子节点。保证每一步操作之后，树始终是以顶点 $1$ 为根的二叉树，即每个顶点至多有两个子节点。\n\n每添加一个新顶点后，输出当前树所有可能的多样染色中的最小不平衡度。此外，在添加编号为 $n$ 的最后一个顶点后，还要输出一种不平衡度最小的多样染色。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$），表示最终树中的顶点数量。\n\n第二行包含 $n-1$ 个整数 $p_2, p_3, \\ldots, p_n$（$1 \\le p_i \\le i - 1$），表示顶点 $2, 3, \\ldots, n$ 的父节点编号。保证在 $p_2, p_3, \\ldots, p_n$ 中，每个整数出现次数不超过两次。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n-1$ 个整数——在添加顶点 $2, 3, \\ldots, n$ 后，当前树所有可能的多样染色中的最小不平衡度。\n\n然后输出一个由 $n$ 个字符 '`w`' 和 '`b`' 组成的字符串，描述添加顶点 $n$ 后整棵树的一种不平衡度最小的多样染色：如果顶点 $i$ 被染成白色，则第 $i$ 个字符必须为 '`w`'；如果顶点 $i$ 被染成蓝色，则第 $i$ 个字符必须为 '`b`'。字符 '`w`' 和 '`b`' 数量之差的绝对值必须等于最后输出的整数。每个顶点都必须有一个颜色与其相反的父节点或子节点。\n\n## 说明\n\n在第一个测试用例中，下图展示了所有中间树对应的、具有最小不平衡度的多样染色示例：\n\n![image](https://espresso.codeforces.com/c05e637beb38d010197f90f054a92ea025cafb11.png)",
   "samples": [
     {
       "input": "2\n7\n1 2 2 1 5 5\n8\n1 2 3 4 5 6 7\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:35:47.051Z"
+  "fetchedAt": "2026-10-30T22:35:47.051Z",
+  "translatedAt": "2026-11-04T03:02:52.051+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

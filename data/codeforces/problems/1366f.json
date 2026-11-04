@@ -4,7 +4,7 @@
   "contestId": 1366,
   "index": "F",
   "title": "Jog Around The Graph",
-  "titleZh": null,
+  "titleZh": "在图上慢跑",
   "url": "https://codeforces.com/contest/1366/problem/F",
   "difficulty": 2700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a simple weighted connected undirected graph, consisting of $n$ vertices and $m$ edges.\n\nA path in the graph of length $k$ is a sequence of $k+1$ vertices $v_1, v_2, \\dots, v_{k+1}$ such that for each $i$ $(1 \\le i \\le k)$ the edge $(v_i, v_{i+1})$ is present in the graph. A path from some vertex $v$ also has vertex $v_1=v$. Note that edges and vertices are allowed to be included in the path multiple times.\n\nThe weight of the path is the total weight of edges in it.\n\nFor each $i$ from $1$ to $q$ consider a path from vertex $1$ of length $i$ of the maximum weight. What is the sum of weights of these $q$ paths?\n\nAnswer can be quite large, so print it modulo $10^9+7$.\n\n## Input\n\nThe first line contains a three integers $n$, $m$, $q$ ($2 \\le n \\le 2000$; $n - 1 \\le m \\le 2000$; $m \\le q \\le 10^9$) — the number of vertices in the graph, the number of edges in the graph and the number of lengths that should be included in the answer.\n\nEach of the next $m$ lines contains a description of an edge: three integers $v$, $u$, $w$ ($1 \\le v, u \\le n$; $1 \\le w \\le 10^6$) — two vertices $v$ and $u$ are connected by an undirected edge with weight $w$. The graph contains no loops and no multiple edges. It is guaranteed that the given edges form a connected graph.\n\n## Output\n\nPrint a single integer — the sum of the weights of the paths from vertex $1$ of maximum weights of lengths $1, 2, \\dots, q$ modulo $10^9+7$.\n\n## Note\n\nHere is the graph for the first example:\n\n![image](https://espresso.codeforces.com/85d6c74ffac7c6ba761d939509106dc3f7740041.png)\n\nSome maximum weight paths are:\n\n- length $1$: edges $(1, 7)$ — weight $3$;\n- length $2$: edges $(1, 2), (2, 3)$ — weight $1+10=11$;\n- length $3$: edges $(1, 5), (5, 6), (6, 4)$ — weight $2+7+15=24$;\n- length $4$: edges $(1, 5), (5, 6), (6, 4), (6, 4)$ — weight $2+7+15+15=39$;\n- $\\dots$\n\nSo the answer is the sum of $25$ terms: $3+11+24+39+\\dots$\n\nIn the second example the maximum weight paths have weights $4$, $8$, $12$, $16$ and $20$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个顶点和 $m$ 条边组成的简单带权连通无向图。\n\n图中的一条长度为 $k$ 的路径是一个包含 $k+1$ 个顶点的序列 $v_1, v_2, \\dots, v_{k+1}$，满足对于每个 $i$ $(1 \\le i \\le k)$，边 $(v_i, v_{i+1})$ 存在于图中。从某个顶点 $v$ 出发的路径还满足顶点 $v_1=v$。注意，边和顶点允许在路径中被重复经过。\n\n路径的权值是其中所有边的权值之和。\n\n对于从 $1$ 到 $q$ 的每个 $i$，考虑一条从顶点 $1$ 出发、长度为 $i$ 且权值最大的路径。求这些 $q$ 条路径的权值之和。\n\n答案可能非常大，请输出其对 $10^9+7$ 取模后的结果。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$、$q$（$2 \\le n \\le 2000$；$n - 1 \\le m \\le 2000$；$m \\le q \\le 10^9$）——图中的顶点数、边数，以及需要计入答案的路径长度数量。\n\n接下来的 $m$ 行中，每行包含一条边的描述：三个整数 $v$、$u$、$w$（$1 \\le v, u \\le n$；$1 \\le w \\le 10^6$）——顶点 $v$ 和 $u$ 之间有一条权值为 $w$ 的无向边。图中没有自环或重边。保证给出的边构成一个连通图。\n\n## 输出格式\n\n输出一个整数——从顶点 $1$ 出发、长度为 $1, 2, \\dots, q$ 的路径中权值最大者的权值之和，对 $10^9+7$ 取模。\n\n## 说明\n\n下面是第一个样例中的图：\n\n![image](https://espresso.codeforces.com/85d6c74ffac7c6ba761d939509106dc3f7740041.png)\n\n一些权值最大的路径如下：\n\n- 长度 $1$：边 $(1, 7)$——权值为 $3$；\n- 长度 $2$：边 $(1, 2), (2, 3)$——权值为 $1+10=11$；\n- 长度 $3$：边 $(1, 5), (5, 6), (6, 4)$——权值为 $2+7+15=24$；\n- 长度 $4$：边 $(1, 5), (5, 6), (6, 4), (6, 4)$——权值为 $2+7+15+15=39$；\n- ……\n\n因此，答案是 $25$ 项之和：$3+11+24+39+\\dots$\n\n在第二个样例中，权值最大的路径的权值分别为 $4$、$8$、$12$、$16$ 和 $20$。",
   "samples": [
     {
       "input": "7 8 25\n1 2 1\n2 3 10\n3 4 2\n1 5 2\n5 6 7\n6 4 15\n5 3 1\n1 7 3\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:46:11.559Z"
+  "fetchedAt": "2026-11-02T18:46:11.559Z",
+  "translatedAt": "2026-11-04T04:40:07.150+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

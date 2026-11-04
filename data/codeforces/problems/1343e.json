@@ -4,7 +4,7 @@
   "contestId": 1343,
   "index": "E",
   "title": "Weights Distributing",
-  "titleZh": null,
+  "titleZh": "权值分配",
   "url": "https://codeforces.com/contest/1343/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an undirected unweighted graph consisting of $n$ vertices and $m$ edges (which represents the map of Bertown) and the array of prices $p$ of length $m$. It is guaranteed that there is a path between each pair of vertices (districts).\n\nMike has planned a trip from the vertex (district) $a$ to the vertex (district) $b$ and then from the vertex (district) $b$ to the vertex (district) $c$. He can visit the same district twice or more. But there is one issue: authorities of the city want to set a price for using the road so if someone goes along the road then he should pay the price corresponding to this road (**he pays each time he goes along the road**). The list of prices that will be used $p$ is ready and they just want to distribute it between all roads in the town in such a way that each price from the array corresponds to exactly one road.\n\nYou are a good friend of Mike (and suddenly a mayor of Bertown) and want to help him to make his trip as cheap as possible. So, your task is to distribute prices between roads in such a way that if Mike chooses the optimal path then the price of the trip is the **minimum** possible. **Note that you cannot rearrange prices after the start of the trip**.\n\nYou have to answer $t$ independent test cases.\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. Then $t$ test cases follow.\n\nThe first line of the test case contains five integers $n, m, a, b$ and $c$ ($2 \\le n \\le 2 \\cdot 10^5$, $n-1 \\le m \\le min(\\frac{n(n-1)}{2}, 2 \\cdot 10^5)$, $1 \\le a, b, c \\le n$) — the number of vertices, the number of edges and districts in Mike's trip.\n\nThe second line of the test case contains $m$ integers $p_1, p_2, \\dots, p_m$ ($1 \\le p_i \\le 10^9$), where $p_i$ is the $i$-th price from the array.\n\nThe following $m$ lines of the test case denote edges: edge $i$ is represented by a pair of integers $v_i$, $u_i$ ($1 \\le v_i, u_i \\le n$, $u_i \\ne v_i$), which are the indices of vertices connected by the edge. There are no loops or multiple edges in the given graph, i. e. for each pair ($v_i, u_i$) there are no other pairs ($v_i, u_i$) or ($u_i, v_i$) in the array of edges, and for each pair $(v_i, u_i)$ the condition $v_i \\ne u_i$ is satisfied. It is guaranteed that the given graph is connected.\n\nIt is guaranteed that the sum of $n$ (as well as the sum of $m$) does not exceed $2 \\cdot 10^5$ ($\\sum n \\le 2 \\cdot 10^5$, $\\sum m \\le 2 \\cdot 10^5$).\n\n## Output\n\nFor each test case, print the answer — the **minimum** possible price of Mike's trip if you distribute prices between edges optimally.\n\n## Note\n\nOne of the possible solution to the first test case of the example:\n\n![image](https://espresso.codeforces.com/1ae850055674486fef71bac1a75fd66dd9953464.png)\n\nOne of the possible solution to the second test case of the example:\n\n![image](https://espresso.codeforces.com/9de5fe487b4ad21b369e839bfb0c94e7206cc9f9.png)",
-  "statementZhMd": null,
+  "statementZhMd": "给定一张由 $n$ 个顶点和 $m$ 条边组成的无向无权图（表示 Bertown 的地图）以及一个长度为 $m$ 的价格数组 $p$。保证每一对顶点（区域）之间都存在路径。\n\nMike 计划进行一次旅行：从顶点（区域）$a$ 前往顶点（区域）$b$，然后再从顶点（区域）$b$ 前往顶点（区域）$c$。他可以多次经过同一个区域。但现在有一个问题：城市当局希望为每条道路设定一个价格，因此如果有人沿着某条道路行驶，就必须支付该道路对应的价格（**每经过一次道路都需要支付一次费用**）。将要使用的价格列表 $p$ 已经准备好了，他们只需要将这些价格分配给城镇中的所有道路，使得数组中的每个价格恰好对应一条道路。\n\n你是 Mike 的好朋友（并且突然成为了 Bertown 的市长），想帮助他让这次旅行尽可能便宜。因此，你的任务是以一种方式将价格分配给道路，使得 Mike 选择最优路径时，旅行费用达到**可能的最小值**。**注意，在旅行开始后，你不能重新分配价格。**\n\n你需要回答 $t$ 个相互独立的测试用例。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含五个整数 $n, m, a, b$ 和 $c$（$2 \\le n \\le 2 \\cdot 10^5$，$n-1 \\le m \\le min(\\frac{n(n-1)}{2}, 2 \\cdot 10^5)$，$1 \\le a, b, c \\le n$）——顶点数、边数，以及 Mike 旅行经过的区域。\n\n每个测试用例的第二行包含 $m$ 个整数 $p_1, p_2, \\dots, p_m$（$1 \\le p_i \\le 10^9$），其中 $p_i$ 是数组中的第 $i$ 个价格。\n\n接下来的 $m$ 行描述测试用例中的边：第 $i$ 条边由一对整数 $v_i, u_i$（$1 \\le v_i, u_i \\le n$，$u_i \\ne v_i$）表示，它们是由该边连接的顶点编号。给定图中不存在自环或重边，即对于每一对 $(v_i, u_i)$，边数组中不存在其他的 $(v_i, u_i)$ 或 $(u_i, v_i)$，并且对于每一对 $(v_i, u_i)$ 都满足 $v_i \\ne u_i$。保证给定的图是连通图。\n\n保证所有测试用例的 $n$ 之和（以及 $m$ 之和）不超过 $2 \\cdot 10^5$（$\\sum n \\le 2 \\cdot 10^5$，$\\sum m \\le 2 \\cdot 10^5$）。\n\n## 输出格式\n\n对于每个测试用例，输出一个答案——以最优方式将价格分配给边时，Mike 旅行费用的**最小可能值**。\n\n## 说明\n\n样例中第一个测试用例的一种可能解如下：\n\n![image](https://espresso.codeforces.com/1ae850055674486fef71bac1a75fd66dd9953464.png)\n\n样例中第二个测试用例的一种可能解如下：\n\n![image](https://espresso.codeforces.com/9de5fe487b4ad21b369e839bfb0c94e7206cc9f9.png)",
   "samples": [
     {
       "input": "2\n4 3 2 3 4\n1 2 3\n1 2\n1 3\n1 4\n7 9 1 5 7\n2 10 4 8 5 6 7 3 3\n1 2\n1 3\n1 4\n3 2\n3 5\n4 2\n5 6\n1 7\n6 7\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:53:07.338Z"
+  "fetchedAt": "2026-11-02T18:53:07.338Z",
+  "translatedAt": "2026-11-04T04:43:31.145+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

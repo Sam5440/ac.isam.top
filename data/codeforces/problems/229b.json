@@ -4,7 +4,7 @@
   "contestId": 229,
   "index": "B",
   "title": "Planets",
-  "titleZh": null,
+  "titleZh": "行星",
   "url": "https://codeforces.com/contest/229/problem/B",
   "difficulty": 1700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Goa'uld Apophis captured Jack O'Neill's team again! Jack himself was able to escape, but by that time Apophis's ship had already jumped to hyperspace. But Jack knows on what planet will Apophis land. In order to save his friends, Jack must repeatedly go through stargates to get to this planet.\n\nOverall the galaxy has $*n*$ planets, indexed with numbers from 1 to $*n*$. Jack is on the planet with index 1, and Apophis will land on the planet with index $*n*$. Jack can move between some pairs of planets through stargates (he can move in both directions); the transfer takes a positive, and, perhaps, for different pairs of planets unequal number of seconds. Jack begins his journey at time 0.\n\nIt can be that other travellers are arriving to the planet where Jack is currently located. In this case, Jack has to wait for exactly 1 second before he can use the stargate. That is, if at time $*t*$ another traveller arrives to the planet, Jack can only pass through the stargate at time $*t* + 1$, unless there are more travellers arriving at time $*t* + 1$ to the same planet.\n\nKnowing the information about travel times between the planets, and the times when Jack would not be able to use the stargate on particular planets, determine the minimum time in which he can get to the planet with index $*n*$.\n\n## Input\n\nThe first line contains two space-separated integers: $*n*$ ($2 ≤ *n* ≤ 10^{5}$), the number of planets in the galaxy, and $*m*$ ($0 ≤ *m* ≤ 10^{5}$) — the number of pairs of planets between which Jack can travel using stargates. Then $*m*$ lines follow, containing three integers each: the $*i*$-th line contains numbers of planets $*a*_{*i*}$ and $*b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$, $*a*_{*i*} ≠ *b*_{*i*}$), which are connected through stargates, and the integer transfer time (in seconds) $*c*_{*i*}$ ($1 ≤ *c*_{*i*} ≤ 10^{4}$) between these planets. It is guaranteed that between any pair of planets there is at most one stargate connection.\n\nThen $*n*$ lines follow: the $*i*$-th line contains an integer $*k*_{*i*}$ ($0 ≤ *k*_{*i*} ≤ 10^{5}$) that denotes the number of moments of time when other travellers arrive to the planet with index $*i*$. Then $*k*_{*i*}$ distinct space-separated integers $*t*_{*ij*}$ ($0 ≤ *t*_{*ij*} < 10^{9}$) follow, sorted in ascending order. An integer $*t*_{*ij*}$ means that at time $*t*_{*ij*}$ (in seconds) another traveller arrives to the planet $*i*$. It is guaranteed that the sum of all $*k*_{*i*}$ does not exceed $10^{5}$.\n\n## Output\n\nPrint a single number — the least amount of time Jack needs to get from planet 1 to planet $*n*$. If Jack can't get to planet $*n*$ in any amount of time, print number -1.\n\n## Note\n\nIn the first sample Jack has three ways to go from planet 1. If he moves to planet 4 at once, he spends 8 seconds. If he transfers to planet 3, he spends 3 seconds, but as other travellers arrive to planet 3 at time 3 and 4, he can travel to planet 4 only at time 5, thus spending 8 seconds in total. But if Jack moves to planet 2, and then — to planet 4, then he spends a total of only $2 + 5 = 7$ seconds.\n\nIn the second sample one can't get from planet 1 to planet 3 by moving through stargates.",
-  "statementZhMd": null,
+  "statementZhMd": "Goa'uld Apophis 再次抓获了 Jack O'Neill 的队伍！Jack 本人成功逃脱了，但那时 Apophis 的飞船已经跃迁到了超空间。不过，Jack 知道 Apophis 将会在哪个星球着陆。为了拯救他的朋友，Jack 必须不断通过星门，抵达这个星球。\n\n整个银河系中共有 $*n*$ 个星球，编号为 1 到 $*n*$。Jack 位于编号为 1 的星球上，而 Apophis 将在编号为 $*n*$ 的星球上着陆。Jack 可以通过星门在某些星球对之间移动（可以双向移动）；转移需要一个正数的时间，并且不同星球对之间的转移时间可能不同。Jack 在时刻 0 开始他的旅程。\n\nJack 当前所在的星球可能会有其他旅行者到达。在这种情况下，Jack 必须恰好等待 1 秒后才能使用星门。也就是说，如果其他旅行者在时刻 $*t*$ 到达该星球，那么 Jack 只能在时刻 $*t* + 1$ 通过星门，除非在时刻 $*t* + 1$ 还有更多旅行者到达同一个星球。\n\n已知星球之间的转移时间，以及 Jack 在各个星球上无法使用星门的时刻，请确定 Jack 到达编号为 $*n*$ 的星球所需的最短时间。\n\n## 输入格式\n\n第一行包含两个用空格分隔的整数：$*n*$（$2 ≤ *n* ≤ 10^{5}$），表示银河系中的星球数量；以及 $*m*$（$0 ≤ *m* ≤ 10^{5}$），表示 Jack 可以通过星门移动的星球对数量。\n\n接下来 $*m*$ 行，每行包含三个整数：第 $*i*$ 行包含星球编号 $*a*_{*i*}$ 和 $*b*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$，$*a*_{*i*} ≠ *b*_{*i*}$），表示这两个星球之间连接有星门；以及整数转移时间（单位为秒）$*c*_{*i*}$（$1 ≤ *c*_{*i*} ≤ 10^{4}$）。保证任意一对星球之间至多有一条星门连接。\n\n接下来 $*n*$ 行：第 $*i*$ 行包含一个整数 $*k*_{*i*}$（$0 ≤ *k*_{*i*} ≤ 10^{5}$），表示其他旅行者到达编号为 $*i*$ 的星球的时刻数量。随后给出 $*k*_{*i*}$ 个互不相同且按升序排列的、用空格分隔的整数 $*t*_{*ij*}$（$0 ≤ *t*_{*ij*} < 10^{9}$）。整数 $*t*_{*ij*}$ 表示在时刻 $*t*_{*ij*}$（单位为秒）有其他旅行者到达星球 $*i*$。保证所有 $*k*_{*i*}$ 的总和不超过 $10^{5}$。\n\n## 输出格式\n\n输出一个数——Jack 从星球 1 到达星球 $*n*$ 所需的最短时间。如果 Jack 无论如何都无法到达星球 $*n*$，输出数字 -1。\n\n## 说明\n\n在第一个样例中，Jack 有三种从星球 1 出发的方式。如果他立即前往星球 4，需要 8 秒。如果他转移到星球 3，需要 3 秒，但由于其他旅行者分别在时刻 3 和 4 到达星球 3，他只能在时刻 5 前往星球 4，因此总共需要 8 秒。但是，如果 Jack 先前往星球 2，再前往星球 4，那么总共只需要 $2 + 5 = 7$ 秒。\n\n在第二个样例中，无法通过星门从星球 1 到达星球 3。",
   "samples": [
     {
       "input": "4 6\n1 2 2\n1 3 3\n1 4 8\n2 3 4\n2 4 5\n3 4 3\n0\n1 3\n2 3 4\n0\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:17:39.419Z"
+  "fetchedAt": "2026-10-31T02:17:39.419Z",
+  "translatedAt": "2026-11-04T07:32:58.732+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 457,
   "index": "E",
   "title": "Flow Optimality",
-  "titleZh": null,
+  "titleZh": "流的最优性",
   "url": "https://codeforces.com/contest/457/problem/E",
   "difficulty": 3000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There is a computer network consisting of $*n*$ nodes numbered 1 through $*n*$. There are links in the network that connect pairs of nodes. A pair of nodes may have multiple links between them, but no node has a link to itself.\n\nEach link supports unlimited bandwidth (in either direction), however a link may only transmit in a single direction at any given time. The cost of sending data across a link is proportional to the square of the bandwidth. Specifically, each link has a positive weight, and the cost of sending data across the link is the weight times the square of the bandwidth.\n\nThe network is connected (there is a series of links from any node to any other node), and furthermore designed to remain connected in the event of any single node failure.\n\nYou needed to send data from node 1 to node $*n*$ at a bandwidth of some positive number $*k*$. That is, you wish to assign a bandwidth to each link so that the bandwidth into a node minus the bandwidth out of a node is $- *k*$ for node 1, $*k*$ for node $*n*$, and 0 for all other nodes. The individual bandwidths do not need to be integers.\n\nWishing to minimize the total cost, you drew a diagram of the network, then gave the task to an intern to solve. The intern claimed to have solved the task and written the optimal bandwidths on your diagram, but then spilled coffee on it, rendering much of it unreadable (including parts of the original diagram, and the value of $*k*$).\n\nFrom the information available, determine if the intern's solution may have been optimal. That is, determine if there exists a valid network, total bandwidth, and optimal solution which is a superset of the given information. Furthermore, determine the efficiency of the intern's solution (if possible), where efficiency is defined as total cost divided by total bandwidth.\n\n## Input\n\nInput will begin with two integers $*n*$ and $*m*$ ($2 ≤ *n* ≤ 200000$; $0 ≤ *m* ≤ 200000$), the number of nodes and number of known links in the network, respectively. Following this are $*m*$ lines with four integers each: $*f*$, $*t*$, $*w*$, $*b*$ ($1 ≤ *f* ≤ *n*; 1 ≤ *t* ≤ *n*; *f* ≠ *t*; 1 ≤ *w* ≤ 100; 0 ≤ *b* ≤ 100$). This indicates there is a link between nodes $*f*$ and $*t*$ with weight $*w*$ and carrying $*b*$ bandwidth. The direction of bandwidth is from $*f*$ to $*t*$.\n\n## Output\n\nIf the intern's solution is definitely not optimal, print \"BAD $*x*$\", where $*x*$ is the first link in the input that violates the optimality of the solution. If the intern's solution may be optimal, print the efficiency of the solution if it can be determined rounded to the nearest integer, otherwise print \"UNKNOWN\".\n\n## Note\n\nAlthough the known weights and bandwidths happen to always be integers, the weights and bandwidths of the remaining links are not restricted to integers.",
-  "statementZhMd": null,
+  "statementZhMd": "有一个计算机网络，由编号为 1 至 $*n*$ 的 $*n*$ 个节点组成。网络中有连接节点对的链路。两个节点之间可能存在多条链路，但没有节点与自身相连的链路。\n\n每条链路都支持无限带宽（可以是任意方向），但在任意时刻，一条链路只能沿单一方向传输数据。通过一条链路发送数据的成本与带宽的平方成正比。具体来说，每条链路都有一个正权值，通过该链路发送数据的成本等于该权值乘以带宽的平方。\n\n该网络是连通的（任意两个节点之间都存在一系列链路），并且经过设计，即使任意一个节点发生故障，网络仍然保持连通。\n\n你需要以某个正数 $*k*$ 的带宽，将数据从节点 1 发送到节点 $*n*$。也就是说，你希望为每条链路分配一个带宽，使得对于节点 1，流入节点的带宽减去流出节点的带宽为 $- *k*$；对于节点 $*n*$，该值为 $*k*$；对于所有其他节点，该值为 0。各条链路的带宽不必是整数。\n\n为了使总成本最小，你画出了网络的示意图，然后交给一名实习生解决。实习生声称已经解决了这个问题，并将最优带宽写在了你的图上，但随后咖啡洒在了图上，使其中大部分内容无法辨认（包括原始图的一部分以及 $*k*$ 的值）。\n\n请根据现有信息，判断实习生的解是否可能是最优的。也就是说，判断是否存在一个合法的网络、总带宽以及一个包含所有给定信息的最优解。此外，还要在可能的情况下确定实习生解的效率，其中效率定义为总成本除以总带宽。\n\n## 输入\n\n输入首先包含两个整数 $*n*$ 和 $*m*$（$2 ≤ *n* ≤ 200000$；$0 ≤ *m* ≤ 200000$），分别表示网络中的节点数和已知链路数。接下来有 $*m*$ 行，每行包含四个整数：$*f*$、$*t*$、$*w*$、$*b*$（$1 ≤ *f* ≤ *n*$； $1 ≤ *t* ≤ *n*$； $*f* ≠ *t*$； $1 ≤ *w* ≤ 100$； $0 ≤ *b* ≤ 100$）。这表示节点 $*f*$ 和节点 $*t*$ 之间存在一条权值为 $*w*$、承载带宽为 $*b*$ 的链路。带宽方向为从 $*f*$ 到 $*t*$。\n\n## 输出\n\n如果实习生的解一定不是最优解，输出 `BAD $*x*$`，其中 $*x*$ 是输入中第一个违反解的最优性的链路。如果实习生的解可能是最优解，则在能够确定时，输出该解的效率并四舍五入到最近的整数；否则输出 `UNKNOWN`。\n\n## 说明\n\n尽管已知的权值和带宽总是整数，但其余链路的权值和带宽不限制为整数。",
   "samples": [
     {
       "input": "4 5\n1 2 1 2\n1 3 4 1\n2 3 2 1\n2 4 4 1\n3 4 1 2\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:40:08.211Z"
+  "fetchedAt": "2026-10-31T01:40:08.211Z",
+  "translatedAt": "2026-11-04T07:02:36.902+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

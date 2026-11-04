@@ -4,7 +4,7 @@
   "contestId": 575,
   "index": "E",
   "title": "Spectator Riots",
-  "titleZh": null,
+  "titleZh": "观众骚乱",
   "url": "https://codeforces.com/contest/575/problem/E",
   "difficulty": 2800,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "It’s riot time on football stadium Ramacana! Raging fans have entered the field and the police find themselves in a difficult situation. The field can be represented as a square in the coordinate system defined by two diagonal vertices in (0,0) and ($10^{5}$, $10^{5}$). The sides of that square are also considered to be **inside** the field, everything else is **outside**.\n\nIn the beginning, there are $*N*$ fans on the field. For each fan we are given his speed, an integer $*v*_{*i*}$ as well as his integer coordinates ($*x*_{*i*}$, $*y*_{*i*}$). A fan with those coordinates might move and after one second he might be at any point ($*x*_{*i*} + *p*$, $*y*_{*i*} + *q*$) where $0 ≤ |*p*| + |*q*| ≤ *v*_{*i*}$. $*p*$, $*q*$ are both integers.\n\nPoints that go **outside** of the square that represents the field are excluded and all others have equal probability of being the location of that specific fan after one second.\n\nAndrej, a young and promising police officer, has sent a flying drone to take a photo of the riot from above. The drone’s camera works like this:\n\n1. It selects three points with **integer coordinates** such that there is a chance of a fan appearing there after one second. They must not be collinear or the camera won’t work. It is guaranteed that not all of the initial positions of fans will be on the same line.\n2. Camera focuses those points and creates a circle that passes through those three points. A photo is taken after one second (one second after the initial state).\n3. Everything that is on the circle or inside it at the moment of taking the photo (one second after focusing the points) will be on the photo.\n\nYour goal is to select those three points so that the expected number of fans seen on the photo is maximized. If there are more such selections, select those three points that give the circle with **largest radius** among them. If there are still more suitable selections, **any one** of them will be accepted. If your answer follows conditions above and radius of circle you return is smaller then the optimal one by 0.01, your output will be considered as correct.\n\nNo test will have optimal radius bigger than $10^{10}$.\n\n## Input\n\nThe first line contains the number of fans on the field, $*N*$. The next $*N*$ lines contain three integers: $*x*_{*i*}$ ,$*y*_{*i*}$, $*v*_{*i*}$. They are the $*x*$-coordinate, $*y*$-coordinate and speed of fan $*i*$ at the beginning of the one second interval considered in the task.\n\n- $3 ≤ *N* ≤ 10^{5}$\n- $0 ≤ *x*_{*i*}, *y*_{*i*} ≤ 10^{5}$\n- $0 ≤ *v*_{*i*} ≤ 1000$\n- All numbers are integers\n\n## Output\n\nYou need to output the three points that camera needs to select. Print them in three lines, with every line containing the $*x*$-coordinate, then $*y*$-coordinate, separated by a single space. The order of points does not matter.",
-  "statementZhMd": null,
+  "statementZhMd": "足球场 Ramacana 上发生骚乱了！狂热的球迷冲进了场地，警方发现自己陷入了困境。该场地可以表示为坐标系中的一个正方形，其一条对角线的两个顶点为 (0,0) 和 ($10^{5}$, $10^{5}$)。该正方形的边也被视为在场地**内部**，除此之外的所有位置都在场地**外部**。\n\n开始时，场地上有 $*N*$ 名球迷。对于每名球迷，我们知道他的速度（整数）$*v*_{*i*}$，以及他的整数坐标（$*x*_{*i*}$, $*y*_{*i*}$）。坐标为该位置的球迷可以移动，并且一秒后可能位于任意点（$*x*_{*i*} + *p*$, $*y*_{*i*} + *q*$），其中 $0 ≤ |*p*| + |*q*| ≤ *v*_{*i*}$。$*p*$ 和 $*q*$ 都是整数。\n\n位于表示场地的正方形**外部**的点将被排除，其他所有点作为该名球迷一秒后所在位置的概率相同。\n\n年轻且前途无量的警察 Andrej 派出一架飞行无人机，从上方拍摄这场骚乱。无人机摄像头的工作方式如下：\n\n1. 选择三个具有**整数坐标**的点，使得一秒后某名球迷有可能出现在这些点上。这三个点不能共线，否则摄像头将无法工作。保证所有球迷的初始位置不全在同一直线上。\n2. 摄像头聚焦于这三个点，并创建一个经过这三个点的圆。在聚焦这些点一秒后拍照（即初始状态后一秒）。\n3. 拍照时位于圆上或圆内的所有物体都会出现在照片中。\n\n你的目标是选择这三个点，使照片中出现的球迷数量的期望值最大。如果有多种选择满足条件，则选择使圆的半径最大的三个点。如果仍有多种合适的选择，任意一种都将被接受。如果你的答案满足上述条件，且所返回圆的半径比最优半径小不超过 0.01，则会被判定为正确。\n\n任何测试数据的最优半径都不会大于 $10^{10}$。\n\n## 输入\n\n第一行包含场地上球迷的数量 $*N*$。接下来的 $*N*$ 行每行包含三个整数：$*x*_{*i*}$ 、$*y*_{*i*}$、$*v*_{*i*}$。它们分别表示任务所考虑的一秒时间段开始时，球迷 $i$ 的 $x$ 坐标、$y$ 坐标和速度。\n\n- $3 ≤ *N* ≤ 10^{5}$\n- $0 ≤ *x*_{*i*}, *y*_{*i*} ≤ 10^{5}$\n- $0 ≤ *v*_{*i*} ≤ 1000$\n- 所有数字均为整数\n\n## 输出\n\n输出摄像头需要选择的三个点。分三行输出，每行包含该点的 $*x*$ 坐标和 $*y*$ 坐标，两者之间用一个空格分隔。点的顺序不限。",
   "samples": [
     {
       "input": "3\n1 1 1\n1 1 1\n1 2 1\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:06:50.395Z"
+  "fetchedAt": "2026-11-02T20:06:50.395Z",
+  "translatedAt": "2026-11-04T06:48:59.162+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

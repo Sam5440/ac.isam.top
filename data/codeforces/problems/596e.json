@@ -4,7 +4,7 @@
   "contestId": 596,
   "index": "E",
   "title": "Wilbur and Strings",
-  "titleZh": null,
+  "titleZh": "威尔伯与字符串",
   "url": "https://codeforces.com/contest/596/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Wilbur the pig now wants to play with strings. He has found an $*n*$ by $*m*$ table consisting only of the digits from $0$ to $9$ where the rows are numbered $1$ to $*n*$ and the columns are numbered $1$ to $*m*$. Wilbur starts at some square and makes certain moves. If he is at square ($*x*$, $*y*$) and the digit $*d*$ ($0 ≤ *d* ≤ 9$) is written at position ($*x*$, $*y*$), **then he must** move to the square ($*x* + *a*_{*d*}$, $*y* + *b*_{*d*}$), if that square lies within the table, and he stays in the square ($*x*$, $*y*$) otherwise. Before Wilbur makes a move, he can choose whether or not to write the digit written in this square on the white board. All digits written on the whiteboard form some string. Every time a new digit is written, it goes to the end of the current string.\n\nWilbur has $*q*$ strings that he is worried about. For each string $*s*_{*i*}$, Wilbur wants to know whether there exists a starting position ($*x*$, $*y*$) so that by making finitely many moves, Wilbur can end up with the string $*s*_{*i*}$ written on the white board.\n\n## Input\n\nThe first line of the input consists of three integers $*n*$, $*m*$, and $*q*$ ($1 ≤ *n*, *m*, *q* ≤ 200$) — the dimensions of the table and the number of strings to process, respectively.\n\nEach of the next $*n*$ lines contains $*m*$ digits from $0$ and $9$ giving the table itself.\n\nThen follow $10$ lines. The $*i*$-th of them contains the values $*a*_{*i* - 1}$ and $*b*_{*i* - 1}$ ($- 200 ≤ *a*_{*i*}, *b*_{*i*} ≤ 200$), i.e. the vector that Wilbur uses to make a move from the square with a digit $*i* - 1$ in it.\n\nThere are $*q*$ lines that follow. The $*i*$-th of them will contain a string $*s*_{*i*}$ consisting only of digits from $0$ to $9$. It is guaranteed that the total length of these $*q*$ strings won't exceed $1 000 000$.\n\n## Output\n\nFor each of the $*q*$ strings, print \"`YES`\" if Wilbur can choose $*x*$ and $*y*$ in order to finish with this string after some finite number of moves. If it's impossible, than print \"`NO`\" for the corresponding string.\n\n## Note\n\nIn the first sample, there is a $1$ by $1$ table consisting of the only digit $0$. The only move that can be made is staying on the square. The first string can be written on the white board by writing $0$ repeatedly. The second string cannot be written as there is no $2$ on the table.",
-  "statementZhMd": null,
+  "statementZhMd": "威尔伯这只小猪现在想玩字符串。他找到了一张 $*n*$ 行 $*m*$ 列的表格，其中只包含数字 $0$ 到 $9$。表格的行编号为 $1$ 到 $*n*$，列编号为 $1$ 到 $*m*$。威尔伯从某个方格开始，并进行若干次移动。如果他当前位于方格 ($*x*$, $*y*$)，且位置 ($*x*$, $*y*$) 上写着数字 $*d*$（$0 ≤ *d* ≤ 9$），**那么他必须**移动到方格 ($*x* + *a*_{*d*}$, $*y* + *b*_{*d*}$)，前提是该方格位于表格内；否则他会停留在方格 ($*x*$, $*y*$) 中。在威尔伯进行一次移动之前，他可以选择是否将当前方格中的数字写在白板上。写在白板上的所有数字会组成一个字符串。每次写入新数字时，它都会被添加到当前字符串的末尾。\n\n威尔伯有 $*q*$ 个令他困扰的字符串。对于每个字符串 $*s*_{*i*}$，威尔伯想知道，是否存在一个起始位置 ($*x*$, $*y*$)，使得通过进行有限次移动，最终可以让字符串 $*s*_{*i*}$ 被写在白板上。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*$、$*m*$ 和 $*q*$（$1 ≤ *n*, *m*, *q* ≤ 200$），分别表示表格的尺寸以及需要处理的字符串数量。\n\n接下来的 $*n*$ 行中，每行包含 $*m*$ 个从 $0$ 到 $9$ 的数字，表示表格本身。\n\n接下来有 $10$ 行。第 $*i*$ 行包含两个数 $*a*_{*i* - 1}$ 和 $*b*_{*i* - 1}$（$- 200 ≤ *a*_{*i*}, *b*_{*i*} ≤ 200$），即威尔伯从写有数字 $*i* - 1$ 的方格出发时所使用的移动向量。\n\n随后有 $*q*$ 行。第 $*i*$ 行包含一个只由数字 $0$ 到 $9$ 组成的字符串 $*s*_{*i*}$。保证这 $*q*$ 个字符串的总长度不超过 $1 000 000$。\n\n## 输出格式\n\n对于每个字符串，如果威尔伯可以选择 $*x*$ 和 $*y*$，并在进行有限次移动后最终得到该字符串，则输出“`YES`”。如果无法做到，则对相应的字符串输出“`NO`”。\n\n## 说明\n\n在第一个样例中，有一个 $1$ 行 $1$ 列的表格，其中唯一的数字是 $0$。唯一可以进行的移动是停留在原方格。通过反复写入 $0$，可以将第一个字符串写在白板上。第二个字符串无法写出，因为表格中不存在数字 $2$。",
   "samples": [
     {
       "input": "1 1 2\n0\n1 1\n1 1\n1 1\n1 1\n1 1\n1 1\n1 1\n1 1\n1 1\n1 1\n0000000000000\n2413423432432\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:19:15.967Z"
+  "fetchedAt": "2026-10-31T01:19:15.967Z",
+  "translatedAt": "2026-11-04T06:43:30.119+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

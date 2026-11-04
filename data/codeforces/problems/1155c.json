@@ -4,7 +4,7 @@
   "contestId": 1155,
   "index": "C",
   "title": "Alarm Clocks Everywhere",
-  "titleZh": null,
+  "titleZh": "处处响起的闹钟",
   "url": "https://codeforces.com/contest/1155/problem/C",
   "difficulty": 1300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Ivan is going to sleep now and wants to set his alarm clock. There will be many necessary events tomorrow, the $i$-th of them will start during the $x_i$-th minute. Ivan doesn't want to skip any of the events, so he has to set his alarm clock in such a way that it rings during minutes $x_1, x_2, \\dots, x_n$, so he will be awake during each of these minutes (**note that it does not matter if his alarm clock will ring during any other minute**).\n\nIvan can choose two properties for the alarm clock — the first minute it will ring (let's denote it as $y$) and the interval between two consecutive signals (let's denote it by $p$). After the clock is set, it will ring during minutes $y, y + p, y + 2p, y + 3p$ and so on.\n\nIvan can choose **any** minute as the first one, but he cannot choose any arbitrary value of $p$. He has to pick it among the given values $p_1, p_2, \\dots, p_m$ (his phone does not support any other options for this setting).\n\nSo Ivan has to choose the first minute $y$ when the alarm clock should start ringing and the interval between two consecutive signals $p_j$ in such a way that it will ring during all given minutes $x_1, x_2, \\dots, x_n$ (and it does not matter if his alarm clock will ring in any other minutes).\n\nYour task is to tell the first minute $y$ and the index $j$ such that if Ivan sets his alarm clock with properties $y$ and $p_j$ it will ring during all given minutes $x_1, x_2, \\dots, x_n$ or say that it is impossible to choose such values of the given properties. If there are multiple answers, you can print any.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $m$ ($2 \\le n \\le 3 \\cdot 10^5, 1 \\le m \\le 3 \\cdot 10^5$) — the number of events and the number of possible settings for the interval between signals.\n\nThe second line of the input contains $n$ integers $x_1, x_2, \\dots, x_n$ ($1 \\le x_i \\le 10^{18}$), where $x_i$ is the minute when $i$-th event starts. It is guaranteed that all $x_i$ are given in increasing order (i. e. the condition $x_1 \\lt x_2 \\lt \\dots \\lt x_n$ holds).\n\nThe third line of the input contains $m$ integers $p_1, p_2, \\dots, p_m$ ($1 \\le p_j \\le 10^{18}$), where $p_j$ is the $j$-th option for the interval between two consecutive signals.\n\n## Output\n\nIf it's impossible to choose such values $y$ and $j$ so all constraints are satisfied, print \"`NO`\" in the first line.\n\nOtherwise print \"`YES`\" in the first line. Then print two integers $y$ ($1 \\le y \\le 10^{18}$) and $j$ ($1 \\le j \\le m$) in the second line, where $y$ is the first minute Ivan's alarm clock should start ringing and $j$ is the index of the option for the interval between two consecutive signals (options are numbered from $1$ to $m$ in the order they are given input). These values should be chosen in such a way that the alarm clock will ring during all given minutes $x_1, x_2, \\dots, x_n$. If there are multiple answers, you can print any.",
-  "statementZhMd": null,
+  "statementZhMd": "伊万现在要睡觉了，他想设置闹钟。明天会有许多必须参加的活动，其中第 $i$ 个活动将在第 $x_i$ 分钟开始。伊万不想错过任何活动，因此他必须将闹钟设置为在第 $x_1, x_2, \\dots, x_n$ 分钟响铃，这样他在每个时刻都会保持清醒（**注意，闹钟是否会在其他分钟响铃并不重要**）。\n\n伊万可以设置闹钟的两个属性——闹钟第一次响铃的分钟（记作 $y$）以及两次连续响铃之间的间隔（记作 $p$）。设置完成后，闹钟将在第 $y$、$y + p$、$y + 2p$、$y + 3p$ 分钟响铃，依此类推。\n\n伊万可以选择**任意**分钟作为第一次响铃的时间，但不能任意选择 $p$ 的值。他必须从给定的 $p_1, p_2, \\dots, p_m$ 中选择一个（他的手机不支持其他间隔选项）。\n\n因此，伊万需要选择闹钟开始响铃的第一分钟 $y$，以及两次连续响铃之间的间隔 $p_j$，使得闹钟会在所有给定的分钟 $x_1, x_2, \\dots, x_n$ 响铃（至于是否会在其他分钟响铃并不重要）。\n\n你的任务是找出第一分钟 $y$ 和下标 $j$，使得伊万将闹钟的属性设置为 $y$ 和 $p_j$ 后，闹钟会在所有给定的分钟 $x_1, x_2, \\dots, x_n$ 响铃；如果无法选择满足条件的属性值，则报告无解。若有多个答案，输出任意一个即可。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 3 \\cdot 10^5, 1 \\le m \\le 3 \\cdot 10^5$）——活动的数量，以及两次响铃之间的间隔的可选设置数量。\n\n输入的第二行包含 $n$ 个整数 $x_1, x_2, \\dots, x_n$（$1 \\le x_i \\le 10^{18}$），其中 $x_i$ 表示第 $i$ 个活动开始的分钟。保证所有 $x_i$ 按递增顺序给出（即满足条件 $x_1 \\lt x_2 \\lt \\dots \\lt x_n$）。\n\n输入的第三行包含 $m$ 个整数 $p_1, p_2, \\dots, p_m$（$1 \\le p_j \\le 10^{18}$），其中 $p_j$ 是两次连续响铃之间间隔的第 $j$ 个可选值。\n\n## 输出格式\n\n如果无法选择满足条件的 $y$ 和 $j$，请在第一行输出 `NO`。\n\n否则，请在第一行输出 `YES`。然后在第二行输出两个整数 $y$（$1 \\le y \\le 10^{18}$）和 $j$（$1 \\le j \\le m$），其中 $y$ 是伊万的闹钟应该开始响铃的第一分钟，$j$ 是两次连续响铃之间间隔的选项下标（选项按照输入中的顺序从 $1$ 到 $m$ 编号）。应以这种方式选择这些值，使得闹钟会在所有给定的分钟 $x_1, x_2, \\dots, x_n$ 响铃。若有多个答案，输出任意一个即可。",
   "samples": [
     {
       "input": "3 5\n3 12 18\n2 6 5 3 3\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:17:18.780Z"
+  "fetchedAt": "2026-11-02T19:17:18.780Z",
+  "translatedAt": "2026-11-04T05:21:09.451+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

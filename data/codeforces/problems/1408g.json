@@ -4,7 +4,7 @@
   "contestId": 1408,
   "index": "G",
   "title": "Clusterization Counting",
-  "titleZh": null,
+  "titleZh": "聚类计数",
   "url": "https://codeforces.com/contest/1408/problem/G",
   "difficulty": 2700,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ computers in the company network. They are numbered from $1$ to $n$.\n\nFor each pair of two computers $1 \\leq i \\lt j \\leq n$ you know the value $a_{i,j}$: the difficulty of sending data between computers $i$ and $j$. All values $a_{i,j}$ for $i \\lt j$ are different.\n\nYou want to separate all computers into $k$ sets $A_1, A_2, \\ldots, A_k$, such that the following conditions are satisfied:\n\n- for each computer $1 \\leq i \\leq n$ there is **exactly** one set $A_j$, such that $i \\in A_j$;\n- for each two pairs of computers $(s, f)$ and $(x, y)$ ($s \\neq f$, $x \\neq y$), such that $s$, $f$, $x$ are from the same set but $x$ and $y$ are from different sets, $a_{s,f} \\lt a_{x,y}$.\n\nFor each $1 \\leq k \\leq n$ find the number of ways to divide computers into $k$ groups, such that all required conditions are satisfied. These values can be large, so you need to find them by modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\leq n \\leq 1500$): the number of computers.\n\nThe $i$-th of the next $n$ lines contains $n$ integers $a_{i,1}, a_{i,2}, \\ldots, a_{i,n}$($0 \\leq a_{i,j} \\leq \\frac{n (n-1)}{2}$).\n\nIt is guaranteed that:\n\n- for all $1 \\leq i \\leq n$ $a_{i,i} = 0$;\n- for all $1 \\leq i \\lt j \\leq n$ $a_{i,j} \\gt 0$;\n- for all $1 \\leq i \\lt j \\leq n$ $a_{i,j} = a_{j,i}$;\n- all $a_{i,j}$ for $i \\lt j$ are different.\n\n## Output\n\nPrint $n$ integers: the $k$-th of them should be equal to the number of possible ways to divide computers into $k$ groups, such that all required conditions are satisfied, modulo $998\\,244\\,353$.\n\n## Note\n\nHere are all possible ways to separate all computers into $4$ groups in the second example:\n\n- $\\{1, 2\\}, \\{3, 4\\}, \\{5\\}, \\{6, 7\\}$;\n- $\\{1\\}, \\{2\\}, \\{3, 4\\}, \\{5, 6, 7\\}$;\n- $\\{1, 2\\}, \\{3\\}, \\{4\\}, \\{5, 6, 7\\}$.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 台计算机位于公司的网络中。它们的编号从 $1$ 到 $n$。\n\n对于每一对计算机 $1 \\leq i \\lt j \\leq n$，你知道一个值 $a_{i,j}$：计算机 $i$ 和计算机 $j$ 之间发送数据的难度。对于所有 $i \\lt j$，$a_{i,j}$ 的值各不相同。\n\n你希望将所有计算机划分为 $k$ 个集合 $A_1, A_2, \\ldots, A_k$，并满足以下条件：\n\n- 对于每台计算机 $1 \\leq i \\leq n$，恰好存在一个集合 $A_j$，使得 $i \\in A_j$；\n- 对于任意两对计算机 $(s, f)$ 和 $(x, y)$（$s \\neq f$，$x \\neq y$），如果 $s$、$f$、$x$ 属于同一个集合，而 $x$ 与 $y$ 属于不同集合，则有 $a_{s,f} \\lt a_{x,y}$。\n\n对于每个 $1 \\leq k \\leq n$，求满足所有条件的将计算机划分为 $k$ 个集合的方案数。由于答案可能很大，请将其对 $998\\,244\\,353$ 取模。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 1500$），表示计算机的数量。\n\n接下来的 $n$ 行中，第 $i$ 行包含 $n$ 个整数 $a_{i,1}, a_{i,2}, \\ldots, a_{i,n}$（$0 \\leq a_{i,j} \\leq \\frac{n (n-1)}{2}$）。\n\n保证：\n\n- 对于所有 $1 \\leq i \\leq n$，$a_{i,i} = 0$；\n- 对于所有 $1 \\leq i \\lt j \\leq n$，$a_{i,j} \\gt 0$；\n- 对于所有 $1 \\leq i \\lt j \\leq n$，$a_{i,j} = a_{j,i}$；\n- 对于所有 $i \\lt j$，$a_{i,j}$ 的值各不相同。\n\n## 输出格式\n\n输出 $n$ 个整数：其中第 $k$ 个数应等于满足所有条件的将计算机划分为 $k$ 个集合的方案数，结果对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n以下是第二个样例中将所有计算机划分为 $4$ 个集合的所有方案：\n\n- $\\{1, 2\\}, \\{3, 4\\}, \\{5\\}, \\{6, 7\\}$；\n- $\\{1\\}, \\{2\\}, \\{3, 4\\}, \\{5, 6, 7\\}$；\n- $\\{1, 2\\}, \\{3\\}, \\{4\\}, \\{5, 6, 7\\}$。",
   "samples": [
     {
       "input": "4\n0 3 4 6\n3 0 2 1\n4 2 0 5\n6 1 5 0\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:45:10.678Z"
+  "fetchedAt": "2026-10-30T23:45:10.678Z",
+  "translatedAt": "2026-11-04T04:22:25.092+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

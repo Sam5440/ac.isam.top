@@ -4,7 +4,7 @@
   "contestId": 217,
   "index": "E",
   "title": "Alien DNA",
-  "titleZh": null,
+  "titleZh": "外星 DNA",
   "url": "https://codeforces.com/contest/217/problem/E",
   "difficulty": 2800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Professor Bajtocy is conducting experiments on alien DNA. He has discovered that it is subject to repetitive mutations — each mutation happens in the same way: some continuous subsequence of the alien DNA becomes active, copies itself, the copy gets mangled and inserts itself right after the original subsequence. The mangled copy of the activated continuous subsequence is formed by first joining all the elements at the even positions in that subsequence, and then joining all the elements at the odd ones at the end. That is, if the activated subsequence consists of 11 elements and represented as $*s*_{1}*s*_{2}... *s*_{11}$, its mangled copy is $*s*_{2}*s*_{4}*s*_{6}*s*_{8}*s*_{10}*s*_{1}*s*_{3}*s*_{5}*s*_{7}*s*_{9}*s*_{11}$.\n\nFor example, if the original sequence was \"`ACTGG`\" and the mutation happened on the segment $[2, 4]$ (that is the activated subsequence is \"`CTG`\"), the mutated DNA is: \"`ACTGTCGG`\". The mangled copy of the activated subsequence is marked with bold font.\n\nProfessor Bajtocy has written down the original DNA sequence and the mutations that sequentially happened to it, and he now asks you to recover the first $*k*$ elements of the DNA sequence after all the mutations.\n\n## Input\n\nThe first line of input contains the original DNA sequence, consisting only of letters \"`A`\", \"`C`\", \"`T`\" and \"`G`\" and not exceeding $3·10^{6}$ in length.\n\nThe second line contains a single integer $*k*$ ($1 ≤ *k* ≤ 3·10^{6}$).\n\nThe third line contains a single integer $*n*$ ($0 ≤ *n* ≤ 5000$) — the number of mutations. The next $*n*$ lines describe the mutations in chronological order — each mutation is described by two numbers $*l*_{*i*}$ and $*r*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ 10^{9}$), meaning that the continuous subsequence $[*l*_{*i*}, *r*_{*i*}]$ has become active and cloned itself, joining itself with the mangled copy.\n\nIt is guaranteed that the input data is correct, that is, no mutation acts on non-existing elements of the DNA sequence, and the resulting DNA sequence has at least $*k*$ elements.\n\nAssume that the DNA elements are indexed starting from 1 and that the notation $[*l*, *r*]$ meaning the continuous subsequence of DNA sequence that consists of $*r* - *l* + 1$ elements starting at the $*l*$-th DNA sequence element and ending at the $*r*$-th DNA sequence element.\n\n## Output\n\nOutput a single line, containing the first $*k*$ letters of the mutated DNA sequence.\n\n## Note\n\nIn the second example, after the first mutation the sequence is \"`ACCAGTACGT`\". After the second mutation it's \"`ACCAGTACCGACATCGT`\".",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nBajtocy 教授正在研究外星 DNA。他发现外星 DNA 会发生重复突变——每次突变都以相同的方式进行：外星 DNA 的某个连续子序列变为活跃状态并复制自身，复制品经过重排后紧接在原子序列之后插入。活跃连续子序列的重排复制品，首先由该子序列中所有偶数位置的元素依次连接而成，然后再在末尾连接所有奇数位置的元素。也就是说，如果活跃子序列包含 11 个元素，表示为 $*s*_{1}*s*_{2}... *s*_{11}$，那么它的重排复制品为 $*s*_{2}*s*_{4}*s*_{6}*s*_{8}*s*_{10}*s*_{1}*s*_{3}*s*_{5}*s*_{7}*s*_{9}*s*_{11}$。\n\n例如，如果原序列为 \"`ACTGG`\"，并且突变发生在区间 $[2, 4]$（即活跃子序列为 \"`CTG`\"），那么突变后的 DNA 为：\"`ACTGTCGG`\"。活跃子序列的重排复制品以粗体标出。\n\nBajtocy 教授记录下了原始 DNA 序列以及依次发生的突变，现在请你求出所有突变完成后 DNA 序列的前 *k* 个元素。\n\n## 输入格式\n\n输入第一行包含原始 DNA 序列，仅由字母 \"`A`\"、\"`C`\"、\"`T`\" 和 \"`G`\" 组成，长度不超过 $3·10^{6}$。\n\n第二行包含一个整数 *k*（$1 ≤ *k* ≤ 3·10^{6}$）。\n\n第三行包含一个整数 *n*（$0 ≤ *n* ≤ 5000$），表示突变次数。接下来的 *n* 行按照时间顺序描述这些突变——每次突变由两个整数 *l*_{*i*} 和 *r*_{*i*} 描述（$1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ 10^{9}$），表示连续子序列 [*l*_{*i*}, *r*_{*i*}] 变为活跃状态并复制自身，重排复制品紧接在原子序列之后插入。\n\n保证输入数据合法，即没有突变作用于 DNA 序列中不存在的元素，并且最终 DNA 序列至少包含 *k* 个元素。\n\n假设 DNA 元素从 1 开始编号，记号 [*l*, *r*] 表示 DNA 序列中从第 *l* 个元素开始、到第 *r* 个元素结束的连续子序列，该子序列包含 *r* - *l* + 1 个元素。\n\n## 输出格式\n\n输出一行，包含突变后 DNA 序列的前 *k* 个字母。\n\n## 说明\n\n在第二个样例中，第一次突变后序列为 \"`ACCAGTACGT`\"。第二次突变后序列为 \"`ACCAGTACCGACATCGT`\"。",
   "samples": [
     {
       "input": "GAGA\n4\n0\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:19:15.944Z"
+  "fetchedAt": "2026-10-31T02:19:15.944Z",
+  "translatedAt": "2026-11-04T07:36:01.198+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

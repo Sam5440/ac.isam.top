@@ -4,7 +4,7 @@
   "contestId": 1804,
   "index": "E",
   "title": "Routing",
-  "titleZh": null,
+  "titleZh": "路由",
   "url": "https://codeforces.com/contest/1804/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Ada operates a network that consists of $n$ servers and $m$ direct connections between them. Each direct connection between a pair of distinct servers allows bidirectional transmission of information between these two servers. Ada knows that these $m$ direct connections allow to directly or indirectly transmit information between any two servers in this network. We say that server $v$ is a neighbor of server $u$ if there exists a direct connection between these two servers.\n\nAda needs to configure her network's WRP (Weird Routing Protocol). For each server $u$ she needs to select exactly one of its neighbors as an auxiliary server $a(u)$. After all $a(u)$ are set, routing works as follows. Suppose server $u$ wants to find a path to server $v$ (different from $u$).\n\n1. Server $u$ checks all of its direct connections to other servers. If it sees a direct connection with server $v$, it knows the path and the process terminates.\n2. If the path was not found at the first step, server $u$ asks its auxiliary server $a(u)$ to find the path.\n3. Auxiliary server $a(u)$ follows this process starting from the first step.\n4. After $a(u)$ finds the path, it returns it to $u$. Then server $u$ constructs the resulting path as the direct connection between $u$ and $a(u)$ plus the path from $a(u)$ to $v$.\n\nAs you can see, this procedure either produces a correct path and finishes or keeps running forever. Thus, it is critically important for Ada to configure her network's WRP properly.\n\nYour goal is to assign an auxiliary server $a(u)$ for each server $u$ in the given network. Your assignment should make it possible to construct a path from any server $u$ to any other server $v$ using the aforementioned procedure. Or you should report that such an assignment doesn't exist.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $m$ ($2 \\leq n \\leq 20$, $n - 1 \\leq m \\leq \\frac{n \\cdot (n - 1)}{2}$) — the number of servers and the number of direct connections in the given network.\n\nThen follow $m$ lines containing two integers $u_i$ and $v_i$ ($1 \\leq u_i, v_i \\leq n$, $u_i \\ne v_i$) each, the $i$-th line describes the $i$-th direct connection.\n\nIt is guaranteed that there is no more than one direct connection between any two servers. It is guaranteed that there is a direct or indirect route (consisting only of the given direct connections) between any two servers.\n\n## Output\n\nIf there is no way to assign an auxiliary server $a(u)$ for each server $u$ in such a way that WRP will be able to find a path from any server $u$ to any other server $v$, print \"`No`\" in the only line of the output.\n\nOtherwise, print \"`Yes`\" in the first line of the output. In the second line of the output print $n$ integers, the $i$-th of these integers should be equal to $a(i)$ – the index of the auxiliary server for server $i$. Do not forget that there must be a direct connection between server $i$ and server $a(i)$.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.",
-  "statementZhMd": null,
+  "statementZhMd": "Ada 运营着一个由 $n$ 台服务器和它们之间的 $m$ 条直接连接组成的网络。每条连接一对不同的服务器之间的直接连接都允许这两台服务器相互传输信息。Ada 知道，这 $m$ 条直接连接使得网络中的任意两台服务器之间都可以直接或间接地传输信息。如果服务器 $u$ 与服务器 $v$ 之间存在直接连接，则称服务器 $v$ 是服务器 $u$ 的邻居。\n\nAda 需要配置她的网络的 WRP（奇怪路由协议）。对于每台服务器 $u$，她需要从其邻居中恰好选择一台作为辅助服务器 $a(u)$。所有 $a(u)$ 确定后，路由过程如下。假设服务器 $u$ 想要寻找一条通往服务器 $v$（$v$ 与 $u$ 不同）的路径。\n\n1. 服务器 $u$ 检查它与其他服务器之间的所有直接连接。如果发现与服务器 $v$ 的直接连接，则它已经找到路径，过程终止。\n2. 如果在第一步中没有找到路径，服务器 $u$ 请求其辅助服务器 $a(u)$ 寻找路径。\n3. 辅助服务器 $a(u)$ 从第一步开始执行这一过程。\n4. 当 $a(u)$ 找到路径后，它将路径返回给 $u$。随后，服务器 $u$ 将 $u$ 与 $a(u)$ 之间的直接连接，加上从 $a(u)$ 到 $v$ 的路径，构成最终路径。\n\n如你所见，该过程要么找到一条正确的路径并结束，要么会永远运行下去。因此，正确配置 Ada 的网络 WRP 至关重要。\n\n你的目标是为给定网络中的每台服务器 $u$ 指定一个辅助服务器 $a(u)$。你给出的指定方案应当使得可以使用上述过程构造出从任意服务器 $u$ 到任意其他服务器 $v$ 的路径。否则，请报告不存在这样的指定方案。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $m$（$2 \\leq n \\leq 20$，$n - 1 \\leq m \\leq \\frac{n \\cdot (n - 1)}{2}$）——给定网络中的服务器数量和直接连接数量。\n\n接下来 $m$ 行，每行包含两个整数 $u_i$ 和 $v_i$（$1 \\leq u_i, v_i \\leq n$，$u_i \\ne v_i$），第 $i$ 行描述第 $i$ 条直接连接。\n\n保证任意两台服务器之间至多有一条直接连接。保证任意两台服务器之间都存在一条直接或间接的路径（仅由给定的直接连接组成）。\n\n## 输出格式\n\n如果不存在为每台服务器 $u$ 指定辅助服务器 $a(u)$ 的方案，使得 WRP 能够找到从任意服务器 $u$ 到任意其他服务器 $v$ 的路径，则在输出的唯一一行中输出 “`No`”。\n\n否则，在第一行输出 “`Yes`”。在第二行输出 $n$ 个整数，其中第 $i$ 个整数应等于 $a(i)$，即服务器 $i$ 的辅助服务器编号。注意，服务器 $i$ 与服务器 $a(i)$ 之间必须存在直接连接。\n\n答案可以使用任意大小写形式输出。例如，字符串 “`yEs`”、 “`yes`”、 “`Yes`” 和 “`YES`” 都会被识别为肯定 პასუხ。",
   "samples": [
     {
       "input": "6 7\n1 2\n2 3\n3 1\n4 5\n5 6\n4 6\n2 5\n",
@@ -42,5 +42,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:33:50.839Z"
+  "fetchedAt": "2026-10-30T22:33:50.839Z",
+  "translatedAt": "2026-11-04T03:03:24.469+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

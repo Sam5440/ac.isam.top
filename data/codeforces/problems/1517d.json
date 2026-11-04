@@ -4,7 +4,7 @@
   "contestId": 1517,
   "index": "D",
   "title": "Explorer Space",
-  "titleZh": null,
+  "titleZh": "探索空间",
   "url": "https://codeforces.com/contest/1517/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are wandering in the explorer space of the 2050 Conference.\n\nThe explorer space can be viewed as an undirected weighted grid graph with size $n\\times m$. The set of vertices is $\\{(i, j)|1\\le i\\le n, 1\\le j\\le m\\}$. Two vertices $(i_1,j_1)$ and $(i_2, j_2)$ are connected by an edge if and only if $|i_1-i_2|+|j_1-j_2|=1$.\n\nAt each step, you can walk to any vertex connected by an edge with your current vertex. On each edge, there are some number of exhibits. Since you already know all the exhibits, whenever you go through an edge containing $x$ exhibits, your *boredness* increases by $x$.\n\nFor each starting vertex $(i, j)$, please answer the following question: What is the minimum possible boredness if you walk from $(i, j)$ and go back to it after exactly $k$ steps?\n\nYou can use any edge for multiple times but the boredness on those edges are also counted for multiple times. At each step, you cannot stay on your current vertex. You also cannot change direction while going through an edge. Before going back to your starting vertex $(i, j)$ after $k$ steps, you can visit $(i, j)$ (or not) freely.\n\n## Input\n\nThe first line contains three integers $n$, $m$ and $k$ ($2\\leq n, m\\leq 500, 1\\leq k\\leq 20$).\n\nThe $j$-th number ($1\\le j \\le m - 1$) in the $i$-th line of the following $n$ lines is the number of exibits on the edge between vertex $(i, j)$ and vertex $(i, j+1)$.\n\nThe $j$-th number ($1\\le j\\le m$) in the $i$-th line of the following $n-1$ lines is the number of exibits on the edge between vertex $(i, j)$ and vertex $(i+1, j)$.\n\nThe number of exhibits on each edge is an integer between $1$ and $10^6$.\n\n## Output\n\nOutput $n$ lines with $m$ numbers each. The $j$-th number in the $i$-th line, $answer_{ij}$, should be the minimum possible boredness if you walk from $(i, j)$ and go back to it after exactly $k$ steps.\n\nIf you cannot go back to vertex $(i, j)$ after exactly $k$ steps, $answer_{ij}$ should be $-1$.\n\n## Note\n\nIn the first example, the answer is always $10$ no matter how you walk.\n\nIn the second example, $answer_{21} = 10$, the path is $(2,1) \\to (1,1) \\to (1,2) \\to (2,2) \\to (2,1)$, the boredness is $4 + 1 + 2 + 3 = 10$.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在 2050 会议的探索空间中漫步。\n\n探索空间可以看作一个大小为 $n\\times m$ 的无向带权网格图。顶点集合为 $\\{(i, j)|1\\le i\\le n, 1\\le j\\le m\\}$。当且仅当 $|i_1-i_2|+|j_1-j_2|=1$ 时，顶点 $(i_1,j_1)$ 和 $(i_2, j_2)$ 之间有一条边相连。\n\n每一步，你都可以走到与当前顶点通过边相连的任意顶点。每条边上都有一定数量的展品。由于你已经知道所有展品，因此每当你经过一条包含 $x$ 件展品的边时，你的*无聊度*就会增加 $x$。\n\n对于每个起点 $(i, j)$，请回答以下问题：从 $(i, j)$ 出发，恰好经过 $k$ 步后回到该点时，可能达到的最小无聊度是多少？\n\n同一条边可以经过多次，但每次经过都要重复计算该边上的无聊度。每一步都不能停留在当前顶点上。经过一条边时也不能改变方向。在恰好经过 $k$ 步回到起点 $(i, j)$ 之前，你可以自由地访问 $(i, j)$（也可以不访问）。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$ 和 $k$（$2\\leq n, m\\leq 500, 1\\leq k\\leq 20$）。\n\n接下来的 $n$ 行中，第 $i$ 行的第 $j$ 个数（$1\\le j \\le m - 1$）表示顶点 $(i, j)$ 与顶点 $(i, j+1)$ 之间的边上的展品数量。\n\n接下来的 $n-1$ 行中，第 $i$ 行的第 $j$ 个数（$1\\le j\\le m$）表示顶点 $(i, j)$ 与顶点 $(i+1, j)$ 之间的边上的展品数量。\n\n每条边上的展品数量都是一个介于 $1$ 和 $10^6$ 之间的整数。\n\n## 输出格式\n\n输出 $n$ 行，每行包含 $m$ 个数。第 $i$ 行的第 $j$ 个数 $answer_{ij}$ 应为从 $(i, j)$ 出发并在恰好经过 $k$ 步后回到该点时可能达到的最小无聊度。\n\n如果无法在恰好经过 $k$ 步后回到顶点 $(i, j)$，则 $answer_{ij}$ 应为 $-1$。\n\n## 说明\n\n在第一个样例中，无论如何行走，答案始终为 $10$。\n\n在第二个样例中，$answer_{21} = 10$，对应路径为 $(2,1) \\to (1,1) \\to (1,2) \\to (2,2) \\to (2,1)$，无聊度为 $4 + 1 + 2 + 3 = 10$。",
   "samples": [
     {
       "input": "3 3 10\n1 1\n1 1\n1 1\n1 1 1\n1 1 1\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:33:29.081Z"
+  "fetchedAt": "2026-10-30T23:33:29.081Z",
+  "translatedAt": "2026-11-04T03:55:47.008+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

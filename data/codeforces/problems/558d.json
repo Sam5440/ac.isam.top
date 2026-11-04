@@ -4,7 +4,7 @@
   "contestId": 558,
   "index": "D",
   "title": "Guess Your Way Out! II",
-  "titleZh": null,
+  "titleZh": "猜出你的出路！II",
   "url": "https://codeforces.com/contest/558/problem/D",
   "difficulty": 2300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Amr bought a new video game \"Guess Your Way Out! II\". The goal of the game is to find an exit from the maze that looks like a perfect binary tree of height $*h*$. The player is initially standing at the root of the tree and the exit from the tree is located at some leaf node.\n\nLet's index all the nodes of the tree such that\n\n- The root is number $1$\n- Each internal node $*i*$ ($*i* ≤ 2^{*h* - 1} - 1$) will have a left child with index = $2*i*$ and a right child with index = $2*i* + 1$\n\nThe level of a node is defined as $1$ for a root, or $1$ + level of parent of the node otherwise. The vertices of the level $*h*$ are called leaves. The exit to the maze is located at some leaf node $*n*$, the player doesn't know where the exit is so he has to guess his way out!\n\nIn the new version of the game the player is allowed to ask questions on the format \"Does the $*ancestor*(*exit*, *i*)$ node number belong to the range $[*L*, *R*]$?\". Here $*ancestor*(*v*, *i*)$ is the ancestor of a node $*v*$ that located in the level $*i*$. The game will answer with \"Yes\" or \"No\" only. The game is designed such that it doesn't always answer correctly, and sometimes it cheats to confuse the player!.\n\nAmr asked a lot of questions and got confused by all these answers, so he asked you to help him. Given the questions and its answers, can you identify whether the game is telling contradictory information or not? If the information is not contradictory and the exit node can be determined uniquely, output its number. If the information is not contradictory, but the exit node isn't defined uniquely, output that the number of questions is not sufficient. Otherwise output that the information is contradictory.\n\n## Input\n\nThe first line contains two integers $*h*, *q*$ ($1 ≤ *h* ≤ 50$, $0 ≤ *q* ≤ 10^{5}$), the height of the tree and the number of questions respectively.\n\nThe next $*q*$ lines will contain four integers each $*i*, *L*, *R*, *ans*$ ($1 ≤ *i* ≤ *h*$, $2^{*i* - 1} ≤ *L* ≤ *R* ≤ 2^{*i*} - 1$, ![image](https://espresso.codeforces.com/efee5db22bd8e5a4848907ab50b074b75fa6f3c7.png)), representing a question as described in the statement with its answer ($*ans* = 1$ if the answer is \"Yes\" and $*ans* = 0$ if the answer is \"No\").\n\n## Output\n\nIf the information provided by the game is contradictory output \"Game cheated!\" without the quotes.\n\nElse if you can uniquely identify the exit to the maze output its index.\n\nOtherwise output \"Data not sufficient!\" without the quotes.\n\n## Note\n\nNode $*u*$ is an ancestor of node $*v*$ if and only if\n\n- $*u*$ is the same node as $*v*$,\n- $*u*$ is the parent of node $*v*$,\n- or $*u*$ is an ancestor of the parent of node $*v*$.\n\nIn the first sample test there are $4$ leaf nodes $4, 5, 6, 7$. The first question says that the node isn't in the range $[4, 6]$ so the exit is node number $7$.\n\nIn the second sample test there are $8$ leaf nodes. After the first question the exit is in the range $[10, 14]$. After the second and the third questions only node number $14$ is correct. Check the picture below to fully understand.\n\n![image](https://espresso.codeforces.com/ed7035c51a810ae46fc6ef9e8e8319d343bfcfa9.png)",
-  "statementZhMd": null,
+  "statementZhMd": "阿姆尔买了一款新电子游戏“Guess Your Way Out! II”。游戏的目标是从一个看起来像高度为 $*h*$ 的完美二叉树的迷宫中找到出口。玩家最初站在树的根节点，而树的出口位于某个叶节点。\n\n我们按照如下方式给树中的所有节点编号：\n\n- 根节点编号为 $1$；\n- 每个内部节点 $*i*$（$*i* ≤ 2^{*h* - 1} - 1$）的左子节点编号为 $2*i*$，右子节点编号为 $2*i* + 1$。\n\n节点的层定义如下：根节点所在层为 $1$，其他节点所在层为其父节点所在层加 $1$。位于第 $*h*$ 层的顶点称为叶节点。迷宫的出口位于某个叶节点 $*n*$，玩家并不知道出口的位置，因此他必须猜出逃生路线！\n\n在这个游戏的新版本中，玩家可以提出如下格式的问题：“节点 $*ancestor*(*exit*, *i*)$ 的编号是否属于区间 $[*L*, *R*]$？”其中，$*ancestor*(*v*, *i*)$ 表示节点 $*v*$ 位于第 $*i*$ 层的祖先。游戏只会回答“是”或“否”。游戏经过特殊设计，并不总是如实回答，有时还会撒谎来迷惑玩家！\n\n阿姆尔提出了许多问题，并被所有这些回答搞糊涂了，因此他请你帮助他。给定这些问题及其答案，你能判断游戏提供的信息是否相互矛盾吗？如果信息不矛盾且能够唯一确定出口节点，请输出其编号。如果信息不矛盾，但无法唯一确定出口节点，请输出问题数量不足。否则，请输出信息相互矛盾。\n\n## 输入格式\n\n第一行包含两个整数 $*h*, *q*$（$1 ≤ *h* ≤ 50$，$0 ≤ *q* ≤ 10^{5}$），分别表示树的高度和问题的数量。\n\n接下来的 $*q*$ 行每行包含四个整数 $*i*, *L*, *R*, *ans*$（$1 ≤ *i* ≤ *h*$，$2^{*i* - 1} ≤ *L* ≤ *R* ≤ 2^{*i*} - 1$，![image](https://espresso.codeforces.com/efee5db22bd8e5a4848907ab50b074b75fa6f3c7.png)），表示题目描述中的一个问题及其答案（如果回答为“是”，则 $*ans* = 1$；如果回答为“否”，则 $*ans* = 0$）。\n\n## 输出格式\n\n如果游戏提供的信息相互矛盾，输出 `Game cheated!`，不包括引号。\n\n否则，如果可以唯一确定迷宫的出口，输出其编号。\n\n否则，输出 `Data not sufficient!`，不包括引号。\n\n## 说明\n\n当且仅当满足以下条件之一时，节点 $*u*$ 是节点 $*v*$ 的祖先：\n\n- $*u*$ 与 $*v*$ 是同一个节点；\n- $*u*$ 是节点 $*v*$ 的父节点；\n- $*u*$ 是节点 $*v*$ 的父节点的祖先。\n\n在第一个样例中，有 $4$ 个叶节点 $4, 5, 6, 7$。第一个问题表示该节点不在区间 $[4, 6]$ 中，因此出口是节点 $7$。\n\n在第二个样例中，有 $8$ 个叶节点。第一个问题之后，出口位于区间 $[10, 14]$ 中。第二个和第三个问题之后，只有编号为 $14$ 的节点符合条件。请查看下面的图片以便完全理解。\n\n![image](https://espresso.codeforces.com/ed7035c51a810ae46fc6ef9e8e8319d343bfcfa9.png)",
   "samples": [
     {
       "input": "3 1\n3 4 6 0\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:24:42.901Z"
+  "fetchedAt": "2026-10-31T01:24:42.901Z",
+  "translatedAt": "2026-11-04T06:48:06.345+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

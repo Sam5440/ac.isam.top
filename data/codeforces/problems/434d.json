@@ -4,7 +4,7 @@
   "contestId": 434,
   "index": "D",
   "title": "Nanami's Power Plant",
-  "titleZh": null,
+  "titleZh": "Nanami 的发电厂",
   "url": "https://codeforces.com/contest/434/problem/D",
   "difficulty": 2900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "Nanami likes playing games, and is also really good at it. This day she was playing a new game which involved operating a power plant. Nanami's job is to control the generators in the plant and produce maximum output.\n\nThere are $*n*$ generators in the plant. Each generator should be set to a generating level. Generating level is an integer (possibly zero or negative), the generating level of the $*i*$-th generator should be between $*l*_{*i*}$ and $*r*_{*i*}$ (both inclusive). The output of a generator can be calculated using a certain quadratic function $*f*(*x*)$, where $*x*$ is the generating level of the generator. Each generator has its own function, the function of the $*i*$-th generator is denoted as $*f*_{*i*}(*x*)$.\n\nHowever, there are $*m*$ further restrictions to the generators. Let the generating level of the $*i*$-th generator be $*x*_{*i*}$. Each restriction is of the form $*x*_{*u*} ≤ *x*_{*v*} + *d*$, where $*u*$ and $*v*$ are IDs of two different generators and $*d*$ is an integer.\n\nNanami found the game tedious but giving up is against her creed. So she decided to have a program written to calculate the answer for her (the maximum total output of generators). Somehow, this became your job.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m* (1 ≤ *n* ≤ 50; 0 ≤ *m* ≤ 100)$ — the number of generators and the number of restrictions.\n\nThen follow $*n*$ lines, each line contains three integers $*a*_{*i*}$, $*b*_{*i*}$, and $*c*_{*i*} (|*a*_{*i*}| ≤ 10; |*b*_{*i*}|, |*c*_{*i*}| ≤ 1000)$ — the coefficients of the function $*f*_{*i*}(*x*)$. That is, $*f*_{*i*}(*x*) = *a*_{*i*}*x*^{2} + *b*_{*i*}*x* + *c*_{*i*}$.\n\nThen follow another $*n*$ lines, each line contains two integers $*l*_{*i*}$ and $*r*_{*i*} ( - 100 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ 100)$.\n\nThen follow $*m*$ lines, each line contains three integers $*u*_{*i*}$, $*v*_{*i*}$, and $*d*_{*i*} (1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*; *u*_{*i*} ≠ *v*_{*i*}; |*d*_{*i*}| ≤ 200)$, describing a restriction. The $*i*$-th restriction is $*x*_{*u*_{*i*}} ≤ *x*_{*v*_{*i*}} + *d*_{*i*}$.\n\n## Output\n\nPrint a single line containing a single integer — the maximum output of all the generators. It is guaranteed that there exists at least one valid configuration.\n\n## Note\n\nIn the first sample, $*f*_{1}(*x*) = *x*$, $*f*_{2}(*x*) = *x* + 1$, and $*f*_{3}(*x*) = *x* + 2$, so we are to maximize the sum of the generating levels. The restrictions are $*x*_{1} ≤ *x*_{2}$, $*x*_{2} ≤ *x*_{3}$, and $*x*_{3} ≤ *x*_{1}$, which gives us $*x*_{1} = *x*_{2} = *x*_{3}$. The optimal configuration is $*x*_{1} = *x*_{2} = *x*_{3} = 2$, which produces an output of 9.\n\nIn the second sample, restrictions are equal to $|*x*_{*i*} - *x*_{*i* + 1}| ≤ 3$ for $1 ≤ *i* < *n*$. One of the optimal configurations is $*x*_{1} = 1$, $*x*_{2} = 4$, $*x*_{3} = 5$, $*x*_{4} = 8$ and $*x*_{5} = 7$.",
-  "statementZhMd": null,
+  "statementZhMd": "Nanami 喜欢玩游戏，而且非常擅长游戏。这一天，她正在玩一款涉及操作发电厂的新游戏。Nanami 的任务是控制发电机，使总输出最大。\n\n发电厂中有 $*n*$ 台发电机。每台发电机都应设置一个发电等级。发电等级是一个整数（可以为零或负数），第 $*i*$ 台发电机的发电等级应介于 $*l*_{*i*}$ 和 $*r*_{*i*}$ 之间（包括两端）。发电机的输出可以通过一个特定的二次函数 $*f*(*x*)$ 计算，其中 $*x*$ 是该发电机的发电等级。每台发电机都有自己的函数，第 $*i*$ 台发电机的函数记为 $*f*_{*i*}(*x*)$。\n\n此外，发电机还受到 $*m*$ 条限制。设第 $*i*$ 台发电机的发电等级为 $*x*_{*i*}$。每条限制的形式为 $*x*_{*u*} ≤ *x*_{*v*} + *d*$，其中 $*u*$ 和 $*v*$ 是两台不同发电机的编号，$*d*$ 是一个整数。\n\nNanami 觉得这个游戏很无聊，但放弃并不符合她的信条。因此，她决定编写一个程序来计算答案（即发电机的最大总输出）。不知为何，这成了你的任务。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m* (1 ≤ *n* ≤ 50; 0 ≤ *m* ≤ 100)$ —— 发电机的数量和限制的数量。\n\n接下来 $*n*$ 行，每行包含三个整数 $*a*_{*i*}$、$*b*_{*i*}$ 和 $*c*_{*i*} (|*a*_{*i*}| ≤ 10; |*b*_{*i*}|, |*c*_{*i*}| ≤ 1000)$ —— 函数 $*f*_{*i*}(*x*)$ 的系数。即，$*f*_{*i*}(*x*) = *a*_{*i*}*x*^{2} + *b*_{*i*}*x* + *c*_{*i*}$。\n\n接下来 $*n*$ 行，每行包含两个整数 $*l*_{*i*}$ 和 $*r*_{*i*} ( - 100 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ 100)$。\n\n接下来 $*m*$ 行，每行包含三个整数 $*u*_{*i*}$、$*v*_{*i*}$ 和 $*d*_{*i*} (1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*; *u*_{*i*} ≠ *v*_{*i*}; |*d*_{*i*}| ≤ 200)$，描述一条限制。第 $*i*$ 条限制为 $*x*_{*u*_{*i*}} ≤ *x*_{*v*_{*i*}} + *d*_{*i*}$。\n\n## 输出格式\n\n输出一行，包含一个整数 —— 所有发电机的最大总输出。保证至少存在一种有效配置。\n\n## 说明\n\n在第一个样例中，$*f*_{1}(*x*) = *x*$、$*f*_{2}(*x*) = *x* + 1$，以及 $*f*_{3}(*x*) = *x* + 2$，因此我们需要最大化发电等级之和。限制为 $*x*_{1} ≤ *x*_{2}$、$*x*_{2} ≤ *x*_{3}$ 和 $*x*_{3} ≤ *x*_{1}$，这意味着 $*x*_{1} = *x*_{2} = *x*_{3}$。最优配置为 $*x*_{1} = *x*_{2} = *x*_{3} = 2$，产生的输出为 9。\n\n在第二个样例中，限制等价于 $|*x*_{*i*} - *x*_{*i* + 1}| ≤ 3$，其中 $1 ≤ *i* < *n*$。一种最优配置为 $*x*_{1} = 1$、$*x*_{2} = 4$、$*x*_{3} = 5$、$*x*_{4} = 8$ 和 $*x*_{5} = 7$。",
   "samples": [
     {
       "input": "3 3\n0 1 0\n0 1 1\n0 1 2\n0 3\n1 2\n-100 100\n1 2 0\n2 3 0\n3 1 0\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:44:37.593Z"
+  "fetchedAt": "2026-10-31T01:44:37.593Z",
+  "translatedAt": "2026-11-04T07:07:51.583+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

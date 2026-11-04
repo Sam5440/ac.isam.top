@@ -4,7 +4,7 @@
   "contestId": "agc051",
   "index": "F",
   "title": "rng_58's Last Problem",
-  "titleZh": null,
+  "titleZh": "rng_58 的最后一道题",
   "url": "https://atcoder.jp/contests/agc051/tasks/agc051_f",
   "difficulty": 4061,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\n> You have two sandglasses: a sandglass that can measure $1$ second, and a sandglass that can measure $\\sqrt{2}$ seconds. Is it possible to measure $x + y \\sqrt{2}$ seconds using them?\n\nLet's formalize the statement. We have two sandglasses named $A$ and $B$. Each sandglass has two bulbs, and the bulbs may contain sand. We can place each sandglass in one of the three states: two vertical states (one of the bulbs is placed on top of the other, and in case the top bulb contains sand, the sand in the top bulb keeps falling into the bottom bulb at the speed of one gram per second.) and one horizontal state (the sand does not move.)\n\nThe sandglass A contains $1$ gram of sand and the sandglass B contains $\\sqrt{2}$ grams of sand. Thus, when sandglass $A$ is vertically placed and all sand is in the top bulb, it takes $1$ second until all sand falls into the bottom bulb. Similarly, this time is $\\sqrt{2}$ seconds for sandglass $B$.\n\nInitially, both $A$ and $B$ are vertically placed, and all sand is in the bottom bulb. You are not allowed to touch anything before Snuke shouts. When an *event* (described below) happens exactly $t$ seconds after Snuke shouts, we say that we can measure $t$ seconds.\n\nWe say that an *event* happens when one of the following happens:\n\n- Snuke shouts.\n- The sand in a sandglass in a vertical state has just stopped falling down.\n\nWhen an *event* happens, we can perform (an arbitrary number of) the following operation in negligible time:\n\n- Choose a sandglasses, and change its state.\n\nFor example, we can measure $-1 + 2 \\sqrt{2}$ seconds as follows:\n\n- At time $0$, Snuke shouts. Turn both $A$ and $B$ upside down.\n- At time $1$, an event happens: the sand in $A$ stops falling down. Turn $A$ upside down again (and leave $B$ as it is).\n- At time $\\sqrt{2}$, an event happens: the sand in $B$ stops falling down. Turn $A$ upside down again, and leave $B$ in the horizontal state.\n- At time $-1 + 2 \\sqrt{2}$, an event happens: the sand in $A$ stops falling down.\n\nYou are given $Q$ numbers of the form $x_i + y_i \\sqrt{2}$. Solve the problem above for each given number.\n\n## Constraints\n\n- $1 \\leq Q \\leq 10^5$\n- $-10^9 \\leq x_i, y_i \\leq 10^9$\n- $x_i + y_i \\sqrt{2} > 0$\n- All values in the input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nQ\nx_1 y_1\n:\nx_Q y_Q\n```\n\n## Output\n\nPrint $Q$ lines. On the $i$-th line, print `Yes` if it is possible to measure $x_i + y_i \\sqrt{2}$ seconds; otherwise print `No`.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n> 你有两个沙漏：一个可以测量 $1$ 秒，另一个可以测量 $\\sqrt{2}$ 秒。能否使用它们测量 $x + y \\sqrt{2}$ 秒？\n\n让我们形式化地描述这个问题。我们有两个名为 $A$ 和 $B$ 的沙漏。每个沙漏都有两个容器，容器中可能装有沙子。每个沙漏可以处于以下三种状态之一：两种竖直状态（其中一个容器位于另一个容器的上方；如果上方的容器中有沙子，沙子会以每秒一克的速度从上方容器落入下方容器）以及一种水平状态（沙子不会移动）。\n\n沙漏 A 中有 $1$ 克沙子，沙漏 B 中有 $\\sqrt{2}$ 克沙子。因此，当沙漏 $A$ 竖直放置且所有沙子都在上方容器中时，所有沙子落入下方容器需要 $1$ 秒。同样地，沙漏 $B$ 需要 $\\sqrt{2}$ 秒。\n\n初始时，$A$ 和 $B$ 都竖直放置，且所有沙子都在下方容器中。在 Snuke 喊出声音之前，你不能触碰任何东西。当某个*事件*（如下所述）在 Snuke 喊出声音后恰好 $t$ 秒发生时，我们称可以测量 $t$ 秒。\n\n当发生以下任一情况时，我们称一个*事件*发生：\n\n- Snuke 喊出声音。\n- 处于竖直状态的某个沙漏中的沙子刚好停止下落。\n\n当一个*事件*发生时，我们可以在可以忽略不计的时间内执行任意次以下操作：\n\n- 选择一个沙漏，并改变它的状态。\n\n例如，可以按如下方式测量 $-1 + 2 \\sqrt{2}$ 秒：\n\n- 在时间 $0$，Snuke 喊出声音。将 $A$ 和 $B$ 都上下翻转。\n- 在时间 $1$，发生一个事件：$A$ 中的沙子停止下落。再次将 $A$ 上下翻转（$B$ 保持原样）。\n- 在时间 $\\sqrt{2}$，发生一个事件：$B$ 中的沙子停止下落。再次将 $A$ 上下翻转，并将 $B$ 置于水平状态。\n- 在时间 $-1 + 2 \\sqrt{2}$，发生一个事件：$A$ 中的沙子停止下落。\n\n给定 $Q$ 个形如 $x_i + y_i \\sqrt{2}$ 的数。请对每个给定的数解决上述问题。\n\n## 约束条件\n\n- $1 \\leq Q \\leq 10^5$\n- $-10^9 \\leq x_i, y_i \\leq 10^9$\n- $x_i + y_i \\sqrt{2} > 0$\n- 输入中的所有值均为整数。\n\n## 输入格式\n\n输入从标准输入中按以下格式给出：\n\n```\nQ\nx_1 y_1\n:\nx_Q y_Q\n```\n\n## 输出格式\n\n输出 $Q$ 行。第 $i$ 行中，如果可以测量 $x_i + y_i \\sqrt{2}$ 秒，则输出 `Yes`；否则输出 `No`。",
   "samples": [
     {
       "input": "3\n-1 2\n2020 1227\n2 -1\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:01:46.759Z"
+  "fetchedAt": "2026-10-30T22:01:46.759Z",
+  "translatedAt": "2026-11-04T04:07:15.298+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

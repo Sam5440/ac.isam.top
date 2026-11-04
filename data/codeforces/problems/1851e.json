@@ -4,7 +4,7 @@
   "contestId": 1851,
   "index": "E",
   "title": "Nastya and Potions",
-  "titleZh": null,
+  "titleZh": "娜斯佳和药水",
   "url": "https://codeforces.com/contest/1851/problem/E",
   "difficulty": 1500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Alchemist Nastya loves mixing potions. There are a total of $n$ types of potions, and one potion of type $i$ can be bought for $c_i$ coins.\n\nAny kind of potions can be obtained in no more than one way, by mixing from several others. The potions used in the mixing process will be **consumed**. Moreover, no potion can be obtained from itself through one or more mixing processes.\n\nAs an experienced alchemist, Nastya has an **unlimited** supply of $k$ types of potions $p_1, p_2, \\dots, p_k$, but she doesn't know which one she wants to obtain next. To decide, she asks you to find, for each $1 \\le i \\le n$, the minimum number of coins she needs to spend to obtain a potion of type $i$ next.\n\n## Input\n\nThe first line of each test contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case is described as follows:\n\nThe first line contains two integers $n$ and $k$ ($1 \\le k \\lt n \\le 2 \\cdot 10^5$) — the total number of potion types and the number of potion types Nastya already has.\n\nThe second line contains $n$ integers $c_1, c_2, \\dots, c_n$ ($1 \\le c_i \\le 10^9$) — the costs of buying the potions.\n\nThe third line contains $k$ distinct integers $p_1, p_2, \\dots, p_k$ ($1 \\le p_i \\le n$) — the indices of potions Nastya already has an **unlimited** supply of.\n\nThis is followed by $n$ lines describing ways to obtain potions by mixing.\n\nEach line starts with the integer $m_i$ ($0 \\le m_i \\lt n$) — the number of potions required to mix a potion of the type $i$ ($1 \\le i \\le n$).\n\nThen line contains $m_i$ distinct integers $e_1, e_2, \\dots, e_{m_i}$ ($1 \\le e_j \\le n$, $e_j \\ne i$) — the indices of potions needed to mix a potion of the type $i$. If this list is empty, then a potion of the type $i$ can only be bought.\n\nIt is guaranteed that no potion can be obtained from itself through one or more mixing processes.\n\nIt is guaranteed that the sum of all $n$ values across all test cases does not exceed $2 \\cdot 10^5$. Similarly, it is guaranteed that the sum of all $m_i$ values across all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n$ integers — the minimum number of coins Nastya needs to spend to obtain a potion of each type.\n\n## Note\n\nIn the first test case of the first sample, it is optimal:\n\n- Get a potion of the first type by buying and mixing $2$, $4$ and $5$;\n- a potion of the second type can only be obtained by purchasing it;\n- Nastya already has an unlimited number of potions of the third type;\n- a potion of the fourth type is more profitable to buy than to buy and mix other potions;\n- a potion of the fifth type can only be obtained by purchasing it.",
-  "statementZhMd": null,
+  "statementZhMd": "炼金术士娜斯佳喜欢混合药水。总共有 $n$ 种药水，购买一瓶 $i$ 类药水需要 $c_i$ 枚硬币。\n\n任何一种药水至多只能通过一种方式获得，即由若干种其他药水混合而成。混合过程中使用的药水会被**消耗**。此外，不存在任何药水能够通过一次或多次混合从自身获得。\n\n作为一名经验丰富的炼金术士，娜斯佳拥有 $k$ 种药水 $p_1, p_2, \\dots, p_k$ 的**无限**供应，但她不知道接下来想要获得哪一种药水。为了做出决定，她请你求出对于每个 $1 \\le i \\le n$，她接下来获得一瓶 $i$ 类药水所需支付的最少硬币数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例描述如下：\n\n第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\lt n \\le 2 \\cdot 10^5$）——药水的总种类数，以及娜斯佳已经拥有的药水种类数。\n\n第二行包含 $n$ 个整数 $c_1, c_2, \\dots, c_n$（$1 \\le c_i \\le 10^9$）——购买各类药水的价格。\n\n第三行包含 $k$ 个互不相同的整数 $p_1, p_2, \\dots, p_k$（$1 \\le p_i \\le n$）——娜斯佳已经拥有**无限**供应的药水的编号。\n\n接下来 $n$ 行描述通过混合获得药水的方式。\n\n每行首先包含一个整数 $m_i$（$0 \\le m_i \\lt n$）——混合一瓶 $i$ 类药水（$1 \\le i \\le n$）所需的药水数量。\n\n接下来一行包含 $m_i$ 个互不相同的整数 $e_1, e_2, \\dots, e_{m_i}$（$1 \\le e_j \\le n$，$e_j \\ne i$）——混合一瓶 $i$ 类药水所需的药水编号。如果该列表为空，则 $i$ 类药水只能通过购买获得。\n\n保证不存在任何药水能够通过一次或多次混合从自身获得。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。同样保证所有测试用例中 $m_i$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n$ 个整数——娜斯佳获得每种药水所需支付的最少硬币数。\n\n## 说明\n\n在第一个样例的第一个测试用例中，最优方案如下：\n\n- 购买并混合第 $2$、$4$ 和 $5$ 类药水，以获得一瓶第 $1$ 类药水；\n- 第 $2$ 类药水只能通过购买获得；\n- 娜斯佳已经拥有无限数量的第 $3$ 类药水；\n- 购买第 $4$ 类药水比购买并混合其他药水更划算；\n- 第 $5$ 类药水只能通过购买获得。",
   "samples": [
     {
       "input": "4\n5 1\n30 8 3 5 10\n3\n3 2 4 5\n0\n0\n2 3 5\n0\n3 2\n5 143 3\n1 3\n1 2\n0\n2 1 2\n5 1\n5 4 1 3 4\n2\n2 4 5\n3 3 5 4\n2 1 4\n1 5\n0\n4 2\n1 1 5 4\n2 4\n3 2 4 3\n0\n2 2 4\n1 2\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:26:58.899Z"
+  "fetchedAt": "2026-11-02T17:26:58.899Z",
+  "translatedAt": "2026-11-04T02:46:34.243+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

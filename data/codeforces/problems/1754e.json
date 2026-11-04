@@ -4,14 +4,14 @@
   "contestId": 1754,
   "index": "E",
   "title": "Wish I Knew How to Sort",
-  "titleZh": null,
+  "titleZh": "真希望我知道如何排序",
   "url": "https://codeforces.com/contest/1754/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a binary array $a$ (all elements of the array are $0$ or $1$) of length $n$. You wish to sort this array, but unfortunately, your algorithms teacher forgot to teach you sorting algorithms. You perform the following operations until $a$ is sorted:\n\n1. Choose two random indices $i$ and $j$ such that $i \\lt j$. Indices are chosen equally probable among all pairs of indices $(i, j)$ such that $1 \\le i \\lt j \\le n$.\n2. If $a_i \\gt a_j$, then swap elements $a_i$ and $a_j$.\n\nWhat is the [expected number](https://en.wikipedia.org/wiki/Expected_value) of such operations you will perform before the array becomes sorted?\n\nIt can be shown that the answer can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{998\\,244\\,353}$. Output the integer equal to $p \\cdot q^{-1} \\bmod 998\\,244\\,353$. In other words, output such an integer $x$ that $0 \\le x \\lt 998\\,244\\,353$ and $x \\cdot q \\equiv p \\pmod{998\\,244\\,353}$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^5$). Description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 200\\,000$) — the number of elements in the binary array.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($a_i \\in \\{0, 1\\}$) — elements of the array.\n\nIt's guaranteed that sum of $n$ over all test cases does not exceed $200\\,000$.\n\n## Output\n\nFor each test case print one integer — the value $p \\cdot q^{-1} \\bmod 998\\,244\\,353$.\n\n## Note\n\nConsider the first test case. If the pair of indices $(2, 3)$ will be chosen, these elements will be swapped and array will become sorted. Otherwise, if one of pairs $(1, 2)$ or $(1, 3)$ will be selected, nothing will happen. So, the probability that the array will become sorted after one operation is $\\frac{1}{3}$, the probability that the array will become sorted after two operations is $\\frac{2}{3} \\cdot \\frac{1}{3}$, the probability that the array will become sorted after three operations is $\\frac{2}{3} \\cdot \\frac{2}{3} \\cdot \\frac{1}{3}$ and so on. The expected number of operations is $\\sum \\limits_{i=1}^{\\infty} \\left(\\frac{2}{3} \\right)^{i - 1} \\cdot \\frac{1}{3} \\cdot i = 3$.\n\nIn the second test case the array is already sorted so the expected number of operations is zero.\n\nIn the third test case the expected number of operations equals to $\\frac{75}{4}$ so the answer is $75 \\cdot 4^{-1} \\equiv 249\\,561\\,107 \\pmod {998\\,244\\,353}$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的二进制数组 $a$（数组中的所有元素均为 $0$ 或 $1$）。你希望将这个数组排序，但不幸的是，你的算法老师忘记教你排序算法。你将不断执行以下操作，直到 $a$ 排序完成：\n\n1. 随机选择两个下标 $i$ 和 $j$，满足 $i \\lt j$。在所有满足 $1 \\le i \\lt j \\le n$ 的下标对 $(i, j)$ 中，每一对被选中的概率相同。\n2. 如果 $a_i \\gt a_j$，则交换元素 $a_i$ 和 $a_j$。\n\n在数组变得有序之前，你将执行的此类操作次数的[期望值](https://en.wikipedia.org/wiki/Expected_value)是多少？\n\n可以证明，答案可以表示为不可约分数 $\\frac{p}{q}$，其中 $p$ 和 $q$ 为整数，且 $q \\not \\equiv 0 \\pmod{998\\,244\\,353}$。请输出整数 $p \\cdot q^{-1} \\bmod 998\\,244\\,353$。换句话说，请输出一个整数 $x$，满足 $0 \\le x \\lt 998\\,244\\,353$ 且 $x \\cdot q \\equiv p \\pmod{998\\,244\\,353}$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^5$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 200\\,000$）——二进制数组中的元素数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$a_i \\in \\{0, 1\\}$）——数组中的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $200\\,000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——$p \\cdot q^{-1} \\bmod 998\\,244\\,353$ 的值。\n\n## 说明\n\n考虑第一个测试用例。如果选择下标对 $(2, 3)$，则这两个元素会被交换，数组将变得有序。否则，如果选择下标对 $(1, 2)$ 或 $(1, 3)$，则不会发生任何变化。因此，数组经过一次操作后变得有序的概率为 $\\frac{1}{3}$，经过两次操作后变得有序的概率为 $\\frac{2}{3} \\cdot \\frac{1}{3}$，经过三次操作后变得有序的概率为 $\\frac{2}{3} \\cdot \\frac{2}{3} \\cdot \\frac{1}{3}$，以此类推。操作次数的期望值为 $\\sum \\limits_{i=1}^{\\infty} \\left(\\frac{2}{3} \\right)^{i - 1} \\cdot \\frac{1}{3} \\cdot i = 3$。\n\n在第二个测试用例中，数组已经有序，因此操作次数的期望值为零。\n\n在第三个测试用例中，操作次数的期望值等于 $\\frac{75}{4}$，因此答案为 $75 \\cdot 4^{-1} \\equiv 249\\,561\\,107 \\pmod {998\\,244\\,353}$。",
   "samples": [
     {
       "input": "3\n3\n0 1 0\n5\n0 0 1 1 1\n6\n1 1 1 0 0 1\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:44:01.223Z"
+  "fetchedAt": "2026-10-30T22:44:01.223Z",
+  "translatedAt": "2026-11-04T03:07:06.172+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 700,
   "index": "D",
   "title": "Huffman Coding on Segment",
-  "titleZh": null,
+  "titleZh": "区间上的 Huffman 编码",
   "url": "https://codeforces.com/contest/700/problem/D",
   "difficulty": 3100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Alice wants to send an important message to Bob. Message $*a* = (*a*_{1}, ..., *a*_{*n*})$ is a sequence of positive integers (*characters*).\n\nTo compress the message Alice wants to use binary Huffman coding. We recall that *binary Huffman code*, or *binary prefix code* is a function $*f*$, that maps each letter that appears in the string to some binary string (that is, string consisting of characters '`0`' and '`1`' only) such that for each pair of different characters $*a*_{*i*}$ and $*a*_{*j*}$ string $*f*(*a*_{*i*})$ is not a prefix of $*f*(*a*_{*j*})$ (and vice versa). The result of the encoding of the message $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ is the concatenation of the encoding of each character, that is the string $*f*(*a*_{1})*f*(*a*_{2})... *f*(*a*_{*n*})$. Huffman codes are very useful, as the compressed message can be easily and uniquely decompressed, if the function $*f*$ is given. Code is usually chosen in order to minimize the total length of the compressed message, i.e. the length of the string $*f*(*a*_{1})*f*(*a*_{2})... *f*(*a*_{*n*})$.\n\nBecause of security issues Alice doesn't want to send the whole message. Instead, she picks some substrings of the message and wants to send them separately. For each of the given substrings $*a*_{*l*_{*i*}}... *a*_{*r*_{*i*}}$ she wants to know the minimum possible length of the Huffman coding. Help her solve this problem.\n\n## Input\n\nThe first line of the input contains the single integer $*n*$ ($1 ≤ *n* ≤ 100 000$) — the length of the initial message. The second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ 100 000$) — characters of the message.\n\nNext line contains the single integer $*q*$ ($1 ≤ *q* ≤ 100 000$) — the number of queries.\n\nThen follow $*q*$ lines with queries descriptions. The $*i*$-th of these lines contains two integers $*l*_{*i*}$ and $*r*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$) — the position of the left and right ends of the $*i*$-th substring respectively. Positions are numbered from $1$. Substrings may overlap in any way. The same substring may appear in the input more than once.\n\n## Output\n\nPrint $*q*$ lines. Each line should contain a single integer — the minimum possible length of the Huffman encoding of the substring $*a*_{*l*_{*i*}}... *a*_{*r*_{*i*}}$.\n\n## Note\n\nIn the first query, one of the optimal ways to encode the substring is to map $1$ to \"`0`\", $2$ to \"`10`\" and $3$ to \"`11`\".\n\nNote that it is correct to map the letter to the empty substring (as in the fifth query from the sample).",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 想向 Bob 发送一条重要消息。消息 $*a* = (*a*_{1}, ..., *a*_{*n*})$ 是一个正整数（*字符*）序列。\n\n为了压缩消息，Alice 想使用二进制 Huffman 编码。回顾一下，*二进制 Huffman 编码*，或称*二进制前缀编码*，是一个函数 $*f*$，它将字符串中出现的每个字符映射为某个二进制字符串（即仅由字符 `0` 和 `1` 组成的字符串），并且对于任意两个不同的字符 $*a*_{*i*}$ 和 $*a*_{*j*}$，字符串 $*f*(*a*_{*i*})$ 都不是 $*f*(*a*_{*j*})$ 的前缀（反之亦然）。消息 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ 编码后的结果，是每个字符编码的拼接，即字符串 $*f*(*a*_{1})*f*(*a*_{2})... *f*(*a*_{*n*})$。Huffman 编码非常有用，因为只要给定函数 $*f*$，就可以轻松且唯一地解压缩编码后的消息。通常会选择一种编码，使压缩后消息的总长度最小，即字符串 $*f*(*a*_{1})*f*(*a*_{2})... *f*(*a*_{*n*})$ 的长度最小。\n\n出于安全方面的考虑，Alice 不想发送完整的消息。相反，她选择消息中的一些子串，并希望分别发送它们。对于每个给定的子串 $*a*_{*l*_{*i*}}... *a*_{*r*_{*i*}}$，她想知道 Huffman 编码可能达到的最小长度。请帮助她解决这个问题。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 100 000$）——初始消息的长度。第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ 100 000$）——消息中的字符。\n\n下一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 100 000$）——询问的数量。\n\n接下来 $*q*$ 行描述询问。其中第 $*i*$ 行包含两个整数 $*l*_{*i*}$ 和 $*r*_{*i*}$（$1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ *n*$）——第 $*i*$ 个子串左右端点的位置。位置从 $1$ 开始编号。子串可以以任意方式重叠。同一个子串可能在输入中出现多次。\n\n## 输出格式\n\n输出 $*q*$ 行。每行包含一个整数——子串 $*a*_{*l*_{*i*}}... *a*_{*r*_{*i*}}$ 的 Huffman 编码可能达到的最小长度。\n\n## 说明\n\n在第一个询问中，一种最优的子串编码方式是将 $1$ 映射为 `0`，将 $2$ 映射为 `10`，将 $3$ 映射为 `11`。\n\n注意，将字符映射为空字符串也是正确的（如样例中的第五个询问）。",
   "samples": [
     {
       "input": "7\n1 2 1 3 1 2 1\n5\n1 7\n1 3\n3 5\n2 4\n4 4\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:07:31.912Z"
+  "fetchedAt": "2026-10-31T01:07:31.912Z",
+  "translatedAt": "2026-11-04T06:29:15.276+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

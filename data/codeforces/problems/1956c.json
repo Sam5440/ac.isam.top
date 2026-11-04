@@ -4,7 +4,7 @@
   "contestId": 1956,
   "index": "C",
   "title": "Nene's Magical Matrix",
-  "titleZh": null,
+  "titleZh": "Nene 的魔法矩阵",
   "url": "https://codeforces.com/contest/1956/problem/C",
   "difficulty": 1600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The magical girl Nene has an $n\\times n$ matrix $a$ filled with zeroes. The $j$-th element of the $i$-th row of matrix $a$ is denoted as $a_{i, j}$.\n\nShe can perform operations of the following two types with this matrix:\n\n- Type $1$ operation: choose an integer $i$ between $1$ and $n$ and a permutation $p_1, p_2, \\ldots, p_n$ of integers from $1$ to $n$. Assign $a_{i, j}:=p_j$ for all $1 \\le j \\le n$ simultaneously.\n- Type $2$ operation: choose an integer $i$ between $1$ and $n$ and a permutation $p_1, p_2, \\ldots, p_n$ of integers from $1$ to $n$. Assign $a_{j, i}:=p_j$ for all $1 \\le j \\le n$ simultaneously.\n\nNene wants to maximize the sum of all the numbers in the matrix $\\sum\\limits_{i=1}^{n}\\sum\\limits_{j=1}^{n}a_{i,j}$. She asks you to find the way to perform the operations so that this sum is maximized. As she doesn't want to make too many operations, you should provide a solution with no more than $2n$ operations.\n\nA permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of test cases follows.\n\nThe only line of each test case contains a single integer $n$ ($1 \\le n \\le 500$) — the size of the matrix $a$.\n\nIt is guaranteed that the sum of $n^2$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, in the first line output two integers $s$ and $m$ ($0\\leq m\\leq 2n$) — the maximum sum of the numbers in the matrix and the number of operations in your solution.\n\nIn the $k$-th of the next $m$ lines output the description of the $k$-th operation:\n\n- an integer $c$ ($c \\in \\{1, 2\\}$) — the type of the $k$-th operation;\n- an integer $i$ ($1 \\le i \\le n$) — the row or the column the $k$-th operation is applied to;\n- a permutation $p_1, p_2, \\ldots, p_n$ of integers from $1$ to $n$ — the permutation used in the $k$-th operation.\n\nNote that you don't need to minimize the number of operations used, you only should use no more than $2n$ operations. It can be shown that the maximum possible sum can always be obtained in no more than $2n$ operations.\n\n## Note\n\nIn the first test case, the maximum sum $s=1$ can be obtained in $1$ operation by setting $a_{1, 1}:=1$.\n\nIn the second test case, the maximum sum $s=7$ can be obtained in $3$ operations as follows:\n\n![image](https://espresso.codeforces.com/53c36219aeab609218b3b2c206283e7998417968.png)\n\nIt can be shown that it is impossible to make the sum of the numbers in the matrix larger than $7$.",
-  "statementZhMd": null,
+  "statementZhMd": "魔法少女 Nene 有一个填满零的 $n\\times n$ 矩阵 $a$。矩阵 $a$ 的第 $i$ 行第 $j$ 个元素记作 $a_{i, j}$。\n\n她可以对这个矩阵执行以下两种操作：\n\n- 类型 $1$ 操作：选择一个介于 $1$ 和 $n$ 之间的整数 $i$，以及一个由 $1$ 到 $n$ 的整数构成的排列 $p_1, p_2, \\ldots, p_n$。同时将所有 $1 \\le j \\le n$ 对应的 $a_{i, j}:=p_j$。\n- 类型 $2$ 操作：选择一个介于 $1$ 和 $n$ 之间的整数 $i$，以及一个由 $1$ 到 $n$ 的整数构成的排列 $p_1, p_2, \\ldots, p_n$。同时将所有 $1 \\le j \\le n$ 对应的 $a_{j, i}:=p_j$。\n\nNene 想要最大化矩阵中所有数字的总和 $\\sum\\limits_{i=1}^{n}\\sum\\limits_{j=1}^{n}a_{i,j}$。她请你找出一种操作方案，使这个总和最大。由于她不想执行太多操作，你需要提供一个不超过 $2n$ 次操作的方案。\n\n长度为 $n$ 的排列是一个由 $1$ 到 $n$ 中的 $n$ 个互不相同的整数以任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 500$）。接下来是各测试用例的描述。\n\n每个测试用例仅包含一行，其中有一个整数 $n$（$1 \\le n \\le 500$）——矩阵 $a$ 的大小。\n\n保证所有测试用例的 $n^2$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，首先输出两个整数 $s$ 和 $m$（$0\\leq m\\leq 2n$）——矩阵中数字的最大总和，以及你的方案所使用的操作次数。\n\n接下来的 $m$ 行中，第 $k$ 行输出第 $k$ 次操作的描述：\n\n- 一个整数 $c$（$c \\in \\{1, 2\\}$）——第 $k$ 次操作的类型；\n- 一个整数 $i$（$1 \\le i \\le n$）——第 $k$ 次操作所应用的行或列；\n- 一个由 $1$ 到 $n$ 的整数构成的排列 $p_1, p_2, \\ldots, p_n$——第 $k$ 次操作所使用的排列。\n\n注意，你不需要最小化使用的操作次数，只需保证使用不超过 $2n$ 次操作即可。可以证明，总能在不超过 $2n$ 次操作内取得可能的最大总和。\n\n## 说明\n\n在第一个测试用例中，可以通过 1 次操作将 $a_{1, 1}:=1$，从而得到最大总和 $s=1$。\n\n在第二个测试用例中，可以通过以下 3 次操作得到最大总和 $s=7$：\n\n![image](https://espresso.codeforces.com/53c36219aeab609218b3b2c206283e7998417968.png)\n\n可以证明，不可能使矩阵中数字的总和大于 $7$。",
   "samples": [
     {
       "input": "2\n1\n2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:58:25.482Z"
+  "fetchedAt": "2026-10-30T21:58:25.482Z",
+  "translatedAt": "2026-11-04T02:18:48.648+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1360,
   "index": "E",
   "title": "Polygon",
-  "titleZh": null,
+  "titleZh": "多边形",
   "url": "https://codeforces.com/contest/1360/problem/E",
   "difficulty": 1300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Polygon is not only the best platform for developing problems but also a square matrix with side $n$, initially filled with the character `0`.\n\nOn the polygon, military training was held. The soldiers placed a cannon above each cell in the first row and a cannon to the left of each cell in the first column. Thus, exactly $2n$ cannons were placed.\n\n![image](https://espresso.codeforces.com/8dd379eae441ff41f2ccb92e71927fb42dc819ef.png) Initial polygon for $n=4$.\n\nCannons shoot character `1`. At any moment of time, no more than one cannon is shooting. When a `1` flies out of a cannon, it flies forward (in the direction of the shot) until it collides with a polygon border or another `1`. After that, it takes the cell in which it was before the collision and remains there. Take a look at the examples for better understanding.\n\nMore formally:\n\n- if a cannon stands in the row $i$, to the left of the first column, and shoots with a `1`, then the `1` starts its flight from the cell ($i, 1$) and ends in some cell ($i, j$);\n- if a cannon stands in the column $j$, above the first row, and shoots with a `1`, then the `1` starts its flight from the cell ($1, j$) and ends in some cell ($i, j$).\n\nFor example, consider the following sequence of shots:\n\n![image](https://espresso.codeforces.com/38e62f178bc72c48ee77033ca77877d5fe78b343.png)  1. Shoot the cannon in the row $2$.                         2. Shoot the cannon in the row $2$.                         3. Shoot the cannon in column $3$.\n\nYou have a report from the military training on your desk. This report is a square matrix with side length $n$ consisting of `0` and `1`. You wonder if the training actually happened. In other words, is there a sequence of shots such that, after the training, you get the given matrix?\n\nEach cannon can make an arbitrary number of shots. Before the training, each cell of the polygon contains `0`.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 1000$) — the number of test cases. Then $t$ test cases follow.\n\nEach test case starts with a line containing an integer $n$ ($1 \\le n \\le 50$) — the size of the polygon.\n\nThis is followed by $n$ lines of length $n$, consisting of `0` and `1` — the polygon matrix after the training.\n\nThe total area of the matrices in all test cases in one test does not exceed $10^5$.\n\n## Output\n\nFor each test case print:\n\n- `YES` if there is a sequence of shots leading to a given matrix;\n- `NO` if such a sequence does not exist.\n\nThe letters in the words `YES` and `NO` can be printed in any case.\n\n## Note\n\nThe first test case was explained in the statement.\n\nThe answer to the second test case is `NO`, since a `1` in a cell ($1, 1$) flying out of any cannon would continue its flight further.",
-  "statementZhMd": null,
+  "statementZhMd": "多边形不仅是开发题目的最佳平台，还是一个边长为 $n$ 的方阵，初始时每个格子都填有字符 `0`。\n\n在这个多边形上举行了军事训练。士兵在第一行的每个格子上方放置了一门大炮，并在第一列的每个格子左侧放置了一门大炮。因此，一共放置了 $2n$ 门大炮。\n\n![image](https://espresso.codeforces.com/8dd379eae441ff41f2ccb92e71927fb42dc819ef.png) $n=4$ 时的初始多边形。\n\n大炮发射字符 `1`。在任意时刻，至多只有一门大炮在射击。当一个 `1` 从大炮中飞出后，它会沿射击方向向前飞行，直到撞上多边形的边界或另一个 `1`。碰撞后，它会停留在碰撞前所在的格子中。请参考样例以便更好地理解。\n\n更正式地说：\n\n- 如果一门大炮位于第 $i$ 行、第一列左侧，并发射一个 `1`，那么这个 `1` 会从格子 ($i, 1$) 开始飞行，并最终停在某个格子 ($i, j$) 中；\n- 如果一门大炮位于第 $j$ 列、第一行上方，并发射一个 `1`，那么这个 `1` 会从格子 ($1, j$) 开始飞行，并最终停在某个格子 ($i, j$) 中。\n\n例如，考虑以下射击序列：\n\n![image](https://espresso.codeforces.com/38e62f178bc72c48ee77033ca77877d5fe78b343.png)  1. 射击第 $2$ 行的大炮。                         2. 射击第 $2$ 行的大炮。                         3. 射击第 $3$ 列的大炮。\n\n你手头有一份军事训练报告。这份报告是一个边长为 $n$ 的方阵，由 `0` 和 `1` 组成。你想知道这次训练是否真的发生过。换句话说，是否存在一个射击序列，使得训练结束后得到给定的矩阵？\n\n每门大炮可以进行任意次数的射击。训练开始前，多边形中的每个格子都包含 `0`。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。接下来是 $t$ 个测试用例。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 50$）——多边形的大小。\n\n接下来 $n$ 行，每行包含一个长度为 $n$、由 `0` 和 `1` 组成的字符串——训练结束后的多边形矩阵。\n\n所有测试用例中矩阵的总面积不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出：\n\n- 如果存在一个射击序列可以得到给定矩阵，输出 `YES`；\n- 如果不存在这样的射击序列，输出 `NO`。\n\n`YES` 和 `NO` 中的字母可以使用任意大小写形式输出。\n\n## 说明\n\n第一个测试用例已在题目描述中解释。\n\n第二个测试用例的答案是 `NO`，因为位于格子 ($1, 1$) 中的 `1` 无论从哪门大炮发射，都会继续向前飞行。",
   "samples": [
     {
       "input": "5\n4\n0010\n0011\n0000\n0000\n2\n10\n01\n2\n00\n00\n4\n0101\n1111\n0101\n0111\n4\n0100\n1110\n0101\n0111\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:46:19.108Z"
+  "fetchedAt": "2026-11-02T18:46:19.108Z",
+  "translatedAt": "2026-11-04T04:32:49.773+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

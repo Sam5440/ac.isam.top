@@ -4,7 +4,7 @@
   "contestId": 1884,
   "index": "E",
   "title": "Hard Design",
-  "titleZh": null,
+  "titleZh": "困难设计",
   "url": "https://codeforces.com/contest/1884/problem/E",
   "difficulty": 2800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Consider an array of integers $b_0, b_1, \\ldots, b_{n-1}$. Your goal is to make all its elements equal. To do so, you can perform the following operation several (possibly, zero) times:\n\n- Pick a pair of indices $0 \\le l \\le r \\le n-1$, then for each $l \\le i \\le r$ increase $b_i$ by $1$ (i. e. replace $b_i$ with $b_i + 1$).\n- After performing this operation you receive $(r - l + 1)^2$ coins.\n\nThe value $f(b)$ is defined as a pair of integers $(cnt, cost)$, where $cnt$ is the **smallest** number of operations required to make all elements of the array equal, and $cost$ is the **largest** total number of coins you can receive among all possible ways to make all elements equal within $cnt$ operations. In other words, first, you need to minimize the number of operations, second, you need to maximize the total number of coins you receive.\n\nYou are given an array of integers $a_0, a_1, \\ldots, a_{n-1}$. Please, find the value of $f$ for all cyclic shifts of $a$.\n\nFormally, for each $0 \\le i \\le n-1$ you need to do the following:\n\n- Let $c_j = a_{(j + i) \\pmod{n}}$ for each $0 \\le j \\le n-1$.\n- Find $f(c)$. Since $cost$ can be very large, output it modulo $(10^9 + 7)$.\n\nPlease note that under a fixed $cnt$ you need to maximize the total number of coins $cost$, not its remainder modulo $(10^9 + 7)$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 2 \\cdot 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 10^6$).\n\nThe second line of each test case contains $n$ integers $a_0, a_1, \\ldots, a_{n-1}$ ($1 \\le a_i \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, for each $0 \\le i \\le n-1$ output the value of $f$ for the $i$-th cyclic shift of array $a$: first, output $cnt$ (the minimum number of operations), then output $cost$ (the maximum number of coins these operations can give) modulo $10^9 + 7$.\n\n## Note\n\nIn the first test case, there is only one cycle shift, which is equal to $[1]$, and all its elements are already equal.\n\nIn the second test case, you need to find the answer for three arrays:\n\n1. $f([1, 3, 2]) = (3, 3)$.\n2. $f([3, 2, 1]) = (2, 5)$.\n3. $f([2, 1, 3]) = (2, 5)$.\n\nConsider the case of $[2, 1, 3]$. To make all elements equal, we can pick $l = 1$ and $r = 1$ on the first operation, which results in $[2, 2, 3]$. On the second operation we can pick $l = 0$ and $r = 1$, which results in $[3, 3, 3]$. We have used $2$ operations, and the total number of coins received is $1^2 + 2^2 = 5$.",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一个整数数组 $b_0, b_1, \\ldots, b_{n-1}$。你的目标是使其中的所有元素都相等。为此，你可以执行以下操作若干次（也可以执行零次）：\n\n- 选择一对下标 $0 \\le l \\le r \\le n-1$，然后对每个满足 $l \\le i \\le r$ 的 $i$，将 $b_i$ 增加 $1$（即将 $b_i$ 替换为 $b_i + 1$）。\n- 执行此操作后，你可以获得 $(r - l + 1)^2$ 枚硬币。\n\n将 $f(b)$ 定义为一个整数对 $(cnt, cost)$，其中 $cnt$ 是使数组中的所有元素相等所需的**最少**操作次数，$cost$ 是在至多使用 $cnt$ 次操作使所有元素相等的所有方案中，可以获得的硬币总数的**最大值**。换句话说，首先需要最小化操作次数，其次需要最大化获得的硬币总数。\n\n给定一个整数数组 $a_0, a_1, \\ldots, a_{n-1}$。请找出 $a$ 的所有循环移位对应的 $f$ 值。\n\n形式化地，对于每个 $0 \\le i \\le n-1$，你需要执行以下操作：\n\n- 对每个 $0 \\le j \\le n-1$，令 $c_j = a_{(j + i) \\pmod{n}}$。\n- 求出 $f(c)$。由于 $cost$ 可能非常大，请将其对 $(10^9 + 7)$ 取模后输出。\n\n请注意，在固定 $cnt$ 的情况下，你需要最大化硬币总数 $cost$，而不是最大化其对 $(10^9 + 7)$ 的余数。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 2 \\cdot 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^6$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_0, a_1, \\ldots, a_{n-1}$（$1 \\le a_i \\le 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，按顺序输出数组 $a$ 的每个 $0 \\le i \\le n-1$ 次循环移位对应的 $f$ 值：首先输出 $cnt$（最少操作次数），然后输出 $cost$（使用这些操作可以获得的最大硬币数）对 $10^9 + 7$ 取模后的结果。\n\n## 说明\n\n在第一个测试用例中，只有一种循环移位，即 $[1]$，其中的所有元素已经相等。\n\n在第二个测试用例中，你需要求出以下三个数组的答案：\n\n1. $f([1, 3, 2]) = (3, 3)$。\n2. $f([3, 2, 1]) = (2, 5)$。\n3. $f([2, 1, 3]) = (2, 5)$。\n\n考虑 $[2, 1, 3]$ 的情况。为了使所有元素相等，我们可以在第一次操作中选择 $l = 1$ 和 $r = 1$，得到 $[2, 2, 3]$。在第二次操作中，我们可以选择 $l = 0$ 和 $r = 1$，得到 $[3, 3, 3]$。我们使用了 $2$ 次操作，获得的硬币总数为 $1^2 + 2^2 = 5$。",
   "samples": [
     {
       "input": "5\n1\n1\n3\n1 3 2\n5\n3 2 4 5 1\n8\n6 5 6 4 2 6 2 2\n4\n10 10 10 10\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:15:11.331Z"
+  "fetchedAt": "2026-10-30T22:15:11.331Z",
+  "translatedAt": "2026-11-04T02:32:19.218+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,14 +4,14 @@
   "contestId": 378,
   "index": "D",
   "title": "Preparing for the Contest",
-  "titleZh": null,
+  "titleZh": "为比赛做准备",
   "url": "https://codeforces.com/contest/378/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Soon there will be held the world's largest programming contest, but the testing system still has $*m*$ bugs. The contest organizer, a well-known university, has no choice but to attract university students to fix all the bugs. The university has $*n*$ students able to perform such work. The students realize that they are the only hope of the organizers, so they don't want to work for free: the $*i*$-th student wants to get $*c*_{*i*}$ 'passes' in his subjects (regardless of the volume of his work).\n\nBugs, like students, are not the same: every bug is characterized by complexity $*a*_{*j*}$, and every student has the level of his abilities $*b*_{*i*}$. Student $*i*$ can fix a bug $*j*$ only if the level of his abilities is not less than the complexity of the bug: $*b*_{*i*} ≥ *a*_{*j*}$, and he does it in one day. Otherwise, the bug will have to be fixed by another student. Of course, no student can work on a few bugs in one day. All bugs are not dependent on each other, so they can be corrected in any order, and different students can work simultaneously.\n\nThe university wants to fix all the bugs as quickly as possible, but giving the students the total of not more than $*s*$ passes. Determine which students to use for that and come up with the schedule of work saying which student should fix which bug.\n\n## Input\n\nThe first line contains three space-separated integers: $*n*$, $*m*$ and $*s*$ ($1 ≤ *n*, *m* ≤ 10^{5}$, $0 ≤ *s* ≤ 10^{9}$) — the number of students, the number of bugs in the system and the maximum number of passes the university is ready to give the students.\n\nThe next line contains $*m*$ space-separated integers $*a*_{1}$, $*a*_{2}$, ..., $*a*_{*m*}$ ($1 ≤ *a*_{*i*} ≤ 10^{9}$) — the bugs' complexities.\n\nThe next line contains $*n*$ space-separated integers $*b*_{1}$, $*b*_{2}$, ..., $*b*_{*n*}$ ($1 ≤ *b*_{*i*} ≤ 10^{9}$) — the levels of the students' abilities.\n\nThe next line contains $*n*$ space-separated integers $*c*_{1}$, $*c*_{2}$, ..., $*c*_{*n*}$ ($0 ≤ *c*_{*i*} ≤ 10^{9}$) — the numbers of the passes the students want to get for their help.\n\n## Output\n\nIf the university can't correct all bugs print \"`NO`\".\n\nOtherwise, on the first line print \"`YES`\", and on the next line print $*m*$ space-separated integers: the $*i*$-th of these numbers should equal the number of the student who corrects the $*i*$-th bug in the optimal answer. The bugs should be corrected as quickly as possible (you must spend the minimum number of days), and the total given passes mustn't exceed $*s*$. If there are multiple optimal answers, you can output any of them.\n\n## Note\n\nConsider the first sample.\n\nThe third student (with level 3) must fix the 2nd and 4th bugs (complexities 3 and 2 correspondingly) and the second student (with level 1) must fix the 1st and 3rd bugs (their complexity also equals 1). Fixing each bug takes one day for each student, so it takes 2 days to fix all bugs (the students can work in parallel).\n\nThe second student wants 3 passes for his assistance, the third student wants 6 passes. It meets the university's capabilities as it is ready to give at most 9 passes.",
-  "statementZhMd": null,
+  "statementZhMd": "很快，世界上规模最大的编程竞赛就要举行了，但测试系统仍然存在 $*m*$ 个漏洞。竞赛主办方——一所知名大学——别无选择，只能吸引大学生来修复所有漏洞。大学里有 $*n*$ 名能够完成这项工作的学生。学生们意识到自己是主办方唯一的希望，因此他们不想无偿工作：第 $*i*$ 名学生希望在自己的课程中获得 $*c*_{*i*}$ 个“通过”（与工作量无关）。\n\n漏洞和学生一样各不相同：每个漏洞都有一个复杂度 $*a*_{*j*}$，每个学生都有一个能力等级 $*b*_{*i*}$。只有当学生的能力等级不低于漏洞的复杂度时，即满足 $*b*_{*i*} ≥ *a*_{*j}$，学生 $*i*$ 才能修复漏洞 $*j*$，并且修复一个漏洞需要一天。否则，该漏洞必须由另一名学生修复。当然，没有学生能够在一天内同时处理多个漏洞。所有漏洞之间互不依赖，因此可以按任意顺序修复，不同学生也可以同时工作。\n\n大学希望尽快修复所有漏洞，但给学生的通过总数不能超过 $*s*$。请确定应当使用哪些学生，并制定工作计划，说明每个漏洞应由哪名学生修复。\n\n## 输入格式\n\n第一行包含三个用空格分隔的整数：$*n*$、$*m*$ 和 $*s*$（$1 ≤ *n*, *m* ≤ 10^{5}$，$0 ≤ *s* ≤ 10^{9}$）——学生人数、系统中的漏洞数量，以及大学准备给予学生的通过总数上限。\n\n第二行包含 $*m*$ 个用空格分隔的整数 $*a*_{1}$、$*a*_{2}$、..., $*a*_{*m*}$（$1 ≤ *a*_{*i*} ≤ 10^{9}$）——漏洞的复杂度。\n\n第三行包含 $*n*$ 个用空格分隔的整数 $*b*_{1}$、$*b*_{2}$、..., $*b*_{*n*}$（$1 ≤ *b*_{*i*} ≤ 10^{9}$）——学生的能力等级。\n\n第四行包含 $*n*$ 个用空格分隔的整数 $*c*_{1}$、$*c*_{2}$、..., $*c*_{*n*}$（$0 ≤ *c*_{*i*} ≤ 10^{9}$）——学生希望因提供帮助而获得的通过数量。\n\n## 输出格式\n\n如果大学无法修复所有漏洞，输出 `NO`。\n\n否则，第一行输出 `YES`，第二行输出 $*m*$ 个用空格分隔的整数：其中第 $*i*$ 个整数应等于在最优方案中修复第 $*i*$ 个漏洞的学生编号。漏洞应当尽快修复（必须使用最少的天数），并且给予学生的通过总数不得超过 $*s*$。如果有多个最优方案，输出其中任意一个即可。\n\n## 说明\n\n考虑第一个样例。\n\n第三名学生（能力等级为 3）必须修复第 2 个和第 4 个漏洞（复杂度分别为 3 和 2），第二名学生（能力等级为 1）必须修复第 1 个和第 3 个漏洞（它们的复杂度也都是 1）。每名学生修复一个漏洞需要一天，因此修复所有漏洞需要 2 天（学生可以并行工作）。\n\n第二名学生希望获得 3 个通过，第三名学生希望获得 6 个通过。这符合大学的能力，因为大学最多愿意给予 9 个通过。",
   "samples": [
     {
       "input": "3 4 9\n1 3 1 2\n2 1 3\n4 3 6\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:53:43.192Z"
+  "fetchedAt": "2026-10-31T01:53:43.192Z",
+  "translatedAt": "2026-11-04T07:16:25.059+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1116,
   "index": "D4",
   "title": "TIE fighter",
-  "titleZh": null,
+  "titleZh": "TIE 战斗机",
   "url": "https://codeforces.com/contest/1116/problem/D4",
   "difficulty": null,
   "tags": [
@@ -13,8 +13,10 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "Implement a unitary operation on $N$ qubits which is represented by a square matrix of size $2^N$ which has non-zero elements in the following positions:\n\n- the central 2x2 sub-matrix,\n- the diagonals of the top right and bottom left square sub-matrices of size $2^{N-1}-1$ that do not overlap with the central 2x2 sub-matrix,\n- the anti-diagonals of the top left and bottom right square sub-matrices of size $2^{N-1}-1$ that do not overlap with the central 2x2 sub-matrix.\n\nFor example, for $N = 3$ the matrix of the operation should have the following shape:\n\n```\n..X..X..\n.X....X.\nX......X\n...XX...\n...XX...\nX......X\n.X....X.\n..X..X..\n```\n\nHere `X` denotes a \"non-zero\" element of the matrix (a complex number which has the square of the absolute value greater than or equal to $10^{-5}$), and `.` denotes a \"zero\" element of the matrix (a complex number which has the square of the absolute value less than $10^{-5}$).\n\nThe row and column indices of the matrix follow little endian format: the least significant bit of the index is stored first in the qubit array. Thus, the first column of the matrix gives you the coefficients of the basis states you'll get if you apply the unitary to the $|00..0\\rangle$ basis state, the second column - to the $|10..0\\rangle$ basis state etc. You can use the [DumpUnitary tool](https://github.com/Microsoft/QuantumKatas/tree/master/utilities/DumpUnitary) to get the coefficients of the matrix your unitary implements (up to relative phases between columns) and the corresponding pattern of `X`s and `.`s.\n\nYou have to implement an operation which takes an array of $N$ ($2 \\le N \\le 5$) qubits as an input and applies the unitary transformation with the matrix of the described shape to it. If there are multiple unitaries which satisfy the requirements, you can implement any of them. The \"output\" of your operation is the pattern of the matrix coefficients implemented by it; you can see the testing harness in the [UnitaryPatterns](https://github.com/Microsoft/QuantumKatas/tree/master/UnitaryPatterns) kata.\n\nYour code should have the following signature:\n\n```\nnamespace Solution {\n    open Microsoft.Quantum.Primitive;\n    open Microsoft.Quantum.Canon;\n\n    operation Solve (qs : Qubit[]) : Unit {\n        // your code here\n    }\n}\n```\n\nYou are not allowed to use measurements in your operation.",
-  "statementZhMd": null,
+  "statementZhMd": "实现一个作用于 $N$ 个量子比特的幺正操作。该操作由一个大小为 $2^N$ 的方阵表示，矩阵中非零元素位于以下位置：\n\n- 中央的 2x2 子矩阵；\n- 右上角和左下角、大小为 $2^{N-1}-1$ 且与中央 2x2 子矩阵不重叠的方形子矩阵的对角线；\n- 左上角和右下角、大小为 $2^{N-1}-1$ 且与中央 2x2 子矩阵不重叠的方形子矩阵的反对角线。\n\n例如，对于 $N = 3$，该操作的矩阵应具有如下形状：\n\n```\n..X..X..\n.X....X.\nX......X\n...XX...\n...XX...\nX......X\n.X....X.\n..X..X..\n```\n\n其中，`X` 表示矩阵中的“非零”元素（绝对值平方大于或等于 $10^{-5}$ 的复数），`.` 表示矩阵中的“零”元素（绝对值平方小于 $10^{-5}$ 的复数）。\n\n矩阵的行和列索引采用小端格式：索引的最低有效位存储在量子比特数组的最前面。因此，矩阵的第一列给出了将幺正操作作用于 $|00..0\\rangle$ 基态后得到的各基态的系数，第二列对应于 $|10..0\\rangle$ 基态，依此类推。你可以使用 [DumpUnitary 工具](https://github.com/Microsoft/QuantumKatas/tree/master/utilities/DumpUnitary) 获取你的幺正操作所实现的矩阵的系数（列之间的相对相位可能不同），以及相应的 `X` 和 `.` 的排列模式。\n\n你需要实现一个操作，以 $N$ 个（$2 \\le N \\le 5$）量子比特组成的数组作为输入，并对其应用具有上述形状矩阵的幺正变换。如果有多个幺正操作满足要求，你可以实现其中任意一个。你的操作的“输出”是其所实现的矩阵系数的排列模式；你可以在 [UnitaryPatterns](https://github.com/Microsoft/QuantumKatas/tree/master/UnitaryPatterns) kata 中查看测试框架。\n\n你的代码应具有以下签名：\n\n```\nnamespace Solution {\n    open Microsoft.Quantum.Primitive;\n    open Microsoft.Quantum.Canon;\n\n    operation Solve (qs : Qubit[]) : Unit {\n        // your code here\n    }\n}\n```\n\n不允许在你的操作中使用测量。",
   "samples": [],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:18:35.405Z"
+  "fetchedAt": "2026-11-02T19:18:35.405Z",
+  "translatedAt": "2026-11-04T05:19:45.734+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

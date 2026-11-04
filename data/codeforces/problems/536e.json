@@ -4,7 +4,7 @@
   "contestId": 536,
   "index": "E",
   "title": "Tavas on the Path",
-  "titleZh": null,
+  "titleZh": "路径上的 Tavas",
   "url": "https://codeforces.com/contest/536/problem/E",
   "difficulty": 3100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Tavas lives in Tavaspolis. Tavaspolis has $*n*$ cities numbered from $1$ to $*n*$ connected by $*n* - 1$ bidirectional roads. There exists a path between any two cities. Also each road has a length.\n\n![image](https://espresso.codeforces.com/155ffdae09bd18cfafdae2aeb61b960a73e3905b.png)\n\nTavas' favorite strings are binary strings (they contain only 0 and 1). For any binary string like $*s* = *s*_{1}*s*_{2}... *s*_{*k*}$, $*T*(*s*)$ is its $*Goodness*$. $*T*(*s*)$ can be calculated as follows:\n\nConsider there are exactly $*m*$ blocks of $1$s in this string (a block of $1$s in $*s*$ is a maximal consecutive substring of $*s*$ that only contains $1$) with lengths $*x*_{1}, *x*_{2}, ..., *x*_{*m*}$.\n\nDefine ![image](https://espresso.codeforces.com/231509db8a9272afaaa6767a38a06a9ab6977aeb.png) where $*f*$ is a given sequence (if $*m* = 0$, then $*T*(*s*) = 0$).\n\nTavas loves queries. He asks you to answer $*q*$ queries. In each query he gives you numbers $*v*, *u*, *l*$ and you should print following number:\n\nConsider the roads on the path from city $*v*$ to city $*u*$: $*e*_{1}, *e*_{2}, ..., *e*_{*x*}$.\n\nBuild the binary string $*b*$ of length $*x*$ such that: $*b*_{*i*} = 1$ if and only if $*l* ≤ *w*(*e*_{*i*})$ where $*w*(*e*)$ is the length of road $*e*$.\n\nYou should print $*T*(*b*)$ for this query.\n\n## Input\n\nThe first line of input contains integers $*n*$ and $*q*$ ($2 ≤ *n* ≤ 10^{5}$ and $1 ≤ *q* ≤ 10^{5}$).\n\nThe next line contains $*n* - 1$ space separated integers $*f*_{1}, *f*_{2}, ..., *f*_{*n* - 1}$ ($|*f*_{*i*}| ≤ 1000$).\n\nThe next $*n* - 1$ lines contain the details of the roads. Each line contains integers $*v*, *u*$ and $*w*$ and it means that there's a road between cities $*v*$ and $*u*$ of length $*w*$ ($1 ≤ *v*, *u* ≤ *n*$ and $1 ≤ *w* ≤ 10^{9}$).\n\nThe next $*q*$ lines contain the details of the queries. Each line contains integers $*v*, *u*, *l*$ ($1 ≤ *v*, *u* ≤ *n*$, $*v* ≠ *u*$ and $1 ≤ *l* ≤ 10^{9}$).\n\n## Output\n\nPrint the answer of each query in a single line.",
-  "statementZhMd": null,
+  "statementZhMd": "Tavas 生活在 Tavaspolis。Tavaspolis 有 $*n*$ 座城市，编号从 $1$ 到 $*n*$，它们由 $*n* - 1$ 条双向道路连接。任意两座城市之间都存在一条路径。此外，每条道路都有一个长度。\n\n![image](https://espresso.codeforces.com/155ffdae09bd18cfafdae2aeb61b960a73e3905b.png)\n\nTavas 最喜欢的字符串是二进制字符串（只包含 0 和 1）。对于任意二进制字符串 $*s* = *s*_{1}*s*_{2}... *s*_{*k*}$，$*T*(*s*)$ 表示它的 $*Goodness*$。$*T*(*s*)$ 的计算方式如下：\n\n假设该字符串中恰好有 $*m*$ 个由 $1$ 构成的块（$*s*$ 中的一个由 $1$ 构成的块，是 $*s*$ 中仅包含 $1$ 的极大连续子串），它们的长度分别为 $*x*_{1}, *x*_{2}, ..., *x*_{*m*}$。\n\n定义 ![image](https://espresso.codeforces.com/231509db8a9272afaaa6767a38a06a9ab6977aeb.png)，其中 $*f*$ 是一个给定的序列（如果 $*m* = 0$，则 $*T*(*s*) = 0$）。\n\nTavas 喜欢提出询问。他会提出 $*q*$ 个询问，请你回答。每次询问会给出三个数 $*v*、$*u*、$*l*$，你需要输出以下数值：\n\n考虑从城市 $*v*$ 到城市 $*u*$ 的路径上的道路：$*e*_{1}, *e*_{2}, ..., *e*_{*x*}$。\n\n构造一个长度为 $*x*$ 的二进制字符串 $*b*$，满足：当且仅当 $*l* ≤ *w*(*e*_{*i*})$ 时，$*b*_{*i*} = 1$，其中 $*w*(*e*)$ 表示道路 $*e*$ 的长度。\n\n对于每次询问，你需要输出 $*T*(*b*)$。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*q*$（$2 ≤ *n* ≤ 10^{5}$，$1 ≤ *q* ≤ 10^{5}$）。\n\n下一行包含 $*n* - 1$ 个用空格分隔的整数 $*f*_{1}, *f*_{2}, ..., *f*_{*n* - 1}$（$|*f*_{*i*}| ≤ 1000$）。\n\n接下来的 $*n* - 1$ 行描述道路。每行包含整数 $*v*、$*u*$ 和 $*w*$，表示城市 $*v*$ 与城市 $*u*$ 之间有一条长度为 $*w*$ 的道路（$1 ≤ *v*, *u* ≤ *n*$，$1 ≤ *w* ≤ 10^{9}$）。\n\n接下来的 $*q*$ 行描述询问。每行包含整数 $*v*、$*u*$ 和 $*l*$（$1 ≤ *v*, *u* ≤ *n*$，$*v* ≠ *u*$，$1 ≤ *l* ≤ 10^{9}$）。\n\n## 输出格式\n\n每行输出一个询问的答案。",
   "samples": [
     {
       "input": "2 3\n10\n1 2 3\n1 2 2\n1 2 3\n1 2 4\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:28:37.774Z"
+  "fetchedAt": "2026-10-31T01:28:37.774Z",
+  "translatedAt": "2026-11-04T06:52:25.209+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

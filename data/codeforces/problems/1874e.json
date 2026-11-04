@@ -4,7 +4,7 @@
   "contestId": 1874,
   "index": "E",
   "title": "Jellyfish and Hack",
-  "titleZh": null,
+  "titleZh": "水母与 Hack",
   "url": "https://codeforces.com/contest/1874/problem/E",
   "difficulty": 3000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 512,
   "statementMd": "It is well known that quick sort works by randomly selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. But Jellyfish thinks that choosing a random element is just a waste of time, so she always chooses the first element to be the pivot. The time her code needs to run can be calculated by the following pseudocode:\n\n```\nfunction fun(A)\n    if A.length > 0\n        let L[1 ... L.length] and R[1 ... R.length] be new arrays\n        L.length = R.length = 0\n        for i = 2 to A.length\n            if A[i] < A[1]\n                L.length = L.length + 1\n                L[L.length] = A[i]\n            else\n                R.length = R.length + 1\n                R[R.length] = A[i]\n        return A.length + fun(L) + fun(R)\n    else\n        return 0\n```\n\nNow you want to show her that her code is slow. When the function $\\mathrm{fun(A)}$ is greater than or equal to $lim$, her code will get $\\text{Time Limit Exceeded}$. You want to know how many distinct permutations $P$ of $[1, 2, \\dots, n]$ satisfies $\\mathrm{fun(P)} \\geq lim$. Because the answer may be large, you will only need to find the answer modulo $10^9+7$.\n\n## Input\n\nThe only line of the input contains two integers $n$ and $lim$ ($1 \\leq n \\leq 200$, $1 \\leq lim \\leq 10^9$).\n\n## Output\n\nOutput the number of different permutations that satisfy the condition modulo $10^9+7$.\n\n## Note\n\nIn the first example, $P = [1, 4, 2, 3]$ satisfies the condition, because: $\\mathrm{fun([1, 4, 2, 3]) = 4 + fun([4, 2, 3]) = 7 + fun([2, 3]) = 9 + fun([3]) = 10}$\n\nDo remember to output the answer modulo $10^9+7$.",
-  "statementZhMd": null,
+  "statementZhMd": "众所周知，快速排序的工作原理是从数组中随机选择一个“枢轴”元素，然后根据其他元素小于还是大于枢轴，将它们划分到两个子数组中。但 Jellyfish 认为选择随机元素只是浪费时间，因此她总是选择第一个元素作为枢轴。她的代码运行所需的时间可以通过以下伪代码计算：\n\n```\nfunction fun(A)\n    if A.length > 0\n        let L[1 ... L.length] and R[1 ... R.length] be new arrays\n        L.length = R.length = 0\n        for i = 2 to A.length\n            if A[i] < A[1]\n                L.length = L.length + 1\n                L[L.length] = A[i]\n            else\n                R.length = R.length + 1\n                R[R.length] = A[i]\n        return A.length + fun(L) + fun(R)\n    else\n        return 0\n```\n\n现在，你想让她知道自己的代码运行得很慢。当函数 $\\mathrm{fun(A)}$ 大于或等于 $lim$ 时，她的代码将会得到 $\\text{Time Limit Exceeded}$。你想知道满足 $\\mathrm{fun(P)} \\geq lim$ 的 $[1, 2, \\dots, n]$ 的不同排列 $P$ 有多少个。由于答案可能很大，你只需要求出答案对 $10^9+7$ 取模后的结果。\n\n## 输入格式\n\n输入仅一行，包含两个整数 $n$ 和 $lim$（$1 \\leq n \\leq 200$，$1 \\leq lim \\leq 10^9$）。\n\n## 输出格式\n\n输出满足条件的不同排列数量对 $10^9+7$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，$P = [1, 4, 2, 3]$ 满足条件，因为：$\\mathrm{fun([1, 4, 2, 3]) = 4 + fun([4, 2, 3]) = 7 + fun([2, 3]) = 9 + fun([3]) = 10}$\n\n请记得输出答案对 $10^9+7$ 取模后的结果。",
   "samples": [
     {
       "input": "4 10\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:16:08.367Z"
+  "fetchedAt": "2026-10-30T22:16:08.367Z",
+  "translatedAt": "2026-11-04T02:35:47.951+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

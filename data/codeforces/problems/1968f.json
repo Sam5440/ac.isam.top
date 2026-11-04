@@ -4,7 +4,7 @@
   "contestId": 1968,
   "index": "F",
   "title": "Equal XOR Segments",
-  "titleZh": null,
+  "titleZh": "等异或分段",
   "url": "https://codeforces.com/contest/1968/problem/F",
   "difficulty": 1800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "Let us call an array $x_1,\\dots,x_m$ interesting if it is possible to divide the array into $k \\gt 1$ parts so that [bitwise XOR](http://tiny.cc/xor_wiki_eng) of values from each part are equal.\n\nMore formally, you must split array $x$ into $k$ consecutive segments, each element of $x$ must belong to **exactly** $1$ segment. Let $y_1,\\dots,y_k$ be the XOR of elements from each part respectively. Then $y_1=y_2=\\dots=y_k$ must be fulfilled.\n\nFor example, if $x = [1, 1, 2, 3, 0]$, you can split it as follows: $[\\color{blue}1], [\\color{green}1], [\\color{red}2, \\color{red}3, \\color{red}0]$. Indeed $\\color{blue}1=\\color{green}1=\\color{red}2 \\oplus \\color{red}3\\oplus \\color{red}0$.\n\nYou are given an array $a_1,\\dots,a_n$. Your task is to answer $q$ queries:\n\n- For fixed $l$, $r$, determine whether the subarray $a_l,a_{l+1},\\dots,a_r$ is interesting.\n\n## Input\n\nThe first line contains a single integer $t$ ($1\\le t\\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $q$ ($2 \\le n \\le 2 \\cdot 10^5$, $1 \\le q \\le 2 \\cdot 10^5$) — the number of elements in the array and the number of queries respectively.\n\nThe next line contains $n$ integers $a_1,\\dots,a_n$ ($0 \\le a_i \\lt 2^{30}$) — elements of the array.\n\nEach of the next $q$ lines contains two integers $l$ and $r$ ($1 \\le l \\lt r \\le n$) describing the query.\n\nIt is guaranteed that the sum of $n$ over all testcases does not exceed $2 \\cdot 10^5$.\n\nIt is guaranteed that the sum of $q$ over all testcases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each query, output \"`YES`\" if the subarray is interesting and \"`NO`\" otherwise.\n\nYou can output \"`Yes`\" and \"`No`\" in any case (for example, the strings \"`yES`\", \"`yes`\", and \"`Yes`\" will be recognized as correct answers).\n\n## Note\n\nExplanation for the first test case:\n\nThe first query is described in the statement.\n\nIn the second query, we should divide $[1,2,3]$. A possible division is $[1,2],[3]$, since $1\\oplus 2=3$.\n\nIt can be shown that for queries $3,4,5$, the subarrays are not interesting.",
-  "statementZhMd": null,
+  "statementZhMd": "如果可以将数组分成 $k \\gt 1$ 个部分，使得每个部分中的元素按[位异或](http://tiny.cc/xor_wiki_eng)的结果都相等，则称数组 $x_1,\\dots,x_m$ 是有趣的。\n\n更正式地说，你需要将数组 $x$ 分成 $k$ 个连续的子段，且 $x$ 中的每个元素必须**恰好**属于其中的 1 个子段。令 $y_1,\\dots,y_k$ 分别表示每个部分中元素的异或结果，则必须满足 $y_1=y_2=\\dots=y_k$。\n\n例如，对于 $x = [1, 1, 2, 3, 0]$，可以按如下方式划分：$[\\color{blue}1], [\\color{green}1], [\\color{red}2, \\color{red}3, \\color{red}0]$。确实有 $\\color{blue}1=\\color{green}1=\\color{red}2 \\oplus \\color{red}3\\oplus \\color{red}0$。\n\n给定一个数组 $a_1,\\dots,a_n$。你的任务是回答 $q$ 个询问：\n\n- 对于给定的 $l$ 和 $r$，判断子数组 $a_l,a_{l+1},\\dots,a_r$ 是否有趣。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1\\le t\\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$2 \\le n \\le 2 \\cdot 10^5$，$1 \\le q \\le 2 \\cdot 10^5$）——数组中元素的数量和询问的数量。\n\n下一行包含 $n$ 个整数 $a_1,\\dots,a_n$（$0 \\le a_i \\lt 2^{30}$）——数组中的元素。\n\n接下来的 $q$ 行中，每行包含两个整数 $l$ 和 $r$（$1 \\le l \\lt r \\le n$），表示一个询问。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n保证所有测试用例的 $q$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个询问，如果子数组有趣，则输出“`YES`”，否则输出“`NO`”。\n\n你可以使用任意大小写形式输出“`Yes`”和“`No`”（例如，字符串“`yES`”、“`yes`”和“`Yes`”都会被判定为正确答案）。\n\n## 说明\n\n第一个测试用例的解释：\n\n第一个询问在题目描述中已有说明。\n\n在第二个询问中，我们需要划分 $[1,2,3]$。一种可行的划分是 $[1,2],[3]$，因为 $1\\oplus 2=3$。\n\n可以证明，对于第 3、4、5 个询问，子数组都不是有趣的。",
   "samples": [
     {
       "input": "4\n5 5\n1 1 2 3 0\n1 5\n2 4\n3 5\n1 3\n3 4\n5 5\n1 2 3 4 5\n1 5\n2 4\n3 5\n1 3\n2 3\n7 4\n12 9 10 9 10 11 9\n1 5\n1 7\n2 6\n2 7\n11 4\n0 0 1 0 0 1 0 1 1 0 1\n1 2\n2 5\n6 9\n7 11\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:09:55.937Z"
+  "fetchedAt": "2026-11-02T17:09:55.937Z",
+  "translatedAt": "2026-11-04T02:15:02.783+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1975,
   "index": "I",
   "title": "Mind Bloom",
-  "titleZh": null,
+  "titleZh": "心灵绽放",
   "url": "https://codeforces.com/contest/1975/problem/I",
   "difficulty": 3500,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 1024,
   "statementMd": "*This is the way it always was.*\n\n*This is the way it always will be.*\n\n*All will be forgotten again soon...*\n\nJellyfish is playing a one-player card game called \"Slay the Spire\". There are $n$ cards in total numbered from $1$ to $n$. The $i$-th card has *power* $c_i$.\n\nThere is a binary string $s$ of length $n$. If $s_i = \\texttt{0}$, the $i$-th card is initially in the draw pile. If $s_i = \\texttt{1}$, the $i$-th card is initially in Jellyfish's hand.\n\nJellyfish will repeat the following process until either her hand or the draw pile is empty.\n\n1. Let $x$ be the power of the card with the largest power in her hand.\n2. Place a single card with power $x$ back into the draw pile.\n3. Randomly draw $x$ cards from the draw pile. All subsets of $x$ cards from the draw pile have an equal chance of being drawn. If there are fewer than $x$ cards in the draw pile, Jellyfish will draw all cards.\n\nAt the end of this process, find the probability that Jellyfish can empty the draw pile, modulo $1\\,000\\,000\\,007$.\n\nFormally, let $M=1\\,000\\,000\\,007$. It can be shown that the answer can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $p \\cdot q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot q \\equiv p \\pmod{M}$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1\\leq t\\leq 100$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\leq n \\leq 120$) — the number of cards.\n\nThe second line of each test case contains $n$ integers $c_1,c_2,\\ldots,c_n$ ($0 \\leq c_i \\leq n$) — the powers of the cards. It is guaranteed that $c_1 \\leq c_2 \\leq \\ldots \\leq c_n$.\n\nThe third line of each test case contains a binary string $s$ of length $n$. If $s_i = \\texttt{0}$, the $i$-th card is initially in the draw pile. If $s_i = \\texttt{1}$, the $i$-th card is initially in Jellyfish's hand.\n\nIt is guaranteed that the sum of $n^2$ over all test cases does not exceed $120^2$.\n\n## Output\n\nFor each test case, output the probability that Jellyfish can empty the draw pile modulo $1\\,000\\,000\\,007$.\n\n## Note\n\nIn the first test case, Jellyfish will keep playing cards with power $1$ until Jellyfish draws a card with power $0$ or power $2$. If Jellyfish draws a card with power $0$, she will eventually empty her hand. If Jellyfish draws a card with power $2$, she will eventually empty the draw pile. Since there is an equal chance of drawing $0$ or $2$, the answer is $\\frac{1}{2}$, and $2 \\cdot 500\\,000\\,004 \\equiv 1 \\pmod {10^9+7}$",
-  "statementZhMd": null,
+  "statementZhMd": "*一贯如此。*\n\n*一直如此。*\n\n*一切很快又将被遗忘……*\n\nJellyfish 正在玩一款名为“Slay the Spire”的单人卡牌游戏。游戏中总共有 $n$ 张卡牌，编号为 $1$ 到 $n$。第 $i$ 张卡牌的*力量*为 $c_i$。\n\n有一个长度为 $n$ 的二进制字符串 $s$。如果 $s_i = \\texttt{0}$，则第 $i$ 张卡牌初始位于抽牌堆中；如果 $s_i = \\texttt{1}$，则第 $i$ 张卡牌初始位于 Jellyfish 的手牌中。\n\nJellyfish 将重复执行以下过程，直到她的手牌或抽牌堆为空。\n\n1. 令 $x$ 为她手牌中力量最大的卡牌的力量。\n2. 将一张力量为 $x$ 的卡牌放回抽牌堆。\n3. 从抽牌堆中随机抽取 $x$ 张卡牌。抽牌堆中所有包含 $x$ 张卡牌的子集被抽到的概率相同。如果抽牌堆中的卡牌少于 $x$ 张，Jellyfish 将抽取所有卡牌。\n\n过程结束时，求 Jellyfish 能够清空抽牌堆的概率，结果对 $1\\,000\\,000\\,007$ 取模。\n\n形式化地，令 $M=1\\,000\\,000\\,007$。可以证明答案可以表示为不可约分数 $\\frac{p}{q}$，其中 $p$ 和 $q$ 为整数，且 $q \\not \\equiv 0 \\pmod{M}$。输出 $p \\cdot q^{-1} \\bmod M$ 所对应的整数。换句话说，输出一个满足 $0 \\le x \\lt M$ 且 $x \\cdot q \\equiv p \\pmod{M}$ 的整数 $x$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1\\leq t\\leq 100$）。接下来给出各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 120$）——卡牌的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $c_1,c_2,\\ldots,c_n$（$0 \\leq c_i \\leq n$）——每张卡牌的力量。保证 $c_1 \\leq c_2 \\leq \\ldots \\leq c_n$。\n\n每个测试用例的第三行包含一个长度为 $n$ 的二进制字符串 $s$。如果 $s_i = \\texttt{0}$，则第 $i$ 张卡牌初始位于抽牌堆中；如果 $s_i = \\texttt{1}$，则第 $i$ 张卡牌初始位于 Jellyfish 的手牌中。\n\n保证所有测试用例的 $n^2$ 之和不超过 $120^2$。\n\n## 输出格式\n\n对于每个测试用例，输出 Jellyfish 能够清空抽牌堆的概率，结果对 $1\\,000\\,000\\,007$ 取模。\n\n## 说明\n\n在第一个测试用例中，Jellyfish 将不断打出力量为 $1$ 的卡牌，直到抽到力量为 $0$ 或力量为 $2$ 的卡牌。如果她抽到力量为 $0$ 的卡牌，她最终将清空手牌。如果她抽到力量为 $2$ 的卡牌，她最终将清空抽牌堆。由于抽到 $0$ 或 $2$ 的概率相同，答案为 $\\frac{1}{2}$，并且 $2 \\cdot 500\\,000\\,004 \\equiv 1 \\pmod {10^9+7}$",
   "samples": [
     {
       "input": "4\n5\n0 1 1 1 2\n00100\n3\n2 3 3\n000\n10\n0 0 0 0 0 0 0 1 1 1\n1111011111\n20\n0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 2 3 3 4\n00000000001000101010\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:57:23.580Z"
+  "fetchedAt": "2026-10-30T21:57:23.580Z",
+  "translatedAt": "2026-11-04T02:08:28.898+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

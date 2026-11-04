@@ -4,7 +4,7 @@
   "contestId": 1119,
   "index": "C",
   "title": "Ramesses and Corner Inversion",
-  "titleZh": null,
+  "titleZh": "Ramesses 与角点翻转",
   "url": "https://codeforces.com/contest/1119/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Ramesses came to university to algorithms practice, and his professor, who is a fairly known programmer, gave him the following task.\n\nYou are given two matrices $A$ and $B$ of size $n \\times m$, each of which consists of $0$ and $1$ only. You can apply the following operation to the matrix $A$ arbitrary number of times: take any ***submatrix*** of the matrix $A$ that has at least two rows and two columns, and invert the values in its corners (i.e. all corners of the submatrix that contain $0$, will be replaced by $1$, and all corners of the submatrix that contain $1$, will be replaced by $0$). You have to answer whether you can obtain the matrix $B$ from the matrix $A$.\n\n![image](https://espresso.codeforces.com/7df7a38b8ee7520179aa53e605fb478979006e89.png) An example of the operation. The chosen submatrix is shown in blue and yellow, its corners are shown in yellow.\n\nRamesses don't want to perform these operations by himself, so he asks you to answer this question.\n\nA *submatrix* of matrix $M$ is a matrix which consist of all elements which come from one of the rows with indices $x_1, x_1+1, \\ldots, x_2$ of matrix $M$ and one of the columns with indices $y_1, y_1+1, \\ldots, y_2$ of matrix $M$, where $x_1, x_2, y_1, y_2$ are the edge rows and columns of the submatrix. In other words, a *submatrix* is a set of elements of source matrix which form a solid rectangle (i.e. without holes) with sides parallel to the sides of the original matrix. The corners of the submatrix are cells $(x_1, y_1)$, $(x_1, y_2)$, $(x_2, y_1)$, $(x_2, y_2)$, where the cell $(i,j)$ denotes the cell on the intersection of the $i$-th row and the $j$-th column.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($1 \\leq n, m \\leq 500$) — the number of rows and the number of columns in matrices $A$ and $B$.\n\nEach of the next $n$ lines contain $m$ integers: the $j$-th integer in the $i$-th line is the $j$-th element of the $i$-th row of the matrix $A$ ($0 \\leq A_{ij} \\leq 1$).\n\nEach of the next $n$ lines contain $m$ integers: the $j$-th integer in the $i$-th line is the $j$-th element of the $i$-th row of the matrix $B$ ($0 \\leq B_{ij} \\leq 1$).\n\n## Output\n\nPrint \"`Yes`\" (without quotes) if it is possible to transform the matrix $A$ to the matrix $B$ using the operations described above, and \"`No`\" (without quotes), if it is not possible. You can print each letter in any case (upper or lower).\n\n## Note\n\nThe examples are explained below.\n\n![image](https://espresso.codeforces.com/dfdfedf1f24eb84ce3499fb66216d7e9e8c84173.png) Example 1.\n\n![image](https://espresso.codeforces.com/b3d12b50aa751b775a68ded0ecee684ef4673389.png) Example 2.\n\n![image](https://espresso.codeforces.com/64afd93ed0b88c9b52989576ec5dc4e6a0018a1e.png) Example 3.",
-  "statementZhMd": null,
+  "statementZhMd": "Ramesses 来到大学进行算法练习，他的教授是一位颇有名气的程序员，给了他如下任务。\n\n给定两个大小为 $n \\times m$ 的矩阵 $A$ 和 $B$，矩阵中的元素均为 $0$ 或 $1$。你可以对矩阵 $A$ 任意次地执行以下操作：选取矩阵 $A$ 的一个至少包含两行和两列的 ***子矩阵***，并翻转其四个角上的元素（即，将子矩阵四个角中所有为 $0$ 的元素替换为 $1$，所有为 $1$ 的元素替换为 $0$）。请判断能否通过这些操作将矩阵 $A$ 变为矩阵 $B$。\n\n![image](https://espresso.codeforces.com/7df7a38b8ee7520179aa53e605fb478979006e89.png) 操作示例。选中的子矩阵以蓝色和黄色表示，其角点以黄色表示。\n\nRamesses 不想亲自执行这些操作，因此他请你来回答这个问题。\n\n矩阵 $M$ 的一个 *子矩阵* 是由矩阵 $M$ 中行索引为 $x_1, x_1+1, \\ldots, x_2$ 的某些行，以及列索引为 $y_1, y_1+1, \\ldots, y_2$ 的某些列中的所有元素组成的矩阵，其中 $x_1, x_2, y_1, y_2$ 是该子矩阵边界上的行和列。换句话说，*子矩阵* 是原矩阵中构成一个实心矩形（即没有空洞），且边平行于原矩阵边的元素集合。子矩阵的四个角分别是单元格 $(x_1, y_1)$、$(x_1, y_2)$、$(x_2, y_1)$、$(x_2, y_2)$，其中单元格 $(i,j)$ 表示第 $i$ 行与第 $j$ 列交点处的单元格。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$1 \\leq n, m \\leq 500$）——矩阵 $A$ 和 $B$ 的行数和列数。\n\n接下来的 $n$ 行中的每行包含 $m$ 个整数：第 $i$ 行中的第 $j$ 个整数是矩阵 $A$ 第 $i$ 行的第 $j$ 个元素（$0 \\leq A_{ij} \\leq 1$）。\n\n接下来的 $n$ 行中的每行包含 $m$ 个整数：第 $i$ 行中的第 $j$ 个整数是矩阵 $B$ 第 $i$ 行的第 $j$ 个元素（$0 \\leq B_{ij} \\leq 1$）。\n\n## 输出格式\n\n如果可以使用上述操作将矩阵 $A$ 转换为矩阵 $B$，输出 `Yes`（不含引号）；否则输出 `No`（不含引号）。每个字母的大小写均可任意。\n\n## 说明\n\n下面将对样例进行解释。\n\n![image](https://espresso.codeforces.com/dfdfedf1f24eb84ce3499fb66216d7e9e8c84173.png) 样例 1。\n\n![image](https://espresso.codeforces.com/b3d12b50aa751b775a68ded0ecee684ef4673389.png) 样例 2。\n\n![image](https://espresso.codeforces.com/64afd93ed0b88c9b52989576ec5dc4e6a0018a1e.png) 样例 3。",
   "samples": [
     {
       "input": "3 3\n0 1 0\n0 1 0\n1 0 0\n1 0 0\n1 0 0\n1 0 0\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:14:55.645Z"
+  "fetchedAt": "2026-10-31T00:14:55.645Z",
+  "translatedAt": "2026-11-04T05:17:04.016+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

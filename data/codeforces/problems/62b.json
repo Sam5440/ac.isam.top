@@ -4,7 +4,7 @@
   "contestId": 62,
   "index": "B",
   "title": "Tyndex.Brome",
-  "titleZh": null,
+  "titleZh": "Tyndex.Brome",
   "url": "https://codeforces.com/contest/62/problem/B",
   "difficulty": 1800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Tyndex is again well ahead of the rivals! The reaction to the release of Zoozle Chrome browser was the release of a new browser Tyndex.Brome!\n\nThe popularity of the new browser is growing daily. And the secret is not even the Tyndex.Bar installed (the Tyndex.Bar automatically fills the glass with the finest 1664 cognac after you buy Tyndex.Bottles and insert in into a USB port). It is highly popular due to the well-thought interaction with the user.\n\nLet us take, for example, the system of automatic address correction. Have you entered `codehorses` instead of `codeforces`? The gloomy Zoozle Chrome will sadly say that the address does not exist. Tyndex.Brome at the same time will automatically find the closest address and sent you there. That's brilliant!\n\nHow does this splendid function work? That's simple! For each potential address a function of the $*F*$ error is calculated by the following rules:\n\n- for every letter $*c*_{*i*}$ from the potential address $*c*$ the closest position $*j*$ of the letter $*c*_{*i*}$ in the address ($*s*$) entered by the user is found. The absolute difference $|*i* - *j*|$ of these positions is added to $*F*$. So for every $*i*$ ($1 ≤ *i* ≤ |*c*|$) the position $*j*$ is chosen such, that $*c*_{*i*} = *s*_{*j*}$, and $|*i* - *j*|$ is minimal possible.\n- if no such letter $*c*_{*i*}$ exists in the address entered by the user, then the length of the potential address $|*c*|$ is added to $*F*$.\n\nAfter the values of the error function have been calculated for all the potential addresses the most suitable one is found.\n\nTo understand the special features of the above described method better, it is recommended to realize the algorithm of calculating the $*F*$ function for an address given by the user and some set of potential addresses. Good luck!\n\n## Input\n\nThe first line contains two integers $*n*$ and $*k*$ ($1 ≤ *n* ≤ 10^{5}, 1 ≤ *k* ≤ 10^{5}$). They are the number of potential addresses and the length of the address entered by the user. The next line contains $*k*$ lowercase Latin letters. They are the address entered by the user ($*s*$). Each next $*i*$-th ($1 ≤ *i* ≤ *n*$) line contains a non-empty sequence of lowercase Latin letters. They are the potential address. It is guaranteed that the total length of all the lines does not exceed $2·10^{5}$.\n\n## Output\n\nOn each $*n*$ line of the output file print a single number: the value of the error function when the current potential address is chosen.\n\nPlease, do not use `%lld` specificator to read or write 64-bit integers in C++. It is preffered to use `cout` (also you may use `%I64d`).",
-  "statementZhMd": null,
+  "statementZhMd": "Tyndex 再次遥遥领先于竞争对手！为了应对 Zoozle Chrome 浏览器的发布，Tyndex 发布了全新的浏览器 Tyndex.Brome！\n\n这款新浏览器的受欢迎程度与日俱增。秘密甚至不在于所安装的 Tyndex.Bar（购买 Tyndex.Bottles 并将其插入 USB 接口后，Tyndex.Bar 会自动将最上等的 1664 干邑白兰地倒入杯中）。它之所以广受欢迎，是因为它与用户之间经过精心设计的交互方式。\n\n以自动地址纠错系统为例。你输入了 `codehorses` 而不是 `codeforces`？阴沉的 Zoozle Chrome 会遗憾地告诉你该地址不存在。而 Tyndex.Brome 则会自动找到最接近的地址并将你带到那里。真是太棒了！\n\n这个出色的功能是如何工作的呢？很简单！对于每个候选地址，按照以下规则计算 $*F*$ 错误函数：\n\n- 对于候选地址 $*c*$ 中的每个字母 $*c*_{*i*}$，在用户输入的地址（$*s*$）中找到字母 $*c*_{*i*}$ 的最近位置 $*j*$。将这些位置之差的绝对值 $|*i* - *j*|$ 加到 $*F*$ 中。因此，对于每个 $*i*$（$1 ≤ *i* ≤ |*c*|$），选择满足 $*c*_{*i*} = *s*_{*j*}$ 且 $|*i* - *j*|$ 尽可能小的位置 $*j*$。\n- 如果用户输入的地址中不存在字母 $*c*_{*i*}$，则将候选地址的长度 $|*c*|$ 加到 $*F*$ 中。\n\n计算出所有候选地址的错误函数值后，就可以找到最合适的地址。\n\n为了更好地理解上述方法的特殊之处，建议你实现计算给定用户地址和若干候选地址的 $*F*$ 函数的算法。祝你好运！\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*k*$（$1 ≤ *n* ≤ 10^{5}, 1 ≤ *k* ≤ 10^{5}$）。它们分别表示候选地址的数量和用户输入地址的长度。下一行包含 $*k*$ 个小写拉丁字母，即用户输入的地址（$*s*$）。接下来的第 $*i*$ 行（$1 ≤ *i* ≤ *n*$）包含一个非空的小写拉丁字母序列，即一个候选地址。保证所有这些行的总长度不超过 $2·10^{5}$。\n\n## 输出格式\n\n在输出文件中输出 $*n*$ 行，每行包含一个整数：选择当前候选地址时错误函数的值。\n\n请不要在 C++ 中使用 `%lld` 格式说明符读写 64 位整数。建议使用 `cout`（也可以使用 `%I64d`）。",
   "samples": [
     {
       "input": "2 10\ncodeforces\ncodeforces\ncodehorses\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:51:25.564Z"
+  "fetchedAt": "2026-10-31T02:51:25.564Z",
+  "translatedAt": "2026-11-04T08:03:51.361+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

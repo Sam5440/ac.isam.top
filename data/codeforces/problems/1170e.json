@@ -4,7 +4,7 @@
   "contestId": 1170,
   "index": "E",
   "title": "Sliding Doors",
-  "titleZh": null,
+  "titleZh": "滑动门",
   "url": "https://codeforces.com/contest/1170/problem/E",
   "difficulty": null,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Imagine that you are the CEO of a big old-fashioned company. Unlike any modern and progressive company (such as JetBrains), your company has a dress code. That's why you have already allocated a spacious room for your employees where they can change their clothes. Moreover, you've already purchased an $m$-compartment wardrobe, so the $i$-th employee can keep his/her belongings in the $i$-th cell (of course, all compartments have equal widths).\n\nThe issue has occurred: the wardrobe has sliding doors! More specifically, the wardrobe has $n$ doors (numbered from left to right) and the $j$-th door has width equal to $a_j$ wardrobe's cells. The wardrobe has single rails so that no two doors can slide past each other.\n\n![image](https://espresso.codeforces.com/d386d5dda686a64db2d590ef631aaf51b72c215c.gif) Extremely schematic example of a wardrobe: $m=9$, $n=2$, $a_1=2$, $a_2=3$.\n\nThe problem is as follows: sometimes to open some cells you must close some other cells (since all doors are placed on the single track). For example, if you have a $4$-compartment wardrobe (i.e. $m=4$) with $n=2$ one-cell doors (i.e. $a_1=a_2=1$) and you need to open the $1$-st and the $3$-rd cells, you have to close the $2$-nd and the $4$-th cells.\n\nAs CEO, you have a complete schedule for the next $q$ days. Now you are wondering: is it possible that all employees who will come on the $k$-th day can access their cells simultaneously?\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($1 \\le n \\le 2 \\cdot 10^5$, $1 \\le m \\le 4 \\cdot 10^5$) — the number of doors and compartments respectively.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le m$, $\\sum{a_i} \\le m$) — the corresponding widths of the doors.\n\nThe third line contains a single integer $q$ ($1 \\le q \\le 2 \\cdot 10^5$) — the number of days you have to process.\n\nThe next $q$ lines describe schedule of each day. Each schedule is represented as an integer $c_k$ followed by $c_k$ integers $w_1, w_2, \\dots, w_{c_k}$ ($1 \\le c_k \\le 2 \\cdot 10^5$, $1 \\le w_1 \\lt w_2 \\lt \\dots \\lt w_{c_k} \\le m$) — the number of employees who will come on the $k$-th day, and their indices in ascending order.\n\nIt's guaranteed that $\\sum{c_k}$ doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nPrint $q$ answers. Each answer is \"`YES`\" or \"`NO`\" (case insensitive). Print \"`YES`\" if it is possible, that all employees on the corresponding day can access their compartments simultaneously.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n假设你是一家大型老牌公司的 CEO。与任何现代且进步的公司（例如 JetBrains）不同，你的公司有着严格的着装规定。因此，你已经为员工准备了一间宽敞的更衣室，他们可以在那里更换衣服。此外，你还购买了一个拥有 $m$ 个隔间的衣柜，因此第 $i$ 位员工可以将自己的物品存放在第 $i$ 个隔间中（当然，所有隔间的宽度都相同）。\n\n问题出现了：这个衣柜使用的是滑动门！更具体地说，衣柜有 $n$ 扇门（从左到右编号），第 $j$ 扇门的宽度等于衣柜的 $a_j$ 个隔间。衣柜只有一条轨道，因此任意两扇门都不能相互穿过。\n\n![image](https://espresso.codeforces.com/d386d5dda686a64db2d590ef631aaf51b72c215c.gif) 衣柜的示意图：$m=9$，$n=2$，$a_1=2$，$a_2=3$。\n\n问题如下：有时为了打开某些隔间，你必须关上另外一些隔间（因为所有门都位于同一条轨道上）。例如，对于一个有 $4$ 个隔间的衣柜（即 $m=4$），其中有 $n=2$ 扇宽度为一个隔间的门（即 $a_1=a_2=1$），如果你需要打开第 $1$ 个和第 $3$ 个隔间，那么你就必须关上第 $2$ 个和第 $4$ 个隔间。\n\n作为 CEO，你已经得到了接下来 $q$ 天的完整安排。现在你想知道：第 $k$ 天到来的所有员工是否有可能同时使用他们的隔间？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 2 \\cdot 10^5$，$1 \\le m \\le 4 \\cdot 10^5$）——门和隔间的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le m$，$\\sum{a_i} \\le m$）——各扇门对应的宽度。\n\n第三行包含一个整数 $q$（$1 \\le q \\le 2 \\cdot 10^5$）——需要处理的天数。\n\n接下来的 $q$ 行描述每天的安排。每个安排由一个整数 $c_k$ 开始，后跟 $c_k$ 个整数 $w_1, w_2, \\dots, w_{c_k}$（$1 \\le c_k \\le 2 \\cdot 10^5$，$1 \\le w_1 \\lt w_2 \\lt \\dots \\lt w_{c_k} \\le m$）——第 $k$ 天到来的员工数量，以及按升序排列的他们的编号。\n\n保证 $\\sum{c_k}$ 不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n输出 $q$ 个答案。每个答案应为“`YES`”或“`NO`”（不区分大小写）。如果对应天的所有员工有可能同时使用他们的隔间，则输出“`YES`”。",
   "samples": [
     {
       "input": "3 10\n2 3 2\n6\n1 5\n2 1 10\n2 2 9\n2 5 6\n3 1 7 8\n4 1 2 3 4\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:16:18.350Z"
+  "fetchedAt": "2026-11-02T19:16:18.350Z",
+  "translatedAt": "2026-11-04T05:10:35.504+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

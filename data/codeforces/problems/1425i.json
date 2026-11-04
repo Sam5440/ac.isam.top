@@ -4,7 +4,7 @@
   "contestId": 1425,
   "index": "I",
   "title": "Impressive Harvesting of The Orchard",
-  "titleZh": null,
+  "titleZh": "果园的高效采摘",
   "url": "https://codeforces.com/contest/1425/problem/I",
   "difficulty": 2800,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 256,
   "statementMd": "Mr. Chanek has an orchard structured as a rooted ternary tree with $N$ vertices numbered from $1$ to $N$. The root of the tree is vertex $1$. $P_i$ denotes the parent of vertex $i$, for $(2 \\le i \\le N)$. Interestingly, the height of the tree is not greater than $10$. Height of a tree is defined to be the largest distance from the root to a vertex in the tree.\n\nThere exist a bush on each vertex of the tree. Initially, all bushes have fruits. Fruits will not grow on bushes that currently already have fruits. The bush at vertex $i$ will grow fruits after $A_i$ days since its last harvest.\n\nMr. Chanek will visit his orchard for $Q$ days. In day $i$, he will harvest all bushes that have fruits on the subtree of vertex $X_i$. For each day, determine the sum of distances from every harvested bush to $X_i$, and the number of harvested bush that day. Harvesting a bush means collecting **all** fruits on the bush.\n\nFor example, if Mr. Chanek harvests all fruits on subtree of vertex $X$, and harvested bushes $[Y_1, Y_2, \\dots, Y_M]$, the sum of distances is $\\sum_{i = 1}^M \\text{distance}(X, Y_i)$\n\n$\\text{distance}(U, V)$ in a tree is defined to be the number of edges on the simple path from $U$ to $V$.\n\n## Input\n\nThe first line contains two integers $N$ and $Q$ $(1 \\le N,\\ Q,\\le 5 \\cdot 10^4)$, which denotes the number of vertices and the number of days Mr. Chanek visits the orchard.\n\nThe second line contains $N$ integers $A_i$ $(1 \\le A_i \\le 5 \\cdot 10^4)$, which denotes the fruits growth speed on the bush at vertex $i$, for $(1 \\le i \\le N)$.\n\nThe third line contains $N-1$ integers $P_i$ $(1 \\le P_i \\le N, P_i \\ne i)$, which denotes the parent of vertex $i$ in the tree, for $(2 \\le i \\le N)$. It is guaranteed that each vertex can be the parent of at most $3$ other vertices. It is also guaranteed that the height of the tree is not greater than $10$.\n\nThe next $Q$ lines contain a single integer $X_i$ $(1 \\le X_i \\le N)$, which denotes the start of Mr. Chanek's visit on day $i$, for $(1 \\le i \\le Q)$.\n\n## Output\n\nOutput $Q$ lines, line $i$ gives the sum of distances from the harvested bushes to $X_i$, and the number of harvested bushes.\n\n## Note\n\nFor the first example:\n\n- On day 1, Mr. Chanek starts at vertex $2$ and can harvest the bush at vertex 2.\n- On day 2, Mr. Chanek starts at vertex $1$ and only harvest from bush $1$ (bush 2's fruit still has not grown yet).\n- On day 3, Mr. Chanek starts at vertex $1$ and harvests the fruits on bush $1$ and $2$. The sum of distances from every harvested bush to $1$ is $1$.\n\nFor the second example, Mr. Chanek always starts at vertex $1$. The bushes which Mr. Chanek harvests on day one, two, and three are $[1, 2, 3, 4, 5], [2, 3], [1, 2, 3, 5]$, respectively.",
-  "statementZhMd": null,
+  "statementZhMd": "Chanek 先生拥有一座果园，其结构是一棵有根三叉树，共有 $N$ 个顶点，编号为 $1$ 到 $N$。树的根是顶点 $1$。对于 $(2 \\le i \\le N)$，$P_i$ 表示顶点 $i$ 的父节点。有趣的是，这棵树的高度不超过 $10$。树的高度定义为根到树中某个顶点的最大距离。\n\n树的每个顶点上都有一株灌木。初始时，所有灌木上都有果实。当前已经有果实的灌木不会再次生长果实。顶点 $i$ 上的灌木在上次采摘后的 $A_i$ 天后重新长出果实。\n\nChanek 先生将连续 $Q$ 天访问他的果园。第 $i$ 天，他会采摘顶点 $X_i$ 的子树中所有有果实的灌木。对于每一天，确定当天被采摘的每株灌木到 $X_i$ 的距离之和，以及当天被采摘的灌木数量。采摘一株灌木意味着收集该灌木上的**所有**果实。\n\n例如，如果 Chanek 先生采摘顶点 $X$ 的子树中的所有果实，且被采摘的灌木为 $[Y_1, Y_2, \\dots, Y_M]$，则距离之和为 $\\sum_{i = 1}^M \\text{distance}(X, Y_i)$。\n\n树中 $\\text{distance}(U, V)$ 的定义为从 $U$ 到 $V$ 的简单路径上的边数。\n\n## 输入格式\n\n第一行包含两个整数 $N$ 和 $Q$ $(1 \\le N,\\ Q,\\le 5 \\cdot 10^4)$，分别表示顶点数量以及 Chanek 先生访问果园的天数。\n\n第二行包含 $N$ 个整数 $A_i$ $(1 \\le A_i \\le 5 \\cdot 10^4)$，对于 $(1 \\le i \\le N)$，$A_i$ 表示顶点 $i$ 上灌木的果实生长周期。\n\n第三行包含 $N-1$ 个整数 $P_i$ $(1 \\le P_i \\le N, P_i \\ne i)$，对于 $(2 \\le i \\le N)$，$P_i$ 表示树中顶点 $i$ 的父节点。保证每个顶点最多可以作为其他 $3$ 个顶点的父节点。还保证树的高度不超过 $10$。\n\n接下来的 $Q$ 行每行包含一个整数 $X_i$ $(1 \\le X_i \\le N)$，对于 $(1 \\le i \\le Q)$，表示 Chanek 先生第 $i$ 天访问的起始顶点。\n\n## 输出格式\n\n输出 $Q$ 行，第 $i$ 行输出当天被采摘的灌木到 $X_i$ 的距离之和，以及被采摘的灌木数量。\n\n## 说明\n\n对于第一个样例：\n\n- 第 1 天，Chanek 先生从顶点 $2$ 开始，并可以采摘顶点 $2$ 上的灌木。\n- 第 2 天，Chanek 先生从顶点 $1$ 开始，但只能采摘灌木 $1$ 上的果实（灌木 $2$ 上的果实还没有重新长出）。\n- 第 3 天，Chanek 先生从顶点 $1$ 开始，并采摘灌木 $1$ 和 $2$ 上的果实。被采摘的每株灌木到顶点 $1$ 的距离之和为 $1$。\n\n对于第二个样例，Chanek 先生每天都从顶点 $1$ 开始。他在第 1、2、3 天采摘的灌木分别为 $[1, 2, 3, 4, 5]$、$[2, 3]$、$[1, 2, 3, 5]$。",
   "samples": [
     {
       "input": "2 3\n1 2\n1\n2\n1\n1\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:43:36.842Z"
+  "fetchedAt": "2026-11-02T18:43:36.842Z",
+  "translatedAt": "2026-11-04T04:20:23.010+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

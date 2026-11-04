@@ -4,7 +4,7 @@
   "contestId": 1106,
   "index": "F",
   "title": "Lunar New Year and a Recursive Sequence",
-  "titleZh": null,
+  "titleZh": "农历新年与递归序列",
   "url": "https://codeforces.com/contest/1106/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "*Lunar New Year is approaching, and Bob received a gift from his friend recently — a recursive sequence!* He loves this sequence very much and wants to play with it.\n\nLet $f_1, f_2, \\ldots, f_i, \\ldots$ be an infinite sequence of positive integers. Bob knows that for $i \\gt k$, $f_i$ can be obtained by the following recursive equation:\n\n$$f_i = \\left(f_{i - 1} ^ {b_1} \\cdot f_{i - 2} ^ {b_2} \\cdot \\cdots \\cdot f_{i - k} ^ {b_k}\\right) \\bmod p,$$\n\nwhich in short is\n\n$$f_i = \\left(\\prod_{j = 1}^{k} f_{i - j}^{b_j}\\right) \\bmod p,$$\n\nwhere $p = 998\\,244\\,353$ (a widely-used prime), $b_1, b_2, \\ldots, b_k$ are known integer constants, and $x \\bmod y$ denotes the remainder of $x$ divided by $y$.\n\nBob lost the values of $f_1, f_2, \\ldots, f_k$, which is extremely troublesome – these are the basis of the sequence! Luckily, Bob remembers the first $k - 1$ elements of the sequence: $f_1 = f_2 = \\ldots = f_{k - 1} = 1$ and the $n$-th element: $f_n = m$. Please find any possible value of $f_k$. If no solution exists, just tell Bob that it is impossible to recover his favorite sequence, regardless of Bob's sadness.\n\n## Input\n\nThe first line contains a positive integer $k$ ($1 \\leq k \\leq 100$), denoting the length of the sequence $b_1, b_2, \\ldots, b_k$.\n\nThe second line contains $k$ positive integers $b_1, b_2, \\ldots, b_k$ ($1 \\leq b_i \\lt p$).\n\nThe third line contains two positive integers $n$ and $m$ ($k \\lt n \\leq 10^9$, $1 \\leq m \\lt p$), which implies $f_n = m$.\n\n## Output\n\nOutput a possible value of $f_k$, where $f_k$ is a positive integer satisfying $1 \\leq f_k \\lt p$. If there are multiple answers, print any of them. If no such $f_k$ makes $f_n = m$, output $-1$ instead.\n\nIt is easy to show that if there are some possible values of $f_k$, there must be at least one satisfying $1 \\leq f_k \\lt p$.\n\n## Note\n\nIn the first sample, we have $f_4 = f_3^2 \\cdot f_2^3 \\cdot f_1^5$. Therefore, applying $f_3 = 4$, we have $f_4 = 16$. Note that there can be multiple answers.\n\nIn the third sample, applying $f_7 = 1$ makes $f_{23333} = 1$.\n\nIn the fourth sample, no such $f_1$ makes $f_{88888} = 66666$. Therefore, we output $-1$ instead.",
-  "statementZhMd": null,
+  "statementZhMd": "*农历新年即将到来，Bob 最近收到了朋友送给他的礼物——一个递归序列！* 他非常喜欢这个序列，想要研究它。\n\n设 $f_1, f_2, \\ldots, f_i, \\ldots$ 是一个由正整数组成的无限序列。Bob 知道，对于 $i \\gt k$，$f_i$ 可以通过以下递推式得到：\n\n$$f_i = \\left(f_{i - 1} ^ {b_1} \\cdot f_{i - 2} ^ {b_2} \\cdot \\cdots \\cdot f_{i - k} ^ {b_k}\\right) \\bmod p,$$\n\n简写为\n\n$$f_i = \\left(\\prod_{j = 1}^{k} f_{i - j}^{b_j}\\right) \\bmod p,$$\n\n其中 $p = 998\\,244\\,353$（一个广泛使用的质数），$b_1, b_2, \\ldots, b_k$ 是已知的整数常量，$x \\bmod y$ 表示 $x$ 除以 $y$ 所得的余数。\n\nBob 丢失了 $f_1, f_2, \\ldots, f_k$ 的值，这非常麻烦——毕竟它们是这个序列的基础！幸运的是，Bob 记得序列的前 $k - 1$ 个元素满足：$f_1 = f_2 = \\ldots = f_{k - 1} = 1$，以及第 $n$ 个元素满足：$f_n = m$。请找出 $f_k$ 的任意一个可能值。如果不存在解，请告诉 Bob 无法恢复他最喜欢的序列，不管 Bob 有多么伤心。\n\n## 输入格式\n\n第一行包含一个正整数 $k$（$1 \\leq k \\leq 100$），表示序列 $b_1, b_2, \\ldots, b_k$ 的长度。\n\n第二行包含 $k$ 个正整数 $b_1, b_2, \\ldots, b_k$（$1 \\leq b_i \\lt p$）。\n\n第三行包含两个正整数 $n$ 和 $m$（$k \\lt n \\leq 10^9$，$1 \\leq m \\lt p$），表示 $f_n = m$。\n\n## 输出格式\n\n输出 $f_k$ 的一个可能值，其中 $f_k$ 是满足 $1 \\leq f_k \\lt p$ 的正整数。如果有多个答案，输出其中任意一个即可。如果不存在任何 $f_k$ 能使 $f_n = m$，则输出 $-1$。\n\n容易证明，如果 $f_k$ 存在某些可能的取值，那么其中至少有一个满足 $1 \\leq f_k \\lt p$。\n\n## 说明\n\n在第一个样例中，我们有 $f_4 = f_3^2 \\cdot f_2^3 \\cdot f_1^5$。因此，代入 $f_3 = 4$，可以得到 $f_4 = 16$。注意，答案可能不止一个。\n\n在第三个样例中，令 $f_7 = 1$，可以得到 $f_{23333} = 1$。\n\n在第四个样例中，不存在任何 $f_1$ 能使 $f_{88888} = 66666$。因此，我们输出 $-1$。",
   "samples": [
     {
       "input": "3\n2 3 5\n4 16\n",
@@ -50,5 +50,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:17:14.027Z"
+  "fetchedAt": "2026-10-31T00:17:14.027Z",
+  "translatedAt": "2026-11-04T05:19:30.463+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

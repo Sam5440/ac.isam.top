@@ -4,14 +4,14 @@
   "contestId": 1424,
   "index": "E",
   "title": "5G Antenna Towers",
-  "titleZh": null,
+  "titleZh": "5G 天线塔",
   "url": "https://codeforces.com/contest/1424/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "After making a strategic plan with carriers for expansion of mobile network throughout the whole country, the government decided to cover rural areas with the last generation of 5G network.\n\nSince 5G antenna towers will be built in the area of mainly private properties, the government needs an easy way to find information about landowners for each **property** partially or fully contained in the planned building area.\n\nThe planned building area is represented as a rectangle with sides $width$ and $height$.\n\nEvery 5G antenna tower occupies a **circle** with a center in $(x,y)$ and radius $r$.\n\nThere is a database of Geodetic Institute containing information about each property. Each property is defined with its **identification number** and **polygon** represented as an array of $(x,y)$ points in the counter-clockwise direction.\n\nYour task is to build an IT system which can handle queries of type $(x, y, r)$ in which $(x,y)$ represents a circle center, while $r$ represents its radius. The IT system should return the **total area** of properties that need to be acquired for the building of a tower so that the government can estimate the price. Furthermore, the system should return a list of **identification numbers** of these properties (so that the owners can be contacted for land acquisition).\n\nA property needs to be acquired if the circle of the antenna tower is intersecting or touching it.\n\n## Input\n\nThe first line contains the size of the building area as double values $width$, $height$, and an integer $n$ — the number of properties in the database.\n\nEach of the next $n$ lines contains the description of a single property in the form of an integer number $v$ ($3 \\le v \\le 40$) — the number of points that define a property, as well as $2*v$ double numbers — the coordinates $(x,y)$ of each property point. Line $i$ ($0 \\le i \\le n-1$) contains the information for property with id $i$.\n\nThe next line contains an integer $q$ — the number of queries.\n\nEach of the next $q$ lines contains double values $x$, $y$, $r$ — the coordinates of an antenna circle center $(x, y)$ and its radius $r$.\n\n$1 \\le n * q \\le 10^6$\n\n## Output\n\nFor each of the $q$ queries, your program should output a line containing the total area of all the properties that need to be acquired, an integer representing the number of such properties, as well as the list of ids of these properties (separated by blank characters, arbitrary order).\n\n## Note\n\nYou can assume that the land not covered with properties (polygons) is under the government's ownership and therefore doesn't need to be acquired. Properties do not intersect with each other.\n\nPrecision being used for solution checking is $10^{-4}$.",
-  "statementZhMd": null,
+  "statementZhMd": "在与运营商制定了覆盖全国的移动网络扩展战略计划后，政府决定使用最新一代的 5G 网络覆盖农村地区。\n\n由于 5G 天线塔将主要建在私人土地上，政府需要一种简便的方法，来获取计划建设区域内每个部分或全部包含在其中的**土地**的所有者信息。\n\n计划建设区域表示为一个边长分别为 $width$ 和 $height$ 的矩形。\n\n每座 5G 天线塔占据一个**圆形**区域，其圆心为 $(x,y)$，半径为 $r$。\n\n大地测量研究所的数据库中存储了每块土地的信息。每块土地由其**编号**和一个**多边形**定义，该多边形由按逆时针方向排列的 $(x,y)$ 点组成。\n\n你的任务是构建一个 IT 系统，用于处理形如 $(x, y, r)$ 的查询，其中 $(x,y)$ 表示圆心，$r$ 表示半径。IT 系统应返回建造一座天线塔所需征收的所有土地的**总面积**，以便政府估算价格。此外，系统还应返回这些土地的**编号**列表，以便联系土地所有者进行征收。\n\n如果天线塔的圆形区域与某块土地相交或相切，则需要征收该土地。\n\n## 输入\n\n第一行包含建设区域的大小：双精度浮点数 $width$、$height$，以及一个整数 $n$——数据库中的土地数量。\n\n接下来的 $n$ 行分别描述一块土地。每行包含一个整数 $v$（$3 \\le v \\le 40$）——定义该土地的点数，以及 $2*v$ 个双精度浮点数——该土地各个点的坐标 $(x,y)$。第 $i$ 行（$0 \\le i \\le n-1$）包含编号为 $i$ 的土地的信息。\n\n下一行包含一个整数 $q$——查询数量。\n\n接下来的 $q$ 行分别包含双精度浮点数 $x$、$y$、$r$——天线圆的圆心坐标 $(x, y)$ 及其半径 $r$。\n\n$1 \\le n * q \\le 10^6$\n\n## 输出\n\n对于每个查询，程序应输出一行，其中包含所有需要征收的土地的总面积、这些土地的数量（一个整数），以及这些土地的编号列表（编号之间以空白字符分隔，顺序任意）。\n\n## 说明\n\n可以假设未被土地（多边形）覆盖的区域归政府所有，因此无需征收。不同土地之间不会相交。\n\n判题时使用的精度为 $10^{-4}$。",
   "samples": [
     {
       "input": "10 10 3\n4 2 2 3 2 3 3 2 3\n3 3.5 2 4.5 2 4.5 3\n4 7 8 7.5 8.5 8 8 7.5 9\n5\n2 3.5 0.5\n3.3 2 0.4\n5 2.5 0.5\n7.5 8.5 0.5\n3 7 0.5\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:43:44.086Z"
+  "fetchedAt": "2026-11-02T18:43:44.086Z",
+  "translatedAt": "2026-11-04T04:19:20.353+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

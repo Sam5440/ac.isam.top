@@ -4,7 +4,7 @@
   "contestId": 1659,
   "index": "F",
   "title": "Tree and Permutation Game",
-  "titleZh": null,
+  "titleZh": "树与排列游戏",
   "url": "https://codeforces.com/contest/1659/problem/F",
   "difficulty": 3000,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "There is a tree of $n$ vertices and a permutation $p$ of size $n$. A token is present on vertex $x$ of the tree.\n\nAlice and Bob are playing a game. Alice is in control of the permutation $p$, and Bob is in control of the token on the tree. In Alice's turn, she **must** pick two **distinct** **numbers** $u$ and $v$ (**not** positions; $u \\neq v$), such that the token is neither at vertex $u$ nor vertex $v$ on the tree, and swap their positions in the permutation $p$. In Bob's turn, he **must** move the token to an adjacent vertex from the one it is currently on.\n\nAlice wants to sort the permutation in increasing order. Bob wants to prevent that. Alice wins if the permutation is sorted in increasing order at the beginning or end of her turn. Bob wins if he can make the game go on for an infinite number of moves (which means that Alice is never able to get a sorted permutation). Both players play optimally. Alice makes the first move.\n\nGiven the tree, the permutation $p$, and the vertex $x$ on which the token initially is, find the winner of the game.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1000$)  — the number of test cases. The description of each test case follows.\n\nThe first line of each test case has two integers $n$ and $x$ ($3 \\leq n \\leq 2 \\cdot 10^5$; $1 \\leq x \\leq n$).\n\nEach of the next $n-1$ lines contains two integers $a$ and $b$ ($1 \\le a, b \\le n$, $a \\neq b$) indicating an undirected edge between vertex $a$ and vertex $b$. It is guaranteed that the given edges form a tree.\n\nThe next line contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\le p_i \\le n$)  — the permutation $p$.\n\nThe sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output one line containing `Alice` or `Bob` — the winner of the game. The output is case-sensitive.\n\n## Note\n\nHere is the explanation for the first example:\n\nIn the first test case, there is a way for Alice to win. Here is a possible sequence of moves:\n\n1. Alice swaps $5$ and $6$, resulting in $[2,1,3,5,4,6]$.\n2. Bob moves the token to vertex $5$.\n3. Alice swaps $1$ and $2$, resulting in $[1,2,3,5,4,6]$.\n4. Bob moves the token to vertex $3$.\n5. Alice swaps $4$ and $5$, resulting in $[1,2,3,4,5,6]$, and wins.\n\nIn the second test case, Alice cannot win since Bob can make the game go on forever. Here is the sequence of moves:\n\n1. Alice can only swap $1$ and $3$, resulting in $[3,1,2]$.\n2. Bob moves the token to vertex $1$.\n3. Alice can only swap $2$ and $3$, resulting in $[2,1,3]$.\n4. Bob moves the token to vertex $2$.\n5. Alice can only swap $1$ and $3$, resulting in $[2,3,1]$.\n6. Bob moves the token to vertex $3$.\n7. Alice can only swap $1$ and $2$, resulting in $[1,3,2]$.\n8. Bob moves the token to vertex $2$.\n\nAnd then the sequence repeats forever.\n\nIn the third test case, Alice wins immediately since the permutation is already sorted.",
-  "statementZhMd": null,
+  "statementZhMd": "有一棵包含 $n$ 个顶点的树，以及一个大小为 $n$ 的排列 $p$。树上的顶点 $x$ 上有一个令牌。\n\nAlice 和 Bob 正在进行一个游戏。Alice 控制排列 $p$，Bob 控制树上的令牌。在 Alice 的回合，她**必须**选择两个**不同的****数字** $u$ 和 $v$（**不是**位置；$u \\neq v$），且令牌当前既不在树的顶点 $u$ 上，也不在顶点 $v$ 上，然后交换排列 $p$ 中这两个数字的位置。在 Bob 的回合，他**必须**将令牌移动到与其当前所在顶点相邻的一个顶点。\n\nAlice 想要将排列按递增顺序排序，而 Bob 想要阻止她。若在 Alice 回合开始时或结束时排列已经按递增顺序排列，则 Alice 获胜。若 Bob 能使游戏进行无限多次移动（这意味着 Alice 永远无法得到一个排好序的排列），则 Bob 获胜。双方均采取最优策略。Alice 先手。\n\n给定这棵树、排列 $p$ 以及令牌初始所在的顶点 $x$，求游戏的获胜者。\n\n## 输入\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 1000$）——测试用例的数量。接下来描述每个测试用例。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $x$（$3 \\leq n \\leq 2 \\cdot 10^5$；$1 \\leq x \\leq n$）。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $a$ 和 $b$（$1 \\leq a, b \\leq n$；$a \\neq b$），表示顶点 $a$ 和顶点 $b$ 之间的一条无向边。保证给出的边构成一棵树。\n\n下一行包含 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$1 \\leq p_i \\leq n$）——排列 $p$。\n\n所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出\n\n对于每个测试用例，输出一行，包含 `Alice` 或 `Bob`——游戏的获胜者。输出区分大小写。\n\n## 说明\n\n下面是第一个样例的解释：\n\n在第一个测试用例中，Alice 有办法获胜。以下是一种可能的移动序列：\n\n1. Alice 交换 $5$ 和 $6$，得到 $[2,1,3,5,4,6]$。\n2. Bob 将令牌移动到顶点 $5$。\n3. Alice 交换 $1$ 和 $2$，得到 $[1,2,3,5,4,6]$。\n4. Bob 将令牌移动到顶点 $3$。\n5. Alice 交换 $4$ 和 $5$，得到 $[1,2,3,4,5,6]$，并获胜。\n\n在第二个测试用例中，Alice 无法获胜，因为 Bob 可以让游戏无限进行。以下是移动序列：\n\n1. Alice 只能交换 $1$ 和 $3$，得到 $[3,1,2]$。\n2. Bob 将令牌移动到顶点 $1$。\n3. Alice 只能交换 $2$ 和 $3$，得到 $[2,1,3]$。\n4. Bob 将令牌移动到顶点 $2$。\n5. Alice 只能交换 $1$ 和 $3$，得到 $[2,3,1]$。\n6. Bob 将令牌移动到顶点 $3$。\n7. Alice 只能交换 $1$ 和 $2$，得到 $[1,3,2]$。\n8. Bob 将令牌移动到顶点 $2$。\n\n之后序列将永远重复。\n\n在第三个测试用例中，由于排列已经排好序，Alice 立即获胜。",
   "samples": [
     {
       "input": "3\n6 3\n1 3\n3 2\n4 3\n3 6\n5 3\n2 1 3 6 4 5\n3 2\n1 2\n3 2\n1 3 2\n3 2\n1 2\n3 2\n1 2 3\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:03:18.810Z"
+  "fetchedAt": "2026-10-30T23:03:18.810Z",
+  "translatedAt": "2026-11-04T03:26:01.813+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

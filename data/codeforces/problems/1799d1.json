@@ -4,7 +4,7 @@
   "contestId": 1799,
   "index": "D1",
   "title": "Hot Start Up (easy version)",
-  "titleZh": null,
+  "titleZh": "热启动（简单版）",
   "url": "https://codeforces.com/contest/1799/problem/D1",
   "difficulty": 1900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 512,
   "statementMd": "*This is an easy version of the problem. The constraints of $t$, $n$, $k$ are the only difference between versions.*\n\nYou have a device with two CPUs. You also have $k$ programs, numbered $1$ through $k$, that you can run on the CPUs.\n\nThe $i$-th program ($1 \\le i \\le k$) takes $cold_i$ seconds to run on some CPU. However, if the last program we ran on this CPU was also program $i$, it only takes $hot_i$ seconds ($hot_i \\le cold_i$). Note that this only applies if we run program $i$ multiple times consecutively  — if we run program $i$, then some different program, then program $i$ again, it will take $cold_i$ seconds the second time.\n\nYou are given a sequence $a_1, a_2, \\ldots, a_n$ of length $n$, consisting of integers from $1$ to $k$. You need to use your device to run programs $a_1, a_2, \\ldots, a_n$ in sequence. For all $2 \\le i \\le n$, you cannot start running program $a_i$ until program $a_{i - 1}$ has completed.\n\nFind the minimum amount of time needed to run all programs $a_1, a_2, \\ldots, a_n$ in sequence.\n\n## Input\n\nInput consists of multiple test cases. The first line contains a single integer $t$, the number of test cases ($1 \\le t \\le 5000$).\n\nThe first line of each test case contains $n$ and $k$ ($1 \\le n, k \\le 5000$).\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le k$).\n\nThe third line of each test case contains $k$ integers $cold_1, cold_2, \\ldots, cold_k$ ($1 \\le cold_i \\le 10^9$).\n\nThe fourth line of each test case contains $k$ integers $hot_1, hot_2, \\ldots, hot_k$ ($1 \\le hot_i \\le cold_i$).\n\nIt is guaranteed the sum of $n$ and the sum of $k$ over all test cases do not exceed $5000$.\n\n## Output\n\nFor each test case, print the minimum time needed to run all programs in the given order.\n\n## Note\n\nIn the first test case, we can do the following:\n\n- Run program $a_1 = 1$ on CPU $1$. It takes $cold_1 = 3$ seconds to run.\n- Run program $a_2 = 2$ on CPU $2$. It takes $cold_2 = 2$ seconds to run.\n- Run program $a_3 = 2$ on CPU $2$. The last program run on this CPU was also program $2$, so it takes $hot_2 = 1$ second to run.\n\nIn total, we need $3 + 2 + 1 = 6$ seconds to run them all. We can show this is optimal.\n\nIn the second test case, we can use do the following:\n\n- Run program $a_1 = 1$ on CPU $1$. It takes $cold_1 = 5$ seconds to run.\n- Run program $a_2 = 2$ on CPU $2$. It takes $cold_2 = 3$ seconds to run.\n- Run program $a_3 = 1$ on CPU $1$. The last program run on this CPU was also program $1$, so it takes $hot_1 = 2$ seconds to run.\n- Run program $a_4 = 2$ on CPU $2$. The last program run on this CPU was also program $2$, so it takes $hot_2 = 1$ second to run.\n\nIn total, we need $5 + 3 + 2 + 1 = 11$ seconds. We can show this is optimal.",
-  "statementZhMd": null,
+  "statementZhMd": "*这是本题的简单版本。两个版本之间只有 $t$、$n$、$k$ 的约束不同。*\n\n你有一台拥有两个 CPU 的设备。此外，你还有 $k$ 个程序，编号为 $1$ 至 $k$，可以在 CPU 上运行。\n\n第 $i$ 个程序（$1 \\le i \\le k$）在某个 CPU 上运行需要 $cold_i$ 秒。不过，如果上一次在该 CPU 上运行的程序也是程序 $i$，那么只需要 $hot_i$ 秒（$hot_i \\le cold_i$）。注意，这只适用于连续多次运行程序 $i$ 的情况——如果运行程序 $i$ 后运行了其他程序，再次运行程序 $i$ 时，仍需要 $cold_i$ 秒。\n\n给定一个长度为 $n$ 的序列 $a_1, a_2, \\ldots, a_n$，其中每个元素都是 $1$ 到 $k$ 之间的整数。你需要使用设备依次运行程序 $a_1, a_2, \\ldots, a_n$。对于所有 $2 \\le i \\le n$，在程序 $a_{i - 1}$ 完成之前，不能开始运行程序 $a_i$。\n\n求依次运行完所有程序 $a_1, a_2, \\ldots, a_n$ 所需的最短时间。\n\n## 输入格式\n\n输入包含多组测试用例。第一行包含一个整数 $t$，表示测试用例的数量（$1 \\le t \\le 5000$）。\n\n每组测试用例的第一行包含 $n$ 和 $k$（$1 \\le n, k \\le 5000$）。\n\n每组测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le k$）。\n\n每组测试用例的第三行包含 $k$ 个整数 $cold_1, cold_2, \\ldots, cold_k$（$1 \\le cold_i \\le 10^9$）。\n\n每组测试用例的第四行包含 $k$ 个整数 $hot_1, hot_2, \\ldots, hot_k$（$1 \\le hot_i \\le cold_i$）。\n\n保证所有测试用例的 $n$ 之和以及 $k$ 之和均不超过 $5000$。\n\n## 输出格式\n\n对于每组测试用例，输出按照给定顺序运行所有程序所需的最短时间。\n\n## 说明\n\n在第一组测试用例中，可以进行如下操作：\n\n- 在 CPU $1$ 上运行程序 $a_1 = 1$。运行需要 $cold_1 = 3$ 秒。\n- 在 CPU $2$ 上运行程序 $a_2 = 2$。运行需要 $cold_2 = 2$ 秒。\n- 在 CPU $2$ 上运行程序 $a_3 = 2$。上一次在该 CPU 上运行的程序也是程序 $2$，因此运行只需要 $hot_2 = 1$ 秒。\n\n总计需要 $3 + 2 + 1 = 6$ 秒才能运行完所有程序。可以证明这是最优方案。\n\n在第二组测试用例中，可以进行如下操作：\n\n- 在 CPU $1$ 上运行程序 $a_1 = 1$。运行需要 $cold_1 = 5$ 秒。\n- 在 CPU $2$ 上运行程序 $a_2 = 2$。运行需要 $cold_2 = 3$ 秒。\n- 在 CPU $1$ 上运行程序 $a_3 = 1$。上一次在该 CPU 上运行的程序也是程序 $1$，因此运行只需要 $hot_1 = 2$ 秒。\n- 在 CPU $2$ 上运行程序 $a_4 = 2$。上一次在该 CPU 上运行的程序也是程序 $2$，因此运行只需要 $hot_2 = 1$ 秒。\n\n总计需要 $5 + 3 + 2 + 1 = 11$ 秒。可以证明这是最优方案。",
   "samples": [
     {
       "input": "9\n3 2\n1 2 2\n3 2\n2 1\n4 2\n1 2 1 2\n5 3\n2 1\n4 3\n1 2 3 1\n100 100 100\n1 1 1\n5 2\n2 1 2 1 1\n65 45\n54 7\n5 3\n1 3 2 1 2\n2 2 2\n1 1 1\n5 1\n1 1 1 1 1\n1000000000\n999999999\n5 6\n1 6 1 4 1\n3 6 4 1 4 5\n1 1 1 1 4 1\n1 3\n3\n4 5 6\n1 2 3\n8 3\n3 3 3 1 2 3 2 1\n10 10 8\n10 10 5\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:34:19.051Z"
+  "fetchedAt": "2026-10-30T22:34:19.051Z",
+  "translatedAt": "2026-11-04T02:55:48.788+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

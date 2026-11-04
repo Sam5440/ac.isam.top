@@ -4,7 +4,7 @@
   "contestId": 1118,
   "index": "E",
   "title": "Yet Another Ball Problem",
-  "titleZh": null,
+  "titleZh": "又一个舞会问题",
   "url": "https://codeforces.com/contest/1118/problem/E",
   "difficulty": 1700,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "The king of Berland organizes a ball! $n$ pair are invited to the ball, they are numbered from $1$ to $n$. Each pair consists of one man and one woman. Each dancer (either man or woman) has a monochrome costume. The color of each costume is represented by an integer from $1$ to $k$, inclusive.\n\nLet $b_i$ be the color of the man's costume and $g_i$ be the color of the woman's costume in the $i$-th pair. You have to choose a color for each dancer's costume (i.e. values $b_1, b_2, \\dots, b_n$ and $g_1, g_2, \\dots g_n$) in such a way that:\n\n1. for every $i$: $b_i$ and $g_i$ are integers between $1$ and $k$, inclusive;\n2. there are no two completely identical pairs, i.e. no two indices $i, j$ ($i \\ne j$) such that $b_i = b_j$ and $g_i = g_j$ at the same time;\n3. there is no pair such that the color of the man's costume is the same as the color of the woman's costume in this pair, i.e. $b_i \\ne g_i$ for every $i$;\n4. for each two consecutive (adjacent) pairs both man's costume colors and woman's costume colors differ, i.e. for every $i$ from $1$ to $n-1$ the conditions $b_i \\ne b_{i + 1}$ and $g_i \\ne g_{i + 1}$ hold.\n\nLet's take a look at the examples of bad and good color choosing (for $n=4$ and $k=3$, man is the first in a pair and woman is the second):\n\nBad color choosing:\n\n- $(1, 2)$, $(2, 3)$, $(3, 2)$, $(1, 2)$ — contradiction with the second rule (there are equal pairs);\n- $(2, 3)$, $(1, 1)$, $(3, 2)$, $(1, 3)$ — contradiction with the third rule (there is a pair with costumes of the same color);\n- $(1, 2)$, $(2, 3)$, $(1, 3)$, $(2, 1)$ — contradiction with the fourth rule (there are two consecutive pairs such that colors of costumes of men/women are the same).\n\nGood color choosing:\n\n- $(1, 2)$, $(2, 1)$, $(1, 3)$, $(3, 1)$;\n- $(1, 2)$, $(3, 1)$, $(2, 3)$, $(3, 2)$;\n- $(3, 1)$, $(1, 2)$, $(2, 3)$, $(3, 2)$.\n\nYou have to find **any** suitable color choosing or say that no suitable choosing exists.\n\n## Input\n\nThe only line of the input contains two integers $n$ and $k$ ($2 \\le n, k \\le 2 \\cdot 10^5$) — the number of pairs and the number of colors.\n\n## Output\n\nIf it is impossible to find **any** suitable colors choosing, print \"`NO`\".\n\nOtherwise print \"`YES`\" and then the colors of the costumes of pairs in the next $n$ lines. The $i$-th line should contain two integers $b_i$ and $g_i$ — colors of costumes of man and woman in the $i$-th pair, respectively.\n\nYou can print each letter in any case (upper or lower). For example, \"`YeS`\", \"`no`\" and \"`yES`\" are all acceptable.",
-  "statementZhMd": null,
+  "statementZhMd": "贝兰德国王要举办一场舞会！有 $n$ 对舞伴受邀参加舞会，他们的编号从 $1$ 到 $n$。每对舞伴由一名男士和一名女士组成。每位舞者（男士或女士）都穿着单色服装。每件服装的颜色用一个介于 $1$ 和 $k$（含）之间的整数表示。\n\n设第 $i$ 对舞伴中男士服装的颜色为 $b_i$，女士服装的颜色为 $g_i$。你需要为每位舞者的服装选择一种颜色（即确定 $b_1, b_2, \\dots, b_n$ 和 $g_1, g_2, \\dots g_n$），使得：\n\n1. 对于每个 $i$：$b_i$ 和 $g_i$ 都是介于 $1$ 和 $k$（含）之间的整数；\n2. 不存在两对完全相同的舞伴，即不存在两个下标 $i, j$（$i \\ne j$）使得同时满足 $b_i = b_j$ 和 $g_i = g_j$；\n3. 不存在某对舞伴中男士服装颜色与女士服装颜色相同的情况，即对于每个 $i$ 都有 $b_i \\ne g_i$；\n4. 对于任意两对相邻的舞伴，男士服装的颜色和女士服装的颜色都不同，即对于从 $1$ 到 $n-1$ 的每个 $i$，都满足 $b_i \\ne b_{i + 1}$ 和 $g_i \\ne g_{i + 1}$。\n\n让我们来看看一些错误和正确的颜色选择示例（$n=4$ 且 $k=3$，每对中第一个是男士，第二个是女士）：\n\n错误的颜色选择：\n\n- $(1, 2)$、$(2, 3)$、$(3, 2)$、$(1, 2)$ —— 违反第二条规则（存在相同的舞伴）；\n- $(2, 3)$、$(1, 1)$、$(3, 2)$、$(1, 3)$ —— 违反第三条规则（存在一对舞伴的服装颜色相同）；\n- $(1, 2)$、$(2, 3)$、$(1, 3)$、$(2, 1)$ —— 违反第四条规则（存在相邻的两对舞伴，使得男士或女士服装的颜色相同）。\n\n正确的颜色选择：\n\n- $(1, 2)$、$(2, 1)$、$(1, 3)$、$(3, 1)$；\n- $(1, 2)$、$(3, 1)$、$(2, 3)$、$(3, 2)$；\n- $(3, 1)$、$(1, 2)$、$(2, 3)$、$(3, 2)$。\n\n你需要找到**任意一种**满足条件的颜色选择，或者说明不存在这样的选择。\n\n## 输入格式\n\n输入仅一行，包含两个整数 $n$ 和 $k$（$2 \\le n, k \\le 2 \\cdot 10^5$）——舞伴的数量和颜色的数量。\n\n## 输出格式\n\n如果不可能找到**任何**满足条件的颜色选择，输出 \"`NO`\"。\n\n否则输出 \"`YES`\"，然后在接下来的 $n$ 行中输出每对舞伴的服装颜色。第 $i$ 行应包含两个整数 $b_i$ 和 $g_i$，分别表示第 $i$ 对舞伴中男士和女士服装的颜色。\n\n每个字母都可以使用任意大小写形式输出。例如，\"`YeS`\"、\"`no`\" 和 \"`yES`\" 都是可接受的。",
   "samples": [
     {
       "input": "4 3\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:18:18.624Z"
+  "fetchedAt": "2026-11-02T19:18:18.624Z",
+  "translatedAt": "2026-11-04T05:19:45.888+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

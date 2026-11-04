@@ -4,7 +4,7 @@
   "contestId": 516,
   "index": "D",
   "title": "Drazil and Morning Exercise",
-  "titleZh": null,
+  "titleZh": "Drazil 与晨练",
   "url": "https://codeforces.com/contest/516/problem/D",
   "difficulty": 2800,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3500,
   "memoryLimitMb": 256,
   "statementMd": "Drazil and Varda are the earthworm couple. They want to find a good place to bring up their children. They found a good ground containing nature hole. The hole contains many rooms, some pairs of rooms are connected by small tunnels such that earthworm can move between them.\n\nLet's consider rooms and small tunnels as the vertices and edges in a graph. This graph is a tree. In the other words, any pair of vertices has an unique path between them.\n\nEach room that is leaf in the graph is connected with a ground by a vertical tunnel. Here, leaf is a vertex that has only one outgoing edge in the graph.\n\nEach room is large enough only to fit one earthworm living in it. Earthworm can't live in a tunnel.\n\nDrazil and Varda have a plan to educate their children. They want all their children to do morning exercises immediately after getting up!\n\nWhen the morning is coming, all earthworm children get up in the same time, then each of them chooses the **farthest** path to the ground for gathering with others (these children are lazy, so they all want to do exercises as late as possible).\n\nDrazil and Varda want the difference between the time first earthworm child arrives outside and the time the last earthworm child arrives outside to be not larger than $*l*$ (otherwise children will spread around the ground and it will be hard to keep them exercising together).\n\nAlso, The rooms that are occupied by their children should form a connected set. In the other words, for any two rooms that are occupied with earthworm children, all rooms that lie on the path between them should be occupied with earthworm children too.\n\nHow many children Drazil and Varda may have at most in order to satisfy all conditions above? Drazil and Varda want to know the answer for many different choices of $*l*$.\n\n(Drazil and Varda don't live in the hole with their children)\n\n## Input\n\nThe first line contains one integer $*n*$ denoting how many rooms there are in the hole ($2 ≤ *n* ≤ 10^{5}$).\n\nThen there are $*n* - 1$ lines following. Each of these lines contains three integers $*x*$, $*y*$, $*v*$ ($1 ≤ *x*, *y* ≤ *n*$, $1 ≤ *v* ≤ 10^{6}$) denoting there is a small tunnel between room $*x*$ and room $*y*$ that takes time $*v*$ to pass.\n\nSuppose that the time for an earthworm to get out to the ground from any leaf room is the same.\n\nThe next line contains an integer $*q*$ ($1 ≤ *q* ≤ 50$), denoting the number of different value of $*l*$ you need to process.\n\nThe last line contains $*q*$ numbers, each number denoting a value of $*l*$ ($1 ≤ *l* ≤ 10^{11}$).\n\n## Output\n\nYou should print $*q*$ lines. Each line should contain one integer denoting the answer for a corresponding value of $*l*$.\n\n## Note\n\nFor the first sample the hole looks like the following. Rooms 1 and 5 are leaves, so they contain a vertical tunnel connecting them to the ground. The lengths of farthest path from rooms $1 – 5$ to the ground are $12, 9, 7, 9, 12$ respectively.\n\nIf l = 1, we may only choose any single room.\n\nIf l = 2..4, we may choose rooms 2, 3, and 4 as the answer.\n\nIf l = 5, we may choose all rooms.\n\n![image](https://espresso.codeforces.com/a19eea4622aaa2117c2768b62c6b05b331bb653a.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Drazil 和 Varda 是一对蚯蚓夫妇。他们想找一个适合抚养孩子的地方。他们发现了一片有天然洞穴的土地。洞穴中有许多房间，其中一些房间对之间由狭窄的隧道连接，使蚯蚓可以在它们之间移动。\n\n我们将房间和隧道分别视为图中的顶点和边。这个图是一棵树。换句话说，任意两个顶点之间都有且仅有一条路径。\n\n图中的每个叶子房间都通过一条竖直隧道与地面相连。这里，叶子是指图中只有一条边与其相连的顶点。\n\n每个房间都只足够容纳一条蚯蚓。蚯蚓不能生活在隧道中。\n\nDrazil 和 Varda 制定了一个教育孩子的计划。他们希望所有孩子起床后立即进行晨练！\n\n早晨到来时，所有蚯蚓孩子同时起床，然后每个孩子都会选择前往地面的**最远**路径，与其他孩子集合（这些孩子很懒，所以都希望尽可能晚地开始锻炼）。\n\nDrazil 和 Varda 希望第一条蚯蚓孩子到达地面与最后一条蚯蚓孩子到达地面之间的时间差不超过 $*l*$（否则孩子们会分散在地面上，很难让他们一起锻炼）。\n\n此外，被孩子们占据的房间必须构成一个连通集合。换句话说，对于任意两个被蚯蚓孩子占据的房间，连接它们的路径上的所有房间也必须被蚯蚓孩子占据。\n\n为了满足上述所有条件，Drazil 和 Varda 最多可以有多少个孩子？对于 $*l*$ 的许多不同取值，Drazil 和 Varda 都想知道答案。\n\n（Drazil 和 Varda 不与孩子们一起住在洞穴中。）\n\n## 输入格式\n\n第一行包含一个整数 $*n*$，表示洞穴中的房间数（$2 ≤ *n* ≤ 10^{5}$）。\n\n接下来有 $*n* - 1$ 行。每行包含三个整数 $*x*$、$*y*$、$*v*$（$1 ≤ *x*, *y* ≤ *n*$，$1 ≤ *v* ≤ 10^{6}$），表示房间 $*x*$ 和房间 $*y*$ 之间有一条隧道，通过这条隧道需要 $*v*$ 的时间。\n\n假设蚯蚓从任意叶子房间到达地面的时间都相同。\n\n下一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 50$），表示需要处理的不同 $*l*$ 值的数量。\n\n最后一行包含 $*q*$ 个数，每个数表示一个 $*l*$ 的取值（$1 ≤ *l* ≤ 10^{11}$）。\n\n## 输出格式\n\n输出 $*q*$ 行。每行包含一个整数，表示对应取值的答案。\n\n## 说明\n\n对于第一个样例，洞穴的形状如下图所示。房间 1 和 5 是叶子，因此它们通过竖直隧道与地面相连。从房间 $1 – 5$ 到地面的最远路径长度分别为 $12, 9, 7, 9, 12$。\n\n如果 l = 1，我们只能选择任意一个房间。\n\n如果 l = 2..4，我们可以选择房间 2、3 和 4 作为答案。\n\n如果 l = 5，我们可以选择所有房间。\n\n![image](https://espresso.codeforces.com/a19eea4622aaa2117c2768b62c6b05b331bb653a.png)",
   "samples": [
     {
       "input": "5\n1 2 3\n2 3 4\n4 5 3\n3 4 2\n5\n1 2 3 4 5\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:32:06.704Z"
+  "fetchedAt": "2026-10-31T01:32:06.704Z",
+  "translatedAt": "2026-11-04T06:54:35.004+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

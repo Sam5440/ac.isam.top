@@ -4,7 +4,7 @@
   "contestId": 359,
   "index": "E",
   "title": "Neatness",
-  "titleZh": null,
+  "titleZh": "整洁",
   "url": "https://codeforces.com/contest/359/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Simon loves neatness. So before he goes to bed, Simon wants to complete all chores in the house.\n\nSimon's house looks like a rectangular table consisting of $*n*$ rows and $*n*$ columns from above. All rows of the table are numbered from $1$ to $*n*$ from top to bottom. All columns of the table are numbered from $1$ to $*n*$ from left to right. Each cell of the table is a room. Pair $(*x*, *y*)$ denotes the room, located at the intersection of the $*x*$-th row and the $*y*$-th column. For each room we know if the light is on or not there.\n\nInitially Simon is in room $(*x*_{0}, *y*_{0})$. He wants to turn off the lights in all the rooms in the house, and then return to room $(*x*_{0}, *y*_{0})$. Suppose that at the current moment Simon is in the room $(*x*, *y*)$. To reach the desired result, he can perform the following steps:\n\n1. The format of the action is \"`1`\". The action is to turn on the light in room $(*x*, *y*)$. Simon cannot do it if the room already has light on.\n2. The format of the action is \"`2`\". The action is to turn off the light in room $(*x*, *y*)$. Simon cannot do it if the room already has light off.\n3. The format of the action is \"`dir`\" ($*dir*$ is a character). The action is to move to a side-adjacent room in direction $*dir*$. The direction can be left, right, up or down (the corresponding dir is `L`, `R`, `U` or `D`). Additionally, Simon can move only if he see a light in the direction $*dir*$. More formally, if we represent the room, Simon wants to go, as $(*nx*, *ny*)$, there shold be an integer $*k*$ $(*k* > 0)$, that room $(*x* + (*nx* - *x*)*k*, *y* + (*ny* - *y*)*k*)$ has a light. Of course, Simon cannot move out of his house.\n\nHelp Simon, find the sequence of actions that lets him achieve the desired result.\n\n## Input\n\nThe first line contains three positive integers $*n*, *x*_{0}, *y*_{0}$ $(2 ≤ *n* ≤ 500, 1 ≤ *x*_{0}, *y*_{0} ≤ *n*)$.\n\nNext $*n*$ lines contain the description of rooms in the house. The $*i*$-th line contains $*n*$ space-separated integers $*a*_{*i*1}, *a*_{*i*2}, ..., *a*_{*in*}$. If number $*a*_{*ij*}$ equals zero, then room $(*i*, *j*)$ has light off, and if number $*a*_{*ij*}$ equals one, then room $(*i*, *j*)$ has light on. It is guaranteed that at least one room has light on.\n\n## Output\n\nIf there is no desired sequence of actions, print \"`NO`\" (without the quotes). Otherwise, print \"`YES`\" (without the quotes) and the description of the required sequence of actions as a string. Note that you do not have to minimize the length of the sequence of actions but you shouldn't use more than $3·10^{6}$ actions.",
-  "statementZhMd": null,
+  "statementZhMd": "西蒙喜欢整洁。因此，在睡觉前，西蒙想要完成家中的所有家务。\n\n从上方看，西蒙的房子像一张由 $*n*$ 行 $*n*$ 列组成的矩形桌子。桌子的所有行从上到下编号为 $1$ 到 $*n*$，所有列从左到右编号为 $1$ 到 $*n*$。桌子的每个单元格都是一个房间。二元组 $(*x*, *y*)$ 表示位于第 $*x*$ 行与第 $*y*$ 列交叉处的房间。对于每个房间，我们知道其中的灯是否亮着。\n\n开始时，西蒙位于房间 $(*x*_{0}, *y*_{0})$。他希望关掉房子中所有房间的灯，然后回到房间 $(*x*_{0}, *y*_{0})$。假设当前西蒙位于房间 $(*x*, *y*)$。为了达到目标，他可以执行以下操作：\n\n1. 操作格式为“`1`”。该操作会打开房间 $(*x*, *y*)$ 的灯。如果该房间的灯已经亮着，则西蒙不能执行此操作。\n2. 操作格式为“`2`”。该操作会关闭房间 $(*x*, *y*)$ 的灯。如果该房间的灯已经关着，则西蒙不能执行此操作。\n3. 操作格式为“`dir`”（$*dir*$ 是一个字符）。该操作会沿方向 $*dir*$ 移动到一个边相邻的房间。方向可以是左、右、上或下（对应的 dir 分别为 `L`、`R`、`U` 或 `D`）。此外，只有当西蒙能在方向 $*dir*$ 上看到一盏灯时，他才能移动。更严格地说，若将西蒙想要前往的房间表示为 $(*nx*, *ny*)$，则必须存在一个整数 $*k*$（$*k* > 0$），使得房间 $(*x* + (*nx* - *x*)*k*, *y* + (*ny* - *y*)*k*)$ 的灯是亮着的。当然，西蒙不能移动到房子外面。\n\n请帮助西蒙找到一系列操作，使他能够达到目标。\n\n## 输入格式\n\n第一行包含三个正整数 $*n*, *x*_{0}, *y*_{0}$（$2 ≤ *n* ≤ 500, 1 ≤ *x*_{0}, *y*_{0} ≤ *n*$）。\n\n接下来 $*n*$ 行描述房子中的房间。第 $*i*$ 行包含 $*n*$ 个用空格分隔的整数 $*a*_{*i*1}, *a*_{*i*2}, ..., *a*_{*in*}$。如果整数 $*a*_{*ij*}$ 等于零，则房间 $(*i*, *j*)$ 的灯是关着的；如果整数 $*a*_{*ij*}$ 等于一，则房间 $(*i*, *j*)$ 的灯是亮着的。保证至少有一个房间的灯是亮着的。\n\n## 输出格式\n\n如果不存在满足要求的操作序列，输出“`NO`”（不含引号）。否则，输出“`YES`”（不含引号），并在后面输出所需操作序列组成的字符串。注意，你不需要最小化操作序列的长度，但操作次数不应超过 $3·10^{6}$。",
   "samples": [
     {
       "input": "3 1 1\n1 0 0\n0 1 0\n1 0 0\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:56:17.402Z"
+  "fetchedAt": "2026-10-31T01:56:17.402Z",
+  "translatedAt": "2026-11-04T07:17:10.202+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

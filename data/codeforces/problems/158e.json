@@ -4,7 +4,7 @@
   "contestId": 158,
   "index": "E",
   "title": "Phone Talks",
-  "titleZh": null,
+  "titleZh": "电话通话",
   "url": "https://codeforces.com/contest/158/problem/E",
   "difficulty": 1900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Cool J has recently become a businessman Mr. Jackson, and he has to make a lot of phone calls now. Today he has $*n*$ calls planned. For each call we know the moment $*t*_{*i*}$ (in seconds since the start of the day) when it is scheduled to start and its duration $*d*_{*i*}$ (in seconds). All $*t*_{*i*}$ are different. Mr. Jackson is a very important person, so he never dials anybody himself, all calls will be incoming.\n\nMr. Jackson isn't Caesar and he can't do several things at once. If somebody calls him while he hasn't finished the previous conversation, Mr. Jackson puts the new call on hold in the queue. In this case immediately after the end of the current call Mr. Jackson takes the earliest incoming call from the queue and starts the conversation. If Mr. Jackson started the call at the second $*t*$, and the call continues for $*d*$ seconds, then Mr. Jackson is busy at seconds $*t*, *t* + 1, ..., *t* + *d* - 1$, and he can start a new call at second $*t* + *d*$. Note that if Mr. Jackson is not busy talking when somebody calls, he can't put this call on hold.\n\nMr. Jackson isn't Napoleon either, he likes to sleep. So sometimes he allows himself the luxury of ignoring a call, as if it never was scheduled. He can ignore at most $*k*$ calls. Note that a call which comes while he is busy talking can be ignored as well.\n\nWhat is the maximum number of seconds Mr. Jackson can sleep today, assuming that he can choose an arbitrary continuous time segment from the current day (that is, with seconds from the 1-st to the 86400-th, inclusive) when he is not busy talking?\n\nNote that some calls can be continued or postponed to the next day or even later. However, the interval for sleep should be completely within the current day.\n\n## Input\n\nThe first input line contains a pair of integers $*n*$, $*k*$ ($0 ≤ *k* ≤ *n* ≤ 4000$) separated by a space. Following $*n*$ lines contain the description of calls for today. The description of each call is located on the single line and consists of two space-separated integers $*t*_{*i*}$ and $*d*_{*i*}$, ($1 ≤ *t*_{*i*}, *d*_{*i*} ≤ 86400$). All $*t*_{*i*}$ are distinct, the calls are given in the order of strict increasing $*t*_{*i*}$.\n\nScheduled times of calls [$*t*_{*i*}$, $*t*_{*i*} + *d*_{*i*} - 1$] can arbitrarily intersect.\n\n## Output\n\nPrint a number from 0 to 86400, inclusive — the maximally possible number of seconds for Mr. Jackson to sleep today.\n\n## Note\n\nIn the first sample the most convenient way is to ignore the first two calls.\n\nIn the second sample it is best to ignore the third call. In this case Mr. Jackson will have been speaking:\n\n- first call: from 1-st to 20000-th second,\n- second call: from 20001-st to 30000-th second,\n- fourth call: from 30001-st to 40000-th second (the third call is ignored),\n- fifth call: from 80000-th to 139999-th second.\n\nThus, the longest period of free time is from the 40001-th to the 79999-th second.",
-  "statementZhMd": null,
+  "statementZhMd": "酷 J 最近成为了商人杰克逊先生，现在他每天需要拨打许多电话。今天他计划接听 $*n*$ 个电话。对于每个电话，我们知道它计划开始的时刻 $*t*_{*i*}$（从当天开始起经过的秒数）以及通话时长 $*d*_{*i*}$（单位：秒）。所有 $*t*_{*i*}$ 两两不同。杰克逊先生是一位非常重要的人物，因此他从不亲自拨打电话，所有电话都是打进来的。\n\n杰克逊先生不是凯撒，他无法同时做多件事。如果有人在他尚未结束上一次谈话时打来电话，杰克逊先生就会将新电话放入等待队列。此时，当前通话一结束，杰克逊先生就会立即从队列中取出最早打进来的电话并开始交谈。如果杰克逊先生在第 $*t*$ 秒开始通话，并且通话持续 $*d*$ 秒，那么他在第 $*t*, *t* + 1, ..., *t* + *d* - 1$ 秒处于忙碌状态，并可以在第 $*t* + *d*$ 秒开始新的通话。注意，如果有人打来电话时杰克逊先生并未在通话中，那么他无法将这个电话放入等待队列。\n\n杰克逊先生也不是拿破仑，他喜欢睡觉。因此，有时他会允许自己奢侈地忽略一个电话，就好像这个电话从未被安排过一样。他至多可以忽略 $*k*$ 个电话。注意，即使某个电话是在他通话期间打来的，也可以被忽略。\n\n假设杰克逊先生可以从当天选择任意一段连续时间，在这段时间内他都没有通话，那么他今天最多可以睡多少秒？\n\n注意，有些电话可能会持续到第二天或更晚，也有些电话可能会被推迟到第二天或更晚。不过，睡眠时间段必须完全位于当天之内。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$、$*k*$（$0 ≤ *k* ≤ *n* ≤ 4000$），以空格分隔。接下来的 $*n*$ 行包含今天各个电话的描述。每个电话占一行，包含两个以空格分隔的整数 $*t*_{*i*}$ 和 $*d*_{*i*}$（$1 ≤ *t*_{*i*}, *d*_{*i*} ≤ 86400$）。所有 $*t*_{*i*}$ 两两不同，电话按照 $*t*_{*i*}$ 严格递增的顺序给出。\n\n电话的计划时间段 $[*t*_{*i*}, *t*_{*i*} + *d*_{*i*} - 1$] 可以任意相交。\n\n## 输出格式\n\n输出一个 $0$ 到 $86400$（含）之间的整数，即杰克逊先生今天最多可以睡眠的秒数。\n\n## 说明\n\n在第一个样例中，最方便的方法是忽略前两个电话。\n\n在第二个样例中，最好忽略第三个电话。此时，杰克逊先生的通话时间如下：\n\n- 第一个电话：第 1 秒到第 20000 秒；\n- 第二个电话：第 20001 秒到第 30000 秒；\n- 第四个电话：第 30001 秒到第 40000 秒（第三个电话被忽略）；\n- 第五个电话：第 80000 秒到第 139999 秒。\n\n因此，最长的空闲时间段是第 40001 秒到第 79999 秒。",
   "samples": [
     {
       "input": "3 2\n30000 15000\n40000 15000\n50000 15000\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:28:11.273Z"
+  "fetchedAt": "2026-10-31T02:28:11.273Z",
+  "translatedAt": "2026-11-04T07:49:55.933+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,14 +4,14 @@
   "contestId": 1831,
   "index": "E",
   "title": "Hyperregular Bracket Strings",
-  "titleZh": null,
+  "titleZh": "超正规括号序列",
   "url": "https://codeforces.com/contest/1831/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an integer $n$ and $k$ intervals. The $i$-th interval is $[l_i,r_i]$ where $1 \\leq l_i \\leq r_i \\leq n$.\n\nLet us call a **regular** bracket sequence$^{\\dagger,\\ddagger}$ of length $n$ *hyperregular* if for each $i$ such that $1 \\leq i \\leq k$, the substring $\\overline{s_{l_i} s_{l_{i}+1} \\ldots s_{r_i}}$ is also a regular bracket sequence.\n\nYour task is to count the number of hyperregular bracket sequences. Since this number can be really large, you are only required to find it modulo $998\\,244\\,353$.\n\n$^\\dagger$ A bracket sequence is a string containing only the characters \"`(`\" and \"`)`\".\n\n$^\\ddagger$ A bracket sequence is called regular if one can turn it into a valid math expression by adding characters `+` and `1`. For example, sequences `(())()`, `()`, `(()(()))` and the empty string are regular, while `)(`, `(()`, and `(()))(` are not.\n\n## Input\n\nEach test contains multiple test cases. The first line of input contains a single integer $t$ ($1 \\le t \\le 10^5$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le n \\le 3 \\cdot 10^5$, $0 \\le k \\le 3 \\cdot 10^5$) — the length of the hyperregular bracket sequences and the number of intervals respectively.\n\nThe following $k$ lines of each test case contains two integers $l_i$ and $r_i$ ($1 \\le l \\le r \\le n$).\n\nIt is guaranteed that the sum of $n$ across all test cases does not exceed $3 \\cdot 10^5$ and the sum of $k$ across all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the number of hyperregular bracket sequences modulo $998\\,244\\,353$.\n\n## Note\n\n- For the first testcase, the $5$ *hyperregular bracket strings* of length $6$ are: `((()))`, `(()())`, `(())()`, `()(())` and `()()()`.\n- For the second testcase, there are no regular bracket strings of length $5$, and consequently, there are no *hyperregular bracket strings* of length $5$.\n- For the third testcase, there are no hyperregular bracket strings of length $8$ for which the substring $[1 \\ldots 3]$ is a regular bracket string.\n- For the fourth testcase, there $4$ *hyperregular bracket strings* are: `((())(()))`, `((())()())`, `()()((()))` and `()()(()())`",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个整数 $n$ 和 $k$ 个区间。第 $i$ 个区间为 $[l_i,r_i]$，其中 $1 \\leq l_i \\leq r_i \\leq n$。\n\n如果对于每个满足 $1 \\leq i \\leq k$ 的 $i$，子串 $\\overline{s_{l_i} s_{l_{i}+1} \\ldots s_{r_i}}$ 也是一个正规括号序列，则称长度为 $n$ 的**正规**括号序列$^{\\dagger,\\ddagger}$为*超正规*的。\n\n你的任务是统计超正规括号序列的数量。由于这个数量可能非常大，你只需要求其模 $998\\,244\\,353$ 的结果。\n\n$^\\dagger$ 括号序列是一个只包含字符\"`(`\"和\"`)`\"的字符串。\n\n$^\\ddagger$ 如果一个括号序列可以通过添加字符 `+` 和 `1` 将其变成一个合法的数学表达式，则称该括号序列是正规的。例如，序列 `(())()`、`()`、`(()(()))` 和空字符串都是正规的，而 `)(`、`(()` 和 `(()))(` 都不是正规的。\n\n## 输入格式\n\n每个测试包含多个测试用例。输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 10^5$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\leq n \\leq 3 \\cdot 10^5$，$0 \\leq k \\leq 3 \\cdot 10^5$）——超正规括号序列的长度以及区间的数量。\n\n接下来的 $k$ 行中，每行包含两个整数 $l_i$ 和 $r_i$（$1 \\leq l \\leq r \\leq n$）。\n\n保证所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$，$k$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出超正规括号序列数量模 $998\\,244\\,353$ 的结果。\n\n## 说明\n\n- 对于第一个测试用例，长度为 $6$ 的 5 个*超正规括号字符串*为：`((()))`、`(()())`、`(())()`、`()(())` 和 `()()()`。\n- 对于第二个测试用例，不存在长度为 $5$ 的正规括号字符串，因此也不存在长度为 $5$ 的*超正规括号字符串*。\n- 对于第三个测试用例，不存在长度为 $8$ 且子串 $[1 \\ldots 3]$ 是正规括号字符串的超正规括号字符串。\n- 对于第四个测试用例，共有 4 个*超正规括号字符串*：`((())(()))`、`((())()())`、`()()((()))` 和 `()()(()())`。",
   "samples": [
     {
       "input": "7\n6 0\n5 0\n8 1\n1 3\n10 2\n3 4\n6 9\n1000 3\n100 701\n200 801\n300 901\n28 5\n1 12\n3 20\n11 14\n4 9\n18 19\n4 3\n1 4\n1 4\n1 4\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:25:20.303Z"
+  "fetchedAt": "2026-10-30T22:25:20.303Z",
+  "translatedAt": "2026-11-04T02:45:01.432+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

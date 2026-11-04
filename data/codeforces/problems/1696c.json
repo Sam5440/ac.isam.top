@@ -4,7 +4,7 @@
   "contestId": 1696,
   "index": "C",
   "title": "Fishingprince Plays With Array",
-  "titleZh": null,
+  "titleZh": "Fishingprince 玩数组",
   "url": "https://codeforces.com/contest/1696/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Fishingprince is playing with an array $[a_1,a_2,\\dots,a_n]$. He also has a magic number $m$.\n\nHe can do the following two operations on it:\n\n- Select $1\\le i\\le n$ such that $a_i$ is divisible by $m$ (that is, there exists an integer $t$ such that $m \\cdot t = a_i$). Replace $a_i$ with **$m$ copies** of $\\frac{a_i}{m}$. The order of the other elements doesn't change. For example, when $m=2$ and $a=[2,3]$ and $i=1$, $a$ changes into $[1,1,3]$.\n- Select $1\\le i\\le n-m+1$ such that $a_i=a_{i+1}=\\dots=a_{i+m-1}$. Replace these $m$ elements with **a single** $m \\cdot a_i$. The order of the other elements doesn't change. For example, when $m=2$ and $a=[3,2,2,3]$ and $i=2$, $a$ changes into $[3,4,3]$.\n\nNote that the array length might change during the process. The value of $n$ above is defined as the current length of the array (might differ from the $n$ in the input).\n\nFishingprince has another array $[b_1,b_2,\\dots,b_k]$. Please determine if he can turn $a$ into $b$ using any number (possibly zero) of operations.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). Description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1\\le n\\le 5\\cdot 10^4$, $2\\le m\\le 10^9$).\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1\\le a_i\\le 10^9$).\n\nThe third line of each test case contains one integer $k$ ($1\\le k\\le 5\\cdot 10^4$).\n\nThe fourth line of each test case contains $k$ integers $b_1,b_2,\\ldots,b_k$ ($1\\le b_i\\le 10^9$).\n\nIt is guaranteed that the sum of $n+k$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each testcase, print `Yes` if it is possible to turn $a$ into $b$, and `No` otherwise. You can print each letter in any case (upper or lower).\n\n## Note\n\nIn the first test case of the sample, we can do the second operation with $i=2$: $[1,\\color{red}{2,2},4,2]\\to [1,\\color{red}{4},4,2]$.\n\nIn the second testcase of the sample, we can:\n\n- do the second operation with $i=2$: $[1,\\color{red}{2,2},8,2,2]\\to [1,\\color{red}{4},8,2,2]$.\n- do the second operation with $i=4$: $[1,4,8,\\color{red}{2,2}]\\to [1,4,8,\\color{red}{4}]$.\n- do the first operation with $i=3$: $[1,4,\\color{red}{8},4]\\to [1,4,\\color{red}{4,4},4]$.\n- do the second operation with $i=2$: $[1,\\color{red}{4,4},4,4]\\to [1,\\color{red}{8},4,4]$.\n- do the second operation with $i=3$: $[1,8,\\color{red}{4,4}]\\to [1,8,\\color{red}{8}]$.\n- do the second operation with $i=2$: $[1,\\color{red}{8,8}]\\to [1,\\color{red}{16}]$.",
-  "statementZhMd": null,
+  "statementZhMd": "Fishingprince 正在操作一个数组 $[a_1,a_2,\\dots,a_n]$。他还有一个魔法数字 $m$。\n\n他可以对数组执行以下两种操作：\n\n- 选择一个 $1\\le i\\le n$，满足 $a_i$ 能被 $m$ 整除（也就是说，存在一个整数 $t$ 使得 $m \\cdot t = a_i$）。将 $a_i$ 替换为 **$m$ 个** $\\frac{a_i}{m}$。其他元素的顺序不变。例如，当 $m=2$、$a=[2,3]$ 且 $i=1$ 时，$a$ 变为 $[1,1,3]$。\n- 选择一个 $1\\le i\\le n-m+1$，满足 $a_i=a_{i+1}=\\dots=a_{i+m-1}$。将这 $m$ 个元素替换为 **一个** $m \\cdot a_i$。其他元素的顺序不变。例如，当 $m=2$、$a=[3,2,2,3]$ 且 $i=2$ 时，$a$ 变为 $[3,4,3]$。\n\n注意，在操作过程中数组的长度可能会发生变化。上文中的 $n$ 表示数组当前的长度（可能与输入中的 $n$ 不同）。\n\nFishingprince 还有另一个数组 $[b_1,b_2,\\dots,b_k]$。请判断他是否可以通过任意次（也可以是零次）操作将 $a$ 变为 $b$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来给出各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1\\le n\\le 5\\cdot 10^4$，$2\\le m\\le 10^9$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1\\le a_i\\le 10^9$）。\n\n每个测试用例的第三行包含一个整数 $k$（$1\\le k\\le 5\\cdot 10^4$）。\n\n每个测试用例的第四行包含 $k$ 个整数 $b_1,b_2,\\ldots,b_k$（$1\\le b_i\\le 10^9$）。\n\n保证所有测试用例的 $n+k$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果可以将 $a$ 变为 $b$，输出 `Yes`，否则输出 `No`。每个字母可以使用任意大小写形式输出。\n\n## 说明\n\n在样例的第一个测试用例中，我们可以执行第二种操作，取 $i=2$：$[1,\\color{red}{2,2},4,2]\\to [1,\\color{red}{4},4,2]$。\n\n在样例的第二个测试用例中，我们可以依次执行以下操作：\n\n- 执行第二种操作，取 $i=2$：$[1,\\color{red}{2,2},8,2,2]\\to [1,\\color{red}{4},8,2,2]$。\n- 执行第二种操作，取 $i=4$：$[1,4,8,\\color{red}{2,2}]\\to [1,4,8,\\color{red}{4}]$。\n- 执行第一种操作，取 $i=3$：$[1,4,\\color{red}{8},4]\\to [1,4,\\color{red}{4,4},4]$。\n- 执行第二种操作，取 $i=2$：$[1,\\color{red}{4,4},4,4]\\to [1,\\color{red}{8},4,4]$。\n- 执行第二种操作，取 $i=3$：$[1,8,\\color{red}{4,4}]\\to [1,8,\\color{red}{8}]$。\n- 执行第二种操作，取 $i=2$：$[1,\\color{red}{8,8}]\\to [1,\\color{red}{16}]$。",
   "samples": [
     {
       "input": "5\n5 2\n1 2 2 4 2\n4\n1 4 4 2\n6 2\n1 2 2 8 2 2\n2\n1 16\n8 3\n3 3 3 3 3 3 3 3\n4\n6 6 6 6\n8 3\n3 9 6 3 12 12 36 12\n16\n9 3 2 2 2 3 4 12 4 12 4 12 4 12 4 4\n8 3\n3 9 6 3 12 12 36 12\n7\n12 2 4 3 4 12 56\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:00:28.914Z"
+  "fetchedAt": "2026-10-30T23:00:28.914Z",
+  "translatedAt": "2026-11-04T03:22:14.458+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

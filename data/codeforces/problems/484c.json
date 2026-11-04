@@ -4,7 +4,7 @@
   "contestId": 484,
   "index": "C",
   "title": "Strange Sorting",
-  "titleZh": null,
+  "titleZh": "奇怪的排序",
   "url": "https://codeforces.com/contest/484/problem/C",
   "difficulty": 2600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "How many specific orders do you know? Ascending order, descending order, order of ascending length, order of ascending polar angle... Let's have a look at another specific order: $*d*$-sorting. This sorting is applied to the strings of length at least $*d*$, where $*d*$ is some positive integer. The characters of the string are sorted in following manner: first come all the 0-th characters of the initial string, then the 1-st ones, then the 2-nd ones and so on, in the end go all the $(*d* - 1)$-th characters of the initial string. By the $*i*$-th characters we mean all the character whose positions are exactly $*i*$ modulo $*d*$. If two characters stand on the positions with the same remainder of integer division by $*d*$, their relative order after the sorting shouldn't be changed. The string is zero-indexed. For example, for string '`qwerty`':\n\nIts 1-sorting is the string '`qwerty`' (all characters stand on 0 positions),\n\nIts 2-sorting is the string '`qetwry`' (characters '`q`', '`e`' and '`t`' stand on 0 positions and characters '`w`', '`r`' and '`y`' are on 1 positions),\n\nIts 3-sorting is the string '`qrwtey`' (characters '`q`' and '`r`' stand on 0 positions, characters '`w`' and '`t`' stand on 1 positions and characters '`e`' and '`y`' stand on 2 positions),\n\nIts 4-sorting is the string '`qtwyer`',\n\nIts 5-sorting is the string '`qywert`'.\n\nYou are given string $*S*$ of length $*n*$ and $*m*$ shuffling operations of this string. Each shuffling operation accepts two integer arguments $*k*$ and $*d*$ and transforms string $*S*$ as follows. For each $*i*$ from $0$ to $*n* - *k*$ in the increasing order we apply the operation of $*d*$-sorting to the substring $*S*[*i*..*i* + *k* - 1]$. Here $*S*[*a*..*b*]$ represents a substring that consists of characters on positions from $*a*$ to $*b*$ inclusive.\n\nAfter each shuffling operation you need to print string $*S*$.\n\n## Input\n\nThe first line of the input contains a non-empty string $*S*$ of length $*n*$, consisting of lowercase and uppercase English letters and digits from 0 to 9.\n\nThe second line of the input contains integer $*m*$ – the number of shuffling operations ($1 ≤ *m*·*n* ≤ 10^{6}$).\n\nFollowing $*m*$ lines contain the descriptions of the operations consisting of two integers $*k*$ and $*d*$ ($1 ≤ *d* ≤ *k* ≤ *n*$).\n\n## Output\n\nAfter each operation print the current state of string $*S*$.\n\n## Note\n\nHere is detailed explanation of the sample. The first modification is executed with arguments $*k* = 4$, $*d* = 2$. That means that you need to apply 2-sorting for each substring of length 4 one by one moving from the left to the right. The string will transform in the following manner:\n\n`qwerty` $→$ `qewrty` $→$ `qerwty` $→$ `qertwy`\n\nThus, string $*S*$ equals '`qertwy`' at the end of first query.\n\nThe second modification is executed with arguments $*k* = 6$, $*d* = 3$. As a result of this operation the whole string $*S*$ is replaced by its 3-sorting:\n\n`qertwy` $→$ `qtewry`\n\nThe third modification is executed with arguments $*k* = 5$, $*d* = 2$.\n\n`qtewry` $→$ `qertwy` $→$ `qetyrw`",
-  "statementZhMd": null,
+  "statementZhMd": "你知道多少种特殊的顺序？升序、降序、长度升序、极角升序……现在来看看另一种特殊的顺序：$*d*$-排序。这种排序应用于长度至少为 $*d*$ 的字符串，其中 $*d*$ 是某个正整数。字符串中的字符按照以下方式排序：首先是原字符串中所有第 0 个字符，然后是所有第 1 个字符，接着是所有第 2 个字符，依此类推，最后是原字符串中所有第 $(*d* - 1)$ 个字符。这里所说的第 $*i*$ 个字符，是指所有位置对 $*d*$ 取模后恰好等于 $*i*$ 的字符。如果两个字符所在位置除以 $*d*$ 的余数相同，则排序后它们的相对顺序不应改变。字符串采用从 0 开始的下标。\n\n例如，对于字符串 `qwerty`：\n\n其 1-排序结果为字符串 `qwerty`（所有字符都位于第 0 个位置）；\n\n其 2-排序结果为字符串 `qetwry`（字符 `q`、`e` 和 `t` 位于第 0 个位置，字符 `w`、`r` 和 `y` 位于第 1 个位置）；\n\n其 3-排序结果为字符串 `qrwtey`（字符 `q` 和 `r` 位于第 0 个位置，字符 `w` 和 `t` 位于第 1 个位置，字符 `e` 和 `y` 位于第 2 个位置）；\n\n其 4-排序结果为字符串 `qtwyer`；\n\n其 5-排序结果为字符串 `qywert`。\n\n给定一个长度为 $*n*$ 的字符串 $*S*$，以及对该字符串进行的 $*m*$ 次洗牌操作。每次洗牌操作接收两个整数参数 $*k*$ 和 $*d*$，并按照以下方式变换字符串 $*S*$：对于从 $0$ 到 $*n* - *k*$ 的每个 $*i*$，按递增顺序对连续子串 $*S*[*i*..*i* + *k* - 1]$ 应用 $*d*$-排序。这里，$*S*[*a*..*b*]$ 表示由位置从 $*a*$ 到 $*b*$（包含两端）上的字符组成的子串。\n\n每次洗牌操作后，都需要输出字符串 $*S*$。\n\n## 输入\n\n输入第一行包含一个非空字符串 $*S*$，其长度为 $*n*$，由大小写英文字母和数字 0 至 9 组成。\n\n输入第二行包含整数 $*m*$ —— 洗牌操作的次数（$1 ≤ *m*·*n* ≤ 10^{6}$）。\n\n接下来的 $*m*$ 行每行包含一次操作的描述，由两个整数 $*k*$ 和 $*d*$ 组成（$1 ≤ *d* ≤ *k* ≤ *n*$）。\n\n## 输出\n\n每次操作后输出字符串 $*S*$ 的当前状态。\n\n## 说明\n\n下面是样例的详细解释。第一次修改使用参数 $*k* = 4$、$*d* = 2$ 执行。这意味着需要从左到右依次对每个长度为 4 的子串应用 2-排序。字符串将按以下方式变化：\n\n`qwerty` $→$ `qewrty` $→$ `qerwty` $→$ `qertwy`\n\n因此，在第一次询问结束时，字符串 $*S*$ 等于 `qertwy`。\n\n第二次修改使用参数 $*k* = 6$、$*d* = 3$ 执行。因此，整个字符串被替换为其 3-排序结果：\n\n`qertwy` $→$ `qtewry`\n\n第三次修改使用参数 $*k* = 5$、$*d* = 2$ 执行。\n\n`qtewry` $→$ `qertwy` $→$ `qetyrw`",
   "samples": [
     {
       "input": "qwerty\n3\n4 2\n6 3\n5 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:35:43.153Z"
+  "fetchedAt": "2026-10-31T01:35:43.153Z",
+  "translatedAt": "2026-11-04T06:59:52.689+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

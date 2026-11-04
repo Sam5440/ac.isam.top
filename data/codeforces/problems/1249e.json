@@ -4,7 +4,7 @@
   "contestId": 1249,
   "index": "E",
   "title": "By Elevator or Stairs?",
-  "titleZh": null,
+  "titleZh": "乘电梯还是走楼梯？",
   "url": "https://codeforces.com/contest/1249/problem/E",
   "difficulty": 1700,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are planning to buy an apartment in a $n$-floor building. The floors are numbered from $1$ to $n$ from the bottom to the top. At first for each floor you want to know the minimum total time to reach it from the first (the bottom) floor.\n\nLet:\n\n- $a_i$ for all $i$ from $1$ to $n-1$ be the time required to go from the $i$-th floor to the $(i+1)$-th one (and from the $(i+1)$-th to the $i$-th as well) using the **stairs**;\n- $b_i$ for all $i$ from $1$ to $n-1$ be the time required to go from the $i$-th floor to the $(i+1)$-th one (and from the $(i+1)$-th to the $i$-th as well) using the **elevator**, also there is a value $c$ — time overhead for elevator usage (you need to wait for it, the elevator doors are too slow!).\n\nIn one **move**, you can go from the floor you are staying at $x$ to any floor $y$ ($x \\ne y$) in two different ways:\n\n- If you are using the stairs, just sum up the corresponding values of $a_i$. Formally, it will take $\\sum\\limits_{i=min(x, y)}^{max(x, y) - 1} a_i$ time units.\n- If you are using the elevator, just sum up $c$ and the corresponding values of $b_i$. Formally, it will take $c + \\sum\\limits_{i=min(x, y)}^{max(x, y) - 1} b_i$ time units.\n\nYou can perform as many **moves** as you want (possibly zero).\n\nSo your task is for each $i$ to determine the minimum total time it takes to reach the $i$-th floor from the $1$-st (bottom) floor.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $c$ ($2 \\le n \\le 2 \\cdot 10^5, 1 \\le c \\le 1000$) — the number of floors in the building and the time overhead for the elevator rides.\n\nThe second line of the input contains $n - 1$ integers $a_1, a_2, \\dots, a_{n-1}$ ($1 \\le a_i \\le 1000$), where $a_i$ is the time required to go from the $i$-th floor to the $(i+1)$-th one (and from the $(i+1)$-th to the $i$-th as well) using the stairs.\n\nThe third line of the input contains $n - 1$ integers $b_1, b_2, \\dots, b_{n-1}$ ($1 \\le b_i \\le 1000$), where $b_i$ is the time required to go from the $i$-th floor to the $(i+1)$-th one (and from the $(i+1)$-th to the $i$-th as well) using the elevator.\n\n## Output\n\nPrint $n$ integers $t_1, t_2, \\dots, t_n$, where $t_i$ is the minimum total time to reach the $i$-th floor from the first floor if you can perform as many **moves** as you want.",
-  "statementZhMd": null,
+  "statementZhMd": "你计划购买一栋 $n$ 层建筑中的一套公寓。楼层从底到顶编号为 $1$ 到 $n$。首先，对于每一层，你想知道从第一层（底层）到达该层所需的最短总时间。\n\n设：\n\n- 对于从 $1$ 到 $n-1$ 的所有 $i$，$a_i$ 表示使用**楼梯**从第 $i$ 层到第 $(i+1)$ 层（以及从第 $(i+1)$ 层到第 $i$ 层）所需的时间；\n- 对于从 $1$ 到 $n-1$ 的所有 $i$，$b_i$ 表示使用**电梯**从第 $i$ 层到第 $(i+1)$ 层（以及从第 $(i+1)$ 层到第 $i$ 层）所需的时间，此外还有一个值 $c$，表示使用电梯的额外时间（你需要等待电梯，而且电梯门太慢了！）。\n\n在一次**移动**中，你可以通过以下两种不同的方式之一，从当前所在的楼层 $x$ 前往任意楼层 $y$（$x \\ne y$）：\n\n- 如果使用楼梯，只需将相应的 $a_i$ 值相加。形式化地说，所需时间为 $\\sum\\limits_{i=min(x, y)}^{max(x, y) - 1} a_i$ 个时间单位。\n- 如果使用电梯，只需将 $c$ 与相应的 $b_i$ 值相加。形式化地说，所需时间为 $c + \\sum\\limits_{i=min(x, y)}^{max(x, y) - 1} b_i$ 个时间单位。\n\n你可以进行任意次**移动**（也可以一次都不进行）。\n\n因此，你的任务是：对于每个 $i$，确定从第一层（底层）到达第 $i$ 层所需的最短总时间。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $c$（$2 \\le n \\le 2 \\cdot 10^5$，$1 \\le c \\le 1000$）——建筑中的楼层数以及乘坐电梯的额外时间。\n\n输入的第二行包含 $n - 1$ 个整数 $a_1, a_2, \\dots, a_{n-1}$（$1 \\le a_i \\le 1000$），其中 $a_i$ 表示使用楼梯从第 $i$ 层到第 $(i+1)$ 层（以及从第 $(i+1)$ 层到第 $i$ 层）所需的时间。\n\n输入的第三行包含 $n - 1$ 个整数 $b_1, b_2, \\dots, b_{n-1}$（$1 \\le b_i \\le 1000$），其中 $b_i$ 表示使用电梯从第 $i$ 层到第 $(i+1)$ 层（以及从第 $(i+1)$ 层到第 $i$ 层）所需的时间。\n\n## 输出格式\n\n输出 $n$ 个整数 $t_1, t_2, \\dots, t_n$，其中 $t_i$ 表示在可以进行任意次**移动**的情况下，从第一层到达第 $i$ 层所需的最短总时间。",
   "samples": [
     {
       "input": "10 2\n7 6 18 6 16 18 1 17 17\n6 9 3 10 9 1 10 1 5\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:02:38.620Z"
+  "fetchedAt": "2026-11-02T19:02:38.620Z",
+  "translatedAt": "2026-11-04T05:00:26.830+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,14 +4,14 @@
   "contestId": 1130,
   "index": "E",
   "title": "Wrong Answer",
-  "titleZh": null,
+  "titleZh": "错误答案",
   "url": "https://codeforces.com/contest/1130/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Consider the following problem: given an array $a$ containing $n$ integers (indexed from $0$ to $n-1$), find $\\max\\limits_{0 \\leq l \\leq r \\leq n-1} \\sum\\limits_{l \\leq i \\leq r} (r-l+1) \\cdot a_i$. In this problem, $1 \\leq n \\leq 2\\,000$ and $|a_i| \\leq 10^6$.\n\nIn an attempt to solve the problem described, Alice quickly came up with a blazing-fast greedy algorithm and coded it. Her implementation in pseudocode is as follows:\n\n```\nfunction find_answer(n, a)\n    # Assumes n is an integer between 1 and 2000, inclusive\n    # Assumes a is a list containing n integers: a[0], a[1], ..., a[n-1]\n    res = 0\n    cur = 0\n    k = -1\n    for i = 0 to i = n-1\n        cur = cur + a[i]\n        if cur < 0\n            cur = 0\n            k = i\n        res = max(res, (i-k)*cur)\n    return res\n```\n\nAlso, as you can see, Alice's idea is not entirely correct. For example, suppose $n = 4$ and $a = [6, -8, 7, -42]$. Then, `find_answer(n, a)` would return $7$, but the correct answer is $3 \\cdot (6-8+7) = 15$.\n\nYou told Alice that her solution is incorrect, but she did not believe what you said.\n\nGiven an integer $k$, you are to find any sequence $a$ of $n$ integers such that the correct answer and the answer produced by Alice's algorithm differ by exactly $k$. Note that although the choice of $n$ and the content of the sequence is yours, you must still follow the constraints earlier given: that $1 \\leq n \\leq 2\\,000$ and that the absolute value of each element does not exceed $10^6$. If there is no such sequence, determine so.\n\n## Input\n\nThe first and only line contains one integer $k$ ($1 \\leq k \\leq 10^9$).\n\n## Output\n\nIf there is no sought sequence, print \"`-1`\".\n\nOtherwise, in the first line, print one integer $n$ ($1 \\leq n \\leq 2\\,000$), denoting the number of elements in the sequence.\n\nThen, in the second line, print $n$ space-separated integers: $a_0, a_1, \\ldots, a_{n-1}$ ($|a_i| \\leq 10^6$).\n\n## Note\n\nThe first sample corresponds to the example given in the problem statement.\n\nIn the second sample, one answer is $n = 7$ with $a = [30, -12, -99, 123, -2, 245, -300]$, in which case `find_answer(n, a)` returns $1098$, while the correct answer is $1710$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n考虑以下问题：给定一个包含 $n$ 个整数的数组 $a$（下标从 $0$ 到 $n-1$），求 $\\max\\limits_{0 \\leq l \\leq r \\leq n-1} \\sum\\limits_{l \\leq i \\leq r} (r-l+1) \\cdot a_i$。在本题中，$1 \\leq n \\leq 2\\,000$ 且 $|a_i| \\leq 10^6$。\n\n为了尝试解决上述问题，Alice 很快想出了一个极其快速的贪心算法并将其实现。她的伪代码如下：\n\n```\nfunction find_answer(n, a)\n    # Assumes n is an integer between 1 and 2000, inclusive\n    # Assumes a is a list containing n integers: a[0], a[1], ..., a[n-1]\n    res = 0\n    cur = 0\n    k = -1\n    for i = 0 to i = n-1\n        cur = cur + a[i]\n        if cur < 0\n            cur = 0\n            k = i\n        res = max(res, (i-k)*cur)\n    return res\n```\n\n然而，正如你所看到的，Alice 的想法并不完全正确。例如，假设 $n = 4$ 且 $a = [6, -8, 7, -42]$。此时，`find_answer(n, a)` 将返回 $7$，但正确答案是 $3 \\cdot (6-8+7) = 15$。\n\n你告诉 Alice 她的解法是错误的，但她并不相信你。\n\n给定一个整数 $k$，请你找出任意一个长度为 $n$ 的整数序列 $a$，使得正确答案与 Alice 的算法得到的答案恰好相差 $k$。注意，虽然 $n$ 和序列的内容由你决定，但仍必须满足前面给出的约束：$1 \\leq n \\leq 2\\,000$，且每个元素的绝对值不超过 $10^6$。如果不存在这样的序列，请判定这一情况。\n\n## 输入格式\n\n唯一一行包含一个整数 $k$（$1 \\leq k \\leq 10^9$）。\n\n## 输出格式\n\n如果不存在所需的序列，输出 `-1`。\n\n否则，第一行输出一个整数 $n$（$1 \\leq n \\leq 2\\,000$），表示序列中的元素个数。\n\n然后，第二行输出 $n$ 个以空格分隔的整数：$a_0, a_1, \\ldots, a_{n-1}$（$|a_i| \\leq 10^6$）。\n\n## 说明\n\n第一个样例对应题目描述中给出的例子。\n\n在第二个样例中，一种答案是 $n = 7$，$a = [30, -12, -99, 123, -2, 245, -300]$。此时，`find_answer(n, a)` 返回 $1098$，而正确答案是 $1710$。",
   "samples": [
     {
       "input": "8\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:14:24.735Z"
+  "fetchedAt": "2026-10-31T00:14:24.735Z",
+  "translatedAt": "2026-11-04T05:19:52.510+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

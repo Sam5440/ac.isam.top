@@ -4,7 +4,7 @@
   "contestId": 391,
   "index": "B",
   "title": "Word Folding",
-  "titleZh": null,
+  "titleZh": "折叠字符串",
   "url": "https://codeforces.com/contest/391/problem/B",
   "difficulty": null,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*You will receive 5 points for solving this problem.*\n\nManao has invented a new operation on strings that is called folding. Each fold happens between a pair of consecutive letters and places the second part of the string above first part, running in the opposite direction and aligned to the position of the fold. Using this operation, Manao converts the string into a structure that has one more level than there were fold operations performed. See the following examples for clarity.\n\nWe will denote the positions of folds with '`|`' characters. For example, the word \"`ABRACADABRA`\" written as \"`AB|RACA|DAB|RA`\" indicates that it has been folded three times: first, between the leftmost pair of '`B`' and '`R`' letters; second, between '`A`' and '`D`'; and third, between the rightmost pair of '`B`' and '`R`' letters. Here are several examples of folded strings:\n\n```\n\"ABCDEF|GHIJK\" |  \"A|BCDEFGHIJK\" |  \"AB|RACA|DAB|RA\" |  \"X|XXXXX|X|X|XXXXXX\"\n               |                 |                   |       XXXXXX\n    KJIHG      |   KJIHGFEDCB    |      AR           |       X\n   ABCDEF      |            A    |     DAB           |       X\n               |                 |     ACAR          |       XXXXX\n               |                 |       AB          |           X\n```\n\nOne last example for \"`ABCD|EFGH|IJ|K`\":\n\n```\n K\nIJ\nHGFE\nABCD\n```\n\nManao noticed that each folded string can be viewed as several piles of letters. For instance, in the previous example, there are four piles, which can be read as \"`AHI`\", \"`BGJK`\", \"`CF`\", and \"`DE`\" from bottom to top. Manao wonders what is the highest pile of identical letters he can build using fold operations on a given word. Note that the pile should not contain gaps and should start at the bottom level. For example, in the rightmost of the four examples above, none of the piles would be considered valid since each of them has gaps, starts above the bottom level, or both.\n\n## Input\n\nThe input will consist of one line containing a single string of $*n*$ characters with $1 ≤ *n* ≤ 1000$ and no spaces. All characters of the string will be uppercase letters.\n\n*This problem doesn't have subproblems. You will get 5 points for the correct submission.*\n\n## Output\n\nPrint a single integer — the size of the largest pile composed of identical characters that can be seen in a valid result of folding operations on the given string.\n\n## Note\n\nConsider the first example. Manao can create a pile of three '`A`'s using the folding \"`AB|RACAD|ABRA`\", which results in the following structure:\n\n```\nABRA\nDACAR\n   AB\n```\n\nIn the second example, Manao can create a pile of three '`B`'s using the following folding: \"`AB|BB|CBDB`\".\n\n```\nCBDB\nBB\nAB\n```\n\nAnother way for Manao to create a pile of three '`B`'s with \"`ABBBCBDB`\" is the following folding: \"`AB|B|BCBDB`\".\n\n```\n BCBDB\n B\nAB\n```\n\nIn the third example, there are no folds performed and the string is just written in one line.",
-  "statementZhMd": null,
+  "statementZhMd": "*解决本题可获得 5 分。*\n\nManao 发明了一种针对字符串的新操作，称为折叠。每次折叠发生在一对相邻字符之间：将字符串的后半部分翻转后放置在前半部分的上方，并使其与折痕的位置对齐。通过这一操作，Manao 将字符串变成一个结构，其层数比执行折叠操作的次数多一层。下面的例子可以帮助理解。\n\n我们用 '`|`' 字符表示折痕的位置。例如，将单词 \"`ABRACADABRA`\" 写成 \"`AB|RACA|DAB|RA`\"，表示它被折叠了三次：第一次在最左侧的 '`B`' 和 '`R`' 之间；第二次在 '`A`' 和 '`D`' 之间；第三次在最右侧的 '`B`' 和 '`R`' 之间。下面是一些折叠字符串的例子：\n\n```\n\"ABCDEF|GHIJK\" |  \"A|BCDEFGHIJK\" |  \"AB|RACA|DAB|RA\" |  \"X|XXXXX|X|X|XXXXXX\"\n               |                 |                   |       XXXXXX\n    KJIHG      |   KJIHGFEDCB    |      AR           |       X\n   ABCDEF      |            A    |     DAB           |       X\n               |                 |     ACAR          |       XXXXX\n               |                 |       AB          |           X\n```\n\n最后，再看一个 \"`ABCD|EFGH|IJ|K`\" 的例子：\n\n```\n K\nIJ\nHGFE\nABCD\n```\n\nManao 注意到，每个折叠后的字符串都可以看作若干个字母堆。例如，在上一个例子中有四堆字母，从下到上分别可以读作 \"`AHI`\"、\"`BGJK`\"、\"`CF`\" 和 \"`DE`\"。Manao 想知道，对于给定的单词，通过折叠操作，他最多能构造出多高的、由相同字母组成的字母堆。注意，字母堆中不能有空隙，并且必须从最底层开始。例如，在上面四个例子的最右侧例子中，没有任何一堆可以被视为有效字母堆，因为它们存在空隙、不是从最底层开始，或同时满足这两种情况。\n\n## 输入格式\n\n输入包含一行，其中有一个由 $*n*$ 个字符组成的字符串，满足 $1 ≤ *n* ≤ 1000$，且不含空格。字符串中的所有字符均为大写字母。\n\n*本题没有子任务。提交正确的程序可获得 5 分。*\n\n## 输出格式\n\n输出一个整数——在对给定单词进行折叠操作后得到的某个有效结果中，所能出现的由相同字符组成的最大字母堆的大小。\n\n## 说明\n\n考虑第一个例子。Manao 可以通过如下折叠方式构造出由三个 '`A`' 组成的字母堆：\"`AB|RACAD|ABRA`\"。折叠后得到以下结构：\n\n```\nABRA\nDACAR\n   AB\n```\n\n在第二个例子中，Manao 可以通过以下折叠方式构造出由三个 '`B`' 组成的字母堆：\"`AB|BB|CBDB`\"。\n\n```\nCBDB\nBB\nAB\n```\n\n对于 \"`ABBBCBDB`\"，Manao 还可以通过如下折叠方式构造出由三个 '`B`' 组成的字母堆：\"`AB|B|BCBDB`\"。\n\n```\n BCBDB\n B\nAB\n```\n\n在第三个例子中，没有执行折叠操作，字符串只是在一行中写出。",
   "samples": [
     {
       "input": "ABRACADABRA\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T20:07:45.751Z"
+  "fetchedAt": "2026-11-02T20:07:45.751Z",
+  "translatedAt": "2026-11-04T07:16:19.048+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

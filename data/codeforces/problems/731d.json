@@ -4,7 +4,7 @@
   "contestId": 731,
   "index": "D",
   "title": "80-th Level Archeology",
-  "titleZh": null,
+  "titleZh": "第80层考古学",
   "url": "https://codeforces.com/contest/731/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Archeologists have found a secret pass in the dungeon of one of the pyramids of Cycleland. To enter the treasury they have to open an unusual lock on the door. The lock consists of $*n*$ words, each consisting of some hieroglyphs. The wall near the lock has a round switch. Each rotation of this switch changes the hieroglyphs according to some rules. The instruction nearby says that the door will open only if words written on the lock would be sorted in *lexicographical order* (the definition of lexicographical comparison in given in notes section).\n\nThe rule that changes hieroglyphs is the following. One clockwise rotation of the round switch replaces each hieroglyph with the next hieroglyph in alphabet, i.e. hieroglyph $*x*$ ($1 ≤ *x* ≤ *c* - 1$) is replaced with hieroglyph $(*x* + 1)$, and hieroglyph $*c*$ is replaced with hieroglyph $1$.\n\nHelp archeologist determine, how many clockwise rotations they should perform in order to open the door, or determine that this is impossible, i.e. no cyclic shift of the alphabet will make the sequence of words sorted lexicographically.\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*c*$ ($2 ≤ *n* ≤ 500 000$, $1 ≤ *c* ≤ 10^{6}$) — the number of words, written on the lock, and the number of different hieroglyphs.\n\nEach of the following $*n*$ lines contains the description of one word. The $*i*$-th of these lines starts with integer $*l*_{*i*}$ ($1 ≤ *l*_{*i*} ≤ 500 000$), that denotes the length of the $*i*$-th word, followed by $*l*_{*i*}$ integers $*w*_{*i*, 1}$, $*w*_{*i*, 2}$, ..., $*w*_{*i*, *l*_{*i*}}$ ($1 ≤ *w*_{*i*, *j*} ≤ *c*$) — the indices of hieroglyphs that make up the $*i*$-th word. Hieroglyph with index $1$ is the smallest in the alphabet and with index $*c*$ — the biggest.\n\nIt's guaranteed, that the total length of all words doesn't exceed $10^{6}$.\n\n## Output\n\nIf it is possible to open the door by rotating the round switch, print integer $*x*$ ($0 ≤ *x* ≤ *c* - 1$) that defines the required number of clockwise rotations. If there are several valid $*x*$, print any of them.\n\nIf it is impossible to open the door by this method, print $- 1$.\n\n## Note\n\nWord $*a*_{1}, *a*_{2}, ..., *a*_{*m*}$ of length $*m*$ is *lexicographically not greater* than word $*b*_{1}, *b*_{2}, ..., *b*_{*k*}$ of length $*k*$, if one of two conditions hold:\n\n- at first position $*i*$, such that $*a*_{*i*} ≠ *b*_{*i*}$, the character $*a*_{*i*}$ goes earlier in the alphabet than character $*b*_{*i*}$, i.e. $*a*$ has smaller character in the first position where they differ;\n- if there is no such position $*i*$ and $*m* ≤ *k*$, i.e. the first word is a prefix of the second or two words are equal.\n\nThe sequence of words is said to be sorted in lexicographical order if each word (except the last one) is lexicographically not greater than the next word.\n\nIn the first sample, after the round switch is rotated $1$ position clockwise the words look as follows:\n\n```\n1 3\n2\n3 1 2\n3 1 2 3\n```\n\nIn the second sample, words are already sorted in lexicographical order.\n\nIn the last sample, one can check that no shift of the alphabet will work.",
-  "statementZhMd": null,
+  "statementZhMd": "考古学家在 Cycleland 的一座金字塔地牢中发现了一条秘密通道。为了进入宝库，他们必须打开门上的一种特殊锁。锁由 $*n*$ 个单词组成，每个单词由一些象形文字构成。锁附近的墙上有一个圆形开关。每旋转一次这个开关，象形文字都会按照某些规则发生变化。旁边的说明写着：只有当锁上写的单词按*字典序*排列时，门才会打开（字典序比较的定义见“说明”部分）。\n\n改变象形文字的规则如下。顺时针旋转圆形开关一次，会将每个象形文字替换为字母表中的下一个象形文字，即象形文字 $*x*$（$1 ≤ *x* ≤ *c* - 1$）会被替换为象形文字 $(*x* + 1)$，而象形文字 $*c*$ 会被替换为象形文字 $1$。\n\n请帮助考古学家确定他们需要顺时针旋转多少次才能打开门，或者判断这是不可能的，即不存在任何字母表的循环移位能使单词序列按字典序排列。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*c*$（$2 ≤ *n* ≤ 500 000$，$1 ≤ *c* ≤ 10^{6}$）——锁上写有的单词数量，以及不同象形文字的数量。\n\n接下来的 $*n*$ 行中，每行描述一个单词。第 $*i*$ 行首先包含整数 $*l*_{*i*}$（$1 ≤ *l*_{*i*} ≤ 500 000$），表示第 $*i*$ 个单词的长度，随后是 $*l*_{*i*}$ 个整数 $*w*_{*i*, 1}$、$*w*_{*i*, 2}$、...、$*w*_{*i*, *l*_{*i*}}$（$1 ≤ *w*_{*i*, *j*} ≤ *c*$）——组成第 $*i*$ 个单词的象形文字的编号。编号为 $1$ 的象形文字是字母表中最小的，编号为 $*c*$ 的象形文字是最大的。\n\n保证所有单词的总长度不超过 $10^{6}$。\n\n## 输出格式\n\n如果可以通过旋转圆形开关打开门，输出整数 $*x*$（$0 ≤ *x* ≤ *c* - 1$），表示需要顺时针旋转的次数。如果有多个符合条件的 $*x*$，输出其中任意一个。\n\n如果无法通过这种方式打开门，输出 $- 1$。\n\n## 说明\n\n长度为 $*m*$ 的单词 $*a*_{1}, *a*_{2}, ..., *a*_{*m*}$ 按*字典序不大于*长度为 $*k*$ 的单词 $*b*_{1}, *b*_{2}, ..., *b*_{*k*}$，当且仅当以下两个条件之一成立：\n\n- 在满足 $*a*_{*i*} ≠ *b*_{*i*}$ 的第一个位置 $*i*$，字符 $*a*_{*i*}$ 在字母表中位于字符 $*b*_{*i*}$ 之前，即 $*a*$ 在第一个不同的位置具有更小的字符；\n- 不存在这样的位置 $*i*$，且 $*m* ≤ *k*$，即第一个单词是第二个单词的前缀，或者两个单词相等。\n\n如果每个单词（最后一个除外）按字典序都不大于下一个单词，则称单词序列按字典序排列。\n\n在第一个样例中，顺时针旋转圆形开关 $1$ 次后，单词如下：\n\n```\n1 3\n2\n3 1 2\n3 1 2 3\n```\n\n在第二个样例中，单词已经按字典序排列。\n\n在最后一个样例中，可以验证不存在任何字母表移位能够满足条件。",
   "samples": [
     {
       "input": "4 3\n2 3 2\n1 1\n3 2 3 1\n4 2 3 1 2\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:03:02.149Z"
+  "fetchedAt": "2026-10-31T01:03:02.149Z",
+  "translatedAt": "2026-11-04T06:24:22.608+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

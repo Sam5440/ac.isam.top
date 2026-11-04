@@ -4,7 +4,7 @@
   "contestId": 915,
   "index": "G",
   "title": "Coprime Arrays",
-  "titleZh": null,
+  "titleZh": "互质数组",
   "url": "https://codeforces.com/contest/915/problem/G",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3500,
   "memoryLimitMb": 256,
   "statementMd": "Let's call an array $*a*$ of size $*n*$ *coprime* iff $*gcd*(*a*_{1}, *a*_{2}, ..., *a*_{*n*}) = 1$, where $*gcd*$ is the greatest common divisor of the arguments.\n\nYou are given two numbers $*n*$ and $*k*$. For each $*i*$ ($1 ≤ *i* ≤ *k*$) you have to determine the number of *coprime* arrays $*a*$ of size $*n*$ such that for every $*j*$ ($1 ≤ *j* ≤ *n*$) $1 ≤ *a*_{*j*} ≤ *i*$. Since the answers can be very large, you have to calculate them modulo $10^{9} + 7$.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*k*$ ($1 ≤ *n*, *k* ≤ 2·10^{6}$) — the size of the desired arrays and the maximum upper bound on elements, respectively.\n\n## Output\n\nSince printing $2·10^{6}$ numbers may take a lot of time, you have to output the answer in such a way:\n\nLet $*b*_{*i*}$ be the number of *coprime* arrays with elements in range $[1, *i*]$, taken modulo $10^{9} + 7$. You have to print ![image](https://espresso.codeforces.com/3e887a99f7b0f325f81554eb1527835390defeef.png), taken modulo $10^{9} + 7$. Here ![image](https://espresso.codeforces.com/c4b7092c0f7ce6535f2574569c98f7b3c2fe2c5f.png) denotes bitwise xor operation (`^` in C++ or Java, `xor` in Pascal).\n\n## Note\n\nExplanation of the example:\n\nSince the number of *coprime* arrays is large, we will list the arrays that are non-coprime, but contain only elements in range $[1, *i*]$:\n\nFor $*i* = 1$, the only array is coprime. $*b*_{1} = 1$.\n\nFor $*i* = 2$, array $[2, 2, 2]$ is not coprime. $*b*_{2} = 7$.\n\nFor $*i* = 3$, arrays $[2, 2, 2]$ and $[3, 3, 3]$ are not coprime. $*b*_{3} = 25$.\n\nFor $*i* = 4$, arrays $[2, 2, 2]$, $[3, 3, 3]$, $[2, 2, 4]$, $[2, 4, 2]$, $[2, 4, 4]$, $[4, 2, 2]$, $[4, 2, 4]$, $[4, 4, 2]$ and $[4, 4, 4]$ are not coprime. $*b*_{4} = 55$.",
-  "statementZhMd": null,
+  "statementZhMd": "如果一个大小为 $*n*$ 的数组 $*a*$ 满足 $*gcd*(*a*_{1}, *a*_{2}, ..., *a*_{*n*}) = 1$，则称其为*互质*数组，其中 $*gcd*$ 表示所给参数的最大公约数。\n\n给定两个数 $*n*$ 和 $*k*$。对于每个 $*i*$（$1 ≤ *i* ≤ *k*$），你需要确定满足以下条件的大小为 $*n*$ 的*互质*数组 $*a*$ 的数量：对于每个 $*j*$（$1 ≤ *j* ≤ *n*$），都有 $1 ≤ *a*_{*j*} ≤ *i*$。由于答案可能非常大，你需要将其对 $10^{9} + 7$ 取模。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*k*$（$1 ≤ *n*, *k* ≤ 2·10^{6}$），分别表示所需数组的大小和数组元素的最大上界。\n\n## 输出格式\n\n由于输出 $2·10^{6}$ 个数字可能需要很长时间，你需要按照以下方式输出答案：\n\n设 $*b*_{*i}$ 表示所有元素均在区间 $[1, *i*]$ 内的*互质*数组的数量，对 $10^{9} + 7$ 取模。你需要输出 ![image](https://espresso.codeforces.com/3e887a99f7b0f325f81554eb1527835390defeef.png)，并将其对 $10^{9} + 7$ 取模。其中，![image](https://espresso.codeforces.com/c4b7092c0f7ce6535f2574569c98f7b3c2fe2c5f.png) 表示按位异或运算（在 C++ 或 Java 中为 `^`，在 Pascal 中为 `xor`）。\n\n## 说明\n\n样例解释：\n\n由于*互质*数组的数量很多，我们将列出仅包含区间 $[1, *i*]$ 内元素的非互质数组：\n\n当 $*i* = 1$ 时，唯一的数组是互质的。因此，$*b*_{1} = 1$。\n\n当 $*i* = 2$ 时，数组 $[2, 2, 2]$ 不是互质的。因此，$*b*_{2} = 7$。\n\n当 $*i* = 3$ 时，数组 $[2, 2, 2]$ 和 $[3, 3, 3]$ 不是互质的。因此，$*b*_{3} = 25$。\n\n当 $*i* = 4$ 时，数组 $[2, 2, 2]$、$[3, 3, 3]$、$[2, 2, 4]$、$[2, 4, 2]$、$[2, 4, 4]$、$[4, 2, 2]$、$[4, 2, 4]$、$[4, 4, 2]$ 和 $[4, 4, 4]$ 不是互质的。因此，$*b*_{4} = 55$。",
   "samples": [
     {
       "input": "3 4\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:42:38.854Z"
+  "fetchedAt": "2026-11-02T19:42:38.854Z",
+  "translatedAt": "2026-11-04T05:55:04.759+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

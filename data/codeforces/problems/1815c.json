@@ -4,7 +4,7 @@
   "contestId": 1815,
   "index": "C",
   "title": "Between",
-  "titleZh": null,
+  "titleZh": "之间",
   "url": "https://codeforces.com/contest/1815/problem/C",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an integer $n$, as well as $m$ pairs of integers $(a_i,b_i)$, where $1\\leq a_i , b_i \\leq n$, $a_i \\ne b_i$.\n\nYou want to construct a sequence satisfying the following requirements:\n\n- All elements in the sequence are integers between $1$ and $n$.\n- There is exactly one element with value $1$ in the sequence.\n- For each $i$ ($1 \\le i \\le m$), between any two elements (on different positions) in the sequence with value $a_i$, there is at least one element with value $b_i$.\n- The sequence constructed has the **maximum** length among all possible sequences satisfying the above properties.\n\nSometimes, it is possible that such a sequence can be arbitrarily long, in which case you should output \"`INFINITE`\". Otherwise, you should output \"`FINITE`\" and the sequence itself. If there are multiple possible constructions that yield the maximum length, output any.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 300$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 1500$, $0 \\le m \\le 5000$) — the maximum possible value of the element of the sequence and the number of pairs.\n\nThe $i$-th of the next $m$ lines contain two integers $a_i$ and $b_i$ ($1 \\le a_i , b_i \\le n$, $a_i \\ne b_i$).\n\n$(a_i, b_i) \\ne (a_j, b_j)$ for all $1 \\le i \\lt j \\le m$.\n\nIt is guaranteed that sum of $n$ over all test cases doesn't exceed $1500$ and the sum of $m$ over all test cases doesn't exceed $5000$.\n\n## Output\n\nFor each test case, on the first line output \"`INFINITE`\" if the sequence can be arbitrarily long, and \"`FINITE`\" otherwise.\n\nIf you have outputted \"`FINITE`\", then your output should be followed by $2$ lines.\n\nThe first line contains an integer $s$, the maximum length of the sequence.\n\nThe second line contains $s$ integers, each are between $1$ and $n$ inclusive, representing the elements of the sequence.\n\nIf there are multiple sequences with the maximum length, output any of them.\n\nIt can be shown that, for all test cases with answer \"`FINITE`\", then under the constraints, the maximum possible sum of sequence lengths of those test cases does not exceed $2\\cdot10^6$.\n\n## Note\n\nIn the first test case, there is an element $1$ between two elements with value $3$ and an element $1$ between two elements with value $2$. It can be shown that there is no suitable sequences of length more than $5$.\n\nIn the second case, $[1]$ is the only possible sequence because there should be exactly one element with value $1$ in the sequence.\n\nIn the third case, we can get an arbitrary long sequence like $1, 2, 2, 2, \\ldots$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个整数 $n$，以及 $m$ 对整数 $(a_i,b_i)$，其中 $1\\leq a_i , b_i \\leq n$，且 $a_i \\ne b_i$。\n\n你需要构造一个满足以下要求的序列：\n\n- 序列中的所有元素都是 $1$ 到 $n$ 之间的整数。\n- 序列中恰好有一个值为 $1$ 的元素。\n- 对于每个 $i$（$1 \\leq i \\leq m$），序列中任意两个（位置不同的）值为 $a_i$ 的元素之间，至少有一个值为 $b_i$ 的元素。\n- 在满足上述条件的所有序列中，所构造的序列长度**最大**。\n\n有时，这样的序列长度可以任意长，此时你应输出“`INFINITE`”。否则，你应输出“`FINITE`”以及序列本身。如果有多个构造能得到最大长度，输出其中任意一个即可。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 300$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 1500$，$0 \\le m \\le 5000$）——序列元素的最大可能值和给定数对的数量。\n\n接下来的 $m$ 行中，第 $i$ 行包含两个整数 $a_i$ 和 $b_i$（$1 \\leq a_i , b_i \\leq n$，$a_i \\ne b_i$）。\n\n对于所有 $1 \\leq i \\lt j \\leq m$，均有 $(a_i, b_i) \\ne (a_j, b_j)$。\n\n保证所有测试用例的 $n$ 之和不超过 $1500，且 $m$ 之和不超过 $5000$。\n\n## 输出格式\n\n对于每个测试用例，第一行输出“`INFINITE`”，如果序列可以任意长；否则输出“`FINITE`”。\n\n如果输出了“`FINITE`”，接下来还应输出 $2$ 行。\n\n第一行包含一个整数 $s$，表示序列的最大长度。\n\n第二行包含 $s$ 个整数，每个整数都在 $1$ 到 $n$（含）之间，表示序列中的元素。\n\n如果有多个长度最大的序列，输出其中任意一个即可。\n\n可以证明，对于所有答案为“`FINITE`”的测试用例，在给定约束下，这些测试用例的序列长度之和不会超过 $2\\cdot10^6$。\n\n## 说明\n\n在第一个测试用例中，两个值为 $3$ 的元素之间有一个元素 $1$，两个值为 $2$ 的元素之间也有一个元素 $1$。可以证明，不存在长度超过 $5$ 的合适序列。\n\n在第二个测试用例中，$[1]$ 是唯一可能的序列，因为序列中必须恰好有一个值为 $1$ 的元素。\n\n在第三个测试用例中，我们可以得到一个任意长的序列，例如 $1, 2, 2, 2, \\ldots$。",
   "samples": [
     {
       "input": "5\n3 2\n3 1\n2 1\n1 0\n2 0\n2 2\n1 2\n2 1\n5 5\n2 1\n3 1\n4 2\n4 5\n5 1\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:33:07.518Z"
+  "fetchedAt": "2026-10-30T22:33:07.518Z",
+  "translatedAt": "2026-11-04T02:54:47.586+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

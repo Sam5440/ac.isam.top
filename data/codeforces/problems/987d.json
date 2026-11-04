@@ -4,14 +4,14 @@
   "contestId": 987,
   "index": "D",
   "title": "Fair",
-  "titleZh": null,
+  "titleZh": "公平",
   "url": "https://codeforces.com/contest/987/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Some company is going to hold a fair in Byteland. There are $n$ towns in Byteland and $m$ two-way roads between towns. Of course, you can reach any town from any other town using roads.\n\nThere are $k$ types of goods produced in Byteland and every town produces only one type. To hold a fair you have to bring at least $s$ different types of goods. It costs $d(u,v)$ coins to bring goods from town $u$ to town $v$ where $d(u,v)$ is the length of the shortest path from $u$ to $v$. Length of a path is the number of roads in this path.\n\nThe organizers will cover all travel expenses but they can choose the towns to bring goods from. Now they want to calculate minimum expenses to hold a fair in each of $n$ towns.\n\n## Input\n\nThere are $4$ integers $n$, $m$, $k$, $s$ in the first line of input ($1 \\le n \\le 10^{5}$, $0 \\le m \\le 10^{5}$, $1 \\le s \\le k \\le min(n, 100)$) — the number of towns, the number of roads, the number of different types of goods, the number of different types of goods necessary to hold a fair.\n\nIn the next line there are $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_{i} \\le k$), where $a_i$ is the type of goods produced in the $i$-th town. It is guaranteed that all integers between $1$ and $k$ occur at least once among integers $a_{i}$.\n\nIn the next $m$ lines roads are described. Each road is described by two integers $u$ $v$ ($1 \\le u, v \\le n$, $u \\ne v$) — the towns connected by this road. It is guaranteed that there is no more than one road between every two towns. It is guaranteed that you can go from any town to any other town via roads.\n\n## Output\n\nPrint $n$ numbers, the $i$-th of them is the minimum number of coins you need to spend on travel expenses to hold a fair in town $i$. Separate numbers with spaces.\n\n## Note\n\nLet's look at the first sample.\n\nTo hold a fair in town $1$ you can bring goods from towns $1$ ($0$ coins), $2$ ($1$ coin) and $4$ ($1$ coin). Total numbers of coins is $2$.\n\nTown $2$: Goods from towns $2$ ($0$), $1$ ($1$), $3$ ($1$). Sum equals $2$.\n\nTown $3$: Goods from towns $3$ ($0$), $2$ ($1$), $4$ ($1$). Sum equals $2$.\n\nTown $4$: Goods from towns $4$ ($0$), $1$ ($1$), $5$ ($1$). Sum equals $2$.\n\nTown $5$: Goods from towns $5$ ($0$), $4$ ($1$), $3$ ($2$). Sum equals $3$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n某公司将在 Byteland 举办一个集市。Byteland 中有 $n$ 个城镇和 $m$ 条双向道路。当然，你可以通过道路从任意城镇到达任意其他城镇。\n\nByteland 生产 $k$ 种商品，并且每个城镇只生产其中一种商品。为了举办集市，你必须带来至少 $s$ 种不同的商品。将商品从城镇 $u$ 运送到城镇 $v$ 需要花费 $d(u,v)$ 枚硬币，其中 $d(u,v)$ 是从 $u$ 到 $v$ 的最短路径长度。路径长度是该路径中道路的数量。\n\n主办方将承担所有运输费用，但他们可以选择从哪些城镇运送商品。现在，他们希望计算在每个城镇举办集市所需的最少费用。\n\n## 输入格式\n\n输入的第一行包含 $4$ 个整数 $n$、$m$、$k$、$s$（$1 \\le n \\le 10^{5}$，$0 \\le m \\le 10^{5}$，$1 \\le s \\le k \\le min(n, 100)$）——城镇数量、道路数量、商品种类数量，以及举办集市所需的不同商品种类数量。\n\n下一行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_{i} \\le k$），其中 $a_i$ 表示第 $i$ 个城镇生产的商品种类。保证整数 $1$ 到 $k$ 均至少在整数 $a_i$ 中出现一次。\n\n接下来的 $m$ 行描述道路。每条道路由两个整数 $u$、$v$（$1 \\le u, v \\le n$，$u \\ne v$）表示，代表由道路连接的两个城镇。保证任意两个城镇之间至多有一条道路。保证可以通过道路从任意城镇到达任意其他城镇。\n\n## 输出格式\n\n输出 $n$ 个整数，其中第 $i$ 个整数表示在城镇 $i$ 举办集市所需支付的最少运输费用。请用空格分隔这些整数。\n\n## 说明\n\n让我们看一下第一个样例。\n\n为了在城镇 $1$ 举办集市，可以从城镇 $1$（$0$ 枚硬币）、城镇 $2$（$1$ 枚硬币）和城镇 $4$（$1$ 枚硬币）运送商品。硬币总数为 $2$。\n\n城镇 $2$：从城镇 $2$（$0$ 枚）、城镇 $1$（$1$ 枚）和城镇 $3$（$1$ 枚）运送商品。总数为 $2$。\n\n城镇 $3$：从城镇 $3$（$0$ 枚）、城镇 $2$（$1$ 枚）和城镇 $4$（$1$ 枚）运送商品。总数为 $2$。\n\n城镇 $4$：从城镇 $4$（$0$ 枚）、城镇 $1$（$1$ 枚）和城镇 $5$（$1$ 枚）运送商品。总数为 $2$。\n\n城镇 $5$：从城镇 $5$（$0$ 枚）、城镇 $4$（$1$ 枚）和城镇 $3$（$2$ 枚）运送商品。总数为 $3$。",
   "samples": [
     {
       "input": "5 5 4 3\n1 2 4 3 2\n1 2\n2 3\n3 4\n4 1\n4 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:29:30.574Z"
+  "fetchedAt": "2026-10-31T00:29:30.574Z",
+  "translatedAt": "2026-11-04T05:50:06.923+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1170,
   "index": "D",
   "title": "Decoding of Integer Sequences",
-  "titleZh": null,
+  "titleZh": "整数序列的解码",
   "url": "https://codeforces.com/contest/1170/problem/D",
   "difficulty": null,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp is developing a method for transmitting $n$ integer sequences over a network. This method should support the transmission of an arbitrary number of integer sequences; sequences can have different lengths. The sequences contain arbitrary **non-negative** integers.\n\nPolycarp developed the following encoding procedure:\n\n- We assume that the sequences are numbered from $1$ to $n$.\n- We add a special terminating marker to each sequence at the end, an element equal to `-1`.\n- The encoding result is a new single sequence that contains all the elements of the specified $n$ in a special order: first, add to the result of coding all the first elements of the sequences (in the order from the $1$-st to the $n$-th), then all the second elements (in the order from the $1$-st to the $n$-th) and so on, if the sequence does not have the corresponding element, then it is simply skipped. The process ends when all elements of all sequences are added.\n\nFor example, if you want to encode three sequences $[3, 1, 4]$, $[2, 7]$ and $[1, 2, 3, 4]$, then the sequence of actions will be as follows:\n\n- we modify all three sequences by appending `-1`: $[3, 1, 4, -1]$, $[2, 7, -1]$ and $[1, 2, 3, 4, -1]$;\n- we write out all the first elements, we get $[3, 2, 1]$;\n- then write down all the second elements, we get $[3, 2, 1, 1, 7, 2]$;\n- then write down all the third elements, we get $[3, 2, 1, 1, 7, 2, 4, -1, 3]$;\n- then write down all fourth elements, get $[3, 2, 1, 1, 7, 2, 4, -1, 3, -1, 4]$ (note that the second sequence has already ended);\n- then write down all the fifth elements, we get $[3, 2, 1, 1, 7, 2, 4, -1, 3, -1, 4, -1]$ (note that the first and second sequences have already ended);\n- all the sequences are ended now, and the encoding process is finished;\n- the encoding result is: $[3, 2, 1, 1, 7, 2, 4, -1, 3, -1, 4, -1]$.\n\nYour task is to implement decoding by a given encoding result.\n\n## Input\n\nThe first line contains integer number $m$ ($1 \\le m \\le 3\\cdot10^5$), denoting the length of the encoding result. The second line contains the result of encoding as a sequence of integers $b_1, b_2, \\dots, b_m$ ($-1 \\le b_i \\le 100$).\n\nIt is guaranteed that in the initial sequences before encoding contains only non-negative integers from $0$ to $100$, that you are in fact given the result of correct encoding (in other words, it is guaranteed that the answer exists). It is possible that one or more initial sequences were empty before encoding.\n\n## Output\n\nPrint $n$, where $n$ is the number of encoded sequences. Then print $n$ lines in the format $k_i, a_{i1}, a_{i2}, \\dots, a_{ik_i}$, where $k_i$ is the length of the $i$-th sequence, and $a_{i1}, a_{i2}, \\dots, a_{ik_i}$ are its elements. Separate the numbers in the lines with spaces. Please note that the encoding procedure is such that every possible encoding result can be decoded in only one way.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 正在开发一种通过网络传输 $n$ 个整数序列的方法。该方法应支持传输任意数量的整数序列；序列的长度可以不同。序列中包含任意的**非负**整数。\n\nPolycarp 开发了如下编码过程：\n\n- 假设序列的编号为 $1$ 到 $n$。\n- 在每个序列的末尾添加一个特殊的结束标记，即等于 `-1` 的元素。\n- 编码结果是一个新的单独序列，其中按照特殊顺序包含给定的 $n$ 个序列中的所有元素：首先，将所有序列的第一个元素（按照从第 $1$ 个到第 $n$ 个的顺序）加入编码结果；然后加入所有第二个元素（按照从第 $1$ 个到第 $n$ 个的顺序），依此类推。如果某个序列不存在对应位置的元素，则跳过该元素。该过程在所有序列的所有元素都被加入后结束。\n\n例如，如果要编码三个序列 $[3, 1, 4]$、$[2, 7]$ 和 $[1, 2, 3, 4]$，那么操作过程如下：\n\n- 在三个序列末尾添加 `-1`：$[3, 1, 4, -1]$、$[2, 7, -1]$ 和 $[1, 2, 3, 4, -1]$；\n- 写出所有第一个元素，得到 $[3, 2, 1]$；\n- 然后写出所有第二个元素，得到 $[3, 2, 1, 1, 7, 2]$；\n- 然后写出所有第三个元素，得到 $[3, 2, 1, 1, 7, 2, 4, -1, 3]$；\n- 然后写出所有第四个元素，得到 $[3, 2, 1, 1, 7, 2, 4, -1, 3, -1, 4]$（注意，第二个序列已经结束）；\n- 然后写出所有第五个元素，得到 $[3, 2, 1, 1, 7, 2, 4, -1, 3, -1, 4, -1]$（注意，第一个和第二个序列已经结束）；\n- 此时所有序列都已结束，编码过程完成；\n- 编码结果为：$[3, 2, 1, 1, 7, 2, 4, -1, 3, -1, 4, -1]$。\n\n你的任务是根据给定的编码结果实现解码。\n\n## 输入格式\n\n第一行包含一个整数 $m$（$1 \\le m \\le 3\\cdot10^5$），表示编码结果的长度。第二行包含编码结果，即一个整数序列 $b_1, b_2, \\dots, b_m$（$-1 \\le b_i \\le 100$）。\n\n保证编码前的初始序列中只包含从 $0$ 到 $100$ 的非负整数，并且给定的确实是一个正确的编码结果（换句话说，保证答案存在）。编码前可能有一个或多个初始序列为空。\n\n## 输出格式\n\n输出 $n$，即编码序列的数量。然后输出 $n$ 行，每行格式为 $k_i, a_{i1}, a_{i2}, \\dots, a_{ik_i}$，其中 $k_i$ 是第 $i$ 个序列的长度，$a_{i1}, a_{i2}, \\dots, a_{ik_i}$ 是该序列中的元素。每行中的数字之间用空格分隔。请注意，按照上述编码过程，每个可能的编码结果都只能以唯一的方式解码。",
   "samples": [
     {
       "input": "12\n3 2 1 1 7 2 4 -1 3 -1 4 -1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:16:18.349Z"
+  "fetchedAt": "2026-11-02T19:16:18.349Z",
+  "translatedAt": "2026-11-04T05:19:11.813+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

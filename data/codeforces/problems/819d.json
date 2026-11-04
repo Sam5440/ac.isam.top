@@ -4,7 +4,7 @@
   "contestId": 819,
   "index": "D",
   "title": "Mister B and Astronomers",
-  "titleZh": null,
+  "titleZh": "B先生与天文学家",
   "url": "https://codeforces.com/contest/819/problem/D",
   "difficulty": 2900,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "After studying the beacons Mister B decided to visit alien's planet, because he learned that they live in a system of flickering star Moon. Moreover, Mister B learned that the star shines once in exactly $*T*$ seconds. The problem is that the star is yet to be discovered by scientists.\n\nThere are $*n*$ astronomers numerated from $1$ to $*n*$ trying to detect the star. They try to detect the star by sending requests to record the sky for $1$ second.\n\nThe astronomers send requests **in cycle**: the $*i*$-th astronomer sends a request exactly $*a*_{*i*}$ second after the $(*i* - 1)$-th (i.e. if the previous request was sent at moment $*t*$, then the next request is sent at moment $*t* + *a*_{*i*}$); the $1$-st astronomer sends requests $*a*_{1}$ seconds later than the $*n*$-th. The first astronomer sends his first request at moment $0$.\n\nMister B doesn't know the first moment the star is going to shine, but it's obvious that all moments at which the star will shine are determined by the time of its shine moment in the interval $[0, *T*)$. Moreover, this interval can be split into $*T*$ parts of $1$ second length each of form $[*t*, *t* + 1)$, where $*t* = 0, 1, 2, ..., (*T* - 1)$.\n\nMister B wants to know how lucky each astronomer can be in discovering the star first.\n\nFor each astronomer compute how many segments of form $[*t*, *t* + 1)$ ($*t* = 0, 1, 2, ..., (*T* - 1)$) there are in the interval $[0, *T*)$ so that this astronomer is the first to discover the star if the first shine of the star happens in this time interval.\n\n## Input\n\nThe first line contains two integers $*T*$ and $*n*$ ($1 ≤ *T* ≤ 10^{9}$, $2 ≤ *n* ≤ 2·10^{5}$).\n\nThe second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ 10^{9}$).\n\n## Output\n\nPrint $*n*$ integers: for each astronomer print the number of time segments describer earlier.\n\n## Note\n\nIn the first sample test the first astronomer will send requests at moments $*t*_{1} = 0, 5, 10, ...$, the second — at moments $*t*_{2} = 3, 8, 13, ...$. That's why interval $[0, 1)$ the first astronomer will discover first at moment $*t*_{1} = 0$, $[1, 2)$ — the first astronomer at moment $*t*_{1} = 5$, $[2, 3)$ — the first astronomer at moment $*t*_{1} = 10$, and $[3, 4)$ — the second astronomer at moment $*t*_{2} = 3$.\n\nIn the second sample test interval $[0, 1)$ — the first astronomer will discover first, $[1, 2)$ — the second astronomer, $[2, 3)$ — the third astronomer, $[3, 4)$ — the fourth astronomer, $[4, 5)$ — the first astronomer.",
-  "statementZhMd": null,
+  "statementZhMd": "研究完信标后，B先生决定拜访外星人的星球，因为他得知外星人生活在一颗会闪烁的恒星 Moon 的系统中。此外，B先生还了解到，这颗恒星每隔恰好 $*T*$ 秒闪耀一次。但问题是，科学家们还没有发现这颗恒星。\n\n有 $*n*$ 名编号从 $1$ 到 $*n*$ 的天文学家正在尝试探测这颗恒星。他们通过发送请求来记录天空 $1$ 秒，以此探测恒星。\n\n天文学家们**循环**发送请求：第 $*i*$ 名天文学家恰好在第 $(*i* - 1)$ 名天文学家发送请求后 $*a*_{*i*}$ 秒发送请求（即，如果上一个请求在时刻 $*t*$ 发送，那么下一个请求将在时刻 $*t*$ + $*a*_{*i*}$ 发送）；第 $1$ 名天文学家在第 $*n*$ 名天文学家发送请求后 $*a*_{1}$ 秒发送请求。第一个天文学家在时刻 $0$ 发送他的第一个请求。\n\nB先生不知道恒星第一次闪耀的时刻，但显然，恒星所有闪耀的时刻都由它在区间 $[0, *T*)$ 内的闪耀时刻决定。此外，这个区间可以划分为 $*T*$ 个长度为 $1$ 秒的部分，形式为 $[*t*, *t* + 1)$，其中 $*t* = 0, 1, 2, ..., (*T* - 1)$。\n\nB先生想知道每位天文学家最先发现恒星的可能性有多大。\n\n对于每位天文学家，计算在区间 $[0, *T*)$ 内有多少个形如 $[*t*, *t* + 1)$（$*t* = 0, 1, 2, ..., (*T* - 1)$）的时间段，使得如果恒星第一次在该时间段内闪耀，那么这位天文学家将最先发现恒星。\n\n## 输入格式\n\n第一行包含两个整数 $*T*$ 和 $*n*$（$1 ≤ *T* ≤ 10^{9}$，$2 ≤ *n* ≤ 2·10^{5}$）。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ 10^{9}$）。\n\n## 输出格式\n\n输出 $*n*$ 个整数：对于每位天文学家，输出上述时间段的数量。\n\n## 说明\n\n在第一个样例中，第一位天文学家将在时刻 $*t*_{1} = 0, 5, 10, ...$ 发送请求，第二位天文学家将在时刻 $*t*_{2} = 3, 8, 13, ...$ 发送请求。因此，在区间 $[0, 1)$ 内，第一位天文学家将在时刻 $*t*_{1} = 0$ 最先发现恒星；在区间 $[1, 2)$ 内，第一位天文学家将在时刻 $*t*_{1} = 5$ 最先发现恒星；在区间 $[2, 3)$ 内，第一位天文学家将在时刻 $*t*_{1} = 10$ 最先发现恒星；而在区间 $[3, 4)$ 内，第二位天文学家将在时刻 $*t*_{2} = 3$ 最先发现恒星。\n\n在第二个样例中，区间 $[0, 1)$ 内第一位天文学家最先发现恒星，区间 $[1, 2)$ 内第二位天文学家最先发现恒星，区间 $[2, 3)$ 内第三位天文学家最先发现恒星，区间 $[3, 4)$ 内第四位天文学家最先发现恒星，区间 $[4, 5)$ 内第一位天文学家最先发现恒星。",
   "samples": [
     {
       "input": "4 2\n2 3\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:50:03.469Z"
+  "fetchedAt": "2026-10-31T00:50:03.469Z",
+  "translatedAt": "2026-11-04T06:06:16.681+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

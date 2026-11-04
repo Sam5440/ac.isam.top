@@ -4,7 +4,7 @@
   "contestId": 1583,
   "index": "D",
   "title": "Omkar and the Meaning of Life",
-  "titleZh": null,
+  "titleZh": "Omkar 与生命的意义",
   "url": "https://codeforces.com/contest/1583/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "It turns out that the meaning of life is a permutation $p_1, p_2, \\ldots, p_n$ of the integers $1, 2, \\ldots, n$ ($2 \\leq n \\leq 100$). Omkar, having created all life, knows this permutation, and will allow you to figure it out using some queries.\n\nA query consists of an array $a_1, a_2, \\ldots, a_n$ of integers between $1$ and $n$. $a$ is **not** required to be a permutation. Omkar will first compute the pairwise sum of $a$ and $p$, meaning that he will compute an array $s$ where $s_j = p_j + a_j$ for all $j = 1, 2, \\ldots, n$. Then, he will find the smallest index $k$ such that $s_k$ occurs more than once in $s$, and answer with $k$. If there is no such index $k$, then he will answer with $0$.\n\nYou can perform at most $2n$ queries. Figure out the meaning of life $p$.\n\n## Interaction\n\nStart the interaction by reading single integer $n$ ($2 \\leq n \\leq 100$)  — the length of the permutation $p$.\n\nYou can then make queries. A query consists of a single line \"$? \\enspace a_1 \\enspace a_2 \\enspace \\ldots \\enspace a_n$\" ($1 \\leq a_j \\leq n$).\n\nThe answer to each query will be a single integer $k$ as described above ($0 \\leq k \\leq n$).\n\nAfter making a query do not forget to output end of line and flush the output. Otherwise, you will get `Idleness limit exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see documentation for other languages.\n\nTo output your answer, print a single line \"$! \\enspace p_1 \\enspace p_2 \\enspace \\ldots \\enspace p_n$\" then terminate.\n\nYou can make at most $2n$ queries. Outputting the answer does not count as a query.\n\n**Hack Format**\n\nTo hack, first output a line containing $n$ ($2 \\leq n \\leq 100$), then output another line containing the hidden permutation $p_1, p_2, \\ldots, p_n$ of numbers from $1$ to $n$.\n\n## Note\n\nIn the sample, the hidden permutation $p$ is $[3, 2, 1, 5, 4]$. Three queries were made.\n\nThe first query is $a = [4, 4, 2, 3, 2]$. This yields $s = [3 + 4, 2 + 4, 1 + 2, 5 + 3, 4 + 2] = [7, 6, 3, 8, 6]$. $6$ is the only number that appears more than once, and it appears first at index $2$, making the answer to the query $2$.\n\nThe second query is $a = [3, 5, 1, 5, 5]$. This yields $s = [3 + 3, 2 + 5, 1 + 1, 5 + 5, 4 + 5] = [6, 7, 2, 10, 9]$. There are no numbers that appear more than once here, so the answer to the query is $0$.\n\nThe third query is $a = [5, 2, 4, 3, 1]$. This yields $s = [3 + 5, 2 + 2, 1 + 4, 5 + 3, 4 + 1] = [8, 4, 5, 8, 5]$. $5$ and $8$ both occur more than once here. $5$ first appears at index $3$, while $8$ first appears at index $1$, and $1 \\lt 3$, making the answer to the query $1$.\n\nNote that the sample is only meant to provide an example of how the interaction works; it is not guaranteed that the above queries represent a correct strategy with which to determine the answer.",
-  "statementZhMd": null,
+  "statementZhMd": "事实证明，生命的意义是一个由整数 $1, 2, \\ldots, n$ 组成的排列 $p_1, p_2, \\ldots, p_n$（$2 \\leq n \\leq 100$）。创造了所有生命的 Omkar 知道这个排列，并允许你通过一些查询来推断它。\n\n一次查询包含一个由 $n$ 个整数 $a_1, a_2, \\ldots, a_n$ 组成的数组，其中每个整数都在 $1$ 到 $n$ 之间。$a$ **不**一定是一个排列。Omkar 首先计算 $a$ 和 $p$ 的逐位和，即计算数组 $s$，其中对于所有 $j = 1, 2, \\ldots, n$，$s_j = p_j + a_j$。然后，他会找到满足 $s_k$ 在 $s$ 中出现超过一次的最小下标 $k$，并回答 $k$。如果不存在这样的下标 $k$，则回答 $0$。\n\n你最多可以进行 $2n$ 次查询。请推断出生命的意义 $p$。\n\n## 交互\n\n首先，读入一个整数 $n$（$2 \\leq n \\leq 100$）——排列 $p$ 的长度。\n\n接下来，你可以进行查询。一次查询由一行组成，格式为 \"$? \\enspace a_1 \\enspace a_2 \\enspace \\ldots \\enspace a_n$\"（$1 \\leq a_j \\leq n$）。\n\n每次查询的答案将是一个整数 $k$，其含义如上所述（$0 \\leq k \\leq n$）。\n\n进行查询后不要忘记输出换行并刷新输出，否则你将得到 `Idleness limit exceeded`。可以使用：\n\n- `fflush(stdout)` 或 `cout.flush()`（C++）；\n- `System.out.flush()`（Java）；\n- `flush(output)`（Pascal）；\n- `stdout.flush()`（Python）；\n- 其他语言请参阅相关文档。\n\n要输出答案，请输出一行 \"$! \\enspace p_1 \\enspace p_2 \\enspace \\ldots \\enspace p_n$\"，然后终止程序。\n\n你最多可以进行 $2n$ 次查询。输出答案不计入查询次数。\n\n**Hack 格式**\n\n在破解时，首先输出一行，其中包含 $n$（$2 \\leq n \\leq 100$），然后输出另一行，其中包含由 $1$ 到 $n$ 的数字组成的隐藏排列 $p_1, p_2, \\ldots, p_n$。\n\n## 说明\n\n在样例中，隐藏排列 $p$ 是 $[3, 2, 1, 5, 4]$。一共进行了三次查询。\n\n第一次查询为 $a = [4, 4, 2, 3, 2]$。这得到 $s = [3 + 4, 2 + 4, 1 + 2, 5 + 3, 4 + 2] = [7, 6, 3, 8, 6]$。只有 $6$ 出现了多次，并且它第一次出现在下标 $2$ 处，因此该次查询的答案为 $2$。\n\n第二次查询为 $a = [3, 5, 1, 5, 5]$。这得到 $s = [3 + 3, 2 + 5, 1 + 1, 5 + 5, 4 + 5] = [6, 7, 2, 10, 9]$。这里没有任何数字出现多次，因此该次查询的答案为 $0$。\n\n第三次查询为 $a = [5, 2, 4, 3, 1]$。这得到 $s = [3 + 5, 2 + 2, 1 + 4, 5 + 3, 4 + 1] = [8, 4, 5, 8, 5]$。$5$ 和 $8$ 都出现了多次。$5$ 首次出现在下标 $3$ 处，而 $8$ 首次出现在下标 $1$ 处，并且 $1 \\lt 3$，因此该次查询的答案为 $1$。\n\n请注意，样例仅用于展示交互过程；不能保证上述查询代表一种能够正确确定答案的策略。",
   "samples": [
     {
       "input": "5\n\n2\n\n0\n\n1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:22:30.299Z"
+  "fetchedAt": "2026-10-30T23:22:30.299Z",
+  "translatedAt": "2026-11-04T03:39:23.093+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

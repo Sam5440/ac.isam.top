@@ -4,14 +4,14 @@
   "contestId": 701,
   "index": "F",
   "title": "Break Up",
-  "titleZh": null,
+  "titleZh": "决裂",
   "url": "https://codeforces.com/contest/701/problem/F",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Again, there are hard times in Berland! Many towns have such tensions that even civil war is possible.\n\nThere are $*n*$ towns in Reberland, some pairs of which connected by two-way roads. It is not guaranteed that it is possible to reach one town from any other town using these roads.\n\nTowns $*s*$ and $*t*$ announce the final break of any relationship and intend to rule out the possibility of moving between them by the roads. Now possibly it is needed to close several roads so that moving from $*s*$ to $*t*$ using roads becomes impossible. Each town agrees to spend money on closing no more than one road, therefore, the total number of closed roads will be **no more than two**.\n\nHelp them find set of no more than two roads such that there will be no way between $*s*$ and $*t*$ after closing these roads. For each road the budget required for its closure was estimated. Among all sets find such that the total budget for the closure of a set of roads is minimum.\n\n## Input\n\nThe first line of the input contains two integers $*n*$ and $*m*$ ($2 ≤ *n* ≤ 1000$, $0 ≤ *m* ≤ 30 000$) — the number of towns in Berland and the number of roads.\n\nThe second line contains integers $*s*$ and $*t*$ ($1 ≤ *s*, *t* ≤ *n*$, $*s* ≠ *t*$) — indices of towns which break up the relationships.\n\nThen follow $*m*$ lines, each of them contains three integers $*x*_{*i*}$, $*y*_{*i*}$ and $*w*_{*i*}$ ($1 ≤ *x*_{*i*}, *y*_{*i*} ≤ *n*$, $1 ≤ *w*_{*i*} ≤ 10^{9}$) — indices of towns connected by the $*i*$-th road, and the budget on its closure.\n\nAll roads are bidirectional. It is allowed that the pair of towns is connected by more than one road. Roads that connect the city to itself are allowed.\n\n## Output\n\nIn the first line print the minimum budget required to break up the relations between $*s*$ and $*t*$, if it is allowed to close no more than two roads.\n\nIn the second line print the value $*c*$ ($0 ≤ *c* ≤ 2$) — the number of roads to be closed in the found solution.\n\nIn the third line print in any order $*c*$ diverse integers from $1$ to $*m*$ — indices of closed roads. Consider that the roads are numbered from $1$ to $*m*$ in the order they appear in the input.\n\nIf it is impossible to make towns $*s*$ and $*t*$ disconnected by removing no more than $2$ roads, the output should contain a single line `-1`.\n\nIf there are several possible answers, you may print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "在 Berland，困难时期再次来临！许多城镇之间的矛盾如此尖锐，甚至可能爆发内战。\n\nReberland 有 $*n*$ 个城镇，其中一些城镇对之间由双向道路连接。并不能保证可以利用这些道路从任意一个城镇到达另一个城镇。\n\n城镇 $*s*$ 和 $*t*$ 宣布彻底断绝关系，并打算排除通过道路在两者之间通行的可能性。现在可能需要关闭若干条道路，使得无法再通过道路从 $*s*$ 移动到 $*t*$。每个城镇都同意支付关闭至多一条道路的费用，因此，关闭的道路总数将 **不超过两条**。\n\n请帮助他们找出不超过两条道路，使得关闭这些道路后，$*s*$ 和 $*t*$ 之间不存在任何通路。每条道路的关闭费用都已估算出来。在所有可行的道路集合中，找出关闭这些道路所需总费用最小的集合。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*m*$（$2 ≤ *n* ≤ 1000$，$0 ≤ *m* ≤ 30 000$）——Berland 中城镇的数量和道路的数量。\n\n第二行包含整数 $*s*$ 和 $*t*$（$1 ≤ *s*, *t* ≤ *n*$，$*s* ≠ *t*$）——断绝关系的两个城镇的编号。\n\n接下来 $*m*$ 行，每行包含三个整数 $*x*_{*i*$、$*y*$_{*i*}$ 和 $*w*_{*i*}$（$1 ≤ *x*_{*i*}, *y*_{*i*} ≤ *n*$，$1 ≤ *w*_{*i*} ≤ 10^{9}$）——第 $*i*$ 条道路所连接的城镇编号，以及关闭该道路所需的费用。\n\n所有道路都是双向的。允许一对城镇之间有多条道路。允许存在连接城镇自身的道路。\n\n## 输出格式\n\n第一行输出在允许关闭不超过 $2$ 条道路的情况下，使 $*s*$ 和 $*t*$ 断绝联系所需的最小费用。\n\n第二行输出一个整数 $*c*$（$0 ≤ *c* ≤ 2$）——所找到的方案中需要关闭的道路数量。\n\n第三行以任意顺序输出 $*c*$ 个互不相同的、介于 $1$ 和 $*m*$ 之间的整数——需要关闭的道路编号。道路按照它们在输入中出现的顺序编号为 $1$ 至 $*m*$。\n\n如果无法通过移除不超过 $2$ 条道路使城镇 $*s*$ 和 $*t*$ 不连通，则输出应只包含一行 `-1`。\n\n如果存在多个可行答案，可以输出其中任意一个。",
   "samples": [
     {
       "input": "6 7\n1 6\n2 1 6\n2 3 5\n3 4 9\n4 6 4\n4 6 5\n4 5 1\n3 1 3\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:07:22.449Z"
+  "fetchedAt": "2026-10-31T01:07:22.449Z",
+  "translatedAt": "2026-11-04T06:31:15.174+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

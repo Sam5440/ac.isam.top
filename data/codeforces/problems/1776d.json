@@ -4,7 +4,7 @@
   "contestId": 1776,
   "index": "D",
   "title": "Teamwork",
-  "titleZh": null,
+  "titleZh": "团队合作",
   "url": "https://codeforces.com/contest/1776/problem/D",
   "difficulty": 2800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "As soon as SWERC starts, your experienced $3$-person team immediately realizes that the contest features $a$ easy problems, $b$ medium problems, and $c$ hard problems. Solving a problem will take any of you $2$, $3$, or $4$ time units, depending on whether the problem is easy, medium, or hard. Regardless of the difficulty of the problem, the last time unit spent to solve it has to be spent using your shared computer.\n\nYou organize your efforts so that each of you starts (and ends) solving problems at integer time units. Any given problem can be solved by only one contestant; it requires a contiguous amount of time (which depends on the difficulty of the problem). None of the $3$ of you can solve more than one problem at a time, but you can start solving a new problem immediately after finishing one. Similarly, the shared computer cannot be used by more than one of you at a time, but any of you can start using the computer (to complete the problem currently being solved) immediately after someone else stops using it.\n\nGiven that the contest lasts $l$ time units, find the maximum number of problems that your team can solve. Additionally, find one way to solve the maximum number of problems.\n\n## Input\n\nThe input has a single line. It contains four integers $a$, $b$, $c$, $l$ ($0 \\leq a, b, c, \\leq 10^4$, $0 \\le l \\le 10^5$) — the number of easy, medium, and hard problems, and the duration of the contest.\n\n## Output\n\nOn the first line, print a single integer $n$ — the maximum number of problems that your team can solve.\n\nThen, on the $j$-th of the following $n$ lines, print three integers $x_j$, $p_j$, $q_j$ ($1 \\leq x \\leq 3$, $0 \\leq p_j \\lt q_j \\leq l$) — the contestant that solves the $j$-th problem, and the start and end time for solving the $j$-th problem (measured as time units elapsed from the beginning of the contest). The difference $q_j - p_j$ is $2$, $3$, or $4$, depending on the difficulty of the problem.\n\nThe last $n$ lines are to be provided in increasing order of end time: $q_1 \\lt q_2 \\lt \\cdots \\lt q_n$. If there are multiple ways to solve $n$ problems, output any of them.\n\n## Note\n\nIn the **first sample**, the first contestant solves an easy problem between time $0$ and time $2$ while the second contestant solves a medium problem between time $0$ and time $3$.\n\nIn the **second sample**, the first contestant solves an easy problem between time $0$ and time $2$, and then also solves a medium problem between time $2$ and time $5$. In the meantime, the second contestant solves another medium problem between time $0$ and time $3$, while the third contestant solves a hard problem between time $0$ and time $4$.\n\nIn the **third sample**, the contest only has medium and hard problems, and there is not enough time to solve any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "SWERC 一开始，你们经验丰富的 $3$ 人团队立刻发现，比赛中有 $a$ 道简单题、$b$ 道中等题和 $c$ 道困难题。解决一道题分别需要你们中的任意一人花费 $2$、$3$ 或 $4$ 个时间单位，具体取决于题目的难度。无论题目难度如何，解决它所花费的最后一个时间单位必须使用你们共享的计算机。\n\n你们安排工作，使得每个人都在整数时间单位开始（并结束）解决题目。每道题只能由一名选手解决，并且需要一段连续的时间（时长取决于题目难度）。你们三人中的任何一人都不能同时解决多道题，但可以在完成一道题后立即开始解决新题。同样，共享计算机不能同时被多人使用，但任何人都可以在其他人停止使用计算机后，立即开始使用计算机（以完成当前正在解决的题目）。\n\n已知比赛持续 $l$ 个时间单位，请求出你们团队最多能解决多少道题。此外，还要给出一种解决最多数量题目的方案。\n\n## 输入格式\n\n输入仅包含一行。该行包含四个整数 $a$、$b$、$c$、$l$（$0 \\leq a, b, c, \\leq 10^4$，$0 \\le l \\leq 10^5$），分别表示简单题、中等题、困难题的数量，以及比赛的持续时间。\n\n## 输出格式\n\n第一行输出一个整数 $n$，表示你们团队最多能解决的题目数量。\n\n接下来的 $n$ 行中，第 $j$ 行输出三个整数 $x_j$、$p_j$、$q_j$（$1 \\leq x \\leq 3$，$0 \\leq p_j \\lt q_j \\leq l$），表示解决第 $j$ 道题的选手、解决该题的开始时间和结束时间（均以从比赛开始经过的时间单位数表示）。差值 $q_j - p_j$ 应为 $2$、$3$ 或 $4$，具体取决于题目的难度。\n\n最后 $n$ 行必须按照结束时间递增的顺序给出：$q_1 \\lt q_2 \\lt \\cdots \\lt q_n$。如果有多种解决 $n$ 道题的方法，输出其中任意一种即可。\n\n## 说明\n\n在**第一个样例**中，第一名选手在时间 $0$ 到时间 $2$ 之间解决一道简单题，同时第二名选手在时间 $0$ 到时间 $3$ 之间解决一道中等题。\n\n在**第二个样例**中，第一名选手在时间 $0$ 到时间 $2$ 之间解决一道简单题，随后在时间 $2$ 到时间 $5$ 之间再解决一道中等题。同时，第二名选手在时间 $0$ 到时间 $3$ 之间解决另一道中等题，第三名选手在时间 $0$ 到时间 $4$ 之间解决一道困难题。\n\n在**第三个样例**中，比赛中只有中等题和困难题，并且没有足够的时间解决其中任何一道。",
   "samples": [
     {
       "input": "2 1 1 3\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:38:58.645Z"
+  "fetchedAt": "2026-11-02T17:38:58.645Z",
+  "translatedAt": "2026-11-04T02:58:51.831+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

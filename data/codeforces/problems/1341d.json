@@ -4,14 +4,14 @@
   "contestId": 1341,
   "index": "D",
   "title": "Nastya and Scoreboard",
-  "titleZh": null,
+  "titleZh": "Nastya 与记分牌",
   "url": "https://codeforces.com/contest/1341/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "* Denis, after buying flowers and sweets (you will learn about this story in the next task), went to a date with Nastya to ask her to become a couple. Now, they are sitting in the cafe and finally... Denis asks her to be together, but ... Nastya doesn't give any answer. *\n\nThe poor boy was very upset because of that. He was so sad that he punched some kind of scoreboard with numbers. The numbers are displayed in the same way as on an electronic clock: each digit position consists of $7$ segments, which can be turned on or off to display different numbers. The picture shows how all $10$ decimal digits are displayed:\n\n![image](https://espresso.codeforces.com/19e4ae06aceef4b9326d2ef6bca3339f5c84ed91.png)\n\nAfter the punch, some segments stopped working, that is, some segments might stop glowing if they glowed earlier. But Denis remembered how many sticks were glowing and how many are glowing now. Denis broke **exactly** $k$ segments and he knows which sticks are working now. Denis came up with the question: what is the maximum possible number that can appear on the board if you turn on exactly $k$ sticks (which are off now)?\n\nIt is **allowed** that the number includes leading zeros.\n\n## Input\n\nThe first line contains integer $n$ $(1 \\leq n \\leq 2000)$  — the number of digits on scoreboard and $k$ $(0 \\leq k \\leq 2000)$  — the number of segments that stopped working.\n\nThe next $n$ lines contain one binary string of length $7$, the $i$-th of which encodes the $i$-th digit of the scoreboard.\n\nEach digit on the scoreboard consists of $7$ segments. We number them, as in the picture below, and let the $i$-th place of the binary string be $0$ if the $i$-th stick is not glowing and $1$ if it is glowing. Then a binary string of length $7$ will specify which segments are glowing now.\n\n![image](https://espresso.codeforces.com/21dfa922ece26c6a6c647e0fc4f7a87cfb4db36f.png)\n\nThus, the sequences \"1110111\", \"0010010\", \"1011101\", \"1011011\", \"0111010\", \"1101011\", \"1101111\", \"1010010\", \"1111111\", \"1111011\" encode in sequence all digits from $0$ to $9$ inclusive.\n\n## Output\n\nOutput a single number consisting of $n$ digits  — the maximum number that can be obtained if you turn on exactly $k$ sticks or $-1$, if it is impossible to turn on exactly $k$ sticks so that a correct number appears on the scoreboard digits.\n\n## Note\n\nIn the first test, we are obliged to include all $7$ sticks and get one $8$ digit on the scoreboard.\n\nIn the second test, we have sticks turned on so that units are formed. For $5$ of additionally included sticks, you can get the numbers $07$, $18$, $34$, $43$, $70$, $79$, $81$ and $97$, of which we choose the maximum  — $97$.\n\nIn the third test, it is impossible to turn on exactly $5$ sticks so that a sequence of numbers appears on the scoreboard.",
-  "statementZhMd": null,
+  "statementZhMd": "<statement>\n*Denis 买了鲜花和糖果后（你将在下一题中了解到这个故事），去和 Nastya 约会，并请求她和自己成为情侣。现在，他们坐在咖啡馆里，终于……Denis 向她表白，希望两人能在一起，但是……Nastya 没有给出任何回答。*\n\n可怜的男孩因此非常失落。他太伤心了，以至于捶打了某种带数字的记分牌。数字的显示方式与电子钟相同：每个数字位置由 $7$ 段组成，这些段可以打开或关闭，以显示不同的数字。下图展示了 $10$ 个十进制数字的显示方式：\n\n![image](https://espresso.codeforces.com/19e4ae06aceef4b9326d2ef6bca3339f5c84ed91.png)\n\n捶打之后，一些线段停止工作，也就是说，之前发光的某些线段可能不再发光。但是 Denis 记得之前有多少根线段在发光，也知道现在有多少根线段在发光。Denis **恰好**弄坏了 $k$ 根线段，并且他知道现在仍在工作的线段。Denis 想知道：如果恰好打开 $k$ 根目前关闭的线段，记分牌上最多能显示出多大的数字？\n\n数字中**允许**包含前导零。\n\n## 题目描述\n\n## 输入格式\n\n第一行包含两个整数 $n$ $(1 \\leq n \\leq 2000)$ 和 $k$ $(0 \\leq k \\leq 2000)$，分别表示记分牌上的数字位数，以及停止工作的线段数量。\n\n接下来的 $n$ 行每行包含一个长度为 $7$ 的二进制字符串，其中第 $i$ 个字符串表示记分牌上的第 $i$ 位数字。\n\n记分牌上的每个数字由 $7$ 段组成。我们按照下图中的方式为它们编号，并规定二进制字符串的第 $i$ 位为 $0$ 表示第 $i$ 根线段不发光，为 $1$ 表示第 $i$ 根线段正在发光。因此，一个长度为 $7$ 的二进制字符串可以表示当前正在发光的线段。\n\n![image](https://espresso.codeforces.com/21dfa922ece26c6a6c647e0fc4f7a87cfb4db36f.png)\n\n因此，字符串 \"1110111\"、\"0010010\"、\"1011101\"、\"1011011\"、\"0111010\"、\"1101011\"、\"1101111\"、\"1010010\"、\"1111111\"、\"1111011\" 依次表示从 $0$ 到 $9$ 的所有数字。\n\n## 输出格式\n\n如果可以恰好打开 $k$ 根线段，使记分牌上的各个数字组成一个合法的数字，则输出一个由 $n$ 位数字组成的最大数字；否则输出 $-1$。\n\n## 说明\n\n在第一个测试中，我们必须打开全部 $7$ 根线段，从而在记分牌上得到一个数字 $8$。\n\n在第二个测试中，当前亮起的线段组成了数字 $1$。再打开 $5$ 根线段后，可以得到数字 $07$、$18$、$34$、$43$、$70$、$79$、$81$ 和 $97$，其中我们选择最大的数字，即 $97$。\n\n在第三个测试中，不可能恰好打开 $5$ 根线段，使记分牌上的数字组成一个合法的数字。\n</statement>",
   "samples": [
     {
       "input": "1 7\n0000000\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:51:27.669Z"
+  "fetchedAt": "2026-10-30T23:51:27.669Z",
+  "translatedAt": "2026-11-04T04:37:09.188+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

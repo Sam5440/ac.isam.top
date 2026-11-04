@@ -4,7 +4,7 @@
   "contestId": 1734,
   "index": "C",
   "title": "Removing Smallest Multiples",
-  "titleZh": null,
+  "titleZh": "删除最小倍数",
   "url": "https://codeforces.com/contest/1734/problem/C",
   "difficulty": 1200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a set $S$, which contains the first $n$ positive integers: $1, 2, \\ldots, n$.\n\nYou can perform the following operation on $S$ any number of times (possibly zero):\n\n- Choose a positive integer $k$ where $1 \\le k \\le n$, such that there exists a multiple of $k$ in $S$. Then, delete the **smallest** multiple of $k$ from $S$. This operation requires a cost of $k$.\n\nYou are given a set $T$, which is a subset of $S$. Find the minimum possible total cost of operations such that $S$ would be transformed into $T$. We can show that such a transformation is always possible.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\le t \\le 10\\,000$) — the number of test cases. The description of the test cases follows.\n\nThe first line contains a single positive integer $n$ ($1 \\le n \\le 10^6$).\n\nThe second line of each test case contains a binary string of length $n$, describing the set $T$. The $i$-th character of the string is '`1`' if and only if $i$ is an element of $T$, and '`0`' otherwise.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output one non-negative integer — the minimum possible total cost of operations such that $S$ would be transformed into $T$.\n\n## Note\n\nIn the first test case, we shall not perform any operations as $S$ is already equal to $T$, which is the set $\\{1, 2, 3, 4, 5, 6\\}$.\n\nIn the second test case, initially, $S = \\{1, 2, 3, 4, 5, 6, 7\\}$, and $T = \\{1, 2, 4, 7\\}$. We shall perform the following operations:\n\n1. Choose $k=3$, then delete $3$ from $S$.\n2. Choose $k=3$, then delete $6$ from $S$.\n3. Choose $k=5$, then delete $5$ from $S$.\n\nThe total cost is $3+3+5 = 11$. It can be shown that this is the smallest cost possible.\n\nIn the third test case, initially, $S = \\{1, 2, 3, 4\\}$ and $T = \\{\\}$ (empty set). We shall perform $4$ operations of $k=1$ to delete $1$, $2$, $3$, and $4$.\n\nIn the fourth test case, initially, $S = \\{1, 2, 3, 4\\}$ and $T = \\{3\\}$. We shall perform two operations with $k=1$ to delete $1$ and $2$, then perform one operation with $k=2$ to delete $4$.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个集合 $S$，其中包含前 $n$ 个正整数：$1, 2, \\ldots, n$。\n\n你可以对 $S$ 执行任意次以下操作（也可以一次都不执行）：\n\n- 选择一个正整数 $k$，满足 $1 \\le k \\le n$，且 $S$ 中存在 $k$ 的倍数。然后从 $S$ 中删除 $k$ 的**最小**倍数。执行此操作的代价为 $k$。\n\n给定一个集合 $T$，它是 $S$ 的子集。请你求出将 $S$ 转变为 $T$ 所需操作的最小总代价。可以证明，这样的转变总是能够实现。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10\\,000$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个正整数 $n$（$1 \\le n \\le 10^6$）。\n\n每个测试用例的第二行包含一个长度为 $n$ 的二进制字符串，用于描述集合 $T$。当且仅当 $i$ 是 $T$ 的元素时，字符串的第 $i$ 个字符为 '`1`'，否则为 '`0`'。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出一个非负整数——将 $S$ 转变为 $T$ 所需操作的最小总代价。\n\n## 说明\n\n在第一个测试用例中，我们不需要执行任何操作，因为此时 $S$ 已经等于 $T$，即集合 $\\{1, 2, 3, 4, 5, 6\\}$。\n\n在第二个测试用例中，初始时 $S = \\{1, 2, 3, 4, 5, 6, 7\\}$，且 $T = \\{1, 2, 4, 7\\}$。我们可以执行以下操作：\n\n1. 选择 $k=3$，然后从 $S$ 中删除 $3$。\n2. 选择 $k=3$，然后从 $S$ 中删除 $6$。\n3. 选择 $k=5$，然后从 $S$ 中删除 $5$。\n\n总代价为 $3+3+5 = 11$。可以证明这是可能的最小代价。\n\n在第三个测试用例中，初始时 $S = \\{1, 2, 3, 4\\}$，且 $T = \\{\\}$（空集）。我们执行 $4$ 次 $k=1$ 的操作，依次删除 $1$、$2$、$3$ 和 $4$。\n\n在第四个测试用例中，初始时 $S = \\{1, 2, 3, 4\\}$，且 $T = \\{3\\}$。我们先执行两次 $k=1$ 的操作，删除 $1$ 和 $2$，然后执行一次 $k=2$ 的操作，删除 $4$。",
   "samples": [
     {
       "input": "6\n6\n111111\n7\n1101001\n4\n0000\n4\n0010\n8\n10010101\n15\n110011100101100\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:51:22.710Z"
+  "fetchedAt": "2026-10-30T22:51:22.710Z",
+  "translatedAt": "2026-11-04T03:18:50.315+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

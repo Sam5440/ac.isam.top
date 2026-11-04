@@ -4,7 +4,7 @@
   "contestId": 1327,
   "index": "D",
   "title": "Infinite Path",
-  "titleZh": null,
+  "titleZh": "无限路径",
   "url": "https://codeforces.com/contest/1327/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a colored permutation $p_1, p_2, \\dots, p_n$. The $i$-th element of the permutation has color $c_i$.\n\nLet's define an *infinite path* as infinite sequence $i, p[i], p[p[i]], p[p[p[i]]] \\dots$ where all elements have **same color** ($c[i] = c[p[i]] = c[p[p[i]]] = \\dots$).\n\nWe can also define a multiplication of permutations $a$ and $b$ as permutation $c = a \\times b$ where $c[i] = b[a[i]]$. Moreover, we can define a power $k$ of permutation $p$ as $p^k=\\underbrace{p \\times p \\times \\dots \\times p}_{k \\text{ times}}$.\n\nFind the minimum $k \\gt 0$ such that $p^k$ has at least one infinite path (i.e. there is a position $i$ in $p^k$ such that the sequence starting from $i$ is an infinite path).\n\nIt can be proved that the answer always exists.\n\n## Input\n\nThe first line contains single integer $T$ ($1 \\le T \\le 10^4$) — the number of test cases.\n\nNext $3T$ lines contain test cases — one per three lines. The first line contains single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the size of the permutation.\n\nThe second line contains $n$ integers $p_1, p_2, \\dots, p_n$ ($1 \\le p_i \\le n$, $p_i \\neq p_j$ for $i \\neq j$) — the permutation $p$.\n\nThe third line contains $n$ integers $c_1, c_2, \\dots, c_n$ ($1 \\le c_i \\le n$) — the colors of elements of the permutation.\n\nIt is guaranteed that the total sum of $n$ doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nPrint $T$ integers — one per test case. For each test case print minimum $k \\gt 0$ such that $p^k$ has at least one infinite path.\n\n## Note\n\nIn the first test case, $p^1 = p = [1, 3, 4, 2]$ and the sequence starting from $1$: $1, p[1] = 1, \\dots$ is an infinite path.\n\nIn the second test case, $p^5 = [1, 2, 3, 4, 5]$ and it obviously contains several infinite paths.\n\nIn the third test case, $p^2 = [3, 6, 1, 8, 7, 2, 5, 4]$ and the sequence starting from $4$: $4, p^2[4]=8, p^2[8]=4, \\dots$ is an infinite path since $c_4 = c_8 = 4$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个带颜色的排列 $p_1, p_2, \\dots, p_n$。排列中的第 $i$ 个元素的颜色为 $c_i$。\n\n我们将满足所有元素具有**相同颜色**（$c[i] = c[p[i]] = c[p[p[i]]] = \\dots$）的无限序列 $i, p[i], p[p[i]], p[p[p[i]]], \\dots$ 定义为一条*无限路径*。\n\n我们还可以定义排列 $a$ 和 $b$ 的乘法：令排列 $c = a \\times b$，其中 $c[i] = b[a[i]]$。此外，还可以定义排列 $p$ 的 $k$ 次幂：$p^k=\\underbrace{p \\times p \\times \\dots \\times p}_{k \\text{ times}}$。\n\n请找出满足 $k \\gt 0$ 且 $p^k$ 至少包含一条无限路径的最小 $k$（即在 $p^k$ 中存在某个位置 $i$，使得从该位置开始的序列是一条无限路径）。\n\n可以证明答案始终存在。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\le T \\le 10^4$）——测试用例的数量。\n\n接下来的 $3T$ 行描述各个测试用例，每个测试用例占三行。第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——排列的大小。\n\n第二行包含 $n$ 个整数 $p_1, p_2, \\dots, p_n$（$1 \\le p_i \\le n$，当 $i \\neq j$ 时有 $p_i \\neq p_j$）——排列 $p$。\n\n第三行包含 $n$ 个整数 $c_1, c_2, \\dots, c_n$（$1 \\le c_i \\le n$）——排列中各元素的颜色。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n输出 $T$ 个整数，每个测试用例输出一个。对于每个测试用例，输出满足 $k \\gt 0$ 且 $p^k$ 至少包含一条无限路径的最小 $k$。\n\n## 说明\n\n在第一个测试用例中，$p^1 = p = [1, 3, 4, 2]$，从 $1$ 开始的序列：$1, p[1] = 1, \\dots$ 是一条无限路径。\n\n在第二个测试用例中，$p^5 = [1, 2, 3, 4, 5]$，显然其中包含多条无限路径。\n\n在第三个测试用例中，$p^2 = [3, 6, 1, 8, 7, 2, 5, 4]$，从 $4$ 开始的序列：$4, p^2[4]=8, p^2[8]=4, \\dots$ 是一条无限路径，因为 $c_4 = c_8 = 4$。",
   "samples": [
     {
       "input": "3\n4\n1 3 4 2\n1 2 2 3\n5\n2 3 4 5 1\n1 2 3 4 5\n8\n7 4 5 6 1 8 3 2\n5 3 6 4 7 5 8 4\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:54:19.907Z"
+  "fetchedAt": "2026-11-02T18:54:19.907Z",
+  "translatedAt": "2026-11-04T04:42:09.093+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

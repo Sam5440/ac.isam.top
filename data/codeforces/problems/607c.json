@@ -4,7 +4,7 @@
   "contestId": 607,
   "index": "C",
   "title": "Marbles",
-  "titleZh": null,
+  "titleZh": "弹珠",
   "url": "https://codeforces.com/contest/607/problem/C",
   "difficulty": 2500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "In the spirit of the holidays, Saitama has given Genos two grid paths of length $*n*$ (a weird gift even by Saitama's standards). A grid path is an ordered sequence of neighbouring squares in an infinite grid. Two squares are neighbouring if they share a side.\n\nOne example of a grid path is $(0, 0) → (0, 1) → (0, 2) → (1, 2) → (1, 1) → (0, 1) → ( - 1, 1)$. Note that squares in this sequence might be repeated, i.e. path has self intersections.\n\nMovement within a grid path is restricted to adjacent squares within the sequence. That is, from the $*i*$-th square, one can **only move** to the $(*i* - 1)$-th or $(*i* + 1)$-th squares of this path. Note that there is only a single valid move from the first and last squares of a grid path. Also note, that even if there is some $*j*$-th square of the path that coincides with the $*i*$-th square, only moves to $(*i* - 1)$-th and $(*i* + 1)$-th squares are available. For example, from the second square in the above sequence, one can only move to either the first or third squares.\n\nTo ensure that movement is not ambiguous, the two grid paths will not have an alternating sequence of three squares. For example, a contiguous subsequence $(0, 0) → (0, 1) → (0, 0)$ **cannot occur** in a valid grid path.\n\nOne marble is placed on the first square of each grid path. Genos wants to get both marbles to the last square of each grid path. However, there is a catch. Whenever he moves one marble, the other marble will copy its movement if possible. For instance, if one marble moves east, then the other marble will *try* and move east as well. By *try*, we mean if moving east is a valid move, then the marble will move east.\n\nMoving north increases the second coordinate by $1$, while moving south decreases it by $1$. Similarly, moving east increases first coordinate by $1$, while moving west decreases it.\n\nGiven these two valid grid paths, Genos wants to know if it is possible to move both marbles to the ends of their respective paths. That is, if it is possible to move the marbles such that both marbles rest on the last square of their respective paths.\n\n## Input\n\nThe first line of the input contains a single integer $*n*$ ($2 ≤ *n* ≤ 1 000 000$) — the length of the paths.\n\nThe second line of the input contains a string consisting of $*n* - 1$ characters (each of which is either '`N`', '`E`', '`S`', or '`W`') — the first grid path. The characters can be thought of as the sequence of moves needed to traverse the grid path. For example, the example path in the problem statement can be expressed by the string \"`NNESWW`\".\n\nThe third line of the input contains a string of $*n* - 1$ characters (each of which is either '`N`', '`E`', '`S`', or '`W`') — the second grid path.\n\n## Output\n\nPrint \"`YES`\" (without quotes) if it is possible for both marbles to be at the end position at the same time. Print \"`NO`\" (without quotes) otherwise. In both cases, the answer is case-insensitive.\n\n## Note\n\nIn the first sample, the first grid path is the one described in the statement. Moreover, the following sequence of moves will get both marbles to the end: `NNESWWSWSW`.\n\nIn the second sample, no sequence of moves can get both marbles to the end.",
-  "statementZhMd": null,
+  "statementZhMd": "在节日的氛围中，埼玉送给了杰诺斯两条长度为 $*n*$ 的网格路径（即使以埼玉的标准来看，这也是一份奇怪的礼物）。网格路径是无限网格中相邻方格组成的有序序列。如果两个方格共享一条边，则称它们相邻。\n\n网格路径的一个例子是 $(0, 0) → (0, 1) → (0, 2) → (1, 2) → (1, 1) → (0, 1) → ( - 1, 1)$。注意，该序列中的方格可能重复，即路径可能存在自交。\n\n在一条网格路径中，移动被限制为沿序列移动到相邻方格。也就是说，从第 $*i*$ 个方格出发，**只能移动**到该路径中的第 $(*i* - 1)$ 个或第 $(*i* + 1)$ 个方格。注意，从网格路径的第一个和最后一个方格出发时，只有一种合法移动。另外，即使路径中存在某个第 $*j*$ 个方格与第 $*i*$ 个方格重合，也只能移动到第 $(*i* - 1)$ 个和第 $(*i* + 1)$ 个方格。例如，从上述序列中的第二个方格出发，只能移动到第一个或第三个方格。\n\n为了确保移动不会产生歧义，两条网格路径中都不会出现三个方格交替出现的序列。例如，连续子序列 $(0, 0) → (0, 1) → (0, 0)$ **不能出现在**合法的网格路径中。\n\n每条网格路径的第一个方格上都放置着一颗弹珠。杰诺斯希望将两颗弹珠都移动到各自网格路径的最后一个方格。然而，存在一个限制：每当他移动一颗弹珠时，另一颗弹珠也会在可能的情况下复制它的移动。例如，如果一颗弹珠向东移动，那么另一颗弹珠也会*尝试*向东移动。这里的“尝试”是指：如果向东移动是合法的，那么该弹珠就会向东移动。\n\n向北移动会使第二个坐标增加 $1$，向南移动会使其减少 $1$。类似地，向东移动会使第一个坐标增加 $1$，向西移动会使其减少 $1$。\n\n给定这两条合法的网格路径，杰诺斯想知道是否可以将两颗弹珠都移动到各自路径的终点。也就是说，是否存在一种移动方式，使两颗弹珠最终同时停在各自路径的最后一个方格上。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$2 ≤ *n* ≤ 1 000 000$）——路径的长度。\n\n输入的第二行包含一个由 $*n* - 1$ 个字符组成的字符串（每个字符都是 '`N`'、'`E`'、'`S`' 或 '`W`'）——第一条网格路径。可以将这些字符看作遍历该网格路径所需的一系列移动。例如，题面中给出的示例路径可以表示为字符串 \"`NNESWW`\"。\n\n输入的第三行包含一个由 $*n* - 1$ 个字符组成的字符串（每个字符都是 '`N`'、'`E`'、'`S`' 或 '`W`'）——第二条网格路径。\n\n## 输出格式\n\n如果可以使两颗弹珠同时位于终点位置，则输出 \"`YES`\"（不含引号）；否则输出 \"`NO`\"（不含引号）。在这两种情况下，答案均不区分大小写。\n\n## 说明\n\n在第一个样例中，第一条网格路径就是题面中描述的路径。此外，按照以下移动序列可以将两颗弹珠都移动到终点：`NNESWWSWSW`。\n\n在第二个样例中，不存在任何移动序列可以使两颗弹珠都移动到终点。",
   "samples": [
     {
       "input": "7\nNNESWW\nSWSWSW\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:18:06.246Z"
+  "fetchedAt": "2026-10-31T01:18:06.246Z",
+  "translatedAt": "2026-11-04T06:44:32.470+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

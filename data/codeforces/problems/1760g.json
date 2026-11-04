@@ -4,7 +4,7 @@
   "contestId": 1760,
   "index": "G",
   "title": "SlavicG's Favorite Problem",
-  "titleZh": null,
+  "titleZh": "SlavicG 最喜欢的问题",
   "url": "https://codeforces.com/contest/1760/problem/G",
   "difficulty": 1700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a weighted tree with $n$ vertices. Recall that a tree is a connected graph without any cycles. A weighted tree is a tree in which each edge has a certain weight. The tree is undirected, it doesn't have a root.\n\nSince trees bore you, you decided to challenge yourself and play a game on the given tree.\n\nIn a move, you can travel from a node to one of its neighbors (another node it has a direct edge with).\n\nYou start with a variable $x$ which is initially equal to $0$. When you pass through edge $i$, $x$ changes its value to $x ~\\mathsf{XOR}~ w_i$ (where $w_i$ is the weight of the $i$-th edge).\n\nYour task is to go from vertex $a$ to vertex $b$, but you are allowed to enter node $b$ if and only if after traveling to it, the value of $x$ will become $0$. In other words, you can travel to node $b$ only by using an edge $i$ such that $x ~\\mathsf{XOR}~ w_i = 0$. Once you enter node $b$ the game ends and you win.\n\nAdditionally, you can teleport **at most once** at any point in time to any vertex except vertex $b$. You can teleport from any vertex, even from $a$.\n\nAnswer with \"`YES`\" if you can reach vertex $b$ from $a$, and \"`NO`\" otherwise.\n\nNote that $\\mathsf{XOR}$ represents the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases.\n\nThe first line of each test case contains three integers $n$, $a$, and $b$ ($2 \\leq n \\leq 10^5$), ($1 \\leq a, b \\leq n; a \\ne b$) — the number of vertices, and the starting and desired ending node respectively.\n\nEach of the next $n-1$ lines denotes an edge of the tree. Edge $i$ is denoted by three integers $u_i$, $v_i$ and $w_i$  — the labels of vertices it connects ($1 \\leq u_i, v_i \\leq n; u_i \\ne v_i; 1 \\leq w_i \\leq 10^9$) and the weight of the respective edge.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case output \"`YES`\" if you can reach vertex $b$, and \"`NO`\" otherwise.\n\n## Note\n\nFor the first test case, we can travel from node $1$ to node $3$, $x$ changing from $0$ to $1$, then we travel from node $3$ to node $2$, $x$ becoming equal to $3$. Now, we can teleport to node $3$ and travel from node $3$ to node $4$, reaching node $b$, since $x$ became equal to $0$ in the end, so we should answer \"`YES`\".\n\nFor the second test case, we have no moves, since we can't teleport to node $b$ and the only move we have is to travel to node $2$ which is impossible since $x$ wouldn't be equal to $0$ when reaching it, so we should answer \"`NO`\".",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵包含 $n$ 个顶点的带权树。回忆一下，树是一种无环连通图。带权树是指每条边都有一个权值的树。该树是无向的，且没有根节点。\n\n由于你觉得树很无聊，于是决定挑战自己，在给定的树上进行一个游戏。\n\n在一次移动中，你可以从一个节点移动到它的某个邻居节点（即与它通过一条直接边相连的另一个节点）。\n\n你有一个变量 $x$，其初始值为 $0$。当你经过边 $i$ 时，$x$ 的值会变为 $x ~\\mathsf{XOR}~ w_i$（其中 $w_i$ 是第 $i$ 条边的权值）。\n\n你的任务是从顶点 $a$ 到达顶点 $b$，但只有当到达节点 $b$ 后 $x$ 的值变为 $0$ 时，你才能进入节点 $b$。换句话说，你只能通过满足 $x ~\\mathsf{XOR}~ w_i = 0$ 的边 $i$ 到达节点 $b$。一旦进入节点 $b$，游戏结束，你就获胜。\n\n此外，你可以在任意时刻**至多传送一次**到任意一个不是顶点 $b$ 的顶点。你可以从任意顶点进行传送，包括顶点 $a$。\n\n如果你能从顶点 $a$ 到达顶点 $b$，输出“`YES`”，否则输出“`NO`”。\n\n注意，$\\mathsf{XOR}$ 表示[按位异或运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 1000$）——测试用例的数量。\n\n每个测试用例的第一行包含三个整数 $n$、$a$ 和 $b$（$2 \\leq n \\leq 10^5$）、（$1 \\leq a, b \\leq n; a \\ne b$）——顶点的数量、起始节点和目标终点节点。\n\n接下来的 $n-1$ 行中的每一行描述树的一条边。第 $i$ 条边由三个整数 $u_i$、$v_i$ 和 $w_i$ 表示——它所连接的顶点编号（$1 \\leq u_i, v_i \\leq n; u_i \\ne v_i$）以及该边的权值（$1 \\leq w_i \\leq 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果你能到达顶点 $b$，输出“`YES`”，否则输出“`NO`”。\n\n## 说明\n\n对于第一个测试用例，我们可以从节点 $1$ 移动到节点 $3$，此时 $x$ 从 $0$ 变为 $1$；然后从节点 $3$ 移动到节点 $2$，此时 $x$ 变为 $3$。现在，我们可以传送到节点 $3$，再从节点 $3$ 移动到节点 $4$ 并到达节点 $b$，因为最终 $x$ 变为了 $0$，所以答案应为“`YES`”。\n\n对于第二个测试用例，我们没有可执行的移动，因为不能传送到节点 $b$，而唯一可以进行的移动是前往节点 $2$，但到达节点 $2$ 时 $x$ 不会等于 $0$，因此这是不可能的，所以答案应为“`NO`”。",
   "samples": [
     {
       "input": "3\n5 1 4\n1 3 1\n2 3 2\n4 3 3\n3 5 1\n2 1 2\n1 2 2\n6 2 3\n1 2 1\n2 3 1\n3 4 1\n4 5 3\n5 6 5\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:48:56.897Z"
+  "fetchedAt": "2026-11-02T17:48:56.897Z",
+  "translatedAt": "2026-11-04T03:08:30.165+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

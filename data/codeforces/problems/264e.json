@@ -4,7 +4,7 @@
   "contestId": 264,
   "index": "E",
   "title": "Roadside Trees",
-  "titleZh": null,
+  "titleZh": "路边树木",
   "url": "https://codeforces.com/contest/264/problem/E",
   "difficulty": 3000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "Squirrel Liss loves nuts. Liss asks you to plant some nut trees.\n\nThere are $*n*$ positions (numbered 1 to $*n*$ from west to east) to plant a tree along a street. Trees grow one meter per month. At the beginning of each month you should process one query. The query is one of the following types:\n\n1. Plant a tree of height $*h*$ at position $*p*$.\n2. Cut down the $*x*$-th existent (not cut) tree from the west (where $*x*$ is 1-indexed). When we cut the tree it drops down and takes all the available place at the position where it has stood. So no tree can be planted at this position anymore.\n\nAfter processing each query, you should print the length of the longest increasing subsequence. A subset of existent trees is called an *increasing subsequence* if the height of the trees in the set is strictly increasing from west to east (for example, the westmost tree in the set must be the shortest in the set). The length of the increasing subsequence is the number of trees in it.\n\nNote that Liss don't like the trees with the same heights, so it is guaranteed that at any time no two trees have the exactly same heights.\n\n## Input\n\nThe first line contains two integers: $*n*$ and $*m*$ ($1  ≤ *n* ≤ 10^{5}; 1 ≤ *m* ≤ 2·10^{5}$) — the number of positions and the number of queries.\n\nNext $*m*$ lines contains the information of queries by following formats:\n\n- If the $*i*$-th query is type 1, the $*i*$-th line contains three integers: 1, $*p*_{*i*}$, and $*h*_{*i*}$ ($1 ≤ *p*_{*i*} ≤ *n*, 1 ≤ *h*_{*i*} ≤ 10$), where $*p*_{*i*}$ is the position of the new tree and $*h*_{*i*}$ is the initial height of the new tree.\n- If the $*i*$-th query is type 2, the $*i*$-th line contains two integers: 2 and $*x*_{*i*}$ ($1 ≤ *x*_{*i*} ≤ 10$), where the $*x*_{*i*}$ is the index of the tree we want to cut.\n\nThe input is guaranteed to be correct, i.e.,\n\n- For type 1 queries, $*p*_{*i*}$ will be pairwise distinct.\n- For type 2 queries, $*x*_{*i*}$ will be less than or equal to the current number of trees.\n- At any time no two trees have the exactly same heights.\n\nIn each line integers are separated by single spaces.\n\n## Output\n\nPrint $*m*$ integers — the length of the longest increasing subsequence after each query. Separate the numbers by whitespaces.\n\n## Note\n\nStates of street after each query you can see on the following animation:\n\n![image](https://espresso.codeforces.com/edf6b97f6154cd7056ca92d3a07ee8cf04f1772c.png)\n\nIf your browser doesn't support animation png, please see the gif version here: http://212.193.37.254/codeforces/images/162/roadtree.gif",
-  "statementZhMd": null,
+  "statementZhMd": "松鼠 Liss 喜欢坚果。Liss 请你种一些坚果树。\n\n街道旁有 $*n*$ 个种树的位置（从西向东编号为 1 到 $*n*$）。树木每月长高一米。在每个月开始时，你需要处理一个查询。查询类型如下：\n\n1. 在位置 $*p*$ 种植一棵高度为 $*h*$ 的树。\n2. 从西边起砍倒第 $*x*$ 棵现存（未被砍倒）的树（其中 $*x*$ 从 1 开始编号）。砍倒树木时，它会倒下并占据其原来所在位置的全部可用空间。因此，此位置之后不能再种植树木。\n\n处理完每个查询后，你需要输出最长递增子序列的长度。如果一组现存树木从西向东高度严格递增，则称这组树木为一个*递增子序列*（例如，该集合中最西边的树必须是集合中最矮的树）。递增子序列的长度就是其中树木的数量。\n\n注意，Liss 不喜欢高度相同的树，因此保证在任何时刻都不存在两棵高度完全相同的树。\n\n## 约束条件\n\n第一行包含两个整数：$*n*$ 和 $*m*$（$1  ≤ *n* ≤ 10^{5}; 1 ≤ *m* ≤ 2·10^{5}$）——位置的数量和查询的数量。\n\n接下来 $*m*$ 行按照以下格式包含查询信息：\n\n- 如果第 $*i*$ 个查询是类型 1，第 $*i*$ 行包含三个整数：1、$*p*_{*i*}$ 和 $*h*_{*i*}$（$1 ≤ *p*_{*i*} ≤ *n*, 1 ≤ *h*_{*i*} ≤ 10$），其中 $*p*_{*i*}$ 是新树的位置，$*h*_{*i*}$ 是新树的初始高度。\n- 如果第 $*i*$ 个查询是类型 2，第 $*i*$ 行包含两个整数：2 和 $*x*_{*i*}$（$1 ≤ *x*_{*i*} ≤ 10$），其中 $*x*_{*i*}$ 是我们想要砍倒的树的编号。\n\n保证输入正确，即：\n\n- 对于类型 1 的查询，$*p*_{*i*}$ 两两不同。\n- 对于类型 2 的查询，$*x*_{*i*}$ 小于或等于当前树的数量。\n- 在任何时刻都不存在两棵高度完全相同的树。\n\n每行中的整数之间由单个空格分隔。\n\n## 输出格式\n\n输出 $*m*$ 个整数——每次查询后最长递增子序列的长度。数字之间用空白字符分隔。\n\n## 说明\n\n每次查询后的街道状态可以在以下动画中查看：\n\n![image](https://espresso.codeforces.com/edf6b97f6154cd7056ca92d3a07ee8cf04f1772c.png)\n\n如果你的浏览器不支持动画 PNG，请在此处查看 GIF 版本：http://212.193.37.254/codeforces/images/162/roadtree.gif",
   "samples": [
     {
       "input": "4 6\n1 1 1\n1 4 4\n1 3 4\n2 2\n1 2 8\n2 3\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:12:11.010Z"
+  "fetchedAt": "2026-10-31T02:12:11.010Z",
+  "translatedAt": "2026-11-04T07:28:31.721+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

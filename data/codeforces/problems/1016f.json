@@ -4,7 +4,7 @@
   "contestId": 1016,
   "index": "F",
   "title": "Road Projects",
-  "titleZh": null,
+  "titleZh": "道路项目",
   "url": "https://codeforces.com/contest/1016/problem/F",
   "difficulty": 2600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ cities in the country of Berland. Some of them are connected by bidirectional roads in such a way that there exists *exactly one* path, which visits each road no more than once, between every pair of cities. Each road has its own length. Cities are numbered from $1$ to $n$.\n\nThe travelling time between some cities $v$ and $u$ is the total length of the roads on the shortest path from $v$ to $u$.\n\nThe two most important cities in Berland are cities $1$ and $n$.\n\nThe Berland Ministry of Transport decided to build a single new road to decrease the traffic between the most important cities. However, lots of people are used to the current travelling time between the most important cities, so the new road shouldn't change it too much.\n\nThe new road can only be built between such cities $v$ and $u$ that $v \\neq u$ and $v$ and $u$ aren't already connected by some road.\n\nThey came up with $m$ possible projects. Each project is just the length $x$ of the new road.\n\nPolycarp works as a head analyst at the Berland Ministry of Transport and it's his job to deal with all those $m$ projects. For the $i$-th project he is required to choose some cities $v$ and $u$ to build the new road of length $x_i$ between such that the travelling time between the most important cities is **maximal possible**.\n\nUnfortunately, Polycarp is not a programmer and no analyst in the world is capable to process all projects using only pen and paper.\n\nThus, he asks you to help him to calculate the maximal possible travelling time between the most important cities for each project. Note that the choice of $v$ and $u$ can differ for different projects.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($3 \\le n \\le 3 \\cdot 10^5$, $1 \\le m \\le 3 \\cdot 10^5$) — the number of cities and the number of projects, respectively.\n\nEach of the next $n - 1$ lines contains three integers $v_i$, $u_i$ and $w_i$ ($1 \\le v_i, u_i \\le n$, $1 \\le w_i \\le 10^9$) — the description of the $i$-th road. It is guaranteed that there exists *exactly one* path, which visits each road no more than once, between every pair of cities.\n\nEach of the next $m$ lines contains a single integer $x_j$ ($1 \\le x_j \\le 10^9$) — the length of the road for the $j$-th project.\n\n## Output\n\nPrint $m$ lines, the $j$-th line should contain a single integer — the maximal possible travelling time between the most important cities for the $j$-th project.\n\n## Note\n\nThe road network from the first example:\n\n![image](https://espresso.codeforces.com/112687c8a4cdc67ef1497a582b6ceef40762e46f.png)\n\nYou can build the road with length $1$ between cities $5$ and $6$ to get $83$ as the travelling time between $1$ and $7$ ($1 \\rightarrow 2 \\rightarrow 6 \\rightarrow 5 \\rightarrow 3 \\rightarrow 4 \\rightarrow 7$ $=$ $18 + 4 + 1 + 12 + 24 + 24 = 83$). Other possible pairs of cities will give answers less or equal to $83$.",
-  "statementZhMd": null,
+  "statementZhMd": "该国有 $n$ 座城市。部分城市之间由双向道路连接，并且任意两个城市之间都恰好存在一条经过每条道路至多一次的路径。每条道路都有自己的长度。城市编号为 $1$ 至 $n$。\n\n城市 $v$ 和 $u$ 之间的通行时间，是从 $v$ 到 $u$ 的最短路径上所有道路长度之和。\n\n别尔兰最重要的两座城市是城市 $1$ 和城市 $n$。\n\n别尔兰交通部决定修建一条新道路，以减少最重要城市之间的交通压力。然而，许多人已经习惯了当前两座最重要城市之间的通行时间，因此新道路不应使其变化太大。\n\n新道路只能修建在满足以下条件的两个城市 $v$ 和 $u$ 之间：$v \\neq u$，且 $v$ 和 $u$ 之间尚未存在道路。\n\n他们提出了 $m$ 个可能的项目。每个项目仅给出新道路的长度 $x$。\n\nPolycarp 是别尔兰交通部的首席分析师，他的工作是处理这 $m$ 个项目。对于第 $i$ 个项目，他需要选择两个城市 $v$ 和 $u$，在它们之间修建一条长度为 $x_i$ 的新道路，使两座最重要城市之间的通行时间**尽可能大**。\n\n遗憾的是，Polycarp 不会编程，而全世界没有任何分析师能够仅凭纸笔处理所有项目。\n\n因此，他请你帮助计算每个项目中两座最重要城市之间可能达到的最大通行时间。注意，对于不同的项目，所选择的 $v$ 和 $u$ 可以不同。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$3 \\le n \\le 3 \\cdot 10^5$，$1 \\le m \\le 3 \\cdot 10^5$），分别表示城市数量和项目数量。\n\n接下来的 $n - 1$ 行中，每行包含三个整数 $v_i$、$u_i$ 和 $w_i$（$1 \\le v_i, u_i \\le n$，$1 \\le w_i \\le 10^9$），表示第 $i$ 条道路。其中保证任意两个城市之间都恰好存在一条经过每条道路至多一次的路径。\n\n接下来的 $m$ 行中，每行包含一个整数 $x_j$（$1 \\le x_j \\le 10^9$），表示第 $j$ 个项目中新道路的长度。\n\n## 输出格式\n\n输出 $m$ 行，第 $j$ 行应包含一个整数，表示第 $j$ 个项目中两座最重要城市之间可能达到的最大通行时间。\n\n## 说明\n\n第一个样例中的道路网络：\n\n![image](https://espresso.codeforces.com/112687c8a4cdc67ef1497a582b6ceef40762e46f.png)\n\n可以在城市 $5$ 和 $6$ 之间修建一条长度为 $1$ 的道路，此时城市 $1$ 和 $7$ 之间的通行时间为 $83$（$1 \\rightarrow 2 \\rightarrow 6 \\rightarrow 5 \\rightarrow 3 \\rightarrow 4 \\rightarrow 7$ $=$ $18 + 4 + 1 + 12 + 24 + 24 = 83$）。其他可选的城市对所得到的答案都小于或等于 $83$。",
   "samples": [
     {
       "input": "7 2\n1 2 18\n2 3 22\n3 4 24\n4 7 24\n2 6 4\n3 5 12\n1\n100\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:33:45.098Z"
+  "fetchedAt": "2026-11-02T19:33:45.098Z",
+  "translatedAt": "2026-11-04T05:34:34.513+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1553,
   "index": "E",
   "title": "Permutation Shift",
-  "titleZh": null,
+  "titleZh": "排列移位",
   "url": "https://codeforces.com/contest/1553/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "An identity permutation of length $n$ is an array $[1, 2, 3, \\dots, n]$.\n\nWe performed the following operations to an identity permutation of length $n$:\n\n- firstly, we cyclically shifted it to the right by $k$ positions, where $k$ is unknown to you (the only thing you know is that $0 \\le k \\le n - 1$). When an array is cyclically shifted to the right by $k$ positions, the resulting array is formed by taking $k$ last elements of the original array (without changing their relative order), and then appending $n - k$ first elements to the right of them (without changing relative order of the first $n - k$ elements as well). For example, if we cyclically shift the identity permutation of length $6$ by $2$ positions, we get the array $[5, 6, 1, 2, 3, 4]$;\n- secondly, we performed the following operation **at most** $m$ times: pick any two elements of the array and swap them.\n\nYou are given the values of $n$ and $m$, and the resulting array. Your task is to find all possible values of $k$ in the cyclic shift operation.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^5$) — the number of test cases.\n\nEach test case consists of two lines. The first line contains two integers $n$ and $m$ ($3 \\le n \\le 3 \\cdot 10^5$; $0 \\le m \\le \\frac{n}{3}$).\n\nThe second line contains $n$ integers $p_1, p_2, \\dots, p_n$ ($1 \\le p_i \\le n$, each integer from $1$ to $n$ appears in this sequence exactly once) — the resulting array.\n\nThe sum of $n$ over all test cases does not exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the answer in the following way:\n\n- firstly, print one integer $r$ ($0 \\le r \\le n$) — the number of possible values of $k$ for the cyclic shift operation;\n- secondly, print $r$ integers $k_1, k_2, \\dots, k_r$ ($0 \\le k_i \\le n - 1$) — all possible values of $k$ **in increasing order**.\n\n## Note\n\nConsider the example:\n\n- in the first test case, the only possible value for the cyclic shift is $3$. If we shift $[1, 2, 3, 4]$ by $3$ positions, we get $[2, 3, 4, 1]$. Then we can swap the $3$-rd and the $4$-th elements to get the array $[2, 3, 1, 4]$;\n- in the second test case, the only possible value for the cyclic shift is $0$. If we shift $[1, 2, 3]$ by $0$ positions, we get $[1, 2, 3]$. Then we don't change the array at all (we stated that we made **at most** $1$ swap), so the resulting array stays $[1, 2, 3]$;\n- in the third test case, all values from $0$ to $2$ are possible for the cyclic shift:\n- if we shift $[1, 2, 3]$ by $0$ positions, we get $[1, 2, 3]$. Then we can swap the $1$-st and the $3$-rd elements to get $[3, 2, 1]$;\n  - if we shift $[1, 2, 3]$ by $1$ position, we get $[3, 1, 2]$. Then we can swap the $2$-nd and the $3$-rd elements to get $[3, 2, 1]$;\n  - if we shift $[1, 2, 3]$ by $2$ positions, we get $[2, 3, 1]$. Then we can swap the $1$-st and the $2$-nd elements to get $[3, 2, 1]$;\n- in the fourth test case, we stated that we didn't do any swaps after the cyclic shift, but no value of cyclic shift could produce the array $[1, 2, 3, 4, 6, 5]$.",
-  "statementZhMd": null,
+  "statementZhMd": "长度为 $n$ 的恒等排列是数组 $[1, 2, 3, \\dots, n]$。\n\n我们对一个长度为 $n$ 的恒等排列执行了以下操作：\n\n- 首先，将其向右循环移位 $k$ 个位置，其中 $k$ 对你来说是未知的（你只知道 $0 \\le k \\le n - 1$）。当一个数组向右循环移位 $k$ 个位置时，得到的数组由原数组的最后 $k$ 个元素组成（保持它们的相对顺序），然后将前 $n - k$ 个元素追加到它们的右侧（同样保持这 $n - k$ 个元素的相对顺序）。例如，将长度为 $6$ 的恒等排列向右循环移位 $2$ 个位置后，可以得到数组 $[5, 6, 1, 2, 3, 4]$；\n- 其次，执行以下操作**至多** $m$ 次：选取数组中的任意两个元素并交换它们。\n\n给定 $n$、$m$ 以及操作后得到的数组。你的任务是找出循环移位操作中所有可能的 $k$ 值。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^5$）——测试用例的数量。\n\n每个测试用例包含两行。第一行包含两个整数 $n$ 和 $m$（$3 \\le n \\le 3 \\cdot 10^5$；$0 \\le m \\le \\frac{n}{3}$）。\n\n第二行包含 $n$ 个整数 $p_1, p_2, \\dots, p_n$（$1 \\le p_i \\le n$，$1$ 到 $n$ 的每个整数在该序列中恰好出现一次）——操作后得到的数组。\n\n所有测试用例的 $n$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，按以下方式输出答案：\n\n- 首先，输出一个整数 $r$（$0 \\le r \\le n$）——循环移位操作可能取到的 $k$ 值的数量；\n- 其次，输出 $r$ 个整数 $k_1, k_2, \\dots, k_r$（$0 \\le k_i \\le n - 1$）——所有可能的 $k$ 值，且**按递增顺序**排列。\n\n## 说明\n\n考虑以下示例：\n\n- 在第一个测试用例中，循环移位唯一可能的取值是 $3$。将 $[1, 2, 3, 4]$ 向右移位 $3$ 个位置，可以得到 $[2, 3, 4, 1]$。然后我们可以交换第 $3$ 个和第 $4$ 个元素，得到数组 $[2, 3, 1, 4]$；\n- 在第二个测试用例中，循环移位唯一可能的取值是 $0$。将 $[1, 2, 3]$ 向右移位 $0$ 个位置，可以得到 $[1, 2, 3]$。然后我们完全不改变数组（题目说明我们**至多**进行 $1$ 次交换），因此最终数组仍然是 $[1, 2, 3]$；\n- 在第三个测试用例中，从 $0$ 到 $2$ 的所有值都可能作为循环移位的取值：\n  - 将 $[1, 2, 3]$ 向右移位 $0$ 个位置，可以得到 $[1, 2, 3]$。然后我们可以交换第 $1$ 个和第 $3$ 个元素，得到 $[3, 2, 1]$；\n  - 将 $[1, 2, 3]$ 向右移位 $1$ 个位置，可以得到 $[3, 1, 2]$。然后我们可以交换第 $2$ 个和第 $3$ 个元素，得到 $[3, 2, 1]$；\n  - 将 $[1, 2, 3]$ 向右移位 $2$ 个位置，可以得到 $[2, 3, 1]$。然后我们可以交换第 $1$ 个和第 $2$ 个元素，得到 $[3, 2, 1]$；\n- 在第四个测试用例中，我们说明了循环移位后没有进行任何交换，但无论循环移位取何值，都无法得到数组 $[1, 2, 3, 4, 6, 5]$。",
   "samples": [
     {
       "input": "4\n4 1\n2 3 1 4\n3 1\n1 2 3\n3 1\n3 2 1\n6 0\n1 2 3 4 6 5\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:29:15.604Z"
+  "fetchedAt": "2026-10-30T23:29:15.604Z",
+  "translatedAt": "2026-11-04T03:45:56.127+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

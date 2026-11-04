@@ -4,7 +4,7 @@
   "contestId": 1252,
   "index": "D",
   "title": "Find String in a Grid",
-  "titleZh": null,
+  "titleZh": "在网格中寻找字符串",
   "url": "https://codeforces.com/contest/1252/problem/D",
   "difficulty": 3000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "You have a grid $G$ containing $R$ rows (numbered from $1$ to $R$, top to bottom) and $C$ columns (numbered from $1$ to $C$, left to right) of uppercase characters. The character in the $r^{th}$ row and the $c^{th}$ column is denoted by $G_{r, c}$. You also have $Q$ strings containing uppercase characters. For each of the string, you want to find the number of occurrences of the string in the grid.\n\nAn occurrence of string $S$ in the grid is counted if $S$ can be constructed by starting at one of the cells in the grid, going right $0$ or more times, and then going down $0$ or more times. Two occurrences are different if the set of cells used to construct the string is different. Formally, for each string $S$, you would like to count the number of tuples $\\langle r, c, \\Delta r, \\Delta c \\rangle$ such that:\n\n- $1 \\le r \\le R$ and $r \\le r + \\Delta r \\le R$\n- $1 \\le c \\le C$ and $c \\le c + \\Delta c \\le C$\n- $S = G_{r, c} G_{r, c + 1} \\dots G_{r, c + \\Delta c} G_{r + 1, c + \\Delta c} \\dots G_{r + \\Delta r, c + \\Delta c}$\n\n## Input\n\nInput begins with a line containing three integers: $R$ $C$ $Q$ ($1 \\le R, C \\le 500$; $1 \\le Q \\le 200\\,000$) representing the size of the grid and the number of strings, respectively. The next $R$ lines each contains $C$ uppercase characters representing the grid. The $c^{th}$ character on the $r^{th}$ line is $G_{r, c}$. The next $Q$ lines each contains a string $S$ containing uppercase characters. The length of this string is a positive integer not more than $200\\,000$. The sum of the length of all $Q$ strings combined is not more than $200\\,000$.\n\n## Output\n\nFor each query in the same order as input, output in a line an integer representing the number of occurrences of the string in the grid.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\n- There are $2$ occurrences of \"`ABC`\", represented by the tuples $\\langle 1, 1, 1, 1 \\rangle$ and $\\langle 1, 1, 0, 2 \\rangle$.\n- There are $3$ occurrences of \"`BC`\", represented by the tuples $\\langle 1, 2, 0, 1 \\rangle$, $\\langle 1, 2, 1, 0 \\rangle$, and $\\langle 2, 1, 0, 1 \\rangle$.\n- There is $1$ occurrence of \"`BD`\", represented by the tuple $\\langle 2, 1, 1, 0 \\rangle$.\n- There is no occurrence of \"`AC`\".\n- There are $2$ occurrences of \"`A`\", represented by the tuples $\\langle 1, 1, 0, 0 \\rangle$ and $\\langle 3, 2, 0, 0 \\rangle$.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个网格 $G$，其中包含 $R$ 行（编号从上到下为 $1$ 到 $R$）和 $C$ 列（编号从左到右为 $1$ 到 $C$），每个单元格中都是大写字母。第 $r$ 行第 $c$ 列的字符记为 $G_{r, c}$。此外，你还有 $Q$ 个由大写字母组成的字符串。对于每个字符串，你需要求出它在网格中出现的次数。\n\n如果可以从网格中的某个单元格出发，向右移动 $0$ 次或多次，然后再向下移动 $0$ 次或多次来构造字符串 $S$，则称字符串 $S$ 在网格中出现一次。如果构造字符串所使用的单元格集合不同，则认为是不同的出现。形式化地，对于每个字符串 $S$，你需要计算满足以下条件的元组 $\\langle r, c, \\Delta r, \\Delta c \\rangle$ 的数量：\n\n- $1 \\le r \\le R$ 且 $r \\le r + \\Delta r \\le R$\n- $1 \\le c \\le C$ 且 $c \\le c + \\Delta c \\le C$\n- $S = G_{r, c} G_{r, c + 1} \\dots G_{r, c + \\Delta c} G_{r + 1, c + \\Delta c} \\dots G_{r + \\Delta r, c + \\Delta c}$\n\n## 输入格式\n\n输入的第一行包含三个整数：$R$ $C$ $Q$（$1 \\le R, C \\le 500$；$1 \\le Q \\le 200\\,000$），分别表示网格的大小和字符串的数量。接下来的 $R$ 行中，每行包含 $C$ 个大写字母，表示网格。第 $r$ 行的第 $c$ 个字符为 $G_{r, c}$。接下来的 $Q$ 行中，每行包含一个由大写字母组成的字符串 $S$。该字符串的长度为不超过 $200\\,000$ 的正整数。所有 $Q$ 个字符串的长度之和不超过 $200\\,000$。\n\n## 输出格式\n\n按照输入顺序，对于每个查询，在一行中输出一个整数，表示该字符串在网格中出现的次数。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n- 字符串 \"`ABC`\" 出现了 $2$ 次，分别由元组 $\\langle 1, 1, 1, 1 \\rangle$ 和 $\\langle 1, 1, 0, 2 \\rangle$ 表示。\n- 字符串 \"`BC`\" 出现了 $3$ 次，分别由元组 $\\langle 1, 2, 0, 1 \\rangle$、$\\langle 1, 2, 1, 0 \\rangle$ 和 $\\langle 2, 1, 0, 1 \\rangle$ 表示。\n- 字符串 \"`BD`\" 出现了 $1$ 次，由元组 $\\langle 2, 1, 1, 0 \\rangle$ 表示。\n- 字符串 \"`AC`\" 没有出现。\n- 字符串 \"`A`\" 出现了 $2$ 次，分别由元组 $\\langle 1, 1, 0, 0 \\rangle$ 和 $\\langle 3, 2, 0, 0 \\rangle$ 表示。",
   "samples": [
     {
       "input": "3 3 5\nABC\nBCD\nDAB\nABC\nBC\nBD\nAC\nA\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:01:53.913Z"
+  "fetchedAt": "2026-11-02T19:01:53.913Z",
+  "translatedAt": "2026-11-04T04:55:04.092+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

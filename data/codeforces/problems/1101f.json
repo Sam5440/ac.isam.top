@@ -4,7 +4,7 @@
   "contestId": 1101,
   "index": "F",
   "title": "Trucks and Cities",
-  "titleZh": null,
+  "titleZh": "卡车与城市",
   "url": "https://codeforces.com/contest/1101/problem/F",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ cities along the road, which can be represented as a straight line. The $i$-th city is situated at the distance of $a_i$ kilometers from the origin. All cities are situated in the same direction from the origin. There are $m$ trucks travelling from one city to another.\n\nEach truck can be described by $4$ integers: starting city $s_i$, finishing city $f_i$, fuel consumption $c_i$ and number of possible refuelings $r_i$. The $i$-th truck will spend $c_i$ litres of fuel per one kilometer.\n\nWhen a truck arrives in some city, it can be refueled (but refueling is impossible in the middle of nowhere). The $i$-th truck can be refueled at most $r_i$ times. Each refueling makes truck's gas-tank full. All trucks start with full gas-tank.\n\nAll trucks will have gas-tanks of the same size $V$ litres. You should find minimum possible $V$ such that all trucks can reach their destinations without refueling more times than allowed.\n\n## Input\n\nFirst line contains two integers $n$ and $m$ ($2 \\le n \\le 400$, $1 \\le m \\le 250000$) — the number of cities and trucks.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$, $a_i \\lt a_{i+1}$) — positions of cities in the ascending order.\n\nNext $m$ lines contains $4$ integers each. The $i$-th line contains integers $s_i$, $f_i$, $c_i$, $r_i$ ($1 \\le s_i \\lt f_i \\le n$, $1 \\le c_i \\le 10^9$, $0 \\le r_i \\le n$) — the description of the $i$-th truck.\n\n## Output\n\nPrint the only integer — minimum possible size of gas-tanks $V$ such that all trucks can reach their destinations.\n\n## Note\n\nLet's look at queries in details:\n\n1. the $1$-st truck must arrive at position $7$ from $2$ without refuelling, so it needs gas-tank of volume at least $50$.\n2. the $2$-nd truck must arrive at position $17$ from $2$ and can be refueled at any city (if it is on the path between starting point and ending point), so it needs gas-tank of volume at least $48$.\n3. the $3$-rd truck must arrive at position $14$ from $10$, there is no city between, so it needs gas-tank of volume at least $52$.\n4. the $4$-th truck must arrive at position $17$ from $10$ and can be refueled only one time: it's optimal to refuel at $5$-th city (position $14$) so it needs gas-tank of volume at least $40$.\n5. the $5$-th truck has the same description, so it also needs gas-tank of volume at least $40$.\n6. the $6$-th truck must arrive at position $14$ from $2$ and can be refueled two times: first time in city $2$ or $3$ and second time in city $4$ so it needs gas-tank of volume at least $55$.",
-  "statementZhMd": null,
+  "statementZhMd": "沿着一条可以表示为直线的道路，有 $n$ 座城市。第 $i$ 座城市距离原点 $a_i$ 千米。所有城市都位于原点的同一侧。有 $m$ 辆卡车在城市之间行驶。\n\n每辆卡车可以用 $4$ 个整数描述：出发城市 $s_i$、到达城市 $f_i$、燃油消耗量 $c_i$ 以及允许加油的次数 $r_i$。第 $i$ 辆卡车每行驶一千米消耗 $c_i$ 升燃油。\n\n当卡车到达某座城市时，可以进行加油（在道路中途无法加油）。第 $i$ 辆卡车最多可以加油 $r_i$ 次。每次加油都会将卡车的油箱加满。所有卡车出发时油箱都是满的。\n\n所有卡车的油箱容量均为 $V$ 升。请找出满足所有卡车都能在不超过允许次数的情况下加油并到达目的地的最小 $V$。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 400$，$1 \\le m \\le 250000$）——城市数量和卡车数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$，$a_i \\lt a_{i+1}$）——按升序排列的城市位置。\n\n接下来 $m$ 行，每行包含 $4$ 个整数。第 $i$ 行包含整数 $s_i$、$f_i$、$c_i$、$r_i$（$1 \\le s_i \\lt f_i \\le n$，$1 \\le c_i \\le 10^9$，$0 \\le r_i \\le n$）——第 $i$ 辆卡车的描述。\n\n## 输出格式\n\n输出唯一的整数——使所有卡车都能到达目的地的油箱最小容量 $V$。\n\n## 说明\n\n让我们详细分析这些询问：\n\n1. 第 $1$ 辆卡车必须从位置 $2$ 到达位置 $7$，且不能加油，因此它需要容量至少为 $50$ 的油箱。\n2. 第 $2$ 辆卡车必须从位置 $2$ 到达位置 $17$，并且可以在任意城市加油（只要该城市位于起点和终点之间的路径上），因此它需要容量至少为 $48$ 的油箱。\n3. 第 $3$ 辆卡车必须从位置 $10$ 到达位置 $14$，两者之间没有城市，因此它需要容量至少为 $52$ 的油箱。\n4. 第 $4$ 辆卡车必须从位置 $10$ 到达位置 $17$，并且只能加油一次：最优方案是在第 $5$ 座城市（位置 $14$）加油，因此它需要容量至少为 $40$ 的油箱。\n5. 第 $5$ 辆卡车的描述相同，因此它同样需要容量至少为 $40$ 的油箱。\n6. 第 $6$ 辆卡车必须从位置 $2$ 到达位置 $14$，并且可以加油两次：第一次在第 $2$ 座或第 $3$ 座城市加油，第二次在第 $4$ 座城市加油，因此它需要容量至少为 $55$ 的油箱。",
   "samples": [
     {
       "input": "7 6\n2 5 7 10 14 15 17\n1 3 10 0\n1 7 12 7\n4 5 13 3\n4 7 10 1\n4 7 10 1\n1 5 11 2\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:25:00.925Z"
+  "fetchedAt": "2026-11-02T19:25:00.925Z",
+  "translatedAt": "2026-11-04T05:21:37.190+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 981,
   "index": "E",
   "title": "Addition on Segments",
-  "titleZh": null,
+  "titleZh": "区间加法",
   "url": "https://codeforces.com/contest/981/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Grisha come to a contest and faced the following problem.\n\nYou are given an array of size $n$, initially consisting of zeros. The elements of the array are enumerated from $1$ to $n$. You perform $q$ operations on the array. The $i$-th operation is described with three integers $l_i$, $r_i$ and $x_i$ ($1 \\leq l_i \\leq r_i \\leq n$, $1 \\leq x_i \\leq n$) and means that you should add $x_i$ to each of the elements with indices $l_i, l_i + 1, \\ldots, r_i$. After all operations you should find the maximum in the array.\n\nGrisha is clever, so he solved the problem quickly.\n\nHowever something went wrong inside his head and now he thinks of the following question: \"consider we applied some subset of the operations to the array. What are the possible values of the maximum in the array?\"\n\nHelp Grisha, find all integers $y$ between $1$ and $n$ such that if you apply some subset (possibly empty) of the operations, then the maximum in the array becomes equal to $y$.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\leq n, q \\leq 10^{4}$) — the length of the array and the number of queries in the initial problem.\n\nThe following $q$ lines contain queries, one per line. The $i$-th of these lines contains three integers $l_i$, $r_i$ and $x_i$ ($1 \\leq l_i \\leq r_i \\leq n$, $1 \\leq x_i \\leq n$), denoting a query of adding $x_i$ to the segment from $l_i$-th to $r_i$-th elements of the array, inclusive.\n\n## Output\n\nIn the first line print the only integer $k$, denoting the number of integers from $1$ to $n$, inclusive, that can be equal to the maximum in the array after applying some subset (possibly empty) of the given operations.\n\nIn the next line print these $k$ integers from $1$ to $n$ — the possible values of the maximum. Print these integers in **increasing order**.\n\n## Note\n\nConsider the first example. If you consider the subset only of the first query, the maximum is equal to $1$. If you take only the second query, the maximum equals to $2$. If you take the first two queries, the maximum becomes $3$. If you take only the fourth query, the maximum becomes $4$. If you take the fourth query and something more, the maximum becomes greater that $n$, so you shouldn't print it.\n\nIn the second example you can take the first query to obtain $1$. You can take only the second query to obtain $2$. You can take all queries to obtain $3$.\n\nIn the third example you can obtain the following maximums:\n\n- You can achieve the maximim of $2$ by using queries: $(1)$.\n- You can achieve the maximim of $3$ by using queries: $(2)$.\n- You can achieve the maximim of $5$ by using queries: $(1, 2)$.\n- You can achieve the maximim of $6$ by using queries: $(3)$.\n- You can achieve the maximim of $8$ by using queries: $(1, 3)$.\n- You can achieve the maximim of $9$ by using queries: $(2, 3)$.",
-  "statementZhMd": null,
+  "statementZhMd": "格里沙参加了一场比赛，遇到了如下问题。\n\n给定一个长度为 $n$ 的数组，初始时所有元素均为零。数组元素的编号从 $1$ 到 $n$。你需要对数组执行 $q$ 次操作。第 $i$ 次操作由三个整数 $l_i$、$r_i$ 和 $x_i$（$1 \\leq l_i \\leq r_i \\leq n$，$1 \\leq x_i \\leq n$）描述，表示将下标为 $l_i, l_i + 1, \\ldots, r_i$ 的所有元素都加上 $x_i$。执行完所有操作后，你需要找出数组中的最大值。\n\n格里沙很聪明，因此他很快就解决了这个问题。\n\n然而，他的脑子里出了些问题，现在他思考的是下面这个问题：“考虑只对数组执行这些操作中的某个子集。数组中的最大值可能是多少？”\n\n请帮助格里沙，找出所有满足 $1$ 到 $n$ 之间的整数 $y$，使得如果执行给定操作的某个子集（可以为空），那么数组中的最大值恰好等于 $y$。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\leq n, q \\leq 10^{4}$）——数组的长度以及初始问题中的操作次数。\n\n接下来的 $q$ 行每行包含一个操作。第 $i$ 行包含三个整数 $l_i$、$r_i$ 和 $x_i$（$1 \\leq l_i \\leq r_i \\leq n$，$1 \\leq x_i \\leq n$），表示将数组中从第 $l_i$ 个元素到第 $r_i$ 个元素（包含两端）组成的区间都加上 $x_i$。\n\n## 输出格式\n\n第一行输出一个整数 $k$，表示在执行给定操作的某个子集（可以为空）后，数组最大值可以等于 $1$ 到 $n$（包含两端）中的多少个整数。\n\n第二行输出这 $k$ 个可能的最大值，它们均在 $1$ 到 $n$ 之间。请按**递增顺序**输出这些整数。\n\n## 说明\n\n考虑第一个样例。如果只选择第一个操作，最大值等于 $1$。如果只选择第二个操作，最大值等于 $2$。如果选择前两个操作，最大值变为 $3$。如果只选择第四个操作，最大值等于 $4$。如果选择第四个操作以及其他操作，最大值将大于 $n$，因此不应输出它。\n\n在第二个样例中，可以选择第一个操作得到 $1$。只选择第二个操作可以得到 $2$。选择所有操作可以得到 $3$。\n\n在第三个样例中，可以得到以下最大值：\n\n- 使用操作 $(1)$，可以得到最大值 $2$。\n- 使用操作 $(2)$，可以得到最大值 $3$。\n- 使用操作 $(1, 2)$，可以得到最大值 $5$。\n- 使用操作 $(3)$，可以得到最大值 $6$。\n- 使用操作 $(1, 3)$，可以得到最大值 $8$。\n- 使用操作 $(2, 3)$，可以得到最大值 $9$。",
   "samples": [
     {
       "input": "4 3\n1 3 1\n2 4 2\n3 4 4\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:31:35.442Z"
+  "fetchedAt": "2026-10-31T00:31:35.442Z",
+  "translatedAt": "2026-11-04T05:40:38.163+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,14 +4,14 @@
   "contestId": 849,
   "index": "E",
   "title": "Goodbye Souvenir",
-  "titleZh": null,
+  "titleZh": "告别纪念品",
   "url": "https://codeforces.com/contest/849/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 6000,
   "memoryLimitMb": 256,
   "statementMd": "*I won't feel lonely, nor will I be sorrowful... not before everything is buried.*\n\nA string of $*n*$ beads is left as the message of leaving. The beads are numbered from $1$ to $*n*$ from left to right, each having a shape numbered by integers between $1$ and $*n*$ inclusive. Some beads may have the same shapes.\n\nThe memory of a shape $*x*$ in a certain subsegment of beads, is defined to be the difference between the last position and the first position that shape $*x*$ appears in the segment. The memory of a subsegment is the sum of memories over all shapes that occur in it.\n\nFrom time to time, shapes of beads change as well as the memories. Sometimes, the past secreted in subsegments are being recalled, and you are to find the memory for each of them.\n\n## Input\n\nThe first line of input contains two space-separated integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 100 000$) — the number of beads in the string, and the total number of changes and queries, respectively.\n\nThe second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($1 ≤ *a*_{*i*} ≤ *n*$) — the initial shapes of beads $1, 2, ..., *n*$, respectively.\n\nThe following $*m*$ lines each describes either a change in the beads or a query of subsegment. A line has one of the following formats:\n\n- `1 p x` ($1 ≤ *p* ≤ *n*$, $1 ≤ *x* ≤ *n*$), meaning that the shape of the $*p*$-th bead is changed into $*x*$;\n- `2 l r` ($1 ≤ *l* ≤ *r* ≤ *n*$), denoting a query of memory of the subsegment from $*l*$ to $*r*$, inclusive.\n\n## Output\n\nFor each query, print one line with an integer — the memory of the recalled subsegment.\n\n## Note\n\nThe initial string of beads has shapes $(1, 2, 3, 1, 3, 2, 1)$.\n\nConsider the changes and queries in their order:\n\n1. `2 3 7`: the memory of the subsegment $[3, 7]$ is $(7 - 4) + (6 - 6) + (5 - 3) = 5$;\n2. `2 1 3`: the memory of the subsegment $[1, 3]$ is $(1 - 1) + (2 - 2) + (3 - 3) = 0$;\n3. `1 7 2`: the shape of the $7$-th bead changes into $2$. Beads now have shapes $(1, 2, 3, 1, 3, 2, 2)$ respectively;\n4. `1 3 2`: the shape of the $3$-rd bead changes into $2$. Beads now have shapes $(1, 2, 2, 1, 3, 2, 2)$ respectively;\n5. `2 1 6`: the memory of the subsegment $[1, 6]$ is $(4 - 1) + (6 - 2) + (5 - 5) = 7$;\n6. `2 5 7`: the memory of the subsegment $[5, 7]$ is $(7 - 6) + (5 - 5) = 1$.",
-  "statementZhMd": null,
+  "statementZhMd": "*我不会感到孤独，也不会悲伤……至少在一切被埋葬之前不会。*\n\n一串由 $*n*$ 颗珠子组成的项链被留下，作为离别的讯息。珠子从左到右编号为 $1$ 到 $*n*$，每颗珠子都有一个编号在 $1$ 到 $*n*$（含）之间的形状。不同珠子可能具有相同的形状。\n\n对于珠子的某个子区间，形状 $*x*$ 的记忆值定义为该形状在此区间中出现的最后位置与第一次出现的位置之差。一个子区间的记忆值定义为其中所有出现过的形状的记忆值之和。\n\n珠子的形状会不时发生变化，记忆值也会随之改变。有时，人们会回忆起隐藏在某些子区间中的往事，请你求出每个子区间的记忆值。\n\n## 输入格式\n\n输入的第一行包含两个用空格分隔的整数 $*n*$ 和 $*m*$（$1 ≤ *n*, *m* ≤ 100 000$）——珠子串的长度，以及变化和查询的总数。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ *n*$）——珠子 $1, 2, ..., *n*$ 的初始形状。\n\n接下来的 $*m*$ 行中，每行描述一次珠子形状的变化或一次子区间查询。每行格式如下列两种之一：\n\n- `1 p x`（$1 ≤ *p* ≤ *n*$，$1 ≤ *x* ≤ *n*$），表示第 $*p*$ 颗珠子的形状变为 $*x*$；\n- `2 l r`（$1 ≤ *l* ≤ *r* ≤ *n*$），表示查询从 $*l*$ 到 $*r*$（包含两端）的子区间的记忆值。\n\n## 输出格式\n\n对于每次查询，输出一行一个整数，即所查询子区间的记忆值。\n\n## 说明\n\n初始珠子串的形状为 $(1, 2, 3, 1, 3, 2, 1)$。\n\n按顺序考虑变化和查询：\n\n1. `2 3 7`：子区间 $[3, 7]$ 的记忆值为 $(7 - 4) + (6 - 6) + (5 - 3) = 5$；\n2. `2 1 3`：子区间 $[1, 3]$ 的记忆值为 $(1 - 1) + (2 - 2) + (3 - 3) = 0$；\n3. `1 7 2`：第 $7$ 颗珠子的形状变为 $2$。现在珠子的形状依次为 $(1, 2, 3, 1, 3, 2, 2)$；\n4. `1 3 2`：第 $3$ 颗珠子的形状变为 $2$。现在珠子的形状依次为 $(1, 2, 2, 1, 3, 2, 2)$；\n5. `2 1 6`：子区间 $[1, 6]$ 的记忆值为 $(4 - 1) + (6 - 2) + (5 - 5) = 7$；\n6. `2 5 7`：子区间 $[5, 7]$ 的记忆值为 $(7 - 6) + (5 - 5) = 1$。",
   "samples": [
     {
       "input": "7 6\n1 2 3 1 3 2 1\n2 3 7\n2 1 3\n1 7 2\n1 3 2\n2 1 6\n2 5 7\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:47:14.739Z"
+  "fetchedAt": "2026-10-31T00:47:14.739Z",
+  "translatedAt": "2026-11-04T06:02:16.843+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

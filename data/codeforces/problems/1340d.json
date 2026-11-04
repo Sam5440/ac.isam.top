@@ -4,7 +4,7 @@
   "contestId": 1340,
   "index": "D",
   "title": "Nastya and Time Machine",
-  "titleZh": null,
+  "titleZh": "Nastya 与时间机器",
   "url": "https://codeforces.com/contest/1340/problem/D",
   "difficulty": 2600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "* Denis came to Nastya and discovered that she was not happy to see him... There is only one chance that she can become happy. Denis wants to buy all things that Nastya likes so she will certainly agree to talk to him. *\n\nThe map of the city where they live has a lot of squares, some of which are connected by roads. There is exactly one way between each pair of squares which does not visit any vertex twice. It turns out that the graph of the city is a tree.\n\nDenis is located at vertex $1$ at the time $0$. He wants to visit every vertex at least once and get back as soon as possible.\n\nDenis can walk one road in $1$ time. Unfortunately, the city is so large that it will take a very long time to visit all squares. Therefore, Denis took a desperate step. He pulled out his pocket time machine, which he constructed in his basement. With its help, Denis can change the time to any non-negative time, which is less than the current time.\n\nBut the time machine has one feature. If the hero finds himself in the same place and at the same time twice, there will be an explosion of universal proportions and Nastya will stay unhappy. Therefore, Denis asks you to find him a route using a time machine that he will get around all squares and will return to the first and at the same time the maximum time in which he visited any square will be minimal.\n\nFormally, Denis's route can be represented as a sequence of pairs: $\\{v_1, t_1\\}, \\{v_2, t_2\\}, \\{v_3, t_3\\}, \\ldots, \\{v_k, t_k\\}$, where $v_i$ is number of square, and $t_i$ is time in which the boy is now.\n\nThe following conditions must be met:\n\n- The route starts on square $1$ at time $0$, i.e. $v_1 = 1, t_1 = 0$ and ends on the square $1$, i.e. $v_k = 1$.\n- All transitions are divided into two types:\n- Being in the square change the time: $\\{ v_i, t_i \\} \\to \\{ v_{i+1}, t_{i+1} \\} : v_{i+1} = v_i, 0 \\leq t_{i+1} \\lt t_i$.\n  - Walk along one of the roads: $\\{ v_i, t_i \\} \\to \\{ v_{i+1}, t_{i+1} \\}$. Herewith, $v_i$ and $v_{i+1}$ are connected by road, and $t_{i+1} = t_i + 1$\n- All pairs $\\{ v_i, t_i \\}$ must be different.\n- All squares are among $v_1, v_2, \\ldots, v_k$.\n\nYou need to find a route such that the maximum time in any square will be minimal, that is, the route for which $\\max{(t_1, t_2, \\ldots, t_k)}$ will be the minimum possible.\n\n## Input\n\nThe first line contains a single integer $n$ $(1 \\leq n \\leq 10^5)$  — the number of squares in the city.\n\nThe next $n - 1$ lines contain two integers $u$ and $v$ $(1 \\leq v, u \\leq n, u \\neq v)$ - the numbers of the squares connected by the road.\n\nIt is guaranteed that the given graph is a tree.\n\n## Output\n\nIn the first line output the integer $k$ $(1 \\leq k \\leq 10^6)$  — the length of the path of Denis.\n\nIn the next $k$ lines output pairs $v_i, t_i$  — pairs that describe Denis's route (as in the statement).\n\nAll route requirements described in the statements must be met.\n\nIt is guaranteed that under given restrictions there is at least one route and an answer whose length does not exceed $10^6$. If there are several possible answers, print any.",
-  "statementZhMd": null,
+  "statementZhMd": "*Denis 来到 Nastya 身边，却发现她并不开心见到他……她变得开心的唯一机会就是：Denis 买下 Nastya 喜欢的所有东西，这样她一定会同意和他交谈。*\n\n他们居住的城市地图上有许多广场，其中一些广场之间由道路相连。任意两个广场之间恰好存在一条不重复经过任何顶点的路径。事实证明，这座城市的图是一棵树。\n\n在时间 $0$ 时，Denis 位于顶点 $1$。他希望至少访问每个顶点一次，并尽快回到起点。\n\nDenis 经过一条道路需要 $1$ 个单位时间。不幸的是，这座城市太大了，访问所有广场需要很长时间。因此，Denis 采取了一个绝望的措施。他拿出了自己在地下室里制造的时间机器。借助它，Denis 可以将时间变为任意一个非负时间，且该时间必须小于当前时间。\n\n但时间机器有一个特点。如果这个英雄两次处于同一个地点和同一时间，就会发生波及全宇宙的大爆炸，而 Nastya 将会一直不开心。因此，Denis 请求你为他找到一条使用时间机器的路线，使他能够走遍所有广场并回到起点，同时他访问过的所有广场中的最大时间尽可能小。\n\n形式化地，Denis 的路线可以表示为一系列二元组：$\\{v_1, t_1\\}, \\{v_2, t_2\\}, \\{v_3, t_3\\}, \\ldots, \\{v_k, t_k\\}$，其中 $v_i$ 是广场的编号，$t_i$ 是男孩当前所处的时间。\n\n必须满足以下条件：\n\n- 路线从时间 $0$ 位于广场 $1$ 开始，即 $v_1 = 1, t_1 = 0$，并且以位于广场 $1$ 结束，即 $v_k = 1$。\n- 所有转移分为以下两种类型：\n- 在广场中改变时间：$\\{ v_i, t_i \\} \\to \\{ v_{i+1}, t_{i+1} \\} : v_{i+1} = v_i, 0 \\leq t_{i+1} \\lt t_i$。\n  - 沿一条道路行走：$\\{ v_i, t_i \\} \\to \\{ v_{i+1}, t_{i+1} \\}$。其中，$v_i$ 和 $v_{i+1}$ 通过道路相连，并且 $t_{i+1} = t_i + 1$。\n- 所有二元组 $\\{ v_i, t_i \\}$ 均不相同。\n- 所有广场都出现在 $v_1, v_2, \\ldots, v_k$ 中。\n\n你需要找到一条路线，使任意广场中的最大时间尽可能小，即使 $\\max{(t_1, t_2, \\ldots, t_k)}$ 达到可能的最小值。\n\n## 输入格式\n\n第一行包含一个整数 $n$ $(1 \\leq n \\leq 10^5)$ —— 城市中广场的数量。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $u$ 和 $v$ $(1 \\leq v, u \\leq n, u \\neq v)$ —— 由道路连接的广场编号。\n\n保证给出的图是一棵树。\n\n## 输出格式\n\n第一行输出一个整数 $k$ $(1 \\leq k \\leq 10^6)$ —— Denis 的路线长度。\n\n接下来的 $k$ 行中输出二元组 $v_i, t_i$ —— 描述 Denis 路线的二元组（如题目描述中所示）。\n\n必须满足题目描述中给出的所有路线要求。\n\n保证在给定限制下至少存在一条路线，且存在一条长度不超过 $10^6$ 的答案。如果有多个可行答案，输出任意一个即可。",
   "samples": [
     {
       "input": "5\n1 2\n2 3\n2 4\n4 5\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:51:34.643Z"
+  "fetchedAt": "2026-10-30T23:51:34.643Z",
+  "translatedAt": "2026-11-04T04:49:17.231+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

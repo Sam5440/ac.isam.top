@@ -4,7 +4,7 @@
   "contestId": 1615,
   "index": "E",
   "title": "Purple Crayon",
-  "titleZh": null,
+  "titleZh": "紫色蜡笔",
   "url": "https://codeforces.com/contest/1615/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -21,7 +21,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Two players, Red and Blue, are at it again, and this time they're playing with crayons! The mischievous duo is now vandalizing a rooted tree, by coloring the nodes while playing their favorite game.\n\nThe game works as follows: there is a tree of size $n$, rooted at node $1$, where each node is initially white. Red and Blue get **one turn each**. Red goes first.\n\nIn Red's turn, he can do the following operation **any number of times**:\n\n- Pick any subtree of the rooted tree, and color every node in the subtree red.\n\nHowever, to make the game fair, Red is only allowed to color $k$ nodes of the tree. In other words, after Red's turn, at most $k$ of the nodes can be colored red.\n\nThen, it's Blue's turn. Blue can do the following operation **any number of times**:\n\n- Pick any subtree of the rooted tree, and color every node in the subtree blue. However, he's not allowed to choose a subtree that contains a node already colored red, as that would make the node purple and no one likes purple crayon.\n\nNote: there's no restriction on the number of nodes Blue can color, as long as he doesn't color a node that Red has already colored.\n\nAfter the two turns, the score of the game is determined as follows: let $w$ be the number of white nodes, $r$ be the number of red nodes, and $b$ be the number of blue nodes. The score of the game is $w \\cdot (r - b)$.\n\nRed wants to maximize this score, and Blue wants to minimize it. If both players play optimally, what will the final score of the game be?\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($2 \\le n \\le 2 \\cdot 10^5$; $1 \\le k \\le n$) — the number of vertices in the tree and the maximum number of red nodes.\n\nNext $n - 1$ lines contains description of edges. The $i$-th line contains two space separated integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$; $u_i \\neq v_i$) — the $i$-th edge of the tree.\n\nIt's guaranteed that given edges form a tree.\n\n## Output\n\nPrint one integer — the resulting score if both Red and Blue play optimally.\n\n## Note\n\nIn the first test case, the optimal strategy is as follows:\n\n- Red chooses to color the subtrees of nodes $2$ and $3$.\n- Blue chooses to color the subtree of node $4$.\n\nAt the end of this process, nodes $2$ and $3$ are red, node $4$ is blue, and node $1$ is white. The score of the game is $1 \\cdot (2 - 1) = 1$.\n\nIn the second test case, the optimal strategy is as follows:\n\n- Red chooses to color the subtree of node $4$. This colors both nodes $4$ and $5$.\n- Blue does not have any options, so nothing is colored blue.\n\nAt the end of this process, nodes $4$ and $5$ are red, and nodes $1$, $2$ and $3$ are white. The score of the game is $3 \\cdot (2 - 0) = 6$.\n\nFor the third test case:\n\n![image](https://espresso.codeforces.com/2afdc632aad0707e17de8a28bed36f46354013e9.png)\n\nThe score of the game is $4 \\cdot (2 - 1) = 4$.",
-  "statementZhMd": null,
+  "statementZhMd": "两个玩家 Red 和 Blue 又开始了游戏，这次他们玩的是蜡笔！这对淘气的搭档正在给一棵有根树的节点涂色，同时进行他们最喜欢的游戏。\n\n游戏规则如下：有一棵大小为 $n$ 的树，根节点为 $1$，每个节点初始时都是白色的。Red 和 Blue **各进行一回合**，由 Red 先手。\n\n在 Red 的回合中，他可以进行以下操作**任意次**：\n\n- 选择有根树中的任意一棵子树，将该子树中的所有节点涂成红色。\n\n但是，为了保证游戏公平，Red 最多只能将树中的 $k$ 个节点涂成红色。换句话说，在 Red 的回合结束后，至多有 $k$ 个节点被涂成红色。\n\n接下来轮到 Blue。Blue 可以进行以下操作**任意次**：\n\n- 选择有根树中的任意一棵子树，将该子树中的所有节点涂成蓝色。但是，他不能选择包含已经被涂成红色的节点的子树，否则该节点就会变成紫色，而没有人喜欢紫色蜡笔。\n\n注意：只要 Blue 不把 Red 已经涂成红色的节点涂成蓝色，就没有限制 Blue 可以涂成蓝色的节点数量。\n\n两回合结束后，游戏得分按如下方式确定：设 $w$ 为白色节点数，$r$ 为红色节点数，$b$ 为蓝色节点数。游戏得分为 $w \\cdot (r - b)$。\n\nRed 希望最大化得分，而 Blue 希望最小化得分。如果双方都采取最优策略，游戏的最终得分是多少？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$2 \\le n \\le 2 \\cdot 10^5$；$1 \\le k \\le n$）——树中的节点数以及红色节点数的上限。\n\n接下来的 $n - 1$ 行描述树的边。第 $i$ 行包含两个用空格分隔的整数 $u_i$ 和 $v_i$（$1 \\le u_i, v_i \\le n$；$u_i \\neq v_i$）——树中的第 $i$ 条边。\n\n保证给出的边构成一棵树。\n\n## 输出格式\n\n输出一个整数——如果 Red 和 Blue 都采取最优策略，游戏的最终得分。\n\n## 说明\n\n在第一个测试用例中，最优策略如下：\n\n- Red 选择将节点 $2$ 和节点 $3$ 的子树涂成红色。\n- Blue 选择将节点 $4$ 的子树涂成蓝色。\n\n操作结束时，节点 $2$ 和节点 $3$ 为红色，节点 $4$ 为蓝色，节点 $1$ 为白色。游戏得分为 $1 \\cdot (2 - 1) = 1$。\n\n在第二个测试用例中，最优策略如下：\n\n- Red 选择将节点 $4$ 的子树涂成红色。这会将节点 $4$ 和节点 $5$ 都涂成红色。\n- Blue 没有可进行的操作，因此没有节点被涂成蓝色。\n\n操作结束时，节点 $4$ 和节点 $5$ 为红色，节点 $1$、$2$ 和节点 $3$ 为白色。游戏得分为 $3 \\cdot (2 - 0) = 6$。\n\n对于第三个测试用例：\n\n![image](https://espresso.codeforces.com/2afdc632aad0707e17de8a28bed36f46354013e9.png)\n\n游戏得分为 $4 \\cdot (2 - 1) = 4$。",
   "samples": [
     {
       "input": "4 2\n1 2\n1 3\n1 4\n",
@@ -45,5 +45,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:20:19.308Z"
+  "fetchedAt": "2026-10-30T23:20:19.308Z",
+  "translatedAt": "2026-11-04T03:36:10.673+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

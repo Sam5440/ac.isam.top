@@ -4,7 +4,7 @@
   "contestId": 1746,
   "index": "E1",
   "title": "Joking (Easy Version)",
-  "titleZh": null,
+  "titleZh": "开玩笑（简单版）",
   "url": "https://codeforces.com/contest/1746/problem/E1",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*The only difference between this problem and the hard version is the maximum number of questions.*\n\n*This is an interactive problem.*\n\nThere is a hidden integer $1 \\le x \\le n$ which you have to find. In order to find it you can ask at most $\\mathbf{82}$ questions.\n\nIn each question you can choose a non-empty integer set $S$ and ask if $x$ belongs to $S$ or not, after each question, if $x$ belongs to $S$, you'll receive \"`YES`\", otherwise \"`NO`\".\n\nBut the problem is that not all answers are necessarily true (some of them are joking), it's just guaranteed that for each two consecutive questions, at least one of them is answered correctly.\n\nAdditionally to the questions, you can make at most $2$ guesses for the answer $x$. Each time you make a guess, if you guess $x$ correctly, you receive \"`:)`\" and your program should terminate, otherwise you'll receive \"`:(`\".\n\nAs a part of the joking, we will **not** fix the value of $x$ in the beginning. Instead, it can change throughout the interaction as long as all the previous responses are valid as described above.\n\nNote that your answer guesses are always answered correctly. If you ask a question before and after a guess, at least one of these two questions is answered correctly, as normal.\n\n## Input\n\nThe only line of the input contains a single integer $n$ ($1 \\le n \\le 10^5$), the maximum possible value of $x$.\n\n## Interaction\n\nFor each question, if you want to ask about a set $S$, first print the character '`?`', then print the size of $S$ and then print the elements of $S$ one by one. Each element should be an integer between $1$ and $n$, the elements must be distinct. After each question, read a string \"`YES`\" or \"`NO`\", as explained in the statement. You can make at most $82$ such questions.\n\nIf you want to guess for $x$, first print the character '`!`' and then print your guess. After each guess, read \"`:)`\" or \"`:(`\". If you guess $x$ correctly, the answer is \"`:)`\" and your program should terminate immediately, otherwise you'll receive \":(\". You can make at most $2$ such guesses.\n\nAfter printing a query do not forget to output end of line and flush the output. Otherwise, you will get `Idleness limit exceeded`. To do this, use:\n\n- `fflush(stdout)` or `cout.flush()` in C++;\n- `System.out.flush()` in Java;\n- `flush(output)` in Pascal;\n- `stdout.flush()` in Python;\n- see documentation for other languages.\n\n**Hacking is not allowed in this problem.**\n\n## Note\n\nIf the answer of the first question were correct, then $x$ would have been equal to $6$, but as we can see in the first guess, $6$ is not the answer.\n\nSo the answer of the first question is joking. As we know, the answer of at least one of our two questions is correct, since the answer of the first question was joking, the answer of the second question should be correct.\n\nSo we will understand that $x$ is not equal to $1, 2, 3$ or $4$, and we also knew that $x$ is not equal to $6$ either. Hence $x$ should be equal to $5$.",
-  "statementZhMd": null,
+  "statementZhMd": "*本题与困难版本的唯一区别在于最多提问次数。*\n\n*这是一道交互题。*\n\n有一个隐藏整数 $1 \\le x \\le n$，你需要找出它。为了找到它，你最多可以提出 **82** 个问题。\n\n每次提问时，你可以选择一个非空整数集合 $S$，并询问 $x$ 是否属于 $S$。每次提问后，如果 $x$ 属于 $S$，你会收到“`YES`”，否则会收到“`NO`”。\n\n但问题在于，并非所有回答都一定是真实的（其中一些回答是在开玩笑），唯一可以保证的是：对于每两个连续的问题，至少有一个问题得到了正确回答。\n\n除了提问之外，你最多还可以对答案 $x$ 进行 **2** 次猜测。每次猜测时，如果你猜中了 $x$，会收到“`:)`”，你的程序应当终止；否则会收到“`:(`”。\n\n作为开玩笑的一部分，我们**不会**在交互开始时固定 $x$ 的值。只要所有之前的回答都符合上述描述，$x$ 就可以在交互过程中发生变化。\n\n注意，你对答案的猜测总会得到正确回答。如果你在一次猜测前后各提出了一个问题，那么这两个问题中至少有一个会得到正确回答，和通常情况一样。\n\n## 输入\n\n输入的唯一一行包含一个整数 $n$（$1 \\le n \\le 10^5$），表示 $x$ 的最大可能值。\n\n## 交互\n\n对于每次提问，如果你想询问一个集合 $S$，首先输出字符 '`?`'，然后输出 $S$ 的大小，接着逐个输出其中的元素。每个元素都应是 $1$ 到 $n$ 之间的整数，且元素必须互不相同。每次提问后，按照题目描述读取字符串“`YES`”或“`NO`”。你最多可以提出 **82** 个这样的问题。\n\n如果你想猜测 $x$，首先输出字符 '`!`'，然后输出你的猜测值。每次猜测后，读取“`:)`”或“`:(`”。如果你猜中了 $x$，回答将是“`:)`”，你的程序应立即终止；否则你会收到“`:(`”。你最多可以进行 **2** 次这样的猜测。\n\n输出询问后不要忘记输出行末并刷新输出，否则你将得到 `Idleness limit exceeded`。可以使用：\n\n- `fflush(stdout)` 或 `cout.flush()`（C++）；\n- `System.out.flush()`（Java）；\n- `flush(output)`（Pascal）；\n- `stdout.flush()`（Python）；\n- 其他语言请参阅相关文档。\n\n**本题不允许提交自定义测试。**\n\n## 说明\n\n如果第一次提问的回答是正确的，那么 $x$ 应当等于 $6$，但正如我们从第一次猜测中看到的，$6$ 并不是答案。\n\n因此，第一次提问的回答是在开玩笑。由于我们知道两个问题中至少有一个的回答是正确的，而第一次提问的回答是在开玩笑，所以第二次提问的回答应当是正确的。\n\n于是我们可以知道 $x$ 不等于 $1, 2, 3$ 或 $4$，同时也知道 $x$ 不等于 $6$。因此，$x$ 应当等于 $5$。",
   "samples": [
     {
       "input": "6\n\nNO\n\n:(\n\nNO\n\n:)\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:44:42.152Z"
+  "fetchedAt": "2026-10-30T22:44:42.152Z",
+  "translatedAt": "2026-11-04T03:08:59.259+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

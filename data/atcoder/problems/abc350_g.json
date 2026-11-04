@@ -4,7 +4,7 @@
   "contestId": "abc350",
   "index": "G",
   "title": "Mediator",
-  "titleZh": null,
+  "titleZh": "中介",
   "url": "https://atcoder.jp/contests/abc350/tasks/abc350_g",
   "difficulty": 2058,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "## Problem Statement\n\n**Beware the special input format and the smaller memory limit than usual.**\n\nThere is an undirected graph with vertices $1, 2, \\dots, N$, initially without edges.\nYou need to process the following $Q$ queries on this graph:\n\n```\n1 u v\n```\n\nType $1$: Add an edge between vertices $u$ and $v$.\nBefore adding the edge, $u$ and $v$ belong to different connected components (i.e., the graph always remains a forest).\n\n```\n2 u v\n```\n\nType $2$: If there is a vertex adjacent to both $u$ and $v$, report its vertex number; otherwise, report $0$.\nGiven that the graph always remains a forest, the answer to this query is uniquely determined.\n\nThe queries are given in an encrypted form.\nThe original query is defined by three integers $A, B, C$, and the encrypted query is given as three integers $a, b, c$.\nLet $X_k$ be the answer to the $k$-th type-$2$ query. Define $X_k = 0$ for $k = 0$.\nRestore $A, B, C$ from the given $a, b, c$ as follows:\n\n- Let $l$ be the number of type-$2$ queries given before this query (not counting the query itself). Then, use the following:\n- $A = 1 + (((a \\times (1+X_l)) \\mod 998244353) \\mod 2)$\n  - $B = 1 + (((b \\times (1+X_l)) \\mod 998244353) \\mod N)$\n  - $C = 1 + (((c \\times (1+X_l)) \\mod 998244353) \\mod N)$\n\n## Constraints\n\n- All input values are integers.\n- $2 \\le N \\le 10^5$\n- $1 \\le Q \\le 10^5$\n- $1 \\le u < v \\le N$\n- $0 \\le a,b,c < 998244353$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN Q\n\\rm{Query}_1\n\\rm{Query}_2\n\\vdots\n\\rm{Query}_Q\n```\n\n## Output\n\nLet $k$ be the number of type-$2$ queries. Print $k$ lines.\nThe $i$-th line should contain the answer to the $i$-th type-$2$ query.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n**请注意特殊的输入格式，以及相比通常题目更小的内存限制。**\n\n有一个包含顶点 $1, 2, \\dots, N$ 的无向图，初始时没有边。\n你需要处理该图上的以下 $Q$ 个查询：\n\n```\n1 u v\n```\n\n类型 $1$：在顶点 $u$ 和 $v$ 之间添加一条边。\n添加边之前，$u$ 和 $v$ 属于不同的连通分量（也就是说，图始终保持为森林）。\n\n```\n2 u v\n```\n\n类型 $2$：如果存在一个同时与 $u$ 和 $v$ 相邻的顶点，输出该顶点的编号；否则输出 $0$。\n由于图始终保持为森林，因此该查询的答案是唯一确定的。\n\n查询以加密形式给出。\n原始查询由三个整数 $A, B, C$ 定义，加密后的查询由三个整数 $a, b, c$ 给出。\n令 $X_k$ 表示第 $k$ 个类型 $2$ 查询的答案。规定当 $k = 0$ 时 $X_k = 0$。\n根据以下方式从给出的 $a, b, c$ 还原 $A, B, C$：\n\n- 令 $l$ 表示在当前查询之前给出的类型 $2$ 查询的数量（不包括当前查询本身）。然后使用以下公式：\n- $A = 1 + (((a \\times (1+X_l)) \\mod 998244353) \\mod 2)$\n  - $B = 1 + (((b \\times (1+X_l)) \\mod 998244353) \\mod N)$\n  - $C = 1 + (((c \\times (1+X_l)) \\mod 998244353) \\mod N)$\n\n## 约束条件\n\n- 所有输入值均为整数。\n- $2 \\le N \\le 10^5$\n- $1 \\le Q \\le 10^5$\n- $1 \\le u < v \\le N$\n- $0 \\le a,b,c < 998244353$\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN Q\n\\rm{Query}_1\n\\rm{Query}_2\n\\vdots\n\\rm{Query}_Q\n```\n\n## 输出格式\n\n令 $k$ 表示类型 $2$ 查询的数量。输出 $k$ 行。\n第 $i$ 行应包含第 $i$ 个类型 $2$ 查询的答案。",
   "samples": [
     {
       "input": "6 12\n143209915 123840720 97293110\n89822758 207184717 689046893\n67757230 270920641 26993265\n952858464 221010240 871605818\n730183361 147726243 445163345\n963432357 295317852 195433903\n120904472 106195318 615645575\n817920568 27584394 770578609\n38727673 250957656 506822697\n139174867 566158852 412971999\n205467538 606353836 855642999\n159292205 319166257 51234344\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:09:01.174Z"
+  "fetchedAt": "2026-10-30T21:09:01.174Z",
+  "translatedAt": "2026-11-04T02:13:27.516+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

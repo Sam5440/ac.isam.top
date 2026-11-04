@@ -4,7 +4,7 @@
   "contestId": 1252,
   "index": "E",
   "title": "Songwriter",
-  "titleZh": null,
+  "titleZh": "词曲作者",
   "url": "https://codeforces.com/contest/1252/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Andi is a mathematician, a computer scientist, and a songwriter. After spending so much time writing songs, he finally writes a catchy melody that he thought as his best creation. However, the singer who will sing the song/melody has a unique vocal range, thus, an adjustment may be needed.\n\nA melody is defined as a sequence of $N$ notes which are represented by integers. Let $A$ be the original melody written by Andi. Andi needs to adjust $A$ into a new melody $B$ such that for every $i$ where $1 \\le i \\lt N$:\n\n- If $A_i \\lt A_{i+1}$, then $B_i \\lt B_{i+1}$.\n- If $A_i = A_{i+1}$, then $B_i = B_{i+1}$.\n- If $A_i \\gt A_{i+1}$, then $B_i \\gt B_{i+1}$.\n- $|B_i - B_{i+1}| \\le K$, i.e. the difference between two successive notes is no larger than $K$.\n\nMoreover, the singer also requires that all notes are within her vocal range, i.e. $L \\le B_i \\le R$ for all $1 \\le i \\le N$.\n\nHelp Andi to determine whether such $B$ exists, and find the lexicographically smallest $B$ if it exists. A melody $X$ is lexicographically smaller than melody $Y$ if and only if there exists $j$ ($1 \\le j \\le N$) such that $X_i = Y_i$ for all $i \\lt j$ and $X_{j} \\lt Y_{j}$.\n\nFor example, consider a melody $A = \\{1,3,5,6,7,8,9,10,3,7,8,9,10,11,12,12\\}$ as shown in the following figure. The diagonal arrow up in the figure implies that $A_i \\lt A_{i+1}$, the straight right arrow implies that $A_i = A_{i+1}$, and the diagonal arrow down implies that $A_i \\gt A_{i+1}$.\n\n![image](https://espresso.codeforces.com/664ebea8d9294d01c0f57f4126d02e7e12db146a.png)\n\nSupposed we want to make a new melody with $L = 1$, $R = 8$, and $K = 6$. The new melody $B = \\{1,2,3,4,5,6,7,8,2,3,4,5,6,7,8,8\\}$ as shown in the figure satisfies all the requirements, and it is the lexicographically smallest possible.\n\n## Input\n\nInput begins with a line containing four integers: $N$ $L$ $R$ $K$ ($1 \\le N \\le 100\\,000$; $1 \\le L \\le R \\le 10^9$; $1 \\le K \\le 10^9$) representing the number of notes in the melody, the vocal range ($L$ and $R$), and the maximum difference between two successive notes in the new melody, respectively. The next line contains $N$ integers: $A_i$ ($1 \\le A_i \\le 10^9$) representing the original melody.\n\n## Output\n\nOutput in a line $N$ integers (each separated by a single space) representing the lexicographically smallest melody satisfying all the requirements, or output `-1` if there is no melody satisfying all the requirements. Note that it might be possible that the lexicographically smallest melody which satisfies all the requirements to be the same as the original melody.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nThis is the example from the problem description.",
-  "statementZhMd": null,
+  "statementZhMd": "Andi 是一名数学家、计算机科学家，也是一名词曲作者。在花费了大量时间创作歌曲后，他终于写出了一段他认为是自己最佳作品的朗朗上口的旋律。然而，将要演唱这首歌曲（旋律）的歌手拥有独特的音域，因此可能需要对旋律进行调整。\n\n一段旋律被定义为由 $N$ 个音符组成的序列，每个音符用整数表示。令 $A$ 表示 Andi 创作的原始旋律。Andi 需要将 $A$ 调整为一段新的旋律 $B$，使得对于所有满足 $1 \\le i \\lt N$ 的 $i$：\n\n- 如果 $A_i \\lt A_{i+1}$，那么 $B_i \\lt B_{i+1}$。\n- 如果 $A_i = A_{i+1}$，那么 $B_i = B_{i+1}$。\n- 如果 $A_i \\gt A_{i+1}$，那么 $B_i \\gt B_{i+1}$。\n- $|B_i - B_{i+1}| \\le K$，即相邻两个音符之间的差值不超过 $K$。\n\n此外，歌手还要求所有音符都在她的音域内，即对于所有 $1 \\le i \\le N$，都有 $L \\le B_i \\le R$。\n\n请帮助 Andi 判断是否存在这样的 $B$，如果存在，找出字典序最小的 $B$。当且仅当存在某个 $j$（$1 \\le j \\le N$），使得对于所有 $i \\lt j$ 都有 $X_i = Y_i$，且 $X_{j} \\lt Y_{j}$ 时，称旋律 $X$ 的字典序小于旋律 $Y$。\n\n例如，考虑旋律 $A = \\{1,3,5,6,7,8,9,10,3,7,8,9,10,11,12,12\\}$，如下图所示。图中的斜向上箭头表示 $A_i \\lt A_{i+1}$，水平向右箭头表示 $A_i = A_{i+1}$，斜向下箭头表示 $A_i \\gt A_{i+1}$。\n\n![image](https://espresso.codeforces.com/664ebea8d9294d01c0f57f4126d02e7e12db146a.png)\n\n假设我们希望构造一段满足 $L = 1$、$R = 8$ 且 $K = 6$ 的新旋律。如下图所示，新的旋律 $B = \\{1,2,3,4,5,6,7,8,2,3,4,5,6,7,8,8\\}$ 满足所有要求，并且它是字典序最小的可能旋律。\n\n## 输入格式\n\n输入的第一行包含四个整数：$N$ $L$ $R$ $K$（$1 \\le N \\le 100\\,000$；$1 \\le L \\le R \\le 10^9$；$1 \\le K \\le 10^9$），分别表示旋律中的音符数量、歌手的音域（$L$ 和 $R$），以及新旋律中相邻两个音符之间允许的最大差值。下一行包含 $N$ 个整数：$A_i$（$1 \\le A_i \\le 10^9$），表示原始旋律。\n\n## 输出格式\n\n在一行中输出 $N$ 个整数（每个整数之间用一个空格分隔），表示满足所有要求的字典序最小的旋律；如果不存在满足所有要求的旋律，则输出 `-1`。注意，满足所有要求的字典序最小的旋律可能与原始旋律相同。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n这是题目描述中的示例。",
   "samples": [
     {
       "input": "16 1 8 6\n1 3 5 6 7 8 9 10 3 7 8 9 10 11 12 12\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:01:53.914Z"
+  "fetchedAt": "2026-11-02T19:01:53.914Z",
+  "translatedAt": "2026-11-04T04:57:07.277+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 161,
   "index": "C",
   "title": "Abracadabra",
-  "titleZh": null,
+  "titleZh": "阿布拉卡达布拉",
   "url": "https://codeforces.com/contest/161/problem/C",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarpus analyzes a string called *abracadabra*. This string is constructed using the following algorithm:\n\n- On the first step the string consists of a single character \"`a`\".\n- On the $*k*$-th step Polycarpus concatenates two copies of the string obtained on the $(*k* - 1)$-th step, while inserting the $*k*$-th character of the alphabet between them. Polycarpus uses the alphabet that consists of lowercase Latin letters and digits (a total of 36 characters). The alphabet characters are numbered like this: the 1-st character is \"`a`\", the 2-nd — \"`b`\", ..., the 26-th — \"`z`\", the 27-th — \"`0`\", the 28-th — \"`1`\", ..., the 36-th — \"`9`\".\n\nLet's have a closer look at the algorithm. On the second step Polycarpus will concatenate two strings \"`a`\" and insert the character \"`b`\" between them, resulting in \"`aba`\" string. The third step will transform it into \"`abacaba`\", and the fourth one - into \"`abacabadabacaba`\". Thus, the string constructed on the $*k*$-th step will consist of $2^{*k*} - 1$ characters.\n\nPolycarpus wrote down the string he got after 30 steps of the given algorithm and chose two non-empty substrings of it. Your task is to find the length of the longest common substring of the two substrings selected by Polycarpus.\n\nA substring $*s*[*i*... *j*]$ ($1 ≤ *i* ≤ *j* ≤ |*s*|$) of string $*s*$ = $*s*_{1}*s*_{2}... *s*_{|*s*|}$ is a string $*s*_{*i*}*s*_{*i* + 1}... *s*_{*j*}$. For example, substring $*s*[2...4]$ of string $*s*$ = \"`abacaba`\" equals \"`bac`\". The string is its own substring.\n\nThe longest common substring of two strings $*s*$ and $*t*$ is the longest string that is a substring of both $*s*$ and $*t*$. For example, the longest common substring of \"`contest`\" and \"`systemtesting`\" is string \"`test`\". There can be several common substrings of maximum length.\n\n## Input\n\nThe input consists of a single line containing four integers $*l*_{1}$, $*r*_{1}$, $*l*_{2}$, $*r*_{2}$ ($1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ 10^{9}$, $*i* = 1, 2$). The numbers are separated by single spaces. $*l*_{*i*}$ and $*r*_{*i*}$ give the indices of the first and the last characters of the $*i*$-th chosen substring, correspondingly ($*i* = 1, 2$). The characters of string *abracadabra* are numbered starting from $1$.\n\n## Output\n\nPrint a single number — the length of the longest common substring of the given strings. If there are no common substrings, print 0.\n\n## Note\n\nIn the first sample the first substring is \"`acab`\", the second one is \"`abac`\". These two substrings have two longest common substrings \"`ac`\" and \"`ab`\", but we are only interested in their length — 2.\n\nIn the second sample the first substring is \"`a`\", the second one is \"`c`\". These two substrings don't have any common characters, so the length of their longest common substring is 0.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarpus 正在分析一个名为 *abracadabra* 的字符串。这个字符串按照以下算法构造：\n\n- 第一步，字符串由单个字符 \"`a`\" 组成。\n- 在第 $*k*$ 步，Polycarpus 将第 $(*k* - 1)$ 步得到的字符串复制两份并连接起来，同时在两份字符串之间插入字母表中的第 $*k*$ 个字符。Polycarpus 使用的字母表由小写拉丁字母和数字组成（共 36 个字符）。字母表中的字符编号如下：第 1 个字符是 \"`a`\"，第 2 个是 \"`b`\"，……，第 26 个是 \"`z`\"，第 27 个是 \"`0`\"，第 28 个是 \"`1`\"，……，第 36 个是 \"`9`\"。\n\n让我们更仔细地看看这个算法。在第二步，Polycarpus 会连接两个字符串 \"`a`\"，并在它们之间插入字符 \"`b`\"，得到字符串 \"`aba`\"。第三步会将其变为 \"`abacaba`\"，第四步则会将其变为 \"`abacabadabacaba`\"。因此，在第 $*k*$ 步构造出的字符串包含 $2^{*k*} - 1$ 个字符。\n\nPolycarpus 将按照上述算法得到的、经过 30 步构造出的字符串记录了下来，并从中选出了两个非空子串。你的任务是求出 Polycarpus 选出的这两个子串的最长公共子串的长度。\n\n字符串 $*s*$ = $*s*_{1}*s*_{2}... *s*_{|*s|}$ 的子串 $*s*[*i*... *j*]$（$1 ≤ *i* ≤ *j* ≤ |*s*|$）是字符串 $*s*_{*i*}*s*_{*i* + 1}... *s*_{*j}$。例如，字符串 $*s*$ = \"`abacaba`\" 的子串 $*s*[2...4]$ 等于 \"`bac`\"。字符串本身也是它自己的子串。\n\n两个字符串 $*s*$ 和 $*t*$ 的最长公共子串，是同时为二者子串的最长字符串。例如，\"`contest`\" 和 \"`systemtesting`\" 的最长公共子串是字符串 \"`test`\"。最长公共子串可能有多个。\n\n## 输入格式\n\n输入包含一行，其中有四个整数 $*l*_{1}$、$*r*_{1}$、$*l*_{2}$、$*r*_{2}$（$1 ≤ *l*_{*i*} ≤ *r*_{*i*} ≤ 10^{9}$，$*i* = 1, 2$）。这些数字之间由单个空格分隔。$*l*_{*i*}$ 和 $*r*_{*i*}$ 分别给出第 $*i*$ 个选定子串的第一个和最后一个字符的下标（$*i* = 1, 2$）。字符串 *abracadabra* 的字符编号从 $1$ 开始。\n\n## 输出格式\n\n输出一个数字，即给定字符串的最长公共子串的长度。如果不存在公共子串，输出 0。\n\n## 说明\n\n在第一个样例中，第一个子串是 \"`acab`\"，第二个子串是 \"`abac`\"。这两个子串有两个长度最大的公共子串：\"`ac`\" 和 \"`ab`\"，但我们只关心它们的长度，即 2。\n\n在第二个样例中，第一个子串是 \"`a`\"，第二个子串是 \"`c`\"。这两个子串没有任何公共字符，因此它们的最长公共子串长度为 0。",
   "samples": [
     {
       "input": "3 6 1 4\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:27:47.320Z"
+  "fetchedAt": "2026-10-31T02:27:47.320Z",
+  "translatedAt": "2026-11-04T07:47:02.586+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

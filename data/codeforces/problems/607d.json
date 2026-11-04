@@ -4,7 +4,7 @@
   "contestId": 607,
   "index": "D",
   "title": "Power Tree",
-  "titleZh": null,
+  "titleZh": "幂树",
   "url": "https://codeforces.com/contest/607/problem/D",
   "difficulty": 2600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3500,
   "memoryLimitMb": 256,
   "statementMd": "Genos and Saitama went shopping for Christmas trees. However, a different type of tree caught their attention, the exalted Power Tree.\n\nA Power Tree starts out as a single root vertex indexed $1$. A Power Tree grows through a magical phenomenon known as an update. In an *update*, a single vertex is added to the tree as a child of some other vertex.\n\nEvery vertex in the tree (the root and all the added vertices) has some value $*v*_{*i*}$ associated with it. The *power* of a vertex is defined as the strength of the multiset composed of the value associated with this vertex ($*v*_{*i*}$) and the *powers* of its direct children. The *strength* of a multiset is defined as the sum of all elements in the **multiset** multiplied by the number of elements in it. Or in other words for some **multiset** $*S*$:\n\n![image](https://espresso.codeforces.com/8878accba39b186ae9cb70fec7e1c34d70137f60.png)\n\nSaitama knows the *updates* that will be performed on the tree, so he decided to test Genos by asking him queries about the tree during its growth cycle.\n\nAn update is of the form $1 *p* *v*$, and adds a new vertex with value $*v*$ as a child of vertex $*p*$.\n\nA query is of the form $2 *u*$, and asks for the power of vertex $*u*$.\n\nPlease help Genos respond to these queries modulo $10^{9} + 7$.\n\n## Input\n\nThe first line of the input contains two space separated integers $*v*_{1}$ and $*q*$ ($1 ≤ *v*_{1} < 10^{9}$, $1 ≤ *q* ≤ 200 000$) — the value of vertex $1$ and the total number of updates and queries respectively.\n\nThe next $*q*$ lines contain the updates and queries. Each of them has one of the following forms:\n\n- $1 *p*_{*i*} *v*_{*i*}$, if these line describes an update. The index of the added vertex is equal to the smallest positive integer not yet used as an index in the tree. It is guaranteed that $*p*_{*i*}$ is some already existing vertex and $1 ≤ *v*_{*i*} < 10^{9}$.\n- $2 *u*_{*i*}$, if these line describes a query. It is guaranteed $*u*_{*i*}$ will exist in the tree.\n\nIt is guaranteed that the input will contain at least one query.\n\n## Output\n\nFor each query, print out the power of the given vertex modulo $10^{9} + 7$.\n\n## Note\n\nFor the first sample case, after all the updates the graph will have vertices labelled in the following manner: 1 — 2 — 3 — 4 — 5\n\nThese vertices will have corresponding values: 2 — 3 — 5 — 7 — 11\n\nAnd corresponding powers: 344 — 170 — 82 — 36 — 11",
-  "statementZhMd": null,
+  "statementZhMd": "Genos 和 Saitama 一起去购买圣诞树。然而，一种不同类型的树吸引了他们的注意——高贵的幂树。\n\n幂树最初只有一个编号为 $1$ 的根顶点。幂树通过一种称为更新的魔法现象不断生长。在一次*更新*中，会向树中添加一个顶点，作为某个其他顶点的子节点。\n\n树中的每个顶点（根顶点和所有新增顶点）都关联着一个值 *v*_{*i*}。一个顶点的*幂*定义为由该顶点关联的值（*v*_{*i*}）和它的所有直接子节点的*幂*组成的多重集合的强度。一个多重集合的*强度*定义为其中所有元素之和乘以元素的数量。换句话说，对于某个**多重集合** *S*：\n\n![image](https://espresso.codeforces.com/8878accba39b186ae9cb70fec7e1c34d70137f60.png)\n\nSaitama 知道树上将要进行的所有*更新*，因此他决定通过询问树在生长过程中相关的问题来考验 Genos。\n\n一次更新的形式为 `1 p v`，它会添加一个值为 *v* 的新顶点，作为顶点 *p* 的子节点。\n\n一次查询的形式为 `2 u`，询问顶点 *u* 的幂。\n\n请帮助 Genos 将这些查询的答案对 $10^{9} + 7$ 取模后输出。\n\n## 输入格式\n\n输入的第一行包含两个用空格分隔的整数 *v*_{1} 和 *q*（$1 ≤ *v*_{1} < 10^{9}$，$1 ≤ *q* ≤ 200 000$）——顶点 $1$ 的值，以及更新和查询的总数。\n\n接下来的 *q* 行包含更新或查询，每行的形式如下：\n\n- `1 *p*_{*i*} *v*_{*i*}`，如果这一行描述了一次更新。新增顶点的编号等于树中尚未使用的最小正整数。保证 *p*_{*i*} 是一个已经存在的顶点，并且 $1 ≤ *v*_{*i*} < 10^{9}$。\n- `2 *u*_{*i*}`，如果这一行描述了一次查询。保证 *u*_{*i*} 会存在于树中。\n\n保证输入中至少包含一次查询。\n\n## 输出格式\n\n对于每次查询，输出给定顶点的幂对 $10^{9} + 7$ 取模后的结果。\n\n## 说明\n\n对于第一个样例，在所有更新完成后，图中的顶点将按如下方式连接：1 — 2 — 3 — 4 — 5\n\n这些顶点对应的值为：2 — 3 — 5 — 7 — 11\n\n对应的幂为：344 — 170 — 82 — 36 — 11",
   "samples": [
     {
       "input": "2 5\n1 1 3\n1 2 5\n1 3 7\n1 4 11\n2 1\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:18:06.247Z"
+  "fetchedAt": "2026-10-31T01:18:06.247Z",
+  "translatedAt": "2026-11-04T06:42:33.349+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

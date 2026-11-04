@@ -4,7 +4,7 @@
   "contestId": 1270,
   "index": "I",
   "title": "Xor on Figures",
-  "titleZh": null,
+  "titleZh": "图形上的异或",
   "url": "https://codeforces.com/contest/1270/problem/I",
   "difficulty": 3500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "There is given an integer $k$ and a grid $2^k \\times 2^k$ with some numbers written in its cells, cell $(i, j)$ initially contains number $a_{ij}$. Grid is considered to be a torus, that is, the cell to the right of $(i, 2^k)$ is $(i, 1)$, the cell below the $(2^k, i)$ is $(1, i)$ There is also given a lattice figure $F$, consisting of $t$ cells, where $t$ is **odd**. $F$ doesn't have to be connected.\n\nWe can perform the following operation: place $F$ at some position on the grid. (Only translations are allowed, rotations and reflections are prohibited). Now choose any nonnegative integer $p$. After that, for each cell $(i, j)$, covered by $F$, replace $a_{ij}$ by $a_{ij}\\oplus p$, where $\\oplus$ denotes the [bitwise XOR operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).\n\nMore formally, let $F$ be given by cells $(x_1, y_1), (x_2, y_2), \\dots, (x_t, y_t)$. Then you can do the following operation: choose any $x, y$ with $1\\le x, y \\le 2^k$, any nonnegative integer $p$, and for every $i$ from $1$ to $n$ replace number in the cell $(((x + x_i - 1)\\bmod 2^k) + 1, ((y + y_i - 1)\\bmod 2^k) + 1)$ with $a_{((x + x_i - 1)\\bmod 2^k) + 1, ((y + y_i - 1)\\bmod 2^k) + 1}\\oplus p$.\n\nOur goal is to make all the numbers equal to $0$. Can we achieve it? If we can, find the smallest number of operations in which it is possible to do this.\n\n## Input\n\nThe first line contains a single integer $k$ ($1 \\le k \\le 9$).\n\nThe $i$-th of the next $2^k$ lines contains $2^k$ integers $a_{i1}, a_{i2}, \\dots, a_{i2^k}$ ($0 \\le a_{ij} \\lt 2^{60}$) — initial values in the $i$-th row of the grid.\n\nThe next line contains a single integer $t$ ($1\\le t \\le \\min(99, 4^k)$, $t$ is odd) — number of cells of figure.\n\n$i$-th of next $t$ lines contains two integers $x_i$ and $y_i$ ($1 \\le x_i, y_i \\le 2^k$), describing the position of the $i$-th cell of the figure.\n\nIt is guaranteed that all cells are different, but **it is not guaranteed that the figure is connected**.\n\n## Output\n\nIf it is impossible to make all numbers in the grid equal to $0$ with these operations, output $-1$.\n\nOtherwise, output a single integer — the minimal number of operations needed to do this. It can be shown that if it is possible to make all numbers equal $0$, it is possible to do so in less than $10^{18}$ operations.\n\n## Note\n\nThe figure and the operations for the example are shown above:\n\n![image](https://espresso.codeforces.com/1f5c9fd5964809bc1d06c5999ab7fdf4dc29b1e6.png)",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个整数 $k$ 和一个 $2^k \\times 2^k$ 的网格，其中的部分单元格中写有数字，单元格 $(i, j)$ 初始包含数字 $a_{ij}$。网格被视为一个环面，也就是说，$(i, 2^k)$ 右侧的单元格是 $(i, 1)$，$(2^k, i)$ 下方的单元格是 $(1, i)$。此外，给定一个由 $t$ 个单元格组成的格点图形 $F$，其中 $t$ 为**奇数**。$F$ 不一定是连通的。\n\n我们可以执行以下操作：将 $F$ 放置在网格中的某个位置。（只允许平移，不允许旋转和翻转。）然后选择任意非负整数 $p$。之后，对于被 $F$ 覆盖的每个单元格 $(i, j)$，将 $a_{ij}$ 替换为 $a_{ij}\\oplus p$，其中 $\\oplus$ 表示[按位异或运算](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)。\n\n更形式化地，设 $F$ 由单元格 $(x_1, y_1), (x_2, y_2), \\dots, (x_t, y_t)$ 给出。则可以执行以下操作：选择任意满足 $1\\le x, y \\le 2^k$ 的 $x, y$，以及任意非负整数 $p$，对于从 $1$ 到 $n$ 的每个 $i$，将单元格 $(((x + x_i - 1)\\bmod 2^k) + 1, ((y + y_i - 1)\\bmod 2^k) + 1)$ 中的数字替换为\n$a_{((x + x_i - 1)\\bmod 2^k) + 1, ((y + y_i - 1)\\bmod 2^k) + 1}\\oplus p$。\n\n我们的目标是使所有数字都变为 $0$。能否实现这一目标？如果可以，请求出能够完成这一目标的最少操作次数。\n\n## 约束条件\n\n第一行包含一个整数 $k$（$1 \\le k \\le 9$）。\n\n接下来的 $2^k$ 行中，第 $i$ 行包含 $2^k$ 个整数 $a_{i1}, a_{i2}, \\dots, a_{i2^k}$（$0 \\le a_{ij} \\lt 2^{60}$），表示网格第 $i$ 行中的初始值。\n\n下一行包含一个整数 $t$（$1\\le t\\le \\min(99, 4^k)$，$t$ 为奇数），表示图形中的单元格数量。\n\n接下来的 $t$ 行中，第 $i$ 行包含两个整数 $x_i$ 和 $y_i$（$1 \\le x_i, y_i \\le 2^k$），表示图形中第 $i$ 个单元格的位置。\n\n保证所有单元格互不相同，但**不保证图形是连通的**。\n\n## 输出格式\n\n如果无法通过这些操作使网格中的所有数字都变为 $0$，输出 $-1$。\n\n否则，输出一个整数——完成这一目标所需的最少操作次数。可以证明，如果能够使所有数字都变为 $0$，那么可以在少于 $10^{18}$ 次操作内完成。\n\n## 说明\n\n样例中的图形和操作如下图所示：\n\n![image](https://espresso.codeforces.com/1f5c9fd5964809bc1d06c5999ab7fdf4dc29b1e6.png)",
   "samples": [
     {
       "input": "2\n5 5 5 5\n2 6 2 3\n0 0 2 0\n0 0 0 0\n5\n1 1\n1 2\n1 3\n1 4\n2 4\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:00:00.819Z"
+  "fetchedAt": "2026-10-31T00:00:00.819Z",
+  "translatedAt": "2026-11-04T04:53:18.382+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

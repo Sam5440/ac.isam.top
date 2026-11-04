@@ -4,7 +4,7 @@
   "contestId": 512,
   "index": "E",
   "title": "Fox And Polygon",
-  "titleZh": null,
+  "titleZh": "Fox 与多边形",
   "url": "https://codeforces.com/contest/512/problem/E",
   "difficulty": 2900,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Fox Ciel just designed a puzzle game called \"Polygon\"! It is played using triangulations of a regular $*n*$-edge polygon. The goal is to transform one triangulation to another by some tricky rules.\n\n![image](https://espresso.codeforces.com/fa10ce820eeea058616a02037b0922018d70b8d6.png)\n\nTriangulation of an $*n*$-edge poylgon is a set of $*n* - 3$ diagonals satisfying the condition that no two diagonals share a common internal point.\n\nFor example, the initial state of the game may look like (a) in above figure. And your goal may look like (c). In each step you can choose a diagonal inside the polygon (but not the one of edges of the polygon) and flip this diagonal.\n\nSuppose you are going to flip a diagonal $*a* – *b*$. There always exist two triangles sharing $*a* – *b*$ as a side, let's denote them as $*a* – *b* – *c*$ and $*a* – *b* – *d*$. As a result of this operation, the diagonal $*a* – *b*$ is replaced by a diagonal $*c* – *d*$. It can be easily proven that after flip operation resulting set of diagonals is still a triangulation of the polygon.\n\nSo in order to solve above case, you may first flip diagonal $6 – 3$, it will be replaced by diagonal $2 – 4$. Then you flip diagonal $6 – 4$ and get figure (c) as result.\n\nCiel just proved that for any starting and destination triangulations this game has a solution. She wants you to solve it in no more than $20 000$ steps for any puzzle satisfying $*n* ≤ 1000$.\n\n## Input\n\nThe first line contain an integer $*n*$ ($4 ≤ *n* ≤ 1000$), number of edges of the regular polygon.\n\nThen follows two groups of $(*n* - 3)$ lines describing the original triangulation and goal triangulation.\n\nDescription of each triangulation consists of $(*n* - 3)$ lines. Each line contains 2 integers $*a*_{*i*}$ and $*b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$), describing a diagonal $*a*_{*i*} – *b*_{*i*}$.\n\nIt is guaranteed that both original and goal triangulations are correct (i. e. no two diagonals share a common internal point in both of these triangulations).\n\n## Output\n\nFirst, output an integer $*k*$ ($0 ≤ *k* ≤ 20, 000$): number of steps.\n\nThen output $*k*$ lines, each containing 2 integers $*a*_{*i*}$ and $*b*_{*i*}$: the endpoints of a diagonal you are going to flip at step $*i*$. You may output $*a*_{*i*}$ and $*b*_{*i*}$ in any order.\n\nIf there are several possible solutions, output any of them.\n\n## Note\n\nSample test 2 is discussed above and shown on the picture.",
-  "statementZhMd": null,
+  "statementZhMd": "Fox Ciel 刚刚设计了一款名为“Polygon”的益智游戏！游戏使用正 $*n*$ 边形的三角剖分进行。目标是通过一些巧妙的规则，将一个三角剖分变换为另一个三角剖分。\n\n![image](https://espresso.codeforces.com/fa10ce820eeea058616a02037b0922018d70b8d6.png)\n\n正 $*n*$ 边形的三角剖分是由 $*n* - 3$ 条对角线组成的集合，并且满足任意两条对角线不共享公共内部点。\n\n例如，游戏的初始状态可能如上图中的 (a) 所示，而目标状态可能如图中的 (c) 所示。在每一步中，你可以选择多边形内部的一条对角线（但不能选择多边形的边），并翻转这条对角线。\n\n假设你要翻转对角线 $*a* – *b*$。一定存在两个以 $*a* – *b*$ 为边的三角形，记为 $*a* – *b* – *c*$ 和 $*a* – *b* – *d*$。操作后，对角线 $*a* – *b*$ 会被替换为对角线 $*c* – *d*$。不难证明，翻转操作后得到的对角线集合仍然是该多边形的一个三角剖分。\n\n因此，为了解决上面的情况，你可以先翻转对角线 $6 – 3$，它会被替换为对角线 $2 – 4$。然后翻转对角线 $6 – 4$，即可得到图中的 (c) 作为结果。\n\nCiel 刚刚证明，对于任意初始三角剖分和目标三角剖分，这个游戏都有解。她希望你能够在不超过 $20 000$ 步内解决满足 $*n* ≤ 1000$ 的任意谜题。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$4 ≤ *n* ≤ 1000$），表示正多边形的边数。\n\n接下来是两组各包含 $(*n* - 3)$ 行的描述，分别表示初始三角剖分和目标三角剖分。\n\n每个三角剖分由 $(*n* - 3)$ 行描述。每行包含两个整数 $*a*_{*i*}$ 和 $*b*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$），表示一条对角线 $*a*_{*i*} – *b*_{*i*}$。\n\n保证初始三角剖分和目标三角剖分均合法（即在这两个三角剖分中，任意两条对角线都不共享公共内部点）。\n\n## 输出格式\n\n首先输出一个整数 $*k*$（$0 ≤ *k* ≤ 20, 000$），表示操作步数。\n\n接下来输出 $*k*$ 行，每行包含两个整数 $*a*_{*i*}$ 和 $*b*_{*i*}$：表示你将在第 $*i*$ 步翻转的对角线的两个端点。你可以按任意顺序输出 $*a*_{*i*}$ 和 $*b*_{*i*}$。\n\n如果有多个可行解，输出任意一个即可。\n\n## 说明\n\n样例 2 在上文中进行了讨论，并展示在图片中。",
   "samples": [
     {
       "input": "4\n1 3\n2 4\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:32:32.847Z"
+  "fetchedAt": "2026-10-31T01:32:32.847Z",
+  "translatedAt": "2026-11-04T06:57:24.070+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

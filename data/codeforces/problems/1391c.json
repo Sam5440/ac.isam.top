@@ -4,7 +4,7 @@
   "contestId": 1391,
   "index": "C",
   "title": "Cyclic Permutations",
-  "titleZh": null,
+  "titleZh": "循环排列",
   "url": "https://codeforces.com/contest/1391/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array) and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\nConsider a permutation $p$ of length $n$, we build a graph of size $n$ using it as follows:\n\n- For every $1 \\leq i \\leq n$, find the **largest** $j$ such that $1 \\leq j \\lt i$ and $p_j \\gt p_i$, and add an undirected edge between node $i$ and node $j$\n- For every $1 \\leq i \\leq n$, find the **smallest** $j$ such that $i \\lt j \\leq n$ and $p_j \\gt p_i$, and add an undirected edge between node $i$ and node $j$\n\nIn cases where no such $j$ exists, we make no edges. Also, note that we make edges between the corresponding indices, not the values at those indices.\n\nFor clarity, consider as an example $n = 4$, and $p = [3,1,4,2]$; here, the edges of the graph are $(1,3),(2,1),(2,3),(4,3)$.\n\nA permutation $p$ is **cyclic** if the graph built using $p$ has at least one simple cycle.\n\nGiven $n$, find the number of cyclic permutations of length $n$. Since the number may be very large, output it modulo $10^9+7$.\n\nPlease refer to the Notes section for the formal definition of a simple cycle\n\n## Input\n\nThe first and only line contains a single integer $n$ ($3 \\le n \\le 10^6$).\n\n## Output\n\nOutput a single integer $0 \\leq x \\lt 10^9+7$, the number of cyclic permutations of length $n$ modulo $10^9+7$.\n\n## Note\n\nThere are $16$ cyclic permutations for $n = 4$. $[4,2,1,3]$ is one such permutation, having a cycle of length four: $4 \\rightarrow 3 \\rightarrow 2 \\rightarrow 1 \\rightarrow 4$.\n\nNodes $v_1$, $v_2$, $\\ldots$, $v_k$ form a simple cycle if the following conditions hold:\n\n- $k \\geq 3$.\n- $v_i \\neq v_j$ for any pair of indices $i$ and $j$. ($1 \\leq i \\lt j \\leq k$)\n- $v_i$ and $v_{i+1}$ share an edge for all $i$ ($1 \\leq i \\lt k$), and $v_1$ and $v_k$ share an edge.",
-  "statementZhMd": null,
+  "statementZhMd": "长度为 $n$ 的排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（数组中 $2$ 出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n给定一个长度为 $n$ 的排列 $p$，我们按如下方式使用它构建一个包含 $n$ 个节点的图：\n\n- 对于每个 $1 \\leq i \\leq n$，找到满足 $1 \\leq j \\lt i$ 且 $p_j \\gt p_i$ 的**最大**的 $j$，并在节点 $i$ 和节点 $j$ 之间添加一条无向边。\n- 对于每个 $1 \\leq i \\leq n$，找到满足 $i \\lt j \\leq n$ 且 $p_j \\gt p_i$ 的**最小**的 $j$，并在节点 $i$ 和节点 $j$ 之间添加一条无向边。\n\n如果不存在这样的 $j$，则不添加边。还请注意，我们是在对应的下标之间连边，而不是在这些下标对应的数值之间连边。\n\n例如，考虑 $n = 4$ 且 $p = [3,1,4,2]$，此时图中的边为 $(1,3),(2,1),(2,3),(4,3)$。\n\n如果由排列 $p$ 构建出的图中至少存在一个简单环，则称排列 $p$ 是**循环排列**。\n\n给定 $n$，请计算长度为 $n$ 的循环排列数量。由于答案可能非常大，请将其对 $10^9+7$ 取模后输出。\n\n简单环的形式化定义请参考“说明”部分。\n\n## 输入格式\n\n输入仅包含一行，其中包含一个整数 $n$（$3 \\leq n \\leq 10^6$）。\n\n## 输出格式\n\n输出一个整数 $0 \\leq x \\lt 10^9+7$，表示长度为 $n$ 的循环排列数量对 $10^9+7$ 取模后的结果。\n\n## 说明\n\n当 $n = 4$ 时，共有 $16$ 个循环排列。排列 $[4,2,1,3]$ 是其中之一，其图中存在一个长度为四的环：$4 \\rightarrow 3 \\rightarrow 2 \\rightarrow 1 \\rightarrow 4$。\n\n节点 $v_1$、$v_2$、$\\ldots$、$v_k$ 构成一个简单环，当且仅当满足以下条件：\n\n- $k \\geq 3$。\n- 对任意一对下标 $i$ 和 $j$，均有 $v_i \\neq v_j$。（$1 \\leq i \\lt j \\leq k$）\n- 对所有 $i$（$1 \\leq i \\lt k$），$v_i$ 和 $v_{i+1}$ 之间存在一条边，并且 $v_1$ 和 $v_k$ 之间存在一条边。",
   "samples": [
     {
       "input": "4\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:46:51.126Z"
+  "fetchedAt": "2026-10-30T23:46:51.126Z",
+  "translatedAt": "2026-11-04T04:24:14.068+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1765,
   "index": "F",
   "title": "Chemistry Lab",
-  "titleZh": null,
+  "titleZh": "化学实验室",
   "url": "https://codeforces.com/contest/1765/problem/F",
   "difficulty": 2200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Monocarp is planning on opening a chemistry lab. During the first month, he's going to distribute solutions of a certain acid.\n\nFirst, he will sign some contracts with a local chemistry factory. Each contract provides Monocarp with an unlimited supply of some solution of the same acid. The factory provides n contract options, numbered from 1 to n. The i-th solution has a concentration of x_i\\%, the contract costs w_i burles, and Monocarp will be able to sell it for c_i burles per liter.\n\nMonocarp is expecting k customers during the first month. Each customer will buy a liter of a y\\%-solution, where y is a **real** number chosen uniformly at random from 0 to 100 independently for each customer. More formally, the probability of number y being less than or equal to some t is P(y \\le t) = \\frac{t}{100}.\n\nMonocarp can mix the solution that he signed the contracts with the factory for, at any ratio. More formally, if he has contracts for m solutions with concentrations x_1, x_2, \\dots, x_m, then, for these solutions, he picks their volumes a_1, a_2, \\dots, a_m so that \\sum \\limits_{i=1}^{m} a_i = 1 (exactly 1 since each customer wants exactly one liter of a certain solution).\n\nThe concentration of the resulting solution is \\sum \\limits_{i=1}^{m} x_i \\cdot a_i. The price of the resulting solution is \\sum \\limits_{i=1}^{m} c_i \\cdot a_i.\n\nIf Monocarp can obtain a solution of concentration y\\%, then he will do it while maximizing its price (the cost for the customer). Otherwise, the customer leaves without buying anything, and the price is considered equal to 0.\n\nMonocarp wants to sign some contracts with a factory (possibly, none or all of them) so that the expected profit is maximized — the expected total price of the sold solutions for all k customers minus the total cost of signing the contracts from the factory.\n\nPrint the maximum expected profit Monocarp can achieve.\n\n## Input\n\nThe first line contains two integers n and k (1 \\le n \\le 5000; 1 \\le k \\le 10^5) — the number of contracts the factory provides and the number of customers.\n\nThe i-th of the next n lines contains three integers x_i, w_i and c_i (0 \\le x_i \\le 100; 1 \\le w_i \\le 10^9; 1 \\le c_i \\le 10^5) — the concentration of the solution, the cost of the contract and the cost per liter for the customer, for the i-th contract.\n\n## Output\n\nPrint a single real number — the maximum expected profit Monocarp can achieve.\n\nYour answer is considered correct if its absolute or relative error does not exceed 10^{-6}.\n\nFormally, let your answer be a, and the jury's answer be b. Your answer is accepted if and only if \\frac{|a - b|}{\\max{(1, |b|)}} \\le 10^{-6}.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nMonocarp 计划开设一家化学实验室。在第一个月里，他将销售某种酸的溶液。\n\n首先，他会与当地的一家化工厂签订一些合同。每份合同都会为 Monocarp 提供某种溶液的无限供应，这些溶液都由同一种酸制成。工厂提供 $n$ 种合同选项，编号从 1 到 $n$。第 $i$ 种溶液的浓度为 $x_i\\%$，合同费用为 $w_i$ 布尔，而 Monocarp 可以将其以每升 $c_i$ 布尔的价格出售。\n\nMonocarp 预计第一个月会有 $k$ 位顾客。每位顾客都会购买 1 升浓度为 $y\\%$ 的溶液，其中 $y$ 是一个从 0 到 100 之间均匀随机选取的**实数**，且每位顾客所选的 $y$ 相互独立。更正式地说，$y$ 小于或等于某个 $t$ 的概率为 $P(y \\le t) = \\frac{t}{100}$。\n\nMonocarp 可以按任意比例混合他通过与工厂签订合同所获得的溶液。更正式地说，如果他签订了 $m$ 种溶液的合同，那么对于这些溶液，他可以选择其体积 $a_1, a_2, \\dots, a_m$，使得 $\\sum \\limits_{i=1}^{m} a_i = 1$（必须恰好为 1，因为每位顾客恰好需要 1 升某种溶液）。\n\n所得溶液的浓度为 $\\sum \\limits_{i=1}^{m} x_i \\cdot a_i$。所得溶液的价格为 $\\sum \\limits_{i=1}^{m} c_i \\cdot a_i$。\n\n如果 Monocarp 能够获得浓度为 $y\\%$ 的溶液，他就会在满足该浓度的前提下，使其价格（顾客支付的费用）最大。如果无法获得该浓度，顾客将不会购买任何东西，此时价格视为 0。\n\nMonocarp 希望与工厂签订一些合同（可以一份都不签，也可以全部签订），使得期望利润最大——即所有 $k$ 位顾客购买的溶液的总价格的期望值，减去与工厂签订合同的总费用。\n\n请输出 Monocarp 能够获得的最大期望利润。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $k$（$1 \\le n \\le 5000$；$1 \\le k \\le 10^5$），分别表示工厂提供的合同数量和顾客数量。\n\n接下来的 $n$ 行中，第 $i$ 行包含三个整数 $x_i$、$w_i$ 和 $c_i$（$0 \\le x_i \\le 100$；$1 \\le w_i \\le 10^9$；$1 \\le c_i \\le 10^5$），分别表示第 $i$ 份合同中溶液的浓度、合同费用以及面向顾客的每升价格。\n\n## 输出格式\n\n输出一个实数，即 Monocarp 能够获得的最大期望利润。\n\n如果答案的绝对误差或相对误差不超过 $10^{-6}$，则答案被视为正确。\n\n形式化地说，设你的答案为 $a$，评测机的答案为 $b$。当且仅当 $\\frac{|a - b|}{\\max{(1, |b|)}} \\le 10^{-6}$ 时，你的答案会被接受。",
   "samples": [
     {
       "input": "2 10\n0 10 20\n100 15 20\n",
@@ -39,5 +39,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:48:50.141Z"
+  "fetchedAt": "2026-11-02T17:48:50.141Z",
+  "translatedAt": "2026-11-04T03:05:41.299+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

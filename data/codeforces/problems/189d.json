@@ -4,14 +4,14 @@
   "contestId": 189,
   "index": "D",
   "title": "AlgoRace",
-  "titleZh": null,
+  "titleZh": "算法竞速",
   "url": "https://codeforces.com/contest/189/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "PMP is getting a warrior. He is practicing a lot, but the results are not acceptable yet. This time instead of programming contests, he decided to compete in a car racing to increase the spirit of victory. He decides to choose a competition that also exhibits algorithmic features.\n\nAlgoRace is a special league of car racing where different teams compete in a country of $*n*$ cities. Cities are numbered $1$ through $*n*$. Every two distinct cities in the country are connected with one bidirectional road. Each competing team should introduce one driver and a set of cars.\n\nThe competition is held in $*r*$ rounds. In $*i*$-th round, drivers will start at city $*s*_{*i*}$ and finish at city $*t*_{*i*}$. Drivers are allowed to change their cars at most $*k*_{*i*}$ times. Changing cars can take place in any city in no time. One car can be used multiple times in one round, but total number of changes should not exceed $*k*_{*i*}$. Drivers can freely choose their path to destination.\n\nPMP has prepared $*m*$ type of purpose-built cars. Beside for PMP’s driving skills, depending on properties of the car and the road, a car traverses each road in each direction in different times.\n\nPMP Warriors wants to devise best strategies of choosing car and roads in each round to maximize the chance of winning the cup. For each round they want to find the minimum time required to finish it.\n\n## Input\n\nThe first line contains three space-separated integers $*n*, *m*, *r*$ ($2 ≤ *n* ≤ 60, 1 ≤ *m* ≤ 60, 1 ≤ *r* ≤ 10^{5}$) — the number of cities, the number of different types of cars and the number of rounds in the competition, correspondingly.\n\nNext $*m*$ sets of $*n* × *n*$ matrices of integers between $0$ to $10^{6}$ (inclusive) will follow — describing the time one car requires to traverse different roads. The $*k*$-th integer in $*j*$-th line of the $*i*$-th set is the time that $*i*$-th car requires to traverse the road from $*j*$-th city to $*k*$-th city. These matrices are not necessarily symmetric, but their diagonal is always zero.\n\nNext $*r*$ lines contain description of the rounds. The $*i*$-th of these lines contains space-separated integers $*s*_{*i*}, *t*_{*i*}, *k*_{*i*}$ ($1 ≤ *s*_{*i*}, *t*_{*i*} ≤ *n*, *s*_{*i*} ≠ *t*_{*i*}, 0 ≤ *k*_{*i*} ≤ 1000$) — the number of starting city, finishing city and the number of possible car changes in $*i*$-th round, correspondingly.\n\n## Output\n\nFor each round you should print the minimum required time to complete the round in a single line.\n\n## Note\n\nIn the first sample, in all rounds PMP goes from city #1 to city #2, then city #3 and finally city #4. But the sequences of types of the cars he uses are (1, 2, 1) in the first round and (1, 2, 2) in the second round. In the third round, although he can change his car three times, he uses the same strategy as the first round which only needs two car changes.",
-  "statementZhMd": null,
+  "statementZhMd": "PMP 即将成为一名战士。他进行了大量训练，但目前的成绩还不能令人满意。这一次，他没有参加编程竞赛，而是决定参加汽车竞速比赛，以增强胜利的信念。他决定选择一项同样具有算法特色的比赛。\n\nAlgoRace 是一种特殊的汽车竞速联赛，来自不同队伍的选手将在一个拥有 $*n*$ 座城市的国家中进行比赛。城市编号为 $1$ 至 $*n*$。该国任意两个不同的城市之间都有一条双向道路相连。每支参赛队伍都应派出一名车手和若干辆汽车。\n\n比赛共进行 $*r*$ 轮。在第 $*i*$ 轮中，车手从城市 $*s*_{*i*}$ 出发，并在城市 $*t*_{*i*}$ 结束。车手最多可以更换汽车 $*k*_{*i*}$ 次。更换汽车可以在任意城市瞬间完成。一辆汽车在一轮比赛中可以被重复使用，但更换次数总数不能超过 $*k*_{*i*}$。车手可以自由选择前往终点的路径。\n\nPMP 准备了 $*m*$ 种专用汽车。除了 PMP 的驾驶技术外，汽车行驶每条道路所需的时间还取决于汽车的性能以及道路的方向；同一辆汽车沿每条道路的两个方向行驶所需的时间可能不同。\n\nPMP 战队希望制定每一轮中选择汽车和道路的最佳策略，以最大限度地提高赢得奖杯的机会。对于每一轮，他们希望求出完成比赛所需的最短时间。\n\n## 输入格式\n\n第一行包含三个用空格分隔的整数 $*n*, *m*, *r*$（$2 ≤ *n* ≤ 60, 1 ≤ *m* ≤ 60, 1 ≤ *r* ≤ 10^{5}$）——城市数量、不同类型汽车的数量以及比赛的轮数。\n\n接下来给出 $*m*$ 组 $*n* × *n*$ 的整数矩阵，每个整数的范围为 $0$ 到 $10^{6}$（包含边界），用于描述每辆汽车行驶不同道路所需的时间。第 $*i*$ 组矩阵的第 $*j*$ 行中的第 $*k*$ 个整数，表示第 $*i*$ 种汽车从第 $*j*$ 座城市行驶到第 $*k*$ 座城市所需的时间。这些矩阵不一定是对称的，但其对角线上的元素始终为零。\n\n接下来 $*r*$ 行描述各轮比赛。第 $*i*$ 行包含三个用空格分隔的整数 $*s*_{*i*}, *t*_{*i*}, *k*_{*i*}$（$1 ≤ *s*_{*i*}, *t*_{*i*} ≤ *n*, *s*_{*i*} ≠ *t*_{*i*}, 0 ≤ *k*_{*i*} ≤ 1000$）——分别表示第 $*i*$ 轮比赛的出发城市、到达城市以及允许更换汽车的次数。\n\n## 输出格式\n\n对于每一轮比赛，输出完成比赛所需的最短时间，每轮输出一行。\n\n## 说明\n\n在第一个样例中，所有轮次中 PMP 都依次从城市 #1 前往城市 #2、城市 #3，最后到达城市 #4。但他使用的汽车类型序列分别为：第一轮是 (1, 2, 1)，第二轮是 (1, 2, 2)。在第三轮中，尽管他可以更换汽车三次，但他采用了与第一轮相同的策略，而该策略只需要更换两次汽车。",
   "samples": [
     {
       "input": "4 2 3\n0 1 5 6\n2 0 3 6\n1 3 0 1\n6 6 7 0\n0 3 5 6\n2 0 1 6\n1 3 0 2\n6 6 7 0\n1 4 2\n1 4 1\n1 4 3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:23:52.304Z"
+  "fetchedAt": "2026-10-31T02:23:52.304Z",
+  "translatedAt": "2026-11-04T07:42:29.959+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

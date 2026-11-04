@@ -4,7 +4,7 @@
   "contestId": 321,
   "index": "B",
   "title": "Ciel and Duel",
-  "titleZh": null,
+  "titleZh": "Ciel 与决斗",
   "url": "https://codeforces.com/contest/321/problem/B",
   "difficulty": 1900,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Fox Ciel is playing a card game with her friend Jiro.\n\nJiro has $*n*$ cards, each one has two attributes: $*position*$ (Attack or Defense) and $*strength*$. Fox Ciel has $*m*$ cards, each one has these two attributes too. It's known that position of all Ciel's cards is Attack.\n\nNow is Ciel's battle phase, Ciel can do the following operation many times:\n\n1. Choose one of her cards $*X*$. This card mustn't be chosen before.\n2. If Jiro has no alive cards at that moment, he gets the damage equal to ($*X*$'s strength). Otherwise, Ciel needs to choose one Jiro's alive card $*Y*$, then:\n- If $*Y*$'s position is Attack, then ($*X*$'s strength) $≥$ ($*Y*$'s strength) must hold. After this attack, card $*Y*$ dies, and Jiro gets the damage equal to ($*X*$'s strength) - ($*Y*$'s strength).\n  - If $*Y*$'s position is Defense, then ($*X*$'s strength) $>$ ($*Y*$'s strength) must hold. After this attack, card $*Y*$ dies, but Jiro gets no damage.\n\nCiel can end her battle phase at any moment (so, she can use not all her cards). Help the Fox to calculate the maximal sum of damage Jiro can get.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*m*$ ($1 ≤ *n*, *m* ≤ 100$) — the number of cards Jiro and Ciel have.\n\nEach of the next $*n*$ lines contains a string $*position*$ and an integer $*strength*$ $(0 ≤ *strength* ≤ 8000)$ — the position and strength of Jiro's current card. Position is the string \"`ATK`\" for attack, and the string \"`DEF`\" for defense.\n\nEach of the next $*m*$ lines contains an integer $*strength*$ ($0 ≤ *strength* ≤ 8000$) — the strength of Ciel's current card.\n\n## Output\n\nOutput an integer: the maximal damage Jiro can get.\n\n## Note\n\nIn the first test case, Ciel has 3 cards with same $*strength*$. The best strategy is as follows. First she uses one of these 3 cards to attack \"ATK 2000\" card first, this attack destroys that card and Jiro gets $2500 - 2000 = 500$ damage. Then she uses the second card to destroy the \"DEF 1700\" card. Jiro doesn't get damage that time. Now Jiro has no cards so she can use the third card to attack and Jiro gets $2500$ damage. So the answer is $500 + 2500 = 3000$.\n\nIn the second test case, she should use the \"1001\" card to attack the \"ATK 100\" card, then use the \"101\" card to attack the \"ATK 10\" card. Now Ciel still has cards but she can choose to end her battle phase. The total damage equals $(1001 - 100) + (101 - 10) = 992$.\n\nIn the third test case note that she can destroy the \"ATK 0\" card by a card with strength equal to 0, but she can't destroy a \"DEF 0\" card with that card.",
-  "statementZhMd": null,
+  "statementZhMd": "Fox Ciel 正在和她的朋友 Jiro 玩一款卡牌游戏。\n\nJiro 有 $*n*$ 张卡牌，每张卡牌都有两个属性：$*position*$（Attack 或 Defense）和 $*strength*$。Fox Ciel 有 $*m*$ 张卡牌，每张卡牌也都有这两个属性。已知 Ciel 的所有卡牌的 $*position*$ 都是 Attack。\n\n现在是 Ciel 的战斗阶段，她可以进行任意多次以下操作：\n\n1. 选择她的一张卡牌 $*X*$。这张卡牌此前不能被选择过。\n2. 如果此时 Jiro 没有存活的卡牌，那么他会受到等于 $*X*$ 的力量的伤害。否则，Ciel 需要选择 Jiro 的一张存活卡牌 $*Y*$，然后：\n   - 如果 $*Y*$ 的 $*position*$ 是 Attack，则必须满足 $*X*$ 的力量 $≥$ $*Y*$ 的力量。攻击后，卡牌 $*Y*$ 被消灭，Jiro 受到等于 $*X*$ 的力量 - $*Y*$ 的力量的伤害。\n   - 如果 $*Y*$ 的 $*position*$ 是 Defense，则必须满足 $*X*$ 的力量 $>$ $*Y*$ 的力量。攻击后，卡牌 $*Y*$ 被消灭，但 Jiro 不会受到伤害。\n\nCiel 可以随时结束她的战斗阶段（也就是说，她可以不使用全部卡牌）。请帮助 Fox 计算 Jiro 受到的最大伤害总和。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$（$1 ≤ *n*, *m* ≤ 100$），分别表示 Jiro 和 Ciel 拥有的卡牌数量。\n\n接下来的 $*n*$ 行，每行包含一个字符串 $*position*$ 和一个整数 $*strength*$（$0 ≤ *strength* ≤ 8000$），表示 Jiro 当前的一张卡牌的位置和力量。位置为字符串 `ATK` 表示攻击，位置为字符串 `DEF` 表示防御。\n\n接下来的 $*m*$ 行，每行包含一个整数 $*strength*$（$0 ≤ *strength* ≤ 8000$），表示 Ciel 当前的一张卡牌的力量。\n\n## 输出格式\n\n输出一个整数，表示 Jiro 能受到的最大伤害。\n\n## 说明\n\n在第一个测试用例中，Ciel 有 3 张力量相同的卡牌。最佳策略如下：首先，她使用其中一张卡牌攻击 `ATK 2000` 卡牌，消灭该卡牌，Jiro 受到 $2500 - 2000 = 500$ 点伤害。然后，她使用第二张卡牌消灭 `DEF 1700` 卡牌。这次 Jiro 不会受到伤害。此时 Jiro 已经没有卡牌，因此她可以使用第三张卡牌进行攻击，Jiro 受到 $2500$ 点伤害。因此答案为 $500 + 2500 = 3000$。\n\n在第二个测试用例中，她应该使用 `1001` 卡牌攻击 `ATK 100` 卡牌，然后使用 `101` 卡牌攻击 `ATK 10` 卡牌。此时 Ciel 仍然有卡牌，但她可以选择结束战斗阶段。受到的伤害总和为 $(1001 - 100) + (101 - 10) = 992$。\n\n在第三个测试用例中需要注意，她可以使用力量等于 0 的卡牌消灭 `ATK 0` 卡牌，但无法使用这张卡牌消灭 `DEF 0` 卡牌。",
   "samples": [
     {
       "input": "2 3\nATK 2000\nDEF 1700\n2500\n2500\n2500\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:02:15.969Z"
+  "fetchedAt": "2026-10-31T02:02:15.969Z",
+  "translatedAt": "2026-11-04T07:21:42.416+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

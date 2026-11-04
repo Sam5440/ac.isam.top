@@ -4,7 +4,7 @@
   "contestId": 1935,
   "index": "C",
   "title": "Messenger in MAC",
-  "titleZh": null,
+  "titleZh": "MAC 中的信使",
   "url": "https://codeforces.com/contest/1935/problem/C",
   "difficulty": 1800,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "In the new messenger for the students of the Master's Assistance Center, Keftemerum, an update is planned, in which developers want to optimize the set of messages shown to the user. There are a total of $n$ messages. Each message is characterized by two integers $a_i$ and $b_i$. The time spent reading the set of messages with numbers $p_1, p_2, \\ldots, p_k$ ($1 \\le p_i \\le n$, all $p_i$ are **distinct**) is calculated by the formula:\n\n$$\\Large \\sum_{i=1}^{k} a_{p_i} + \\sum_{i=1}^{k - 1} |b_{p_i} - b_{p_{i+1}}|$$\n\nNote that the time to read a set of messages consisting of **one** message with number $p_1$ is equal to $a_{p_1}$. Also, the time to read an empty set of messages is considered to be $0$.\n\nThe user can determine the time $l$ that he is willing to spend in the messenger. The messenger must inform the user of the maximum possible size of the set of messages, the reading time of which does not exceed $l$. Note that the maximum size of the set of messages can be equal to $0$.\n\nThe developers of the popular messenger failed to implement this function, so they asked you to solve this problem.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 5 \\cdot 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $l$ ($1 \\leq n \\leq 2000$, $1 \\leq l \\leq 10^9$) — the number of messages and the time the user is willing to spend in the messenger.\n\nThe $i$-th of the next $n$ lines contains two integers $a_i$ and $b_i$ ($1 \\le a_i, b_i \\le 10^9$) — characteristics of the $i$-th message.\n\nIt is guaranteed that the sum of $n^2$ over all test cases does not exceed $4 \\cdot 10^6$.\n\n## Output\n\nFor each test case, output a single integer — the maximum possible size of a set of messages, the reading time of which does not exceed $l$.\n\n## Note\n\nIn the first test case, you can take a set of three messages with numbers $p_1 = 3$, $p_2 = 2$, and $p_3 = 5$. The time spent reading this set is equal to $a_3 + a_2 + a_5 + |b_3 - b_2| + |b_2 - b_5| = 2 + 1 + 2 + |4 - 5| + |5 - 3| = 8$.\n\nIn the second test case, you can take a set of one message with number $p_1 = 1$. The time spent reading this set is equal to $a_1 = 4$.\n\nIn the fifth test case, it can be shown that there is no such non-empty set of messages, the reading time of which does not exceed $l$.",
-  "statementZhMd": null,
+  "statementZhMd": "在面向 Keftemerum 大师辅导中心学生的新款信使中，开发者计划进行一次更新，以优化展示给用户的消息集合。共有 $n$ 条消息。每条消息由两个整数 $a_i$ 和 $b_i$ 表示。阅读编号为 $p_1, p_2, \\ldots, p_k$ 的消息集合（$1 \\le p_i \\le n$，所有 $p_i$ **互不相同**）所需的时间按以下公式计算：\n\n$$\\Large \\sum_{i=1}^{k} a_{p_i} + \\sum_{i=1}^{k - 1} |b_{p_i} - b_{p_{i+1}}|$$\n\n注意，阅读仅包含一条编号为 $p_1$ 的消息的集合所需的时间等于 $a_{p_1}$。此外，阅读空消息集合所需的时间视为 $0$。\n\n用户可以确定自己愿意在信使中花费的时间 $l$。信使必须告知用户：阅读时间不超过 $l$ 的消息集合的最大可能大小。注意，消息集合的最大大小可能等于 $0$。\n\n这款热门信使的开发者未能实现此功能，因此他们请你解决这个问题。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 5 \\cdot 10^4$）——测试用例的数量。接下来描述各个测试用例。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $l$（$1 \\leq n \\leq 2000$，$1 \\leq l \\leq 10^9$）——消息的数量以及用户愿意在信使中花费的时间。\n\n接下来的 $n$ 行中，第 $i$ 行包含两个整数 $a_i$ 和 $b_i$（$1 \\leq a_i, b_i \\leq 10^9$）——第 $i$ 条消息的特征。\n\n保证所有测试用例的 $n^2$ 之和不超过 $4 \\cdot 10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——阅读时间不超过 $l$ 的消息集合的最大可能大小。\n\n## 说明\n\n在第一个测试用例中，可以选择编号为 $p_1 = 3$、$p_2 = 2$ 和 $p_3 = 5$ 的三条消息。阅读该集合所需的时间等于 $a_3 + a_2 + a_5 + |b_3 - b_2| + |b_2 - b_5| = 2 + 1 + 2 + |4 - 5| + |5 - 3| = 8$。\n\n在第二个测试用例中，可以选择仅包含编号为 $p_1 = 1$ 的一条消息。阅读该集合所需的时间等于 $a_1 = 4$。\n\n在第五个测试用例中，可以证明不存在这样的非空消息集合，使其阅读时间不超过 $l$。",
   "samples": [
     {
       "input": "5\n5 8\n4 3\n1 5\n2 4\n4 3\n2 3\n1 6\n4 10\n3 12\n4 8\n2 1\n2 12\n5 26\n24 7\n8 28\n30 22\n3 8\n17 17\n5 14\n15 3\n1000000000 998244353\n179 239\n228 1337\n993 1007\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:59:32.594Z"
+  "fetchedAt": "2026-10-30T21:59:32.594Z",
+  "translatedAt": "2026-11-04T02:25:30.572+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

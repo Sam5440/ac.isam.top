@@ -4,7 +4,7 @@
   "contestId": 1005,
   "index": "F",
   "title": "Berland and the Shortest Paths",
-  "titleZh": null,
+  "titleZh": "Berland 与最短路径",
   "url": "https://codeforces.com/contest/1005/problem/F",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ cities in Berland. Some pairs of cities are connected by roads. All roads are bidirectional. Each road connects two different cities. There is at most one road between a pair of cities. The cities are numbered from $1$ to $n$.\n\nIt is known that, from the capital (the city with the number $1$), you can reach any other city by moving along the roads.\n\nThe President of Berland plans to improve the country's road network. The budget is enough to repair exactly $n-1$ roads. The President plans to choose a set of $n-1$ roads such that:\n\n- it is possible to travel from the capital to any other city along the $n-1$ chosen roads,\n- if $d_i$ is the number of roads needed to travel from the capital to city $i$, moving only along the $n-1$ chosen roads, then $d_1 + d_2 + \\dots + d_n$ is minimized (i.e. as minimal as possible).\n\nIn other words, the set of $n-1$ roads should preserve the connectivity of the country, and the sum of distances from city $1$ to all cities should be minimized (where you can only use the $n-1$ chosen roads).\n\nThe president instructed the ministry to prepare $k$ possible options to choose $n-1$ roads so that both conditions above are met.\n\nWrite a program that will find $k$ possible ways to choose roads for repair. If there are fewer than $k$ ways, then the program should output all possible valid ways to choose roads.\n\n## Input\n\nThe first line of the input contains integers $n$, $m$ and $k$ ($2 \\le n \\le 2\\cdot10^5, n-1 \\le m \\le 2\\cdot10^5, 1 \\le k \\le 2\\cdot10^5$), where $n$ is the number of cities in the country, $m$ is the number of roads and $k$ is the number of options to choose a set of roads for repair. It is guaranteed that $m \\cdot k \\le 10^6$.\n\nThe following $m$ lines describe the roads, one road per line. Each line contains two integers $a_i$, $b_i$ ($1 \\le a_i, b_i \\le n$, $a_i \\ne b_i$) — the numbers of the cities that the $i$-th road connects. There is at most one road between a pair of cities. The given set of roads is such that you can reach any city from the capital.\n\n## Output\n\nPrint $t$ ($1 \\le t \\le k$) — the number of ways to choose a set of roads for repair. Recall that you need to find $k$ different options; if there are fewer than $k$ of them, then you need to find all possible different valid options.\n\nIn the following $t$ lines, print the options, one per line. Print an option as a string of $m$ characters where the $j$-th character is equal to '`1`' if the $j$-th road is included in the option, and is equal to '`0`' if the road is not included. The roads should be numbered according to their order in the input. The options can be printed in any order. All the $t$ lines should be different.\n\nSince it is guaranteed that $m \\cdot k \\le 10^6$, the total length of all the $t$ lines will not exceed $10^6$.\n\nIf there are several answers, output any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "Berland 有 $n$ 个城市。部分城市对之间由道路连接。所有道路都是双向的。每条道路连接两个不同的城市。任意一对城市之间至多有一条道路。城市编号为 $1$ 到 $n$。\n\n已知从首都（编号为 $1$ 的城市）出发，可以沿道路到达任意其他城市。\n\nBerland 总统计划改善国家的道路网络。预算恰好足以维修 $n-1$ 条道路。总统计划选择 $n-1$ 条道路，使得：\n\n- 沿着选中的 $n-1$ 条道路，可以从首都到达任意其他城市；\n- 设仅沿着选中的 $n-1$ 条道路从首都到城市 $i$ 所需经过的道路数为 $d_i$，则 $d_1 + d_2 + \\dots + d_n$ 最小（即尽可能小）。\n\n换句话说，选中的 $n-1$ 条道路应当保持整个国家的连通性，并且从城市 $1$ 到所有城市的距离之和应当最小（只能使用选中的 $n-1$ 条道路）。\n\n总统要求交通部门准备 $k$ 种满足上述两个条件的 $n-1$ 条道路选择方案。\n\n请编写程序，找出 $k$ 种维修道路的方案。如果方案数少于 $k$，则输出所有可能的有效方案。\n\n## 输入格式\n\n输入的第一行包含整数 $n$、$m$ 和 $k$（$2 \\le n \\le 2\\cdot10^5, n-1 \\le m \\le 2\\cdot10^5, 1 \\le k \\le 2\\cdot10^5$），其中 $n$ 是国家中的城市数，$m$ 是道路数，$k$ 是需要选择的维修道路集合方案数。保证 $m \\cdot k \\le 10^6$。\n\n接下来的 $m$ 行描述道路，每行一条道路。每行包含两个整数 $a_i$、$b_i$（$1 \\le a_i, b_i \\le n, a_i \\ne b_i$），表示第 $i$ 条道路连接的两个城市的编号。任意一对城市之间至多有一条道路。给定的道路集合保证可以从首都到达任意城市。\n\n## 输出格式\n\n输出 $t$（$1 \\le t \\le k$），表示选择维修道路集合的方案数。请注意，需要找出 $k$ 种不同的方案；如果方案数少于 $k$，则需要找出所有可能的不同有效方案。\n\n接下来的 $t$ 行中，每行输出一种方案。将一个方案表示为一个长度为 $m$ 的字符串，其中第 $j$ 个字符为 '`1`' 表示第 $j$ 条道路被包含在该方案中，为 '`0`' 表示该道路未被包含。道路按照输入中的顺序编号。方案可以按任意顺序输出。所有 $t$ 行必须互不相同。\n\n由于保证 $m \\cdot k \\le 10^6$，因此所有 $t$ 行的总长度不会超过 $10^6$。\n\n如果有多个答案，输出其中任意一个即可。",
   "samples": [
     {
       "input": "4 4 3\n1 2\n2 3\n1 4\n4 3\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:34:19.224Z"
+  "fetchedAt": "2026-11-02T19:34:19.224Z",
+  "translatedAt": "2026-11-04T05:38:34.496+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 141,
   "index": "D",
   "title": "Take-off Ramps",
-  "titleZh": null,
+  "titleZh": "起跳坡道",
   "url": "https://codeforces.com/contest/141/problem/D",
   "difficulty": 2300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Vasya participates in a ski race along the $*X*$ axis. The start is at point $0$, and the finish is at $*L*$, that is, at a distance $*L*$ meters from the start in the positive direction of the axis. Vasya has been training so hard that he can run one meter in exactly one second.\n\nBesides, there are $*n*$ take-off ramps on the track, each ramp is characterized by four numbers:\n\n- $*x*_{*i*}$ represents the ramp's coordinate\n- $*d*_{*i*}$ represents from how many meters Vasya will land if he goes down this ramp\n- $*t*_{*i*}$ represents the flight time in seconds\n- $*p*_{*i*}$ is the number, indicating for how many meters Vasya should gather speed to get ready and fly off the ramp. As Vasya gathers speed, he should ski on the snow (that is, he should not be flying), but his speed still equals one meter per second.\n\nVasya is allowed to move in **any direction** on the $*X*$ axis, but he is prohibited to cross the start line, that is go to the negative semiaxis. Vasya himself chooses which take-off ramps he will use and in what order, that is, he is not obliged to take off from all the ramps he encounters. Specifically, Vasya can skip the ramp. It is guaranteed that $*x*_{*i*} + *d*_{*i*} ≤ *L*$, that is, Vasya cannot cross the finish line in flight.\n\n**Vasya can jump from the ramp only in the positive direction of $*X*$ axis. More formally, when using the $*i*$-th ramp, Vasya starts gathering speed at point $*x*_{*i*} - *p*_{*i*}$, jumps at point $*x*_{*i*}$, and lands at point $*x*_{*i*} + *d*_{*i*}$. He cannot use the ramp in opposite direction.**\n\nYour task is to find the minimum time that Vasya will spend to cover the distance.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*L*$ ($0 ≤ *n* ≤ 10^{5}$, $1 ≤ *L* ≤ 10^{9}$). Then $*n*$ lines contain the descriptions of the ramps, each description is on a single line. Each description is a group of four non-negative integers $*x*_{*i*}$, $*d*_{*i*}$, $*t*_{*i*}$, $*p*_{*i*}$ ($0 ≤ *x*_{*i*} ≤ *L*$, $1 ≤ *d*_{*i*}, *t*_{*i*}, *p*_{*i*} ≤ 10^{9}$, $*x*_{*i*} + *d*_{*i*} ≤ *L*$).\n\n## Output\n\nPrint in the first line the minimum time in seconds Vasya needs to complete the track. Print in the second line $*k*$ — the number of take-off ramps that Vasya needs to use, and print on the third line of output $*k*$ numbers the number the take-off ramps Vasya used in the order in which he used them. Print each number exactly once, separate the numbers with a space. The ramps are numbered starting from 1 in the order in which they are given in the input.\n\n## Note\n\nIn the first sample, Vasya cannot use ramp 2, because then he will need to gather speed starting from point `-3`, which is not permitted by the statement. The optimal option is using ramp 1, the resulting time is: moving to the point of gathering speed + gathering speed until reaching the takeoff ramp + flight time + moving to the finish line$= 0 + 5 + 5 + 5 = 15$.\n\nIn the second sample using ramp 1 is not optimal for Vasya as $*t*_{1} > *d*_{1}$. The optimal option is using ramp 2, the resulting time is: moving to the point of gathering speed + gathering speed until reaching the takeoff ramp + flight time + moving to the finish line$= 14 + 1 + 1 + 0 = 16$.",
-  "statementZhMd": null,
+  "statementZhMd": "Vasya 参加一场沿 $*X*$ 轴进行的滑雪比赛。起点位于点 $0$，终点位于 $*L*$，也就是说，终点在起点沿坐标轴正方向距离 $*L*$ 米处。Vasya 训练得非常刻苦，因此他恰好可以在一秒内跑完一米。\n\n赛道上还有 $*n*$ 个起跳坡道，每个坡道由四个数字描述：\n\n- $*x*_{*i*}$ 表示坡道的坐标；\n- $*d*_{*i*}$ 表示 Vasya 从该坡道起跳后将落地的位置距离坡道多少米；\n- $*t*_{*i*}$ 表示飞行时间（单位：秒）；\n- $*p*_{*i*}$ 表示 Vasya 需要助跑多少米才能准备好并从坡道起飞。Vasya 助跑时必须在雪地上滑行（也就是说，他不能处于飞行状态），但速度仍然是每秒一米。\n\nVasya 可以沿 $*X*$ 轴的**任意方向**移动，但禁止越过起点线，即不能前往负半轴。Vasya 可以自行选择使用哪些起跳坡道以及使用它们的顺序，也就是说，他不必从遇到的所有坡道起跳。具体来说，Vasya 可以跳过某个坡道。保证 $*x*_{*i*} + *d*_{*i*} ≤ *L*$，即 Vasya 在飞行过程中不会越过终点线。\n\n**Vasya 只能沿 $*X*$ 轴的正方向从坡道起跳。更严格地说，使用第 $*i*$ 个坡道时，Vasya 从点 $*x*_{*i*} - *p*_{*i*}$ 开始助跑，在点 $*x*_{*i*}$ 处起跳，并在点 $*x*_{*i*} + *d*_{*i*}$ 处落地。他不能沿相反方向使用该坡道。**\n\n你的任务是求出 Vasya 跑完这段距离所需的最短时间。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*L*$（$0 ≤ *n* ≤ 10^{5}$，$1 ≤ *L* ≤ 10^{9}$）。接下来 $*n*$ 行包含坡道的描述，每个描述占一行，由四个非负整数 $*x*_{*i*}$、$*d*_{*i*}$、$*t*_{*i*}$、$*p*_{*i*}$ 组成（$0 ≤ *x*_{*i*} ≤ *L*$，$1 ≤ *d*_{*i*}, *t*_{*i*}, *p*_{*i*} ≤ 10^{9}$，$*x*_{*i*} + *d*_{*i*} ≤ *L*$）。\n\n## 输出格式\n\n第一行输出 Vasya 完成赛道所需的最短时间（单位：秒）。第二行输出 $*k*$，表示 Vasya 需要使用的起跳坡道数量；第三行输出 $*k*$ 个整数，表示 Vasya 按使用顺序经过的起跳坡道编号。每个编号恰好输出一次，编号之间用空格分隔。坡道按照输入中的顺序从 1 开始编号。\n\n## 说明\n\n在第一个样例中，Vasya 不能使用坡道 2，因为这样他需要从点 `-3` 开始助跑，而题目不允许前往负半轴。最优方案是使用坡道 1，所需时间为：移动到助跑起点的时间 + 助跑到起跳坡道的时间 + 飞行时间 + 移动到终点的时间$= 0 + 5 + 5 + 5 = 15$。\n\n在第二个样例中，使用坡道 1 对 Vasya 来说不是最优的，因为 $*t*_{1} > *d*_{1}$。最优方案是使用坡道 2，所需时间为：移动到助跑起点的时间 + 助跑到起跳坡道的时间 + 飞行时间 + 移动到终点的时间$= 14 + 1 + 1 + 0 = 16$。",
   "samples": [
     {
       "input": "2 20\n5 10 5 5\n4 16 1 7\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:31:43.724Z"
+  "fetchedAt": "2026-10-31T02:31:43.724Z",
+  "translatedAt": "2026-11-04T07:44:54.931+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

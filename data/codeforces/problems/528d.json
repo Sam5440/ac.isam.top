@@ -4,7 +4,7 @@
   "contestId": 528,
   "index": "D",
   "title": "Fuzzy Search",
-  "titleZh": null,
+  "titleZh": "模糊搜索",
   "url": "https://codeforces.com/contest/528/problem/D",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Leonid works for a small and promising start-up that works on decoding the human genome. His duties include solving complex problems of finding certain patterns in long strings consisting of letters '`A`', '`T`', '`G`' and '`C`'.\n\nLet's consider the following scenario. There is a fragment of a human DNA chain, recorded as a string $*S*$. To analyze the fragment, you need to find all occurrences of string $*T*$ in a string $*S*$. However, the matter is complicated by the fact that the original chain fragment could contain minor mutations, which, however, complicate the task of finding a fragment. Leonid proposed the following approach to solve this problem.\n\nLet's write down integer $*k* ≥ 0$ — the error threshold. We will say that string $*T*$ occurs in string $*S*$ on position $*i*$ ($1 ≤ *i* ≤ |*S*| - |*T*| + 1$), if after putting string $*T*$ along with this position, each character of string $*T*$ corresponds to the some character of the same value in string $*S*$ at the distance of at most $*k*$. More formally, for any $*j*$ ($1 ≤ *j* ≤ |*T*|$) there must exist such $*p*$ ($1 ≤ *p* ≤ |*S*|$), that $|(*i* + *j* - 1) - *p*| ≤ *k*$ and $*S*[*p*] = *T*[*j*]$.\n\nFor example, corresponding to the given definition, string \"`ACAT`\" occurs in string \"`AGCAATTCAT`\" in positions $2$, $3$ and $6$.\n\n![image](https://espresso.codeforces.com/c6bac791756cc9638747fed191c6a9b4fc6921b5.png)\n\nNote that at $*k* = 0$ the given definition transforms to a simple definition of the occurrence of a string in a string.\n\nHelp Leonid by calculating in how many positions the given string $*T*$ occurs in the given string $*S*$ with the given error threshold.\n\n## Input\n\nThe first line contains three integers $|*S*|, |*T*|, *k*$ ($1 ≤ |*T*| ≤ |*S*| ≤ 200 000$, $0 ≤ *k* ≤ 200 000$) — the lengths of strings $*S*$ and $*T*$ and the error threshold.\n\nThe second line contains string $*S*$.\n\nThe third line contains string $*T*$.\n\nBoth strings consist only of uppercase letters '`A`', '`T`', '`G`' and '`C`'.\n\n## Output\n\nPrint a single number — the number of occurrences of $*T*$ in $*S*$ with the error threshold $*k*$ by the given definition.\n\n## Note\n\nIf you happen to know about the structure of the human genome a little more than the author of the problem, and you are not impressed with Leonid's original approach, do not take everything described above seriously.",
-  "statementZhMd": null,
+  "statementZhMd": "Leonid 就职于一家规模不大但前景广阔的初创公司，该公司致力于人类基因组的解码工作。他的职责包括解决这样一类复杂问题：在由字母 `A`、`T`、`G` 和 `C` 组成的长字符串中寻找特定模式。\n\n考虑如下场景。有一段人类 DNA 链片段，被记录为字符串 $*S*$。为了分析这段片段，你需要在字符串 $*S*$ 中寻找字符串 $*T*$ 的所有出现位置。然而，原始链片段可能包含一些微小的突变，这使得寻找片段的任务变得更加复杂。Leonid 提出了以下方法来解决这个问题。\n\n我们记整数 $*k* ≥ 0$ 为误差阈值。如果将字符串 $*T*$ 从位置 $*i*$ 开始与字符串 $*S*$ 对齐后，字符串 $*T*$ 中的每个字符都能在字符串 $*S*$ 中找到一个值相同、且距离不超过 $*k*$ 的字符，则称字符串 $*T*$ 在字符串 $*S*$ 的位置 $*i*$（$1 ≤ *i* ≤ |*S*| - |*T*| + 1$）处出现。更形式化地说，对于任意 $*j*$（$1 ≤ *j* ≤ |*T*|$），都必须存在这样的 $*p*$（$1 ≤ *p* ≤ |*S*|$），满足 $|(*i* + *j* - 1) - *p*| ≤ *k*$ 且 $*S*[*p*] = *T*[*j*]$。\n\n例如，根据上述定义，字符串 \"`ACAT`\" 在字符串 \"`AGCAATTCAT`\" 的位置 $2$、$3$ 和 $6$ 处出现。\n\n![image](https://espresso.codeforces.com/c6bac791756cc9638747fed191c6a9b4fc6921b5.png)\n\n注意，当 $*k* = 0$ 时，上述定义就变成了字符串在另一个字符串中出现的普通定义。\n\n请帮助 Leonid 计算在给定误差阈值下，字符串 $*T*$ 在字符串 $*S*$ 中出现了多少个位置。\n\n## 输入格式\n\n第一行包含三个整数 $|*S*|, |*T*|, *k*$（$1 ≤ |*T*| ≤ |*S*| ≤ 200 000$, $0 ≤ *k* ≤ 200 000$），分别表示字符串 $*S*$ 和 $*T*$ 的长度以及误差阈值。\n\n第二行包含字符串 $*S*$。\n\n第三行包含字符串 $*T*$。\n\n两个字符串均只由大写字母 \"`A`\"、\"`T`\"、\"`G`\" 和 \"`C`\" 组成。\n\n## 输出格式\n\n输出一个整数——按照上述定义，在给定误差阈值 $*k*$ 下字符串 $*T*$ 在字符串 $*S*$ 中出现的次数。\n\n## 说明\n\n如果你对人类基因组的结构略有了解，而且不像本题作者那样对 Leonid 的原始方法感到印象深刻，那么请不要把上面描述的一切太当回事。",
   "samples": [
     {
       "input": "10 4 1\nAGCAATTCAT\nACAT\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:29:19.615Z"
+  "fetchedAt": "2026-10-31T01:29:19.615Z",
+  "translatedAt": "2026-11-04T06:58:23.506+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,14 +4,14 @@
   "contestId": 697,
   "index": "C",
   "title": "Lorenzo Von Matterhorn",
-  "titleZh": null,
+  "titleZh": "洛伦佐·冯·马特霍恩",
   "url": "https://codeforces.com/contest/697/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Barney lives in NYC. NYC has infinite number of intersections numbered with positive integers starting from 1. There exists a bidirectional road between intersections $*i*$ and $2*i*$ and another road between $*i*$ and $2*i* + 1$ for every positive integer $*i*$. You can clearly see that there exists a unique shortest path between any two intersections.\n\n![image](https://espresso.codeforces.com/4903884e67e4df5c9318cac4bec37adc381fc790.png)\n\nInitially anyone can pass any road for free. But since SlapsGiving is ahead of us, there will $*q*$ consecutive events happen soon. There are two types of events:\n\n1. Government makes a new rule. A rule can be denoted by integers $*v*$, $*u*$ and $*w*$. As the result of this action, the passing fee of all roads on the shortest path from $*u*$ to $*v*$ increases by $*w*$ dollars.\n\n2. Barney starts moving from some intersection $*v*$ and goes to intersection $*u*$ where there's a girl he wants to cuddle (using his fake name Lorenzo Von Matterhorn). He always uses the shortest path (visiting minimum number of intersections or roads) between two intersections.\n\nGovernment needs your calculations. For each time Barney goes to cuddle a girl, you need to tell the government how much money he should pay (sum of passing fee of all roads he passes).\n\n## Input\n\nThe first line of input contains a single integer $*q*$ ($1 ≤ *q* ≤ 1 000$).\n\nThe next $*q*$ lines contain the information about the events in chronological order. Each event is described in form $1$ $*v*$ $*u*$ $*w*$ if it's an event when government makes a new rule about increasing the passing fee of all roads on the shortest path from $*u*$ to $*v*$ by $*w*$ dollars, or in form $2$ $*v*$ $*u*$ if it's an event when Barnie goes to cuddle from the intersection $*v*$ to the intersection $*u*$.\n\n$1 ≤ *v*, *u* ≤ 10^{18}, *v* ≠ *u*, 1 ≤ *w* ≤ 10^{9}$ states for every description line.\n\n## Output\n\nFor each event of second type print the sum of passing fee of all roads Barney passes in this event, in one line. Print the answers in chronological order of corresponding events.\n\n## Note\n\nIn the example testcase:\n\nHere are the intersections used:\n\n![image](https://espresso.codeforces.com/c2675a26082e819949e289f83ac78a7e27afde40.png)\n\n1. Intersections on the path are $3$, $1$, $2$ and $4$.\n2. Intersections on the path are $4$, $2$ and $1$.\n3. Intersections on the path are only $3$ and $6$.\n4. Intersections on the path are $4$, $2$, $1$ and $3$. Passing fee of roads on the path are $32$, $32$ and $30$ in order. So answer equals to $32 + 32 + 30 = 94$.\n5. Intersections on the path are $6$, $3$ and $1$.\n6. Intersections on the path are $3$ and $7$. Passing fee of the road between them is $0$.\n7. Intersections on the path are $2$ and $4$. Passing fee of the road between them is $32$ (increased by $30$ in the first event and by $2$ in the second).",
-  "statementZhMd": null,
+  "statementZhMd": "巴尼住在纽约市。纽约市有无限多个交叉路口，编号为从 1 开始的正整数。对于每个正整数 $*i*$，交叉路口 $*i*$ 与 $2*i*$ 之间存在一条双向道路，交叉路口 $*i*$ 与 $2*i* + 1$ 之间也存在一条道路。显然，任意两个交叉路口之间都存在唯一的最短路径。\n\n![image](https://espresso.codeforces.com/4903884e67e4df5c9318cac4bec37adc381fc790.png)\n\n最初，任何人都可以免费通过任意道路。但由于 SlapsGiving 节即将到来，很快将连续发生 $*q*$ 个事件。事件有以下两种类型：\n\n1. 政府制定一项新规定。一项规定可以用整数 $*v*$、$*u*$ 和 $*w*$ 表示。执行此操作后，从 $*u*$ 到 $*v*$ 的最短路径上所有道路的通行费都会增加 $*w*$ 美元。\n\n2. 巴尼从某个交叉路口 $*v*$ 出发，前往交叉路口 $*u*$，那里有一个他想拥抱的女孩（他使用的假名是 Lorenzo Von Matterhorn）。他总是沿着两个交叉路口之间的最短路径行走（经过的交叉路口或道路数量最少）。\n\n政府需要你的计算。每当巴尼去拥抱女孩时，你需要告诉政府他应该支付多少钱（即经过的所有道路的通行费之和）。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*q*$（$1 ≤ *q* ≤ 1 000$）。\n\n接下来的 $*q*$ 行按照事件发生的时间顺序给出事件信息。每个事件的格式如下：如果是政府制定新规定、使从 $*u*$ 到 $*v*$ 的最短路径上所有道路的通行费增加 $*w*$ 美元的事件，则格式为 $1$ $*v*$ $*u*$ $*w*$；如果是巴尼从交叉路口 $*v*$ 前往交叉路口 $*u*$ 拥抱女孩的事件，则格式为 $2$ $*v*$ $*u*$。\n\n对于每一行描述，均有 $1 ≤ *v*$、$*u*$ ≤ 10^{18}$、$*v*$ ≠ $*u*$，以及 $1 ≤ *w*$ ≤ 10^{9}$。\n\n## 输出格式\n\n对于每个第二类事件，输出巴尼在该事件中经过的所有道路的通行费之和，每个答案占一行。按照对应事件的时间顺序输出答案。\n\n## 说明\n\n在样例测试中，使用到的交叉路口如下：\n\n![image](https://espresso.codeforces.com/c2675a26082e819949e289f83ac78a7e27afde40.png)\n\n1. 路径上的交叉路口依次为 $3$、$1$、$2$ 和 $4$。\n2. 路径上的交叉路口依次为 $4$、$2$ 和 $1$。\n3. 路径上只有交叉路口 $3$ 和 $6$。\n4. 路径上的交叉路口依次为 $4$、$2$、$1$ 和 $3$。路径上道路的通行费依次为 $32$、$32$ 和 $30$。因此答案为 $32 + 32 + 30 = 94$。\n5. 路径上的交叉路口依次为 $6$、$3$ 和 $1$。\n6. 路径上的交叉路口为 $3$ 和 $7$。它们之间道路的通行费为 $0$。\n7. 路径上的交叉路口为 $2$ 和 $4$。它们之间道路的通行费为 $32$（第一次事件增加了 $30$，第二次事件增加了 $2$）。",
   "samples": [
     {
       "input": "7\n1 3 4 30\n1 4 1 2\n1 3 6 8\n2 4 3\n1 6 1 40\n2 3 7\n2 2 4\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:07:54.202Z"
+  "fetchedAt": "2026-10-31T01:07:54.202Z",
+  "translatedAt": "2026-11-04T06:31:58.757+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

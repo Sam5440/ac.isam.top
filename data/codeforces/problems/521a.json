@@ -4,14 +4,14 @@
   "contestId": 521,
   "index": "A",
   "title": "DNA Alignment",
-  "titleZh": null,
+  "titleZh": "DNA 比对",
   "url": "https://codeforces.com/contest/521/problem/A",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Vasya became interested in bioinformatics. He's going to write an article about similar cyclic DNA sequences, so he invented a new method for determining the similarity of cyclic sequences.\n\nLet's assume that strings $*s*$ and $*t*$ have the same length $*n*$, then the function $*h*(*s*, *t*)$ is defined as the number of positions in which the respective symbols of $*s*$ and $*t*$ are *the same*. Function $*h*(*s*, *t*)$ can be used to define the function of Vasya distance $ρ(*s*, *t*)$:\n\n![image](https://espresso.codeforces.com/3185549447bcef14eee362fe5c14adf50d614ba9.png)\n\nwhere\n\n![image](https://espresso.codeforces.com/1630c222ae6ec5b71031376e94c16cf5c6ed4fda.png)\n\nis obtained from string\n\n*s*\n\n, by applying left circular shift\n\n*i*\n\ntimes. For example,\n\n$ρ(\"*AGC*\", \"*CGT*\") =$\n\n$*h*(\"*AGC*\", \"*CGT*\") + *h*(\"*AGC*\", \"*GTC*\") + *h*(\"*AGC*\", \"*TCG*\") +$\n\n$*h*(\"*GCA*\", \"*CGT*\") + *h*(\"*GCA*\", \"*GTC*\") + *h*(\"*GCA*\", \"*TCG*\") +$\n\n$*h*(\"*CAG*\", \"*CGT*\") + *h*(\"*CAG*\", \"*GTC*\") + *h*(\"*CAG*\", \"*TCG*\") =$\n\n$1 + 1 + 0 + 0 + 1 + 1 + 1 + 0 + 1 = 6$\n\nVasya found a string $*s*$ of length $*n*$ on the Internet. Now he wants to count how many strings $*t*$ there are such that the Vasya distance from the string $*s*$ attains maximum possible value. Formally speaking, $*t*$ must satisfy the equation: ![image](https://espresso.codeforces.com/8689349142c7afec51741bca879d960cce9678c8.png).\n\nVasya could not try all possible strings to find an answer, so he needs your help. As the answer may be very large, count the number of such strings modulo $10^{9} + 7$.\n\n## Input\n\nThe first line of the input contains a single integer $*n*$ ($1 ≤ *n* ≤ 10^{5}$).\n\nThe second line of the input contains a single string of length $*n*$, consisting of characters `\"ACGT\"`.\n\n## Output\n\nPrint a single number — the answer modulo $10^{9} + 7$.\n\n## Note\n\nPlease note that if for two distinct strings $*t*_{1}$ and $*t*_{2}$ values $ρ(*s*, *t*_{1})$ и $ρ(*s*, *t*_{2})$ are maximum among all possible $*t*$, then both strings must be taken into account in the answer even if one of them can be obtained by a circular shift of another one.\n\nIn the first sample, there is $ρ(\"*C*\", \"*C*\") = 1$, for the remaining strings $*t*$ of length 1 the value of $ρ(*s*, *t*)$ is 0.\n\nIn the second sample, $ρ(\"*AG*\", \"*AG*\") = ρ(\"*AG*\", \"*GA*\") = ρ(\"*AG*\", \"*AA*\") = ρ(\"*AG*\", \"*GG*\") = 4$.\n\nIn the third sample, $ρ(\"*TTT*\", \"*TTT*\") = 27$",
-  "statementZhMd": null,
+  "statementZhMd": "Vasya 对生物信息学产生了兴趣。他准备撰写一篇关于相似循环 DNA 序列的文章，因此发明了一种判断循环序列相似度的新方法。\n\n假设字符串 $*s*$ 和 $*t*$ 的长度均为 $*n*$，那么函数 $*h*(*s*, *t*)$ 被定义为 $*s*$ 和 $*t*$ 中对应位置上的字符相同的位置数量。函数 $*h*(*s*, *t*)$ 可用于定义 Vasya 距离函数 $ρ(*s*, *t*)$：\n\n![image](https://espresso.codeforces.com/3185549447bcef14eee362fe5c14adf50d614ba9.png)\n\n其中\n\n![image](https://espresso.codeforces.com/1630c222ae6ec5b71031376e94c16cf5c6ed4fda.png)\n\n由字符串\n\n*s*\n\n经过 $i$ 次左循环移位得到。例如，\n\n$ρ(\"*AGC*\", \"*CGT*\") =$\n\n$*h*(\"*AGC*\", \"*CGT*\") + *h*(\"*AGC*\", \"*GTC*\") + *h*(\"*AGC*\", \"*TCG*\") +$\n\n$*h*(\"*GCA*\", \"*CGT*\") + *h*(\"*GCA*\", \"*GTC*\") + *h*(\"*GCA*\", \"*TCG*\") +$\n\n$*h*(\"*CAG*\", \"*CGT*\") + *h*(\"*CAG*\", \"*GTC*\") + *h*(\"*CAG*\", \"*TCG*\") =$\n\n$1 + 1 + 0 + 0 + 1 + 1 + 1 + 0 + 1 = 6$\n\nVasya 在互联网上找到一个长度为 $*n*$ 的字符串 $*s*$。现在，他想统计有多少个字符串 $*t*$ 能使字符串 $*s*$ 与其之间的 Vasya 距离达到所有可能值中的最大值。形式化地说，$*t*$ 必须满足以下等式：\n\n![image](https://espresso.codeforces.com/8689349142c7afec51741bca879d960cce9678c8.png)\n\nVasya 无法尝试所有可能的字符串来找到答案，因此需要你的帮助。由于答案可能很大，请将满足条件的字符串数量对 $10^{9} + 7$ 取模。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$）。\n\n第二行包含一个长度为 $*n*$ 的字符串，由字符 `\"ACGT\"` 组成。\n\n## 输出格式\n\n输出一个整数——答案对 $10^{9} + 7$ 取模后的结果。\n\n## 说明\n\n请注意，如果两个不同的字符串 $*t*_{1}$ 和 $*t*_{2}$ 的 $ρ(*s*, *t*_{1})$ 和 $ρ(*s*, *t*_{2})$ 均在所有可能的 $*t*$ 中达到最大值，那么这两个字符串都必须计入答案，即使其中一个字符串可以通过对另一个字符串进行循环移位得到。\n\n在第一个样例中，$ρ(\"*C*\", \"*C*\") = 1$，而对于其余长度为 1 的字符串 $*t*$，$ρ(*s*, *t*)$ 的值均为 0。\n\n在第二个样例中，$ρ(\"*AG*\", \"*AG*\") = ρ(\"*AG*\", \"*GA*\") = ρ(\"*AG*\", \"*AA*\") = ρ(\"*AG*\", \"*GG*\") = 4$。\n\n在第三个样例中，$ρ(\"*TTT*\", \"*TTT*\") = 27$",
   "samples": [
     {
       "input": "1\nC\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:30:16.821Z"
+  "fetchedAt": "2026-10-31T01:30:16.821Z",
+  "translatedAt": "2026-11-04T06:57:22.918+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

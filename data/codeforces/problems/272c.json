@@ -4,7 +4,7 @@
   "contestId": 272,
   "index": "C",
   "title": "Dima and Staircase",
-  "titleZh": null,
+  "titleZh": "Dima 和楼梯",
   "url": "https://codeforces.com/contest/272/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Dima's got a staircase that consists of $*n*$ stairs. The first stair is at height $*a*_{1}$, the second one is at $*a*_{2}$, the last one is at $*a*_{*n*}$ ($1 ≤ *a*_{1} ≤ *a*_{2} ≤ ... ≤ *a*_{*n*}$).\n\nDima decided to play with the staircase, so he is throwing rectangular boxes at the staircase from above. The $*i*$-th box has width $*w*_{*i*}$ and height $*h*_{*i*}$. Dima throws each box vertically down on the first $*w*_{*i*}$ stairs of the staircase, that is, the box covers stairs with numbers $1, 2, ..., *w*_{*i*}$. Each thrown box flies vertically down until at least one of the two following events happen:\n\n- the bottom of the box touches the top of a stair;\n- the bottom of the box touches the top of a box, thrown earlier.\n\nWe only consider touching of the horizontal sides of stairs and boxes, at that touching with the corners isn't taken into consideration. Specifically, that implies that a box with width $*w*_{*i*}$ cannot touch the stair number $*w*_{*i*} + 1$.\n\nYou are given the description of the staircase and the sequence in which Dima threw the boxes at it. For each box, determine how high the bottom of the box after landing will be. Consider a box to fall after the previous one lands.\n\n## Input\n\nThe first line contains integer $*n*$ $(1 ≤ *n* ≤ 10^{5})$ — the number of stairs in the staircase. The second line contains a non-decreasing sequence, consisting of $*n*$ integers, $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ $(1 ≤ *a*_{*i*} ≤ 10^{9}; *a*_{*i*} ≤ *a*_{*i* + 1})$.\n\nThe next line contains integer $*m*$ $(1 ≤ *m* ≤ 10^{5})$ — the number of boxes. Each of the following $*m*$ lines contains a pair of integers $*w*_{*i*}, *h*_{*i*}$ $(1 ≤ *w*_{*i*} ≤ *n*; 1 ≤ *h*_{*i*} ≤ 10^{9})$ — the size of the $*i*$-th thrown box.\n\nThe numbers in the lines are separated by spaces.\n\n## Output\n\nPrint $*m*$ integers — for each box the height, where the bottom of the box will be after landing. Print the answers for the boxes in the order, in which the boxes are given in the input.\n\nPlease, do not use the `%lld` specifier to read or write 64-bit integers in *C++*. It is preferred to use the `cin`, `cout` streams or the `%I64d` specifier.\n\n## Note\n\nThe first sample are shown on the picture.\n\n![image](https://espresso.codeforces.com/04088d75433c0293af36ffa2b2a77588d0fc5588.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Dima 有一座由 $*n*$ 级台阶组成的楼梯。第一级台阶的高度为 $*a*_{1}$，第二级台阶的高度为 $*a*_{2}$，最后一级台阶的高度为 $*a*_{*n*}$（$1 ≤ *a*_{1} ≤ *a*_{2} ≤ ... ≤ *a*_{*n*}$）。\n\nDima 决定玩一玩这座楼梯，于是他从上方将矩形箱子扔向楼梯。第 $*i*$ 个箱子的宽度为 $*w*_{*i*}$，高度为 $*h*_{*i*}$。Dima 将每个箱子垂直向下扔到楼梯的前 $*w*_{*i*}$ 级台阶上，也就是说，箱子覆盖编号为 $1, 2, ..., *w*_{*i*}$ 的台阶。每个被扔下的箱子会垂直向下移动，直到至少发生以下两个事件之一：\n\n- 箱子的底部接触到某一级台阶的顶部；\n- 箱子的底部接触到之前扔下的某个箱子的顶部。\n\n我们只考虑楼梯和箱子的水平边相互接触的情况，不考虑与角的接触。具体来说，这意味着宽度为 $*w*_{*i*}$ 的箱子无法接触编号为 $*w*_{*i*} + 1$ 的台阶。\n\n给定楼梯的描述以及 Dima 扔箱子的顺序。对于每个箱子，确定其落下后底部的高度。每个箱子都在前一个箱子落下后再开始下落。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 10^{5}$）——楼梯的级数。第二行包含一个由 $*n*$ 个整数组成的非递减序列 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$1 ≤ *a*_{*i*} ≤ 10^{9}; *a*_{*i*} ≤ *a*_{*i* + 1}$）。\n\n下一行包含一个整数 $*m*$（$1 ≤ *m* ≤ 10^{5}$）——箱子的数量。接下来的 $*m*$ 行中，每行包含两个整数 $*w*_{*i*}, *h*_{*i*}$（$1 ≤ *w*_{*i*} ≤ *n*; 1 ≤ *h*_{*i*} ≤ 10^{9}$）——第 $*i*$ 个被扔下的箱子的尺寸。\n\n每行中的数字以空格分隔。\n\n## 输出格式\n\n输出 $*m*$ 个整数——对于每个箱子，输出其落下后底部的高度。按照箱子在输入中给出的顺序输出答案。\n\n请不要在 *C++* 中使用 `%lld` 格式说明符读取或输出 64 位整数。推荐使用 `cin`、`cout` 流，或使用 `%I64d` 格式说明符。\n\n## 说明\n\n第一个样例显示在图片中。\n\n![image](https://espresso.codeforces.com/04088d75433c0293af36ffa2b2a77588d0fc5588.png)",
   "samples": [
     {
       "input": "5\n1 2 3 6 6\n4\n1 1\n3 1\n1 1\n4 3\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T02:11:04.015Z"
+  "fetchedAt": "2026-10-31T02:11:04.015Z",
+  "translatedAt": "2026-11-04T07:35:06.448+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

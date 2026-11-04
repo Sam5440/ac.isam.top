@@ -4,14 +4,14 @@
   "contestId": 1291,
   "index": "D",
   "title": "Irreducible Anagrams",
-  "titleZh": null,
+  "titleZh": "不可约字谜",
   "url": "https://codeforces.com/contest/1291/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let's call two strings $s$ and $t$ *anagrams* of each other if it is possible to rearrange symbols in the string $s$ to get a string, equal to $t$.\n\nLet's consider two strings $s$ and $t$ **which are anagrams of each other**. We say that $t$ is a *reducible anagram* of $s$ if there exists an integer $k \\ge 2$ and $2k$ non-empty strings $s_1, t_1, s_2, t_2, \\dots, s_k, t_k$ that satisfy the following conditions:\n\n1. If we write the strings $s_1, s_2, \\dots, s_k$ in order, the resulting string will be equal to $s$;\n2. If we write the strings $t_1, t_2, \\dots, t_k$ in order, the resulting string will be equal to $t$;\n3. For all integers $i$ between $1$ and $k$ inclusive, $s_i$ and $t_i$ are anagrams of each other.\n\nIf such strings don't exist, then $t$ is said to be an *irreducible anagram* of $s$. **Note that these notions are only defined when $s$ and $t$ are anagrams of each other**.\n\nFor example, consider the string $s = $ \"`gamegame`\". Then the string $t = $ \"`megamage`\" is a reducible anagram of $s$, we may choose for example $s_1 = $ \"`game`\", $s_2 = $ \"`gam`\", $s_3 = $ \"`e`\" and $t_1 = $ \"`mega`\", $t_2 = $ \"`mag`\", $t_3 = $ \"`e`\":\n\n![image](https://espresso.codeforces.com/6a53aacfb1d36ae5a64a4cadf6a9c3b488e883be.png)\n\nOn the other hand, we can prove that $t = $ \"`memegaga`\" is an irreducible anagram of $s$.\n\nYou will be given a string $s$ and $q$ queries, represented by two integers $1 \\le l \\le r \\le |s|$ (where $|s|$ is equal to the length of the string $s$). For each query, you should find if the substring of $s$ formed by characters from the $l$-th to the $r$-th has at least one irreducible anagram.\n\n## Input\n\nThe first line contains a string $s$, consisting of lowercase English characters ($1 \\le |s| \\le 2 \\cdot 10^5$).\n\nThe second line contains a single integer $q$ ($1 \\le q \\le 10^5$)  — the number of queries.\n\nEach of the following $q$ lines contain two integers $l$ and $r$ ($1 \\le l \\le r \\le |s|$), representing a query for the substring of $s$ formed by characters from the $l$-th to the $r$-th.\n\n## Output\n\nFor each query, print a single line containing \"`Yes`\" (without quotes) if the corresponding substring has at least one irreducible anagram, and a single line containing \"`No`\" (without quotes) otherwise.\n\n## Note\n\nIn the first sample, in the first and third queries, the substring is \"`a`\", which has itself as an irreducible anagram since two or more non-empty strings cannot be put together to obtain \"`a`\". On the other hand, in the second query, the substring is \"`aaa`\", which has no irreducible anagrams: its only anagram is itself, and we may choose $s_1 = $ \"`a`\", $s_2 = $ \"`aa`\", $t_1 = $ \"`a`\", $t_2 = $ \"`aa`\" to show that it is a reducible anagram.\n\nIn the second query of the second sample, the substring is \"`abb`\", which has, for example, \"`bba`\" as an irreducible anagram.",
-  "statementZhMd": null,
+  "statementZhMd": "如果可以通过重新排列字符串 $s$ 中的字符，得到一个与 $t$ 相等的字符串，则称字符串 $s$ 和 $t$ 互为*字谜*。\n\n现在考虑两个**互为字谜**的字符串 $s$ 和 $t$。如果存在一个整数 $k \\ge 2$ 以及 $2k$ 个非空字符串 $s_1, t_1, s_2, t_2, \\dots, s_k, t_k$，满足以下条件，则称 $t$ 是 $s$ 的一个*可约字谜*：\n\n1. 按顺序拼接字符串 $s_1, s_2, \\dots, s_k$ 后，所得字符串等于 $s$；\n2. 按顺序拼接字符串 $t_1, t_2, \\dots, t_k$ 后，所得字符串等于 $t$；\n3. 对于所有介于 $1$ 和 $k$（含）之间的整数 $i$，$s_i$ 和 $t_i$ 互为字谜。\n\n如果不存在这样的字符串，则称 $t$ 是 $s$ 的一个*不可约字谜*。**注意，这些概念仅在 $s$ 和 $t$ 互为字谜时定义。**\n\n例如，考虑字符串 $s = $ \"`gamegame`\"$。那么字符串 $t = $ \"`megamage`\"$ 是 $s$ 的一个可约字谜。我们可以选择 $s_1 = $ \"`game`\"$、$s_2 = $ \"`gam`\"$、$s_3 = $ \"`e`\"$，以及 $t_1 = $ \"`mega`\"$、$t_2 = $ \"`mag`\"$、$t_3 = $ \"`e`\"$：\n\n![image](https://espresso.codeforces.com/6a53aacfb1d36ae5a64a4cadf6a9c3b488e883be.png)\n\n另一方面，可以证明 $t = $ \"`memegaga`\"$ 是 $s$ 的一个不可约字谜。\n\n现在给定一个字符串 $s$ 和 $q$ 个询问，每个询问由两个整数 $1 \\le l \\le r \\le |s|$ 表示（其中 $|s|$ 等于字符串 $s$ 的长度）。对于每个询问，你需要判断由 $s$ 中第 $l$ 个字符到第 $r$ 个字符组成的子串是否至少有一个不可约字谜。\n\n## 输入格式\n\n第一行包含一个字符串 $s$，由小写英文字母组成（$1 \\le |s| \\le 2 \\cdot 10^5$）。\n\n第二行包含一个整数 $q$（$1 \\le q \\le 10^5$）——询问的数量。\n\n接下来的 $q$ 行中，每行包含两个整数 $l$ 和 $r$（$1 \\le l \\le r \\le |s|$），表示由 $s$ 中第 $l$ 个字符到第 $r$ 个字符组成的子串。\n\n## 输出格式\n\n对于每个询问，输出一行。如果对应的子串至少有一个不可约字谜，则输出 \"`Yes`\"（不含引号）；否则输出 \"`No`\"（不含引号）。\n\n## 说明\n\n在第一个样例中，对于第一个和第三个询问，子串是 \"`a`\"。它本身就是一个不可约字谜，因为不可能将两个或更多非空字符串拼接成 \"`a`\"。另一方面，在第二个询问中，子串是 \"`aaa`\"，它没有不可约字谜：它唯一的字谜就是它本身，并且我们可以选择 $s_1 = $ \"`a`\"$、$s_2 = $ \"`aa`\"$、$t_1 = $ \"`a`\"$、$t_2 = $ \"`aa`\"$，从而说明它是一个可约字谜。\n\n在第二个样例的第二个询问中，子串是 \"`abb`\"，例如，\"`bba`\" 就是它的一个不可约字谜。",
   "samples": [
     {
       "input": "aaaaa\n3\n1 1\n2 4\n5 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:57:25.857Z"
+  "fetchedAt": "2026-10-30T23:57:25.857Z",
+  "translatedAt": "2026-11-04T04:50:37.903+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

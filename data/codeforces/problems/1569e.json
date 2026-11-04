@@ -4,7 +4,7 @@
   "contestId": 1569,
   "index": "E",
   "title": "Playoff Restoration",
-  "titleZh": null,
+  "titleZh": "淘汰赛排名恢复",
   "url": "https://codeforces.com/contest/1569/problem/E",
   "difficulty": 2600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "$2^k$ teams participate in a playoff tournament. The tournament consists of $2^k - 1$ games. They are held as follows: first of all, the teams are split into pairs: team $1$ plays against team $2$, team $3$ plays against team $4$ (exactly in this order), and so on (so, $2^{k-1}$ games are played in that phase). When a team loses a game, it is eliminated, and each game results in elimination of one team (there are no ties). After that, only $2^{k-1}$ teams remain. If only one team remains, it is declared the champion; otherwise, $2^{k-2}$ games are played: in the first one of them, the winner of the game \"$1$ vs $2$\" plays against the winner of the game \"$3$ vs $4$\", then the winner of the game \"$5$ vs $6$\" plays against the winner of the game \"$7$ vs $8$\", and so on. This process repeats until only one team remains.\n\nAfter the tournament ends, the teams are assigned places according to the tournament phase when they were eliminated. In particular:\n\n- the winner of the tournament gets place $1$;\n- the team eliminated in the finals gets place $2$;\n- both teams eliminated in the semifinals get place $3$;\n- all teams eliminated in the quarterfinals get place $5$;\n- all teams eliminated in the 1/8 finals get place $9$, and so on.\n\nFor example, this picture describes one of the possible ways the tournament can go with $k = 3$, and the resulting places of the teams:\n\n![image](https://espresso.codeforces.com/283943b18ab7bb893c0bf72ee6ac21fb05a66806.png)\n\nAfter a tournament which was conducted by the aforementioned rules ended, its results were encoded in the following way. Let $p_i$ be the place of the $i$-th team in the tournament. The hash value of the tournament $h$ is calculated as $h = (\\sum \\limits_{i=1}^{2^k} i \\cdot A^{p_i}) \\bmod 998244353$, where $A$ is some given integer.\n\nUnfortunately, due to a system crash, almost all tournament-related data was lost. The only pieces of data that remain are the values of $k$, $A$ and $h$. You are asked to restore the resulting placing of the teams in the tournament, if it is possible at all.\n\n## Input\n\nThe only line contains three integers $k$, $A$ and $h$ ($1 \\le k \\le 5$; $100 \\le A \\le 10^8$; $0 \\le h \\le 998244352$).\n\n## Output\n\nIf it is impossible to find any placing of the teams that is consistent with the data you have, print one integer $-1$.\n\nOtherwise, print $2^k$ integers, where $i$-th integer should be equal to $p_i$ (the place of the $i$-th team). Note that your answer should be consistent with one of the possible ways the tournament could go, and note that the initial structure of the tournament is fixed (for example, teams $1$ and $2$ always play in the first phase of the tournament against each other). If there are multiple ways to restore the places of the teams which are consistent with the data you have, print any of them.\n\n## Note\n\nThe tournament for the first example is described in the statement.\n\nFor the third example, the placing $[1, 2, 3, 3]$ (team $1$ gets place $1$, team $2$ gets place $2$, teams $3$ and $4$ get place $3$) could result in a hash value of $7020100$ with $A = 100$, but no tournament can result in such placing since teams $1$ and $2$ play against each other in the semifinals, so they cannot get two first places.",
-  "statementZhMd": null,
+  "statementZhMd": "$2^k$ 支队伍参加淘汰赛。比赛共进行 $2^k - 1$ 场，具体安排如下：首先，队伍两两分组进行比赛：队伍 $1$ 与队伍 $2$ 比赛，队伍 $3$ 与队伍 $4$ 比赛（顺序严格如此），依此类推（这一阶段共进行 $2^{k-1}$ 场比赛）。当一支队伍输掉比赛时，它将被淘汰；每场比赛恰好淘汰一支队伍（不存在平局）。此后只剩下 $2^{k-1}$ 支队伍。如果只剩下一支队伍，则该队伍被宣布为冠军；否则，将进行 $2^{k-2}$ 场比赛：其中第一场比赛由“$1$ 对 $2$”的胜者与“$3$ 对 $4$”的胜者进行，接下来由“$5$ 对 $6$”的胜者与“$7$ 对 $8$”的胜者进行比赛，依此类推。这个过程不断重复，直到只剩下一支队伍。\n\n比赛结束后，根据队伍被淘汰时所处的比赛阶段为各队分配名次。具体来说：\n\n- 比赛冠军获得第 $1$ 名；\n- 决赛中被淘汰的队伍获得第 $2$ 名；\n- 半决赛中被淘汰的两支队伍均获得第 $3$ 名；\n- 四分之一决赛中被淘汰的所有队伍均获得第 $5$ 名；\n- 八分之一决赛中被淘汰的所有队伍均获得第 $9$ 名，以此类推。\n\n例如，下面的图片描述了 $k = 3$ 时比赛可能进行的一种方式，以及各队最终获得的名次：\n\n![image](https://espresso.codeforces.com/283943b18ab7bb893c0bf72ee6ac21fb05a66806.png)\n\n按照上述规则进行的比赛结束后，比赛结果以下列方式进行编码。设 $p_i$ 表示第 $i$ 支队伍在比赛中的名次。比赛的哈希值 $h$ 按照以下公式计算：$h = (\\sum \\limits_{i=1}^{2^k} i \\cdot A^{p_i}) \\bmod 998244353$，其中 $A$ 是给定的整数。\n\n不幸的是，由于系统崩溃，几乎所有与比赛相关的数据都丢失了。仅剩下的数据是 $k$、$A$ 和 $h$ 的值。请你在可能的情况下恢复比赛结束后各队的名次排列。\n\n## 输入格式\n\n仅一行，包含三个整数 $k$、$A$ 和 $h$（$1 \\le k \\le 5$；$100 \\le A \\le 10^8$；$0 \\le h \\le 998244352$）。\n\n## 输出格式\n\n如果不存在任何与已知数据相符的队伍名次排列，输出一个整数 $-1$。\n\n否则，输出 $2^k$ 个整数，其中第 $i$ 个整数应等于 $p_i$，即第 $i$ 支队伍的名次。注意，你的答案必须与某一种可能的比赛过程相符，并且比赛的初始结构是固定的（例如，队伍 $1$ 和队伍 $2$ 在第一阶段始终互相比赛）。如果存在多种与已知数据相符的名次排列，输出其中任意一种即可。\n\n## 说明\n\n第一个样例中的比赛在题目描述中已有说明。\n\n对于第三个样例，名次排列 $[1, 2, 3, 3]$（队伍 $1$ 获得第 $1$ 名，队伍 $2$ 获得第 $2$ 名，队伍 $3$ 和队伍 $4$ 获得第 $3$ 名）在 $A = 100$ 时可能产生哈希值 $7020100$，但不存在任何比赛能够产生这样的名次排列，因为队伍 $1$ 和队伍 $2$ 在半决赛中相遇，因此它们不可能分别获得前两名。",
   "samples": [
     {
       "input": "3 1337 75275197\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:22:11.197Z"
+  "fetchedAt": "2026-11-02T18:22:11.197Z",
+  "translatedAt": "2026-11-04T03:47:43.898+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

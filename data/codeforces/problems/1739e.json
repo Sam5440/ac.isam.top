@@ -4,7 +4,7 @@
   "contestId": 1739,
   "index": "E",
   "title": "Cleaning Robot",
-  "titleZh": null,
+  "titleZh": "清洁机器人",
   "url": "https://codeforces.com/contest/1739/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "Consider a hallway, which can be represented as the matrix with $2$ rows and $n$ columns. Let's denote the cell on the intersection of the $i$-th row and the $j$-th column as $(i, j)$. The distance between the cells $(i_1, j_1)$ and $(i_2, j_2)$ is $|i_1 - i_2| + |j_1 - j_2|$.\n\nThere is a cleaning robot in the cell $(1, 1)$. Some cells of the hallway are clean, other cells are dirty (the cell with the robot is clean). You want to clean the hallway, so you are going to launch the robot to do this.\n\nAfter the robot is launched, it works as follows. While at least one cell is dirty, the robot chooses **the closest (to its current cell) cell** among those which are dirty, moves there and cleans it (so the cell is no longer dirty). After cleaning a cell, the robot again finds the closest dirty cell **to its current cell**, and so on. This process repeats until the whole hallway is clean.\n\nHowever, there is a critical bug in the robot's program. If at some moment, there are multiple closest (to the robot's current position) dirty cells, the robot malfunctions.\n\nYou want to clean the hallway in such a way that the robot doesn't malfunction. **Before launching the robot**, you can clean some (possibly zero) of the dirty cells yourself. However, you don't want to do too much dirty work yourself while you have this nice, smart (yet buggy) robot to do this. Note that you cannot make a clean cell dirty.\n\nCalculate the maximum possible number of cells you can leave dirty before launching the robot, so that it doesn't malfunction.\n\n## Input\n\nThe first line contains one integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of columns in the hallway.\n\nThen two lines follow, denoting the $1$-st and the $2$-nd row of the hallway. These lines contain $n$ characters each, where `0` denotes a clean cell and `1` denotes a dirty cell. The starting cell of the robot $(1, 1)$ is clean.\n\n## Output\n\nPrint one integer — the maximum possible number of cells you can leave dirty before launching the robot, so that it doesn't malfunction.\n\n## Note\n\nIn the first example, you can clean the cell $(1, 2)$, so the path of the robot is $(1, 1) \\rightarrow (2, 1) \\rightarrow (2, 2)$.\n\nIn the second example, you can leave the hallway as it is, so the path of the robot is $(1, 1) \\rightarrow (1, 2) \\rightarrow (2, 2)$.\n\nIn the third example, you can clean the cell $(1, 2)$, so the path of the robot is $(1, 1) \\rightarrow (2, 1) \\rightarrow (2, 3) \\rightarrow (2, 4) \\rightarrow (1, 4)$.\n\nIn the fourth example, the hallway is already clean. Maybe you have launched the robot earlier?",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一条走廊，它可以表示为一个有 $2$ 行、$n$ 列的矩阵。我们将第 $i$ 行与第 $j$ 列交叉处的单元格记为 $(i, j)$。单元格 $(i_1, j_1)$ 与 $(i_2, j_2)$ 之间的距离为 $|i_1 - i_2| + |j_1 - j_2|$。\n\n有一个清洁机器人位于单元格 $(1, 1)$ 中。走廊中的一些单元格是干净的，另一些单元格是脏的（机器人所在的单元格是干净的）。你希望清洁整条走廊，因此准备启动机器人来完成这项工作。\n\n机器人启动后，按照以下方式工作：只要至少还有一个单元格是脏的，机器人就会在所有脏单元格中选择**距离当前位置最近的单元格**，移动到那里并将其清洁（该单元格将不再是脏的）。清洁完一个单元格后，机器人会再次寻找**距离当前位置最近的脏单元格**，如此反复。这个过程会一直持续，直到整条走廊都被清洁干净。\n\n然而，机器人的程序存在一个严重的错误。如果在某一时刻，有多个脏单元格与机器人当前位置的距离相同且都是最近的，机器人就会发生故障。\n\n你希望以一种不会让机器人发生故障的方式清洁走廊。**在启动机器人之前**，你可以亲自清洁一些（也可以一个都不清洁）脏单元格。但是，既然有这个聪明而方便（但有缺陷的）机器人可以完成清洁工作，你不希望自己做太多脏活。注意，你不能将干净的单元格变脏。\n\n请计算在启动机器人之前，最多可以保留多少个单元格为脏的，同时保证机器人不会发生故障。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——走廊的列数。\n\n接下来有两行，分别表示走廊的第 $1$ 行和第 $2$ 行。每行包含 $n$ 个字符，其中 `0` 表示干净单元格，`1` 表示脏单元格。机器人的起始单元格 $(1, 1)$ 是干净的。\n\n## 输出格式\n\n输出一个整数——在启动机器人之前最多可以保留的脏单元格数量，同时保证机器人不会发生故障。\n\n## 说明\n\n在第一个样例中，你可以清洁单元格 $(1, 2)$，这样机器人的路径为 $(1, 1) \\rightarrow (2, 1) \\rightarrow (2, 2)$。\n\n在第二个样例中，你可以保持走廊原样，因此机器人的路径为 $(1, 1) \\rightarrow (1, 2) \\rightarrow (2, 2)$。\n\n在第三个样例中，你可以清洁单元格 $(1, 2)$，这样机器人的路径为 $(1, 1) \\rightarrow (2, 1) \\rightarrow (2, 3) \\rightarrow (2, 4) \\rightarrow (1, 4)$。\n\n在第四个样例中，走廊已经是干净的。也许你应该更早启动机器人？",
   "samples": [
     {
       "input": "2\n01\n11\n",
@@ -53,5 +53,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:14.710Z"
+  "fetchedAt": "2026-11-02T17:50:14.710Z",
+  "translatedAt": "2026-11-04T03:10:28.959+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

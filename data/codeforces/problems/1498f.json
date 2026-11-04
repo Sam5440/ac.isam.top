@@ -4,7 +4,7 @@
   "contestId": 1498,
   "index": "F",
   "title": "Christmas Game",
-  "titleZh": null,
+  "titleZh": "圣诞游戏",
   "url": "https://codeforces.com/contest/1498/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob are going to celebrate Christmas by playing a game with a tree of presents. The tree has $n$ nodes (numbered $1$ to $n$, with some node $r$ as its root). There are $a_i$ presents are hanging from the $i$-th node.\n\nBefore beginning the game, a special integer $k$ is chosen. The game proceeds as follows:\n\n- Alice begins the game, with moves alternating each turn;\n- in any move, the current player may choose some node (for example, $i$) which has depth at least $k$. Then, the player picks some positive number of presents hanging from that node, let's call it $m$ $(1 \\le m \\le a_i)$;\n- the player then places these $m$ presents on the $k$-th ancestor (let's call it $j$) of the $i$-th node (the $k$-th ancestor of vertex $i$ is a vertex $j$ such that $i$ is a descendant of $j$, and the difference between the depth of $j$ and the depth of $i$ is exactly $k$). Now, the number of presents of the $i$-th node $(a_i)$ is decreased by $m$, and, correspondingly, $a_j$ is increased by $m$;\n- Alice and Bob both play optimally. The player unable to make a move loses the game.\n\n**For each possible root** of the tree, find who among Alice or Bob wins the game.\n\nNote: The depth of a node $i$ in a tree with root $r$ is defined as the number of edges on the simple path from node $r$ to node $i$. The depth of root $r$ itself is zero.\n\n## Input\n\nThe first line contains two space-separated integers $n$ and $k$ $(3 \\le n \\le 10^5, 1 \\le k \\le 20)$.\n\nThe next $n-1$ lines each contain two integers $x$ and $y$ $(1 \\le x, y \\le n, x \\neq y)$, denoting an undirected edge between the two nodes $x$ and $y$. These edges form a tree of $n$ nodes.\n\nThe next line contains $n$ space-separated integers denoting the array $a$ $(0 \\le a_i \\le 10^9)$.\n\n## Output\n\nOutput $n$ integers, where the $i$-th integer is $1$ if Alice wins the game when the tree is rooted at node $i$, or $0$ otherwise.\n\n## Note\n\nLet us calculate the answer for sample input with root node as 1 and as 2.\n\n**Root node 1**\n\nAlice always wins in this case. One possible gameplay between Alice and Bob is:\n\n- Alice moves one present from node 4 to node 3.\n- Bob moves four presents from node 5 to node 2.\n- Alice moves four presents from node 2 to node 1.\n- Bob moves three presents from node 2 to node 1.\n- Alice moves three presents from node 3 to node 1.\n- Bob moves three presents from node 4 to node 3.\n- Alice moves three presents from node 3 to node 1.\n\nBob is now unable to make a move and hence loses.\n\n**Root node 2**\n\nBob always wins in this case. One such gameplay is:\n\n- Alice moves four presents from node 4 to node 3.\n- Bob moves four presents from node 5 to node 2.\n- Alice moves six presents from node 3 to node 1.\n- Bob moves six presents from node 1 to node 2.\n\nAlice is now unable to make a move and hence loses.",
-  "statementZhMd": null,
+  "statementZhMd": "爱丽丝和鲍勃准备通过在一棵礼物树上玩游戏来庆祝圣诞节。这棵树有 $n$ 个节点（编号为 $1$ 至 $n$，根节点为某个节点 $r$）。第 $i$ 个节点上悬挂着 $a_i$ 件礼物。\n\n在游戏开始前，会选定一个特殊整数 $k$。游戏规则如下：\n\n- 爱丽丝先手，之后双方轮流行动；\n- 在每次行动中，当前玩家可以选择一个深度至少为 $k$ 的节点（例如节点 $i$）。然后，玩家从悬挂在该节点上的礼物中取出任意正数件，记为 $m$ $(1 \\le m \\le a_i)$；\n- 接着，玩家将这 $m$ 件礼物放到第 $i$ 个节点的第 $k$ 级祖先节点（记为 $j$）上（节点 $i$ 的第 $k$ 级祖先是指满足 $i$ 是 $j$ 的后代，且节点 $j$ 与节点 $i$ 的深度之差恰好为 $k$ 的节点）。此时，第 $i$ 个节点上的礼物数量 $(a_i)$ 减少 $m$，相应地，$a_j$ 增加 $m$；\n- 爱丽丝和鲍勃都采取最优策略。无法进行操作的玩家输掉游戏。\n\n对于树的每一种可能的根，判断爱丽丝和鲍勃中谁能赢得游戏。\n\n注意：在以 $r$ 为根的树中，节点 $i$ 的深度定义为根节点 $r$ 到节点 $i$ 的简单路径上的边数。根节点 $r$ 本身的深度为零。\n\n## 输入格式\n\n第一行包含两个用空格分隔的整数 $n$ 和 $k$ $(3 \\le n \\le 10^5, 1 \\le k \\le 20)$。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $x$ 和 $y$ $(1 \\le x, y \\le n, x \\neq y)$，表示节点 $x$ 和节点 $y$ 之间存在一条无向边。这些边构成一棵有 $n$ 个节点的树。\n\n下一行包含 $n$ 个用空格分隔的整数，表示数组 $a$ $(0 \\le a_i \\le 10^9)$。\n\n## 输出格式\n\n输出 $n$ 个整数。如果将树以节点 $i$ 为根时爱丽丝获胜，则第 $i$ 个整数为 $1$，否则为 $0$。\n\n## 说明\n\n让我们分别计算样例输入以节点 1 和节点 2 为根时的答案。\n\n**根节点 1**\n\n在这种情况下，爱丽丝总能获胜。爱丽丝和鲍勃之间的一种可能对局如下：\n\n- 爱丽丝将一件礼物从节点 4 移到节点 3。\n- 鲍勃将四件礼物从节点 5 移到节点 2。\n- 爱丽丝将四件礼物从节点 2 移到节点 1。\n- 鲍勃将三件礼物从节点 2 移到节点 1。\n- 爱丽丝将三件礼物从节点 3 移到节点 1。\n- 鲍勃将三件礼物从节点 4 移到节点 3。\n- 爱丽丝将三件礼物从节点 3 移到节点 1。\n\n此时鲍勃无法进行操作，因此输掉了游戏。\n\n**根节点 2**\n\n在这种情况下，鲍勃总能获胜。一种可能的对局如下：\n\n- 爱丽丝将四件礼物从节点 4 移到节点 3。\n- 鲍勃将四件礼物从节点 5 移到节点 2。\n- 爱丽丝将六件礼物从节点 3 移到节点 1。\n- 鲍勃将六件礼物从节点 1 移到节点 2。\n\n此时爱丽丝无法进行操作，因此输掉了游戏。",
   "samples": [
     {
       "input": "5 1\n1 2\n1 3\n5 2\n4 3\n0 3 2 4 4\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:35:01.635Z"
+  "fetchedAt": "2026-10-30T23:35:01.635Z",
+  "translatedAt": "2026-11-04T03:55:48.876+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

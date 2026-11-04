@@ -4,7 +4,7 @@
   "contestId": 1900,
   "index": "D",
   "title": "Small GCD",
-  "titleZh": null,
+  "titleZh": "小 GCD",
   "url": "https://codeforces.com/contest/1900/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Let $a$, $b$, and $c$ be integers. We define function $f(a, b, c)$ as follows:\n\nOrder the numbers $a$, $b$, $c$ in such a way that $a \\le b \\le c$. Then return $\\gcd(a, b)$, where $\\gcd(a, b)$ denotes the [greatest common divisor (GCD)](https://en.wikipedia.org/wiki/Greatest_common_divisor) of integers $a$ and $b$.\n\nSo basically, we take the $\\gcd$ of the $2$ smaller values and ignore the biggest one.\n\nYou are given an array $a$ of $n$ elements. Compute the sum of $f(a_i, a_j, a_k)$ for each $i$, $j$, $k$, such that $1 \\le i \\lt j \\lt k \\le n$.\n\nMore formally, compute $$\\sum_{i = 1}^n \\sum_{j = i+1}^n \\sum_{k =j +1}^n f(a_i, a_j, a_k).$$\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($3 \\le n \\le 8 \\cdot 10^4$) — length of the array $a$.\n\nThe second line of each test case contains $n$ integers, $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^5$) — elements of the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $8 \\cdot 10^4$.\n\n## Output\n\nFor each test case, output a single number — the sum from the problem statement.\n\n## Note\n\nIn the first test case, the values of $f$ are as follows:\n\n- $i=1$, $j=2$, $k=3$, $f(a_i,a_j,a_k)=f(2,3,6)=\\gcd(2,3)=1$;\n- $i=1$, $j=2$, $k=4$, $f(a_i,a_j,a_k)=f(2,3,12)=\\gcd(2,3)=1$;\n- $i=1$, $j=2$, $k=5$, $f(a_i,a_j,a_k)=f(2,3,17)=\\gcd(2,3)=1$;\n- $i=1$, $j=3$, $k=4$, $f(a_i,a_j,a_k)=f(2,6,12)=\\gcd(2,6)=2$;\n- $i=1$, $j=3$, $k=5$, $f(a_i,a_j,a_k)=f(2,6,17)=\\gcd(2,6)=2$;\n- $i=1$, $j=4$, $k=5$, $f(a_i,a_j,a_k)=f(2,12,17)=\\gcd(2,12)=2$;\n- $i=2$, $j=3$, $k=4$, $f(a_i,a_j,a_k)=f(3,6,12)=\\gcd(3,6)=3$;\n- $i=2$, $j=3$, $k=5$, $f(a_i,a_j,a_k)=f(3,6,17)=\\gcd(3,6)=3$;\n- $i=2$, $j=4$, $k=5$, $f(a_i,a_j,a_k)=f(3,12,17)=\\gcd(3,12)=3$;\n- $i=3$, $j=4$, $k=5$, $f(a_i,a_j,a_k)=f(6,12,17)=\\gcd(6,12)=6$.\n\nThe sum over all triples is $1+1+1+2+2+2+3+3+3+6=24$.\n\nIn the second test case, there are $56$ ways to choose values of $i$, $j$, $k$. The sum over all $f(a_i,a_j,a_k)$ is $203$.",
-  "statementZhMd": null,
+  "statementZhMd": "设 $a$、$b$ 和 $c$ 为整数。我们定义函数 $f(a, b, c)$ 如下：\n\n将 $a$、$b$、$c$ 按照 $a \\le b \\le c$ 的顺序排列。然后返回 $\\gcd(a, b)$，其中 $\\gcd(a, b)$ 表示整数 $a$ 和 $b$ 的[最大公约数（GCD）](https://en.wikipedia.org/wiki/Greatest_common_divisor)。\n\n也就是说，我们对其中较小的 $2$ 个数求 $\\gcd$，并忽略最大的数。\n\n给定一个包含 $n$ 个元素的数组 $a$。请计算对于满足 $1 \\le i \\lt j \\lt k \\le n$ 的每一组 $i$、$j$、$k$，$f(a_i, a_j, a_k)$ 的总和。\n\n更正式地说，请计算 $$\\sum_{i = 1}^n \\sum_{j = i+1}^n \\sum_{k =j +1}^n f(a_i, a_j, a_k).$$\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$3 \\le n \\le 8 \\cdot 10^4$）——数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^5$）——数组 $a$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $8 \\cdot 10^4$。\n\n## 输出格式\n\n对于每个测试用例，输出一个数——题目描述中所求的总和。\n\n## 说明\n\n在第一个测试用例中，$f$ 的取值如下：\n\n- $i=1$，$j=2$，$k=3$，$f(a_i,a_j,a_k)=f(2,3,6)=\\gcd(2,3)=1$；\n- $i=1$，$j=2$，$k=4$，$f(a_i,a_j,a_k)=f(2,3,12)=\\gcd(2,3)=1$；\n- $i=1$，$j=2$，$k=5$，$f(a_i,a_j,a_k)=f(2,3,17)=\\gcd(2,3)=1$；\n- $i=1$，$j=3$，$k=4$，$f(a_i,a_j,a_k)=f(2,6,12)=\\gcd(2,6)=2$；\n- $i=1$，$j=3$，$k=5$，$f(a_i,a_j,a_k)=f(2,6,17)=\\gcd(2,6)=2$；\n- $i=1$，$j=4$，$k=5$，$f(a_i,a_j,a_k)=f(2,12,17)=\\gcd(2,12)=2$；\n- $i=2$，$j=3$，$k=4$，$f(a_i,a_j,a_k)=f(3,6,12)=\\gcd(3,6)=3$；\n- $i=2$，$j=3$，$k=5$，$f(a_i,a_j,a_k)=f(3,6,17)=\\gcd(3,6)=3$；\n- $i=2$，$j=4$，$k=5$，$f(a_i,a_j,a_k)=f(3,12,17)=\\gcd(3,12)=3$；\n- $i=3$，$j=4$，$k=5$，$f(a_i,a_j,a_k)=f(6,12,17)=\\gcd(6,12)=6$。\n\n所有三元组的总和为 $1+1+1+2+2+2+3+3+3+6=24$。\n\n在第二个测试用例中，共有 $56$ 种选择 $i$、$j$、$k$ 的方式。所有 $f(a_i,a_j,a_k)$ 的总和为 $203$。",
   "samples": [
     {
       "input": "2\n5\n2 3 6 12 17\n8\n6 12 8 10 15 12 18 16\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:07:50.046Z"
+  "fetchedAt": "2026-10-30T22:07:50.046Z",
+  "translatedAt": "2026-11-04T02:27:54.472+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

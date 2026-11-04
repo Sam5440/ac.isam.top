@@ -4,7 +4,7 @@
   "contestId": 348,
   "index": "C",
   "title": "Subset Sums",
-  "titleZh": null,
+  "titleZh": "子集和",
   "url": "https://codeforces.com/contest/348/problem/C",
   "difficulty": 2500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ and $*m*$ sets $*S*_{1}, *S*_{2}, ..., *S*_{*m*}$ of indices of elements of this array. Let's denote $*S*_{*k*} = {*S*_{*k*, *i*}} (1 ≤ *i* ≤ |*S*_{*k*}|)$. In other words, $*S*_{*k*, *i*}$ is some element from set $*S*_{*k*}$.\n\nIn this problem you have to answer $*q*$ queries of the two types:\n\n1. Find the sum of elements with indices from set $*S*_{*k*}$: ![image](https://espresso.codeforces.com/6d0c103912105915deadec2dfbf3e852cfbce1fd.png). The query format is \"`? k`\".\n2. Add number $*x*$ to all elements at indices from set $*S*_{*k*}$: $*a*_{*S*_{*k*, *i*}}$ is replaced by $*a*_{*S*_{*k*, *i*}} + *x*$ for all $*i*$ $(1 ≤ *i* ≤ |*S*_{*k*}|)$. The query format is \"`+ k x`\".\n\nAfter each first type query print the required sum.\n\n## Input\n\nThe first line contains integers $*n*, *m*, *q*$ $(1 ≤ *n*, *m*, *q* ≤ 10^{5})$. The second line contains $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ $(|*a*_{*i*}| ≤ 10^{8})$ — elements of array $*a*$.\n\nEach of the following $*m*$ lines describes one set of indices. The $*k*$-th line first contains a positive integer, representing the number of elements in set ($|*S*_{*k*}|$), then follow $|*S*_{*k*}|$ distinct integers $*S*_{*k*, 1}, *S*_{*k*, 2}, ..., *S*_{*k*, |*S*_{*k*}|}$ $(1 ≤ *S*_{*k*, *i*} ≤ *n*)$ — elements of set $*S*_{*k*}$.\n\nThe next $*q*$ lines contain queries. Each query looks like either \"`? k`\" or \"`+ k x`\" and sits on a single line. For all queries the following limits are held: $1 ≤ *k* ≤ *m*$, $|*x*| ≤ 10^{8}$. The queries are given in order they need to be answered.\n\nIt is guaranteed that the sum of sizes of all sets $*S*_{*k*}$ doesn't exceed $10^{5}$.\n\n## Output\n\nAfter each first type query print the required sum on a single line.\n\nPlease, do not write the `%lld` specifier to read or write 64-bit integers in С++. It is preferred to use the `cin`, `cout` streams or the `%I64d` specifier.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个数组 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$，以及该数组元素下标的 $*m*$ 个集合 $*S*_{1}, *S*_{2}, ..., *S*_{*m*}$。记 $*S*_{*k*} = {*S*}_{*k*, *i*}} (1 ≤ *i* ≤ |*S*_{*k*}|)$。换句话说，$*S*_{*k*, *i*}$ 是集合 $*S*_{*k*}$ 中的某个元素。\n\n本题需要回答 $*q*$ 个以下两种类型的询问：\n\n1. 求下标属于集合 $*S*_{*k*}$ 的元素之和：![image](https://espresso.codeforces.com/6d0c103912105915deadec2dfbf3e852cfbce1fd.png)。询问格式为 \"`? k`\"。\n2. 将数字 $*x*$ 加到下标属于集合 $*S*_{*k*}$ 的所有元素上：对于所有 $*i*$ $(1 ≤ *i* ≤ |*S*_{*k*}|)$，将 $*a*_{*S*_{*k*, *i*}}$ 替换为 $*a*_{*S*_{*k*, *i*}} + *x*$。询问格式为 \"`+ k x`\"。\n\n每次进行第一种询问后，输出所求的和。\n\n## 输入格式\n\n第一行包含三个整数 $*n*, *m*, *q*$ $(1 ≤ *n*, *m*, *q* ≤ 10^{5})$。\n\n第二行包含 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ $(|*a*_{*i*}| ≤ 10^{8})$，表示数组 $*a*$ 的元素。\n\n接下来的 $*m*$ 行分别描述一个下标集合。第 $*k*$ 行首先包含一个正整数，表示集合中的元素数量（$|*S*_{*k*}|$），之后是 $|*S*_{*k*}|$ 个互不相同的整数 $*S*_{*k*, 1}, *S*_{*k*, 2}, ..., *S*_{*k*, |*S*_{*k*}|}$ $(1 ≤ *S*_{*k*, *i*} ≤ *n*)$，表示集合 $*S*_{*k*}$ 的元素。\n\n接下来的 $*q*$ 行包含询问。每个询问的格式为 \"`? k`\" 或 \"`+ k x`\"，并单独占一行。对于所有询问，满足：$1 ≤ *k* ≤ *m*$，$|*x*| ≤ 10^{8}$。询问按照需要处理的顺序给出。\n\n保证所有集合 $*S*_{*k*}$ 的大小之和不超过 $10^{5}$。\n\n## 输出格式\n\n每次进行第一种询问后，在单独一行输出所求的和。\n\n请不要在 С++ 中使用 `%lld` 格式说明符读写 64 位整数。建议使用 `cin`、`cout` 流，或使用 `%I64d` 格式说明符。",
   "samples": [
     {
       "input": "5 3 5\n5 -5 5 1 -4\n2 1 2\n4 2 1 4 5\n2 2 5\n? 2\n+ 3 4\n? 1\n+ 2 1\n? 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:59:04.000Z"
+  "fetchedAt": "2026-10-31T01:59:04.000Z",
+  "translatedAt": "2026-11-04T07:18:24.830+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

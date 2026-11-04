@@ -4,7 +4,7 @@
   "contestId": 1354,
   "index": "G",
   "title": "Find a Gift",
-  "titleZh": null,
+  "titleZh": "寻找礼物",
   "url": "https://codeforces.com/contest/1354/problem/G",
   "difficulty": 2600,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*This is an interactive problem. Don't forget to flush output after printing queries using `cout.flush()` or `fflush(stdout)` in `C++` or similar functions in other programming languages.*\n\nThere are $n$ gift boxes in a row, numbered from $1$ to $n$ from left to right. It's known that exactly $k$ of them contain valuable gifts — other boxes contain just lucky stones. All boxes look the same and differ only in weight. All *boxes with stones have the same weight and are strictly heavier* than boxes with valuable items. But valuable gifts may be different, so the boxes with valuable items may have different weights.\n\nYou can ask no more than $50$ queries (printing an answer doesn't count). By each query you can compare total weights of two non-intersecting subsets of boxes $a_1, a_2, \\dots, a_{k_a}$ and $b_1, b_2, \\dots, b_{k_b}$. In return you'll get one of four results:\n\n- `FIRST`, if subset $a_1, a_2, \\dots, a_{k_a}$ is strictly **heavier**;\n- `SECOND`, if subset $b_1, b_2, \\dots, b_{k_b}$ is strictly **heavier**;\n- `EQUAL`, if subsets have equal total weights;\n- `WASTED`, if the query is incorrect or the limit of queries is exceeded.\n\nUsing such queries (or, maybe, intuition) find the box with a valuable gift with **the minimum index**.\n\n## Input\n\nThe input consists of several cases. In the beginning, you receive the integer $T$ ($1 \\le T \\le 500$) — the number of test cases.\n\nAt the beginning of each test case, you receive two integers $n$ and $k$ ($2 \\le n \\le 1000$, $1 \\le k \\le \\frac{n}{2}$) — the number of boxes in a row and the number of boxes with valuable gifts.\n\nIt's guaranteed that the order of boxes is fixed beforehand and that the sum of $n$ in one test doesn't exceed $1000$.\n\n## Output\n\nFor each test case print the minimum index among all boxes with a valuable gift in the following format: \"`! $x$`\" where $x$ ($1 \\le x \\le n$) — the index of the box.\n\n## Interaction\n\nPrint each query in three lines. In the first line print the sizes of subset in the following format: \"`? $k_a$ $k_b$`\" where $k_a$ and $k_b$ ($1 \\le k_a, k_b \\le n$; $k_a + k_b \\le n$) — the corresponding sizes.\n\nIn the second line print $k_a$ integers $a_1, a_2, \\dots, a_{k_a}$ ($1 \\le a_i \\le n$; $a_i \\neq a_j$ if $i \\neq j$) — indexes of boxes in the first subset.\n\nIn the third line print $k_b$ integers $b_1, b_2, \\dots, b_{k_b}$ ($1 \\le b_i \\le n$; $b_i \\neq b_j$ if $i \\neq j$) — indexes of boxes in the second subset.\n\nThe subsets shouldn't intersect, i. e. $a_i \\neq b_j$ for all $i$ and $j$.\n\nYou'll receive one of four responses described above. In the case of `WASTED` stop your program to avoid getting random verdict instead of `Wrong Answer`.\n\n## Note\n\nAdditional separators \"–\" in the sample are used only to increase the readability of the sample. **Don't print any unnecessary symbols or line breaks in your solution when you send it to the system.**\n\n*Hacks are forbidden in this task.*",
-  "statementZhMd": null,
+  "statementZhMd": "*这是一道交互题。使用 `cout.flush()` 或 `fflush(stdout)`（在 `C++` 中），或其他编程语言中的类似函数打印询问后，不要忘记刷新输出。*\n\n有 $n$ 个礼物盒排成一行，从左到右编号为 $1$ 到 $n$。已知其中恰好有 $k$ 个装有贵重礼物，其余盒子中只装有幸运石。所有盒子的外观都相同，只有重量不同。所有*装有石头的盒子重量相同，且严格重于*装有贵重物品的盒子。但贵重礼物可能各不相同，因此装有贵重物品的盒子重量可能不同。\n\n你最多可以进行 $50$ 次询问（输出答案不计入询问次数）。每次询问，你可以比较两个不相交的盒子子集 $a_1, a_2, \\dots, a_{k_a}$ 和 $b_1, b_2, \\dots, b_{k_b}$ 的总重量。你将得到以下四种结果之一：\n\n- `FIRST`，如果子集 $a_1, a_2, \\dots, a_{k_a}$ 严格**更重**；\n- `SECOND`，如果子集 $b_1, b_2, \\dots, b_{k_b}$ 严格**更重**；\n- `EQUAL`，如果两个子集的总重量相等；\n- `WASTED`，如果询问不合法或超过询问次数限制。\n\n利用这些询问（或者，也许凭借直觉），找出所有装有贵重礼物的盒子中**编号最小**的那个。\n\n## 输入格式\n\n输入包含多个测试用例。开始时输入整数 $T$（$1 \\le T \\le 500$）——测试用例的数量。\n\n每个测试用例开始时，输入两个整数 $n$ 和 $k$（$2 \\le n \\le 1000$，$1 \\le k \\le \\frac{n}{2}$）——一行中盒子的数量，以及装有贵重礼物的盒子数量。\n\n保证盒子的排列顺序预先固定，并且一个测试中的 $n$ 之和不超过 $1000$。\n\n## 输出格式\n\n对于每个测试用例，按照以下格式输出所有装有贵重礼物的盒子中的最小编号：\"`! $x$`\"，其中 $x$（$1 \\le x \\le n$）——盒子的编号。\n\n## 交互\n\n每次询问输出三行。第一行按照以下格式输出两个子集的大小：\"`? $k_a$ $k_b$`\"，其中 $k_a$ 和 $k_b$（$1 \\le k_a, k_b \\le n$；$k_a + k_b \\le n$）——对应子集的大小。\n\n第二行输出 $k_a$ 个整数 $a_1, a_2, \\dots, a_{k_a}$（$1 \\le a_i \\le n$；当 $i \\neq j$ 时，$a_i \\neq a_j$）——第一个子集中的盒子编号。\n\n第三行输出 $k_b$ 个整数 $b_1, b_2, \\dots, b_{k_b}$（$1 \\le b_i \\le n$；当 $i \\neq j$ 时，$b_i \\neq b_j$）——第二个子集中的盒子编号。\n\n两个子集不能相交，即对于所有 $i$ 和 $j$，都必须有 $a_i \\neq b_j$。\n\n你将收到上述四种响应之一。如果收到 `WASTED`，请停止程序，以免得到 `Wrong Answer` 而不是随机的评测结果。\n\n## 说明\n\n样例中的额外分隔符“–”仅用于提高可读性。**向系统发送答案时，请不要输出任何不必要的符号或换行。**\n\n*本题禁止提交自定义测试。*",
   "samples": [
     {
       "input": "2\n2 1\n-\n-\n-\nFIRST\n-\n5 2\n-\n-\n-\nFIRST\n-\n-\n-\nSECOND\n-\n-\n-\nEQUAL\n-\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:52:13.524Z"
+  "fetchedAt": "2026-11-02T18:52:13.524Z",
+  "translatedAt": "2026-11-04T04:35:05.373+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

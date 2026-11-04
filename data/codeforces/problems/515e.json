@@ -4,7 +4,7 @@
   "contestId": 515,
   "index": "E",
   "title": "Drazil and Park",
-  "titleZh": null,
+  "titleZh": "Drazil 与公园",
   "url": "https://codeforces.com/contest/515/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Drazil is a monkey. He lives in a circular park. There are $*n*$ trees around the park. The distance between the $*i*$-th tree and ($*i* + 1$)-st trees is $*d*_{*i*}$, the distance between the $*n*$-th tree and the first tree is $*d*_{*n*}$. The height of the $*i*$-th tree is $*h*_{*i*}$.\n\nDrazil starts each day with the *morning run*. The morning run consists of the following steps:\n\n- Drazil chooses two different trees\n- He starts with climbing up the first tree\n- Then he climbs down the first tree, runs around the park (in one of two possible directions) to the second tree, and climbs on it\n- Then he finally climbs down the second tree.\n\nBut there are always children playing around some consecutive trees. Drazil can't stand children, so he can't choose the trees close to children. He even can't stay close to those trees.\n\nIf the two trees Drazil chooses are $*x*$-th and $*y*$-th, we can estimate the energy the *morning run* takes to him as $2(*h*_{*x*} + *h*_{*y*}) + *dist*(*x*, *y*)$. Since there are children on exactly one of two arcs connecting $*x*$ and $*y*$, the distance $*dist*(*x*, *y*)$ between trees $*x*$ and $*y*$ is uniquely defined.\n\nNow, you know that on the $*i*$-th day children play between $*a*_{*i*}$-th tree and $*b*_{*i*}$-th tree. More formally, if $*a*_{*i*} ≤ *b*_{*i*}$, children play around the trees with indices from range $[*a*_{*i*}, *b*_{*i*}]$, otherwise they play around the trees with indices from ![image](https://espresso.codeforces.com/7077dfbb284859dc784c0296273371bf57a50f84.png).\n\nPlease help Drazil to determine which two trees he should choose in order to consume the most energy (since he wants to become fit and cool-looking monkey) and report the resulting amount of energy for each day.\n\n## Input\n\nThe first line contains two integer $*n*$ and $*m*$ ($3 ≤ *n* ≤ 10^{5}$, $1 ≤ *m* ≤ 10^{5}$), denoting number of trees and number of days, respectively.\n\nThe second line contains $*n*$ integers $*d*_{1}, *d*_{2}, ..., *d*_{*n*}$ ($1 ≤ *d*_{*i*} ≤ 10^{9}$), the distances between consecutive trees.\n\nThe third line contains $*n*$ integers $*h*_{1}, *h*_{2}, ..., *h*_{*n*}$ ($1 ≤ *h*_{*i*} ≤ 10^{9}$), the heights of trees.\n\nEach of following $*m*$ lines contains two integers $*a*_{*i*}$ and $*b*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$) describing each new day. There are always at least two different trees Drazil can choose that are not affected by children.\n\n## Output\n\nFor each day print the answer in a separate line.",
-  "statementZhMd": null,
+  "statementZhMd": "Drazil 是一只猴子。他住在一个环形公园里。公园周围有 $*n*$ 棵树。第 $*i*$ 棵树与第（$*i* + 1$）棵树之间的距离为 $*d*_{*i*}$，第 $*n*$ 棵树与第一棵树之间的距离为 $*d*_{*n*}$。第 $*i*$ 棵树的高度为 $*h*_{*i*}$。\n\nDrazil 每天都以*晨跑*开始一天。晨跑包括以下步骤：\n\n- Drazil 选择两棵不同的树；\n- 他先爬上第一棵树；\n- 然后从第一棵树上爬下来，沿着公园的环路（两个可能的方向之一）跑到第二棵树，并爬上第二棵树；\n- 最后，他从第二棵树上爬下来。\n\n但是，总有孩子在某些连续的树附近玩耍。Drazil 受不了孩子，所以不能选择靠近孩子的树。他甚至不能停留在这些树附近。\n\n如果 Drazil 选择的是第 $*x*$ 棵树和第 $*y*$ 棵树，那么可以估算出这次*晨跑*消耗的能量为 $2(*h*_{*x*} + *h*_{*y*}) + *dist*(*x*, *y*)$。由于连接 $*x*$ 和 $*y*$ 的两条弧中恰好有一条弧上有孩子，因此树 $*x*$ 和树 $*y*$ 之间的距离 $*dist*(*x*, *y*)$ 是唯一确定的。\n\n现在，你知道在第 $*i*$ 天，孩子们会在第 $*a*_{*i*}$ 棵树和第 $*b*_{*i*}$ 棵树之间玩耍。更正式地说，如果 $*a*_{*i*} ≤ *b*_{*i*}$，孩子们会在编号属于范围 $[*a*_{*i*}, *b*_{*i*}]$ 的树附近玩耍；否则，他们会在下图所示的树附近玩耍。\n\n![image](https://espresso.codeforces.com/7077dfbb284859dc784c0296273371bf57a50f84.png)\n\n请帮助 Drazil 确定他应该选择哪两棵树，以消耗最多的能量（因为他想成为一只强壮又酷的猴子），并报告每天消耗的能量。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*m*$（$3 ≤ *n* ≤ 10^{5}$，$1 ≤ *m* ≤ 10^{5}$），分别表示树的数量和天数。\n\n第二行包含 $*n*$ 个整数 $*d*_{1}, *d*_{2}, ..., *d*_{*n*}$（$1 ≤ *d*_{*i*} ≤ 10^{9}$），表示相邻树之间的距离。\n\n第三行包含 $*n*$ 个整数 $*h*_{1}, *h*_{2}, ..., *h*_{*n*}$（$1 ≤ *h*_{*i*} ≤ 10^{9}$），表示各棵树的高度。\n\n接下来的 $*m*$ 行中，每行包含两个整数 $*a*_{*i*}$ 和 $*b*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*} ≤ *n*$），描述新一天的情况。保证每天至少有两棵不同的、未受到孩子影响的树可供 Drazil 选择。\n\n## 输出格式\n\n对于每天，分别输出一行答案。",
   "samples": [
     {
       "input": "5 3\n2 2 2 2 2\n3 5 2 1 4\n1 3\n2 2\n4 5\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:32:16.067Z"
+  "fetchedAt": "2026-10-31T01:32:16.067Z",
+  "translatedAt": "2026-11-04T06:54:19.920+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

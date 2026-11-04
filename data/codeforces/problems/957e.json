@@ -4,14 +4,14 @@
   "contestId": 957,
   "index": "E",
   "title": "Contact ATC",
-  "titleZh": null,
+  "titleZh": "联系空中交通管制员",
   "url": "https://codeforces.com/contest/957/problem/E",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Arkady the air traffic controller is now working with $*n*$ planes in the air. All planes move along a straight coordinate axis with Arkady's station being at point $0$ on it. The $*i*$-th plane, small enough to be represented by a point, currently has a coordinate of $*x*_{*i*}$ and is moving with speed $*v*_{*i*}$. It's guaranteed that $*x*_{*i*}·*v*_{*i*} < 0$, i.e., all planes are moving towards the station.\n\nOccasionally, the planes are affected by winds. With a wind of speed $*v*_{*wind*}$ (not necessarily positive or integral), the speed of the $*i*$-th plane becomes $*v*_{*i*} + *v*_{*wind*}$.\n\nAccording to weather report, the current wind has a steady speed falling inside the range $[ - *w*, *w*]$ (inclusive), but the exact value cannot be measured accurately since this value is rather small — smaller than the absolute value of speed of any plane.\n\nEach plane should contact Arkady at the exact moment it passes above his station. And you are to help Arkady count the number of pairs of planes $(*i*, *j*)$ ($*i* < *j*$) there are such that there is a possible value of wind speed, under which planes $*i*$ and $*j*$ contact Arkady at the same moment. This value needn't be the same across different pairs.\n\nThe wind speed is the same for all planes. You may assume that the wind has a steady speed and lasts arbitrarily long.\n\n## Input\n\nThe first line contains two integers $*n*$ and $*w*$ ($1 ≤ *n* ≤ 100 000$, $0 ≤ *w* < 10^{5}$) — the number of planes and the maximum wind speed.\n\nThe $*i*$-th of the next $*n*$ lines contains two integers $*x*_{*i*}$ and $*v*_{*i*}$ ($1 ≤ |*x*_{*i*}| ≤ 10^{5}$, $*w* + 1 ≤ |*v*_{*i*}| ≤ 10^{5}$, $*x*_{*i*}·*v*_{*i*} < 0$) — the initial position and speed of the $*i*$-th plane.\n\nPlanes are pairwise distinct, that is, no pair of $(*i*, *j*)$ ($*i* < *j*$) exists such that both $*x*_{*i*} = *x*_{*j*}$ and $*v*_{*i*} = *v*_{*j*}$.\n\n## Output\n\nOutput a single integer — the number of unordered pairs of planes that can contact Arkady at the same moment.\n\n## Note\n\nIn the first example, the following $3$ pairs of planes satisfy the requirements:\n\n- **$(2, 5)$** passes the station at time $3 / 4$ with $*v*_{*wind*} = 1$;\n- **$(3, 4)$** passes the station at time $2 / 5$ with $*v*_{*wind*} = 1 / 2$;\n- **$(3, 5)$** passes the station at time $4 / 7$ with $*v*_{*wind*} = - 1 / 4$.\n\nIn the second example, each of the $3$ planes with negative coordinates can form a valid pair with each of the other $3$, totaling $9$ pairs.",
-  "statementZhMd": null,
+  "statementZhMd": "阿尔卡季是一名空中交通管制员，目前正在处理空中的 $*n*$ 架飞机。所有飞机都沿一条直线坐标轴运动，阿尔卡季的工作站位于该坐标轴上的点 $0$。第 $*i*$ 架飞机足够小，可以视为一个点，它当前的坐标为 $*x*_{*i*}$，速度为 $*v*_{*i*}$。保证 $*x*_{*i*}·*v*_{*i*} < 0$，也就是说，所有飞机都正朝着工作站移动。\n\n有时，飞机会受到风的影响。当风速为 $*v*_{*wind*}$（不一定为正数或整数）时，第 $*i*$ 架飞机的速度将变为 $*v*_{*i*} + *v*_{*wind*}$。\n\n根据天气预报，当前风速恒定，且处于区间 $[ - *w*, *w*]$（包括端点）内，但由于该数值很小——小于任意一架飞机速度的绝对值——因此无法准确测量其具体值。\n\n每架飞机都应在经过阿尔卡季工作站正上方的准确时刻与他联系。请你帮助阿尔卡季统计满足以下条件的飞机对 $(i, j)$（$i < j$）的数量：存在某个可能的风速，使得飞机 $i$ 和飞机 $j$ 在同一时刻与阿尔卡季联系。对于不同的飞机对，这个风速可以不同。\n\n所有飞机受到的风速相同。你可以假设风速恒定，并且持续任意长的时间。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*w*$（$1 ≤ *n* ≤ 100 000$，$0 ≤ *w* < 10^{5}$）——飞机的数量和最大风速。\n\n接下来的 $*n*$ 行中，第 $*i*$ 行包含两个整数 $*x*_{*i*}$ 和 $*v*_{*i*}$（$1 ≤ |*x*_{*i*}| ≤ 10^{5}$，$*w* + 1 ≤ |*v*_{*i*}| ≤ 10^{5}$，$*x*_{*i*}·*v*_{*i*} < 0$）——第 $*i*$ 架飞机的初始位置和速度。\n\n飞机两两不同，即不存在满足 $i < j$ 且同时有 $*x*_{*i*} = *x*_{*j*}$ 和 $*v*_{*i*} = *v*_{*j*}$ 的飞机对 $(i, j)$。\n\n## 输出格式\n\n输出一个整数——能够在同一时刻与阿尔卡季联系的无序飞机对数量。\n\n## 说明\n\n在第一个样例中，以下 $3$ 对飞机满足要求：\n\n- **$(2, 5)$** 在时间 $3 / 4$ 经过工作站，此时 $*v*_{*wind*} = 1$；\n- **$(3, 4)$** 在时间 $2 / 5$ 经过工作站，此时 $*v*_{*wind*} = 1 / 2$；\n- **$(3, 5)$** 在时间 $4 / 7$ 经过工作站，此时 $*v*_{*wind*} = - 1 / 4$。\n\n在第二个样例中，坐标为负的 $3$ 架飞机中的每一架都可以与另外 $3$ 架飞机中的每一架组成有效飞机对，共有 $9$ 对。",
   "samples": [
     {
       "input": "5 1\n-3 2\n-3 3\n-1 2\n1 -3\n3 -5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:32:56.701Z"
+  "fetchedAt": "2026-10-31T00:32:56.701Z",
+  "translatedAt": "2026-11-04T05:46:07.393+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

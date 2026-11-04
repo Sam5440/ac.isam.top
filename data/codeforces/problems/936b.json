@@ -4,7 +4,7 @@
   "contestId": 936,
   "index": "B",
   "title": "Sleepy Game",
-  "titleZh": null,
+  "titleZh": "困倦的游戏",
   "url": "https://codeforces.com/contest/936/problem/B",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Petya and Vasya arranged a game. The game runs by the following rules. Players have a directed graph consisting of $*n*$ vertices and $*m*$ edges. One of the vertices contains a chip. Initially the chip is located at vertex $*s*$. Players take turns moving the chip along some edge of the graph. Petya goes first. Player who can't move the chip loses. If the game lasts for $10^{6}$ turns the draw is announced.\n\nVasya was performing big laboratory work in \"Spelling and parts of speech\" at night before the game, so he fell asleep at the very beginning of the game. Petya decided to take the advantage of this situation and make both Petya's and Vasya's moves.\n\nYour task is to help Petya find out if he can win the game or at least draw a tie.\n\n## Input\n\nThe first line of input contain two integers $*n*$ and $*m*$ — the number of vertices and the number of edges in the graph ($2 ≤ *n* ≤ 10^{5}$, $0 ≤ *m* ≤ 2·10^{5}$).\n\nThe next $*n*$ lines contain the information about edges of the graph. $*i*$-th line ($1 ≤ *i* ≤ *n*$) contains nonnegative integer $*c*_{*i*}$ — number of vertices such that there is an edge from $*i*$ to these vertices and $*c*_{*i*}$ distinct integers $*a*_{*i*, *j*}$ — indices of these vertices ($1 ≤ *a*_{*i*, *j*} ≤ *n*$, $*a*_{*i*, *j*} ≠ *i*$).\n\nIt is guaranteed that the total sum of $*c*_{*i*}$ equals to $*m*$.\n\nThe next line contains index of vertex $*s*$ — the initial position of the chip ($1 ≤ *s* ≤ *n*$).\n\n## Output\n\nIf Petya can win print «`Win`» in the first line. In the next line print numbers $*v*_{1}, *v*_{2}, ..., *v*_{*k*}$ ($1 ≤ *k* ≤ 10^{6}$) — the sequence of vertices Petya should visit for the winning. Vertex $*v*_{1}$ should coincide with $*s*$. For $*i* = 1... *k* - 1$ there should be an edge from $*v*_{*i*}$ to $*v*_{*i* + 1}$ in the graph. There must be no possible move from vertex $*v*_{*k*}$. The sequence should be such that Petya wins the game.\n\nIf Petya can't win but can draw a tie, print «`Draw`» in the only line. Otherwise print «`Lose`».\n\n## Note\n\nIn the first example the graph is the following:\n\n![image](https://espresso.codeforces.com/7f79d3f7a4fe41c0cb4e964852fb3693f8168023.png)\n\nInitially the chip is located at vertex $1$. In the first move Petya moves the chip to vertex $2$, after that he moves it to vertex $4$ for Vasya. After that he moves to vertex $5$. Now it is Vasya's turn and there is no possible move, so Petya wins.\n\nIn the second example the graph is the following:\n\n![image](https://espresso.codeforces.com/41487ec63c11183193ef731b420906419e798af8.png)\n\nInitially the chip is located at vertex $2$. The only possible Petya's move is to go to vertex $1$. After that he has to go to $3$ for Vasya. Now it's Petya's turn but he has no possible move, so Petya loses.\n\nIn the third example the graph is the following:\n\n![image](https://espresso.codeforces.com/8a1480217b46272b3e17d979482f1f557fbf88a1.png)\n\nPetya can't win, but he can move along the cycle, so the players will draw a tie.",
-  "statementZhMd": null,
+  "statementZhMd": "Petya 和 Vasya 进行一个游戏。游戏规则如下：两名玩家拥有一张包含 $*n*$ 个顶点和 $*m*$ 条边的有向图。其中一个顶点上放有一枚棋子。初始时棋子位于顶点 $*s*$。两名玩家轮流沿图中的某条边移动棋子。Petya 先手。无法移动棋子的玩家输掉游戏。如果游戏持续了 $10^{6}$ 个回合，则判定为和棋。\n\n游戏开始前的晚上，Vasya 正在进行“拼写与词性”的大型实验工作，因此游戏刚开始他就睡着了。Petya 决定利用这个机会，同时代替 Petya 和 Vasya 进行移动。\n\n请帮助 Petya 判断他是否能够获胜，或者至少将游戏进行至和棋。\n\n## 输入格式\n\n输入的第一行包含两个整数 $*n*$ 和 $*m*$ —— 图中的顶点数和边数（$2 ≤ *n* ≤ 10^{5}$，$0 ≤ *m* ≤ 2·10^{5}$）。\n\n接下来的 $*n*$ 行描述图中的边。第 $*i*$ 行（$1 ≤ *i* ≤ *n*$）包含一个非负整数 $*c*_{*i*}$ —— 存在从 $*i*$ 出发的边所指向的顶点数，以及 $*c*_{*i*}$ 个互不相同的整数 $*a*_{*i*, *j*}$ —— 这些顶点的编号（$1 ≤ *a*_{*i*, *j*} ≤ *n*$，$*a*_{*i*, *j*} ≠ *i*$）。\n\n保证所有 $*c*_{*i*}$ 的总和等于 $*m*$。\n\n下一行包含顶点 $*s*$ 的编号 —— 棋子的初始位置（$1 ≤ *s* ≤ *n*$）。\n\n## 输出格式\n\n如果 Petya 能够获胜，第一行输出 «`Win`»。第二行输出整数 $*v*_{1}, *v*_{2}, ..., *v*_{*k*}$（$1 ≤ *k* ≤ 10^{6}$）—— Petya 为获胜而应访问的顶点序列。顶点 $*v*_{1}$ 必须与 $*s*$ 相同。对于 $*i* = 1... *k* - 1$，图中必须存在一条从 $*v*_{*i*}$ 到 $*v*_{*i* + 1}$ 的边。顶点 $*v*_{*k*}$ 必须没有任何可行的移动。该序列应保证 Petya 赢得游戏。\n\n如果 Petya 无法获胜但可以将游戏进行至和棋，则在唯一一行输出 «`Draw`»。否则输出 «`Lose`»。\n\n## 说明\n\n在第一个样例中，图如下：\n\n![image](https://espresso.codeforces.com/7f79d3f7a4fe41c0cb4e964852fb3693f8168023.png)\n\n初始时棋子位于顶点 $1$。第一步 Petya 将棋子移动到顶点 $2$，之后他代替 Vasya 将棋子移动到顶点 $4$。接着他将棋子移动到顶点 $5$。现在轮到 Vasya 移动，但已经没有可行的移动，因此 Petya 获胜。\n\n在第二个样例中，图如下：\n\n![image](https://espresso.codeforces.com/41487ec63c11183193ef731b420906419e798af8.png)\n\n初始时棋子位于顶点 $2$。Petya 唯一可行的移动是前往顶点 $1$。之后他必须代替 Vasya 前往顶点 $3$。现在轮到 Petya 移动，但他已经无法移动，因此 Petya 输掉了游戏。\n\n在第三个样例中，图如下：\n\n![image](https://espresso.codeforces.com/8a1480217b46272b3e17d979482f1f557fbf88a1.png)\n\nPetya 无法获胜，但他可以沿着环移动，因此两名玩家将以和棋告终。",
   "samples": [
     {
       "input": "5 6\n2 2 3\n2 4 5\n1 4\n1 5\n0\n1\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:34:07.821Z"
+  "fetchedAt": "2026-10-31T00:34:07.821Z",
+  "translatedAt": "2026-11-04T05:47:53.711+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }
