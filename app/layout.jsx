@@ -4,6 +4,7 @@ import SiteHeader from '@/components/SiteHeader';
 import KatexRuntime from '@/components/KatexRuntime';
 import HighlightRuntime from '@/components/HighlightRuntime';
 import LanguageSidebar from '@/components/language-sidebar';
+import PwaRegister from '@/components/PwaRegister';
 import { SettingsProvider } from '@/components/settings';
 import GithubMark from '@/components/GithubMark';
 import { getIndex } from '@/lib/data';
@@ -18,6 +19,23 @@ export const metadata = {
   },
   description:
     'AtCoder Beginner Contest 与 Codeforces 比赛题目的自动抓取题库：完整题面、样例、难度分级，AI 中文翻译，随 CI 持续更新。',
+  applicationName: 'AC 题库',
+  manifest: '/manifest.webmanifest',
+  appleWebApp: { capable: true, statusBarStyle: 'black-translucent', title: 'AC 题库' },
+  icons: {
+    icon: [
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: '/icons/apple-touch-icon.png',
+  },
+};
+
+export const viewport = {
+  themeColor: '#16151a',
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 };
 
 /** 首帧前应用外观（settings.jsx 存的 theme）：夜间=dark，日间=无类，墨水屏=eink。
@@ -83,6 +101,7 @@ export default function RootLayout({ children }) {
             <div className="compiler-track" id="compiler-dock-root" />
           </div>
           <LanguageSidebar />
+          <PwaRegister />
         </SettingsProvider>
       </body>
     </html>

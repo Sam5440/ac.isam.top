@@ -6,6 +6,7 @@ import { AI_MODELS, aiTranslate } from '@/components/ai-translate';
 import CompilerSettingsSection from '@/components/compiler/CompilerSettingsSection';
 import AiCompletionSettingsSection from '@/components/compiler/AiCompletionSettingsSection';
 import GithubMark from '@/components/GithubMark';
+import OfflineCacheSection from '@/components/OfflineCacheSection';
 import { clearZhCache } from '@/lib/zh-store';
 import { CHANGELOG, APP_VERSION } from '@/lib/changelog';
 import { CONTEST_TYPES } from '@/lib/contest-type';
@@ -57,6 +58,8 @@ const DEFAULT_SETTINGS = {
   homeContestTypes: DEFAULT_HOME_TYPES,
   // 界面外观（THEME_OPTIONS 之一，默认夜间）
   theme: 'dark',
+  // PWA 离线题库：后台自动保存最近 N 场比赛的全部题目页（OfflineCacheSection 可调）
+  offlineLimit: 100,
 };
 
 const LANG_KEY = 'stmt-lang-v2';
@@ -681,6 +684,8 @@ function SettingsDialog({ onClose }) {
         <CompilerSettingsSection />
 
         <AiCompletionSettingsSection />
+
+        <OfflineCacheSection />
 
         <ChangelogSection />
 
