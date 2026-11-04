@@ -217,8 +217,11 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
         <WithSourceChip html={renderRich(title)} source="ai:builtin" model="官方原文" />
       ) : channel === 'ai_custom' ? (
         <AiZhLine en={title} ai={ai} note="标题" />
-      ) : (
+      ) : chain ? (
+        // chain 仅在对照模式或 AI 渠道时非空；纯中文 + MT 渠道走单渠道 ZhLine
         <ChainZhLine segKey={`${code}|title`} archivedZh={titleZh || null} priority={chain.priority} note="标题" />
+      ) : (
+        <ZhLine segKey={`${code}|title`} archivedZh={titleZh || null} channel={channel} note="标题" zhModel={zhModel} />
       )
     ) : null;
 
