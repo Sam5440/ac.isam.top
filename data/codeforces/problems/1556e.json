@@ -4,7 +4,7 @@
   "contestId": 1556,
   "index": "E",
   "title": "Equilibrium",
-  "titleZh": null,
+  "titleZh": "平衡",
   "url": "https://codeforces.com/contest/1556/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "![image](https://espresso.codeforces.com/18f827e1ea3e00af03bdf06d535914d40ecb0ca8.png)\n\nWilliam has two arrays $a$ and $b$, each consisting of $n$ items.\n\nFor some segments $l..r$ of these arrays William wants to know if it is possible to equalize the values of items in these segments using a balancing operation. Formally, the values are equalized if for each $i$ from $l$ to $r$ holds $a_i = b_i$.\n\nTo perform a balancing operation an even number of indices must be selected, such that $l \\le pos_1 \\lt pos_2 \\lt \\dots \\lt pos_k \\le r$. Next the items of **array a** at positions $pos_1, pos_3, pos_5, \\dots$ get incremented by one and the items of **array b** at positions $pos_2, pos_4, pos_6, \\dots$ get incremented by one.\n\nWilliam wants to find out if it is possible to equalize the values of elements in two arrays for each segment using some number of balancing operations, and what is the minimal number of operations required for that. Note that for each segment the operations are performed independently.\n\n## Input\n\nThe first line contains a two integers $n$ and $q$ ($2 \\le n \\le 10^5$, $1 \\le q \\le 10^5$), the size of arrays $a$ and $b$ and the number of segments.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ $(0 \\le a_i \\le 10^9)$.\n\nThe third line contains $n$ integers $b_1, b_2, \\dots, b_n$ $(0 \\le b_i \\le 10^9)$.\n\nEach of the next $q$ lines contains two integers $l_i$ and $r_i$ $(1 \\le l_i \\lt r_i \\le n)$, the edges of segments.\n\n## Output\n\nFor each segment output a single number — the minimal number of balancing operations needed or \"`-1`\" if it is impossible to equalize segments of arrays.\n\n## Note\n\nFor the first segment from $2$ to $6$ you can do one operation with $pos = [2, 3, 5, 6]$, after this operation the arrays will be: $a = [0, 2, 2, 9, 4, 2, 7, 5]$, $b = [2, 2, 2, 9, 4, 2, 5, 8]$. Arrays are equal on a segment from $2$ to $6$ after this operation.\n\nFor the second segment from $1$ to $7$ you can do three following operations:\n\n1. $pos = [1, 3, 5, 6]$\n2. $pos = [1, 7]$\n3. $pos = [2, 7]$\n\nAfter these operations, the arrays will be: $a = [2, 2, 2, 9, 4, 2, 7, 5]$, $b = [2, 2, 2, 9, 4, 2, 7, 8]$. Arrays are equal on a segment from $1$ to $7$ after these operations.\n\nFor the third segment from $2$ to $4$ you can do one operation with $pos = [2, 3]$, after the operation arrays will be: $a = [0, 2, 2, 9, 3, 2, 7, 5]$, $b = [2, 2, 2, 9, 4, 1, 5, 8]$. Arrays are equal on a segment from $2$ to $4$ after this operation.\n\nIt is impossible to equalize the fourth and the fifth segment.",
-  "statementZhMd": null,
+  "statementZhMd": "<statement>\n\n![image](https://espresso.codeforces.com/18f827e1ea3e00af03bdf06d535914d40ecb0ca8.png)\n\nWilliam 有两个数组 $a$ 和 $b$，每个数组都包含 $n$ 个元素。\n\n对于这些数组中的某些区间 l..r，William 想知道是否可以通过平衡操作使这些区间中的元素值相等。形式化地说，如果对于从 $l$ 到 $r$ 的每个 $i$ 都满足 $a_i = b_i$，则称元素值已相等。\n\n要执行一次平衡操作，需要选择偶数个下标，使得 $l \\le pos_1 \\lt pos_2 \\lt \\dots \\lt pos_k \\le r$。接下来，将**数组 a**中位置 $pos_1, pos_3, pos_5, \\dots$ 的元素值加一，并将**数组 b**中位置 $pos_2, pos_4, \\dots$ 的元素值加一。\n\nWilliam 想知道，对于每个区间，是否可以通过若干次平衡操作使两个数组中的元素值相等，以及所需的最少操作次数。注意，对于每个区间，操作都是独立进行的。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$2 \\le n \\le 10^5$，$1 \\le q \\le 10^5$），分别表示数组 $a$ 和 $b$ 的长度，以及区间的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$0 \\le a_i \\le 10^9$）。\n\n第三行包含 $n$ 个整数 $b_1, b_2, \\dots, b_n$（$0 \\le b_i \\le 10^9$）。\n\n接下来的 $q$ 行中，每行包含两个整数 $l_i$ 和 $r_i$（$1 \\le l_i \\lt r_i \\le n$），表示区间的端点。\n\n## 输出格式\n\n对于每个区间，输出一个整数——使两个数组在该区间内相等所需的最少平衡操作次数；如果无法使两个数组在该区间内相等，则输出 `-1`。\n\n## 说明\n\n对于第一个区间 $2$ 到 $6$，可以进行一次操作，取 $pos = [2, 3, 5, 6]$。操作后，数组变为：$a = [0, 2, 2, 9, 4, 2, 7, 5]$，$b = [2, 2, 2, 9, 4, 2, 5, 8]$。经过这次操作后，两个数组在区间 $2$ 到 $6$ 上相等。\n\n对于第二个区间 $1$ 到 $7$，可以依次进行以下三次操作：\n\n1. $pos = [1, 3, 5, 6]$\n2. $pos = [1, 7]$\n3. $pos = [2, 7]$\n\n完成这些操作后，数组变为：$a = [2, 2, 2, 9, 4, 2, 7, 5]$，$b = [2, 2, 2, 9, 4, 2, 7, 8]$。经过这些操作后，两个数组在区间 $1$ 到 $7$ 上相等。\n\n对于第三个区间 $2$ 到 $4$，可以进行一次操作，取 $pos = [2, 3]$。操作后，数组变为：$a = [0, 2, 2, 9, 3, 2, 7, 5]$，$b = [2, 2, 2, 9, 4, 1, 5, 8]$。经过这次操作后，两个数组在区间 $2$ 到 $4$ 上相等。\n\n第四个和第五个区间无法使两个数组相等。\n</statement>",
   "samples": [
     {
       "input": "8 5\n0 1 2 9 3 2 7 5\n2 2 1 9 4 1 5 8\n2 6\n1 7\n2 4\n7 8\n5 8\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:29:00.021Z"
+  "fetchedAt": "2026-10-30T23:29:00.021Z",
+  "translatedAt": "2026-11-05T00:45:52.998+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1627,
   "index": "F",
   "title": "Not Splitting",
-  "titleZh": null,
+  "titleZh": "不分割",
   "url": "https://codeforces.com/contest/1627/problem/F",
   "difficulty": 2700,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "There is a $k \\times k$ grid, where $k$ is even. The square in row $r$ and column $c$ is denoted by $(r,c)$. Two squares $(r_1, c_1)$ and $(r_2, c_2)$ are considered *adjacent* if $\\lvert r_1 - r_2 \\rvert + \\lvert c_1 - c_2 \\rvert = 1$.\n\nAn array of adjacent pairs of squares is called *strong* if it is possible to cut the grid along grid lines into two connected, [congruent](https://en.wikipedia.org/wiki/Congruence_(geometry)) pieces so that each pair is part of the **same** piece. Two pieces are congruent if one can be matched with the other by translation, rotation, and reflection, or a combination of these.\n\n![image](https://espresso.codeforces.com/85b86a6a9eac941131aa0b325e3752a4834ad9b3.png) The picture above represents the first test case. Arrows indicate pairs of squares, and the thick black line represents the cut.\n\nYou are given an array $a$ of $n$ pairs of adjacent squares. Find the size of the largest strong subsequence of $a$. An array $p$ is a subsequence of an array $q$ if $p$ can be obtained from $q$ by deletion of several (possibly, zero or all) elements.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains an integer $t$ ($1 \\leq t \\leq 100$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two space-separated integers $n$ and $k$ ($1 \\leq n \\leq 10^5$; $2 \\leq k \\leq 500$, **$k$ is even**) — the length of $a$ and the size of the grid, respectively.\n\nThen $n$ lines follow. The $i$-th of these lines contains four space-separated integers $r_{i,1}$, $c_{i,1}$, $r_{i,2}$, and $c_{i,2}$ ($1 \\leq r_{i,1}, c_{i,1}, r_{i,2}, c_{i,2} \\leq k$) — the $i$-th element of $a$, represented by the row and column of the first square $(r_{i,1}, c_{i,1})$ and the row and column of the second square $(r_{i,2}, c_{i,2})$. **These squares are adjacent.**\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$, and the sum of $k$ over all test cases does not exceed $500$.\n\n## Output\n\nFor each test case, output a single integer — the size of the largest strong subsequence of $a$.\n\n## Note\n\nIn the first test case, the array $a$ is not good, but if we take the subsequence $[a_1, a_2, a_3, a_4, a_5, a_6, a_8]$, then the square can be split as shown in the statement.\n\nIn the second test case, we can take the subsequence consisting of the last four elements of $a$ and cut the square with a horizontal line through its center.",
-  "statementZhMd": null,
+  "statementZhMd": "存在一个 $k \\times k$ 的网格，其中 $k$ 为偶数。第 $r$ 行第 $c$ 列的方格记为 $(r,c)$。如果 $\\lvert r_1 - r_2 \\rvert + \\lvert c_1 - c_2 \\rvert = 1$，则称两个方格 $(r_1, c_1)$ 和 $(r_2, c_2)$ **相邻**。\n\n如果可以沿网格线将网格切割成两个连通且[全等](https://en.wikipedia.org/wiki/Congruence_(geometry))的部分，使得每一对方格都属于**同一**部分，则称一个相邻方格对数组是**强的**。如果两个部分可以通过平移、旋转和反射中的一种或多种操作相互重合，则称它们全等。\n\n![image](https://espresso.codeforces.com/85b86a6a9eac941131aa0b325e3752a4834ad9b3.png) 上图表示第一个测试用例。箭头表示方格对，粗黑线表示切割线。\n\n给定一个由 $n$ 对相邻方格组成的数组 $a$。请找出 $a$ 的最长强子序列的长度。如果数组 $p$ 可以通过删除数组 $q$ 中的若干个（可能为零个或全部）元素得到，则称 $p$ 是 $q$ 的子序列。\n\n## 输入格式\n\n输入包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 100$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个用空格分隔的整数 $n$ 和 $k$（$1 \\leq n \\leq 10^5$；$2 \\leq k \\leq 500$，**$k$ 为偶数**）——数组 $a$ 的长度和网格的大小。\n\n接下来有 $n$ 行。每行包含四个用空格分隔的整数 $r_{i,1}$、$c_{i,1}$、$r_{i,2}$ 和 $c_{i,2}$（$1 \\leq r_{i,1}, c_{i,1}, r_{i,2}, c_{i,2} \\leq k$）——数组 $a$ 的第 $i$ 个元素，由第一个方格 $(r_{i,1}, c_{i,1})$ 和第二个方格 $(r_{i,2}, c_{i,2})$ 的行号和列号表示。**这两个方格相邻。**\n\n保证所有测试用例中 $n$ 的总和不超过 $10^5$，且 $k$ 的总和不超过 $500$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——$a$ 的最长强子序列的长度。\n\n## 说明\n\n在第一个测试用例中，数组 $a$ 不是好的数组，但如果取子序列 $[a_1, a_2, a_3, a_4, a_5, a_6, a_8]$，则可以按照题面所示将网格切分。\n\n在第二个测试用例中，可以取由 $a$ 的最后四个元素组成的子序列，并沿着穿过网格中心的水平线切割网格。",
   "samples": [
     {
       "input": "3\n8 4\n1 2 1 3\n2 2 2 3\n3 2 3 3\n4 2 4 3\n1 4 2 4\n2 1 3 1\n2 2 3 2\n4 1 4 2\n7 2\n1 1 1 2\n2 1 2 2\n1 1 1 2\n1 1 2 1\n1 2 2 2\n1 1 2 1\n1 2 2 2\n1 6\n3 3 3 4\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:12:41.304Z"
+  "fetchedAt": "2026-10-30T23:12:41.304Z",
+  "translatedAt": "2026-11-05T00:44:53.448+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

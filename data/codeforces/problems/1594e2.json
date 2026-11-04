@@ -4,7 +4,7 @@
   "contestId": 1594,
   "index": "E2",
   "title": "Rubik's Cube Coloring (hard version)",
-  "titleZh": null,
+  "titleZh": "魔方染色（困难版）",
   "url": "https://codeforces.com/contest/1594/problem/E2",
   "difficulty": 2300,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "**It is the hard version of the problem. The difference is that in this version, there are nodes with already chosen colors.**\n\nTheofanis is starving, and he wants to eat his favorite food, sheftalia. However, he should first finish his homework. Can you help him with this problem?\n\nYou have a *perfect* binary tree of $2^k - 1$ nodes — a binary tree where all vertices $i$ from $1$ to $2^{k - 1} - 1$ have exactly two children: vertices $2i$ and $2i + 1$. Vertices from $2^{k - 1}$ to $2^k - 1$ don't have any children. You want to color its vertices with the $6$ Rubik's cube colors (White, Green, Red, Blue, Orange and Yellow).\n\nLet's call a coloring *good* when all edges connect nodes with colors that are *neighboring* sides in the Rubik's cube.\n\n![image](https://espresso.codeforces.com/8976bbf99d7a32f74b2ecc4b9d5e6f5c21ca191d.png)![image](https://espresso.codeforces.com/233a414d467ca7b9da33fbfdd02c09d84084ba75.png) A picture of Rubik's cube and its 2D map.\n\nMore formally:\n\n- a white node can **not** be neighboring with white and yellow nodes;\n- a yellow node can **not** be neighboring with white and yellow nodes;\n- a green node can **not** be neighboring with green and blue nodes;\n- a blue node can **not** be neighboring with green and blue nodes;\n- a red node can **not** be neighboring with red and orange nodes;\n- an orange node can **not** be neighboring with red and orange nodes;\n\nHowever, there are $n$ special nodes in the tree, colors of which are already chosen.\n\nYou want to calculate the number of the good colorings of the binary tree. Two colorings are considered different if at least one node is colored with a different color.\n\nThe answer may be too large, so output the answer modulo $10^9+7$.\n\n## Input\n\nThe first line contains the integers $k$ ($1 \\le k \\le 60$) — the number of levels in the perfect binary tree you need to color.\n\nThe second line contains the integer $n$ ($1 \\le n \\le \\min(2^k - 1, 2000)$) — the number of nodes, colors of which are already chosen.\n\nThe next $n$ lines contains integer $v$ ($1 \\le v \\le 2^k - 1$) and string $s$ — the index of the node and the color of the node ($s$ is one of the `white`, `yellow`, `green`, `blue`, `red` and `orange`).\n\nIt is guaranteed that each node $v$ appears in the input at most once.\n\n## Output\n\nPrint one integer — the number of the different colorings modulo $10^9+7$.\n\n## Note\n\nIn the picture below, you can see one of the correct colorings of the first test example.\n\n![image](https://espresso.codeforces.com/a24bc78cbb7936f786c506b4e5e7f7c2a36d25cf.png)",
-  "statementZhMd": null,
+  "statementZhMd": "**这是题目的困难版本。与简单版本的区别在于，本版本中有些节点的颜色已经确定。**\n\nTheofanis 饿坏了，想吃他最喜欢的食物 sheftalia。不过，他得先完成作业。你能帮他解决这个问题吗？\n\n给定一棵有 $2^k - 1$ 个节点的*满*二叉树——其中所有编号从 $1$ 到 $2^{k - 1} - 1$ 的顶点都有两个子节点，分别是顶点 $2i$ 和 $2i + 1$。编号从 $2^{k - 1}$ 到 $2^k - 1$ 的顶点没有子节点。你需要用魔方的 $6$ 种颜色（白、绿、红、蓝、橙和黄）给这些顶点染色。\n\n如果每条边连接的两个节点所对应的魔方面互相*相邻*，则称这种染色是*合法的*。\n\n![image](https://espresso.codeforces.com/8976bbf99d7a32f74b2ecc4b9d5e6f5c21ca191d.png)![image](https://espresso.codeforces.com/233a414d467ca7b9da33fbfdd02c09d84084ba75.png) 魔方及其二维示意图。\n\n更具体地说：\n\n- 白色节点不能与白色或黄色节点相邻；\n- 黄色节点不能与白色或黄色节点相邻；\n- 绿色节点不能与绿色或蓝色节点相邻；\n- 蓝色节点不能与绿色或蓝色节点相邻；\n- 红色节点不能与红色或橙色节点相邻；\n- 橙色节点不能与红色或橙色节点相邻。\n\n不过，树中有 $n$ 个特殊节点，它们的颜色已经确定。\n\n请计算这棵二叉树的合法染色方案数。如果至少有一个节点的颜色不同，则认为两种染色方案不同。\n\n答案可能很大，请输出对 $10^9+7$ 取模后的结果。\n\n## 输入格式\n\n第一行包含整数 $k$（$1 \\le k \\le 60$），表示需要染色的满二叉树的层数。\n\n第二行包含整数 $n$（$1 \\le n \\le \\min(2^k - 1, 2000)$），表示颜色已经确定的节点数。\n\n接下来 $n$ 行，每行包含整数 $v$（$1 \\le v \\le 2^k - 1$）和字符串 $s$，分别表示节点的编号和该节点的颜色（$s$ 为 `white`、`yellow`、`green`、`blue`、`red` 或 `orange` 之一）。\n\n保证每个节点 $v$ 在输入中至多出现一次。\n\n## 输出格式\n\n输出一个整数，表示不同染色方案数对 $10^9+7$ 取模后的结果。\n\n## 说明\n\n下图展示了第一个样例的一种合法染色方案。\n\n![image](https://espresso.codeforces.com/a24bc78cbb7936f786c506b4e5e7f7c2a36d25cf.png)",
   "samples": [
     {
       "input": "3\n2\n5 orange\n2 white\n",
@@ -37,5 +37,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:21:42.648Z"
+  "fetchedAt": "2026-10-30T23:21:42.648Z",
+  "translatedAt": "2026-11-05T00:44:34.031+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1583,
   "index": "C",
   "title": "Omkar and Determination",
-  "titleZh": null,
+  "titleZh": "Omkar 与决心",
   "url": "https://codeforces.com/contest/1583/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*The problem statement looms below, filling you with determination.*\n\nConsider a grid in which some cells are empty and some cells are filled. Call a cell in this grid **exitable** if, starting at that cell, you can exit the grid by moving up and left through only empty cells. This includes the cell itself, so all filled in cells are not exitable. Note that you can exit the grid from any leftmost empty cell (cell in the first column) by going left, and from any topmost empty cell (cell in the first row) by going up.\n\nLet's call a grid **determinable** if, given only which cells are exitable, we can exactly determine which cells are filled in and which aren't.\n\nYou are given a grid $a$ of dimensions $n \\times m$ , i. e. a grid with $n$ rows and $m$ columns. You need to answer $q$ queries ($1 \\leq q \\leq 2 \\cdot 10^5$). Each query gives two integers $x_1, x_2$ ($1 \\leq x_1 \\leq x_2 \\leq m$) and asks whether the subgrid of $a$ consisting of the columns $x_1, x_1 + 1, \\ldots, x_2 - 1, x_2$ is determinable.\n\n## Input\n\nThe first line contains two integers $n, m$ ($1 \\leq n, m \\leq 10^6$, $nm \\leq 10^6$)  — the dimensions of the grid $a$.\n\n$n$ lines follow. The $y$-th line contains $m$ characters, the $x$-th of which is '`X`' if the cell on the intersection of the the $y$-th row and $x$-th column is filled and \"`.`\" if it is empty.\n\nThe next line contains a single integer $q$ ($1 \\leq q \\leq 2 \\cdot 10^5$)  — the number of queries.\n\n$q$ lines follow. Each line contains two integers $x_1$ and $x_2$ ($1 \\leq x_1 \\leq x_2 \\leq m$), representing a query asking whether the subgrid of $a$ containing the columns $x_1, x_1 + 1, \\ldots, x_2 - 1, x_2$ is determinable.\n\n## Output\n\nFor each query, output one line containing \"`YES`\" if the subgrid specified by the query is determinable and \"`NO`\" otherwise. The output is case insensitive (so \"`yEs`\" and \"`No`\" will also be accepted).\n\n## Note\n\nFor each query of the example, the corresponding subgrid is displayed twice below: first in its input format, then with each cell marked as \"`E`\" if it is exitable and \"`N`\" otherwise.\n\nFor the first query:\n\n```\n..X EEN\n... EEE\n... EEE\n... EEE\n```\n\n```\n\n```\n\nFor the second query:\n\n```\nX N\n. E\n. E\n. E\n```\n\nNote that you can exit the grid by going left from any leftmost cell (or up from any topmost cell); you do not need to reach the top left corner cell to exit the grid.\n\n```\n\n```\n\nFor the third query:\n\n```\nXX NN\nX. NN\nX. NN\nX. NN\n```\n\nThis subgrid cannot be determined only from whether each cell is exitable, because the below grid produces the above \"exitability grid\" as well:\n\n```\nXX\nXX\nXX\nXX\n```\n\n```\n\n```\n\nFor the fourth query:\n\n```\nX N\n. E\n. E\n. E\n```\n\n```\n\n```\n\nFor the fifth query:\n\n```\n..XXX EENNN\n...X. EEENN\n...X. EEENN\n...X. EEENN\n```\n\nThis query is simply the entire grid. It cannot be determined only from whether each cell is exitable because the below grid produces the above \"exitability grid\" as well:\n\n```\n..XXX\n...XX\n...XX\n...XX\n```",
-  "statementZhMd": null,
+  "statementZhMd": "*题面将在下方展开，令你充满决心。*\n\n考虑一个网格，其中一些单元格为空，另一些单元格已填充。如果从某个单元格出发，可以只经过空单元格向上或向左移动来离开网格，则称该单元格是**可离开**的。这里包括单元格本身，因此所有已填充的单元格都不是可离开的。注意，可以从任意最左侧的空单元格（第一列中的单元格）向左离开网格，也可以从任意最上方的空单元格（第一行中的单元格）向上离开网格。\n\n如果仅给出哪些单元格是可离开的，就能准确确定哪些单元格已填充、哪些没有填充，则称一个网格是**可确定**的。\n\n给定一个尺寸为 $n \\times m$ 的网格 a，即一个有 n 行、m 列的网格。你需要回答 q 个询问（$1 \\leq q \\leq 2 \\cdot 10^5$）。每个询问给出两个整数 x_1, x_2（$1 \\leq x_1 \\leq x_2 \\leq m$），询问由 a 的第 x_1, x_1 + 1, \\ldots, x_2 - 1, x_2 列组成的子网格是否可确定。\n\n## 输入格式\n\n第一行包含两个整数 n, m（$1 \\leq n, m \\leq 10^6$，$nm \\leq 10^6$）——网格 a 的尺寸。\n\n$n$ 行如下。第 y 行包含 m 个字符，其中第 x 个字符在第 y 行与第 x 列交点的单元格已填充时为 `X`，为空时为 `.`。\n\n下一行包含一个整数 q（$1 \\leq q \\leq 2 \\cdot 10^5$）——询问数量。\n\n$q$ 行如下。每行包含两个整数 x_1 和 x_2（$1 \\leq x_1 \\leq x_2 \\leq m$），表示询问由 a 的第 x_1, x_1 + 1, \\ldots, x_2 - 1, x_2 列组成的子网格是否可确定。\n\n## 输出格式\n\n对于每个询问，输出一行。如果询问指定的子网格可确定，则输出 `YES`；否则输出 `NO`。输出不区分大小写（因此 `yEs` 和 `No` 也会被接受）。\n\n## 说明\n\n对于样例中的每个询问，其对应的子网格都会在下方展示两次：第一次为输入格式，第二次将每个单元格标记为 `E`（如果该单元格可离开）或 `N`（否则）。\n\n对于第一个询问：\n\n```\n..X EEN\n... EEE\n... EEE\n... EEE\n```\n\n```\n\n```\n\n对于第二个询问：\n\n```\nX N\n. E\n. E\n. E\n```\n\n注意，可以从任意最左侧单元格向左离开（或者从任意最上方单元格向上离开）；不需要到达左上角单元格才能离开网格。\n\n```\n\n```\n\n对于第三个询问：\n\n```\nXX NN\nX. NN\nX. NN\nX. NN\n```\n\n这个子网格无法仅根据每个单元格是否可离开来确定，因为下面的网格也会产生上述相同的“可离开性网格”：\n\n```\nXX\nXX\nXX\nXX\n```\n\n```\n\n```\n\n对于第四个询问：\n\n```\nX N\n. E\n. E\n. E\n```\n\n```\n\n```\n\n对于第五个询问：\n\n```\n..XXX EENNN\n...X. EEENN\n...X. EEENN\n...X. EEENN\n```\n\n这个询问实际上就是整个网格。它无法仅根据每个单元格是否可离开来确定，因为下面的网格也会产生上述相同的“可离开性网格”：\n\n```\n..XXX\n...XX\n...XX\n...XX\n```",
   "samples": [
     {
       "input": "4 5\n..XXX\n...X.\n...X.\n...X.\n5\n1 3\n3 3\n4 5\n5 5\n1 5\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:22:30.299Z"
+  "fetchedAt": "2026-10-30T23:22:30.299Z",
+  "translatedAt": "2026-11-05T00:47:28.904+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

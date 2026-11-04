@@ -4,7 +4,7 @@
   "contestId": 1637,
   "index": "E",
   "title": "Best Pair",
-  "titleZh": null,
+  "titleZh": "最佳数对",
   "url": "https://codeforces.com/contest/1637/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a$ of length $n$. Let $cnt_x$ be the number of elements from the array which are equal to $x$. Let's also define $f(x, y)$ as $(cnt_x + cnt_y) \\cdot (x + y)$.\n\nAlso you are given $m$ bad pairs $(x_i, y_i)$. Note that if $(x, y)$ is a bad pair, then $(y, x)$ is also bad.\n\nYour task is to find the maximum value of $f(u, v)$ over all pairs $(u, v)$, such that $u \\neq v$, that this pair is not bad, and also that $u$ and $v$ each occur in the array $a$. It is guaranteed that such a pair exists.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10\\,000$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\le n \\le 3 \\cdot 10^5$, $0 \\le m \\le 3 \\cdot 10^5$) — the length of the array and the number of bad pairs.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — elements of the array.\n\nThe $i$-th of the next $m$ lines contains two integers $x_i$ and $y_i$ ($1 \\le x_i \\lt y_i \\le 10^9$), which represent a bad pair. It is guaranteed that no bad pair occurs twice in the input. It is also guaranteed that $cnt_{x_i} \\gt 0$ and $cnt_{y_i} \\gt 0$.\n\nIt is guaranteed that for each test case there is a pair of integers $(u, v)$, $u \\ne v$, that is not bad, and such that both of these numbers occur in $a$.\n\nIt is guaranteed that the total sum of $n$ and the total sum of $m$ don't exceed $3 \\cdot 10^5$.\n\n## Output\n\nFor each test case print a single integer — the answer to the problem.\n\n## Note\n\nIn the first test case $3$, $6$, $7$ occur in the array.\n\n- $f(3, 6) = (cnt_3 + cnt_6) \\cdot (3 + 6) = (3 + 2) \\cdot (3 + 6) = 45$. But $(3, 6)$ is bad so we ignore it.\n- $f(3, 7) = (cnt_3 + cnt_7) \\cdot (3 + 7) = (3 + 1) \\cdot (3 + 7) = 40$.\n- $f(6, 7) = (cnt_6 + cnt_7) \\cdot (6 + 7) = (2 + 1) \\cdot (6 + 7) = 39$.\n\nThe answer to the problem is $\\max(40, 39) = 40$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的数组 $a$。令 $cnt_x$ 表示数组中等于 $x$ 的元素个数。再定义 $f(x, y)$ 为 $(cnt_x + cnt_y) \\cdot (x + y)$。\n\n此外，还给定 $m$ 个不合法数对 $(x_i, y_i)$。注意，如果 $(x, y)$ 是不合法数对，那么 $(y, x)$ 也是。\n\n你的任务是，在所有满足 $u \\neq v$、$(u, v)$ 不是不合法数对，且 $u$ 和 $v$ 都在数组 $a$ 中出现过的数对 $(u, v)$ 中，求 $f(u, v)$ 的最大值。保证这样的数对一定存在。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10\\,000$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 3 \\cdot 10^5$，$0 \\le m \\le 3 \\cdot 10^5$）——数组的长度和不合法数对的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——数组中的元素。\n\n接下来的 $m$ 行中，第 $i$ 行包含两个整数 $x_i$ 和 $y_i$（$1 \\le x_i \\lt y_i \\le 10^9$），表示一个不合法数对。保证输入中不会重复出现不合法数对。还保证 $cnt_{x_i} \\gt 0$ 且 $cnt_{y_i} \\gt 0$。\n\n保证对于每个测试用例，都存在一对整数 $(u, v)$，满足 $u \\ne v$、$(u, v)$ 不是不合法数对，且这两个数都在数组 $a$ 中出现过。\n\n保证所有测试用例的 $n$ 之和与 $m$ 之和均不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——问题的答案。\n\n## 说明\n\n在第一个测试用例中，数组里出现了 $3$、$6$ 和 $7$。\n\n- $f(3, 6) = (cnt_3 + cnt_6) \\cdot (3 + 6) = (3 + 2) \\cdot (3 + 6) = 45$。但 $(3, 6)$ 是不合法数对，因此忽略它。\n- $f(3, 7) = (cnt_3 + cnt_7) \\cdot (3 + 7) = (3 + 1) \\cdot (3 + 7) = 40$。\n- $f(6, 7) = (cnt_6 + cnt_7) \\cdot (6 + 7) = (2 + 1) \\cdot (6 + 7) = 39$。\n\n答案为 $\\max(40, 39) = 40$。",
   "samples": [
     {
       "input": "3\n6 1\n6 3 6 7 3 3\n3 6\n2 0\n3 4\n7 4\n1 2 2 3 1 5 1\n1 5\n3 5\n1 3\n2 5\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:11:39.078Z"
+  "fetchedAt": "2026-10-30T23:11:39.078Z",
+  "translatedAt": "2026-11-05T00:44:31.596+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

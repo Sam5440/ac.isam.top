@@ -4,7 +4,7 @@
   "contestId": 1650,
   "index": "C",
   "title": "Weight of the System of Nested Segments",
-  "titleZh": null,
+  "titleZh": "嵌套线段系统的权值",
   "url": "https://codeforces.com/contest/1650/problem/C",
   "difficulty": 1200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "On the number line there are $m$ points, $i$-th of which has integer coordinate $x_i$ and integer weight $w_i$. The coordinates of all points are different, and the points are numbered from $1$ to $m$.\n\nA sequence of $n$ segments $[l_1, r_1], [l_2, r_2], \\dots, [l_n, r_n]$ is called *system of nested segments* if for each pair $i, j$ ($1 \\le i \\lt j \\le n$) the condition $l_i \\lt l_j \\lt r_j \\lt r_i$ is satisfied. In other words, the second segment is strictly inside the first one, the third segment is strictly inside the second one, and so on.\n\nFor a given number $n$, find a system of nested segments such that:\n\n- both ends of each segment are one of $m$ given points;\n- the sum of the weights $2\\cdot n$ of the points used as ends of the segments is **minimal**.\n\nFor example, let $m = 8$. The given points are marked in the picture, their weights are marked in red, their coordinates are marked in blue. Make a system of three nested segments:\n\n- weight of the first segment: $1 + 1 = 2$\n- weight of the second segment: $10 + (-1) = 9$\n- weight of the third segment: $3 + (-2) = 1$\n- sum of the weights of all the segments in the system: $2 + 9 + 1 = 12$\n\n![image](https://espresso.codeforces.com/3d2f150c1789082c2743f108263b96d90d653e03.png) System of three nested segments\n\n## Input\n\nThe first line of input data contains an integer $t$ ($1 \\le t \\le 10^4$) —the number of input test cases.\n\nAn empty line is written before each test case.\n\nThe first line of each test case contains two positive integers $n$ ($1 \\le n \\le 10^5$) and $m$ ($2 \\cdot n \\le m \\le 2 \\cdot 10^5$).\n\nThe next $m$ lines contain pairs of integers $x_i$ ($-10^9 \\le x_i \\le 10^9$) and $w_i$ ($-10^4 \\le w_i \\le 10^4$) — coordinate and weight of point number $i$ ($1 \\le i \\le m$) respectively. All $x_i$ are different.\n\nIt is guaranteed that the sum of $m$ values over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $n + 1$ lines: in the first of them, output the weight of the composed system, and in the next $n$ lines output exactly two numbers  — the indices of the points which are the endpoints of the $i$-th segment ($1 \\le i \\le n$). The order in which you output the endpoints of a segment is not important — you can output the index of the left endpoint first and then the number of the right endpoint, or the other way around.\n\nIf there are several ways to make a system of nested segments with minimal weight, output any of them.\n\n## Note\n\nThe first test case coincides with the example from the condition. It can be shown that the weight of the composed system is minimal.\n\nThe second test case has only $6$ points, so you need to use each of them to compose $3$ segments.",
-  "statementZhMd": null,
+  "statementZhMd": "数轴上有 $m$ 个点，第 $i$ 个点的坐标为整数 $x_i$，权值为整数 $w_i$。所有点的坐标互不相同，点的编号为 $1$ 到 $m$。\n\n若线段序列 $[l_1, r_1], [l_2, r_2], \\dots, [l_n, r_n]$ 对每一对 $i, j$（$1 \\le i \\lt j \\le n$）都满足 $l_i \\lt l_j \\lt r_j \\lt r_i$，则称其为一个*嵌套线段系统*。换句话说，第二条线段严格位于第一条线段内部，第三条线段严格位于第二条线段内部，以此类推。\n\n给定一个数 $n$，请找出一个嵌套线段系统，使得：\n\n- 每条线段的两个端点都是给定的 $m$ 个点之一；\n- 所有作为线段端点的 $2 \\cdot n$ 个点的权值之和**最小**。\n\n例如，设 $m = 8$。图中标出了给定的点，红色数字表示权值，蓝色数字表示坐标。构造一个由三条线段组成的嵌套系统：\n\n- 第一条线段的权值：$1 + 1 = 2$\n- 第二条线段的权值：$10 + (-1) = 9$\n- 第三条线段的权值：$3 + (-2) = 1$\n- 系统中所有线段的权值之和：$2 + 9 + 1 = 12$\n\n![image](https://espresso.codeforces.com/3d2f150c1789082c2743f108263b96d90d653e03.png) 三条线段组成的嵌套系统\n\n## 输入格式\n\n输入数据的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例数。\n\n每个测试用例前有一个空行。\n\n每个测试用例的第一行包含两个正整数 $n$（$1 \\le n \\le 10^5$）和 $m$（$2 \\cdot n \\le m \\le 2 \\cdot 10^5$）。\n\n接下来的 $m$ 行每行包含两个整数 $x_i$（$-10^9 \\le x_i \\le 10^9$）和 $w_i$（$-10^4 \\le w_i \\le 10^4$），分别表示编号为 $i$ 的点的坐标和权值（$1 \\le i \\le m$）。所有 $x_i$ 互不相同。\n\n保证所有测试用例的 $m$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $n + 1$ 行：第一行输出整个系统的权值，接下来的 $n$ 行每行恰好输出两个数字——第 $i$ 条线段两个端点的编号（$1 \\le i \\le n$）。线段端点的输出顺序不限：可以先输出左端点的编号，再输出右端点的编号，也可以反过来。\n\n如果有多种构造最小权值嵌套线段系统的方法，输出任意一种即可。\n\n## 说明\n\n第一个测试用例与题面中的示例相同。可以证明，该系统的权值之和最小。\n\n第二个测试用例只有 $6$ 个点，因此需要使用每个点来构造 $3$ 条线段。",
   "samples": [
     {
       "input": "3\n\n3 8\n0 10\n-2 1\n4 10\n11 20\n7 -1\n9 1\n2 3\n5 -2\n\n3 6\n-1 2\n1 3\n3 -1\n2 4\n4 0\n8 2\n\n2 5\n5 -1\n3 -2\n1 0\n-2 0\n-5 -3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:04:46.590Z"
+  "fetchedAt": "2026-11-02T18:04:46.590Z",
+  "translatedAt": "2026-11-05T00:44:32.194+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

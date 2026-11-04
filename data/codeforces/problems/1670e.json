@@ -4,7 +4,7 @@
   "contestId": 1670,
   "index": "E",
   "title": "Hemose on the Tree",
-  "titleZh": null,
+  "titleZh": "树上的 Hemose",
   "url": "https://codeforces.com/contest/1670/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*After the last regional contest, Hemose and his teammates finally qualified to the ICPC World Finals, so for this great achievement and his love of trees, he gave you this problem as the name of his team \"Hemose 3al shagra\" (Hemose on the tree).*\n\nYou are given a tree of $n$ vertices where $n$ is a power of $2$. You have to give each node and edge an integer value in the range $[1,2n -1]$ (inclusive), where all the values are distinct.\n\nAfter giving each node and edge a value, you should select some root for the tree such that the maximum cost of any simple path starting from the root and ending at any **node or edge** is minimized.\n\nThe cost of the path between two nodes $u$ and $v$ or any node $u$ and edge $e$ is defined as the [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) of all the node's and edge's values between them, including the endpoints (note that in a tree there is only one simple path between two nodes or between a node and an edge).\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 5\\cdot 10^4$) — the number of test cases. Then $t$ test cases follow.\n\nThe first line of each test case contains a single integer $p$ ($1 \\le p \\le 17$), where $n$ (the number of vertices in the tree) is equal to $2^p$.\n\nEach of the next $n−1$ lines contains two integers $u$ and $v$ ($1 \\le u,v \\le n$) meaning that there is an edge between the vertices $u$ and $v$ in the tree.\n\nIt is guaranteed that the given graph is a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases doesn't exceed $3\\cdot 10^5$.\n\n## Output\n\nFor each test case on the first line print the chosen root.\n\nOn the second line, print $n$ integers separated by spaces, where the $i$-th integer represents the chosen value for the $i$-th node.\n\nOn the third line, print $n-1$ integers separated by spaces, where the $i$-th integer represents the chosen value for the $i$-th edge. The edges are numerated in the order of their appearance in the input data.\n\nIf there are multiple solutions, you may output any.\n\n## Note\n\nThe tree in the first test case with the weights of all nodes and edges is shown in the picture.\n\n![image](https://espresso.codeforces.com/38efb7442b84557f94bbdd43fa9989f455b8290d.png)\n\nThe costs of all paths are:\n\n- $3$;\n- $3\\oplus 7=4$;\n- $3\\oplus 7\\oplus 6=2$;\n- $3\\oplus 2=1$;\n- $3\\oplus 2\\oplus 1=0$;\n- $3\\oplus 2\\oplus 1\\oplus 4=4$;\n- $3\\oplus 2\\oplus 1\\oplus 4\\oplus 5=1$.\n\nThe maximum cost of all these paths is $4$. We can show that it is impossible to assign the values and choose the root differently to achieve a smaller maximum cost of all paths.\n\nThe tree in the second test case:\n\n![image](https://espresso.codeforces.com/a4264119b7b45e0fb13eedae146a7c00f7364b50.png)",
-  "statementZhMd": null,
+  "statementZhMd": "*在上一场区域赛后，Hemose 和队友终于获得了参加 ICPC 世界总决赛的资格。为了庆祝这一伟大成就，也因为他热爱树，他把这道题命名为自己的队名“ Hemose 3al shagra”（Hemose 在树上）。*\n\n给定一棵有 $n$ 个顶点的树，其中 $n$ 是 $2$ 的幂。你需要给每个节点和每条边分配一个 $[1,2n -1]$（含端点）范围内的整数，并且所有分配的值互不相同。\n\n为节点和边分配完值后，你需要为这棵树选择一个根，使得从根出发、以任意**节点或边**为终点的简单路径的最大代价最小。\n\n两个节点 $u$ 和 $v$ 之间，或节点 $u$ 与边 $e$ 之间的路径代价，定义为路径上所有节点和边的值（包括端点）的[按位异或](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)结果。注意，在树中，任意两个节点之间或节点与边之间都只有一条简单路径。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 5\\cdot 10^4$），表示测试用例的数量。接下来是 $t$ 组测试用例。\n\n每组测试用例的第一行包含一个整数 $p$（$1 \\le p \\le 17$），其中树的顶点数 $n$ 等于 $2^p$。\n\n接下来的 $n−1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u,v \\le n$），表示顶点 $u$ 和顶点 $v$ 之间有一条边。\n\n保证给定的图是一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $3\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，第一行输出所选的根。\n\n第二行输出 $n$ 个以空格分隔的整数，其中第 $i$ 个整数表示第 $i$ 个节点所选的值。\n\n第三行输出 $n-1$ 个以空格分隔的整数，其中第 $i$ 个整数表示输入数据中第 $i$ 条边所选的值。边按其在输入中出现的顺序编号。\n\n如果有多种解，输出任意一种即可。\n\n## 说明\n\n第一组测试用例中，带有所有节点和边权值的树如下图所示。\n\n![image](https://espresso.codeforces.com/38efb7442b84557f94bbdd43fa9989f455b8290d.png)\n\n所有路径的代价为：\n\n- $3$；\n- $3\\oplus 7=4$；\n- $3\\oplus 7\\oplus 6=2$；\n- $3\\oplus 2=1$；\n- $3\\oplus 2\\oplus 1=0$；\n- $3\\oplus 2\\oplus 1\\oplus 4=4$；\n- $3\\oplus 2\\oplus 1\\oplus 4\\oplus 5=1$。\n\n这些路径的最大代价为 $4$。可以证明，无论如何分配这些值并选择不同的根，都无法使所有路径的最大代价更小。\n\n第二组测试用例中的树如下图所示：\n\n![image](https://espresso.codeforces.com/a4264119b7b45e0fb13eedae146a7c00f7364b50.png)",
   "samples": [
     {
       "input": "2\n2\n1 2\n2 3\n3 4\n3\n1 2\n2 3\n3 4\n1 5\n1 6\n5 7\n5 8\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:02:47.490Z"
+  "fetchedAt": "2026-10-30T23:02:47.490Z",
+  "translatedAt": "2026-11-05T00:44:35.598+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

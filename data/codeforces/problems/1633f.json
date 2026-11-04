@@ -4,7 +4,7 @@
   "contestId": 1633,
   "index": "F",
   "title": "Perfect Matching",
-  "titleZh": null,
+  "titleZh": "完美匹配",
   "url": "https://codeforces.com/contest/1633/problem/F",
   "difficulty": 2800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 12000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a tree consisting of $n$ vertices (numbered from $1$ to $n$) and $n-1$ edges (numbered from $1$ to $n-1$). Initially, all vertices except vertex $1$ are inactive.\n\nYou have to process queries of three types:\n\n- $1$ $v$ — activate the vertex $v$. It is guaranteed that the vertex $v$ is inactive before this query, and one of its neighbors is active. After activating the vertex, you have to choose a subset of edges of the tree such that each **active** vertex is incident to **exactly one** chosen edge, and each **inactive** vertex is not incident to any of the chosen edges — in other words, this subset should represent a perfect matching on the active part of the tree. If any such subset of edges exists, print the sum of indices of edges in it; otherwise, print $0$.\n- $2$ — queries of this type will be asked only right after a query of type $1$, and there will be **at most $10$** such queries. If your answer to the previous query was $0$, simply print $0$; otherwise, print the subset of edges for the previous query as follows: first, print the number of edges in the subset, then print the indices of the chosen edges **in ascending order**. The sum of indices should be equal to your answer to the previous query.\n- $3$ — terminate the program.\n\nNote that you should solve the problem in `online` mode. It means that you can't read the whole input at once. You can read each query only after writing the answer for the last query. Use functions `fflush` in `C++` and `BufferedWriter.flush` in `Java` languages after each writing in your program.\n\n## Input\n\nThe first line contains one integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of vertices of the tree.\n\nThen $n-1$ lines follow. The $i$-th line contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$; $u_i \\ne v_i$) — the endpoints of the $i$-th edge. These edges form a tree.\n\nThen the queries follow in the format described in the statement, one line per query. There will be at least $2$ and at most $n+10$ queries. The last query (and only the last one) will be of type $3$. Note that you can read the $i$-th query only if you have already given the answer for the query $i-1$ (except for $i = 1$).\n\nIf your answer for one of the queries is incorrect and the judging program recognizes it, instead of the next query, you may receive the integer $0$ on a separate line. After receiving it, your program should terminate gracefully, and you will receive \"Wrong Answer\" verdict. If your program doesn't terminate, your solution may receive some other verdict, like \"Time Limit Exceeded\", \"Idleness Limit Exceeded\", etc. Note that the fact that your solution doesn't receive the integer $0$, it **does not mean that all your answers are correct**, some of them will be checked only after your program is terminated.\n\n## Output\n\nFor each query of type $1$ or $2$, print the answer on a separate line as described in the statement. Don't forget to flush the output.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵有 $n$ 个顶点（编号从 $1$ 到 $n$）和 $n-1$ 条边（编号从 $1$ 到 $n-1$）的树。初始时，除了顶点 $1$ 以外，所有顶点都处于非激活状态。\n\n你需要处理三种类型的询问：\n\n- $1$ $v$ — 激活顶点 $v$。保证在此次询问之前，顶点 $v$ 处于非激活状态，且它有一个相邻顶点处于激活状态。激活该顶点后，你需要选择树的一部分边，使每个**激活**顶点恰好关联一条所选边，并且每个**非激活**顶点都不关联任何所选边。换句话说，所选边应构成树的激活部分上的完美匹配。如果存在这样的边集，输出其中边编号之和；否则，输出 $0$。\n- $2$ — 这种类型的询问只会紧接在类型 $1$ 的询问之后出现，并且这类询问**至多有 $10$ 个**。如果你对上一个询问的回答是 $0$，则直接输出 $0$；否则，按以下格式输出上一个询问对应的边集：先输出边集中的边数，再按**升序**输出所选边的编号。边编号之和应等于你对上一个询问的回答。\n- $3$ — 终止程序。\n\n注意，你需要以 `online` 模式解决此题。这意味着你不能一次性读取全部输入。只有在输出上一个询问的答案后，才能读取下一个询问。在程序每次输出后，请使用 C++ 中的 `fflush` 函数以及 Java 中的 `BufferedWriter.flush` 方法刷新输出。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——树的顶点数。\n\n接下来 $n-1$ 行，第 $i$ 行包含两个整数 $u_i$ 和 $v_i$（$1 \\le u_i, v_i \\le n$；$u_i \\ne v_i$）——第 $i$ 条边的两个端点。这些边构成一棵树。\n\n接下来是若干行询问，格式如题目描述所示，每个询问占一行。询问数量至少为 $2$，至多为 $n+10$。最后一个（且仅有最后一个）询问的类型为 $3$。注意，只有在已经给出第 $i-1$ 个询问的答案后，才能读取第 $i$ 个询问（$i = 1$ 时除外）。\n\n如果你的某个询问答案错误，且评测程序识别出了错误，你可能会在本应收到下一个询问时，在单独一行收到整数 $0$。收到该整数后，程序应正常终止，你将获得“Wrong Answer”判定。如果程序没有终止，你的解法可能会获得其他判定，例如“Time Limit Exceeded”、“Idleness Limit Exceeded”等。注意，没有收到整数 $0**并不意味着所有答案都正确**；其中一些答案只有在程序终止后才会检查。\n\n## 输出格式\n\n对于每个类型为 $1$ 或 $2$ 的询问，按照题目描述的格式将答案输出在单独一行。不要忘记刷新输出。",
   "samples": [
     {
       "input": "6\n1 4\n6 1\n3 2\n1 2\n5 1\n1 4\n2\n1 2\n2\n1 3\n2\n1 5\n1 6\n2\n3\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:11:21.284Z"
+  "fetchedAt": "2026-11-02T18:11:21.284Z",
+  "translatedAt": "2026-11-05T00:44:32.990+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

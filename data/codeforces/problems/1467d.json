@@ -4,7 +4,7 @@
   "contestId": 1467,
   "index": "D",
   "title": "Sum of Paths",
-  "titleZh": null,
+  "titleZh": "路径之和",
   "url": "https://codeforces.com/contest/1467/problem/D",
   "difficulty": 2200,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 1024,
   "statementMd": "There are $n$ cells, numbered $1,2,\\dots, n$ from left to right. You have to place a robot at any cell initially. The robot must make **exactly** $k$ moves.\n\nIn one move, the robot must move one cell to the left or right, provided that it doesn't move out of bounds. In other words, if the robot was in the cell $i$, it must move to either the cell $i-1$ or the cell $i+1$, as long as it lies between $1$ and $n$ (endpoints inclusive). The cells, in the order they are visited (including the cell the robot is placed), together make a *good path*.\n\nEach cell $i$ has a value $a_i$ associated with it. Let $c_0, c_1, \\dots, c_k$ be the sequence of cells in a *good path* in the order they are visited ($c_0$ is the cell robot is initially placed, $c_1$ is the cell where the robot is after its first move, and so on; more formally, $c_i$ is the cell that the robot is at after $i$ moves). Then the value of the path is calculated as $a_{c_0} + a_{c_1} + \\dots + a_{c_k}$.\n\nYour task is to calculate the sum of values over all possible *good paths*. Since this number can be very large, output it modulo $10^9 + 7$. Two *good paths* are considered different if the starting cell differs or there exists an integer $i \\in [1, k]$ such that the current cell of the robot after exactly $i$ moves is different in those paths.\n\nYou must process $q$ updates to $a$ and print the updated sum each time. Each update changes the value of exactly one cell. See the input format and the sample input-output for more details.\n\n## Input\n\nThe first line of the input contains three space-separated integers $n$, $k$ and $q$ ($2 \\le n \\le 5000$; $1 \\le k \\le 5000$; $1 \\le q \\le 2 \\cdot 10^5$).\n\nThe second line of the input contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$).\n\n$q$ lines follow. Each line contains two space-separated integers $i$ and $x$ ($1 \\le i \\le n$; $1 \\le x \\le 10^9$) indicating that you must change the value of $a_i$ to $x$.\n\n## Output\n\nPrint $q$ integers. The $i$-th integer should be the sum of values over all *good paths* after the first $i$ updates are performed. Since the answers may be large, print them modulo $10^9 + 7$.\n\n## Note\n\nIn the first example, the *good paths* are $(1, 2), (2, 1), (2, 3), (3, 2), (3, 4), (4, 3), (4, 5), (5, 4)$.\n\nInitially the values of $a$ are $[3, 5, 1, 4, 2]$. After the first update, they become $[9, 5, 1, 4, 2]$. After the second update, they become $[9, 4, 1, 4, 2]$, and so on.",
-  "statementZhMd": null,
+  "statementZhMd": "从左到右有 $n$ 个格子，编号为 $1,2,\\dots, n$。你需要将一个机器人放在任意一个格子中作为起点。机器人必须恰好移动 $k$ 次。\n\n每次移动时，机器人必须向左或向右移动一个格子，且不能移出边界。换句话说，如果机器人当前位于格子 $i$，它必须移动到格子 $i-1$ 或格子 $i+1$，前提是目标格子的编号在 $1$ 到 $n$ 之间（包含端点）。按照访问顺序排列的格子（包括放置机器人的格子）共同组成一条*合法路径*。\n\n每个格子 $i$ 都有一个与之关联的值 $a_i$。设 $c_0, c_1, \\dots, c_k$ 表示一条*合法路径*中格子按访问顺序构成的序列（$c_0$ 是机器人最初所在的格子，$c_1$ 是机器人移动一次后所在的格子，以此类推；更准确地说，$c_i$ 是机器人移动 $i$ 次后所在的格子）。那么这条路径的值为 $a_{c_0} + a_{c_1} + \\dots + a_{c_k}$。\n\n你的任务是计算所有可能的*合法路径*的路径值之和。由于这个数可能非常大，请输出它对 $10^9 + 7$ 取模后的结果。若两条*合法路径*的起始格子不同，或者存在整数 $i \\in [1, k]$，使得机器人移动恰好 $i$ 次后所在的格子不同，则认为这两条路径不同。\n\n你需要处理 $q$ 次对 $a$ 的更新，并在每次更新后输出更新后的总和。更多细节请参阅输入格式和样例。\n\n## 输入格式\n\n输入的第一行包含三个用空格分隔的整数 $n$、$k$ 和 $q$（$2 \\le n \\le 5000$；$1 \\le k \\le 5000$；$1 \\le q \\le 2 \\cdot 10^5$）。\n\n输入的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n接下来有 $q$ 行，每行包含两个用空格分隔的整数 $i$ 和 $x$（$1 \\le i \\le n$；$1 \\le x \\le 10^9$），表示你需要将 $a_i$ 的值修改为 $x$。\n\n## 输出格式\n\n输出 $q$ 个整数。第 $i$ 个整数表示完成前 $i$ 次更新后，所有*合法路径*的路径值之和。由于答案可能很大，请输出对 $10^9 + 7$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，*合法路径*为 $(1, 2), (2, 1), (2, 3), (3, 2), (3, 4), (4, 3), (4, 5), (5, 4)$。\n\n初始时，$a$ 的值为 $[3, 5, 1, 4, 2]$。第一次更新后，$a$ 变为 $[9, 5, 1, 4, 2]$。第二次更新后，$a$ 变为 $[9, 4, 1, 4, 2]$，后续以此类推。",
   "samples": [
     {
       "input": "5 1 5\n3 5 1 4 2\n1 9\n2 4\n3 6\n4 6\n5 2\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:38:35.760Z"
+  "fetchedAt": "2026-10-30T23:38:35.760Z",
+  "translatedAt": "2026-11-05T00:32:55.193+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1476,
   "index": "E",
   "title": "Pattern Matching",
-  "titleZh": null,
+  "titleZh": "模式匹配",
   "url": "https://codeforces.com/contest/1476/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given $n$ patterns $p_1, p_2, \\dots, p_n$ and $m$ strings $s_1, s_2, \\dots, s_m$. Each pattern $p_i$ consists of $k$ characters that are either lowercase Latin letters or wildcard characters (denoted by underscores). All patterns are pairwise distinct. Each string $s_j$ consists of $k$ lowercase Latin letters.\n\nA string $a$ matches a pattern $b$ if for each $i$ from $1$ to $k$ either $b_i$ is a wildcard character or $b_i=a_i$.\n\nYou are asked to rearrange the patterns in such a way that the first pattern the $j$-th string matches is $p[mt_j]$. You are allowed to leave the order of the patterns unchanged.\n\nCan you perform such a rearrangement? If you can, then print any valid order.\n\n## Input\n\nThe first line contains three integers $n$, $m$ and $k$ ($1 \\le n, m \\le 10^5$, $1 \\le k \\le 4$) — the number of patterns, the number of strings and the length of each pattern and string.\n\nEach of the next $n$ lines contains a pattern — $k$ characters that are either lowercase Latin letters or underscores. All patterns are pairwise distinct.\n\nEach of the next $m$ lines contains a string — $k$ lowercase Latin letters, and an integer $mt$ ($1 \\le mt \\le n$) — the index of the first pattern the corresponding string should match.\n\n## Output\n\nPrint \"`NO`\" if there is no way to rearrange the patterns in such a way that the first pattern that the $j$-th string matches is $p[mt_j]$.\n\nOtherwise, print \"`YES`\" in the first line. The second line should contain $n$ distinct integers from $1$ to $n$ — the order of the patterns. If there are multiple answers, print any of them.\n\n## Note\n\nThe order of patterns after the rearrangement in the first example is the following:\n\n- `aaaa`\n- `__b_`\n- `ab__`\n- `_bcd`\n- `_b_d`\n\nThus, the first string matches patterns `ab__`, `_bcd`, `_b_d` in that order, the first of them is `ab__`, that is indeed $p[4]$. The second string matches `__b_` and `ab__`, the first of them is `__b_`, that is $p[2]$. The last string matches `_bcd` and `_b_d`, the first of them is `_bcd`, that is $p[5]$.\n\nThe answer to that test is not unique, other valid orders also exist.\n\nIn the second example `cba` doesn't match `__c`, thus, no valid order exists.\n\nIn the third example the order (`a_`, `_b`) makes both strings match pattern $1$ first and the order (`_b`, `a_`) makes both strings match pattern $2$ first. Thus, there is no order that produces the result $1$ and $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定 $n$ 个模式 $p_1, p_2, \\dots, p_n$ 和 $m$ 个字符串 $s_1, s_2, \\dots, s_m$。每个模式 $p_i$ 由 $k$ 个字符组成，这些字符要么是小写拉丁字母，要么是通配符（用下划线表示）。所有模式两两不同。每个字符串 $s_j$ 由 $k$ 个小写拉丁字母组成。\n\n如果对于从 $1$ 到 $k$ 的每个 $i$，$b_i$ 要么是通配符，要么满足 $b_i=a_i$，则称字符串 $a$ 与模式 $b$ 匹配。\n\n你需要重新排列这些模式，使得第 $j$ 个字符串所匹配到的第一个模式是 $p[mt_j]$。你也可以保持模式的原有顺序不变。\n\n你能完成这样的重新排列吗？如果可以，请输出任意一种合法的排列顺序。\n\n## 输入格式\n\n第一行包含三个整数 $n$、$m$ 和 $k$（$1 \\le n, m \\le 10^5$，$1 \\le k \\le 4$），分别表示模式的数量、字符串的数量以及每个模式和字符串的长度。\n\n接下来的 $n$ 行中，每行包含一个模式——由小写拉丁字母和下划线组成的长度为 $k$ 的字符串。所有模式两两不同。\n\n接下来的 $m$ 行中，每行包含一个字符串和一个整数 mt。字符串由 $k$ 个小写拉丁字母组成，整数 mt（$1 \\le mt \\le n$）表示对应字符串应该匹配到的第一个模式的下标。\n\n## 输出格式\n\n如果无法重新排列模式，使得第 $j$ 个字符串所匹配到的第一个模式是 $p[mt_j]$，则输出 `NO`。\n\n否则，第一行输出 `YES`。第二行输出 $n$ 个两两不同的整数，取值范围为 $1$ 到 $n$，表示模式的排列顺序。如果有多种答案，输出任意一种即可。\n\n## 说明\n\n第一个样例中，重新排列后的模式顺序如下：\n\n- `aaaa`\n- `__b_`\n- `ab__`\n- `_bcd`\n- `_b_d`\n\n因此，第一个字符串依次匹配到模式 `ab__`、`_bcd`、`_b_d`，其中第一个是 `ab__`，即 $p[4]$。第二个字符串匹配到 `__b_` 和 `ab__`，其中第一个是 `__b_`，即 $p[2]$。最后一个字符串匹配到 `_bcd` 和 `_b_d`，其中第一个是 `_bcd`，即 $p[5]$。\n\n该测试的答案并不唯一，也存在其他合法的排列顺序。\n\n在第二个样例中，`cba` 与 `__c` 不匹配，因此不存在合法的排列顺序。\n\n在第三个样例中，排列顺序（`a_`、`_b`）会使两个字符串都首先匹配到模式 $1$，而排列顺序（`_b`、`a_`）会使两个字符串都首先匹配到模式 $2$。因此，不存在能够得到结果 $1$ 和 $2$ 的排列顺序。",
   "samples": [
     {
       "input": "5 3 4\n_b_d\n__b_\naaaa\nab__\n_bcd\nabcd 4\nabba 2\ndbcd 5\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:34:04.123Z"
+  "fetchedAt": "2026-11-02T18:34:04.123Z",
+  "translatedAt": "2026-11-05T00:33:32.894+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1611,
   "index": "G",
   "title": "Robot and Candies",
-  "titleZh": null,
+  "titleZh": "机器人和糖果",
   "url": "https://codeforces.com/contest/1611/problem/G",
   "difficulty": 2500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp has a rectangular field of $n \\times m$ cells (the size of the $n \\cdot m$ field does not exceed $10^6$ cells, $m \\ge 2$), in each cell of which there can be candy. There are $n$ rows and $m$ columns in the field.\n\nLet's denote a cell with coordinates $x$ vertically and $y$ horizontally by $(x, y)$. Then the top-left cell will be denoted as $(1, 1)$, and the bottom-right cell will be denoted as $(n, m)$.\n\nIf there is candy in the cell, then the cell is marked with the symbol '`1`', otherwise — with the symbol '`0`'.\n\nPolycarp made a Robot that can collect candy. The Robot can move from $(x, y)$ either to $(x+1, y+1)$, or to $(x+1, y-1)$. If the Robot is in a cell that contains candy, it takes it.\n\nWhile there is at least one candy on the field, the following procedure is executed:\n\n- Polycarp puts the Robot in an arbitrary cell on the **topmost row** of the field. He himself chooses in which cell to place the Robot. It is allowed to put the Robot in the same cell multiple times.\n- The Robot moves across the field and collects candies. He controls the Robot.\n- When the Robot leaves the field, Polycarp takes it. If there are still candies left, Polycarp repeats the procedure.\n\nFind the **minimum** number of times Polycarp needs to put the Robot on the topmost row of the field in order to collect all the candies. It is guaranteed that Polycarp can always collect all the candies.\n\n## Input\n\nThe first line of input data contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of input data sets in the test.\n\nBefore each input data, there is a blank line in the test. Next is a line that contains integers $n$ and $m$ ($2 \\le m$, $2 \\le n \\cdot m \\le 10^6$) — field sizes. This is followed by $n$ lines, $i$-th of which describes the $i$-th line of the field. Each of them is a string of size $m$ characters: the symbol '`1`' corresponds to a cell with candy, the symbol '`0`' — an empty cell.\n\nIt is guaranteed that the sum of $n \\cdot m$ values for all input data sets in the test does not exceed $10^6$.\n\n## Output\n\nPrint $t$ lines, each line should contain the answer to the corresponding set of input data: the minimum number of times Polycarpus needs to put the Robot on the topmost row of the field in order to collect all the candies.\n\n## Note\n\nIn the first set Polycarp may not put the Robot on the field at all, so the answer \"`0`\"\n\nIn the second set, Polycarp will need to place the robot on the field twice. The Robot can collect candies like this: for the first time Polycarp puts the Robot in the cell $(1, 1)$ and collects candies at the positions $(1, 1)$ and $(3, 3)$. The second time Polycarp can again put the Robot in $(1, 1)$, and then the Robot will move first to $(2,2)$, then to $(3, 1)$ and collect the last candy.\n\nIn the fourth set, you can show that the Robot cannot collect all the candies in three passes.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 有一个大小为 $n \\times m$ 的矩形场地（场地大小 $n \\cdot m$ 不超过 $10^6$ 个单元格，$m \\ge 2$），其中每个单元格内可能有糖果。场地有 $n$ 行和 $m$ 列。\n\n我们用 $(x, y)$ 表示竖直坐标为 $x$、水平坐标为 $y$ 的单元格。因此，左上角的单元格表示为 $(1, 1)$，右下角的单元格表示为 $(n, m)$。\n\n如果一个单元格中有糖果，则用符号 '`1`' 标记，否则用符号 '`0`' 标记。\n\nPolycarp 制作了一个可以收集糖果的机器人。机器人可以从 $(x, y)$ 移动到 $(x+1, y+1)$ 或 $(x+1, y-1)$。如果机器人位于包含糖果的单元格中，它就会将糖果取走。\n\n只要场地上至少还有一颗糖果，就会执行以下过程：\n\n- Polycarp 将机器人放置在场地**最上面一行**的任意一个单元格中。由他自己选择放置机器人的单元格。允许多次将机器人放置在同一个单元格中。\n- 机器人在场地中移动并收集糖果。由 Polycarp 控制机器人。\n- 当机器人离开场地后，Polycarp 将其取走。如果场地上仍有糖果，Polycarp 重复这一过程。\n\n请找出 Polycarp 为收集所有糖果，最少需要将机器人放置到场地最上面一行多少次。保证 Polycarp 总能收集所有糖果。\n\n## 输入格式\n\n输入数据的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试数据组数。\n\n每组输入数据之前有一个空行。接下来一行包含两个整数 $n$ 和 $m$（$2 \\le m$，$2 \\le n \\cdot m \\le 10^6$）——场地的大小。随后是 $n$ 行，其中第 $i$ 行描述场地的第 $i$ 行。每行是一个长度为 $m$ 的字符串：符号 '`1`' 表示该单元格中有糖果，符号 '`0`' 表示该单元格为空。\n\n保证所有测试数据组的 $n \\cdot m$ 之和不超过 $10^6$。\n\n## 输出格式\n\n输出 $t$ 行，每行包含对应测试数据组的答案：Polycarp 为收集所有糖果，最少需要将机器人放置到场地最上面一行多少次。\n\n## 说明\n\n在第一组数据中，Polycarp 甚至可以完全不将机器人放到场地中，因此答案为 `0`。\n\n在第二组数据中，Polycarp 需要将机器人放置到场地中两次。机器人可以按如下方式收集糖果：第一次 Polycarp 将机器人放置在单元格 $(1, 1)$ 中，收集位置 $(1, 1)$ 和 $(3, 3)$ 处的糖果。第二次 Polycarp 可以再次将机器人放置在 $(1, 1)$ 中，随后机器人先移动到 $(2,2)$，再移动到 $(3, 1)$，并收集最后一颗糖果。\n\n在第四组数据中，可以证明机器人不可能通过三次移动收集所有糖果。",
   "samples": [
     {
       "input": "4\n\n2 2\n00\n00\n\n3 3\n100\n000\n101\n\n4 5\n01000\n00001\n00010\n10000\n\n3 3\n111\n111\n111\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:13:23.215Z"
+  "fetchedAt": "2026-11-02T18:13:23.215Z",
+  "translatedAt": "2026-11-04T17:01:02.860+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

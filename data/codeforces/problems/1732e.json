@@ -4,7 +4,7 @@
   "contestId": 1732,
   "index": "E",
   "title": "Location",
-  "titleZh": null,
+  "titleZh": "位置",
   "url": "https://codeforces.com/contest/1732/problem/E",
   "difficulty": 2800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "You are given two arrays of integers $a_1, a_2, \\ldots, a_n$ and $b_1, b_2, \\ldots, b_n$. You need to handle $q$ queries of the following two types:\n\n- $1$ $l$ $r$ $x$: assign $a_i := x$ for all $l \\leq i \\leq r$;\n- $2$ $l$ $r$: find the minimum value of the following expression among all $l \\leq i \\leq r$: $$\\frac{\\operatorname{lcm}(a_i, b_i)}{\\gcd(a_i, b_i)}.$$\n\nIn this problem $\\gcd(x, y)$ denotes the [greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor) of $x$ and $y$, and $\\operatorname{lcm}(x, y)$ denotes the [least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple) of $x$ and $y$.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\leq n, q \\leq 5 \\cdot 10^4$) — the number of numbers in the arrays $a$ and $b$ and the number of queries.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 5 \\cdot 10^4$) — the elements of the array $a$.\n\nThe third line contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($1 \\leq b_i \\leq 5 \\cdot 10^4$) — the elements of the array $b$.\n\nThen $q$ lines follow, $j$-th of which starts with an integer $t_j$ ($1 \\leq t_j \\leq 2$) and means that the $j$-th query has type $t_j$.\n\nIf $t_j = 1$, it is followed by three integers $l_j$, $r_j$, and $x_j$ ($1 \\leq l_j \\leq r_j \\leq n$, $1 \\leq x_j \\leq 5 \\cdot 10^4$).\n\nIf $t_j = 2$, it is followed by two integers $l_j$ and $r_j$ ($1 \\leq l_j \\leq r_j \\leq n$).\n\nIt is guaranteed that there is at least one query of type $2$.\n\n## Output\n\nFor each query of the second type, output the minimum value of the expression.\n\n## Note\n\nIn the first example:\n\n- For the first query we can choose $i = 4$. So the value is $\\frac{\\operatorname{lcm}(4, 4)}{\\gcd(4, 4)} = \\frac{4}{4} = 1$.\n- After the second query the array $a = [6, 10, 15, 4, 9, 25, 9, 9, 9, 9]$.\n- For the third query we can choose $i = 9$. So the value is $\\frac{\\operatorname{lcm}(9, 18)}{\\gcd(9, 18)} = \\frac{18}{9} = 2$.\n\nIn the second:\n\n- For the first query we can choose $i = 4$. So the value is $\\frac{\\operatorname{lcm}(1, 5)}{\\gcd(1, 5)} = \\frac{5}{1} = 5$.\n- After the second query the array $a = [10, 18, 18, 5]$.\n- After the third query the array $a = [10, 10, 18, 5]$.\n- For the fourth query we can choose $i = 2$. So the value is $\\frac{\\operatorname{lcm}(10, 12)}{\\gcd(10, 12)} = \\frac{60}{2} = 30$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个整数数组 $a_1, a_2, \\ldots, a_n$ 和 $b_1, b_2, \\ldots, b_n$。你需要处理 $q$ 次以下两种类型的查询：\n\n- $1$ $l$ $r$ $x$：对所有 $l \\leq i \\leq r$，令 $a_i := x$；\n- $2$ $l$ $r$：在所有 $l \\leq i \\leq r$ 中，求以下表达式的最小值：$$\\frac{\\operatorname{lcm}(a_i, b_i)}{\\gcd(a_i, b_i)}.$$ \n\n在本题中，$\\gcd(x, y)$ 表示 [最大公约数](https://en.wikipedia.org/wiki/Greatest_common_divisor)，$\\operatorname{lcm}(x, y)$ 表示 [最小公倍数](https://en.wikipedia.org/wiki/Least_common_multiple)。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\leq n, q \\leq 5 \\cdot 10^4$），分别表示数组 $a$ 和 $b$ 的长度，以及查询次数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq 5 \\cdot 10^4$），表示数组 $a$ 的元素。\n\n第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$1 \\leq b_i \\leq 5 \\cdot 10^4$），表示数组 $b$ 的元素。\n\n接下来有 $q$ 行，第 $j$ 行以一个整数 $t_j$（$1 \\leq t_j \\leq 2$）开头，表示第 $j$ 次查询的类型。\n\n如果 $t_j = 1$，则接下来有三个整数 $l_j$、$r_j$ 和 $x_j$（$1 \\leq l_j \\leq r_j \\leq n$，$1 \\leq x_j \\leq 5 \\cdot 10^4$）。\n\n如果 $t_j = 2$，则接下来有两个整数 $l_j$ 和 $r_j$（$1 \\leq l_j \\leq r_j \\leq n$）。\n\n保证至少存在一次类型为 $2$ 的查询。\n\n## 输出格式\n\n对于每次类型为 $2$ 的查询，输出该表达式的最小值。\n\n## 说明\n\n在第一个样例中：\n\n- 对于第一次查询，可以选择 $i = 4$。因此结果为 $\\frac{\\operatorname{lcm}(4, 4)}{\\gcd(4, 4)} = \\frac{4}{4} = 1$。\n- 第二次查询后，数组 $a = [6, 10, 15, 4, 9, 25, 9, 9, 9, 9]$。\n- 对于第三次查询，可以选择 $i = 9$。因此结果为 $\\frac{\\operatorname{lcm}(9, 18)}{\\gcd(9, 18)} = \\frac{18}{9} = 2$。\n\n在第二个样例中：\n\n- 对于第一次查询，可以选择 $i = 4$。因此结果为 $\\frac{\\operatorname{lcm}(1, 5)}{\\gcd(1, 5)} = \\frac{5}{1} = 5$。\n- 第二次查询后，数组 $a = [10, 18, 18, 5]$。\n- 第三次查询后，数组 $a = [10, 10, 18, 5]$。\n- 对于第四次查询，可以选择 $i = 2$。因此结果为 $\\frac{\\operatorname{lcm}(10, 12)}{\\gcd(10, 12)} = \\frac{60}{2} = 30$。",
   "samples": [
     {
       "input": "10 10\n6 10 15 4 9 25 2 3 5 30\n1 2 3 4 6 9 12 15 18 30\n2 1 10\n1 7 10 9\n2 5 10\n1 1 6 14\n2 4 7\n2 3 9\n1 2 9 30\n2 1 4\n2 3 7\n2 5 10\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:51:39.445Z"
+  "fetchedAt": "2026-10-30T22:51:39.445Z",
+  "translatedAt": "2026-11-05T00:45:02.069+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

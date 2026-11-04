@@ -4,7 +4,7 @@
   "contestId": "arc149",
   "index": "F",
   "title": "Rational Number System",
-  "titleZh": null,
+  "titleZh": "有理数进制系统",
   "url": "https://atcoder.jp/contests/arc149/tasks/arc149_f",
   "difficulty": 3583,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nLet $r > 1$ be a rational number, and $p$ and $q$ be the numerator and denominator of $r$, respectively. That is, $p$ and $q$ are positive integers such that $r = \\frac{p}{q}$ and $\\gcd(p,q) = 1$.\n\nLet the **base-$\\boldsymbol{r}$ expansion** of a positive integer $n$ be the integer sequence $(a_1, \\ldots, a_k)$ that satisfies all of the following conditions.\n\n- $a_i$ is an integer between $0$ and $p-1$.\n- $a_1\\neq 0$.\n- $n = \\sum_{i=1}^k a_ir^{k-i}$.\n\nIt can be proved that any positive integer $n$ has a unique base-$r$ expansion.\n\n---\n\nYou are given positive integers $p$, $q$, $N$, $L$, and $R$. Here, $p$ and $q$ satisfy $1.01 \\leq \\frac{p}{q}$.\n\nConsider sorting all positive integers not greater than $N$ in ascending lexicographical order of their base-$\\frac{p}{q}$ expansions. Find the $L$-th, $(L+1)$-th, $\\ldots$, $R$-th positive integers in this list.\n\nAs usual, decimal notations are used in the input and output of positive integers.\n\nWhat is lexicographical order on sequences? A sequence $A = (A_1, \\ldots, A_{|A|})$ is said to be **lexicographically smaller** than $B = (B_1, \\ldots, B_{|B|})$ when 1. or 2. below is satisfied. Here, $|A|$ and $|B|$ denote the lengths of $A$ and $B$, respectively. $|A|<|B|$ and $(A_{1},\\ldots,A_{|A|}) = (B_1,\\ldots,B_{|A|})$. There is an integer $1\\leq i\\leq \\min\\{|A|,|B|\\}$ that satisfies both of the following. $(A_{1},\\ldots,A_{i-1}) = (B_1,\\ldots,B_{i-1})$. $A_i < B_i$.\n\n## Constraints\n\n- $1\\leq p, q \\leq 10^9$\n- $\\gcd(p,q) = 1$\n- $1.01 \\leq \\frac{p}{q}$\n- $1\\leq N\\leq 10^{18}$\n- $1\\leq L\\leq R\\leq N$\n- $R - L + 1\\leq 3\\times 10^5$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\np q N L R\n```\n\n## Output\n\nPrint $R-L+1$ lines. The $i$-th line should contain the $(L + i - 1)$-th positive integer in the list of all positive integers not greater than $N$ sorted in ascending lexicographical order of their base-$\\frac{p}{q}$ expansions.\n\nUse decimal notations to print positive integers.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n设 $r > 1$ 是一个有理数，$p$ 和 $q$ 分别是 $r$ 的分子和分母。也就是说，$p$ 和 $q$ 是满足 $r = \\frac{p}{q}$ 且 $\\gcd(p,q) = 1$ 的正整数。\n\n正整数 $n$ 的**以 $\\boldsymbol{r}$ 为底的表示**是满足以下所有条件的整数序列 $(a_1, \\ldots, a_k)$。\n\n- $a_i$ 是介于 $0$ 和 $p-1$ 之间的整数。\n- $a_1\\neq 0$。\n- $n = \\sum_{i=1}^k a_ir^{k-i}$。\n\n可以证明，每个正整数 $n$ 都有唯一的以 $r$ 为底的表示。\n\n---\n\n给定正整数 $p$、$q$、$N$、$L$ 和 $R$。其中，$p$ 和 $q$ 满足 $1.01 \\leq \\frac{p}{q}$。\n\n考虑按照各个正整数不超过 $N$ 的以 $\\frac{p}{q}$ 为底的表示的字典序升序，对这些正整数进行排序。请找出该列表中的第 $L$ 个、第 $(L+1)$ 个、$\\ldots$、第 $R$ 个正整数。\n\n与通常情况一样，输入和输出中的正整数均使用十进制表示。\n\n序列的字典序是什么？当满足以下条件 1 或 2 之一时，称序列 $A = (A_1, \\ldots, A_{|A|})$ 小于序列 $B = (B_1, \\ldots, B_{|B|})$ 的字典序。其中，$|A|$ 和 $|B|$ 分别表示它们的长度。\n\n1. $|A|<|B|$ 且 $(A_{1},\\ldots,A_{|A|}) = (B_1,\\ldots,B_{|A|})$。\n2. 存在满足 $1\\leq i\\leq \\min\\{|A|,|B|\\}$ 的整数 $i$，使得以下两项同时成立。\n   - $(A_{1},\\ldots,A_{i-1}) = (B_1,\\ldots,B_{i-1})$。\n   - $A_i < B_i$。\n\n## 约束条件\n\n- $1\\leq p, q \\leq 10^9$\n- $\\gcd(p,q) = 1$\n- $1.01 \\leq \\frac{p}{q}$\n- $1\\leq N\\leq 10^{18}$\n- $1\\leq L\\leq R\\leq N$\n- $R - L + 1\\leq 3\\times 10^5$\n\n## 输入格式\n\n输入从标准输入中给出，格式如下：\n\n```\np q N L R\n```\n\n## 输出格式\n\n输出 $R-L+1$ 行。第 $i$ 行应包含按照以 $\\frac{p}{q}$ 为底的表示的字典序升序，对所有不超过 $N$ 的正整数排序后得到的列表中的第 $(L + i - 1)$ 个正整数。\n\n请使用十进制表示输出正整数。",
   "samples": [
     {
       "input": "3 1 9 1 9\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:28:08.657Z"
+  "fetchedAt": "2026-10-30T21:28:08.657Z",
+  "translatedAt": "2026-11-04T17:05:59.493+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

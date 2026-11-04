@@ -4,7 +4,7 @@
   "contestId": 1607,
   "index": "E",
   "title": "Robot on the Board 1",
-  "titleZh": null,
+  "titleZh": "棋盘上的机器人 1",
   "url": "https://codeforces.com/contest/1607/problem/E",
   "difficulty": 1600,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The robot is located on a checkered rectangular board of size $n \\times m$ ($n$ rows, $m$ columns). The rows in the board are numbered from $1$ to $n$ from top to bottom, and the columns — from $1$ to $m$ from left to right.\n\nThe robot is able to move from the current cell to one of the four cells adjacent by side.\n\nThe sequence of commands $s$ executed by the robot is given. Each command is denoted by one of the symbols '`L`', '`R`', '`D`' or '`U`', and triggers the movement to left, right, down or up, respectively.\n\nThe robot can start its movement in **any** cell. The robot executes the commands starting from the first one, strictly in the order in which they are listed in $s$. If the robot moves beyond the edge of the board, it falls and breaks. A command that causes the robot to break is **not considered** successfully executed.\n\nThe robot's task is to execute as many commands as possible without falling off the board. For example, on board $3 \\times 3$, if the robot starts a sequence of actions $s=$\"`RRDLUU`\" (\"right\", \"right\", \"down\", \"left\", \"up\", \"up\") from the central cell, the robot will perform one command, then the next command will force him to cross the edge. If the robot starts moving from the cell $(2, 1)$ (second row, first column) then all commands will be executed successfully and the robot will stop at the cell $(1, 2)$ (first row, second column).\n\n![image](https://espresso.codeforces.com/9fe7a04f375f2d9a760fbdc2d302397f39d7a250.png) The robot starts from cell $(2, 1)$ (second row, first column). It moves right, right, down, left, up, and up. In this case it ends in the cell $(1, 2)$ (first row, second column).\n\nDetermine the cell from which the robot should start its movement in order to execute as many commands as possible.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe next $2t$ lines contain descriptions of the test cases.\n\nIn the description of each test case, the first line contains two integers $n$ and $m$ ($1 \\leq n, m \\leq 10^6$) — the height and width of the field that the robot is located on. The second line of the description is a string $s$ consisting solely of characters '`L`', '`R`', '`D`' and '`U`' — the sequence of commands the robot executes. The string has a length from $1$ to $10^6$ commands.\n\nIt is guaranteed that the total length of $s$ over all test cases does not exceed $10^6$.\n\n## Output\n\nPrint $t$ lines, each of which contains the answer to the corresponding test case. The answer to the test case are two integers $r$ ($1 \\leq r \\leq n$) and $c$ ($1 \\leq c \\leq m$), separated by a space — the coordinates of the cell (row number and column number) from which the robot should start moving to perform as many commands as possible.\n\nIf there are several such cells, you may output any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "机器人位于一个大小为 $n \\times m$ 的方格矩形棋盘上（$n$ 行，$m$ 列）。棋盘中的行从上到下编号为 $1$ 至 $n$，列从左到右编号为 $1$ 至 $m$。\n\n机器人可以从当前格子移动到四个共边相邻的格子之一。\n\n给定机器人执行的命令序列 $s$。每条命令由符号 `L`、`R`、`D` 或 `U` 之一表示，分别触发向左、向右、向下或向上的移动。\n\n机器人可以从**任意**格子开始移动。机器人从 $s$ 中的第一条命令开始执行，并严格按照命令列出的顺序执行。如果机器人移动到棋盘边界之外，它就会跌落并损坏。导致机器人损坏的命令**不**算作成功执行。\n\n机器人的任务是在不跌落的情况下尽可能多地执行命令。例如，在大小为 $3 \\times 3$ 的棋盘上，如果机器人从中央格子开始执行动作序列 `RRDLUU`（“向右”、“向右”、“向下”、“向左”、“向上”、“向上”），机器人将执行一条命令，随后下一条命令会迫使它越过棋盘边界。如果机器人从格子 $(2, 1)$（第二行第一列）开始移动，则所有命令都能成功执行，最终机器人会停在格子 $(1, 2)$（第一行第二列）。\n\n![image](https://espresso.codeforces.com/9fe7a04f375f2d9a760fbdc2d302397f39d7a250.png) 机器人从格子 $(2, 1)$（第二行第一列）开始。它依次向右、向右、向下、向左、向上、向上移动。在这种情况下，它最终停在格子 $(1, 2)$（第一行第二列）。\n\n确定机器人应从哪个格子开始移动，才能尽可能多地执行命令。\n\n## 输入\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n接下来的 $2t$ 行包含各个测试用例的描述。\n\n对于每个测试用例，第一行包含两个整数 $n$ 和 $m$（$1 \\leq n, m \\leq 10^6$）——机器人所在棋盘的高度和宽度。测试用例描述的第二行是一个仅由字符 `L`、`R`、`D` 和 `U` 组成的字符串 $s$——机器人执行的命令序列。字符串长度为 $1$ 至 $10^6$ 个命令。\n\n保证所有测试用例中 $s$ 的总长度不超过 $10^6$。\n\n## 输出\n\n输出 $t$ 行，每行包含对应测试用例的答案。每个测试用例的答案包含两个整数 $r$（$1 \\leq r \\leq n$）和 $c$（$1 \\leq c \\leq m$），用空格分隔，表示机器人应开始移动的格子的坐标（行号和列号），使其能够执行尽可能多的命令。\n\n如果有多个这样的格子，输出其中任意一个即可。",
   "samples": [
     {
       "input": "4\n1 1\nL\n1 2\nL\n3 3\nRRDLUU\n4 3\nLUURRDDLLLUU\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:13:30.883Z"
+  "fetchedAt": "2026-11-02T18:13:30.883Z",
+  "translatedAt": "2026-11-05T00:45:46.831+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1704,
   "index": "E",
   "title": "Count Seconds",
-  "titleZh": null,
+  "titleZh": "统计秒数",
   "url": "https://codeforces.com/contest/1704/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Cirno has a DAG (Directed Acyclic Graph) with $n$ nodes and $m$ edges. The graph has exactly one node that has no out edges. The $i$-th node has an integer $a_i$ on it.\n\nEvery second the following happens:\n\n- Let $S$ be the set of nodes $x$ that have $a_x \\gt 0$.\n- For all $x \\in S$, $1$ is subtracted from $a_x$, and then for each node $y$, such that there is an edge from $x$ to $y$, $1$ is added to $a_y$.\n\nFind the first moment of time when all $a_i$ become $0$. Since the answer can be very large, output it modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases. Description of test cases follows.\n\nThe first line of each test case contains two integers $n, m$ ($1 \\leq n, m \\leq 1000$) — the number of vertices and edges in the graph.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\leq a_i \\leq 10^9$) — the integer on vertices.\n\nEach line of the following $m$ lines contains two integers $x, y$ ($1 \\leq x, y \\leq n$), represent a directed edge from $x$ to $y$. It is guaranteed that the graph is a DAG with no multi-edges, and there is exactly one node that has no out edges.\n\nIt is guaranteed that both sum of $n$ and sum of $m$ over all test cases are less than or equal to $10\\,000$.\n\n## Output\n\nFor each test case, print an integer in a separate line — the first moment of time when all $a_i$ become $0$, modulo $998\\,244\\,353$.\n\n## Note\n\nIn the first test case:\n\n- At time $0$, the values of the nodes are $[1, 1, 1]$.\n- At time $1$, the values of the nodes are $[0, 1, 1]$.\n- At time $2$, the values of the nodes are $[0, 0, 1]$.\n- At time $3$, the values of the nodes are $[0, 0, 0]$.\n\nSo the answer is $3$.\n\n- At time $0$, the values of the nodes are $[1, 0, 0, 0, 0]$.\n- At time $1$, the values of the nodes are $[0, 1, 0, 0, 1]$.\n- At time $2$, the values of the nodes are $[0, 0, 1, 0, 0]$.\n- At time $3$, the values of the nodes are $[0, 0, 0, 1, 0]$.\n- At time $4$, the values of the nodes are $[0, 0, 0, 0, 1]$.\n- At time $5$, the values of the nodes are $[0, 0, 0, 0, 0]$.\n\nSo the answer is $5$.\n\nIn the third test case:\n\nThe first moment of time when all $a_i$ become $0$ is $6\\cdot 998244353 + 4$.",
-  "statementZhMd": null,
+  "statementZhMd": "Cirno 有一个包含 $n$ 个节点和 $m$ 条边的 DAG（有向无环图）。图中恰好有一个节点没有出边。第 $i$ 个节点上有一个整数 $a_i$。\n\n每秒会发生以下过程：\n\n- 令 $S$ 表示满足 $a_x \\gt 0$ 的节点 $x$ 的集合。\n- 对于所有 $x \\in S$，将 $a_x$ 减去 $1$，然后对于每个满足存在从 $x$ 到 $y$ 的边的节点 $y$，将 $a_y$ 加上 $1$。\n\n求所有 $a_i$ 首次同时变为 $0$ 的时刻。由于答案可能非常大，请将答案对 $998\\,244\\,353$ 取模。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 1000$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n, m$（$1 \\leq n, m \\leq 1000$）——图中的顶点数和边数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\leq 10^9$）——各顶点上的整数。\n\n接下来的 $m$ 行中，每行包含两个整数 $x, y$（$1 \\leq x, y \\leq n$），表示一条从 $x$ 指向 $y$ 的有向边。保证该图是一个不存在重边的 DAG，且恰好有一个节点没有出边。\n\n保证所有测试用例的 $n$ 之和以及 $m$ 之和均不超过 $10\\,000$。\n\n## 输出格式\n\n对于每个测试用例，输出一行一个整数——所有 $a_i$ 首次同时变为 $0$ 的时刻，对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n在第一个测试用例中：\n\n- 在时刻 $0$，各节点的值为 $[1, 1, 1]$。\n- 在时刻 $1$，各节点的值为 $[0, 1, 1]$。\n- 在时刻 $2$，各节点的值为 $[0, 0, 1]$。\n- 在时刻 $3$，各节点的值为 $[0, 0, 0]$。\n\n因此答案为 $3$。\n\n- 在时刻 $0$，各节点的值为 $[1, 0, 0, 0, 0]$。\n- 在时刻 $1$，各节点的值为 $[0, 1, 0, 0, 1]$。\n- 在时刻 $2$，各节点的值为 $[0, 0, 1, 0, 0]$。\n- 在时刻 $3$，各节点的值为 $[0, 0, 0, 1, 0]$。\n- 在时刻 $4$，各节点的值为 $[0, 0, 0, 0, 1]$。\n- 在时刻 $5$，各节点的值为 $[0, 0, 0, 0, 0]$。\n\n因此答案为 $5$。\n\n在第三个测试用例中：\n\n所有 $a_i$ 首次同时变为 $0$ 的时刻为 $6\\cdot 998244353 + 4$。",
   "samples": [
     {
       "input": "5\n3 2\n1 1 1\n1 2\n2 3\n5 5\n1 0 0 0 0\n1 2\n2 3\n3 4\n4 5\n1 5\n10 11\n998244353 0 0 0 998244353 0 0 0 0 0\n1 2\n2 3\n3 4\n4 5\n5 6\n6 7\n7 8\n8 9\n9 10\n1 3\n7 9\n5 6\n1293 1145 9961 9961 1919\n1 2\n2 3\n3 4\n5 4\n1 4\n2 4\n6 9\n10 10 10 10 10 10\n1 2\n1 3\n2 3\n4 3\n6 3\n3 5\n6 5\n6 1\n6 2\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:53:59.634Z"
+  "fetchedAt": "2026-10-30T22:53:59.634Z",
+  "translatedAt": "2026-11-04T17:03:41.917+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

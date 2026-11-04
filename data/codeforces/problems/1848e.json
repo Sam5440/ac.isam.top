@@ -4,7 +4,7 @@
   "contestId": 1848,
   "index": "E",
   "title": "Vika and Stone Skipping",
-  "titleZh": null,
+  "titleZh": "薇卡与打水漂",
   "url": "https://codeforces.com/contest/1848/problem/E",
   "difficulty": 2600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "In Vika's hometown, Vladivostok, there is a beautiful sea.\n\nOften you can see kids skimming stones. This is the process of throwing a stone into the sea at a small angle, causing it to fly far and bounce several times off the water surface.\n\nVika has skimmed stones many times and knows that if you throw a stone from the shore perpendicular to the coastline with a force of $f$, it will first touch the water at a distance of $f$ from the shore, then bounce off and touch the water again at a distance of $f - 1$ from the previous point of contact. The stone will continue to fly in a straight line, reducing the distances between the points where it touches the water, until it falls into the sea.\n\nFormally, the points at which the stone touches the water surface will have the following coordinates: $f$, $f + (f - 1)$, $f + (f - 1) + (f - 2)$, ... , $f + (f - 1) + (f - 2) + \\ldots + 1$ (assuming that $0$ is the coordinate of the shoreline).\n\nOnce, while walking along the embankment of Vladivostok in the evening, Vika saw a group of guys skipping stones across the sea, launching them from the same point with different forces.\n\nShe became interested in what is the maximum number of guys who can launch a stone with their force $f_i$, so that all $f_i$ are **different positive integers**, and all $n$ stones touched the water at the point with the coordinate $x$ (assuming that $0$ is the coordinate of the shoreline).\n\nAfter thinking a little, Vika answered her question. After that, she began to analyze how the answer to her question would change if she multiplied the coordinate $x$ by some positive integers $x_1$, $x_2$, ... , $x_q$, which she picked for analysis.\n\nVika finds it difficult to cope with such analysis on her own, so she turned to you for help.\n\nFormally, Vika is interested in the answer to her question for the coordinates $X_1 = x \\cdot x_1$, $X_2 = X_1 \\cdot x_2$, ... , $X_q = X_{q-1} \\cdot x_q$. Since the answer for such coordinates can be quite large, find it modulo $M$. **It is guaranteed that $M$ is prime.**\n\n## Input\n\nThe first line of the input contains three integers $x$ ($1 \\le x \\le 10^9$), $q$ ($1 \\le q \\le 10^5$) and $M$ ($100 \\le M \\le 2 \\cdot 10^9$) — the initial coordinate for which Vika answered the question on her own, the number of integers $x_i$ by which Vika will multiply the initial coordinate and **prime** module $M$.\n\nThe second line of the input contains $q$ integers $x_1, x_2, x_3, \\ldots, x_q$ ($1 \\le x_i \\le 10^6$) — the integers described in the statement.\n\n## Output\n\nOutput $q$ integers, where the $i$-th number corresponds to the answer to Vika's question for the coordinate $X_i$. Output all the answers modulo $M$.\n\n## Note\n\nIn the first sample, to make the stone touch the water at a point with coordinate $2$, it needs to be thrown with a force of $2$. To make the stone touch the water at a point with coordinate $2 \\cdot 3 = 6$, it needs to be thrown with a force of $3$ or $6$.\n\nIn the second sample, you can skim a stone with a force of $5$ or $14$ to make it touch the water at a point with coordinate $7 \\cdot 2 = 14$. For the coordinate $14 \\cdot 13 = 182$, there are $4$ possible forces: $20$, $29$, $47$, $182$.",
-  "statementZhMd": null,
+  "statementZhMd": "在薇卡的家乡符拉迪沃斯托克，有一片美丽的大海。\n\n经常可以看到孩子们打水漂：他们以较小的角度将石子掷入海中，让石子飞出很远，并在水面上弹跳数次。\n\n薇卡打过很多次水漂，她知道，如果从岸边垂直于海岸线的方向以力度为 $f$ 掷出一块石子，那么石子第一次触水的位置距离岸边 $f$。随后石子弹起，并在距离上一个触水点 $f - 1$ 的位置再次触水。石子会继续沿直线飞行，触水点之间的距离逐渐减小，直到它落入海中。\n\n形式化地说，石子触水点的坐标依次为：$f$、$f + (f - 1)$、$f + (f - 1) + (f - 2)$、...、$f + (f - 1) + (f - 2) + \\ldots + 1$（假设岸边的坐标为 $0$）。\n\n有一次，傍晚散步经过符拉迪沃斯托克的海滨长廊时，薇卡看到一群男生从同一个地点以不同的力度打水漂。\n\n她开始好奇，最多有多少个男生可以分别以力度 $f_i$ 掷出石子，使得所有 $f_i$ 都是**互不相同的正整数**，并且这 $n$ 块石子都在坐标为 $x$ 的位置触水（假设岸边的坐标为 $0$）。\n\n思考了一会儿后，薇卡得出了答案。之后，她开始分析：如果将坐标 $x$ 乘以一些正整数 $x_1$、$x_2$、...、$x_q$，她的问题的答案会如何变化？\n\n薇卡觉得独自完成这些分析有些困难，于是向你求助。\n\n形式化地说，薇卡想知道坐标 $X_1 = x \\cdot x_1$、$X_2 = X_1 \\cdot x_2$、...、$X_q = X_{q-1} \\cdot x_q$ 对应问题的答案。由于这些坐标对应的答案可能很大，请求出答案对 $M$ 取模后的结果。**保证 $M$ 是素数。**\n\n## 输入格式\n\n输入的第一行包含三个整数 $x$（$1 \\le x \\le 10^9$）、$q$（$1 \\le q \\le 10^5$）和 $M$（$100 \\le M \\le 2 \\cdot 10^9$）——分别表示薇卡独自解答问题时对应的初始坐标、薇卡将要用来乘初始坐标的整数个数，以及模数 $M$。保证 $M$ 是**素数**。\n\n输入的第二行包含 $q$ 个整数 $x_1, x_2, x_3, \\ldots, x_q$（$1 \\le x_i \\le 10^6$）——题目中所述的整数。\n\n## 输出格式\n\n输出 $q$ 个整数，其中第 $i$ 个数表示坐标为 $X_i$ 时薇卡问题的答案。所有答案均对 $M$ 取模。\n\n## 说明\n\n在第一个样例中，要让石子在坐标为 $2$ 的位置触水，掷出石子的力度需要为 $2$。要让石子在坐标为 $2 \\cdot 3 = 6$ 的位置触水，掷出石子的力度可以是 $3$ 或 $6$。\n\n在第二个样例中，可以以力度 $5$ 或 $14$ 掷出石子，使它在坐标为 $7 \\cdot 2 = 14$ 的位置触水。对于坐标 $14 \\cdot 13 = 182$，有 $4$ 种可能的力度：$20$、$29$、$47$、$182$。",
   "samples": [
     {
       "input": "1 2 179\n2 3\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:24:04.963Z"
+  "fetchedAt": "2026-10-30T22:24:04.963Z",
+  "translatedAt": "2026-11-05T00:44:43.611+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

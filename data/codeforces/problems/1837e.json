@@ -4,7 +4,7 @@
   "contestId": 1837,
   "index": "E",
   "title": "Playoff Fixing",
-  "titleZh": null,
+  "titleZh": "操纵淘汰赛",
   "url": "https://codeforces.com/contest/1837/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "$2^k$ teams participate in a playoff tournament. The teams are numbered from $1$ to $2^k$, in order of decreasing strength. So, team $1$ is the strongest one, team $2^k$ is the weakest one. A team with a smaller number always defeats a team with a larger number.\n\nFirst of all, the teams are arranged in some order during a procedure called seeding. Each team is assigned another unique value from $1$ to $2^k$, called a seed, that represents its starting position in the playoff.\n\nThe tournament consists of $2^k - 1$ games. They are held as follows: the teams are split into pairs: team with seed $1$ plays against team with seed $2$, team with seed $3$ plays against team with seed $4$ (exactly in this order), and so on (so, $2^{k-1}$ games are played in that phase). When a team loses a game, it is eliminated.\n\nAfter that, only $2^{k-1}$ teams remain. If only one team remains, it is declared the champion; otherwise, $2^{k-2}$ games are played: in the first one of them, the winner of the game \"seed $1$ vs seed $2$\" plays against the winner of the game \"seed $3$ vs seed $4$\", then the winner of the game \"seed $5$ vs seed $6$\" plays against the winner of the game \"seed $7$ vs seed $8$\", and so on. This process repeats until only one team remains.\n\nAfter the tournament ends, the teams are assigned places according to the tournament phase when they were eliminated. In particular:\n\n- the winner of the tournament gets place $1$;\n- the team eliminated in the finals gets place $2$;\n- both teams eliminated in the semifinals get place $3$;\n- all teams eliminated in the quarterfinals get place $5$;\n- all teams eliminated in the 1/8 finals get place $9$, and so on.\n\nNow that we established the rules, we do a little rigging. In particular, we want:\n\n- team $1$ (not team with seed $1$) to take place $1$;\n- team $2$ to take place $2$;\n- teams $3$ and $4$ to take place $3$;\n- teams from $5$ to $8$ to take place $5$, and so on.\n\nFor example, this picture describes one of the possible ways the tournament can go with $k = 3$, and the resulting places of the teams:\n\n![image](https://espresso.codeforces.com/8fab1b9637d97dbe907d742f5faef2e1bc7ca408.png)\n\nSome seeds are already reserved for some teams (we are not the only ones rigging the tournament, apparently). We have to fill the rest of the seeds with the remaining teams to achieve the desired placements. How many ways are there to do that? Since that value might be large, print it modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains a single integer $k$ ($0 \\le k \\le 19$) — there are $2^k$ teams.\n\nThe second line contains $2^k$ integers $a_1, a_2, \\dots, a_{2^k}$ ($a_i = -1$ or $1 \\le a_i \\le 2^k$). If $a_i \\ne -1$, then team $a_i$ has seed $i$. Otherwise, the seed $i$ is not reserved for any team.\n\nAll values, that are not $-1$, are distinct.\n\n## Output\n\nPrint a single integer — the number of ways to fill the non-reserved seeds so that the tournament goes as planned, modulo $998\\,244\\,353$.",
-  "statementZhMd": null,
+  "statementZhMd": "$2^k$ 支队伍参加一场淘汰赛。队伍按照实力从强到弱编号。因此，队伍 $1$ 最强，队伍 $2^k$ 最弱。编号较小的队伍总是能够击败编号较大的队伍。\n\n首先，队伍会在一个称为种子排序（seeding）的过程中按照某种顺序排列。每支队伍都会被分配一个从 $1$ 到 $2^k$ 的、彼此不同的数，称为种子（seed），表示它在淘汰赛中的初始位置。\n\n比赛共进行 $2^k - 1$ 场，具体如下：队伍按照种子两两配对：种子为 $1$ 的队伍与种子为 $2$ 的队伍比赛，种子为 $3$ 的队伍与种子为 $4$ 的队伍比赛（顺序完全如此），依此类推（这一阶段共进行 $2^{k-1}$ 场比赛）。队伍输掉比赛后将被淘汰。\n\n之后只剩下 $2^{k-1}$ 支队伍。如果只剩下一支队伍，则宣布它为冠军；否则，将进行 $2^{k-2}$ 场比赛：其中第一场比赛由“种子 $1$ 对种子 $2$”的获胜者与“种子 $3$ 对种子 $4$”的获胜者进行，接着由“种子 $5$ 对种子 $6$”的获胜者与“种子 $7$ 对种子 $8$”的获胜者进行比赛，依此类推。这个过程不断重复，直到只剩下一支队伍。\n\n比赛结束后，根据队伍被淘汰时所处的比赛阶段为其确定名次。具体来说：\n\n- 冠军获得第 $1$ 名；\n- 在决赛中被淘汰的队伍获得第 $2$ 名；\n- 在半决赛中被淘汰的两支队伍都获得第 $3$ 名；\n- 在四分之一决赛中被淘汰的所有队伍都获得第 $5$ 名；\n- 在八分之一决赛中被淘汰的所有队伍都获得第 $9$ 名，依此类推。\n\n现在规则已经明确，我们来稍微操纵一下比赛。具体来说，我们希望：\n\n- 队伍 $1$（而不是种子为 $1$ 的队伍）获得第 $1$ 名；\n- 队伍 $2$ 获得第 $2$ 名；\n- 队伍 $3$ 和 $4$ 获得第 $3$ 名；\n- 队伍 $5$ 到 $8$ 获得第 $5$ 名，依此类推。\n\n例如，下面这张图展示了 $k = 3$ 时比赛可能进行的一种方式，以及最终各队伍的名次：\n\n![image](https://espresso.codeforces.com/8fab1b9637d97dbe907d742f5faef2e1bc7ca408.png)\n\n一些种子已经为某些队伍预留（看来并不是只有我们在操纵比赛）。我们需要用剩余的队伍填满剩余的种子，以实现期望的名次。有多少种填法？由于答案可能很大，请将其对 $998\\,244\\,353$ 取模后输出。\n\n## 输入格式\n\n第一行包含一个整数 $k$（$0 \\le k \\le 19$）——共有 $2^k$ 支队伍。\n\n第二行包含 $2^k$ 个整数 $a_1, a_2, \\dots, a_{2^k}$（$a_i = -1$ 或 $1 \\le a_i \\le 2^k$）。如果 $a_i \\ne -1$，则队伍 $a_i$ 的种子为 $i$。否则，种子 $i$ 未被任何队伍预留。\n\n所有不为 $-1$ 的值两两不同。\n\n## 输出格式\n\n输出一个整数——用剩余队伍填满未预留种子、使比赛按照计划进行的方案数，结果对 $998\\,244\\,353$ 取模。",
   "samples": [
     {
       "input": "2\n1 2 3 4\n",
@@ -48,5 +48,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:28:34.123Z"
+  "fetchedAt": "2026-11-02T17:28:34.123Z",
+  "translatedAt": "2026-11-05T00:46:03.089+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

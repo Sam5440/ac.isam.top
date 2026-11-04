@@ -4,7 +4,7 @@
   "contestId": 1237,
   "index": "D",
   "title": "Balanced Playlist",
-  "titleZh": null,
+  "titleZh": "平衡播放列表",
   "url": "https://codeforces.com/contest/1237/problem/D",
   "difficulty": 2000,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Your favorite music streaming platform has formed a *perfectly balanced* playlist exclusively for you. The playlist consists of $n$ tracks numbered from $1$ to $n$. The playlist is automatic and cyclic: whenever track $i$ finishes playing, track $i+1$ starts playing automatically; after track $n$ goes track $1$.\n\nFor each track $i$, you have estimated its *coolness* $a_i$. The higher $a_i$ is, the cooler track $i$ is.\n\nEvery morning, you choose a track. The playlist then starts playing from this track in its usual cyclic fashion. At any moment, you remember the maximum coolness $x$ of already played tracks. Once you hear that a track with coolness **strictly** less than $\\frac{x}{2}$ (no rounding) starts playing, you turn off the music immediately to keep yourself in a good mood.\n\nFor each track $i$, find out how many tracks you will listen to before turning off the music if you start your morning with track $i$, or determine that you will never turn the music off. Note that if you listen to the same track several times, every time must be counted.\n\n## Input\n\nThe first line contains a single integer $n$ ($2 \\le n \\le 10^5$), denoting the number of tracks in the playlist.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$), denoting coolnesses of the tracks.\n\n## Output\n\nOutput $n$ integers $c_1, c_2, \\ldots, c_n$, where $c_i$ is either the number of tracks you will listen to if you start listening from track $i$ or $-1$ if you will be listening to music indefinitely.\n\n## Note\n\nIn the first example, here is what will happen if you start with...\n\n- track $1$: listen to track $1$, stop as $a_2 \\lt \\frac{a_1}{2}$.\n- track $2$: listen to track $2$, stop as $a_3 \\lt \\frac{a_2}{2}$.\n- track $3$: listen to track $3$, listen to track $4$, listen to track $1$, stop as $a_2 \\lt \\frac{\\max(a_3, a_4, a_1)}{2}$.\n- track $4$: listen to track $4$, listen to track $1$, stop as $a_2 \\lt \\frac{\\max(a_4, a_1)}{2}$.\n\nIn the second example, if you start with track $4$, you will listen to track $4$, listen to track $1$, listen to track $2$, listen to track $3$, listen to track $4$ again, listen to track $1$ again, and stop as $a_2 \\lt \\frac{max(a_4, a_1, a_2, a_3, a_4, a_1)}{2}$. Note that both track $1$ and track $4$ are counted twice towards the result.",
-  "statementZhMd": null,
+  "statementZhMd": "<statement>\n\n你最喜欢的音乐流媒体平台专门为你创建了一个*完美平衡*的播放列表。该播放列表由 $n$ 首曲目组成，编号从 $1$ 到 $n$。播放列表会自动循环播放：每当第 $i$ 首曲目播放结束时，就会自动开始播放第 $i+1$ 首曲目；第 $n$ 首曲目之后会播放第 $1$ 首曲目。\n\n对于每首曲目 $i$，你都估计了它的*酷度* $a_i$。$a_i$ 越大，第 $i$ 首曲目就越酷。\n\n每天早晨，你会选择一首曲目。随后，播放列表会按照通常的循环顺序从这首曲目开始播放。在任意时刻，你都会记住已经播放过的曲目中的最大酷度 $x$。一旦你听到一首酷度 **严格** 小于 $\\frac{x}{2}$（不进行任何取整）的曲目开始播放，你就会立即关闭音乐，以保持好心情。\n\n对于每首曲目 $i$，请计算如果你从第 $i$ 首曲目开始播放，在关闭音乐之前会听到多少首曲目；或者判断你是否永远不会关闭音乐。注意，如果同一首曲目被听到多次，则每次都要计入答案。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 10^5$），表示播放列表中的曲目数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$），表示各首曲目的酷度。\n\n## 输出格式\n\n输出 $n$ 个整数 $c_1, c_2, \\ldots, c_n$，其中，如果从第 $i$ 首曲目开始播放，$c_i$ 表示你会听到的曲目数量；如果你会无限期地听下去，则 $c_i=-1$。\n\n## 说明\n\n在第一个样例中，如果从以下曲目开始播放，将会发生如下情况：\n\n- 第 $1$ 首曲目：听第 $1$ 首曲目，因为 $a_2 \\lt \\frac{a_1}{2}$，所以停止播放。\n- 第 $2$ 首曲目：听第 $2$ 首曲目，因为 $a_3 \\lt \\frac{a_2}{2}$，所以停止播放。\n- 第 $3$ 首曲目：听第 $3$ 首曲目，听第 $4$ 首曲目，听第 $1$ 首曲目，因为 $a_2 \\lt \\frac{\\max(a_3, a_4, a_1)}{2}$，所以停止播放。\n- 第 $4$ 首曲目：听第 $4$ 首曲目，听第 $1$ 首曲目，因为 $a_2 \\lt \\frac{\\max(a_4, a_1)}{2}$，所以停止播放。\n\n在第二个样例中，如果从第 $4$ 首曲目开始播放，你会依次听到第 $4$ 首曲目、第 $1$ 首曲目、第 $2$ 首曲目、第 $3$ 首曲目、第 $4$ 首曲目（第二次）、第 $1$ 首曲目（第二次），因为 $a_2 \\lt \\frac{max(a_4, a_1, a_2, a_3, a_4, a_1)}{2}$，所以停止播放。注意，第 $1$ 首曲目和第 $4$ 首曲目都被计入答案两次。\n</statement>",
   "samples": [
     {
       "input": "4\n11 5 2 7\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:03:48.518Z"
+  "fetchedAt": "2026-10-31T00:03:48.518Z",
+  "translatedAt": "2026-11-05T00:33:34.877+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

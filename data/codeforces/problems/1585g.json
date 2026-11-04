@@ -4,7 +4,7 @@
   "contestId": 1585,
   "index": "G",
   "title": "Poachers",
-  "titleZh": null,
+  "titleZh": "偷猎者",
   "url": "https://codeforces.com/contest/1585/problem/G",
   "difficulty": 2500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob are two poachers who cut trees in a forest.\n\nA forest is a set of zero or more trees. A tree is a connected graph without cycles. A rooted tree has a special vertex called the root. The parent of a node $v$ is the next vertex on the shortest path from $v$ to the root. Children of vertex $v$ are all nodes for which $v$ is the parent. A vertex is a leaf if it has no children.\n\nIn this problem we define the *depth* of vertex as number of vertices on the simple path from this vertex to the root. The *rank* of a tree is the minimum depth among its leaves.\n\nInitially there is a forest of rooted trees. Alice and Bob play a game on this forest. They play alternating turns with Alice going first. At the beginning of their turn, the player chooses a tree from the forest. Then the player chooses a positive *cutting depth*, which should **not exceed the rank** of the chosen tree. Then the player removes all vertices of that tree whose depth is less that or equal to the cutting depth. All other vertices of the tree form a set of rooted trees with root being the vertex with the smallest depth before the cut. All these trees are included in the game forest and the game continues.\n\nA player loses if the forest is empty at the beginning of his move.\n\nYou are to determine whether Alice wins the game if both players play optimally.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\leq t \\leq 5 \\cdot 10^5$). Description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\leq n \\leq 5 \\cdot 10^5$) — total number of vertices in the initial forest.\n\nThe second line contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($0 \\leq p_i \\leq n$) — description of the forest. If $p_i = 0$, then the $i$-th vertex is the root of a tree, otherwise $p_i$ is the parent of the vertex $i$. It's guaranteed that $p$ defines a correct forest of rooted trees.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print \"`YES`\" (without quotes) if Alice wins, otherwise print \"`NO`\" (without quotes). You can print each letter in any case (upper or lower).\n\n## Note\n\nIn the first test case Bob has a symmetric strategy, so Alice cannot win.\n\n![image](https://espresso.codeforces.com/a99dd79745aea9f0b2a4f3506492a83f7d0bc9c7.png)\n\nIn the second test case Alice can choose the second tree and cutting depth $1$ to get a forest on which she has a symmetric strategy.\n\n![image](https://espresso.codeforces.com/d265cffb5b1860c1ea6e083123fcafe616e5908d.png)\n\nIn third test case the rank of the only tree is $2$ and both possible moves for Alice result in a loss. Bob either can make the forest with a symmetric strategy for himself, or clear the forest.\n\n![image](https://espresso.codeforces.com/c89526250d4d7e635f456ee4e02653eac661da66.png)\n\nIn the fourth test case all leafs have the same depth, so Alice can clear the forest in one move.\n\n![image](https://espresso.codeforces.com/11a711f187c528a15f160973a6eca97b533ea18b.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Alice 和 Bob 是两名在森林里砍树的偷猎者。\n\n森林由零棵或多棵树组成。树是一个没有环的连通图。有根树有一个特殊顶点，称为根。顶点 $v$ 的父节点是从 $v$ 到根的最短路径上的下一个顶点。顶点 $v$ 的子节点是所有以 $v$ 为父节点的顶点。没有子节点的顶点称为叶子。\n\n在本题中，顶点的**深度**定义为该顶点到根的简单路径上的顶点数量。一棵树的**秩**定义为其所有叶子深度的最小值。\n\n初始时有一个由有根树组成的森林。Alice 和 Bob 在这个森林上进行游戏，双方轮流行动，由 Alice 先手。每回合开始时，当前玩家从森林中选择一棵树，然后选择一个正整数**切割深度**，该深度**不能超过**所选树的秩。接着，玩家移除这棵树中所有深度小于或等于切割深度的顶点。其余顶点构成若干棵有根树，每棵树的根是其中切割前深度最小的顶点。这些树都加入游戏森林，游戏继续进行。\n\n如果一名玩家在自己回合开始时发现森林为空，则该玩家输掉游戏。\n\n请判断在双方都采取最优策略的情况下，Alice 是否能赢。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数 $t$（$1 \\leq t \\leq 5 \\cdot 10^5$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 5 \\cdot 10^5$），表示初始森林中的顶点总数。\n\n第二行包含 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$0 \\leq p_i \\leq n$），表示森林的结构。如果 $p_i = 0$，则第 $i$ 个顶点是某棵树的根；否则，$p_i$ 是顶点 $i$ 的父节点。保证 $p$ 描述的是一个合法的有根森林。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果 Alice 能赢，输出 \"`YES`\"（不含引号）；否则输出 \"`NO`\"（不含引号）。每个字母可以使用任意大小写。\n\n## 说明\n\n在第一个测试用例中，Bob 有一种对称策略，因此 Alice 无法获胜。\n\n![image](https://espresso.codeforces.com/a99dd79745aea9f0b2a4f3506492a83f7d0bc9c7.png)\n\n在第二个测试用例中，Alice 可以选择第二棵树并将切割深度设为 $1$，从而得到一个她可以采用对称策略的森林。\n\n![image](https://espresso.codeforces.com/d265cffb5b1860c1ea6e083123fcafe616e5908d.png)\n\n在第三个测试用例中，唯一一棵树的秩为 $2$，而 Alice 的两种可能行动都会导致她输掉。Bob 可以使森林变成一个他能采用对称策略的局面，也可以直接清空森林。\n\n![image](https://espresso.codeforces.com/c89526250d4d7e635f456ee4e02653eac661da66.png)\n\n在第四个测试用例中，所有叶子的深度都相同，因此 Alice 可以在一次行动中清空森林。\n\n![image](https://espresso.codeforces.com/11a711f187c528a15f160973a6eca97b533ea18b.png)",
   "samples": [
     {
       "input": "4\n4\n0 1 0 3\n7\n0 1 2 0 4 5 6\n4\n0 1 1 2\n7\n0 1 1 2 2 3 3\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:22:14.135Z"
+  "fetchedAt": "2026-10-30T23:22:14.135Z",
+  "translatedAt": "2026-11-05T00:44:38.412+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

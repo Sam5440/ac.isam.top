@@ -4,7 +4,7 @@
   "contestId": 1294,
   "index": "E",
   "title": "Obtain a Permutation",
-  "titleZh": null,
+  "titleZh": "获得一个排列",
   "url": "https://codeforces.com/contest/1294/problem/E",
   "difficulty": 1900,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a rectangular matrix of size $n \\times m$ consisting of integers from $1$ to $2 \\cdot 10^5$.\n\nIn one move, you can:\n\n- choose **any element** of the matrix and change its value to **any** integer between $1$ and $n \\cdot m$, inclusive;\n- take **any column** and shift it one cell up cyclically (see the example of such cyclic shift below).\n\nA cyclic shift is an operation such that you choose some $j$ ($1 \\le j \\le m$) and set $a_{1, j} := a_{2, j}, a_{2, j} := a_{3, j}, \\dots, a_{n, j} := a_{1, j}$ **simultaneously**.\n\n![image](https://espresso.codeforces.com/975c9c018e0b7fedbec4184ac52c1768113fa1d8.png) Example of cyclic shift of the first column\n\nYou want to perform the minimum number of moves to make this matrix look like this:\n\n![image](https://espresso.codeforces.com/11ca04a33eb24aaec84e3180c4868121ff93ca52.png)\n\nIn other words, the goal is to obtain the matrix, where $a_{1, 1} = 1, a_{1, 2} = 2, \\dots, a_{1, m} = m, a_{2, 1} = m + 1, a_{2, 2} = m + 2, \\dots, a_{n, m} = n \\cdot m$ (i.e. $a_{i, j} = (i - 1) \\cdot m + j$) with the **minimum number of moves** performed.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $m$ ($1 \\le n, m \\le 2 \\cdot 10^5, n \\cdot m \\le 2 \\cdot 10^5$) — the size of the matrix.\n\nThe next $n$ lines contain $m$ integers each. The number at the line $i$ and position $j$ is $a_{i, j}$ ($1 \\le a_{i, j} \\le 2 \\cdot 10^5$).\n\n## Output\n\nPrint one integer — the minimum number of moves required to obtain the matrix, where $a_{1, 1} = 1, a_{1, 2} = 2, \\dots, a_{1, m} = m, a_{2, 1} = m + 1, a_{2, 2} = m + 2, \\dots, a_{n, m} = n \\cdot m$ ($a_{i, j} = (i - 1)m + j$).\n\n## Note\n\nIn the first example, you can set $a_{1, 1} := 7, a_{1, 2} := 8$ and $a_{1, 3} := 9$ then shift the first, the second and the third columns cyclically, so the answer is $6$. It can be shown that you cannot achieve a better answer.\n\nIn the second example, the matrix is already good so the answer is $0$.\n\nIn the third example, it is enough to shift the second column cyclically twice to obtain a good matrix, so the answer is $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个大小为 $n \\times m$ 的矩阵，矩阵中的元素均为 $1$ 到 $2 \\cdot 10^5$ 的整数。\n\n一次操作中，你可以：\n\n- 选择矩阵中的**任意元素**，将其值改为 $1$ 到 $n \\cdot m$ 之间（包括边界）的**任意**整数；\n- 选择**任意一列**，将该列向上循环移动一个单元格（如下方的循环移位示例所示）。\n\n循环移位是一种操作：选择某个 $j$（$1 \\le j \\le m$），并**同时**设置 $a_{1, j} := a_{2, j}, a_{2, j} := a_{3, j}, \\dots, a_{n, j} := a_{1, j}$。\n\n![image](https://espresso.codeforces.com/975c9c018e0b7fedbec4184ac52c1768113fa1d8.png) 第一列循环移位示例\n\n你希望通过最少次数的操作，使该矩阵变成如下形式：\n\n![image](https://espresso.codeforces.com/11ca04a33eb24aaec84e3180c4868121ff93ca52.png)\n\n换句话说，目标是以**最少的操作次数**得到满足以下条件的矩阵：$a_{1, 1} = 1, a_{1, 2} = 2, \\dots, a_{1, m} = m, a_{2, 1} = m + 1, a_{2, 2} = m + 2, \\dots, a_{n, m} = n \\cdot m$（即 $a_{i, j} = (i - 1) \\cdot m + j$）。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 2 \\cdot 10^5, n \\cdot m \\le 2 \\cdot 10^5$）——矩阵的大小。\n\n接下来的 $n$ 行每行包含 $m$ 个整数。第 $i$ 行第 $j$ 个位置的数是 $a_{i, j}$（$1 \\le a_{i, j} \\le 2 \\cdot 10^5$）。\n\n## 输出格式\n\n输出一个整数——将矩阵变为满足以下条件的矩阵所需的最少操作次数：$a_{1, 1} = 1, a_{1, 2} = 2, \\dots, a_{1, m} = m, a_{2, 1} = m + 1, a_{2, 2} = m + 2, \\dots, a_{n, m} = n \\cdot m$（$a_{i, j} = (i - 1)m + j$）。\n\n## 说明\n\n在第一个样例中，你可以将 $a_{1, 1} := 7$、$a_{1, 2} := 8$ 和 $a_{1, 3} := 9$，然后对第一列、第二列和第三列进行循环移位，因此答案为 6。可以证明无法取得更优的答案。\n\n在第二个样例中，矩阵已经满足要求，因此答案为 0。\n\n在第三个样例中，只需将第二列循环移位两次即可得到符合要求的矩阵，因此答案为 2。",
   "samples": [
     {
       "input": "3 3\n3 2 1\n1 2 3\n4 5 6\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:00:28.302Z"
+  "fetchedAt": "2026-11-02T19:00:28.302Z",
+  "translatedAt": "2026-11-05T00:34:12.052+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

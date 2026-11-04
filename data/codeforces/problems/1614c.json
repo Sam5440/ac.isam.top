@@ -4,7 +4,7 @@
   "contestId": 1614,
   "index": "C",
   "title": "Divan and bitwise operations",
-  "titleZh": null,
+  "titleZh": "Divan 与位运算",
   "url": "https://codeforces.com/contest/1614/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Once *Divan* analyzed a sequence $a_1, a_2, \\ldots, a_n$ consisting of $n$ non-negative integers as follows. He considered each non-empty *subsequence* of the sequence $a$, computed the [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) of its elements and added up all the XORs, obtaining the *coziness* of the sequence $a$.\n\nA sequence $c$ is a *subsequence* of a sequence $d$ if $c$ can be obtained from $d$ by deletion of several (possibly, zero or all) elements. For example, $[1, \\, 2, \\, 3, \\, 4]$, $[2, \\, 4]$, and $[2]$ are subsequences of $[1, \\, 2, \\, 3, \\, 4]$, but $[4, \\, 3]$ and $[0]$ are not.\n\n*Divan* was very proud of his analysis, but now he lost the sequence $a$, and also the coziness value! However, *Divan* remembers the value of [bitwise OR](https://en.wikipedia.org/wiki/Bitwise_operation#OR) on $m$ contiguous subsegments of the sequence $a$. It turns out that each element of the original sequence is contained in **at least one** of these $m$ segments.\n\n*Divan* asks you to help find the coziness of the sequence $a$ using the information he remembers. If several coziness values are possible, print any.\n\nAs the result can be very large, print the value modulo $10^9 + 7$.\n\n## Input\n\nThe first line contains one integer number $t$ ($1 \\le t \\le 10^3$) — the number of test cases.\n\nThe first line of each test case contains two integer numbers $n$ and $m$ ($1 \\le n, m \\le 2 \\cdot 10^5$) — the length of the sequence and the number of contiguous segments whose bitwise OR values *Divan* remembers, respectively.\n\nThe following $m$ lines describe the segments, one per line.\n\nEach segment is described with three integers $l$, $r$, and $x$ ($1 \\le l \\le r \\le n$, $0 \\le x \\le 2^{30} - 1$) — the first and last elements of the segment and the bitwise OR of $a_l, a_{l + 1}, \\ldots, a_r$, respectively.\n\nIt is guaranteed that each element of the sequence is contained in at least one of the segments. It is guaranteed that there exists a sequence that satisfies all constraints.\n\nIt is guaranteed that the sum of $n$ and the sum of $m$ over all test cases do not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case print the coziness any suitable sequence $a$ modulo $10^9 + 7$.\n\n## Note\n\nIn first example, one of the sequences that fits the constraints is $[0, 2]$. Consider all its non-empty subsequences:\n\n- $[0]$: the bitwise XOR of this subsequence is $0$;\n- $[2]$: the bitwise XOR of this subsequence is $2$;\n- $[0, 2]$: the bitwise XOR of this subsequence is $2$.\n\nThe sum of all results is $4$, so it is the answer.\n\nIn second example, one of the sequences that fits the constraints is $[0, \\, 5, \\, 5]$.\n\nIn third example, one of the sequences that fits the constraints is $[5, \\, 6, \\, 7, \\, 0, \\, 2]$.",
-  "statementZhMd": null,
+  "statementZhMd": "曾经，*Divan* 按如下方式分析了一个由 $n$ 个非负整数组成的序列 $a_1, a_2, \\ldots, a_n$。他考虑序列 $a$ 的每一个非空*子序列*，计算其元素的[按位异或](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)，并将所有异或值相加，得到序列 $a$ 的*舒适度*。\n\n如果序列 $c$ 可以通过从序列 $d$ 中删除若干个（可能为零个或全部）元素得到，那么 $c$ 是 $d$ 的一个*子序列*。例如，$[1, \\, 2, \\, 3, \\, 4]$、$[2, \\, 4]$ 和 $[2]$ 都是 $[1, \\, 2, \\, 3, \\, 4]$ 的子序列，但 $[4, \\, 3]$ 和 $[0]$ 不是。\n\n*Divan* 对自己的分析非常自豪，但现在他丢失了序列 $a$，以及舒适度的值！不过，*Divan* 还记得序列 $a$ 的 $m$ 个连续子段的[按位或](https://en.wikipedia.org/wiki/Bitwise_operation#OR)的值。事实证明，原序列的每个元素都包含在这些子段中的**至少一个**里。\n\n*Divan* 请你利用他记得的信息，帮助找出序列 $a$ 的舒适度。如果可能的舒适度值不止一个，输出任意一个即可。\n\n由于结果可能非常大，请输出其模 $10^9 + 7$ 的值。\n\n## 输入\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^3$）——测试用例的数量。\n\n每组测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 2 \\cdot 10^5$）——序列的长度以及 *Divan* 记得其按位或值的连续子段数量。\n\n接下来的 $m$ 行每行描述一个子段。\n\n每个子段由三个整数 $l$、$r$ 和 $x$ 描述（$1 \\le l \\le r \\le n$，$0 \\le x \\le 2^{30} - 1$）——分别表示该子段的第一个和最后一个元素，以及 $a_l, a_{l + 1}, \\ldots, a_r$ 的按位或。\n\n保证序列的每个元素都包含在至少一个子段中。保证存在一个满足所有条件的序列。\n\n保证所有测试用例中 $n$ 的总和以及 $m$ 的总和均不超过 $2 \\cdot 10^5$。\n\n## 输出\n\n对于每组测试用例，输出任意一个满足条件的序列 $a$ 的舒适度对 $10^9 + 7$ 取模后的值。\n\n## 说明\n\n在第一个样例中，满足条件的序列之一是 $[0, 2]$。考虑它的所有非空子序列：\n\n- $[0]$：该子序列的按位异或为 $0$；\n- $[2]$：该子序列的按位异或为 $2$；\n- $[0, 2]$：该子序列的按位异或为 $2$。\n\n所有结果之和为 $4$，因此答案为 $4$。\n\n在第二个样例中，满足条件的序列之一是 $[0, \\, 5, \\, 5]$。\n\n在第三个样例中，满足条件的序列之一是 $[5, \\, 6, \\, 7, \\, 0, \\, 2]$。",
   "samples": [
     {
       "input": "3\n2 1\n1 2 2\n3 2\n1 3 5\n2 3 5\n5 4\n1 2 7\n3 3 7\n4 4 0\n4 5 2\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:20:28.029Z"
+  "fetchedAt": "2026-10-30T23:20:28.029Z",
+  "translatedAt": "2026-11-05T00:46:53.317+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }
