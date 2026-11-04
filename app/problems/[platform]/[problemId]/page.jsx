@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { DifficultyBadge, PlatformBadge } from '@/components/Badges';
+import CopyProblemButton from '@/components/CopyProblemButton';
 import SamplesSection from '@/components/SamplesSection';
 import StatementBody from '@/components/StatementBody';
 import ProblemViewShell, {
@@ -114,12 +115,28 @@ export default async function ProblemPage({ params }) {
                     <DifficultyBadge difficulty={prob.difficulty} platform={platform} />
                   </div>
                 </div>
-                <Button asChild size="sm" className="shrink-0">
-                  <a href={prob.url} target="_blank" rel="noreferrer">
-                    原题
-                    <ExternalLink className="size-3.5" />
-                  </a>
-                </Button>
+                <div className="flex shrink-0 items-center gap-2">
+                  {prob.statementMd ? (
+                    <CopyProblemButton
+                      platform={platform}
+                      index={prob.index}
+                      title={prob.title}
+                      titleZh={prob.titleZh}
+                      url={prob.url}
+                      timeLimitMs={prob.timeLimitMs}
+                      memoryLimitMb={prob.memoryLimitMb}
+                      statementMd={prob.statementMd}
+                      statementZhMd={prob.statementZhMd ?? null}
+                      samples={prob.samples ?? []}
+                    />
+                  ) : null}
+                  <Button asChild size="sm">
+                    <a href={prob.url} target="_blank" rel="noreferrer">
+                      原题
+                      <ExternalLink className="size-3.5" />
+                    </a>
+                  </Button>
+                </div>
               </div>
               {contestForClient && (
                 <div className="mt-3">
