@@ -6,9 +6,10 @@ import { DifficultyBadge, PlatformBadge } from '@/components/Badges';
 import SamplesSection from '@/components/SamplesSection';
 import StatementBody from '@/components/StatementBody';
 import ProblemViewShell, {
-  ContestSidebar,
   ProblemCompiler,
+  ProblemLetterRail,
   ProblemSwitcher,
+  ProblemTopBar,
 } from '@/components/ProblemViewShell';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -91,10 +92,10 @@ export default async function ProblemPage({ params }) {
         </Link>
       </Button>
 
-      <ProblemViewShell
-        sidebar={<ContestSidebar contest={contestForClient} current={prob} />}
-      >
+      <ProblemViewShell>
         <div className="min-w-0 space-y-6">
+          <ProblemTopBar contest={contestForClient} current={prob} />
+          <ProblemLetterRail contest={contestForClient} current={prob} />
           <Card>
             <CardHeader>
               <div className="flex flex-wrap items-start gap-4">

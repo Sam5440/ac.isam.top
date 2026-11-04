@@ -50,8 +50,9 @@ const DEFAULT_SETTINGS = {
   zhPriority: DEFAULT_PRIORITY,
   zhStyle: DEFAULT_ZH_STYLE,
   ai: { baseUrl: '', apiKey: '', model: AI_MODELS[0] },
-  // 比赛题目页视图：'sidebar'（侧栏题目列表 + 顶部切换）| 'full'（整页阅读）
-  contestView: 'sidebar',
+  // 题目页切换条（比赛含 ≥2 题时显示）：题目卡上方横向题目条 / 视口左侧题号竖条
+  topSwitcher: true,
+  letterRail: true,
   // 首页「最新比赛」展示的比赛类型（CONTEST_TYPES 子集）
   homeContestTypes: DEFAULT_HOME_TYPES,
   // 界面外观（THEME_OPTIONS 之一，默认夜间）
@@ -99,6 +100,9 @@ function loadSettings() {
       merged.sidebarChannels = [
         ...new Set([...(Array.isArray(merged.sidebarChannels) ? merged.sidebarChannels : []), 'ai', 'ai_custom']),
       ];
+      // 旧版「比赛题目页视图 = 整页阅读」偏好迁移：此前选整页的用户默认关闭两类切换条
+      if (v.topSwitcher === undefined) merged.topSwitcher = v.contestView !== 'full';
+      if (v.letterRail === undefined) merged.letterRail = v.contestView !== 'full';
       return merged;
     }
   } catch {}
@@ -646,27 +650,32 @@ function SettingsDialog({ onClose }) {
         </div>
 
         <div className="space-y-1.5">
-          <p className="text-muted-foreground text-xs font-medium">比赛题目页视图</p>
-          <div className="flex rounded-md border p-0.5">
+          <p className="text-muted-foreground text-xs font-medium">题目页切换条（比赛含多题时显示）</p>
+          <div className="flex flex-wrap gap-1.5">
             {[
-              { id: 'sidebar', label: '侧栏 + 切换条' },
-              { id: 'full', label: '整页阅读' },
-            ].map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                onClick={() => setSettings({ contestView: m.id })}
-                aria-pressed={settings.contestView === m.id}
-                className={`flex-1 rounded px-2 py-1 text-xs transition-colors ${
-                  settings.contestView === m.id
-                    ? 'bg-primary font-medium text-primary-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {m.label}
-              </button>
-            ))}
+              { key: 'topSwitcher', label: '题目上方切换条' },
+              { key: 'letterRail', label: '左侧题号切换条' },
+            ].map((t) => {
+              const on = !!settings[t.key];
+              return (
+                <button
+                  key={t.key}
+                  type="button"
+                  onClick={() => setSettings({ [t.key]: !on })}
+                  aria-pressed={on}
+                  className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs transition-colors ${
+                    on ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <span className={`inline-block size-2 rounded-full ${on ? 'bg-primary' : 'bg-border'}`} />
+                  {t.label}
+                </button>
+              );
+            })}
           </div>
+          <p className="text-muted-foreground/70 block text-[11px] leading-relaxed">
+            上方条：本比赛全部题目横向排列于题目卡上方（与题目列等宽）；左侧条：固定垂直居中，仅显示题号。
+          </p>
         </div>
 
         <CompilerSettingsSection />
