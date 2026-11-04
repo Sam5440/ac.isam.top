@@ -4,14 +4,14 @@
   "contestId": 1818,
   "index": "D",
   "title": "Fish Graph",
-  "titleZh": null,
+  "titleZh": "鱼图",
   "url": "https://codeforces.com/contest/1818/problem/D",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a simple undirected graph with $n$ nodes and $m$ edges. Note that the graph is not necessarily connected. The nodes are labeled from $1$ to $n$.\n\nWe define a graph to be a *Fish Graph* if it contains a simple cycle with a special node $u$ belonging to the cycle. Apart from the edges in the cycle, the graph should have exactly $2$ extra edges. Both edges should connect to node $u$, but they should not be connected to any other node of the cycle.\n\nDetermine if the graph contains a subgraph that is a Fish Graph, and if so, find any such subgraph.\n\nIn this problem, we define a subgraph as a graph obtained by taking any subset of the edges of the original graph.\n\n![image](https://espresso.codeforces.com/d4948becce5d44359306c804c5e536e116fca5cd.png) Visualization of example 1. The red edges form one possible subgraph that is a Fish Graph.\n\n## Input\n\nThe first line of input contains the integer $t$ ($1 \\leq t \\leq 1000$), the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains two integers, $n$ and $m$ ($1 \\le n, m \\le 2\\,000$) — the number of nodes and the number of edges.\n\nEach of the next $m$ lines contains the description of an edge. Each line contains two integers $u_i$ and $v_i$ ($1 \\leq u_i, v_i \\leq n$, $u_i\\neq v_i$) — an edge connects node $u_i$ to node $v_i$.\n\nIt is guaranteed that no two edges connect the same unordered pair of nodes.\n\nFurthermore, it is guaranteed that the sum of $n$ and the sum of $m$ over all test cases both do not exceed $2\\,000$.\n\n## Output\n\nFor each testcase, output \"`YES`\" if the graph contains a subgraph that is a Fish Graph, otherwise print \"`NO`\". If the answer is \"`YES`\", on the following lines output a description of the subgraph.\n\nThe first line of the description contains one integer $k$ — the number of edges of the subgraph.\n\nOn the next $k$ lines, output the edges of the chosen subgraph. Each of the $k$ lines should contains two integers $u$ and $v$ ($1\\le u, v\\le n$, $u\\neq v$) — the edge between $u$ and $v$ belongs to the subgraph. The order in which $u$ and $v$ are printed does not matter, as long as the two nodes are connected by an edge in the original graph. The order in which you print the edges does not matter, as long as the resulting subgraph is a fish graph.\n\nIf there are multiple solutions, print any.\n\n## Note\n\nIn the first example, a possible valid subgraph contains the cycle $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4 \\rightarrow 1$. The special node of this cycle is node $4$. The two extra edges $4 - 5$ and $4 - 6$ are both connected to $4$, completing the Fish Graph.\n\nIn the second example, a possible valid subgraph contains the cycle $1 \\rightarrow 3 \\rightarrow 4 \\rightarrow 1$. The special node of this cycle is node $3$. The two extra edges $3 - 2$ and $3 - 5$ are both connected to $3$, completing the Fish Graph.\n\nIn the last example, it can be proven that there is no valid subgraph.",
-  "statementZhMd": null,
+  "statementZhMd": "你得到了一个含有 $n$ 个节点和 $m$ 条边的简单无向图。注意，该图不一定连通。节点编号为 $1$ 到 $n$。\n\n如果一个图包含一个简单环，并且环上有一个特殊节点 $u$，则称该图为*鱼图*。除环上的边外，该图应恰好包含 $2$ 条额外边。这两条边都应连接到节点 $u$，但不能连接到环上的其他任何节点。\n\n请判断该图是否包含一个鱼图子图；如果包含，请找出任意一个这样的子图。\n\n在本题中，子图定义为从原图的边中选取任意子集所得到的图。\n\n![image](https://espresso.codeforces.com/d4948becce5d44359306c804c5e536e116fca5cd.png) 样例 1 的示意图。红色边构成了一个可能的鱼图子图。\n\n## 输入格式\n\n输入的第一行包含整数 $t$ ($1 \\leq t \\leq 1000$)，表示测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$ ($1 \\leq n, m \\leq 2\\,000$)，分别表示节点数和边数。\n\n接下来的 $m$ 行中，每行描述一条边。每行包含两个整数 $u_i$ 和 $v_i$ ($1 \\leq u_i, v_i \\leq n$，$u_i\\neq v_i$)，表示一条连接节点 $u_i$ 和 $v_i$ 的边。\n\n保证不存在两条边连接同一对无序节点。\n\n此外，保证所有测试用例的 $n$ 之和以及 $m$ 之和均不超过 $2\\,000$。\n\n## 输出格式\n\n对于每个测试用例，如果图中包含一个鱼图子图，输出“`YES`”，否则输出“`NO`”。如果答案为“`YES`”，则在接下来的若干行中输出该子图的描述。\n\n描述的第一行包含一个整数 $k$，表示该子图的边数。\n\n接下来的 $k$ 行中，输出所选子图的边。每行应包含两个整数 $u$ 和 $v$ ($1\\le u, v\\le n$，$u\\neq v$)，表示子图中包含连接 $u$ 和 $v$ 的边。只要原图中存在连接这两个节点的边，输出 $u$ 和 $v$ 的顺序不限。只要最终得到的子图是一个鱼图，输出边的顺序不限。\n\n如果有多个解，输出任意一个即可。\n\n## 说明\n\n在第一个样例中，一个可能的合法子图包含环 $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4 \\rightarrow 1$。该环的特殊节点是节点 $4$。两条额外边 $4 - 5$ 和 $4 - 6$ 都连接到 $4$，从而构成鱼图。\n\n在第二个样例中，一个可能的合法子图包含环 $1 \\rightarrow 3 \\rightarrow 4 \\rightarrow 1$。该环的特殊节点是节点 $3$。两条额外边 $3 - 2$ 和 $3 - 5$ 都连接到 $3$，从而构成鱼图。\n\n在最后一个样例中，可以证明不存在合法的子图。",
   "samples": [
     {
       "input": "3\n7 8\n1 2\n2 3\n3 4\n4 1\n4 5\n4 6\n4 2\n6 7\n7 7\n6 7\n1 2\n2 3\n3 4\n4 1\n1 3\n3 5\n4 4\n1 3\n3 4\n4 1\n1 2\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:26:45.988Z"
+  "fetchedAt": "2026-10-30T22:26:45.988Z",
+  "translatedAt": "2026-11-04T09:13:02.681+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

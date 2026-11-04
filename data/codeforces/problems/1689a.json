@@ -4,7 +4,7 @@
   "contestId": 1689,
   "index": "A",
   "title": "Lex String",
-  "titleZh": null,
+  "titleZh": "字典序字符串",
   "url": "https://codeforces.com/contest/1689/problem/A",
   "difficulty": 800,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "*Kuznecov likes art, poetry, and music. And strings consisting of lowercase English letters.*\n\nRecently, Kuznecov has found two strings, $a$ and $b$, of lengths $n$ and $m$ respectively. They consist of lowercase English letters and **no character is contained in both strings**.\n\nLet another string $c$ be initially empty. Kuznecov can do the following two types of operations:\n\n- Choose any character from the string $a$, remove it from $a$, and add it to the end of $c$.\n- Choose any character from the string $b$, remove it from $b$, and add it to the end of $c$.\n\nBut, he can not do more than $k$ operations of the same type in a row. He must perform operations until either $a$ or $b$ becomes empty. What is the lexicographically smallest possible value of $c$ after he finishes?\n\nA string $x$ is lexicographically smaller than a string $y$ if and only if one of the following holds:\n\n- $x$ is a prefix of $y$, but $x \\neq y$;\n- in the first position where $x$ and $y$ differ, the string $x$ has a letter that appears earlier in the alphabet than the corresponding letter in $y$.\n\n## Input\n\nThere are several test cases in the input data. The first line contains a single integer $t$ ($1 \\leq t \\leq 100$) — the number of test cases. This is followed by the test cases description.\n\nThe first line of each test case contains three integers $n$, $m$, and $k$ ($1\\leq n,m,k \\leq 100$) — parameters from the statement.\n\nThe second line of each test case contains the string $a$ of length $n$.\n\nThe third line of each test case contains the string $b$ of length $m$.\n\nThe strings contain only lowercase English letters. It is guaranteed that no symbol appears in $a$ and $b$ simultaneously.\n\n## Output\n\nIn each test case, output a single string $c$ — the answer to the problem.\n\n## Note\n\nIn the first test case, it is optimal to take two '`a`'s from the string $a$ and add them to the string $c$. Then it is forbidden to take more characters from $a$, hence one character '`b`' from the string $b$ has to be taken. Following that logic, we end up with $c$ being '`aabaabaa`' when string $a$ is emptied.\n\nIn the second test case it is optimal to take as many '`a`'s from string $a$ as possible, then take as many '`b`'s as possible from string $b$. In the end, we take two '`c`'s from the string $a$ emptying it.",
-  "statementZhMd": null,
+  "statementZhMd": "*Kuznecov 喜欢艺术、诗歌和音乐，也喜欢由小写英文字母组成的字符串。*\n\n最近，Kuznecov 找到了两个字符串 $a$ 和 $b$，它们的长度分别为 $n$ 和 $m$。它们由小写英文字母组成，并且**不存在同时出现在两个字符串中的字符**。\n\n另有一个字符串 $c$，初始为空。Kuznecov 可以进行以下两种操作：\n\n- 从字符串 $a$ 中选择任意字符，将其从 $a$ 中删除，并添加到 $c$ 的末尾。\n- 从字符串 $b$ 中选择任意字符，将其从 $b$ 中删除，并添加到 $c$ 的末尾。\n\n但是，他不能连续进行超过 $k$ 次同一种操作。他必须持续进行操作，直到 $a$ 或 $b$ 变为空。求操作结束后 $c$ 的字典序最小可能值。\n\n当且仅当以下条件之一成立时，称字符串 $x$ 的字典序小于字符串 $y$：\n\n- $x$ 是 $y$ 的前缀，且 $x \\neq y$；\n- 在 $x$ 和 $y$ 首个不同的位置，$x$ 中的字母在字母表中早于 $y$ 中对应的字母。\n\n## 输入格式\n\n输入数据包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 100$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含三个整数 $n$、$m$ 和 $k$（$1\\leq n,m,k \\leq 100$）——题目描述中的参数。\n\n每个测试用例的第二行包含长度为 $n$ 的字符串 $a$。\n\n每个测试用例的第三行包含长度为 $m$ 的字符串 $b$。\n\n字符串仅包含小写英文字母。保证不存在同时出现在 $a$ 和 $b$ 中的字符。\n\n## 输出格式\n\n对于每个测试用例，输出一个字符串 $c$——题目的答案。\n\n## 说明\n\n在第一个测试用例中，最优策略是从字符串 $a$ 中取出两个 '`a`' 并将它们添加到字符串 $c$ 中。此时禁止继续从 $a$ 中取字符，因此必须从字符串 $b$ 中取出一个字符 '`b`'。按照这一逻辑，当字符串 $a$ 为空时，最终得到的 $c$ 为 '`aabaabaa`'。\n\n在第二个测试用例中，最优策略是尽可能多地从字符串 $a$ 中取出 '`a`'，然后尽可能多地从字符串 $b$ 中取出 '`b`'。最后，从字符串 $a$ 中取出两个 '`c`'，使其为空。",
   "samples": [
     {
       "input": "3\n6 4 2\naaaaaa\nbbbb\n5 9 3\ncaaca\nbedededeb\n7 7 1\nnoskill\nwxhtzdy\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:01:06.840Z"
+  "fetchedAt": "2026-10-30T23:01:06.840Z",
+  "translatedAt": "2026-11-04T10:16:34.067+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

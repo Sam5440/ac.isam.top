@@ -4,7 +4,7 @@
   "contestId": 1466,
   "index": "G",
   "title": "Song of the Sirens",
-  "titleZh": null,
+  "titleZh": "塞壬之歌",
   "url": "https://codeforces.com/contest/1466/problem/G",
   "difficulty": 2600,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*Whoso in ignorance draws near to them and hears the Sirens' voice, he nevermore returns.*Homer, *Odyssey*\n\nIn the times of Jason and the Argonauts, it was well known that sirens use the sound of their songs to lure sailors into their demise. Yet only a few knew that every time sirens call a sailor by his name, his will weakens, making him more vulnerable.\n\nFor the purpose of this problem, both siren songs and names of the sailors will be represented as strings of lowercase English letters. The more times the sailor's name occurs as a contiguous substring of the song, the greater danger he is in.\n\nJason found out that sirens can sing one of the $n+1$ songs, which have the following structure: let $s_i$ ($0 \\leq i \\leq n$) be the $i$-th song and $t$ be a string of length $n$, then for every $i \\lt n$: $s_{i+1} = s_i t_i s_i$. In other words $i+1$-st song is the concatenation of $i$-th song, $i$-th letter ($0$-indexed) of $t$ and the $i$-th song.\n\nFortunately, he also knows $s_0$ and $t$. Jason wonders how many times a sailor's name is mentioned in a particular song. Answer $q$ queries: given the sailor's name ($w$) and the index of a song ($i$) output the number of occurrences of $w$ in $s_i$ as a substring. As this number can be quite large, output its remainder modulo $10^9+7$.\n\n## Input\n\nIn the first line of input there are two integers $n$, $q$ ( $ 1 \\leq n, q \\leq 10^5$) meaning that there are $n+1$ songs and $q$ queries. In the next two lines strings $s_0$ and $t$ follow ($1 \\leq |s_0| \\leq 100, |t| = n$).\n\nNext $q$ lines describe the queries; each one contains an integer $k$ ($ 0 \\leq k \\leq n$), the index of the song sung by the sirens, and a non-empty string $w$, which is the name of a sailor. All strings in this problem consist only of lowercase English letters, and the sum of lengths of sailors' names does not exceed $10^6$.\n\n## Output\n\nOutput $q$ lines, $i$-th of them should contain the remainder modulo $10^9+7$ of the number of occurrences of $w$ in $s_k$.\n\n## Note\n\nIn the first example songs of the sirens are as follows:\n\n- Song $0$: `aa`\n- Song $1$: `aabaa`\n- Song $2$: `aabaacaabaa`\n- Song $3$: `aabaacaabaadaabaacaabaa`",
-  "statementZhMd": null,
+  "statementZhMd": "*凡是懵懂地接近她们并听到塞壬歌声的人，都将一去不返。*——荷马，《奥德赛》\n\n在伊阿宋和阿尔戈英雄们所处的时代，人们都知道塞壬会用歌声引诱水手走向死亡。然而，只有少数人知道，每当塞壬呼唤水手的名字时，水手的意志就会变得薄弱，使他更容易受到诱惑。\n\n在本题中，塞壬的歌声和水手的名字都将表示为由小写英文字母组成的字符串。水手的名字作为歌声的连续子串出现的次数越多，他所处的危险就越大。\n\n伊阿宋发现，塞壬可以演唱 $n+1$ 首歌曲，其结构如下：设 $s_i$（$0 \\leq i \\leq n$）为第 $i$ 首歌曲，$t$ 为一个长度为 $n$ 的字符串，则对于每个 $i \\lt n$：$s_{i+1} = s_i t_i s_i$。换句话说，第 $i+1$ 首歌曲由第 $i$ 首歌曲、第 $i$ 个（从 $0$ 开始编号）字符 $t_i$ 以及第 $i$ 首歌曲依次连接而成。\n\n幸运的是，他还知道 $s_0$ 和 $t$。伊阿宋想知道，在指定的歌曲中，一名水手的名字被提到了多少次。请回答 $q$ 个询问：给定水手的名字（$w$）和歌曲的编号（$i$），输出 $w$ 作为子串在 $s_i$ 中出现的次数。由于这个数字可能很大，请输出其对 $10^9+7$ 取模后的结果。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n, q$（$ 1 \\leq n, q \\leq 10^5$），表示共有 $n+1$ 首歌曲和 $q$ 个询问。接下来的两行分别给出字符串 $s_0$ 和 $t$（$1 \\leq |s_0| \\leq 100, |t| = n$）。\n\n接下来的 $q$ 行描述询问；每行包含一个整数 $k$（$ 0 \\leq k \\leq n$），表示塞壬演唱的歌曲的编号，以及一个非空字符串 $w$，表示一名水手的名字。本题中的所有字符串都只由小写英文字母组成，且所有水手名字的长度之和不超过 $10^6$。\n\n## 输出格式\n\n输出 $q$ 行，其中第 $i$ 行应包含 $w$ 作为子串在 $s_k$ 中出现次数对 $10^9+7$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，塞壬演唱的歌曲如下：\n\n- 歌曲 $0$：`aa`\n- 歌曲 $1$：`aabaa`\n- 歌曲 $2$：`aabaacaabaa`\n- 歌曲 $3$：`aabaacaabaadaabaacaabaa`",
   "samples": [
     {
       "input": "3 3\naa\nbcd\n2 aba\n3 ca\n3 aa\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:38:42.660Z"
+  "fetchedAt": "2026-10-30T23:38:42.660Z",
+  "translatedAt": "2026-11-04T10:36:55.672+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

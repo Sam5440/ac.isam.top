@@ -4,7 +4,7 @@
   "contestId": 1738,
   "index": "B",
   "title": "Prefix Sum Addicts",
-  "titleZh": null,
+  "titleZh": "前缀和爱好者",
   "url": "https://codeforces.com/contest/1738/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Suppose $a_1, a_2, \\dots, a_n$ is a sorted **integer** sequence of length $n$ such that $a_1 \\leq a_2 \\leq \\dots \\leq a_n$.\n\nFor every $1 \\leq i \\leq n$, the prefix sum $s_i$ of the first $i$ terms $a_1, a_2, \\dots, a_i$ is defined by $$ s_i = \\sum_{k=1}^i a_k = a_1 + a_2 + \\dots + a_i. $$\n\nNow you are given the last $k$ terms of the prefix sums, which are $s_{n-k+1}, \\dots, s_{n-1}, s_{n}$. Your task is to determine whether this is possible.\n\nFormally, given $k$ integers $s_{n-k+1}, \\dots, s_{n-1}, s_{n}$, the task is to check whether there is a sequence $a_1, a_2, \\dots, a_n$ such that\n\n1. $a_1 \\leq a_2 \\leq \\dots \\leq a_n$, and\n2. $s_i = a_1 + a_2 + \\dots + a_i$ for all $n-k+1 \\leq i \\leq n$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains an integer $t$ ($1 \\leq t \\leq 10^5$) — the number of test cases. The following lines contain the description of each test case.\n\nThe first line of each test case contains two integers $n$ ($1 \\leq n \\leq 10^5$) and $k$ ($1 \\leq k \\leq n$), indicating the length of the sequence $a$ and the number of terms of prefix sums, respectively.\n\nThe second line of each test case contains $k$ integers $s_{n-k+1}, \\dots, s_{n-1}, s_{n}$ ($-10^9 \\leq s_i \\leq 10^9$ for every $n-k+1 \\leq i \\leq n$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output \"`YES`\" (without quotes) if it is possible and \"`NO`\" (without quotes) otherwise.\n\nYou can output \"`YES`\" and \"`NO`\" in any case (for example, strings \"`yEs`\", \"`yes`\" and \"`Yes`\" will be recognized as a positive response).\n\n## Note\n\nIn the first test case, we have the only sequence $a = [1, 1, 1, 1, 1]$.\n\nIn the second test case, we can choose, for example, $a = [-3, -2, -1, 0, 1, 2, 3]$.\n\nIn the third test case, the prefix sums define the only sequence $a = [2, 1, 1]$, but it is not sorted.\n\nIn the fourth test case, it can be shown that there is no sequence with the given prefix sums.",
-  "statementZhMd": null,
+  "statementZhMd": "假设 $a_1, a_2, \\dots, a_n$ 是一个长度为 $n$ 的有序**整数**序列，满足 $a_1 \\leq a_2 \\leq \\dots \\leq a_n$。\n\n对于每个 $1 \\leq i \\leq n$，前 $i$ 项 $a_1, a_2, \\dots, a_i$ 的前缀和 $s_i$ 定义为 $$ s_i = \\sum_{k=1}^i a_k = a_1 + a_2 + \\dots + a_i. $$\n\n现在给定前缀和的最后 $k$ 项，即 $s_{n-k+1}, \\dots, s_{n-1}, s_{n}$。你的任务是判断是否存在满足条件的序列。\n\n形式化地，给定 $k$ 个整数 $s_{n-k+1}, \\dots, s_{n-1}, s_{n}$，请判断是否存在一个序列 $a_1, a_2, \\dots, a_n$，使得\n\n1. $a_1 \\leq a_2 \\leq \\dots \\leq a_n$，并且\n2. 对所有 $n-k+1 \\leq i \\leq n$，都有 $s_i = a_1 + a_2 + \\dots + a_i$。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 10^5$），表示测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$（$1 \\leq n \\leq 10^5$）和 $k$（$1 \\leq k \\leq n$），分别表示序列 $a$ 的长度以及给出的前缀和项数。\n\n每个测试用例的第二行包含 $k$ 个整数 $s_{n-k+1}, \\dots, s_{n-1}, s_{n}$（对于每个 $n-k+1 \\leq i \\leq n$，均有 $-10^9 \\leq s_i \\leq 10^9$）。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果存在满足条件的序列，输出“`YES`”（不含引号）；否则输出“`NO`”（不含引号）。\n\n你可以以任意大小写形式输出“`YES`”和“`NO`”（例如，字符串“`yEs`”“`yes`”和“`Yes`”都会被识别为肯定回答）。\n\n## 说明\n\n在第一个测试用例中，只有唯一的序列 $a = [1, 1, 1, 1, 1]$。\n\n在第二个测试用例中，例如可以选择 $a = [-3, -2, -1, 0, 1, 2, 3]$。\n\n在第三个测试用例中，前缀和确定了唯一的序列 $a = [2, 1, 1]$，但该序列并不是有序的。\n\n在第四个测试用例中，可以证明不存在满足给定前缀和的序列。",
   "samples": [
     {
       "input": "4\n5 5\n1 2 3 4 5\n7 4\n-6 -5 -3 0\n3 3\n2 3 4\n3 2\n3 4\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:44:58.449Z"
+  "fetchedAt": "2026-10-30T22:44:58.449Z",
+  "translatedAt": "2026-11-04T09:19:16.895+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

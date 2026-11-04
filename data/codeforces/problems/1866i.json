@@ -4,7 +4,7 @@
   "contestId": 1866,
   "index": "I",
   "title": "Imagination Castle",
-  "titleZh": null,
+  "titleZh": "想象城堡",
   "url": "https://codeforces.com/contest/1866/problem/I",
   "difficulty": 2300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Given a chessboard of size $N \\times M$ ($N$ rows and $M$ columns). Each row is numbered from $1$ to $N$ from top to bottom and each column is numbered from $1$ to $M$ from left to right. The tile in row $r$ and column $c$ is denoted as $(r,c)$. There exists $K$ distinct special tiles on the chessboard with the $i$-th special tile being tile $(X_i,Y_i)$. It is guaranteed that tile $(1,1)$ is not a special tile.\n\nA new chess piece has been invented, which is the castle. The castle moves similarly to a rook in regular chess, but slightly differently. In one move, a castle that is on some tile can only move to another tile in the same row or in the same column, but only in the right direction or the down direction. Formally, in one move, the castle on tile $(r,c)$ can only move to tile $(r',c')$ if and only if one of the following two conditions is satisfied:\n\n- $r'=r$ and $c' \\gt c$.\n- $c'=c$ and $r' \\gt r$.\n\nChaneka and Bhinneka will play a game. In the beginning of the game, there is a castle in tile $(1,1)$. The two players will play alternatingly with Chaneka going first. In one turn, the player on that turn must move the castle following the movement rules of the castle.\n\nIf a player moves the castle to a special tile on her turn, then that player wins the game and the game ends. If on a turn, the castle cannot be moved, the player on that turn loses and the game ends.\n\nGiven the size of the board and the locations of each special tile. Determine the winner of this game if Chaneka and Bhinneka plays optimally.\n\n## Input\n\nThe first line contains three integers $N$, $M$, and $K$ ($1 \\leq N,M \\leq 2 \\cdot 10^5$; $0 \\leq K \\leq \\min(N \\times M - 1, 2\\cdot10^5)$) — the size of the chessboard and the number of special tiles.\n\nThe $i$-th of the next $K$ lines contains two integers $X_i$ and $Y_i$ ($1\\leq X_i\\leq N$; $1\\leq Y_i\\leq M$; $(X_i, Y_i) \\neq (1,1)$) — the location of each special tile. The special tiles are pairwise distinct.\n\n## Output\n\nOutput `Chaneka` if Chaneka is the winner, output `Bhinneka` if Bhinneka is the winner.\n\n## Note\n\nIn the first example, the following is an illustration of the chessboard in the beginning of the game.\n\n![image](https://espresso.codeforces.com/79d24bd8ddccf79aeff668801c8cbaf6702a596e.png)\n\nChaneka can move the castle to special tile $(1,3)$ or $(1,5)$ directly on her first turn. Therefore, Chaneka is the winner.\n\nIn the second example, the following is an illustration of the chessboard in the beginning of the game.\n\n![image](https://espresso.codeforces.com/a32630fbfbf586a6f7dcb0a15f5322477ba8cbdf.png)\n\nChaneka can only move the castle to tile $(1, 2)$ or $(2, 1)$ on her first turn. Whatever Chaneka does, Bhinneka will be able to directly move the castle to tile $(2, 2)$. After that, on Chaneka's turn, she cannot move the castle, so Chaneka loses. Therefore, Bhinneka is the winner.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个大小为 $N \\times M$ 的棋盘（$N$ 行 $M$ 列）。每一行从上到下编号为 $1$ 到 $N$，每一列从左到右编号为 $1$ 到 $M$。第 $r$ 行第 $c$ 列的格子记为 $(r,c)$。棋盘上有 $K$ 个互不相同的特殊格子，其中第 $i$ 个特殊格子为 $(X_i,Y_i)$。保证格子 $(1,1)$ 不是特殊格子。\n\n一种新的棋子被发明出来，它叫作城堡。城堡的移动方式与国际象棋中的车类似，但略有不同。每次移动时，位于某个格子的城堡只能移动到同一行或同一列的另一个格子，并且只能向右或向下移动。形式化地说，在一次移动中，位于格子 $(r,c)$ 的城堡可以移动到格子 $(r',c')$，当且仅当满足以下两个条件之一：\n\n- $r'=r$ 且 $c' \\gt c$。\n- $c'=c$ 且 $r' \\gt r$。\n\nChaneka 和 Bhinneka 将进行一场游戏。游戏开始时，城堡位于格子 $(1,1)$。两名玩家轮流行动，由 Chaneka 先手。轮到某位玩家时，该玩家必须按照城堡的移动规则移动城堡。\n\n如果某位玩家在自己的回合将城堡移动到特殊格子，则该玩家获胜，游戏结束。如果轮到某位玩家时城堡无法移动，则该玩家输掉游戏，游戏结束。\n\n给定棋盘大小以及每个特殊格子的位置。假设 Chaneka 和 Bhinneka 均采取最优策略，确定这场游戏的获胜者。\n\n## 输入格式\n\n第一行包含三个整数 $N$、$M$ 和 $K$（$1 \\leq N,M \\leq 2 \\cdot 10^5$；$0 \\leq K \\leq \\min(N \\times M - 1, 2\\cdot10^5)$），分别表示棋盘的大小和特殊格子的数量。\n\n接下来的 $K$ 行中，第 $i$ 行包含两个整数 $X_i$ 和 $Y_i$（$1\\leq X_i\\leq N$；$1\\leq Y_i\\leq M$；$(X_i, Y_i) \\neq (1,1)$），表示第 $i$ 个特殊格子的位置。特殊格子两两不同。\n\n## 输出格式\n\n如果 Chaneka 获胜，输出 `Chaneka`；如果 Bhinneka 获胜，输出 `Bhinneka`。\n\n## 说明\n\n在第一个样例中，下面给出了游戏开始时棋盘的示意图。\n\n![image](https://espresso.codeforces.com/79d24bd8ddccf79aeff668801c8cbaf6702a596e.png)\n\nChaneka 可以在第一回合直接将城堡移动到特殊格子 $(1,3)$ 或 $(1,5)$。因此，Chaneka 获胜。\n\n在第二个样例中，下面给出了游戏开始时棋盘的示意图。\n\n![image](https://espresso.codeforces.com/a32630fbfbf586a6f7dcb0a15f5322477ba8cbdf.png)\n\nChaneka 在第一回合只能将城堡移动到格子 $(1, 2)$ 或 $(2, 1)$。无论 Chaneka 如何行动，Bhinneka 都可以将城堡直接移动到格子 $(2, 2)$。之后轮到 Chaneka 时，她无法移动城堡，因此 Chaneka 输掉了游戏。所以，Bhinneka 获胜。",
   "samples": [
     {
       "input": "4 5 3\n1 3\n4 4\n1 5\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:25:58.631Z"
+  "fetchedAt": "2026-11-02T17:25:58.631Z",
+  "translatedAt": "2026-11-04T09:14:34.645+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

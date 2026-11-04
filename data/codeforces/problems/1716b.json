@@ -4,7 +4,7 @@
   "contestId": 1716,
   "index": "B",
   "title": "Permutation Chain",
-  "titleZh": null,
+  "titleZh": "排列链",
   "url": "https://codeforces.com/contest/1716/problem/B",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "A permutation of length $n$ is a sequence of integers from $1$ to $n$ such that each integer appears in it exactly once.\n\nLet the fixedness of a permutation $p$ be the number of fixed points in it — the number of positions $j$ such that $p_j = j$, where $p_j$ is the $j$-th element of the permutation $p$.\n\nYou are asked to build a sequence of permutations $a_1, a_2, \\dots$, starting from the identity permutation (permutation $a_1 = [1, 2, \\dots, n]$). Let's call it a permutation chain. Thus, $a_i$ is the $i$-th permutation of length $n$.\n\nFor every $i$ from $2$ onwards, the permutation $a_i$ should be obtained from the permutation $a_{i-1}$ by swapping any two elements in it (not necessarily neighboring). The fixedness of the permutation $a_i$ should be strictly lower than the fixedness of the permutation $a_{i-1}$.\n\nConsider some chains for $n = 3$:\n\n- $a_1 = [1, 2, 3]$, $a_2 = [1, 3, 2]$ — that is a valid chain of length $2$. From $a_1$ to $a_2$, the elements on positions $2$ and $3$ get swapped, the fixedness decrease from $3$ to $1$.\n- $a_1 = [2, 1, 3]$, $a_2 = [3, 1, 2]$ — that is not a valid chain. The first permutation should always be $[1, 2, 3]$ for $n = 3$.\n- $a_1 = [1, 2, 3]$, $a_2 = [1, 3, 2]$, $a_3 = [1, 2, 3]$ — that is not a valid chain. From $a_2$ to $a_3$, the elements on positions $2$ and $3$ get swapped but the fixedness increase from $1$ to $3$.\n- $a_1 = [1, 2, 3]$, $a_2 = [3, 2, 1]$, $a_3 = [3, 1, 2]$ — that is a valid chain of length $3$. From $a_1$ to $a_2$, the elements on positions $1$ and $3$ get swapped, the fixedness decrease from $3$ to $1$. From $a_2$ to $a_3$, the elements on positions $2$ and $3$ get swapped, the fixedness decrease from $1$ to $0$.\n\nFind the longest permutation chain. If there are multiple longest answers, print any of them.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 99$) — the number of testcases.\n\nThe only line of each testcase contains a single integer $n$ ($2 \\le n \\le 100$) — the required length of permutations in the chain.\n\n## Output\n\nFor each testcase, first, print the length of a permutation chain $k$.\n\nThen print $k$ permutations $a_1, a_2, \\dots, a_k$. $a_1$ should be an identity permutation of length $n$ ($[1, 2, \\dots, n]$). For each $i$ from $2$ to $k$, $a_i$ should be obtained by swapping two elements in $a_{i-1}$. It should also have a strictly lower fixedness than $a_{i-1}$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n长度为 $n$ 的排列是一个由 $1$ 到 $n$ 的整数组成的序列，其中每个整数恰好出现一次。\n\n定义排列 $p$ 的不动点数为其中不动点的数量，即满足 $p_j = j$ 的位置 $j$ 的数量，其中 $p_j$ 是排列 $p$ 的第 $j$ 个元素。\n\n你需要构造一个排列序列 $a_1, a_2, \\dots$，并从恒等排列开始（排列 $a_1 = [1, 2, \\dots, n]$）。我们称这样的序列为排列链。因此，$a_i$ 是排列链中的第 $i$ 个长度为 $n$ 的排列。\n\n对于从 $2$ 开始的每个 $i$，排列 $a_i$ 都应当通过交换排列 $a_{i-1}$ 中的任意两个元素（不一定相邻）得到。同时，排列 $a_i$ 的不动点数应严格小于排列 $a_{i-1}$ 的不动点数。\n\n考虑 $n = 3$ 时的一些排列链：\n\n- $a_1 = [1, 2, 3]$，$a_2 = [1, 3, 2]$ —— 这是一个长度为 $2$ 的合法排列链。从 $a_1$ 到 $a_2$，交换了位置 $2$ 和 $3$ 上的元素，不动点数从 $3$ 降低到了 $1$。\n- $a_1 = [2, 1, 3]$，$a_2 = [3, 1, 2]$ —— 这不是一个合法排列链。对于 $n = 3$，第一个排列必须始终为 $[1, 2, 3]$。\n- $a_1 = [1, 2, 3]$，$a_2 = [1, 3, 2]$，$a_3 = [1, 2, 3]$ —— 这不是一个合法排列链。从 $a_2$ 到 $a_3$，交换了位置 $2$ 和 $3$ 上的元素，但不动点数从 $1$ 增加到了 $3$。\n- $a_1 = [1, 2, 3]$，$a_2 = [3, 2, 1]$，$a_3 = [3, 1, 2]$ —— 这是一个长度为 $3$ 的合法排列链。从 $a_1$ 到 $a_2$，交换了位置 $1$ 和 $3$ 上的元素，不动点数从 $3$ 降低到了 $1$。从 $a_2$ 到 $a_3$，交换了位置 $2$ 和 $3$ 上的元素，不动点数从 $1$ 降低到了 $0$。\n\n请找出最长的排列链。如果有多个最长答案，输出其中任意一个即可。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 99$），表示测试用例的数量。\n\n每个测试用例仅包含一行，其中有一个整数 $n$（$2 \\le n \\le 100$），表示排列链中排列的长度。\n\n## 输出格式\n\n对于每个测试用例，首先输出排列链的长度 $k$。\n\n然后输出 $k$ 个排列 $a_1, a_2, \\dots, a_k$。$a_1$ 应当是长度为 $n$ 的恒等排列（$[1, 2, \\dots, n]$）。对于从 $2$ 到 $k$ 的每个 $i$，$a_i$ 都应当通过交换 $a_{i-1}$ 中的两个元素得到。同时，其不动点数也应严格小于 $a_{i-1}$ 的不动点数。",
   "samples": [
     {
       "input": "2\n2\n3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:53:40.888Z"
+  "fetchedAt": "2026-11-02T17:53:40.888Z",
+  "translatedAt": "2026-11-04T09:25:01.346+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

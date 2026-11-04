@@ -4,7 +4,7 @@
   "contestId": "arc151",
   "index": "D",
   "title": "Binary Representations and Queries",
-  "titleZh": null,
+  "titleZh": "二进制表示与查询",
   "url": "https://atcoder.jp/contests/arc151/tasks/arc151_d",
   "difficulty": 2282,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given an integer sequence $A = (A_0, A_1, \\ldots, A_{2^N-1})$ of length $2^N$.\n\nAdditionally, $Q$ queries are given. For each $i = 1, 2, \\ldots, Q$, the $i$-th query is represented by two integers $X_i$ and $Y_i$ and asks you to perform the operation below.\n\n> For each $j = 0, 1, 2, \\ldots, 2^N-1$ in this order, do the following.\n> \n> 1. First, let $b_{N-1}b_{N-2}\\ldots b_0$ be the binary representation of $j$ with $N$ digits. Additionally, let $j'$ be the integer represented by the binary representation $b_{N-1}b_{N-2}\\ldots b_0$ after flipping the bit $b_{X_i}$ (changing $0$ to $1$ and $1$ to $0$).\n> 2. Then, if $b_{X_i} = Y_i$, add the value of $A_j$ to $A_{j'}$.\n\nPrint each element of $A$, modulo $998244353$, after processing all the queries in the order they are given in the input.\n\nWhat is binary representation with $N$ digits? The binary representation of an non-negative integer $X$ ($0 \\leq X < 2^N$) with $N$ digits is the unique sequence $b_{N-1}b_{N-2}\\ldots b_0$ of length $N$ consisting of $0$ and $1$ that satisfies: $\\sum_{i = 0}^{N-1} b_i \\cdot 2^i = X$.\n\n## Constraints\n\n- $1 \\leq N \\leq 18$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $0 \\leq A_i \\lt 998244353$\n- $0 \\leq X_i \\leq N-1$\n- $Y_i \\in \\lbrace 0, 1\\rbrace$\n- All values in the input are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN Q\nA_0 A_1 \\ldots A_{2^N-1}\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_Q Y_Q\n```\n\n## Output\n\nFor each $i = 0, 1, \\ldots, 2^N-1$, print the remainder $A'_i$ when dividing $A_i$ after processing all the queries by $998244353$, separated by spaces, in the following format:\n\n```\nA'_0 A'_1 \\ldots A'_{2^N-1}\n```",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个长度为 $2^N$ 的整数序列 $A = (A_0, A_1, \\ldots, A_{2^N-1})$。\n\n此外，还给出了 $Q$ 次查询。对于每个 $i = 1, 2, \\ldots, Q$，第 $i$ 次查询由两个整数 $X_i$ 和 $Y_i$ 表示，并要求执行以下操作。\n\n> 对于每个 $j = 0, 1, 2, \\ldots, 2^N-1$，按照此顺序执行以下操作。\n>\n> 1. 首先，令 $b_{N-1}b_{N-2}\\ldots b_0$ 为 $j$ 的 $N$ 位二进制表示。此外，令 $j'$ 为将二进制表示 $b_{N-1}b_{N-2}\\ldots b_0$ 中的比特 $b_{X_i}$ 翻转（将 $0$ 变为 $1$，将 $1$ 变为 $0$）后所表示的整数。\n> 2. 然后，如果 $b_{X_i} = Y_i$，则将 $A_j$ 的值加到 $A_{j'}$ 上。\n\n按照输入中给出的顺序处理完所有查询后，输出 $A$ 的每个元素对 $998244353$ 取模的结果。\n\n什么是 $N$ 位二进制表示？非负整数 $X$（$0 \\leq X < 2^N$）的 $N$ 位二进制表示，是满足以下条件的唯一长度为 $N$、由 $0$ 和 $1$ 组成的序列 $b_{N-1}b_{N-2}\\ldots b_0$：$\\sum_{i = 0}^{N-1} b_i \\cdot 2^i = X$。\n\n## 约束条件\n\n- $1 \\leq N \\leq 18$\n- $1 \\leq Q \\leq 2 \\times 10^5$\n- $0 \\leq A_i \\lt 998244353$\n- $0 \\leq X_i \\leq N-1$\n- $Y_i \\in \\lbrace 0, 1\\rbrace$\n- 输入中的所有值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN Q\nA_0 A_1 \\ldots A_{2^N-1}\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_Q Y_Q\n```\n\n## 输出格式\n\n对于每个 $i = 0, 1, \\ldots, 2^N-1$，按照以下格式输出处理完所有查询后 $A_i$ 除以 $998244353$ 的余数 $A'_i$，各项之间用空格分隔：\n\n```\nA'_0 A'_1 \\ldots A'_{2^N-1}\n```",
   "samples": [
     {
       "input": "2 2\n0 1 2 3\n1 1\n0 0\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:27:32.004Z"
+  "fetchedAt": "2026-10-30T21:27:32.004Z",
+  "translatedAt": "2026-11-04T10:12:36.161+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

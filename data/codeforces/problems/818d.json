@@ -4,7 +4,7 @@
   "contestId": 818,
   "index": "D",
   "title": "Multicolored Cars",
-  "titleZh": null,
+  "titleZh": "多彩汽车",
   "url": "https://codeforces.com/contest/818/problem/D",
   "difficulty": 1700,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Alice and Bob got very bored during a long car trip so they decided to play a game. From the window they can see cars of different colors running past them. Cars are going one after another.\n\nThe game rules are like this. Firstly Alice chooses some color $*A*$, then Bob chooses some color $*B*$ ($*A* ≠ *B*$). After each car they update the number of cars of their chosen color that have run past them. Let's define this numbers after $*i*$-th car $*cnt*_{*A*}(*i*)$ and $*cnt*_{*B*}(*i*)$.\n\n- If $*cnt*_{*A*}(*i*) > *cnt*_{*B*}(*i*)$ for every $*i*$ then the winner is Alice.\n- If $*cnt*_{*B*}(*i*) ≥ *cnt*_{*A*}(*i*)$ for every $*i*$ then the winner is Bob.\n- Otherwise it's a draw.\n\nBob knows all the colors of cars that they will encounter and order of their appearance. Alice have already chosen her color $*A*$ and Bob now wants to choose such color $*B*$ that he will win the game (draw is not a win). Help him find this color.\n\nIf there are multiple solutions, print any of them. If there is no such color then print `-1`.\n\n## Input\n\nThe first line contains two integer numbers $*n*$ and $*A*$ ($1 ≤ *n* ≤ 10^{5}, 1 ≤ *A* ≤ 10^{6}$) – number of cars and the color chosen by Alice.\n\nThe second line contains $*n*$ integer numbers $*c*_{1}, *c*_{2}, ..., *c*_{*n*}$ ($1 ≤ *c*_{*i*} ≤ 10^{6}$) — colors of the cars that Alice and Bob will encounter in the order of their appearance.\n\n## Output\n\nOutput such color $*B*$ ($1 ≤ *B* ≤ 10^{6}$) that if Bob chooses it then he will win the game. If there are multiple solutions, print any of them. If there is no such color then print `-1`.\n\nIt is guaranteed that if there exists any solution then there exists solution with ($1 ≤ *B* ≤ 10^{6}$).\n\n## Note\n\nLet's consider availability of colors in the first example:\n\n- $*cnt*_{2}(*i*) ≥ *cnt*_{1}(*i*)$ for every $*i*$, and color $2$ can be the answer.\n- $*cnt*_{4}(2) < *cnt*_{1}(2)$, so color $4$ isn't the winning one for Bob.\n- All the other colors also have $*cnt*_{*j*}(2) < *cnt*_{1}(2)$, thus they are not available.\n\nIn the third example every color is acceptable except for $10$.",
-  "statementZhMd": null,
+  "statementZhMd": "爱丽丝和鲍勃在一次漫长的汽车旅行中感到非常无聊，于是决定玩一个游戏。他们可以从车窗看到不同颜色的汽车从身边驶过。汽车一辆接一辆地经过。\n\n游戏规则如下。首先，爱丽丝选择一种颜色 $*A*$，然后鲍勃选择一种颜色 $*B*$（$*A* ≠ *B*$）。每经过一辆汽车，他们就更新各自所选颜色的汽车经过数量。我们将经过第 $*i*$ 辆汽车后的数量定义为 $*cnt*_{*A*}(*i*)$ 和 $*cnt*_{*B*}(*i*)$。\n\n- 如果对于每个 $*i*$ 都有 $*cnt*_{*A*}(*i*) > *cnt*_{*B*}(*i*)$，那么获胜者是爱丽丝。\n- 如果对于每个 $*i*$ 都有 $*cnt*_{*B*}(*i*) ≥ *cnt*_{*A*}(*i*)$，那么获胜者是鲍勃。\n- 否则，比赛为平局。\n\n鲍勃知道他们将遇到的所有汽车的颜色及其出现顺序。爱丽丝已经选择了她的颜色 $*A*$，现在鲍勃想选择一种颜色 $*B*$，使得他能够赢得游戏（平局不算获胜）。请帮助他找出这种颜色。\n\n如果有多个答案，输出任意一个即可。如果不存在这样的颜色，则输出 `-1`。\n\n## 输入格式\n\n第一行包含两个整数 $*n*$ 和 $*A*$（$1 ≤ *n* ≤ 10^{5}, 1 ≤ *A* ≤ 10^{6}$），分别表示汽车的数量和爱丽丝选择的颜色。\n\n第二行包含 $*n*$ 个整数 $*c*_{1}, *c*_{2}, ..., *c*_{*n*}$（$1 ≤ *c*_{*i*} ≤ 10^{6}$），表示爱丽丝和鲍勃将按照出现顺序遇到的汽车的颜色。\n\n## 输出格式\n\n输出一种颜色 $*B*$（$1 ≤ *B* ≤ 10^{6}$），使得当鲍勃选择该颜色时能够赢得游戏。如果有多个答案，输出任意一个即可。如果不存在这样的颜色，则输出 `-1`。\n\n保证：如果存在任何答案，则一定存在一个满足（$1 ≤ *B* ≤ 10^{6}$）的答案。\n\n## 说明\n\n让我们考察第一个样例中的颜色可行性：\n\n- 对于每个 $*i*$ 都有 $*cnt*_{2}(*i*) ≥ *cnt*_{1}(*i*)$，因此颜色 $2$ 可以作为答案。\n- $*cnt*_{4}(2) < *cnt*_{1}(2)$，因此颜色 $4$ 不能让鲍勃获胜。\n- 对于所有其他颜色，同样都有 $*cnt*_{*j*}(2) < *cnt*_{1}(2)$，因此它们也都不可行。\n\n在第三个样例中，除了 $10$ 以外的所有颜色都可以接受。",
   "samples": [
     {
       "input": "4 1\n2 1 4 2\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T19:50:05.634Z"
+  "fetchedAt": "2026-11-02T19:50:05.634Z",
+  "translatedAt": "2026-11-04T10:47:39.352+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

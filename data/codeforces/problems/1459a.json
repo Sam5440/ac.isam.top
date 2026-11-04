@@ -4,7 +4,7 @@
   "contestId": 1459,
   "index": "A",
   "title": "Red-Blue Shuffle",
-  "titleZh": null,
+  "titleZh": "红蓝洗牌",
   "url": "https://codeforces.com/contest/1459/problem/A",
   "difficulty": 800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "There are $n$ cards numbered $1, \\ldots, n$. The card $i$ has a red digit $r_i$ and a blue digit $b_i$ written on it.\n\nWe arrange all $n$ cards in random order from left to right, with all permutations of $1, \\ldots, n$ having the same probability. We then read all red digits on the cards from left to right, and obtain an integer $R$. In the same way, we read all blue digits and obtain an integer $B$. When reading a number, leading zeros can be ignored. If all digits in a number are zeros, then the number is equal to $0$. Below is an illustration of a possible rearrangement of three cards, and how $R$ and $B$ can be found.\n\n![image](https://espresso.codeforces.com/9e7b5b218d96e21d7848a13cf50a5d4a62b8dfa9.png)\n\nTwo players, Red and Blue, are involved in a bet. Red bets that after the shuffle $R \\gt B$, and Blue bets that $R \\lt B$. If in the end $R = B$, the bet results in a draw, and neither player wins.\n\nDetermine, which of the two players is more likely (has higher probability) to win the bet, or that their chances are equal. Refer to the Note section for a formal discussion of comparing probabilities.\n\n## Input\n\nThe first line contains a single integer $T$ ($1 \\leq T \\leq 100$) — the number of test cases.\n\nDescriptions of $T$ test cases follow. Each test case description starts with a line containing a single integer $n$ ($1 \\leq n \\leq 1000$) — the number of cards.\n\nThe following line contains a string of $n$ digits $r_1, \\ldots, r_n$ — red digits on cards $1, \\ldots, n$ respectively.\n\nThe following line contains a string of $n$ digits $b_1, \\ldots, b_n$ — blue digits on cards $1, \\ldots, n$ respectively.\n\nNote that digits in the same line are not separated with any delimiters.\n\n## Output\n\nPrint $T$ answers for the test cases in order, one per line.\n\nIf Red has a **strictly** higher change to win, print \"`RED`\".\n\nIf Blue has a **strictly** higher change to win, print \"`BLUE`\".\n\nIf both players are equally likely to win, print \"`EQUAL`\".\n\nNote that all answers are **case-sensitive**.\n\n## Note\n\nFormally, let $n_R$ be the number of permutations of cards $1, \\ldots, n$ such that the resulting numbers $R$ and $B$ satisfy $R \\gt B$. Similarly, let $n_B$ be the number of permutations such that $R \\lt B$. If $n_R \\gt n_B$, you should print \"`RED`\". If $n_R \\lt n_B$, you should print \"`BLUE`\". If $n_R = n_B$, print \"`EQUAL`\".\n\nIn the first sample case, $R = 777$ and $B = 111$ regardless of the card order, thus Red always wins.\n\nIn the second sample case, there are two card orders when Red wins, and four card orders when Blue wins:\n\n- order $1, 2, 3$: $314 \\gt 159$;\n- order $1, 3, 2$: $341 \\gt 195$;\n- order $2, 1, 3$: $134 \\lt 519$;\n- order $2, 3, 1$: $143 \\lt 591$;\n- order $3, 1, 2$: $431 \\lt 915$;\n- order $3, 2, 1$: $413 \\lt 951$.\n\nSince $R \\lt B$ is more frequent, the answer is \"`BLUE`\".\n\nIn the third sample case, $R = B$ regardless of the card order, thus the bet is always a draw, and both Red and Blue have zero chance to win.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 张卡片，编号为 $1, \\ldots, n$。第 $i$ 张卡片上写有一个红色数字 $r_i$ 和一个蓝色数字 $b_i$。\n\n我们将全部 $n$ 张卡片从左到右随机排列，$1, \\ldots, n$ 的所有排列出现的概率相同。随后从左到右读取卡片上的所有红色数字，得到一个整数 $R$。同样地，读取所有蓝色数字，得到一个整数 $B$。读取数字时，可以忽略前导零。如果一个数的所有数字都是零，则该数等于 $0$。下面展示了三张卡片的一种可能排列，以及如何得到 $R$ 和 $B$。\n\n![image](https://espresso.codeforces.com/9e7b5b218d96e21d7848a13cf50a5d4a62b8dfa9.png)\n\n两名玩家 Red 和 Blue 参与一场赌局。Red 赌洗牌后 $R \\gt B$，而 Blue 赌 $R \\lt B$。如果最终 $R = B$，则赌局平局，双方都不会获胜。\n\n请判断两名玩家中哪一名获胜的可能性更大（概率更高），或者判断双方获胜的概率相等。关于概率比较的形式化说明，请参见“说明”部分。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\leq T \\leq 100$）——测试用例的数量。\n\n接下来是 $T$ 个测试用例的描述。每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 1000$）——卡片的数量。\n\n下一行包含一个长度为 $n$ 的数字字符串 $r_1, \\ldots, r_n$——分别写在卡片 $1, \\ldots, n$ 上的红色数字。\n\n下一行包含一个长度为 $n$ 的数字字符串 $b_1, \\ldots, b_n$——分别写在卡片 $1, \\ldots, n$ 上的蓝色数字。\n\n注意，同一行中的数字之间没有任何分隔符。\n\n## 输出格式\n\n按顺序输出 $T$ 个测试用例的答案，每行一个。\n\n如果 Red 获胜的概率**严格**更高，输出 \"`RED`\"。\n\n如果 Blue 获胜的概率**严格**更高，输出 \"`BLUE`\"。\n\n如果两名玩家获胜的概率相同，输出 \"`EQUAL`\"。\n\n注意，所有答案均**区分大小写**。\n\n## 说明\n\n形式化地，令 $n_R$ 表示满足所得数字 $R$ 和 $B$ 满足 $R \\gt B$ 的卡片 $1, \\ldots, n$ 的排列数量。类似地，令 $n_B$ 表示满足 $R \\lt B$ 的排列数量。如果 $n_R \\gt n_B$，应输出 \"`RED`\"。如果 $n_R \\lt n_B$，应输出 \"`BLUE`\"。如果 $n_R = n_B$，应输出 \"`EQUAL`\"。\n\n在第一个样例中，无论卡片如何排列，$R = 777$ 且 $B = 111$，因此 Red 总是获胜。\n\n在第二个样例中，Red 获胜的排列有两种，而 Blue 获胜的排列有四种：\n\n- 排列 $1, 2, 3$：$314 \\gt 159$；\n- 排列 $1, 3, 2$：$341 \\gt 195$；\n- 排列 $2, 1, 3$：$134 \\lt 519$；\n- 排列 $2, 3, 1$：$143 \\lt 591$；\n- 排列 $3, 1, 2$：$431 \\lt 915$；\n- 排列 $3, 2, 1$：$413 \\lt 951$。\n\n由于 $R \\lt B$ 出现得更频繁，答案是 \"`BLUE`\"。\n\n在第三个样例中，无论卡片如何排列，$R = B$，因此赌局总是平局，Red 和 Blue 获胜的概率都为零。",
   "samples": [
     {
       "input": "3\n3\n777\n111\n3\n314\n159\n5\n09281\n09281\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:39:05.372Z"
+  "fetchedAt": "2026-10-30T23:39:05.372Z",
+  "translatedAt": "2026-11-04T10:37:32.905+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

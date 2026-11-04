@@ -4,7 +4,7 @@
   "contestId": 1906,
   "index": "J",
   "title": "Count BFS Graph",
-  "titleZh": null,
+  "titleZh": "BFS 图计数",
   "url": "https://codeforces.com/contest/1906/problem/J",
   "difficulty": 2100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 1024,
   "statementMd": "You are currently researching a graph traversal algorithm called the Breadth First Search (BFS). Suppose you have an input graph of $N$ nodes (numbered from $1$ to $N$). The graph is represented by an adjacency matrix $M$, for which node $u$ can traverse to node $v$ if $M_{u, v}$ is $1$, otherwise it is $0$. Your algorithm will output the order the nodes are visited in the BFS. The pseudocode of the algorithm is presented as follows.\n\n```\n    BFS(M[1..N][1..N]):\n        let A be an empty array\n        let Q be an empty queue\n\n        append 1 to A\n        push 1 to Q\n\n        while Q is not empty:\n            pop the front element of Q into u\n            for v = 1 to N:\n                if M[u][v] == 1 and v is not in A:\n                    append v to A\n                    push v to Q\n\n        return A\n```\n\nDuring your research, you are interested in the following problem. Given an array $A$ such that $A$ is a permutation of $1$ to $N$ and $A_1 = 1$. How many **simple undirected graph** with $N$ nodes and adjacency matrix $M$ such that $\\text{BFS}(M) = A$? Since the answer can be very large, calculate the answer modulo $998\\,244\\,353$.\n\nA simple graph has no self-loop ($M_{i, i} = 0$ for $1 \\leq i \\leq N$) and there is at most one edge that connects a pair of nodes. In an undirected graph, if node $u$ is adjacent to node $v$, then node $v$ is also adjacent to node $u$; formally, $M_{u, v} = M_{v, u}$ for $1 \\leq u \\lt v \\leq N$.\n\nTwo graphs are considered different if there is an edge that exists in one graph but not the other. In other words, two graphs are considered different if their adjacency matrices are different.\n\n## Input\n\nThe first line consists of an integer $N$ ($2 \\leq N \\leq 5000$).\n\nThe second line consists of $N$ integers $A_i$. The array $A$ is a permutation of $1$ to $N$ and $A_1 = 1$.\n\n## Output\n\nOutput an integer representing the number of simple undirected graphs with $N$ nodes and adjacency matrix $M$ such that $\\text{BFS}(M) = A$. Since the answer can be very large, output the answer modulo $998\\,244\\,353$.\n\n## Note\n\n*Explanation for the sample input/output #1*\n\nThe following illustration shows all graphs that satisfy the requirements.\n\n![image](https://espresso.codeforces.com/3f0782cd9b2c34e24e5cf48fce0b15eb8be8d9aa.png)\n\n*Explanation for the sample input/output #2*\n\nThe only graph that satisfies the requirements is a graph with two edges: one that connects nodes $1$ and $3$, and another one that connects nodes $3$ and $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在研究一种名为广度优先搜索（BFS）的图遍历算法。假设有一个包含 $N$ 个节点的输入图（节点编号从 $1$ 到 $N$）。该图由邻接矩阵 $M$ 表示：当且仅当 $M_{u, v}$ 为 $1$ 时，节点 $u$ 可以遍历到节点 $v$，否则为 $0$。算法将输出 BFS 访问节点的顺序。算法的伪代码如下。\n\n```\n    BFS(M[1..N][1..N]):\n        let A be an empty array\n        let Q be an empty queue\n\n        append 1 to A\n        push 1 to Q\n\n        while Q is not empty:\n            pop the front element of Q into u\n            for v = 1 to N:\n                if M[u][v] == 1 and v is not in A:\n                    append v to A\n                    push v to Q\n\n        return A\n```\n\n在研究过程中，你需要解决以下问题。给定一个数组 $A$，其中 $A$ 是 $1$ 到 $N$ 的一个排列，且 $A_1 = 1$。求有多少个包含 $N$ 个节点、邻接矩阵为 $M$ 的**简单无向图**满足 $\text{BFS}(M) = A$。由于答案可能很大，请将答案对 $998\\,244\\,353$ 取模。\n\n简单图不包含自环（$M_{i, i} = 0$，其中 $1 \\leq i \\leq N$），且任意一对节点之间至多有一条边。在无向图中，如果节点 $u$ 与节点 $v$ 相邻，则节点 $v$ 也与节点 $u$ 相邻；形式化地说，对于 $1 \\leq u \\lt v \\leq N$，有 $M_{u, v} = M_{v, u}$。\n\n如果一张图中存在某条边而另一张图中不存在，则认为这两张图不同。换句话说，如果两张图的邻接矩阵不同，则认为它们不同。\n\n## 输入格式\n\n第一行包含一个整数 $N$（$2 \\leq N \\leq 5000$）。\n\n第二行包含 $N$ 个整数 $A_i$。数组 $A$ 是 $1$ 到 $N$ 的一个排列，且 $A_1 = 1$。\n\n## 输出格式\n\n输出一个整数，表示包含 $N$ 个节点、邻接矩阵为 $M$ 且满足 $\text{BFS}(M) = A$ 的简单无向图数量。由于答案可能很大，请将答案对 $998\\,244\\,353$ 取模。\n\n## 说明\n\n*样例输入/输出 #1 的解释*\n\n下图展示了所有满足条件的图。\n\n![image](https://espresso.codeforces.com/3f0782cd9b2c34e24e5cf48fce0b15eb8be8d9aa.png)\n\n*样例输入/输出 #2 的解释*\n\n唯一满足条件的图包含两条边：一条连接节点 $1$ 和 $3$，另一条连接节点 $3$ 和 $2$。",
   "samples": [
     {
       "input": "3\n1 2 3\n",
@@ -38,5 +38,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:19:14.688Z"
+  "fetchedAt": "2026-11-02T17:19:14.688Z",
+  "translatedAt": "2026-11-04T09:15:43.786+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

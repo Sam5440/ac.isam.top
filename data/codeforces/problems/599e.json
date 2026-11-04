@@ -4,7 +4,7 @@
   "contestId": 599,
   "index": "E",
   "title": "Sandy and Nuts",
-  "titleZh": null,
+  "titleZh": "Sandy 和坚果",
   "url": "https://codeforces.com/contest/599/problem/E",
   "difficulty": 2600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "*Rooted tree* is a connected graph without any simple cycles with one vertex selected as a root. In this problem the vertex number $1$ will always serve as a root.\n\n*Lowest common ancestor* of two vertices $*u*$ and $*v*$ is the farthest from the root vertex that lies on both the path from $*u*$ to the root and on path from $*v*$ to the root. We will denote it as $*LCA*(*u*, *v*)$.\n\nSandy had a rooted tree consisting of $*n*$ vertices that she used to store her nuts. Unfortunately, the underwater storm broke her tree and she doesn't remember all it's edges. She only managed to restore $*m*$ edges of the initial tree and $*q*$ triples $*a*_{*i*}$, $*b*_{*i*}$ and $*c*_{*i*}$, for which she supposes $*LCA*(*a*_{*i*}, *b*_{*i*}) = *c*_{*i*}$.\n\nHelp Sandy count the number of trees of size $*n*$ with vertex $1$ as a root, that match all the information she remembered. If she made a mess and there are no such trees then print $0$. Two rooted trees are considered to be distinct if there exists an edge that occur in one of them and doesn't occur in the other one.\n\n## Input\n\nThe first line of the input contains three integers $*n*$, $*m*$ and $*q*$ ($1 ≤ *n* ≤ 13, 0 ≤ *m* < *n*, 0 ≤ *q* ≤ 100$) — the number of vertices, the number of edges and $*LCA*$ triples remembered by Sandy respectively.\n\nEach of the next $*m*$ lines contains two integers $*u*_{*i*}$ and $*v*_{*i*}$ ($1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*, *u*_{*i*} ≠ *v*_{*i*}$) — the numbers of vertices connected by the $*i*$-th edge. It's guaranteed that this set of edges is a subset of edges of some tree.\n\nThe last $*q*$ lines contain the triplets of numbers $*a*_{*i*}$, $*b*_{*i*}$, $*c*_{*i*}$ ($1 ≤ *a*_{*i*}, *b*_{*i*}, *c*_{*i*} ≤ *n*)$. Each of these triples define $*LCA*(*a*_{*i*}, *b*_{*i*}) = *c*_{*i*}$. It's **not guaranteed** that there exists a tree that satisfy all the given $*LCA*$ conditions.\n\n## Output\n\nPrint a single integer — the number of trees of size $*n*$ that satisfy all the conditions.\n\n## Note\n\nIn the second sample correct answer looks like this:\n\n![image](https://espresso.codeforces.com/b44616c4df15f5f4d066307d3eb54e5def28fb3f.png)\n\nIn the third sample there are two possible trees:\n\n![image](https://espresso.codeforces.com/32e2348ff6ed0277f103e7d9827c0ca618e166a8.png)\n\n![image](https://espresso.codeforces.com/f89648580a347c7eb7a4bb7730eaf4227ba7c340.png)\n\nIn the fourth sample the answer is $0$ because the information about $*LCA*$ is inconsistent.",
-  "statementZhMd": null,
+  "statementZhMd": "*有根树*是一种没有任何简单环的连通图，并选定其中一个顶点作为根。在本题中，编号为 $1$ 的顶点始终作为根。\n\n两个顶点 $*u*$ 和 $*v*$ 的*最近公共祖先*是同时位于从 $*u*$ 到根的路径以及从 $*v*$ 到根的路径上，且距离根最远的顶点。我们将其记为 $*LCA*(*u*, *v*)$。\n\nSandy 有一棵由 $*n*$ 个顶点组成的有根树，她用这棵树来存放坚果。不幸的是，一场水下风暴摧毁了她的树，她也记不清所有的边了。她只恢复了原树中的 $*m*$ 条边，以及 $*q*$ 个三元组 $*a*_{*i*}$、$*b*_{*i*}$ 和 $*c*_{*i*}$，对于这些三元组，她认为满足 $*LCA*(*a*_{*i*}, *b*_{*i*}) = *c*_{*i*}$。\n\n请帮助 Sandy 计算满足她记忆中所有信息的、以顶点 $1$ 为根且大小为 $*n*$ 的树的数量。如果她记错了，导致不存在这样的树，则输出 $0$。如果存在一条边出现在其中一棵树中而不出现在另一棵树中，则认为这两棵有根树不同。\n\n## 输入格式\n\n输入的第一行包含三个整数 $*n*$、$*m*$ 和 $*q*$（$1 ≤ *n* ≤ 13, 0 ≤ *m* < *n*, 0 ≤ *q* ≤ 100$）——顶点数、边数以及 Sandy 记住的 $*LCA*$ 三元组数。\n\n接下来的 $*m*$ 行中，每行包含两个整数 $*u*_{*i*}$ 和 $*v*_{*i*}$（$1 ≤ *u*_{*i*}, *v*_{*i*} ≤ *n*, *u*_{*i*} ≠ *v*_{*i*}$）——第 $*i*$ 条边所连接的顶点编号。保证这些边是某棵树的边的子集。\n\n最后 $*q*$ 行包含三个整数 $*a*_{*i*}$、$*b*_{*i*}$、$*c*_{*i*}$（$1 ≤ *a*_{*i*}, *b*_{*i*}, *c*_{*i*} ≤ *n*$）。每个三元组表示 $*LCA*(*a*_{*i*}, *b*_{*i*}) = *c*_{*i*}$。不保证存在一棵树能够满足给出的所有 $*LCA*$ 条件。\n\n## 输出格式\n\n输出一个整数——满足所有条件的大小为 $*n*$ 的树的数量。\n\n## 说明\n\n第二个样例的正确答案如下：\n\n![image](https://espresso.codeforces.com/b44616c4df15f5f4d066307d3eb54e5def28fb3f.png)\n\n第三个样例中有两棵可能的树：\n\n![image](https://espresso.codeforces.com/32e2348ff6ed0277f103e7d9827c0ca618e166a8.png)\n\n![image](https://espresso.codeforces.com/f89648580a347c7eb7a4bb7730eaf4227ba7c340.png)\n\n第四个样例的答案是 $0$，因为关于 $*LCA*$ 的信息互相矛盾。",
   "samples": [
     {
       "input": "4 0 0\n",
@@ -45,5 +45,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:19:01.004Z"
+  "fetchedAt": "2026-10-31T01:19:01.004Z",
+  "translatedAt": "2026-11-04T10:53:07.020+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

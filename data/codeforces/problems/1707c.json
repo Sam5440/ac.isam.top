@@ -4,7 +4,7 @@
   "contestId": 1707,
   "index": "C",
   "title": "DFS Trees",
-  "titleZh": null,
+  "titleZh": "DFS 树",
   "url": "https://codeforces.com/contest/1707/problem/C",
   "difficulty": 2400,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a connected undirected graph consisting of $n$ vertices and $m$ edges. The weight of the $i$-th edge is $i$.\n\nHere is a wrong algorithm of finding a [minimum spanning tree](https://en.wikipedia.org/wiki/Minimum_spanning_tree) (MST) of a graph:\n\n```\nvis := an array of length n\ns := a set of edges\n\nfunction dfs(u):\n    vis[u] := true\n    iterate through each edge (u, v) in the order from smallest to largest edge weight\n        if vis[v] = false\n            add edge (u, v) into the set (s)\n            dfs(v)\n\nfunction findMST(u):\n    reset all elements of (vis) to false\n    reset the edge set (s) to empty\n    dfs(u)\n    return the edge set (s)\n```\n\nEach of the calls `findMST(1)`, `findMST(2)`, ..., `findMST(n)` gives you a spanning tree of the graph. Determine which of these trees are minimum spanning trees.\n\n## Input\n\nThe first line of the input contains two integers $n$, $m$ ($2\\le n\\le 10^5$, $n-1\\le m\\le 2\\cdot 10^5$) — the number of vertices and the number of edges in the graph.\n\nEach of the following $m$ lines contains two integers $u_i$ and $v_i$ ($1\\le u_i, v_i\\le n$, $u_i\\ne v_i$), describing an undirected edge $(u_i,v_i)$ in the graph. The $i$-th edge in the input has weight $i$.\n\nIt is guaranteed that the graph is connected and there is at most one edge between any pair of vertices.\n\n## Output\n\nYou need to output a binary string $s$, where $s_i=1$ if `findMST(i)` creates an MST, and $s_i = 0$ otherwise.\n\n## Note\n\nHere is the graph given in the first example.\n\n![image](https://espresso.codeforces.com/5fcc01394cfe1c11c0e4c70afba7902f03f6f74d.png)\n\nThere is only one minimum spanning tree in this graph. A minimum spanning tree is $(1,2),(3,5),(1,3),(2,4)$ which has weight $1+2+3+5=11$.\n\nHere is a part of the process of calling `findMST(1)`:\n\n- reset the array `vis` and the edge set `s`;\n- calling `dfs(1)`;\n- `vis[1] := true`;\n- iterate through each edge $(1,2),(1,3)$;\n- add edge $(1,2)$ into the edge set `s`, calling `dfs(2)`:\n- `vis[2] := true`\n  - iterate through each edge $(2,1),(2,3),(2,4)$;\n  - because `vis[1] = true`, ignore the edge $(2,1)$;\n  - add edge $(2,3)$ into the edge set `s`, calling `dfs(3)`:\n  - ...\n\nIn the end, it will select edges $(1,2),(2,3),(3,5),(2,4)$ with total weight $1+4+2+5=12 \\gt 11$, so `findMST(1)` does not find a minimum spanning tree.\n\nIt can be shown that the other trees are all MSTs, so the answer is `01111`.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个顶点和 $m$ 条边组成的连通无向图。第 $i$ 条边的权值为 $i$。\n\n下面是一个用于求图的[最小生成树](https://en.wikipedia.org/wiki/Minimum_spanning_tree)（MST）的错误算法：\n\n```\nvis := an array of length n\ns := a set of edges\n\nfunction dfs(u):\n    vis[u] := true\n    iterate through each edge (u, v) in the order from smallest to largest edge weight\n        if vis[v] = false\n            add edge (u, v) into the set (s)\n            dfs(v)\n\nfunction findMST(u):\n    reset all elements of (vis) to false\n    reset the edge set (s) to empty\n    dfs(u)\n    return the edge set (s)\n```\n\n调用 `findMST(1)`、`findMST(2)`、……、`findMST(n)`，每次都会得到该图的一棵生成树。请判断其中哪些树是最小生成树。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$、$m$（$2\\le n\\le 10^5$，$n-1\\le m\\le 2\\cdot 10^5$），分别表示图中的顶点数和边数。\n\n接下来的 $m$ 行中，第 $i$ 行包含两个整数 $u_i$ 和 $v_i$（$1\\le u_i, v_i\\le n$，$u_i\\ne v_i$），表示一条无向边 $(u_i,v_i)$。输入中的第 $i$ 条边的权值为 $i$。\n\n保证图是连通的，并且任意一对顶点之间至多有一条边。\n\n## 输出格式\n\n输出一个二进制字符串 $s$。如果 `findMST(i)` 得到的是一棵 MST，则 $s_i=1$；否则 $s_i = 0$。\n\n## 说明\n\n下面是第一个样例中的图。\n\n![image](https://espresso.codeforces.com/5fcc01394cfe1c11c0e4c70afba7902f03f6f74d.png)\n\n该图只有一棵最小生成树。这棵最小生成树包含边 $(1,2),(3,5),(1,3),(2,4)$，其权值总和为 $1+2+3+5=11$。\n\n下面是调用 `findMST(1)` 过程中的一部分：\n\n- 重置数组 `vis` 和边集合 `s`；\n- 调用 `dfs(1)`；\n- `vis[1] := true`；\n- 按顺序遍历边 $(1,2),(1,3)$；\n- 将边 $(1,2)$ 加入边集合 `s`，并调用 `dfs(2)`：\n- `vis[2] := true`\n  - 遍历边 $(2,1),(2,3),(2,4)$；\n  - 由于 `vis[1] = true`，忽略边 $(2,1)$；\n  - 将边 $(2,3)$ 加入边集合 `s`，并调用 `dfs(3)`：\n  - ……\n\n最终，算法会选择边 $(1,2),(2,3),(3,5),(2,4)$，其权值总和为 $1+4+2+5=12 \\gt 11$，因此 `findMST(1)` 得不到最小生成树。\n\n可以证明，其他树都是 MST，因此答案为 `01111`。",
   "samples": [
     {
       "input": "5 5\n1 2\n3 5\n1 3\n3 2\n4 2\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:53:34.527Z"
+  "fetchedAt": "2026-10-30T22:53:34.527Z",
+  "translatedAt": "2026-11-04T09:23:01.688+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

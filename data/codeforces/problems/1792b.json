@@ -4,7 +4,7 @@
   "contestId": 1792,
   "index": "B",
   "title": "Stand-up Comedian",
-  "titleZh": null,
+  "titleZh": "单口喜剧演员",
   "url": "https://codeforces.com/contest/1792/problem/B",
   "difficulty": 1200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Eve is a beginner stand-up comedian. Her first show gathered a grand total of two spectators: Alice and Bob.\n\nEve prepared $a_1 + a_2 + a_3 + a_4$ jokes to tell, grouped by their type:\n\n- type 1: both Alice and Bob like them;\n- type 2: Alice likes them, but Bob doesn't;\n- type 3: Bob likes them, but Alice doesn't;\n- type 4: neither Alice nor Bob likes them.\n\nInitially, both spectators have their mood equal to $0$. When a spectator hears a joke he/she likes, his/her mood increases by $1$. When a spectator hears a joke he/she doesn't like, his/her mood decreases by $1$. If the mood of a spectator becomes negative (strictly below zero), he/she leaves.\n\nWhen someone leaves, Eve gets sad and ends the show. If no one leaves, and Eve is out of jokes, she also ends the show.\n\nThus, Eve wants to arrange her jokes in such a way that the show lasts as long as possible. Help her to calculate the maximum number of jokes she can tell before the show ends.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of testcases.\n\nThe only line of each testcase contains four integers $a_1, a_2, a_3, a_4$ ($0 \\le a_1, a_2, a_3, a_4 \\le 10^8$; $a_1 + a_2 + a_3 + a_4 \\ge 1$) — the number of jokes of each type Eve prepared.\n\n## Output\n\nFor each testcase, print a single integer — the maximum number of jokes Eve can tell before at least one of the spectators leaves or before she runs out of jokes.\n\n## Note\n\nIn the first testcase, Eve only has jokes of the first type. Thus, there's no order to choose. She tells all her jokes, both Alice and Bob like them. Their mood becomes $5$. The show ends after Eve runs out of jokes.\n\nIn the second testcase, Eve only has jokes of the fourth type. Thus, once again no order to choose. She tells a joke, and neither Alice, nor Bob likes it. Their mood decrease by one, becoming $-1$. They both have negative mood, thus, both leave, and the show ends.\n\nIn the third testcase, first, Eve tells both jokes of the first type. Both Alice and Bob has mood $2$. Then she can tell $2$ jokes of the third type. Alice's mood becomes $0$. Bob's mood becomes $4$. Then $4$ jokes of the second type. Alice's mood becomes $4$. Bob's mood becomes $0$. Then another $4$ jokes of the third type. Alice's mood becomes $0$. Bob's mood becomes $4$. Then the remaining joke of the second type. Alice's mood becomes $1$. Bob's mood becomes $3$. Then one more joke of the third type, and a joke of the fourth type, for example. Alice's mood becomes $-1$, she leaves, and the show ends.\n\nIn the fourth testcase, Eve should first tell the jokes both spectators like, then the jokes they don't. She can tell $4$ jokes of the fourth type until the spectators leave.",
-  "statementZhMd": null,
+  "statementZhMd": "Eve 是一名刚入门的单口喜剧演员。她的首场演出一共吸引了两名观众：Alice 和 Bob。\n\nEve 准备了 $a_1 + a_2 + a_3 + a_4$ 个笑话，按照类型分组：\n\n- 类型 1：Alice 和 Bob 都喜欢；\n- 类型 2：Alice 喜欢，但 Bob 不喜欢；\n- 类型 3：Bob 喜欢，但 Alice 不喜欢；\n- 类型 4：Alice 和 Bob 都不喜欢。\n\n最初，两名观众的心情值都为 $0$。当观众听到自己喜欢的笑话时，他/她的心情值增加 $1$；当观众听到自己不喜欢的笑话时，他/她的心情值减少 $1$。如果某名观众的心情值变为负数（严格小于零），他/她就会离开。\n\n当有人离开时，Eve 会感到难过并结束演出。如果没有人离开，并且 Eve 已经没有笑话可讲，她也会结束演出。\n\n因此，Eve 想要安排笑话的顺序，使演出尽可能持续更长时间。请帮助她计算在演出结束前最多可以讲多少个笑话。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例仅包含一行，包含四个整数 $a_1, a_2, a_3, a_4$（$0 \\le a_1, a_2, a_3, a_4 \\le 10^8$；$a_1 + a_2 + a_3 + a_4 \\ge 1$）——Eve 准备的每种类型笑话的数量。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——在至少一名观众离开或 Eve 没有笑话可讲之前，Eve 最多可以讲的笑话数量。\n\n## 说明\n\n在第一个测试用例中，Eve 只有类型 1 的笑话。因此没有可选择的顺序。她讲完了所有笑话，Alice 和 Bob 都喜欢这些笑话。他们的心情值变为 $5$。演出在 Eve 没有笑话可讲后结束。\n\n在第二个测试用例中，Eve 只有类型 4 的笑话。因此同样没有可选择的顺序。她讲了一个笑话，但 Alice 和 Bob 都不喜欢。他们的心情值减少 $1$，变为 $-1$。他们的心情值都为负数，因此两人都离开，演出结束。\n\n在第三个测试用例中，Eve 首先讲了两个类型 1 的笑话。Alice 和 Bob 的心情值都变为 $2$。然后她可以讲两个类型 3 的笑话。Alice 的心情值变为 $0$，Bob 的心情值变为 $4$。接着讲四个类型 2 的笑话。Alice 的心情值变为 $4$，Bob 的心情值变为 $0$。然后再讲四个类型 3 的笑话。Alice 的心情值变为 $0$，Bob 的心情值变为 $4$。接着讲剩下的一个类型 2 的笑话。Alice 的心情值变为 $1$，Bob 的心情值变为 $3$。然后再讲一个类型 3 的笑话和一个类型 4 的笑话（例如按此顺序）。Alice 的心情值变为 $-1$，她离开，演出结束。\n\n在第四个测试用例中，Eve 应该先讲两名观众都喜欢的笑话，然后再讲他们不喜欢的笑话。在观众离开之前，她可以讲四个类型 4 的笑话。",
   "samples": [
     {
       "input": "4\n5 0 0 0\n0 0 0 5\n2 5 10 6\n3 0 0 7\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:38:26.781Z"
+  "fetchedAt": "2026-11-02T17:38:26.781Z",
+  "translatedAt": "2026-11-04T10:13:14.975+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

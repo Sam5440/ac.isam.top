@@ -4,7 +4,7 @@
   "contestId": 1628,
   "index": "D1",
   "title": "Game on Sum (Easy Version)",
-  "titleZh": null,
+  "titleZh": "求和游戏（简单版）",
   "url": "https://codeforces.com/contest/1628/problem/D1",
   "difficulty": 2100,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the easy version of the problem. The difference is the constraints on $n$, $m$ and $t$. You can make hacks only if all versions of the problem are solved.**\n\nAlice and Bob are given the numbers $n$, $m$ and $k$, and play a game as follows:\n\nThe game has a score that Alice tries to maximize, and Bob tries to minimize. The score is initially $0$. The game consists of $n$ turns. Each turn, Alice picks a **real** number from $0$ to $k$ (inclusive) which Bob either adds to or subtracts from the score of the game. But throughout the game, Bob has to choose to add at least $m$ out of the $n$ turns.\n\nBob gets to know which number Alice picked before deciding whether to add or subtract the number from the score, and Alice gets to know whether Bob added or subtracted the number for the previous turn before picking the number for the current turn (except on the first turn since there was no previous turn).\n\nIf Alice and Bob play optimally, what will the final score of the game be?\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases. The description of test cases follows.\n\nEach test case consists of a single line containing the three integers, $n$, $m$, and $k$ ($1 \\le m \\le n \\le 2000, 0 \\le k \\lt 10^9 + 7$) — the number of turns, how many of those turns Bob *has to* add, and the biggest number Alice can choose, respectively.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2000$.\n\n## Output\n\nFor each test case output a single **integer** number — the score of the optimal game modulo $10^9 + 7$.\n\nFormally, let $M = 10^9 + 7$. It can be shown that the answer can be expressed as an irreducible fraction $\\frac{p}{q}$, where $p$ and $q$ are integers and $q \\not \\equiv 0 \\pmod{M}$. Output the integer equal to $p \\cdot q^{-1} \\bmod M$. In other words, output such an integer $x$ that $0 \\le x \\lt M$ and $x \\cdot q \\equiv p \\pmod{M}$.\n\n## Note\n\nIn the first test case, the entire game has $3$ turns, and since $m = 3$, Bob has to add in each of them. Therefore Alice should pick the biggest number she can, which is $k = 2$, every turn.\n\nIn the third test case, Alice has a strategy to guarantee a score of $\\frac{75}{8} \\equiv 375000012 \\pmod{10^9 + 7}$.\n\nIn the fourth test case, Alice has a strategy to guarantee a score of $\\frac{45}{2} \\equiv 500000026 \\pmod{10^9 + 7}$.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。与困难版本的区别在于 $n$、$m$ 和 $t$ 的约束。只有在解决了本题的所有版本后，才能进行 hack。**\n\nAlice 和 Bob 获得三个数 $n$、$m$ 和 $k$，并进行如下游戏：\n\n游戏有一个分数，Alice 试图使其最大化，而 Bob 试图使其最小化。分数初始为 $0$。游戏由 $n$ 个回合组成。在每个回合中，Alice 从 $0$ 到 $k$（包含 $0$ 和 $k$）中选择一个**实数**，然后 Bob 将这个数加到游戏分数上，或从游戏分数中减去这个数。但在整个游戏过程中，Bob 至少要在 $n$ 个回合中的 $m$ 个回合里选择加法。\n\nBob 会在决定将 Alice 选择的数加到分数上还是减去分数前得知 Alice 选择的数；Alice 会在选择当前回合的数之前，得知 Bob 在上一回合中选择了加法还是减法（第一回合没有上一回合，因此例外）。\n\n如果 Alice 和 Bob 都采取最优策略，游戏的最终分数是多少？\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例包含一行，包含三个整数 $n$、$m$ 和 $k$（$1 \\le m \\le n \\le 2000, 0 \\le k \\lt 10^9 + 7$）——回合数、Bob *必须*进行加法的回合数，以及 Alice 可以选择的最大数。\n\n保证所有测试用例的 $n$ 之和不超过 $2000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个**整数**——最优游戏分数对 $10^9 + 7$ 取模后的结果。\n\n形式化地，设 $M = 10^9 + 7$。可以证明，答案可以表示为最简分数 $\\frac{p}{q}$，其中 $p$ 和 $q$ 为整数，且 $q \\not \\equiv 0 \\pmod{M}$。输出满足 $0 \\le x \\lt M$ 且 $x \\cdot q \\equiv p \\pmod{M}$ 的整数 $x$，即输出 $p \\cdot q^{-1} \\bmod M$。\n\n## 说明\n\n在第一个测试用例中，整个游戏有 $3$ 个回合，并且由于 $m = 3$，Bob 必须在每个回合中进行加法。因此，Alice 应当在每个回合都选择她能够选择的最大数，即 $k = 2$。\n\n在第三个测试用例中，Alice 有一种策略可以保证得到分数 $\\frac{75}{8} \\equiv 375000012 \\pmod{10^9 + 7}$。\n\n在第四个测试用例中，Alice 有一种策略可以保证得到分数 $\\frac{45}{2} \\equiv 500000026 \\pmod{10^9 + 7}$。",
   "samples": [
     {
       "input": "7\n3 3 2\n2 1 10\n6 3 10\n6 4 10\n100 1 1\n4 4 0\n69 4 20\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:12:34.551Z"
+  "fetchedAt": "2026-10-30T23:12:34.551Z",
+  "translatedAt": "2026-11-04T10:19:39.863+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

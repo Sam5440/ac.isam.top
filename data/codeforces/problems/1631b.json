@@ -4,7 +4,7 @@
   "contestId": 1631,
   "index": "B",
   "title": "Fun with Even Subarrays",
-  "titleZh": null,
+  "titleZh": "有趣的偶数子数组",
   "url": "https://codeforces.com/contest/1631/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a$ of $n$ elements. You can apply the following operation to it any number of times:\n\n- Select some subarray from $a$ of even size $2k$ that begins at position $l$ ($1\\le l \\le l+2\\cdot{k}-1\\le n$, $k \\ge 1$) and for each $i$ between $0$ and $k-1$ (inclusive), assign the value $a_{l+k+i}$ to $a_{l+i}$.\n\nFor example, if $a = [2, 1, 3, 4, 5, 3]$, then choose $l = 1$ and $k = 2$, applying this operation the array will become $a = [3, 4, 3, 4, 5, 3]$.\n\nFind the minimum number of operations (possibly zero) needed to make all the elements of the array equal.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 2 \\cdot 10^4$) — the number of test cases. Description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\leq n \\leq 2 \\cdot 10^5$) — the length of the array.\n\nThe second line of each test case consists of $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\leq a_i \\leq n$) — the elements of the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nPrint $t$ lines, each line containing the answer to the corresponding test case — the minimum number of operations needed to make equal all the elements of the array with the given operation.\n\n## Note\n\nIn the first test, all elements are equal, therefore no operations are needed.\n\nIn the second test, you can apply one operation with $k=1$ and $l=1$, set $a_1 := a_2$, and the array becomes $[1, 1]$ with $1$ operation.\n\nIn the third test, you can apply one operation with $k=1$ and $l=4$, set $a_4 := a_5$, and the array becomes $[4, 4, 4, 4, 4]$.\n\nIn the fourth test, you can apply one operation with $k=1$ and $l=3$, set $a_3 := a_4$, and the array becomes $[4, 2, 3, 3]$, then you can apply another operation with $k=2$ and $l=1$, set $a_1 := a_3$, $a_2 := a_4$, and the array becomes $[3, 3, 3, 3]$.\n\nIn the fifth test, there is only one element, therefore no operations are needed.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个包含 $n$ 个元素的数组 $a$。你可以对它进行任意次以下操作：\n\n- 选择 $a$ 中一个长度为 $2k$ 的偶数长度子数组，该子数组从位置 $l$ 开始（$1\\le l \\le l+2\\cdot{k}-1\\le n$，$k \\ge 1$），并对每个满足 $0$ 到 $k-1$（包括端点）的 $i$，将 $a_{l+k+i}$ 的值赋给 $a_{l+i}$。\n\n例如，对于 $a = [2, 1, 3, 4, 5, 3]$，选择 $l = 1$ 和 $k = 2$ 执行该操作后，数组将变为 $a = [3, 4, 3, 4, 5, 3]$。\n\n求使数组中的所有元素相等所需的最少操作次数（可以为零）。\n\n## 输入格式\n\n输入包含多组测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 2 \\cdot 10^4$），表示测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 2 \\cdot 10^5$），表示数组的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\leq a_i \\leq n$），表示数组 $a$ 中的元素。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n输出 $t$ 行，每行包含对应测试用例的答案，即使用给定操作使数组中的所有元素相等所需的最少操作次数。\n\n## 说明\n\n在第一个测试用例中，所有元素已经相等，因此不需要进行任何操作。\n\n在第二个测试用例中，可以执行一次 $k=1$ 且 $l=1$ 的操作，将 $a_1 := a_2$，数组变为 $[1, 1]$，共需 $1$ 次操作。\n\n在第三个测试用例中，可以执行一次 $k=1$ 且 $l=4$ 的操作，将 $a_4 := a_5$，数组变为 $[4, 4, 4, 4, 4]$。\n\n在第四个测试用例中，可以执行一次 $k=1$ 且 $l=3$ 的操作，将 $a_3 := a_4$，数组变为 $[4, 2, 3, 3]$；然后可以再执行一次 $k=2$ 且 $l=1$ 的操作，将 $a_1 := a_3$、$a_2 := a_4$，数组变为 $[3, 3, 3, 3]$。\n\n在第五个测试用例中，数组只有一个元素，因此不需要进行任何操作。",
   "samples": [
     {
       "input": "5\n3\n1 1 1\n2\n2 1\n5\n4 4 4 2 4\n4\n4 2 1 3\n1\n1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:12:11.009Z"
+  "fetchedAt": "2026-10-30T23:12:11.009Z",
+  "translatedAt": "2026-11-04T10:20:21.727+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

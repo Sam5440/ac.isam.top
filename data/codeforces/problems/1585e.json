@@ -4,7 +4,7 @@
   "contestId": 1585,
   "index": "E",
   "title": "Frequency Queries",
-  "titleZh": null,
+  "titleZh": "频率查询",
   "url": "https://codeforces.com/contest/1585/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Petya has a rooted tree with an integer written on each vertex. The vertex $1$ is the root. You are to answer some questions about the tree.\n\nA tree is a connected graph without cycles. A rooted tree has a special vertex called the root. The parent of a node $v$ is the next vertex on the shortest path from $v$ to the root.\n\nEach question is defined by three integers $v$, $l$, and $k$. To get the answer to the question, you need to perform the following steps:\n\n- First, write down the sequence of all integers written on the shortest path from the vertex $v$ to the root (including those written in the $v$ and the root).\n- Count the number of times each integer occurs. Remove all integers with less than $l$ occurrences.\n- Replace the sequence, removing all duplicates and ordering the elements by the number of occurrences in the original list in increasing order. In case of a tie, you can choose the order of these elements arbitrary.\n- The answer to the question is the $k$-th number in the remaining sequence. Note that the answer is not always uniquely determined, because there could be several orderings. Also, it is possible that the length of the sequence on this step is less than $k$, in this case the answer is $-1$.\n\nFor example, if the sequence of integers on the path from $v$ to the root is $[2, 2, 1, 7, 1, 1, 4, 4, 4, 4]$, $l = 2$ and $k = 2$, then the answer is $1$.\n\nPlease answer all questions about the tree.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\leq t \\leq 10^6$). Description of the test cases follows.\n\nThe first line of each test case contains two integers $n$, $q$ ($1 \\leq n, q \\leq 10^6$) — the number of vertices in the tree and the number of questions.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq n$), where $a_i$ is the number written on the $i$-th vertex.\n\nThe third line contains $n-1$ integers $p_2, p_3, \\ldots, p_n$ ($1 \\leq p_i \\leq n$), where $p_i$ is the parent of node $i$. It's guaranteed that the values $p$ define a correct tree.\n\nEach of the next $q$ lines contains three integers $v$, $l$, $k$ ($1 \\leq v, l, k \\leq n$) — descriptions of questions.\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ over all test cases do not exceed $10^6$.\n\n## Output\n\nFor each question of each test case print the answer to the question. In case of multiple answers, print any.",
-  "statementZhMd": null,
+  "statementZhMd": "Petya 有一棵有根树，每个顶点上写有一个整数。顶点 $1$ 是根。现在请你回答关于这棵树的一些问题。\n\n树是一种无环连通图。有根树具有一个特殊顶点，称为根。节点 $v$ 的父节点是从 $v$ 到根的最短路径上的下一个顶点。\n\n每个问题由三个整数 $v$、$l$ 和 $k$ 定义。要得到问题的答案，需要执行以下步骤：\n\n- 首先，写出从顶点 $v$ 到根的最短路径上所有顶点所写整数构成的序列（包括 $v$ 和根上的整数）。\n- 统计每个整数出现的次数。删除出现次数少于 $l$ 的所有整数。\n- 将序列替换为一个不含重复元素的序列，并按照这些元素在原序列中的出现次数以递增顺序排列。如果出现次数相同，则这些元素的顺序可以任意选择。\n- 问题的答案是剩余序列中的第 $k$ 个数。注意，答案不一定唯一，因为可能存在多种排列方式。此外，经过这一步后序列的长度可能小于 $k$，此时答案为 $-1$。\n\n例如，如果从顶点 $v$ 到根的路径上的整数序列为 $[2, 2, 1, 7, 1, 1, 4, 4, 4, 4]$，$l = 2$ 且 $k = 2$，那么答案为 $1$。\n\n请回答关于这棵树的所有问题。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\leq t \\leq 10^6$）。接下来给出各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$、$q$（$1 \\leq n, q \\leq 10^6$），分别表示树中的顶点数和问题数。\n\n第二行包含 $n$ 个整数 $a_1$, $a_2$, $\\ldots$, $a_n$（$1 \\leq a_i \\leq n$），其中 $a_i$ 表示第 $i$ 个顶点上写的整数。\n\n第三行包含 $n-1$ 个整数 $p_2$, $p_3$, $\\ldots$, $p_n$（$1 \\leq p_i \\leq n$），其中 $p_i$ 表示节点 $i$ 的父节点。保证这些 $p$ 的取值构成一棵正确的树。\n\n接下来的 $q$ 行中，每行包含三个整数 $v$、$l$、$k$（$1 \\leq v, l, k \\leq n$），表示一个问题。\n\n保证所有测试用例的 $n$ 之和以及 $q$ 之和均不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例中的每个问题，输出该问题的答案。如果答案不唯一，输出其中任意一个即可。",
   "samples": [
     {
       "input": "2\n3 3\n1 1 1\n1 2\n3 1 1\n3 1 2\n3 2 1\n5 5\n1 2 1 1 2\n1 1 2 2\n3 1 1\n2 1 2\n4 1 1\n4 2 1\n4 2 2\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:22:14.133Z"
+  "fetchedAt": "2026-10-30T23:22:14.133Z",
+  "translatedAt": "2026-11-04T10:25:23.990+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1571,
   "index": "G",
   "title": "A Battle Against a Dragon",
-  "titleZh": null,
+  "titleZh": "与巨龙的战斗",
   "url": "https://codeforces.com/contest/1571/problem/G",
   "difficulty": 2500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "A squad of $n$ warriors is defending a castle from a dragon attack. There are $m$ barricades between the castle and the dragon.\n\nThe warriors are numbered from $1$ to $n$. The $i$-th warrior knows $k_i$ attacks: the $j$-th of them deals $a_{i,j}$ damage to the dragon and can only be applied if there are exactly $b_{i,j}$ barricades between the castle and the dragon.\n\nThe warriors make turns one after another, starting from warrior $1$. After warrior $n$ makes his turn, the total damage to the dragon is calculated. The $i$-th warrior performs exactly one of three possible moves in his turn:\n\n1. destroys one barricade (if there are any left);\n2. deploys one of his $k_i$ attacks;\n3. skips a turn.\n\nThe total damage is the sum of damages dealt by the warriors who chose to deploy their attacks in their turn. What is the maximum total damage the warriors can deal to the dragon?\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($1 \\le n, m \\le 3 \\cdot 10^5$) — the number of warriors and the initial number of barricades.\n\nThen the descriptions of attacks for each warrior follow. The $i$-th description consists of three lines.\n\nThe first line contains a single integer $k_i$ ($1 \\le k_i \\le m + 1$) — the number of attacks the $i$-th warrior knows.\n\nThe second line contains $k_i$ integers $a_{i,1}, a_{i,2}, \\dots, a_{i,k_i}$ ($1 \\le a_{i,j} \\le 10^9$) — the damage of each attack.\n\nThe third line contains $k_i$ integers $b_{i,1}, b_{i,2}, \\dots, b_{i,k_i}$ ($0 \\le b_{i,j} \\le m$) — the required number of barricades for each attack. $b_{i,j}$ for the $i$-th warrior are pairwise distinct. The attacks are listed in the increasing order of the barricades requirement, so $b_{i,1} \\lt b_{i,2} \\lt \\dots \\lt b_{i,k_i}$.\n\nThe sum of $k_i$ over all warriors doesn't exceed $3 \\cdot 10^5$.\n\n## Output\n\nPrint a single integer — the maximum total damage the warriors can deal to the dragon.\n\n## Note\n\nIn the first example, the optimal choice is the following:\n\n- warrior $1$ destroys a barricade, now there are $3$ barricades left;\n- warrior $2$ deploys his first attack (he can do it because $b_{1,1}=3$, which is the current number of barricades).\n\nThe total damage is $10$.\n\nIf the first warrior used his attack or skipped his turn, then the second warrior would only be able to deploy his second attack. Thus, the total damage would be $2+5=7$ or $5$.\n\nIn the second example, the first warrior skips his move, the second warrior skips his move and the third warrior deploys his only attack.\n\nIn the third example, two equivalent options are:\n\n- both warriors deploy their second attacks;\n- the first warrior destroys one barricade and the second warrior deploys his first attack.\n\nBoth options yield $30$ total damage.",
-  "statementZhMd": null,
+  "statementZhMd": "一支由 $n$ 名战士组成的小队正在抵御巨龙对城堡的进攻。城堡与巨龙之间有 $m$ 道路障。\n\n战士编号从 $1$ 到 $n$。第 $i$ 名战士掌握 $k_i$ 种攻击方式，其中第 $j$ 种攻击可以对巨龙造成 $a_{i,j}$ 点伤害，并且只有当城堡与巨龙之间恰好有 $b_{i,j}$ 道路障时才能使用。\n\n战士们按照编号依次行动，从战士 $1$ 开始。在战士 $n$ 行动结束后，计算对巨龙造成的总伤害。第 $i$ 名战士在自己的回合中必须执行以下三种操作之一：\n\n1. 摧毁一道防线（如果还存在防线）；\n2. 使用自己掌握的 $k_i$ 种攻击中的一种；\n3. 跳过本回合。\n\n总伤害是所有选择使用攻击的战士在其回合中造成的伤害之和。战士们最多能对巨龙造成多少总伤害？\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 3 \\cdot 10^5$）——战士的数量和初始道路障数量。\n\n接下来给出每名战士的攻击描述。第 $i$ 名战士的描述由三行组成。\n\n第一行包含一个整数 $k_i$（$1 \\le k_i \\le m + 1$）——第 $i$ 名战士掌握的攻击数量。\n\n第二行包含 $k_i$ 个整数 $a_{i,1}, a_{i,2}, \\dots, a_{i,k_i}$（$1 \\le a_{i,j} \\le 10^9$）——每种攻击造成的伤害。\n\n第三行包含 $k_i$ 个整数 $b_{i,1}, b_{i,2}, \\dots, b_{i,k_i}$（$0 \\le b_{i,j} \\le m$）——每种攻击所需的道路障数量。对于第 $i$ 名战士，$b_{i,j}$ 两两不同。攻击按照所需道路障数量递增的顺序给出，即 $b_{i,1} \\lt b_{i,2} \\lt \\dots \\lt b_{i,k_i}$。\n\n所有战士的 $k_i$ 之和不超过 $3 \\cdot 10^5$。\n\n## 输出格式\n\n输出一个整数——战士们最多能对巨龙造成的总伤害。\n\n## 说明\n\n在第一个样例中，最优选择如下：\n\n- 战士 $1$ 摧毁一道道路障，此时还剩下 $3$ 道道路障；\n- 战士 $2$ 使用第一种攻击（因为 $b_{1,1}=3$，这正好等于当前的道路障数量）。\n\n总伤害为 $10$。\n\n如果第一名战士使用攻击或跳过回合，那么第二名战士只能使用第二种攻击。因此，总伤害将分别为 $2+5=7$ 或 $5$。\n\n在第二个样例中，第一名战士跳过行动，第二名战士跳过行动，第三名战士使用他唯一掌握的攻击。\n\n在第三个样例中，有两种等价的选择：\n\n- 两名战士都使用第二种攻击；\n- 第一名战士摧毁一道道路障，第二名战士使用第一种攻击。\n\n两种选择都能造成总计 $30$ 点伤害。",
   "samples": [
     {
       "input": "2 4\n1\n2\n4\n2\n10 5\n3 4\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:22:02.167Z"
+  "fetchedAt": "2026-11-02T18:22:02.167Z",
+  "translatedAt": "2026-11-04T10:34:37.874+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

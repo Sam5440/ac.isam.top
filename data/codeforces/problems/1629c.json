@@ -4,14 +4,14 @@
   "contestId": 1629,
   "index": "C",
   "title": "Meximum Array",
-  "titleZh": null,
+  "titleZh": "MEX 最大数组",
   "url": "https://codeforces.com/contest/1629/problem/C",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Mihai has just learned about the [MEX](https://en.wikipedia.org/wiki/Mex_(mathematics)) concept and since he liked it so much, he decided to use it right away.\n\nGiven an array $a$ of $n$ non-negative integers, Mihai wants to create **a new array $b$** that is formed in the following way:\n\nWhile $a$ is not empty:\n\n- Choose an integer $k$ ($1 \\leq k \\leq |a|$).\n- Append the MEX of the first $k$ numbers of the array $a$ to the end of array $b$ and erase them from the array $a$, shifting the positions of the remaining numbers in $a$.\n\nBut, since Mihai loves big arrays as much as the MEX concept, he wants the new array $b$ to be the **lexicographically maximum**. So, Mihai asks you to tell him what the maximum array $b$ that can be created by constructing the array optimally is.\n\nAn array $x$ is lexicographically greater than an array $y$ if in the first position where $x$ and $y$ differ $x_i \\gt y_i$ or if $|x| \\gt |y|$ and $y$ is a prefix of $x$ (where $|x|$ denotes the size of the array $x$).\n\nThe **MEX** of a set of non-negative integers is the minimal non-negative integer such that it is not in the set. For example, **MEX**({${1, 2, 3}$}) $= 0$ and **MEX**({${0, 1, 2, 4, 5}$}) $= 3$.\n\n## Input\n\nThe first line of the input contains a single integer $t$ ($1 \\le t \\le 100$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\leq n \\leq 2 \\cdot 10^5$) — the number of elements in the array $a$.\n\nThe second line of each test case contains $n$ **non-negative** integers $a_1, \\ldots, a_n$ ($0 \\leq a_i \\leq n$), where $a_i$ is the $i$-th integer from the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case print $m$ — the length of the maximum array $b$ Mihai can create, followed by $m$ integers denoting the elements of the array $b$.\n\n## Note\n\nIn the first test case, the lexicographically maximum array $b$ is obtained by selecting $k=5$, resulting in the $MEX$ of the whole array $a$. It is lexicographically maximum because an array starting with a smaller number than $4$ is lexicographically smaller, and choosing a $k \\lt 5$ would result in an array starting with a number smaller than $4$.\n\nIn the second test case, there are two ways to obtain the maximum array: first selecting $k=6$, then $k=2$, or first selecting $k=7$ and then $k=1$.",
-  "statementZhMd": null,
+  "statementZhMd": "Mihai 刚刚了解了 [MEX](https://en.wikipedia.org/wiki/Mex_(mathematics)) 的概念。由于他非常喜欢这个概念，因此决定立即使用它。\n\n给定一个由 $n$ 个非负整数组成的数组 $a$，Mihai 想要按照以下方式构造**一个新数组 $b$**：\n\n当 $a$ 非空时：\n\n- 选择一个整数 $k$（$1 \\leq k \\leq |a|$）。\n- 将数组 $a$ 的前 $k$ 个数的 MEX 添加到数组 $b$ 的末尾，并从数组 $a$ 中删除这 $k$ 个数，同时移动 $a$ 中剩余元素的位置。\n\n但是，由于 Mihai 和喜欢 MEX 概念一样喜欢大数组，他希望新数组 $b$ 是**字典序最大的**。因此，他请你告诉他通过最优构造数组，能够得到的最大数组 $b$。\n\n如果数组 $x$ 和数组 $y$ 在它们第一个不同的位置满足 $x_i \\gt y_i$，或者 $|x| \\gt |y|$ 且 $y$ 是 $x$ 的前缀，则称数组 $x$ 的字典序大于数组 $y$（其中 $|x|$ 表示数组 $x$ 的长度）。\n\n由非负整数组成的集合的 **MEX** 是不属于该集合的最小非负整数。例如，**MEX**({${1, 2, 3}$}) $= 0$，**MEX**({${0, 1, 2, 4, 5}$}) $= 3$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 100$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 2 \\cdot 10^5$）——数组 $a$ 中元素的数量。\n\n每个测试用例的第二行包含 $n$ 个**非负**整数 $a_1, \\ldots, a_n$（$0 \\leq a_i \\leq n$），其中 $a_i$ 是数组 $a$ 中的第 $i$ 个整数。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $m$——Mihai 能构造出的最大数组 $b$ 的长度，随后输出 $m$ 个整数，表示数组 $b$ 的元素。\n\n## 说明\n\n在第一个测试用例中，通过选择 $k=5$ 可以得到字典序最大的数组 $b$，此时得到的是整个数组 $a$ 的 MEX。之所以这是字典序最大的，是因为以小于 $4$ 的数开头的数组字典序更小，而选择 $k \\lt 5$ 会使得到的数组以小于 $4$ 的数开头。\n\n在第二个测试用例中，有两种方式可以得到最大数组：先选择 $k=6$，然后选择 $k=2$；或者先选择 $k=7$，然后选择 $k=1$。",
   "samples": [
     {
       "input": "6\n5\n1 0 2 0 3\n8\n2 2 3 4 0 1 2 0\n1\n1\n5\n0 1 2 3 4\n4\n0 1 1 0\n10\n0 0 2 1 1 1 0 0 1 1\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:12:26.579Z"
+  "fetchedAt": "2026-10-30T23:12:26.579Z",
+  "translatedAt": "2026-11-04T10:23:19.208+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

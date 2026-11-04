@@ -4,7 +4,7 @@
   "contestId": 1898,
   "index": "B",
   "title": "Milena and Admirer",
-  "titleZh": null,
+  "titleZh": "米莲娜与仰慕者",
   "url": "https://codeforces.com/contest/1898/problem/B",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Milena has received an array of integers $a_1, a_2, \\ldots, a_n$ of length $n$ from a secret admirer. She thinks that making it non-decreasing should help her identify the secret admirer.\n\nShe can use the following operation to make this array non-decreasing:\n\n- Select an element $a_i$ of array $a$ and an integer $x$ such that $1 \\le x \\lt a_i$. Then, replace $a_i$ by two elements $x$ and $a_i - x$ in array $a$. New elements ($x$ and $a_i - x$) are placed in the array $a$ in this order instead of $a_i$.More formally, let $a_1, a_2, \\ldots, a_i, \\ldots, a_k$ be an array $a$ before the operation. After the operation, it becomes equal to $a_1, a_2, \\ldots, a_{i-1}, x, a_i - x, a_{i+1}, \\ldots, a_k$. Note that the length of $a$ increases by $1$ on each operation.\n\nMilena can perform this operation multiple times (possibly zero). She wants you to determine the minimum number of times she should perform this operation to make array $a$ non-decreasing.\n\nAn array $x_1, x_2, \\ldots, x_k$ of length $k$ is called non-decreasing if $x_i \\le x_{i+1}$ for all $1 \\le i \\lt k$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\leq t \\leq 10\\,000$). The description of test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1\\leq n\\leq 2\\cdot 10^5$) — the length of the array $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1\\leq a_i\\leq 10^9$) – the array $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer — the minimum number of operations required to make the array non-decreasing.\n\nIt can be shown that it is always possible to make the array $a$ non-decreasing in the finite number of operations.\n\n## Note\n\nIn the first test case, Milena can replace the second element of array $a$ by integers $1$ and $2$, so the array would become $[\\, 1, \\, \\underline{1}, \\, \\underline{2}, \\, 2 \\,]$. Only $1$ operation is required.\n\nIn the second test case, the array $a$ is already non-decreasing, so the answer is $0$.\n\nIn the third test case, Milena can make array $a$ non-decreasing in $3$ operations as follows.\n\n- Select $i=1$ and $x=2$ and replace $a_1$ by $2$ and $1$. The array $a$ becomes equal to $[\\, \\underline{2}, \\, \\underline{1}, \\, 2, \\, 1 \\, ]$.\n- Select $i=3$ and $x=1$ and replace $a_3$ by $1$ and $1$. The array $a$ becomes equal to $[\\, 2, \\, 1, \\, \\underline{1}, \\, \\underline{1}, \\, 1 \\,]$.\n- Select $i=1$ and $x=1$ and replace $a_1$ by $2$ and $1$. The array $a$ becomes equal to $[\\, \\underline{1}, \\, \\underline{1}, \\, 1, \\, 1, \\, 1, \\, 1 \\,]$.\n\nIt can be shown that it is impossible to make it non-decreasing in $2$ or less operations, so the answer is $3$.",
-  "statementZhMd": null,
+  "statementZhMd": "米莲娜从一位秘密仰慕者那里收到一个长度为 $n$ 的整数数组 $a_1, a_2, \\ldots, a_n$。她认为，将数组变为非递减数组应该有助于她找出这位秘密仰慕者。\n\n她可以使用以下操作将数组变为非递减数组：\n\n- 选择数组 $a$ 中的一个元素 $a_i$ 和一个整数 $x$，满足 $1 \\le x \\lt a_i$。然后，将数组 $a$ 中的 $a_i$ 替换为两个元素 $x$ 和 $a_i - x$。新元素（$x$ 和 $a_i - x$）按照此顺序放入数组 $a$ 中原来 $a_i$ 所在的位置。更形式化地说，设操作前数组 $a$ 为 $a_1, a_2, \\ldots, a_i, \\ldots, a_k$。操作后，它将变为 $a_1, a_2, \\ldots, a_{i-1}, x, a_i - x, a_{i+1}, \\ldots, a_k$。注意，每次操作都会使 $a$ 的长度增加 $1$。\n\n米莲娜可以多次执行该操作（也可以执行零次）。她希望你确定，为使数组 $a$ 变为非递减数组，她至少需要执行多少次操作。\n\n长度为 $k$ 的数组 $x_1, x_2, \\ldots, x_k$ 被称为非递减数组，当且仅当对于所有 $1 \\le i \\lt k$，都有 $x_i \\le x_{i+1}$。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\leq t \\leq 10\\,000$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\leq n\\leq 2\\cdot 10^5$）——数组 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1\\leq a_i\\leq 10^9$）——数组 $a$。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——使数组 $a$ 变为非递减数组所需的最少操作次数。\n\n可以证明，总能通过有限次操作将数组 $a$ 变为非递减数组。\n\n## 说明\n\n在第一个测试用例中，米莲娜可以将数组 $a$ 的第二个元素替换为整数 $1$ 和 $2$，于是数组变为 $[\\, 1, \\, \\underline{1}, \\, \\underline{2}, \\, 2 \\,]$。只需要执行 $1$ 次操作。\n\n在第二个测试用例中，数组 $a$ 已经是非递减的，因此答案为 $0$。\n\n在第三个测试用例中，米莲娜可以通过以下 $3$ 次操作将数组 $a$ 变为非递减数组。\n\n- 选择 $i=1$ 和 $x=2$，将 $a_1$ 替换为 $2$ 和 $1$。数组 $a$ 变为 $[\\, \\underline{2}, \\, \\underline{1}, \\, 2, \\, 1 \\, ]$。\n- 选择 $i=3$ 和 $x=1$，将 $a_3$ 替换为 $1$ 和 $1$。数组 $a$ 变为 $[\\, 2, \\, 1, \\, \\underline{1}, \\, \\underline{1}, \\, 1 \\,]$。\n- 选择 $i=1$ 和 $x=1$，将 $a_1$ 替换为 $2$ 和 $1$。数组 $a$ 变为 $[\\, \\underline{1}, \\, \\underline{1}, \\, 1, \\, 1, \\, 1, \\, 1 \\,]$。\n\n可以证明，不可能在 $2$ 次或更少的操作内将其变为非递减数组，因此答案为 $3$。",
   "samples": [
     {
       "input": "4\n3\n1 3 2\n4\n1 2 3 4\n3\n3 2 1\n7\n1 4 4 3 5 7 6\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:07:59.694Z"
+  "fetchedAt": "2026-10-30T22:07:59.694Z",
+  "translatedAt": "2026-11-04T09:13:37.126+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

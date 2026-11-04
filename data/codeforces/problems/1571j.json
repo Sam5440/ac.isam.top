@@ -4,7 +4,7 @@
   "contestId": 1571,
   "index": "J",
   "title": "Two Railroads",
-  "titleZh": null,
+  "titleZh": "两条铁路",
   "url": "https://codeforces.com/contest/1571/problem/J",
   "difficulty": 3000,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 1024,
   "statementMd": "There are $n$ cities in Berland, and they are connected by two railroads — the Main railroad and the Auxiliary railroad. Each city has two railway stations, one connected to the Main railroad (called the Main station), and the other connected to the Auxiliary railroad.\n\nThe railroads are identical in their structure. The Main railroad consists of $n-1$ railroad segments; the $i$-th railroad segment connects the Main station of the city $i$ with the Main station of the city $i+1$. Similarly, the Auxiliary railroad consists of $n-1$ railroad segments; the $i$-th railroad segment connects the Auxiliary station of the city $i$ with the Auxiliary station of the city $i+1$.\n\nThese railroads are used to transfer different goods and resources from one city to another. In particular, the Ministry of Energetics is interested in using these railroads to transfer coal.\n\nThe Ministry has estimated the following capabilities of the railroads:\n\n- for every $i \\in [1, n-1]$, at most $a_i$ tons of coal per day can be transferred from the Main station $i$ to the Main station $i+1$ **(only in this direction)**;\n- for every $i \\in [1, n-1]$, at most $b_i$ tons of coal per day can be transferred from the Auxiliary station $i$ to the Auxiliary station $i+1$ **(only in this direction)**;\n- for every $i \\in [1, n]$, at most $c_i$ tons of coal per day can be transferred from the Main station $i$ to the Auxiliary station $i$, **or in the opposite direction**.\n\nTo analyze the capacity of the whole railroad network, the Ministry requires a software that would process and answer queries of the following format:\n\n- calculate the maximum number of tons of coal that can be transferred per day from the Main station $l_i$ to the Main station $r_i$.\n\nYour task is to implement this software.\n\n## Input\n\nThe first line contains one integer $n$ ($2 \\le n \\le 3 \\cdot 10^5$) — the number of cities.\n\nThe second line contains $n-1$ integers $a_1, a_2, \\dots, a_{n-1}$ ($1 \\le a_i \\le 10^9$).\n\nThe third line contains $n-1$ integers $b_1, b_2, \\dots, b_{n-1}$ ($1 \\le b_i \\le 10^9$).\n\nThe fourth line contains $n$ integers $c_1, c_2, \\dots, c_{n}$ ($1 \\le c_i \\le 10^9$).\n\nThe fifth line contains one integer $q$ ($1 \\le q \\le 3 \\cdot 10^5$) — the number of queries.\n\nThen $q$ lines follow, the $i$-th line contains two integers $l_i$ and $r_i$ ($1 \\le l_i \\lt r_i \\le n$) — the parameters of the $i$-th query.\n\n## Output\n\nPrint $q$ integers, where the $i$-th integer should be the answer to the $i$-th query, i. e. the maximum number of tons of coal that can be transferred per day from the Main station $l_i$ to the Main station $r_i$.",
-  "statementZhMd": null,
+  "statementZhMd": "在 Berland 有 $n$ 座城市，它们由两条铁路连接——主铁路和辅助铁路。每座城市有两个火车站，其中一个连接主铁路（称为主车站），另一个连接辅助铁路。\n\n两条铁路的结构完全相同。主铁路由 $n-1$ 段铁路组成；第 $i$ 段铁路连接城市 $i$ 的主车站和城市 $i+1$ 的主车站。类似地，辅助铁路由 $n-1$ 段铁路组成；第 $i$ 段铁路连接城市 $i$ 的辅助车站和城市 $i+1$ 的辅助车站。\n\n这些铁路用于在不同城市之间运输各种货物和资源。特别地，能源部希望利用这些铁路运输煤炭。\n\n能源部估计了铁路的以下运输能力：\n\n- 对于每个 $i \\in [1, n-1]$，每天最多可以将 $a_i$ 吨煤从主车站 $i$ 运往主车站 $i+1$ **（只能沿此方向运输）**；\n- 对于每个 $i \\in [1, n-1]$，每天最多可以将 $b_i$ 吨煤从辅助车站 $i$ 运往辅助车站 $i+1$ **（只能沿此方向运输）**；\n- 对于每个 $i \\in [1, n]$，每天最多可以在主车站 $i$ 和辅助车站 $i$ 之间运输 $c_i$ 吨煤，**方向不限**。\n\n为了分析整个铁路网络的运输能力，能源部需要一个能够处理并回答以下形式查询的软件：\n\n- 计算每天最多可以将多少吨煤从主车站 $l_i$ 运往主车站 $r_i$。\n\n你的任务是实现这个软件。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$2 \\le n \\le 3 \\cdot 10^5$）——城市的数量。\n\n第二行包含 $n-1$ 个整数 $a_1, a_2, \\dots, a_{n-1}$（$1 \\le a_i \\le 10^9$）。\n\n第三行包含 $n-1$ 个整数 $b_1, b_2, \\dots, b_{n-1}$（$1 \\le b_i \\le 10^9$）。\n\n第四行包含 $n$ 个整数 $c_1, c_2, \\dots, c_{n}$（$1 \\le c_i \\le 10^9$）。\n\n第五行包含一个整数 $q$（$1 \\le q \\le 3 \\cdot 10^5$）——查询的数量。\n\n接下来 $q$ 行，第 $i$ 行包含两个整数 $l_i$ 和 $r_i$（$1 \\le l_i \\lt r_i \\le n$）——第 $i$ 个查询的参数。\n\n## 输出格式\n\n输出 $q$ 个整数，其中第 $i$ 个整数应为第 $i$ 个查询的答案，即每天最多可以从主车站 $l_i$ 运往主车站 $r_i$ 的煤炭吨数。",
   "samples": [
     {
       "input": "5\n3 4 7 4\n8 5 3 5\n10 5 3 4 10\n4\n1 4\n1 2\n3 4\n2 4\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:22:02.171Z"
+  "fetchedAt": "2026-11-02T18:22:02.171Z",
+  "translatedAt": "2026-11-04T10:27:17.391+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1714,
   "index": "D",
   "title": "Color with Occurrences",
-  "titleZh": null,
+  "titleZh": "用出现位置染色",
   "url": "https://codeforces.com/contest/1714/problem/D",
   "difficulty": 1600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given some text t and a set of n strings s1,s2,…,sn.\n\nIn one step, you can choose any occurrence of any string si in the text t and color the corresponding characters of the text in red. For example, if t=bababa and s1=ba, s2=aba, you can get t=bababa, t=bababa or t=bababa in one step.\n\nYou want to color all the letters of the text t in red. When you color a letter in red again, it stays red.\n\nIn the example above, three steps are enough:\n\n- Let's color t[2…4]=s2=aba in red, we get t=bababa;\n- Let's color t[1…2]=s1=ba in red, we get t=bababa;\n- Let's color t[4…6]=s2=aba in red, we get t=bababa.\n\nEach string si can be applied any number of times (or not at all). Occurrences for coloring can intersect arbitrarily.\n\nDetermine the minimum number of steps needed to color all letters t in red and how to do it. If it is impossible to color all letters of the text t in red, output `-1`.\n\n## Input\n\nThe first line of the input contains an integer q (1≤q≤100) —the number of test cases in the test.\n\nThe descriptions of the test cases follow.\n\nThe first line of each test case contains the text t (1≤|t|≤100), consisting only of lowercase Latin letters, where |t| is the length of the text t.\n\nThe second line of each test case contains a single integer n (1≤n≤10) — the number of strings in the set.\n\nThis is followed by n lines, each containing a string si (1≤|si|≤10) consisting only of lowercase Latin letters, where |si| — the length of string si.\n\n## Output\n\nFor each test case, print the answer on a separate line.\n\nIf it is impossible to color all the letters of the text in red, print a single line containing the number `-1`.\n\nOtherwise, on the first line, print the number m — the minimum number of steps it will take to turn all the letters t red.\n\nThen in the next m lines print pairs of indices: wj and pj (1≤j≤m), which denote that the string with index wj was used as a substring to cover the occurrences starting in the text t from position pj. The pairs can be output in any order.\n\nIf there are several answers, output any of them.\n\n## Note\n\nThe first test case is explained in the problem statement.\n\nIn the second test case, it is impossible to color all the letters of the text in red.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个文本 $t$ 和一个包含 $n$ 个字符串 $s1,s2,…,sn$ 的集合。\n\n在一步操作中，你可以选择文本 $t$ 中任意一个字符串 $si$ 的任意一次出现，并将文本中对应的字符染成红色。例如，当 $t=bababa$、$s1=ba$、$s2=aba$ 时，一步操作后可以得到 $t=bababa$、$t=bababa$ 或 $t=bababa$。\n\n你希望将文本 $t$ 中的所有字母都染成红色。当一个字母再次被染成红色时，它仍然保持红色。\n\n在上面的例子中，三步操作就足够了：\n\n- 将 $t[2…4]=s2=aba$ 染成红色，得到 $t=bababa$；\n- 将 $t[1…2]=s1=ba$ 染成红色，得到 $t=bababa$；\n- 将 $t[4…6]=s2=aba$ 染成红色，得到 $t=bababa$。\n\n每个字符串 $si$ 都可以被使用任意次（也可以一次都不使用）。用于染色的出现位置可以任意相交。\n\n请确定将文本 $t$ 中的所有字母都染成红色所需的最少操作次数，并给出一种操作方案。如果无法将文本 $t$ 中的所有字母都染成红色，输出 `-1`。\n\n## 输入格式\n\n输入的第一行包含一个整数 $q$（$1≤q≤100$）——测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含文本 $t$（$1≤|t|≤100$），文本仅由小写拉丁字母组成，其中 $|t|$ 表示文本的长度。\n\n每个测试用例的第二行包含一个整数 $n$（$1≤n≤10$）——集合中字符串的数量。\n\n接下来 $n$ 行每行包含一个字符串 $si$（$1≤|si|≤10$），字符串仅由小写拉丁字母组成，其中 $|si|$ 表示字符串的长度。\n\n## 输出格式\n\n对于每个测试用例，单独输出一行答案。\n\n如果无法将文本 $t$ 中的所有字母都染成红色，输出一行，其中包含数字 `-1`。\n\n否则，第一行输出一个整数 $m$——将文本 $t$ 中的所有字母染成红色所需的最少操作次数。\n\n接下来的 $m$ 行输出下标对：$wj$ 和 $pj$（$1≤j≤m$），表示使用下标为 $wj$ 的字符串作为子串，覆盖文本 $t$ 中从位置 $pj$ 开始的出现位置。下标对可以按任意顺序输出。\n\n如果有多个答案，输出任意一个即可。\n\n## 说明\n\n第一个测试用例已在题目描述中进行了解释。\n\n在第二个测试用例中，无法将文本 $t$ 中的所有字母都染成红色。",
   "samples": [
     {
       "input": "6\nbababa\n2\nba\naba\ncaba\n2\nbac\nacab\nabacabaca\n3\naba\nbac\naca\nbaca\n3\na\nc\nb\ncodeforces\n4\ndef\ncode\nefo\nforces\naaaabbbbcccceeee\n4\neeee\ncccc\naaaa\nbbbb\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:53:48.325Z"
+  "fetchedAt": "2026-11-02T17:53:48.325Z",
+  "translatedAt": "2026-11-04T10:10:21.227+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

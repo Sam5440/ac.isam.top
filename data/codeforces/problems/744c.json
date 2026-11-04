@@ -4,7 +4,7 @@
   "contestId": 744,
   "index": "C",
   "title": "Hongcow Buys a Deck of Cards",
-  "titleZh": null,
+  "titleZh": "Hongcow 购买一副卡牌",
   "url": "https://codeforces.com/contest/744/problem/C",
   "difficulty": 2400,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "One day, Hongcow goes to the store and sees a brand new deck of $*n*$ special cards. Each individual card is either red or blue. He decides he wants to buy them immediately. To do this, he needs to play a game with the owner of the store.\n\nThis game takes some number of turns to complete. On a turn, Hongcow may do one of two things:\n\n- Collect tokens. Hongcow collects $1$ red token **and** $1$ blue token by choosing this option (thus, $2$ tokens in total per one operation).\n- Buy a card. Hongcow chooses some card and spends tokens to purchase it as specified below.\n\nThe $*i*$-th card requires $*r*_{*i*}$ red resources and $*b*_{*i*}$ blue resources. Suppose Hongcow currently has $*A*$ red cards and $*B*$ blue cards. Then, the $*i*$-th card will require Hongcow to spend $*max*(*r*_{*i*} - *A*, 0)$ red tokens, and $*max*(*b*_{*i*} - *B*, 0)$ blue tokens. Note, only tokens disappear, but the cards stay with Hongcow forever. Each card can be bought only once.\n\nGiven a description of the cards and their costs determine the minimum number of turns Hongcow needs to purchase all cards.\n\n## Input\n\nThe first line of input will contain a single integer $*n*$ ($1 ≤ *n* ≤ 16$).\n\nThe next $*n*$ lines of input will contain three tokens $*c*_{*i*}$, $*r*_{*i*}$ and $*b*_{*i*}$. $*c*_{*i*}$ will be '`R`' or '`B`', denoting the color of the card as red or blue. $*r*_{*i*}$ will be an integer denoting the amount of red resources required to obtain the card, and $*b*_{*i*}$ will be an integer denoting the amount of blue resources required to obtain the card ($0 ≤ *r*_{*i*}, *b*_{*i*} ≤ 10^{7}$).\n\n## Output\n\nOutput a single integer, denoting the minimum number of turns needed to acquire all the cards.\n\n## Note\n\nFor the first sample, Hongcow's four moves are as follows:\n\n1. Collect tokens\n2. Buy card $1$\n3. Buy card $2$\n4. Buy card $3$\n\nNote, at the fourth step, Hongcow is able to buy card\n\n3\n\nbecause Hongcow already has one red and one blue card, so we don't need to collect tokens.\n\nFor the second sample, one optimal strategy is as follows:\n\n1. Collect tokens\n2. Collect tokens\n3. Buy card $2$\n4. Collect tokens\n5. Buy card $3$\n6. Buy card $1$\n\nAt the fifth step, even though Hongcow has a red token, Hongcow doesn't actually need to spend it, since Hongcow has a red card already.",
-  "statementZhMd": null,
+  "statementZhMd": "一天，Hongcow 来到商店，看到了全新的一副 $*n*$ 张特殊卡牌。每张卡牌要么是红色，要么是蓝色。他决定立即买下它们。为此，他需要和店主进行一场游戏。\n\n这场游戏需要进行若干回合才能完成。每个回合中，Hongcow 可以进行以下两种操作之一：\n\n- 收集代币。选择此操作时，Hongcow 会收集 $1$ 个红色代币**和** $1$ 个蓝色代币（因此每次操作总共获得 $2$ 个代币）。\n- 购买卡牌。Hongcow 选择一张卡牌，并按照下面的规则花费代币将其购买。\n\n第 $*i*$ 张卡牌需要 $*r*_{*i*}$ 个红色资源和 $*b*_{*i*}$ 个蓝色资源。假设 Hongcow 当前拥有 $*A*$ 张红色卡牌和 $*B*$ 张蓝色卡牌。那么，购买第 $*i*$ 张卡牌时，Hongcow 需要花费 $*max*(*r*_{*i*} - *A*, 0)$ 个红色代币，以及 $*max*(*b*_{*i*} - *B*, 0)$ 个蓝色代币。注意，只有代币会被消耗，卡牌会永远留在 Hongcow 手中。每张卡牌只能购买一次。\n\n给定所有卡牌的描述，求 Hongcow 购买所有卡牌所需的最少回合数。\n\n## 输入格式\n\n输入的第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 16$）。\n\n接下来的 $*n*$ 行中，每行包含三个 token：$*c*_{*i*}$、$*r*_{*i*}$ 和 $*b*_{*i*}$。$*c*_{*i*}$ 为 '`R`' 或 '`B`'，表示卡牌的颜色是红色还是蓝色。$*r*_{*i*}$ 是一个整数，表示获得该卡牌所需的红色资源数量；$*b*_{*i*}$ 是一个整数，表示获得该卡牌所需的蓝色资源数量（$0 ≤ *r*_{*i*}, *b*_{*i*} ≤ 10^{7}$）。\n\n## 输出格式\n\n输出一个整数，表示获得所有卡牌所需的最少回合数。\n\n## 说明\n\n对于第一个样例，Hongcow 的四次操作如下：\n\n1. 收集代币\n2. 购买卡牌 $1$\n3. 购买卡牌 $2$\n4. 购买卡牌 $3$\n\n注意，在第四步中，Hongcow 能够购买卡牌 3，因为 Hongcow 已经拥有一张红色卡牌和一张蓝色卡牌，所以不需要再收集代币。\n\n对于第二个样例，一种最优策略如下：\n\n1. 收集代币\n2. 收集代币\n3. 购买卡牌 $2$\n4. 收集代币\n5. 购买卡牌 $3$\n6. 购买卡牌 $1$\n\n在第五步中，尽管 Hongcow 拥有一个红色代币，但实际上并不需要花费它，因为他已经拥有一张红色卡牌。",
   "samples": [
     {
       "input": "3\nR 0 1\nB 1 0\nR 1 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T01:00:08.728Z"
+  "fetchedAt": "2026-10-31T01:00:08.728Z",
+  "translatedAt": "2026-11-04T10:51:49.204+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

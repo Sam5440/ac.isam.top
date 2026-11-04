@@ -4,7 +4,7 @@
   "contestId": 1843,
   "index": "E",
   "title": "Tracking Segments",
-  "titleZh": null,
+  "titleZh": "追踪区间",
   "url": "https://codeforces.com/contest/1843/problem/E",
   "difficulty": 1600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a$ consisting of $n$ zeros. You are also given a set of $m$ not necessarily different segments. Each segment is defined by two numbers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le n$) and represents a subarray $a_{l_i}, a_{l_i+1}, \\dots, a_{r_i}$ of the array $a$.\n\nLet's call the segment $l_i, r_i$ *beautiful* if the number of ones on this segment **is strictly greater** than the number of zeros. For example, if $a = [1, 0, 1, 0, 1]$, then the segment $[1, 5]$ is *beautiful* (the number of ones is $3$, the number of zeros is $2$), but the segment $[3, 4]$ is not is *beautiful* (the number of ones is $1$, the number of zeros is $1$).\n\nYou also have $q$ changes. For each change you are given the number $1 \\le x \\le n$, which means that you must assign an element $a_x$ the value $1$.\n\nYou have to find the first change after which **at least one** of $m$ given segments becomes *beautiful*, or report that none of them is beautiful after processing all $q$ changes.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le m \\le n \\le 10^5$) — the size of the array $a$ and the number of segments, respectively.\n\nThen there are $m$ lines consisting of two numbers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le n$) —the boundaries of the segments.\n\nThe next line contains an integer $q$ ($1 \\le q \\le n$) — the number of changes.\n\nThe following $q$ lines each contain a single integer $x$ ($1 \\le x \\le n$) — the index of the array element that needs to be set to $1$. It is guaranteed that indexes in queries are distinct.\n\nIt is guaranteed that the sum of $n$ for all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output one integer  — the minimum change number after which at least one of the segments will be beautiful, or $-1$ if none of the segments will be beautiful.\n\n## Note\n\nIn the first case, after first 2 changes we won't have any beautiful segments, but after the third one on a segment $[1; 5]$ there will be 3 ones and only 2 zeros, so the answer is 3.\n\nIn the second case, there won't be any beautiful segments.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个零组成的数组 $a$。同时给定一个包含 $m$ 个不一定互不相同的区间的集合。每个区间由两个数 $l_i$ 和 $r_i$ 定义（$1 \\le l_i \\le r_i \\le n$），表示数组 $a$ 的子数组 $a_{l_i}, a_{l_i+1}, \\dots, a_{r_i}$。\n\n如果区间 $l_i, r_i$ 上的数字 1 的数量**严格大于**数字 0 的数量，则称该区间是*美丽的*。例如，当 $a = [1, 0, 1, 0, 1]$ 时，区间 $[1, 5]$ 是*美丽的*（数字 1 的数量为 $3$，数字 0 的数量为 $2$），但区间 $[3, 4]$ 不是*美丽的*（数字 1 和数字 0 的数量均为 $1$）。\n\n你还需要进行 $q$ 次修改。对于每次修改，给定一个数 $1 \\le x \\le n$，表示必须将元素 $a_x$ 赋值为 $1$。\n\n请找出第一次修改，使得在这次修改之后，给定的 $m$ 个区间中**至少有一个**变为*美丽的*；如果处理完全部 $q$ 次修改后仍没有任何区间是美丽的，则报告这一情况。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le m \\le n \\le 10^5$）——数组 $a$ 的大小以及区间的数量。\n\n接下来 $m$ 行，每行包含两个数 $l_i$ 和 $r_i$（$1 \\le l_i \\le r_i \\le n$）——区间的左右端点。\n\n下一行包含一个整数 $q$（$1 \\le q \\le n$）——修改的次数。\n\n接下来的 $q$ 行每行包含一个整数 $x$（$1 \\le x \\le n$）——需要被赋值为 $1$ 的数组元素下标。\n\n保证每个测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——使得至少一个区间变为美丽的最少修改次数；如果没有任何区间会变为美丽，则输出 $-1$。\n\n## 说明\n\n在第一个测试用例中，进行前 2 次修改后，我们不会拥有任何美丽的区间；但进行第 3 次修改后，区间 $[1; 5]$ 中将有 3 个 1 和仅 2 个 0，因此答案为 3。\n\n在第二个测试用例中，不会有任何美丽的区间。",
   "samples": [
     {
       "input": "6\n5 5\n1 2\n4 5\n1 5\n1 3\n2 4\n5\n5\n3\n1\n2\n4\n4 2\n1 1\n4 4\n2\n2\n3\n5 2\n1 5\n1 5\n4\n2\n1\n3\n4\n5 2\n1 5\n1 3\n5\n4\n1\n2\n3\n5\n5 5\n1 5\n1 5\n1 5\n1 5\n1 4\n3\n1\n4\n3\n3 2\n2 2\n1 3\n3\n2\n3\n1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:27:42.821Z"
+  "fetchedAt": "2026-11-02T17:27:42.821Z",
+  "translatedAt": "2026-11-04T09:13:25.417+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1726,
   "index": "G",
   "title": "A Certain Magical Party",
-  "titleZh": null,
+  "titleZh": "某个魔法派对",
   "url": "https://codeforces.com/contest/1726/problem/G",
   "difficulty": 3300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ people at a party. The $i$-th person has an amount of happiness $a_i$.\n\nEvery person has a certain kind of personality which can be represented as a binary integer $b$. If $b = 0$, it means the happiness of the person will increase if he tells the story to someone **strictly less** happy than them. If $b = 1$, it means the happiness of the person will increase if he tells the story to someone **strictly more** happy than them.\n\nLet us define a *speaking order* as an ordering of the people from left to right. Now the following process occurs. We go from left to right. The current person tells the story to all people other than himself. Note that **all happiness values stay constant** while this happens. After the person is done, he counts the number of people who currently have strictly less/more happiness than him as per his kind of personality, and his happiness increases by that value. Note that only the current person's happiness value increases.\n\nAs the organizer of the party, you don't want anyone to leave sad. Therefore, you want to count the number of speaking orders such that at the end of the process **all** $n$ people have **equal** happiness.\n\nTwo speaking orders are considered different if there exists at least one person who does not have the same position in the two speaking orders.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\leq n \\leq 2 \\cdot 10^5$) — the number of people.\n\nThe second line contains a sequence of $n$ integers $a_1,a_2,...,a_n$ ($1 \\leq a_i \\leq 2n$)  — the happiness values.\n\nThe third line contains a sequence of $n$ binary numbers $b_1,b_2,...,b_n$ ($b_i \\in \\{0,1\\}$)  — the kinds of personality.\n\n## Output\n\nOutput the number of different valid speaking orders. Since this number can be large, output it modulo $998244353$.\n\n## Note\n\nHere is the explanation for the first example. One valid speaking order is $[2,1,4,3]$ (here, we have written the indices of each person). Each step shows the current happiness values and results.\n\nStep $1$: $[1,2,4,4]$ $\\rightarrow$ Person $2$ tells the story to others. Since his kind of personality is $1$, his happiness increases by $2$ since persons $3$ and $4$ have strictly greater happiness.\n\nStep $2$: $[1,4,4,4]$ $\\rightarrow$ Person $1$ tells the story to others. Since his kind of personality is $1$, his happiness increases by $3$ since persons $2$, $3$ and $4$ have strictly greater happiness.\n\nStep $3$: $[4,4,4,4]$ $\\rightarrow$ Person $4$ tells the story to others. Since his kind of personality is $0$, his happiness increases by $0$ since no one has strictly lesser happiness.\n\nStep $4$: $[4,4,4,4]$ $\\rightarrow$ Person $3$ tells the story to others. Since his kind of personality is $0$, his happiness increases by $0$ since no one has strictly lesser happiness.\n\nAt the end, everyone has equal happiness.\n\nNote that $[2,1,3,4]$ is also a valid answer for this example.\n\nIt can be shown that there is no valid ordering for the second example.",
-  "statementZhMd": null,
+  "statementZhMd": "派对上有 $n$ 个人。第 $i$ 个人的幸福值为 $a_i$。\n\n每个人都有一种可以用二进制整数 $b$ 表示的性格。如果 $b = 0$，表示当这个人向一个幸福值**严格低于**自己的人讲故事时，他的幸福值会增加。如果 $b = 1$，表示当这个人向一个幸福值**严格高于**自己的人讲故事时，他的幸福值会增加。\n\n我们将从左到右排列所有人，称这种排列为一种*讲故事顺序*。接下来进行如下过程：我们从左到右依次处理每个人。当前的人向除自己以外的所有人讲故事。注意，在此过程中，**所有人的幸福值都保持不变**。当前的人讲完故事后，根据自己的性格，统计当前幸福值严格低于/高于自己的人数，并将自己的幸福值增加这个数量。注意，只有当前这个人的幸福值会增加。\n\n作为派对的组织者，你不希望任何人伤心。因此，你需要计算满足过程结束时**所有** $n$ 个人的幸福值都**相等**的讲故事顺序数量。\n\n如果存在至少一个人在两种顺序中的位置不同，则认为这两种讲故事顺序不同。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——人数。\n\n第二行包含一个长度为 $n$ 的整数序列 $a_1,a_2,...,a_n$（$1 \\le a_i \\le 2n$）——每个人的幸福值。\n\n第三行包含一个长度为 $n$ 的二进制数序列 $b_1,b_2,...,b_n$（$b_i \\in \\{0,1\\}$）——每个人的性格。\n\n## 输出格式\n\n输出不同的有效讲故事顺序数量。由于答案可能很大，请将其对 $998244353$ 取模后输出。\n\n## 说明\n\n下面解释第一个样例。一个有效的讲故事顺序是 $[2,1,4,3]$（这里写出的是每个人的编号）。每一步都展示当前的幸福值以及处理结果。\n\n步骤 $1$：$[1,2,4,4]$ $→$ 第 $2$ 个人向其他人讲故事。由于他的性格为 $1$，他的幸福值增加了 $2$，因为第 $3$ 和第 $4$ 个人的幸福值严格高于他。\n\n步骤 $2$：$[1,4,4,4]$ $→$ 第 $1$ 个人向其他人讲故事。由于他的性格为 $1$，他的幸福值增加了 $3$，因为第 $2$、第 $3$ 和第 $4$ 个人的幸福值严格高于他。\n\n步骤 $3$：$[4,4,4,4]$ $→$ 第 $4$ 个人向其他人讲故事。由于他的性格为 $0$，他的幸福值增加了 $0$，因为没有人的幸福值严格低于他。\n\n步骤 $4$：$[4,4,4,4]$ $→$ 第 $3$ 个人向其他人讲故事。由于他的性格为 $0$，他的幸福值增加了 $0$，因为没有人的幸福值严格低于他。\n\n过程结束时，所有人的幸福值都相等。\n\n注意，$[2,1,3,4]$ 也是该样例的一个有效答案。\n\n可以证明，第二个样例不存在有效的顺序。",
   "samples": [
     {
       "input": "4\n1 2 4 4\n1 1 0 0\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:52:03.282Z"
+  "fetchedAt": "2026-10-30T22:52:03.282Z",
+  "translatedAt": "2026-11-04T09:17:05.682+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1571,
   "index": "I",
   "title": "Physical Examination",
-  "titleZh": null,
+  "titleZh": "体检",
   "url": "https://codeforces.com/contest/1571/problem/I",
   "difficulty": 3200,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp plans to undergo a full physical examination at his local clinic. There are $n$ doctors, numbered from $1$ to $n$. The $i$-th doctor takes patients from minute $L_i$ to minute $R_i$, so Polycarp can visit him at any minute in this range. It takes each doctor exactly one minute to examine Polycarp's health.\n\nPolycarp wants to arrive at the clinic at some minute $x$ and visit all $n$ doctors in some order **without waiting or visiting any doctor several times**.\n\nMore formally, he chooses an integer $x$ and a permutation $p_1, p_2, \\dots, p_n$ (a sequence of $n$ integers from $1$ to $n$ such that each integer appears exactly once), then proceeds to visit:\n\n- doctor $p_1$ at minute $x$;\n- doctor $p_2$ at minute $x+1$;\n- ...\n- doctor $p_n$ at minute $x+n-1$.\n\nThe $p_i$-th doctor should be able to take patients at minute $x+i-1$, so the following should hold: $L[p_i] \\le x + i - 1 \\le R[p_i]$.\n\nDetermine if it's possible for Polycarp to choose such a minute $x$ and a permutation $p$ that he'll be able to visit all $n$ doctors in without waiting or visiting any doctor several times. If there are multiple answers, print any of them.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 100$) — the number of testcases.\n\nThen the descriptions of $t$ testcases follow.\n\nThe first line of the testcase contains a single integer $n$ ($1 \\le n \\le 10^5$) — the number of doctors.\n\nThe second line of the testcase contains $n$ integers $L_1, L_2, \\dots L_n$ ($1 \\le L_i \\le 10^9$).\n\nThe third line of the testcase contains $n$ integers $R_1, R_2, \\dots R_n$ ($L_i \\le R_i \\le 10^9$).\n\nThe sum of $n$ over all testcases doesn't exceed $10^5$.\n\n## Output\n\nFor each testcase print an answer.\n\nIf there exists such a minute $x$ and a permutation $p$ that Polycarp is able to visit all $n$ doctors without waiting or visiting any doctor several times, then print $x$ in the first line and a permutation $p$ in the second line. If there are multiple answers, print any of them.\n\nOtherwise, print $-1$ in the only line.\n\n## Note\n\nIn the third testcase it's impossible to visit all doctors, because Polycarp has to visit doctor $2$ at minute $2$ and doctor $1$ at minute $4$. However, that would require him to wait a minute between the visits, which is not allowed.\n\nIn the fourth testcase all doctors take patients in the span of $2$ minutes. However, since there are three of them, Polycarp can't visit them all.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 计划在当地诊所进行一次全面体检。诊所有 $n$ 名医生，编号从 $1$ 到 $n$。第 $i$ 名医生会在第 $L_i$ 分钟到第 $R_i$ 分钟接诊患者，因此 Polycarp 可以在这一时间段内的任意分钟拜访他。每名医生恰好需要一分钟来检查 Polycarp 的健康状况。\n\nPolycarp 希望在某个时刻 $x$ 到达诊所，并以某种顺序拜访全部 $n$ 名医生，**且不等待，也不重复拜访任何医生**。\n\n更正式地说，他选择一个整数 $x$ 和一个排列 $p_1, p_2, \\dots, p_n$（一个由 $1$ 到 $n$ 组成、且每个整数恰好出现一次的长度为 $n$ 的序列），然后依次拜访：\n\n- 在第 $x$ 分钟拜访医生 $p_1$；\n- 在第 $x+1$ 分钟拜访医生 $p_2$；\n- ...\n- 在第 $x+n-1$ 分钟拜访医生 $p_n$。\n\n第 $p_i$ 名医生应该能够在第 $x+i-1$ 分钟接诊患者，因此必须满足：$L[p_i] \\le x + i - 1 \\le R[p_i]$。\n\n请判断 Polycarp 是否可以选择这样的时刻 $x$ 和排列 $p$，从而在不等待且不重复拜访任何医生的情况下拜访全部 $n$ 名医生。如果有多个答案，输出任意一个即可。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 100$）——测试用例的数量。\n\n接下来给出 $t$ 个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 10^5$）——医生的数量。\n\n第二行包含 $n$ 个整数 $L_1, L_2, \\dots L_n$（$1 \\le L_i \\le 10^9$）。\n\n第三行包含 $n$ 个整数 $R_1, R_2, \\dots R_n$（$L_i \\le R_i \\le 10^9$）。\n\n所有测试用例中 $n$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例输出一个答案。\n\n如果存在这样的时刻 $x$ 和排列 $p$，使得 Polycarp 能够在不等待且不重复拜访任何医生的情况下拜访全部 $n$ 名医生，则在第一行输出 $x$，并在第二行输出排列 $p$。如果有多个答案，输出任意一个即可。\n\n否则，在唯一一行输出 $-1$。\n\n## 说明\n\n在第三个测试用例中，不可能拜访所有医生，因为 Polycarp 必须在第 $2$ 分钟拜访医生 $2$，并在第 $4$ 分钟拜访医生 $1$。然而，这要求他在两次拜访之间等待一分钟，而题目不允许等待。\n\n在第四个测试用例中，所有医生都在一个长度为 $2$ 分钟的时间段内接诊患者。然而，由于医生有三名，Polycarp 无法拜访他们所有人。",
   "samples": [
     {
       "input": "5\n3\n2 3 1\n3 3 2\n8\n6 6 5 4 9 4 3 6\n7 6 10 6 9 6 6 8\n2\n4 2\n4 2\n3\n2 2 2\n3 3 3\n1\n5\n10\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:22:02.170Z"
+  "fetchedAt": "2026-11-02T18:22:02.170Z",
+  "translatedAt": "2026-11-04T10:32:35.482+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

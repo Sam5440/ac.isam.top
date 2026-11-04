@@ -4,7 +4,7 @@
   "contestId": 1588,
   "index": "F",
   "title": "Jumping Through the Array",
-  "titleZh": null,
+  "titleZh": "在数组中跳跃",
   "url": "https://codeforces.com/contest/1588/problem/F",
   "difficulty": 3500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 512,
   "statementMd": "You are given an array of integers $a$ of size $n$ and a permutation $p$ of size $n$. There are $q$ queries of three types coming to you:\n\n1. For given numbers $l$ and $r$, calculate the sum in array $a$ on the segment from $l$ to $r$: $\\sum\\limits_{i=l}^{r} a_i$.\n2. You are given two numbers $v$ and $x$. Let's build a directed graph from the permutation $p$: it has $n$ vertices and $n$ edges $i \\to p_i$. Let $C$ be the set of vertices that are reachable from $v$ in this graph. You should add $x$ to all $a_u$ such that $u$ is in $C$.\n3. You are given indices $i$ and $j$. You should swap $p_i$ and $p_j$.\n\n![image](https://espresso.codeforces.com/a6ac5920f50be62466a24eaec2ebc85ce4438008.png) The graph corresponding to the permutation $[2, 3, 1, 5, 4]$.\n\nPlease, process all queries and print answers to queries of type $1$.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the size of the array and permutation.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($-10^8 \\le a_i \\le 10^8$).\n\nThe third line contains $n$ distinct integers $p_1, p_2, \\ldots, p_n$ ($1 \\le p_i \\le n$).\n\nThe fourth line contains a single integer $q$ — the number of queries ($1 \\le q \\le 2 \\cdot 10^5$).\n\nNext $q$ lines contain description of queries. The $i$-th of them starts with an integer $t_i$ ($1 \\le t_i \\le 3$) — the query type.\n\n- If $t_i = 1$, then the $i$-th line also contains two integers $l$, $r$ ($1 \\le l \\le r \\le n$).\n- If $t_i = 2$, then the $i$-th line also contains two integers $v$, $x$ ($1 \\le v \\le n$, $-10^8 \\le x \\le 10^8$).\n- If $t_i = 3$, then the $i$-th line also contains also two integers $i$, $j$ ($1 \\le i, j \\le n$).\n\n## Output\n\nFor every first type query, print a single integer — the answer to this query.\n\n## Note\n\nIn the first example:\n\n![image](https://espresso.codeforces.com/a6ac5920f50be62466a24eaec2ebc85ce4438008.png) The graph corresponding to the initial permutation.\n\nThere are $6$ queries.\n\n1. The sum on the segment from $1$ to $5$ is $a_1 + a_2 + a_3 + a_4 + a_5 = 6 + 9 + (-5) + 3 + 0 = 13$.\n2. If we start from $1$, we can reach $\\{1, 2, 3\\}$. After this query $a$ is: $[7, 10, -4, 3, 0]$.\n3. The sum on the segment from $1$ to $5$ is $a_1 + a_2 + a_3 + a_4 + a_5 = 6 + 9 + (-5) + 3 + 0 = 16$.\n4. After this query $p = [4, 3, 1, 5, 2]$. ![image](https://espresso.codeforces.com/04fd11bd95bf4b64654343a01ac74a9daee866c1.png) The graph corresponding to the new permutation.\n5. If we start from $2$, we can reach $\\{1, 2, 3, 4, 5\\}$. After this query $a$ is: $[6, 9, -5, 2, -1]$.\n6. The sum on the segment from $1$ to $5$ is $a_1 + a_2 + a_3 + a_4 + a_5 = 6 + 9 + (-5) + 2 + (-1) = 11$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个大小为 $n$ 的整数数组 $a$ 和一个大小为 $n$ 的排列 $p$。现在有 $q$ 个查询，分为以下三种类型：\n\n1. 给定数字 $l$ 和 $r$，计算数组 $a$ 中从 $l$ 到 $r$ 的这段区间的和：$\\sum\\limits_{i=l}^{r} a_i$。\n2. 给定两个数字 $v$ 和 $x$。根据排列 $p$ 构建一个有向图：该图有 $n$ 个顶点和 $n$ 条边 $i \\to p_i$。设 $C$ 为图中从 $v$ 可达的顶点集合。你需要将所有满足 $u \\in C$ 的 $a_u$ 都加上 $x$。\n3. 给定下标 $i$ 和 $j$。交换 $p_i$ 和 $p_j$。\n\n![image](https://espresso.codeforces.com/a6ac5920f50be62466a24eaec2ebc85ce4438008.png) 排列 $[2, 3, 1, 5, 4]$ 对应的图。\n\n请处理所有查询，并输出所有类型 1 查询的答案。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——数组和排列的大小。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$-10^8 \\le a_i \\le 10^8$）。\n\n第三行包含 $n$ 个互不相同的整数 $p_1, p_2, \\ldots, p_n$（$1 \\le p_i \\le n$）。\n\n第四行包含一个整数 $q$——查询的数量（$1 \\le q \\le 2 \\cdot 10^5$）。\n\n接下来 $q$ 行描述查询。第 $i$ 行以一个整数 $t_i$（$1 \\le t_i \\le 3$）开头——查询类型。\n\n- 如果 $t_i = 1$，第 $i$ 行还包含两个整数 $l$、$r$（$1 \\le l \\le r \\le n$）。\n- 如果 $t_i = 2$，第 $i$ 行还包含两个整数 $v$、$x$（$1 \\le v \\le n$，$-10^8 \\le x \\le 10^8$）。\n- 如果 $t_i = 3$，第 $i$ 行还包含两个整数 $i$、$j$（$1 \\le i, j \\le n$）。\n\n## 输出格式\n\n对于每个类型 1 的查询，输出一个整数——该查询的答案。\n\n## 说明\n\n在第一个样例中：\n\n![image](https://espresso.codeforces.com/a6ac5920f50be62466a24eaec2ebc85ce4438008.png) 初始排列对应的图。\n\n共有 $6$ 个查询。\n\n1. 从 $1$ 到 $5$ 的区间和为 $a_1 + a_2 + a_3 + a_4 + a_5 = 6 + 9 + (-5) + 3 + 0 = 13$。\n2. 如果从 $1$ 出发，可以到达 $\\{1, 2, 3\\}$。执行此查询后，$a$ 为：$[7, 10, -4, 3, 0]$。\n3. 从 $1$ 到 $5$ 的区间和为 $a_1 + a_2 + a_3 + a_4 + a_5 = 6 + 9 + (-5) + 3 + 0 = 16$。\n4. 执行此查询后，$p = [4, 3, 1, 5, 2]$。![image](https://espresso.codeforces.com/04fd11bd95bf4b64654343a01ac74a9daee866c1.png) 新排列对应的图。\n5. 如果从 $2$ 出发，可以到达 $\\{1, 2, 3, 4, 5\\}$。执行此查询后，$a$ 为：$[6, 9, -5, 2, -1]$。\n6. 从 $1$ 到 $5$ 的区间和为 $a_1 + a_2 + a_3 + a_4 + a_5 = 6 + 9 + (-5) + 2 + (-1) = 11$。",
   "samples": [
     {
       "input": "5\n6 9 -5 3 0\n2 3 1 5 4\n6\n1 1 5\n2 1 1\n1 1 5\n3 1 5\n2 1 -1\n1 1 5\n",
@@ -36,5 +36,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:21:58.522Z"
+  "fetchedAt": "2026-10-30T23:21:58.522Z",
+  "translatedAt": "2026-11-04T10:29:57.477+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

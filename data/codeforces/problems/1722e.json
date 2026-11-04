@@ -4,7 +4,7 @@
   "contestId": 1722,
   "index": "E",
   "title": "Counting Rectangles",
-  "titleZh": null,
+  "titleZh": "Counting Rectangles",
   "url": "https://codeforces.com/contest/1722/problem/E",
   "difficulty": 1600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 256,
   "statementMd": "You have $n$ rectangles, the $i$-th rectangle has height $h_i$ and width $w_i$.\n\nYou are asked $q$ queries of the form $h_s \\ w_s \\ h_b \\ w_b$.\n\nFor each query output, the total area of rectangles you own that **can fit **a rectangle of height $h_s$ and width $w_s$ while also **fitting in** a rectangle of height $h_b$ and width $w_b$. In other words, print $\\sum h_i \\cdot w_i$ for $i$ such that $h_s \\lt h_i \\lt h_b$ and $w_s \\lt w_i \\lt w_b$.\n\n**Please note, that if two rectangles have the same height or the same width, then they *cannot* fit inside each other.** Also note that you **cannot** rotate rectangles.\n\nPlease note that the answer for some test cases won't fit into 32-bit integer type, so you should use at least 64-bit integer type in your programming language (like `long long` for C++).\n\n## Input\n\nThe first line of the input contains an integer $t$ ($1 \\leq t \\leq 100$) — the number of test cases.\n\nThe first line of each test case two integers $n, q$ ($1 \\leq n \\leq 10^5$; $1 \\leq q \\leq 10^5$) — the number of rectangles you own and the number of queries.\n\nThen $n$ lines follow, each containing two integers $h_i, w_i$ ($1 \\leq h_i, w_i \\leq 1000$) — the height and width of the $i$-th rectangle.\n\nThen $q$ lines follow, each containing four integers $h_s, w_s, h_b, w_b$ ($1 \\leq h_s \\lt h_b,\\ w_s \\lt w_b \\leq 1000$) — the description of each query.\n\nThe sum of $q$ over all test cases does not exceed $10^5$, and the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output $q$ lines, the $i$-th line containing the answer to the $i$-th query.\n\n## Note\n\n![image](https://espresso.codeforces.com/aa51b7dfff92458931d37d604395e88d39f0df91.png)\n\nIn the first test case, there is only one query. We need to find the sum of areas of all rectangles that can fit a $1 \\times 1$ rectangle inside of it and fit into a $3 \\times 4$ rectangle.\n\nOnly the $2 \\times 3$ rectangle works, because $1 \\lt 2$ (comparing heights) and $1 \\lt 3$ (comparing widths), so the $1 \\times 1$ rectangle fits inside, and $2 \\lt 3$ (comparing heights) and $3 \\lt 4$ (comparing widths), so it fits inside the $3 \\times 4$ rectangle. The $3 \\times 2$ rectangle is too tall to fit in a $3 \\times 4$ rectangle. The total area is $2 \\cdot 3 = 6$.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"矩形计数\",\"bodyZh\":\"你有 $n$ 个矩形，第 $i$ 个矩形的高为 $h_i$，宽为 $w_i$。\\n\\n现在有 $q$ 个形如 $h_s \\\\ w_s \\\\ h_b \\\\ w_b$ 的询问。\\n\\n对于每个询问，输出你所拥有的、**能够容纳**一个高为 $h_s$、宽为 $w_s$ 的矩形，同时又能**放入**一个高为 $h_b$、宽为 $w_b$ 的矩形中的所有矩形的总面积。换句话说，对于满足 $h_s \\\\lt h_i \\\\lt h_b$ 且 $w_s \\\\lt w_i \\\\lt w_b$ 的所有 $i$，输出 $\\sum h_i \\\\cdot w_i$。\\n\\n**请注意，如果两个矩形的高度相同或宽度相同，那么它们就不能相互放入。** 另外，**不能旋转矩形**。\\n\\n请注意，某些测试用例的答案无法使用 32 位整数类型表示，因此你应当在编程语言中使用至少 64 位的整数类型（例如 C++ 中的 `long long`）。\\n\\n## 输入格式\\n\\n输入的第一行包含一个整数 $t$（$1 \\\\leq t \\\\leq 100$）——测试用例的数量。\\n\\n每个测试用例的第一行包含两个整数 $n, q$（$1 \\\\leq n \\\\leq 10^5$；$1 \\\\leq q \\\\leq 10^5$）——你所拥有的矩形数量以及询问数量。\\n\\n接下来 $n$ 行，每行包含两个整数 $h_i, w_i$（$1 \\\\leq h_i, w_i \\\\leq 1000$）——第 $i$ 个矩形的高和宽。\\n\\n接下来 $q$ 行，每行包含四个整数 $h_s, w_s, h_b, w_b$（$1 \\\\leq h_s \\\\lt h_b,\\\\ w_s \\\\lt w_b \\\\leq 1000$）——每个询问的描述。\\n\\n所有测试用例中 $q$ 的总和不超过 $10^5$，$n$ 的总和也不超过 $10^5$。\\n\\n## 输出格式\\n\\n对于每个测试用例，输出 $q$ 行，第 $i$ 行包含第 $i$ 个询问的答案。\\n\\n## 说明\\n\\n![image](https://espresso.codeforces.com/aa51b7dfff92458931d37d604395e88d39f0df91.png)\\n\\n在第一个测试用例中，只有一个询问。我们需要求出所有能够容纳一个 $1 \\\\times 1$ 矩形、并且能够放入一个 $3 \\\\times 4$ 矩形的矩形面积之和。\\n\\n只有 $2 \\\\times 3$ 的矩形满足条件，因为 $1 \\\\lt 2$（比较高度）且 $1 \\\\lt 3$（比较宽度），所以 $1 \\\\times 1$ 的矩形可以放入其中；同时 $2 \\\\lt 3$（比较高度）且 $3 \\\\lt 4$（比较宽度），所以它也可以放入 $3 \\\\times 4$ 的矩形中。$3 \\\\times 2$ 的矩形太高，无法放入 $3 \\\\times 4$ 的矩形中。总面积为 $2 \\\\cdot 3 = 6$。\"}",
   "samples": [
     {
       "input": "3\n2 1\n2 3\n3 2\n1 1 3 4\n5 5\n1 1\n2 2\n3 3\n4 4\n5 5\n3 3 6 6\n2 1 4 5\n1 1 2 10\n1 1 100 100\n1 1 3 3\n3 1\n999 999\n999 999\n999 998\n1 1 1000 1000\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:53:07.575Z"
+  "fetchedAt": "2026-11-02T17:53:07.575Z",
+  "translatedAt": "2026-11-04T09:21:47.665+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1846,
   "index": "G",
   "title": "Rudolf and CodeVid-23",
-  "titleZh": null,
+  "titleZh": "鲁道夫与 CodeVid-23",
   "url": "https://codeforces.com/contest/1846/problem/G",
   "difficulty": 1900,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A new virus called \"CodeVid-23\" has spread among programmers. Rudolf, being a programmer, was not able to avoid it.\n\nThere are $n$ symptoms numbered from $1$ to $n$ that can appear when infected. Initially, Rudolf has some of them. He went to the pharmacy and bought $m$ medicines.\n\nFor each medicine, the number of days it needs to be taken is known, and the set of symptoms it removes. Unfortunately, medicines often have side effects. Therefore, for each medicine, the set of symptoms that appear when taking it is also known.\n\nAfter reading the instructions, Rudolf realized that taking more than one medicine at a time is very unhealthy.\n\nRudolph wants to be healed as soon as possible. Therefore, he asks you to calculate the minimum number of days to remove all symptoms, or to say that it is impossible.\n\n## Input\n\nThe first line contains a single integer $t$ $(1 \\le t \\le 100)$ — the number of test cases.\n\nThen follow the descriptions of the test cases.\n\nThe first line of each test case contains two integers $n, m$ $(1 \\le n \\le 10, 1 \\le m \\le 10^3)$ — the number of symptoms and medicines, respectively.\n\nThe second line of each test case contains a string of length $n$ consisting of the characters $0$ and $1$ — the description of Rudolf's symptoms. If the $i$-th character of the string is $1$, Rudolf has the $i$-th symptom, otherwise he does not.\n\nThen follow $3 \\cdot m$ lines — the description of the medicines.\n\nThe first line of each medicine description contains an integer $d$ $(1 \\le d \\le 10^3)$ — the number of days the medicine needs to be taken.\n\nThe next two lines of the medicine description contain two strings of length $n$, consisting of the characters $0$ and $1$ — the description of the symptoms it removes and the description of the side effects.\n\nIn the first of the two lines, $1$ at position $i$ means that the medicine removes the $i$-th symptom, and $0$ otherwise.\n\nIn the second of the two lines, $1$ at position $i$ means that the $i$-th symptom appears after taking the medicine, and $0$ otherwise.\n\nDifferent medicines can have the same sets of symptoms and side effects. If a medicine relieves a certain symptom, it will not be among the side effects.\n\nThe sum of $m$ over all test cases does not exceed $10^3$.\n\n## Output\n\nFor each test case, output a single integer on a separate line — the minimum number of days it will take Rudolf to remove all symptoms. If this never happens, output $-1$.\n\n## Note\n\nIn the first example, we can first apply medicine number $4$, after which the symptoms will look like \"00101\". After that, medicine number $2$, then all symptoms will disappear, and the number of days will be $5 + 3 = 8$. Another option is to apply the medicines in the order $1, 3, 2$. In this case, all symptoms will also disappear, but the number of days will be $3 + 3 + 3 = 9$.\n\nIn the second example, there are no symptoms initially, so the treatment will take $0$ days.\n\nIn the third example, there are no options to remove all symptoms.",
-  "statementZhMd": null,
+  "statementZhMd": "一种名为“CodeVid-23”的新病毒在程序员中传播开来。鲁道夫是一名程序员，也没能幸免。\n\n感染后可能出现 $n$ 种症状，编号从 $1$ 到 $n$。起初，鲁道夫已经出现了其中的一些症状。他前往药店购买了 $m$ 种药。\n\n对于每种药，已知其需要服用的天数，以及它能够消除的症状集合。不幸的是，药物通常会产生副作用。因此，对于每种药，也已知服用它后会出现的症状集合。\n\n读完说明书后，鲁道夫意识到同时服用多种药物是非常不健康的。\n\n鲁道夫希望尽快痊愈。因此，请你计算消除所有症状所需的最少天数，或者判断这是不可能的。\n\n## 输入格式\n\n第一行包含一个整数 $t$ $(1 \\le t \\le 100)$ —— 测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n, m$ $(1 \\le n \\le 10, 1 \\le m \\le 10^3)$ —— 症状和药物的数量。\n\n每个测试用例的第二行包含一个长度为 $n$、仅由字符 `0` 和 `1` 组成的字符串 —— 鲁道夫症状的描述。如果字符串的第 $i$ 个字符为 `1`，则鲁道夫具有第 $i$ 种症状；否则没有该症状。\n\n接下来有 $3 \\cdot m$ 行，用于描述这些药物。\n\n每种药物描述的第一行包含一个整数 $d$ $(1 \\le d \\le 10^3)$ —— 服用该药所需的天数。\n\n药物描述接下来的两行包含两个长度为 $n$、仅由字符 `0` 和 `1` 组成的字符串 —— 分别表示该药能够消除的症状和该药的副作用。\n\n在前一行中，第 $i$ 个位置为 `1` 表示该药能够消除第 $i$ 种症状，为 `0` 则表示不能消除。\n\n在后一行中，第 $i$ 个位置为 `1` 表示服用该药后会出现第 $i$ 种症状，为 `0` 则表示不会出现。\n\n不同的药物可能具有相同的症状消除集合和副作用集合。如果某种药能够缓解某种症状，那么该症状不会出现在副作用中。\n\n所有测试用例的 $m$ 之和不超过 $10^3$。\n\n## 输出格式\n\n对于每个测试用例，单独一行输出一个整数 —— 鲁道夫消除所有症状所需的最少天数。如果无论如何都无法做到，输出 $-1$。\n\n## 说明\n\n在第一个样例中，我们可以先使用第 $4$ 种药，此时症状状态为“00101”。之后使用第 $2$ 种药，所有症状都会消失，所需天数为 $5 + 3 = 8$。另一种方案是按照 $1, 3, 2$ 的顺序使用药物。在这种情况下，所有症状也会消失，但所需天数为 $3 + 3 + 3 = 9$。\n\n在第二个样例中，起初没有任何症状，因此治疗需要 $0$ 天。\n\n在第三个样例中，没有办法消除所有症状。",
   "samples": [
     {
       "input": "4\n5 4\n10011\n3\n10000\n00110\n3\n00101\n00000\n3\n01010\n00100\n5\n11010\n00100\n4 1\n0000\n10\n1011\n0100\n2 2\n11\n2\n10\n01\n3\n01\n10\n2 3\n11\n3\n01\n10\n3\n10\n00\n4\n10\n01\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:27:25.658Z"
+  "fetchedAt": "2026-11-02T17:27:25.658Z",
+  "translatedAt": "2026-11-04T09:15:15.159+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

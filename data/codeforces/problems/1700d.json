@@ -4,7 +4,7 @@
   "contestId": 1700,
   "index": "D",
   "title": "River Locks",
-  "titleZh": null,
+  "titleZh": "河流闸门",
   "url": "https://codeforces.com/contest/1700/problem/D",
   "difficulty": 1900,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Recently in Divanovo, a huge river locks system was built. There are now $n$ locks, the $i$-th of them has the volume of $v_i$ liters, so that it can contain any amount of water between $0$ and $v_i$ liters. Each lock has a pipe attached to it. When the pipe is open, $1$ liter of water enters the lock every second.\n\nThe locks system is built in a way to immediately transfer all water exceeding the volume of the lock $i$ to the lock $i + 1$. If the lock $i + 1$ is also full, water will be transferred further. Water exceeding the volume of the last lock pours out to the river.\n\n![image](https://espresso.codeforces.com/41308f5a05a3ba666b4f5fb70d3b4e2348b11f17.png) The picture illustrates $5$ locks with two open pipes at locks $1$ and $3$. Because locks $1$, $3$, and $4$ are already filled, effectively the water goes to locks $2$ and $5$.\n\nNote that the volume of the $i$-th lock may be greater than the volume of the $i + 1$-th lock.\n\nTo make all locks work, you need to completely fill each one of them. The mayor of Divanovo is interested in $q$ independent queries. For each query, suppose that initially all locks are empty and all pipes are closed. Then, some pipes are opened simultaneously. For the $j$-th query the mayor asks you to calculate the minimum number of pipes to open so that all locks are filled no later than after $t_j$ seconds.\n\nPlease help the mayor to solve this tricky problem and answer his queries.\n\n## Input\n\nThe first lines contains one integer $n$ ($1 \\le n \\le 200\\,000$) — the number of locks.\n\nThe second lines contains $n$ integers $v_1, v_2, \\dots, v_n$ ($1 \\le v_i \\le 10^9$)) — volumes of the locks.\n\nThe third line contains one integer $q$ ($1 \\le q \\le 200\\,000$) — the number of queries.\n\nEach of the next $q$ lines contains one integer $t_j$ ($1 \\le t_j \\le 10^9$) — the number of seconds you have to fill all the locks in the query $j$.\n\n## Output\n\nPrint $q$ integers. The $j$-th of them should be equal to the minimum number of pipes to turn on so that after $t_j$ seconds all of the locks are filled. If it is impossible to fill all of the locks in given time, print $-1$.\n\n## Note\n\nThere are $6$ queries in the first example test.\n\nIn the queries $1, 3, 4$ the answer is $-1$. We need to wait $4$ seconds to fill the first lock even if we open all the pipes.\n\nIn the sixth query we can open pipes in locks $1$, $3$, and $4$. After $4$ seconds the locks $1$ and $4$ are full. In the following $1$ second $1$ liter of water is transferred to the locks $2$ and $5$. The lock $3$ is filled by its own pipe.\n\nSimilarly, in the second query one can open pipes in locks $1$, $3$, and $4$.\n\nIn the fifth query one can open pipes $1, 2, 3, 4$.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，迪瓦诺沃建成了一套巨大的河流闸门系统。现在共有 $n$ 个闸门，其中第 $i$ 个闸门的容量为 $v_i$ 升，因此它可以容纳 $0$ 到 $v_i$ 升之间的任意水量。每个闸门都连接着一根水管。当水管打开时，每秒会有 $1$ 升水流入闸门。\n\n这套闸门系统的构造方式是：一旦闸门 $i$ 中的水量超过其容量，多出的所有水会立即转移到闸门 $i + 1$ 中。如果闸门 $i + 1$ 也已装满，水会继续向后转移。超过最后一个闸门容量的水会流入河中。\n\n![image](https://espresso.codeforces.com/41308f5a05a3ba666b4f5fb70d3b4e2348b11f17.png) 图片展示了 $5$ 个闸门，其中闸门 $1$ 和 $3$ 的水管处于打开状态。由于闸门 $1$、$3$ 和 $4$ 已经装满，实际上水会流入闸门 $2$ 和 $5$。\n\n注意，第 $i$ 个闸门的容量可能大于第 $i + 1$ 个闸门的容量。\n\n为了使所有闸门正常工作，你需要将每个闸门完全装满。迪瓦诺沃市长对 $q$ 个相互独立的询问感兴趣。对于每个询问，假设初始时所有闸门都是空的，且所有水管都处于关闭状态。随后，同时打开一些水管。对于第 $j$ 个询问，市长希望你计算出最少需要打开多少根水管，才能使所有闸门在不超过 $t_j$ 秒的时间内装满。\n\n请帮助市长解决这个棘手的问题，并回答他的询问。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 200\\,000$）——闸门的数量。\n\n第二行包含 $n$ 个整数 $v_1, v_2, \\dots, v_n$（$1 \\le v_i \\le 10^9$）——各个闸门的容量。\n\n第三行包含一个整数 $q$（$1 \\le q \\le 200\\,000$）——询问的数量。\n\n接下来的 $q$ 行中，每行包含一个整数 $t_j$（$1 \\le t_j \\le 10^9$）——在第 $j$ 个询问中用于装满所有闸门的时间（秒数）。\n\n## 输出格式\n\n输出 $q$ 个整数。第 $j$ 个整数应等于需要打开的最少水管数量，使得经过 $t_j$ 秒后所有闸门都已装满。如果无法在给定时间内装满所有闸门，则输出 $-1$。\n\n## 说明\n\n第一个样例测试中有 $6$ 个询问。\n\n在询问 $1$、$3$、$4$ 中，答案为 $-1$。即使打开所有水管，也需要等待 $4$ 秒才能装满第一个闸门。\n\n在第六个询问中，我们可以打开闸门 $1$、$3$ 和 $4$ 的水管。经过 $4$ 秒后，闸门 $1$ 和 $4$ 已装满。在接下来的 $1$ 秒中，有 $1$ 升水被转移到闸门 $2$ 和 $5$ 中。闸门 $3$ 则由其自身的水管装满。\n\n类似地，在第二个询问中，可以打开闸门 $1$、$3$ 和 $4$ 的水管。\n\n在第五个询问中，可以打开水管 $1$、$2$、$3$、$4$。",
   "samples": [
     {
       "input": "5\n4 1 5 4 1\n6\n1\n6\n2\n3\n4\n5\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:54:08.770Z"
+  "fetchedAt": "2026-10-30T22:54:08.770Z",
+  "translatedAt": "2026-11-04T09:24:14.390+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

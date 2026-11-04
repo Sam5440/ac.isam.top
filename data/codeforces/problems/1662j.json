@@ -4,7 +4,7 @@
   "contestId": 1662,
   "index": "J",
   "title": "Training Camp",
-  "titleZh": null,
+  "titleZh": "训练营",
   "url": "https://codeforces.com/contest/1662/problem/J",
   "difficulty": null,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are organizing a training camp to teach algorithms to young kids. There are $n^2$ kids, organized in an $n$ by $n$ grid. Each kid is between $1$ and $n$ years old (inclusive) and any two kids who are in the same row or in the same column have different ages.\n\nYou want to select exactly $n$ kids for a programming competition, with exactly one kid from each row and one kid from each column. Moreover, kids who are not selected must be either older than both kids selected in their row and column, or younger than both kids selected in their row and column (otherwise they will complain). Notice that it is always possible to select $n$ kids satisfying these requirements (for example by selecting $n$ kids who have the same age).\n\nDuring the training camp, you observed that some kids are good at programming, and the others are not. What is the maximum number of kids good at programming that you can select while satisfying all the requirements?\n\n## Input\n\nThe first line contains $n$ ($1 \\leq n \\leq 128$) — the size of the grid.\n\nThe following $n$ lines describe the ages of the kids. Specifically, the $i$-th line contains $n$ integers $a_{i,1}, \\, a_{i,2}, \\, \\dots, \\, a_{i, n}$ ($1 \\le a_{i,j} \\le n$) — where $a_{i,j}$ is the age of the kid in the $i$-th row and $j$-th column. It is guaranteed that two kids on the same row or column have different ages, i.e., $a_{i,j} \\ne a_{i,j'}$ for any $1\\le i\\le n$, $1\\le j \\lt j'\\le n$, and $a_{i,j} \\ne a_{i',j}$ for any $1\\le i \\lt i'\\le n$, $1\\le j\\le n$.\n\nThe following $n$ lines describe the programming skills of the kids. Specifically, the $i$-th line contains $n$ integers $c_{i,1}, \\, c_{i,2}, \\, \\dots, \\, c_{i, n}$ ($c_{i,j} \\in \\{0, \\, 1\\}$) — where $c_{i,j}=1$ if the kid in the $i$-th row and $j$-th column is good at programming and $c_{i,j}=0$ otherwise.\n\n## Output\n\nPrint the maximum number of kids good at programming that you can select while satisfying all the requirements.\n\n## Note\n\nIn the **first sample**, it is not possible to select the two kids good at programming (in row $1$ and column $1$, and in row $2$ and column $3$), because then you would have to select the kid in row $3$ and column $2$, and in that case two kids would complain (the one in row $1$ and column $2$, and the one in row $3$ and column $1$).\n\nA valid selection which contains $1$ kid good at programming is achieved by choosing the $3$ kids who are $1$ year old.\n\nIn the **second sample**, there are $10$ valid choices of the $n$ kids that satisfy the requirements, and each of them selects exactly $2$ kids good at programming.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在组织一个训练营，教小朋友们学习算法。这里有 $n^2$ 个小朋友，他们被安排在一个 $n$ 行 $n$ 列的网格中。每个小朋友的年龄在 $1$ 岁到 $n$ 岁之间（包括边界），并且同一行或同一列中的任意两个小朋友年龄都不同。\n\n你希望选出恰好 $n$ 个小朋友参加编程竞赛，要求每行恰好选出一个小朋友，每列也恰好选出一个小朋友。此外，未被选中的小朋友必须满足以下条件之一：比其所在行和列中被选中的两个小朋友都年长，或者比这两个小朋友都年幼（否则他们会抱怨）。注意，始终可以选出满足这些要求的 $n$ 个小朋友（例如，选出年龄相同的 $n$ 个小朋友）。\n\n在训练营期间，你观察到有些小朋友擅长编程，而其他小朋友则不擅长。满足所有要求的前提下，你最多可以选出多少个擅长编程的小朋友？\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\leq n \\leq 128$），表示网格的大小。\n\n接下来的 $n$ 行描述小朋友的年龄。具体来说，第 $i$ 行包含 $n$ 个整数 $a_{i,1}, \\, a_{i,2}, \\, \\dots, \\, a_{i, n}$（$1 \\le a_{i,j} \\le n$），其中 $a_{i,j}$ 表示第 $i$ 行、第 $j$ 列小朋友的年龄。保证同一行或同一列中的两个小朋友年龄不同，即对于任意 $1\\le i\\le n$、$1\\le j \\lt j'\\le n$，有 $a_{i,j} \\ne a_{i,j'}$；并且对于任意 $1\\le i \\lt i'\\le n$、$1\\le j\\le n$，有 $a_{i,j} \\ne a_{i',j}$。\n\n接下来的 $n$ 行描述小朋友的编程能力。具体来说，第 $i$ 行包含 $n$ 个整数 $c_{i,1}, \\, c_{i,2}, \\, \\dots, \\, c_{i, n}$（$c_{i,j} \\in \\{0, \\, 1\\}$），其中如果第 $i$ 行、第 $j$ 列的小朋友擅长编程，则 $c_{i,j}=1$，否则 $c_{i,j}=0$。\n\n## 输出格式\n\n输出满足所有要求时，最多可以选出的擅长编程的小朋友数量。\n\n## 说明\n\n在**第一个样例**中，不可能选出两个擅长编程的小朋友（位于第 $1$ 行第 $1$ 列和第 $2$ 行第 $3$ 列），因为这样就必须选出第 $3$ 行第 $2$ 列的小朋友，此时会有两个小朋友抱怨（第 $1$ 行第 $2$ 列的小朋友和第 $3$ 行第 $1$ 列的小朋友）。\n\n一种包含 $1$ 个擅长编程小朋友的合法选择是选出年龄为 $1$ 岁的 $3$ 个小朋友。\n\n在**第二个样例**中，共有 $10$ 种满足要求的 $n$ 个小朋友的合法选择，并且每种选择都恰好选出 $2$ 个擅长编程的小朋友。",
   "samples": [
     {
       "input": "3\n1 2 3\n3 1 2\n2 3 1\n1 0 0\n0 0 1\n0 0 0\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:03:49.428Z"
+  "fetchedAt": "2026-11-02T18:03:49.428Z",
+  "translatedAt": "2026-11-04T10:08:13.690+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

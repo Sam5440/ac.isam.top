@@ -4,7 +4,7 @@
   "contestId": 1627,
   "index": "C",
   "title": "Not Assigning",
-  "titleZh": null,
+  "titleZh": "无法赋值",
   "url": "https://codeforces.com/contest/1627/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1500,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree of $n$ vertices numbered from $1$ to $n$, with edges numbered from $1$ to $n-1$. A tree is a connected undirected graph without cycles. You have to assign integer weights to each edge of the tree, such that the resultant graph is a prime tree.\n\nA *prime tree* is a tree where the weight of every path consisting of **one or two edges** is prime. A path should not visit any vertex twice. The weight of a path is the sum of edge weights on that path.\n\nConsider the graph below. It is a prime tree as the weight of every path of two or less edges is prime. For example, the following path of two edges: $2 \\to 1 \\to 3$ has a weight of $11 + 2 = 13$, which is prime. Similarly, the path of one edge: $4 \\to 3$ has a weight of $5$, which is also prime.\n\n![image](https://espresso.codeforces.com/976e522c1fcee260bb8ac5db8894f571abb0d26e.png)\n\nPrint **any** valid assignment of weights such that the resultant tree is a prime tree. If there is no such assignment, then print $-1$. It can be proven that if a valid assignment exists, one exists with weights between $1$ and $10^5$ as well.\n\n## Input\n\nThe input consists of multiple test cases. The first line contains an integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($2 \\leq n \\leq 10^5$) — the number of vertices in the tree.\n\nThen, $n-1$ lines follow. The $i$-th line contains two integers $u$ and $v$ ($1 \\leq u, v \\leq n$) denoting that edge number $i$ is between vertices $u$ and $v$. It is guaranteed that the edges form a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, if a valid assignment exists, then print a single line containing $n-1$ integers $a_1, a_2, \\dots, a_{n-1}$ ($1 \\leq a_i \\le 10^5$), where $a_i$ denotes the weight assigned to the edge numbered $i$. Otherwise, print $-1$.\n\nIf there are multiple solutions, you may print any.\n\n## Note\n\nFor the first test case, there are only two paths having one edge each: $1 \\to 2$ and $2 \\to 1$, both having a weight of $17$, which is prime.\n\n![image](https://espresso.codeforces.com/f657ff3e3934d03fdf02a9d71d6f585c7dd14318.png)\n\nThe second test case is described in the statement.\n\nIt can be proven that no such assignment exists for the third test case.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵包含 $n$ 个顶点的树，顶点编号从 $1$ 到 $n$，边编号从 $1$ 到 $n-1$。树是一种无环的连通无向图。你需要为树的每条边赋予一个整数权值，使得到的图是一棵质数树。\n\n*质数树* 是指这样一棵树：每条由**一条或两条边**组成的路径的权值都是质数。路径不能重复经过任何顶点。一条路径的权值是该路径上所有边的权值之和。\n\n考虑下面的图。由于所有长度不超过两条边的路径的权值都是质数，因此它是一棵质数树。例如，下面这条由两条边组成的路径：$2 \\to 1 \\to 3$，其权值为 $11 + 2 = 13$，是质数。同样地，下面这条由一条边组成的路径：$4 \\to 3$，其权值为 $5$，也是质数。\n\n![image](https://espresso.codeforces.com/976e522c1fcee260bb8ac5db8894f571abb0d26e.png)\n\n输出**任意**一种合法的边权赋值，使得到的树成为质数树。如果不存在这样的赋值，则输出 $-1$。可以证明，如果存在合法赋值，那么一定存在所有权值均在 $1$ 到 $10^5$ 之间的赋值。\n\n## 输入格式\n\n输入包含多组测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\leq n \\leq 10^5$）——树的顶点数。\n\n接下来 $n-1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\leq u, v \\leq n$），表示编号为 $i$ 的边连接顶点 $u$ 和 $v$。保证这些边构成一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果存在合法赋值，则输出一行包含 $n-1$ 个整数 $a_1, a_2, \\dots, a_{n-1}$（$1 \\leq a_i \\leq 10^5$），其中 $a_i$ 表示分配给编号为 $i$ 的边的权值。否则，输出 $-1$。\n\n如果有多种解，可以输出任意一种。\n\n## 说明\n\n对于第一个测试用例，只有两条各包含一条边的路径：$1 \\to 2$ 和 $2 \\to 1$，它们的权值都是 $17$，而 $17$ 是质数。\n\n![image](https://espresso.codeforces.com/f657ff3e3934d03fdf02a9d71d6f585c7dd14318.png)\n\n第二个测试用例在题目描述中进行了说明。\n\n可以证明，对于第三个测试用例，不存在这样的赋值。",
   "samples": [
     {
       "input": "3\n2\n1 2\n4\n1 3\n4 3\n2 1\n7\n1 2\n1 3\n3 4\n3 5\n6 2\n7 2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:12:41.301Z"
+  "fetchedAt": "2026-10-30T23:12:41.301Z",
+  "translatedAt": "2026-11-04T10:22:19.967+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

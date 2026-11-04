@@ -4,7 +4,7 @@
   "contestId": 1628,
   "index": "F",
   "title": "Spaceship Crisis Management",
-  "titleZh": null,
+  "titleZh": "飞船危机管理",
   "url": "https://codeforces.com/contest/1628/problem/F",
   "difficulty": 3500,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 256,
   "statementMd": "*NASA (Norwegian Astronaut Stuff Association) is developing a new steering system for spaceships. But in its current state, it wouldn't be very safe if the spaceship would end up in a bunch of space junk. To make the steering system safe, they need to answer the following:*\n\nGiven the target position $t = (0, 0)$, a set of $n$ pieces of space junk $l$ described by line segments $l_i = ((a_{ix}, a_{iy}), (b_{ix}, b_{iy}))$, and a starting position $s = (s_x, s_y)$, is there a direction such that floating in that direction from the starting position would lead to the target position?\n\nWhen the spaceship hits a piece of space junk, what happens depends on the absolute difference in angle between the floating direction and the line segment, $\\theta$:\n\n- If $\\theta \\lt 45^{\\circ}$, the spaceship slides along the piece of space junk in the direction that minimizes the change in angle, and when the spaceship slides off the end of the space junk, it continues floating in the direction it came in (before hitting the space junk).\n- If $\\theta \\ge 45^{\\circ}$, the spaceship stops, because there is too much friction to slide along the space junk.\n\nYou are only given the set of pieces of space junk once, and the target position is always $(0, 0)$, but there are $q$ queries, each with a starting position $s_j = (s_{jx}, s_{jy})$.\n\nAnswer the above question for each query.\n\n## Input\n\nThe first line contains the the integer $n$ ($1 \\le n \\le 1500$).\n\nThen follows $n$ lines, the $i$-th of which containing the $4$ integers $a_{ix}$, $a_{iy}$, $b_{ix}$, and $b_{iy}$ ($|a_{ix}|, |a_{iy}|, |b_{ix}|, |b_{iy}| \\le 1000$).\n\nThen follows a line containing the integer $q$ ($1 \\le q \\le 1000$).\n\nThen follows $q$ lines, the $j$-th of which containing the $2$ integers $s_{jx}$ and $s_{jy}$ ($|s_{jx}|, |s_{jy}| \\le 1000$).\n\nIt is guaranteed that none of the segments in $l$ cross or touch, that $t$ is not on any segment in $l$, that $s_j$ is not on any segment in $l$, and that $s \\neq t$.\n\n## Output\n\nFor each query $s_j$ print an answer. If there exists a direction such that floating from $s_j$ in that direction, possibly sliding along some pieces of space junk, leads to $t$, print \"YES\". Otherwise, print \"NO\" (case insensitive).\n\n## Note\n\n![image](https://espresso.codeforces.com/eb6cbf5cb0fb3b298ea67a25b2289dfbdcc8448a.png)\n\nThe blue cross represents the target location, and the other blue line segments represent the space junk.\n\nGreen dots represent starting locations where the answer is yes, and red dots represent starting locations where the answer is no.\n\nThe yellow lines are possible paths to the target location for the $3$rd and $14$th queries.\n\nThe black line is a possible path from the starting location in the $6$th query, but it barely misses the target location.",
-  "statementZhMd": null,
+  "statementZhMd": "*NASA（挪威宇航器材协会）正在开发一种新的飞船转向系统。但以目前的状态来看，如果飞船进入一片太空垃圾区域，使用该系统将不太安全。为了使转向系统更加安全，他们需要回答以下问题：*\n\n给定目标位置 $t = (0, 0)$、由线段 $l_i = ((a_{ix}, a_{iy}), (b_{ix}, b_{iy}))$ 描述的 $n$ 个太空垃圾组成的集合 $l$，以及起始位置 $s = (s_x, s_y)$，是否存在一个方向，使飞船从起始位置沿该方向漂浮，最终到达目标位置？\n\n当飞船撞上某个太空垃圾时，接下来会发生什么取决于漂浮方向与线段之间夹角的绝对值 $\theta$：\n\n- 如果 $\theta \\lt 45^{\\circ}$，飞船会沿太空垃圾滑动，滑动方向选择为使角度变化最小的方向；当飞船从太空垃圾的一端滑出后，它会继续沿撞上太空垃圾之前的方向漂浮。\n- 如果 $\theta \\ge 45^{\\circ}$，飞船会停止，因为摩擦力太大，无法沿太空垃圾滑动。\n\n太空垃圾的集合只给出一次，目标位置始终为 $(0, 0)$，但有 $q$ 个询问，每个询问给出一个起始位置 $s_j = (s_{jx}, s_{jy})$。\n\n请对每个询问回答上述问题。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 1500$）。\n\n接下来 $n$ 行，第 $i$ 行包含 $4$ 个整数 $a_{ix}$、$a_{iy}$、$b_{ix}$ 和 $b_{iy}$（$|a_{ix}|, |a_{iy}|, |b_{ix}|, |b_{iy}| \\le 1000$）。\n\n接下来一行包含一个整数 $q$（$1 \\le q \\le 1000$）。\n\n接下来 $q$ 行，第 $j$ 行包含 $2$ 个整数 $s_{jx}$ 和 $s_{jy}$（$|s_{jx}|, |s_{jy}| \\le 1000$）。\n\n保证 $l$ 中的任意线段均不相交且不接触，$t$ 不在线段 $l$ 上，$s_j$ 不在线段 $l$ 上，并且 $s \\neq t$。\n\n## 输出格式\n\n对于每个询问 $s_j$ 输出一行答案。如果存在一个方向，使飞船从 $s_j$ 沿该方向漂浮，并且可以在沿某些太空垃圾滑动后到达 $t$，输出“YES”。否则输出“NO”（大小写不敏感）。\n\n## 说明\n\n![image](https://espresso.codeforces.com/eb6cbf5cb0fb3b298ea67a25b2289dfbdcc8448a.png)\n\n蓝色十字表示目标位置，其他蓝色线段表示太空垃圾。\n\n绿色点表示答案为 yes 的起始位置，红色点表示答案为 no 的起始位置。\n\n黄色线表示第 $3$ 个和第 $14$ 个询问到达目标位置的可能路径。\n\n黑线表示第 $6$ 个询问中从起始位置出发的一条可能路径，但它与目标位置擦肩而过。",
   "samples": [
     {
       "input": "3\n0 1 2 4\n1 3 -1 6\n0 -1 1 -1\n14\n-2 10\n-1 10\n0 10\n1 10\n2 10\n3 10\n4 10\n5 10\n6 10\n-1 -2\n0 -2\n1 -2\n2 -2\n3 -2\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:12:34.552Z"
+  "fetchedAt": "2026-10-30T23:12:34.552Z",
+  "translatedAt": "2026-11-04T10:16:37.932+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

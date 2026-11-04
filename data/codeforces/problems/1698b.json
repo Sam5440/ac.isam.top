@@ -4,7 +4,7 @@
   "contestId": 1698,
   "index": "B",
   "title": "Rising Sand",
-  "titleZh": null,
+  "titleZh": "上升的沙堆",
   "url": "https://codeforces.com/contest/1698/problem/B",
   "difficulty": 800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ piles of sand where the $i$-th pile has $a_i$ blocks of sand. The $i$-th pile is called *too tall* if $1 \\lt i \\lt n$ and $a_i \\gt a_{i-1} + a_{i+1}$. That is, a pile is too tall if it has more sand than its two neighbours combined. (Note that piles on the ends of the array cannot be too tall.)\n\nYou are given an integer $k$. An operation consists of picking $k$ consecutive piles of sand and adding one unit of sand to them all. Formally, pick $1 \\leq l,r \\leq n$ such that $r-l+1=k$. Then for all $l \\leq i \\leq r$, update $a_i \\gets a_i+1$.\n\nWhat is the **maximum** number of piles that can simultaneously be too tall after some (possibly zero) operations?\n\n## Input\n\nThe input consists of multiple test cases. The first line contains an integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($3 \\leq n \\leq 2 \\cdot 10^5$; $1 \\leq k \\leq n$) — the number of piles of sand and the size of the operation, respectively.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the sizes of the piles.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum number of piles that are simultaneously too tall after some (possibly zero) operations.\n\n## Note\n\nIn the first test case, we can perform the following three operations:\n\n- Add one unit of sand to piles $1$ and $2$: $[\\color{red}{3}, \\color{red}{10}, 2, 4, 1]$.\n- Add one unit of sand to piles $4$ and $5$: $[3, 10, 2, \\color{red}{5}, \\color{red}{2}]$.\n- Add one unit of sand to piles $3$ and $4$: $[3, 10, \\color{red}{3}, \\color{red}{6}, 2]$.\n\nNow piles $2$ and $4$ are too tall, so in this case the answer is $2$. It can be shown that it is impossible to make more than $2$ piles too tall.\n\nIn the second test case, any operation will increase all piles by $1$ unit, so the number of too tall piles will always be $0$.\n\nIn the third test case, we can increase any pile by $1$ unit of sand. It can be shown that the maximum number of too tall piles is $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 堆沙子，其中第 $i$ 堆有 $a_i$ 块沙子。当且仅当 $1 \\lt i \\lt n$ 且 $a_i \\gt a_{i-1} + a_{i+1}$ 时，第 $i$ 堆沙子被称为*过高*。也就是说，如果一堆沙子的数量多于其两个相邻沙堆数量之和，那么这堆沙子就是过高的。（注意，数组两端的沙堆不可能过高。）\n\n给定一个整数 $k$。一次操作可以选择连续的 $k$ 堆沙子，并将它们的沙子数量都增加一个单位。形式化地，选择满足 $1 \\leq l,r \\leq n$ 且 $r-l+1=k$ 的 $l,r$，然后对所有 $l \\leq i \\leq r$，执行更新 $a_i \\gets a_i+1$。\n\n经过若干次（也可以为零次）操作后，能够同时变得过高的沙堆数量**最多**是多少？\n\n## 输入格式\n\n输入包含多组测试数据。第一行包含一个整数 $t$（$1 \\leq t \\leq 1000$）——测试数据组数。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $k$（$3 \\leq n \\leq 2 \\cdot 10^5$；$1 \\leq k \\leq n$）——沙堆的数量和每次操作涉及的沙堆数量。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq 10^9$）——各沙堆的大小。\n\n保证所有测试数据中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数——经过若干次（也可以为零次）操作后，能够同时变得过高的沙堆数量的最大值。\n\n## 说明\n\n在第一组测试数据中，我们可以执行以下三次操作：\n\n- 将沙子增加到第 $1$ 堆和第 $2$ 堆各一个单位：$[\\color{red}{3}, \\color{red}{10}, 2, 4, 1]$。\n- 将沙子增加到第 $4$ 堆和第 $5$ 堆各一个单位：$[3, 10, 2, \\color{red}{5}, \\color{red}{2}]$。\n- 将沙子增加到第 $3$ 堆和第 $4$ 堆各一个单位：$[3, 10, \\color{red}{3}, \\color{red}{6}, 2]$。\n\n此时第 $2$ 堆和第 $4$ 堆都是过高的，因此本组测试数据的答案是 $2$。可以证明，不可能让超过 $2$ 堆沙子变得过高。\n\n在第二组测试数据中，任意一次操作都会使所有沙堆都增加 $1$ 个单位，因此过高沙堆的数量始终为 $0$。\n\n在第三组测试数据中，我们可以将任意一堆沙子的数量增加 $1$ 个单位。可以证明，能够同时变得过高的沙堆数量最多为 $1$。",
   "samples": [
     {
       "input": "3\n5 2\n2 9 2 4 1\n4 4\n1 3 2 1\n3 1\n1 3 1\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:00:21.808Z"
+  "fetchedAt": "2026-10-30T23:00:21.808Z",
+  "translatedAt": "2026-11-04T09:24:06.129+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

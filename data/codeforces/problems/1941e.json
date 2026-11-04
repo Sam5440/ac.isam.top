@@ -4,7 +4,7 @@
   "contestId": 1941,
   "index": "E",
   "title": "Rudolf and k Bridges",
-  "titleZh": null,
+  "titleZh": "鲁道夫和 k 座桥",
   "url": "https://codeforces.com/contest/1941/problem/E",
   "difficulty": 1600,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Bernard loves visiting Rudolf, but he is always running late. The problem is that Bernard has to cross the river on a ferry. Rudolf decided to help his friend solve this problem.\n\nThe river is a grid of $n$ rows and $m$ columns. The intersection of the $i$-th row and the $j$-th column contains the number $a_{i,j}$ — the depth in the corresponding cell. All cells in the **first** and **last** columns correspond to the river banks, so the depth for them is $0$.\n\n![image](https://espresso.codeforces.com/4b3aa0367c1a9a817d2476d320d2b05a865187bf.png) The river may look like this.\n\nRudolf can choose the row $(i,1), (i,2), \\ldots, (i,m)$ and build a bridge over it. In each cell of the row, he can install a support for the bridge. The cost of installing a support in the cell $(i,j)$ is $a_{i,j}+1$. Supports must be installed so that the following conditions are met:\n\n1. A support must be installed in cell $(i,1)$;\n2. A support must be installed in cell $(i,m)$;\n3. The distance between any pair of adjacent supports must be **no more than** $d$. The distance between supports $(i, j_1)$ and $(i, j_2)$ is $|j_1 - j_2| - 1$.\n\nBuilding just one bridge is boring. Therefore, Rudolf decided to build $k$ bridges on **consecutive** rows of the river, that is, to choose some $i$ ($1 \\le i \\le n - k + 1$) and independently build a bridge on each of the rows $i, i + 1, \\ldots, i + k - 1$. Help Rudolf **minimize** the total cost of installing supports.\n\n## Input\n\nThe first line contains a single integer $t$ $(1 \\le t \\le 10^3)$ — the number of test cases. The descriptions of the test cases follow.\n\nThe first line of each test case contains four integers $n$, $m$, $k$, and $d$ ($1 \\le k \\le n \\le 100$, $3 \\le m \\le 2 \\cdot 10^5$, $1 \\le d \\le m$) — the number of rows and columns of the field, the number of bridges, and the maximum distance between supports.\n\nThen follow $n$ lines, $i$-th line contains $m$ positive integers $a_{i, j}$ ($0 \\le a_{i, j} \\le 10^6$, $a_{i, 1} = a_{i, m} = 0$) — the depths of the river cells.\n\nIt is guaranteed that the sum of $n \\cdot m$ for all sets of input data does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single number — the minimum total cost of supports installation.\n\n## Note\n\nIn the first test case, it is most profitable to build a bridge on the second row.\n\n![image](https://espresso.codeforces.com/22f9280b9aa6eb557ec71c7245a850a294561fa4.png) It is not a top view, but **side view**: gray cells — bridge itself, white cells are empty, black cells — supports, blue cells — water, brown cells — river bottom.\n\nIn the second test case, it is most profitable to build bridges on the second and third rows. The supports will be placed in cells $(2, 3)$, $(3, 2)$, and on the river banks.\n\nIn the third test case the supports can be placed along the river banks.",
-  "statementZhMd": null,
+  "statementZhMd": "伯纳德喜欢拜访鲁道夫，但他总是迟到。问题在于，伯纳德必须乘坐渡船过河。鲁道夫决定帮助他的朋友解决这个问题。\n\n这条河是一个有 $n$ 行 $m$ 列的网格。第 $i$ 行第 $j$ 列的交点包含一个数字 $a_{i,j}$ —— 对应单元格的深度。**第一**列和**最后**一列中的所有单元格都对应河岸，因此它们的深度为 $0$。\n\n![image](https://espresso.codeforces.com/4b3aa0367c1a9a817d2476d320d2b05a865187bf.png) 河流可能看起来像这样。\n\n鲁道夫可以选择一行 $(i,1), (i,2), \\ldots, (i,m)$，并在这一行上建造一座桥。他可以在该行的每个单元格中安装桥的支撑。向单元格 $(i,j)$ 中安装支撑的代价为 $a_{i,j}+1$。安装支撑时必须满足以下条件：\n\n1. 必须在单元格 $(i,1)$ 中安装支撑；\n2. 必须在单元格 $(i,m)$ 中安装支撑；\n3. 任意一对相邻支撑之间的距离必须**不超过** $d$。支撑 $(i, j_1)$ 和 $(i, j_2)$ 之间的距离为 $|j_1 - j_2| - 1$。\n\n只建造一座桥太无聊了。因此，鲁道夫决定在河流的**连续** $k$ 行上建造 $k$ 座桥，也就是说，选择某个 $i$（$1 \\le i \\le n - k + 1$），并分别在第 $i, i + 1, \\ldots, i + k - 1$ 行上独立建造一座桥。请帮助鲁道夫**最小化**安装支撑的总代价。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^3$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含四个整数 $n$、$m$、$k$ 和 $d$（$1 \\le k \\le n \\le 100$，$3 \\le m \\le 2 \\cdot 10^5$，$1 \\le d \\le m$）——河流的行数和列数、桥的数量以及支撑之间的最大距离。\n\n接下来有 $n$ 行，第 $i$ 行包含 $m$ 个整数 $a_{i, j}$（$0 \\le a_{i, j} \\le 10^6$，$a_{i, 1} = a_{i,m} = 0$）——河流单元格的深度。\n\n保证所有输入数据中 $n \\cdot m$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个数字——安装支撑的最小总代价。\n\n## 说明\n\n在第一个测试用例中，在第二行建造桥最为划算。\n\n![image](https://espresso.codeforces.com/22f9280b9aa6eb557ec71c7245a850a294561fa4.png) 这不是俯视图，而是**侧视图**：灰色单元格表示桥本身，白色单元格表示空白，黑色单元格表示支撑，蓝色单元格表示水，棕色单元格表示河床。\n\n在第二个测试用例中，在第二行和第三行建造桥最为划算。支撑将被放置在单元格 $(2, 3)$、$(3, 2)$ 以及河岸上。\n\n在第三个测试用例中，可以沿着河岸放置支撑。",
   "samples": [
     {
       "input": "5\n3 11 1 4\n0 1 2 3 4 5 4 3 2 1 0\n0 1 2 3 2 1 2 3 3 2 0\n0 1 2 3 5 5 5 5 5 2 0\n4 4 2 1\n0 3 3 0\n0 2 1 0\n0 1 2 0\n0 3 3 0\n4 5 2 5\n0 1 1 1 0\n0 2 2 2 0\n0 2 1 1 0\n0 3 2 1 0\n1 8 1 1\n0 10 4 8 4 4 2 0\n4 5 3 2\n0 8 4 4 0\n0 3 4 8 0\n0 8 1 10 0\n0 10 1 5 0\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:16:46.011Z"
+  "fetchedAt": "2026-11-02T17:16:46.011Z",
+  "translatedAt": "2026-11-04T10:11:35.511+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

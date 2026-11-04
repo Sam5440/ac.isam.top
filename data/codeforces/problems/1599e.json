@@ -4,7 +4,7 @@
   "contestId": 1599,
   "index": "E",
   "title": "Two Arrays",
-  "titleZh": null,
+  "titleZh": "两个数组",
   "url": "https://codeforces.com/contest/1599/problem/E",
   "difficulty": 3200,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "You are given two integer arrays of length $N$, $A1$ and $A2$. You are also given $Q$ queries of 4 types:\n\n1 k l r x: set $Ak_i:=min(Ak_i, x)$ for each $l \\leq i \\leq r$.\n\n2 k l r x: set $Ak_i:=max(Ak_i, x)$ for each $l \\leq i \\leq r$.\n\n3 k l r x: set $Ak_i:=Ak_i+x$ for each $l \\leq i \\leq r$.\n\n4 l r: find the $(\\sum_{i=l}^r F(A1_i+A2_i)) \\% (10^9+7)$ where $F(k)$ is the $k$-th Fibonacci number ($F(0)=0, F(1)=1, F(k)=F(k-1)+F(k-2)$), and $x \\% y$ denotes the remainder of the division of $x$ by $y$.\n\nYou should process these queries and answer each query of the fourth type.\n\n## Input\n\nThe first line contains two integers $N$ and $Q$. ($1 \\leq N, Q \\leq 5 \\times 10^4$)\n\nThe second line contains $N$ integers, array $A1_1, A1_2, \\dots A1_N$. ($0 \\leq A1_i \\leq 10^6$)\n\nThe third line contains $N$ integers, array $A2_1, A2_2, \\dots A2_N$. ($0 \\leq A2_i \\leq 10^6$)\n\nThe next $Q$ lines describe the queries. Each line contains 5 or 3 integers, where the first integer denotes the type of the query. ($k \\in \\{1, 2\\}$, $1 \\leq l \\leq r \\leq N$)\n\nFor queries of type 1 and 2, $0 \\leq x \\leq 10^9$ holds.\n\nFor queries of type 3, $−10^6 \\leq x \\leq 10^6$ holds.\n\nIt is guaranteed that after every query each number in arrays $A1$ and $A2$ will be nonnegative.\n\n## Output\n\nPrint the answer to each query of the fourth type, in separate lines.\n\n## Note\n\nIn the first example: The answer for the first query is $F(1 + 2) + F(0 + 1) + F(2 + 0) = F(3) + F(1) + F(2) = 2 + 1 + 1 = 4$. After the second query, the array $A2$ changes to $[2, 4, 0]$. After the third query, the array $A1$ changes to $[0, 0, 0]$. The answer for the fourth query is $F(0 + 2) + F(0 + 4) + F(0 + 0) = F(2) + F(4) + F(0) = 1 + 3 + 0 = 4$.\n\nIn the second example: The answer for the first query is $F(1 + 4) + F(3 + 2) + F(5 + 1) = F(5) + F(5) + F(6) = 5 + 5 + 8 = 18$. The answer for the second query is $F(3 + 2) + F(5 + 1) + F(3 + 3) + F(2 + 3) = F(5) + F(6) + F(6) + F(5) = 5 + 8 + 8 + 5 = 26$. After the third query, the array $A1$ changes to $[1, 6, 6, 6, 2]$. The answer for the fourth query is $F(6 + 2) + F(6 + 1) + F(6 + 3) = F(8) + F(7) + F(9) = 21 + 13 + 34 = 68$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定两个长度为 $N$ 的整数数组 $A1$ 和 $A2$。此外，还给定了 $Q$ 个查询，查询共有 4 种类型：\n\n1 k l r x：对于每个满足 $l \\leq i \\leq r$ 的 $i$，将 $Ak_i$ 设置为 $min(Ak_i, x)$。\n\n2 k l r x：对于每个满足 $l \\leq i \\leq r$ 的 $i$，将 $Ak_i$ 设置为 $max(Ak_i, x)$。\n\n3 k l r x：对于每个满足 $l \\leq i \\leq r$ 的 $i$，将 $Ak_i$ 设置为 $Ak_i+x$。\n\n4 l r：求 $(\\sum_{i=l}^r F(A1_i+A2_i)) \\% (10^9+7)$，其中 $F(k)$ 是第 $k$ 个 Fibonacci 数（$F(0)=0$，$F(1)=1$，$F(k)=F(k-1)+F(k-2)$），并且 $x \\% y$ 表示 $x$ 除以 $y$ 的余数。\n\n请处理这些查询，并回答每个第 4 类查询。\n\n## 输入格式\n\n第一行包含两个整数 $N$ 和 $Q$。（$1 \\leq N, Q \\leq 5 \\times 10^4$）\n\n第二行包含 $N$ 个整数，即数组 $A1$ 的元素 $A1_1, A1_2, \\dots A1_N$。（$0 \\leq A1_i \\leq 10^6$）\n\n第三行包含 $N$ 个整数，即数组 $A2$ 的元素 $A2_1, A2_2, \\dots A2_N$。（$0 \\leq A2_i \\leq 10^6$）\n\n接下来的 $Q$ 行描述查询。每行包含 5 个或 3 个整数，其中第一个整数表示查询类型。（$k \\in \\{1, 2\\}$，$1 \\leq l \\leq r \\leq N$）\n\n对于第 1 类和第 2 类查询，满足 $0 \\leq x \\leq 10^9$。\n\n对于第 3 类查询，满足 $−10^6 \\leq x \\leq 10^6$。\n\n保证每次查询后，数组 $A1$ 和 $A2$ 中的每个数都为非负数。\n\n## 输出格式\n\n对于每个第 4 类查询，分别在单独的行中输出答案。\n\n## 说明\n\n在第一个样例中，第一次查询的答案为 $F(1 + 2) + F(0 + 1) + F(2 + 0) = F(3) + F(1) + F(2) = 2 + 1 + 1 = 4$。第二次查询后，数组 $A2$ 变为 $[2, 4, 0]$。第三次查询后，数组 $A1$ 变为 $[0, 0, 0]$。第四次查询的答案为 $F(0 + 2) + F(0 + 4) + F(0 + 0) = F(2) + F(4) + F(0) = 1 + 3 + 0 = 4$。\n\n在第二个样例中，第一次查询的答案为 $F(1 + 4) + F(3 + 2) + F(5 + 1) = F(5) + F(5) + F(6) = 5 + 5 + 8 = 18$。第二次查询的答案为 $F(3 + 2) + F(5 + 1) + F(3 + 3) + F(2 + 3) = F(5) + F(6) + F(6) + F(5) = 5 + 8 + 8 + 5 = 26$。第三次查询后，数组 $A1$ 变为 $[1, 6, 6, 6, 2]$。第四次查询的答案为 $F(6 + 2) + F(6 + 1) + F(6 + 3) = F(8) + F(7) + F(9) = 21 + 13 + 34 = 68$。",
   "samples": [
     {
       "input": "3 4\n1 0 2\n2 1 0\n4 1 3\n3 2 2 2 3\n1 1 1 3 0\n4 1 3\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:13:54.618Z"
+  "fetchedAt": "2026-11-02T18:13:54.618Z",
+  "translatedAt": "2026-11-04T10:26:31.874+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

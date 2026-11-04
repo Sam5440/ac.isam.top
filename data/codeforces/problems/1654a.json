@@ -4,7 +4,7 @@
   "contestId": 1654,
   "index": "A",
   "title": "Maximum Cake Tastiness",
-  "titleZh": null,
+  "titleZh": "蛋糕的最大美味度",
   "url": "https://codeforces.com/contest/1654/problem/A",
   "difficulty": 800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ pieces of cake on a line. The $i$-th piece of cake has weight $a_i$ ($1 \\leq i \\leq n$).\n\nThe tastiness of the cake is the maximum total weight of two adjacent pieces of cake (i. e., $\\max(a_1+a_2,\\, a_2+a_3,\\, \\ldots,\\, a_{n-1} + a_{n})$).\n\nYou want to maximize the tastiness of the cake. You are allowed to do the following operation at most once (doing more operations would ruin the cake):\n\n- Choose a contiguous subsegment $a[l, r]$ of pieces of cake ($1 \\leq l \\leq r \\leq n$), and reverse it.\n\nThe subsegment $a[l, r]$ of the array $a$ is the sequence $a_l, a_{l+1}, \\dots, a_r$.\n\nIf you reverse it, the array will become $a_1, a_2, \\dots, a_{l-2}, a_{l-1}, \\underline{a_r}, \\underline{a_{r-1}}, \\underline{\\dots}, \\underline{a_{l+1}}, \\underline{a_l}, a_{r+1}, a_{r+2}, \\dots, a_{n-1}, a_n$.\n\nFor example, if the weights are initially $[5, 2, 1, 4, 7, 3]$, you can reverse the subsegment $a[2, 5]$, getting $[5, \\underline{7}, \\underline{4}, \\underline{1}, \\underline{2}, 3]$. The tastiness of the cake is now $5 + 7 = 12$ (while before the operation the tastiness was $4+7=11$).\n\nFind the maximum tastiness of the cake after doing the operation at most once.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 50$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 1000$) — the number of pieces of cake.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 10^9$) — $a_i$ is the weight of the $i$-th piece of cake.\n\n## Output\n\nFor each test case, print a single integer: the maximum tastiness of the cake after doing the operation at most once.\n\n## Note\n\nIn the first test case, after reversing the subsegment $a[2, 5]$, you get a cake with weights $[5, \\underline{7}, \\underline{4}, \\underline{1}, \\underline{2}, 3]$. The tastiness of the cake is now $\\max(5+7, 7+4, 4+1, 1+2, 2+3) = 12$. This is the maximum possible tastiness of the cake one can obtain by performing the operation at most once.\n\nIn the second test case, it's optimal not to do any operation. The tastiness is $78+78 = 156$.\n\nIn the third test case, after reversing the subsegment $a[1, 2]$, you get a cake with weights $[\\underline{54}, \\underline{69}, 91]$. The tastiness of the cake is now $\\max(54+69, 69+91) = 160$. There is no way to make the tastiness of the cake greater than $160$ by performing at most one operation.",
-  "statementZhMd": null,
+  "statementZhMd": "一条直线上有 $n$ 块蛋糕。第 $i$ 块蛋糕的重量为 $a_i$（$1 \\leq i \\leq n$）。\n\n蛋糕的美味度是相邻两块蛋糕的重量之和的最大值（即，$\\max(a_1+a_2,\\, a_2+a_3,\\, \\ldots,\\, a_{n-1} + a_{n})$）。\n\n你希望最大化蛋糕的美味度。你至多可以进行一次以下操作（进行更多操作会毁掉蛋糕）：\n\n- 选择蛋糕的一段连续子区间 $a[l, r]$（$1 \\leq l \\leq r \\leq n$），并将其翻转。\n\n数组 $a$ 的子区间 $a[l, r]$ 是序列 $a_l, a_{l+1}, \\dots, a_r$。\n\n翻转后，数组将变为 $a_1, a_2, \\dots, a_{l-2}, a_{l-1}, \\underline{a_r}, \\underline{a_{r-1}}, \\underline{\\dots}, \\underline{a_{l+1}}, \\underline{a_l}, a_{r+1}, a_{r+2}, \\dots, a_{n-1}, a_n$。\n\n例如，如果初始重量为 $[5, 2, 1, 4, 7, 3]$，可以翻转子区间 $a[2, 5]$，得到 $[5, \\underline{7}, \\underline{4}, \\underline{1}, \\underline{2}, 3]$。此时蛋糕的美味度为 $5 + 7 = 12$（而操作前的美味度为 $4+7=11$）。\n\n求至多进行一次操作后，蛋糕的最大美味度。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 50$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 1000$）——蛋糕的块数。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\leq a_i \\leq 10^9$）——$a_i$ 表示第 $i$ 块蛋糕的重量。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数：至多进行一次操作后蛋糕的最大美味度。\n\n## 说明\n\n在第一个测试用例中，翻转子区间 $a[2, 5]$ 后，得到重量为 $[5, \\underline{7}, \\underline{4}, \\underline{1}, \\underline{2}, 3]$ 的蛋糕。此时蛋糕的美味度为 $\\max(5+7, 7+4, 4+1, 1+2, 2+3) = 12$。这是通过至多进行一次操作所能得到的最大美味度。\n\n在第二个测试用例中，最优方案是不进行任何操作。蛋糕的美味度为 $78+78 = 156$。\n\n在第三个测试用例中，翻转子区间 $a[1, 2]$ 后，得到重量为 $[\\underline{54}, \\underline{69}, 91]$ 的蛋糕。此时蛋糕的美味度为 $\\max(54+69, 69+91) = 160$。无论进行何种至多一次的操作，都无法使蛋糕的美味度超过 $160$。",
   "samples": [
     {
       "input": "5\n6\n5 2 1 4 7 3\n3\n32 78 78\n3\n69 54 91\n8\n999021 999021 999021 999021 999652 999021 999021 999021\n2\n1000000000 1000000000\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:10:32.396Z"
+  "fetchedAt": "2026-10-30T23:10:32.396Z",
+  "translatedAt": "2026-11-04T10:16:14.612+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

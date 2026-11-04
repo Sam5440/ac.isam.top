@@ -4,7 +4,7 @@
   "contestId": 1618,
   "index": "E",
   "title": "Singers' Tour",
-  "titleZh": null,
+  "titleZh": "歌手巡演",
   "url": "https://codeforces.com/contest/1618/problem/E",
   "difficulty": 1700,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "$n$ towns are arranged in a circle sequentially. The towns are numbered from $1$ to $n$ in clockwise order. In the $i$-th town, there lives a singer with a repertoire of $a_i$ minutes for each $i \\in [1, n]$.\n\nEach singer visited all $n$ towns in clockwise order, starting with the town he lives in, and gave exactly one concert in each town. In addition, in each town, the $i$-th singer got inspired and came up with a song that lasts $a_i$ minutes. The song was added to his repertoire so that he could perform it in the rest of the cities.\n\nHence, for the $i$-th singer, the concert in the $i$-th town will last $a_i$ minutes, in the $(i + 1)$-th town the concert will last $2 \\cdot a_i$ minutes, ..., in the $((i + k) \\bmod n + 1)$-th town the duration of the concert will be $(k + 2) \\cdot a_i$, ..., in the town $((i + n - 2) \\bmod n + 1)$ — $n \\cdot a_i$ minutes.\n\nYou are given an array of $b$ integer numbers, where $b_i$ is the total duration of concerts in the $i$-th town. Reconstruct any correct sequence of **positive** integers $a$ or say that it is impossible.\n\n## Input\n\nThe first line contains one integer $t$ $(1 \\le t \\le 10^3$) — the number of test cases. Then the test cases follow.\n\nEach test case consists of two lines. The first line contains a single integer $n$ ($1 \\le n \\le 4 \\cdot 10^4$) — the number of cities. The second line contains $n$ integers $b_1, b_2, \\dots, b_n$ ($1 \\le b_i \\le 10^{9}$) — the total duration of concerts in $i$-th city.\n\nThe sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the answer as follows:\n\nIf there is no suitable sequence $a$, print `NO`. Otherwise, on the first line print `YES`, on the next line print the sequence $a_1, a_2, \\dots, a_n$ of $n$ integers, where $a_i$ ($1 \\le a_i \\le 10^{9}$) is the initial duration of repertoire of the $i$-th singer. If there are multiple answers, print any of them.\n\n## Note\n\nLet's consider the $1$-st test case of the example:\n\n1. the $1$-st singer in the $1$-st city will give a concert for $3$ minutes, in the $2$-nd — for $6$ minutes, in the $3$-rd — for $9$ minutes;\n2. the $2$-nd singer in the $1$-st city will give a concert for $3$ minutes, in the $2$-nd — for $1$ minute, in the $3$-rd - for $2$ minutes;\n3. the $3$-rd singer in the $1$-st city will give a concert for $6$ minutes, in the $2$-nd — for $9$ minutes, in the $3$-rd — for $3$ minutes.",
-  "statementZhMd": null,
+  "statementZhMd": "$n$ 个城镇按顺序排列成一个圆。城镇按照顺时针方向编号为 $1$ 到 $n$。对于每个 $i \\in [1, n]$，第 $i$ 个城镇中住着一名歌手，他的曲目总时长为 $a_i$ 分钟。\n\n每名歌手都按照顺时针方向游历全部 $n$ 个城镇，从自己居住的城镇开始，并且在每个城镇恰好举办一场演唱会。此外，在每个城镇中，第 $i$ 名歌手都会受到启发，创作出一首时长为 $a_i$ 分钟的歌曲。这首歌会被加入他的曲目中，以便他在之后的城镇中演唱。\n\n因此，对于第 $i$ 名歌手，他在第 $i$ 个城镇的演唱会将持续 $a_i$ 分钟，在第 $(i + 1)$ 个城镇将持续 $2 \\cdot a_i$ 分钟，……在第 $((i + k) \\bmod n + 1)$ 个城镇将持续 $(k + 2) \\cdot a_i$ 分钟，……在第 $((i + n - 2) \\bmod n + 1)$ 个城镇将持续 $n \\cdot a_i$ 分钟。\n\n给定一个由 $b$ 个整数构成的数组，其中 $b_i$ 表示第 $i$ 个城镇中所有演唱会的总时长。请还原任意一个正确的**正**整数序列 $a$，或者判断这是不可能的。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^3$）——测试用例的数量。接下来是各个测试用例。\n\n每个测试用例包含两行。第一行包含一个整数 $n$（$1 \\le n \\le 4 \\cdot 10^4$）——城镇的数量。第二行包含 $n$ 个整数 $b_1, b_2, \\dots, b_n$（$1 \\le b_i \\le 10^{9}$）——第 $i$ 个城镇中所有演唱会的总时长。\n\n所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，按如下格式输出答案：\n\n如果不存在合适的序列 $a$，输出 `NO`。否则，第一行输出 `YES`，下一行输出由 $n$ 个整数 $a_1, a_2, \\dots, a_n$ 构成的序列，其中 $a_i$（$1 \\le a_i \\le 10^{9}$）是第 $i$ 名歌手曲目的初始时长。如果有多个答案，输出任意一个即可。\n\n## 说明\n\n考虑样例中的第 1 个测试用例：\n\n1. 第 1 名歌手在第 1 个城镇演唱时长为 $3$ 分钟，在第 2 个城镇演唱时长为 $6$ 分钟，在第 3 个城镇演唱时长为 $9$ 分钟；\n2. 第 2 名歌手在第 1 个城镇演唱时长为 $3$ 分钟，在第 2 个城镇演唱时长为 $1$ 分钟，在第 3 个城镇演唱时长为 $2$ 分钟；\n3. 第 3 名歌手在第 1 个城镇演唱时长为 $6$ 分钟，在第 2 个城镇演唱时长为 $9$ 分钟，在第 3 个城镇演唱时长为 $3$ 分钟。",
   "samples": [
     {
       "input": "4\n3\n12 16 14\n1\n1\n3\n1 2 3\n6\n81 75 75 93 93 87\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:12:31.791Z"
+  "fetchedAt": "2026-11-02T18:12:31.791Z",
+  "translatedAt": "2026-11-04T10:29:19.739+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

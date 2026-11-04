@@ -4,7 +4,7 @@
   "contestId": 1732,
   "index": "C2",
   "title": "Sheikh (Hard Version)",
-  "titleZh": null,
+  "titleZh": "谢赫（困难版）",
   "url": "https://codeforces.com/contest/1732/problem/C2",
   "difficulty": 2100,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "**This is the hard version of the problem. The only difference is that in this version $q = n$.**\n\nYou are given an array of integers $a_1, a_2, \\ldots, a_n$.\n\nThe cost of a subsegment of the array $[l, r]$, $1 \\leq l \\leq r \\leq n$, is the value $f(l, r) = \\operatorname{sum}(l, r) - \\operatorname{xor}(l, r)$, where $\\operatorname{sum}(l, r) = a_l + a_{l+1} + \\ldots + a_r$, and $\\operatorname{xor}(l, r) = a_l \\oplus a_{l+1} \\oplus \\ldots \\oplus a_r$ ($\\oplus$ stands for [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)).\n\nYou will have $q$ queries. Each query is given by a pair of numbers $L_i$, $R_i$, where $1 \\leq L_i \\leq R_i \\leq n$. You need to find the subsegment $[l, r]$, $L_i \\leq l \\leq r \\leq R_i$, with maximum value $f(l, r)$. If there are several answers, then among them you need to find a subsegment with the minimum length, that is, the minimum value of $r - l + 1$.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains an integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases. The description of test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1 \\leq n \\leq 10^5$, $q = n$) — the length of the array and the number of queries.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\leq a_i \\leq 10^9$) — array elements.\n\n$i$-th of the next $q$ lines of each test case contains two integers $L_i$ and $R_i$ ($1 \\leq L_i \\leq R_i \\leq n$) — the boundaries in which we need to find the segment.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\nIt is guaranteed that $L_1 = 1$ and $R_1 = n$.\n\n## Output\n\nFor each test case print $q$ pairs of numbers $L_i \\leq l \\leq r \\leq R_i$ such that the value $f(l, r)$ is maximum and among such the length $r - l + 1$ is minimum. If there are several correct answers, print any of them.\n\n## Note\n\nIn all test cases, the first query is considered.\n\nIn the first test case, $f(1, 1) = 0 - 0 = 0$.\n\nIn the second test case, $f(1, 1) = 5 - 5 = 0$, $f(2, 2) = 10 - 10 = 0$. Note that $f(1, 2) = (10 + 5) - (10 \\oplus 5) = 0$, but we need to find a subsegment with the minimum length among the maximum values of $f(l, r)$. So, only segments $[1, 1]$ and $[2, 2]$ are the correct answers.\n\nIn the fourth test case, $f(2, 3) = (12 + 8) - (12 \\oplus 8) = 16$.\n\nThere are two correct answers in the fifth test case, since $f(2, 3) = f(3, 4)$ and their lengths are equal.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的困难版本。与简单版本的唯一区别是，在本版本中 $q = n$。**\n\n给定一个整数数组 $a_1, a_2, \\ldots, a_n$。\n\n数组子段 $[l, r]$（$1 \\leq l \\leq r \\leq n$）的代价为 $f(l, r) = \\operatorname{sum}(l, r) - \\operatorname{xor}(l, r)$，其中 $\\operatorname{sum}(l, r) = a_l + a_{l+1} + \\ldots + a_r$，$\\operatorname{xor}(l, r) = a_l \\oplus a_{l+1} \\oplus \\ldots \\oplus a_r$（$\\oplus$ 表示[按位异或](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)）。\n\n你需要处理 $q$ 次询问。每次询问给出两个数 $L_i$ 和 $R_i$，其中 $1 \\leq L_i \\leq R_i \\leq n$。你需要找到一个子段 $[l, r]$，满足 $L_i \\leq l \\leq r \\leq R_i$，使得 $f(l, r)$ 的值最大。如果有多个答案，则需要在其中找到长度最小的子段，即使 $r - l + 1$ 的值最小。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$1 \\leq n \\leq 10^5$，$q = n$）——数组的长度和询问的数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\leq 10^9$）——数组中的元素。\n\n接下来的 $q$ 行中，第 $i$ 行包含两个整数 $L_i$ 和 $R_i$（$1 \\leq L_i \\leq R_i \\leq n$）——需要查找子段的边界。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n保证 $L_1 = 1$ 且 $R_1 = n$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q$ 对数 $L_i \\leq l \\leq r \\leq R_i$，使得 $f(l, r)$ 的值最大，并且在所有满足最大值的子段中长度 $r - l + 1$ 最小。如果有多个正确答案，输出其中任意一个即可。\n\n## 说明\n\n在所有测试用例中，第一组询问都会被考虑。\n\n在第一个测试用例中，$f(1, 1) = 0 - 0 = 0$。\n\n在第二个测试用例中，$f(1, 1) = 5 - 5 = 0$，$f(2, 2) = 10 - 10 = 0$。注意，$f(1, 2) = (10 + 5) - (10 \\oplus 5) = 0$，但我们需要在 $f(l, r)$ 的最大值中找到长度最小的子段。因此，只有子段 $[1, 1]$ 和 $[2, 2]$ 是正确答案。\n\n在第四个测试用例中，$f(2, 3) = (12 + 8) - (12 \\oplus 8) = 16$。\n\n第五个测试用例有两个正确答案，因为 $f(2, 3) = f(3, 4)$ 且它们的长度相等。",
   "samples": [
     {
       "input": "6\n1 1\n0\n1 1\n2 2\n5 10\n1 2\n2 2\n3 3\n0 2 4\n1 3\n1 2\n2 3\n4 4\n0 12 8 3\n1 4\n1 3\n2 4\n2 3\n5 5\n21 32 32 32 10\n1 5\n1 4\n1 3\n2 5\n3 5\n7 7\n0 1 0 1 0 1 0\n1 7\n3 6\n2 5\n1 4\n4 7\n2 6\n2 7\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:51:39.444Z"
+  "fetchedAt": "2026-10-30T22:51:39.444Z",
+  "translatedAt": "2026-11-04T10:11:23.997+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

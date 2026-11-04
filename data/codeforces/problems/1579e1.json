@@ -4,7 +4,7 @@
   "contestId": 1579,
   "index": "E1",
   "title": "Permutation Minimization by Deque",
-  "titleZh": null,
+  "titleZh": "通过双端队列实现排列最小化",
   "url": "https://codeforces.com/contest/1579/problem/E1",
   "difficulty": 1000,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*In fact, the problems E1 and E2 do not have much in common. You should probably think of them as two separate problems.*\n\nA permutation p of size n is given. A *permutation* of size n is an array of size n in which each integer from 1 to n occurs exactly once. For example, [1,4,3,2] and [4,2,1,3] are correct permutations while [1,2,4] and [1,2,2] are not.\n\nLet us consider an empty [deque](https://tinyurl.com/pfeucbux) (double-ended queue). A deque is a data structure that supports adding elements to both the beginning and the end. So, if there are elements [1,5,2] currently in the deque, adding an element 4 to the beginning will produce the sequence [4,1,5,2], and adding same element to the end will produce [1,5,2,4].\n\nThe elements of the permutation are sequentially added to the initially empty deque, starting with p1 and finishing with pn. Before adding each element to the deque, you may choose whether to add it to the beginning or the end.\n\nFor example, if we consider a permutation p=[3,1,2,4], one of the possible sequences of actions looks like this:\n\n| 1. | add 3 to the end of the deque: | deque has a sequence [3] in it; |\n| --- | --- | --- |\n| 2. | add 1 to the beginning of the deque: | deque has a sequence [1,3] in it; |\n| 3. | add 2 to the end of the deque: | deque has a sequence [1,3,2] in it; |\n| 4. | add 4 to the end of the deque: | deque has a sequence [1,3,2,4] in it; |\n\nFind the lexicographically smallest possible sequence of elements in the deque after the entire permutation has been processed.\n\nA sequence [x1,x2,…,xn] is *lexicographically smaller* than the sequence [y1,y2,…,yn] if there exists such i≤n that x1=y1, x2=y2, …, xi−1=yi−1 and xi<yi. In other words, if the sequences x and y have some (possibly empty) matching prefix, and the next element of the sequence x is strictly smaller than the corresponding element of the sequence y. For example, the sequence [1,3,2,4] is smaller than the sequence [1,3,4,2] because after the two matching elements [1,3] in the start the first sequence has an element 2 which is smaller than the corresponding element 4 in the second sequence.\n\n## Input\n\nThe first line contains an integer t (1≤t≤1000) — the number of test cases.\n\nThe next 2t lines contain descriptions of the test cases.\n\nThe first line of each test case description contains an integer n (1≤n≤2⋅105) — permutation size. The second line of the description contains n space-separated integers pi (1≤pi≤n; all pi are all unique) — elements of the permutation.\n\nIt is guaranteed that the sum of n over all test cases does not exceed 2⋅105.\n\n## Output\n\nPrint t lines, each line containing the answer to the corresponding test case. The answer to a test case should contain n space-separated integer numbers — the elements of the lexicographically smallest permutation that is possible to find in the deque after executing the described algorithm.\n\n## Note\n\nOne of the ways to get a lexicographically smallest permutation [1,3,2,4] from the permutation [3,1,2,4] (the first sample test case) is described in the problem statement.",
-  "statementZhMd": null,
+  "statementZhMd": "*事实上，E1 和 E2 两道题没有太多共同之处。你可能应该把它们视为两道独立的问题。*\n\n给定一个长度为 $n$ 的排列 $p$。长度为 $n$ 的*排列*是一个长度为 $n$ 的数组，其中每个从 1 到 $n$ 的整数恰好出现一次。例如，[1,4,3,2] 和 [4,2,1,3] 是合法的排列，而 [1,2,4] 和 [1,2,2] 不是。\n\n现在考虑一个空的[双端队列](https://tinyurl.com/pfeucbux)（deque）。双端队列是一种支持在开头和末尾添加元素的数据结构。因此，如果当前双端队列中的元素为 [1,5,2]，在开头添加元素 4 后，序列将变为 [4,1,5,2]；在末尾添加同一个元素后，序列将变为 [1,5,2,4]。\n\n排列中的元素将依次加入初始为空的双端队列，从 p1 开始，到 pn 结束。在将每个元素加入双端队列之前，你可以选择将其添加到开头或末尾。\n\n例如，对于排列 p=[3,1,2,4]，一种可能的操作序列如下：\n\n| 1. | 将 3 添加到双端队列末尾： | 双端队列中的序列为 [3]； |\n| --- | --- | --- |\n| 2. | 将 1 添加到双端队列开头： | 双端队列中的序列为 [1,3]； |\n| 3. | 将 2 添加到双端队列末尾： | 双端队列中的序列为 [1,3,2]； |\n| 4. | 将 4 添加到双端队列末尾： | 双端队列中的序列为 [1,3,2,4]； |\n\n求处理完整个排列后，双端队列中可能得到的字典序最小的元素序列。\n\n如果存在某个 $i≤n$，使得 x1=y1，x2=y2，…，xi−1=yi−1 且 xi<yi，则称序列 [x1,x2,…,xn] *按字典序小于*序列 [y1,y2,…,yn]。换句话说，如果序列 x 和 y 有一个（可能为空的）相同前缀，并且序列 x 的下一个元素严格小于序列 y 中对应的元素，则序列 x 按字典序更小。例如，序列 [1,3,2,4] 小于序列 [1,3,4,2]，因为在开头的两个相同元素 [1,3] 之后，第一个序列中的元素 2 小于第二个序列中对应的元素 4。\n\n## 输入格式\n\n第一行包含一个整数 t（1≤t≤1000）——测试用例的数量。\n\n接下来的 2t 行包含各个测试用例的描述。\n\n每个测试用例描述的第一行包含一个整数 n（1≤n≤2⋅105）——排列的长度。第二行包含 n 个以空格分隔的整数 pi（1≤pi≤n；所有 pi 互不相同）——排列中的元素。\n\n保证所有测试用例的 n 之和不超过 2⋅105。\n\n## 输出格式\n\n输出 t 行，每行包含对应测试用例的答案。每个测试用例的答案应包含 n 个以空格分隔的整数——执行所描述的操作后，双端队列中可能得到的字典序最小排列。\n\n## 说明\n\n从排列 [3,1,2,4]（第一个样例）中得到字典序最小排列 [1,3,2,4] 的一种方法已在题目描述中说明。",
   "samples": [
     {
       "input": "5\n4\n3 1 2 4\n3\n3 2 1\n3\n3 1 2\n2\n1 2\n2\n2 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:14:58.078Z"
+  "fetchedAt": "2026-11-02T18:14:58.078Z",
+  "translatedAt": "2026-11-04T10:40:40.725+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

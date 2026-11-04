@@ -4,7 +4,7 @@
   "contestId": 1685,
   "index": "E",
   "title": "The Ultimate LIS Problem",
-  "titleZh": null,
+  "titleZh": "终极 LIS 问题",
   "url": "https://codeforces.com/contest/1685/problem/E",
   "difficulty": 3500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*It turns out that this is exactly the $100$-th problem of mine that appears in some programming competition. So it has to be special! And what can be more special than another problem about LIS...*\n\nYou are given a permutation $p_1, p_2, \\ldots, p_{2n+1}$ of integers from $1$ to $2n+1$. You will have to process $q$ updates, where the $i$-th update consists in swapping $p_{u_i}, p_{v_i}$.\n\nAfter each update, find any cyclic shift of $p$ with $LIS \\le n$, or determine that there is no such shift. (Refer to the output section for details).\n\nHere $LIS(a)$ denotes the length of [longest strictly increasing subsequence](https://en.wikipedia.org/wiki/Longest_increasing_subsequence) of $a$.\n\n**Hacks are disabled in this problem. Don't ask why**.\n\n## Input\n\nThe first line of the input contains two integers $n, q$ ($2 \\le n \\le 10^5$, $1 \\le q \\le 10^5$).\n\nThe second line of the input contains $2n+1$ integers $p_1, p_2, \\ldots, p_{2n+1}$ ($1 \\le p_i \\le 2n+1$, all $p_i$ are distinct)  — the elements of $p$.\n\nThe $i$-th of the next $q$ lines contains two integers $u_i, v_i$ ($1 \\le u_i, v_i \\le 2n+1$, $u_i \\neq v_i$)  — indicating that you have to swap elements $p_{u_i}, p_{v_i}$ in the $i$-th update.\n\n## Output\n\nAfter each update, output **any** $k$ $(0 \\le k \\le 2n)$, such that the length of the longest increasing subsequence of $(p_{k+1}, p_{k+2}, \\ldots, p_{2n+1}, p_1, \\ldots, p_k)$ doesn't exceed $n$, or $-1$, if there is no such $k$.\n\n## Note\n\nAfter the first update, our permutation becomes $(5, 2, 3, 4, 1)$. We can show that all its cyclic shifts have $LIS \\ge 3$.\n\nAfter the second update, our permutation becomes $(1, 2, 3, 4, 5)$. We can show that all its cyclic shifts have $LIS \\ge 3$.\n\nAfter the third update, our permutation becomes $(1, 2, 3, 5, 4)$. Its shift by $2$ is $(3, 5, 4, 1, 2)$, and its $LIS = 2$.\n\nAfter the fourth update, our permutation becomes $(1, 2, 3, 4, 5)$. We can show that all its cyclic shifts have $LIS \\ge 3$.\n\nAfter the fifth update, our permutation becomes $(4, 2, 3, 1, 5)$. Its shift by $4$ is $(5, 4, 2, 3, 1)$, and its $LIS = 2$.\n\nAfter the fifth update, our permutation becomes $(4, 5, 3, 1, 2)$. Its shift by $0$ is $(4, 5, 3, 1, 2)$, and its $LIS = 2$.",
-  "statementZhMd": null,
+  "statementZhMd": "*事实证明，这是我的题目中出现在某项编程竞赛里的第 $100$ 道题。所以它必须与众不同！还有什么能比另一道关于 LIS 的题目更加特别呢……*\n\n给定一个由 $1$ 到 $2n+1$ 组成的排列 $p_1, p_2, \\ldots, p_{2n+1}$。你需要处理 $q$ 次更新，其中第 $i$ 次更新将交换 $p_{u_i}, p_{v_i}$。\n\n每次更新后，找出 $p$ 的任意一个满足 $LIS \\le n$ 的循环移位，或者判断不存在这样的移位。（详细信息请参阅输出格式部分。）\n\n这里，`LIS(a)` 表示 [最长严格递增子序列](https://en.wikipedia.org/wiki/Longest_increasing_subsequence) 的长度。\n\n**本题禁止使用 Hacks。不要问为什么。**\n\n## 输入格式\n\n输入的第一行包含两个整数 $n, q$（$2 \\le n \\le 10^5$，$1 \\le q \\le 10^5$）。\n\n输入的第二行包含 $2n+1$ 个整数 $p_1, p_2, \\ldots, p_{2n+1}$（$1 \\le p_i \\le 2n+1$，所有 $p_i$ 互不相同）——排列 $p$ 的元素。\n\n接下来的 $q$ 行中，第 $i$ 行包含两个整数 $u_i, v_i$（$1 \\le u_i, v_i \\le 2n+1$，$u_i \\neq v_i$），表示在第 $i$ 次更新中需要交换元素 $p_{u_i}, p_{v_i}$。\n\n## 输出格式\n\n每次更新后，输出任意一个 $k$（$0 \\le k \\le 2n$），使得序列 $(p_{k+1}, p_{k+2}, \\ldots, p_{2n+1}, p_1, \\ldots, p_k)$ 的最长递增子序列长度不超过 $n$；如果不存在这样的 $k$，则输出 $-1$。\n\n## 说明\n\n第一次更新后，我们的排列变为 $(5, 2, 3, 4, 1)$。可以证明，它的所有循环移位的 $LIS \\ge 3$。\n\n第二次更新后，我们的排列变为 $(1, 2, 3, 4, 5)$。可以证明，它的所有循环移位的 $LIS \\ge 3$。\n\n第三次更新后，我们的排列变为 $(1, 2, 3, 5, 4)$。将其循环移位 $2$ 位后得到 $(3, 5, 4, 1, 2)$，其 $LIS = 2$。\n\n第四次更新后，我们的排列变为 $(1, 2, 3, 4, 5)$。可以证明，它的所有循环移位的 $LIS \\ge 3$。\n\n第五次更新后，我们的排列变为 $(4, 2, 3, 1, 5)$。将其循环移位 $4$ 位后得到 $(5, 4, 2, 3, 1)$，其 $LIS = 2$。\n\n第五次更新后，我们的排列变为 $(4, 5, 3, 1, 2)$。将其循环移位 $0$ 位后得到 $(4, 5, 3, 1, 2)$，其 $LIS = 2$。",
   "samples": [
     {
       "input": "2 6\n1 2 3 4 5\n1 5\n1 5\n4 5\n5 4\n1 4\n2 5\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:01:38.477Z"
+  "fetchedAt": "2026-10-30T23:01:38.477Z",
+  "translatedAt": "2026-11-04T09:26:51.108+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

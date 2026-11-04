@@ -4,7 +4,7 @@
   "contestId": 1738,
   "index": "H",
   "title": "Palindrome Addicts",
-  "titleZh": null,
+  "titleZh": "回文爱好者",
   "url": "https://codeforces.com/contest/1738/problem/H",
   "difficulty": 3300,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "Your task is to maintain a [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) consisting of lowercase English letters as follows:\n\n- \"`push` $c$\": insert a letter $c$ at the back of the queue;\n- \"`pop`\": delete a letter from the front of the queue.\n\nInitially, the queue is empty.\n\nAfter each operation, you are asked to count the number of **distinct** palindromic substrings in the string that are obtained by concatenating the letters from the front to the back of the queue.\n\nEspecially, the number of distinct palindromic substrings of the empty string is $0$.\n\nA string $s[1..n]$ of length $n$ is palindromic if $s[i] = s[n-i+1]$ for every $1 \\leq i \\leq n$.\n\nThe string $s[l..r]$ is a substring of string $s[1..n]$ for every $1 \\leq l \\leq r \\leq n$.\n\nTwo strings $s[1..n]$ and $t[1..m]$ are distinct, if at least one of the following holds.\n\n- $n \\neq m$;\n- $s[i] \\neq t[i]$ for some $1 \\leq i \\leq \\min\\{n,m\\}$.\n\n## Input\n\nThe first line is an integer $q$ ($1 \\leq q \\leq 10^6$), indicating the number of operations.\n\nThen $q$ lines follow. Each of the following lines contains one of the operations as follows.\n\n- \"`push` $c$\": insert a letter $c$ at the back of the queue, where $c$ is a lowercase English letter;\n- \"`pop`\": delete a letter from the front of the queue.\n\nIt is guaranteed that no \"`pop`\" operation will be performed when the queue is empty.\n\n## Output\n\nAfter each operation, print the number of distinct palindromic substrings in the string presented in the queue.\n\n## Note\n\nLet $s_k$ be the string presented in the queue after the $k$-th operation, and let $c_k$ be the number of distinct palindromic substrings of $s_k$. The following table shows the details of the example.\n\n$k$$s_k$$c_k$$1$$a$$1$$2$$\\textsf{empty}$$0$$3$$a$$1$$4$$aa$$2$$5$$aab$$3$$6$$aabb$$4$$7$$aabba$$5$$8$$aabbaa$$6$$9$$abbaa$$5$$10$$bbaa$$4$$11$$baa$$3$$12$$baab$$4$\n\nIt is worth pointing out that\n\n- After the $2$-nd operation, the string is empty and thus has no substrings. So the answer is $0$;\n- After the $8$-th operation, the string is \"$aabbaa$\". The $6$ distinct palindromic substrings are \"$a$\", \"$aa$\", \"$aabbaa$\", \"$abba$\", \"$b$\", and \"$bb$\".",
-  "statementZhMd": null,
+  "statementZhMd": "你的任务是维护一个由小写英文字母组成的[队列](https://en.wikipedia.org/wiki/Queue_(abstract_data_type))，具体操作如下：\n\n- \"`push` $c$\"：将字母 $c$ 插入队列的末尾；\n- \"`pop`\"：删除队列的首个字母。\n\n初始时，队列为空。\n\n每次操作后，请计算将队列中的字母从首到尾连接得到的字符串中，**不同的**回文子串数量。\n\n特别地，空字符串的不同回文子串数量为 $0$。\n\n长度为 $n$ 的字符串 $s[1..n]$ 是回文串，当且仅当对于每个 $1 \\leq i \\leq n$，都有 $s[i] = s[n-i+1]$。\n\n对于每个 $1 \\leq l \\leq r \\leq n$，字符串 $s[l..r]$ 是字符串 $s[1..n]$ 的一个子串。\n\n字符串 $s[1..n]$ 和 $t[1..m]$ 不同，当且仅当以下至少一项成立：\n\n- $n \\neq m$；\n- 对于某个 $1 \\leq i \\leq \\min\\{n,m\\}$，有 $s[i] \\neq t[i]$。\n\n## 输入格式\n\n第一行是一个整数 $q$（$1 \\leq q \\leq 10^6$），表示操作次数。\n\n接下来 $q$ 行，每行包含以下一种操作。\n\n- \"`push` $c$\"：将字母 $c$ 插入队列的末尾，其中 $c$ 是一个小写英文字母；\n- \"`pop`\"：删除队列的首个字母。\n\n保证不会在队列为空时执行 \"`pop`\" 操作。\n\n## 输出格式\n\n每次操作后，输出队列中字符串的不同回文子串数量。\n\n## 说明\n\n设 $s_k$ 表示执行第 $k$ 次操作后队列中的字符串，$c_k$ 表示 $s_k$ 的不同回文子串数量。下面的表格展示了样例的详细信息。\n\n$k$$s_k$$c_k$$1$$a$$1$$2$$\\textsf{empty}$$0$$3$$a$$1$$4$$aa$$2$$5$$aab$$3$$6$$aabb$$4$$7$$aabba$$5$$8$$aabbaa$$6$$9$$abbaa$$5$$10$$bbaa$$4$$11$$baa$$3$$12$$baab$$4$\n\n需要特别注意：\n\n- 执行第 $2$ 次操作后，字符串为空，因此没有子串，答案为 $0$；\n- 执行第 $8$ 次操作后，字符串为 \"aabbaa\"。这 $6$ 个不同的回文子串为 \"a\"、\"aa\"、\"aabbaa\"、\"abba\"、\"b\" 和 \"bb\"。",
   "samples": [
     {
       "input": "12\npush a\npop\npush a\npush a\npush b\npush b\npush a\npush a\npop\npop\npop\npush b\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:44:58.452Z"
+  "fetchedAt": "2026-10-30T22:44:58.452Z",
+  "translatedAt": "2026-11-04T09:18:22.304+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

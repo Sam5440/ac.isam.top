@@ -4,7 +4,7 @@
   "contestId": 1975,
   "index": "E",
   "title": "Chain Queries",
-  "titleZh": null,
+  "titleZh": "Chain Queries",
   "url": "https://codeforces.com/contest/1975/problem/E",
   "difficulty": 2100,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree of $n$ vertices numbered from $1$ to $n$. Initially, all vertices are colored white or black.\n\nYou are asked to perform $q$ queries:\n\n- \"`u`\" — toggle the color of vertex $u$ (if it was white, change it to black and vice versa).\n\nAfter each query, you should answer whether all the black vertices form a chain. That is, there exist two black vertices such that the simple path between them passes through all the black vertices and only the black vertices. Specifically, if there is only one black vertex, they form a chain. If there are no black vertices, they do **not** form a chain.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1\\leq t\\leq 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($1\\leq n,q\\leq 2\\cdot 10^5$).\n\nThe second line of each test case contains $n$ integers $c_1,c_2,\\ldots,c_n$ ($c_i \\in \\{ \\mathtt{0}, \\mathtt{1} \\}$) — the initial color of the vertices. $c_i$ denotes the color of vertex $i$ where $\\mathtt{0}$ denotes the color white, and $\\mathtt{1}$ denotes the color black.\n\nThen $n - 1$ lines follow, each line contains two integers $x_i$ and $y_i$ ($1 \\le x_i,y_i \\le n$), indicating an edge between vertices $x_i$ and $y_i$. It is guaranteed that these edges form a tree.\n\nThe following $q$ lines each contain an integer $u_i$ ($1 \\le u_i \\le n$), indicating the color of vertex $u_i$ needs to be toggled.\n\nIt is guaranteed that the sum of $n$ and $q$ over all test cases respectively does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each query, output \"`Yes`\" if the black vertices form a chain, and output \"`No`\" otherwise.\n\nYou can output \"`Yes`\" and \"`No`\" in any case (for example, strings \"`yEs`\", \"`yes`\", \"`Yes`\" and \"`YES`\" will be recognized as a positive response).\n\n## Note\n\nIn the second test case, the color of the vertices are as follows:\n\nThe initial tree:\n\n![image](https://espresso.codeforces.com/1d32102e7a749c3640a2968819fa74ae548cabba.png)\n\nThe first query toggles the color of vertex $4$:\n\n![image](https://espresso.codeforces.com/90d4f04ec0720370bb78c2a1dd24fdf893375d9f.png)\n\nThe second query toggles the color of vertex $3$:\n\n![image](https://espresso.codeforces.com/26e5c7d72f15eb28b91d9a30f1a61444107bb034.png)\n\nThe third query toggles the color of vertex $2$:\n\n![image](https://espresso.codeforces.com/6f8b3d4da1aab17e93006ab7bc2cd24ec72f2f7c.png)\n\nThe fourth query toggles the color of vertex $5$:\n\n![image](https://espresso.codeforces.com/3fc0a7da7f11917f881d3f5799cc9f713c1474da.png)",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"链查询\",\"bodyZh\":\"给定一棵包含 $n$ 个顶点的树，顶点编号从 $1$ 到 $n$。初始时，所有顶点都被染成白色或黑色。\\n\\n你需要执行 $q$ 次查询：\\n\\n- \\\"`u`\\\" — 切换顶点 $u$ 的颜色（如果它原来是白色，则将其变为黑色，反之亦然）。\\n\\n每次查询后，你需要判断所有黑色顶点是否构成一条链。也就是说，存在两个黑色顶点，使得它们之间的简单路径经过所有黑色顶点，且路径上的顶点全部为黑色。特别地，如果只有一个黑色顶点，则它们构成一条链；如果没有黑色顶点，则它们**不**构成一条链。\\n\\n## 输入格式\\n\\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1\\\\leq t\\\\leq 10^4$）。接下来是各个测试用例的描述。\\n\\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$1\\\\leq n,q\\\\leq 2\\\\cdot 10^5$）。\\n\\n每个测试用例的第二行包含 $n$ 个整数 $c_1,c_2,\\\\ldots,c_n$（$c_i \\\\in \\\\{ \\\\mathtt{0}, \\\\mathtt{1} \\\\}$）——顶点的初始颜色。$c_i$ 表示顶点 $i$ 的颜色，其中 $\\mathtt{0}$ 表示白色，$\\mathtt{1}$ 表示黑色。\\n\\n接下来 $n - 1$ 行，每行包含两个整数 $x_i$ 和 $y_i$（$1 \\\\leq x_i,y_i \\\\leq n$），表示顶点 $x_i$ 和顶点 $y_i$ 之间有一条边。保证这些边构成一棵树。\\n\\n接下来 $q$ 行，每行包含一个整数 $u_i$（$1 \\\\leq u_i \\\\leq n$），表示需要切换顶点 $u_i$ 的颜色。\\n\\n保证所有测试用例的 $n$ 之和以及 $q$ 之和分别不超过 $2\\\\cdot 10^5$。\\n\\n## 输出格式\\n\\n对于每次查询，如果黑色顶点构成一条链，输出 \\\"`Yes`\\\"；否则输出 \\\"`No`\\\"。\\n\\n你可以以任意大小写形式输出 \\\"`Yes`\\\" 和 \\\"`No`\\\"（例如，字符串 \\\"`yEs`\\\"、\\\"`yes`\\\"、\\\"`Yes`\\\" 和 \\\"`YES`\\\" 都会被识别为肯定回答）。\\n\\n## 说明\\n\\n在第二个测试用例中，顶点的颜色如下：\\n\\n初始的树：\\n\\n![image](https://espresso.codeforces.com/1d32102e7a749c3640a2968819fa74ae548cabba.png)\\n\\n第一次查询切换顶点 $4$ 的颜色：\\n\\n![image](https://espresso.codeforces.com/90d4f04ec0720370bb78c2a1dd24fdf893375d9f/images/90d4f04ec0720370bb78c2a1dd24fdf893375d9f.png)\\n\\n第二次查询切换顶点 $3$ 的颜色：\\n\\n![image](https://espresso.codeforces.com/26e5c7d72f15eb28b91d9a30f1a61444107bb034.png)\\n\\n第三次查询切换顶点 $2$ 的颜色：\\n\\n![image](https://espresso.codeforces.com/6f8b3d4da1aab17e93006ab7bc2cd24ec72f2f7c.png)\\n\\n第四次查询切换顶点 $5$ 的颜色：\\n\\n![image](https://espresso.codeforces.com/3fc0a7da7f11917f881d3f5799cc9f713c1474da.png)\"}",
   "samples": [
     {
       "input": "2\n2 1\n1 0\n1 2\n1\n5 4\n1 0 0 0 0\n1 2\n1 3\n1 5\n3 4\n4\n3\n2\n5\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:57:23.579Z"
+  "fetchedAt": "2026-10-30T21:57:23.579Z",
+  "translatedAt": "2026-11-04T09:14:43.689+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

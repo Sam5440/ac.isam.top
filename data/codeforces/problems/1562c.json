@@ -4,7 +4,7 @@
   "contestId": 1562,
   "index": "C",
   "title": "Rings",
-  "titleZh": null,
+  "titleZh": "环",
   "url": "https://codeforces.com/contest/1562/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Frodo was caught by Saruman. He tore a pouch from Frodo's neck, shook out its contents —there was a pile of different rings: gold and silver...\"How am I to tell which is the One?!\" the mage howled.\"Throw them one by one into the Cracks of Doom and watch when Mordor falls!\"\n\nSomewhere in a parallel Middle-earth, when Saruman caught Frodo, he only found $n$ rings. And the $i$-th ring was either gold or silver. For convenience Saruman wrote down a binary string $s$ of $n$ characters, where the $i$-th character was `0` if the $i$-th ring was gold, and `1` if it was silver.\n\nSaruman has a magic function $f$, which takes a binary string and returns a number obtained by converting the string into a binary number and then converting the binary number into a decimal number. For example, $f(001010) = 10, f(111) = 7, f(11011101) = 221$.\n\nSaruman, however, thinks that the order of the rings plays some important role. He wants to find $2$ pairs of integers $(l_1, r_1), (l_2, r_2)$, such that:\n\n- $1 \\le l_1 \\le n$, $1 \\le r_1 \\le n$, $r_1-l_1+1\\ge \\lfloor \\frac{n}{2} \\rfloor$\n- $1 \\le l_2 \\le n$, $1 \\le r_2 \\le n$, $r_2-l_2+1\\ge \\lfloor \\frac{n}{2} \\rfloor$\n- Pairs $(l_1, r_1)$ and $(l_2, r_2)$ are distinct. That is, at least one of $l_1 \\neq l_2$ and $r_1 \\neq r_2$ must hold.\n- Let $t$ be the substring $s[l_1:r_1]$ of $s$, and $w$ be the substring $s[l_2:r_2]$ of $s$. Then **there exists non-negative integer $k$, such that $f(t) = f(w) \\cdot k$.**\n\nHere substring $s[l:r]$ denotes $s_ls_{l+1}\\ldots s_{r-1}s_r$, and $\\lfloor x \\rfloor$ denotes rounding the number down to the nearest integer.\n\nHelp Saruman solve this problem! It is guaranteed that under the constraints of the problem at least one solution exists.\n\n## Input\n\nEach test contains multiple test cases.\n\nThe first line contains one positive integer $t$ ($1 \\le t \\le 10^3$), denoting the number of test cases. Description of the test cases follows.\n\nThe first line of each test case contains one positive integer $n$ ($2 \\le n \\le 2 \\cdot 10^4$) — length of the string.\n\nThe second line of each test case contains a non-empty binary string of length $n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor every test case print four integers $l_1$, $r_1$, $l_2$, $r_2$, which denote the beginning of the first substring, the end of the first substring, the beginning of the second substring, and the end of the second substring, respectively.\n\nIf there are multiple solutions, print any.\n\n## Note\n\nIn the first testcase $f(t) = f(1111) = 15$, $f(w) = f(101) = 5$.\n\nIn the second testcase $f(t) = f(111000111) = 455$, $f(w) = f(000111) = 7$.\n\nIn the third testcase $f(t) = f(0000) = 0$, $f(w) = f(1000) = 8$.\n\nIn the fourth testcase $f(t) = f(11011) = 27$, $f(w) = f(011) = 3$.\n\nIn the fifth testcase $f(t) = f(001111) = 15$, $f(w) = f(011) = 3$.",
-  "statementZhMd": null,
+  "statementZhMd": "弗罗多被萨鲁曼抓住了。他从弗罗多的脖子上扯下一个袋子，抖出了里面的东西——那是一堆不同的戒指：金的、银的……“我该怎么分辨哪一个是至尊戒？！”巫师咆哮道。“把它们一个接一个扔进末日火山的裂隙里，看看魔多什么时候陷落！”\n\n在平行世界的中土，当萨鲁曼抓住弗罗多时，他只发现了 $n$ 枚戒指。其中第 $i$ 枚戒指要么是金色，要么是银色。为了方便，萨鲁曼记录了一个长度为 $n$ 的二进制字符串 $s$：如果第 $i$ 枚戒指是金色的，那么第 $i$ 个字符为 `0`；如果是银色的，那么第 $i$ 个字符为 `1`。\n\n萨鲁曼拥有一个魔法函数 $f$，它接收一个二进制字符串，并将该字符串视为二进制数，再将其转换为十进制数。例如，$f(001010) = 10, f(111) = 7, f(11011101) = 221$。\n\n然而，萨鲁曼认为戒指的顺序也很重要。他想找出 $2$ 对整数 $(l_1, r_1), (l_2, r_2)$，满足：\n\n- $1 \\le l_1 \\le n$，$1 \\le r_1 \\le n$，$r_1-l_1+1\\ge \\lfloor \\frac{n}{2} \\rfloor$\n- $1 \\le l_2 \\le n$，$1 \\le r_2 \\le n$，$r_2-l_2+1\\ge \\lfloor \\frac{n}{2} \\rfloor$\n- 数对 $(l_1, r_1)$ 和 $(l_2, r_2)$ 不同。也就是说，$l_1 \\neq l_2$ 和 $r_1 \\neq r_2$ 中至少有一个成立。\n- 令 $t$ 为 $s$ 的子串 $s[l_1:r_1]$，令 $w$ 为 $s$ 的子串 $s[l_2:r_2]$。那么 **存在非负整数 $k$，使得 $f(t) = f(w) \\cdot k$。**\n\n其中，子串 $s[l:r]$ 表示 $s_ls_{l+1}\\ldots s_{r-1}s_r$，而 $\\lfloor x \\rfloor$ 表示向下取整，即不超过该数的最大整数。\n\n请帮助萨鲁曼解决这个问题！可以保证，在题目的约束条件下，至少存在一种解。\n\n## 输入格式\n\n每个测试包含多个测试用例。\n\n第一行包含一个正整数 $t$（$1 \\le t \\le 10^3$），表示测试用例的数量。接下来描述各个测试用例。\n\n每个测试用例的第一行包含一个正整数 $n$（$2 \\le n \\le 2 \\cdot 10^4$）——字符串的长度。\n\n每个测试用例的第二行包含一个长度为 $n$ 的非空二进制字符串。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出四个整数 $l_1$、$r_1$、$l_2$、$r_2$，分别表示第一个子串的起点、第一个子串的终点、第二个子串的起点和第二个子串的终点。\n\n如果有多种解，输出任意一种即可。\n\n## 说明\n\n在第一个测试用例中，$f(t) = f(1111) = 15$，$f(w) = f(101) = 5$。\n\n在第二个测试用例中，$f(t) = f(111000111) = 455$，$f(w) = f(000111) = 7$。\n\n在第三个测试用例中，$f(t) = f(0000) = 0$，$f(w) = f(1000) = 8$。\n\n在第四个测试用例中，$f(t) = f(11011) = 27$，$f(w) = f(011) = 3$。\n\n在第五个测试用例中，$f(t) = f(001111) = 15$，$f(w) = f(011) = 3$。",
   "samples": [
     {
       "input": "7\n6\n101111\n9\n111000111\n8\n10000000\n5\n11011\n6\n001111\n3\n101\n30\n100000000000000100000000000000\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:28:21.324Z"
+  "fetchedAt": "2026-10-30T23:28:21.324Z",
+  "translatedAt": "2026-11-04T10:30:08.117+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

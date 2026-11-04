@@ -4,7 +4,7 @@
   "contestId": 1572,
   "index": "F",
   "title": "Stations",
-  "titleZh": null,
+  "titleZh": "广播站",
   "url": "https://codeforces.com/contest/1572/problem/F",
   "difficulty": 3400,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ cities in a row numbered from $1$ to $n$.\n\nThe cities will be building broadcasting stations. The station in the $i$-th city has height $h_i$ and range $w_i$. It can broadcast information to city $j$ if the following constraints are met:\n\n- $i \\le j \\le w_i$, and\n- for each $k$ such that $i \\lt k \\le j$, the following condition holds: $h_k \\lt h_i$.\n\nIn other words, the station in city $i$ can broadcast information to city $j$ if $j \\ge i$, $j$ is in the range of $i$-th station, and $i$ is strictly highest on the range from $i$ to $j$ (including city $j$).\n\nAt the beginning, for every city $i$, $h_i = 0$ and $w_i = i$.\n\nThen $q$ events will take place. During $i$-th event one of the following will happen:\n\n- City $c_i$ will rebuild its station so that its height will be strictly highest among all stations and $w_{c_i}$ will be set to $g_i$.\n- Let $b_j$ be the number of stations that can broadcast information to city $j$. Print the sum of $b_j$ over all $j$ satisfying $l_i \\le j \\le r_i$.\n\nYour task is to react to all events and print answers to all queries.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n, q \\le 2\\cdot10^5$) — number of cities and number of events.\n\nThen $q$ lines follow. The $i$-th line begins with an integer $p_i$ ($p_i = 1$ or $p_i = 2$).\n\nIf $p_i = 1$ a station will be rebuilt. Then two integers $c_i$ and $g_i$ ($1 \\le c_i \\le g_i \\le n$) follow — the city in which the station is rebuilt and its new broadcasting range.\n\nIf $p_i = 2$ you are given a query. Then two integers $l_i$ and $r_i$ ($1 \\le l_i \\le r_i \\le n$) follow — the range of cities in the query.\n\n## Output\n\nFor each query, print in a single line the sum of $b_j$ over the given interval.\n\n## Note\n\nIn the first test case, only station $1$ reaches city $1$ before and after it is rebuilt.\n\nIn the second test case, after each rebuild, the array $b$ looks as follows:\n\n1. $[1, 1, 1, 2, 1]$;\n2. $[1, 2, 2, 3, 2]$;\n3. $[1, 2, 2, 1, 2]$;\n4. $[1, 1, 2, 1, 2]$;\n5. $[1, 1, 2, 1, 1]$.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 个城市排成一列，编号从 $1$ 到 $n$。\n\n这些城市将建设广播站。第 $i$ 个城市中的广播站高度为 $h_i$，覆盖范围为 $w_i$。当满足以下条件时，它可以向城市 $j$ 广播信息：\n\n- $i \\le j \\le w_i$；\n- 对于满足 $i \\lt k \\le j$ 的每个 $k$，均有 $h_k \\lt h_i$。\n\n换句话说，当 $j \\ge i$、$j$ 在第 $i$ 个广播站的覆盖范围内，并且从 $i$ 到 $j$ 的范围（包括城市 $j$）内第 $i$ 个城市的广播站高度严格最高时，第 $i$ 个城市中的广播站可以向城市 $j$ 广播信息。\n\n初始时，对于每个城市 $i$，$h_i = 0$ 且 $w_i = i$。\n\n接下来将发生 $q$ 个事件。在第 $i$ 个事件中，将发生以下两种情况之一：\n\n- 城市 $c_i$ 重建其广播站，使其高度严格高于所有其他广播站，并将 $w_{c_i}$ 设置为 $g_i$。\n- 令 $b_j$ 表示可以向城市 $j$ 广播信息的广播站数量。输出所有满足 $l_i \\le j \\le r_i$ 的 $j$ 对应的 $b_j$ 之和。\n\n你的任务是处理所有事件，并输出所有询问的答案。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\le n, q \\le 2\\cdot10^5$），分别表示城市数量和事件数量。\n\n接下来 $q$ 行。第 $i$ 行以一个整数 $p_i$（$p_i = 1$ 或 $p_i = 2$）开头。\n\n如果 $p_i = 1$，则会重建一个广播站。接下来给出两个整数 $c_i$ 和 $g_i$（$1 \\le c_i \\le g_i \\le n$），分别表示重建广播站的城市以及新的广播范围。\n\n如果 $p_i = 2$，则给出一个询问。接下来给出两个整数 $l_i$ 和 $r_i$（$1 \\le l_i \\le r_i \\le n$），表示询问中的城市区间。\n\n## 输出格式\n\n对于每个询问，在单独一行中输出给定区间内 $b_j$ 的总和。\n\n## 说明\n\n在第一个测试用例中，重建前后都只有广播站 $1$ 能够到达城市 $1$。\n\n在第二个测试用例中，每次重建后，数组 $b$ 如下所示：\n\n1. $[1, 1, 1, 2, 1]$；\n2. $[1, 2, 2, 3, 2]$；\n3. $[1, 2, 2, 1, 2]$；\n4. $[1, 1, 2, 1, 2]$；\n5. $[1, 1, 2, 1, 1]$。",
   "samples": [
     {
       "input": "1 3\n2 1 1\n1 1 1\n2 1 1\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:27:56.062Z"
+  "fetchedAt": "2026-10-30T23:27:56.062Z",
+  "translatedAt": "2026-11-04T10:32:35.404+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

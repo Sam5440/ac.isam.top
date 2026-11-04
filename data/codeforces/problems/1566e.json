@@ -4,7 +4,7 @@
   "contestId": 1566,
   "index": "E",
   "title": "Buds Re-hanging",
-  "titleZh": null,
+  "titleZh": "芽节点重挂",
   "url": "https://codeforces.com/contest/1566/problem/E",
   "difficulty": 2000,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A tree is a connected graph without cycles. A rooted tree has a special vertex called the root. The parent of a vertex $v$ (different from root) is the previous to $v$ vertex on the shortest path from the root to the vertex $v$. Children of the vertex $v$ are all vertices for which $v$ is the parent.\n\nA vertex is a leaf if it has no children. We call a vertex a **bud**, if the following three conditions are satisfied:\n\n- it is not a root,\n- it has at least one child, and\n- all its children are leaves.\n\nYou are given a rooted tree with $n$ vertices. The vertex $1$ is the root. In one operation you can choose any bud with all its children (they are leaves) and re-hang them to any other vertex of the tree. By doing that you delete the edge connecting the bud and its parent and add an edge between the bud and the chosen vertex of the tree. The chosen vertex cannot be the bud itself or any of its children. All children of the bud stay connected to the bud.\n\nWhat is the minimum number of leaves it is possible to get if you can make any number of the above-mentioned operations (possibly zero)?\n\n## Input\n\nThe input consists of multiple test cases. The first line contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. Description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$) — the number of the vertices in the given tree.\n\nEach of the next $n-1$ lines contains two integers $u$ and $v$ ($1 \\le u, v \\le n$, $u \\neq v$) meaning that there is an edge between vertices $u$ and $v$ in the tree.\n\nIt is guaranteed that the given graph is a tree.\n\nIt is guaranteed that the sum of $n$ over all test cases doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case print a single integer — the minimal number of leaves that is possible to get after some operations.\n\n## Note\n\nIn the first test case the tree looks as follows:\n\n![image](https://espresso.codeforces.com/a8ab420b7ca4f310a11b4e815d2ee260498563d1.png)\n\nFirstly you can choose a bud vertex $4$ and re-hang it to vertex $3$. After that you can choose a bud vertex $2$ and re-hang it to vertex $7$. As a result, you will have the following tree with $2$ leaves:\n\n![image](https://espresso.codeforces.com/8b1cc9156e6793bcb9c75ddeca58490c5113c1cd.png)\n\nIt can be proved that it is the minimal number of leaves possible to get.\n\nIn the second test case the tree looks as follows:\n\n![image](https://espresso.codeforces.com/a2d92b079b7c59548c16e8def008d1b322ec94bf.png)\n\nYou can choose a bud vertex $3$ and re-hang it to vertex $5$. As a result, you will have the following tree with $2$ leaves:\n\n![image](https://espresso.codeforces.com/fd753cb76a8534e107e40cd6705e91f72b00ae93.png)\n\nIt can be proved that it is the minimal number of leaves possible to get.",
-  "statementZhMd": null,
+  "statementZhMd": "树是一种无环连通图。 rooted tree 有一个被称为根的特殊顶点。顶点 $v$（非根节点）的父节点，是从根到顶点 $v$ 的最短路径上紧邻 $v$ 的前一个顶点。顶点 $v$ 的子节点，是所有以 $v$ 为父节点的顶点。\n\n如果一个顶点没有子节点，则称其为叶节点。若一个顶点满足以下三个条件，则称其为 **芽节点（bud）**：\n\n- 它不是根节点；\n- 它至少有一个子节点；\n- 它的所有子节点都是叶节点。\n\n给定一棵有 $n$ 个顶点的有根树，顶点 $1$ 是根节点。在一次操作中，你可以选择任意一个芽节点及其所有子节点（这些子节点都是叶节点），并将它们重新挂接到树中的任意其他顶点上。具体来说，删除连接该芽节点与其父节点的边，并在该芽节点与所选顶点之间添加一条边。所选顶点不能是该芽节点本身或它的任意一个子节点。芽节点的所有子节点仍然与该芽节点相连。\n\n如果可以进行任意次上述操作（也可以一次都不进行），那么最多能将叶节点数减少到多少？换言之，可能得到的叶节点最少数量是多少？\n\n## 输入格式\n\n输入包含多组测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来描述各个测试用例。\n\n每组测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）——给定树的顶点数。\n\n接下来的 $n-1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le n$，$u \\neq v$），表示顶点 $u$ 和 $v$ 之间存在一条边。\n\n保证给定的图是一棵树。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数——经过若干次操作后可能得到的最少叶节点数。\n\n## 说明\n\n在第一个测试用例中，树的形状如下：\n\n![image](https://espresso.codeforces.com/a8ab420b7ca4f310a11b4e815d2ee260498563d1.png)\n\n首先，可以选择芽节点 $4$，并将其重新挂接到顶点 $3$。之后，可以选择芽节点 $2$，并将其重新挂接到顶点 $7$。这样得到的树有 $2$ 个叶节点：\n\n![image](https://espresso.codeforces.com/8b1cc9156e6793bcb9c75ddeca58490c5113c1cd.png)\n\n可以证明，这是可能得到的最少叶节点数。\n\n在第二个测试用例中，树的形状如下：\n\n![image](https://espresso.codeforces.com/a2d92b079b7c59548c16e8def008d1b322ec94bf.png)\n\n可以选择芽节点 $3$，并将其重新挂接到顶点 $5$。这样得到的树有 $2$ 个叶节点：\n\n![image](https://espresso.codeforces.com/fd753cb76a8534e107e40cd6705e91f72b00ae93.png)\n\n可以证明，这是可能得到的最少叶节点数。",
   "samples": [
     {
       "input": "5\n7\n1 2\n1 3\n1 4\n2 5\n2 6\n4 7\n6\n1 2\n1 3\n2 4\n2 5\n3 6\n2\n1 2\n7\n7 3\n1 5\n1 3\n4 6\n4 7\n2 1\n6\n2 1\n2 3\n4 5\n3 4\n3 6\n",
@@ -27,5 +27,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:28:12.345Z"
+  "fetchedAt": "2026-10-30T23:28:12.345Z",
+  "translatedAt": "2026-11-04T10:31:32.205+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1864,
   "index": "F",
   "title": "Exotic Queries",
-  "titleZh": null,
+  "titleZh": "奇异查询",
   "url": "https://codeforces.com/contest/1864/problem/F",
   "difficulty": 2300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 1024,
   "statementMd": "AquaMoon gives RiverHamster a sequence of integers $a_1,a_2,\\dots,a_n$, and RiverHamster gives you $q$ queries. Each query is expressed by two integers $l$ and $r$.\n\nFor each query independently, you can take any continuous segment of the sequence and subtract an identical non-negative value from all the numbers of this segment. You can do so multiple (possibly, zero) times. However, you may not choose two intersecting segments which are not included in one another. Your goal is to convert to $0$ all numbers whose initial **value** was within the range $[l, r]$. You must do so in the minimum number of operations.\n\nPlease note that the queries are independent, the numbers in the array are restored to their initial values between the queries.\n\nFormally, for each query, you are to find the smallest $m$ such that there exists a sequence $\\{(x_j,y_j,z_j)\\}_{j=1}^{m}$ satisfying the following conditions:\n\n- for any $1 \\le j \\leq m$, $z_j \\ge 0$ and $1 \\le x_j \\le y_j \\leq n$ (here $[x_j, y_j]$ correspond to the segment of the sequence);\n- for any $1 \\le j \\lt k \\le m$, it is true that $[x_j,y_j]\\subseteq[x_{k},y_{k}]$, or $[x_k,y_k]\\subseteq[x_{j},y_{j}]$, or $[x_j,y_j]\\cap[x_{k},y_{k}]=\\varnothing$;\n- for any $1 \\le i \\le n$, such that $l \\le a_i \\leq r$, it is true that $${\\large a_i = \\sum\\limits_{\\substack {1 \\le j \\le m \\\\ x_j \\le i \\le y_j}} z_j. }$$\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1\\le n,q\\le 10^6$).\n\nThe second line contains $n$ integers integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le n$).\n\nEach of the next $q$ lines contains two integers $l$ and $r$ ($1\\le l\\le r\\le n$), representing a query.\n\n## Output\n\nFor each query, output the answer for this query on a separate line.\n\n## Note\n\nIn the first test case, consider the second query, when $l = 2$, $r = 2$. The elements to be manipulated are $[a_3, a_5, a_{10}] = [2, 2, 2]$. It is sufficient to apply the operation sequence $\\{(2, 10, 2)\\}$.\n\nConsider the fourth query, when $l = 2$, $r = 3$. The elements to be manipulated are $[a_3, a_4, a_5, a_7, a_{10}] = [2, 3, 2, 3, 2]$. It is sufficient to apply the operation sequence $\\{(1, 10, 2), (4, 4, 1), (7, 7, 1)\\}$.\n\nIn the second test case, note that the operation sequence $\\{(1, 2, 1), (2, 3, 2)\\}$ is invalid because the two segments intersect but neither is contained inside the other.",
-  "statementZhMd": null,
+  "statementZhMd": "AquaMoon 给 RiverHamster 一个整数序列 $a_1,a_2,\\dots,a_n$，而 RiverHamster 给你 $q$ 个查询。每个查询由两个整数 $l$ 和 $r$ 表示。\n\n对于每个查询，你可以任意选取序列中的一个连续区间，并从该区间的所有数中减去一个相同的非负值。你可以执行多次（也可以一次都不执行）。但是，不能选择两个相交但互不包含的区间。你的目标是将所有初始**值**在范围 $[l, r]$ 内的数变为 $0$。你需要使用最少的操作次数完成这一目标。\n\n请注意，各个查询相互独立，在不同查询之间，数组中的数会恢复为初始值。\n\n形式化地说，对于每个查询，你需要求出最小的 $m$，使得存在一个序列 $\\{(x_j,y_j,z_j)\\}_{j=1}^{m}$，满足以下条件：\n\n- 对于任意 $1 \\le j \\le m$，均有 $z_j \\ge 0$ 且 $1 \\le x_j \\le y_j \\le n$（这里的 $[x_j, y_j]$ 表示序列的一个区间）；\n- 对于任意 $1 \\le j \\lt k \\le m$，以下条件之一成立：$[x_j,y_j]\\subseteq[x_{k},y_{k}]$、$[x_k,y_k]\\subseteq[x_{j},y_{j}]$，或 $[x_j,y_j]\\cap[x_{k},y_{k}]=\\varnothing$；\n- 对于任意满足 $1 \\le i \\le n$ 且 $l \\le a_i \\le r$ 的 $i$，均有 $${\\large a_i = \\sum\\limits_{\\substack {1 \\le j \\le m \\\\ x_j \\le i \\le y_j}} z_j. }$$\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1\\le n,q\\le 10^6$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le n$）。\n\n接下来的 $q$ 行中，每行包含两个整数 $l$ 和 $r$（$1\\le l\\le r\\le n$），表示一个查询。\n\n## 输出格式\n\n对于每个查询，单独一行输出该查询的答案。\n\n## 说明\n\n在第一个测试用例中，考虑第二个查询，此时 $l = 2$，$r = 2$。需要处理的元素为 $[a_3, a_5, a_{10}] = [2, 2, 2]$。只需执行操作序列 $\\{(2, 10, 2)\\}$ 即可。\n\n考虑第四个查询，此时 $l = 2$，$r = 3$。需要处理的元素为 $[a_3, a_4, a_5, a_7, a_{10}] = [2, 3, 2, 3, 2]$。只需执行操作序列 $\\{(1, 10, 2), (4, 4, 1), (7, 7, 1)\\}$ 即可。\n\n在第二个测试用例中，请注意，操作序列 $\\{(1, 2, 1), (2, 3, 2)\\}$ 是无效的，因为这两个区间相交，但互不包含。",
   "samples": [
     {
       "input": "10 8\n1 6 2 3 2 6 3 10 1 2\n1 10\n2 2\n3 3\n2 3\n1 3\n3 6\n4 6\n5 5\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:16:51.527Z"
+  "fetchedAt": "2026-10-30T22:16:51.527Z",
+  "translatedAt": "2026-11-04T09:13:34.236+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

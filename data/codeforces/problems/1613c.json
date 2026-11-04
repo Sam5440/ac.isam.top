@@ -4,7 +4,7 @@
   "contestId": 1613,
   "index": "C",
   "title": "Poisoned Dagger",
-  "titleZh": null,
+  "titleZh": "毒匕首",
   "url": "https://codeforces.com/contest/1613/problem/C",
   "difficulty": 1200,
   "tags": [
@@ -13,7 +13,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Monocarp is playing yet another computer game. In this game, his character has to kill a dragon. The battle with the dragon lasts $100^{500}$ seconds, during which Monocarp attacks the dragon with a poisoned dagger. The $i$-th attack is performed at the beginning of the $a_i$-th second from the battle start. The dagger itself does not deal damage, but it applies a poison effect on the dragon, which deals $1$ damage during each of the next $k$ seconds (starting with the same second when the dragon was stabbed by the dagger). However, if the dragon has already been poisoned, then the dagger updates the poison effect (i.e. cancels the current poison effect and applies a new one).\n\nFor example, suppose $k = 4$, and Monocarp stabs the dragon during the seconds $2$, $4$ and $10$. Then the poison effect is applied at the start of the $2$-nd second and deals $1$ damage during the $2$-nd and $3$-rd seconds; then, at the beginning of the $4$-th second, the poison effect is reapplied, so it deals exactly $1$ damage during the seconds $4$, $5$, $6$ and $7$; then, during the $10$-th second, the poison effect is applied again, and it deals $1$ damage during the seconds $10$, $11$, $12$ and $13$. In total, the dragon receives $10$ damage.\n\nMonocarp knows that the dragon has $h$ hit points, and if he deals at least $h$ damage to the dragon during the battle — he slays the dragon. Monocarp has not decided on the strength of the poison he will use during the battle, so he wants to find the minimum possible value of $k$ (the number of seconds the poison effect lasts) that is enough to deal at least $h$ damage to the dragon.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 1000$) — the number of test cases.\n\nThe first line of the test case contains two integers $n$ and $h$ ($1 \\le n \\le 100; 1 \\le h \\le 10^{18}$) — the number of Monocarp's attacks and the amount of damage that needs to be dealt.\n\nThe second line contains $n$ integers $a_1$, $a_2$, ..., $a_n$ ($1 \\le a_i \\le 10^9; a_i \\lt a_{i + 1}$), where $a_i$ is the second when the $i$-th attack is performed.\n\n## Output\n\nFor each test case, print a single integer — the minimum value of the parameter $k$, such that Monocarp will cause at least $h$ damage to the dragon.\n\n## Note\n\nIn the first example, for $k=3$, damage is dealt in seconds $[1, 2, 3, 5, 6, 7]$.\n\nIn the second example, for $k=4$, damage is dealt in seconds $[2, 3, 4, 5, 6, 7, 10, 11, 12, 13]$.\n\nIn the third example, for $k=1$, damage is dealt in seconds $[1, 2, 4, 5, 7]$.",
-  "statementZhMd": null,
+  "statementZhMd": "Monocarp 又在玩一款电脑游戏。在这款游戏中，他的角色必须杀死一条龙。与巨龙的战斗持续 $100^{500}$ 秒，在此期间，Monocarp 使用一把有毒匕首攻击巨龙。第 $i$ 次攻击在战斗开始后的第 $a_i$ 秒开始时进行。匕首本身不会造成伤害，但会对巨龙施加中毒效果，使其在接下来的 $k$ 秒内每秒受到 $1$ 点伤害（从巨龙被匕首刺中的同一秒开始）。但是，如果巨龙已经中毒，那么匕首会更新中毒效果（即取消当前的中毒效果，并施加一个新的中毒效果）。\n\n例如，假设 $k = 4$，Monocarp 分别在第 $2$、$4$ 和 $10$ 秒刺中巨龙。中毒效果在第 $2$ 秒开始时生效，并在第 $2$ 秒和第 $3$ 秒各造成 $1$ 点伤害；然后，在第 $4$ 秒开始时，中毒效果被重新施加，因此会在第 $4$、$5$、$6$ 和第 $7$ 秒各造成 $1$ 点伤害；接着，在第 $10$ 秒，中毒效果再次生效，并在第 $10$、$11$、$12$ 和第 $13$ 秒各造成 $1$ 点伤害。巨龙总共受到 $10$ 点伤害。\n\nMonocarp 知道巨龙拥有 $h$ 点生命值，并且如果在战斗中对巨龙造成至少 $h$ 点伤害，就能杀死巨龙。Monocarp 还没有决定在战斗中使用的毒药强度，因此他想求出能够对巨龙造成至少 $h$ 点伤害的 $k$ 的最小值（即中毒效果持续的秒数）。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $h$（$1 \\le n \\le 100$；$1 \\le h \\le 10^{18}$）——Monocarp 的攻击次数，以及需要造成的伤害值。\n\n第二行包含 $n$ 个整数 $a_1$, $a_2$, ..., $a_n$（$1 \\le a_i \\le 10^9; a_i \\lt a_{i + 1}$），其中 $a_i$ 表示第 $i$ 次攻击进行的时刻（秒数）。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——参数 $k$ 的最小值，使得 Monocarp 能够对巨龙造成至少 $h$ 点伤害。\n\n## 说明\n\n在第一个样例中，当 $k=3$ 时，会在第 $[1, 2, 3, 5, 6, 7]$ 秒造成伤害。\n\n在第二个样例中，当 $k=4$ 时，会在第 $[2, 3, 4, 5, 6, 7, 10, 11, 12, 13]$ 秒造成伤害。\n\n在第三个样例中，当 $k=1$ 时，会在第 $[1, 2, 4, 5, 7]$ 秒造成伤害。",
   "samples": [
     {
       "input": "4\n2 5\n1 5\n3 10\n2 4 10\n5 3\n1 2 4 5 7\n4 1000\n3 25 64 1337\n",
@@ -22,5 +22,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:12:39.866Z"
+  "fetchedAt": "2026-11-02T18:12:39.866Z",
+  "translatedAt": "2026-11-04T10:26:56.934+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

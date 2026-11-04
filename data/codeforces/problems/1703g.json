@@ -4,7 +4,7 @@
   "contestId": 1703,
   "index": "G",
   "title": "Good Key, Bad Key",
-  "titleZh": null,
+  "titleZh": "好钥匙，坏钥匙",
   "url": "https://codeforces.com/contest/1703/problem/G",
   "difficulty": 1600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ chests. The $i$-th chest contains $a_i$ coins. You need to open all $n$ chests **in order from chest **$1$** to chest **$n$.\n\nThere are two types of keys you can use to open a chest:\n\n- a good key, which costs $k$ coins to use;\n- a bad key, which does not cost any coins, but will halve all the coins in each unopened chest, **including the chest it is about to open**. The halving operation **will round down** to the nearest integer for each chest halved. In other words using a bad key to open chest $i$ will do $a_i = \\lfloor{\\frac{a_i}{2}\\rfloor}$, $a_{i+1} = \\lfloor\\frac{a_{i+1}}{2}\\rfloor, \\dots, a_n = \\lfloor \\frac{a_n}{2}\\rfloor$;\n- any key (both good and bad) breaks after a usage, that is, it is a one-time use.\n\nYou need to use in total $n$ keys, one for each chest. Initially, you have no coins and no keys. If you want to use a good key, then you need to buy it.\n\nDuring the process, you are allowed to go into debt; for example, if you have $1$ coin, you are allowed to buy a good key worth $k=3$ coins, and your balance will become $-2$ coins.\n\nFind the maximum number of coins you can have after opening all $n$ chests in order from chest $1$ to chest $n$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\leq n \\leq 10^5$; $0 \\leq k \\leq 10^9$) — the number of chests and the cost of a good key respectively.\n\nThe second line of each test case contains $n$ integers $a_i$ ($0 \\leq a_i \\leq 10^9$)  — the amount of coins in each chest.\n\nThe sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case output a single integer  — the maximum number of coins you can obtain after opening the chests in order from chest $1$ to chest $n$.\n\nPlease note, that the answer for some test cases won't fit into 32-bit integer type, so you should use at least 64-bit integer type in your programming language (like `long long` for C++).\n\n## Note\n\nIn the first test case, one possible strategy is as follows:\n\n- Buy a good key for $5$ coins, and open chest $1$, receiving $10$ coins. Your current balance is $0 + 10 - 5 = 5$ coins.\n- Buy a good key for $5$ coins, and open chest $2$, receiving $10$ coins. Your current balance is $5 + 10 - 5 = 10$ coins.\n- Use a bad key and open chest $3$. As a result of using a bad key, the number of coins in chest $3$ becomes $\\left\\lfloor \\frac{3}{2} \\right\\rfloor = 1$, and the number of coins in chest $4$ becomes $\\left\\lfloor \\frac{1}{2} \\right\\rfloor = 0$. Your current balance is $10 + 1 = 11$.\n- Use a bad key and open chest $4$. As a result of using a bad key, the number of coins in chest $4$ becomes $\\left\\lfloor \\frac{0}{2} \\right\\rfloor = 0$. Your current balance is $11 + 0 = 11$.\n\nAt the end of the process, you have $11$ coins, which can be proven to be maximal.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 个箱子。第 $i$ 个箱子中有 $a_i$ 枚硬币。你需要**按顺序从箱子 **$1$** 到箱子 **$n$ 打开所有 $n$ 个箱子。\n\n你可以使用两种钥匙来打开箱子：\n\n- 好钥匙，使用一次需要花费 $k$ 枚硬币；\n- 坏钥匙，不需要花费任何硬币，但会将每个尚未打开的箱子中的硬币数量减半，**包括它即将打开的箱子**。对于每个被减半的箱子，减半操作**均向下取整**。换句话说，使用坏钥匙打开箱子 $i$ 时，将进行以下操作：$a_i = \\lfloor{\\frac{a_i}{2}\\rfloor}$，$a_{i+1} = \\lfloor{\\frac{a_{i+1}}{2}\\rfloor}$，$…$，$a_n = \\lfloor \\frac{a_n}{2}\\rfloor$；\n- 任何钥匙（好钥匙和坏钥匙）使用一次后都会损坏，即每把钥匙只能使用一次。\n\n你总共需要使用 $n$ 把钥匙，每个箱子使用一把。最开始，你没有硬币，也没有钥匙。如果你想使用好钥匙，就需要购买它。\n\n在此过程中，你可以负债。例如，如果你有 $1$ 枚硬币，你可以购买一把价值 $k=3$ 枚硬币的好钥匙，此时你的余额将变为 $-2$ 枚硬币。\n\n请计算按照从箱子 $1$ 到箱子 $n$ 的顺序打开所有箱子后，你最多可以拥有多少枚硬币。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\leq n \\leq 10^5$；$0 \\leq k \\leq 10^9$）——箱子的数量以及一把好钥匙的费用。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_i$（$0 \\leq a_i \\leq 10^9$）——每个箱子中的硬币数量。\n\n所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——按照顺序打开箱子后，你最多可以获得的硬币数量。\n\n请注意，某些测试用例的答案无法用 32 位整数类型表示，因此你应当在编程语言中使用至少 64 位的整数类型（例如 C++ 中的 `long long`）。\n\n## 说明\n\n在第一个测试用例中，一种可行的策略如下：\n\n- 花费 $5$ 枚硬币购买一把好钥匙，并打开箱子 $1$，获得 $10$ 枚硬币。当前余额为 $0 + 10 - 5 = 5$ 枚硬币。\n- 花费 $5$ 枚硬币购买一把好钥匙，并打开箱子 $2$，获得 $10$ 枚硬币。当前余额为 $5 + 10 - 5 = 10$ 枚硬币。\n- 使用坏钥匙并打开箱子 $3$。使用坏钥匙后，箱子 $3$ 中的硬币数量变为 $\\left\\lfloor \\frac{3}{2} \\right\\rfloor = 1$，箱子 $4$ 中的硬币数量变为 $\\left\\lfloor \\frac{1}{2} \\right\\rfloor = 0$。当前余额为 $10 + 1 = 11$ 枚硬币。\n- 使用坏钥匙并打开箱子 $4$。使用坏钥匙后，箱子 $4$ 中的硬币数量变为 $\\left\\lfloor \\frac{0}{2} \\right\\rfloor = 0$。当前余额为 $11 + 0 = 11$ 枚硬币。\n\n过程结束时，你拥有 $11$ 枚硬币，可以证明这是最大值。",
   "samples": [
     {
       "input": "5\n4 5\n10 10 3 1\n1 2\n1\n3 12\n10 10 29\n12 51\n5 74 89 45 18 69 67 67 11 96 23 59\n2 57\n85 60\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:54:04.183Z"
+  "fetchedAt": "2026-11-02T17:54:04.183Z",
+  "translatedAt": "2026-11-04T09:20:16.362+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

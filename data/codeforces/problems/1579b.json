@@ -4,7 +4,7 @@
   "contestId": 1579,
   "index": "B",
   "title": "Shifting Sort",
-  "titleZh": null,
+  "titleZh": "移位排序",
   "url": "https://codeforces.com/contest/1579/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The new generation external memory contains an array of integers a[1…n]=[a1,a2,…,an].\n\nThis type of memory does not support changing the value of an arbitrary element. Instead, it allows you to cut out any segment of the given array, *cyclically shift* (rotate) it by any offset and insert it back into the same place.\n\nTechnically, each cyclic shift consists of two consecutive actions:\n\n1. You may select arbitrary indices l and r (1≤l<r≤n) as the boundaries of the segment.\n2. Then you replace the segment a[l…r] with it's *cyclic shift* to the **left** by an arbitrary offset d. The concept of a *cyclic shift* can be also explained by following relations: the sequence [1,4,1,3] is a cyclic shift of the sequence [3,1,4,1] to the left by the offset 1 and the sequence [4,1,3,1] is a cyclic shift of the sequence [3,1,4,1] to the left by the offset 2.\n\nFor example, if a=[1,3,2,8,5], then choosing l=2, r=4 and d=2 yields a segment a[2…4]=[3,2,8]. This segment is then shifted by the offset d=2 to the **left**, and you get a segment [8,3,2] which then takes the place of of the original elements of the segment. In the end you get a=[1,8,3,2,5].\n\nSort the given array a using no more than n cyclic shifts of any of its segments. Note that you don't need to minimize the number of cyclic shifts. Any method that requires n or less cyclic shifts will be accepted.\n\n## Input\n\nThe first line contains an integer t (1≤t≤1000) — the number of test cases.\n\nThe next 2t lines contain the descriptions of the test cases.\n\nThe first line of each test case description contains an integer n (2≤n≤50) — the length of the array. The second line consists of space-separated elements of the array ai (−109≤ai≤109). Elements of array a may repeat and don't have to be unique.\n\n## Output\n\nPrint t answers to all input test cases.\n\nThe first line of the answer of each test case should contain an integer k (0≤k≤n) — the number of actions to sort the array. The next k lines should contain descriptions of the actions formatted as \"l` `r` `d\" (without quotes) where l and r (1≤l<r≤n) are the boundaries of the segment being shifted, while d (1≤d≤r−l) is the offset value. Please remember that only the cyclic shifts **to the left** are considered so the chosen segment will be shifted by the offset d to the *to the left*.\n\nNote that you are not required to find the minimum number of cyclic shifts needed for sorting. Any sorting method where the number of shifts does not exceed n will be accepted.\n\nIf the given array a is already sorted, one of the possible answers is k=0 and an empty sequence of cyclic shifts.\n\nIf there are several possible answers, you may print any of them.\n\n## Note\n\nExplanation of the fourth data set in the example:\n\n1. The segment a[2…4] is selected and is shifted to the left by 2: [2,5,1,4,3]⟶[2,4,5,1,3]\n2. The segment a[1…5] is then selected and is shifted to the left by 3: [2,4,5,1,3]⟶[1,3,2,4,5]\n3. After that the segment a[1…2] is selected and is shifted to the left by 1: [1,3,2,4,5]⟶[3,1,2,4,5]\n4. And in the end the segment a[1…3] is selected and is shifted to the left by 1: [3,1,2,4,5]⟶[1,2,3,4,5]",
-  "statementZhMd": null,
+  "statementZhMd": "新一代外部存储器中存储着一个整数数组 a[1…n]=[a1,a2,…,an]。\n\n这种存储器不支持修改任意元素的值。相反，它允许你截取给定数组中的任意一段，将其进行任意偏移量的**循环移位**（旋转），然后放回原来的位置。\n\n具体来说，每次循环移位包含以下两个连续操作：\n\n1. 选择任意下标 l 和 r（1≤l<r≤n）作为该段的边界。\n2. 将区间 a[l…r] 替换为其向**左**循环移位 d 位后的结果，其中 d 为任意偏移量。循环移位的概念也可以通过以下关系理解：序列 [1,4,1,3] 是序列 [3,1,4,1] 向左循环移位 1 位得到的结果，而序列 [4,1,3,1] 是序列 [3,1,4,1] 向左循环移位 2 位得到的结果。\n\n例如，若 a=[1,3,2,8,5]，选择 l=2、r=4 和 d=2，则区间 a[2…4]=[3,2,8]。随后将该区间向**左**循环移位 d=2 位，得到区间 [8,3,2]，并用它替换原来的区间元素。最终得到 a=[1,8,3,2,5]。\n\n使用不超过 n 次对任意区间进行循环移位的操作，将给定数组 a 排序。注意，你不需要最小化循环移位的次数。任何使用 n 次或更少循环移位的方案都将被接受。\n\n## 输入格式\n\n第一行包含一个整数 t（1≤t≤1000）——测试用例的数量。\n\n接下来的 2t 行包含各个测试用例的描述。\n\n每个测试用例描述的第一行包含一个整数 n（2≤n≤50）——数组的长度。第二行包含由空格分隔的数组元素 ai（−109≤ai≤109）。数组 a 中的元素可能重复，也不必互不相同。\n\n## 输出格式\n\n输出所有输入测试用例的答案。\n\n每个测试用例答案的第一行应包含一个整数 k（0≤k≤n）——将数组排序所需的操作次数。接下来的 k 行应按照 \"l` `r` `d\"（不含引号）的格式输出操作描述，其中 l 和 r（1≤l<r≤n）是要移位的区间边界，d（1≤d≤r−l）是偏移量。请记住这里只考虑向**左**的循环移位，因此选定的区间将向**左**移动 d 位。\n\n注意，你不需要找出排序所需的最少循环移位次数。任何循环移位次数不超过 n 的排序方法都将被接受。\n\n如果给定数组 a 已经有序，那么可行的答案之一是 k=0，并输出空的循环移位序列。\n\n如果有多个可行答案，你可以输出其中任意一个。\n\n## 说明\n\n样例中第四组数据的解释：\n\n1. 选择区间 a[2…4]，并将其向左移位 2 位：[2,5,1,4,3]⟶[2,4,5,1,3]\n2. 随后选择区间 a[1…5]，并将其向左移位 3 位：[2,4,5,1,3]⟶[1,3,2,4,5]\n3. 之后选择区间 a[1…2]，并将其向左移位 1 位：[1,3,2,4,5]⟶[3,1,2,4,5]\n4. 最后选择区间 a[1…3]，并将其向左移位 1 位：[3,1,2,4,5]⟶[1,2,3,4,5]",
   "samples": [
     {
       "input": "4\n2\n2 1\n3\n1 2 1\n4\n2 4 1 3\n5\n2 5 1 4 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:14:58.075Z"
+  "fetchedAt": "2026-11-02T18:14:58.075Z",
+  "translatedAt": "2026-11-04T10:39:42.205+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1625,
   "index": "C",
   "title": "Road Optimization",
-  "titleZh": null,
+  "titleZh": "Road Optimization",
   "url": "https://codeforces.com/contest/1625/problem/C",
   "difficulty": 1700,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 128,
   "statementMd": "The Government of Mars is not only interested in optimizing space flights, but also wants to improve the road system of the planet.\n\nOne of the most important highways of Mars connects Olymp City and Kstolop, the capital of Cydonia. In this problem, we only consider the way from Kstolop to Olymp City, but not the reverse path (i. e. the path from Olymp City to Kstolop).\n\nThe road from Kstolop to Olymp City is $\\ell$ kilometers long. Each point of the road has a coordinate $x$ ($0 \\le x \\le \\ell$), which is equal to the distance from Kstolop in kilometers. So, Kstolop is located in the point with coordinate $0$, and Olymp City is located in the point with coordinate $\\ell$.\n\nThere are $n$ signs along the road, $i$-th of which sets a speed limit $a_i$. This limit means that the next kilometer must be passed in $a_i$ minutes and is active until you encounter the next along the road. There is a road sign at the start of the road (i. e. in the point with coordinate $0$), which sets the initial speed limit.\n\nIf you know the location of all the signs, it's not hard to calculate how much time it takes to drive from Kstolop to Olymp City. Consider an example:\n\n![image](https://espresso.codeforces.com/41a5e5b0a30f71fb54feb75410b62f72718c031c.png)\n\nHere, you need to drive the first three kilometers in five minutes each, then one kilometer in eight minutes, then four kilometers in three minutes each, and finally the last two kilometers must be passed in six minutes each. Total time is $3\\cdot 5 + 1\\cdot 8 + 4\\cdot 3 + 2\\cdot 6 = 47$ minutes.\n\nTo optimize the road traffic, the Government of Mars decided to remove no more than $k$ road signs. It cannot remove the sign at the start of the road, otherwise, there will be no limit at the start. By removing these signs, the Government also wants to make the time needed to drive from Kstolop to Olymp City as small as possible.\n\nThe largest industrial enterprises are located in Cydonia, so it's the priority task to optimize the road traffic from Olymp City. So, the Government of Mars wants you to remove the signs in the way described above.\n\n## Input\n\nThe first line contains three integers $n$, $\\ell$, $k$ ($1 \\le n \\le 500$, $1 \\le \\ell \\le 10^5$, $0 \\le k \\le n-1$), the amount of signs on the road, the distance between the cities and the maximal number of signs you may remove.\n\nThe second line contains $n$ integers $d_i$ ($d_1 = 0$, $d_i \\lt d_{i+1}$, $0 \\le d_i \\le \\ell - 1$) — coordinates of all signs.\n\nThe third line contains $n$ integers $a_i$ ($1 \\le a_i \\le 10^4$) — speed limits.\n\n## Output\n\nPrint a single integer — minimal possible time to drive from Kstolop to Olymp City in minutes, if you remove no more than $k$ road signs.\n\n## Note\n\nIn the first example, you cannot remove the signs. So the answer is $47$, as it's said in the statements above.\n\nIn the second example, you may remove the second and the fourth sign. In this case, you need to drive four kilometers in $4\\cdot5 = 20$ minutes, and then six kilometers in $6\\cdot3 = 18$, so the total time is $4\\cdot5 + 6\\cdot3 = 38$ minutes.",
-  "statementZhMd": null,
+  "statementZhMd": "{\"titleZh\":\"道路优化\",\"bodyZh\":\"火星政府不仅关注太空飞行的优化，也希望改善行星上的道路系统。\\n\\n火星最重要的公路之一连接着奥林普城和塞多尼亚的首都克斯托洛普。在本题中，我们只考虑从克斯托洛普到奥林普城的方向，而不考虑反向道路（即从奥林普城到克斯托洛普的道路）。\\n\\n从克斯托洛普到奥林普城的道路长 $\\ell$ 千米。道路上的每个点都有一个坐标 $x$（$0 \\\\le x \\\\le \\\\ell$），表示该点距离克斯托洛普的距离，单位为千米。因此，克斯托洛普位于坐标为 $0$ 的点，奥林普城位于坐标为 $\\\\ell$ 的点。\\n\\n道路上有 $n$ 个路牌，其中第 $i$ 个路牌规定了限速 $a_i$。这意味着接下来的一千米需要花费 $a_i$ 分钟通过，并且该规定会一直生效，直到遇到道路上的下一个路牌。道路起点（即坐标为 $0$ 的点）处有一个路牌，规定了初始限速。\\n\\n如果知道所有路牌的位置，就不难计算出从克斯托洛普驾车到奥林普城所需的时间。考虑下面的例子：\\n\\n![image](https://espresso.codeforces.com/41a5e5b0a30f71fb54feb75410b62f72718c031c.png)\\n\\n在这个例子中，前 3 千米每千米需要 5 分钟，接下来 1 千米需要 8 分钟，再接下来 4 千米每千米需要 3 分钟，最后 2 千米每千米需要 6 分钟。因此总时间为 $3\\\\cdot 5 + 1\\\\cdot 8 + 4\\\\cdot 3 + 2\\\\cdot 6 = 47$ 分钟。\\n\\n为了优化道路交通，火星政府决定移除不超过 $k$ 个路牌。道路起点处的路牌不能被移除，否则起点处将没有限速规定。\\n\\n通过移除这些路牌，政府还希望使从克斯托洛普到奥林普城所需的时间尽可能短。\\n\\n最大的工业企业都位于塞多尼亚，因此优化从奥林普城出发方向的道路交通是优先任务。火星政府希望你按照上述方式移除路牌。\\n\\n## 输入格式\\n\\n第一行包含三个整数 $n$、$\\\\ell$ 和 $k$（$1 \\\\le n \\\\le 500$，$1 \\\\le \\\\ell \\\\le 10^5$，$0 \\\\le k \\\\le n-1$），分别表示道路上的路牌数量、两座城市之间的距离以及最多可以移除的路牌数量。\\n\\n第二行包含 $n$ 个整数 $d_i$（$d_1 = 0$，$d_i \\\\lt d_{i+1}$，$0 \\\\le d_i \\\\le \\\\ell - 1$），表示所有路牌的坐标。\\n\\n第三行包含 $n$ 个整数 $a_i$（$1 \\\\le a_i \\\\le 10^4$），表示各路牌规定的限速。\\n\\n## 输出格式\\n\\n输出一个整数，表示移除不超过 $k$ 个路牌后，从克斯托洛普驾车到奥林普城所需的最短时间，单位为分钟。\\n\\n## 说明\\n\\n在第一个样例中，不能移除任何路牌。因此答案是 $47$，如题目描述中所述。\\n\\n在第二个样例中，可以移除第二个和第四个路牌。此时，前四千米需要 $4\\\\cdot5 = 20$ 分钟，接下来六千米需要 $6\\\\cdot3 = 18$ 分钟，因此总时间为 $4\\\\cdot5 + 6\\\\cdot3 = 38$ 分钟。\"}",
   "samples": [
     {
       "input": "4 10 0\n0 3 4 8\n5 8 3 6\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:12:50.421Z"
+  "fetchedAt": "2026-10-30T23:12:50.421Z",
+  "translatedAt": "2026-11-04T10:20:07.907+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

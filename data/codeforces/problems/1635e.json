@@ -4,7 +4,7 @@
   "contestId": 1635,
   "index": "E",
   "title": "Cars",
-  "titleZh": null,
+  "titleZh": "汽车",
   "url": "https://codeforces.com/contest/1635/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "There are $n$ cars on a coordinate axis $OX$. Each car is located at an integer point initially and no two cars are located at the same point. Also, each car is oriented either left or right, and they can move at any constant positive speed in that direction at any moment.\n\nMore formally, we can describe the $i$-th car with a letter and an integer: its orientation $ori_i$ and its location $x_i$. If $ori_i = L$, then $x_i$ is decreasing at a constant rate with respect to time. Similarly, if $ori_i = R$, then $x_i$ is increasing at a constant rate with respect to time.\n\nWe call two cars **irrelevant** if they never end up in the same point regardless of their speed. In other words, they won't share the same coordinate at any moment.\n\nWe call two cars **destined** if they always end up in the same point regardless of their speed. In other words, they must share the same coordinate at some moment.\n\nUnfortunately, we lost all information about our cars, but we do remember $m$ relationships. There are two types of relationships:\n\n$1$ $i$ $j$ —$i$-th car and $j$-th car are **irrelevant**.\n\n$2$ $i$ $j$ —$i$-th car and $j$-th car are **destined**.\n\nRestore the orientations and the locations of the cars satisfying the relationships, or report that it is impossible. If there are multiple solutions, you can output any.\n\nNote that if two cars share the same coordinate, they will intersect, but at the same moment they will continue their movement in their directions.\n\n## Input\n\nThe first line contains two integers, $n$ and $m$ $(2 \\leq n \\leq 2 \\cdot 10^5; 1 \\leq m \\leq min(2 \\cdot 10^5, \\frac{n(n-1)}{2})$ — the number of cars and the number of restrictions respectively.\n\nEach of the next $m$ lines contains three integers, $type$, $i$, and $j$ $(1 \\leq type \\leq 2; 1 \\leq i,j \\leq n; i≠j)$.\n\nIf $type$ = $1$, $i$-th car and $j$-th car are **irrelevant**. Otherwise, $i$-th car and $j$-th car are **destined**.\n\nIt is guaranteed that for each pair of cars, there are at most $1$ relationship between.\n\n## Output\n\nIn the first line, print either \"`YES`\" or \"`NO`\" (in any case), whether it is possible to restore the orientations and the locations of the cars satisfying the relationships.\n\nIf the answer is \"`YES`\", print $n$ lines each containing a symbol and an integer: $ori_i$ and $x_i$ $(ori_i \\in \\{L, R\\}; -10^9 \\leq x_i \\leq 10^9)$ — representing the information of the $i$-th car.\n\nIf the orientation is left, then $ori_i$ = $L$. Otherwise $ori_i$ = $R$.\n\n$x_i$ is the where the $i$-th car is located. Note that all $x_i$ should be **distinct**.\n\nWe can prove that if there exists a solution, then there must be a solution satisfying the constraints on $x_i$.",
-  "statementZhMd": null,
+  "statementZhMd": "数轴 $OX$ 上有 $n$ 辆汽车。每辆汽车最初都位于一个整数点上，且没有两辆汽车位于同一点。此外，每辆汽车都朝向左或右，并且在任意时刻都可以沿该方向以任意恒定的正速度移动。\n\n更正式地，我们可以用一个字母和一个整数描述第 $i$ 辆汽车：其朝向 $ori_i$ 和位置 $x_i$。如果 $ori_i = L$，那么 $x_i$ 随时间以恒定速率减小。类似地，如果 $ori_i = R$，那么 $x_i$ 随时间以恒定速率增大。\n\n如果无论速度如何选择，两辆汽车都永远不会位于同一点，我们称这两辆汽车是**无关的**。换句话说，它们在任意时刻都不会共享同一个坐标。\n\n如果无论速度如何选择，两辆汽车最终总会位于同一点，我们称这两辆汽车是**注定相遇的**。换句话说，它们必定会在某个时刻拥有相同的坐标。\n\n不幸的是，我们丢失了所有关于汽车的信息，但还记得 $m$ 条关系。关系有以下两种类型：\n\n$1$ $i$ $j$ ——第 $i$ 辆汽车和第 $j$ 辆汽车是**无关的**。\n\n$2$ $i$ $j$ ——第 $i$ 辆汽车和第 $j$ 辆汽车是**注定相遇的**。\n\n请恢复满足这些关系的汽车朝向和位置，或者报告这是不可能的。如果有多种方案，输出任意一种即可。\n\n注意，如果两辆汽车位于同一个坐标，它们会相交，但在同一时刻它们会继续沿各自的方向移动。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$ $(2 \\leq n \\leq 2 \\cdot 10^5; 1 \\leq m \\leq min(2 \\cdot 10^5, \\frac{n(n-1)}{2})$ ——分别表示汽车的数量和限制的数量。\n\n接下来的 $m$ 行中，每行包含三个整数 $type$、$i$ 和 $j$ $(1 \\leq type \\leq 2; 1 \\leq i,j \\leq n; i≠j)$。\n\n如果 $type$ = $1$，则第 $i$ 辆汽车和第 $j$ 辆汽车是**无关的**；否则，第 $i$ 辆汽车和第 $j$ 辆汽车是**注定相遇的**。\n\n保证对于每一对汽车，最多有 $1$ 条关系。\n\n## 输出格式\n\n第一行输出 ``YES'' 或 ``NO''（大小写不限），表示是否存在满足这些关系的汽车信息。\n\n如果答案为 ``YES''，输出 $n$ 行，每行包含一个符号和一个整数：$ori_i$ 和 $x_i$ $(ori_i \\in \\{L, R\\}; -10^9 \\leq x_i \\leq 10^9)$，表示第 $i$ 辆汽车的信息。\n\n如果朝向左，则 $ori_i$ = $L$；否则 $ori_i$ = $R$。\n\n$x_i$ 表示第 $i$ 辆汽车所在的位置。注意，所有 $x_i$ 都必须**互不相同**。\n\n可以证明，如果存在一种解，那么一定存在一种满足 $x_i$ 约束的解。",
   "samples": [
     {
       "input": "4 4\n1 1 2\n1 2 3\n2 3 4\n2 4 1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:11:46.563Z"
+  "fetchedAt": "2026-10-30T23:11:46.563Z",
+  "translatedAt": "2026-11-04T10:17:17.253+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

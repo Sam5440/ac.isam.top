@@ -4,7 +4,7 @@
   "contestId": 1741,
   "index": "B",
   "title": "Funny Permutation",
-  "titleZh": null,
+  "titleZh": "有趣的排列",
   "url": "https://codeforces.com/contest/1741/problem/B",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A sequence of $n$ numbers is called *permutation* if it contains all numbers from $1$ to $n$ exactly once. For example, the sequences $[3, 1, 4, 2]$, [$1$] and $[2,1]$ are permutations, but $[1,2,1]$, $[0,1]$ and $[1,3,4]$ are not.\n\nFor a given number $n$ you need to make a permutation $p$ such that two requirements are satisfied at the same time:\n\n- For each element $p_i$, at least one of its neighbors has a value that differs from the value of $p_i$ by one. That is, for each element $p_i$ ($1 \\le i \\le n$), at least one of its neighboring elements (standing to the left or right of $p_i$) must be $p_i + 1$, or $p_i - 1$.\n- the permutation must have no fixed points. That is, for every $i$ ($1 \\le i \\le n$), $p_i \\neq i$ must be satisfied.\n\nLet's call the permutation that satisfies these requirements *funny*.\n\nFor example, let $n = 4$. Then [$4, 3, 1, 2$] is a *funny* permutation, since:\n\n- to the right of $p_1=4$ is $p_2=p_1-1=4-1=3$;\n- to the left of $p_2=3$ is $p_1=p_2+1=3+1=4$;\n- to the right of $p_3=1$ is $p_4=p_3+1=1+1=2$;\n- to the left of $p_4=2$ is $p_3=p_4-1=2-1=1$.\n- for all $i$ is $p_i \\ne i$.\n\nFor a given positive integer $n$, output **any** *funny* permutation of length $n$, or output `-1` if *funny* permutation of length $n$ does not exist.\n\n## Input\n\nThe first line of input data contains a single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe description of the test cases follows.\n\nEach test case consists of f single line containing one integer $n$ ($2 \\le n \\le 2 \\cdot 10^5$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print on a separate line:\n\n- **any** *funny* permutation $p$ of length $n$;\n- or the number `-1` if the permutation you are looking for does not exist.\n\n## Note\n\nThe first test case is explained in the problem statement.\n\nIn the second test case, it is not possible to make the required permutation: permutations $[1, 2, 3]$, $[1, 3, 2]$, $[2, 1, 3]$, $[3, 2, 1]$ have fixed points, and in $[2, 3, 1]$ and $[3, 1, 2]$ the first condition is met not for all positions.",
-  "statementZhMd": null,
+  "statementZhMd": "一个包含 $n$ 个数字的序列，如果恰好包含从 $1$ 到 $n$ 的所有数字各一次，则称其为*排列*。例如，序列 $[3, 1, 4, 2]$、[$1$] 和 $[2,1]$ 是排列，但 $[1,2,1]$、$[0,1]$ 和 $[1,3,4]$ 不是排列。\n\n给定一个数 $n$，你需要构造一个排列 $p$，使其同时满足以下两个要求：\n\n- 对于每个元素 $p_i$，其至少有一个相邻元素的值与 $p_i$ 相差 $1$。也就是说，对于每个元素 $p_i$（$1 \\le i \\le n$），它的至少一个相邻元素（位于 $p_i$ 的左侧或右侧）必须是 $p_i + 1$ 或 $p_i - 1$。\n- 该排列不能有固定点。也就是说，对于每个 $i$（$1 \\le i \\le n$），必须满足 $p_i \\neq i$。\n\n我们称满足这些要求的排列为*有趣的*排列。\n\n例如，令 $n = 4$。那么 [$4, 3, 1, 2$] 是一个*有趣的*排列，因为：\n\n- $p_1=4$ 的右侧是 $p_2=p_1-1=4-1=3$；\n- $p_2=3$ 的左侧是 $p_1=p_2+1=3+1=4$；\n- $p_3=1$ 的右侧是 $p_4=p_3+1=1+1=2$；\n- $p_4=2$ 的左侧是 $p_3=p_4-1=2-1=1$；\n- 对所有 $i$，均有 $p_i \\ne i$。\n\n给定一个正整数 $n$，请输出任意一个长度为 $n$ 的*有趣的*排列；如果长度为 $n$ 的*有趣的*排列不存在，则输出 `-1`。\n\n## 输入格式\n\n输入数据的第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例包含一行，其中有一个整数 $n$（$2 \\le n \\le 2 \\cdot 10^5$）。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，单独一行输出：\n\n- 长度为 $n$ 的任意一个*有趣的*排列 $p$；\n- 或者，如果不存在所要求的排列，则输出数字 `-1`。\n\n## 说明\n\n第一个测试用例的解释见题目描述。\n\n对于第二个测试用例，无法构造出满足要求的排列：排列 $[1, 2, 3]$、$[1, 3, 2]$、$[2, 1, 3]$、$[3, 2, 1]$ 都包含固定点，而在 $[2, 3, 1]$ 和 $[3, 1, 2]$ 中，第一个条件并不对所有位置成立。",
   "samples": [
     {
       "input": "5\n4\n3\n7\n5\n2\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:05.646Z"
+  "fetchedAt": "2026-11-02T17:50:05.646Z",
+  "translatedAt": "2026-11-04T09:14:08.335+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

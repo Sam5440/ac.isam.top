@@ -4,7 +4,7 @@
   "contestId": 1764,
   "index": "F",
   "title": "Doremy's Experimental Tree",
-  "titleZh": null,
+  "titleZh": "Doremy 的实验树",
   "url": "https://codeforces.com/contest/1764/problem/F",
   "difficulty": 2500,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "Doremy has an edge-weighted tree with $n$ vertices whose weights are **integers** between $1$ and $10^9$. She does $\\frac{n(n+1)}{2}$ experiments on it.\n\nIn each experiment, Doremy chooses vertices $i$ and $j$ such that $j \\leq i$ and connects them directly with an edge with weight $1$. Then, there is exactly one cycle (or self-loop when $i=j$) in the graph. Doremy defines $f(i,j)$ as the sum of lengths of shortest paths from every vertex to the cycle.\n\nFormally, let $\\mathrm{dis}_{i,j}(x,y)$ be the length of the shortest path between vertex $x$ and $y$ when the edge $(i,j)$ of weight $1$ is added, and $S_{i,j}$ be the set of vertices that are on the cycle when edge $(i,j)$ is added. Then,\n\n$$ f(i,j)=\\sum_{x=1}^{n}\\left(\\min_{y\\in S_{i,j}}\\mathrm{dis}_{i,j}(x,y)\\right). $$\n\nDoremy writes down all values of $f(i,j)$ such that $1 \\leq j \\leq i \\leq n$, then goes to sleep. However, after waking up, she finds that the tree has gone missing. Fortunately, the values of $f(i,j)$ are still in her notebook, and she knows which $i$ and $j$ they belong to. Given the values of $f(i,j)$, can you help her restore the tree?\n\nIt is guaranteed that at least one suitable tree exists.\n\n## Input\n\nThe first line of input contains a single integer $n$ ($2 \\le n \\le 2000$) — the number of vertices in the tree.\n\nThe following $n$ lines contain a lower-triangular matrix with $i$ integers on the $i$-th line; the $j$-th integer on the $i$-th line is $f(i,j)$ ($0 \\le f(i,j) \\le 2\\cdot 10^{15}$).\n\nIt is guaranteed that there exists a tree whose weights are integers between $1$ and $10^9$ such that the values of $f(i,j)$ of the tree match those given in the input.\n\n## Output\n\nPrint $n-1$ lines describing the tree. In the $i$-th line of the output, output three integers $u_i$, $v_i$, $w_i$ ($1 \\le u_i,v_i \\le n$, $1 \\le w_i \\le 10^9$), representing an edge $(u_i,v_i)$ whose weight is $w_i$.\n\nIf there are multiple answers, you may output any.\n\nAll edges must form a tree and all values of $f(i,j)$ must match those given in the input.\n\n## Note\n\nIn the first test case, the picture below, from left to right, from top to bottom, shows the graph when pairs $(1,1)$, $(1,2)$, $(1,3)$, $(2,2)$, $(2,3)$, $(3,3)$ are connected with an edge, respectively. The nodes colored yellow are on the cycle.\n\n![image](https://espresso.codeforces.com/ec984844ce39315aa492dd29c3abd50043e0c936.png)",
-  "statementZhMd": null,
+  "statementZhMd": "Doremy 有一棵包含 $n$ 个顶点的带边权树，其中边权是介于 $1$ 和 $10^9$ 之间的**整数**。她在这棵树上进行了 $\\frac{n(n+1)}{2}$ 次实验。\n\n在每次实验中，Doremy 选择两个满足 $j \\leq i$ 的顶点 $i$ 和 $j$，并用一条权值为 $1$ 的边将它们直接连接。此时，图中恰好存在一个环（当 $i=j$ 时为自环）。Doremy 将从每个顶点到该环的最短路径长度之和定义为 $f(i,j)$。\n\n形式化地，令 $\\mathrm{dis}_{i,j}(x,y)$ 表示加入一条权值为 $1$ 的边 $(i,j)$ 后，顶点 $x$ 和 $y$ 之间的最短路径长度；令 $S_{i,j}$ 表示加入边 $(i,j)$ 后位于环上的顶点集合。那么，\n\n$$ f(i,j)=\\sum_{x=1}^{n}\\left(\\min_{y\\in S_{i,j}}\\mathrm{dis}_{i,j}(x,y)\\right). $$\n\nDoremy 记录下了所有满足 $1 \\leq j \\leq i \\leq n$ 的 $f(i,j)$ 的值，然后去睡觉了。然而，醒来后她发现树不见了。幸运的是，$f(i,j)$ 的值仍然记录在她的笔记本中，并且她知道每个值对应的 $i$ 和 $j$。给定 $f(i,j)$ 的值，你能帮助她还原这棵树吗？\n\n保证至少存在一棵符合条件的树。\n\n## 输入格式\n\n输入的第一行包含一个整数 $n$（$2 \\leq n \\leq 2000$）——树中顶点的数量。\n\n接下来的 $n$ 行包含一个下三角矩阵，第 $i$ 行包含 $i$ 个整数；第 $i$ 行的第 $j$ 个整数为 $f(i,j)$（$0 \\leq f(i,j) \\leq 2\\cdot 10^{15}$）。\n\n保证存在一棵边权为介于 $1$ 和 $10^9$ 之间的整数的树，使得这棵树的 $f(i,j)$ 的值与输入给出的值相同。\n\n## 输出格式\n\n输出 $n-1$ 行描述这棵树。输出的第 $i$ 行包含三个整数 $u_i$、$v_i$、$w_i$（$1 \\leq u_i,v_i \\leq n$，$1 \\leq w_i \\leq 10^9$），表示一条端点为 $(u_i,v_i)$、权值为 $w_i$ 的边。\n\n如果有多个答案，可以输出任意一个。\n\n所有边必须构成一棵树，并且所有 $f(i,j)$ 的值都必须与输入给出的值相同。\n\n## 说明\n\n在第一个测试用例中，下图从左到右、从上到下分别展示了将顶点对 $(1,1)$、$(1,2)$、$(1,3)$、$(2,2)$、$(2,3)$、$(3,3)$ 用边连接后得到的图。涂成黄色的节点位于环上。\n\n![image](https://espresso.codeforces.com/ec984844ce39315aa492dd29c3abd50043e0c936.png)",
   "samples": [
     {
       "input": "3\n7\n3 5\n0 2 8\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:43:19.193Z"
+  "fetchedAt": "2026-10-30T22:43:19.193Z",
+  "translatedAt": "2026-11-04T10:08:50.247+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

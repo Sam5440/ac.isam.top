@@ -4,7 +4,7 @@
   "contestId": 1859,
   "index": "E",
   "title": "Maximum Monogonosity",
-  "titleZh": null,
+  "titleZh": "最大单环性",
   "url": "https://codeforces.com/contest/1859/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 512,
   "statementMd": "You are given an array $a$ of length $n$ and an array $b$ of length $n$. The *cost* of a segment $[l, r]$, $1 \\le l \\le r \\le n$, is defined as $|b_l - a_r| + |b_r - a_l|$.\n\nRecall that two segments $[l_1, r_1]$, $1 \\le l_1 \\le r_1 \\le n$, and $[l_2, r_2]$, $1 \\le l_2 \\le r_2 \\le n$, are non-intersecting if one of the following conditions is satisfied: $r_1 \\lt l_2$ or $r_2 \\lt l_1$.\n\nThe length of a segment $[l, r]$, $1 \\le l \\le r \\le n$, is defined as $r - l + 1$.\n\nFind the maximum possible sum of costs of non-intersecting segments $[l_j, r_j]$, $1 \\le l_j \\le r_j \\le n$, whose total length is equal to $k$.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains a single integer $t$ $(1 \\le t \\le 1000)$ — the number of sets of input data. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 3000$) — the length of array $a$ and the total length of segments.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($-10^9 \\le a_i \\le 10^9$) — the elements of array $a$.\n\nThe third line of each test case contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($-10^9 \\le b_i \\le 10^9$) — the elements of array $b$.\n\nIt is guaranteed that the sum of $n$ over all test case does not exceed $3000$.\n\n## Output\n\nFor each test case, output a single number — the maximum possible sum of costs of such segments.\n\n## Note\n\nIn the first test case, the cost of any segment is $0$, so the total cost is $0$.\n\nIn the second test case, we can take the segment $[1, 1]$ with a cost of $8$ and the segment $[3, 3]$ with a cost of $2$ to get a total sum of $10$. It can be shown that this is the optimal solution.\n\nIn the third test case, we are only interested in segments of length $1$, and the cost of any such segment is $0$.\n\nIn the fourth test case, it can be shown that the optimal sum is $16$. For example, we can take the segments $[3, 3]$ and $[4, 4]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个长度为 $n$ 的数组 $a$ 和一个长度为 $n$ 的数组 $b$。对于区间 $[l, r]$，其中 $1 \\le l \\le r \\le n$，其*代价*定义为 $|b_l - a_r| + |b_r - a_l|$。\n\n回顾一下，对于两个区间 $[l_1, r_1]$（$1 \\le l_1 \\le r_1 \\le n$）和 $[l_2, r_2]$（$1 \\le l_2 \\le r_2 \\le n$），如果满足以下条件之一，则称它们互不相交：$r_1 \\lt l_2$ 或 $r_2 \\lt l_1$。\n\n对于区间 $[l, r]$（$1 \\le l \\le r \\le n$），其长度定义为 $r - l + 1$。\n\n请找出若干个互不相交的区间 $[l_j, r_j]$（$1 \\le l_j \\le r_j \\le n$），使得它们的总长度等于 $k$，并最大化这些区间的代价之和。\n\n## 输入格式\n\n每个测试由多个测试用例组成。第一行包含一个整数 $t$（$1 \\le t \\le 1000$）——测试用例的数量。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 3000$）——数组 $a$ 的长度以及区间的总长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$-10^9 \\le a_i \\le 10^9$）——数组 $a$ 的元素。\n\n每个测试用例的第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$-10^9 \\le b_i \\le 10^9$）——数组 $b$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $3000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个数——这些区间的代价之和的最大值。\n\n## 说明\n\n在第一个测试用例中，任意区间的代价都是 $0$，因此总代价为 $0$。\n\n在第二个测试用例中，我们可以选择区间 $[1, 1]$，其代价为 $8$，以及区间 $[3, 3]$，其代价为 $2$，从而得到总和 $10$。可以证明这是最优解。\n\n在第三个测试用例中，我们只需考虑长度为 $1$ 的区间，而任意此类区间的代价都是 $0$。\n\n在第四个测试用例中，可以证明最优总和为 $16$。例如，我们可以选择区间 $[3, 3]$ 和 $[4, 4]$。",
   "samples": [
     {
       "input": "5\n4 4\n1 1 1 1\n1 1 1 1\n3 2\n1 3 2\n5 2 3\n5 1\n1 2 3 4 5\n1 2 3 4 5\n7 2\n1 3 7 6 4 7 2\n1 5 3 2 7 4 5\n4 2\n17 3 5 8\n16 2 5 9\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:17:09.362Z"
+  "fetchedAt": "2026-10-30T22:17:09.362Z",
+  "translatedAt": "2026-11-04T09:17:36.475+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

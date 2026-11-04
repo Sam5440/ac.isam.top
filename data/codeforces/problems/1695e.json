@@ -4,7 +4,7 @@
   "contestId": 1695,
   "index": "E",
   "title": "Ambiguous Dominoes",
-  "titleZh": null,
+  "titleZh": "有歧义的多米诺骨牌",
   "url": "https://codeforces.com/contest/1695/problem/E",
   "difficulty": 2700,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp and Monocarp are both solving the same puzzle with dominoes. They are given the same set of $n$ dominoes, the $i$-th of which contains two numbers $x_i$ and $y_i$. They are also both given the same $m$ by $k$ grid of values $a_{ij}$ such that $m\\cdot k = 2n$.\n\nThe puzzle asks them to place the $n$ dominoes on the grid in such a way that none of them overlap, and the values on each domino match the $a_{ij}$ values that domino covers. Dominoes can be rotated arbitrarily before being placed on the grid, so the domino $(x_i, y_i)$ is equivalent to the domino $(y_i, x_i)$.\n\nThey have both solved the puzzle, and compared their answers, but noticed that not only did their solutions not match, but none of the $n$ dominoes were in the same location in both solutions! Formally, if two squares were covered by the same domino in Polycarp's solution, they were covered by different dominoes in Monocarp's solution. The diagram below shows one potential $a$ grid, along with the two players' solutions.\n\n![image](https://espresso.codeforces.com/ff0a66eaa0a9c55ab3287df61c6af6b22f288e6e.png)\n\nPolycarp and Monocarp remember the set of dominoes they started with, but they have lost the grid $a$. Help them reconstruct one possible grid $a$, along with both of their solutions, or determine that no such grid exists.\n\n## Input\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 3\\cdot 10^5$).\n\nThe $i$-th of the next $n$ lines contains two integers $x_i$ and $y_i$ ($1 \\le x_i, y_i \\le 2n$).\n\n## Output\n\nIf there is no solution, print a single integer $-1$.\n\nOtherwise, print $m$ and $k$, the height and width of the puzzle grid, on the first line of output. These should satisfy $m\\cdot k = 2n$.\n\nThe $i$-th of the next $m$ lines should contain $k$ integers, the $j$-th of which is $a_{ij}$.\n\nThe next $m$ lines describe Polycarp's solution. Print $m$ lines of $k$ characters each. For each square, if it is covered by the upper half of a domino in Polycarp's solution, it should contain a \"U\". Similarly, if it is covered by the bottom, left, or right half of a domino, it should contain \"D\", \"L\", or \"R\", respectively.\n\nThe next $m$ lines should describe Monocarp's solution, in the same format as Polycarp's solution.\n\nIf there are multiple answers, print any.\n\n## Note\n\nExtra blank lines are added to the output for clarity, but are not required.\n\nThe third sample case corresponds to the image from the statement.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nPolycarp 和 Monocarp 正在使用多米诺骨牌解决同一个谜题。他们拥有相同的一组 $n$ 块多米诺骨牌，其中第 $i$ 块包含两个数字 $x_i$ 和 $y_i$。他们还拥有一个相同的 $m$ 行 $k$ 列网格，其中的值为 $a_{ij}$，且满足 $m\\cdot k = 2n$。\n\n谜题要求他们将这 $n$ 块多米诺骨牌放置在网格上，使得任意两块多米诺骨牌都不重叠，并且每块多米诺骨牌上的数字都与它所覆盖的 $a_{ij}$ 值相匹配。多米诺骨牌在放置前可以任意旋转，因此多米诺骨牌 $(x_i, y_i)$ 与多米诺骨牌 $(y_i, x_i)$ 等价。\n\n他们都已经解决了这个谜题，并比较了各自的答案，但他们发现不仅两人的方案并不相同，而且 $n$ 块多米诺骨牌中没有一块在两种方案中的位置相同！形式化地说，如果两个方格在 Polycarp 的方案中被同一块多米诺骨牌覆盖，那么在 Monocarp 的方案中它们就一定被不同的多米诺骨牌覆盖。下图展示了一个可能的 $a$ 网格，以及两位玩家的方案。\n\n![image](https://espresso.codeforces.com/ff0a66eaa0a9c55ab3287df61c6af6b22f288e6e.png)\n\nPolycarp 和 Monocarp 记得他们开始时拥有的多米诺骨牌集合，但他们弄丢了网格 $a$。请帮助他们还原出一个可能的网格 $a$ 以及两人的方案，或者判断不存在这样的网格。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 3\\cdot 10^5$）。\n\n接下来的 $n$ 行中，第 $i$ 行包含两个整数 $x_i$ 和 $y_i$（$1 \\le x_i, y_i \\le 2n$）。\n\n## 输出格式\n\n如果不存在解，输出一个整数 $-1$。\n\n否则，在输出的第一行输出 $m$ 和 $k$，即谜题网格的高度和宽度。它们应满足 $m\\cdot k = 2n$。\n\n接下来的 $m$ 行中，第 $i$ 行应包含 $k$ 个整数，其中第 $j$ 个整数为 $a_{ij}$。\n\n接下来的 $m$ 行描述 Polycarp 的方案。输出 $m$ 行，每行包含 $k$ 个字符。对于每个方格，如果它在 Polycarp 的方案中被某块多米诺骨牌的上半部分覆盖，则应包含字符 \"U\"。类似地，如果它被下半部分、左半部分或右半部分覆盖，则应包含字符 \"D\"、\"L\" 或 \"R\"。\n\n接下来的 $m$ 行以相同格式描述 Monocarp 的方案。\n\n如果有多个答案，输出任意一个即可。\n\n## 说明\n\n为便于阅读，输出中的额外空行仅用于区分内容，并不是必须的。\n\n第三个样例对应题面中的图片。",
   "samples": [
     {
       "input": "1\n1 2\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:00:36.508Z"
+  "fetchedAt": "2026-10-30T23:00:36.508Z",
+  "translatedAt": "2026-11-04T10:11:33.112+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

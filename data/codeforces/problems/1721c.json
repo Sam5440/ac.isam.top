@@ -4,7 +4,7 @@
   "contestId": 1721,
   "index": "C",
   "title": "Min-Max Array Transformation",
-  "titleZh": null,
+  "titleZh": "最小-最大数组变换",
   "url": "https://codeforces.com/contest/1721/problem/C",
   "difficulty": 1400,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a_1, a_2, \\dots, a_n$, which is sorted in non-descending order. You decided to perform the following steps to create array $b_1, b_2, \\dots, b_n$:\n\n1. Create an array $d$ consisting of $n$ arbitrary **non-negative** integers.\n2. Set $b_i = a_i + d_i$ for each $b_i$.\n3. Sort the array $b$ in non-descending order.\n\nYou are given the resulting array $b$. For each index $i$, calculate what is the minimum and maximum possible value of $d_i$ you can choose in order to get the given array $b$.\n\nNote that the minimum (maximum) $d_i$-s are **independent** of each other, i. e. they can be obtained from different possible arrays $d$.\n\n## Input\n\nThe first line contains the single integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of arrays $a$, $b$ and $d$.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$; $a_i \\le a_{i+1}$) — the array $a$ in non-descending order.\n\nThe third line contains $n$ integers $b_1, b_2, \\dots, b_n$ ($1 \\le b_i \\le 10^9$; $b_i \\le b_{i+1}$) — the array $b$ in non-descending order.\n\nAdditional constraints on the input:\n\n- there is at least one way to obtain the array $b$ from the $a$ by choosing an array $d$ consisting of **non-negative integers**;\n- the sum of $n$ doesn't exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print two lines. In the first line, print $n$ integers $d_1^{min}, d_2^{min}, \\dots, d_n^{min}$, where $d_i^{min}$ is the minimum possible value you can add to $a_i$.\n\nSecondly, print $n$ integers $d_1^{max}, d_2^{max}, \\dots, d_n^{max}$, where $d_i^{max}$ is the maximum possible value you can add to $a_i$.\n\nAll $d_i^{min}$ and $d_i^{max}$ values are independent of each other. In other words, for each $i$, $d_i^{min}$ is just the minimum value among all possible values of $d_i$.\n\n## Note\n\nIn the first test case, in order to get $d_1^{min} = 5$, we can choose, for example, $d = [5, 10, 6]$. Then $b$ $=$ $[2+5,3+10,5+6]$ $=$ $[7,13,11]$ $=$ $[7,11,13]$.\n\nFor $d_2^{min} = 4$, we can choose $d$ $=$ $[9, 4, 8]$. Then $b$ $=$ $[2+9,3+4,5+8]$ $=$ $[11,7,13]$ $=$ $[7,11,13]$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个按非降序排列的数组 $a_1, a_2, \\dots, a_n$。你决定执行以下步骤来创建数组 $b_1, b_2, \\dots, b_n$：\n\n1. 创建一个由 $n$ 个任意**非负**整数构成的数组 $d$。\n2. 对每个 $b_i$，设置 $b_i = a_i + d_i$。\n3. 将数组 $b$ 按非降序排序。\n\n现在给定排序后的数组 $b$。对于每个下标 $i$，计算为了得到给定的数组 $b$，你可以选择的 $d_i$ 的最小值和最大值。\n\n注意，最小值和最大值彼此**独立**，也就是说，它们可能由不同的数组 $d$ 得到。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——数组 $a$、$b$ 和 $d$ 的长度。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$1 \\le a_i \\le 10^9$；$a_i \\le a_{i+1}$）——按非降序排列的数组 $a$。\n\n第三行包含 $n$ 个整数 $b_1, b_2, \\dots, b_n$（$1 \\le b_i \\le 10^9$；$b_i \\le b_{i+1}$）——按非降序排列的数组 $b$。\n\n输入还满足以下条件：\n\n- 至少存在一种选择由**非负整数**构成的数组 $d$，使得数组 $a$ 可以得到数组 $b$；\n- 所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出两行。第一行输出 $n$ 个整数 $d_1^{min}, d_2^{min}, \\dots, d_n^{min}$，其中 $d_i^{min}$ 是可以加到 $a_i$ 上的最小值。\n\n第二行输出 $n$ 个整数 $d_1^{max}, d_2^{max}, \\dots, d_n^{max}$，其中 $d_i^{max}$ 是可以加到 $a_i$ 上的最大值。\n\n所有 $d_i^{min}$ 和 $d_i^{max}$ 的取值彼此独立。换句话说，对于每个 $i$，$d_i^{min}$ 就是所有可能的 $d_i$ 取值中的最小值。\n\n## 说明\n\n在第一个测试用例中，为了得到 $d_1^{min} = 5$，例如可以选择 $d = [5, 10, 6]$。此时 $b$ $=$ $[2+5,3+10,5+6]$ $=$ $[7,13,11]$ $=$ $[7,11,13]$。\n\n对于 $d_2^{min} = 4$，可以选择 $d$ $=$ $[9, 4, 8]$。此时 $b$ $=$ $[2+9,3+4,5+8]$ $=$ $[11,7,13]$ $=$ $[7,11,13]$。",
   "samples": [
     {
       "input": "4\n3\n2 3 5\n7 11 13\n1\n1000\n5000\n4\n1 2 3 4\n1 2 3 4\n4\n10 20 30 40\n22 33 33 55\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:53:15.090Z"
+  "fetchedAt": "2026-11-02T17:53:15.090Z",
+  "translatedAt": "2026-11-04T09:20:56.014+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

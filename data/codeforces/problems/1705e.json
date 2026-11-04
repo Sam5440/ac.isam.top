@@ -4,7 +4,7 @@
   "contestId": 1705,
   "index": "E",
   "title": "Mark and Professor Koro",
-  "titleZh": null,
+  "titleZh": "Mark 与 Koro 教授",
   "url": "https://codeforces.com/contest/1705/problem/E",
   "difficulty": 2300,
   "tags": [
@@ -19,7 +19,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "After watching a certain anime before going to sleep, Mark dreams of standing in an old classroom with a blackboard that has a sequence of $n$ positive integers $a_1, a_2,\\dots,a_n$ on it.\n\nThen, professor Koro comes in. He can perform the following operation:\n\n- select an integer $x$ that appears at least $2$ times on the board,\n- erase those $2$ appearances, and\n- write $x+1$ on the board.\n\nProfessor Koro then asks Mark the question, \"what is the maximum possible number that could appear on the board after some operations?\"\n\nMark quickly solves this question, but he is still slower than professor Koro. Thus, professor Koro decides to give Mark additional challenges. He will update the initial sequence of integers $q$ times. Each time, he will choose positive integers $k$ and $l$, then change $a_k$ to $l$. After each update, he will ask Mark the same question again.\n\nHelp Mark answer these questions faster than Professor Koro!\n\nNote that the updates are persistent. Changes made to the sequence $a$ will apply when processing future updates.\n\n## Input\n\nThe first line of the input contains two integers $n$ and $q$ ($2\\leq n\\leq 2\\cdot 10^5$, $1\\leq q\\leq 2\\cdot 10^5$) — the length of the sequence $a$ and the number of updates, respectively.\n\nThe second line contains $n$ integers $a_1,a_2,\\dots,a_n$ ($1\\leq a_i\\leq 2\\cdot 10^5$)\n\nThen, $q$ lines follow, each consisting of two integers $k$ and $l$ ($1\\leq k\\leq n$, $1\\leq l\\leq 2\\cdot 10^5$), telling to update $a_k$ to $l$.\n\n## Output\n\nPrint $q$ lines. The $i$-th line should consist of a single integer — the answer after the $i$-th update.\n\n## Note\n\nIn the first example test, the program must proceed through $4$ updates.\n\nThe sequence after the first update is $[2,3,2,4,5]$. One sequence of operations that achieves the number $6$ the following.\n\n- Initially, the blackboard has numbers $[2,3,2,4,5]$.\n- Erase two copies of $2$ and write $3$, yielding $[3,4,5,\\color{red}{3}]$.\n- Erase two copies of $3$ and write $4$, yielding $[4,5,\\color{red}{4}]$.\n- Erase two copies of $4$ and write $5$, yielding $[5,\\color{red}{5}]$.\n- Erase two copies of $5$ and write $6$, yielding $[\\color{red}{6}]$.\n\nThen, in the second update, the array is changed to $[2,3,2,4,3]$. This time, Mark cannot achieve $6$. However, one sequence that Mark can use to achieve $5$ is shown below.\n\n- Initially, the blackboard has $[2,3,2,4,3]$.\n- Erase two copies of $2$ and write $3$, yielding $[3,4,3,\\color{red}{3}]$.\n- Erase two copies of $3$ and write $4$, yielding $[3,4,\\color{red}{4}]$.\n- Erase two copies of $4$ and write $5$, yielding $[3,\\color{red}{5}]$.\n\nIn the third update, the array is changed to $[2,3,2,1,3]$. One way to achieve $4$ is shown below.\n\n- Initially, the blackboard has $[2,3,2,1,3]$.\n- Erase two copies of $3$ and write $4$, yielding $[2,2,1,\\color{red}{4}]$.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\nMark 睡前看了某部动画后，梦见自己站在一间老教室里。黑板上写着一个由 $n$ 个正整数组成的序列 $a_1, a_2,\\dots,a_n$。\n\n这时，Koro 教授走了进来。他可以执行以下操作：\n\n- 选择一个在黑板上至少出现 $2$ 次的整数 $x$；\n- 擦去这 $2$ 个 $x$；\n- 在黑板上写下 $x+1$。\n\n随后，Koro 教授问 Mark：“经过若干次操作后，黑板上可能出现的最大数字是多少？”\n\nMark 很快就解决了这个问题，但还是比 Koro 教授慢。因此，Koro 教授决定给 Mark 增加一些挑战。他会对初始整数序列进行 $q$ 次更新。每次，他选择正整数 $k$ 和 $l$，然后将 $a_k$ 修改为 $l$。每次更新后，他都会再次询问 Mark 同样的问题。\n\n请帮助 Mark 比 Koro 教授更快地回答这些问题！\n\n注意，更新是持久的。对序列 $a$ 所做的修改会在处理后续更新时保留。\n\n## 输入格式\n\n输入的第一行包含两个整数 $n$ 和 $q$（$2\\leq n\\leq 2\\cdot 10^5$，$1\\leq q\\leq 2\\cdot 10^5$），分别表示序列 $a$ 的长度和更新次数。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\dots,a_n$（$1\\leq a_i\\leq 2\\cdot 10^5$）。\n\n接下来 $q$ 行，每行包含两个整数 $k$ 和 $l$（$1\\leq k\\leq n$，$1\\leq l\\leq 2\\cdot 10^5$），表示将 $a_k$ 更新为 $l$。\n\n## 输出格式\n\n输出 $q$ 行。第 $i$ 行应包含一个整数，即第 $i$ 次更新后的答案。\n\n## 说明\n\n在第一个样例中，程序必须依次进行 $4$ 次更新。\n\n第一次更新后的序列为 $[2,3,2,4,5]$。以下是一系列可以得到数字 $6$ 的操作：\n\n- 初始时，黑板上的数字为 $[2,3,2,4,5]$。\n- 擦去两个 $2$ 并写下 $3$，得到 $[3,4,5,\\color{red}{3}]$。\n- 擦去两个 $3$ 并写下 $4$，得到 $[4,5,\\color{red}{4}]$。\n- 擦去两个 $4$ 并写下 $5$，得到 $[5,\\color{red}{5}]$。\n- 擦去两个 $5$ 并写下 $6$，得到 $[\\color{red}{6}]$。\n\n然后，在第二次更新中，数组变为 $[2,3,2,4,3]$。这一次，Mark 无法得到 $6$。不过，下面是一系列可以得到 $5$ 的操作：\n\n- 初始时，黑板上的数字为 $[2,3,2,4,3]$。\n- 擦去两个 $2$ 并写下 $3$，得到 $[3,4,3,\\color{red}{3}]$。\n- 擦去两个 $3$ 并写下 $4$，得到 $[3,4,\\color{red}{4}]$。\n- 擦去两个 $4$ 并写下 $5$，得到 $[3,\\color{red}{5}]$。\n\n在第三次更新中，数组变为 $[2,3,2,1,3]$。以下是一种得到 $4$ 的方法：\n\n- 初始时，黑板上的数字为 $[2,3,2,1,3]$。\n- 擦去两个 $3$ 并写下 $4$，得到 $[2,2,1,\\color{red}{4}]$。",
   "samples": [
     {
       "input": "5 4\n2 2 2 4 5\n2 3\n5 3\n4 1\n1 4\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:53:50.481Z"
+  "fetchedAt": "2026-10-30T22:53:50.481Z",
+  "translatedAt": "2026-11-04T09:23:57.303+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

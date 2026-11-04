@@ -4,7 +4,7 @@
   "contestId": 1658,
   "index": "F",
   "title": "Juju and Binary String",
-  "titleZh": null,
+  "titleZh": "Juju 与二进制字符串",
   "url": "https://codeforces.com/contest/1658/problem/F",
   "difficulty": 2700,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "The *cuteness* of a binary string is the number of $\\texttt{1}$s divided by the length of the string. For example, the *cuteness* of $\\texttt{01101}$ is $\\frac{3}{5}$.\n\nJuju has a binary string $s$ of length $n$. She wants to choose some non-intersecting subsegments of $s$ such that their concatenation has length $m$ and it has the same *cuteness* as the string $s$.\n\nMore specifically, she wants to find two arrays $l$ and $r$ of equal length $k$ such that $1 \\leq l_1 \\leq r_1 \\lt l_2 \\leq r_2 \\lt \\ldots \\lt l_k \\leq r_k \\leq n$, and also:\n\n- $\\sum\\limits_{i=1}^k (r_i - l_i + 1) = m$;\n- The *cuteness* of $s[l_1,r_1]+s[l_2,r_2]+\\ldots+s[l_k,r_k]$ is equal to the *cuteness* of $s$, where $s[x, y]$ denotes the subsegment $s_x s_{x+1} \\ldots s_y$, and $+$ denotes string concatenation.\n\nJuju does not like splitting the string into many parts, so she also wants to **minimize** the value of $k$. Find the minimum value of $k$ such that there exist $l$ and $r$ that satisfy the constraints above or determine that it is impossible to find such $l$ and $r$ for any $k$.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\leq m \\leq n \\leq 2 \\cdot 10^5$).\n\nThe second line of each test case contains a binary string $s$ of length $n$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, if there is no valid pair of $l$ and $r$, print $-1$.\n\nOtherwise, print $k + 1$ lines.\n\nIn the first line, print a number $k$ ($1 \\leq k \\leq m$) — the minimum number of subsegments required.\n\nThen print $k$ lines, the $i$-th should contain $l_i$ and $r_i$ ($1 \\leq l_i \\leq r_i \\leq n$) — the range of the $i$-th subsegment. Note that you should output the subsegments such that the inequality $l_1 \\leq r_1 \\lt l_2 \\leq r_2 \\lt \\ldots \\lt l_k \\leq r_k$ is true.\n\n## Note\n\nIn the first example, the *cuteness* of $\\texttt{0011}$ is the same as the *cuteness* of $\\texttt{01}$.\n\nIn the second example, the *cuteness* of $\\texttt{11000011}$ is $\\frac{1}{2}$ and there is no subsegment of size $6$ with the same cuteness. So we must use $2$ disjoint subsegments $\\texttt{10}$ and $\\texttt{0011}$.\n\nIn the third example, there are $8$ ways to split the string such that $\\sum\\limits_{i=1}^k (r_i - l_i + 1) = 3$ but none of them has the same *cuteness* as $\\texttt{0101}$.\n\nIn the last example, we don't have to split the string.",
-  "statementZhMd": null,
+  "statementZhMd": "二进制字符串的*可爱度*定义为其中 $\\texttt{1}$ 的数量除以字符串长度。例如，$\\texttt{01101}$ 的*可爱度*为 $\\frac{3}{5}$。\n\nJuju 有一个长度为 $n$ 的二进制字符串 $s$。她希望从 $s$ 中选出一些互不相交的子段，使这些子段拼接后的长度为 $m$，且其*可爱度*与字符串 $s$ 的*可爱度*相同。\n\n更具体地说，她希望找到两个长度相等的数组 $l$ 和 $r$，其长度均为 $k$，满足 $1 \\leq l_1 \\leq r_1 \\lt l_2 \\leq r_2 \\lt \\ldots \\lt l_k \\leq r_k \\leq n$，并且：\n\n- $\\sum\\limits_{i=1}^k (r_i - l_i + 1) = m$；\n- $s[l_1,r_1]+s[l_2,r_2]+\\ldots+s[l_k,r_k]$ 的*可爱度*与 $s$ 的*可爱度*相同，其中 $s[x, y]$ 表示子段 $s_x s_{x+1} \\ldots s_y$，$+$ 表示字符串拼接。\n\nJuju 不喜欢将字符串分成很多部分，因此她还希望**最小化** $k$ 的值。请找出满足上述条件的 $k$ 的最小值，或者判断对于任意 $k$ 都不存在满足条件的 $l$ 和 $r$。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 10^4$），表示测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\leq m \\leq n \\leq 2 \\cdot 10^5$）。\n\n每个测试用例的第二行包含一个长度为 $n$ 的二进制字符串 $s$。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果不存在有效的 $l$ 和 $r$，输出 $-1$。\n\n否则，输出 $k + 1$ 行。\n\n第一行输出一个整数 $k$（$1 \\leq k \\leq m$），表示所需子段的最小数量。\n\n接下来输出 $k$ 行，第 $i$ 行应包含两个整数 $l_i$ 和 $r_i$（$1 \\leq l_i \\leq r_i \\leq n$），表示第 $i$ 个子段的范围。注意，应当按照满足不等式 $l_1 \\leq r_1 \\lt l_2 \\leq r_2 \\lt \\ldots \\lt l_k \\leq r_k$ 的顺序输出这些子段。\n\n## 说明\n\n在第一个样例中，$\\texttt{0011}$ 的*可爱度*与 $\\texttt{01}$ 的*可爱度*相同。\n\n在第二个样例中，$\\texttt{11000011}$ 的*可爱度*为 $\\frac{1}{2}$，并且不存在长度为 $6$ 且具有相同*可爱度*的子段。因此，我们必须使用 $2$ 个不相交的子段 $\\texttt{10}$ 和 $\\texttt{0011}$。\n\n在第三个样例中，共有 $8$ 种划分字符串的方式满足 $\\sum\\limits_{i=1}^k (r_i - l_i + 1) = 3$，但其中没有一种的*可爱度*与 $\\texttt{0101}$ 相同。\n\n在最后一个样例中，我们不需要进行划分。",
   "samples": [
     {
       "input": "4\n4 2\n0011\n8 6\n11000011\n4 3\n0101\n5 5\n11111\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:10:16.609Z"
+  "fetchedAt": "2026-10-30T23:10:16.609Z",
+  "translatedAt": "2026-11-04T10:22:26.668+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

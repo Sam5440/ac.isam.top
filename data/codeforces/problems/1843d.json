@@ -4,7 +4,7 @@
   "contestId": 1843,
   "index": "D",
   "title": "Apple Tree",
-  "titleZh": null,
+  "titleZh": "苹果树",
   "url": "https://codeforces.com/contest/1843/problem/D",
   "difficulty": 1200,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "Timofey has an apple tree growing in his garden; it is a rooted tree of $n$ vertices with the root in vertex $1$ (the vertices are numbered from $1$ to $n$). A tree is a connected graph without loops and multiple edges.\n\nThis tree is very unusual — it grows with its root upwards. However, it's quite normal for programmer's trees.\n\nThe apple tree is quite young, so only two apples will grow on it. Apples will grow in certain vertices (these vertices may be the same). After the apples grow, Timofey starts shaking the apple tree until the apples fall. Each time Timofey shakes the apple tree, the following happens to each of the apples:\n\nLet the apple now be at vertex $u$.\n\n- If a vertex $u$ has a child, the apple moves to it (if there are several such vertices, the apple can move to any of them).\n- Otherwise, the apple falls from the tree.\n\nIt can be shown that after a finite time, both apples will fall from the tree.\n\nTimofey has $q$ assumptions in which vertices apples can grow. He assumes that apples can grow in vertices $x$ and $y$, and wants to know the number of pairs of vertices ($a$, $b$) from which apples can fall from the tree, where $a$ — the vertex from which an apple from vertex $x$ will fall, $b$ — the vertex from which an apple from vertex $y$ will fall. Help him do this.\n\n## Input\n\nThe first line contains integer $t$ ($1 \\leq t \\leq 10^4$) — the number of test cases.\n\nThe first line of each test case contains integer $n$ ($2 \\leq n \\leq 2 \\cdot 10^5$) — the number of vertices in the tree.\n\nThen there are $n - 1$ lines describing the tree. In line $i$ there are two integers $u_i$ and $v_i$ ($1 \\leq u_i, v_i \\leq n$, $u_i \\ne v_i$) — edge in tree.\n\nThe next line contains a single integer $q$ ($1 \\leq q \\leq 2 \\cdot 10^5$) — the number of Timofey's assumptions.\n\nEach of the next $q$ lines contains two integers $x_i$ and $y_i$ ($1 \\leq x_i, y_i \\leq n$) — the supposed vertices on which the apples will grow for the assumption $i$.\n\nIt is guaranteed that the sum of $n$ does not exceed $2 \\cdot 10^5$. Similarly, It is guaranteed that the sum of $q$ does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each Timofey's assumption output the number of ordered pairs of vertices from which apples can fall from the tree if the assumption is true on a separate line.\n\n## Note\n\nIn the first example:\n\n- For the first assumption, there are two possible pairs of vertices from which apples can fall from the tree: $(4, 4), (5, 4)$.\n- For the second assumption there are also two pairs: $(5, 4), (5, 5)$.\n- For the third assumption there is only one pair: $(4, 4)$.\n- For the fourth assumption, there are $4$ pairs: $(4, 4), (4, 5), (5, 4), (5, 5)$.\n\n![image](https://espresso.codeforces.com/5514ad201e106b38b35b45b02e954944bd1e41f4.png) Tree from the first example.\n\nFor the second example, there are $4$ of possible pairs of vertices from which apples can fall: $(2, 3), (2, 2), (3, 2), (3, 3)$. For the second assumption, there is only one possible pair: $(2, 3)$. For the third assumption, there are two pairs: $(3, 2), (3, 3)$.",
-  "statementZhMd": null,
+  "statementZhMd": "Timofey 的花园里有一棵苹果树，它是一棵有 $n$ 个顶点的有根树，根节点为顶点 $1$（顶点编号从 $1$ 到 $n$）。树是一种没有自环和重边的连通图。\n\n这棵树非常奇特——它的根朝上生长。不过，对于程序员的树来说，这很正常。\n\n这棵苹果树还很年轻，因此树上只会长出两个苹果。苹果会长在某些顶点上（这两个顶点可能相同）。苹果长出后，Timofey 开始摇晃苹果树，直到苹果掉落。每次 Timofey 摇晃苹果树时，两个苹果都会发生以下变化：\n\n设苹果当前位于顶点 $u$。\n\n- 如果顶点 $u$ 有子节点，苹果就会移动到其中一个子节点（如果有多个这样的顶点，苹果可以移动到任意一个）。\n- 否则，苹果会从树上掉落。\n\n可以证明，经过有限次摇晃后，两个苹果都会从树上掉落。\n\nTimofey 有 $q$ 个猜想，每个猜想给出苹果可能生长的顶点。他假设苹果会生长在顶点 $x$ 和 $y$ 上，并希望知道苹果从树上掉落时可能所在的顶点对 $(a, b)$ 的数量，其中 $a$ 是从顶点 $x$ 生长的苹果掉落前所在的顶点，$b$ 是从顶点 $y$ 生长的苹果掉落前所在的顶点。请帮助他完成计算。\n\n## 输入格式\n\n第一行包含整数 $t$（$1 \\leq t \\leq 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含整数 $n$（$2 \\leq n \\leq 2 \\cdot 10^5$）——树中顶点的数量。\n\n接下来 $n - 1$ 行描述这棵树。第 $i$ 行包含两个整数 $u_i$ 和 $v_i$（$1 \\leq u_i, v_i \\leq n$，$u_i \\ne v_i$）——树中的一条边。\n\n下一行包含一个整数 $q$（$1 \\leq q \\leq 2 \\cdot 10^5$）——Timofey 的猜想数量。\n\n接下来的 $q$ 行中，每行包含两个整数 $x_i$ 和 $y_i$（$1 \\leq x_i, y_i \\leq n$）——第 $i$ 个猜想中苹果将生长的顶点。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。同样保证所有测试用例的 $q$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于 Timofey 的每个猜想，单独一行输出：如果该猜想成立，苹果可能从树上掉落的有序顶点对数量。\n\n## 说明\n\n在第一个样例中：\n\n- 对于第一个猜想，苹果掉落前所在的顶点有两种可能的组合：$(4, 4)$、$(5, 4)$。\n- 对于第二个猜想，同样有两种组合：$(5, 4)$、$(5, 5)$。\n- 对于第三个猜想，只有一种组合：$(4, 4)$。\n- 对于第四个猜想，共有 $4$ 种组合：$(4, 4)$、$(4, 5)$、$(5, 4)$、$(5, 5)$。\n\n![image](https://espresso.codeforces.com/5514ad201e106b38b35b45b02e954944bd1e41f4.png) 第一个样例中的树。\n\n对于第二个样例，共有 $4$ 种可能的顶点对：$(2, 3)$、$(2, 2)$、$(3, 2)$、$(3, 3)$。对于第二个猜想，只有一种可能：$(2, 3)$。对于第三个猜想，共有两种组合：$(3, 2)$、$(3, 3)$。",
   "samples": [
     {
       "input": "2\n5\n1 2\n3 4\n5 3\n3 2\n4\n3 4\n5 1\n4 4\n1 3\n3\n1 2\n1 3\n3\n1 1\n2 3\n3 1\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:27:42.820Z"
+  "fetchedAt": "2026-11-02T17:27:42.820Z",
+  "translatedAt": "2026-11-04T09:15:58.800+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

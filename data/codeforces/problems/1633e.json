@@ -4,7 +4,7 @@
   "contestId": 1633,
   "index": "E",
   "title": "Spanning Tree Queries",
-  "titleZh": null,
+  "titleZh": "生成树查询",
   "url": "https://codeforces.com/contest/1633/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -21,7 +21,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a connected weighted undirected graph, consisting of $n$ vertices and $m$ edges.\n\nYou are asked $k$ queries about it. Each query consists of a single integer $x$. For each query, you select a spanning tree in the graph. Let the weights of its edges be $w_1, w_2, \\dots, w_{n-1}$. The cost of a spanning tree is $\\sum \\limits_{i=1}^{n-1} |w_i - x|$ (the sum of absolute differences between the weights and $x$). The answer to a query is the lowest cost of a spanning tree.\n\nThe queries are given in a compressed format. The first $p$ $(1 \\le p \\le k)$ queries $q_1, q_2, \\dots, q_p$ are provided explicitly. For queries from $p+1$ to $k$, $q_j = (q_{j-1} \\cdot a + b) \\mod c$.\n\nPrint the xor of answers to all queries.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($2 \\le n \\le 50$; $n - 1 \\le m \\le 300$) — the number of vertices and the number of edges in the graph.\n\nEach of the next $m$ lines contains a description of an undirected edge: three integers $v$, $u$ and $w$ ($1 \\le v, u \\le n$; $v \\neq u$; $0 \\le w \\le 10^8$) — the vertices the edge connects and its weight. Note that there might be multiple edges between a pair of vertices. The edges form a connected graph.\n\nThe next line contains five integers $p, k, a, b$ and $c$ ($1 \\le p \\le 10^5$; $p \\le k \\le 10^7$; $0 \\le a, b \\le 10^8$; $1 \\le c \\le 10^8$) — the number of queries provided explicitly, the total number of queries and parameters to generate the queries.\n\nThe next line contains $p$ integers $q_1, q_2, \\dots, q_p$ ($0 \\le q_j \\lt c$) — the first $p$ queries.\n\n## Output\n\nPrint a single integer — the xor of answers to all queries.\n\n## Note\n\nThe queries in the first example are $0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0$. The answers are $11, 9, 7, 3, 1, 5, 8, 7, 5, 7, 11$.\n\n![image](https://espresso.codeforces.com/31423b0415dc25601da4e2b9e30b34caa0fd3d26.png)\n\nThe queries in the second example are $3, 0, 2, 1, 6, 0, 3, 5, 4, 1$. The answers are $14, 19, 15, 16, 11, 19, 14, 12, 13, 16$.\n\n![image](https://espresso.codeforces.com/8b3f00a0ea136905262d273d1333c29be5ebcc3b.png)\n\nThe queries in the third example are $75, 0, 0, \\dots$. The answers are $50, 150, 150, \\dots$.\n\n![image](https://espresso.codeforces.com/62d8a61107bf9f6fb5272a32c207b285a7c09b6d.png)",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $n$ 个顶点和 $m$ 条边组成的连通带权无向图。\n\n需要对它进行 $k$ 次查询。每次查询包含一个整数 $x$。对于每次查询，你需要在图中选择一棵生成树。设其边的权值为 $w_1, w_2, \\dots, w_{n-1}$。一棵生成树的代价为 $\\sum \\limits_{i=1}^{n-1} |w_i - x|$（边权与 $x$ 的差的绝对值之和）。一次查询的答案是生成树的最小代价。\n\n查询以压缩格式给出。前 $p$ 个（$1 \\le p \\le k$）查询 $q_1, q_2, \\dots, q_p$ 会被显式给出。对于从 $p+1$ 到 $k$ 的查询，$q_j = (q_{j-1} \\cdot a + b) \\mod c$。\n\n输出所有查询答案的异或值。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$2 \\le n \\le 50$；$n - 1 \\le m \\le 300$）——图中顶点和边的数量。\n\n接下来的 $m$ 行中的每一行描述一条无向边，包含三个整数 $v$、$u$ 和 $w$（$1 \\le v, u \\le n$；$v \\neq u$；$0 \\le w \\le 10^8$）——该边连接的两个顶点及其权值。注意，一对顶点之间可能存在重边。这些边构成一个连通图。\n\n下一行包含五个整数 $p$、$k$、$a$、$b$ 和 $c$（$1 \\le p \\le 10^5$；$p \\le k \\le 10^7$；$0 \\le a, b \\le 10^8$；$1 \\le c \\le 10^8$）——显式给出的查询数量、查询总数以及用于生成查询的参数。\n\n下一行包含 $p$ 个整数 $q_1, q_2, \\dots, q_p$（$0 \\le q_j \\lt c$）——前 $p$ 个查询。\n\n## 输出格式\n\n输出一个整数——所有查询答案的异或值。\n\n## 说明\n\n第一个样例中的查询为 $0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0$。答案为 $11, 9, 7, 3, 1, 5, 8, 7, 5, 7, 11$。\n\n![image](https://espresso.codeforces.com/31423b0415dc25601da4e2b9e30b34caa0fd3d26.png)\n\n第二个样例中的查询为 $3, 0, 2, 1, 6, 0, 3, 5, 4, 1$。答案为 $14, 19, 15, 16, 11, 19, 14, 12, 13, 16$。\n\n![image](https://espresso.codeforces.com/8b3f00a0ea136905262d273d1333c29be5ebcc3b.png)\n\n第三个样例中的查询为 $75, 0, 0, \\dots$。答案为 $50, 150, 150, \\dots$。\n\n![image](https://espresso.codeforces.com/62d8a61107bf9f6fb5272a32c207b285a7c09b6d.png)",
   "samples": [
     {
       "input": "5 8\n4 1 4\n3 1 0\n3 5 3\n2 5 4\n3 4 8\n4 3 4\n4 2 8\n5 3 9\n3 11 1 1 10\n0 1 2\n",
@@ -40,5 +40,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:11:21.283Z"
+  "fetchedAt": "2026-11-02T18:11:21.283Z",
+  "translatedAt": "2026-11-04T10:18:20.236+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

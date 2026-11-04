@@ -4,7 +4,7 @@
   "contestId": "agc057",
   "index": "C",
   "title": "Increment or Xor",
-  "titleZh": null,
+  "titleZh": "递增或异或",
   "url": "https://atcoder.jp/contests/agc057/tasks/agc057_c",
   "difficulty": 3366,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nYou are given a positive integer $N$ and a sequence $A = (A_0, A_1, \\ldots, A_{2^N-1})$ of $2^N$ terms, where each $A_i$ is an integer between $0$ and $2^N-1$ (inclusive) and $A_i\\neq A_j$ holds if $i\\neq j$.\n\nYou can perform the following two kinds of operations on $A$:\n\n- Operation $+$: For every $i$, change $A_i$ to $(A_i + 1) \\bmod 2^N$.\n- Operation $\\oplus$: Choose an integer $x$ between $0$ and $2^N-1$. For every $i$, change $A_i$ to $A_i\\oplus x$.\n\nHere, $\\oplus$ denotes bitwise $\\mathrm{XOR}$.\n\nWhat is bitwise $\\mathrm{XOR}$? The bitwise $\\mathrm{XOR}$ of non-negative integers $A$ and $B$, $A \\oplus B$, is defined as follows: When $A \\oplus B$ is written in base two, the digit in the $2^k$'s place ($k \\geq 0$) is $1$ if exactly one of $A$ and $B$ is $1$, and $0$ otherwise. For example, we have $3 \\oplus 5 = 6$ (in base two: $011 \\oplus 101 = 110$).\n\nYour objective is to make $A_i = i$ for every $i$. Determine whether it is achievable. It can be proved that, under the Constraints of this problem, one can achieve the objective with at most $10^6$ operations if it is achievable at all. Print such a sequence of operations.\n\n## Constraints\n\n- $1\\leq N\\leq 18$\n- $0\\leq A_i \\leq 2^N - 1$\n- $A_i\\neq A_j$, if $i\\neq j$\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nA_0 A_1 \\ldots A_{2^N - 1}\n```\n\n## Output\n\nIf it is possible to make $A_i = i$ for every $i$, print `Yes`; otherwise, print `No`.\n\nIn the case of `Yes`, it should be followed by a sequence of operations that achieves the objective, in the following format:\n\n```\nK\nx_1 x_2 \\ldots x_K\n```\n\nHere, $K$ is a non-negative integer representing the number of operations, which must satisfy $0\\leq K\\leq 10^6$; $x_i$ is an integer representing the $i$-th operation, which should be set as follows.\n\n- If the $i$-th operation is Operation $+$, $x_i=-1$.\n- If the $i$-th operation is Operation $\\oplus$, $x_i$ should be the integer chosen in that operation.\n\nIf there are multiple possible solutions, you may print any of them.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n给定一个正整数 $N$ 和一个包含 $2^N$ 项的数列 $A = (A_0, A_1, \\ldots, A_{2^N-1})$，其中每个 $A_i$ 都是介于 $0$ 和 $2^N-1$（含）之间的整数，且当 $i\\neq j$ 时满足 $A_i\\neq A_j$。\n\n你可以对 $A$ 执行以下两种操作：\n\n- 操作 $+$：对于每个 $i$，将 $A_i$ 变为 $(A_i + 1) \\bmod 2^N$。\n- 操作 $\\oplus$：选择一个介于 $0$ 和 $2^N-1$ 之间的整数 $x$。对于每个 $i$，将 $A_i$ 变为 $A_i\\oplus x$。\n\n其中，$\\oplus$ 表示按位异或。\n\n什么是按位异或？对于非负整数 $A$ 和 $B$，按位异或 $A \\oplus B$ 的定义如下：将 $A \\oplus B$ 写成二进制时，对于 $k \\geq 0$，其 $2^k$ 位上的数字当且仅当 $A$ 和 $B$ 中恰有一个的对应位为 $1$ 时为 $1$，否则为 $0$。例如，$3 \\oplus 5 = 6$（二进制表示为：$011 \\oplus 101 = 110$）。\n\n你的目标是使对于每个 $i$ 都有 $A_i = i$。请判断是否可以达成该目标。可以证明，在本题的约束条件下，如果目标可达成，则最多可以通过 $10^6$ 次操作达成。请输出这样一系列操作。\n\n## 约束条件\n\n- $1\\leq N\\leq 18$\n- $0\\leq A_i \\leq 2^N - 1$\n- 当 $i\\neq j$ 时，满足 $A_i\\neq A_j$\n\n## 输入格式\n\n输入通过标准输入给出，格式如下：\n\n```\nN\nA_0 A_1 \\ldots A_{2^N - 1}\n```\n\n## 输出格式\n\n如果可以使对于每个 $i$ 都有 $A_i = i$，输出 `Yes`；否则，输出 `No`。\n\n如果输出 `Yes`，则还需按照以下格式输出一系列能够达成目标的操作：\n\n```\nK\nx_1 x_2 \\ldots x_K\n```\n\n其中，$K$ 是表示操作次数的非负整数，必须满足 $0\\leq K\\leq 10^6$；$x_i$ 是表示第 $i$ 次操作的整数，具体规定如下。\n\n- 如果第 $i$ 次操作是操作 $+$，则 $x_i=-1$。\n- 如果第 $i$ 次操作是操作 $\\oplus$，则 $x_i$ 应为该操作中选择的整数。\n\n如果有多个可行解，可以输出其中任意一个。",
   "samples": [
     {
       "input": "3\n5 0 3 6 1 4 7 2\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:35:24.634Z"
+  "fetchedAt": "2026-10-30T21:35:24.634Z",
+  "translatedAt": "2026-11-04T09:28:56.215+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

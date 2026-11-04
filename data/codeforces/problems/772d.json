@@ -4,7 +4,7 @@
   "contestId": 772,
   "index": "D",
   "title": "Varying Kibibits",
-  "titleZh": null,
+  "titleZh": "变化的 Kibibits",
   "url": "https://codeforces.com/contest/772/problem/D",
   "difficulty": 2700,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "You are given $*n*$ integers $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$. Denote this list of integers as $*T*$.\n\nLet $*f*(*L*)$ be a function that takes in a non-empty list of integers $*L*$.\n\nThe function will output another integer as follows:\n\n- First, all integers in $*L*$ are padded with leading zeros so they are all the same length as the maximum length number in $*L*$.\n- We will construct a string where the $*i*$-th character is the minimum of the $*i*$-th character in padded input numbers.\n- The output is the number representing the string interpreted in base 10.\n\nFor example $*f*(10, 9) = 0$, $*f*(123, 321) = 121$, $*f*(530, 932, 81) = 30$.\n\nDefine the function\n\n![image](https://espresso.codeforces.com/34a509f74cbc53a043710b4c2baed78d6aeb4c3e.png)\n\nHere,\n\n![image](https://espresso.codeforces.com/0241ed64f7f754d714cf9b2cef41ae3ac7b2cb35.png)\n\ndenotes a subsequence.\n\nIn other words, $*G*(*x*)$ is the sum of squares of sum of elements of nonempty subsequences of $*T*$ that evaluate to $*x*$ when plugged into $*f*$ modulo $1 000 000 007$, then multiplied by $*x*$. The last multiplication is not modded.\n\nYou would like to compute $*G*(0), *G*(1), ..., *G*(999 999)$. To reduce the output size, print the value ![image](https://espresso.codeforces.com/8758e4ee150415656efb78a88beae1c6d7f1c5bb.png), where ![image](https://espresso.codeforces.com/c4b7092c0f7ce6535f2574569c98f7b3c2fe2c5f.png) denotes the bitwise XOR operator.\n\n## Input\n\nThe first line contains the integer $*n*$ ($1 ≤ *n* ≤ 1 000 000$) — the size of list $*T*$.\n\nThe next line contains $*n*$ space-separated integers, $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$ ($0 ≤ *a*_{*i*} ≤ 999 999$) — the elements of the list.\n\n## Output\n\nOutput a single integer, the answer to the problem.\n\n## Note\n\nFor the first sample, the nonzero values of $*G*$ are $*G*(121) = 144 611 577$, $*G*(123) = 58 401 999$, $*G*(321) = 279 403 857$, $*G*(555) = 170 953 875$. The bitwise XOR of these numbers is equal to $292 711 924$.\n\nFor example, ![image](https://espresso.codeforces.com/53a1c46c7cd2d3d56e89fe99af6328601758b327.png), since the subsequences $[123]$ and $[123, 555]$ evaluate to $123$ when plugged into $*f*$.\n\nFor the second sample, we have ![image](https://espresso.codeforces.com/330ab8a9387bb33a82877190f4439f4e9ccd8e92.png)\n\nFor the last sample, we have ![image](https://espresso.codeforces.com/0e0eeb7662af22bf04ea1a2ea669b162d53ad7ba.png), where ![image](https://espresso.codeforces.com/4f42013cbab8c31325f2cf28b60aa2ccc1cf89d3.png) is the binomial coefficient.",
-  "statementZhMd": null,
+  "statementZhMd": "你将得到 $*n*$ 个整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$。将这个整数列表记为 $*T*$。\n\n令 $*f*(*L*)$ 为一个接收非空整数列表 $*L*$ 的函数。\n\n该函数的输出是另一个整数，具体过程如下：\n\n- 首先，在 $*L*$ 中所有整数的前面补上前导零，使它们的长度都与 $*L*$ 中长度最大的数相同。\n- 构造一个字符串，其中第 $*i*$ 个字符为补零后输入数字的第 $*i*$ 个字符中的最小值。\n- 将该字符串按十进制解释后得到的数字作为输出。\n\n例如，$*f*(10, 9) = 0$、$*f*(123, 321) = 121$、$*f*(530, 932, 81) = 30$。\n\n定义函数\n\n![image](https://espresso.codeforces.com/34a509f74cbc53a043710b4c2baed78d6aeb4c3e.png)\n\n其中，\n\n![image](https://espresso.codeforces.com/0241ed64f7f754d714cf9b2cef41ae3ac7b2cb35.png)\n\n表示一个子序列。\n\n换句话说，$*G*(*x*)$ 是所有非空子序列的元素和的平方之和：这些子序列代入 $*f*$ 后的结果为 $*x*$。该平方和对 $1 000 000 007$ 取模后，再乘以 $*x*$。最后一次乘法不取模。\n\n你需要计算 $*G*(0), *G*(1), ..., *G*(999 999)$。为了减少输出量，请输出 ![image](https://espresso.codeforces.com/8758e4ee150415656efb78a88beae1c6d7f1c5bb.png)，其中 ![image](https://espresso.codeforces.com/c4b7092c0f7ce6535f2574569c98f7b3c2fe2c5f.png) 表示按位异或运算符。\n\n## 输入格式\n\n第一行包含一个整数 $*n*$（$1 ≤ *n* ≤ 1 000 000$）——列表 $*T*$ 的大小。\n\n第二行包含 $*n*$ 个以空格分隔的整数 $*a*_{1}, *a*_{2}, ..., *a*_{*n*}$（$0 ≤ *a*_{*i*} ≤ 999 999$）——列表中的元素。\n\n## 输出格式\n\n输出一个整数，即题目的答案。\n\n## 说明\n\n对于第一个样例，$*G*$ 的非零值为 $*G*(121) = 144 611 577$、$*G*(123) = 58 401 999$、$*G*(321) = 279 403 857$、$*G*(555) = 170 953 875$。这些数的按位异或结果为 $292 711 924$。\n\n例如，![image](https://espresso.codeforces.com/53a1c46c7cd2d3d56e89fe99af6328601758b327.png)，因为子序列 $[123]$ 和 $[123, 555]$ 代入 $*f*$ 后的结果都是 $123$。\n\n对于第二个样例，有 ![image](https://espresso.codeforces.com/330ab8a9387bb33a82877190f4439f4e9ccd8e92.png)\n\n对于最后一个样例，有 ![image](https://espresso.codeforces.com/0e0eeb7662af22bf04ea1a2ea669b162d53ad7ba.png)，其中 ![image](https://espresso.codeforces.com/4f42013cbab8c31325f2cf28b60aa2ccc1cf89d3.png) 是二项式系数。",
   "samples": [
     {
       "input": "3\n123 321 555\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:55:34.236Z"
+  "fetchedAt": "2026-10-31T00:55:34.236Z",
+  "translatedAt": "2026-11-04T10:45:11.543+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

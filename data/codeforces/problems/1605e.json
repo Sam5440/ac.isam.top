@@ -4,7 +4,7 @@
   "contestId": 1605,
   "index": "E",
   "title": "Array Equalizer",
-  "titleZh": null,
+  "titleZh": "数组平衡器",
   "url": "https://codeforces.com/contest/1605/problem/E",
   "difficulty": 2400,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Jeevan has two arrays $a$ and $b$ of size $n$. He is fond of performing weird operations on arrays. This time, he comes up with two types of operations:\n\n- Choose any $i$ ($1 \\le i \\le n$) and increment $a_j$ by $1$ for every $j$ which is a multiple of $i$ and $1 \\le j \\le n$.\n- Choose any $i$ ($1 \\le i \\le n$) and decrement $a_j$ by $1$ for every $j$ which is a multiple of $i$ and $1 \\le j \\le n$.\n\nHe wants to convert array $a$ into an array $b$ using the minimum total number of operations. However, Jeevan seems to have forgotten the value of $b_1$. So he makes some guesses. He will ask you $q$ questions corresponding to his $q$ guesses, the $i$-th of which is of the form:\n\n- If $b_1 = x_i$, what is the minimum number of operations required to convert $a$ to $b$?\n\nHelp him by answering each question.\n\n## Input\n\nThe first line contains a single integer $n$ $(1 \\le n \\le 2 \\cdot 10^{5})$  — the size of arrays $a$ and $b$.\n\nThe second line contains $n$ integers $a_1, a_2, ..., a_n$ $(1 \\le a_i \\le 10^6)$.\n\nThe third line contains $n$ integers $b_1, b_2, ..., b_n$ $(1 \\le b_i \\le 10^6$ for $i \\neq 1$; $b_1 = -1$, representing that the value of $b_1$ is unknown$)$.\n\nThe fourth line contains a single integer $q$ $(1 \\le q \\le 2 \\cdot 10^{5})$  — the number of questions.\n\nEach of the following $q$ lines contains a single integer $x_i$ $(1 \\le x_i \\le 10^6)$  — representing the $i$-th question.\n\n## Output\n\nOutput $q$ integers  — the answers to each of his $q$ questions.\n\n## Note\n\nConsider the first test case.\n\n- $b_1 = 1$: We need to convert $[3, 7] \\rightarrow [1, 5]$. We can perform the following operations:$[3, 7]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 1}}$ $[2, 6]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 1}}$ $[1, 5]$Hence the answer is $2$.\n- $b_1 = 4$: We need to convert $[3, 7] \\rightarrow [4, 5]$. We can perform the following operations: $[3, 7]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[3, 6]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[3, 5]$ $\\xrightarrow[\\text{increase}]{\\text{i = 1}}$ $[4, 6]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[4, 5]$Hence the answer is $4$.\n- $b_1 = 3$: We need to convert $[3, 7] \\rightarrow [3, 5]$. We can perform the following operations:$[3, 7]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[3, 6]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[3, 5]$Hence the answer is $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "Jeevan 有两个长度为 $n$ 的数组 $a$ 和 $b$。他喜欢对数组进行奇怪的操作。这一次，他想出了以下两种操作：\n\n- 选择任意 $i$（$1 \\le i \\le n$），并将对于每个满足 $i$ 是其倍数且 $1 \\le j \\le n$ 的 $j$，将 $a_j$ 加 $1$。\n- 选择任意 $i$（$1 \\le i \\le n$），并将对于每个满足 $i$ 是其倍数且 $1 \\le j \\le n$ 的 $j$，将 $a_j$ 减 $1$。\n\n他希望使用最少的操作次数将数组 $a$ 变为数组 $b$。然而，Jeevan 似乎忘记了 $b_1$ 的值。因此，他进行了一些猜测。他会向你提出与这 $q$ 个猜测对应的 $q$ 个问题，其中第 $i$ 个问题的形式如下：\n\n- 如果 $b_1 = x_i$，将 $a$ 变为 $b$ 所需的最少操作次数是多少？\n\n请帮助他回答每个问题。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^{5}$）——数组 $a$ 和 $b$ 的长度。\n\n第二行包含 $n$ 个整数 $a_1, a_2, ..., a_n$（$1 \\le a_i \\le 10^6$）。\n\n第三行包含 $n$ 个整数 $b_1, b_2, ..., b_n$（$1 \\le b_i \\le 10^6$ 对于 $i \\neq 1$；$b_1 = -1$，表示 $b_1$ 的值未知）。\n\n第四行包含一个整数 $q$（$1 \\le q \\le 2 \\cdot 10^{5}$）——问题的数量。\n\n接下来的 $q$ 行中，每行包含一个整数 $x_i$（$1 \\le x_i \\le 10^6$）——表示第 $i$ 个问题。\n\n## 输出格式\n\n输出 $q$ 个整数——分别表示每个问题的答案。\n\n## 说明\n\n考虑第一个测试用例。\n\n- $b_1 = 1$：我们需要将 $[3, 7]$ 变为 $[1, 5]$。可以进行以下操作：$[3, 7]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 1}}$ $[2, 6]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 1}}$ $[1, 5]$。因此答案是 $2$。\n- $b_1 = 4$：我们需要将 $[3, 7]$ 变为 $[4, 5]$。可以进行以下操作：$[3, 7]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[3, 6]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[3, 5]$ $\\xrightarrow[\\text{increase}]{\\text{i = 1}}$ $[4, 6]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[4, 5]$。因此答案是 $4$。\n- $b_1 = 3$：我们需要将 $[3, 7]$ 变为 $[3, 5]$。可以进行以下操作：$[3, 7]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[3, 6]$ $\\xrightarrow[\\text{decrease}]{\\text{i = 2}}$ $[3, 5]$。因此答案是 $2$。",
   "samples": [
     {
       "input": "2\n3 7\n-1 5\n3\n1\n4\n3\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:21:01.688Z"
+  "fetchedAt": "2026-10-30T23:21:01.688Z",
+  "translatedAt": "2026-11-04T10:22:31.299+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

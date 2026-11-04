@@ -4,7 +4,7 @@
   "contestId": 747,
   "index": "C",
   "title": "Servers",
-  "titleZh": null,
+  "titleZh": "服务器",
   "url": "https://codeforces.com/contest/747/problem/C",
   "difficulty": 1300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $*n*$ servers in a laboratory, each of them can perform tasks. Each server has a unique id — integer from $1$ to $*n*$.\n\nIt is known that during the day $*q*$ tasks will come, the $*i*$-th of them is characterized with three integers: $*t*_{*i*}$ — the moment in seconds in which the task will come, $*k*_{*i*}$ — the number of servers needed to perform it, and $*d*_{*i*}$ — the time needed to perform this task in seconds. All $*t*_{*i*}$ are distinct.\n\nTo perform the $*i*$-th task you need $*k*_{*i*}$ servers which are unoccupied in the second $*t*_{*i*}$. After the servers begin to perform the task, each of them will be busy over the next $*d*_{*i*}$ seconds. Thus, they will be busy in seconds $*t*_{*i*}, *t*_{*i*} + 1, ..., *t*_{*i*} + *d*_{*i*} - 1$. For performing the task, $*k*_{*i*}$ servers with the smallest ids will be chosen from all the unoccupied servers. If in the second $*t*_{*i*}$ there are not enough unoccupied servers, the task is ignored.\n\nWrite the program that determines which tasks will be performed and which will be ignored.\n\n## Input\n\nThe first line contains two positive integers $*n*$ and $*q*$ ($1 ≤ *n* ≤ 100$, $1 ≤ *q* ≤ 10^{5}$) — the number of servers and the number of tasks.\n\nNext $*q*$ lines contains three integers each, the $*i*$-th line contains integers $*t*_{*i*}$, $*k*_{*i*}$ and $*d*_{*i*}$ ($1 ≤ *t*_{*i*} ≤ 10^{6}$, $1 ≤ *k*_{*i*} ≤ *n*$, $1 ≤ *d*_{*i*} ≤ 1000$) — the moment in seconds in which the $*i*$-th task will come, the number of servers needed to perform it, and the time needed to perform this task in seconds. The tasks are given in a chronological order and they will come in distinct seconds.\n\n## Output\n\nPrint $*q*$ lines. If the $*i*$-th task will be performed by the servers, print in the $*i*$-th line the sum of servers' ids on which this task will be performed. Otherwise, print `-1`.\n\n## Note\n\nIn the first example in the second $1$ the first task will come, it will be performed on the servers with ids $1$, $2$ and $3$ (the sum of the ids equals $6$) during two seconds. In the second $2$ the second task will come, it will be ignored, because only the server $4$ will be unoccupied at that second. In the second $3$ the third task will come. By this time, servers with the ids $1$, $2$ and $3$ will be unoccupied again, so the third task will be done on all the servers with the ids $1$, $2$, $3$ and $4$ (the sum of the ids is $10$).\n\nIn the second example in the second $3$ the first task will come, it will be performed on the servers with ids $1$ and $2$ (the sum of the ids is $3$) during three seconds. In the second $5$ the second task will come, it will be performed on the server $3$, because the first two servers will be busy performing the first task.",
-  "statementZhMd": null,
+  "statementZhMd": "实验室中有 $*n*$ 台服务器，每台服务器都可以执行任务。每台服务器都有唯一的编号——从 $1$ 到 $*n*$ 的整数。\n\n已知一天中将会有 $*q*$ 个任务到来，其中第 $*i*$ 个任务由三个整数描述：$*t*_{*i*}$——任务到来的时间（以秒为单位）；$*k*_{*i*}$——执行该任务所需的服务器数量；$*d*_{*i*}$——执行该任务所需的时间（以秒为单位）。所有 $*t*_{*i*}$ 互不相同。\n\n为了执行第 $*i*$ 个任务，需要在第 $*t*_{*i*}$ 秒处于空闲状态的 $*k*_{*i*}$ 台服务器。服务器开始执行任务后，将在接下来的 $*d*_{*i*}$ 秒内处于忙碌状态。因此，它们将在第 $*t*_{*i*}$、$*t*_{*i*}$ + 1、..., $*t*_{*i*}$ + $*d*_{*i*}$ - 1 秒处于忙碌状态。执行任务时，将从所有空闲服务器中选择编号最小的 $*k*_{*i*}$ 台服务器。如果在第 $*t*_{*i*}$ 秒没有足够的空闲服务器，则忽略该任务。\n\n请编写程序，确定哪些任务会被执行，哪些任务会被忽略。\n\n## 输入\n\n第一行包含两个正整数 $*n*$ 和 $*q*$（$1 ≤ *n* ≤ 100$，$1 ≤ *q* ≤ 10^{5}$）——服务器数量和任务数量。\n\n接下来 $*q*$ 行，每行包含三个整数，第 $*i*$ 行包含整数 $*t*_{*i*}$、$*k*_{*i*}$ 和 $*d*_{*i*}$（$1 ≤ *t*_{*i*} ≤ 10^{6}$，$1 ≤ *k*_{*i*} ≤ *n*$，$1 ≤ *d*_{*i*} ≤ 1000$）——任务到来的时间（以秒为单位）、执行任务所需的服务器数量以及执行该任务所需的时间（以秒为单位）。任务按照时间顺序给出，并且它们会在不同的秒到来。\n\n## 输出\n\n输出 $*q*$ 行。如果第 $*i*$ 个任务将由服务器执行，则在第 $*i*$ 行输出执行该任务的服务器编号之和。否则，输出 `-1`。\n\n## 说明\n\n在第一个样例中，第 1 秒时第一个任务到来，它将由编号为 1、2 和 3 的服务器执行，持续两秒（服务器编号之和为 6）。第 2 秒时第二个任务到来，此时只有服务器 4 处于空闲状态，因此该任务将被忽略。第 3 秒时第三个任务到来。此时，编号为 1、2 和 3 的服务器再次处于空闲状态，因此第三个任务将由编号为 1、2、3 和 4 的所有服务器执行（服务器编号之和为 10）。\n\n在第二个样例中，第 3 秒时第一个任务到来，它将由编号为 1 和 2 的服务器执行，持续三秒（服务器编号之和为 3）。第 5 秒时第二个任务到来，由于前两台服务器正在执行第一个任务，因此第二个任务将由服务器 3 执行。",
   "samples": [
     {
       "input": "4 3\n1 3 2\n2 2 1\n3 4 3\n",
@@ -33,5 +33,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:59:43.969Z"
+  "fetchedAt": "2026-10-31T00:59:43.969Z",
+  "translatedAt": "2026-11-04T10:57:47.226+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

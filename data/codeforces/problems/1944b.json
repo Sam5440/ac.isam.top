@@ -4,7 +4,7 @@
   "contestId": 1944,
   "index": "B",
   "title": "Equal XOR",
-  "titleZh": null,
+  "titleZh": "相等异或",
   "url": "https://codeforces.com/contest/1944/problem/B",
   "difficulty": 1100,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a$ of length $2n$, consisting of each integer from $1$ to $n$ exactly **twice**.\n\nYou are also given an integer $k$ ($1 \\leq k \\leq \\lfloor \\frac{n}{2} \\rfloor $).\n\nYou need to find two arrays $l$ and $r$ each of length $\\mathbf{2k}$ such that:\n\n- $l$ is a subset$^\\dagger$ of $[a_1, a_2, \\ldots a_n]$\n- $r$ is a subset of $[a_{n+1}, a_{n+2}, \\ldots a_{2n}]$\n- [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) of elements of $l$ is equal to the bitwise XOR of elements of $r$; in other words, $l_1 \\oplus l_2 \\oplus \\ldots \\oplus l_{2k} = r_1 \\oplus r_2 \\oplus \\ldots \\oplus r_{2k}$\n\nIt can be proved that at least one pair of $l$ and $r$ always exists. If there are multiple solutions, you may output any one of them.\n\n$^\\dagger$ A sequence $x$ is a subset of a sequence $y$ if $x$ can be obtained by deleting several (possibly none or all) elements of $y$ and rearranging the elements in any order. For example, $[3,1,2,1]$, $[1, 2, 3]$, $[1, 1]$ and $[3, 2]$ are subsets of $[1, 1, 2, 3]$ but $[4]$ and $[2, 2]$ are not subsets of $[1, 1, 2, 3]$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains a single integer $t$ ($1 \\leq t \\leq 5000$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains $2$ integers $n$ and $k$ ($2 \\le n \\le 5 \\cdot 10^4$, $1 \\leq k \\leq \\lfloor \\frac{n}{2} \\rfloor $).\n\nThe second line contains $2n$ integers $a_1, a_2, \\ldots, a_{2n}$ ($1 \\le a_i \\le n$). It is guaranteed that every integer from $1$ to $n$ occurs exactly twice in $a$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^4$.\n\n## Output\n\nFor each test case, output two lines.\n\nOn the first line of output, output $2k$ integers $l_1, l_2, \\ldots, l_{2k}$.\n\nOn the second line of output, output $2k$ integers $r_1, r_2, \\ldots r_{2k}$.\n\nIf there are multiple solutions, you may output any one of them.\n\n## Note\n\nIn the first test case, we choose $l=[2,1]$ and $r=[2,1]$. $[2, 1]$ is a subset of $[a_1, a_2]$ and $[2, 1]$ is a subset of $[a_3, a_4]$, and $2 \\oplus 1 = 2 \\oplus 1 = 3$.\n\nIn the second test case, $6 \\oplus 4 = 1 \\oplus 3 = 2$.",
-  "statementZhMd": null,
+  "statementZhMd": "你得到了一个长度为 $2n$ 的数组 $a$，其中每个 $1$ 到 $n$ 的整数都恰好出现 **两次**。\n\n你还得到了一个整数 $k$（$1 \\leq k \\leq \\lfloor \\frac{n}{2} \\rfloor$）。\n\n你需要找到两个长度均为 **$2k$** 的数组 $l$ 和 $r$，满足：\n\n- $l$ 是 $[a_1, a_2, \\ldots a_n]$ 的子集$^\\dagger$\n- $r$ 是 $[a_{n+1}, a_{n+2}, \\ldots a_{2n}]$ 的子集\n- $l$ 中元素的[按位异或](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)等于 $r$ 中元素的按位异或；换句话说，$l_1 \\oplus l_2 \\oplus \\ldots \\oplus l_{2k} = r_1 \\oplus r_2 \\oplus \\ldots \\oplus r_{2k}$\n\n可以证明，至少存在一组满足条件的 $l$ 和 $r$。如果有多组解，你可以输出任意一组。\n\n$^\\dagger$ 如果序列 $x$ 可以通过删除序列 $y$ 中若干个（可以是零个或全部）元素，并以任意顺序重新排列剩余元素得到，则称序列 $x$ 是序列 $y$ 的子集。例如，$[3,1,2,1]$、$[1, 2, 3]$、$[1, 1]$ 和 $[3, 2]$ 都是 $[1, 1, 2, 3]$ 的子集，但 $[4]$ 和 $[2, 2]$ 不是 $[1, 1, 2, 3]$ 的子集。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\leq t \\leq 5000$）——测试用例的数量。接下来描述各个测试用例。\n\n每个测试用例的第一行包含 $2$ 个整数 $n$ 和 $k$（$2 \\leq n \\leq 5 \\cdot 10^4$，$1 \\leq k \\leq \\lfloor \\frac{n}{2} \\rfloor$）。\n\n第二行包含 $2n$ 个整数 $a_1, a_2, \\ldots, a_{2n}$（$1 \\leq a_i \\leq n$）。保证 $1$ 到 $n$ 的每个整数在 $a$ 中恰好出现两次。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^4$。\n\n## 输出格式\n\n对于每个测试用例，输出两行。\n\n在输出的第一行，输出 $2k$ 个整数 $l_1, l_2, \\ldots, l_{2k}$。\n\n在输出的第二行，输出 $2k$ 个整数 $r_1, r_2, \\ldots r_{2k}$。\n\n如果有多组解，你可以输出任意一组。\n\n## 说明\n\n在第一个测试用例中，我们选择 $l=[2,1]$ 和 $r=[2,1]$。$[2, 1]$ 是 $[a_1, a_2]$ 的子集，$[2, 1]$ 是 $[a_3, a_4]$ 的子集，并且 $2 \\oplus 1 = 2 \\oplus 1 = 3$。\n\n在第二个测试用例中，$6 \\oplus 4 = 1 \\oplus 3 = 2$。",
   "samples": [
     {
       "input": "4\n2 1\n1 2 2 1\n6 1\n6 4 2 1 2 3 1 6 3 5 5 4\n4 1\n1 2 3 4 1 2 3 4\n6 2\n5 1 3 3 5 1 2 6 4 6 4 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:58:50.650Z"
+  "fetchedAt": "2026-10-30T21:58:50.650Z",
+  "translatedAt": "2026-11-04T10:16:35.387+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

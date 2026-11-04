@@ -4,14 +4,14 @@
   "contestId": 1578,
   "index": "C",
   "title": "Cactus Lady and her Cing",
-  "titleZh": null,
+  "titleZh": "仙人掌女士和她的 Cing",
   "url": "https://codeforces.com/contest/1578/problem/C",
   "difficulty": 3500,
   "tags": [],
   "timeLimitMs": 5000,
   "memoryLimitMb": 1024,
   "statementMd": "Cactus lady loves her cactuses very much. Especially she likes a small cactus named Cing. Cing can be seen as a connected undirected graph in which every vertex lies on at most one simple cycle. Intuitively, a cactus is a generalization of a tree where some cycles are allowed. Multiedges (multiple edges between a pair of vertices) and loops (edges that connect a vertex to itself) are not allowed.\n\nShe bought a special grid for her special little cactus Cing. This grid can be represented as a graph consisting of two paths of length $400\\,000$, $u_{(0, -200\\,000)} - u_{(0, -199\\,999)} - \\ldots - u_{(0, 200\\,000)}$ and $u_{(1, -200\\,000)} - u_{(1, -199\\,999)} - \\ldots - u_{(1, 200\\,000)}$, connected together by $400\\,001$ edges $(u_{(0, i)}, u_{(1, i)})$ for each $i$. In other words, a grid can be seen as a ladder.\n\n![image](https://espresso.codeforces.com/21b8b7c9925773411b3a36c1af1c24060d97dec4.png)\n\nCactus lady wants to know whether she can embed Cing into this grid, i.e., map each vertex of the cactus onto a separate vertex of the grid while each edge of the cactus will be mapped onto some edge of the grid.\n\n## Input\n\nThe first line contains an integer $t$ — the number of test cases.\n\nEach test case begins with a line containing two integers $n$ and $m$ — the number of vertices and the number of edges in a given cactus, respectively ($1 \\le n \\le 200\\,000$; $0 \\le m \\le 250\\,000$).\n\nEach of the following $m$ lines contains two integers $v$ and $u$, describing the edges of the cactus ($1 \\le v, u \\le n, u \\ne v$).\n\nThe total sum of all $n$ in the input doesn't exceed $200\\,000$.\n\n## Output\n\nPrint an answer for each test case in the same order the cases appear in the input.\n\nFor each test case print \"`No`\" in the first line, if no layout exists.\n\nOtherwise print \"`Yes`\" in the first line, and the following $n$ lines describing the layout. The $i$-th of these $n$ lines should contain two integers $x_i$ and $y_i$, the location of the $i$-th vertex ($0 \\le x_i \\le 1$; $-200\\,000 \\le y_i \\le 200\\,000$).\n\n## Note\n\nEmpty lines between test cases are for clarity. In real test cases there are no empty lines.\n\nIn these notes, we consider the embeddings for tests 2 and 4.\n\nWe start with the embedding for test 2.\n\n![image](https://espresso.codeforces.com/dfe4abc1da7a7e3cef98f5a0769c3983eeaa72b2.png)\n\nHere goes the embedding for test 4.\n\n![image](https://espresso.codeforces.com/65ebf0d917532448e6a4b26cf3ebf6a039fc5d89.png)",
-  "statementZhMd": null,
+  "statementZhMd": "仙人掌女士非常喜欢她的仙人掌。她尤其喜欢一株名为 Cing 的小仙人掌。Cing 可以看作一个连通无向图，其中每个顶点至多位于一个简单环上。直观地说，仙人掌图是树的一种推广，其中允许存在一些环。不允许存在重边（连接一对顶点的多条边）和自环（连接一个顶点自身的边）。\n\n她为她特别的小仙人掌 Cing 买了一块特殊的网格。该网格可以表示为一个图，由两条长度为 $400\\,000$ 的路径 $u_{(0, -200\\,000)} - u_{(0, -199\\,999)} - \\ldots - u_{(0, 200\\,000)}$ 和 $u_{(1, -200\\,000)} - u_{(1, -199\\,999)} - \\ldots - u_{(1, 200\\,000)}$ 组成，并且对于每个 $i$，通过边 $(u_{(0, i)}, u_{(1, i)})$ 将两条路径连接起来，共有 $400\\,001$ 条这样的边。换句话说，网格可以看作一架梯子。\n\n![image](https://espresso.codeforces.com/21b8b7c9925773411b3a36c1af1c24060d97dec4.png)\n\n仙人掌女士想知道她是否可以将 Cing 嵌入这个网格中，也就是说，将仙人掌的每个顶点映射到网格中不同的顶点上，同时将仙人掌的每条边映射到网格中的某条边上。\n\n## 输入格式\n\n第一行包含一个整数 $t$ —— 测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$ —— 给定仙人掌中的顶点数和边数（$1 \\le n \\le 200\\,000$；$0 \\le m \\le 250\\,000$）。\n\n接下来的 $m$ 行中，每行包含两个整数 $v$ 和 $u$，表示仙人掌中的一条边（$1 \\le v, u \\le n, u \\ne v$）。\n\n输入中所有测试用例的 $n$ 之和不超过 $200\\,000$。\n\n## 输出格式\n\n按测试用例在输入中出现的顺序输出每个测试用例的答案。\n\n对于每个测试用例，如果不存在满足条件的布局，则在第一行输出 `No`。\n\n否则，在第一行输出 `Yes`，并在接下来的 $n$ 行中描述该布局。这 $n$ 行中的第 $i$ 行应包含两个整数 $x_i$ 和 $y_i$，表示第 $i$ 个顶点的位置（$0 \\le x_i \\le 1$；$-200\\,000 \\le y_i \\le 200\\,000$）。\n\n## 说明\n\n测试用例之间的空行仅为便于阅读。在实际测试数据中不存在空行。\n\n在下面的说明中，我们展示测试用例 2 和 4 的嵌入结果。\n\n首先是测试用例 2 的嵌入结果。\n\n![image](https://espresso.codeforces.com/dfe4abc1da7a7e3cef98f5a0769c3983eeaa72b2.png)\n\n下面是测试用例 4 的嵌入结果。\n\n![image](https://espresso.codeforces.com/65ebf0d917532448e6a4b26cf3ebf6a039fc5d89.png)",
   "samples": [
     {
       "input": "5\n4 3\n1 2\n2 3\n3 4\n\n8 7\n1 2\n3 2\n2 4\n4 5\n4 6\n6 7\n6 8\n\n5 4\n1 2\n1 3\n1 4\n1 5\n\n8 9\n1 2\n2 3\n3 4\n1 4\n4 5\n5 6\n6 7\n7 8\n5 8\n\n10 10\n1 2\n2 3\n3 4\n4 5\n5 6\n6 1\n3 7\n4 8\n1 9\n6 10\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:15:06.381Z"
+  "fetchedAt": "2026-11-02T18:15:06.381Z",
+  "translatedAt": "2026-11-04T10:33:57.136+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1700,
   "index": "A",
   "title": "Optimal Path",
-  "titleZh": null,
+  "titleZh": "最优路径",
   "url": "https://codeforces.com/contest/1700/problem/A",
   "difficulty": 800,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a table $a$ of size $n \\times m$. We will consider the table rows numbered from top to bottom from $1$ to $n$, and the columns numbered from left to right from $1$ to $m$. We will denote a cell that is in the $i$-th row and in the $j$-th column as $(i, j)$. In the cell $(i, j)$ there is written a number $(i - 1) \\cdot m + j$, that is $a_{ij} = (i - 1) \\cdot m + j$.\n\nA turtle initially stands in the cell $(1, 1)$ and it wants to come to the cell $(n, m)$. From the cell $(i, j)$ it can in one step go to one of the cells $(i + 1, j)$ or $(i, j + 1)$, if it exists. A path is a sequence of cells in which for every two adjacent in the sequence cells the following satisfies: the turtle can reach from the first cell to the second cell in one step. A cost of a path is the sum of numbers that are written in the cells of the path.\n\n![image](https://espresso.codeforces.com/40e89b1b7fdc725ab0a4d579f1de9b252ba2a0b2.png)\n\nFor example, with $n = 2$ and $m = 3$ the table will look as shown above. The turtle can take the following path: $(1, 1) \\rightarrow (1, 2) \\rightarrow (1, 3) \\rightarrow (2, 3)$. The cost of such way is equal to $a_{11} + a_{12} + a_{13} + a_{23} = 12$. On the other hand, the paths $(1, 1) \\rightarrow (1, 2) \\rightarrow (2, 2) \\rightarrow (2, 1)$ and $(1, 1) \\rightarrow (1, 3)$ are incorrect, because in the first path the turtle can't make a step $(2, 2) \\rightarrow (2, 1)$, and in the second path it can't make a step $(1, 1) \\rightarrow (1, 3)$.\n\nYou are asked to tell the turtle a minimal possible cost of a path from the cell $(1, 1)$ to the cell $(n, m)$. Please note that the cells $(1, 1)$ and $(n, m)$ are a part of the way.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\leq t \\leq 1000$) — the number of test cases. The description of test cases follows.\n\nA single line of each test case contains two integers $n$ and $m$ ($1 \\leq n, m \\leq 10^4$) — the number of rows and columns of the table $a$ respectively.\n\n## Output\n\nFor each test case output a single integer — a minimal possible cost of a path from the cell $(1, 1)$ to the cell $(n, m)$.\n\n## Note\n\nIn the first test case the only possible path consists of a single cell $(1, 1)$.\n\nThe path with the minimal cost in the second test case is shown in the statement.\n\nIn the fourth and the fifth test cases there is only one path from $(1, 1)$ to $(n, m)$. Both paths visit every cell in the table.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个大小为 $n \\times m$ 的表格 $a$。我们将表格的行从上到下编号为 $1$ 到 $n$，列从左到右编号为 $1$ 到 $m$。位于第 $i$ 行、第 $j$ 列的单元格记为 $(i, j)$。单元格 $(i, j)$ 中写有数字 $(i - 1) \\cdot m + j$，即 $a_{ij} = (i - 1) \\cdot m + j$。\n\n一只乌龟最初位于单元格 $(1, 1)$，它想到达单元格 $(n, m)$。从单元格 $(i, j)$ 出发，它可以在一步内移动到单元格 $(i + 1, j)$ 或 $(i, j + 1)$，前提是目标单元格存在。路径是一个单元格序列，序列中每两个相邻单元格都满足：乌龟可以在一步内从前一个单元格到达后一个单元格。路径的代价是路径中所有单元格内数字之和。\n\n![image](https://espresso.codeforces.com/40e89b1b7fdc725ab0a4d579f1de9b252ba2a0b2.png)\n\n例如，当 $n = 2$ 且 $m = 3$ 时，表格如下图所示。乌龟可以采取如下路径：$(1, 1) \\rightarrow (1, 2) \\rightarrow (1, 3) \\rightarrow (2, 3)$。这条路径的代价等于 $a_{11} + a_{12} + a_{13} + a_{23} = 12$。另一方面，路径 $(1, 1) \\rightarrow (1, 2) \\rightarrow (2, 2) \\rightarrow (2, 1)$ 和 $(1, 1) \\rightarrow (1, 3)$ 都是不正确的，因为在第一条路径中，乌龟无法执行从 $(2, 2)$ 到 $(2, 1)$ 的移动；在第二条路径中，乌龟无法执行从 $(1, 1)$ 到 $(1, 3)$ 的移动。\n\n请你告诉乌龟，从单元格 $(1, 1)$ 到单元格 $(n, m)$ 的路径的最小可能代价。请注意，单元格 $(1, 1)$ 和 $(n, m)$ 都属于路径的一部分。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\leq t \\leq 1000$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例包含一行，其中有两个整数 $n$ 和 $m$（$1 \\leq n, m \\leq 10^4$）——表格 $a$ 的行数和列数。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——从单元格 $(1, 1)$ 到单元格 $(n, m)$ 的路径的最小可能代价。\n\n## 说明\n\n在第一个测试用例中，唯一可能的路径只包含一个单元格 $(1, 1)$。\n\n第二个测试用例中的最小代价路径已在题目描述中展示。\n\n在第四个和第五个测试用例中，从 $(1, 1)$ 到 $(n, m)$ 只有一条路径。这两条路径都会经过表格中的每个单元格。",
   "samples": [
     {
       "input": "7\n1 1\n2 3\n3 2\n7 1\n1 10\n5 5\n10000 10000\n",
@@ -25,5 +25,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:54:08.769Z"
+  "fetchedAt": "2026-10-30T22:54:08.769Z",
+  "translatedAt": "2026-11-04T09:25:35.909+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

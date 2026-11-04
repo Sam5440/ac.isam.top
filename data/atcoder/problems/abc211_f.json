@@ -4,7 +4,7 @@
   "contestId": "abc211",
   "index": "F",
   "title": "Rectilinear Polygons",
-  "titleZh": null,
+  "titleZh": "正交多边形",
   "url": "https://atcoder.jp/contests/abc211/tasks/abc211_f",
   "difficulty": 2350,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nWe have $N$ polygons on the $xy$-plane.\nEvery side of these polygons is parallel to the $x$- or $y$-axis, and every interior angle is $90$ or $270$ degrees. All of these polygons are simple.\nThe $i$-th polygon has $M_i$ corners, the $j$-th of which is $(x_{i, j}, y_{i, j})$.\nThe sides of this polygon are segments connecting the $j$-th and $(j+1)$-th corners. (Assume that $(M_i+1)$-th corner is the $1$-st corner.)\n\nA polygon is simple when... for any two of its sides that are not adjacent, they do not intersect (cross or touch) each other.\n\nYou are given $Q$ queries. For each $i = 1, 2, \\dots, Q$, the $i$-th query is as follows.\n\n- Among the $N$ polygons, how many have the point $(X_i + 0.5, Y_i + 0.5)$ inside them?\n\n## Constraints\n\n- $1 \\leq N \\leq 10^5$\n- $4 \\leq M_i \\leq 10^5$\n- Each $M_i$ is even.\n- $\\sum_i M_i \\leq 4 \\times 10^5$\n- $0 \\leq x_{i, j}, y_{i, j} \\leq 10^5$\n- $(x_{i, j}, y_{i, j}) \\neq (x_{i, k}, y_{i, k})$ if $j \\neq k$.\n- $x_{i, j} = x_{i, j+1}$ for $j = 1, 3, \\dots M_i-1$.\n- $y_{i, j} = y_{i, j+1}$ for $j = 2, 4, \\dots M_i$. (Assume $y_{i, M_i +1} = y_{i, 1}$.)\n- The given polygons are simple.\n- $1 \\leq Q \\leq 10^5$\n- $0 \\leq X_i, Y_i \\lt 10^5$\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nN\nM_1\nx_{1, 1} y_{1, 1} x_{1, 2} y_{1, 2} \\dots x_{1, M_1} y_{1, M_1}\nM_2\nx_{2, 1} y_{2, 1} x_{2, 2} y_{2, 2} \\dots x_{2, M_2} y_{2, M_2}\n\\vdots\nM_N\nx_{N, 1} y_{N, 1} x_{N, 2} y_{N, 2} \\dots x_{N, M_N} y_{N, M_N}\nQ\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_Q Y_Q\n```\n\n## Output\n\nPrint $Q$ lines.\nThe $i$-th line should contain the answer to the $i$-th query.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n在 $xy$ 平面上有 $N$ 个多边形。\n这些多边形的每条边都平行于 $x$ 轴或 $y$ 轴，且每个内角都是 $90$ 度或 $270$ 度。所有多边形都是简单多边形。\n第 $i$ 个多边形有 $M_i$ 个顶点，其中第 $j$ 个顶点为 $(x_{i, j}, y_{i, j})$。\n该多边形的边是连接第 $j$ 个顶点和第 $(j+1)$ 个顶点的线段。（规定第 $(M_i+1)$ 个顶点为第 $1$ 个顶点。）\n\n当一个多边形的任意两条不相邻的边都不相交（既不交叉也不接触）时，称该多边形为简单多边形。\n\n现在给出 $Q$ 个询问。对于每个 $i = 1, 2, \\dots, Q$，第 $i$ 个询问如下。\n\n- 在 $N$ 个多边形中，有多少个多边形包含点 $(X_i + 0.5, Y_i + 0.5)$？\n\n## 约束条件\n\n- $1 \\leq N \\leq 10^5$\n- $4 \\leq M_i \\leq 10^5$\n- 每个 $M_i$ 都是偶数。\n- $\\sum_i M_i \\leq 4 \\times 10^5$\n- $0 \\leq x_{i, j}, y_{i, j} \\leq 10^5$\n- 当 $j \\neq k$ 时，$(x_{i, j}, y_{i, j}) \\neq (x_{i, k}, y_{i, k})$。\n- 对于 $j = 1, 3, \\dots M_i-1$，有 $x_{i, j} = x_{i, j+1}$。\n- 对于 $j = 2, 4, \\dots M_i$，有 $y_{i, j} = y_{i, j+1}$。（规定 $y_{i, M_i +1} = y_{i, 1}$。）\n- 给出的多边形都是简单多边形。\n- $1 \\leq Q \\leq 10^5$\n- $0 \\leq X_i, Y_i \\lt 10^5$\n- 输入中的所有值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nN\nM_1\nx_{1, 1} y_{1, 1} x_{1, 2} y_{1, 2} \\dots x_{1, M_1} y_{1, M_1}\nM_2\nx_{2, 1} y_{2, 1} x_{2, 2} y_{2, 2} \\dots x_{2, M_2} y_{2, M_2}\n\\vdots\nM_N\nx_{N, 1} y_{N, 1} x_{N, 2} y_{N, 2} \\dots x_{N, M_N} y_{N, M_N}\nQ\nX_1 Y_1\nX_2 Y_2\n\\vdots\nX_Q Y_Q\n```\n\n## 输出格式\n\n输出 $Q$ 行。\n第 $i$ 行应包含第 $i$ 个询问的答案。",
   "samples": [
     {
       "input": "3\n4\n1 2 1 4 3 4 3 2\n4\n2 5 2 3 5 3 5 5\n4\n5 6 5 5 3 5 3 6\n3\n1 4\n2 3\n4 5\n",
@@ -26,5 +26,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:45:24.865Z"
+  "fetchedAt": "2026-10-30T21:45:24.865Z",
+  "translatedAt": "2026-11-04T10:34:33.135+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

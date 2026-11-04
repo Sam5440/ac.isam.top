@@ -4,7 +4,7 @@
   "contestId": 1979,
   "index": "D",
   "title": "Fixing a Binary String",
-  "titleZh": null,
+  "titleZh": "修复二进制字符串",
   "url": "https://codeforces.com/contest/1979/problem/D",
   "difficulty": 1800,
   "tags": [
@@ -20,7 +20,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a binary string $s$ of length $n$, consisting of zeros and ones. You can perform the following operation **exactly once**:\n\n1. Choose an integer $p$ ($1 \\le p \\le n$).\n2. Reverse the substring $s_1 s_2 \\ldots s_p$. After this step, the string $s_1 s_2 \\ldots s_n$ will become $s_p s_{p-1} \\ldots s_1 s_{p+1} s_{p+2} \\ldots s_n$.\n3. Then, perform a cyclic shift of the string $s$ to the left $p$ times. After this step, the initial string $s_1s_2 \\ldots s_n$ will become $s_{p+1}s_{p+2} \\ldots s_n s_p s_{p-1} \\ldots s_1$.\n\nFor example, if you apply the operation to the string `110001100110` with $p=3$, after the second step, the string will become `011001100110`, and after the third step, it will become `001100110011`.\n\nA string $s$ is called *$k$-proper* if two conditions are met:\n\n- $s_1=s_2=\\ldots=s_k$;\n- $s_{i+k} \\neq s_i$ for any $i$ ($1 \\le i \\le n - k$).\n\nFor example, with $k=3$, the strings `000`, `111000111`, and `111000` are $k$-proper, while the strings `000000`, `001100`, and `1110000` are not.\n\nYou are given an integer $k$, which **is a divisor** of $n$. Find an integer $p$ ($1 \\le p \\le n$) such that after performing the operation, the string $s$ becomes $k$-proper, or determine that it is impossible. Note that if the string is initially $k$-proper, you still need to apply exactly one operation to it.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le k \\le n$, $2 \\le n \\le 10^5$) — the length of the string $s$ and the value of $k$. It is guaranteed that $k$ **is a divisor** of $n$.\n\nThe second line of each test case contains a binary string $s$ of length $n$, consisting of the characters `0` and `1`.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the value of $p$ to make the string $k$-proper, or $-1$ if it is impossible.\n\nIf there are multiple solutions, output any of them.\n\n## Note\n\nIn the first test case, if you apply the operation with $p=3$, after the second step of the operation, the string becomes `11100001`, and after the third step, it becomes `00001111`. This string is $4$-proper.\n\nIn the second test case, it can be shown that there is no operation after which the string becomes $2$-proper.\n\nIn the third test case, if you apply the operation with $p=7$, after the second step of the operation, the string becomes `100011100011`, and after the third step, it becomes `000111000111`. This string is $3$-proper.\n\nIn the fourth test case, after the operation with any $p$, the string becomes $5$-proper.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一个长度为 $n$ 的二进制字符串 $s$，由 0 和 1 组成。你可以执行以下操作**恰好一次**：\n\n1. 选择一个整数 $p$（$1 \\le p \\le n$）。\n2. 反转子串 $s_1 s_2 \\ldots s_p$。完成此步骤后，字符串 $s_1 s_2 \\ldots s_n$ 将变为 $s_p s_{p-1} \\ldots s_1 s_{p+1} s_{p+2} \\ldots s_n$。\n3. 然后，将字符串 $s$ 循环左移 $p$ 次。完成此步骤后，初始字符串 $s_1s_2 \\ldots s_n$ 将变为 $s_{p+1}s_{p+2} \\ldots s_n s_p s_{p-1} \\ldots s_1$。\n\n例如，对于字符串 `110001100110`，当 $p=3$ 时，完成第二步后，字符串变为 `011001100110`；完成第三步后，字符串变为 `001100110011`。\n\n如果字符串 $s$ 满足以下两个条件，则称其为 *$k$-proper*：\n\n- $s_1=s_2=\\ldots=s_k$；\n- 对任意 $i$（$1 \\le i \\le n - k$），都有 $s_{i+k} \\neq s_i$。\n\n例如，当 $k=3$ 时，字符串 `000`、`111000111` 和 `111000` 是 $k$-proper 的，而字符串 `000000`、`001100` 和 `1110000` 不是。\n\n给定一个整数 $k$，且 **$k$ 是 $n$ 的约数**。请找出一个整数 $p$（$1 \\le p \\le n$），使得执行操作后，字符串 $s$ 变为 $k$-proper，或者判断这是不可能的。注意，即使字符串初始时就是 $k$-proper 的，你仍然需要恰好执行一次操作。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n$，$2 \\le n \\le 10^5$）——字符串 $s$ 的长度和 $k$ 的值。保证 $k$ **是 $n$ 的约数**。\n\n每个测试用例的第二行包含一个长度为 $n$ 的二进制字符串 $s$，由字符 `0` 和 `1` 组成。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——使字符串变为 $k$-proper 的 $p$ 值；如果不可能，则输出 $-1$。\n\n如果有多个答案，输出其中任意一个即可。\n\n## 说明\n\n在第一个测试用例中，如果使用 $p=3$ 执行操作，完成操作的第二步后，字符串变为 `11100001`；完成第三步后，字符串变为 `00001111`。该字符串是 $4$-proper 的。\n\n在第二个测试用例中，可以证明不存在任何操作能够使字符串变为 $2$-proper。\n\n在第三个测试用例中，如果使用 $p=7$ 执行操作，完成操作的第二步后，字符串变为 `100011100011`；完成第三步后，字符串变为 `000111000111`。该字符串是 $3$-proper 的。\n\n在第四个测试用例中，无论选择哪个 $p$ 执行操作，字符串都会变为 $5$-proper。",
   "samples": [
     {
       "input": "7\n8 4\n11100001\n4 2\n1110\n12 3\n111000100011\n5 5\n00000\n6 1\n101001\n8 4\n01110001\n12 2\n110001100110\n",
@@ -29,5 +29,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:56:59.456Z"
+  "fetchedAt": "2026-10-30T21:56:59.456Z",
+  "translatedAt": "2026-11-04T09:13:00.004+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

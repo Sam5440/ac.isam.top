@@ -4,7 +4,7 @@
   "contestId": 1753,
   "index": "E",
   "title": "N Machines",
-  "titleZh": null,
+  "titleZh": "N 台机器",
   "url": "https://codeforces.com/contest/1753/problem/E",
   "difficulty": 3300,
   "tags": [
@@ -16,7 +16,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You have been invited as a production process optimization specialist to some very large company. The company has $n$ machines at its factory, standing one behind another in the production chain. Each machine can be described in one of the following two ways: $(+,~a_i)$ or $(*,~a_i)$.\n\nIf a workpiece with the value $x$ is supplied to the machine of kind $(+,~a_i)$, then the output workpiece has value $x + a_i$.\n\nIf a workpiece with the value $x$ is supplied to the machine of kind $(*,~a_i)$, then the output workpiece has value $x \\cdot a_i$.\n\nThe whole production process is as follows. The workpiece with the value $1$ is supplied to the first machine, then the workpiece obtained after the operation of the first machine is supplied to the second machine, then the workpiece obtained after the operation of the second machine is supplied to the third machine, and so on. The company is not doing very well, so now the value of the resulting product does not exceed $2 \\cdot 10^9$.\n\nThe directors of the company are not satisfied with the efficiency of the production process and have given you a budget of $b$ coins to optimize it.\n\nTo optimize production you can change the order of machines in the chain. Namely, by spending $p$ coins, you can take any machine of kind $(+,~a_i)$ and move it to any place in the chain without changing the order of other machines. Also, by spending $m$ coins, you can take any machine of kind $(*,~a_i)$ and move it to any place in the chain.\n\nWhat is the maximum value of the resulting product that can be achieved if the total cost of movements that are made should not exceed $b$ coins?\n\n## Input\n\nThe first line contains four integers $n$, $b$, $p$ and $m$ ($1 \\le n \\le 10^6$, $1 \\le b, p, m \\le 10^9$) — the number of machine at the factory, your budget and costs of movements of both kinds of machines.\n\nEach of the following $n$ lines contains description of a machine. The description begins with one of the following characters: \"`+`\" or \"`*`\", that denotes the kind of the machine. Then an integer $a_i$ follows ($1 \\le a_i \\le 2 \\cdot 10^9$).\n\nIt's guaranteed that the current value of the resulting product does not exceed $2 \\cdot 10^9$.\n\n## Output\n\nPrint one integer — the maximum value of the resulting product that can be achieved if the total cost of movements that are made does not exceed $b$ coins.\n\n## Note\n\nIn the first example our budget is too low to move machine $(*,~2)$, but we can move both machines $(+,~1)$ to the beginning of the chain. So the final chain will be $(+,~1)$ $(+,~1)$ $(*,~2)$. If the workpiece with the value $1$ is supplied to the first machine, its value will be changed in the following way: $1, 2, 3, 6$.\n\nIn the second example we can move only one machine. Let's move machine $(+,~2)$ to the beginning of the chain. The final chain will be $(+,~2)$ $(*,~2)$ $(+,~1)$ $(*,~3)$. The value of the workpiece will be changed in the following way: $1, 3, 6, 7, 21$.\n\nIn the third example we can place machine $(*,~4)$ before the machine $(*,~5)$, and move machine $(+,~3)$ to the beginning of the chain. The final chain will be $(+,~3)$ $(*,~2)$ $(+,~1)$ $(+,~1)$ $(+,~1)$ $(+,~1)$ $(*,~4)$ $(*,~5)$. The value of the workpiece will be changed in the following way: $1, 4, 8, 9, 10, 11, 12, 48, 240$.",
-  "statementZhMd": null,
+  "statementZhMd": "你受邀成为一家大型公司的生产流程优化专家。该公司工厂中有 $n$ 台机器，它们在生产链中首尾相连。每台机器可以用以下两种形式之一表示：$(+,~a_i)$ 或 $(*,~a_i)$。\n\n如果将价值为 $x$ 的工件送入 $(+,~a_i)$ 类型的机器，那么输出工件的价值为 $x + a_i$。\n\n如果将价值为 $x$ 的工件送入 $(*,~a_i)$ 类型的机器，那么输出工件的价值为 $x \\cdot a_i$。\n\n整个生产过程如下：将价值为 $1$ 的工件送入第一台机器，然后将第一台机器操作后得到的工件送入第二台机器，再将第二台机器操作后得到的工件送入第三台机器，以此类推。由于公司经营状况不佳，目前最终产品的价值不超过 $2 \\cdot 10^9$。\n\n公司董事对生产流程的效率并不满意，因此给了你 $b$ 枚硬币来优化生产流程。\n\n为了优化生产流程，你可以改变机器在生产链中的顺序。具体来说，花费 $p$ 枚硬币，你可以取出任意一台 $(+,~a_i)$ 类型的机器，并将其移动到生产链中的任意位置，同时不改变其他机器之间的顺序。类似地，花费 $m$ 枚硬币，你可以取出任意一台 $(*,~a_i)$ 类型的机器，并将其移动到生产链中的任意位置。\n\n如果所有移动的总花费不超过 $b$ 枚硬币，最终产品的最大价值是多少？\n\n## 输入格式\n\n第一行包含四个整数 $n$、$b$、$p$ 和 $m$（$1 \\le n \\le 10^6$，$1 \\le b, p, m \\le 10^9$）——工厂中的机器数量、你的预算，以及移动两种类型机器的花费。\n\n接下来的 $n$ 行中，每行描述一台机器。描述以字符 \"`+`\" 或 \"`*`\" 开头，表示机器的类型。随后给出一个整数 $a_i$（$1 \\le a_i \\le 2 \\cdot 10^9$）。\n\n保证当前生产流程得到的最终产品价值不超过 $2 \\cdot 10^9$。\n\n## 输出格式\n\n输出一个整数——在所有移动的总花费不超过 $b$ 枚硬币的情况下，最终产品所能达到的最大价值。\n\n## 说明\n\n在第一个样例中，预算不足以移动机器 $(*,~2)$，但我们可以将两台 $(+,~1)$ 类型的机器都移动到生产链的开头。因此，最终的机器顺序为 $(+,~1)$ $(+,~1)$ $(*,~2)$。如果将价值为 $1$ 的工件送入第一台机器，其价值变化如下：$1, 2, 3, 6$。\n\n在第二个样例中，我们只能移动一台机器。将机器 $(+,~2)$ 移动到生产链的开头。最终的机器顺序为 $(+,~2)$ $(*,~2)$ $(+,~1)$ $(*,~3)$。工件的价值变化如下：$1, 3, 6, 7, 21$。\n\n在第三个样例中，我们可以将机器 $(*,~4)$ 放到机器 $(*,~5)$ 之前，并将机器 $(+,~3)$ 移动到生产链的开头。最终的机器顺序为 $(+,~3)$ $(*,~2)$ $(+,~1)$ $(+,~1)$ $(+,~1)$ $(+,~1)$ $(*,~4)$ $(*,~5)$。工件的价值变化如下：$1, 4, 8, 9, 10, 11, 12, 48, 240$。",
   "samples": [
     {
       "input": "3 2 1 3\n* 2\n+ 1\n+ 1\n",
@@ -35,5 +35,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:44:09.672Z"
+  "fetchedAt": "2026-10-30T22:44:09.672Z",
+  "translatedAt": "2026-11-04T09:15:24.066+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

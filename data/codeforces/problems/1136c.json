@@ -4,7 +4,7 @@
   "contestId": 1136,
   "index": "C",
   "title": "Nastya Is Transposing Matrices",
-  "titleZh": null,
+  "titleZh": "Nastya 正在转置矩阵",
   "url": "https://codeforces.com/contest/1136/problem/C",
   "difficulty": 1500,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Nastya came to her informatics lesson, and her teacher who is, by the way, a little bit famous here gave her the following task.\n\nTwo matrices $A$ and $B$ are given, each of them has size $n \\times m$. Nastya can perform the following operation to matrix $A$ unlimited number of times:\n\n- take any square *square submatrix* of $A$ and transpose it (i.e. the element of the submatrix which was in the $i$-th row and $j$-th column of the submatrix will be in the $j$-th row and $i$-th column after transposing, and the transposed submatrix itself will keep its place in the matrix $A$).\n\nNastya's task is to check whether it is possible to transform the matrix $A$ to the matrix $B$.\n\n![image](https://espresso.codeforces.com/0ed105b4ebafba868ce325a5141bddf779ecb9f0.png) Example of the operation\n\nAs it may require a lot of operations, you are asked to answer this question for Nastya.\n\nA *square submatrix* of matrix $M$ is a matrix which consist of all elements which comes from one of the rows with indeces $x, x+1, \\dots, x+k-1$ of matrix $M$ and comes from one of the columns with indeces $y, y+1, \\dots, y+k-1$ of matrix $M$. $k$ is the size of *square submatrix*. In other words, *square submatrix* is the set of elements of source matrix which form a solid square (i.e. without holes).\n\n## Input\n\nThe first line contains two integers $n$ and $m$ separated by space ($1 \\leq n, m \\leq 500$) — the numbers of rows and columns in $A$ and $B$ respectively.\n\nEach of the next $n$ lines contains $m$ integers, the $j$-th number in the $i$-th of these lines denotes the $j$-th element of the $i$-th row of the matrix $A$ ($1 \\leq A_{ij} \\leq 10^{9}$).\n\nEach of the next $n$ lines contains $m$ integers, the $j$-th number in the $i$-th of these lines denotes the $j$-th element of the $i$-th row of the matrix $B$ ($1 \\leq B_{ij} \\leq 10^{9}$).\n\n## Output\n\nPrint \"`YES`\" (without quotes) if it is possible to transform $A$ to $B$ and \"`NO`\" (without quotes) otherwise.\n\nYou can print each letter in any case (upper or lower).\n\n## Note\n\nConsider the third example. The matrix $A$ initially looks as follows.\n\n$$ \\begin{bmatrix} 1 & 2 & 3\\\\ 4 & 5 & 6\\\\ 7 & 8 & 9 \\end{bmatrix} $$\n\nThen we choose the whole matrix as transposed submatrix and it becomes\n\n$$ \\begin{bmatrix} 1 & 4 & 7\\\\ 2 & 5 & 8\\\\ 3 & 6 & 9 \\end{bmatrix} $$\n\nThen we transpose the submatrix with corners in cells $(2, 2)$ and $(3, 3)$.\n\n$$ \\begin{bmatrix} 1 & 4 & 7\\\\ 2 & \\textbf{5} & \\textbf{8}\\\\ 3 & \\textbf{6} & \\textbf{9} \\end{bmatrix} $$\n\nSo matrix becomes\n\n$$ \\begin{bmatrix} 1 & 4 & 7\\\\ 2 & 5 & 6\\\\ 3 & 8 & 9 \\end{bmatrix} $$\n\nand it is $B$.",
-  "statementZhMd": null,
+  "statementZhMd": "Nastya 来到了信息学课，而她的老师——顺便一提，这位老师在这里还有点名气——给她布置了如下任务。\n\n给定两个矩阵 $A$ 和 $B$，它们的大小均为 $n \\times m$。Nastya 可以对矩阵 $A$ 无限次执行以下操作：\n\n- 选取 $A$ 的任意一个**正方形子矩阵**，并将其转置（也就是说，子矩阵中原本位于第 $i$ 行第 $j$ 列的元素，在转置后会位于第 $j$ 行第 $i$ 列，并且转置后的子矩阵仍保持在矩阵 $A$ 中原来的位置）。\n\nNastya 的任务是判断能否将矩阵 $A$ 变为矩阵 $B$。\n\n![image](https://espresso.codeforces.com/0ed105b4ebafba868ce325a5141bddf779ecb9f0.png) 操作示例\n\n由于完成这一过程可能需要大量操作，因此请你为 Nastya 回答这个问题。\n\n矩阵 $M$ 的**正方形子矩阵**是由矩阵 $M$ 的第 $x, x+1, \\dots, x+k-1$ 行以及第 $y, y+1, \\dots, y+k-1$ 列中的所有元素组成的矩阵。$k$ 是**正方形子矩阵**的边长。换句话说，**正方形子矩阵**是源矩阵中构成一个实心正方形（即不含空洞）的一组元素。\n\n## 输入格式\n\n第一行包含两个用空格分隔的整数 $n$ 和 $m$（$1 \\leq n, m \\leq 500$），分别表示矩阵 $A$ 和 $B$ 的行数和列数。\n\n接下来的 $n$ 行中，每行包含 $m$ 个整数，其中这些行中的第 $i$ 行的第 $j$ 个数表示矩阵 $A$ 第 $i$ 行的第 $j$ 个元素（$1 \\leq A_{ij} \\leq 10^{9}$）。\n\n接下来的 $n$ 行中，每行包含 $m$ 个整数，其中这些行中的第 $i$ 行的第 $j$ 个数表示矩阵 $B$ 第 $i$ 行的第 $j$ 个元素（$1 \\leq B_{ij} \\leq 10^{9}$）。\n\n## 输出格式\n\n如果可以将 $A$ 变为 $B$，输出 `YES`（不含引号）；否则输出 `NO`（不含引号）。\n\n每个字母可以使用任意大小写形式输出。\n\n## 说明\n\n考虑第三个样例。矩阵 $A$ 的初始状态如下。\n\n$$ \\begin{bmatrix} 1 & 2 & 3\\\\ 4 & 5 & 6\\\\ 7 & 8 & 9 \\end{bmatrix} $$\n\n然后我们选择整个矩阵作为待转置的子矩阵，转置后变为\n\n$$ \\begin{bmatrix} 1 & 4 & 7\\\\ 2 & 5 & 8\\\\ 3 & 6 & 9 \\end{bmatrix} $$\n\n然后我们将以单元格 $(2, 2)$ 和 $(3, 3)$ 为顶点的子矩阵进行转置。\n\n$$ \\begin{bmatrix} 1 & 4 & 7\\\\ 2 & \\textbf{5} & \\textbf{8}\\\\ 3 & \\textbf{6} & \\textbf{9} \\end{bmatrix} $$\n\n于是矩阵变为\n\n$$ \\begin{bmatrix} 1 & 4 & 7\\\\ 2 & 5 & 6\\\\ 3 & 8 & 9 \\end{bmatrix} $$\n\n这就是矩阵 $B$。",
   "samples": [
     {
       "input": "2 2\n1 1\n6 1\n1 6\n1 1\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-31T00:14:07.680Z"
+  "fetchedAt": "2026-10-31T00:14:07.680Z",
+  "translatedAt": "2026-11-04T10:44:54.245+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

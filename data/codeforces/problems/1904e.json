@@ -4,7 +4,7 @@
   "contestId": 1904,
   "index": "E",
   "title": "Tree Queries",
-  "titleZh": null,
+  "titleZh": "树上查询",
   "url": "https://codeforces.com/contest/1904/problem/E",
   "difficulty": 2500,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "*Those who don't work don't eat. Get the things you want with your own power. But believe, the earnest and serious people are the ones who have the last laugh... But even then, I won't give you a present.*—Santa, *Hayate no Gotoku!*\n\n*Since Hayate didn't get any Christmas presents from Santa, he is instead left solving a tree query problem.*\n\nHayate has a tree with $n$ nodes.\n\nHayate now wants you to answer $q$ queries. Each query consists of a node $x$ and $k$ other additional nodes $a_1,a_2,\\ldots,a_k$. These $k+1$ nodes are guaranteed to be all distinct.\n\nFor each query, you must find the length of the longest simple path starting at node $x^\\dagger$ after removing nodes $a_1,a_2,\\ldots,a_k$ along with all edges connected to at least one of nodes $a_1,a_2,\\ldots,a_k$.\n\n$^\\dagger$ A simple path of length $k$ starting at node $x$ is a sequence of **distinct** nodes $x=u_0,u_1,\\ldots,u_k$ such that there exists a edge between nodes $u_{i-1}$ and $u_i$ for all $1 \\leq i \\leq k$.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n, q \\le 2 \\cdot 10^5$) — the number of nodes of the tree and the number of queries.\n\nThe following $n - 1$ lines contain two integers $u$ and $v$ ($1 \\le u, v \\le n$, $u \\ne v$) — denoting an edge between nodes $u$ and $v$. It is guaranteed that the given edges form a tree.\n\nThe following $q$ lines describe the queries. Each line contains the integers $x$, $k$ and $a_1,a_2,\\ldots,a_k$ ($1 \\leq x \\leq n$, $0 \\leq k \\lt n$, $1 \\leq a_i \\leq n$) — the starting node, the number of removed nodes and the removed nodes.\n\nIt is guaranteed that for each query, $x,a_1,a_2,\\ldots,a_k$ are all distinct.\n\nIt is guaranteed that the sum of $k$ over all queries will not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each query, output a single integer denoting the answer for that query.\n\n## Note\n\nIn the first example, the tree is as follows:\n\n![image](https://espresso.codeforces.com/70ab3e7a302f2c295577c2fb47a39df97245af7d.png)\n\nIn the first query, no nodes are missing. The longest simple path starting from node $2$ is $2 \\to 1 \\to 3 \\to 4$. Thus, the answer is $3$.\n\nIn the third query, nodes $1$ and $6$ are missing and the tree is shown below. The longest simple path starting from node $2$ is $2 \\to 5$. Thus, the answer is $1$.\n\n![image](https://espresso.codeforces.com/eeaca99be6709644bf73bb875684099cb345e260.png)",
-  "statementZhMd": null,
+  "statementZhMd": "*不劳动者不得食。用自己的力量获得自己想要的东西。但请相信，认真且严肃的人才是最后的赢家……即便如此，我也不会送你礼物。*——《旋风管家！》中的圣诞老人\n\n*由于绫崎飒没有从圣诞老人那里得到任何圣诞礼物，他只能转而解决一道树上查询问题。*\n\n绫崎飒有一棵包含 $n$ 个节点的树。\n\n现在，他希望你回答 $q$ 个查询。每个查询由一个节点 $x$ 和另外 $k$ 个节点 $a_1,a_2,\\ldots,a_k$ 组成。这 $k+1$ 个节点保证两两不同。\n\n对于每个查询，在删除节点 $a_1,a_2,\\ldots,a_k$ 以及所有与节点 $a_1,a_2,\\ldots,a_k$ 中至少一个节点相连的边后，请你求出从节点 $x^\\dagger$ 出发的最长简单路径的长度。\n\n$^\\dagger$ 从节点 $x$ 出发的长度为 $k$ 的简单路径是一个由**互不相同**的节点组成的序列 $x=u_0,u_1,\\ldots,u_k$，并且对于所有 $1 \\leq i \\leq k$，节点 $u_{i-1}$ 和 $u_i$ 之间存在一条边。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\leq n, q \\leq 2 \\cdot 10^5$）——树中节点的数量和查询的数量。\n\n接下来的 $n - 1$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\leq u, v \\leq n$，$u \\ne v$），表示节点 $u$ 和节点 $v$ 之间存在一条边。保证给出的边构成一棵树。\n\n接下来的 $q$ 行描述查询。每行包含整数 $x$、$k$ 和 $a_1,a_2,\\ldots,a_k$（$1 \\leq x \\leq n$，$0 \\leq k \\lt n$，$1 \\leq a_i \\leq n$）——起始节点、被删除节点的数量以及被删除的节点。\n\n保证对于每个查询，$x,a_1,a_2,\\ldots,a_k$ 两两不同。\n\n保证所有查询中的 $k$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个查询，输出一个整数，表示该查询的答案。\n\n## 说明\n\n在第一个样例中，树如下所示：\n\n![image](https://espresso.codeforces.com/70ab3e7a302f2c295577c2fb47a39df97245af7d.png)\n\n在第一个查询中，没有节点被删除。从节点 $2$ 出发的最长简单路径为 $2 \\to 1 \\to 3 \\to 4$。因此，答案为 $3$。\n\n在第三个查询中，节点 $1$ 和 $6$ 被删除，此时的树如下所示。从节点 $2$ 出发的最长简单路径为 $2 \\to 5$。因此，答案为 $1$。\n\n![image](https://espresso.codeforces.com/eeaca99be6709644bf73bb875684099cb345e260.png)",
   "samples": [
     {
       "input": "7 7\n1 2\n1 3\n3 4\n2 5\n2 6\n6 7\n2 0\n2 1 1\n2 2 1 6\n3 1 4\n3 1 1\n5 0\n5 2 1 6\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:07:32.885Z"
+  "fetchedAt": "2026-10-30T22:07:32.885Z",
+  "translatedAt": "2026-11-04T09:13:05.172+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

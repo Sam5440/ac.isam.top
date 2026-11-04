@@ -4,7 +4,7 @@
   "contestId": 1725,
   "index": "M",
   "title": "Moving Both Hands",
-  "titleZh": null,
+  "titleZh": "移动双手",
   "url": "https://codeforces.com/contest/1725/problem/M",
   "difficulty": 1800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Pak Chanek is playing one of his favourite board games. In the game, there is a directed graph with $N$ vertices and $M$ edges. In the graph, edge $i$ connects two different vertices $U_i$ and $V_i$ with a length of $W_i$. By using the $i$-th edge, something can move from $U_i$ to $V_i$, but not from $V_i$ to $U_i$.\n\nTo play this game, initially Pak Chanek must place both of his hands onto two different vertices. In one move, he can move one of his hands to another vertex using an edge. To move a hand from vertex $U_i$ to vertex $V_i$, Pak Chanek needs a time of $W_i$ seconds. Note that Pak Chanek can only move one hand at a time. This game ends when both of Pak Chanek's hands are on the same vertex.\n\nPak Chanek has several questions. For each $p$ satisfying $2 \\leq p \\leq N$, you need to find the minimum time in seconds needed for Pak Chanek to end the game if initially Pak Chanek's left hand and right hand are placed on vertex $1$ and vertex $p$, or report if it is impossible.\n\n## Input\n\nThe first line contains two integers $N$ and $M$ ($2 \\leq N \\leq 10^5$, $0 \\leq M \\leq 2 \\cdot 10^5$) — the number of vertices and edges in the graph.\n\nThe $i$-th of the next $M$ lines contains three integers $U_i$, $V_i$, and $W_i$ ($1 \\le U_i, V_i \\le N$, $U_i \\neq V_i$, $1 \\le W_i \\le 10^9$) — a directed edge that connects two different vertices $U_i$ and $V_i$ with a length of $W_i$. There is no pair of different edges $i$ and $j$ such that $U_i = U_j$ and $V_i = V_j$.\n\n## Output\n\nOutput a line containing $N-1$ integers. The $j$-th integer represents the minimum time in seconds needed by Pak Chanek to end the game if initially Pak Chanek's left hand and right hand are placed on vertex $1$ and vertex $j+1$, or $-1$ if it is impossible.\n\n## Note\n\nIf initially Pak Chanek's left hand is on vertex $1$ and his right hand is on vertex $5$, Pak Chanek can do the following moves:\n\n1. Move his right hand to vertex $4$ in $1$ second.\n2. Move his left hand to vertex $2$ in $2$ seconds.\n3. Move his left hand to vertex $4$ in $1$ second.\n\n![image](https://espresso.codeforces.com/464d2c6c030b9a4294cf9ed10125aaef76a87c92.png)\n\nIn total it needs $1+2+1=4$ seconds. It can be proven that there is no other way that is faster.",
-  "statementZhMd": null,
+  "statementZhMd": "Pak Chanek 正在玩他最喜欢的棋盘游戏之一。游戏中有一个包含 $N$ 个顶点和 $M$ 条边的有向图。图中的第 $i$ 条边连接两个不同的顶点 $U_i$ 和 $V_i$，长度为 $W_i$。通过使用第 $i$ 条边，可以使某个物体从 $U_i$ 移动到 $V_i$，但不能从 $V_i$ 移动到 $U_i$。\n\n为了进行游戏，开始时 Pak Chanek 必须将他的双手分别放在两个不同的顶点上。每次操作中，他可以使用一条边将其中一只手移动到另一个顶点。要将一只手从顶点 $U_i$ 移动到顶点 $V_i$，Pak Chanek 需要花费 $W_i$ 秒。注意，Pak Chanek 一次只能移动一只手。当 Pak Chanek 的双手位于同一个顶点时，游戏结束。\n\nPak Chanek 有几个问题。对于每个满足 $2 \\leq p \\leq N$ 的 $p$，请你求出：如果开始时 Pak Chanek 的左手和右手分别放在顶点 $1$ 和顶点 $p$，结束游戏所需的最短时间（单位：秒）；如果无法结束游戏，则报告这一情况。\n\n## 输入格式\n\n第一行包含两个整数 $N$ 和 $M$（$2 \\leq N \\leq 10^5$，$0 \\leq M \\leq 2 \\cdot 10^5$），表示图中的顶点数和边数。\n\n接下来的 $M$ 行中，第 $i$ 行包含三个整数 $U_i$、$V_i$ 和 $W_i$（$1 \\leq U_i, V_i \\leq N$，$U_i \\neq V_i$，$1 \\leq W_i \\leq 10^9$），表示一条连接两个不同顶点 $U_i$ 和 $V_i$、长度为 $W_i$ 的有向边。不存在两个不同的边 $i$ 和 $j$ 满足 $U_i = U_j$ 且 $V_i = V_j$。\n\n## 输出格式\n\n输出一行，包含 $N-1$ 个整数。第 $j$ 个整数表示：如果开始时 Pak Chanek 的左手和右手分别放在顶点 $1$ 和顶点 $j+1$，结束游戏所需的最短时间（单位：秒）；如果无法结束游戏，则输出 $-1$。\n\n## 说明\n\n如果开始时 Pak Chanek 的左手在顶点 $1$，右手在顶点 $5$，Pak Chanek 可以进行如下操作：\n\n1. 用 1 秒将右手移动到顶点 $4$。\n2. 用 2 秒将左手移动到顶点 $2$。\n3. 用 1 秒将左手移动到顶点 $4$。\n\n![image](https://espresso.codeforces.com/464d2c6c030b9a4294cf9ed10125aaef76a87c92.png)\n\n总共需要 $1+2+1=4$ 秒。可以证明，不存在更快的方法。",
   "samples": [
     {
       "input": "5 7\n1 2 2\n2 4 1\n4 1 4\n2 5 3\n5 4 1\n5 2 4\n2 1 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:53:00.799Z"
+  "fetchedAt": "2026-11-02T17:53:00.799Z",
+  "translatedAt": "2026-11-04T09:18:02.839+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

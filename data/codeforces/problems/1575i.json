@@ -4,7 +4,7 @@
   "contestId": 1575,
   "index": "I",
   "title": "Illusions of the Desert",
-  "titleZh": null,
+  "titleZh": "沙漠幻象",
   "url": "https://codeforces.com/contest/1575/problem/I",
   "difficulty": 2300,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "Chanek Jones is back, helping his long-lost relative Indiana Jones, to find a secret treasure in a maze buried below a desert full of illusions.\n\nThe map of the labyrinth forms a tree with $n$ rooms numbered from $1$ to $n$ and $n - 1$ tunnels connecting them such that it is possible to travel between each pair of rooms through several tunnels.\n\nThe $i$-th room ($1 \\leq i \\leq n$) has $a_i$ illusion rate. To go from the $x$-th room to the $y$-th room, there must exist a tunnel between $x$ and $y$, and it takes $\\max(|a_x + a_y|, |a_x - a_y|)$ energy. $|z|$ denotes the absolute value of $z$.\n\nTo prevent grave robbers, the maze can change the illusion rate of any room in it. Chanek and Indiana would ask $q$ queries.\n\nThere are two types of queries to be done:\n\n- $1\\ u\\ c$ — The illusion rate of the $x$-th room is changed to $c$ ($1 \\leq u \\leq n$, $0 \\leq |c| \\leq 10^9$).\n- $2\\ u\\ v$ — Chanek and Indiana ask you the minimum sum of energy needed to take the secret treasure at room $v$ if they are initially at room $u$ ($1 \\leq u, v \\leq n$).\n\nHelp them, so you can get a portion of the treasure!\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($2 \\leq n \\leq 10^5$, $1 \\leq q \\leq 10^5$) — the number of rooms in the maze and the number of queries.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\leq |a_i| \\leq 10^9$) — inital illusion rate of each room.\n\nThe $i$-th of the next $n-1$ lines contains two integers $s_i$ and $t_i$ ($1 \\leq s_i, t_i \\leq n$), meaning there is a tunnel connecting $s_i$-th room and $t_i$-th room. The given edges form a tree.\n\nThe next $q$ lines contain the query as described. The given queries are valid.\n\n## Output\n\nFor each type $2$ query, output a line containing an integer — the minimum sum of energy needed for Chanek and Indiana to take the secret treasure.\n\n## Note\n\n![image](https://espresso.codeforces.com/72777b7bb100c4b398ceaa86f2801c4e28ba6cb1.png)\n\nIn the first query, their movement from the $1$-st to the $2$-nd room is as follows.\n\n- $1 \\rightarrow 5$ — takes $\\max(|10 + 4|, |10 - 4|) = 14$ energy.\n- $5 \\rightarrow 6$ — takes $\\max(|4 + (-6)|, |4 - (-6)|) = 10$ energy.\n- $6 \\rightarrow 2$ — takes $\\max(|-6 + (-9)|, |-6 - (-9)|) = 15$ energy.\n\nIn total, it takes $39$ energy.\n\nIn the second query, the illusion rate of the $1$-st room changes from $10$ to $-3$.\n\nIn the third query, their movement from the $1$-st to the $2$-nd room is as follows.\n\n- $1 \\rightarrow 5$ — takes $\\max(|-3 + 4|, |-3 - 4|) = 7$ energy.\n- $5 \\rightarrow 6$ — takes $\\max(|4 + (-6)|, |4 - (-6)|) = 10$ energy.\n- $6 \\rightarrow 2$ — takes $\\max(|-6 + (-9)|, |-6 - (-9)|) = 15$ energy.\n\nNow, it takes $32$ energy.",
-  "statementZhMd": null,
+  "statementZhMd": "Chanek Jones 回来了，他正在帮助失散多年的亲戚 Indiana Jones，在一片充满幻象的沙漠下方、埋藏着的迷宫中寻找秘密宝藏。\n\n迷宫的地图构成一棵树，其中有 $n$ 个房间，编号为 $1$ 至 $n$，以及连接这些房间的 $n - 1$ 条隧道，使得任意两个房间之间都可以通过若干条隧道到达。\n\n第 $i$ 个房间（$1 \\leq i \\leq n$）具有幻象率 $a_i$。从第 $x$ 个房间前往第 $y$ 个房间时，$x$ 和 $y$ 之间必须存在一条隧道，且需要消耗 $\\max(|a_x + a_y|, |a_x - a_y|)$ 点能量。$|z|$ 表示 $z$ 的绝对值。\n\n为了阻止盗墓者，迷宫可以改变其中任意房间的幻象率。Chanek 和 Indiana 将提出 $q$ 个询问。\n\n询问有以下两种类型：\n\n- $1\\ u\\ c$ — 将第 $u$ 个房间的幻象率修改为 $c$（$1 \\leq u \\leq n$，$0 \\leq |c| \\leq 10^9$）。\n- $2\\ u\\ v$ — 如果他们最初位于第 $u$ 个房间，询问到达第 $v$ 个房间并取得秘密宝藏所需的最小能量总和（$1 \\leq u, v \\leq n$）。\n\n请帮助他们，这样你就能获得一部分宝藏！\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$2 \\leq n \\leq 10^5$，$1 \\leq q \\leq 10^5$），表示迷宫中的房间数和询问数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq |a_i| \\leq 10^9$），表示每个房间的初始幻象率。\n\n接下来的 $n-1$ 行中，第 $i$ 行包含两个整数 $s_i$ 和 $t_i$（$1 \\leq s_i, t_i \\leq n$），表示第 $s_i$ 个房间和第 $t_i$ 个房间之间存在一条隧道。给出的边构成一棵树。\n\n接下来的 $q$ 行包含如上所述的询问。给出的询问均合法。\n\n## 输出格式\n\n对于每个类型 $2$ 的询问，输出一行一个整数，表示 Chanek 和 Indiana 取得秘密宝藏所需的最小能量总和。\n\n## 说明\n\n![image](https://espresso.codeforces.com/72777b7bb100c4b398ceaa86f2801c4e28ba6cb1.png)\n\n在第一个询问中，他们从第 $1$ 个房间前往第 $2$ 个房间的过程如下。\n\n- $1 \\rightarrow 5$ — 需要消耗 $\\max(|10 + 4|, |10 - 4|) = 14$ 点能量。\n- $5 \\rightarrow 6$ — 需要消耗 $\\max(|4 + (-6)|, |4 - (-6)|) = 10$ 点能量。\n- $6 \\rightarrow 2$ — 需要消耗 $\\max(|-6 + (-9)|, |-6 - (-9)|) = 15$ 点能量。\n\n总计需要消耗 $39$ 点能量。\n\n在第二个询问中，第 $1$ 个房间的幻象率从 $10$ 变为 $-3$。\n\n在第三个询问中，他们从第 $1$ 个房间前往第 $2$ 个房间的过程如下。\n\n- $1 \\rightarrow 5$ — 需要消耗 $\\max(|-3 + 4|, |-3 - 4|) = 7$ 点能量。\n- $5 \\rightarrow 6$ — 需要消耗 $\\max(|4 + (-6)|, |4 - (-6)|) = 10$ 点能量。\n- $6 \\rightarrow 2$ — 需要消耗 $\\max(|-6 + (-9)|, |-6 - (-9)|) = 15$ 点能量。\n\n现在需要消耗 $32$ 点能量。",
   "samples": [
     {
       "input": "6 4\n10 -9 2 -1 4 -6\n1 5\n5 4\n5 6\n6 2\n6 3\n2 1 2\n1 1 -3\n2 1 2\n2 3 3\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:21:25.367Z"
+  "fetchedAt": "2026-11-02T18:21:25.367Z",
+  "translatedAt": "2026-11-04T10:28:29.555+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

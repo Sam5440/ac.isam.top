@@ -4,7 +4,7 @@
   "contestId": 1326,
   "index": "F1",
   "title": "Wise Men (Easy Version)",
-  "titleZh": null,
+  "titleZh": "智者（简单版）",
   "url": "https://codeforces.com/contest/1326/problem/F1",
   "difficulty": 2600,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "**This is the easy version of the problem. The difference is constraints on the number of wise men and the time limit. You can make hacks only if all versions of this task are solved.**\n\n$n$ wise men live in a beautiful city. Some of them know each other.\n\nFor each of the $n!$ possible permutations $p_1, p_2, \\ldots, p_n$ of the wise men, let's generate a binary string of length $n-1$: for each $1 \\leq i \\lt n$ set $s_i=1$ if $p_i$ and $p_{i+1}$ know each other, and $s_i=0$ otherwise.\n\nFor all possible $2^{n-1}$ binary strings, find the number of permutations that produce this binary string.\n\n## Input\n\nThe first line of input contains one integer $n$ ($2 \\leq n \\leq 14)$  — the number of wise men in the city.\n\nThe next $n$ lines contain a binary string of length $n$ each, such that the $j$-th character of the $i$-th string is equal to '`1`' if wise man $i$ knows wise man $j$, and equals '`0`' otherwise.\n\nIt is guaranteed that if the $i$-th man knows the $j$-th man, then the $j$-th man knows $i$-th man and no man knows himself.\n\n## Output\n\nPrint $2^{n-1}$ space-separated integers. For each $0 \\leq x \\lt 2^{n-1}$:\n\n- Let's consider a string $s$ of length $n-1$, such that $s_i = \\lfloor \\frac{x}{2^{i-1}} \\rfloor \\bmod 2$ for all $1 \\leq i \\leq n - 1$.\n- The $(x+1)$-th number should be equal to the required answer for $s$.\n\n## Note\n\nIn the first test, each wise man knows each other, so every permutation will produce the string $11$.\n\nIn the second test:\n\n- If $p = \\{1, 2, 3, 4\\}$, the produced string is $101$, because wise men $1$ and $2$ know each other, $2$ and $3$ don't know each other, and $3$ and $4$ know each other;\n- If $p = \\{4, 1, 2, 3\\}$, the produced string is $110$, because wise men $1$ and $4$ know each other, $1$ and $2$ know each other and $2$, and $3$ don't know each other;\n- If $p = \\{1, 3, 2, 4\\}$, the produced string is $000$, because wise men $1$ and $3$ don't know each other, $3$ and $2$ don't know each other, and $2$ and $4$ don't know each other.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是本题的简单版本。与正式版本的区别在于智者人数的约束和时间限制。只有在解决本题的所有版本后，才能进行 hacks。**\n\n$n$ 位智者生活在一座美丽的城市中。其中一些人彼此认识。\n\n对于智者的 $n!$ 种排列 $p_1, p_2, \\ldots, p_n$，我们生成一个长度为 $n-1$ 的二进制字符串：对于每个 $1 \\leq i \\lt n$，如果 $p_i$ 和 $p_{i+1}$ 彼此认识，则令 $s_i=1$，否则令 $s_i=0$。\n\n对于所有可能的 $2^{n-1}$ 个二进制字符串，求能生成该二进制字符串的排列数量。\n\n## 输入格式\n\n输入的第一行包含一个整数 $n$（$2 \\leq n \\leq 14$）——城市中智者的数量。\n\n接下来的 $n$ 行每行包含一个长度为 $n$ 的二进制字符串，其中第 $i$ 个字符串的第 $j$ 个字符：如果智者 $i$ 认识智者 $j$，则为 '`1`'，否则为 '`0`'。\n\n保证如果第 $i$ 位智者认识第 $j$ 位智者，那么第 $j$ 位智者也认识第 $i$ 位智者，并且没有智者认识自己。\n\n## 输出格式\n\n输出 $2^{n-1}$ 个用空格分隔的整数。对于每个 $0 \\leq x \\lt 2^{n-1}$：\n\n- 考虑一个长度为 $n-1$ 的字符串 $s$，满足对于所有 $1 \\leq i \\leq n - 1$，$s_i = \\lfloor \\frac{x}{2^{i-1}} \\rfloor \\bmod 2$。\n- 第 $(x+1)$ 个数应当等于字符串 $s$ 对应的答案。\n\n## 说明\n\n在第一个测试中，每位智者都认识其他所有智者，因此每个排列都会生成字符串 $11$。\n\n在第二个测试中：\n\n- 如果 $p = \\{1, 2, 3, 4\\}$，生成的字符串为 $101$，因为智者 $1$ 和 $2$ 彼此认识，$2$ 和 $3$ 彼此不认识，而 $3$ 和 $4$ 彼此认识；\n- 如果 $p = \\{4, 1, 2, 3\\}$，生成的字符串为 $110$，因为智者 $1$ 和 $4$ 彼此认识，$1$ 和 $2$ 彼此认识，而 $2$ 和 $3$ 彼此不认识；\n- 如果 $p = \\{1, 3, 2, 4\\}$，生成的字符串为 $000$，因为智者 $1$ 和 $3$ 彼此不认识，$3$ 和 $2$ 彼此不认识，而 $2$ 和 $4$ 彼此不认识。",
   "samples": [
     {
       "input": "3\n011\n101\n110\n",
@@ -31,5 +31,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T23:55:01.723Z"
+  "fetchedAt": "2026-10-30T23:55:01.723Z",
+  "translatedAt": "2026-11-04T10:36:31.212+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

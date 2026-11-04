@@ -4,7 +4,7 @@
   "contestId": "agc058",
   "index": "E",
   "title": "Nearer Permutation",
-  "titleZh": null,
+  "titleZh": "更近的排列",
   "url": "https://atcoder.jp/contests/agc058/tasks/agc058_e",
   "difficulty": 3825,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "## Problem Statement\n\nIn this problem, a \"permutation\" always means a permutation of $(1,2,\\cdots,N)$.\n\nFor two permutations $p$ and $q$, let us define the distance between them, $d(p,q)$, as follows.\n\n- Consider making $p$ equal $q$ by repeatedly swapping two adjacent terms in $p$. Let $d(p,q)$ be the minimum number of swaps required here.\n\nAdditionally, for a permutation $x$, let us define another permutation $f(x)$ as follows.\n\n- Let $y=(1,2,\\cdots,N)$. Consider permutations $z$ such that $d(x,z) \\leq d(y,z)$. Let $f(x)$ be the lexicographically smallest of those permutations.\n\nFor example, when $x=(2,3,1)$, the permutations $z$ such that $d(x,z) \\leq d(y,z)$ are $z=(2,1,3),(2,3,1),(3,1,2),(3,2,1)$. The lexicographically smallest of them is $(2,1,3)$, so we have $f(x)=(2,1,3)$.\n\nYou are given a permutation $A=(A_1,A_2,\\cdots,A_N)$. Determine whether there is a permutation $x$ such that $f(x)=A$.\n\nSolve $T$ test cases for each input file.\n\nWhat is lexicographical order on sequences? The algorithm described here determines the lexicographical order between distinct sequences $S$ and $T$. Below, let $S_i$ denote the $i$-th element of $S$. Additionally, let $S \\lt T$ and $S \\gt T$ mean \"$S$ is lexicographical smaller than $T$\" and \"$S$ is lexicographical larger than $T$,\" respectively. Let $L$ be the length of the shorter of $S$ and $T$. For each $i=1,2,\\dots,L$, let us check whether $S_i$ and $T_i$ are equal. If there is $i$ such that $S_i \\neq T_i$, let $j$ be the smallest such $i$, and compare $S_j$ and $T_j$. If $S_j$ is smaller than $T_j$ (as a number), we conclude $S \\lt T$ and exit; if $S_j$ is larger than $T_j$, we conclude $S \\gt T$ and exit. If there is no $i$ such that $S_i \\neq T_i$, compare the lengths of $S$ and $T$. If $S$ is shorter than $T$, we conclude $S \\lt T$ and exit; if $S$ is longer than $T$, we conclude $S \\gt T$ and exit.\n\n## Constraints\n\n- $1 \\leq T \\leq 150000$\n- $2 \\leq N \\leq 300000$\n- $(A_1,A_2,\\cdots,A_N)$ is a permutation of $(1,2,\\cdots,N)$.\n- The sum of $N$ in one input file does not exceed $300000$.\n- All values in input are integers.\n\n## Input\n\nInput is given from Standard Input in the following format:\n\n```\nT\ncase_1\ncase_2\n\\vdots\ncase_T\n```\n\nEach case is in the following format:\n\n```\nN\nA_1 A_2 \\cdots A_N\n```\n\n## Output\n\nFor each case, print `Yes` if there is a permutation $x$ such that $f(x)=A$, and `No` otherwise.",
-  "statementZhMd": null,
+  "statementZhMd": "## 题目描述\n\n在本题中，“排列”始终表示 $(1,2,\\cdots,N)$ 的一个排列。\n\n对于两个排列 $p$ 和 $q$，定义它们之间的距离 $d(p,q)$ 如下。\n\n- 考虑通过反复交换 $p$ 中相邻的两个元素，使 $p$ 变为 $q$。令 $d(p,q)$ 为所需交换次数的最小值。\n\n此外，对于一个排列 $x$，定义另一个排列 $f(x)$ 如下。\n\n- 令 $y=(1,2,\\cdots,N)$。考虑满足 $d(x,z) \\leq d(y,z)$ 的排列 $z$。令 $f(x)$ 为这些排列中字典序最小的排列。\n\n例如，当 $x=(2,3,1)$ 时，满足 $d(x,z) \\leq d(y,z)$ 的排列 $z$ 为 $z=(2,1,3),(2,3,1),(3,1,2),(3,2,1)$。其中字典序最小的是 $(2,1,3)$，因此有 $f(x)=(2,1,3)$。\n\n给定一个排列 $A=(A_1,A_2,\\cdots,A_N)$。请判断是否存在一个排列 $x$，使得 $f(x)=A$。\n\n对于每个输入文件，需要解决 $T$ 组测试数据。\n\n序列的字典序是什么？下面的算法用于确定两个不同序列 $S$ 和 $T$ 之间的字典序。下文中，令 $S_i$ 表示 $S$ 的第 $i$ 个元素。此外，令 $S \\lt T$ 和 $S \\gt T$ 分别表示“$S$ 的字典序小于 $T$”和“$S$ 的字典序大于 $T$”。令 $L$ 为 $S$ 和 $T$ 中较短序列的长度。对于每个 $i=1,2,\\dots,L$，检查 $S_i$ 和 $T_i$ 是否相等。如果存在某个 $i$ 使得 $S_i \\neq T_i$，令 $j$ 为满足此条件的最小 $i$，并比较 $S_j$ 和 $T_j$。如果 $S_j$（作为数值）小于 $T_j$，则判定 $S \\lt T$ 并结束；如果 $S_j$ 大于 $T_j$，则判定 $S \\gt T$ 并结束。如果不存在使 $S_i \\neq T_i$ 的 $i$，则比较 $S$ 和 $T$ 的长度。如果 $S$ 比 $T$ 短，则判定 $S \\lt T$ 并结束；如果 $S$ 比 $T$ 长，则判定 $S \\gt T$ 并结束。\n\n## 约束条件\n\n- $1 \\leq T \\leq 150000$\n- $2 \\leq N \\leq 300000$\n- $(A_1,A_2,\\cdots,A_N)$ 是 $(1,2,\\cdots,N)$ 的一个排列。\n- 一个输入文件中所有 $N$ 的总和不超过 $300000$。\n- 输入中的所有值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nT\ncase_1\ncase_2\n\\vdots\ncase_T\n```\n\n每组测试数据的格式如下：\n\n```\nN\nA_1 A_2 \\cdots A_N\n```\n\n## 输出格式\n\n对于每组测试数据，如果存在一个排列 $x$ 使得 $f(x)=A$，输出 `Yes`；否则输出 `No`。",
   "samples": [
     {
       "input": "2\n2\n1 2\n2\n2 1\n",
@@ -30,5 +30,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T21:29:19.162Z"
+  "fetchedAt": "2026-10-30T21:29:19.162Z",
+  "translatedAt": "2026-11-04T09:18:09.391+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

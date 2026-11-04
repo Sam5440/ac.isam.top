@@ -4,7 +4,7 @@
   "contestId": 1611,
   "index": "F",
   "title": "ATM and Students",
-  "titleZh": null,
+  "titleZh": "ATM 与学生",
   "url": "https://codeforces.com/contest/1611/problem/F",
   "difficulty": 1800,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp started working at a bank. He was assigned to monitor the ATM. The ATM initially contains $s$ rubles.\n\nA queue of $n$ students lined up to him. Each student wants to either withdraw a certain amount of money or deposit it into an account. If $a_i$ is positive, then the student credits that amount of money via ATM. Otherwise, the student withdraws $|a_i|$ rubles.\n\nIn the beginning, the ATM is turned off and an arbitrary number of students are not served. At some point, Polycarp turns on the ATM, which has an initial amount of $s$ rubles. Then, the remaining students start queueing at the ATM. If at some point in time there is less money in the ATM than the student wants to withdraw, then the student is not served and Polycarp turns off the ATM and does not turn it on anymore.\n\nMore formally, the students that are served are forming a **contiguous subsequence**.\n\nPolycarp wants the ATM to serve the **maximum** number of students. Help him in this matter. Print the numbers of the first and last student, or determine that he will not be able to serve anyone.\n\nIn other words, find such a longest continuous segment of students that, starting with the sum of $s$ at the ATM, all these students will be served. ATM serves students consistently (i.e. one after another in the order of the queue).\n\n## Input\n\nThe first line of the input contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case consists of two lines. The first one contains integers $n$ and $s$ ($1 \\le n \\le 2\\cdot10^5$; $0 \\le s \\le 10^9$) — the length of the $a$ array and the initial amount of rubles in the ATM. The second contains $n$ integers $a_1, a_2, \\dots, a_n$ ($-10^9 \\le a_i \\le 10^9$) — elements of the $a$ array. Note that $a_i$ can be zero.\n\nIt is guaranteed that the sum of the values $n$ over all test cases does not exceed $2\\cdot10^5$.\n\n## Output\n\nPrint $t$ lines, each line must contain the answer to the corresponding set of input data: if the answer exists, print the numbers of the first and last served student. If there is no solution, then print `-1` on the line.\n\nIf there are several possible answers, print any.\n\n## Note\n\nIn the first test case, the only correct answer is `2 4`, since when serving students, the number of rubles at the ATM does not become negative, and this is the maximum number of students that can be served.\n\nIn the second test case, the answer is `-1`, as there is not enough money for any student at the ATM.\n\nIn the third test case, the answer can be either `1 2` or `4 5`.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 开始在一家银行工作。他被安排负责监控 ATM。ATM 中最初有 $s$ 卢布。\n\n有 $n$ 名学生排成队等待办理业务。每名学生希望取出一定金额的钱，或将一定金额的钱存入账户。如果 $a_i$ 为正数，则该学生通过 ATM 存入这笔钱；否则，该学生取出 $|a_i|$ 卢布。\n\n一开始，ATM 处于关闭状态，可以不为任意数量的学生办理业务。在某个时刻，Polycarp 打开 ATM，此时其中有 $s$ 卢布。随后，剩余的学生开始在 ATM 前排队。如果在某个时刻 ATM 中的钱少于当前学生想要取出的金额，则不会为该学生办理业务，并且 Polycarp 会关闭 ATM，之后不再打开它。\n\n更正式地说，得到服务的学生构成一个**连续子序列**。\n\nPolycarp 希望 ATM 能为最多的学生办理业务。请帮助他完成这一任务。输出第一个和最后一个得到服务的学生的编号，或者判断他无法为任何学生办理业务。\n\n换句话说，请找出一个最长的连续学生区间，使得从 ATM 中有 $s$ 卢布开始，区间内的所有学生都能得到服务。ATM 按照队列顺序依次为学生办理业务。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例由两行组成。第一行包含整数 $n$ 和 $s$（$1 \\le n \\le 2\\cdot10^5$；$0 \\le s \\le 10^9$）——数组 $a$ 的长度以及 ATM 中卢布的初始数量。第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$-10^9 \\le a_i \\le 10^9$）——数组 $a$ 的元素。注意，$a_i$ 可以为零。\n\n保证所有测试用例中 $n$ 的总和不超过 $2\\cdot10^5$。\n\n## 输出格式\n\n输出 $t$ 行，每行包含对应输入数据的答案：如果答案存在，输出第一个和最后一个得到服务的学生的编号。如果不存在解，则在该行输出 `-1`。\n\n如果有多个可行答案，输出任意一个即可。\n\n## 说明\n\n在第一个测试用例中，唯一正确的答案是 `2 4`，因为在为学生办理业务的过程中，ATM 中的卢布数不会变为负数，并且能够服务的学生数量最多。\n\n在第二个测试用例中，答案是 `-1`，因为 ATM 中没有足够的钱为任何学生办理业务。\n\n在第三个测试用例中，答案可以是 `1 2` 或 `4 5`。",
   "samples": [
     {
       "input": "3\n4 10\n-16 2 -6 8\n3 1000\n-100000 -100000 -100000\n6 0\n2 6 -164 1 -1 -6543\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T18:13:23.214Z"
+  "fetchedAt": "2026-11-02T18:13:23.214Z",
+  "translatedAt": "2026-11-04T10:22:35.579+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

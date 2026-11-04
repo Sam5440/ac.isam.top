@@ -4,14 +4,14 @@
   "contestId": 1719,
   "index": "F",
   "title": "Tonya and Burenka-179",
-  "titleZh": null,
+  "titleZh": "Tonya 与 Burenka-179",
   "url": "https://codeforces.com/contest/1719/problem/F",
   "difficulty": null,
   "tags": [],
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Tonya was given an array of $a$ of length $n$ written on a postcard for his birthday. For some reason, the postcard turned out to be a **cyclic array**, so the index of the element located strictly to the right of the $n$-th is $1$. Tonya wanted to study it better, so he bought a robot \"Burenka-179\".\n\nA program for Burenka is a pair of numbers $(s, k)$, where $1 \\leq s \\leq n$, $1 \\leq k \\leq n-1$. Note that $k$ **cannot** be equal to $n$. Initially, Tonya puts the robot in the position of the array $s$. After that, Burenka makes **exactly** $n$ steps through the array. If at the beginning of a step Burenka stands in the position $i$, then the following happens:\n\n1. The number $a_{i}$ is added to the *usefulness* of the program.\n2. \"Burenka\" moves $k$ positions to the right ($i := i + k$ is executed, if $i$ becomes greater than $n$, then $i := i - n$).\n\nHelp Tonya find the maximum possible *usefulness* of a program for \"Burenka\" if the initial usefulness of any program is $0$.\n\nAlso, Tony's friend Ilyusha asks him to change the array $q$ times. Each time he wants to assign $a_p := x$ for a given index $p$ and a value $x$. You need to find the maximum possible *usefulness* of the program after each of these changes.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) is the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $q$ ($2 \\le n \\le 2 \\cdot 10^5$, $0 \\le q \\le 2 \\cdot 10^5$).\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — elements of the array.\n\nThe following $q$ lines contain changes, each of them contains two integers $p$ and $x$ ($1 \\leq p \\leq n$, $1 \\leq x \\leq 10^9$), meaning you should assign $a_p := x$.\n\nIt is guaranteed that the sum of $n$ and the sum of $q$ over all test cases do not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output $q+1$ numbers — the maximum usefulness of a program initially and after each of the changes.\n\n## Note\n\nIn the first test case, initially and after each request, the answer is achieved at $s = 1$, $k = 1$ or $s = 2$, $k = 1$.\n\nIn the second test case, initially, the answer is achieved when $s = 1$, $k = 2$ or $s = 3$, $k = 2$. After the first request, the answer is achieved at $s = 2$, $k = 2$ or $s = 4$, $k = 2$.",
-  "statementZhMd": null,
+  "statementZhMd": "Tonya 生日时收到了一张明信片，上面写着一个长度为 $n$ 的数组 $a$。不知为何，这张明信片上的数组是一个**循环数组**，因此位于第 $n$ 个元素严格右侧的元素下标为 $1$。Tonya 想要更好地研究这个数组，于是他买了一台机器人“Burenka-179”。\n\nBurenka 的程序是一个数对 $(s, k)$，其中 $1 \\leq s \\leq n$，$1 \\leq k \\leq n-1$。注意，$k$ **不能**等于 $n$。开始时，Tonya 将机器人放在数组的第 $s$ 个位置。之后，Burenka 在数组中**恰好**移动 $n$ 步。如果在某一步开始时，Burenka 位于位置 $i$，则会发生以下事情：\n\n1. 将数字 $a_{i}$ 加到程序的*有效性*中。\n2. “Burenka”向右移动 $k$ 个位置（执行 `i := i + k`；如果 $i$ 大于 $n$，则执行 `i := i - n`）。\n\n请帮助 Tonya 找出“Burenka”的程序所能达到的最大*有效性*，其中任意程序的初始有效性均为 $0$。\n\n此外，Tonya 的朋友 Ilyusha 希望对数组进行 $q$ 次修改。每次修改，他都会给定一个下标 $p$ 和一个值 $x$，并令 `a_p := x`。你需要在每次修改后，求出程序所能达到的最大*有效性*。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$），表示测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$2 \\le n \\le 2 \\cdot 10^5$，$0 \\le q \\le 2 \\cdot 10^5$）。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$），表示数组中的元素。\n\n接下来的 $q$ 行中，每行包含两个整数 $p$ 和 $x$（$1 \\leq p \\leq n$，$1 \\leq x \\leq 10^9$），表示应执行赋值 `a_p := x`。\n\n保证所有测试用例的 $n$ 之和以及 $q$ 之和均不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q+1$ 个数，分别表示初始状态以及每次修改后的程序最大有效性。\n\n## 说明\n\n在第一个测试用例中，初始状态和每次修改后的答案均可在 $s = 1$、$k = 1$ 或 $s = 2$、$k = 1$ 时取得。\n\n在第二个测试用例中，初始状态下，当 $s = 1$、$k = 2$ 或 $s = 3$、$k = 2$ 时可以取得答案。第一次修改后，当 $s = 2$、$k = 2$ 或 $s = 4$、$k = 2$ 时可以取得答案。",
   "samples": [
     {
       "input": "4\n2 1\n1 2\n1 3\n4 4\n4 1 3 2\n2 6\n4 6\n1 1\n3 11\n9 3\n1 7 9 4 5 2 3 6 8\n3 1\n2 1\n9 1\n6 3\n1 1 1 1 1 1\n1 5\n4 4\n3 8\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-10-30T22:52:19.133Z"
+  "fetchedAt": "2026-10-30T22:52:19.133Z",
+  "translatedAt": "2026-11-04T09:24:18.430+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 1729,
   "index": "B",
   "title": "Decode String",
-  "titleZh": null,
+  "titleZh": "解码字符串",
   "url": "https://codeforces.com/contest/1729/problem/B",
   "difficulty": 800,
   "tags": [
@@ -14,7 +14,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Polycarp has a string $s$ consisting of lowercase Latin letters.\n\nHe encodes it using the following algorithm.\n\nHe goes through the letters of the string $s$ from left to right and for each letter Polycarp considers its number in the alphabet:\n\n- if the letter number is single-digit number (less than $10$), then just writes it out;\n- if the letter number is a two-digit number (greater than or equal to $10$), then it writes it out and adds the number `0` after.\n\nFor example, if the string $s$ is `code`, then Polycarp will encode this string as follows:\n\n- '`c`' — is the $3$-rd letter of the alphabet. Consequently, Polycarp adds `3` to the code (the code becomes equal to `3`);\n- '`o`' — is the $15$-th letter of the alphabet. Consequently, Polycarp adds `15` to the code and also `0` (the code becomes `3150`);\n- '`d`' — is the $4$-th letter of the alphabet. Consequently, Polycarp adds `4` to the code (the code becomes `31504`);\n- '`e`' — is the $5$-th letter of the alphabet. Therefore, Polycarp adds `5` to the code (the code becomes `315045`).\n\nThus, code of string `code` is `315045`.\n\nYou are given a string $t$ resulting from encoding the string $s$. Your task is to decode it (get the original string $s$ by $t$).\n\n## Input\n\nThe first line of the input contains an integer $q$ ($1 \\le q \\le 10^4$) — the number of test cases in the input.\n\nThe descriptions of the test cases follow.\n\nThe first line of description of each test case contains one integer $n$ ($1 \\le n \\le 50$) — the length of the given code.\n\nThe second line of the description of each test case contains a string $t$ of length $n$ — the given code. It is guaranteed that there exists such a string of lowercase Latin letters, as a result of encoding which the string $t$ is obtained.\n\n## Output\n\nFor each test case output the required string $s$ — the string that gives string $t$ as the result of encoding. It is guaranteed that such a string always exists. It can be shown that such a string is always unique.\n\n## Note\n\nThe first test case is explained above.\n\nIn the second test case, the answer is `aj`. Indeed, the number of the letter `a` is equal to $1$, so `1` will be appended to the code. The number of the letter `j` is $10$, so `100` will be appended to the code. The resulting code is `1100`.\n\nThere are no zeros in the third test case, which means that the numbers of all letters are less than $10$ and are encoded as one digit. The original string is `abacaba`.\n\nIn the fourth test case, the string $s$ is equal to `ll`. The letter `l` has the number $12$ and is encoded as `120`. So `ll` is indeed `120120`.",
-  "statementZhMd": null,
+  "statementZhMd": "Polycarp 有一个由小写拉丁字母组成的字符串 $s$。\n\n他使用以下算法对其进行编码。\n\n他从左到右遍历字符串 $s$ 中的字母，并对每个字母考虑其在字母表中的编号：\n\n- 如果字母编号是个位数（小于 $10$），则直接将其写出；\n- 如果字母编号是两位数（大于或等于 $10$），则将其写出，并在后面添加数字 `0`。\n\n例如，如果字符串 $s$ 是 `code`，那么 Polycarp 按如下方式对其进行编码：\n\n- '`c`' —— 它是字母表中的第 $3$ 个字母。因此，Polycarp 将 `3` 添加到编码中（编码变为 `3`）；\n- '`o`' —— 它是字母表中的第 $15$ 个字母。因此，Polycarp 将 `15` 和 `0` 添加到编码中（编码变为 `3150`）；\n- '`d`' —— 它是字母表中的第 $4$ 个字母。因此，Polycarp 将 `4` 添加到编码中（编码变为 `31504`）；\n- '`e`' —— 它是字母表中的第 $5$ 个字母。因此，Polycarp 将 `5` 添加到编码中（编码变为 `315045`）。\n\n因此，字符串 `code` 的编码是 `315045`。\n\n给定由字符串 $s$ 编码得到的字符串 $t$。你的任务是将其解码（根据 $t$ 得到原始字符串 $s$）。\n\n## 输入格式\n\n输入的第一行包含一个整数 $q$（$1 \\le q \\le 10^4$）——输入中的测试用例数量。\n\n接下来是各个测试用例的描述。\n\n每个测试用例描述的第一行包含一个整数 $n$（$1 \\le n \\le 50$）——给定编码的长度。\n\n每个测试用例描述的第二行包含一个长度为 $n$ 的字符串 $t$——给定的编码。保证存在一个由小写拉丁字母组成的字符串，对其进行编码后可以得到字符串 $t$。\n\n## 输出格式\n\n对于每个测试用例，输出所需的字符串 $s$——编码后得到字符串 $t$ 的字符串。保证这样的字符串始终存在。可以证明，这样的字符串始终是唯一的。\n\n## 说明\n\n第一个测试用例已在上文中解释。\n\n在第二个测试用例中，答案是 `aj`。事实上，字母 `a` 的编号等于 $1$，因此会将 `1` 添加到编码中。字母 `j` 的编号是 $10$，因此会将 `100` 添加到编码中。最终的编码是 `1100`。\n\n第三个测试用例中没有数字零，这意味着所有字母的编号都小于 $10$，并且都被编码为一位数字。原始字符串是 `abacaba`。\n\n在第四个测试用例中，字符串 $s$ 等于 `ll`。字母 `l` 的编号是 $12$，被编码为 `120`。因此，`ll` 的编码确实是 `120120`。",
   "samples": [
     {
       "input": "9\n6\n315045\n4\n1100\n7\n1213121\n6\n120120\n18\n315045615018035190\n7\n1111110\n7\n1111100\n5\n11111\n4\n2606\n",
@@ -23,5 +23,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-02T17:50:44.127Z"
+  "fetchedAt": "2026-11-02T17:50:44.127Z",
+  "translatedAt": "2026-11-04T09:20:51.578+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }
