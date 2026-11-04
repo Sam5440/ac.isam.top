@@ -529,8 +529,9 @@ class App:
                 if not p.get("statementMd"):
                     continue
                 c = contests.get((plat, str(p.get("contestId"))), {})
-                translated = bool(p.get("statementZhMd")
-                                  and str(p.get("statementZhMd")) != str(p.get("statementMd")))
+                # 与 build-index.mjs 口径一致：statementZhMd 存在即已翻译。
+                # zh==en 是合法状态（牛客官方原文 / 纯图片·纯公式题面无可译文本）
+                translated = bool(p.get("statementZhMd"))
                 if not translated:
                     untranslated += 1
                 items.append({
