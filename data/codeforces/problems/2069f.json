@@ -4,7 +4,7 @@
   "contestId": 2069,
   "index": "F",
   "title": "Graph Inclusion",
-  "titleZh": "图的包含",
+  "titleZh": "图的包含关系",
   "url": "https://codeforces.com/contest/2069/problem/F",
   "difficulty": 2800,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 512,
   "statementMd": "A connected component of an undirected graph is defined as a set of vertices $S$ of this graph such that:\n\n- for every pair of vertices $(u, v)$ in $S$, there exists a path between vertices $u$ and $v$;\n- there is no vertex outside $S$ that has a path to a vertex within $S$.\n\nFor example, the graph in the picture below has three components: $\\{1, 3, 7, 8\\}$, $\\{2\\}$, $\\{4, 5, 6\\}$.\n\n![image](https://espresso.codeforces.com/c50dbeece1a9e52391dd9aea40de6e2a8f320878.png)\n\nWe say that graph $A$ *includes* graph $B$ if every component of graph $B$ is a subset of some component of graph $A$.\n\nYou are given two graphs, $A$ and $B$, both consisting of $n$ vertices numbered from $1$ to $n$. Initially, there are no edges in the graphs. You must process queries of two types:\n\n- add an edge to one of the graphs;\n- remove an edge from one of the graphs.\n\nAfter each query, you have to calculate the minimum number of edges that have to be added to $A$ so that $A$ includes $B$, and print it. Note that you don't actually add these edges, you just calculate their number.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($2 \\le n \\le 4 \\cdot 10^5$; $1 \\le q \\le 4 \\cdot 10^5$) — the number of vertices and queries, respectively.\n\nNext, there are $q$ lines, where the $i$-th line describes the $i$-th query. The description of the query begins with the character $c_i$ (either `A` or `B`) — the graph to which the query should be applied. Then, two integers $x_i$ and $y_i$ follow ($1 \\le x_i, y_i \\le n$; $x_i \\ne y_i$). If there is an edge $(x_i, y_i)$ in the corresponding graph, it should be removed; otherwise, it should be added to that graph.\n\n## Output\n\nFor each query, print one integer — the minimum number of edges that you have to add to the graph $A$ so that it includes $B$.",
-  "statementZhMd": "无向图的连通分量定义为该图的一个顶点集合 $S$，满足：\n\n- 对于 $S$ 中的任意一对顶点 $(u, v)$，顶点 $u$ 与 $v$ 之间存在一条路径；\n- 不存在 $S$ 之外的顶点能够通过路径到达 $S$ 之内的顶点。\n\n例如，下图中的图有三个连通分量：$\\{1, 3, 7, 8\\}$、$\\{2\\}$、$\\{4, 5, 6\\}$。\n\n![image](https://espresso.codeforces.com/c50dbeece1a9e52391dd9aea40de6e2a8f320878.png)\n\n如果图 $B$ 的每个连通分量都是图 $A$ 的某个连通分量的子集，我们就说图 $A$ *包含* 图 $B$。\n\n给定两个图 $A$ 和 $B$，均由编号从 $1$ 到 $n$ 的 $n$ 个顶点组成。初始时，两个图中都没有边。你需要处理两类查询：\n\n- 向其中一个图添加一条边；\n- 从其中一个图删除一条边。\n\n每次查询之后，你需要计算最少需要向 $A$ 添加多少条边才能使 $A$ 包含 $B$，并将其输出。注意，你并不真的添加这些边，只需计算它们的数量。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$2 \\le n \\le 4 \\cdot 10^5$；$1 \\le q \\le 4 \\cdot 10^5$）——分别表示顶点数和查询数。\n\n接下来有 $q$ 行，其中第 $i$ 行描述第 $i$ 个查询。查询的描述以字符 $c_i$（`A` 或 `B`）开头——表示该查询应当作用的图。随后是两个整数 $x_i$ 和 $y_i$（$1 \\le x_i, y_i \\le n$；$x_i \\ne y_i$）。如果对应图中存在边 $(x_i, y_i)$，则应将其删除；否则，应将其添加到该图中。\n\n## 输出格式\n\n对于每个查询，输出一个整数——你需要向图 $A$ 添加的最少边数，使得 $A$ 包含 $B$。",
+  "statementZhMd": "无向图的一个连通分量定义为图的顶点集合 $S$，满足：\n\n- 对于 $S$ 中的任意一对顶点 $(u, v)$，顶点 $u$ 和 $v$ 之间都存在一条路径；\n- 不存在 $S$ 外的顶点能够通过路径到达 $S$ 内的顶点。\n\n例如，下图中的图有三个连通分量：$\\{1, 3, 7, 8\\}$、$\\{2\\}$、$\\{4, 5, 6\\}$。\n\n![image](https://espresso.codeforces.com/c50dbeece1a9e52391dd9aea40de6e2a8f320878.png)\n\n如果图 $B$ 的每个连通分量都是图 $A$ 的某个连通分量的子集，我们就称图 $A$ *包含*图 $B$。\n\n给定两个图 $A$ 和 $B$，它们都包含 $n$ 个顶点，编号从 $1$ 到 $n$。初始时，两个图都没有边。你需要处理两种类型的操作：\n\n- 向其中一个图添加一条边；\n- 从其中一个图中删除一条边。\n\n每次操作后，你需要计算为了使 $A$ 包含 $B$，最少需要向 $A$ 添加多少条边，并输出这个数。注意，你不需要实际添加这些边，只需计算它们的数量。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$2 \\le n \\le 4 \\cdot 10^5$；$1 \\le q \\le 4 \\cdot 10^5$），分别表示顶点数和操作数。\n\n接下来有 $q$ 行，第 $i$ 行描述第 $i$ 次操作。操作描述以字符 $c_i$ 开头（为 `A` 或 `B`），表示要操作的图。随后是两个整数 $x_i$ 和 $y_i$（$1 \\le x_i, y_i \\le n$；$x_i \\ne y_i$）。如果对应的图中存在边 $(x_i, y_i)$，则删除这条边；否则，将这条边添加到图中。\n\n## 输出格式\n\n对于每次操作，输出一个整数，表示为了使 $A$ 包含 $B$，需要向图 $A$ 添加的最少边数。",
   "samples": [
     {
       "input": "6 9\nA 2 3\nB 1 3\nA 2 1\nA 3 2\nB 5 6\nA 6 5\nA 3 4\nA 4 2\nA 4 3\n",
@@ -27,6 +27,6 @@
   ],
   "language": "en",
   "fetchedAt": "2026-11-02T16:54:12.129Z",
-  "translatedAt": "2026-11-03T13:30:13.858+08:00",
-  "translateModel": "zcode/GLM-5.3-Flash"
+  "translatedAt": "2026-11-05T01:12:14.389+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

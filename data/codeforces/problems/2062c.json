@@ -15,7 +15,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "Cirno has a sequence $a$ of length $n$. She can perform either of the following two operations for any (possibly, zero) times **unless** the current length of $a$ is $1$:\n\n- Reverse the sequence. Formally, $[a_1,a_2,\\ldots,a_n]$ becomes $[a_n,a_{n-1},\\ldots,a_1]$ after the operation.\n- Replace the sequence with its difference sequence. Formally, $[a_1,a_2,\\ldots,a_n]$ becomes $[a_2-a_1,a_3-a_2,\\ldots,a_n-a_{n-1}]$ after the operation.\n\nFind the maximum possible sum of elements of $a$ after all operations.\n\n## Input\n\nThe first line of input contains a single integer $t$ ($1 \\leq t \\leq 100$) — the number of input test cases.\n\nThe first line of each test case contains a single integer $n$ ($1\\le n\\le 50$) — the length of sequence $a$.\n\nThe second line of each test case contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($|a_i|\\le 1000$) — the sequence $a$.\n\n## Output\n\nFor each test case, print an integer representing the maximum possible sum.\n\n## Note\n\nIn the first test case, Cirno can not perform any operation, so the answer is $-1000$.\n\nIn the second test case, Cirno firstly reverses the sequence, then replaces the sequence with its difference sequence: $[5,-3]\\to[-3,5]\\to[8]$. It can be proven that this maximizes the sum, so the answer is $8$.\n\nIn the third test case, Cirno can choose not to operate, so the answer is $1001$.",
-  "statementZhMd": "Cirno 有一个长度为 $n$ 的序列 $a$。只要 $a$ 的当前长度**不为** $1$，她就可以进行以下两种操作中的任意一种，次数任意（可以为零次）：\n\n- 反转序列。形式化地，操作后 $[a_1,a_2,\\ldots,a_n]$ 变为 $[a_n,a_{n-1},\\ldots,a_1]$。\n- 将序列替换为其差分序列。形式化地，操作后 $[a_1,a_2,\\ldots,a_n]$ 变为 $[a_2-a_1,a_3-a_2,\\ldots,a_n-a_{n-1}]$。\n\n请求出在进行所有操作之后，$a$ 的元素之和的最大可能值。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 100$）——表示测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 50$）——表示序列 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$|a_i|\\le 1000$）——表示序列 $a$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示最大可能的元素之和。\n\n## 说明\n\n在第一个测试用例中，Cirno 无法进行任何操作，因此答案为 $-1000$。\n\n在第二个测试用例中，Cirno 先反转序列，再将序列替换为其差分序列：$[5,-3]\\to[-3,5]\\to[8]$。可以证明这样能使和最大，因此答案为 $8$。\n\n在第三个测试用例中，Cirno 可以选择不进行任何操作，因此答案为 $1001$。",
+  "statementZhMd": "Cirno 有一个长度为 $n$ 的序列 $a$。**除非**当前 $a$ 的长度为 $1$，否则她可以执行以下两种操作中的任意一种任意（可以为零）次：\n\n- 反转序列。形式化地，执行该操作后，$[a_1,a_2,\\ldots,a_n]$ 变为 $[a_n,a_{n-1},\\ldots,a_1]$。\n- 将序列替换为其差分序列。形式化地，执行该操作后，$[a_1,a_2,\\ldots,a_n]$ 变为 $[a_2-a_1,a_3-a_2,\\ldots,a_n-a_{n-1}]$。\n\n求执行所有操作后，$a$ 中元素之和的最大可能值。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\leq t \\leq 100$），表示输入测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1\\le n\\le 50$），表示序列 $a$ 的长度。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$|a_i|\\le 1000$），表示序列 $a$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示元素之和的最大可能值。\n\n## 说明\n\n在第一个测试用例中，Cirno 无法执行任何操作，因此答案为 $-1000$。\n\n在第二个测试用例中，Cirno 首先反转序列，然后将序列替换为其差分序列：$[5,-3]\\to[-3,5]\\to[8]$。可以证明，这样得到的元素之和最大，因此答案为 $8$。\n\n在第三个测试用例中，Cirno 可以选择不执行任何操作，因此答案为 $1001$。",
   "samples": [
     {
       "input": "5\n1\n-1000\n2\n5 -3\n2\n1000 1\n9\n9 7 9 -9 9 -8 7 -8 9\n11\n678 201 340 444 453 922 128 987 127 752 0\n",
@@ -25,6 +25,6 @@
   ],
   "language": "en",
   "fetchedAt": "2026-10-30T21:32:17.984Z",
-  "translatedAt": "2026-11-03T14:42:23.291+08:00",
-  "translateModel": "zcode/GLM-5.3-Flash"
+  "translatedAt": "2026-11-05T01:12:49.156+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

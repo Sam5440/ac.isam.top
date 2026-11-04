@@ -4,7 +4,7 @@
   "contestId": 2074,
   "index": "D",
   "title": "Counting Points",
-  "titleZh": "点的计数",
+  "titleZh": "统计点数",
   "url": "https://codeforces.com/contest/2074/problem/D",
   "difficulty": 1400,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "The pink soldiers drew $n$ circles with their center **on the $x$-axis** of the plane. Also, they have told that **the sum of radii is exactly $m$**$^{\\text{∗}}$.\n\nPlease find the number of integer points **inside or on the border of** at least one circle. Formally, the problem is defined as follows.\n\nYou are given an integer sequence $x_1,x_2,\\ldots,x_n$ and a positive integer sequence $r_1,r_2,\\ldots,r_n$, where it is known that $\\sum_{i=1}^n r_i = m$.\n\nYou must count the number of integer pairs $(x,y)$ that satisfy the following condition.\n\n- There exists an index $i$ such that $(x-x_i)^2 + y^2 \\le r_i^2$ ($1 \\le i \\le n$).\n\n$^{\\text{∗}}$Is this information really useful? Don't ask me; I don't really know.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le m \\le 2\\cdot 10^5$).\n\nThe second line of each test case contains $x_1,x_2,\\ldots,x_n$ — the centers of the circles ($-10^9 \\le x_i \\le 10^9$).\n\nThe third line of each test case contains $r_1,r_2,\\ldots,r_n$ — the radii of the circles ($1 \\le r_i$, $\\sum_{i=1}^n r_i = m$).\n\nIt is guaranteed that **the sum of $m$ over all test cases** does not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, output the number of integer points satisfying the condition on a separate line.\n\n## Note\n\nOn the first test case, the circle with $r_1=1$ is completely inside the circle with $r_2=2$. Therefore, you only have to count the number of integer points inside the latter. There are $13$ integer points such that $x^2+y^2 \\le 2^2$, so the answer is $13$.\n\nOn the second test case, the circle with $r_1=1$ is not completely inside the circle with $r_2=2$. There are $3$ additional points that are inside the first circle but not inside the second circle, so the answer is $3+13=16$.",
-  "statementZhMd": "粉色士兵在平面上画了 $n$ 个圆心**在 $x$ 轴上**的圆。此外，他们还告诉你**半径之和恰好为 $m$**$^{\\text{∗}}$。\n\n请找出**在至少一个圆的内部或边界上**的整点数量。形式化地，本题定义如下。\n\n给定一个整数序列 $x_1,x_2,\\ldots,x_n$ 和一个正整数序列 $r_1,r_2,\\ldots,r_n$，已知 $\\sum_{i=1}^n r_i = m$。\n\n你需要统计满足下列条件的整数对 $(x,y)$ 的数量。\n\n- 存在下标 $i$（$1 \\le i \\le n$）使得 $(x-x_i)^2 + y^2 \\le r_i^2$。\n\n$^{\\text{∗}}$这个信息真的有用吗？别问我，我也不知道。\n\n## 输入格式\n\n每组测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le m \\le 2\\cdot 10^5$）。\n\n每个测试用例的第二行包含 $x_1,x_2,\\ldots,x_n$ —— 圆的圆心（$-10^9 \\le x_i \\le 10^9$）。\n\n每个测试用例的第三行包含 $r_1,r_2,\\ldots,r_n$ —— 圆的半径（$1 \\le r_i$，$\\sum_{i=1}^n r_i = m$）。\n\n保证**所有测试用例的 $m$ 之和**不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，在单独的一行中输出满足条件的整点数量。\n\n## 说明\n\n在第一个测试用例中，$r_1=1$ 的圆完全位于 $r_2=2$ 的圆内部。因此，你只需要统计后一个圆内部的整点数量。满足 $x^2+y^2 \\le 2^2$ 的整点共有 $13$ 个，所以答案是 $13$。\n\n在第二个测试用例中，$r_1=1$ 的圆并不完全位于 $r_2=2$ 的圆内部。有 $3$ 个额外的点在第一个圆内部但不在第二个圆内部，所以答案是 $3+13=16$。",
+  "statementZhMd": "## 题目描述\n\n粉色士兵在平面上绘制了 $n$ 个圆，这些圆的圆心都**在 $x$ 轴上**。此外，他们还告知你，**半径之和恰好为 $m$**$^{\\text{∗}}$。\n\n请找出至少一个圆的**内部或边界上的**整点数量。形式化地，题目定义如下。\n\n给定一个整数序列 $x_1,x_2,\\ldots,x_n$ 和一个正整数序列 $r_1,r_2,\\ldots,r_n$，其中已知 $\\sum_{i=1}^n r_i = m$。\n\n你需要统计满足以下条件的整数点对 $(x,y)$ 的数量。\n\n- 存在一个下标 $i$，使得 $(x-x_i)^2 + y^2 \\le r_i^2$（$1 \\le i \\le n$）。\n\n$^{\\text{∗}}$这条信息真的有用吗？别问我，我也不太清楚。\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le m \\le 2\\cdot 10^5$）。\n\n每个测试用例的第二行包含 $x_1,x_2,\\ldots,x_n$ —— 圆心的位置（$-10^9 \\le x_i \\le 10^9$）。\n\n每个测试用例的第三行包含 $r_1,r_2,\\ldots,r_n$ —— 圆的半径（$1 \\le r_i$，且 $\\sum_{i=1}^n r_i = m$）。\n\n保证**所有测试用例的 $m$ 之和**不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，单独一行输出满足条件的整数点数量。\n\n## 说明\n\n在第一个测试用例中，半径为 $r_1=1$ 的圆完全位于半径为 $r_2=2$ 的圆内部。因此，只需统计后一个圆内部的整数点数量。满足 $x^2+y^2 \\le 2^2$ 的整数点共有 $13$ 个，所以答案为 $13$。\n\n在第二个测试用例中，半径为 $r_1=1$ 的圆并未完全位于半径为 $r_2=2$ 的圆内部。第一个圆中有另外 $3$ 个点不在第二个圆内，因此答案为 $3+13=16$。",
   "samples": [
     {
       "input": "4\n2 3\n0 0\n1 2\n2 3\n0 2\n1 2\n3 3\n0 2 5\n1 1 1\n4 8\n0 5 10 15\n2 2 2 2\n",
@@ -27,6 +27,6 @@
   ],
   "language": "en",
   "fetchedAt": "2026-11-02T16:53:35.622Z",
-  "translatedAt": "2026-11-03T13:14:11.116+08:00",
-  "translateModel": "zcode/GLM-5.3-Flash"
+  "translatedAt": "2026-11-05T01:13:37.453+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 2070,
   "index": "E",
   "title": "Game with Binary String",
-  "titleZh": "二进制串上的游戏",
+  "titleZh": "二进制串游戏",
   "url": "https://codeforces.com/contest/2070/problem/E",
   "difficulty": 2200,
   "tags": [
@@ -18,7 +18,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "Consider the following game. Two players have a binary string (a string consisting of characters `0` and/or `1`). The players take turns, the first player makes the first turn. During a player's turn, he or she has to choose exactly two adjacent elements of the string and remove them (**the first element and the last element are also considered adjacent**). Furthermore, there are additional constraints depending on who makes the move:\n\n- if it's the first player's move, **both** chosen characters should be `0`;\n- if it's the second player's move, **at least one** of the chosen characters should be `1`.\n\nThe player who can't make a valid move loses the game. This also means that if the string currently has less than $2$ characters, the current player loses the game.\n\nYou are given a binary string $s$ of length $n$. You have to calculate the number of its substrings such that, if the game is played on that substring and both players make optimal decisions, the first player wins. In other words, calculate the number of pairs $(l, r)$ such that $1 \\le l \\le r \\le n$ and the first player has a winning strategy on the string $s_l s_{l+1} \\dots s_r$.\n\n## Input\n\nThe first line contains one integer $n$ ($1 \\le n \\le 3 \\cdot 10^5$).\n\nThe second line contains the string $s$, consisting of exactly $n$ characters. Each character of the string is either `0` or `1`.\n\n## Output\n\nPrint one integer — the number of substrings such that, if the game is played on that substring, the first player wins.\n\n## Note\n\nIn the first example, the following substrings are winning for the first player ($s[l:r]$ denotes $s_l s_{l+1} \\dots s_r$):\n\n- $s[1:2]$;\n- $s[1:3]$;\n- $s[1:7]$;\n- $s[2:4]$;\n- $s[2:8]$;\n- $s[3:5]$;\n- $s[4:5]$;\n- $s[4:6]$;\n- $s[5:7]$;\n- $s[6:8]$;\n- $s[7:8]$;\n- $s[7:9]$.",
-  "statementZhMd": "考虑如下游戏。两名玩家有一个二进制串（由字符 `0` 和/或 `1` 组成的字符串）。玩家轮流行动，先手玩家先行。在一次行动中，行动的玩家必须选择字符串中恰好两个相邻的元素并将它们移除（**第一个元素和最后一个元素也被视为相邻**）。此外，根据行动方的不同，还有额外的约束条件：\n\n- 如果轮到先手玩家行动，所选的**两个**字符都必须是 `0`；\n- 如果轮到后手玩家行动，所选字符中**至少有一个**必须是 `1`。\n\n无法进行有效行动的玩家输掉游戏。这也意味着，如果当前字符串的字符数少于 $2$ 个，当前玩家输掉游戏。\n\n给定一个长度为 $n$ 的二进制串 $s$。你需要计算其中有多少个子串满足：如果在该子串上进行游戏且两名玩家都做出最优决策，先手玩家获胜。换句话说，计算满足 $1 \\le l \\le r \\le n$ 且先手玩家在字符串 $s_l s_{l+1} \\dots s_r$ 上拥有必胜策略的数对 $(l, r)$ 的数量。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^5$）。\n\n第二行包含字符串 $s$，恰好由 $n$ 个字符组成。字符串的每个字符要么是 `0`，要么是 `1`。\n\n## 输出格式\n\n输出一个整数 —— 满足若在该子串上进行游戏则先手玩家获胜的子串的数量。\n\n## 说明\n\n在第一个样例中，以下子串对先手玩家是必胜的（$s[l:r]$ 表示 $s_l s_{l+1} \\dots s_r$）：\n\n- $s[1:2]$；\n- $s[1:3]$；\n- $s[1:7]$；\n- $s[2:4]$；\n- $s[2:8]$；\n- $s[3:5]$；\n- $s[4:5]$；\n- $s[4:6]$；\n- $s[5:7]$；\n- $s[6:8]$；\n- $s[7:8]$；\n- $s[7:9]$。",
+  "statementZhMd": "考虑如下游戏。两个玩家有一个二进制串（由字符 `0` 和/或 `1` 组成），双方轮流行动，先手玩家先行动。在每个玩家的回合中，他或她必须选择串中恰好两个相邻字符并将其删除（**串的首字符和末字符也视为相邻**）。此外，根据行动的玩家不同，还有以下限制：\n\n- 如果是先手玩家行动，所选的**两个**字符都必须是 `0`；\n- 如果是后手玩家行动，所选的字符中**至少有一个**必须是 `1`。\n\n无法进行合法操作的玩家输掉游戏。因此，如果当前串的长度小于 $2$，当前玩家也会输掉游戏。\n\n给定一个长度为 $n$ 的二进制串 $s$。请计算其中有多少个子串满足：在该子串上进行游戏，且双方都采取最优策略时，先手玩家获胜。换句话说，请计算满足 $1 \\le l \\le r \\le n$，且先手玩家在字符串 $s_l s_{l+1} \\dots s_r$ 上有必胜策略的数对 $(l, r)$ 的数量。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 3 \\cdot 10^5$）。\n\n第二行包含字符串 $s$，恰好由 $n$ 个字符组成。字符串中的每个字符都是 `0` 或 `1`。\n\n## 输出格式\n\n输出一个整数——在对应子串上进行游戏时先手玩家获胜的子串数量。\n\n## 说明\n\n在第一个样例中，以下子串对先手玩家来说是必胜的（$s[l:r]$ 表示 $s_l s_{l+1} \\dots s_r$）：\n\n- $s[1:2]$；\n- $s[1:3]$；\n- $s[1:7]$；\n- $s[2:4]$；\n- $s[2:8]$；\n- $s[3:5]$；\n- $s[4:5]$；\n- $s[4:6]$；\n- $s[5:7]$；\n- $s[6:8]$；\n- $s[7:8]$；\n- $s[7:9]$。",
   "samples": [
     {
       "input": "10\n0010010011\n",
@@ -28,6 +28,6 @@
   ],
   "language": "en",
   "fetchedAt": "2026-11-02T16:54:03.323Z",
-  "translatedAt": "2026-11-03T13:26:55.175+08:00",
-  "translateModel": "zcode/GLM-5.3-Flash"
+  "translatedAt": "2026-11-05T01:12:12.854+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }

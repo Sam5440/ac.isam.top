@@ -4,7 +4,7 @@
   "contestId": 2066,
   "index": "C",
   "title": "Bitwise Slides",
-  "titleZh": "位运算幻灯片",
+  "titleZh": "按位幻灯片",
   "url": "https://codeforces.com/contest/2066/problem/C",
   "difficulty": 2300,
   "tags": [
@@ -17,7 +17,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array $a_1, a_2, \\ldots, a_n$. Also, you are given three variables $P,Q,R$, initially equal to zero.\n\nYou need to process all the numbers $a_1, a_2, \\ldots, a_n$, **in the order from $1$ to $n$**. When processing the next $a_i$, you must perform **exactly** one of the three actions of your choice:\n\n1. $P := P \\oplus a_i$\n2. $Q := Q \\oplus a_i$\n3. $R := R \\oplus a_i$\n\n$\\oplus$ denotes the [bitwise XOR operation]().\n\nWhen performing actions, you must follow the *main rule*: it is necessary that after each action, all three numbers $P,Q,R$ are **not** pairwise distinct.\n\nThere are a total of $3^n$ ways to perform all $n$ actions. How many of them do not violate the *main rule*? Since the answer can be quite large, find it modulo $10^9 + 7$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the length of the array $a$.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the elements of the array $a$.\n\nIt is guaranteed that the sum of the values of $n$ for all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output the number of ways to perform all $n$ actions without violating the *main rule*, modulo $10^9 + 7$.\n\n## Note\n\nIn the first test case, there are 3 valid sequences of operations: `PPP`, `QQQ`, `RRR`.\n\nIn the second test case, there are 9 valid sequences of operations: `PPPP`, `PPPQ`, `PPPR`, `QQQP`, `QQQQ`, `QQQR`, `RRRP`, `RRRQ`, `RRRR`.",
-  "statementZhMd": "给定一个数组 $a_1, a_2, \\ldots, a_n$。同时，你还有三个变量 $P,Q,R$，初始值均为零。\n\n你需要处理所有的数 $a_1, a_2, \\ldots, a_n$，**顺序为从 $1$ 到 $n$**。在处理下一个 $a_i$ 时，你必须**恰好**执行以下三种操作之一（由你选择）：\n\n1. $P := P \\oplus a_i$\n2. $Q := Q \\oplus a_i$\n3. $R := R \\oplus a_i$\n\n$\\oplus$ 表示[按位异或]()运算。\n\n在执行操作时，你必须遵守*主要规则*：每次操作之后，三个数 $P,Q,R$ 都必须**不是**两两互不相同的。\n\n执行全部 $n$ 个操作共有 $3^n$ 种方式。其中有多少种不违反*主要规则*？由于答案可能很大，请输出其对 $10^9 + 7$ 取模后的结果。\n\n## 输入格式\n\n每个测试点包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——表示数组 $a$ 的长度。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——表示数组 $a$ 的元素。\n\n保证所有测试数据的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出不违反*主要规则*的执行全部 $n$ 个操作的方式数，对 $10^9 + 7$ 取模。\n\n## 说明\n\n在第一组测试数据中，共有 3 种合法的操作序列：`PPP`、`QQQ`、`RRR`。\n\n在第二组测试数据中，共有 9 种合法的操作序列：`PPPP`、`PPPQ`、`PPPR`、`QQQP`、`QQQQ`、`QQQR`、`RRRP`、`RRRQ`、`RRRR`。",
+  "statementZhMd": "给定一个数组 $a_1, a_2, \\ldots, a_n$。此外，还有三个初始值均为零的变量 $P,Q,R$。\n\n你需要按照 **从 $1$ 到 $n$ 的顺序** 处理所有数 $a_1, a_2, \\ldots, a_n$。处理下一个数 $a_i$ 时，你必须从以下三种操作中**恰好选择一种**执行：\n\n1. $P := P \\oplus a_i$\n2. $Q := Q \\oplus a_i$\n3. $R := R \\oplus a_i$\n\n其中，$\\oplus$ 表示[按位异或运算]()。\n\n执行操作时，必须遵守*主要规则*：每次操作后，$P,Q,R$ 不能两两互不相同。\n\n执行全部 $n$ 次操作共有 $3^n$ 种方式。其中有多少种方式不会违反*主要规则*？由于答案可能很大，请求出答案对 $10^9 + 7$ 取模后的结果。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例数 $t$（$1 \\le t \\le 10^4$）。接下来是各测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——数组 $a$ 的长度。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）——数组 $a$ 的元素。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出不会违反*主要规则*的操作方式数量，对 $10^9 + 7$ 取模。\n\n## 说明\n\n第一个测试用例中，有 3 种有效的操作序列：`PPP`、`QQQ`、`RRR`。\n\n第二个测试用例中，有 9 种有效的操作序列：`PPPP`、`PPPQ`、`PPPR`、`QQQP`、`QQQQ`、`QQQR`、`RRRP`、`RRRQ`、`RRRR`。",
   "samples": [
     {
       "input": "5\n3\n1 7 9\n4\n179 1 1 179\n5\n1 2 3 3 2\n12\n8 2 5 3 9 1 8 12 9 9 9 4\n1\n1000000000\n",
@@ -27,6 +27,6 @@
   ],
   "language": "en",
   "fetchedAt": "2026-10-30T21:31:52.928Z",
-  "translatedAt": "2026-11-03T13:33:33.852+08:00",
-  "translateModel": "zcode/GLM-5.3-Flash"
+  "translatedAt": "2026-11-05T01:12:17.949+08:00",
+  "translateModel": "xcm-0-03/gpt-6.1-sol"
 }
