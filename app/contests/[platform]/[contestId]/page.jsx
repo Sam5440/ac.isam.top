@@ -10,6 +10,8 @@ import { getContest, getContests, getProblemsOfContest, platformOf } from '@/lib
 import { formatDateTime } from '@/lib/utils';
 
 export function generateStaticParams() {
+  // 本地验证跳过全量预渲染(AC_SKIP_SSG=1),生产保持全量——见题目页同名注释
+  if (process.env.AC_SKIP_SSG) return [];
   const params = [];
   for (const platform of ['atcoder', 'codeforces']) {
     for (const c of getContests(platform)) {

@@ -19,7 +19,11 @@ import { getAllProblems, getContest, getProblem, getProblemsOfContest, platformO
 import { pairSegments } from '@/lib/statement-segments';
 import { tagZh } from '@/lib/tags';
 
+/** SSG 全量参数。18822 页的预渲染是 build CPU 打满/终端卡死的根源;
+    本地开发/验证用 AC_SKIP_SSG=1 跳过(页面转按需渲染,功能不变),
+    生产(Vercel/CI)不设此变量,保持全量静态化。 */
 export function generateStaticParams() {
+  if (process.env.AC_SKIP_SSG) return [];
   return getAllProblems().map((p) => ({ platform: p.platform, problemId: String(p.id) }));
 }
 
@@ -80,7 +84,7 @@ export default async function ProblemPage({ params }) {
   const segments = pairSegments(prob.statementMd, prob.statementZhMd);
 
   return (
-    <div className="space-y-6 py-10">
+    <ProblemViewShell rail={<ProblemLetterRail contest={contestForClient} current={prob} />}>
       <ProblemCompiler contest={contestForClient} current={prob} />
 
       <Button asChild variant="ghost" size="sm">
@@ -93,13 +97,10 @@ export default async function ProblemPage({ params }) {
         </Link>
       </Button>
 
-      <ProblemViewShell
-        rail={contestForClient ? <ProblemLetterRail contest={contestForClient} current={prob} /> : null}
-      >
-        <div className="min-w-0 space-y-6">
-          <ProblemTopBar contest={contestForClient} current={prob} />
-          <Card>
-            <CardHeader>
+      <div className="min-w-0 space-y-6">
+        <ProblemTopBar contest={contestForClient} current={prob} />
+        <Card>
+          <CardHeader>
               <div className="flex flex-wrap items-start gap-4">
                 <div className="bg-primary text-primary-foreground grid size-12 shrink-0 place-items-center rounded-lg text-xl font-bold">
                   {prob.index}
@@ -163,8 +164,7 @@ export default async function ProblemPage({ params }) {
           </Card>
 
           {prob.statementMd && <SamplesSection samples={prob.samples} />}
-        </div>
-      </ProblemViewShell>
+      </div>
 
       {/* 元信息（整页模式下收进主列底部；侧栏模式下也在此展示移动端友好） */}
       <div className="grid gap-4 sm:grid-cols-2">
@@ -219,6 +219,6 @@ export default async function ProblemPage({ params }) {
         题面与样例版权归 {p?.label} 及出题人所有；中文翻译由 AI 生成（
         {prob.translateModel || 'CI 管线'}），如有出入请以原文为准。
       </p>
-    </div>
+    </ProblemViewShell>
   );
 }

@@ -3,13 +3,15 @@
 /**
  * 题目页外壳与切换组件（比赛含 ≥2 题时显示）：
  *   ProblemTopBar    题目卡上方的本比赛题目横向条（设置 topSwitcher，默认开）
- *   ProblemLetterRail  正文左侧并列的题号竖条，仅显示题号（设置 letterRail，默认开）
+ *   ProblemLetterRail  视口左侧中部悬浮的题号竖条，仅显示题号（设置 letterRail，默认开；
+ *                      正文空间由题目页根容器的 xl:pl-14 预留，页首页尾除外）
  *   ProblemSwitcher  题目卡头部的 ← / 题目下拉 / → 切换条
  * 挂载编译器面板。
  */
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
 
 import CompilerDock from '@/components/compiler/CompilerDock';
 import { DifficultyBadge, TranslatedBadge } from '@/components/Badges';
@@ -72,16 +74,26 @@ export function ProblemTopBar({ contest, current }) {
   );
 }
 
-/** 正文左侧：与题目区并列（平级、不悬浮遮盖）的题号竖条，sticky 跟随滚动。
-    仅题号；窄屏隐藏，超长列表内部滚动。 */
+/** 关闭态联动:外壳持有 state 并把 hide 回调登记到模块级 railHideRef;
+    ProblemLetterRail 的 × 按钮调用它(跨服务端/客户端元素边界可靠,
+    因为二者在同一客户端 bundle 中)。不落 localStorage:纯会话内存态,
+    刷新后竖条恢复显示。 */
+const railHideRef = { current: null };
+
+/** 视口左侧中部：fixed 悬浮的题号竖条，无视滚动始终垂直居中。
+    末位 × 关闭(会话内隐藏,刷新恢复);关闭后根容器经 data-rail-hidden
+    移除左预留,其他元素整体左移。空间由页面级左预留(xl:pl-14)保证;
+    窄屏隐藏,超长列表内部滚动。 */
 export function ProblemLetterRail({ contest, current }) {
   const { settings } = useSettings();
   if (!settings.letterRail) return null;
   const problems = contest?.problemsList ?? [];
   if (problems.length <= 1) return null;
   return (
-    <aside aria-label="题号切换" className="hidden shrink-0 xl:block">
-      <nav className="sticky top-20 flex max-h-[calc(100vh-8rem)] flex-col gap-1 overflow-y-auto pb-1">
+    <nav
+      aria-label="题号切换"
+      className="bg-card/90 border-border/60 fixed top-1/2 left-3 z-30 hidden max-h-[60vh] -translate-y-1/2 flex-col gap-1 overflow-y-auto rounded-xl border p-1 shadow-sm backdrop-blur xl:flex"
+    >
       {problems.map((p) => {
         const active = p.id === current.id;
         return (
@@ -92,15 +104,25 @@ export function ProblemLetterRail({ contest, current }) {
             className={`grid size-7 shrink-0 place-items-center rounded-md border font-mono text-xs font-bold transition-colors ${
               active
                 ? 'border-primary bg-primary text-primary-foreground'
-                : 'bg-card/80 text-muted-foreground hover:bg-accent hover:text-foreground'
+                : 'border-transparent text-muted-foreground hover:bg-accent hover:text-foreground'
             }`}
           >
             {p.index}
           </Link>
         );
       })}
-      </nav>
-    </aside>
+      <button
+        type="button"
+        onClick={() => railHideRef.current?.()}
+        aria-label="关闭题号切换条"
+        title="关闭题号切换条（刷新后恢复显示）"
+        className="text-muted-foreground hover:bg-accent hover:text-foreground mt-0.5 grid size-7 shrink-0 place-items-center rounded-md transition-colors"
+      >
+        <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </nav>
   );
 }
 
@@ -169,14 +191,21 @@ export function ProblemCompiler({ contest, current }) {
 }
 
 /**
- * 布局外壳：题号竖条（rail）与正文在 xl 屏并列两列（占布局空间，不悬浮遮盖），
- * 窄屏/未启用时 rail 不渲染，正文保持单列。
+ * 题目页根容器(客户端,page.jsx 最外层使用):同时承担
+ * ①页面级左预留(xl:pl-14,页首页尾除外)与 ②题号竖条关闭态:
+ * × 点击 → railHidden=true → 预留移除(内容整体左移)+ 竖条卸载。
+ * hide 回调经模块级 railHideRef 供 ProblemLetterRail 的 × 按钮调用。
+ * 纯会话内存态,不落 localStorage,刷新后竖条恢复显示。
+ * (rail 元素由 page.jsx 构造传入,rail prop 兼容旧签名。)
  */
 export default function ProblemViewShell({ children, rail = null }) {
+  const [railHidden, setRailHidden] = useState(false);
+  const hideRail = useCallback(() => setRailHidden(true), []);
+  railHideRef.current = hideRail;
   return (
-    <div className="items-start gap-4 xl:flex">
-      {rail}
-      <div className="min-w-0 flex-1">{children}</div>
+    <div className={`min-w-0 space-y-6 py-10 ${railHidden ? '' : 'xl:pl-14'}`}>
+      {railHidden ? null : rail}
+      {children}
     </div>
   );
 }
