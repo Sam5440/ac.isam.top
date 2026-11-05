@@ -4,7 +4,7 @@
   "contestId": 2283,
   "index": "G",
   "title": "Order Statistics on the Graph",
-  "titleZh": null,
+  "titleZh": "图上的顺序统计量",
   "url": "https://codeforces.com/contest/2283/problem/G",
   "difficulty": null,
   "tags": [
@@ -15,7 +15,7 @@
   "timeLimitMs": 7000,
   "memoryLimitMb": 512,
   "statementMd": "You are given a directed graph with n vertices, numbered from 1 to n. Each vertex has at least one incoming edge. The graph may contain self-loops, but it has no multiple edges. For each vertex v, an integer kv is given, ranging from 1 to the number of incoming edges of that vertex.\n\nEach vertex has a number written on it. Every second, all the numbers are updated as follows. For a vertex v, take the numbers at the vertices u for which there is an edge u→v, sort them in non-decreasing order, and update vertex v with the number at the position kv. Positions in the sorted list are numbered starting from 1. In other words, the new number at vertex v is the kv-th order statistic of the array consisting of the numbers at the vertices u for which there is an edge u→v.\n\nAll vertices are updated simultaneously: only the numbers from before the current update are used to compute the new numbers. If a vertex has a self-loop, its own number also affects the update.\n\nYou have to process q queries of the following form:\n\n- t a1 a2 ... an — determine the numbers that will be written on the vertices of the graph after t seconds if their initial numbers are a1,a2,…,an.\n\n## Input\n\nThe first line contains three integers n, m, and q (1≤n≤20; n≤m≤n2; 1≤q≤105) — the number of vertices, edges, and queries, respectively.\n\nThe second line contains n integers k1,k2,…,kn. For each vertex v, it holds that 1≤kv≤dv, where dv is the number of incoming edges of that vertex.\n\nEach of the next m lines contains two integers u and v (1≤u,v≤n), denoting an edge from u to v. All ordered pairs (u,v) are distinct.\n\nEach of the next q lines contains n+1 integers t,a1,a2,…,an (0≤t≤1018; 1≤ai≤109) — the parameters of a query.\n\n## Output\n\nFor each query, print n integers — the values on vertices 1,2,…,n after t seconds.\n\n## Note\n\nIn the first example, each number moves to the next vertex of the cycle. After three seconds, all numbers return to their original positions.\n\nIn the second example, the first vertex takes the minimum of the two numbers, while the second takes the maximum.\n\nIn the third example, the array [8,3,5,1] becomes [3,5,3,5] after the first update and [3,3,5,3] after the second update.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一张有 n 个顶点的有向图，顶点编号为 1 到 n。每个顶点至少有一条入边。图中可能存在自环，但不存在重边。对于每个顶点 v，给定一个整数 kv，其取值范围为 1 到该顶点的入边数量。\n\n每个顶点上都写有一个数。每秒钟，所有顶点上的数都会按照如下规则更新：对于顶点 v，取出所有满足存在边 u→v 的顶点 u 上的数，将这些数按非递减顺序排序，然后将顶点 v 上的数更新为排序后第 kv 个位置上的数。排序后的列表中的位置从 1 开始编号。换句话说，顶点 v 上的新数是由所有满足存在边 u→v 的顶点 u 上的数组成的数组的第 kv 小值。\n\n所有顶点同时更新：计算新数时，只使用本次更新之前的数。如果某个顶点有自环，那么它自身的数也会影响更新结果。\n\n你需要处理 q 个如下形式的询问：\n\n- t a1 a2 ... an — 如果各顶点上的初始数为 a1,a2,…,an，求 t 秒后图中各顶点上的数。\n\n## 输入格式\n\n第一行包含三个整数 n、m 和 q（1≤n≤20；n≤m≤n2；1≤q≤105），分别表示顶点数、边数和询问数。\n\n第二行包含 n 个整数 k1,k2,…,kn。对于每个顶点 v，均满足 1≤kv≤dv，其中 dv 为该顶点的入边数量。\n\n接下来的 m 行，每行包含两个整数 u 和 v（1≤u,v≤n），表示一条从 u 指向 v 的边。所有有序对 (u,v) 互不相同。\n\n接下来的 q 行，每行包含 n+1 个整数 t,a1,a2,…,an（0≤t≤1018；1≤ai≤109），表示一次询问的参数。\n\n## 输出格式\n\n对于每次询问，输出 n 个整数，表示 t 秒后顶点 1,2,…,n 上的数。\n\n## 说明\n\n在第一个样例中，每个数都会移动到环上的下一个顶点。三秒后，所有数都会回到各自的初始位置。\n\n在第二个样例中，第一个顶点取两个数的最小值，而第二个顶点取两个数的最大值。\n\n在第三个样例中，数组 [8,3,5,1] 在第一次更新后变为 [3,5,3,5]，在第二次更新后变为 [3,3,5,3]。",
   "samples": [
     {
       "input": "3 3 4\n1 1 1\n1 2\n2 3\n3 1\n0 4 8 15\n1 4 8 15\n2 4 8 15\n1000000000000000000 1 2 3\n",
@@ -34,5 +34,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-04T20:28:52.432Z"
+  "fetchedAt": "2026-11-04T20:28:52.432Z",
+  "translatedAt": "2026-11-05T08:00:48.330Z",
+  "translateModel": "gpt-6.1-sol"
 }
