@@ -4,6 +4,7 @@ import SiteHeader from '@/components/SiteHeader';
 import KatexRuntime from '@/components/KatexRuntime';
 import HighlightRuntime from '@/components/HighlightRuntime';
 import LanguageSidebar from '@/components/language-sidebar';
+import OfflineIndicator from '@/components/OfflineIndicator';
 import PwaRegister from '@/components/PwaRegister';
 import { SettingsProvider } from '@/components/settings';
 import GithubMark from '@/components/GithubMark';
@@ -101,6 +102,7 @@ export default function RootLayout({ children }) {
             <div className="compiler-track" id="compiler-dock-root" />
           </div>
           <LanguageSidebar />
+          <OfflineIndicator />
           <PwaRegister />
         </SettingsProvider>
       </body>

@@ -51,7 +51,7 @@ const DEFAULT_SETTINGS = {
   zhPriority: DEFAULT_PRIORITY,
   zhStyle: DEFAULT_ZH_STYLE,
   ai: { baseUrl: '', apiKey: '', model: AI_MODELS[0] },
-  // 题目页切换条（比赛含 ≥2 题时显示）：题目卡上方横向题目条 / 视口左侧题号竖条
+  // 题目页切换条（比赛含 ≥2 题时显示）：题目卡上方横向题目条 / 正文左侧题号竖条（与正文并列不悬浮）
   topSwitcher: true,
   letterRail: true,
   // 首页「最新比赛」展示的比赛类型（CONTEST_TYPES 子集）

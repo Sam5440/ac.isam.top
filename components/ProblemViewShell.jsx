@@ -3,7 +3,7 @@
 /**
  * 题目页外壳与切换组件（比赛含 ≥2 题时显示）：
  *   ProblemTopBar    题目卡上方的本比赛题目横向条（设置 topSwitcher，默认开）
- *   ProblemLetterRail  视口左侧固定居中的题号竖条，仅显示题号（设置 letterRail，默认开）
+ *   ProblemLetterRail  正文左侧并列的题号竖条，仅显示题号（设置 letterRail，默认开）
  *   ProblemSwitcher  题目卡头部的 ← / 题目下拉 / → 切换条
  * 挂载编译器面板。
  */
@@ -72,17 +72,16 @@ export function ProblemTopBar({ contest, current }) {
   );
 }
 
-/** 视口左侧：固定垂直居中的题号竖条（仅题号；窄屏隐藏，超长列表内部滚动）。 */
+/** 正文左侧：与题目区并列（平级、不悬浮遮盖）的题号竖条，sticky 跟随滚动。
+    仅题号；窄屏隐藏，超长列表内部滚动。 */
 export function ProblemLetterRail({ contest, current }) {
   const { settings } = useSettings();
   if (!settings.letterRail) return null;
   const problems = contest?.problemsList ?? [];
   if (problems.length <= 1) return null;
   return (
-    <nav
-      aria-label="题号切换"
-      className="fixed top-1/2 left-2 z-30 hidden max-h-[70vh] -translate-y-1/2 flex-col gap-1 overflow-y-auto xl:flex"
-    >
+    <aside aria-label="题号切换" className="hidden shrink-0 xl:block">
+      <nav className="sticky top-20 flex max-h-[calc(100vh-8rem)] flex-col gap-1 overflow-y-auto pb-1">
       {problems.map((p) => {
         const active = p.id === current.id;
         return (
@@ -100,7 +99,8 @@ export function ProblemLetterRail({ contest, current }) {
           </Link>
         );
       })}
-    </nav>
+      </nav>
+    </aside>
   );
 }
 
@@ -169,9 +169,14 @@ export function ProblemCompiler({ contest, current }) {
 }
 
 /**
- * 布局外壳：题目列表已移至题目卡上方（ProblemTopBar）与左侧题号条
- * （ProblemLetterRail），主体保持单列。
+ * 布局外壳：题号竖条（rail）与正文在 xl 屏并列两列（占布局空间，不悬浮遮盖），
+ * 窄屏/未启用时 rail 不渲染，正文保持单列。
  */
-export default function ProblemViewShell({ children }) {
-  return <div className="min-w-0">{children}</div>;
+export default function ProblemViewShell({ children, rail = null }) {
+  return (
+    <div className="items-start gap-4 xl:flex">
+      {rail}
+      <div className="min-w-0 flex-1">{children}</div>
+    </div>
+  );
 }

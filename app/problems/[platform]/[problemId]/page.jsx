@@ -93,10 +93,11 @@ export default async function ProblemPage({ params }) {
         </Link>
       </Button>
 
-      <ProblemViewShell>
+      <ProblemViewShell
+        rail={contestForClient ? <ProblemLetterRail contest={contestForClient} current={prob} /> : null}
+      >
         <div className="min-w-0 space-y-6">
           <ProblemTopBar contest={contestForClient} current={prob} />
-          <ProblemLetterRail contest={contestForClient} current={prob} />
           <Card>
             <CardHeader>
               <div className="flex flex-wrap items-start gap-4">
