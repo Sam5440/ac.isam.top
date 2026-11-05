@@ -491,6 +491,7 @@ export default function AiCompletionSettingsSection() {
                 onChange={(e) => patchAi({ apiType: e.target.value })}
               >
                 <option value="webllm">WebGPU 本地（WebLLM，浏览器内推理）</option>
+                <option value="deepseek-fim">DeepSeek FIM Beta /beta/completions</option>
                 <option value="openai-chat">OpenAI 兼容 /chat/completions</option>
                 <option value="openai-completion">OpenAI 兼容 /completions（FIM base 模型）</option>
                 <option value="ollama">Ollama 原生 /api/generate</option>
@@ -637,11 +638,14 @@ export default function AiCompletionSettingsSection() {
 
           <div className="grid grid-cols-2 gap-2">
             <label className="block space-y-1">
-              <span className="text-xs font-medium text-muted-foreground">FIM 提示模板</span>
+              <span className="text-xs font-medium text-muted-foreground">
+                FIM 提示模板{ai.apiType === "deepseek-fim" ? "（DeepSeek FIM 由服务端拼接，此选项不生效）" : ""}
+              </span>
               <select
                 className={inputCls}
                 value={ai.fimTemplate}
                 onChange={(e) => patchAi({ fimTemplate: e.target.value })}
+                disabled={ai.apiType === "deepseek-fim"}
               >
                 {FIM_TEMPLATES.map((t) => (
                   <option key={t.id} value={t.id}>
