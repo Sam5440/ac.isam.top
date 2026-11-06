@@ -1,0 +1,30 @@
+{
+  "id": "2284B",
+  "platform": "codeforces",
+  "contestId": 2284,
+  "index": "B",
+  "title": "Introduction to the Niche Internet",
+  "titleZh": "小众互联网入门",
+  "url": "https://codeforces.com/contest/2284/problem/B",
+  "difficulty": null,
+  "tags": [
+    "greedy",
+    "sortings"
+  ],
+  "points": 1000,
+  "timeLimitMs": 1500,
+  "memoryLimitMb": 256,
+  "statementMd": "Having failed to become a grandmaster in two months, Nikolai was completely disappointed in a career in competitive programming and decided to switch to political streaming.\n\nIt's known that no streamer can exist without the support of their beloved viewers, so every stream Nikolai necessarily receives some number of donations, forming a sequence $a$. Note that Nikolai is watched by a large number of hackers, so some donations may have negative values.\n\nNikolai considers the $m$-th donation to be *very pleasant* if its size is at least the average of all previous donations, that is, $a_m \\cdot (m - 1) \\ge \\sum\\limits_{i=1}^{m-1} a_i$. In particular, the first donation is always *very pleasant*.\n\nNikolai considers the stream to have paid off if during the broadcast he receives **exactly** $k$ *very pleasant* donations.\n\nNikolai knows that today he will receive $n$ donations from viewers, but he does not know in which order. Please help the viewers choose the order of sending donations so as to please Nikolai and make the stream pay off!\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 2 \\cdot 10^5$) — the number of donations and the required number of *very pleasant* donations.\n\nThe second line of each test case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($-10^9 \\le a_i \\le 10^9$) — the donation sizes.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output \"`NO`\" if there is no suitable order of sending the donations.\n\nOtherwise, output \"`YES`\" on the first line, and on the second line output $n$ integers: the donation sizes in the order they are sent. If there are multiple solutions, output any of them.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, one suitable order is $[3, 2, 1]$. The first donation is always *very pleasant*. The second is not *very pleasant*, since $2 \\cdot 1 \\lt 3$, and the third is not, since $1 \\cdot 2 \\lt 3 + 2$. Thus, exactly $1$ donation is *very pleasant*.\n\nIn the second test case, it can be shown that no suitable order exists.\n\nIn the third test case, one suitable order is $[-1, -3, -2]$. The first donation is *very pleasant*. The second is not *very pleasant*, since $(-3) \\cdot 1 \\lt -1$, while the third is, since $(-2) \\cdot 2 \\ge -1 + (-3)$. Thus, exactly $2$ donations are *very pleasant*.",
+  "statementZhMd": "尼古拉没能在两个月内成为特级大师，因此对竞技编程事业彻底失望，决定转行做政治直播。\n\n众所周知，没有心爱观众的支持，任何主播都无法生存。因此，尼古拉的每场直播都会收到一定数量的捐款，这些捐款构成一个序列 $a$。注意，尼古拉有大量黑客观众，所以某些捐款的数值可能为负数。\n\n如果第 $m$ 笔捐款的数额不低于此前所有捐款的平均值，即满足 $a_m \\cdot (m - 1) \\ge \\sum\\limits_{i=1}^{m-1} a_i$，尼古拉就认为这笔捐款是*非常愉快*的。特别地，第一笔捐款总是*非常愉快*的。\n\n如果在直播过程中他恰好收到 $k$ 笔*非常愉快*的捐款，尼古拉就认为这场直播回本了。\n\n尼古拉知道今天观众会捐赠 $n$ 笔捐款，但不知道它们的发送顺序。请帮助观众选择发送捐款的顺序，让尼古拉感到满意，并使这场直播回本！\n\n## 输入格式\n\n每个测试包含多个测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来描述各个测试用例。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 2 \\cdot 10^5$）——捐款的数量，以及所需的*非常愉快*的捐款数量。\n\n每个测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$-10^9 \\le a_i \\le 10^9$）——每笔捐款的数额。\n\n保证所有测试用例中 $n$ 的总和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果不存在合适的捐款发送顺序，输出“`NO`”。\n\n否则，第一行输出“`YES`”，第二行输出 $n$ 个整数，表示捐款发送的顺序。如果有多种答案，输出任意一种即可。\n\n答案可以使用任意大小写形式输出。例如，字符串“`yEs`”、“`yes`”、“`Yes`”和“`YES`”都会被识别为肯定回答。\n\n## 说明\n\n在第一个测试用例中，一种合适的顺序是 $[3, 2, 1]$。第一笔捐款总是*非常愉快*的。第二笔捐款不是*非常愉快*的，因为 $2 \\cdot 1 \\lt 3$；第三笔也不是，因为 $1 \\cdot 2 \\lt 3 + 2$。因此，恰好有 $1$ 笔捐款是*非常愉快*的。\n\n在第二个测试用例中，可以证明不存在合适的顺序。\n\n在第三个测试用例中，一种合适的顺序是 $[-1, -3, -2]$。第一笔捐款是*非常愉快*的。第二笔不是*非常愉快*的，因为 $(-3) \\cdot 1 \\lt -1$；而第三笔是，因为 $(-2) \\cdot 2 \\ge -1 + (-3)$。因此，恰好有 $2$ 笔捐款是*非常愉快*的。",
+  "samples": [
+    {
+      "input": "4\n3 1\n1 2 3\n3 1\n5 5 5\n3 2\n-1 -2 -3\n4 3\n0 0 10 -10\n",
+      "output": "YES\n3 2 1\nNO\nYES\n-1 -3 -2\nYES\n10 -10 0 0\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-06T20:00:11.740Z",
+  "translatedAt": "2026-11-06T20:02:18.146Z",
+  "translateModel": "gpt-6.1-sol"
+}

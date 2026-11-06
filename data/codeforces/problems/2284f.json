@@ -1,0 +1,33 @@
+{
+  "id": "2284F",
+  "platform": "codeforces",
+  "contestId": 2284,
+  "index": "F",
+  "title": "Fun Times",
+  "titleZh": "欢乐时光",
+  "url": "https://codeforces.com/contest/2284/problem/F",
+  "difficulty": null,
+  "tags": [
+    "combinatorics",
+    "data structures",
+    "dp",
+    "math",
+    "matrices"
+  ],
+  "points": 2750,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "For a set $\\mathcal{A}$ of integers from $0$ to $n - 1$, define the value $f(\\mathcal{A})$ as follows. The set undergoes $n - 1$ steps: at step $i$ ($1 \\le i \\le n - 1$), each element $x$ of the current set is replaced with $(x + 1) \\bmod (n - i)$. Note that all elements are replaced simultaneously and are kept in the set only once, so after a step the size of the set may decrease.\n\nLet $\\mathcal{A}_i$ denote the set obtained after the $i$-th step. Then $f(\\mathcal{A})$ is the sum of the values of $\\operatorname{mex}$$^{\\text{∗}}$ of all obtained sets: $$f(\\mathcal{A}) = \\operatorname{mex}(\\mathcal{A}_1) + \\operatorname{mex}(\\mathcal{A}_2) + \\ldots + \\operatorname{mex}(\\mathcal{A}_{n - 1}).$$\n\nDima has a set $\\mathcal{S}$ consisting of distinct integers from $0$ to $n - 1$.\n\nDima wants to find the sum of $f(\\mathcal{S}')$ over all sets $\\mathcal{S}'$ such that $\\mathcal{S} \\subseteq \\mathcal{S}' \\subseteq \\{0, 1, \\ldots, n - 1\\}$. In other words, he wants the sum of $f$ over all supersets of $\\mathcal{S}$ contained in $\\{0, 1, \\ldots, n - 1\\}$. Please help him.\n\nSince the answer can be very large, output it modulo $10^9 + 7$.\n\n$^{\\text{∗}}$The minimum excluded (MEX) of a collection of integers $c_1, c_2, \\ldots, c_k$ is defined as the smallest non-negative integer $x$ which does not occur in the collection $c$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 5 \\cdot 10^5$) — the length of the string.\n\nThe second line contains a binary string $s$ of length $n$, representing the set $\\mathcal{S}$. For each $0 \\le i \\lt n$, the integer $i$ belongs to $\\mathcal{S}$ if and only if the $(i+1)$-th character of $s$ is `1`.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output one integer — the required sum modulo $10^9 + 7$.\n\n## Note\n\nIn the first example, there are only $4$ sets containing the given $\\mathcal{S}$ as a subset: $\\{0, 2, 3\\}$, $\\{0, 1, 2, 3\\}$, $\\{0, 2, 3, 4\\}$, and $\\{0, 1, 2, 3, 4\\}$.\n\nFor the set $\\mathcal{A} = \\{0, 2, 3\\}$, the sequence of transformations is as follows: $$\\{0, 2, 3\\} \\to \\{0, 1, 3\\} \\to \\{1, 2\\} \\to \\{0, 1\\} \\to \\{0\\}$$ The values of $\\operatorname{mex}$ of the obtained sets are $2, 0, 2, 1$, respectively, so: $$f(\\{0, 2, 3\\}) = 2 + 0 + 2 + 1 = 5.$$\n\nFor the set $\\mathcal{A} = \\{0, 1, 2, 3\\}$: $$\\{0, 1, 2, 3\\} \\to \\{0, 1, 2, 3\\} \\to \\{0, 1, 2\\} \\to \\{0, 1\\} \\to \\{0\\}$$ $$f(\\{0, 1, 2, 3\\}) = 4 + 3 + 2 + 1 = 10.$$\n\nFor the set $\\mathcal{A} = \\{0, 2, 3, 4\\}$: $$\\{0, 2, 3, 4\\} \\to \\{0, 1, 3\\} \\to \\{1, 2\\} \\to \\{0, 1\\} \\to \\{0\\}$$ $$f(\\{0, 2, 3, 4\\}) = 2 + 0 + 2 + 1 = 5.$$\n\nFor the set $\\mathcal{A} = \\{0, 1, 2, 3, 4\\}$: $$\\{0, 1, 2, 3, 4\\} \\to \\{0, 1, 2, 3\\} \\to \\{0, 1, 2\\} \\to \\{0, 1\\} \\to \\{0\\}$$ $$f(\\{0, 1, 2, 3, 4\\}) = 4 + 3 + 2 + 1 = 10.$$\n\nThus, the final answer is the sum over these four sets: $$5 + 10 + 5 + 10 = 30.$$$$\n\nIn the second test case, $\\mathcal{S}$ is empty, so all $8$ subsets of $\\{0, 1, 2\\}$ are considered. The value of $f$ is $0$ for the empty set, $1$ for each of $\\{0\\}$, $\\{2\\}$, and $\\{0, 2\\}$, $2$ for $\\{1\\}$, and $3$ for each of the remaining three sets. Thus, the answer is $0 + 3 \\cdot 1 + 2 + 3 \\cdot 3 = 14$$$.",
+  "statementZhMd": "对于一个由 $0$ 到 $n - 1$ 之间的整数构成的集合 $\\mathcal{A}$，定义其价值 $f(\\mathcal{A})$ 如下。对该集合进行 $n - 1$ 步操作：在第 $i$ 步（$1 \\le i \\le n - 1$），将当前集合中的每个元素 $x$ 替换为 $(x + 1) \\bmod (n - i)$。注意，所有元素会同时替换，并且集合中相同的元素只保留一次，因此每步操作后集合的大小可能会减小。\n\n令 $\\mathcal{A}_i$ 表示经过第 $i$ 步操作后得到的集合。那么，$f(\\mathcal{A})$ 等于所有得到的集合的 $\\operatorname{mex}$$^{\\text{∗}}$ 之和： $$f(\\mathcal{A}) = \\operatorname{mex}(\\mathcal{A}_1) + \\operatorname{mex}(\\mathcal{A}_2) + \\ldots + \\operatorname{mex}(\\mathcal{A}_{n - 1}).$$\n\nDima 有一个集合 $\\mathcal{S}$，其中包含 $0$ 到 $n - 1$ 之间互不相同的整数。\n\nDima 想求所有满足 $\\mathcal{S} \\subseteq \\mathcal{S}' \\subseteq \\{0, 1, \\ldots, n - 1\\}$ 的集合 $\\mathcal{S}'$ 的 $f(\\mathcal{S}')$ 之和。换句话说，他想求所有包含 $\\mathcal{S}$ 且是 $\\{0, 1, \\ldots, n - 1\\}$ 子集的集合的 $f$ 值之和。请帮助他。\n\n由于答案可能很大，请输出对 $10^9 + 7$ 取模后的结果。\n\n$^{\\text{∗}}$一组整数 $c_1, c_2, \\ldots, c_k$ 的最小未出现值（MEX）定义为集合 $c$ 中未出现的最小非负整数 $x$。\n\n## 输入格式\n\n每个输入文件包含多个测试用例。第一行包含测试用例数量 $t$（$1 \\le t \\le 10^4$）。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 5 \\cdot 10^5$），表示字符串的长度。\n\n第二行包含一个长度为 $n$ 的二进制字符串 $s$，表示集合 $\\mathcal{S}$。对于每个 $0 \\le i \\lt n$，当且仅当 $s$ 的第 $(i+1)$ 个字符是 `1` 时，整数 $i$ 属于 $\\mathcal{S}$。\n\n保证所有测试用例的 $n$ 之和不超过 $5 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——所求的和对 $10^9 + 7$ 取模后的结果。\n\n## 说明\n\n在第一个样例中，只有 $4$ 个集合包含给定的 $\\mathcal{S}$：$\\{0, 2, 3\\}$、$\\{0, 1, 2, 3\\}$、$\\{0, 2, 3, 4\\}$ 和 $\\{0, 1, 2, 3, 4\\}$。\n\n对于集合 $\\mathcal{A} = \\{0, 2, 3\\}$，变换过程如下： $$\\{0, 2, 3\\} \\to \\{0, 1, 3\\} \\to \\{1, 2\\} \\to \\{0, 1\\} \\to \\{0\\}$$ 得到的集合的 $\\operatorname{mex}$ 值依次为 $2, 0, 2, 1$，因此： $$f(\\{0, 2, 3\\}) = 2 + 0 + 2 + 1 = 5.$$。\n\n对于集合 $\\mathcal{A} = \\{0, 1, 2, 3\\}$： $$\\{0, 1, 2, 3\\} \\to \\{0, 1, 2, 3\\} \\to \\{0, 1, 2\\} \\to \\{0, 1\\} \\to \\{0\\}$$ $$f(\\{0, 1, 2, 3\\}) = 4 + 3 + 2 + 1 = 10.$$。\n\n对于集合 $\\mathcal{A} = \\{0, 2, 3, 4\\}$： $$\\{0, 2, 3, 4\\} \\to \\{0, 1, 3\\} \\to \\{1, 2\\} \\to \\{0, 1\\} \\to \\{0\\}$$ $$f(\\{0, 2, 3, 4\\}) = 2 + 0 + 2 + 1 = 5.$$。\n\n对于集合 $\\mathcal{A} = \\{0, 1, 2, 3, 4\\}$： $$\\{0, 1, 2, 3, 4\\} \\to \\{0, 1, 2, 3\\} \\to \\{0, 1, 2\\} \\to \\{0, 1\\} \\to \\{0\\}$$ $$f(\\{0, 1, 2, 3, 4\\}) = 4 + 3 + 2 + 1 = 10.$$。\n\n因此，最终答案是这四个集合对应的值之和： $$5 + 10 + 5 + 10 = 30.$$$$\n\n在第二个测试用例中，$\\mathcal{S}$ 为空，因此考虑 $\\{0, 1, 2\\}$ 的全部 $8$ 个子集。空集的 $f$ 值为 $0$；集合 $\\{0\\}$、$\\{2\\}$ 和 $\\{0, 2\\}$ 的 $f$ 值均为 $1$；集合 $\\{1\\}$ 的 $f$ 值为 $2$；其余三个集合的 $f$ 值均为 $3$。因此答案为 $0 + 3 \\cdot 1 + 2 + 3 \\cdot 3 = 14$$$。",
+  "samples": [
+    {
+      "input": "4\n5\n10110\n3\n000\n9\n101010101\n6\n000111\n",
+      "output": "30\n14\n306\n78\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-06T20:00:11.740Z",
+  "translatedAt": "2026-11-06T20:03:03.947Z",
+  "translateModel": "gpt-6.1-sol"
+}
