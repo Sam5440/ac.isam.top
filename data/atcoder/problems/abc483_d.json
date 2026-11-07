@@ -1,0 +1,32 @@
+{
+  "id": "abc483_d",
+  "platform": "atcoder",
+  "contestId": "abc483",
+  "index": "D",
+  "title": "Glitchy Robot",
+  "titleZh": "故障机器人",
+  "url": "https://atcoder.jp/contests/abc483/tasks/abc483_d",
+  "difficulty": 965,
+  "tags": [],
+  "points": 400,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nThere is a robot on a number line. Initially, the robot is at coordinate $0$. Also, Takahashi has an integer sequence $A=(A_1,A_2,\\ldots,A_N)$ of length $N$.\n\nTakahashi performs the following steps in order.\n\n1. Choose **at most $1$** element of $A$ and flip its sign. That is, choose $0$ or $1$ index $i$ satisfying $1\\leq i\\leq N$, and replace $A_i$ with $-A_i$.\n2. Start the robot. After starting, the robot makes $N$ moves. In the $i$-th move $(1\\leq i\\leq N)$, letting $x$ be its current coordinate, the robot moves in a straight line to coordinate $x+A_i$.\n\nTakahashi wants to maximize the number of integer coordinates that the robot passes through at least once.\\\nFind the maximum possible value of \"the number of integer coordinates that the robot passes through at least once\" when Takahashi acts optimally.\n\nHere, the robot moves continuously. When a move takes the robot from coordinate $S$ to coordinate $T$, it is considered to have passed through every integer coordinate between $S$ and $T$, inclusive.\n\n## Constraints\n\n- $1 \\leq N \\leq 2\\times 10^5$\n- $-10^9 \\leq A_i \\leq 10^9$\n- $A_i\\neq 0$\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nN\nA_1 A_2 \\cdots A_N\n```\n\n## Output\n\nPrint the maximum possible value of the number of integer coordinates that the robot passes through at least once when Takahashi acts optimally.",
+  "statementZhMd": "## 题目描述\n\n数轴上有一台机器人。初始时，机器人位于坐标 $0$。此外，Takahashi 有一个长度为 $N$ 的整数序列 $A=(A_1,A_2,\\ldots,A_N)$。\n\nTakahashi 按照以下顺序执行操作。\n\n1. 从 $A$ 中选择**至多 $1$** 个元素并改变它的符号。也就是说，可以不选择任何下标，也可以选择一个满足 $1\\leq i\\leq N$ 的下标 $i$，并将 $A_i$ 替换为 $-A_i$。\n2. 启动机器人。启动后，机器人移动 $N$ 次。在第 $i$ 次移动中（$1\\leq i\\leq N$），设机器人的当前位置为 $x$，机器人沿直线移动到坐标 $x+A_i$。\n\nTakahashi 想要最大化机器人至少经过一次的整数坐标数量。请你求出在 Takahashi 最优操作时，机器人至少经过一次的整数坐标数量的最大值。\\\n\n这里，机器人是连续移动的。当一次移动使机器人从坐标 $S$ 移动到坐标 $T$ 时，认为机器人经过了 $S$ 和 $T$ 之间（包含 $S$ 和 $T$）的所有整数坐标。\n\n## 约束条件\n\n- $1 \\leq N \\leq 2\\times 10^5$\n- $-10^9 \\leq A_i \\leq 10^9$\n- $A_i\\neq 0$\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n``` \nN\nA_1 A_2 \\cdots A_N\n```\n\n## 输出格式\n\n输出 Takahashi 最优操作时，机器人至少经过一次的整数坐标数量的最大值。",
+  "samples": [
+    {
+      "input": "3\n-2 3 -2\n",
+      "output": "8\n",
+      "note": "Initially, $A=(-2,3,-2)$. If Takahashi flips the sign of $A_2$, then $A=(-2,-3,-2)$. In this case, the robot moves as follows.\n\n- In its $1$-st move, the robot moves from $0$ to $-2$. The integer coordinates it passes through in this move are $-2,-1,0$.\n- In its $2$-nd move, the robot moves from $-2$ to $-5$. The integer coordinates it passes through in this move are $-5,-4,-3,-2$.\n- In its $3$-rd move, the robot moves from $-5$ to $-7$. The integer coordinates it passes through in this move are $-7,-6,-5$.\n\nThus, the integer coordinates the robot passes through at least once are the $8$ coordinates $-7,-6,-5,-4,-3,-2,-1,0$, and this is the maximum possible count, so print $8$.\n\nNote that if Takahashi did not flip the sign of any element, the robot would move as $0\\to -2\\to 1\\to -1$, and the integer coordinates it passes through at least once would be the $4$ coordinates $-2,-1,0,1$."
+    },
+    {
+      "input": "2\n2 3\n",
+      "output": "6\n",
+      "note": "If no element of $A$ is changed, the robot moves as $0\\to 2\\to 5$, and the integer coordinates it passes through at least once are the $6$ coordinates $0,1,2,3,4,5$.\\\nThis is the maximum possible count, so print $6$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-07T22:49:04.069Z",
+  "translatedAt": "2026-11-07T22:51:10.177Z",
+  "translateModel": "gpt-6.1-sol"
+}

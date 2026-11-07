@@ -1,0 +1,29 @@
+{
+  "id": "2280A",
+  "platform": "codeforces",
+  "contestId": 2280,
+  "index": "A",
+  "title": "Are They the Same?",
+  "titleZh": "它们相同吗？",
+  "url": "https://codeforces.com/contest/2280/problem/A",
+  "difficulty": null,
+  "tags": [
+    "implementation"
+  ],
+  "points": 500,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given two integer arrays $a$ and $b$, each of length $n$. Furthermore, you are given an integer $k$.\n\nYou are allowed to perform any of the following operations **zero or more times**:\n\n- Choose an index $i$ ($1\\le i\\le n$) and set $a[i] := 2\\cdot a[i] + k$.\n- Choose an index $i$ ($1\\le i\\le n$) and set $a[i] := a[i] + 2$.\n- Choose an index $i$ ($1\\le i\\le n$) and set $a[i] := a[i] - 2$.\n\nDetermine if there is a way to apply these operations such that the resulting array $a$ is a permutation$^{\\dagger}$ of $b$. Note that there are no restrictions on the values of the array during the process: elements may become negative or arbitrarily large.\n\n$^{\\dagger}$An array $a$ is a permutation of an array $b$ if $a$ consists of the elements of $b$ in arbitrary order. For example, $[4,2,3,4]$ is a permutation of $[3,2,4,4]$, while $[1,2,2]$ is not a permutation of $[1,2,3]$.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 500$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($1\\le n\\le 100$, $0\\le k\\le 10^6$) — $n$ is the length of $a$ and $b$.\n\nThe second line of each testcase contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 10^6$).\n\nThe third line of each testcase contains $n$ integers $b_1, b_2, \\ldots, b_n$ ($0 \\le b_i \\le 10^6$).\n\n## Output\n\nFor each test case, print \"`YES`\" if it is possible to transform $a$ into a permutation of $b$, and \"`NO`\" otherwise.\n\nYou can output the answer in any case (upper or lower). For example, the strings \"`yEs`\", \"`yes`\", \"`Yes`\", and \"`YES`\" will be recognized as positive responses.\n\n## Note\n\nIn the first test case, consider applying the following operations:\n\n- Apply $a[1] := a[1] + 2$\n- Apply $a[2] := 2 \\cdot a[2] + k$\n- Apply $a[3] := a[3] - 2$\n\nAs a result of these operations, $a$ becomes $[3, 8, 5]$, which is a permutation of $[5, 3, 8]$.\n\nIn the second test case, we can apply the operation $a[1] := 2\\cdot a[1] + k$ to make $a = [1]$.\n\nIn the third test case, we can show that there is no way to make $a = [0]$.",
+  "statementZhMd": "给定两个长度均为 $n$ 的整数数组 $a$ 和 $b$。此外，还给定一个整数 $k$。\n\n你可以执行以下任意操作**零次或多次**：\n\n- 选择一个下标 $i$（$1\\le i\\le n$），并令 $a[i] := 2\\cdot a[i] + k$。\n- 选择一个下标 $i$（$1\\le i\\le n$），并令 $a[i] := a[i] + 2$。\n- 选择一个下标 $i$（$1\\le i\\le n$），并令 $a[i] := a[i] - 2$。\n\n判断能否通过这些操作，使最终的数组 $a$ 成为 $b$ 的一个排列$^{\\dagger}$。注意，操作过程中数组元素的值没有任何限制：元素可以变为负数，也可以变得任意大。\n\n$^{\\dagger}$如果数组 $a$ 由数组 $b$ 的所有元素按任意顺序排列而成，则称 $a$ 是 $b$ 的一个排列。例如，$[4,2,3,4]$ 是 $[3,2,4,4]$ 的一个排列，而 $[1,2,2]$ 不是 $[1,2,3]$ 的一个排列。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 500$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含两个整数 $n$ 和 $k$（$1\\le n\\le 100$，$0\\le k\\le 10^6$）——其中 $n$ 是 $a$ 和 $b$ 的长度。\n\n每组测试用例的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\le a_i \\le 10^6$）。\n\n每组测试用例的第三行包含 $n$ 个整数 $b_1, b_2, \\ldots, b_n$（$0 \\le b_i \\le 10^6$）。\n\n## 输出格式\n\n对于每组测试用例，如果可以将 $a$ 变为 $b$ 的一个排列，输出 \"`YES`\"；否则输出 \"`NO`\"。\n\n输出答案时，字母可以使用任意大小写。例如，字符串 \"`yEs`\"、\"`yes`\"、\"`Yes`\" 和 \"`YES`\" 都会被视为肯定回答。\n\n## 说明\n\n在第一组测试用例中，可以执行以下操作：\n\n- 执行 $a[1] := a[1] + 2$\n- 执行 $a[2] := 2 \\cdot a[2] + k$\n- 执行 $a[3] := a[3] - 2$\n\n执行这些操作后，$a$ 变为 $[3, 8, 5]$，它是 $[5, 3, 8]$ 的一个排列。\n\n在第二组测试用例中，可以执行操作 $a[1] := 2\\cdot a[1] + k$，使得 $a = [1]$。\n\n在第三组测试用例中，可以证明不存在任何方法使得 $a = [0]$。",
+  "samples": [
+    {
+      "input": "5\n3 4\n1 2 7\n5 3 8\n1 1\n0\n1\n1 1\n1\n0\n6 1\n0 0 0 0 0 0\n1 3 7 15 31 63\n2 1000000\n999999 1\n1000000 1\n",
+      "output": "YES\nYES\nNO\nYES\nYES\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-07T22:50:02.731Z",
+  "translatedAt": "2026-11-07T22:51:20.008Z",
+  "translateModel": "gpt-6.1-sol"
+}
