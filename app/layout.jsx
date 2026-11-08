@@ -9,6 +9,7 @@ import PwaRegister from '@/components/PwaRegister';
 import { SettingsProvider } from '@/components/settings';
 import GithubMark from '@/components/GithubMark';
 import { getIndex } from '@/lib/data';
+import { TEMPLATE_THEMES } from '@/lib/themes';
 import { formatDateTime } from '@/lib/utils';
 
 import './globals.css';
@@ -39,9 +40,29 @@ export const viewport = {
   viewportFit: 'cover',
 };
 
-/** 首帧前应用外观（settings.jsx 存的 theme）：夜间=dark，日间=无类，墨水屏=eink。
-    默认（无记录/读不到）保持 SSR 的 dark，避免闪白。 */
-const THEME_BOOTSTRAP = `(function(){try{var t=JSON.parse(localStorage.getItem('stmt-settings-v1')||'{}').theme;if(t==='light')document.documentElement.classList.remove('dark');else if(t==='eink'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('eink');}}catch(e){}})();`;
+/** 首帧前应用外观（settings.jsx 存的 theme）：
+    内置主题：夜间=dark，日间=无类，墨水屏=eink；
+    模板主题（lib/themes.js）：html[data-theme] + 注入 <style id="ac-theme-css">；
+    自定义主题（stmt-custom-themes-v1）：同模板机制，CSS 从 localStorage 取；
+    全局自定义 CSS：注入 <style id="ac-user-css">。
+    默认（无记录/读不到）保持 SSR 的 dark，避免闪白。脚本由服务端用模板数据生成。 */
+const TEMPLATE_CSS = JSON.stringify(Object.fromEntries(TEMPLATE_THEMES.map((t) => [t.id, t.css])));
+const TEMPLATE_BASE = JSON.stringify(Object.fromEntries(TEMPLATE_THEMES.map((t) => [t.id, t.base])));
+const THEME_BOOTSTRAP = `(function(){try{
+var s=JSON.parse(localStorage.getItem('stmt-settings-v1')||'{}');
+var t=s.theme||'dark';
+var TPL=${TEMPLATE_CSS},BASE=${TEMPLATE_BASE};
+var root=document.documentElement;
+function style(id,css){var el=document.getElementById(id);if(!css){if(el)el.remove();return;}if(!el){el=document.createElement('style');el.id=id;document.head.appendChild(el);}el.textContent=css;}
+var css='',base='dark';
+if(t==='light')base='light';else if(t==='eink')base='eink';
+else if(TPL[t]){css=TPL[t];base=BASE[t];}
+else if(t!=='dark'){var list=JSON.parse(localStorage.getItem('stmt-custom-themes-v1')||'[]');for(var i=0;i<list.length;i++){if(list[i].id===t){css=list[i].css||'';base=list[i].base||'dark';break;}}}
+root.classList.toggle('dark',base==='dark');
+root.classList.toggle('eink',base==='eink');
+if(css){root.setAttribute('data-theme',t);style('ac-theme-css',css);}else{root.removeAttribute('data-theme');style('ac-theme-css','');}
+if(s.customCss)style('ac-user-css',String(s.customCss));
+}catch(e){}})();`;
 
 export default function RootLayout({ children }) {
   const idx = getIndex();

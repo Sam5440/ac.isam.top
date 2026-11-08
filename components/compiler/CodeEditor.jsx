@@ -43,6 +43,7 @@ import {
 } from "../../lib/compiler/completions.js";
 import { EDITOR_THEMES, editorThemeDef } from "../../lib/compiler/themes.js";
 import { formatCode } from "../../lib/compiler/format.js";
+import { registerEditorSource } from "../../lib/editor-bridge.js";
 
 let monacoPromise = null;
 
@@ -607,6 +608,7 @@ export default function CodeEditor({
   useEffect(() => {
     let disposed = false;
     let editor = null;
+    let unregisterEditorSource = null;
     loadMonaco().then((monaco) => {
       if (disposed || !hostRef.current) return;
       registerProviders(monaco, () => {
@@ -651,6 +653,8 @@ export default function CodeEditor({
       });
       editorRef.current = editor;
       monacoRef.current = monaco;
+      // AI 对话面板读取当前代码的桥（lib/editor-bridge），销毁时注销
+      unregisterEditorSource = registerEditorSource(() => editor.getValue());
       // 自动化/测试钩子：E2E 用它做免焦点的代码注入（Monaco 点击聚焦在
       // headless 下不稳定，曾导致 Ctrl+A 选中整页、运行了旧代码）
       if (typeof window !== "undefined") window.__ysMonaco = { editor, monaco };
@@ -714,6 +718,7 @@ export default function CodeEditor({
     });
     return () => {
       disposed = true;
+      unregisterEditorSource?.();
       editor?.dispose();
       editorRef.current = null;
     };

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { DifficultyBadge, PlatformBadge } from '@/components/Badges';
+import AiFab from '@/components/chat/AiFab';
 import CopyProblemButton from '@/components/CopyProblemButton';
 import SamplesSection from '@/components/SamplesSection';
 import StatementBody from '@/components/StatementBody';
@@ -84,8 +85,23 @@ export default async function ProblemPage({ params }) {
   const segments = pairSegments(prob.statementMd, prob.statementZhMd);
 
   return (
-    <ProblemViewShell rail={<ProblemLetterRail contest={contestForClient} current={prob} />}>
+      <ProblemViewShell rail={<ProblemLetterRail contest={contestForClient} current={prob} />}>
       <ProblemCompiler contest={contestForClient} current={prob} />
+      {/* AI 对话悬浮窗（右下角，可在设置中关闭） */}
+      <AiFab
+        problem={{
+          id: prob.id,
+          platform,
+          index: prob.index,
+          title: prob.title,
+          titleZh: prob.titleZh ?? null,
+          statementMd: prob.statementMd ?? '',
+          samples: prob.samples ?? [],
+          timeLimitMs: prob.timeLimitMs ?? null,
+          memoryLimitMb: prob.memoryLimitMb ?? null,
+          url: prob.url,
+        }}
+      />
 
       <Button asChild variant="ghost" size="sm">
         <Link

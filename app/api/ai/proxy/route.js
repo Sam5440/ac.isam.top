@@ -55,6 +55,18 @@ export async function POST(req) {
       if (!init.headers["content-type"]) init.headers["content-type"] = "application/json";
     }
     const upstream = await fetch(url, init);
+    // SSE 流式响应（AI 对话 stream:true）直接透传字节流，不做 arrayBuffer
+    // 全量缓冲 —— 缓冲会让对话一个字都不吐直到结束，失去流式体验。
+    const upstreamCt = upstream.headers.get("content-type") || "";
+    if (upstream.ok && upstreamCt.includes("text/event-stream") && upstream.body) {
+      return new Response(upstream.body, {
+        status: upstream.status,
+        headers: {
+          "content-type": upstreamCt,
+          "cache-control": "no-cache",
+        },
+      });
+    }
     const ab = await upstream.arrayBuffer();
     const headersOut = {
       "content-type": upstream.headers.get("content-type") || "application/json",
