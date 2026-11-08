@@ -1,0 +1,27 @@
+{
+  "id": "agc079_d",
+  "platform": "atcoder",
+  "contestId": "agc079",
+  "index": "D",
+  "title": "Yet Another Degree Sequence Problem",
+  "titleZh": "又一个度序列问题",
+  "url": "https://atcoder.jp/contests/agc079/tasks/agc079_d",
+  "difficulty": 3919,
+  "tags": [],
+  "points": 1900,
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nConsider the following **decision problem X**.\n\n- You are given a simple undirected graph $G$ with vertex set $V=\\{1,2,\\ldots,N\\}$ and a length-$N$ sequence of positive integers $D=(D_1,D_2,\\ldots,D_N)$. Here, letting $\\deg_G(i)$ denote the degree of vertex $i$ in $G$, the inequality $D_i\\leq \\deg_G(i)$ holds for every vertex $i$. Also, $\\sum_{i=1}^N D_i$ is even.\n- Determine whether it is possible to delete zero or more edges of $G$ so that the degree of every vertex $i$ becomes $D_i$. The answer is `Possible` if this can be done, and `Impossible` otherwise.\n\nFor $S\\subseteq V$, define the following.\n\n- $e_G(S)$: The number of edges of $G$ with both endpoints in $S$.\n- $e_G(i,S)$: The number of edges of $G$ connecting vertex $i\\notin S$ to a vertex in $S$.\n\nSnuke came up with the following **conjecture Y** about problem X.\n\n> The statement \"for every subset $S$ of $V$, $\\left(\\sum_{i\\in S}D_i\\right)-2e_G(S)\\leq \\sum_{i\\notin S}\\min(D_i,e_G(i,S))$ holds\" is equivalent to the statement \"the answer to problem X is `Possible`\".\n\nIntuitively, the condition says that \"the number of edges that must leave $S$\" must not exceed \"the sum, over the vertices outside $S$, of the maximum number of edges that each of them can have toward $S$\".\n\nHowever, this conjecture is false.\n\nYou are given a length-$N$ sequence of positive integers $D$, where $\\sum_{i=1}^N D_i$ is even. Determine whether there exists a simple undirected graph $G$ with vertex set $V$ satisfying $D_i\\leq\\deg_G(i)$ for every vertex $i$ such that $(G,D)$ is a counterexample to conjecture Y.\n\nYou are given $T$ test cases; solve each of them.\n\n## Constraints\n\n- $1\\leq T\\leq 125000$\n- $2\\leq N\\leq 250000$\n- $1\\leq D_i\\leq N-1$ $(1\\leq i\\leq N)$\n- $\\sum_{i=1}^N D_i$ is even.\n- The sum of $N$ over all test cases in a single input is at most $250000$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN\nD_1 D_2 \\ldots D_N\n```\n\n## Output\n\nFor each test case, output `Yes` if there exists a graph $G$ that is a counterexample to conjecture Y, and `No` otherwise.",
+  "statementZhMd": "## 题目描述\n\n考虑以下**判定问题 X**。\n\n- 给定一个简单无向图 $G$，其顶点集合为 $V=\\{1,2,\\ldots,N\\}$，以及一个长度为 $N$ 的正整数序列 $D=(D_1,D_2,\\ldots,D_N)$。记图 $G$ 中顶点 $i$ 的度数为 $\\deg_G(i)$，对于每个顶点 $i$，均满足不等式 $D_i\\leq \\deg_G(i)$。此外，$\\sum_{i=1}^N D_i$ 为偶数。\n- 判断是否可以删除 $G$ 中零条或多条边，使每个顶点 $i$ 的度数变为 $D_i$。如果可以做到，答案为 `Possible`，否则答案为 `Impossible`。\n\n对于 $S\\subseteq V$，定义如下。\n\n- $e_G(S)$：$G$ 中两个端点都在 $S$ 中的边数。\n- $e_G(i,S)$：连接不属于 $S$ 的顶点 $i$ 与 $S$ 中某个顶点的边数。\n\nSnuke 针对问题 X 提出了如下**猜想 Y**。\n\n> 对于 $V$ 的每个子集 $S$，均满足 \"$\\left(\\sum_{i\\in S}D_i\\right)-2e_G(S)\\leq \\sum_{i\\notin S}\\min(D_i,e_G(i,S))$\"，这一陈述等价于“问题 X 的答案为 `Possible`”这一陈述。\n\n直观地说，该条件表示“必须离开 $S$ 的边数”不能超过“对于 $S$ 外的每个顶点，将其最多能连接到 $S$ 的边数求和”。\n\n然而，这个猜想是错误的。\n\n给定一个长度为 $N$ 的正整数序列 $D$，其中 $\\sum_{i=1}^N D_i$ 为偶数。请判断是否存在一个顶点集合为 $V$ 的简单无向图 $G$，使得对于每个顶点 $i$ 都满足 $D_i\\leq\\deg_G(i)$，并且 $(G,D)$ 是猜想 Y 的反例。\n\n给定 $T$ 个测试用例，请分别求解。\n\n## 约束条件\n\n- $1\\leq T\\leq 125000$\n- $2\\leq N\\leq 250000$\n- $1\\leq D_i\\leq N-1$ $(1\\leq i\\leq N)$\n- $\\sum_{i=1}^N D_i$ 为偶数。\n- 单个输入中所有测试用例的 $N$ 之和不超过 $250000$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入按以下格式给出：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每个测试用例按以下格式给出：\n\n```\nN\nD_1 D_2 \\ldots D_N\n```\n\n## 输出格式\n\n对于每个测试用例，如果存在作为猜想 Y 反例的图 $G$，输出 `Yes`；否则输出 `No`。",
+  "samples": [
+    {
+      "input": "8\n6\n1 1 1 1 1 1\n6\n2 2 2 2 2 2\n2\n1 1\n7\n1 1 1 1 1 1 2\n7\n2 2 2 2 2 2 6\n8\n2 2 2 2 2 2 2 2\n9\n2 2 2 2 2 2 2 2 2\n10\n2 2 3 3 3 3 3 3 9 9\n",
+      "output": "Yes\nNo\nNo\nYes\nYes\nNo\nYes\nYes\n",
+      "note": "In the first test case, you can take $G$ to be the graph consisting of a cycle on vertices $1,2,3$ and a cycle on vertices $4,5,6$. In this case, for example, for $S=\\{1,2,4\\}$:\n\n- Left-hand side: $\\left(\\sum_{i\\in S}D_i\\right)-2e_G(S) = (D_1+D_2+D_4)-2 \\times 1 = 1$\n- Right-hand side: $\\sum_{i\\notin S}\\min(D_i,e_G(i,S)) = \\min(D_3,2)+\\min(D_5,1)+\\min(D_6,1)=3$\n\nThus, the inequality in conjecture Y holds. Similarly, the condition can be verified for every subset $S$.\n\nOn the other hand, no matter how the edges of $G$ are deleted, it is impossible to make every vertex have degree $1$. Therefore, this $G$ is a counterexample, and the answer is `Yes`."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-08T18:24:17.605Z",
+  "translatedAt": "2026-11-08T18:26:35.202Z",
+  "translateModel": "gpt-6.1-sol"
+}

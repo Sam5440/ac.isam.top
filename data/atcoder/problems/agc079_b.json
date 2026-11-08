@@ -1,0 +1,27 @@
+{
+  "id": "agc079_b",
+  "platform": "atcoder",
+  "contestId": "agc079",
+  "index": "B",
+  "title": "Range Record",
+  "titleZh": "区间记录",
+  "url": "https://atcoder.jp/contests/agc079/tasks/agc079_b",
+  "difficulty": 3310,
+  "tags": [],
+  "points": 1100,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given integers $N,M$ and $M$ triples of integers $(L_i,R_i,C_i)$. Here, $1 \\leq L_i < R_i \\leq N$, and the pairs $(L_i,R_i)$ are pairwise distinct.\n\nDetermine whether there exists a permutation $P=(P_1,P_2,\\ldots,P_N)$ of $(1,2,\\ldots,N)$ that satisfies all of the following $M$ conditions. If one exists, find one such permutation.\n\n- The $i$-th condition: the number of integers $j$ such that $L_i \\leq j \\leq R_i$ and $\\max(P_{L_i},P_{L_i+1},\\ldots,P_j)=P_j$ is exactly $C_i$.\n\nYou are given $T$ test cases; solve each of them.\n\n## Constraints\n\n- $1 \\leq T \\leq 125000$\n- $2 \\leq N \\leq 100$\n- $1 \\leq M \\leq \\dfrac{N(N-1)}{2}$\n- $1 \\leq L_i \\lt R_i \\leq N$ $(1 \\leq i \\leq M)$\n- $(L_i,R_i) \\neq (L_j,R_j)$ $(1 \\leq i \\lt j \\leq M)$\n- $1 \\leq C_i \\leq R_i-L_i+1$ $(1 \\leq i \\leq M)$\n- The sum of $N^3$ over all test cases in a single input is at most $10^6$.\n- All input values are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\nEach test case is given in the following format:\n\n```\nN M\nL_1 R_1 C_1\nL_2 R_2 C_2\n\\vdots\nL_M R_M C_M\n```\n\n## Output\n\nFor each test case, if a permutation satisfying the conditions exists, output `Yes` on the first line and the elements of such a permutation $P$, separated by spaces, on the second line. If there are multiple such permutations, any of them will be accepted.\n\nIf no such permutation exists, output `No` on a single line.",
+  "statementZhMd": "## 题目描述\n\n给定整数 $N,M$ 以及 $M$ 个整数三元组 $(L_i,R_i,C_i)$。其中，$1 \\leq L_i < R_i \\leq N$，且所有的二元组 $(L_i,R_i)$ 两两不同。\n\n请判断是否存在一个 $(1,2,\\ldots,N)$ 的排列 $P=(P_1,P_2,\\ldots,P_N)$，满足以下 $M$ 个条件。如果存在，请找出这样一个排列。\n\n- 第 $i$ 个条件：满足 $L_i \\leq j \\leq R_i$ 且 $\\max(P_{L_i},P_{L_i+1},\\ldots,P_j)=P_j$ 的整数 $j$ 的个数恰好为 $C_i$。\n\n给定 $T$ 组测试用例，请分别求解每组测试用例。\n\n## 约束条件\n\n- $1 \\leq T \\leq 125000$\n- $2 \\leq N \\leq 100$\n- $1 \\leq M \\leq \\dfrac{N(N-1)}{2}$\n- $1 \\leq L_i \\lt R_i \\leq N$ $(1 \\leq i \\leq M)$\n- $(L_i,R_i) \\neq (L_j,R_j)$ $(1 \\leq i \\lt j \\leq M)$\n- $1 \\leq C_i \\leq R_i-L_i+1$ $(1 \\leq i \\leq M)$\n- 单个输入中所有测试用例的 $N^3$ 之和不超过 $10^6$。\n- 所有输入值均为整数。\n\n## 输入格式\n\n输入从标准输入中给出，格式如下：\n\n```\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n```\n\n每组测试用例的格式如下：\n\n```\nN M\nL_1 R_1 C_1\nL_2 R_2 C_2\n\\vdots\nL_M R_M C_M\n```\n\n## 输出格式\n\n对于每组测试用例，如果存在满足条件的排列，则在第一行输出 `Yes`，并在第二行输出该排列 $P$ 的各个元素，元素之间用空格分隔。如果存在多个满足条件的排列，输出其中任意一个即可。\n\n如果不存在满足条件的排列，则仅输出一行 `No`。",
+  "samples": [
+    {
+      "input": "8\n4 3\n1 4 2\n2 4 1\n3 4 2\n3 3\n1 2 2\n2 3 2\n1 3 2\n2 1\n1 2 1\n2 1\n1 2 2\n6 5\n1 6 3\n2 5 3\n3 6 2\n4 6 1\n5 6 2\n5 10\n1 2 2\n1 3 2\n1 4 2\n1 5 2\n2 3 1\n2 4 1\n2 5 1\n3 4 2\n3 5 2\n4 5 1\n3 2\n1 3 3\n2 3 1\n3 2\n1 2 1\n1 3 2\n",
+      "output": "Yes\n2 4 1 3\nNo\nYes\n2 1\nYes\n1 2\nYes\n2 1 4 6 3 5\nYes\n2 5 1 4 3\nNo\nYes\n2 1 3\n",
+      "note": "In the first test case, for example, $P=(2,4,1,3)$ satisfies the conditions. The integers $j$ counted in each condition are $j=1,2$ for the interval $[1,4]$, $j=2$ for the interval $[2,4]$, and $j=3,4$ for the interval $[3,4]$.\n\nIn the second test case, the first two conditions require $P_1 \\lt P_2 \\lt P_3$. Then, the number of integers $j$ counted for the interval $[1,3]$ is $3$, which violates the third condition, so no such permutation exists."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-08T18:24:14.347Z",
+  "translatedAt": "2026-11-08T18:26:26.834Z",
+  "translateModel": "gpt-6.1-sol"
+}
