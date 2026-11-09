@@ -81,13 +81,31 @@ const SETTINGS_KEY = 'stmt-settings-v1';
 
 const LANG_CHANNELS = ['deepl', 'youdao', 'caiyun', 'iflyrec', 'ai', 'ai_custom'];
 
+// 语言记录迁移版本：v1.1 时代 'ai' 指用户自定义翻译，v1.1.1 起 id 改为 ai_custom。
+// 旧实现永久重映射 channel==='ai' → 'ai_custom'，导致「AI (CI翻译)」的选择每次
+// 刷新都被改写为自定义翻译（渠道选择 bug 的根因）。现在只对无迁移标记的
+// v1.1 存量执行一次，之后一律原样信任：'ai' = CI 翻译。
+const LANG_MIGRATION = 2;
+
+function migrateLangRecord(v) {
+  if (v.channel === 'ai') v.channel = 'ai_custom';
+  return { ...v, m: LANG_MIGRATION };
+}
+
 function loadLang(defaultChannel, defaultMode = 'both') {
   try {
     const raw = window.localStorage.getItem(LANG_KEY);
     if (raw) {
       const v = JSON.parse(raw);
       if (v && ['en', 'zh', 'both'].includes(v.mode) && typeof v.channel === 'string') {
-        if (v.channel === 'ai') v.channel = 'ai_custom';
+        if (v.m !== LANG_MIGRATION) {
+          // 一次性迁移并写回标记；此后记录被原样信任
+          const migrated = migrateLangRecord(v);
+          try {
+            window.localStorage.setItem(LANG_KEY, JSON.stringify(migrated));
+          } catch {}
+          return migrated;
+        }
         return v;
       }
     }
@@ -124,9 +142,13 @@ function loadSettings() {
       merged.sidebarChannels = [
         ...new Set([...(Array.isArray(merged.sidebarChannels) ? merged.sidebarChannels : []), 'ai', 'ai_custom']),
       ];
-      // 旧「默认翻译渠道」字段迁移：defaultChannel → defaultZhChannel（缺省 CI 翻译）
-      if (!merged.defaultZhChannel) merged.defaultZhChannel = v.defaultChannel || 'ai';
-      if (!LANG_CHANNELS.includes(merged.defaultZhChannel)) merged.defaultZhChannel = 'ai';
+      // 旧「默认翻译渠道」字段迁移：v1.3 及以前从未提供过 defaultChannel 的设置
+      // 入口，存量值全是当年硬编码默认值 'deepl'，并非用户选择——不可继承
+      // （否则老用户默认渠道会落到 DeepL 而不是 CI 翻译）。一律重置为 CI 翻译。
+      delete merged.defaultChannel;
+      if (!merged.defaultZhChannel || !LANG_CHANNELS.includes(merged.defaultZhChannel)) {
+        merged.defaultZhChannel = 'ai';
+      }
       // 旧版「比赛题目页视图 = 整页阅读」偏好迁移：此前选整页的用户默认关闭两类切换条
       if (v.topSwitcher === undefined) merged.topSwitcher = v.contestView !== 'full';
       if (v.letterRail === undefined) merged.letterRail = v.contestView !== 'full';

@@ -121,13 +121,17 @@ export default function TranslationSection() {
     setStats(loadMtStats());
   };
 
-  // 按成功率重排优先级链：测过的按成功率降序在前，没测过的保持原相对顺序殿后
+  // 按成功率重排优先级链：CI 翻译（'ai'，仓库存档、不参与体检）固定链首，
+  // 其余测过的按成功率降序在前，没测过的保持原相对顺序殿后
   const applyRanking = () => {
+    const prio = settings.zhPriority || [];
     const ranked = rankedStats(stats)
       .map((r) => r.channel)
-      .filter((id) => (settings.zhPriority || []).includes(id));
-    const rest = (settings.zhPriority || []).filter((id) => !ranked.includes(id));
-    if (ranked.length) setSettings({ zhPriority: [...ranked, ...rest] });
+      .filter((id) => prio.includes(id));
+    const rest = prio.filter((id) => !ranked.includes(id));
+    const tail = rest.filter((id) => id !== 'ai');
+    const ai = rest.includes('ai') ? ['ai'] : [];
+    if (ranked.length) setSettings({ zhPriority: [...ai, ...ranked, ...tail] });
   };
 
   const ranking = rankedStats(stats);
@@ -157,7 +161,7 @@ export default function TranslationSection() {
               { id: 'en', label: '英文' },
               { id: 'zh', label: '中文' },
             ]}
-            value={lang.mode}
+            value={settings.defaultLangMode}
             onChange={pickLangMode}
           />
         </div>
