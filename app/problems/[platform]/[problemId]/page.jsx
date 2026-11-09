@@ -1,6 +1,7 @@
 import { ArrowLeft, Clock, ExternalLink, MemoryStick, Tag } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { cache } from 'react';
 
 import { DifficultyBadge, PlatformBadge } from '@/components/Badges';
 import AiFab from '@/components/chat/AiFab';
@@ -36,13 +37,15 @@ export async function generateMetadata({ params }) {
 }
 
 /** 题号大小写不敏感查找（手输 20a 也能命中 20A）。返回全量记录。 */
-function findProblem(platform, problemId) {
+// React cache():generateMetadata 与页面各调一次,缓存后同一次请求只读
+// 一遍整份题目 JSON(1.6 万页构建各省一次全量文件 IO)
+const findProblem = cache((platform, problemId) => {
   const pid = String(problemId).toLowerCase();
   const summary = getAllProblems().find(
     (p) => p.platform === platform && String(p.id).toLowerCase() === pid,
   );
   return summary ? getProblem(platform, summary.id) : null;
-}
+});
 
 function MetaItem({ icon: Icon, label, children }) {
   return (
@@ -121,8 +124,11 @@ export default async function ProblemPage({ params }) {
                 <div className="bg-primary text-primary-foreground grid size-12 shrink-0 place-items-center rounded-lg text-xl font-bold">
                   {prob.index}
                 </div>
-                <div className="min-w-0 flex-1">
-                  <CardTitle className="text-xl leading-snug tracking-tight">
+                {/* basis-56:给标题盒一个真实 flex-basis,窄屏下 flex-wrap 才能
+                    真正换行(旧 flex-1 的 basis:0% 恒不换行,标题被压到近 0 宽
+                    后溢出绘制盖住右侧按钮 —— 审查 2026-11-09 编译-13 根因) */}
+                <div className="min-w-0 flex-1 basis-56">
+                  <CardTitle className="text-xl leading-snug tracking-tight break-words">
                     {prob.titleZh || prob.title}
                   </CardTitle>
                   {prob.titleZh && prob.titleZh !== prob.title ? (

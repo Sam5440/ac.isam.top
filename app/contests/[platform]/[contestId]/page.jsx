@@ -7,13 +7,15 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { getContest, getContests, getProblemsOfContest, platformOf } from '@/lib/data';
+import { PLATFORMS } from '@/lib/platforms';
 import { formatDateTime } from '@/lib/utils';
 
 export function generateStaticParams() {
   // 本地验证跳过全量预渲染(AC_SKIP_SSG=1),生产保持全量——见题目页同名注释
   if (process.env.AC_SKIP_SSG) return [];
   const params = [];
-  for (const platform of ['atcoder', 'codeforces']) {
+  // 遍历 PLATFORMS 而非硬编码平台列表 —— 旧写法漏掉 nowcoder 的 135 场
+  for (const { id: platform } of PLATFORMS) {
     for (const c of getContests(platform)) {
       params.push({ platform, contestId: String(c.id) });
     }

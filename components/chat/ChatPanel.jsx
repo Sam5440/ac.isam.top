@@ -72,6 +72,10 @@ export default function ChatPanel({ problem, open, onClose }) {
     }
   }, [open, chatId]);
 
+  // 组件卸载时中止在途流式请求（AI-17）：题目页切换会卸载 AiFab/ChatPanel,
+  // 不中止则请求继续消耗 token,且卸载后 setState 被丢弃、已生成部分不落盘
+  useEffect(() => () => abortRef.current?.abort(), []);
+
   // 新消息 / 流式增长时贴底
   useEffect(() => {
     const el = scrollRef.current;

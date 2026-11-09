@@ -1,12 +1,32 @@
+# deps & build
 node_modules
 .next
 out
+/tmp
+
+# env & secrets
 .env
 .env.local
 .env.*.local
+
+# misc
 .DS_Store
 *.log
 .vercel
-/tmp
 /public/compiler
 .translate-web.config.json
+
+# 本地工作产物（审查 2026-11-09 管线-6：缺失这些规则时一次 `git add .`
+# 就会把 36MB 二进制/评审截图/工具状态写进历史,不可逆）
+data.zip
+.zcode/
+review-*/
+
+# 抓取管线的机器本地状态（backfill-all 的重试记账与扫描游标）:
+# 提交它们会把与抓取数据无关的 churn 混进 data 提交
+data/.attempts.json
+data/.backfill-state.json
+data/nowcoder/.scan-cursor.json
+
+# 本地 GUI 测试截图（6MB 级,不属于站点资产）
+gui-test-screenshots/

@@ -62,18 +62,37 @@ export function normalizeCfMath(md) {
 
 let browserHandle = null;
 
-/** 懒启动共享浏览器（真实 Chromium 过 Cloudflare）。 */
+/** 懒启动共享浏览器（真实 Chromium 过 Cloudflare）。
+ *  浏览器进程死亡后 newContext 会持续抛错直到进程结束（审查 管线-14,
+ *  backfill 长跑受损）—— 失败一次即重建浏览器实例再试。 */
 export async function getCfPage() {
   if (!browserHandle) {
     const { chromium } = await import('playwright');
     const headless = process.env.CF_HEADLESS !== '0';
     browserHandle = await chromium.launch({ headless });
   }
-  const ctx = await browserHandle.newContext({
-    userAgent: UA,
-    viewport: { width: 1366, height: 900 },
-    locale: 'en-US',
-  });
+  const newCtx = () =>
+    browserHandle.newContext({
+      userAgent: UA,
+      viewport: { width: 1366, height: 900 },
+      locale: 'en-US',
+    });
+  let ctx;
+  try {
+    ctx = await newCtx();
+  } catch (e) {
+    // 浏览器进程已死：关闭并重建一次
+    await closeCfBrowser();
+    const { chromium } = await import('playwright');
+    const headless = process.env.CF_HEADLESS !== '0';
+    browserHandle = await chromium.launch({ headless });
+    try {
+      ctx = await newCtx();
+    } catch (e2) {
+      await closeCfBrowser();
+      throw e2;
+    }
+  }
   const page = await ctx.newPage();
   return { page, ctx };
 }

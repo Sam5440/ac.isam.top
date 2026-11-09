@@ -11,7 +11,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import CompilerDock from '@/components/compiler/CompilerDock';
 import { DifficultyBadge, TranslatedBadge } from '@/components/Badges';
@@ -201,7 +201,11 @@ export function ProblemCompiler({ contest, current }) {
 export default function ProblemViewShell({ children, rail = null }) {
   const [railHidden, setRailHidden] = useState(false);
   const hideRail = useCallback(() => setRailHidden(true), []);
-  railHideRef.current = hideRail;
+  // 经 effect 写入而非 render 期直接赋值:遵守 render 纯度约定,
+  // 并发渲染(重放/offscreen)下被丢弃的 render 不会误注册回调
+  useEffect(() => {
+    railHideRef.current = hideRail;
+  }, [hideRail]);
   return (
     <div className={`min-w-0 space-y-6 py-10 ${railHidden ? '' : 'xl:pl-14'}`}>
       {railHidden ? null : rail}

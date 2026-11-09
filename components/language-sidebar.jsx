@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSettings, channelLabel } from './settings';
 
 /**
@@ -13,8 +13,27 @@ export default function LanguageSidebar() {
   const { lang, setLang, settings, openSettings, aiReady } = useSettings();
   const [mounted, setMounted] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const rootRef = useRef(null);
 
   useEffect(() => setMounted(true), []);
+
+  // 点击浮标外部或按 Esc 收起展开层
+  useEffect(() => {
+    if (!expanded) return;
+    const onPointer = (e) => {
+      if (rootRef.current && !rootRef.current.contains(e.target)) setExpanded(false);
+    };
+    const onKey = (e) => {
+      if (e.key === 'Escape') setExpanded(false);
+    };
+    document.addEventListener('pointerdown', onPointer, true);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onPointer, true);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [expanded]);
+
   if (!mounted) return null;
 
   const channels = (settings.sidebarChannels || []).filter((id) =>
@@ -79,7 +98,7 @@ export default function LanguageSidebar() {
   );
 
   return (
-    <div className="fixed bottom-5 left-4 z-40">
+    <div className="fixed bottom-5 left-4 z-40" ref={rootRef}>
       {expanded && list('mb-2')}
       <button
         type="button"

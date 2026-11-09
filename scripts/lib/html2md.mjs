@@ -25,7 +25,14 @@ function absUrl(href, base) {
 
 /** 折叠纯文本空白（HTML 换行在行内语义中等价于空格）。 */
 function cleanText(s) {
-  return String(s).replace(/[ \t\r\n]+/g, ' ');
+  // 文本节点里的实体解码产物（源站 &lt;script&gt; 还原出的字面 <>）必须重新
+  // 转义后写入 markdown，否则字面 HTML 会经 marked 原样透传进渲染端，构成
+  // 注入面（审查 2026-11-09 管线侧）。只转义 < >，保留 & 的既有语义；
+  // 管线自产且有意保留的 <sub>/<sup> 不经过本函数（由标签分支直接输出）。
+  return String(s)
+    .replace(/[ \t\r\n]+/g, ' ')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 /** <pre> 内容 → 纯文本（<var> 等数学标记拍平为文本，br/div 行转换行）。 */

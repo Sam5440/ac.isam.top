@@ -48,6 +48,18 @@ export default function SettingsPage() {
     return () => observer.disconnect();
   }, []);
 
+  // 深链:/settings#translation 等直接滚动到对应分区(openSettings(hash) 由此生效)
+  useEffect(() => {
+    const hash = window.location.hash?.slice(1);
+    if (hash && SECTIONS.some((s) => s.id === hash)) {
+      const el = document.getElementById(hash);
+      if (el) {
+        setActive(hash);
+        el.scrollIntoView({ block: 'start' });
+      }
+    }
+  }, []);
+
   const jump = (id) => {
     setActive(id);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -338,7 +338,17 @@ export default function AiCompletionSettingsSection() {
     patchAi(
       next
         ? { ...pickProfile(next), activeId: next.id, profiles: rest }
-        : { name: "", activeId: null, profiles: rest },
+        : {
+            name: "",
+            activeId: null,
+            profiles: rest,
+            // 删除最后一个方案时同步清空扁平镜像字段（审查 AI-4/P1-4）：
+            // 否则 normalizeAi 的「旧版迁移」分支会把保留的 baseUrl/apiKey
+            // 立即重新迁移成方案 —— UI 上方案消失,补全仍用「已删除」的
+            // 配置继续请求计费,刷新后复活
+            ...Object.fromEntries(PROFILE_FIELDS.map((f) => [f, ""])),
+            enabled: false,
+          },
     );
     resetTest();
   };

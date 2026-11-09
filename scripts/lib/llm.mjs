@@ -134,9 +134,16 @@ export async function translateStatement(cfg, { title, statementMd }) {
       bodyZh: parsed.bodyZh.trim(),
     };
   }
-  // JSON 解析失败但模型给了内容：整体当作译文兜底（标题保持原文）
+  // JSON 解析失败时的兜底收紧（审查 管线-8）：截断的 JSON、带围栏/解释文字
+  // 的混合体直接入库就是持久化损坏译文（存量 483 题二次编码即此类产物）。
+  // 明显非纯译文的输出计为失败,交下轮重试。
   const fallback = String(content).trim();
-  if (fallback.length > 20) {
+  const looksBroken =
+    /```/.test(fallback) ||
+    /\{"titleZh"/.test(fallback) ||
+    /^[[{]/.test(fallback) ||
+    /<statement>|^\s*(请翻译|题名|以下是)/m.test(fallback);
+  if (fallback.length > 20 && !looksBroken) {
     return { titleZh: title, bodyZh: fallback };
   }
   throw new Error('translation unparsable');

@@ -145,6 +145,7 @@ def _ys_lint(code):
             "endLine": getattr(e, "end_lineno", None) or (e.lineno or 1),
             "endCol": getattr(e, "end_offset", None) or (e.offset or 1),
             "message": e.msg or "语法错误",
+            "severity": "error",
         }])
 `;
 
@@ -209,18 +210,39 @@ self.onmessage = (ev) => {
           },
           isatty: interactiveMode,
         });
-        // pyodide 的 batched 回调在换行/flush 时触发但文本不含换行符，
-        // 必须补回 '\n'，否则多行输出粘连（判题与展示都会错）。
-        const sink = (kind) => {
+        // stdout/stderr 用 raw(逐字符)回调 + 行界/4KB/100ms 三档刷新:
+        //  - batched 回调剥掉换行符,旧实现每块无条件补 '\n',分两次 flush 的
+        //    半行输出(如 print(x,end='') + flush)会被人为断行,判题/展示错行
+        //    (审查 2026-11-09 编译-08);raw 保留全部原始字节,两种模式都正确
+        //  - 逐字符 postMessage 太慢,攒到换行/4KB/100ms 再发,流式观感不变
+        const makeExactSink = (kind) => {
+          let buf = '';
           let size = 0;
-          return (s) => {
-            if (size > 2 * 1024 * 1024) return; // 输出洪泛防线
-            size += s.length;
-            postMessage({ id, type: kind, text: `${s}\n` });
+          let timer = null;
+          const flush = () => {
+            if (!buf) return;
+            postMessage({ id, type: kind, text: buf });
+            buf = '';
+          };
+          const clearTimer = () => {
+            if (timer) { clearTimeout(timer); timer = null; }
+          };
+          return {
+            raw: (charCode) => {
+              if (size > 2 * 1024 * 1024) return; // 输出洪泛防线
+              buf += String.fromCharCode(charCode);
+              size++;
+              if (charCode === 10) { clearTimer(); flush(); }
+              else if (buf.length >= 4096) { clearTimer(); flush(); }
+              else if (!timer) timer = setTimeout(() => { timer = null; flush(); }, 100);
+            },
+            end: () => { clearTimer(); flush(); },
           };
         };
-        py.setStdout({ batched: sink('out') });
-        py.setStderr({ batched: sink('err') });
+        const outSink = makeExactSink('out');
+        const errSink = makeExactSink('err');
+        py.setStdout({ raw: outSink.raw });
+        py.setStderr({ raw: errSink.raw });
         const t0 = Date.now();
         let success = true;
         let error = null;
@@ -230,6 +252,8 @@ self.onmessage = (ev) => {
           success = false;
           error = cleanTraceback(exn.message ?? String(exn));
         }
+        outSink.end();
+        errSink.end();
         postMessage({ id, ok: true, run: { success, error, elapsedMs: Date.now() - t0 } });
       } else if (data.type === 'lint') {
         if (!py.globals.has('_ys_lint')) py.runPython(LINT_SETUP);

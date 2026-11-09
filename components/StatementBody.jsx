@@ -90,7 +90,7 @@ function useNearViewport() {
   return [ref, visible];
 }
 
-function AiZhLine({ en, ai, note }) {
+function AiZhLine({ en, ai, note, aiReady }) {
   const [ref, visible] = useNearViewport();
   const state = useAiSegment(en, ai, visible && !!(ai?.baseUrl && ai?.apiKey));
   return (
@@ -98,7 +98,14 @@ function AiZhLine({ en, ai, note }) {
       {state.status === 'loading' && <SpinnerNote>AI 翻译中…</SpinnerNote>}
       {state.status === 'error' && <UntranslatedMark note={`AI 翻译失败（${state.error}）`} />}
       {state.status === 'done' && <WithSourceChip html={renderRich(state.text)} source="ai:external" />}
-      {state.status === 'idle' && <UntranslatedMark note={note ? `${note}（AI）` : '请在设置中配置 AI 接口'} />}
+      {state.status === 'idle' &&
+        // 区分「未滚动到视口」与「确实未配置」:长题面里未达视口的段落不再
+        // 全部挂着误导性的「请在设置中配置 AI 接口」告警
+        (!aiReady ? (
+          <UntranslatedMark note={note ? `${note}（AI 未配置）` : '请在设置中配置 AI 接口'} />
+        ) : (
+          <span className="text-muted-foreground/50 text-[11px]">{note ? `${note}（AI）` : '（AI）'}</span>
+        ))}
     </div>
   );
 }
@@ -200,13 +207,13 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
   useEffect(() => {
     if (mode !== 'en') hydrateSegments(code, zhSegments);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [code, mode, hasArchive]);
+  }, [code, mode, hasArchive, segments.length, titleZh ? 1 : 0]);
 
   const segKeyOf = (i) => `${code}|p|${i}`;
 
   const zhLineFor = (seg, i, note) => {
     const segKey = segKeyOf(i);
-    if (channel === 'ai_custom') return <AiZhLine en={seg.en} ai={ai} note={note} />;
+    if (channel === 'ai_custom') return <AiZhLine en={seg.en} ai={ai} note={note} aiReady={!!(ai?.baseUrl && ai?.apiKey)} />;
     if (chain) return <ChainZhLine segKey={segKey} archivedZh={seg.zh} priority={chain.priority} note={note} zhModel={zhModel} />;
     return <ZhLine segKey={segKey} archivedZh={seg.zh} channel={channel} note={note} zhModel={zhModel} />;
   };
@@ -216,10 +223,10 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
       sameLang && titleIsZh ? (
         <WithSourceChip html={renderRich(title)} source="ai:builtin" model="官方原文" />
       ) : channel === 'ai_custom' ? (
-        <AiZhLine en={title} ai={ai} note="标题" />
+        <AiZhLine en={title} ai={ai} note="标题" aiReady={!!(ai?.baseUrl && ai?.apiKey)} />
       ) : chain ? (
         // chain 仅在对照模式或 AI 渠道时非空；纯中文 + MT 渠道走单渠道 ZhLine
-        <ChainZhLine segKey={`${code}|title`} archivedZh={titleZh || null} priority={chain.priority} note="标题" />
+        <ChainZhLine segKey={`${code}|title`} archivedZh={titleZh || null} priority={chain.priority} note="标题" zhModel={zhModel} />
       ) : (
         <ZhLine segKey={`${code}|title`} archivedZh={titleZh || null} channel={channel} note="标题" zhModel={zhModel} />
       )

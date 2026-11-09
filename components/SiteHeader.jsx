@@ -36,12 +36,14 @@ export default function SiteHeader() {
   };
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-6 px-4">
-        <Link href="/" className="flex items-center gap-2.5">
-          <span className="bg-primary text-primary-foreground grid size-7 place-items-center rounded-md text-[13px] font-bold">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-3 px-4 sm:gap-6">
+        {/* min-w-0 + truncate:窄屏(≤430px)下品牌文案可收缩,避免右侧按钮簇被
+            挤出视口(审查 2026-11-09 编译-14 的溢出根因之一) */}
+        <Link href="/" className="flex min-w-0 items-center gap-2.5">
+          <span className="bg-primary text-primary-foreground grid size-7 shrink-0 place-items-center rounded-md text-[13px] font-bold">
             AC
           </span>
-          <span className="text-[15px] font-semibold tracking-tight">
+          <span className="truncate text-[15px] font-semibold tracking-tight">
             AC 题库 <span className="text-muted-foreground">ac.isam.top</span>
           </span>
         </Link>
@@ -57,7 +59,7 @@ export default function SiteHeader() {
             );
           })}
         </nav>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
           {dockAvailable && (
             <Button
               size="sm"
@@ -68,8 +70,8 @@ export default function SiteHeader() {
               title={dockOpen ? '收起编译器工作区（Ctrl/⌘+J）' : '打开编译器工作区（Ctrl/⌘+J）'}
             >
               <Terminal className="size-3.5" />
-              编译器
-              <kbd>⌘ J</kbd>
+              <span className="hidden min-[420px]:inline">编译器</span>
+              <kbd className="hidden md:inline">⌘ J</kbd>
             </Button>
           )}
           <ThemeToggleButton />
@@ -80,9 +82,10 @@ export default function SiteHeader() {
               target="_blank"
               rel="noreferrer"
               title="本站仓库：Sam5440/ac.isam.top"
+              aria-label="GitHub 仓库"
             >
               <GithubMark className="size-3.5" />
-              GitHub
+              <span className="hidden min-[420px]:inline">GitHub</span>
             </a>
           </Button>
         </div>

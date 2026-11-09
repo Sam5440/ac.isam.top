@@ -5,6 +5,16 @@ on:
     branches: [main]
   pull_request:
 
+# 最小权限（审查 管线-11）:构建只需要读代码;fetch.yml 的 contents:write
+# 保持在自身文件里
+permissions:
+  contents: read
+
+# 连续 push 时不并行浪费构建
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest

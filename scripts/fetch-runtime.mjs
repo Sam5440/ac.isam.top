@@ -31,7 +31,8 @@ async function main() {
   }
   const url = `https://codeload.github.com/${SLUG}/tar.gz/refs/heads/${BRANCH}`;
   console.log(`fetch-runtime: 下载 ${url}`);
-  const res = await fetch(url);
+  // 超时护栏（审查 管线-5:无超时的挂起会占满 Vercel 构建时长）
+  const res = await fetch(url, { signal: AbortSignal.timeout(180000) });
   if (!res.ok) throw new Error(`codeload HTTP ${res.status}`);
   const workdir = await mkdtemp(path.join(tmpdir(), 'ac-runtime-'));
   const tgz = path.join(workdir, 'runtime.tar.gz');
@@ -46,10 +47,12 @@ async function main() {
   if (!fs.existsSync(src)) throw new Error(`runtime 分支中未找到 public/compiler（root=${root}）`);
   await rm(OUT, { recursive: true, force: true });
   fs.mkdirSync(OUT, { recursive: true });
+  // 白名单文件缺失 = 上游产物不完整：显式报错而不是静默跳过再在
+  // readFileSync(manifest) 处抛裸 ENOENT（审查 管线-5）
+  const missing = FILES.filter((f) => !fs.existsSync(path.join(src, f)));
+  if (missing.length) throw new Error(`runtime 产物缺少文件：${missing.join(', ')}（上游 ${SLUG}@${BRANCH} 产物不完整？）`);
   for (const f of FILES) {
-    const from = path.join(src, f);
-    if (!fs.existsSync(from)) continue;
-    fs.copyFileSync(from, path.join(OUT, f));
+    fs.copyFileSync(path.join(src, f), path.join(OUT, f));
   }
   await rm(workdir, { recursive: true, force: true });
   const manifest = JSON.parse(fs.readFileSync(path.join(OUT, 'manifest.json'), 'utf8'));

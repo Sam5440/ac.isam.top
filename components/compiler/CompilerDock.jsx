@@ -49,6 +49,7 @@ import {
   loadDraft,
   saveDraft,
   clearDraft,
+  CP_SETTINGS_KEY,
 } from "@/lib/compiler/cp-settings";
 import {
   clearSampleCases,
@@ -153,16 +154,24 @@ export default function CompilerDock({ problems, day, currentCode }) {
   const checkTimerRef = useRef(null);
   const toastTimerRef = useRef(null); // Ctrl+S 提示浮窗自动消失
   const codeRef = useRef(""); // 编辑器最新内容（Ctrl+S 下载/落盘用，不进 effect 依赖）
+  const sampleCasesRef = useRef(null); // 自定义样例最新值（切题 flush 用）
+  const draftLangRef = useRef("cpp"); // 草稿语言（切题 flush 用）
   const [portalRoot, setPortalRoot] = useState(null); // layout 顶层的 #compiler-dock-root
 
   const problem = problems?.[probIdx] ?? null;
 
   // 跟随当前浏览的题目：站内路由切题（切换条 / 侧栏跳转）时同步选题，
-  // 样例、草稿、自定义样例等按 probIdx 的既有 effect 自动随动
+  // 样例、草稿、自定义样例等按 probIdx 的既有 effect 自动随动。
+  // 切题前先同步 flush 上一题的尾窗草稿/样例（codeRef 仍是旧题内容，
+  // 归属正确）——否则去抖窗口内的最后编辑会被丢弃（编译-09）
   useEffect(() => {
     if (!currentCode) return;
     const idx = (problems ?? []).findIndex((p) => p.code === currentCode);
-    if (idx >= 0) setProbIdx(idx);
+    if (idx >= 0 && idx !== probIdx) {
+      flushDraftTail();
+      setProbIdx(idx);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCode, problems]);
   // 编程键盘可见：移动端 + 设置开启 + 面板展开 + 未被临时收起（点编辑器恢复）。
   // 需在早退 return 之前算好：系统键盘开关联动 effect 的依赖要用它
@@ -307,7 +316,16 @@ export default function CompilerDock({ problems, day, currentCode }) {
       setSplitH(Number.isFinite(s.mobileSplitH) ? s.mobileSplitH : null);
     };
     window.addEventListener("ysc-cp-settings-changed", reload);
-    return () => window.removeEventListener("ysc-cp-settings-changed", reload);
+    // 跨标签页同步(编译-21):storage 事件只在「其它」标签页触发,借它
+    // 感知另一标签页的偏好修改,避免互相覆盖无感知
+    const onStorage = (e) => {
+      if (e.key === CP_SETTINGS_KEY) reload();
+    };
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener("ysc-cp-settings-changed", reload);
+      window.removeEventListener("storage", onStorage);
+    };
   }, [mounted]);
 
   /* 拖拽过的宽度内联到 <html>（压过 :root 的 clamp 默认；null 时摘掉恢复默认） */
@@ -372,15 +390,23 @@ export default function CompilerDock({ problems, day, currentCode }) {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [mounted]);
 
-  const refreshAvailability = useCallback(async () => {
+  const refreshAvailability = useCallback(async (pyVer) => {
     try {
+      // Python 可用性按「当前选中版本」判定（编译-11）：旧实现任一版本有
+      // 缓存即绿灯,切到未下载版本 + 离线时按钮可用、运行才报 load 错
+      const pyTarget = pyVer
+        ? (() => {
+            const v = pythonVersion(pyVer);
+            return hasRuntime(v.files.map((f) => `${v.indexURL}${f}`));
+          })()
+        : Promise.all(
+            PYODIDE_VERSIONS.map((v) =>
+              hasRuntime(v.files.map((f) => `${v.indexURL}${f}`)),
+            ),
+          ).then((r) => r.some(Boolean));
       const [cppOk, pyOk] = await Promise.all([
         hasRuntime(CPP_FILES.map((f) => `/compiler/${f.name}`)),
-        Promise.all(
-          PYODIDE_VERSIONS.map((v) =>
-            hasRuntime(v.files.map((f) => `${v.indexURL}${f}`)),
-          ),
-        ).then((r) => r.some(Boolean)),
+        pyTarget,
       ]);
       setAvailable({ cpp: cppOk, python: pyOk });
     } catch {}
@@ -388,11 +414,11 @@ export default function CompilerDock({ problems, day, currentCode }) {
 
   useEffect(() => {
     if (!mounted) return;
-    refreshAvailability();
-    const onChange = () => refreshAvailability();
+    refreshAvailability(cp?.pythonVersion);
+    const onChange = () => refreshAvailability(cp?.pythonVersion);
     window.addEventListener("ysc-runtime-changed", onChange);
     return () => window.removeEventListener("ysc-runtime-changed", onChange);
-  }, [mounted, refreshAvailability]);
+  }, [mounted, cp?.pythonVersion, refreshAvailability]);
 
   /* ---------- 草稿与模板 ---------- */
   const effectiveCode = useCallback(
@@ -408,12 +434,12 @@ export default function CompilerDock({ problems, day, currentCode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mounted, cp && true, probIdx, lang]);
 
+  // 去抖落盘：调度时捕获题 key（切题竞态归属正确）；真正的尾窗 flush
+  // 在 switchProblem 包装函数里做（见下,编译-09）
   useEffect(() => {
     if (!mounted || !cp) return;
-    const t = setTimeout(
-      () => saveDraft(problems[probIdx]?.code, lang, code),
-      500,
-    );
+    const key = problems[probIdx]?.code;
+    const t = setTimeout(() => saveDraft(key, lang, codeRef.current), 500);
     return () => clearTimeout(t);
   }, [code, mounted, cp, probIdx, lang, problems]);
 
@@ -475,11 +501,23 @@ export default function CompilerDock({ problems, day, currentCode }) {
      在 Monaco keybinding 与浏览器默认行为之前拦下（preventDefault +
      stopPropagation）。 */
   codeRef.current = code;
+  sampleCasesRef.current = sampleCases;
+  draftLangRef.current = lang;
   const flashToast = useCallback((text) => {
     setToast(text);
     clearTimeout(toastTimerRef.current);
     toastTimerRef.current = setTimeout(() => setToast(null), 2200);
   }, []);
+
+  /** 切题前同步落盘当前题的尾窗草稿与自定义样例（编译-09）。
+      codeRef/sampleCasesRef 在渲染期同步为最新值，此刻尚未被新题 effect
+      覆盖，归属正确；无未保存内容时重复写同一值，开销可忽略。 */
+  const flushDraftTail = () => {
+    const key = problems?.[probIdx]?.code;
+    if (!key) return;
+    saveDraft(key, draftLangRef.current, codeRef.current);
+    if (sampleCasesRef.current != null) saveSampleCases(key, sampleCasesRef.current);
+  };
 
   const downloadCodeFile = useCallback(() => {
     const safeCode = (problems[probIdx]?.code ?? "problem").replace(
@@ -512,8 +550,9 @@ export default function CompilerDock({ problems, day, currentCode }) {
       if (cp.ctrlS === "download") {
         downloadCodeFile();
       } else {
-        saveDraft(problems[probIdx]?.code, lang, codeRef.current);
-        flashToast("代码已保存（本机草稿）");
+        // saveDraft 返回真实成败:存储配额满时不再假弹「已保存」(编译-10)
+        const ok = saveDraft(problems[probIdx]?.code, lang, codeRef.current);
+        flashToast(ok ? "代码已保存（本机草稿）" : "保存失败：本机存储空间不足");
       }
     };
     document.addEventListener("keydown", onKey, true);
@@ -717,7 +756,8 @@ export default function CompilerDock({ problems, day, currentCode }) {
     if (el) el.scrollTop = el.scrollHeight;
   }, [consoleText]);
 
-  /* ---------- 语法检查（停顿 2s 自动跑） ---------- */
+  /* ---------- 语法检查（停顿 2s 自动跑；30s 硬上限 + 过期结果丢弃） ---------- */
+  const checkSeqRef = useRef(0);
   useEffect(() => {
     if (!mounted || !cp || !open) return;
     if (runState !== "idle") return;
@@ -728,33 +768,40 @@ export default function CompilerDock({ problems, day, currentCode }) {
       return;
     clearTimeout(checkTimerRef.current);
     checkTimerRef.current = setTimeout(async () => {
+      // 慢网首跑 py lint 触发全量下载、病态模板让 clang -fsyntax-only 长挂,
+      // 都会让「检查中…」永不结束且「停止」不可见（编译-05）。给检查加
+      // 30s 硬上限;过期序号的结果不落 UI。注:worker 内的检查本身无法
+      // 抢占,超时只解除 UI 等待,worker 队列随其自然结束恢复。
+      const seq = ++checkSeqRef.current;
       setCheckState("检查中…");
+      let toId;
+      const timeoutP = new Promise((_, rej) => {
+        toId = setTimeout(() => rej(new Error("检查超时（30s 硬上限）")), 30000);
+      });
       try {
+        let diagnostics;
         if (lang === "cpp") {
-          const { diagnostics } = await getCpp().check({
-            source: code,
-            std: cp.cppStd,
-          });
-          setDiags(diagnostics);
-          setCheckState(
-            diagnostics.some((d) => d.severity === "error")
-              ? `发现 ${diagnostics.filter((d) => d.severity === "error").length} 个错误`
-              : "语法检查通过",
-          );
+          ({ diagnostics } = await Promise.race([
+            getCpp().check({ source: code, std: cp.cppStd }),
+            timeoutP,
+          ]));
         } else {
-          const { diagnostics } = await getPy().lint({
-            code,
-            versionId: cp.pythonVersion,
-          });
-          setDiags(diagnostics);
-          setCheckState(
-            diagnostics.length
-              ? `发现 ${diagnostics.length} 个语法错误`
-              : "语法检查通过",
-          );
+          ({ diagnostics } = await Promise.race([
+            getPy().lint({ code, versionId: cp.pythonVersion }),
+            timeoutP,
+          ]));
         }
+        if (seq !== checkSeqRef.current) return;
+        setDiags(diagnostics);
+        const errs = diagnostics.filter((d) => d.severity === "error");
+        setCheckState(
+          errs.length ? `发现 ${errs.length} 个错误` : "语法检查通过",
+        );
       } catch (exn) {
+        if (seq !== checkSeqRef.current) return;
         setCheckState(`检查失败：${exn.message}`);
+      } finally {
+        clearTimeout(toId);
       }
     }, 2000);
     return () => clearTimeout(checkTimerRef.current);
@@ -780,13 +827,16 @@ export default function CompilerDock({ problems, day, currentCode }) {
     const re = r.trap || r.exitCode !== 0;
     return {
       ...j,
-      verdict: re ? "RE" : j.verdict,
+      // 单例超预算(bridge 标记 overtime)判 TE,与 Python 路径语义对齐(编译-06)
+      verdict: r.overtime ? "TE" : re ? "RE" : j.verdict,
       elapsedMs: r.elapsedMs,
-      note: r.trap
-        ? `运行时错误：${truncate(r.trap, 200)}`
-        : r.exitCode !== 0
-          ? `退出码 ${r.exitCode}`
-          : null,
+      note: r.overtime
+        ? `超过单例时间限制（${Math.round(timeoutMs / 1000)}s）`
+        : r.trap
+          ? `运行时错误：${truncate(r.trap, 200)}`
+          : r.exitCode !== 0
+            ? `退出码 ${r.exitCode}`
+            : null,
     };
   };
 
@@ -819,7 +869,10 @@ export default function CompilerDock({ problems, day, currentCode }) {
           source: code,
           std: cp.cppStd,
           stdins: samples.map((e) => e.input),
+          // 总预算仍交看门狗兜底(死循环只能 terminate);逐例语义由
+          // bridge 的 perCaseTimeoutMs 标记 overtime → TE
           timeoutMs: 30000 + samples.length * timeoutMs,
+          perCaseTimeoutMs: timeoutMs,
           onLog: appendConsole,
           onStage: (s) => {
             setStage(s);
@@ -835,6 +888,11 @@ export default function CompilerDock({ problems, day, currentCode }) {
         });
         if (token !== runTokenRef.current) return;
         setCases(res.results.map((r, i) => caseOf(i, r)));
+        // 截断显式上浮(编译-02):旧实现 truncated 被忽略,输出超限后
+        // 判定失真且无任何提示
+        if (res.truncated) {
+          appendConsole("\n⚠ 本次会话输出量超过上限，已截断 —— 判定可能失真，建议分批运行。\n");
+        }
         const t = res.timings;
         if (t) {
           const lines = ["\n── 编译耗时明细 ──"];
@@ -962,6 +1020,11 @@ export default function CompilerDock({ problems, day, currentCode }) {
           `\n程序结束（退出码 ${res.exitCode}${res.trap ? `，${truncate(res.trap, 160)}` : ""}，${(res.elapsedMs / 1000).toFixed(2)}s）\n`,
         );
       } else {
+        if (!isCrossOriginIsolated()) {
+          appendConsole(
+            "\n⚠ 当前环境不支持交互输入（需要跨域隔离），程序将以空输入运行。固定输入请用「样例测试」模式。\n",
+          );
+        }
         const res = await getPy().run({
           code,
           stdin: "",
@@ -1187,8 +1250,12 @@ export default function CompilerDock({ problems, day, currentCode }) {
             <Terminal className="size-4 shrink-0 text-muted-foreground" />
             <select
               value={probIdx}
-              onChange={(e) => setProbIdx(Number(e.target.value))}
-              className="min-w-0 flex-1 truncate rounded-md border bg-background px-2 py-1 text-xs"
+              disabled={busy}
+              onChange={(e) => {
+                flushDraftTail();
+                setProbIdx(Number(e.target.value));
+              }}
+              className="min-w-0 flex-1 truncate rounded-md border bg-background px-2 py-1 text-xs disabled:opacity-50"
               aria-label="选择题目"
             >
               {(problems ?? []).map((p, i) => (
@@ -1203,7 +1270,8 @@ export default function CompilerDock({ problems, day, currentCode }) {
                   key={l.id}
                   type="button"
                   onClick={() => setLang(l.id)}
-                  className={`rounded px-2 py-0.5 text-xs transition-colors ${lang === l.id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+                  disabled={busy}
+                  className={`rounded px-2 py-0.5 text-xs transition-colors disabled:opacity-50 ${lang === l.id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
                 >
                   {l.label}
                 </button>

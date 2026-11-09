@@ -45,10 +45,10 @@ export default function Home() {
       {/* Hero */}
       <section className="py-12 sm:py-16">
         <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-          AC 题库 <span className="text-muted-foreground">AtCoder · Codeforces</span>
+          AC 题库 <span className="text-muted-foreground">AtCoder · Codeforces · 牛客</span>
         </h1>
         <p className="text-muted-foreground mt-4 max-w-2xl">
-          自动抓取 AtCoder Beginner Contest 与 Codeforces 全部比赛的题目：完整题面、样例数据、难度分级，
+          自动抓取 AtCoder、Codeforces 与牛客竞赛的题目：完整题面、样例数据、难度分级，
           并由 AI 翻译为简体中文。数据随 GitHub Actions 持续更新。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">

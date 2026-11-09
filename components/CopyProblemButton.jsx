@@ -10,8 +10,8 @@
  *   both → 原文 + 分隔线 + 中文译文
  */
 
-import { Check, Copy } from 'lucide-react';
-import { useState } from 'react';
+import { Check, Copy, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useSettings } from '@/components/settings';
 import { Button } from '@/components/ui/button';
@@ -87,16 +87,45 @@ export default function CopyProblemButton({
 }) {
   const { lang } = useSettings();
   const [copied, setCopied] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const timerRef = useRef(null);
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  const flash = (setter) => {
+    setter(true);
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setCopied(false);
+      setFailed(false);
+    }, 1500);
+  };
+
   const copy = async () => {
+    const md = buildProblemMarkdown(
+      { platform, index, title, titleZh, url, timeLimitMs, memoryLimitMb, statementMd, statementZhMd, samples },
+      lang.mode,
+    );
+    // clipboard API 仅安全上下文可用;非安全上下文走 execCommand 降级,失败给出提示
     try {
-      const md = buildProblemMarkdown(
-        { platform, index, title, titleZh, url, timeLimitMs, memoryLimitMb, statementMd, statementZhMd, samples },
-        lang.mode,
-      );
-      await navigator.clipboard.writeText(md);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {}
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(md);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = md;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        ta.remove();
+        if (!ok) throw new Error('execCommand copy failed');
+      }
+      setFailed(false);
+      flash(setCopied);
+    } catch {
+      setCopied(false);
+      flash(setFailed);
+    }
   };
   return (
     <Button
@@ -106,8 +135,8 @@ export default function CopyProblemButton({
       onClick={copy}
       title="复制题目全文为 Markdown（语言跟随当前题面模式）"
     >
-      {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
-      {copied ? '已复制' : '复制题目'}
+      {copied ? <Check className="size-3.5" /> : failed ? <X className="size-3.5 text-destructive" /> : <Copy className="size-3.5" />}
+      {copied ? '已复制' : failed ? '复制失败' : '复制题目'}
     </Button>
   );
 }

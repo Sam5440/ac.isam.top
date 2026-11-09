@@ -149,6 +149,9 @@ class MemFS {
   constructor(options) {
     const compileStreaming = options.compileStreaming;
     this.hostWrite = options.hostWrite;
+    // fd 2 分流出口（可空；bridge 在「程序运行期」注入,编译期保持 null
+    // 让 clang 诊断仍走 hostWrite 进日志、可被解析）
+    this.hostErr_ = options.hostErr || null;
     this.stdinStr = options.stdinStr || "";
     this.stdinStrPos = 0;
     this.memfsFilename = options.memfsFilename;
@@ -227,6 +230,13 @@ class MemFS {
       size += len;
     }
     this.hostMem_.write32(nwritten_out, size);
+    // fd 2（cerr/clog）分流：宿主提供 hostErr_ 时运行期 stderr 不再混入
+    // stdout 日志 —— 否则判题对拍把调试输出算进「实际输出」误判 WA。
+    // clang 编译期诊断也走 fd 2，宿主侧按阶段决定是否分流（见 bridge）。
+    if (fd === 2 && this.hostErr_) {
+      this.hostErr_(str);
+      return ESUCCESS;
+    }
     this.hostWrite(str);
     return ESUCCESS;
   }
@@ -903,6 +913,7 @@ class API {
     this.memfs = new MemFS({
       compileStreaming : this.compileStreaming,
       hostWrite : this.hostWrite,
+      hostErr : options.hostErr || null,
       memfsFilename : options.memfs || 'memfs',
     });
     this.ready = this.memfs.ready.then(

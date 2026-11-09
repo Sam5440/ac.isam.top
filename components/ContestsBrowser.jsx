@@ -39,7 +39,7 @@ export default function ContestsBrowser({ contests }) {
   }, [contests, platform, type, q]);
 
   // 只显示与当前平台匹配的类型标签
-  const atcoderTypes = ['abc', 'arc', 'agc', 'other'];
+  const atcoderTypes = ['abc', 'arc', 'agc', 'atcoder-other'];
   const nowcoderTypes = ['nc-weekly', 'nc-xiaobai', 'nc-practice', 'nc-challenge', 'nc-other'];
   const cfTypes = ['div1', 'div2', 'div3', 'div4', 'div12', 'other'];
   const visibleTypes = TYPE_TABS.filter((t) => {
@@ -63,6 +63,7 @@ export default function ContestsBrowser({ contests }) {
               <button
                 key={t.id}
                 type="button"
+                aria-pressed={platform === t.id}
                 onClick={() => {
                   setPlatform(t.id);
                   const keep = { all: null, atcoder: atcoderTypes, codeforces: cfTypes, nowcoder: nowcoderTypes };
@@ -83,6 +84,7 @@ export default function ContestsBrowser({ contests }) {
               key={t.id}
               type="button"
               title={t.desc ?? '全部类型'}
+              aria-pressed={type === t.id}
               onClick={() => setType(t.id)}
               className={`rounded-md border px-2.5 py-1 text-xs transition-colors ${
                 type === t.id
@@ -100,6 +102,7 @@ export default function ContestsBrowser({ contests }) {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="搜索比赛名称或编号…"
+            aria-label="搜索比赛名称或编号"
             className="pl-8"
           />
         </div>
@@ -113,7 +116,7 @@ export default function ContestsBrowser({ contests }) {
           {filtered.length === 0 && (
             <div className="text-muted-foreground p-8 text-center text-sm">没有匹配的比赛</div>
           )}
-          {filtered.map((c) => (
+          {filtered.slice(0, 200).map((c) => (
             <Link
               key={`${c.platform}/${c.id}`}
               href={`/contests/${c.platform}/${encodeURIComponent(String(c.id))}`}
@@ -142,6 +145,11 @@ export default function ContestsBrowser({ contests }) {
               </Badge>
             </Link>
           ))}
+          {filtered.length > 200 && (
+            <div className="text-muted-foreground p-4 text-center text-xs">
+              仅显示最近 200 场,共 {filtered.length} 场 —— 请用筛选缩小范围
+            </div>
+          )}
         </CardContent>
       </Card>
 

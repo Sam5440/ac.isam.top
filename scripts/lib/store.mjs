@@ -14,7 +14,13 @@ export function loadContests(platform) {
 }
 
 export function saveContests(platform, contests) {
-  contests.sort((a, b) => new Date(b.startTime) - new Date(a.startTime));
+  // startTime 为 null/无效字符串时 Date 构造出 NaN,比较器返回 NaN 会让排序
+  // 结果不稳定 —— 与 build-index.mjs 的 t(c)||0 口径一致
+  const t = (x) => {
+    const ms = new Date(x?.startTime).getTime();
+    return Number.isFinite(ms) ? ms : 0;
+  };
+  contests.sort((a, b) => t(b) - t(a));
   writeJson(contestFile(platform), contests);
 }
 

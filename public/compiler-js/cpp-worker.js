@@ -156,8 +156,10 @@ async function init() {
   postMessage({ type: 'ready', exnref });
   // 后台预热默认标准（c++20）的 bits/stdc++.h 预编译头：把一次性构建
   // 成本移到首个用户请求之前（期间产生的下载/构建日志无请求 id，由
-  // cpp-client 的全局 onLog/onProgress 兜底转发）
-  bridge.ensurePch('c++20');
+  // cpp-client 的全局 onLog/onProgress 兜底转发）。
+  // 挂进请求串行队列（编译-12）：预热与用户请求并行会同时起两个完整
+  // clang 实例，内存峰值翻倍（移动端低内存设备 OOM 面）。
+  queue = queue.catch(() => {}).then(() => bridge.ensurePch('c++20'));
 }
 
 function getBundle() {
@@ -211,15 +213,16 @@ self.onmessage = (ev) => {
         postMessage({ id, type: 'stage', stage: '编译中' });
         const input = nextInput('s');
         api.memfs.addFile(input, data.source);
-        const { results, truncated, timings } = await self.CPBridge.runCases(bridge, {
+        const runCases = await self.CPBridge.runCases(bridge, {
           input,
           contents: data.source,
           obj: `${input}.o`,
           wasm: `${input}.wasm`,
           std: data.std ?? null,
           stdins: data.stdins ?? [],
+          perCaseTimeoutMs: data.perCaseTimeoutMs ?? 0,
         });
-        postMessage({ id, ok: true, runCases: { results, truncated, timings } });
+        postMessage({ id, ok: true, runCases });
       } else if (data.type === 'check') {
         postMessage({ id, type: 'stage', stage: '语法检查中' });
         const input = nextInput('c');

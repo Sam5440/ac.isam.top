@@ -46,7 +46,7 @@ import {
   scanNowcoderContestsById,
 } from './lib/nowcoder.mjs';
 import { llmConfig, pingLLM, translateStatement, translateTitles } from './lib/llm.mjs';
-import { problemComplete, saveProblem, upsertContest } from './lib/store.mjs';
+import { loadProblem, problemComplete, saveProblem, upsertContest } from './lib/store.mjs';
 import { buildIndex } from './build-index.mjs';
 import { loadEnv, log, parseArgs, pLimit, rnd, sleep } from './lib/util.mjs';
 
@@ -189,13 +189,23 @@ async function backfillCf(budget) {
           if (left <= 0) break;
           const m = metaByIndex.get(p.index);
           const ok = await tryProblem('codeforces', `${c.id}${p.index}`, async () => {
+            const id = `${c.id}${p.index}`;
+            // 保留已有译文（同 fetch.mjs,P1-8 同型修复）
+            const existing = loadProblem('codeforces', id);
+            const zhKeep = existing?.statementZhMd
+              ? {
+                  titleZh: existing.titleZh ?? null,
+                  statementZhMd: existing.statementZhMd,
+                  ...(existing.translatedAt ? { translatedAt: existing.translatedAt } : {}),
+                  ...(existing.translateModel ? { translateModel: existing.translateModel } : {}),
+                }
+              : { titleZh: null, statementZhMd: null };
             saveProblem('codeforces', {
-              id: `${c.id}${p.index}`,
+              id,
               platform: 'codeforces',
               contestId: c.id,
               index: p.index,
               title: p.title,
-              titleZh: null,
               url: cfProblemUrl(c.id, p.index),
               difficulty: m?.rating ?? null,
               tags: m?.tags ?? [],
@@ -203,10 +213,10 @@ async function backfillCf(budget) {
               ...(p.timeLimitMs != null ? { timeLimitMs: p.timeLimitMs } : {}),
               ...(p.memoryLimitMb != null ? { memoryLimitMb: p.memoryLimitMb } : {}),
               statementMd: p.statementMd,
-              statementZhMd: null,
               samples: p.samples,
               language: 'en',
               fetchedAt: nowIso(),
+              ...zhKeep,
             });
           });
           if (ok) {

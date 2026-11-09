@@ -14,6 +14,7 @@ const PLATFORM_TABS = [
   { id: 'all', label: '全部' },
   { id: 'atcoder', label: 'AtCoder (ABC)' },
   { id: 'codeforces', label: 'Codeforces' },
+  { id: 'nowcoder', label: '牛客' },
 ];
 
 const RATING_BANDS = [
@@ -30,8 +31,11 @@ function matchBand(d, band) {
   if (band === 'all') return true;
   if (band === 'unrated') return d == null;
   if (d == null) return false;
+  // AtCoder 负难度（入门灰名,如 -305）先归一到 0,与 DifficultyBadge 的展示
+  // 口径一致 —— 否则这批最简单的题在所有数值档位(含「入门」)都查不到。
+  const v = Math.max(0, Math.round(d));
   const [lo, hi] = band.split('-').map(Number);
-  return d >= lo && d <= hi;
+  return v >= lo && v <= hi;
 }
 
 export default function ProblemsBrowser({ problems }) {
@@ -65,6 +69,7 @@ export default function ProblemsBrowser({ problems }) {
               key={t.id}
               type="button"
               onClick={() => setTab(t.id)}
+              aria-pressed={tab === t.id}
               className={`rounded-md px-3 py-1.5 transition-colors ${
                 tab === t.id ? 'bg-background text-foreground shadow-sm' : ''
               }`}
@@ -76,6 +81,7 @@ export default function ProblemsBrowser({ problems }) {
         <select
           value={band}
           onChange={(e) => setBand(e.target.value)}
+          aria-label="按难度筛选"
           className="border-input bg-background h-9 rounded-md border px-2.5 text-sm outline-none"
         >
           {RATING_BANDS.map((b) => (
@@ -90,6 +96,7 @@ export default function ProblemsBrowser({ problems }) {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="搜索题号 / 题名…"
+            aria-label="搜索题号或题名"
             className="pl-8"
           />
           {q && (

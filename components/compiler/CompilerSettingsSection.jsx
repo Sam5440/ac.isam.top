@@ -136,19 +136,21 @@ export default function CompilerSettingsSection() {
       setCp((s) => ({ ...s, pythonVersion: pyVersion.id }));
       setPy({ state: "ready", progress: null, error: null });
       window.dispatchEvent(new Event("ysc-runtime-changed"));
+      window.dispatchEvent(new Event("ysc-cp-settings-changed"));
     } catch (exn) {
       setPy({ state: "error", progress: null, error: exn.message });
     }
   }
 
   async function removeCpp() {
-    await removeRuntime(cppUrls);
+    // label 同步清理 meta 汇总条目（编译-25/PWA-18）
+    await removeRuntime(cppUrls, "cpp");
     refresh();
     window.dispatchEvent(new Event("ysc-runtime-changed"));
   }
 
   async function removePy() {
-    await removeRuntime(pyUrls);
+    await removeRuntime(pyUrls, `python:${pyVersionId}`);
     refresh();
     window.dispatchEvent(new Event("ysc-runtime-changed"));
   }
@@ -211,6 +213,9 @@ export default function CompilerSettingsSection() {
                 setPyVersionId(e.target.value);
                 saveCpSettings({ pythonVersion: e.target.value });
                 setCp((s) => ({ ...s, pythonVersion: e.target.value }));
+                // 通知已打开的 CompilerDock 刷新（编译-18:漏派发会让已开面板
+                // 的 cp.pythonVersion 滞后,下次运行仍用旧版本）
+                window.dispatchEvent(new Event("ysc-cp-settings-changed"));
                 refresh();
               }}
             >

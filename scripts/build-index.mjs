@@ -20,7 +20,7 @@ function readJsonSafe(file) {
   }
 }
 
-function readProblems(platform) {
+function readProblems(platform, brokenRef) {
   const dir = path.join(DATA_ROOT, platform, 'problems');
   const out = [];
   let files = [];
@@ -32,7 +32,13 @@ function readProblems(platform) {
   for (const f of files) {
     if (!f.endsWith('.json')) continue;
     const p = readJsonSafe(path.join(dir, f));
-    if (p?.id) out.push(p);
+    // 损坏文件计数并上报（审查 管线-17）：旧实现静默跳过,索引与详情页
+    // （直接读文件,同样失败 → notFound）口径不一致还无从排查
+    if (!p?.id) {
+      if (brokenRef) brokenRef.push(`${platform}/${f}`);
+      continue;
+    }
+    out.push(p);
   }
   return out;
 }
@@ -40,11 +46,15 @@ function readProblems(platform) {
 export function buildIndex() {
   const problems = [];
   const contests = [];
+  const broken = [];
   for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
-    for (const p of readProblems(platform)) problems.push(p);
+    for (const p of readProblems(platform, broken)) problems.push(p);
     for (const c of readJsonSafe(path.join(DATA_ROOT, platform, 'contests.json')) ?? []) {
       contests.push(c);
     }
+  }
+  if (broken.length) {
+    console.warn(`[build-index] ⚠ ${broken.length} 个损坏/空的题面文件未入索引：${broken.slice(0, 10).join(', ')}${broken.length > 10 ? ' …' : ''}`);
   }
 
   const byPlatform = {};
@@ -110,8 +120,7 @@ export function buildIndex() {
     translated: Boolean(p.statementZhMd),
   }));
 
-  const index = {
-    generatedAt: new Date().toISOString(),
+  const body = {
     stats: {
       problems: problems.length,
       contests: contests.length,
@@ -121,6 +130,24 @@ export function buildIndex() {
     recentContests,
     recentProblems,
     problems: problemIndex,
+  };
+
+  // generatedAt 仅在内容实体变化时更新（审查 管线-3 根因组合之一）：旧实现
+  // 无条件取 new Date(),零数据变更的运行也必然产生一个新提交,与人工 push
+  // 撞车概率最大化。内容未变时沿用旧时间戳 → git diff 为空 → CI 跳过提交。
+  const existing = readJsonSafe(path.join(DATA_ROOT, 'index.json'));
+  const unchanged =
+    existing &&
+    existing.stats?.problems === body.stats.problems &&
+    existing.stats?.contests === body.stats.contests &&
+    existing.stats?.translated === body.stats.translated &&
+    JSON.stringify(existing.recentContests) === JSON.stringify(body.recentContests) &&
+    JSON.stringify(existing.recentProblems) === JSON.stringify(body.recentProblems) &&
+    JSON.stringify(existing.problems) === JSON.stringify(body.problems);
+
+  const index = {
+    generatedAt: unchanged && existing.generatedAt ? existing.generatedAt : new Date().toISOString(),
+    ...body,
   };
 
   writeJson(path.join(DATA_ROOT, 'index.json'), index);

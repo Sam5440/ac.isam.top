@@ -96,8 +96,17 @@
    * @param {object} [args.config]
    */
   function createClangApi({ APIClass, MemFS, readBuffer, compileStreaming, hostWrite, notify = () => {}, config = CLANG22_CONFIG }) {
+    // log / forwarded 是「本次请求」级的缓冲：runSetup 里整体复位（旧实现
+    // 整个实例生命周期累计，多次大输出运行后 8MB 截断冻结 sliceFrom 返回
+    // 空串，样例判定整体失效且无提示 —— 审查 2026-11-09 编译-02）。
     const log = { text: '', truncated: false };
     let forwarded = 0;
+    // 程序运行期 stderr（cerr/clog）独立缓冲：不进 log.text，判题的
+    // stdout 切片因此不再混入调试输出（编译-07）；仍转发给主线程控制台。
+    const errLog = { text: '' };
+    // true = 程序执行中（fd 2 走 hostErr 分流）；false = clang 编译期
+    // （诊断必须留在 log.text 供 parseClangDiagnostics 解析）
+    let divertStderr = false;
     // 交互读状态：由 worker 侧注入 SAB 视图；runTeardown 复位
     const interactive = { i32: null, u8: null, active: false, eof: false };
     let activeRequestCap = null;
@@ -181,12 +190,35 @@
           hostWrite(s);
         }
       },
+      hostErr: (s) => {
+        if (divertStderr) {
+          // 程序运行期：进独立 stderr 缓冲 + 转发主线程显示,不污染 stdout 日志
+          if (errLog.text.length < LOG_CAP) errLog.text += s;
+          hostWrite(s);
+        } else {
+          // clang 编译期诊断：走原有 log.text 路径（诊断解析依赖它）
+          if (!log.truncated) {
+            log.text += s;
+            if (log.text.length > LOG_CAP) log.truncated = true;
+          }
+          if (forwarded < OUT_CAP) {
+            forwarded += s.length;
+            hostWrite(s);
+          }
+        }
+      },
       showTiming: true,
       ...config,
     });
 
     /** 每次 run 前调用：绑定交互 SAB、输出上限并复位状态。 */
     function runSetup({ sab, stdoutCap }) {
+      // 复位请求级缓冲（注释见 createClangApi 顶部；P1-6 修复）
+      log.text = '';
+      log.truncated = false;
+      forwarded = 0;
+      errLog.text = '';
+      divertStderr = false;
       interactive.i32 = sab ? new Int32Array(sab) : null;
       interactive.u8 = sab ? new Uint8Array(sab) : null;
       interactive.active = !!sab;
@@ -200,6 +232,7 @@
       interactive.active = false;
       interactive.i32 = null;
       interactive.u8 = null;
+      divertStderr = false;
     }
 
     // ---- PCH 缓存（按 -std 一份；构建串行化防并发 clang 实例）----
@@ -241,7 +274,16 @@
     }
 
     return { api, log, runSetup, runTeardown, interactive, notify, ensurePch,
-      outCapState: () => activeRequestCap };
+      outCapState: () => activeRequestCap,
+      // 模块级编排函数(compileLinkRunResult/runCases)也需要读写这两者,
+      // 经 bundle 暴露(此前闭包私有 → 模块级函数引用抛 ReferenceError,
+      // run-cases 请求静默失败 —— 本会话终验踩中)
+      errState: {
+        get text() { return errLog.text; },
+        set text(v) { errLog.text = v; },
+        divert(v) { divertStderr = v; },
+      },
+    };
   }
 
   // ---- 编排入口（worker 调用） ----
@@ -310,94 +352,120 @@
     const { api, log, runSetup, runTeardown } = bundle;
     runSetup({ sab: interactive ? sab : null });
 
-    const timings = { pch: null, compileMs: 0, linkMs: 0, moduleMs: 0, runMs: 0 };
-    let start = log.text.length;
-    const pre = await compileWithPch(bundle, { input, contents, obj, std });
-    timings.compileMs = pre.ms;
-    timings.pch = pre.pch;
-
-    start = log.text.length;
-    bundle.notify?.({ type: 'stage', stage: '链接中' });
-    const tLink = Date.now();
+    // teardown 兜底:编译/链接抛错(CompileError/LinkError)时也复位交互态,
+    // 避免 interactive 残留影响下一请求(审查 2026-11-09 编译-19①)
     try {
-      await api.link(obj, wasm);
-    } catch (exn) {
-      throw Object.assign(new Error('链接失败'), { name: 'LinkError', rawLog: sliceFrom(log, start) });
-    }
-    timings.linkMs = Date.now() - tLink;
+      const timings = { pch: null, compileMs: 0, linkMs: 0, moduleMs: 0, runMs: 0 };
+      let start = log.text.length;
+      const pre = await compileWithPch(bundle, { input, contents, obj, std });
+      timings.compileMs = pre.ms;
+      timings.pch = pre.pch;
 
-    api.memfs.setStdinStr(stdin);
-    const tMod = Date.now();
-    const mod = await WebAssembly.compile(api.memfs.getFileContents(wasm));
-    timings.moduleMs = Date.now() - tMod;
+      start = log.text.length;
+      bundle.notify?.({ type: 'stage', stage: '链接中' });
+      const tLink = Date.now();
+      try {
+        await api.link(obj, wasm);
+      } catch (exn) {
+        throw Object.assign(new Error('链接失败'), { name: 'LinkError', rawLog: sliceFrom(log, start) });
+      }
+      timings.linkMs = Date.now() - tLink;
 
-    start = log.text.length;
-    bundle.notify?.({ type: 'stage', stage: '运行中' });
-    const t0 = Date.now();
-    let exitCode = 0;
-    let trap = null;
-    try {
-      await api.run(mod, wasm);
-    } catch (exn) {
-      if (typeof exn.code === 'number') exitCode = exn.code;
-      else trap = exn.message ?? String(exn);
-    }
-    const elapsedMs = Date.now() - t0;
-    timings.runMs = elapsedMs;
-    runTeardown();
+      api.memfs.setStdinStr(stdin);
+      const tMod = Date.now();
+      const mod = await WebAssembly.compile(api.memfs.getFileContents(wasm));
+      timings.moduleMs = Date.now() - tMod;
 
-    const stdout = cleanStdout(sliceFrom(log, start), { trap });
-    return { stdout, exitCode, trap, elapsedMs, truncated: log.truncated, timings };
-  }
-
-  /** 编译一次 + 多样例运行（同一 wasm 重复实例化，等价 judge 逐例重跑的
-   *  干净进程语义；每例独立 stdin，互不残留）。每例完成即 notify 'case'
-   *  事件（前端逐例显示进度），最终仍整体返回 results。 */
-  async function runCases(bundle, { input, contents, obj, wasm, std = null, stdins = [] }) {
-    const { api, log, runSetup, runTeardown } = bundle;
-    runSetup({ sab: null });
-
-    const timings = { pch: null, compileMs: 0, linkMs: 0, moduleMs: 0, runMs: 0 };
-    let start = log.text.length;
-    const pre = await compileWithPch(bundle, { input, contents, obj, std });
-    timings.compileMs = pre.ms;
-    timings.pch = pre.pch;
-
-    start = log.text.length;
-    bundle.notify?.({ type: 'stage', stage: '链接中' });
-    const tLink = Date.now();
-    try {
-      await api.link(obj, wasm);
-    } catch (exn) {
-      throw Object.assign(new Error('链接失败'), { name: 'LinkError', rawLog: sliceFrom(log, start) });
-    }
-    timings.linkMs = Date.now() - tLink;
-
-    const tMod = Date.now();
-    const mod = await WebAssembly.compile(api.memfs.getFileContents(wasm));
-    timings.moduleMs = Date.now() - tMod;
-
-    const results = [];
-    for (let i = 0; i < stdins.length; i++) {
-      api.memfs.setStdinStr(stdins[i]);
-      bundle.notify?.({ type: 'stage', stage: `运行样例 ${i + 1}/${stdins.length}` });
-      const mark = log.text.length;
+      start = log.text.length;
+      bundle.notify?.({ type: 'stage', stage: '运行中' });
       const t0 = Date.now();
       let exitCode = 0;
       let trap = null;
+      bundle.errState.divert(true); // 程序 stderr 与 stdout 分流(编译-07)
       try {
         await api.run(mod, wasm);
       } catch (exn) {
         if (typeof exn.code === 'number') exitCode = exn.code;
         else trap = exn.message ?? String(exn);
       }
-      const result = { stdout: cleanStdout(sliceFrom(log, mark), { trap }), exitCode, trap, elapsedMs: Date.now() - t0 };
-      results.push(result);
-      timings.runMs += result.elapsedMs;
-      bundle.notify?.({ type: 'case', index: i, total: stdins.length, result });
+      bundle.errState.divert(false);
+      const elapsedMs = Date.now() - t0;
+      timings.runMs = elapsedMs;
+
+      const stdout = cleanStdout(sliceFrom(log, start), { trap });
+      return { stdout, exitCode, trap, elapsedMs, truncated: log.truncated, stderr: bundle.errState.text, timings };
+    } finally {
+      runTeardown();
     }
-    runTeardown();
-    return { results, truncated: log.truncated, timings };
+  }
+
+  /** 编译一次 + 多样例运行（同一 wasm 重复实例化，等价 judge 逐例重跑的
+   *  干净进程语义；每例独立 stdin，互不残留）。每例完成即 notify 'case'
+   *  事件（前端逐例显示进度），最终仍整体返回 results。
+   *  perCaseTimeoutMs：单例预算 —— 运行期无法从外部抢占 wasm,超时标记
+   *  在该例结果上（overtime:true,前端判 TE）;无界死循环仍由主线程看门狗
+   *  terminate 兜底（总预算 = 编译硬上限 + Σ单例）。
+   */
+  async function runCases(bundle, { input, contents, obj, wasm, std = null, stdins = [], perCaseTimeoutMs = 0 }) {
+    const { api, log, runSetup, runTeardown } = bundle;
+    runSetup({ sab: null });
+
+    try {
+      const timings = { pch: null, compileMs: 0, linkMs: 0, moduleMs: 0, runMs: 0 };
+      let start = log.text.length;
+      const pre = await compileWithPch(bundle, { input, contents, obj, std });
+      timings.compileMs = pre.ms;
+      timings.pch = pre.pch;
+
+      start = log.text.length;
+      bundle.notify?.({ type: 'stage', stage: '链接中' });
+      const tLink = Date.now();
+      try {
+        await api.link(obj, wasm);
+      } catch (exn) {
+        throw Object.assign(new Error('链接失败'), { name: 'LinkError', rawLog: sliceFrom(log, start) });
+      }
+      timings.linkMs = Date.now() - tLink;
+
+      const tMod = Date.now();
+      const mod = await WebAssembly.compile(api.memfs.getFileContents(wasm));
+      timings.moduleMs = Date.now() - tMod;
+
+      const results = [];
+      for (let i = 0; i < stdins.length; i++) {
+        api.memfs.setStdinStr(stdins[i]);
+        bundle.notify?.({ type: 'stage', stage: `运行样例 ${i + 1}/${stdins.length}` });
+        const mark = log.text.length;
+        bundle.errState.text = ''; // 每例独立 stderr
+        const t0 = Date.now();
+        let exitCode = 0;
+        let trap = null;
+        bundle.errState.divert(true);
+        try {
+          await api.run(mod, wasm);
+        } catch (exn) {
+          if (typeof exn.code === 'number') exitCode = exn.code;
+          else trap = exn.message ?? String(exn);
+        }
+        bundle.errState.divert(false);
+        const elapsedMs = Date.now() - t0;
+        const result = {
+          stdout: cleanStdout(sliceFrom(log, mark), { trap }),
+          exitCode,
+          trap,
+          elapsedMs,
+          // 单例超预算：标记 overtime 供前端判 TE(与 Python 路径语义对齐,编译-06)
+          overtime: perCaseTimeoutMs > 0 && elapsedMs > perCaseTimeoutMs,
+          stderr: bundle.errState.text,
+        };
+        results.push(result);
+        timings.runMs += result.elapsedMs;
+        bundle.notify?.({ type: 'case', index: i, total: stdins.length, result });
+      }
+      return { results, truncated: log.truncated, timings };
+    } finally {
+      runTeardown();
+    }
   }
 
   /** -fsyntax-only：返回主文件诊断（头文件内诊断不产生编辑器标记）。 */

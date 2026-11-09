@@ -34,7 +34,10 @@ const fmtDate = (iso) => {
 
 export default function TranslationSection() {
   const { settings, setSettings, lang, setLang, aiReady } = useSettings();
-  const [ai, setAi] = useState(settings.ai);
+  // null = 尚未随 Provider 的异步加载回填（P1-3）：直接刷新 /settings 时
+  // settings 首渲染还是空默认值,旧写法 useState(settings.ai) 捕获空值且不再
+  // 同步 —— 此时点「保存」会用空值覆盖已存的 baseUrl/apiKey
+  const [ai, setAi] = useState(null);
   const [test, setTest] = useState(null); // {state, msg}
 
   // ---- 渠道体检 ----
@@ -49,18 +52,39 @@ export default function TranslationSection() {
     return () => abortRef.current?.abort();
   }, []);
 
-  const patchAi = (p) => setAi((prev) => ({ ...prev, ...p }));
-  const saveAi = () => setSettings((prev) => ({ ...prev, ai }));
+  // Provider 异步加载完成后回填一次（仅在本地尚未编辑时;已编辑不覆盖）
+  const aiLoadedRef = useRef(false);
+  useEffect(() => {
+    if (!aiLoadedRef.current && settings.ai && (settings.ai.baseUrl || settings.ai.apiKey)) {
+      setAi(settings.ai);
+      aiLoadedRef.current = true;
+    } else if (!aiLoadedRef.current && settings.ai && !ai && settings.ai) {
+      // 确实没有已存配置时也要给出非 null 的表单值,否则保存会写 undefined
+      setAi((prev) => prev ?? settings.ai);
+    }
+  }, [settings.ai, ai]);
+
+  const patchAi = (p) => setAi((prev) => ({ ...(prev ?? settings.ai), ...p }));
+  const saveAi = () => {
+    // aiForm = ai ?? settings.ai:即使尚未编辑过,保存也只是把当前值写回,不会再
+    // 出现「用加载前的空默认值覆盖已存 Key」的 P1-3 场景
+    setSettings((prev) => ({ ...prev, ai: aiForm }));
+  };
 
   const runTest = async () => {
+    if (!aiForm) return;
     setTest({ state: 'loading' });
     try {
-      const out = await aiTranslate('Print the maximum total tastiness.', ai);
+      const out = await aiTranslate('Print the maximum total tastiness.', aiForm);
       setTest({ state: 'ok', msg: out });
     } catch (e) {
       setTest({ state: 'fail', msg: e.message });
     }
   };
+
+  // 表单渲染与读取统一走 aiForm:ai 尚未从 Provider 回填(null)时落到
+  // settings.ai 的当前值(至少是 DEFAULT 非空形状),输入框不会读 null
+  const aiForm = ai ?? settings.ai;
 
   // 切换默认题面语言：立即作用于当前浏览，同时存为默认
   const pickLangMode = (mode) => {
@@ -111,7 +135,10 @@ export default function TranslationSection() {
     try {
       await runHealthCheck({
         channels: healthChannels,
-        cfg: settings.ai,
+        // 与「测试连接」同源（AI-8）：体检也用当前表单值,旧实现用已保存的
+        // settings.ai —— 改了 Key 未保存就体检会拿旧 Key 全军覆没,统计被
+        // 0% 覆盖
+        cfg: aiForm,
         count: TEST_COUNT,
         gapMs: 800,
         signal: ctrl.signal,
@@ -313,7 +340,7 @@ export default function TranslationSection() {
             <input
               className={inputCls}
               placeholder="http://localhost:3000"
-              value={ai.baseUrl}
+              value={aiForm.baseUrl}
               onChange={(e) => patchAi({ baseUrl: e.target.value.trim() })}
             />
           </Field>
@@ -322,13 +349,13 @@ export default function TranslationSection() {
               className={inputCls}
               type="password"
               placeholder="sk-..."
-              value={ai.apiKey}
+              value={aiForm.apiKey}
               onChange={(e) => patchAi({ apiKey: e.target.value.trim() })}
             />
           </Field>
         </div>
         <Field label="模型">
-          <select className={inputCls} value={ai.model} onChange={(e) => patchAi({ model: e.target.value })}>
+          <select className={inputCls} value={aiForm.model} onChange={(e) => patchAi({ model: e.target.value })}>
             {AI_MODELS.map((m) => (
               <option key={m} value={m}>
                 {m}
@@ -340,7 +367,7 @@ export default function TranslationSection() {
           <button
             type="button"
             onClick={runTest}
-            disabled={!ai.baseUrl || !ai.apiKey || test?.state === 'loading'}
+            disabled={!aiForm.baseUrl || !aiForm.apiKey || test?.state === 'loading'}
             className="bg-background hover:bg-accent rounded-md border px-2.5 py-1 text-xs text-foreground transition-colors disabled:opacity-50"
           >
             {test?.state === 'loading' ? '测试中…' : '测试连接'}
@@ -352,7 +379,7 @@ export default function TranslationSection() {
           >
             保存
           </button>
-          {aiReady && settings.ai.apiKey === ai.apiKey && settings.ai.baseUrl === ai.baseUrl && (
+          {aiReady && settings.ai.apiKey === aiForm.apiKey && settings.ai.baseUrl === aiForm.baseUrl && (
             <span className="text-[11px] text-emerald-500">已配置</span>
           )}
         </div>

@@ -175,8 +175,13 @@ let clangCompleteSeq = 0;
 // 不刷新已开的 widget（Monaco 0.57 无可靠公开机制，hide+triggerSuggest 互踩），
 // 由后续成员上下文里的击键按前缀命中缓存同步合并
 let clangCache = { key: null, items: null };
+// 当前实例的 clang 上下文读取器（编译-12 修复）：provider 是模块级单次注册,
+// 闭包若捕获首个实例的 stateRef,路由切换后补全会打到旧 CompilerDock 的
+// CppClient(幽灵 worker + 旧 cp 快照)。每个实例挂载时覆盖此引用,卸载时
+// 若仍是自己则清空,provider 永远读「当前挂载实例」。
+let activeCppContextFn = null;
 
-function registerProviders(monaco, getCppContext) {
+function registerProviders(monaco) {
   if (providersRegistered || !monaco) return;
   providersRegistered = true;
   const K = monaco.languages.CompletionItemKind;
@@ -297,7 +302,7 @@ function registerProviders(monaco, getCppContext) {
       //  - 打字母的自动 Invoke 不跑 clang（每次击键全量编译代价秒级）
       //  注意打字母与手动触发的 triggerKind 相同（实测都是 Invoke），手动
       //  靠 keydown 打标区分
-      const ctx = getCppContext?.();
+      const ctx = activeCppContextFn?.();
       if (ctx) {
         const manual = ctx.consumeManualInvoke?.();
         const before = model.getValueInRange({
@@ -561,6 +566,7 @@ export default function CodeEditor({
   const hostRef = useRef(null);
   const editorRef = useRef(null);
   const monacoRef = useRef(null);
+  const initialModelDispRef = useRef(null); // 初始 model 的 onChange 监听(卸载时释放)
   const suppressionRef = useRef(null); // watchSoftKeyboardSuppression 的清理函数
   // 手动 clang 补全标记：Ctrl/Cmd+Space 的 keydown 置位，provider 的 Invoke 消费。
   // Monaco 里「打字母自动弹补全」与「手动触发」的 triggerKind 相同（都是 Invoke），
@@ -608,10 +614,13 @@ export default function CodeEditor({
   useEffect(() => {
     let disposed = false;
     let editor = null;
+    let initialModel = null;
     let unregisterEditorSource = null;
+    let myContextFn = null;
     loadMonaco().then((monaco) => {
       if (disposed || !hostRef.current) return;
-      registerProviders(monaco, () => {
+      // 本实例成为「当前 clang 上下文」；卸载时若仍是自己则让位(编译-12)
+      myContextFn = () => {
         const s = stateRef.current;
         return s.language === "cpp"
           ? {
@@ -624,7 +633,9 @@ export default function CodeEditor({
               },
             }
           : null;
-      });
+      };
+      activeCppContextFn = myContextFn;
+      registerProviders(monaco);
       editor = monaco.editor.create(hostRef.current, {
         value,
         language: language === "python" ? "python" : "cpp",
@@ -653,14 +664,23 @@ export default function CodeEditor({
       });
       editorRef.current = editor;
       monacoRef.current = monaco;
+      // create 的隐式初始 model 不随 editor.dispose() 释放 —— 语言切换 effect
+      // 只 dispose 它自建的 model,本引用兜底防每实例泄漏一个(编译-17①)
+      initialModel = editor.getModel();
+      // onChange 挂 model 级:初始 model 也要挂(语言切换 effect 只管它自建的
+      // model;漏掉初始 model 时用户在首次挂载的 model 上编辑不会同步到
+      // onChange → 运行时发的是旧 state —— 本会话实测踩中的回归)
+      const initialDisp = initialModel.onDidChangeContent(() =>
+        stateRef.current.onChange?.(initialModel.getValue()),
+      );
+      initialModelDispRef.current = initialDisp;
       // AI 对话面板读取当前代码的桥（lib/editor-bridge），销毁时注销
       unregisterEditorSource = registerEditorSource(() => editor.getValue());
       // 自动化/测试钩子：E2E 用它做免焦点的代码注入（Monaco 点击聚焦在
       // headless 下不稳定，曾导致 Ctrl+A 选中整页、运行了旧代码）
       if (typeof window !== "undefined") window.__ysMonaco = { editor, monaco };
-      editor.onDidChangeModelContent(() => {
-        stateRef.current.onChange?.(editor.getValue());
-      });
+      // onChange 只挂 model 级(下方语言切换 effect):编辑器级再挂一份会
+      // 双触发(编译-17②)
       // Ctrl/Cmd+Space → 手动触发 clang 补全：keydown 打标 + triggerSuggest。
       // 普通打字的自动补全不消费该标记，只出静态表
       editor.onKeyDown((e) => {
@@ -719,7 +739,13 @@ export default function CodeEditor({
     return () => {
       disposed = true;
       unregisterEditorSource?.();
+      if (myContextFn && activeCppContextFn === myContextFn) {
+        // 仅当仍是本实例注册的读取器时让位(后挂载实例已覆盖则保留新实例)
+        activeCppContextFn = null;
+      }
+      initialModelDispRef.current?.dispose();
       editor?.dispose();
+      initialModel?.dispose();
       editorRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -735,6 +761,9 @@ export default function CodeEditor({
       language === "python" ? "python" : "cpp",
     );
     editor.setModel(model);
+    // 旧 model 的标记随 model 丢弃;新 model 先清零,待父组件 diagnostics
+    // 变化时重打(编译-17③:语言切换后标记不残留错位)
+    monaco.editor.setModelMarkers(model, "compiler", []);
     const disp = model.onDidChangeContent(() =>
       stateRef.current.onChange?.(model.getValue()),
     );

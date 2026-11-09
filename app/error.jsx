@@ -17,6 +17,8 @@ export default function Error({ error, reset }) {
   const [chunkFail, setChunkFail] = useState(false);
 
   useEffect(() => {
+    // Next 官方模板的标准动作:错误现场进控制台,生产排障依赖它
+    console.error(error);
     const msg = String(error?.message || '');
     setChunkFail(CHUNK_FAIL_RE.test(msg));
     const sync = () => setOffline(!navigator.onLine);

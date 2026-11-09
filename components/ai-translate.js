@@ -20,7 +20,7 @@ export function normalizeBaseUrl(u) {
   return /\/v\d+$/.test(s) ? s : `${s}/v1`;
 }
 
-export async function aiTranslate(text, cfg) {
+export async function aiTranslate(text, cfg, { signal } = {}) {
   const { masked, stash } = protectMath(text);
   const res = await fetch(`${normalizeBaseUrl(cfg.baseUrl)}/chat/completions`, {
     method: 'POST',
@@ -41,6 +41,10 @@ export async function aiTranslate(text, cfg) {
         { role: 'user', content: masked },
       ],
     }),
+    // 30s 硬超时（审查 2026-11-09 AI-5）：旧实现无任何超时/外部 signal,
+    // 挂死端点会让渠道体检的「停止」失效、ai_custom 体检永久挂起、翻译
+    // FIFO 的并发位被占死。外部 signal 与超时任一触发即中止。
+    signal: signal ? AbortSignal.any?.([signal, AbortSignal.timeout(30000)]) ?? signal : AbortSignal.timeout(30000),
   });
   if (!res.ok) {
     let msg = `HTTP ${res.status}`;
@@ -59,11 +63,24 @@ export async function aiTranslate(text, cfg) {
 
 /* -------- shared cache + small FIFO queue (concurrency 2) -------- */
 
-const cache = new Map(); // key -> { text } | { error }
+// key -> { text } | { error, at }。错误结果只保留 60s（AI-20）：旧实现把
+// 失败永久写入模块级缓存且 key 不含 apiKey —— 用户修好 Key/网络恢复后
+// 同一段永远回放旧错误,只能整页刷新。
+const cache = new Map(); // key -> { text } | { error, at }
+const ERROR_TTL = 60 * 1000;
 const inflight = new Map(); // key -> Promise<string>
 const jobQueue = [];
 let running = 0;
 const CONCURRENCY = 2;
+
+function cacheGet(key) {
+  const hit = cache.get(key);
+  if (hit && !hit.text && hit.at && Date.now() - hit.at > ERROR_TTL) {
+    cache.delete(key);
+    return undefined;
+  }
+  return hit;
+}
 
 function pump() {
   while (running < CONCURRENCY && jobQueue.length) {
@@ -78,7 +95,7 @@ function pump() {
 }
 
 function ensureJob(key, text, cfg) {
-  const hit = cache.get(key);
+  const hit = cacheGet(key);
   if (hit) return hit.text ? Promise.resolve(hit.text) : Promise.reject(new Error(hit.error));
   if (inflight.has(key)) return inflight.get(key);
   const p = new Promise((resolve, reject) => {
@@ -89,7 +106,7 @@ function ensureJob(key, text, cfg) {
       return t;
     })
     .catch((e) => {
-      cache.set(key, { error: e.message });
+      cache.set(key, { error: e.message, at: Date.now() });
       throw e;
     })
     .finally(() => inflight.delete(key));
@@ -104,17 +121,21 @@ function ensureJob(key, text, cfg) {
  * Returns { status: 'idle'|'loading'|'done'|'error', text?, error? }.
  */
 export function useAiSegment(text, cfg, enabled) {
-  const key = enabled && cfg?.baseUrl && cfg?.apiKey ? `${cfg.baseUrl}|${cfg.model}|${text}` : null;
-  const [state, setState] = useState(() =>
-    key && cache.has(key) ? (cache.get(key).text ? { status: 'done', text: cache.get(key).text } : { status: 'error', error: cache.get(key).error }) : { status: 'idle' },
-  );
+  // key 纳入 apiKey（AI-20）：换 Key 后立即走新请求,不再命中旧 Key
+  // 产生的结果/错误缓存（key 只在内存 Map 里,不落盘）
+  const key = enabled && cfg?.baseUrl && cfg?.apiKey ? `${cfg.baseUrl}|${cfg.model}|${cfg.apiKey}|${text}` : null;
+  const [state, setState] = useState(() => {
+    if (!key) return { status: 'idle' };
+    const hit = cacheGet(key);
+    return hit ? (hit.text ? { status: 'done', text: hit.text } : { status: 'error', error: hit.error }) : { status: 'idle' };
+  });
 
   useEffect(() => {
     if (!key) {
       setState({ status: 'idle' });
       return;
     }
-    const hit = cache.get(key);
+    const hit = cacheGet(key);
     if (hit) {
       setState(hit.text ? { status: 'done', text: hit.text } : { status: 'error', error: hit.error });
       return;

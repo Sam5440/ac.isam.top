@@ -26,6 +26,9 @@ export default function OfflineCacheSection() {
     try {
       const s = { pages: 0, assets: 0, runtime: 0, imgs: 0, usageMB: null, quotaMB: null };
       for (const n of CACHE_NAMES) {
+        // 先 has 再 open:open 会创建不存在的缓存,仅打开设置页就生成 5 个
+        // 空桶（审查 P3-15）
+        if (!(await caches.has(n))) continue;
         const keys = await (await caches.open(n)).keys();
         if (n === 'ac-pages') s.pages = keys.filter((k) => !k.url.startsWith('/__offline_meta__')).length;
         else if (n === 'ac-assets') s.assets = keys.length;
@@ -45,12 +48,14 @@ export default function OfflineCacheSection() {
 
   useEffect(() => {
     if (!('serviceWorker' in navigator)) return undefined;
-    navigator.serviceWorker.getRegistration().then((reg) => setSwActive(!!reg?.active)).catch(() => {});
+    // ready Promise 在 SW 激活后 resolve（PWA-15:旧实现只在挂载时读一次
+    // registration,SW 晚于挂载激活后按钮永久保持禁用）
+    navigator.serviceWorker.ready.then(() => setSwActive(true)).catch(() => {});
     const onMsg = (e) => {
       const d = e.data || {};
       if (d.type === 'OFFLINE_SYNC') {
         setProg(d);
-        if (d.phase === 'done' || d.phase === 'error') refresh();
+        if (d.phase === 'done' || d.phase === 'error' || d.phase === 'aborted') refresh();
       }
     };
     navigator.serviceWorker.addEventListener('message', onMsg);
@@ -71,15 +76,29 @@ export default function OfflineCacheSection() {
 
   const clearAll = async () => {
     if (!window.confirm('清除全部离线缓存（题库页面 / 静态资源 / 编译器运行时）？已下载的 Pyodide 缓存不受影响。')) return;
-    for (const n of CACHE_NAMES) await caches.delete(n);
+    // 先中止进行中的同步（PWA-7 竞态:否则 worker 会继续写回并重写 meta）
+    try {
+      const reg = await navigator.serviceWorker.getRegistration();
+      reg?.active?.postMessage({ type: 'ABORT_SYNC' });
+      await new Promise((r) => setTimeout(r, 300));
+    } catch {}
+    let failed = 0;
+    for (const n of CACHE_NAMES) {
+      try {
+        await caches.delete(n);
+      } catch {
+        failed++;
+      }
+    }
     setCleared(true);
     setMeta(null);
     setProg(null);
     await refresh();
+    if (failed) window.alert(`${failed} 个缓存桶删除失败（可能被占用），稍后会自动重建。`);
   };
 
   const limit = settings.offlineLimit || 100;
-  const syncing = prog && (prog.phase === 'pages' || prog.phase === 'manifest');
+  const syncing = prog && (prog.phase === 'pages' || prog.phase === 'manifest' || prog.phase === 'compiler');
   const fmtTime = (t) => (t ? new Date(t).toLocaleString('zh-CN', { hour12: false }) : '尚未同步');
 
   return (
@@ -131,11 +150,14 @@ export default function OfflineCacheSection() {
             />
           </div>
           <p className="text-muted-foreground text-[11px]">
-            正在同步离线题库 {prog.done}/{prog.total}（新增 {prog.added}）
+            {prog.phase === 'compiler'
+              ? `正在预取编译器运行时 ${prog.done}/${prog.total}（约 145MB,离线编译用）`
+              : `正在同步离线题库 ${prog.done}/${prog.total}（新增 ${prog.added}）`}
           </p>
         </div>
       )}
       {prog?.phase === 'error' && <p className="text-[11px] text-red-400">✗ 同步失败：{prog.error}</p>}
+      {prog?.phase === 'aborted' && <p className="text-muted-foreground text-[11px]">已中止同步。</p>}
       {prog?.phase === 'done' && (
         <p className="text-[11px] text-emerald-500">✓ 同步完成：{prog.meta?.pages ?? prog.total} 页 · 新增 {prog.added}</p>
       )}

@@ -2,8 +2,10 @@ name: Fetch & translate problems
 
 on:
   schedule:
-    # 每 6 小时一次（错开整点，规避 GitHub 定时任务高峰丢弃）
-    - cron: "23 1/6 * * *"
+    # 每 6 小时一次（错开整点，规避 GitHub 定时任务高峰丢弃）。
+    # 显式写出 4 个触发点（1-23/6 语义同 1/6,但前者在所有 cron 解析器上都
+    # 是标准步进写法,不依赖 runner 对 1/6 的兼容）。
+    - cron: "23 1-23/6 * * *"
   workflow_dispatch:
     inputs:
       abc_scan:
@@ -19,8 +21,9 @@ on:
         description: "扫描最近 N 场牛客官方赛（补新题面）"
         default: "2"
       translate_limit:
-        description: "本次最多翻译题数（0=不限）"
-        default: "0"
+        description: "本次最多翻译题数（0=不限；默认 120 与 npm run fetch:ci 对齐 ——
+          不限会让积压期撞 50 分钟 job 上限,已产出的 LLM 费用随 commit 步骤未到达而全部丢失）"
+        default: "120"
 
 permissions:
   contents: write
@@ -63,7 +66,7 @@ jobs:
             --cf "${{ github.event.inputs.cf_scan || '3' }}" \
             --nc "${{ github.event.inputs.nc_scan || '2' }}" \
             --backfill "${{ github.event.inputs.backfill || '10' }}" \
-            --translate-limit "${{ github.event.inputs.translate_limit || '0' }}"
+            --translate-limit "${{ github.event.inputs.translate_limit || '120' }}"
 
       - name: Commit & push data updates
         run: |
@@ -74,5 +77,19 @@ jobs:
             echo "No data changes — skip commit."
           else
             git commit -m "data: fetch & translate $(date -u +%FT%TZ) [skip ci]"
-            git push
+            # push 前先 rebase（审查 管线-3）：工作流 checkout 与 push 之间
+            # 长达数十分钟的窗口内任何人工 push 都会让本轮全部抓取/翻译
+            # 成果丢失。重试 3 次,每次先 pull --rebase --autostash
+            # （范式与 backfill-all.mjs 的 commitPush 一致）。
+            for i in 1 2 3; do
+              if git push origin HEAD:main; then
+                echo "push ok (attempt $i)"
+                exit 0
+              fi
+              echo "push conflict, rebase and retry ($i/3)"
+              git fetch origin main
+              git pull --rebase --autostash origin main || exit 1
+            done
+            echo "push failed after 3 attempts"
+            exit 1
           fi

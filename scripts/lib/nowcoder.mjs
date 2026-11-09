@@ -63,8 +63,13 @@ export async function scanNowcoderContestsById({ fromId, maxProbe = 240, onProgr
         retries: 1,
       });
       ok = data.code === 0 && Array.isArray(data.data?.data) && data.data.data.length > 0;
-    } catch {
-      ok = false; // 非 JSON（404 页）/网络错 —— 非 比赛 或临时失败，跳过
+    } catch (e) {
+      // 网络异常 ≠ 「不是比赛」（审查 管线-15）：游标已越过该 id,静默跳过
+      // 会让它永不重试。瞬时网络错误直接中止整轮扫描 —— 下轮从头再扫
+      // （调用方以游标续扫,中止时游标未推进,该 id 下轮自然重试）。
+      const msg = String(e?.message || e);
+      if (!/HTTP 4\d\d/.test(msg)) throw e;
+      ok = false; // 4xx = 确实不存在/无权限
     }
     if (ok) {
       try {
@@ -116,8 +121,17 @@ export async function fetchNowcoderContests(pages = 5) {
       const el = $(node);
       let meta;
       try {
-        // data-json 为 HTML 属性里的双层实体编码 JSON
-        meta = JSON.parse(el.attr('data-json').replace(/&quot;/g, '"'));
+        // data-json 为 HTML 属性里的多层实体编码 JSON（审查 管线-15:旧实现只
+        // 反转义 &quot;,含 &amp;/&lt; 等的赛名会解析失败被静默 continue）
+        meta = JSON.parse(
+          el
+            .attr('data-json')
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&'),
+        );
       } catch {
         continue;
       }

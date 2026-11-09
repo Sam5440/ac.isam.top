@@ -15,12 +15,13 @@ import { formatDateTime } from '@/lib/utils';
 import './globals.css';
 
 export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ac.yslsy.top'),
   title: {
-    default: 'AC 题库 —— AtCoder / Codeforces 中文题库',
+    default: 'AC 题库 —— AtCoder / Codeforces / 牛客 中文题库',
     template: '%s · AC 题库',
   },
   description:
-    'AtCoder Beginner Contest 与 Codeforces 比赛题目的自动抓取题库：完整题面、样例、难度分级，AI 中文翻译，随 CI 持续更新。',
+    'AtCoder、Codeforces 与牛客竞赛题目的自动抓取题库：完整题面、样例、难度分级，AI 中文翻译，随 CI 持续更新。',
   applicationName: 'AC 题库',
   manifest: '/manifest.webmanifest',
   appleWebApp: { capable: true, statusBarStyle: 'black-translucent', title: 'AC 题库' },
@@ -30,6 +31,19 @@ export const metadata = {
       { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: '/icons/apple-touch-icon.png',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'AC 题库',
+    title: 'AC 题库 —— AtCoder / Codeforces / 牛客 中文题库',
+    description:
+      '1.6 万道竞赛题目：完整题面、样例、难度分级与 AI 中文翻译，内置浏览器编译器与离线题库。',
+    images: ['/icons/icon-512.png'],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'AC 题库 —— AtCoder / Codeforces / 牛客 中文题库',
+    description: '竞赛题库 + AI 中文翻译 + 浏览器内编译器 + PWA 离线',
   },
 };
 
@@ -109,7 +123,7 @@ export default function RootLayout({ children }) {
                     </a>
                   </div>
                   <p>
-                    ABC / Codeforces 比赛题目自动抓取 + AI 中文翻译，题面版权归原作者所有，本站仅作学习交流之用。
+                    AtCoder / Codeforces / 牛客比赛题目自动抓取 + AI 中文翻译，题面版权归原作者所有，本站仅作学习交流之用。
                   </p>
                   <p>
                     {idx?.generatedAt ? `数据更新于 ${formatDateTime(idx.generatedAt)} · ` : ''}

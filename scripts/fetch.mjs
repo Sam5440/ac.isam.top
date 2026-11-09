@@ -46,7 +46,7 @@ import {
   isZhTitle,
   nowcoderProblemUrl,
 } from './lib/nowcoder.mjs';
-import { problemComplete, saveProblem, upsertContest } from './lib/store.mjs';
+import { loadProblem, problemComplete, saveProblem, upsertContest } from './lib/store.mjs';
 import { buildIndex } from './build-index.mjs';
 import { loadEnv, log, pLimit, parseArgs, rnd, sleep } from './lib/util.mjs';
 
@@ -197,13 +197,26 @@ async function fetchCfContestAll(c, problemset) {
     const savedIds = [];
     for (const p of parsed) {
       const m = metaByIndex.get(p.index);
+      const id = `${c.id}${p.index}`;
+      // 保留已有译文（审查 2026-11-09 P1-8）：整场重抓的旧实现无条件把
+      // titleZh/statementZhMd 置空 —— 一场比赛只要有一题解析失败,该场
+      // 全部已完成题目的译文就被抹掉,下一轮再付费重译,循环往复（存量
+      // 1331/2095 等场已实际触发）。合并保留 zh 字段与翻译元数据。
+      const existing = loadProblem('codeforces', id);
+      const zhKeep = existing?.statementZhMd
+        ? {
+            titleZh: existing.titleZh ?? null,
+            statementZhMd: existing.statementZhMd,
+            ...(existing.translatedAt ? { translatedAt: existing.translatedAt } : {}),
+            ...(existing.translateModel ? { translateModel: existing.translateModel } : {}),
+          }
+        : { titleZh: null, statementZhMd: null };
       saveProblem('codeforces', {
-        id: `${c.id}${p.index}`,
+        id,
         platform: 'codeforces',
         contestId: c.id,
         index: p.index,
         title: p.title,
-        titleZh: null,
         url: cfProblemUrl(c.id, p.index),
         difficulty: m?.rating ?? null,
         tags: m?.tags ?? [],
@@ -211,12 +224,12 @@ async function fetchCfContestAll(c, problemset) {
         ...(p.timeLimitMs != null ? { timeLimitMs: p.timeLimitMs } : {}),
         ...(p.memoryLimitMb != null ? { memoryLimitMb: p.memoryLimitMb } : {}),
         statementMd: p.statementMd,
-        statementZhMd: null,
         samples: p.samples,
         language: 'en',
         fetchedAt: nowIso(),
+        ...zhKeep,
       });
-      savedIds.push(`${c.id}${p.index}`);
+      savedIds.push(id);
     }
     return { saved: savedIds.length, total: parsed.length, ids: savedIds };
   } finally {
@@ -521,20 +534,38 @@ async function main() {
   loadEnv();
   log('main', `开始：scan abc=${SCAN_ABC} arc=${SCAN_ARC} agc=${SCAN_AGC} cf=${SCAN_CF} nc=${SCAN_NC}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}`);
 
+  // 平台间故障隔离（审查 管线-7）：旧实现单平台元数据失败让整轮（含翻译）
+  // 作废,且 buildIndex 在 try 外 —— 异常路径连索引都不重建。改为每平台
+  // 独立捕获,任何阶段失败都不阻断其余平台;buildIndex 移入 finally。
+  const stages = [
+    ['atcoder', () => runAtCoder()],
+    ['codeforces', () => runCodeforces()],
+    ['nowcoder', () => runNowcoder()],
+  ];
   try {
     if (!TRANSLATE_ONLY) {
-      await runAtCoder();
-      await runCodeforces();
-      await runNowcoder();
+      for (const [name, fn] of stages) {
+        try {
+          await fn();
+        } catch (e) {
+          summary[name] = summary[name] || {};
+          summary[name].errors = [...(summary[name].errors || []), String(e?.message || e)];
+          log(name, `✗ 阶段失败（其余平台继续）：${e?.message || e}`);
+        }
+      }
     }
     if (!NO_TRANSLATE) {
-      await runTranslate();
+      try {
+        await runTranslate();
+      } catch (e) {
+        log('translate', `✗ 翻译阶段失败（已抓数据仍会提交）：${e?.message || e}`);
+      }
     }
   } finally {
     await closeCfBrowser();
+    buildIndex();
   }
 
-  buildIndex();
   log('main', '完成', JSON.stringify(summary, null, 2));
 }
 
