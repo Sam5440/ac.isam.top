@@ -272,7 +272,6 @@ function LogViewerSection() {
 
 export default function AiCompletionSettingsSection() {
   const [ai, setAi] = useState(null);
-  const [modelList, setModelList] = useState(null);
   const [testState, setTestState] = useState(null); // null | 'testing' | {ok, msg}
   const [showFimHelp, setShowFimHelp] = useState(false);
   // WebLLM 引擎状态（与编辑器侧共享同一份）：加载中/就绪时提供「停止」按钮
@@ -332,7 +331,6 @@ export default function AiCompletionSettingsSection() {
     saveAiSettings(patch);
   };
   const resetTest = () => {
-    setModelList(null);
     setTestState(null);
   };
 
@@ -425,8 +423,10 @@ export default function AiCompletionSettingsSection() {
     }
     try {
       const models = await fetchModelList(ai);
-      setModelList(models);
-      setTestState({ ok: true, msg: `连接成功，发现 ${models.length} 个模型` });
+      setTestState({
+        ok: true,
+        msg: `连接成功，端点共 ${models.length} 个模型；请在「AI 服务商」分区管理模型列表后在此挑选`,
+      });
     } catch (exn) {
       setTestState({ ok: false, msg: truncate(exn.message ?? String(exn), 200) });
     }
@@ -667,20 +667,40 @@ export default function AiCompletionSettingsSection() {
                 </span>
               </label>
               <div className="space-y-1">
-                <span className="text-xs font-medium text-muted-foreground">模型</span>
+                <span className="text-xs font-medium text-muted-foreground">模型（来自服务商模型列表）</span>
                 <div className="flex items-center gap-2">
-                  <input
-                    className={`${inputCls} min-w-0 flex-1 font-mono`}
-                    list="ai-models"
-                    value={ai.model}
-                    onChange={(e) => patchAi({ model: e.target.value })}
-                    spellCheck={false}
-                  />
-                  <datalist id="ai-models">
-                    {(modelList ?? []).map((m) => (
-                      <option key={m} value={m} />
-                    ))}
-                  </datalist>
+                  {(() => {
+                    const curProvider =
+                      globalProviders?.list?.find(
+                        (p) => p.id === (ai.providerId || globalProviders?.activeId),
+                      ) || null;
+                    const models = curProvider?.models || [];
+                    if (!models.length) {
+                      return (
+                        <input
+                          className={`${inputCls} min-w-0 flex-1 font-mono`}
+                          placeholder="该服务商还没有模型列表 —— 去「AI 服务商」分区获取"
+                          value={ai.model}
+                          onChange={(e) => patchAi({ model: e.target.value })}
+                          spellCheck={false}
+                        />
+                      );
+                    }
+                    return (
+                      <select
+                        className={`${inputCls} min-w-0 flex-1 font-mono`}
+                        value={ai.model}
+                        onChange={(e) => patchAi({ model: e.target.value })}
+                      >
+                        <option value="">挑选模型…</option>
+                        {models.map((m) => (
+                          <option key={m} value={m}>
+                            {m}
+                          </option>
+                        ))}
+                      </select>
+                    );
+                  })()}
                   <button type="button" className={btnCls} onClick={doFetchModels} disabled={testState === "testing"}>
                     测试连接
                   </button>

@@ -20,8 +20,8 @@ import CompilerSettingsSection from '@/components/compiler/CompilerSettingsSecti
 import OfflineCacheSection from '@/components/OfflineCacheSection';
 
 const SECTIONS = [
-  { id: 'ai-providers', label: 'AI 服务商', icon: Server },
   { id: 'appearance', label: '外观', icon: Palette },
+  { id: 'ai-providers', label: 'AI 服务商', icon: Server },
   { id: 'translation', label: '翻译', icon: Languages },
   { id: 'chat', label: 'AI 对话', icon: Bot },
   { id: 'ai-completion', label: 'AI 代码补全', icon: Sparkles },
@@ -125,8 +125,8 @@ export default function SettingsPage() {
         </nav>
 
         <div className="min-w-0 flex-1 space-y-6">
-          <AiProviderSection />
           <AppearanceSection />
+          <AiProviderSection />
           <TranslationSection />
           <ChatSection />
           <SectionCard

@@ -9,7 +9,7 @@
 import { Bot, Trash2 } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
-import { AI_MODELS, normalizeBaseUrl, providerReady } from '@/lib/ai-providers';
+import { AI_MODELS, providerEndpointBase, providerReady } from '@/lib/ai-providers';
 import { clearAllChats } from '@/lib/chat-store';
 import { chatReady, resolveChatCfg } from '@/lib/chat';
 import { Field, inputCls, SectionCard, ToggleRow } from './controls';
@@ -88,7 +88,7 @@ export default function ChatSection() {
       </div>
       <p className={`text-[11px] ${ready ? 'text-emerald-500' : 'text-amber-500'}`}>
         {ready
-          ? `对话接口就绪：${normalizeBaseUrl(cfg.baseUrl)} · 模型 ${cfg.model}`
+          ? `对话接口就绪：${providerEndpointBase(cfg) || cfg.baseUrl} · 模型 ${cfg.model}`
           : '尚未配置：请到「AI 服务商」分区添加服务商（Base URL + API Key）。'}
       </p>
 

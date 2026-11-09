@@ -4,13 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { AI_MODELS } from '@/components/ai-translate';
-import {
-  DEFAULT_AI_ASSIGN,
-  DEFAULT_AI_PROVIDERS,
-  migrateLegacyProviders,
-  normalizeProviders,
-} from '@/lib/ai-providers';
+import { DEFAULT_AI_ASSIGN, DEFAULT_AI_PROVIDERS, normalizeProviders } from '@/lib/ai-providers';
 import { allThemes, findTheme, loadCustomThemes } from '@/lib/themes';
 import { CONTEST_TYPES } from '@/lib/contest-type';
 
@@ -60,9 +54,11 @@ export const DEFAULT_SETTINGS = {
   sidebarChannels: ['deepl', 'youdao', 'caiyun', 'iflyrec', 'ai', 'ai_custom'],
   zhPriority: DEFAULT_PRIORITY,
   zhStyle: DEFAULT_ZH_STYLE,
-  ai: { baseUrl: '', apiKey: '', model: AI_MODELS[0] },
-  // 全局 AI 服务商（2026-11-09 起）：接口地址/Key 只在这里配置，功能模块
-  // （翻译 / AI 对话 / AI 代码补全）只能挑选服务商并覆盖模型。
+  // 旧版字段（v1.4 及以前的翻译 AI 表单、对话独立配置）已于 v1.5 抛弃，
+  // 不再保留默认值；loadSettings 合并时直接丢弃存量，全局 AI 服务商是
+  // 唯一的接口配置入口（设置 →「AI 服务商」）。
+  // 全局 AI 服务商：接口地址/Key 只在这里配置，功能模块（翻译 / AI 对话 /
+  // AI 代码补全）只能挑选服务商并覆盖模型。
   aiProviders: DEFAULT_AI_PROVIDERS,
   aiAssign: DEFAULT_AI_ASSIGN,
   // 题目页切换条（比赛含 ≥2 题时显示）：题目卡上方横向题目条 / 视口左侧中部悬浮题号竖条（正文全区预留空间）
@@ -82,8 +78,6 @@ export const DEFAULT_SETTINGS = {
 
 const LANG_KEY = 'stmt-lang-v2';
 const SETTINGS_KEY = 'stmt-settings-v1';
-// 全局服务商一次性迁移哨兵：跑过即写死，避免每次挂载重复迁移
-const AI_PROVIDER_MIGRATED_KEY = 'stmt-ai-prov-migrated-v1';
 
 const LANG_CHANNELS = ['deepl', 'youdao', 'caiyun', 'iflyrec', 'ai', 'ai_custom'];
 
@@ -109,12 +103,16 @@ function loadSettings() {
     const raw = window.localStorage.getItem(SETTINGS_KEY);
     if (raw) {
       const v = JSON.parse(raw);
+      // 抛弃旧 AI 数据（v1.5）：剥掉 v.ai / chat.useTranslationAi 等遗留字段，
+      // chat 仅保留行为开关（悬浮窗/上下文注入），接口类字段一律丢弃
+      const { ai: _legacyAi, ...rest } = v;
+      const legacyChat = rest.chat || {};
+      const { useTranslationAi: _u, baseUrl: _b, apiKey: _k, model: _m, ...chatBehavior } = legacyChat;
       const merged = {
         ...DEFAULT_SETTINGS,
-        ...v,
+        ...rest,
+        ...(Object.keys(chatBehavior).length ? { chat: { ...DEFAULT_CHAT, ...chatBehavior } } : {}),
         zhStyle: { ...DEFAULT_ZH_STYLE, ...(v.zhStyle || {}) },
-        ai: { ...DEFAULT_SETTINGS.ai, ...(v.ai || {}) },
-        chat: { ...DEFAULT_CHAT, ...(v.chat || {}) },
         homeContestTypes: Array.isArray(v.homeContestTypes) ? v.homeContestTypes : DEFAULT_HOME_TYPES,
       };
       const saved = (Array.isArray(merged.zhPriority) ? merged.zhPriority : []).filter(
@@ -171,39 +169,6 @@ export function SettingsProvider({ children }) {
   const [customThemes, setCustomThemes] = useState([]);
 
   useEffect(() => {
-    // 全局 AI 服务商一次性迁移（2026-11-09）：旧「翻译 AI / 对话独立配置 /
-    // 补全平台方案」的 baseUrl/apiKey 收敛为全局服务商，模块侧只保留挑选结果。
-    // 同步先写 localStorage 再 setState：避免 updater 异步执行导致随后的
-    // loadSettings() 读不到迁移结果、首帧渲染出空服务商列表。
-    if (!window.localStorage.getItem(AI_PROVIDER_MIGRATED_KEY)) {
-      try {
-        const cur = loadSettings();
-        let completionRaw = null;
-        try {
-          completionRaw = JSON.parse(window.localStorage.getItem('ysc-ai-settings-v1') || 'null');
-        } catch {}
-        const m = migrateLegacyProviders(cur, completionRaw);
-        if (m.aiProviders) {
-          const merged = {
-            ...cur,
-            aiProviders: m.aiProviders,
-            aiAssign: { ...DEFAULT_AI_ASSIGN, ...m.aiAssign },
-          };
-          try {
-            window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(merged));
-          } catch {}
-          setSettingsState(merged);
-        }
-        if (m.completionPatch) {
-          try {
-            const nextCompletion = { ...(completionRaw || {}), profiles: m.completionPatch.profiles };
-            window.localStorage.setItem('ysc-ai-settings-v1', JSON.stringify(nextCompletion));
-          } catch {}
-        }
-        window.localStorage.setItem(AI_PROVIDER_MIGRATED_KEY, '1');
-      } catch {}
-    }
-
     const s = loadSettings();
     setSettingsState(s);
     setCustomThemes(loadCustomThemes());
