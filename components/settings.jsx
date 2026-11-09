@@ -5,6 +5,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { AI_MODELS } from '@/components/ai-translate';
+import {
+  DEFAULT_AI_ASSIGN,
+  DEFAULT_AI_PROVIDERS,
+  migrateLegacyProviders,
+  normalizeProviders,
+} from '@/lib/ai-providers';
 import { allThemes, findTheme, loadCustomThemes } from '@/lib/themes';
 import { CONTEST_TYPES } from '@/lib/contest-type';
 
@@ -55,6 +61,10 @@ export const DEFAULT_SETTINGS = {
   zhPriority: DEFAULT_PRIORITY,
   zhStyle: DEFAULT_ZH_STYLE,
   ai: { baseUrl: '', apiKey: '', model: AI_MODELS[0] },
+  // 全局 AI 服务商（2026-11-09 起）：接口地址/Key 只在这里配置，功能模块
+  // （翻译 / AI 对话 / AI 代码补全）只能挑选服务商并覆盖模型。
+  aiProviders: DEFAULT_AI_PROVIDERS,
+  aiAssign: DEFAULT_AI_ASSIGN,
   // 题目页切换条（比赛含 ≥2 题时显示）：题目卡上方横向题目条 / 视口左侧中部悬浮题号竖条（正文全区预留空间）
   topSwitcher: true,
   letterRail: true,
@@ -72,6 +82,8 @@ export const DEFAULT_SETTINGS = {
 
 const LANG_KEY = 'stmt-lang-v2';
 const SETTINGS_KEY = 'stmt-settings-v1';
+// 全局服务商一次性迁移哨兵：跑过即写死，避免每次挂载重复迁移
+const AI_PROVIDER_MIGRATED_KEY = 'stmt-ai-prov-migrated-v1';
 
 const LANG_CHANNELS = ['deepl', 'youdao', 'caiyun', 'iflyrec', 'ai', 'ai_custom'];
 
@@ -120,6 +132,9 @@ function loadSettings() {
       // 旧版「比赛题目页视图 = 整页阅读」偏好迁移：此前选整页的用户默认关闭两类切换条
       if (v.topSwitcher === undefined) merged.topSwitcher = v.contestView !== 'full';
       if (v.letterRail === undefined) merged.letterRail = v.contestView !== 'full';
+      // 全局 AI 服务商结构归一（脏数据容错）
+      merged.aiProviders = normalizeProviders(merged.aiProviders);
+      merged.aiAssign = { ...DEFAULT_AI_ASSIGN, ...(v.aiAssign || {}) };
       return merged;
     }
   } catch {}
@@ -156,6 +171,39 @@ export function SettingsProvider({ children }) {
   const [customThemes, setCustomThemes] = useState([]);
 
   useEffect(() => {
+    // 全局 AI 服务商一次性迁移（2026-11-09）：旧「翻译 AI / 对话独立配置 /
+    // 补全平台方案」的 baseUrl/apiKey 收敛为全局服务商，模块侧只保留挑选结果。
+    // 同步先写 localStorage 再 setState：避免 updater 异步执行导致随后的
+    // loadSettings() 读不到迁移结果、首帧渲染出空服务商列表。
+    if (!window.localStorage.getItem(AI_PROVIDER_MIGRATED_KEY)) {
+      try {
+        const cur = loadSettings();
+        let completionRaw = null;
+        try {
+          completionRaw = JSON.parse(window.localStorage.getItem('ysc-ai-settings-v1') || 'null');
+        } catch {}
+        const m = migrateLegacyProviders(cur, completionRaw);
+        if (m.aiProviders) {
+          const merged = {
+            ...cur,
+            aiProviders: m.aiProviders,
+            aiAssign: { ...DEFAULT_AI_ASSIGN, ...m.aiAssign },
+          };
+          try {
+            window.localStorage.setItem(SETTINGS_KEY, JSON.stringify(merged));
+          } catch {}
+          setSettingsState(merged);
+        }
+        if (m.completionPatch) {
+          try {
+            const nextCompletion = { ...(completionRaw || {}), profiles: m.completionPatch.profiles };
+            window.localStorage.setItem('ysc-ai-settings-v1', JSON.stringify(nextCompletion));
+          } catch {}
+        }
+        window.localStorage.setItem(AI_PROVIDER_MIGRATED_KEY, '1');
+      } catch {}
+    }
+
     const s = loadSettings();
     setSettingsState(s);
     setCustomThemes(loadCustomThemes());
@@ -231,7 +279,11 @@ export function SettingsProvider({ children }) {
     customThemes,
     reloadCustomThemes: () => setCustomThemes(loadCustomThemes()),
     openSettings: (hash) => router.push(hash ? `/settings#${hash}` : '/settings'),
-    aiReady: !!(settings.ai.baseUrl && settings.ai.apiKey),
+    // 翻译模块接口是否就绪（全局服务商已配置 baseUrl+Key）
+    aiReady: !!(
+      settings.aiProviders &&
+      settings.aiProviders.list.some((p) => p.baseUrl && p.apiKey)
+    ),
   };
 
   return (

@@ -2,12 +2,14 @@
 
 /**
  * 设置弹窗里的「AI 代码补全」区块。移植自 ACM-IDE-online 的 SettingsModal
- * （AI 部分）：多平台配置方案（添加/切换/删除）+ 快速预设、API 类型/地址/Key/模型、
- * WebGPU 本地模型（WebLLM：预检/下载源/加载/停止）、FIM 模板、触发方式，
+ * （AI 部分）：多平台配置方案（添加/切换/删除）+ 快速预设、API 类型/服务商挑选/
+ * 模型、WebGPU 本地模型（WebLLM：预检/下载源/加载/停止）、FIM 模板、触发方式，
  * 以及 AI Token 用量统计与诊断日志查看器。
  *
- * 状态持久化在 lib/ai/ai-settings.js（ysc-ai-settings-v1），与编译器偏好、
- * 翻译设置互不干扰；编辑器侧经 CompilerDock 传入的 getAi 每次实时读取。
+ * 连接信息（baseUrl/apiKey）自 2026-11-09 起统一由「AI 服务商」分区配置，
+ * 本分区只能挑选服务商 + 覆盖模型；状态持久化在 lib/ai/ai-settings.js
+ * （ysc-ai-settings-v1），与编译器偏好、翻译设置互不干扰；
+ * 编辑器侧经 CompilerDock 传入的 getAi 每次实时读取。
  */
 
 import { useEffect, useState } from "react";
@@ -287,6 +289,28 @@ export default function AiCompletionSettingsSection() {
     setAi(loadAiSettings());
   }, []);
 
+  // 全局服务商列表（供方案挑选下拉；连接信息由 loadAiSettings 运行时注入）
+  const [globalProviders, setGlobalProviders] = useState(null);
+  useEffect(() => {
+    const read = () => {
+      try {
+        const raw = JSON.parse(window.localStorage.getItem("stmt-settings-v1") || "null");
+        const list = Array.isArray(raw?.aiProviders?.list) ? raw.aiProviders.list : [];
+        setGlobalProviders({ list, activeId: raw?.aiProviders?.activeId ?? null });
+      } catch {
+        setGlobalProviders({ list: [], activeId: null });
+      }
+    };
+    read();
+    // 服务商配置变更时刷新（跨分区同页修改走 storage 事件;本页修改走自派发）
+    window.addEventListener("storage", read);
+    window.addEventListener("ac-providers-changed", read);
+    return () => {
+      window.removeEventListener("storage", read);
+      window.removeEventListener("ac-providers-changed", read);
+    };
+  }, []);
+
   useEffect(() => {
     if (!ai || ai.apiType !== "webllm") return;
     let alive = true;
@@ -354,9 +378,25 @@ export default function AiCompletionSettingsSection() {
   };
 
   const applyPreset = (p) => {
+    // 预设只设 apiType/模型/FIM 模板；连接信息（baseUrl/apiKey）已收敛到
+    // 「AI 服务商」，预设里的 baseUrl 仅用于从现有服务商中模糊匹配
+    const { baseUrl: presetBase, ...rest } = p.patch;
+    const match = presetBase
+      ? (globalProviders?.list || []).find((q) => q.baseUrl && presetBase.includes(q.baseUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')))
+      : null;
+    if (presetBase && !match) {
+      setTestState({
+        ok: false,
+        msg: `请先在「AI 服务商」分区添加该服务（${presetBase}），再回来挑选；预设的其余字段（API 类型/模板）已套用`,
+      });
+    }
     // 未命名或还是「平台 N」占位名时，用预设名给方案命名
     const rename = !ai.name || /^平台 /.test(ai.name);
-    patchAi({ ...p.patch, ...(rename ? { name: p.label.replace(/（.*）/g, "") } : {}) });
+    patchAi({
+      ...rest,
+      ...(match ? { providerId: match.id } : {}),
+      ...(rename ? { name: p.label.replace(/（.*）/g, "") } : {}),
+    });
     resetTest();
   };
 
@@ -599,27 +639,33 @@ export default function AiCompletionSettingsSection() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-2">
-                <label className="block space-y-1">
-                  <span className="text-xs font-medium text-muted-foreground">Base URL</span>
-                  <input
-                    className={`${inputCls} font-mono`}
-                    value={ai.baseUrl}
-                    onChange={(e) => patchAi({ baseUrl: e.target.value.trim() })}
-                    spellCheck={false}
-                  />
-                </label>
-                <label className="block space-y-1">
-                  <span className="text-xs font-medium text-muted-foreground">API Key（本地服务可留空）</span>
-                  <input
-                    className={`${inputCls} font-mono`}
-                    type="password"
-                    value={ai.apiKey}
-                    onChange={(e) => patchAi({ apiKey: e.target.value })}
-                    placeholder="sk-…"
-                  />
-                </label>
-              </div>
+              <label className="block space-y-1">
+                <span className="text-xs font-medium text-muted-foreground">AI 服务商（连接信息在「AI 服务商」分区配置）</span>
+                <select
+                  className={inputCls}
+                  value={ai.providerId || ""}
+                  onChange={(e) => {
+                    patchAi({ providerId: e.target.value });
+                    resetTest();
+                  }}
+                >
+                  <option value="">
+                    跟随默认
+                    {globalProviders?.activeId
+                      ? `（${globalProviders.list.find((p) => p.id === globalProviders.activeId)?.name || "?"}）`
+                      : ""}
+                  </option>
+                  {(globalProviders?.list || []).map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name}
+                      {p.baseUrl && p.apiKey ? "" : "（未配置完整）"}
+                    </option>
+                  ))}
+                </select>
+                <span className="block font-mono text-[11px] text-muted-foreground">
+                  {ai.baseUrl ? `已解析：${ai.baseUrl}` : "⚠ 所选服务商未配置 Base URL / API Key"}
+                </span>
+              </label>
               <div className="space-y-1">
                 <span className="text-xs font-medium text-muted-foreground">模型</span>
                 <div className="flex items-center gap-2">

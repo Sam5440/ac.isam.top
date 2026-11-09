@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useAiSegment } from '@/components/ai-translate';
+import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { channelLabel, useSettings, DEFAULT_PRIORITY } from '@/components/settings';
 import { hydrateSegments, useZhSegment } from '@/lib/zh-store';
 import { renderRich } from '@/lib/render';
@@ -182,7 +183,7 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
   const { lang, settings } = useSettings();
   const mode = lang.mode;
   const channel = lang.channel;
-  const ai = channel === 'ai_custom' ? settings.ai : null;
+  const ai = channel === 'ai_custom' ? resolveTranslationCfg(settings) : null;
   const chain =
     mode === 'both'
       ? { priority: settings.zhPriority }

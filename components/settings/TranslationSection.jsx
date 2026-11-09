@@ -17,9 +17,9 @@ import {
   DEFAULT_ZH_STYLE,
   useSettings,
 } from '@/components/settings';
-import { AI_MODELS, aiTranslate } from '@/components/ai-translate';
+import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { clearMtStats, HEALTH_SAMPLE, loadMtStats, rankedStats, runHealthCheck } from '@/lib/mt-health';
-import { ChipToggle, Field, inputCls, SegButtons, SectionCard, SubBlock, ToggleRow } from './controls';
+import { ChipToggle, inputCls, SegButtons, SectionCard, SubBlock, ToggleRow } from './controls';
 
 const MT_CHANNELS = ARCHIVED_CHANNELS; // deepl / youdao / caiyun / iflyrec
 const TEST_COUNT = 50;
@@ -34,11 +34,6 @@ const fmtDate = (iso) => {
 
 export default function TranslationSection() {
   const { settings, setSettings, lang, setLang, aiReady } = useSettings();
-  // null = 尚未随 Provider 的异步加载回填（P1-3）：直接刷新 /settings 时
-  // settings 首渲染还是空默认值,旧写法 useState(settings.ai) 捕获空值且不再
-  // 同步 —— 此时点「保存」会用空值覆盖已存的 baseUrl/apiKey
-  const [ai, setAi] = useState(null);
-  const [test, setTest] = useState(null); // {state, msg}
 
   // ---- 渠道体检 ----
   const [healthChannels, setHealthChannels] = useState(MT_CHANNELS);
@@ -52,39 +47,8 @@ export default function TranslationSection() {
     return () => abortRef.current?.abort();
   }, []);
 
-  // Provider 异步加载完成后回填一次（仅在本地尚未编辑时;已编辑不覆盖）
-  const aiLoadedRef = useRef(false);
-  useEffect(() => {
-    if (!aiLoadedRef.current && settings.ai && (settings.ai.baseUrl || settings.ai.apiKey)) {
-      setAi(settings.ai);
-      aiLoadedRef.current = true;
-    } else if (!aiLoadedRef.current && settings.ai && !ai && settings.ai) {
-      // 确实没有已存配置时也要给出非 null 的表单值,否则保存会写 undefined
-      setAi((prev) => prev ?? settings.ai);
-    }
-  }, [settings.ai, ai]);
-
-  const patchAi = (p) => setAi((prev) => ({ ...(prev ?? settings.ai), ...p }));
-  const saveAi = () => {
-    // aiForm = ai ?? settings.ai:即使尚未编辑过,保存也只是把当前值写回,不会再
-    // 出现「用加载前的空默认值覆盖已存 Key」的 P1-3 场景
-    setSettings((prev) => ({ ...prev, ai: aiForm }));
-  };
-
-  const runTest = async () => {
-    if (!aiForm) return;
-    setTest({ state: 'loading' });
-    try {
-      const out = await aiTranslate('Print the maximum total tastiness.', aiForm);
-      setTest({ state: 'ok', msg: out });
-    } catch (e) {
-      setTest({ state: 'fail', msg: e.message });
-    }
-  };
-
-  // 表单渲染与读取统一走 aiForm:ai 尚未从 Provider 回填(null)时落到
-  // settings.ai 的当前值(至少是 DEFAULT 非空形状),输入框不会读 null
-  const aiForm = ai ?? settings.ai;
+  // 渠道体检使用全局服务商解析出的翻译接口配置（改配置即时生效，无「保存」步骤）
+  const aiForm = resolveTranslationCfg(settings);
 
   // 切换默认题面语言：立即作用于当前浏览，同时存为默认
   const pickLangMode = (mode) => {
@@ -332,62 +296,17 @@ export default function TranslationSection() {
       </SubBlock>
 
       <SubBlock
-        title="AI（用户自定义翻译）· OpenAI 兼容接口"
-        hint="浏览器直连，Key 仅保存在本机。此接口同时是「AI 对话」的默认接口。"
+        title="AI（用户自定义翻译）· 接口来源"
+        hint="接口地址与 API Key 已收敛到「AI 服务商」分区统一配置，此处仅展示当前挑选结果；模型可在「AI 服务商 → 功能模块挑选」中覆盖。"
       >
-        <div className="grid gap-2 sm:grid-cols-2">
-          <Field label="Base URL" hint="HTTPS 部署的站点需填写 HTTPS 地址，否则浏览器会拦截混合内容">
-            <input
-              className={inputCls}
-              placeholder="http://localhost:3000"
-              value={aiForm.baseUrl}
-              onChange={(e) => patchAi({ baseUrl: e.target.value.trim() })}
-            />
-          </Field>
-          <Field label="API Key">
-            <input
-              className={inputCls}
-              type="password"
-              placeholder="sk-..."
-              value={aiForm.apiKey}
-              onChange={(e) => patchAi({ apiKey: e.target.value.trim() })}
-            />
-          </Field>
-        </div>
-        <Field label="模型">
-          <select className={inputCls} value={aiForm.model} onChange={(e) => patchAi({ model: e.target.value })}>
-            {AI_MODELS.map((m) => (
-              <option key={m} value={m}>
-                {m}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={runTest}
-            disabled={!aiForm.baseUrl || !aiForm.apiKey || test?.state === 'loading'}
-            className="bg-background hover:bg-accent rounded-md border px-2.5 py-1 text-xs text-foreground transition-colors disabled:opacity-50"
-          >
-            {test?.state === 'loading' ? '测试中…' : '测试连接'}
-          </button>
-          <button
-            type="button"
-            onClick={saveAi}
-            className="bg-primary rounded-md px-2.5 py-1 text-xs font-medium text-primary-foreground"
-          >
-            保存
-          </button>
-          {aiReady && settings.ai.apiKey === aiForm.apiKey && settings.ai.baseUrl === aiForm.baseUrl && (
-            <span className="text-[11px] text-emerald-500">已配置</span>
-          )}
-        </div>
-        {test && (
-          <p className={`text-[11px] leading-relaxed ${test.state === 'ok' ? 'text-emerald-500' : 'text-red-400'}`}>
-            {test.state === 'ok' ? `✓ ${test.msg}` : `✗ ${test.msg}`}
-          </p>
-        )}
+        <p className={`rounded-md border px-2.5 py-1.5 text-[11px] leading-relaxed ${aiReady ? 'text-emerald-500 border-emerald-500/30' : 'text-amber-500 border-amber-500/40'}`}>
+          {aiReady
+            ? `当前翻译接口：${aiForm.baseUrl || '（未挑选）'} · 模型 ${aiForm.model}`
+            : '尚未配置：请到「AI 服务商」分区添加服务商（Base URL + API Key）。'}
+        </p>
+        <p className="text-muted-foreground text-[11px] leading-relaxed">
+          前往「AI 服务商」分区可切换服务商或覆盖翻译模型（本分区不再重复提供接口表单）。
+        </p>
       </SubBlock>
 
       <SubBlock

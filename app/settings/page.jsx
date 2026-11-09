@@ -7,9 +7,10 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Bot, CloudDownload, Info, Languages, Palette, Sparkles, Terminal } from 'lucide-react';
+import { ArrowLeft, Bot, CloudDownload, Info, Languages, Palette, Server, Sparkles, Terminal } from 'lucide-react';
 
 import AppearanceSection from '@/components/settings/AppearanceSection';
+import AiProviderSection from '@/components/settings/AiProviderSection';
 import TranslationSection from '@/components/settings/TranslationSection';
 import ChatSection from '@/components/settings/ChatSection';
 import AboutSection from '@/components/settings/AboutSection';
@@ -19,6 +20,7 @@ import CompilerSettingsSection from '@/components/compiler/CompilerSettingsSecti
 import OfflineCacheSection from '@/components/OfflineCacheSection';
 
 const SECTIONS = [
+  { id: 'ai-providers', label: 'AI 服务商', icon: Server },
   { id: 'appearance', label: '外观', icon: Palette },
   { id: 'translation', label: '翻译', icon: Languages },
   { id: 'chat', label: 'AI 对话', icon: Bot },
@@ -123,6 +125,7 @@ export default function SettingsPage() {
         </nav>
 
         <div className="min-w-0 flex-1 space-y-6">
+          <AiProviderSection />
           <AppearanceSection />
           <TranslationSection />
           <ChatSection />

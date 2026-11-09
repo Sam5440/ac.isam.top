@@ -1,14 +1,15 @@
 'use client';
 
 /**
- * 设置页「AI 对话」分区：悬浮窗开关、接口来源（默认复用翻译 AI / 独立配置）、
- * 上下文注入开关、清空全部对话记录。
+ * 设置页「AI 对话」分区：悬浮窗开关、服务商挑选（全局 AI 服务商，
+ * 接口地址/Key 在「AI 服务商」分区统一配置）、上下文注入开关、
+ * 清空全部对话记录。
  */
 
 import { Bot, Trash2 } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
-import { AI_MODELS } from '@/components/ai-translate';
+import { AI_MODELS, normalizeBaseUrl, providerReady } from '@/lib/ai-providers';
 import { clearAllChats } from '@/lib/chat-store';
 import { chatReady, resolveChatCfg } from '@/lib/chat';
 import { Field, inputCls, SectionCard, ToggleRow } from './controls';
@@ -16,8 +17,15 @@ import { Field, inputCls, SectionCard, ToggleRow } from './controls';
 export default function ChatSection() {
   const { settings, setSettings, aiReady } = useSettings();
   const chat = settings.chat || {};
+  const providers = settings.aiProviders || { list: [], activeId: null };
+  const assign = settings.aiAssign?.chat || { providerId: 'auto', model: '' };
 
   const patchChat = (p) => setSettings((prev) => ({ ...prev, chat: { ...(prev.chat || {}), ...p } }));
+  const patchAssign = (p) =>
+    setSettings((prev) => ({
+      ...prev,
+      aiAssign: { ...(prev.aiAssign || {}), chat: { ...(prev.aiAssign?.chat || { providerId: 'auto', model: '' }), ...p } },
+    }));
 
   const cfg = resolveChatCfg(settings);
   const ready = chatReady(cfg);
@@ -26,6 +34,8 @@ export default function ChatSection() {
     const n = clearAllChats();
     window.alert(n ? `已清空 ${n} 个会话记录。` : '没有可清空的对话记录。');
   };
+
+  const providerLabel = (p) => `${p.name}${providerReady(p) ? '' : '（未配置 Key）'}`;
 
   return (
     <SectionCard
@@ -41,59 +51,46 @@ export default function ChatSection() {
         onChange={(v) => patchChat({ floatingButton: v })}
       />
 
-      <ToggleRow
-        label="复用「AI（用户自定义翻译）」的接口配置"
-        hint="开启后对话直接使用翻译分区里已配置的 Base URL / Key / 模型，无需重复填写；关闭后可为对话单独配置一套接口。"
-        checked={chat.useTranslationAi !== false}
-        onChange={(v) => patchChat({ useTranslationAi: v })}
-      />
-
-      {chat.useTranslationAi !== false ? (
-        <p className={`rounded-md border px-2.5 py-1.5 text-[11px] leading-relaxed ${ready ? 'text-emerald-500 border-emerald-500/30' : 'text-amber-500 border-amber-500/40'}`}>
-          {ready
-            ? `当前对话接口：${cfg.baseUrl} · 模型 ${cfg.model}`
-            : '翻译 AI 尚未配置：请先在「翻译」分区填写 Base URL 与 API Key。'}
-        </p>
-      ) : (
-        <div className="grid gap-2 sm:grid-cols-2">
-          <Field label="Base URL" hint="OpenAI 兼容接口地址">
-            <input
-              className={inputCls}
-              placeholder="https://api.example.com"
-              value={chat.baseUrl || ''}
-              onChange={(e) => patchChat({ baseUrl: e.target.value.trim() })}
-            />
-          </Field>
-          <Field label="API Key">
-            <input
-              className={inputCls}
-              type="password"
-              placeholder="sk-..."
-              value={chat.apiKey || ''}
-              onChange={(e) => patchChat({ apiKey: e.target.value.trim() })}
-            />
-          </Field>
-          <div className="sm:col-span-2">
-            <Field label="模型" hint="可从常用模型中选择或输入任意模型名">
-              <input
-                className={inputCls}
-                list="ac-chat-models"
-                placeholder="deepseek-v4-flash"
-                value={chat.model || ''}
-                onChange={(e) => patchChat({ model: e.target.value.trim() })}
-              />
-              <datalist id="ac-chat-models">
-                {AI_MODELS.map((m) => (
-                  <option key={m} value={m} />
-                ))}
-              </datalist>
-            </Field>
-          </div>
-          <p className={`text-[11px] sm:col-span-2 ${ready ? 'text-emerald-500' : 'text-amber-500'}`}>
-            {ready ? `对话接口就绪：${cfg.baseUrl} · 模型 ${cfg.model}` : 'Base URL / API Key / 模型 填写完整后可用。'}
-          </p>
-        </div>
-      )}
+      <div className="grid gap-2 sm:grid-cols-2">
+        <Field label="服务商" hint="接口地址与 API Key 在「AI 服务商」分区统一配置">
+          <select
+            className={inputCls}
+            value={assign.providerId || 'auto'}
+            onChange={(e) => patchAssign({ providerId: e.target.value })}
+          >
+            <option value="auto">
+              跟随默认
+              {providers.activeId
+                ? `（${providerLabel(providers.list.find((p) => p.id === providers.activeId) || { name: '?' })}）`
+                : ''}
+            </option>
+            {providers.list.map((p) => (
+              <option key={p.id} value={p.id}>
+                {providerLabel(p)}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field label="模型覆盖" hint="留空 = 使用常用模型列表首个">
+          <input
+            className={inputCls}
+            list="ac-chat-models"
+            placeholder="留空用默认"
+            value={assign.model || ''}
+            onChange={(e) => patchAssign({ model: e.target.value.trim() })}
+          />
+          <datalist id="ac-chat-models">
+            {AI_MODELS.map((m) => (
+              <option key={m} value={m} />
+            ))}
+          </datalist>
+        </Field>
+      </div>
+      <p className={`text-[11px] ${ready ? 'text-emerald-500' : 'text-amber-500'}`}>
+        {ready
+          ? `对话接口就绪：${normalizeBaseUrl(cfg.baseUrl)} · 模型 ${cfg.model}`
+          : '尚未配置：请到「AI 服务商」分区添加服务商（Base URL + API Key）。'}
+      </p>
 
       <ToggleRow
         label="对话自动附带当前题面"

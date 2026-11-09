@@ -7,10 +7,11 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
-import { Bot, Copy, Eraser, Square, X } from 'lucide-react';
+import { Bot, Copy, Download, Eraser, Square, X } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
 import { chatReady, resolveChatCfg, sendChat } from '@/lib/chat';
+import { downloadChatMarkdown } from '@/lib/chat-export';
 import { clearChat, loadChat, saveChat } from '@/lib/chat-store';
 import { getCurrentCode } from '@/lib/editor-bridge';
 import { renderRich } from '@/lib/render';
@@ -86,6 +87,15 @@ export default function ChatPanel({ problem, open, onClose }) {
 
   const stop = () => {
     abortRef.current?.abort();
+  };
+
+  // 导出整段会话为 Markdown 文档（跳过报错中间态）
+  const exportChat = () => {
+    downloadChatMarkdown(messages, {
+      title: `AI 对话记录${problem ? ` · ${problem.titleZh || problem.title}` : ''}`,
+      problemId: problem?.id || problem?.titleZh || chatId,
+      url: typeof window !== 'undefined' ? window.location.href : '',
+    });
   };
 
   const updateLast = (fn) =>
@@ -195,6 +205,16 @@ export default function ChatPanel({ problem, open, onClose }) {
               {problem && <span className="text-muted-foreground ml-1.5 font-normal">{problem.index ? `${problem.index} · ` : ''}{problem.titleZh || problem.title}</span>}
             </p>
           </div>
+          <button
+            type="button"
+            onClick={exportChat}
+            disabled={!messages.some((m) => !m.error && m.content?.trim())}
+            title="导出对话为 Markdown 文档"
+            aria-label="导出对话为 Markdown 文档"
+            className="text-muted-foreground hover:text-foreground rounded p-1.5 transition-colors disabled:opacity-40"
+          >
+            <Download className="size-4" />
+          </button>
           <button
             type="button"
             onClick={() => {
