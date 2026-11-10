@@ -1,0 +1,613 @@
+
+
+# 比赛数据平台 API v4 文档（整理版）
+
+> 站点导航：News 新闻 · Resources 资源 · Standings 排名 · Problems 题目 · Coders 程序员 · Accounts 账户 · Donate 捐赠 · 筛选比赛
+
+## 目录
+
+- [身份验证 Authentication](#身份验证-authentication)
+- [格式 Format](#格式-format)
+- [Atom 与 RSS](#atom-与-rss)
+- [限流 Throttle](#限流-throttle)
+- [Account 账户](#account-账户)
+- [Coder 程序员](#coder-程序员)
+- [Contest 赛事](#contest-赛事)
+- [Problem 题目](#problem-题目)
+- [Resource 资源](#resource-资源)
+- [Statistics 统计数据](#statistics-统计数据)
+
+---
+
+## 身份验证 Authentication
+
+访问 API 需要 API 密钥，已认证用户可获取：`<API_KEY>`
+
+- 也可通过网站会话进行非密钥访问（Non-key access）。
+- OAuth 允许使用用户特定的筛选器，并在多个用户之间管理 API 请求限制。
+- 使用方式：
+
+```http
+Request header:
+Authorization: <AUTH_TOKEN>
+```
+
+或通过查询参数：
+
+```
+/?username=<USERNAME>&api_key=<API_KEY>
+```
+
+## 格式 Format
+
+API 支持多种格式：`json`、`jsonp`、`yaml`、`xml`、`plist`。
+
+- 在 URL 中指定：`/api/v4/json/...`
+- 或通过 GET 查询参数指定：`?format=json`
+
+## Atom 与 RSS
+
+Atom 与 RSS 格式仅在 `/api/v4/contest/` 端点提供专门支持。
+
+- 指定格式：`?format=atom` 或 `?format=rss`
+- 默认设置：`?upcoming=true&format_time=true&start_time__during=1 day`
+- 可通过 GET 查询或在用户偏好设置中自定义时区与时间格式。
+
+## 限流 Throttle
+
+- 标准请求限制：**每分钟 10 次**。
+- 如需更高限额，请联系维护方说明需求。
+
+---
+
+## Account 账户
+
+### GET `/api/v4/account/` — 获取账户列表
+
+**响应 JSON 结构**
+
+```json
+{
+  "meta": {
+    "limit": "int",
+    "next": "",
+    "offset": "int",
+    "previous": "",
+    "total_count": "int"
+  },
+  "objects": {
+    "account": [
+      {
+        "id": 0,
+        "resource": "",
+        "resource_id": 0,
+        "handle": "",
+        "name": "",
+        "rating": 0,
+        "n_contests": 0,
+        "resource_rank": 0,
+        "last_activity": "datetime"
+      }
+    ]
+  }
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `limit` | query | int | 每页显示的元素数量 |
+| `offset` | query | int | 分页起始偏移量 |
+| `total_count` | query | boolean | 布尔值，如 `True` |
+| `id`、`id__in` | query | integer | 整数，如 `2673` |
+| `resource_id`、`resource_id__in` | query | integer | 整数，如 `2673` |
+| `resource`、`resource__regex`、`resource__iregex`、`resource__in` | query | string | 字符串，如 `"Hello World"` |
+| `handle`、`handle__in`、`handle__startswith` | query | string | 字符串，如 `"Hello World"` |
+| `rating`、`rating__gt`、`rating__lt`、`rating__gte`、`rating__lte`、`rating__isnull` | query | integer | 整数，如 `2673` |
+| `resource_rank`、`resource_rank__gt`、`resource_rank__lt`、`resource_rank__gte`、`resource_rank__lte`、`resource_rank__isnull` | query | integer | 整数，如 `2673` |
+| `last_activity`、`last_activity__gt`、`last_activity__lt`、`last_activity__gte`、`last_activity__lte`、`last_activity__week_day` | query | datetime | 日期时间字符串，如 `"2010-11-10T03:07:43"` |
+| `order_by` | query | string | 按所选字段排序；默认升序，字段前加 `-` 为降序 |
+
+**响应内容类型**：`application/json`
+
+### GET `/api/v4/account/{id}/` — 按 ID 获取单个账户
+
+**响应 JSON 结构**
+
+```json
+{
+  "id": 0,
+  "resource": "",
+  "resource_id": 0,
+  "handle": "",
+  "name": "",
+  "rating": 0,
+  "n_contests": 0,
+  "resource_rank": 0,
+  "last_activity": "datetime"
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `id` | path | integer | **（必填）** 资源主键 |
+
+**响应内容类型**：`application/json`
+
+---
+
+## Coder 程序员
+
+### GET `/api/v4/coder/` — 获取程序员列表
+
+**响应 JSON 结构**
+
+```json
+{
+  "meta": {
+    "limit": "int",
+    "next": "",
+    "offset": "int",
+    "previous": "",
+    "total_count": "int"
+  },
+  "objects": {
+    "coder": [
+      {
+        "id": 0,
+        "handle": "",
+        "is_virtual": false,
+        "first_name": "",
+        "last_name": "",
+        "country": "",
+        "timezone": "",
+        "email": "",
+        "n_accounts": 0,
+        "display_name": "",
+        "accounts": "related"
+      }
+    ]
+  }
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `limit` | query | int | 每页显示的元素数量 |
+| `offset` | query | int | 分页起始偏移量 |
+| `total_count` | query | boolean | 布尔值，如 `True` |
+| `with_accounts` | query | boolean | 布尔值，是否包含关联账户 |
+| `country` | query | string | 字符串，如 `"Hello World"` |
+| `id`、`id__in` | query | integer | 整数，如 `2673` |
+| `handle`、`handle__in` | query | string | 字符串，如 `"Hello World"` |
+| `is_virtual` | query | boolean | 布尔值，如 `True` |
+| `order_by` | query | string | 按所选字段排序；默认升序，字段前加 `-` 为降序 |
+
+**响应内容类型**：`application/json`
+
+### GET `/api/v4/coder/{id}/` — 按 ID 获取单个程序员
+
+**响应 JSON 结构**
+
+```json
+{
+  "id": 0,
+  "handle": "",
+  "is_virtual": false,
+  "first_name": "",
+  "last_name": "",
+  "country": "",
+  "timezone": "",
+  "email": "",
+  "n_accounts": 0,
+  "display_name": "",
+  "accounts": "related"
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `id` | path | integer | **（必填）** 资源主键 |
+
+**响应内容类型**：`application/json`
+
+### GET `/api/v4/coder/me/` — 获取当前认证用户信息
+
+**响应 JSON 结构**
+
+```json
+{
+  "id": 0,
+  "handle": "",
+  "is_virtual": false,
+  "first_name": "",
+  "last_name": "",
+  "country": "",
+  "timezone": "",
+  "email": "",
+  "n_accounts": 0,
+  "display_name": "",
+  "accounts": "related"
+}
+```
+
+**响应内容类型**：`application/json`
+
+---
+
+## Contest 赛事
+
+### GET `/api/v4/contest/` — 获取赛事列表
+
+**响应 JSON 结构**
+
+```json
+{
+  "meta": {
+    "limit": "int",
+    "next": "",
+    "offset": "int",
+    "previous": "",
+    "total_count": "int"
+  },
+  "objects": {
+    "contest": [
+      {
+        "id": 0,
+        "resource": "",
+        "resource_id": 0,
+        "host": "",
+        "event": "",
+        "start": "datetime",
+        "end": "datetime",
+        "n_statistics": 0,
+        "n_problems": 0,
+        "parsed_at": "datetime",
+        "duration": "datetime",
+        "href": "",
+        "problems": ""
+      }
+    ]
+  }
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `limit` | query | int | 每页显示的元素数量 |
+| `offset` | query | int | 分页起始偏移量 |
+| `total_count` | query | boolean | 布尔值，如 `True` |
+| `with_problems` | query | boolean | 布尔值，是否包含题目信息 |
+| `upcoming` | query | boolean | 筛选即将举行的比赛（格式为 atom 时默认 `true`） |
+| `format_time` | query | boolean | 将时间转换为用户时区与时间格式（格式为 atom 时默认 `true`） |
+| `start_time__during` | query | datetime | 时间增量，如 `"864000"` 或 `"10 days"`（格式为 atom 时默认 `"1 day"`） |
+| `end_time__during` | query | datetime | 时间增量，如 `"864000"` 或 `"10 days"` |
+| `id`、`id__in` | query | integer | 整数，如 `2673` |
+| `resource_id`、`resource_id__in` | query | integer | 整数，如 `2673` |
+| `resource`、`resource__regex`、`resource__iregex`、`resource__in` | query | string | 字符串，如 `"Hello World"` |
+| `host`、`host__regex`、`host__iregex` | query | string | 字符串，如 `"Hello World"` |
+| `event`、`event__regex`、`event__iregex` | query | string | 字符串，如 `"Hello World"` |
+| `start`、`start__gt`、`start__lt`、`start__gte`、`start__lte`、`start__week_day` | query | datetime | 日期时间字符串，如 `"2010-11-10T03:07:43"` |
+| `end`、`end__gt`、`end__lt`、`end__gte`、`end__lte`、`end__week_day` | query | datetime | 日期时间字符串，如 `"2010-11-10T03:07:43"` |
+| `parsed_at`、`parsed_at__gt`、`parsed_at__lt`、`parsed_at__gte`、`parsed_at__lte` | query | datetime | 日期时间字符串，如 `"2010-11-10T03:07:43"` |
+| `duration`、`duration__gt`、`duration__lt`、`duration__gte`、`duration__lte` | query | datetime | 时间增量，如 `"864000"` 或 `"10 days"` |
+| `n_statistics`、`n_statistics__gt`、`n_statistics__lt`、`n_statistics__gte`、`n_statistics__lte` | query | integer | 整数，如 `2673` |
+| `n_problems`、`n_problems__gt`、`n_problems__lt`、`n_problems__gte`、`n_problems__lte` | query | integer | 整数，如 `2673` |
+| `filtered` | query | boolean | 是否使用用户筛选器 |
+| `category` | query | string | 筛选类别，默认 `api`；可选 `['list', 'calendar', 'email', 'telegram', 'api', 'webbrowser']` |
+| `order_by` | query | string | 按所选字段排序；默认升序，字段前加 `-` 为降序 |
+
+**响应内容类型**：`application/json`
+
+### GET `/api/v4/contest/{id}/` — 按 ID 获取单个赛事
+
+**响应 JSON 结构**
+
+```json
+{
+  "id": 0,
+  "resource": "",
+  "resource_id": 0,
+  "host": "",
+  "event": "",
+  "start": "datetime",
+  "end": "datetime",
+  "n_statistics": 0,
+  "n_problems": 0,
+  "parsed_at": "datetime",
+  "duration": "datetime",
+  "href": "",
+  "problems": ""
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `id` | path | integer | **（必填）** 资源主键 |
+
+**响应内容类型**：`application/json`
+
+---
+
+## Problem 题目
+
+### GET `/api/v4/problem/` — 获取题目列表
+
+**响应 JSON 结构**
+
+```json
+{
+  "meta": {
+    "limit": "int",
+    "next": "",
+    "offset": "int",
+    "previous": "",
+    "total_count": "int"
+  },
+  "objects": {
+    "problem": [
+      {
+        "id": 0,
+        "name": "",
+        "time": "datetime",
+        "contest_ids": [null],
+        "divisions": [null],
+        "kinds": [null],
+        "resource": "",
+        "resource_id": 0,
+        "slug": "",
+        "short": "",
+        "url": "",
+        "archive_url": "",
+        "n_attempts": 0,
+        "n_accepted": 0,
+        "n_partial": 0,
+        "n_hidden": 0,
+        "n_total": 0,
+        "rating": 0,
+        "favorite": false,
+        "note": "",
+        "system_solved": false,
+        "system_reject": false,
+        "user_solved": false,
+        "user_todo": false,
+        "user_reject": false
+      }
+    ]
+  }
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `limit` | query | int | 每页显示的元素数量 |
+| `offset` | query | int | 分页起始偏移量 |
+| `total_count` | query | boolean | 布尔值，如 `True` |
+| `name`、`name__in` | query | string | 字符串，如 `"Hello World"` |
+| `time`、`time__gt`、`time__lt`、`time__gte`、`time__lte`、`time__week_day` | query | datetime | 日期时间字符串，如 `"2010-11-10T03:07:43"` |
+| `contest_ids`、`contest_ids__contains` | query | list | 一组数据，如 `{'abc', 26.73, 8}` |
+| `resource`、`resource__regex`、`resource__iregex`、`resource__in` | query | string | 字符串，如 `"Hello World"` |
+| `resource_id`、`resource_id__in` | query | integer | 整数，如 `2673` |
+| `slug`、`slug__in` | query | string | 字符串，如 `"Hello World"` |
+| `short`、`short__in` | query | string | 字符串，如 `"Hello World"` |
+| `url`、`url__regex` | query | string | 字符串，如 `"Hello World"` |
+| `archive_url`、`archive_url__regex` | query | string | 字符串，如 `"Hello World"` |
+| `n_attempts`、`n_attempts__gt`、`n_attempts__lt`、`n_attempts__gte`、`n_attempts__lte` | query | integer | 整数，如 `2673` |
+| `n_accepted`、`n_accepted__gt`、`n_accepted__lt`、`n_accepted__gte`、`n_accepted__lte` | query | integer | 整数，如 `2673` |
+| `n_partial`、`n_partial__gt`、`n_partial__lt`、`n_partial__gte`、`n_partial__lte` | query | integer | 整数，如 `2673` |
+| `n_hidden`、`n_hidden__gt`、`n_hidden__lt`、`n_hidden__gte`、`n_hidden__lte` | query | integer | 整数，如 `2673` |
+| `n_total`、`n_total__gt`、`n_total__lt`、`n_total__gte`、`n_total__lte` | query | integer | 整数，如 `2673` |
+| `rating`、`rating__gt`、`rating__lt`、`rating__gte`、`rating__lte` | query | integer | 资源评分 |
+| `favorite` | query | boolean | 用户标记为收藏 |
+| `note`、`note__in` | query | string | 用户指定的备注 |
+| `solved` | query | boolean | 在资源系统中已解决或用户标记为已解决 |
+| `reject` | query | boolean | 在资源系统中被拒绝或用户标记为拒绝 |
+| `system_solved` | query | boolean | 在资源系统中已解决 |
+| `system_reject` | query | boolean | 在资源系统中被拒绝 |
+| `user_solved` | query | boolean | 用户标记为已解决 |
+| `user_todo` | query | boolean | 用户标记为待办 |
+| `user_reject` | query | boolean | 用户标记为拒绝 |
+| `order_by` | query | string | 按所选字段排序；默认升序，字段前加 `-` 为降序 |
+
+**响应内容类型**：`application/json`
+
+### GET `/api/v4/problem/{id}/` — 按 ID 获取单个题目
+
+**响应 JSON 结构**
+
+```json
+{
+  "id": 0,
+  "name": "",
+  "time": "datetime",
+  "contest_ids": [null],
+  "divisions": [null],
+  "kinds": [null],
+  "resource": "",
+  "resource_id": 0,
+  "slug": "",
+  "short": "",
+  "url": "",
+  "archive_url": "",
+  "n_attempts": 0,
+  "n_accepted": 0,
+  "n_partial": 0,
+  "n_hidden": 0,
+  "n_total": 0,
+  "rating": 0,
+  "favorite": false,
+  "note": "",
+  "system_solved": false,
+  "system_reject": false,
+  "user_solved": false,
+  "user_todo": false,
+  "user_reject": false
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `id` | path | integer | **（必填）** 资源主键 |
+
+**响应内容类型**：`application/json`
+
+---
+
+## Resource 资源
+
+### GET `/api/v4/resource/` — 检索资源列表
+
+**响应 JSON 结构**
+
+```json
+{
+  "meta": {
+    "limit": "int",
+    "next": "",
+    "offset": "int",
+    "previous": "",
+    "total_count": "int"
+  },
+  "objects": {
+    "resource": [
+      {
+        "id": 0,
+        "name": "",
+        "icon": "",
+        "short": "",
+        "n_accounts": 0,
+        "n_contests": 0
+      }
+    ]
+  }
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `limit` | query | int | 每页显示的元素数量 |
+| `offset` | query | int | 分页起始偏移量 |
+| `total_count` | query | boolean | 布尔值，如 `True` |
+| `id`、`id__in` | query | integer | 整数，如 `2673` |
+| `name`、`name__in` | query | string | 字符串，如 `"Hello World"` |
+| `short`、`short__in` | query | string | 字符串，如 `"Hello World"` |
+| `n_accounts`、`n_accounts__gt`、`n_accounts__lt`、`n_accounts__gte`、`n_accounts__lte` | query | integer | 整数，如 `2673` |
+| `n_contests`、`n_contests__gt`、`n_contests__lt`、`n_contests__gte`、`n_contests__lte` | query | integer | 整数，如 `2673` |
+| `order_by` | query | string | 按所选字段排序；默认升序，字段前加 `-` 为降序 |
+
+**响应内容类型**：`application/json`
+
+### GET `/api/v4/resource/{id}/` — 按 ID 获取单个资源
+
+**响应 JSON 结构**
+
+```json
+{
+  "id": 0,
+  "name": "",
+  "icon": "",
+  "short": "",
+  "n_accounts": 0,
+  "n_contests": 0
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `id` | path | integer | **（必填）** 资源主键 |
+
+**响应内容类型**：`application/json`
+
+---
+
+## Statistics 统计数据
+
+### GET `/api/v4/statistics/` — 检索统计信息列表
+
+**响应 JSON 结构**
+
+```json
+{
+  "meta": {
+    "limit": "int",
+    "next": "",
+    "offset": "int",
+    "previous": "",
+    "total_count": "int"
+  },
+  "objects": {
+    "statistics": [
+      {
+        "id": 0,
+        "account_id": 0,
+        "handle": "",
+        "contest_id": 0,
+        "event": "",
+        "date": "datetime",
+        "place": 0,
+        "score": "float",
+        "new_rating": 0,
+        "old_rating": 0,
+        "rating_change": 0,
+        "problems": "dict",
+        "more_fields": "dict"
+      }
+    ]
+  }
+}
+```
+
+**请求参数**
+
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `limit` | query | int | 每页显示的元素数量 |
+| `offset` | query | int | 分页起始偏移量 |
+| `total_count` | query | boolean | 布尔值，如 `True` |
+| `with_problems` | query | boolean | 布尔值，是否包含题目明细 |
+| `with_more_fields` | query | boolean | 布尔值，是否包含扩展字段 |
+| `contest_id`、`contest_id__in` | query | integer | 整数，如 `2673` |
+| `account_id`、`account_id__in` | query | integer | 整数，如 `2673` |
+| `coder_id` | query | integer | 整数，如 `2673` |
+| `place`、`place__gt`、`place__lt`、`place__gte`、`place__lte`、`place__isnull` | query | integer | 整数，如 `2673` |
+| `new_rating__isnull` | query | integer | 整数，如 `2673` |
+| `rating_change__isnull` | query | integer | 整数，如 `2673` |
+| `order_by` | query | string | 按所选字段排序；默认升序，字段前加 `-` 为降序 |
+
+**响应内容类型**：`application/json`
+
+---
+
+## 页脚
+
+- API
+- Terms of Service 服务条款
+- Privacy Policy 隐私政策
+- © 2012 Aleksey Ropan
+
+---
+
+**整理说明**
+
+1. 原文中英文对照内容已合并为单行中文表述，避免重复。
+2. 大量同前缀参数（如 `rating__gt/__lt/__gte/__lte/__isnull`）已合并到同一表格行，语义不变。
+3. 已删除全部敏感凭据与个人标识，文档可直接对外分享；实际调用时请自行填入自己的密钥。
