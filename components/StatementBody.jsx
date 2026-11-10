@@ -10,13 +10,14 @@
  * 接口。语言模式（对照/英文/中文）与优先级链来自设置。
  */
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useAiSegment } from '@/components/ai-translate';
 import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { channelLabel, useSettings, DEFAULT_PRIORITY } from '@/components/settings';
 import { hydrateSegments, useZhSegment } from '@/lib/zh-store';
 import { renderRich } from '@/lib/render';
+import { translationChannels } from '@/lib/translation-plan.mjs';
 
 function SpinnerNote({ children }) {
   return (
@@ -191,24 +192,26 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
         ? { priority: ['ai'] }
         : null;
 
-  const hasArchive = segments.some((s) => s.zh);
   // 官方中文题面（牛客）：原文即译文，对照/中文模式只渲染单份，避免同文重复；
   // 但标题本身是英文时（牛客不少题标题为英文）仍走翻译链
   const sameLang = zhModel === '官方原文';
   const titleIsZh = /[\u4e00-\u9fff]/.test(String(title || ''));
-  const zhSegments = [
+  const zhSegments = useMemo(() => [
     { key: `${code}|title`, text: title, archived: Boolean(titleZh) },
     ...segments.map((s, i) => ({
       key: `${code}|p|${i}`,
       text: s.en,
       archived: Boolean(s.zh),
     })),
-  ];
+  ].map((segment) => ({
+    ...segment,
+    channels: translationChannels({ mode, channel, priority: settings.zhPriority, archived: segment.archived,
+      official: sameLang && (segment.key !== `${code}|title` || titleIsZh) }),
+  })), [code, segments, title, titleZh, mode, channel, settings.zhPriority, sameLang, titleIsZh]);
 
   useEffect(() => {
     if (mode !== 'en') hydrateSegments(code, zhSegments);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [code, mode, hasArchive, segments.length, titleZh ? 1 : 0]);
+  }, [code, mode, zhSegments]);
 
   const segKeyOf = (i) => `${code}|p|${i}`;
 
