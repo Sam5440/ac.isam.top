@@ -1,14 +1,21 @@
 'use client';
 
-import { Check, Copy, X } from 'lucide-react';
+import { Check, Copy, Sigma, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import MathPre from '@/components/MathPre';
+import { hasMathTex } from '@/lib/math-detect';
 
 export default function CopyBox({ label, text, tone = 'blue' }) {
   const [state, setState] = useState('idle'); // idle | ok | fail
   const timerRef = useRef(null);
   useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  // 展示形态：null=自动（含公式走渲染），true/false=强制原文/渲染；
+  // 切换按钮仅在有公式可切换的盒子里出现，只影响显示、不影响复制内容。
+  const [raw, setRaw] = useState(null);
+  const hasMath = hasMathTex(text);
 
   const flash = (s) => {
     setState(s);
@@ -48,19 +55,31 @@ export default function CopyBox({ label, text, tone = 'blue' }) {
     <div className="overflow-hidden rounded-lg border bg-background">
       <div className="flex items-center justify-between border-b bg-muted/40 px-3 py-1.5">
         <span className={`text-xs font-semibold uppercase tracking-wider ${toneCls}`}>{label}</span>
-        <Button variant="ghost" size="icon" className="size-6" onClick={copy} aria-label={`复制${label}`}>
-          {state === 'ok' ? (
-            <Check className="size-3.5" />
-          ) : state === 'fail' ? (
-            <X className="size-3.5 text-destructive" />
-          ) : (
-            <Copy className="size-3.5" />
+        <div className="flex items-center gap-0.5">
+          {hasMath && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-6"
+              onClick={() => setRaw((r) => !r)}
+              aria-label={raw ? `显示渲染结果（${label}）` : `显示原始文本（${label}）`}
+              title={raw ? '显示渲染结果' : '显示原始文本'}
+            >
+              <Sigma className="size-3.5" />
+            </Button>
           )}
-        </Button>
+          <Button variant="ghost" size="icon" className="size-6" onClick={copy} aria-label={`复制${label}`}>
+            {state === 'ok' ? (
+              <Check className="size-3.5" />
+            ) : state === 'fail' ? (
+              <X className="size-3.5 text-destructive" />
+            ) : (
+              <Copy className="size-3.5" />
+            )}
+          </Button>
+        </div>
       </div>
-      <pre className="overflow-x-auto p-3 font-mono text-[13px] leading-6 text-foreground/90">
-        <code>{text}</code>
-      </pre>
+      <MathPre text={text} raw={raw} />
     </div>
   );
 }
