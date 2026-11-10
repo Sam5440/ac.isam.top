@@ -16,6 +16,7 @@ import { useAiSegment } from '@/components/ai-translate';
 import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { channelLabel, useSettings, DEFAULT_PRIORITY } from '@/components/settings';
 import { hydrateSegments, useZhSegment } from '@/lib/zh-store';
+import { extractImgSrcs, imgDedup } from '@/lib/img-dedup';
 import { renderRich } from '@/lib/render';
 import { translationChannels } from '@/lib/translation-plan.mjs';
 
@@ -64,9 +65,10 @@ const sourceChipHtml = (source, model) => {
   return `<span class="ml-1.5 inline-flex items-center gap-0.5 rounded border px-1 py-px align-middle text-[10px] leading-4 ${tone}">${icon}${label}</span>`;
 };
 
-function WithSourceChip({ html, source, model, className }) {
+function WithSourceChip({ html, source, model, className, seenSrcs }) {
   const chip = sourceChipHtml(source, model);
-  const withChip = /<\/p>\s*$/.test(html) ? html.replace(/<\/p>(\s*)$/, `${chip}</p>$1`) : html + chip;
+  const deduped = seenSrcs ? imgDedup(html, seenSrcs) : html;
+  const withChip = /<\/p>\s*$/.test(deduped) ? deduped.replace(/<\/p>(\s*)$/, `${chip}</p>$1`) : deduped + chip;
   return <div className={`zh-styled ${className ?? ''}`} dangerouslySetInnerHTML={{ __html: withChip }} />;
 }
 
@@ -92,14 +94,14 @@ function useNearViewport() {
   return [ref, visible];
 }
 
-function AiZhLine({ en, ai, note, aiReady }) {
+function AiZhLine({ en, ai, note, aiReady, seenSrcs }) {
   const [ref, visible] = useNearViewport();
   const state = useAiSegment(en, ai, visible && !!(ai?.baseUrl && ai?.apiKey));
   return (
     <div ref={ref}>
       {state.status === 'loading' && <SpinnerNote>AI 翻译中…</SpinnerNote>}
       {state.status === 'error' && <UntranslatedMark note={`AI 翻译失败（${state.error}）`} />}
-      {state.status === 'done' && <WithSourceChip html={renderRich(state.text)} source="ai:external" />}
+      {state.status === 'done' && <WithSourceChip html={renderRich(state.text)} source="ai:external" seenSrcs={seenSrcs} />}
       {state.status === 'idle' &&
         // 区分「未滚动到视口」与「确实未配置」:长题面里未达视口的段落不再
         // 全部挂着误导性的「请在设置中配置 AI 接口」告警
@@ -125,7 +127,7 @@ function mergedChannels(archivedZh, rec) {
 }
 
 /** 对照模式的一段译文：沿优先级链取首个有译文的渠道。 */
-function ChainZhLine({ segKey, archivedZh, priority, note, zhModel }) {
+function ChainZhLine({ segKey, archivedZh, priority, note, zhModel, seenSrcs }) {
   const rec = useZhSegment(segKey);
   const prio = priority?.length ? priority : DEFAULT_PRIORITY;
   const merged = mergedChannels(archivedZh, rec);
@@ -137,6 +139,7 @@ function ChainZhLine({ segKey, archivedZh, priority, note, zhModel }) {
         html={renderRich(merged[hitCh])}
         source={hitCh === 'ai' ? 'ai:builtin' : hitCh}
         model={hitCh === 'ai' ? zhModel : undefined}
+        seenSrcs={seenSrcs}
       />
     );
   }
@@ -153,7 +156,7 @@ function ChainZhLine({ segKey, archivedZh, priority, note, zhModel }) {
 }
 
 /** 指定渠道的一段译文。 */
-function ZhLine({ segKey, archivedZh, channel, note, zhModel }) {
+function ZhLine({ segKey, archivedZh, channel, note, zhModel, seenSrcs }) {
   const rec = useZhSegment(segKey);
   const archived = channel === 'ai' && typeof archivedZh === 'string' && archivedZh.trim() ? archivedZh : null;
   const local = typeof rec.zh[channel] === 'string' && rec.zh[channel].trim() ? rec.zh[channel] : null;
@@ -164,6 +167,7 @@ function ZhLine({ segKey, archivedZh, channel, note, zhModel }) {
         html={renderRich(zh)}
         source={channel === 'ai' ? 'ai:builtin' : channel}
         model={archived ? zhModel : undefined}
+        seenSrcs={seenSrcs}
       />
     );
   }
@@ -215,11 +219,22 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
 
   const segKeyOf = (i) => `${code}|p|${i}`;
 
+  // 对照模式：EN 段一次性渲染并收集图片 src（渲染结果直接复用于展示，不二次
+  // 渲染），三个 ZH 渲染出口据此剔除 EN 已出现的同 src 图片；zh 单独模式
+  // 不做去重（本实现视其为无 EN 参照，与计划边界一致）。
+  const enRender = useMemo(() => {
+    const htmls = segments.map((s) => renderRich(s.en));
+    return {
+      htmls,
+      enSrcs: mode === 'both' ? extractImgSrcs(htmls.join('')) : null,
+    };
+  }, [segments, mode]);
+
   const zhLineFor = (seg, i, note) => {
     const segKey = segKeyOf(i);
-    if (channel === 'ai_custom') return <AiZhLine en={seg.en} ai={ai} note={note} aiReady={!!(ai?.baseUrl && ai?.apiKey)} />;
-    if (chain) return <ChainZhLine segKey={segKey} archivedZh={seg.zh} priority={chain.priority} note={note} zhModel={zhModel} />;
-    return <ZhLine segKey={segKey} archivedZh={seg.zh} channel={channel} note={note} zhModel={zhModel} />;
+    if (channel === 'ai_custom') return <AiZhLine en={seg.en} ai={ai} note={note} aiReady={!!(ai?.baseUrl && ai?.apiKey)} seenSrcs={enRender.enSrcs} />;
+    if (chain) return <ChainZhLine segKey={segKey} archivedZh={seg.zh} priority={chain.priority} note={note} zhModel={zhModel} seenSrcs={enRender.enSrcs} />;
+    return <ZhLine segKey={segKey} archivedZh={seg.zh} channel={channel} note={note} zhModel={zhModel} seenSrcs={enRender.enSrcs} />;
   };
 
   const titleLine =
@@ -262,14 +277,14 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel 
       {mode === 'en' ? (
         <div className="md-body stmt-body">
           {segments.map((s, i) => (
-            <div key={i} dangerouslySetInnerHTML={{ __html: renderRich(s.en) }} />
+            <div key={i} dangerouslySetInnerHTML={{ __html: enRender.htmls[i] }} />
           ))}
         </div>
       ) : (
         <div className="stmt-body">
           {segments.map((s, i) => (
             <div key={i}>
-              <div className="md-body" dangerouslySetInnerHTML={{ __html: renderRich(s.en) }} />
+              <div className="md-body" dangerouslySetInnerHTML={{ __html: enRender.htmls[i] }} />
               <div className="stmt-zh mt-1 border-l-2 border-primary/40 pl-3 text-[13px] text-muted-foreground">
                 {zhLineFor(s, i)}
               </div>
