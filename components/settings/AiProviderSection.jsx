@@ -13,6 +13,8 @@ import { useRef, useState } from 'react';
 import { Check, Copy, FileJson, Pencil, Plus, Server, Trash2, Upload } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
+import { Spinner } from '@/components/ui/LoadingOverlay';
+import { toast } from '@/lib/toast';
 import { makeProviderId, normalizeProviders, providerReady } from '@/lib/ai-providers';
 import { exportAllSettings, importAllSettings, SETTING_KEYS, validateImportPayload } from '@/lib/settings-io';
 import AiCompletionSettingsSection from '@/components/compiler/AiCompletionSettingsSection';
@@ -40,6 +42,7 @@ export default function AiProviderSection() {
   const [test, setTest] = useState(null); // { state, msg }
   // 设置导入导出状态
   const [ioMsg, setIoMsg] = useState(null); // { ok, msg }
+  const [importing, setImporting] = useState(false);
   const [importMode, setImportMode] = useState('merge');
   const fileRef = useRef(null);
 
@@ -126,35 +129,51 @@ export default function AiProviderSection() {
 
   const doExport = () => {
     const name = exportAllSettings();
-    if (name) setIoMsg({ ok: true, msg: `已导出 ${SETTING_KEYS.length} 类设置 → ${name}` });
+    if (name) {
+      setIoMsg({ ok: true, msg: `已导出 ${SETTING_KEYS.length} 类设置 → ${name}` });
+      toast.success(`设置已导出：${name}`);
+    }
   };
 
   const onImportFile = async (file) => {
     if (!file) return;
     setIoMsg(null);
+    setImporting(true);
+    toast.info('正在解析导入设置…');
     let payload;
     try {
       payload = JSON.parse(await file.text());
     } catch {
+      setImporting(false);
       setIoMsg({ ok: false, msg: '文件不是有效的 JSON' });
+      toast.error('导入失败：文件不是有效的 JSON');
       return;
     }
     const v = validateImportPayload(payload);
     if (!v.ok) {
+      setImporting(false);
       setIoMsg({ ok: false, msg: v.error });
+      toast.error(`导入失败：${v.error}`);
       return;
     }
     const confirmMsg =
       importMode === 'replace'
         ? `「替换模式」将先清空本机全部 ${SETTING_KEYS.length} 类设置再写入文件中的 ${v.itemCount} 类，且不可撤销。确定继续？`
         : `将把文件中的 ${v.itemCount} 类设置覆盖写入本机（未包含的类保持不变）。确定继续？`;
-    if (!window.confirm(confirmMsg)) return;
+    if (!window.confirm(confirmMsg)) {
+      setImporting(false);
+      return;
+    }
     try {
       const n = importAllSettings(payload, { mode: importMode });
+      setImporting(false);
       setIoMsg({ ok: true, msg: `已写入 ${n} 类设置，即将刷新页面…` });
+      toast.success(`导入成功：已写入 ${n} 类设置`);
       setTimeout(() => window.location.reload(), 800);
     } catch (e) {
+      setImporting(false);
       setIoMsg({ ok: false, msg: String(e?.message || e) });
+      toast.error(`导入失败：${String(e?.message || e)}`);
     }
   };
 
@@ -324,9 +343,10 @@ export default function AiProviderSection() {
           <button
             type="button"
             onClick={() => fileRef.current?.click()}
-            className="bg-background hover:bg-accent inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs text-foreground transition-colors"
+            disabled={importing}
+            className="bg-background hover:bg-accent inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs text-foreground transition-colors disabled:opacity-50"
           >
-            <Upload className="size-3.5" />
+            {importing ? <Spinner className="size-3.5" /> : <Upload className="size-3.5" />}
             导入设置文件
           </button>
           <label className="text-muted-foreground flex items-center gap-2 text-[11px]">

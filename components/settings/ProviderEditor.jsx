@@ -7,8 +7,10 @@
  */
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { CloudDownload, Plus, RefreshCw, Search, Trash2, X } from 'lucide-react';
+import { CloudDownload, Plus, Search, Trash2, X } from 'lucide-react';
 
+import { toast } from '@/lib/toast';
+import { Spinner } from '@/components/ui/LoadingOverlay';
 import { API_FORMATS, fetchProviderModels } from '@/lib/ai-providers';
 import { Field, inputCls } from './controls';
 
@@ -32,14 +34,17 @@ export default function ProviderEditor({ initial, onCancel, onSave }) {
   const pullModels = async () => {
     if (!form.baseUrl.trim()) return;
     setRemote({ state: 'loading' });
+    toast.info('正在拉取模型列表…');
     const r = await fetchProviderModels({ ...form, baseUrl: form.baseUrl.trim() });
     if (r.ok) {
       // 默认全选新发现的模型（保留已添加的）
       const merged = [...new Set([...form.models, ...r.models])];
       setRemote({ state: 'done', models: r.models, selected: new Set(merged) });
       setFilter('');
+      toast.success(`拉取成功：发现 ${r.models.length} 个模型`);
     } else {
       setRemote({ state: 'fail', error: r.error });
+      toast.error(`拉取模型列表失败：${r.error}`);
     }
   };
 
@@ -144,7 +149,7 @@ export default function ProviderEditor({ initial, onCancel, onSave }) {
             className="bg-background hover:bg-accent inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[11px] transition-colors disabled:opacity-50"
           >
             {remote?.state === 'loading' ? (
-              <RefreshCw className="size-3 animate-spin" />
+              <Spinner className="size-3" />
             ) : (
               <CloudDownload className="size-3" />
             )}

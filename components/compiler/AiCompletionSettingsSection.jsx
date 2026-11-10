@@ -49,6 +49,7 @@ import {
   PROFILE_FIELDS,
 } from "@/lib/ai/ai-settings";
 import { truncate } from "@/lib/compiler/diff";
+import { toast } from "@/lib/toast";
 
 const inputCls =
   "w-full rounded-md border bg-background px-2.5 py-1.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60";
@@ -369,6 +370,7 @@ export default function AiCompletionSettingsSection() {
     setTestState("testing");
     // WebLLM：这里变成「加载模型」——创建引擎（首次下载权重，之后走 Cache 秒加载）
     if (ai.apiType === "webllm") {
+      toast.info("正在加载本地模型（首次需下载权重）…");
       try {
         const eng = await getWebllmEngine(
           ai.model,
@@ -383,19 +385,24 @@ export default function AiCompletionSettingsSection() {
           return;
         }
         setTestState({ ok: true, msg: "本地模型已就绪（权重已入浏览器缓存，刷新页面也无需重新下载）" });
+        toast.success("本地模型已就绪");
       } catch (exn) {
         setTestState({ ok: false, msg: truncate(exn.message ?? String(exn), 200) });
+        toast.error(`本地模型加载失败：${truncate(exn.message ?? String(exn), 80)}`);
       }
       return;
     }
     try {
+      toast.info("正在测试连接…");
       const models = await fetchModelList(ai);
       setTestState({
         ok: true,
         msg: `连接成功，端点共 ${models.length} 个模型；请在「AI 服务商」分区管理模型列表后在此挑选`,
       });
+      toast.success(`连接成功：端点共 ${models.length} 个模型`);
     } catch (exn) {
       setTestState({ ok: false, msg: truncate(exn.message ?? String(exn), 200) });
+      toast.error(`连接失败：${truncate(exn.message ?? String(exn), 80)}`);
     }
   };
 

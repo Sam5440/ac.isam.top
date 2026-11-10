@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { useSettings } from '@/components/settings';
+import { Skeleton } from '@/components/ui/LoadingOverlay';
+import { toast } from '@/lib/toast';
 
 const LIMIT_OPTIONS = [30, 50, 100, 200];
 const CACHE_NAMES = ['ac-shell', 'ac-pages', 'ac-assets', 'ac-runtime', 'ac-imgs'];
@@ -20,10 +22,12 @@ export default function OfflineCacheSection() {
   const [meta, setMeta] = useState(null); // {lastSyncAt, contests, pages, ...}
   const [prog, setProg] = useState(null); // {phase, done, total, added, error}
   const [cleared, setCleared] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const [actionError, setActionError] = useState('');
 
   const refresh = useCallback(async () => {
     if (!('caches' in window)) return;
+    setRefreshing(true);
     try {
       const s = { pages: 0, assets: 0, runtime: 0, imgs: 0, usageMB: null, quotaMB: null };
       for (const n of CACHE_NAMES) {
@@ -45,7 +49,9 @@ export default function OfflineCacheSection() {
       const m = await caches.match(META_KEY);
       setStats(s);
       setMeta(m ? await m.json() : null);
-    } catch {}
+    } catch {} finally {
+      setRefreshing(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -57,7 +63,17 @@ export default function OfflineCacheSection() {
       const d = e.data || {};
       if (d.type === 'OFFLINE_SYNC') {
         setProg(d);
-        if (d.phase === 'done' || d.phase === 'error' || d.phase === 'aborted') refresh();
+        if (d.phase === 'done') {
+          refresh();
+          toast.success(d.meta?.compilerFiles
+            ? `C++ 运行时同步完成：${d.meta.compilerFiles} 个文件`
+            : `离线题库同步完成：${d.meta?.pages ?? d.total} 页`);
+        } else if (d.phase === 'error') {
+          refresh();
+          toast.error(`同步失败：${d.error || '未知错误'}`);
+        } else if (d.phase === 'aborted') {
+          refresh();
+        }
       }
     };
     navigator.serviceWorker.addEventListener('message', onMsg);
@@ -71,19 +87,21 @@ export default function OfflineCacheSection() {
 
   const syncNow = async () => {
     setActionError('');
+    toast.info('开始同步离线题库…');
     try {
       const reg = await navigator.serviceWorker.ready;
       reg.active?.postMessage({ type: 'SYNC_OFFLINE', limit: settings.offlineLimit || 100 });
-    } catch (error) { setActionError(error.message || '无法开始同步'); }
+    } catch (error) { setActionError(error.message || '无法开始同步'); toast.error(`同步失败：${error.message || '无法开始同步'}`); }
   };
 
   const syncCompiler = async () => {
     if (!window.confirm('下载 C++ 离线编译器（约 139 MiB）？建议在 Wi-Fi 下进行。')) return;
     setActionError('');
+    toast.info('开始下载 C++ 编译器（约 139 MiB）…');
     try {
       const reg = await navigator.serviceWorker.ready;
       reg.active?.postMessage({ type: 'SYNC_COMPILER' });
-    } catch (error) { setActionError(error.message || '无法开始下载'); }
+    } catch (error) { setActionError(error.message || '无法开始下载'); toast.error(`下载失败：${error.message || '无法开始下载'}`); }
   };
 
   const stopSync = async () => {
@@ -149,8 +167,10 @@ export default function OfflineCacheSection() {
       <div className="text-muted-foreground flex flex-wrap gap-x-4 gap-y-1 text-[11px]">
         <span>SW：{swActive ? '✓ 运行中' : '首次访问后生效'}</span>
         <span>上次同步：{fmtTime(meta?.lastSyncAt)}</span>
-        {meta?.contests != null && <span>已离线 {meta.contests} 场 / {meta.pages} 页</span>}
-        {stats && (
+        {refreshing && !meta ? <Skeleton className="h-3 w-40" /> : meta?.contests != null && (
+          <span>已离线 {meta.contests} 场 / {meta.pages} 页</span>
+        )}
+        {refreshing && !stats ? <Skeleton className="h-3 w-52" /> : stats && (
           <span>
             静态资源 {stats.assets} · 编译器 {stats.runtime} · 图片 {stats.imgs}
             {stats.usageMB != null && ` · 占用 ${stats.usageMB} MB${stats.quotaMB ? ` / 配额 ${stats.quotaMB} MB` : ''}`}

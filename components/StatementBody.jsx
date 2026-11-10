@@ -13,6 +13,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useAiSegment } from '@/components/ai-translate';
+import { Spinner } from '@/components/ui/LoadingOverlay';
 import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { channelLabel, useSettings, DEFAULT_PRIORITY } from '@/components/settings';
 import { hydrateSegments, useZhSegment } from '@/lib/zh-store';
@@ -20,10 +21,11 @@ import { extractImgSrcs, imgDedup } from '@/lib/img-dedup';
 import { renderRich } from '@/lib/render';
 import { translationChannels } from '@/lib/translation-plan.mjs';
 
+/** 行内加载提示：签名与全局 SpinnerNote 不同（children + 行内 span，译文行内嵌），故保留本地形态、内部复用统一 Spinner。 */
 function SpinnerNote({ children }) {
   return (
     <span className="text-muted-foreground/70 inline-flex items-center gap-1.5 text-[12px]">
-      <span className="border-current border-t-transparent inline-block size-3 animate-spin rounded-full border-2" />
+      <Spinner className="size-3" />
       {children}
     </span>
   );

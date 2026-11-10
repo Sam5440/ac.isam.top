@@ -18,6 +18,7 @@ import {
   useSettings,
 } from '@/components/settings';
 import { resolveTranslationCfg } from '@/lib/ai-providers';
+import { toast } from '@/lib/toast';
 import { clearMtStats, HEALTH_SAMPLE, loadMtStats, rankedStats, runHealthCheck } from '@/lib/mt-health';
 import ModuleAssignPicker from './ModuleAssignPicker';
 import { ChipToggle, inputCls, SegButtons, SectionCard, SubBlock, ToggleRow } from './controls';
@@ -97,6 +98,8 @@ export default function TranslationSection() {
     abortRef.current = ctrl;
     setRunning(true);
     setProgress({});
+    toast.info(`开始渠道体检（${healthChannels.length} 个渠道 × ${TEST_COUNT} 次）…`);
+    let aborted = false;
     try {
       await runHealthCheck({
         channels: healthChannels,
@@ -110,9 +113,14 @@ export default function TranslationSection() {
         onProgress: ({ channel, done, success }) =>
           setProgress((p) => ({ ...p, [channel]: { done, success } })),
       });
+      if (ctrl.signal.aborted) aborted = true;
+    } catch (e) {
+      toast.error(`渠道体检出错：${e?.message || e}`);
     } finally {
       setRunning(false);
       setStats(loadMtStats());
+      if (!aborted) toast.success('渠道体检完成，结果已保存');
+      else toast.info('已停止渠道体检');
     }
   };
 

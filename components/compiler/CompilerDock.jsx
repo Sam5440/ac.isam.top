@@ -72,6 +72,7 @@ import { getTokenStats, fmtTokens } from "@/lib/ai/tokenStats";
 import { useSettings } from "@/components/settings";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/lib/toast";
 
 const CodeEditor = dynamic(() => import("./CodeEditor"), {
   ssr: false,
@@ -142,6 +143,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
   const [sampleCases, setSampleCases] = useState(null);
   const [samplesOpen, setSamplesOpen] = useState(false); // 样例管理手风琴展开态
   const [dlInfo, setDlInfo] = useState(null); // 运行时下载进度 {name, got, total}
+  const dlToastShownRef = useRef(false); // 首次下载 toast 每会话只发一次
 
   const cppRef = useRef(null);
   const pyRef = useRef(null);
@@ -730,7 +732,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
     if (!cppRef.current) {
       const c = new CppClient();
       c.onLog = (t) => appendConsole(t);
-      c.onProgress = (dl) => setDlInfo(dl);
+      c.onProgress = onDlProgress;
       cppRef.current = c;
     }
     return cppRef.current;
@@ -750,6 +752,16 @@ export default function CompilerDock({ problems, day, currentCode }) {
       const next = (prev + text).slice(-CONSOLE_CAP);
       return next;
     });
+  }, []);
+
+  // 运行时首次下载（worker 内 fetch，无请求 id 的兜底进度）：状态区显示
+  // 进度文字（fmtDl），并每会话只发一次「正在下载编译运行时」toast。
+  const onDlProgress = useCallback((dl) => {
+    setDlInfo(dl);
+    if (!dlToastShownRef.current) {
+      dlToastShownRef.current = true;
+      toast.info("正在下载编译运行时…");
+    }
   }, []);
 
   useEffect(() => {
@@ -907,7 +919,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
             setStage(s);
             setDlInfo(null);
           },
-          onProgress: (dl) => setDlInfo(dl),
+          onProgress: onDlProgress,
           onCase: ({ index, total, result }) => {
             if (token !== runTokenRef.current) return;
             const c = caseOf(index, result);
@@ -1047,7 +1059,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
             setStage(s);
             setDlInfo(null);
           },
-          onProgress: (dl) => setDlInfo(dl),
+          onProgress: onDlProgress,
           onNeedInput: needInput,
         });
         if (token !== runTokenRef.current) return;

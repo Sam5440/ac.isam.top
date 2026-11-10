@@ -47,6 +47,7 @@ import {
 import { getCurrentCode } from '@/lib/editor-bridge';
 import { on as onIdeBus } from '@/lib/ide-bus';
 import { toast } from '@/lib/toast';
+import { Spinner } from '@/components/ui/LoadingOverlay';
 import { renderRich } from '@/lib/render';
 
 const STATEMENT_CAP = 8000;
@@ -760,10 +761,8 @@ export default function ChatPanel({ problem, open, onClose }) {
               ) : m.reasoning ? (
                 <span className="text-muted-foreground text-[11px]">思考中…</span>
               ) : (
-                <span className="inline-flex gap-1 py-0.5" aria-label="生成中">
-                  <span className="bg-muted-foreground size-1.5 animate-bounce rounded-full" />
-                  <span className="bg-muted-foreground size-1.5 animate-bounce rounded-full [animation-delay:120ms]" />
-                  <span className="bg-muted-foreground size-1.5 animate-bounce rounded-full [animation-delay:240ms]" />
+                <span className="inline-flex py-0.5" aria-label="生成中">
+                  <Spinner className="size-3.5" />
                 </span>
               )}
             </div>
