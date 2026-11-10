@@ -1,8 +1,8 @@
 /**
  * /api/contests/clist —— Clist 比赛数据服务端代理（工作项 3.4）。
  *
- * - 上游：GET https://clist.by/api/v4/json/contest/，鉴权 `Authorization: Bearer ${CLIST_API_KEY}`
- *   （Key 只在服务端读取，任何响应都不会回传）。
+ * - 上游：GET https://clist.by/api/v4/json/contest/，鉴权 `Authorization: ${CLIST_API_KEY}`
+ *   （Clist v4 直接放 Key，不加 Bearer 前缀；Key 只在服务端读取，任何响应都不会回传）。
  * - 参数白名单透传：upcoming / start_time__during（默认 '30 days'）/ limit（默认 100）/
  *   offset / order_by（默认 start），其余查询参数一律丢弃，防止把任意查询打向上游。
  * - 模块级缓存 TTL 600s + in-flight 去重：Clist 限流 10 req/min，缓存是强制的；
@@ -62,7 +62,7 @@ async function fetchUpstream(params) {
   try {
     res = await fetch(`${UPSTREAM_URL}?${params.toString()}`, {
       headers: {
-        Authorization: `Bearer ${process.env.CLIST_API_KEY}`,
+        Authorization: process.env.CLIST_API_KEY,
         Accept: 'application/json',
       },
       cache: 'no-store',
