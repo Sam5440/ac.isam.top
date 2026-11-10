@@ -9,7 +9,8 @@ import { useEffect, useState } from 'react';
 import { Palette, Pencil, Plus, RotateCcw, Trash2 } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
-import { allThemes, deleteCustomTheme, saveCustomTheme, swatchOf, TEMPLATE_THEMES } from '@/lib/themes';
+import { allThemes, deleteCustomTheme, mappedIdeTheme, saveCustomTheme, swatchOf, TEMPLATE_THEMES } from '@/lib/themes';
+import { EDITOR_THEMES } from '@/lib/compiler/themes';
 import { Field, inputCls, SegButtons, SectionCard, SubBlock, textareaCls } from './controls';
 
 const KIND_LABEL = { builtin: '内置', template: '模板', custom: '自定义' };
@@ -175,6 +176,30 @@ export default function AppearanceSection() {
           自定义主题卡片悬停可编辑 / 删除。模板主题的代码编辑器（Monaco）建议配色：Nord→One Dark、Dracula→Dracula、Gruvbox→Monokai、樱花→Solarized Light，可在「编译器」分区里选择。
         </p>
       </div>
+
+      {/* IDE 外观：Monaco 编辑器主题与网页外观的自动/手动绑定 */}
+      <SubBlock
+        title="IDE 外观"
+        hint={`代码编辑器（Monaco）主题。当前网页外观映射为「${
+          EDITOR_THEMES.find((t) => t.id === mappedIdeTheme(settings.theme, customThemes))?.label || '站点暗色（默认）'
+        }」。`}
+      >
+        <div className="space-y-2">
+          <SegButtons
+            options={[
+              { id: 'auto', label: '跟随网页' },
+              { id: 'manual', label: '手动' },
+            ]}
+            value={settings.ideThemeBinding || 'auto'}
+            onChange={(v) => setSettings({ ideThemeBinding: v })}
+          />
+          <p className="text-muted-foreground/70 text-[11px] leading-relaxed">
+            {settings.ideThemeBinding === 'manual'
+              ? '在编译器设置或 /ide 编辑器设置中自选，切换网页主题不再联动。'
+              : '切换网页主题时，编辑器主题自动映射为最接近的配色。'}
+          </p>
+        </div>
+      </SubBlock>
 
       {editing && (
         <SubBlock

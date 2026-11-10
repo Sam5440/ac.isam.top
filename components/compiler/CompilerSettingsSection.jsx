@@ -13,6 +13,7 @@ import {
   PYODIDE_VERSIONS,
 } from "@/lib/compiler/runtimes";
 import { EDITOR_THEMES } from "@/lib/compiler/themes";
+import { useSettings } from "@/components/settings";
 import {
   downloadAll,
   hasRuntime,
@@ -35,6 +36,8 @@ function fmtMB(n) {
 }
 
 export default function CompilerSettingsSection() {
+  const { settings } = useSettings();
+  const ideAuto = (settings.ideThemeBinding || "auto") === "auto";
   const [cp, setCp] = useState(null);
   const [pyVersionId, setPyVersionId] = useState(null); // 设置里选中的 Pyodide 版本
   const [cpp, setCpp] = useState({
@@ -271,8 +274,9 @@ export default function CompilerSettingsSection() {
             编辑器主题
           </span>
           <select
-            className={inputCls}
+            className={`${inputCls}${ideAuto ? " cursor-not-allowed opacity-60" : ""}`}
             value={cp.editorTheme}
+            disabled={ideAuto}
             onChange={(e) => patch({ editorTheme: e.target.value })}
           >
             {EDITOR_THEMES.map((t) => (
@@ -282,8 +286,9 @@ export default function CompilerSettingsSection() {
             ))}
           </select>
           <span className="block text-[11px] leading-relaxed text-muted-foreground">
-            编辑器配色（One Dark / Dracula / Monokai / GitHub / Solarized 等），
-            只作用于 Monaco 代码区，站点其余部分不变。
+            {ideAuto
+              ? "跟随网页外观：在「外观」分区切换网页主题时，编辑器配色自动联动；如需自选，请在外观分区的「IDE 外观」中改为手动。"
+              : "编辑器配色（One Dark / Dracula / Monokai / GitHub / Solarized 等），只作用于 Monaco 代码区，站点其余部分不变。"}
           </span>
         </label>
         <label className="block space-y-1">

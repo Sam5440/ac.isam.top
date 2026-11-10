@@ -10,8 +10,18 @@ import {
   normalizeAssign,
   normalizeProviders,
 } from '@/lib/ai-providers';
-import { allThemes, findTheme, loadCustomThemes } from '@/lib/themes';
+import { allThemes, findTheme, loadCustomThemes, mappedIdeTheme } from '@/lib/themes';
 import { CONTEST_TYPES } from '@/lib/contest-type';
+
+// IDE 主题联动写入：动态 import 编译器偏好纯模块（浏览器端写入 localStorage，
+// 并通知已打开的 CompilerDock 刷新）。binding = 'auto' 时随网页主题切换联动。
+async function syncIdeTheme(webThemeId, customs) {
+  try {
+    const { saveCpSettings } = await import('@/lib/compiler/cp-settings');
+    saveCpSettings({ editorTheme: mappedIdeTheme(webThemeId, customs) });
+    window.dispatchEvent(new Event('ysc-cp-settings-changed'));
+  } catch {}
+}
 
 /* ---------------- constants ---------------- */
 
@@ -77,6 +87,9 @@ export const DEFAULT_SETTINGS = {
   homeContestTypes: DEFAULT_HOME_TYPES,
   // 界面外观：内置 dark/light/eink，或模板/自定义主题 id（lib/themes.js）
   theme: 'dark',
+  // IDE（Monaco）编辑器主题与网页外观的绑定：'auto' = 跟随网页主题映射，
+  // 'manual' = 在编译器设置 / /ide 编辑器设置中自选，切换网页主题不再联动
+  ideThemeBinding: 'auto',
   // 全局自定义 CSS：叠加在当前主题之上（所有页面生效）
   customCss: '',
   // AI 对话（题目页悬浮窗）
@@ -223,6 +236,7 @@ export function SettingsProvider({ children }) {
 
   // 界面外观 → <html>：内置主题走类名；模板/自定义主题走 data-theme 属性 +
   // 注入 <style id="ac-theme-css">。base 类始终保留（dark: 变体 / eink 特例）。
+  // 绑定为 auto 时同步联动 IDE（Monaco）主题（含程序化换肤，如保存自定义主题即应用）。
   useEffect(() => {
     const t = findTheme(settings.theme, customThemes) || findTheme('dark', customThemes);
     const root = document.documentElement;
@@ -232,7 +246,8 @@ export function SettingsProvider({ children }) {
     if (css) root.setAttribute('data-theme', t.id);
     else root.removeAttribute('data-theme');
     ensureStyleEl('ac-theme-css', css);
-  }, [settings.theme, customThemes]);
+    if ((settings.ideThemeBinding || 'auto') === 'auto') syncIdeTheme(settings.theme, customThemes);
+  }, [settings.theme, customThemes, settings.ideThemeBinding]);
 
   // 全局自定义 CSS → <style id="ac-user-css">，叠加在主题之上
   useEffect(() => {
@@ -335,7 +350,8 @@ function PaletteIcon({ className }) {
   );
 }
 
-/** 外观快捷切换：在全部主题（内置 3 + 模板 + 自定义）间循环，图标反映当前外观。 */
+/** 外观快捷切换：在全部主题（内置 3 + 模板 + 自定义）间循环，图标反映当前外观。
+    绑定为 auto 时切换后同步联动 IDE（Monaco）主题（Provider 的 effect 兜底程序化换肤）。 */
 export function ThemeToggleButton() {
   const { settings, setSettings, customThemes } = useSettings();
   const list = allThemes(customThemes);
@@ -348,6 +364,7 @@ export function ThemeToggleButton() {
       onClick={() => {
         const j = i >= 0 ? (i + 1) % list.length : 0;
         setSettings({ theme: list[j].id });
+        if ((settings.ideThemeBinding || 'auto') === 'auto') syncIdeTheme(list[j].id, customThemes);
       }}
       title={`外观：${cur.label}（点击切换下一个主题，完整主题库见设置）`}
       aria-label={`界面外观：${cur.label}，点击切换`}
