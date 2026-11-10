@@ -6,6 +6,7 @@ const nextConfig = {
     '/problems/[platform]/[problemId]': ['./data/index.json', './data/*/contests.json', './data/*/problems/*.json'],
     '/contests/[platform]/[contestId]': ['./data/index.json', './data/*/contests.json', './data/*/problems/*.json'],
     '/api/problems': ['./data/index.json'],
+    '/api/problems/[platform]/[problemId]': ['./data/index.json', './data/*/problems/*.json'],
   },
   outputFileTracingExcludes: {
     '*': ['./data/.*', './data/*/.*'],
