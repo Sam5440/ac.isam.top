@@ -43,6 +43,7 @@ import {
   X,
 } from "lucide-react";
 import { judgeCase, truncate } from "@/lib/compiler/diff";
+import { emit } from "@/lib/ide-bus";
 import {
   loadCpSettings,
   saveCpSettings,
@@ -842,6 +843,33 @@ export default function CompilerDock({ problems, day, currentCode }) {
 
   const fmtSec = (ms) => `${(ms / 1000).toFixed(2)}s`;
 
+  // 运行结果广播（ide-bus 'run-finished'）：AI 对话面板的「最近一次运行」
+  // 上下文等消费。只在汇总点发一次，不改面板自身行为。
+  const emitRunFinished = (resultCases, exn) => {
+    try {
+      const p = problems?.[probIdx];
+      if (!p?.code) return;
+      const compileErr = exn?.error?.diagnostics?.length
+        ? exn.error.diagnostics
+            .map((d) =>
+              (d.file ? `${d.file}:${d.line}:${d.col}: ` : d.line ? `第 ${d.line} 行: ` : '') +
+              (d.message || ''),
+            )
+            .join('\n')
+        : null;
+      emit('run-finished', {
+        problemKey: `${p.platform || 'unknown'}:${p.code}`,
+        cases: (resultCases || []).map((c) => ({
+          index: c.index,
+          verdict: c.verdict,
+          ...(c.elapsedMs != null ? { elapsedMs: c.elapsedMs } : {}),
+        })),
+        compileError: compileErr,
+        source: 'dock',
+      });
+    } catch {}
+  };
+
   const runSamples = async () => {
     if (!problem) return;
     const token = ++runTokenRef.current;
@@ -861,6 +889,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
     appendConsole(
       `── 对拍 ${samples.length} 个样例（${lang === "cpp" ? `C++ · ${cp.cppStd}` : `Python · ${pythonVersion(cp.pythonVersion).label}`}）──\n`,
     );
+    const ranCases = []; // 本轮全部样例结果（ide-bus 广播用，避开 setState 闭包滞后）
     try {
       if (lang === "cpp") {
         const client = getCpp();
@@ -882,12 +911,15 @@ export default function CompilerDock({ problems, day, currentCode }) {
           onCase: ({ index, total, result }) => {
             if (token !== runTokenRef.current) return;
             const c = caseOf(index, result);
+            ranCases[index] = c;
             setCases((prev) => [...prev, c]);
             appendConsole(`样例 ${index + 1}/${total}: ${c.verdict}（${c.elapsedMs}ms）\n`);
           },
         });
         if (token !== runTokenRef.current) return;
-        setCases(res.results.map((r, i) => caseOf(i, r)));
+        const all = res.results.map((r, i) => caseOf(i, r));
+        all.forEach((c, i) => (ranCases[i] = c));
+        setCases(all);
         // 截断显式上浮(编译-02):旧实现 truncated 被忽略,输出超限后
         // 判定失真且无任何提示
         if (res.truncated) {
@@ -907,6 +939,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
           appendConsole(`${lines.join("\n")}\n`);
         }
         appendConsole(`\n编译一次，运行 ${res.results.length} 个样例完成。\n`);
+        emitRunFinished(ranCases.filter(Boolean));
       } else {
         const client = getPy();
         for (let i = 0; i < samples.length; i++) {
@@ -932,17 +965,16 @@ export default function CompilerDock({ problems, day, currentCode }) {
             });
           } catch (exn) {
             if (token !== runTokenRef.current) return;
-            setCases((prev) => [
-              ...prev,
-              {
-                index: i,
-                verdict: "TE",
-                expected: "",
-                actual: "",
-                diff: null,
-                note: exn.message,
-              },
-            ]);
+            const c = {
+              index: i,
+              verdict: "TE",
+              expected: "",
+              actual: "",
+              diff: null,
+              note: exn.message,
+            };
+            ranCases[i] = c;
+            setCases((prev) => [...prev, c]);
             appendConsole(`样例 ${i + 1}/${samples.length}: TE\n`);
             continue;
           }
@@ -957,16 +989,19 @@ export default function CompilerDock({ problems, day, currentCode }) {
                 verdict: "RE",
                 note: truncate(res.error, 600),
               };
+          ranCases[i] = c;
           setCases((prev) => [...prev, c]);
           appendConsole(
             `样例 ${i + 1}/${samples.length}: ${c.verdict}${c.elapsedMs != null ? `（${c.elapsedMs}ms）` : ""}\n`,
           );
         }
+        emitRunFinished(ranCases.filter(Boolean));
       }
     } catch (exn) {
       if (token !== runTokenRef.current) return;
       appendConsole(`\n✗ ${exn.message}\n`);
       if (exn.error?.diagnostics) setDiags(exn.error.diagnostics);
+      emitRunFinished(ranCases.filter(Boolean), exn);
     } finally {
       if (token === runTokenRef.current) {
         setRunState("idle");

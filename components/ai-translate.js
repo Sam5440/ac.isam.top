@@ -15,13 +15,9 @@
 import { useEffect, useState } from 'react';
 import { protectMath, restoreMath } from '@/lib/mt-protect';
 
-export const AI_MODELS = ['gpt-6.1-sol', 'gpt-6-sol', 'gpt-5.6-sol', 'deepseek-v4-flash', 'glm-5.3-flash', 'kimi-k3'];
+export { normalizeBaseUrl } from '@/lib/ai-providers';
 
-export function normalizeBaseUrl(u) {
-  const s = String(u || '').trim().replace(/\/+$/, '');
-  if (!s) return '';
-  return /\/v\d+$/.test(s) ? s : `${s}/v1`;
-}
+export const AI_MODELS = ['gpt-6.1-sol', 'gpt-6-sol', 'gpt-5.6-sol', 'deepseek-v4-flash', 'glm-5.3-flash', 'kimi-k3'];
 
 /**
  * 发起一次翻译请求。cfg.proxy 为 true 时改经本站 /api/ai/proxy 转发

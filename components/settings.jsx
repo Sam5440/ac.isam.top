@@ -46,6 +46,10 @@ export const DEFAULT_CHAT = {
   includeStatement: true,
   includeCode: true,
   floatingButton: true,
+  // 工作项 2：双显示模式（'float' 视口浮窗 | 'sidebar' 右侧抽屉）与上下文注入开关
+  displayMode: 'float',
+  includeSamples: true,
+  includeRunErrors: true,
 };
 
 export const DEFAULT_SETTINGS = {

@@ -20,6 +20,7 @@ import { useSettings } from '@/components/settings';
 function compilerProblems(problems) {
   return (problems ?? []).map((p) => ({
     code: p.id,
+    platform: p.platform ?? null,
     title: p.titleZh || p.title,
     letter: p.index ?? null,
     examples: (p.samples ?? []).map((e) => ({ input: e.input ?? '', output: e.output ?? '' })),

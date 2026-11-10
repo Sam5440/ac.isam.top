@@ -12,7 +12,7 @@ import { useSettings } from '@/components/settings';
 import { clearAllChats } from '@/lib/chat-store';
 import { chatReady, resolveChatCfg } from '@/lib/chat';
 import ModuleAssignPicker from './ModuleAssignPicker';
-import { SectionCard, ToggleRow } from './controls';
+import { SectionCard, SegButtons, ToggleRow } from './controls';
 
 export default function ChatSection() {
   const { settings, setSettings } = useSettings();
@@ -61,10 +61,38 @@ export default function ChatSection() {
         checked={chat.includeCode !== false}
         onChange={(v) => patchChat({ includeCode: v })}
       />
+      <ToggleRow
+        label="对话自动附带题目样例"
+        hint="上下文中的样例输入输出（默认前三组）。关闭后 AI 只看到题面，回答更聚焦思路。"
+        checked={chat.includeSamples !== false}
+        onChange={(v) => patchChat({ includeSamples: v })}
+      />
+      <ToggleRow
+        label="附带最近一次编译器运行结果"
+        hint="在题目页跑过样例后，发送消息时自动附上编译错误或各样例判定/耗时，AI 能直接帮你 Debug。"
+        checked={chat.includeRunErrors !== false}
+        onChange={(v) => patchChat({ includeRunErrors: v })}
+      />
+
+      <div className="space-y-1.5">
+        <p className="text-muted-foreground text-xs font-medium">面板显示模式</p>
+        <SegButtons
+          ariaLabel="面板显示模式"
+          value={chat.displayMode === 'sidebar' ? 'sidebar' : 'float'}
+          onChange={(v) => patchChat({ displayMode: v })}
+          options={[
+            { id: 'float', label: '浮窗' },
+            { id: 'sidebar', label: '侧边栏' },
+          ]}
+        />
+        <p className="text-muted-foreground/70 text-[11px] leading-relaxed">
+          浮窗：视口居中的可拖拽窗口（头部拖动、右下角缩放）；侧边栏：右侧滑入抽屉。移动端一律全屏。
+        </p>
+      </div>
 
       <div className="flex items-center justify-between gap-2">
         <p className="text-muted-foreground text-[11px] leading-relaxed">
-          每题的对话记录保存在本机浏览器（每会话上限 60 条）。
+          对话记录按多会话保存在本机浏览器（每会话上限 60 条，每题最多 20 个会话）。
         </p>
         <button
           type="button"
