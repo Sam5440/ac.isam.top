@@ -48,6 +48,7 @@ import {
 } from './lib/nowcoder.mjs';
 import { loadProblem, problemComplete, saveProblem, upsertContest } from './lib/store.mjs';
 import { buildIndex } from './build-index.mjs';
+import { buildBackfillSummary, writeRunRecord } from './lib/ci-log.mjs';
 import { loadEnv, log, pLimit, parseArgs, rnd, sleep } from './lib/util.mjs';
 
 const args = parseArgs(process.argv.slice(2));
@@ -71,6 +72,79 @@ const summary = {
   translated: 0,
   translateErrors: [],
 };
+
+/* ===================== CI 运行记录（data/ci-log.json） ===================== */
+
+// 本轮逐题结果（写 /ci 抓取日志页用）：按主流程实际触达的抓取/翻译点记录，
+// 未逐题覆盖的批量路径（如 CF 整场抓取）按场次聚合在 stats 里。
+const runRecord = {
+  startedAt: nowIso(),
+  trigger: process.env.GITHUB_EVENT_NAME || 'manual',
+  fetched: [], // {platform, problemId, title, status: 'fetched'|'translated'|'skipped'|'failed'}
+  errors: [], // {scope, message}
+};
+const recordFetch = (platform, problemId, title, status) => {
+  if (runRecord.fetched.length < 500) {
+    runRecord.fetched.push({ platform, problemId, title, status });
+  }
+};
+const recordError = (scope, message) => {
+  runRecord.errors.push({ scope: String(scope), message: String(message).slice(0, 500) });
+};
+
+/** 汇总本轮结果并写 data/ci-log.json（任何失败都不影响主流程）。 */
+function writeCiLog() {
+  try {
+    const failures = [];
+    for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
+      for (const line of summary[platform].errors) {
+        // 行格式：`<problemId>: <message>` / `<contestId>/<index>: <message>`
+        const i = line.indexOf(':');
+        const problemId = i > 0 ? line.slice(0, i).trim() : line;
+        failures.push({
+          platform,
+          problemId,
+          message: line.slice(i + 1).trim() || line,
+        });
+        recordError(platform, line);
+      }
+    }
+    for (const line of summary.translateErrors) {
+      recordError('translate', line);
+    }
+    const translated = summary.translated;
+    const translatedIds = new Set(
+      runRecord.fetched.filter((x) => x.status === 'translated').map((x) => `${x.platform}:${x.problemId}`),
+    );
+    const stats = {
+      new: summary.atcoder.problems + summary.codeforces.problems + summary.nowcoder.problems,
+      updated: summary.atcoder.backfilled + summary.codeforces.backfilled + summary.nowcoder.backfilled,
+      failed: failures.length,
+      translated,
+    };
+    const backfill = buildBackfillSummary(failures);
+    writeRunRecord({
+      startedAt: runRecord.startedAt,
+      durationMs: Date.now() - new Date(runRecord.startedAt).getTime(),
+      trigger: runRecord.trigger,
+      fetched: runRecord.fetched.map((x) =>
+        // 本轮新抓的题面若随后被翻译，状态记为 translated（fetched 是其前置）
+        translatedIds.has(`${x.platform}:${x.problemId}`) ? { ...x, status: 'translated' } : x,
+      ),
+      stats: {
+        ...stats,
+        translated: stats.translated,
+        pendingCount: backfill.pendingCount,
+      },
+      incomplete: backfill.incomplete,
+      nextPlan: backfill.nextPlan,
+      errors: runRecord.errors.slice(-50),
+    });
+    log('ci-log', '运行记录已写入 data/ci-log.json');
+  } catch (e) {
+    log('ci-log', `⚠ 运行记录生成失败（不影响抓取数据）：${e?.message || e}`);
+  }
+}
 
 /* ============================ AtCoder (ABC) ============================ */
 
@@ -127,10 +201,12 @@ async function runAtCoder() {
         language: st.language,
         fetchedAt: nowIso(),
       });
+      recordFetch('atcoder', p.id, p.name, 'fetched');
       return true;
     } catch (e) {
       summary.atcoder.errors.push(`${p.id}: ${e.message}`);
       log('atcoder', `✗ ${p.id} — ${e.message}`);
+      recordFetch('atcoder', p.id, p.name, 'failed');
       return false;
     }
   };
@@ -230,6 +306,7 @@ async function fetchCfContestAll(c, problemset) {
         ...zhKeep,
       });
       savedIds.push(id);
+      recordFetch('codeforces', id, p.title, 'fetched');
     }
     return { saved: savedIds.length, total: parsed.length, ids: savedIds };
   } finally {
@@ -315,10 +392,11 @@ async function runNowcoder() {
   log('nowcoder', `已结束官方比赛 ${contests.length} 场（最新 ${contests[0]?.id} ${contests[0]?.title}）`);
 
   const fetchOne = async (c, p) => {
+    const pid = `nc${c.id}p${p.index.toLowerCase()}`;
     try {
       const st = await fetchNowcoderStatement(c.id, p.index);
       saveProblem('nowcoder', {
-        id: `nc${c.id}p${p.index.toLowerCase()}`,
+        id: pid,
         platform: 'nowcoder',
         contestId: c.id,
         index: p.index,
@@ -338,10 +416,13 @@ async function runNowcoder() {
         ...(st.statementZhMd ? { translateModel: '官方原文' } : {}),
         fetchedAt: nowIso(),
       });
+      // 中文题面译文即原文：翻译管线会跳过，直接记 skipped
+      recordFetch('nowcoder', pid, p.title, st.statementZhMd ? 'skipped' : 'fetched');
       return true;
     } catch (e) {
       summary.nowcoder.errors.push(`${c.id}/${p.index}: ${e.message}`);
       log('nowcoder', `✗ ${c.id}/${p.index} — ${e.message}`);
+      recordFetch('nowcoder', pid, p.title, 'failed');
       return false;
     }
   };
@@ -484,6 +565,7 @@ async function runTranslate() {
             translatedAt: nowIso(),
             translateModel: cfg.model,
           });
+          recordFetch(p.platform, p.id, titleZh || p.title, 'translated');
           done++;
           if (done % 10 === 0 || done === limited.length) {
             log('translate', `进度 ${done}/${limited.length}`);
@@ -564,6 +646,8 @@ async function main() {
   } finally {
     await closeCfBrowser();
     buildIndex();
+    // 运行记录最后写（耗时才完整）；写失败不影响抓取数据（writeCiLog 内部兜底）
+    writeCiLog();
   }
 
   log('main', '完成', JSON.stringify(summary, null, 2));

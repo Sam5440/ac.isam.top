@@ -2,10 +2,8 @@ name: Fetch & translate problems
 
 on:
   schedule:
-    # 每 6 小时一次（错开整点，规避 GitHub 定时任务高峰丢弃）。
-    # 显式写出 4 个触发点（1-23/6 语义同 1/6,但前者在所有 cron 解析器上都
-    # 是标准步进写法,不依赖 runner 对 1/6 的兼容）。
-    - cron: "23 1-23/6 * * *"
+    # 每小时（错峰 23 分，规避 GitHub 定时任务高峰丢弃）。
+    - cron: "23 * * * *"
   workflow_dispatch:
     inputs:
       abc_scan:
