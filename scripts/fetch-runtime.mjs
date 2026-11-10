@@ -52,9 +52,9 @@ async function main() {
   const url = `https://codeload.github.com/${SLUG}/tar.gz/${COMMIT}`;
   console.log(`fetch-runtime: 下载 ${url}`);
   // 超时护栏（审查 管线-5:无超时的挂起会占满 Vercel 构建时长）
-    const res = await fetch(url, { signal: AbortSignal.timeout(180000) });
-    const contentLength = Number(res.headers.get('content-length')) || 0;
-    if (contentLength > 256 * 1024 * 1024) throw new Error('runtime archive is unexpectedly large');
+  const res = await fetch(url, { signal: AbortSignal.timeout(180000) });
+  const contentLength = Number(res.headers.get('content-length')) || 0;
+  if (contentLength > 256 * 1024 * 1024) throw new Error('runtime archive is unexpectedly large');
   if (!res.ok) throw new Error(`codeload HTTP ${res.status}`);
   const workdir = await mkdtemp(path.join(tmpdir(), 'ac-runtime-'));
   try {
@@ -76,13 +76,36 @@ async function main() {
       const sha = blobSha(file);
       if (sha !== EXPECTED_BLOBS[f]) throw new Error(`runtime ${f} 摘要不匹配：${sha}`);
     }
-    const staging = path.join(workdir, 'compiler');
-    fs.mkdirSync(staging, { recursive: true });
-    for (const f of FILES) fs.copyFileSync(path.join(src, f), path.join(staging, f));
+    // staging 建在 OUT 同一文件系统内再原子改名：Vercel 上 os.tmpdir() 与项目
+    // 目录跨设备，/tmp 里的 rename 会 EXDEV（2026-11-11 生产构建实测）；下载/
+    // 解压留在 /tmp 没关系，copy 跨设备无限制。staging 落盘后复验一次摘要。
     fs.mkdirSync(path.dirname(OUT), { recursive: true });
+    const staging = fs.mkdtempSync(path.join(path.dirname(OUT), '.compiler-'));
     const old = `${OUT}.old-${process.pid}`;
-    if (fs.existsSync(OUT)) fs.renameSync(OUT, old);
-    fs.renameSync(staging, OUT);
+    try {
+      for (const f of FILES) {
+        fs.copyFileSync(path.join(src, f), path.join(staging, f));
+        if (blobSha(path.join(staging, f)) !== EXPECTED_BLOBS[f]) {
+          throw new Error(`runtime ${f} 落盘后摘要不匹配`);
+        }
+      }
+      if (fs.existsSync(OUT)) fs.renameSync(OUT, old);
+      try {
+        fs.renameSync(staging, OUT);
+      } catch (e) {
+        if (e.code === 'EXDEV') {
+          fs.rmSync(OUT, { recursive: true, force: true });
+          fs.cpSync(staging, OUT, { recursive: true });
+        } else {
+          // OUT 已被挪走：尽量还原旧目录再抛错
+          if (!fs.existsSync(OUT) && fs.existsSync(old)) fs.renameSync(old, OUT);
+          throw e;
+        }
+      }
+    } catch (e) {
+      await rm(staging, { recursive: true, force: true });
+      throw e;
+    }
     await rm(old, { recursive: true, force: true });
     const manifest = JSON.parse(fs.readFileSync(path.join(OUT, 'manifest.json'), 'utf8'));
     console.log(`fetch-runtime: 完成 — commit=${COMMIT} ${Object.keys(manifest).join(', ') || 'manifest'}`);
