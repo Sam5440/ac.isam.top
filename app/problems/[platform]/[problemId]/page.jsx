@@ -8,6 +8,7 @@ import AiFab from '@/components/chat/AiFab';
 import CopyProblemButton from '@/components/CopyProblemButton';
 import SamplesSection from '@/components/SamplesSection';
 import StatementBody from '@/components/StatementBody';
+import ViewHistoryTracker from '@/components/ViewHistoryTracker';
 import ProblemViewShell, {
   ProblemCompiler,
   ProblemLetterRail,
@@ -105,6 +106,15 @@ export default async function ProblemPage({ params }) {
           memoryLimitMb: prob.memoryLimitMb ?? null,
           url: prob.url,
         }}
+      />
+
+      {/* 浏览历史埋点：停留时长 + 最近判题状态（lib/view-history） */}
+      <ViewHistoryTracker
+        platform={platform}
+        problemId={prob.id}
+        title={prob.title}
+        titleZh={prob.titleZh ?? null}
+        url={prob.url}
       />
 
       <Button asChild variant="ghost" size="sm">
