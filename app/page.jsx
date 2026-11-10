@@ -53,13 +53,13 @@ export default function Home() {
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button asChild>
-            <Link href="/problems">
+            <Link href="/problems" prefetch={false}>
               <BookOpen className="size-4" />
               浏览题库
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/contests">
+            <Link href="/contests" prefetch={false}>
               <Layers className="size-4" />
               查看比赛
             </Link>
@@ -92,7 +92,7 @@ export default function Home() {
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold tracking-tight">最近收录</h2>
           <Button asChild variant="ghost" size="sm">
-            <Link href="/problems" className="text-muted-foreground">
+            <Link href="/problems" prefetch={false} className="text-muted-foreground">
               进入题库
               <ArrowRight className="size-3.5" />
             </Link>

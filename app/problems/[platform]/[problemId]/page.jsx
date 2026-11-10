@@ -17,16 +17,20 @@ import ProblemViewShell, {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { getAllProblems, getContest, getProblem, getProblemsOfContest, platformOf } from '@/lib/data';
+import { findProblemSummary, getAllContests, getAllProblems, getContest, getProblem, getProblemsOfContest, platformOf } from '@/lib/data';
+import { selectStaticProblems, staticLimit } from '@/lib/static-params.mjs';
 import { pairSegments } from '@/lib/statement-segments';
 import { tagZh } from '@/lib/tags';
 
-/** SSG 全量参数。18822 页的预渲染是 build CPU 打满/终端卡死的根源;
-    本地开发/验证用 AC_SKIP_SSG=1 跳过(页面转按需渲染,功能不变),
-    生产(Vercel/CI)不设此变量,保持全量静态化。 */
+// Historical pages are statically generated on first request and cached by Next/Vercel.
+export const dynamicParams = true;
+export const revalidate = false;
+
 export function generateStaticParams() {
   if (process.env.AC_SKIP_SSG) return [];
-  return getAllProblems().map((p) => ({ platform: p.platform, problemId: String(p.id) }));
+  const count = staticLimit(process.env.AC_SSG_PROBLEMS, 400);
+  return selectStaticProblems(getAllProblems(), getAllContests(), count)
+    .map((p) => ({ platform: p.platform, problemId: String(p.id) }));
 }
 
 export async function generateMetadata({ params }) {
@@ -37,13 +41,10 @@ export async function generateMetadata({ params }) {
 }
 
 /** 题号大小写不敏感查找（手输 20a 也能命中 20A）。返回全量记录。 */
-// React cache():generateMetadata 与页面各调一次,缓存后同一次请求只读
-// 一遍整份题目 JSON(1.6 万页构建各省一次全量文件 IO)
+// React cache():generateMetadata 与页面各调一次，同一请求共享单题读取。
 const findProblem = cache((platform, problemId) => {
   const pid = String(problemId).toLowerCase();
-  const summary = getAllProblems().find(
-    (p) => p.platform === platform && String(p.id).toLowerCase() === pid,
-  );
+  const summary = findProblemSummary(platform, pid);
   return summary ? getProblem(platform, summary.id) : null;
 });
 

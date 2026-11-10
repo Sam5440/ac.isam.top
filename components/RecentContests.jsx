@@ -50,7 +50,7 @@ export default function RecentContests({ contests }) {
       </div>
       <div className="mt-4 text-right">
         <Button asChild variant="ghost" size="sm">
-          <Link href="/contests" className="text-muted-foreground">
+          <Link href="/contests" prefetch={false} className="text-muted-foreground">
             全部比赛
             <ArrowRight className="size-3.5" />
           </Link>

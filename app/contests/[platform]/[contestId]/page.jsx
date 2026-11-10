@@ -6,21 +6,17 @@ import { DifficultyBadge, PlatformBadge, TranslatedBadge } from '@/components/Ba
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { getContest, getContests, getProblemsOfContest, platformOf } from '@/lib/data';
-import { PLATFORMS } from '@/lib/platforms';
+import { getAllContests, getContest, getProblemsOfContest, platformOf } from '@/lib/data';
+import { staticLimit } from '@/lib/static-params.mjs';
 import { formatDateTime } from '@/lib/utils';
 
+export const dynamicParams = true;
+export const revalidate = false;
+
 export function generateStaticParams() {
-  // 本地验证跳过全量预渲染(AC_SKIP_SSG=1),生产保持全量——见题目页同名注释
   if (process.env.AC_SKIP_SSG) return [];
-  const params = [];
-  // 遍历 PLATFORMS 而非硬编码平台列表 —— 旧写法漏掉 nowcoder 的 135 场
-  for (const { id: platform } of PLATFORMS) {
-    for (const c of getContests(platform)) {
-      params.push({ platform, contestId: String(c.id) });
-    }
-  }
-  return params;
+  return getAllContests().slice(0, staticLimit(process.env.AC_SSG_CONTESTS, 80))
+    .map((c) => ({ platform: c.platform, contestId: String(c.id) }));
 }
 
 export async function generateMetadata({ params }) {

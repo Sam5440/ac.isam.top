@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Historical detail pages render on demand on Vercel. Keep their file data in the function.
+  outputFileTracingIncludes: {
+    '/problems/[platform]/[problemId]': ['./data/index.json', './data/*/contests.json', './data/*/problems/*.json'],
+    '/contests/[platform]/[contestId]': ['./data/index.json', './data/*/contests.json', './data/*/problems/*.json'],
+    '/api/problems': ['./data/index.json'],
+  },
+  outputFileTracingExcludes: {
+    '*': ['./data/.*', './data/*/.*'],
+  },
   async headers() {
     return [
       {

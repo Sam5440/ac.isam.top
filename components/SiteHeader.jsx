@@ -52,7 +52,7 @@ export default function SiteHeader() {
             const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
             return (
               <Button key={item.href} asChild variant="ghost" size="sm">
-                <Link href={item.href} className={active ? 'text-foreground' : 'text-muted-foreground'}>
+                <Link href={item.href} prefetch={false} className={active ? 'text-foreground' : 'text-muted-foreground'}>
                   {item.label}
                 </Link>
               </Button>
