@@ -20,6 +20,7 @@ export default function OfflineCacheSection() {
   const [meta, setMeta] = useState(null); // {lastSyncAt, contests, pages, ...}
   const [prog, setProg] = useState(null); // {phase, done, total, added, error}
   const [cleared, setCleared] = useState(false);
+  const [actionError, setActionError] = useState('');
 
   const refresh = useCallback(async () => {
     if (!('caches' in window)) return;
@@ -30,7 +31,8 @@ export default function OfflineCacheSection() {
         // 空桶（审查 P3-15）
         if (!(await caches.has(n))) continue;
         const keys = await (await caches.open(n)).keys();
-        if (n === 'ac-pages') s.pages = keys.filter((k) => !k.url.startsWith('/__offline_meta__')).length;
+        if (n === 'ac-pages') s.pages = keys.filter((k) => !new URL(k.url).pathname.startsWith(META_KEY)
+          && !new URL(k.url).searchParams.has('_rsc')).length;
         else if (n === 'ac-assets') s.assets = keys.length;
         else if (n === 'ac-runtime') s.runtime = keys.length;
         else if (n === 'ac-imgs') s.imgs = keys.length;
@@ -68,10 +70,25 @@ export default function OfflineCacheSection() {
   }, [refresh]);
 
   const syncNow = async () => {
+    setActionError('');
     try {
       const reg = await navigator.serviceWorker.ready;
       reg.active?.postMessage({ type: 'SYNC_OFFLINE', limit: settings.offlineLimit || 100 });
-    } catch {}
+    } catch (error) { setActionError(error.message || '无法开始同步'); }
+  };
+
+  const syncCompiler = async () => {
+    if (!window.confirm('下载 C++ 离线编译器（约 139 MiB）？建议在 Wi-Fi 下进行。')) return;
+    setActionError('');
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      reg.active?.postMessage({ type: 'SYNC_COMPILER' });
+    } catch (error) { setActionError(error.message || '无法开始下载'); }
+  };
+
+  const stopSync = async () => {
+    const reg = await navigator.serviceWorker.getRegistration();
+    reg?.active?.postMessage({ type: 'ABORT_SYNC' });
   };
 
   const clearAll = async () => {
@@ -106,10 +123,10 @@ export default function OfflineCacheSection() {
       <p className="text-muted-foreground text-xs font-medium">离线缓存（PWA）</p>
       <div className="text-muted-foreground/70 space-y-1 text-[11px] leading-relaxed">
         <p>
-          安装到桌面 / 手机后可离线使用。后台自动保存最近
+          首次访问只保存应用基本资源。点击「同步题库」后保存最近
           <span className="text-foreground font-medium"> {limit} </span>
-          场比赛的全部题目页（含译文与公式），编译器首次在线使用后即离线可用；Pyodide
-          需在上方「编译器运行时」中下载后才可离线运行 Python。
+          场比赛的全部题目页（含译文与公式；大小随题面变化，100 场通常约 80 MiB）。
+          C++ 离线运行时约 139 MiB，需单独点击下载；Python 需在上方「编译器运行时」中下载。
         </p>
       </div>
 
@@ -151,15 +168,20 @@ export default function OfflineCacheSection() {
           </div>
           <p className="text-muted-foreground text-[11px]">
             {prog.phase === 'compiler'
-              ? `正在预取编译器运行时 ${prog.done}/${prog.total}（约 145MB,离线编译用）`
+              ? `正在下载编译器运行时 ${prog.done}/${prog.total}（约 139 MiB）`
               : `正在同步离线题库 ${prog.done}/${prog.total}（新增 ${prog.added}）`}
           </p>
         </div>
       )}
       {prog?.phase === 'error' && <p className="text-[11px] text-red-400">✗ 同步失败：{prog.error}</p>}
+      {actionError && <p className="text-[11px] text-red-400">✗ {actionError}</p>}
       {prog?.phase === 'aborted' && <p className="text-muted-foreground text-[11px]">已中止同步。</p>}
       {prog?.phase === 'done' && (
-        <p className="text-[11px] text-emerald-500">✓ 同步完成：{prog.meta?.pages ?? prog.total} 页 · 新增 {prog.added}</p>
+        <p className="text-[11px] text-emerald-500">
+          ✓ {prog.meta?.compilerFiles
+            ? `C++ 运行时同步完成：${prog.meta.compilerFiles} 个文件`
+            : `同步完成：${prog.meta?.pages ?? prog.total} 页 · 新增 ${prog.added}`}
+        </p>
       )}
       {cleared && <p className="text-muted-foreground text-[11px]">已清除，下次在线访问将自动重建。</p>}
 
@@ -170,8 +192,21 @@ export default function OfflineCacheSection() {
           disabled={!swActive}
           className="hover:bg-accent rounded-md border px-2.5 py-1 text-xs text-foreground transition-colors disabled:opacity-50"
         >
-          立即同步
+          同步题库
         </button>
+        <button
+          type="button"
+          onClick={syncCompiler}
+          disabled={!swActive || syncing}
+          className="hover:bg-accent rounded-md border px-2.5 py-1 text-xs text-foreground transition-colors disabled:opacity-50"
+        >
+          下载 C++ 编译器
+        </button>
+        {syncing && (
+          <button type="button" onClick={stopSync} className="text-muted-foreground rounded-md border px-2.5 py-1 text-xs">
+            停止
+          </button>
+        )}
         <button
           type="button"
           onClick={clearAll}
