@@ -1,31 +1,24 @@
 'use client';
 
 /**
- * 设置页「AI 对话」分区：悬浮窗开关、服务商挑选（全局 AI 服务商，
- * 接口地址/Key 在「AI 服务商」分区统一配置）、上下文注入开关、
- * 清空全部对话记录。
+ * 设置页「AI 对话」分区：悬浮窗开关、模块挑选（ModuleAssignPicker：
+ * 服务商/模型/思考深度/本站转发，接口在「AI 服务商」分区统一配置）、
+ * 上下文注入开关、清空全部对话记录。
  */
 
 import { Bot, Trash2 } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
-import { AI_MODELS, providerEndpointBase, providerReady } from '@/lib/ai-providers';
 import { clearAllChats } from '@/lib/chat-store';
 import { chatReady, resolveChatCfg } from '@/lib/chat';
-import { Field, inputCls, SectionCard, ToggleRow } from './controls';
+import ModuleAssignPicker from './ModuleAssignPicker';
+import { SectionCard, ToggleRow } from './controls';
 
 export default function ChatSection() {
-  const { settings, setSettings, aiReady } = useSettings();
+  const { settings, setSettings } = useSettings();
   const chat = settings.chat || {};
-  const providers = settings.aiProviders || { list: [], activeId: null };
-  const assign = settings.aiAssign?.chat || { providerId: 'auto', model: '' };
 
   const patchChat = (p) => setSettings((prev) => ({ ...prev, chat: { ...(prev.chat || {}), ...p } }));
-  const patchAssign = (p) =>
-    setSettings((prev) => ({
-      ...prev,
-      aiAssign: { ...(prev.aiAssign || {}), chat: { ...(prev.aiAssign?.chat || { providerId: 'auto', model: '' }), ...p } },
-    }));
 
   const cfg = resolveChatCfg(settings);
   const ready = chatReady(cfg);
@@ -34,8 +27,6 @@ export default function ChatSection() {
     const n = clearAllChats();
     window.alert(n ? `已清空 ${n} 个会话记录。` : '没有可清空的对话记录。');
   };
-
-  const providerLabel = (p) => `${p.name}${providerReady(p) ? '' : '（未配置 Key）'}`;
 
   return (
     <SectionCard
@@ -51,44 +42,10 @@ export default function ChatSection() {
         onChange={(v) => patchChat({ floatingButton: v })}
       />
 
-      <div className="grid gap-2 sm:grid-cols-2">
-        <Field label="服务商" hint="接口地址与 API Key 在「AI 服务商」分区统一配置">
-          <select
-            className={inputCls}
-            value={assign.providerId || 'auto'}
-            onChange={(e) => patchAssign({ providerId: e.target.value })}
-          >
-            <option value="auto">
-              跟随默认
-              {providers.activeId
-                ? `（${providerLabel(providers.list.find((p) => p.id === providers.activeId) || { name: '?' })}）`
-                : ''}
-            </option>
-            {providers.list.map((p) => (
-              <option key={p.id} value={p.id}>
-                {providerLabel(p)}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field label="模型覆盖" hint="留空 = 使用常用模型列表首个">
-          <input
-            className={inputCls}
-            list="ac-chat-models"
-            placeholder="留空用默认"
-            value={assign.model || ''}
-            onChange={(e) => patchAssign({ model: e.target.value.trim() })}
-          />
-          <datalist id="ac-chat-models">
-            {AI_MODELS.map((m) => (
-              <option key={m} value={m} />
-            ))}
-          </datalist>
-        </Field>
-      </div>
+      <ModuleAssignPicker moduleId="chat" label="AI 对话" />
       <p className={`text-[11px] ${ready ? 'text-emerald-500' : 'text-amber-500'}`}>
         {ready
-          ? `对话接口就绪：${providerEndpointBase(cfg) || cfg.baseUrl} · 模型 ${cfg.model}`
+          ? `对话接口就绪：${cfg.baseUrl} · 模型 ${cfg.model}${cfg.proxy ? ' · 经本站转发' : ''}`
           : '尚未配置：请到「AI 服务商」分区添加服务商（Base URL + API Key）。'}
       </p>
 

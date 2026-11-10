@@ -3,29 +3,39 @@
 /**
  * 设置页「AI 服务商」分区：全站唯一配置 AI 接口地址 / API Key 的地方。
  * 服务商注册表（新增/编辑/复制/删除、点击名称进入编辑器管理模型列表，
- * 支持从 OpenAI / Anthropic 兼容端点 GET /models 拉取并筛选勾选）+
- * 各功能模块（翻译 / AI 对话）的挑选下拉与模型覆盖（限定所选服务商的
- * 模型列表）。AI 代码补全在其自身分区挑选服务商。底部附全部设置导出/导入。
+ * 支持从 OpenAI / Anthropic 兼容端点 GET /models 拉取并筛选勾选）。
+ * 分区内部两个子标签页：「功能模块挑选」（翻译 / AI 对话 / AI 代码补全三个
+ * ModuleAssignPicker：服务商/模型/思考深度/本站转发）与「AI 代码补全」
+ * （内嵌补全行为配置）。底部附全部设置导出/导入。
  */
 
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Check, Copy, FileJson, Pencil, Plus, Server, Trash2, Upload } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
 import { makeProviderId, normalizeProviders, providerReady } from '@/lib/ai-providers';
 import { exportAllSettings, importAllSettings, SETTING_KEYS, validateImportPayload } from '@/lib/settings-io';
+import AiCompletionSettingsSection from '@/components/compiler/AiCompletionSettingsSection';
+import ModuleAssignPicker from './ModuleAssignPicker';
 import ProviderEditor from './ProviderEditor';
-import { Field, inputCls, SectionCard, SubBlock } from './controls';
+import { SectionCard, SubBlock } from './controls';
 
 const MODULES = [
-  { id: 'translation', label: '翻译（AI 用户自定义翻译）' },
+  { id: 'translation', label: '翻译' },
   { id: 'chat', label: 'AI 对话' },
+  { id: 'completion', label: 'AI 代码补全' },
+];
+
+const SUB_TABS = [
+  { id: 'assign', label: '功能模块挑选' },
+  { id: 'completion', label: 'AI 代码补全' },
 ];
 
 export default function AiProviderSection() {
   const { settings, setSettings } = useSettings();
   const providers = normalizeProviders(settings.aiProviders);
   const assign = settings.aiAssign || {};
+  const [subTab, setSubTab] = useState('assign');
   const [editing, setEditing] = useState(null); // Provider 对象（含完整表单字段）| null
   const [test, setTest] = useState(null); // { state, msg }
   // 设置导入导出状态
@@ -150,31 +160,14 @@ export default function AiProviderSection() {
 
   /* ---------------- 渲染 ---------------- */
 
-  const activeProvider = providers.list.find((p) => p.id === providers.activeId) || null;
   const providerLabel = (p) => `${p.name}${providerReady(p) ? '' : '（未配置 Key）'}`;
-
-  // 模块挑选的模型下拉选项：跟随所选服务商的 models（auto → 默认服务商）
-  const moduleModelOptions = (moduleId) => {
-    const cur = assign[moduleId] || {};
-    const id = !cur.providerId || cur.providerId === 'auto' ? providers.activeId : cur.providerId;
-    const p = providers.list.find((q) => q.id === id) || null;
-    return p?.models || [];
-  };
-
-  const selectedProviderText = useMemo(
-    () =>
-      activeProvider
-        ? `${activeProvider.name}${activeProvider.note ? ` · ${activeProvider.note}` : ''}`
-        : '',
-    [activeProvider],
-  );
 
   return (
     <SectionCard
       id="ai-providers"
       icon={Server}
       title="AI 服务商"
-      desc="全站唯一配置 AI 接口的地方：翻译、AI 对话、AI 代码补全都在这里挑选服务商与模型，模块内不再单独填接口。"
+      desc="全站唯一配置 AI 接口的地方：翻译、AI 对话、AI 代码补全都在这里挑选服务商与模型（含思考深度与本站转发），模块内不再单独填接口。"
     >
       {/* 服务商列表 */}
       <div className="space-y-1.5">
@@ -277,61 +270,42 @@ export default function AiProviderSection() {
         )}
       </div>
 
-      {/* 模块挑选 */}
-      <SubBlock
-        title="功能模块挑选"
-        hint="每个模块只能从上方服务商中挑选一个；模型下拉来自所选服务商的模型列表；「跟随默认」= 使用上面勾选的默认服务商。"
-      >
-        <div className="space-y-3">
-          {MODULES.map((m) => {
-            const cur = assign[m.id] || { providerId: 'auto', model: '' };
-            const models = moduleModelOptions(m.id);
-            return (
-              <div key={m.id} className="grid gap-2 sm:grid-cols-2">
-                <Field label={m.label}>
-                  <select
-                    className={inputCls}
-                    value={cur.providerId || 'auto'}
-                    onChange={(e) => patchAssign(m.id, { providerId: e.target.value, model: '' })}
-                  >
-                    <option value="auto">
-                      跟随默认{selectedProviderText ? `（${selectedProviderText}）` : ''}
-                    </option>
-                    {providers.list.map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {providerLabel(p)}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-                <Field label="模型" hint={models.length ? `来自服务商模型列表（${models.length} 个）` : '该服务商还没有模型列表 —— 点服务商名称进去拉取或手工添加'}>
-                  {models.length ? (
-                    <select
-                      className={inputCls}
-                      value={cur.model || ''}
-                      onChange={(e) => patchAssign(m.id, { model: e.target.value })}
-                    >
-                      <option value="">未挑选（用服务商第一个模型）</option>
-                      {models.map((mm) => (
-                        <option key={mm} value={mm}>
-                          {mm}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      className={inputCls}
-                      placeholder="服务商无模型列表，可临时手填"
-                      value={cur.model || ''}
-                      onChange={(e) => patchAssign(m.id, { model: e.target.value.trim() })}
-                    />
-                  )}
-                </Field>
-              </div>
-            );
-          })}
+      {/* 模块挑选 / AI 代码补全：两个子标签页 */}
+      <div className="space-y-3">
+        <div className="flex rounded-md border p-0.5" role="radiogroup" aria-label="AI 服务商子页">
+          {SUB_TABS.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              role="radio"
+              aria-checked={subTab === t.id}
+              onClick={() => setSubTab(t.id)}
+              className={`flex-1 rounded px-2 py-1 text-xs transition-colors ${
+                subTab === t.id
+                  ? 'bg-primary font-medium text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
         </div>
-      </SubBlock>
+
+        {subTab === 'assign' ? (
+          <SubBlock
+            title="功能模块挑选"
+            hint="每个模块只能从上方服务商中挑选一个；模型下拉来自所选服务商的模型列表；「跟随默认」= 使用上面勾选的默认服务商。思考深度与本站转发按模块独立设置。"
+          >
+            <div className="space-y-3">
+              {MODULES.map((m) => (
+                <ModuleAssignPicker key={m.id} moduleId={m.id} label={m.label} />
+              ))}
+            </div>
+          </SubBlock>
+        ) : (
+          <AiCompletionSettingsSection />
+        )}
+      </div>
 
       {/* 全部设置导出 / 导入 */}
       <SubBlock

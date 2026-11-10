@@ -1,14 +1,15 @@
 "use client";
 
 /**
- * 设置弹窗里的「AI 代码补全」区块。移植自 ACM-IDE-online 的 SettingsModal
- * （AI 部分）：多平台配置方案（添加/切换/删除）+ 快速预设、API 类型/服务商挑选/
- * 模型、WebGPU 本地模型（WebLLM：预检/下载源/加载/停止）、FIM 模板、触发方式，
- * 以及 AI Token 用量统计与诊断日志查看器。
+ * 「AI 代码补全」行为配置区块（内嵌于设置 →「AI 服务商」分区的子标签页）。
+ * 移植自 ACM-IDE-online 的 SettingsModal（AI 部分）：多平台配置方案
+ * （添加/切换/删除）+ 快速预设（API 类型预设）、API 类型、WebGPU 本地模型
+ * （WebLLM：预检/下载源/加载/停止）、FIM 模板、触发方式，以及 AI Token 用量
+ * 统计与诊断日志查看器。
  *
- * 连接信息（baseUrl/apiKey）自 2026-11-09 起统一由「AI 服务商」分区配置，
- * 本分区只能挑选服务商 + 覆盖模型；状态持久化在 lib/ai/ai-settings.js
- * （ysc-ai-settings-v1），与编译器偏好、翻译设置互不干扰；
+ * 连接信息（baseUrl/apiKey/model/思考深度/本站转发）自 m:2 起统一由
+ * 「AI 服务商 → 功能模块挑选」承担，本分区只保留行为偏好；状态持久化在
+ * lib/ai/ai-settings.js（ysc-ai-settings-v1），与编译器偏好、翻译设置互不干扰；
  * 编辑器侧经 CompilerDock 传入的 getAi 每次实时读取。
  */
 
@@ -56,12 +57,9 @@ const btnCls =
 const btnGhostCls =
   "rounded-md border px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:text-foreground";
 
-/** 新建平台方案的空白字段。 */
+/** 新建平台方案的空白字段（连接字段已不在方案内，仅行为偏好）。 */
 const BLANK_PROFILE = {
   apiType: "openai-chat",
-  baseUrl: "",
-  apiKey: "",
-  model: "",
   fimTemplate: "qwen25",
   customTemplate: "",
   temperature: 0.2,
@@ -70,7 +68,11 @@ const BLANK_PROFILE = {
 
 const pickProfile = (p) =>
   Object.fromEntries(
-    PROFILE_FIELDS.map((k) => [k, p[k] ?? BLANK_PROFILE[k] ?? ""]),
+    // webllm 方案额外保留 model（本地模型 id）；其余类型连接字段由全局 assign 注入
+    (p?.apiType === "webllm" ? [...PROFILE_FIELDS, "model"] : PROFILE_FIELDS).map((k) => [
+      k,
+      p[k] ?? BLANK_PROFILE[k] ?? "",
+    ]),
   );
 
 /** AI Token 用量统计表：按平台方案累计 + 合计 + 清零（估算部分以 ≈ 标注）。 */
@@ -288,28 +290,6 @@ export default function AiCompletionSettingsSection() {
     setAi(loadAiSettings());
   }, []);
 
-  // 全局服务商列表（供方案挑选下拉；连接信息由 loadAiSettings 运行时注入）
-  const [globalProviders, setGlobalProviders] = useState(null);
-  useEffect(() => {
-    const read = () => {
-      try {
-        const raw = JSON.parse(window.localStorage.getItem("stmt-settings-v1") || "null");
-        const list = Array.isArray(raw?.aiProviders?.list) ? raw.aiProviders.list : [];
-        setGlobalProviders({ list, activeId: raw?.aiProviders?.activeId ?? null });
-      } catch {
-        setGlobalProviders({ list: [], activeId: null });
-      }
-    };
-    read();
-    // 服务商配置变更时刷新（跨分区同页修改走 storage 事件;本页修改走自派发）
-    window.addEventListener("storage", read);
-    window.addEventListener("ac-providers-changed", read);
-    return () => {
-      window.removeEventListener("storage", read);
-      window.removeEventListener("ac-providers-changed", read);
-    };
-  }, []);
-
   useEffect(() => {
     if (!ai || ai.apiType !== "webllm") return;
     let alive = true;
@@ -376,26 +356,13 @@ export default function AiCompletionSettingsSection() {
   };
 
   const applyPreset = (p) => {
-    // 预设只设 apiType/模型/FIM 模板；连接信息（baseUrl/apiKey）已收敛到
-    // 「AI 服务商」，预设里的 baseUrl 仅用于从现有服务商中模糊匹配
-    const { baseUrl: presetBase, ...rest } = p.patch;
-    const match = presetBase
-      ? (globalProviders?.list || []).find((q) => q.baseUrl && presetBase.includes(q.baseUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')))
-      : null;
-    if (presetBase && !match) {
-      setTestState({
-        ok: false,
-        msg: `请先在「AI 服务商」分区添加该服务（${presetBase}），再回来挑选；预设的其余字段（API 类型/模板）已套用`,
-      });
-    }
+    // 预设只设行为字段（apiType/模板等）；连接信息（baseUrl/apiKey/model/转发）
+    // 统一在「AI 服务商 → 功能模块挑选」配置，预设不再涉及
+    patchAi({ ...p.patch });
     // 未命名或还是「平台 N」占位名时，用预设名给方案命名
     const rename = !ai.name || /^平台 /.test(ai.name);
-    patchAi({
-      ...rest,
-      ...(match ? { providerId: match.id } : {}),
-      ...(rename ? { name: p.label.replace(/（.*）/g, "") } : {}),
-    });
-    resetTest();
+    if (rename) patchAi({ name: p.label.replace(/（.*）/g, "").replace(/（仅本地可用）/g, "") });
+    setTestState({ ok: true, msg: `已套用预设「${p.label}」—— 请到「功能模块挑选」子页确认服务商与模型` });
   };
 
   const doFetchModels = async () => {
@@ -639,76 +606,21 @@ export default function AiCompletionSettingsSection() {
             </div>
           ) : (
             <>
-              <label className="block space-y-1">
-                <span className="text-xs font-medium text-muted-foreground">AI 服务商（连接信息在「AI 服务商」分区配置）</span>
-                <select
-                  className={inputCls}
-                  value={ai.providerId || ""}
-                  onChange={(e) => {
-                    patchAi({ providerId: e.target.value });
-                    resetTest();
-                  }}
-                >
-                  <option value="">
-                    跟随默认
-                    {globalProviders?.activeId
-                      ? `（${globalProviders.list.find((p) => p.id === globalProviders.activeId)?.name || "?"}）`
-                      : ""}
-                  </option>
-                  {(globalProviders?.list || []).map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.name}
-                      {p.baseUrl && p.apiKey ? "" : "（未配置完整）"}
-                    </option>
-                  ))}
-                </select>
-                <span className="block font-mono text-[11px] text-muted-foreground">
-                  {ai.baseUrl ? `已解析：${ai.baseUrl}` : "⚠ 所选服务商未配置 Base URL / API Key"}
+              <p className="text-[11px] leading-relaxed text-muted-foreground">
+                服务商与模型在「功能模块挑选」子页统一挑选（AI 代码补全模块行），
+                本页仅配置 API 类型等行为字段；「测试连接」会探测该服务商端点的模型列表。
+              </p>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[11px] text-muted-foreground">
+                  {ai.baseUrl ? `已解析端点：${ai.baseUrl} · 模型 ${ai.model || "（服务商第一个）"}` : "⚠ 「功能模块挑选」中未挑选服务商或该服务商未配置 Base URL / API Key"}
                 </span>
-              </label>
-              <div className="space-y-1">
-                <span className="text-xs font-medium text-muted-foreground">模型（来自服务商模型列表）</span>
-                <div className="flex items-center gap-2">
-                  {(() => {
-                    const curProvider =
-                      globalProviders?.list?.find(
-                        (p) => p.id === (ai.providerId || globalProviders?.activeId),
-                      ) || null;
-                    const models = curProvider?.models || [];
-                    if (!models.length) {
-                      return (
-                        <input
-                          className={`${inputCls} min-w-0 flex-1 font-mono`}
-                          placeholder="该服务商还没有模型列表 —— 去「AI 服务商」分区获取"
-                          value={ai.model}
-                          onChange={(e) => patchAi({ model: e.target.value })}
-                          spellCheck={false}
-                        />
-                      );
-                    }
-                    return (
-                      <select
-                        className={`${inputCls} min-w-0 flex-1 font-mono`}
-                        value={ai.model}
-                        onChange={(e) => patchAi({ model: e.target.value })}
-                      >
-                        <option value="">挑选模型…</option>
-                        {models.map((m) => (
-                          <option key={m} value={m}>
-                            {m}
-                          </option>
-                        ))}
-                      </select>
-                    );
-                  })()}
-                  <button type="button" className={btnCls} onClick={doFetchModels} disabled={testState === "testing"}>
-                    测试连接
-                  </button>
-                </div>
-                {testState && testState !== "testing" && (
-                  <p className={`text-[11px] ${testState.ok ? "text-green-600" : "text-red-500"}`}>{testState.msg}</p>
-                )}
+                <button type="button" className={`${btnCls} ml-auto shrink-0`} onClick={doFetchModels} disabled={testState === "testing"}>
+                  测试连接
+                </button>
               </div>
+              {testState && testState !== "testing" && (
+                <p className={`text-[11px] ${testState.ok ? "text-green-600" : "text-red-500"}`}>{testState.msg}</p>
+              )}
             </>
           )}
 
@@ -807,17 +719,10 @@ export default function AiCompletionSettingsSection() {
           )}
 
           {ai.apiType !== "webllm" && (
-            <label className="flex items-start gap-2 text-xs">
-              <input
-                type="checkbox"
-                className="mt-0.5"
-                checked={ai.useProxy}
-                onChange={(e) => patchAi({ useProxy: e.target.checked })}
-              />
-              <span className="text-muted-foreground">
-                经本站代理转发（解决本地模型 CORS；关闭则浏览器直连，需服务端允许跨域）
-              </span>
-            </label>
+            <p className="text-[11px] leading-relaxed text-muted-foreground">
+              是否经本站转发由「功能模块挑选」子页的 AI 代码补全模块行控制
+              （本地模型服务请保持直连，服务端转发不可达本机）。
+            </p>
           )}
 
           <p className="text-[11px] leading-relaxed text-muted-foreground">

@@ -7,7 +7,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Bot, CloudDownload, Info, Languages, Palette, Server, Sparkles, Terminal } from 'lucide-react';
+import { ArrowLeft, Bot, CloudDownload, Info, Languages, Palette, Server, Terminal } from 'lucide-react';
 
 import AppearanceSection from '@/components/settings/AppearanceSection';
 import AiProviderSection from '@/components/settings/AiProviderSection';
@@ -15,7 +15,6 @@ import TranslationSection from '@/components/settings/TranslationSection';
 import ChatSection from '@/components/settings/ChatSection';
 import AboutSection from '@/components/settings/AboutSection';
 import { SectionCard } from '@/components/settings/controls';
-import AiCompletionSettingsSection from '@/components/compiler/AiCompletionSettingsSection';
 import CompilerSettingsSection from '@/components/compiler/CompilerSettingsSection';
 import OfflineCacheSection from '@/components/OfflineCacheSection';
 
@@ -24,11 +23,13 @@ const SECTIONS = [
   { id: 'ai-providers', label: 'AI 服务商', icon: Server },
   { id: 'translation', label: '翻译', icon: Languages },
   { id: 'chat', label: 'AI 对话', icon: Bot },
-  { id: 'ai-completion', label: 'AI 代码补全', icon: Sparkles },
   { id: 'compiler', label: '编译器', icon: Terminal },
   { id: 'offline', label: '离线缓存', icon: CloudDownload },
   { id: 'about', label: '关于', icon: Info },
 ];
+
+// 已并入其他分区的旧 hash 兼容：#ai-completion → AI 服务商分区（内部子标签页）
+const HASH_COMPAT = { 'ai-completion': 'ai-providers' };
 
 export default function SettingsPage() {
   const [active, setActive] = useState(SECTIONS[0].id);
@@ -50,9 +51,11 @@ export default function SettingsPage() {
     return () => observer.disconnect();
   }, []);
 
-  // 深链:/settings#translation 等直接滚动到对应分区(openSettings(hash) 由此生效)
+  // 深链:/settings#translation 等直接滚动到对应分区(openSettings(hash) 由此生效)。
+  // 旧 hash（#ai-completion 已并入 AI 服务商子标签页）经 HASH_COMPAT 重定向。
   useEffect(() => {
-    const hash = window.location.hash?.slice(1);
+    const raw = window.location.hash?.slice(1);
+    const hash = HASH_COMPAT[raw] || raw;
     if (hash && SECTIONS.some((s) => s.id === hash)) {
       const el = document.getElementById(hash);
       if (el) {
@@ -129,14 +132,6 @@ export default function SettingsPage() {
           <AiProviderSection />
           <TranslationSection />
           <ChatSection />
-          <SectionCard
-            id="ai-completion"
-            icon={Sparkles}
-            title="AI 代码补全"
-            desc="Monaco 编辑器内的 AI ghost text：多方案接口、本地模型、触发方式与用量统计。"
-          >
-            <AiCompletionSettingsSection />
-          </SectionCard>
           <SectionCard
             id="compiler"
             icon={Terminal}

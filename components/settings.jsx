@@ -4,7 +4,12 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { DEFAULT_AI_ASSIGN, DEFAULT_AI_PROVIDERS, normalizeProviders } from '@/lib/ai-providers';
+import {
+  DEFAULT_AI_ASSIGN,
+  DEFAULT_AI_PROVIDERS,
+  normalizeAssign,
+  normalizeProviders,
+} from '@/lib/ai-providers';
 import { allThemes, findTheme, loadCustomThemes } from '@/lib/themes';
 import { CONTEST_TYPES } from '@/lib/contest-type';
 
@@ -154,7 +159,13 @@ function loadSettings() {
       if (v.letterRail === undefined) merged.letterRail = v.contestView !== 'full';
       // 全局 AI 服务商结构归一（脏数据容错）
       merged.aiProviders = normalizeProviders(merged.aiProviders);
-      merged.aiAssign = { ...DEFAULT_AI_ASSIGN, ...(v.aiAssign || {}) };
+      merged.aiAssign = {
+        ...DEFAULT_AI_ASSIGN,
+        ...(v.aiAssign || {}),
+        translation: normalizeAssign(v.aiAssign?.translation),
+        chat: normalizeAssign(v.aiAssign?.chat),
+        completion: normalizeAssign(v.aiAssign?.completion),
+      };
       return merged;
     }
   } catch {}

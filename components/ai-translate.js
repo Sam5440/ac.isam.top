@@ -8,6 +8,9 @@
  * Uses the same placeholder protection as the server pipeline: math
  * ($$$…$$$), inline code, images and bare URLs are masked before the request
  * and spliced back after, with slot-count verification.
+ *
+ * cfg.proxy = true 时（resolveProxy 判定的混合内容/用户开关）经本站
+ * /api/ai/proxy 转发，接口地址与 Key 不再浏览器直连暴露给第三方网络。
  */
 import { useEffect, useState } from 'react';
 import { protectMath, restoreMath } from '@/lib/mt-protect';
@@ -20,27 +23,37 @@ export function normalizeBaseUrl(u) {
   return /\/v\d+$/.test(s) ? s : `${s}/v1`;
 }
 
+/**
+ * 发起一次翻译请求。cfg.proxy 为 true 时改经本站 /api/ai/proxy 转发
+ * （body 形态与 lib/chat.js 的 viaProxy 一致：{url, method, headers, body}），
+ * 用于 https 站点 → http 接口的混合内容场景；思考深度 thinking≠off 时
+ * body 带 reasoning_effort。30s 硬超时与公式占位保护保持不变。
+ */
 export async function aiTranslate(text, cfg, { signal } = {}) {
   const { masked, stash } = protectMath(text);
-  const res = await fetch(`${normalizeBaseUrl(cfg.baseUrl)}/chat/completions`, {
+  const url = `${normalizeBaseUrl(cfg.baseUrl)}/chat/completions`;
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${cfg.apiKey}`,
+  };
+  const body = {
+    model: cfg.model,
+    temperature: 0.1,
+    messages: [
+      {
+        role: 'system',
+        content:
+          '你是专业的算法竞赛题面翻译器。把用户文本翻译成简体中文：术语遵循算法竞赛惯例（如 greedy=贪心、dp=DP）；' +
+          '$$$...$$$ 数学公式、`行内代码`、![](图片链接) 和裸 URL 一律原样保留不翻译；只输出译文，不要任何解释。',
+      },
+      { role: 'user', content: masked },
+    ],
+  };
+  if (cfg.thinking && cfg.thinking !== 'off') body.reasoning_effort = cfg.thinking;
+  const res = await fetch(cfg.proxy ? '/api/ai/proxy' : url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${cfg.apiKey}`,
-    },
-    body: JSON.stringify({
-      model: cfg.model,
-      temperature: 0.1,
-      messages: [
-        {
-          role: 'system',
-          content:
-            '你是专业的算法竞赛题面翻译器。把用户文本翻译成简体中文：术语遵循算法竞赛惯例（如 greedy=贪心、dp=DP）；' +
-            '$$$...$$$ 数学公式、`行内代码`、![](图片链接) 和裸 URL 一律原样保留不翻译；只输出译文，不要任何解释。',
-        },
-        { role: 'user', content: masked },
-      ],
-    }),
+    headers: cfg.proxy ? { 'Content-Type': 'application/json' } : headers,
+    body: JSON.stringify(cfg.proxy ? { url, method: 'POST', headers, body } : body),
     // 30s 硬超时（审查 2026-11-09 AI-5）：旧实现无任何超时/外部 signal,
     // 挂死端点会让渠道体检的「停止」失效、ai_custom 体检永久挂起、翻译
     // FIFO 的并发位被占死。外部 signal 与超时任一触发即中止。

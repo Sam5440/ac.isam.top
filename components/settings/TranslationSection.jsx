@@ -19,6 +19,7 @@ import {
 } from '@/components/settings';
 import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { clearMtStats, HEALTH_SAMPLE, loadMtStats, rankedStats, runHealthCheck } from '@/lib/mt-health';
+import ModuleAssignPicker from './ModuleAssignPicker';
 import { ChipToggle, inputCls, SegButtons, SectionCard, SubBlock, ToggleRow } from './controls';
 
 const MT_CHANNELS = ARCHIVED_CHANNELS; // deepl / youdao / caiyun / iflyrec
@@ -301,15 +302,13 @@ export default function TranslationSection() {
 
       <SubBlock
         title="AI（用户自定义翻译）· 接口来源"
-        hint="接口地址与 API Key 已收敛到「AI 服务商」分区统一配置，此处仅展示当前挑选结果；模型可在「AI 服务商 → 功能模块挑选」中覆盖。"
+        hint="服务商/模型/思考深度/本站转发在下方挑选，接口地址与 API Key 在「AI 服务商」分区统一配置。"
       >
+        <ModuleAssignPicker moduleId="translation" label="翻译" />
         <p className={`rounded-md border px-2.5 py-1.5 text-[11px] leading-relaxed ${aiReady ? 'text-emerald-500 border-emerald-500/30' : 'text-amber-500 border-amber-500/40'}`}>
           {aiReady
-            ? `当前翻译接口：${aiForm.baseUrl || '（未挑选）'} · 模型 ${aiForm.model}`
+            ? `当前翻译接口：${aiForm.baseUrl || '（未挑选）'} · 模型 ${aiForm.model}${aiForm.proxy ? ' · 经本站转发' : ''}`
             : '尚未配置：请到「AI 服务商」分区添加服务商（Base URL + API Key）。'}
-        </p>
-        <p className="text-muted-foreground text-[11px] leading-relaxed">
-          前往「AI 服务商」分区可切换服务商或覆盖翻译模型（本分区不再重复提供接口表单）。
         </p>
       </SubBlock>
 
