@@ -753,3 +753,59 @@ html {
     animation-duration: 1ms;
   }
 }
+
+/* ---------- 全站 Toast（components/ui/ToastHost.jsx）---------- */
+@keyframes toast-in {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.toast-in {
+  animation: toast-in 180ms ease-out;
+}
+@keyframes toast-progress-run {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+.toast-progress {
+  animation-name: toast-progress-run;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/* ---------- 骨架 shimmer（components/ui/LoadingOverlay.jsx）---------- */
+@keyframes skeleton-shimmer-run {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+.skeleton-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, currentColor 8%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer-run 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-in,
+  .toast-progress,
+  .skeleton-shimmer {
+    animation-duration: 1ms;
+  }
+}

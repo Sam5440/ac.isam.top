@@ -6,6 +6,7 @@ import HighlightRuntime from '@/components/HighlightRuntime';
 import LanguageSidebar from '@/components/language-sidebar';
 import OfflineIndicator from '@/components/OfflineIndicator';
 import PwaRegister from '@/components/PwaRegister';
+import ToastHost from '@/components/ui/ToastHost';
 import { SettingsProvider } from '@/components/settings';
 import GithubMark from '@/components/GithubMark';
 import { getIndex } from '@/lib/data';
@@ -138,6 +139,7 @@ export default function RootLayout({ children }) {
           </div>
           <LanguageSidebar />
           <OfflineIndicator />
+          <ToastHost />
           <PwaRegister />
         </SettingsProvider>
       </body>
