@@ -68,12 +68,20 @@ export function buildIndex() {
     };
   }
 
+  // 比赛聚合键：题面侧必须用 (platform, contestId) 而不是整题 id 拼接 ——
+  // 题面 id（1181A / nc143199pa / agc079_a）与比赛 id（1181 / 143199 /
+  // agc079）格式不同,旧实现直接 contestKey(problem) 导致 problemsByContest
+  // 恒为空映射,recentContests 的 problemCount/translatedCount 长期失真。
   const contestKey = (c) => `${c.platform}:${c.id}`;
+  const problemContestKey = (p) => `${p.platform}:${p.contestId}`;
   const problemsByContest = new Map();
   for (const p of problems) {
-    const key = contestKey(p);
+    const key = problemContestKey(p);
     (problemsByContest.get(key) ?? problemsByContest.set(key, []).get(key)).push(p);
   }
+  // 已翻译题面 id 集合：contests.json 里登记但题面文件缺失/损坏的题，
+  // translatedCount 也按登记 id 兜底统计（见 recentContests 映射）
+  const translatedIds = new Set(problems.filter((p) => p.statementZhMd).map((p) => String(p.id)));
 
   const t = (c) => (c.startTime ? new Date(c.startTime).getTime() : 0);
   const sortedContests = contests
@@ -89,13 +97,26 @@ export function buildIndex() {
       titleZh: c.titleZh ?? null,
       startTime: c.startTime,
       problemCount: ps.length || (c.problems ?? []).length,
-      translatedCount: ps.filter((p) => p.statementZhMd).length,
+      translatedCount: ps.length
+        ? ps.filter((p) => p.statementZhMd).length
+        : (c.problems ?? []).filter((id) => translatedIds.has(String(id))).length,
     };
   });
 
+  // 「最新题目」按所属比赛的 startTime 降序（同场内按题号升序）。
+  // 旧实现按 fetchedAt 排序 —— 每轮 CI 的 backfill 都会给历史老题打上新鲜
+  // 的 fetchedAt,把新比赛的题挤出前 12（2026-11-09 实际触发：周赛 Round 169
+  // 入库当晚,首页被 CF 1267 等 2018 年回填题占满,看起来像「新赛没拉到」）。
+  const startTimeByContest = new Map(contests.map((c) => [contestKey(c), t(c)]));
   const recentProblems = problems
     .slice()
-    .sort((a, b) => String(b.fetchedAt ?? '').localeCompare(String(a.fetchedAt ?? '')))
+    .sort(
+      (a, b) =>
+        (startTimeByContest.get(problemContestKey(b)) ?? 0) -
+          (startTimeByContest.get(problemContestKey(a)) ?? 0) ||
+        String(a.index ?? '').localeCompare(String(b.index ?? ''), undefined, { numeric: true }) ||
+        String(b.fetchedAt ?? '').localeCompare(String(a.fetchedAt ?? '')),
+    )
     .slice(0, 12)
     .map((p) => ({
       id: p.id,
