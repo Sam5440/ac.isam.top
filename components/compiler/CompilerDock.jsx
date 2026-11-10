@@ -137,7 +137,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
   const [isMobile, setIsMobile] = useState(false); // 移动端断点（覆盖切换 / 上下分屏）
   const [kbHidden, setKbHidden] = useState(false); // 编程键盘临时收起（点编辑器恢复）
   const [sysKb, setSysKb] = useState(false); // 系统键盘手动开启（键盘右上角开关，输入法场景）
-  const [toast, setToast] = useState(null); // Ctrl+S 保存提示浮窗文案（null=隐藏）
+  const [saveToast, setSaveToast] = useState(null); // Ctrl+S 保存提示浮窗文案（null=隐藏）
   const [splitH, setSplitH] = useState(null); // 分屏模式编译器高度（px），null = 50dvh
   // 样例管理：null = 未自定义（用题目默认样例），数组 = 用户编辑后的完整样例表
   const [sampleCases, setSampleCases] = useState(null);
@@ -1227,11 +1227,11 @@ export default function CompilerDock({ problems, day, currentCode }) {
         >
           {/* Ctrl+S 保存提示浮窗：面板顶部居中胶囊，常挂 DOM 走透明度过渡 */}
           <div
-            className={`compiler-toast ${toast ? "compiler-toast-on" : ""}`}
+            className={`compiler-toast ${saveToast ? "compiler-toast-on" : ""}`}
             role="status"
             aria-live="polite"
           >
-            {toast}
+            {saveToast}
           </div>
 
           {/* 分屏模式顶缘手柄：拖动改编译器高度（--split-h），双击恢复 50dvh */}

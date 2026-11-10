@@ -380,6 +380,9 @@ export default function ChatPanel({ problem, open, onClose }) {
   /* ---------- 浮窗拖拽（pointer events + setPointerCapture） ---------- */
   const onDragStart = (mode) => (e) => {
     if (isMobile) return;
+    // 落在标题栏按钮/交互元素上的按下不作为拖拽起点，否则 pointer capture
+    // 会把 click 吞掉（关闭/历史/导出等按钮点击失效）
+    if (e.target.closest?.('button, input, select, textarea, a, [role="menuitem"]')) return;
     e.preventDefault();
     dragRef.current = { mode, startX: e.clientX, startY: e.clientY, base: { ...geo } };
     e.currentTarget.setPointerCapture?.(e.pointerId);
