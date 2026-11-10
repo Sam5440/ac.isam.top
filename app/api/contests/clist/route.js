@@ -42,10 +42,10 @@ function normalizeQuery(searchParams) {
   return out;
 }
 
-/** 上游响应 → 本站响应体（只保留渲染所需字段）。 */
+/** 上游响应 → 本站响应体（只保留渲染所需字段）。v4 的 objects 是扁平数组。 */
 function pickContests(data) {
-  const list = data?.objects?.contest;
-  if (!Array.isArray(list)) return [];
+  const objs = data?.objects;
+  const list = Array.isArray(objs) ? objs : Array.isArray(objs?.contest) ? objs.contest : [];
   return list.map((c) => ({
     id: c.id,
     event: c.event,
