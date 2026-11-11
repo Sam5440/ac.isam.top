@@ -122,11 +122,25 @@ function writeCiLog() {
       failed: failures.length,
       translated,
     };
+    // 平台拆分（/ci 图表与明细用）：每平台 新抓/回填/失败/场次
+    const platforms = {};
+    for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
+      const s = summary[platform];
+      platforms[platform] = {
+        contests: s.contests || 0,
+        new: s.problems || 0,
+        updated: s.backfilled || 0,
+        failed: (s.errors || []).length,
+      };
+    }
     const backfill = buildBackfillSummary(failures);
     writeRunRecord({
       startedAt: runRecord.startedAt,
       durationMs: Date.now() - new Date(runRecord.startedAt).getTime(),
       trigger: runRecord.trigger,
+      // GitHub Actions 上下文（本地运行时为 null，页面降级不显示）
+      runId: Number(process.env.GITHUB_RUN_ID) || null,
+      sha: (process.env.GITHUB_SHA || '').slice(0, 7) || null,
       fetched: runRecord.fetched.map((x) =>
         // 本轮新抓的题面若随后被翻译，状态记为 translated（fetched 是其前置）
         translatedIds.has(`${x.platform}:${x.problemId}`) ? { ...x, status: 'translated' } : x,
@@ -136,6 +150,9 @@ function writeCiLog() {
         translated: stats.translated,
         pendingCount: backfill.pendingCount,
       },
+      platforms,
+      translateQueue: summary.translateQueue ?? null,
+      translateAttempted: summary.translateAttempted ?? null,
       incomplete: backfill.incomplete,
       nextPlan: backfill.nextPlan,
       errors: runRecord.errors.slice(-50),
@@ -547,6 +564,9 @@ async function runTranslate() {
     .sort((a, b) => String(b.contestId).localeCompare(String(a.contestId), undefined, { numeric: true }));
   const limited = TRANSLATE_LIMIT > 0 ? pending.slice(0, TRANSLATE_LIMIT) : pending;
   if (limited.length) log('translate', `待翻译题面 ${limited.length}（共缺 ${pending.length}）`);
+  // CI 日志记录翻译队列规模（/ci 页「翻译积压」统计用）
+  summary.translateQueue = pending.length;
+  summary.translateAttempted = limited.length;
 
   const limit = pLimit(Number(process.env.TRANSLATE_CONCURRENCY ?? 4));
   let done = 0;
