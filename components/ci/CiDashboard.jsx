@@ -84,10 +84,15 @@ function mergeRemoteRuns(local, remoteRuns) {
   return [...local, ...synth].sort((a, b) => ((a.startedAt || '') < (b.startedAt || '') ? 1 : -1));
 }
 
-/** 本地时区格式化（Intl 显式时区，服务端/客户端一致，避免 hydration mismatch）。 */
-const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Shanghai';
-const fmtDateTime = (iso) =>
-  new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: TZ }).format(new Date(iso));
+/** 本地时区格式化（固定北京时间，与全站 formatDateTime 一致，避免 SSR/客户端时区不同导致 hydration mismatch）。 */
+const fmtDateTime = (iso) => {
+  if (!iso) return '—';
+  try {
+    return new Intl.DateTimeFormat('zh-CN', { timeZone: 'Asia/Shanghai', year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
+};
 
 function timelineDot(r) {
   if (r.failure) return 'bg-red-500 shadow-[0_0_0_3px_rgba(239,68,68,0.2)]';

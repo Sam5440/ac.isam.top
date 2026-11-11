@@ -55,10 +55,15 @@ export const TONE = {
   zinc: { solid: '#71717a', light: '#a1a1aa' },
 };
 
-/** 本地时区短格式（显式时区，SSR/客户端一致）。 */
-const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Shanghai';
-const fmtShort = (iso) =>
-  new Intl.DateTimeFormat('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: TZ }).format(new Date(iso));
+/** 时间短格式（固定北京时间，SSR/客户端一致）。 */
+const fmtShort = (iso) => {
+  if (!iso) return '';
+  try {
+    return new Intl.DateTimeFormat('zh-CN', { timeZone: 'Asia/Shanghai', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
+};
 
 /* ------------------------------- Sparkline ------------------------------- */
 
