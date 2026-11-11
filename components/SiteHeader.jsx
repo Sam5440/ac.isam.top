@@ -16,6 +16,8 @@ import { Button } from '@/components/ui/button';
 import { SettingsGearButton, ThemeToggleButton } from '@/components/settings';
 import GithubMark from '@/components/GithubMark';
 
+const GITHUB_URL = 'https://github.com/Sam5440/ac.isam.top';
+
 const NAV = [
   { href: '/', label: '首页' },
   { href: '/problems', label: '题库' },
@@ -40,44 +42,63 @@ export default function SiteHeader() {
   const [moreOpen, setMoreOpen] = useState(false);
   const moreRef = useRef(null);
 
-  // 导航自适应收纳：全部入口（NAV + MORE_NAV）默认平铺在顶栏；空间不足时
-  // 从最右侧的入口开始依次收进「更多」下拉。visibleCount = 平铺的个数。
+  // 顶栏自适应压缩：按优先级逐级收缩，直到整行放得下（每级一次同步重排，绘制前完成）。
+  // 顺序：⌘J 提示 → 域名 ac.isam.top → 「AC 题库」→「编译器」文字（留图标）
+  // →「GitHub」文字 → GitHub 图标（收进「更多」）→ AC 图标
+  // → 最后导航入口从右往左依次收进「更多」。
   const ALL_NAV = [...NAV, ...MORE_NAV];
-  const [visibleCount, setVisibleCount] = useState(ALL_NAV.length);
-  const navBoxRef = useRef(null); // 导航可用区域
-  const measureRef = useRef(null); // 隐藏测量层（全部入口 + 更多按钮）
+  const STEPS = ['kbd', 'domain', 'name', 'compilerLabel', 'ghText', 'ghIcon', 'acIcon', ...ALL_NAV.map(() => 'fold')];
+  const [level, setLevel] = useState(0);
+  const applied = STEPS.slice(0, level);
+  const has = (k) => applied.includes(k);
+  const foldCount = applied.filter((k) => k === 'fold').length;
+  const visibleCount = ALL_NAV.length - foldCount;
+  const navBoxRef = useRef(null); // 导航可用区域（flex-1）
+  const navInnerRef = useRef(null); // 导航内容（w-max，自然宽度）
+  const rowRef = useRef(null);
+  // 重新测量：level 归零 + tick 递增（保证即使 level 已是 0 也会重渲染并重新爬升）
+  const [tick, setTick] = useState(0);
+  const remeasure = () => {
+    setLevel(0);
+    setTick((t) => t + 1);
+  };
+  // 页面切换导致编译器按钮出现/消失 → 重新测量（跳过首次挂载）
+  const prevDock = useRef(dockAvailable);
   useLayoutEffect(() => {
-    const box = navBoxRef.current;
-    const meas = measureRef.current;
-    if (!box || !meas) return;
-    const compute = () => {
-      const avail = box.clientWidth;
-      const items = [...meas.querySelectorAll('[data-nav-item]')].map((el) => el.offsetWidth);
-      const moreW = meas.querySelector('[data-nav-more]')?.offsetWidth ?? 64;
-      const GAP = 4;
-      const total = items.reduce((a, w) => a + w + GAP, 0);
-      if (total <= avail) {
-        setVisibleCount(items.length);
-        return;
+    if (prevDock.current === dockAvailable) return;
+    prevDock.current = dockAvailable;
+    remeasure();
+  }, [dockAvailable]);
+  // 顶栏宽度变化 → 重新测量
+  useLayoutEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+    let last = Math.round(row.getBoundingClientRect().width);
+    const ro = new ResizeObserver(([e]) => {
+      const w = Math.round(e.contentRect.width);
+      if (w !== last) {
+        last = w;
+        remeasure();
       }
-      let used = moreW;
-      let n = 0;
-      for (const w of items) {
-        if (used + w + GAP > avail) break;
-        used += w + GAP;
-        n++;
-      }
-      setVisibleCount(n);
-    };
-    compute();
-    const ro = new ResizeObserver(compute);
-    ro.observe(box);
+    });
+    ro.observe(row);
     return () => ro.disconnect();
   }, []);
+  // 逐级爬升：每次提交后检测是否溢出，溢出则再压一级（layout effect 内同步重排，绘制前收敛）
+  useLayoutEffect(() => {
+    const box = navBoxRef.current;
+    const inner = navInnerRef.current;
+    const row = rowRef.current;
+    if (!box || !inner || !row) return;
+    const overflow = inner.offsetWidth > box.clientWidth + 0.5 || row.scrollWidth > row.clientWidth + 0.5;
+    if (overflow && level < STEPS.length) setLevel(level + 1);
+  }, [level, tick, dockAvailable]);
   const shownNav = ALL_NAV.slice(0, visibleCount);
   const overflowNav = ALL_NAV.slice(visibleCount);
   const isActive = (href) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+  const ghInMore = has('ghIcon');
   const moreActive = overflowNav.some((item) => isActive(item.href));
+  const showMore = overflowNav.length > 0 || ghInMore;
 
   useEffect(() => {
     if (!moreOpen) return;
@@ -110,31 +131,25 @@ export default function SiteHeader() {
   };
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-3 px-4 sm:gap-6">
-        {/* min-w-0 + truncate:窄屏(≤430px)下品牌文案可收缩,避免右侧按钮簇被
-            挤出视口(审查 2026-11-09 编译-14 的溢出根因之一) */}
-        <Link href="/" className="flex min-w-0 shrink items-center gap-2.5">
-          <span className="bg-primary text-primary-foreground grid size-7 shrink-0 place-items-center rounded-md text-[13px] font-bold">
-            AC
-          </span>
-          <span className="truncate text-[15px] font-semibold tracking-tight">
-            AC 题库 <span className="text-muted-foreground">ac.isam.top</span>
-          </span>
-        </Link>
-        {/* 导航区：占据品牌与右侧按钮簇之间的全部空间；放不下的入口从右往左收进「更多」 */}
-        <div ref={navBoxRef} className="relative ml-2 flex min-w-0 flex-1 items-center">
-          {/* 测量层：不可见，按原样渲染全部入口以获得各自宽度 */}
-          <div ref={measureRef} aria-hidden className="pointer-events-none invisible fixed top-0 left-0 -z-10 flex w-max items-center gap-1 whitespace-nowrap" style={{ transform: "translateX(-200vw)" }}>
-            {ALL_NAV.map((item) => (
-              <span key={item.href} data-nav-item className="inline-flex h-8 items-center px-3 text-xs font-medium">
-                {item.label}
+      <div ref={rowRef} className="mx-auto flex h-14 w-full max-w-6xl items-center gap-3 px-4 sm:gap-6">
+        {/* 品牌区不收缩：由上方 level 逐级隐藏域名 / 站名 / 图标，而不是 truncate 成「AC …」 */}
+        {!(has('name') && has('acIcon')) && (
+          <Link href="/" className="flex shrink-0 items-center gap-2.5" title="AC 题库 ac.isam.top" aria-label="AC 题库首页">
+            {!has('acIcon') && (
+              <span className="bg-primary text-primary-foreground grid size-7 shrink-0 place-items-center rounded-md text-[13px] font-bold">
+                AC
               </span>
-            ))}
-            <span data-nav-more className="inline-flex h-8 items-center gap-2 px-3 text-xs font-medium">
-              更多
-              <ChevronDown className="size-3.5" />
-            </span>
-          </div>
+            )}
+            {!has('name') && (
+              <span className="whitespace-nowrap text-[15px] font-semibold tracking-tight">
+                AC 题库{!has('domain') && <span className="text-muted-foreground"> ac.isam.top</span>}
+              </span>
+            )}
+          </Link>
+        )}
+        {/* 导航区：占据品牌与右侧按钮簇之间的全部空间；放不下的入口收进「更多」 */}
+        <div ref={navBoxRef} className="relative ml-2 flex min-w-0 flex-1 items-center">
+          <div ref={navInnerRef} className="flex w-max shrink-0 items-center">
           <nav className="flex min-w-0 items-center gap-1 whitespace-nowrap" aria-label="站点导航">
             {shownNav.map((item) => (
               <Button key={item.href} asChild variant="ghost" size="sm">
@@ -144,7 +159,7 @@ export default function SiteHeader() {
               </Button>
             ))}
           </nav>
-          {overflowNav.length > 0 && (
+          {showMore && (
             <div ref={moreRef} className="relative ml-1 shrink-0">
               <Button
                 variant="ghost"
@@ -183,10 +198,26 @@ export default function SiteHeader() {
                       </Link>
                     );
                   })}
+                  {ghInMore && (
+                    <a
+                      href={GITHUB_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      role="menuitem"
+                      className="flex items-start gap-2.5 border-t px-3 py-2.5 text-sm transition-colors hover:bg-accent"
+                    >
+                      <GithubMark className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+                      <span className="min-w-0">
+                        <span className="block leading-5">GitHub</span>
+                        <span className="text-muted-foreground block text-[11px] leading-4">本站仓库 Sam5440/ac.isam.top</span>
+                      </span>
+                    </a>
+                  )}
                 </div>
               )}
             </div>
           )}
+          </div>
         </div>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {dockAvailable && (
@@ -199,24 +230,20 @@ export default function SiteHeader() {
               title={dockOpen ? '收起编译器工作区（Ctrl/⌘+J）' : '打开编译器工作区（Ctrl/⌘+J）'}
             >
               <Terminal className="size-3.5" />
-              <span className="hidden min-[420px]:inline">编译器</span>
-              <kbd className="hidden md:inline">⌘ J</kbd>
+              {!has('compilerLabel') && <span>编译器</span>}
+              {!has('kbd') && <kbd>⌘ J</kbd>}
             </Button>
           )}
           <ThemeToggleButton />
           <SettingsGearButton />
-          <Button asChild size="sm">
-            <a
-              href="https://github.com/Sam5440/ac.isam.top"
-              target="_blank"
-              rel="noreferrer"
-              title="本站仓库：Sam5440/ac.isam.top"
-              aria-label="GitHub 仓库"
-            >
-              <GithubMark className="size-3.5" />
-              <span className="hidden min-[420px]:inline">GitHub</span>
-            </a>
-          </Button>
+          {!ghInMore && (
+            <Button asChild size="sm" className={has('ghText') ? 'px-2.5' : undefined}>
+              <a href={GITHUB_URL} target="_blank" rel="noreferrer" title="本站仓库：Sam5440/ac.isam.top" aria-label="GitHub 仓库">
+                <GithubMark className="size-3.5" />
+                {!has('ghText') && <span>GitHub</span>}
+              </a>
+            </Button>
+          )}
         </div>
       </div>
     </header>
