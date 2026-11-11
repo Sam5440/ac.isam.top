@@ -116,7 +116,7 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
   const [recent, setRecent] = useState([]);
   const [cursor, setCursor] = useState({ line: 1, col: 1, sel: 0 });
   const [fullscreen, setFullscreen] = useState(false);
-  const [pseudoFs, setPseudoFs] = useState(false); // Fullscreen API 不可用时的 CSS 兜底
+  const [pseudoFs, setPseudoFs] = useState(false); // 页面内全屏（CSS 铺满视口；也是 Fullscreen API 不可用时的兜底）
   const ideRef = useRef(null);
 
   const [mounted, setMounted] = useState(false);
@@ -789,18 +789,24 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
     };
   }, [pseudoFs]);
   const isFull = fullscreen || pseudoFs;
+  /** 屏幕全屏：Fullscreen API（浏览器级，隐藏浏览器 UI）；不可用时退化为页面内全屏。 */
   const toggleFullscreen = useCallback(async () => {
     const el = ideRef.current;
     if (!el) return;
-    if (pseudoFs) return setPseudoFs(false);
     if (document.fullscreenElement) return document.exitFullscreen?.();
     try {
       if (!el.requestFullscreen) throw new Error("unsupported");
+      setPseudoFs(false);
       await el.requestFullscreen();
     } catch {
       setPseudoFs(true);
     }
-  }, [pseudoFs]);
+  }, []);
+  /** 页面内全屏：IDE 铺满浏览器视口（盖住站点顶栏），保留浏览器标签 / 地址栏。 */
+  const togglePageFullscreen = useCallback(async () => {
+    if (document.fullscreenElement) await document.exitFullscreen?.().catch(() => {});
+    setPseudoFs((v) => !v);
+  }, []);
   const toggleFullscreenRef = useRef(toggleFullscreen);
   toggleFullscreenRef.current = toggleFullscreen;
 
@@ -1043,8 +1049,10 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
                 onStop={stopRun}
                 onNewFile={() => wb.showModule("files")}
                 showRun={L.showRun}
-                fullscreen={isFull}
+                fullscreen={fullscreen}
+                pageFullscreen={pseudoFs}
                 onToggleFullscreen={toggleFullscreen}
+                onTogglePageFullscreen={togglePageFullscreen}
               />
             </div>
 

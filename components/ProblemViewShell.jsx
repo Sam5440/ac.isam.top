@@ -16,6 +16,7 @@ import { useCallback, useEffect, useState } from 'react';
 import CompilerDock from '@/components/compiler/CompilerDock';
 import { DifficultyBadge, TranslatedBadge } from '@/components/Badges';
 import { useSettings } from '@/components/settings';
+import { startNavProgress } from '@/components/NavigationProgress';
 
 function compilerProblems(problems) {
   return (problems ?? []).map((p) => ({
@@ -152,7 +153,10 @@ export function ProblemSwitcher({ contest, current }) {
         value={idx}
         onChange={(e) => {
           const p = problems[Number(e.target.value)];
-          if (p) router.push(problemHref(current.platform, p));
+          if (p) {
+            startNavProgress();
+            router.push(problemHref(current.platform, p));
+          }
         }}
         aria-label="切换题目"
         className="min-w-0 flex-1 rounded-md border bg-background px-2 py-1 text-xs"

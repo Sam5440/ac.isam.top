@@ -4,6 +4,7 @@ import SiteHeader from '@/components/SiteHeader';
 import KatexRuntime from '@/components/KatexRuntime';
 import HighlightRuntime from '@/components/HighlightRuntime';
 import LanguageSidebar from '@/components/language-sidebar';
+import NavigationProgress from '@/components/NavigationProgress';
 import OfflineIndicator from '@/components/OfflineIndicator';
 import PwaRegister from '@/components/PwaRegister';
 import ToastHost from '@/components/ui/ToastHost';
@@ -87,6 +88,7 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
       </head>
       <body>
+        <NavigationProgress />
         <KatexRuntime />
         <HighlightRuntime />
         <SettingsProvider>

@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { startNavProgress } from '@/components/NavigationProgress';
 
 import {
   DEFAULT_AI_ASSIGN,
@@ -295,7 +296,7 @@ export function SettingsProvider({ children }) {
     setSettings,
     customThemes,
     reloadCustomThemes: () => setCustomThemes(loadCustomThemes()),
-    openSettings: (hash) => router.push(hash ? `/settings#${hash}` : '/settings'),
+    openSettings: (hash) => (location.pathname !== '/settings' && startNavProgress(), router.push(hash ? `/settings#${hash}` : '/settings')),
     // 翻译模块接口是否就绪（全局服务商已配置 baseUrl+Key）
     aiReady: !!(
       settings.aiProviders &&

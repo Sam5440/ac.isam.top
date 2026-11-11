@@ -11,7 +11,7 @@
  */
 
 import dynamic from "next/dynamic";
-import { Braces, ChevronRight, Maximize, Minimize, Play, Save, Square, X } from "lucide-react";
+import { Braces, ChevronRight, Expand, Maximize, Minimize, Play, Save, Shrink, Square, X } from "lucide-react";
 import { ActionButton, FileIcon } from "@/components/ide/vsc";
 
 const CodeEditor = dynamic(() => import("@/components/compiler/CodeEditor"), {
@@ -81,7 +81,9 @@ export default function EditorPane({
   onNewFile,
   showRun = true,
   fullscreen,
+  pageFullscreen,
   onToggleFullscreen,
+  onTogglePageFullscreen,
 }) {
   const fileOf = (path) => files.find((f) => f.path === path);
   const active = fileOf(activePath);
@@ -147,11 +149,20 @@ export default function EditorPane({
                 <ActionButton icon={Play} title="运行当前文件 (F5)" onClick={onRun} disabled={!activePath} className="text-[color:var(--vsc-success)]" />
               ))}
             <ActionButton icon={Save} title={`保存 (${MOD}S)`} onClick={onSave} disabled={!activePath} />
+            {onTogglePageFullscreen && (
+              <ActionButton
+                icon={pageFullscreen ? Shrink : Expand}
+                title={pageFullscreen ? "退出页面内全屏 (Esc)" : "页面内全屏（铺满浏览器窗口）"}
+                onClick={onTogglePageFullscreen}
+                active={!!pageFullscreen}
+              />
+            )}
             {onToggleFullscreen && (
               <ActionButton
                 icon={fullscreen ? Minimize : Maximize}
-                title={fullscreen ? "退出全屏 (Esc)" : "全屏 IDE (F11)"}
+                title={fullscreen ? "退出全屏 (Esc / F11)" : "全屏（整个屏幕，F11）"}
                 onClick={onToggleFullscreen}
+                active={!!fullscreen}
               />
             )}
           </div>
