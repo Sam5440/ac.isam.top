@@ -229,6 +229,25 @@ export default function TranslationSection() {
         </Row>
       </Group>
 
+      <Group title="比赛日历" desc="「比赛日历」页显示的日期范围；比赛网站可在日历页顶部直接勾选。">
+        <Row label="显示今天之前" hint="包含最近已结束 / 进行中的比赛（0–30 天）。">
+          <DaysInput
+            value={settings.calendarDaysBefore ?? 3}
+            max={30}
+            onChange={(v) => setSettings({ calendarDaysBefore: v })}
+            label="今天之前天数"
+          />
+        </Row>
+        <Row label="显示今天之后" hint="即将开始的比赛范围（0–60 天）。">
+          <DaysInput
+            value={settings.calendarDaysAfter ?? 15}
+            max={60}
+            onChange={(v) => setSettings({ calendarDaysAfter: v })}
+            label="今天之后天数"
+          />
+        </Row>
+      </Group>
+
       <Group
         title="译文样式"
         desc="题面中文译文的外观；来源标签、行内代码与公式不受影响。"
@@ -471,5 +490,33 @@ export default function TranslationSection() {
         </SubBlock>
       </Advanced>
     </div>
+  );
+}
+
+/** 天数输入：失焦 / 回车时钳制到 [0, max] 再保存。 */
+function DaysInput({ value, max, onChange, label }) {
+  const [draft, setDraft] = useState(String(value));
+  useEffect(() => setDraft(String(value)), [value]);
+  const commit = () => {
+    const n = Number.parseInt(draft, 10);
+    const v = Number.isFinite(n) ? Math.min(Math.max(n, 0), max) : value;
+    setDraft(String(v));
+    if (v !== value) onChange(v);
+  };
+  return (
+    <span className="flex items-center gap-1.5 text-xs">
+      <input
+        type="number"
+        min={0}
+        max={max}
+        aria-label={label}
+        className={`${inputCls} w-20 text-right tabular-nums`}
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={(e) => e.key === 'Enter' && commit()}
+      />
+      天
+    </span>
   );
 }

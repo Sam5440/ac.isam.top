@@ -9,7 +9,7 @@ export default function CalendarPage() {
       <div>
         <h1 className="text-3xl font-bold tracking-tight">比赛日历</h1>
         <p className="text-muted-foreground mt-2 text-sm">
-          近期比赛日程（数据来自 Clist，时间为本地时区）。点击日期查看当天赛事，赛事名可跳转官网。
+          近期比赛日程（数据来自 Clist，时间为本地时区）。点击比赛可跳转官网，顶部可勾选比赛网站。
         </p>
       </div>
       <CalendarView />

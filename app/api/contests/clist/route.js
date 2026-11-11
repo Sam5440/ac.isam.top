@@ -4,7 +4,7 @@
  * - 上游：GET https://clist.by/api/v4/json/contest/，鉴权 `Authorization: ${CLIST_API_KEY}`
  *   （Clist v4 直接放 Key，不加 Bearer 前缀；Key 只在服务端读取，任何响应都不会回传）。
  * - 参数白名单透传：upcoming / start_time__during（默认 '30 days'）/ limit（默认 100）/
- *   offset / order_by（默认 start），其余查询参数一律丢弃，防止把任意查询打向上游。
+ *   start__gte / start__lte（ISO 起止，日历用）/ offset / order_by（默认 start），其余查询参数一律丢弃，防止把任意查询打向上游。
  * - 模块级缓存 TTL 600s + in-flight 去重：Clist 限流 10 req/min，缓存是强制的；
  *   key = 规范化后的 query，同一窗口的并发请求只打一次上游。
  * - 错误语义：缺 Key → 500 {error:'CLIST_API_KEY 未配置'}；
@@ -18,7 +18,15 @@ const CACHE_TTL_MS = 600 * 1000;
 const MAX_CACHE_ENTRIES = 50;
 const MAX_LIMIT = 500;
 
-const ALLOWED_PARAMS = new Set(['upcoming', 'start_time__during', 'limit', 'offset', 'order_by']);
+const ALLOWED_PARAMS = new Set([
+  'upcoming',
+  'start_time__during',
+  'start__gte',
+  'start__lte',
+  'limit',
+  'offset',
+  'order_by',
+]);
 
 // 模块级缓存与在途请求去重（dev 热重载会重建，无碍；生产为单实例常驻）
 /** @type {Map<string, {at:number, body:object}>} */
@@ -33,7 +41,8 @@ function normalizeQuery(searchParams) {
     const raw = searchParams.get(key);
     if (raw !== null && raw.trim() !== '') out.set(key, raw.trim());
   }
-  if (!out.has('start_time__during')) out.set('start_time__during', '30 days');
+  // 显式起止区间（日历：前 N 天 ~ 后 M 天）优先；否则默认未来 30 天窗口
+  if (!out.has('start_time__during') && !out.has('start__gte')) out.set('start_time__during', '30 days');
   if (!out.has('order_by')) out.set('order_by', 'start');
   const limit = Math.min(Math.max(parseInt(out.get('limit'), 10) || 100, 1), MAX_LIMIT);
   out.set('limit', String(limit));

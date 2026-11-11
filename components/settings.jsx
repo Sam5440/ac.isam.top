@@ -48,6 +48,9 @@ export const DEFAULT_ZH_STYLE = { color: '', fontSize: '', bold: false, italic: 
 
 export const DEFAULT_HOME_TYPES = CONTEST_TYPES.map((t) => t.id);
 
+// 比赛日历默认勾选的站点：牛客、洛谷、AtCoder、Codeforces
+export const DEFAULT_CALENDAR_SITES = ['ac.nowcoder.com', 'luogu.com.cn', 'atcoder.jp', 'codeforces.com'];
+
 // AI 对话默认配置：默认复用「AI (用户自定义翻译)」的接口，悬浮窗默认开启
 export const DEFAULT_CHAT = {
   useTranslationAi: true,
@@ -100,6 +103,10 @@ export const DEFAULT_SETTINGS = {
   // 牛客题目默认开启翻译：开 = 跟随上方「默认题面语言」；关 = 打开牛客题目时
   // 默认只显示原文（牛客绝大多数为官方中文题面），可用左下角「译」浮标临时切换
   nowcoderTranslate: true,
+  // 比赛日历：显示「今天前 N 天 ~ 后 M 天」的比赛；站点筛选（Clist resource 域名）
+  calendarDaysBefore: 3,
+  calendarDaysAfter: 15,
+  calendarSites: DEFAULT_CALENDAR_SITES,
 };
 
 const LANG_KEY = 'stmt-lang-v2';
@@ -158,6 +165,7 @@ function loadSettings() {
         ...(Object.keys(chatBehavior).length ? { chat: { ...DEFAULT_CHAT, ...chatBehavior } } : {}),
         zhStyle: { ...DEFAULT_ZH_STYLE, ...(v.zhStyle || {}) },
         homeContestTypes: Array.isArray(v.homeContestTypes) ? v.homeContestTypes : DEFAULT_HOME_TYPES,
+        calendarSites: Array.isArray(v.calendarSites) ? v.calendarSites : DEFAULT_CALENDAR_SITES,
       };
       const saved = (Array.isArray(merged.zhPriority) ? merged.zhPriority : []).filter(
         (id) => ARCHIVED_CHANNELS.includes(id) || id === 'ai',

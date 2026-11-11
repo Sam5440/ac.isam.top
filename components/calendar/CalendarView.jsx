@@ -1,109 +1,161 @@
 'use client';
 
 /**
- * /calendar 比赛日历（工作项 3.4）：月历网格（6×7，周一首）+ 当日事件点，
- * 月份切换按跨度重算 start_time__during 窗口重新请求 /api/contests/clist；
- * 右侧/下方「即将开始」列表：资源徽章、本地时区起止、时长、外链；
- * 点击日期过滤列表到当天。空/失败：toast.error + 内联空态 + 重试。
+ * /calendar 比赛日历：周一首的周网格，覆盖「今天前 N 天 ~ 后 M 天」（设置 → 题面与翻译 → 比赛日历，
+ * 默认 3 / 15 天），每格按开始时间列出当天全部比赛（不折叠为 +N more，名字过长自动换行）。
+ * 顶部站点筛选可直接勾选（持久化到 settings.calendarSites，默认牛客 / 洛谷 / AtCoder / Codeforces）。
+ * 数据经 /api/contests/clist 以 start__gte / start__lte 区间请求；窄屏退化为按日分组列表。
  */
 
-import { CalendarDays, ChevronLeft, ChevronRight, ExternalLink, RotateCcw } from 'lucide-react';
+import { CalendarDays, RotateCcw } from 'lucide-react';
+import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/LoadingOverlay';
+import { DEFAULT_CALENDAR_SITES, useSettings } from '@/components/settings';
 import { toast } from '@/lib/toast';
 
-// 周一为一周之首的表头
-const WEEKDAYS = ['一', '二', '三', '四', '五', '六', '日'];
+const WEEKDAYS = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
-// 资源 → 点色小调色板（稳定 hash 取色，避免每次渲染漂移）
-const DOT_COLORS = [
-  'bg-red-500',
-  'bg-amber-500',
-  'bg-emerald-500',
-  'bg-sky-500',
-  'bg-violet-500',
-  'bg-pink-500',
+// 常用站点：短标签 + 配色（徽章实色 / 条目浅底）
+const KNOWN_SITES = {
+  'ac.nowcoder.com': { label: '牛客', short: 'N', badge: 'bg-sky-600', tint: 'bg-sky-500/12 hover:bg-sky-500/20' },
+  'luogu.com.cn': { label: '洛谷', short: '洛', badge: 'bg-violet-600', tint: 'bg-violet-500/12 hover:bg-violet-500/20' },
+  'atcoder.jp': { label: 'AtCoder', short: 'AT', badge: 'bg-amber-700', tint: 'bg-amber-500/14 hover:bg-amber-500/22' },
+  'codeforces.com': { label: 'Codeforces', short: 'CF', badge: 'bg-rose-600', tint: 'bg-rose-500/12 hover:bg-rose-500/20' },
+  'leetcode.com': { label: 'LeetCode', short: 'LC', badge: 'bg-orange-500', tint: 'bg-orange-500/12 hover:bg-orange-500/20' },
+  'codechef.com': { label: 'CodeChef', short: 'CC', badge: 'bg-stone-600', tint: 'bg-stone-500/12 hover:bg-stone-500/20' },
+};
+
+const OTHER_PALETTE = [
+  { badge: 'bg-emerald-600', tint: 'bg-emerald-500/12 hover:bg-emerald-500/20' },
+  { badge: 'bg-teal-600', tint: 'bg-teal-500/12 hover:bg-teal-500/20' },
+  { badge: 'bg-indigo-600', tint: 'bg-indigo-500/12 hover:bg-indigo-500/20' },
+  { badge: 'bg-pink-600', tint: 'bg-pink-500/12 hover:bg-pink-500/20' },
+  { badge: 'bg-lime-700', tint: 'bg-lime-500/14 hover:bg-lime-500/22' },
+  { badge: 'bg-cyan-700', tint: 'bg-cyan-500/12 hover:bg-cyan-500/20' },
 ];
 
 function hashCode(str) {
   let h = 0;
-  for (let i = 0; i < str.length; i += 1) {
-    h = (h * 31 + str.charCodeAt(i)) | 0;
-  }
+  for (let i = 0; i < str.length; i += 1) h = (h * 31 + str.charCodeAt(i)) | 0;
   return Math.abs(h);
 }
 
-function resourceColor(resource) {
-  return DOT_COLORS[hashCode(String(resource || '')) % DOT_COLORS.length];
+function siteMeta(resource) {
+  const r = String(resource || '');
+  if (KNOWN_SITES[r]) return KNOWN_SITES[r];
+  const base = r.replace(/^(www|ac|contest|contests)\./, '');
+  return {
+    label: r,
+    short: base.slice(0, 2).toUpperCase(),
+    ...OTHER_PALETTE[hashCode(r) % OTHER_PALETTE.length],
+  };
 }
 
-/** 秒 → 「2h30m」/「45m」/「2d3h」。 */
+/** Date → 本地日期 key（YYYY-MM-DD）。 */
+function dayKey(d) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+function addDays(d, n) {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
+}
+
+/** Date → Clist 区间参数（UTC，无时区后缀）。 */
+function clistTime(d) {
+  return d.toISOString().slice(0, 19);
+}
+
+const TIME_FMT = new Intl.DateTimeFormat('zh-CN', { hour: '2-digit', minute: '2-digit', hour12: false });
+const FULL_FMT = new Intl.DateTimeFormat('zh-CN', {
+  month: 'numeric',
+  day: 'numeric',
+  weekday: 'short',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+});
+
 function formatDuration(seconds) {
   const total = Math.max(0, Math.floor(Number(seconds) || 0));
   const d = Math.floor(total / 86400);
   const h = Math.floor((total % 86400) / 3600);
   const m = Math.floor((total % 3600) / 60);
-  if (d > 0) return m > 0 ? `${d}d${h}h` : h > 0 ? `${d}d${h}h` : `${d}d`;
-  if (h > 0) return m > 0 ? `${h}h${m}m` : `${h}h`;
-  return `${m}m`;
+  if (d > 0) return h > 0 ? `${d}天${h}小时` : `${d}天`;
+  if (h > 0) return m > 0 ? `${h}小时${m}分` : `${h}小时`;
+  return `${m}分钟`;
 }
 
-/** ISO UTC → 本地时区短文本（Intl.DateTimeFormat，跟随用户 locale）。 */
-function fmtTime(iso) {
-  if (!iso) return '—';
-  try {
-    return new Intl.DateTimeFormat(undefined, {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(new Date(iso));
-  } catch {
-    return iso;
-  }
+const clampDays = (v, def, max) => {
+  const n = Number.parseInt(v, 10);
+  return Number.isFinite(n) ? Math.min(Math.max(n, 0), max) : def;
+};
+
+function SiteBadge({ resource, className = '' }) {
+  const meta = siteMeta(resource);
+  return (
+    <span
+      className={`inline-flex h-4 min-w-4 shrink-0 items-center justify-center rounded-[3px] px-0.5 text-[9px] font-bold leading-none text-white ${meta.badge} ${className}`}
+    >
+      {meta.short}
+    </span>
+  );
 }
 
-/** ISO UTC → 本地日期 key（YYYY-MM-DD），日历分桶与点击过滤共用。 */
-function dayKey(iso) {
-  const d = new Date(iso);
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${y}-${m}-${day}`;
+function EventItem({ c, now }) {
+  const meta = siteMeta(c.resource);
+  const start = new Date(c.start);
+  const end = new Date(c.end);
+  const past = end < now;
+  const running = start <= now && now < end;
+  return (
+    <a
+      href={c.href}
+      target="_blank"
+      rel="noreferrer"
+      title={`${c.event}\n${meta.label} · ${FULL_FMT.format(start)} 开始 · 时长 ${formatDuration(c.duration)}`}
+      className={`flex items-start gap-1 rounded px-1 py-0.5 text-[11.5px] leading-snug transition-colors ${meta.tint} ${
+        past ? 'opacity-50' : ''
+      } ${running ? 'ring-1 ring-emerald-500/70' : ''}`}
+    >
+      <SiteBadge resource={c.resource} className="mt-px" />
+      <span className="min-w-0 break-words">
+        <span className="mr-1 font-semibold tabular-nums">{TIME_FMT.format(start)}</span>
+        {c.event}
+      </span>
+    </a>
+  );
 }
-
-/** 月份跨度 → start_time__during 窗口文案（涵盖当月起点的整月及前后缓冲）。 */
-function duringWindowFor(year, month) {
-  const first = new Date(year, month, 1);
-  // 当月起点的下下月 1 号 - 当月 1 号 = 覆盖本月的整窗口（含跨月缓冲 0 天）
-  const nextNext = new Date(year, month + 2, 1);
-  const days = Math.ceil((nextNext - first) / 86400000);
-  return `${days} days`;
-}
-
-const MONTH_FMT = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long' });
 
 export default function CalendarView() {
-  const today = useMemo(() => new Date(), []);
-  const [view, setView] = useState({ y: today.getFullYear(), m: today.getMonth() });
-  const [contests, setContests] = useState(null); // null = 加载中
+  const { settings, setSettings } = useSettings();
+  const before = clampDays(settings.calendarDaysBefore, 3, 30);
+  const after = clampDays(settings.calendarDaysAfter, 15, 60);
+  const selected = useMemo(
+    () => new Set(Array.isArray(settings.calendarSites) ? settings.calendarSites : DEFAULT_CALENDAR_SITES),
+    [settings.calendarSites],
+  );
+
+  const [now, setNow] = useState(() => new Date());
+  const todayKey = dayKey(now);
+  const rangeStart = useMemo(() => addDays(new Date(now), -before), [todayKey, before]);
+  const rangeEnd = useMemo(() => addDays(new Date(now), after + 1), [todayKey, after]);
+
+  const [contests, setContests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedDay, setSelectedDay] = useState(null); // dayKey | null
-
-  const during = duringWindowFor(view.y, view.m);
 
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
+    setNow(new Date());
     try {
       const params = new URLSearchParams({
-        upcoming: 'true',
-        start_time__during: during,
-        limit: '100',
+        start__gte: clistTime(rangeStart),
+        start__lte: clistTime(rangeEnd),
+        limit: '500',
         order_by: 'start',
       });
       const res = await fetch(`/api/contests/clist?${params.toString()}`);
@@ -116,166 +168,202 @@ export default function CalendarView() {
     } finally {
       setLoading(false);
     }
-  }, [during]);
+  }, [rangeStart, rangeEnd]);
 
   useEffect(() => {
     load();
   }, [load]);
 
-  const moveMonth = (delta) => {
-    setSelectedDay(null);
-    setView((v) => {
-      const d = new Date(v.y, v.m + delta, 1);
-      return { y: d.getFullYear(), m: d.getMonth() };
-    });
+  // 站点列表：默认四站在前，其余按出现次数降序
+  const sites = useMemo(() => {
+    const count = new Map();
+    for (const c of contests) count.set(c.resource, (count.get(c.resource) || 0) + 1);
+    const others = [...count.keys()]
+      .filter((r) => !DEFAULT_CALENDAR_SITES.includes(r))
+      .sort((a, b) => count.get(b) - count.get(a) || a.localeCompare(b));
+    return [...DEFAULT_CALENDAR_SITES, ...others].map((r) => ({ id: r, count: count.get(r) || 0 }));
+  }, [contests]);
+
+  const toggleSite = (id) => {
+    const next = new Set(selected);
+    if (next.has(id)) next.delete(id);
+    else next.add(id);
+    setSettings({ calendarSites: [...next] });
   };
 
-  // 6×7 网格：周一为首列，从本月 1 号所在周的周一开始
-  const cells = useMemo(() => {
-    const first = new Date(view.y, view.m, 1);
-    const offset = (first.getDay() + 6) % 7; // 周一=0 … 周日=6
-    const start = new Date(view.y, view.m, 1 - offset);
-    return Array.from({ length: 42 }, (_, i) => {
-      const d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
-      return {
-        key: dayKey(d.toISOString()),
-        date: d,
-        inMonth: d.getMonth() === view.m,
-      };
-    });
-  }, [view]);
+  const visible = useMemo(
+    () =>
+      contests
+        .filter((c) => selected.has(c.resource))
+        .sort((a, b) => new Date(a.start) - new Date(b.start) || String(a.event).localeCompare(String(b.event))),
+    [contests, selected],
+  );
 
-  // dayKey → 当日赛事
   const byDay = useMemo(() => {
     const map = new Map();
-    for (const c of contests || []) {
-      const k = dayKey(c.start);
+    for (const c of visible) {
+      const k = dayKey(new Date(c.start));
       if (!map.has(k)) map.set(k, []);
       map.get(k).push(c);
     }
     return map;
-  }, [contests]);
+  }, [visible]);
 
-  const dayList = selectedDay ? byDay.get(selectedDay) || [] : null;
+  // 网格：从区间首日所在周的周一，到区间末日所在周的周日
+  const cells = useMemo(() => {
+    const first = rangeStart;
+    const last = addDays(rangeEnd, -1);
+    const gridStart = addDays(first, -((first.getDay() + 6) % 7));
+    const gridEnd = addDays(last, 6 - ((last.getDay() + 6) % 7));
+    const out = [];
+    for (let d = gridStart; d <= gridEnd; d = addDays(d, 1)) {
+      out.push({ key: dayKey(d), date: d, inRange: d >= first && d <= last });
+    }
+    return out;
+  }, [rangeStart, rangeEnd]);
+
+  const lastDay = addDays(rangeEnd, -1);
+  const rangeTitle = `${rangeStart.getMonth() + 1}月${rangeStart.getDate()}日 – ${
+    lastDay.getMonth() + 1
+  }月${lastDay.getDate()}日`;
+  const agendaDays = cells.filter((c) => c.inRange && byDay.has(c.key));
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
-      {/* 月历 */}
-      <div className="rounded-lg border">
-        <div className="flex items-center justify-between px-4 py-3">
-          <Button variant="ghost" size="icon" onClick={() => moveMonth(-1)} aria-label="上一月">
-            <ChevronLeft className="size-4" />
-          </Button>
-          <div className="text-sm font-semibold">{MONTH_FMT.format(new Date(view.y, view.m, 1))}</div>
-          <Button variant="ghost" size="icon" onClick={() => moveMonth(1)} aria-label="下一月">
-            <ChevronRight className="size-4" />
+    <div className="space-y-4">
+      {/* 标题栏 + 站点筛选 */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-baseline gap-3">
+          <h2 className="text-xl font-semibold tracking-tight">{rangeTitle}</h2>
+          <span className="text-muted-foreground text-xs">
+            前 {before} 天 · 后 {after} 天 ·{' '}
+            <Link href="/settings#reading" className="underline underline-offset-2 hover:text-foreground">
+              调整范围
+            </Link>
+          </span>
+        </div>
+        <Button variant="outline" size="sm" onClick={load} disabled={loading}>
+          <RotateCcw className={`size-4 ${loading ? 'animate-spin' : ''}`} />
+          刷新
+        </Button>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="比赛网站筛选">
+        {sites.map(({ id, count }) => {
+          const on = selected.has(id);
+          return (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={on}
+              onClick={() => toggleSite(id)}
+              title={id}
+              className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-xs transition-colors ${
+                on ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground hover:text-foreground opacity-70'
+              }`}
+            >
+              <SiteBadge resource={id} />
+              {siteMeta(id).label}
+              <span className="text-muted-foreground tabular-nums">{count}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {error ? (
+        <div className="text-muted-foreground flex flex-col items-center gap-3 rounded-lg border border-dashed py-12 text-sm">
+          <CalendarDays className="size-8 opacity-50" />
+          <span className="max-w-[320px] text-center">{error}</span>
+          <Button variant="outline" size="sm" onClick={load}>
+            <RotateCcw className="size-4" />
+            重试
           </Button>
         </div>
-        <div className="grid grid-cols-7 border-t text-center text-xs">
-          {WEEKDAYS.map((w) => (
-            <div key={w} className="text-muted-foreground py-1.5 font-medium">
-              周{w}
+      ) : (
+        <>
+          {/* 宽屏：周网格 */}
+          <div className="hidden overflow-hidden rounded-lg border md:block">
+            <div className="bg-muted/40 grid grid-cols-7 border-b text-center text-xs font-medium">
+              {WEEKDAYS.map((w) => (
+                <div key={w} className="py-2 [&:not(:last-child)]:border-r">
+                  {w}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="grid grid-cols-7 border-t">
-          {cells.map((cell) => {
-            const isToday = dayKey(cell.date.toISOString()) === dayKey(today.toISOString());
-            const events = byDay.get(cell.key) || [];
-            const selected = selectedDay === cell.key;
-            return (
-              <button
-                key={cell.key}
-                type="button"
-                onClick={() => setSelectedDay(selected ? null : cell.key)}
-                aria-pressed={selected}
-                className={`relative flex h-16 flex-col items-center justify-start gap-1 border-b border-r px-1 pt-1.5 text-xs last:border-r-0 [&:nth-child(7n)]:border-r-0 ${
-                  cell.inMonth ? '' : 'text-muted-foreground/40'
-                } ${selected ? 'bg-accent' : ''}`}
-              >
-                <span
-                  className={`inline-flex size-6 items-center justify-center rounded-full font-medium ${
-                    isToday ? 'bg-primary text-primary-foreground' : ''
-                  }`}
-                >
-                  {cell.date.getDate()}
-                </span>
-                <span className="flex max-w-full flex-wrap justify-center gap-0.5">
-                  {events.slice(0, 3).map((c) => (
-                    <span
-                      key={c.id}
-                      className={`size-1.5 rounded-full ${resourceColor(c.resource)}`}
-                      title={c.event}
-                    />
-                  ))}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+            <div className="grid grid-cols-7">
+              {cells.map((cell, i) => {
+                const isToday = cell.key === todayKey;
+                const events = byDay.get(cell.key) || [];
+                const showMonth = i === 0 || cell.date.getDate() === 1;
+                return (
+                  <div
+                    key={cell.key}
+                    className={`min-h-28 border-b p-1 [&:not(:nth-child(7n))]:border-r ${
+                      cell.inRange ? '' : 'bg-muted/30'
+                    } ${isToday ? 'bg-primary/5' : ''}`}
+                  >
+                    <div className="mb-1 flex justify-end px-0.5">
+                      <span
+                        className={`inline-flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-xs tabular-nums ${
+                          isToday
+                            ? 'bg-primary text-primary-foreground font-semibold'
+                            : cell.inRange
+                              ? 'text-foreground'
+                              : 'text-muted-foreground/50'
+                        }`}
+                      >
+                        {showMonth ? `${cell.date.getMonth() + 1}月${cell.date.getDate()}日` : cell.date.getDate()}
+                      </span>
+                    </div>
+                    {loading && cell.inRange ? (
+                      <Skeleton className="h-5 w-full" />
+                    ) : (
+                      cell.inRange && (
+                        <div className="space-y-0.5">
+                          {events.map((c) => (
+                            <EventItem key={c.id} c={c} now={now} />
+                          ))}
+                        </div>
+                      )
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-      {/* 赛事列表 */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold">
-            {selectedDay ? `${selectedDay} 的赛事` : '即将开始'}
-          </h2>
-          {selectedDay && (
-            <Button variant="ghost" size="sm" onClick={() => setSelectedDay(null)}>
-              查看全部
-            </Button>
+          {/* 窄屏：按日分组列表 */}
+          <div className="space-y-3 md:hidden">
+            {loading ? (
+              [0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-16 w-full" />)
+            ) : agendaDays.length === 0 ? null : (
+              agendaDays.map((cell) => (
+                <div key={cell.key} className="rounded-lg border">
+                  <div
+                    className={`border-b px-3 py-1.5 text-xs font-medium ${
+                      cell.key === todayKey ? 'bg-primary/10 text-primary' : 'bg-muted/40'
+                    }`}
+                  >
+                    {cell.date.getMonth() + 1}月{cell.date.getDate()}日 {WEEKDAYS[(cell.date.getDay() + 6) % 7]}
+                    {cell.key === todayKey && ' · 今天'}
+                  </div>
+                  <div className="space-y-1 p-1.5">
+                    {byDay.get(cell.key).map((c) => (
+                      <EventItem key={c.id} c={c} now={now} />
+                    ))}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {!loading && visible.length === 0 && (
+            <div className="text-muted-foreground flex flex-col items-center gap-2 rounded-lg border border-dashed py-10 text-sm">
+              <CalendarDays className="size-8 opacity-50" />
+              <span>{selected.size === 0 ? '请在上方勾选要显示的比赛网站' : '该时间范围内没有所选网站的比赛'}</span>
+            </div>
           )}
-        </div>
-
-        {loading ? (
-          <div className="space-y-2">
-            {[0, 1, 2, 3, 4].map((i) => (
-              <Skeleton key={i} className="h-20 w-full" />
-            ))}
-          </div>
-        ) : error ? (
-          <div className="text-muted-foreground flex flex-col items-center gap-3 rounded-lg border border-dashed py-12 text-sm">
-            <CalendarDays className="size-8 opacity-50" />
-            <span className="max-w-[280px] text-center">{error}</span>
-            <Button variant="outline" size="sm" onClick={load}>
-              <RotateCcw className="size-4" />
-              重试
-            </Button>
-          </div>
-        ) : (dayList || contests).length === 0 ? (
-          <div className="text-muted-foreground flex flex-col items-center gap-2 rounded-lg border border-dashed py-12 text-sm">
-            <CalendarDays className="size-8 opacity-50" />
-            <span>{selectedDay ? '这一天没有比赛' : '近期没有检索到比赛日程'}</span>
-          </div>
-        ) : (
-          <ul className="space-y-2">
-            {(dayList || contests).map((c) => (
-              <li key={c.id} className="rounded-lg border p-3">
-                <div className="flex items-start justify-between gap-2">
-                  <a
-                    href={c.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm font-medium underline-offset-2 hover:underline"
-                  >
-                    {c.event}
-                    <ExternalLink className="ml-1 inline size-3 align-super opacity-60" />
-                  </a>
-                  <span
-                    className={`mt-1 shrink-0 rounded-full px-2 py-0.5 text-[11px] font-medium text-white ${resourceColor(c.resource)}`}
-                  >
-                    {c.resource}
-                  </span>
-                </div>
-                <div className="text-muted-foreground mt-1.5 text-xs">
-                  {fmtTime(c.start)} — {fmtTime(c.end)} · {formatDuration(c.duration)}
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }
