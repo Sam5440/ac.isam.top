@@ -32,13 +32,21 @@ export default function EditorPane({
   onSave,
   theme,
   diagnostics,
+  fill = false, // true：铺满布局（h-full 无圆角边框）
+  getAi, // AI 补全设置读取（同 CompilerDock：() => loadAiSettings()）
+  onAiStatus, // AI 补全状态上报
+  aiStatus, // 'idle' | 'thinking' | {error} | null
 }) {
   const fileOf = (path) => files.find((f) => f.path === path);
 
   return (
     <section
       aria-label="代码编辑器"
-      className="flex min-h-[420px] min-w-0 flex-col overflow-hidden rounded-lg border lg:h-[calc(100dvh-8rem)] lg:sticky lg:top-[4.5rem]"
+      className={
+        fill
+          ? "flex h-full min-h-0 min-w-0 flex-col overflow-hidden"
+          : "flex min-h-[420px] min-w-0 flex-col overflow-hidden rounded-lg border lg:h-[calc(100dvh-8rem)] lg:sticky lg:top-[4.5rem]"
+      }
     >
       {/* Tab 条 */}
       <div className="flex items-center overflow-x-auto border-b">
@@ -82,11 +90,20 @@ export default function EditorPane({
               onChange={onChange}
               diagnostics={diagnostics}
               theme={theme}
+              getAi={getAi}
+              onAiStatus={onAiStatus}
             />
           </div>
           <div className="text-muted-foreground flex items-center justify-between gap-2 border-t px-3 py-1 text-[11px]">
             <span className="truncate font-mono">{activePath}</span>
             <span className="flex shrink-0 items-center gap-2">
+              {/* AI 补全状态芯片（同 CompilerDock 状态栏语义） */}
+              {aiStatus === "thinking" && <span className="text-amber-500">AI 补全中…</span>}
+              {aiStatus && typeof aiStatus === "object" && aiStatus.error && (
+                <span className="max-w-40 truncate text-red-500" title={String(aiStatus.error)}>
+                  AI 出错：{String(aiStatus.error).slice(0, 40)}
+                </span>
+              )}
               <span>{LANG_LABEL[lang] ?? lang}</span>
               <button
                 type="button"

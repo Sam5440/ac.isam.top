@@ -30,6 +30,7 @@ export default function FileManager({
   onDelete,
   onUpload,
   onRefresh,
+  fill = false, // true：铺满布局（h-full 无边框，融入 IDE 外壳）
 }) {
   const [newName, setNewName] = useState("");
   const [renaming, setRenaming] = useState(null); // path
@@ -74,7 +75,11 @@ export default function FileManager({
   return (
     <section
       aria-label="文件管理器"
-      className="flex min-w-0 flex-col overflow-hidden rounded-lg border"
+      className={
+        fill
+          ? "flex h-full min-w-0 flex-col overflow-hidden"
+          : "flex min-w-0 flex-col overflow-hidden rounded-lg border"
+      }
     >
       <div className="flex items-center justify-between border-b px-3 py-2">
         <span className="text-xs font-semibold tracking-wide">文件（{files.length}）</span>
@@ -136,7 +141,7 @@ export default function FileManager({
       </div>
 
       {/* 文件列表 */}
-      <ul className="max-h-72 overflow-auto px-1.5 py-1.5 lg:max-h-none">
+      <ul className={`flex-1 min-h-0 overflow-auto px-1.5 py-1.5 ${fill ? "" : "max-h-72 lg:max-h-none"}`}>
         {files.length === 0 && (
           <li className="text-muted-foreground px-2 py-3 text-xs">工作区为空，新建或上传文件开始。</li>
         )}

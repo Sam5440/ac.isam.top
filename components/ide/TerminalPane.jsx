@@ -24,6 +24,7 @@ export default function TerminalPane({
   onStop,
   onClear,
   consoleRef,
+  fill = false, // true：铺满布局（h-full 无边框）
 }) {
   const [line, setLine] = useState("");
   const outRef = useRef(null);
@@ -35,7 +36,14 @@ export default function TerminalPane({
   }, [text]);
 
   return (
-    <section aria-label="终端" className="flex min-h-[240px] flex-col overflow-hidden rounded-lg border">
+    <section
+      aria-label="终端"
+      className={
+        fill
+          ? "flex h-full min-h-0 flex-col overflow-hidden"
+          : "flex min-h-[240px] flex-col overflow-hidden rounded-lg border"
+      }
+    >
       <div className="flex items-center justify-between gap-2 border-b px-3 py-2">
         <span className="flex items-center gap-2 text-xs font-semibold tracking-wide">
           终端

@@ -8,6 +8,16 @@
  * body.compiler-open，复用同一客户端运行链（CppClient / PyClient，wasm-clang
  * 同源自托管 + Pyodide CDN + Cache API 缓存）。运行完成经 ide-bus 广播
  * 'run-finished'（source:'ide'），AI 对话「最近一次运行」等消费方照常工作。
+ *
+ * v1.7 全局铺满布局（参考 VS Code / TRAE）：IdeShell 提供外壳（活动栏 +
+ * 可拖拽分栏 + 面板开合），本组件仍是唯一状态中枢，layout prop 决定排布：
+ *   - "workspace"（IdeShell 内）：面板容器高度全部 h-full（铺满），
+ *     底部区由 shell 的 bottomTab 切换 终端 / CI 日志（ciSlot 注入），
+ *     测试面板与文件管理器吸收 shell 计算出的宽度样式（frameW props）。
+ *   - "legacy"：旧的纵向卡片布局（独立渲染兜底）。
+ * AI 对话浮窗由 IdeShell 承载（活动栏 Chat 按钮，复用题目页 ChatPanel；
+ * IDE 页无题目 → scope='global'，编辑器代码经 editor-bridge 注入上下文）。
+ * 编辑器接入 AI 补全（getAi/onAiStatus，与 CompilerDock 相同链路）。
  */
 
 import dynamic from "next/dynamic";
@@ -22,6 +32,7 @@ import { CppClient } from "@/lib/compiler/cpp-client";
 import { PyClient } from "@/lib/compiler/py-client";
 import { toast } from "@/lib/toast";
 import { Spinner } from "@/components/ui/LoadingOverlay";
+import { loadAiSettings } from "@/lib/ai/ai-settings";
 import TestPanel from "@/components/ide/TestPanel";
 import EditorPane from "@/components/ide/EditorPane";
 import FileManager from "@/components/ide/FileManager";
@@ -58,7 +69,7 @@ async function runtimeReady(lang, pyVersionId) {
   }
 }
 
-export default function IdePage() {
+export default function IdePage({ layout = "legacy", ciSlot = null, activeBottomTab = "terminal" }) {
   const [mounted, setMounted] = useState(false);
   const [cp, setCp] = useState(null); // 编译器偏好（主题/标准/版本/超时）
   const [files, setFiles] = useState([]); // 工作区记录 [{path,name,lang,content,updatedAt}]
@@ -74,6 +85,8 @@ export default function IdePage() {
   const [consoleText, setConsoleText] = useState("");
   const [diags, setDiags] = useState([]);
   const [stdinText, setStdinText] = useState("");
+  // AI 补全状态：'idle' | 'thinking' | {error} | null（未启用），同 CompilerDock
+  const [aiStatus, setAiStatus] = useState(null);
 
   const cppRef = useRef(null);
   const pyRef = useRef(null);
@@ -554,7 +567,7 @@ export default function IdePage() {
 
   if (!mounted || !cp) {
     return (
-      <div className="grid min-h-[60vh] place-items-center text-sm text-muted-foreground">
+      <div className={layout === "workspace" ? "grid h-full place-items-center text-sm text-muted-foreground" : "grid min-h-[60vh] place-items-center text-sm text-muted-foreground"}>
         <span className="flex items-center gap-2">
           <Spinner /> 工作区加载中…
         </span>
@@ -562,6 +575,96 @@ export default function IdePage() {
     );
   }
 
+  /* 编辑器 + 终端（workspace 与 legacy 共用的两个主体块） */
+  const editorNode = (
+    <EditorPane
+      openPaths={openPaths}
+      files={files}
+      activePath={activePath}
+      onSelectTab={setActivePath}
+      onCloseTab={closeTab}
+      code={code}
+      lang={lang}
+      onChange={handleEditorChange}
+      onSave={saveNow}
+      theme={cp.editorTheme}
+      diagnostics={diags}
+      getAi={() => loadAiSettings()}
+      onAiStatus={setAiStatus}
+      aiStatus={aiStatus}
+      fill={layout === "workspace"}
+    />
+  );
+  const terminalNode = (
+    <TerminalPane
+      text={consoleText}
+      stage={stage}
+      running={runState !== "idle"}
+      waitingInput={runState === "waiting-input"}
+      stdin={stdinText}
+      onStdinChange={setStdinText}
+      onRun={runInTerminal}
+      onSendLine={sendLine}
+      onSendEof={sendEof}
+      onStop={stopRun}
+      onClear={() => setConsoleText("")}
+      consoleRef={consoleRef}
+      fill={layout === "workspace"}
+    />
+  );
+
+  if (layout === "workspace") {
+    /* 铺满布局：测试面板 ｜ 编辑器（flex-1）｜ 文件管理器 + 底部（终端 / CI 日志）。
+       宽度/底部高度由 IdeShell 的 CSS 变量（--ide-left/--ide-right/--ide-bottom）
+       控制；左右面板宽为 0 时收起。移动端变量为 min(w, 70vw)，行容器
+       overflow-hidden 由外壳兜底。这里不感知拖拽。 */
+    return (
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+        <div className="flex min-h-0 flex-1">
+          <div className="flex min-h-0 shrink-0 flex-col overflow-hidden border-r" style={{ width: "var(--ide-left, 280px)", minWidth: 0 }}>
+            <TestPanel
+              problem={problem}
+              onProblemChange={(p) => {
+                setProblem(p);
+                setCases([]);
+              }}
+              cases={cases}
+              running={runState !== "idle"}
+              stage={stage}
+              onRunAll={runAllSamples}
+              onRunOne={runOneSample}
+              timeoutSec={cp.timeoutSec}
+              fill
+            />
+          </div>
+          <div className="flex min-w-0 flex-1 flex-col">{editorNode}</div>
+          <div className="flex min-h-0 shrink-0 flex-col overflow-hidden border-l" style={{ width: "var(--ide-right, 232px)", minWidth: 0 }}>
+            <FileManager
+              files={files}
+              activePath={activePath}
+              isDirty={dirty}
+              onOpen={openFile}
+              onCreate={createFile}
+              onRename={renameFile}
+              onDelete={removeFile}
+              onUpload={uploadFiles}
+              onRefresh={refreshFiles}
+              fill
+            />
+          </div>
+        </div>
+        {activeBottomTab === "ci" && ciSlot ? (
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden border-t">{ciSlot}</div>
+        ) : (
+          <div className="flex min-h-0 flex-1 flex-col" style={{ height: "var(--ide-bottom, 240px)", flex: "0 0 var(--ide-bottom, 240px)" }}>
+            {terminalNode}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  /* ---------- legacy：旧的纵向卡片布局 ---------- */
   return (
     <div className="flex flex-col gap-3 py-4">
       <div className="flex items-center justify-between gap-2">
@@ -587,19 +690,7 @@ export default function IdePage() {
           timeoutSec={cp.timeoutSec}
         />
 
-        <EditorPane
-          openPaths={openPaths}
-          files={files}
-          activePath={activePath}
-          onSelectTab={setActivePath}
-          onCloseTab={closeTab}
-          code={code}
-          lang={lang}
-          onChange={handleEditorChange}
-          onSave={saveNow}
-          theme={cp.editorTheme}
-          diagnostics={diags}
-        />
+        {editorNode}
 
         <FileManager
           files={files}
@@ -614,20 +705,7 @@ export default function IdePage() {
         />
       </div>
 
-      <TerminalPane
-        text={consoleText}
-        stage={stage}
-        running={runState !== "idle"}
-        waitingInput={runState === "waiting-input"}
-        stdin={stdinText}
-        onStdinChange={setStdinText}
-        onRun={runInTerminal}
-        onSendLine={sendLine}
-        onSendEof={sendEof}
-        onStop={stopRun}
-        onClear={() => setConsoleText("")}
-        consoleRef={consoleRef}
-      />
+      {terminalNode}
     </div>
   );
 }

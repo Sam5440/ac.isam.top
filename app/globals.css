@@ -754,6 +754,20 @@ html {
   }
 }
 
+/* IDE 全局铺满（app/ide/page.jsx）：覆盖 layout 的 max-w-6xl 约束 */
+.ide-fullbleed {
+  width: 100%;
+}
+body:has(.ide-fullbleed) .site-shell main {
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+/* 铺满模式下隐藏站点页脚（IDE 是应用型页面） */
+body:has(.ide-fullbleed) .site-shell footer {
+  display: none;
+}
+
 /* ---------- 全站 Toast（components/ui/ToastHost.jsx）---------- */
 @keyframes toast-in {
   from {

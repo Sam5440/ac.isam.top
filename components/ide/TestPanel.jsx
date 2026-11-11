@@ -44,6 +44,7 @@ export default function TestPanel({
   onRunAll,
   onRunOne,
   timeoutSec = 10,
+  fill = false, // true：铺满布局（h-full 无圆角边框，融入 IDE 外壳）
 }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -111,7 +112,11 @@ export default function TestPanel({
   return (
     <section
       aria-label="测试面板"
-      className="flex max-h-[75vh] min-w-0 flex-col overflow-hidden rounded-lg border lg:max-h-[calc(100dvh-8rem)] lg:sticky lg:top-[4.5rem]"
+      className={
+        fill
+          ? "flex h-full min-w-0 flex-col overflow-hidden"
+          : "flex max-h-[75vh] min-w-0 flex-col overflow-hidden rounded-lg border lg:max-h-[calc(100dvh-8rem)] lg:sticky lg:top-[4.5rem]"
+      }
     >
       <div className="border-b px-3 py-2 text-xs font-semibold tracking-wide">测试面板</div>
 
