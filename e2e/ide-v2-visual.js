@@ -1,4 +1,8 @@
-/* /ide v2 重设计可视化验证（Playwright, headless chromium, 1440x900） */
+/* /ide v2 重设计可视化验证（Playwright, headless chromium, 1440x900）
+ * 手动执行：先 `npm run dev`，再 `node e2e/ide-v2-visual.js`
+ * 文件名刻意不含 test 字样 —— 否则 `node --test` 的默认发现规则（*-test.js）
+ * 会把它当单测执行，没有 dev server 时整条 CI 直接失败。
+ */
 const { chromium } = require("playwright");
 const fs = require("fs");
 const path = require("path");
