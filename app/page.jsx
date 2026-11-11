@@ -115,8 +115,8 @@ export default function Home() {
                     {p.id}
                   </span>
                 </span>
-                <PlatformBadge platform={p.platform} />
-                <DifficultyBadge difficulty={p.difficulty} platform={p.platform} />
+                <PlatformBadge platform={p.platform} fixed hideBelow="sm" />
+                <DifficultyBadge difficulty={p.difficulty} platform={p.platform} fixed />
               </Link>
             ))}
           </CardContent>

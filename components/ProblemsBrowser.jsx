@@ -164,9 +164,9 @@ export default function ProblemsBrowser({ initialPage }) {
                   {p.title} · {String(p.contestId)}
                 </span>
               </span>
-              <PlatformBadge platform={p.platform} />
-              <DifficultyBadge difficulty={p.difficulty} platform={p.platform} />
-              <TranslatedBadge translated={Boolean(p.translated)} />
+              <PlatformBadge platform={p.platform} fixed hideBelow="sm" />
+              <DifficultyBadge difficulty={p.difficulty} platform={p.platform} fixed />
+              <TranslatedBadge translated={Boolean(p.translated)} fixed hideBelow="sm" />
             </Link>
           ))}
         </CardContent>

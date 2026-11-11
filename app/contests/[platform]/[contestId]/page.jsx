@@ -110,8 +110,8 @@ export default async function ContestPage({ params }) {
                       {prob.title}
                     </span>
                   </span>
-                  <DifficultyBadge difficulty={prob.difficulty} platform={platform} />
-                  <TranslatedBadge translated={Boolean(prob.statementZhMd)} />
+                  <DifficultyBadge difficulty={prob.difficulty} platform={platform} fixed />
+                  <TranslatedBadge translated={Boolean(prob.statementZhMd)} fixed />
                 </Link>
               ))}
             </div>

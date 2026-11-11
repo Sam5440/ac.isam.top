@@ -117,30 +117,30 @@ export default function ContestsBrowser({ contests }) {
             <div className="text-muted-foreground p-8 text-center text-sm">没有匹配的比赛</div>
           )}
           {filtered.slice(0, 200).map((c) => (
+            // 固定列网格：平台 | 类型 | 编号 | 标题(弹性) | rated | 开始时间 | 题数
+            // 每列定宽，三个平台、各种类型标签长度不同时各行仍纵向对齐
             <Link
               key={`${c.platform}/${c.id}`}
               href={`/contests/${c.platform}/${encodeURIComponent(String(c.id))}`}
-              className="hover:bg-accent/40 flex flex-wrap items-center gap-3 px-4 py-3 transition-colors"
+              className="contest-row hover:bg-accent/40 grid items-center gap-x-3 px-4 py-3 transition-colors"
             >
-              <PlatformBadge platform={c.platform} />
-              <Badge variant="outline" className="text-muted-foreground hidden sm:inline-flex">
+              <PlatformBadge platform={c.platform} fixed />
+              <Badge variant="outline" className="text-muted-foreground hidden w-full justify-center truncate sm:inline-flex">
                 {contestTypeLabel(contestType(c))}
               </Badge>
-              <span className="text-muted-foreground w-20 shrink-0 font-mono text-xs">
-                {String(c.id)}
+              <span className="text-muted-foreground hidden truncate font-mono text-xs sm:block">{String(c.id)}</span>
+              <span className="min-w-0 truncate text-sm font-medium">{c.titleZh || c.title}</span>
+              <span className="hidden justify-center md:flex">
+                {c.ratedRange ? (
+                  <Badge variant="outline" className="text-muted-foreground font-mono">
+                    {c.ratedRange}
+                  </Badge>
+                ) : null}
               </span>
-              <span className="min-w-0 flex-1 truncate text-sm font-medium">
-                {c.titleZh || c.title}
-              </span>
-              {c.ratedRange ? (
-                <Badge variant="outline" className="text-muted-foreground hidden font-mono md:inline-flex">
-                  {c.ratedRange}
-                </Badge>
-              ) : null}
-              <span className="text-muted-foreground hidden w-36 shrink-0 text-right text-xs md:inline">
+              <span className="text-muted-foreground hidden text-right text-xs tabular-nums md:block">
                 {formatDateTime(c.startTime)}
               </span>
-              <Badge variant="secondary" className="tabular-nums">
+              <Badge variant="secondary" className="w-full justify-center tabular-nums">
                 {c.problemCount} 题
               </Badge>
             </Link>
