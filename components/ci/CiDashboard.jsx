@@ -84,6 +84,11 @@ function mergeRemoteRuns(local, remoteRuns) {
   return [...local, ...synth].sort((a, b) => ((a.startedAt || '') < (b.startedAt || '') ? 1 : -1));
 }
 
+/** 本地时区格式化（Intl 显式时区，服务端/客户端一致，避免 hydration mismatch）。 */
+const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Shanghai';
+const fmtDateTime = (iso) =>
+  new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: TZ }).format(new Date(iso));
+
 function timelineDot(r) {
   if (r.failure) return 'bg-red-500 shadow-[0_0_0_3px_rgba(239,68,68,0.2)]';
   if (r.remoteOnly && r.conclusion === 'cancelled') return 'bg-amber-500 shadow-[0_0_0_3px_rgba(245,158,11,0.2)]';
@@ -142,7 +147,7 @@ function RunCard({ run, expanded, onToggle, index }) {
             {run.failure && <span className="rounded-md border border-red-500/40 bg-red-500/10 px-1.5 py-0.5 text-[10px] text-red-400">有失败任务</span>}
           </span>
           <span className="text-muted-foreground mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[11px]">
-            <span>{run.startedAt ? new Date(run.startedAt).toLocaleString('zh-CN') : '—'}</span>
+            <span>{run.startedAt ? fmtDateTime(run.startedAt) : '—'}</span>
             {run.durationMs != null && (
               <span className="flex items-center gap-1"><Timer className="size-3" />{fmtDur(run.durationMs)}</span>
             )}

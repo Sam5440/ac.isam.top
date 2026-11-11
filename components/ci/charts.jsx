@@ -55,6 +55,11 @@ export const TONE = {
   zinc: { solid: '#71717a', light: '#a1a1aa' },
 };
 
+/** 本地时区短格式（显式时区，SSR/客户端一致）。 */
+const TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Shanghai';
+const fmtShort = (iso) =>
+  new Intl.DateTimeFormat('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: TZ }).format(new Date(iso));
+
 /* ------------------------------- Sparkline ------------------------------- */
 
 export function Sparkline({ data = [], tone = 'emerald', width: w = 76 }) {
@@ -322,7 +327,7 @@ export function RunOutputChart({ runsChrono, onPickRun }) {
                     node: (
                       <>
                         <p className="font-medium">
-                          {d.startedAt ? new Date(d.startedAt).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}
+                          {d.startedAt ? fmtShort(d.startedAt) : ''}
                           {d.failure ? ' · 失败' : ''}
                         </p>
                         <p className="text-muted-foreground mt-0.5">
