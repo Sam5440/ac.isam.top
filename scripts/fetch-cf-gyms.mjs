@@ -158,8 +158,42 @@ let stopping = false;
 
 const concurrency = Math.max(1, Math.min(4, Number(args.concurrency ?? 2)));
 
+// 自适应限速：遇 Cloudflare 挑战拉慢 pace（×1.4，上限 ×4），10 分钟无挑战逐次衰减回 1。
+// 长跑（24h 级）下风暴是频率相关的，宁可慢一点也不能连续触发质询。
+let paceMultiplier = 1;
+let lastChallengeAt = 0;
+// 风暴熔断：连续 2 次导航 challenge-stuck → 全局冷却 10-20 min 并重建会话；
+// 同一轮内第 2 次熔断起连浏览器 profile 一起重建（指纹/凭据全新）。
+let stormStreak = 0;
+let cooldownsThisRun = 0;
+
+async function globalStormBreak() {
+  cooldownsThisRun++;
+  const waitMs = rnd(10, 20) * 60000;
+  log('cf-gyms', `storm breaker #${cooldownsThisRun}: 全局冷却 ${Math.round(waitMs / 60000)}min 并重建会话`);
+  await ctx?.close().catch(() => {});
+  ctx = null;
+  pages = [];
+  if (cooldownsThisRun >= 2) {
+    try {
+      fs.rmSync(BROWSER_DIR, { recursive: true, force: true });
+      log('cf-gyms', 'browser profile rebuilt (fresh fingerprint)');
+    } catch {}
+  }
+  for (const waited = Date.now(); Date.now() - waited < waitMs; ) {
+    if (stopping) return;
+    await sleep(Math.min(30000, waitMs - (Date.now() - waited)));
+  }
+  await ensureBrowser();
+  while (pages.length < concurrency) pages.push(await newPage());
+}
+
 async function pace() {
-  const gap = 1500 * concurrency + rnd(500, 1300);
+  if (lastChallengeAt && Date.now() - lastChallengeAt > 10 * 60 * 1000) {
+    paceMultiplier = Math.max(1, paceMultiplier * 0.85);
+    if (paceMultiplier <= 1.01) lastChallengeAt = 0;
+  }
+  const gap = (1500 * concurrency + rnd(500, 1300)) * paceMultiplier;
   const wait = Math.max(0, lastNavAt + gap - Date.now());
   lastNavAt = Math.max(lastNavAt, Date.now()) + wait + gap;
   if (wait > 0) await sleep(wait);
@@ -213,7 +247,7 @@ const isNotFound = (html) => /Page not found/i.test((html.match(/<title[^>]*>([^
  */
 async function nav(url, wid = 0, ready = null) {
   await ensureBrowser();
-  const deadline = Date.now() + CHALLENGE_TIMEOUT_MS;
+  let deadline = Date.now() + CHALLENGE_TIMEOUT_MS;
   let reloads = 0;
   const run = (async () => {
     for (;;) {
@@ -233,7 +267,18 @@ async function nav(url, wid = 0, ready = null) {
         const page = pages[Math.min(wid, pages.length - 1)];
         const html = await page.content();
         if (isChallenge(html)) {
-          if (Date.now() > deadline) return { html, status: 'challenge-stuck' };
+          lastChallengeAt = Date.now();
+          paceMultiplier = Math.min(4, paceMultiplier * 1.4);
+          if (Date.now() > deadline) {
+            stormStreak++;
+            if (stormStreak < 2) return { html, status: 'challenge-stuck' };
+            // 风暴熔断：全局冷却后原地重试同一 URL（重置本次导航预算）
+            await globalStormBreak();
+            if (stopping) return { html, status: 'challenge-stuck' };
+            deadline = Date.now() + CHALLENGE_TIMEOUT_MS;
+            reloads = 0;
+            break;
+          }
           if (Date.now() > deadline - CHALLENGE_TIMEOUT_MS + 45000 * (reloads + 1)) {
             reloads++;
             if (reloads > 3) {
@@ -246,8 +291,12 @@ async function nav(url, wid = 0, ready = null) {
           await sleep(3000);
           continue;
         }
-        if (isNotFound(html)) return { html, status: 'notfound' };
+        if (isNotFound(html)) {
+          stormStreak = 0;
+          return { html, status: 'notfound' };
+        }
         if (ready ? ready(html) : html.length > 500) {
+          stormStreak = 0;
           firstReadyAt ??= Date.now();
           // ready 后再稳 600ms（让后续 DOM 追加完成），最多等 2s
           if (Date.now() - firstReadyAt > 600) return { html, status: 'ok' };
@@ -256,7 +305,10 @@ async function nav(url, wid = 0, ready = null) {
         }
         // 内容 8s 无增长 → 就绪兜底（防 ready 判定漏网）
         if (html.length === lastLen) {
-          if (++stableCount >= 5 && html.length > 500) return { html, status: 'ok' };
+          if (++stableCount >= 5 && html.length > 500) {
+            stormStreak = 0;
+            return { html, status: 'ok' };
+          }
         } else {
           stableCount = 0;
           lastLen = html.length;
@@ -469,8 +521,19 @@ function cleanSamples(samples) {
 async function scanListing(maxPages) {
   log('cf-gyms', `listing scan start (maxPages=${maxPages})`);
   await ensureBrowser();
-  const first = await nav(`${CF}/gyms/page/1`);
-  if (first.status !== 'ok') throw new Error(`listing page 1: ${first.status}`);
+  // ready 必须等分页器出现（表格尾部后流完），防 HTML 流中途放行漏掉末尾行
+  const listReady = (html) => parseListingRows(html).length > 0 && /gyms\/page/.test(html);
+  let first = null;
+  for (let i = 0; i < 3 && !first; i++) {
+    const r = await nav(`${CF}/gyms/page/1`, 0, listReady);
+    if (r.status === 'ok') first = r;
+    else {
+      fail('/gyms/page/1', r.status);
+      log('cf-gyms', `listing page 1: ${r.status} — 重试 ${i + 1}/3`);
+      await sleep(60000);
+    }
+  }
+  if (!first) throw new Error('listing page 1 unreachable (3 retries)');
   const $ = loadHtml(first.html);
   const lastPage = Math.max(
     1,
@@ -479,8 +542,6 @@ async function scanListing(maxPages) {
       .map((a) => +($(a).attr('href').match(/page\/(\d+)/)?.[1] ?? 0)),
   );
   const target = Math.min(lastPage, maxPages ?? lastPage);
-  // ready 必须等分页器出现（表格尾部后流完），防 HTML 流中途放行漏掉末尾行
-  const listReady = (html) => parseListingRows(html).length > 0 && /gyms\/page/.test(html);
   let newGyms = 0;
   let totalRows = 0;
   for (let p = 1; p <= target; p++) {
