@@ -38,7 +38,7 @@ import {
   getCfPage,
   parseCfProblemsPage,
 } from './lib/cf.mjs';
-import { llmConfig, translateStatement, translateTitles } from './lib/llm.mjs';
+import { llmConfig, pingLLM, translateStatement, translateTitles } from './lib/llm.mjs';
 import {
   fetchNowcoderContests,
   fetchNowcoderProblemList,
@@ -558,6 +558,25 @@ async function runTranslate() {
   }
   log('translate', `模型 ${cfg.model}，并发 ${process.env.TRANSLATE_CONCURRENCY ?? 4}`);
 
+  // 鉴权探活（2026-10-31~11-03 三轮 CI 教训：key 失效时并发池把整批题逐一
+  // 打满 401——每轮几百次无效请求、几十分钟白跑）。批量前先 1 次最小请求
+  // 探活：401/403 立即中止整轮翻译并给出轮换指引；其余错误（网络抖动等）
+  // 视为临时故障只告警，逐题路径自带重试。
+  try {
+    await pingLLM(cfg);
+  } catch (e) {
+    if (/HTTP 40[13]/.test(e.message)) {
+      throw new Error(
+        `TRANSLATE_API_KEY 无效（${e.message.slice(0, 140)}）——到 GitHub Secrets 轮换后重跑，本轮翻译全部中止`,
+      );
+    }
+    log('translate', `⚠ 探活未通过（${e.message.slice(0, 140)}），按临时故障继续逐题翻译`);
+  }
+
+  // 逐题路径的鉴权中止标志：任一 worker 收到 401/403 即置位，并发池剩余
+  // 任务直接跳过，不再向失效端点发请求（探活通过但 key 中途被撤销的场景）。
+  let authAborted = false;
+
   // 1) 题面：新→旧（contestId 数字/字符串统一比较）
   const pending = collectProblems()
     .filter((p) => p.statementMd && !p.statementZhMd)
@@ -573,6 +592,10 @@ async function runTranslate() {
   await Promise.all(
     limited.map((p) =>
       limit(async () => {
+        if (authAborted) {
+          summary.translateErrors.push(`${p.id}: skipped（鉴权失败，剩余任务跳过）`);
+          return;
+        }
         try {
           const { titleZh, bodyZh } = await translateStatement(cfg, {
             title: p.title,
@@ -593,6 +616,10 @@ async function runTranslate() {
         } catch (e) {
           summary.translateErrors.push(`${p.id}: ${e.message}`);
           log('translate', `✗ ${p.id} — ${e.message}`);
+          if (/HTTP 40[13]/.test(e.message)) {
+            authAborted = true;
+            log('translate', '✗ 鉴权失败（401/403），中止本轮剩余翻译');
+          }
         }
       }),
     ),
@@ -609,6 +636,10 @@ async function runTranslate() {
   if (todoTitles.length && !NO_TRANSLATE) {
     log('translate', `待翻译比赛名 ${todoTitles.length}`);
     for (let i = 0; i < todoTitles.length; i += 20) {
+      if (authAborted) {
+        log('translate', '✗ 鉴权已失败，剩余比赛名批次跳过');
+        break;
+      }
       const batch = todoTitles.slice(i, i + 20);
       try {
         const zh = await translateTitles(cfg, batch.map((x) => x.c.title));
@@ -617,6 +648,10 @@ async function runTranslate() {
         });
       } catch (e) {
         log('translate', `✗ 比赛名批次 — ${e.message}`);
+        if (/HTTP 40[13]/.test(e.message)) {
+          authAborted = true;
+          log('translate', '✗ 鉴权失败（401/403），中止剩余比赛名批次');
+        }
       }
     }
   }
