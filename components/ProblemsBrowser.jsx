@@ -15,6 +15,7 @@ const PLATFORM_TABS = [
   { id: 'all', label: '全部' },
   { id: 'atcoder', label: 'AtCoder' },
   { id: 'codeforces', label: 'Codeforces' },
+  { id: 'cf-gyms', label: 'CF Gym' },
   { id: 'nowcoder', label: '牛客' },
 ];
 

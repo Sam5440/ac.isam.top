@@ -122,13 +122,14 @@ export async function fetchCfContestHtml(contestId, page) {
   }
 }
 
-/** 解析 /problems 页 → [{index, title, statementMd, samples, timeLimitMs, memoryLimitMb, points}] */
-export function parseCfProblemsPage(html, contestId) {
+/** 解析 /problems 页 → [{index, title, statementMd, samples, timeLimitMs, memoryLimitMb, points}]
+ *  base：题面内相对链接的解析基准（gym 题面页传 /gym/{id}/problem/{index}）。 */
+export function parseCfProblemsPage(html, contestId, base = `${CF}/contest/${contestId}/problems`) {
   const $ = loadHtml(html);
   const out = [];
   $('div.problem-statement').each((_, stmtNode) => {
     const stmt = $(stmtNode);
-    const opts = { base: `${CF}/contest/${contestId}/problems` };
+    const opts = { base };
 
     const titleRaw = stmt.find('.header .title').first().text().trim();
     const tm = titleRaw.match(/^([A-Z][0-9]?)\.\s*(.+)$/s);

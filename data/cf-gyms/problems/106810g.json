@@ -1,0 +1,24 @@
+{
+  "id": "106810g",
+  "platform": "cf-gyms",
+  "contestId": 106810,
+  "index": "G",
+  "title": "Optimal Deployment",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106810/problem/G",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "A software platform contains $N$ modules connected by $N-1$ bidirectional API links. The links form a connected graph with no cycles (a tree).\n\nChoose any module as the root (the entry point). This determines a parent-child relationship for every link.\n\nFor a node $u$ in the rooted tree, let $subtreeSize(u)$ be the number of modules in the subtree rooted at $u$, including $u$ itself. Let $childCount(u)$ be the number of direct children of $u$.\n\nThere are $M$ types of deployment servers. Server type $i$ has capacity $C_i$ and costs $P_i$ per deployment operation. A server type can be reused any number of times, with its cost charged for each operation.\n\nTo deploy a module $u$, choose one of the following operations:\n\n1. Deploy the entire subtree of $u$: One operation deploys $u$ and every descendant of $u$. The chosen server must have capacity $C_i \\geq subtreeSize(u)$. No further operations are needed for any module in this subtree.\n\n2. Deploy only $u$: One operation deploys $u$ and no other module. The chosen server must have capacity $C_i \\geq childCount(u)$. Afterward, each direct child of $u$ must be deployed separately, using either operation.\n\nFind the minimum total cost to deploy every module, choosing both the entry point and the server type for each operation optimally.\n\nIf deployment is impossible under every choice of entry point and available server types, output $-1$.\n\n## Input\n\nThe first line contains $T$ ($1 \\leq T \\leq 25$), the number of test cases.\n\nFor each test case:\n\nThe first line contains $M$ and $N$ ($1 \\leq M,N \\leq 10^5$), the number of server types and modules, respectively.\n\nThe second line contains the $M$ server capacities $C_1,C_2,\\ldots,C_M$ ($1 \\leq C_i \\leq 10^9$).\n\nThe third line contains their corresponding costs $P_1,P_2,\\ldots,P_M$ ($1 \\leq P_i \\leq 10^9$).\n\nEach of the next $N-1$ lines contains two integers $u$ and $v$ ($1 \\leq u,v \\leq N$, $u \\ne v$), describing a bidirectional API link between modules $u$ and $v$.\n\nThe sum of $M$ over all test cases does not exceed $5 \\times 10^5$.\n\nThe sum of $N$ over all test cases does not exceed $5 \\times 10^5$.\n\n## Output\n\nFor each test case, output one integer: the minimum total deployment cost, or $-1$ if deployment is impossible.\n\n## Note\n\nChoose module $1$ as the entry point.\n\nModule $1$ has one direct child, so deploy only module $1$ using a server with capacity $1$ and cost $4$.\n\nThe subtree rooted at module $2$ contains modules $2,3,4,$ and $5$. Since $\\text{subtreeSize}(2)=4$, deploy this entire subtree in one operation using a server with capacity $4$ and cost $20$.\n\nThe total cost is therefore $4+20=24$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1\n4 5\n1 2 3 4\n4 9 11 20\n1 2\n2 3\n2 4\n2 5\n",
+      "output": "24\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-11T17:20:21.497Z"
+}

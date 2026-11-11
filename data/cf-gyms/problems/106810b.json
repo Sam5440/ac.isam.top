@@ -1,0 +1,24 @@
+{
+  "id": "106810b",
+  "platform": "cf-gyms",
+  "contestId": 106810,
+  "index": "B",
+  "title": "The Rubber Stamp",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106810/problem/B",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "You have a blank paper strip with $n$ cells, numbered $1$ to $n$ from left to right, and a rubber stamp that prints a fixed word $P$ of length $k$.\n\nEach stamping operation presses the rubber stamp onto the strip, printing the word $P$ across $k$ consecutive cells and overwriting any ink previously there. The stamp may partially hang off either end of the strip; any ink landing outside the strip is lost. Formally, you may place the stamp at any integer position $p$, so that for each $i \\in \\{0, 1, \\dots, k-1\\}$, if cell $p + i$ is on the strip ($1 \\le p + i \\le n$), it receives character $P[i]$.\n\nGiven the target string $T$ of length $n$, find the minimum number of stamps needed to make the strip exactly $T$. If it is impossible to obtain the string $T$, print $-1$.\n\n## Input\n\nThe first line of the input contains an integer $t$ ($1 \\le t \\le 10^5$), denoting the number of test cases.\n\nEach test case consists of three lines:\n\n- The first line contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 10^6$), denoting the length of the strip and the length of the stamp word, respectively.\n- The second line contains the target string $T$ of length $n$.\n- The third line contains the stamp word $P$ of length $k$.\n\nBoth strings $T$ and $P$ consist only of lowercase English letters.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, print a single integer representing the minimum number of stamps needed to make the strip match $T$, or $-1$ if it is impossible.\n\n## Note\n\nIn the first test case of the sample, one optimal sequence of $3$ stamp presses is:\n\n1. Stamp $P = \\texttt{\"abc\"}$ at position $3$ (covering cells $3..5$): the strip becomes `\"..abc\"`.\n2. Stamp $P = \\texttt{\"abc\"}$ at position $5$ (covering cells $5..7$, hanging off the right end so only cell $5$ receives $P[0] = \\texttt{'a'}$): the strip becomes `\"..aba\"`.\n3. Stamp $P = \\texttt{\"abc\"}$ at position $1$ (covering cells $1..3$): the strip becomes `\"abcba\"`.\n\nIn the second test case of the sample, one optimal sequence of $3$ stamp presses is:\n\n1. Stamp $P = \\texttt{\"abc\"}$ at position $1$ (covering cells $1..3$): the strip becomes `\"abc\"`.\n2. Stamp $P = \\texttt{\"abc\"}$ at position $-1$ (covering cells $-1..1$, hanging off the left end so cell $1$ receives $P[2] = \\texttt{'c'}$): the strip becomes `\"cbc\"`.\n3. Stamp $P = \\texttt{\"abc\"}$ at position $3$ (covering cells $3..5$, hanging off the right end so cell $3$ receives $P[0] = \\texttt{'a'}$): the strip becomes `\"cba\"`.\n\nIn the third test case of the sample, any stamp placing `'b'` at cell $i$ simultaneously places `'a'` at cell $i-1$ and `'c'` at cell $i+1$, so no two adjacent cells can both be `'b'`. Thus, it is impossible to produce `\"bbbb\"`, and the answer is $-1$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n5 3\nabcba\nabc\n3 3\ncba\nabc\n4 3\nbbbb\nabc\n",
+      "output": "3\n3\n-1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-11T17:19:24.196Z"
+}

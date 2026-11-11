@@ -1,0 +1,32 @@
+{
+  "id": "106800i",
+  "platform": "cf-gyms",
+  "contestId": 106800,
+  "index": "I",
+  "title": "Dependency Inversion",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106800/problem/I",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "Luisa Lopes is studying for her Software Engineering exam and has gotten stuck on the SOLID principles, which underpin the course.\n\n![image](https://espresso.codeforces.com/37b35848a7e519847f9d069fc2afe8981fffcd79.png)\n\nTo help the ideas sink in, she decides to examine the dependency graph of a legacy project she maintains as a freelancer. Each vertex represents a module, and a directed edge from 𝑢u to 𝑣v means that module 𝑢u depends directly on module 𝑣v. A well-designed project should have no cyclic dependencies: no module should depend, directly or indirectly, on itself. Luisa suspects that her project has exactly this problem.\n\nThinking about the \"D\" in SOLID, the *Dependency Inversion Principle*, she starts wondering about reversing dependencies. Could reversing a single dependency eliminate all the cycles at once?\n\nWith little time left before her exam, Luisa asks for your help. Given a directed graph 𝐺G, determine whether it can be made acyclic by reversing **at most one** edge. Reversing an edge 𝑢→𝑣u→v means replacing it with 𝑣→𝑢v→u.\n\n## Input\n\nThe first line contains an integer 𝑡t (1≤𝑡≤2×1051≤t≤2×105), the number of test cases.\n\nThe first line of each test case contains two integers 𝑛n and 𝑚m (1≤𝑛≤2×1051≤n≤2×105, 0≤𝑚≤min(3×105,𝑛(𝑛−1)/2)0≤m≤min(3×105,n(n−1)/2)), the numbers of vertices and directed edges.\n\nEach of the next 𝑚m lines contains two integers 𝑢u and 𝑣v (1≤𝑢,𝑣≤𝑛1≤u,v≤n, 𝑢≠𝑣u≠v), describing a directed edge from 𝑢u to 𝑣v. For each unordered pair of vertices {𝑢,𝑣}{u,v}, there is at most one edge between them.\n\nThe sum of 𝑛n over all test cases does not exceed 2×1052×105, and the sum of 𝑚m does not exceed 3×1053×105.\n\n## Output\n\nFor each test case, print on the first line: `0` if the graph is already acyclic; `1` if it is not acyclic but reversing one edge can make it acyclic; or `-1` otherwise.\n\nIf you print `1`, print a second line containing two integers 𝑢u and 𝑣v, identifying an edge 𝑢→𝑣u→v whose reversal makes the graph acyclic. Any such edge is accepted. Print its endpoints in their **original input order**.\n\n## Note\n\n**Explanation for example 1**\n\nIn the first example, reversing edge 1→21→2 breaks the only cycle, so printing `1` followed by `1 2` is accepted. Any other edge whose reversal makes the graph acyclic would also be accepted.\n\n**Explanation for example 2**\n\nHere, the graph is not acyclic, and reversing one edge cannot make it acyclic. The expected output is therefore `-1`.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1\n4 4\n1 2\n2 3\n3 1\n3 4\n",
+      "output": "1\n1 2\n"
+    },
+    {
+      "input": "1\n6 6\n1 2\n2 3\n3 1\n4 5\n5 6\n6 4\n",
+      "output": "-1\n"
+    },
+    {
+      "input": "4\n2 1\n1 2\n1 0\n3 3\n1 2\n2 3\n3 1\n6 6\n1 2\n2 3\n3 1\n4 5\n5 6\n6 4\n",
+      "output": "0\n0\n1\n1 2\n-1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-11T17:43:30.020Z"
+}

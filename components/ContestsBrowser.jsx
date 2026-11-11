@@ -16,6 +16,7 @@ import { formatDateTime } from '@/lib/utils';
 const SITES = [
   { id: 'atcoder', label: 'AtCoder' },
   { id: 'codeforces', label: 'Codeforces' },
+  { id: 'cf-gyms', label: 'CF Gym' },
   { id: 'nowcoder', label: '牛客' },
 ];
 /** 组内已有站点名，"其他"类去掉站点前缀 */

@@ -1,0 +1,24 @@
+{
+  "id": "106810a",
+  "platform": "cf-gyms",
+  "contestId": 106810,
+  "index": "A",
+  "title": "Whirlpool",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106810/problem/A",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 6000,
+  "memoryLimitMb": 1024,
+  "statementMd": "A lake, represented by a 2D coordinate plane, has $n$ distinct *protected spots*. The $i$-th protected spot is at $(x_i,y_i)$. Currently, there is a treasure on each protected spot. The treasure on the $i$-th protected spot has value $w_i$.\n\nA whirlpool is about to sweep across the lake. You may place its center $(c_x,c_y)$ at any point in the plane; the coordinates of the center do not have to be integers. The whirlpool is described by two given integers $a$ and $b$. It moves a treasure at $(x,y)$ to $(x',y')$, where\n\n$$x' = c_x + a(x-c_x) - b(y-c_y),$$\n\n$$y' = c_y + b(x-c_x) + a(y-c_y).$$\n\nThe whirlpool moves all treasures in the lake simultaneously, exactly once. A treasure is &lt;i&gt;safe&lt;/i&gt; if it ends up exactly on one of the protected spots. It does not have to be the spot it started on.\n\nFind the maximum possible total value of safe treasures over all choices of the center.\n\n## Input\n\nThe first line contains a single integer $T$ ($1 \\le T \\le 20$) — the number of test cases.\n\nThe first line of each test case contains three space-separated integers $n$, $a$, and $b$ ($1 \\le n \\le 1000$, ${-10^4 \\le a \\le 10^4}$, ${-10^4 \\le b \\le 10^4}$, $b \\ne 0$) — the number of protected spots and the two whirlpool parameters.\n\nThe second line contains $n$ space-separated integers $x_1,x_2,\\ldots,x_n$ ($-10^8 \\le x_i \\le 10^8$) — the $x$-coordinates of the protected spots.\n\nThe third line contains $n$ space-separated integers $y_1,y_2,\\ldots,y_n$ ($-10^8 \\le y_i \\le 10^8$) — the $y$-coordinates of the protected spots.\n\nThe fourth line contains $n$ space-separated integers $w_1,w_2,\\ldots,w_n$ ($1 \\le w_i \\le 10^9$) — the values of the treasures.\n\nAll protected spots in a test case are distinct.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2000$.\n\n## Output\n\nFor each test case, output a single integer — the maximum possible total value of safe treasures.\n\n## Note\n\nIn the first test case, place the center at the only protected spot. The treasure does not move, so it is safe and the answer is $7$.\n\nIn the second test case, place the center at $\\left(\\frac{1}{2},\\frac{1}{2}\\right)$. Every treasure moves to the next corner of the square in counterclockwise order, so all four treasures are safe and the answer is $1+2+3+4=10$.\n\nIn the third test case, place the center at $(1,1)$. The whirlpool rotates every treasure by $45^\\circ$ counterclockwise around the center and multiplies its distance from the center by $\\sqrt{2}$. The treasure at $(2,1)$ moves to $(2,2)$, and the treasure at $(2,2)$ moves to $(1,3)$, so both are safe. The treasure at $(1,3)$ moves to $(-1,3)$, which is not a protected spot. The total value of safe treasures is $5+4=9$. It can be proven that it is impossible to keep all three treasures safe.\n\nThe following is an illustration of the third test case.\n\n![image](https://espresso.codeforces.com/f3fe550810f176c69c8a42c33168b311852353c4.png)\n\nGreen treasures are safe. The red treasure is lost. The dashed circle is where the lost treasure lands. The black dot is the center.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n1 1 1\n2\n-3\n7\n4 0 1\n0 1 1 0\n0 0 1 1\n1 2 3 4\n3 1 1\n2 2 1\n1 2 3\n5 4 1\n",
+      "output": "7\n10\n9\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-11T17:19:17.398Z"
+}

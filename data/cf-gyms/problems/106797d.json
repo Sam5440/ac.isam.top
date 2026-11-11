@@ -1,0 +1,28 @@
+{
+  "id": "106797d",
+  "platform": "cf-gyms",
+  "contestId": 106797,
+  "index": "D",
+  "title": "Delphi Danger",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106797/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "![image](https://espresso.codeforces.com/c94b0dab3b601483057efec36b4dc2b83a93cc9f.png)The temple of Apollon in Delphi. CC BY-SA 3.0 by Inkey on Wikimedia Commons\n\nHave you ever been walking towards someone, dodged left only to see them do the same, and then entered an awkward shuffle to pass each other? Recently, a paper published at the Greek Commerce and Procurement Conference suggested that this may have already been a common problem in ancient Greece.\n\nBack then, there were $n$ merchant caravans that occasionally passed through the Thermopylae. When two caravans met while travelling in opposite directions, both would simultaneously choose to steer either cliffside or seaside. If they made different choices, they could safely pass each other. However, if both chose the same side, they had another opportunity to choose, repeating this process until they could safely pass. Caravans were unable to recognize each other from a distance and would each follow a deterministic strategy to decide which way to steer. Since steering seaside is much more dangerous, we say that the risk of a given strategy is defined as the total number of times it dictates to steer seaside. For example, a caravan may follow a strategy described by the sequence \"cliffside, seaside, seaside, cliffside, seaside\" and then only \"cliffside\" from then on. This strategy has a risk of $3$.\n\nThe caravans convened at the oracle in Delphi to ask for advice on which strategies they should each adopt, but this went about as well as could be expected. Rather than helping, the oracle rattled off $m$ prophecies of the following form: When caravans $u$ and $v$ meet, they will awkwardly steer in the same direction exactly $t$ times before safely passing each other by steering in opposite directions on their $(t + 1)$th attempt.\n\nThe real strategies were lost to history, but you wonder how risky they must have been. You think it is unwise to go against the oracle (this has ended poorly in the past) and want to minimize the overall risk, defined as the sum of the risks of all individual strategies.\n\n## Input\n\nThe input consists of:\n\n- One line with two integers $n$ and $m$ ($2\\leq n\\leq 2 \\cdot 10^5$, $1\\leq m\\leq 4 \\cdot 10^5$), the number of caravans and the number of prophecies.\n- $m$ lines, each with three integers $u$, $v$, and $t$ ($1\\leq u, v\\leq n$, $u\\neq v$, $0\\leq t\\leq 10^9$), describing a prophecy: the strategies of caravans $u$ and $v$ will cause them to steer in the same direction exactly $t$ times, and then steer in opposite directions.\n\nIt is guaranteed that each pair of caravans appears at most once.\n\n## Output\n\nIf there is no set of strategies that can fulfil all the prophecies, output \"`impossible`\". Otherwise, output \"`possible`\" followed by the minimum overall risk among all sets of strategies that fulfil the prophecies.\n\n## Note\n\nIn the first sample, the strategies can be chosen as follows:\n\n- caravan 1 always steers `cliffside` (risk 0)\n- caravan 2 steers `cliffside`, `cliffside`, `seaside`, and then `cliffside` from then on (risk 1)\n- caravan 3 steers `seaside` and then `cliffside` from then on (risk 1)\n- caravan 4 always steers `cliffside` (risk 0)\n- caravan 5 steers `cliffside`, `cliffside`, `seaside`, and then `cliffside` from then on (risk 1)\n\nThis satisfies all prophecies, yielding a minimum overall risk of 3.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 3\n1 2 2\n1 3 0\n4 5 2\n",
+      "output": "possible\n3\n"
+    },
+    {
+      "input": "4 3\n1 2 3\n2 4 4\n1 4 2\n",
+      "output": "impossible\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-11T17:33:55.268Z"
+}

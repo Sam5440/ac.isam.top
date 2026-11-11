@@ -1,0 +1,87 @@
+name: Fetch cf-gyms data
+
+on:
+  schedule:
+    # 每日一次（UTC 20:47 = 北京 04:47，错峰规避 GitHub 定时任务高峰丢弃）
+    - cron: "47 20 * * *"
+  workflow_dispatch:
+    inputs:
+      listing_pages:
+        description: "列表扫描页数（默认 3）"
+        default: "3"
+      sweep_limit:
+        description: "ID 补扫探测上限（默认 300）"
+        default: "300"
+      max_problem_pages:
+        description: "题面页抓取上限（默认 300）"
+        default: "300"
+      minutes:
+        description: "题面阶段时间预算分钟（默认 35）"
+        default: "35"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-cf-gyms
+  cancel-in-progress: false
+
+jobs:
+  fetch-gyms:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium (Codeforces 反爬需要真实浏览器)
+        run: npx playwright install --with-deps chromium
+
+      - name: Fetch cf-gyms (incremental)
+        env:
+          # CI 出口 IP 更容易被 Cloudflare 质询：有头浏览器 + Xvfb 通过率更高
+          CF_HEADLESS: "0"
+          # 可选：受限 gym 兜底登录（Settings → Secrets 配置；不配置则以未登录口径跑）
+          CF_HANDLE: ${{ secrets.CF_HANDLE }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+        run: |
+          xvfb-run -a node scripts/fetch-cf-gyms.mjs --login \
+            --listing-pages "${{ github.event.inputs.listing_pages || '3' }}" \
+            --sweep-limit "${{ github.event.inputs.sweep_limit || '300' }}" \
+            --max-problem-pages "${{ github.event.inputs.max_problem_pages || '300' }}" \
+            --minutes "${{ github.event.inputs.minutes || '35' }}"
+
+      - name: Commit & push data updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No data changes — skip commit."
+          else
+            git commit -m "data: cf-gyms fetch $(date -u +%FT%TZ) [skip ci]"
+            # push 前先 rebase（与 fetch.yml 同款范式）：checkout 与 push 之间的窗口内
+            # 任何人工 push 都会让本轮抓取成果丢失。重试 3 次。
+            for i in 1 2 3; do
+              if git push origin HEAD:main; then
+                echo "push ok (attempt $i)"
+                exit 0
+              fi
+              echo "push conflict, rebase and retry ($i/3)"
+              git fetch origin main
+              git pull --rebase --autostash origin main || exit 1
+            done
+            echo "push failed after 3 attempts"
+            exit 1
+          fi
+
+      # 提交后校验：缺漏会让 job 变红（数据已落地，缺口在下一轮自动重试/repair）
+      - name: Verify completeness (fail on gaps)
+        run: node scripts/fetch-cf-gyms.mjs --mode verify
