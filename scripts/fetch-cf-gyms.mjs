@@ -166,8 +166,15 @@ let lastChallengeAt = 0;
 // 同一轮内第 2 次熔断起连浏览器 profile 一起重建（指纹/凭据全新）。
 let stormStreak = 0;
 let cooldownsThisRun = 0;
+let stormEvents = []; // 90s 冷却/challenge-stuck 事件时间戳（10min 窗口内 ≥2 即熔断）
+
+function noteStorm() {
+  stormEvents.push(Date.now());
+  stormEvents = stormEvents.filter((t) => Date.now() - t < 10 * 60 * 1000);
+}
 
 async function globalStormBreak() {
+  stormEvents = [];
   cooldownsThisRun++;
   const waitMs = rnd(10, 20) * 60000;
   log('cf-gyms', `storm breaker #${cooldownsThisRun}: 全局冷却 ${Math.round(waitMs / 60000)}min 并重建会话`);
@@ -193,7 +200,7 @@ async function pace() {
     paceMultiplier = Math.max(1, paceMultiplier * 0.85);
     if (paceMultiplier <= 1.01) lastChallengeAt = 0;
   }
-  const gap = (1500 * concurrency + rnd(500, 1300)) * paceMultiplier;
+  const gap = (2500 * concurrency + rnd(800, 1600)) * paceMultiplier;
   const wait = Math.max(0, lastNavAt + gap - Date.now());
   lastNavAt = Math.max(lastNavAt, Date.now()) + wait + gap;
   if (wait > 0) await sleep(wait);
@@ -271,8 +278,10 @@ async function nav(url, wid = 0, ready = null) {
           paceMultiplier = Math.min(4, paceMultiplier * 1.4);
           if (Date.now() > deadline) {
             stormStreak++;
-            if (stormStreak < 2) return { html, status: 'challenge-stuck' };
+            noteStorm();
+            if (stormStreak < 2 && stormEvents.length < 2) return { html, status: 'challenge-stuck' };
             // 风暴熔断：全局冷却后原地重试同一 URL（重置本次导航预算）
+            stormStreak = 0;
             await globalStormBreak();
             if (stopping) return { html, status: 'challenge-stuck' };
             deadline = Date.now() + CHALLENGE_TIMEOUT_MS;
@@ -283,6 +292,14 @@ async function nav(url, wid = 0, ready = null) {
             reloads++;
             if (reloads > 3) {
               log('cf-gyms', `challenge cooldown 90s (${url.slice(0, 80)})`);
+              noteStorm();
+              if (stormEvents.length >= 2) {
+                await globalStormBreak();
+                if (stopping) return { html, status: 'challenge-stuck' };
+                deadline = Date.now() + CHALLENGE_TIMEOUT_MS;
+                reloads = 0;
+                break;
+              }
               await sleep(90000);
               if (Date.now() > deadline) return { html, status: 'challenge-stuck' };
             }
