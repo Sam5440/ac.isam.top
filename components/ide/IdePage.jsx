@@ -1,58 +1,85 @@
 "use client";
 
 /**
- * /ide 在线编程工作台（状态中枢）：多文件工作区（lib/ide-workspace，IndexedDB）
- * + Monaco 多标签编辑器 + CPH 风格测试面板 + 文件管理器 + 底部终端。
+ * /ide 在线编程工作台（状态中枢）。
  *
- * 与题目页 CompilerDock 完全独立：不经 #compiler-dock-root portal，不改
- * body.compiler-open，复用同一客户端运行链（CppClient / PyClient，wasm-clang
- * 同源自托管 + Pyodide CDN + Cache API 缓存）。运行完成经 ide-bus 广播
- * 'run-finished'（source:'ide'），AI 对话「最近一次运行」等消费方照常工作。
+ * 默认（嵌入）形态：保留站点全局顶栏与页脚，IDE 作为页内工作区（限宽居中、
+ * 圆角边框、固定视口高度）；点「全屏」后仅 IDE 元素进入浏览器全屏
+ * （Fullscreen API，不可用时 CSS 兜底），铺满屏幕。
  *
- * v1.7 全局铺满布局（参考 VS Code / TRAE）：IdeShell 提供外壳（活动栏 +
- * 可拖拽分栏 + 面板开合），本组件仍是唯一状态中枢，layout prop 决定排布：
- *   - "workspace"（IdeShell 内）：面板容器高度全部 h-full（铺满），
- *     底部区由 shell 的 bottomTab 切换 终端 / CI 日志（ciSlot 注入），
- *     测试面板与文件管理器吸收 shell 计算出的宽度样式（frameW props）。
- *   - "legacy"：旧的纵向卡片布局（独立渲染兜底）。
- * AI 对话浮窗由 IdeShell 承载（活动栏 Chat 按钮，复用题目页 ChatPanel；
- * IDE 页无题目 → scope='global'，编辑器代码经 editor-bridge 注入上下文）。
- * 编辑器接入 AI 补全（getAi/onAiStatus，与 CompilerDock 相同链路）。
+ *   ┌ 左侧栏（默认：样例 / 题面）│ 编辑器（VS Code 式：标签 · 面包屑 · Monaco）│ 右侧栏（默认：文件 / AI / 设置）┐
+ *   │                            ├────────────────────────────────────────────┤                                │
+ *   │                            │ 终端 · 问题 · CI 日志（可拖拽高度）         │                                │
+ *   └ 状态栏 ─────────────────────────────────────────────────────────────────────────────────────────────────┘
+ *
+ * - 功能块（样例 / 题面 / 文件 / AI 对话 / 设置）摆在左还是右由「设置」决定；
+ * - 样例按文件绑定（lib/ide-samples），可从题库导入或手动创建；
+ * - 多级文件夹工作区（lib/ide-workspace，IndexedDB）；
+ * - 主题 / AI 对话 / AI 补全全部沿用全局设置；编辑器配色 = 全局 IDE 主题联动结果。
+ * 运行链与题目页 CompilerDock 同一客户端（CppClient / PyClient），运行完成经
+ * ide-bus 广播 'run-finished'（source:'ide'）。
  */
 
-import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  ArrowUpRight,
+  Braces,
+  CircleX,
+  FlaskConical,
+  LoaderCircle,
+  PanelBottom,
+  PanelLeft,
+  PanelRight,
+  Play,
+  Sparkles,
+  Square,
+  Terminal as TerminalIcon,
+  Trash2,
+  TriangleAlert,
+  X,
+} from "lucide-react";
 import { judgeCase, truncate } from "@/lib/compiler/diff";
 import { emit } from "@/lib/ide-bus";
-import { loadCpSettings } from "@/lib/compiler/cp-settings";
-import { loadSampleCases, defaultCasesFrom } from "@/lib/compiler/samples";
+import { loadCpSettings, saveCpSettings } from "@/lib/compiler/cp-settings";
 import { CPP_FILES, pythonVersion } from "@/lib/compiler/runtimes";
 import { hasRuntime } from "@/lib/compiler/runtime-cache";
+import { editorThemeDef } from "@/lib/compiler/themes";
 import { CppClient } from "@/lib/compiler/cpp-client";
 import { PyClient } from "@/lib/compiler/py-client";
 import { toast } from "@/lib/toast";
 import { Spinner } from "@/components/ui/LoadingOverlay";
-import { loadAiSettings } from "@/lib/ai/ai-settings";
-import TestPanel from "@/components/ide/TestPanel";
+import { loadAiSettings, saveAiSettings } from "@/lib/ai/ai-settings";
 import EditorPane from "@/components/ide/EditorPane";
 import FileManager from "@/components/ide/FileManager";
 import TerminalPane from "@/components/ide/TerminalPane";
+import SamplesPanel from "@/components/ide/SamplesPanel";
+import { IdeSettingsPanel, StatementPanel } from "@/components/ide/IdeSidePanels";
+import ChatPanel from "@/components/chat/ChatPanel";
+import { ActionButton } from "@/components/ide/vsc";
+import { PanelHeader, ProblemsList, QuickOpen, StatusBar, StatusItem } from "@/components/ide/Workbench";
+import { LAYOUT_DEFAULTS, modulesOn, useWorkbenchLayout } from "@/components/ide/useWorkbenchLayout";
 import {
   listFiles,
+  listFolders,
   putFile,
   deleteFile as wsDeleteFile,
   renameFile as wsRenameFile,
+  createFolder as wsCreateFolder,
+  renameFolder as wsRenameFolder,
+  deleteFolder as wsDeleteFolder,
   importFiles,
 } from "@/lib/ide-workspace";
-
-const CodeEditor = dynamic(() => import("@/components/compiler/CodeEditor"), {
-  ssr: false,
-  loading: () => (
-    <div className="grid h-full place-items-center text-xs text-muted-foreground">
-      编辑器加载中…
-    </div>
-  ),
-});
+import {
+  loadAllSamples,
+  saveAllSamples,
+  sampleSetOf,
+  withSampleSet,
+  renameKey,
+  renamePrefix,
+  removeKeys,
+  setFromProblem,
+} from "@/lib/ide-samples";
 
 const CONSOLE_CAP = 200 * 1024;
 
@@ -69,23 +96,49 @@ async function runtimeReady(lang, pyVersionId) {
   }
 }
 
-export default function IdePage({ layout = "legacy", ciSlot = null, activeBottomTab = "terminal" }) {
+/** 题目全量 JSON 缓存（按 platform:id），避免切文件反复请求。 */
+const problemCache = new Map();
+async function fetchProblem(platform, id) {
+  const key = `${platform}:${id}`;
+  if (problemCache.has(key)) return problemCache.get(key);
+  const res = await fetch(`/api/problems/${platform}/${encodeURIComponent(id)}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  problemCache.set(key, data);
+  return data;
+}
+
+
+export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = null }) {
+  const router = useRouter();
+  const wb = useWorkbenchLayout();
+  const [quickOpen, setQuickOpen] = useState(false);
+  const [recent, setRecent] = useState([]);
+  const [cursor, setCursor] = useState({ line: 1, col: 1, sel: 0 });
+  const [fullscreen, setFullscreen] = useState(false);
+  const [pseudoFs, setPseudoFs] = useState(false); // Fullscreen API 不可用时的 CSS 兜底
+  const ideRef = useRef(null);
+
   const [mounted, setMounted] = useState(false);
   const [cp, setCp] = useState(null); // 编译器偏好（主题/标准/版本/超时）
-  const [files, setFiles] = useState([]); // 工作区记录 [{path,name,lang,content,updatedAt}]
-  const [openPaths, setOpenPaths] = useState([]); // 打开的标签（路径）
+  const [ai, setAi] = useState(null); // AI 补全设置（全局）
+  const [files, setFiles] = useState([]); // [{path,name,lang,content,updatedAt}]
+  const [folders, setFolders] = useState([]); // 显式文件夹路径
+  const [openPaths, setOpenPaths] = useState([]);
   const [activePath, setActivePath] = useState(null);
-  const [savedSnapshot, setSavedSnapshot] = useState({}); // path → 已落盘内容（脏状态比对）
-  // 测试面板
-  const [problem, setProblem] = useState(null); // 全量题目 JSON
-  const [cases, setCases] = useState([]); // [{index, verdict, expected, actual, diff, elapsedMs, note}]
+  const [savedSnapshot, setSavedSnapshot] = useState({});
+  // 样例（按文件绑定）与运行结果（按文件）
+  const [samplesMap, setSamplesMap] = useState({});
+  const [resultsMap, setResultsMap] = useState({}); // path → cases[]
+  const [problem, setProblem] = useState(null); // 当前文件绑定题目的全量 JSON
+  const [problemLoading, setProblemLoading] = useState(false);
+  const [importing, setImporting] = useState(false);
   // 运行状态与终端
   const [runState, setRunState] = useState("idle"); // idle | running | waiting-input
   const [stage, setStage] = useState("");
   const [consoleText, setConsoleText] = useState("");
   const [diags, setDiags] = useState([]);
   const [stdinText, setStdinText] = useState("");
-  // AI 补全状态：'idle' | 'thinking' | {error} | null（未启用），同 CompilerDock
   const [aiStatus, setAiStatus] = useState(null);
 
   const cppRef = useRef(null);
@@ -94,36 +147,42 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
   const runTokenRef = useRef(0);
   const consoleRef = useRef(null);
   const saveTimerRef = useRef(null);
-  // 编辑器最新内容（防抖落盘 / Ctrl+S / 运行取值，不进 effect 依赖）
   const contentRef = useRef({});
   const activeRef = useRef(null);
+  const runPathRef = useRef(null); // 本次对拍所属文件（结果落到该文件名下）
 
   const activeFile = files.find((f) => f.path === activePath) ?? null;
   const lang = activeFile?.lang ?? "cpp";
   const code = activeFile?.content ?? "";
+  const sampleSet = sampleSetOf(samplesMap, activePath);
+  const cases = resultsMap[activePath] ?? [];
+  const setCases = useCallback((upd) => {
+    const path = runPathRef.current ?? activeRef.current;
+    setResultsMap((prev) => ({ ...prev, [path]: typeof upd === "function" ? upd(prev[path] ?? []) : upd }));
+  }, []);
 
   contentRef.current = Object.fromEntries(files.map((f) => [f.path, f.content]));
   activeRef.current = activePath;
-  const consoleTextRef = useRef("");
-  consoleTextRef.current = consoleText;
 
   const appendConsole = useCallback((text) => {
     setConsoleText((prev) => (prev + text).slice(-CONSOLE_CAP));
   }, []);
 
-  /* ---------- 初始化：偏好 + 工作区 ---------- */
+  /* ---------- 初始化：偏好 + 工作区 + 样例 ---------- */
   useEffect(() => {
     setCp(loadCpSettings());
+    setAi(loadAiSettings());
+    setSamplesMap(loadAllSamples());
     (async () => {
       try {
-        const list = await listFiles();
+        const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+        setFolders(dirs);
         if (list.length) {
           setFiles(list);
           setSavedSnapshot(Object.fromEntries(list.map((f) => [f.path, f.content])));
           setOpenPaths(list.slice(0, 4).map((f) => f.path));
           setActivePath(list[0].path);
         } else {
-          // 空工作区：建一个 main.cpp 起步
           const rec = await putFile("main.cpp", "");
           setFiles([rec]);
           setSavedSnapshot({ [rec.path]: "" });
@@ -136,6 +195,78 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
       setMounted(true);
     })();
   }, []);
+
+  // 全局设置变化（主题联动 / 设置页修改编译器或 AI 补全）→ 同步
+  useEffect(() => {
+    const reload = () => {
+      setCp(loadCpSettings());
+      setAi(loadAiSettings());
+    };
+    window.addEventListener("ysc-cp-settings-changed", reload);
+    window.addEventListener("storage", reload);
+    return () => {
+      window.removeEventListener("ysc-cp-settings-changed", reload);
+      window.removeEventListener("storage", reload);
+    };
+  }, []);
+
+  const patchCp = useCallback((p) => {
+    saveCpSettings(p);
+    setCp(loadCpSettings());
+    window.dispatchEvent(new Event("ysc-cp-settings-changed"));
+  }, []);
+  const patchAi = useCallback((p) => {
+    saveAiSettings(p);
+    setAi(loadAiSettings());
+  }, []);
+
+  /* ---------- 样例：持久化 + 当前文件绑定题目 ---------- */
+  const updateSamples = useCallback((fn) => {
+    setSamplesMap((prev) => {
+      const next = fn(prev);
+      saveAllSamples(next);
+      return next;
+    });
+  }, []);
+
+  const boundKey = sampleSet.problem ? `${sampleSet.problem.platform}:${sampleSet.problem.id}` : null;
+  useEffect(() => {
+    if (!boundKey) {
+      setProblem(null);
+      return;
+    }
+    const [platform, ...rest] = boundKey.split(":");
+    const id = rest.join(":");
+    let alive = true;
+    setProblemLoading(true);
+    fetchProblem(platform, id)
+      .then((p) => alive && setProblem(p))
+      .catch(() => alive && setProblem(null))
+      .finally(() => alive && setProblemLoading(false));
+    return () => {
+      alive = false;
+    };
+  }, [boundKey]);
+
+  const importProblem = useCallback(
+    async (item) => {
+      const path = activeRef.current;
+      if (!path) return;
+      setImporting(true);
+      try {
+        const full = await fetchProblem(item.platform, item.id);
+        const set = setFromProblem(full);
+        updateSamples((m) => withSampleSet(m, path, set));
+        setResultsMap((prev) => ({ ...prev, [path]: [] }));
+        toast.success(`已导入 ${set.cases.length} 个样例 → ${path}`);
+      } catch (exn) {
+        toast.error(`导入失败：${exn.message}`);
+      } finally {
+        setImporting(false);
+      }
+    },
+    [updateSamples],
+  );
 
   /* ---------- 编辑：300ms 防抖落盘 ---------- */
   const persist = useCallback(async (path, content) => {
@@ -173,7 +304,6 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
     toast.success("已保存到工作区");
   }, [persist]);
 
-  // Ctrl/⌘S 立即落盘（捕获阶段，抢在浏览器保存网页之前）
   useEffect(() => {
     if (!mounted) return;
     const onKey = (e) => {
@@ -189,7 +319,7 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
 
   useEffect(() => () => clearTimeout(saveTimerRef.current), []);
 
-  /* ---------- 文件管理动作 ---------- */
+  /* ---------- 文件 / 文件夹管理 ---------- */
   const openFile = useCallback((path) => {
     setOpenPaths((prev) => (prev.includes(path) ? prev : [...prev, path]));
     setActivePath(path);
@@ -205,7 +335,7 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
 
   const createFile = useCallback(
     async (path) => {
-      const clean = String(path ?? "").trim();
+      const clean = String(path ?? "").trim().replace(/^\/+/, "");
       if (!clean) return;
       if (files.some((f) => f.path === clean)) {
         toast.error(`文件已存在：${clean}`);
@@ -213,10 +343,13 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
       }
       try {
         const rec = await putFile(clean, "");
-        setFiles((prev) => [...prev, rec]);
+        if (clean.includes("/")) {
+          await wsCreateFolder(clean.slice(0, clean.lastIndexOf("/")));
+          setFolders(await listFolders());
+        }
+        setFiles((prev) => [...prev, rec].sort((a, b) => a.path.localeCompare(b.path)));
         setSavedSnapshot((prev) => ({ ...prev, [rec.path]: "" }));
         openFile(rec.path);
-        toast.success(`已创建 ${rec.path}`);
       } catch (exn) {
         toast.error(`创建失败：${exn.message}`);
       }
@@ -224,29 +357,49 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
     [files, openFile],
   );
 
+  const createFolder = useCallback(async (path) => {
+    try {
+      await wsCreateFolder(path);
+      setFolders(await listFolders());
+    } catch (exn) {
+      toast.error(`创建文件夹失败：${exn.message}`);
+    }
+  }, []);
+
   const removeFile = useCallback(
     async (path) => {
       if (!window.confirm(`确定删除 ${path}？此操作不可撤销。`)) return;
       try {
         await wsDeleteFile(path);
         setFiles((prev) => prev.filter((f) => f.path !== path));
-        setSavedSnapshot((prev) => {
-          const next = { ...prev };
-          delete next[path];
-          return next;
-        });
+        updateSamples((m) => removeKeys(m, [path]));
         closeTab(path);
-        toast.success(`已删除 ${path}`);
       } catch (exn) {
         toast.error(`删除失败：${exn.message}`);
       }
     },
-    [closeTab],
+    [closeTab, updateSamples],
+  );
+
+  const removeFolder = useCallback(
+    async (path) => {
+      if (!window.confirm(`确定删除文件夹 ${path} 及其中全部内容？此操作不可撤销。`)) return;
+      try {
+        const gone = await wsDeleteFolder(path);
+        setFiles((prev) => prev.filter((f) => !gone.includes(f.path)));
+        setFolders(await listFolders());
+        updateSamples((m) => removeKeys(m, gone));
+        gone.forEach(closeTab);
+      } catch (exn) {
+        toast.error(`删除失败：${exn.message}`);
+      }
+    },
+    [closeTab, updateSamples],
   );
 
   const renameFile = useCallback(
     async (oldPath, newPath) => {
-      const clean = String(newPath ?? "").trim();
+      const clean = String(newPath ?? "").trim().replace(/^\/+/, "");
       if (!clean || clean === oldPath) return;
       if (files.some((f) => f.path === clean)) {
         toast.error(`文件已存在：${clean}`);
@@ -254,36 +407,62 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
       }
       try {
         const rec = await wsRenameFile(oldPath, clean);
-        setFiles((prev) => prev.map((f) => (f.path === oldPath ? rec : f)));
+        if (clean.includes("/")) await wsCreateFolder(clean.slice(0, clean.lastIndexOf("/")));
+        setFolders(await listFolders());
+        setFiles((prev) => prev.map((f) => (f.path === oldPath ? rec : f)).sort((a, b) => a.path.localeCompare(b.path)));
         setSavedSnapshot((prev) => {
           const next = { ...prev };
           delete next[oldPath];
           next[rec.path] = rec.content;
           return next;
         });
+        updateSamples((m) => renameKey(m, oldPath, rec.path));
+        setResultsMap((prev) => renameKey(prev, oldPath, rec.path));
         setOpenPaths((prev) => prev.map((p) => (p === oldPath ? rec.path : p)));
         setActivePath((cur) => (cur === oldPath ? rec.path : cur));
-        toast.success(`已重命名为 ${rec.path}`);
       } catch (exn) {
         toast.error(`重命名失败：${exn.message}`);
       }
     },
-    [files],
+    [files, updateSamples],
+  );
+
+  const renameFolder = useCallback(
+    async (from, to) => {
+      try {
+        const { moved } = await wsRenameFolder(from, to);
+        const map = new Map(moved.map((m) => [m.from, m.to]));
+        const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+        setFiles((prev) => {
+          const byPath = new Map(list.map((f) => [f.path, f]));
+          // 保留未落盘的编辑内容
+          return list.map((f) => {
+            const old = prev.find((p) => map.get(p.path) === f.path);
+            return old ? { ...byPath.get(f.path), content: old.content } : f;
+          });
+        });
+        setFolders(dirs);
+        setSavedSnapshot((prev) => Object.fromEntries(Object.entries(prev).map(([k, v]) => [map.get(k) ?? k, v])));
+        updateSamples((m) => renamePrefix(m, from, to));
+        setResultsMap((prev) => renamePrefix(prev, from, to));
+        setOpenPaths((prev) => prev.map((p) => map.get(p) ?? p));
+        setActivePath((cur) => map.get(cur) ?? cur);
+      } catch (exn) {
+        toast.error(`移动失败：${exn.message}`);
+      }
+    },
+    [updateSamples],
   );
 
   const uploadFiles = useCallback(
-    async (fileList) => {
+    async (fileList, dir = "") => {
       try {
-        const imported = await importFiles(fileList);
+        const imported = await importFiles(fileList, dir);
         if (!imported.length) return;
-        setFiles((prev) => [
-          ...prev.filter((f) => !imported.some((r) => r.path === f.path)),
-          ...imported,
-        ]);
-        setSavedSnapshot((prev) => ({
-          ...prev,
-          ...Object.fromEntries(imported.map((r) => [r.path, r.content])),
-        }));
+        const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+        setFiles(list);
+        setFolders(dirs);
+        setSavedSnapshot((prev) => ({ ...prev, ...Object.fromEntries(imported.map((r) => [r.path, r.content])) }));
         openFile(imported[0].path);
         toast.success(`已导入 ${imported.length} 个文件`);
       } catch (exn) {
@@ -295,12 +474,11 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
 
   const refreshFiles = useCallback(async () => {
     try {
-      const list = await listFiles();
+      const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
       setFiles(list);
+      setFolders(dirs);
       setSavedSnapshot(Object.fromEntries(list.map((f) => [f.path, f.content])));
-      if (!list.some((f) => f.path === activeRef.current)) {
-        setActivePath(list[0]?.path ?? null);
-      }
+      if (!list.some((f) => f.path === activeRef.current)) setActivePath(list[0]?.path ?? null);
     } catch {}
   }, []);
 
@@ -387,6 +565,7 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
   const runAllSamples = useCallback(
     async (samples) => {
       if (runState !== "idle" || !samples.length) return;
+      runPathRef.current = activeRef.current;
       const token = await beginRun(lang);
       setCases([]);
       setConsoleText("");
@@ -475,11 +654,12 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
     async (index, samples) => {
       const sample = samples[index];
       if (runState !== "idle" || !sample) return;
+      const keep = (resultsMap[activeRef.current] ?? []).filter((c) => c.index !== index);
       await runAllSamples([sample]);
-      // 单例结果归位到原样例序号，方便与样例列表对齐
-      setCases((prev) => (prev[0] ? [{ ...prev[0], index }] : prev));
+      // 单例结果归位到原样例序号，其余样例的上次结果保留
+      setCases((prev) => (prev[0] ? [...keep, { ...prev[0], index }].sort((a, b) => a.index - b.index) : keep));
     },
-    [runState, runAllSamples],
+    [runState, runAllSamples, resultsMap],
   );
 
   /** 终端「运行」：以 stdin 文本框内容喂入运行当前文件（同 dock 交互路径，
@@ -562,150 +742,443 @@ export default function IdePage({ layout = "legacy", ciSlot = null, activeBottom
     appendConsole("\n（已手动终止）\n");
   }, [lang, appendConsole]);
 
+
+  /* ---------- 快捷键 ---------- */
+  // ⌘B 左侧栏 · ⌥⌘B 右侧栏 · ⌘J 终端 · ⌘P 快速打开 · F5 运行 · ⌘Enter 运行全部样例 · F11 全屏
+  const keyRef = useRef({});
+  keyRef.current = { wb, cases: sampleSet.cases, runInTerminal, runAllSamples, runState };
+  useEffect(() => {
+    if (!mounted) return;
+    const onKey = (e) => {
+      const k = keyRef.current;
+      const mod = e.metaKey || e.ctrlKey;
+      const key = (e.key ?? "").toLowerCase();
+      const hit = (fn) => {
+        e.preventDefault();
+        e.stopPropagation();
+        fn();
+      };
+      if (mod && e.altKey && (key === "b" || e.code === "KeyB")) hit(() => k.wb.patch((p) => ({ rightOpen: !p.rightOpen })));
+      else if (mod && !e.shiftKey && key === "b") hit(() => k.wb.patch((p) => ({ leftOpen: !p.leftOpen })));
+      else if (mod && !e.shiftKey && key === "j") hit(() => k.wb.patch((p) => ({ termOpen: !p.termOpen })));
+      else if (mod && key === "`") hit(() => k.wb.showTerm("terminal", true));
+      else if (mod && !e.shiftKey && key === "p") hit(() => setQuickOpen(true));
+      else if (e.key === "F11") hit(() => toggleFullscreenRef.current());
+      else if (e.key === "F5") hit(() => k.runState === "idle" && (k.wb.showTerm("terminal"), k.runInTerminal()));
+      else if (mod && e.key === "Enter" && k.cases.length)
+        hit(() => k.runState === "idle" && (k.wb.showModule("samples"), k.runAllSamples(k.cases)));
+    };
+    document.addEventListener("keydown", onKey, true);
+    return () => document.removeEventListener("keydown", onKey, true);
+  }, [mounted]);
+
+  /* ---------- 全屏（仅 IDE 元素） ---------- */
+  useEffect(() => {
+    const sync = () => setFullscreen(document.fullscreenElement === ideRef.current);
+    document.addEventListener("fullscreenchange", sync);
+    return () => document.removeEventListener("fullscreenchange", sync);
+  }, []);
+  useEffect(() => {
+    if (!pseudoFs) return;
+    const onKey = (e) => e.key === "Escape" && setPseudoFs(false);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [pseudoFs]);
+  const isFull = fullscreen || pseudoFs;
+  const toggleFullscreen = useCallback(async () => {
+    const el = ideRef.current;
+    if (!el) return;
+    if (pseudoFs) return setPseudoFs(false);
+    if (document.fullscreenElement) return document.exitFullscreen?.();
+    try {
+      if (!el.requestFullscreen) throw new Error("unsupported");
+      await el.requestFullscreen();
+    } catch {
+      setPseudoFs(true);
+    }
+  }, [pseudoFs]);
+  const toggleFullscreenRef = useRef(toggleFullscreen);
+  toggleFullscreenRef.current = toggleFullscreen;
+
+  /* ---------- 编辑器配色：沿用全局 IDE 主题（外观设置联动） ---------- */
+  const themeDef = editorThemeDef(cp?.editorTheme);
+  const editorBg = themeDef?.colors?.["editor.background"];
+
+  useEffect(() => {
+    if (activePath) setRecent((prev) => [activePath, ...prev.filter((p) => p !== activePath)].slice(0, 20));
+  }, [activePath]);
+
   /* ---------- 渲染 ---------- */
   const dirty = (f) => (savedSnapshot[f.path] ?? null) !== f.content;
+  const L = wb.layout;
+  const shellCls = isFull
+    ? `vsc flex flex-col overflow-hidden ${pseudoFs ? "ide-pseudo-fullscreen" : ""}`
+    : "vsc mx-auto my-3 flex w-full max-w-[1600px] flex-col overflow-hidden rounded-lg border shadow-sm";
+  const shellStyle = {
+    height: isFull ? "100dvh" : "calc(100dvh - 3.5rem - 1.5rem)",
+    minHeight: isFull ? undefined : 520,
+    background: "var(--vsc-panel)",
+    borderColor: "var(--vsc-border)",
+    ...(editorBg ? { "--vsc-editor": editorBg } : {}),
+  };
 
-  if (!mounted || !cp) {
+  if (!mounted || !cp || !L) {
     return (
-      <div className={layout === "workspace" ? "grid h-full place-items-center text-sm text-muted-foreground" : "grid min-h-[60vh] place-items-center text-sm text-muted-foreground"}>
-        <span className="flex items-center gap-2">
-          <Spinner /> 工作区加载中…
-        </span>
-      </div>
-    );
-  }
-
-  /* 编辑器 + 终端（workspace 与 legacy 共用的两个主体块） */
-  const editorNode = (
-    <EditorPane
-      openPaths={openPaths}
-      files={files}
-      activePath={activePath}
-      onSelectTab={setActivePath}
-      onCloseTab={closeTab}
-      code={code}
-      lang={lang}
-      onChange={handleEditorChange}
-      onSave={saveNow}
-      theme={cp.editorTheme}
-      diagnostics={diags}
-      getAi={() => loadAiSettings()}
-      onAiStatus={setAiStatus}
-      aiStatus={aiStatus}
-      fill={layout === "workspace"}
-    />
-  );
-  const terminalNode = (
-    <TerminalPane
-      text={consoleText}
-      stage={stage}
-      running={runState !== "idle"}
-      waitingInput={runState === "waiting-input"}
-      stdin={stdinText}
-      onStdinChange={setStdinText}
-      onRun={runInTerminal}
-      onSendLine={sendLine}
-      onSendEof={sendEof}
-      onStop={stopRun}
-      onClear={() => setConsoleText("")}
-      consoleRef={consoleRef}
-      fill={layout === "workspace"}
-    />
-  );
-
-  if (layout === "workspace") {
-    /* 铺满布局：测试面板 ｜ 编辑器（flex-1）｜ 文件管理器 + 底部（终端 / CI 日志）。
-       宽度/底部高度由 IdeShell 的 CSS 变量（--ide-left/--ide-right/--ide-bottom）
-       控制；左右面板宽为 0 时收起。移动端变量为 min(w, 70vw)，行容器
-       overflow-hidden 由外壳兜底。这里不感知拖拽。 */
-    return (
-      <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
-        <div className="flex min-h-0 flex-1">
-          <div className="flex min-h-0 shrink-0 flex-col overflow-hidden border-r" style={{ width: "var(--ide-left, 280px)", minWidth: 0 }}>
-            <TestPanel
-              problem={problem}
-              onProblemChange={(p) => {
-                setProblem(p);
-                setCases([]);
-              }}
-              cases={cases}
-              running={runState !== "idle"}
-              stage={stage}
-              onRunAll={runAllSamples}
-              onRunOne={runOneSample}
-              timeoutSec={cp.timeoutSec}
-              fill
-            />
-          </div>
-          <div className="flex min-w-0 flex-1 flex-col">{editorNode}</div>
-          <div className="flex min-h-0 shrink-0 flex-col overflow-hidden border-l" style={{ width: "var(--ide-right, 232px)", minWidth: 0 }}>
-            <FileManager
-              files={files}
-              activePath={activePath}
-              isDirty={dirty}
-              onOpen={openFile}
-              onCreate={createFile}
-              onRename={renameFile}
-              onDelete={removeFile}
-              onUpload={uploadFiles}
-              onRefresh={refreshFiles}
-              fill
-            />
+      <div className="ide-fullbleed px-3">
+        <div className={shellCls} style={shellStyle}>
+          <div className="grid flex-1 place-items-center text-[13px] opacity-70">
+            <span className="flex items-center gap-2">
+              <Spinner className="size-3.5" /> 正在打开工作区…
+            </span>
           </div>
         </div>
-        {activeBottomTab === "ci" && ciSlot ? (
-          <div className="flex min-h-0 flex-1 flex-col overflow-hidden border-t">{ciSlot}</div>
-        ) : (
-          <div className="flex min-h-0 flex-1 flex-col" style={{ height: "var(--ide-bottom, 240px)", flex: "0 0 var(--ide-bottom, 240px)" }}>
-            {terminalNode}
-          </div>
-        )}
       </div>
     );
   }
 
-  /* ---------- legacy：旧的纵向卡片布局 ---------- */
+  const running = runState !== "idle";
+  const errCount = diags.filter((d) => d.severity !== "warning" && d.severity !== "note" && d.severity !== "info").length;
+  const warnCount = diags.filter((d) => d.severity === "warning").length;
+  const passCount = cases.filter((c) => c.verdict === "AC").length;
+  const ciCount = Array.isArray(ciRuns) ? ciRuns.length : 0;
+  const termTab = L.termTab === "ci" && !ciSlot ? "terminal" : L.termTab;
+  const langLabel = lang === "python" ? "Python" : "C++";
+  const stdLabel = lang === "python" ? pythonVersion(cp.pythonVersion).label.split(" · ")[0] : (cp.cppStd ?? "c++20").toUpperCase();
+
+  const renderModule = (id) => {
+    switch (id) {
+      case "samples":
+        return (
+          <SamplesPanel
+            filePath={activePath}
+            fileLang={lang}
+            set={sampleSet}
+            onChangeCases={(cs) => {
+              updateSamples((m) => withSampleSet(m, activePath, { ...sampleSet, cases: cs }));
+              setResultsMap((prev) => ({ ...prev, [activePath]: [] }));
+            }}
+            onImportProblem={importProblem}
+            onUnbindProblem={() => updateSamples((m) => withSampleSet(m, activePath, { ...sampleSet, problem: null }))}
+            importing={importing}
+            results={cases}
+            running={running}
+            stage={stage}
+            onRunAll={runAllSamples}
+            onRunOne={runOneSample}
+            onClearResults={() => setResultsMap((prev) => ({ ...prev, [activePath]: [] }))}
+          />
+        );
+      case "statement":
+        return <StatementPanel problem={problem} loading={problemLoading} onGoSamples={() => wb.showModule("samples")} />;
+      case "files":
+        return (
+          <FileManager
+            files={files}
+            folders={folders}
+            activePath={activePath}
+            isDirty={dirty}
+            onOpen={(p) => {
+              openFile(p);
+              if (wb.isMobile) wb.patch({ leftOpen: false, rightOpen: false });
+            }}
+            onCreate={createFile}
+            onCreateFolder={createFolder}
+            onRename={renameFile}
+            onRenameFolder={renameFolder}
+            onDelete={removeFile}
+            onDeleteFolder={removeFolder}
+            onUpload={uploadFiles}
+            onRefresh={refreshFiles}
+          />
+        );
+      case "chat":
+        return (
+          <div className="flex h-full min-h-0 flex-col" style={{ background: "var(--card)" }}>
+            <ChatPanel open embedded problem={problem} onClose={() => {}} />
+          </div>
+        );
+      case "settings":
+        return (
+          <IdeSettingsPanel
+            layout={L}
+            onAssign={wb.assignModule}
+            onPatch={wb.patch}
+            cp={cp}
+            onCp={patchCp}
+            ai={ai}
+            onAi={patchAi}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  /** 侧栏：顶部标签条（同侧多个功能块切换）+ 当前功能块。 */
+  const Sidebar = ({ side }) => {
+    const mods = modulesOn(L, side);
+    if (!mods.length) return null;
+    const open = side === "left" ? L.leftOpen : L.rightOpen;
+    if (!open) return null;
+    const tabKey = side === "left" ? "leftTab" : "rightTab";
+    const cur = mods.some((m) => m.id === L[tabKey]) ? L[tabKey] : mods[0].id;
+    const width = wb.isMobile ? "min(320px, calc(100% - 24px))" : side === "left" ? L.leftW : L.rightW;
+    return (
+      <aside
+        aria-label={side === "left" ? "左侧栏" : "右侧栏"}
+        className={`flex min-h-0 shrink-0 flex-col ${side === "left" ? "border-r" : "border-l"} ${
+          wb.isMobile ? `absolute top-0 bottom-0 z-40 shadow-xl ${side === "left" ? "left-0" : "right-0"}` : "relative"
+        }`}
+        style={{ width, background: "var(--vsc-panel)", borderColor: "var(--vsc-border)" }}
+      >
+        <div role="tablist" className="flex h-[35px] shrink-0 items-stretch border-b" style={{ borderColor: "var(--vsc-border)" }}>
+          {mods.map((m) => {
+            const on = m.id === cur;
+            return (
+              <button
+                key={m.id}
+                type="button"
+                role="tab"
+                aria-selected={on}
+                onClick={() => wb.patch({ [tabKey]: m.id })}
+                className="relative px-3 text-[12px]"
+                style={{ color: on ? "var(--vsc-fg-strong)" : "var(--vsc-fg-muted)" }}
+              >
+                {m.label}
+                {m.id === "samples" && sampleSet.cases.length > 0 && (
+                  <span className="ml-1 text-[10px] tabular-nums opacity-70">{sampleSet.cases.length}</span>
+                )}
+                {on && <span className="absolute inset-x-2 bottom-0 h-0.5 rounded-full bg-[color:var(--vsc-accent)]" />}
+              </button>
+            );
+          })}
+          <span className="flex-1" />
+          <button
+            type="button"
+            title={`收起${side === "left" ? "左" : "右"}侧栏`}
+            aria-label={`收起${side === "left" ? "左" : "右"}侧栏`}
+            onClick={() => wb.patch({ [side === "left" ? "leftOpen" : "rightOpen"]: false })}
+            className="grid w-8 place-items-center opacity-60 hover:opacity-100"
+          >
+            <X className="size-3.5" strokeWidth={1.5} />
+          </button>
+        </div>
+        <div className="min-h-0 flex-1">{renderModule(cur)}</div>
+        {!wb.isMobile && (
+          <div
+            role="separator"
+            aria-orientation="vertical"
+            aria-label="调整侧栏宽度"
+            className={`vsc-sash top-0 bottom-0 w-1 cursor-col-resize ${side === "left" ? "-right-[3px]" : "-left-[3px]"}`}
+            data-active={wb.dragging === side}
+            onPointerDown={wb.startDrag(side)}
+            onDoubleClick={() => wb.patch({ [side === "left" ? "leftW" : "rightW"]: LAYOUT_DEFAULTS[side === "left" ? "leftW" : "rightW"] })}
+          />
+        )}
+      </aside>
+    );
+  };
+
+  const termActions =
+    termTab === "terminal" ? (
+      <>
+        {running ? (
+          <ActionButton icon={Square} title="终止运行" onClick={stopRun} />
+        ) : (
+          <ActionButton icon={Play} title="运行当前文件 (F5)" onClick={runInTerminal} disabled={!activePath} />
+        )}
+        <ActionButton icon={Trash2} title="清除终端" onClick={() => setConsoleText("")} />
+      </>
+    ) : termTab === "problems" ? (
+      <ActionButton icon={Trash2} title="清除问题" onClick={() => setDiags([])} disabled={!diags.length} />
+    ) : ciActionsUrl ? (
+      <a
+        href={ciActionsUrl}
+        target="_blank"
+        rel="noreferrer"
+        title="在 GitHub Actions 中查看"
+        className="inline-flex h-[22px] items-center gap-1 rounded-[5px] px-1.5 text-[12px] hover:bg-[color:var(--vsc-statusbar-hover)]"
+      >
+        Actions <ArrowUpRight className="size-3.5" strokeWidth={1.5} />
+      </a>
+    ) : null;
+
+  const leftMods = modulesOn(L, "left");
+  const rightMods = modulesOn(L, "right");
+
   return (
-    <div className="flex flex-col gap-3 py-4">
-      <div className="flex items-center justify-between gap-2">
-        <h1 className="text-lg font-semibold tracking-tight">IDE 编程台</h1>
-        <p className="text-muted-foreground hidden text-xs sm:block">
-          多文件工作区（IndexedDB 本地持久化）· Ctrl/⌘S 保存
-        </p>
-      </div>
+    <div className="ide-fullbleed px-3">
+      <div ref={ideRef} className={shellCls} style={shellStyle}>
+        <div ref={wb.rootRef} className="relative flex min-h-0 flex-1">
+          {Sidebar({ side: "left" })}
 
-      {/* 桌面三栏：测试面板 ｜ 编辑器 ｜ 文件管理器；移动端纵向堆叠 */}
-      <div className="grid items-start gap-3 lg:grid-cols-[320px_minmax(0,1fr)_250px]">
-        <TestPanel
-          problem={problem}
-          onProblemChange={(p) => {
-            setProblem(p);
-            setCases([]);
-          }}
-          cases={cases}
-          running={runState !== "idle"}
-          stage={stage}
-          onRunAll={runAllSamples}
-          onRunOne={runOneSample}
-          timeoutSec={cp.timeoutSec}
+          {/* 编辑器 + 终端（VS Code 式） */}
+          <div ref={wb.bodyRef} className="flex min-w-0 flex-1 flex-col" style={{ background: "var(--vsc-editor)" }}>
+            <div className="flex min-h-0 flex-1 flex-col">
+              <EditorPane
+                openPaths={openPaths}
+                files={files}
+                activePath={activePath}
+                onSelectTab={setActivePath}
+                onCloseTab={closeTab}
+                code={code}
+                lang={lang}
+                onChange={handleEditorChange}
+                onSave={saveNow}
+                theme={cp.editorTheme}
+                diagnostics={diags}
+                getAi={() => loadAiSettings()}
+                onAiStatus={setAiStatus}
+                onCursor={setCursor}
+                isDirty={dirty}
+                running={running}
+                onRun={() => {
+                  wb.showTerm("terminal");
+                  runInTerminal();
+                }}
+                onStop={stopRun}
+                onNewFile={() => wb.showModule("files")}
+                showRun={L.showRun}
+                fullscreen={isFull}
+                onToggleFullscreen={toggleFullscreen}
+              />
+            </div>
+
+            {L.termOpen && (
+              <section
+                aria-label="终端面板"
+                className="relative flex min-h-0 flex-col border-t"
+                style={{ background: "var(--vsc-panel)", borderColor: "var(--vsc-border)", flex: `0 0 ${wb.isMobile ? Math.min(L.termH, 240) : L.termH}px` }}
+              >
+                <div
+                  role="separator"
+                  aria-orientation="horizontal"
+                  aria-label="调整终端高度"
+                  className="vsc-sash inset-x-0 -top-[3px] h-1 cursor-row-resize"
+                  data-active={wb.dragging === "term"}
+                  onPointerDown={wb.startDrag("term")}
+                  onDoubleClick={() => wb.patch({ termH: LAYOUT_DEFAULTS.termH })}
+                />
+                <PanelHeader
+                  tabs={[
+                    { id: "terminal", label: "终端" },
+                    { id: "problems", label: "问题", badge: diags.length || null },
+                    ...(ciSlot ? [{ id: "ci", label: "CI 日志", badge: ciCount || null }] : []),
+                  ]}
+                  active={termTab}
+                  onTab={(t) => wb.patch({ termTab: t })}
+                  actions={termActions}
+                  onClose={() => wb.patch({ termOpen: false })}
+                />
+                <div className="min-h-0 flex-1">
+                  {termTab === "terminal" && (
+                    <TerminalPane
+                      text={consoleText}
+                      waitingInput={runState === "waiting-input"}
+                      stdin={stdinText}
+                      onStdinChange={setStdinText}
+                      onSendLine={sendLine}
+                      onSendEof={sendEof}
+                      consoleRef={consoleRef}
+                    />
+                  )}
+                  {termTab === "problems" && <ProblemsList diags={diags} filePath={activePath} />}
+                  {termTab === "ci" && ciSlot}
+                </div>
+              </section>
+            )}
+          </div>
+
+          {Sidebar({ side: "right" })}
+
+          {wb.isMobile && (L.leftOpen || L.rightOpen) && (
+            <button
+              type="button"
+              aria-label="关闭侧栏"
+              className="absolute inset-0 z-30 bg-black/30"
+              onClick={() => wb.patch({ leftOpen: false, rightOpen: false })}
+            />
+          )}
+        </div>
+
+        <StatusBar
+          running={running}
+          left={
+            <>
+              {leftMods.length > 0 && (
+                <StatusItem title="切换左侧栏 (⌘B)" onClick={() => wb.patch((p) => ({ leftOpen: !p.leftOpen }))}>
+                  <PanelLeft className="size-3.5" strokeWidth={1.5} />
+                </StatusItem>
+              )}
+              <StatusItem title="切换终端 (⌘J)" onClick={() => wb.patch((p) => ({ termOpen: !p.termOpen }))}>
+                <PanelBottom className="size-3.5" strokeWidth={1.5} />
+              </StatusItem>
+              <StatusItem title={`错误: ${errCount}, 警告: ${warnCount}`} onClick={() => wb.showTerm("problems", true)}>
+                <CircleX className="size-3.5" strokeWidth={1.5} /> {errCount}
+                <TriangleAlert className="ml-1 size-3.5" strokeWidth={1.5} /> {warnCount}
+              </StatusItem>
+              {sampleSet.cases.length > 0 && (
+                <StatusItem title="样例结果（点击打开样例）" onClick={() => wb.showModule("samples")}>
+                  <FlaskConical className="size-3.5" strokeWidth={1.5} />
+                  {cases.length ? `${passCount}/${sampleSet.cases.length}` : `${sampleSet.cases.length} 个样例`}
+                </StatusItem>
+              )}
+              {running && (
+                <StatusItem title="运行中">
+                  <LoaderCircle className="size-3.5 animate-spin" strokeWidth={1.5} />
+                  <span className="max-w-60 truncate">{runState === "waiting-input" ? "等待输入…" : stage || "运行中…"}</span>
+                </StatusItem>
+              )}
+            </>
+          }
+          right={
+            <>
+              {activePath && (
+                <>
+                  {aiStatus === "thinking" && (
+                    <StatusItem title="AI 补全中">
+                      <LoaderCircle className="size-3.5 animate-spin" strokeWidth={1.5} /> AI
+                    </StatusItem>
+                  )}
+                  {aiStatus && typeof aiStatus === "object" && aiStatus.error && (
+                    <StatusItem title={String(aiStatus.error)} className="text-[color:var(--vsc-error)]">
+                      <Sparkles className="size-3.5" strokeWidth={1.5} /> AI 出错
+                    </StatusItem>
+                  )}
+                  <StatusItem title="光标位置" onClick={() => window.__ysMonaco?.editor?.focus()}>
+                    行 {cursor.line}，列 {cursor.col}
+                    {cursor.sel ? `（已选择 ${cursor.sel}）` : ""}
+                  </StatusItem>
+                  <StatusItem title="缩进" className="hidden lg:flex">空格: 4</StatusItem>
+                  <StatusItem title="编码" className="hidden lg:flex">UTF-8</StatusItem>
+                  <StatusItem title="语言模式">
+                    <Braces className="size-3.5" strokeWidth={1.5} /> {langLabel}
+                  </StatusItem>
+                  <StatusItem title="编译器 / 运行时（在 IDE 设置中切换）" onClick={() => wb.showModule("settings")} className="hidden sm:flex">
+                    {stdLabel}
+                  </StatusItem>
+                  <StatusItem title={ai?.enabled ? "AI 补全已开启" : "AI 补全未开启"} onClick={() => wb.showModule("settings")} className="hidden sm:flex">
+                    <Sparkles className="size-3.5" strokeWidth={1.5} style={{ opacity: ai?.enabled ? 1 : 0.45 }} />
+                  </StatusItem>
+                </>
+              )}
+              {rightMods.length > 0 && (
+                <StatusItem title="切换右侧栏 (⌥⌘B)" onClick={() => wb.patch((p) => ({ rightOpen: !p.rightOpen }))}>
+                  <PanelRight className="size-3.5" strokeWidth={1.5} />
+                </StatusItem>
+              )}
+            </>
+          }
         />
 
-        {editorNode}
-
-        <FileManager
-          files={files}
-          activePath={activePath}
-          isDirty={dirty}
-          onOpen={openFile}
-          onCreate={createFile}
-          onRename={renameFile}
-          onDelete={removeFile}
-          onUpload={uploadFiles}
-          onRefresh={refreshFiles}
-        />
+        {quickOpen && (
+          <QuickOpen files={files} recent={recent} onPick={openFile} onCreate={createFile} onClose={() => setQuickOpen(false)} />
+        )}
       </div>
-
-      {terminalNode}
     </div>
   );
 }

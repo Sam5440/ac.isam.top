@@ -279,7 +279,7 @@ function SessionList({ sessions, activeId, onSelect, onCreate, onRename, onDelet
   );
 }
 
-export default function ChatPanel({ problem, open, onClose }) {
+export default function ChatPanel({ problem, open, onClose, embedded = false }) {
   const { settings, setSettings } = useSettings();
   const chatCfg = settings.chat || {};
   // scope = 题目 id 或 'global'（非题目页预留）
@@ -591,7 +591,7 @@ export default function ChatPanel({ problem, open, onClose }) {
   if (!open) return null;
 
   const displayMode = chatCfg.displayMode === 'sidebar' ? 'sidebar' : 'float';
-  const isFloat = displayMode === 'float' && !isMobile;
+  const isFloat = !embedded && displayMode === 'float' && !isMobile;
 
   /* ---------- 共享内容块 ---------- */
 
@@ -674,7 +674,7 @@ export default function ChatPanel({ problem, open, onClose }) {
       >
         <Eraser className="size-4" />
       </button>
-      <button
+      {!embedded && <button
         type="button"
         onClick={() => patchChat({ displayMode: isFloat ? 'sidebar' : 'float' })}
         title={isFloat ? '切换为侧边栏' : '切换为浮窗'}
@@ -682,8 +682,8 @@ export default function ChatPanel({ problem, open, onClose }) {
         className="text-muted-foreground hover:text-foreground rounded p-1.5 transition-colors"
       >
         {isFloat ? <PanelRight className="size-4" /> : <Scan className="size-4" />}
-      </button>
-      <button
+      </button>}
+      {!embedded && <button
         type="button"
         onClick={onClose}
         title="关闭"
@@ -691,7 +691,7 @@ export default function ChatPanel({ problem, open, onClose }) {
         className="text-muted-foreground hover:text-foreground rounded p-1.5 transition-colors"
       >
         <X className="size-4" />
-      </button>
+      </button>}
     </div>
   );
 
@@ -825,6 +825,33 @@ export default function ChatPanel({ problem, open, onClose }) {
   );
 
   /* ---------- 布局（float / sidebar / 移动端全屏） ---------- */
+
+  if (embedded) {
+    // 嵌入模式（/ide 侧栏）：填满父容器，无遮罩 / 浮窗几何，会话历史为面板内 popover
+    return (
+      <div className="relative flex h-full min-h-0 flex-col" aria-label="AI 对话">
+        {headerNode}
+        {contextNode}
+        <div className="relative flex min-h-0 flex-1 flex-col">
+          {listOpen && (
+            <div className="bg-popover text-popover-foreground absolute inset-x-2 top-1 z-20 max-h-[70%] overflow-hidden rounded-lg border shadow-xl">
+              <SessionList
+                sessions={sessionsState.sessions}
+                activeId={activeId}
+                onSelect={switchSession}
+                onCreate={newSession}
+                onRename={renameCurrent}
+                onDelete={removeSession}
+                onClose={() => setListOpen(false)}
+              />
+            </div>
+          )}
+          {messagesNode}
+        </div>
+        {inputNode}
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-[70]" role="dialog" aria-label="AI 对话">

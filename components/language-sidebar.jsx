@@ -98,7 +98,7 @@ export default function LanguageSidebar() {
   );
 
   return (
-    <div className="fixed bottom-5 left-4 z-40" ref={rootRef}>
+    <div className="lang-fab fixed bottom-5 left-4 z-40" ref={rootRef}>
       {expanded && list('mb-2')}
       <button
         type="button"

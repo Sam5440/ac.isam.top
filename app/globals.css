@@ -754,7 +754,7 @@ html {
   }
 }
 
-/* IDE 全局铺满（app/ide/page.jsx）：覆盖 layout 的 max-w-6xl 约束 */
+/* IDE（app/ide/page.jsx）：放宽 layout 的 max-w-6xl 约束（IDE 自身限宽居中） */
 .ide-fullbleed {
   width: 100%;
 }
@@ -763,9 +763,133 @@ body:has(.ide-fullbleed) .site-shell main {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-/* 铺满模式下隐藏站点页脚（IDE 是应用型页面） */
-body:has(.ide-fullbleed) .site-shell footer {
+/* /ide 隐藏题面语言浮钮（IDE 无题面翻译场景） */
+body:has(.ide-fullbleed) .lang-fab {
   display: none;
+}
+
+/* ---------- /ide：编辑器区 VS Code 式外观 ----------
+   几何（35px 标签栏 / 22px 状态栏 / 细滚动条）仿 VS Code，颜色全部取自站点
+   主题 token，因此跟随全局「外观」设置（日 / 夜 / 墨水屏 / 模板 / 自定义）。
+   编辑器画布底色由 IdePage 按当前 Monaco 主题注入 --vsc-editor。 */
+.vsc {
+  --vsc-accent: var(--primary);
+  --vsc-accent-fg: var(--primary-foreground);
+  --vsc-fg: var(--foreground);
+  --vsc-fg-strong: var(--foreground);
+  --vsc-fg-muted: var(--muted-foreground);
+  --vsc-editor: var(--background);
+  --vsc-tabs: var(--card);
+  --vsc-tab-inactive-fg: var(--muted-foreground);
+  --vsc-tab-active-fg: var(--foreground);
+  --vsc-panel: var(--card);
+  --vsc-statusbar: var(--card);
+  --vsc-statusbar-fg: var(--muted-foreground);
+  --vsc-statusbar-hover: color-mix(in oklab, var(--foreground) 10%, transparent);
+  --vsc-border: var(--border);
+  --vsc-hover: var(--accent);
+  --vsc-selection: var(--accent);
+  --vsc-focus-selection: var(--accent);
+  --vsc-input: var(--background);
+  --vsc-input-border: var(--input);
+  --vsc-widget: var(--popover);
+  --vsc-widget-border: var(--border);
+  --vsc-badge: var(--muted);
+  --vsc-badge-fg: var(--foreground);
+  --vsc-success: oklch(0.7 0.17 150);
+  --vsc-error: oklch(0.64 0.22 25);
+  --vsc-warning: oklch(0.76 0.15 80);
+  --vsc-info: oklch(0.66 0.15 250);
+  --vsc-terminal: var(--vsc-editor);
+  --vsc-terminal-fg: var(--foreground);
+  --vsc-scroll: color-mix(in oklab, var(--muted-foreground) 40%, transparent);
+  --vsc-scroll-hover: color-mix(in oklab, var(--muted-foreground) 70%, transparent);
+  --vsc-sash: var(--primary);
+}
+.vsc ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.vsc ::-webkit-scrollbar-track,
+.vsc ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+.vsc ::-webkit-scrollbar-thumb {
+  background: var(--vsc-scroll);
+  border-radius: 0;
+}
+.vsc ::-webkit-scrollbar-thumb:hover {
+  background: var(--vsc-scroll-hover);
+}
+/* 全屏（Fullscreen API 不可用时的 CSS 兜底） */
+.ide-pseudo-fullscreen {
+  position: fixed !important;
+  inset: 0;
+  z-index: 60;
+  width: 100vw !important;
+  max-width: none !important;
+  height: 100dvh !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+/* VS Code 输入框：1px 边框，聚焦时变强调色 */
+.vsc-input {
+  height: 26px;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--vsc-input-border);
+  border-radius: 2px;
+  background: var(--vsc-input);
+  color: var(--vsc-fg);
+  padding: 0 6px;
+  font-size: 13px;
+  outline: none;
+}
+.vsc-input::placeholder {
+  color: var(--vsc-fg-muted);
+  opacity: 0.8;
+}
+.vsc-input:focus {
+  border-color: var(--vsc-accent);
+}
+.vsc-btn {
+  display: inline-flex;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 2px;
+  background: var(--vsc-accent);
+  color: var(--vsc-accent-fg);
+  padding: 0 12px;
+  font-size: 13px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+.vsc-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+.vsc-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.vsc-btn-secondary {
+  background: var(--vsc-hover);
+  color: var(--vsc-fg);
+  border: 1px solid var(--vsc-border);
+}
+.vsc-btn-secondary:hover:not(:disabled) {
+  background: var(--vsc-selection);
+}
+/* 拖拽分隔条（sash）：悬停 / 拖拽时显示强调色 */
+.vsc-sash {
+  position: absolute;
+  z-index: 30;
+  transition: background-color 0.1s ease-out 0.3s;
+}
+.vsc-sash:hover,
+.vsc-sash[data-active="true"] {
+  background: var(--vsc-sash);
 }
 
 /* ---------- 全站 Toast（components/ui/ToastHost.jsx）---------- */
@@ -822,4 +946,25 @@ body:has(.ide-fullbleed) .site-shell footer {
   .skeleton-shimmer {
     animation-duration: 1ms;
   }
+}
+
+/* /ide 标题栏内复用的站点主题切换按钮：压成 VS Code 工具栏图标样式 */
+.vsc-plain-btn > button {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--vsc-fg);
+}
+.vsc-plain-btn > button:hover {
+  background: var(--vsc-statusbar-hover);
+}
+.vsc-plain-btn > button svg {
+  width: 16px;
+  height: 16px;
+}
+/* 编辑器标签栏：细滚动条（VS Code 3px） */
+.vsc .vsc-tabs::-webkit-scrollbar {
+  height: 3px;
 }

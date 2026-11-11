@@ -1,58 +1,53 @@
 "use client";
 
 /**
- * WA 差异视图：渲染 judgeCase 返回的 expected / actual / diff。
- * 高亮首个不一致的行（{line, expected, actual}），上下文保留完整输出（已截断）。
+ * WA 差异视图（VS Code 测试 peek 风格）：首个不一致行提示 + 期望/实际并排，
+ * 不一致行以 diff 底色（绿 = 期望，红 = 实际）高亮。
  */
 
-import { useState } from "react";
-
-function Block({ label, text, tone }) {
+function Lines({ label, text, badLine, tone }) {
+  const lines = (text || "").split("\n");
+  const bg = tone === "expected" ? "rgba(155,185,85,0.2)" : "rgba(255,0,0,0.2)";
   return (
     <div className="min-w-0 flex-1">
-      <p className="text-muted-foreground mb-1 text-[11px] font-medium">{label}</p>
+      <p className="mb-0.5 text-[11px] uppercase opacity-70">{label}</p>
       <pre
-        className={`max-h-56 overflow-auto rounded-md border p-2 font-mono text-xs leading-5 whitespace-pre-wrap ${
-          tone === "expected"
-            ? "border-green-500/30 bg-green-500/5"
-            : "border-red-500/30 bg-red-500/5"
-        }`}
+        className="max-h-48 overflow-auto rounded-[2px] border py-1 font-mono text-[12px] leading-[18px]"
+        style={{ background: "var(--vsc-input)", borderColor: "var(--vsc-input-border)" }}
       >
-        {text || "（空）"}
+        {text ? (
+          lines.map((l, i) => (
+            <div key={i} className="flex" style={i + 1 === badLine ? { background: bg } : undefined}>
+              <span className="w-7 shrink-0 pr-2 text-right opacity-50 select-none">{i + 1}</span>
+              <span className="pr-2 whitespace-pre-wrap">{l || " "}</span>
+            </div>
+          ))
+        ) : (
+          <span className="px-2 opacity-60">（空）</span>
+        )}
       </pre>
     </div>
   );
 }
 
-export default function DiffView({ result }) {
-  const [raw, setRaw] = useState(false);
+export default function DiffView({ result, compact = false }) {
   if (!result || result.verdict === "AC") return null;
   const { diff, expected, actual } = result;
-
   return (
-    <div className="mt-2 space-y-2">
+    <div className="space-y-1.5">
       {diff && (
-        <div className="text-warning-foreground rounded-md border border-amber-500/40 bg-amber-500/10 px-2 py-1.5 text-xs">
-          首个不一致：第 {diff.line} 行
-          <span className="ml-2 font-mono">
-            期望 <span className="text-green-600 dark:text-green-400">{JSON.stringify(diff.expected)}</span>
-            {"  "}实际 <span className="text-red-600 dark:text-red-400">{JSON.stringify(diff.actual)}</span>
+        <p className="text-[12px] leading-[18px]">
+          <span className="text-[color:var(--vsc-error)]">第 {diff.line} 行不一致：</span>
+          <span className="font-mono">
+            期望 <span className="text-[color:var(--vsc-success)]">{JSON.stringify(diff.expected)}</span>，实际{" "}
+            <span className="text-[color:var(--vsc-error)]">{JSON.stringify(diff.actual)}</span>
           </span>
-          <button
-            type="button"
-            onClick={() => setRaw((v) => !v)}
-            className="text-muted-foreground ml-2 underline underline-offset-2 hover:text-foreground"
-          >
-            {raw ? "收起全文" : "查看全文"}
-          </button>
-        </div>
+        </p>
       )}
-      {raw && (
-        <div className="flex flex-col gap-2 sm:flex-row">
-          <Block label="期望输出" text={expected} tone="expected" />
-          <Block label="实际输出" text={actual} tone="actual" />
-        </div>
-      )}
+      <div className="flex flex-col gap-1.5">
+        {!compact && <Lines label="期望输出" text={expected} badLine={diff?.line} tone="expected" />}
+        <Lines label="实际输出" text={actual} badLine={diff?.line} tone="actual" />
+      </div>
     </div>
   );
 }

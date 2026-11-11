@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useEffect, useRef, useState } from 'react';
 import {
   CalendarDays,
   ChevronDown,
@@ -40,7 +40,44 @@ export default function SiteHeader() {
   const [moreOpen, setMoreOpen] = useState(false);
   const moreRef = useRef(null);
 
-  const moreActive = MORE_NAV.some((item) => pathname.startsWith(item.href));
+  // 导航自适应收纳：全部入口（NAV + MORE_NAV）默认平铺在顶栏；空间不足时
+  // 从最右侧的入口开始依次收进「更多」下拉。visibleCount = 平铺的个数。
+  const ALL_NAV = [...NAV, ...MORE_NAV];
+  const [visibleCount, setVisibleCount] = useState(ALL_NAV.length);
+  const navBoxRef = useRef(null); // 导航可用区域
+  const measureRef = useRef(null); // 隐藏测量层（全部入口 + 更多按钮）
+  useLayoutEffect(() => {
+    const box = navBoxRef.current;
+    const meas = measureRef.current;
+    if (!box || !meas) return;
+    const compute = () => {
+      const avail = box.clientWidth;
+      const items = [...meas.querySelectorAll('[data-nav-item]')].map((el) => el.offsetWidth);
+      const moreW = meas.querySelector('[data-nav-more]')?.offsetWidth ?? 64;
+      const GAP = 4;
+      const total = items.reduce((a, w) => a + w + GAP, 0);
+      if (total <= avail) {
+        setVisibleCount(items.length);
+        return;
+      }
+      let used = moreW;
+      let n = 0;
+      for (const w of items) {
+        if (used + w + GAP > avail) break;
+        used += w + GAP;
+        n++;
+      }
+      setVisibleCount(n);
+    };
+    compute();
+    const ro = new ResizeObserver(compute);
+    ro.observe(box);
+    return () => ro.disconnect();
+  }, []);
+  const shownNav = ALL_NAV.slice(0, visibleCount);
+  const overflowNav = ALL_NAV.slice(visibleCount);
+  const isActive = (href) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+  const moreActive = overflowNav.some((item) => isActive(item.href));
 
   useEffect(() => {
     if (!moreOpen) return;
@@ -76,7 +113,7 @@ export default function SiteHeader() {
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-3 px-4 sm:gap-6">
         {/* min-w-0 + truncate:窄屏(≤430px)下品牌文案可收缩,避免右侧按钮簇被
             挤出视口(审查 2026-11-09 编译-14 的溢出根因之一) */}
-        <Link href="/" className="flex min-w-0 items-center gap-2.5">
+        <Link href="/" className="flex min-w-0 shrink items-center gap-2.5">
           <span className="bg-primary text-primary-foreground grid size-7 shrink-0 place-items-center rounded-md text-[13px] font-bold">
             AC
           </span>
@@ -84,63 +121,74 @@ export default function SiteHeader() {
             AC 题库 <span className="text-muted-foreground">ac.isam.top</span>
           </span>
         </Link>
-        <nav className="ml-2 hidden items-center gap-1 sm:flex">
-          {NAV.map((item) => {
-            const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-            return (
+        {/* 导航区：占据品牌与右侧按钮簇之间的全部空间；放不下的入口从右往左收进「更多」 */}
+        <div ref={navBoxRef} className="relative ml-2 flex min-w-0 flex-1 items-center">
+          {/* 测量层：不可见，按原样渲染全部入口以获得各自宽度 */}
+          <div ref={measureRef} aria-hidden className="pointer-events-none invisible fixed top-0 left-0 -z-10 flex w-max items-center gap-1 whitespace-nowrap" style={{ transform: "translateX(-200vw)" }}>
+            {ALL_NAV.map((item) => (
+              <span key={item.href} data-nav-item className="inline-flex h-8 items-center px-3 text-xs font-medium">
+                {item.label}
+              </span>
+            ))}
+            <span data-nav-more className="inline-flex h-8 items-center gap-2 px-3 text-xs font-medium">
+              更多
+              <ChevronDown className="size-3.5" />
+            </span>
+          </div>
+          <nav className="flex min-w-0 items-center gap-1 whitespace-nowrap" aria-label="站点导航">
+            {shownNav.map((item) => (
               <Button key={item.href} asChild variant="ghost" size="sm">
-                <Link href={item.href} prefetch={false} className={active ? 'text-foreground' : 'text-muted-foreground'}>
+                <Link href={item.href} prefetch={false} className={isActive(item.href) ? 'text-foreground' : 'text-muted-foreground'}>
                   {item.label}
                 </Link>
               </Button>
-            );
-          })}
-        </nav>
-        {/* 「更多」下拉：次级页面入口，移动端也可见（nav 本身 hidden sm:flex，
-            下拉按钮不受其影响） */}
-        <div ref={moreRef} className="relative ml-1">
-          <Button
-            variant="ghost"
-            size="sm"
-            aria-haspopup="menu"
-            aria-expanded={moreOpen}
-            onClick={() => setMoreOpen((v) => !v)}
-            className={moreActive ? 'text-foreground' : 'text-muted-foreground'}
-            title="更多页面"
-          >
-            更多
-            <ChevronDown className={`size-3.5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
-          </Button>
-          {moreOpen && (
-            <div
-              role="menu"
-              className="bg-popover text-popover-foreground absolute top-9 left-0 z-50 w-60 overflow-hidden rounded-lg border shadow-lg"
-            >
-              {MORE_NAV.map((item) => {
-                const active = pathname.startsWith(item.href);
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    role="menuitem"
-                    prefetch={false}
-                    className={`flex items-start gap-2.5 px-3 py-2.5 text-sm transition-colors hover:bg-accent ${
-                      active ? 'text-foreground font-medium' : ''
-                    }`}
-                  >
-                    <Icon className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-                    <span className="min-w-0">
-                      <span className="block leading-5">{item.label}</span>
-                      <span className="text-muted-foreground block text-[11px] leading-4">{item.desc}</span>
-                    </span>
-                  </Link>
-                );
-              })}
+            ))}
+          </nav>
+          {overflowNav.length > 0 && (
+            <div ref={moreRef} className="relative ml-1 shrink-0">
+              <Button
+                variant="ghost"
+                size="sm"
+                aria-haspopup="menu"
+                aria-expanded={moreOpen}
+                onClick={() => setMoreOpen((v) => !v)}
+                className={moreActive ? 'text-foreground' : 'text-muted-foreground'}
+                title="更多页面"
+              >
+                更多
+                <ChevronDown className={`size-3.5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
+              </Button>
+              {moreOpen && (
+                <div
+                  role="menu"
+                  className="bg-popover text-popover-foreground absolute top-9 left-0 z-50 w-60 overflow-hidden rounded-lg border shadow-lg"
+                >
+                  {overflowNav.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        role="menuitem"
+                        prefetch={false}
+                        className={`flex items-start gap-2.5 px-3 py-2.5 text-sm transition-colors hover:bg-accent ${
+                          isActive(item.href) ? 'text-foreground font-medium' : ''
+                        }`}
+                      >
+                        {Icon ? <Icon className="mt-0.5 size-4 shrink-0 text-muted-foreground" /> : <span className="size-4 shrink-0" />}
+                        <span className="min-w-0">
+                          <span className="block leading-5">{item.label}</span>
+                          {item.desc && <span className="text-muted-foreground block text-[11px] leading-4">{item.desc}</span>}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           )}
         </div>
-        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {dockAvailable && (
             <Button
               size="sm"

@@ -1,240 +1,442 @@
 "use client";
 
 /**
- * 文件管理器（/ide 右栏）：新建 / 重命名 / 删除（confirm）/ 上传多文件
- * （→ lib/ide-workspace.importFiles）/ 单文件下载（Blob）/ 全部下载 ZIP
- * （lib/ide-zip，store-only）。显示文件大小与未保存（脏）状态。
+ * 文件管理（/ide 侧栏「文件」视图，VS Code Explorer 式文件树）：
+ *  - 多级文件夹：展开 / 折叠，选中文件夹后「新建文件 / 新建文件夹」落在其内；
+ *  - 行内新建 / 重命名（Enter 确认、Esc 取消；输入 a/b/c.cpp 自动建中间目录），
+ *    拖拽文件 / 文件夹到目标文件夹即移动；右键菜单；F2 重命名、Delete 删除；
+ *  - 上传文件 / 上传文件夹（保留目录结构）、单文件下载、全部 ZIP。
  */
 
-import { useRef, useState } from "react";
-import { Download, FilePlus2, FolderArchive, Pencil, Trash2, Upload } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useMemo, useRef, useState } from "react";
+import {
+  ChevronDown,
+  ChevronRight,
+  ChevronsDownUp,
+  FilePlus,
+  Folder,
+  FolderDown,
+  FolderOpen,
+  FolderPlus,
+  FolderUp,
+  RefreshCw,
+  Upload,
+} from "lucide-react";
 import { toast } from "@/lib/toast";
 import { buildZip } from "@/lib/ide-zip";
+import { ActionButton, ContextMenu, FileIcon, ViewHeader } from "@/components/ide/vsc";
 
-const LANG_BADGE = { cpp: "C++", python: "PY" };
+const INDENT = 10;
 
-function fmtSize(n) {
-  if (n < 1024) return `${n} B`;
-  if (n < 1048576) return `${(n / 1024).toFixed(1)} KB`;
-  return `${(n / 1048576).toFixed(1)} MB`;
+function saveBlob(blob, name) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/** 文件 + 文件夹 → 树。返回 {dirs: Map<path, {path,name,children:[]}>, root}。 */
+function buildTree(files, folders) {
+  const root = { path: "", name: "", type: "dir", children: [] };
+  const dirs = new Map([["", root]]);
+  const ensureDir = (p) => {
+    if (dirs.has(p)) return dirs.get(p);
+    const i = p.lastIndexOf("/");
+    const parent = ensureDir(i < 0 ? "" : p.slice(0, i));
+    const node = { path: p, name: p.slice(i + 1), type: "dir", children: [] };
+    parent.children.push(node);
+    dirs.set(p, node);
+    return node;
+  };
+  for (const d of folders) ensureDir(d);
+  for (const f of files) {
+    const i = f.path.lastIndexOf("/");
+    ensureDir(i < 0 ? "" : f.path.slice(0, i)).children.push({ ...f, type: "file" });
+  }
+  const sort = (n) => {
+    n.children.sort((a, b) => (a.type !== b.type ? (a.type === "dir" ? -1 : 1) : a.name.localeCompare(b.name)));
+    n.children.forEach((c) => c.type === "dir" && sort(c));
+  };
+  sort(root);
+  return { root, dirs };
+}
+
+const parentOf = (p) => (p.includes("/") ? p.slice(0, p.lastIndexOf("/")) : "");
+const join = (dir, name) => (dir ? `${dir}/${name}` : name);
+
+function InlineInput({ initial = "", isDir, depth, onSubmit, onCancel }) {
+  const [v, setV] = useState(initial);
+  const done = useRef(false);
+  const finish = (ok) => {
+    if (done.current) return;
+    done.current = true;
+    ok && v.trim() ? onSubmit(v.trim()) : onCancel();
+  };
+  return (
+    <div className="flex h-[22px] items-center gap-1.5 pr-2" style={{ paddingLeft: 8 + depth * INDENT + 16 }}>
+      {isDir ? <Folder className="size-4 shrink-0 opacity-80" strokeWidth={1.5} /> : <FileIcon name={v} />}
+      <input
+        autoFocus
+        value={v}
+        onChange={(e) => setV(e.target.value)}
+        onFocus={(e) => {
+          const dot = e.target.value.lastIndexOf(".");
+          e.target.setSelectionRange(0, !isDir && dot > 0 ? dot : e.target.value.length);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") finish(true);
+          else if (e.key === "Escape") finish(false);
+        }}
+        onBlur={() => finish(true)}
+        aria-label={isDir ? "文件夹名" : "文件名"}
+        spellCheck={false}
+        className="vsc-input !h-[20px] !px-1 text-[13px]"
+      />
+    </div>
+  );
 }
 
 export default function FileManager({
   files,
+  folders = [],
   activePath,
   isDirty,
   onOpen,
-  onCreate,
-  onRename,
-  onDelete,
-  onUpload,
+  onCreate, // (path) 新建文件
+  onCreateFolder, // (path)
+  onRename, // (from, to) 文件
+  onRenameFolder, // (from, to)
+  onDelete, // (path) 文件
+  onDeleteFolder, // (path)
+  onUpload, // (FileList, dir)
   onRefresh,
-  fill = false, // true：铺满布局（h-full 无边框，融入 IDE 外壳）
 }) {
-  const [newName, setNewName] = useState("");
-  const [renaming, setRenaming] = useState(null); // path
-  const [renameValue, setRenameValue] = useState("");
+  const { root } = useMemo(() => buildTree(files, folders), [files, folders]);
+  const [expanded, setExpanded] = useState(() => new Set());
+  const [selected, setSelected] = useState(null); // {path, type}
+  const [creating, setCreating] = useState(null); // {dir, type:'file'|'dir'}
+  const [renaming, setRenaming] = useState(null); // {path, type}
+  const [menu, setMenu] = useState(null);
+  const [dropTarget, setDropTarget] = useState(null);
   const uploadRef = useRef(null);
+  const uploadDirRef = useRef(null);
+  const uploadTarget = useRef("");
 
-  const doCreate = () => {
-    onCreate(newName);
-    setNewName("");
+  const toggle = (p) =>
+    setExpanded((prev) => {
+      const n = new Set(prev);
+      n.has(p) ? n.delete(p) : n.add(p);
+      return n;
+    });
+  const expandTo = (dir) =>
+    setExpanded((prev) => {
+      const n = new Set(prev);
+      const parts = dir.split("/").filter(Boolean);
+      parts.forEach((_, i) => n.add(parts.slice(0, i + 1).join("/")));
+      return n;
+    });
+
+  /** 新建/上传的目标目录：选中文件夹 → 它；选中文件 → 其父目录；否则根。 */
+  const targetDir = () => (selected ? (selected.type === "dir" ? selected.path : parentOf(selected.path)) : "");
+
+  const startCreate = (type, dir = targetDir()) => {
+    if (dir) expandTo(dir);
+    setCreating({ dir, type });
   };
 
-  const downloadOne = (f) => {
-    const url = URL.createObjectURL(new Blob([f.content], { type: "text/plain;charset=utf-8" }));
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = f.name;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  };
-
-  const downloadAll = async () => {
+  const downloadAll = () => {
     if (!files.length) return;
     try {
       const enc = new TextEncoder();
-      const blob = buildZip(files.map((f) => ({ name: f.path, data: enc.encode(f.content) })));
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "ide-workspace.zip";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      saveBlob(buildZip(files.map((f) => ({ name: f.path, data: enc.encode(f.content) }))), "ide-workspace.zip");
       toast.success(`已打包 ${files.length} 个文件`);
     } catch (exn) {
       toast.error(`打包失败：${exn.message}`);
     }
   };
 
+  const upload = (dirMode, dir = targetDir()) => {
+    uploadTarget.current = dir;
+    (dirMode ? uploadDirRef : uploadRef).current?.click();
+  };
+
+  const move = (src, destDir) => {
+    const name = src.path.split("/").pop();
+    const to = join(destDir, name);
+    if (to === src.path || destDir === src.path || destDir.startsWith(`${src.path}/`)) return;
+    if (src.type === "dir") onRenameFolder(src.path, to);
+    else onRename(src.path, to);
+    if (destDir) expandTo(destDir);
+  };
+
+  const rowStyle = (depth) => ({ paddingLeft: 8 + depth * INDENT });
+  const rowCls = (isSel, isActive, isDrop) =>
+    `group flex h-[22px] w-full cursor-pointer items-center gap-1 pr-2 text-left text-[13px] ${
+      isDrop
+        ? "bg-[color:var(--vsc-hover)] outline outline-1 -outline-offset-1 outline-[color:var(--vsc-accent)]"
+        : isSel
+          ? "bg-[color:var(--vsc-focus-selection)] outline outline-1 -outline-offset-1 outline-[color:var(--vsc-accent)]"
+          : isActive
+            ? "bg-[color:var(--vsc-selection)]"
+            : "hover:bg-[color:var(--vsc-hover)]"
+    }`;
+
+  const dndProps = (node) => ({
+    draggable: true,
+    onDragStart: (e) => {
+      e.dataTransfer.setData("application/x-ide-path", JSON.stringify({ path: node.path, type: node.type }));
+      e.dataTransfer.effectAllowed = "move";
+    },
+    ...(node.type === "dir"
+      ? {
+          onDragOver: (e) => {
+            if (!e.dataTransfer.types.includes("application/x-ide-path")) return;
+            e.preventDefault();
+            e.stopPropagation();
+            setDropTarget(node.path);
+          },
+          onDragLeave: () => setDropTarget((t) => (t === node.path ? null : t)),
+          onDrop: (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setDropTarget(null);
+            try {
+              move(JSON.parse(e.dataTransfer.getData("application/x-ide-path")), node.path);
+            } catch {}
+          },
+        }
+      : {}),
+  });
+
+  const renderChildren = (dirNode, depth) => {
+    const out = [];
+    for (const n of dirNode.children) out.push(renderNode(n, depth));
+    if (creating && creating.dir === dirNode.path) {
+      out.push(
+        <li key="__creating">
+          <InlineInput
+            isDir={creating.type === "dir"}
+            depth={depth}
+            onSubmit={(v) => {
+              setCreating(null);
+              const p = join(creating.dir, v);
+              if (creating.type === "dir") {
+                onCreateFolder(p);
+                expandTo(p);
+              } else {
+                onCreate(p);
+                if (p.includes("/")) expandTo(parentOf(p));
+              }
+            }}
+            onCancel={() => setCreating(null)}
+          />
+        </li>,
+      );
+    }
+    return out;
+  };
+
+  const renderNode = (n, depth) => {
+    if (renaming && renaming.path === n.path) {
+      return (
+        <li key={n.path}>
+          <InlineInput
+            initial={n.name}
+            isDir={n.type === "dir"}
+            depth={depth}
+            onSubmit={(v) => {
+              setRenaming(null);
+              const to = join(parentOf(n.path), v);
+              if (to === n.path) return;
+              n.type === "dir" ? onRenameFolder(n.path, to) : onRename(n.path, to);
+            }}
+            onCancel={() => setRenaming(null)}
+          />
+        </li>
+      );
+    }
+    const isSel = selected?.path === n.path;
+    if (n.type === "dir") {
+      const open = expanded.has(n.path);
+      return (
+        <li key={n.path} role="treeitem" aria-expanded={open}>
+          <div
+            className={rowCls(isSel, false, dropTarget === n.path)}
+            style={rowStyle(depth)}
+            tabIndex={0}
+            onClick={() => {
+              setSelected({ path: n.path, type: "dir" });
+              toggle(n.path);
+            }}
+            onFocus={() => setSelected({ path: n.path, type: "dir" })}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              setSelected({ path: n.path, type: "dir" });
+              setMenu({ x: e.clientX, y: e.clientY, node: n });
+            }}
+            {...dndProps(n)}
+          >
+            {open ? <ChevronDown className="size-4 shrink-0 opacity-80" strokeWidth={1.5} /> : <ChevronRight className="size-4 shrink-0 opacity-80" strokeWidth={1.5} />}
+            {open ? <FolderOpen className="size-4 shrink-0 text-[color:var(--vsc-warning)]" strokeWidth={1.5} /> : <Folder className="size-4 shrink-0 text-[color:var(--vsc-warning)]" strokeWidth={1.5} />}
+            <span className="min-w-0 flex-1 truncate">{n.name}</span>
+          </div>
+          {open && <ul role="group">{renderChildren(n, depth + 1)}</ul>}
+        </li>
+      );
+    }
+    const dirty = isDirty?.(n);
+    return (
+      <li key={n.path} role="treeitem">
+        <div
+          className={rowCls(isSel, n.path === activePath, false)}
+          style={{ paddingLeft: 8 + depth * INDENT + 16 }}
+          tabIndex={0}
+          title={n.path}
+          onClick={() => {
+            setSelected({ path: n.path, type: "file" });
+            onOpen(n.path);
+          }}
+          onFocus={() => setSelected({ path: n.path, type: "file" })}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            setSelected({ path: n.path, type: "file" });
+            setMenu({ x: e.clientX, y: e.clientY, node: n });
+          }}
+          {...dndProps(n)}
+        >
+          <FileIcon lang={n.lang} name={n.name} />
+          <span className={`min-w-0 flex-1 truncate ${dirty ? "text-[color:var(--vsc-warning)]" : ""}`}>{n.name}</span>
+          {dirty && <span className="text-[11px] font-semibold text-[color:var(--vsc-warning)]">M</span>}
+        </div>
+      </li>
+    );
+  };
+
+  const menuItems = (node) => {
+    if (!node)
+      return [
+        { label: "新建文件…", onClick: () => startCreate("file", "") },
+        { label: "新建文件夹…", onClick: () => startCreate("dir", "") },
+        "sep",
+        { label: "上传文件…", onClick: () => upload(false, "") },
+        { label: "上传文件夹…", onClick: () => upload(true, "") },
+        { label: "下载全部（ZIP）", onClick: downloadAll },
+      ];
+    if (node.type === "dir")
+      return [
+        { label: "新建文件…", onClick: () => startCreate("file", node.path) },
+        { label: "新建文件夹…", onClick: () => startCreate("dir", node.path) },
+        { label: "上传文件到此处…", onClick: () => upload(false, node.path) },
+        "sep",
+        { label: "复制路径", onClick: () => navigator.clipboard?.writeText(node.path) },
+        "sep",
+        { label: "重命名…", keybinding: "F2", onClick: () => setRenaming({ path: node.path, type: "dir" }) },
+        { label: "删除", keybinding: "Delete", onClick: () => onDeleteFolder(node.path) },
+      ];
+    return [
+      { label: "打开", onClick: () => onOpen(node.path) },
+      "sep",
+      { label: "下载", onClick: () => saveBlob(new Blob([node.content], { type: "text/plain;charset=utf-8" }), node.name) },
+      { label: "复制路径", onClick: () => navigator.clipboard?.writeText(node.path) },
+      "sep",
+      { label: "重命名…", keybinding: "F2", onClick: () => setRenaming({ path: node.path, type: "file" }) },
+      { label: "删除", keybinding: "Delete", onClick: () => onDelete(node.path) },
+    ];
+  };
+
   return (
     <section
-      aria-label="文件管理器"
-      className={
-        fill
-          ? "flex h-full min-w-0 flex-col overflow-hidden"
-          : "flex min-w-0 flex-col overflow-hidden rounded-lg border"
-      }
+      aria-label="文件管理"
+      className="flex h-full min-w-0 flex-col overflow-hidden"
+      onKeyDown={(e) => {
+        if (!selected || renaming || creating || e.target.tagName === "INPUT") return;
+        if (e.key === "F2") {
+          e.preventDefault();
+          setRenaming(selected);
+        } else if (e.key === "Delete" || (e.key === "Backspace" && e.metaKey)) {
+          e.preventDefault();
+          selected.type === "dir" ? onDeleteFolder(selected.path) : onDelete(selected.path);
+        }
+      }}
     >
-      <div className="flex items-center justify-between border-b px-3 py-2">
-        <span className="text-xs font-semibold tracking-wide">文件（{files.length}）</span>
-        <button
-          type="button"
-          onClick={onRefresh}
-          className="text-muted-foreground text-[11px] underline underline-offset-2 hover:text-foreground"
-        >
-          刷新
-        </button>
-      </div>
-
-      {/* 新建 + 上传 + 下载全部 */}
-      <div className="space-y-2 border-b px-3 py-2">
-        <div className="flex gap-1.5">
-          <input
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && doCreate()}
-            placeholder="main.cpp / sol.py"
-            aria-label="新文件名"
-            className="h-7 min-w-0 flex-1 rounded-md border bg-transparent px-2 text-xs placeholder:text-muted-foreground"
-          />
-          <Button size="sm" variant="outline" className="h-7 px-2" onClick={doCreate} title="新建文件">
-            <FilePlus2 className="size-3.5" />
-          </Button>
-        </div>
-        <div className="flex gap-1.5">
-          <Button
-            size="sm"
-            variant="outline"
-            className="h-7 flex-1 px-2 text-xs"
-            onClick={() => uploadRef.current?.click()}
-          >
-            <Upload className="size-3" />
-            上传
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            className="h-7 flex-1 px-2 text-xs"
-            disabled={!files.length}
-            onClick={downloadAll}
-          >
-            <FolderArchive className="size-3" />
-            全部 ZIP
-          </Button>
-          <input
-            ref={uploadRef}
-            type="file"
-            multiple
-            className="hidden"
-            onChange={(e) => {
-              if (e.target.files?.length) onUpload(e.target.files);
-              e.target.value = "";
-            }}
-          />
-        </div>
-      </div>
-
-      {/* 文件列表 */}
-      <ul className={`flex-1 min-h-0 overflow-auto px-1.5 py-1.5 ${fill ? "" : "max-h-72 lg:max-h-none"}`}>
-        {files.length === 0 && (
-          <li className="text-muted-foreground px-2 py-3 text-xs">工作区为空，新建或上传文件开始。</li>
+      <ViewHeader
+        title="文件"
+        actions={
+          <>
+            <ActionButton icon={FilePlus} title="新建文件…" onClick={() => startCreate("file")} />
+            <ActionButton icon={FolderPlus} title="新建文件夹…" onClick={() => startCreate("dir")} />
+            <ActionButton icon={Upload} title="上传文件…" onClick={() => upload(false)} />
+            <ActionButton icon={FolderUp} title="上传文件夹…" onClick={() => upload(true)} />
+            <ActionButton icon={FolderDown} title="下载全部（ZIP）" onClick={downloadAll} disabled={!files.length} />
+            <ActionButton icon={RefreshCw} title="刷新" onClick={onRefresh} />
+            <ActionButton icon={ChevronsDownUp} title="全部折叠" onClick={() => setExpanded(new Set())} />
+          </>
+        }
+      />
+      <input
+        ref={uploadRef}
+        type="file"
+        multiple
+        className="hidden"
+        onChange={(e) => {
+          if (e.target.files?.length) onUpload(e.target.files, uploadTarget.current);
+          e.target.value = "";
+        }}
+      />
+      <input
+        ref={uploadDirRef}
+        type="file"
+        multiple
+        webkitdirectory=""
+        directory=""
+        className="hidden"
+        onChange={(e) => {
+          if (e.target.files?.length) onUpload(e.target.files, uploadTarget.current);
+          e.target.value = "";
+        }}
+      />
+      <ul
+        role="tree"
+        aria-label="工作区文件"
+        className="min-h-0 flex-1 overflow-auto pb-6"
+        onClick={(e) => e.target === e.currentTarget && setSelected(null)}
+        onContextMenu={(e) => {
+          if (e.target === e.currentTarget) {
+            e.preventDefault();
+            setSelected(null);
+            setMenu({ x: e.clientX, y: e.clientY, node: null });
+          }
+        }}
+        onDragOver={(e) => {
+          if (!e.dataTransfer.types.includes("application/x-ide-path")) return;
+          e.preventDefault();
+          setDropTarget("");
+        }}
+        onDragLeave={(e) => e.target === e.currentTarget && setDropTarget(null)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setDropTarget(null);
+          try {
+            move(JSON.parse(e.dataTransfer.getData("application/x-ide-path")), "");
+          } catch {}
+        }}
+        style={dropTarget === "" ? { outline: "1px solid var(--vsc-accent)", outlineOffset: -1 } : undefined}
+      >
+        {!files.length && !folders.length && !creating && (
+          <li className="px-4 py-2 text-[12px] leading-5">
+            <p className="opacity-75">工作区为空。</p>
+            <button type="button" className="vsc-btn mt-2 w-full" onClick={() => startCreate("file", "")}>
+              新建文件
+            </button>
+          </li>
         )}
-        {files.map((f) => {
-          const active = f.path === activePath;
-          const dirty = isDirty?.(f);
-          return (
-            <li key={f.path}>
-              {renaming === f.path ? (
-                <div className="flex gap-1 px-1 py-1">
-                  <input
-                    value={renameValue}
-                    onChange={(e) => setRenameValue(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        onRename(f.path, renameValue);
-                        setRenaming(null);
-                      } else if (e.key === "Escape") {
-                        setRenaming(null);
-                      }
-                    }}
-                    autoFocus
-                    aria-label="新路径"
-                    className="h-7 min-w-0 flex-1 rounded-md border bg-transparent px-2 font-mono text-xs"
-                  />
-                  <Button
-                    size="sm"
-                    className="h-7 px-2 text-xs"
-                    onClick={() => {
-                      onRename(f.path, renameValue);
-                      setRenaming(null);
-                    }}
-                  >
-                    确定
-                  </Button>
-                </div>
-              ) : (
-                <div
-                  className={`group flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs ${
-                    active ? "bg-muted/60" : "hover:bg-accent/60"
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => onOpen(f.path)}
-                    className="min-w-0 flex-1 text-left"
-                    title={f.path}
-                  >
-                    <span className="block truncate font-mono">{f.path}</span>
-                    <span className="text-muted-foreground text-[10px]">
-                      {LANG_BADGE[f.lang] ?? f.lang} · {fmtSize(f.content.length)}
-                      {dirty ? " · 未保存" : ""}
-                    </span>
-                  </button>
-                  <span className="flex shrink-0 items-center gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setRenaming(f.path);
-                        setRenameValue(f.path);
-                      }}
-                      aria-label={`重命名 ${f.path}`}
-                      title="重命名"
-                      className="rounded p-1 hover:bg-accent"
-                    >
-                      <Pencil className="size-3" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => downloadOne(f)}
-                      aria-label={`下载 ${f.path}`}
-                      title="下载"
-                      className="rounded p-1 hover:bg-accent"
-                    >
-                      <Download className="size-3" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onDelete(f.path)}
-                      aria-label={`删除 ${f.path}`}
-                      title="删除"
-                      className="rounded p-1 text-red-500 hover:bg-accent"
-                    >
-                      <Trash2 className="size-3" />
-                    </button>
-                  </span>
-                  {dirty && <span className="size-1.5 shrink-0 rounded-full bg-amber-500" title="有未保存修改" />}
-                </div>
-              )}
-            </li>
-          );
-        })}
+        {renderChildren(root, 0)}
       </ul>
+      {menu && <ContextMenu x={menu.x} y={menu.y} onClose={() => setMenu(null)} items={menuItems(menu.node)} />}
     </section>
   );
 }
