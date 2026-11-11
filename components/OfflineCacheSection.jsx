@@ -137,18 +137,16 @@ export default function OfflineCacheSection() {
   const fmtTime = (t) => (t ? new Date(t).toLocaleString('zh-CN', { hour12: false }) : '尚未同步');
 
   return (
-    <div className="space-y-1.5" data-testid="offline-cache-section">
-      <p className="text-muted-foreground text-xs font-medium">离线缓存（PWA）</p>
-      <div className="text-muted-foreground/70 space-y-1 text-[11px] leading-relaxed">
-        <p>
-          首次访问只保存应用基本资源。点击「同步题库」后保存最近
-          <span className="text-foreground font-medium"> {limit} </span>
-          场比赛的全部题目页（含译文与公式；大小随题面变化，100 场通常约 80 MiB）。
-          C++ 离线运行时约 139 MiB，需单独点击下载；Python 需在上方「编译器运行时」中下载。
-        </p>
-      </div>
+    <div className="space-y-3" data-testid="offline-cache-section">
+      <p className="text-muted-foreground/80 text-[11px] leading-relaxed">
+        首次访问只保存应用基本资源。点击「同步题库」后保存最近
+        <span className="text-foreground font-medium"> {limit} </span>
+        场比赛的全部题目页（含译文与公式；100 场通常约 80 MiB）。
+        C++ 离线运行时约 139 MiB 需单独下载；Python 在「编程 → 运行时」中下载。
+      </p>
 
       <div className="flex flex-wrap items-center gap-1.5">
+        <span className="text-muted-foreground mr-1 text-xs">离线保存</span>
         {LIMIT_OPTIONS.map((n) => (
           <button
             key={n}

@@ -520,7 +520,7 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
     if (!text || streaming) return;
     const cfg = resolveChatCfg(settings);
     if (!chatReady(cfg)) {
-      setNotice('尚未配置 AI 接口：请在设置 →「AI 服务商」中填写 Base URL 与 API Key。');
+      setNotice('尚未配置 AI 接口：请在设置 →「AI 助手」中添加服务商（Base URL 与 API Key）。');
       return;
     }
     setNotice('');

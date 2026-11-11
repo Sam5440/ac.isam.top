@@ -1,21 +1,23 @@
 'use client';
 
 /**
- * 设置页「外观」分区：主题库（内置 3 + 模板 4 + 自定义）网格、
- * 从模板新建/编辑/删除自定义主题（实时预览）、全局自定义 CSS。
+ * 设置页外观相关块（v1.8 拆分）：
+ *  - <ThemeGallery />        主题库网格（内置 3 + 模板 4 + 自定义）+ 从模板新建 / 编辑 / 删除（实时预览）
+ *  - <CustomCssBlock />      全局自定义 CSS
+ *  - <IdeThemeBindingRow />  代码编辑器主题是否跟随网页外观
  */
 
 import { useEffect, useState } from 'react';
-import { Palette, Pencil, Plus, RotateCcw, Trash2 } from 'lucide-react';
+import { Pencil, Plus, RotateCcw, Trash2 } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
 import { allThemes, deleteCustomTheme, mappedIdeTheme, saveCustomTheme, swatchOf, TEMPLATE_THEMES } from '@/lib/themes';
 import { EDITOR_THEMES } from '@/lib/compiler/themes';
-import { Field, inputCls, SegButtons, SectionCard, SubBlock, textareaCls } from './controls';
+import { Field, inputCls, Pad, Row, SegButtons, SmallButton, SubBlock, textareaCls } from './controls';
 
 const KIND_LABEL = { builtin: '内置', template: '模板', custom: '自定义' };
 
-export default function AppearanceSection() {
+export function ThemeGallery() {
   const { settings, setSettings, customThemes, reloadCustomThemes } = useSettings();
   const themes = allThemes(customThemes);
   const [tplId, setTplId] = useState(TEMPLATE_THEMES[0].id);
@@ -87,43 +89,9 @@ export default function AppearanceSection() {
     return next;
   };
 
-  const customCssEmpty = !(settings.customCss || '').trim();
-
   return (
-    <SectionCard
-      id="appearance"
-      icon={Palette}
-      title="外观"
-      desc="内置主题、四套模板主题与自定义主题；自定义 CSS 可叠加在任意主题之上。"
-    >
-      <div className="space-y-2">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-muted-foreground text-xs font-medium">主题（点击应用；顶栏按钮可在全部主题间快捷循环）</p>
-          <div className="flex items-center gap-1.5">
-            <select
-              value={tplId}
-              onChange={(e) => setTplId(e.target.value)}
-              aria-label="选择模板"
-              className={`${inputCls} w-auto py-1 text-xs`}
-            >
-              {TEMPLATE_THEMES.map((t) => (
-                <option key={t.id} value={t.id}>
-                  模板：{t.label}
-                </option>
-              ))}
-            </select>
-            <button
-              type="button"
-              onClick={startNew}
-              disabled={!!editing}
-              className="inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs transition-colors hover:bg-accent disabled:opacity-40"
-            >
-              <Plus className="size-3.5" />
-              从模板新建
-            </button>
-          </div>
-        </div>
-
+    <>
+      <Pad>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
           {themes.map((t) => {
             const active = settings.theme === t.id;
@@ -135,7 +103,12 @@ export default function AppearanceSection() {
                   active ? 'border-primary ring-2 ring-primary/40' : 'hover:border-primary/50'
                 }`}
               >
-                <button type="button" onClick={() => setSettings({ theme: t.id })} className="block w-full text-left">
+                <button
+                  type="button"
+                  onClick={() => setSettings({ theme: t.id })}
+                  aria-pressed={active}
+                  className="block w-full text-left"
+                >
                   <span className="flex h-9">
                     {sw.slice(0, 4).map((c, i) => (
                       <span key={i} className="flex-1" style={{ background: c }} />
@@ -149,7 +122,7 @@ export default function AppearanceSection() {
                   </span>
                 </button>
                 {t.kind === 'custom' && (
-                  <span className="absolute right-1 top-1 flex gap-0.5 opacity-0 transition-opacity group-hover:opacity-100">
+                  <span className="absolute right-1 top-1 flex gap-0.5 opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
                     <button
                       type="button"
                       onClick={() => startEdit(t)}
@@ -173,113 +146,130 @@ export default function AppearanceSection() {
           })}
         </div>
         <p className="text-muted-foreground/70 text-[11px] leading-relaxed">
-          自定义主题卡片悬停可编辑 / 删除。模板主题的代码编辑器（Monaco）建议配色：Nord→One Dark、Dracula→Dracula、Gruvbox→Monokai、樱花→Solarized Light，可在「编译器」分区里选择。
+          点击即应用；顶栏的外观按钮可在全部主题间快速循环。
         </p>
-      </div>
+      </Pad>
 
-      {/* IDE 外观：Monaco 编辑器主题与网页外观的自动/手动绑定 */}
-      <SubBlock
-        title="IDE 外观"
-        hint={`代码编辑器（Monaco）主题。当前网页外观映射为「${
-          EDITOR_THEMES.find((t) => t.id === mappedIdeTheme(settings.theme, customThemes))?.label || '站点暗色（默认）'
-        }」。`}
-      >
-        <div className="space-y-2">
-          <SegButtons
-            options={[
-              { id: 'auto', label: '跟随网页' },
-              { id: 'manual', label: '手动' },
-            ]}
-            value={settings.ideThemeBinding || 'auto'}
-            onChange={(v) => setSettings({ ideThemeBinding: v })}
-          />
-          <p className="text-muted-foreground/70 text-[11px] leading-relaxed">
-            {settings.ideThemeBinding === 'manual'
-              ? '在编译器设置或 /ide 编辑器设置中自选，切换网页主题不再联动。'
-              : '切换网页主题时，编辑器主题自动映射为最接近的配色。'}
-          </p>
-        </div>
-      </SubBlock>
+      <Row label="自定义主题" hint="以模板为起点复制一份主题 CSS 编辑，保存前整个页面即为实时预览；自定义主题卡片悬停可编辑 / 删除。">
+        <select
+          value={tplId}
+          onChange={(e) => setTplId(e.target.value)}
+          aria-label="选择模板"
+          className={`${inputCls} w-auto py-1 text-xs`}
+        >
+          {TEMPLATE_THEMES.map((t) => (
+            <option key={t.id} value={t.id}>
+              模板：{t.label}
+            </option>
+          ))}
+        </select>
+        <SmallButton onClick={startNew} disabled={!!editing}>
+          <Plus className="size-3.5" />
+          新建
+        </SmallButton>
+      </Row>
 
       {editing && (
-        <SubBlock
-          title={`编辑自定义主题：${editing.name || '未命名'}`}
-          hint={'CSS 须以 html[data-theme="主题id"] 为选择器覆盖标准变量；保存前下方界面即为实时预览。'}
-          right={
-            <div className="flex shrink-0 items-center gap-1.5">
-              <button
-                type="button"
-                onClick={cancel}
-                className="text-muted-foreground hover:text-foreground rounded-md border px-2 py-0.5 text-[11px] transition-colors"
-              >
-                取消
-              </button>
-              <button
-                type="button"
-                onClick={save}
-                className="bg-primary text-primary-foreground rounded-md px-2.5 py-0.5 text-[11px] font-medium"
-              >
-                保存并应用
-              </button>
+        <Pad>
+          <SubBlock
+            title={`编辑自定义主题：${editing.name || '未命名'}`}
+            hint={'CSS 须以 html[data-theme="主题id"] 为选择器覆盖标准变量；保存前界面即为实时预览。'}
+            right={
+              <div className="flex shrink-0 items-center gap-1.5">
+                <SmallButton onClick={cancel}>取消</SmallButton>
+                <SmallButton tone="primary" onClick={save}>
+                  保存并应用
+                </SmallButton>
+              </div>
+            }
+          >
+            <div className="grid gap-2 sm:grid-cols-2">
+              <Field label="主题名称">
+                <input
+                  className={inputCls}
+                  value={editing.name}
+                  onChange={(e) => setEditing((p) => ({ ...p, name: e.target.value }))}
+                  placeholder="我的主题"
+                />
+              </Field>
+              <div className="space-y-1">
+                <span className="text-muted-foreground text-xs font-medium">明暗基准（决定 dark: 样式变体与原生控件配色）</span>
+                <SegButtons
+                  options={[
+                    { id: 'dark', label: '暗色基准' },
+                    { id: 'light', label: '浅色基准' },
+                  ]}
+                  value={editing.base}
+                  onChange={(v) => setEditing((p) => ({ ...p, base: v }))}
+                />
+              </div>
             </div>
-          }
-        >
-          <div className="grid gap-2 sm:grid-cols-2">
-            <Field label="主题名称">
-              <input
-                className={inputCls}
-                value={editing.name}
-                onChange={(e) => setEditing((p) => ({ ...p, name: e.target.value }))}
-                placeholder="我的主题"
+            <Field label="主题 CSS">
+              <textarea
+                className={`${textareaCls} min-h-56`}
+                spellCheck={false}
+                value={editing.css}
+                onChange={(e) => setEditing((p) => ({ ...p, css: e.target.value }))}
               />
             </Field>
-            <div className="space-y-1">
-              <span className="text-muted-foreground text-xs font-medium">明暗基准（决定 dark: 样式变体与原生控件配色）</span>
-              <SegButtons
-                options={[
-                  { id: 'dark', label: '暗色基准' },
-                  { id: 'light', label: '浅色基准' },
-                ]}
-                value={editing.base}
-                onChange={(v) => setEditing((p) => ({ ...p, base: v }))}
-              />
-            </div>
-          </div>
-          <Field label="主题 CSS">
-            <textarea
-              className={`${textareaCls} min-h-56`}
-              spellCheck={false}
-              value={editing.css}
-              onChange={(e) => setEditing((p) => ({ ...p, css: e.target.value }))}
-            />
-          </Field>
-        </SubBlock>
+          </SubBlock>
+        </Pad>
       )}
+    </>
+  );
+}
 
-      <SubBlock
-        title="全局自定义 CSS"
-        hint="任意主题之上叠加，所有页面生效（适合微调间距、隐藏元素、覆盖个别组件样式）。"
-        right={
-          !customCssEmpty && (
-            <button
-              type="button"
-              onClick={() => setSettings({ customCss: '' })}
-              className="text-muted-foreground hover:text-foreground shrink-0 rounded-md border px-2 py-0.5 text-[11px] transition-colors"
-            >
-              <RotateCcw className="mr-0.5 inline size-3" />
-              清空
-            </button>
-          )
-        }
-      >
-        <textarea
-          className={textareaCls}
-          spellCheck={false}
-          placeholder={'/* 例如：题面卡片更大圆角 */\n.rounded-xl { border-radius: 1rem; }'}
-          value={settings.customCss || ''}
-          onChange={(e) => setSettings({ customCss: e.target.value })}
-        />
-      </SubBlock>
-    </SectionCard>
+/** 代码编辑器（Monaco）主题与网页外观的绑定：跟随 / 手动。 */
+export function IdeThemeBindingRow() {
+  const { settings, setSettings, customThemes } = useSettings();
+  const mapped =
+    EDITOR_THEMES.find((t) => t.id === mappedIdeTheme(settings.theme, customThemes))?.label || '站点暗色（默认）';
+  const manual = settings.ideThemeBinding === 'manual';
+  return (
+    <Row
+      label="编辑器配色跟随网页外观"
+      hint={
+        manual
+          ? '已改为手动：在下方「编辑器主题」或 /ide 编辑器设置中自选，切换网页主题不再联动。'
+          : `切换网页主题时自动映射为最接近的编辑器配色（当前：${mapped}）。`
+      }
+    >
+      <SegButtons
+        options={[
+          { id: 'auto', label: '跟随网页' },
+          { id: 'manual', label: '手动' },
+        ]}
+        value={settings.ideThemeBinding || 'auto'}
+        onChange={(v) => setSettings({ ideThemeBinding: v })}
+      />
+    </Row>
+  );
+}
+
+/** 全局自定义 CSS：叠加在任意主题之上，所有页面生效。 */
+export function CustomCssBlock() {
+  const { settings, setSettings } = useSettings();
+  const empty = !(settings.customCss || '').trim();
+  return (
+    <Row
+      stack
+      label="全局自定义 CSS"
+      hint="叠加在任意主题之上，所有页面生效（适合微调间距、隐藏元素、覆盖个别组件样式）。"
+    >
+      <textarea
+        className={textareaCls}
+        spellCheck={false}
+        aria-label="全局自定义 CSS"
+        placeholder={'/* 例如：题面卡片更大圆角 */\n.rounded-xl { border-radius: 1rem; }'}
+        value={settings.customCss || ''}
+        onChange={(e) => setSettings({ customCss: e.target.value })}
+      />
+      {!empty && (
+        <SmallButton onClick={() => setSettings({ customCss: '' })}>
+          <RotateCcw className="size-3" />
+          清空
+        </SmallButton>
+      )}
+    </Row>
   );
 }

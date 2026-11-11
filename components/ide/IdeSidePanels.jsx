@@ -76,6 +76,7 @@ export function StatementPanel({ problem, loading, onGoSamples }) {
               <div className="text-[13px]">
                 <StatementBody
                   code={problem.id}
+                  platform={problem.platform}
                   segments={segments}
                   title={problem.title}
                   titleZh={problem.titleZh}

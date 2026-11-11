@@ -15,7 +15,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useAiSegment } from '@/components/ai-translate';
 import { Spinner } from '@/components/ui/LoadingOverlay';
 import { resolveTranslationCfg } from '@/lib/ai-providers';
-import { channelLabel, useSettings, DEFAULT_PRIORITY } from '@/components/settings';
+import { channelLabel, useProblemLang, useSettings, DEFAULT_PRIORITY } from '@/components/settings';
 import { hydrateSegments, useZhSegment } from '@/lib/zh-store';
 import { extractImgSrcs, imgDedup } from '@/lib/img-dedup';
 import { renderRich } from '@/lib/render';
@@ -185,9 +185,11 @@ function ZhLine({ segKey, archivedZh, channel, note, zhModel, seenSrcs }) {
  * @param {Array<{en: string, zh: string|null}>} segments 服务端配对好的段落
  * @param {string} title 原文题名
  * @param {string|null} titleZh CI 存档题名
+ * @param {string} [platform] 题目平台（牛客可设置默认不翻译）
  */
-export default function StatementBody({ code, segments, title, titleZh, zhModel }) {
-  const { lang, settings } = useSettings();
+export default function StatementBody({ code, segments, title, titleZh, zhModel, platform }) {
+  const { settings } = useSettings();
+  const lang = useProblemLang(platform);
   const mode = lang.mode;
   const channel = lang.channel;
   const ai = channel === 'ai_custom' ? resolveTranslationCfg(settings) : null;

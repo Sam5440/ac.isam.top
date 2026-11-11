@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { startNavProgress } from '@/components/NavigationProgress';
 
 import {
@@ -97,6 +97,9 @@ export const DEFAULT_SETTINGS = {
   chat: DEFAULT_CHAT,
   // PWA 离线题库：后台自动保存最近 N 场比赛的全部题目页（OfflineCacheSection 可调）
   offlineLimit: 100,
+  // 牛客题目默认开启翻译：开 = 跟随上方「默认题面语言」；关 = 打开牛客题目时
+  // 默认只显示原文（牛客绝大多数为官方中文题面），可用左下角「译」浮标临时切换
+  nowcoderTranslate: true,
 };
 
 const LANG_KEY = 'stmt-lang-v2';
@@ -218,6 +221,8 @@ export function SettingsProvider({ children }) {
   const [settings, setSettingsState] = useState(DEFAULT_SETTINGS);
   const [lang, setLangState] = useState({ mode: 'both', channel: DEFAULT_SETTINGS.defaultZhChannel });
   const [customThemes, setCustomThemes] = useState([]);
+  // 用户在哪个页面上手动切换过题面语言（用于「牛客默认不翻译」的单页覆盖）
+  const [pickedPath, setPickedPath] = useState(null);
 
   useEffect(() => {
     const s = loadSettings();
@@ -280,6 +285,7 @@ export function SettingsProvider({ children }) {
   };
 
   const setLang = (next) => {
+    if (typeof window !== 'undefined') setPickedPath(window.location.pathname);
     setLangState((prev) => {
       const v = typeof next === 'function' ? next(prev) : next;
       try {
@@ -294,6 +300,7 @@ export function SettingsProvider({ children }) {
     setLang,
     settings,
     setSettings,
+    pickedPath,
     customThemes,
     reloadCustomThemes: () => setCustomThemes(loadCustomThemes()),
     openSettings: (hash) => (location.pathname !== '/settings' && startNavProgress(), router.push(hash ? `/settings#${hash}` : '/settings')),
@@ -309,6 +316,20 @@ export function SettingsProvider({ children }) {
       {children}
     </SettingsContext.Provider>
   );
+}
+
+/**
+ * 题面实际使用的语言：牛客题目且关闭了「牛客默认翻译」时，默认显示原文；
+ * 用户在当前页面通过「译」浮标手动切换过则以其选择为准。
+ * @param {string} [platform] 题目平台
+ */
+export function useProblemLang(platform) {
+  const { lang, settings, pickedPath } = useContext(SettingsContext);
+  const pathname = usePathname();
+  if (platform === 'nowcoder' && settings.nowcoderTranslate === false && pickedPath !== pathname) {
+    return { ...lang, mode: 'en' };
+  }
+  return lang;
 }
 
 /* ---------------- gear button (top-right, in SiteHeader) ---------------- */

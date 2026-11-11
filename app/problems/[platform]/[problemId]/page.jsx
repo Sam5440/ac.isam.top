@@ -183,6 +183,7 @@ export default async function ProblemPage({ params }) {
               {prob.statementMd ? (
                 <StatementBody
                   code={prob.id}
+                  platform={platform}
                   segments={segments}
                   title={prob.title}
                   titleZh={prob.titleZh}

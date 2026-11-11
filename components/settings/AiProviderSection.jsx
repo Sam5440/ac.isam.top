@@ -1,26 +1,24 @@
 'use client';
 
 /**
- * 设置页「AI 服务商」分区：全站唯一配置 AI 接口地址 / API Key 的地方。
- * 服务商注册表（新增/编辑/复制/删除、点击名称进入编辑器管理模型列表，
- * 支持从 OpenAI / Anthropic 兼容端点 GET /models 拉取并筛选勾选）。
- * 分区内部两个子标签页：「功能模块挑选」（翻译 / AI 对话 / AI 代码补全三个
- * ModuleAssignPicker：服务商/模型/思考深度/本站转发）与「AI 代码补全」
- * （内嵌补全行为配置）。底部附全部设置导出/导入。
+ * 设置页「AI 助手」分区的服务商部分（v1.8 拆分）：
+ *  - <ProviderList />       全站唯一配置 AI 接口地址 / API Key 的地方（新增/编辑/复制/删除，
+ *                           点击名称进入编辑器管理模型列表，可从兼容端点拉取 /models）
+ *  - <ModuleAssignments />  翻译 / AI 对话 / AI 代码补全各自挑选服务商与模型
+ *  - <SettingsIO />         全部设置导出 / 导入（放在「通用」分区）
  */
 
 import { useRef, useState } from 'react';
-import { Check, Copy, FileJson, Pencil, Plus, Server, Trash2, Upload } from 'lucide-react';
+import { Check, Copy, FileJson, Pencil, Plus, Trash2, Upload } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
 import { Spinner } from '@/components/ui/LoadingOverlay';
 import { toast } from '@/lib/toast';
 import { makeProviderId, normalizeProviders, providerReady } from '@/lib/ai-providers';
 import { exportAllSettings, importAllSettings, SETTING_KEYS, validateImportPayload } from '@/lib/settings-io';
-import AiCompletionSettingsSection from '@/components/compiler/AiCompletionSettingsSection';
 import ModuleAssignPicker from './ModuleAssignPicker';
 import ProviderEditor from './ProviderEditor';
-import { SectionCard, SubBlock } from './controls';
+import { Group, Pad, Row, SmallButton } from './controls';
 
 const MODULES = [
   { id: 'translation', label: '翻译' },
@@ -28,23 +26,12 @@ const MODULES = [
   { id: 'completion', label: 'AI 代码补全' },
 ];
 
-const SUB_TABS = [
-  { id: 'assign', label: '功能模块挑选' },
-  { id: 'completion', label: 'AI 代码补全' },
-];
-
-export default function AiProviderSection() {
+export function ProviderList() {
   const { settings, setSettings } = useSettings();
   const providers = normalizeProviders(settings.aiProviders);
   const assign = settings.aiAssign || {};
-  const [subTab, setSubTab] = useState('assign');
   const [editing, setEditing] = useState(null); // Provider 对象（含完整表单字段）| null
   const [test, setTest] = useState(null); // { state, msg }
-  // 设置导入导出状态
-  const [ioMsg, setIoMsg] = useState(null); // { ok, msg }
-  const [importing, setImporting] = useState(false);
-  const [importMode, setImportMode] = useState('merge');
-  const fileRef = useRef(null);
 
   const patchProviders = (p) =>
     setSettings((prev) => ({
@@ -125,6 +112,135 @@ export default function AiProviderSection() {
     notifyProvidersChanged();
   };
 
+  /* ---------------- 渲染 ---------------- */
+
+
+  return (
+    <Group
+      title="服务商"
+      desc="全站唯一填写 AI 接口地址与 API Key 的地方；翻译、AI 对话、代码补全都从这里挑选。"
+      right={
+        <SmallButton
+          onClick={() => setEditing({ id: null, name: '', note: '', apiFormat: 'openai', baseUrl: '', apiKey: '', models: [] })}
+          disabled={!!editing}
+        >
+          <Plus className="size-3.5" />
+          添加服务商
+        </SmallButton>
+      }
+    >
+      <Pad>
+        {providers.list.length === 0 && !editing && (
+          <p className="text-muted-foreground text-[12px] leading-relaxed">
+            还没有服务商 —— 点右上角「添加服务商」，填名称 + OpenAI / Anthropic 兼容 Base URL + API Key，
+            拉取模型列表后即可使用。
+          </p>
+        )}
+        {providers.list.length > 0 && (
+          <p className="text-muted-foreground/70 text-[11px]">点击名称编辑并管理模型；左侧圆圈设为默认服务商。</p>
+        )}
+        <ul className="space-y-1">
+          {providers.list.map((p) => {
+            const active = p.id === providers.activeId;
+            return (
+              <li
+                key={p.id}
+                className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs transition-colors ${
+                  active ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground'
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => patchProviders({ activeId: p.id })}
+                  className="shrink-0"
+                  title={active ? '当前默认服务商' : '点击设为默认'}
+                  aria-label={`设 ${p.name} 为默认`}
+                >
+                  {active ? <Check className="text-primary size-4" /> : <span className="border-muted-foreground/50 inline-block size-3.5 rounded-full border" />}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEditing({ ...p })}
+                  className="flex min-w-0 flex-1 items-center gap-2 text-left"
+                  title="点击编辑该服务商（名称/备注/接口/模型列表）"
+                >
+                  <span className="shrink-0 font-medium text-foreground">{p.name}</span>
+                  {p.note && <span className="text-muted-foreground shrink-0 text-[11px]">{p.note}</span>}
+                  <span className="truncate font-mono text-[11px]">{p.baseUrl}</span>
+                  <span
+                    className={`shrink-0 rounded px-1 text-[10px] ${
+                      providerReady(p) ? 'bg-emerald-500/10 text-emerald-500' : 'bg-amber-500/10 text-amber-500'
+                    }`}
+                  >
+                    {providerReady(p) ? '就绪' : '缺 Key'}
+                  </span>
+                  <span className="text-muted-foreground hidden shrink-0 text-[10px] sm:inline">{p.models.length} 模型</span>
+                  <span className="hidden shrink-0 rounded bg-muted px-1 text-[9px] uppercase sm:inline">{p.apiFormat}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEditing({ ...p })}
+                  aria-label={`编辑 ${p.name}`}
+                  title="编辑"
+                  className="text-muted-foreground hover:text-foreground shrink-0 rounded p-1 transition-colors"
+                >
+                  <Pencil className="size-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => copyProvider(p)}
+                  aria-label={`复制 ${p.name}`}
+                  title="复制为新服务商"
+                  className="text-muted-foreground hover:text-foreground shrink-0 rounded p-1 transition-colors"
+                >
+                  <Copy className="size-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => removeProvider(p)}
+                  aria-label={`删除 ${p.name}`}
+                  title="删除"
+                  className="text-muted-foreground hover:text-foreground shrink-0 rounded p-1 transition-colors"
+                >
+                  <Trash2 className="size-3.5" />
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        {editing && <ProviderEditor initial={editing} onCancel={() => setEditing(null)} onSave={saveProvider} />}
+        {test && test.state !== 'loading' && (
+          <p className={`text-[11px] ${test.state === 'ok' ? 'text-emerald-500' : 'text-red-400'}`}>{test.msg}</p>
+        )}
+      </Pad>
+    </Group>
+  );
+}
+
+/** 各功能模块挑选服务商 / 模型 / 思考深度 / 本站转发。 */
+export function ModuleAssignments() {
+  return (
+    <Group
+      title="各功能使用的模型"
+      desc="每个功能从上方服务商里挑一个；「跟随默认」= 使用打勾的默认服务商。思考深度与本站转发按功能独立设置。"
+    >
+      <Pad>
+        {MODULES.map((m) => (
+          <ModuleAssignPicker key={m.id} moduleId={m.id} label={m.label} />
+        ))}
+      </Pad>
+    </Group>
+  );
+}
+
+/** 全部设置导出 / 导入。 */
+export function SettingsIO() {
+  const [ioMsg, setIoMsg] = useState(null); // { ok, msg }
+  const [importing, setImporting] = useState(false);
+  const [importMode, setImportMode] = useState('merge');
+  const fileRef = useRef(null);
+
   /* ---------------- 设置导入导出 ---------------- */
 
   const doExport = () => {
@@ -177,204 +293,46 @@ export default function AiProviderSection() {
     }
   };
 
-  /* ---------------- 渲染 ---------------- */
-
-  const providerLabel = (p) => `${p.name}${providerReady(p) ? '' : '（未配置 Key）'}`;
-
   return (
-    <SectionCard
-      id="ai-providers"
-      icon={Server}
-      title="AI 服务商"
-      desc="全站唯一配置 AI 接口的地方：翻译、AI 对话、AI 代码补全都在这里挑选服务商与模型（含思考深度与本站转发），模块内不再单独填接口。"
+    <Row
+      stack
+      label="导出 / 导入全部设置"
+      hint={`备份或迁移本站全部 ${SETTING_KEYS.length} 类本机设置（外观、翻译、AI 服务商、补全方案、编译器偏好、自定义主题等）；不含对话记录、代码草稿与翻译缓存。`}
     >
-      {/* 服务商列表 */}
-      <div className="space-y-1.5">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-muted-foreground text-xs font-medium">
-            服务商（点击名称编辑并管理模型；圆圈设为默认）
-          </p>
-          <button
-            type="button"
-            onClick={() => setEditing({ id: null, name: '', note: '', apiFormat: 'openai', baseUrl: '', apiKey: '', models: [] })}
-            disabled={!!editing}
-            className="inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs transition-colors hover:bg-accent disabled:opacity-40"
-          >
-            <Plus className="size-3.5" />
-            添加服务商
-          </button>
-        </div>
-        {providers.list.length === 0 && !editing && (
-          <p className="text-muted-foreground text-[11px] leading-relaxed">
-            尚无服务商 —— 添加一个（名称 + OpenAI/Anthropic 兼容 Base URL + API Key），
-            拉取模型列表后，翻译 / AI 对话 / AI 代码补全即可挑选使用。
-          </p>
-        )}
-        <ul className="space-y-1">
-          {providers.list.map((p) => {
-            const active = p.id === providers.activeId;
-            return (
-              <li
-                key={p.id}
-                className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs transition-colors ${
-                  active ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground'
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => patchProviders({ activeId: p.id })}
-                  className="shrink-0"
-                  title={active ? '当前默认服务商' : '点击设为默认'}
-                  aria-label={`设 ${p.name} 为默认`}
-                >
-                  {active ? <Check className="text-primary size-4" /> : <span className="border-muted-foreground/50 inline-block size-3.5 rounded-full border" />}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditing({ ...p })}
-                  className="flex min-w-0 flex-1 items-center gap-2 text-left"
-                  title="点击编辑该服务商（名称/备注/接口/模型列表）"
-                >
-                  <span className="shrink-0 font-medium text-foreground">{p.name}</span>
-                  {p.note && <span className="text-muted-foreground shrink-0 text-[11px]">{p.note}</span>}
-                  <span className="truncate font-mono text-[11px]">{p.baseUrl}</span>
-                  <span
-                    className={`shrink-0 rounded px-1 text-[10px] ${
-                      providerReady(p) ? 'bg-emerald-500/10 text-emerald-500' : 'bg-amber-500/10 text-amber-500'
-                    }`}
-                  >
-                    {providerReady(p) ? '就绪' : '缺 Key'}
-                  </span>
-                  <span className="text-muted-foreground shrink-0 text-[10px]">{p.models.length} 模型</span>
-                  <span className="shrink-0 rounded bg-muted px-1 text-[9px] uppercase">{p.apiFormat}</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditing({ ...p })}
-                  aria-label={`编辑 ${p.name}`}
-                  title="编辑"
-                  className="text-muted-foreground hover:text-foreground shrink-0 rounded p-1 transition-colors"
-                >
-                  <Pencil className="size-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => copyProvider(p)}
-                  aria-label={`复制 ${p.name}`}
-                  title="复制为新服务商"
-                  className="text-muted-foreground hover:text-foreground shrink-0 rounded p-1 transition-colors"
-                >
-                  <Copy className="size-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => removeProvider(p)}
-                  aria-label={`删除 ${p.name}`}
-                  title="删除"
-                  className="text-muted-foreground hover:text-foreground shrink-0 rounded p-1 transition-colors"
-                >
-                  <Trash2 className="size-3.5" />
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* 编辑器（基本信息 + 模型管理 + 端点拉取） */}
-        {editing && (
-          <ProviderEditor initial={editing} onCancel={() => setEditing(null)} onSave={saveProvider} />
-        )}
-        {test && test.state !== 'loading' && (
-          <p className={`text-[11px] ${test.state === 'ok' ? 'text-emerald-500' : 'text-red-400'}`}>{test.msg}</p>
-        )}
-      </div>
-
-      {/* 模块挑选 / AI 代码补全：两个子标签页 */}
-      <div className="space-y-3">
-        <div className="flex rounded-md border p-0.5" role="radiogroup" aria-label="AI 服务商子页">
-          {SUB_TABS.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              role="radio"
-              aria-checked={subTab === t.id}
-              onClick={() => setSubTab(t.id)}
-              className={`flex-1 rounded px-2 py-1 text-xs transition-colors ${
-                subTab === t.id
-                  ? 'bg-primary font-medium text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-
-        {subTab === 'assign' ? (
-          <SubBlock
-            title="功能模块挑选"
-            hint="每个模块只能从上方服务商中挑选一个；模型下拉来自所选服务商的模型列表；「跟随默认」= 使用上面勾选的默认服务商。思考深度与本站转发按模块独立设置。"
-          >
-            <div className="space-y-3">
-              {MODULES.map((m) => (
-                <ModuleAssignPicker key={m.id} moduleId={m.id} label={m.label} />
-              ))}
-            </div>
-          </SubBlock>
-        ) : (
-          <AiCompletionSettingsSection />
-        )}
-      </div>
-
-      {/* 全部设置导出 / 导入 */}
-      <SubBlock
-        title="导出 / 导入全部设置"
-        hint={`覆盖本站全部 ${SETTING_KEYS.length} 类本机设置（外观/翻译/全局 AI 服务商与模块挑选/补全方案/编译器偏好/自定义主题等）。不含对话记录、代码草稿与翻译缓存等数据类内容。`}
-      >
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={doExport}
-            className="bg-background hover:bg-accent inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs text-foreground transition-colors"
-          >
-            <FileJson className="size-3.5" />
-            导出全部设置（.json）
-          </button>
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            disabled={importing}
-            className="bg-background hover:bg-accent inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs text-foreground transition-colors disabled:opacity-50"
-          >
-            {importing ? <Spinner className="size-3.5" /> : <Upload className="size-3.5" />}
-            导入设置文件
-          </button>
-          <label className="text-muted-foreground flex items-center gap-2 text-[11px]">
-            <input
-              type="checkbox"
-              checked={importMode === 'replace'}
-              onChange={(e) => setImportMode(e.target.checked ? 'replace' : 'merge')}
-            />
-            替换模式（先清空本机同类设置再写入）
-          </label>
+      <div className="flex flex-wrap items-center gap-2">
+        <SmallButton onClick={doExport}>
+          <FileJson className="size-3.5" />
+          导出（.json）
+        </SmallButton>
+        <SmallButton onClick={() => fileRef.current?.click()} disabled={importing}>
+          {importing ? <Spinner className="size-3.5" /> : <Upload className="size-3.5" />}
+          导入设置文件
+        </SmallButton>
+        <label className="text-muted-foreground flex items-center gap-2 text-[11px]">
           <input
-            ref={fileRef}
-            type="file"
-            accept="application/json,.json"
-            className="hidden"
-            onChange={(e) => {
-              onImportFile(e.target.files?.[0]);
-              e.target.value = '';
-            }}
+            type="checkbox"
+            checked={importMode === 'replace'}
+            onChange={(e) => setImportMode(e.target.checked ? 'replace' : 'merge')}
           />
-        </div>
-        {ioMsg && (
-          <p className={`text-[11px] leading-relaxed ${ioMsg.ok ? 'text-emerald-500' : 'text-red-400'}`}>
-            {ioMsg.ok ? '✓ ' : '✗ '}
-            {ioMsg.msg}
-          </p>
-        )}
-      </SubBlock>
-    </SectionCard>
+          替换模式（先清空本机同类设置再写入）
+        </label>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="application/json,.json"
+          className="hidden"
+          onChange={(e) => {
+            onImportFile(e.target.files?.[0]);
+            e.target.value = '';
+          }}
+        />
+      </div>
+      {ioMsg && (
+        <p className={`text-[11px] leading-relaxed ${ioMsg.ok ? 'text-emerald-500' : 'text-red-400'}`}>
+          {ioMsg.ok ? '✓ ' : '✗ '}
+          {ioMsg.msg}
+        </p>
+      )}
+    </Row>
   );
 }

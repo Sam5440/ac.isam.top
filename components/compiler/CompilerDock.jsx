@@ -1153,8 +1153,8 @@ export default function CompilerDock({ problems, day, currentCode }) {
 
   const doRun = () => {
     if (runState !== "idle") return;
-    if (lang === "cpp" && !available.cpp) return openSettings();
-    if (lang === "python" && !available.python) return openSettings();
+    if (lang === "cpp" && !available.cpp) return openSettings("coding");
+    if (lang === "python" && !available.python) return openSettings("coding");
     if (mode === "samples") runSamples();
     else if (mode === "interactive") runInteractive();
     else runCheck();

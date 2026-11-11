@@ -1,7 +1,8 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { useSettings, channelLabel } from './settings';
+import { useProblemLang, useSettings, channelLabel } from './settings';
 
 /**
  * 左下角语言切换浮标：英文 / 中文(每渠道) / 对照，per user's enabled
@@ -10,7 +11,10 @@ import { useSettings, channelLabel } from './settings';
  * 语言栏仍可用。
  */
 export default function LanguageSidebar() {
-  const { lang, setLang, settings, openSettings, aiReady } = useSettings();
+  const { setLang, settings, openSettings, aiReady } = useSettings();
+  // 牛客题目页：反映「牛客默认不翻译」后的实际语言；「英文」项改称「原文」
+  const isNowcoder = (usePathname() || '').startsWith('/problems/nowcoder/');
+  const lang = useProblemLang(isNowcoder ? 'nowcoder' : undefined);
   const [mounted, setMounted] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const rootRef = useRef(null);
@@ -42,7 +46,7 @@ export default function LanguageSidebar() {
 
   const pickChannel = (id) => {
     if (id === 'ai_custom' && !aiReady) {
-      openSettings(); // configure the AI endpoint first
+      openSettings('ai'); // configure the AI endpoint first
       return;
     }
     setLang({ mode: 'zh', channel: id });
@@ -51,7 +55,7 @@ export default function LanguageSidebar() {
   const items = [
     {
       key: 'en',
-      label: '英文',
+      label: isNowcoder ? '原文' : '英文',
       active: lang.mode === 'en',
       on: () => setLang((prev) => ({ mode: 'en', channel: prev.channel })),
     },

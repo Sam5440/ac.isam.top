@@ -13,7 +13,7 @@
 import { Check, Copy, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-import { useSettings } from '@/components/settings';
+import { useProblemLang } from '@/components/settings';
 import { Button } from '@/components/ui/button';
 import { PLATFORMS } from '@/lib/platforms';
 
@@ -85,7 +85,7 @@ export default function CopyProblemButton({
   statementZhMd,
   samples,
 }) {
-  const { lang } = useSettings();
+  const lang = useProblemLang(platform);
   const [copied, setCopied] = useState(false);
   const [failed, setFailed] = useState(false);
   const timerRef = useRef(null);

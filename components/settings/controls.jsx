@@ -73,7 +73,7 @@ export function SegButtons({ options, value, onChange, ariaLabel, size = 'md' })
             role="radio"
             aria-checked={active}
             onClick={() => onChange?.(o.id)}
-            className={`flex-1 rounded px-2 py-1 text-xs transition-colors ${
+            className={`flex-1 whitespace-nowrap rounded px-2.5 py-1 text-xs transition-colors ${
               active ? 'bg-primary font-medium text-primary-foreground' : 'text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -138,5 +138,105 @@ export function SubBlock({ title, hint, right, children }) {
       )}
       {children}
     </div>
+  );
+}
+
+/* ---------------- v1.8 设置页新版布局原语 ---------------- */
+
+/**
+ * 设置组：标题 + 说明 + 一张卡片，内部行以分隔线分开（iOS / macOS 设置风格）。
+ * 子元素一般为 <Row />，也可放任意内容（自动加内边距）。
+ */
+export function Group({ title, desc, right, children, id }) {
+  return (
+    <section id={id} className="scroll-mt-24 space-y-2">
+      {(title || right) && (
+        <div className="flex items-end justify-between gap-3 px-1">
+          <div className="min-w-0">
+            {title && <h3 className="text-[13px] font-semibold tracking-tight">{title}</h3>}
+            {desc && <p className="text-muted-foreground mt-0.5 text-[11px] leading-relaxed">{desc}</p>}
+          </div>
+          {right && <div className="shrink-0">{right}</div>}
+        </div>
+      )}
+      <div className="bg-card divide-y rounded-xl border">{children}</div>
+    </section>
+  );
+}
+
+/** 设置行：左侧标题 + 说明，右侧控件；`stack` 时控件换到下方占满宽度。 */
+export function Row({ label, hint, children, stack = false }) {
+  if (stack) {
+    return (
+      <div className="space-y-2 px-4 py-3">
+        <div className="min-w-0 space-y-0.5">
+          <p className="text-[13px] font-medium">{label}</p>
+          {hint && <p className="text-muted-foreground text-[11px] leading-relaxed">{hint}</p>}
+        </div>
+        {children}
+      </div>
+    );
+  }
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
+      <div className="min-w-0 flex-1 basis-56 space-y-0.5">
+        <p className="text-[13px] font-medium">{label}</p>
+        {hint && <p className="text-muted-foreground text-[11px] leading-relaxed">{hint}</p>}
+      </div>
+      <div className="flex shrink-0 items-center gap-2">{children}</div>
+    </div>
+  );
+}
+
+/** 开关行（Row + ToggleSwitch 简写）。 */
+export function SwitchRow({ label, hint, checked, onChange, disabled }) {
+  return (
+    <Row label={label} hint={hint}>
+      <ToggleSwitch checked={checked} onChange={onChange} disabled={disabled} label={label} />
+    </Row>
+  );
+}
+
+/** 卡片内的自由内容块（统一内边距）。 */
+export function Pad({ children, className = '' }) {
+  return <div className={`space-y-3 px-4 py-3 ${className}`}>{children}</div>;
+}
+
+/** 高级折叠区：默认收起，放不常用 / 专家向配置。 */
+export function Advanced({ title = '高级选项', desc, children, defaultOpen = false }) {
+  return (
+    <details className="group bg-card rounded-xl border" open={defaultOpen}>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 select-none [&::-webkit-details-marker]:hidden">
+        <span className="min-w-0">
+          <span className="block text-[13px] font-medium">{title}</span>
+          {desc && <span className="text-muted-foreground block text-[11px] leading-relaxed">{desc}</span>}
+        </span>
+        <span aria-hidden className="text-muted-foreground shrink-0 text-xs transition-transform group-open:rotate-90">
+          ›
+        </span>
+      </summary>
+      <div className="space-y-5 border-t px-4 py-4">{children}</div>
+    </details>
+  );
+}
+
+/** 小按钮（设置页内统一样式）。 */
+export function SmallButton({ children, onClick, disabled, tone = 'default', title, type = 'button' }) {
+  const cls =
+    tone === 'primary'
+      ? 'bg-primary text-primary-foreground border-transparent hover:opacity-90'
+      : tone === 'danger'
+        ? 'border-red-500/40 text-red-400 hover:bg-red-500/10'
+        : 'bg-background text-foreground hover:bg-accent';
+  return (
+    <button
+      type={type}
+      title={title}
+      onClick={onClick}
+      disabled={disabled}
+      className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs transition-colors disabled:opacity-40 ${cls}`}
+    >
+      {children}
+    </button>
   );
 }

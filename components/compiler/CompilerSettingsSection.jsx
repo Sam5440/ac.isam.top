@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * 设置弹窗里的「编译器」区块：运行时下载管理（Cache API）、默认模板编辑、
- * 语言/标准/超时等偏好，以及「观望中」的更新版运行时占位。
+ * 设置页「编程」分区的编译器部分（v1.8 重排为分组）：
+ *  运行时下载（Cache API）→ 编辑与运行偏好 → 手机端 → 高级（代码模板 / 观望中的运行时）。
  */
 
 import { useEffect, useState } from "react";
@@ -14,6 +14,7 @@ import {
 } from "@/lib/compiler/runtimes";
 import { EDITOR_THEMES } from "@/lib/compiler/themes";
 import { useSettings } from "@/components/settings";
+import { Advanced, Group, Pad, Row, SwitchRow } from "@/components/settings/controls";
 import {
   downloadAll,
   hasRuntime,
@@ -172,109 +173,99 @@ export default function CompilerSettingsSection() {
   const patchTemplate = (lang, text) =>
     patch({ templates: { ...cp.templates, [lang]: text } });
 
+  const selCls = `${inputCls} w-auto min-w-40`;
+
   return (
-    <div className="space-y-3 rounded-lg border border-dashed p-3">
-      <p className="text-xs font-medium text-muted-foreground">
-        浏览器编译器 · 运行时下载到本机（Cache
-        API，离线可用）。题目右侧的编译器面板需要先在这里下载对应语言的运行时。
-      </p>
+    <div className="space-y-6">
+      <Group
+        title="运行时"
+        desc="浏览器内的 C++ / Python 编译运行环境，下载到本机后离线可用。题目页的编译器需要先下载对应语言。"
+      >
+        <Pad>
+          <RuntimeCard
+            title="C++ · Clang/LLVM 22.1.8（wasi-sdk 33）"
+            note={`支持 C++11–26 与万能头 bits/stdc++.h；本站同源自托管，共 ${fmtMB(CPP_FILES.reduce((a, f) => a + (f.size || 0), 0))}。`}
+            state={cpp}
+            total={CPP_FILES.reduce((a, f) => a + (f.size || 0), 0)}
+            onDownload={downloadCpp}
+            onRemove={removeCpp}
+            progressText={
+              cpp.progress
+                ? `${cpp.progress.name} ${fmtMB(cpp.progress.got)}${cpp.progress.total ? ` / ${fmtMB(cpp.progress.total)}` : ""}`
+                : "准备中…"
+            }
+          />
+          <RuntimeCard
+            title={`Python · ${pyVersion.label}`}
+            note="官方 CPython WebAssembly 构建，共约 12–15 MB。"
+            state={py}
+            onDownload={downloadPy}
+            onRemove={removePy}
+            progressText={
+              py.progress
+                ? `${py.progress.name} ${fmtMB(py.progress.got)}${py.progress.total ? ` / ${fmtMB(py.progress.total)}` : ""}`
+                : "准备中…"
+            }
+            extra={
+              <label className="flex flex-wrap items-center gap-2">
+                <span className="text-xs text-muted-foreground">Pyodide 版本</span>
+                <select
+                  className={`${inputCls} w-auto`}
+                  value={pyVersionId}
+                  onChange={(e) => {
+                    setPyVersionId(e.target.value);
+                    saveCpSettings({ pythonVersion: e.target.value });
+                    setCp((s) => ({ ...s, pythonVersion: e.target.value }));
+                    // 通知已打开的 CompilerDock 刷新（编译-18:漏派发会让已开面板
+                    // 的 cp.pythonVersion 滞后,下次运行仍用旧版本）
+                    window.dispatchEvent(new Event("ysc-cp-settings-changed"));
+                    refresh();
+                  }}
+                >
+                  {PYODIDE_VERSIONS.map((v) => (
+                    <option key={v.id} value={v.id}>
+                      {v.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            }
+          />
+          {!isolated && (
+            <p className="text-[11px] leading-relaxed text-amber-500">
+              当前页面未开启跨域隔离，「交互运行」模式的交互输入将不可用（固定输入/样例对拍不受影响）。
+            </p>
+          )}
+        </Pad>
+      </Group>
 
-      <RuntimeCard
-        title="C++ · Clang/LLVM 22.1.8（wasi-sdk 33）"
-        note={`支持 C++11–26（c++11/14/17/20/23/26 已实测编译通过）与万能头 bits/stdc++.h；运行时由本站同源自托管，共 ${fmtMB(CPP_FILES.reduce((a, f) => a + (f.size || 0), 0))}。`}
-        state={cpp}
-        total={CPP_FILES.reduce((a, f) => a + (f.size || 0), 0)}
-        onDownload={downloadCpp}
-        onRemove={removeCpp}
-        progressText={
-          cpp.progress
-            ? `${cpp.progress.name} ${fmtMB(cpp.progress.got)}${cpp.progress.total ? ` / ${fmtMB(cpp.progress.total)}` : ""}`
-            : "准备中…"
-        }
-      />
-
-      <RuntimeCard
-        title={`Python · ${pyVersion.label}`}
-        note={`官方 CPython WebAssembly 构建，共约 12–15 MB。`}
-        state={py}
-        onDownload={downloadPy}
-        onRemove={removePy}
-        progressText={
-          py.progress
-            ? `${py.progress.name} ${fmtMB(py.progress.got)}${py.progress.total ? ` / ${fmtMB(py.progress.total)}` : ""}`
-            : "准备中…"
-        }
-        extra={
-          <label className="block space-y-1">
-            <span className="text-xs font-medium text-muted-foreground">
-              Pyodide 版本
-            </span>
-            <select
-              className={inputCls}
-              value={pyVersionId}
-              onChange={(e) => {
-                setPyVersionId(e.target.value);
-                saveCpSettings({ pythonVersion: e.target.value });
-                setCp((s) => ({ ...s, pythonVersion: e.target.value }));
-                // 通知已打开的 CompilerDock 刷新（编译-18:漏派发会让已开面板
-                // 的 cp.pythonVersion 滞后,下次运行仍用旧版本）
-                window.dispatchEvent(new Event("ysc-cp-settings-changed"));
-                refresh();
-              }}
-            >
-              {PYODIDE_VERSIONS.map((v) => (
-                <option key={v.id} value={v.id}>
-                  {v.label}
-                </option>
-              ))}
-            </select>
-          </label>
-        }
-      />
-
-      {!isolated && (
-        <p className="text-[11px] leading-relaxed text-amber-500">
-          当前页面未开启跨域隔离，「交互运行」模式的交互输入将不可用（固定输入/样例对拍不受影响）。
-        </p>
-      )}
-
-      {/* 偏好 */}
-      <div className="grid grid-cols-2 gap-2">
-        <label className="block space-y-1">
-          <span className="text-xs font-medium text-muted-foreground">
-            默认语言
-          </span>
-          <select
-            className={inputCls}
-            value={cp.defaultLang}
-            onChange={(e) => patch({ defaultLang: e.target.value })}
-          >
+      <Group title="编辑与运行">
+        <Row label="默认语言">
+          <select className={selCls} aria-label="默认语言" value={cp.defaultLang} onChange={(e) => patch({ defaultLang: e.target.value })}>
             <option value="cpp">C++</option>
             <option value="python">Python</option>
           </select>
-        </label>
-        <label className="block space-y-1">
-          <span className="text-xs font-medium text-muted-foreground">
-            C++ 标准
-          </span>
-          <select
-            className={inputCls}
-            value={cp.cppStd}
-            onChange={(e) => patch({ cppStd: e.target.value })}
-          >
+        </Row>
+        <Row label="C++ 标准">
+          <select className={selCls} aria-label="C++ 标准" value={cp.cppStd} onChange={(e) => patch({ cppStd: e.target.value })}>
             {CPP_VERSION.stds.map((s) => (
               <option key={s} value={s}>
                 {s}
               </option>
             ))}
           </select>
-        </label>
-        <label className="block space-y-1">
-          <span className="text-xs font-medium text-muted-foreground">
-            编辑器主题
-          </span>
+        </Row>
+        <Row
+          label="编辑器主题"
+          hint={
+            ideAuto
+              ? "当前跟随网页外观自动联动；要自选请把上方「编辑器配色跟随网页外观」改为手动。"
+              : "只作用于代码编辑区（One Dark / Dracula / Monokai / GitHub / Solarized 等）。"
+          }
+        >
           <select
-            className={`${inputCls}${ideAuto ? " cursor-not-allowed opacity-60" : ""}`}
+            className={`${selCls}${ideAuto ? " cursor-not-allowed opacity-60" : ""}`}
+            aria-label="编辑器主题"
             value={cp.editorTheme}
             disabled={ideAuto}
             onChange={(e) => patch({ editorTheme: e.target.value })}
@@ -285,141 +276,80 @@ export default function CompilerSettingsSection() {
               </option>
             ))}
           </select>
-          <span className="block text-[11px] leading-relaxed text-muted-foreground">
-            {ideAuto
-              ? "跟随网页外观：在「外观」分区切换网页主题时，编辑器配色自动联动；如需自选，请在外观分区的「IDE 外观」中改为手动。"
-              : "编辑器配色（One Dark / Dracula / Monokai / GitHub / Solarized 等），只作用于 Monaco 代码区，站点其余部分不变。"}
-          </span>
-        </label>
-        <label className="block space-y-1">
-          <span className="text-xs font-medium text-muted-foreground">
-            单次运行超时（秒）
-          </span>
-          <input
-            className={inputCls}
-            type="number"
-            min="1"
-            max="120"
-            value={cp.timeoutSec}
-            onChange={(e) =>
-              patch({ timeoutSec: Math.max(1, Number(e.target.value) || 10) })
-            }
-          />
-        </label>
-        <label className="block space-y-1">
-          <span className="text-xs font-medium text-muted-foreground">
-            面板默认模式
-          </span>
-          <select
-            className={inputCls}
-            value={cp.defaultMode}
-            onChange={(e) => patch({ defaultMode: e.target.value })}
-          >
+        </Row>
+        <Row label="编译器面板默认模式">
+          <select className={selCls} aria-label="面板默认模式" value={cp.defaultMode} onChange={(e) => patch({ defaultMode: e.target.value })}>
             <option value="samples">样例测试</option>
             <option value="interactive">交互运行</option>
           </select>
-        </label>
-        <label className="block space-y-1">
-          <span className="text-xs font-medium text-muted-foreground">
-            Ctrl/⌘S 行为
-          </span>
-          <select
-            className={inputCls}
-            value={cp.ctrlS}
-            onChange={(e) => patch({ ctrlS: e.target.value })}
-          >
-            <option value="save">接管 · 保存代码并提示（默认）</option>
-            <option value="download">接管 · 下载当前代码文件</option>
-            <option value="off">不接管 · 浏览器保存网页</option>
+        </Row>
+        <Row label="单次运行超时" hint="超过该时间自动终止（1–120 秒）。">
+          <input
+            className={`${inputCls} w-20`}
+            type="number"
+            min="1"
+            max="120"
+            aria-label="单次运行超时（秒）"
+            value={cp.timeoutSec}
+            onChange={(e) => patch({ timeoutSec: Math.max(1, Number(e.target.value) || 10) })}
+          />
+          <span className="text-xs text-muted-foreground">秒</span>
+        </Row>
+        <Row
+          label="Ctrl/⌘ + S"
+          hint="刷题时习惯性按保存不会弹出浏览器「保存网页」：默认保存代码草稿；也可下载为文件（题目日期_题号_时间）。"
+        >
+          <select className={selCls} aria-label="Ctrl/⌘S 行为" value={cp.ctrlS} onChange={(e) => patch({ ctrlS: e.target.value })}>
+            <option value="save">保存代码草稿（默认）</option>
+            <option value="download">下载当前代码文件</option>
+            <option value="off">不接管（浏览器保存网页）</option>
           </select>
-          <span className="block text-[11px] leading-relaxed text-muted-foreground">
-            刷题时习惯性按 Ctrl/⌘S 不会弹出浏览器「保存网页」：默认改为保存
-            编辑器代码草稿并弹提示；也可改为把代码下载成文件（文件名 =
-            题目日期_题号_时间）。
-          </span>
-        </label>
-      </div>
+        </Row>
+      </Group>
 
-      {/* 移动端（手机）适配：布局方式与编程键盘 */}
-      <div className="space-y-2 rounded-md border p-2.5">
-        <p className="text-xs font-medium">移动端（手机）</p>
-        <label className="block space-y-1">
-          <span className="text-xs font-medium text-muted-foreground">
-            编译器布局
-          </span>
-          <select
-            className={inputCls}
-            value={cp.mobileLayout}
-            onChange={(e) => patch({ mobileLayout: e.target.value })}
-          >
+      <Group title="手机端">
+        <Row label="编译器布局">
+          <select className={selCls} aria-label="手机端编译器布局" value={cp.mobileLayout} onChange={(e) => patch({ mobileLayout: e.target.value })}>
             <option value="cover">全屏切换（默认）</option>
             <option value="split">上下分屏（题目上 · 编译器下）</option>
           </select>
-        </label>
-        <label className="flex cursor-pointer items-start gap-2 rounded-md border px-2.5 py-2">
-          <input
-            type="checkbox"
-            className="mt-0.5 size-4 shrink-0 accent-[var(--primary)]"
-            checked={!!cp.mobileKeyboard}
-            onChange={(e) => patch({ mobileKeyboard: e.target.checked })}
-          />
-          <span className="space-y-0.5">
-            <span className="block text-xs font-medium">编程键盘</span>
-            <span className="block text-[11px] leading-relaxed text-muted-foreground">
-              在手机上打开编译器时，用站内编程键盘替代系统软键盘。布局按语言自适应
-              并依据真实题解代码的符号频率设计：C++ 常驻 ; , . ( ) &lt; &gt;
-              &quot;，Python 常驻 : _ , ( ) [ ] .；符号页按频率排序，第三行是
-              &lt;&lt; == += ** 等组合符一击键。含方向键 / Tab / 行首行尾 / 撤销 /
-              系统键盘开关，退格长按连删。顶部工具行右侧 ⌄ 可临时收起，点编辑器恢复。
-            </span>
-          </span>
-        </label>
-      </div>
+        </Row>
+        <SwitchRow
+          label="编程键盘"
+          hint={'用站内编程键盘替代系统软键盘：按语言常驻高频符号（C++ ; , . ( ) < > "，Python : _ , ( ) [ ] .），含方向键 / Tab / 撤销，退格长按连删。'}
+          checked={!!cp.mobileKeyboard}
+          onChange={(v) => patch({ mobileKeyboard: v })}
+        />
+      </Group>
 
-      {/* 模板 */}
-      <details className="rounded-md border px-2.5 py-2">
-        <summary className="cursor-pointer text-xs font-medium text-muted-foreground">
-          默认代码模板（新建/重置时使用）
-        </summary>
-        <div className="mt-2 space-y-2">
-          <TemplateEditor
-            label="C++ 模板"
-            value={cp.templates.cpp}
-            onChange={(t) => patchTemplate("cpp", t)}
-            onReset={() => patchTemplate("cpp", DEFAULT_CPP_TEMPLATE)}
-            rows={10}
-          />
-          <TemplateEditor
-            label="Python 模板"
-            value={cp.templates.python}
-            onChange={(t) => patchTemplate("python", t)}
-            onReset={() => patchTemplate("python", DEFAULT_PY_TEMPLATE)}
-            rows={8}
-          />
-        </div>
-      </details>
-
-      {/* 观望中的更新版运行时 */}
-      {PLACEHOLDERS.length > 0 && (
-        <details className="rounded-md border border-dashed px-2.5 py-2">
-          <summary className="cursor-pointer text-xs font-medium text-muted-foreground">
-            观望中的更新版运行时（暂不可用）
-          </summary>
-          <ul className="mt-2 space-y-1.5">
-            {PLACEHOLDERS.map((p) => (
-              <li
-                key={p.id}
-                className="text-[11px] leading-relaxed text-muted-foreground"
-              >
-                <span className="font-medium text-foreground/80">
-                  {p.label}
-                </span>{" "}
-                — {p.note}
-              </li>
-            ))}
-          </ul>
-        </details>
-      )}
+      <Advanced title="代码模板与实验性运行时" desc="新建 / 重置代码时使用的默认模板；尚未开放的更新版运行时。">
+        <TemplateEditor
+          label="C++ 模板"
+          value={cp.templates.cpp}
+          onChange={(t) => patchTemplate("cpp", t)}
+          onReset={() => patchTemplate("cpp", DEFAULT_CPP_TEMPLATE)}
+          rows={10}
+        />
+        <TemplateEditor
+          label="Python 模板"
+          value={cp.templates.python}
+          onChange={(t) => patchTemplate("python", t)}
+          onReset={() => patchTemplate("python", DEFAULT_PY_TEMPLATE)}
+          rows={8}
+        />
+        {PLACEHOLDERS.length > 0 && (
+          <div className="space-y-1.5">
+            <p className="text-xs font-medium text-muted-foreground">观望中的更新版运行时（暂不可用）</p>
+            <ul className="space-y-1.5">
+              {PLACEHOLDERS.map((p) => (
+                <li key={p.id} className="text-[11px] leading-relaxed text-muted-foreground">
+                  <span className="font-medium text-foreground/80">{p.label}</span> — {p.note}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </Advanced>
     </div>
   );
 }

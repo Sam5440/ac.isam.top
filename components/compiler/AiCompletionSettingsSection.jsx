@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * 「AI 代码补全」行为配置区块（内嵌于设置 →「AI 服务商」分区的子标签页）。
+ * 「AI 代码补全」行为配置区块（设置 →「AI 助手」分区 · v1.8 改为分组 + 折叠诊断）。
  * 移植自 ACM-IDE-online 的 SettingsModal（AI 部分）：多平台配置方案
  * （添加/切换/删除）+ 快速预设（API 类型预设）、API 类型、WebGPU 本地模型
  * （WebLLM：预检/下载源/加载/停止）、FIM 模板、触发方式，以及 AI Token 用量
@@ -50,6 +50,7 @@ import {
 } from "@/lib/ai/ai-settings";
 import { truncate } from "@/lib/compiler/diff";
 import { toast } from "@/lib/toast";
+import { Advanced, Group, Pad, SwitchRow } from "@/components/settings/controls";
 
 const inputCls =
   "w-full rounded-md border bg-background px-2.5 py-1.5 text-sm outline-none placeholder:text-muted-foreground/60 focus:border-primary/60";
@@ -363,7 +364,7 @@ export default function AiCompletionSettingsSection() {
     // 未命名或还是「平台 N」占位名时，用预设名给方案命名
     const rename = !ai.name || /^平台 /.test(ai.name);
     if (rename) patchAi({ name: p.label.replace(/（.*）/g, "").replace(/（仅本地可用）/g, "") });
-    setTestState({ ok: true, msg: `已套用预设「${p.label}」—— 请到「功能模块挑选」子页确认服务商与模型` });
+    setTestState({ ok: true, msg: `已套用预设「${p.label}」—— 请到上方「各功能使用的模型」确认服务商与模型` });
   };
 
   const doFetchModels = async () => {
@@ -397,7 +398,7 @@ export default function AiCompletionSettingsSection() {
       const models = await fetchModelList(ai);
       setTestState({
         ok: true,
-        msg: `连接成功，端点共 ${models.length} 个模型；请在「AI 服务商」分区管理模型列表后在此挑选`,
+        msg: `连接成功，端点共 ${models.length} 个模型；请在上方「服务商」管理模型列表后在「各功能使用的模型」挑选`,
       });
       toast.success(`连接成功：端点共 ${models.length} 个模型`);
     } catch (exn) {
@@ -407,22 +408,17 @@ export default function AiCompletionSettingsSection() {
   };
 
   return (
-    <div className="space-y-3 rounded-lg border border-dashed p-3">
-      <p className="text-xs font-medium text-muted-foreground">
-        AI 代码补全（FIM ghost text，Tab 接受；Alt+\ 手动触发）。支持在线模型
-        （OpenAI 兼容 / Ollama）与 WebGPU 本地模型（WebLLM，浏览器内推理），按平台方案分别配置。
-      </p>
-
-      {/* 启用开关 */}
-      <label className="flex items-center gap-2 text-xs">
-        <input
-          type="checkbox"
-          checked={ai.enabled}
-          onChange={(e) => patchAi({ enabled: e.target.checked })}
-        />
-        <span>启用 AI 补全</span>
-      </label>
-
+    <div className="space-y-6">
+    <Group
+      title="AI 代码补全"
+      desc={"编辑器内灰色幽灵文本补全：Tab 接受，Alt+\\ 手动触发。支持在线模型（OpenAI 兼容 / Ollama / DeepSeek FIM）与浏览器内本地模型（WebGPU）。"}
+    >
+      <SwitchRow
+        label="启用 AI 补全"
+        checked={!!ai.enabled}
+        onChange={(v) => patchAi({ enabled: v })}
+      />
+      <Pad>
       {/* 平台配置方案：先添加的平台为默认，之后可随时切换 */}
       <div className="space-y-1.5">
         <p className="text-xs font-medium text-muted-foreground">
@@ -614,12 +610,12 @@ export default function AiCompletionSettingsSection() {
           ) : (
             <>
               <p className="text-[11px] leading-relaxed text-muted-foreground">
-                服务商与模型在「功能模块挑选」子页统一挑选（AI 代码补全模块行），
+                服务商与模型在上方「各功能使用的模型」统一挑选（AI 代码补全一栏），
                 本页仅配置 API 类型等行为字段；「测试连接」会探测该服务商端点的模型列表。
               </p>
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[11px] text-muted-foreground">
-                  {ai.baseUrl ? `已解析端点：${ai.baseUrl} · 模型 ${ai.model || "（服务商第一个）"}` : "⚠ 「功能模块挑选」中未挑选服务商或该服务商未配置 Base URL / API Key"}
+                  {ai.baseUrl ? `已解析端点：${ai.baseUrl} · 模型 ${ai.model || "（服务商第一个）"}` : "⚠ 「各功能使用的模型」中未挑选服务商或该服务商未配置 Base URL / API Key"}
                 </span>
                 <button type="button" className={`${btnCls} ml-auto shrink-0`} onClick={doFetchModels} disabled={testState === "testing"}>
                   测试连接
@@ -727,7 +723,7 @@ export default function AiCompletionSettingsSection() {
 
           {ai.apiType !== "webllm" && (
             <p className="text-[11px] leading-relaxed text-muted-foreground">
-              是否经本站转发由「功能模块挑选」子页的 AI 代码补全模块行控制
+              是否经本站转发由上方「各功能使用的模型」的 AI 代码补全一栏控制
               （本地模型服务请保持直连，服务端转发不可达本机）。
             </p>
           )}
@@ -740,9 +736,13 @@ export default function AiCompletionSettingsSection() {
         </>
       )}
 
-      <TokenStatsSection activeId={ai.activeId} />
+      </Pad>
+    </Group>
 
+    <Advanced title="补全用量与诊断日志" desc="各方案 Token 用量统计；排查补全失败时查看诊断日志。">
+      <TokenStatsSection activeId={ai.activeId} />
       <LogViewerSection />
+    </Advanced>
     </div>
   );
 }

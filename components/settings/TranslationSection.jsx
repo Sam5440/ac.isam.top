@@ -1,13 +1,15 @@
 'use client';
 
 /**
- * 设置页「翻译」分区：默认语言与「每次打开重置默认」开关、默认翻译渠道
- * （CI 翻译）、对照优先级、侧栏渠道、译文样式、AI 自定义翻译接口、
- * 渠道体检（50 次真实翻译成功率排行 + 一键按成功率重排优先级链）。
+ * 设置页「题面与翻译」分区（v1.8 重排）：
+ *  - 基础：默认题面语言 / 默认翻译渠道 / 每次打开重置 / 牛客题目默认翻译
+ *  - 题目页：比赛题目切换条、题号竖条；首页「最新比赛」类型
+ *  - 译文外观：字号 / 颜色 / 加粗斜体下划线
+ *  - 高级（折叠）：对照优先级链、「译」浮标渠道、AI 自定义翻译接口、渠道体检
  */
 
 import { useEffect, useRef, useState } from 'react';
-import { Activity, Languages, RotateCcw } from 'lucide-react';
+import { Activity, RotateCcw } from 'lucide-react';
 
 import {
   ARCHIVED_CHANNELS,
@@ -21,10 +23,13 @@ import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { toast } from '@/lib/toast';
 import { clearMtStats, HEALTH_SAMPLE, loadMtStats, rankedStats, runHealthCheck } from '@/lib/mt-health';
 import ModuleAssignPicker from './ModuleAssignPicker';
-import { ChipToggle, inputCls, SegButtons, SectionCard, SubBlock, ToggleRow } from './controls';
+import { CONTEST_TYPES } from '@/lib/contest-type';
+import { Advanced, ChipToggle, Group, inputCls, Pad, Row, SegButtons, SmallButton, SubBlock, SwitchRow } from './controls';
 
 const MT_CHANNELS = ARCHIVED_CHANNELS; // deepl / youdao / caiyun / iflyrec
 const TEST_COUNT = 50;
+
+const PLATFORM_LABEL = { atcoder: 'AtCoder', codeforces: 'Codeforces', nowcoder: '牛客' };
 
 const fmtDate = (iso) => {
   try {
@@ -146,38 +151,31 @@ export default function TranslationSection() {
   const ranking = rankedStats(stats);
   const hasProgress = Object.keys(progress).length > 0;
 
-  return (
-    <SectionCard
-      id="translation"
-      icon={Languages}
-      title="翻译"
-      desc="题面语言与译文来源：默认行为、渠道优先级、外观样式与质量体检。"
-    >
-      <ToggleRow
-        label="每次打开网页时重置为默认翻译"
-        hint="开启后，刷新 / 重新打开网页时题面语言与翻译渠道都会重置为下方的默认值（默认语言 + 默认渠道）；关闭则保留上次使用的选择。"
-        checked={settings.resetLangOnLoad !== false}
-        onChange={(v) => setSettings({ resetLangOnLoad: v })}
-      />
+  const homeTypes = settings.homeContestTypes || [];
+  const toggleHomeType = (id) =>
+    setSettings({
+      homeContestTypes: homeTypes.includes(id) ? homeTypes.filter((t) => t !== id) : [...homeTypes, id],
+    });
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-1.5">
-          <p className="text-muted-foreground text-xs font-medium">默认题面语言</p>
+  return (
+    <div className="space-y-6">
+      <Group title="默认显示">
+        <Row label="默认题面语言" hint="首次打开题目时的显示方式；左下角「译」浮标可随时临时切换。">
           <SegButtons
             ariaLabel="默认题面语言"
             options={[
-              { id: 'both', label: '对照' },
-              { id: 'en', label: '英文' },
-              { id: 'zh', label: '中文' },
+              { id: 'both', label: '中英对照' },
+              { id: 'en', label: '原文' },
+              { id: 'zh', label: '仅中文' },
             ]}
             value={settings.defaultLangMode}
             onChange={pickLangMode}
           />
-        </div>
-        <div className="space-y-1.5">
-          <p className="text-muted-foreground text-xs font-medium">默认翻译渠道（默认 AI · CI 翻译）</p>
+        </Row>
+        <Row label="默认翻译渠道" hint="「仅中文」模式使用的译文来源；AI (CI翻译) 为仓库预先翻译好的存档，最快最稳。">
           <select
-            className={inputCls}
+            className={`${inputCls} w-auto`}
+            aria-label="默认翻译渠道"
             value={settings.defaultZhChannel || 'ai'}
             onChange={(e) => pickDefaultChannel(e.target.value)}
           >
@@ -187,272 +185,291 @@ export default function TranslationSection() {
               </option>
             ))}
           </select>
-        </div>
-      </div>
+        </Row>
+        <SwitchRow
+          label="牛客题目默认开启翻译"
+          hint="牛客题目绝大多数是官方中文题面。关闭后打开牛客题目默认只显示原文，不再请求翻译；仍可用「译」浮标对单题临时开启。"
+          checked={settings.nowcoderTranslate !== false}
+          onChange={(v) => setSettings({ nowcoderTranslate: v })}
+        />
+        <SwitchRow
+          label="每次打开网页时恢复默认"
+          hint="开启：刷新或重新打开网页时，题面语言与翻译渠道都回到上面的默认值。关闭：保留上次的选择。"
+          checked={settings.resetLangOnLoad !== false}
+          onChange={(v) => setSettings({ resetLangOnLoad: v })}
+        />
+      </Group>
 
-      <SubBlock
-        title="对照翻译优先级"
-        hint="每段取首个已有译文的渠道，段落结尾标注来源；缺失的译文由本机向各渠道实时请求（约每 3 秒一条），结果保存在本机浏览器。AI (CI翻译) = CI 任务自动翻译的存档。想让全站优先显示某个渠道的译文，把它排到第一位即可。"
-      >
-        <ul className="space-y-1">
-          {(settings.zhPriority || []).map((id, i) => (
-            <li key={id} className="flex items-center justify-between rounded-md border px-2.5 py-1 text-xs">
-              <span>
-                <span className="text-muted-foreground mr-2 inline-block w-3">{i + 1}</span>
-                {channelLabel(id)}
-              </span>
-              <span className="flex gap-0.5">
-                <button
-                  type="button"
-                  onClick={() => movePriority(i, -1)}
-                  disabled={i === 0}
-                  aria-label={`${channelLabel(id)} 上移`}
-                  className="text-muted-foreground hover:bg-accent hover:text-foreground rounded px-1.5 py-0.5 transition-colors disabled:opacity-25"
-                >
-                  ↑
-                </button>
-                <button
-                  type="button"
-                  onClick={() => movePriority(i, 1)}
-                  disabled={i === settings.zhPriority.length - 1}
-                  aria-label={`${channelLabel(id)} 下移`}
-                  className="text-muted-foreground hover:bg-accent hover:text-foreground rounded px-1.5 py-0.5 transition-colors disabled:opacity-25"
-                >
-                  ↓
-                </button>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </SubBlock>
+      <Group title="题目页与首页">
+        <SwitchRow
+          label="比赛题目切换条"
+          hint="题目卡上方显示本场比赛全部题目，一键跳转（比赛含 2 题及以上时）。"
+          checked={settings.topSwitcher !== false}
+          onChange={(v) => setSettings({ topSwitcher: v })}
+        />
+        <SwitchRow
+          label="左侧题号竖条"
+          hint="视口左侧中部悬浮的题号快捷条，只显示题号字母。"
+          checked={settings.letterRail !== false}
+          onChange={(v) => setSettings({ letterRail: v })}
+        />
+        <Row stack label="首页「最新比赛」显示的类型" hint="未勾选的类型不会出现在首页卡片里（比赛列表页不受影响）。">
+          <div className="space-y-2">
+            {['atcoder', 'codeforces', 'nowcoder'].map((pf) => (
+              <div key={pf} className="flex flex-wrap items-center gap-1.5">
+                <span className="text-muted-foreground w-20 shrink-0 text-[11px]">{PLATFORM_LABEL[pf]}</span>
+                {CONTEST_TYPES.filter((t) => t.platform === pf).map((t) => (
+                  <ChipToggle key={t.id} on={homeTypes.includes(t.id)} onClick={() => toggleHomeType(t.id)} title={t.desc}>
+                    {t.label}
+                  </ChipToggle>
+                ))}
+              </div>
+            ))}
+          </div>
+        </Row>
+      </Group>
 
-      <div className="space-y-1.5">
-        <p className="text-muted-foreground text-xs font-medium">左下角「译」字浮标中显示的翻译渠道</p>
-        <div className="flex flex-wrap gap-1.5">
-          {CHANNELS.map((c) => (
-            <ChipToggle key={c.id} on={settings.sidebarChannels.includes(c.id)} onClick={() => toggleChannel(c.id)}>
-              {c.label}
-            </ChipToggle>
-          ))}
-        </div>
-      </div>
-
-      <SubBlock
+      <Group
         title="译文样式"
-        hint="题面中文译文的外观；来源芯片、行内代码与公式不受影响。"
+        desc="题面中文译文的外观；来源标签、行内代码与公式不受影响。"
         right={
           zhStyleCustomized && (
-            <button
-              type="button"
-              onClick={resetZhStyle}
-              className="text-muted-foreground hover:text-foreground shrink-0 rounded-md border px-2 py-0.5 text-[11px] transition-colors"
-            >
-              <RotateCcw className="mr-0.5 inline size-3" />
+            <SmallButton onClick={resetZhStyle}>
+              <RotateCcw className="size-3" />
               恢复默认
-            </button>
+            </SmallButton>
           )
         }
       >
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <label className="text-muted-foreground flex items-center gap-1.5 text-xs">
-            字号
-            <input
-              type="number"
-              min={8}
-              max={40}
-              value={zhStyle.fontSize}
-              placeholder="默认"
-              onChange={(e) => patchZhStyle({ fontSize: e.target.value.replace(/[^0-9]/g, '').slice(0, 2) })}
-              className="bg-background w-16 rounded-md border px-2 py-1 text-sm outline-none focus:border-primary/60"
-            />
-            <span>px</span>
-          </label>
-          <label className="text-muted-foreground flex items-center gap-1.5 text-xs">
-            颜色
-            <input
-              type="color"
-              value={/^#[0-9a-fA-F]{6}$/.test(zhStyle.color) ? zhStyle.color : '#8b8b9e'}
-              onChange={(e) => patchZhStyle({ color: e.target.value })}
-              aria-label="译文颜色"
-              className="bg-background size-7 cursor-pointer rounded-md border p-0.5"
-            />
-          </label>
-          <div className="ml-auto flex items-center gap-1">
-            {[
-              { key: 'bold', label: 'B', cls: 'font-bold', name: '加粗' },
-              { key: 'italic', label: 'I', cls: 'italic', name: '斜体' },
-              { key: 'underline', label: 'U', cls: 'underline', name: '下划线' },
-            ].map((t) => (
-              <button
-                key={t.key}
-                type="button"
-                aria-pressed={!!zhStyle[t.key]}
-                aria-label={`译文${t.name}`}
-                title={`译文${t.name}`}
-                onClick={() => patchZhStyle({ [t.key]: !zhStyle[t.key] })}
-                className={`inline-flex size-7 items-center justify-center rounded-md border text-xs transition-colors ${t.cls} ${
-                  zhStyle[t.key]
-                    ? 'border-primary/60 bg-primary/10 text-foreground ring-1 ring-primary/50'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
+        <Pad>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <label className="text-muted-foreground flex items-center gap-1.5 text-xs">
+              字号
+              <input
+                type="number"
+                min={8}
+                max={40}
+                value={zhStyle.fontSize}
+                placeholder="默认"
+                onChange={(e) => patchZhStyle({ fontSize: e.target.value.replace(/[^0-9]/g, '').slice(0, 2) })}
+                className="bg-background w-16 rounded-md border px-2 py-1 text-sm outline-none focus:border-primary/60"
+              />
+              <span>px</span>
+            </label>
+            <label className="text-muted-foreground flex items-center gap-1.5 text-xs">
+              颜色
+              <input
+                type="color"
+                value={/^#[0-9a-fA-F]{6}$/.test(zhStyle.color) ? zhStyle.color : '#8b8b9e'}
+                onChange={(e) => patchZhStyle({ color: e.target.value })}
+                aria-label="译文颜色"
+                className="bg-background size-7 cursor-pointer rounded-md border p-0.5"
+              />
+            </label>
+            <div className="flex items-center gap-1">
+              {[
+                { key: 'bold', label: 'B', cls: 'font-bold', name: '加粗' },
+                { key: 'italic', label: 'I', cls: 'italic', name: '斜体' },
+                { key: 'underline', label: 'U', cls: 'underline', name: '下划线' },
+              ].map((t) => (
+                <button
+                  key={t.key}
+                  type="button"
+                  aria-pressed={!!zhStyle[t.key]}
+                  aria-label={`译文${t.name}`}
+                  title={`译文${t.name}`}
+                  onClick={() => patchZhStyle({ [t.key]: !zhStyle[t.key] })}
+                  className={`inline-flex size-7 items-center justify-center rounded-md border text-xs transition-colors ${t.cls} ${
+                    zhStyle[t.key]
+                      ? 'border-primary/60 bg-primary/10 text-foreground ring-1 ring-primary/50'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="bg-background rounded-md border px-2.5 py-2">
-          <p className="zh-styled text-[13px] leading-6">
-            预览：给定一个整数 n，输出 2n 的值。每次修改立即生效并保存在本机。
-          </p>
-        </div>
-      </SubBlock>
-
-      <SubBlock
-        title="AI（用户自定义翻译）· 接口来源"
-        hint="服务商/模型/思考深度/本站转发在下方挑选，接口地址与 API Key 在「AI 服务商」分区统一配置。"
-      >
-        <ModuleAssignPicker moduleId="translation" label="翻译" />
-        <p className={`rounded-md border px-2.5 py-1.5 text-[11px] leading-relaxed ${aiReady ? 'text-emerald-500 border-emerald-500/30' : 'text-amber-500 border-amber-500/40'}`}>
-          {aiReady
-            ? `当前翻译接口：${aiForm.baseUrl || '（未挑选）'} · 模型 ${aiForm.model}${aiForm.proxy ? ' · 经本站转发' : ''}`
-            : '尚未配置：请到「AI 服务商」分区添加服务商（Base URL + API Key）。'}
-        </p>
-      </SubBlock>
-
-      <SubBlock
-        title="渠道体检 · 50 次真实翻译成功率排行"
-        hint={`对每个勾选的渠道连发 ${TEST_COUNT} 次真实翻译请求（固定样本题面，含公式与行内代码），按成功率排行；测完可一键把对照优先级链重排为成功率顺序。AI (CI翻译) 为仓库存档、无实时接口，不参与测试。`}
-        right={
-          <div className="flex shrink-0 items-center gap-1.5">
-            {ranking.length > 0 && (
-              <button
-                type="button"
-                onClick={applyRanking}
-                className="text-muted-foreground hover:text-foreground rounded-md border px-2 py-0.5 text-[11px] transition-colors"
-              >
-                按成功率重排优先级
-              </button>
-            )}
-            {running ? (
-              <button
-                type="button"
-                onClick={stopHealth}
-                className="rounded-md border border-red-500/50 px-2.5 py-0.5 text-[11px] text-red-400 transition-colors hover:bg-red-500/10"
-              >
-                停止
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={startHealth}
-                disabled={!healthChannels.length}
-                className="bg-primary text-primary-foreground rounded-md px-2.5 py-0.5 text-[11px] font-medium disabled:opacity-40"
-              >
-                开始测试
-              </button>
-            )}
+          <div className="bg-background rounded-md border px-2.5 py-2">
+            <p className="zh-styled text-[13px] leading-6">预览：给定一个整数 n，输出 2n 的值。每次修改立即生效并保存在本机。</p>
           </div>
-        }
-      >
-        <div className="flex flex-wrap gap-1.5">
-          {MT_CHANNELS.map((id) => (
-            <ChipToggle
-              key={id}
-              on={healthChannels.includes(id)}
-              onClick={() => toggleHealthChannel(id)}
-              title={running ? '测试进行中，先停止再调整' : undefined}
-            >
-              {channelLabel(id)}
-            </ChipToggle>
-          ))}
-          <ChipToggle
-            on={healthChannels.includes('ai_custom')}
-            onClick={() => toggleHealthChannel('ai_custom')}
-            title={aiReady ? undefined : '先在上方配置 AI 接口'}
-          >
-            {channelLabel('ai_custom')}
-            {!aiReady && <span className="ml-1 text-[9px] text-amber-500">未配置</span>}
-          </ChipToggle>
-        </div>
+        </Pad>
+      </Group>
 
-        {hasProgress && (
-          <ul className="space-y-1.5">
-            {Object.entries(progress).map(([ch, p]) => (
-              <li key={ch} className="flex items-center gap-2 text-xs">
-                <span className="w-36 shrink-0 truncate">{channelLabel(ch)}</span>
-                <span className="bg-muted h-1.5 min-w-16 flex-1 overflow-hidden rounded-full">
-                  <span
-                    className="bg-primary block h-full rounded-full transition-all"
-                    style={{ width: `${((p.done || 0) / TEST_COUNT) * 100}%` }}
-                  />
+      <Advanced title="高级翻译选项" desc="对照优先级、「译」浮标渠道、AI 自定义翻译接口、渠道成功率体检。">
+        <SubBlock
+          title="对照模式优先级"
+          hint="对照模式下每段取第一个有译文的渠道，段尾标注来源；缺失的译文由本机向各渠道实时请求（约每 3 秒一条）并保存在本机。想让全站优先显示某个渠道，把它排到第一位即可。"
+        >
+          <ul className="space-y-1">
+            {(settings.zhPriority || []).map((id, i) => (
+              <li key={id} className="flex items-center justify-between rounded-md border px-2.5 py-1 text-xs">
+                <span>
+                  <span className="text-muted-foreground mr-2 inline-block w-3">{i + 1}</span>
+                  {channelLabel(id)}
                 </span>
-                <span className="text-muted-foreground w-32 shrink-0 text-right tabular-nums">
-                  {p.done}/{TEST_COUNT} · 成功 {p.success}
+                <span className="flex gap-0.5">
+                  <button
+                    type="button"
+                    onClick={() => movePriority(i, -1)}
+                    disabled={i === 0}
+                    aria-label={`${channelLabel(id)} 上移`}
+                    className="text-muted-foreground hover:bg-accent hover:text-foreground rounded px-1.5 py-0.5 transition-colors disabled:opacity-25"
+                  >
+                    ↑
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => movePriority(i, 1)}
+                    disabled={i === settings.zhPriority.length - 1}
+                    aria-label={`${channelLabel(id)} 下移`}
+                    className="text-muted-foreground hover:bg-accent hover:text-foreground rounded px-1.5 py-0.5 transition-colors disabled:opacity-25"
+                  >
+                    ↓
+                  </button>
                 </span>
               </li>
             ))}
           </ul>
-        )}
+        </SubBlock>
 
-        {ranking.length > 0 && (
-          <div className="overflow-hidden rounded-md border">
-            <table className="w-full text-xs">
-              <thead className="bg-muted/50 text-muted-foreground">
-                <tr>
-                  <th className="px-2.5 py-1.5 text-left font-medium">#</th>
-                  <th className="px-2.5 py-1.5 text-left font-medium">渠道</th>
-                  <th className="px-2.5 py-1.5 text-right font-medium">成功率</th>
-                  <th className="px-2.5 py-1.5 text-right font-medium">成功 / 总数</th>
-                  <th className="px-2.5 py-1.5 text-right font-medium">平均耗时</th>
-                  <th className="px-2.5 py-1.5 text-right font-medium">测试时间</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ranking.map((r, i) => (
-                  <tr key={r.channel} className="border-t">
-                    <td className="px-2.5 py-1.5 tabular-nums">{i + 1}</td>
-                    <td className="px-2.5 py-1.5">{channelLabel(r.channel)}</td>
-                    <td
-                      className={`px-2.5 py-1.5 text-right font-medium tabular-nums ${
-                        r.rate >= 0.9 ? 'text-emerald-500' : r.rate >= 0.6 ? '' : 'text-red-400'
-                      }`}
-                    >
-                      {(r.rate * 100).toFixed(0)}%
-                    </td>
-                    <td className="text-muted-foreground px-2.5 py-1.5 text-right tabular-nums">
-                      {r.success} / {r.attempted}
-                    </td>
-                    <td className="text-muted-foreground px-2.5 py-1.5 text-right tabular-nums">
-                      {r.avgMs != null ? `${(r.avgMs / 1000).toFixed(2)}s` : '—'}
-                    </td>
-                    <td className="text-muted-foreground px-2.5 py-1.5 text-right">{fmtDate(r.testedAt)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <SubBlock title="左下角「译」浮标中显示的渠道">
+          <div className="flex flex-wrap gap-1.5">
+            {CHANNELS.map((c) => (
+              <ChipToggle key={c.id} on={settings.sidebarChannels.includes(c.id)} onClick={() => toggleChannel(c.id)}>
+                {c.label}
+              </ChipToggle>
+            ))}
           </div>
-        )}
+        </SubBlock>
 
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-muted-foreground/70 text-[11px] leading-relaxed">
-            <Activity className="mr-0.5 inline size-3" />
-            测试会真实请求上游接口（样本：{HEALTH_SAMPLE.slice(0, 24)}…）；结果保存在本机浏览器。
+        <SubBlock
+          title="AI（用户自定义翻译）使用的服务商与模型"
+          hint="接口地址与 API Key 在「AI 助手 → 服务商」统一配置，这里只挑选用哪个。"
+        >
+          <ModuleAssignPicker moduleId="translation" label="翻译" />
+          <p className={`rounded-md border px-2.5 py-1.5 text-[11px] leading-relaxed ${aiReady ? 'text-emerald-500 border-emerald-500/30' : 'text-amber-500 border-amber-500/40'}`}>
+            {aiReady
+              ? `当前翻译接口：${aiForm.baseUrl || '（未挑选）'} · 模型 ${aiForm.model}${aiForm.proxy ? ' · 经本站转发' : ''}`
+              : '尚未配置：请到「AI 助手」分区添加服务商（Base URL + API Key）。'}
           </p>
-          {Object.keys(stats).length > 0 && (
-            <button
-              type="button"
-              onClick={() => {
-                clearMtStats();
-                setStats({});
-              }}
-              className="text-muted-foreground hover:text-foreground shrink-0 rounded-md border px-2 py-0.5 text-[11px] transition-colors"
+        </SubBlock>
+
+        <SubBlock
+          title={`渠道体检 · ${TEST_COUNT} 次真实翻译成功率排行`}
+          hint={`对每个勾选的渠道连发 ${TEST_COUNT} 次真实翻译请求（固定样本，含公式与行内代码），按成功率排行；测完可一键把对照优先级重排为成功率顺序。AI (CI翻译) 为仓库存档，不参与测试。`}
+          right={
+            <div className="flex shrink-0 items-center gap-1.5">
+              {ranking.length > 0 && <SmallButton onClick={applyRanking}>按成功率重排优先级</SmallButton>}
+              {running ? (
+                <SmallButton tone="danger" onClick={stopHealth}>
+                  停止
+                </SmallButton>
+              ) : (
+                <SmallButton tone="primary" onClick={startHealth} disabled={!healthChannels.length}>
+                  开始测试
+                </SmallButton>
+              )}
+            </div>
+          }
+        >
+          <div className="flex flex-wrap gap-1.5">
+            {MT_CHANNELS.map((id) => (
+              <ChipToggle
+                key={id}
+                on={healthChannels.includes(id)}
+                onClick={() => toggleHealthChannel(id)}
+                title={running ? '测试进行中，先停止再调整' : undefined}
+              >
+                {channelLabel(id)}
+              </ChipToggle>
+            ))}
+            <ChipToggle
+              on={healthChannels.includes('ai_custom')}
+              onClick={() => toggleHealthChannel('ai_custom')}
+              title={aiReady ? undefined : '先配置 AI 接口'}
             >
-              清空统计
-            </button>
+              {channelLabel('ai_custom')}
+              {!aiReady && <span className="ml-1 text-[9px] text-amber-500">未配置</span>}
+            </ChipToggle>
+          </div>
+
+          {hasProgress && (
+            <ul className="space-y-1.5">
+              {Object.entries(progress).map(([ch, p]) => (
+                <li key={ch} className="flex items-center gap-2 text-xs">
+                  <span className="w-36 shrink-0 truncate">{channelLabel(ch)}</span>
+                  <span className="bg-muted h-1.5 min-w-16 flex-1 overflow-hidden rounded-full">
+                    <span
+                      className="bg-primary block h-full rounded-full transition-all"
+                      style={{ width: `${((p.done || 0) / TEST_COUNT) * 100}%` }}
+                    />
+                  </span>
+                  <span className="text-muted-foreground w-32 shrink-0 text-right tabular-nums">
+                    {p.done}/{TEST_COUNT} · 成功 {p.success}
+                  </span>
+                </li>
+              ))}
+            </ul>
           )}
-        </div>
-      </SubBlock>
-    </SectionCard>
+
+          {ranking.length > 0 && (
+            <div className="overflow-x-auto rounded-md border">
+              <table className="w-full text-xs">
+                <thead className="bg-muted/50 text-muted-foreground">
+                  <tr>
+                    <th className="px-2.5 py-1.5 text-left font-medium">#</th>
+                    <th className="px-2.5 py-1.5 text-left font-medium">渠道</th>
+                    <th className="px-2.5 py-1.5 text-right font-medium">成功率</th>
+                    <th className="px-2.5 py-1.5 text-right font-medium">成功 / 总数</th>
+                    <th className="px-2.5 py-1.5 text-right font-medium">平均耗时</th>
+                    <th className="px-2.5 py-1.5 text-right font-medium">测试时间</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ranking.map((r, i) => (
+                    <tr key={r.channel} className="border-t">
+                      <td className="px-2.5 py-1.5 tabular-nums">{i + 1}</td>
+                      <td className="px-2.5 py-1.5">{channelLabel(r.channel)}</td>
+                      <td
+                        className={`px-2.5 py-1.5 text-right font-medium tabular-nums ${
+                          r.rate >= 0.9 ? 'text-emerald-500' : r.rate >= 0.6 ? '' : 'text-red-400'
+                        }`}
+                      >
+                        {(r.rate * 100).toFixed(0)}%
+                      </td>
+                      <td className="text-muted-foreground px-2.5 py-1.5 text-right tabular-nums">
+                        {r.success} / {r.attempted}
+                      </td>
+                      <td className="text-muted-foreground px-2.5 py-1.5 text-right tabular-nums">
+                        {r.avgMs != null ? `${(r.avgMs / 1000).toFixed(2)}s` : '—'}
+                      </td>
+                      <td className="text-muted-foreground px-2.5 py-1.5 text-right">{fmtDate(r.testedAt)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-muted-foreground/70 text-[11px] leading-relaxed">
+              <Activity className="mr-0.5 inline size-3" />
+              测试会真实请求上游接口（样本：{HEALTH_SAMPLE.slice(0, 24)}…）；结果保存在本机浏览器。
+            </p>
+            {Object.keys(stats).length > 0 && (
+              <SmallButton
+                onClick={() => {
+                  clearMtStats();
+                  setStats({});
+                }}
+              >
+                清空统计
+              </SmallButton>
+            )}
+          </div>
+        </SubBlock>
+      </Advanced>
+    </div>
   );
 }
