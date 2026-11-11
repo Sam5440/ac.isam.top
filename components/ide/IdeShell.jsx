@@ -125,7 +125,9 @@ export default function IdeShell({ ciRuns, ciActionsUrl }) {
       ref={rootRef}
       className="ide-fullbleed flex flex-col"
       style={{
-        height: "calc(100dvh - 3.5rem)", // 顶栏 h-14 之外全部铺满
+        height: "calc(100dvh - 3.5rem)", // 顶栏 h-14（56px；border 1px 由下一行抵消）
+        marginTop: "-1px",
+        paddingBottom: "1px",
         "--ide-left": panelW(prefs.leftW, "left"),
         "--ide-right": panelW(prefs.rightW, "right"),
         "--ide-bottom": prefs.bottomOpen ? `${prefs.bottomH}px` : "0px",
