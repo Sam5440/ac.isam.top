@@ -6,21 +6,27 @@ import { useMemo, useState } from 'react';
 
 import { PlatformBadge } from '@/components/Badges';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { CONTEST_TYPES, contestType, contestTypeLabel } from '@/lib/contest-type';
 import { formatDateTime } from '@/lib/utils';
 
-/** 平台 × 类型两级筛选；类型枚举与设置弹窗共用 CONTEST_TYPES。 */
-const TYPE_TABS = [
-  { id: 'all', label: '全部' },
-  ...CONTEST_TYPES,
+/** 平台 × 类型两级筛选：站点为大类，类型标签按站点分组；类型枚举与设置弹窗共用 CONTEST_TYPES。 */
+const SITES = [
+  { id: 'atcoder', label: 'AtCoder' },
+  { id: 'codeforces', label: 'Codeforces' },
+  { id: 'nowcoder', label: '牛客' },
 ];
+/** 组内已有站点名，"其他"类去掉站点前缀 */
+const SHORT_LABEL = { 'atcoder-other': '其他', other: '其他', 'nc-other': '其他' };
+const PAGE_SIZE = 50;
 
 export default function ContestsBrowser({ contests }) {
   const [platform, setPlatform] = useState('all');
   const [type, setType] = useState('all');
   const [q, setQ] = useState('');
+  const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
     let list = contests;
@@ -38,77 +44,101 @@ export default function ContestsBrowser({ contests }) {
     return list;
   }, [contests, platform, type, q]);
 
-  // 只显示与当前平台匹配的类型标签
-  const atcoderTypes = ['abc', 'arc', 'agc', 'atcoder-other'];
-  const nowcoderTypes = ['nc-weekly', 'nc-xiaobai', 'nc-practice', 'nc-challenge', 'nc-other'];
-  const cfTypes = ['div1', 'div2', 'div3', 'div4', 'div12', 'other'];
-  const visibleTypes = TYPE_TABS.filter((t) => {
-    if (t.id === 'all') return true;
-    if (platform === 'atcoder') return atcoderTypes.includes(t.id);
-    if (platform === 'nowcoder') return nowcoderTypes.includes(t.id);
-    if (platform === 'codeforces') return cfTypes.includes(t.id);
-    return true;
-  });
+  const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const cur = Math.min(page, pages);
+  const pageItems = filtered.slice((cur - 1) * PAGE_SIZE, cur * PAGE_SIZE);
+  const goto = (n) => {
+    setPage(n);
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const groups = SITES.filter((s) => platform === 'all' || s.id === platform).map((s) => ({
+    ...s,
+    types: CONTEST_TYPES.filter((t) => t.platform === s.id),
+  }));
+
+  const chip = (active) =>
+    `rounded-md border px-2.5 py-1 text-xs transition-colors ${
+      active ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground hover:text-foreground'
+    }`;
 
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
         <div className="bg-muted text-muted-foreground inline-flex rounded-lg p-0.5 text-sm">
-            {[
-              { id: 'all', label: '全部' },
-              { id: 'atcoder', label: 'AtCoder' },
-              { id: 'codeforces', label: 'Codeforces' },
-              { id: 'nowcoder', label: '牛客' },
-            ].map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                aria-pressed={platform === t.id}
-                onClick={() => {
-                  setPlatform(t.id);
-                  const keep = { all: null, atcoder: atcoderTypes, codeforces: cfTypes, nowcoder: nowcoderTypes };
-                  const allow = keep[t.id];
-                  if (allow && !allow.includes(type)) setType('all');
-                }}
-                className={`rounded-md px-3 py-1.5 transition-colors ${
-                  platform === t.id ? 'bg-background text-foreground shadow-sm' : ''
-                }`}
-              >
-                {t.label}
-              </button>
-            ))}
-        </div>
-        <div className="flex flex-wrap gap-1">
-          {visibleTypes.map((t) => (
+          {[{ id: 'all', label: '全部' }, ...SITES].map((t) => (
             <button
               key={t.id}
               type="button"
-              title={t.desc ?? '全部类型'}
-              aria-pressed={type === t.id}
-              onClick={() => setType(t.id)}
-              className={`rounded-md border px-2.5 py-1 text-xs transition-colors ${
-                type === t.id
-                  ? 'border-primary/60 bg-primary/10 text-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
+              aria-pressed={platform === t.id}
+              onClick={() => {
+                setPlatform(t.id);
+                setPage(1);
+                if (t.id !== 'all' && type !== 'all' && CONTEST_TYPES.find((x) => x.id === type)?.platform !== t.id) {
+                  setType('all');
+                }
+              }}
+              className={`rounded-md px-3 py-1.5 transition-colors ${
+                platform === t.id ? 'bg-background text-foreground shadow-sm' : ''
               }`}
             >
               {t.label}
             </button>
           ))}
         </div>
-        <div className="relative min-w-0 flex-1 sm:max-w-xs">
-          <Search className="text-muted-foreground absolute left-2.5 top-1/2 size-4 -translate-y-1/2" />
+        <div className="relative w-full sm:w-72">
+          <Search className="text-muted-foreground pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2" />
           <Input
             value={q}
-            onChange={(e) => setQ(e.target.value)}
+            onChange={(e) => {
+              setQ(e.target.value);
+              setPage(1);
+            }}
             placeholder="搜索比赛名称或编号…"
             aria-label="搜索比赛名称或编号"
             className="pl-8"
           />
         </div>
-        <Badge variant="secondary" className="ml-auto tabular-nums">
+        <Badge variant="secondary" className="shrink-0 tabular-nums sm:ml-auto">
           {filtered.length} 场
         </Badge>
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex flex-wrap items-center gap-1">
+          <button
+            type="button"
+            title="全部类型"
+            aria-pressed={type === 'all'}
+            onClick={() => {
+              setType('all');
+              setPage(1);
+            }}
+            className={chip(type === 'all')}
+          >
+            全部类型
+          </button>
+        </div>
+        {groups.map((g) => (
+          <div key={g.id} className="flex flex-wrap items-center gap-1">
+            <span className="text-muted-foreground w-24 shrink-0 text-xs font-medium">{g.label}</span>
+            {g.types.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                title={t.desc}
+                aria-pressed={type === t.id}
+                onClick={() => {
+                  setType(t.id);
+                  setPage(1);
+                }}
+                className={chip(type === t.id)}
+              >
+                {SHORT_LABEL[t.id] ?? t.label}
+              </button>
+            ))}
+          </div>
+        ))}
       </div>
 
       <Card>
@@ -116,7 +146,7 @@ export default function ContestsBrowser({ contests }) {
           {filtered.length === 0 && (
             <div className="text-muted-foreground p-8 text-center text-sm">没有匹配的比赛</div>
           )}
-          {filtered.slice(0, 200).map((c) => (
+          {pageItems.map((c) => (
             // 固定列网格：平台 | 类型 | 编号 | 标题(弹性) | rated | 开始时间 | 题数
             // 每列定宽，三个平台、各种类型标签长度不同时各行仍纵向对齐
             <Link
@@ -145,13 +175,22 @@ export default function ContestsBrowser({ contests }) {
               </Badge>
             </Link>
           ))}
-          {filtered.length > 200 && (
-            <div className="text-muted-foreground p-4 text-center text-xs">
-              仅显示最近 200 场,共 {filtered.length} 场 —— 请用筛选缩小范围
-            </div>
-          )}
         </CardContent>
       </Card>
+
+      {pages > 1 && (
+        <div className="flex items-center justify-center gap-3">
+          <Button variant="outline" disabled={cur <= 1} onClick={() => goto(cur - 1)}>
+            上一页
+          </Button>
+          <span className="text-muted-foreground text-sm tabular-nums">
+            {cur} / {pages}
+          </span>
+          <Button variant="outline" disabled={cur >= pages} onClick={() => goto(cur + 1)}>
+            下一页
+          </Button>
+        </div>
+      )}
 
       {filtered.length > 0 && (
         <p className="text-muted-foreground text-center text-xs">
