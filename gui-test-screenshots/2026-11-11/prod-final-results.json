@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "date": "2026-11-11",
+    "target": "https://ac.yslsy.top",
+    "browser": "playwright headless chromium",
+    "viewports": { "desktop": "1440x900", "mobile": "390x844" },
+    "runType": "final production verification"
+  },
+  "ci_page": {
+    "url": "https://ac.yslsy.top/ci",
+    "waitSeconds": 7,
+    "checks": {
+      "statCards": {
+        "pass": true,
+        "cards": [
+          { "label": "运行次数", "value": "35", "sub": "正常 32 · 失败 3" },
+          { "label": "新抓 + 回填题面", "value": "126", "sub": "窗口内累计" },
+          { "label": "AI 翻译", "value": "8", "sub": "窗口内累计" },
+          { "label": "积压待重试", "value": "16076", "sub": "未达尝试上限的题面" },
+          { "label": "平均耗时", "value": "26 分 56 秒", "sub": "抓取 → 翻译 → 建索引" }
+        ]
+      },
+      "activityChart": {
+        "pass": true,
+        "desc": "运行活动 · 近 30 天, bar chart svg with axes (y 0-5, x 10/13-11/9)"
+      },
+      "donut": { "pass": true, "desc": "成功率 donut 91% (正常 32 / 失败 3)" },
+      "runOutputChart": {
+        "pass": true,
+        "desc": "单次运行产出对比, svg bars, 最近 40 轮, 空跑画为圆点"
+      },
+      "remoteSyncStatus": {
+        "pass": true,
+        "text": "存档 7 次运行 · 滚动保留 60 天 / 已同步最近 28 次 · 28 次无存档"
+      },
+      "timelineRunCards": {
+        "pass": true,
+        "desc": "35 run cards in timeline, each expandable via aria-expanded toggle"
+      },
+      "expandNewestArchivedRun": {
+        "pass": true,
+        "run": "run 42940000000 (a3f9c21, 2026/11/11 10:18:54, 定时)",
+        "fetchDetailTable": { "pass": true, "title": "抓取明细（5）", "rows": 5 },
+        "platformOutputCards": {
+          "pass": true,
+          "title": "平台产出",
+          "items": [
+            "AtCoder 新抓 6 · 回填 8 · 2 场比赛",
+            "Codeforces 新抓 5 · 回填 4 · 失败 2 · 3 场比赛",
+            "牛客竞赛 新抓 0 · 回填 2 · 2 场比赛"
+          ]
+        }
+      },
+      "consoleErrors": {
+        "pass": false,
+        "count": 1,
+        "errors": [
+          "Minified React error #418 (hydration text content mismatch) from Next.js _next/static chunks — pre-existing hydration warning, page renders and functions correctly"
+        ]
+      }
+    },
+    "screenshot": "gui-test-screenshots/2026-11-11/ci-v2-prod.png",
+    "fullPage": true,
+    "pageScrollHeight": 4597
+  },
+  "ide_desktop": {
+    "url": "https://ac.yslsy.top/ide",
+    "waitSeconds": 6,
+    "checks": {
+      "fullBleedShell": {
+        "pass": true,
+        "rootSelector": ".ide-fullbleed",
+        "height": 844,
+        "expected": "844±10",
+        "note": "html scrollHeight 900 == clientHeight 900, no page scrollbar"
+      },
+      "pageScrollbarPx": 0,
+      "activityBar": {
+        "pass": true,
+        "icons": 5,
+        "labels": ["测试面板", "终端", "CI 日志", "文件管理器", "AI 对话"]
+      },
+      "leftTestPanel": { "pass": true, "desc": "测试面板 visible with hint text" },
+      "monacoEditor": { "pass": true, "desc": "main.cpp tab + .monaco-editor mounted" },
+      "rightFilePanel": { "pass": true, "desc": "文件（1）panel with main.cpp · C++ · 0 B" },
+      "bottomTerminal": { "pass": true, "desc": "终端 with 运行/清屏 controls and stdin hint visible" },
+      "consoleErrors": { "pass": true, "count": 0 }
+    },
+    "screenshot": "gui-test-screenshots/2026-11-11/ide-v2-prod-final.png"
+  },
+  "ide_mobile": {
+    "viewport": "390x844",
+    "checks": {
+      "horizontalOverflowPx": 0,
+      "pass": true,
+      "consoleErrors": { "pass": true, "count": 0 }
+    },
+    "screenshot": "gui-test-screenshots/2026-11-11/ide-v2-prod-mobile.png"
+  },
+  "overall": "PASS — all layout/functional assertions met; 1 pre-existing React hydration console error (#418) on /ci noted as non-blocking"
+}

@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-11-11",
+  "target": "https://ac.yslsy.top",
+  "browser": "Playwright headless chromium",
+  "overall": "PASS (1 minor warning)",
+  "desktop_1440x900": {
+    "pass": true,
+    "checks": {
+      "shellFillsViewport": {
+        "pass": true,
+        "detail": "IDE workspace region (.compiler-workspace main row) height = 844px exactly (57px site header + 844px workspace); target 844±10 ✓"
+      },
+      "verticalPageScrollbar": {
+        "pass": false,
+        "severity": "minor",
+        "detail": "document.scrollHeight = 901 vs clientHeight = 900 → 1px vertical overflow (max scroll = 1px). Cause: sticky site header measures 57px (56px content + 1px border-bottom) while workspace is sized 100vh - 56px. Cosmetic; verify no visible scrollbar in screenshot."
+      },
+      "horizontalOverflow": { "pass": true, "detail": "scrollWidth 1440 = clientWidth 1440" },
+      "activityBar5Icons": {
+        "pass": true,
+        "icons": ["测试面板", "终端", "CI 日志", "文件管理器", "AI 对话"],
+        "detail": "Left rail (w-11, 44px) contains 5 buttons; rail height 844"
+      },
+      "leftPanelWidth": { "pass": true, "measured": 280, "target": 280 },
+      "rightPanelWidth": { "pass": true, "measured": 232, "target": 232 },
+      "bottomPanelHeight": { "pass": true, "measured": 240, "target": 240 },
+      "monacoEditor": { "pass": true, "detail": ".monaco-editor vs-dark present, 884x549" },
+      "editorTab": { "pass": true, "detail": "Tab strip shows 'main.cpp' with close button; language C++ + 保存 button" },
+      "consoleErrors": { "pass": true, "count": 0 }
+    },
+    "screenshot": "gui-test-screenshots/2026-11-11/ide-v2-prod-desktop.png"
+  },
+  "bottomTabs_ci": {
+    "pass": true,
+    "note": "Bottom panel header has no tab list; panel content is switched via the left activity-bar rail button titled 'CI 日志'. Clicked that.",
+    "ciContentShown": {
+      "pass": true,
+      "summary": {
+        "耗时": "1分57秒",
+        "新抓": 11,
+        "回填": 14,
+        "翻译": 0,
+        "失败": 28,
+        "runInfo": "定时 · 11/11 08:43 · 积压 16076",
+        "actionsLink": "https://github.com/Sam5440/ac.isam.top/actions"
+      },
+      "historyTable": {
+        "pass": true,
+        "detail": "历史运行 table rendered with real scheduled-run data (AtCoder rows: arc046_a, arc046_d, abc034_a…, columns 平台/题目/标题/状态, status 失败)"
+      },
+      "uncompletedSection": "没有未完成任务 —— 全部抓取顺利。"
+    },
+    "switchBackToTerminal": {
+      "pass": true,
+      "detail": "Clicked 终端 rail button; bottom panel shows 终端 header with 运行/清屏 and output placeholder"
+    },
+    "screenshot": "gui-test-screenshots/2026-11-11/ide-v2-prod-ci.png"
+  },
+  "mobile_390x844": {
+    "pass": true,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "horizontalOverflow": false,
+    "screenshot": "gui-test-screenshots/2026-11-11/ide-v2-prod-mobile.png"
+  },
+  "regression_problem_1A": {
+    "pass": true,
+    "url": "https://ac.yslsy.top/problems/codeforces/1A",
+    "title": "A. 剧院广场 · AC 题库",
+    "rendered": true,
+    "consoleErrors": 0,
+    "detail": "Page loads, problem content and samples render, 0 console errors (CompilerDock untouched ✓). 52 warnings on page, all non-error (level=warning)."
+  },
+  "summary": {
+    "desktop": "PASS — all geometry targets met (844/280/232/240), 5 activity-bar icons, Monaco + main.cpp tab, 0 console errors. Minor: 1px vertical page overflow (header 57px vs 56px offset) — page scrollable by 1px.",
+    "ciTab": "PASS — CI content with real run data (summary + 历史运行), switched back to 终端 OK. Note: CI 日志 is switched via the left activity rail, not bottom-panel header tabs.",
+    "mobile": "PASS — no horizontal overflow (390/390).",
+    "problem1A": "PASS — 0 console errors, page renders correctly."
+  }
+}

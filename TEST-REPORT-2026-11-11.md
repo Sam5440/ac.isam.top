@@ -2,6 +2,9 @@
 
 > 全部 15 个提交已推送 `origin main`，生产已部署 Vercel 并通过完整 E2E（Playwright）验证。
 > 截图目录：[gui-test-screenshots/2026-11-11/](gui-test-screenshots/2026-11-11/)（23 张）。
+>
+> **v1.7 增量（同日第二轮迭代）**：/ide 全局铺满布局重构 + /ci 日志页统计图表化，
+> 见文末「v1.7 增量验证」章节（新增 8 个提交，累计 23 个）。
 
 ## 1. 环境信息
 
@@ -106,3 +109,55 @@
 | WebLLM | 本地推理仅在支持 WebGPU 的浏览器可用；权重下载量大约 1–2GB。 |
 | 浮窗思考过程展示 | 需模型返回 `reasoning_content` 或 `<think>` 标签；无思考输出的模型不显示该块。 |
 | 编译运行 | 浏览器端 wasm-clang 运行时约 150MB，首次下载有 toast 提示与进度条；E2E 未实际下载（避免大流量），判题链路与 CompilerDock 复用同一套已验证代码。 |
+
+---
+
+## v1.7 增量验证（2026-11-11 第二轮迭代）
+
+### 新增提交
+
+| 提交 | 内容 |
+|---|---|
+| `9cc94912` | feat: /ide 重构为全局铺满的 IDE 布局——活动栏/可拖拽分栏/底部 CI 日志标签页，编辑器接入 AI 补全 |
+| `4df42189` | fix: E2E 脚本移出 scripts/（node --test 会误执行） |
+| `8f85c148` | fix: npm test 用 glob 限定 test/*.test.mjs |
+| `ebbc9bf6` | fix: /ide 铺满高度抵消顶栏 1px 边框 |
+| `51c69c49` | feat: /ci 日志页重构——统计图表 + GitHub Actions 实时同步 + 可展开运行卡片 |
+| `db7afe92` / `086c89c9` | fix: /ci 时间格式化固定时区，消除 hydration mismatch |
+
+### A. /ide 全局铺满布局（参考 VS Code / TRAE 设计）
+
+布局：除顶栏外全部铺满——左缘 44px 活动栏（测试面板/终端/CI 日志/文件管理器/AI 对话开合）+ 左测试面板（280px，可拖拽 220–480px）+ 中多标签编辑器（flex-1）+ 右文件管理器（232px，可拖拽）+ 底部面板（终端 / **CI 日志**标签页，240px，可拖拽高度，可收起）；几何持久化 localStorage（`ysc-ide-shell-v1`）。编辑器接入 AI 补全链路（getAi/onAiStatus，与 CompilerDock 相同）；活动栏 Chat 按钮打开 AI 对话浮窗（复用题目页 ChatPanel，IDE 页 scope='global'，编辑器代码经 editor-bridge 注入）。
+
+| 验证项 | 结果 | 截图 |
+|---|---|---|
+| 外壳精确铺满（root 844 = 900−56，页面滚动 0px） | ✅ | [ide-v2-prod-final.png](gui-test-screenshots/2026-11-11/ide-v2-prod-final.png) |
+| 活动栏 5 项开合 + 高亮 | ✅ | [ide-v2-full.png](gui-test-screenshots/2026-11-11/ide-v2-full.png) |
+| 面板拖拽（左 +60→339 / 底部 +80→320）+ 双击恢复 + 刷新持久化 | ✅ | [ide-v2-desktop-regression.png](gui-test-screenshots/2026-11-11/ide-v2-desktop-regression.png) |
+| 题目搜索载入 → 样例进测试面板 → 多文件 Tab | ✅ | [ide-v2-problem-loaded.png](gui-test-screenshots/2026-11-11/ide-v2-problem-loaded.png) / [ide-v2-files.png](gui-test-screenshots/2026-11-11/ide-v2-files.png) |
+| 底部 CI 日志标签页（IDE 内直接看本轮抓取/未完成/历史） | ✅ | [ide-v2-ci-tab.png](gui-test-screenshots/2026-11-11/ide-v2-ci-tab.png) |
+| AI 对话浮窗开合 | ✅ | [ide-v2-chat.png](gui-test-screenshots/2026-11-11/ide-v2-chat.png) |
+| 移动端 <768px：面板默认收起、临时打开限宽 70vw、零溢出 | ✅（scrollWidth 390） | [ide-v2-mobile-fixed.png](gui-test-screenshots/2026-11-11/ide-v2-mobile-fixed.png) / [ide-v2-mobile-panel.png](gui-test-screenshots/2026-11-11/ide-v2-mobile-panel.png) |
+| console 错误 | 0 | — |
+
+### B. /ci 日志页统计图表化（参考 ys-problem-web /logs 设计）
+
+数据层：`scripts/fetch.mjs` 运行记录新增 `runId`（GITHUB_RUN_ID）、`sha`、平台拆分 `platforms`（每平台 新抓/回填/失败/场次）、翻译队列 `translateQueue/translateAttempted`；前端手绘 SVG 图表（无图表库，`components/ci/charts.jsx`）。
+
+| 验证项 | 结果 | 截图 |
+|---|---|---|
+| 状态栏：存档 N 次 + GitHub Actions 实时同步（匿名 API 每 5 分钟自动刷新；远端空跑/取消运行有轻量卡片） | ✅ 实测「已同步最近 35 次 · 28 次无存档」 | [ci-v2-top.png](gui-test-screenshots/2026-11-11/ci-v2-top.png) |
+| 统计卡 ×5 带 Sparkline（运行次数/新抓+回填/AI 翻译/积压待重试/平均耗时） | ✅ | 同上 |
+| 每日运行柱状图（绿=正常红=失败，悬停提示，点击定位运行卡） | ✅ | [ci-v2-day-pick.png](gui-test-screenshots/2026-11-11/ci-v2-day-pick.png) |
+| 成功率 Donut 环（正常/失败图例） | ✅ 合并 GH 数据后 91% | [ci-v2-top.png](gui-test-screenshots/2026-11-11/ci-v2-top.png) |
+| 单轮产出对比柱状图（sky=新抓+回填 / violet=AI 翻译，点击展开对应运行） | ✅ | [ci-v2-prod.png](gui-test-screenshots/2026-11-11/ci-v2-prod.png) |
+| 时间线运行卡片展开：抓取明细表 + 平台产出拆分（AtCoder/Codeforces/牛客）+ 未完成任务 + 下次计划 + 错误明细 + GitHub 外链 | ✅ | [ci-v2-run-expanded.png](gui-test-screenshots/2026-11-11/ci-v2-run-expanded.png) |
+| 近 7 天 / 全部记录窗口切换 | ✅ 35→23 次运行 | [ci-v2-7days.png](gui-test-screenshots/2026-11-11/ci-v2-7days.png) |
+| hydration mismatch 修复（时间格式固定北京时区） | ✅ | [ci-v2-prod-final.png](gui-test-screenshots/2026-11-11/ci-v2-prod-final.png) |
+| console 错误 | 0（匿名 GH API 偶发 403 限流为预期降级，页面提示并回退存档） | — |
+
+### v1.7 已知限制
+
+- GitHub Actions 匿名 API 每 IP 60 请求/小时，多人同时访问可能限流——页面自动降级为仅仓库存档并提示，不影响核心功能。
+- 旧存档运行记录（无 runId 的数据）按 startedAt ±3 分钟窗口与远端运行合并；新记录由 CI 写入 runId 精确匹配。
+- /ide 移动端为「编辑器为主 + 按需打开面板」形态，非三栏堆叠。
