@@ -47,11 +47,13 @@ export function problemExists(platform, id) {
 
 /** 文件存在且题面完整才算已收录。
  *  - 普通题：statementMd 非空；
+ *  - 复用题（站内 codeforces 题库同名题）：reuseOf 存根即视为已收录，题面由站点
+ *    在渲染时从原题记录读取，不重复保存；
  *  - PDF 题面（ICPC gym 常见）：仓库只存提取文字，PDF 原件是远端原站地址，
  *    不落任何文件 —— statementPdf 非空即可展示（文字提取可能为空）。 */
 export function problemComplete(platform, id) {
   const p = loadProblem(platform, id);
   if (!p) return false;
-  if (p.statementMd) return true;
+  if (p.statementMd || p.reuseOf) return true;
   return Boolean(p.statementPdf);
 }

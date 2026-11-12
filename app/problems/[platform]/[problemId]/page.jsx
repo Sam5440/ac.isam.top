@@ -63,8 +63,27 @@ function MetaItem({ icon: Icon, label, children }) {
 
 export default async function ProblemPage({ params }) {
   const { platform, problemId } = await params;
-  const prob = findProblem(platform, problemId);
+  let prob = findProblem(platform, problemId);
   if (!prob) notFound();
+
+  // 规则：gym 题与站内 codeforces 题库同名题唯一命中时（reuseOf），题面/样例/翻译
+  // 直接复用原题记录渲染，仓库不重复保存一份题面。
+  if (prob.reuseOf) {
+    const src = getProblem('codeforces', prob.reuseOf);
+    if (src) {
+      prob = {
+        ...prob,
+        titleZh: prob.titleZh ?? src.titleZh ?? null,
+        statementMd: src.statementMd ?? null,
+        statementZhMd: src.statementZhMd ?? null,
+        samples: src.samples ?? [],
+        timeLimitMs: prob.timeLimitMs ?? src.timeLimitMs ?? null,
+        memoryLimitMb: prob.memoryLimitMb ?? src.memoryLimitMb ?? null,
+        tags: prob.tags?.length ? prob.tags : (src.tags ?? []),
+        translateModel: prob.translateModel ?? src.translateModel ?? null,
+      };
+    }
+  }
 
   const p = platformOf(platform);
   const contest = getContest(platform, prob.contestId);
@@ -148,6 +167,15 @@ export default async function ProblemPage({ params }) {
                   <div className="mt-3 flex flex-wrap items-center gap-2">
                     <PlatformBadge platform={platform} />
                     <DifficultyBadge difficulty={prob.difficulty} platform={platform} />
+                    {prob.reuseOf ? (
+                      <Link
+                        href={`/problems/codeforces/${prob.reuseOf}`}
+                        title="题面复用自站内 Codeforces 题库"
+                        className="text-foreground inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs font-medium transition-colors hover:bg-muted"
+                      >
+                        复用 {prob.reuseOf}
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
                 <div className="flex shrink-0 items-center gap-2">

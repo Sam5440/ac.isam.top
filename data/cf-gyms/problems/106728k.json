@@ -1,0 +1,32 @@
+{
+  "id": "106728k",
+  "platform": "cf-gyms",
+  "contestId": 106728,
+  "index": "K",
+  "title": "Subwords",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106728/problem/K",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "You have a grammar with the start symbol S𝑆, a set of variables V𝑉, a set of terminal symbols T𝑇, and a set of rules P𝑃. Every upper-case letter is a variable, so V={A,…,Z}𝑉={𝐴,…,𝑍}, and every lower-case letter is a terminal symbol, so T={a,…,z}𝑇={𝑎,…,𝑧}. A rule is of the form A→α, where A∈V is a variable and α is a string consisting of variables and terminal symbols. The grammar never contains chain rules of the form A→B, where the right side consists of a single variable. Rules of the form A→b are possible, where the right side consists of a single terminal.\n\nA word can be derived by starting with α=S and then repeatedly choosing some variable X in α, some rule X→β, and then replacing one X in α with β. To be precise, if α=α′Xα\" and we have a rule X→β, then we can replace α with α′βα\", and we write α⇒α′βα\".\n\nHere is a complete example. The grammar has the rules S→SA,   S→b,   A→bS,   A→a.\n\nThen we can derive the word bbb in four steps: S⇒SA⇒bA⇒bbS⇒bbb.\n\nOn the other hand, the word aaa cannot be derived.\n\nYour task is to answer the following question for a grammar G and a word w (consisting of terminal symbols):\n\n- Can you add zero or more terminal symbols at the beginning of w and zero or more terminal symbols at the end of w such that the resulting word uwv can be derived by G?\n\n## Input\n\nThe first line contains an integer k, representing the number of rules.\n\nFollowed by k lines, each of which contains one rule. A rule is encoded by its left side, followed by -&gt;, and then followed by its right side.\n\nThe last line contains the word w, representing the input word of the question.\n\n- 1≤k≤25\n- The left side of every rule is an upper-case letter.\n- The right side of every rule is a string of upper-case and lower-case letters. Moreover, it is either a string of length at least 2 or a single lower-case letter.\n- The total length of the right sides of all rules is at most 100.\n- The length of w is at least 1 and at most 400, and w consists of lower-case letters.\n\n## Output\n\nOutput a single line containing `Yes` or `No` that answers the question.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4\nS -> SA\nS -> b\nA -> bS\nA -> a\nbbb\n",
+      "output": "Yes\n"
+    },
+    {
+      "input": "2\nS -> aSb\nS -> ab\nba\n",
+      "output": "No\n"
+    },
+    {
+      "input": "2\nS -> aSa\nS -> b\nab\n",
+      "output": "Yes\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T16:04:53.465Z"
+}

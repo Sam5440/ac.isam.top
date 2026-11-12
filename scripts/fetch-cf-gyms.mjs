@@ -18,6 +18,12 @@
  *   --mode problems      只跑题面（列表/补扫已完整时用，避开列表页质询；面板长跑用这个）
  *   --mode verify        完整性校验（缺漏退出码 1；--repair 顺带回填后复验）
  *   --mode status        打印进度统计（JSON）
+ *
+ * 拉取准入（两条业务规则，判定持久化在 contests.json 的 pullDecision / reuseOf）：
+ *   1) 题名唯一命中站内 codeforces 题库的题目 → 只存 reuseOf 存根复用原题，不重复拉题面；
+ *   2) gym 官方发起（contest.list 的 kind 命中 Official 系、Championship、Opencup）
+ *      或 任一题 standings 通过人数 > 100，二者都不满足的场次不拉题面。
+ *
  *   --limit-gyms N       题面阶段最多处理 N 场
  *   --only-gym A[,B]     只处理指定 gym（诊断/定向回填）
  *   --max-problem-pages N  本次最多抓 N 个题面页
@@ -198,16 +204,18 @@ const concurrency = Math.max(1, Math.min(4, Number(args.concurrency ?? 1)));
 // 长跑（24h 级）下风暴是频率相关的，宁可慢一点也不能连续触发质询。
 let paceMultiplier = 1;
 let lastChallengeAt = 0;
-// 风暴熔断：连续 2 次导航 challenge-stuck → 全局冷却 10-20 min 并重建会话；
-// 同一轮内第 2 次熔断起连浏览器 profile 一起重建（指纹/凭据全新）。
+// 风暴熔断：10min 窗口内**不同 URL** 各出 1 次质询 → 全局冷却 10-20 min；
+// 同一 URL 反复质询只记账跳过（见 nav），不拖垮整条管线。
 let stormStreak = 0;
 let cooldownsThisRun = 0;
-let stormEvents = []; // 90s 冷却/challenge-stuck 事件时间戳（10min 窗口内 ≥2 即熔断）
+let stormEvents = []; // 90s 冷却/challenge-stuck 事件 { at, url }
 
-function noteStorm() {
-  stormEvents.push(Date.now());
-  stormEvents = stormEvents.filter((t) => Date.now() - t < 10 * 60 * 1000);
+function noteStorm(url) {
+  stormEvents.push({ at: Date.now(), url });
+  stormEvents = stormEvents.filter((e) => Date.now() - e.at < 10 * 60 * 1000);
 }
+const stormUrls = () => new Set(stormEvents.map((e) => e.url));
+const urlStormCount = (url) => stormEvents.filter((e) => e.url === url).length;
 
 async function globalStormBreak() {
   stormEvents = [];
@@ -217,7 +225,9 @@ async function globalStormBreak() {
   await ctx?.close().catch(() => {});
   ctx = null;
   pages = [];
-  if (cooldownsThisRun >= 2) {
+  if (cooldownsThisRun >= 2 && process.env.CFG_REBUILD_PROFILE === '1') {
+    // 默认不重建：profile 里的 cf_clearance 是穿过质询的唯一凭据，
+    // 删掉后要从零重过质询（实测新 profile 需 ~3.5min 且可能失败）。
     try {
       fs.rmSync(BROWSER_DIR, { recursive: true, force: true });
       log('cf-gyms', 'browser profile rebuilt (fresh fingerprint)');
@@ -247,23 +257,31 @@ async function pace() {
 async function launch() {
   const { chromium } = await import('playwright');
   const headless = process.env.CF_HEADLESS !== '0'; // 与 fetch.mjs 约定一致：长跑用有头（CI 走 xvfb）
+  // 可选真实 Chrome（CF_BROWSER_CHANNEL=chrome）：指纹更接近真人，质询通过率更高。
+  // 注意此时不能覆盖 UA —— 硬编码 UA 与真实 Chrome 版本不一致会被 CF 直接判为自动化。
+  const channel = process.env.CF_BROWSER_CHANNEL || '';
+  // 系统代理默认沿用（Clash 类出口 IP 的 cf_clearance 经实测可长期复用）；
+  // 直连模式用 CFG_NO_PROXY=1 显式开启 —— clearance 与 IP 绑定，出口换了就失效。
+  const noProxy = process.env.CFG_NO_PROXY === '1';
   fs.mkdirSync(BROWSER_DIR, { recursive: true });
   ctx = await chromium.launchPersistentContext(BROWSER_DIR, {
     headless,
-    userAgent: UA,
+    channel: channel || undefined,
+    ...(channel ? {} : { userAgent: UA }),
     viewport: { width: 1366, height: 900 },
     locale: 'en-US',
     timezoneId: 'UTC', // 页面时间统一按 UTC 渲染，startTime 口径与其他平台一致
-    args: ['--disable-blink-features=AutomationControlled'],
+    args: ['--disable-blink-features=AutomationControlled', ...(noProxy ? ['--no-proxy-server'] : [])],
   });
   ctx.on('close', () => {
     ctx = null;
     pages = [];
   });
-  // 资源拦截：图片/字体/媒体/样式不参与解析，直接掐掉加速加载（脚本放行给 Turnstile）
+  // 资源拦截：图片/字体/媒体不参与解析，直接掐掉加速加载（脚本/样式放行：
+  // Turnstile 质询页依赖 CSS 渲染，掐掉样式会让质询停留在「请稍候」）
   await ctx.route('**/*', (route) => {
     const t = route.request().resourceType();
-    if (t === 'image' || t === 'font' || t === 'media' || t === 'stylesheet') return route.abort();
+    if (t === 'image' || t === 'font' || t === 'media') return route.abort();
     return route.continue();
   });
 }
@@ -370,8 +388,9 @@ async function nav(url, wid = 0, ready = null) {
           paceMultiplier = Math.min(4, paceMultiplier * 1.4);
           if (Date.now() > deadline) {
             stormStreak++;
-            noteStorm();
-            if (stormStreak < 2 && stormEvents.length < 2) return { html, status: 'challenge-stuck' };
+            noteStorm(url);
+            // 只有「不同 URL 也各自遇到质询」才算风暴；单 URL 卡住直接记账跳过
+            if (stormUrls().size < 2) return { html, status: 'challenge-stuck' };
             // 风暴熔断：全局冷却后原地重试同一 URL（重置本次导航预算）
             stormStreak = 0;
             await globalStormBreak();
@@ -384,8 +403,10 @@ async function nav(url, wid = 0, ready = null) {
             reloads++;
             if (reloads > 3) {
               log('cf-gyms', `challenge cooldown 90s (${url.slice(0, 80)})`);
-              noteStorm();
-              if (stormEvents.length >= 2) {
+              noteStorm(url);
+              // 同一 URL 连过两轮质询仍不通：记账跳过，别为一场 gym 拖停全局
+              if (urlStormCount(url) >= 2) return { html, status: 'challenge-stuck' };
+              if (stormUrls().size >= 2) {
                 await globalStormBreak();
                 if (stopping) return { html, status: 'challenge-stuck' };
                 deadline = Date.now() + CHALLENGE_TIMEOUT_MS;
@@ -393,6 +414,7 @@ async function nav(url, wid = 0, ready = null) {
                 break;
               }
               await sleep(90000);
+              reloads = 0; // 新一轮重试：重新给 3 次 reload 机会
               if (Date.now() > deadline) return { html, status: 'challenge-stuck' };
             }
             break; // 回外层重新 goto
@@ -817,6 +839,175 @@ async function savePdfProblem({ gymId, index, url, link, wid = 0 }) {
   return { bytes: buf.length, textLen: text.length };
 }
 
+/* ---------------- 拉取准入（两条业务规则） ----------------
+ * 规则 1：题目若已在站内 codeforces 题库中（题名唯一命中），存 reuseOf 存根
+ *         直接复用原题题面/样例，不单独再拉一份；
+ * 规则 2：gym 满足其一才拉题面 —— ① 官方发起（官方 API 的 kind 命中官方系列）；
+ *         ② 任一题通过人数 > SOLVE_THRESHOLD（standings 逐行数通过格）。
+ * 不满足的一律跳过并把判定持久化，verify 不再把它们当缺口报。 */
+
+const SOLVE_THRESHOLD = 100;
+
+const isOfficialGym = (c) =>
+  Boolean(
+    c.gymKind &&
+      (/^Official/.test(c.gymKind) ||
+        /Championship/.test(c.gymKind) ||
+        c.gymKind === 'Opencup Contest' ||
+        // 训练营赛（Petrozavodsk/冬令营等）也是官方组织的正经比赛
+        c.gymKind === 'Training Camp Contest'),
+  );
+
+/** 官方 API 一次性补全 gym 元数据（kind/preparedBy/country/...，不经过浏览器）。 */
+async function enrichGymsFromApi() {
+  try {
+    const res = await fetch(`${CF}/api/contest.list?gym=true`);
+    const d = await res.json();
+    if (d.status !== 'OK') throw new Error(d.comment || 'api failed');
+    const byId = new Map(d.result.map((x) => [String(x.id), x]));
+    let n = 0;
+    let official = 0;
+    for (const c of contests()) {
+      const a = byId.get(String(c.id));
+      if (!a) continue;
+      const patch = {
+        gymKind: a.kind ?? null,
+        preparedBy: a.preparedBy ?? null,
+        country: a.country ?? null,
+        city: a.city ?? null,
+        season: c.season ?? a.season ?? null,
+        difficulty: a.difficulty ?? null,
+        startTime: c.startTime ?? (a.startTimeSeconds ? new Date(a.startTimeSeconds * 1000).toISOString() : null),
+      };
+      upsertGym({ id: c.id, ...patch });
+      n++;
+      if (isOfficialGym(c)) official++;
+    }
+    flushContests();
+    log('cf-gyms', `api enrich: ${n} gyms, official=${official}`);
+  } catch (e) {
+    log('cf-gyms', `api enrich failed: ${String(e).slice(0, 140)}（跳过补全，规则2 仅走通过数判定）`);
+  }
+}
+
+/**
+ * standings 页解析：题头字母列 + 每行通过格计数。
+ * 返回 null = 无 standings 表；counts 以 problemid 计。
+ */
+function parseStandingsSolved(html) {
+  const tblStart = html.indexOf('<table class="standings"');
+  if (tblStart < 0) return null;
+  const tbl = html.slice(tblStart, html.indexOf('</table>', tblStart));
+  const letters = [];
+  const letterRe = /<th[^>]*>\s*<a title="[^"]*?" href="\/gym\/\d+\/problem\/([A-Za-z0-9]+)">/g;
+  let m;
+  while ((m = letterRe.exec(tbl))) letters.push(m[1].toUpperCase());
+  const counts = new Map();
+  const idOrder = [];
+  let dataRows = 0;
+  let rowsWithoutSolve = 0;
+  const rowRe = /<tr[^>]*>([\s\S]*?)<\/tr>/g;
+  while ((m = rowRe.exec(tbl))) {
+    const tds = m[0].match(/<td contestid="\d+" problemid="(\d+)"[^>]*>/g);
+    if (!tds?.length) continue;
+    let anySolve = false;
+    for (const td of tds) {
+      const pid = td.match(/problemid="(\d+)"/)[1];
+      if (!idOrder.includes(pid)) idOrder.push(pid);
+      if (/acceptedsubmissionid=/.test(td)) {
+        anySolve = true;
+        counts.set(pid, (counts.get(pid) ?? 0) + 1);
+      }
+    }
+    dataRows++;
+    if (!anySolve) rowsWithoutSolve++;
+  }
+  return { letters, idOrder, counts, dataRows, rowsWithoutSolve };
+}
+
+/**
+ * 统计一场 gym 的每题通过数。standings 按名次排序：有过题的队伍都在全零分队伍
+ * 之前，所以出现首个全零行即可停止翻页；满页且全有得分才继续。
+ */
+async function fetchSolveCounts(gymId, wid) {
+  const counts = new Map();
+  let meta = null;
+  for (let page = 1; page <= 5; page++) {
+    const url = page === 1 ? `${CF}/gym/${gymId}/standings` : `${CF}/gym/${gymId}/standings/page/${page}`;
+    const r = await nav(
+      url,
+      wid,
+      (html) => /<table class="standings"/.test(html) || /no submissions|standings.*not visible/i.test(html),
+    );
+    if (r.status !== 'ok') return null;
+    const p = parseStandingsSolved(r.html);
+    if (!p) return null;
+    meta ??= { letters: p.letters, idOrder: p.idOrder };
+    for (const [pid, n] of p.counts) counts.set(pid, (counts.get(pid) ?? 0) + n);
+    const best = Math.max(0, ...counts.values());
+    if (best > SOLVE_THRESHOLD) break; // 已确认超阈值，无需更多页
+    if (p.rowsWithoutSolve > 0 || p.dataRows === 0) break; // 全零分之后的行不可能再有通过
+    if (p.dataRows < 100) break; // 未满页 = 最后一页
+  }
+  return { ...meta, counts };
+}
+
+/** 取准入判定（缓存进 contests.json：一次判定，永不重复消耗导航预算）。 */
+async function ensurePullDecision(c, wid) {
+  if (c.pullDecision) return c.pullDecision;
+  let d;
+  if (isOfficialGym(c)) {
+    d = { eligible: true, reason: `official: ${c.gymKind}` };
+  } else {
+    const s = await fetchSolveCounts(c.id, wid);
+    if (!s) {
+      d = { eligible: false, reason: 'standings 不可见/不可得' };
+    } else {
+      const best = Math.max(0, ...s.counts.values());
+      d =
+        best > SOLVE_THRESHOLD
+          ? { eligible: true, reason: `maxSolved=${best}` }
+          : { eligible: false, reason: `maxSolved=${best} ≤ ${SOLVE_THRESHOLD}` };
+    }
+  }
+  upsertGym({ id: c.id, pullDecision: d });
+  flushContests();
+  log('cf-gyms', `gym/${c.id}: pull ${d.eligible ? 'yes' : 'no'} (${d.reason})`);
+  return d;
+}
+
+/* ---------------- 规则 1：站内 codeforces 题库复用 ---------------- */
+
+const normTitle = (t) =>
+  String(t ?? '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fff]+/g, '');
+
+let cfTitleIndexCache = null;
+function cfTitleIndex() {
+  if (cfTitleIndexCache) return cfTitleIndexCache;
+  cfTitleIndexCache = new Map();
+  const idx = readJson(path.join(process.cwd(), 'data', 'index.json'));
+  for (const p of idx?.problems ?? []) {
+    if (p.platform !== 'codeforces') continue;
+    const key = normTitle(p.title);
+    if (!key) continue;
+    const prev = cfTitleIndexCache.get(key);
+    if (prev) prev.dup = true;
+    else cfTitleIndexCache.set(key, { id: p.id, dup: false });
+  }
+  log('cf-gyms', `reuse index: ${cfTitleIndexCache.size} 个唯一 CF 题名`);
+  return cfTitleIndexCache;
+}
+
+/** gym 题名唯一命中站内 codeforces 题库 → 返回原题 id；命中多条或没有 → null。 */
+function matchCfProblem(title) {
+  const key = normTitle(sanitizeRowTitle(title));
+  if (!key) return null;
+  const hit = cfTitleIndex().get(key);
+  return hit && !hit.dup ? hit.id : null;
+}
+
 async function fetchProblemsPhase({ limitGyms, maxProblemPages, minutes }) {
   const startedAt = Date.now();
   const deadline = minutes ? startedAt + minutes * 60000 : null;
@@ -828,6 +1019,8 @@ async function fetchProblemsPhase({ limitGyms, maxProblemPages, minutes }) {
     .filter((c) => !only || only.has(String(c.id)))
     .filter((c) => {
       if (exhausted(`/gym/${c.id}`)) return false;
+      // 准入规则 2 已判定不达标的场次直接出局（判定持久化在 pullDecision）
+      if (c.pullDecision && !c.pullDecision.eligible) return false;
       // 这些状态说明题目确认不可得（或比赛还没开打），等列表前向演进再入队
       if (['restricted', 'deleted', 'no-problems-visible', 'empty', 'upcoming'].includes(c.gymStatus)) return false;
       if (!c.problems.length) return true; // 需要访问 gym 页发现题目集合
@@ -853,6 +1046,9 @@ async function fetchProblemsPhase({ limitGyms, maxProblemPages, minutes }) {
 
   async function fetchGym(c, wid, depth = 0) {
     const id = +c.id;
+    // 准入规则 2：官方发起 或 一题通过 > 100 人，否则不拉题面（判定落盘不重复消耗）
+    const dec = await ensurePullDecision(c, wid);
+    if (!dec.eligible) return;
     const r = await nav(`${CF}/gym/${id}`, wid, gymPageReady(id));
     if (r.status === 'notfound') {
       upsertGym({ id, gymStatus: 'deleted' });
@@ -894,6 +1090,35 @@ async function fetchProblemsPhase({ limitGyms, maxProblemPages, minutes }) {
       if (problemComplete(PLATFORM, pid)) continue;
       const key = attemptKeyFor(id, link.index);
       if (exhausted(key)) continue;
+      // 准入规则 1：站内 codeforces 题库已有该题（题名唯一命中）→ 存 reuseOf 存根
+      const reuseId = matchCfProblem(link.title);
+      if (reuseId) {
+        saveProblem(PLATFORM, {
+          id: pid,
+          platform: PLATFORM,
+          contestId: id,
+          index: link.index,
+          title: sanitizeRowTitle(link.title) ?? null,
+          titleZh: null,
+          url: `${CF}/gym/${id}/problem/${link.index}`,
+          difficulty: null,
+          tags: [],
+          points: null,
+          timeLimitMs: null,
+          memoryLimitMb: null,
+          statementMd: null,
+          statementZhMd: null,
+          samples: [],
+          reuseOf: reuseId,
+          language: 'en',
+          fetchedAt: new Date().toISOString(),
+        });
+        log('cf-gyms', `reuse ${pid} -> codeforces/${reuseId}`);
+        succeed(key);
+        state.stats.problemsFetched++;
+        fetched++;
+        continue;
+      }
       const url = `${CF}/gym/${id}/problem/${link.index}`;
       let pr = await nav(url, wid, problemPageReady(id, link.index));
       fetchedPages++;
@@ -1007,10 +1232,16 @@ function verify({ failOnGaps }) {
   const counts = {};
   const gaps = [];
   const warnings = [];
+  let skippedPull = 0;
   for (const c of cs) {
     const s = c.gymStatus ?? 'unknown';
     counts[s] = (counts[s] ?? 0) + 1;
     if (['restricted', 'deleted', 'upcoming', 'no-problems-visible', 'empty'].includes(s)) continue;
+    // 准入规则 2 判定不达标：不拉题面是预期行为，不算缺口
+    if (c.pullDecision && !c.pullDecision.eligible) {
+      skippedPull++;
+      continue;
+    }
     if (!c.problems.length) {
       warnings.push(`gym/${c.id} status=${s} 无题目记录`);
       continue;
@@ -1021,10 +1252,14 @@ function verify({ failOnGaps }) {
       }
     }
   }
+  const reused = cs.reduce(
+    (acc, c) => acc + c.problems.filter((pid) => loadProblem(PLATFORM, pid)?.reuseOf).length,
+    0,
+  );
   const metaIncomplete = cs.filter((c) => !c.title || (c.listed && c.gymStatus !== 'deleted' && c.startTime == null)).length;
   log(
     'cf-gyms',
-    `verify: contests=${cs.length} status=${JSON.stringify(counts)} gaps=${gaps.length} warnings=${warnings.length} metaIncomplete=${metaIncomplete}`,
+    `verify: contests=${cs.length} status=${JSON.stringify(counts)} gaps=${gaps.length} warnings=${warnings.length} skippedPull=${skippedPull} reused=${reused} metaIncomplete=${metaIncomplete}`,
   );
   for (const w of warnings.slice(0, 20)) log('cf-gyms', `  warn: ${w}`);
   for (const g of gaps.slice(0, 30)) log('cf-gyms', `  gap: gym/${g.gym} problem ${g.index} (${attempts[g.key]?.lastError ?? 'incomplete'})`);
@@ -1099,6 +1334,8 @@ async function main() {
 
   await ensureBrowser();
   try {
+    // 准入规则 2 的官方判定依赖 kind 元数据：进题面阶段前先用官方 API 批量补全
+    await enrichGymsFromApi();
     if (MODE === 'full') {
       await scanListing(args.listingPages ?? Infinity);
       await sweepIds(args.sweepLimit ?? Infinity);
