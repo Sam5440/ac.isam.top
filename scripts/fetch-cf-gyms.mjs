@@ -1211,6 +1211,9 @@ async function fetchProblemsPhase({ limitGyms, maxProblemPages, minutes }) {
     // （文件成孤儿，监控页面数虚高）。单场写 ~1MB，成本可接受。
     flushContests();
     saveAttempts();
+    // 老场 ID 补扫与题面回填交错推进：每 20 场题面推 20 个老 ID 探测，
+    // 否则 7000 个 ID 的补扫要等题面队列整个跑完才开始
+    if (doneGyms % 20 === 0 && !stopping) await sweepIds(20);
     if (doneGyms % 10 === 0) {
       saveState();
       log(
