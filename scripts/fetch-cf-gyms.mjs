@@ -220,7 +220,9 @@ const urlStormCount = (url) => stormEvents.filter((e) => e.url === url).length;
 async function globalStormBreak() {
   stormEvents = [];
   cooldownsThisRun++;
-  const waitMs = rnd(10, 20) * 60000;
+  // 冷却收紧为 5-10min：profile 不再销毁， clearance 还在，短冷即可恢复试探；
+  // 「IP 被盯死要静默 20min+」只发生在无 clearance 的新会话场景。
+  const waitMs = rnd(5, 10) * 60000;
   log('cf-gyms', `storm breaker #${cooldownsThisRun}: 全局冷却 ${Math.round(waitMs / 60000)}min 并重建会话`);
   await ctx?.close().catch(() => {});
   ctx = null;
@@ -971,7 +973,9 @@ async function fetchSolveCounts(gymId, wid) {
   return { ...meta, counts };
 }
 
-/** 取准入判定（缓存进 contests.json：一次判定，永不重复消耗导航预算）。 */
+/** 取准入判定（缓存进 contests.json：一次判定，永不重复消耗导航预算）。
+ *  standings 拉取失败（质询/网络）只返回「本轮跳过」不落盘 —— 那是瞬时故障，
+ *  落盘会把本可通过规则 2 的场次永久错杀；只有真实读到 standings 才判 ≤100。 */
 async function ensurePullDecision(c, wid) {
   if (c.pullDecision) return c.pullDecision;
   let d;
@@ -980,14 +984,14 @@ async function ensurePullDecision(c, wid) {
   } else {
     const s = await fetchSolveCounts(c.id, wid);
     if (!s) {
-      d = { eligible: false, reason: 'standings 不可见/不可得' };
-    } else {
-      const best = Math.max(0, ...s.counts.values());
-      d =
-        best > SOLVE_THRESHOLD
-          ? { eligible: true, reason: `maxSolved=${best}` }
-          : { eligible: false, reason: `maxSolved=${best} ≤ ${SOLVE_THRESHOLD}` };
+      log('cf-gyms', `gym/${c.id}: standings 本轮不可得（质询/网络），下轮重试`);
+      return { eligible: false, reason: 'pending: standings 不可得', transient: true };
     }
+    const best = Math.max(0, ...s.counts.values());
+    d =
+      best > SOLVE_THRESHOLD
+        ? { eligible: true, reason: `maxSolved=${best}` }
+        : { eligible: false, reason: `maxSolved=${best} ≤ ${SOLVE_THRESHOLD}` };
   }
   upsertGym({ id: c.id, pullDecision: d });
   flushContests();
