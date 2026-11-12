@@ -15,7 +15,7 @@
  * 用法：
  *   node scripts/fetch-cf-gyms.mjs                    # 增量（默认）：列表前3页新赛+ID补扫+题面回填(38min预算)
  *   --mode full          全量：列表全扫 + ID 全区间补扫 + 全部题面
- *   --mode problems      只跑题面（列表/补扫已完整时用，避开列表页质询；面板长跑用这个）
+ *   --mode problems      只跑题面 + 每轮推进 200 个老 ID 补扫（面板长跑用；不碰列表页质询）
  *   --mode verify        完整性校验（缺漏退出码 1；--repair 顺带回填后复验）
  *   --mode status        打印进度统计（JSON）
  *
@@ -1368,8 +1368,10 @@ async function main() {
         minutes: args.minutes,
       });
     } else if (MODE === 'problems') {
-      // 只跑题面阶段：列表与 ID 补扫已完整时用（面板长跑/纯回填）。
-      // 不碰 /gyms/page/N（那是最容易触发质询的入口），新赛收录交给 CI 增量。
+      // 只跑题面阶段：不碰 /gyms/page/N（那是最容易触发质询的入口），新赛收录交给 CI 增量。
+      // 但 ID 补扫不能完全不做（零缺漏契约）：每轮先推进一步 200 个老 ID 探测，
+      // 7000 个 ID 约 35 轮跑完 —— supervisor 每轮重启自动续上。
+      await sweepIds(args.sweepLimit ?? 200);
       await fetchProblemsPhase({
         limitGyms: args.limitGyms,
         maxProblemPages: args.maxProblemPages ?? Infinity,
