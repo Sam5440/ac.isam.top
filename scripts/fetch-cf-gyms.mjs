@@ -858,13 +858,32 @@ const isOfficialGym = (c) =>
         c.gymKind === 'Training Camp Contest'),
   );
 
+/** contest.list?gym=true 原始结果：node fetch 两次重试，失败落 curl 兜底
+ *  （node 的 fetch 不走系统代理，个别时刻直连会失败）。 */
+async function fetchGymApiList() {
+  const url = `${CF}/api/contest.list?gym=true`;
+  for (let i = 0; i < 2; i++) {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
+      const d = await res.json();
+      if (d.status !== 'OK') throw new Error(d.comment || 'api failed');
+      return d.result;
+    } catch (e) {
+      if (i === 1) log('cf-gyms', `api fetch failed (${String(e).slice(0, 80)})，curl 兜底`);
+      await sleep(3000);
+    }
+  }
+  const out = execFileSync('curl', ['-s', '-m', '60', url], { maxBuffer: 64 * 1024 * 1024 }).toString('utf8');
+  const d = JSON.parse(out);
+  if (d.status !== 'OK') throw new Error(d.comment || 'api failed');
+  return d.result;
+}
+
 /** 官方 API 一次性补全 gym 元数据（kind/preparedBy/country/...，不经过浏览器）。 */
 async function enrichGymsFromApi() {
   try {
-    const res = await fetch(`${CF}/api/contest.list?gym=true`);
-    const d = await res.json();
-    if (d.status !== 'OK') throw new Error(d.comment || 'api failed');
-    const byId = new Map(d.result.map((x) => [String(x.id), x]));
+    const list = await fetchGymApiList();
+    const byId = new Map(list.map((x) => [String(x.id), x]));
     let n = 0;
     let official = 0;
     for (const c of contests()) {
