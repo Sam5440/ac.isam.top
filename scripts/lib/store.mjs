@@ -45,8 +45,16 @@ export function problemExists(platform, id) {
   return fs.existsSync(problemFile(platform, id));
 }
 
-/** 文件存在且题面完整（statementMd 非空）才算已收录。 */
+/** 文件存在且题面完整才算已收录。
+ *  - 普通题：statementMd 非空；
+ *  - PDF 题面（ICPC gym 常见）：文字提取可能为空，只要 PDF 文件在就算完整。 */
 export function problemComplete(platform, id) {
   const p = loadProblem(platform, id);
-  return Boolean(p?.statementMd);
+  if (!p) return false;
+  if (p.statementMd) return true;
+  if (p.statementPdf) {
+    const name = path.basename(String(p.statementPdf));
+    return fs.existsSync(path.join(DATA_ROOT, platform, 'pdf', name));
+  }
+  return false;
 }

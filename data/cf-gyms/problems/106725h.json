@@ -1,0 +1,28 @@
+{
+  "id": "106725h",
+  "platform": "cf-gyms",
+  "contestId": 106725,
+  "index": "H",
+  "title": "Hidden Permutation",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106725/problem/H",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 512,
+  "statementMd": "This is a communication problem. Your program will be run twice for each test, in two independent processes.\n\n**First Run**\n\nYou are given a permutation $p=(p_1,p_2,\\ldots,p_n)$ of $1,2,\\ldots,n$.\n\nOutput an $n\\times n$ matrix $A$ such that each row is a permutation of $1,2,\\ldots,n$ and all rows are pairwise distinct.\n\n**Second Run**\n\nBefore the second run, the judge randomly shuffles the rows of $A$ to obtain a matrix $B$. The order of the elements within each row remains unchanged. You are given $B$ and must recover the original permutation $p$ from the first run.\n\nYour program must recover $p$ for every possible ordering of the rows. No process state is preserved between the two runs; the shuffled matrix is the only information passed from the first run to the second. The time and memory limits apply to each run separately.\n\n## Input\n\nThe first line contains a string `op` (either `first` or `second`) and an integer $n$ ($3\\le n\\le 2000$), indicating the run and the size of the permutation. The value of $n$ is the same in both runs.\n\nIf `op` is `first`, the second line contains $n$ integers $p_1,p_2,\\ldots,p_n$ ($1\\le p_i\\le n$), a permutation of $1,2,\\ldots,n$.\n\nIf `op` is `second`, each of the next $n$ lines contains $n$ integers, describing one row of $B$. This is the matrix output in the first run with only its rows randomly reordered.\n\nThere is one test case per run.\n\n## Output\n\nIf `op` is `first`, output $n$ lines, each containing $n$ space-separated integers, describing the matrix $A$. Each row must contain every integer from $1$ to $n$ exactly once, and the $n$ rows must be pairwise distinct.\n\nIf `op` is `second`, output $n$ space-separated integers on one line: the original permutation $p$ from the first run, in its original order.\n\n## Note\n\nThe two examples show the first and second runs of one possible solution on the same test.\n\nIn the first run, the input permutation is $(2,3,1)$, and the program outputs a $3\\times 3$ matrix whose rows are pairwise distinct permutations of $1,2,3$.\n\nBefore the second run, the judge places the third, first, and second rows of this matrix in that order. The elements within each row remain unchanged. From the resulting matrix, the program must recover and output $(2,3,1)$. The row order used during judging may differ from the example.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "first 3\n2 3 1\n",
+      "output": "2 3 1\n1 2 3\n3 2 1\n"
+    },
+    {
+      "input": "second 3\n3 2 1\n2 3 1\n1 2 3\n",
+      "output": "2 3 1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:56:24.747Z"
+}

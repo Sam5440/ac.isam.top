@@ -1,0 +1,24 @@
+{
+  "id": "106725j",
+  "platform": "cf-gyms",
+  "contestId": 106725,
+  "index": "J",
+  "title": "Jobs through Pipelines",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106725/problem/J",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "You need to schedule $n$ jobs on a pipeline. The jobs form a sequence, and job $i$ has workload $a_i$. The pipeline consists of $m$ **stages** in series.\n\nBefore processing begins, you may choose an integer $t$ ($0\\le t\\le n$). This moves the first $t$ jobs to the end without changing their relative order, obtaining $a_{t+1},a_{t+2},\\ldots,a_n,a_1,a_2,\\ldots,a_t.$ Choosing $t=0$ or $t=n$ leaves the sequence unchanged.\n\nNext, you need to partition the resulting sequence into at most $k$ nonempty contiguous segments, each forming a **batch**. The workload of a batch is the sum of the workloads of its jobs.\n\nThe batches then enter the pipeline in order. Each batch passes through stages $1,2,\\ldots,m$ in this order, taking time equal to its workload at each stage. Each stage processes at most one batch at a time, following the batches' left-to-right order in the sequence. After finishing at one stage, a batch may wait for the next stage to become available. While it waits, it no longer occupies the previous stage, which may process the next batch. Different stages may process different batches simultaneously.\n\nThe pipeline starts processing at time $0$. Choose the prefix to move and the partition into batches so that all jobs finish as early as possible.\n\n## Input\n\nThe first line contains three integers $n,m,k$ ($1\\le n,m\\le 5\\times 10^5$, $1\\le k\\le n$): the number of jobs, the number of stages, and the maximum number of batches.\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1\\le a_i\\le 10^6$), the workloads of the jobs.\n\n## Output\n\nPrint one integer: the minimum possible time at which all jobs have finished.\n\n## Note\n\nAn optimal choice is to move the prefix $[3,1,4]$ to the end, obtaining the sequence $[2,3,1,4]$, and partition it into two batches $[2,3]$ and $[1,4]$. Both batches have workload $5$. They can start at the first stage at times $0$ and $5$, and finish at the third stage at times $15$ and $20$, respectively. Thus, all jobs finish at time $20$, which is the minimum possible time.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "4 3 2\n3 1 4 2\n",
+      "output": "20\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:56:39.900Z"
+}

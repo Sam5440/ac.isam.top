@@ -1,0 +1,24 @@
+{
+  "id": "106799l",
+  "platform": "cf-gyms",
+  "contestId": 106799,
+  "index": "L",
+  "title": "Long Slides",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106799/problem/L",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "**This problem has an attachment. You can use it to simulate and visualize the movements of the robot.**\n\nVegiCat has a robot on an infinite two-dimensional grid. He wants it to move from cell $s=(s_x,s_y)$ to cell $t=(t_x,t_y)$. Each cell has integer coordinates. The cells $s$ and $t$ may be the same.\n\nThe robot follows a string $p$ of instructions. Each character is `L`, `R`, `U`, or `D`. Let $|p|$ denote the length of $p$.\n\nThe robot starts at $s$. Before it executes any instructions, you may place at most $|p|$ obstacles in distinct cells. The coordinates $(x,y)$ of each obstacle must satisfy $-2\\cdot10^9 \\le x,y \\le 2\\cdot10^9$. Neither $s$ nor $t$ may contain an obstacle. Each obstacle occupies one cell and remains fixed throughout the process; all other cells are free of obstacles.\n\nThe robot executes the instructions $p_1,p_2,\\ldots,p_{|p|}$ in order. For each instruction, starting from its current cell $(x,y)$, it moves along the following sequence of cells:\n\n- `L`: $(x,y)\\to(x-1,y)\\to(x-2,y)\\to\\cdots$;\n- `R`: $(x,y)\\to(x+1,y)\\to(x+2,y)\\to\\cdots$;\n- `U`: $(x,y)\\to(x,y+1)\\to(x,y+2)\\to\\cdots$;\n- `D`: $(x,y)\\to(x,y-1)\\to(x,y-2)\\to\\cdots$.\n\nThe robot repeatedly takes one step in the specified direction while the next cell contains no obstacle. It stops in the cell immediately before the first obstacle in that direction. If the next cell in the specified direction already contains an obstacle before the instruction starts, the robot stays in place, but the instruction is still completed. If there is no obstacle ahead in that direction, the robot would move forever, and the placement is invalid.\n\nThe robot may reach $t$ before all instructions are completed. It **must still execute all remaining instructions**. Construct any obstacle placement satisfying the requirements above such that the robot finishes at $t$ after the last instruction, or report that no such placement exists.\n\n## Input\n\nThe first line contains an integer $T$ ($1 \\le T \\le 10^5$), the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $s_x$ and $s_y$ ($-10^9\\le s_x,s_y\\le10^9$), the coordinates of the starting cell.\n\nThe second line contains two integers $t_x$ and $t_y$ ($-10^9 \\le t_x,t_y \\le 10^9$), the coordinates of the target cell.\n\nThe third line contains the instruction string $p$ ($1 \\le |p| \\le 10^5$), consisting only of the characters `L`, `R`, `U`, and `D`.\n\nIt is guaranteed that the sum of $|p|$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output an answer in input order. Obstacle placements for different test cases are independent.\n\nIf no valid placement exists, output `NO` on a line by itself.\n\nOtherwise, output `YES` on the first line. On the second line, output an integer $k$ ($0\\le k\\le|p|$), the number of obstacles.\n\nThen output $k$ lines. The $i$-th of these lines must contain two integers $x_i$ and $y_i$ ($-2\\cdot10^9 \\le x_i,y_i \\le 2\\cdot10^9$), specifying an obstacle in cell $(x_i,y_i)$.\n\nAll $k$ coordinate pairs must be distinct, and none may equal $s$ or $t$. The placement must allow every instruction to finish and leave the robot at $t$ after the last instruction. If there are multiple solutions, output any of them.\n\nYou can output the yes or no verdict in any case. For example, `yEs`, `yes`, `Yes`, and `YES` are all accepted as positive responses.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n0 0\n1 0\nRL\n0 0\n-1 0\nURD\n0 0\n8 0\nRLR\n0 0\n0 0\nUDUD\n0 0\n2 5\nRDULR\n0 0\n1 1\nRURURU\n",
+      "output": "NO\nNO\nYES\n2\n-1 0\n9 0\nYES\n2\n0 -1\n0 1\nYES\n5\n-1 5\n2 -1\n2 6\n3 0\n3 5\nYES\n3\n1 2\n2 0\n2 1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T13:51:12.233Z"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "106738b",
+  "platform": "cf-gyms",
+  "contestId": 106738,
+  "index": "B",
+  "title": "AIMC Lab",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106738/problem/B",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "Your AIMC Lab has developed an entirely new three-dimensional quantum matrix!\n\nConsider a three-dimensional grid of size N×M×H, with coordinates 1≤x≤N, 1≤y≤M, and 1≤z≤H. A qubit occupies every integer grid point. Let (xu,yu,zu) be the coordinates of qubit u.\n\nFor any two qubits u and v, define their **squared spatial distance** as d2(u,v)=(xu−xv)2+(yu−yv)2+(zu−zv)2.\n\nThe system has eight energy matrices AD,c, each of size N×M×H, indexed by integers 0≤D≤3 and 0≤c≤1.\n\nYou may initialize each qubit to either basis state |0⟩ or |1⟩. Its corresponding basis-state value is cP=0 or cP=1.\n\nAfter initialization, the total energy is calculated as follows:\n\n- For each integer pair 0≤D≤3, 0≤c≤1, qubit P gains AD,c(xP,yP,zP) energy if and only if:\n- The basis-state value of P satisfies cP=c.\n  - For every qubit Q with d2(P,Q)=D, the value cP+cQ+D is even.\n\nAs the chief scientist of AIMC Lab, initialize every qubit to a basis state so that the system's total energy is maximized. Output this maximum energy.\n\n## Input\n\nThe first line contains three integers N, M, and H (1≤N,M,H≤100 and N×M×H≤100), the grid dimensions.\n\nThe data for the eight energy matrices AD,c follow in lexicographic order of (D,c).\n\nEach matrix consists of N blocks. Each block has M lines, each containing H integers. Blocks are separated by blank lines.\n\nThe z-th number in the y-th line of the x-th block is the energy at (x,y,z). All energy values satisfy AD,c(xP,yP,zP)∈[0,109].\n\n## Output\n\nOutput one integer: the maximum total energy the system can achieve.\n\n## Note\n\n**Sample 1 Explanation**\n\nThe grid contains only one qubit, at (1,1,1).\n\nInitializing it to |1⟩ gives A0,1(1,1,1)+A1,1(1,1,1)+A2,1(1,1,1)+A3,1(1,1,1)=5+200+2000+60=2265, which is optimal.\n\n**Sample 2 Explanation**\n\nInitialize all 8 qubits of the 2×2×2 grid to |0⟩.\n\n- Each qubit gains 1 energy from A0,0, for a total of 8.\n- All qubits at squared distance 2 are also in state |0⟩, so each qubit gains 10 from A2,0, for a total of 80.\n\nThe total energy is 8+80=88. This can be shown to be the maximum.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1 1 1\n3\n\n5\n\n100\n\n200\n\n1000\n\n2000\n\n50\n\n60\n",
+      "output": "2265\n"
+    },
+    {
+      "input": "2 2 2\n1 1\n1 1\n\n1 1\n1 1\n\n0 0\n0 0\n\n0 0\n0 0\n\n0 0\n0 0\n\n0 0\n0 0\n\n0 0\n0 0\n\n0 0\n0 0\n\n10 10\n10 10\n\n10 10\n10 10\n\n0 0\n0 0\n\n0 0\n0 0\n\n0 0\n0 0\n\n0 0\n0 0\n\n0 0\n0 0\n\n0 0\n0 0\n",
+      "output": "88\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:43:09.007Z"
+}

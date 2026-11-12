@@ -1,0 +1,24 @@
+{
+  "id": "106738m",
+  "platform": "cf-gyms",
+  "contestId": 106738,
+  "index": "M",
+  "title": "Witch Trial",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106738/problem/M",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 6000,
+  "memoryLimitMb": 1024,
+  "statementMd": "Your trident has struck a villager again. This time, when the trial ends, you discover that you can no longer find it.\n\nYou know that the trident landed on a rooted tree $T$ with $n$ vertices, rooted at vertex $1$. Each vertex has a weight $a_i$, and at every moment these weights form a permutation of $1 \\sim n$. For vertices $u,v$, let $P(u,v)$ be their simple path, including both $u$ and $v$.\n\nA set $S$ of tree vertices is a **trident** if and only if there exist three vertices $F,x,y$ (which may be equal) satisfying:\n\n- $F$ is an ancestor of $x$, or $F=x$;\n- $F$ is an ancestor of $y$, or $F=y$;\n- $S = P(F,x)\\cup P(F,y)$；\n\nProcess $q$ operations in order. There are three types:\n\n**Operation 1: Lightning.** Given vertices $x$ and $y$, swap their current weights.\n\n**Operation 2: Judgment.** Given two distinct weights $l \\lt r$, reverse the weights within $[l,r]$.\n\nFormally, if vertex $x$ has weight $a_x$ before this operation and $a'_x$ afterward, define $$ a'_x= \\begin{cases} l+r-a_x, & l\\le a_x\\le r,\\\\ a_x, & \\text{otherwise}. \\end{cases} $$\n\nThen set $a_x\\leftarrow a'_x$ simultaneously for every integer $1 \\le x \\le n$. The weights remain a permutation of $1 \\sim n$.\n\n**Operation 3: Find the trident.** Given $l \\le r$, determine whether $S=\\{x\\in N,\\ 1\\le x\\le n\\mid l\\le a_x\\le r\\}$ is a **trident**.\n\nAnswer all questions from **Operation 3** in order.\n\n## Input\n\nThe first line contains an integer $T$ ($1 \\le T \\le 10^3$), the number of test cases.\n\nThe first line of each test case contains two integers $n,q$ ($1 \\le n,q \\le 10^5$), the numbers of tree vertices and operations.\n\nEach of the next $n-1$ lines contains two integers $u,v$ ($1 \\le u,v \\le n$, $u\\ne v$), describing a tree edge.\n\nThe next line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1 \\le a_i \\le n$), the initial vertex weights.\n\nEach of the next $q$ lines describes an operation. It starts with an integer $\\text{op}_i$ ($1 \\le \\text{op}_i \\le 3$), followed by:\n\n- If $\\text{op}_i=1$, two integers $x,y$ ($1 \\le x,y \\le n$): perform **Operation 1**, swapping their weights.\n- If $\\text{op}_i=2$, two integers $l,r$ ($1 \\le l \\lt r \\le n$): perform **Operation 2**, reversing the weights in $[l,r]$.\n- If $\\text{op}_i=3$, two integers $l,r$ ($1 \\le l \\le r \\le n$): perform **Operation 3**, asking whether the vertices with weights in $[l,r]$ form a **trident**.\n\nWithin each test case, the initial weights form a permutation of $1\\sim n$, and the given edges form a tree with $n$ vertices.\n\nAcross all test cases, $\\sum n \\le 3 \\times 10^5$ and $\\sum q \\le 3 \\times 10^5$.\n\n## Output\n\nFor each **Operation 3**, output one line:\n\n- Output `YES` if $S=\\{x\\in N,\\ 1\\le x\\le n\\mid l\\le a_x\\le r\\}$ is a **trident**;\n- Otherwise, output `NO`.\n\nThe answer is case-insensitive; for example, `yes`, `YES`, `Yes`, and `YeS` are all accepted as affirmative answers.\n\n## Note\n\n![image](https://espresso.codeforces.com/20a0f2f19f4870c9a01372226d4389f0e152b3ae.png)\n\nFor the third trident query in the first test case, after the preceding Judgment operation, the current weights are $$ (a_1,a_2,\\ldots,a_7)=(4,6,2,7,5,3,1). $$\n\nWeights $4,5,6,7$ are at vertices $1,5,2,4$, respectively, so $S=\\{1,2,4,5\\}$.\n\nChoose $F=1$, $x=4$, and $y=5$. Then:\n\n- Vertex $1$ is an ancestor of vertex $4$.\n- Vertex $1$ is an ancestor of vertex $5$.\n- $ P(1,4)\\cup P(1,5) =\\{1,2,4\\}\\cup\\{1,2,5\\}=S$。\n\nTherefore, $S$ is a **trident**.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1\n7 6\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n4 2 6 1 3 5 7\n3 1 3\n3 1 5\n2 1 7\n3 4 7\n1 4 5\n3 5 7\n",
+      "output": "YES\nNO\nYES\nYES\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:55:05.308Z"
+}

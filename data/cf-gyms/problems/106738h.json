@@ -1,0 +1,24 @@
+{
+  "id": "106738h",
+  "platform": "cf-gyms",
+  "contestId": 106738,
+  "index": "H",
+  "title": "Ordinary Offensive Magic",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106738/problem/H",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "Consider an $n \\times m$ grid. Each cell has one of three states:\n\n1. `/` (forward-slash mirror): reflects on both sides. A ray turns $90^\\circ$, connecting the top with the left and the bottom with the right.\n2. `\\` (backslash mirror): reflects on both sides. A ray turns $90^\\circ$, connecting the top with the right and the bottom with the left.\n3. `.` (empty cell): contains no obstacle. A ray passes straight through, connecting the top with the bottom and the left with the right.\n\nInitially, some cells contain fixed `/` or `\\` mirrors; the rest are empty. You may **leave each initially empty cell empty**, **replace it with a `/` mirror**, or **replace it with a `\\` mirror**.\n\nThe outside boundary of the grid consists of $2(n+m)$ unit-length segments. A ray may enter or leave only perpendicularly through the midpoint of one of these segments.\n\nGiven an entry point and a target exit point, determine whether the grid can be filled legally so that a ray entering at the specified point, after straight-line travel and reflections, exits at exactly the target point.\n\nIf possible, output a valid completed grid that **minimizes the number of cells traversed** by the ray from the entry point to the target exit point. Count one traversal each time the ray enters a cell; repeated visits to the same cell are counted separately. If there are multiple optimal completions, output any of them. Otherwise, report that it is impossible.\n\n## Input\n\nThe first line contains an integer $T$ ($1 \\le T \\le 100$), the number of test cases.\n\nThe first line of each test case contains two integers $n,m$ ($1 \\le n \\times m \\le 2 \\times 10^5$), the numbers of rows and columns.\n\nEach of the next $n$ lines contains a string of length $m$ describing the initial grid. Here `/` is a forward-slash mirror, `\\` is a backslash mirror, and `.` is an empty cell.\n\nThe next line contains four space-separated values $d_1,p_1,d_2,p_2$. The first pair specifies the entry point, and the second specifies the target exit point:\n\n- Each of $d_1,d_2$ is one of U, D, L, R, denoting the top, bottom, left, or right boundary, respectively.\n- Each of $p_1,p_2$ is a positive integer specifying the midpoint of the outer edge of the $p$-th boundary cell. On U or D, $p$ is a column number ($1 \\le p \\le m$); on L or R, it is a row number ($1 \\le p \\le n$).\n\nIt is guaranteed that $(d_1,p_1) \\ne (d_2,p_2)$.\n\nThe sum of $n \\times m$ over all test cases does not exceed $2 \\times 10^5$.\n\n## Output\n\nFor each test case, if a valid completion exists, output $n$ lines of length $m$ describing it. Otherwise, output `IMPOSSIBLE`.\n\nA backslash must usually be escaped: `\\\\` outputs `\\`.\n\n## Note\n\n**Sample 1 Explanation**\n\nIn the first test case, the ray enters from the left edge of row $1$ and travels right. It passes through the empty cell $(1,1)$, turns upward at the `/` mirror in $(1,2)$, and exits through the top edge of column $2$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n2 2\n..\n..\nL 1 U 2\n4 4\n/\\/\\\n/\\/.\n....\n./..\nL 2 L 4\n4 4\n/\\/\\\n/\\/.\n..\\/\n./..\nL 2 L 4\n",
+      "output": "./\n..\n/\\/\\\n/\\//\n.//.\n./..\nIMPOSSIBLE\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:44:19.476Z"
+}

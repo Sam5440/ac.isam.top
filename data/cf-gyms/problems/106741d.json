@@ -1,0 +1,28 @@
+{
+  "id": "106741d",
+  "platform": "cf-gyms",
+  "contestId": 106741,
+  "index": "D",
+  "title": "M-Mart Coupons",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106741/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Magikarp is shopping at M-Mart. He has $n$ coupons in his pocket, numbered from $1$ to $n$. Each coupon gives either a percentage discount or a dollar discount.\n\nThere are $q$ items Magikarp might buy. For each item, he chooses a contiguous subarray of his coupons and may use those coupons in any order. He wants to pay as little as possible. A price cannot go below $0$; if a discount would make it negative, the price becomes $0$.\n\nMagikarp has already chosen which coupons to apply to each item, but not the order in which to apply those coupons. Help Magikarp find the minimum possible price of each item.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n,q \\le 200\\,000$) — the number of coupons and the number of items, respectively.\n\nEach of the next $n$ lines describes one coupon. The $i$th line contains a character $t_i$ and an integer $x_i$. If $t_i=\\texttt{P}$, the coupon discounts the current price by $x_i$ percent ($0 \\le x_i \\le 99$). If $t_i=\\texttt{D}$, the coupon discounts the current price by $x_i$ dollars ($0 \\le x_i \\le 10^9$).\n\nEach of the next $q$ lines contains three integers $p$, $l$, and $r$ ($1 \\le p \\le 10^6$, $1 \\le l \\le r \\le n$) — the item's original price and the endpoints of the chosen coupon subarray, respectively.\n\nIt is possible that the same coupon is used on multiple items.\n\nIt is guaranteed that applying all percentage coupons among the $n$ coupons to a price of $1$ (ignoring dollar coupons) leaves a price of at least $10^{-250}$. The smallest positive value of a 64-bit double is around $10^{-308}$.\n\n## Output\n\nFor each item, output its minimum possible price if Magikarp applies his chosen coupons in the optimal order. Your answer is accepted if its absolute error is at most $10^{-4}$.\n\n## Note\n\nIn the first sample, Magikarp can use the $50\\%$ coupon first, reducing the price from $100$ to $50$, then use both dollar coupons to reduce it to $35$. For the second item, the same discounts reduce the price to $0$. The second query uses only the $50\\%$ coupon.\n\nIn the second sample, the $90\\%$ and $10\\%$ coupons reduce the first item's price from $100$ to $9$, and the two dollar coupons reduce it to $0$. For the second item, the $10\\%$ coupon reduces $1000$ to $900$, and the two dollar coupons then reduce it by $51$.\n\nHint: in order to satisfy the above error bound, be sure to print many digits of your answer (at least 8).\n\nFor example, if your answer is stored in `ans`:\n\n- Java: System.out.printf(\"%.10f%n\", ans);\n- C++: cout &lt;&lt; fixed &lt;&lt; setprecision(10) &lt;&lt; ans &lt;&lt; '\\n'; (include `<iomanip>`)\n- Python: print(f\"{ans:.10f}\")",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3 3\nD 10\nP 50\nD 5\n100 1 3\n10 1 3\n100 2 2\n",
+      "output": "35.000000000000000\n0.000000000000000\n50.000000000000000\n"
+    },
+    {
+      "input": "4 2\nP 90\nD 1\nP 10\nD 50\n100 1 4\n1000 2 4\n",
+      "output": "0.000000000000000\n849.000000000000000\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:41:01.941Z"
+}

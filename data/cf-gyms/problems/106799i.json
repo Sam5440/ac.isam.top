@@ -1,0 +1,28 @@
+{
+  "id": "106799i",
+  "platform": "cf-gyms",
+  "contestId": 106799,
+  "index": "I",
+  "title": "Invisible Edges",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106799/problem/I",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 1024,
+  "statementMd": "**This is a multi-pass problem.**\n\nVegiCat and VegiDog play a game with a forest of n vertices, numbered from 1 to n, and m edges. A forest is an undirected graph with no cycles. It is **not necessarily connected**.\n\nIn the first stage, VegiCat assigns an integer au (1≤au≤2n) to each vertex u. The values may repeat.\n\nAfter VegiCat finishes assigning the values, the vertices are renumbered. Let p1,p2,…,pn be a permutation of 1,2,…,n, in which each integer from 1 to n appears exactly once. For each u, the vertex originally numbered u is now numbered pu.\n\nEach edge (u,v) becomes (pu,pv). Each vertex keeps its assigned value. Let bi be the value at vertex i after renumbering. Then bpu=au.\n\nIn the second stage, VegiDog receives only n and b1,b2,…,bn, without the original forest or p. He must recover all edges using the new vertex numbers.\n\nDesign strategies for both players that work for every valid forest and every permutation p.\n\n## Input\n\nYour program will run twice: first as VegiCat, then as VegiDog. The test cases appear in the same order in both runs.\n\n**First Run.** The first line contains the string `cat`, indicating that you play VegiCat.\n\nThe second line contains an integer T (1≤T≤104), the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers n and m (1≤n≤2⋅105, 0≤m&lt;n), the number of vertices and edges.\n\nEach of the next m lines contains two integers u and v (1≤u,v≤n, u≠v), describing an undirected edge between vertices u and v.\n\nIt is guaranteed that the graph has no cycles or multiple edges.\n\nIt is guaranteed that the sum of n over all test cases does not exceed 2⋅105.\n\n**Second Run.** The first line contains the string `dog`, indicating that you play VegiDog.\n\nThe second line contains an integer T (1≤T≤104), the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains an integer n (1≤n≤2⋅105), the number of vertices.\n\nThe second line contains n integers b1,b2,…,bn (1≤bi≤2n), the assigned values in the new vertex order.\n\nIt is guaranteed that the sum of n over all test cases does not exceed 2⋅105.\n\n## Output\n\n**First Run.** For each test case, output n integers a1,a2,…,an (1≤ai≤2n) on one line. The integer ai is the value assigned to vertex i.\n\n**Second Run.** For each test case, output an integer m on the first line, the number of edges. Each of the next m lines must contain two integers u and v (1≤u,v≤n, u≠v), describing an edge using the new vertex numbers.\n\nOutput each edge once, in any order. Either endpoint may come first. If m=0, output only 0.\n\n## Note\n\nIn the first test case, the forest has one vertex and no edges. VegiCat assigns the value 1 to the vertex, and VegiDog outputs 0.\n\nIn the last test case, the permutation is p=[5,3,6,4,2,9,1,8,7,10].\n\nVegiCat assigns a7=16. Since p7=1, VegiDog receives b1=16.\n\nThe original edge (3,7) becomes (p3,p7)=(6,1).\n\nThe original edge (4,10) becomes (p4,p10)=(4,10). The sample outputs this edge as (10,4), which represents the same undirected edge.\n\nThe sample illustrates the input and output formats. Its outputs are correct for the graphs and permutations shown. However, the sample assignments are not guaranteed to be part of a strategy that works for every valid forest and every permutation.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "cat\n4\n1 0\n4 3\n1 2\n4 3\n2 3\n7 2\n6 4\n7 1\n10 7\n10 9\n7 9\n10 5\n4 8\n3 7\n4 10\n1 2\n",
+      "output": "1\n2 5 8 5\n11 11 4 11 3 7 2\n10 13 12 5 3 2 16 6 19 3\n"
+    },
+    {
+      "input": "dog\n4\n1\n1\n4\n5 2 5 8\n7\n11 7 2 11 11 3 4\n10\n16 3 13 5 10 12 19 6 2 3\n",
+      "output": "0\n3\n1 4\n2 1\n4 3\n2\n4 3\n5 2\n7\n1 7\n4 8\n5 3\n6 1\n7 10\n10 2\n10 4\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T13:50:46.194Z"
+}

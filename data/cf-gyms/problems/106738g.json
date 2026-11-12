@@ -1,0 +1,28 @@
+{
+  "id": "106738g",
+  "platform": "cf-gyms",
+  "contestId": 106738,
+  "index": "G",
+  "title": "Beyond the Stars",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106738/problem/G",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 8000,
+  "memoryLimitMb": 1024,
+  "statementMd": "**This is a communication problem. Pay attention to its unusual constraints.**\n\nThat was long ago, in a past forgotten by all of ECUST...\n\nIn that forgotten age, Zhulin and Qianwai fought side by side, lived together, and gazed up at the same stars. Later, sand buried their language, oceans severed their roads, and even their names faded from history. Only the vast, silent star chart above them remained: public, radiant, and unchanging. Yet nobody knew which stars they had once quietly joined into a message.\n\nThis problem has 2020 test cases.\n\nYou are given an undirected graph G=(V,E) with |V|=2000 and |E|=43600. It has no multiple edges or self-loops and is generated as follows. Initially, G has |V| vertices and no edges. Then, |E| times, the generator uniformly chooses one of the vertex pairs not yet joined by an edge and adds an undirected edge between them.\n\nYour program will be run twice:\n\n**First run**\n\nIn the first run, you play Zhulin. Choose and output n induced four-cycles in G. They may share vertices.\n\n- **Definition of an induced four-cycle:** Choose 4 vertices of G that have **exactly** 4 edges among them, forming a simple cycle. In particular, there are no diagonals.\n\n**Second run**\n\nIn the second run, you play Qianwai. The judge has your complete output from the first run. For each of q queries, it selects one of your four-cycles, deletes one of its vertices, and gives you the other three vertex numbers. Report the index of the four-cycle in Zhulin's output from which they came.\n\n## Input\n\n**First run**\n\nThe first line contains the string `send`.\n\nThe second line contains an integer n (n=200000), the number of induced four-cycles you must output.\n\nThe third line contains two integers |V| and |E|.\n\nEach of the next |E| lines contains two integers u,v, indicating an undirected edge between vertices u and v (1≤u,v≤|V|).\n\n**Second run**\n\nThe first line contains the string `receive`.\n\nThe second line contains two integers |V| and |E|.\n\nEach of the next |E| lines contains two integers u,v, indicating an undirected edge between vertices u and v (1≤u,v≤|V|).\n\nLine |E|+3 contains an integer q (q=4n), the number of received vertex sets.\n\nEach of the next q lines contains 3 integers: the vertices remaining after the judge removes one vertex from a four-cycle in your first-run output.\n\n## Output\n\n**First run**\n\nOutput n lines. Line i contains four integers v1,v2,v3,v4, the vertices of the i-th induced four-cycle.\n\n**Second run**\n\nOutput q lines. For each received vertex set, output an integer i (1≤i≤n), the index of its four-cycle.\n\n## Note\n\nParts of the sample are omitted because the complete data is too large.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "send\n200000\n2000 43600\n29 1973\n228 1127\n...\n92 573\n",
+      "output": "1 174 613 1323\n1 955 1683 1755\n...\n1390 1615 1683 1777\n"
+    },
+    {
+      "input": "receive\n2000 43600\n29 1973\n228 1127\n...\n92 573\n800000\n46 1297 1949\n1056 1275 1454\n...\n387 1289 1533\n",
+      "output": "17713\n191947\n...\n118231\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:44:12.540Z"
+}

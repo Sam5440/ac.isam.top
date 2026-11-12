@@ -7,7 +7,7 @@ import { DifficultyBadge, PlatformBadge } from '@/components/Badges';
 import AiFab from '@/components/chat/AiFab';
 import CopyProblemButton from '@/components/CopyProblemButton';
 import SamplesSection from '@/components/SamplesSection';
-import StatementBody from '@/components/StatementBody';
+import ProblemStatementViewer from '@/components/ProblemStatementViewer';
 import ViewHistoryTracker from '@/components/ViewHistoryTracker';
 import ProblemViewShell, {
   ProblemCompiler,
@@ -180,14 +180,17 @@ export default async function ProblemPage({ params }) {
               )}
             </CardHeader>
             <CardContent>
-              {prob.statementMd ? (
-                <StatementBody
-                  code={prob.id}
+              {prob.statementMd || prob.statementPdf ? (
+                <ProblemStatementViewer
                   platform={platform}
+                  code={prob.id}
                   segments={segments}
                   title={prob.title}
                   titleZh={prob.titleZh}
                   zhModel={prob.translateModel}
+                  hasPdf={Boolean(prob.statementPdf)}
+                  hasText={Boolean(prob.statementMd)}
+                  pdfUrl={`/api/pdf/${platform}/${prob.id}`}
                 />
               ) : (
                 <div className="text-muted-foreground rounded-lg border border-dashed p-4 text-sm">

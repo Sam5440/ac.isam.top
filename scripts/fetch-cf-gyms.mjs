@@ -18,9 +18,11 @@
  *   --mode verify        完整性校验（缺漏退出码 1；--repair 顺带回填后复验）
  *   --mode status        打印进度统计（JSON）
  *   --limit-gyms N       题面阶段最多处理 N 场
+ *   --only-gym A[,B]     只处理指定 gym（诊断/定向回填）
  *   --max-problem-pages N  本次最多抓 N 个题面页
  *   --minutes N          题面阶段时间预算（分钟，到点存档退出，续跑无缝）
- *   --concurrency N      并发页数（默认 2）
+ *   --concurrency N      并发页数（默认 1：CF 对同 IP 并发请求会挂起响应，
+ *                        实测 c=3 每题要 2 分钟拿空壳，c=1 反而 ~12s/页）
  *   --listing-pages N    列表扫描页数上限（full 默认全部）
  *   --sweep-limit N      本次 ID 探测上限（增量默认 300，full 默认不限）
  *   --login              允许用 CF_HANDLE/CF_PASSWORD 环境变量登录（受限 gym 兜底）
@@ -33,6 +35,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { execFileSync } from 'node:child_process';
 
 import { loadHtml } from './lib/html2md.mjs';
 import { parseCfProblemsPage } from './lib/cf.mjs';
@@ -50,6 +53,8 @@ const STATE_FILE = path.join(DATA, '.fetch-state.json'); // 机器本地运行�
 const SWEEP_FILE = path.join(DATA, 'sweep-state.json'); // 提交入库：ID 补扫游标与已删清单（CI 续扫依赖）
 const ATTEMPTS_FILE = path.join(DATA, '.attempts.json');
 const BROWSER_DIR = process.env.CFG_BROWSER_DIR || path.join(process.cwd(), '.cache', 'cf-gyms-browser');
+// 实时进度快照（网页监控用；多 worker 各写各的，互不覆盖）
+const LIVE_FILE = process.env.CFG_LIVE_FILE || path.join(DATA, '.live.json');
 
 const MAX_ATTEMPTS = 4; // 同一 URL 连续失败上限（跨 run 记账）
 const CHALLENGE_TIMEOUT_MS = 8 * 60 * 1000; // 单次导航的质询解决总时限
@@ -156,7 +161,36 @@ let loginDone = false;
 let loginTried = false;
 let stopping = false;
 
-const concurrency = Math.max(1, Math.min(4, Number(args.concurrency ?? 2)));
+/* ---------------- 实时进度快照（网页监控用） ---------------- */
+
+const liveWorkers = new Map();
+let liveTimer = null;
+function writeLive() {
+  if (liveTimer) return;
+  liveTimer = setTimeout(() => {
+    liveTimer = null;
+    try {
+      fs.writeFileSync(
+        LIVE_FILE,
+        JSON.stringify({
+          pid: process.pid,
+          platform: PLATFORM,
+          mode: MODE,
+          updatedAt: new Date().toISOString(),
+          workers: [...liveWorkers.values()],
+        }),
+      );
+    } catch {}
+  }, 600);
+}
+function liveSet(wid, patch) {
+  liveWorkers.set(wid, { ...(liveWorkers.get(wid) ?? { wid }), ...patch });
+  writeLive();
+}
+
+// 默认 1：实测 CF 对同 IP 的并发导航会挂起响应（content 停在 841B 空壳），
+// c=3 吞吐反而只有 c=1 的 1/5。多开标签页留作应急，不设为默认。
+const concurrency = Math.max(1, Math.min(4, Number(args.concurrency ?? 1)));
 
 // 自适应限速：遇 Cloudflare 挑战拉慢 pace（×1.4，上限 ×4），10 分钟无挑战逐次衰减回 1。
 // 长跑（24h 级）下风暴是频率相关的，宁可慢一点也不能连续触发质询。
@@ -200,7 +234,9 @@ async function pace() {
     paceMultiplier = Math.max(1, paceMultiplier * 0.85);
     if (paceMultiplier <= 1.01) lastChallengeAt = 0;
   }
-  const gap = (2500 * concurrency + rnd(800, 1600)) * paceMultiplier;
+  // 全局门控：每 gap 放行一次导航起点。并发靠多标签页重叠加载换取吞吐，
+  // 而不是拉长间隔——旧式 `* concurrency` 会让 c=3 比 c=1 还慢（实测 c=3 首题 6 分钟）。
+  const gap = (2500 + rnd(800, 1600)) * paceMultiplier;
   const wait = Math.max(0, lastNavAt + gap - Date.now());
   lastNavAt = Math.max(lastNavAt, Date.now()) + wait + gap;
   if (wait > 0) await sleep(wait);
@@ -252,16 +288,35 @@ const isNotFound = (html) => /Page not found/i.test((html.match(/<title[^>]*>([^
  * wid：使用第 wid 个 tab（并发下各 worker 独立页面）。
  * 返回 { html, status: 'ok' | 'notfound' | 'challenge-stuck' | 'incomplete' }。
  */
+const NAV_DEBUG = process.env.CF_NAV_DEBUG === '1';
+
 async function nav(url, wid = 0, ready = null) {
   await ensureBrowser();
+  const navStart = Date.now();
+  liveSet(wid, { url, phase: 'navigating', startedAt: new Date(navStart).toISOString(), status: null, error: null });
+  let lastBeat = navStart;
   let deadline = Date.now() + CHALLENGE_TIMEOUT_MS;
   let reloads = 0;
+  let emptyRetries = 0;
   const run = (async () => {
     for (;;) {
       await pace();
       try {
         const page = pages[Math.min(wid, pages.length - 1)];
-        await page.goto(url, { timeout: NAV_HTTP_TIMEOUT_MS, waitUntil: 'commit' });
+        if (!page) {
+          // relaunch() 清空 pages 的瞬间被其他 worker 撞上
+          await relaunch();
+          continue;
+        }
+        const resp = await page.goto(url, { timeout: NAV_HTTP_TIMEOUT_MS, waitUntil: 'commit' });
+        // PDF 题面（ICPC gym 常见：/problem/X 直接返回 application/pdf）：
+        // Chromium 内置 PDF 查看器不产出 HTML，content() 只有 271B 空壳，
+        // 必须走「下载 PDF + 提取文字」分支，而不是当作解析失败。
+        const ctype = resp ? String((resp.headers() || {})['content-type'] || '') : '';
+        if (/application\/pdf/i.test(ctype)) {
+          stormStreak = 0;
+          return { html: '', status: 'pdf', contentType: ctype, pdfUrl: url };
+        }
       } catch (e) {
         log('cf-gyms', `nav error ${url.slice(0, 90)}: ${String(e).slice(0, 100)} — rebuild`);
         await relaunch();
@@ -269,10 +324,45 @@ async function nav(url, wid = 0, ready = null) {
       }
       let stableCount = 0;
       let lastLen = -1;
+      let shortStreak = 0;
+      let lastShortLen = -1;
       let firstReadyAt = null;
       for (;;) {
         const page = pages[Math.min(wid, pages.length - 1)];
-        const html = await page.content();
+        if (!page) {
+          await relaunch();
+          break; // 回外层重新 goto
+        }
+        let html;
+        try {
+          html = await page.content();
+        } catch (e) {
+          if (!stopping) log('cf-gyms', `content() failed: ${String(e).slice(0, 90)} — rebuild`);
+          await relaunch();
+          break;
+        }
+        if (NAV_DEBUG && Date.now() - lastBeat > 15000) {
+          lastBeat = Date.now();
+          const title = (html.match(/<title[^>]*>([^<]*)/) || ['', ''])[1].trim().slice(0, 50);
+          log('cf-gyms', `nav-debug ${Math.round((Date.now() - navStart) / 1000)}s len=${html.length} title="${title}" ${url.slice(0, 70)}`);
+        }
+        // 空壳文档（<1200B，连 <title> 都没有）：CF 偶发返回空响应/被挂起响应。
+        // 旧逻辑只对 >500B 做「8s 无增长」兜底，这类页会白等满 8 分钟导航预算；
+        // 稳定 10s 即重导航，3 次仍空才判 incomplete。
+        if (html.length < 1200) {
+          if (html.length === lastShortLen) shortStreak++;
+          else {
+            shortStreak = 0;
+            lastShortLen = html.length;
+          }
+          if (shortStreak >= 5) {
+            emptyRetries++;
+            log('cf-gyms', `empty doc ${html.length}B — 重导航 ${emptyRetries}/3 (${url.slice(0, 70)})`);
+            if (emptyRetries > 3) return { html, status: 'incomplete' };
+            await sleep(rnd(1500, 3000));
+            break;
+          }
+        }
         if (isChallenge(html)) {
           lastChallengeAt = Date.now();
           paceMultiplier = Math.min(4, paceMultiplier * 1.4);
@@ -340,7 +430,14 @@ async function nav(url, wid = 0, ready = null) {
     () => {},
   );
   await navChain;
-  return run;
+  const res = await run;
+  liveSet(wid, {
+    phase: 'idle',
+    status: res.status,
+    finishedAt: new Date().toISOString(),
+    elapsedMs: Date.now() - navStart,
+  });
+  return res;
 }
 
 async function relaunch() {
@@ -656,11 +753,74 @@ async function sweepIds(sweepLimit) {
 
 /* ---------------- 阶段 3：题面抓取 ---------------- */
 
+/**
+ * PDF 题面：原样下载完整 PDF（data/cf-gyms/pdf/<pid>.pdf）+ 提取一份文字
+ * （statementMd，供搜索/翻译/复制使用）。取字用 poppler 的 pdftotext；
+ * 本机无该工具时仍保存 PDF，problemComplete 以 PDF 存在判定完整。
+ */
+async function savePdfProblem({ gymId, index, url, link, wid = 0 }) {
+  const pid = problemId(gymId, index);
+  const dir = path.join(DATA, 'pdf');
+  fs.mkdirSync(dir, { recursive: true });
+  const abs = path.join(dir, `${pid}.pdf`);
+  // 用页面内 fetch（真实浏览器指纹 + cf_clearance cookie）下载；
+  // ctx.request 的默认 UA 会被 Cloudflare 直接 403（实测）。
+  const page = pages[Math.min(wid, pages.length - 1)];
+  if (!page) throw new Error('no page for pdf download');
+  const b64 = await page.evaluate(async (u) => {
+    const r = await fetch(u, { credentials: 'include' });
+    if (!r.ok) throw new Error(`http ${r.status}`);
+    const buf = new Uint8Array(await r.arrayBuffer());
+    let s = '';
+    const CH = 0x8000;
+    for (let i = 0; i < buf.length; i += CH) s += String.fromCharCode.apply(null, buf.subarray(i, i + CH));
+    return btoa(s);
+  }, url);
+  const buf = Buffer.from(b64, 'base64');
+  if (!buf || buf.length < 1000 || buf.slice(0, 5).toString() !== '%PDF-') {
+    throw new Error(`not a pdf (${buf ? buf.length : 0}B)`);
+  }
+  fs.writeFileSync(abs, buf);
+  let text = '';
+  try {
+    text = execFileSync('pdftotext', ['-layout', abs, '-'], { maxBuffer: 64 * 1024 * 1024 }).toString('utf8');
+  } catch (e) {
+    log('cf-gyms', `pdftotext failed (${pid}): ${String(e).slice(0, 90)}`);
+  }
+  text = text.replace(/\r/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{4,}/g, '\n\n\n').trim();
+  saveProblem(PLATFORM, {
+    id: pid,
+    platform: PLATFORM,
+    contestId: gymId,
+    index,
+    title: sanitizeRowTitle(link.title) ?? null,
+    titleZh: null,
+    url,
+    difficulty: null,
+    tags: [],
+    points: null,
+    timeLimitMs: null,
+    memoryLimitMb: null,
+    statementMd: text,
+    statementZhMd: null,
+    statementPdf: `pdf/${pid}.pdf`,
+    statementFormat: 'pdf',
+    samples: [],
+    language: 'en',
+    fetchedAt: new Date().toISOString(),
+  });
+  return { bytes: buf.length, textLen: text.length };
+}
+
 async function fetchProblemsPhase({ limitGyms, maxProblemPages, minutes }) {
   const startedAt = Date.now();
   const deadline = minutes ? startedAt + minutes * 60000 : null;
   const t = (c) => (c.startTime ? new Date(c.startTime).getTime() : 0);
+  const only = args.onlyGym
+    ? new Set(String(args.onlyGym).split(',').map((s) => s.trim()).filter(Boolean))
+    : null;
   const jobs = contests()
+    .filter((c) => !only || only.has(String(c.id)))
     .filter((c) => {
       if (exhausted(`/gym/${c.id}`)) return false;
       // 这些状态说明题目确认不可得（或比赛还没开打），等列表前向演进再入队
@@ -732,6 +892,18 @@ async function fetchProblemsPhase({ limitGyms, maxProblemPages, minutes }) {
       const url = `${CF}/gym/${id}/problem/${link.index}`;
       let pr = await nav(url, wid, problemPageReady(id, link.index));
       fetchedPages++;
+      if (pr.status === 'pdf') {
+        try {
+          const { bytes, textLen } = await savePdfProblem({ gymId: id, index: link.index, url, link, wid });
+          log('cf-gyms', `pdf ${pid}: ${(bytes / 1024).toFixed(0)}KB, text=${textLen} chars`);
+          succeed(key);
+          state.stats.problemsFetched++;
+          fetched++;
+        } catch (e) {
+          fail(key, `pdf: ${String(e).slice(0, 120)}`);
+        }
+        continue;
+      }
       if (pr.status !== 'ok') {
         fail(key, pr.status);
         continue;
@@ -782,10 +954,12 @@ async function fetchProblemsPhase({ limitGyms, maxProblemPages, minutes }) {
     }
     state.stats.gymsFetched++;
     doneGyms++;
+    // 每场都落盘：题面文件已写但 contests.json 未同步时，索引会落后于磁盘
+    // （文件成孤儿，监控页面数虚高）。单场写 ~1MB，成本可接受。
+    flushContests();
+    saveAttempts();
     if (doneGyms % 10 === 0) {
-      flushContests();
       saveState();
-      saveAttempts();
       log(
         'cf-gyms',
         `progress: gyms=${doneGyms}/${jobs.length} problemPages=${fetchedPages} elapsed=${Math.round((Date.now() - startedAt) / 60000)}min`,

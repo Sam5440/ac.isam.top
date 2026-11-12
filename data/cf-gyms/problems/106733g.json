@@ -1,0 +1,24 @@
+{
+  "id": "106733g",
+  "platform": "cf-gyms",
+  "contestId": 106733,
+  "index": "G",
+  "title": "Espresso",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106733/problem/G",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Jihyo and Dahyun are tired from songwriting, so they decide to play a game to kill time. They *usually* play *janggi* (Korean chess), but decide to try out a new game.\n\nThey have a computer that randomly creates a directed graph: $n$ circles are drawn on the table, and $m$ arrows connect from one node (circle) to another. It is guaranteed no arrow will point from a node to itself, and it is guaranteed there won't be multiple arrows that have the same start and end node. However, note it is possible (as an example) to have an arrow point from Node 1 to Node 2, and another arrow point from Node 2 to Node 1. Furthermore, each node is either painted apricot (for Jihyo) or kept white (for Dahyun).\n\nWhen they're ready to play, the computer will randomly pick a starting node for Jihyo among all of the apricot nodes, and a starting node for Dahyun among all of the white nodes. The two will then take turns moving, with Jihyo always going first. When it is a player's turn, they must pick an edge pointing out from their node and travel to where it points. A player is always allowed to re-visit a node, but they can never travel to a node that their opponent is currently on. If a player doesn't have any valid moves, the game ends and that player loses. If after $10^7$ moves (since both players are very patient) the game does not end, it ends in a draw. Both players will naturally play optimally (preferring wins to draws and draws to losses).\n\nDahyun is convinced that the computer could potentially be rigged against her, especially since she always has to go second. To test her theory, she wants to figure out the probability the game ends in a draw and the probability game ends in her loss. Can you help her find this out quickly?\n\n## Input\n\nThe first line contains two integers $n$ ($2 \\le n \\le 10^3$) and $m$ ($1 \\le m \\le \\min(10^4, n(n-1))$), the number of nodes and edges, respectively.\n\nThe second line contains a binary string $s$ of length $n$, where $s_i=1$ means the $i$th node is a Jihyo node and $s_i=0$ means it is a Dahyun node. It is guaranteed that $s$ contains at least one $1$ and at least one $0$.\n\nThe next $m$ lines each contain two integers $a$ and $b$ ($1 \\le a,b \\le n$), denoting a directed edge from node $a$ to node $b$.\n\n## Output\n\nPrint two space-separated decimals, representing (respectively) the probability Dahyun draws and that she loses.\n\nEach of your answers will be marked correct if the absolute or relative error doesn't exceed $10^{-6}$. That is if your answer is $x$ and the jury's answer is $y$, your answer will be accepted iff $\\frac{|x-y|}{\\max(1,|y|)} \\le 10^{-6}$.\n\n## Note\n\nLet $(u,v)$ denote the state where (at the beginning of the game) Jihyo is at node $u$ and Dahyun is at node $v$. The below table breaks down the cases:\n\nStateWinner$(1,2)$Dahyun$(1,4)$Draw$(1,5)$Jihyo$(3,2)$Draw$(3,4)$Dahyun$(3,5)$Jihyo\n\n$^\\dagger$If it wasn't obvious, this problem is also based on a song.\n\nThere are six equally likely starting pairs. Two lead to a draw and two lead to Jihyo winning, so each requested probability is one third.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 4\n10100\n1 2\n2 1\n3 4\n4 3\n",
+      "output": "0.33333333 0.33333333\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:42:18.534Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "106725f",
+  "platform": "cf-gyms",
+  "contestId": 106725,
+  "index": "F",
+  "title": "Flight of the Night Butterfly",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106725/problem/F",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 512,
+  "statementMd": "You need to guide a night butterfly through the darkness. Its starting point is the common center of six radial tracks, numbered clockwise from 00 to 55. Track 00 is the **main track**; the other five are **auxiliary tracks**.\n\nOnly certain intervals on the tracks are lit. The main track has one set of lit intervals, while all five auxiliary tracks share another set. All lit intervals are closed, and their endpoints represent distances from the center.\n\nBefore each flight, you may choose **a positive real** speed d, which remains fixed throughout the flight. The butterfly starts at the center at time 0. At every positive integer time t, it is on track (tmod6) at a distance t⋅d from the center. Thus, it visits tracks 1,2,3,4,5,0,1,2,… in this order.\n\nYou are given q queries, each specifying a target distance T. You want the butterfly to reach the main track at some time k, at a distance T from the center. Thus, k must be a positive multiple of 6, and k⋅d=T. At every integer time 1,2,…,k, the butterfly must be within a lit interval on its current track, or it will fall into darkness and lose its way. There are no restrictions at other times, including time 0.\n\nFor each query, find the earliest time k at which the butterfly can safely reach its target, or print `-1` if it cannot. The queries are independent, and you may choose d separately for each query.\n\n## Input\n\nThe first line contains two integers n and m (1≤n,m≤50), representing the numbers of lit intervals on the main track and in the set shared by all five auxiliary tracks, respectively.\n\nEach of the next n lines contains two integers l and r (1≤l≤r≤1018), representing a lit interval [l,r] on the main track.\n\nEach of the next m lines contains two integers l and r (1≤l≤r≤1018), representing a lit interval [l,r] shared by all five auxiliary tracks.\n\nWithin each set, the intervals are pairwise disjoint and are given in increasing order of their left endpoints. In particular, consecutive intervals satisfy li+1&gt;ri.\n\nThe next line contains an integer q (1≤q≤100), representing the number of queries.\n\nEach of the next q lines contains an integer T (1≤T≤1018), representing the target distance of one query.\n\n## Output\n\nFor each query, print on a separate line the earliest time k at which the butterfly can safely reach its target, or `-1` if it cannot.\n\n## Note\n\nFor T=6, choosing d=1 lets the butterfly reach the target at time k=6. The distances at the first five integer times are 1,2,3,4,5, all in the lit interval [1,5] on the auxiliary tracks. At the sixth integer time, the distance is 6, which is in the lit interval [6,6] on the main track.\n\nFor T=12, choosing d=1 lets the butterfly reach the target at time k=12. Its distances while on the auxiliary tracks are all in [1,5]∪[7,11], while its distances on the main track are 6 and 12. To arrive at time k=6, it would need d=2, but then at time 3 it would be at an unsafe position at distance 6 from the center on an auxiliary track.\n\nThe diagrams below show the query T=12. The first two use d=1, and the third uses d=2. Gold segments and points are lit intervals. Dark blue dots are labeled with their times, and the red cross marks a position in darkness. The second panel continues from the hollow dot at time 6. Dashed arrows show only the order of integer-time positions, not the actual flight path between them.\n\n![image](https://espresso.codeforces.com/c43f23c658b8c505d9c57cfce09608ae98409ed5.png)\n\nFor T=18, the target is outside every lit interval on the main track, so it cannot be reached safely.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2\n6 6\n12 12\n1 5\n7 11\n3\n6\n12\n18\n",
+      "output": "6\n12\n-1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:56:09.333Z"
+}

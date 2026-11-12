@@ -1,0 +1,28 @@
+{
+  "id": "106725k",
+  "platform": "cf-gyms",
+  "contestId": 106725,
+  "index": "K",
+  "title": "Keep on the Right Track",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106725/problem/K",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 512,
+  "statementMd": "You enjoy exploring the world by car. Today, you have arrived in a new country consisting of $n$ cities, numbered $1$ to $n$.\n\nYou wish to drive to the capital city, $t$. Unfortunately, the country's communication network is outdated, so your navigation system does not always have a signal. However, the road network forms a **weighted directed acyclic graph** where the weight of each edge represents the time required to traverse it, and every city has a path to the capital city $t$ via the road network.\n\nUpon arriving at any city other than $t$, you choose the next road according to the following rules:\n\n- If there is a signal, the navigation system randomly selects one of the **shortest paths** from the current city to $t$ with equal probability, and directs you to take the **first edge** of that path;\n- If there is no signal, you randomly select one of the city's outgoing edges with equal probability.\n\nConsequently, in cities with a signal, the probability of selecting a specific outgoing edge is proportional to the number of shortest paths that begin with that edge; the probabilities of selecting different outgoing edges are not necessarily equal. A new choice is made after traversing each edge to reach the next city. All random choices are independent, and the journey ends immediately upon reaching the capital city $t$.\n\nYou want to determine, for each starting city $s$, the expected total time required to reach the capital city $t$, modulo $998244353$.\n\n## Input\n\nThe first line contains three integers $n,~m,~t$ ($1 \\le t \\le n \\le 2 \\times 10^5$, $0 \\le m \\le 4 \\times 10^5$), representing the number of cities, the number of roads, and the ID of the capital city, respectively.\n\nThe second line contains a binary string of length $n$. The $i$-th character is $1$ if city $i$ has a signal, and $0$ otherwise. The state of city $t$ does not affect the solution to the problem.\n\nThe next $m$ lines each contain three integers $u,~v,~w$ ($1 \\le u, v \\le n$, $u \\ne v$, $1 \\le w \\le 10^9$), representing a road from $u$ to $v$ with a travel time of $w$.\n\nThe graph is guaranteed to be a directed acyclic graph; there is at most one directed edge between any pair of vertices; and $t$ is the only vertex in the graph with no outgoing edges. The number of shortest paths from any vertex to $t$ is not divisible by $998244353$.\n\n## Output\n\nOutput $n$ integers. The $s$-th integer represents the expected total travel time from city $s$ to city $t$, modulo $998244353$.\n\nMore precisely, if the expected value is expressed as an irreducible fraction $p/q$, output $p\\cdot q^{-1}\\bmod 998244353$, where $q^{-1}$ is the modular multiplicative inverse of $q$. It is guaranteed that this inverse exists.\n\n## Note\n\nIn the first example, the three shortest paths from $1$ to $5$ are $1\\to2\\to5$, $1\\to2\\to4\\to5$, and $1\\to3\\to5$. Therefore, at city $1$, the navigation system directs you to city $2$ with probability $2/3$ and to city $3$ with probability $1/3$—**not** by choosing each with a probability of $1/2$.\n\nCity $3$ has no signal, so its two outgoing edges are chosen with equal probability. The expected remaining time to reach the destination from there is $(2+3)/2 = 5/2$; the expected time starting from city $2$ is $2$. Thus, the expected time starting from city $1$ is $\\frac23(1+2)+\\frac13(1+\\frac52)=\\frac{19}{6}$, which is $166374062$ after modulo $998244353$.\n\nIn the second example, the two outgoing edges from city $4$ are chosen with equal probability. The navigation system resumes operation upon reaching city $1$ or $3$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 7 5\n11011\n1 2 1\n1 3 1\n2 5 2\n2 4 1\n4 5 1\n3 5 2\n3 4 2\n",
+      "output": "166374062 2 499122179 1 0\n"
+    },
+    {
+      "input": "4 5 2\n1010\n4 1 1\n4 3 5\n1 2 1\n1 3 1\n3 2 1\n",
+      "output": "1 0 1 4\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-12T14:56:47.733Z"
+}

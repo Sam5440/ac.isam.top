@@ -44,6 +44,9 @@ jobs:
       - name: Install Playwright Chromium (Codeforces 反爬需要真实浏览器)
         run: npx playwright install --with-deps chromium
 
+      - name: Install poppler-utils (PDF 题面提取文字)
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
       - name: Fetch cf-gyms (incremental)
         env:
           # CI 出口 IP 更容易被 Cloudflare 质询：有头浏览器 + Xvfb 通过率更高
