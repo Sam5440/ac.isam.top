@@ -117,10 +117,9 @@ class Worker:
             env["CFG_LIVE_FILE"] = self.live_path
             cmd = [
                 "node", FETCHER,
-                "--mode", "full",
-                # 列表与 ID 补扫交给显式全量跑；面板专注题面，避免每轮重启重扫列表
-                "--listing-pages", "0",
-                "--sweep-limit", "0",
+                # 列表与 ID 补扫交给 CI/显式全量跑；面板专注题面（新→旧倒序），
+                # 不请求 /gyms/page/N —— 列表页最容易触发 Cloudflare 质询
+                "--mode", "problems",
                 "--concurrency", "1",
             ]
             if self.minutes:

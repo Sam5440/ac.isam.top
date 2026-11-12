@@ -15,6 +15,7 @@
  * 用法：
  *   node scripts/fetch-cf-gyms.mjs                    # 增量（默认）：列表前3页新赛+ID补扫+题面回填(38min预算)
  *   --mode full          全量：列表全扫 + ID 全区间补扫 + 全部题面
+ *   --mode problems      只跑题面（列表/补扫已完整时用，避开列表页质询；面板长跑用这个）
  *   --mode verify        完整性校验（缺漏退出码 1；--repair 顺带回填后复验）
  *   --mode status        打印进度统计（JSON）
  *   --limit-gyms N       题面阶段最多处理 N 场
@@ -33,6 +34,7 @@
  * 有头模式（CF_HEADLESS=0，CI 走 xvfb-run）通过率最高。
  */
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import { execFileSync } from 'node:child_process';
@@ -754,15 +756,15 @@ async function sweepIds(sweepLimit) {
 /* ---------------- 阶段 3：题面抓取 ---------------- */
 
 /**
- * PDF 题面：原样下载完整 PDF（data/cf-gyms/pdf/<pid>.pdf）+ 提取一份文字
- * （statementMd，供搜索/翻译/复制使用）。取字用 poppler 的 pdftotext；
- * 本机无该工具时仍保存 PDF，problemComplete 以 PDF 存在判定完整。
+ * PDF 题面：仓库只存提取出的文字（statementMd），PDF 原件不入库。
+ * 下载仅用于取字——落到系统临时目录，pdftotext 后立即删除；
+ * statementPdf 记录远端原站地址，前端直接 iframe 内嵌。
  */
 async function savePdfProblem({ gymId, index, url, link, wid = 0 }) {
   const pid = problemId(gymId, index);
-  const dir = path.join(DATA, 'pdf');
-  fs.mkdirSync(dir, { recursive: true });
-  const abs = path.join(dir, `${pid}.pdf`);
+  const tmpDir = path.join(os.tmpdir(), 'cf-gyms-pdf');
+  fs.mkdirSync(tmpDir, { recursive: true });
+  const abs = path.join(tmpDir, `${pid}.pdf`);
   // 用页面内 fetch（真实浏览器指纹 + cf_clearance cookie）下载；
   // ctx.request 的默认 UA 会被 Cloudflare 直接 403（实测）。
   const page = pages[Math.min(wid, pages.length - 1)];
@@ -780,12 +782,14 @@ async function savePdfProblem({ gymId, index, url, link, wid = 0 }) {
   if (!buf || buf.length < 1000 || buf.slice(0, 5).toString() !== '%PDF-') {
     throw new Error(`not a pdf (${buf ? buf.length : 0}B)`);
   }
-  fs.writeFileSync(abs, buf);
   let text = '';
   try {
+    fs.writeFileSync(abs, buf);
     text = execFileSync('pdftotext', ['-layout', abs, '-'], { maxBuffer: 64 * 1024 * 1024 }).toString('utf8');
   } catch (e) {
     log('cf-gyms', `pdftotext failed (${pid}): ${String(e).slice(0, 90)}`);
+  } finally {
+    try { fs.unlinkSync(abs); } catch {}
   }
   text = text.replace(/\r/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{4,}/g, '\n\n\n').trim();
   saveProblem(PLATFORM, {
@@ -801,9 +805,10 @@ async function savePdfProblem({ gymId, index, url, link, wid = 0 }) {
     points: null,
     timeLimitMs: null,
     memoryLimitMb: null,
-    statementMd: text,
+    statementMd: text || null,
     statementZhMd: null,
-    statementPdf: `pdf/${pid}.pdf`,
+    // 远端原站地址（前端内嵌用），不落地任何 PDF 文件
+    statementPdf: url,
     statementFormat: 'pdf',
     samples: [],
     language: 'en',
@@ -1100,6 +1105,14 @@ async function main() {
       await fetchProblemsPhase({
         limitGyms: args.limitGyms,
         maxProblemPages: args.maxProblemPages,
+        minutes: args.minutes,
+      });
+    } else if (MODE === 'problems') {
+      // 只跑题面阶段：列表与 ID 补扫已完整时用（面板长跑/纯回填）。
+      // 不碰 /gyms/page/N（那是最容易触发质询的入口），新赛收录交给 CI 增量。
+      await fetchProblemsPhase({
+        limitGyms: args.limitGyms,
+        maxProblemPages: args.maxProblemPages ?? Infinity,
         minutes: args.minutes,
       });
     } else {

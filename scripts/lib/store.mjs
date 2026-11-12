@@ -47,14 +47,11 @@ export function problemExists(platform, id) {
 
 /** 文件存在且题面完整才算已收录。
  *  - 普通题：statementMd 非空；
- *  - PDF 题面（ICPC gym 常见）：文字提取可能为空，只要 PDF 文件在就算完整。 */
+ *  - PDF 题面（ICPC gym 常见）：仓库只存提取文字，PDF 原件是远端原站地址，
+ *    不落任何文件 —— statementPdf 非空即可展示（文字提取可能为空）。 */
 export function problemComplete(platform, id) {
   const p = loadProblem(platform, id);
   if (!p) return false;
   if (p.statementMd) return true;
-  if (p.statementPdf) {
-    const name = path.basename(String(p.statementPdf));
-    return fs.existsSync(path.join(DATA_ROOT, platform, 'pdf', name));
-  }
-  return false;
+  return Boolean(p.statementPdf);
 }

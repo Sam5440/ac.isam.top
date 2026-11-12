@@ -190,7 +190,7 @@ export default async function ProblemPage({ params }) {
                   zhModel={prob.translateModel}
                   hasPdf={Boolean(prob.statementPdf)}
                   hasText={Boolean(prob.statementMd)}
-                  pdfUrl={`/api/pdf/${platform}/${prob.id}`}
+                  pdfUrl={prob.statementPdf}
                 />
               ) : (
                 <div className="text-muted-foreground rounded-lg border border-dashed p-4 text-sm">

@@ -7,8 +7,6 @@ const nextConfig = {
     '/contests/[platform]/[contestId]': ['./data/index.json', './data/*/contests.json', './data/*/problems/*.json'],
     '/api/problems': ['./data/index.json'],
     '/api/problems/[platform]/[problemId]': ['./data/index.json', './data/*/problems/*.json'],
-    // PDF 题面原件（ICPC gym 常见）由该路由直出
-    '/api/pdf/[platform]/[problemId]': ['./data/*/pdf/*.pdf'],
     '/ci': ['./data/ci-log.json'],
   },
   outputFileTracingExcludes: {
