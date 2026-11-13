@@ -1,0 +1,30 @@
+{
+  "id": "2290G2",
+  "platform": "codeforces",
+  "contestId": 2290,
+  "index": "G2",
+  "title": "Lakeside Trail (Hard Version)",
+  "url": "https://codeforces.com/contest/2290/problem/G2",
+  "difficulty": null,
+  "tags": [
+    "binary search",
+    "greedy",
+    "math"
+  ],
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is the hard version of the problem. The two versions differ only in the constraints on $n$, on the sum of $n$ over all test cases, and on the number of test cases.**\n\nA circular trail around a lake consists of $n$ sections numbered from $1$ to $n$ along the trail. The height of the $i$-th section is $h_i$. Sections $i$ and $i+1$ are adjacent for each $i$ from $1$ to $n-1$, and sections $n$ and $1$ are adjacent as well.\n\nThe steepness of the trail is the maximum absolute difference between the heights of two adjacent sections. In other words, the steepness is $\\max_{1 \\le i \\le n} \\left|h_i - h_{i+1}\\right|$, where $h_{n+1}$ should be considered to exist and to be equal to $h_1$.\n\nYou have $k$ units of soil. One unit of soil increases the height of one section by $1$; several units may be used on the same section. Soil cannot be removed, so the heights can only increase.\n\nFind the minimum possible steepness of the trail after using at most $k$ units of soil.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $k$ ($3 \\le n \\le 10^6$, $0 \\le k \\le 10^{18}$) — the number of sections and the number of units of soil.\n\nThe second line contains $n$ integers $h_1, h_2, \\ldots, h_n$ ($1 \\le h_i \\le 10^9$) — the heights of the sections.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, print a single integer — the minimum possible steepness of the trail after using at most $k$ units of soil.\n\n## Note\n\nIn the first test case, you can use two units of soil on section $1$ and one unit on section $3$. The heights become $3, 5, 3, 8$, and the differences between adjacent sections are $2$, $2$, $5$, and $5$, the last one being between sections $4$ and $1$. So the steepness is $5$.\n\n![image](https://espresso.codeforces.com/7fccb31535c51b705254ec886143ddd1e3d42a32.png)The ring is divided into four sections of the trail, with heights shown inside them. The $\\Delta$ labels at the boundaries show the absolute differences between adjacent heights, and $+2$ and $+1$ show the added soil.\n\nSteepness $4$ cannot be achieved: the height of section $4$ is at least $8$, and sections $3$ and $1$ are adjacent to it, so both of them would have to be raised to at least $4$, which needs $2 + 3 = 5$ units of soil.\n\nIn the second test case, the heights can become $5, 9, 5, 2, 6$ using $3 + 1 + 1 = 5$ units of soil, and the steepness becomes $4$. Steepness $3$ cannot be achieved: the height of section $2$ is at least $9$, so sections $1$ and $3$ would have to be raised to at least $6$, which needs $4 + 2 = 6$ units of soil.\n\nIn the third test case, no soil can be used. Sections $3$ and $1$ are adjacent, so the steepness is $7 - 1 = 6$.\n\nIn the fourth test case, all heights can be made equal to $10$ using $18$ units of soil.\n\nIn the fifth test case, the heights can become $4, 2, 1, 1, 2$ using $1 + 1 = 2$ units of soil, and the steepness becomes $2$. Steepness $1$ cannot be achieved: the height of section $1$ is at least $4$, and sections $2$ and $5$ are adjacent to it, so they would have to be raised to at least $3$, and then sections $3$ and $4$ to at least $2$, which needs $2 + 1 + 1 + 2 = 6$ units of soil.",
+  "samples": [
+    {
+      "input": "6\n4 3\n1 5 2 8\n5 5\n2 9 4 1 6\n3 0\n1 4 7\n3 100\n1 10 1\n5 5\n4 1 1 1 1\n6 14\n3 6 2 4 1 5\n",
+      "output": "5\n4\n6\n0\n2\n1\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-13T01:57:38.876Z",
+  "titleZh": "湖畔步道（困难版）",
+  "statementZhMd": "**这是本题的困难版。两个版本的区别仅在于 $n$ 的约束、所有测试用例中 $n$ 的总和的约束，以及测试用例的数量。**\n\n一条环湖步道由 $n$ 段组成，沿步道依次编号为 $1$ 到 $n$。第 $i$ 段的高度为 $h_i$。对于从 $1$ 到 $n-1$ 的每个 $i$，第 $i$ 段与第 $i+1$ 段相邻；第 $n$ 段与第 $1$ 段也相邻。\n\n步道的陡峭度定义为相邻两段高度差的绝对值的最大值。换言之，陡峭度为 $\\max_{1 \\le i \\le n} \\left|h_i - h_{i+1}\\right|$，其中视 $h_{n+1}$ 存在且等于 $h_1$。\n\n你有 $k$ 单位的土。每单位土可以使某一段的高度增加 $1$；同一段可以使用多单位的土。不能移走土，因此各段的高度只能增加。\n\n求使用至多 $k$ 单位的土后，步道陡峭度的最小可能值。\n\n## 输入格式\n\n每个输入包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含两个整数 $n$ 和 $k$（$3 \\le n \\le 10^6$，$0 \\le k \\le 10^{18}$）——分别表示步道的段数和土的单位数。\n\n第二行包含 $n$ 个整数 $h_1, h_2, \\ldots, h_n$（$1 \\le h_i \\le 10^9$）——表示各段的高度。\n\n保证所有测试用例中 $n$ 的总和不超过 $10^6$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数——使用至多 $k$ 单位的土后，步道陡峭度的最小可能值。\n\n## 说明\n\n在第一组测试用例中，你可以在第 $1$ 段使用两单位的土，在第 $3$ 段使用一单位的土。各段的高度变为 $3, 5, 3, 8$，相邻两段的高度差的绝对值分别为 $2$、$2$、$5$ 和 $5$，其中最后一个对应第 $4$ 段与第 $1$ 段。因此，陡峭度为 $5$。\n\n![image](https://espresso.codeforces.com/7fccb31535c51b705254ec886143ddd1e3d42a32.png)圆环被划分为步道的四段，各段内部标有其高度。边界处的 $\\Delta$ 标记表示相邻两段高度差的绝对值，$+2$ 和 $+1$ 表示添加的土量。\n\n无法使陡峭度达到 $4$：第 $4$ 段的高度至少为 $8$，而第 $3$ 段和第 $1$ 段都与它相邻，因此这两段都必须升高到至少 $4$，这需要 $2 + 3 = 5$ 单位的土。\n\n在第二组测试用例中，使用 $3 + 1 + 1 = 5$ 单位的土，可以使各段的高度变为 $5, 9, 5, 2, 6$，此时陡峭度为 $4$。无法使陡峭度达到 $3$：第 $2$ 段的高度至少为 $9$，因此第 $1$ 段和第 $3$ 段都必须升高到至少 $6$，这需要 $4 + 2 = 6$ 单位的土。\n\n在第三组测试用例中，不能使用任何土。第 $3$ 段与第 $1$ 段相邻，因此陡峭度为 $7 - 1 = 6$。\n\n在第四组测试用例中，使用 $18$ 单位的土，可以使所有段的高度都变为 $10$。\n\n在第五组测试用例中，使用 $1 + 1 = 2$ 单位的土，可以使各段的高度变为 $4, 2, 1, 1, 2$，此时陡峭度为 $2$。无法使陡峭度达到 $1$：第 $1$ 段的高度至少为 $4$，而第 $2$ 段和第 $5$ 段都与它相邻，因此这两段都必须升高到至少 $3$，随后第 $3$ 段和第 $4$ 段也必须升高到至少 $2$，这需要 $2 + 1 + 1 + 2 = 6$ 单位的土。",
+  "translatedAt": "2026-11-13T01:59:23.933Z",
+  "translateModel": "gpt-6.1-sol"
+}
