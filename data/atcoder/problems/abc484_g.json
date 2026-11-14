@@ -1,0 +1,37 @@
+{
+  "id": "abc484_g",
+  "platform": "atcoder",
+  "contestId": "abc484",
+  "index": "G",
+  "title": "Wildcard Construction",
+  "titleZh": "通配符构造",
+  "url": "https://atcoder.jp/contests/abc484/tasks/abc484_g",
+  "difficulty": 2238,
+  "tags": [],
+  "points": 600,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given strings $S,X,Y$ consisting of `0`, `1`, and `?`.\n\nA string that can be obtained by the following procedure is called a **good string**.\n\n- Choose a sequence $t=(t _ 1,t _ 2,\\ldots,t _ k)$ consisting of $x$ and $y$ such that there is no integer $i\\ (1\\le i\\lt k)$ with $t _ i=t _ {i+1}=y$.\n- Let $s=(s _ 1,s _ 2,\\ldots,s _ k)$ be the sequence obtained by replacing each element of $t$ with the string $X$ if it is $x$, and with the string $Y$ if it is $y$. Let $T$ be the string obtained by concatenating $s _ 1,s _ 2,\\ldots,s _ k$ in this order.\n- Replace each `?` in $T$ with `0` or `1` of your choice.\n\nFind the number, modulo $998244353$, of good strings that can be obtained by replacing each `?` in $S$ with `0` or `1`.\n\n## Constraints\n\n- $S,X,Y$ are strings consisting of `0`, `1`, and `?`.\n- $1\\le |S|\\le2000$ (Here, $|S|$ denotes the length of $S$.)\n- $1\\le |X|\\le8$\n- $1\\le |Y|\\le8$\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n```\nS\nX\nY\n```\n\n## Output\n\nPrint the answer.",
+  "statementZhMd": "## 题目描述\n\n给定由 `0`、`1` 和 `?` 组成的字符串 $S,X,Y$。\n\n能够通过以下过程得到的字符串称为**好字符串**。\n\n- 选择一个由 $x$ 和 $y$ 组成的序列 $t=(t _ 1,t _ 2,\\ldots,t _ k)$，使得不存在整数 $i\\ (1\\le i\\lt k)$ 满足 $t _ i=t _ {i+1}=y$。\n- 将 $t$ 中的每个元素替换为字符串：若该元素为 $x$，则替换为 $X$；若为 $y$，则替换为 $Y$。将得到的序列记为 $s=(s _ 1,s _ 2,\\ldots,s _ k)$。将 $s _ 1,s _ 2,\\ldots,s _ k$ 按此顺序连接得到的字符串记为 $T$。\n- 将 $T$ 中的每个 `?` 任意替换为 `0` 或 `1`。\n\n求将 $S$ 中的每个 `?` 替换为 `0` 或 `1` 后，能够得到多少个好字符串，答案对 $998244353$ 取模。\n\n## 约束条件\n\n- $S,X,Y$ 是由 `0`、`1` 和 `?` 组成的字符串。\n- $1\\le |S|\\le2000$（这里，$|S|$ 表示 $S$ 的长度。）\n- $1\\le |X|\\le8$\n- $1\\le |Y|\\le8$\n\n## 输入格式\n\n输入以如下格式从标准输入给出：\n\n```\nS\nX\nY\n```\n\n## 输出格式\n\n输出答案。",
+  "samples": [
+    {
+      "input": "?0??11?1?\n0?1\n?1?\n",
+      "output": "5\n",
+      "note": "For example, the string `001111011`, which can be obtained by replacing each `?` in $S$ with `0` or `1`, is a good string. Starting the procedure with $t=(x,y,x)$ gives $T={}$`0?1?1?0?1`. By replacing each `?` in $T$ with `0` or `1`, we can obtain `001111011`, so `001111011` is a good string.\n\nBesides this, the four strings `001011010`, `001011011`, `001011110`, `001011111` satisfy the condition. No other strings satisfy the condition, so print `5`."
+    },
+    {
+      "input": "0?10?1?01?\n???\n?????\n",
+      "output": "0\n",
+      "note": "Note that $y$ must not appear consecutively in $t$."
+    },
+    {
+      "input": "????????????1???1??0??????1???????1????????1????????????????0\n?0??\n?\n",
+      "output": "992356689\n",
+      "note": "Note that you should print the number of strings satisfying the condition modulo $998244353$."
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-14T19:15:14.037Z",
+  "translatedAt": "2026-11-14T19:17:31.426Z",
+  "translateModel": "gpt-6.1-sol"
+}
