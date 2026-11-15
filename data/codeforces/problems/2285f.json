@@ -1,0 +1,30 @@
+{
+  "id": "2285F",
+  "platform": "codeforces",
+  "contestId": 2285,
+  "index": "F",
+  "title": "Mooclear Reactor 3",
+  "url": "https://codeforces.com/contest/2285/problem/F",
+  "difficulty": null,
+  "tags": [
+    "data structures",
+    "graphs"
+  ],
+  "points": 3250,
+  "timeLimitMs": 4000,
+  "memoryLimitMb": 256,
+  "statementMd": "Bessie is trying to develop energy-efficient moolecules for her mooclear reactor!\n\nShe has $n$ individual atoms, numbered from $1$ to $n$. Initially, each atom forms its own single-atom moolecule.\n\nThere are $m$ reactive pairs of atoms. If a reactive pair of atoms ever ends up in the same moolecule, the moolecule becomes unstable and immediately explodes. After the explosion, all atoms in the moolecule separate into single-atom moolecules.\n\nBessie performs $q$ experiments in her lab. In the $i$-th experiment, she attempts to merge the moolecule containing atom $u_i$ with the moolecule containing atom $v_i$:\n\n1. If atom $u_i$ and atom $v_i$ are in different moolecules, Bessie combines the moolecules into one moolecule containing the atoms from both.\n2. If the newly combined moolecule contains **at least one** reactive pair of atoms, it instantly explodes into single-atom moolecules.\n\nAfter each experiment, Bessie wants to know the number of moolecules in her laboratory. Help her compute this count after every experiment!\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains three integers $n$, $m$, and $q$ ($2 \\le n \\le 2\\cdot 10^5$, $0 \\le m \\le 2\\cdot 10^5$, $1 \\le q \\le 2\\cdot 10^5$) — the number of atoms, the number of reactive pairs, and the number of experiments, respectively.\n\nEach of the next $m$ lines contains two integers $x_j$ and $y_j$ ($1 \\le x_j, y_j \\le n$, $x_j \\neq y_j$), denoting that atoms $x_j$ and $y_j$ are a reactive pair. It is guaranteed that $(x_i,y_i)\\ne (x_j,y_j)$ and $(x_i,y_i)\\ne (y_j,x_j)$ for all $1\\le i \\lt j\\le m$.\n\nEach of the next $q$ lines contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$, $u_i \\neq v_i$), denoting the atoms Bessie attempts to merge in the $i$-th experiment.\n\nIt is guaranteed that the sums of $n$, $m$, and $q$ over all test cases do not exceed $2\\cdot 10^5$.\n\n## Output\n\nFor each test case, print $q$ integers, each on a new line. The $i$-th integer should be the total number of moolecules after the $i$-th experiment.\n\n## Note\n\nIn the first test case, there are two reactive pairs: $(1,3)$ and $(2,4)$.\n\nIn the first two experiments, Bessie successfully merges two moolecules, and the number of moolecules decreases by one each time.\n\nThe third and fourth experiments both cause explosions, causing the number of moolecules to return to $5$.\n\nThe fifth experiment is a successful merge, so the number of moolecules decreases to $4$.",
+  "samples": [
+    {
+      "input": "2\n5 2 5\n1 3\n2 4\n1 2\n3 4\n1 4\n1 3\n2 5\n4 0 4\n1 2\n3 4\n2 4\n1 2\n",
+      "output": "4\n3\n5\n5\n4\n3\n2\n1\n1\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-15T17:51:34.393Z",
+  "titleZh": "奶牛核反应堆 3",
+  "statementZhMd": "Bessie 正在尝试为她的奶牛核反应堆研发节能分子！\n\n她有 $n$ 个独立的原子，编号从 $1$ 到 $n$。最初，每个原子各自构成一个单原子分子。\n\n有 $m$ 对原子是反应对。如果某对反应对中的两个原子处于同一个分子中，该分子就会变得不稳定并立即爆炸。爆炸后，该分子中的所有原子都会分离，各自形成一个单原子分子。\n\nBessie 在实验室中进行 $q$ 次实验。在第 $i$ 次实验中，她尝试将包含原子 $u_i$ 的分子与包含原子 $v_i$ 的分子合并：\n\n1. 如果原子 $u_i$ 和原子 $v_i$ 位于不同的分子中，Bessie 就将这两个分子合并成一个包含两者所有原子的分子。\n2. 如果合并后的分子中包含**至少一对**反应对，它就会立即爆炸，分裂成若干个单原子分子。\n\n每次实验后，Bessie 都想知道实验室中的分子数量。请帮助她计算每次实验后的分子数量！\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含三个整数 $n$、$m$ 和 $q$（$2 \\le n \\le 2\\cdot 10^5$，$0 \\le m \\le 2\\cdot 10^5$，$1 \\le q \\le 2\\cdot 10^5$），分别表示原子数量、反应对数量和实验次数。\n\n接下来的 $m$ 行，每行包含两个整数 $x_j$ 和 $y_j$（$1 \\le x_j, y_j \\le n$，$x_j \\neq y_j$），表示原子 $x_j$ 和 $y_j$ 是一对反应对。保证对于所有 $1\\le i \\lt j\\le m$，都有 $(x_i,y_i)\\ne (x_j,y_j)$ 且 $(x_i,y_i)\\ne (y_j,x_j)$。\n\n接下来的 $q$ 行，每行包含两个整数 $u_i$ 和 $v_i$（$1 \\le u_i, v_i \\le n$，$u_i \\neq v_i$），表示 Bessie 在第 $i$ 次实验中尝试合并的两个原子。\n\n保证所有测试用例中，$n$ 的总和、$m$ 的总和以及 $q$ 的总和均不超过 $2\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出 $q$ 个整数，每个整数占一行。第 $i$ 个整数应为第 $i$ 次实验后的分子总数。\n\n## 说明\n\n在第一组测试用例中，有两对反应对：$(1,3)$ 和 $(2,4)$。\n\n在前两次实验中，Bessie 每次都成功地将两个分子合并，分子数量每次减少一个。\n\n第三次和第四次实验都引发了爆炸，使分子数量恢复为 $5$。\n\n第五次实验成功合并了两个分子，因此分子数量减少至 $4$。",
+  "translatedAt": "2026-11-15T17:53:08.724Z",
+  "translateModel": "gpt-6.1-sol"
+}
