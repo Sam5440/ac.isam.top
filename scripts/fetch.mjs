@@ -4,18 +4,25 @@
  *
  *   node scripts/fetch.mjs [--abc N] [--cf N] [--backfill N]
  *                          [--translate-limit N] [--translate-only] [--no-translate]
+ *                          [--gym-pages N] [--gym-minutes N] [--gym-sweep N]
+ *                          [--gym-translate-limit N] [--no-gyms]
  *
  * 流程（也是 GitHub Actions CI 的每次工作流）：
- *   1. 拉取 AtCoder(ABC) / Codeforces 元数据（比赛列表、题目清单、难度/评分）
- *   2. 扫描最近 --abc/--cf 场比赛：新比赛的题面全部抓取（含 HTML→Markdown）
+ *   1. 拉取 AtCoder(ABC) / Codeforces / 牛客元数据（比赛列表、题目清单、难度/评分）
+ *   2. 扫描最近 --abc/--cf/--nc 场比赛：新比赛的题面全部抓取（含 HTML→Markdown）
  *   3. 回填：从最旧比赛开始，补抓历史上尚未拉取的 --backfill 道题面
  *   4. AI 翻译：所有有原文、无译文的题面（gpt-6.1-sol，见 scripts/lib/llm.mjs）
- *   5. 重建 data/index.json
+ *   5. cf-gyms 尾阶段（2026-11-15 起）：三平台「拉取+翻译」全部完成之后，
+ *      子进程调用 scripts/fetch-cf-gyms.mjs --mode problems 做小预算题面回填，
+ *      随后把 gym 缺译题面并入 CI 翻译（reuseOf 存根无原文天然跳过；
+ *      PDF 题面用 pdftotext 提取文本，同样可译）。--no-gyms 可整体跳过。
+ *   6. 重建 data/index.json
  *
  * 本地：node scripts/fetch.mjs --abc 10 --cf 10 --backfill 0   （初始化）
  * CI  ：node scripts/fetch.mjs --abc 3 --cf 3 --backfill 10
  */
 
+import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -61,6 +68,12 @@ const BACKFILL = args.backfill ?? Number(process.env.BACKFILL ?? 10);
 const TRANSLATE_LIMIT = args.translateLimit ?? Number(process.env.TRANSLATE_LIMIT ?? 0);
 const TRANSLATE_ONLY = Boolean(args.translateOnly);
 const NO_TRANSLATE = Boolean(args.noTranslate);
+// cf-gyms 尾阶段预算（三平台拉取+翻译全部完成之后执行；见 runGymPhase）
+const GYM_PAGES = args.gymPages ?? Number(process.env.GYM_PAGES ?? 60);
+const GYM_MINUTES = args.gymMinutes ?? Number(process.env.GYM_MINUTES ?? 10);
+const GYM_SWEEP = args.gymSweep ?? Number(process.env.GYM_SWEEP ?? 0);
+const GYM_TRANSLATE_LIMIT = args.gymTranslateLimit ?? Number(process.env.GYM_TRANSLATE_LIMIT ?? 60);
+const NO_GYMS = Boolean(args.noGyms);
 
 const DATA_ROOT = path.resolve(process.cwd(), 'data');
 const nowIso = () => new Date().toISOString();
@@ -69,6 +82,7 @@ const summary = {
   atcoder: { contests: 0, problems: 0, backfilled: 0, errors: [] },
   codeforces: { contests: 0, problems: 0, backfilled: 0, errors: [] },
   nowcoder: { contests: 0, problems: 0, backfilled: 0, errors: [] },
+  'cf-gyms': { contests: 0, problems: 0, backfilled: 0, errors: [] },
   translated: 0,
   translateErrors: [],
 };
@@ -96,7 +110,7 @@ const recordError = (scope, message) => {
 function writeCiLog() {
   try {
     const failures = [];
-    for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
+    for (const platform of ['atcoder', 'codeforces', 'nowcoder', 'cf-gyms']) {
       for (const line of summary[platform].errors) {
         // 行格式：`<problemId>: <message>` / `<contestId>/<index>: <message>`
         const i = line.indexOf(':');
@@ -117,14 +131,22 @@ function writeCiLog() {
       runRecord.fetched.filter((x) => x.status === 'translated').map((x) => `${x.platform}:${x.problemId}`),
     );
     const stats = {
-      new: summary.atcoder.problems + summary.codeforces.problems + summary.nowcoder.problems,
-      updated: summary.atcoder.backfilled + summary.codeforces.backfilled + summary.nowcoder.backfilled,
+      new:
+        summary.atcoder.problems +
+        summary.codeforces.problems +
+        summary.nowcoder.problems +
+        summary['cf-gyms'].problems,
+      updated:
+        summary.atcoder.backfilled +
+        summary.codeforces.backfilled +
+        summary.nowcoder.backfilled +
+        summary['cf-gyms'].backfilled,
       failed: failures.length,
       translated,
     };
     // 平台拆分（/ci 图表与明细用）：每平台 新抓/回填/失败/场次
     const platforms = {};
-    for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
+    for (const platform of ['atcoder', 'codeforces', 'nowcoder', 'cf-gyms']) {
       const s = summary[platform];
       platforms[platform] = {
         contests: s.contests || 0,
@@ -530,9 +552,9 @@ async function runNowcoder() {
 
 /* ================================ 翻译 ================================ */
 
-function collectProblems() {
+function collectProblems(platforms = ['atcoder', 'codeforces', 'nowcoder']) {
   const out = [];
-  for (const platform of ['atcoder', 'codeforces', 'nowcoder']) {
+  for (const platform of platforms) {
     const dir = path.join(DATA_ROOT, platform, 'problems');
     let files = [];
     try {
@@ -550,7 +572,13 @@ function collectProblems() {
   return out;
 }
 
-async function runTranslate() {
+/**
+ * AI 翻译阶段。platforms/translateLimit 可参数化：主管道默认三平台；
+ * cf-gyms 尾阶段用 { platforms: ['cf-gyms'], translateLimit: GYM_TRANSLATE_LIMIT }
+ * 单独调用（2026-11-15 起 gym 题默认走 CI 翻译）。reuseOf 存根没有 statementMd，
+ * 天然不进队列；PDF 题面的 pdftotext 提取文本同样可译。
+ */
+async function runTranslate({ platforms = ['atcoder', 'codeforces', 'nowcoder'], translateLimit = TRANSLATE_LIMIT } = {}) {
   const cfg = llmConfig();
   if (!cfg) {
     log('translate', '⚠ 未配置 TRANSLATE_BASE_URL / TRANSLATE_API_KEY，跳过翻译');
@@ -578,14 +606,15 @@ async function runTranslate() {
   let authAborted = false;
 
   // 1) 题面：新→旧（contestId 数字/字符串统一比较）
-  const pending = collectProblems()
+  const pending = collectProblems(platforms)
     .filter((p) => p.statementMd && !p.statementZhMd)
     .sort((a, b) => String(b.contestId).localeCompare(String(a.contestId), undefined, { numeric: true }));
-  const limited = TRANSLATE_LIMIT > 0 ? pending.slice(0, TRANSLATE_LIMIT) : pending;
+  const limited = translateLimit > 0 ? pending.slice(0, translateLimit) : pending;
   if (limited.length) log('translate', `待翻译题面 ${limited.length}（共缺 ${pending.length}）`);
-  // CI 日志记录翻译队列规模（/ci 页「翻译积压」统计用）
-  summary.translateQueue = pending.length;
-  summary.translateAttempted = limited.length;
+  // CI 日志记录翻译队列规模（/ci 页「翻译积压」统计用）。
+  // 多次调用（三平台 + gym 尾阶段）累加，避免后者覆盖前者的数字。
+  summary.translateQueue = (summary.translateQueue ?? 0) + pending.length;
+  summary.translateAttempted = (summary.translateAttempted ?? 0) + limited.length;
 
   const limit = pLimit(Number(process.env.TRANSLATE_CONCURRENCY ?? 4));
   let done = 0;
@@ -624,7 +653,7 @@ async function runTranslate() {
       }),
     ),
   );
-  summary.translated = done;
+  summary.translated += done;
 
   // 2) 比赛名（两平台合并批翻；牛客比赛名本就是中文，已存 titleZh 跳过）
   const todoTitles = [];
@@ -665,11 +694,106 @@ function loadContestsList(platform) {
   }
 }
 
+/* ====================== cf-gyms 尾阶段（三平台完成之后） ====================== */
+
+/**
+ * 子进程跑 scripts/fetch-cf-gyms.mjs（自执行脚本，import 即跑 main()，只能
+ * 子进程复用）：自带浏览器会话 / Cloudflare 质询 / 重试账本 / 分钟预算。
+ * stdout 逐行透传到父进程日志（CI 可见质询与逐场进度），同时返回全文供聚合。
+ * 超时先 SIGTERM（gym 脚本存档退出：完成当前题面 → 保存 attempts/state），
+ * 60s 仍不退再 SIGKILL。
+ */
+function spawnGymPull() {
+  const childArgs = [
+    'scripts/fetch-cf-gyms.mjs',
+    '--mode',
+    'problems',
+    '--max-problem-pages',
+    String(GYM_PAGES),
+    '--minutes',
+    String(GYM_MINUTES),
+    '--sweep-limit',
+    String(GYM_SWEEP),
+    '--login',
+  ];
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, childArgs, {
+      cwd: process.cwd(),
+      // 未显式指定时有头（CI 走 xvfb）——Cloudflare 质询通过率最高
+      env: { ...process.env, CF_HEADLESS: process.env.CF_HEADLESS ?? '0' },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let out = '';
+    const feed = (chunk) => {
+      const text = String(chunk);
+      out += text;
+      if (out.length > 64 * 1024 * 1024) out = out.slice(-32 * 1024 * 1024); // 防长跑爆内存
+      console.log(text.trimEnd());
+    };
+    child.stdout.on('data', feed);
+    child.stderr.on('data', feed);
+    const grace = setTimeout(() => {
+      log('cf-gyms', `⏱ 子进程超过 ${(GYM_MINUTES + 5) * 60_000 / 60000} 分钟预算上限，SIGTERM 存档退出`);
+      child.kill('SIGTERM');
+      setTimeout(() => child.kill('SIGKILL'), 60_000).unref?.();
+    }, (GYM_MINUTES + 5) * 60_000);
+    child.on('close', (code) => {
+      clearTimeout(grace);
+      if (code === 0) resolve(out);
+      else reject(new Error(`gym 子进程退出码 ${code}（日志见上）`));
+    });
+    child.on('error', (e) => {
+      clearTimeout(grace);
+      reject(e);
+    });
+  });
+}
+
+/**
+ * cf-gyms 尾阶段（2026-11-15）：三平台的拉取与翻译全部完成之后才执行——
+ * gym 题的回填与 CI 翻译排最低优先级，不与三平台抢预算/额度。
+ * 大批量回填与 ID 区间补扫仍由每日 fetch-cf-gyms.yml 承担，这里只做小预算。
+ * 已知小缺口（不处理）：子进程读到的 data/index.json 是上一轮快照，
+ * reuseOf 题名匹配索引略旧，极小概率让本应复用的题重复拉题面，下轮自愈。
+ */
+async function runGymPhase() {
+  if (TRANSLATE_ONLY || NO_GYMS) return;
+  const gymSummary = summary['cf-gyms'];
+
+  // 1) 题面回填（小预算子进程）
+  log('cf-gyms', `尾阶段：题面回填（pages=${GYM_PAGES} minutes=${GYM_MINUTES} sweep=${GYM_SWEEP}）…`);
+  try {
+    const stdout = await spawnGymPull();
+    // 从子进程日志聚合新题数（gym/<id>: fetched=N total=M）
+    let fetched = 0;
+    for (const m of stdout.matchAll(/gym\/(\d+): fetched=(\d+)/g)) fetched += Number(m[2]);
+    gymSummary.problems = fetched;
+    log('cf-gyms', `尾阶段回填完成：新题面 ${fetched}`);
+  } catch (e) {
+    // 超时 / 质询风暴 / 非零退出都到这里：子进程已自行存档，下轮续跑无缝
+    gymSummary.errors.push(String(e?.message || e).slice(0, 300));
+    log('cf-gyms', `⚠ 回填子进程提前结束（成果已存档，翻译继续）：${e?.message || e}`);
+  }
+
+  // 2) gym 缺译题面并入 CI 翻译（历史 PDF 提取文本的题也在队列里）
+  if (!NO_TRANSLATE) {
+    try {
+      await runTranslate({ platforms: ['cf-gyms'], translateLimit: GYM_TRANSLATE_LIMIT });
+    } catch (e) {
+      gymSummary.errors.push(String(e?.message || e).slice(0, 300));
+      log('cf-gyms', `✗ gym 翻译失败（不影响已抓数据）：${e?.message || e}`);
+    }
+  }
+}
+
 /* ================================= 主流程 ================================= */
 
 async function main() {
   loadEnv();
-  log('main', `开始：scan abc=${SCAN_ABC} arc=${SCAN_ARC} agc=${SCAN_AGC} cf=${SCAN_CF} nc=${SCAN_NC}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}`);
+  log(
+    'main',
+    `开始：scan abc=${SCAN_ABC} arc=${SCAN_ARC} agc=${SCAN_AGC} cf=${SCAN_CF} nc=${SCAN_NC}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}${NO_GYMS ? '，gym=off' : `，gym 尾阶段 pages=${GYM_PAGES} minutes=${GYM_MINUTES} translateLimit=${GYM_TRANSLATE_LIMIT}`}`,
+  );
 
   // 平台间故障隔离（审查 管线-7）：旧实现单平台元数据失败让整轮（含翻译）
   // 作废,且 buildIndex 在 try 外 —— 异常路径连索引都不重建。改为每平台
@@ -693,9 +817,21 @@ async function main() {
     }
     if (!NO_TRANSLATE) {
       try {
-        await runTranslate();
+        // translate-only（npm run translate）模式没有拉取阶段，gym 题一并纳入
+        // （gym 默认走 CI 翻译）；常规轮次三平台先行，gym 留给下面的尾阶段。
+        await runTranslate(
+          TRANSLATE_ONLY ? { platforms: ['atcoder', 'codeforces', 'nowcoder', 'cf-gyms'] } : undefined,
+        );
       } catch (e) {
         log('translate', `✗ 翻译阶段失败（已抓数据仍会提交）：${e?.message || e}`);
+      }
+    }
+    // cf-gyms 尾阶段（2026-11-15）：gym 题面回填与翻译排在三平台全部完成之后
+    if (!TRANSLATE_ONLY && !NO_GYMS) {
+      try {
+        await runGymPhase();
+      } catch (e) {
+        log('cf-gyms', `✗ gym 阶段失败（其余成果仍会提交）：${e?.message || e}`);
       }
     }
   } finally {

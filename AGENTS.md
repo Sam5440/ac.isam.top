@@ -198,26 +198,39 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 ### 3.8 抓取管线（scripts/）
 
 - `fetch.mjs` 主管道：`runAtCoder()` / `runCodeforces()`（Playwright 过 CF）/
-  `runNowcoder()` → `collectProblems()` → `runTranslate()` → `writeCiLog()`。
-  CI 参数 `--abc 3 --arc 1 --agc 1 --cf 3 --nc 2 --backfill 10 --translate-limit 120`。
+  `runNowcoder()` → `collectProblems()` → `runTranslate()` → **`runGymPhase()`** →
+  `writeCiLog()`。CI 参数 `--abc 3 --arc 1 --agc 1 --cf 3 --nc 2 --backfill 10
+  --translate-limit 120 --gym-pages 60 --gym-minutes 10 --gym-translate-limit 40`。
   平台阶段互相隔离（单平台失败不阻断）；翻译阶段先 `pingLLM` 探活，401/403 中止
   整轮（Key 失效时别打满无效请求），并发池收到 401/403 置 `authAborted` 跳过余量。
+  **cf-gyms 尾阶段（2026-11-15 起）**：三平台「拉取+翻译」全部完成之后才执行——
+  子进程调用 `fetch-cf-gyms.mjs --mode problems`（自执行脚本只能子进程复用）做
+  小预算题面回填，随后 `runTranslate({ platforms: ['cf-gyms'], ... })` 把 gym
+  缺译题面并入 CI 翻译（reuseOf 存根无 statementMd 天然跳过，PDF 提取文本可译；
+  gym 比赛名暂不翻）。`--no-gyms` 整体跳过；ID 补扫（`--gym-sweep` 默认 0）与
+  大批量回填仍由每日工作流承担。`--translate-only`（npm run translate）会把
+  cf-gyms 与三平台一起翻。
 - `fetch-cf-gyms.mjs` cf-gyms：**完整性契约**（列表全扫 → ID 区间 `[100001, max+25]`
   逐个探测，隐藏 gym 也入库 → 题面以 gym 页链接为权威集合并集 → 失败进
   `.attempts.json` 重试账本 → verify 枚举缺漏退出码 1）。准入规则与 `reuseOf` 见
-  README。改这里先读文件头 60 行注释，契约细节都在。
+  README。改这里先读文件头 60 行注释，契约细节都在。它被主管道子进程调用时
+  SIGTERM 走自身存档退出（完成当前题面 → 保存 attempts/state），超时是收尾不是
+  丢弃；注意 `--minutes`/`--max-problem-pages` 在**场次粒度**检查——单场 gym 内
+  会超出预算（2026-11-15 实测：pages=3 跑出 pages=10），父进程 `GYM_MINUTES+5`
+  分钟的 SIGTERM 才是硬上限。
 - 抓取注意：一律走 `scripts/lib/http.mjs`（超时/UA/重试统一）；对 CF 的任何新抓取
   必须考虑 Cloudflare 质询（现有方案是 Playwright 真实 Chromium，见
   `scripts/lib/cf.mjs`）；风暴熔断（连续质询→全局冷却 5-10min）参数勿随意放宽。
 - `scripts/lib/ci-log.mjs` 写 `data/ci-log.json`，`/ci` 页与 `CiDashboard` 消费——
   改字段两边同步。
 - **三工作流调度**：`ci.yml`（push/PR）= `npm test` + 完整 build；`fetch.yml` 每小时
-  （cron `23 * * * *`）跑主管道，**push 失败自动 `git pull --rebase --autostash` 重试
-  ×3**（checkout 与 push 窗口内撞上人工 push 的解药）；`fetch-cf-gyms.yml` 每日
-  20:47 UTC（北京 04:47），装 poppler-utils（PDF 取字），提交后跑 `--mode verify`，
-  有缺漏退出码 1 让 job 变红（数据已落地，缺口下轮自动补）。Secrets：
-  `TRANSLATE_BASE_URL/API_KEY/MODEL`、`CLIST_API_KEY`，可选 `CF_HANDLE/CF_PASSWORD`
-  （受限 gym 登录兜底），Vercel 侧 `AI_PROXY_ALLOWED_HOSTS`。
+  （cron `23 * * * *`，timeout 65min，装 poppler-utils）跑主管道，**push 失败自动
+  `git pull --rebase --autostash` 重试 ×3**（checkout 与 push 窗口内撞上人工 push 的
+  解药）；`fetch-cf-gyms.yml` 每日 20:47 UTC（北京 04:47），装 poppler-utils（PDF
+  取字），提交后跑 `--mode verify`，有缺漏退出码 1 让 job 变红（数据已落地，缺口下轮
+  自动补）。Secrets：`TRANSLATE_BASE_URL/API_KEY/MODEL`、`CLIST_API_KEY`，可选
+  `CF_HANDLE/CF_PASSWORD`（受限 gym 登录兜底，fetch.yml 也读），Vercel 侧
+  `AI_PROXY_ALLOWED_HOSTS`。
 - **data/ 纪律**：入库 = `index.json` / `ci-log.json` / `cf-gyms/sweep-state.json`
   （ID 补扫游标，CI 续扫依赖）/ 各平台 `contests.json` + `problems/`；**不入库、绝不
   `git add -f`** = `data.zip`、机器本地状态（`.attempts.json` / `.backfill-state.json`

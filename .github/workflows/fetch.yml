@@ -20,8 +20,11 @@ on:
         default: "2"
       translate_limit:
         description: "本次最多翻译题数（0=不限；默认 120 与 npm run fetch:ci 对齐 ——
-          不限会让积压期撞 50 分钟 job 上限,已产出的 LLM 费用随 commit 步骤未到达而全部丢失）"
+          不限会让积压期撞 job 时间上限,已产出的 LLM 费用随 commit 步骤未到达而全部丢失）"
         default: "120"
+      gym_translate_limit:
+        description: "cf-gyms 尾阶段（三平台全部完成之后）最多翻译 gym 题数"
+        default: "40"
 
 permissions:
   contents: write
@@ -33,7 +36,8 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    # 三平台抓取+翻译(120)+gym 尾阶段(10min 回填+40 题翻译),最坏情况 65 分钟
+    timeout-minutes: 65
     steps:
       - uses: actions/checkout@v4
 
@@ -48,6 +52,9 @@ jobs:
       - name: Install Playwright Chromium (Codeforces 反爬需要真实浏览器)
         run: npx playwright install --with-deps chromium
 
+      - name: Install poppler-utils (cf-gyms PDF 题面提字)
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
       - name: Fetch newest + backfill + translate
         env:
           # AI 翻译端点配置在仓库 Secrets（Settings → Secrets and variables → Actions）
@@ -57,6 +64,9 @@ jobs:
           TRANSLATE_CONCURRENCY: "4"
           # CI 出口 IP 更容易被 Cloudflare 质询：有头浏览器 + Xvfb 通过率更高
           CF_HEADLESS: "0"
+          # cf-gyms 尾阶段的受限 gym 登录兜底（可选 secret，缺失时跳过登录）
+          CF_HANDLE: ${{ secrets.CF_HANDLE }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
         run: |
           xvfb-run -a node scripts/fetch.mjs \
             --abc "${{ github.event.inputs.abc_scan || '3' }}" \
@@ -64,7 +74,9 @@ jobs:
             --cf "${{ github.event.inputs.cf_scan || '3' }}" \
             --nc "${{ github.event.inputs.nc_scan || '2' }}" \
             --backfill "${{ github.event.inputs.backfill || '10' }}" \
-            --translate-limit "${{ github.event.inputs.translate_limit || '120' }}"
+            --translate-limit "${{ github.event.inputs.translate_limit || '120' }}" \
+            --gym-pages "60" --gym-minutes "10" --gym-sweep "0" \
+            --gym-translate-limit "${{ github.event.inputs.gym_translate_limit || '40' }}"
 
       - name: Commit & push data updates
         run: |

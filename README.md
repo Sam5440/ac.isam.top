@@ -110,8 +110,8 @@ data/                       # 提交进仓库的数据（构建期读取，勿�
 test/                       # node --test 单元测试（纯函数 + 注入，无 window/网络依赖）
 e2e/                        # Playwright 视觉验证脚本
 .github/workflows/
-  fetch.yml                 # 每小时主管道
-  fetch-cf-gyms.yml         # 每天 20:47 UTC cf-gyms 增量
+  fetch.yml                 # 每小时主管道（三平台抓取+翻译 → gym 尾阶段回填+翻译）
+  fetch-cf-gyms.yml         # 每天 20:47 UTC cf-gyms 大批量回填 + verify 校验
   ci.yml                    # PR 检查（单测 + 构建）
 ```
 
@@ -158,7 +158,7 @@ CLIST_API_KEY=…                                            # 比赛日历（/c
 
 | Workflow | 频率 | 内容 |
 | --- | --- | --- |
-| `fetch.yml` | 每小时（cron `23 * * * *`） | 扫描最近 3 场 ABC / 1 场 ARC / 1 场 AGC / 3 场 CF / 2 场牛客，抓新比赛全部题面 → 回填 10 道历史题面 → AI 翻译（并发 4，失败下次重试，单次上限 120）→ 重建索引 → 有变更则 bot 提交推送 |
+| `fetch.yml` | 每小时（cron `23 * * * *`） | 扫描最近 3 场 ABC / 1 场 ARC / 1 场 AGC / 3 场 CF / 2 场牛客，抓新比赛全部题面 → 回填 10 道历史题面 → AI 翻译（并发 4，失败下次重试，单次上限 120）→ **cf-gyms 尾阶段**：小预算 gym 题面回填（10 分钟 / 60 页）+ gym 缺译题面 CI 翻译（上限 40，gym 题默认走 CI 翻译）→ 重建索引 → 有变更则 bot 提交推送 |
 | `fetch-cf-gyms.yml` | 每天 20:47 UTC | cf-gyms 增量：新赛列表 + ID 补扫 + 题面回填（38 分钟预算，到点存档退出续跑无缝） |
 | `ci.yml` | push / PR | `npm test` + `npm run build` |
 
