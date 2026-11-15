@@ -4,7 +4,7 @@
   "contestId": 106796,
   "index": "B",
   "title": "Boss Rush",
-  "titleZh": null,
+  "titleZh": "首领连战",
   "url": "https://codeforces.com/gym/106796/problem/B",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 1024,
   "statementMd": "Franklin is playing the latest trendy timed-action video game and is facing a boss rush: a trying gauntlet where he must defeat $N$ monsters (the bosses) to survive. His only ability, *parry*, is extremely powerful but very difficult to use.\n\nEach boss attacks Franklin once every $d$ seconds; however, the bosses have their own starting delay before they begin their sequence of attacks, so that the boss attacks are staggered. More specifically, if $f_i$ is the starting delay of the $i^{\\text{th}}$ boss, then that boss will attack at seconds $$f_i, \\; f_i + d, \\; f_i + 2d, \\; \\ldots$$\n\nTo defend himself, Franklin can parry an attack on the exact second it happens, instantly defeating the boss and ending all of its subsequent attacks. Franklin can only parry one attack at a time: if multiple bosses attack him simultaneously, he can parry at most one of those attacks.\n\nMoreover, after parrying an attack Franklin becomes winded and cannot parry again during the next $w$ seconds. Formally, if Franklin parries an attack at second $t$, the earliest moment that Franklin could parry another attack is at second $t+w$.\n\nFranklin has plenty of health and is unconcerned about the attacks of the bosses against him, but he'd like to end the fight as quickly as possible. Compute the minimum amount of time it would take Franklin to defeat all $N$ bosses if he parries optimally.\n\n## Input\n\nThe first line of input contains three space-separated integers $N$ $(1 \\leq N \\leq 3 \\cdot 10^{5})$, $w$ $(1 \\leq w \\leq 10^{9})$, and $d$ $(1 \\leq d \\leq 10^{9})$, where $N$ is the number of bosses, $w$ is the number of seconds Franklin must wait after parrying before parrying again, and $d$ is the number of seconds between two attacks by the same boss.\n\nThe next line of input contains $N$ space-separated integers $f_i$ $(0 \\leq f_i \\lt d)$, the starting delay of each boss in seconds.\n\n## Output\n\nPrint the number of seconds it takes Franklin to defeat all $N$ bosses if he parries optimally.\n\n## Note\n\n**Explanation of Sample Input 1**\n\nThe first boss attacks Franklin at second $2$; Franklin could parry the attack but chooses to bide his time and instead parry the attack of the second boss at second $3$. He is now winded and cannot parry again before second $7$.\n\nThe third boss attacks Franklin at second $8$ and Franklin parries the attack. He is winded again and cannot parry until second $12$: just in time to parry the first boss's second attack, which ends the fight.",
-  "statementZhMd": null,
+  "statementZhMd": "Franklin 正在玩一款时下流行、讲究时机的动作电子游戏，并面临一场首领连战：他必须击败 $N$ 只怪物（即首领），才能在这场艰难的连续挑战中生存下来。他唯一的能力是*招架*，威力极强，却非常难以使用。\n\n每个首领每隔 $d$ 秒攻击 Franklin 一次；不过，各个首领在开始连续攻击前都有各自的初始延迟，因此首领们的攻击时间会错开。具体来说，若第 $i^{\\text{th}}$ 个首领的初始延迟为 $f_i$，那么该首领会在以下时刻攻击：$$f_i, \\; f_i + d, \\; f_i + 2d, \\; \\ldots$$\n\n为了保护自己，Franklin 可以在攻击发生的那一秒进行招架，立即击败发动攻击的首领，使其不再发动后续攻击。Franklin 同一时刻只能招架一次攻击：如果多个首领同时攻击他，他至多只能招架其中一次攻击。\n\n此外，Franklin 在招架一次攻击后会气喘吁吁，在接下来的 $w$ 秒内无法再次招架。形式化地说，如果 Franklin 在第 $t$ 秒招架了一次攻击，那么他最早可以在第 $t+w$ 秒再次招架。\n\nFranklin 的生命值很充足，并不在意首领们对他的攻击，但他希望尽快结束战斗。请计算：如果 Franklin 以最优方式进行招架，击败全部 $N$ 个首领最少需要多少时间。\n\n## 输入格式\n\n输入的第一行包含三个以空格分隔的整数 $N$ $(1 \\leq N \\leq 3 \\cdot 10^{5})$、$w$ $(1 \\leq w \\leq 10^{9})$ 和 $d$ $(1 \\leq d \\leq 10^{9})$，其中 $N$ 为首领的数量，$w$ 为 Franklin 招架后必须等待才能再次招架的秒数，$d$ 为同一个首领两次攻击之间的间隔秒数。\n\n输入的下一行包含 $N$ 个以空格分隔的整数 $f_i$ $(0 \\leq f_i \\lt d)$，表示每个首领的初始延迟，单位为秒。\n\n## 输出格式\n\n输出 Franklin 以最优方式进行招架时，击败全部 $N$ 个首领所需的秒数。\n\n## 说明\n\n**样例输入 1 的解释**\n\n第一个首领在第 $2$ 秒攻击 Franklin；Franklin 本可以招架这次攻击，但他选择等待，转而在第 $3$ 秒招架第二个首领的攻击。此时他气喘吁吁，在第 $7$ 秒之前无法再次招架。\n\n第三个首领在第 $8$ 秒攻击 Franklin，Franklin 招架了这次攻击。他再次气喘吁吁，直到第 $12$ 秒才能再次招架：恰好赶上招架第一个首领的第二次攻击，从而结束战斗。",
   "samples": [
     {
       "input": "3 4 10\n2 3 8\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-11T17:21:32.502Z"
+  "fetchedAt": "2026-11-11T17:21:32.502Z",
+  "translatedAt": "2026-11-15T11:33:46.255Z",
+  "translateModel": "gpt-6.1-sol"
 }

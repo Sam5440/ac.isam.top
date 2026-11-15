@@ -4,7 +4,7 @@
   "contestId": 106796,
   "index": "C",
   "title": "Cable Pruning",
-  "titleZh": null,
+  "titleZh": "线缆裁剪",
   "url": "https://codeforces.com/gym/106796/problem/C",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "You are helping to remodel a data center to make room for more GPUs. Over the years, the data center has become cluttered with superfluous network cable, and you have been asked to clean up the mess and reclaim as much unused cable as possible.\n\n![image](https://espresso.codeforces.com/0a170f46b24033c3c077273d7b7666926d9d550f.png)An illustration of Sample Input 1. Servers in the same coupled pair are the same color. Cables to remove are indicated with a dashed line.\n\nThe data center has $N$ servers and $N$ network cables that link one server to another. Each cable has a length in feet. Traffic flows through network cables in both directions and the data center is initially connected: for every pair of servers $(u,v)$ there exists a path of network cables from $u$ to $v$ (possibly passing through intermediate servers). You've audited the data center network traffic to discover that only $K$ coupled pairs of servers need to communicate with each other. (Note that some servers might not be part of any coupled pair, or might be part of two or more coupled pairs.)\n\nYou now need to remove as much total length of cable as possible from the data center while keeping all coupled pairs connected to each other: for each such pair of servers $(a,b)$ there must exist a path from $a$ to $b$ passing through original network cables that you've kept in place.\n\nFind the minimum total length of cable that must be kept in place to satisfy this constraint.\n\n## Input\n\nThe first line of input contains two space-separated integers $N$ $(3 \\le N \\le 10^5)$ and $K$ $(1 \\le K \\le 10^5)$, the number of servers in the data center and number of coupled pairs of servers that you've discovered.\n\nThe next $N$ lines describe the network cables originally in the data center. Each line contains three space-separated integers $u_i$, $v_i$ $(1 \\le u_i, v_i \\le N, u_i \\ne v_i)$, and $w_i$ $(1 \\le w_i \\le 10^9)$, specifying that a cable connects server $u_i$ to server $v_i$ and has length $w_i$ feet. There is at most one network cable connecting a pair of servers and the graph of servers and cables is connected.\n\nEach of the next $K$ lines contains two space-separated integers $a_j$ and $b_j$ ($1 \\le a_j, b_j \\le N$, $a_j \\ne b_j$) and describe a coupled pair of servers. Each coupled pair must remain connected by a path after you are done removing cable. All coupled pairs are distinct; $(a,b)$ and $(b,a)$ are considered the same and won't both be listed as coupled pairs.\n\n## Output\n\nPrint a single integer: the minimum total length of network cable (in feet) that must remain in place in order for all $K$ coupled server pairs to stay connected to each other.",
-  "statementZhMd": null,
+  "statementZhMd": "你正在协助改造一座数据中心，以腾出空间容纳更多 GPU。多年来，数据中心堆积了许多多余的网络线缆，现在你受命清理这些线缆，并尽可能多地回收不再需要的线缆。\n\n![image](https://espresso.codeforces.com/0a170f46b24033c3c077273d7b7666926d9d550f.png)样例输入 1 的示意图。同一配对中的服务器使用相同的颜色表示。需要移除的线缆用虚线表示。\n\n数据中心有 $N$ 台服务器和 $N$ 根连接服务器的网络线缆。每根线缆都有一个以英尺为单位的长度。数据可以沿网络线缆双向传输，且数据中心最初是连通的：对于任意一对服务器 $(u,v)$，都存在一条由网络线缆组成的路径从 $u$ 到达 $v$（可能经过其他服务器）。你审查了数据中心的网络流量，发现只有 $K$ 对配对服务器需要彼此通信。（注意，有些服务器可能不属于任何配对，也可能属于两个或更多配对。）\n\n现在，你需要从数据中心移除总长度尽可能大的线缆，同时保证每一对配对服务器仍然连通：对于每一对这样的服务器 $(a,b)$，必须存在一条从 $a$ 到 $b$ 的路径，且路径仅经过你保留下来的原有网络线缆。\n\n求满足这一要求所必须保留的线缆的最小总长度。\n\n## 输入格式\n\n输入的第一行包含两个以空格分隔的整数 $N$ $(3 \\le N \\le 10^5)$ 和 $K$ $(1 \\le K \\le 10^5)$，分别表示数据中心的服务器数量和你发现的服务器配对数量。\n\n接下来的 $N$ 行描述数据中心原有的网络线缆。每行包含三个以空格分隔的整数 $u_i$、$v_i$ $(1 \\le u_i, v_i \\le N, u_i \\ne v_i)$ 和 $w_i$ $(1 \\le w_i \\le 10^9)$，表示一根线缆连接服务器 $u_i$ 和服务器 $v_i$，长度为 $w_i$ 英尺。任意两台服务器之间至多有一根网络线缆，且由服务器和线缆组成的图是连通的。\n\n接下来的 $K$ 行中，每行包含两个以空格分隔的整数 $a_j$ 和 $b_j$（$1 \\le a_j, b_j \\le N$，$a_j \\ne b_j$），描述一对配对服务器。移除线缆后，每一对配对服务器之间都必须仍有路径连通。所有配对互不相同；$(a,b)$ 和 $(b,a)$ 视为同一配对，不会同时出现在配对列表中。\n\n## 输出格式\n\n输出一个整数：为了使所有 $K$ 对配对服务器各自保持连通，必须保留的网络线缆的最小总长度（单位为英尺）。",
   "samples": [
     {
       "input": "8 3\n5 3 5\n1 7 20\n3 8 8\n7 5 15\n5 2 12\n1 6 9\n5 1 10\n7 4 7\n3 4\n8 2\n1 7\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-11T17:21:53.129Z"
+  "fetchedAt": "2026-11-11T17:21:53.129Z",
+  "translatedAt": "2026-11-15T11:34:27.266Z",
+  "translateModel": "gpt-6.1-sol"
 }
