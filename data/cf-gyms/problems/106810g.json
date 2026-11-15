@@ -4,7 +4,7 @@
   "contestId": 106810,
   "index": "G",
   "title": "Optimal Deployment",
-  "titleZh": null,
+  "titleZh": "最优部署",
   "url": "https://codeforces.com/gym/106810/problem/G",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "A software platform contains $N$ modules connected by $N-1$ bidirectional API links. The links form a connected graph with no cycles (a tree).\n\nChoose any module as the root (the entry point). This determines a parent-child relationship for every link.\n\nFor a node $u$ in the rooted tree, let $subtreeSize(u)$ be the number of modules in the subtree rooted at $u$, including $u$ itself. Let $childCount(u)$ be the number of direct children of $u$.\n\nThere are $M$ types of deployment servers. Server type $i$ has capacity $C_i$ and costs $P_i$ per deployment operation. A server type can be reused any number of times, with its cost charged for each operation.\n\nTo deploy a module $u$, choose one of the following operations:\n\n1. Deploy the entire subtree of $u$: One operation deploys $u$ and every descendant of $u$. The chosen server must have capacity $C_i \\geq subtreeSize(u)$. No further operations are needed for any module in this subtree.\n\n2. Deploy only $u$: One operation deploys $u$ and no other module. The chosen server must have capacity $C_i \\geq childCount(u)$. Afterward, each direct child of $u$ must be deployed separately, using either operation.\n\nFind the minimum total cost to deploy every module, choosing both the entry point and the server type for each operation optimally.\n\nIf deployment is impossible under every choice of entry point and available server types, output $-1$.\n\n## Input\n\nThe first line contains $T$ ($1 \\leq T \\leq 25$), the number of test cases.\n\nFor each test case:\n\nThe first line contains $M$ and $N$ ($1 \\leq M,N \\leq 10^5$), the number of server types and modules, respectively.\n\nThe second line contains the $M$ server capacities $C_1,C_2,\\ldots,C_M$ ($1 \\leq C_i \\leq 10^9$).\n\nThe third line contains their corresponding costs $P_1,P_2,\\ldots,P_M$ ($1 \\leq P_i \\leq 10^9$).\n\nEach of the next $N-1$ lines contains two integers $u$ and $v$ ($1 \\leq u,v \\leq N$, $u \\ne v$), describing a bidirectional API link between modules $u$ and $v$.\n\nThe sum of $M$ over all test cases does not exceed $5 \\times 10^5$.\n\nThe sum of $N$ over all test cases does not exceed $5 \\times 10^5$.\n\n## Output\n\nFor each test case, output one integer: the minimum total deployment cost, or $-1$ if deployment is impossible.\n\n## Note\n\nChoose module $1$ as the entry point.\n\nModule $1$ has one direct child, so deploy only module $1$ using a server with capacity $1$ and cost $4$.\n\nThe subtree rooted at module $2$ contains modules $2,3,4,$ and $5$. Since $\\text{subtreeSize}(2)=4$, deploy this entire subtree in one operation using a server with capacity $4$ and cost $20$.\n\nThe total cost is therefore $4+20=24$.",
-  "statementZhMd": null,
+  "statementZhMd": "一个软件平台包含 $N$ 个模块，模块之间通过 $N-1$ 条双向 API 连接相连。这些连接构成一个无环连通图（一棵树）。\n\n选择任意一个模块作为根（入口点），由此确定每条连接两端模块之间的父子关系。\n\n对于有根树中的节点 $u$，令 $subtreeSize(u)$ 表示以 $u$ 为根的子树中的模块数量，包括 $u$ 自身。令 $childCount(u)$ 表示 $u$ 的直接子节点数量。\n\n共有 $M$ 种部署服务器。第 $i$ 种服务器的容量为 $C_i$，每次部署操作的费用为 $P_i$。每种服务器均可使用任意多次，每次操作都需支付相应费用。\n\n要部署模块 $u$，可以选择以下一种操作：\n\n1. 部署 $u$ 的整棵子树：一次操作部署 $u$ 及其所有后代。所选服务器的容量必须满足 $C_i \\geq subtreeSize(u)$。此后，这棵子树中的所有模块都不再需要任何部署操作。\n\n2. 仅部署 $u$：一次操作只部署 $u$，不部署其他模块。所选服务器的容量必须满足 $C_i \\geq childCount(u)$。此后，必须分别部署 $u$ 的每个直接子节点，每个子节点均可选择上述任意一种操作。\n\n通过最优地选择入口点以及每次操作使用的服务器类型，求部署所有模块所需的最小总费用。\n\n如果无论如何选择入口点和可用的服务器类型都无法完成部署，则输出 $-1$。\n\n## 输入格式\n\n第一行包含 $T$（$1 \\leq T \\leq 25$），表示测试用例的数量。\n\n对于每个测试用例：\n\n第一行包含 $M$ 和 $N$（$1 \\leq M,N \\leq 10^5$），分别表示服务器类型的数量和模块的数量。\n\n第二行包含 $M$ 个服务器容量 $C_1,C_2,\\ldots,C_M$（$1 \\leq C_i \\leq 10^9$）。\n\n第三行包含各类服务器对应的费用 $P_1,P_2,\\ldots,P_M$（$1 \\leq P_i \\leq 10^9$）。\n\n接下来的 $N-1$ 行，每行包含两个整数 $u$ 和 $v$（$1 \\leq u,v \\leq N$，$u \\ne v$），表示模块 $u$ 和 $v$ 之间存在一条双向 API 连接。\n\n所有测试用例的 $M$ 之和不超过 $5 \\times 10^5$。\n\n所有测试用例的 $N$ 之和不超过 $5 \\times 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示最小部署总费用；如果无法完成部署，则输出 $-1$。\n\n## 说明\n\n选择模块 $1$ 作为入口点。\n\n模块 $1$ 有一个直接子节点，因此使用容量为 $1$、费用为 $4$ 的服务器，仅部署模块 $1$。\n\n以模块 $2$ 为根的子树包含模块 $2,3,4,$ 和 $5$。由于 $\\text{subtreeSize}(2)=4$，可以使用容量为 $4$、费用为 $20$ 的服务器，通过一次操作部署整棵子树。\n\n因此，总费用为 $4+20=24$。",
   "samples": [
     {
       "input": "1\n4 5\n1 2 3 4\n4 9 11 20\n1 2\n2 3\n2 4\n2 5\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-11T17:20:21.497Z"
+  "fetchedAt": "2026-11-11T17:20:21.497Z",
+  "translatedAt": "2026-11-15T05:59:28.443Z",
+  "translateModel": "gpt-6.1-sol"
 }

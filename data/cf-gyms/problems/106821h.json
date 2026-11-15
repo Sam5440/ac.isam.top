@@ -4,7 +4,7 @@
   "contestId": 106821,
   "index": "H",
   "title": "Popsicle Stick Game",
-  "titleZh": null,
+  "titleZh": "冰棍棒游戏",
   "url": "https://codeforces.com/gym/106821/problem/H",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Dinny and Walrus are working on an arts and crafts project! They have $n$ popsicle sticks, where the $i$-th stick has a non-negative integer $a_i$ written on it.\n\nTo decide who gets to keep their masterpiece, they play a game. Dinny goes first, and the two players alternate turns until all popsicle sticks have been removed.\n\nOn each turn, the current player performs the following actions in order:\n\n1. Add the $\\mathrm{MEX}^\\dagger$ of the numbers written on the remaining popsicle sticks to their score.\n2. Choose any remaining popsicle stick and remove it.\n\nBoth players start with a score of $0$. After all popsicle sticks have been removed, the player with the higher score wins. If both players have the same score, the game ends in a tie.\n\nAssuming both players play optimally, determine whether Dinny wins, Walrus wins, or the game ends in a tie.\n\n$^\\dagger$The $\\mathrm{MEX}$ (minimum excluded value) of an array is the smallest non-negative integer that is not in the array. For example:\n\n- The $\\mathrm{MEX}$ of $[2, 2, 1]$ is $0$ because $0$ is not in the array.\n- The $\\mathrm{MEX}$ of $[3, 1, 0, 1]$ is $2$ because $0$ and $1$ are in the array but $2$ is not.\n- The $\\mathrm{MEX}$ of $[0, 3, 1, 2]$ is $4$ because $0$, $1$, $2$ and $3$ are in the array but $4$ is not.\n\n## Input\n\nThe first line contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of popsicle sticks.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 10^9$) — the numbers written on the popsicle sticks.\n\n## Output\n\nOutput \"Dinny\", \"Walrus\", or \"Tie\", according to the winner. The capitalization of these names does not matter.\n\n## Note\n\nIn the first test case, one possible sequence of moves is:\n\n1. Dinny earns $3$ points and removes the stick labeled $1$, leaving $[0,0,2]$.\n2. Walrus earns $1$ point and removes a stick labeled $0$, leaving $[0,2]$.\n3. Dinny earns $1$ point and removes the remaining stick labeled $0$, leaving $[2]$.\n4. Walrus earns $0$ points and removes the final stick.\n\nDinny finishes with $4$ points, while Walrus finishes with $1$ point. Therefore, Dinny wins.\n\nIn the second test case, since there is no stick labeled $0$, the MEX remains $0$ throughout the game. Neither player earns any points, so the game ends in a tie.",
-  "statementZhMd": null,
+  "statementZhMd": "Dinny 和 Walrus 正在一起制作手工作品！他们有 $n$ 根冰棍棒，其中第 $i$ 根冰棍棒上写着一个非负整数 $a_i$。\n\n为了决定谁能留下他们的杰作，他们进行了一场游戏。Dinny 先手，两名玩家轮流行动，直到所有冰棍棒都被移除。\n\n每个回合，当前玩家依次执行以下操作：\n\n1. 将剩余冰棍棒上所写数字的 $\\mathrm{MEX}^\\dagger$ 加到自己的得分中。\n2. 选择任意一根剩余的冰棍棒并将其移除。\n\n两名玩家的初始得分均为 $0$。所有冰棍棒都被移除后，得分较高的玩家获胜。如果两名玩家的得分相同，则游戏以平局结束。\n\n假设双方都采取最优策略，请判断 Dinny 获胜、Walrus 获胜，还是游戏以平局结束。\n\n$^\\dagger$一个数组的 $\\mathrm{MEX}$（最小未出现值）是指未在该数组中出现的最小非负整数。例如：\n\n- $[2, 2, 1]$ 的 $\\mathrm{MEX}$ 为 $0$，因为 $0$ 未在数组中出现。\n- $[3, 1, 0, 1]$ 的 $\\mathrm{MEX}$ 为 $2$，因为 $0$ 和 $1$ 均在数组中出现，但 $2$ 未出现。\n- $[0, 3, 1, 2]$ 的 $\\mathrm{MEX}$ 为 $4$，因为 $0$、$1$、$2$ 和 $3$ 均在数组中出现，但 $4$ 未出现。\n\n## 输入格式\n\n第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——冰棍棒的数量。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\le a_i \\le 10^9$）——冰棍棒上所写的数字。\n\n## 输出格式\n\n根据游戏结果，输出 \"Dinny\"、\"Walrus\" 或 \"Tie\"。输出不区分大小写。\n\n## 说明\n\n在第一个测试用例中，一种可能的行动过程如下：\n\n1. Dinny 获得 $3$ 分，并移除写着 $1$ 的冰棍棒，剩下 $[0,0,2]$。\n2. Walrus 获得 $1$ 分，并移除一根写着 $0$ 的冰棍棒，剩下 $[0,2]$。\n3. Dinny 获得 $1$ 分，并移除剩下的那根写着 $0$ 的冰棍棒，剩下 $[2]$。\n4. Walrus 获得 $0$ 分，并移除最后一根冰棍棒。\n\nDinny 最终得到 $4$ 分，Walrus 最终得到 $1$ 分。因此，Dinny 获胜。\n\n在第二个测试用例中，由于没有写着 $0$ 的冰棍棒，整个游戏过程中 MEX 始终为 $0$。两名玩家都无法得分，因此游戏以平局结束。",
   "samples": [
     {
       "input": "4\n0 0 1 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T07:26:20.268Z"
+  "fetchedAt": "2026-11-12T07:26:20.268Z",
+  "translatedAt": "2026-11-15T05:57:38.713Z",
+  "translateModel": "gpt-6.1-sol"
 }

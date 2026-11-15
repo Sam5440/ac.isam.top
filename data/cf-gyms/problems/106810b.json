@@ -4,7 +4,7 @@
   "contestId": 106810,
   "index": "B",
   "title": "The Rubber Stamp",
-  "titleZh": null,
+  "titleZh": "橡皮印章",
   "url": "https://codeforces.com/gym/106810/problem/B",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "You have a blank paper strip with $n$ cells, numbered $1$ to $n$ from left to right, and a rubber stamp that prints a fixed word $P$ of length $k$.\n\nEach stamping operation presses the rubber stamp onto the strip, printing the word $P$ across $k$ consecutive cells and overwriting any ink previously there. The stamp may partially hang off either end of the strip; any ink landing outside the strip is lost. Formally, you may place the stamp at any integer position $p$, so that for each $i \\in \\{0, 1, \\dots, k-1\\}$, if cell $p + i$ is on the strip ($1 \\le p + i \\le n$), it receives character $P[i]$.\n\nGiven the target string $T$ of length $n$, find the minimum number of stamps needed to make the strip exactly $T$. If it is impossible to obtain the string $T$, print $-1$.\n\n## Input\n\nThe first line of the input contains an integer $t$ ($1 \\le t \\le 10^5$), denoting the number of test cases.\n\nEach test case consists of three lines:\n\n- The first line contains two integers $n$ and $k$ ($1 \\le k \\le n \\le 10^6$), denoting the length of the strip and the length of the stamp word, respectively.\n- The second line contains the target string $T$ of length $n$.\n- The third line contains the stamp word $P$ of length $k$.\n\nBoth strings $T$ and $P$ consist only of lowercase English letters.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, print a single integer representing the minimum number of stamps needed to make the strip match $T$, or $-1$ if it is impossible.\n\n## Note\n\nIn the first test case of the sample, one optimal sequence of $3$ stamp presses is:\n\n1. Stamp $P = \\texttt{\"abc\"}$ at position $3$ (covering cells $3..5$): the strip becomes `\"..abc\"`.\n2. Stamp $P = \\texttt{\"abc\"}$ at position $5$ (covering cells $5..7$, hanging off the right end so only cell $5$ receives $P[0] = \\texttt{'a'}$): the strip becomes `\"..aba\"`.\n3. Stamp $P = \\texttt{\"abc\"}$ at position $1$ (covering cells $1..3$): the strip becomes `\"abcba\"`.\n\nIn the second test case of the sample, one optimal sequence of $3$ stamp presses is:\n\n1. Stamp $P = \\texttt{\"abc\"}$ at position $1$ (covering cells $1..3$): the strip becomes `\"abc\"`.\n2. Stamp $P = \\texttt{\"abc\"}$ at position $-1$ (covering cells $-1..1$, hanging off the left end so cell $1$ receives $P[2] = \\texttt{'c'}$): the strip becomes `\"cbc\"`.\n3. Stamp $P = \\texttt{\"abc\"}$ at position $3$ (covering cells $3..5$, hanging off the right end so cell $3$ receives $P[0] = \\texttt{'a'}$): the strip becomes `\"cba\"`.\n\nIn the third test case of the sample, any stamp placing `'b'` at cell $i$ simultaneously places `'a'` at cell $i-1$ and `'c'` at cell $i+1$, so no two adjacent cells can both be `'b'`. Thus, it is impossible to produce `\"bbbb\"`, and the answer is $-1$.",
-  "statementZhMd": null,
+  "statementZhMd": "你有一条空白纸带，上面有 $n$ 个格子，从左到右依次编号为 $1$ 到 $n$。你还有一枚橡皮印章，可以印出一个固定的、长度为 $k$ 的单词 $P$。\n\n每次盖章时，将橡皮印章按在纸带上，就会在连续的 $k$ 个格子上印出单词 $P$，并覆盖这些格子中原有的墨迹。印章可以有一部分伸出纸带的任意一端；落在纸带外的墨迹不会留下。形式化地，你可以将印章放在任意整数位置 $p$，使得对于每个 $i \\in \\{0, 1, \\dots, k-1\\}$，如果格子 $p + i$ 位于纸带上（$1 \\le p + i \\le n$），该格子就会被印上字符 $P[i]$。\n\n给定长度为 $n$ 的目标字符串 $T$，求使纸带上的内容恰好为 $T$ 所需的最少盖章次数。如果无法得到字符串 $T$，输出 $-1$。\n\n## 输入格式\n\n输入的第一行包含一个整数 $t$（$1 \\le t \\le 10^5$），表示测试用例的数量。\n\n每个测试用例由三行组成：\n\n- 第一行包含两个整数 $n$ 和 $k$（$1 \\le k \\le n \\le 10^6$），分别表示纸带的长度和印章上单词的长度。\n- 第二行包含长度为 $n$ 的目标字符串 $T$。\n- 第三行包含长度为 $k$ 的印章单词 $P$。\n\n字符串 $T$ 和 $P$ 均仅由小写英文字母组成。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示使纸带上的内容与 $T$ 一致所需的最少盖章次数；如果无法做到，则输出 $-1$。\n\n## 说明\n\n在样例的第一个测试用例中，一种由 $3$ 次盖章组成的最优操作序列如下：\n\n1. 在位置 $3$ 盖下印章 $P = \\texttt{\"abc\"}$（覆盖格子 $3..5$）：纸带变为 `\"..abc\"`。\n2. 在位置 $5$ 盖下印章 $P = \\texttt{\"abc\"}$（覆盖格子 $5..7$，印章伸出纸带右端，因此只有格子 $5$ 被印上 $P[0] = \\texttt{'a'}$）：纸带变为 `\"..aba\"`。\n3. 在位置 $1$ 盖下印章 $P = \\texttt{\"abc\"}$（覆盖格子 $1..3$）：纸带变为 `\"abcba\"`。\n\n在样例的第二个测试用例中，一种由 $3$ 次盖章组成的最优操作序列如下：\n\n1. 在位置 $1$ 盖下印章 $P = \\texttt{\"abc\"}$（覆盖格子 $1..3$）：纸带变为 `\"abc\"`。\n2. 在位置 $-1$ 盖下印章 $P = \\texttt{\"abc\"}$（覆盖格子 $-1..1$，印章伸出纸带左端，因此格子 $1$ 被印上 $P[2] = \\texttt{'c'}$）：纸带变为 `\"cbc\"`。\n3. 在位置 $3$ 盖下印章 $P = \\texttt{\"abc\"}$（覆盖格子 $3..5$，印章伸出纸带右端，因此格子 $3$ 被印上 $P[0] = \\texttt{'a'}$）：纸带变为 `\"cba\"`。\n\n在样例的第三个测试用例中，任何在格子 $i$ 上印出 `'b'` 的盖章操作，都会同时在格子 $i-1$ 上印出 `'a'`，并在格子 $i+1$ 上印出 `'c'`，因此任意两个相邻格子都不可能同时为 `'b'`。所以，无法得到 `\"bbbb\"`，答案为 $-1$。",
   "samples": [
     {
       "input": "3\n5 3\nabcba\nabc\n3 3\ncba\nabc\n4 3\nbbbb\nabc\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-11T17:19:24.196Z"
+  "fetchedAt": "2026-11-11T17:19:24.196Z",
+  "translatedAt": "2026-11-15T05:59:13.586Z",
+  "translateModel": "gpt-6.1-sol"
 }

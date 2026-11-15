@@ -4,7 +4,7 @@
   "contestId": 106821,
   "index": "C",
   "title": "Cubism",
-  "titleZh": null,
+  "titleZh": "立体主义",
   "url": "https://codeforces.com/gym/106821/problem/C",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Magikarp is trying out a new technique called *Cubism*. With a carefully arranged set of blocks, he can create three different images when viewed from different angles!\n\nMagikarp has a grid of n×m×k positions, measured along the x-, y-, and z-axes, respectively. Each position (x,y,z), where 1≤x≤n, 1≤y≤m, and 1≤z≤k, can contain at most one unit cube. Cubes may float freely and do not need to be connected.\n\nWhen standing in front of the sculpture, +x points to your right, +y points forward into the sculpture, and +z points upward. Each view is an orthogonal projection: its lines of sight are parallel to its viewing direction.\n\nHe has already chosen three images for his artwork:\n\n- The **top view** looks in the −z direction, with +x to the right and +y upward in the image. It has m rows and n columns.\n- The **front view** looks in the +y direction, with +x to the right and +z upward in the image. It has k rows and n columns.\n- The **right view** looks in the −x direction, with +y to the right and +z upward in the image. It has k rows and m columns.\n\nAn entry is `#` if at least one cube exists along its line of sight, and `.` if no cube exists along that line.\n\nFind the maximum number of cubes Magikarp can place so that all three views match his chosen images exactly. If no such arrangement exists, output `-1`.\n\n## Input\n\nThe first line contains three integers n, m, and k (1≤n,m,k≤300) — the numbers of positions along the x-, y-, and z-axes, respectively.\n\nThe next m lines each contain a string of n characters — the top view.\n\nThe next k lines each contain a string of n characters — the front view.\n\nThe next k lines each contain a string of m characters — the right view.\n\nEach character is either `#` or `.`. Each image is given row by row from top to bottom, with each row written from left to right, using the orientations defined above.\n\n## Output\n\nOutput a single integer — the maximum number of cubes in an arrangement matching all three views, or `-1` if no such arrangement exists.\n\n## Note\n\nIn the first sample, all eight positions can contain cubes.\n\nIn the second sample, the front and top views spell \"KARP\" and \"CARP\", respectively. A maximum of 139 cube positions can be filled.\n\n![image](https://espresso.codeforces.com/d0042aa57ed984aaca7f7eba7070e769e7508790.png) Second sample: front view (\"KARP\"). ![image](https://espresso.codeforces.com/3aaab4bc51d5fe8a3119fa219d51380bbb70321c.png) Second sample: top view (\"CARP\"). ![image](https://espresso.codeforces.com/4e5b93bc265c4d1b874377255090a89c37969d8a.png) Second sample: filled right view.\n\n![image](https://espresso.codeforces.com/093a4a4439c87369be37ebef466942695349df3f.png) Close-up of the sculpture in the second sample, or see a video [here](https://drive.google.com/file/d/1928GSQBgi-tlPVWP9pqPgBD7HcLAqbHt/view?usp=sharing).\n\nIn the third sample, the top view requires a cube with x=1 and y=1. The front view allows such a cube only at z=1, but the right view forbids a cube with y=1 and z=1. Therefore, no arrangement exists.",
-  "statementZhMd": null,
+  "statementZhMd": "Magikarp 正在尝试一种名为*立体主义*的新技法。通过精心摆放一组方块，他可以让作品从不同角度看去呈现出三幅不同的图像！\n\nMagikarp 有一个沿 x、y、z 轴分别包含 n、m、k 个位置的 n×m×k 网格。每个位置 (x,y,z)（其中 1≤x≤n、1≤y≤m、1≤z≤k）至多可以放置一个单位立方体。立方体可以自由悬空，彼此之间不必相连。\n\n当你站在雕塑正面时，+x 指向你的右方，+y 指向雕塑内部，+z 指向上方。每个视图都是正交投影：其中的视线均与观察方向平行。\n\n他已经为自己的作品选好了三幅图像：\n\n- **俯视图**沿 −z 方向观察，图像中 +x 向右，+y 向上。它有 m 行、n 列。\n- **正视图**沿 +y 方向观察，图像中 +x 向右，+z 向上。它有 k 行、n 列。\n- **右视图**沿 −x 方向观察，图像中 +y 向右，+z 向上。它有 k 行、m 列。\n\n如果某个位置对应的视线上至少有一个立方体，该位置的字符就是 `#`；如果该视线上没有立方体，则为 `.`。\n\n求 Magikarp 最多可以放置多少个立方体，使三个视图都与他选定的图像完全一致。如果不存在这样的摆放方案，输出 `-1`。\n\n## 输入格式\n\n第一行包含三个整数 n、m 和 k（1≤n,m,k≤300），分别表示沿 x、y、z 轴的位置数量。\n\n接下来 m 行，每行包含一个长度为 n 的字符串，表示俯视图。\n\n接下来 k 行，每行包含一个长度为 n 的字符串，表示正视图。\n\n接下来 k 行，每行包含一个长度为 m 的字符串，表示右视图。\n\n每个字符都是 `#` 或 `.`。每幅图像均按照上述方向，从上到下逐行给出，每行从左到右书写。\n\n## 输出格式\n\n输出一个整数，表示在同时符合三个视图的摆放方案中，最多可以放置的立方体数量；如果不存在这样的方案，则输出 `-1`。\n\n## 说明\n\n在第一个样例中，全部八个位置都可以放置立方体。\n\n在第二个样例中，正视图和俯视图分别拼出了“KARP”和“CARP”。最多可以在 139 个位置放置立方体。\n\n![image](https://espresso.codeforces.com/d0042aa57ed984aaca7f7eba7070e769e7508790.png) 第二个样例：正视图（“KARP”）。 ![image](https://espresso.codeforces.com/3aaab4bc51d5fe8a3119fa219d51380bbb70321c.png) 第二个样例：俯视图（“CARP”）。 ![image](https://espresso.codeforces.com/4e5b93bc265c4d1b874377255090a89c37969d8a.png) 第二个样例：填满后的右视图。\n\n![image](https://espresso.codeforces.com/093a4a4439c87369be37ebef466942695349df3f.png) 第二个样例中雕塑的特写，也可以在[这里](https://drive.google.com/file/d/1928GSQBgi-tlPVWP9pqPgBD7HcLAqbHt/view?usp=sharing)观看视频。\n\n在第三个样例中，俯视图要求存在一个满足 x=1 且 y=1 的立方体。正视图只允许这样的立方体位于 z=1 处，但右视图禁止放置满足 y=1 且 z=1 的立方体。因此，不存在符合要求的摆放方案。",
   "samples": [
     {
       "input": "2 2 2\n##\n##\n##\n##\n##\n##\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T07:25:30.344Z"
+  "fetchedAt": "2026-11-12T07:25:30.344Z",
+  "translatedAt": "2026-11-15T05:57:17.603Z",
+  "translateModel": "gpt-6.1-sol"
 }

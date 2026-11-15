@@ -4,7 +4,7 @@
   "contestId": 106810,
   "index": "H",
   "title": "Vanishing Fairy Tale",
-  "titleZh": null,
+  "titleZh": "消逝的童话",
   "url": "https://codeforces.com/gym/106810/problem/H",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an array of $N$ integers $A_1, A_2, \\ldots, A_N$.\n\nA **spell** works as follows. First, choose a subsequence of the array (possibly empty). Then, for **each** chosen element $A_i$, choose exactly one of three fates:\n\n- keep it as $+A_i$,\n- flip its sign, turning it into $-A_i$, or\n- make it vanish, turning it into $0$.\n\nThe result of the spell is the sequence of the transformed chosen elements. Its **beauty** is the number of distinct integers in it. Note that every vanished element becomes the same integer $0$, so all vanished elements together add at most one distinct integer. The beauty of an empty result is $0$.\n\nTwo spells are considered different if some index $i$ is chosen in one of them but not in the other, or is chosen in both but gets a different fate. In particular, there are exactly $4^N$ different spells.\n\nYou have to answer $Q$ queries. In each query you are given an integer $K$. Count the spells whose beauty is a multiple of $K$. Note that $0$ is a multiple of every $K$.\n\n## Input\n\nThe first line contains a single integer $T$ ($1 \\le T \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $N$ and $Q$ ($1 \\le N, Q \\le 10^5$) — the size of the array and the number of queries.\n\nThe second line of each test case contains $N$ integers $A_1, A_2, \\ldots, A_N$ ($1 \\le A_i \\le N$).\n\nEach of the next $Q$ lines of each test case contains a single integer $K$ ($1 \\le K \\le 10^5$).\n\nIt is guaranteed that the sum of $N$ over all test cases does not exceed $2 \\cdot 10^5$, and the sum of $Q$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each query of each test case, print the number of spells whose beauty is a multiple of $K$, modulo $998244353$, on its own line.\n\n## Note\n\nIn the sample, there are $4^3 = 64$ spells. Their beauties are distributed as follows:\n\n- $1$ spell has beauty $0$ (nothing is chosen);\n- $15$ spells have beauty $1$;\n- $34$ spells have beauty $2$;\n- $14$ spells have beauty $3$.\n\nFor example, choosing all three elements and giving them the fates \"vanish\", \"keep\", \"vanish\" produces the sequence $0, 1, 0$, which has beauty $2$.\n\nFor $K = 1$, all $64$ spells are counted. For $K = 2$, the spells with beauty $0$ or $2$ are counted: $1 + 34 = 35$. For $K = 3$, the spells with beauty $0$ or $3$ are counted: $1 + 14 = 15$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个由 $N$ 个整数组成的数组 $A_1, A_2, \\ldots, A_N$。\n\n一次**施法**的过程如下。首先，选择数组的一个子序列（可以为空）。然后，对于**每个**被选中的元素 $A_i$，从以下三种命运中恰好选择一种：\n\n- 保持为 $+A_i$；\n- 将其符号取反，变为 $-A_i$；或\n- 使其消失，变为 $0$。\n\n施法的结果是由被选中的元素经过变换后组成的序列。其**美丽值**定义为序列中不同整数的个数。注意，每个消失的元素都会变成同一个整数 $0$，因此所有消失的元素合计至多贡献一个不同的整数。空序列的美丽值为 $0$。\n\n如果存在某个下标 $i$，使得它只在两次施法中的一次被选中，或者在两次施法中都被选中但被赋予了不同的命运，则认为这两次施法不同。因此，恰好有 $4^N$ 种不同的施法方式。\n\n你需要回答 $Q$ 次询问。每次询问给定一个整数 $K$，请计算美丽值为 $K$ 的倍数的施法方式数。注意，$0$ 是任意 $K$ 的倍数。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\le T \\le 10^4$）——测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含两个整数 $N$ 和 $Q$（$1 \\le N, Q \\le 10^5$）——数组的长度和询问的次数。\n\n每个测试用例的第二行包含 $N$ 个整数 $A_1, A_2, \\ldots, A_N$（$1 \\le A_i \\le N$）。\n\n每个测试用例接下来的 $Q$ 行，每行包含一个整数 $K$（$1 \\le K \\le 10^5$）。\n\n保证所有测试用例的 $N$ 之和不超过 $2 \\cdot 10^5$，且所有测试用例的 $Q$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例的每次询问，单独输出一行，表示美丽值为 $K$ 的倍数的施法方式数，对 $998244353$ 取模。\n\n## 说明\n\n在样例中，共有 $4^3 = 64$ 种施法方式。它们的美丽值分布如下：\n\n- $1$ 种施法方式的美丽值为 $0$（不选择任何元素）；\n- $15$ 种施法方式的美丽值为 $1$；\n- $34$ 种施法方式的美丽值为 $2$；\n- $14$ 种施法方式的美丽值为 $3$。\n\n例如，选择全部三个元素，并依次赋予它们“消失”“保留”“消失”的命运，得到的序列为 $0, 1, 0$，其美丽值为 $2$。\n\n当 $K = 1$ 时，所有 $64$ 种施法方式都计入答案。当 $K = 2$ 时，美丽值为 $0$ 或 $2$ 的施法方式计入答案：$1 + 34 = 35$。当 $K = 3$ 时，美丽值为 $0$ 或 $3$ 的施法方式计入答案：$1 + 14 = 15$。",
   "samples": [
     {
       "input": "1\n3 3\n2 1 2\n1\n2\n3\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-11T17:20:37.273Z"
+  "fetchedAt": "2026-11-11T17:20:37.273Z",
+  "translatedAt": "2026-11-15T05:59:36.928Z",
+  "translateModel": "gpt-6.1-sol"
 }

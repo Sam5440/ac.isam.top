@@ -4,7 +4,7 @@
   "contestId": 106810,
   "index": "A",
   "title": "Whirlpool",
-  "titleZh": null,
+  "titleZh": "漩涡",
   "url": "https://codeforces.com/gym/106810/problem/A",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 6000,
   "memoryLimitMb": 1024,
   "statementMd": "A lake, represented by a 2D coordinate plane, has $n$ distinct *protected spots*. The $i$-th protected spot is at $(x_i,y_i)$. Currently, there is a treasure on each protected spot. The treasure on the $i$-th protected spot has value $w_i$.\n\nA whirlpool is about to sweep across the lake. You may place its center $(c_x,c_y)$ at any point in the plane; the coordinates of the center do not have to be integers. The whirlpool is described by two given integers $a$ and $b$. It moves a treasure at $(x,y)$ to $(x',y')$, where\n\n$$x' = c_x + a(x-c_x) - b(y-c_y),$$\n\n$$y' = c_y + b(x-c_x) + a(y-c_y).$$\n\nThe whirlpool moves all treasures in the lake simultaneously, exactly once. A treasure is &lt;i&gt;safe&lt;/i&gt; if it ends up exactly on one of the protected spots. It does not have to be the spot it started on.\n\nFind the maximum possible total value of safe treasures over all choices of the center.\n\n## Input\n\nThe first line contains a single integer $T$ ($1 \\le T \\le 20$) — the number of test cases.\n\nThe first line of each test case contains three space-separated integers $n$, $a$, and $b$ ($1 \\le n \\le 1000$, ${-10^4 \\le a \\le 10^4}$, ${-10^4 \\le b \\le 10^4}$, $b \\ne 0$) — the number of protected spots and the two whirlpool parameters.\n\nThe second line contains $n$ space-separated integers $x_1,x_2,\\ldots,x_n$ ($-10^8 \\le x_i \\le 10^8$) — the $x$-coordinates of the protected spots.\n\nThe third line contains $n$ space-separated integers $y_1,y_2,\\ldots,y_n$ ($-10^8 \\le y_i \\le 10^8$) — the $y$-coordinates of the protected spots.\n\nThe fourth line contains $n$ space-separated integers $w_1,w_2,\\ldots,w_n$ ($1 \\le w_i \\le 10^9$) — the values of the treasures.\n\nAll protected spots in a test case are distinct.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2000$.\n\n## Output\n\nFor each test case, output a single integer — the maximum possible total value of safe treasures.\n\n## Note\n\nIn the first test case, place the center at the only protected spot. The treasure does not move, so it is safe and the answer is $7$.\n\nIn the second test case, place the center at $\\left(\\frac{1}{2},\\frac{1}{2}\\right)$. Every treasure moves to the next corner of the square in counterclockwise order, so all four treasures are safe and the answer is $1+2+3+4=10$.\n\nIn the third test case, place the center at $(1,1)$. The whirlpool rotates every treasure by $45^\\circ$ counterclockwise around the center and multiplies its distance from the center by $\\sqrt{2}$. The treasure at $(2,1)$ moves to $(2,2)$, and the treasure at $(2,2)$ moves to $(1,3)$, so both are safe. The treasure at $(1,3)$ moves to $(-1,3)$, which is not a protected spot. The total value of safe treasures is $5+4=9$. It can be proven that it is impossible to keep all three treasures safe.\n\nThe following is an illustration of the third test case.\n\n![image](https://espresso.codeforces.com/f3fe550810f176c69c8a42c33168b311852353c4.png)\n\nGreen treasures are safe. The red treasure is lost. The dashed circle is where the lost treasure lands. The black dot is the center.",
-  "statementZhMd": null,
+  "statementZhMd": "一片湖泊可以用二维坐标平面表示，其中有 $n$ 个互不相同的*保护点*。第 $i$ 个保护点位于 $(x_i,y_i)$。目前，每个保护点上都有一件宝物。第 $i$ 个保护点上的宝物价值为 $w_i$。\n\n一个漩涡即将席卷湖泊。你可以将漩涡中心 $(c_x,c_y)$ 放在平面上的任意位置，中心的坐标不必是整数。漩涡由两个给定的整数 $a$ 和 $b$ 描述。它会将位于 $(x,y)$ 的宝物移动到 $(x',y')$，其中\n\n$$x' = c_x + a(x-c_x) - b(y-c_y),$$\n\n$$y' = c_y + b(x-c_x) + a(y-c_y).$$\n\n漩涡会同时移动湖泊中的所有宝物，且只移动一次。如果一件宝物最终恰好落在某个保护点上，就称它是&lt;i&gt;安全的&lt;/i&gt;。这个保护点不必是它原来所在的保护点。\n\n求在所有漩涡中心的选择中，安全宝物的总价值最大是多少。\n\n## 输入格式\n\n第一行包含一个整数 $T$ ($1 \\le T \\le 20$) —— 测试用例的数量。\n\n每个测试用例的第一行包含三个以空格分隔的整数 $n$、$a$ 和 $b$ ($1 \\le n \\le 1000$, ${-10^4 \\le a \\le 10^4}$, ${-10^4 \\le b \\le 10^4}$, $b \\ne 0$) —— 保护点的数量以及漩涡的两个参数。\n\n第二行包含 $n$ 个以空格分隔的整数 $x_1,x_2,\\ldots,x_n$ ($-10^8 \\le x_i \\le 10^8$) —— 各保护点的 $x$ 坐标。\n\n第三行包含 $n$ 个以空格分隔的整数 $y_1,y_2,\\ldots,y_n$ ($-10^8 \\le y_i \\le 10^8$) —— 各保护点的 $y$ 坐标。\n\n第四行包含 $n$ 个以空格分隔的整数 $w_1,w_2,\\ldots,w_n$ ($1 \\le w_i \\le 10^9$) —— 各件宝物的价值。\n\n每个测试用例中的所有保护点互不相同。\n\n保证所有测试用例的 $n$ 之和不超过 $2000$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数 —— 安全宝物的最大总价值。\n\n## 说明\n\n在第一个测试用例中，将中心放在唯一的保护点上。宝物不会移动，因此它是安全的，答案为 $7$。\n\n在第二个测试用例中，将中心放在 $\\left(\\frac{1}{2},\\frac{1}{2}\\right)$。每件宝物都会沿逆时针方向移动到正方形的下一个顶点，因此四件宝物都是安全的，答案为 $1+2+3+4=10$。\n\n在第三个测试用例中，将中心放在 $(1,1)$。漩涡会使每件宝物绕中心逆时针旋转 $45^\\circ$，并将其到中心的距离乘以 $\\sqrt{2}$。位于 $(2,1)$ 的宝物移动到 $(2,2)$，位于 $(2,2)$ 的宝物移动到 $(1,3)$，因此这两件宝物都是安全的。位于 $(1,3)$ 的宝物移动到 $(-1,3)$，该位置不是保护点。安全宝物的总价值为 $5+4=9$。可以证明，不可能让三件宝物都安全。\n\n下图展示了第三个测试用例。\n\n![image](https://espresso.codeforces.com/f3fe550810f176c69c8a42c33168b311852353c4.png)\n\n绿色的宝物是安全的。红色的宝物会丢失。虚线圆圈表示丢失的宝物最终落下的位置。黑点表示漩涡中心。",
   "samples": [
     {
       "input": "3\n1 1 1\n2\n-3\n7\n4 0 1\n0 1 1 0\n0 0 1 1\n1 2 3 4\n3 1 1\n2 2 1\n1 2 3\n5 4 1\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-11T17:19:17.398Z"
+  "fetchedAt": "2026-11-11T17:19:17.398Z",
+  "translatedAt": "2026-11-15T05:58:56.609Z",
+  "translateModel": "gpt-6.1-sol"
 }
