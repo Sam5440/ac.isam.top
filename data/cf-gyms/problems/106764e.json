@@ -4,7 +4,7 @@
   "contestId": 106764,
   "index": "E",
   "title": "The Great Karpish Bake Off",
-  "titleZh": null,
+  "titleZh": "鲤鱼烘焙大赛",
   "url": "https://codeforces.com/gym/106764/problem/E",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Magikarp has entered the Karpish Bake Off with his magnum opus, Tres Peces, and the hungry judges expect it by time T.\n\nTo prepare his masterpiece, he has n recipes, numbered 1,2,…,n, with recipe 1 being his Tres Peces. Recipe i takes ti units of time and can begin only after its mi prerequisite recipes finish, while recipes without prerequisites can begin at time 0.\n\nThe dependencies form a tree rooted at recipe 1, meaning that every other recipe is a prerequisite of exactly one recipe and all recipes are needed for recipe 1. Since Magikarp has unlimited KI (Karpificial Intelligence) agents, any number of recipes can be prepared in parallel.\n\nSome of his recipes are also *boostable*. This means that Magikarp can choose one positive integer power level x before cooking begins, which changes the duration of every *boostable* recipe to ⌊tix⌋ units of time, while other recipes still take ti units of time.\n\nFind the minimum power level such that Magikarp can finish his Tres Peces by time T, or determine that this is impossible.\n\n## Input\n\nThe first line contains two integers n and T (1≤n≤2⋅105, 0≤T≤1014) — the number of recipes and the deadline, respectively.\n\nThe second line contains n integers t1,t2,…,tn (1≤ti≤109) — the preparation times before boosting.\n\nThe third line contains n integers b1,b2,…,bn (bi∈{0,1}), where bi=1 if recipe i is boostable and bi=0 otherwise.\n\nThe ith of the next n lines contains an integer mi (0≤mi≤n−1), followed by mi distinct integers ai,1,ai,2,…,ai,mi (1≤ai,j≤n) — the number of prerequisite recipes and their recipe numbers, respectively.\n\n## Output\n\nOutput a single integer — the minimum positive integer power level such that Magikarp can finish his Tres Peces by time T, or `-1` if this is impossible.\n\n## Note\n\nIn the first example, recipes 2 and 3 are prepared in parallel before recipe 1 begins. At power level 2, recipe 1 finishes at time 4+3=7 and misses the deadline, whereas power level 3 lets it finish at time 2+3=5, so the answer is 3.\n\nIn the second example, recipe 1 alone takes 4 units of time and cannot be boosted, so the deadline of 3 is impossible.\n\nIn the third example, power level 8 reduces the duration to ⌊78⌋=0, while every smaller positive power level takes at least one unit of time.",
-  "statementZhMd": null,
+  "statementZhMd": "鲤鱼王带着他的巅峰之作 Tres Peces 参加了鲤鱼烘焙大赛，饥肠辘辘的评委们期待在时刻 T 之前品尝到这道作品。\n\n为了完成这道杰作，他准备了 n 份食谱，编号为 1,2,…,n，其中食谱 1 就是 Tres Peces。按照食谱 i 制作需要 ti 个单位时间，并且只有在其 mi 份前置食谱全部制作完成后才能开始；没有前置食谱的食谱可以在时刻 0 开始制作。\n\n这些依赖关系构成一棵以食谱 1 为根的树，也就是说，其他每份食谱都恰好是一份食谱的前置食谱，并且制作食谱 1 需要用到所有食谱。由于鲤鱼王拥有数量无限的 KI（Karpificial Intelligence）智能体，因此可以同时制作任意数量的食谱。\n\n他的一些食谱还可以*加速*。具体来说，鲤鱼王可以在开始烹饪前选择一个正整数能量等级 x，将每份*可加速*食谱的制作时间变为 ⌊tix⌋ 个单位时间，而其他食谱的制作时间仍为 ti 个单位时间。\n\n求使鲤鱼王能够在时刻 T 之前完成 Tres Peces 的最小能量等级，或者判断这是不可能的。\n\n## 输入格式\n\n第一行包含两个整数 n 和 T（1≤n≤2⋅105，0≤T≤1014），分别表示食谱数量和截止时刻。\n\n第二行包含 n 个整数 t1,t2,…,tn（1≤ti≤109），表示加速前的制作时间。\n\n第三行包含 n 个整数 b1,b2,…,bn（bi∈{0,1}），其中，若食谱 i 可以加速，则 bi=1，否则 bi=0。\n\n接下来 n 行中的第 i 行包含一个整数 mi（0≤mi≤n−1），后跟 mi 个互不相同的整数 ai,1,ai,2,…,ai,mi（1≤ai,j≤n），分别表示前置食谱的数量及其编号。\n\n## 输出格式\n\n输出一个整数，表示使鲤鱼王能够在时刻 T 之前完成 Tres Peces 的最小正整数能量等级；如果不可能，则输出 `-1`。\n\n## 说明\n\n在第一个样例中，食谱 2 和 3 并行制作，完成后才开始制作食谱 1。当能量等级为 2 时，食谱 1 在时刻 4+3=7 完成，超过了截止时刻；而能量等级为 3 时，它可以在时刻 2+3=5 完成，因此答案为 3。\n\n在第二个样例中，仅食谱 1 就需要 4 个单位时间，且无法加速，因此不可能在截止时刻 3 之前完成。\n\n在第三个样例中，能量等级为 8 时，制作时间缩短为 ⌊78⌋=0，而任何更小的正整数能量等级都至少需要一个单位时间。",
   "samples": [
     {
       "input": "3 6\n3 8 5\n0 1 1\n2 2 3\n0\n0\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:37:52.012Z"
+  "fetchedAt": "2026-11-12T14:37:52.012Z",
+  "translatedAt": "2026-11-15T23:14:38.726Z",
+  "translateModel": "gpt-6.1-sol"
 }
