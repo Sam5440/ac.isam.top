@@ -141,7 +141,9 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 
 其它 SW 要点：RSC 离线未命中 307 回整页导航（绝不能把 503 HTML 当 flight 载荷）；
 `pruneAssets` 用 `asset_refs__` 保护仍在被引用的 chunk；`activate` 不删
-`compiler-runtime-v1`（用户手动下载的运行时）。
+`compiler-runtime-v1`（用户手动下载的运行时）。**遗留缺口**：`compiler-runtime-v1`
+里的 wasm bridge/worker 会被旧版 SW 缓存，且版本握手尚未实现——升级 bridge/worker
+后要让用户清掉该桶重新下载运行时（改 SW 前先确认是否涉及）。
 
 ### 3.5 题面渲染链
 
@@ -151,6 +153,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 先探测公式再决定渲染路径；`img-dedup.js` 去掉中英段重复图片）。样例渲染
 `SamplesSection`（支持 LaTeX，复制原始文本）。改动这条链注意： KaTeX/highlight
 客户端运行时（`KatexRuntime`/`HighlightRuntime`）是全局挂载的，别在页面里重复初始化。
+
+**XSS 最后兜底**：所有 HTML 出口——包括 MT/AI 译文这类绕过正常管线的入口——最终
+都过 `lib/render.js` 的 `sanitizeRichHtml`（parse5 白名单重建，URL 解码后校验协议）。
+新增任何「用户/外部内容进 DOM」的入口时，确认它也被这条链覆盖。
 
 ### 3.6 编译器与 IDE
 
@@ -163,6 +169,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 - `components/ide/`：独立 `/ide` 工作台（Workbench 布局、文件管理、zip 导入导出、
   终端、CiLogPanel 联动 /ci）。与 CompilerDock 通过 `lib/editor-bridge.js` /
   `lib/ide-bus.js` 通信。
+- 运行语义：C++ 只对「运行」阶段计时，编译/链接走独立硬上限
+  （`COMPILE_HARD_CAP_MS = 180s`）；wasm 无法从外部抢占，**超时/停止 =
+  `terminate worker`**；交互运行 = SharedArrayBuffer + `Atomics.wait` 阻塞喂 stdin。
+  Python worker 必须是 **module worker**，别改成经典 worker。
 
 ### 3.7 AI 功能
 
@@ -177,12 +187,21 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   `lib/mt-health.js`（渠道健康度/熔断轮转）。
 - 服务端抓取用 AI 翻译：`scripts/lib/llm.mjs` + `translate.mjs`（系统提示词约定见
   README「翻译质量约定」；公式逐字符保留是硬约束）。
+- 出站代理安全参数（改前必读，`lib/ai-proxy.mjs` + `lib/secure-proxy.mjs`）：同源
+  校验；目标主机白名单（内置 18 家 AI 域名 + `AI_PROXY_ALLOWED_HOSTS`）；**DNS 预解析
+  全部地址必须公网 + 连接钉死解析结果**（防 rebinding SSRF）；禁重定向；方法/头白名单；
+  请求 4MB / 响应 8MB 上限；55s 超时；120 req/min/IP；SSE 透传。`/api/mt/[channel]`：
+  渠道白名单 + 串行 500ms + 超限 429；`/api/contests/clist`：参数白名单 + TTL 600s +
+  in-flight 去重（Clist 限流 10 req/min，缓存是强制的）。三者由
+  `test/security-and-query.test.mjs` 部分守卫——放宽任何一项先想清攻击面。
 
 ### 3.8 抓取管线（scripts/）
 
 - `fetch.mjs` 主管道：`runAtCoder()` / `runCodeforces()`（Playwright 过 CF）/
   `runNowcoder()` → `collectProblems()` → `runTranslate()` → `writeCiLog()`。
   CI 参数 `--abc 3 --arc 1 --agc 1 --cf 3 --nc 2 --backfill 10 --translate-limit 120`。
+  平台阶段互相隔离（单平台失败不阻断）；翻译阶段先 `pingLLM` 探活，401/403 中止
+  整轮（Key 失效时别打满无效请求），并发池收到 401/403 置 `authAborted` 跳过余量。
 - `fetch-cf-gyms.mjs` cf-gyms：**完整性契约**（列表全扫 → ID 区间 `[100001, max+25]`
   逐个探测，隐藏 gym 也入库 → 题面以 gym 页链接为权威集合并集 → 失败进
   `.attempts.json` 重试账本 → verify 枚举缺漏退出码 1）。准入规则与 `reuseOf` 见
@@ -192,6 +211,20 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   `scripts/lib/cf.mjs`）；风暴熔断（连续质询→全局冷却 5-10min）参数勿随意放宽。
 - `scripts/lib/ci-log.mjs` 写 `data/ci-log.json`，`/ci` 页与 `CiDashboard` 消费——
   改字段两边同步。
+- **三工作流调度**：`ci.yml`（push/PR）= `npm test` + 完整 build；`fetch.yml` 每小时
+  （cron `23 * * * *`）跑主管道，**push 失败自动 `git pull --rebase --autostash` 重试
+  ×3**（checkout 与 push 窗口内撞上人工 push 的解药）；`fetch-cf-gyms.yml` 每日
+  20:47 UTC（北京 04:47），装 poppler-utils（PDF 取字），提交后跑 `--mode verify`，
+  有缺漏退出码 1 让 job 变红（数据已落地，缺口下轮自动补）。Secrets：
+  `TRANSLATE_BASE_URL/API_KEY/MODEL`、`CLIST_API_KEY`，可选 `CF_HANDLE/CF_PASSWORD`
+  （受限 gym 登录兜底），Vercel 侧 `AI_PROXY_ALLOWED_HOSTS`。
+- **data/ 纪律**：入库 = `index.json` / `ci-log.json` / `cf-gyms/sweep-state.json`
+  （ID 补扫游标，CI 续扫依赖）/ 各平台 `contests.json` + `problems/`；**不入库、绝不
+  `git add -f`** = `data.zip`、机器本地状态（`.attempts.json` / `.backfill-state.json`
+  / `.scan-cursor.json` / `.fetch-state.json` / `.live*.json`）、`data/*/pdf/`
+  （PDF 原件只落系统临时目录取字后即删，仓库只存 pdftotext 提取文本 `statementMd`
+  + 远端地址 `statementPdf`）。`build-index.mjs` 内容未变时沿用旧 `generatedAt`，
+  不产生空 data 提交。
 
 ## 4. 测试约定
 
@@ -203,6 +236,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   一个文件覆盖一个模块。
 - SW 源码有两条守卫测试（可解析为 JS / 不含反引号），改 SW 时若新增结构约束，
   优先加成测试而不是口头约定。
+- **测试发现三守卫**（`test/guard-test-discovery.test.mjs`，历史事故防复发）：①
+  package.json 的 test 脚本必须是带通配的显式 glob（禁裸 `node --test` 与目录参数——
+  裸命令会把 E2E 脚本当单测跑）；② 全仓类测试命名文件只许在 `test/`；③ `test/` 内
+  必须 `.test.mjs`。新建 E2E/脚本时文件名不得含 test/spec 字样。
 - 注意：全新 clone 未 `npm install` 时 `render-format`/`img-dedup`/
   `security-and-query` 三个测试会因缺 `parse5` 失败——这是存量现象，不是你的改动
   引起的。
@@ -220,6 +257,15 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   3. **Windows 专属**：`data/cf-gyms/problems/*?*.json` 两个文件名含 `?` 的文件在
      Windows 上永远显示为 `deleted`——这是平台限制的假象，**绝不 `git add -A`，
      绝不提交这两个删除**（它们的真实内容只在 Linux CI / GitHub 上存在）。
+- 本地 push 前先 `git fetch && git rebase origin/main`；撞上 CI data 提交且
+  `data/index.json` 冲突时，正解是**基于合并后的平台数据重跑
+  `node scripts/build-index.mjs` 再 add**，不要只保留一边（两边都是各自快照，
+  重建才是合流）。脚本侧写 JSON 一律走 `scripts/lib/util.mjs` 的 `writeJson`
+  （tmp + rename 原子写）。
+- 其它约定：文档型报告（`FIX-REPORT` / `OPTIMIZATION-REPORT-*` / `review-*/` /
+  `TEST-REPORT*`）是历史存档，更新时**只增不改**已有结论；Tailwind 暗色变体是
+  `@custom-variant dark (&:is(.dark *))`，靠根元素类切换而非 media query；改配色走
+  `lib/themes.js` 三层体系（内置 / 模板 / 用户自定义），别在组件里写死颜色。
 
 ## 6. 已知陷阱清单（历史教训，勿重蹈）
 
@@ -253,6 +299,13 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
     新增 API 路由自动享受该规则，别在 SW 里给它加缓存分支。
 13. **仓库里的大 JSON 是不可再生的历史快照之外的一切来源**：`data/` 下任何文件不要
     手改；修复数据用对应脚本的 backfill/repair 模式。
+14. **Vercel 上 `os.tmpdir()` 与项目目录跨设备**：`rename` 必 EXDEV（`copy` 不受限）。
+    安装/构建类脚本的 staging 一律建在**项目盘内**再落位（`scripts/fetch-runtime.mjs`
+    已如此），别写跨盘 rename。
+15. **测试文件命名会被 npm test 的 glob 误收**：类测试命名（`*.test.*`/`*.spec.*`/
+    `*-test.*`）只允许出现在 `test/`，且 `test/` 内必须是 `.test.mjs`；E2E / Playwright
+    脚本的文件名**不得含 test/spec 字样**（`e2e/` 目录名也是刻意起的）。三守卫见
+    `test/guard-test-discovery.test.mjs`——违反它 CI 连红过 4 次。
 
 ## 7. 常见任务手册
 
