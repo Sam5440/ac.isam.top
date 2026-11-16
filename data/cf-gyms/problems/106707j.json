@@ -4,7 +4,7 @@
   "contestId": 106707,
   "index": "J",
   "title": "Join the Joint",
-  "titleZh": null,
+  "titleZh": "联合之力",
   "url": "https://codeforces.com/gym/106707/problem/J",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 256,
   "statementMd": "Recently, Eva learned several advanced data structure techniques for trees. To show her progress, she asked Colin to give her a challenging problem about tree statistics.\n\nHowever, Colin just gave her a very typical problem:\n\nGiven a tree with 𝑛n vertices, and vertex 11 is the root. Each vertex has an integer weight 𝑤𝑖wi.\n\nLet 𝑙𝑐𝑎(𝑢,𝑣)lca(u,v) represent the lowest common ancestor of the vertices 𝑢u and 𝑣v.\n\nGiven two integer sequences 𝑎1,𝑎2,⋯,𝑎𝑥 (1≤𝑎𝑖≤𝑛)a1,a2,⋯,ax (1≤ai≤n) and 𝑏1,𝑏2,⋯,𝑏𝑦 (1≤𝑏𝑖≤𝑛)b1,b2,⋯,by (1≤bi≤n). Define the joint power of these two sequences to be\n\n∑𝑖=1𝑥∑𝑗=1𝑦𝑤𝑙𝑐𝑎(𝑎𝑖,𝑏𝑗)∑i=1x∑j=1ywlca(ai,bj)\n\nPlease calculate the value of this joint power.\n\nEva thinks this problem is too easy, so she decided to change the problem into an online problem:\n\nFirst, given the tree and the weight of each vertex. Initially, both sequences are empty.\n\nThen there will be 𝑚m operations, each one is of the following two types:\n\n- `1 u` : append 𝑢 (1≤𝑢≤𝑛)u (1≤u≤n) to the end of the first sequence.\n- `2 u` : append 𝑢 (1≤𝑢≤𝑛)u (1≤u≤n) to the end of the second sequence.\n\nAfter each operation, you need to output the current joint power of the two sequences.\n\nHowever, this version of the problem is too hard for Eva, so she added an additional limitation that, after each operation, the sum of values in the first sequence will not exceed 106106. Now Eva turns this problem to you; do you know how to solve it?\n\n## Input\n\nThe first line contains two integers 𝑛,𝑚 (1≤𝑛,𝑚≤105)n,m (1≤n,m≤105), representing the number of vertices in the tree and the number of operations.\n\nThe second line contains 𝑛n integers 𝑤1,𝑤2,⋯,𝑤𝑛(1≤𝑤𝑖≤105)w1,w2,⋯,wn(1≤wi≤105), representing the weight of each vertex.\n\nFor the following 𝑛−1n−1 lines, each line contains two integers 𝑢𝑖,𝑣𝑖 (1≤𝑢𝑖,𝑣𝑖≤𝑛,𝑢𝑖≠𝑣𝑖)ui,vi (1≤ui,vi≤n,ui≠vi), representing that there is an edge connecting 𝑢𝑖ui and 𝑣𝑖vi in the tree. It's guaranteed that all the edges in the input form a tree.\n\nFor the following 𝑚m lines, each line contains two integers 𝑜𝑝𝑖,𝑢𝑖 (𝑜𝑝𝑖∈{1,2},1≤𝑢𝑖≤𝑛)opi,ui (opi∈{1,2},1≤ui≤n), representing an operation. It's guaranteed that after each operation, the sum of values in the first sequence will not exceed 106106.\n\n## Output\n\nFor each operation, output a single line with a single integer, representing the joint power of the two sequences after the corresponding operation.",
-  "statementZhMd": null,
+  "statementZhMd": "最近，Eva 学习了几种高级树上数据结构技巧。为了展示自己的进步，她请 Colin 给她出一道有挑战性的树上统计问题。\n\n然而，Colin 只是给了她一道非常常见的问题：\n\n给定一棵有 $n$ 个顶点的树，以顶点 $1$ 为根。每个顶点都有一个整数权值 $w_i$。\n\n令 $lca(u,v)$ 表示顶点 $u$ 和 $v$ 的最近公共祖先。\n\n给定两个整数序列 $a_1,a_2,\\cdots,a_x\\ (1\\le a_i\\le n)$ 和 $b_1,b_2,\\cdots,b_y\\ (1\\le b_i\\le n)$。定义这两个序列的联合之力为\n\n$$\n\\sum_{i=1}^{x}\\sum_{j=1}^{y}w_{lca(a_i,b_j)}\n$$\n\n请计算这个联合之力的值。\n\nEva 觉得这道题太简单了，于是她决定将其改成一道在线问题：\n\n首先，给定这棵树以及每个顶点的权值。初始时，两个序列均为空。\n\n接下来有 $m$ 次操作，每次操作属于以下两种类型之一：\n\n- `1 u`：将 $u\\ (1\\le u\\le n)$ 添加到第一个序列的末尾。\n- `2 u`：将 $u\\ (1\\le u\\le n)$ 添加到第二个序列的末尾。\n\n每次操作后，你需要输出当前两个序列的联合之力。\n\n然而，这个版本的问题对 Eva 来说太难了，因此她又增加了一个限制：每次操作后，第一个序列中所有元素的值之和不超过 $10^6$。现在 Eva 将这道题交给了你，你知道该如何解决吗？\n\n## 输入格式\n\n第一行包含两个整数 $n,m\\ (1\\le n,m\\le 10^5)$，分别表示树的顶点数和操作次数。\n\n第二行包含 $n$ 个整数 $w_1,w_2,\\cdots,w_n\\ (1\\le w_i\\le 10^5)$，表示每个顶点的权值。\n\n接下来的 $n-1$ 行，每行包含两个整数 $u_i,v_i\\ (1\\le u_i,v_i\\le n,u_i\\ne v_i)$，表示树中有一条连接顶点 $u_i$ 和 $v_i$ 的边。保证输入中的所有边构成一棵树。\n\n接下来的 $m$ 行，每行包含两个整数 $op_i,u_i\\ (op_i\\in\\{1,2\\},1\\le u_i\\le n)$，表示一次操作。保证每次操作后，第一个序列中所有元素的值之和不超过 $10^6$。\n\n## 输出格式\n\n对于每次操作，输出一行，包含一个整数，表示该次操作后两个序列的联合之力。",
   "samples": [
     {
       "input": "3 5\n1 2 3\n1 2\n1 3\n1 1\n2 1\n1 2\n2 2\n1 3\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T16:46:40.101Z"
+  "fetchedAt": "2026-11-12T16:46:40.101Z",
+  "translatedAt": "2026-11-16T17:05:01.902Z",
+  "translateModel": "gpt-6.1-sol"
 }

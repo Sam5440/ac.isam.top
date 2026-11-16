@@ -4,7 +4,7 @@
   "contestId": 104869,
   "index": "B",
   "title": "Turning Permutation",
-  "titleZh": null,
+  "titleZh": "转向排列",
   "url": "https://codeforces.com/gym/104869/problem/B",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 512,
   "statementMd": "A permutation of length 𝑛n is a sequence of 𝑛n integers in which every integer from 11 to 𝑛n appears exactly once. For a permutation 𝑝1,𝑝2,…,𝑝𝑛p1,p2,…,pn of length 𝑛n, let 𝑞𝑖qi denote the position where 𝑖i appears, i.e., 𝑝𝑞𝑖=𝑖pqi=i. If for every 𝑖=2,3,…,𝑛−1i=2,3,…,n−1 we have (𝑞𝑖−𝑞𝑖−1)(𝑞𝑖−𝑞𝑖+1)&gt;0(qi−qi−1)(qi−qi+1)&gt;0, then the permutation 𝑝1,𝑝2,…,𝑝𝑛p1,p2,…,pn is called a *turning permutation*.\n\nNow given 𝑛n and 𝑘k, you need to find the 𝑘k-th lexicographically smallest turning permutation of length 𝑛n, or report that the number of turning permutations of length 𝑛n is less than 𝑘k.\n\nTo determine which of the two permutations of length 𝑛n is lexicographically smaller, we compare their first elements. If they are equal, we compare the second, and so on. If we have two different permutations 𝑥x and 𝑦y of length 𝑛n, then 𝑥x is lexicographically smaller if 𝑥𝑖&lt;𝑦𝑖xi&lt;yi, where 𝑖i is the first index at which the permutations 𝑥x and 𝑦y differ.\n\n## Input\n\nThe only line contains two integers 𝑛n (3≤𝑛≤503≤n≤50) and 𝑘k (1≤𝑘≤10181≤k≤1018), denoting the length of the permutation and the ranking position of the desired turning permutation in the lexicographically sorted list of all the turning permutations of length 𝑛n, respectively.\n\n## Output\n\nIf the number of turning permutations of length 𝑛n is less than 𝑘k, output −1−1 in one line. Otherwise, output the 𝑘k-th lexicographically smallest turning permutation of length 𝑛n in one line.\n\n## Note\n\nThere are a total of 44 turning permutations of length 33, arranged in lexicographically ascending order: [1,3,2][1,3,2], [2,1,3][2,1,3], [2,3,1][2,3,1], [3,1,2][3,1,2]. Therefore, for the first sample case, the 22nd lexicographically smallest turning permutation is [2,1,3][2,1,3], and for the second sample case, the answer is −1−1.\n\nThere are a total of 1010 turning permutations of length 44, arranged in lexicographically ascending order: [1,3,2,4][1,3,2,4], [1,3,4,2][1,3,4,2], [2,1,4,3][2,1,4,3], [2,4,1,3][2,4,1,3], [2,4,3,1][2,4,3,1], [3,1,2,4][3,1,2,4], [3,1,4,2][3,1,4,2], [3,4,1,2][3,4,1,2], [4,2,1,3][4,2,1,3], [4,2,3,1][4,2,3,1]. Therefore, for the third sample case, the 66th lexicographically smallest turning permutation is [3,1,2,4][3,1,2,4], and for the fourth sample case, the answer is −1−1.",
-  "statementZhMd": null,
+  "statementZhMd": "长度为 $n$ 的排列是一个由 $n$ 个整数组成的序列，其中从 $1$ 到 $n$ 的每个整数都恰好出现一次。对于一个长度为 $n$ 的排列 $p_1,p_2,\\ldots,p_n$，用 $q_i$ 表示整数 $i$ 出现的位置，即 $p_{q_i}=i$。如果对于每个 $i=2,3,\\ldots,n-1$，都有 $(q_i-q_{i-1})(q_i-q_{i+1})>0$，则称排列 $p_1,p_2,\\ldots,p_n$ 为一个*转向排列*。\n\n现在给定 $n$ 和 $k$，你需要找出长度为 $n$ 的转向排列中字典序第 $k$ 小的排列，或者报告长度为 $n$ 的转向排列的数量小于 $k$。\n\n比较两个长度为 $n$ 的排列的字典序时，先比较它们的第一个元素；如果相同，则比较第二个元素，依此类推。对于两个不同的、长度为 $n$ 的排列 $x$ 和 $y$，设 $i$ 是它们第一个不同的位置，若 $x_i<y_i$，则 $x$ 的字典序更小。\n\n## 输入格式\n\n唯一一行包含两个整数 $n$（$3≤n≤50$）和 $k$（$1≤k≤10^{18}$），分别表示排列的长度，以及所求转向排列在所有长度为 $n$ 的转向排列按字典序升序排列后的排名。\n\n## 输出格式\n\n如果长度为 $n$ 的转向排列的数量小于 $k$，则在一行中输出 $-1$。否则，在一行中输出长度为 $n$ 的转向排列中字典序第 $k$ 小的排列。\n\n## 说明\n\n长度为 $3$ 的转向排列共有 $4$ 个，按字典序升序排列依次为：$[1,3,2]$、$[2,1,3]$、$[2,3,1]$、$[3,1,2]$。因此，对于第一个样例，字典序第 $2$ 小的转向排列是 $[2,1,3]$；对于第二个样例，答案为 $-1$。\n\n长度为 $4$ 的转向排列共有 $10$ 个，按字典序升序排列依次为：$[1,3,2,4]$、$[1,3,4,2]$、$[2,1,4,3]$、$[2,4,1,3]$、$[2,4,3,1]$、$[3,1,2,4]$、$[3,1,4,2]$、$[3,4,1,2]$、$[4,2,1,3]$、$[4,2,3,1]$。因此，对于第三个样例，字典序第 $6$ 小的转向排列是 $[3,1,2,4]$；对于第四个样例，答案为 $-1$。",
   "samples": [
     {
       "input": "3 2\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-15T04:40:52.968Z"
+  "fetchedAt": "2026-11-15T04:40:52.968Z",
+  "translatedAt": "2026-11-16T17:05:11.755Z",
+  "translateModel": "gpt-6.1-sol"
 }
