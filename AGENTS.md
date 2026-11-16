@@ -88,7 +88,14 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 - `data/index.json`：`{ generatedAt, stats, recentContests, recentProblems, problems }`。
   `stats.byPlatform` 是四平台规模的权威数字。
 - 题目记录字段：`id/platform/index/title/titleZh/statementMd/statementZhMd/samples/
-  timeLimitMs/memoryLimitMb/tags/difficulty/translateModel/reuseOf?`。
+  timeLimitMs/memoryLimitMb/tags/difficulty/translateModel/reuseOf?`，以及样例说明
+  译文的题级元数据 `noteTranslatedAt/noteTranslateModel`。
+- `samples[]` 结构：`{input, output, note?, noteZh?}`。**AtCoder 的样例说明挂在
+  「Sample Output N」小节末尾，抓取时被摘进 `samples[].note`，不在 `statementMd`
+  里**——所以题面翻译管线覆盖不到它，必须走独立的「样例说明翻译」阶段（2026-11-17
+  起：`scripts/fetch.mjs` runTranslate 第 3 段 / `scripts/translate-web.py --notes`），
+  队列口径由 `lib/sample-notes.js` 统一（有实质 note、无 noteZh、`language !== 'zh'`）。
+  渲染在 `components/SamplesSection.jsx`，随 `useProblemLang` 的 en/zh/both 模式切换。
   `reuseOf`（cf-gyms → codeforces 原题）在题目页渲染时合并原题面——见
   `app/problems/[platform]/[problemId]/page.jsx` 的合并块，改动渲染逻辑时别忘了这条链。
 - `outputFileTracingIncludes`（next.config.mjs）按路由声明 data 文件依赖——**新增读
@@ -203,6 +210,9 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   --translate-limit 120 --gym-pages 60 --gym-minutes 10 --gym-translate-limit 40`。
   平台阶段互相隔离（单平台失败不阻断）；翻译阶段先 `pingLLM` 探活，401/403 中止
   整轮（Key 失效时别打满无效请求），并发池收到 401/403 置 `authAborted` 跳过余量。
+  **样例说明翻译（2026-11-17 起）**：题面阶段之后单独一段 `samples[].note →
+  noteZh`（默认只 atcoder，`--notes-limit`/`NOTES_TRANSLATE_LIMIT` 默认 60 题/轮，
+  0 关闭、负数不限）；与题面分开计预算，AtCoder 存量约 2800 题待补。
   **cf-gyms 尾阶段（2026-11-15 起）**：三平台「拉取+翻译」全部完成之后才执行——
   子进程调用 `fetch-cf-gyms.mjs --mode problems`（自执行脚本只能子进程复用）做
   小预算题面回填，随后 `runTranslate({ platforms: ['cf-gyms'], ... })` 把 gym

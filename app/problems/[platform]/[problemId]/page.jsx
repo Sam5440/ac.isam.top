@@ -228,7 +228,7 @@ export default async function ProblemPage({ params }) {
             </CardContent>
           </Card>
 
-          {prob.statementMd && <SamplesSection samples={prob.samples} />}
+          {prob.statementMd && <SamplesSection platform={platform} samples={prob.samples} />}
       </div>
 
       {/* 元信息（整页模式下收进主列底部；侧栏模式下也在此展示移动端友好） */}

@@ -208,6 +208,9 @@ vercel --prod
 - Markdown 结构与段落顺序不变；小节标题按 OJ 惯例翻译
   （Problem Statement→题目描述、Constraints→约束条件、Input→输入格式、Output→输出格式、Note→说明）
 - 输出严格 JSON（`titleZh` / `bodyZh`），解析失败时整体降级为译文文本，不影响管道
+- 样例说明（`samples[].note`，AtCoder 的「Sample Output N」下方解释）单独一轮翻译
+  （`NOTES_SYSTEM` → `{"notes": [...]}`，条数必须与输入一致），写在 `samples[].noteZh`，
+  随题面语言模式（对照 / 中文 / 英文）展示
 
 ## 声明
 

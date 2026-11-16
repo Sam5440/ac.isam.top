@@ -4,6 +4,7 @@
  *
  *   node scripts/fetch.mjs [--abc N] [--cf N] [--backfill N]
  *                          [--translate-limit N] [--translate-only] [--no-translate]
+ *                          [--notes-limit N] [--notes-platforms atcoder]
  *                          [--gym-pages N] [--gym-minutes N] [--gym-sweep N]
  *                          [--gym-translate-limit N] [--no-gyms]
  *
@@ -12,6 +13,9 @@
  *   2. 扫描最近 --abc/--cf/--nc 场比赛：新比赛的题面全部抓取（含 HTML→Markdown）
  *   3. 回填：从最旧比赛开始，补抓历史上尚未拉取的 --backfill 道题面
  *   4. AI 翻译：所有有原文、无译文的题面（gpt-6.1-sol，见 scripts/lib/llm.mjs）
+ *      4b. 样例说明翻译（2026-11-17 起）：samples[].note → noteZh。AtCoder 的
+ *          样例解释不在 statementMd 里，题面翻译覆盖不到，需单独一轮（默认只
+ *          atcoder、--notes-limit 60 题/轮；0 关闭、负数不限）。
  *   5. cf-gyms 尾阶段（2026-11-15 起）：三平台「拉取+翻译」全部完成之后，
  *      子进程调用 scripts/fetch-cf-gyms.mjs --mode problems 做小预算题面回填，
  *      随后把 gym 缺译题面并入 CI 翻译（reuseOf 存根无原文天然跳过；
@@ -45,7 +49,19 @@ import {
   getCfPage,
   parseCfProblemsPage,
 } from './lib/cf.mjs';
-import { llmConfig, pingLLM, translateStatement, translateTitles } from './lib/llm.mjs';
+import {
+  llmConfig,
+  pingLLM,
+  translateSampleNotes,
+  translateStatement,
+  translateTitles,
+} from './lib/llm.mjs';
+import {
+  applyNoteTranslations,
+  meaningfulNote,
+  needsNotesTranslation,
+  pendingNoteIndices,
+} from '../lib/sample-notes.js';
 import {
   fetchNowcoderContests,
   fetchNowcoderProblemList,
@@ -74,6 +90,16 @@ const GYM_MINUTES = args.gymMinutes ?? Number(process.env.GYM_MINUTES ?? 10);
 const GYM_SWEEP = args.gymSweep ?? Number(process.env.GYM_SWEEP ?? 0);
 const GYM_TRANSLATE_LIMIT = args.gymTranslateLimit ?? Number(process.env.GYM_TRANSLATE_LIMIT ?? 60);
 const NO_GYMS = Boolean(args.noGyms);
+// 样例说明（samples[].note → noteZh）翻译预算：与题面分开计（说明很短，按题计）。
+// 0 = 不翻 / 负数 = 不限。默认只 atcoder：CF 的说明在正文 Note 小节随题面翻，
+// 牛客题面本就是中文；cf-gyms 的 samples.note 多是 PDF/模板残留。
+const NOTES_TRANSLATE_LIMIT = args.notesLimit ?? Number(process.env.NOTES_TRANSLATE_LIMIT ?? 60);
+const NOTES_PLATFORMS = new Set(
+  String(args.notesPlatforms ?? process.env.NOTES_PLATFORMS ?? 'atcoder')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean),
+);
 
 const DATA_ROOT = path.resolve(process.cwd(), 'data');
 const nowIso = () => new Date().toISOString();
@@ -84,6 +110,9 @@ const summary = {
   nowcoder: { contests: 0, problems: 0, backfilled: 0, errors: [] },
   'cf-gyms': { contests: 0, problems: 0, backfilled: 0, errors: [] },
   translated: 0,
+  notesTranslated: 0,
+  notesQueue: 0,
+  notesAttempted: 0,
   translateErrors: [],
 };
 
@@ -175,6 +204,8 @@ function writeCiLog() {
       platforms,
       translateQueue: summary.translateQueue ?? null,
       translateAttempted: summary.translateAttempted ?? null,
+      notesQueue: summary.notesQueue ?? null,
+      notesTranslated: summary.notesTranslated ?? 0,
       incomplete: backfill.incomplete,
       nextPlan: backfill.nextPlan,
       errors: runRecord.errors.slice(-50),
@@ -684,6 +715,54 @@ async function runTranslate({ platforms = ['atcoder', 'codeforces', 'nowcoder'],
       }
     }
   }
+
+  // 3) 样例说明（samples[].note → noteZh）：AtCoder 的样例解释挂在「Sample
+  //    Output N」小节末尾，抓取时被摘进 samples[].note —— 不在 statementMd
+  //    里，题面翻译永远覆盖不到（2026-11-17 补）。平台默认只 atcoder（见
+  //    NOTES_PLATFORMS）：CF 的说明在正文 Note 小节随题面翻，牛客本就中文。
+  const notesTargets = platforms.filter((pl) => NOTES_PLATFORMS.has(pl));
+  if (!NO_TRANSLATE && notesTargets.length && NOTES_TRANSLATE_LIMIT !== 0) {
+    const pendingNotes = collectProblems(notesTargets)
+      .filter(needsNotesTranslation)
+      .sort((a, b) => String(b.contestId).localeCompare(String(a.contestId), undefined, { numeric: true }));
+    const limitedNotes = NOTES_TRANSLATE_LIMIT > 0 ? pendingNotes.slice(0, NOTES_TRANSLATE_LIMIT) : pendingNotes;
+    summary.notesQueue = (summary.notesQueue ?? 0) + pendingNotes.length;
+    summary.notesAttempted = (summary.notesAttempted ?? 0) + limitedNotes.length;
+    if (limitedNotes.length) {
+      log('translate', `待翻译样例说明 ${limitedNotes.length} 题（共缺 ${pendingNotes.length}）`);
+    }
+    let notesDone = 0;
+    await Promise.all(
+      limitedNotes.map((p) =>
+        limit(async () => {
+          if (authAborted) return;
+          const indices = pendingNoteIndices(p.samples);
+          if (!indices.length) return;
+          try {
+            const zh = await translateSampleNotes(cfg, {
+              title: p.title,
+              notes: indices.map((i) => meaningfulNote(p.samples[i].note)),
+            });
+            saveProblem(p.platform, {
+              ...p,
+              samples: applyNoteTranslations(p.samples, indices, zh),
+              noteTranslatedAt: nowIso(),
+              noteTranslateModel: cfg.model,
+            });
+            summary.notesTranslated = (summary.notesTranslated ?? 0) + indices.length;
+            notesDone++;
+            if (notesDone % 10 === 0 || notesDone === limitedNotes.length) {
+              log('translate', `样例说明进度 ${notesDone}/${limitedNotes.length}`);
+            }
+          } catch (e) {
+            summary.translateErrors.push(`${p.id} (notes): ${e.message}`);
+            log('translate', `✗ ${p.id} 样例说明 — ${e.message}`);
+            if (/HTTP 40[13]/.test(e.message)) authAborted = true;
+          }
+        }),
+      ),
+    );
+  }
 }
 
 function loadContestsList(platform) {
@@ -792,7 +871,7 @@ async function main() {
   loadEnv();
   log(
     'main',
-    `开始：scan abc=${SCAN_ABC} arc=${SCAN_ARC} agc=${SCAN_AGC} cf=${SCAN_CF} nc=${SCAN_NC}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}${NO_GYMS ? '，gym=off' : `，gym 尾阶段 pages=${GYM_PAGES} minutes=${GYM_MINUTES} translateLimit=${GYM_TRANSLATE_LIMIT}`}`,
+    `开始：scan abc=${SCAN_ABC} arc=${SCAN_ARC} agc=${SCAN_AGC} cf=${SCAN_CF} nc=${SCAN_NC}，backfill=${BACKFILL}，translateLimit=${TRANSLATE_LIMIT}，notesLimit=${NOTES_TRANSLATE_LIMIT}${TRANSLATE_ONLY ? '（仅翻译）' : ''}${NO_GYMS ? '，gym=off' : `，gym 尾阶段 pages=${GYM_PAGES} minutes=${GYM_MINUTES} translateLimit=${GYM_TRANSLATE_LIMIT}`}`,
   );
 
   // 平台间故障隔离（审查 管线-7）：旧实现单平台元数据失败让整轮（含翻译）

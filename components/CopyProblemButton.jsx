@@ -16,6 +16,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useProblemLang } from '@/components/settings';
 import { Button } from '@/components/ui/button';
 import { PLATFORMS } from '@/lib/platforms';
+import { meaningfulNote } from '@/lib/sample-notes';
 
 /** 围栏代码块：内容本身含 ``` 时升级为四反引号围栏。 */
 function fenced(text) {
@@ -24,21 +25,24 @@ function fenced(text) {
   return `${fence}\n${t}\n${fence}`;
 }
 
-/** CF 抓取残留的占位说明（"Input/Copy/Output/Copy"）不算真说明。 */
-function meaningfulNote(note) {
-  const t = String(note || '').trim();
-  return t && !/^(?:input|output|copy|\s)+$/i.test(t) ? t : '';
-}
-
-function samplesMarkdown(samples) {
+/**
+ * 样例 Markdown：说明随题面语言模式取 note / noteZh（与页面渲染同口径）。
+ *   en   → 英文说明
+ *   zh   → 中文说明（缺译时回退英文，不丢信息）
+ *   both → 英文 + 中文（两段同标题下依次排列）
+ */
+function samplesMarkdown(samples, mode = 'both') {
   if (!samples?.length) return '';
   const out = ['## 样例'];
   samples.forEach((s, i) => {
     const n = i + 1;
     if (typeof s.input === 'string') out.push(`### 样例 ${n} 输入`, fenced(s.input));
     if (typeof s.output === 'string') out.push(`### 样例 ${n} 输出`, fenced(s.output));
-    const note = meaningfulNote(s.note);
-    if (note) out.push(`### 样例 ${n} 说明`, note);
+    const en = meaningfulNote(s.note);
+    const zh = typeof s.noteZh === 'string' ? s.noteZh.trim() : '';
+    const notes =
+      mode === 'zh' ? (zh ? [zh] : en ? [en] : []) : mode === 'both' ? [en, zh].filter(Boolean) : en ? [en] : [];
+    if (notes.length) out.push(`### 样例 ${n} 说明`, notes.join('\n\n'));
   });
   return out.join('\n\n');
 }
@@ -68,7 +72,7 @@ function buildProblemMarkdown(p, mode) {
   } else {
     parts.push(en);
   }
-  const sm = samplesMarkdown(p.samples);
+  const sm = samplesMarkdown(p.samples, mode);
   if (sm) parts.push(sm);
   return parts.join('\n\n');
 }

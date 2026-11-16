@@ -149,6 +149,36 @@ export async function translateStatement(cfg, { title, statementMd }) {
   throw new Error('translation unparsable');
 }
 
+/**
+ * 样例说明（samples[].note）专用提示词：与整篇题面分开翻的原因——
+ * 说明是若干条独立的短 Markdown 片段（含公式/行内代码/样本值），
+ * 混进整篇题面会让模型改写结构；这里要求逐条一一对应输出。
+ */
+const NOTES_SYSTEM = `你是顶级算法竞赛选手兼技术翻译，负责把算法竞赛题面里的「样例说明」从英文（或日文）翻译成简体中文。
+
+硬性规则：
+1. 输出必须是严格的 JSON 对象：{"notes": ["<第 1 条中文说明>", "<第 2 条中文说明>"]}，不要输出任何 JSON 之外的文字。
+2. notes 数组长度必须与输入条数完全相同、顺序一致：一条输入对应一条输出，不合并、不拆分、不新增、不省略。
+3. 数学公式（$...$、$$...$$、\\(...\\)、\\[...\\]）与行内代码（\`...\`）逐字符原样保留，包括空格与反斜杠。
+4. 变量名、编号、样例中的输入输出数值保持原样；术语用国内 OJ 惯用译法（如 vertex→顶点，sequence→序列）。
+5. 语句通顺，不要逐词直译；不要补解释、不要加「题意是」之类的话，不要改动原说明的信息量。
+6. 保留原文的换行结构：原文行尾的硬换行标记（反斜杠）与段落空行原样保留，不要合并成一行。`;
+
+/** 翻译单题的样例说明。notes 为英文片段数组，返回同序中文数组；失败抛错。 */
+export async function translateSampleNotes(cfg, { title, notes }) {
+  const list = notes.map((n, i) => `[${i + 1}]\n${n}`).join('\n\n');
+  const user = `题目：${title}\n\n请逐条翻译以下 ${notes.length} 条样例说明：\n\n<notes>\n${list}\n</notes>`;
+  const content = await chatWithRetry(cfg, [
+    { role: 'system', content: NOTES_SYSTEM },
+    { role: 'user', content: user },
+  ]);
+  const parsed = extractJson(content);
+  const arr = parsed && Array.isArray(parsed.notes) ? parsed.notes : null;
+  // 条数不一致直接判失败（下轮重试）：错位写入比缺译文更难发现。
+  if (!arr || arr.length !== notes.length) throw new Error('notes translation unparsable');
+  return arr.map((x) => String(x ?? '').trim());
+}
+
 const TITLES_SYSTEM = `把用户给出的算法竞赛名称翻译为简体中文（保留品牌与编号，如 "AtCoder Beginner Contest 481" → "第 481 场 AtCoder Beginner Contest"，Codeforces Round 编号同样保留）。输出严格 JSON：{"t<序号>": "<中文译名>", ...}，不要输出其它内容。`;
 
 /** 批量翻译比赛名。titles 为字符串数组，返回同序中文数组。 */
