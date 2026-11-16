@@ -1,6 +1,7 @@
 import { httpGet } from './http.mjs';
 import { loadHtml, nodesToMd, preText, inlineMd } from './html2md.mjs';
 import { sanitizeText } from '../../lib/render.js';
+import { sanitizeProblemId } from '../../lib/problem-id.mjs';
 
 const CF = 'https://codeforces.com';
 const UA =
@@ -133,7 +134,10 @@ export function parseCfProblemsPage(html, contestId, base = `${CF}/contest/${con
 
     const titleRaw = stmt.find('.header .title').first().text().trim();
     const tm = titleRaw.match(/^([A-Z][0-9]?)\.\s*(.+)$/s);
-    const index = tm ? tm[1] : titleRaw.split('.')[0];
+    // 题号会直接成为文件名主干（data/<platform>/problems/<id>.json），必须过
+    // lib/problem-id.mjs 的 Windows 安全口径：'?'、':' 之类字符会让文件在 Windows
+    // 上永远 checkout 不出来。历史事故见 scripts/fetch-cf-gyms.mjs 的 parseGymPage。
+    const index = sanitizeProblemId(tm ? tm[1] : titleRaw.split('.')[0]);
     const title = tm ? tm[2].trim() : titleRaw;
 
     let timeLimitMs = null;

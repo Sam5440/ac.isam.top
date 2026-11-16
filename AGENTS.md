@@ -38,6 +38,7 @@ npm run fetch:init     # 初始化数据（各平台最新 10 场）
 npm run fetch:ci       # 与 CI 相同参数的增量抓取
 npm run translate      # 只补 AI 翻译
 npm run index          # 只重建 data/index.json
+npm run normalize-ids  # 题目 id/文件名归一（Windows 安全字符集，幂等；加 --dry-run 只报告）
 npm run runtime        # 只下载浏览器编译器运行时
 ```
 
@@ -290,9 +291,12 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 - push 前 `git status` 检查三类意外改动：
   1. `data/index.json`（本地构建重写）→ 还原；
   2. `package-lock.json`（`npm install` 顺带重排）→ 还原；
-  3. **Windows 专属**：`data/cf-gyms/problems/*?*.json` 两个文件名含 `?` 的文件在
-     Windows 上永远显示为 `deleted`——这是平台限制的假象，**绝不 `git add -A`，
-     绝不提交这两个删除**（它们的真实内容只在 Linux CI / GitHub 上存在）。
+  3. ~~**Windows 专属**：`data/cf-gyms/problems/*?*.json` 两个文件名含 `?` 的文件~~
+     **已于 2026-11-17 根治**：那两个文件是 gym 题面链接把 `?statementsLocale=ru|en`
+     当题号落盘的产物（见 §6 第 17 条）。现在 id/文件名统一走 `lib/problem-id.mjs`
+     （剥查询串 + 剔 Windows 非法字符 + 排除保留设备名），仓库内已无非法文件名，
+     这条「在 Windows 上假装 deleted、绝不提交删除」的特例随之失效。
+     仍在生效的纪律：**绝不 `git add -A`**，务必逐条 `git add <path>` 审查。
 - 本地 push 前先 `git fetch && git rebase origin/main`；撞上 CI data 提交且
   `data/index.json` 冲突时，正解是**基于合并后的平台数据重跑
   `node scripts/build-index.mjs` 再 add**，不要只保留一边（两边都是各自快照，
@@ -350,6 +354,17 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
     仍 404）。现由 `vercel.json` 的 `ignoreCommand`（仅 `[vercel skip]` 跳过）接管。
     **排查「数据在仓库里但页面 404」先比对 `/ac-build.json` 的 build SHA 与 main 头**；
     `vercel ls` 里 Status=Canceled 的生产部署就是被忽略步跳过的。
+17. **题号里的 URL 查询串会变成文件名里的 `?`**（2026-11-17）。CF 的题面链接形如
+    `/gym/106728/problem/E?statementsLocale=ru`（切换题面语言），旧版
+    `fetch-cf-gyms.mjs` 的 `parseGymPage` 只按 `/problem/` 切一刀就把后半段整段当题号
+    → 同一题出现两个 index（`E` 与 `E?statementsLocale=ru`）→ 落成
+    `data/cf-gyms/problems/106728e?statementslocale=ru.json`。`?` 是 Windows 保留字符，
+    这类文件在 Windows 上永远 checkout 不出来，而 `lib/data.js` 的 id 白名单又拒绝它
+    → 索引里挂着、点进去 404。**教训：任何「从 URL 推导出来的字符串」在变成 id /
+    文件名之前必须过 `lib/problem-id.mjs` 的 `sanitizeProblemId`**；查询与写入共用同一条
+    规则（`problemFileName`），否则改名后查询规则不同步就会全站 404。存量修复脚本
+    `scripts/normalize-problem-ids.mjs`（幂等，可反复跑），回归测试
+    `test/problem-id.test.mjs`。
 
 ## 7. 常见任务手册
 

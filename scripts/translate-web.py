@@ -80,6 +80,23 @@ STATEMENT_SYSTEM = """你是顶级算法竞赛选手兼技术翻译，负责把�
 8. titleZh 只给题名的中文翻译，不要带题号前缀。"""
 
 
+# Windows 文件名非法字符（与 lib/problem-id.mjs 同口径）：< > : " / \ | ? * 与控制字符
+_ILLEGAL_FILENAME_CHARS = re.compile(r'[<>:"/\\|?*\x00-\x1f]')
+
+
+def problem_file_stem(pid):
+    """题目 id → 磁盘文件名主干（与 lib/problem-id.mjs 的 problemFileName 同口径）。
+
+    剥 URL 查询串/锚点 → 剔除 Windows 非法字符 → 去首尾空白与尾随点 → 小写。
+    历史事故：gym 题号曾带 "?statementsLocale=ru" 直接落盘，'?' 让文件在 Windows
+    上永远 checkout 不出来。查询与写入必须共用这一条规则。
+    """
+    raw = str(pid or "").strip()
+    raw = re.split(r"[?#]", raw, maxsplit=1)[0]
+    raw = _ILLEGAL_FILENAME_CHARS.sub("", raw).strip(" .").strip()
+    return raw.lower()
+
+
 def now_iso():
     return datetime.now().astimezone().isoformat(timespec="milliseconds")
 
@@ -695,7 +712,7 @@ class App:
 
     def problem_detail(self, platform, pid):
         """读取单题完整内容（原文 + 译文 + 翻译元数据）。"""
-        f = os.path.join(self.data_dir, platform, "problems", str(pid).lower() + ".json")
+        f = os.path.join(self.data_dir, platform, "problems", problem_file_stem(pid) + ".json")
         try:
             with open(f, encoding="utf-8") as fh:
                 p = json.load(fh)

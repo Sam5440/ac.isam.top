@@ -1,13 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { problemFileName } from '../../lib/problem-id.mjs';
 import { readJson, writeJson } from './util.mjs';
 
 const DATA_ROOT = path.resolve(process.cwd(), 'data');
 
 export const contestFile = (platform) => path.join(DATA_ROOT, platform, 'contests.json');
+// 文件名一律经 problemFileName 归一（剥 URL 查询串 + 剔 Windows 非法字符 + 小写）：
+// 历史事故是 gym 题号带 "?statementsLocale=ru" 直接落盘，'?' 让文件在 Windows 上
+// 永远 checkout 不出来。口径见 lib/problem-id.mjs（纯函数，有回归测试）。
 export const problemFile = (platform, id) =>
-  path.join(DATA_ROOT, platform, 'problems', `${String(id).toLowerCase()}.json`);
+  path.join(DATA_ROOT, platform, 'problems', `${problemFileName(id)}.json`);
 
 export function loadContests(platform) {
   return readJson(contestFile(platform)) ?? [];

@@ -8,6 +8,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { isSafeProblemId } from '../lib/problem-id.mjs';
 import { writeJson } from './lib/util.mjs';
 
 const DATA_ROOT = path.resolve(process.cwd(), 'data');
@@ -36,6 +37,13 @@ function readProblems(platform, brokenRef) {
     // （直接读文件,同样失败 → notFound）口径不一致还无从排查
     if (!p?.id) {
       if (brokenRef) brokenRef.push(`${platform}/${f}`);
+      continue;
+    }
+    // id 必须是 Windows 安全的文件名主干（lib/problem-id.mjs 口径）：带 '?' 之类
+    // 字符的 id 拼出的文件在 Windows 上根本不存在，入索引只会让 /problems 出现
+    // 点进去 404 的死链。这类文件由 scripts/normalize-problem-ids.mjs 归一。
+    if (!isSafeProblemId(String(p.id))) {
+      if (brokenRef) brokenRef.push(`${platform}/${f}（id 含文件名非法字符，请跑 scripts/normalize-problem-ids.mjs）`);
       continue;
     }
     out.push(p);

@@ -47,6 +47,7 @@ import { execFileSync } from 'node:child_process';
 
 import { loadHtml } from './lib/html2md.mjs';
 import { parseCfProblemsPage } from './lib/cf.mjs';
+import { sanitizeProblemId } from '../lib/problem-id.mjs';
 import { saveContests, loadContests, loadProblem, saveProblem, problemComplete } from './lib/store.mjs';
 import { sleep, rnd, readJson, writeJson, parseArgs, loadEnv, log } from './lib/util.mjs';
 
@@ -589,7 +590,11 @@ function parseGymPage(html, gymId) {
   const links = [];
   const seen = new Set();
   for (const el of $(`a[href^="/gym/${gymId}/problem/"]`).toArray()) {
-    const raw = decodeURIComponent($(el).attr('href').split('/problem/')[1] || '');
+    // 题号必须剥离 URL 查询串：CF 的题面链接会带 ?statementsLocale=ru|en（切换题面
+    // 语言），旧实现把整段当题号 → 同一题出现两个 index（E 与 E?statementsLocale=ru），
+    // 且 '?' 是 Windows 保留字符，落盘后文件在 Windows 上永远 checkout 不出来。
+    // 口径见 lib/problem-id.mjs（纯函数，有回归测试）。
+    const raw = sanitizeProblemId(decodeURIComponent($(el).attr('href').split('/problem/')[1] || ''));
     if (!raw || seen.has(raw)) continue;
     seen.add(raw);
     const row = $(el).closest('tr');
@@ -616,8 +621,10 @@ function parseGymPage(html, gymId) {
   };
 }
 
-const attemptKeyFor = (gymId, index) => `/gym/${gymId}/problem/${String(index).toLowerCase()}`;
-const problemId = (gymId, index) => `${gymId}${String(index).toLowerCase()}`;
+// 题号可能来自历史数据（旧版本抓取留下的 "E?statementsLocale=ru"）或页面链接，
+// 一律经 sanitizeProblemId 归一，保证 id/attemptKey 里不含 Windows 非法字符。
+const attemptKeyFor = (gymId, index) => `/gym/${gymId}/problem/${sanitizeProblemId(index).toLowerCase()}`;
+const problemId = (gymId, index) => `${gymId}${sanitizeProblemId(index).toLowerCase()}`;
 
 /** gym 页就绪判定：Prepared by（页尾元信息）与题目表/受限标记同时可见。
  *  HTML 是流式解析的，单独任一信号都可能在半截 DOM 时出现。 */
