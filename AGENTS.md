@@ -264,6 +264,11 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   数据 CI 自动提交形如 `data: fetch & translate <UTC时间> [skip ci]`，不要模仿或干预。
 - main 即生产：直接 push main = 直接部署 Vercel。没有 PR 流程，因此**push 前本地必须
   `npm run build:fast` + `npm test`**。
+- **Vercel 是否构建由 `vercel.json` 的 `ignoreCommand` 决定（唯一事实来源）**：数据 CI
+  提交带 `[skip ci]` 只是为了让 GitHub Actions 别重复跑 `npm test` + build，**绝不能让它
+  顺带跳过 Vercel 构建**——数据是构建期事实，跳过构建 = 站点永远停在旧快照。当前
+  `ignoreCommand` 仅在提交标题含 `[vercel skip]` 时跳过；线上面板的同名字段已被它覆盖，
+  别再在面板里加基于 `[skip ci]` 的规则（2026-11-16 事故，见 §6 第 16 条）。
 - push 前 `git status` 检查三类意外改动：
   1. `data/index.json`（本地构建重写）→ 还原；
   2. `package-lock.json`（`npm install` 顺带重排）→ 还原；
@@ -319,6 +324,14 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
     `*-test.*`）只允许出现在 `test/`，且 `test/` 内必须是 `.test.mjs`；E2E / Playwright
     脚本的文件名**不得含 test/spec 字样**（`e2e/` 目录名也是刻意起的）。三守卫见
     `test/guard-test-discovery.test.mjs`——违反它 CI 连红过 4 次。
+16. **Vercel Ignored Build Step 与数据提交的 `[skip ci]` 撞车 = 生产永不更新**
+    （2026-11-16）。`[skip ci]` 只是给 GitHub Actions 看的；Vercel 项目面板曾配置
+    `git log -1 --pretty=%s | grep -q '\[skip ci\]' && exit 0 || exit 1`，于是每小时
+    数据提交全部 `Canceled by Ignored Build Step`，站点停在最后一个非数据提交的 build
+    （实测停了 29 小时：牛客 Round 170 六道题早在仓库里，生产 `/contests/nowcoder/143406`
+    仍 404）。现由 `vercel.json` 的 `ignoreCommand`（仅 `[vercel skip]` 跳过）接管。
+    **排查「数据在仓库里但页面 404」先比对 `/ac-build.json` 的 build SHA 与 main 头**；
+    `vercel ls` 里 Status=Canceled 的生产部署就是被忽略步跳过的。
 
 ## 7. 常见任务手册
 
