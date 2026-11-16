@@ -22,6 +22,12 @@
     退出）、结束后自动重扫让新题面进入翻译队列。
   - 网页端显示进度、每模型请求数与 token 消耗（输入 / 输出 / 缓存读取），每次可
     选择翻译数量；仅监听 127.0.0.1。
+  - 样例说明补译（2026-11-17 起）：samples[].note → samples[].noteZh。AtCoder
+    的样例解释不在 statementMd 里，题面翻译覆盖不到，必须单独一轮。控制台有
+    「补样例说明」按钮；也可以一次性命令行执行（不启动 Web）：
+
+        python3 scripts/translate-web.py --notes --platform atcoder --problems abc484_b
+        python3 scripts/translate-web.py --notes --limit 50 --dry-run
 """
 
 import argparse
@@ -77,6 +83,16 @@ STATEMENT_SYSTEM = """你是顶级算法竞赛选手兼技术翻译，负责把�
 def now_iso():
     return datetime.now().astimezone().isoformat(timespec="milliseconds")
 
+NOTES_SYSTEM = """你是顶级算法竞赛选手兼技术翻译，负责把算法竞赛题面里的「样例说明」从英文（或日文）翻译成简体中文。
+
+硬性规则：
+1. 输出必须是严格的 JSON 对象：{"notes": ["<第 1 条中文说明>", "<第 2 条中文说明>"]}，不要输出任何 JSON 之外的文字。
+2. notes 数组长度必须与输入条数完全相同、顺序一致：一条输入对应一条输出，不合并、不拆分、不新增、不省略。
+3. 数学公式（$...$、$$...$$、\\(...\\)、\\[...\\]）与行内代码（`...`）逐字符原样保留，包括空格与反斜杠。
+4. 变量名、编号、样例中的输入输出数值保持原样；术语用国内 OJ 惯用译法（如 vertex→顶点，sequence→序列）。
+5. 语句通顺，不要逐词直译；不要补解释、不要加「题意是」之类的话，不要改动原说明的信息量。
+6. 保留原文的换行结构：原文行尾的硬换行标记（反斜杠）与段落空行原样保留，不要合并成一行。"""
+
 
 def parse_ts(s):
     """ISO 时间 → epoch 秒；解析失败返回 None。"""
@@ -87,6 +103,44 @@ def parse_ts(s):
     except ValueError:
         return None
 
+
+# ---------------------------------------------------------------- 样例说明（note）工具
+#
+# 与 lib/sample-notes.js 同口径：有实质 note、无 noteZh 的说明才进队列。
+# AtCoder 的样例解释挂在「Sample Output N」小节末尾，抓取时进了
+# samples[].note（scripts/lib/atcoder.mjs 的 flushGroup），不在 statementMd
+# 里——题面翻译永远覆盖不到，必须单独一轮补。
+
+# 样例块里的样板标签（CF 英文页面 / 俄语页面 / 中文页面）；剔除后若无正文即为样板。
+JUNK_NOTE_WORDS = re.compile(
+    r"(?:input|output|copy|sample|example|standard|входные|выходные|данные|копировать|пример|ввод|вывод|输入|输出|复制|样例|示例)",
+    re.IGNORECASE,
+)
+JUNK_NOTE_PUNCT = re.compile(r"[\s:：,，.。!！?？;；—–\-]")
+
+
+def meaningful_note(note):
+    """真实说明文本；CF 的「Input/Copy/Output/Copy」这类样板返回空串。"""
+    t = str(note or "").strip()
+    if not t:
+        return ""
+    if not JUNK_NOTE_PUNCT.sub("", JUNK_NOTE_WORDS.sub("", t)):
+        return ""
+    return t
+
+
+def pending_note_indices(samples):
+    """待翻译说明的下标（有实质 note、无 noteZh）。"""
+    out = []
+    for i, s in enumerate(samples or []):
+        if not isinstance(s, dict):
+            continue
+        if not meaningful_note(s.get("note")):
+            continue
+        if str(s.get("noteZh") or "").strip():
+            continue
+        out.append(i)
+    return out
 
 # ---------------------------------------------------------------- 翻译协议（移植自 llm.mjs）
 
@@ -371,6 +425,25 @@ def translate_statement(cfg, model, title, statement_md, log, on_chunk=None, can
     raise RuntimeError("translation unparsable")
 
 
+def translate_notes(cfg, model, title, notes, log, on_chunk=None, cancel=None, pid=None):
+    """逐条翻译样例说明。返回 (中文列表, usage)；条数不一致视为失败（下轮重试）。"""
+    body = "\n\n".join("[{}]\n{}".format(i + 1, n) for i, n in enumerate(notes))
+    user = "题目：{}\n\n请逐条翻译以下 {} 条样例说明：\n\n<notes>\n{}\n</notes>".format(
+        title, len(notes), body)
+    ua = quote(str(pid or "").strip()[:60] or "unknown", safe="")
+    content, usage = chat_with_retry(
+        cfg, model,
+        [{"role": "system", "content": NOTES_SYSTEM},
+         {"role": "user", "content": user}],
+        log, on_chunk=on_chunk, cancel=cancel, ua=ua,
+    )
+    parsed = extract_json(content)
+    arr = parsed.get("notes") if isinstance(parsed, dict) else None
+    if not isinstance(arr, list) or len(arr) != len(notes):
+        raise RuntimeError("notes translation unparsable")
+    return ([str(x or "").strip() for x in arr], usage)
+
+
 # ---------------------------------------------------------------- 应用
 
 class App:
@@ -548,6 +621,13 @@ class App:
                 translated = bool(p.get("statementZhMd"))
                 if not translated:
                     untranslated += 1
+                # 样例说明（samples[].note → noteZh）：走独立的补译队列，
+                # 与题面是否已翻译无关（老题题面早就翻了，说明还是英文）。
+                samples = p.get("samples") or []
+                notes_total = sum(1 for x in samples
+                                  if isinstance(x, dict) and meaningful_note(x.get("note")))
+                # 官方中文题（牛客 language=zh）的说明本就是中文，不计入待补
+                notes_missing = 0 if p.get("language") == "zh" else len(pending_note_indices(samples))
                 items.append({
                     "platform": plat,
                     "id": p.get("id"),
@@ -562,6 +642,8 @@ class App:
                     "translated": translated,
                     "translateModel": p.get("translateModel"),
                     "translatedAt": p.get("translatedAt"),
+                    "notesTotal": notes_total,
+                    "notesMissing": notes_missing,
                 })
 
         def sort_key(p):
@@ -583,10 +665,14 @@ class App:
         by_platform = {}
         for p in self.problems:
             by_platform[p["platform"]] = by_platform.get(p["platform"], 0) + 1
-        self.log("scan", "全量 {} 题（未翻译 {}），耗时 {:.1f}s".format(
-            len(items), len(self.problems), time.time() - t0))
+        pending_notes = [p for p in items if p.get("notesMissing")]
+        self.log("scan", "全量 {} 题（未翻译 {}，样例说明待补 {} 题 / {} 条），耗时 {:.1f}s".format(
+            len(items), len(self.problems), len(pending_notes),
+            sum(p.get("notesMissing") or 0 for p in pending_notes), time.time() - t0))
         return {"untranslated": len(self.problems), "total": len(items),
-                "translated": len(items) - len(self.problems), "byPlatform": by_platform}
+                "translated": len(items) - len(self.problems), "byPlatform": by_platform,
+                "notesPendingProblems": len(pending_notes),
+                "notesPending": sum(p.get("notesMissing") or 0 for p in pending_notes)}
 
     def problems_page(self, offset, limit, only, q="", model=""):
         """题库分页：only = untranslated | translated | all；q 搜索；model 按翻译模型过滤。"""
@@ -642,6 +728,93 @@ class App:
             slot["total"] += 1
             slot["byPlatform"][p["platform"]] = slot["byPlatform"].get(p["platform"], 0) + 1
         return out
+
+    # ---------- 样例说明（note → noteZh） ----------
+
+    def notes_stats(self, platform=""):
+        """样例说明补译进度（基于最近一次扫描的快照，不重新读盘）。"""
+        with self.lock:
+            rows = list(self.all_problems)
+        if platform:
+            rows = [p for p in rows if p["platform"] == platform]
+        with_notes = [p for p in rows if (p.get("notesTotal") or 0) > 0]
+        pending = [p for p in with_notes if (p.get("notesMissing") or 0) > 0]
+        by_platform = {}
+        for p in pending:
+            by_platform[p["platform"]] = by_platform.get(p["platform"], 0) + 1
+        return {
+            "problems": len(with_notes),
+            "notes": sum(p.get("notesTotal") or 0 for p in with_notes),
+            "pendingProblems": len(pending),
+            "pendingNotes": sum(p.get("notesMissing") or 0 for p in pending),
+            "byPlatform": by_platform,
+            "scannedAt": self.scan_at,
+        }
+
+    def notes_queue(self, platform="", problems=None, limit=0, retranslate=False):
+        """说明补译队列（可按平台 / 题号限定），按比赛时间倒序。
+
+        retranslate=True 时不再只看「缺译」，凡是有实质说明的题都进队列
+        （用于提示词升级后重刷质量，已有 noteZh 会被覆盖）。
+        """
+        wanted = {str(x).strip().lower() for x in (problems or []) if str(x).strip()}
+        with self.lock:
+            rows = list(self.all_problems)
+        queue = []
+        for p in rows:
+            if platform and p["platform"] != platform:
+                continue
+            if wanted and str(p.get("id", "")).lower() not in wanted:
+                continue
+            pending = (p.get("notesMissing") or 0) > 0
+            if not pending and not (retranslate and (p.get("notesTotal") or 0) > 0):
+                continue
+            queue.append(p)
+        if limit and limit > 0:
+            queue = queue[:limit]
+        return queue
+
+    def notes_start(self, limit=0, platform="", problems=None, retranslate=False):
+        """启动一轮「只补样例说明」翻译（与题面翻译互斥，共用任务/进度面板）。"""
+        with self.lock:
+            if self.run and self.run["active"]:
+                return False, "已有翻译任务在运行"
+        rows = self.notes_queue(platform=platform, problems=problems, limit=limit,
+                                retranslate=retranslate)
+        if not rows:
+            return False, "没有待补样例说明的题目（试试点「重新扫描」）"
+        models = [m for m in self.cfg["models"] if m.get("model") and m.get("concurrency", 0) > 0]
+        if not models:
+            return False, "没有可用模型配置"
+        queue = [{
+            "mode": "notes",
+            "platform": r["platform"], "id": r["id"], "file": r["file"],
+            "title": r["title"], "contestTitle": r["contestTitle"],
+        } for r in rows]
+        run = {
+            "active": True, "stopping": False, "limit": limit or 0,
+            "id": int(time.time() * 1000),
+            "cancel": CancelToken(),
+            "kind": "notes",
+            "retranslate": bool(retranslate),
+            "source": {"platform": platform, "problems": list(problems or [])},
+            "total": len(queue), "done": 0, "failed": 0, "skipped": 0, "cancelled": 0,
+            "startedAt": time.time(), "endedAt": None,
+            "lastError": None, "consec4xx": 0,
+            "queue": queue, "cursor": 0,
+            "current": {},
+            "models": {m["model"]: {"concurrency": m["concurrency"], "requests": 0, "ok": 0,
+                                    "fail": 0, "in": 0, "out": 0, "cached": 0}
+                       for m in models},
+            "recentFailures": deque(maxlen=12),
+        }
+        with self.lock:
+            self.run = run
+        self.log("main", "开始{}样例说明 {} 题（{}），模型：{}".format(
+            "重译" if retranslate else "补", len(queue), platform or "全部平台",
+            ", ".join("{}×{}".format(m["model"], m["concurrency"]) for m in models)))
+        threading.Thread(target=self._run_lanes, args=(run,), daemon=True).start()
+        return True, "已启动样例说明补译 {} 题".format(len(queue))
 
     # ---------- 运行 ----------
 
@@ -710,9 +883,14 @@ class App:
     def _run_lanes(self, run):
         threads = []
         lane_id = 0
+        # 样例说明一轮通常只有几十题（甚至 1 题），别按题面模式的 180 并发开线程
+        lane_cap = len(run["queue"]) if run.get("kind") == "notes" else 0
         for m in self.cfg["models"]:
             mcfg = self.model_cfg(m)   # 该模型的独立 baseUrl/apiKey（空则回落全局）
-            for _ in range(int(m.get("concurrency", 0))):
+            concurrency = int(m.get("concurrency", 0))
+            if lane_cap:
+                concurrency = min(concurrency, max(1, lane_cap))
+            for _ in range(concurrency):
                 t = threading.Thread(target=self._worker, args=(run, m["model"], mcfg, lane_id), daemon=True)
                 threads.append(t)
                 lane_id += 1
@@ -727,6 +905,12 @@ class App:
         self.log("main", "本轮结束：完成 {} / 失败 {} / 跳过 {} / 中断 {}（共 {}）{}".format(
             run["done"], run["failed"], run["skipped"], run.get("cancelled", 0), run["total"],
             "（已手动停止）" if run["cancel"].is_set() else ""))
+        if run.get("kind") == "notes":
+            # 说明补译完成后刷新扫描快照，面板上的「待补」条数立刻下降
+            try:
+                self.scan()
+            except Exception:  # noqa: BLE001
+                pass
 
     def _next_task(self, run):
         with self.lock:
@@ -746,10 +930,31 @@ class App:
             with self.lock:
                 run["current"][lane] = {"id": task["id"], "title": task["title"], "model": model}
             try:
-                self._translate_one(run, model, mcfg, task, lane)
+                if run.get("kind") == "notes":
+                    self._translate_notes_one(run, model, mcfg, task, lane)
+                else:
+                    self._translate_one(run, model, mcfg, task, lane)
             finally:
                 with self.lock:
                     run["current"].pop(lane, None)
+
+    def _account_usage(self, run, model, pin, pout, pcached):
+        """记一次成功请求的 token 用量（本轮 + 进程累计）。"""
+        with self.lock:
+            run["consec4xx"] = 0
+            st = run["models"][model]
+            st["ok"] += 1
+            st["in"] += pin
+            st["out"] += pout
+            st["cached"] += pcached
+            st["done"] = st.get("done", 0) + 1
+            acc = self.cumulative.setdefault(model, {"requests": 0, "ok": 0, "fail": 0,
+                                                     "in": 0, "out": 0, "cached": 0})
+            acc["requests"] += 1
+            acc["ok"] += 1
+            acc["in"] += pin
+            acc["out"] += pout
+            acc["cached"] += pcached
 
     def _translate_one(self, run, model, mcfg, task, lane):
         rec = self._new_task("{}:{}:{}".format(run["id"], lane, task["id"]), model,
@@ -817,21 +1022,8 @@ class App:
             return
 
         pin, pout, pcached = usage
+        self._account_usage(run, model, pin, pout, pcached)
         with self.lock:
-            run["consec4xx"] = 0
-            st = run["models"][model]
-            st["ok"] += 1
-            st["in"] += pin
-            st["out"] += pout
-            st["cached"] += pcached
-            st["done"] = st.get("done", 0) + 1
-            acc = self.cumulative.setdefault(model, {"requests": 0, "ok": 0, "fail": 0,
-                                                     "in": 0, "out": 0, "cached": 0})
-            acc["requests"] += 1
-            acc["ok"] += 1
-            acc["in"] += pin
-            acc["out"] += pout
-            acc["cached"] += pcached
             rec["usage"] = {"in": pin, "out": pout, "cached": pcached}
             rec["titleZh"] = result["titleZh"]
 
@@ -848,6 +1040,125 @@ class App:
                 run["recentFailures"].append({"id": task["id"], "error": "保存失败: " + str(e)})
                 rec.update(status="failed", saved=False, error="保存失败: " + str(e), endedAt=time.time())
             self.log("task", "✗ {} — 保存失败 {}".format(task["id"], e))
+
+    def _translate_notes_one(self, run, model, mcfg, task, lane):
+        """只补样例说明：读盘 → 重算待补下标 → 一次请求翻本题全部说明 → 合并写回。"""
+        rec = self._new_task("{}:{}:{}".format(run["id"], lane, task["id"]), model,
+                             task["platform"], task["id"], task["title"], task["contestTitle"])
+        try:
+            with open(task["file"], encoding="utf-8") as f:
+                p = json.load(f)
+        except (OSError, json.JSONDecodeError) as e:
+            with self.lock:
+                run["failed"] += 1
+                run["models"][model]["fail"] += 1
+                run["recentFailures"].append({"id": task["id"], "error": str(e)})
+                rec.update(status="failed", error=str(e), endedAt=time.time())
+            self.log("task", "✗ {} — 读取失败 {}".format(task["id"], e))
+            return
+
+        indices = pending_note_indices(p.get("samples"))
+        if not indices and run.get("retranslate"):
+            # 重译模式：不再只挑缺译的，凡有实质说明都重刷（覆盖已有 noteZh）
+            indices = [i for i, s in enumerate(p.get("samples") or [])
+                       if isinstance(s, dict) and meaningful_note(s.get("note"))]
+        if not indices:
+            with self.lock:
+                run["skipped"] += 1
+                rec.update(status="skipped", endedAt=time.time(), error="没有待补说明")
+            self.log("task", "↷ {} 样例说明已齐全，跳过".format(task["id"]))
+            return
+
+        notes = [meaningful_note(p["samples"][i].get("note")) for i in indices]
+
+        def on_chunk(piece, kind="content"):
+            self._append_chunk(rec, piece, kind)
+
+        try:
+            with self.lock:
+                run["models"][model]["requests"] += 1
+            zh, usage = translate_notes(mcfg, model, p.get("title") or "", notes, self.log,
+                                        on_chunk=on_chunk, cancel=run["cancel"], pid=task["id"])
+        except Cancelled:
+            with self.lock:
+                run["cancelled"] += 1
+                rec.update(status="cancelled", error="已手动停止", endedAt=time.time())
+            self.log("task", "⏹ {} — 已中断".format(task["id"]))
+            return
+        except FatalError as e:
+            with self.lock:
+                run["failed"] += 1
+                run["models"][model]["fail"] += 1
+                run["lastError"] = str(e)
+                run["consec4xx"] += 1
+                run["recentFailures"].append({"id": task["id"], "error": str(e)})
+                self.cumulative[model]["requests"] += 1
+                self.cumulative[model]["fail"] += 1
+                rec.update(status="failed", error=str(e), endedAt=time.time())
+                if run["consec4xx"] >= CONSEC_4XX_ABORT:
+                    run["stopping"] = True
+            self.log("task", "✗ {} — 鉴权失败 {}: {}".format(task["id"], model, e))
+            return
+        except Exception as e:  # noqa: BLE001
+            with self.lock:
+                run["failed"] += 1
+                run["models"][model]["fail"] += 1
+                run["lastError"] = str(e)
+                run["consec4xx"] = 0
+                run["recentFailures"].append({"id": task["id"], "error": str(e)})
+                rec.update(status="failed", error=str(e), endedAt=time.time())
+            self.log("task", "✗ {} — 样例说明 {}".format(task["id"], e))
+            return
+
+        pin, pout, pcached = usage
+        self._account_usage(run, model, pin, pout, pcached)
+        with self.lock:
+            rec["usage"] = {"in": pin, "out": pout, "cached": pcached}
+
+        try:
+            changed = self._save_notes(task["file"], p, indices, zh, model)
+            with self.lock:
+                run["done"] += 1
+                rec.update(status="done", saved=True, endedAt=time.time())
+            self.log("task", "✓ {} 样例说明 ×{} ← {} (in {} / out {})".format(
+                task["id"], changed, model, pin, pout))
+        except Exception as e:  # noqa: BLE001
+            with self.lock:
+                run["failed"] += 1
+                run["recentFailures"].append({"id": task["id"], "error": "保存失败: " + str(e)})
+                rec.update(status="failed", saved=False, error="保存失败: " + str(e), endedAt=time.time())
+            self.log("task", "✗ {} — 保存失败 {}".format(task["id"], e))
+
+    def _save_notes(self, file, disk_problem, indices, zh, model):
+        """把 noteZh 合并进磁盘现值后原子写回（与题面翻译/其它进程可并行）。"""
+        with self.write_lock:
+            try:
+                with open(file, encoding="utf-8") as f:
+                    cur = json.load(f)
+            except (OSError, json.JSONDecodeError):
+                cur = disk_problem
+            samples = cur.get("samples")
+            if not isinstance(samples, list):
+                samples = []
+            changed = 0
+            for k, idx in enumerate(indices):
+                if idx < 0 or idx >= len(samples) or not isinstance(samples[idx], dict):
+                    continue
+                text = str(zh[k] or "").strip() if k < len(zh) else ""
+                if not text:
+                    continue
+                samples[idx]["noteZh"] = text
+                changed += 1
+            cur["samples"] = samples
+            if changed:
+                cur["noteTranslatedAt"] = now_iso()
+                cur["noteTranslateModel"] = model
+            tmp = "{}.tmp-web-{}".format(file, os.getpid())
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(cur, f, ensure_ascii=False, indent=2)
+                f.write("\n")
+            os.replace(tmp, file)
+            return changed
 
     def _save(self, file, disk_problem, result, model):
         """与磁盘现值合并后原子写回（可与 backfill-all 并行）。"""
@@ -892,6 +1203,7 @@ class App:
                     "recentFailures": list(run["recentFailures"]),
                     "startedAt": run["startedAt"],
                     "id": run["id"],
+                    "kind": run.get("kind", "statement"),
                 }
             else:
                 run_view = None
@@ -917,6 +1229,7 @@ class App:
                                         for k in PLATFORMS},
                          "byModel": by_model},
                 "run": run_view,
+                "notes": self.notes_stats(),
                 "cumulative": self.cumulative,
                 "log": list(self._logs)[-40:],
             }
@@ -1490,6 +1803,12 @@ tbody tr.sel td{background:color-mix(in oklab,var(--primary) 10%,transparent)}
           <label class="f">本次翻译数量<div id="limitMount" style="width:170px"></div></label>
           <span class="muted" id="scanInfo" style="font-size:12px;flex:1;min-width:200px;padding-bottom:8px"></span>
         </div>
+        <div class="row" style="margin-bottom:4px">
+          <span class="muted" id="notesInfo" style="font-size:12px;flex:1;min-width:200px;padding-bottom:8px">样例说明：扫描中…</span>
+          <label class="f" style="flex:0 0 130px">平台<div id="notesPlatformMount"></div></label>
+          <label class="f" style="flex:0 0 130px">数量<div id="notesLimitMount"></div></label>
+          <button class="btn outline sm" id="btnNotes" title="只补 samples[].note 的中文说明，不重译题面">补样例说明</button>
+        </div>
         <div id="runBox"></div>
         <div id="modelStats" style="margin-top:12px"></div>
       </div>
@@ -1755,6 +2074,12 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAllPops()});
 const limitSel=shadcnSelect($("#limitMount"),{items:[
   {v:"50",label:"50 题"},{v:"200",label:"200 题"},{v:"500",label:"500 题"},
   {v:"1000",label:"1000 题"},{v:"0",label:"全部未翻译"}],value:"0"});
+const notesPlatformSel=shadcnSelect($("#notesPlatformMount"),{items:[
+  {v:"",label:"全部平台"},{v:"atcoder",label:"AtCoder"},{v:"codeforces",label:"Codeforces"},
+  {v:"nowcoder",label:"牛客"},{v:"cf-gyms",label:"Gym"}],value:"atcoder"});
+const notesLimitSel=shadcnSelect($("#notesLimitMount"),{items:[
+  {v:"20",label:"20 题"},{v:"50",label:"50 题"},{v:"200",label:"200 题"},
+  {v:"0",label:"全部待补"}],value:"50"});
 const gymModeSel=shadcnSelect($("#fGymModeMount"),{items:[
   {v:"problems",label:"problems · 题面回填 + 老ID补扫"},
   {v:"full",label:"full · 全量（列表全扫 + 全区间补扫）"}],value:"problems"});
@@ -1826,6 +2151,13 @@ $("#btnPing").onclick=async()=>{
 
 /* ================= 任务控制 ================= */
 $("#btnStart").onclick=async()=>{if(modelsDirty)await saveConfig(true);const j=await api("/api/start",{method:"POST",body:JSON.stringify({limit:+limitSel.get()})});if(j.message)toast(j.message,"ok");showTab("translate");refresh()};
+$("#btnNotes").onclick=async()=>{
+  if(modelsDirty)await saveConfig(true);
+  const n=+notesLimitSel.get(),plat=notesPlatformSel.get();
+  if(!confirm("只补样例说明（samples[].note → noteZh），不重译题面。\n"+(plat||"全部平台")+" · "+(n?n+" 题":"全部待补")+"，继续？"))return;
+  const j=await api("/api/notes/start",{method:"POST",body:JSON.stringify({limit:n,platform:plat})});
+  if(j.message){toast(j.message,"ok");showTab("translate");refresh()}
+};
 $("#btnStop").onclick=async()=>{await api("/api/stop",{method:"POST"});toast("停止中…")};
 $("#btnScan").onclick=async()=>{toast("扫描中…");const j=await api("/api/scan",{method:"POST"});if(!j.error){toast("全量 "+fmtN(j.total)+" 题 · 未翻译 "+fmtN(j.untranslated),"ok");loadBank()}refresh()};
 
@@ -1849,6 +2181,10 @@ async function refresh(){
     const hm=Object.entries(sc.byModel||{}).map(([m,c])=>'<div style="display:flex;gap:6px;align-items:center;padding:3px 0"><span class="badge outline mono" style="max-width:230px;overflow:hidden;text-overflow:ellipsis">'+esc(m)+'</span><b style="font-size:12px">'+fmtN(c.total)+'</b></div>').join("");
     $("#modelStats").innerHTML=hm?'<div style="font-size:12px;color:var(--muted-foreground);margin-bottom:4px;font-weight:500">已翻译题面的翻译模型分布</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2px 14px">'+hm+'</div>':"";
   }
+  // 样例说明补译进度（与题面翻译分开统计）
+  const nt=s.notes||{};
+  if($("#notesInfo"))$("#notesInfo").textContent="样例说明：待补 "+fmtN(nt.pendingProblems||0)+" 题 / "+fmtN(nt.pendingNotes||0)+
+    " 条（已有 "+fmtN(nt.notes||0)+" 条中文说明）";
   const r=s.run,box=$("#runBox");
   if(!r){box.innerHTML='<div class="muted" style="font-size:12.5px">当前没有翻译任务 — 选择数量后点「开始翻译」。</div>'}
   else{
@@ -2230,6 +2566,8 @@ class Handler(BaseHTTPRequestHandler):
             self._json(APP.problem_detail((q.get("platform") or [""])[0], (q.get("id") or [""])[0]))
         elif u.path == "/api/translated-stats":
             self._json({"stats": APP.translated_stats()})
+        elif u.path == "/api/notes":
+            self._json(APP.notes_stats((q.get("platform") or [""])[0]))
         elif u.path == "/api/tasks":
             self._json({"tasks": APP.tasks_list()})
         elif u.path == "/api/task":
@@ -2296,6 +2634,19 @@ class Handler(BaseHTTPRequestHandler):
             self._json({"ok": ok, "message": msg} if ok else {"error": msg})
         elif u.path == "/api/fetch/stop":
             self._json({"ok": APP.fetch_stop()})
+        elif u.path == "/api/notes/start":
+            try:
+                limit = int(body.get("limit") or 0)
+            except (TypeError, ValueError):
+                limit = 0
+            platform = str(body.get("platform") or "").strip()
+            problems = body.get("problems")
+            if isinstance(problems, str):
+                problems = [x for x in problems.split(",") if x.strip()]
+            elif not isinstance(problems, list):
+                problems = []
+            ok, msg = APP.notes_start(limit=limit, platform=platform, problems=problems)
+            self._json({"ok": ok, "message": msg} if ok else {"error": msg})
         elif u.path == "/api/config":
             with APP.lock:
                 if isinstance(body.get("baseUrl"), str) and body["baseUrl"].strip():
@@ -2371,14 +2722,82 @@ def lan_ips():
     return [ip for _, ip in sorted(out)]
 
 
+def run_notes_cli(app, args):
+    """一次性补样例说明（不启动 Web 控制台）；返回进程退出码。"""
+    ids = [x.strip() for x in str(args.problems or "").split(",") if x.strip()]
+    platform = (args.platform or "").strip()
+    app.scan()
+
+    def flush_logs(seen):
+        with app.lock:
+            logs = list(app._logs)
+        for line in logs[seen:]:
+            print(line, flush=True)
+        return len(logs)
+
+    seen = flush_logs(0)   # 先把扫描日志吐出来
+    stats = app.notes_stats(platform)
+    print("[notes] 样例说明：{} 题有说明 / {} 条；待补 {} 题 / {} 条".format(
+        stats["problems"], stats["notes"], stats["pendingProblems"], stats["pendingNotes"]), flush=True)
+    rows = app.notes_queue(platform=platform, problems=ids, limit=args.limit,
+                           retranslate=args.retranslate)
+    if not rows:
+        print("[notes] 没有待补说明的题目（数据已齐全或筛选条件过窄）", flush=True)
+        return 0
+    print("[notes] 本轮队列 {} 题：".format(len(rows)), flush=True)
+    for r in rows[:50]:
+        print("  - [{}] {} {}（{} 条待补）".format(r["platform"], r["id"], r["title"],
+                                                  r.get("notesMissing")), flush=True)
+    if len(rows) > 50:
+        print("  ... 其余 {} 题省略".format(len(rows) - 50), flush=True)
+    if args.dry_run:
+        print("[notes] --dry-run：只列出，未发请求", flush=True)
+        return 0
+
+    ok, msg = app.notes_start(limit=args.limit, platform=platform, problems=ids,
+                              retranslate=args.retranslate)
+    if not ok:
+        print("[notes] ✗ {}".format(msg), flush=True)
+        return 2
+    while True:
+        with app.lock:
+            run = app.run
+            active = bool(run and run["active"])
+        seen = flush_logs(seen)
+        if not active:
+            break
+        time.sleep(0.4)
+    seen = flush_logs(seen)
+    with app.lock:
+        run = app.run or {}
+    done, failed = run.get("done", 0), run.get("failed", 0)
+    print("[notes] 结束：完成 {} / 失败 {} / 跳过 {} / 中断 {}".format(
+        done, failed, run.get("skipped", 0), run.get("cancelled", 0)), flush=True)
+    return 0 if failed == 0 else 1
+
+
 def main():
     global APP
     ap = argparse.ArgumentParser()
     ap.add_argument("--host", default="0.0.0.0", help="监听地址（默认 0.0.0.0，可被局域网/手机访问）")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--root", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    ap.add_argument("--notes", action="store_true",
+                    help="只补样例说明（samples[].note → noteZh），一次性执行、不启动 Web 控制台")
+    ap.add_argument("--platform", default="",
+                    help="--notes 时限定平台（atcoder / codeforces / nowcoder；默认全部）")
+    ap.add_argument("--problems", default="",
+                    help="--notes 时限定题号，逗号分隔（如 abc484_b,abc480_a）")
+    ap.add_argument("--limit", type=int, default=0,
+                    help="--notes 时本次最多处理多少题（0 = 全部待补）")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="--notes 时只列出待补题目，不发请求、不写盘")
+    ap.add_argument("--retranslate", action="store_true",
+                    help="--notes 时重译已有说明（覆盖 noteZh，用于提示词升级后重刷质量）")
     args = ap.parse_args()
     APP = App(args.root)
+    if args.notes:
+        return run_notes_cli(APP, args)
     APP.scan()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
     print("翻译控制台: http://127.0.0.1:{}/".format(args.port), flush=True)
@@ -2392,4 +2811,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)
