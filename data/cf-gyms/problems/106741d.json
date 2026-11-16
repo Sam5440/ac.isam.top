@@ -4,7 +4,7 @@
   "contestId": 106741,
   "index": "D",
   "title": "M-Mart Coupons",
-  "titleZh": null,
+  "titleZh": "M-Mart 优惠券",
   "url": "https://codeforces.com/gym/106741/problem/D",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Magikarp is shopping at M-Mart. He has $n$ coupons in his pocket, numbered from $1$ to $n$. Each coupon gives either a percentage discount or a dollar discount.\n\nThere are $q$ items Magikarp might buy. For each item, he chooses a contiguous subarray of his coupons and may use those coupons in any order. He wants to pay as little as possible. A price cannot go below $0$; if a discount would make it negative, the price becomes $0$.\n\nMagikarp has already chosen which coupons to apply to each item, but not the order in which to apply those coupons. Help Magikarp find the minimum possible price of each item.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n,q \\le 200\\,000$) — the number of coupons and the number of items, respectively.\n\nEach of the next $n$ lines describes one coupon. The $i$th line contains a character $t_i$ and an integer $x_i$. If $t_i=\\texttt{P}$, the coupon discounts the current price by $x_i$ percent ($0 \\le x_i \\le 99$). If $t_i=\\texttt{D}$, the coupon discounts the current price by $x_i$ dollars ($0 \\le x_i \\le 10^9$).\n\nEach of the next $q$ lines contains three integers $p$, $l$, and $r$ ($1 \\le p \\le 10^6$, $1 \\le l \\le r \\le n$) — the item's original price and the endpoints of the chosen coupon subarray, respectively.\n\nIt is possible that the same coupon is used on multiple items.\n\nIt is guaranteed that applying all percentage coupons among the $n$ coupons to a price of $1$ (ignoring dollar coupons) leaves a price of at least $10^{-250}$. The smallest positive value of a 64-bit double is around $10^{-308}$.\n\n## Output\n\nFor each item, output its minimum possible price if Magikarp applies his chosen coupons in the optimal order. Your answer is accepted if its absolute error is at most $10^{-4}$.\n\n## Note\n\nIn the first sample, Magikarp can use the $50\\%$ coupon first, reducing the price from $100$ to $50$, then use both dollar coupons to reduce it to $35$. For the second item, the same discounts reduce the price to $0$. The second query uses only the $50\\%$ coupon.\n\nIn the second sample, the $90\\%$ and $10\\%$ coupons reduce the first item's price from $100$ to $9$, and the two dollar coupons reduce it to $0$. For the second item, the $10\\%$ coupon reduces $1000$ to $900$, and the two dollar coupons then reduce it by $51$.\n\nHint: in order to satisfy the above error bound, be sure to print many digits of your answer (at least 8).\n\nFor example, if your answer is stored in `ans`:\n\n- Java: System.out.printf(\"%.10f%n\", ans);\n- C++: cout &lt;&lt; fixed &lt;&lt; setprecision(10) &lt;&lt; ans &lt;&lt; '\\n'; (include `<iomanip>`)\n- Python: print(f\"{ans:.10f}\")",
-  "statementZhMd": null,
+  "statementZhMd": "Magikarp 正在 M-Mart 购物。他的口袋里有 $n$ 张优惠券，编号为 $1$ 到 $n$。每张优惠券要么按百分比减免价格，要么减免固定金额。\n\nMagikarp 可能会购买 $q$ 件商品。对于每件商品，他会从优惠券中选取一个连续子数组，并可以按任意顺序使用这些优惠券。他希望支付的金额尽可能少。价格不能低于 $0$；如果某次优惠会使价格变为负数，价格就变为 $0$。\n\nMagikarp 已经选好了每件商品要使用哪些优惠券，但尚未确定使用顺序。请帮助 Magikarp 求出每件商品的最低可能价格。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\le n,q \\le 200\\,000$），分别表示优惠券的数量和商品的数量。\n\n接下来的 $n$ 行，每行描述一张优惠券。第 $i$ 行包含一个字符 $t_i$ 和一个整数 $x_i$。如果 $t_i=\\texttt{P}$，这张优惠券会使当前价格降低 $x_i$ 个百分点对应的金额，即减免当前价格的 $x_i$ 百分比（$0 \\le x_i \\le 99$）。如果 $t_i=\\texttt{D}$，这张优惠券会使当前价格减少 $x_i$ 美元（$0 \\le x_i \\le 10^9$）。\n\n接下来的 $q$ 行，每行包含三个整数 $p$、$l$ 和 $r$（$1 \\le p \\le 10^6$，$1 \\le l \\le r \\le n$），分别表示商品的原价以及所选优惠券连续子数组的左右端点。\n\n同一张优惠券可以用于多件商品。\n\n保证将这 $n$ 张优惠券中的所有百分比优惠券用于价格为 $1$ 的商品后（忽略固定金额优惠券），剩余价格至少为 $10^{-250}$。64 位双精度浮点数能表示的最小正数约为 $10^{-308}$。\n\n## 输出格式\n\n对于每件商品，输出 Magikarp 按最优顺序使用所选优惠券后能够得到的最低价格。如果答案的绝对误差不超过 $10^{-4}$，则视为正确。\n\n## 说明\n\n在第一个样例中，Magikarp 可以先使用 $50\\%$ 的优惠券，将价格从 $100$ 降至 $50$，然后使用两张固定金额优惠券，将价格降至 $35$。对于第二件商品，同样的优惠会将价格降至 $0$。第二次询问只使用了 $50\\%$ 的优惠券。\n\n在第二个样例中，$90\\%$ 和 $10\\%$ 的优惠券将第一件商品的价格从 $100$ 降至 $9$，两张固定金额优惠券再将其降至 $0$。对于第二件商品，$10\\%$ 的优惠券将价格从 $1000$ 降至 $900$，随后两张固定金额优惠券再使价格减少 $51$。\n\n提示：为了满足上述误差要求，请务必输出足够多位数字（至少 8 位）。\n\n例如，如果答案存储在 `ans` 中：\n\n- Java: System.out.printf(\"%.10f%n\", ans);\n- C++: cout &lt;&lt; fixed &lt;&lt; setprecision(10) &lt;&lt; ans &lt;&lt; '\\n';（包含 `<iomanip>`）\n- Python: print(f\"{ans:.10f}\")",
   "samples": [
     {
       "input": "3 3\nD 10\nP 50\nD 5\n100 1 3\n10 1 3\n100 2 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:41:01.941Z"
+  "fetchedAt": "2026-11-12T14:41:01.941Z",
+  "translatedAt": "2026-11-16T03:06:12.102Z",
+  "translateModel": "gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 106738,
   "index": "G",
   "title": "Beyond the Stars",
-  "titleZh": null,
+  "titleZh": "繁星之外",
   "url": "https://codeforces.com/gym/106738/problem/G",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 8000,
   "memoryLimitMb": 1024,
   "statementMd": "**This is a communication problem. Pay attention to its unusual constraints.**\n\nThat was long ago, in a past forgotten by all of ECUST...\n\nIn that forgotten age, Zhulin and Qianwai fought side by side, lived together, and gazed up at the same stars. Later, sand buried their language, oceans severed their roads, and even their names faded from history. Only the vast, silent star chart above them remained: public, radiant, and unchanging. Yet nobody knew which stars they had once quietly joined into a message.\n\nThis problem has 2020 test cases.\n\nYou are given an undirected graph G=(V,E) with |V|=2000 and |E|=43600. It has no multiple edges or self-loops and is generated as follows. Initially, G has |V| vertices and no edges. Then, |E| times, the generator uniformly chooses one of the vertex pairs not yet joined by an edge and adds an undirected edge between them.\n\nYour program will be run twice:\n\n**First run**\n\nIn the first run, you play Zhulin. Choose and output n induced four-cycles in G. They may share vertices.\n\n- **Definition of an induced four-cycle:** Choose 4 vertices of G that have **exactly** 4 edges among them, forming a simple cycle. In particular, there are no diagonals.\n\n**Second run**\n\nIn the second run, you play Qianwai. The judge has your complete output from the first run. For each of q queries, it selects one of your four-cycles, deletes one of its vertices, and gives you the other three vertex numbers. Report the index of the four-cycle in Zhulin's output from which they came.\n\n## Input\n\n**First run**\n\nThe first line contains the string `send`.\n\nThe second line contains an integer n (n=200000), the number of induced four-cycles you must output.\n\nThe third line contains two integers |V| and |E|.\n\nEach of the next |E| lines contains two integers u,v, indicating an undirected edge between vertices u and v (1≤u,v≤|V|).\n\n**Second run**\n\nThe first line contains the string `receive`.\n\nThe second line contains two integers |V| and |E|.\n\nEach of the next |E| lines contains two integers u,v, indicating an undirected edge between vertices u and v (1≤u,v≤|V|).\n\nLine |E|+3 contains an integer q (q=4n), the number of received vertex sets.\n\nEach of the next q lines contains 3 integers: the vertices remaining after the judge removes one vertex from a four-cycle in your first-run output.\n\n## Output\n\n**First run**\n\nOutput n lines. Line i contains four integers v1,v2,v3,v4, the vertices of the i-th induced four-cycle.\n\n**Second run**\n\nOutput q lines. For each received vertex set, output an integer i (1≤i≤n), the index of its four-cycle.\n\n## Note\n\nParts of the sample are omitted because the complete data is too large.",
-  "statementZhMd": null,
+  "statementZhMd": "**这是一道通信题。请注意其不同寻常的限制。**\n\n那是很久以前，一段被整个 ECUST 遗忘的往事……\n\n在那个被遗忘的年代，Zhulin 与 Qianwai 并肩作战，共同生活，仰望同一片星空。后来，黄沙掩埋了他们的语言，海洋阻断了他们的道路，就连他们的名字也从历史中渐渐消逝。唯有头顶那幅浩瀚而寂静的星图依然存在：人人可见，璀璨如初，亘古不变。然而，已无人知晓，他们曾悄悄将哪些星辰连成了一则讯息。\n\n本题共有 2020 个测试用例。\n\n给定一个无向图 G=(V,E)，其中 |V|=2000，|E|=43600。该图没有重边或自环，生成方式如下：初始时，G 有 |V| 个顶点，没有边。随后，生成器重复 |E| 次操作，每次从尚未有边相连的顶点对中等概率选取一对，并在它们之间加入一条无向边。\n\n你的程序将运行两次：\n\n**第一次运行**\n\n第一次运行时，你扮演 Zhulin。请在 G 中选择并输出 n 个诱导四元环。这些环可以共用顶点。\n\n- **诱导四元环的定义：** 选择 G 中的 4 个顶点，它们之间**恰好**有 4 条边，且这些边构成一个简单环。特别地，环中不存在对角线。\n\n**第二次运行**\n\n第二次运行时，你扮演 Qianwai。评测程序持有你第一次运行时的完整输出。对于 q 次询问中的每一次，它会选取你输出的一个四元环，删除其中一个顶点，并将其余三个顶点的编号给你。请回答这三个顶点来自 Zhulin 输出的第几个四元环。\n\n## 输入格式\n\n**第一次运行**\n\n第一行包含字符串 `send`。\n\n第二行包含一个整数 n (n=200000)，表示你必须输出的诱导四元环的数量。\n\n第三行包含两个整数 |V| 和 |E|。\n\n接下来的 |E| 行，每行包含两个整数 u,v，表示顶点 u 和 v 之间有一条无向边 (1≤u,v≤|V|)。\n\n**第二次运行**\n\n第一行包含字符串 `receive`。\n\n第二行包含两个整数 |V| 和 |E|。\n\n接下来的 |E| 行，每行包含两个整数 u,v，表示顶点 u 和 v 之间有一条无向边 (1≤u,v≤|V|)。\n\n第 |E|+3 行包含一个整数 q (q=4n)，表示收到的顶点集合的数量。\n\n接下来的 q 行，每行包含 3 个整数：评测程序从你第一次运行输出的某个四元环中删除一个顶点后，剩余顶点的编号。\n\n## 输出格式\n\n**第一次运行**\n\n输出 n 行。第 i 行包含四个整数 v1,v2,v3,v4，表示第 i 个诱导四元环的顶点。\n\n**第二次运行**\n\n输出 q 行。对于收到的每个顶点集合，输出一个整数 i (1≤i≤n)，表示其所属四元环的编号。\n\n## 说明\n\n由于完整数据过大，样例中省略了部分内容。",
   "samples": [
     {
       "input": "send\n200000\n2000 43600\n29 1973\n228 1127\n...\n92 573\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:44:12.540Z"
+  "fetchedAt": "2026-11-12T14:44:12.540Z",
+  "translatedAt": "2026-11-16T03:06:37.587Z",
+  "translateModel": "gpt-6.1-sol"
 }

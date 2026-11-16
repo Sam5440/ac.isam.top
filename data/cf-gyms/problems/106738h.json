@@ -4,7 +4,7 @@
   "contestId": 106738,
   "index": "H",
   "title": "Ordinary Offensive Magic",
-  "titleZh": null,
+  "titleZh": "一般攻击魔法",
   "url": "https://codeforces.com/gym/106738/problem/H",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "Consider an $n \\times m$ grid. Each cell has one of three states:\n\n1. `/` (forward-slash mirror): reflects on both sides. A ray turns $90^\\circ$, connecting the top with the left and the bottom with the right.\n2. `\\` (backslash mirror): reflects on both sides. A ray turns $90^\\circ$, connecting the top with the right and the bottom with the left.\n3. `.` (empty cell): contains no obstacle. A ray passes straight through, connecting the top with the bottom and the left with the right.\n\nInitially, some cells contain fixed `/` or `\\` mirrors; the rest are empty. You may **leave each initially empty cell empty**, **replace it with a `/` mirror**, or **replace it with a `\\` mirror**.\n\nThe outside boundary of the grid consists of $2(n+m)$ unit-length segments. A ray may enter or leave only perpendicularly through the midpoint of one of these segments.\n\nGiven an entry point and a target exit point, determine whether the grid can be filled legally so that a ray entering at the specified point, after straight-line travel and reflections, exits at exactly the target point.\n\nIf possible, output a valid completed grid that **minimizes the number of cells traversed** by the ray from the entry point to the target exit point. Count one traversal each time the ray enters a cell; repeated visits to the same cell are counted separately. If there are multiple optimal completions, output any of them. Otherwise, report that it is impossible.\n\n## Input\n\nThe first line contains an integer $T$ ($1 \\le T \\le 100$), the number of test cases.\n\nThe first line of each test case contains two integers $n,m$ ($1 \\le n \\times m \\le 2 \\times 10^5$), the numbers of rows and columns.\n\nEach of the next $n$ lines contains a string of length $m$ describing the initial grid. Here `/` is a forward-slash mirror, `\\` is a backslash mirror, and `.` is an empty cell.\n\nThe next line contains four space-separated values $d_1,p_1,d_2,p_2$. The first pair specifies the entry point, and the second specifies the target exit point:\n\n- Each of $d_1,d_2$ is one of U, D, L, R, denoting the top, bottom, left, or right boundary, respectively.\n- Each of $p_1,p_2$ is a positive integer specifying the midpoint of the outer edge of the $p$-th boundary cell. On U or D, $p$ is a column number ($1 \\le p \\le m$); on L or R, it is a row number ($1 \\le p \\le n$).\n\nIt is guaranteed that $(d_1,p_1) \\ne (d_2,p_2)$.\n\nThe sum of $n \\times m$ over all test cases does not exceed $2 \\times 10^5$.\n\n## Output\n\nFor each test case, if a valid completion exists, output $n$ lines of length $m$ describing it. Otherwise, output `IMPOSSIBLE`.\n\nA backslash must usually be escaped: `\\\\` outputs `\\`.\n\n## Note\n\n**Sample 1 Explanation**\n\nIn the first test case, the ray enters from the left edge of row $1$ and travels right. It passes through the empty cell $(1,1)$, turns upward at the `/` mirror in $(1,2)$, and exits through the top edge of column $2$.",
-  "statementZhMd": null,
+  "statementZhMd": "考虑一个 $n \\times m$ 的网格。每个单元格有以下三种状态之一：\n\n1. `/`（正斜杠镜面）：两面均可反射。光线转向 $90^\\circ$，将上侧与左侧、下侧与右侧相连。\n2. `\\`（反斜杠镜面）：两面均可反射。光线转向 $90^\\circ$，将上侧与右侧、下侧与左侧相连。\n3. `.`（空单元格）：没有障碍物。光线沿直线穿过，将上侧与下侧、左侧与右侧相连。\n\n初始时，一些单元格中有固定的 `/` 或 `\\` 镜面，其余单元格为空。对于每个初始为空的单元格，你可以**保持其为空**、**将其替换为 `/` 镜面**，或**将其替换为 `\\` 镜面**。\n\n网格的外边界由 $2(n+m)$ 条单位长度的线段组成。光线只能垂直穿过这些线段之一的中点，进入或离开网格。\n\n给定一个入射点和一个目标出射点，判断能否合法填充网格，使得从指定位置射入的光线经过直线传播和反射后，恰好从目标位置射出。\n\n如果可以，输出一个合法的填充后网格，使光线从入射点到目标出射点**经过的单元格次数最少**。光线每进入一个单元格，就计为经过一次；重复经过同一个单元格时分别计数。如果有多个最优填充方案，输出任意一个。否则，报告无解。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\le T \\le 100$），表示测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n,m$（$1 \\le n \\times m \\le 2 \\times 10^5$），表示行数和列数。\n\n接下来的 $n$ 行，每行包含一个长度为 $m$ 的字符串，描述初始网格。其中，`/` 表示正斜杠镜面，`\\` 表示反斜杠镜面，`.` 表示空单元格。\n\n下一行包含四个以空格分隔的值 $d_1,p_1,d_2,p_2$。第一对值指定入射点，第二对值指定目标出射点：\n\n- $d_1,d_2$ 均为 U、D、L、R 中的一个，分别表示上、下、左、右边界。\n- $p_1,p_2$ 均为正整数，指定对应边界上第 $p$ 个单元格外侧边的中点。对于 U 或 D，$p$ 表示列号（$1 \\le p \\le m$）；对于 L 或 R，$p$ 表示行号（$1 \\le p \\le n$）。\n\n保证 $(d_1,p_1) \\ne (d_2,p_2)$。\n\n所有测试用例的 $n \\times m$ 之和不超过 $2 \\times 10^5$。\n\n## 输出格式\n\n对于每个测试用例，如果存在合法的填充方案，输出 $n$ 行，每行长度为 $m$，描述该方案。否则，输出 `IMPOSSIBLE`。\n\n反斜杠通常需要转义：`\\\\` 输出 `\\`。\n\n## 说明\n\n**样例 1 解释**\n\n在第一个测试用例中，光线从第 $1$ 行的左边缘射入并向右传播。它穿过空单元格 $(1,1)$，在 $(1,2)$ 中的 `/` 镜面处转向上方，并从第 $2$ 列的上边缘射出。",
   "samples": [
     {
       "input": "3\n2 2\n..\n..\nL 1 U 2\n4 4\n/\\/\\\n/\\/.\n....\n./..\nL 2 L 4\n4 4\n/\\/\\\n/\\/.\n..\\/\n./..\nL 2 L 4\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:44:19.476Z"
+  "fetchedAt": "2026-11-12T14:44:19.476Z",
+  "translatedAt": "2026-11-16T03:06:48.130Z",
+  "translateModel": "gpt-6.1-sol"
 }

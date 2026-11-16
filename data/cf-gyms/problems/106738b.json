@@ -4,7 +4,7 @@
   "contestId": 106738,
   "index": "B",
   "title": "AIMC Lab",
-  "titleZh": null,
+  "titleZh": "AIMC 实验室",
   "url": "https://codeforces.com/gym/106738/problem/B",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "Your AIMC Lab has developed an entirely new three-dimensional quantum matrix!\n\nConsider a three-dimensional grid of size N×M×H, with coordinates 1≤x≤N, 1≤y≤M, and 1≤z≤H. A qubit occupies every integer grid point. Let (xu,yu,zu) be the coordinates of qubit u.\n\nFor any two qubits u and v, define their **squared spatial distance** as d2(u,v)=(xu−xv)2+(yu−yv)2+(zu−zv)2.\n\nThe system has eight energy matrices AD,c, each of size N×M×H, indexed by integers 0≤D≤3 and 0≤c≤1.\n\nYou may initialize each qubit to either basis state |0⟩ or |1⟩. Its corresponding basis-state value is cP=0 or cP=1.\n\nAfter initialization, the total energy is calculated as follows:\n\n- For each integer pair 0≤D≤3, 0≤c≤1, qubit P gains AD,c(xP,yP,zP) energy if and only if:\n- The basis-state value of P satisfies cP=c.\n  - For every qubit Q with d2(P,Q)=D, the value cP+cQ+D is even.\n\nAs the chief scientist of AIMC Lab, initialize every qubit to a basis state so that the system's total energy is maximized. Output this maximum energy.\n\n## Input\n\nThe first line contains three integers N, M, and H (1≤N,M,H≤100 and N×M×H≤100), the grid dimensions.\n\nThe data for the eight energy matrices AD,c follow in lexicographic order of (D,c).\n\nEach matrix consists of N blocks. Each block has M lines, each containing H integers. Blocks are separated by blank lines.\n\nThe z-th number in the y-th line of the x-th block is the energy at (x,y,z). All energy values satisfy AD,c(xP,yP,zP)∈[0,109].\n\n## Output\n\nOutput one integer: the maximum total energy the system can achieve.\n\n## Note\n\n**Sample 1 Explanation**\n\nThe grid contains only one qubit, at (1,1,1).\n\nInitializing it to |1⟩ gives A0,1(1,1,1)+A1,1(1,1,1)+A2,1(1,1,1)+A3,1(1,1,1)=5+200+2000+60=2265, which is optimal.\n\n**Sample 2 Explanation**\n\nInitialize all 8 qubits of the 2×2×2 grid to |0⟩.\n\n- Each qubit gains 1 energy from A0,0, for a total of 8.\n- All qubits at squared distance 2 are also in state |0⟩, so each qubit gains 10 from A2,0, for a total of 80.\n\nThe total energy is 8+80=88. This can be shown to be the maximum.",
-  "statementZhMd": null,
+  "statementZhMd": "你的 AIMC 实验室开发出了一种全新的三维量子矩阵！\n\n考虑一个大小为 N×M×H 的三维网格，坐标范围为 1≤x≤N、1≤y≤M 和 1≤z≤H。每个整数格点上都有一个量子比特。设量子比特 u 的坐标为 (xu,yu,zu)。\n\n对于任意两个量子比特 u 和 v，定义它们的**空间距离的平方**为 d2(u,v)=(xu−xv)2+(yu−yv)2+(zu−zv)2。\n\n系统有八个能量矩阵 AD,c，每个矩阵的大小均为 N×M×H，以整数 0≤D≤3 和 0≤c≤1 为索引。\n\n你可以将每个量子比特初始化为基态 |0⟩ 或 |1⟩，其对应的基态值为 cP=0 或 cP=1。\n\n初始化后，总能量按如下方式计算：\n\n- 对于每一对整数 0≤D≤3、0≤c≤1，量子比特 P 获得 AD,c(xP,yP,zP) 的能量，当且仅当：\n- P 的基态值满足 cP=c。\n  - 对于每个满足 d2(P,Q)=D 的量子比特 Q，cP+cQ+D 的值为偶数。\n\n作为 AIMC 实验室的首席科学家，请为每个量子比特选择初始基态，使系统的总能量最大。输出这个最大能量。\n\n## 输入格式\n\n第一行包含三个整数 N、M 和 H（1≤N,M,H≤100 且 N×M×H≤100），表示网格的尺寸。\n\n接下来按照 (D,c) 的字典序给出八个能量矩阵 AD,c 的数据。\n\n每个矩阵由 N 个块组成。每个块有 M 行，每行包含 H 个整数。块之间用空行分隔。\n\n第 x 个块的第 y 行中的第 z 个数表示 (x,y,z) 处的能量。所有能量值均满足 AD,c(xP,yP,zP)∈[0,109]。\n\n## 输出格式\n\n输出一个整数，表示系统能够达到的最大总能量。\n\n## 说明\n\n**样例 1 解释**\n\n网格中只有一个量子比特，位于 (1,1,1)。\n\n将其初始化为 |1⟩，得到的能量为 A0,1(1,1,1)+A1,1(1,1,1)+A2,1(1,1,1)+A3,1(1,1,1)=5+200+2000+60=2265，这是最优方案。\n\n**样例 2 解释**\n\n将 2×2×2 网格中的全部 8 个量子比特初始化为 |0⟩。\n\n- 每个量子比特从 A0,0 获得 1 的能量，共计 8。\n- 所有距离平方为 2 的量子比特也都处于 |0⟩ 状态，因此每个量子比特从 A2,0 获得 10 的能量，共计 80。\n\n总能量为 8+80=88。可以证明，这是最大值。",
   "samples": [
     {
       "input": "1 1 1\n3\n\n5\n\n100\n\n200\n\n1000\n\n2000\n\n50\n\n60\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:43:09.007Z"
+  "fetchedAt": "2026-11-12T14:43:09.007Z",
+  "translatedAt": "2026-11-16T03:06:17.818Z",
+  "translateModel": "gpt-6.1-sol"
 }

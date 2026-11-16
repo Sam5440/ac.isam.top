@@ -4,7 +4,7 @@
   "contestId": 106733,
   "index": "B",
   "title": "The Amazing Adventures of Coffee Man!",
-  "titleZh": null,
+  "titleZh": "咖啡侠的奇妙冒险！",
   "url": "https://codeforces.com/gym/106733/problem/B",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "By day, Coffee Man is an ordinary office worker. But give him a cup of coffee and he becomes a superhero who can leap across the city in a single bound!\n\nCoffee Man is standing at point $0$ of a number line, and he needs to get to point $n$ (reaching any point with coordinate at least $n$ is enough). He brought $m$ cups of coffee; the $i$-th cup initially has temperature $a_i$.\n\nEvery second, Coffee Man does exactly one of the following:\n\n- **walk**: his coordinate increases by $1$;\n- **drink** a cup he has not drunk yet: his coordinate increases by the current temperature of that cup.\n\nEach cup can be drunk at most once. Unfortunately, coffee gets cold: after every second, the temperature of every cup decreases by $1$, but it never goes below $0$. In other words, if Coffee Man drinks the $i$-th cup when exactly $s$ seconds have passed, he moves forward by $\\max(0, a_i - s)$.\n\nWhat is the minimum number of seconds Coffee Man needs to reach a point with coordinate at least $n$?\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($1 \\le n \\le 10^9$, $1 \\le m \\le 2 \\cdot 10^5$) — the coordinate Coffee Man needs to reach and the number of cups of coffee.\n\nThe second line of each test case contains $m$ integers $a_1, a_2, \\ldots, a_m$ ($1 \\le a_i \\le 10^9$) — the initial temperatures of the cups.\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum number of seconds Coffee Man needs to reach a point with coordinate at least $n$.\n\n## Note\n\nIn the first test case, $n = 10$ and the temperatures are $[1, 3, 5]$. One optimal plan is:\n\n- second $1$: drink the cup with temperature $5$, moving to coordinate $5$;\n- second $2$: drink the cup that started at temperature $3$; it has cooled to $2$, so Coffee Man moves to coordinate $7$;\n- seconds $3$, $4$, $5$: walk, reaching coordinate $10$.\n\nIt is not possible to do better, so the answer is $5$. Note that drinking all three cups in the given order is worse: the cups give $1$, $2$ and $3$, so after $3$ seconds Coffee Man is at coordinate $6$ and needs $4$ more seconds of walking, $7$ seconds in total.\n\nIn the second test case, a single cup moves Coffee Man from $0$ to $100 \\ge 3$.\n\nIn the third test case, the cups are useless: the first one moves him by $1$, which is no better than walking, and after that every cup has cooled down to $0$. The answer is $5$.\n\nIn the fourth test case, drinking all four cups gives $4+3+2+1=10$ units of movement in four seconds, after which walking takes ten more seconds. The total is $14$ seconds.",
-  "statementZhMd": null,
+  "statementZhMd": "白天，咖啡侠是一名普通的上班族。但只要给他一杯咖啡，他就会变成一跃便能横跨整座城市的超级英雄！\n\n咖啡侠站在数轴上的点 $0$，需要到达点 $n$（只要到达坐标不小于 $n$ 的任意点即可）。他带了 $m$ 杯咖啡，第 $i$ 杯咖啡的初始温度为 $a_i$。\n\n每秒，咖啡侠恰好执行以下一种操作：\n\n- **步行**：他的坐标增加 $1$；\n- **喝咖啡**：喝掉一杯尚未喝过的咖啡，他的坐标增加这杯咖啡当前的温度。\n\n每杯咖啡最多只能喝一次。不幸的是，咖啡会变凉：每秒结束后，每杯咖啡的温度都会降低 $1$，但不会低于 $0$。换句话说，如果咖啡侠在恰好经过 $s$ 秒时喝下第 $i$ 杯咖啡，他就会向前移动 $\\max(0, a_i - s)$。\n\n咖啡侠到达坐标不小于 $n$ 的点最少需要多少秒？\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含两个整数 $n$ 和 $m$（$1 \\le n \\le 10^9$, $1 \\le m \\le 2 \\cdot 10^5$），分别表示咖啡侠需要到达的坐标和咖啡的杯数。\n\n每组测试用例的第二行包含 $m$ 个整数 $a_1, a_2, \\ldots, a_m$（$1 \\le a_i \\le 10^9$），表示各杯咖啡的初始温度。\n\n保证所有测试用例的 $m$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数，表示咖啡侠到达坐标不小于 $n$ 的点所需的最少秒数。\n\n## 说明\n\n在第一组测试用例中，$n = 10$，各杯咖啡的温度为 $[1, 3, 5]$。一种最优方案如下：\n\n- 第 $1$ 秒：喝下温度为 $5$ 的咖啡，移动到坐标 $5$；\n- 第 $2$ 秒：喝下初始温度为 $3$ 的咖啡；此时它已冷却至 $2$，因此咖啡侠移动到坐标 $7$；\n- 第 $3$、$4$、$5$ 秒：步行，到达坐标 $10$。\n\n不可能用更短的时间到达，因此答案为 $5$。注意，按给定顺序喝完三杯咖啡会更慢：三杯咖啡分别使他移动 $1$、$2$ 和 $3$，因此经过 $3$ 秒后，咖啡侠位于坐标 $6$，还需要步行 $4$ 秒，总共需要 $7$ 秒。\n\n在第二组测试用例中，只需一杯咖啡就能让咖啡侠从 $0$ 移动到 $100 \\ge 3$。\n\n在第三组测试用例中，咖啡没有帮助：第一杯咖啡只能让他移动 $1$，并不比步行更好，而在那之后，每杯咖啡都已冷却至 $0$。答案为 $5$。\n\n在第四组测试用例中，喝完四杯咖啡可以在四秒内移动 $4+3+2+1=10$ 个单位，之后还需要步行十秒。总共需要 $14$ 秒。",
   "samples": [
     {
       "input": "4\n10 3\n1 3 5\n3 1\n100\n5 2\n1 1\n20 4\n4 4 4 4\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:41:41.480Z"
+  "fetchedAt": "2026-11-12T14:41:41.480Z",
+  "translatedAt": "2026-11-16T03:07:23.148Z",
+  "translateModel": "gpt-6.1-sol"
 }
