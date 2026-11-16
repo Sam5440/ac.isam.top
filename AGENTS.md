@@ -221,6 +221,14 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 - 抓取注意：一律走 `scripts/lib/http.mjs`（超时/UA/重试统一）；对 CF 的任何新抓取
   必须考虑 Cloudflare 质询（现有方案是 Playwright 真实 Chromium，见
   `scripts/lib/cf.mjs`）；风暴熔断（连续质询→全局冷却 5-10min）参数勿随意放宽。
+- **AtCoder 题面解析别按 DOM 嵌套猜分支**（`scripts/lib/atcoder.mjs` 的
+  `parseAtCoderStatementHtml`）：历史上有四种版式——现代 `div.part > section > h3`、
+  2015 年平铺 `section > h3`（abc034/036/041、arc046/050/052/053/055）、2012 年
+  h3 与 section 平级（arc001）、`div.part` 内 h3 + section 平级（abc001/arc002）。
+  现在统一走「深度遍历 + 遇 h3 切段」，`hr` 丢弃、正文用 `contents()` 取（含裸
+  文本节点）。2026-11-16 前的实现按「有没有 div.part」选分支，让上述 28 道老题
+  每小时报 `empty statement`、永远进不了库；回归测试见
+  `test/atcoder-statement.test.mjs`。
 - `scripts/lib/ci-log.mjs` 写 `data/ci-log.json`，`/ci` 页与 `CiDashboard` 消费——
   改字段两边同步。
 - **三工作流调度**：`ci.yml`（push/PR）= `npm test` + 完整 build；`fetch.yml` 每小时

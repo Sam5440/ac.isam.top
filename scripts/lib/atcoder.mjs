@@ -51,12 +51,19 @@ function sectionHeading(h) {
  * 返回 { statementMd, samples, timeLimitMs, memoryLimitMb, points, language }
  */
 export async function fetchAtCoderStatement(contestId, problemId) {
-  const html = await httpGet(`${ATCODER}/contests/${contestId}/tasks/${problemId}?lang=en`, {
-    timeout: 25000,
-    retries: 2,
-  });
+  const pageUrl = `${ATCODER}/contests/${contestId}/tasks/${problemId}`;
+  const html = await httpGet(`${pageUrl}?lang=en`, { timeout: 25000, retries: 2 });
+  return parseAtCoderStatementHtml(html, pageUrl);
+}
+
+/**
+ * 解析题面页 HTML（纯函数：无网络，便于 node:test 直接回归）。
+ * @param {string} html 题面页 HTML
+ * @param {string} pageUrl 题面页绝对地址（相对链接/图片的基准）
+ */
+export function parseAtCoderStatementHtml(html, pageUrl) {
   const $ = loadHtml(html);
-  const opts = { base: `${ATCODER}/contests/${contestId}/tasks/${problemId}` };
+  const opts = { base: pageUrl };
 
   // 时限/内存："Time Limit: 2 sec / Memory Limit: 1024 MiB"
   let timeLimitMs = null;
@@ -100,65 +107,62 @@ export async function fetchAtCoderStatement(contestId, problemId) {
   const sampleOut = {};
   const sampleNote = {};
 
-  // 现代页面为 div.part > section；2012–2013 年的旧页面没有 part 包裹，
-  // h3 与 section（或裸内容）平级相邻 —— 用 h3 兄弟遍历切分。
-  let secNodes = container.find('div.part > section').toArray();
-  if (secNodes.length === 0) secNodes = container.find('section').toArray();
+  // 小节切分：容器内的 h3 是唯一分隔符。AtCoder 历史上至少有四种版式——
+  // ① 现代 div.part > section > h3；② 2015 年平铺 section > h3（abc034 /
+  // abc036 / abc041 / arc046 / arc050 / arc052 / arc053 / arc055 实测）；
+  // ③ 2012 年 h3 与 section 平级（arc001 等）；④ div.part 内 h3 + section
+  // 平级（abc001 / arc002 等）。「深度遍历 + 遇 h3 切段」对四种统一成立，
+  // 不要再按 div.part / section 的嵌套关系判断分支（历史 bug：按 div.part
+  // 判断，②③④ 全解析成空，CI 每小时报一批 empty statement）。
+  const flat = [];
+  const flatten = (node) => {
+    for (const child of node.children ?? []) {
+      const tag = String(child.tagName || '').toLowerCase();
+      if (tag === 'h3') flat.push({ heading: $(child).text().trim() });
+      else if (tag === 'hr') continue; // 分隔线在 markdown 里会变成噪声 '---'
+      else if (tag === 'div' || tag === 'section') flatten(child);
+      else flat.push({ node: child });
+    }
+  };
+  flatten(container.get(0));
 
-  const collectSection = (heading, secEl, pres) => {
+  const flushGroup = (heading, nodes) => {
+    const holder = $('<div>').append(nodes);
+    const pres = holder.find('pre');
     const si = heading.match(/^Sample Input\s*(\d+)/i) || heading.match(/^入力例\s*(\d+)/);
     const so = heading.match(/^Sample Output\s*(\d+)/i) || heading.match(/^出力例\s*(\d+)/);
-    if (si) {
-      const n = si[1];
-      if (pres.length) sampleIn[n] = preText(pres.first());
+    if (si || so) {
+      const n = si ? si[1] : so[1];
+      if (pres.length) {
+        const text = preText(pres.first());
+        if (si) sampleIn[n] = text;
+        else sampleOut[n] = text;
+      }
       pres.remove();
-      const note = nodesToMd($, secEl.children().toArray(), opts);
+      // 用 contents()（含裸文本节点）：旧页面 section 内是纯文本 + <var>，
+      // children() 只取元素节点，会把正文句子整段丢掉。
+      const note = nodesToMd($, holder.contents().toArray(), opts);
       if (note) sampleNote[n] = (sampleNote[n] ? sampleNote[n] + '\n\n' : '') + note;
       return;
     }
-    if (so) {
-      const n = so[1];
-      if (pres.length) sampleOut[n] = preText(pres.first());
-      pres.remove();
-      const note = nodesToMd($, secEl.children().toArray(), opts);
-      if (note) sampleNote[n] = (sampleNote[n] ? sampleNote[n] + '\n\n' : '') + note;
-      return;
-    }
-    const body = nodesToMd($, secEl.children().toArray(), opts);
+    const body = nodesToMd($, holder.contents().toArray(), opts);
     if (heading && body) sections.push(`${sectionHeading(heading)}\n\n${body}`);
     else if (body) sections.push(body);
   };
 
-  if (container.find('div.part').length === 0) {
-    // 旧式结构：h3 引导后续兄弟节点，直到下一个 h3
-    let curHeading = null;
-    let curNodes = [];
-    const flush = () => {
-      if (curHeading === null) return;
-      const holder = $('<div>').append(curNodes);
-      collectSection(curHeading, holder, holder.find('pre'));
-      curHeading = null;
+  let curHeading = null;
+  let curNodes = [];
+  for (const item of flat) {
+    if (item.heading !== undefined) {
+      if (curHeading !== null) flushGroup(curHeading, curNodes);
+      curHeading = item.heading;
       curNodes = [];
-    };
-    container.children().each((_, node) => {
-      const el = $(node);
-      if (node.tagName === 'h3') {
-        flush();
-        curHeading = el.text().trim();
-      } else if (curHeading !== null) {
-        curNodes.push(node);
-      }
-    });
-    flush();
-  } else {
-    for (const sec of secNodes) {
-      const secEl = $(sec);
-      const h3 = secEl.children('h3').first();
-      const heading = h3.text().trim();
-      h3.remove();
-      collectSection(heading, secEl, secEl.find('pre'));
+    } else if (curHeading !== null) {
+      curNodes.push(item.node);
     }
+    // 首个 h3 之前的杂项（旧页的 h4「注意」提示等）丢弃，与旧实现一致
   }
+  if (curHeading !== null) flushGroup(curHeading, curNodes);
 
   const samples = [];
   for (const n of Object.keys(sampleIn)) {
