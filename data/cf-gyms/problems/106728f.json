@@ -4,7 +4,7 @@
   "contestId": 106728,
   "index": "F",
   "title": "Escape Route",
-  "titleZh": null,
+  "titleZh": "逃生路线",
   "url": "https://codeforces.com/gym/106728/problem/F",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "In a tourist archipelago consisting of $n$ islands, there are $m$ bidirectional bridges connecting them. The islands are numbered $1, 2, \\ldots, n$. The $i$-th bridge connects islands $u_i$ and $v_i$, and it takes $t_i$ minutes to cross. Furthermore, each bridge has a height $h_i$, representing its height above sea level in centimeters.\n\nAn unprecedented natural disaster has struck the archipelago, causing the sea level to rise at a rate of $1$ centimeter per minute. A bridge $i$ becomes unusable exactly $h_i$ minutes after the disaster begins. To ensure safety, a vehicle can only cross bridge $i$ if the entire traversal completes before the bridge is submerged. Specifically, if a vehicle starts crossing bridge $i$ at time $T$, it must arrive at the other end by time $T + t_i$, and this arrival time must satisfy $T + t_i \\le h_i$.\n\nIsland $1$ serves as the evacuation center. Residents on each island are intelligent; they will choose a route that allows them to reach island $1$ safely before any bridge they cross becomes submerged. If no such path exists, they will remain on their current island to await rescue.\n\nGiven this scenario, for each island $k$ (where $k \\in \\{1, \\ldots, n\\}$), determine if the residents on island $k$ can safely reach island $1$.\n\n## Input\n\nThe first line contains two integers $n$ and $m$, representing the number of islands and the number of bridges, respectively.\n\nFollowed by $m$ lines, the $i$-th of which contains four integers $u_i, v_i, t_i, h_i$, representing a bridge connecting islands $u_i$ and $v_i$ with travel time $t_i$ and height $h_i$.\n\n- $1\\leq n\\leq 10^5$\n- $1\\leq m\\leq 3\\times 10^5$\n- $1\\leq u_i, v_i \\leq n, u_i\\neq v_i$\n- $1\\leq t_i \\leq h_i \\leq 10^9$\n\n## Output\n\nOutput a single string of length $n$. The $i$-th character of the string should be '`1`' if the residents of island $i$ can safely reach island $1$, and '`0`' otherwise.\n\n## Note\n\n**Explanation for Sample 1**\n\nResidents of island $1$ are already at island $1$. Residents of island $3$ can safely cross the first bridge and arrive at island $1$ at time $2$. However, residents of island $2$ must first cross the second bridge to reach island $3$ at time $3$; if they then attempt to cross the first bridge, they will get stuck in the middle at time $4$, exactly when the bridge becomes unusable since $h_1=4$. Therefore, the residents of island $2$ cannot safely reach island $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "某个旅游群岛由 $n$ 座岛屿组成，岛屿之间有 $m$ 座双向桥梁相连。岛屿编号为 $1, 2, \\ldots, n$。第 $i$ 座桥连接岛屿 $u_i$ 和 $v_i$，通过它需要 $t_i$ 分钟。此外，每座桥都有一个高度 $h_i$，表示其高出海平面的高度，单位为厘米。\n\n一场前所未有的自然灾害袭击了这片群岛，导致海平面以每分钟 $1$ 厘米的速度上升。灾害开始后恰好 $h_i$ 分钟时，第 $i$ 座桥将无法通行。为确保安全，车辆只有在整段过桥过程能够在桥梁被淹没前完成的情况下，才能通过第 $i$ 座桥。具体来说，如果车辆在时刻 $T$ 开始通过第 $i$ 座桥，就必须在时刻 $T + t_i$ 到达另一端，且到达时刻必须满足 $T + t_i \\le h_i$。\n\n岛屿 $1$ 是疏散中心。每座岛上的居民都很聪明，他们会选择一条路线，确保在所经过的每座桥被淹没前通过它，安全到达岛屿 $1$。如果不存在这样的路径，他们就会留在当前岛屿上等待救援。\n\n在上述情况下，对于每座岛屿 $k$（其中 $k \\in \\{1, \\ldots, n\\}$），判断岛屿 $k$ 上的居民能否安全到达岛屿 $1$。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$，分别表示岛屿数量和桥梁数量。\n\n接下来有 $m$ 行，其中第 $i$ 行包含四个整数 $u_i, v_i, t_i, h_i$，表示一座连接岛屿 $u_i$ 和 $v_i$ 的桥，其通行时间为 $t_i$，高度为 $h_i$。\n\n- $1\\leq n\\leq 10^5$\n- $1\\leq m\\leq 3\\times 10^5$\n- $1\\leq u_i, v_i \\leq n, u_i\\neq v_i$\n- $1\\leq t_i \\leq h_i \\leq 10^9$\n\n## 输出格式\n\n输出一个长度为 $n$ 的字符串。如果岛屿 $i$ 上的居民能够安全到达岛屿 $1$，则字符串的第 $i$ 个字符应为 '`1`'，否则应为 '`0`'。\n\n## 说明\n\n**样例 1 说明**\n\n岛屿 $1$ 上的居民已经位于岛屿 $1$。岛屿 $3$ 上的居民可以安全通过第一座桥，并在时刻 $2$ 到达岛屿 $1$。然而，岛屿 $2$ 上的居民必须先通过第二座桥，在时刻 $3$ 到达岛屿 $3$；如果他们随后尝试通过第一座桥，就会在时刻 $4$ 被困在桥中央，而由于 $h_1=4$，此时恰好是这座桥无法通行的时刻。因此，岛屿 $2$ 上的居民无法安全到达岛屿 $1$。",
   "samples": [
     {
       "input": "3 2\n1 3 2 4\n2 3 3 5\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:58:57.942Z"
+  "fetchedAt": "2026-11-12T14:58:57.942Z",
+  "translatedAt": "2026-11-16T11:58:29.324Z",
+  "translateModel": "gpt-6.1-sol"
 }

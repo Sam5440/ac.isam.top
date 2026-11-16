@@ -4,7 +4,7 @@
   "contestId": 106725,
   "index": "J",
   "title": "Jobs through Pipelines",
-  "titleZh": null,
+  "titleZh": "流水线上的作业",
   "url": "https://codeforces.com/gym/106725/problem/J",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "You need to schedule $n$ jobs on a pipeline. The jobs form a sequence, and job $i$ has workload $a_i$. The pipeline consists of $m$ **stages** in series.\n\nBefore processing begins, you may choose an integer $t$ ($0\\le t\\le n$). This moves the first $t$ jobs to the end without changing their relative order, obtaining $a_{t+1},a_{t+2},\\ldots,a_n,a_1,a_2,\\ldots,a_t.$ Choosing $t=0$ or $t=n$ leaves the sequence unchanged.\n\nNext, you need to partition the resulting sequence into at most $k$ nonempty contiguous segments, each forming a **batch**. The workload of a batch is the sum of the workloads of its jobs.\n\nThe batches then enter the pipeline in order. Each batch passes through stages $1,2,\\ldots,m$ in this order, taking time equal to its workload at each stage. Each stage processes at most one batch at a time, following the batches' left-to-right order in the sequence. After finishing at one stage, a batch may wait for the next stage to become available. While it waits, it no longer occupies the previous stage, which may process the next batch. Different stages may process different batches simultaneously.\n\nThe pipeline starts processing at time $0$. Choose the prefix to move and the partition into batches so that all jobs finish as early as possible.\n\n## Input\n\nThe first line contains three integers $n,m,k$ ($1\\le n,m\\le 5\\times 10^5$, $1\\le k\\le n$): the number of jobs, the number of stages, and the maximum number of batches.\n\nThe second line contains $n$ integers $a_1,a_2,\\ldots,a_n$ ($1\\le a_i\\le 10^6$), the workloads of the jobs.\n\n## Output\n\nPrint one integer: the minimum possible time at which all jobs have finished.\n\n## Note\n\nAn optimal choice is to move the prefix $[3,1,4]$ to the end, obtaining the sequence $[2,3,1,4]$, and partition it into two batches $[2,3]$ and $[1,4]$. Both batches have workload $5$. They can start at the first stage at times $0$ and $5$, and finish at the third stage at times $15$ and $20$, respectively. Thus, all jobs finish at time $20$, which is the minimum possible time.",
-  "statementZhMd": null,
+  "statementZhMd": "你需要在一条流水线上调度 $n$ 个作业。这些作业排成一个序列，其中作业 $i$ 的工作量为 $a_i$。流水线由 $m$ 个串联的**阶段**组成。\n\n在开始处理之前，你可以选择一个整数 $t$（$0\\le t\\le n$），将前 $t$ 个作业移到序列末尾，并保持它们的相对顺序不变，得到 $a_{t+1},a_{t+2},\\ldots,a_n,a_1,a_2,\\ldots,a_t.$ 选择 $t=0$ 或 $t=n$ 时，序列保持不变。\n\n接下来，你需要将得到的序列划分为至多 $k$ 个非空连续段，每一段构成一个**批次**。一个批次的工作量等于其中所有作业的工作量之和。\n\n随后，各批次依次进入流水线。每个批次按顺序经过阶段 $1,2,\\ldots,m$，在每个阶段所需的处理时间均等于该批次的工作量。每个阶段同一时刻至多处理一个批次，且按照各批次在序列中从左到右的顺序进行处理。一个批次在某个阶段处理完成后，可以等待下一个阶段空闲。在等待期间，它不再占用上一个阶段，上一个阶段可以处理下一个批次。不同阶段可以同时处理不同批次。\n\n流水线从时刻 $0$ 开始处理。请选择要移到末尾的前缀以及批次的划分方式，使所有作业尽可能早地完成。\n\n## 输入格式\n\n第一行包含三个整数 $n,m,k$（$1\\le n,m\\le 5\\times 10^5$，$1\\le k\\le n$），分别表示作业数量、阶段数量和批次数量的上限。\n\n第二行包含 $n$ 个整数 $a_1,a_2,\\ldots,a_n$（$1\\le a_i\\le 10^6$），表示各个作业的工作量。\n\n## 输出格式\n\n输出一个整数，表示所有作业完成的最早可能时刻。\n\n## 说明\n\n一种最优方案是将前缀 $[3,1,4]$ 移到末尾，得到序列 $[2,3,1,4]$，并将其划分为两个批次 $[2,3]$ 和 $[1,4]$。两个批次的工作量均为 $5$。它们可以分别在时刻 $0$ 和 $5$ 开始在第一个阶段处理，并分别在时刻 $15$ 和 $20$ 完成第三个阶段的处理。因此，所有作业在时刻 $20$ 完成，这是最早可能的完成时刻。",
   "samples": [
     {
       "input": "4 3 2\n3 1 4 2\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:56:39.900Z"
+  "fetchedAt": "2026-11-12T14:56:39.900Z",
+  "translatedAt": "2026-11-16T11:59:44.509Z",
+  "translateModel": "gpt-6.1-sol"
 }

@@ -4,7 +4,7 @@
   "contestId": 106728,
   "index": "B",
   "title": "The Secret of Fats",
-  "titleZh": null,
+  "titleZh": "脂肪的秘密",
   "url": "https://codeforces.com/gym/106728/problem/B",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 1024,
   "statementMd": "Triglycerides are the main components of animal and plant fats, acting as essential substances for energy storage in the human body. Chemically, all triglycerides are formed by combining one glycerol molecule with three fatty acid molecules.\n\nThe physical and chemical properties of fats mainly depend on their connected fatty acid chains. Based on the structure of these chains, we can classify fats into two main categories: **saturated fat** and **unsaturated fat**.\n\n![image](https://espresso.codeforces.com/857bbe85e3782eb66094799ad4c2491935f73f9b.png)\n\nIf we know the total number of carbon (C), hydrogen (H), and oxygen (O) atoms in a triglyceride molecule, we can directly use simple mathematical rules to determine whether it is a saturated or unsaturated fat without needing specialized laboratory instruments.\n\nFor a triglyceride completely devoid of carbon-carbon double bonds (i.e., a saturated fat). Derived from the chemical degree of unsaturation formula, the number of carbon atoms (c) and hydrogen atoms (h) of a saturated triglyceride must strictly satisfy the following linear relationship: h=2c−4 If the number of hydrogen atoms is less than this standard (i.e., h&lt;2c−4), it indicates the presence of extra carbon-carbon double bonds in the carbon chain, meaning it is an unsaturated fat.\n\n(Note: This problem guarantees that all input test data represents valid triglyceride molecules, and the number of oxygen atoms (o) will always be 6.)\n\nNow, please write a program that reads the C, H, and O atomic counts of several compounds to classify them accordingly.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases t. The description of the test cases follows.\n\nThe only line of each test case contains three non-negative integers c, h, and o, representing the number of carbon, hydrogen, and oxygen atoms in the compound, respectively.\n\n- 1≤t≤104\n- 6≤c≤150\n- 8≤h≤2×c−4, and h is even.\n- o is guaranteed to be 6, and the data is guaranteed to conform to the chemical rules of a valid triglyceride.\n\n## Output\n\nFor each test case, output a single line containing the classification result of the compound:\n\n- If it is a saturated fat, output the string `Saturated`.\n- If it is an unsaturated fat, output the string `Unsaturated`.\n\n## Note\n\n**Explanation for Sample 1**\n\n- Test Case 1: Carbon is 51, hydrogen is 98, and oxygen is 6. It satisfies the saturated fat condition because 2×51−4=98. This compound is Tripalmitin; output `Saturated`.\n- Test Case 2: Carbon is 57, hydrogen is 104, and oxygen is 6. The saturated upper limit is 2×57−4=110. Because 104&lt;110, this is an unsaturated fat (Triolein, containing 3 double bonds); output `Unsaturated`.\n- Test Case 3: Carbon is 55, hydrogen is 102, and oxygen is 6. The saturated upper limit is 2×55−4=106. Because 102&lt;106, it contains extra double bonds and is an unsaturated fat; output `Unsaturated`.",
-  "statementZhMd": null,
+  "statementZhMd": "甘油三酯是动物脂肪和植物脂肪的主要成分，也是人体储存能量的重要物质。从化学结构上看，所有甘油三酯都是由一个甘油分子与三个脂肪酸分子结合而成的。\n\n脂肪的物理和化学性质主要取决于其连接的脂肪酸链。根据这些链的结构，我们可以将脂肪分为两大类：**饱和脂肪**和**不饱和脂肪**。\n\n![image](https://espresso.codeforces.com/857bbe85e3782eb66094799ad4c2491935f73f9b.png)\n\n如果知道一个甘油三酯分子中碳（C）、氢（H）和氧（O）原子的总数，我们就可以直接利用简单的数学规律判断它是饱和脂肪还是不饱和脂肪，而无须使用专门的实验室仪器。\n\n对于完全不含碳碳双键的甘油三酯（即饱和脂肪），根据化学中的不饱和度公式，其碳原子数（c）与氢原子数（h）必须严格满足以下线性关系：h=2c−4。如果氢原子数低于这一标准（即 h&lt;2c−4），则说明碳链中存在额外的碳碳双键，也就意味着它是不饱和脂肪。\n\n（注意：本题保证所有输入测试数据均表示合法的甘油三酯分子，且氧原子数（o）始终为 6。）\n\n现在，请编写一个程序，读入若干种化合物的 C、H 和 O 原子数，并据此对它们进行分类。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 t，接下来是各组测试用例的描述。\n\n每组测试用例仅包含一行，其中有三个非负整数 c、h 和 o，分别表示该化合物中碳、氢和氧原子的数量。\n\n- 1≤t≤104\n- 6≤c≤150\n- 8≤h≤2×c−4，且 h 为偶数。\n- 保证 o 为 6，且数据符合合法甘油三酯的化学规律。\n\n## 输出格式\n\n对于每组测试用例，输出一行，表示该化合物的分类结果：\n\n- 如果它是饱和脂肪，输出字符串 `Saturated`。\n- 如果它是不饱和脂肪，输出字符串 `Unsaturated`。\n\n## 说明\n\n**样例 1 解释**\n\n- 测试用例 1：碳原子数为 51，氢原子数为 98，氧原子数为 6。由于 2×51−4=98，它满足饱和脂肪的条件。该化合物为三棕榈酸甘油酯，输出 `Saturated`。\n- 测试用例 2：碳原子数为 57，氢原子数为 104，氧原子数为 6。饱和状态下的氢原子数上限为 2×57−4=110。由于 104&lt;110，它是不饱和脂肪（三油酸甘油酯，含有 3 个双键），输出 `Unsaturated`。\n- 测试用例 3：碳原子数为 55，氢原子数为 102，氧原子数为 6。饱和状态下的氢原子数上限为 2×55−4=106。由于 102&lt;106，它含有额外的双键，是不饱和脂肪，输出 `Unsaturated`。",
   "samples": [
     {
       "input": "3\n51 98 6\n57 104 6\n55 102 6\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-12T14:58:25.748Z"
+  "fetchedAt": "2026-11-12T14:58:25.748Z",
+  "translatedAt": "2026-11-16T11:58:10.887Z",
+  "translateModel": "gpt-6.1-sol"
 }
