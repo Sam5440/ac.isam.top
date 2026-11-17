@@ -58,8 +58,9 @@ test('裸 TeX 抢救：定界符全丢的片段包回 $…$', () => {
 
 test('裸 TeX 抢救：普通单词是硬边界，不会吞正文', () => {
   const md = 'integer z that 0 \\le z \\lt M and z \\cdot q \\equiv p \\pmod{M}.';
+  // \lt 是 MathJax 别名，KaTeX 不认，抽公式时换成 < （token 里是转义后的 &lt;）
   assert.deepEqual(inlineTex(renderRich(md)), [
-    '$0 \\le z \\lt M$',
+    '$0 \\le z &lt; M$',
     '$z \\cdot q \\equiv p \\pmod{M}$',
   ]);
 });
@@ -240,4 +241,24 @@ test('renderRich: 公式内容里的 <br /> 残渣被清掉（牛客数组公式
   const cmp = renderRich('$a &lt; b$');
   assert.equal(cmp.includes('zs-math'), true);
   assert.equal(cmp.includes('&amp;lt;') || cmp.includes('&lt;'), true);
+});
+test('renderRich: 公式体里夹着单个 $ 的交互表整块按块级公式渲染（1552h/1776i）', () => {
+  const md = 'An example. $$ \\begin{array}{l|l} \\text{We choose the $(3, 2)$ vertices.} & \\mathtt{?\\ 4} \\\\ \\end{array} $$';
+  const html = renderRich(md);
+  assert.equal(html.includes('data-display="1"'), true);
+  assert.equal(html.includes('$(3, 2)$'), false);  // 体内的 $ 已删，KaTeX 才不会报错
+  assert.equal(html.includes('(3, 2) vertices'), true);
+});
+
+test('renderRich: 单 $ 包着跨空行的表格公式按块级渲染（1060h）', () => {
+  const md = '$\\begin{array}{|c|c|} \\hline a & b \\\\\n\n\\hline c & d \\\\\n\n\\end{array}$';
+  const html = renderRich(md);
+  assert.equal(html.includes('data-display="1"'), true);
+});
+
+test('renderRich: 文本命令里的裸 ^ / _ 改写成 \\^{} / \\_{}，\\lt \\gt 换成实体', () => {
+  const html = renderRich('$\\texttt{^ 3 3} \\le x \\lt y$');
+  assert.equal(html.includes('\\^{}'), true);
+  assert.equal(html.includes('&lt;'), true);
+  assert.equal(/\\lt(?![a-zA-Z])/.test(html), false);
 });

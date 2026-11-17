@@ -178,7 +178,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 ### 3.5 题面渲染链
 
 `statementMd`（英文）+ `statementZhMd`（中文）→ `lib/statement-segments.js`
-`pairSegments()` 按段配对 → `ProblemStatementViewer`（来源芯片/浮标）→
+`pairSegments()` 按段配对（`splitBlocks` 会跟踪公式状态，跨空行的大公式不切段）→ `ProblemStatementViewer`（来源芯片/浮标）→
 `StatementBody`（marked + KaTeX + highlight.js；`MathPre`/`math-detect.js`
 先探测公式再决定渲染路径；`img-dedup.js` 去掉中英段重复图片）。样例渲染
 `SamplesSection`（支持 LaTeX，复制原始文本）。改动这条链注意： KaTeX/highlight
@@ -191,7 +191,9 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 1. fenced/`inline code` 先进 token —— 但**单反引号里的成对 `$…$` 会被切出来**单独渲染
    （CF 交互题把输出格式写成行内代码，公式得能显示；围栏代码块与 `<pre>` 一律不动）；
 2. 丢弃 `\style{opacity:0…}` 这类不可见 TeX（CF 愚人节题的隐藏提示）；
-3. 兼容 CF 源码级 `$$$`/`$$$$$$`，再处理 `$$…$$`（只认块边界，行内降级为行内公式）；
+3. 兼容 CF 源码级 `$$$`/`$$$$$$`；交互表这类 `$ / $$` 紧跟 `\begin{env}` 的块先按
+   「找配对 `\end{env}` + 同种收尾定界符」整块抽出（1552h 体内夹着行内 `$`、1060h 定界符
+   写成单个 `$` 却跨空行），再处理 `$$…$$`（只认块边界，行内降级为行内公式）；
 4. 严格行内 `$…$` → 宽松行内（容忍定界符内侧空白，带金额/CJK/跨段/跨句守卫）→
    **裸 TeX 抢救**（定界符彻底丢失的历史数据，按「不含空格的长命令 + 括号/单词边界」包回 `$…$`）
    → **裸下标/上标抢救**（只剩 `p_i`/`t_{k}`/`c_{i,j}`/`10^9` 这种没有 TeX 命令的公式片段，
