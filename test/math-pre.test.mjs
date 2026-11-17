@@ -34,6 +34,17 @@ test('hasMathTex: 金额类 $5 and $10 不命中（定界符内侧紧邻非空�
   assert.equal(hasMathTex('成本 $5, 上限 $10'), false);
 });
 
+test('hasMathTex: 定界符整段丢失的裸 TeX 也命中（与 renderRich 的抢救口径一致）', () => {
+  assert.equal(hasMathTex('two integers n and m (1 \\le n \\le 2000)'), true);
+  assert.equal(hasMathTex('\\begin{array}'), true);
+  assert.equal(hasMathTex('\\frac{3+1}{2^3}'), true);
+});
+
+test('hasMathTex: 转义文本命令 / 单个反斜杠不误判', () => {
+  assert.equal(hasMathTex('path C:\\Users\\name'), false);
+  assert.equal(hasMathTex('a \\ b'), false);
+});
+
 test('hasMathTex: 空 / 非字符串不命中', () => {
   assert.equal(hasMathTex(''), false);
   assert.equal(hasMathTex('   '), false);
