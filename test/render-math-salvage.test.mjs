@@ -7,6 +7,7 @@ import {
   renderRich,
   stripHiddenTex,
   wrapBareTex,
+  wrapBareSubscript,
 } from '../lib/render.js';
 
 /** lib/render.js 数学渲染抢救链：宽松行内、裸 TeX、残标清理、实体解码、字形去重。 */
@@ -154,6 +155,48 @@ test('单字母公式体送进 KaTeX 不报错（$?$ / $0$ / $S$）', async () =
   }
 });
 
+test('裸下标/上标抢救：变量名 + _/^ + 短索引包回行内公式', () => {
+  assert.deepEqual(inlineTex(renderRich('among the first p_i people')), ['$p_i$']);
+  assert.deepEqual(inlineTex(renderRich('two integers (a_i, b_i)')), ['$a_i$', '$b_i$']);
+  assert.deepEqual(
+    inlineTex(renderRich('take t_{1}, c_{i,j}, f_{i-1}, n^2 and 10^{9}')),
+    ['$t_{1}$', '$c_{i,j}$', '$f_{i-1}$', '$n^2$', '$10^{9}$'],
+  );
+  // 连写的下标算一段（1121F：substring of t_{1}t_{2}）
+  assert.deepEqual(inlineTex(renderRich('a substring of t_{1}t_{2}.')), ['$t_{1}t_{2}$']);
+  // 中文正文里的下标同样包（用户看到的就是这个）
+  assert.deepEqual(inlineTex(renderRich('共有 a_i 个元素，第 b_j 个')), ['$a_i$', '$b_j$']);
+});
+
+test('裸下标不跨空格：相邻两处是两个公式', () => {
+  assert.deepEqual(inlineTex(renderRich('the p_i and a_j')), ['$p_i$', '$a_j$']);
+  assert.deepEqual(inlineTex(renderRich('x_i y_j z_k')), ['$x_i$', '$y_j$', '$z_k$']);
+});
+
+test('裸下标误伤守卫：文件名/路径/URL/宏名/标识符都不碰', () => {
+  for (const md of [
+    'see file_1.txt here',
+    'dir/a_1 and a.com/x_y',
+    'read https://example.com/path/a_b for more',
+    'identifier snake_case_name stays',
+    'path/home_1/user stays',
+  ]) {
+    assert.deepEqual(mathTokens(renderRich(md)), [], md);
+  }
+});
+
+test('裸下标不碰围栏/行内代码，且抢救幂等', () => {
+    const q = String.fromCharCode(96);
+  const fence = q + q + q + '\nfor a_1 in range(n): pass\n' + q + q + q;
+  assert.deepEqual(mathTokens(renderRich(fence)), []);
+  assert.deepEqual(mathTokens(renderRich('run ' + q + 'x_i = 1' + q + ' now')), []);
+  // 宏名（\\foo_1）由裸 TeX 段负责，这里的下标抢救不碰它
+  assert.equal(wrapBareSubscript('macro \\foo_1 stays'), 'macro \\foo_1 stays');
+  const once = wrapBareSubscript('value p_i here');
+  assert.equal(once, 'value $p_i$ here');
+  assert.equal(wrapBareSubscript(once), once);
+});
+
 test('表格拍平残渣（含 & 且无 \\begin{）不包成公式', () => {
   assert.deepEqual(mathTokens(renderRich('left \\hline 3 & 2 \\text{x} right')), []);
   assert.equal(mathTokens(renderRich('\\begin{array}{c|c} a & b \\end{array}')).length, 1);
@@ -184,9 +227,10 @@ test('孤 $ 收尾：中文语境的残标去掉，英文金额保持原样', ()
 test('成对 $ 里是中文/日文正文时只留正文（不渲染出 KaTeX 错误框）', () => {
   const md = '保証される（$1 ≦ b_i ≦ N かつ b_i ≠ i$）。';
   const html = renderRich(md);
-  assert.deepEqual(mathTokens(html), []);
+  // 中文正文的成对 $ 只留正文（不出 KaTeX 错误框）；正文里的裸下标仍照常抢救成公式
+  assert.deepEqual(inlineTex(html), ['$b_i$', '$b_i$']);
   assert.equal(visible(html).includes('$'), false);
-  assert.match(visible(html), /1 ≦ b_i ≦ N かつ/);
+  assert.match(visible(html), /1 ≦ M ≦ N かつ M ≠ i/);
 });
 test('renderRich: 公式内容里的 <br /> 残渣被清掉（牛客数组公式），< 比较符不受影响', () => {
   const md = '$\\begin{array}{rll}<br />4^{-1} & = & \\left(4^{M-2} \\bmod M\\right) \\\\<br />\n\\end{array}$';
