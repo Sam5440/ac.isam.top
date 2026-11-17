@@ -42,6 +42,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
+import { problemFileName } from '../lib/problem-id.mjs';
+
 import { llmConfig, pingLLM, translateStatement } from './lib/llm.mjs';
 import { loadEnv, log, parseArgs, pLimit, readJson, writeJson } from './lib/util.mjs';
 
@@ -80,6 +82,12 @@ function fencesOf(md) {
 
 function stripFences(md) {
   return String(md).replace(FENCE_RE, '');
+}
+
+/** 围栏块之外的 $ 定界符是否配平（奇数 = 有残标 $，渲染后会露出字面美元符）。 */
+function hasStrayDollar(md) {
+  const body = stripFences(String(md)).replace(/\\\$/g, '');
+  return (body.match(/\$/g) || []).length % 2 === 1;
 }
 
 /** 去掉「含裸 TeX + 英文散文」的围栏块（= 被逐字抄进中文的英文正文）。 */
@@ -185,6 +193,7 @@ function validate(rec, newZh) {
   const bare = stripFences(stripMath(newZh)).match(BARE_TEX_RE);
   if (bare) reasons.push('bare-tex-outside-math:' + bare[0]);
   if (!/[\u4e00-\u9fff]/.test(newZh)) reasons.push('no-cjk');
+  if (hasStrayDollar(newZh)) reasons.push('stray-dollar');
   if (rec.reasons.includes('bare-fence')) {
     const copied = fencesOf(newZh).filter((b) => BARE_TEX_RE.test(b) && PROSE_RE.test(b));
     if (copied.length) reasons.push('english-fence-kept');
@@ -307,6 +316,35 @@ function filterReason(list) {
   return list.filter((r) => want.some((w) => r.reasons.includes(w)));
 }
 
+/**
+ * --force 重刷用：--only 里点了名、但已经不脏（枚举不到）的题，直接从 data/ 读记录。
+ * 用途：某条重译结果虽过了校验门、事后体检又发现别的毛病（例如公式外的残标 $），
+ * 这时它已不在脏清单里，需要显式重刷。返回的记录 reasons 按当前 zh 重新判定，可能为空。
+ */
+function loadExplicit(specs) {
+  const out = [];
+  for (const spec of specs) {
+    const slash = spec.indexOf('/');
+    const cands =
+      slash > 0
+        ? [{ platform: spec.slice(0, slash), id: spec.slice(slash + 1) }]
+        : PLATFORMS.map((p) => ({ platform: p, id: spec }));
+    for (const c of cands) {
+      const file = path.join(ROOT, 'data', c.platform, 'problems', problemFileName(c.id) + '.json');
+      const data = readJson(file);
+      if (!data || !String(data.statementMd ?? '').trim()) continue;
+      const zh = String(data.statementZhMd ?? '');
+      const reasons = [];
+      if (GLYPH_RE.test(zh)) reasons.push('glyph');
+      if (c.platform === 'atcoder' && (BARE_RULES[BARE_RULE] ?? BARE_RULES.prose)(zh, String(data.statementMd))) {
+        reasons.push('bare-fence');
+      }
+      out.push({ platform: c.platform, id: String(data.id ?? c.id), key: c.platform + '/' + String(data.id ?? c.id), file, data, reasons, oldZh: zh });
+    }
+  }
+  return out;
+}
+
 /** --only：接受 platform/id、裸 id（不区分大小写；裸 id 命中多平台时全选）。 */
 function filterOnly(list) {
   if (!args.only) return list;
@@ -328,7 +366,16 @@ async function main() {
   }
 
   const all = enumerate(BARE_RULE);
-  const picked = filterOnly(filterReason(all));
+  let picked = filterOnly(filterReason(all));
+  // --force 时把 --only 点名、但已不脏的题也拉进来（事后体检发现毛病的重刷路径）
+  if (args.force && args.only) {
+    const specs = String(args.only)
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const have = new Set(picked.map((r) => r.key.toLowerCase()));
+    picked = picked.concat(loadExplicit(specs).filter((r) => !have.has(r.key.toLowerCase())));
+  }
   const queue = picked.filter((r) => !isDone(r));
   const limit = args.limit != null ? Math.max(1, Number(args.limit)) : Infinity;
   const batch = queue.slice(0, limit);

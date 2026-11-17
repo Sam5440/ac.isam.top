@@ -262,3 +262,12 @@ test('renderRich: 文本命令里的裸 ^ / _ 改写成 \\^{} / \\_{}，\\lt \\g
   assert.equal(html.includes('&lt;'), true);
   assert.equal(/\\lt(?![a-zA-Z])/.test(html), false);
 });
+
+test('renderRich: 隐藏提示删空后不留字面美元符（${\\style{opacity:0…}{…}}$）', () => {
+  const D = '$';
+  const md = '提示：' + D + '{\\style{opacity:0;font-size:0px}{\\tiny{\\text{You must use i.}}}}' + D + ' 结束';
+  const html = renderRich(md);
+  assert.equal(html.includes('style'), false);
+  assert.equal(html.includes(D), false);  // 空公式对也要清掉，否则页面上是两个字面美元符
+  assert.equal(html.includes('结束'), true);
+});
