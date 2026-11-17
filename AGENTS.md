@@ -184,6 +184,25 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 `SamplesSection`（支持 LaTeX，复制原始文本）。改动这条链注意： KaTeX/highlight
 客户端运行时（`KatexRuntime`/`HighlightRuntime`）是全局挂载的，别在页面里重复初始化。
 
+**数学处理全在 `lib/render.js` 的 `renderRich`（2026-11-17 重构，改动前先读文件头）**：
+公式被抽成惰性 token（`<code class="zs-math">`），客户端 `KatexRuntime` 再换成 KaTeX，
+服务端只输出 token。抽公式的顺序本身就带语义，别随意调换：
+
+1. fenced/`inline code` 先进 token —— 但**单反引号里的成对 `$…$` 会被切出来**单独渲染
+   （CF 交互题把输出格式写成行内代码，公式得能显示；围栏代码块与 `<pre>` 一律不动）；
+2. 丢弃 `\style{opacity:0…}` 这类不可见 TeX（CF 愚人节题的隐藏提示）；
+3. 兼容 CF 源码级 `$$$`/`$$$$$$`，再处理 `$$…$$`（只认块边界，行内降级为行内公式）；
+4. 严格行内 `$…$` → 宽松行内（容忍定界符内侧空白，带金额/CJK/跨段/跨句守卫）→
+   **裸 TeX 抢救**（定界符彻底丢失的历史数据，按「不含空格的长命令 + 括号/单词边界」包回 `$…$`）；
+5. 最后一遍清掉配不成对的 `$` 残标。
+
+所有公式内容统一过 `decodeMathEntities`（`&lt;` 这类实体）+ `fixDoubleEscape`，
+非 ASCII 数学字形（U+1D400 区）的「字形 + ASCII 孪生」重复会被折叠成一份。
+
+**体检脚本**：`node scripts/audit-statement-render.mjs`（`--list N`/`--only cf-gyms`/`--json`）
+把全库题面渲染一遍，统计「渲染后仍能看到裸 TeX / 字面 `$` / 字形重复 / 未解析占位符」——
+动渲染层或改抓取解析后跑一次，数字应只降不升。
+
 **XSS 最后兜底**：所有 HTML 出口——包括 MT/AI 译文这类绕过正常管线的入口——最终
 都过 `lib/render.js` 的 `sanitizeRichHtml`（parse5 白名单重建，URL 解码后校验协议）。
 新增任何「用户/外部内容进 DOM」的入口时，确认它也被这条链覆盖。
@@ -262,6 +281,21 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   文本节点）。2026-11-16 前的实现按「有没有 div.part」选分支，让上述 28 道老题
   每小时报 `empty statement`、永远进不了库；回归测试见
   `test/atcoder-statement.test.mjs`。
+- **CF 题面 HTML→Markdown 别过滤掉 `<script>` 节点**（`scripts/lib/html2md.mjs`，
+  2026-11-17 根治 142 道题面数学重复乱码）：CF 页面上 MathJax 已先跑过一遍，原始 TeX
+  只剩在 `<script type="math/tex">` 里，页面上能抓到的其它东西（`MathJax_Preview`、
+  `nobr[aria-hidden]` 字形树、`MJX_Assistive_MathML`）都是**渲染副产物**。htmlparser2
+  把 `<script>` 的 `node.type` 记成 `'script'` 而不是 `'tag'`——按 `type === 'tag'` 过滤
+  节点就会把 TeX 原文整段丢掉，只剩字形 + MathML 两份重复（站上的 `𝑛n`）。现在的口径：
+  `isContentNode()` 接受 tag/script/style，`isMathJaxArtifact()` 整段跳过生成物，
+  `<table>` 走独立块（含嵌在 `<p>` 里的极端情况）。回归测试
+  `test/cf-mathjax.test.mjs` + 两个 fixture（原始 `$$$` 版 / MathJax 渲染版）。
+- **存量脏题面用 `scripts/repair-statement-math.mjs` 重抓**（`--stats` 枚举 /
+  `--dry-run` / `--ids-file` / `--persistent`，断点状态在 `data/cf-gyms/.repair-state.json`，
+  不入库）：只改 `statementMd`（+ `fetchedAt`），**绝不覆盖 `statementZhMd`**，写盘前校验
+  （无 U+1D400 区字形、去公式后无裸 TeX、长度 ≥ 旧 0.5、英文词重合）。CF 现在必须用
+  「真实 Chrome + 持久 profile」（`--persistent`）：headless shell 第二次导航就被
+  Cloudflare Turnstile 拦住且不会自过。
 - `scripts/lib/ci-log.mjs` 写 `data/ci-log.json`，`/ci` 页与 `CiDashboard` 消费——
   改字段两边同步。
 - **三工作流调度**：`ci.yml`（push/PR）= `npm test` + 完整 build；`fetch.yml` 每小时
@@ -399,6 +433,26 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
     缓存重载。**教训：任何「换版后旧缓存」引发的错误，恢复动作必须是重载/清缓存，
     不能是原地重试；错误文案的识别规则要跟着浏览器真实消息走，并写成测试。**
     排查同类问题先看错误页折叠的「排障信息」（错误原文 + 本页/线上构建号）。
+
+19. **「MathJax 渲染过的页面」是抓取解析的暗礁**（2026-11-17，142 道题面受影响）。
+    CF 的题面 HTML 里既有 `$$$…$$$` 源码标记，也可能已被 MathJax 换成「预览 + 字形树 +
+    MathML + `<script type="math/tex">`」四件套。旧解析器两件事同时做错：丢掉 script 节点
+    （TeX 原文没了）、把字形树与 MathML 当正文（重复两份）。**教训：解析外部 HTML 时先问
+    「这个元素是内容还是它的渲染副产物」，再决定 `node.type` 的过滤范围；htmlparser2 对
+    script/style 有独立 type，别只认 `tag`。** 影响面是全域的（`sanitizeText` 都未必能救），
+    所以存量只能靠重抓修；重抓脚本把校验写成硬门（见 §3.8）。
+20. **题名是纯文本出口**（2026-11-17）：`document.title`、题目切换 `<select>`、面包屑、
+    列表卡片、复制题目都用裸 `title`/`titleZh`，而题名（尤其 AI 译名）里常带 `$k$`
+    ——不做处理就会显示 LaTeX 源码（`codeforces/1282b2` 的「一份的钱买 $k$ 份」曾被用户
+    看到）。统一在数据出口拍平：`lib/problem-title.mjs` 的 `plainTitle()`/`plainTitled()`，
+    在 `lib/data.js` 的 `getProblem` 与 `scripts/build-index.mjs` 两处生效。**新增任何
+    「题名出口」别自己写正则，走这个模块；题面正文的公式不受影响。**
+21. **存量题面有三种数学脏形态，靠渲染层兜底 + 抓取端根治，别只修一头**（2026-11-17）：
+    ① 定界符彻底丢失、只剩裸 TeX（约 1400 题面）；② 定界符内侧带空白（`$ 1 \le n \$`）；
+    ③ MathJax 竞态导致的字形重复。渲染层（`renderRich` 的宽松/抢救/折叠四段，见 §3.5）
+    兜① ②③，抓取端（§3.8 的 html2md 修复 + 重抓脚本）治根。改任一侧都要跑
+    `scripts/audit-statement-render.mjs` 对比全库数字（只降不升），否则很容易修好 A 类
+    又回归 B 类（本轮第一版就出现过 404 个回归：CJK 守卫把中文标点当正文证据）。
 
 ## 7. 常见任务手册
 
