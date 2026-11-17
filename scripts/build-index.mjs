@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { isSafeProblemId } from '../lib/problem-id.mjs';
+import { plainTitled } from '../lib/problem-title.mjs';
 import { writeJson } from './lib/util.mjs';
 
 const DATA_ROOT = path.resolve(process.cwd(), 'data');
@@ -56,7 +57,10 @@ export function buildIndex() {
   const contests = [];
   const broken = [];
   for (const platform of ['atcoder', 'codeforces', 'cf-gyms', 'nowcoder']) {
-    for (const p of readProblems(platform, broken)) problems.push(p);
+    // 题名在站点里几乎全走纯文本出口（document.title/下拉项/面包屑/列表卡片），
+    // 带 $…$ 的题名会原样显示 LaTeX 源码（2026-11-17 用户反馈）。索引这一层统一
+    // 拍平成纯文本（lib/problem-title.mjs），详情页由 lib/data.js 的 getProblem 同口径处理。
+    for (const p of readProblems(platform, broken)) problems.push(plainTitled(p));
     for (const c of readJsonSafe(path.join(DATA_ROOT, platform, 'contests.json')) ?? []) {
       contests.push(c);
     }
