@@ -47,8 +47,13 @@ test('touchView: 首见建档 + 回访 upsert 保留 firstSeen/totalDwellMs/last
     problemId: '1900A',
     title: 'Cover in Water',
     titleZh: null,
+    contestId: '1900',
+    contestTitle: 'Codeforces Round 910',
+    contestTitleZh: '第 910 场 Codeforces Round',
     url: 'https://codeforces.com/problemset/problem/1900/A',
   });
+  assert.equal(t0.contestId, '1900');
+  assert.equal(t0.contestTitleZh, '第 910 场 Codeforces Round');
   assert.equal(t0.firstSeen, t0.lastSeen);
   assert.equal(t0.totalDwellMs, 0);
   assert.deepEqual(t0.lastJudge, { verdict: null, at: null });

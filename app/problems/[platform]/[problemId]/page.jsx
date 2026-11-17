@@ -133,6 +133,9 @@ export default async function ProblemPage({ params }) {
         problemId={prob.id}
         title={prob.title}
         titleZh={prob.titleZh ?? null}
+        contestId={prob.contestId}
+        contestTitle={contest?.title ?? null}
+        contestTitleZh={contest?.titleZh ?? null}
         url={prob.url}
       />
 

@@ -13,6 +13,8 @@ import {
 } from '@/lib/ai-providers';
 import { allThemes, findTheme, loadCustomThemes, mappedIdeTheme } from '@/lib/themes';
 import { CONTEST_TYPES } from '@/lib/contest-type';
+import { DEFAULT_HOME_LAYOUT } from '@/lib/home-presets.mjs';
+import { DEFAULT_HOME_WEATHER, normalizeCfHandle, normalizeHomeLayout, normalizeHomeWeather } from '@/lib/home-layout.mjs';
 
 // IDE 主题联动写入：动态 import 编译器偏好纯模块（浏览器端写入 localStorage，
 // 并通知已打开的 CompilerDock 刷新）。binding = 'auto' 时随网页主题切换联动。
@@ -89,6 +91,10 @@ export const DEFAULT_SETTINGS = {
   letterRail: true,
   // 首页「最新比赛」展示的比赛类型（CONTEST_TYPES 子集）
   homeContestTypes: DEFAULT_HOME_TYPES,
+  // 自定义首页 HTML、CF 用户与天气组件默认参数
+  homeLayout: DEFAULT_HOME_LAYOUT,
+  homeCfHandle: '',
+  homeWeather: DEFAULT_HOME_WEATHER,
   // 界面外观：内置 dark/light/eink，或模板/自定义主题 id（lib/themes.js）
   theme: 'dark',
   // IDE（Monaco）编辑器主题与网页外观的绑定：'auto' = 跟随网页主题映射，
@@ -165,6 +171,9 @@ function loadSettings() {
         ...(Object.keys(chatBehavior).length ? { chat: { ...DEFAULT_CHAT, ...chatBehavior } } : {}),
         zhStyle: { ...DEFAULT_ZH_STYLE, ...(v.zhStyle || {}) },
         homeContestTypes: Array.isArray(v.homeContestTypes) ? v.homeContestTypes : DEFAULT_HOME_TYPES,
+        homeLayout: normalizeHomeLayout(v.homeLayout, DEFAULT_HOME_LAYOUT),
+        homeCfHandle: normalizeCfHandle(v.homeCfHandle),
+        homeWeather: normalizeHomeWeather(v.homeWeather),
         calendarSites: Array.isArray(v.calendarSites) ? v.calendarSites : DEFAULT_CALENDAR_SITES,
       };
       const saved = (Array.isArray(merged.zhPriority) ? merged.zhPriority : []).filter(

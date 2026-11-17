@@ -1,23 +1,26 @@
 'use client';
 
 /**
- * 设置页（v1.8 重构）：按「你想做什么」分成 5 个分区，一次只显示一个，
+ * 设置页（v1.8 重构）：按「你想做什么」分成 6 个分区，一次只显示一个，
  * 不再是 7 张卡片的长滚动页。
  *
  *   题面与翻译  语言 / 渠道 / 牛客默认翻译 / 题目页切换条 / 首页比赛类型 / 译文样式 / 高级（折叠）
+ *   首页布局    自定义 HTML、数据组件参数、12 套预设
  *   外观        主题库、自定义主题、自定义 CSS
  *   编程        编辑器配色绑定、运行时、编辑与运行、手机端、高级（模板）
  *   AI 助手     服务商 → 各功能使用的模型 → AI 对话 → AI 代码补全 → 高级（用量 / 日志）
  *   离线与数据  离线缓存、设置导出导入、翻译缓存、关于与更新日志
  *
- * 所有设置即时保存（Key 类字段除外）。URL hash 记录当前分区，旧 hash
+ * 除首页 HTML 编辑器需点击保存外，所有设置即时保存（Key 类字段除外）。URL hash 记录当前分区，旧 hash
  * （#translation / #ai-providers / #chat / #compiler / #offline / #about / #ai-completion）
  * 经 HASH_COMPAT 映射到新分区，外部深链不失效。
  */
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Bot, Code2, HardDrive, Languages, Palette } from 'lucide-react';
+import { ArrowLeft, Bot, Code2, HardDrive, Languages, LayoutDashboard, Palette } from 'lucide-react';
+
+import HomeLayoutSection from '@/components/settings/HomeLayoutSection';
 
 import { CustomCssBlock, IdeThemeBindingRow, ThemeGallery } from '@/components/settings/AppearanceSection';
 import { ModuleAssignments, ProviderList, SettingsIO } from '@/components/settings/AiProviderSection';
@@ -35,6 +38,12 @@ const SECTIONS = [
     label: '题面与翻译',
     icon: Languages,
     desc: '题面默认语言、翻译渠道、牛客题目是否翻译，以及题目页的辅助导航。',
+  },
+  {
+    id: 'home',
+    label: '首页布局',
+    icon: LayoutDashboard,
+    desc: '用 HTML 与数据组件自由组合首页，或从 12 套预设开始。',
   },
   { id: 'appearance', label: '外观', icon: Palette, desc: '界面主题、自定义主题与全局 CSS。' },
   {
@@ -72,6 +81,8 @@ function SectionBody({ id }) {
   switch (id) {
     case 'reading':
       return <TranslationSection />;
+    case 'home':
+      return <HomeLayoutSection />;
     case 'appearance':
       return (
         <div className="space-y-6">

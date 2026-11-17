@@ -27,7 +27,7 @@ function verdictOf(payload) {
   return !payload?.compileError && allAc ? 'ac' : 'fail';
 }
 
-export default function ViewHistoryTracker({ platform, problemId, title, titleZh, url }) {
+export default function ViewHistoryTracker({ platform, problemId, title, titleZh, url, contestId, contestTitle, contestTitleZh }) {
   // lastTick：上次结算到的时刻，hidden/pagehide 时补记 now - lastTick
   const lastTickRef = useRef(Date.now());
 
@@ -35,7 +35,7 @@ export default function ViewHistoryTracker({ platform, problemId, title, titleZh
     if (!platform || !problemId) return undefined;
     lastTickRef.current = Date.now();
 
-    touchView({ platform, problemId, title, titleZh, url });
+    touchView({ platform, problemId, title, titleZh, url, contestId, contestTitle, contestTitleZh });
 
     const settle = () => {
       const now = Date.now();
@@ -76,7 +76,7 @@ export default function ViewHistoryTracker({ platform, problemId, title, titleZh
       window.removeEventListener('pagehide', onPageHide);
       offRunFinished();
     };
-  }, [platform, problemId, title, titleZh, url]);
+  }, [platform, problemId, title, titleZh, url, contestId, contestTitle, contestTitleZh]);
 
   return null;
 }
