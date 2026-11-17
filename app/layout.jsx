@@ -10,6 +10,7 @@ import PwaRegister from '@/components/PwaRegister';
 import ToastHost from '@/components/ui/ToastHost';
 import { SettingsProvider } from '@/components/settings';
 import GithubMark from '@/components/GithubMark';
+import { BUILD_ID } from '@/lib/build-id.mjs';
 import { getIndex } from '@/lib/data';
 import { TEMPLATE_THEMES } from '@/lib/themes';
 import { formatDateTime } from '@/lib/utils';
@@ -85,6 +86,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="zh-CN" className="dark" suppressHydrationWarning>
       <head>
+        {/* 本页 HTML 的构建号：错误边界据此判断「页面是否旧版缓存」并自愈
+            （app/error.jsx），取值与 X-AC-Build 响应头同源（lib/build-id.mjs）。 */}
+        <meta name="ac-build" content={BUILD_ID} />
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
       </head>
       <body>

@@ -1,11 +1,13 @@
+import { BUILD_ID } from './lib/build-id.mjs';
+
 /**
  * 构建号：随每次部署变化（Vercel 每次部署注入 VERCEL_GIT_COMMIT_SHA，
  * 数据 CI 与功能提交都会换 SHA）。经响应头 X-AC-Build 下发到所有响应，
  * Service Worker 据此识别「缓存 HTML 属于旧版应用」——见 lib/pwa/sw-source.js
  * 导航版本门卫；本地 next start 无上述环境变量时退化为固定 'dev'（SW 仅在
- * 生产注册，不影响本地开发）。
+ * 生产注册，不影响本地开发）。取值与 /ac-build.json、<meta name="ac-build">
+ * 同源，见 lib/build-id.mjs。
  */
-const BUILD_ID = process.env.VERCEL_GIT_COMMIT_SHA || process.env.VERCEL_DEPLOYMENT_ID || 'dev';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

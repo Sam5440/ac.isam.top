@@ -78,8 +78,20 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/api/ai/proxy` | 动态 | AI 接口转发（混合内容降级 + 域名白名单） | `lib/ai-proxy.mjs`、`AI_PROXY_ALLOWED_HOSTS` |
 | `/sw.js`、`/ac-build.json`、`/offline-manifest.json` | 预渲染 | PWA 基础设施 | — |
 
-`app/error.jsx` 的 chunk 失败检测（`ChunkLoadError` → 提示「站点刚更新，刷新即可」）
-与 `global-error.jsx` 是最后防线，不要移除。
+`app/error.jsx` 与 `global-error.jsx` 是最后防线，不要移除。错误边界的三件事
+（2026-11-17 起，见 §3.4）：
+
+1. **归类**：消息经 `lib/error-classify.mjs`（纯函数，有单测）分成
+   `stale`（旧构建残留：`ChunkLoadError` / `reading 'call'` / Safari 的
+   `Importing a module script failed.` / 旧 chunk 被 404 成 HTML 的 MIME 报错…）、
+   `server`（RSC 渲染期异常）、`unknown`，文案各自不同；
+2. **自愈**：页面 HTML 里的 `<meta name="ac-build">`（`app/layout.jsx` 注入，值来自
+   `lib/build-id.mjs`）与线上 `/ac-build.json` 不一致 → 删掉「本页」缓存条目并
+   `location.reload()` 一次（`sessionStorage['ac-stale-reload']` 按构建号去重，
+   与 `PwaRegister` 共用同一键）；
+3. **出口**：主动作是「刷新页面」（旧版是 `reset()` 原地重渲同一棵坏树，对缓存引起
+   的错误无效），另有「清理页面缓存并刷新」（只删 `ac-pages`/`ac-shell`，
+   保留离线题库 `ac-assets` 与编译器运行时）与折叠的「排障信息」。
 
 ### 3.2 服务端数据层
 
@@ -140,9 +152,19 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 - `navigationHandler`：缓存命中时先 `getBuild()`（TTL 5min + 800ms 超时，离线零等待）
   → 缓存构建号 ≠ 线上（含无版本头的存量旧条目）→ **网络优先**、失败回退缓存；
   一致或探测失败 → 照旧 SWR 秒开 + 后台 revalidate。
+- **`rscHandler` 同样有门卫**（2026-11-17 补）：`_rsc` 缓存键只是几个请求头的哈希、
+  与构建号无关（Next 15 的 `setCacheBustingSearchParam`），部署后同一链接算出的 URL
+  不变 → 旧构建的载荷必然命中。现在缓存载荷的 `x-ac-build` ≠ 线上 → 网络优先
+  （失败回缓存），并且 `revalidate(req, servedBuild, event.clientId)` 带上 servedBuild
+  ——RSC 路径也能触发 `AC_STALE_RELOAD`（旧实现的 `revalidate(req)` 让它永远不触发）。
+- **探测失败不再长时间盲判**：`getBuild()` 的 catch 只把已知值顺延
+  `BUILD_RETRY_TTL`（60s），旧实现每次失败都顺延满 `BUILD_TTL`(5min)，网络抖动时
+  会连续五分钟把旧构建当成「线上最新」。
 - `revalidate()` 发现秒开页属旧构建 → postMessage `AC_STALE_RELOAD` →
   `components/PwaRegister.jsx` 按 sessionStorage 构建号去重后 `location.reload()`
-  一次（防循环）。
+  一次（防循环）。**最后一道防线是错误边界自愈**：页面 `<meta name="ac-build">`
+  与 `/ac-build.json` 不一致时 `app/error.jsx` 会删掉本页缓存条目再重载一次
+  （见 §3.1）；手动出口「清理页面缓存并刷新」只删 `ac-pages`/`ac-shell`。
 - 改 SW 的检查单：① 无模板字符串；② `node --check` + `new Function` 通过；
   ③ `test/sw-build-guard.test.mjs` 跑过；④ 离线回退路径仍然可用（门卫网络失败要
   回缓存，不能白屏）；⑤ 缓存桶名不随版本换（换桶会清掉用户离线题库）。
@@ -365,6 +387,18 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
     规则（`problemFileName`），否则改名后查询规则不同步就会全站 404。存量修复脚本
     `scripts/normalize-problem-ids.mjs`（幂等，可反复跑），回归测试
     `test/problem-id.test.mjs`。
+
+18. **错误边界只会 `reset()` = 用户被迫自己清缓存**（2026-11-17 排查）。部署换版后
+    SW 缓存里可能留着旧构建的整页 HTML / RSC 载荷，浏览器抛出的消息因引擎而异
+    （webpack 模块表错配的 `Cannot read properties of undefined (reading 'call')`、
+    Safari 的 `Importing a module script failed.`、旧 chunk 被 CDN 404 成 HTML 的
+    `MIME type of "text/html"`），旧版 `CHUNK_FAIL_RE` 一条都认不出来 → 落到通用
+    文案「渲染此页面时发生了意外错误。」，而按钮走 `reset()`（原地重渲同一棵坏树）
+    → 刷不掉旧缓存，用户只能自己去「清缓存 + 硬刷」。现在：归类集中在
+    `lib/error-classify.mjs`（有单测）、主动作是整页刷新、构建号不一致时自动丢本页
+    缓存重载。**教训：任何「换版后旧缓存」引发的错误，恢复动作必须是重载/清缓存，
+    不能是原地重试；错误文案的识别规则要跟着浏览器真实消息走，并写成测试。**
+    排查同类问题先看错误页折叠的「排障信息」（错误原文 + 本页/线上构建号）。
 
 ## 7. 常见任务手册
 
