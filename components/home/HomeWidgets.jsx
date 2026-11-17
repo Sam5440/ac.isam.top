@@ -3,16 +3,21 @@
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import {
-  ArrowRight, BookOpen, CheckCircle2, Clock3, CloudSun, ExternalLink,
+  ArrowRight, BookOpen, CalendarDays, CheckCircle2, Clock3, CloudSun, ExternalLink,
   FileCode2, FileText, History, Languages, Layers, MapPin, RefreshCw, Trophy,
   Wind, XCircle,
 } from 'lucide-react';
 
 import { DifficultyBadge, PlatformBadge } from '@/components/Badges';
-import { useSettings } from '@/components/settings';
+import { DEFAULT_CALENDAR_SITES, useSettings } from '@/components/settings';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { contestSiteMeta } from '@/lib/contest-sites';
 import { contestType } from '@/lib/contest-type';
+import {
+  formatContestDuration, fromClistContest, fromInternalContest, homeClistRange,
+  mergeUpcomingContests, visibleUpcomingContests,
+} from '@/lib/home-upcoming.mjs';
 import { listFiles } from '@/lib/ide-workspace';
 import { listHistory } from '@/lib/view-history';
 import {
@@ -124,23 +129,128 @@ function ContestCompactList({ list, fetched }) {
   );
 }
 
+function UpcomingSiteBadge({ resource }) {
+  const meta = contestSiteMeta(resource);
+  return <span className={`inline-flex h-5 min-w-6 shrink-0 items-center justify-center rounded px-1 text-[10px] font-bold text-white ${meta.badge}`} title={meta.label}>{meta.short}</span>;
+}
+
+function UpcomingContestRow({ contest }) {
+  const meta = contestSiteMeta(contest.resource);
+  const className = 'hover:bg-accent/40 flex flex-wrap items-center gap-x-3 gap-y-1 px-4 py-3 transition-colors';
+  const content = <>
+    <UpcomingSiteBadge resource={contest.resource} />
+    <span className="min-w-0 flex-1 basis-56">
+      <span className="block truncate text-sm font-medium" title={contest.event}>{contest.event}</span>
+      <span className="text-muted-foreground block text-xs">{meta.label}{contest.internal ? ` · ${contest.problemCount} 道题目` : ' · 官方网站'}</span>
+    </span>
+    <span className="text-muted-foreground shrink-0 text-xs tabular-nums">{formatDateTime(contest.start)}</span>
+    <span className="text-muted-foreground hidden w-24 shrink-0 text-right text-xs sm:block">{contest.duration ? formatContestDuration(contest.duration) : '时长未知'}</span>
+    <ExternalLink className="text-muted-foreground size-3.5 shrink-0" />
+  </>;
+  return contest.internal
+    ? <Link href={contest.href} className={className}>{content}</Link>
+    : <a href={contest.href} target="_blank" rel="noreferrer" className={className}>{content}</a>;
+}
+
+export function HomeUpcomingContests({ attrs, data, now }) {
+  const { settings, setSettings } = useSettings();
+  const after = Math.min(60, Math.max(1, Number(settings.calendarDaysAfter) || 15));
+  const [external, setExternal] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [attempt, setAttempt] = useState(0);
+  useEffect(() => {
+    const controller = new AbortController();
+    let alive = true;
+    setLoading(true);
+    setError('');
+    const range = homeClistRange(Date.now(), after);
+    const params = new URLSearchParams({ ...range, limit: '500', order_by: 'start' });
+    fetchWithTimeout(`/api/contests/clist?${params}`, controller.signal, 20_000)
+      .then(async (response) => {
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(body?.error || `请求失败（HTTP ${response.status}）`);
+        if (alive) setExternal((Array.isArray(body.contests) ? body.contests : []).map(fromClistContest));
+      })
+      .catch((reason) => {
+        if (alive && reason.name !== 'AbortError') setError(reason?.message || '比赛日程加载失败');
+      })
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; controller.abort(); };
+  }, [after, attempt]);
+
+  const selected = useMemo(
+    () => new Set(Array.isArray(settings.calendarSites) ? settings.calendarSites : DEFAULT_CALENDAR_SITES),
+    [settings.calendarSites],
+  );
+  const internal = useMemo(() => selectHomeContests(data, 'upcoming', now).map(fromInternalContest), [data, now]);
+  const merged = useMemo(() => mergeUpcomingContests(internal, external ?? []), [internal, external]);
+  const allSites = useMemo(() => new Set(merged.map((contest) => contest.resource)), [merged]);
+  const eligible = useMemo(() => visibleUpcomingContests(merged, allSites, attrs.platform, now), [merged, allSites, attrs.platform, now]);
+  const list = visibleUpcomingContests(merged, selected, attrs.platform, now).slice(0, widgetLimit(attrs.limit));
+  const sites = useMemo(() => {
+    const extras = [...new Set(eligible.map((contest) => contest.resource))]
+      .filter((resource) => !DEFAULT_CALENDAR_SITES.includes(resource)).sort();
+    return [...DEFAULT_CALENDAR_SITES, ...extras];
+  }, [eligible]);
+  const toggleSite = (resource) => {
+    const next = new Set(selected);
+    if (next.has(resource)) next.delete(resource);
+    else next.add(resource);
+    setSettings({ calendarSites: [...next] });
+  };
+
+  return (
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-muted-foreground text-xs">未来 {after} 天 · 与日历共用站点勾选</p>
+        <button type="button" onClick={() => setAttempt((value) => value + 1)} disabled={loading} className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1 text-xs disabled:opacity-40">
+          <RefreshCw className={`size-3 ${loading ? 'animate-spin' : ''}`} />刷新赛程
+        </button>
+      </div>
+      <div className="flex flex-wrap gap-1.5" role="group" aria-label="首页未来比赛网站筛选">
+        {sites.map((resource) => {
+          const on = selected.has(resource);
+          const count = eligible.filter((contest) => contest.resource === resource).length;
+          return (
+            <button key={resource} type="button" aria-pressed={on} onClick={() => toggleSite(resource)} title={resource}
+              className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-xs transition-colors ${on ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground hover:text-foreground opacity-70'}`}>
+              <UpcomingSiteBadge resource={resource} />{contestSiteMeta(resource).label}<span className="text-muted-foreground tabular-nums">{count}</span>
+            </button>
+          );
+        })}
+      </div>
+      {error && <div className="rounded-lg border border-amber-500/40 px-3 py-2 text-xs text-amber-500">Clist 日程暂未更新：{error}{internal.length ? '，当前显示题库回退数据。' : '。'}</div>}
+      {loading && external === null ? <Loading rows={4} /> : list.length ? (
+        <Card><CardContent className="divide-y p-0">{list.map((contest) => <UpcomingContestRow key={contest.key} contest={contest} />)}</CardContent></Card>
+      ) : (
+        <div className="text-muted-foreground flex flex-col items-center gap-2 rounded-xl border border-dashed px-4 py-8 text-center text-sm">
+          <CalendarDays className="size-7 opacity-50" />
+          <span>{selected.size === 0 ? '请在上方勾选要显示的比赛网站' : `未来 ${after} 天内，所选网站暂无比赛`}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function HomeContests({ attrs, data, now }) {
   const { settings } = useSettings();
   const kind = ['recent', 'latest', 'upcoming', 'fetched'].includes(attrs.kind) ? attrs.kind : 'recent';
+  if (kind === 'upcoming') return <HomeUpcomingContests attrs={attrs} data={data} now={now} />;
   const limit = widgetLimit(attrs.limit);
   const enabled = new Set(settings.homeContestTypes || []);
   const list = selectHomeContests(data, kind, now)
     .filter((contest) => !attrs.platform || contest.platform === attrs.platform)
     .filter((contest) => enabled.size === 0 || enabled.has(contestType(contest)))
     .slice(0, limit);
-  if (!list.length) return <Empty href={kind === 'upcoming' ? '/calendar' : '/contests'} action="查看全部比赛">{kind === 'upcoming' ? '当前数据中没有未来比赛，可打开日历查看其他站点。' : '当前筛选条件下暂无比赛。'}</Empty>;
+  if (!list.length) return <Empty href="/contests" action="查看全部比赛">当前筛选条件下暂无比赛。</Empty>;
   if (boolAttr(attrs.compact)) return <ContestCompactList list={list} fetched={kind === 'fetched'} />;
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {list.map((contest) => (
         <Link key={`${contest.platform}/${contest.id}`} href={`/contests/${contest.platform}/${encodeURIComponent(String(contest.id))}`} className="group">
           <Card className="h-full transition-colors group-hover:border-foreground/25"><CardContent className="space-y-2 p-5">
-            <div className="flex flex-wrap items-center gap-2"><PlatformBadge platform={contest.platform} /><span className="text-muted-foreground font-mono text-xs">{formatDateTime(kind === 'fetched' ? contest.fetchedAt : contest.startTime)}</span></div>
+            <div className="flex flex-wrap items-center gap-2"><PlatformBadge platform={contest.platform} /><span className="text-muted-foreground font-mono text-xs">{formatDateTime(contest.startTime)}</span></div>
             <div className="line-clamp-2 font-medium leading-snug">{contest.titleZh || contest.title}</div>
             <div className="text-muted-foreground text-xs">{contest.problemCount || 0} 道题目{kind === 'fetched' ? ' · 按拉取时间排序' : ''}</div>
           </CardContent></Card>
