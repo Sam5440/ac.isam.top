@@ -13,6 +13,54 @@ function classesOf($, el) {
   return el.attr('class') || '';
 }
 
+/**
+ * 参与内容抽取的元素节点。htmlparser2 把 <script>/<style> 的 node.type 单独记成
+ * 'script'/'style'（不是 'tag'），旧实现只认 'tag' → MathJax 用来保存**原始 TeX**
+ * 的 <script type="math/tex"> 被整段丢弃：公式全丢，只剩旁边生成物里的残缺字形。
+ * <style> 里是 CSS，永远不算内容。
+ */
+const isContentNode = (node) => node.type === 'tag' || node.type === 'script';
+
+/**
+ * MathJax 渲染生成物（浏览器端把 $$$…$$$ 渲染完的中间产物）：
+ *  - v2：<span class="MathJax_Preview">（预览文字/空）→ <span class="MathJax"
+ *        id="MathJax-Element-N-Frame"> 内含 <nobr aria-hidden="true"> 字形树
+ *        + <span class="MJX_Assistive_MathML">（MathML 无障碍副本）
+ *  - v3：<mjx-container> 内含 <mjx-assistive-mml>
+ * 这些都必须整段跳过：真正的 TeX 在同级 <script type="math/tex"> 里，把生成物
+ * 当普通文本抽取会得到「字形 + MathML」两份重复（站上看到的 "𝑛n"）。
+ */
+const MATHJAX_ARTIFACT_CLASS = /(^|\s)(MathJax\S*|MJX\S*)(?=\s|$)/;
+
+function isMathJaxArtifact(node) {
+  const tag = node.tagName;
+  if (tag === 'mjx-container' || tag === 'mjx-assistive-mml') return true;
+  const attribs = node.attribs || {};
+  // v2 字形树外层带 aria-hidden（无障碍读屏走 assistive MathML），真实 TeX 在 script
+  if (tag === 'nobr' && String(attribs['aria-hidden'] || '').toLowerCase() === 'true') return true;
+  return MATHJAX_ARTIFACT_CLASS.test(attribs.class || '');
+}
+
+/** <table> → GFM 表格（首行当表头）。 */
+function tableMd($, el, opts) {
+  const rows = [];
+  el.find('tr').each((_, tr) => {
+    const cells = [];
+    $(tr).find('th,td').each((__, cell) => {
+      cells.push(inlineMd($, $(cell), opts).replace(/\|/g, '\\|') || ' ');
+    });
+    if (cells.length) rows.push(cells);
+  });
+  if (!rows.length) return '';
+  const width = Math.max(...rows.map((r) => r.length));
+  const norm = rows.map((r) => [...r, ...Array(width - r.length).fill(' ')]);
+  return [
+    `| ${norm[0].join(' | ')} |`,
+    `| ${norm[0].map(() => '---').join(' | ')} |`,
+    ...norm.slice(1).map((r) => `| ${r.join(' | ')} |`),
+  ].join('\n');
+}
+
 function absUrl(href, base) {
   if (!href) return '';
   if (/^https?:\/\//i.test(href)) return href;
@@ -75,6 +123,95 @@ export function preText(el) {
     .replace(/^\n+|\n+$/g, '') + '\n';
 }
 
+/** TeX 命令（\leq / \cdots / \mathrm{…}）：<pre> 内 <var> 靠它区分公式与纯变量。 */
+const TEX_CMD_RE = /\\[a-zA-Z]{2,}/;
+
+/**
+ * <pre> 是「公式块」还是「代码块」。
+ *
+ * AtCoder 把公式（有时是整段伪代码、带引号的公式散文）写在 <pre> 里，TeX 原文
+ * 放在 <var> 子元素内：拍平成代码块后用户会看到字面 \leq —— 渲染层故意不碰
+ * 代码块（避免误伤真代码），所以必须在解析端把它们识别成公式。判定两条：
+ *  ① pre 里有 <var>，且某个 <var> 的文本带 TeX 命令（\leq / \cdots /
+ *     \mathrm{case}_1 …）—— 公式、伪代码、带引号的公式散文都走这条；
+ *  ② pre 的内容只由 <var> 与空白构成（<var>N</var> <var>A_1</var> …）——
+ *     AtCoder 的输入/输出格式块，原站本来也是公式排版。
+ * 没有 <var> 的 <pre>（真代码、CF 代码块、样例）与「散文 + 纯变量 <var>」的
+ * <pre>（arc106_c 的「区間 <var>5</var> を選びます」）保持代码块，行为不变。
+ */
+function isFormulaPre($, el) {
+  const vars = el.find('var');
+  if (!vars.length) return false;
+  let hasTex = false;
+  vars.each((_, v) => {
+    if (TEX_CMD_RE.test($(v).text())) hasTex = true;
+  });
+  if (hasTex) return true;
+  // ②：只由 <var>、换行/空白与 <br> 构成的 pre（<var>N</var> <var>A_1</var> …）
+  return el
+    .contents()
+    .toArray()
+    .every((n) => {
+      if (n.type === 'text') return !String(n.data).replace(/\s+/g, '');
+      return n.type === 'tag' && (n.tagName === 'var' || n.tagName === 'br');
+    });
+}
+
+/**
+ * 公式块 <pre> → 段落数组：<var> 走 $…$（与 inlineChildren 的 case 'var' 同口径），
+ * 其余文本按普通行内文本保留；换行保留为 GFM 硬换行（`\`+换行），空行分段 ——
+ * 绝不产出代码围栏。行内空白按 cleanText 折叠（HTML 里 <pre> 的缩进对行内文本
+ * 只是空白），同时避免行首 4 空格被 marked 判成缩进代码块。
+ */
+function preFormulaBlocks($, el, opts) {
+  const lines = [];
+  let buf = [];
+  const flush = () => {
+    lines.push(buf.join(''));
+    buf = [];
+  };
+  const walk = (node) => {
+    if (node.type === 'text') {
+      const parts = String(node.data).replace(/\r/g, '').split('\n');
+      parts.forEach((part, i) => {
+        if (i > 0) flush();
+        if (part) buf.push(cleanText(part));
+      });
+      return;
+    }
+    if (!isContentNode(node) || isMathJaxArtifact(node)) return;
+    const tag = node.tagName;
+    if (tag === 'br') {
+      flush();
+      return;
+    }
+    if (tag === 'p' || tag === 'div' || tag === 'pre' || tag === 'li') {
+      flush();
+      for (const c of node.children ?? []) walk(c);
+      flush();
+      return;
+    }
+    // <var>（及其它行内标记）交给 inlineChildren：case 'var' 内部自己开 texMode
+    buf.push(inlineChildren($, [node], opts));
+  };
+  for (const c of el.get(0)?.children ?? []) walk(c);
+  flush();
+
+  const blocks = [];
+  let cur = [];
+  const pushBlock = () => {
+    if (cur.length) blocks.push(cur.join('\\\n'));
+    cur = [];
+  };
+  for (const line of lines) {
+    const t = line.trim();
+    if (!t) pushBlock();
+    else cur.push(t);
+  }
+  pushBlock();
+  return blocks;
+}
+
 /** <img> → markdown。牛客公式图（equation?tex= 服务端 SVG）还原为行内公式。 */
 function imgMd($, el, opts) {
   const src = el.attr('src') || '';
@@ -101,7 +238,9 @@ function inlineChildren($, nodes, opts, texMode = false) {
       out.push(cleanText(node.data));
       continue;
     }
-    if (node.type !== 'tag') continue;
+    if (!isContentNode(node)) continue;
+    // MathJax 生成物整段跳过（详见 isMathJaxArtifact）：公式由同级 script 输出
+    if (isMathJaxArtifact(node)) continue;
     const el = $(node);
     const tag = node.tagName;
     const inner = (tex = texMode) => inlineChildren($, node.children ?? [], opts, tex);
@@ -157,6 +296,14 @@ function inlineChildren($, nodes, opts, texMode = false) {
       case 'u':
         out.push(inner());
         break;
+      case 'table': {
+        // 表格可能被 htmlparser2 嵌在 <p>/<center>/行内 run 里（p 不会隐式闭合），
+        // 落到行内分支会把所有单元格拍平成一行；这里用空行包裹成独立块，
+        // 交给 splitInlineBlocks 切段。
+        const md = tableMd($, el, opts);
+        if (md) out.push(`\n\n${md}\n\n`);
+        break;
+      }
       default:
         out.push(inner());
     }
@@ -184,12 +331,18 @@ function inlineBlocksOf($, el, opts) {
   return splitInlineBlocks(inlineChildren($, el.get(0)?.children ?? [], opts));
 }
 
+/** 整块都是 GFM 表格行（`| … |`）的块：行间换行不能再转成硬换行。 */
+function isTableBlock(s) {
+  const lines = String(s).split('\n').map((l) => l.trim()).filter(Boolean);
+  return lines.length > 1 && lines.every((l) => /^\|.*\|$/.test(l));
+}
+
 export function splitInlineBlocks(raw) {
   return String(raw)
     .replace(/[ \t]*\n[ \t]*/g, '\n')
     .trim()
     .split(/\n{2,}/)
-    .map((s) => s.replace(/\n/g, '\\\n').trim())
+    .map((s) => (isTableBlock(s) ? s.trim() : s.replace(/\n/g, '\\\n').trim()))
     .filter(Boolean);
 }
 
@@ -235,12 +388,15 @@ function blockNode($, node, opts, blocks) {
     if (t) blocks.push(t);
     return;
   }
-  if (node.type !== 'tag') return;
+  if (!isContentNode(node)) return;
+  if (isMathJaxArtifact(node)) return;
   const el = $(node);
   const tag = node.tagName;
   switch (tag) {
     case 'p': {
-      for (const md of inlineBlocksOf($, el, opts)) blocks.push(md);
+      // htmlparser2 不做隐式闭合，<table> 可能被嵌在 <p> 里；走 drillBlocks 才能
+      // 让表格成为独立块，而不是拍平成一行（CF 题面实测）。
+      drillBlocks($, el.contents().toArray(), opts, blocks);
       break;
     }
     case 'h1':
@@ -256,6 +412,13 @@ function blockNode($, node, opts, blocks) {
       // 展开为段落让行内转换还原公式；纯文本 pre 才输出代码围栏。
       if ($(node).find('img[src*="equation?tex="]').length) {
         for (const md of inlineBlocksOf($, el, opts)) blocks.push(md);
+        break;
+      }
+      // AtCoder 把公式写进 <pre><var>TeX 原文</var>…</pre>（甚至整段伪代码/散文）：
+      // 按公式输出，否则字面 \leq 会随代码块原样显示。preText() 不动 —— 样例提取
+      // （cf.mjs / atcoder.mjs 的 sample.input/output）依赖它逐字原样。
+      if (isFormulaPre($, el)) {
+        for (const md of preFormulaBlocks($, el, opts)) blocks.push(md);
         break;
       }
       const text = preText(el).replace(/\n$/, '');
@@ -283,24 +446,8 @@ function blockNode($, node, opts, blocks) {
       break;
     }
     case 'table': {
-      const rows = [];
-      el.find('tr').each((_, tr) => {
-        const cells = [];
-        $(tr).find('th,td').each((__, cell) => {
-          cells.push(inlineMd($, $(cell), opts).replace(/\|/g, '\\|') || ' ');
-        });
-        if (cells.length) rows.push(cells);
-      });
-      if (rows.length) {
-        const width = Math.max(...rows.map((r) => r.length));
-        const norm = rows.map((r) => [...r, ...Array(width - r.length).fill(' ')]);
-        const md = [
-          `| ${norm[0].join(' | ')} |`,
-          `| ${norm[0].map(() => '---').join(' | ')} |`,
-          ...norm.slice(1).map((r) => `| ${r.join(' | ')} |`),
-        ].join('\n');
-        blocks.push(md);
-      }
+      const md = tableMd($, el, opts);
+      if (md) blocks.push(md);
       break;
     }
     case 'blockquote': {
