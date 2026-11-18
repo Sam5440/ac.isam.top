@@ -79,7 +79,7 @@ export default function HomeDashboard({ data }) {
         </Link>
       </div>
       {visual && widgets.length ? (
-        <div aria-label="首页小组件" className="mt-4 grid auto-rows-[6rem] gap-3" style={gridStyle(columns)}>
+        <div aria-label="首页小组件" className="mt-4 flex flex-col gap-3 sm:grid sm:auto-rows-[6rem]" style={gridStyle(columns)}>
           {widgets.map((widget, index) => {
             const attrs = widget.type === 'contests' || widget.type === 'hero' ? { ...widget.params, compact: true } : widget.params;
             const content = <WidgetNode node={{ tag: `ac-${widget.type}`, attrs, children: [] }} data={data} now={now} />;

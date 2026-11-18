@@ -11,8 +11,22 @@ try {
       if (response) assert.equal(response.status(), 200, route);
       await page.evaluate(() => document.fonts.ready);
     };
-    const fits = async () => assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1), `${width}px ${page.url()}`);
+    const fits = () => page.waitForFunction(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1, undefined, { timeout: 1500 });
     await open('/');
+    await page.evaluate(() => localStorage.setItem('stmt-settings-v1', JSON.stringify({
+      homeLayoutMode: 'visual', homeWidgets: [
+        { id: 'recent', type: 'contests', w: 2, h: 4, params: { limit: 4 } },
+        { id: 'latest', type: 'problems', w: 2, h: 4 },
+      ],
+    })));
+    await page.reload();
+    const rows = page.locator('[data-widget="contests"] a[href^="/contests/"]');
+    await page.waitForFunction(() => document.querySelectorAll('[data-widget="contests"] a[href^="/contests/"]').length === 4);
+    const lastContest = await rows.last().boundingBox();
+    const nextWidget = await page.locator('[data-widget="problems"]').boundingBox();
+    const gap = nextWidget.y - lastContest.y - lastContest.height;
+    assert.ok(gap >= 0 && gap <= 18, `${width}px 比赛末行到最近收录间距 ${gap}px`);
+    console.log(`${width}px 比赛末行到最近收录间距 ${gap}px`);
     await page.getByTitle('更多页面').tap();
     const menu = await page.getByRole('menu').boundingBox();
     assert.ok(menu && menu.x >= 0 && menu.x + menu.width <= width);

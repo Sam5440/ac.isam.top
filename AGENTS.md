@@ -146,6 +146,8 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 
 手机回归 `node e2e/mobile-layout.js`（支持 `BASE_URL`）覆盖 320 / 390 / 430px。顶栏「更多」在手机上按顶栏而非触发按钮定位；设置行的多个操作允许换行，首页编辑器底部操作栏与语言浮钮需分别可点。
 
+手机单列首页按内容自然高度纵向排列。网格高度仍用于编辑器、列表条数和多列展示。检查稀疏列表时要量末条内容到下一模块的距离，只检查页面宽度会漏掉大段留白。
+
 ### 3.4 Service Worker / PWA
 
 源码 `lib/pwa/sw-source.js`（字符串）→ `app/sw.js/route.js` 注入
