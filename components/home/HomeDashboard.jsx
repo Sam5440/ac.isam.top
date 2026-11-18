@@ -7,6 +7,8 @@ import { LayoutDashboard, PencilLine } from 'lucide-react';
 import { useSettings } from '@/components/settings';
 import { DEFAULT_HOME_LAYOUT } from '@/lib/home-presets.mjs';
 import { parseHomeLayout } from '@/lib/home-layout.mjs';
+import { packWidgets, widgetTitle } from '@/lib/home-grid.mjs';
+import { cellStyle, gridStyle, useGridColumns } from './widget-grid';
 import {
   HomeCfRating, HomeClock, HomeContests, HomeFiles, HomeHero, HomeHistory,
   HomeHistoryContests, HomeProblems, HomeSection, HomeSiteUpdate, HomeStats, HomeWeather,
@@ -59,7 +61,11 @@ export default function HomeDashboard({ data }) {
   const initialNow = new Date(data.renderedAt).getTime() || 0;
   const [now, setNow] = useState(initialNow);
   const layout = settings.homeLayout ?? DEFAULT_HOME_LAYOUT;
-  const nodes = useMemo(() => parseHomeLayout(layout), [layout]);
+  const visual = settings.homeLayoutMode === 'visual';
+  const nodes = useMemo(() => visual ? [] : parseHomeLayout(layout), [visual, layout]);
+  const columns = useGridColumns();
+  const widgets = settings.homeWidgets;
+  const cells = useMemo(() => visual ? packWidgets(widgets, columns) : [], [visual, widgets, columns]);
   useEffect(() => {
     setNow(Date.now());
     const timer = setInterval(() => setNow(Date.now()), 60_000);
@@ -72,11 +78,21 @@ export default function HomeDashboard({ data }) {
           <PencilLine className="size-3.5" />自定义首页
         </Link>
       </div>
-      {nodes.length ? <LayoutNodes nodes={nodes} data={data} now={now} /> : (
+      {visual && widgets.length ? (
+        <div aria-label="首页小组件" className="mt-4 grid auto-rows-[6rem] gap-3" style={gridStyle(columns)}>
+          {widgets.map((widget, index) => {
+            const content = <WidgetNode node={{ tag: `ac-${widget.type}`, attrs: widget.params, children: [] }} data={data} now={now} />;
+            const href = { contests: '/contests', problems: '/problems', history: '/history', files: '/ide', 'history-contests': '/history' }[widget.type];
+            return <div key={widget.id} data-widget={widget.type} className="home-grid-cell min-w-0 overflow-auto" style={cellStyle(cells[index])}>
+              {href ? <HomeSection attrs={{ title: widgetTitle(widget), href }}>{content}</HomeSection> : content}
+            </div>;
+          })}
+        </div>
+      ) : nodes.length ? <LayoutNodes nodes={nodes} data={data} now={now} /> : (
         <div className="py-20 text-center">
           <LayoutDashboard className="text-muted-foreground mx-auto size-10" />
           <h1 className="mt-4 text-2xl font-semibold">这个首页还是空白</h1>
-          <p className="text-muted-foreground mt-2 text-sm">选择一套预设，或用 HTML 与 ac-* 组件自由组合。</p>
+          <p className="text-muted-foreground mt-2 text-sm">添加小组件，或在高级 HTML 模式中选择预设。</p>
           <Link href="/settings#home" className="text-primary mt-4 inline-block text-sm underline underline-offset-4">开始布局</Link>
         </div>
       )}

@@ -24,6 +24,7 @@ try {
 
   await page.getByRole('link', { name: '自定义首页' }).click();
   const editor = page.getByRole('textbox', { name: '首页 HTML 布局' });
+  await page.getByRole('radio', { name: '高级 HTML' }).click();
   await editor.waitFor();
   assert.match(page.url(), /\/settings#home$/);
   assert.equal(await page.locator('button').filter({ hasText: '填入编辑器' }).count(), 12);

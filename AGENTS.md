@@ -140,6 +140,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 
 ### 3.4 Service Worker / PWA
 
+首页布局（`/settings#home`）同样只用主设置键。`homeLayoutMode` 为 `visual` / `html`；`homeWidgets` 是按优先级排列的 `{ id, type, params, w, h }` 实例数组，可重复类型，不存坐标；`homeLayout` 独立保留高级 HTML 与 12 套预设。编辑只改草稿，保存才写入两份内容和启用模式。读取与导入都走 `lib/home-grid.mjs` 的 `normalizeHomeConfig`：无显式模式时，非经典的合法旧 HTML（含空字符串）继续用 HTML；无旧自定义内容则用经典四组件。空组件数组是有效布局。
+
+编辑画布与首页共享 `packWidgets`（行优先找首个能容纳整个矩形的空位），窄屏只收拢显示列数，不改存储尺寸。新增可视组件时同步登记 `CATALOG` 的参数白名单、编辑器图标及首页 `WidgetNode` 映射。预览不挂载真实数据组件；HTML 仍经过 `parseHomeLayout`。浏览器回归：`node e2e/home-layout-visual.js` 与 `node e2e/home-widget-grid.js`（可设 `BASE_URL`）。
+
 源码 `lib/pwa/sw-source.js`（字符串）→ `app/sw.js/route.js` 注入
 `__AC_SW_VERSION__`（构建时间 + commit SHA）→ 预渲染 `/sw.js`。缓存桶：
 `ac-shell`（首页壳）/ `ac-pages`（页面+RSC）/ `ac-assets`（`/_next/static`）/

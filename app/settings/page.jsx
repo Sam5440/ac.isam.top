@@ -43,7 +43,7 @@ const SECTIONS = [
     id: 'home',
     label: '首页布局',
     icon: LayoutDashboard,
-    desc: '用 HTML 与数据组件自由组合首页，或从 12 套预设开始。',
+    desc: '从模块库拖入组件，拖动右下角调整大小。高级 HTML 保留独立布局与 12 套预设。',
   },
   { id: 'appearance', label: '外观', icon: Palette, desc: '界面主题、自定义主题与全局 CSS。' },
   {
@@ -165,7 +165,7 @@ export default function SettingsPage() {
           返回首页
         </Link>
         <h1 className="text-xl font-semibold tracking-tight">设置</h1>
-        <span className="text-muted-foreground ml-auto hidden text-[11px] sm:inline">修改即时保存在本机浏览器</span>
+        <span className="text-muted-foreground ml-auto hidden text-[11px] sm:inline">{active === 'home' ? '布局保存后生效，仅在本机使用' : '修改即时保存在本机浏览器'}</span>
       </div>
 
       {/* 移动端：横向分区标签 */}
