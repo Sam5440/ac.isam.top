@@ -81,7 +81,8 @@ export default function HomeDashboard({ data }) {
       {visual && widgets.length ? (
         <div aria-label="首页小组件" className="mt-4 grid auto-rows-[6rem] gap-3" style={gridStyle(columns)}>
           {widgets.map((widget, index) => {
-            const content = <WidgetNode node={{ tag: `ac-${widget.type}`, attrs: widget.params, children: [] }} data={data} now={now} />;
+            const attrs = widget.type === 'contests' || widget.type === 'hero' ? { ...widget.params, compact: true } : widget.params;
+            const content = <WidgetNode node={{ tag: `ac-${widget.type}`, attrs, children: [] }} data={data} now={now} />;
             const href = { contests: '/contests', problems: '/problems', history: '/history', files: '/ide', 'history-contests': '/history' }[widget.type];
             return <div key={widget.id} data-widget={widget.type} className="home-grid-cell min-w-0 overflow-auto" style={cellStyle(cells[index])}>
               {href ? <HomeSection attrs={{ title: widgetTitle(widget), href }}>{content}</HomeSection> : content}

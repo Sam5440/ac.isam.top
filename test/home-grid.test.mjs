@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DEFAULT_WIDGETS, createWidget, insertWidget, normalizeHomeConfig, normalizeWidgets, packWidgets } from '../lib/home-grid.mjs';
+import { CATALOG, DEFAULT_WIDGETS, createWidget, insertWidget, normalizeHomeConfig, normalizeWidgets, packWidgets, resizeWidget } from '../lib/home-grid.mjs';
 import { DEFAULT_HOME_LAYOUT } from '../lib/home-presets.mjs';
 
 test('旧 HTML（包括空白页）继续启用，新用户默认经典四组件', () => {
@@ -21,6 +21,27 @@ test('重复组件保留各自参数，修复重复 ID，归一化后 ID 稳定'
   assert.notEqual(normalized[0].id, normalized[1].id);
   assert.deepEqual(normalized.map((item) => item.params.kind), ['upcoming', 'recent']);
   assert.deepEqual(normalizeWidgets(normalized), normalized);
+});
+
+test('四列中所有新组件默认占两列，旧布局按已保存的宽高和条数读取', () => {
+  for (const type of Object.keys(CATALOG)) assert.equal(createWidget(type, 'new').w, 2);
+  assert.deepEqual(packWidgets(DEFAULT_WIDGETS, 4).map(({ row, col }) => [row, col]), [[0, 0], [0, 2], [2, 0], [2, 2]]);
+  const old = createWidget('problems', 'old', { w: 4, h: 6, params: { limit: 10 } });
+  assert.deepEqual(normalizeWidgets([old]), [old]);
+});
+
+test('列表拉高、缩小以当前条数为基准，纯横向调整不改变内容', () => {
+  for (const [type, spec] of Object.entries(CATALOG)) {
+    const start = createWidget(type, 'sample', { h: 3, params: { limit: 10 } });
+    assert.deepEqual(resizeWidget(start, 4, 3).params, start.params);
+    const taller = resizeWidget(start, 2, 5);
+    if (spec.fields?.limit) {
+      assert.equal(taller.params.limit, 14);
+      assert.equal(resizeWidget({ ...start, params: { limit: 24 } }, 2, 5).params.limit, 24);
+      assert.equal(resizeWidget({ ...start, params: { limit: 1 } }, 2, 1).params.limit, 1);
+    } else assert.deepEqual(taller.params, start.params);
+    assert.deepEqual(resizeWidget(taller, 2, 3), start);
+  }
 });
 
 test('无效类型回退、允许空数组，尺寸与参数逐字段限制', () => {

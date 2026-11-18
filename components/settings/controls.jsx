@@ -183,7 +183,7 @@ export function Row({ label, hint, children, stack = false }) {
         <p className="text-[13px] font-medium">{label}</p>
         {hint && <p className="text-muted-foreground text-[11px] leading-relaxed">{hint}</p>}
       </div>
-      <div className="flex shrink-0 items-center gap-2">{children}</div>
+      <div className="flex max-w-full min-w-0 flex-wrap items-center gap-2">{children}</div>
     </div>
   );
 }

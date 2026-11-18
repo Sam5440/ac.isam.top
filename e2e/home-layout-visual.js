@@ -89,7 +89,7 @@ try {
   await page.locator('#custom-home-title').waitFor();
 
   await page.setViewportSize({ width: 390, height: 844 });
-  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1));
+  await page.waitForFunction(() => document.documentElement.scrollWidth <= window.innerWidth + 1, undefined, { timeout: 1500 });
 
   await page.route('https://api.open-meteo.com/**', (route) => route.fulfill({
     contentType: 'application/json',

@@ -7,7 +7,7 @@ import { Check, ExternalLink, RotateCcw, Save } from 'lucide-react';
 import { useSettings } from '@/components/settings';
 import { Group, Pad, Row, SegButtons, SmallButton, inputCls, textareaCls } from '@/components/settings/controls';
 import HomeWidgetEditor from './HomeWidgetEditor';
-import { normalizeWidgets } from '@/lib/home-grid.mjs';
+import { DEFAULT_WIDGETS, normalizeWidgets } from '@/lib/home-grid.mjs';
 import { HOME_PRESETS } from '@/lib/home-presets.mjs';
 import {
   DEFAULT_HOME_WEATHER, HOME_LAYOUT_LIMIT, HOME_WIDGETS, normalizeCfHandle,
@@ -72,7 +72,10 @@ export default function HomeLayoutSection() {
         <SegButtons ariaLabel="布局模式" value={mode} onChange={setMode} options={[{ id: 'visual', label: '小组件布局' }, { id: 'html', label: '高级 HTML' }]} />
         <span role="status" className="text-muted-foreground text-xs">{dirty ? '有未保存的修改' : '已保存的布局'}</span>
       </div>
-      {mode === 'visual' ? <HomeWidgetEditor widgets={widgets} onChange={setWidgets} /> : <>
+      {mode === 'visual' ? <>
+        <HomeWidgetEditor widgets={widgets} onChange={setWidgets} />
+        <SmallButton onClick={() => setWidgets(DEFAULT_WIDGETS)}><RotateCcw className="size-3" />恢复默认四列布局</SmallButton>
+      </> : <>
       <Group title="预设布局" desc="选择预设只会填入下方编辑器，检查并保存后才会替换当前首页。共 12 套，可继续自由修改。">
         <Pad>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
@@ -151,7 +154,7 @@ export default function HomeLayoutSection() {
         </Pad>
       </Group>
       </>}
-      <div className="sticky bottom-2 z-10 flex flex-wrap items-center justify-end gap-2 rounded-lg border bg-card p-2 shadow-sm">
+      <div className="home-layout-actions sticky bottom-[max(.5rem,env(safe-area-inset-bottom))] z-10 flex flex-wrap items-center justify-end gap-2 rounded-lg border bg-card p-2 shadow-sm">
         <SmallButton disabled={!dirty} onClick={cancel}>取消修改</SmallButton>
         <SmallButton onClick={() => save(false)}><Save className="size-3.5" />保存布局</SmallButton>
         <SmallButton tone="primary" onClick={() => save(true)}>保存并查看首页<ExternalLink className="size-3.5" /></SmallButton>

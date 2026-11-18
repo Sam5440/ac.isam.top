@@ -5,7 +5,7 @@ import {
   ArrowDown, ArrowUp, BarChart3, BookOpen, CalendarDays, Clock3, CloudSun, FileCode2, Grip,
   History, LayoutGrid, Library, Plus, SquareStack, Timer, TrendingUp, Trophy, Trash2, X,
 } from 'lucide-react';
-import { CATALOG, MAX_HEIGHT, MAX_WIDGETS, MAX_WIDTH, createWidget, gridNumber, insertWidget, packWidgets, widgetTitle } from '@/lib/home-grid.mjs';
+import { CATALOG, MAX_HEIGHT, MAX_WIDGETS, MAX_WIDTH, createWidget, gridNumber, insertWidget, packWidgets, resizeWidget, widgetTitle } from '@/lib/home-grid.mjs';
 import { cellStyle, gridStyle, useGridColumns } from '@/components/home/widget-grid';
 import { inputCls } from './controls';
 
@@ -40,7 +40,7 @@ function Sketch({ widget }) {
 function Inspector({ widget, index, count, update, move, remove }) {
   const spec = CATALOG[widget.type];
   const selectSize = (key, label, max) => <label className="text-muted-foreground grid gap-1 text-xs">{label}
-    <select className={inputCls} value={widget[key]} onChange={(event) => update({ [key]: Number(event.target.value) })}>
+    <select className={inputCls} value={widget[key]} onChange={(event) => update(resizeWidget(widget, key === 'w' ? event.target.value : widget.w, key === 'h' ? event.target.value : widget.h))}>
       {Array.from({ length: max }, (_, offset) => <option key={offset} value={offset + 1}>{offset + 1} 格</option>)}
     </select></label>;
   return <section aria-label="小组件属性" className="space-y-3 border-t bg-card p-4">
@@ -56,7 +56,7 @@ function Inspector({ widget, index, count, update, move, remove }) {
         return <label key={key} className="text-muted-foreground grid min-w-0 gap-1 text-xs">{field.label}
           {field.options ? <select className={inputCls} value={widget.params[key]} onChange={(event) => change(event.target.value)}>
             {Object.entries(field.options).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </select> : <input className={`${inputCls} min-w-0`} type={field.max ? 'number' : 'text'} min={field.min} max={field.max} maxLength={field.length} value={widget.params[key]} onChange={(event) => change(event.target.value)} onBlur={field.max ? () => change(gridNumber(widget.params[key], field.max, field.value)) : undefined} />}
+          </select> : <input className={`${inputCls} min-w-0`} type={field.max ? 'number' : 'text'} min={field.min} max={field.max} maxLength={field.length} value={widget.params[key]} onChange={(event) => change(event.target.value)} onBlur={field.max ? () => change(gridNumber(widget.params[key], field.max)) : undefined} />}
         </label>;
       })}
     </div>
@@ -100,15 +100,12 @@ export default function HomeWidgetEditor({ widgets, onChange }) {
     event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
     select(widget.id);
-    resize.current = { ...metrics(), widget, x: event.clientX, y: event.clientY, pointer: event.pointerId };
+    resize.current = { ...metrics(), widget, x: event.pageX, y: event.pageY, pointer: event.pointerId };
   };
   const continueResize = (event) => {
     const start = resize.current;
     if (!start || start.pointer !== event.pointerId) return;
-    update(start.widget.id, {
-      w: gridNumber(start.widget.w + (event.clientX - start.x) / start.dx, MAX_WIDTH),
-      h: gridNumber(start.widget.h + (event.clientY - start.y) / start.dy, MAX_HEIGHT),
-    });
+    update(start.widget.id, resizeWidget(start.widget, start.widget.w + (event.pageX - start.x) / start.dx, start.widget.h + (event.pageY - start.y) / start.dy));
   };
   const anchorCells = packWidgets(rest, columns);
   const locate = (event) => {
@@ -135,11 +132,11 @@ export default function HomeWidgetEditor({ widgets, onChange }) {
         <dialog ref={drawer} aria-label="模块库" className="fixed inset-x-0 bottom-0 top-auto m-0 max-h-[75dvh] w-full max-w-none rounded-t-2xl border bg-card p-4 text-foreground backdrop:bg-foreground/30" onClick={(event) => { if (event.target === drawer.current && event.clientY < drawer.current.getBoundingClientRect().top) drawer.current.close(); }}>
           <header className="mb-4 flex items-center justify-between"><h3 className="font-semibold">模块库</h3><button type="button" className={iconButton} aria-label="关闭模块库" onClick={() => drawer.current.close()}><X size={16} /></button></header>{library}
         </dialog>
-        <div className="home-editor-paper max-h-[54dvh] min-h-48 overflow-auto p-3 sm:p-4"
+        <div className="home-editor-paper p-3 sm:p-4"
           onDragOver={(event) => { if (!drag) return; event.preventDefault(); event.dataTransfer.dropEffect = drag.isNew ? 'copy' : 'move'; setSlot(locate(event)); }}
           onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setSlot(null); }}
           onDrop={(event) => { if (!drag) return; event.preventDefault(); onChange(insertWidget(widgets, drag.widget, slot ?? locate(event))); select(drag.widget.id); end(); }}>
-          <div ref={grid} aria-label="布局预览" className="grid min-h-36 content-start auto-rows-[2.75rem] gap-2" style={gridStyle(columns)}>
+          <div ref={grid} aria-label="布局预览" className="grid content-start auto-rows-[2.75rem] gap-2" style={gridStyle(columns)}>
             {shown.map((widget, index) => {
               const Icon = icons[widget.type];
               const picked = active?.id === widget.id;
@@ -155,7 +152,7 @@ export default function HomeWidgetEditor({ widgets, onChange }) {
                 </span>
               </div>;
             })}
-            {!shown.length && <p className="text-muted-foreground col-span-full self-center py-10 text-center text-sm">画布为空，从模块库添加第一个组件。</p>}
+            {!shown.length && <p className="text-muted-foreground col-span-full row-span-2 self-center text-center text-sm">画布为空，从模块库添加第一个组件。</p>}
           </div>
         </div>
         {active && <Inspector widget={active} index={widgets.indexOf(active)} count={widgets.length} update={(changes) => update(active.id, changes)} move={(step) => onChange(insertWidget(widgets, active, widgets.indexOf(active) + step))} remove={() => {

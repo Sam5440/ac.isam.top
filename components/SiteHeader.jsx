@@ -148,7 +148,7 @@ export default function SiteHeader() {
           </Link>
         )}
         {/* 导航区：占据品牌与右侧按钮簇之间的全部空间；放不下的入口收进「更多」 */}
-        <div ref={navBoxRef} className="relative ml-2 flex min-w-0 flex-1 items-center">
+        <div ref={navBoxRef} className="ml-2 flex min-w-0 flex-1 items-center sm:relative">
           <div ref={navInnerRef} className="flex w-max shrink-0 items-center">
           <nav className="flex min-w-0 items-center gap-1 whitespace-nowrap" aria-label="站点导航">
             {shownNav.map((item) => (
@@ -160,7 +160,7 @@ export default function SiteHeader() {
             ))}
           </nav>
           {showMore && (
-            <div ref={moreRef} className="relative ml-1 shrink-0">
+            <div ref={moreRef} className="ml-1 shrink-0 sm:relative">
               <Button
                 variant="ghost"
                 size="sm"
@@ -176,7 +176,7 @@ export default function SiteHeader() {
               {moreOpen && (
                 <div
                   role="menu"
-                  className="bg-popover text-popover-foreground absolute top-9 left-0 z-50 w-60 overflow-hidden rounded-lg border shadow-lg"
+                  className="bg-popover text-popover-foreground absolute inset-x-4 top-full z-50 max-h-[calc(100dvh-4rem)] overflow-y-auto rounded-lg border shadow-lg sm:inset-x-auto sm:top-9 sm:left-0 sm:w-60"
                 >
                   {overflowNav.map((item) => {
                     const Icon = item.icon;

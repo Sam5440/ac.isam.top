@@ -16,6 +16,25 @@ const configure = () => page.getByRole('link', { name: '自定义首页' }).clic
 const coord = (item) => item.evaluate((element) => [element.style.gridColumn, element.style.gridRow]);
 try {
   await page.goto(base);
+  const problems = page.locator('[data-widget="problems"]');
+  const problemLinks = problems.locator('a[href^="/problems/"]');
+  assert.equal(await problemLinks.count(), 7);
+  assert.equal((await coord(problems))[0], '3 / span 2');
+  await configure();
+  await button('选择最近收录').click();
+  const grid = page.getByLabel('布局预览');
+  const originalHeight = (await grid.boundingBox()).height;
+  await inspect.getByLabel('高度').selectOption('6');
+  assert.equal(await inspect.getByLabel('列表条数').inputValue(), '11');
+  const bottom = (box) => box.y + box.height;
+  assert.ok((await grid.boundingBox()).height > originalHeight);
+  assert.equal(bottom(await grid.boundingBox()), bottom(await problems.boundingBox()));
+  assert.ok(await grid.evaluate((element) => element.parentElement.scrollHeight <= element.parentElement.clientHeight + 1));
+  await button('保存并查看首页').click();
+  await page.waitForURL(`${base}/`);
+  await page.reload();
+  await problemLinks.nth(10).waitFor();
+  assert.equal(await problemLinks.count(), 11);
   await configure();
   await button('添加时钟').dragTo(button('选择站点介绍'), { targetPosition: { x: 25, y: 12 } });
   await clock.waitFor();
@@ -27,7 +46,7 @@ try {
   await page.mouse.move(handle.x + 12 + width / 4, handle.y + 64, { steps: 8 });
   await page.mouse.up();
   assert.deepEqual(await coord(clock), ['1 / span 3', '1 / span 3']);
-  await button('选择时钟').dragTo(button('选择站点介绍'), { targetPosition: { x: 40, y: 110 } });
+  await button('选择时钟').dragTo(button('选择近期比赛'), { targetPosition: { x: 40, y: 60 } });
   const position = await coord(clock);
   assert.notEqual(position[1], '1 / span 3');
   await inspect.getByLabel('问候称呼').fill('晨练');
