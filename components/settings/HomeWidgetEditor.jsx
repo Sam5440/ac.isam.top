@@ -39,10 +39,18 @@ function Sketch({ widget }) {
 
 function Inspector({ widget, index, count, update, move, remove }) {
   const spec = CATALOG[widget.type];
-  const selectSize = (key, label, max) => <label className="text-muted-foreground grid gap-1 text-xs">{label}
-    <select className={inputCls} value={widget[key]} onChange={(event) => update(resizeWidget(widget, key === 'w' ? event.target.value : widget.w, key === 'h' ? event.target.value : widget.h))}>
-      {Array.from({ length: max }, (_, offset) => <option key={offset} value={offset + 1}>{offset + 1} 格</option>)}
-    </select></label>;
+  const selectSize = (key, label, max) => {
+    const change = (value) => update(resizeWidget(widget, key === 'w' ? value : widget.w, key === 'h' ? value : widget.h));
+    return <label className="text-muted-foreground grid gap-1 text-xs">{label}
+      <select className={inputCls} value={widget[key]} onChange={(event) => change(event.target.value)} onKeyDown={(event) => {
+        if (!['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const value = event.key === 'Home' ? 1 : event.key === 'End' ? max : gridNumber(widget[key] + (event.key === 'ArrowDown' ? 1 : -1), max, widget[key]);
+        change(value);
+      }}>
+        {Array.from({ length: max }, (_, offset) => <option key={offset} value={offset + 1}>{offset + 1} 格</option>)}
+      </select></label>;
+  };
   return <section aria-label="小组件属性" className="space-y-3 border-t bg-card p-4">
     <div className="flex flex-wrap items-center gap-2"><span className="text-muted-foreground font-mono text-xs">{String(index + 1).padStart(2, '0')}</span><h4 className="mr-auto text-sm font-semibold">{widgetTitle(widget)}</h4>
       <button type="button" className={iconButton} title="前移" aria-label="前移" disabled={index === 0} onClick={() => move(-1)}><ArrowUp size={15} /></button>
@@ -56,10 +64,11 @@ function Inspector({ widget, index, count, update, move, remove }) {
         return <label key={key} className="text-muted-foreground grid min-w-0 gap-1 text-xs">{field.label}
           {field.options ? <select className={inputCls} value={widget.params[key]} onChange={(event) => change(event.target.value)}>
             {Object.entries(field.options).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </select> : <input className={`${inputCls} min-w-0`} type={field.max ? 'number' : 'text'} min={field.min} max={field.max} maxLength={field.length} value={widget.params[key]} onChange={(event) => change(event.target.value)} onBlur={field.max ? () => change(gridNumber(widget.params[key], field.max)) : undefined} />}
+          </select> : <input className={`${inputCls} min-w-0`} type={field.max ? 'number' : 'text'} min={field.min} max={field.max} step={field.max ? 1 : undefined} inputMode={field.max ? 'numeric' : undefined} maxLength={field.length} value={widget.params[key]} onChange={(event) => change(event.target.value)} onBlur={field.max ? () => change(gridNumber(widget.params[key], field.max)) : undefined} />}
         </label>;
       })}
     </div>
+    {spec.fields?.limit && <p className="text-muted-foreground text-xs">显示数量独立控制实际条数（1～24），调整高度不会再改变它；内容增多时首页自动撑高，不会出现组件内滚动条。</p>}
   </section>;
 }
 

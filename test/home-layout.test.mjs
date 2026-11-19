@@ -7,7 +7,8 @@ import {
   parseHomeLayout, sanitizeHomeStyle, selectHistory, selectHomeContests,
   selectHomeProblems, weatherInfo, widgetLimit,
 } from '../lib/home-layout.mjs';
-import { DEFAULT_HOME_LAYOUT, HOME_PRESETS } from '../lib/home-presets.mjs';
+import { DEFAULT_HOME_LAYOUT, HOME_PRESETS, VISUAL_HOME_PRESETS } from '../lib/home-presets.mjs';
+import { normalizeWidgets, packWidgets } from '../lib/home-grid.mjs';
 
 function elements(nodes, tag = null) {
   const out = [];
@@ -33,6 +34,29 @@ test('首页预设：至少 10 套、id 唯一、全部可解析且不含未知�
     for (const node of custom) assert.ok(known.has(node.tag), `${preset.id}: ${node.tag}`);
   }
   assert.equal(DEFAULT_HOME_LAYOUT, HOME_PRESETS[0].html);
+});
+
+test('可视化预设：恰好 10 套且覆盖手机电脑，单双四列均无重叠', () => {
+  assert.equal(VISUAL_HOME_PRESETS.length, 10);
+  assert.equal(new Set(VISUAL_HOME_PRESETS.map((preset) => preset.id)).size, 10);
+  assert.ok(VISUAL_HOME_PRESETS.some((preset) => preset.device.includes('手机')));
+  assert.ok(VISUAL_HOME_PRESETS.some((preset) => preset.device.includes('电脑')));
+  for (const preset of VISUAL_HOME_PRESETS) {
+    const widgets = normalizeWidgets(preset.widgets);
+    assert.equal(widgets.length, preset.widgets.length, preset.id);
+    assert.equal(new Set(widgets.map((widget) => widget.id)).size, widgets.length, preset.id);
+    for (const columns of [1, 2, 4]) {
+      const cells = packWidgets(widgets, columns);
+      for (let i = 0; i < cells.length; i++) {
+        for (let j = i + 1; j < cells.length; j++) {
+          const a = cells[i];
+          const b = cells[j];
+          const overlap = a.col < b.col + b.w && a.col + a.w > b.col && a.row < b.row + b.h && a.row + a.h > b.row;
+          assert.equal(overlap, false, `${preset.id} / ${columns} 列：${widgets[i].id} 与 ${widgets[j].id}`);
+        }
+      }
+    }
+  }
 });
 
 test('HTML 安全：删除脚本/iframe/事件属性/危险 URL，保留文本与安全组件', () => {

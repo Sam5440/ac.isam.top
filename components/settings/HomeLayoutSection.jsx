@@ -7,8 +7,9 @@ import { Check, ExternalLink, RotateCcw, Save } from 'lucide-react';
 import { useSettings } from '@/components/settings';
 import { Group, Pad, Row, SegButtons, SmallButton, inputCls, textareaCls } from '@/components/settings/controls';
 import HomeWidgetEditor from './HomeWidgetEditor';
+import HomeLivePreview from '@/components/home/HomeLivePreview';
 import { DEFAULT_WIDGETS, normalizeWidgets } from '@/lib/home-grid.mjs';
-import { HOME_PRESETS } from '@/lib/home-presets.mjs';
+import { HOME_PRESETS, VISUAL_HOME_PRESETS } from '@/lib/home-presets.mjs';
 import {
   DEFAULT_HOME_WEATHER, HOME_LAYOUT_LIMIT, HOME_WIDGETS, normalizeCfHandle,
   normalizeHomeWeather,
@@ -55,6 +56,12 @@ export default function HomeLayoutSection() {
     toast.info(`已填入「${preset.label}」，保存后生效`);
   };
 
+  const applyVisualPreset = (preset) => {
+    setWidgets(normalizeWidgets(preset.widgets));
+    setSelected(preset.id);
+    toast.info(`已选择「${preset.label}」，保存后生效`);
+  };
+
   const cancel = () => {
     setMode(settings.homeLayoutMode);
     setWidgets(settings.homeWidgets);
@@ -73,8 +80,22 @@ export default function HomeLayoutSection() {
         <span role="status" className="text-muted-foreground text-xs">{dirty ? '有未保存的修改' : '已保存的布局'}</span>
       </div>
       {mode === 'visual' ? <>
-        <HomeWidgetEditor widgets={widgets} onChange={setWidgets} />
-        <SmallButton onClick={() => setWidgets(DEFAULT_WIDGETS)}><RotateCcw className="size-3" />恢复默认四列布局</SmallButton>
+        <Group title="可视化预设" desc="10 套方案均可直接选择并继续修改；手机自动变为单列，电脑按两列或四列排布。">
+          <Pad>
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              {VISUAL_HOME_PRESETS.map((preset) => (
+                <button key={preset.id} type="button" data-visual-preset={preset.id} onClick={() => applyVisualPreset(preset)} aria-pressed={selected === preset.id}
+                  className={`rounded-xl border p-3 text-left transition-colors hover:border-primary/50 hover:bg-accent/40 ${selected === preset.id ? 'border-primary/60 bg-primary/5' : 'bg-background'}`}>
+                  <span className="flex items-center justify-between gap-2 text-sm font-medium">{preset.label}{selected === preset.id && <Check className="text-primary size-4" />}</span>
+                  <span className="text-primary mt-1.5 block text-[11px]">{preset.device}</span>
+                  <span className="text-muted-foreground mt-1 block text-[11px] leading-relaxed">{preset.description}</span>
+                </button>
+              ))}
+            </div>
+          </Pad>
+        </Group>
+        <HomeWidgetEditor widgets={widgets} onChange={(next) => { setWidgets(next); setSelected(''); }} />
+        <SmallButton onClick={() => { setWidgets(DEFAULT_WIDGETS); setSelected(''); }}><RotateCcw className="size-3" />恢复默认四列布局</SmallButton>
       </> : <>
       <Group title="预设布局" desc="选择预设只会填入下方编辑器，检查并保存后才会替换当前首页。共 12 套，可继续自由修改。">
         <Pad>
@@ -154,6 +175,13 @@ export default function HomeLayoutSection() {
         </Pad>
       </Group>
       </>}
+      <HomeLivePreview config={{
+        homeLayoutMode: mode,
+        homeWidgets: widgets,
+        homeLayout: draft,
+        homeCfHandle: normalizeCfHandle(handle),
+        homeWeather: normalizeHomeWeather(weather),
+      }} />
       <div className="home-layout-actions sticky bottom-[max(.5rem,env(safe-area-inset-bottom))] z-10 flex flex-wrap items-center justify-end gap-2 rounded-lg border bg-card p-2 shadow-sm">
         <SmallButton disabled={!dirty} onClick={cancel}>取消修改</SmallButton>
         <SmallButton onClick={() => save(false)}><Save className="size-3.5" />保存布局</SmallButton>

@@ -92,7 +92,7 @@ function StatCard({ icon: Icon, label, value }) {
 export function HomeStats({ data }) {
   const stats = data.stats;
   return (
-    <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+    <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <StatCard icon={FileText} label="收录题目" value={Number(stats.problems).toLocaleString('zh-CN')} />
       <StatCard icon={Trophy} label="收录比赛" value={Number(stats.contests).toLocaleString('zh-CN')} />
       <StatCard icon={Languages} label="已翻译题面" value={Number(stats.translated).toLocaleString('zh-CN')} />

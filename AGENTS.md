@@ -138,15 +138,15 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   闪白靠 `app/layout.jsx` 的 `THEME_BOOTSTRAP` 内联脚本（服务端生成）——改主题机制时
   两侧必须同步。
 
-首页布局（`/settings#home`）同样只用主设置键。`homeLayoutMode` 为 `visual` / `html`；`homeWidgets` 是按优先级排列的 `{ id, type, params, w, h }` 实例数组，可重复类型，不存坐标；`homeLayout` 独立保留高级 HTML 与 12 套预设。编辑只改草稿，保存才写入两份内容和启用模式。读取与导入都走 `lib/home-grid.mjs` 的 `normalizeHomeConfig`：无显式模式时，非经典的合法旧 HTML（含空字符串）继续用 HTML；无旧自定义内容则用经典四组件。空组件数组是有效布局。
+首页布局（`/settings#home`）同样只用主设置键。`homeLayoutMode` 为 `visual` / `html`；`homeWidgets` 是按优先级排列的 `{ id, type, params, w, h }` 实例数组，可重复类型，不存坐标；`homeLayout` 独立保留高级 HTML 与 12 套预设，可视化模式另有 10 套 `VISUAL_HOME_PRESETS`。编辑只改草稿，保存才写入两份内容和启用模式。读取与导入都走 `lib/home-grid.mjs` 的 `normalizeHomeConfig`：无显式模式时，非经典的合法旧 HTML（含空字符串）继续用 HTML；无旧自定义内容则用经典四组件。空组件数组是有效布局。
 
-编辑画布与首页共享 `packWidgets`（行优先找首个能容纳整个矩形的空位），窄屏只收拢显示列数，不改存储尺寸。新增可视组件时同步登记 `CATALOG` 的参数白名单、编辑器图标及首页 `WidgetNode` 映射。预览不挂载真实数据组件；HTML 仍经过 `parseHomeLayout`。浏览器回归：`node e2e/home-layout-visual.js` 与 `node e2e/home-widget-grid.js`（可设 `BASE_URL`）。
+编辑画布与首页共享 `packWidgets`（行优先找首个能容纳整个矩形的空位），窄屏只收拢显示列数，不改存储尺寸。新增可视组件时同步登记 `CATALOG` 的参数白名单、编辑器图标及首页 `WidgetNode` 映射。设置页下方的 `HomeLivePreview` 通过 `/api/home` 取构建期首页数据，并把当前草稿传给同一个 `HomeDashboard` 渲染，不能再用无数据的示意图代替；HTML 仍经过 `parseHomeLayout`。浏览器回归：`node e2e/home-layout-visual.js`、`node e2e/home-widget-grid.js` 与 `node e2e/home-presets-visual.js`（可设 `BASE_URL`）。
 
-桌面默认四列，新组件占两列、高度按类型，画布随最下方组件伸缩，不设固定视口高度。列表组件每增减一格高度，其当前 `params.limit` 增减两条（限 1–24）；指针及面板共用 `resizeWidget`。读取旧设置、切换屏宽不重算条数；「恢复默认四列布局」只替换可视草稿。
+桌面默认四列，新组件占两列、高度按类型，画布随最下方组件伸缩，不设固定视口高度。列表组件的 `params.limit` 独立精确控制条数（1–24），指针及面板共用 `resizeWidget`，调整宽高不得改动条数。读取旧设置、切换屏宽不重算条数；「恢复默认四列布局」只替换可视草稿。
 
 手机回归 `node e2e/mobile-layout.js`（支持 `BASE_URL`）覆盖 320 / 390 / 430px。顶栏「更多」在手机上按顶栏而非触发按钮定位；设置行的多个操作允许换行，首页编辑器底部操作栏与语言浮钮需分别可点。
 
-手机单列首页按内容自然高度纵向排列。网格高度仍用于编辑器、列表条数和多列展示。检查稀疏列表时要量末条内容到下一模块的距离，只检查页面宽度会漏掉大段留白。
+手机单列首页按内容自然高度纵向排列；多列网格行高为 `minmax(6rem, auto)`，内容增多时自然撑高，所有小组件禁止单独滚动条。网格最小高度仍用于编辑器和多列排版。检查稀疏列表时要量末条内容到下一模块的距离，只检查页面宽度会漏掉大段留白。
 
 ### 3.4 Service Worker / PWA
 

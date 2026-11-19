@@ -14,9 +14,9 @@ import {
   HomeHistoryContests, HomeProblems, HomeSection, HomeSiteUpdate, HomeStats, HomeWeather,
 } from './HomeWidgets';
 
-function DomNode({ node, data, now }) {
+function DomNode({ node, data, now, config }) {
   const attrs = { ...node.attrs };
-  const children = <LayoutNodes nodes={node.children} data={data} now={now} />;
+  const children = <LayoutNodes nodes={node.children} data={data} now={now} config={config} />;
   if (node.tag === 'a' && attrs.href) {
     const props = { ...attrs, className: attrs.class };
     delete props.class;
@@ -28,9 +28,24 @@ function DomNode({ node, data, now }) {
   return createElement(node.tag, props, children);
 }
 
-function WidgetNode({ node, data, now }) {
-  const { attrs } = node;
-  const children = <LayoutNodes nodes={node.children} data={data} now={now} />;
+function previewAttrs(tag, attrs, config) {
+  if (!config) return attrs;
+  if (tag === 'ac-cf-rating' && !attrs.handle) return { ...attrs, handle: config.homeCfHandle || '' };
+  if (tag !== 'ac-weather') return attrs;
+  const weather = config.homeWeather;
+  const next = { ...attrs };
+  if (!attrs.city && weather) {
+    next.city = weather.city;
+    if (attrs.latitude == null && attrs.lat == null) next.latitude = weather.latitude;
+    if (attrs.longitude == null && attrs.lon == null) next.longitude = weather.longitude;
+  }
+  if (!attrs.unit && weather) next.unit = weather.unit;
+  return next;
+}
+
+function WidgetNode({ node, data, now, config }) {
+  const attrs = previewAttrs(node.tag, node.attrs, config);
+  const children = <LayoutNodes nodes={node.children} data={data} now={now} config={config} />;
   switch (node.tag) {
     case 'ac-hero': return <HomeHero attrs={attrs} />;
     case 'ac-stats': return <HomeStats attrs={attrs} data={data} />;
@@ -48,23 +63,24 @@ function WidgetNode({ node, data, now }) {
   }
 }
 
-function LayoutNodes({ nodes, data, now }) {
+function LayoutNodes({ nodes, data, now, config }) {
   return nodes.map((node, index) => {
     if (node.type === 'text') return node.value;
-    if (node.tag.startsWith('ac-')) return <WidgetNode key={`${node.tag}-${index}`} node={node} data={data} now={now} />;
-    return <DomNode key={`${node.tag}-${index}`} node={node} data={data} now={now} />;
+    if (node.tag.startsWith('ac-')) return <WidgetNode key={`${node.tag}-${index}`} node={node} data={data} now={now} config={config} />;
+    return <DomNode key={`${node.tag}-${index}`} node={node} data={data} now={now} config={config} />;
   });
 }
 
-export default function HomeDashboard({ data }) {
+export default function HomeDashboard({ data, config: override, preview = false }) {
   const { settings } = useSettings();
+  const config = override ?? settings;
   const initialNow = new Date(data.renderedAt).getTime() || 0;
   const [now, setNow] = useState(initialNow);
-  const layout = settings.homeLayout ?? DEFAULT_HOME_LAYOUT;
-  const visual = settings.homeLayoutMode === 'visual';
+  const layout = config.homeLayout ?? DEFAULT_HOME_LAYOUT;
+  const visual = config.homeLayoutMode === 'visual';
   const nodes = useMemo(() => visual ? [] : parseHomeLayout(layout), [visual, layout]);
   const columns = useGridColumns();
-  const widgets = settings.homeWidgets;
+  const widgets = config.homeWidgets;
   const cells = useMemo(() => visual ? packWidgets(widgets, columns) : [], [visual, widgets, columns]);
   useEffect(() => {
     setNow(Date.now());
@@ -72,24 +88,24 @@ export default function HomeDashboard({ data }) {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className="pb-12">
-      <div className="flex justify-end pt-4">
+    <div className="pb-12" data-home-root={preview ? 'preview' : 'home'}>
+      {!preview && <div className="flex justify-end pt-4">
         <Link href="/settings#home" className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 rounded-md border bg-card px-2.5 py-1.5 text-xs transition-colors">
           <PencilLine className="size-3.5" />自定义首页
         </Link>
-      </div>
+      </div>}
       {visual && widgets.length ? (
-        <div aria-label="首页小组件" className="mt-4 flex flex-col gap-3 sm:grid sm:auto-rows-[6rem]" style={gridStyle(columns)}>
+        <div aria-label="首页小组件" className="home-visual-grid mt-4 flex flex-col gap-3 sm:grid" style={gridStyle(columns)}>
           {widgets.map((widget, index) => {
             const attrs = widget.type === 'contests' || widget.type === 'hero' ? { ...widget.params, compact: true } : widget.params;
-            const content = <WidgetNode node={{ tag: `ac-${widget.type}`, attrs, children: [] }} data={data} now={now} />;
+            const content = <WidgetNode node={{ tag: `ac-${widget.type}`, attrs, children: [] }} data={data} now={now} config={override} />;
             const href = { contests: '/contests', problems: '/problems', history: '/history', files: '/ide', 'history-contests': '/history' }[widget.type];
-            return <div key={widget.id} data-widget={widget.type} className="home-grid-cell min-w-0 overflow-auto" style={cellStyle(cells[index])}>
+            return <div key={widget.id} data-widget={widget.type} className="home-grid-cell min-w-0" style={cellStyle(cells[index])}>
               {href ? <HomeSection attrs={{ title: widgetTitle(widget), href }}>{content}</HomeSection> : content}
             </div>;
           })}
         </div>
-      ) : nodes.length ? <LayoutNodes nodes={nodes} data={data} now={now} /> : (
+      ) : nodes.length ? <LayoutNodes nodes={nodes} data={data} now={now} config={override} /> : (
         <div className="py-20 text-center">
           <LayoutDashboard className="text-muted-foreground mx-auto size-10" />
           <h1 className="mt-4 text-2xl font-semibold">这个首页还是空白</h1>
