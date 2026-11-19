@@ -72,7 +72,7 @@ app/                        # Next.js 15 App Router
   offline-manifest.json/    # 离线同步清单（最近 200 场比赛 URL）
   api/mt/[channel]/         # 浏览器机器翻译转发（DeepL/有道/彩云/讯飞）
   api/ai/proxy/             # AI 接口转发（混合内容降级 + 域名白名单）
-  api/contests/clist/       # 比赛日历数据
+  api/contests/clist/       # 比赛日历（只读 CI 生成的 data/clist.json）
   api/problems/             # 题目查询 API（IDE 终端等使用）
 components/                 # UI 组件
   ProblemStatementViewer / StatementBody   # 题面渲染（公式/图片去重/来源芯片）
@@ -150,7 +150,7 @@ node scripts/fetch-cf-gyms.mjs --mode status # 进度统计
 TRANSLATE_BASE_URL=https://your-llm-proxy.example.com/v1   # OpenAI 兼容
 TRANSLATE_API_KEY=sk-…
 TRANSLATE_MODEL=your-model-name                            # 默认 gpt-6.1-sol
-CLIST_API_KEY=…                                            # 比赛日历（/calendar）
+CLIST_API_KEY=…                                            # 仅本地/CI 抓取比赛日程快照时使用
 # 可选：TRANSLATE_CONCURRENCY / TRANSLATE_LIMIT / ABC_SCAN / CF_SCAN / BACKFILL
 ```
 
@@ -158,11 +158,11 @@ CLIST_API_KEY=…                                            # 比赛日历（/c
 
 | Workflow | 频率 | 内容 |
 | --- | --- | --- |
-| `fetch.yml` | 每小时（cron `23 * * * *`） | 扫描最近 3 场 ABC / 1 场 ARC / 1 场 AGC / 3 场 CF / 2 场牛客，抓新比赛全部题面 → 回填 10 道历史题面 → AI 翻译（并发 4，失败下次重试，单次上限 120）→ **cf-gyms 尾阶段**：小预算 gym 题面回填（10 分钟 / 60 页）+ gym 缺译题面 CI 翻译（上限 40，gym 题默认走 CI 翻译）→ 重建索引 → 有变更则 bot 提交推送 |
+| `fetch.yml` | 每小时（cron `23 * * * *`） | 抓取 Clist 前 30 天～后 60 天日程快照 → 扫描最近 3 场 ABC / 1 场 ARC / 1 场 AGC / 3 场 CF / 2 场牛客，抓新比赛全部题面 → 回填 10 道历史题面 → AI 翻译（并发 4，失败下次重试，单次上限 120）→ **cf-gyms 尾阶段**：小预算 gym 题面回填（10 分钟 / 60 页）+ gym 缺译题面 CI 翻译（上限 40，gym 题默认走 CI 翻译）→ 重建索引 → 有变更则 bot 提交推送 |
 | `fetch-cf-gyms.yml` | 每天 20:47 UTC | cf-gyms 增量：新赛列表 + ID 补扫 + 题面回填（38 分钟预算，到点存档退出续跑无缝） |
 | `ci.yml` | push / PR | `npm test` + `npm run build` |
 
-每次 data 推送 → Vercel 自动重新构建部署。
+每次 data 推送 → Vercel 自动重新构建部署。比赛日历与首页未来比赛只读取 `data/clist.json`，不会在用户请求时访问 Clist；快照抓取失败会保留上一份，不会用空数据覆盖。
 
 ### 需要配置的仓库 Secrets（Settings → Secrets and variables → Actions）
 
@@ -187,7 +187,7 @@ gh secret set CLIST_API_KEY      -b "…"
 
 1. 仓库推送到 GitHub（`data/` 一并提交）
 2. [vercel.com](https://vercel.com) → Add New Project → 导入仓库；Framework preset 自动识别 Next.js
-3. `vercel.json` 已固定构建命令 `node scripts/build-index.mjs && node scripts/fetch-runtime.mjs && next build`；项目环境变量配置 `NEXT_PUBLIC_SITE_URL`（生产域名）与 `CLIST_API_KEY`
+3. `vercel.json` 已固定构建命令 `node scripts/build-index.mjs && node scripts/fetch-runtime.mjs && next build`；项目环境变量配置 `NEXT_PUBLIC_SITE_URL`（生产域名）；Clist Key 只需配置在 GitHub Actions，Vercel 不需要
 4. Deploy —— 之后每次 CI 推送 `data/`，Vercel 自动重新构建部署
 
 > 构建号 `X-AC-Build` 取自 Vercel 注入的 `VERCEL_GIT_COMMIT_SHA`，随每次部署变化——Service Worker 版本门卫据此识别过期缓存（见上文 PWA 章节），无需任何手动配置。

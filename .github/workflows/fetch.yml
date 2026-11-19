@@ -62,6 +62,8 @@ jobs:
           TRANSLATE_API_KEY: ${{ secrets.TRANSLATE_API_KEY }}
           TRANSLATE_MODEL: ${{ secrets.TRANSLATE_MODEL }}
           TRANSLATE_CONCURRENCY: "4"
+          # 比赛日历快照：只在 CI 访问 Clist，线上 API 不再消耗上游配额
+          CLIST_API_KEY: ${{ secrets.CLIST_API_KEY }}
           # CI 出口 IP 更容易被 Cloudflare 质询：有头浏览器 + Xvfb 通过率更高
           CF_HEADLESS: "0"
           # cf-gyms 尾阶段的受限 gym 登录兜底（可选 secret，缺失时跳过登录）

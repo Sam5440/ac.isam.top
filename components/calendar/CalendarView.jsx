@@ -4,7 +4,7 @@
  * /calendar 比赛日历：周一首的周网格，覆盖「今天前 N 天 ~ 后 M 天」（设置 → 题面与翻译 → 比赛日历，
  * 默认 3 / 15 天），每格按开始时间列出当天全部比赛（不折叠为 +N more，名字过长自动换行）。
  * 顶部站点筛选可直接勾选（持久化到 settings.calendarSites，默认牛客 / 洛谷 / AtCoder / Codeforces）。
- * 数据经 /api/contests/clist 以 start__gte / start__lte 区间请求；窄屏退化为按日分组列表。
+ * 数据经 /api/contests/clist 读取 CI 快照，以 start__gte / start__lte 过滤；窄屏退化为按日分组列表。
  */
 
 import { CalendarDays, RotateCcw } from 'lucide-react';

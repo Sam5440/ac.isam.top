@@ -69,7 +69,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/problems/[platform]/[problemId]` | 按需 SSG | 题目详情 | `ProblemViewShell`、`ProblemStatementViewer`、`AiFab`、`ProblemCompiler` |
 | `/contests` | 静态 | 比赛列表（类型/站点筛选，50条/页） | `ContestsBrowser` |
 | `/contests/[platform]/[contestId]` | 按需 SSG | 比赛详情 + 题目清单 | — |
-| `/calendar` | 静态 | 比赛日历（Clist API） | `CalendarView` |
+| `/calendar` | 静态 | 比赛日历（读取 CI 的 Clist 快照） | `CalendarView` |
 | `/history` | 静态 | 浏览历史（本机 IndexedDB/localStorage） | `HistoryList` |
 | `/ci` | ISR 5min | 抓取日志仪表盘（读 `data/ci-log.json`） | `CiDashboard` |
 | `/ide` | 静态 | IDE 工作台 | `IdePage` → `IdeShell`/`Workbench` |
@@ -271,13 +271,15 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   校验；目标主机白名单（内置 18 家 AI 域名 + `AI_PROXY_ALLOWED_HOSTS`）；**DNS 预解析
   全部地址必须公网 + 连接钉死解析结果**（防 rebinding SSRF）；禁重定向；方法/头白名单；
   请求 4MB / 响应 8MB 上限；55s 超时；120 req/min/IP；SSE 透传。`/api/mt/[channel]`：
-  渠道白名单 + 串行 500ms + 超限 429；`/api/contests/clist`：参数白名单 + TTL 600s +
-  in-flight 去重（Clist 限流 10 req/min，缓存是强制的）。三者由
-  `test/security-and-query.test.mjs` 部分守卫——放宽任何一项先想清攻击面。
+  渠道白名单 + 串行 500ms + 超限 429，两者由 `test/security-and-query.test.mjs`
+  部分守卫——放宽任何一项先想清攻击面。`/api/contests/clist` 只读
+  `data/clist.json`，不访问上游；区间/排序/分页过滤在 `lib/clist-snapshot.mjs`，
+  由 `test/clist-snapshot.test.mjs` 守卫（含禁用网络仍可读）。
 
 ### 3.8 抓取管线（scripts/）
 
-- `fetch.mjs` 主管道：`runAtCoder()` / `runCodeforces()`（Playwright 过 CF）/
+- `fetch.mjs` 主管道：`updateClistSnapshot()`（Clist 前 30 天～后 60 天，分页写
+  `data/clist.json`，失败保留旧快照）→ `runAtCoder()` / `runCodeforces()`（Playwright 过 CF）/
   `runNowcoder()` → `collectProblems()` → `runTranslate()` → **`runGymPhase()`** →
   `writeCiLog()`。CI 参数 `--abc 3 --arc 1 --agc 1 --cf 3 --nc 2 --backfill 10
   --translate-limit 120 --gym-pages 60 --gym-minutes 10 --gym-translate-limit 40`。
@@ -334,10 +336,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   `git pull --rebase --autostash` 重试 ×3**（checkout 与 push 窗口内撞上人工 push 的
   解药）；`fetch-cf-gyms.yml` 每日 20:47 UTC（北京 04:47），装 poppler-utils（PDF
   取字），提交后跑 `--mode verify`，有缺漏退出码 1 让 job 变红（数据已落地，缺口下轮
-  自动补）。Secrets：`TRANSLATE_BASE_URL/API_KEY/MODEL`、`CLIST_API_KEY`，可选
-  `CF_HANDLE/CF_PASSWORD`（受限 gym 登录兜底，fetch.yml 也读），Vercel 侧
-  `AI_PROXY_ALLOWED_HOSTS`。
-- **data/ 纪律**：入库 = `index.json` / `ci-log.json` / `cf-gyms/sweep-state.json`
+  自动补）。GitHub Secrets：`TRANSLATE_BASE_URL/API_KEY/MODEL`、`CLIST_API_KEY`
+  （仅 CI 抓快照，Vercel 不需要），可选 `CF_HANDLE/CF_PASSWORD`（受限 gym 登录兜底，
+  fetch.yml 也读）；Vercel 侧 `AI_PROXY_ALLOWED_HOSTS`。
+- **data/ 纪律**：入库 = `index.json` / `ci-log.json` / `clist.json`（CI 比赛日程快照）/ `cf-gyms/sweep-state.json`
   （ID 补扫游标，CI 续扫依赖）/ 各平台 `contests.json` + `problems/`；**不入库、绝不
   `git add -f`** = `data.zip`、机器本地状态（`.attempts.json` / `.backfill-state.json`
   / `.scan-cursor.json` / `.fetch-state.json` / `.live*.json`）、`data/*/pdf/`

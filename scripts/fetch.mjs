@@ -9,6 +9,7 @@
  *                          [--gym-translate-limit N] [--no-gyms]
  *
  * 流程（也是 GitHub Actions CI 的每次工作流）：
+ *   0. 拉取 Clist 前 30 天～后 60 天比赛，写 data/clist.json 供日历与首页只读使用
  *   1. 拉取 AtCoder(ABC) / Codeforces / 牛客元数据（比赛列表、题目清单、难度/评分）
  *   2. 扫描最近 --abc/--cf/--nc 场比赛：新比赛的题面全部抓取（含 HTML→Markdown）
  *   3. 回填：从最旧比赛开始，补抓历史上尚未拉取的 --backfill 道题面
@@ -72,6 +73,7 @@ import {
 import { loadProblem, problemComplete, saveProblem, upsertContest } from './lib/store.mjs';
 import { buildIndex } from './build-index.mjs';
 import { buildBackfillSummary, writeRunRecord } from './lib/ci-log.mjs';
+import { updateClistSnapshot } from './lib/clist.mjs';
 import { loadEnv, log, pLimit, parseArgs, rnd, sleep } from './lib/util.mjs';
 
 const args = parseArgs(process.argv.slice(2));
@@ -884,6 +886,12 @@ async function main() {
   ];
   try {
     if (!TRANSLATE_ONLY) {
+      try {
+        await updateClistSnapshot();
+      } catch (e) {
+        recordError('clist', e?.message || e);
+        log('clist', `✗ 日程快照更新失败（保留上一份，其余平台继续）：${e?.message || e}`);
+      }
       for (const [name, fn] of stages) {
         try {
           await fn();
