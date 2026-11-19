@@ -484,6 +484,12 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
     兜① ②③，抓取端（§3.8 的 html2md 修复 + 重抓脚本）治根。改任一侧都要跑
     `scripts/audit-statement-render.mjs` 对比全库数字（只降不升），否则很容易修好 A 类
     又回归 B 类（本轮第一版就出现过 404 个回归：CJK 守卫把中文标点当正文证据）。
+22. **CF Gym 时间不能用页面兜底日期，也不能忽略 UTC 偏移**（2026-11-19）：隐藏 gym
+    详情页曾从整个 `body` 找日期，把页脚 `Server time`（即抓取时间）当成 `startTime`；
+    列表页则丢掉 `UTC+8` 后缀再按 UTC 解析，造成固定时差。开始时间只从列表开始时间列 /
+    `table.infos` 解析并换算偏移，官方 `contest.list` 的 `startTimeSeconds` 有值时必须覆盖
+    旧值；无权威时间的隐藏 gym 留 `null`，按 id 排在有时间的比赛之后。纯函数与回归测试在
+    `lib/cf-gym-time.mjs` / `test/cf-gym-time.test.mjs`。
 
 ## 7. 常见任务手册
 

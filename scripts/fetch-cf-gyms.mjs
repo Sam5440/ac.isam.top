@@ -48,6 +48,7 @@ import { execFileSync } from 'node:child_process';
 import { loadHtml } from './lib/html2md.mjs';
 import { parseCfProblemsPage } from './lib/cf.mjs';
 import { sanitizeProblemId } from '../lib/problem-id.mjs';
+import { parseCfDate, resolveGymApiStartTime } from '../lib/cf-gym-time.mjs';
 import { saveContests, loadContests, loadProblem, saveProblem, problemComplete } from './lib/store.mjs';
 import { sleep, rnd, readJson, writeJson, parseArgs, loadEnv, log } from './lib/util.mjs';
 
@@ -273,7 +274,7 @@ async function launch() {
     ...(channel ? {} : { userAgent: UA }),
     viewport: { width: 1366, height: 900 },
     locale: 'en-US',
-    timezoneId: 'UTC', // 页面时间统一按 UTC 渲染，startTime 口径与其他平台一致
+    timezoneId: 'UTC',
     args: ['--disable-blink-features=AutomationControlled', ...(noProxy ? ['--no-proxy-server'] : [])],
   });
   ctx.on('close', () => {
@@ -516,17 +517,6 @@ async function login() {
 
 /* ---------------- 解析 ---------------- */
 
-const MONTHS = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
-
-/** "Nov/12/2026 08:30"(+可选 UTC±X 后缀) → ISO（页面时区固定 UTC）。 */
-function parseCfDate(text) {
-  const m = /([A-Z][a-z]{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/.exec(String(text).replace(/UTC[+-]\d+/g, '').trim());
-  if (!m) return null;
-  const mo = MONTHS[m[1]];
-  if (mo === undefined) return null;
-  return new Date(Date.UTC(+m[3], mo, +m[2], +m[4], +m[5])).toISOString();
-}
-
 /** "16:16:00" | "05:00" → 秒 */
 function parseDuration(text) {
   const p = String(text).trim().split(':').map((x) => parseInt(x, 10));
@@ -613,7 +603,7 @@ function parseGymPage(html, gymId) {
   return {
     gate,
     links,
-    startTime: parseCfDate(infos) ?? parseCfDate(body),
+    startTime: parseCfDate(infos),
     durationSeconds: lengthMatch ? parseDuration(lengthMatch[1]) : null,
     title: $('h3').first().text().replace(/\s+/g, ' ').trim(),
     season: (body.match(/(\d{4}-\d{4})/) || [])[1] ?? null,
@@ -905,7 +895,7 @@ async function enrichGymsFromApi() {
         city: a.city ?? null,
         season: c.season ?? a.season ?? null,
         difficulty: a.difficulty ?? null,
-        startTime: c.startTime ?? (a.startTimeSeconds ? new Date(a.startTimeSeconds * 1000).toISOString() : null),
+        startTime: resolveGymApiStartTime(c.startTime, a.startTimeSeconds),
       };
       upsertGym({ id: c.id, ...patch });
       n++;
