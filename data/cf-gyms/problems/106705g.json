@@ -1,0 +1,30 @@
+{
+  "id": "106705g",
+  "platform": "cf-gyms",
+  "contestId": 106705,
+  "index": "G",
+  "title": "Drum Rehearsal",
+  "titleZh": "架子鼓排练",
+  "url": "https://codeforces.com/gym/106705/problem/G",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "You are given a binary string $s$ of length $n$ and must process $q$ operations of the following types:\n\n- `1 l r`: For every $i$ ($l \\le i \\le r$), replace $s_i$ with $1 - s_i$.\n- `2 l r`: Delete a subsegment of $s_l s_{l+1} \\ldots s_r$ (possibly empty or the entire interval). Among all possible choices, find the maximum absolute difference between the number of characters `1` and the number of characters `0` in the remaining string. The deletion applies only to this operation and does not affect subsequent queries.\n\n## Input\n\nThere is only one test case in each test file.\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n,q \\le 2 \\cdot 10^5$).\n\nThe second line contains a binary string $s$ of length $n$.\n\nEach of the next $q$ lines contains three integers $t$, $l$, and $r$ ($t \\in \\{1,2\\}$, $1 \\le l \\le r \\le n$), describing an operation.\n\nIt is guaranteed that there is at least one operation of type `2`.\n\n## Output\n\nFor each operation of type `2`, print one integer — the maximum possible absolute difference between the number of characters `1` and the number of characters `0` in the remaining string.\n\n## Note\n\nIn the first example:\n\n- The first operation is a query, and the queried interval is `11010`. Deleting the character at position $3$ leaves `1110` in the queried interval, which contains $2$ more characters `1` than characters `0`.\n- The second operation inverts the characters at positions $2$ through $4$, so the string becomes `10100`.\n- The third operation is a query, and the queried interval is `10100`. Deleting the character at position $1$ leaves `0100` in the queried interval, which contains $2$ more characters `0` than characters `1`.\n- The fourth operation is a query, and the queried interval is `010`. Deleting the character at position $2$ of this interval leaves `00` in the queried interval, which contains $2$ more characters `0` than characters `1`.\n- The fifth operation is a query, and the queried interval is `1`. Deleting the empty string leaves `1` in the queried interval, which contains $1$ more character `1` than characters `0`.",
+  "statementZhMd": "给定一个长度为 $n$ 的二进制字符串 $s$，你需要处理 $q$ 次以下两种类型的操作：\n\n- `1 l r`：对于每个 $i$（$l \\le i \\le r$），将 $s_i$ 替换为 $1 - s_i$。\n- `2 l r`：从 $s_l s_{l+1} \\ldots s_r$ 中删除一个连续子段（可以为空，也可以是整个区间）。在所有可能的删除方案中，求剩余字符串中字符 `1` 的数量与字符 `0` 的数量之差的绝对值的最大值。删除仅对本次操作有效，不影响后续查询。\n\n## 输入格式\n\n每个测试文件中只有一组测试数据。\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\le n,q \\le 2 \\cdot 10^5$）。\n\n第二行包含一个长度为 $n$ 的二进制字符串 $s$。\n\n接下来的 $q$ 行，每行包含三个整数 $t$、$l$ 和 $r$（$t \\in \\{1,2\\}$，$1 \\le l \\le r \\le n$），描述一次操作。\n\n保证至少有一次类型为 `2` 的操作。\n\n## 输出格式\n\n对于每次类型为 `2` 的操作，输出一个整数，表示剩余字符串中字符 `1` 的数量与字符 `0` 的数量之差的绝对值的最大可能值。\n\n## 说明\n\n在第一个样例中：\n\n- 第一次操作是查询，查询区间为 `11010`。删除位置 $3$ 处的字符后，查询区间中剩下 `1110`，其中字符 `1` 比字符 `0` 多 $2$ 个。\n- 第二次操作将位置 $2$ 到 $4$ 处的字符取反，因此字符串变为 `10100`。\n- 第三次操作是查询，查询区间为 `10100`。删除位置 $1$ 处的字符后，查询区间中剩下 `0100`，其中字符 `0` 比字符 `1` 多 $2$ 个。\n- 第四次操作是查询，查询区间为 `010`。删除该区间中位置 $2$ 处的字符后，查询区间中剩下 `00`，其中字符 `0` 比字符 `1` 多 $2$ 个。\n- 第五次操作是查询，查询区间为 `1`。删除空字符串后，查询区间中剩下 `1`，其中字符 `1` 比字符 `0` 多 $1$ 个。",
+  "samples": [
+    {
+      "input": "5 5\n11010\n2 1 5\n1 2 4\n2 1 5\n2 2 4\n2 3 3\n",
+      "output": "2\n2\n2\n1\n"
+    },
+    {
+      "input": "4 3\n0101\n2 1 4\n1 1 4\n2 1 4\n",
+      "output": "1\n1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T13:34:30.053Z",
+  "translatedAt": "2026-11-19T13:43:51.203Z",
+  "translateModel": "gpt-6.1-sol"
+}

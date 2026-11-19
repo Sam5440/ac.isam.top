@@ -1,0 +1,26 @@
+{
+  "id": "106705e",
+  "platform": "cf-gyms",
+  "contestId": 106705,
+  "index": "E",
+  "title": "Charging Adapters",
+  "titleZh": "充电适配器",
+  "url": "https://codeforces.com/gym/106705/problem/E",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "There are $n$ vertices, numbered $1,2,\\ldots,n$. The coordinate of vertex $i$ is $x_i$, where $x_1  \\lt  x_2  \\lt  \\ldots  \\lt  x_n$. Each vertex supports a nonempty subset of $k$ types. A state is a pair $(i,c)$ such that vertex $i$ supports type $c$.\n\nFrom a state $(i,c)$, the following transitions are allowed:\n\n- Choose one direction on the coordinate line and move to the vertex $j$ nearest to vertex $i$ in that direction that supports type $c$. This transition leads to $(j,c)$ and costs $|x_i-x_j|$. If no such vertex exists, the transition is unavailable.\n- Change the type from $c$ to any type $d$ supported by vertex $i$. This transition leads to $(i,d)$ and costs $w_{i,d}$. Keeping type $c$ costs nothing.\n\nInitially, you are at vertex $s$ without any type. You may change to any type $c$ supported by vertex $s$ at a cost of $w_{s,c}$. Find the minimum total cost of reaching vertex $t$. You may reach vertex $t$ with any type it supports.\n\n## Input\n\nEach test file contains multiple test cases. The first line contains the number of test cases $T$ ($1 \\le T \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains four integers $n$, $k$, $s$, and $t$ ($2 \\le n \\le 200\\,000$, $1 \\le k \\le 200\\,000$, $1 \\le s,t \\le n$, $s \\ne t$).\n\nThe second line contains $n$ integers $x_1, x_2, \\ldots, x_n$ ($0 \\le x_1  \\lt  x_2  \\lt  \\ldots  \\lt  x_n \\le 10^9$).\n\nThe $i$-th of the next $n$ lines contains an integer $m_i$ ($1 \\le m_i \\le k$), followed by $m_i$ pairs of integers $c_{i,j}$ and $w_{i,j}$ ($1 \\le c_{i,j} \\le k$, $0 \\le w_{i,j} \\le 10^9$). Each pair means that the corresponding vertex $i$ supports type $c_{i,j}$ and that changing to this type there costs $w_{i,j}$. All types listed for one vertex are distinct.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $200\\,000$, the sum of $k$ over all test cases does not exceed $200\\,000$, and the sum of $m_i$ over all vertices and test cases does not exceed $200\\,000$.\n\n## Output\n\nFor each test case, output the minimum total cost of reaching vertex $t$ from vertex $s$. If it is impossible, print a single integer $-1$.\n\n## Note\n\nIn the first test case, changing to type $1$ at vertex $1$ costs $0$. From vertex $1$, move right to vertex $3$, the nearest vertex in that direction that supports type $1$. From vertex $3$, move right to vertex $5$. The transition costs are $0$, $7$, and $13$, respectively, for a total of $20$.\n\nIn the second test case, no type supported by vertex $1$ is also supported by another vertex, so no movement transition from vertex $1$ is available.",
+  "statementZhMd": "有 $n$ 个顶点，编号为 $1,2,\\ldots,n$。顶点 $i$ 的坐标为 $x_i$，其中 $x_1  \\lt  x_2  \\lt  \\ldots  \\lt  x_n$。每个顶点支持 $k$ 种类型中的一个非空子集。一个状态用二元组 $(i,c)$ 表示，其中顶点 $i$ 支持类型 $c$。\n\n从状态 $(i,c)$ 出发，可以进行以下转移：\n\n- 在坐标轴上选择一个方向，移动到该方向上距离顶点 $i$ 最近且支持类型 $c$ 的顶点 $j$。此次转移到达状态 $(j,c)$，代价为 $|x_i-x_j|$。如果不存在这样的顶点，则无法进行此次转移。\n- 将类型从 $c$ 更改为顶点 $i$ 支持的任意类型 $d$。此次转移到达状态 $(i,d)$，代价为 $w_{i,d}$。保持类型 $c$ 不变不需要任何代价。\n\n初始时，你位于顶点 $s$，且没有任何类型。你可以花费 $w_{s,c}$ 的代价，切换为顶点 $s$ 支持的任意类型 $c$。求到达顶点 $t$ 的最小总代价。到达顶点 $t$ 时，可以处于它支持的任意类型。\n\n## 输入格式\n\n每个测试文件包含多组测试数据。第一行包含测试用例数 $T$（$1 \\le T \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含四个整数 $n$、$k$、$s$ 和 $t$（$2 \\le n \\le 200\\,000$，$1 \\le k \\le 200\\,000$，$1 \\le s,t \\le n$，$s \\ne t$）。\n\n第二行包含 $n$ 个整数 $x_1, x_2, \\ldots, x_n$（$0 \\le x_1  \\lt  x_2  \\lt  \\ldots  \\lt  x_n \\le 10^9$）。\n\n接下来的 $n$ 行中，第 $i$ 行包含一个整数 $m_i$（$1 \\le m_i \\le k$），随后是 $m_i$ 对整数 $c_{i,j}$ 和 $w_{i,j}$（$1 \\le c_{i,j} \\le k$，$0 \\le w_{i,j} \\le 10^9$）。每对整数表示对应的顶点 $i$ 支持类型 $c_{i,j}$，且在该顶点切换为此类型的代价为 $w_{i,j}$。同一顶点列出的所有类型互不相同。\n\n保证所有测试数据的 $n$ 之和不超过 $200\\,000$，所有测试数据的 $k$ 之和不超过 $200\\,000$，且所有测试数据中所有顶点的 $m_i$ 之和不超过 $200\\,000$。\n\n## 输出格式\n\n对于每组测试数据，输出从顶点 $s$ 到达顶点 $t$ 的最小总代价。如果无法到达，输出一个整数 $-1$。\n\n## 说明\n\n在第一组测试数据中，在顶点 $1$ 切换为类型 $1$ 的代价为 $0$。从顶点 $1$ 向右移动到顶点 $3$，它是该方向上最近的支持类型 $1$ 的顶点。再从顶点 $3$ 向右移动到顶点 $5$。这些转移的代价分别为 $0$、$7$ 和 $13$，总代价为 $20$。\n\n在第二组测试数据中，顶点 $1$ 支持的任何类型都没有被其他顶点支持，因此无法从顶点 $1$ 进行任何移动转移。",
+  "samples": [
+    {
+      "input": "2\n5 3 1 5\n0 4 7 13 20\n2 1 0 2 3\n2 2 1 3 8\n2 1 2 3 1\n1 2 4\n2 1 5 2 2\n3 2 1 3\n0 5 9\n1 1 0\n1 2 1\n1 2 0\n",
+      "output": "20\n-1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T13:34:13.571Z",
+  "translatedAt": "2026-11-19T13:43:46.677Z",
+  "translateModel": "gpt-6.1-sol"
+}

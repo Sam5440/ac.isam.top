@@ -1,0 +1,32 @@
+{
+  "id": "106687g",
+  "platform": "cf-gyms",
+  "contestId": 106687,
+  "index": "G",
+  "title": "Game of Passing Cards",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106687/problem/G",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "$n$ people numbered $0,1,\\dots,n-1$ sit in a circle. The left neighbor of person $i$ is person $(i-1)\\bmod n$, and the right neighbor is person $(i+1)\\bmod n$. When $n=2$, these two neighbors are the same person.\n\nEach person initially holds one card. Every card is marked with one direction, either `L` or `R`.\n\nBefore any passes are performed, person $0$ receives one additional card marked `R`. This initial reception is not counted as a pass. At this moment, person $0$'s original card is called the **old card**, and the additional card is called the **new card**.\n\nAt every moment, exactly one person holds two cards. For that person, the card held earlier is the old card, and the card received later is the new card.\n\nOne pass is performed as follows:\n\n1. The person holding two cards examines the old card.\n2. If the old card is marked `L`, it is passed to the left neighbor. If it is marked `R`, it is passed to the right neighbor.\n3. The new card is kept. This counts as one pass performed by the current person.\n4. For the recipient, the card already held becomes the old card, and the received card becomes the new card.\n\nAfter exactly $k$ passes, determine the final card configuration and the number of passes performed by each person.\n\n## Input\n\nThe first line contains two integers $n$ and $k$ ($2\\le n\\le18$, $1\\le k\\le10^{18}$), denoting the number of people and the number of passes, respectively.\n\nThe second line contains a string $s$ of length $n$ consisting only of characters `L` and `R`. For each $0\\le i \\lt n$, the character at position $i+1$ is the direction on the card initially held by person $i$.\n\n## Output\n\nPrint three lines.\n\nThe first line must contain an integer $p$ and a character $c$, separated by a space. Here, $p$ is the person holding two cards after all $k$ passes, and $c$ is the direction on that person's new card.\n\nThe second line must contain a string of length $n$. For each $0\\le i \\lt n$, consider the character at position $i+1$. If $i=p$, it is the direction on person $i$'s old card; otherwise, it is the direction on that person's only card.\n\nThe third line must contain $n$ integers. For each $0\\le i \\lt n$, the integer at position $i+1$ is the number of passes performed by person $i$.\n\n## Note\n\nIn the first sample, person $0$ passes the original `R` card to person $1$. Person $1$ then holds two cards, and the received card is the new card.\n\nIn the second sample, every card is marked `R`. The person holding two cards moves one position to the right after every pass, so each person performs exactly two passes.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 1\nRRRRR\n",
+      "output": "1 R\nRRRRR\n1 0 0 0 0\n"
+    },
+    {
+      "input": "5 10\nRRRRR\n",
+      "output": "0 R\nRRRRR\n2 2 2 2 2\n"
+    },
+    {
+      "input": "5 8\nRRLRL\n",
+      "output": "4 R\nRLRLR\n1 2 2 2 1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T13:38:03.061Z"
+}

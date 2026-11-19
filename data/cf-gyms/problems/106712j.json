@@ -1,0 +1,26 @@
+{
+  "id": "106712j",
+  "platform": "cf-gyms",
+  "contestId": 106712,
+  "index": "J",
+  "title": "The Big Ticket",
+  "titleZh": "重磅球票",
+  "url": "https://codeforces.com/gym/106712/problem/J",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "The biggest football game of the year is almost here, and exactly one ticket remains. There are $n$ people hoping to receive it.\n\nThe organizer assigns each person a positive **relative weight**. If the relative weights are $w_1,w_2,\\ldots,w_n$, then the probability that person $i$ receives the ticket is\n\n$$\\frac{w_i}{\\sum_{j=1}^{n}w_j}.$$\n\nRather than storing the weights directly, the organizer stores $n-1$ ratios $a_1,\\ldots,a_{n-1}$. For each $1\\le i \\lt n$, person $i$ is $a_i$ times as likely to receive the ticket as person $i+1$. Equivalently, their weights satisfy\n\n$$w_i=a_iw_{i+1}.$$\n\nThe ratios change over time. You must process $q$ queries:\n\n- 1 i x: Set $a_i$ to $x$.\n- 2 i: Find the probability that person $i$ receives the ticket.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($2\\le n\\le 2\\cdot10^5$, $1\\le q\\le2\\cdot10^5$) — the number of people and the number of queries, respectively.\n\nThe second line contains $n-1$ integers $a_1,a_2,\\ldots,a_{n-1}$ ($1\\le a_i \\lt 10^9+7$) — the initial likelihood ratios between consecutive people.\n\nEach of the next $q$ lines describes a query in one of the following formats:\n\n- 1 i x ($1\\le i \\lt n$, $1\\le x \\lt 10^9+7$) — Set $a_i$ to $x$.\n- 2 i ($1\\le i\\le n$) — Find the probability that person $i$ receives the ticket.\n\n## Output\n\nFor each query of the second form, let the requested probability be $\\frac{p}{r}$. If $r$ is divisible by $10^9+7$, print $\\texttt{-1}$. Otherwise, print\n\n$$p\\cdot r^{-1}\\bmod (10^9+7),$$\n\nwhere $r^{-1}$ is the modular multiplicative inverse of $r$ modulo $10^9+7$.\n\n## Note\n\nInitially, choose $w_4=1$. Then the relative weights are $(24,12,4,1)$ and their sum is $41$. Thus, the first two queried probabilities are $\\frac{24}{41}$ and $\\frac{1}{41}$.\n\nAfter setting $a_2=1$, the weights become $(8,4,4,1)$ with sum $17$. The final two queried probabilities are $\\frac{8}{17}$ and $\\frac{4}{17}$.",
+  "statementZhMd": "一年一度最盛大的足球比赛即将到来，而球票恰好只剩一张。有 $n$ 个人希望得到这张球票。\n\n主办方为每个人分配一个正的**相对权重**。若相对权重分别为 $w_1,w_2,\\ldots,w_n$，则第 $i$ 个人获得球票的概率为\n\n$$\\frac{w_i}{\\sum_{j=1}^{n}w_j}.$$\n\n主办方并不直接存储这些权重，而是存储 $n-1$ 个比值 $a_1,\\ldots,a_{n-1}$。对于每个 $1\\le i \\lt n$，第 $i$ 个人获得球票的概率是第 $i+1$ 个人的 $a_i$ 倍。等价地，他们的权重满足\n\n$$w_i=a_iw_{i+1}.$$\n\n这些比值会随时间变化。你需要处理 $q$ 次查询：\n\n- 1 i x：将 $a_i$ 设为 $x$。\n- 2 i：求第 $i$ 个人获得球票的概率。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$2\\le n\\le 2\\cdot10^5$, $1\\le q\\le2\\cdot10^5$），分别表示人数和查询次数。\n\n第二行包含 $n-1$ 个整数 $a_1,a_2,\\ldots,a_{n-1}$（$1\\le a_i \\lt 10^9+7$），表示相邻两个人获得球票的概率的初始比值。\n\n接下来的 $q$ 行，每行以下列格式之一描述一次查询：\n\n- 1 i x（$1\\le i \\lt n$, $1\\le x \\lt 10^9+7$）——将 $a_i$ 设为 $x$。\n- 2 i（$1\\le i\\le n$）——求第 $i$ 个人获得球票的概率。\n\n## 输出格式\n\n对于每个第二种形式的查询，设所求概率为 $\\frac{p}{r}$。如果 $r$ 能被 $10^9+7$ 整除，输出 $\\texttt{-1}$。否则，输出\n\n$$p\\cdot r^{-1}\\bmod (10^9+7),$$\n\n其中，$r^{-1}$ 是 $r$ 在模 $10^9+7$ 意义下的乘法逆元。\n\n## 说明\n\n初始时，取 $w_4=1$。此时相对权重为 $(24,12,4,1)$，权重之和为 $41$。因此，前两次查询所求的概率分别为 $\\frac{24}{41}$ 和 $\\frac{1}{41}$。\n\n将 $a_2=1$ 后，权重变为 $(8,4,4,1)$，权重之和为 $17$。最后两次查询所求的概率分别为 $\\frac{8}{17}$ 和 $\\frac{4}{17}$。",
+  "samples": [
+    {
+      "input": "4 5\n2 3 4\n2 1\n2 4\n1 2 1\n2 1\n2 3\n",
+      "output": "804878055\n658536590\n823529418\n411764709\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T13:30:20.703Z",
+  "translatedAt": "2026-11-19T13:42:55.339Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "106669g",
+  "platform": "cf-gyms",
+  "contestId": 106669,
+  "index": "G",
+  "title": "ZigZigZigXor",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106669/problem/G",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Sherlock Holmes has determined that the Grand Conspiracy Signal ($\\mathcal{G}$) for any group of $k$ suspects chosen from the range $[l, r]$ is not merely the xor of their codes, but a complex interaction of their indices' internal bitwise structures.\n\nFormal Definition Given an array $a$ of size $n$, and $q$ operations (updates or queries), define the Grand Conspiracy Signal for a range $[l, r]$ and subset size $k$ as:\n\n$$\\mathcal{G}(l, r, k) = = \\bigoplus_{l \\le i_1  \\lt  i_2  \\lt  \\dots  \\lt  i_k \\le r} \\left( a_{\\left( \\bigoplus_{j_1 \\subseteq i_1} j_1 \\right)} \\oplus a_{\\left( \\bigoplus_{j_2 \\subseteq i_2} j_2 \\right)} \\oplus \\dots \\oplus a_{\\left( \\bigoplus_{j_k \\subseteq i_k} j_k \\right)} \\right)$$\n\n![image](https://espresso.codeforces.com/8654bc9e76528e22147234c80fcfb31ff5ba993c.png)\n\nWhere:\n\n$\\bigoplus$ denotes the bitwise XOR operation.\n\n$j \\subseteq i_m$ denotes that $j$ is a bitwise submask of $i_m$.\n\nThe outermost XOR sum is taken over all possible combinations of $k$ distinct indices within the interval $[l, r]$.\n\nOperations :\n\n**1. Update($pos, val$):** Change the suspect's cipher code at index $pos$ such that $a_{pos} = val$.\n\n**2. Query($l, r, k$):** Calculate the current value of $\\mathcal{G}(l, r, k)$.\n\n## Input\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n, q \\le 2 \\cdot 10^5$) — the number of suspects and the number of operations.\n\nThe second line contains $n$ integers $a_0, a_1, \\dots, a_{n-1}$ ($0 \\le a_i  \\lt  2^{30}$) — the Cipher Code of each suspect.\n\nEach of the next $q$ lines describes an operation:\n\n• $1\\ \\text{pos}\\ \\text{val}$ — Watson updates the evidence. Set the Cipher Code of suspect $\\text{pos}$ to $\\text{val}$ ($0 \\le pos \\le n-1, 0 \\le val  \\lt  2^{30}$).\n\n• $2\\ l\\ r\\ k$ — Holmes asks for the Grand Conspiracy Signal $\\mathcal{G}(l, r, k) .$ ($0 \\le l \\le r \\le n-1$ , $ 2 \\le k \\le r-l+1 $ ).\n\n## Output\n\nFor each operation of type 2, output a single integer — the Grand Conspiracy Signal .",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "5 4\n1 2 3 4 5\n2 1 4 2\n2 2 4 2\n1 2 3\n2 1 4 2\n",
+      "output": "5\n0\n5\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T13:40:02.188Z"
+}

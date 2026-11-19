@@ -1,0 +1,26 @@
+{
+  "id": "106701c",
+  "platform": "cf-gyms",
+  "contestId": 106701,
+  "index": "C",
+  "title": "Cut Tree",
+  "titleZh": "切树",
+  "url": "https://codeforces.com/gym/106701/problem/C",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 10000,
+  "memoryLimitMb": 512,
+  "statementMd": "You are given a tree with $n$ vertices. Vertex $i$ has a weight $z_i$. The $n-1$ edges are numbered from $1$ to $n-1$ in the order they are given in the input.\n\nYou have to answer $q$ independent queries. A query is given by three integers $l$, $r$, $f$ with $1 \\le l \\le f \\le r \\le n-1$. For this query, build a graph on the $n$ vertices that contains exactly the edges whose index lies in $[l, r]$, **except** that edge number $f$ is deleted. Formally, the edge set is $\\{\\, i : l \\le i \\le r,\\ i \\neq f \\,\\}$.\n\nThis graph is a forest. The weight of a connected component is the sum of the weights of the vertices it contains (an isolated vertex forms a component of weight equal to its own weight). For each query output the maximum component weight.\n\n## Input\n\nThe first line contains one integer $T$ ($1 \\le T \\le 10^5$), denoting the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains one integer $n$ ($2 \\le n \\le 2 \\times 10^5$).\n\nEach of the next $n-1$ lines contains two integers $u_i$ and $v_i$ ($1 \\le u_i, v_i \\le n$, $u_i \\neq v_i$), denoting the two endpoints of edge $i$.\n\nThe next line contains $n$ integers $z_1, z_2, \\dots, z_n$ ($1 \\le z_i \\le 100$), denoting the vertex weights.\n\nThe next line contains one integer $q$ ($1 \\le q \\le 2 \\times 10^5$), denoting the number of queries.\n\nEach of the next $q$ lines contains three integers $l$, $r$, $f$ ($1 \\le l \\le f \\le r \\le n-1$) describing one query.\n\nIt is guaranteed that, within a single test file, the sum of $n$ over all test cases does not exceed $2 \\times 10^5$, and the sum of $q$ over all test cases does not exceed $2 \\times 10^5$.\n\n## Output\n\nFor each test case print $q$ lines. The $i$-th of them must contain a single integer, denoting the answer to the $i$-th query of that test case.\n\n## Note\n\nIn the first test case the tree is a path $1-2-3-4-5$; edge $i$ connects $i$ and $i+1$, and the weights are $10, 20, 30, 40, 50$.\n\n- Query $(1,4,2)$: keep edges $\\{1,3,4\\}$. The component $\\{1,2\\}$ has weight $30$, and the component $\\{3,4,5\\}$ has weight $120$; therefore, the maximum component weight is $120$.\n- Query $(2,4,4)$: keep edges $\\{2,3\\}$. The components $\\{2,3,4\\}$, $\\{1\\}$, and $\\{5\\}$ have weights $90$, $10$, and $50$, respectively; therefore, the maximum component weight is $90$.\n- Query $(1,1,1)$: no edge is kept, every vertex is isolated; the answer is the largest weight $50$.\n\nIn the second test case the only edge is deleted by the query, so both vertices are isolated and the answer is $\\max(7,5) = 7$.",
+  "statementZhMd": "给定一棵有 $n$ 个顶点的树。顶点 $i$ 的权值为 $z_i$。这棵树的 $n-1$ 条边按照输入顺序依次编号为 $1$ 到 $n-1$。\n\n你需要回答 $q$ 个相互独立的询问。每个询问由三个整数 $l$、$r$、$f$ 给出，满足 $1 \\le l \\le f \\le r \\le n-1$。对于该询问，在这 $n$ 个顶点上构建一个图，恰好保留编号位于 $[l, r]$ 内的边，**但删除**编号为 $f$ 的边。形式化地，边集为 $\\{\\, i : l \\le i \\le r,\\ i \\neq f \\,\\}$。\n\n这个图是一片森林。一个连通分量的权值为其中所有顶点的权值之和（孤立顶点单独构成一个连通分量，其权值等于该顶点自身的权值）。对于每个询问，输出所有连通分量中的最大权值。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\le T \\le 10^5$），表示测试用例的数量。接下来是各个测试用例的描述。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 2 \\times 10^5$）。\n\n接下来的 $n-1$ 行，每行包含两个整数 $u_i$ 和 $v_i$（$1 \\le u_i, v_i \\le n$，$u_i \\neq v_i$），表示第 $i$ 条边的两个端点。\n\n接下来一行包含 $n$ 个整数 $z_1, z_2, \\dots, z_n$（$1 \\le z_i \\le 100$），表示各个顶点的权值。\n\n接下来一行包含一个整数 $q$（$1 \\le q \\le 2 \\times 10^5$），表示询问的数量。\n\n接下来的 $q$ 行，每行包含三个整数 $l$、$r$、$f$（$1 \\le l \\le f \\le r \\le n-1$），描述一个询问。\n\n保证在单个测试文件中，所有测试用例的 $n$ 之和不超过 $2 \\times 10^5$，所有测试用例的 $q$ 之和不超过 $2 \\times 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出 $q$ 行。其中第 $i$ 行应包含一个整数，表示该测试用例中第 $i$ 个询问的答案。\n\n## 说明\n\n在第一个测试用例中，这棵树是一条路径 $1-2-3-4-5$；第 $i$ 条边连接顶点 $i$ 和 $i+1$，各顶点的权值依次为 $10, 20, 30, 40, 50$。\n\n- 询问 $(1,4,2)$：保留边 $\\{1,3,4\\}$。连通分量 $\\{1,2\\}$ 的权值为 $30$，连通分量 $\\{3,4,5\\}$ 的权值为 $120$；因此，连通分量的最大权值为 $120$。\n- 询问 $(2,4,4)$：保留边 $\\{2,3\\}$。连通分量 $\\{2,3,4\\}$、$\\{1\\}$ 和 $\\{5\\}$ 的权值分别为 $90$、$10$ 和 $50$；因此，连通分量的最大权值为 $90$。\n- 询问 $(1,1,1)$：不保留任何边，每个顶点都是孤立顶点；答案为最大的顶点权值 $50$。\n\n在第二个测试用例中，唯一的一条边被该询问删除，因此两个顶点都是孤立顶点，答案为 $\\max(7,5) = 7$。",
+  "samples": [
+    {
+      "input": "2\n5\n1 2\n2 3\n3 4\n4 5\n10 20 30 40 50\n3\n1 4 2\n2 4 4\n1 1 1\n2\n1 2\n7 5\n1\n1 1 1\n",
+      "output": "120\n90\n50\n7\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T13:35:40.474Z",
+  "translatedAt": "2026-11-19T13:44:33.096Z",
+  "translateModel": "gpt-6.1-sol"
+}

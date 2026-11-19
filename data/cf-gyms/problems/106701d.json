@@ -1,0 +1,38 @@
+{
+  "id": "106701d",
+  "platform": "cf-gyms",
+  "contestId": 106701,
+  "index": "D",
+  "title": "Divide and Conquer",
+  "titleZh": "分治",
+  "url": "https://codeforces.com/gym/106701/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "Segment tree is a data structure based on the divide-and-conquer algorithm, but this has nothing to do with this problem. It's just to make the title start with D.\n\nFor this problem, a segment tree is a perfect binary tree. A segment tree of depth $n$ has exactly $2^{n+1}-1$ nodes. Note that the root has depth $0$, so a segment tree of depth $n$ has $n+1$ levels.\n\nTo make the structure of a segment tree easier to describe, we assign indices to its nodes. The root is assigned index $1$. Every non-leaf node is assigned an index $k$ satisfying $1\\leq k \\lt 2^n$. It has exactly two children: its left child has index $2k$, and its right child has index $2k+1$.\n\nEach node of a segment tree also has a value. Let $a_k$ denote the value of node $k$. For every non-leaf node $k$, its value $a_k$ must be the maximum of the values of its two children; that is,\n\n$$ a_k=\\max\\{a_{2k},a_{2k+1}\\}. $$\n\nThe leaf nodes have indices $2^n,2^n+1,\\ldots,2^{n+1}-1$, and their values must form a permutation of $1,2,\\ldots,2^n$. In other words, the elements of the sequence $a_{2^n},a_{2^n+1},\\ldots,a_{2^{n+1}-1}$ must be pairwise distinct integers, and $1\\leq a_{2^n+i}\\leq 2^n$ must hold for every $0\\leq i \\lt 2^n$.\n\nThere are now $q$ constraints. The $i$-th constraint is of the form $(u_i,x_i)$. Here, $u_i$ is a node index and $x_i$ is a specified value; the constraint requires the value $a_{u_i}$ of node $u_i$ to be equal to $x_i$. Calculate the number of segment trees satisfying all $q$ constraints, or equivalently, the number of distinct valid sequences $a_1,a_2,\\ldots,a_{2^{n+1}-1}$. Output the answer modulo $998244353$.\n\n## Input\n\nThe first line contains two integers $n$ $(1\\le n\\le 18)$ and $q$ $(0\\le q\\le 2^{n+1}-1)$.\n\nEach of the next $q$ lines contains two integers $u_i$ $(1\\le u_i \\lt 2^{n+1})$ and $x_i$ $(1\\le x_i\\le 2^n)$, meaning that the value $a_{u_i}$ of node $u_i$ is required to be equal to $x_i$.\n\n## Output\n\nOutput one integer: the number of valid leaf permutations modulo $998244353$.\n\n## Note\n\nIn Example 1, the four valid segment trees are:\n\n$$ \\begin{aligned} \\begin{array}{ccccccccccc} &&&&&4&&&&&\\\\[-0.2em] &&&\\diagup&&&&\\diagdown&&&\\\\[-0.2em] &&2&&&&&&4&&\\\\[-0.2em] &\\diagup&&\\diagdown&&&&\\diagup&&\\diagdown&\\\\[-0.2em] 1&&&&2&&3&&&&4\\\\ &&&&&\\text{(1)}&&&&& \\end{array} &\\qquad\\qquad \\begin{array}{ccccccccccc} &&&&&4&&&&&\\\\[-0.2em] &&&\\diagup&&&&\\diagdown&&&\\\\[-0.2em] &&2&&&&&&4&&\\\\[-0.2em] &\\diagup&&\\diagdown&&&&\\diagup&&\\diagdown&\\\\[-0.2em] 1&&&&2&&4&&&&3\\\\ &&&&&\\text{(2)}&&&&& \\end{array} \\\\[2em] \\begin{array}{ccccccccccc} &&&&&4&&&&&\\\\[-0.2em] &&&\\diagup&&&&\\diagdown&&&\\\\[-0.2em] &&2&&&&&&4&&\\\\[-0.2em] &\\diagup&&\\diagdown&&&&\\diagup&&\\diagdown&\\\\[-0.2em] 2&&&&1&&3&&&&4\\\\ &&&&&\\text{(3)}&&&&& \\end{array} &\\qquad\\qquad \\begin{array}{ccccccccccc} &&&&&4&&&&&\\\\[-0.2em] &&&\\diagup&&&&\\diagdown&&&\\\\[-0.2em] &&2&&&&&&4&&\\\\[-0.2em] &\\diagup&&\\diagdown&&&&\\diagup&&\\diagdown&\\\\[-0.2em] 2&&&&1&&4&&&&3\\\\ &&&&&\\text{(4)}&&&&& \\end{array} \\end{aligned} $$\n\nThe corresponding arrays are:\n\n$$ \\begin{aligned} (a_1,a_2,\\ldots,a_7)&=(4,2,4,1,2,3,4) &&\\text{in (1)}\\\\ (a_1,a_2,\\ldots,a_7)&=(4,2,4,1,2,4,3) &&\\text{in (2)}\\\\ (a_1,a_2,\\ldots,a_7)&=(4,2,4,2,1,3,4) &&\\text{in (3)}\\\\ (a_1,a_2,\\ldots,a_7)&=(4,2,4,2,1,4,3) &&\\text{in (4)} \\end{aligned} $$\n\nTherefore, the answer is $4$.\n\nIn Example 2, the root always has value $4$, since $4$ is the maximum leaf value. The condition $a_2=4$ requires the leaf with value $4$ to be either node $4$ or node $5$. After choosing its position, the other three values can be placed arbitrarily, giving $2\\times 3!=12$ valid leaf permutations.\n\nIn Example 3, $a_2=\\max\\{a_4,a_5\\}$ must be at least $a_4=4$, so it cannot be equal to $3$. Thus, no valid leaf permutation exists.\n\nIn Example 4, the two constraints require $a_1$ to be both $2$ and $3$, which is impossible.",
+  "statementZhMd": "线段树是一种基于分治算法的数据结构，不过这与本题无关。这里只是为了让题名以 D 开头。\n\n在本题中，线段树是一棵满二叉树。深度为 $n$ 的线段树恰好有 $2^{n+1}-1$ 个节点。注意，根节点的深度为 $0$，因此深度为 $n$ 的线段树共有 $n+1$ 层。\n\n为了便于描述线段树的结构，我们为其节点编号。根节点的编号为 $1$。每个非叶节点的编号 $k$ 满足 $1\\leq k \\lt 2^n$。它恰好有两个子节点：左子节点的编号为 $2k$，右子节点的编号为 $2k+1$。\n\n线段树的每个节点还有一个值。用 $a_k$ 表示节点 $k$ 的值。对于每个非叶节点 $k$，其值 $a_k$ 必须等于两个子节点的值的最大值，即\n\n$$ a_k=\\max\\{a_{2k},a_{2k+1}\\}. $$\n\n叶节点的编号为 $2^n,2^n+1,\\ldots,2^{n+1}-1$，它们的值必须构成 $1,2,\\ldots,2^n$ 的一个排列。换言之，序列 $a_{2^n},a_{2^n+1},\\ldots,a_{2^{n+1}-1}$ 中的元素必须是两两不同的整数，并且对于每个 $0\\leq i \\lt 2^n$，都必须满足 $1\\leq a_{2^n+i}\\leq 2^n$。\n\n现在有 $q$ 个约束。第 $i$ 个约束的形式为 $(u_i,x_i)$。其中，$u_i$ 是节点编号，$x_i$ 是指定的值；该约束要求节点 $u_i$ 的值 $a_{u_i}$ 等于 $x_i$。请计算满足全部 $q$ 个约束的线段树数量，等价地，也就是不同的合法序列 $a_1,a_2,\\ldots,a_{2^{n+1}-1}$ 的数量。答案对 $998244353$ 取模。\n\n## 输入格式\n\n第一行包含两个整数 $n$ $(1\\le n\\le 18)$ 和 $q$ $(0\\le q\\le 2^{n+1}-1)$。\n\n接下来 $q$ 行，每行包含两个整数 $u_i$ $(1\\le u_i \\lt 2^{n+1})$ 和 $x_i$ $(1\\le x_i\\le 2^n)$，表示要求节点 $u_i$ 的值 $a_{u_i}$ 等于 $x_i$。\n\n## 输出格式\n\n输出一个整数，表示合法的叶节点值排列数量对 $998244353$ 取模的结果。\n\n## 说明\n\n在样例 1 中，四棵合法的线段树如下：\n\n$$ \\begin{aligned} \\begin{array}{ccccccccccc} &&&&&4&&&&&\\\\[-0.2em] &&&\\diagup&&&&\\diagdown&&&\\\\[-0.2em] &&2&&&&&&4&&\\\\[-0.2em] &\\diagup&&\\diagdown&&&&\\diagup&&\\diagdown&\\\\[-0.2em] 1&&&&2&&3&&&&4\\\\ &&&&&\\text{(1)}&&&&& \\end{array} &\\qquad\\qquad \\begin{array}{ccccccccccc} &&&&&4&&&&&\\\\[-0.2em] &&&\\diagup&&&&\\diagdown&&&\\\\[-0.2em] &&2&&&&&&4&&\\\\[-0.2em] &\\diagup&&\\diagdown&&&&\\diagup&&\\diagdown&\\\\[-0.2em] 1&&&&2&&4&&&&3\\\\ &&&&&\\text{(2)}&&&&& \\end{array} \\\\[2em] \\begin{array}{ccccccccccc} &&&&&4&&&&&\\\\[-0.2em] &&&\\diagup&&&&\\diagdown&&&\\\\[-0.2em] &&2&&&&&&4&&\\\\[-0.2em] &\\diagup&&\\diagdown&&&&\\diagup&&\\diagdown&\\\\[-0.2em] 2&&&&1&&3&&&&4\\\\ &&&&&\\text{(3)}&&&&& \\end{array} &\\qquad\\qquad \\begin{array}{ccccccccccc} &&&&&4&&&&&\\\\[-0.2em] &&&\\diagup&&&&\\diagdown&&&\\\\[-0.2em] &&2&&&&&&4&&\\\\[-0.2em] &\\diagup&&\\diagdown&&&&\\diagup&&\\diagdown&\\\\[-0.2em] 2&&&&1&&4&&&&3\\\\ &&&&&\\text{(4)}&&&&& \\end{array} \\end{aligned} $$\n\n对应的数组为：\n\n$$ \\begin{aligned} (a_1,a_2,\\ldots,a_7)&=(4,2,4,1,2,3,4) &&\\text{in (1)}\\\\ (a_1,a_2,\\ldots,a_7)&=(4,2,4,1,2,4,3) &&\\text{in (2)}\\\\ (a_1,a_2,\\ldots,a_7)&=(4,2,4,2,1,3,4) &&\\text{in (3)}\\\\ (a_1,a_2,\\ldots,a_7)&=(4,2,4,2,1,4,3) &&\\text{in (4)} \\end{aligned} $$\n\n因此，答案为 $4$。\n\n在样例 2 中，由于叶节点值的最大值为 $4$，根节点的值始终为 $4$。条件 $a_2=4$ 要求值为 $4$ 的叶节点只能是节点 $4$ 或节点 $5$。选定其位置后，其余三个值可以任意放置，因此共有 $2\\times 3!=12$ 种合法的叶节点值排列。\n\n在样例 3 中，$a_2=\\max\\{a_4,a_5\\}$ 必须至少为 $a_4=4$，因此不可能等于 $3$。所以不存在合法的叶节点值排列。\n\n在样例 4 中，两个约束要求 $a_1$ 同时等于 $2$ 和 $3$，这是不可能的。",
+  "samples": [
+    {
+      "input": "2 1\n2 2\n",
+      "output": "4\n"
+    },
+    {
+      "input": "2 2\n1 4\n2 4\n",
+      "output": "12\n"
+    },
+    {
+      "input": "2 2\n2 3\n4 4\n",
+      "output": "0\n"
+    },
+    {
+      "input": "4 2\n1 2\n1 3\n",
+      "output": "0\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T13:35:47.690Z",
+  "translatedAt": "2026-11-19T13:44:58.405Z",
+  "translateModel": "gpt-6.1-sol"
+}

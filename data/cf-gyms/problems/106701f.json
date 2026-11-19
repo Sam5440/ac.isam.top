@@ -1,0 +1,24 @@
+{
+  "id": "106701f",
+  "platform": "cf-gyms",
+  "contestId": 106701,
+  "index": "F",
+  "title": "Folding Game of Ohto Ai",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106701/problem/F",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 512,
+  "statementMd": "Ohto Ai has an unrooted tree with $N$ vertices. Let the current tree be $G=(V,E)$.\n\nA **path** in a tree is a sequence of distinct vertices $v_1,v_2,\\ldots,v_k$ such that $\\{v_i,v_{i+1}\\}\\in E$ for every $1\\le i \\lt k$.\n\nA **diameter** of a tree is a path containing the maximum possible number of vertices.\n\nWhile $|V| \\gt 1$, Ohto Ai may perform the following **fold operation**: Choose any diameter $d_1,d_2,\\ldots,d_k$ of the current tree, listed in order from one endpoint to the other.\n\nDefine a function $f:V\\to V$ by:\n\n$$ f(v)= \\begin{cases} d_{\\min\\{i,k-i+1\\}}, & \\text{if }v=d_i\\text{ for some }1\\le i\\le k\\\\ v, & \\text{otherwise} \\end{cases} $$\n\nThe tree after the fold is $G'=(V',E')$, where:\n\n$$ \\begin{aligned} V'&=\\{f(v)\\mid v\\in V\\} \\\\ E'&= \\bigl\\{ \\{f(u),f(v)\\} \\mid \\{u,v\\}\\in E,\\ f(u)\\ne f(v) \\bigr\\} \\end{aligned} $$\n\nIn other words, vertices at symmetric positions on the chosen diameter are merged. Edges whose endpoints are merged into the same vertex disappear, and if multiple edges become edges between the same pair of vertices, only one copy is kept.\n\nIt can be shown that $G'$ is still a tree.\n\nOhto Ai repeatedly performs fold operations until $|V|=1$. Find the maximum possible number of operations.\n\n## Input\n\nThe first line contains an integer $T$ ($1 \\leq T \\leq 3\\times 10^3$), denoting the number of test cases.\n\nFor each test case, the first line contains an integer $N$ ($1 \\leq N \\leq 5\\times 10^4$), denoting the number of vertices in the tree.\n\nThe next $N-1$ lines each contain two integers $x,y$ ($1 \\leq x,y \\leq N$, $x\\neq y$), denoting an edge of the tree.\n\nIt is guaranteed that the sum of $N$ over all test cases does not exceed $5\\times 10^4$.\n\n## Output\n\nFor each test case, output one line containing an integer: the maximum number of fold operations that can be performed on the tree.\n\n## Note\n\nFor the first test case, the tree with $1$ vertex has no fold operation that can be performed, so the answer is $0$.\n\nFor the second test case, one optimal folding sequence is shown below:\n\n![image](https://espresso.codeforces.com/9ca4538e8b2ee1db41cc9b396db93fe05cdcce2e.png)\n\nFor the third test case, it can be proven that at most $7$ fold operations can be performed, so the answer is $7$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n1\n5\n1 2\n1 3\n1 4\n4 5\n13\n1 2\n2 3\n3 4\n2 5\n5 6\n5 7\n1 8\n8 9\n9 10\n8 11\n11 12\n11 13\n",
+      "output": "0\n3\n7\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T13:36:02.564Z"
+}
