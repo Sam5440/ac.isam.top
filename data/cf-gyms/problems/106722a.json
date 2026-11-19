@@ -1,0 +1,26 @@
+{
+  "id": "106722a",
+  "platform": "cf-gyms",
+  "contestId": 106722,
+  "index": "A",
+  "title": "Absolute Winnema",
+  "titleZh": "绝对赢家",
+  "url": "https://codeforces.com/gym/106722/problem/A",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This problem has nothing to do with problem F**\n\n![image](https://espresso.codeforces.com/1b0612e6126fafd65dc362ad633d2cbb983daf25.png)\n\nDanna has N friends, numbered from $1$ to $N$ in a fixed line order. She wants to give $X_i$ candies to the $i$-th friend ($1 \\le i \\le N$).\n\nA friend $i$ is defined as an \"Absolute Winner\" if the number of candies they receive $X_i$ is strictly greater than the sum of all candies given to every friend standing before them in line (i.e., $X_i  \\gt  \\sum_{k=1}^{i-1} X_k$). Note that by definition, the 1st friend ($i = 1$) is always an Absolute Winner since the sum of candies before them is 0, so $X_1  \\gt  0$.\n\nHowever, some friends are very picky. For each friend $i$, you are given a requirement $A_i$:\n\n1. If $A_i = -1$, friend $i$ is open to receiving any positive integer number of candies.\n\n2. If $A_i  \\gt  0$, friend $i$ demands to receive exactly $A_i$ candies (i.e., $X_i = A_i$).\n\nYour task is to determine whether Danna can distribute positive integer amounts of candies $(X_1, X_2, \\dots, X_N)$ such that:\n\n1. Every friend $i$ is an Absolute Winner ($X_i  \\gt  \\sum_{k=1}^{i-1} X_k$).\n\n2. Every picky friend's requirement is satisfied ($X_i = A_i$ whenever $A_i \\neq -1$).\n\n3. $X_i$ is a positive integer ($1 \\le X_i \\le 10^9$) for all $1 \\le i \\le N$.\n\nIf it is possible to satisfy all conditions, print \"Yes\" followed by any valid assignment of candies $X_1, X_2, \\dots, X_N$. Otherwise, print \"No\".\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 2 \\cdot 10^4$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of friends.\n\nThe second line of each test case contains $n$ space-separated integers $A_1, A_2, \\dots, A_n$ ($A_i = -1$ or $1 \\le A_i \\le 10^9$) — representing the requirement for the $i$-th friend.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case:\n\n- Print \"No\" on a single line if it is impossible to satisfy all conditions.\n- Otherwise, print \"Yes\" on the first line, and on the second line print $n$ space-separated integers $X_1, X_2, \\dots, X_n$ ($1 \\le X_i \\le 10^9$) representing a valid distribution of candies.",
+  "statementZhMd": "**本题与 F 题无关**\n\n![image](https://espresso.codeforces.com/1b0612e6126fafd65dc362ad633d2cbb983daf25.png)\n\nDanna 有 N 位朋友，按固定顺序排成一列，编号从 $1$ 到 $N$。她想给第 $i$ 位朋友 $X_i$ 颗糖果（$1 \\le i \\le N$）。\n\n如果第 $i$ 位朋友收到的糖果数 $X_i$ 严格大于排在其前面的所有朋友收到的糖果总数（即 $X_i  \\gt  \\sum_{k=1}^{i-1} X_k$），则称这位朋友为“绝对赢家”。注意，根据定义，第 1 位朋友（$i = 1$）总是绝对赢家，因为其前面的糖果总数为 0，因此 $X_1  \\gt  0$。\n\n然而，有些朋友非常挑剔。对于每位朋友 $i$，给定其要求 $A_i$：\n\n1. 如果 $A_i = -1$，则第 $i$ 位朋友可以接受任意正整数颗糖果。\n\n2. 如果 $A_i  \\gt  0$，则第 $i$ 位朋友要求恰好收到 $A_i$ 颗糖果（即 $X_i = A_i$）。\n\n你的任务是判断 Danna 能否分配正整数颗糖果 $(X_1, X_2, \\dots, X_N)$，使得：\n\n1. 每位朋友 $i$ 都是绝对赢家（$X_i  \\gt  \\sum_{k=1}^{i-1} X_k$）。\n\n2. 每位挑剔的朋友的要求都得到满足（当 $A_i \\neq -1$ 时，$X_i = A_i$）。\n\n3. 对所有 $1 \\le i \\le N$，$X_i$ 都是正整数，且满足 $1 \\le X_i \\le 10^9$。\n\n如果可以满足所有条件，输出 \"Yes\"，然后输出任意一组合法的糖果分配方案 $X_1, X_2, \\dots, X_N$。否则，输出 \"No\"。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 2 \\cdot 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——朋友的数量。\n\n每个测试用例的第二行包含 $n$ 个以空格分隔的整数 $A_1, A_2, \\dots, A_n$（$A_i = -1$ 或 $1 \\le A_i \\le 10^9$）——表示第 $i$ 位朋友的要求。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每个测试用例：\n\n- 如果无法满足所有条件，在单独一行输出 \"No\"。\n- 否则，第一行输出 \"Yes\"，第二行输出 $n$ 个以空格分隔的整数 $X_1, X_2, \\dots, X_n$（$1 \\le X_i \\le 10^9$），表示一种合法的糖果分配方案。",
+  "samples": [
+    {
+      "input": "5\n1\n1989\n4\n-1 -1 -1 -1\n10\n-1 -1 -1 -1 -1 -1 -1 -1 -1 1\n2\n1 1\n2\n999999999 -1\n",
+      "output": "YES\n1989\nYES\n10 12 25 1000\nNO\nNO\nYES\n999999999 1000000000\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T22:18:51.907Z",
+  "translatedAt": "2026-11-19T22:28:04.816Z",
+  "translateModel": "gpt-6.1-sol"
+}

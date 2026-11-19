@@ -4,7 +4,7 @@
   "contestId": 106701,
   "index": "K",
   "title": "K-MEX",
-  "titleZh": null,
+  "titleZh": "K-最小未出现非负整数",
   "url": "https://codeforces.com/gym/106701/problem/K",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 512,
   "statementMd": "Let $a$ be an array of length $n$. Define $\\operatorname{mex}(a)$ as the smallest non-negative integer that does not appear in $a$. For example:\n\n- $\\operatorname{mex}([4, 0, 2, 1]) = 3$\n- $\\operatorname{mex}([-2, -4, 3]) = 0$\n\nDefine a $k$-transformation as follows: for each index $i$ ($1 \\leq i \\leq n$), independently choose to either keep $a_i$ unchanged or replace it with $k - a_i$. After all choices are made, we obtain a new array $a'$.\n\nDefine $k$-$\\operatorname{mex}(a)$ as the maximum possible value of $\\operatorname{mex}(a')$ among all arrays $a'$ that can be obtained from $a$ via a $k$-transformation.\n\nYou must answer $q$ queries. Each query provides a non-negative integer $k$; compute $k$-$\\operatorname{mex}(a)$ for each query.\n\nTo reduce the output size, you are only required to output the bitwise XOR (exclusive-OR) of the answers over all $q$ queries.\n\n## Input\n\nThe first line contains a single integer $T$ ($1 \\leq T \\leq 10^3$), denoting the number of test cases.\n\nFor each test case:\n\n- The first line contains a single positive integer $n$ ($1 \\leq n \\leq 5 \\times 10^3$), denoting the length of the array.\n- The second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($0 \\leq a_i \\leq 10^9$), denoting the initial elements of array $a$.\n- The next line contains a single positive integer $q$ ($1 \\leq q \\leq 5 \\times 10^5$), denoting the number of queries.\n- Each of the next $q$ lines contains a single non-negative integer $k$ ($0 \\leq k \\leq 10^9$), denoting you must compute $k$-$\\operatorname{mex}(a)$ for this $k$.\n\nIt is guaranteed that $\\sum n \\leq 5 \\times 10^3$ and $\\sum q \\leq 5 \\times 10^5$ across all test cases in one test file.\n\n## Output\n\nFor each test case, output a single integer, denoting the bitwise XOR (exclusive-OR) of the answers to all queries in that test case.\n\n## Note\n\nFor the first test case:\n\n- For the query $k=1$, replacing $a_i$ with $k-a_i$ for $i=1,2$ gives $a'=[1,0,3]$, whose $\\operatorname{mex}$ is $2$. Moreover, no $k$-transformation can make $2$ appear in $a'$, so its $\\operatorname{mex}$ cannot exceed $2$. Therefore, $k$-$\\operatorname{mex}(a)=2$.\n- For the query $k=2$, the only element that can become either $0$ or $2$ is $a_1=0$, so these two values cannot both appear in $a'$ after any $k$-transformation. Taking $a'=[0,1,3]$ gives $\\operatorname{mex}(a')=2$, so $k$-$\\operatorname{mex}(a)=2$.\n- For the query $k=5$, replacing $a_3$ with $k-a_3$ gives $a'=[0,1,2]$. Since the array has length $3$, its $\\operatorname{mex}$ cannot exceed $3$. Therefore, $k$-$\\operatorname{mex}(a)=3$.\n\nThus, the bitwise XOR of the answers to the three queries is $2\\mathbin{\\mathtt{\\oplus}}2\\mathbin{\\mathtt{\\oplus}}3=3$.\n\nFor the second test case, the answers to the queries $k=4,5,6,7,8,9,10$ are $6,6,7,8,6,7,6$, respectively, and their bitwise XOR is $8$.",
-  "statementZhMd": null,
+  "statementZhMd": "设 $a$ 是一个长度为 $n$ 的数组。定义 $\\operatorname{mex}(a)$ 为未在 $a$ 中出现的最小非负整数。例如：\n\n- $\\operatorname{mex}([4, 0, 2, 1]) = 3$\n- $\\operatorname{mex}([-2, -4, 3]) = 0$\n\n定义 $k$ 变换如下：对每个下标 $i$（$1 \\leq i \\leq n$），独立选择保留 $a_i$ 不变，或将其替换为 $k - a_i$。完成所有选择后，得到一个新数组 $a'$。\n\n定义 $k$-$\\operatorname{mex}(a)$ 为：对 $a$ 进行一次 $k$ 变换所能得到的所有数组 $a'$ 中，$\\operatorname{mex}(a')$ 的最大值。\n\n你需要回答 $q$ 次询问。每次询问给出一个非负整数 $k$，要求计算对应的 $k$-$\\operatorname{mex}(a)$。\n\n为减少输出量，你只需输出这 $q$ 次询问的答案的按位异或值。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\leq T \\leq 10^3$），表示测试用例的数量。\n\n对于每个测试用例：\n\n- 第一行包含一个正整数 $n$（$1 \\leq n \\leq 5 \\times 10^3$），表示数组的长度。\n- 第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$0 \\leq a_i \\leq 10^9$），表示数组 $a$ 的初始元素。\n- 接下来一行包含一个正整数 $q$（$1 \\leq q \\leq 5 \\times 10^5$），表示询问的次数。\n- 接下来的 $q$ 行，每行包含一个非负整数 $k$（$0 \\leq k \\leq 10^9$），要求计算该 $k$ 对应的 $k$-$\\operatorname{mex}(a)$。\n\n保证同一测试文件中的所有测试用例满足 $\\sum n \\leq 5 \\times 10^3$ 且 $\\sum q \\leq 5 \\times 10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数，表示该测试用例中所有询问的答案的按位异或值。\n\n## 说明\n\n对于第一个测试用例：\n\n- 对于询问 $k=1$，将 $i=1,2$ 对应的 $a_i$ 替换为 $k-a_i$，得到 $a'=[1,0,3]$，其 $\\operatorname{mex}$ 为 $2$。此外，无论如何进行 $k$ 变换，都无法使 $2$ 出现在 $a'$ 中，因此其 $\\operatorname{mex}$ 不会超过 $2$。所以，$k$-$\\operatorname{mex}(a)=2$。\n- 对于询问 $k=2$，唯一能取到 $0$ 或 $2$ 的元素是 $a_1=0$，因此无论如何进行 $k$ 变换，这两个值都不能同时出现在 $a'$ 中。取 $a'=[0,1,3]$，可得 $\\operatorname{mex}(a')=2$，所以 $k$-$\\operatorname{mex}(a)=2$。\n- 对于询问 $k=5$，将 $a_3$ 替换为 $k-a_3$，得到 $a'=[0,1,2]$。由于数组的长度为 $3$，其 $\\operatorname{mex}$ 不会超过 $3$。所以，$k$-$\\operatorname{mex}(a)=3$。\n\n因此，这三次询问的答案的按位异或值为 $2\\mathbin{\\mathtt{\\oplus}}2\\mathbin{\\mathtt{\\oplus}}3=3$。\n\n对于第二个测试用例，询问 $k=4,5,6,7,8,9,10$ 的答案依次为 $6,6,7,8,6,7,6$，这些答案的按位异或值为 $8$。",
   "samples": [
     {
       "input": "2\n3\n0 1 3\n3\n1\n2\n5\n9\n0 0 1 1 2 3 3 4 5\n7\n4\n5\n6\n7\n8\n9\n10\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T13:36:44.507Z"
+  "fetchedAt": "2026-11-19T13:36:44.507Z",
+  "translatedAt": "2026-11-19T22:29:42.099Z",
+  "translateModel": "gpt-6.1-sol"
 }

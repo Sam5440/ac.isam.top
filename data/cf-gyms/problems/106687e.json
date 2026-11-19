@@ -4,7 +4,7 @@
   "contestId": 106687,
   "index": "E",
   "title": "Encoded Shortest Paths",
-  "titleZh": null,
+  "titleZh": "编码最短路",
   "url": "https://codeforces.com/gym/106687/problem/E",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given an undirected graph with $n$ vertices numbered from $1$ to $n$ and $m$ edges. Each edge has an integer weight $w$ satisfying $0\\le w \\lt k$. Parallel edges are allowed, while self-loops are not allowed.\n\nConsider a walk that starts at vertex $1$ and traverses edges with weights $w_1,w_2,\\dots,w_L$ in this order. A walk may visit vertices and edges more than once. If $L\\ge1$, the **total weight** of the walk is\n\n$$ w_1\\cdot k^{L-1}+w_2\\cdot k^{L-2}+\\cdots+w_{L-1}\\cdot k+w_L $$\n\nThe empty walk has total weight $0$.\n\nFor every vertex $v$, let $\\mathrm{dist}(v)$ be the minimum total weight among all walks from vertex $1$ to vertex $v$. If no such walk exists, $\\mathrm{dist}(v)$ is undefined.\n\nFor every vertex $v$, determine $\\mathrm{dist}(v)$ modulo $998\\,244\\,353$.\n\n## Input\n\nThe first line contains an integer $T$ ($1\\le T\\le10^4$), the number of test cases.\n\nFor each test case:\n\nThe first line contains three integers $n$, $m$, and $k$ ($1\\le n\\le2\\times10^5$, $0\\le m\\le5\\times10^5$, $1\\le k\\le10^9$), denoting the number of vertices, the number of edges, and the parameter used in the definition of total weight, respectively.\n\nEach of the next $m$ lines contains three integers $u$, $v$, and $w$ ($1\\le u,v\\le n$, $u\\ne v$, $0\\le w \\lt k$), denoting an undirected edge between vertices $u$ and $v$ with weight $w$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2\\times10^5$, and the sum of $m$ over all test cases does not exceed $5\\times10^5$.\n\n## Output\n\nFor each test case, print one line containing $n$ integers. For each $1\\le i\\le n$, consider the $i$-th integer. If $\\mathrm{dist}(i)$ is defined, it must be $\\mathrm{dist}(i)$ modulo $998\\,244\\,353$; otherwise, it must be $-1$.\n\n## Note\n\nIn the sample, the empty walk gives $\\mathrm{dist}(1)=0$. The one-edge walks give $\\mathrm{dist}(2)=1$ and $\\mathrm{dist}(3)=2$.\n\nThere are two two-edge walks from vertex $1$ to vertex $4$. Their total weights are $1\\cdot3+0=3$ and $2\\cdot3+0=6$, so $\\mathrm{dist}(4)=3$. Vertex $5$ is unreachable from vertex $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一个无向图，包含 $n$ 个顶点和 $m$ 条边，顶点编号为 $1$ 到 $n$。每条边都有一个整数权值 $w$，满足 $0\\le w \\lt k$。图中允许有重边，但不允许有自环。\n\n考虑一条从顶点 $1$ 出发的游走，依次经过权值为 $w_1,w_2,\\dots,w_L$ 的边。游走可以多次经过同一个顶点或同一条边。当 $L\\ge1$ 时，这条游走的**总权值**为\n\n$$ w_1\\cdot k^{L-1}+w_2\\cdot k^{L-2}+\\cdots+w_{L-1}\\cdot k+w_L $$\n\n空游走的总权值为 $0$。\n\n对于每个顶点 $v$，令 $\\mathrm{dist}(v)$ 表示从顶点 $1$ 到顶点 $v$ 的所有游走中，总权值的最小值。如果不存在这样的游走，则 $\\mathrm{dist}(v)$ 未定义。\n\n对于每个顶点 $v$，求 $\\mathrm{dist}(v)$ 对 $998\\,244\\,353$ 取模的结果。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1\\le T\\le10^4$），表示测试用例的数量。\n\n对于每个测试用例：\n\n第一行包含三个整数 $n$、$m$ 和 $k$（$1\\le n\\le2\\times10^5$，$0\\le m\\le5\\times10^5$，$1\\le k\\le10^9$），分别表示顶点数、边数以及总权值定义中使用的参数。\n\n接下来 $m$ 行，每行包含三个整数 $u$、$v$ 和 $w$（$1\\le u,v\\le n$，$u\\ne v$，$0\\le w \\lt k$），表示顶点 $u$ 和 $v$ 之间有一条权值为 $w$ 的无向边。\n\n保证所有测试用例的 $n$ 之和不超过 $2\\times10^5$，所有测试用例的 $m$ 之和不超过 $5\\times10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一行，包含 $n$ 个整数。对于每个 $1\\le i\\le n$，若 $\\mathrm{dist}(i)$ 有定义，则第 $i$ 个整数应为 $\\mathrm{dist}(i)$ 对 $998\\,244\\,353$ 取模的结果；否则，应为 $-1$。\n\n## 说明\n\n在样例中，空游走给出 $\\mathrm{dist}(1)=0$。仅经过一条边的游走分别给出 $\\mathrm{dist}(2)=1$ 和 $\\mathrm{dist}(3)=2$。\n\n从顶点 $1$ 到顶点 $4$ 有两条恰好经过两条边的游走。它们的总权值分别为 $1\\cdot3+0=3$ 和 $2\\cdot3+0=6$，因此 $\\mathrm{dist}(4)=3$。从顶点 $1$ 无法到达顶点 $5$。",
   "samples": [
     {
       "input": "1\n5 4 3\n1 2 1\n1 3 2\n2 4 0\n3 4 0\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T13:37:44.771Z"
+  "fetchedAt": "2026-11-19T13:37:44.771Z",
+  "translatedAt": "2026-11-19T22:30:00.555Z",
+  "translateModel": "gpt-6.1-sol"
 }

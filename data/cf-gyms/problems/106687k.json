@@ -4,7 +4,7 @@
   "contestId": 106687,
   "index": "K",
   "title": "Keep the Fairness",
-  "titleZh": null,
+  "titleZh": "保持公平",
   "url": "https://codeforces.com/gym/106687/problem/K",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "There are $n$ teams and $m$ distinct souvenirs. The teams are numbered from $1$ to $n$, and the souvenirs are numbered from $1$ to $m$.\n\nEach team ranks all souvenirs from most preferred to least preferred. The ranking of team $i$ is a permutation [ t_{i,1},t_{i,2},...,t_{i,m}, ] where $t_{i,1}$ is its most preferred souvenir.\n\nEvery souvenir has already been assigned to exactly one team. Let $a_k$ be the team to which souvenir $k$ is assigned. A team may receive any number of souvenirs, including none.\n\nThe assignment is called **prefix-fair** if the following condition holds:\n\n- For every team $i$, every other team $j$, and every integer $L$ with $1\\le L\\le m$, among the first $L$ souvenirs in team $i$'s ranking, the number assigned to team $i$ is at least the number assigned to team $j$.\n\nBoth numbers in this comparison are counted using team $i$'s ranking. Equality is allowed.\n\nDetermine whether the given assignment is prefix-fair.\n\n## Input\n\nThe first line contains two integers $n$ and $m$ ($1\\le n,m\\le 2000$), the number of teams and the number of souvenirs.\n\nThe next $n$ lines describe the rankings. The $i$-th of these lines contains $m$ pairwise distinct integers $t_{i,1},t_{i,2},\\dots,t_{i,m}$ ($1\\le t_{i,k}\\le m$), from team $i$'s most preferred souvenir to its least preferred souvenir. Thus, each line is a permutation of $1,2,\\dots,m$.\n\nThe last line contains $m$ integers $a_1,a_2,\\dots,a_m$ ($1\\le a_k\\le n$), where $a_k$ is the team to which souvenir $k$ is assigned.\n\n## Output\n\nPrint one line containing `YES` if the assignment is prefix-fair. Otherwise, print `NO`.\n\nThe answer is case-sensitive.\n\n## Note\n\nIn the first example, consider team $2$. The owners of the souvenirs in its ranking are [ 2,1,3,2,1,3. ] In every prefix, team $2$ occurs at least as many times as each of team $1$ and team $3$. The same property holds for teams $1$ and $3$, so the assignment is prefix-fair.\n\nIn the second example, the first three souvenirs in team $1$'s ranking are $1,2,4$. Team $1$ receives only souvenir $1$, while team $2$ receives souvenirs $2$ and $4$. Therefore, this prefix contains one souvenir assigned to team $1$ and two assigned to team $2$, so the assignment is not prefix-fair. Notice that both teams still receive two souvenirs in total; equal total numbers alone are not sufficient.",
-  "statementZhMd": null,
+  "statementZhMd": "有 $n$ 支队伍和 $m$ 件互不相同的纪念品。队伍编号为 $1$ 到 $n$，纪念品编号为 $1$ 到 $m$。\n\n每支队伍都将所有纪念品按喜好程度从高到低排序。队伍 $i$ 的排序是一个排列 [ t_{i,1},t_{i,2},...,t_{i,m}, ]，其中 $t_{i,1}$ 是该队伍最喜欢的纪念品。\n\n每件纪念品都已经分配给了恰好一支队伍。令 $a_k$ 表示纪念品 $k$ 被分配给的队伍。一支队伍可以获得任意数量的纪念品，也可以一件都没有。\n\n如果分配方案满足以下条件，则称其具有**前缀公平性**：\n\n- 对于每支队伍 $i$、每支其他队伍 $j$，以及每个满足 $1\\le L\\le m$ 的整数 $L$，在队伍 $i$ 的排序中的前 $L$ 件纪念品中，分配给队伍 $i$ 的数量不少于分配给队伍 $j$ 的数量。\n\n比较的这两个数量均按照队伍 $i$ 的排序统计。允许两者相等。\n\n判断给定的分配方案是否具有前缀公平性。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $m$（$1\\le n,m\\le 2000$），分别表示队伍数量和纪念品数量。\n\n接下来的 $n$ 行描述各支队伍的排序。其中第 $i$ 行包含 $m$ 个两两不同的整数 $t_{i,1},t_{i,2},\\dots,t_{i,m}$（$1\\le t_{i,k}\\le m$），按队伍 $i$ 的喜好程度从高到低列出所有纪念品。因此，每行都是 $1,2,\\dots,m$ 的一个排列。\n\n最后一行包含 $m$ 个整数 $a_1,a_2,\\dots,a_m$（$1\\le a_k\\le n$），其中 $a_k$ 表示纪念品 $k$ 被分配给的队伍。\n\n## 输出格式\n\n输出一行，如果分配方案具有前缀公平性，则输出 `YES`。否则，输出 `NO`。\n\n答案区分大小写。\n\n## 说明\n\n在第一个样例中，考虑队伍 $2$。按照它的排序，各件纪念品所属的队伍依次为 [ 2,1,3,2,1,3. ] 在每个前缀中，队伍 $2$ 出现的次数都不少于队伍 $1$ 和队伍 $3$ 各自出现的次数。队伍 $1$ 和队伍 $3$ 也满足相同的性质，因此该分配方案具有前缀公平性。\n\n在第二个样例中，队伍 $1$ 的排序中的前三件纪念品为 $1,2,4$。队伍 $1$ 只获得了纪念品 $1$，而队伍 $2$ 获得了纪念品 $2$ 和 $4$。因此，这个前缀中有一件纪念品分配给了队伍 $1$，两件纪念品分配给了队伍 $2$，所以该分配方案不具有前缀公平性。注意，两支队伍获得的纪念品总数仍然都是两件；仅仅总数相等并不足以保证前缀公平性。",
   "samples": [
     {
       "input": "3 6\n1 2 3 4 5 6\n2 1 3 5 4 6\n3 1 2 6 4 5\n1 2 3 1 2 3\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T13:38:40.514Z"
+  "fetchedAt": "2026-11-19T13:38:40.514Z",
+  "translatedAt": "2026-11-19T22:30:21.893Z",
+  "translateModel": "gpt-6.1-sol"
 }

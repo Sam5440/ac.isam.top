@@ -1,0 +1,28 @@
+{
+  "id": "106636d",
+  "platform": "cf-gyms",
+  "contestId": 106636,
+  "index": "D",
+  "title": "Escape",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106636/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2500,
+  "memoryLimitMb": 256,
+  "statementMd": "*Humans struggling to escape, that's... funny. Teach me.*\n\n— GePeTo\n\nAfter learning all competitive programming problems, GePeTo is now studying all board games in the world, and is particularly interested in a copy of Escape it found in your room.\n\nIn Escape, you have 5 identical six-sided dice, with the following faces:\n\n- 2 Adventurer faces (A)\n- 1 Torch face (T)\n- 1 Key face (C)\n- 1 Black Mask face (N)\n- 1 Golden Mask face (D)\n\nIn an important part of the game, you are given an objective, which is a multiset of up to 5 symbols selected from `ATC`. Your goal is to roll the dice and finish with their top faces showing at least the symbols required by the objective.\n\nStarting from an initial roll of the 5 dice, you have a maximum of $K$ turns (rerolls) to achieve the objective. In each turn, you select a subset of the current dice and reroll them, subject to the following rules:\n\n- A die showing the Black Mask face (N) becomes locked and cannot be selected for rerolling.\n- For each rerolled die that is currently showing the Golden Mask face (D), you gain the right to simultaneously unlock and reroll up to 2 locked dice.\n\nAssuming you play optimally, that is, making decisions each turn that maximize the probability of achieving the objective within $K$ turns, answer the following: What is the maximum probability of success, and what is an optimal first reroll?\n\n## Input\n\nThe first line contains a single string $O$ consisting of characters from `ATC`, representing the objective. ($1 \\leq |O| \\leq 5$)\n\nThe second line contains an integer $T$, the number of test cases. ($1 \\leq T \\leq 10^4$)\n\nEach of the next $T$ lines contains a string $S$ of exactly five characters from `ATCND`, representing your initial roll, and an integer $K$, the maximum number of rerolls you can perform. ($1 \\leq K \\leq 5$)\n\n## Output\n\nFor each test case, print a string $R$ and a number $P$.\n\n$R$ should be nonempty and contain up to five characters from `ATCND`, representing the dice that should be rerolled. It is guaranteed that the objective is not met initially, at least one reroll is possible, and the probability of winning is strictly positive (i.e., $P  \\gt  0$). The characters may be printed in any order.\n\nThe number $P$ should be the maximum probability of achieving the objective when playing optimally. The answer is considered correct if the absolute error does not exceed $10^{-4}$.\n\n## Note\n\nHere is an example of the game:\n\n- Suppose the objective is $O = \\texttt{ATT}$ (meaning we need at least 1 Adventurer and 2 Torches).\n- Your initial roll is $S = \\texttt{ANNCC}$ (1 Adventurer, 2 locked Black Masks and 2 Keys).\n- On your first reroll, you decide to reroll both Keys (`CC`), since you can't reroll any Black Masks. Suppose the rerolled dice land on `AD`, meaning you now have `AANND`.\n- Now, on your second reroll, you decide to reroll an Adventurer and the Golden Mask, and since you are rerolling the Golden Mask, you gain the right to reroll up to two locked Black Masks. In total, you reroll 4 dice (`ADNN`).\n- Suppose the rerolled dice land on `TTNC`, meaning the final dice configuration becomes `ATTNC` (which contains at least 1 `A` and 2 `T`'s), successfully meeting the objective with two rerolls.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "T\n4\nNNNNA 1\nNNNAA 1\nNNNNA 2\nAAAAA 1\n",
+      "output": "A 0.1666666667\nAA 0.3055555556\nA 0.3202160494\nAAAAA 0.5981224280\n"
+    },
+    {
+      "input": "ATC\n4\nNTNAN 2\nTNCNT 1\nNTADD 1\nAATDT 5\n",
+      "output": "AT 0.0543981481\nT 0.3333333333\nNDD 0.4212962963\nAAT 0.9121533206\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T22:21:09.117Z"
+}

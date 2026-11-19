@@ -1,0 +1,24 @@
+{
+  "id": "106628c",
+  "platform": "cf-gyms",
+  "contestId": 106628,
+  "index": "C",
+  "title": "Tree Score",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106628/problem/C",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "Chopper and Usopp find a giant plant shaped like a tree with $n$ vertices and $n-1$ branches. Vertex $v$ has a value $a_{v}$.\n\nFor each branch $i$, two values are written:\n\n- $p_{i}$, its contribution if the branch is kept;\n- $q_{i}$, its contribution if the branch is cut.\n\nConsider any subset $K$ of branches. Branches in $K$ are kept, and all other branches are cut. The kept branches split the vertices into several connected components.\n\nFor a component $C$, define its value as:\n\n$$W(C) = \\sum_{v \\in C} a_{v}$$\n\nThe score of choice $K$ is:\n\n$$score(K) = \\left(\\prod_{i \\in K} p_{i}\\right) \\left(\\prod_{i \\notin K} q_{i}\\right) \\left(\\prod_{C} W(C)\\right)$$\n\nwhere the last product is over all connected components after cutting the branches not in $K$.\n\nDefine:\n\n$$F = \\sum score(K)$$\n\nIn other words, $F$ is the sum of $score(K)$ over all $2^{n-1}$ possible choices of which branches are kept and which are cut.\n\nAll calculations are performed modulo 998244353.\n\nYou must process $Q$ updates. After each update, output the current value of $F$.\n\nThere are two types of updates:\n\n- $1\\ v\\ x$: set $a_{v}=x$.\n- $2\\ i\\ p\\ q$: set $p_{i}=p$ and $q_{i}=q$.\n\nBranches are numbered from 1 to $n-1$ in their input order.\n\n## Input\n\nThe first line contains two integers $n$ and $Q$ ($1 \\le n, Q \\le 2 \\times 10^{5}$) — the number of vertices and the number of updates.\n\nThe second line contains $n$ integers $a_{1}, a_{2}, \\dots, a_{n}$ ($0 \\le a_{v}  \\lt  998244353$) — the vertex values.\n\nThe $i$-th of the next $n-1$ lines contains four integers $u_{i}$, $v_{i}$, $p_{i}$, and $q_{i}$ ($1 \\le u_{i}, v_{i} \\le n$, $0 \\le p_{i}, q_{i}  \\lt  998244353$) — the ends and the two values of the $i$-th branch.\n\nIt is guaranteed that these branches form a tree.\n\nEach of the next $Q$ lines contains one update in one of the following formats:\n\n- $1\\ v\\ x$ ($1 \\le v \\le n$, $0 \\le x  \\lt  998244353$).\n- $2\\ i\\ p\\ q$ ($1 \\le i \\le n-1$, $0 \\le p, q  \\lt  998244353$).\n\n## Output\n\nAfter each update, output one integer — the current value of $F$ modulo 998244353.\n\n## Note\n\nAfter the first update, the vertex values are 4 and 2.\n\nIf the edge is kept, the contribution is $3 \\times (4+2) = 18$. If the edge is removed, the contribution is $5 \\times 4 \\times 2 = 40$. Therefore, $F = 18 + 40 = 58$.\n\nAfter the second update, the edge values become $p_{1}=1$ and $q_{1}=2$, so $F = 1 \\times (4+2) + 2 \\times 4 \\times 2 = 22$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 2\n1 2\n1 2 3 5\n1 1 4\n2 1 1 2\n",
+      "output": "58\n22\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T22:26:06.640Z"
+}

@@ -4,7 +4,7 @@
   "contestId": 106669,
   "index": "D",
   "title": "Don't Lay a Lie",
-  "titleZh": null,
+  "titleZh": "不要说谎",
   "url": "https://codeforces.com/gym/106669/problem/D",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "![image](https://espresso.codeforces.com/7f7a8cf200e4e096aeca9ba9fb3ef669ad37e400.png)\n\nDuring the holy month of Ramadan in Tunis, Sherlock Holmes and Dr. Watson are visiting the ancient Medina of Tunis. While enjoying Iftar at a traditional restaurant near the Zaytuna Mosque, they stumble upon a mysterious crime occurring within the labyrinthine alleyways.\n\nThere are $n$ residents in the Medina, numbered from $1$ to $n$. After the crime, each resident gives exactly one statement during the police interrogation:\n\nSome residents claim innocence, represented as $a_i = -1$.\n\nOthers point fingers at exactly one other resident, represented as $a_i = j$ ($1 \\le j \\le n, j \\ne i$).\n\nThe local police are overwhelmed by the complexity of the case. As the night progresses and new evidence surfaces from various surveillance cameras in the Medina's narrow streets, the investigators realize that the reliability of witnesses keeps changing.\n\nSherlock is given $q$ intelligence reports. Each report states: \"Exactly $k$ residents are telling the truth.\" For each report, Holmes must determine which residents could possibly be guilty. **It is guaranteed that exactly one person committed the crime.**\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10,000$) — the number of test cases.For each test case:\n\nThe first line contains two integers $n$ and $q$ ($1 \\le n \\le 10^6, 1 \\le q \\le n$).\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($-1 \\le a_i \\le n, a_i \\ne 0, a_i \\ne i$).\n\nEach of the next $q$ lines contains a single integer $k$ ($0 \\le k \\le n$).\n\nThe sum of $n$ over all test cases does not exceed $10^6$. The sum of $q$ over all test cases does not exceed $10^6$. It is guaranteed that all queries are distinct.\n\n## Output\n\nFor each query, output a single line:\n\nFirst, an integer $m$ — the number of residents who could be guilty.\n\nThen $m$ space-separated integers — the IDs of these possible guilty residents in ascending order.\n\nIf no resident could be guilty for a given $k$, simply output 0.\n\n## Note\n\nFor the first query:\n\nthe first person claims he is innocent. Since everyone is lying, that would mean he is actually guilty. However, person 2 says that A is the criminal, which would make person 2's statement true, contradicting the assumption that everyone is lying.\n\nTherefore, this is not a valid scenario and we ignore it.\n\nA suspect is considered possibly guilty only if they appear in at least one valid scenario.",
-  "statementZhMd": null,
+  "statementZhMd": "![image](https://espresso.codeforces.com/7f7a8cf200e4e096aeca9ba9fb3ef669ad37e400.png)\n\n在突尼斯的斋月期间，夏洛克·福尔摩斯和华生医生正在参观突尼斯古老的麦地那。在扎伊图纳清真寺附近的一家传统餐厅享用开斋饭时，他们偶然遇到了一起发生在迷宫般小巷中的神秘案件。\n\n麦地那中有 $n$ 位居民，编号从 $1$ 到 $n$。案件发生后，每位居民在警方审讯中恰好作出一条陈述：\n\n一些居民声称自己是无辜的，用 $a_i = -1$ 表示。\n\n另一些居民则指认恰好一名其他居民，用 $a_i = j$ 表示（$1 \\le j \\le n, j \\ne i$）。\n\n当地警方被案件的复杂性压得喘不过气来。随着夜幕降临，麦地那狭窄街道上的各种监控摄像头不断提供新的证据，调查人员意识到，证人的可靠性一直在变化。\n\n福尔摩斯收到了 $q$ 条情报。每条情报都说明：“恰好有 $k$ 位居民说了真话。”对于每条情报，福尔摩斯都必须确定哪些居民有可能是罪犯。**保证恰好有一人实施了犯罪。**\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10,000$）——测试用例的数量。\n\n对于每个测试用例：\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\le n \\le 10^6, 1 \\le q \\le n$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$（$-1 \\le a_i \\le n, a_i \\ne 0, a_i \\ne i$）。\n\n接下来的 $q$ 行中，每行包含一个整数 $k$（$0 \\le k \\le n$）。\n\n所有测试用例中 $n$ 的总和不超过 $10^6$。所有测试用例中 $q$ 的总和不超过 $10^6$。保证所有询问互不相同。\n\n## 输出格式\n\n对于每条询问，输出一行：\n\n首先输出一个整数 $m$——可能成为罪犯的居民数量。\n\n然后输出 $m$ 个以空格分隔的整数——这些可能成为罪犯的居民编号，按升序排列。\n\n如果对于给定的 $k$ 没有居民可能成为罪犯，只需输出 0。\n\n## 说明\n\n对于第一条询问：\n\n第一个人声称自己是无辜的。由于所有人都在说谎，这意味着他实际上就是罪犯。然而，2 号居民说 A 是罪犯，这将使 2 号居民的陈述为真，与所有人都在说谎的假设相矛盾。\n\n因此，这不是一个有效的情形，我们将其忽略。\n\n只有当某位嫌疑人在至少一种有效情形中出现时，才认为他有可能是罪犯。",
   "samples": [
     {
       "input": "1\n5 5\n-1 1 2 1 -1\n0\n1\n2\n3\n4\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T13:39:37.754Z"
+  "fetchedAt": "2026-11-19T13:39:37.754Z",
+  "translatedAt": "2026-11-19T22:30:48.894Z",
+  "translateModel": "gpt-6.1-sol"
 }

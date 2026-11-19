@@ -1,0 +1,38 @@
+{
+  "id": "106722g",
+  "platform": "cf-gyms",
+  "contestId": 106722,
+  "index": "G",
+  "title": "Sal de ahí Charles",
+  "titleZh": "快从那儿出来，查尔斯",
+  "url": "https://codeforces.com/gym/106722/problem/G",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 1024,
+  "statementMd": "Charles is a big fan of minecraft-coins and a wise investor in this kind of currency. He has $n$ coins to invest, and he decides to invest each one of them separately.\n\nThe minecraft-coin market is Bubbaloo, but Charles knows it well: he knows that there are exactly $s$ possible returns $v_1, v_2, \\dots, v_s$, all distinct from one another, and that a single investment yields the return $v_a$ with probability $p_a$. The returns of his $n$ investments are independent of each other and all follow this same distribution.\n\nLet $X$ be the sum of the returns of all his investments. For some strange reason, Charles is interested in knowing the expected value of $X^k$. Please help Charles find out this piece of information.\n\nSince the result may not be an integer, you must report it modulo $998244353$.\n\n## Input\n\nThe first line contains three integers $s$, $n$ and $k$ ($1 \\le s \\le 1000$, $1 \\le n \\le 10^9$, $1 \\le k \\le 10^5$): the number of possible returns, the number of coins Charles invests, and the exponent he is interested in.\n\nEach of the next $s$ lines contains three integers $v_a$, $\\alpha_a$ and $\\beta_a$ ($0 \\le v_a \\le 10^9$, $1 \\le \\alpha_a \\le \\beta_a  \\lt  998244353$), meaning that a single investment yields the return $v_a$ with probability $p_a = \\alpha_a / \\beta_a$.\n\nIt is guaranteed that the values $v_a$ are pairwise distinct and that $\\sum_{a=1}^{s} p_a = 1$ holds exactly as an identity between rationals.\n\n## Output\n\nPrint a single integer: the value of $E[X^k]$ modulo $998244353$.\n\nIt can be shown that $E[X^k]$ is a rational number whose denominator is not divisible by $p = 998244353$. Therefore there is a unique integer $y$ with $0 \\le y  \\lt  p$ such that $y \\cdot q \\equiv r \\pmod{p}$, where $r/q$ is $E[X^k]$ written in lowest terms; you must report that $y$.\n\n## Note\n\nIn the first example Charles invests a single coin, whose return is $0$ or $2$ with equal probability. Then $E[X^3] = \\frac{1}{2} \\cdot 0 + \\frac{1}{2} \\cdot 8 = 4$.\n\nIn the second example each investment yields $0$ or $1$ with equal probability, so $X$ follows a binomial distribution with $3$ trials and success probability $\\frac{1}{2}$. Hence $E[X^2] = \\frac{3}{4} + \\frac{9}{4} = 3$.\n\nIn the third example the expected return of a single investment is $\\frac{1}{3} \\cdot 1 + \\frac{2}{3} \\cdot 4 = 3$, and by linearity $E[X] = 4 \\cdot 3 = 12$.",
+  "statementZhMd": "<statement>\n查尔斯非常喜欢 Minecraft 币，也很擅长投资这种货币。他有 $n$ 枚币可用于投资，并决定把每枚币分别投入一笔投资。\n\nMinecraft 币市场是 Bubbaloo，但查尔斯对这个市场了如指掌：他知道恰好有 $s$ 种可能的收益 $v_1, v_2, \\dots, v_s$，这些收益值两两不同，且单笔投资以概率 $p_a$ 获得收益 $v_a$。这 $n$ 笔投资的收益相互独立，且均服从同一分布。\n\n设 $X$ 为所有投资的收益之和。出于某种奇怪的原因，查尔斯想知道 $X^k$ 的期望值。请帮他求出这个值。\n\n由于结果可能不是整数，你需要输出它对 $998244353$ 取模后的值。\n\n## 输入格式\n\n第一行包含三个整数 $s$、$n$ 和 $k$（$1 \\le s \\le 1000$，$1 \\le n \\le 10^9$，$1 \\le k \\le 10^5$），分别表示可能的收益值个数、查尔斯用于投资的币数，以及他感兴趣的指数。\n\n接下来 $s$ 行，每行包含三个整数 $v_a$、$\\alpha_a$ 和 $\\beta_a$（$0 \\le v_a \\le 10^9$，$1 \\le \\alpha_a \\le \\beta_a  \\lt  998244353$），表示单笔投资以概率 $p_a = \\alpha_a / \\beta_a$ 获得收益 $v_a$。\n\n保证所有 $v_a$ 两两不同，且等式 $\\sum_{a=1}^{s} p_a = 1$ 在有理数意义下严格成立。\n\n## 输出格式\n\n输出一个整数，表示 $E[X^k]$ 对 $998244353$ 取模后的值。\n\n可以证明，$E[X^k]$ 是一个有理数，其分母不被 $p = 998244353$ 整除。因此，将 $E[X^k]$ 写成最简分数 $r/q$ 后，存在唯一一个满足 $0 \\le y  \\lt  p$ 的整数 $y$，使得 $y \\cdot q \\equiv r \\pmod{p}$。你需要输出这个 $y$。\n\n## 说明\n\n在第一个样例中，查尔斯只投资了一枚币，收益等概率为 $0$ 或 $2$。因此，$E[X^3] = \\frac{1}{2} \\cdot 0 + \\frac{1}{2} \\cdot 8 = 4$。\n\n在第二个样例中，每笔投资的收益等概率为 $0$ 或 $1$，所以 $X$ 服从试验次数为 $3$、成功概率为 $\\frac{1}{2}$ 的二项分布。因此，$E[X^2] = \\frac{3}{4} + \\frac{9}{4} = 3$。\n\n在第三个样例中，单笔投资的期望收益为 $\\frac{1}{3} \\cdot 1 + \\frac{2}{3} \\cdot 4 = 3$。由期望的线性性质可知，$E[X] = 4 \\cdot 3 = 12$。\n</statement>",
+  "samples": [
+    {
+      "input": "2 1 3\n0 1 2\n2 1 2\n",
+      "output": "4\n"
+    },
+    {
+      "input": "2 3 2\n0 1 2\n1 1 2\n",
+      "output": "3\n"
+    },
+    {
+      "input": "2 4 1\n1 1 3\n4 2 3\n",
+      "output": "12\n"
+    },
+    {
+      "input": "1 1 100000\n597925701 1 1\n",
+      "output": "666721797\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T22:19:37.385Z",
+  "translatedAt": "2026-11-19T22:28:25.838Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -4,7 +4,7 @@
   "contestId": 106669,
   "index": "H",
   "title": "Baker Street Cipher Wheel",
-  "titleZh": null,
+  "titleZh": "贝克街密码轮",
   "url": "https://codeforces.com/gym/106669/problem/H",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "London, 1891. Sherlock Holmes wants to send a secret message to Dr. Watson.\n\nThere are $N$ identical iron posts in a courtyard. Holmes may write one digit (`0`–`9`) on any post and may leave some posts blank. Later, Watson will see the courtyard, but because of fog and moved lanterns, he cannot know the order of the posts. He only knows how many times each digit appears. The order does not matter.\n\nBefore Watson arrives, a clerk may use a cipher wheel. Every time the wheel is used, each written digit $d$ is replaced by $ d \\rightarrow (a \\cdot d + b) \\bmod 10 $ where:\n\n- $a$ is chosen from a given set $S_a \\subseteq \\{1,3,7,9\\}$,\n- $b$ is chosen from a given set $S_b \\subseteq \\{0,1,\\dots,9\\}$.\n\nThe wheel may be used any number of times (possibly zero). Each use can choose any $a \\in S_a$ and any $b \\in S_b$. So the final effect is a composition of such transformations.\n\nHolmes and Watson know $N$, $S_a$, and $S_b$, but Watson does not know which transformations were applied.\n\nBecause Watson only sees digit counts:\n\n- A writing is completely described by a multiset of digits.\n- Its size is between $1$ and $N$.\n\nTwo writings are indistinguishable if one can be obtained from the other by applying some allowed sequence of cipher wheel operations (and then shuffling).\n\nYour task is to compute how many different secrets Holmes can encode so that Watson can always decode them correctly.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 500$) — the number of test cases.\n\nEach test case contains one line with:\n\n- an integer $N$ ($1 \\le N \\le 350$),\n- a string `Sa` — the elements of $S_a$,\n- a string `Sb` — the elements of $S_b$.\n\nThe strings satisfy:\n\n- `Sa` is non-empty and consists only of characters from `1`, `3`, `7`, `9`,\n- `Sb` is non-empty and consists only of characters from `0` to `9`,\n- all characters in each string are distinct.\n\n## Output\n\nFor each test case, output one integer — the maximum number of different secrets Holmes can encode.\n\nIt is guaranteed that the answer fits in a signed 64-bit integer.\n\n## Note\n\nIn the first test case, only the identity transformation is possible, so all non-empty digit multisets of size at most $3$ are distinguishable.\n\nIn the last test case, the full affine group acts on the digits, so many different writings become indistinguishable, and the number of secrets is much smaller.",
-  "statementZhMd": null,
+  "statementZhMd": "伦敦，1891 年。夏洛克·福尔摩斯想给华生医生发送一条秘密消息。\n\n庭院里有 $N$ 根完全相同的铁柱。福尔摩斯可以在任意一根铁柱上写一个数字（`0`–`9`），也可以让一些铁柱保持空白。之后，华生会看到这座庭院，但由于雾气笼罩且灯笼的位置发生了变化，他无法确定铁柱的顺序。他只能知道每个数字出现了多少次。数字的顺序并不重要。\n\n在华生到来之前，一名职员可以使用密码轮。每使用一次密码轮，所有已写下的数字 $d$ 都会按照 $ d \\rightarrow (a \\cdot d + b) \\bmod 10 $ 进行替换，其中：\n\n- $a$ 从给定集合 $S_a \\subseteq \\{1,3,7,9\\}$ 中选取，\n- $b$ 从给定集合 $S_b \\subseteq \\{0,1,\\dots,9\\}$ 中选取。\n\n密码轮可以使用任意次（也可以不使用）。每次使用时，都可以任意选择 $a \\in S_a$ 和 $b \\in S_b$。因此，最终的效果是这些变换的复合。\n\n福尔摩斯和华生都知道 $N$、$S_a$ 和 $S_b$，但华生不知道具体执行了哪些变换。\n\n由于华生只能看到各个数字的出现次数：\n\n- 一种书写方案可以完全由一个数字多重集描述。\n- 该多重集的大小介于 $1$ 到 $N$ 之间。\n\n如果一种书写方案可以通过执行某个允许的密码轮操作序列（然后重新排列）变成另一种书写方案，那么这两种书写方案就是无法区分的。\n\n你的任务是计算福尔摩斯最多可以编码多少种不同的秘密，使华生始终能够正确解码。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 500$）——测试用例的数量。\n\n每个测试用例占一行，包含：\n\n- 一个整数 $N$（$1 \\le N \\le 350$），\n- 一个字符串 `Sa`——表示 $S_a$ 中的元素，\n- 一个字符串 `Sb`——表示 $S_b$ 中的元素。\n\n这些字符串满足：\n\n- `Sa` 非空，且仅由字符 `1`、`3`、`7`、`9` 组成，\n- `Sb` 非空，且仅由 `0` 到 `9` 的字符组成，\n- 每个字符串中的所有字符互不相同。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——福尔摩斯最多可以编码的不同秘密的数量。\n\n保证答案可以用有符号 64 位整数表示。\n\n## 说明\n\n在第一个测试用例中，唯一可能的变换是恒等变换，因此所有大小不超过 $3$ 的非空数字多重集都可以相互区分。\n\n在最后一个测试用例中，完整的仿射群作用于这些数字，因此许多不同的书写方案变得无法区分，秘密的数量也就少得多。",
   "samples": [
     {
       "input": "3\n3 1 0\n3 19 05\n3 1379 0123456789\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T13:40:10.091Z"
+  "fetchedAt": "2026-11-19T13:40:10.091Z",
+  "translatedAt": "2026-11-19T22:31:14.034Z",
+  "translateModel": "gpt-6.1-sol"
 }

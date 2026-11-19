@@ -1,0 +1,24 @@
+{
+  "id": "106628m",
+  "platform": "cf-gyms",
+  "contestId": 106628,
+  "index": "M",
+  "title": "Database Pool",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106628/problem/M",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2500,
+  "memoryLimitMb": 256,
+  "statementMd": "Sherbiny and Samer Samora are optimizing the core database engine for the Sunny's navigation logs. They need to implement a buffer pool of capacity $C$ to keep frequently accessed data pages in fast memory.\n\nThe pool can hold up to $C$ distinct pages, each identified by a positive integer. When a page is read or written, it is brought into the pool and becomes the most recently accessed page. If the pool is already at full capacity $C$ and a new page must be brought in, the Least Recently Used (LRU) page is evicted to make room.\n\nA write operation modifies a page, marking it as dirty. If a dirty page is evicted from the pool, it is completely removed and is no longer considered dirty.\n\nYou must process $Q$ queries of the following four types:\n\n- `1` $x$ — **Read**: Access page $x$. Bring it into the pool (evicting the LRU page if necessary). Page $x$ becomes the most recently accessed. If $x$ was already in the pool, its dirty status remains unchanged.\n- `2` $x$ — **Write**: Access page $x$ using the exact same LRU rules as a read, but additionally mark page $x$ as dirty.\n- `3` — **Flush**: Print the total number of dirty pages currently in the pool, then mark all of them as clean (not dirty).\n- `4` $x$ — **Status**: Print whether page $x$ is currently in the pool, and whether it is dirty. This query does not count as an access and does not change the LRU order.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^{4}$) — the number of test cases.\n\nThe first line of each test case contains two integers $C$ and $Q$ ($1 \\le C \\le 10^{5}$, $1 \\le Q \\le 2 \\times 10^{5}$) — the capacity of the buffer pool and the number of queries.\n\nThe next $Q$ lines describe the queries in the format given above. All page IDs satisfy $1 \\le x \\le 10^{9}$.\n\nIt is guaranteed that the sum of $Q$ over all test cases does not exceed $2 \\times 10^{5}$.\n\n## Output\n\nFor each test case, output the answers for the Flush and Status queries in the order they appear:\n\n- For each $3$ (Flush) query, output a single integer on a new line: the number of dirty pages.\n- For each $4\\ x$ (Status) query, output two space-separated integers on a new line: `in_pool` and `is_dirty`. Print 1 if the condition is true, and 0 if it is false.\n\n## Note\n\nIn the first test case, the buffer pool has capacity $C = 2$.\n\nAfter reading page $10$, the pool contains page $10$ (clean). After writing page $20$, the pool contains pages $10$ and $20$, with page $20$ marked as dirty.\n\nThe first status query for page $10$ reports `1 0` (in pool, clean). The second status query for page $20$ reports `1 1` (in pool, dirty).\n\nWriting page $30$ brings in a new page while the pool is full. Page $10$ is the least recently used, so it is evicted. The pool now contains pages $20$ and $30$, both dirty.\n\nThe status query for page $10$ now reports `0 0` because it was evicted.\n\nThe flush query finds $2$ dirty pages ($20$ and $30$), outputs `2`, and marks them both as clean.\n\nThe final status query for page $20$ reports `1 0` because it is still in the pool, but was cleaned by the flush.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "1\n2 8\n1 10\n2 20\n4 10\n4 20\n2 30\n4 10\n3\n4 20\n",
+      "output": "1 0\n1 1\n0 0\n2\n1 0\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T22:27:25.104Z"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "106722f",
+  "platform": "cf-gyms",
+  "contestId": 106722,
+  "index": "F",
+  "title": "Factory... Oh Sweet Factory",
+  "titleZh": "工厂……啊，甜蜜的工厂",
+  "url": "https://codeforces.com/gym/106722/problem/F",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2500,
+  "memoryLimitMb": 256,
+  "statementMd": "**This problem has nothing to do with problem A**\n\n![image](https://espresso.codeforces.com/0c9a6812a867502369424aac49f078cae96f8d4f.png)\n\nDanna is the owner of \"Dulce Alfajor\", a renowned traditional Argentine sweets company. Due to her immense success, her factory has expanded into a massive complex with strict safety protocols.\n\nThe factory layout can be modeled as a **directed acyclic graph** with $n + 1$ rooms and $m$ directed halls, numbered from $0$ to $n$. Room $0$ is the main entrance, while rooms $1$ through $n$ are covered in sticky candy and need to be cleaned.\n\nDanna needs to assign a color preference $C_i$ to each room $i$ ($1 \\le i \\le n$) each room needs to have **one** asigned color. She will then hire exactly one worker for each **unique** color used. The cleaning process operates under the following rules:\n\n- Room $0$ contains all colors, so any worker can start their cleaning route there.\n- Each worker is assigned a specific color $c$ and will only enter and clean rooms assigned color $c$.\n- A worker assigned color $C_w$ starts at room $0$ and traverses a directed path $0 \\to v_1 \\to v_2 \\to \\dots \\to v_m$ where for every room ($1  \\lt = j  \\lt = m$) the color is the same as the color of the worker ($C_w = C_{v_j}$), cleaning every room along that path.\n- Every room assigned color $c$ must be visited **at least once** and cleaned by that worker in a single route.\n- Every room from $1$ to $n$ must be visited and cleaned by **exactly** one worker.\n- Workers will always choose the path that **maximizes** the amount of rooms they can clean\n\nIt is guaranteed that there is a **direct corridor from Room $0$ to every room** $v \\in [1, n]$, and no room $v \\in [1, n]$ has a corridor leading to Room $0$.\n\nNote that a worker can visit a room even if it has already been cleaned.\n\nHelp Danna determine the minimum number of unique colors $K$ required to clean the entire factory, and output a valid color assignment $C_1, C_2, \\dots, C_n$ ($1 \\le C_i \\le K$) for rooms $1$ through $n$.\n\n## Input\n\nThe first line contains two space-separated integers $n$ and $m$ ($1 \\le n \\le 2 \\cdot 10^5$, $n \\le m \\le n + 2 \\cdot 10^5$) — the number of candy-covered rooms (excluding room $0$) and the number of directed halls between rooms $0$ through $n$, respectively.\n\nEach of the next $m$ lines contains two space-separated integers $u_i$ and $v_i$ ($0 \\le u_i \\le n$, $1 \\le v_i \\le n$, $u_i \\neq v_i$), representing a directed hall from room $u_i$ to room $v_i$. It's guaranteed that there exist a directed hall from room 0 to every other room and there are no multiple edges.\n\n## Output\n\nOn the first line, print a single integer $K$ ($1 \\le K \\le n$) — the minimum number of unique colors required to clean all rooms.\n\nOn the second line, print $n$ space-separated integers $C_1, C_2, \\dots, C_n$ ($1 \\le C_i \\le K$), where $C_i$ represents the color assigned to room $i$.\n\nIf there are multiple valid color assignments using $K$ colors, you may print any of them.",
+  "statementZhMd": "**本题与 A 题无关**\n\n![image](https://espresso.codeforces.com/0c9a6812a867502369424aac49f078cae96f8d4f.png)\n\nDanna 是著名的阿根廷传统糖果公司“Dulce Alfajor”的所有者。由于生意极为成功，她的工厂已扩建成一个规模庞大、实行严格安全规程的厂区。\n\n工厂的布局可以建模为一张**有向无环图**，其中有 $n + 1$ 个房间和 $m$ 条有向走廊，房间编号从 $0$ 到 $n$。房间 $0$ 是主入口，而房间 $1$ 到 $n$ 都沾满了黏糊糊的糖果，需要清理。\n\nDanna 需要为每个房间 $i$（$1 \\le i \\le n$）指定一种颜色 $C_i$，每个房间必须被指定**恰好一种**颜色。随后，她会为每种用到的**不同**颜色恰好雇用一名工人。清理过程遵循以下规则：\n\n- 房间 $0$ 包含所有颜色，因此任何工人都可以从这里开始自己的清理路线。\n- 每名工人被分配一种特定的颜色 $c$，并且只会进入和清理被指定为颜色 $c$ 的房间。\n- 被分配颜色 $C_w$ 的工人从房间 $0$ 出发，沿一条有向路径 $0 \\to v_1 \\to v_2 \\to \\dots \\to v_m$ 行进，其中每个房间（$1  \\lt = j  \\lt = m$）的颜色都与该工人的颜色相同（$C_w = C_{v_j}$），并清理路径上的每个房间。\n- 所有被指定为颜色 $c$ 的房间，都必须由对应的工人在同一条路线中**至少访问一次**并清理。\n- 从 $1$ 到 $n$ 的每个房间，都必须由**恰好**一名工人访问并清理。\n- 工人总会选择能使自己清理的房间数量**最多**的路径。\n\n保证**从房间 $0$ 到每个房间都有一条直达走廊**，其中 $v \\in [1, n]$，且任何房间 $v \\in [1, n]$ 都没有通向房间 $0$ 的走廊。\n\n注意，即使一个房间已经被清理过，工人仍然可以访问它。\n\n请帮助 Danna 求出清理整个工厂所需的最少不同颜色数 $K$，并输出房间 $1$ 到 $n$ 的一种合法颜色分配方案 $C_1, C_2, \\dots, C_n$（$1 \\le C_i \\le K$）。\n\n## 输入格式\n\n第一行包含两个以空格分隔的整数 $n$ 和 $m$（$1 \\le n \\le 2 \\cdot 10^5$，$n \\le m \\le n + 2 \\cdot 10^5$）——分别表示沾满糖果的房间数量（不包括房间 $0$），以及房间 $0$ 到 $n$ 之间的有向走廊数量。\n\n接下来 $m$ 行，每行包含两个以空格分隔的整数 $u_i$ 和 $v_i$（$0 \\le u_i \\le n$，$1 \\le v_i \\le n$，$u_i \\neq v_i$），表示一条从房间 $u_i$ 通向房间 $v_i$ 的有向走廊。保证从房间 0 到其他每个房间都存在一条有向走廊，且图中没有重边。\n\n## 输出格式\n\n第一行输出一个整数 $K$（$1 \\le K \\le n$）——清理所有房间所需的最少不同颜色数。\n\n第二行输出 $n$ 个以空格分隔的整数 $C_1, C_2, \\dots, C_n$（$1 \\le C_i \\le K$），其中 $C_i$ 表示为房间 $i$ 指定的颜色。\n\n如果存在多种使用 $K$ 种颜色的合法分配方案，你可以输出其中任意一种。",
+  "samples": [
+    {
+      "input": "1 1\n0 1\n",
+      "output": "1\n1\n"
+    },
+    {
+      "input": "5 8\n0 1\n0 2\n0 3\n0 4\n0 5\n1 2\n2 4\n3 5\n",
+      "output": "2\n1 1 2 1 2\n"
+    },
+    {
+      "input": "5 8\n0 1\n0 2\n0 3\n0 4\n0 5\n1 2\n2 4\n3 4\n",
+      "output": "3\n1 1 2 1 3\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-19T22:19:29.958Z",
+  "translatedAt": "2026-11-19T22:28:23.076Z",
+  "translateModel": "gpt-6.1-sol"
+}

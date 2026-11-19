@@ -4,7 +4,7 @@
   "contestId": 106701,
   "index": "F",
   "title": "Folding Game of Ohto Ai",
-  "titleZh": null,
+  "titleZh": "大户爱的折叠游戏",
   "url": "https://codeforces.com/gym/106701/problem/F",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 3000,
   "memoryLimitMb": 512,
   "statementMd": "Ohto Ai has an unrooted tree with $N$ vertices. Let the current tree be $G=(V,E)$.\n\nA **path** in a tree is a sequence of distinct vertices $v_1,v_2,\\ldots,v_k$ such that $\\{v_i,v_{i+1}\\}\\in E$ for every $1\\le i \\lt k$.\n\nA **diameter** of a tree is a path containing the maximum possible number of vertices.\n\nWhile $|V| \\gt 1$, Ohto Ai may perform the following **fold operation**: Choose any diameter $d_1,d_2,\\ldots,d_k$ of the current tree, listed in order from one endpoint to the other.\n\nDefine a function $f:V\\to V$ by:\n\n$$ f(v)= \\begin{cases} d_{\\min\\{i,k-i+1\\}}, & \\text{if }v=d_i\\text{ for some }1\\le i\\le k\\\\ v, & \\text{otherwise} \\end{cases} $$\n\nThe tree after the fold is $G'=(V',E')$, where:\n\n$$ \\begin{aligned} V'&=\\{f(v)\\mid v\\in V\\} \\\\ E'&= \\bigl\\{ \\{f(u),f(v)\\} \\mid \\{u,v\\}\\in E,\\ f(u)\\ne f(v) \\bigr\\} \\end{aligned} $$\n\nIn other words, vertices at symmetric positions on the chosen diameter are merged. Edges whose endpoints are merged into the same vertex disappear, and if multiple edges become edges between the same pair of vertices, only one copy is kept.\n\nIt can be shown that $G'$ is still a tree.\n\nOhto Ai repeatedly performs fold operations until $|V|=1$. Find the maximum possible number of operations.\n\n## Input\n\nThe first line contains an integer $T$ ($1 \\leq T \\leq 3\\times 10^3$), denoting the number of test cases.\n\nFor each test case, the first line contains an integer $N$ ($1 \\leq N \\leq 5\\times 10^4$), denoting the number of vertices in the tree.\n\nThe next $N-1$ lines each contain two integers $x,y$ ($1 \\leq x,y \\leq N$, $x\\neq y$), denoting an edge of the tree.\n\nIt is guaranteed that the sum of $N$ over all test cases does not exceed $5\\times 10^4$.\n\n## Output\n\nFor each test case, output one line containing an integer: the maximum number of fold operations that can be performed on the tree.\n\n## Note\n\nFor the first test case, the tree with $1$ vertex has no fold operation that can be performed, so the answer is $0$.\n\nFor the second test case, one optimal folding sequence is shown below:\n\n![image](https://espresso.codeforces.com/9ca4538e8b2ee1db41cc9b396db93fe05cdcce2e.png)\n\nFor the third test case, it can be proven that at most $7$ fold operations can be performed, so the answer is $7$.",
-  "statementZhMd": null,
+  "statementZhMd": "大户爱有一棵包含 $N$ 个顶点的无根树。设当前的树为 $G=(V,E)$。\n\n树中的一条**路径**是一个由互不相同的顶点组成的序列 $v_1,v_2,\\ldots,v_k$，满足对于每个 $1\\le i \\lt k$，都有 $\\{v_i,v_{i+1}\\}\\in E$。\n\n树的**直径**是包含顶点数最多的路径。\n\n当 $|V| \\gt 1$ 时，大户爱可以执行以下**折叠操作**：任选当前树的一条直径 $d_1,d_2,\\ldots,d_k$，其中顶点按从一个端点到另一个端点的顺序排列。\n\n定义函数 $f:V\\to V$ 如下：\n\n$$ f(v)= \\begin{cases} d_{\\min\\{i,k-i+1\\}}, & \\text{if }v=d_i\\text{ for some }1\\le i\\le k\\\\ v, & \\text{otherwise} \\end{cases} $$\n\n折叠后的树为 $G'=(V',E')$，其中：\n\n$$ \\begin{aligned} V'&=\\{f(v)\\mid v\\in V\\} \\\\ E'&= \\bigl\\{ \\{f(u),f(v)\\} \\mid \\{u,v\\}\\in E,\\ f(u)\\ne f(v) \\bigr\\} \\end{aligned} $$\n\n换言之，所选直径上位置对称的顶点会被合并。若一条边的两个端点被合并为同一个顶点，则这条边会消失；若多条边变成连接同一对顶点的边，则只保留一条。\n\n可以证明，$G'$ 仍然是一棵树。\n\n大户爱反复执行折叠操作，直到 $|V|=1$。求最多可以执行多少次操作。\n\n## 输入格式\n\n第一行包含一个整数 $T$（$1 \\leq T \\leq 3\\times 10^3$），表示测试用例的数量。\n\n对于每个测试用例，第一行包含一个整数 $N$（$1 \\leq N \\leq 5\\times 10^4$），表示树的顶点数。\n\n接下来 $N-1$ 行，每行包含两个整数 $x,y$（$1 \\leq x,y \\leq N$，$x\\neq y$），表示树的一条边。\n\n保证所有测试用例的 $N$ 之和不超过 $5\\times 10^4$。\n\n## 输出格式\n\n对于每个测试用例，输出一行，包含一个整数：这棵树最多可以执行的折叠操作次数。\n\n## 说明\n\n对于第一个测试用例，只有 $1$ 个顶点的树无法执行任何折叠操作，因此答案为 $0$。\n\n对于第二个测试用例，一种最优的折叠操作序列如下图所示：\n\n![image](https://espresso.codeforces.com/9ca4538e8b2ee1db41cc9b396db93fe05cdcce2e.png)\n\n对于第三个测试用例，可以证明最多只能执行 $7$ 次折叠操作，因此答案为 $7$。",
   "samples": [
     {
       "input": "3\n1\n5\n1 2\n1 3\n1 4\n4 5\n13\n1 2\n2 3\n3 4\n2 5\n5 6\n5 7\n1 8\n8 9\n9 10\n8 11\n11 12\n11 13\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T13:36:02.564Z"
+  "fetchedAt": "2026-11-19T13:36:02.564Z",
+  "translatedAt": "2026-11-19T22:28:57.948Z",
+  "translateModel": "gpt-6.1-sol"
 }
