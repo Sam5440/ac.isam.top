@@ -14,6 +14,7 @@ import { BUILD_ID } from '@/lib/build-id.mjs';
 import { getIndex } from '@/lib/data';
 import { TEMPLATE_THEMES } from '@/lib/themes';
 import { formatDateTime } from '@/lib/utils';
+import { Analytics } from '@vercel/analytics/next';
 
 import './globals.css';
 
@@ -148,6 +149,7 @@ export default function RootLayout({ children }) {
           <ToastHost />
           <PwaRegister />
         </SettingsProvider>
+        <Analytics />
       </body>
     </html>
   );
