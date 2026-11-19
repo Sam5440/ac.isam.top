@@ -42,8 +42,8 @@ try {
   const canvasProblems = grid.locator('[data-widget="problems"]');
   const originalHeight = (await grid.boundingBox()).height;
   await inspect.getByLabel('高度').selectOption('6');
-  assert.equal(await inspect.getByLabel('题目数量').inputValue(), '7');
-  await inspect.getByLabel('题目数量').fill('11');
+  assert.equal(await inspect.getByLabel('题目数量').count(), 0);
+  await inspect.getByText(/当前最多 11 条/).waitFor();
   await previewProblems.nth(10).waitFor();
   assert.equal(await previewProblems.count(), 11);
   const bottom = (box) => box.y + box.height;
@@ -108,5 +108,5 @@ try {
   assert.equal((await settings()).homeWidgets.find((item) => item.type === 'clock').w, 3);
   assert.ok(requests.some((url) => url.includes('api.open-meteo.com')));
   assert.deepEqual(errors, []);
-  console.log('首页组件 E2E 通过：独立显示数量、真实数据预览、拖入、双轴缩放、换位、保存刷新、键盘、手机抽屉、取消与 HTML 独立草稿');
+  console.log('首页组件 E2E 通过：高度自动匹配条数、真实数据预览、拖入、双轴缩放、换位、保存刷新、键盘、手机抽屉、取消与 HTML 独立草稿');
 } finally { await browser.close(); }

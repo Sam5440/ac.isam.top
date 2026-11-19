@@ -142,7 +142,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 
 编辑画布与首页共享 `packWidgets`（行优先找首个能容纳整个矩形的空位），窄屏只收拢显示列数，不改存储尺寸。新增可视组件时同步登记 `CATALOG` 的参数白名单、编辑器图标及首页 `WidgetNode` 映射。设置页下方的 `HomeLivePreview` 通过 `/api/home` 取构建期首页数据，并把当前草稿传给同一个 `HomeDashboard` 渲染，不能再用无数据的示意图代替；HTML 仍经过 `parseHomeLayout`。浏览器回归：`node e2e/home-layout-visual.js`、`node e2e/home-widget-grid.js` 与 `node e2e/home-presets-visual.js`（可设 `BASE_URL`）。
 
-桌面默认四列，新组件占两列、高度按类型，画布随最下方组件伸缩，不设固定视口高度。列表组件的 `params.limit` 独立精确控制条数（1–24），指针及面板共用 `resizeWidget`，调整宽高不得改动条数。读取旧设置、切换屏宽不重算条数；「恢复默认四列布局」只替换可视草稿。
+桌面默认四列，新组件占两列、高度按类型，画布随最下方组件伸缩，不设固定视口高度。列表组件的 `params.limit` 由高度自动匹配（`height * 2 - 1`，最高 15 条），`createWidget` 与指针/面板共用的 `resizeWidget` 都会同步条数，编辑器不再提供手工条数输入。读取旧设置会按已存高度重算，切换屏宽不重算；「恢复默认四列布局」只替换可视草稿。
 
 手机回归 `node e2e/mobile-layout.js`（支持 `BASE_URL`）覆盖 320 / 390 / 430px。顶栏「更多」在手机上按顶栏而非触发按钮定位；设置行的多个操作允许换行，首页编辑器底部操作栏与语言浮钮需分别可点。
 

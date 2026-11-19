@@ -51,13 +51,10 @@ try {
   assert.equal(await page.locator('#safe-image').getAttribute('onerror'), null);
   assert.equal(await page.evaluate(() => window.__homeXss), undefined);
   await page.getByRole('link', { name: /Clist 测试未来赛/ }).waitFor();
-  const cfSiteFilter = page.getByRole('button', { name: /Codeforces/ });
-  await cfSiteFilter.click();
-  assert.equal(await page.getByRole('link', { name: /Clist 测试未来赛/ }).count(), 0);
-  assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('stmt-settings-v1')).calendarSites.includes('codeforces.com')), false);
-  await cfSiteFilter.click();
-  await page.getByRole('link', { name: /Clist 测试未来赛/ }).waitFor();
-  assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('stmt-settings-v1')).calendarSites.includes('codeforces.com')), true);
+  assert.equal(await page.getByRole('group', { name: '首页未来比赛网站筛选' }).count(), 0);
+  const calendarHint = page.getByText('网站筛选请在', { exact: false });
+  await calendarHint.waitFor();
+  assert.equal(await calendarHint.getByRole('link', { name: '比赛日历' }).getAttribute('href'), '/calendar');
 
   await page.evaluate(async () => {
     const db = await new Promise((resolve, reject) => {
@@ -111,7 +108,7 @@ try {
   await page.getByText('3408', { exact: true }).waitFor();
   await page.getByText(/体感 23°C/).waitFor();
   assert.deepEqual(pageErrors, []);
-  console.log('首页 E2E 通过：经典页、12 预设、HTML 保存/持久化、XSS 净化、Clist 未来比赛列表、日历站点同步、历史/文件、天气/CF 数据、窄屏布局');
+  console.log('首页 E2E 通过：经典页、12 预设、HTML 保存/持久化、XSS 净化、Clist 未来比赛列表、日历筛选提示、历史/文件、天气/CF 数据、窄屏布局');
 } finally {
   await browser.close();
 }

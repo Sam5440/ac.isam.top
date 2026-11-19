@@ -23,24 +23,26 @@ test('重复组件保留各自参数，修复重复 ID，归一化后 ID 稳定'
   assert.deepEqual(normalizeWidgets(normalized), normalized);
 });
 
-test('四列中所有新组件默认占两列，旧布局按已保存的宽高和条数读取', () => {
+test('四列中所有新组件默认占两列，旧布局保留宽高并按高度重算条数', () => {
   for (const type of Object.keys(CATALOG)) assert.equal(createWidget(type, 'new').w, 2);
   assert.deepEqual(packWidgets(DEFAULT_WIDGETS, 4).map(({ row, col }) => [row, col]), [[0, 0], [0, 2], [2, 0], [2, 2]]);
   const old = createWidget('problems', 'old', { w: 4, h: 6, params: { limit: 10 } });
+  assert.equal(old.params.limit, 11);
   assert.deepEqual(normalizeWidgets([old]), [old]);
 });
 
-test('宽高调整只改变排版，所有组件的显示数量保持独立', () => {
+test('列表显示数量由高度自动匹配，横向调整不影响内容', () => {
   for (const type of Object.keys(CATALOG)) {
     const start = createWidget(type, 'sample', { h: 3, params: { limit: 10 } });
     assert.deepEqual(resizeWidget(start, 4, 3).params, start.params);
     const taller = resizeWidget(start, 2, 5);
-    assert.deepEqual(taller.params, start.params);
-    assert.deepEqual(resizeWidget(taller, 2, 3), start);
     if (CATALOG[type].fields?.limit) {
-      assert.equal(createWidget(type, 'exact', { params: { limit: 3 } }).params.limit, 3);
-      assert.equal(createWidget(type, 'maximum', { params: { limit: 99 } }).params.limit, 24);
-    }
+      assert.equal(start.params.limit, 5);
+      assert.equal(taller.params.limit, 9);
+      assert.equal(createWidget(type, 'four-rows', { h: 4, params: { limit: 3 } }).params.limit, 7);
+      assert.equal(createWidget(type, 'eight-rows', { h: 8, params: { limit: 99 } }).params.limit, 15);
+    } else assert.deepEqual(taller.params, start.params);
+    assert.deepEqual(resizeWidget(taller, 2, 3), start);
   }
 });
 
@@ -48,7 +50,7 @@ test('无效类型回退、允许空数组，尺寸与参数逐字段限制', ()
   for (const bad of [null, {}, [null, { type: '__proto__' }]]) assert.deepEqual(normalizeWidgets(bad), DEFAULT_WIDGETS);
   assert.deepEqual(normalizeWidgets([]), []);
   const [item] = normalizeWidgets([{ type: 'problems', w: -3, h: 999, params: { kind: {}, platform: 'unknown', limit: 55, html: 'ignored' } }]);
-  assert.deepEqual([item.w, item.h, item.params], [1, 8, { kind: 'recent', platform: '', limit: 24 }]);
+  assert.deepEqual([item.w, item.h, item.params], [1, 8, { kind: 'recent', platform: '', limit: 15 }]);
 });
 
 test('顺序决定优先级，删除、缩小或移动后从首个空格补位', () => {

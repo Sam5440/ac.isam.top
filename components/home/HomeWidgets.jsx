@@ -153,7 +153,7 @@ function UpcomingContestRow({ contest }) {
 }
 
 export function HomeUpcomingContests({ attrs, data, now }) {
-  const { settings, setSettings } = useSettings();
+  const { settings } = useSettings();
   const after = Math.min(60, Math.max(1, Number(settings.calendarDaysAfter) || 15));
   const [external, setExternal] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -185,40 +185,15 @@ export function HomeUpcomingContests({ attrs, data, now }) {
   );
   const internal = useMemo(() => selectHomeContests(data, 'upcoming', now).map(fromInternalContest), [data, now]);
   const merged = useMemo(() => mergeUpcomingContests(internal, external ?? []), [internal, external]);
-  const allSites = useMemo(() => new Set(merged.map((contest) => contest.resource)), [merged]);
-  const eligible = useMemo(() => visibleUpcomingContests(merged, allSites, attrs.platform, now), [merged, allSites, attrs.platform, now]);
   const list = visibleUpcomingContests(merged, selected, attrs.platform, now).slice(0, widgetLimit(attrs.limit));
-  const sites = useMemo(() => {
-    const extras = [...new Set(eligible.map((contest) => contest.resource))]
-      .filter((resource) => !DEFAULT_CALENDAR_SITES.includes(resource)).sort();
-    return [...DEFAULT_CALENDAR_SITES, ...extras];
-  }, [eligible]);
-  const toggleSite = (resource) => {
-    const next = new Set(selected);
-    if (next.has(resource)) next.delete(resource);
-    else next.add(resource);
-    setSettings({ calendarSites: [...next] });
-  };
 
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-muted-foreground text-xs">未来 {after} 天 · 与日历共用站点勾选</p>
+        <p className="text-muted-foreground text-xs">未来 {after} 天 · 网站筛选请在<Link href="/calendar" className="mx-0.5 underline underline-offset-2 hover:text-foreground">比赛日历</Link>中设置</p>
         <button type="button" onClick={() => setAttempt((value) => value + 1)} disabled={loading} className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1 text-xs disabled:opacity-40">
           <RefreshCw className={`size-3 ${loading ? 'animate-spin' : ''}`} />刷新赛程
         </button>
-      </div>
-      <div className="flex flex-wrap gap-1.5" role="group" aria-label="首页未来比赛网站筛选">
-        {sites.map((resource) => {
-          const on = selected.has(resource);
-          const count = eligible.filter((contest) => contest.resource === resource).length;
-          return (
-            <button key={resource} type="button" aria-pressed={on} onClick={() => toggleSite(resource)} title={resource}
-              className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-xs transition-colors ${on ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground hover:text-foreground opacity-70'}`}>
-              <UpcomingSiteBadge resource={resource} />{contestSiteMeta(resource).label}<span className="text-muted-foreground tabular-nums">{count}</span>
-            </button>
-          );
-        })}
       </div>
       {error && <div className="rounded-lg border border-amber-500/40 px-3 py-2 text-xs text-amber-500">Clist 日程暂未更新：{error}{internal.length ? '，当前显示题库回退数据。' : '。'}</div>}
       {loading && external === null ? <Loading rows={4} /> : list.length ? (
@@ -226,7 +201,7 @@ export function HomeUpcomingContests({ attrs, data, now }) {
       ) : (
         <div className="text-muted-foreground flex flex-col items-center gap-2 rounded-xl border border-dashed px-4 py-8 text-center text-sm">
           <CalendarDays className="size-7 opacity-50" />
-          <span>{selected.size === 0 ? '请在上方勾选要显示的比赛网站' : `未来 ${after} 天内，所选网站暂无比赛`}</span>
+          <span>{selected.size === 0 ? '请在比赛日历中勾选要显示的比赛网站' : `未来 ${after} 天内，所选网站暂无比赛`}</span>
         </div>
       )}
     </div>

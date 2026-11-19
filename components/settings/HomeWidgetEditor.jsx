@@ -60,6 +60,7 @@ function Inspector({ widget, index, count, update, move, remove }) {
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {selectSize('w', '宽度', MAX_WIDTH)}{selectSize('h', '高度', MAX_HEIGHT)}
       {Object.entries(spec.fields || {}).map(([key, field]) => {
+        if (key === 'limit') return null;
         const change = (value) => update({ params: { ...widget.params, [key]: value } });
         return <label key={key} className="text-muted-foreground grid min-w-0 gap-1 text-xs">{field.label}
           {field.options ? <select className={inputCls} value={widget.params[key]} onChange={(event) => change(event.target.value)}>
@@ -68,7 +69,7 @@ function Inspector({ widget, index, count, update, move, remove }) {
         </label>;
       })}
     </div>
-    {spec.fields?.limit && <p className="text-muted-foreground text-xs">显示数量独立控制实际条数（1～24），调整高度不会再改变它；内容增多时首页自动撑高，不会出现组件内滚动条。</p>}
+    {spec.fields?.limit && <p className="text-muted-foreground text-xs">显示数量按高度自动匹配：当前最多 {widget.params.limit} 条。实际条数会受可用数据和筛选条件影响，内容不会收进组件内滚动条。</p>}
   </section>;
 }
 

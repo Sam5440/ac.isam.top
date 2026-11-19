@@ -43,7 +43,7 @@ const SECTIONS = [
     id: 'home',
     label: '首页布局',
     icon: LayoutDashboard,
-    desc: '从模块库拖入组件并独立设置显示数量，下方实时预览真实数据。含 10 套组件预设与 12 套 HTML 预设。',
+    desc: '从模块库拖入组件，按高度自动匹配显示数量，下方实时预览真实数据。含 10 套组件预设与 12 套 HTML 预设。',
   },
   { id: 'appearance', label: '外观', icon: Palette, desc: '界面主题、自定义主题与全局 CSS。' },
   {
