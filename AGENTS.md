@@ -236,6 +236,23 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   （`COMPILE_HARD_CAP_MS = 180s`）；wasm 无法从外部抢占，**超时/停止 =
   `terminate worker`**；交互运行 = SharedArrayBuffer + `Atomics.wait` 阻塞喂 stdin。
   Python worker 必须是 **module worker**，别改成经典 worker。
+- **编辑器只有一个实现**：题目页 `CompilerDock` 与 `/ide` 都用
+  `components/compiler/CodeEditor.jsx`（Monaco 0.57），补全/签名/hover/格式化/AI
+  ghost 全在这一个文件里注册；两处要一致的行为改这里，别在 IDE 侧另写一份。
+- **补全的数据层在 `lib/compiler/completions.js`**（纯表 + 纯函数，可单测）。
+  成员访问（`.` / `->`）的静态表**按接收者类型过滤**：`CPP_CONTAINER_MEMBERS`
+  是「容器 → 合法成员 label」白名单，`cppReceiverMembers()` 用轻量正则从源码里
+  猜变量声明类型（`queue<int> q` → queue），推不出来就回整表——**这是有意为之**
+  （宁可多给也不错给：`queue` 曾经能补出 `push_back`）。白名单里的 label 必须
+  真实存在于 `CPP_MEMBERS`，有单测守着（`test/compiler-completions.test.mjs`）。
+  精确补全仍由 clang `-code-completion-at` 异步合并，静态表只负责「先弹出来的
+  那批别胡说」。
+- **Monaco 的整行复制/剪切是自己接的**（`CodeEditor.jsx` 的 `installLineClipboard`）：
+  编辑器容器**捕获阶段**监听 `copy`/`cut`，空选区时写剪贴板并删除整行，有选区
+  一律放行。别依赖 Monaco 的 `emptySelectionClipboard`（默认值按内核判断，行为
+  不稳）。区块计算在 `lib/compiler/line-clipboard.js`（纯函数 + 单测）。
+  踩坑记录：Monaco 的 ITextModel **没有 `getLines()`**（那是 `getLinesContent()`），
+  用错会让 copy 事件抛异常、连默认复制一起废掉，而且异常在事件里不显眼。
 
 ### 3.7 AI 功能
 

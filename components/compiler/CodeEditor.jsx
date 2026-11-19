@@ -39,8 +39,10 @@ import {
   splitSignatureParams,
   includeContext,
   cppAccessKind,
+  cppReceiverMembers,
   pyPrefixPath,
 } from "../../lib/compiler/completions.js";
+import { lineClipboardPayload } from "../../lib/compiler/line-clipboard.js";
 import { EDITOR_THEMES, editorThemeDef } from "../../lib/compiler/themes.js";
 import { formatCode } from "../../lib/compiler/format.js";
 import { registerEditorSource } from "../../lib/editor-bridge.js";
@@ -71,6 +73,59 @@ function watchSoftKeyboardSuppression(editor, suppress) {
   const mo = new MutationObserver(apply);
   mo.observe(host, { childList: true, subtree: true });
   return () => mo.disconnect();
+}
+
+/**
+ * 无选区时整行复制 / 剪切（VS Code 的 emptySelectionClipboard 语义）。
+ *
+ * 为什么不用 Monaco 自带的能力：那条路径只在内核被识别成 WebKit/Firefox 时才默认
+ * 打开，且行为随版本变动（Chrome 上实测时好时坏）；这里在编辑器容器的**捕获阶段**
+ * 接管 copy / cut，选区为空就自己写剪贴板，行为与浏览器/平台无关。
+ *  - 复制：整行内容 + 行尾换行，光标在哪行就复制哪行（多光标按行去重）
+ *  - 剪切：先写剪贴板，再整行删掉（一次编辑，可一步撤销）
+ *  - 选区非空 / 焦点在浮层（悬停文档、补全弹层）：一律不接管，交回浏览器与 Monaco
+ * 文本与删除区间的计算在 lib/compiler/line-clipboard.js（纯函数，有单测）。
+ */
+function installLineClipboard(editor, monaco) {
+  const dom = editor.getDomNode();
+  if (!dom) return null;
+  const handle = (isCut) => (e) => {
+    const clipboard = e.clipboardData;
+    if (!clipboard) return; // 没有剪贴板载体（极旧内核）：交回默认行为
+    const model = editor.getModel();
+    if (!model || !editor.hasTextFocus?.()) return;
+    let payload;
+    try {
+      // getLinesContent() 是 Monaco ITextModel 的整表接口（getLines() 不存在，
+      // 用错会让 copy 事件抛异常 → 默认复制也被带坏）
+      payload = lineClipboardPayload(
+        model.getLinesContent(),
+        editor.getSelections() || [],
+      );
+    } catch {
+      return; // 推断出错就放行默认复制，绝不挡路
+    }
+    if (!payload) return; // 有真实选区：交回默认复制/剪切
+    clipboard.setData("text/plain", payload.text);
+    e.preventDefault();
+    e.stopPropagation(); // 别让 Monaco 的文本框处理器再覆盖一次剪贴板
+    if (!isCut) return;
+    // 只读编辑器：复制照旧，但不动内容
+    if (editor.getOption?.(monaco.editor.EditorOption.readOnly)) return;
+    editor.executeEdits(
+      "line-cut",
+      payload.ranges.map((range) => ({ range, text: "" })),
+    );
+    editor.focus();
+  };
+  const onCopy = handle(false);
+  const onCut = handle(true);
+  dom.addEventListener("copy", onCopy, true);
+  dom.addEventListener("cut", onCut, true);
+  return () => {
+    dom.removeEventListener("copy", onCopy, true);
+    dom.removeEventListener("cut", onCut, true);
+  };
 }
 
 function loadMonaco() {
@@ -257,7 +312,15 @@ function registerProviders(monaco) {
             toSuggestion(monaco, m, K.Method, { sortBoost: "2", range }),
           );
       } else if (access) {
-        for (const m of CPP_MEMBERS)
+        // 类型感知的成员表：`queue<int> q; q.` 只出 queue 真正拥有的成员
+        // （push_back 属于 vector，不该出现）。推断走 lib/compiler/completions.js
+        // 的轻量正则，推不出类型（迭代器/返回值/成员链）时原样回整表；
+        // 精确结果仍由下面的 clang 补全异步修正。
+        for (const m of cppReceiverMembers(
+          model.getValue(),
+          lineText,
+          position.column,
+        ))
           suggestions.push(
             toSuggestion(monaco, m, K.Method, { sortBoost: "2", range }),
           );
@@ -568,6 +631,7 @@ export default function CodeEditor({
   const monacoRef = useRef(null);
   const initialModelDispRef = useRef(null); // 初始 model 的 onChange 监听(卸载时释放)
   const suppressionRef = useRef(null); // watchSoftKeyboardSuppression 的清理函数
+  const lineClipboardRef = useRef(null); // 整行复制/剪切的 copy-cut 监听清理函数
   // 手动 clang 补全标记：Ctrl/Cmd+Space 的 keydown 置位，provider 的 Invoke 消费。
   // Monaco 里「打字母自动弹补全」与「手动触发」的 triggerKind 相同（都是 Invoke），
   // 不区分的话每次击键都会跑一次秒级全量编译。
@@ -664,6 +728,8 @@ export default function CodeEditor({
       });
       editorRef.current = editor;
       monacoRef.current = monaco;
+      // 空选区整行复制/剪切（Ctrl/Cmd+C、Ctrl/Cmd+X）
+      lineClipboardRef.current = installLineClipboard(editor, monaco);
       // create 的隐式初始 model 不随 editor.dispose() 释放 —— 语言切换 effect
       // 只 dispose 它自建的 model,本引用兜底防每实例泄漏一个(编译-17①)
       initialModel = editor.getModel();
@@ -743,6 +809,8 @@ export default function CodeEditor({
         // 仅当仍是本实例注册的读取器时让位(后挂载实例已覆盖则保留新实例)
         activeCppContextFn = null;
       }
+      lineClipboardRef.current?.();
+      lineClipboardRef.current = null;
       initialModelDispRef.current?.dispose();
       editor?.dispose();
       initialModel?.dispose();
