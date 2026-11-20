@@ -1,0 +1,34 @@
+{
+  "id": "106666i",
+  "platform": "cf-gyms",
+  "contestId": 106666,
+  "index": "I",
+  "title": "Which Witch",
+  "titleZh": "谁是邪恶女巫",
+  "url": "https://codeforces.com/gym/106666/problem/I",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "There are $N$ witch huts each with a witch in it. One of these witches is evil. You want to find which witch hut has the evil witch.\n\nTo do this, you assign other players to check these witch huts. You start with $K$ (an initial value you choose) players. You can assign each player to investigate any amount of witch huts. They all disperse and take $C$ time to check the assigned witch huts and come back to you at the same time.\n\nWhen the players come back to you, they either have the \"Bad Luck\" effect on them if they checked the evil witch hut or they have \"Good Luck\" effect on them if they did NOT visit the evil witch hut. The players that checked the evil witch don't know which one of the witch huts they visited gave them the \"Bad Luck\" effect though (the \"Bad Luck\" effect is the only indicator). Additionally, because the players with the \"Bad Luck\" effect have bad luck, one of them is chosen at random and permanently dies, meaning they can't help with the witch hut checking anymore. If no players come back with the \"Bad Luck\" effect, no players die.\n\nYou want to find the evil witch within $T$ time, but not very many players are willing to help out. What's the minimum number of players $K$ you need to start with to guarantee finding the evil witch?\n\n## Input\n\nEach test case consists of only 3 numbers $N$ ($1 \\leq N \\leq 10^{18}$), $C$ ($1 \\leq C \\leq 10^5$), and $T$ ($1 \\leq T \\leq 10^5$).\n\n## Output\n\nPrint only $K$, the minimum number of players you need to start with to guarantee finding the evil witch. If no amount of players can guarantee finding the evil witch, output $-1$.\n\n## Note\n\nFor the first test case, you can send player 1 to check hut 1 and player 2 to check hut 2 at time 0. If either of them comes back \"Bad Luck\" at $t=15$, you know that hut is evil. If neither come back with \"Bad Luck\", you know witch hut 3 is evil.\n\nFor the second test case, you can send player 1 to check witch huts 1, 2, 3, and 4 and player 2 to check huts 1, 2, 5, 6 at time 0.\n\nAt $t=10$:\n\n1. If only player 1 comes back with \"Bad Luck\", you check witch huts 3 and 4 with player 2.\n\n2. If only player 2 comes back with \"Bad Luck\", you check witch huts 5 and 6 with player 1.\n\n3. If both come back with \"Bad Luck\", you check witch huts 1 and 2 with one of the players.\n\n4. If neither come back with \"Bad Luck\", you check witch huts 7, 8, 9, 10 with both players.\n\nAt $t=20$, you will know which witch hut is the evil one.\n\nFor the third test case, you cannot determine the evil witch hut. Thus, you return \"$-1$\".",
+  "statementZhMd": "有 $N$ 间女巫小屋，每间都住着一名女巫。其中一名女巫是邪恶的，你想找出她住在哪间小屋里。\n\n为此，你让其他玩家去调查这些小屋。你起初有 $K$ 名玩家（初始人数由你决定）。你可以为每名玩家分配任意数量的小屋。玩家们分头调查各自负责的小屋，耗时 $C$，然后同时回到你身边。\n\n玩家回来时，如果调查过邪恶女巫的小屋，就会带有「厄运」效果；否则就会带有「好运」效果。不过，带有「厄运」效果的玩家并不知道自己是在哪间小屋染上厄运的（「厄运」效果是唯一的线索）。此外，由于带有「厄运」效果的玩家运气不好，其中会随机有一人永久死亡，无法再参与调查。如果没有玩家带着「厄运」效果回来，就不会有人死亡。\n\n你想在 $T$ 时间内找出邪恶女巫，但愿意帮忙的玩家不多。为了保证找出邪恶女巫，你起初至少需要多少名玩家 $K$？\n\n## 输入格式\n\n每个测试用例仅包含 3 个数：$N$（$1 \\leq N \\leq 10^{18}$）、$C$（$1 \\leq C \\leq 10^5$）和 $T$（$1 \\leq T \\leq 10^5$）。\n\n## 输出格式\n\n只输出 $K$，即保证找出邪恶女巫所需的最少初始玩家人数。如果无论有多少名玩家都无法保证找出邪恶女巫，则输出 $-1$。\n\n## 说明\n\n对于第一个测试用例，你可以在时刻 0 派玩家 1 调查 1 号小屋，派玩家 2 调查 2 号小屋。如果其中一人在 $t=15$ 时带着「厄运」效果回来，你就知道邪恶女巫住在那名玩家调查的小屋里。如果两人都没有带着「厄运」效果回来，你就知道邪恶女巫住在 3 号小屋里。\n\n对于第二个测试用例，你可以在时刻 0 派玩家 1 调查 1、2、3、4 号小屋，派玩家 2 调查 1、2、5、6 号小屋。\n\n在 $t=10$ 时：\n\n1. 如果只有玩家 1 带着「厄运」效果回来，就让玩家 2 调查 3、4 号小屋。\n\n2. 如果只有玩家 2 带着「厄运」效果回来，就让玩家 1 调查 5、6 号小屋。\n\n3. 如果两名玩家都带着「厄运」效果回来，就让其中一名玩家调查 1、2 号小屋。\n\n4. 如果两名玩家都没有带着「厄运」效果回来，就让两名玩家调查 7、8、9、10 号小屋。\n\n在 $t=20$ 时，你就能确定邪恶女巫住在哪间小屋里。\n\n对于第三个测试用例，你无法确定邪恶女巫住在哪间小屋里，因此输出「$-1$」。",
+  "samples": [
+    {
+      "input": "3 15 15\n",
+      "output": "2\n"
+    },
+    {
+      "input": "10 10 23\n",
+      "output": "2\n"
+    },
+    {
+      "input": "6 26 20\n",
+      "output": "-1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T21:23:49.692Z",
+  "translatedAt": "2026-11-20T21:31:55.889Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "106552c",
+  "platform": "cf-gyms",
+  "contestId": 106552,
+  "index": "C",
+  "title": "Cards",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106552/problem/C",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "![image](https://espresso.codeforces.com/890c18c0ddeedb2d979d23a36e0a000dc2ba919d.png)\n\nOne day, Rened decided to invite his friends to play a card game. The game consists of a sequence of numbered cards on a table, initially empty. The players take turns adding new cards to the end of this sequence; the $i$-th player plays the card with value $C_i$.\n\nThe main rule is simple: **there cannot be cards with repeated numbers on the table**.\n\nWhenever a player plays a card whose number does not appear in the current sequence, it is simply added to the end, extending the sequence normally.\n\nHowever, if a player plays a card with the same value as another card already on the table, an elimination occurs: all cards from the beginning of the current sequence up to and including the previous card with this value are removed. Then, the newly played card is placed at the end of the sequence. **Notice that after this process no repeated values remain on the table, and the sequence is never empty.**\n\nTo make the game faster, Rened asked you and your team to develop a system that tracks the state of the game and, after each play, reports the largest-value card still on the table and the index of the player who played it.\n\n## Input\n\nThe input has two lines. The first contains the value of $N \\ (1 \\leq N \\leq 2 \\times 10^{5})$, the number of players. The second contains the card values $C_i \\ (1 \\leq C_i \\leq N)$.\n\n## Output\n\nThe output should contain $N$ lines, each containing two values separated by a space: the value $C$ of the largest card still on the table and the index $i$ of the player who played that card.\n\n## Note\n\n**Explanation for example 1**\n\n| **1st play:** | **3rd play:** | **5th play:** |\n| --- | --- | --- |\n| Player 1 plays 3 | Player 3 plays 4 | Player 5 plays 6 |\n| Cards on the table: [3] | Cards on the table: [3, 1, 4] | Cards on the table: [4, 1, 6] |\n| Largest card: 3 (player 1) | Largest card: 4 (player 3) | Largest card: 6 (player 5) |\n|   |   |   |\n| **2nd play:** | **4th play:** | **6th play:** |\n| Player 2 plays 1 | Player 4 plays 1 | Player 6 plays 6 |\n| Cards on the table: [3, 1] | The prefix up to the previous 1 is removed | Cards on the table: [6] |\n| Largest card: 3 (player 1) | Cards on the table: [4, 1] | Largest card: 6 (player 6) |\n|   | Largest card: 4 (player 3) |   |",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6\n3 1 4 1 6 6\n",
+      "output": "3 1\n3 1\n4 3\n4 3\n6 5\n6 6\n"
+    },
+    {
+      "input": "12\n1 1 4 6 5 8 4 6 8 2 5 2\n",
+      "output": "1 1\n1 2\n4 3\n6 4\n6 4\n8 6\n8 6\n8 6\n8 9\n8 9\n8 9\n5 11\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T21:24:39.169Z"
+}

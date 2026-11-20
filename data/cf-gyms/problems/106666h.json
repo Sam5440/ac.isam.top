@@ -1,0 +1,34 @@
+{
+  "id": "106666h",
+  "platform": "cf-gyms",
+  "contestId": 106666,
+  "index": "H",
+  "title": "RSC-IV (Redstone Computer 4)",
+  "titleZh": "RSC-IV（红石计算机 4）",
+  "url": "https://codeforces.com/gym/106666/problem/H",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "Chat, we've done it! We've made a computer... in **Minecraft**! The only thing is, it has a peculiar instruction set called RSC-IV, or \"Redstone Computer 4\". \"Redstone Computer\" because the logic is built with redstone, and \"4\" because there are only 4 values that it understands.\n\nBecause it only understands 4 values, RSC-IV only has 4 instructions that a program can contain. A program is just a 1-dimensional line of wood blocks. The only valid wood blocks are **A**cacia, **B**irch, **C**herry, and **D**ark Oak. From here on out, we will just refer to these blocks by their first letters: `A`, `B`, `C`, and `D`.\n\nRSC-IV has only four components.\n\n1. A line of blocks for the **input program**.\n2. A line of blocks for the **output string**. The output string consists of the same 4 wood blocks we use for the input program.\n3. An **instruction pointer** that starts at the beginning of the program and determines the next block from the program to be interpreted.\n4. A 2-bit (4-value) **register** that starts at the value 0.\n\nEach block in the program is one instruction that either acts on the register, the instruction pointer, or the output. Here are the effects of the 4 program blocks:\n\n| Block | Instruction | Effect |\n| --- | --- | --- |\n| `A` | INC | Add 1 to the value in the register, then increment the instruction pointer |\n| `B` | DUB | Double the value in the register, then increment the instruction pointer |\n| `C` | JMP | Increase the instruction pointer by $R$, where $R$ is the value in the register |\n| `D` | PUT | Put/append the value in the register into the output as a block, where `0=A`, `1=B`, `2=C`, and `3=D`, then increment the instruction pointer |\n\nThere are three caveats to note:\n\n- The value in **the register can overflow**. In this case, we still just keep the bottom 2 bits. You can think of this as $R = f(R)\\text{ mod }4$ for every operation done to the register $R$.\n- You may have noticed that we can do a `C/JMP` while our register holds the value 0. This is known as a \"halt\". To be a valid RSC-IV program, the program line **must end with a halt** – it is invalid for a program to halt before reaching the last block in the program line, and it is invalid for a program to never halt or have the instruction pointer go beyond the end of the program line.\n\nOne fun thing computer scientists like to do is make a \"quine\" – a program that outputs itself. We won't have you make a quine, but we'll ask for something similar. The challenge we have for you is the following: take a given output string $S$ and make a valid RSC-IV program $P$ with the following constraints:\n\n- $P$ contains $S$ as a **substring**.\n- Upon halting, $P$ must have produced exactly $S$ as the output string.\n\nIf the task is impossible, just print \"C\", a program that immediately halts.\n\n## Input\n\nThe first and only line contains an output string $S$ $(1 \\le |S| \\le 100)$ consisting only of $A$s, $B$s, $C$s, and $D$s.\n\n## Output\n\nPrint a program string $P$ $(|P| \\le 1000)$ which will print exactly $S$ and contains $S$ as a substring. Print \"C\" if the task is impossible.",
+  "statementZhMd": "直播间的各位，我们做到了！我们造出了一台计算机……就在 **《我的世界》** 里！不过，它有一套特别的指令集，叫作 RSC-IV，也就是“红石计算机 4”。叫“红石计算机”，是因为它的逻辑电路由红石搭建；叫“4”，是因为它只认识 4 个值。\n\n由于只认识 4 个值，RSC-IV 的程序也只能使用 4 种指令。一个程序就是排成一行的木头方块。可用的木头方块只有金合欢木（**A**cacia）、白桦木（**B**irch）、樱花木（**C**herry）和深色橡木（**D**ark Oak）。下文只用英文名称的首字母指代这些方块：`A`、`B`、`C` 和 `D`。\n\nRSC-IV 只有四个组成部分。\n\n1. 一行方块，作为**输入程序**。\n2. 一行方块，作为**输出字符串**。输出字符串与输入程序使用相同的 4 种木头方块。\n3. 一个**指令指针**，初始时指向程序开头，用来确定接下来要执行哪个方块对应的指令。\n4. 一个 2 位（可表示 4 个值）的**寄存器**，初始值为 0。\n\n程序中的每个方块都代表一条指令，作用于寄存器、指令指针或输出。4 种程序方块的作用如下：\n\n| 方块 | 指令 | 作用 |\n| --- | --- | --- |\n| `A` | INC | 将寄存器的值加 1，然后将指令指针加 1 |\n| `B` | DUB | 将寄存器的值乘以 2，然后将指令指针加 1 |\n| `C` | JMP | 将指令指针加上 $R$，其中 $R$ 是寄存器的值 |\n| `D` | PUT | 将寄存器的值转换为方块并追加到输出末尾，对应关系为 `0=A`、`1=B`、`2=C` 和 `3=D`，然后将指令指针加 1 |\n\n有三点需要注意：\n\n- **寄存器的值可能溢出**。溢出时只保留最低的 2 位。也就是说，对寄存器 $R$ 进行的每次操作都可以看作 $R = f(R)\\text{ mod }4$。\n- 你可能已经注意到，寄存器的值为 0 时也可以执行 `C/JMP`。这称为“停机”。合法的 RSC-IV 程序**必须在最后一个方块处停机**：在到达最后一个方块之前停机、始终不停机，或指令指针越过程序末尾，都是不合法的。\n\n计算机科学家喜欢做的一件趣事是编写“quine”，也就是输出自身的程序。我们不会要求你编写 quine，而是请你完成一个类似的任务：给定输出字符串 $S$，构造一个合法的 RSC-IV 程序 $P$，满足以下条件：\n\n- $P$ 包含 $S$ 作为**子串**。\n- $P$ 停机时，产生的输出字符串必须恰好是 $S$。\n\n如果无解，只需输出“C”，这是一个会立即停机的程序。\n\n## 输入格式\n\n输入仅一行，包含一个输出字符串 $S$ $(1 \\le |S| \\le 100)$，仅由 $A$、$B$、$C$ 和 $D$ 组成。\n\n## 输出格式\n\n输出一个程序字符串 $P$ $(|P| \\le 1000)$，它恰好输出 $S$，且包含 $S$ 作为子串。如果无解，输出“C”。",
+  "samples": [
+    {
+      "input": "AAAA\n",
+      "output": "AAAABBBBDDDDC\n"
+    },
+    {
+      "input": "ABCDA\n",
+      "output": "ABCDABBBBDADBBAADBAAADADC\n"
+    },
+    {
+      "input": "DADADADADA\n",
+      "output": "C\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T21:23:41.694Z",
+  "translatedAt": "2026-11-20T21:31:53.230Z",
+  "translateModel": "gpt-6.1-sol"
+}

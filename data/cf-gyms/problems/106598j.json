@@ -4,7 +4,7 @@
   "contestId": 106598,
   "index": "J",
   "title": "Playing with intervals",
-  "titleZh": null,
+  "titleZh": "玩区间",
   "url": "https://codeforces.com/gym/106598/problem/J",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 500,
   "memoryLimitMb": 1024,
   "statementMd": "Ana and Beto created a game using intervals of integers. The game starts with an interval from $A$ to $B$ ($A  \\lt  B$). On each move, the current player must choose either to increase the value of $A$ by one or decrease the value of $B$ by one. Ana makes the first move, Beto makes the second, Ana the third, and so on, alternating turns.\n\nThere are also $N$ special intervals of integers that influence the game. Beto's goal is to score as many points as possible by making the current interval $[A, B]$ become equal to one of these $N$ special intervals immediately after his move. In that case, the game ends and Beto earns a number of points equal to the size of the interval, that is, $B - A$ points.\n\nOn the other hand, Ana's goal is to minimize the number of points Beto earns. If at any point, after either player's move, the values of $A$ and $B$ become equal, the game ends and Beto earns 0 points.\n\nNote that if $[A, B]$ becomes equal to one of the special intervals after Ana's move, or if the initial interval is already equal to a special interval, the game does not end and play continues normally.\n\nFor example, suppose the only special interval is $[1,2]$ and the game starts with $[A,B]=[0,3]$. On her first move, Ana may transform the interval into either $[1,3]$ or $[0,2]$. In both cases, Beto can then make the interval equal to $[1,2]$ on his next move and earn 1 point.\n\nIf the initial interval is $[0,2]$, $[1,3]$, or $[1,2]$, then in all of these cases the game ends with Beto earning 0 points.\n\nAssuming Ana and Beto both play optimally, they would like your help answering the following question: given a positive integer $K$, if an initial interval $[A,B]$ is chosen uniformly at random among all intervals satisfying $0 \\leq A  \\lt  B \\leq K$, what is the expected number of points Beto earns?\n\nIn other words, compute the arithmetic mean of the outcomes over all possible initial intervals.\n\n## Input\n\nThe first line contains two integers $N$ and $K$ ($1 \\leq N \\leq 10^5$, $1 \\leq K \\leq 10^6$).\n\nThe next $N$ lines each contain two integers $X_i$ and $Y_i$, representing one of the $N$ distinct special intervals $[X_i, Y_i]$ ($0 \\leq X_i  \\lt  Y_i \\leq K$).\n\n## Output\n\nYour program must output a single line containing two non-negative coprime integers $P$ and $Q$ such that $\\frac{P}{Q}$ is equal to the expected number of points Beto earns in the game when the initial interval $[A,B]$ is chosen uniformly at random among all intervals satisfying $0 \\leq A  \\lt  B \\leq K$.\n\nThat is, every interval meeting these conditions is equally likely to be selected, and $\\frac{P}{Q}$ must represent the expected score in lowest terms.\n\n## Note\n\n*Explanation of Sample 1:*\n\nThere are 6 possible starting intervals: $[0,1]$, $[0,2]$, $[0,3]$, $[1,2]$, $[1,3]$, and $[2,3]$. Beto earns 1 point only when the game starts with $[0,3]$. Therefore, the answer is $\\frac{1}{6}$.",
-  "statementZhMd": null,
+  "statementZhMd": "Ana 和 Beto 使用整数区间创建了一个游戏。游戏从区间 $A$ 到 $B$ 开始（$A  \\lt B$）。每次操作中，当前玩家必须选择将 $A$ 的值增加 1，或将 $B$ 的值减少 1。Ana 进行第一次操作，Beto 进行第二次操作，Ana 进行第三次操作，如此交替进行。\n\n此外，还有 $N$ 个会影响游戏的特殊整数区间。Beto 的目标是尽可能获得更多分数：如果当前区间 $[A, B]$ 在他的操作后立即变为这 $N$ 个特殊区间中的某一个，他就能获得分数。在这种情况下，游戏结束，Beto 获得的分数等于区间的大小，即 $B - A$ 分。\n\n另一方面，Ana 的目标是使 Beto 获得的分数尽可能少。如果在任意时刻，在任一玩家操作后，$A$ 和 $B$ 的值变得相等，游戏结束，Beto 获得 0 分。\n\n注意，如果 $[A, B]$ 在 Ana 的操作后变为某个特殊区间，或者初始区间已经是某个特殊区间，游戏都不会结束，游戏将正常继续。\n\n例如，假设唯一的特殊区间是 $[1,2]$，且游戏从 $[A,B]=[0,3]$ 开始。在她的第一次操作中，Ana 可以将区间变为 $[1,3]$ 或 $[0,2]$。在这两种情况下，Beto 都可以在下一次操作中将区间变为 $[1,2]$，从而获得 1 分。\n\n如果初始区间是 $[0,2]$、$[1,3]$ 或 $[1,2]$，那么在所有这些情况下，游戏结束时 Beto 都获得 0 分。\n\n假设 Ana 和 Beto 都采取最优策略，请你帮助回答以下问题：给定一个正整数 $K$，如果从所有满足 $0 \\leq A  \\lt B \\leq K$ 的区间中均匀随机选择一个初始区间 $[A,B]$，Beto 获得的分数期望是多少？\n\n换句话说，请计算所有可能初始区间的游戏结果的算术平均值。\n\n## 输入\n\n第一行包含两个整数 $N$ 和 $K$（$1 \\leq N \\leq 10^5$，$1 \\leq K \\leq 10^6$）。\n\n接下来的 $N$ 行中，每行包含两个整数 $X_i$ 和 $Y_i$，表示 $N$ 个不同特殊区间 $[X_i, Y_i]$ 中的一个（$0 \\leq X_i  \\lt Y_i \\leq K$）。\n\n## 输出\n\n你的程序必须输出一行，其中包含两个非负互质整数 $P$ 和 $Q$，使得当初始区间 $[A,B]$ 从所有满足 $0 \\leq A  \\lt B \\leq K$ 的区间中均匀随机选择时，$\frac{P}{Q}$ 等于 Beto 在游戏中获得的分数期望。\n\n也就是说，满足这些条件的每个区间被选中的概率都相同，并且 $\frac{P}{Q}$ 必须以最简形式表示期望得分。\n\n## 说明\n\n*样例 1 解释：*\n\n共有 6 个可能的初始区间：$[0,1]$、$[0,2]$、$[0,3]$、$[1,2]$、$[1,3]$ 和 $[2,3]$。只有当游戏从 $[0,3]$ 开始时，Beto 才能获得 1 分。因此，答案是 $\frac{1}{6}$。",
   "samples": [
     {
       "input": "1 3\n1 2\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-20T03:39:37.689Z"
+  "fetchedAt": "2026-11-20T03:39:37.689Z",
+  "translatedAt": "2026-11-20T21:32:15.417Z",
+  "translateModel": "gpt-6.1-sol"
 }

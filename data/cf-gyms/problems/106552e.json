@@ -1,0 +1,32 @@
+{
+  "id": "106552e",
+  "platform": "cf-gyms",
+  "contestId": 106552,
+  "index": "E",
+  "title": "Exploring the Terrain",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106552/problem/E",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "![image](https://espresso.codeforces.com/c001e13a8b2bd108b63a14db56f3de1a7176016d.png)\n\nGiovana and Arthur have just been hired by ArcelorMittal Sistemas to develop cutting-edge technology for mineral extraction. As their first project, both implemented algorithms and heuristics to create an exploration plan for a drilling machine, a machine commonly used in mines, with the goal of maximizing the ore extracted after $T$ minutes of operation. The mine where Giovana and Arthur are working is represented by an $N \\times M$ matrix, where each cell contains the value obtained if that position is drilled by the machine. Each exploration plan consists of $T$ pairs of coordinates $(i_1, j_1), \\ldots, (i_T, j_T)$, where $(i_t, j_t)$ is the row and column where the drilling machine will be at time $t$.\n\nVery pleased with the projections of Giovana's and Arthur's algorithms, the company's directors decided that both exploration plans will be executed simultaneously, each with its own drilling machine. The problem is that Giovana's and Arthur's exploration plans were not designed with the presence of the other drilling machine in mind, which could cause conflicts during ore extraction!\n\nFortunately, the control software developed by ArcelorMittal Sistemas is quite sophisticated and can handle this kind of situation! Besides the mechanical control of the drilling machines, it establishes a communication network between the pieces of equipment, preventing the machines from exploring the same position simultaneously. Thus, when a drilling machine is at position $(i,j)$, it can extract ore from cell $(i,j)$ and from cells $(i - 1, j), (i, j - 1), (i, j + 1), (i + 1, j)$, but it does so only if the other drilling machine would not extract that same cell at that same time. Extraction is 100% efficient: after its ore has been extracted, a cell has zero units of ore. In the example in the figure below, if at time $t$ Giovana's drilling machine is at position $(1, 1)$ and Arthur's is at position $(1, 3)$, **neither drilling machine will extract ore from cell $(1, 2)$, leaving all the ore that was there intact**. On the other hand, all other cells of interest to each drilling machine will have their ore extracted.\n\n![image](https://espresso.codeforces.com/f7ce3f69765a1abe9723dd049eee9b98a32f90e8.png)  Visual representation of Example 1. On the left, the matrix with the amounts of ore in each cell. In the center, the cells explored by each drilling machine at time $t = 1$: red squares are cells explored by Giovana, and blue diamonds are cells explored by Arthur. On the right, the cells explored by each drilling machine at time $t = 2$;\n\nCurious to know how their plans will fare, Giovana and Arthur asked for your help. Write a program that, given the matrix representing the mine and the exploration plans of each of them, prints the total ore extracted by each drilling machine. It is guaranteed that both exploration plans have the same duration $T$.\n\n## Input\n\nThe first line contains three integers, $N$, $M$, and $T$, ($1 \\leq N, M \\leq 500$, $1 \\leq T \\leq N \\times M$), the number of rows and columns of the matrix and the duration of the exploration plans, respectively.\n\nThe next $N$ lines contain $M$ integers each, $(1 \\le v_1, \\ldots, v_M \\le 1000)$. The $j$-th number on the $i$-th line contains the ore value present at position $(i, j)$.\n\nThe next $T$ lines contain two integers each. The $t$-th of these lines contains $(i_t, j_t)_G$ ($1 \\leq i \\leq N$, $1 \\leq j \\leq M$), the position where Giovana's drilling machine will be at time $t$.\n\nFinally, the last $T$ lines contain two integers each. The $t$-th of these lines contains $(i_t, j_t)_A$ ($1 \\leq i \\leq N$, $1 \\leq j \\leq M$), the position where Arthur's drilling machine will be at time $t$.\n\n## Output\n\nPrint two numbers $G$ and $A$ separated by a space – the total sum of the values extracted by Giovana and Arthur, respectively.\n\n## Note",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2 3 2\n3 1 4\n5 6 2\n1 1\n1 2\n1 3\n1 3\n",
+      "output": "14 6\n"
+    },
+    {
+      "input": "3 1 3\n10\n1\n10\n2 1\n3 1\n1 1\n2 1\n2 1\n2 1\n",
+      "output": "0 20\n"
+    },
+    {
+      "input": "1 2 2\n6 7\n1 2\n1 1\n1 1\n1 2\n",
+      "output": "0 0\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T21:24:54.235Z"
+}

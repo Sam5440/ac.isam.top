@@ -4,7 +4,7 @@
   "contestId": 106598,
   "index": "K",
   "title": "Knight number",
-  "titleZh": null,
+  "titleZh": "骑士数",
   "url": "https://codeforces.com/gym/106598/problem/K",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "Marquinhos Carlsen is a great enthusiast of the game of chess. Although chess is played on an $8 \\times 8$ board, Marquinhos enjoys performing mathematical analyses by imagining an infinite chessboard placed on a Cartesian plane. His favorite chess piece is the knight (*knight* in English), because it has a very interesting movement pattern. On an infinite board, a knight always has $8$ possible \"L\"-shaped moves: on each move, the knight must move $2$ squares in one direction and $1$ square in a perpendicular direction.\n\nIn the figure below, a knight at position $(2,2)$ can move to positions $(1,4)$, $(3,4)$, $(0,3)$, $(4,3)$, $(0,1)$, $(4,1)$, $(1,0)$, and $(3,0)$. Squares are represented by their lower-left corner coordinates in the Cartesian plane.\n\n![image](https://espresso.codeforces.com/6002e33bc0e01419be6820625bd131f3a122b8eb.png)\n\nIn one of his mathematical analyses, Marquinhos placed $N$ knights on this infinite board and defined the \"knight distance\" of every board position as the minimum number of moves required for at least one of the knights to reach that position.\n\nUsing this, he also defined the \"knight number\" of every position, which is a unique positive integer assigned according to the following ordering of all positions on the board: first, positions are ordered by increasing knight distance; ties are broken by decreasing vertical coordinate; and any remaining ties are broken by increasing horizontal coordinate.\n\nIn the figure below, two knights are placed at positions $(2,2)$ and $(5,3)$. Each visible position is labeled with its \"knight number\". Note that there are infinitely many positions outside the figure that are not shown, including positions with negative coordinates.\n\n![image](https://espresso.codeforces.com/703f2a4555410a3f3d733313fa777cc0f85e5f13.png)\n\nMarquinhos wants your help analyzing the \"knight number\". He has a list of $Q$ positive integers and wants to know, for each of them, which position on the infinite chessboard has the corresponding knight number.\n\n## Input\n\nThe first line contains an integer $N$ ($1 \\leq N \\leq 10$), indicating the number of knights.\n\nThe next $N$ lines each contain two integers $X_i$ and $Y_i$ ($0 \\leq X_i, Y_i \\leq 10^9$), indicating the positions of the $N$ knights on the board. Positions are represented by their lower-left corner coordinates, as in the figures, and all knights occupy distinct positions.\n\nThe next line contains an integer $Q$ ($1 \\leq Q \\leq 10$).\n\nThe following line contains $Q$ integers $K_i$ ($1 \\leq K_i \\leq 10^9$), indicating the \"knight numbers\" whose corresponding board positions must be determined.\n\n## Output\n\nYour program must print $Q$ lines. The $i$-th line should contain two integers $A_i$ and $B_i$ such that the \"knight number\" of position $(A_i, B_i)$ is equal to $K_i$.",
-  "statementZhMd": null,
+  "statementZhMd": "Marquinhos Carlsen 是国际象棋的狂热爱好者。虽然国际象棋在 $8 \\times 8$ 的棋盘上进行，但 Marquinhos 喜欢通过想象一个放置在笛卡尔平面上的无限棋盘来进行数学分析。他最喜欢的棋子是骑士（英文为 *knight*），因为骑士的移动方式非常有趣。在无限棋盘上，骑士总是有 $8$ 种可能的“L”形移动方式：每次移动时，骑士必须沿一个方向移动 $2$ 个格子，再沿垂直方向移动 $1$ 个格子。\n\n在下图中，位于 $(2,2)$ 的骑士可以移动到 $(1,4)$、$(3,4)$、$(0,3)$、$(4,3)$、$(0,1)$、$(4,1)$、$(1,0)$ 和 $(3,0)$。棋盘上的格子用其在笛卡尔平面中的左下角坐标表示。\n\n![image](https://espresso.codeforces.com/6002e33bc0e01419be6820625bd131f3a122b8eb.png)\n\n在一次数学分析中，Marquinhos 在这个无限棋盘上放置了 $N$ 个骑士，并将每个棋盘位置的“骑士距离”定义为至少一个骑士到达该位置所需的最少移动次数。\n\n在此基础上，他还按照以下顺序为每个位置定义了一个唯一的正整数，称为该位置的“骑士数”：首先按照骑士距离从小到大排序；如果骑士距离相同，则按照纵坐标从大到小排序；如果仍然相同，则按照横坐标从小到大排序。\n\n在下图中，两个骑士分别位于 $(2,2)$ 和 $(5,3)$。图中每个可见位置都标有其“骑士数”。请注意，图外还有无数未显示的位置，其中包括坐标为负数的位置。\n\n![image](https://espresso.codeforces.com/703f2a4555410a3f3d733313fa777cc0f85e5f13.png)\n\nMarquinhos 希望请你帮助他分析“骑士数”。他有一个包含 $Q$ 个正整数的列表，希望知道对于其中的每个数，无限棋盘上具有相应骑士数的位置。\n\n## 输入格式\n\n第一行包含一个整数 $N$（$1 \\leq N \\leq 10$），表示骑士的数量。\n\n接下来的 $N$ 行中，每行包含两个整数 $X_i$ 和 $Y_i$（$0 \\leq X_i, Y_i \\leq 10^9$），表示 $N$ 个骑士在棋盘上的位置。位置用其左下角坐标表示，如图所示，并且所有骑士所在的位置均不相同。\n\n下一行包含一个整数 $Q$（$1 \\leq Q \\leq 10$）。\n\n接下来一行包含 $Q$ 个整数 $K_i$（$1 \\leq K_i \\leq 10^9$），表示需要确定对应棋盘位置的“骑士数”。\n\n## 输出格式\n\n你的程序必须输出 $Q$ 行。第 $i$ 行应包含两个整数 $A_i$ 和 $B_i$，使得位置 $(A_i, B_i)$ 的“骑士数”等于 $K_i$。",
   "samples": [
     {
       "input": "1\n1 1\n9\n1 2 3 4 5 6 7 8 9\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-20T03:39:45.613Z"
+  "fetchedAt": "2026-11-20T03:39:45.613Z",
+  "translatedAt": "2026-11-20T21:32:18.738Z",
+  "translateModel": "gpt-6.1-sol"
 }

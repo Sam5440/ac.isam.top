@@ -1,0 +1,24 @@
+{
+  "id": "106666d",
+  "platform": "cf-gyms",
+  "contestId": 106666,
+  "index": "D",
+  "title": "Opening Chests",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106666/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "You have just invited your friend to your Minecraft server and want to play a fun game with them! You have prepared $n$ chests in a row that contain random loot. The chests are numbered from $1$ to $n$ (left to right). Chest $i$ contains loot that has value $v_i$. Your friend will start at the chest on the very left and open them in order to the right. To make the chest opening as dramatic as possible for your friend, you want the loot to generally increase in value in comparison to the loot found previously. To quantify this, we define the \"drama\" of chest $i$ to be how much greater its value is compared to all the previous chests opened with a smaller value. **Formally, the drama of chest $i$ is $\\sum_{j=0}^{i-1} \\max(0, v_i - v_j)$.** Then, **the total drama** from the chest opening would be the total sum of the drama of each chest $i$.\n\nYou have peeked ahead at all the loot in each chest, and **you notice that the value of loot is nonincreasing from left to right**, resulting in a total drama of $0$! That's not going to be very dramatic for your friend, so you now want to rearrange the chests. **You can rearrange the chests by taking a prefix of them and moving them to the end of the row.** Specifically, if your chests initially had loot with values $v_1, v_2, \\ldots, v_{n-1}, v_n$ (left to right), then it can be rearranged to $v_l, v_{l+1},\\ldots, v_n, v_1, v_2,\\ldots, v_{l-1}$ (left to right) for any $1\\leq l\\leq n$. **Find the maximum total drama of the chest opening over all the possible rearrangements so that your friend can have a dramatic time.**\n\n## Input\n\nEach test contains multiple test cases. The first line of input contains the number of test cases $t$ ($1 \\leq t \\leq 10^3$). The description of test cases follows.\n\nThe first line of each test contains a single integer $n$ ($1 \\leq n \\leq 10^6$): the number of chests.\n\nThe second line contains $n$ integers $v_1, v_2, \\ldots, v_n$ ($1\\leq v_i \\leq 10^6$ and $v_i \\geq v_{i+1}$ for all $1\\leq i \\leq n -1$): the value of the loot in each of the chests from left to right.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output a single integer: the maximum total drama of the chest opening after rearranging the chests optimally.\n\n## Note\n\nFor the first test case, we can observe that moving the first two chests (prefix of length $2$) and moving them to the end of the row would be optimal. This gives us the arrangement of values $2, 1, 4, 3$. Then, the drama of chest $1$ is $0$, the drama of chest $2$ is $0$, the drama of chest $3$ is $(4 - 2) + (4 - 1) = 5$, and the drama of chest $4$ is $(3 - 2) + (3 - 1) + 0 = 3$. This gives us a total drama of $8$.\n\nFor the second test case, no matter how you rearrange the chests, the total drama will be $0$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n4\n4 3 2 1\n5\n1 1 1 1 1\n5\n3 3 2 2 1\n",
+      "output": "8\n0\n8\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T21:23:10.445Z"
+}
