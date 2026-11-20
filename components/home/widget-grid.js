@@ -17,3 +17,13 @@ export function gridStyle(columns) {
 export function cellStyle({ col, row, w, h }) {
   return { gridColumn: `${col + 1} / span ${w}`, gridRow: `${row + 1} / span ${h}` };
 }
+export function masonryCellStyle({ col, w, top }, columns, gap = 12) {
+  const left = col / columns;
+  const width = w / columns;
+  return {
+    position: 'absolute',
+    top,
+    left: `calc(${left * 100}% + ${left * gap}px)`,
+    width: `calc(${width * 100}% - ${(1 - width) * gap}px)`,
+  };
+}

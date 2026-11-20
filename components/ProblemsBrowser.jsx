@@ -87,7 +87,7 @@ export default function ProblemsBrowser({ initialPage }) {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
-        <div className="bg-muted text-muted-foreground inline-flex rounded-lg p-0.5 text-sm">
+        <div className="bg-muted text-muted-foreground inline-flex max-w-full flex-wrap rounded-lg p-0.5 text-sm">
           {PLATFORM_TABS.map((t) => (
             <button
               key={t.id}

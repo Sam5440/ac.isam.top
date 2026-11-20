@@ -15,13 +15,13 @@ try {
     await open('/');
     await page.evaluate(() => localStorage.setItem('stmt-settings-v1', JSON.stringify({
       homeLayoutMode: 'visual', homeWidgets: [
-        { id: 'recent', type: 'contests', w: 2, h: 4, params: { limit: 4 } },
+        { id: 'recent', type: 'contests', w: 2, h: 4 },
         { id: 'latest', type: 'problems', w: 2, h: 4 },
       ],
     })));
     await page.reload();
     const rows = page.locator('[data-widget="contests"] a[href^="/contests/"]');
-    await page.waitForFunction(() => document.querySelectorAll('[data-widget="contests"] a[href^="/contests/"]').length === 4);
+    await page.waitForFunction(() => document.querySelectorAll('[data-widget="contests"] a[href^="/contests/"]').length === 7);
     const lastContest = await rows.last().boundingBox();
     const nextWidget = await page.locator('[data-widget="problems"]').boundingBox();
     const gap = nextWidget.y - lastContest.y - lastContest.height;

@@ -1,14 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { createElement, useEffect, useMemo, useState } from 'react';
+import { createElement, useEffect, useMemo, useRef, useState } from 'react';
 import { LayoutDashboard, PencilLine } from 'lucide-react';
 
 import { useSettings } from '@/components/settings';
 import { DEFAULT_HOME_LAYOUT } from '@/lib/home-presets.mjs';
 import { parseHomeLayout } from '@/lib/home-layout.mjs';
-import { packWidgets, widgetTitle } from '@/lib/home-grid.mjs';
-import { cellStyle, gridStyle, useGridColumns } from './widget-grid';
+import { packMasonry, widgetTitle } from '@/lib/home-grid.mjs';
+import { masonryCellStyle, useGridColumns } from './widget-grid';
 import {
   HomeCfRating, HomeClock, HomeContests, HomeFiles, HomeHero, HomeHistory,
   HomeHistoryContests, HomeProblems, HomeSection, HomeSiteUpdate, HomeStats, HomeWeather,
@@ -81,7 +81,28 @@ export default function HomeDashboard({ data, config: override, preview = false 
   const nodes = useMemo(() => visual ? [] : parseHomeLayout(layout), [visual, layout]);
   const columns = useGridColumns();
   const widgets = config.homeWidgets;
-  const cells = useMemo(() => visual ? packWidgets(widgets, columns) : [], [visual, widgets, columns]);
+  const grid = useRef(null);
+  const [heights, setHeights] = useState({});
+  const masonry = useMemo(() => visual && columns > 1 ? packMasonry(widgets, columns, heights) : null, [visual, columns, widgets, heights]);
+  useEffect(() => {
+    if (!visual || columns === 1 || !grid.current) return undefined;
+    const observer = new ResizeObserver((entries) => {
+      setHeights((current) => {
+        let next = current;
+        for (const entry of entries) {
+          const id = entry.target.dataset.widgetId;
+          const height = entry.contentRect.height;
+          if (id && Math.abs((current[id] ?? -1) - height) > 0.5) {
+            if (next === current) next = { ...current };
+            next[id] = height;
+          }
+        }
+        return next;
+      });
+    });
+    for (const element of grid.current.children) observer.observe(element);
+    return () => observer.disconnect();
+  }, [visual, columns, widgets]);
   useEffect(() => {
     setNow(Date.now());
     const timer = setInterval(() => setNow(Date.now()), 60_000);
@@ -95,12 +116,12 @@ export default function HomeDashboard({ data, config: override, preview = false 
         </Link>
       </div>}
       {visual && widgets.length ? (
-        <div aria-label="首页小组件" className="home-visual-grid mt-4 flex flex-col gap-3 sm:grid" style={gridStyle(columns)}>
+        <div ref={grid} aria-label="首页小组件" className="home-visual-grid mt-4 flex flex-col gap-3 sm:relative sm:block" style={masonry ? { height: masonry.height } : undefined}>
           {widgets.map((widget, index) => {
             const attrs = widget.type === 'contests' || widget.type === 'hero' ? { ...widget.params, compact: true } : widget.params;
             const content = <WidgetNode node={{ tag: `ac-${widget.type}`, attrs, children: [] }} data={data} now={now} config={override} />;
             const href = { contests: '/contests', problems: '/problems', history: '/history', files: '/ide', 'history-contests': '/history' }[widget.type];
-            return <div key={widget.id} data-widget={widget.type} className="home-grid-cell min-w-0" style={cellStyle(cells[index])}>
+            return <div key={widget.id} data-widget={widget.type} data-widget-id={widget.id} className="home-grid-cell min-w-0" style={masonry ? masonryCellStyle(masonry.cells[index], columns) : undefined}>
               {href ? <HomeSection attrs={{ title: widgetTitle(widget), href }}>{content}</HomeSection> : content}
             </div>;
           })}

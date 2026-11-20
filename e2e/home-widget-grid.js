@@ -32,7 +32,7 @@ try {
   const problems = page.locator('[data-home-root="home"] [data-widget="problems"]');
   const problemLinks = problems.locator('a[href^="/problems/"]');
   assert.equal(await problemLinks.count(), 7);
-  assert.equal((await coord(problems))[0], '3 / span 2');
+  assert.equal(await problems.evaluate((element) => element.style.left), 'calc(50% + 6px)');
   await configure();
   const previewProblems = page.locator('[data-home-root="preview"] [data-widget="problems"] a[href^="/problems/"]');
   await previewProblems.nth(6).waitFor();
@@ -79,7 +79,15 @@ try {
   await page.waitForURL(`${base}/`);
   await page.reload();
   await clock.getByText(/晨练/).waitFor();
-  assert.deepEqual(await coord(clock), position);
+  await page.waitForLoadState('networkidle');
+  assert.equal(await clock.evaluate((element) => element.style.position), 'absolute');
+  const overlaps = await page.locator('[data-home-root="home"] [data-widget-id]').evaluateAll((elements) => {
+    const boxes = elements.map((element) => element.getBoundingClientRect());
+    return boxes.some((a, index) => boxes.slice(index + 1).some((b) =>
+      Math.min(a.right, b.right) - Math.max(a.left, b.left) > 1 &&
+      Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 1));
+  });
+  assert.equal(overlaps, false);
   const saved = await settings();
   await configure();
   await html.click();
@@ -104,7 +112,7 @@ try {
   await button('取消修改').tap();
   await page.getByRole('link', { name: '返回首页' }).tap();
   await clock.waitFor();
-  assert.equal((await coord(clock))[0], '1 / span 1');
+  assert.equal(await clock.evaluate((element) => element.style.position), '');
   assert.equal((await settings()).homeWidgets.find((item) => item.type === 'clock').w, 3);
   assert.ok(requests.some((url) => url.includes('api.open-meteo.com')));
   assert.deepEqual(errors, []);
