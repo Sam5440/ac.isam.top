@@ -1,4 +1,5 @@
 import { log, sleep } from './util.mjs';
+import { normalizeUsage } from '../../lib/ci-usage.mjs';
 
 /**
  * OpenAI 兼容翻译客户端。
@@ -14,9 +15,12 @@ export function llmConfig() {
   return { baseUrl: baseUrl.replace(/\/$/, ''), apiKey, model };
 }
 
-async function chatOnce(cfg, messages, { temperature = 0.2, timeout = 420000 }) {
+async function chatOnce(cfg, messages, { temperature = 0.2, timeout = 420000, attempt = 1 }) {
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), timeout);
+  const started = Date.now();
+  let usage, httpStatus;
+  let responseOk = false;
   try {
     const res = await fetch(`${cfg.baseUrl}/chat/completions`, {
       method: 'POST',
@@ -27,14 +31,21 @@ async function chatOnce(cfg, messages, { temperature = 0.2, timeout = 420000 }) 
       body: JSON.stringify({ model: cfg.model, messages, temperature }),
       signal: ctl.signal,
     });
+    httpStatus = res.status;
     if (!res.ok) {
       const body = await res.text().catch(() => '');
       throw new Error(`HTTP ${res.status} ${body.slice(0, 200)}`);
     }
     const data = await res.json();
-    return data.choices?.[0]?.message?.content ?? '';
+    usage = data.usage;
+    const content = data.choices?.[0]?.message?.content ?? '';
+    responseOk = typeof content === 'string' && Boolean(content.trim());
+    return content;
   } finally {
     clearTimeout(timer);
+    cfg.onUsage?.({ at: new Date(started).toISOString(), durationMs: Date.now() - started,
+      task: cfg.task, target: cfg.target, attempt, httpStatus: httpStatus ?? null, responseOk,
+      ...normalizeUsage(usage) });
   }
 }
 
@@ -43,7 +54,7 @@ async function chatWithRetry(cfg, messages, opts = {}) {
   let lastErr;
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const content = await chatOnce(cfg, messages, opts);
+      const content = await chatOnce(cfg, messages, { ...opts, attempt: attempt + 1 });
       if (!content || !content.trim()) throw new Error('empty completion');
       return content;
     } catch (e) {

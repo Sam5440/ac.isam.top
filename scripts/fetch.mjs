@@ -124,6 +124,7 @@ const summary = {
 // 未逐题覆盖的批量路径（如 CF 整场抓取）按场次聚合在 stats 里。
 const runRecord = {
   startedAt: nowIso(),
+  aiCalls: [],
   trigger: process.env.GITHUB_EVENT_NAME || 'manual',
   fetched: [], // {platform, problemId, title, status: 'fetched'|'translated'|'skipped'|'failed'}
   errors: [], // {scope, message}
@@ -189,6 +190,7 @@ function writeCiLog() {
     const backfill = buildBackfillSummary(failures);
     writeRunRecord({
       startedAt: runRecord.startedAt,
+      aiCalls: runRecord.aiCalls,
       durationMs: Date.now() - new Date(runRecord.startedAt).getTime(),
       trigger: runRecord.trigger,
       // GitHub Actions 上下文（本地运行时为 null，页面降级不显示）
@@ -618,13 +620,17 @@ async function runTranslate({ platforms = ['atcoder', 'codeforces', 'nowcoder'],
     return;
   }
   log('translate', `模型 ${cfg.model}，并发 ${process.env.TRANSLATE_CONCURRENCY ?? 4}`);
+  cfg.onUsage = (call) => {
+    runRecord.aiCalls.push(call);
+    log('ai-usage', JSON.stringify(call));
+  };
 
   // 鉴权探活（2026-10-31~11-03 三轮 CI 教训：key 失效时并发池把整批题逐一
   // 打满 401——每轮几百次无效请求、几十分钟白跑）。批量前先 1 次最小请求
   // 探活：401/403 立即中止整轮翻译并给出轮换指引；其余错误（网络抖动等）
   // 视为临时故障只告警，逐题路径自带重试。
   try {
-    await pingLLM(cfg);
+    await pingLLM({ ...cfg, task: '探活', target: platforms.join(',') });
   } catch (e) {
     if (/HTTP 40[13]/.test(e.message)) {
       throw new Error(
@@ -659,7 +665,7 @@ async function runTranslate({ platforms = ['atcoder', 'codeforces', 'nowcoder'],
           return;
         }
         try {
-          const { titleZh, bodyZh } = await translateStatement(cfg, {
+          const { titleZh, bodyZh } = await translateStatement({ ...cfg, task: '题面', target: `${p.platform}/${p.id}` }, {
             title: p.title,
             statementMd: p.statementMd,
           });
@@ -704,7 +710,7 @@ async function runTranslate({ platforms = ['atcoder', 'codeforces', 'nowcoder'],
       }
       const batch = todoTitles.slice(i, i + 20);
       try {
-        const zh = await translateTitles(cfg, batch.map((x) => x.c.title));
+        const zh = await translateTitles({ ...cfg, task: '比赛名', target: batch.map((x) => `${x.platform}/${x.c.id}`).join(', ') }, batch.map((x) => x.c.title));
         batch.forEach((x, j) => {
           if (zh[j]) upsertContest(x.platform, { ...x.c, titleZh: zh[j] });
         });
@@ -741,7 +747,7 @@ async function runTranslate({ platforms = ['atcoder', 'codeforces', 'nowcoder'],
           const indices = pendingNoteIndices(p.samples);
           if (!indices.length) return;
           try {
-            const zh = await translateSampleNotes(cfg, {
+            const zh = await translateSampleNotes({ ...cfg, task: '样例说明', target: `${p.platform}/${p.id}` }, {
               title: p.title,
               notes: indices.map((i) => meaningfulNote(p.samples[i].note)),
             });

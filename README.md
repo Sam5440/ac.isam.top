@@ -215,3 +215,6 @@ vercel --prod
 ## 声明
 
 题面与样例版权归 AtCoder / Codeforces / 牛客及各出题人所有；中文翻译由 AI 生成，仅供学习交流。
+`/ci` 的完整作业日志需要在 Vercel 的服务端环境变量中配置 `CI_LOG_READ_TOKEN`（fine-grained GitHub token，仅授权本仓库，Actions: Read），然后重新部署。启用后，访问者可以在站内阅读该公开仓库的作业输出。无需将凭据提供给浏览器。GitHub 已清理的日志不能恢复。
+
+CI 翻译会把逐次请求的服务商 `usage` 存入 `ci-log.json`，并写入作业日志的 `[ai-usage]` 行。缓存命中率为缓存命中的输入 token 除以该请求的全部输入 token；历史未记录、服务商未报告或输入为零时显示「未知」。

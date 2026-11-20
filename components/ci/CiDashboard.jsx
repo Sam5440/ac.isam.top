@@ -37,6 +37,7 @@ import {
 
 import { PlatformBadge } from '@/components/Badges';
 import RunJobs from '@/components/ci/RunJobs';
+import { UsageTable } from '@/components/ci/JobOutput';
 import { GH_REPO, actionLabel, actionsPages, mergeRemoteRuns } from '@/lib/ci-actions.mjs';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -173,6 +174,7 @@ function RunCard({ run, expanded, onToggle, index }) {
       {expanded && run.runId && <RunJobs run={run} />}
       {expanded && !run.remoteOnly && (
         <CardContent className="space-y-3 border-t pt-4">
+          <UsageTable calls={run.aiCalls} />
           {/* 抓取明细 */}
           {fetchedN > 0 && (
             <div>

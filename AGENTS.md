@@ -333,7 +333,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   「真实 Chrome + 持久 profile」（`--persistent`）：headless shell 第二次导航就被
   Cloudflare Turnstile 拦住且不会自过。
 - `scripts/lib/ci-log.mjs` 写 `data/ci-log.json`，`/ci` 页与 `CiDashboard` 消费——
-  改字段两边同步。
+  改字段两边同步。`aiCalls` 是请求粒度（含探活和重试），未知用量保留 null。完整作业输出通过服务端 `CI_LOG_READ_TOKEN` 读取；仅对固定公开仓库的数字 job ID 开放，GitHub 的签名跳转不能携带 Authorization。
 - **三工作流调度**：`ci.yml`（push/PR）= `npm test` + 完整 build；`fetch.yml` 每小时
   （cron `23 * * * *`，timeout 65min，装 poppler-utils）跑主管道，**push 失败自动
   `git pull --rebase --autostash` 重试 ×3**（checkout 与 push 窗口内撞上人工 push 的
