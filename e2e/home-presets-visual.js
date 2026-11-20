@@ -52,14 +52,6 @@ async function checkLayout(preset, widgets, width, height) {
 }
 
 try {
-  await page.route(/\/api\/contests\/clist\?/, (route) => route.fulfill({
-    contentType: 'application/json',
-    body: JSON.stringify({ contests: [{
-      id: 998877, event: '预设检查未来赛', resource: 'codeforces.com',
-      start: new Date(Date.now() + 86_400_000).toISOString(), end: new Date(Date.now() + 93_600_000).toISOString(),
-      duration: 7200, href: 'https://codeforces.com/contest/998877',
-    }] }),
-  }));
   await page.route('https://geocoding-api.open-meteo.com/**', (route) => route.fulfill({
     contentType: 'application/json', body: JSON.stringify({ results: [{ name: '北京', latitude: 39.9, longitude: 116.4 }] }),
   }));

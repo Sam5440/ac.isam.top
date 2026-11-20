@@ -13,6 +13,7 @@ import { DEFAULT_CALENDAR_SITES, useSettings } from '@/components/settings';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { contestSiteMeta } from '@/lib/contest-sites';
+import { contestsInRange, scheduleFetchedAt } from '@/lib/contest-schedule';
 import { contestType } from '@/lib/contest-type';
 import {
   formatContestDuration, fromClistContest, fromInternalContest, homeClistRange,
@@ -155,48 +156,25 @@ function UpcomingContestRow({ contest }) {
 export function HomeUpcomingContests({ attrs, data, now }) {
   const { settings } = useSettings();
   const after = Math.min(60, Math.max(1, Number(settings.calendarDaysAfter) || 15));
-  const [external, setExternal] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [attempt, setAttempt] = useState(0);
-  useEffect(() => {
-    const controller = new AbortController();
-    let alive = true;
-    setLoading(true);
-    setError('');
-    const range = homeClistRange(Date.now(), after);
-    const params = new URLSearchParams({ ...range, limit: '500', order_by: 'start' });
-    fetchWithTimeout(`/api/contests/clist?${params}`, controller.signal, 20_000)
-      .then(async (response) => {
-        const body = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(body?.error || `请求失败（HTTP ${response.status}）`);
-        if (alive) setExternal((Array.isArray(body.contests) ? body.contests : []).map(fromClistContest));
-      })
-      .catch((reason) => {
-        if (alive && reason.name !== 'AbortError') setError(reason?.message || '比赛日程加载失败');
-      })
-      .finally(() => { if (alive) setLoading(false); });
-    return () => { alive = false; controller.abort(); };
-  }, [after, attempt]);
+  const { start, end } = homeClistRange(now, after);
+  const external = useMemo(() => contestsInRange(start, end).map(fromClistContest), [start, end]);
 
   const selected = useMemo(
     () => new Set(Array.isArray(settings.calendarSites) ? settings.calendarSites : DEFAULT_CALENDAR_SITES),
     [settings.calendarSites],
   );
-  const internal = useMemo(() => selectHomeContests(data, 'upcoming', now).map(fromInternalContest), [data, now]);
-  const merged = useMemo(() => mergeUpcomingContests(internal, external ?? []), [internal, external]);
+  const internal = useMemo(() => selectHomeContests(data, 'upcoming', now)
+    .filter((contest) => Date.parse(contest.startTime) < end).map(fromInternalContest), [data, now, end]);
+  const merged = useMemo(() => mergeUpcomingContests(internal, external), [internal, external]);
   const list = visibleUpcomingContests(merged, selected, attrs.platform, now).slice(0, widgetLimit(attrs.limit));
 
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-muted-foreground text-xs">未来 {after} 天 · 网站筛选请在<Link href="/calendar" className="mx-0.5 underline underline-offset-2 hover:text-foreground">比赛日历</Link>中设置</p>
-        <button type="button" onClick={() => setAttempt((value) => value + 1)} disabled={loading} className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1 text-xs disabled:opacity-40">
-          <RefreshCw className={`size-3 ${loading ? 'animate-spin' : ''}`} />刷新赛程
-        </button>
+        <span className="text-muted-foreground text-xs">CI 快照：{formatDateTime(scheduleFetchedAt)}（北京时间）</span>
       </div>
-      {error && <div className="rounded-lg border border-amber-500/40 px-3 py-2 text-xs text-amber-500">Clist 日程暂未更新：{error}{internal.length ? '，当前显示题库回退数据。' : '。'}</div>}
-      {loading && external === null ? <Loading rows={4} /> : list.length ? (
+      {list.length ? (
         <Card><CardContent className="divide-y p-0">{list.map((contest) => <UpcomingContestRow key={contest.key} contest={contest} />)}</CardContent></Card>
       ) : (
         <div className="text-muted-foreground flex flex-col items-center gap-2 rounded-xl border border-dashed px-4 py-8 text-center text-sm">

@@ -2,7 +2,7 @@ import CalendarView from '@/components/calendar/CalendarView';
 
 export const metadata = { title: '比赛日历' };
 
-/** /calendar 比赛日历：客户端经 /api/contests/clist 读取 CI 生成的 data/clist.json。 */
+/** /calendar 比赛日历：客户端筛选随构建发布的 CI 快照。 */
 export default function CalendarPage() {
   return (
     <div className="space-y-6 py-10">

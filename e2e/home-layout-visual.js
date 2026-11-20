@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
+import snapshot from '../data/clist.json' with { type: 'json' };
+import { clistTimestamp } from '../lib/clist-snapshot.mjs';
 
 const baseUrl = process.env.BASE_URL || 'http://127.0.0.1:3000';
 const browser = await chromium.launch({ headless: true });
@@ -9,15 +11,12 @@ const pageErrors = [];
 page.on('pageerror', (error) => pageErrors.push(error.message));
 
 try {
-  await page.route(/\/api\/contests\/clist\?/, (route) => route.fulfill({
-    contentType: 'application/json',
-    body: JSON.stringify({ contests: [{
-      id: 998877, event: 'Clist 测试未来赛', resource: 'codeforces.com',
-      start: new Date(Date.now() + 2 * 86_400_000).toISOString(),
-      end: new Date(Date.now() + 2 * 86_400_000 + 7200_000).toISOString(),
-      duration: 7200, href: 'https://codeforces.com/contest/998877',
-    }] }),
-  }));
+  const contest = snapshot.contests.find((row) => row.resource === 'luogu.com.cn');
+  await page.clock.setFixedTime(new Date(Date.parse(clistTimestamp(contest.start)) - 1000));
+  const scheduleRequests = [];
+  page.on('request', (req) => {
+    if (/\/api\/contests\/clist|\/clist\.json|\/\/clist\.by\//.test(req.url())) scheduleRequests.push(req.url());
+  });
   await page.goto(baseUrl, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: /AC 题库/ }).waitFor();
   assert.equal(await page.getByRole('link', { name: '自定义首页' }).count(), 1);
@@ -50,11 +49,18 @@ try {
   assert.equal(await page.locator('script').evaluateAll((nodes) => nodes.some((node) => node.textContent.includes('__homeXss'))), false);
   assert.equal(await page.locator('#safe-image').getAttribute('onerror'), null);
   assert.equal(await page.evaluate(() => window.__homeXss), undefined);
-  await page.getByRole('link', { name: /Clist 测试未来赛/ }).waitFor();
+  await page.getByText(contest.event, { exact: true }).first().waitFor();
   assert.equal(await page.getByRole('group', { name: '首页未来比赛网站筛选' }).count(), 0);
   const calendarHint = page.getByText('网站筛选请在', { exact: false });
   await calendarHint.waitFor();
   assert.equal(await calendarHint.getByRole('link', { name: '比赛日历' }).getAttribute('href'), '/calendar');
+  await calendarHint.getByRole('link', { name: '比赛日历' }).click();
+  const cf = page.getByTitle('codeforces.com', { exact: true });
+  await cf.click();
+  await cf.click();
+  await page.goBack();
+  await page.locator('#custom-home-title').waitFor();
+  assert.deepEqual(scheduleRequests, []);
 
   await page.evaluate(async () => {
     const db = await new Promise((resolve, reject) => {

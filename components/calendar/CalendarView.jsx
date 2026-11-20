@@ -4,17 +4,17 @@
  * /calendar 比赛日历：周一首的周网格，覆盖「今天前 N 天 ~ 后 M 天」（设置 → 题面与翻译 → 比赛日历，
  * 默认 3 / 15 天），每格按开始时间列出当天全部比赛（不折叠为 +N more，名字过长自动换行）。
  * 顶部站点筛选可直接勾选（持久化到 settings.calendarSites，默认牛客 / 洛谷 / AtCoder / Codeforces）。
- * 数据经 /api/contests/clist 读取 CI 快照，以 start__gte / start__lte 过滤；窄屏退化为按日分组列表。
+ * 直接在 CI 快照中筛选日期；窄屏退化为按日分组列表。
  */
 
-import { CalendarDays, RotateCcw } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 import Link from 'next/link';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/LoadingOverlay';
 import { DEFAULT_CALENDAR_SITES, useSettings } from '@/components/settings';
-import { toast } from '@/lib/toast';
+import { contestsInRange, scheduleFetchedAt } from '@/lib/contest-schedule';
+import { formatDateTime } from '@/lib/utils';
 
 const WEEKDAYS = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
@@ -61,11 +61,6 @@ function dayKey(d) {
 
 function addDays(d, n) {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
-}
-
-/** Date → Clist 区间参数（UTC，无时区后缀）。 */
-function clistTime(d) {
-  return d.toISOString().slice(0, 19);
 }
 
 const TIME_FMT = new Intl.DateTimeFormat('zh-CN', { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -130,6 +125,16 @@ function EventItem({ c, now }) {
 }
 
 export default function CalendarView() {
+  const [now, setNow] = useState(null);
+  useEffect(() => {
+    setNow(new Date());
+    const timer = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(timer);
+  }, []);
+  return now ? <LocalCalendar now={now} /> : <Skeleton className="h-28 w-full" />;
+}
+
+function LocalCalendar({ now }) {
   const { settings, setSettings } = useSettings();
   const before = clampDays(settings.calendarDaysBefore, 3, 30);
   const after = clampDays(settings.calendarDaysAfter, 15, 60);
@@ -138,41 +143,11 @@ export default function CalendarView() {
     [settings.calendarSites],
   );
 
-  const [now, setNow] = useState(() => new Date());
   const todayKey = dayKey(now);
   const rangeStart = useMemo(() => addDays(new Date(now), -before), [todayKey, before]);
   const rangeEnd = useMemo(() => addDays(new Date(now), after + 1), [todayKey, after]);
 
-  const [contests, setContests] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const load = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    setNow(new Date());
-    try {
-      const params = new URLSearchParams({
-        start__gte: clistTime(rangeStart),
-        start__lte: clistTime(rangeEnd),
-        limit: '500',
-        order_by: 'start',
-      });
-      const res = await fetch(`/api/contests/clist?${params.toString()}`);
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body?.error || `请求失败（HTTP ${res.status}）`);
-      setContests(Array.isArray(body.contests) ? body.contests : []);
-    } catch (e) {
-      setError(e?.message || '加载失败');
-      toast.error(e?.message || '比赛日程加载失败');
-    } finally {
-      setLoading(false);
-    }
-  }, [rangeStart, rangeEnd]);
-
-  useEffect(() => {
-    load();
-  }, [load]);
+  const contests = useMemo(() => contestsInRange(rangeStart, rangeEnd), [rangeStart, rangeEnd]);
 
   // 站点列表：默认四站在前，其余按出现次数降序
   const sites = useMemo(() => {
@@ -241,10 +216,7 @@ export default function CalendarView() {
             </Link>
           </span>
         </div>
-        <Button variant="outline" size="sm" onClick={load} disabled={loading}>
-          <RotateCcw className={`size-4 ${loading ? 'animate-spin' : ''}`} />
-          刷新
-        </Button>
+        <span className="text-muted-foreground text-xs">CI 快照：{formatDateTime(scheduleFetchedAt)}（北京时间）</span>
       </div>
 
       <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="比赛网站筛选">
@@ -269,17 +241,6 @@ export default function CalendarView() {
         })}
       </div>
 
-      {error ? (
-        <div className="text-muted-foreground flex flex-col items-center gap-3 rounded-lg border border-dashed py-12 text-sm">
-          <CalendarDays className="size-8 opacity-50" />
-          <span className="max-w-[320px] text-center">{error}</span>
-          <Button variant="outline" size="sm" onClick={load}>
-            <RotateCcw className="size-4" />
-            重试
-          </Button>
-        </div>
-      ) : (
-        <>
           {/* 宽屏：周网格 */}
           <div className="hidden overflow-hidden rounded-lg border md:block">
             <div className="bg-muted/40 grid grid-cols-7 border-b text-center text-xs font-medium">
@@ -314,16 +275,12 @@ export default function CalendarView() {
                         {showMonth ? `${cell.date.getMonth() + 1}月${cell.date.getDate()}日` : cell.date.getDate()}
                       </span>
                     </div>
-                    {loading && cell.inRange ? (
-                      <Skeleton className="h-5 w-full" />
-                    ) : (
-                      cell.inRange && (
+                    {cell.inRange && (
                         <div className="space-y-0.5">
                           {events.map((c) => (
                             <EventItem key={c.id} c={c} now={now} />
                           ))}
                         </div>
-                      )
                     )}
                   </div>
                 );
@@ -333,10 +290,7 @@ export default function CalendarView() {
 
           {/* 窄屏：按日分组列表 */}
           <div className="space-y-3 md:hidden">
-            {loading ? (
-              [0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-16 w-full" />)
-            ) : agendaDays.length === 0 ? null : (
-              agendaDays.map((cell) => (
+            {agendaDays.map((cell) => (
                 <div key={cell.key} className="rounded-lg border">
                   <div
                     className={`border-b px-3 py-1.5 text-xs font-medium ${
@@ -352,18 +306,15 @@ export default function CalendarView() {
                     ))}
                   </div>
                 </div>
-              ))
-            )}
+            ))}
           </div>
 
-          {!loading && visible.length === 0 && (
+          {visible.length === 0 && (
             <div className="text-muted-foreground flex flex-col items-center gap-2 rounded-lg border border-dashed py-10 text-sm">
               <CalendarDays className="size-8 opacity-50" />
               <span>{selected.size === 0 ? '请在上方勾选要显示的比赛网站' : '该时间范围内没有所选网站的比赛'}</span>
             </div>
           )}
-        </>
-      )}
     </div>
   );
 }

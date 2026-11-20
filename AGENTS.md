@@ -274,7 +274,8 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   渠道白名单 + 串行 500ms + 超限 429，两者由 `test/security-and-query.test.mjs`
   部分守卫——放宽任何一项先想清攻击面。`/api/contests/clist` 只读
   `data/clist.json`，不访问上游；区间/排序/分页过滤在 `lib/clist-snapshot.mjs`，
-  由 `test/clist-snapshot.test.mjs` 守卫（含禁用网络仍可读）。
+  由 `test/clist-snapshot.test.mjs` 守卫（含禁用网络仍可读）。此接口只用于兼容；
+  日历与首页通过 `lib/contest-schedule.js` 导入随构建发布的快照，在本地筛选，不发赛程请求。
 
 ### 3.8 抓取管线（scripts/）
 

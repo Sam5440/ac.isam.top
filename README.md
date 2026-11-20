@@ -162,7 +162,7 @@ CLIST_API_KEY=…                                            # 仅本地/CI 抓�
 | `fetch-cf-gyms.yml` | 每天 20:47 UTC | cf-gyms 增量：新赛列表 + ID 补扫 + 题面回填（38 分钟预算，到点存档退出续跑无缝） |
 | `ci.yml` | push / PR | `npm test` + `npm run build` |
 
-每次 data 推送 → Vercel 自动重新构建部署。比赛日历与首页未来比赛只读取 `data/clist.json`，不会在用户请求时访问 Clist；快照抓取失败会保留上一份，不会用空数据覆盖。
+每轮定时抓取 CI 分页读取 Clist 后只更新一次 `data/clist.json`，失败保留上一份。快照随 Vercel 构建打包，比赛日历与首页未来比赛在本地筛选；进入页面、调整日期或切换站点都不会请求 `/api/contests/clist` 或 Clist 上游。新部署生效后使用新快照。
 
 ### 需要配置的仓库 Secrets（Settings → Secrets and variables → Actions）
 

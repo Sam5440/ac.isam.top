@@ -11,10 +11,10 @@ const now = new Date('2026-11-18T00:00:00Z').getTime();
 
 test('首页 Clist 区间：从当前时间开始，范围与日历未来天数一致', () => {
   assert.deepEqual(homeClistRange(now, 15), {
-    start__gte: '2026-11-18T00:00:00',
-    start__lte: '2026-12-03T00:00:00',
+    start: now,
+    end: Date.parse('2026-12-03T00:00:00Z'),
   });
-  assert.equal(homeClistRange(now, 999).start__lte, '2027-01-17T00:00:00');
+  assert.equal(homeClistRange(now, 999).end, Date.parse('2027-01-17T00:00:00Z'));
 });
 
 test('内部比赛转换：复用日历资源域名并保留站内链接', () => {
