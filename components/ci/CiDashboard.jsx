@@ -36,6 +36,8 @@ import {
 } from 'lucide-react';
 
 import { PlatformBadge } from '@/components/Badges';
+import RunJobs from '@/components/ci/RunJobs';
+import { GH_REPO, actionLabel, actionsPages, mergeRemoteRuns } from '@/lib/ci-actions.mjs';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -43,8 +45,6 @@ import { ActivityChart, Donut, RunOutputChart, Sparkline, RETENTION_DAYS, dayLab
 
 const DAY = 86_400_000;
 const WINDOW_DAYS = 7;
-const GH_REPO = 'Sam5440/ac.isam.top';
-const WORKFLOW_FILE = 'fetch.yml';
 
 const TRIGGER_LABEL = { schedule: '定时', workflow_dispatch: '手动', manual: '手动', push: '推送' };
 const STATUS_META = {
@@ -54,35 +54,6 @@ const STATUS_META = {
   failed: { label: '失败', cls: 'border-red-500/40 bg-red-500/10 text-red-500' },
 };
 const PLATFORM_LABEL = { atcoder: 'AtCoder', codeforces: 'Codeforces', nowcoder: '牛客' };
-
-/** 远端（GitHub Actions API）与本地存档合并：runId 精确匹配；无 runId 的旧
- *  存档按 startedAt ±3 分钟窗口匹配，避免同一轮出现两张卡片。 */
-function mergeRemoteRuns(local, remoteRuns) {
-  const byId = new Set(local.filter((r) => r.runId).map((r) => String(r.runId)));
-  const byTime = local.filter((r) => !r.runId && r.startedAt).map((r) => Date.parse(r.startedAt));
-  const near = (ts) => byTime.some((t) => Math.abs(t - ts) < 3 * 60_000);
-  const synth = [];
-  for (const r of remoteRuns || []) {
-    if (!r.conclusion) continue;
-    const startedAt = r.run_started_at || r.created_at;
-    const ts = startedAt ? Date.parse(startedAt) : 0;
-    if (byId.has(String(r.id)) || near(ts)) continue;
-    const durMs = startedAt && r.updated_at ? Math.max(0, Date.parse(r.updated_at) - ts) : null;
-    synth.push({
-      runId: r.id,
-      event: r.event,
-      startedAt,
-      url: r.html_url,
-      failure: r.conclusion === 'failure',
-      conclusion: r.conclusion,
-      remoteOnly: true,
-      noop: r.conclusion === 'success' && durMs != null && durMs < 5 * 60_000,
-      durationMs: durMs,
-    });
-  }
-  if (!synth.length) return local;
-  return [...local, ...synth].sort((a, b) => ((a.startedAt || '') < (b.startedAt || '') ? 1 : -1));
-}
 
 /** 本地时区格式化（固定北京时间，与全站 formatDateTime 一致，避免 SSR/客户端时区不同导致 hydration mismatch）。 */
 const fmtDateTime = (iso) => {
@@ -140,11 +111,12 @@ function RunCard({ run, expanded, onToggle, index }) {
     <Card className="scroll-mt-24 overflow-hidden" id={`run-${run.runId || index}`}>
       <button type="button" onClick={onToggle} aria-expanded={expanded} className="flex w-full items-start gap-3 p-4 text-left">
         <span className={`mt-0.5 rounded-lg border p-1.5 ${run.failure ? 'border-red-500/40 bg-red-500/10' : 'border-emerald-500/40 bg-emerald-500/10'}`}>
-          {run.failure ? <XCircle className="size-4 text-red-400" /> : <CheckCircle2 className="size-4 text-emerald-500" />}
+          {run.failure ? <XCircle className="size-4 text-red-400" /> : run.conclusion === 'success' ? <CheckCircle2 className="size-4 text-emerald-500" /> : <Clock className="size-4 text-muted-foreground" />}
         </span>
         <span className="min-w-0 flex-1">
           <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <span className="text-sm font-semibold">{TRIGGER_LABEL[run.trigger] || run.trigger || '运行'}</span>
+            <span className="text-sm font-semibold">{run.workflow}</span>
+            <span className="text-xs">{actionLabel(run.conclusion)} · {TRIGGER_LABEL[run.trigger] || run.trigger || '运行'}</span>
             {run.runId ? (
               <span className="rounded border border-border bg-muted px-1 py-px font-mono text-[10px] text-muted-foreground">run {run.runId}</span>
             ) : null}
@@ -198,6 +170,7 @@ function RunCard({ run, expanded, onToggle, index }) {
         <ChevronDown className={`text-muted-foreground mt-1 size-4 shrink-0 transition-transform ${expanded ? 'rotate-180' : ''}`} />
       </button>
 
+      {expanded && run.runId && <RunJobs run={run} />}
       {expanded && !run.remoteOnly && (
         <CardContent className="space-y-3 border-t pt-4">
           {/* 抓取明细 */}
@@ -323,11 +296,7 @@ function RunCard({ run, expanded, onToggle, index }) {
       {expanded && run.remoteOnly && (
         <CardContent className="border-t pt-4 text-xs">
           <p className="text-muted-foreground">
-            {run.conclusion === 'cancelled'
-              ? '这次运行在并发队列中被新运行取代而取消，未产生数据提交。'
-              : run.noop
-                ? '空跑：本轮没有需要抓取或翻译的内容，未产生仓库提交。'
-                : '这次运行没有对应的数据存档（可能是空跑或日志尚未同步）。'}
+            此次运行没有站内抓取产出存档。
           </p>
           {run.url && (
             <a href={run.url} target="_blank" rel="noreferrer" className="text-primary mt-2 inline-flex items-center gap-1 hover:underline">
@@ -342,8 +311,9 @@ function RunCard({ run, expanded, onToggle, index }) {
 
 /* --------------------------------- 主组件 --------------------------------- */
 
-export default function CiDashboard({ runs = [], actionsUrl }) {
+export default function CiDashboard({ runs = [] }) {
   const [window7, setWindow7] = useState(false);
+  const [workflow, setWorkflow] = useState('');
   const [expandedKey, setExpandedKey] = useState(null);
   const [remote, setRemote] = useState({ state: 'idle', runs: [] });
   const busyRef = useRef(false);
@@ -354,13 +324,8 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
     busyRef.current = true;
     setRemote((r) => ({ ...r, state: 'loading' }));
     try {
-      const res = await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${WORKFLOW_FILE}/runs?per_page=100`, {
-        cache: 'no-store',
-        headers: { Accept: 'application/vnd.github+json' },
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const j = await res.json();
-      setRemote({ state: 'ready', runs: j.workflow_runs || [] });
+      const list = await actionsPages({ since: Date.now() - RETENTION_DAYS * DAY });
+      setRemote({ state: 'ready', runs: list });
     } catch {
       setRemote((r) => ({ ...r, state: 'error' }));
     } finally {
@@ -384,8 +349,8 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
   );
   const cutoff = anchorMs - (window7 ? WINDOW_DAYS : RETENTION_DAYS) * DAY;
   const visible = useMemo(
-    () => merged.filter((r) => r.startedAt && Date.parse(r.startedAt) >= cutoff),
-    [merged, cutoff],
+    () => merged.filter((r) => (!workflow || r.workflow === workflow) && r.startedAt && Date.parse(r.startedAt) >= cutoff),
+    [merged, cutoff, workflow],
   );
   const chrono = useMemo(() => [...visible].reverse(), [visible]);
   const chronoLogged = useMemo(() => chrono.filter((r) => !r.remoteOnly), [chrono]);
@@ -396,7 +361,7 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
     const translated = chronoLogged.reduce((a, r) => a + (r.stats?.translated || 0), 0);
     const latest = chronoLogged[chronoLogged.length - 1];
     const pending = latest?.stats?.pendingCount;
-    const durs = chronoLogged.map((r) => r.durationMs).filter((d) => Number.isFinite(d));
+    const durs = chronoLogged.map((r) => r.archiveDurationMs).filter((d) => Number.isFinite(d));
     const avgDur = durs.length ? durs.reduce((a, b) => a + b, 0) / durs.length : null;
     // 平台累计（窗口内）
     const platformTotals = { atcoder: 0, codeforces: 0, nowcoder: 0 };
@@ -407,7 +372,7 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
     }
     return {
       fail,
-      ok: visible.length - fail,
+      ok: visible.filter((r) => r.conclusion === 'success').length,
       fetched,
       translated,
       pending,
@@ -449,14 +414,18 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
             </span>
           )}
           {remote.state === 'error' && (
-            <span className="text-amber-500">GitHub Actions 同步失败（限流或网络），仅显示仓库存档</span>
+            <span className="text-amber-500">GitHub Actions 同步失败，显示上次可用记录</span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex max-w-full flex-wrap items-center gap-2">
+          <select aria-label="筛选工作流" className="bg-background max-w-full rounded-md border px-2 py-1 text-xs" value={workflow} onChange={(event) => setWorkflow(event.target.value)}>
+            <option value="">全部工作流</option>
+            {[...new Set(merged.map((r) => r.workflow))].sort().map((name) => <option key={name}>{name}</option>)}
+          </select>
           <div className="inline-flex rounded-lg border border-border bg-muted/40 p-0.5">
             {[
               ['近 7 天', true],
-              ['全部记录', false],
+              ['近 60 天', false],
             ].map(([label, val]) => (
               <button
                 key={label} type="button" onClick={() => setWindow7(val)}
@@ -475,9 +444,9 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
       {/* 统计卡片 */}
       {visible.length > 0 && (
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-5">
-          <StatCard icon={Activity} label="运行次数" value={visible.length} sub={`正常 ${stats.ok} · 失败 ${stats.fail}`} />
-          <StatCard icon={Download} label="新抓 + 回填题面" value={stats.fetched} sub="窗口内累计" tone="sky" spark={stats.perRunFetched} />
-          <StatCard icon={Languages} label="AI 翻译" value={stats.translated} sub="窗口内累计" tone="violet" spark={stats.perRunTranslated} />
+          <StatCard icon={Activity} label="运行次数" value={visible.length} sub={`成功 ${stats.ok} · 失败 ${stats.fail} · 其他 ${visible.length - stats.ok - stats.fail}`} />
+          <StatCard icon={Download} label="新抓 + 回填题面" value={stats.fetched} sub={`来自 ${chronoLogged.length} 次抓取存档`} tone="sky" spark={stats.perRunFetched} />
+          <StatCard icon={Languages} label="AI 翻译" value={stats.translated} sub={`来自 ${chronoLogged.length} 次抓取存档`} tone="violet" spark={stats.perRunTranslated} />
           <StatCard icon={ScrollText} label="积压待重试" value={stats.pending ?? '—'} sub="未达尝试上限的题面" tone="amber" />
           <StatCard icon={Timer} label="平均耗时" value={stats.avgDur ? fmtDur(stats.avgDur) : '—'} sub="抓取 → 翻译 → 建索引" tone="emerald" />
         </div>
@@ -489,7 +458,7 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
           <Card className="lg:col-span-2">
             <CardContent className="p-4">
               <p className="text-xs font-semibold">运行活动 · 近 {window7 ? WINDOW_DAYS : 30} 天</p>
-              <p className="text-muted-foreground mb-2 text-[11px]">每日运行次数（绿=正常，红=有失败任务），点击柱子定位到对应运行</p>
+              <p className="text-muted-foreground mb-2 text-[11px]">每日运行次数：绿为成功，红为失败，灰为其他状态</p>
               <ActivityChart runs={visible} anchorMs={anchorMs} windowDays={window7 ? WINDOW_DAYS : 30} onPickDay={pickDay} />
             </CardContent>
           </Card>
@@ -497,7 +466,7 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
             <CardContent className="flex h-full flex-col justify-between gap-3 p-4">
               <div>
                 <p className="text-xs font-semibold">成功率</p>
-                <p className="text-muted-foreground text-[11px]">窗口内 {visible.length} 次运行</p>
+                <p className="text-muted-foreground text-[11px]">仅统计已确认成功或失败的 {stats.ok + stats.fail} 次运行</p>
               </div>
               <div className="flex justify-center py-1">
                 <Donut success={stats.ok} fail={stats.fail} />
@@ -532,7 +501,7 @@ export default function CiDashboard({ runs = [], actionsUrl }) {
                 <ScrollText className="text-muted-foreground size-5" />
               </span>
               <p className="text-sm font-medium">窗口内暂无运行</p>
-              <p className="text-muted-foreground max-w-sm text-xs">切换到「全部记录」查看更早的运行，或等待下一轮定时抓取。</p>
+              <p className="text-muted-foreground max-w-sm text-xs">可调整时间范围或工作流筛选。</p>
             </CardContent>
           </Card>
         ) : (

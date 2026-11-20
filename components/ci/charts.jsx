@@ -104,7 +104,7 @@ export function Sparkline({ data = [], tone = 'emerald', width: w = 76 }) {
 export function Donut({ success, fail }) {
   const id = useId();
   const total = success + fail;
-  const pct = total ? Math.round((success / total) * 100) : 100;
+  const pct = total ? Math.round((success / total) * 100) : '—';
   const r = 46;
   const c = 2 * Math.PI * r;
   const failLen = total ? (fail / total) * c : 0;
@@ -167,14 +167,15 @@ export function ActivityChart({ runs, anchorMs, windowDays = 30, onPickDay }) {
     for (const r of runs) {
       if (!r.startedAt) continue;
       const k = isoDay(Date.parse(r.startedAt));
-      const e = byDay.get(k) || { ok: 0, bad: 0 };
+      const e = byDay.get(k) || { ok: 0, bad: 0, other: 0 };
       if (r.failure) e.bad += 1;
-      else e.ok += 1;
+      else if (r.conclusion === 'success') e.ok += 1;
+      else e.other += 1;
       byDay.set(k, e);
     }
     return Array.from({ length: windowDays }, (_, i) => {
       const key = isoDay(anchorMs - (windowDays - 1 - i) * DAY);
-      return { key, ok: 0, bad: 0, ...(byDay.get(key) || {}) };
+      return { key, ok: 0, bad: 0, other: 0, ...(byDay.get(key) || {}) };
     });
   }, [runs, anchorMs, windowDays]);
 
@@ -187,7 +188,7 @@ export function ActivityChart({ runs, anchorMs, windowDays = 30, onPickDay }) {
   const iw = W - padL - padR;
   const ih = H - padT - padB;
   const slot = iw / days.length;
-  const { max: yMax, ticks } = niceScale(Math.max(1, ...days.map((d) => d.ok + d.bad)));
+  const { max: yMax, ticks } = niceScale(Math.max(1, ...days.map((d) => d.ok + d.bad + d.other)));
   const y = (v) => padT + ih - (v / yMax) * ih;
   const barW = Math.min(10, slot * 0.62);
   const labelEvery = Math.max(1, Math.ceil(days.length / 10));
@@ -214,14 +215,15 @@ export function ActivityChart({ runs, anchorMs, windowDays = 30, onPickDay }) {
         ))}
         {days.map((d, i) => {
           const cx = padL + slot * i + slot / 2;
-          const tot = d.ok + d.bad;
+          const tot = d.ok + d.bad + d.other;
           const oy = y(d.ok);
-          const by = y(tot);
+          const by = y(d.ok + d.bad);
           return (
             <g key={d.key}>
               {tot > 0 && (
                 <>
-                  <rect x={cx - barW / 2} y={oy} width={barW} height={Math.max(2, padT + ih - oy)} rx={Math.min(3, barW / 2)} fill={`url(#${id}-ok)`} />
+                  {d.ok > 0 && <rect x={cx - barW / 2} y={oy} width={barW} height={Math.max(2, padT + ih - oy)} rx={Math.min(3, barW / 2)} fill={`url(#${id}-ok)`} />}
+                  {d.other > 0 && <rect x={cx - barW / 2} y={y(tot)} width={barW} height={by - y(tot)} className="fill-muted-foreground" />}
                   {d.bad > 0 && (
                     <rect x={cx - barW / 2} y={by} width={barW} height={Math.max(2, oy - by)} rx={Math.min(3, barW / 2)} fill={`url(#${id}-bad)`} />
                   )}
@@ -241,7 +243,7 @@ export function ActivityChart({ runs, anchorMs, windowDays = 30, onPickDay }) {
                       <>
                         <p className="font-medium">{d.key}</p>
                         <p className="text-muted-foreground mt-0.5">
-                          {tot ? `正常 ${d.ok}${d.bad ? ` · 失败 ${d.bad}` : ''} · 点击定位` : '无运行'}
+                          {tot ? `成功 ${d.ok} · 失败 ${d.bad} · 其他 ${d.other}` : '无运行'}
                         </p>
                       </>
                     ),

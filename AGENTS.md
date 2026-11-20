@@ -71,7 +71,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/contests/[platform]/[contestId]` | 按需 SSG | 比赛详情 + 题目清单 | — |
 | `/calendar` | 静态 | 比赛日历（读取 CI 的 Clist 快照） | `CalendarView` |
 | `/history` | 静态 | 浏览历史（本机 IndexedDB/localStorage） | `HistoryList` |
-| `/ci` | ISR 5min | 抓取日志仪表盘（读 `data/ci-log.json`） | `CiDashboard` |
+| `/ci` | ISR 5min | 仓库级 Actions 按页同步近 60 天所有工作流，展开时读取 jobs/steps；`data/ci-log.json` 只补充主抓取产出 | `CiDashboard`、`lib/ci-actions.mjs` |
 | `/ide` | 静态 | IDE 工作台 | `IdePage` → `IdeShell`/`Workbench` |
 | `/settings` | 静态 | 设置（5 分区单页切换） | `settings/` 各分区 |
 | `/api/mt/[channel]` | 动态 | 浏览器 MT 转发（deepl/youdao/caiyun/iflyrec） | `lib/mt-protect.js` 防滥用 |

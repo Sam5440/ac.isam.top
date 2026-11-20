@@ -12,7 +12,6 @@ import path from 'node:path';
 import { ArrowUpRight } from 'lucide-react';
 
 import CiDashboard from '@/components/ci/CiDashboard';
-import { Button } from '@/components/ui/button';
 import { ScrollText } from 'lucide-react';
 
 export const metadata = { title: '抓取日志' };
@@ -43,28 +42,12 @@ export default function CiPage() {
           抓取日志
         </h1>
         <p className="text-muted-foreground mt-2 text-sm">
-          GitHub Actions 每小时运行一次抓取与翻译管线（错峰 23 分）。统计图表汇总最近
-          {' '}60 天的运行；展开任一次运行可查看逐题抓取明细、平台产出、未完成任务、下次计划与错误信息。
+          最近 60 天的全部 GitHub Actions 工作流，包括测试构建、抓取翻译与 CF Gym。{' '}
+          <a className="text-primary inline-flex items-center hover:underline" href={GITHUB_ACTIONS_URL} target="_blank" rel="noreferrer">GitHub Actions <ArrowUpRight className="size-3" /></a>
         </p>
       </div>
 
-      {runs.length === 0 ? (
-        <div className="py-16 text-center">
-          <ScrollText className="text-muted-foreground mx-auto size-10" />
-          <p className="mt-4 font-medium">暂无运行记录</p>
-          <p className="text-muted-foreground mt-2 text-sm">
-            抓取管线首次运行后，运行记录会写入 data/ci-log.json 并展示在这里。
-          </p>
-          <Button asChild variant="outline" className="mt-6">
-            <a href={GITHUB_ACTIONS_URL} target="_blank" rel="noreferrer">
-              查看 GitHub Actions
-              <ArrowUpRight className="size-4" />
-            </a>
-          </Button>
-        </div>
-      ) : (
-        <CiDashboard runs={runs} actionsUrl={GITHUB_ACTIONS_URL} />
-      )}
+      <CiDashboard runs={runs} />
     </div>
   );
 }
