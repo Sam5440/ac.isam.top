@@ -68,10 +68,11 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/problems` | 静态 | 题库浏览，服务端分页 | `ProblemsBrowser` |
 | `/problems/[platform]/[problemId]` | 按需 SSG | 题目详情 | `ProblemViewShell`、`ProblemStatementViewer`、`AiFab`、`ProblemCompiler` |
 | `/contests` | 静态 | 比赛列表（类型/站点筛选，50条/页） | `ContestsBrowser` |
-| `/contests/[platform]/[contestId]` | 按需 SSG | 比赛详情 + 题目清单 | — |
+| `/contests/[platform]/[contestId]` | 按需 SSG | 常规比赛详情 + 题目清单；`/contests/codeforces/sim-<id>#data=…` 复用同一详情视图展示自定义模拟赛 | `ContestDetailsView`、`SimulatorContestView` |
 | `/calendar` | 静态 | 比赛日历（读取 CI 的 Clist 快照） | `CalendarView` |
 | `/history` | 静态 | 浏览历史（本机 IndexedDB/localStorage） | `HistoryList` |
 | `/ci` | ISR 5min | 仓库级 Actions 按页同步近 60 天所有工作流，展开时读取 jobs/steps；`data/ci-log.json` 只补充主抓取产出 | `CiDashboard`、`lib/ci-actions.mjs` |
+| `/simulator` | 静态壳 + 客户端题目核验 | 本地多场模拟赛、独立/总计时、题目日志与 URL 分享 | `components/simulator/Simulator.jsx`、`lib/sim-contest.mjs` |
 | `/ide` | 静态 | IDE 工作台 | `IdePage` → `IdeShell`/`Workbench` |
 | `/settings` | 静态 | 设置（5 分区单页切换） | `settings/` 各分区 |
 | `/api/mt/[channel]` | 动态 | 浏览器 MT 转发（deepl/youdao/caiyun/iflyrec） | `lib/mt-protect.js` 防滥用 |
@@ -133,6 +134,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   - `stmt-settings-v1` 全部站点设置 / `stmt-custom-themes-v1` 自定义主题
   - `ysc-cp-settings-v1` 编译器偏好 / `ysc-cp-draft-<problem>-<lang>` 代码草稿
   - `stmt-chat-v1-<scope>` AI 对话多会话（`lib/chat-store.js`，旧版单会话数组自动迁移）
+  - `ac-simulator-contests-v1` 模拟赛定义与本机计时（设备本地数据，不进设置导出）
   - IndexedDB：MT 翻译缓存（`lib/zh-store.js`）、编译运行时（Cache API）
 - 主题：`lib/themes.js` 模板主题 + `<html>` 上 `data-theme`/`dark`/`eink` 类。首帧防
   闪白靠 `app/layout.jsx` 的 `THEME_BOOTSTRAP` 内联脚本（服务端生成）——改主题机制时

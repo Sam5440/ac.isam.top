@@ -6,6 +6,7 @@ import { useLayoutEffect, useEffect, useRef, useState } from 'react';
 import {
   CalendarDays,
   ChevronDown,
+  Timer,
   History,
   ScrollText,
   SquareTerminal,
@@ -28,6 +29,7 @@ const NAV = [
 const MORE_NAV = [
   { href: '/ide', label: 'IDE 编程台', icon: SquareTerminal, desc: '多文件工作区与样例对拍' },
   { href: '/history', label: '浏览历史', icon: History, desc: '看过的题目与判题状态' },
+  { href: '/simulator', label: '模拟赛', icon: Timer, desc: '创建比赛与计时训练' },
   { href: '/ci', label: '抓取日志', icon: ScrollText, desc: '数据抓取运行记录' },
   { href: '/calendar', label: '比赛日历', icon: CalendarDays, desc: '近期比赛日程' },
 ];

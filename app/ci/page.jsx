@@ -9,10 +9,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Timer } from 'lucide-react';
 
 import CiDashboard from '@/components/ci/CiDashboard';
 import { ScrollText } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export const metadata = { title: '抓取日志' };
 
@@ -37,10 +39,10 @@ export default function CiPage() {
   return (
     <div className="space-y-6 py-10">
       <div>
-        <h1 className="flex items-center gap-2 text-3xl font-bold tracking-tight">
-          <ScrollText className="size-7" />
-          抓取日志
-        </h1>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h1 className="flex items-center gap-2 text-3xl font-bold tracking-tight"><ScrollText className="size-7" />抓取日志</h1>
+          <Button asChild variant="outline"><Link href="/simulator"><Timer className="size-4" />模拟赛工作台</Link></Button>
+        </div>
         <p className="text-muted-foreground mt-2 text-sm">
           最近 60 天的全部 GitHub Actions 工作流，包括测试构建、抓取翻译与 CF Gym。{' '}
           <a className="text-primary inline-flex items-center hover:underline" href={GITHUB_ACTIONS_URL} target="_blank" rel="noreferrer">GitHub Actions <ArrowUpRight className="size-3" /></a>
