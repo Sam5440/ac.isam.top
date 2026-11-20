@@ -4,7 +4,7 @@
   "contestId": 106628,
   "index": "C",
   "title": "Tree Score",
-  "titleZh": null,
+  "titleZh": "树的得分",
   "url": "https://codeforces.com/gym/106628/problem/C",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 256,
   "statementMd": "Chopper and Usopp find a giant plant shaped like a tree with $n$ vertices and $n-1$ branches. Vertex $v$ has a value $a_{v}$.\n\nFor each branch $i$, two values are written:\n\n- $p_{i}$, its contribution if the branch is kept;\n- $q_{i}$, its contribution if the branch is cut.\n\nConsider any subset $K$ of branches. Branches in $K$ are kept, and all other branches are cut. The kept branches split the vertices into several connected components.\n\nFor a component $C$, define its value as:\n\n$$W(C) = \\sum_{v \\in C} a_{v}$$\n\nThe score of choice $K$ is:\n\n$$score(K) = \\left(\\prod_{i \\in K} p_{i}\\right) \\left(\\prod_{i \\notin K} q_{i}\\right) \\left(\\prod_{C} W(C)\\right)$$\n\nwhere the last product is over all connected components after cutting the branches not in $K$.\n\nDefine:\n\n$$F = \\sum score(K)$$\n\nIn other words, $F$ is the sum of $score(K)$ over all $2^{n-1}$ possible choices of which branches are kept and which are cut.\n\nAll calculations are performed modulo 998244353.\n\nYou must process $Q$ updates. After each update, output the current value of $F$.\n\nThere are two types of updates:\n\n- $1\\ v\\ x$: set $a_{v}=x$.\n- $2\\ i\\ p\\ q$: set $p_{i}=p$ and $q_{i}=q$.\n\nBranches are numbered from 1 to $n-1$ in their input order.\n\n## Input\n\nThe first line contains two integers $n$ and $Q$ ($1 \\le n, Q \\le 2 \\times 10^{5}$) — the number of vertices and the number of updates.\n\nThe second line contains $n$ integers $a_{1}, a_{2}, \\dots, a_{n}$ ($0 \\le a_{v}  \\lt  998244353$) — the vertex values.\n\nThe $i$-th of the next $n-1$ lines contains four integers $u_{i}$, $v_{i}$, $p_{i}$, and $q_{i}$ ($1 \\le u_{i}, v_{i} \\le n$, $0 \\le p_{i}, q_{i}  \\lt  998244353$) — the ends and the two values of the $i$-th branch.\n\nIt is guaranteed that these branches form a tree.\n\nEach of the next $Q$ lines contains one update in one of the following formats:\n\n- $1\\ v\\ x$ ($1 \\le v \\le n$, $0 \\le x  \\lt  998244353$).\n- $2\\ i\\ p\\ q$ ($1 \\le i \\le n-1$, $0 \\le p, q  \\lt  998244353$).\n\n## Output\n\nAfter each update, output one integer — the current value of $F$ modulo 998244353.\n\n## Note\n\nAfter the first update, the vertex values are 4 and 2.\n\nIf the edge is kept, the contribution is $3 \\times (4+2) = 18$. If the edge is removed, the contribution is $5 \\times 4 \\times 2 = 40$. Therefore, $F = 18 + 40 = 58$.\n\nAfter the second update, the edge values become $p_{1}=1$ and $q_{1}=2$, so $F = 1 \\times (4+2) + 2 \\times 4 \\times 2 = 22$.",
-  "statementZhMd": null,
+  "statementZhMd": "乔巴和乌索普发现了一株巨大的植物，形状像一棵有 $n$ 个顶点和 $n-1$ 条枝条的树。顶点 $v$ 的权值为 $a_{v}$。\n\n每条枝条 $i$ 上都写有两个值：\n\n- $p_{i}$：保留这条枝条时的贡献；\n- $q_{i}$：剪断这条枝条时的贡献。\n\n考虑任意一个枝条子集 $K$。保留 $K$ 中的枝条，剪断其余所有枝条。保留下来的枝条将这些顶点划分为若干个连通分量。\n\n对于一个连通分量 $C$，定义其权值为：\n\n$$W(C) = \\sum_{v \\in C} a_{v}$$\n\n方案 $K$ 的得分为：\n\n$$score(K) = \\left(\\prod_{i \\in K} p_{i}\\right) \\left(\\prod_{i \\notin K} q_{i}\\right) \\left(\\prod_{C} W(C)\\right)$$\n\n其中，最后一项对剪断所有不属于 $K$ 的枝条后得到的所有连通分量求积。\n\n定义：\n\n$$F = \\sum score(K)$$\n\n也就是说，$F$ 是所有 $2^{n-1}$ 种保留或剪断枝条的方案对应的 $score(K)$ 之和。\n\n所有计算均对 998244353 取模。\n\n你需要处理 $Q$ 次修改。每次修改后，输出当前的 $F$ 值。\n\n修改有两种类型：\n\n- $1\\ v\\ x$：令 $a_{v}=x$。\n- $2\\ i\\ p\\ q$：令 $p_{i}=p$，并令 $q_{i}=q$。\n\n枝条按输入顺序从 1 到 $n-1$ 编号。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $Q$（$1 \\le n, Q \\le 2 \\times 10^{5}$），分别表示顶点数和修改次数。\n\n第二行包含 $n$ 个整数 $a_{1}, a_{2}, \\dots, a_{n}$（$0 \\le a_{v}  \\lt  998244353$），表示各顶点的权值。\n\n接下来的 $n-1$ 行中，第 $i$ 行包含四个整数 $u_{i}$、$v_{i}$、$p_{i}$ 和 $q_{i}$（$1 \\le u_{i}, v_{i} \\le n$，$0 \\le p_{i}, q_{i}  \\lt  998244353$），分别表示第 $i$ 条枝条的两个端点和两个值。\n\n保证这些枝条构成一棵树。\n\n接下来的 $Q$ 行中，每行包含一次修改，格式为以下两种之一：\n\n- $1\\ v\\ x$（$1 \\le v \\le n$，$0 \\le x  \\lt  998244353$）。\n- $2\\ i\\ p\\ q$（$1 \\le i \\le n-1$，$0 \\le p, q  \\lt  998244353$）。\n\n## 输出格式\n\n每次修改后，输出一个整数，表示当前的 $F$ 对 998244353 取模的结果。\n\n## 说明\n\n第一次修改后，两个顶点的权值分别为 4 和 2。\n\n若保留这条边，贡献为 $3 \\times (4+2) = 18$。若删除这条边，贡献为 $5 \\times 4 \\times 2 = 40$。因此，$F = 18 + 40 = 58$。\n\n第二次修改后，这条边的两个值变为 $p_{1}=1$ 和 $q_{1}=2$，因此 $F = 1 \\times (4+2) + 2 \\times 4 \\times 2 = 22$。",
   "samples": [
     {
       "input": "2 2\n1 2\n1 2 3 5\n1 1 4\n2 1 1 2\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T22:26:06.640Z"
+  "fetchedAt": "2026-11-19T22:26:06.640Z",
+  "translatedAt": "2026-11-20T13:24:08.019Z",
+  "translateModel": "gpt-6.1-sol"
 }

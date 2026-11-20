@@ -1,0 +1,24 @@
+{
+  "id": "106585f",
+  "platform": "cf-gyms",
+  "contestId": 106585,
+  "index": "F",
+  "title": "奇怪染料",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106585/problem/F",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "某实验室研制出了一种特殊染料，只有三种基础颜色：\n\n- $\\mathtt{R}$（红色）\n- $\\mathtt{G}$（绿色）\n- $\\mathtt{B}$（蓝色）\n\n这些染料具有特殊性质：\n\n- 如果一个位置为空白（记为 $\\mathtt{N}$），刷上颜色 $c$，则变为颜色 $c$；\n- 如果一个位置已经是颜色 $c$，再刷一次颜色 $c$，则颜色不会发生变化；\n- 如果一个位置已经是另一种颜色，则会与新颜色发生反应，变成第三种颜色。\n\n具体反应规则如下表：\n\n| 原颜色 | 新颜色 | 结果 |\n| --- | --- | --- |\n| $\\mathtt{R}$ | $\\mathtt{G}$ | $\\mathtt{B}$ |\n| $\\mathtt{G}$ | $\\mathtt{R}$ | $\\mathtt{B}$ |\n| $\\mathtt{G}$ | $\\mathtt{B}$ | $\\mathtt{R}$ |\n| $\\mathtt{B}$ | $\\mathtt{G}$ | $\\mathtt{R}$ |\n| $\\mathtt{B}$ | $\\mathtt{R}$ | $\\mathtt{G}$ |\n| $\\mathtt{R}$ | $\\mathtt{B}$ | $\\mathtt{G}$ |\n\n给定一个长度为 $n$ 的目标序列，由 $\\mathtt{R}$、$\\mathtt{G}$、$\\mathtt{B}$ 三种颜色以及空白（$\\mathtt{N}$）组成。\n\n初始时，你有一个长度同样为 $n$ 的初始序列，所有位置均为空白（$\\mathtt{N}$）。\n\n每次操作，你可以选定一个连续区间 $[l, r]$ 和一种颜色 $c \\in \\{\\mathtt{R}, \\mathtt{G}, \\mathtt{B}\\}$，随后将区间内的所有位置同时刷上颜色 $c$。\n\n请你计算将初始序列变成目标序列所需的最少操作次数。\n\n## Input\n\n**本题的输入包含多组测试用例。**\n\n第一行一个整数 $T$（$1 \\leq T \\leq 1000$），表示测试用例的数量。对于每组测试用例：\n\n- 第一行一个整数 $n$（$1 \\le n \\le 2 \\times 10^5$），表示序列长度；\n- 第二行一个长度为 $n$ 的字符串 $s$，表示目标序列。字符串仅包含字符 $\\mathtt{R}$、$\\mathtt{G}$、$\\mathtt{B}$、$\\mathtt{N}$。\n\n保证所有测试用例的 $n$ 的总和不超过 $2 \\times 10^5$。\n\n## Output\n\n对于每组测试用例：输出一行一个整数，表示最少操作次数。\n\n## Note\n\n对于第一组测试用例，依次进行三次操作即可：\n\n- $\\mathtt{\\underline{NNN}NN} \\xrightarrow{\\mathtt{{\\color{red}{R}}}} \\mathtt{\\underline{{\\color{red}{R}}{\\color{red}{R}}{\\color{red}{R}}}NN}$；\n- $\\mathtt{{\\color{red}{R}}\\underline{{\\color{red}{R}}}{\\color{red}{R}}NN} \\xrightarrow{\\mathtt{{\\color{green}{G}}}} \\mathtt{{\\color{red}{R}}\\underline{{\\color{blue}{B}}}{\\color{red}{R}}NN}$；\n- $\\mathtt{{\\color{red}{R}}{\\color{blue}{B}}{\\color{red}{R}}N\\underline{N}} \\xrightarrow{\\mathtt{{\\color{red}{R}}}} \\mathtt{{\\color{red}{R}}{\\color{blue}{B}}{\\color{red}{R}}N\\underline{{\\color{red}{R}}}}$；\n\n可以证明，无法在 $2$ 次操作内完成，故最少操作次数为 $3$。",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "3\n5\nRBRNR\n6\nRRGGBB\n1\nN\n",
+      "output": "3\n2\n0\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T13:17:17.365Z"
+}

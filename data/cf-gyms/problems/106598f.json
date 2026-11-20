@@ -4,7 +4,7 @@
   "contestId": 106598,
   "index": "F",
   "title": "Farming Aura",
-  "titleZh": null,
+  "titleZh": "刷气场",
   "url": "https://codeforces.com/gym/106598/problem/F",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 500,
   "memoryLimitMb": 1024,
   "statementMd": "One of the most popular internet slang expressions at the moment is \"farming aura\", which means accumulating style, charisma, respect, or presence points. The term combines the gaming expression \"to farm\" (repeating actions to accumulate points) with aura (a person's energy, vibe, or attitude). One of the online games where this slang became popular is Fibia, a game in which the objective is to explore a vast world represented as a two-dimensional map viewed from above.\n\nIn a certain game scenario, there are $N$ points and $M$ segments connecting pairs of these $N$ points. Each segment represents a wall in the game world. These segments do not intersect and may touch only at their endpoints, which are among the $N$ points (none of the $N$ points lies in the interior of any of the $M$ segments).\n\nDepending on a player's position in this scenario, the player may become \"trapped\" by these segments; that is, the player's position lies inside a polygon bounded by the segments. When a player is in such a position, they are considered to be \"losing aura\", since they cannot explore the entire map unless they use some teleportation spell. Otherwise, the player is considered to be \"gaining aura\".\n\n![image](https://espresso.codeforces.com/2afd1064d6748dd22f832dec50f021f5158bd539.png)\n\nIn the figure above, players at positions $A$ and $C$ are \"gaining aura\", while players at positions $B$ and $D$ are \"losing aura\".\n\nGiven the positions of $K$ players on the game map, your task is to determine which players are losing aura and which are gaining aura.\n\n## Input\n\nThe first line contains two integers $N$ and $M$ ($2 \\leq N \\leq 1000$, $1 \\leq M \\leq \\frac{N(N-1)}{2}$).\n\nThe next $N$ lines each contain two integers $X_i$ and $Y_i$ ($0 \\leq X_i, Y_i \\leq 10000$), representing the coordinates of the $N$ points in the game's Cartesian plane. All points are distinct.\n\nThe next $M$ lines each contain two integers $A_i$ and $B_i$ ($1 \\leq A_i, B_i \\leq N$, $A_i \\neq B_i$), indicating $M$ distinct pairs of points connected by segments. It is guaranteed that no two segments intersect, although they may share endpoints. Furthermore, no segment passes through any of the other $N-2$ points besides its own endpoints.\n\nThe next line contains an integer $K$ ($1 \\leq K \\leq 1000$).\n\nThe following $K$ lines each contain two integers $KX_i$ and $KY_i$ ($0 \\leq KX_i, KY_i \\leq 10000$), representing the coordinates of the $K$ query points in order. It is guaranteed that none of these points lies on any of the $M$ segments and that none of them coincides with any of the $N$ given points.\n\n## Output\n\nYour program must output a single line containing a sequence of $K$ characters, each either `P` or `G`, indicating, in order, whether the corresponding players are \"losing aura\" (`P`) or \"gaining aura\" (`G`).\n\n## Note\n\n*Explanation of Sample 2*\n\nThis sample corresponds to the figure shown in the problem statement.",
-  "statementZhMd": null,
+  "statementZhMd": "“刷气场”（farming aura）是当下最流行的网络用语之一，指积累风度、魅力、尊重或存在感点数。这个说法将游戏用语“刷”（通过重复行动积累点数）与“气场”（一个人的能量、氛围或态度）结合起来。这个网络用语在 Fibia 等网络游戏中流行开来。在 Fibia 中，玩家的目标是探索一个广阔的世界，这个世界以俯视视角的二维地图呈现。\n\n在游戏的某个场景中，有 $N$ 个点和 $M$ 条连接这些点中某两个点的线段。每条线段代表游戏世界中的一堵墙。这些线段互不相交，只能在端点处相接，且端点均为这 $N$ 个点中的点（这 $N$ 个点中，没有任何点位于这 $M$ 条线段中任意一条的内部）。\n\n根据玩家在该场景中的位置，玩家可能会被这些线段“困住”，也就是说，玩家的位置位于由这些线段围成的某个多边形内部。处于这种位置的玩家被认为正在“掉气场”，因为除非使用某种传送法术，否则他们无法探索整张地图。否则，玩家被认为正在“涨气场”。\n\n![image](https://espresso.codeforces.com/2afd1064d6748dd22f832dec50f021f5158bd539.png)\n\n在上图中，位于 $A$ 和 $C$ 的玩家正在“涨气场”，而位于 $B$ 和 $D$ 的玩家正在“掉气场”。\n\n给定游戏地图上 $K$ 名玩家的位置，你的任务是判断哪些玩家正在掉气场，哪些玩家正在涨气场。\n\n## 输入格式\n\n第一行包含两个整数 $N$ 和 $M$（$2 \\leq N \\leq 1000$，$1 \\leq M \\leq \\frac{N(N-1)}{2}$）。\n\n接下来 $N$ 行，每行包含两个整数 $X_i$ 和 $Y_i$（$0 \\leq X_i, Y_i \\leq 10000$），表示游戏的笛卡尔坐标平面上这 $N$ 个点的坐标。所有点互不相同。\n\n接下来 $M$ 行，每行包含两个整数 $A_i$ 和 $B_i$（$1 \\leq A_i, B_i \\leq N$，$A_i \\neq B_i$），表示由线段连接的 $M$ 对互不相同的点对。保证任意两条线段均不相交，但它们可以有公共端点。此外，除自身的两个端点外，任何线段都不会经过其余 $N-2$ 个点中的任何一个。\n\n接下来一行包含一个整数 $K$（$1 \\leq K \\leq 1000$）。\n\n接下来 $K$ 行，每行包含两个整数 $KX_i$ 和 $KY_i$（$0 \\leq KX_i, KY_i \\leq 10000$），依次表示这 $K$ 个询问点的坐标。保证这些点均不在这 $M$ 条线段中的任何一条上，也不与给定的 $N$ 个点中的任何一个重合。\n\n## 输出格式\n\n你的程序应输出一行，包含一个长度为 $K$ 的字符序列，每个字符为 `P` 或 `G`，依次表示对应玩家正在“掉气场”（`P`）还是“涨气场”（`G`）。\n\n## 说明\n\n*样例 2 解释*\n\n该样例对应题目描述中的图片。",
   "samples": [
     {
       "input": "3 3\n0 0\n10 0\n0 10\n1 2\n2 3\n3 1\n2\n1 1\n5 6\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-20T03:39:06.544Z"
+  "fetchedAt": "2026-11-20T03:39:06.544Z",
+  "translatedAt": "2026-11-20T13:26:04.941Z",
+  "translateModel": "gpt-6.1-sol"
 }

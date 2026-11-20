@@ -1,0 +1,24 @@
+{
+  "id": "106562e",
+  "platform": "cf-gyms",
+  "contestId": 106562,
+  "index": "E",
+  "title": "Variance",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106562/problem/E",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 1024,
+  "statementMd": "Then winter comes — the snow keeps falling and accumulating, eventually covering all sins. Finally spring arrives — along with the melting snow, all punishments are delivered.\n\nJust cure whoever you can. There is no way to fix the problem setter who designed this problem.\n\nAs we all know, a person who is obsessed with bad endings just like this problem setter can never be cured. But if a problem can be solved with only slope optimization, it is still worth a try.\n\nGiven a sequence of $n$ positive integers $a_1, a_2, \\dots, a_n$. You need to perform $q$ operations in total, choosing from the two types below. **It is guaranteed that every number in the sequence always stays within the range $[1, 2 \\times 10^5]$**.\n\n1. Add a positive integer $x$ to all elements in the interval $[l,r]$.\n2. Consider a subarray $a_l, a_{l + 1}, \\cdots ,a_r$ whose length is at least $2$. Split it into several consecutive segments, where each segment has a length of no less than $2$. Suppose a segment has length $L$ and elements $b_1, b_2, \\cdots, b_L$. Let its variance be\\\n\\\n$$ \\sigma^2=\\frac{1}{L}\\sum^L_{i=1}(b_i-\\bar{b})^2 $$\\\n\\\nDefine the weight of this segment as $\\sigma^2 L$. You need to find an optimal splitting scheme to minimize the total weight. **Note that the defined weight is NOT equal to the variance.**\n\n## Input\n\nThe first line contains two positive integers $n, q$ $(2 \\le n \\le 2 \\times 10^5, 1 \\le q \\le 2 \\times 10^5)$.\n\nThe second line contains $n$ positive integers $a_1, a_2, \\dots, a_n$ $(1 \\le a_i \\le 2 \\times 10^5)$.\n\nThe following $q$ lines describe the operations:\n\nEach line starts with an integer $op \\in \\{1,2\\}$. If $op = 1$, three positive integers $l, r, x$ follow $(1 \\le l \\le r \\le n, 1 \\le x \\le 2 \\times 10^5)$, which means adding $x$ to every element in interval $[l,r]$. If $op = 2$, two positive integers $l, r$ follow $(1 \\le l  \\lt  r \\le n)$, which means querying the minimal total weight of interval $[l, r]$.\n\n## Output\n\nFor each query of type $op=2$, output two integers $a$ and $b$ separated by a single space on one line. Constraints: $a \\ge 0,\\ b  \\gt  0,\\ \\gcd(a, b) = 1$. The minimal weight equals $\\dfrac{a}{b}$. Specially, if the minimal weight is an integer $x$, you should output $x$ and $1$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 10\n1 2 3 4 5 6\n2 2 5\n1 1 6 1\n2 1 6\n1 3 4 2\n2 1 3\n2 4 6\n1 5 5 1\n1 1 2 3\n1 1 1 1\n2 1 6\n",
+      "output": "1 1\n3 2\n26 3\n2 3\n0 1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T13:18:49.247Z"
+}

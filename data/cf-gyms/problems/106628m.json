@@ -4,7 +4,7 @@
   "contestId": 106628,
   "index": "M",
   "title": "Database Pool",
-  "titleZh": null,
+  "titleZh": "数据库缓冲池",
   "url": "https://codeforces.com/gym/106628/problem/M",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "Sherbiny and Samer Samora are optimizing the core database engine for the Sunny's navigation logs. They need to implement a buffer pool of capacity $C$ to keep frequently accessed data pages in fast memory.\n\nThe pool can hold up to $C$ distinct pages, each identified by a positive integer. When a page is read or written, it is brought into the pool and becomes the most recently accessed page. If the pool is already at full capacity $C$ and a new page must be brought in, the Least Recently Used (LRU) page is evicted to make room.\n\nA write operation modifies a page, marking it as dirty. If a dirty page is evicted from the pool, it is completely removed and is no longer considered dirty.\n\nYou must process $Q$ queries of the following four types:\n\n- `1` $x$ — **Read**: Access page $x$. Bring it into the pool (evicting the LRU page if necessary). Page $x$ becomes the most recently accessed. If $x$ was already in the pool, its dirty status remains unchanged.\n- `2` $x$ — **Write**: Access page $x$ using the exact same LRU rules as a read, but additionally mark page $x$ as dirty.\n- `3` — **Flush**: Print the total number of dirty pages currently in the pool, then mark all of them as clean (not dirty).\n- `4` $x$ — **Status**: Print whether page $x$ is currently in the pool, and whether it is dirty. This query does not count as an access and does not change the LRU order.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 10^{4}$) — the number of test cases.\n\nThe first line of each test case contains two integers $C$ and $Q$ ($1 \\le C \\le 10^{5}$, $1 \\le Q \\le 2 \\times 10^{5}$) — the capacity of the buffer pool and the number of queries.\n\nThe next $Q$ lines describe the queries in the format given above. All page IDs satisfy $1 \\le x \\le 10^{9}$.\n\nIt is guaranteed that the sum of $Q$ over all test cases does not exceed $2 \\times 10^{5}$.\n\n## Output\n\nFor each test case, output the answers for the Flush and Status queries in the order they appear:\n\n- For each $3$ (Flush) query, output a single integer on a new line: the number of dirty pages.\n- For each $4\\ x$ (Status) query, output two space-separated integers on a new line: `in_pool` and `is_dirty`. Print 1 if the condition is true, and 0 if it is false.\n\n## Note\n\nIn the first test case, the buffer pool has capacity $C = 2$.\n\nAfter reading page $10$, the pool contains page $10$ (clean). After writing page $20$, the pool contains pages $10$ and $20$, with page $20$ marked as dirty.\n\nThe first status query for page $10$ reports `1 0` (in pool, clean). The second status query for page $20$ reports `1 1` (in pool, dirty).\n\nWriting page $30$ brings in a new page while the pool is full. Page $10$ is the least recently used, so it is evicted. The pool now contains pages $20$ and $30$, both dirty.\n\nThe status query for page $10$ now reports `0 0` because it was evicted.\n\nThe flush query finds $2$ dirty pages ($20$ and $30$), outputs `2`, and marks them both as clean.\n\nThe final status query for page $20$ reports `1 0` because it is still in the pool, but was cleaned by the flush.",
-  "statementZhMd": null,
+  "statementZhMd": "Sherbiny 和 Samer Samora 正在为 Sunny 的导航日志优化核心数据库引擎。他们需要实现一个容量为 $C$ 的缓冲池，以便将频繁访问的数据页保存在快速内存中。\n\n缓冲池最多可以容纳 $C$ 个不同的页，每个页由一个正整数标识。当读取或写入某个页时，该页会被放入缓冲池，并成为最近访问的页。如果缓冲池已经达到容量上限 $C$，且必须放入一个新页，则会驱逐最近最少使用（LRU）的页以腾出空间。\n\n写操作会修改一个页，并将其标记为脏页。如果一个脏页被从缓冲池中驱逐，它将被完全移除，并且不再被视为脏页。\n\n你需要处理 $Q$ 个查询，查询类型如下：\n\n- `1` $x$ — **读取**：访问页 $x$。将其放入缓冲池（必要时驱逐 LRU 页）。页 $x$ 成为最近访问的页。如果 $x$ 已经在缓冲池中，则其脏状态保持不变。\n- `2` $x$ — **写入**：按照与读取完全相同的 LRU 规则访问页 $x$，但还会将页 $x$ 标记为脏页。\n- `3` — **刷新**：输出当前缓冲池中脏页的总数，然后将所有脏页标记为干净页（非脏页）。\n- `4` $x$ — **状态查询**：输出页 $x$ 当前是否在缓冲池中，以及是否为脏页。此查询不算作访问，也不会改变 LRU 顺序。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^{4}$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $C$ 和 $Q$（$1 \\le C \\le 10^{5}$，$1 \\le Q \\le 2 \\times 10^{5}$）——缓冲池的容量和查询数量。\n\n接下来的 $Q$ 行按照上述格式描述查询。所有页 ID 均满足 $1 \\le x \\le 10^{9}$。\n\n保证所有测试用例的 $Q$ 之和不超过 $2 \\times 10^{5}$。\n\n## 输出格式\n\n对于每个测试用例，按照 Flush 和 Status 查询出现的顺序输出答案：\n\n- 对于每个 `3`（Flush）查询，在新的一行输出一个整数：脏页的数量。\n- 对于每个 `4` $x$（Status）查询，在新的一行输出两个以空格分隔的整数：`in_pool` 和 `is_dirty`。如果条件为真，输出 1；否则输出 0。\n\n## 说明\n\n在第一个测试用例中，缓冲池的容量为 $C = 2$。\n\n读取页 $10$ 后，缓冲池中包含页 $10$（干净）。写入页 $20$ 后，缓冲池中包含页 $10$ 和 $20$，其中页 $20$ 被标记为脏页。\n\n对页 $10$ 的第一次状态查询输出 `1 0`（在缓冲池中，干净）。对页 $20$ 的第二次状态查询输出 `1 1`（在缓冲池中，脏）。\n\n写入页 $30$ 时，缓冲池已满，因此会放入一个新页。页 $10$ 是最近最少使用的页，所以它被驱逐。此时缓冲池中包含页 $20$ 和 $30$，且二者均为脏页。\n\n此时对页 $10$ 的状态查询输出 `0 0`，因为它已经被驱逐。\n\n刷新查询发现有 $2$ 个脏页（$20$ 和 $30$），输出 `2`，并将它们都标记为干净页。\n\n最后对页 $20$ 的状态查询输出 `1 0`，因为它仍在缓冲池中，但已被刷新操作清理。",
   "samples": [
     {
       "input": "1\n2 8\n1 10\n2 20\n4 10\n4 20\n2 30\n4 10\n3\n4 20\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T22:27:25.104Z"
+  "fetchedAt": "2026-11-19T22:27:25.104Z",
+  "translatedAt": "2026-11-20T13:25:06.240Z",
+  "translateModel": "gpt-6.1-sol"
 }

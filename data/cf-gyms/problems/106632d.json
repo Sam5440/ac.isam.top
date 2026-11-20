@@ -4,7 +4,7 @@
   "contestId": 106632,
   "index": "D",
   "title": "Bit Walk",
-  "titleZh": null,
+  "titleZh": "比特漫步",
   "url": "https://codeforces.com/gym/106632/problem/D",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "*Habbab thinks that this problem is very easy, so are you going to be '3rrar' and run away from us without solving it, or 'lesa al-amana momkenah'?*\n\nYou are given a binary array $a$ of length $n$, and $q$ queries. Each query provides a range $[l, r]$, corresponding to the subarray $b = a_l, a_{l+1}, \\dots, a_r$ of length $m = r - l + 1$.\n\nFor each query, calculate the number of **good** cyclic shifts$^\\dagger$ of $b$.\n\nA binary array $c$ of length $m$ is considered **good** if the following process finishes with $x = 0$:\n\n- Initially, set $x = 0$ and $i = 1$.\n- If $c_i = 1$, replace $x$ by $1 - x$ and set $i := i + 1$.\n- If $c_i = 0$, leave $x$ unchanged and set $i := i + 2$.\n- The process stops when $i  \\gt  m$.\n\n$^\\dagger$ A cyclic shift of $b$ is formed by moving its first $k$ elements to the end ($0 \\le k  \\lt  m$), resulting in the array $b_{k+1}, \\dots, b_m, b_1, \\dots, b_k$. All $m$ possible shifts are counted independently for each query, even if they result in identical arrays.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case begins with a line containing two integers $n$ and $q$ ($1 \\le n, q \\le 2 \\cdot 10^5$) — the length of the array and the number of queries.\n\nThe next line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($0 \\le a_i \\le 1$).\n\nEach of the next $q$ lines contains two integers $l$ and $r$ ($1 \\le l \\le r \\le n$), describing a query.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$, and the sum of $q$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor every query, print one integer — the number of good cyclic shifts of the subarray in that query.\n\n## Note\n\nConsider the first test case.\n\n- For the subarray $[1, 0, 1, 0, 1]$, there are two good cyclic shifts:  The other three shifts finish with $x=1$, so the answer for this query is $2$.\n- For $k=2$, the shifted array is $[\\underline{1}, \\underline{0}, 1, \\underline{1}, \\underline{0}]$. The process visits these indices, where the values are $1, 0, 1, 0$. Since $x$ is flipped at indices corresponding to $1$ and $1$, $x$ finishes at $0$.\n  - For $k=4$, the shifted array is $[\\underline{1}, \\underline{1}, \\underline{0}, 1, \\underline{0}]$. The process visits these indices, where the values are $1, 1, 0, 0$. $x$ is flipped at indices corresponding to $1$ and $1$, finishing at $x=0$.\n- For the subarray $[1]$, the process visits the array as $[\\underline{1}]$. The process flips $x$ once, so it is not good. The answer is $0$.\n- For the subarray $[1, 1]$, the shifts by $k=0$ and $k=1$ both result in the array $[\\underline{1}, \\underline{1}]$:  Both are counted separately, and the answer is $2$.\n- For both, the process visits the array as $[\\underline{1}, \\underline{1}]$. $x$ is flipped twice, so it is good.",
-  "statementZhMd": null,
+  "statementZhMd": "*Habbab 觉得这道题非常简单，那么你会成为不解题就从我们这里逃走的“3rrar”，还是“lesa al-amana momkenah”？*\n\n给定一个长度为 $n$ 的二进制数组 $a$，以及 $q$ 次询问。每次询问给出一个区间 $[l, r]$，对应长度为 $m = r - l + 1$ 的子数组 $b = a_l, a_{l+1}, \\dots, a_r$。\n\n对于每次询问，计算 $b$ 的**好**循环移位$^\\dagger$的数量。\n\n对于一个长度为 $m$ 的二进制数组 $c$，如果以下过程结束时满足 $x = 0$，则称其为**好**数组：\n\n- 初始时，令 $x = 0$，$i = 1$。\n- 如果 $c_i = 1$，将 $x$ 替换为 $1 - x$，并令 $i := i + 1$。\n- 如果 $c_i = 0$，保持 $x$ 不变，并令 $i := i + 2$。\n- 当 $i  \\gt  m$ 时，过程结束。\n\n$^\\dagger$ 将 $b$ 的前 $k$ 个元素移到末尾（$0 \\le k  \\lt  m$），得到数组 $b_{k+1}, \\dots, b_m, b_1, \\dots, b_k$，这称为 $b$ 的一次循环移位。对于每次询问，所有 $m$ 种可能的移位均独立计数，即使它们得到的数组相同。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含两个整数 $n$ 和 $q$（$1 \\le n, q \\le 2 \\cdot 10^5$）——数组的长度和询问的数量。\n\n接下来一行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\le a_i \\le 1$）。\n\n接下来 $q$ 行，每行包含两个整数 $l$ 和 $r$（$1 \\le l \\le r \\le n$），表示一次询问。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$，所有测试用例的 $q$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每次询问，输出一个整数——该次询问中子数组的好循环移位的数量。\n\n## 说明\n\n考虑第一个测试用例。\n\n- 对于子数组 $[1, 0, 1, 0, 1]$，有两种好循环移位：其余三种移位在过程结束时均有 $x=1$，因此该次询问的答案为 $2$。\n- 当 $k=2$ 时，移位后的数组为 $[\\underline{1}, \\underline{0}, 1, \\underline{1}, \\underline{0}]$。该过程会访问这些带下划线的位置，其值依次为 $1, 0, 1, 0$。由于 $x$ 在值为 $1$ 和 $1$ 的位置发生翻转，因此最终 $x$ 为 $0$。\n  - 当 $k=4$ 时，移位后的数组为 $[\\underline{1}, \\underline{1}, \\underline{0}, 1, \\underline{0}]$。该过程会访问这些带下划线的位置，其值依次为 $1, 1, 0, 0$。$x$ 在值为 $1$ 和 $1$ 的位置发生翻转，最终得到 $x=0$。\n- 对于子数组 $[1]$，该过程访问数组的情况为 $[\\underline{1}]$。该过程将 $x$ 翻转一次，因此它不是好数组。答案为 $0$。\n- 对于子数组 $[1, 1]$，$k=0$ 和 $k=1$ 的移位均得到数组 $[\\underline{1}, \\underline{1}]$：这两种移位分别计数，答案为 $2$。\n- 对于这两种移位，该过程访问数组的情况均为 $[\\underline{1}, \\underline{1}]$。$x$ 被翻转两次，因此它是好数组。",
   "samples": [
     {
       "input": "2\n5 4\n1 0 1 0 1\n1 5\n2 4\n1 1\n4 5\n6 4\n0 0 0 1 1 0\n1 6\n1 3\n4 5\n3 6\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-20T03:32:08.521Z"
+  "fetchedAt": "2026-11-20T03:32:08.521Z",
+  "translatedAt": "2026-11-20T13:22:53.022Z",
+  "translateModel": "gpt-6.1-sol"
 }

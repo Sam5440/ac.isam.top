@@ -4,7 +4,7 @@
   "contestId": 106628,
   "index": "N",
   "title": "Tree Signals",
-  "titleZh": null,
+  "titleZh": "树上信号",
   "url": "https://codeforces.com/gym/106628/problem/N",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "Usopp and Robin are analyzing a massive island shaped like a rooted tree with $n$ vertices. The root is vertex 1. Each branch (edge) connecting the vertices has an integer value representing the wind speed, and each vertex $v$ has a wind tolerance $k_{v}$.\n\nUsopp can shoot a signal flare from a vertex $u$ to a descendant $v$ if the difference between the maximum and minimum wind speeds (edge values) on the path from $u$ to $v$ is at most the receiver's tolerance $k_{v}$:\n\nmax(w on the path from u to v) - min(w on the path from u to v) $\\le k_{v}$.\n\nRobin notes that the tolerance used here belongs to the receiver $v$, not to the sender $u$.\n\nIf $u=v$, the path contains zero edges. In this case, the difference is defined as 0, so every vertex can successfully receive a signal from itself.\n\nFor every vertex $u$, find how many descendants ($u$ included) can receive a signal from $u$.\n\nNote: a descendant of $u$ is any node $v$ in the subtree of $u$, including node $u$\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^{4}$) — the number of test cases.\n\nThe first line of each test case contains a single integer $n$ ($1 \\le n \\le 2 \\times 10^{5}$) — the number of vertices in the rooted tree. The root is vertex 1.\n\nThe second line of each test case contains $n$ integers $k_{1}, k_{2}, \\dots, k_{n}$ ($0 \\le k_{i} \\le 10^{9}$) — the tolerance of each vertex.\n\nFor each $i$ from 2 to $n$, the next line contains two integers $p_{i}$ and $w_{i}$ ($1 \\le p_{i}  \\lt  i$, $0 \\le w_{i} \\le 10^{9}$) — the parent of vertex $i$ and the wind speed value on the edge between $p_{i}$ and $i$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\times 10^{5}$.\n\n## Output\n\nFor each test case, output $n$ integers on a single line. The $u$-th integer must be the number of descendants that can receive a signal from vertex $u$.\n\n## Note\n\nVertex 1 reaches itself, vertex 2, and vertex 3. It does not reach vertex 4, because the values on the path to vertex 4 are 5 and 6, and their difference is greater than $k_{4}=0$.",
-  "statementZhMd": null,
+  "statementZhMd": "Usopp 和 Robin 正在分析一座形状为有根树的巨大岛屿，这棵树有 $n$ 个顶点，根为顶点 1。连接顶点的每条树枝（边）都有一个表示风速的整数权值，每个顶点 $v$ 都有一个风速容忍度 $k_{v}$。\n\n如果从顶点 $u$ 到其后代 $v$ 的路径上，最大风速与最小风速（边权）之差不超过接收者的容忍度 $k_{v}$，那么 Usopp 就可以从 $u$ 向 $v$ 发射信号弹：\n\n从 u 到 v 的路径上的最大风速 - 从 u 到 v 的路径上的最小风速 $\\le k_{v}$。\n\nRobin 指出，这里使用的是接收者 $v$ 的容忍度，而不是发送者 $u$ 的容忍度。\n\n如果 $u=v$，则路径上没有边。此时，将最大风速与最小风速之差定义为 0，因此每个顶点都能成功接收自己发出的信号。\n\n对于每个顶点 $u$，求有多少个后代（包括 $u$ 自身）能够接收从 $u$ 发出的信号。\n\n说明：$u$ 的后代是指 $u$ 的子树中的任意顶点 $v$，包括顶点 $u$ 自身。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^{4}$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\times 10^{5}$）——有根树的顶点数。根为顶点 1。\n\n每个测试用例的第二行包含 $n$ 个整数 $k_{1}, k_{2}, \\dots, k_{n}$（$0 \\le k_{i} \\le 10^{9}$）——各个顶点的容忍度。\n\n对于从 2 到 $n$ 的每个 $i$，接下来的一行包含两个整数 $p_{i}$ 和 $w_{i}$（$1 \\le p_{i}  \\lt  i$，$0 \\le w_{i} \\le 10^{9}$）——分别表示顶点 $i$ 的父顶点，以及连接 $p_{i}$ 与 $i$ 的边上的风速值。\n\n保证所有测试用例的 $n$ 之和不超过 $2 \\times 10^{5}$。\n\n## 输出格式\n\n对于每个测试用例，在一行中输出 $n$ 个整数。第 $u$ 个整数表示能够接收从顶点 $u$ 发出的信号的后代数量。\n\n## 说明\n\n顶点 1 发出的信号能够到达自身、顶点 2 和顶点 3，但无法到达顶点 4，因为通往顶点 4 的路径上的边权为 5 和 6，它们的差大于 $k_{4}=0$。",
   "samples": [
     {
       "input": "1\n4\n0 0 0 0\n1 5\n1 7\n2 6\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T22:27:32.792Z"
+  "fetchedAt": "2026-11-19T22:27:32.792Z",
+  "translatedAt": "2026-11-20T13:24:59.380Z",
+  "translateModel": "gpt-6.1-sol"
 }

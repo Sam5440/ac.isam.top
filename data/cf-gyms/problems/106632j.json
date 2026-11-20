@@ -4,7 +4,7 @@
   "contestId": 106632,
   "index": "J",
   "title": "Moufless Tree Surgery",
-  "titleZh": null,
+  "titleZh": "无羊树木手术",
   "url": "https://codeforces.com/gym/106632/problem/J",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 256,
   "statementMd": "You are given a tree with $n$ vertices. Vertex $i$ initially contains $a_i$ integer units of value.\n\nFor an edge $(u, v)$ with cost $w$, moving one unit of value from $u$ to $v$ costs $w$, and moving one unit from $v$ to $u$ also costs $w$. You may perform any number of such transfers. The final values of all vertices must be integers, and the total amount of value is preserved.\n\nLet the final values be $b_1, b_2, \\ldots, b_n$. Your primary goal is to minimize the difference between the maximum and minimum final values. Formally, you must minimize\n\n$$\\max(b_1, b_2, \\dots, b_n) - \\min(b_1, b_2, \\dots, b_n)$$\n\nAmong all ways to obtain this minimum possible difference, find the minimum possible total transfer cost.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case begins with a line containing one integer $n$ ($2 \\le n \\le 10^5$) — the number of vertices.\n\nThe next line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^4$) — the initial values of the vertices.\n\nEach of the next $n-1$ lines contains three integers $u$, $v$, and $w$ ($1 \\le u, v \\le n$, $u \\ne v$, $1 \\le w \\le 10^4$), denoting an edge between vertices $u$ and $v$ with cost $w$ per moved unit.\n\nThe given edges form a tree. It is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, print one integer — the minimum total transfer cost among all final configurations with minimum possible value difference.\n\n## Note\n\nIn the first test case, the total value is $4$, so both vertices must end with value $2$. One unit is moved through the only edge, for a cost of $5$.\n\nIn the second test case, the total value is $7$. The minimum possible difference is $1$, and the final values must be two vertices with value $2$ and one vertex with value $3$. It is optimal to leave vertex $3$ with value $3$, move one unit from vertex $3$ to vertex $2$, and then move one unit from vertex $2$ to vertex $1$, for a total cost of $18$.\n\nIn the third test case, the only optimal choice is to make the center vertex have value $4$ and the leaves have value $3$.\n\nIn the fourth test case, all values are already equal, so the answer is $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "给定一棵有 $n$ 个顶点的树。顶点 $i$ 初始时包含 $a_i$ 个单位的整数值。\n\n对于一条代价为 $w$ 的边 $(u, v)$，将一个单位的值从 $u$ 移动到 $v$ 的代价为 $w$，从 $v$ 移动到 $u$ 的代价同样为 $w$。你可以进行任意次这样的转移。所有顶点的最终值必须为整数，且值的总量保持不变。\n\n设最终的值为 $b_1, b_2, \\ldots, b_n$。你的首要目标是最小化最终值的最大值与最小值之差。形式化地说，你需要最小化\n\n$$\\max(b_1, b_2, \\dots, b_n) - \\min(b_1, b_2, \\dots, b_n)$$\n\n在所有能够得到这个最小可能差值的方案中，求总转移代价的最小值。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。\n\n每个测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 10^5$）——顶点的数量。\n\n下一行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^4$）——各顶点的初始值。\n\n接下来的 $n-1$ 行中，每行包含三个整数 $u$、$v$ 和 $w$（$1 \\le u, v \\le n$，$u \\ne v$，$1 \\le w \\le 10^4$），表示顶点 $u$ 和 $v$ 之间有一条边，每移动一个单位的值需要付出代价 $w$。\n\n给出的边构成一棵树。保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每个测试用例，输出一个整数——在最终值差达到最小可能值的所有配置中，总转移代价的最小值。\n\n## 说明\n\n在第一个测试用例中，值的总量为 $4$，因此两个顶点最终都必须为 $2$。需要通过唯一的一条边移动一个单位的值，代价为 $5$。\n\n在第二个测试用例中，值的总量为 $7$。最小可能差值为 $1$，最终值必须为一个顶点为 $3$、两个顶点为 $2$。最优方案是保留顶点 $3$ 的值为 $3$，将一个单位的值从顶点 $3$ 移动到顶点 $2$，然后再将一个单位的值从顶点 $2$ 移动到顶点 $1$，总代价为 $18$。\n\n在第三个测试用例中，唯一的最优方案是使中心顶点的值为 $4$，叶节点的值为 $3$。\n\n在第四个测试用例中，所有值已经相等，因此答案为 $0$。",
   "samples": [
     {
       "input": "4\n2\n1 3\n1 2 5\n3\n1 1 5\n1 2 4\n2 3 7\n4\n10 1 1 1\n1 2 1\n1 3 10\n1 4 100\n5\n6 6 6 6 6\n1 2 3\n2 3 4\n3 4 5\n4 5 6\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-20T03:32:56.030Z"
+  "fetchedAt": "2026-11-20T03:32:56.030Z",
+  "translatedAt": "2026-11-20T13:23:27.331Z",
+  "translateModel": "gpt-6.1-sol"
 }
