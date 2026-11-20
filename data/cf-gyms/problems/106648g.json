@@ -4,7 +4,7 @@
   "contestId": 106648,
   "index": "G",
   "title": "字节序列",
-  "titleZh": null,
+  "titleZh": "字节序列",
   "url": "https://codeforces.com/gym/106648/problem/G",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 512,
   "statementMd": "小 i 非常喜欢 utf8 string，因此他为你准备了一个与字节序列有关的挑战。\n\n一个长度为 $k$ 的由**字节**$^{\\text{∗}}$组成的序列 $[c_1, c_2, \\ldots, c_k]$ 构成 **UTF-8 编码字符**，当且仅当它满足以下形式之一：\n\n- $k = 1$ 且 $0 \\leq c_1 \\leq 127$：即在二进制表示下，形如 $[\\mathtt{0xxxxxxx}]$。\n- $k = 2$ 且 $192 \\leq c_1 \\leq 223$ 且 $128 \\leq c_2 \\leq 191$：即在二进制表示下，形如 $[\\mathtt{110xxxxx}, \\mathtt{10xxxxxx}]$。\n- $k = 3$ 且 $224 \\leq c_1 \\leq 239$ 且 $128 \\leq c_2,c_3 \\leq 191$：即在二进制表示下，形如 $[\\mathtt{1110xxxx}, \\mathtt{10xxxxxx}, \\mathtt{10xxxxxx}]$。\n- $k = 4$ 且 $240 \\leq c_1 \\leq 247$ 且 $128 \\leq c_2,c_3,c_4 \\leq 191$：即在二进制表示下，形如 $[\\mathtt{11110xxx}, \\mathtt{10xxxxxx}, \\mathtt{10xxxxxx}, \\mathtt{10xxxxxx}]$。\n\n一个由字节组成的序列构成 **utf8 string**，当且仅当它可以被**恰好完整地**分成若干个 **UTF-8 编码字符**的拼接。\n\n给定一个长度为 $n$ 的初始字节序列 $a_1, a_2, \\ldots, a_n$。接下来，小 $i$ 将会对这个序列进行 $q$ 次操作，每次操作为以下两种类型之一：\n\n- $1 \\ p \\ x$（$1 \\leq p \\leq n$ 且 $0 \\leq x \\leq 255$）：将 $a_p$ 修改为 $x$。\n- $2 \\ l \\ r$（$1 \\leq l \\leq r \\leq n$）：询问 $l$ 到 $r$ 的子区间，即 $[a_l, a_{l+1}, \\ldots, a_r]$，是否构成 utf8 string。\n\n$^{\\text{∗}}$**字节**指的是介于 $0$ 到 $255$ 之间（包括两端）的整数。\n\n## Input\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\leq n,q \\leq 5 \\times 10^5$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\leq 255$），表示初始序列。\n\n接下来的 $q$ 行，每行表示一次操作：\n\n- 对于类型为 $1$ 的操作，保证 $1 \\leq p \\leq n$ 且 $0 \\leq x \\leq 255$；\n- 对于类型为 $2$ 的操作，保证 $1 \\leq l \\leq r \\leq n$；\n\n## Output\n\n对于每个类型为 2 的询问，输出一行：\n\n- 若对应子区间构成 utf8 string，输出 $\\mathtt{YES}$；\n- 否则，输出 $\\mathtt{NO}$。",
-  "statementZhMd": null,
+  "statementZhMd": "小 i 非常喜欢 utf8 string，因此他为你准备了一个与字节序列有关的挑战。\n\n一个长度为 $k$ 的由**字节**$^{\\text{∗}}$组成的序列 $[c_1, c_2, \\ldots, c_k]$ 构成 **UTF-8 编码字符**，当且仅当它满足以下形式之一：\n\n- $k = 1$ 且 $0 \\leq c_1 \\leq 127$：即在二进制表示下，形如 $[\\mathtt{0xxxxxxx}]$。\n- $k = 2$ 且 $192 \\leq c_1 \\leq 223$ 且 $128 \\leq c_2 \\leq 191$：即在二进制表示下，形如 $[\\mathtt{110xxxxx}, \\mathtt{10xxxxxx}]$。\n- $k = 3$ 且 $224 \\leq c_1 \\leq 239$ 且 $128 \\leq c_2,c_3 \\leq 191$：即在二进制表示下，形如 $[\\mathtt{1110xxxx}, \\mathtt{10xxxxxx}, \\mathtt{10xxxxxx}]$。\n- $k = 4$ 且 $240 \\leq c_1 \\leq 247$ 且 $128 \\leq c_2,c_3,c_4 \\leq 191$：即在二进制表示下，形如 $[\\mathtt{11110xxx}, \\mathtt{10xxxxxx}, \\mathtt{10xxxxxx}, \\mathtt{10xxxxxx}]$。\n\n一个由字节组成的序列构成 **utf8 string**，当且仅当它可以被**恰好完整地**分成若干个 **UTF-8 编码字符**的拼接。\n\n给定一个长度为 $n$ 的初始字节序列 $a_1, a_2, \\ldots, a_n$。接下来，小 i 将会对这个序列进行 $q$ 次操作，每次操作为以下两种类型之一：\n\n- $1 \\ p \\ x$（$1 \\leq p \\leq n$ 且 $0 \\leq x \\leq 255$）：将 $a_p$ 修改为 $x$。\n- $2 \\ l \\ r$（$1 \\leq l \\leq r \\leq n$）：询问 $l$ 到 $r$ 的子区间，即 $[a_l, a_{l+1}, \\ldots, a_r]$，是否构成 utf8 string。\n\n$^{\\text{∗}}$**字节**指的是介于 $0$ 到 $255$ 之间（包括两端）的整数。\n\n## 输入格式\n\n第一行包含两个整数 $n$ 和 $q$（$1 \\leq n,q \\leq 5 \\times 10^5$）。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$0 \\leq a_i \\leq 255$），表示初始序列。\n\n接下来的 $q$ 行，每行表示一次操作：\n\n- 对于类型为 $1$ 的操作，保证 $1 \\leq p \\leq n$ 且 $0 \\leq x \\leq 255$；\n- 对于类型为 $2$ 的操作，保证 $1 \\leq l \\leq r \\leq n$；\n\n## 输出格式\n\n对于每个类型为 2 的询问，输出一行：\n\n- 若对应子区间构成 utf8 string，输出 $\\mathtt{YES}$；\n- 否则，输出 $\\mathtt{NO}$。",
   "samples": [
     {
       "input": "7 7\n65 194 128 240 128 128 128\n2 1 7\n2 2 3\n2 2 6\n1 4 248\n2 1 7\n1 4 240\n2 5 7\n",
@@ -28,5 +28,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T22:25:11.404Z"
+  "fetchedAt": "2026-11-19T22:25:11.404Z",
+  "translatedAt": "2026-11-20T03:44:42.904Z",
+  "translateModel": "gpt-6.1-sol"
 }

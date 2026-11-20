@@ -4,7 +4,7 @@
   "contestId": 106636,
   "index": "D",
   "title": "Escape",
-  "titleZh": null,
+  "titleZh": "逃脱",
   "url": "https://codeforces.com/gym/106636/problem/D",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2500,
   "memoryLimitMb": 256,
   "statementMd": "*Humans struggling to escape, that's... funny. Teach me.*\n\n— GePeTo\n\nAfter learning all competitive programming problems, GePeTo is now studying all board games in the world, and is particularly interested in a copy of Escape it found in your room.\n\nIn Escape, you have 5 identical six-sided dice, with the following faces:\n\n- 2 Adventurer faces (A)\n- 1 Torch face (T)\n- 1 Key face (C)\n- 1 Black Mask face (N)\n- 1 Golden Mask face (D)\n\nIn an important part of the game, you are given an objective, which is a multiset of up to 5 symbols selected from `ATC`. Your goal is to roll the dice and finish with their top faces showing at least the symbols required by the objective.\n\nStarting from an initial roll of the 5 dice, you have a maximum of $K$ turns (rerolls) to achieve the objective. In each turn, you select a subset of the current dice and reroll them, subject to the following rules:\n\n- A die showing the Black Mask face (N) becomes locked and cannot be selected for rerolling.\n- For each rerolled die that is currently showing the Golden Mask face (D), you gain the right to simultaneously unlock and reroll up to 2 locked dice.\n\nAssuming you play optimally, that is, making decisions each turn that maximize the probability of achieving the objective within $K$ turns, answer the following: What is the maximum probability of success, and what is an optimal first reroll?\n\n## Input\n\nThe first line contains a single string $O$ consisting of characters from `ATC`, representing the objective. ($1 \\leq |O| \\leq 5$)\n\nThe second line contains an integer $T$, the number of test cases. ($1 \\leq T \\leq 10^4$)\n\nEach of the next $T$ lines contains a string $S$ of exactly five characters from `ATCND`, representing your initial roll, and an integer $K$, the maximum number of rerolls you can perform. ($1 \\leq K \\leq 5$)\n\n## Output\n\nFor each test case, print a string $R$ and a number $P$.\n\n$R$ should be nonempty and contain up to five characters from `ATCND`, representing the dice that should be rerolled. It is guaranteed that the objective is not met initially, at least one reroll is possible, and the probability of winning is strictly positive (i.e., $P  \\gt  0$). The characters may be printed in any order.\n\nThe number $P$ should be the maximum probability of achieving the objective when playing optimally. The answer is considered correct if the absolute error does not exceed $10^{-4}$.\n\n## Note\n\nHere is an example of the game:\n\n- Suppose the objective is $O = \\texttt{ATT}$ (meaning we need at least 1 Adventurer and 2 Torches).\n- Your initial roll is $S = \\texttt{ANNCC}$ (1 Adventurer, 2 locked Black Masks and 2 Keys).\n- On your first reroll, you decide to reroll both Keys (`CC`), since you can't reroll any Black Masks. Suppose the rerolled dice land on `AD`, meaning you now have `AANND`.\n- Now, on your second reroll, you decide to reroll an Adventurer and the Golden Mask, and since you are rerolling the Golden Mask, you gain the right to reroll up to two locked Black Masks. In total, you reroll 4 dice (`ADNN`).\n- Suppose the rerolled dice land on `TTNC`, meaning the final dice configuration becomes `ATTNC` (which contains at least 1 `A` and 2 `T`'s), successfully meeting the objective with two rerolls.",
-  "statementZhMd": null,
+  "statementZhMd": "*人类拼命想逃出去，这可真……有趣。教教我吧。*\n\n—— GePeTo\n\n学完了所有算法竞赛题后，GePeTo 开始研究世界上所有的桌游。它在你的房间里找到了一盒《逃脱》，对这款游戏特别感兴趣。\n\n在《逃脱》中，你有 5 枚完全相同的六面骰子，每枚骰子的六个面分别是：\n\n- 2 个冒险者面（A）\n- 1 个火把面（T）\n- 1 个钥匙面（C）\n- 1 个黑色面具面（N）\n- 1 个金色面具面（D）\n\n在游戏的一个重要环节中，你会得到一个目标，它是由从 `ATC` 中选出的至多 5 个符号组成的多重集合。你需要通过掷骰子，使最终朝上的骰面满足目标对每种符号的数量要求。\n\n初次掷完这 5 枚骰子后，你最多可以用 $K$ 个回合（重掷）来达成目标。每个回合，你从当前的骰子中选出一部分进行重掷，并遵守以下规则：\n\n- 朝上的是黑色面具面（N）的骰子会被锁定，无法直接选中重掷。\n- 每选中一枚当前朝上的是金色面具面（D）的骰子进行重掷，你就可以同时解锁至多 2 枚被锁定的骰子，并将它们一起重掷。\n\n假设你采用最优策略，即每回合都作出能使你在 $K$ 个回合内达成目标的概率最大的决策。请回答：成功的最大概率是多少？第一次重掷时，一种最优的选择是什么？\n\n## 输入格式\n\n第一行包含一个仅由 `ATC` 中的字符组成的字符串 $O$，表示目标。（$1 \\leq |O| \\leq 5$）\n\n第二行包含一个整数 $T$，表示测试用例的数量。（$1 \\leq T \\leq 10^4$）\n\n接下来 $T$ 行，每行包含一个恰好由 5 个 `ATCND` 中的字符组成的字符串 $S$ 和一个整数 $K$，分别表示初次掷骰的结果和最多可以重掷的次数。（$1 \\leq K \\leq 5$）\n\n## 输出格式\n\n对于每组测试用例，输出一个字符串 $R$ 和一个数 $P$。\n\n$R$ 应为非空字符串，由至多 5 个 `ATCND` 中的字符组成，表示应当重掷的骰子。保证初始状态下尚未达成目标，至少可以进行一次重掷，且成功概率严格大于 0（即 $P  \\gt  0$）。字符可以按任意顺序输出。\n\n$P$ 应为采用最优策略时达成目标的最大概率。若绝对误差不超过 $10^{-4}$，则视为正确。\n\n## 说明\n\n下面是一个游戏过程的示例：\n\n- 假设目标为 $O = \\texttt{ATT}$（即至少需要 1 个冒险者和 2 个火把）。\n- 初次掷骰的结果为 $S = \\texttt{ANNCC}$（1 个冒险者、2 个被锁定的黑色面具和 2 把钥匙）。\n- 第一次重掷时，由于无法重掷任何黑色面具，你决定重掷两把钥匙（`CC`）。假设重掷结果为 `AD`，此时的骰面为 `AANND`。\n- 第二次重掷时，你决定重掷 1 个冒险者和 1 个金色面具。由于你重掷了金色面具，因此可以再重掷至多 2 个被锁定的黑色面具。你一共重掷了 4 枚骰子（`ADNN`）。\n- 假设重掷结果为 `TTNC`，最终的骰面就是 `ATTNC`（其中至少有 1 个 `A` 和 2 个 `T`），因此你用两次重掷成功达成了目标。",
   "samples": [
     {
       "input": "T\n4\nNNNNA 1\nNNNAA 1\nNNNNA 2\nAAAAA 1\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T22:21:09.117Z"
+  "fetchedAt": "2026-11-19T22:21:09.117Z",
+  "translatedAt": "2026-11-20T03:47:13.512Z",
+  "translateModel": "gpt-6.1-sol"
 }

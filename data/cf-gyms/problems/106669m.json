@@ -4,7 +4,7 @@
   "contestId": 106669,
   "index": "M",
   "title": "Straightforward Question",
-  "titleZh": null,
+  "titleZh": "直截了当的问题",
   "url": "https://codeforces.com/gym/106669/problem/M",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 4000,
   "memoryLimitMb": 512,
   "statementMd": "![image](https://espresso.codeforces.com/19ff59a0c6f8dd9277cfc471fca910f6cd17b8a3.png)\n\nDetective Sherlock Holmes stared at the crime scene photos, his pipe emitting thoughtful curls of smoke. The Lestrade Manor banquet had ended in what appeared to be a meticulously orchestrated mass murder.\n\nHe turned to you, his assistant. \"The police have recorded every constraint, but missed the crucial connections. We need to count every possible scenario consistent with their fragmented evidence. It's a straight forward combinatorial problem, really.\"\n\nSherlock Holmes needs to count the number of possible crime scenarios that fit the police evidence. A \"scenario\" consists of two independent parts: assigning suspects and scheduling actions.\n\n**Part 1:** There are $S$ suspects and $K$ cases. Suspects were assigned to these cases under rigid constraints: every case had at least one suspect, and every suspect was assigned to at least one case.\n\n**Part 2:** For each of the $K$ case files, the forensic team has identified exactly $L$ distinct actions that occurred during the crime. However, the exact order of these actions is not fully known. To model this, the police have represented the $L$ actions of a single case as a Directed Acyclic Graph (DAG). If there is a directed edge from action $u$ to action $v$, it means action $u$ must happen before action $v$ in the sequence.The structure of the DAG is identical for all $K$ cases.The \"Global Timeline\" consists of all actions from all cases combined.\n\nGlobal Sequence: You must merge the actions from all $K$ cases into one single sequence of length $N = K \\times L$. You can interleave actions from different cases however you like, as long as the internal order for each case is preserved.\n\nCalculate the total number of valid scenarios modulo $10^9 + 7$.A scenario is valid if it satisfies all rules in Part 1 and Part 2.\n\n## Input\n\nThe first line contains four integers $S$, $K$, $L$, and $M$ ($1 \\le S, K \\le 10^3$, $1 \\le L \\le 20$, $0 \\le M \\le \\frac{L(L-1)}{2}$) — the number of suspects, the number of cases, the number of actions per case, and the number of dependencies in the DAG.The next $M$ lines each contain two integers $u$ and $v$ ($1 \\le u, v \\le L, u \\ne v$), indicating that action $u$ must occur before action $v$.\n\nIt is guaranteed that the graph is a Directed Acyclic Graph (DAG).\n\n## Output\n\nOutput a single integer — the total number of valid scenarios modulo $10^9 + 7$.\n\n## Note\n\nThere are **7 possible ways** to assign the suspects :\n\ncase 1 $.....$ case 2\n\n{1,2}$....$ {1,2}\n\n{1,2}$....$ {1}——&gt; x2 (switch)\n\n{1,2}$....$ {2}——&gt; x2\n\n{1}$.......$ {2}——&gt; x2\n\nfor the second part we have : 1—&gt;2—&gt;3 , 4\n\nTherefore, in the final solution, the characteristic sequence of a case can be constructed in **4 ways** :\n\n$A_1$$A_2$$A_3$$A_4$ ; $A_4$$A_1$$A_2$$A_3$ ; $A_1$$A_4$$A_2$$A_3$ ; $A_1$$A_2$$A_4$$A_3$ .\n\nAn exemple of the global sequence : $A_1$$B_4$$B_1$$A_2$$B_2$$A_4$$A_3$$B_3$\n\nit can be shown that there are **1120 valid configurations** .",
-  "statementZhMd": null,
+  "statementZhMd": "![image](https://espresso.codeforces.com/19ff59a0c6f8dd9277cfc471fca910f6cd17b8a3.png)\n\n侦探夏洛克·福尔摩斯凝视着犯罪现场的照片，他的烟斗吐出思索般的缕缕烟雾。莱斯特雷德庄园的宴会最终演变成了一场看似经过精心策划的大规模谋杀案。\n\n他转向你，他的助手。“警方记录了所有约束条件，却遗漏了关键的联系。我们需要统计所有与这些零散证据相符的可能情形。说到底，这确实是一个直截了当的组合问题。”\n\n夏洛克·福尔摩斯需要统计符合警方证据的可能犯罪情形数量。一个“情形”由两个相互独立的部分组成：嫌疑人分配和行动安排。\n\n**第 1 部分：** 有 $S$ 名嫌疑人和 $K$ 起案件。嫌疑人被分配到这些案件中，并满足严格的约束：每起案件至少有一名嫌疑人，并且每名嫌疑人至少被分配到一起案件。\n\n**第 2 部分：** 对于 $K$ 份案件文件中的每一份，法证团队都确定了犯罪过程中发生的恰好 $L$ 个不同的行动。然而，这些行动的确切顺序并不完全清楚。为对此建模，警方将单起案件的 $L$ 个行动表示为一个有向无环图（DAG）。如果存在一条从行动 $u$ 指向行动 $v$ 的有向边，则表示行动 $u$ 必须在行动 $v$ 之前发生。对于所有 $K$ 起案件，该 DAG 的结构都相同。“全局时间线”由所有案件的行动合并而成。\n\n全局序列：你必须将所有 $K$ 起案件的行动合并成一个长度为 $N = K \\times L$ 的单一序列。只要保持每起案件内部的顺序不变，就可以任意交错来自不同案件的行动。\n\n请计算所有有效情形的总数，并将结果对 $10^9 + 7$ 取模。如果同时满足第 1 部分和第 2 部分的所有规则，则称该情形有效。\n\n## 输入格式\n\n第一行包含四个整数 $S$、$K$、$L$ 和 $M$（$1 \\le S, K \\le 10^3$，$1 \\le L \\le 20$，$0 \\le M \\le \\frac{L(L-1)}{2}$），分别表示嫌疑人数量、案件数量、每起案件的行动数量以及 DAG 中的依赖关系数量。\n\n接下来的 $M$ 行中，每行包含两个整数 $u$ 和 $v$（$1 \\le u, v \\le L, u \\ne v$），表示行动 $u$ 必须在行动 $v$ 之前发生。\n\n保证该图是有向无环图（DAG）。\n\n## 输出格式\n\n输出一个整数，即有效情形的总数对 $10^9 + 7$ 取模后的结果。\n\n## 说明\n\n共有 **7 种分配嫌疑人的方式**：\n\ncase 1 $.....$ case 2\n\n{1,2}$....$ {1,2}\n\n{1,2}$....$ {1}——&gt; x2 (switch)\n\n{1,2}$....$ {2}——&gt; x2\n\n{1}$.......$ {2}——&gt; x2\n\n对于第二部分，我们有：1—&gt;2—&gt;3，4\n\n因此，在最终答案中，一起案件的特征序列可以通过 **4 种方式** 构造：\n\n$A_1$$A_2$$A_3$$A_4$ ；$A_4$$A_1$$A_2$$A_3$ ；$A_1$$A_4$$A_2$$A_3$ ；$A_1$$A_2$$A_4$$A_3$ 。\n\n全局序列的一个例子：$A_1$$B_4$$B_1$$A_2$$B_2$$A_4$$A_3$$B_3$\n\n可以证明，共有 **1120 种有效配置**。",
   "samples": [
     {
       "input": "2 2 4 2\n1 2\n2 3\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-19T13:40:51.395Z"
+  "fetchedAt": "2026-11-19T13:40:51.395Z",
+  "translatedAt": "2026-11-20T03:43:03.579Z",
+  "translateModel": "gpt-6.1-sol"
 }

@@ -1,0 +1,28 @@
+{
+  "id": "106598l",
+  "platform": "cf-gyms",
+  "contestId": 106598,
+  "index": "L",
+  "title": "Left or right side",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106598/problem/L",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "The organizers of the São Paulo Programming Contest decided to create a special system to control the entry of teams into the competition area. There are $N$ teams registered for the contest, each with a unique identifier between $0$ and $N - 1$.\n\nTo organize the flow of participants, a network of checkpoints is built. Each checkpoint has a distinct number $v$ between $0$ and $N - 1$ and may have a corridor to the left and/or a corridor to the right, thus having $0$, $1$, or $2$ corridors in total.\n\nThe checkpoint structure must satisfy the following property: for every checkpoint numbered $v$, all checkpoints reachable through its left corridor have numbers smaller than $v$, while all checkpoints reachable through its right corridor have numbers greater than $v$.\n\nThe goal of each team is to reach the checkpoint whose number matches its identifier. When a team arrives at a checkpoint numbered $v$, its identifier $id$ is compared with $v$:\n\n- if $id  \\lt  v$, the team proceeds through the left corridor;\n- if $id  \\gt  v$, the team proceeds through the right corridor;\n- if $id = v$, the team remains at that checkpoint.\n\nEach corridor leads to another checkpoint, where the same process is repeated. Thus, a team may pass through several checkpoints before reaching its final destination.\n\nDuring the day, the teams arrive in the order specified by a sequence $P$. To analyze the efficiency of a particular checkpoint $u$, only the teams that pass through it **without remaining there** are considered. For each such team:\n\n- record `E` if it is sent through the left corridor of $u$;\n- record `D` if it is sent through the right corridor of $u$.\n\nThis produces a sequence $S$ consisting of the characters `E` and `D`. The contribution of a checkpoint is the number of adjacent pairs of positions whose characters are different. In other words, the number of positions $i$ such that $S_i \\neq S_{i+1}$.\n\nThe total score of the system is the sum of the contributions of all checkpoints.\n\nRouse knows the sequence $P$ and wants to determine the maximum possible total score that can be achieved by choosing the best possible checkpoint structure. Can you help her?\n\n## Input\n\nThe first line contains an integer $N$ ($1 \\le N \\le 500$), the number of teams.\n\nThe second line contains $N$ distinct integers $P_1, \\ldots, P_N$ ($0 \\le P_i  \\lt  N$), representing the order in which the teams arrive.\n\n## Output\n\nYour program must output a single line containing the maximum possible total score among all valid checkpoint structures.\n\n## Note\n\n*Explanation of Sample 1:*\n\nRouse chooses the following checkpoint structure.\n\n![image](https://espresso.codeforces.com/6ca0d90bb96f20a460e2338a330f5218f5562b2c.png)\n\nThe checkpoint contributions are as follows:\n\n- At checkpoint $1$, the teams with identifiers $0$ and $2$ pass through it, generating the sequence `ED`. Since there is one change between consecutive characters, its contribution is $1$.\n- At checkpoint $3$, the teams with identifiers $0$, $1$, $2$, $4$, $5$, and $6$ pass through it, generating the sequence `EDEDED`. Since there are $5$ changes between consecutive characters, its contribution is $5$.\n- At checkpoint $5$, the teams with identifiers $4$ and $6$ pass through it, generating the sequence `ED`. Since there is one change between consecutive characters, its contribution is $1$.\n\nThe other checkpoints have contribution $0$, since no team passes through them. Therefore, the maximum total contribution is $7$.\n\n*Explanation of Sample 2:*\n\nRouse chooses the following checkpoint structure.\n\n![image](https://espresso.codeforces.com/306203a86b9849815465b56cc5aa36942a16bf57.png)\n\nThe checkpoint contributions are as follows:\n\n- At checkpoint $1$, the teams with identifiers $0$ and $2$ pass through it, generating the sequence `DE`. Since there is one change between consecutive characters, its contribution is $1$.\n- At checkpoint $3$, the teams with identifiers $0$, $1$, $2$, and $4$ pass through it, generating the sequence `DEEE`. Since there is only one change between consecutive characters, its contribution is $1$.\n\nThe other checkpoints have contribution $0$, since no team passes through them. Therefore, the maximum total contribution is $2$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "7\n0 4 2 6 1 5 3\n",
+      "output": "7\n"
+    },
+    {
+      "input": "5\n4 3 1 2 0\n",
+      "output": "2\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T03:39:53.302Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "106592j",
+  "platform": "cf-gyms",
+  "contestId": 106592,
+  "index": "J",
+  "title": "Resonance Frog",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106592/problem/J",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "A magical frog is trying to cross a pond by jumping across a straight line of $n$ giant lily pads, numbered $1$ to $n$. Each lily pad along the way has its own unique musical properties. When the frog stands on pad $i$, it can sing a specific frequency note called a Launch Tune ($a_i$) to prepare for a giant leap, while the pad itself constantly hums a natural frequency note known as its Echo Frequency ($b_i$).\n\nThe frog starts its journey on lily pad $1$. From its current pad $i$, the frog can perform one of three actions. Each action costs exactly $1$ jump:\n\n1. The frog hops forward to the immediate next pad, landing on $i+1$. This is valid as long as $i+1 \\le n$.\n2. The frog sings its Launch Tune $a_i$. It listens backward to find the closest previous pad $j$ (where $1 \\le j  \\lt  i$) that is humming a matching Echo Frequency ($b_j = a_i$). Measuring the distance back to that pad $x = i - j$, the magic echo propels the frog exactly that same distance forward to land on destination pad $m = i + x$. This leap is only valid if such a previous pad $j$ exists and the destination $m$ is within the pond ($m \\le n$).\n3. The frog begins the exact same leap toward destination $m$ as described above, but chooses to cancel its trajectory mid-air and drop onto an intermediate pad $k$. This is valid only if pad $k$ lies strictly along the flight path ($i  \\lt  k  \\lt  m$) and its Echo Frequency matches the frog's active Launch Tune ($b_k = a_i$). The frog can successfully perform this drop even if the original theoretical destination $m$ lies outside the pond ($m  \\gt  n$), as long as the actual landing pad $k$ is safely within bounds ($k \\le n$).\n\nFind the minimum number of jumps required for the frog to reach lily pad $n$. It is mathematically guaranteed that the frog can always reach the end of the pond.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10^4$) denoting the number of test cases.\n\nFor each test case:\n\n- The first line contains a single integer $n$ ($1 \\le n \\le 10^6$) denoting the number of lily pads.\n- The second line contains $n$ space-separated integers $a_1, a_2, \\dots, a_n$ ($1 \\le a_i \\le 10^9$) representing the Launch Tunes of each pad.\n- The third line contains $n$ space-separated integers $b_1, b_2, \\dots, b_n$ ($1 \\le b_i \\le 10^9$) representing the Echo Frequencies of each pad.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output a single integer on a new line: the minimum number of jumps required to reach lily pad $n$.\n\n## Note\n\nFor the first test case:\n\n- Perform *action 1* consecutively from pad $1$ to $4$ (requires $3$ jumps).\n- At pad $4$, the Launch Tune is $a_4 = 20$. The closest previous pad humming a matching Echo Frequency is pad $2$ ($b_2 = 20$). The distance back to the echo is $x = 4 - 2 = 2$. The frog performs *action 2*, landing exactly $2$ steps forward at destination $m = 4 + 2 = 6$.\n- At pad $6$, the Launch Tune is $a_6 = 100$. The closest previous pad humming a matching Echo Frequency is pad $1$ ($b_1 = 100$). The distance back is $x = 6 - 1 = 5$. The magical echo tries to throw the frog forward to destination $m = 6 + 5 = 11$, which is completely out of the pond. However, the frog can perform *action 3* to land early on pad $k = 8$, because it lies strictly under the flight path ($6  \\lt  8  \\lt  11$) and is humming the matching Echo Frequency ($b_8 = 100$).\n- Finally, at pad $8$, the Launch Tune is $a_8 = 100$. The closest previous pad humming a matching Echo Frequency is pad $6$ ($b_6 = 100$). The distance back is $x = 8 - 6 = 2$. The frog performs *action 2*, landing exactly $2$ steps forward at destination $m = 8 + 2 = 10$.\n- Total jumps required: $3 + 1 + 1 + 1 = 6$.\n\nFor the second test case, there are no valid matching frequencies between the frog's Launch Tunes and previous Echo Frequencies. The frog must perform *action 1* consecutively $2$ times to reach pad $3$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n10\n100 50 50 20 99 100 98 100 97 999\n100 20 30 40 50 100 70 100 90 10\n3\n1 2 3\n1 1 1\n",
+      "output": "6\n2\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T03:41:36.677Z"
+}

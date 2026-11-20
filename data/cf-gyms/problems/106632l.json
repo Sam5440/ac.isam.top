@@ -1,0 +1,24 @@
+{
+  "id": "106632l",
+  "platform": "cf-gyms",
+  "contestId": 106632,
+  "index": "L",
+  "title": "The Camel Is Not Camelling",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106632/problem/L",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "While wandering through the desert, Ammar and his camel discover a sealed cave. A short chant opens the door, but there is still no water inside. Instead, Ammar finds the Bassami Water Puzzle.\n\nThe puzzle has an ordered box $v$. The box starts empty and can hold at most $m$ stones. Ammar then receives $n$ stones one by one.\n\nThe $i$-th stone is described by two values, $id_i$ and $state_i$:\n\n- $id_i$ is the identifier written on the stone;\n- $state_i=0$ means the stone is broken;\n- $state_i=1$ means the stone is unbroken.\n\nThe same identifier may appear more than once in the input. The box, however, never contains two stones with the same identifier.\n\nFor each incoming stone, apply the first rule below that matches the current box:\n\n1. A stone with identifier $id_i$ is already in the box: remove that old stone from its current position, then put the incoming stone at the back of the box.\n2. The box has fewer than $m$ stones: put the incoming stone at the back.\n3. The box is full and contains at least one broken stone: remove the first broken stone, then put the incoming stone at the back.\n4. The box is full, all stones in it are unbroken, and $state_i=1$: remove the first stone, then put the incoming stone at the back.\n5. The box is full, all stones in it are unbroken, and $state_i=0$: ignore the incoming stone.\n\nThe first stone is the one closest to the front of the box. The back is the opposite end.\n\nThere are also $k$ curse moments. Immediately after processing the $c_j$-th stone for every $j$, the curse reverses the whole current order of the box.\n\nAfter all stones and curses are handled, output the final contents of the box from front to back.\n\n## Input\n\nThe first line contains one integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases.\n\nEach test case starts with a line containing three integers $n$, $m$, and $k$ ($1 \\le n,m \\le 2 \\cdot 10^5$, $0 \\le k \\le n$) — the number of processed stones, the capacity of the box, and the number of curse moments.\n\nEach of the next $n$ lines contains two integers $id_i$ and $state_i$ ($1 \\le id_i \\le 10^9$, $state_i \\in \\{0,1\\}$) — the identifier and state of the $i$-th stone.\n\nAfter the stones, for $k \\gt 0$, one more line contains $k$ distinct integers $c_1,c_2,\\ldots,c_k$ ($1 \\le c_1  \\lt  c_2  \\lt  \\ldots  \\lt  c_k \\le n$). These are the processing steps followed by a curse. For $k=0$, this line is not present.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print two lines.\n\nThe first line contains one integer — the final number of stones in the box.\n\nThe second line contains the identifiers of the stones in the box from front to back, separated by spaces. For an empty box, print an empty second line.\n\n## Note\n\nIn the first sample test case, the first three stones make the box $[1,2,3]$. The first curse reverses it to $[3,2,1]$.\n\nStone $4$ removes the first broken stone, so the box becomes $[2,1,4]$. Stone $5$ is unbroken; the full box has no broken stones, so the first stone is removed and the box becomes $[1,4,5]$. The second curse reverses it to $[5,4,1]$. Stone $6$ is broken, while the full box contains only unbroken stones, so stone $6$ is ignored.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "2\n6 3 2\n1 1\n2 1\n3 0\n4 1\n5 1\n6 0\n3 5\n4 2 0\n1 0\n2 1\n1 1\n3 0\n",
+      "output": "3\n5 4 1\n2\n2 1\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-20T03:33:13.522Z"
+}
