@@ -17,7 +17,7 @@ const emptyContest = () => ({ id: uid(), name: '我的模拟赛', problems: [], 
 
 function contestHref(value, withAliases = true) {
   const contestId = encodeURIComponent(String(value.id).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 80));
-  return `/contests/codeforces/sim/${contestId}#data=${encodeSimShare(value, withAliases)}`;
+  return `/contests/sim/${contestId}#data=${encodeSimShare(value, withAliases)}`;
 }
 
 async function resolveProblems(rows) {
@@ -203,7 +203,11 @@ export default function Simulator() {
       <main className="min-w-0 space-y-5">
         <Card className="overflow-hidden border-primary/20">
           <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-5 sm:p-7">
-            <label className="text-muted-foreground text-xs font-medium" htmlFor="sim-name">比赛名称</label>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="text-muted-foreground font-mono text-[10px] uppercase tracking-[0.18em]">本场设置</span>
+              <span className="text-muted-foreground text-[11px]">每场比赛独立保存名称、限时与题单，互不影响</span>
+            </div>
+            <label className="text-muted-foreground mt-3 block text-xs font-medium" htmlFor="sim-name">比赛名称</label>
             <Input id="sim-name" className="mt-1 max-w-xl border-0 bg-transparent px-0 text-2xl font-semibold shadow-none focus-visible:ring-0" value={contest.name} onChange={(e) => mutateContest((old) => ({ ...old, name: e.target.value.slice(0, 100) }))} />
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <div className="rounded-xl border bg-background/75 px-4 py-2.5"><div className="text-muted-foreground flex items-center gap-1.5 text-[10px] uppercase tracking-widest"><Clock3 className="size-3" />比赛计时</div><output aria-label="比赛计时" className="mt-1 block font-mono text-3xl font-semibold tabular-nums tracking-wider">{formatElapsed(elapsed)}</output></div>
@@ -221,6 +225,7 @@ export default function Simulator() {
                 </Button>
               )}
               <Button variant="outline" disabled={!contest.problems.length || needsValidation} onClick={saveContest}><Save className="size-4" />保存比赛</Button>
+              <Button variant="ghost" className="text-muted-foreground hover:text-destructive" onClick={() => deleteContest(contest.id)}><Trash2 className="size-4" />删除本场</Button>
             </div>
           </div>
           <CardContent className="grid gap-3 border-t bg-card/60 p-4 sm:grid-cols-[1fr_auto] sm:items-center">

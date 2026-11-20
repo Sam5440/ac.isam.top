@@ -24,6 +24,7 @@ export default function SimulatorContestView({ contestId }) {
     setState({ status: 'loading' });
     try {
       const encoded = new URLSearchParams(shareHash.slice(1)).get('data');
+      if (!encoded) throw new Error('这件模拟赛缺少题单数据，请从模拟赛工作台重新进入或复制分享链接。');
       const definition = decodeSimShare(encoded);
       fetch('/api/simulator/problems', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
