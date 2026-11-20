@@ -68,7 +68,8 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/problems` | 静态 | 题库浏览，服务端分页 | `ProblemsBrowser` |
 | `/problems/[platform]/[problemId]` | 按需 SSG | 题目详情 | `ProblemViewShell`、`ProblemStatementViewer`、`AiFab`、`ProblemCompiler` |
 | `/contests` | 静态 | 比赛列表（类型/站点筛选，50条/页） | `ContestsBrowser` |
-| `/contests/[platform]/[contestId]` | 按需 SSG | 常规比赛详情 + 题目清单；`/contests/codeforces/sim-<id>#data=…` 复用同一详情视图展示自定义模拟赛 | `ContestDetailsView`、`SimulatorContestView` |
+| `/contests/[platform]/[contestId]` | 按需 SSG | 比赛详情 + 题目清单 | `ContestDetailsView` |
+| `/contests/codeforces/sim/[contestId]` | 强制动态 | 自定义模拟赛详情（题单在 `#data=` 里，复用 `ContestDetailsView`）；三段路径避免被 `/contests/[platform]/[contestId]` 截走 | `SimulatorContestView` |
 | `/calendar` | 静态 | 比赛日历（读取 CI 的 Clist 快照） | `CalendarView` |
 | `/history` | 静态 | 浏览历史（本机 IndexedDB/localStorage） | `HistoryList` |
 | `/ci` | ISR 5min | 仓库级 Actions 按页同步近 60 天所有工作流，展开时读取 jobs/steps；`data/ci-log.json` 只补充主抓取产出 | `CiDashboard`、`lib/ci-actions.mjs` |

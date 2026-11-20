@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 
 import ContestDetailsView from '@/components/ContestDetailsView';
-import SimulatorContestView from '@/components/SimulatorContestView';
 import { getAllContests, getContest, getProblemsOfContest, platformOf } from '@/lib/data';
 import { staticLimit } from '@/lib/static-params.mjs';
 
@@ -16,7 +15,6 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { platform, contestId } = await params;
-  if (platform === 'codeforces' && contestId.startsWith('sim-')) return { title: '模拟赛' };
   const contest = getContest(platform, contestId);
   if (!contest) return { title: '比赛未找到' };
   return { title: contest.titleZh || contest.title };
@@ -24,9 +22,6 @@ export async function generateMetadata({ params }) {
 
 export default async function ContestPage({ params }) {
   const { platform, contestId } = await params;
-  if (platform === 'codeforces' && contestId.startsWith('sim-')) {
-    return <SimulatorContestView contestId={contestId} />;
-  }
   const contest = getContest(platform, contestId);
   if (!contest) notFound();
   const p = platformOf(platform);

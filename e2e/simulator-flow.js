@@ -35,7 +35,7 @@ try {
   assert.equal(await page.locator('[aria-label="比赛题目"] > div').count(), 15);
 
   const entryHref = await page.getByRole('link', { name: '进入比赛' }).getAttribute('href');
-  assert.match(entryHref, /^\/contests\/codeforces\/sim-[A-Za-z0-9_-]+#data=/);
+  assert.match(entryHref, /^\/contests\/codeforces\/sim\/[A-Za-z0-9_-]+#data=/);
   await page.getByRole('link', { name: '进入比赛' }).click();
   await page.getByText('自定义模拟赛', { exact: true }).waitFor();
   assert.equal(await page.locator('[aria-label="比赛题目"] > a').count(), 15);
@@ -82,7 +82,7 @@ try {
     await page.getByRole('button', { name: '复制当场链接' }).click();
     await page.getByRole('status').filter({ hasText: '比赛链接已复制' }).waitFor();
     const url = await page.evaluate(() => navigator.clipboard.readText());
-    assert.match(url, new RegExp(`^${base}/contests/codeforces/sim-[A-Za-z0-9_-]+#data=`));
+    assert.match(url, new RegExp(`^${base}/contests/codeforces/sim/[A-Za-z0-9_-]+#data=`));
     const recipient = await browser.newPage();
     await recipient.goto(url);
     await recipient.getByText('自定义模拟赛', { exact: true }).waitFor();

@@ -17,7 +17,7 @@ const emptyContest = () => ({ id: uid(), name: '我的模拟赛', problems: [], 
 
 function contestHref(value, withAliases = true) {
   const contestId = encodeURIComponent(String(value.id).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 80));
-  return `/contests/codeforces/sim-${contestId}#data=${encodeSimShare(value, withAliases)}`;
+  return `/contests/codeforces/sim/${contestId}#data=${encodeSimShare(value, withAliases)}`;
 }
 
 async function resolveProblems(rows) {
