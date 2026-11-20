@@ -42,7 +42,9 @@ jobs:
             # A finished job's log may take a moment to become downloadable.
             for delay in 0 3 10; do
               sleep "$delay"
-              if gh api "$api/jobs/$id/logs" > "$RUNNER_TEMP/download" && [[ -s "$RUNNER_TEMP/download" ]]; then
+              if curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
+                -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/$api/jobs/$id/logs" \
+                -o "$RUNNER_TEMP/download" && [[ -s "$RUNNER_TEMP/download" ]]; then
                 mv "$RUNNER_TEMP/download" "$RUNNER_TEMP/logs/$id.log"
                 break
               fi
