@@ -1,0 +1,26 @@
+{
+  "id": "106451h",
+  "platform": "cf-gyms",
+  "contestId": 106451,
+  "index": "H",
+  "title": "Astra's Vanguard",
+  "titleZh": "阿斯特拉的先锋队",
+  "url": "https://codeforces.com/gym/106451/problem/H",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "*Mechas are the blades for exploring the ruins, and the pilots are their souls...*\n\nDeep within the Astra ruins, Little A has discovered the core energy sources of $K$ ancient mechas. The energy value of the $j$-th core is $E_j$. Meanwhile, there are $N$ candidate pilots in Little A's expedition team. Each pilot has the following four attributes:\n\n1. **Name**: A string consisting of uppercase and lowercase English letters.\n2. **Sync Rate ($S$)**: Determines the priority to match with a mecha.\n3. **Agility ($A$)**: The secondary assessment metric when sync rates are equal.\n4. **Combat Power ($C$)**: Determines the destructive power when piloting a mecha.\n\nSince there are only $K$ mechas, Little A must strictly select $K$ elites from the $N$ candidate pilots. The selection sorting rules are as follows:\n\n1. **Prioritize** pilots with a higher Sync Rate ($S$).\n2. If Sync Rates are equal, **prioritize** pilots with higher Agility ($A$).\n3. If the first two attributes are identical, **prioritize** pilots whose Names have a **smaller** lexicographical order.\n\n(It is guaranteed that no two pilots have the exact same name).\n\nAfter selecting these $K$ elites, Little A needs to pair them one-to-one with the $K$ energy cores. When a pilot with Combat Power $C_i$ is assigned an energy core with energy value $E_j$, the **combat effectiveness** generated is $C_i \\times E_j$.\n\nLittle A can freely decide the assignment of energy cores among the $K$ selected pilots. Please calculate the **maximum total combat effectiveness** the entire vanguard team can generate.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10$) — the number of test cases.\n\nFor each test case: The first line contains two integers $N$ and $K$ ($1 \\le K \\le N \\le 10^5$) — the number of candidate pilots and the number of mecha cores.\n\nThe next $N$ lines describe the pilots. The $i$-th line contains a string $Name_i$ ($1 \\le |Name_i| \\le 10$) and three integers $S_i, A_i, C_i$ ($1 \\le S_i, A_i, C_i \\le 10^5$). It is guaranteed that the names consist only of English letters and are pairwise distinct within the same test case.\n\nThe following line contains $K$ integers $E_1, E_2, \\dots, E_K$ ($1 \\le E_j \\le 10^5$) — the energy values of the cores.\n\nIt is guaranteed that the sum of $N$ over all test cases does not exceed $2 \\times 10^5$.\n\n## Output\n\nFor each test case, output a single integer on a new line, representing the maximum total combat effectiveness.",
+  "statementZhMd": "*机甲是探索遗迹的利刃，而驾驶员则是它们的灵魂……*\n\n在阿斯特拉遗迹深处，小 A 发现了 $K$ 台古代机甲的核心能源。第 $j$ 个核心的能量值为 $E_j$。与此同时，小 A 的探险队中有 $N$ 名候选驾驶员。每名驾驶员都有以下四项属性：\n\n1. **姓名**：一个由大小写英文字母组成的字符串。\n2. **同步率（$S$）**：决定与机甲匹配的优先级。\n3. **敏捷度（$A$）**：同步率相同时的次要评判指标。\n4. **战斗力（$C$）**：决定驾驶机甲时的破坏力。\n\n由于只有 $K$ 台机甲，小 A 必须严格按照以下排序规则，从 $N$ 名候选驾驶员中选出 $K$ 名精英：\n\n1. **优先选择**同步率（$S$）更高的驾驶员。\n2. 若同步率相同，则**优先选择**敏捷度（$A$）更高的驾驶员。\n3. 若前两项属性均相同，则**优先选择**姓名字典序**更小**的驾驶员。\n\n（保证任意两名驾驶员的姓名均不相同。）\n\n选出这 $K$ 名精英后，小 A 需要将他们与 $K$ 个能源核心一一配对。当战斗力为 $C_i$ 的驾驶员被分配到能量值为 $E_j$ 的能源核心时，产生的**战斗效能**为 $C_i \\times E_j$。\n\n小 A 可以自由决定这 $K$ 名入选驾驶员的能源核心分配方案。请计算整支先锋队能够产生的**最大总战斗效能**。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 10$）——测试用例的数量。\n\n对于每个测试用例：第一行包含两个整数 $N$ 和 $K$（$1 \\le K \\le N \\le 10^5$）——候选驾驶员的数量和机甲核心的数量。\n\n接下来 $N$ 行描述各名驾驶员。第 $i$ 行包含一个字符串 $Name_i$（$1 \\le |Name_i| \\le 10$）和三个整数 $S_i, A_i, C_i$（$1 \\le S_i, A_i, C_i \\le 10^5$）。保证姓名仅由英文字母组成，且同一测试用例内的姓名两两不同。\n\n接下来一行包含 $K$ 个整数 $E_1, E_2, \\dots, E_K$（$1 \\le E_j \\le 10^5$）——各个核心的能量值。\n\n保证所有测试用例的 $N$ 之和不超过 $2 \\times 10^5$。\n\n## 输出格式\n\n对于每个测试用例，单独输出一行，包含一个整数，表示最大总战斗效能。",
+  "samples": [
+    {
+      "input": "2\n3 2\nAlice 10 20 50\nBob 10 20 40\nCharlie 15 10 30\n10 20\n4 3\nDavid 100 100 10\nEve 100 100 100\nFrank 100 90 500\nGrace 90 200 1000\n5 2 10\n",
+      "output": "1300\n5520\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-21T19:41:23.581Z",
+  "translatedAt": "2026-11-21T19:42:47.677Z",
+  "translateModel": "gpt-6.1-sol"
+}

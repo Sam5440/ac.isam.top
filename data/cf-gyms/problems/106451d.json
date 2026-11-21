@@ -1,0 +1,26 @@
+{
+  "id": "106451d",
+  "platform": "cf-gyms",
+  "contestId": 106451,
+  "index": "D",
+  "title": "Bullfighting",
+  "titleZh": "斗牛",
+  "url": "https://codeforces.com/gym/106451/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "*\"I want to check the cards...\"*\n\n— *A mysterious gambler with a French accent.*\n\nAlice is playing a card game called **Bullfighting**.\n\nThe game is played with a standard deck of cards, but only ranks **A** through **10** are kept. The point value of each card is defined as follows:\n\n- **A** counts as $1$ point.\n- Number cards **2** through **10** count as their face value (e.g., a 7 counts as $7$ points).\n\nIn each round, Alice is dealt $5$ cards. She must arrange these $5$ cards into two groups to determine her hand's power:\n\n1. **Group 1**: Consists of exactly $3$ cards.\n2. **Group 2**: Consists of the remaining $2$ cards.\n\nThe rank of the hand is determined by the following rules:\n\n1. **Condition (Has Bull)**: If the sum of the points in **Group 1** is a multiple of $10$, the hand is considered to \"Have Bull\". Otherwise, the hand is ranked as **No Bull**.\n2. **Bull Rank**: If the hand has a Bull, the rank is determined by the sum of points in **Group 2**. Let $S$ be the sum of the two cards in Group 2.\n- If $S$ is also a multiple of $10$, the rank is **Bull Bull** (the highest rank).\n  - Otherwise, the rank is **Bull $X$**, where $X$ is the remainder of $S$ divided by $10$ (i.e., $X = S \\bmod 10$).\n\nThe ranks are ordered as follows:\n\n$$ \\text{No Bull}  \\lt  \\text{Bull } 1  \\lt  \\text{Bull } 2  \\lt  \\dots  \\lt  \\text{Bull } 9  \\lt  \\text{Bull Bull} $$\n\nGiven 5 cards, please help Alice find the highest rank she can achieve by arranging them optimally.\n\n## Input\n\nThe first line contains an integer $t$ ($1 \\le t \\le 100$), representing the number of test cases.\n\nEach test case consists of a single line containing $5$ integers $c_1, c_2, c_3, c_4, c_5$ ($1 \\le c_i \\le 10$), representing the point values of the $5$ cards Alice holds.\n\nIt is guaranteed that the cards are drawn from a single standard deck, meaning that for any rank $k \\in [1, 10]$, it appears at most $4$ times in a hand.\n\n## Output\n\nFor each test case, output the highest rank Alice can obtain in a single line. The output must be one of the following strings:\n\n- `No Bull`\n- `Bull 1`, `Bull 2`, ..., `Bull 9`\n- `Bull Bull`\n\n## Note\n\nFor the first case (`1 2 3 4 5`):\n\n- We choose Group 1 as $\\{1, 4, 5\\}$. The sum is $1+4+5=10$, which is a multiple of $10$.\n- Group 2 is $\\{2, 3\\}$. The sum is $2+3=5$.\n- Since $5 \\bmod 10 = 5$, the rank is **Bull 5**.\n\nFor the second case (`10 10 10 5 5`):\n\n- We choose Group 1 as $\\{10, 10, 10\\}$. The sum is $30$ (multiple of $10$).\n- Group 2 is $\\{5, 5\\}$. The sum is $10$.\n- Since $10$ is a multiple of $10$, the rank is **Bull Bull**.",
+  "statementZhMd": "*“我想检查一下牌……”*\n\n——*一位带有法国口音的神秘赌徒。*\n\nAlice 正在玩一种名为 **斗牛** 的纸牌游戏。\n\n游戏使用一副标准扑克牌，但只保留点数从 **A** 到 **10** 的牌。每张牌的点数定义如下：\n\n- **A** 计为 $1$ 点。\n- 数字牌 **2** 到 **10** 按牌面数字计分（例如，7 计为 $7$ 点）。\n\n每一轮中，Alice 会获得 $5$ 张牌。她必须将这 $5$ 张牌分成两组，以确定手牌的等级：\n\n1. **第 1 组**：恰好包含 $3$ 张牌。\n2. **第 2 组**：包含剩下的 $2$ 张牌。\n\n手牌的等级由以下规则决定：\n\n1. **条件（有牛）**：如果**第 1 组**中牌的点数之和是 $10$ 的倍数，则称这手牌“有牛”。否则，这手牌的等级为**无牛**。\n2. **牛的等级**：如果这手牌有牛，则等级由**第 2 组**中牌的点数之和决定。令 $S$ 表示第 2 组中两张牌的点数之和。\n- 如果 $S$ 也是 $10$ 的倍数，则等级为**牛牛**（最高等级）。\n  - 否则，等级为**牛 $X$**，其中 $X$ 是 $S$ 除以 $10$ 的余数（即 $X = S \\bmod 10$）。\n\n等级顺序如下：\n\n$$ \\text{No Bull}  \\lt  \\text{Bull } 1  \\lt  \\text{Bull } 2  \\lt  \\dots  \\lt  \\text{Bull } 9  \\lt  \\text{Bull Bull} $$\n\n给定 $5$ 张牌，请帮助 Alice 通过最优分组找到她能够获得的最高等级。\n\n## 输入格式\n\n第一行包含一个整数 $t$（$1 \\le t \\le 100$），表示测试用例的数量。\n\n每个测试用例包含一行，其中有 $5$ 个整数 $c_1, c_2, c_3, c_4, c_5$（$1 \\le c_i \\le 10$），表示 Alice 手中 $5$ 张牌的点数。\n\n保证这些牌来自同一副标准扑克牌，也就是说，对于任意点数 $k \\in [1, 10]$，它在一手牌中最多出现 $4$ 次。\n\n## 输出格式\n\n对于每个测试用例，输出 Alice 在一行中能够获得的最高等级。输出必须是以下字符串之一：\n\n- `No Bull`\n- `Bull 1`、`Bull 2`、……、`Bull 9`\n- `Bull Bull`\n\n## 说明\n\n对于第一个测试用例（`1 2 3 4 5`）：\n\n- 选择第 1 组为 $\\{1, 4, 5\\}$。其和为 $1+4+5=10$，是 $10$ 的倍数。\n- 第 2 组为 $\\{2, 3\\}$。其和为 $2+3=5$。\n- 由于 $5 \\bmod 10 = 5$，所以等级为**牛 5**。\n\n对于第二个测试用例（`10 10 10 5 5`）：\n\n- 选择第 1 组为 $\\{10, 10, 10\\}$。其和为 $30$（是 $10$ 的倍数）。\n- 第 2 组为 $\\{5, 5\\}$。其和为 $10$。\n- 由于 $10$ 是 $10$ 的倍数，所以等级为**牛牛**。",
+  "samples": [
+    {
+      "input": "3\n1 2 3 4 5\n10 10 10 5 5\n1 2 3 4 8\n",
+      "output": "Bull 5\nBull Bull\nNo Bull\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-21T19:40:51.124Z",
+  "translatedAt": "2026-11-21T19:42:32.274Z",
+  "translateModel": "gpt-6.1-sol"
+}

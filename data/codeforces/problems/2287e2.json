@@ -1,0 +1,30 @@
+{
+  "id": "2287E2",
+  "platform": "codeforces",
+  "contestId": 2287,
+  "index": "E2",
+  "title": "Marisa Kirisame and the Game (Hard Version)",
+  "url": "https://codeforces.com/contest/2287/problem/E2",
+  "difficulty": null,
+  "tags": [
+    "dp",
+    "games"
+  ],
+  "points": 1250,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "**This is the hard version of the problem. The difference between the versions is that in this version, the limits on $t$, $n$ and $m$ are higher. You can hack only if you solved all versions of this problem.**\n\nIn Gensokyo, Alice Margatroid and Marisa Kirisame are playing a strange game with enchanted pieces. Alice has $n$ pieces, Marisa has $m$ pieces, and every piece has an ability value. Both players choose their moves optimally.\n\nAlice moves first, and then the players alternate turns. On a turn, a player may do one of two things:\n\n1. Skip the turn.\n2. Choose one of her own pieces and one of the opponent's pieces, then compare their ability values. The piece with the smaller value is discarded; if the values are equal, both pieces are discarded.\n\nThe game ends immediately after a move if at least one player has no pieces left. If Alice has no pieces and Marisa still has pieces, Marisa wins. If Marisa has no pieces and Alice still has pieces, Alice wins. If both players have no pieces after the same move, the game is a draw. Also, if more than $10^{100}$ turns have passed without the game ending, the game is a draw.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each case contains two integers $n$ and $m$ ($1 \\le n, m \\le 10^5$).\n\nThe second line of each case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$) — the ability values of Alice's pieces.\n\nThe third line of each case contains $m$ integers $b_1, b_2, \\ldots, b_m$ ($1 \\le b_i \\le 10^9$) — the ability values of Marisa's pieces.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\nIt is guaranteed that the sum of $m$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output one line containing `A` if Alice wins, `B` if Marisa wins, or `C` if the game is a draw.\n\n## Note\n\nIn the first test case, Alice can use her piece of value $3$ to defeat all of Marisa's pieces.\n\nIn the third test case, the two players have the same pieces, so Marisa can always answer with the symmetric move, and the game is a draw.\n\nIn the fifth test case:\n\n- Alice uses her piece of value $4$ to defeat one of Marisa's pieces. Now Alice has $[4, 3]$ and Marisa has $[4]$.\n- Marisa uses her piece of value $4$ to defeat Alice's piece of value $3$. Now Alice has $[4]$ and Marisa has $[4]$.\n- From now on, both players only skip their turns.\n\nSo $10^{100}$ turns pass without the game ending, and the game is a draw.",
+  "samples": [
+    {
+      "input": "5\n2 2\n3 1\n2 1\n2 2\n3 1\n4 1\n2 2\n4 1\n4 1\n3 2\n4 3 3\n4 4\n3 2\n4 4 3\n4 4\n",
+      "output": "A\nB\nC\nB\nC\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-21T19:28:48.293Z",
+  "titleZh": "雾雨魔理沙与游戏（困难版）",
+  "statementZhMd": "**这是本题的困难版。两个版本的区别在于，本版本中 $t$、$n$ 和 $m$ 的范围更大。只有通过本题所有版本后，你才能进行 Hack。**\n\n在幻想乡，爱丽丝·玛格特罗依德和雾雨魔理沙正在用附有魔法的棋子玩一个奇怪的游戏。爱丽丝有 $n$ 枚棋子，魔理沙有 $m$ 枚棋子，每枚棋子都有一个能力值。双方都会采取最优策略。\n\n爱丽丝先手，随后双方轮流行动。每个回合，当前玩家可以选择以下两种操作之一：\n\n1. 跳过本回合。\n2. 选择自己的一枚棋子和对手的一枚棋子，然后比较它们的能力值。能力值较小的棋子被丢弃；如果能力值相等，则两枚棋子都被丢弃。\n\n如果一次行动后至少有一名玩家没有剩余棋子，游戏立即结束。如果爱丽丝没有棋子，而魔理沙仍有棋子，则魔理沙获胜。如果魔理沙没有棋子，而爱丽丝仍有棋子，则爱丽丝获胜。如果双方在同一次行动后都没有棋子，则游戏平局。此外，如果超过 $10^{100}$ 个回合后游戏仍未结束，游戏也判为平局。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含两个整数 $n$ 和 $m$（$1 \\le n, m \\le 10^5$）。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$），表示爱丽丝的棋子的能力值。\n\n每组测试数据的第三行包含 $m$ 个整数 $b_1, b_2, \\ldots, b_m$（$1 \\le b_i \\le 10^9$），表示魔理沙的棋子的能力值。\n\n保证所有测试数据中 $n$ 的总和不超过 $10^5$。\n\n保证所有测试数据中 $m$ 的总和不超过 $10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一行：如果爱丽丝获胜，输出 `A`；如果魔理沙获胜，输出 `B`；如果游戏平局，输出 `C`。\n\n## 说明\n\n在第一组测试数据中，爱丽丝可以用能力值为 $3$ 的棋子击败魔理沙的所有棋子。\n\n在第三组测试数据中，双方的棋子相同，因此魔理沙总能以对称的行动应对，游戏平局。\n\n在第五组测试数据中：\n\n- 爱丽丝用能力值为 $4$ 的棋子击败魔理沙的一枚棋子。此时爱丽丝的棋子为 $[4, 3]$，魔理沙的棋子为 $[4]$。\n- 魔理沙用能力值为 $4$ 的棋子击败爱丽丝能力值为 $3$ 的棋子。此时爱丽丝的棋子为 $[4]$，魔理沙的棋子为 $[4]$。\n- 从此以后，双方都只跳过自己的回合。\n\n因此，经过 $10^{100}$ 个回合后游戏仍未结束，游戏平局。",
+  "translatedAt": "2026-11-21T19:30:49.213Z",
+  "translateModel": "gpt-6.1-sol"
+}

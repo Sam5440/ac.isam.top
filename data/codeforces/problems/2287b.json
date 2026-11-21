@@ -1,0 +1,30 @@
+{
+  "id": "2287B",
+  "platform": "codeforces",
+  "contestId": 2287,
+  "index": "B",
+  "title": "Satori Komeiji and the Metro",
+  "url": "https://codeforces.com/contest/2287/problem/B",
+  "difficulty": null,
+  "tags": [
+    "binary search",
+    "greedy"
+  ],
+  "points": 1500,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Deep beneath Gensokyo lies the Former Hell. Satori Komeiji, the mistress of the Palace of the Earth Spirits, has opened a new metro line leading from the surface entrance to the palace. The line has $n$ stations numbered $1, 2, \\ldots, n$ in order. If a train stops at station $i$, it spends $a_i$ units of time there. Exactly two trains operate on this line.\n\nFor every pair of stations $u \\lt v$, there exists at least one passenger who wants to travel from $u$ to $v$. The passenger behaves as follows.\n\n1. If neither of the two trains stops at both $u$ and $v$, the passenger walks. The walking time is $10^{100}$.\n2. Otherwise, the passenger chooses the train that gives the shorter travel time among all trains that stop at both $u$ and $v$. Suppose this chosen train stops at stations $p_0 \\lt p_1 \\lt \\ldots \\lt p_k$, with $p_l = u$ and $p_r = v$. Then the travel time is $\\sum_{i=l}^{r} a_{p_i}$.\n\nSatori may decide, independently for the two trains, which stations each train stops at. She wants to minimize the maximum travel time over all passengers. Output that minimum possible value.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each case contains an integer $n$ ($2 \\le n \\le 10^5$).\n\nThe second line of each case contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\le a_i \\le 10^9$).\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output a single integer — the minimum possible maximum travel time.\n\n## Note\n\nIn the first two test cases, an optimal arrangement is to make one train stop at every station and the other train stop only at stations $\\{1, 2, 4\\}$.\n\nIn the first test case, the maximum travel time is then $7$: it is attained by the passenger travelling from $3$ to $4$ on the first train and by the passenger travelling from $1$ to $4$ on the second train.\n\nIn the second test case, the maximum travel time is $3$, attained, for example, by the passenger travelling from $1$ to $3$ on the first train and by the passenger travelling from $1$ to $4$ on the second train.\n\nIn the third test case, the line has only two stations, so both trains stop at both of them, and the only passenger travels from $1$ to $2$: the answer is $a_1 + a_2 = 12$.",
+  "samples": [
+    {
+      "input": "4\n4\n1 2 3 4\n4\n1 1 1 1\n2\n5 7\n5\n1 10 10 10 1\n",
+      "output": "7\n3\n12\n22\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-21T19:28:48.292Z",
+  "titleZh": "古明地觉与地铁",
+  "statementZhMd": "幻想乡的地底深处坐落着旧地狱。地灵殿的主人古明地觉开通了一条从地面入口通往地灵殿的新地铁线路。这条线路上有 $n$ 个车站，按顺序编号为 $1, 2, \\ldots, n$。如果一列车在车站 $i$ 停靠，它会在那里停留 $a_i$ 个单位时间。这条线路上恰好运行着两列车。\n\n对于每一对车站 $u \\lt v$，都至少有一名乘客想要从 $u$ 前往 $v$。乘客的行为如下：\n\n1. 如果两列车都没有同时在 $u$ 和 $v$ 停靠，乘客就会步行。步行时间为 $10^{100}$。\n2. 否则，乘客会从所有同时在 $u$ 和 $v$ 停靠的列车中选择行程时间较短的那一列。假设选中的列车停靠的车站依次为 $p_0 \\lt p_1 \\lt \\ldots \\lt p_k$，其中 $p_l = u$，$p_r = v$。那么行程时间为 $\\sum_{i=l}^{r} a_{p_i}$。\n\n觉可以分别决定两列车各自在哪些车站停靠。她希望最小化所有乘客行程时间的最大值。请输出这个最小可能值。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据组数 $t$（$1 \\le t \\le 10^4$）。接下来是各组测试数据的描述。\n\n每组测试数据的第一行包含一个整数 $n$（$2 \\le n \\le 10^5$）。\n\n每组测试数据的第二行包含 $n$ 个整数 $a_1, a_2, \\ldots, a_n$（$1 \\le a_i \\le 10^9$）。\n\n保证所有测试数据的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数，表示行程时间最大值的最小可能值。\n\n## 说明\n\n在前两组测试数据中，一种最优安排是让一列车在每个车站停靠，另一列车只在车站 $\\{1, 2, 4\\}$ 停靠。\n\n在第一组测试数据中，行程时间的最大值为 $7$：乘坐第一列车从 $3$ 前往 $4$ 的乘客，以及乘坐第二列车从 $1$ 前往 $4$ 的乘客，其行程时间都达到了这个值。\n\n在第二组测试数据中，行程时间的最大值为 $3$。例如，乘坐第一列车从 $1$ 前往 $3$ 的乘客，以及乘坐第二列车从 $1$ 前往 $4$ 的乘客，其行程时间都达到了这个值。\n\n在第三组测试数据中，线路上只有两个车站，因此两列车都在这两个车站停靠，唯一的乘客从 $1$ 前往 $2$：答案为 $a_1 + a_2 = 12$。",
+  "translatedAt": "2026-11-21T19:30:27.033Z",
+  "translateModel": "gpt-6.1-sol"
+}

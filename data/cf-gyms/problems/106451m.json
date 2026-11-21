@@ -1,0 +1,26 @@
+{
+  "id": "106451m",
+  "platform": "cf-gyms",
+  "contestId": 106451,
+  "index": "M",
+  "title": "Crystal Resonance",
+  "titleZh": "水晶共鸣",
+  "url": "https://codeforces.com/gym/106451/problem/M",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 1000,
+  "memoryLimitMb": 256,
+  "statementMd": "*The deeper the resonance, the greater the power...*\n\nDeep within the ruins of Astra, explorer Little A has discovered an energy array consisting of $n$ energy crystals connected in a line. The base energy value of the $i$-th crystal is $a_i$. Due to the erosion by dark matter in the ruins, the energy values of some crystals might be negative.\n\nInitially, the total energy of this energy array is equal to the **sum** of the base energy values of all the crystals.\n\nLittle A holds an ancient device called the \"Resonator\". He can use the Resonator to perform a soul resonance between **two adjacent crystals**.\n\nWhen the $i$-th and $(i+1)$-th crystals resonate, they merge into an extremely unstable high-energy crystal. Their energy contribution changes from the original addition $(a_i + a_{i+1})$ to multiplication $(a_i \\times a_{i+1})$.\n\nRegarding the Resonator, there are ancient rules:\n\n1. Each crystal can participate in **at most one** resonance (i.e., the pairs of resonating crystals cannot overlap).\n2. Due to the limited charge of the Resonator, Little A can perform **at most** $k$ resonance operations (he can also choose to perform fewer than $k$ times, even $0$ times).\n\nAlthough negative energy is dangerous, the resonance of two negative energy crystals might produce massive positive energy! Please help Little A calculate the **maximum total energy** the entire array can achieve after clever operations.\n\n## Input\n\nThe first line contains a single integer $t$ ($1 \\le t \\le 10$) — the number of test cases.\n\nFor each test case:\n\nThe first line contains two integers $n$ and $k$ ($1 \\le n \\le 1000$, $0 \\le k \\le 1000$) — the number of crystals and the maximum number of resonance operations allowed.\n\nThe second line contains $n$ integers $a_1, a_2, \\dots, a_n$ ($-10^5 \\le a_i \\le 10^5$) — the base energy value of each crystal.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $5000$.\n\n## Output\n\nFor each test case, output a single integer on a new line, representing the maximum total energy the entire array can achieve.\n\n## Note\n\n**In the first example**, at most $1$ resonance can be performed.\n\nIf no resonance is used, the total energy is $2 + 3 + (-1) + (-5) + 4 = 3$.\n\nIf the $-1$ and $-5$ resonate, their merged energy becomes $(-1) \\times (-5) = 5$. The array is now effectively $[2, 3, 5, 4]$, and the total energy is $2 + 3 + 5 + 4 = 14$. This is the maximum possible value.\n\n**In the second example**, at most $2$ resonances can be performed.\n\nWe can let $2$ and $3$ resonate (energy becomes $6$), and at the same time let $-1$ and $-5$ resonate (energy becomes $5$).\n\nThe array is now effectively $[6, 5, 4]$, and the total energy is $15$.\n\n**In the third example**, letting the first two $-2$ resonate gives $4$, plus the last $-2$, the total energy is $2$.",
+  "statementZhMd": "*共鸣越深，力量越强……*\n\n在 Astra 遗迹深处，探险家小 A 发现了一个由 $n$ 颗能量水晶排成一列构成的能量阵列。第 $i$ 颗水晶的基础能量值为 $a_i$。由于遗迹中暗物质的侵蚀，某些水晶的能量值可能为负数。\n\n初始时，这个能量阵列的总能量等于所有水晶基础能量值的**总和**。\n\n小 A 持有一件名为“共鸣器”的古老装置。他可以使用共鸣器，让**两颗相邻的水晶**发生灵魂共鸣。\n\n当第 $i$ 颗与第 $(i+1)$ 颗水晶发生共鸣时，它们会融合成一颗极不稳定的高能水晶。它们对总能量的贡献将从原来的相加 $(a_i + a_{i+1})$ 变为相乘 $(a_i \\times a_{i+1})$。\n\n关于共鸣器，有以下古老的规则：\n\n1. 每颗水晶**至多**参与一次共鸣（即发生共鸣的水晶对不能有重叠）。\n2. 由于共鸣器的电量有限，小 A **至多**可以进行 $k$ 次共鸣操作（也可以选择进行少于 $k$ 次操作，甚至进行 $0$ 次操作）。\n\n尽管负能量十分危险，但两颗负能量水晶的共鸣却可能产生巨大的正能量！请帮助小 A 计算，经过巧妙的操作后，整个阵列所能达到的**最大总能量**。\n\n## 输入格式\n\n第一行包含一个整数 $t$ ($1 \\le t \\le 10$) — 测试用例的数量。\n\n对于每个测试用例：\n\n第一行包含两个整数 $n$ 和 $k$ ($1 \\le n \\le 1000$, $0 \\le k \\le 1000$) — 水晶的数量和允许进行的共鸣操作的最大次数。\n\n第二行包含 $n$ 个整数 $a_1, a_2, \\dots, a_n$ ($-10^5 \\le a_i \\le 10^5$) — 每颗水晶的基础能量值。\n\n保证所有测试用例的 $n$ 之和不超过 $5000$。\n\n## 输出格式\n\n对于每个测试用例，在单独一行输出一个整数，表示整个阵列所能达到的最大总能量。\n\n## 说明\n\n**在第一个样例中**，至多可以进行 $1$ 次共鸣。\n\n如果不进行共鸣，总能量为 $2 + 3 + (-1) + (-5) + 4 = 3$。\n\n如果让 $-1$ 和 $-5$ 发生共鸣，它们融合后的能量将变为 $(-1) \\times (-5) = 5$。此时，阵列相当于 $[2, 3, 5, 4]$，总能量为 $2 + 3 + 5 + 4 = 14$。这是可能达到的最大值。\n\n**在第二个样例中**，至多可以进行 $2$ 次共鸣。\n\n我们可以让 $2$ 和 $3$ 发生共鸣（能量变为 $6$），同时让 $-1$ 和 $-5$ 发生共鸣（能量变为 $5$）。\n\n此时，阵列相当于 $[6, 5, 4]$，总能量为 $15$。\n\n**在第三个样例中**，让前两颗能量值为 $-2$ 的水晶发生共鸣，得到 $4$，再加上最后一颗水晶的能量 $-2$，总能量为 $2$。",
+  "samples": [
+    {
+      "input": "3\n5 1\n2 3 -1 -5 4\n5 2\n2 3 -1 -5 4\n3 1\n-2 -2 -2\n",
+      "output": "14\n15\n2\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-21T19:42:04.681Z",
+  "translatedAt": "2026-11-21T19:43:08.665Z",
+  "translateModel": "gpt-6.1-sol"
+}

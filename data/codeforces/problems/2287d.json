@@ -1,0 +1,32 @@
+{
+  "id": "2287D",
+  "platform": "codeforces",
+  "contestId": 2287,
+  "index": "D",
+  "title": "Patchouli Knowledge and the String",
+  "url": "https://codeforces.com/contest/2287/problem/D",
+  "difficulty": null,
+  "tags": [
+    "binary search",
+    "fft",
+    "hashing",
+    "strings"
+  ],
+  "points": 2750,
+  "timeLimitMs": 5000,
+  "memoryLimitMb": 256,
+  "statementMd": "Patchouli Knowledge loves writing strings in her notebook, and her assistant has found a *scramble spell* — a permutation $p$ that transforms a string $x$ into the string $y$ with $y_i = x_{p_i}$ for all $1 \\le i \\le n$. Here $x$ and $y$ have length $n$, and $p$ is a permutation$^{\\text{∗}}$ of $\\{1, 2, \\ldots, n\\}$.\n\nDefine $a_k$ as the string obtained by first cyclically shifting $s$ to the left by $k$ positions, then applying the scramble spell with $p$.\n\nFormally, let $s^{(k)}$ be the string such that $s^{(k)}_i = s_{(i + k - 1) \\bmod n + 1}$ for $1 \\le i \\le n$. Then $a_{k,i} = s^{(k)}_{p_i}$.\n\nPatchouli wants to know the maximum value of $\\operatorname{lcp}(a_i, a_j)$ over all unordered pairs of strings in $[a_0, a_1, \\ldots, a_{n-1}]$. That is, find $$ \\max_{0 \\le i \\lt j \\lt n} \\operatorname{lcp}(a_i, a_j), $$ where $\\operatorname{lcp}(x, y)$ is the length of the longest common prefix of strings $x$ and $y$.\n\n$^{\\text{∗}}$A permutation of length $n$ is an array consisting of $n$ distinct integers from $1$ to $n$ in arbitrary order. For example, $[2,3,1,5,4]$ is a permutation, but $[1,2,2]$ is not a permutation ($2$ appears twice in the array), and $[1,3,4]$ is also not a permutation ($n=3$ but there is $4$ in the array).\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^3$). The description of the test cases follows.\n\nThe first line of each case contains an integer $n$ ($2 \\le n \\le 10^5$).\n\nThe second line of each case contains a string $s$ of length $n$, consisting of lowercase English letters.\n\nThe third line of each case contains $n$ integers $p_1, p_2, \\ldots, p_n$ ($1 \\le p_i \\le n$). It is guaranteed that $p_1, p_2, \\ldots, p_n$ is a permutation of $\\{1, 2, \\ldots, n\\}$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^5$.\n\n## Output\n\nFor each test case, output a single integer — the maximum value of $\\operatorname{lcp}(a_i, a_j)$ over all pairs of indices $0 \\le i \\lt j \\lt n$.\n\n## Note\n\nIn the first test case, $a_0 = \\texttt{ab}$ and $a_1 = \\texttt{ba}$, so the answer is $0$.\n\nIn the second test case, $a_0 = \\texttt{baa}$, $a_1 = \\texttt{aba}$, and $a_2 = \\texttt{aab}$, so the answer is $1$.\n\nIn the third test case, $a_0$ and $a_1$ share the first $8$ characters and differ in the $9$-th one, while no two of the strings $a_0, a_1, \\ldots, a_9$ share a prefix of length $9$. Hence, the answer is $8$.",
+  "samples": [
+    {
+      "input": "3\n2\nab\n1 2\n3\naab\n3 2 1\n10\naaaaaaaabb\n1 3 5 7 9 2 4 6 8 10\n",
+      "output": "0\n1\n8\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-21T19:28:48.293Z",
+  "titleZh": "帕秋莉·诺蕾姬与字符串",
+  "statementZhMd": "帕秋莉·诺蕾姬喜欢在笔记本上写字符串，而她的助手发现了一种*打乱咒语*——一个排列 $p$，它将字符串 $x$ 变换为字符串 $y$，使得对于所有 $1 \\le i \\le n$，都有 $y_i = x_{p_i}$。这里，$x$ 和 $y$ 的长度均为 $n$，$p$ 是 $\\{1, 2, \\ldots, n\\}$ 的一个排列$^{\\text{∗}}$。\n\n定义 $a_k$ 为先将 $s$ 循环左移 $k$ 位，再施加排列 $p$ 对应的打乱咒语后得到的字符串。\n\n形式化地，令 $s^{(k)}$ 为满足以下条件的字符串：对于 $1 \\le i \\le n$，有 $s^{(k)}_i = s_{(i + k - 1) \\bmod n + 1}$。则 $a_{k,i} = s^{(k)}_{p_i}$。\n\n帕秋莉想知道，从 $[a_0, a_1, \\ldots, a_{n-1}]$ 中选取两个字符串所组成的所有无序对中，$\\operatorname{lcp}(a_i, a_j)$ 的最大值。也就是说，求 $$ \\max_{0 \\le i \\lt j \\lt n} \\operatorname{lcp}(a_i, a_j), $$ 其中，$\\operatorname{lcp}(x, y)$ 表示字符串 $x$ 和 $y$ 的最长公共前缀的长度。\n\n$^{\\text{∗}}$长度为 $n$ 的排列是一个由 $1$ 到 $n$ 的 $n$ 个互不相同的整数按任意顺序组成的数组。例如，$[2,3,1,5,4]$ 是一个排列，但 $[1,2,2]$ 不是排列（$2$ 在数组中出现了两次），$[1,3,4]$ 也不是排列（$n=3$，但数组中出现了 $4$）。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$（$1 \\le t \\le 10^3$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含一个整数 $n$（$2 \\le n \\le 10^5$）。\n\n每组测试用例的第二行包含一个长度为 $n$ 的字符串 $s$，由小写英文字母组成。\n\n每组测试用例的第三行包含 $n$ 个整数 $p_1, p_2, \\ldots, p_n$（$1 \\le p_i \\le n$）。保证 $p_1, p_2, \\ldots, p_n$ 是 $\\{1, 2, \\ldots, n\\}$ 的一个排列。\n\n保证所有测试用例的 $n$ 之和不超过 $10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数，表示所有满足 $0 \\le i \\lt j \\lt n$ 的下标对中，$\\operatorname{lcp}(a_i, a_j)$ 的最大值。\n\n## 说明\n\n在第一组测试用例中，$a_0 = \\texttt{ab}$，$a_1 = \\texttt{ba}$，因此答案为 $0$。\n\n在第二组测试用例中，$a_0 = \\texttt{baa}$，$a_1 = \\texttt{aba}$，$a_2 = \\texttt{aab}$，因此答案为 $1$。\n\n在第三组测试用例中，$a_0$ 和 $a_1$ 的前 $8$ 个字符相同，第 $9$ 个字符不同，而字符串 $a_0, a_1, \\ldots, a_9$ 中不存在两个字符串具有长度为 $9$ 的公共前缀。因此，答案为 $8$。",
+  "translatedAt": "2026-11-21T19:30:50.483Z",
+  "translateModel": "gpt-6.1-sol"
+}

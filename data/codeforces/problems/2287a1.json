@@ -1,0 +1,30 @@
+{
+  "id": "2287A1",
+  "platform": "codeforces",
+  "contestId": 2287,
+  "index": "A1",
+  "title": "Yukari Yakumo and the Boundary Stones (Easy Version)",
+  "url": "https://codeforces.com/contest/2287/problem/A1",
+  "difficulty": null,
+  "tags": [
+    "dp",
+    "greedy"
+  ],
+  "points": 500,
+  "timeLimitMs": 1500,
+  "memoryLimitMb": 256,
+  "statementMd": "**There is a significant difference between the easy and hard versions of this problem. Please read the statement carefully.**\n\nYukari Yakumo has placed $x$ boundary stones of power $1$ and $y$ boundary stones of power $2$ on the ground.\n\nYukari has a spell $s$ consisting of the characters `+` and `-` ($|s| = m$). Yukari chooses a prefix of $s$ (possibly empty) and then performs every character of this prefix in order.\n\nWhen performing the $i$-th character of the prefix, Yukari chooses a stone that is currently on the ground. The chosen stone changes as follows:\n\n- if $s_i = \\mathtt{+}$, its power increases by $1$; however, if its power is $2$, then its power does not change, and a new stone of power $2$ appears on the ground instead (the original stone stays on the ground);\n- if $s_i = \\mathtt{-}$, its power decreases by $1$; however, if its power is $1$, then the stone disappears.\n\nIf there is no stone on the ground, the remaining characters cannot be performed, and the number of stones on the ground at that moment is $0$.\n\nYukari chooses the prefix and the stone for every spell so that the number of stones on the ground is as large as possible. Find this maximum number of stones.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 100$). The description of the test cases follows.\n\nEach test case is described as follows.\n\nThe first line contains three integers $x$, $y$, and $m$ ($0 \\le x, y \\le 50$, $1 \\le x + y \\le 50$, $1 \\le m \\le 50$) — the number of stones of power $1$, the number of stones of power $2$, and the length of the spell.\n\nThe second line contains a string $s$ of length $m$ consisting of the characters `+` and `-` — the spell.\n\n## Output\n\nFor each test case, output a single integer — the maximum number of stones Yukari can leave on the ground.\n\n## Note\n\nIn the first test case, $x = 1$, $y = 2$, so the stones have powers $1$, $2$, $2$; $s = \\mathtt{-+-+-}$. One optimal play is:\n\n- the empty prefix: $1, 2, 2$;\n- `-` on a stone of power $2$: $1, 1, 2$;\n- `+` on a stone of power $2$: $1, 1, 2, 2$;\n- `-` on a stone of power $2$: $1, 1, 1, 2$;\n- `+` on a stone of power $2$: $1, 1, 1, 2, 2$;\n- `-` on a stone of power $2$: $1, 1, 1, 1, 2$.\n\nNo prefix leaves more than $5$ stones, so the answer is $5$.\n\nIn the second test case, $x = 1$, $y = 1$, so the stones have powers $1$, $2$; $s = \\mathtt{-+-+-}$. The best play removes the stone of power $1$ with the first `-`, copies the remaining stone of power $2$ ($2, 2$), lowers one of them back to $1$ and copies the other one again, so after four spells the stones are $1, 2, 2$ and the answer is $3$.\n\nIn the third test case, $x = 0$, $y = 1$, so the only stone has power $2$; every spell is `-`, so the number of stones never exceeds $1$ (take the empty prefix), and the answer is $1$.\n\nIn the fourth test case, $y = 50$, so all stones have power $2$; every `+` spell copies a stone, hence the answer is $50 + 10 = 60$.",
+  "samples": [
+    {
+      "input": "4\n1 2 5\n-+-+-\n1 1 5\n-+-+-\n0 1 5\n-----\n0 50 10\n++++++++++\n",
+      "output": "5\n3\n1\n60\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-21T19:28:48.292Z",
+  "titleZh": "八云紫与境界石（简单版本）",
+  "statementZhMd": "<statement>\n**本题的简单版本与困难版本有显著区别。请仔细阅读题面。**\n\n八云紫在地上放置了 $x$ 块力量为 $1$ 的境界石和 $y$ 块力量为 $2$ 的境界石。\n\n八云紫有一个由字符 `+` 和 `-` 组成的咒语 $s$（$|s| = m$）。她会选择 $s$ 的一个前缀（可以为空），然后按顺序执行该前缀中的每个字符。\n\n执行前缀中的第 $i$ 个字符时，八云紫选择一块当前位于地上的境界石。选中的境界石会发生如下变化：\n\n- 如果 $s_i = \\mathtt{+}$，它的力量增加 $1$；但是，如果它的力量为 $2$，则它的力量不变，地上会额外出现一块力量为 $2$ 的新境界石（原来的境界石仍留在地上）；\n- 如果 $s_i = \\mathtt{-}$，它的力量减少 $1$；但是，如果它的力量为 $1$，则这块境界石消失。\n\n如果地上没有境界石，就无法执行剩余的字符，此时地上的境界石数量为 $0$。\n\n八云紫会选择前缀，并为咒语中的每个字符选择境界石，使地上的境界石数量尽可能多。求这个最大数量。\n\n## 输入格式\n\n每个测试包含多组测试数据。第一行包含测试数据的组数 $t$（$1 \\le t \\le 100$）。接下来是各组测试数据的描述。\n\n每组测试数据的描述如下。\n\n第一行包含三个整数 $x$、$y$ 和 $m$（$0 \\le x, y \\le 50$，$1 \\le x + y \\le 50$，$1 \\le m \\le 50$），分别表示力量为 $1$ 的境界石数量、力量为 $2$ 的境界石数量和咒语的长度。\n\n第二行包含一个长度为 $m$、由字符 `+` 和 `-` 组成的字符串 $s$，表示咒语。\n\n## 输出格式\n\n对于每组测试数据，输出一个整数，表示八云紫最多能在地上留下多少块境界石。\n\n## 说明\n\n在第一组测试数据中，$x = 1$，$y = 2$，因此境界石的力量分别为 $1$、$2$、$2$；$s = \\mathtt{-+-+-}$。一种最优操作方案如下：\n\n- 空前缀：$1, 2, 2$；\n- 对一块力量为 $2$ 的境界石执行 `-`：$1, 1, 2$；\n- 对一块力量为 $2$ 的境界石执行 `+`：$1, 1, 2, 2$；\n- 对一块力量为 $2$ 的境界石执行 `-`：$1, 1, 1, 2$；\n- 对一块力量为 $2$ 的境界石执行 `+`：$1, 1, 1, 2, 2$；\n- 对一块力量为 $2$ 的境界石执行 `-`：$1, 1, 1, 1, 2$。\n\n不存在能留下超过 $5$ 块境界石的前缀，因此答案是 $5$。\n\n在第二组测试数据中，$x = 1$，$y = 1$，因此境界石的力量分别为 $1$、$2$；$s = \\mathtt{-+-+-}$。最优操作是用第一个 `-` 移除力量为 $1$ 的境界石，复制剩下的力量为 $2$ 的境界石（$2, 2$），将其中一块的力量降回 $1$，然后再次复制另一块。因此，执行四个字符后，境界石的力量分别为 $1, 2, 2$，答案是 $3$。\n\n在第三组测试数据中，$x = 0$，$y = 1$，因此唯一一块境界石的力量为 $2$；咒语中的每个字符都是 `-`，所以境界石数量不会超过 $1$（选择空前缀），答案是 $1$。\n\n在第四组测试数据中，$y = 50$，因此所有境界石的力量都为 $2$；每次执行 `+` 都会复制一块境界石，因此答案是 $50 + 10 = 60$。\n</statement>",
+  "translatedAt": "2026-11-21T19:30:36.956Z",
+  "translateModel": "gpt-6.1-sol"
+}
