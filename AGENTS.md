@@ -145,7 +145,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 
 模拟赛定义、总计时、每题用时与完成状态保存在 `ac-simulator-contests-v1`，
 `useSimContest` 在详情和专属题面之间同步。分享链接的 `#data=` 只携带比赛定义，
-接收者独立保存计时；旧 `/simulator` 分享链接仍可导入编辑。题目用 `platform:id`
+接收者独立保存计时；旧 `/simulator` 分享链接仍可导入编辑。分享有两种编码：
+默认百分号编码 JSON，`shareMode: 'base64'` 时改用 Base64URL（只含字母数字与 `-_`，
+避免短链接服务破坏 `%`/`+` 等字符）；`decodeSimShare` 自动识别两种格式并容忍一次性
+百分号重编码。模式随比赛保存在本机，比赛内切题沿用同一模式。题目用 `platform:id`
 和重复出现次数生成状态键，题面导航则用题单序号区分重复题。暂停后修改题单时，
 `reconcileSimProblems` 按原题、别名和分值迁移状态；导入同 ID 的比赛生成新 ID，
 导出运行中的比赛按导出时刻结算并暂停。右侧平均评级只计算有数值评级的题目。

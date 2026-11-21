@@ -15,7 +15,7 @@ import { useSimContest } from '@/components/simulator/useSimContest';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { originalProblemUrl, simContestHref, simProblemHref } from '@/lib/sim-contest.mjs';
+import { originalProblemUrl, normalizeShareMode, simContestHref, simProblemHref } from '@/lib/sim-contest.mjs';
 import { pairSegments } from '@/lib/statement-segments';
 import { tagZh } from '@/lib/tags';
 
@@ -40,6 +40,7 @@ export default function SimulatorProblemView({ contestId, number }) {
   }, [entry?.platform, entry?.id]);
   const problem = result.key === entryKey ? result.problem : null;
   const segments = useMemo(() => problem ? pairSegments(problem.statementMd, problem.statementZhMd) : [], [problem]);
+  const shareMode = normalizeShareMode(contest?.shareMode);
   const problemsList = useMemo(() => (contest?.problems || []).map((item, i) => ({
     ...item,
     navKey: i,
@@ -47,18 +48,18 @@ export default function SimulatorProblemView({ contestId, number }) {
     title: item.alias || item.titleZh || item.title || item.id,
     titleZh: null,
     statementZhMd: Boolean(item.translated),
-    href: simProblemHref(contest, i),
+    href: simProblemHref(contest, i, true, shareMode),
     ...(i === index && problem ? { samples: problem.samples, timeLimitMs: problem.timeLimitMs, memoryLimitMb: problem.memoryLimitMb, url: problem.url } : {}),
-  })), [contest?.problems, contest?.id, contest?.name, contest?.minutes, index, problem]);
+  })), [contest?.problems, contest?.id, contest?.name, contest?.minutes, index, problem, shareMode]);
   if (status !== 'ready') return <div className="text-muted-foreground py-16 text-center">{status === 'loading' ? '正在载入模拟赛…' : message}</div>;
-  if (!entry) return <div className="space-y-4 py-10"><p>比赛中没有这道题。</p><Button asChild variant="outline"><Link href={simContestHref(contest)}>返回模拟赛</Link></Button></div>;
+  if (!entry) return <div className="space-y-4 py-10"><p>比赛中没有这道题。</p><Button asChild variant="outline"><Link href={simContestHref(contest, true, shareMode)}>返回模拟赛</Link></Button></div>;
   const current = { ...problemsList[index], contestId: contest.id };
   const contestContext = { id: contest.id, platform: 'sim', title: contest.name, problemsList };
   const url = problem?.url || entry.originalUrl || originalProblemUrl(entry.platform, entry.id);
   return <ProblemViewShell rail={<ProblemLetterRail contest={contestContext} current={current} />}>
     <ProblemCompiler contest={contestContext} current={current} />
     {problem && <><AiFab problem={{ ...problem, platform: entry.platform }} /><ViewHistoryTracker platform={entry.platform} problemId={problem.id} title={problem.title} titleZh={problem.titleZh ?? null} contestId={problem.contestId} url={problem.url} /></>}
-    <Button asChild variant="ghost" size="sm"><Link href={simContestHref(contest)} className="text-muted-foreground"><ArrowLeft className="size-4" />返回模拟赛 · {contest.name}</Link></Button>
+    <Button asChild variant="ghost" size="sm"><Link href={simContestHref(contest, true, shareMode)} className="text-muted-foreground"><ArrowLeft className="size-4" />返回模拟赛 · {contest.name}</Link></Button>
     <div className="min-w-0 space-y-6">
       <SimTimer contest={contest} update={update} problemKey={entry.key} />
       <ProblemTopBar contest={contestContext} current={current} />

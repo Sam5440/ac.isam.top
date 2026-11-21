@@ -92,6 +92,25 @@ try {
   assert.equal(await sharedPage.getByLabel('比赛计时', { exact: true }).innerText(), '00:00:00');
   await recipient.close();
 
+  await page.getByRole('button', { name: '兼容（Base64）' }).click();
+  await page.getByLabel('分享时带上题目别名').check();
+  await page.getByRole('button', { name: '复制当场链接' }).click();
+  const compatUrl = await page.evaluate(() => navigator.clipboard.readText());
+  const compatPayload = new URL(compatUrl).hash.slice('#data='.length);
+  assert.match(compatPayload, /^[A-Za-z0-9_-]+$/, '兼容模式不应包含需要转义的字符');
+  assert.equal(Buffer.from(compatPayload, 'base64url').toString('utf8').includes('道路是曲折的'), true);
+  assert.equal(JSON.parse(Buffer.from(compatPayload, 'base64url').toString('utf8')).problems.length, 15);
+  const compatRecipient = await browser.newContext();
+  const compatPage = await compatRecipient.newPage();
+  await compatPage.goto(compatUrl);
+  await compatPage.getByText('自定义模拟赛', { exact: true }).waitFor();
+  assert.equal(await compatPage.locator('[aria-label="比赛题目"] > a').count(), 15);
+  await compatPage.locator('[aria-label="比赛题目"] > a').first().click();
+  await compatPage.waitForURL(/\/problems\/1#data=/);
+  assert.match(new URL(compatPage.url()).hash.slice('#data='.length), /^[A-Za-z0-9_-]+$/, '比赛内切题应继续使用兼容模式');
+  await compatRecipient.close();
+  await page.getByRole('button', { name: '普通', exact: true }).click();
+
   await page.goto(`${base}/simulator`);
   await page.getByRole('button', { name: '管理比赛' }).click();
   await page.getByLabel('选择 E2E 计时赛').check();

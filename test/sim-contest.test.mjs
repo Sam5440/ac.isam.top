@@ -45,6 +45,39 @@ test('分享链接数据可编码/解码，可选择移除别名并保留分值'
   assert.throws(() => decodeSimShare('%'), /无法解码/);
 });
 
+test('兼容模式：Base64URL 只含字母数字与 -_，跳过短链接后仍可解码', () => {
+  const contest = { name: '周末模拟赛 #1 & 2/3?', minutes: 90, problems: [
+    { platform: 'codeforces', id: '1519B', points: 1, alias: '道路是曲折的，前途是光明的' },
+    { platform: 'cf-gyms', id: '105481A', points: 2.5, alias: 'a+b/c=d&e' },
+  ] };
+  const encoded = encodeSimShare(contest, true, 'base64');
+  assert.match(encoded, /^[A-Za-z0-9_-]+$/);
+  assert.equal(encodeURIComponent(encoded), encoded, 'Base64URL 不含需要百分号转义的字符');
+  const decoded = decodeSimShare(encoded);
+  assert.equal(decoded.shareMode, 'base64');
+  assert.equal(decoded.name, contest.name);
+  assert.equal(decoded.problems[0].alias, '道路是曲折的，前途是光明的');
+  assert.equal(decoded.problems[1].alias, 'a+b/c=d&e');
+  // 短链接服务把载荷再百分号编码一次也不影响
+  assert.deepEqual(decodeSimShare(encodeURIComponent(encoded)).problems, decoded.problems);
+});
+
+test('兼容模式：标准 Base64（+/、填充）与旧百分号链接都能解码', () => {
+  const contest = { name: '标准 Base64', problems: [{ platform: 'atcoder', id: 'abc034_b', points: 3, alias: '第三题' }] };
+  const json = decodeURIComponent(encodeSimShare(contest, true, 'url'));
+  const standardPadded = Buffer.from(json, 'utf8').toString('base64');
+  assert.ok(standardPadded.includes('='));
+  for (const value of [standardPadded, standardPadded.replace(/=+$/, '')]) {
+    const decoded = decodeSimShare(value);
+    assert.equal(decoded.shareMode, 'base64');
+    assert.equal(decoded.problems[0].alias, '第三题');
+    assert.equal(decoded.minutes, 0);
+  }
+  const legacy = encodeSimShare(contest, true);
+  assert.equal(decodeSimShare(legacy).shareMode, 'url');
+  assert.equal(decodeSimShare(encodeURIComponent(legacy)).problems[0].id, 'abc034_b');
+});
+
 test('不存在题目时生成对应平台的官方原题或比赛链接', () => {
   assert.equal(originalProblemUrl('codeforces', '1703A'), 'https://codeforces.com/problemset/problem/1703/A');
   assert.equal(originalProblemUrl('cf-gyms', '105481A'), 'https://codeforces.com/gym/105481/problem/A');
