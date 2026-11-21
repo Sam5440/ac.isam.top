@@ -4,7 +4,7 @@
   "contestId": 106552,
   "index": "C",
   "title": "Cards",
-  "titleZh": null,
+  "titleZh": "卡牌",
   "url": "https://codeforces.com/gym/106552/problem/C",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "![image](https://espresso.codeforces.com/890c18c0ddeedb2d979d23a36e0a000dc2ba919d.png)\n\nOne day, Rened decided to invite his friends to play a card game. The game consists of a sequence of numbered cards on a table, initially empty. The players take turns adding new cards to the end of this sequence; the $i$-th player plays the card with value $C_i$.\n\nThe main rule is simple: **there cannot be cards with repeated numbers on the table**.\n\nWhenever a player plays a card whose number does not appear in the current sequence, it is simply added to the end, extending the sequence normally.\n\nHowever, if a player plays a card with the same value as another card already on the table, an elimination occurs: all cards from the beginning of the current sequence up to and including the previous card with this value are removed. Then, the newly played card is placed at the end of the sequence. **Notice that after this process no repeated values remain on the table, and the sequence is never empty.**\n\nTo make the game faster, Rened asked you and your team to develop a system that tracks the state of the game and, after each play, reports the largest-value card still on the table and the index of the player who played it.\n\n## Input\n\nThe input has two lines. The first contains the value of $N \\ (1 \\leq N \\leq 2 \\times 10^{5})$, the number of players. The second contains the card values $C_i \\ (1 \\leq C_i \\leq N)$.\n\n## Output\n\nThe output should contain $N$ lines, each containing two values separated by a space: the value $C$ of the largest card still on the table and the index $i$ of the player who played that card.\n\n## Note\n\n**Explanation for example 1**\n\n| **1st play:** | **3rd play:** | **5th play:** |\n| --- | --- | --- |\n| Player 1 plays 3 | Player 3 plays 4 | Player 5 plays 6 |\n| Cards on the table: [3] | Cards on the table: [3, 1, 4] | Cards on the table: [4, 1, 6] |\n| Largest card: 3 (player 1) | Largest card: 4 (player 3) | Largest card: 6 (player 5) |\n|   |   |   |\n| **2nd play:** | **4th play:** | **6th play:** |\n| Player 2 plays 1 | Player 4 plays 1 | Player 6 plays 6 |\n| Cards on the table: [3, 1] | The prefix up to the previous 1 is removed | Cards on the table: [6] |\n| Largest card: 3 (player 1) | Cards on the table: [4, 1] | Largest card: 6 (player 6) |\n|   | Largest card: 4 (player 3) |   |",
-  "statementZhMd": null,
+  "statementZhMd": "![image](https://espresso.codeforces.com/890c18c0ddeedb2d979d23a36e0a000dc2ba919d.png)\n\n一天，Rened 决定邀请朋友们一起玩一个卡牌游戏。游戏中，桌上有一个由带数字的卡牌组成的序列，初始时为空。玩家依次在序列末尾添加新卡牌；第 $i$ 位玩家打出的卡牌数值为 $C_i$。\n\n游戏的主要规则很简单：**桌上不能有数字重复的卡牌**。\n\n当玩家打出的卡牌数字没有出现在当前序列中时，直接将这张牌添加到序列末尾，正常延长序列。\n\n但是，如果玩家打出的卡牌与桌上已有的某张卡牌数值相同，就会触发消除：从当前序列的开头到之前那张相同数值的卡牌为止，所有卡牌都会被移除，包括那张相同数值的卡牌。然后，将新打出的卡牌放到序列末尾。**注意，经过这一过程后，桌上不会有重复的数值，且序列始终非空。**\n\n为了加快游戏进程，Rened 请你和你的团队开发一个系统，跟踪游戏状态，并在每次出牌后，报告桌上剩余卡牌中的最大数值，以及打出这张牌的玩家编号。\n\n## 输入格式\n\n输入共两行。第一行包含 $N \\ (1 \\leq N \\leq 2 \\times 10^{5})$，表示玩家人数。第二行包含卡牌的数值 $C_i \\ (1 \\leq C_i \\leq N)$。\n\n## 输出格式\n\n输出应包含 $N$ 行，每行包含两个用空格分隔的值：桌上剩余卡牌中的最大数值 $C$，以及打出这张牌的玩家编号 $i$。\n\n## 说明\n\n**样例 1 解释**\n\n| **第 1 次出牌：** | **第 3 次出牌：** | **第 5 次出牌：** |\n| --- | --- | --- |\n| 玩家 1 打出 3 | 玩家 3 打出 4 | 玩家 5 打出 6 |\n| 桌上的卡牌：[3] | 桌上的卡牌：[3, 1, 4] | 桌上的卡牌：[4, 1, 6] |\n| 最大的卡牌：3（玩家 1） | 最大的卡牌：4（玩家 3） | 最大的卡牌：6（玩家 5） |\n|   |   |   |\n| **第 2 次出牌：** | **第 4 次出牌：** | **第 6 次出牌：** |\n| 玩家 2 打出 1 | 玩家 4 打出 1 | 玩家 6 打出 6 |\n| 桌上的卡牌：[3, 1] | 移除截至之前那张 1（含）的前缀 | 桌上的卡牌：[6] |\n| 最大的卡牌：3（玩家 1） | 桌上的卡牌：[4, 1] | 最大的卡牌：6（玩家 6） |\n|   | 最大的卡牌：4（玩家 3） |   |",
   "samples": [
     {
       "input": "6\n3 1 4 1 6 6\n",
@@ -24,5 +24,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-20T21:24:39.169Z"
+  "fetchedAt": "2026-11-20T21:24:39.169Z",
+  "translatedAt": "2026-11-21T11:37:15.089Z",
+  "translateModel": "gpt-6.1-sol"
 }
