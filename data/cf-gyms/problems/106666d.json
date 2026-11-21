@@ -4,7 +4,7 @@
   "contestId": 106666,
   "index": "D",
   "title": "Opening Chests",
-  "titleZh": null,
+  "titleZh": "开箱",
   "url": "https://codeforces.com/gym/106666/problem/D",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "You have just invited your friend to your Minecraft server and want to play a fun game with them! You have prepared $n$ chests in a row that contain random loot. The chests are numbered from $1$ to $n$ (left to right). Chest $i$ contains loot that has value $v_i$. Your friend will start at the chest on the very left and open them in order to the right. To make the chest opening as dramatic as possible for your friend, you want the loot to generally increase in value in comparison to the loot found previously. To quantify this, we define the \"drama\" of chest $i$ to be how much greater its value is compared to all the previous chests opened with a smaller value. **Formally, the drama of chest $i$ is $\\sum_{j=0}^{i-1} \\max(0, v_i - v_j)$.** Then, **the total drama** from the chest opening would be the total sum of the drama of each chest $i$.\n\nYou have peeked ahead at all the loot in each chest, and **you notice that the value of loot is nonincreasing from left to right**, resulting in a total drama of $0$! That's not going to be very dramatic for your friend, so you now want to rearrange the chests. **You can rearrange the chests by taking a prefix of them and moving them to the end of the row.** Specifically, if your chests initially had loot with values $v_1, v_2, \\ldots, v_{n-1}, v_n$ (left to right), then it can be rearranged to $v_l, v_{l+1},\\ldots, v_n, v_1, v_2,\\ldots, v_{l-1}$ (left to right) for any $1\\leq l\\leq n$. **Find the maximum total drama of the chest opening over all the possible rearrangements so that your friend can have a dramatic time.**\n\n## Input\n\nEach test contains multiple test cases. The first line of input contains the number of test cases $t$ ($1 \\leq t \\leq 10^3$). The description of test cases follows.\n\nThe first line of each test contains a single integer $n$ ($1 \\leq n \\leq 10^6$): the number of chests.\n\nThe second line contains $n$ integers $v_1, v_2, \\ldots, v_n$ ($1\\leq v_i \\leq 10^6$ and $v_i \\geq v_{i+1}$ for all $1\\leq i \\leq n -1$): the value of the loot in each of the chests from left to right.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $10^6$.\n\n## Output\n\nFor each test case, output a single integer: the maximum total drama of the chest opening after rearranging the chests optimally.\n\n## Note\n\nFor the first test case, we can observe that moving the first two chests (prefix of length $2$) and moving them to the end of the row would be optimal. This gives us the arrangement of values $2, 1, 4, 3$. Then, the drama of chest $1$ is $0$, the drama of chest $2$ is $0$, the drama of chest $3$ is $(4 - 2) + (4 - 1) = 5$, and the drama of chest $4$ is $(3 - 2) + (3 - 1) + 0 = 3$. This gives us a total drama of $8$.\n\nFor the second test case, no matter how you rearrange the chests, the total drama will be $0$.",
-  "statementZhMd": null,
+  "statementZhMd": "你刚刚邀请朋友加入你的 Minecraft 服务器，想和朋友玩一个有趣的游戏！你准备了排成一行的 $n$ 个箱子，里面装着随机战利品。箱子从左到右编号为 $1$ 到 $n$。第 $i$ 个箱子中战利品的价值为 $v_i$。你的朋友会从最左边的箱子开始，按从左到右的顺序依次打开它们。为了让朋友的开箱过程尽可能富有戏剧性，你希望战利品的价值相较于之前找到的战利品总体上有所提升。为了量化这一点，我们将第 $i$ 个箱子的“戏剧值”定义为：对于此前打开的每个战利品价值更低的箱子，计算当前箱子与它的价值之差，再将这些差值相加。**形式化地，第 $i$ 个箱子的戏剧值为 $\\sum_{j=0}^{i-1} \\max(0, v_i - v_j)$。**那么，开箱过程的**总戏剧值**就是每个箱子 $i$ 的戏剧值之和。\n\n你提前查看了每个箱子中的战利品，**发现战利品的价值从左到右单调不增**，这使得总戏剧值为 $0$！这对你的朋友来说可一点也不富有戏剧性，因此你现在想重新排列这些箱子。**你可以取出这些箱子的一个前缀，并将其移动到这一行的末尾，以此重新排列箱子。**具体而言，如果箱子中战利品的价值最初从左到右依次为 $v_1, v_2, \\ldots, v_{n-1}, v_n$，那么对于任意 $1\\leq l\\leq n$，你都可以将它们重新排列为从左到右依次为 $v_l, v_{l+1},\\ldots, v_n, v_1, v_2,\\ldots, v_{l-1}$。**请在所有可能的重新排列方案中，求出开箱过程的最大总戏剧值，让你的朋友度过一段富有戏剧性的时光。**\n\n## 输入格式\n\n每个输入包含多组测试用例。输入的第一行包含测试用例数量 $t$（$1 \\leq t \\leq 10^3$）。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含一个整数 $n$（$1 \\leq n \\leq 10^6$）：箱子的数量。\n\n第二行包含 $n$ 个整数 $v_1, v_2, \\ldots, v_n$（$1\\leq v_i \\leq 10^6$，且对于所有 $1\\leq i \\leq n -1$，都有 $v_i \\geq v_{i+1}$）：从左到右每个箱子中战利品的价值。\n\n保证所有测试用例的 $n$ 之和不超过 $10^6$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数：以最优方式重新排列箱子后，开箱过程的最大总戏剧值。\n\n## 说明\n\n对于第一组测试用例，可以发现，将前两个箱子（长度为 $2$ 的前缀）移动到这一行的末尾是最优的。这样得到的价值排列为 $2, 1, 4, 3$。此时，第 $1$ 个箱子的戏剧值为 $0$，第 $2$ 个箱子的戏剧值为 $0$，第 $3$ 个箱子的戏剧值为 $(4 - 2) + (4 - 1) = 5$，第 $4$ 个箱子的戏剧值为 $(3 - 2) + (3 - 1) + 0 = 3$。因此，总戏剧值为 $8$。\n\n对于第二组测试用例，无论如何重新排列箱子，总戏剧值都为 $0$。",
   "samples": [
     {
       "input": "3\n4\n4 3 2 1\n5\n1 1 1 1 1\n5\n3 3 2 2 1\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-20T21:23:10.445Z"
+  "fetchedAt": "2026-11-20T21:23:10.445Z",
+  "translatedAt": "2026-11-21T02:44:52.593Z",
+  "translateModel": "gpt-6.1-sol"
 }

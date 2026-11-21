@@ -4,7 +4,7 @@
   "contestId": 106562,
   "index": "E",
   "title": "Variance",
-  "titleZh": null,
+  "titleZh": "方差",
   "url": "https://codeforces.com/gym/106562/problem/E",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 5000,
   "memoryLimitMb": 1024,
   "statementMd": "Then winter comes — the snow keeps falling and accumulating, eventually covering all sins. Finally spring arrives — along with the melting snow, all punishments are delivered.\n\nJust cure whoever you can. There is no way to fix the problem setter who designed this problem.\n\nAs we all know, a person who is obsessed with bad endings just like this problem setter can never be cured. But if a problem can be solved with only slope optimization, it is still worth a try.\n\nGiven a sequence of $n$ positive integers $a_1, a_2, \\dots, a_n$. You need to perform $q$ operations in total, choosing from the two types below. **It is guaranteed that every number in the sequence always stays within the range $[1, 2 \\times 10^5]$**.\n\n1. Add a positive integer $x$ to all elements in the interval $[l,r]$.\n2. Consider a subarray $a_l, a_{l + 1}, \\cdots ,a_r$ whose length is at least $2$. Split it into several consecutive segments, where each segment has a length of no less than $2$. Suppose a segment has length $L$ and elements $b_1, b_2, \\cdots, b_L$. Let its variance be\\\n\\\n$$ \\sigma^2=\\frac{1}{L}\\sum^L_{i=1}(b_i-\\bar{b})^2 $$\\\n\\\nDefine the weight of this segment as $\\sigma^2 L$. You need to find an optimal splitting scheme to minimize the total weight. **Note that the defined weight is NOT equal to the variance.**\n\n## Input\n\nThe first line contains two positive integers $n, q$ $(2 \\le n \\le 2 \\times 10^5, 1 \\le q \\le 2 \\times 10^5)$.\n\nThe second line contains $n$ positive integers $a_1, a_2, \\dots, a_n$ $(1 \\le a_i \\le 2 \\times 10^5)$.\n\nThe following $q$ lines describe the operations:\n\nEach line starts with an integer $op \\in \\{1,2\\}$. If $op = 1$, three positive integers $l, r, x$ follow $(1 \\le l \\le r \\le n, 1 \\le x \\le 2 \\times 10^5)$, which means adding $x$ to every element in interval $[l,r]$. If $op = 2$, two positive integers $l, r$ follow $(1 \\le l  \\lt  r \\le n)$, which means querying the minimal total weight of interval $[l, r]$.\n\n## Output\n\nFor each query of type $op=2$, output two integers $a$ and $b$ separated by a single space on one line. Constraints: $a \\ge 0,\\ b  \\gt  0,\\ \\gcd(a, b) = 1$. The minimal weight equals $\\dfrac{a}{b}$. Specially, if the minimal weight is an integer $x$, you should output $x$ and $1$.",
-  "statementZhMd": null,
+  "statementZhMd": "随后冬天来临——雪不停地下着、堆积着，最终掩埋了一切罪孽。终于春天到来——随着冰雪消融，一切惩罚也随之降临。\n\n能治好谁就治好谁吧。设计出这道题的出题人已经没救了。\n\n众所周知，像本题出题人这样沉迷于坏结局的人是无药可救的。但如果一道题只用斜率优化就能解决，那还是值得一试的。\n\n给定一个由 $n$ 个正整数组成的序列 $a_1, a_2, \\dots, a_n$。你需要进行共 $q$ 次操作，每次操作为以下两种类型之一。**保证序列中的每个数始终在 $[1, 2 \\times 10^5]$ 范围内**。\n\n1. 将区间 $[l,r]$ 中的所有元素都加上一个正整数 $x$。\n2. 考虑一个长度至少为 $2$ 的子数组 $a_l, a_{l + 1}, \\cdots ,a_r$。将其划分为若干个连续段，每段的长度均不小于 $2$。假设某一段的长度为 $L$，其中的元素为 $b_1, b_2, \\cdots, b_L$。其方差为\\\n\\\n$$ \\sigma^2=\\frac{1}{L}\\sum^L_{i=1}(b_i-\\bar{b})^2 $$\\\n\\\n定义这一段的权值为 $\\sigma^2 L$。你需要找到一种最优的划分方案，使所有段的权值之和最小。**注意，这里定义的权值不等于方差。**\n\n## 输入格式\n\n第一行包含两个正整数 $n, q$ $(2 \\le n \\le 2 \\times 10^5, 1 \\le q \\le 2 \\times 10^5)$。\n\n第二行包含 $n$ 个正整数 $a_1, a_2, \\dots, a_n$ $(1 \\le a_i \\le 2 \\times 10^5)$。\n\n接下来 $q$ 行描述各次操作：\n\n每行首先给出一个整数 $op \\in \\{1,2\\}$。如果 $op = 1$，则接下来给出三个正整数 $l, r, x$ $(1 \\le l \\le r \\le n, 1 \\le x \\le 2 \\times 10^5)$，表示将区间 $[l,r]$ 中的每个元素都加上 $x$。如果 $op = 2$，则接下来给出两个正整数 $l, r$ $(1 \\le l  \\lt  r \\le n)$，表示查询区间 $[l, r]$ 的最小权值之和。\n\n## 输出格式\n\n对于每次类型为 $op=2$ 的查询，在一行中输出两个整数 $a$ 和 $b$，用一个空格分隔。它们必须满足：$a \\ge 0,\\ b  \\gt  0,\\ \\gcd(a, b) = 1$。最小权值之和等于 $\\dfrac{a}{b}$。特别地，如果最小权值之和为整数 $x$，则应输出 $x$ 和 $1$。",
   "samples": [
     {
       "input": "6 10\n1 2 3 4 5 6\n2 2 5\n1 1 6 1\n2 1 6\n1 3 4 2\n2 1 3\n2 4 6\n1 5 5 1\n1 1 2 3\n1 1 1 1\n2 1 6\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-20T13:18:49.247Z"
+  "fetchedAt": "2026-11-20T13:18:49.247Z",
+  "translatedAt": "2026-11-21T02:47:20.170Z",
+  "translateModel": "gpt-6.1-sol"
 }
