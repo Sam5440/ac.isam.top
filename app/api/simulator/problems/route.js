@@ -1,4 +1,5 @@
 import { getIndexData } from '@/lib/problem-index';
+import { getProblemWithReuse } from '@/lib/data';
 import { originalProblemUrl, SIM_MAX_PROBLEMS } from '@/lib/sim-contest.mjs';
 import { isSafeProblemId } from '@/lib/problem-id.mjs';
 
@@ -14,9 +15,12 @@ export async function POST(request) {
   const lookup = new Map(index.map((p) => [`${p.platform}:${String(p.id).toLowerCase()}`, p]));
   const problems = body.problems.map(({ platform, id }) => {
     const match = lookup.get(`${platform}:${id.toLowerCase()}`);
+    const problem = match ? getProblemWithReuse(platform, match.id) : null;
     return match ? {
       id: match.id, title: match.title, titleZh: match.titleZh,
-      difficulty: match.difficulty, translated: match.translated, found: true,
+      difficulty: match.difficulty, translated: Boolean(match.translated || problem?.statementZhMd),
+      fetched: Boolean(problem?.statementMd || problem?.statementZhMd || problem?.statementPdf), found: Boolean(problem),
+      originalUrl: originalProblemUrl(platform, match.id),
     } : { id, found: false, originalUrl: originalProblemUrl(platform, id) };
   });
   return Response.json({ problems }, { headers: { 'Cache-Control': 'no-store' } });

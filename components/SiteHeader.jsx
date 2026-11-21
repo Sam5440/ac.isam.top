@@ -38,7 +38,7 @@ export default function SiteHeader() {
   const pathname = usePathname();
   // 编译器只在题目页存在（题目页挂载 CompilerDock）；开合状态经
   // body.compiler-open 同步（CompilerDock 是唯一写方，这里只读）。
-  const dockAvailable = pathname.startsWith('/problems/');
+  const dockAvailable = pathname.startsWith('/problems/') || /^\/contests\/sim\/[^/]+\/problems\/[^/]+\/?$/.test(pathname);
   const [dockOpen, setDockOpen] = useState(false);
   // 「更多」下拉（轻量 popover：useState + 点击外部/ Esc 关闭，无新依赖）
   const [moreOpen, setMoreOpen] = useState(false);

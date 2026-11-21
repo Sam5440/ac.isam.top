@@ -11,7 +11,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import CompilerDock from '@/components/compiler/CompilerDock';
 import { DifficultyBadge, TranslatedBadge } from '@/components/Badges';
@@ -21,10 +21,13 @@ import { startNavProgress } from '@/components/NavigationProgress';
 function compilerProblems(problems) {
   return (problems ?? []).map((p) => ({
     code: p.id,
+    selectionKey: p.navKey,
+    storageKey: p.navKey != null ? `${p.platform}:${p.id}` : p.id,
     platform: p.platform ?? null,
     title: p.titleZh || p.title,
     letter: p.index ?? null,
     examples: (p.samples ?? []).map((e) => ({ input: e.input ?? '', output: e.output ?? '' })),
+    examplesUnavailable: p.navKey != null && p.samples == null,
     timeLimit: p.timeLimitMs ? `${p.timeLimitMs / 1000} s` : null,
     memoryLimit: p.memoryLimitMb ? `${p.memoryLimitMb} MB` : null,
     url: p.url,
@@ -32,8 +35,10 @@ function compilerProblems(problems) {
 }
 
 function problemHref(platform, p) {
-  return `/problems/${platform}/${encodeURIComponent(p.id)}`;
+  return p.href || `/problems/${p.platform || platform}/${encodeURIComponent(p.id)}`;
 }
+
+const sameProblem = (a, b) => (a.navKey != null && b.navKey != null) ? a.navKey === b.navKey : a.id === b.id;
 
 /** 题目卡上方：本比赛题目横向条（与题目列等宽，flex-wrap 自动换行）。 */
 export function ProblemTopBar({ contest, current }) {
@@ -47,10 +52,10 @@ export function ProblemTopBar({ contest, current }) {
       className="bg-card flex flex-wrap gap-1.5 rounded-xl border p-2"
     >
       {problems.map((p) => {
-        const active = p.id === current.id;
+        const active = sameProblem(p, current);
         return (
           <Link
-            key={p.id}
+            key={p.navKey ?? p.id}
             href={problemHref(current.platform, p)}
             title={`${p.index}. ${p.titleZh || p.title}`}
             className={`flex min-w-0 items-center gap-2 rounded-lg border px-2 py-1.5 transition-colors ${
@@ -67,7 +72,7 @@ export function ProblemTopBar({ contest, current }) {
             <span className={`min-w-0 max-w-[11rem] truncate text-[13px] ${active ? 'font-medium' : ''}`}>
               {p.titleZh || p.title}
             </span>
-            <DifficultyBadge difficulty={p.difficulty} platform={current.platform} />
+            <DifficultyBadge difficulty={p.difficulty} platform={p.platform || current.platform} />
             <TranslatedBadge translated={Boolean(p.statementZhMd)} />
           </Link>
         );
@@ -97,10 +102,10 @@ export function ProblemLetterRail({ contest, current }) {
       className="bg-card/90 border-border/60 fixed top-1/2 left-3 z-30 hidden max-h-[60vh] -translate-y-1/2 flex-col gap-1 overflow-y-auto rounded-xl border p-1 shadow-sm backdrop-blur xl:flex"
     >
       {problems.map((p) => {
-        const active = p.id === current.id;
+        const active = sameProblem(p, current);
         return (
           <Link
-            key={p.id}
+            key={p.navKey ?? p.id}
             href={problemHref(current.platform, p)}
             title={`${p.index}. ${p.titleZh || p.title}`}
             className={`grid size-7 shrink-0 place-items-center rounded-md border font-mono text-xs font-bold transition-colors ${
@@ -133,7 +138,7 @@ export function ProblemSwitcher({ contest, current }) {
   const router = useRouter();
   const problems = contest?.problemsList ?? [];
   if (problems.length <= 1) return null;
-  const idx = problems.findIndex((p) => p.id === current.id);
+  const idx = problems.findIndex((p) => sameProblem(p, current));
   const prev = idx > 0 ? problems[idx - 1] : null;
   const next = idx >= 0 && idx < problems.length - 1 ? problems[idx + 1] : null;
   return (
@@ -162,7 +167,7 @@ export function ProblemSwitcher({ contest, current }) {
         className="min-w-0 flex-1 rounded-md border bg-background px-2 py-1 text-xs"
       >
         {problems.map((p, i) => (
-          <option key={p.id} value={i}>
+          <option key={p.navKey ?? p.id} value={i}>
             {p.index}. {p.titleZh || p.title}
           </option>
         ))}
@@ -184,13 +189,14 @@ export function ProblemSwitcher({ contest, current }) {
 
 /** 编译器面板（portal 渲染进 layout 的 #compiler-dock-root）。 */
 export function ProblemCompiler({ contest, current }) {
-  const problems = compilerProblems(contest?.problemsList ?? []);
+  const problems = useMemo(() => compilerProblems(contest?.problemsList ?? []), [contest?.problemsList]);
   if (!problems.length) return null;
   return (
     <CompilerDock
       problems={problems}
       day={String(current.contestId)}
       currentCode={current.id}
+      currentProblemKey={current.navKey}
     />
   );
 }

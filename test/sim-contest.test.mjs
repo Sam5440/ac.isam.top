@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { clockSnapshot, decodeSimShare, encodeSimShare, formatElapsed, originalProblemUrl, parseSimProblemList } from '../lib/sim-contest.mjs';
+import { clockSnapshot, decodeSimShare, encodeSimShare, exportSimContests, formatElapsed, importSimContests, originalProblemUrl, parseSimProblemList, reconcileSimProblems, withSimProblemKeys } from '../lib/sim-contest.mjs';
 
 test('暂停不计时，恢复后从已用预算继续；休眠越过截止时间只结算剩余预算', () => {
   const paused = { minutes: 1, elapsedMs: 40000, activeProblem: 'A', problemTimes: { A: 15000 }, runningSince: null, activeProblemSince: null };
@@ -55,4 +55,37 @@ test('不存在题目时生成对应平台的官方原题或比赛链接', () =>
 test('时长格式稳定且不输出负时间', () => {
   assert.equal(formatElapsed(3_661_999), '01:01:01');
   assert.equal(formatElapsed(-1000), '00:00:00');
+});
+
+test('编辑题单后按题目与别名保留计时和完成状态，并清除被删除题目', () => {
+  const old = withSimProblemKeys([
+    { platform: 'codeforces', id: '1519B', alias: '第一份', points: 1 },
+    { platform: 'codeforces', id: '1519B', alias: '第二份', points: 1 },
+    { platform: 'atcoder', id: 'abc034_b', alias: '', points: 1 },
+  ]);
+  const contest = { problems: old, problemTimes: { [old[0].key]: 2000, [old[1].key]: 7000, [old[2].key]: 9000 }, completed: { [old[1].key]: true, [old[2].key]: true }, activeProblem: old[2].key, activeProblemSince: 10 };
+  const updated = reconcileSimProblems(contest, [old[1], { ...old[0], alias: '修改后的名字' }]);
+  assert.equal(updated.problemTimes[updated.problems[0].key], 7000);
+  assert.equal(updated.problemTimes[updated.problems[1].key], 2000);
+  assert.deepEqual(updated.completed, { [updated.problems[0].key]: true });
+  assert.equal(updated.activeProblem, null);
+  assert.equal(updated.activeProblemSince, null);
+});
+
+test('导出正在进行的比赛后导入，保留到导出时的计时与完成状态并处理 ID 冲突', () => {
+  const problems = withSimProblemKeys([{ platform: 'codeforces', id: '1519B', points: 1, alias: '测试题' }]);
+  const contest = { id: 'contest-1', name: '测试赛', minutes: 1, problems, createdAt: 100, startedAt: 1000, elapsedMs: 5000, runningSince: 1000, activeProblem: problems[0].key, activeProblemSince: 1000, problemTimes: { [problems[0].key]: 3000 }, completed: { [problems[0].key]: true } };
+  const [restored] = importSimContests(exportSimContests([contest], 3000), [contest]);
+  assert.notEqual(restored.id, contest.id);
+  assert.equal(restored.elapsedMs, 7000);
+  assert.equal(restored.problemTimes[problems[0].key], 5000);
+  assert.equal(restored.completed[problems[0].key], true);
+  assert.equal(restored.runningSince, null);
+  assert.equal(restored.activeProblemSince, null);
+  assert.equal(restored.problems[0].key, problems[0].key);
+});
+
+test('题单与分享数据拒绝无法用于题库查找的题号', () => {
+  assert.equal(parseSimProblemList('CF | bad.id | 1').errors.length, 1);
+  assert.throws(() => decodeSimShare(JSON.stringify({ v: 1, problems: [['codeforces', 'x'.repeat(81), 1]] })), /无效/);
 });

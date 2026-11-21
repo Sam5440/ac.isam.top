@@ -69,11 +69,13 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/problems/[platform]/[problemId]` | 按需 SSG | 题目详情 | `ProblemViewShell`、`ProblemStatementViewer`、`AiFab`、`ProblemCompiler` |
 | `/contests` | 静态 | 比赛列表（类型/站点筛选，50条/页） | `ContestsBrowser` |
 | `/contests/[platform]/[contestId]` | 按需 SSG | 比赛详情 + 题目清单 | `ContestDetailsView` |
-| `/contests/sim/[contestId]` | 强制动态 | 自定义模拟赛详情（`sim` 与 atcoder/codeforces 等平台同级，题单在 `#data=` 里，复用 `ContestDetailsView`）；静态段优先于 `[platform]` | `SimulatorContestView` |
+| `/contests/sim/[contestId]` | 强制动态 | 自定义模拟赛详情、题单与统计（题单分享数据在 `#data=` 里）；静态段优先于 `[platform]` | `SimulatorContestView`、`SimTimer` |
+| `/contests/sim/[contestId]/problems/[number]` | 强制动态 | 模拟赛专属题面，按题单序号切题并共用比赛计时 | `SimulatorProblemView`、`ProblemViewShell` |
 | `/calendar` | 静态 | 比赛日历（读取 CI 的 Clist 快照） | `CalendarView` |
 | `/history` | 静态 | 浏览历史（本机 IndexedDB/localStorage） | `HistoryList` |
 | `/ci` | ISR 5min | 仓库级 Actions 按页同步近 60 天所有工作流，展开时读取 jobs/steps；`data/ci-log.json` 只补充主抓取产出 | `CiDashboard`、`lib/ci-actions.mjs` |
-| `/simulator` | 静态壳 + 客户端题目核验 | 本地多场模拟赛、独立/总计时、题目日志与 URL 分享 | `components/simulator/Simulator.jsx`、`lib/sim-contest.mjs` |
+| `/simulator` | 静态壳 + 客户端题目核验 | 本地比赛列表、搜索分页、新建编辑和批量导入导出 | `components/simulator/Simulator.jsx`、`lib/sim-contest.mjs` |
+| `/api/simulator/problems` | 动态 | 核验模拟赛题单并读取题面的抓取、翻译和评级状态 | `lib/data.js`、`lib/sim-contest.mjs` |
 | `/ide` | 静态 | IDE 工作台 | `IdePage` → `IdeShell`/`Workbench` |
 | `/settings` | 静态 | 设置（5 分区单页切换） | `settings/` 各分区 |
 | `/api/mt/[channel]` | 动态 | 浏览器 MT 转发（deepl/youdao/caiyun/iflyrec） | `lib/mt-protect.js` 防滥用 |
@@ -112,7 +114,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   队列口径由 `lib/sample-notes.js` 统一（有实质 note、无 noteZh、`language !== 'zh'`）。
   渲染在 `components/SamplesSection.jsx`，随 `useProblemLang` 的 en/zh/both 模式切换。
   `reuseOf`（cf-gyms → codeforces 原题）在题目页渲染时合并原题面——见
-  `app/problems/[platform]/[problemId]/page.jsx` 的合并块，改动渲染逻辑时别忘了这条链。
+  `lib/data.js` 的 `getProblemWithReuse()`，题目页、单题 API 和模拟赛核验共用此入口。
 - `outputFileTracingIncludes`（next.config.mjs）按路由声明 data 文件依赖——**新增读
   data 的路由必须同步加**，否则 Vercel 函数里缺文件。
 
@@ -140,6 +142,15 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 - 主题：`lib/themes.js` 模板主题 + `<html>` 上 `data-theme`/`dark`/`eink` 类。首帧防
   闪白靠 `app/layout.jsx` 的 `THEME_BOOTSTRAP` 内联脚本（服务端生成）——改主题机制时
   两侧必须同步。
+
+模拟赛定义、总计时、每题用时与完成状态保存在 `ac-simulator-contests-v1`，
+`useSimContest` 在详情和专属题面之间同步。分享链接的 `#data=` 只携带比赛定义，
+接收者独立保存计时；旧 `/simulator` 分享链接仍可导入编辑。题目用 `platform:id`
+和重复出现次数生成状态键，题面导航则用题单序号区分重复题。暂停后修改题单时，
+`reconcileSimProblems` 按原题、别名和分值迁移状态；导入同 ID 的比赛生成新 ID，
+导出运行中的比赛按导出时刻结算并暂停。右侧平均评级只计算有数值评级的题目。
+模拟赛编译器按题单序号选题，草稿与自定义样例按 `platform:id` 存储。端到端回归为
+`node e2e/simulator-flow.js`（可设 `BASE_URL`），纯逻辑测试在 `test/sim-contest.test.mjs`。
 
 首页布局（`/settings#home`）同样只用主设置键。`homeLayoutMode` 为 `visual` / `html`；`homeWidgets` 是按优先级排列的 `{ id, type, params, w, h }` 实例数组，可重复类型，不存坐标；`homeLayout` 独立保留高级 HTML 与 12 套预设，可视化模式另有 10 套 `VISUAL_HOME_PRESETS`。编辑只改草稿，保存才写入两份内容和启用模式。读取与导入都走 `lib/home-grid.mjs` 的 `normalizeHomeConfig`：无显式模式时，非经典的合法旧 HTML（含空字符串）继续用 HTML；无旧自定义内容则用经典四组件。空组件数组是有效布局。
 

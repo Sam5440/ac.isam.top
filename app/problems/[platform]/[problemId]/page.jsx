@@ -18,7 +18,7 @@ import ProblemViewShell, {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { findProblemSummary, getAllContests, getAllProblems, getContest, getProblem, getProblemsOfContest, platformOf } from '@/lib/data';
+import { findProblemSummary, getAllContests, getAllProblems, getContest, getProblemWithReuse, getProblemsOfContest, platformOf } from '@/lib/data';
 import { selectStaticProblems, staticLimit } from '@/lib/static-params.mjs';
 import { pairSegments } from '@/lib/statement-segments';
 import { tagZh } from '@/lib/tags';
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
 const findProblem = cache((platform, problemId) => {
   const pid = String(problemId).toLowerCase();
   const summary = findProblemSummary(platform, pid);
-  return summary ? getProblem(platform, summary.id) : null;
+  return summary ? getProblemWithReuse(platform, summary.id) : null;
 });
 
 function MetaItem({ icon: Icon, label, children }) {
@@ -63,27 +63,8 @@ function MetaItem({ icon: Icon, label, children }) {
 
 export default async function ProblemPage({ params }) {
   const { platform, problemId } = await params;
-  let prob = findProblem(platform, problemId);
+  const prob = findProblem(platform, problemId);
   if (!prob) notFound();
-
-  // 规则：gym 题与站内 codeforces 题库同名题唯一命中时（reuseOf），题面/样例/翻译
-  // 直接复用原题记录渲染，仓库不重复保存一份题面。
-  if (prob.reuseOf) {
-    const src = getProblem('codeforces', prob.reuseOf);
-    if (src) {
-      prob = {
-        ...prob,
-        titleZh: prob.titleZh ?? src.titleZh ?? null,
-        statementMd: src.statementMd ?? null,
-        statementZhMd: src.statementZhMd ?? null,
-        samples: src.samples ?? [],
-        timeLimitMs: prob.timeLimitMs ?? src.timeLimitMs ?? null,
-        memoryLimitMb: prob.memoryLimitMb ?? src.memoryLimitMb ?? null,
-        tags: prob.tags?.length ? prob.tags : (src.tags ?? []),
-        translateModel: prob.translateModel ?? src.translateModel ?? null,
-      };
-    }
-  }
 
   const p = platformOf(platform);
   const contest = getContest(platform, prob.contestId);

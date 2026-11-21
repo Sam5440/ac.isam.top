@@ -108,7 +108,7 @@ const CONSOLE_CAP = 200 * 1024;
 const MIN_PANEL_W = 360;
 const MIN_CONSOLE_H = 144;
 
-export default function CompilerDock({ problems, day, currentCode }) {
+export default function CompilerDock({ problems, day, currentCode, currentProblemKey }) {
   const { openSettings } = useSettings();
   const [mounted, setMounted] = useState(false);
   const [cp, setCp] = useState(null); // 编译器偏好
@@ -116,7 +116,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
   const [lang, setLang] = useState("cpp");
   // 默认选中当前浏览的题目（找不到时回落到第一题）
   const [probIdx, setProbIdx] = useState(() =>
-    Math.max(0, (problems ?? []).findIndex((p) => p.code === currentCode)),
+    Math.max(0, (problems ?? []).findIndex((p) => currentProblemKey != null ? p.selectionKey === currentProblemKey : p.code === currentCode)),
   );
   const [mode, setMode] = useState("samples");
   const [code, setCode] = useState("");
@@ -141,6 +141,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
   const [splitH, setSplitH] = useState(null); // 分屏模式编译器高度（px），null = 50dvh
   // 样例管理：null = 未自定义（用题目默认样例），数组 = 用户编辑后的完整样例表
   const [sampleCases, setSampleCases] = useState(null);
+  const [loadedExamples, setLoadedExamples] = useState(null);
   const [samplesOpen, setSamplesOpen] = useState(false); // 样例管理手风琴展开态
   const [dlInfo, setDlInfo] = useState(null); // 运行时下载进度 {name, got, total}
   const dlToastShownRef = useRef(false); // 首次下载 toast 每会话只发一次
@@ -169,13 +170,13 @@ export default function CompilerDock({ problems, day, currentCode }) {
   // 归属正确）——否则去抖窗口内的最后编辑会被丢弃（编译-09）
   useEffect(() => {
     if (!currentCode) return;
-    const idx = (problems ?? []).findIndex((p) => p.code === currentCode);
+    const idx = (problems ?? []).findIndex((p) => currentProblemKey != null ? p.selectionKey === currentProblemKey : p.code === currentCode);
     if (idx >= 0 && idx !== probIdx) {
       flushDraftTail();
       setProbIdx(idx);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentCode, problems]);
+  }, [currentCode, currentProblemKey, day]);
   // 编程键盘可见：移动端 + 设置开启 + 面板展开 + 未被临时收起（点编辑器恢复）。
   // 需在早退 return 之前算好：系统键盘开关联动 effect 的依赖要用它
   const kbVisible = isMobile && !!cp?.mobileKeyboard && open && !kbHidden;
@@ -426,7 +427,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
   /* ---------- 草稿与模板 ---------- */
   const effectiveCode = useCallback(
     (l = lang, i = probIdx) => {
-      const key = problems[i]?.code;
+      const key = problems[i]?.storageKey ?? problems[i]?.code;
       return loadDraft(key, l) ?? cp?.templates?.[l] ?? "";
     },
     [problems, lang, probIdx, cp],
@@ -441,7 +442,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
   // 在 switchProblem 包装函数里做（见下,编译-09）
   useEffect(() => {
     if (!mounted || !cp) return;
-    const key = problems[probIdx]?.code;
+    const key = problems[probIdx]?.storageKey ?? problems[probIdx]?.code;
     const t = setTimeout(() => saveDraft(key, lang, codeRef.current), 500);
     return () => clearTimeout(t);
   }, [code, mounted, cp, probIdx, lang, problems]);
@@ -450,16 +451,16 @@ export default function CompilerDock({ problems, day, currentCode }) {
   // 切题时载入该题的自定义样例记录，并清掉上一题的对拍结果展示
   useEffect(() => {
     if (!mounted) return;
-    setSampleCases(loadSampleCases(problems?.[probIdx]?.code));
+    setSampleCases(loadSampleCases(problem?.storageKey ?? problem?.code));
     setCases([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mounted, probIdx, problems]);
+  }, [mounted, probIdx, problem?.storageKey, problem?.code]);
 
   // 编辑落盘（去抖）；sampleCases 为 null（未自定义）时不写
   useEffect(() => {
     if (!mounted || !sampleCases) return;
     const t = setTimeout(
-      () => saveSampleCases(problems?.[probIdx]?.code, sampleCases),
+      () => saveSampleCases(problem?.storageKey ?? problem?.code, sampleCases),
       400,
     );
     return () => clearTimeout(t);
@@ -468,12 +469,24 @@ export default function CompilerDock({ problems, day, currentCode }) {
 
   const resetToTemplate = () => {
     const tpl = cp?.templates?.[lang] ?? "";
-    clearDraft(problems[probIdx]?.code, lang);
+    clearDraft(problem?.storageKey ?? problem?.code, lang);
     setCode(tpl);
   };
 
   /* ---------- 样例编辑：首次编辑先把默认样例拷贝进可编辑列表 ---------- */
-  const defaultSamples = defaultCasesFrom(problem?.examples);
+  useEffect(() => {
+    if (!problem?.examplesUnavailable || !problem.platform) return;
+    const controller = new AbortController();
+    const key = `${problem.platform}:${problem.code}`;
+    fetch(`/api/problems/${problem.platform}/${encodeURIComponent(problem.code)}`, { signal: controller.signal })
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => { if (data) setLoadedExamples({ key, examples: data.samples || [] }); })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [problem?.platform, problem?.code, problem?.examplesUnavailable]);
+  const examples = problem?.examplesUnavailable && loadedExamples?.key === `${problem.platform}:${problem.code}`
+    ? loadedExamples.examples : problem?.examples;
+  const defaultSamples = defaultCasesFrom(examples);
   // 实际参与对拍的样例：自定义表优先，否则题目默认
   const effectiveSamples = sampleCases ?? defaultSamples;
   const samplesCustomized = sampleCases != null;
@@ -493,7 +506,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
     editSamples((list) => [...list, { input: "", output: "" }]);
   const removeSample = (i) => editSamples((list) => list.filter((_, j) => j !== i));
   const resetSamples = () => {
-    clearSampleCases(problem?.code);
+    clearSampleCases(problem?.storageKey ?? problem?.code);
     setSampleCases(null);
   };
 
@@ -516,7 +529,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
       codeRef/sampleCasesRef 在渲染期同步为最新值，此刻尚未被新题 effect
       覆盖，归属正确；无未保存内容时重复写同一值，开销可忽略。 */
   const flushDraftTail = () => {
-    const key = problems?.[probIdx]?.code;
+    const key = problems?.[probIdx]?.storageKey ?? problems?.[probIdx]?.code;
     if (!key) return;
     saveDraft(key, draftLangRef.current, codeRef.current);
     if (sampleCasesRef.current != null) saveSampleCases(key, sampleCasesRef.current);
@@ -554,7 +567,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
         downloadCodeFile();
       } else {
         // saveDraft 返回真实成败:存储配额满时不再假弹「已保存」(编译-10)
-        const ok = saveDraft(problems[probIdx]?.code, lang, codeRef.current);
+        const ok = saveDraft(problem?.storageKey ?? problem?.code, lang, codeRef.current);
         flashToast(ok ? "代码已保存（本机草稿）" : "保存失败：本机存储空间不足");
       }
     };
@@ -1306,7 +1319,7 @@ export default function CompilerDock({ problems, day, currentCode }) {
               aria-label="选择题目"
             >
               {(problems ?? []).map((p, i) => (
-                <option key={p.code} value={i}>
+                <option key={p.selectionKey ?? p.code} value={i}>
                   {p.code} · {p.title}
                 </option>
               ))}

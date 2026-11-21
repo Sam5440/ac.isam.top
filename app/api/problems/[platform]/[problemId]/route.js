@@ -1,4 +1,4 @@
-import { getProblem, findProblemSummary } from '@/lib/data';
+import { getProblemWithReuse, findProblemSummary } from '@/lib/data';
 
 export const dynamic = 'force-dynamic';
 
@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function GET(request, { params }) {
   const { platform, problemId } = await params;
   const summary = findProblemSummary(platform, problemId);
-  const prob = summary ? getProblem(platform, summary.id) : getProblem(platform, problemId);
+  const prob = getProblemWithReuse(platform, summary ? summary.id : problemId);
   if (!prob) {
     return Response.json({ error: '题目不存在' }, { status: 404 });
   }
