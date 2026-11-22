@@ -15,7 +15,7 @@ import { useSimContest } from '@/components/simulator/useSimContest';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { originalProblemUrl, normalizeShareMode, simContestHref, simProblemHref } from '@/lib/sim-contest.mjs';
+import { originalProblemUrl, normalizeShareMode, normalizeSimSort, orderSimProblems, simContestHref, simProblemHref, simProblemLabel } from '@/lib/sim-contest.mjs';
 import { pairSegments } from '@/lib/statement-segments';
 import { tagZh } from '@/lib/tags';
 
@@ -41,19 +41,25 @@ export default function SimulatorProblemView({ contestId, number }) {
   const problem = result.key === entryKey ? result.problem : null;
   const segments = useMemo(() => problem ? pairSegments(problem.statementMd, problem.statementZhMd) : [], [problem]);
   const shareMode = normalizeShareMode(contest?.shareMode);
-  const problemsList = useMemo(() => (contest?.problems || []).map((item, i) => ({
+  const sort = normalizeSimSort(contest?.sort);
+  // 题单显示顺序（与比赛详情页一致）；navKey 仍是题单原始下标，
+  // 题目链接、计时键与编译器草稿都不随排序变化。
+  const ordered = useMemo(() => orderSimProblems(contest?.problems, sort), [contest?.problems, sort.by, sort.dir]);
+  const position = ordered.findIndex((item) => item.sourceIndex === index);
+  const label = position >= 0 ? simProblemLabel(position) : '';
+  const problemsList = useMemo(() => ordered.map(({ problem: item, sourceIndex }, pos) => ({
     ...item,
-    navKey: i,
-    index: String(i + 1),
+    navKey: sourceIndex,
+    index: simProblemLabel(pos),
     title: item.alias || item.titleZh || item.title || item.id,
     titleZh: null,
     statementZhMd: Boolean(item.translated),
-    href: simProblemHref(contest, i, true, shareMode),
-    ...(i === index && problem ? { samples: problem.samples, timeLimitMs: problem.timeLimitMs, memoryLimitMb: problem.memoryLimitMb, url: problem.url } : {}),
-  })), [contest?.problems, contest?.id, contest?.name, contest?.minutes, index, problem, shareMode]);
+    href: simProblemHref(contest, sourceIndex, true, shareMode),
+    ...(sourceIndex === index && problem ? { samples: problem.samples, timeLimitMs: problem.timeLimitMs, memoryLimitMb: problem.memoryLimitMb, url: problem.url } : {}),
+  })), [ordered, contest?.id, contest?.name, contest?.minutes, index, problem, shareMode]);
   if (status !== 'ready') return <div className="text-muted-foreground py-16 text-center">{status === 'loading' ? '正在载入模拟赛…' : message}</div>;
   if (!entry) return <div className="space-y-4 py-10"><p>比赛中没有这道题。</p><Button asChild variant="outline"><Link href={simContestHref(contest, true, shareMode)}>返回模拟赛</Link></Button></div>;
-  const current = { ...problemsList[index], contestId: contest.id };
+  const current = { ...(problemsList[position] ?? {}), contestId: contest.id };
   const contestContext = { id: contest.id, platform: 'sim', title: contest.name, problemsList };
   const url = problem?.url || entry.originalUrl || originalProblemUrl(entry.platform, entry.id);
   return <ProblemViewShell rail={<ProblemLetterRail contest={contestContext} current={current} />}>
@@ -63,7 +69,7 @@ export default function SimulatorProblemView({ contestId, number }) {
     <div className="min-w-0 space-y-6">
       <SimTimer contest={contest} update={update} problemKey={entry.key} />
       <ProblemTopBar contest={contestContext} current={current} />
-      <Card><CardHeader><div className="flex flex-wrap items-start gap-4"><div className="bg-primary text-primary-foreground grid size-12 shrink-0 place-items-center rounded-lg text-xl font-bold">{index + 1}</div><div className="min-w-0 flex-1 basis-56"><CardTitle className="text-xl leading-snug break-words">{entry.alias || problem?.titleZh || problem?.title || entry.titleZh || entry.title || entry.id}</CardTitle><CardDescription className="mt-1">{entry.id} · {problem?.titleZh || problem?.title || entry.titleZh || entry.title || '原题名称未知'}</CardDescription><div className="mt-3 flex flex-wrap gap-2"><PlatformBadge platform={entry.platform} /><DifficultyBadge difficulty={problem?.difficulty ?? entry.difficulty} platform={entry.platform} /><Badge variant="secondary">{entry.points} 分</Badge></div></div><div className="flex shrink-0 gap-2">{problem?.statementMd && <CopyProblemButton platform={entry.platform} index={problem.index} title={problem.title} titleZh={problem.titleZh} url={problem.url} timeLimitMs={problem.timeLimitMs} memoryLimitMb={problem.memoryLimitMb} statementMd={problem.statementMd} statementZhMd={problem.statementZhMd ?? null} samples={problem.samples ?? []} />}<Button asChild size="sm"><a href={url} target="_blank" rel="noreferrer">原题<ExternalLink className="size-3.5" /></a></Button></div></div><div className="mt-3"><ProblemSwitcher contest={contestContext} current={current} /></div></CardHeader>
+      <Card><CardHeader><div className="flex flex-wrap items-start gap-4"><div className="bg-primary text-primary-foreground grid h-12 min-w-12 shrink-0 place-items-center rounded-lg px-2 font-mono text-lg font-bold">{label}</div><div className="min-w-0 flex-1 basis-56"><CardTitle className="text-xl leading-snug break-words">{entry.alias || problem?.titleZh || problem?.title || entry.titleZh || entry.title || entry.id}</CardTitle><CardDescription className="mt-1">{entry.id} · {problem?.titleZh || problem?.title || entry.titleZh || entry.title || '原题名称未知'}</CardDescription><div className="mt-3 flex flex-wrap gap-2"><PlatformBadge platform={entry.platform} /><DifficultyBadge difficulty={problem?.difficulty ?? entry.difficulty} platform={entry.platform} /><Badge variant="secondary">{entry.points} 分</Badge></div></div><div className="flex shrink-0 gap-2">{problem?.statementMd && <CopyProblemButton platform={entry.platform} index={problem.index} title={problem.title} titleZh={problem.titleZh} url={problem.url} timeLimitMs={problem.timeLimitMs} memoryLimitMb={problem.memoryLimitMb} statementMd={problem.statementMd} statementZhMd={problem.statementZhMd ?? null} samples={problem.samples ?? []} />}<Button asChild size="sm"><a href={url} target="_blank" rel="noreferrer">原题<ExternalLink className="size-3.5" /></a></Button></div></div><div className="mt-3"><ProblemSwitcher contest={contestContext} current={current} /></div></CardHeader>
         <CardContent>{result.key === entryKey && result.status === 'error' ? <p className="text-muted-foreground text-sm">{result.message} 可通过右上角原题链接查看。</p> : !problem ? <p className="text-muted-foreground text-sm">正在加载题面…</p> : problem.statementMd || problem.statementPdf ? <ProblemStatementViewer platform={entry.platform} code={problem.id} segments={segments} title={problem.title} titleZh={problem.titleZh} zhModel={problem.translateModel} hasPdf={Boolean(problem.statementPdf)} hasText={Boolean(problem.statementMd)} pdfUrl={problem.statementPdf} /> : <p className="text-muted-foreground text-sm">题面尚未拉取成功，可通过原题链接查看。</p>}</CardContent>
       </Card>
       {problem?.statementMd && <SamplesSection platform={entry.platform} samples={problem.samples} />}

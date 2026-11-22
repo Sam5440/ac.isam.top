@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { clockSnapshot, decodeSimShare, exportSimContests, formatElapsed, importSimContests, newSimContest, parseSimProblemList, readSimContests, reconcileSimProblems, resolveSimProblems, SIM_STORE_EVENT, SIM_STORE_KEY, simContestHref, writeSimContests } from '@/lib/sim-contest.mjs';
+import { clockSnapshot, decodeSimShare, exportSimContests, formatElapsed, importSimContests, newSimContest, parseSimProblemList, readSimContests, reconcileSimProblems, resolveSimProblems, SIM_STORE_EVENT, SIM_STORE_KEY, simContestHref, simProblemLabel, writeSimContests } from '@/lib/sim-contest.mjs';
 import { formatDateTime } from '@/lib/utils';
 
 const PLATFORM_NAME = { atcoder: 'AtCoder', codeforces: 'Codeforces', 'cf-gyms': 'Gym', nowcoder: '牛客' };
@@ -72,7 +72,7 @@ function ContestEditor({ initial, onCancel, onSaved }) {
       <textarea aria-label="题目列表" disabled={!!contest.runningSince} value={text} onChange={(e) => setText(e.target.value)} spellCheck="false" placeholder={'Codeforces | 1519B | 1 | 道路是曲折的\nAtCoder | abc034_b | 1 |'} className="bg-muted/35 min-h-56 w-full resize-y rounded-lg border px-3 py-3 font-mono text-xs leading-6 outline-none focus:border-primary/60 disabled:opacity-60" />
       {parsed.errors.length > 0 && <ul className="space-y-1 text-xs text-destructive">{parsed.errors.slice(0, 12).map((error) => <li key={error.line}>第 {error.line} 行：{error.message}</li>)}</ul>}
       {message && <p role="status" className="text-muted-foreground text-sm">{message}</p>}
-      {contest.problems.length > 0 && checkedText === text && <div className="divide-y rounded-lg border" aria-label="已核验题目">{contest.problems.map((p, index) => <div key={p.key} className="flex flex-wrap items-center gap-2 px-3 py-2 text-sm"><span className="text-muted-foreground w-7 font-mono">{index + 1}</span><span className="min-w-0 flex-1">{p.alias || p.titleZh || p.title || p.id}<span className="text-muted-foreground ml-2 text-xs">{PLATFORM_NAME[p.platform]} {p.id}</span></span>{p.found === false && <a href={p.originalUrl} target="_blank" rel="noreferrer" className="text-amber-600 text-xs">本站未收录 · 原题链接</a>}</div>)}</div>}
+      {contest.problems.length > 0 && checkedText === text && <div className="divide-y rounded-lg border" aria-label="已核验题目">{contest.problems.map((p, index) => <div key={p.key} className="flex flex-wrap items-center gap-2 px-3 py-2 text-sm"><span className="text-muted-foreground min-w-9 shrink-0 font-mono">{simProblemLabel(index)}</span><span className="min-w-0 flex-1">{p.alias || p.titleZh || p.title || p.id}<span className="text-muted-foreground ml-2 text-xs">{PLATFORM_NAME[p.platform]} {p.id}</span></span>{p.found === false && <a href={p.originalUrl} target="_blank" rel="noreferrer" className="text-amber-600 text-xs">本站未收录 · 原题链接</a>}</div>)}</div>}
     </CardContent></Card>
     <div className="flex flex-wrap gap-2"><Button onClick={save} disabled={checking || checkedText !== text || !contest.problems.length}>保存并进入比赛</Button><Button variant="outline" onClick={onCancel}>取消</Button></div>
   </div>;

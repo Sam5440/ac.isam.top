@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { clockSnapshot, decodeSimShare, encodeSimShare, exportSimContests, formatElapsed, importSimContests, originalProblemUrl, parseSimProblemList, reconcileSimProblems, withSimProblemKeys } from '../lib/sim-contest.mjs';
+import { clockSnapshot, decodeSimShare, encodeSimShare, exportSimContests, formatElapsed, importSimContests, normalizeSimSort, orderSimProblems, originalProblemUrl, parseSimProblemList, reconcileSimProblems, simProblemLabel, simProblemLetter, withSimProblemKeys } from '../lib/sim-contest.mjs';
 
 test('暂停不计时，恢复后从已用预算继续；休眠越过截止时间只结算剩余预算', () => {
   const paused = { minutes: 1, elapsedMs: 40000, activeProblem: 'A', problemTimes: { A: 15000 }, runningSince: null, activeProblemSince: null };
@@ -76,6 +76,48 @@ test('兼容模式：标准 Base64（+/、填充）与旧百分号链接都能�
   const legacy = encodeSimShare(contest, true);
   assert.equal(decodeSimShare(legacy).shareMode, 'url');
   assert.equal(decodeSimShare(encodeURIComponent(legacy)).problems[0].id, 'abc034_b');
+});
+
+test('模拟赛题目标签：1A、2B…、Z 之后按 Excel 列名进位', () => {
+  assert.equal(simProblemLetter(0), 'A');
+  assert.equal(simProblemLabel(0), '1A');
+  assert.equal(simProblemLabel(1), '2B');
+  assert.equal(simProblemLabel(25), '26Z');
+  assert.equal(simProblemLabel(26), '27AA');
+  assert.equal(simProblemLabel(51), '52AZ');
+  assert.equal(simProblemLabel(-3), '1A');
+  assert.equal(simProblemLabel(undefined), '1A');
+});
+
+test('题单排序：按原比赛时间/难度正反序，缺值恒排最后且同值保持题单顺序', () => {
+  const problems = [
+    { id: 'p1', startTime: '2024-01-02T00:00:00Z', difficulty: 1600 },
+    { id: 'p2', startTime: '2024-01-01T00:00:00Z', difficulty: 800 },
+    { id: 'p3', startTime: null, difficulty: null },
+    { id: 'p4', startTime: '2024-01-01T00:00:00Z', difficulty: 1200 },
+  ];
+  const ids = (sort) => orderSimProblems(problems, sort).map((x) => x.problem.id);
+  assert.deepEqual(ids({ by: 'original' }), ['p1', 'p2', 'p3', 'p4']);
+  assert.deepEqual(ids({ by: 'time', dir: 'asc' }), ['p2', 'p4', 'p1', 'p3']);
+  assert.deepEqual(ids({ by: 'time', dir: 'desc' }), ['p1', 'p2', 'p4', 'p3']);
+  assert.deepEqual(ids({ by: 'difficulty', dir: 'asc' }), ['p2', 'p4', 'p1', 'p3']);
+  assert.deepEqual(ids({ by: 'difficulty', dir: 'desc' }), ['p1', 'p4', 'p2', 'p3']);
+  assert.deepEqual(ids({ by: 'unsupported' }), ['p1', 'p2', 'p3', 'p4']);
+  // sourceIndex 保留题单原始下标，排序不会改变题目链接/计时键
+  assert.deepEqual(orderSimProblems(problems, { by: 'difficulty', dir: 'desc' }).map((x) => x.sourceIndex), [0, 3, 1, 2]);
+});
+
+test('排序口径归一化：未知字段回落原始顺序，原始顺序不保留反序', () => {
+  assert.deepEqual(normalizeSimSort(undefined), { by: 'original', dir: 'asc' });
+  assert.deepEqual(normalizeSimSort({ by: 'time', dir: 'desc' }), { by: 'time', dir: 'desc' });
+  assert.deepEqual(normalizeSimSort({ by: 'difficulty', dir: 'sideways' }), { by: 'difficulty', dir: 'asc' });
+  assert.deepEqual(normalizeSimSort({ by: 'original', dir: 'desc' }), { by: 'original', dir: 'asc' });
+});
+
+test('分享链接携带排序口径，旧链接缺省为原始顺序', () => {
+  const contest = { name: '排序分享', problems: [{ platform: 'codeforces', id: '1519B', points: 1 }], sort: { by: 'difficulty', dir: 'desc' } };
+  assert.deepEqual(decodeSimShare(encodeSimShare(contest)).sort, { by: 'difficulty', dir: 'desc' });
+  assert.deepEqual(decodeSimShare(encodeSimShare({ ...contest, sort: { by: 'original', dir: 'asc' } })).sort, { by: 'original', dir: 'asc' });
 });
 
 test('不存在题目时生成对应平台的官方原题或比赛链接', () => {

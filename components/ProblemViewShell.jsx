@@ -63,7 +63,7 @@ export function ProblemTopBar({ contest, current }) {
             }`}
           >
             <span
-              className={`grid size-6 shrink-0 place-items-center rounded-md font-mono text-xs font-bold ${
+              className={`inline-flex h-6 min-w-6 shrink-0 items-center justify-center rounded-md px-1 font-mono text-xs font-bold ${
                 active ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
               }`}
             >
@@ -108,7 +108,7 @@ export function ProblemLetterRail({ contest, current }) {
             key={p.navKey ?? p.id}
             href={problemHref(current.platform, p)}
             title={`${p.index}. ${p.titleZh || p.title}`}
-            className={`grid size-7 shrink-0 place-items-center rounded-md border font-mono text-xs font-bold transition-colors ${
+            className={`inline-flex h-7 min-w-7 shrink-0 items-center justify-center rounded-md border px-1 font-mono text-xs font-bold transition-colors ${
               active
                 ? 'border-primary bg-primary text-primary-foreground'
                 : 'border-transparent text-muted-foreground hover:bg-accent hover:text-foreground'

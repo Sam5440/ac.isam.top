@@ -127,25 +127,28 @@ export default function HistoryList() {
           <option value="fail">未通过</option>
           <option value="none">未测</option>
         </select>
-        <div className="relative min-w-0 flex-1 sm:max-w-xs">
-          <Search className="text-muted-foreground absolute left-2.5 top-1/2 size-4 -translate-y-1/2" />
-          <Input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="搜索标题 / 题号"
-            className="pl-8"
-          />
+        {/* 搜索 + 清空在窄屏独占一行，避免搜索框被两个下拉框挤成一条缝 */}
+        <div className="flex w-full min-w-0 items-center gap-2 sm:w-auto sm:flex-1 sm:max-w-md">
+          <div className="relative min-w-0 flex-1">
+            <Search className="text-muted-foreground absolute left-2.5 top-1/2 size-4 -translate-y-1/2" />
+            <Input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="搜索标题 / 题号"
+              className="pl-8"
+            />
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={doClear}
+            disabled={clearing || !records?.length}
+            className="text-destructive hover:text-destructive shrink-0"
+          >
+            <Trash2 className="size-4" />
+            清空历史
+          </Button>
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={doClear}
-          disabled={clearing || !records?.length}
-          className="text-destructive hover:text-destructive"
-        >
-          <Trash2 className="size-4" />
-          清空历史
-        </Button>
       </div>
 
       {/* 加载骨架 */}
@@ -171,43 +174,53 @@ export default function HistoryList() {
         </div>
       ) : (
         <div className="overflow-hidden rounded-lg border">
-          <table className="w-full text-sm">
+          {/* table-fixed + 明确列宽：题目列吃掉剩余宽度，标题才能真正 truncate；
+              auto 布局下 max-w-0 会让标题被压成 0 宽、平台题号溢出到日期列（错位）。 */}
+          <table className="w-full table-fixed text-sm">
             <thead className="bg-muted/50 text-muted-foreground text-xs">
               <tr>
                 <th className="px-3 py-2 text-left font-medium">题目</th>
-                <th className="hidden px-3 py-2 text-left font-medium md:table-cell">首次访问</th>
-                <th className="hidden px-3 py-2 text-left font-medium md:table-cell">最近访问</th>
-                <th className="px-3 py-2 text-right font-medium">停留</th>
-                <th className="px-3 py-2 text-center font-medium">判题</th>
+                <th className="hidden w-[9.5rem] px-3 py-2 text-left font-medium md:table-cell">首次访问</th>
+                <th className="hidden w-[9.5rem] px-3 py-2 text-left font-medium md:table-cell">最近访问</th>
+                <th className="w-[4.5rem] px-3 py-2 text-right font-medium">停留</th>
+                <th className="w-[5rem] px-3 py-2 text-center font-medium">判题</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((r) => {
                 const label = platformOf(r.platform)?.label ?? r.platform;
+                const name = r.titleZh || r.title || r.problemId;
                 return (
                   <tr key={`${r.platform}:${r.problemId}`} className="border-t">
-                    <td className="max-w-0 px-3 py-2.5">
-                      <div className="flex items-center gap-2">
+                    <td className="min-w-0 px-3 py-2.5">
+                      <div className="flex min-w-0 items-center gap-2">
                         <span
                           className={`hidden size-1.5 shrink-0 rounded-full sm:inline ${
                             platformOf(r.platform)?.dot ?? 'bg-muted-foreground'
                           }`}
                           title={label}
                         />
-                        <Link
-                          href={`/problems/${r.platform}/${encodeURIComponent(String(r.problemId))}`}
-                          className="truncate font-medium underline-offset-4 hover:underline"
-                        >
-                          {r.titleZh || r.title || r.problemId}
-                        </Link>
-                        <span className="text-muted-foreground shrink-0 font-mono text-xs">
-                          {label} · {r.problemId}
-                        </span>
-                      </div>
-                      {/* 窄屏补充信息（表格列隐藏时） */}
-                      <div className="text-muted-foreground mt-1 flex flex-wrap gap-x-3 text-xs md:hidden">
-                        <span>首次 {formatDateTime(r.firstSeen)}</span>
-                        <span>最近 {formatDateTime(r.lastSeen)}</span>
+                        <div className="min-w-0 flex-1">
+                          <Link
+                            href={`/problems/${r.platform}/${encodeURIComponent(String(r.problemId))}`}
+                            title={name}
+                            className="block truncate font-medium underline-offset-4 hover:underline"
+                          >
+                            {name}
+                          </Link>
+                          <div className="text-muted-foreground mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs">
+                            <span className="max-w-full truncate font-mono">
+                              {label} · {r.problemId}
+                            </span>
+                            {/* 窄屏补充信息（表格日期列隐藏时） */}
+                            <span className="whitespace-nowrap md:hidden">
+                              首次 {formatDateTime(r.firstSeen)}
+                            </span>
+                            <span className="whitespace-nowrap md:hidden">
+                              最近 {formatDateTime(r.lastSeen)}
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </td>
                     <td className="text-muted-foreground hidden whitespace-nowrap px-3 py-2.5 md:table-cell">

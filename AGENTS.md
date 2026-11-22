@@ -152,6 +152,12 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 和重复出现次数生成状态键，题面导航则用题单序号区分重复题。暂停后修改题单时，
 `reconcileSimProblems` 按原题、别名和分值迁移状态；导入同 ID 的比赛生成新 ID，
 导出运行中的比赛按导出时刻结算并暂停。右侧平均评级只计算有数值评级的题目。
+题目显示标签为「位置编号 + Excel 列名式字母」（1A、2B…、27AA），由 `simProblemLabel`
+生成；排序（`sort: { by: 'original'|'time'|'difficulty', dir: 'asc'|'desc' }`）保存
+在比赛定义里并随分享链接携带，`orderSimProblems` 返回 `{ problem, sourceIndex }`——
+`sourceIndex` 始终是题单原始下标，题目链接/计时键/编译器草稿都不随排序改变；缺少
+原比赛时间或难度评级的题恒排最后。`/api/simulator/problems` 返回 `startTime`
+（该路由的 `outputFileTracingIncludes` 必须包含 `./data/*/contests.json`）。
 模拟赛编译器按题单序号选题，草稿与自定义样例按 `platform:id` 存储。端到端回归为
 `node e2e/simulator-flow.js`（可设 `BASE_URL`），纯逻辑测试在 `test/sim-contest.test.mjs`。
 
@@ -512,6 +518,13 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
     `table.infos` 解析并换算偏移，官方 `contest.list` 的 `startTimeSeconds` 有值时必须覆盖
     旧值；无权威时间的隐藏 gym 留 `null`，按 id 排在有时间的比赛之后。纯函数与回归测试在
     `lib/cf-gym-time.mjs` / `test/cf-gym-time.test.mjs`。
+23. **表格里 `max-w-0` + `truncate` 会把标题压成 0 宽并让相邻列文字互相覆盖**（2026-11-22，
+    `/history` 错位）：auto 表格布局不会按 `max-w-0` 收缩内容，flex 项又会把可收缩的
+    `truncate` 标题压到零宽，于是平台题号溢出到「首次访问」列。表格改用 `table-fixed`
+    并在首个 `th` 上写明确列宽（日期列 `w-[9.5rem]`、停留 `w-[4.5rem]`、判题 `w-[5rem]`），
+    标题容器加 `min-w-0 flex-1`；移动端搜索框与清空按钮单独成行（`w-full sm:w-auto`），
+    避免搜索框被两个下拉框挤成一条缝。改动列表类页面后用 Playwright 在 320/390/768/1440px
+    量一遍 `scrollWidth === viewport` 与首行单元格宽度。
 
 ## 7. 常见任务手册
 
