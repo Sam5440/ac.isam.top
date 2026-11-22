@@ -1,0 +1,30 @@
+{
+  "id": "106523i",
+  "platform": "cf-gyms",
+  "contestId": 106523,
+  "index": "I",
+  "title": "Inventing Communications",
+  "titleZh": "发明通信方式",
+  "url": "https://codeforces.com/gym/106523/problem/I",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 512,
+  "statementMd": "Iasmim, Pedro, and Emerson are preparing to present their own encryption method to the *International Committee for Poor Communication* (ICPC), the leading organization that studies poor communication methods that \"work\".\n\nThey have developed a unique and innovative method for transmitting messages. Since the idea is to create a bad communication method, they send an encrypted sequence of numbers. To decrypt and find the original message, one must find the lexicographically smallest non-empty subsequence of the vector $V$ such that its hash is strictly less than the hash of its complement. If a subsequence (of size $k$) consists of the positions $p_0, p_1, \\ldots , p_{k-1}$, its complement is the subsequence composed of all the positions in the vector that are not any of these $k$ positions.\n\nWe say that a sequence $A$ is lexicographically smaller than a sequence $B$ if, at the first position where they diverge, the element of $A$ is smaller than the element of $B$. If the sequences are identical until the shorter one ends, the sequence of shorter length is considered the lexicographically smaller one.\n\nThe hash calculation used by the trio follows a polynomial hash structure. Given a subsequence (or its complement) composed of the numbers $x_0, x_1, \\ldots , x_{k-1}$ in the order in which they appear in the vector $V$, the hash value $H$ is calculated using the following formula:\n\n$$H = (x_0 \\cdot P^N + x_1 \\cdot P^{N-1} + \\ldots + x_{k-1} \\cdot P^{N-k+1}) \\% M$$\n\nWhere:\n\n- $x_i$ is the value of the $i$-th element of the subsequence;\n- $P = 100019$ is the polynomial base;\n- $N$ is the total length of the vector $V$;\n- $M = 998244353$ is the modulus;\n- The index $i$ (from $0$ to $k-1$) represents the position of the number within the chosen subsequence.\n- By convention, the hash of an empty sequence ($k=0$) is defined as $0$.\n\nYou will be given the vector $V$ and must recover the subsequence that represents the message communicated by Iasmim, Pedro, and Emerson.\n\n## Input\n\nThe first line of the input contains a single integer $N$ $(1 \\leq N \\leq 10^6)$, the size of the vector $V$.\n\nThe second line of the input contains $N$ integers $V_i$: the elements of the vector $V$ $(1 \\leq V_i \\leq 10^5)$.\n\n**It is guaranteed that both $N$ and the vector $V$ are generated randomly for all hidden test cases.**\n\n## Output\n\nPrint, on a single line, the lexicographically smallest non-empty subsequence $A$ of the vector $V$ such that $H(A)  \\lt  H(A^c)$, where $A^c$ is the complement of $A$ in $V$. If no subsequence satisfies this condition, print $-1$ instead.\n\nNote that the values of the subsequence must be printed, and not its positions. If two or more lexicographically equal subsequences occur in the vector in different positions such that they all satisfy the condition, you must print the values only once.\n\n## Note\n\nIt is guaranteed that the visible test cases are the only test cases generated without randomizing the size $N$ and the vector $V$.\n\nIn the first example test case, the lexicographically smallest subsequence of the vector is $[14575]$ and its hash is $405057492$. Its complement is the subsequence $[60522, 36426, 79445, 48772]$, which has a hash of $980706017$. As the lexicographically smallest subsequence already satisfies the condition, it should be printed.",
+  "statementZhMd": "Iasmim、Pedro 和 Emerson 正准备向*国际不良通信委员会*（ICPC）展示他们自己设计的加密方法。该委员会是研究那些能够\"奏效\"的不良通信方法的权威组织。\n\n他们开发了一种独特且富有创新性的消息传输方法。既然目标是创造一种糟糕的通信方法，他们便发送一个加密的数字序列。要解密并得到原始消息，就必须找到向量 $V$ 中字典序最小的非空子序列，使得它的哈希值严格小于其补序列的哈希值。如果一个子序列（长度为 $k$）由位置 $p_0, p_1, \\ldots , p_{k-1}$ 组成，那么它的补序列就是由向量中除这 $k$ 个位置之外的所有位置组成的子序列。\n\n如果在序列 $A$ 和序列 $B$ 第一个不同的位置上，$A$ 的元素小于 $B$ 的元素，就称 $A$ 的字典序小于 $B$。如果两个序列在较短序列结束之前完全相同，则认为长度较短的序列字典序更小。\n\n三人采用多项式哈希来计算哈希值。给定一个子序列（或其补序列），其中的数字按其在向量 $V$ 中出现的顺序依次为 $x_0, x_1, \\ldots , x_{k-1}$，其哈希值 $H$ 按以下公式计算：\n\n$$H = (x_0 \\cdot P^N + x_1 \\cdot P^{N-1} + \\ldots + x_{k-1} \\cdot P^{N-k+1}) \\% M$$\n\n其中：\n\n- $x_i$ 是子序列中第 $i$ 个元素的值；\n- $P = 100019$ 是多项式的底数；\n- $N$ 是向量 $V$ 的总长度；\n- $M = 998244353$ 是模数；\n- 下标 $i$（从 $0$ 到 $k-1$）表示该数字在所选子序列中的位置。\n- 约定空序列（$k=0$）的哈希值为 $0$。\n\n给定向量 $V$，你需要还原出表示 Iasmim、Pedro 和 Emerson 所传递消息的子序列。\n\n## 输入格式\n\n输入的第一行包含一个整数 $N$ $(1 \\leq N \\leq 10^6)$，表示向量 $V$ 的长度。\n\n输入的第二行包含 $N$ 个整数 $V_i$，表示向量 $V$ 的元素 $(1 \\leq V_i \\leq 10^5)$。\n\n**保证所有隐藏测试用例中的 $N$ 和向量 $V$ 均为随机生成。**\n\n## 输出格式\n\n在一行中输出向量 $V$ 中字典序最小的非空子序列 $A$，使得 $H(A)  \\lt  H(A^c)$，其中 $A^c$ 是 $A$ 在 $V$ 中的补序列。如果不存在满足条件的子序列，则输出 $-1$。\n\n注意，应输出子序列的元素值，而非其位置。如果向量中不同位置出现了两个或更多字典序相同的子序列，且它们都满足条件，则只需输出一次这些元素值。\n\n## 说明\n\n保证公开测试用例是仅有的未随机生成长度 $N$ 和向量 $V$ 的测试用例。\n\n在第一个样例中，向量中字典序最小的子序列为 $[14575]$，其哈希值为 $405057492$。它的补序列为 $[60522, 36426, 79445, 48772]$，哈希值为 $980706017$。由于字典序最小的子序列已经满足条件，因此应输出该子序列。",
+  "samples": [
+    {
+      "input": "5\n60522 14575 36426 79445 48772\n",
+      "output": "14575\n"
+    },
+    {
+      "input": "5\n90081 33447 90629 3497 47202\n",
+      "output": "3497\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-22T16:36:43.956Z",
+  "translatedAt": "2026-11-22T16:38:11.688Z",
+  "translateModel": "gpt-6.1-sol"
+}

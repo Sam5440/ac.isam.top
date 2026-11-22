@@ -1,0 +1,34 @@
+{
+  "id": "106523d",
+  "platform": "cf-gyms",
+  "contestId": 106523,
+  "index": "D",
+  "title": "Dominating Shurikens",
+  "titleZh": "支配手里剑",
+  "url": "https://codeforces.com/gym/106523/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 512,
+  "statementMd": "In the Hidden Village of Balloons, those who seek to improve their skills are always close to the training field. The field area is vast, with a section containing $N$ logs lined up, all $N$ meters tall, numbered from $1$ to $N$. To use them as a kind of scale, each log numbered $i$ was marked exactly every $i$ meters (up to $N$). For example: if $N = 3$, log $1$ has marks at $1$, $2$, and $3$ meters, log $2$ has a mark at $2$ meters, and log $3$ has a mark at $3$ meters.\n\nAmong the ninjas in the training field on a certain day was Lucas Sala — a shuriken specialist, capable of throwing more than one billion shurikens simultaneously! He was seeking to perfect his Wind Style: Multiple Aerial Shurikens jutsu, which can hit several opponents with a large number of shurikens. To do this, he was using the logs in the training field as follows: he chose two integers $l$ and $r$, with $1 \\leq l \\leq r \\leq N$, and threw $x$ shurikens at each of the logs from $l$ to $r$ inclusive — hitting them all, of course.\n\nHowever, Lucas Sala's feat was not enough to impress his sensei, José. So he proposed a challenge for his student: José chose integers $l$, $r$, and $k$ $(1 \\leq l, r, k \\leq N)$, and, among the logs from $l$ to $r$, Lucas Sala should throw $x$ shurikens only at those with exactly $k$ marks. This challenge was performed several times, with different values of $l$, $r$, and $k$. However, José was not able to keep track of all the shurikens thrown to verify Lucas Sala's aim, so he stopped at some moments between challenges to choose other integers $l$ and $r$ and count the number of shurikens hit on each log from $l$ to $r$.\n\nThus, being very careful, José wrote down in his scroll two types of events related to that day's training, in the order they occurred:\n\n1. $l \\ r$: José counts the total number of shurikens hit on all logs from $l$ to $r$.\n2. $l \\ r \\ k \\ x$: Lucas Sala hits $x$ shurikens on every log $i$ such that $l \\leq i \\leq r$ and log $i$ has exactly $k$ marks.\n\nThat day was many years ago, and José remembers that time fondly. Looking at his scroll, he realizes that he did not write down, for the type $1$ events, the total number of shurikens he counted, which is a pity. Help him relive the old days and recover that information for him!\n\nSince each counted quantity can be very large, you must print the remainder of each one when divided by $10^9+7$.\n\n## Input\n\nThe first line contains two numbers: $N$ $(1 \\leq N \\leq 10^{12})$, the number of logs and also the height of each one of them, in meters, and $Q$ $(1 \\leq Q \\leq 10^{5})$, the number of events that occurred during the training.\n\nEach of the next $Q$ lines contains an event, in one of the following formats:\n\n- $1 \\ l \\ r$ $(1 \\leq l \\leq r \\leq N)$, representing an event in which José counted shurikens.\n- $2 \\ l \\ r \\ k \\ x$ $(1 \\leq l \\leq r \\leq N, 1 \\leq k \\leq N, 0 \\leq x  \\lt  10^9 + 7)$, representing an event in which Lucas Sala threw shurikens.\n\n## Output\n\nThe output must consist of one line for each event of the first type, each containing a single number $x$ $(0 \\leq x  \\lt  10^9+7)$: the remainder, upon division by $10^9+7$, of the number of shurikens counted by José in the respective event.",
+  "statementZhMd": "<statement>\n在气球隐村，想要提升技艺的人总是在训练场附近。训练场面积辽阔，其中一片区域排列着 $N$ 根木桩，编号从 $1$ 到 $N$，高度均为 $N$ 米。为了将它们当作刻度尺使用，编号为 $i$ 的木桩每隔恰好 $i$ 米就有一个标记，一直到 $N$ 米处为止。例如：如果 $N = 3$，木桩 $1$ 在 $1$、$2$ 和 $3$ 米处有标记，木桩 $2$ 在 $2$ 米处有标记，木桩 $3$ 在 $3$ 米处有标记。\n\n某一天，训练场上的忍者中有 Lucas Sala——一位手里剑专家，能够同时投掷超过十亿枚手里剑！他正试图完善自己的风遁·多重空中手里剑之术，这种忍术可以用大量手里剑击中多个对手。为此，他使用训练场上的木桩进行训练：他选择两个整数 $l$ 和 $r$，满足 $1 \\leq l \\leq r \\leq N$，然后向从 $l$ 到 $r$ 的每根木桩各投掷 $x$ 枚手里剑——当然，全部命中。\n\n然而，Lucas Sala 的壮举并不足以让他的老师 José 印象深刻。于是，José 向他的学生提出了一项挑战：José 选择整数 $l$、$r$ 和 $k$ $(1 \\leq l, r, k \\leq N)$，Lucas Sala 需要在从 $l$ 到 $r$ 的木桩中，只向恰好有 $k$ 个标记的木桩各投掷 $x$ 枚手里剑。他们使用不同的 $l$、$r$ 和 $k$ 值进行了多次挑战。然而，José 无法记住投出的所有手里剑，也就无法验证 Lucas Sala 的准头，因此他在一些挑战之间停下来，另外选择整数 $l$ 和 $r$，统计从 $l$ 到 $r$ 的每根木桩上命中的手里剑数量。\n\n于是，细心的 José 在卷轴上按照发生顺序记录了当天训练中的两类事件：\n\n1. $l \\ r$：José 统计从 $l$ 到 $r$ 的所有木桩上命中的手里剑总数。\n2. $l \\ r \\ k \\ x$：Lucas Sala 向每根满足 $l \\leq i \\leq r$ 且恰好有 $k$ 个标记的木桩 $i$ 各投掷 $x$ 枚手里剑，并全部命中。\n\n那一天已经是许多年前的事了，José 怀念着那段时光。看着自己的卷轴，他意识到，对于第 $1$ 类事件，他没有记下统计出的手里剑总数，这让他感到十分遗憾。请帮助他重温旧时光，为他找回这些信息！\n\n由于每次统计的数量可能非常大，你需要输出每个数量除以 $10^9+7$ 的余数。\n\n## 输入格式\n\n第一行包含两个数：$N$ $(1 \\leq N \\leq 10^{12})$，表示木桩的数量，也是每根木桩的高度，单位为米；以及 $Q$ $(1 \\leq Q \\leq 10^{5})$，表示训练期间发生的事件数量。\n\n接下来的 $Q$ 行，每行包含一个事件，格式为以下两种之一：\n\n- $1 \\ l \\ r$ $(1 \\leq l \\leq r \\leq N)$，表示 José 统计手里剑的事件。\n- $2 \\ l \\ r \\ k \\ x$ $(1 \\leq l \\leq r \\leq N, 1 \\leq k \\leq N, 0 \\leq x  \\lt  10^9 + 7)$，表示 Lucas Sala 投掷手里剑的事件。\n\n## 输出格式\n\n对于每个第一类事件，输出一行，每行包含一个数 $x$ $(0 \\leq x  \\lt  10^9+7)$，表示 José 在对应事件中统计的手里剑数量除以 $10^9+7$ 的余数。\n</statement>",
+  "samples": [
+    {
+      "input": "5 4\n2 1 5 1 10\n2 2 4 2 5\n1 1 5\n1 2 3\n",
+      "output": "35\n15\n"
+    },
+    {
+      "input": "10 7\n2 1 10 2 1000000000\n2 1 10 2 1000000000\n1 4 5\n2 1 7 1 50\n1 6 8\n2 8 10 5 100\n1 2 2\n",
+      "output": "999999979\n100\n0\n"
+    },
+    {
+      "input": "1000000000000 2\n2 1 1000000000000 2 5\n1 400000000000 600000000000\n",
+      "output": "999996512\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-22T16:36:02.538Z",
+  "translatedAt": "2026-11-22T16:38:01.687Z",
+  "translateModel": "gpt-6.1-sol"
+}

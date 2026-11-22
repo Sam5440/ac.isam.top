@@ -1,0 +1,36 @@
+{
+  "id": "arc234_b",
+  "platform": "atcoder",
+  "contestId": "arc234",
+  "index": "B",
+  "title": "Three Vertices",
+  "titleZh": "三个顶点",
+  "url": "https://atcoder.jp/contests/arc234/tasks/arc234_b",
+  "difficulty": null,
+  "tags": [],
+  "points": 800,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "## Problem Statement\n\nYou are given a connected simple undirected graph with $N$ vertices and $M$ edges. The vertices are numbered from $1$ to $N$, and the $i$-th edge connects vertices $u_i$ and $v_i$.\n\nEach vertex is painted white or black. The initial state is represented by a string $S$ of length $N$: vertex $i$ is white if $S_i$ is `0`, and black if it is `1`.\n\nA coloring is **good** if all vertices can be made white by performing the following operation any number of times, possibly zero.\n\n- Choose three distinct vertices $a,b,c$ such that $a$ and $b$ are connected by an edge and $b$ and $c$ are connected by an edge, and flip the color of each of these three vertices. That is, a white vertex becomes black, and a black vertex becomes white.\n\nHere, vertices $a$ and $c$ may also be connected by an edge.\n\nProcess $Q$ queries in the given order. The $i$-th query is as follows.\n\n- Given an integer $x_i$, flip the color of vertex $x_i$. Then, determine whether the resulting coloring is good.\n\nThe color change in each query carries over to subsequent queries.\n\n## Constraints\n\n- $3 \\le N \\le 2 \\times 10^5$\n- $N-1 \\le M \\le 2 \\times 10^5$\n- $1 \\le Q \\le 2 \\times 10^5$\n- $S$ is a string of length $N$ consisting of `0` and `1`.\n- $1 \\le u_i,v_i \\le N$\n- $1 \\le x_i \\le N$\n- The given graph is a connected simple undirected graph.\n- All input numbers are integers.\n\n## Input\n\nThe input is given from Standard Input in the following format:\n\n$N$ $M$ $Q$\\\n$S$\\\n$u_1$ $v_1$\\\n$u_2$ $v_2$\\\n$\\vdots$\\\n$u_M$ $v_M$\\\n$x_1$\\\n$x_2$\\\n$\\vdots$\\\n$x_Q$\n\n## Output\n\nOutput $Q$ lines. On the $i$-th line, print `Yes` if the coloring after processing the $i$-th query is good, and `No` otherwise.",
+  "statementZhMd": "## 题目描述\n\n给定一个有 $N$ 个顶点、$M$ 条边的连通简单无向图。顶点编号为 $1$ 到 $N$，第 $i$ 条边连接顶点 $u_i$ 和 $v_i$。\n\n每个顶点都被染成白色或黑色。初始状态由一个长度为 $N$ 的字符串 $S$ 表示：若 $S_i$ 为 `0`，则顶点 $i$ 为白色；若为 `1`，则为黑色。\n\n如果可以通过执行任意次（可以为零次）以下操作，使所有顶点都变为白色，则称这种染色是**好的**。\n\n- 选择三个互不相同的顶点 $a,b,c$，满足 $a$ 与 $b$ 之间有边相连，且 $b$ 与 $c$ 之间有边相连，然后翻转这三个顶点各自的颜色。也就是说，白色顶点变为黑色，黑色顶点变为白色。\n\n这里，顶点 $a$ 与 $c$ 之间也可以有边相连。\n\n按给定顺序处理 $Q$ 次询问。第 $i$ 次询问如下。\n\n- 给定一个整数 $x_i$，翻转顶点 $x_i$ 的颜色。然后判断得到的染色是否是好的。\n\n每次询问中的颜色变化都会保留到后续询问中。\n\n## 约束条件\n\n- $3 \\le N \\le 2 \\times 10^5$\n- $N-1 \\le M \\le 2 \\times 10^5$\n- $1 \\le Q \\le 2 \\times 10^5$\n- $S$ 是一个长度为 $N$、由 `0` 和 `1` 组成的字符串。\n- $1 \\le u_i,v_i \\le N$\n- $1 \\le x_i \\le N$\n- 给定的图是连通简单无向图。\n- 输入中的所有数值均为整数。\n\n## 输入格式\n\n输入通过标准输入以如下格式给出：\n\n$N$ $M$ $Q$\\\n$S$\\\n$u_1$ $v_1$\\\n$u_2$ $v_2$\\\n$\\vdots$\\\n$u_M$ $v_M$\\\n$x_1$\\\n$x_2$\\\n$\\vdots$\\\n$x_Q$\n\n## 输出格式\n\n输出 $Q$ 行。在第 $i$ 行，如果处理完第 $i$ 次询问后的染色是好的，则输出 `Yes`，否则输出 `No`。",
+  "samples": [
+    {
+      "input": "3 3 5\n100\n1 2\n2 3\n3 1\n1\n1\n2\n3\n2\n",
+      "output": "Yes\nNo\nNo\nYes\nNo\n",
+      "note": "The colorings immediately after each query are `000`, `100`, `110`, `111`, and `101`, in that order. Every operation on this graph flips all three vertices, so the coloring is good exactly when all three vertices have the same color. The answers to the first and fourth queries are therefore `Yes`.",
+      "noteZh": "每次询问后，染色依次为 `000`、`100`、`110`、`111` 和 `101`。在这张图上，每次操作都会翻转全部三个顶点的颜色，因此，当且仅当三个顶点的颜色相同时，该染色是好的。因此，第 1 次和第 4 次询问的答案为 `Yes`。"
+    },
+    {
+      "input": "4 3 4\n1000\n1 2\n2 3\n3 4\n4\n2\n3\n4\n",
+      "output": "Yes\nNo\nNo\nYes\n",
+      "note": "Flipping the color of vertex $4$ in the first query gives `1001`. Performing the operations with $(a,b,c)=(1,2,3),(2,3,4)$ in this order gives `0111` and then `0000`, so the answer is `Yes`.\n\nThe second query starts from `1001` and flips the color of vertex $2$, giving `1101`.",
+      "noteZh": "在第 1 次询问中，翻转顶点 $4$ 的颜色后得到 `1001`。依次执行 $(a,b,c)=(1,2,3),(2,3,4)$ 对应的操作，会先得到 `0111`，再得到 `0000`，因此答案为 `Yes`。\n\n第 2 次询问从 `1001` 开始，翻转顶点 $2$ 的颜色后得到 `1101`。"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-22T16:24:55.769Z",
+  "translatedAt": "2026-11-22T16:26:07.770Z",
+  "translateModel": "gpt-6.1-sol",
+  "noteTranslatedAt": "2026-11-22T16:26:25.407Z",
+  "noteTranslateModel": "gpt-6.1-sol"
+}
