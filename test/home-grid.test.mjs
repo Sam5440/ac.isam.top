@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { CATALOG, DEFAULT_WIDGETS, createWidget, insertWidget, normalizeHomeConfig, normalizeWidgets, packMasonry, packWidgets, resizeWidget } from '../lib/home-grid.mjs';
 import { DEFAULT_HOME_LAYOUT } from '../lib/home-presets.mjs';
 
-test('旧 HTML（包括空白页）继续启用，新用户默认经典四组件', () => {
+test('旧 HTML（包括空白页）继续启用，新用户默认赛事总览布局', () => {
   for (const html of ['', '<h1>Hi</h1>']) {
     const config = normalizeHomeConfig({ homeLayout: html });
     assert.equal(config.homeLayoutMode, 'html');
@@ -25,7 +25,14 @@ test('重复组件保留各自参数，修复重复 ID，归一化后 ID 稳定'
 
 test('四列中所有新组件默认占两列，旧布局保留宽高并按高度重算条数', () => {
   for (const type of Object.keys(CATALOG)) assert.equal(createWidget(type, 'new').w, 2);
-  assert.deepEqual(packWidgets(DEFAULT_WIDGETS, 4).map(({ row, col }) => [row, col]), [[0, 0], [0, 2], [2, 0], [2, 2]]);
+  assert.deepEqual(packWidgets(DEFAULT_WIDGETS, 4).map(({ row, col }) => [row, col]), [[0, 0], [0, 2], [5, 0], [6, 2], [9, 0]]);
+  assert.deepEqual(DEFAULT_WIDGETS.map(({ type, w, h, params }) => [type, w, h, params.kind]), [
+    ['contests', 2, 5, 'upcoming'],
+    ['contests', 2, 6, 'recent'],
+    ['history', 2, 3, 'practiced'],
+    ['files', 2, 3, undefined],
+    ['stats', 4, 2, undefined],
+  ]);
   const old = createWidget('problems', 'old', { w: 4, h: 6, params: { limit: 10 } });
   assert.equal(old.params.limit, 11);
   assert.deepEqual(normalizeWidgets([old]), [old]);
