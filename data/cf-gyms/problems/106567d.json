@@ -4,7 +4,7 @@
   "contestId": 106567,
   "index": "D",
   "title": "Hidden kk-Tuples",
-  "titleZh": null,
+  "titleZh": "隐藏的 k 元组",
   "url": "https://codeforces.com/gym/106567/problem/D",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 2000,
   "memoryLimitMb": 1024,
   "statementMd": "This is an interactive problem.\n\nThere is a hidden partition of the integers $1, 2, \\ldots, n$ into $\\frac{n}{k}$ disjoint $k$-tuples. It is guaranteed that $k \\mid n$.\n\nYou need to determine all hidden $k$-tuples through queries.\n\nIn each query, you may choose a set $S \\subseteq \\{1, 2, \\ldots, n\\}$, and the interactor will return an integer indicating how many hidden $k$-tuples are **entirely contained** in $S$.\n\nThe number of queries must not exceed $n\\lceil \\log_2 n \\rceil$.\n\n## Input\n\nAt the start of your program, the interactor outputs a line with two integers $n$ and $k$.\n\nHere $2 \\le n \\le 300$, $2 \\le k \\le n$, and $k \\mid n$.\n\nThe hidden partition is stored by the interactor and is not given directly.\n\nAfter each valid query you output, the interactor returns a line with a single integer $r$ — the number of hidden $k$-tuples entirely contained in the set you queried.\n\n## Output\n\nYou may make queries of the following form:\n\n`? c x1x_1 x2x_2 …\\ldots xcx_c`\n\nwhere $0 \\le c \\le n$, and $x_1, x_2, \\ldots, x_c$ must be pairwise distinct integers satisfying $1 \\le x_i \\le n$.\n\nThis query means you choose the set $S=\\{x_1,x_2,\\ldots,x_c\\}$. The interactor returns an integer $r$ — the number of hidden $k$-tuples entirely contained in $S$.\n\nWhen you have determined the answer, output:\n\n`! a1a_1 a2a_2 …\\ldots ana_n`\n\nwhere $a_i$ denotes the tuple number that element $i$ belongs to. The numbering must satisfy $1 \\le a_i \\le \\frac{n}{k}$. Two elements in the same hidden tuple must have the same number; two elements in different hidden tuples must have different numbers. The ordering of tuple numbers is arbitrary.\n\nThe number of queries must not exceed $n\\lceil \\log_2 n \\rceil$. After outputting the final answer, your program should terminate immediately.\n\nNote that after each query or the final answer, you must flush the output buffer. For example, in C++ you can use:\n\n`fflush(stdout);`\n\nor\n\n`cout « flush;`\n\nIf your output format is invalid, the number of queries exceeds the limit, or the final answer is wrong, you will receive Wrong Answer or Presentation Error.\n\nThe interactor is non-adaptive, meaning all $k$-tuples are fixed before the interaction begins and do not change based on your queries.\n\n## Note\n\nIn the example below, $n = 6$, $k = 2$, and the hidden tuples are $\\{1, 3\\}$, $\\{2, 6\\}$, $\\{4, 5\\}$.\n\n| **Program** | **Interactor** |\n| --- | --- |\n|   | `6 2` |\n| `? 3 1 3 5` | `1` |\n| `? 4 2 3 4 5` | `0` |\n| `? 6 1 2 3 4 5 6` | `3` |\n| `! 1 2 1 3 3 2` |   |\n\nQuery $\\{1,3,5\\}$: tuple $\\{1,3\\} \\subseteq S$, so the answer is $1$.\n\nQuery $\\{2,3,4,5\\}$: tuple $\\{4,5\\} \\subseteq S$, so the answer is $1$.\n\nQuery $\\{1,2,3,4,5,6\\}$: all three tuples are contained, so the answer is $3$.\n\nOutput `! 1 2 1 3 3 2` means: elements $1, 3$ form group $1$; elements $2, 6$ form group $2$; elements $4, 5$ form group $3$.",
-  "statementZhMd": null,
+  "statementZhMd": "这是一道交互题。\n\n整数 $1, 2, \\ldots, n$ 被秘密地划分为 $\\frac{n}{k}$ 个互不相交的 $k$ 元组。保证 $k \\mid n$。\n\n你需要通过询问确定所有隐藏的 $k$ 元组。\n\n每次询问时，你可以选择一个集合 $S \\subseteq \\{1, 2, \\ldots, n\\}$，交互程序会返回一个整数，表示有多少个隐藏的 $k$ 元组**完全包含**在 $S$ 中。\n\n询问次数不得超过 $n\\lceil \\log_2 n \\rceil$。\n\n## 输入格式\n\n程序开始运行时，交互程序会输出一行，包含两个整数 $n$ 和 $k$。\n\n其中 $2 \\le n \\le 300$，$2 \\le k \\le n$，且 $k \\mid n$。\n\n隐藏的划分由交互程序保存，不会直接给出。\n\n对于你输出的每次有效询问，交互程序会返回一行，其中包含一个整数 $r$，表示完全包含在你所询问的集合中的隐藏 $k$ 元组的数量。\n\n## 输出格式\n\n你可以进行以下形式的询问：\n\n`? c x1x_1 x2x_2 …\\ldots xcx_c`\n\n其中 $0 \\le c \\le n$，且 $x_1, x_2, \\ldots, x_c$ 必须是两两不同的整数，满足 $1 \\le x_i \\le n$。\n\n该询问表示你选择集合 $S=\\{x_1,x_2,\\ldots,x_c\\}$。交互程序返回一个整数 $r$，表示完全包含在 $S$ 中的隐藏 $k$ 元组的数量。\n\n确定答案后，输出：\n\n`! a1a_1 a2a_2 …\\ldots ana_n`\n\n其中 $a_i$ 表示元素 $i$ 所属的元组的编号。编号必须满足 $1 \\le a_i \\le \\frac{n}{k}$。同一个隐藏元组中的两个元素必须具有相同的编号；不同隐藏元组中的两个元素必须具有不同的编号。元组编号的顺序是任意的。\n\n询问次数不得超过 $n\\lceil \\log_2 n \\rceil$。输出最终答案后，你的程序应立即终止。\n\n注意，每次输出询问或最终答案后，你都必须刷新输出缓冲区。例如，在 C++ 中可以使用：\n\n`fflush(stdout);`\n\n或\n\n`cout « flush;`\n\n如果输出格式无效、询问次数超过限制，或最终答案错误，你将收到 Wrong Answer 或 Presentation Error。\n\n交互程序是非自适应的，也就是说，所有 $k$ 元组在交互开始前就已经确定，不会根据你的询问而改变。\n\n## 说明\n\n在下面的例子中，$n = 6$，$k = 2$，隐藏的元组为 $\\{1, 3\\}$、$\\{2, 6\\}$、$\\{4, 5\\}$。\n\n| **程序** | **交互程序** |\n| --- | --- |\n|   | `6 2` |\n| `? 3 1 3 5` | `1` |\n| `? 4 2 3 4 5` | `0` |\n| `? 6 1 2 3 4 5 6` | `3` |\n| `! 1 2 1 3 3 2` |   |\n\n询问 $\\{1,3,5\\}$：元组 $\\{1,3\\} \\subseteq S$，因此答案为 $1$。\n\n询问 $\\{2,3,4,5\\}$：元组 $\\{4,5\\} \\subseteq S$，因此答案为 $1$。\n\n询问 $\\{1,2,3,4,5,6\\}$：三个元组都被包含在集合中，因此答案为 $3$。\n\n输出 `! 1 2 1 3 3 2` 表示：元素 $1, 3$ 构成第 $1$ 组；元素 $2, 6$ 构成第 $2$ 组；元素 $4, 5$ 构成第 $3$ 组。",
   "samples": [
     {
       "input": "6 2\n\n1\n\n1\n\n3\n",
@@ -20,5 +20,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-22T08:19:35.823Z"
+  "fetchedAt": "2026-11-22T08:19:35.823Z",
+  "translatedAt": "2026-11-22T15:25:22.256Z",
+  "translateModel": "gpt-6.1-sol"
 }
