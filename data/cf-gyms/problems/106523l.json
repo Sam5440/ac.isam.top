@@ -4,7 +4,7 @@
   "contestId": 106523,
   "index": "L",
   "title": "Lady Gaga and the Echoing Coefficient",
-  "titleZh": null,
+  "titleZh": "Lady Gaga 与回响系数",
   "url": "https://codeforces.com/gym/106523/problem/L",
   "difficulty": null,
   "tags": [],
@@ -12,7 +12,7 @@
   "timeLimitMs": 1000,
   "memoryLimitMb": 256,
   "statementMd": "Lady Gaga is a complete artist: unmatched in performances, extremely versatile, and full of diverse artistic references. Throughout her career, she has established herself as one of the most essential figures in the history of pop music, and as a voice for many who cannot find their own. To the delight of the *Little Monsters*, she constantly reinvents herself, always leaving her legion of fans eager for her next steps.\n\nTo further improve her songwriting skills, Lady Gaga studied a property of song lyrics called the Echoing Coefficient, which is simply the sum of the values of all Echoing Segments of a lyric. An Echoing Segment is a passage of a lyric that can be represented as the same passage repeated twice, and its value is the product of the number of lines that compose it and the total number of characters in those lines.\n\nAs an example, the following excerpt from Bad Romance is an Echoing Segment (because it can be represented as the repetition of the first three lines):\n\n*Oh-oh-oh-oh-oh**Oh-oh-oh-oh-oh-oh-oh**Caught in a bad romance**Oh-oh-oh-oh-oh**Oh-oh-oh-oh-oh-oh-oh**Caught in a bad romance*\n\nFormally, the lyrics of a song can be represented as a list $L$ of lines, where the $i$-th line can be represented as a string $L_i$. A passage of a lyric is a contiguous sublist of $L$ — if it is composed of all lines from the $i$-th to the $j$-th (with $j \\geq i$), it is denoted by $L_i^j$. Thus, an Echoing Segment of $L$ is a passage $L_i^j$ such that there exists some list of lines $V$ for which $L_i^j = V + V$, where $+$ represents the list concatenation operation. Therefore, the value of an Echoing Segment $L_i^j$ is given by $(j-i+1) \\cdot \\sum_{k=i}^j |L_k|$, where $|L_k|$ is the length of the string representing the $k$-th line. Finally, the Echoing Coefficient of a lyric is the sum of the values of all Echoing Segments of that lyric.\n\nIn her studies, Lady Gaga wants to analyze song lyrics and their respective Echoing Coefficients. To make this process more convenient, she asked her team for a program that receives a simplified song lyric (without uppercase letters, punctuation, or special characters) and prints the Echoing Coefficient of that lyric.\n\nHelp *Mother Monster* with a program that performs this calculation efficiently!\n\n## Input\n\nThe first line of the input contains an integer $N$: the number of lines in the song lyric $(1 \\leq N \\leq 5 \\cdot 10^4)$.\n\nEach of the next $N$ lines contains a string $L_i$, representing the $i$-th line of the lyric $(1 \\leq |L_i| \\leq 25)$. It is guaranteed that $L_i$ contains only lowercase characters from $a$ to $z$.\n\n## Output\n\nPrint, on a single line, a single value: the Echoing Coefficient of the song lyric represented by the input.\n\n## Note\n\nNote that the definition of an Echoing Segment refers to the concatenation of lists, not to the concatenation of all strings in the lists. Therefore, in the third sample test case, there are no Echoing Segments: even though \"a\" $+$ \"aaa\" $=$ \"aaaa\" and \"aaaa\" can be represented as \"aa\" $+$ \"aa\", the list {\"a\", \"aaa\"} cannot be represented as the concatenation of two equal lists.",
-  "statementZhMd": null,
+  "statementZhMd": "<statement>\nLady Gaga 是一位全能的艺术家：她的表演无与伦比，才华极为多样，作品中充满了丰富的艺术元素。在她的职业生涯中，她已成为流行音乐史上最重要的人物之一，也为许多无法表达自己心声的人发声。令 *Little Monsters* 欣喜的是，她不断重塑自我，总是让她的众多粉丝期待着她的下一步。\n\n为了进一步提高自己的歌曲创作水平，Lady Gaga 研究了歌词的一种性质，称为回响系数，它就是一段歌词中所有回响片段的价值之和。回响片段是指歌词中可以表示为同一段内容重复两次的片段，其价值等于组成该片段的行数与这些行的字符总数的乘积。\n\n例如，以下 Bad Romance 的节选就是一个回响片段（因为它可以表示为前三行重复两次）：\n\n*Oh-oh-oh-oh-oh**Oh-oh-oh-oh-oh-oh-oh**Caught in a bad romance**Oh-oh-oh-oh-oh**Oh-oh-oh-oh-oh-oh-oh**Caught in a bad romance*\n\n形式化地说，一首歌的歌词可以表示为一个由各行组成的列表 $L$，其中第 $i$ 行可以表示为字符串 $L_i$。歌词的一个片段是 $L$ 的一个连续子列表——如果它由第 $i$ 行到第 $j$ 行的所有行组成（其中 $j \\geq i$），则记为 $L_i^j$。因此，$L$ 的一个回响片段是满足以下条件的片段 $L_i^j$：存在一个由各行组成的列表 $V$，使得 $L_i^j = V + V$，其中 $+$ 表示列表的拼接操作。因此，回响片段 $L_i^j$ 的价值为 $(j-i+1) \\cdot \\sum_{k=i}^j |L_k|$，其中 $|L_k|$ 是表示第 $k$ 行的字符串的长度。最后，一段歌词的回响系数是该歌词中所有回响片段的价值之和。\n\n在研究过程中，Lady Gaga 想要分析歌曲的歌词及其对应的回响系数。为了方便这一过程，她请团队编写一个程序，接收一段简化的歌词（不含大写字母、标点符号或特殊字符），并输出这段歌词的回响系数。\n\n请编写一个程序，高效地完成这一计算，帮助 *Mother Monster*！\n\n## 输入格式\n\n输入的第一行包含一个整数 $N$，表示歌词的行数 $(1 \\leq N \\leq 5 \\cdot 10^4)$。\n\n接下来的 $N$ 行每行包含一个字符串 $L_i$，表示歌词的第 $i$ 行 $(1 \\leq |L_i| \\leq 25)$。保证 $L_i$ 仅包含从 $a$ 到 $z$ 的小写字母。\n\n## 输出格式\n\n输出一行，包含一个值：输入所表示的歌词的回响系数。\n\n## 说明\n\n注意，回响片段的定义涉及的是列表的拼接，而不是列表中所有字符串的拼接。因此，在第三个样例中，不存在回响片段：尽管 \"a\" $+$ \"aaa\" $=$ \"aaaa\"，并且 \"aaaa\" 可以表示为 \"aa\" $+$ \"aa\"，但列表 {\"a\", \"aaa\"} 不能表示为两个相同列表的拼接。\n</statement>",
   "samples": [
     {
       "input": "14\nohohohohoh\nohohohohohohoh\ncaughtinabadromance\nohohohohoh\nohohohohohohoh\ncaughtinabadromance\nraraahahah\nromaromama\ngagaohlala\nwantyourbadromance\nraraahahah\nromaromama\ngagaohlala\nwantyourbadromance\n",
@@ -32,5 +32,7 @@
     }
   ],
   "language": "en",
-  "fetchedAt": "2026-11-22T16:37:08.027Z"
+  "fetchedAt": "2026-11-22T16:37:08.027Z",
+  "translatedAt": "2026-11-22T22:47:18.524Z",
+  "translateModel": "gpt-6.1-sol"
 }
