@@ -1,0 +1,24 @@
+{
+  "id": "106567d",
+  "platform": "cf-gyms",
+  "contestId": 106567,
+  "index": "D",
+  "title": "Hidden kk-Tuples",
+  "titleZh": null,
+  "url": "https://codeforces.com/gym/106567/problem/D",
+  "difficulty": null,
+  "tags": [],
+  "points": null,
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 1024,
+  "statementMd": "This is an interactive problem.\n\nThere is a hidden partition of the integers $1, 2, \\ldots, n$ into $\\frac{n}{k}$ disjoint $k$-tuples. It is guaranteed that $k \\mid n$.\n\nYou need to determine all hidden $k$-tuples through queries.\n\nIn each query, you may choose a set $S \\subseteq \\{1, 2, \\ldots, n\\}$, and the interactor will return an integer indicating how many hidden $k$-tuples are **entirely contained** in $S$.\n\nThe number of queries must not exceed $n\\lceil \\log_2 n \\rceil$.\n\n## Input\n\nAt the start of your program, the interactor outputs a line with two integers $n$ and $k$.\n\nHere $2 \\le n \\le 300$, $2 \\le k \\le n$, and $k \\mid n$.\n\nThe hidden partition is stored by the interactor and is not given directly.\n\nAfter each valid query you output, the interactor returns a line with a single integer $r$ — the number of hidden $k$-tuples entirely contained in the set you queried.\n\n## Output\n\nYou may make queries of the following form:\n\n`? c x1x_1 x2x_2 …\\ldots xcx_c`\n\nwhere $0 \\le c \\le n$, and $x_1, x_2, \\ldots, x_c$ must be pairwise distinct integers satisfying $1 \\le x_i \\le n$.\n\nThis query means you choose the set $S=\\{x_1,x_2,\\ldots,x_c\\}$. The interactor returns an integer $r$ — the number of hidden $k$-tuples entirely contained in $S$.\n\nWhen you have determined the answer, output:\n\n`! a1a_1 a2a_2 …\\ldots ana_n`\n\nwhere $a_i$ denotes the tuple number that element $i$ belongs to. The numbering must satisfy $1 \\le a_i \\le \\frac{n}{k}$. Two elements in the same hidden tuple must have the same number; two elements in different hidden tuples must have different numbers. The ordering of tuple numbers is arbitrary.\n\nThe number of queries must not exceed $n\\lceil \\log_2 n \\rceil$. After outputting the final answer, your program should terminate immediately.\n\nNote that after each query or the final answer, you must flush the output buffer. For example, in C++ you can use:\n\n`fflush(stdout);`\n\nor\n\n`cout « flush;`\n\nIf your output format is invalid, the number of queries exceeds the limit, or the final answer is wrong, you will receive Wrong Answer or Presentation Error.\n\nThe interactor is non-adaptive, meaning all $k$-tuples are fixed before the interaction begins and do not change based on your queries.\n\n## Note\n\nIn the example below, $n = 6$, $k = 2$, and the hidden tuples are $\\{1, 3\\}$, $\\{2, 6\\}$, $\\{4, 5\\}$.\n\n| **Program** | **Interactor** |\n| --- | --- |\n|   | `6 2` |\n| `? 3 1 3 5` | `1` |\n| `? 4 2 3 4 5` | `0` |\n| `? 6 1 2 3 4 5 6` | `3` |\n| `! 1 2 1 3 3 2` |   |\n\nQuery $\\{1,3,5\\}$: tuple $\\{1,3\\} \\subseteq S$, so the answer is $1$.\n\nQuery $\\{2,3,4,5\\}$: tuple $\\{4,5\\} \\subseteq S$, so the answer is $1$.\n\nQuery $\\{1,2,3,4,5,6\\}$: all three tuples are contained, so the answer is $3$.\n\nOutput `! 1 2 1 3 3 2` means: elements $1, 3$ form group $1$; elements $2, 6$ form group $2$; elements $4, 5$ form group $3$.",
+  "statementZhMd": null,
+  "samples": [
+    {
+      "input": "6 2\n\n1\n\n1\n\n3\n",
+      "output": "? 3 1 3 5\n\n? 4 2 3 4 5\n\n? 6 1 2 3 4 5 6\n\n! 1 2 1 3 3 2\n"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-22T08:19:35.823Z"
+}
