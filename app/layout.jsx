@@ -15,6 +15,7 @@ import { getIndex } from '@/lib/data';
 import { TEMPLATE_THEMES } from '@/lib/themes';
 import { formatDateTime } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './globals.css';
 
@@ -150,6 +151,7 @@ export default function RootLayout({ children }) {
           <PwaRegister />
         </SettingsProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
