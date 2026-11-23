@@ -403,6 +403,11 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   顺带跳过 Vercel 构建**——数据是构建期事实，跳过构建 = 站点永远停在旧快照。当前
   `ignoreCommand` 仅在提交标题含 `[vercel skip]` 时跳过；线上面板的同名字段已被它覆盖，
   别再在面板里加基于 `[skip ci]` 的规则（2026-11-16 事故，见 §6 第 16 条）。
+  `vercel.json` 只存在于 main，因此日志归档用的孤儿分支 `ci-logs`（只有 `jobs/*.log`，
+  没有 `package.json`）拿不到这条规则——它靠①main 的
+  `git.deploymentEnabled.ci-logs = false`、②分支自带的
+  `vercel.json`（`ignoreCommand: "exit 0"`，由 `archive-logs.yml` 每次写入）两层跳过构建
+  （2026-11-23 修复，见 §6 第 24 条）。**今后再新增「纯数据/日志分支」必须照此处理。**
 - push 前 `git status` 检查三类意外改动：
   1. `data/index.json`（本地构建重写）→ 还原；
   2. `package-lock.json`（`npm install` 顺带重排）→ 还原；
@@ -525,6 +530,18 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
     标题容器加 `min-w-0 flex-1`；移动端搜索框与清空按钮单独成行（`w-full sm:w-auto`），
     避免搜索框被两个下拉框挤成一条缝。改动列表类页面后用 Playwright 在 320/390/768/1440px
     量一遍 `scrollWidth === viewport` 与首行单元格宽度。
+24. **`ci-logs` 孤儿分支每次归档都会触发一次失败的 Vercel 预览部署**（2026-11-23）：
+    `archive-logs.yml` 把作业日志推到只有 `jobs/*.log` 的孤儿分支 `ci-logs`，Vercel for
+    GitHub 对任何分支的 push 都会建预览部署，于是每次归档都报
+    `[NEXT_NO_VERSION] No Next.js version detected`（2 秒失败）。提交信息里的
+    `[vercel skip]` 完全无效——`ignoreCommand` 写在 main 的 `vercel.json` 里，而这个分支
+    没有该文件（**提交信息里的跳过标记只在「该提交自己的 vercel.json 定义了
+    对应 ignoreCommand」时才起作用**）。修复：main 的 `vercel.json` 加
+    `"git": {"deploymentEnabled": {"ci-logs": false}}`（部署创建前就跳过），同时
+    `archive-logs.yml` 往分支根写一份 `vercel.json`
+    （`ignoreCommand: "exit 0"`）作为兜底（已创建的部署在 Ignored Build Step 阶段取消，
+    状态是 Canceled 而非 Error）。**新增「只存数据/日志的分支」时照抄这条，别指望提交
+    信息标记或面板设置兜底。**
 
 ## 7. 常见任务手册
 

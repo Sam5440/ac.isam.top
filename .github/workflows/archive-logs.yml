@@ -80,7 +80,12 @@ jobs:
             fi
             mkdir -p jobs
             cp "${files[@]}" jobs/
-            git add -- jobs/
+            # This branch only stores logs (no package.json / Next.js app), but Vercel still
+            # reacts to every push here and fails the preview build with NEXT_NO_VERSION.
+            # The branch carries its own vercel.json so its build is skipped at the
+            # "Ignored Build Step" stage instead of failing.
+            printf '%s\n' '{"$schema":"https://openapi.vercel.sh/vercel.json","git":{"deploymentEnabled":false},"ignoreCommand":"exit 0"}' > vercel.json
+            git add -- jobs/ vercel.json
             if git diff --cached --quiet; then exit 0; fi
             git commit -qm 'Archive CI job output [skip ci] [vercel skip]'
             if git push origin HEAD:refs/heads/ci-logs; then exit 0; fi

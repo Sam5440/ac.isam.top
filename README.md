@@ -215,6 +215,6 @@ vercel --prod
 ## 声明
 
 题面与样例版权归 AtCoder / Codeforces / 牛客及各出题人所有；中文翻译由 AI 生成，仅供学习交流。
-`/ci` → 展开运行和作业 →「查看完整过程日志」读取 `ci-logs` 分支的 `jobs/<jobId>.log`，支持搜索、阶段筛选和用量解析。`archive-logs.yml` 在三个业务工作流结束后用自带的 `GITHUB_TOKEN` 下载 GitHub 已脱敏的输出并写入文本文件。查看归档无需配置 Vercel 凭据。要补录旧运行，可执行 `gh workflow run archive-logs.yml -f run_id=<运行ID>`。GitHub 已清理或未生成的日志无法补录。可选的 `CI_LOG_READ_TOKEN`（仅本仓库 Actions: Read）只用于未归档日志的兼容回退。
+`/ci` → 展开运行和作业 →「查看完整过程日志」读取 `ci-logs` 分支的 `jobs/<jobId>.log`，支持搜索、阶段筛选和用量解析。`archive-logs.yml` 在三个业务工作流结束后用自带的 `GITHUB_TOKEN` 下载 GitHub 已脱敏的输出并写入文本文件。该孤儿分支只存日志，因此在根目录带一份 `vercel.json`（`ignoreCommand: "exit 0"`），加上 main 的 `git.deploymentEnabled: { "ci-logs": false }`，保证归档 push 不会触发 Vercel 构建，也不会再报 `NEXT_NO_VERSION`。查看归档无需配置 Vercel 凭据。要补录旧运行，可执行 `gh workflow run archive-logs.yml -f run_id=<运行ID>`。GitHub 已清理或未生成的日志无法补录。可选的 `CI_LOG_READ_TOKEN`（仅本仓库 Actions: Read）只用于未归档日志的兼容回退。
 
 CI 翻译会把逐次请求的服务商 `usage` 存入 `ci-log.json`，并写入作业日志的 `[ai-usage]` 行。缓存命中率为缓存命中的输入 token 除以该请求的全部输入 token；历史未记录、服务商未报告或输入为零时显示「未知」。
