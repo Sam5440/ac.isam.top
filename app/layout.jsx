@@ -1,6 +1,7 @@
 import 'katex/dist/katex.min.css';
 
 import SiteHeader from '@/components/SiteHeader';
+import BaiduAnalytics from '@/components/BaiduAnalytics';
 import KatexRuntime from '@/components/KatexRuntime';
 import HighlightRuntime from '@/components/HighlightRuntime';
 import LanguageSidebar from '@/components/language-sidebar';
@@ -11,6 +12,7 @@ import ToastHost from '@/components/ui/ToastHost';
 import { SettingsProvider } from '@/components/settings';
 import GithubMark from '@/components/GithubMark';
 import { BUILD_ID } from '@/lib/build-id.mjs';
+import { BAIDU_HM_SRC } from '@/lib/baidu-analytics.mjs';
 import { getIndex } from '@/lib/data';
 import { TEMPLATE_THEMES } from '@/lib/themes';
 import { formatDateTime } from '@/lib/utils';
@@ -92,6 +94,11 @@ export default function RootLayout({ children }) {
             （app/error.jsx），取值与 X-AC-Build 响应头同源（lib/build-id.mjs）。 */}
         <meta name="ac-build" content={BUILD_ID} />
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
+        {/* 百度统计：脚本标签直接出现在 HTML 里（百度「代码安装检查」抓的是源码），
+            异步加载不阻塞渲染；_hmt 队列先建好，hm.js 没加载完时的
+            _trackPageview 也不会丢。客户端路由切换由 <BaiduAnalytics /> 补报。 */}
+        <script dangerouslySetInnerHTML={{ __html: 'window._hmt=window._hmt||[];' }} />
+        <script async src={BAIDU_HM_SRC} />
       </head>
       <body>
         <NavigationProgress />
@@ -152,6 +159,7 @@ export default function RootLayout({ children }) {
         </SettingsProvider>
         <Analytics />
         <SpeedInsights />
+        <BaiduAnalytics />
       </body>
     </html>
   );

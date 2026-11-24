@@ -82,6 +82,19 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/api/ai/proxy` | 动态 | AI 接口转发（混合内容降级 + 域名白名单） | `lib/ai-proxy.mjs`、`AI_PROXY_ALLOWED_HOSTS` |
 | `/sw.js`、`/ac-build.json`、`/offline-manifest.json` | 预渲染 | PWA 基础设施 | — |
 
+根布局 `app/layout.jsx` 的 `<head>` 有三样东西：`<meta name="ac-build">`、主题引导内联脚本
+`THEME_BOOTSTRAP`、**百度统计**。百度统计的脚本标签必须真的出现在 HTML 源码里（百度
+「代码安装检查」抓的是源码，客户端动态插入的 tag 它看不到），所以是
+`<script async src={BAIDU_HM_SRC}>` 而不是 `next/script`；`window._hmt` 队列在同一
+`<head>` 里先初始化。站内是客户端路由，`<BaiduAnalytics />`
+（`components/BaiduAnalytics.jsx`）补报 `_trackPageview`：**用 History API
+（pushState/replaceState + popstate）而不是 `usePathname`/`useSearchParams`**——
+布局里的组件在「只改查询串」的跳转（题库翻页、切平台）时拿不到新的 searchParams，
+会整批漏报（2026-11-25 浏览器实测；`history.pushState.name` 为空是 Next 自己的匿名
+包装链回我们的函数，属正常）。首屏不补报（否则与 hm.js 自动上报重复），上报路径由
+`lib/baidu-analytics.mjs` 的 `trackPath` 生成并丢弃 hash（模拟赛 `#data=`
+分享载荷不进统计）。换站点标识只改 `lib/baidu-analytics.mjs`。
+
 `app/error.jsx` 与 `global-error.jsx` 是最后防线，不要移除。错误边界的三件事
 （2026-11-17 起，见 §3.4）：
 
