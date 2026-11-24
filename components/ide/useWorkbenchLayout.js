@@ -62,7 +62,7 @@ export function modulesOn(layout, side) {
   return MODULES.filter((m) => layout.assign[m.id] === side);
 }
 
-export function useWorkbenchLayout() {
+export function useWorkbenchLayout({ compact = false } = {}) {
   const [layout, setLayout] = useState(null); // null = SSR/首帧
   const [isMobile, setIsMobile] = useState(false);
   const [dragging, setDragging] = useState(null); // 'left' | 'right' | 'term' | null
@@ -73,18 +73,27 @@ export function useWorkbenchLayout() {
     const mq = window.matchMedia("(max-width: 767px)");
     const mobile = mq.matches;
     setIsMobile(mobile);
-    setLayout({ ...load(), ...(mobile ? { leftOpen: false, rightOpen: false, termOpen: false } : {}) });
+    setLayout({
+      ...load(),
+      ...(mobile
+        ? { leftOpen: false, rightOpen: false, termOpen: false }
+        : compact
+          ? { rightOpen: false, leftOpen: false, leftTab: "samples", termOpen: false }
+          : {}),
+    });
     const sync = () => {
       setIsMobile(mq.matches);
       if (mq.matches) setLayout((prev) => (prev ? { ...prev, leftOpen: false, rightOpen: false } : prev));
     };
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
-  }, []);
+  }, [compact]);
 
   useEffect(() => {
-    if (layout && !isMobile) localStorage.setItem(STORAGE_KEY, JSON.stringify(layout));
-  }, [layout, isMobile]);
+    // 嵌入模式（题目页半屏）的布局只是本次会话的临时视图，不回写 /ide 的共享偏好，
+    // 否则 compact 里强制收起的侧栏会污染完整 IDE 的布局。
+    if (layout && !isMobile && !compact) localStorage.setItem(STORAGE_KEY, JSON.stringify(layout));
+  }, [layout, isMobile, compact]);
 
   const patch = useCallback(
     (p) => setLayout((prev) => (prev ? { ...prev, ...(typeof p === "function" ? p(prev) : p) } : prev)),

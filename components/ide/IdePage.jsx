@@ -70,6 +70,7 @@ import {
   deleteFolder as wsDeleteFolder,
   importFiles,
 } from "@/lib/ide-workspace";
+import { problemMarkdown, problemWorkspacePlan } from "@/lib/problem-workspace.mjs";
 import {
   loadAllSamples,
   saveAllSamples,
@@ -109,9 +110,19 @@ async function fetchProblem(platform, id) {
 }
 
 
-export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = null }) {
+export default function IdePage({
+  ciSlot = null,
+  ciRuns = null,
+  ciActionsUrl = null,
+  /** 嵌入模式：铺满父容器（题目页右半屏），不再主动占满视口 / 限宽居中。 */
+  embedded = false,
+  /** 题目页种子：{ platform, id, index, contest: {id,title,titleZh} }，用来自动建工作区。 */
+  problemSeed = null,
+  /** 嵌入模式的关闭回调（标题栏 × / 外部）。 */
+  onClose = null,
+}) {
   const router = useRouter();
-  const wb = useWorkbenchLayout();
+  const wb = useWorkbenchLayout({ compact: embedded });
   const [quickOpen, setQuickOpen] = useState(false);
   const [recent, setRecent] = useState([]);
   const [cursor, setCursor] = useState({ line: 1, col: 1, sel: 0 });
@@ -131,6 +142,7 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
   const [samplesMap, setSamplesMap] = useState({});
   const [resultsMap, setResultsMap] = useState({}); // path → cases[]
   const [problem, setProblem] = useState(null); // 当前文件绑定题目的全量 JSON
+  const [seedProblem, setSeedProblem] = useState(null); // 题目页种子（嵌入模式，供题面 / AI 面板使用）
   const [problemLoading, setProblemLoading] = useState(false);
   const [importing, setImporting] = useState(false);
   // 运行状态与终端
@@ -153,6 +165,7 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
 
   const activeFile = files.find((f) => f.path === activePath) ?? null;
   const lang = activeFile?.lang ?? "cpp";
+  const runnable = lang === "cpp" || lang === "python";
   const code = activeFile?.content ?? "";
   const sampleSet = sampleSetOf(samplesMap, activePath);
   const cases = resultsMap[activePath] ?? [];
@@ -247,6 +260,66 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
       alive = false;
     };
   }, [boundKey]);
+
+  /* ---------- 题目页种子：自动创建工作区目录 + 代码文件 + 同名 Markdown ---------- */
+  // 路径：<比赛编号>-<比赛名>-<题目 id>/<题号>.cpp(.py) 与同目录的 <题号>.md
+  // 已存在则只补缺文件，绝不覆盖用户内容；同一题只跑一次。
+  const seedKey = problemSeed
+    ? `${problemSeed.platform}:${problemSeed.id}:${problemSeed.contest?.id ?? ""}`
+    : null;
+  const seedDoneRef = useRef("");
+  useEffect(() => {
+    if (!mounted || !cp || !seedKey || seedDoneRef.current === seedKey) return;
+    seedDoneRef.current = seedKey;
+    let alive = true;
+    (async () => {
+      try {
+        const full = await fetchProblem(problemSeed.platform, problemSeed.id);
+        if (!alive) return;
+        setSeedProblem(full);
+        const plan = problemWorkspacePlan({
+          contest: problemSeed.contest ?? (full.contestId ? { id: full.contestId } : null),
+          problem: full,
+          language: cp.defaultLang === "python" ? "python" : "cpp",
+        });
+        const before = await listFiles();
+        if (!alive) return;
+        const existing = new Set(before.map((f) => f.path));
+        const created = !existing.has(plan.codePath) || !existing.has(plan.mdPath);
+        await wsCreateFolder(plan.folder);
+        if (!existing.has(plan.mdPath)) {
+          await putFile(plan.mdPath, problemMarkdown(full, { contest: problemSeed.contest }));
+        }
+        if (!existing.has(plan.codePath)) await putFile(plan.codePath, "");
+        const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+        if (!alive) return;
+        setFolders(dirs);
+        setFiles((prev) => {
+          const map = new Map(list.map((f) => [f.path, f]));
+          // 保留可能还没落盘的编辑内容（网络慢时用户已经动过键盘）
+          for (const f of prev) {
+            if (map.has(f.path)) map.set(f.path, { ...map.get(f.path), content: f.content });
+          }
+          return [...map.values()].sort((a, b) => a.path.localeCompare(b.path));
+        });
+        setSavedSnapshot(Object.fromEntries(list.map((f) => [f.path, f.content])));
+        setOpenPaths((prev) => [...new Set([...prev, plan.codePath, plan.mdPath])]);
+        setActivePath(plan.codePath);
+        updateSamples((m) => {
+          const cur = m[plan.codePath];
+          return cur?.problem ? m : withSampleSet(m, plan.codePath, setFromProblem(full));
+        });
+        if (created) toast.success(`已准备 ${plan.folder}/${plan.base}`);
+      } catch (exn) {
+        if (alive) toast.error(`题目工作区创建失败：${exn.message}`);
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+    // seedKey 已包含题目与比赛身份；problemSeed 是同一对象的快照
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted, cp, seedKey, updateSamples]);
 
   const importProblem = useCallback(
     async (item) => {
@@ -565,6 +638,10 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
   const runAllSamples = useCallback(
     async (samples) => {
       if (runState !== "idle" || !samples.length) return;
+      if (lang !== "cpp" && lang !== "python") {
+        toast.info("当前文件不是可运行代码（Markdown / 纯文本）");
+        return;
+      }
       runPathRef.current = activeRef.current;
       const token = await beginRun(lang);
       setCases([]);
@@ -666,6 +743,10 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
       需要输入时经 onNeedInput 由终端续行喂入）。 */
   const runInTerminal = useCallback(async () => {
     if (runState !== "idle" || !activePath) return;
+    if (lang !== "cpp" && lang !== "python") {
+      toast.info("当前文件不是可运行代码（Markdown / 纯文本）");
+      return;
+    }
     const token = await beginRun(lang);
     setConsoleText("");
     appendConsole(`—— 运行 ${activePath}（${lang === "cpp" ? `C++ · ${cp?.cppStd ?? "c++20"}` : "Python"}）——\n`);
@@ -823,10 +904,12 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
   const L = wb.layout;
   const shellCls = isFull
     ? `vsc flex flex-col overflow-hidden ${pseudoFs ? "ide-pseudo-fullscreen" : ""}`
-    : "vsc mx-auto my-3 flex w-full max-w-[1600px] flex-col overflow-hidden rounded-lg border shadow-sm";
+    : embedded
+      ? "vsc flex h-full min-h-0 flex-col overflow-hidden"
+      : "vsc mx-auto my-3 flex w-full max-w-[1600px] flex-col overflow-hidden rounded-lg border shadow-sm";
   const shellStyle = {
-    height: isFull ? "100dvh" : "calc(100dvh - 3.5rem - 1.5rem)",
-    minHeight: isFull ? undefined : 520,
+    height: isFull ? "100dvh" : embedded ? "100%" : "calc(100dvh - 3.5rem - 1.5rem)",
+    minHeight: isFull ? undefined : embedded ? 0 : 520,
     background: "var(--vsc-panel)",
     borderColor: "var(--vsc-border)",
     ...(editorBg ? { "--vsc-editor": editorBg } : {}),
@@ -834,7 +917,7 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
 
   if (!mounted || !cp || !L) {
     return (
-      <div className="ide-fullbleed px-3">
+      <div className={embedded ? "h-full min-h-0 w-full" : "ide-fullbleed px-3"}>
         <div className={shellCls} style={shellStyle}>
           <div className="grid flex-1 place-items-center text-[13px] opacity-70">
             <span className="flex items-center gap-2">
@@ -852,8 +935,17 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
   const passCount = cases.filter((c) => c.verdict === "AC").length;
   const ciCount = Array.isArray(ciRuns) ? ciRuns.length : 0;
   const termTab = L.termTab === "ci" && !ciSlot ? "terminal" : L.termTab;
-  const langLabel = lang === "python" ? "Python" : "C++";
-  const stdLabel = lang === "python" ? pythonVersion(cp.pythonVersion).label.split(" · ")[0] : (cp.cppStd ?? "c++20").toUpperCase();
+  const langLabel =
+    lang === "python" ? "Python" : lang === "markdown" ? "Markdown" : lang === "text" ? "纯文本" : "C++";
+  const stdLabel = !runnable
+    ? lang === "markdown"
+      ? "Markdown"
+      : "纯文本"
+    : lang === "python"
+      ? pythonVersion(cp.pythonVersion).label.split(" · ")[0]
+      : (cp.cppStd ?? "c++20").toUpperCase();
+  // 嵌入题目页时，当前文件没绑定题目（例如正在编辑 Markdown 存档）也要能看到本题题面
+  const panelProblem = problem ?? (embedded ? seedProblem : null);
 
   const renderModule = (id) => {
     switch (id) {
@@ -879,7 +971,7 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
           />
         );
       case "statement":
-        return <StatementPanel problem={problem} loading={problemLoading} onGoSamples={() => wb.showModule("samples")} />;
+        return <StatementPanel problem={panelProblem} loading={problemLoading} onGoSamples={() => wb.showModule("samples")} />;
       case "files":
         return (
           <FileManager
@@ -904,7 +996,7 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
       case "chat":
         return (
           <div className="flex h-full min-h-0 flex-col" style={{ background: "var(--card)" }}>
-            <ChatPanel open embedded problem={problem} onClose={() => {}} />
+            <ChatPanel open embedded problem={panelProblem} onClose={() => {}} />
           </div>
         );
       case "settings":
@@ -932,7 +1024,13 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
     if (!open) return null;
     const tabKey = side === "left" ? "leftTab" : "rightTab";
     const cur = mods.some((m) => m.id === L[tabKey]) ? L[tabKey] : mods[0].id;
-    const width = wb.isMobile ? "min(320px, calc(100% - 24px))" : side === "left" ? L.leftW : L.rightW;
+    const width = wb.isMobile
+      ? "min(320px, calc(100% - 24px))"
+      : embedded
+        ? `min(${side === "left" ? L.leftW : L.rightW}px, 40%)`
+        : side === "left"
+          ? L.leftW
+          : L.rightW;
     return (
       <aside
         aria-label={side === "left" ? "左侧栏" : "右侧栏"}
@@ -995,7 +1093,7 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
         {running ? (
           <ActionButton icon={Square} title="终止运行" onClick={stopRun} />
         ) : (
-          <ActionButton icon={Play} title="运行当前文件 (F5)" onClick={runInTerminal} disabled={!activePath} />
+          <ActionButton icon={Play} title="运行当前文件 (F5)" onClick={runInTerminal} disabled={!activePath || !runnable} />
         )}
         <ActionButton icon={Trash2} title="清除终端" onClick={() => setConsoleText("")} />
       </>
@@ -1017,7 +1115,7 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
   const rightMods = modulesOn(L, "right");
 
   return (
-    <div className="ide-fullbleed px-3">
+    <div className={embedded ? "h-full min-h-0 w-full" : "ide-fullbleed px-3"}>
       <div ref={ideRef} className={shellCls} style={shellStyle}>
         <div ref={wb.rootRef} className="relative flex min-h-0 flex-1">
           {Sidebar({ side: "left" })}
@@ -1048,7 +1146,8 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
                 }}
                 onStop={stopRun}
                 onNewFile={() => wb.showModule("files")}
-                showRun={L.showRun}
+                onClose={embedded ? onClose : undefined}
+                showRun={L.showRun && runnable}
                 fullscreen={fullscreen}
                 pageFullscreen={pseudoFs}
                 onToggleFullscreen={toggleFullscreen}
@@ -1166,9 +1265,11 @@ export default function IdePage({ ciSlot = null, ciRuns = null, ciActionsUrl = n
                   <StatusItem title="语言模式">
                     <Braces className="size-3.5" strokeWidth={1.5} /> {langLabel}
                   </StatusItem>
-                  <StatusItem title="编译器 / 运行时（在 IDE 设置中切换）" onClick={() => wb.showModule("settings")} className="hidden sm:flex">
-                    {stdLabel}
-                  </StatusItem>
+                  {runnable && (
+                    <StatusItem title="编译器 / 运行时（在 IDE 设置中切换）" onClick={() => wb.showModule("settings")} className="hidden sm:flex">
+                      {stdLabel}
+                    </StatusItem>
+                  )}
                   <StatusItem title={ai?.enabled ? "AI 补全已开启" : "AI 补全未开启"} onClick={() => wb.showModule("settings")} className="hidden sm:flex">
                     <Sparkles className="size-3.5" strokeWidth={1.5} style={{ opacity: ai?.enabled ? 1 : 0.45 }} />
                   </StatusItem>

@@ -49,6 +49,20 @@ import { registerEditorSource } from "../../lib/editor-bridge.js";
 
 let monacoPromise = null;
 
+/** IDE 语言 id → Monaco language id（markdown / 纯文本也走同一个编辑器）。 */
+const MONACO_LANGUAGES = {
+  cpp: "cpp",
+  python: "python",
+  markdown: "markdown",
+  json: "json",
+  javascript: "javascript",
+  text: "plaintext",
+};
+
+function monacoLanguage(lang) {
+  return MONACO_LANGUAGES[lang] ?? "cpp";
+}
+
 /** 站内编程键盘显示期间压制系统软键盘。
     关键前提：Monaco 0.57 默认走 EditContext，键盘弹出时焦点在 native-edit-context
     div 上——div 没有 inputmode 可压，只给隐藏 textarea 设 inputmode="none" 挡不住
@@ -702,7 +716,7 @@ export default function CodeEditor({
       registerProviders(monaco);
       editor = monaco.editor.create(hostRef.current, {
         value,
-        language: language === "python" ? "python" : "cpp",
+        language: monacoLanguage(language),
         theme: editorThemeDef(stateRef.current.theme).id,
         automaticLayout: true,
         fontSize: 13,
@@ -826,7 +840,7 @@ export default function CodeEditor({
     if (!monaco || !editor) return;
     const model = monaco.editor.createModel(
       value,
-      language === "python" ? "python" : "cpp",
+      monacoLanguage(language),
     );
     editor.setModel(model);
     // 旧 model 的标记随 model 丢弃;新 model 先清零,待父组件 diagnostics

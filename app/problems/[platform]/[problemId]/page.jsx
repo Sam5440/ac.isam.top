@@ -10,11 +10,11 @@ import SamplesSection from '@/components/SamplesSection';
 import ProblemStatementViewer from '@/components/ProblemStatementViewer';
 import ViewHistoryTracker from '@/components/ViewHistoryTracker';
 import ProblemViewShell, {
-  ProblemCompiler,
   ProblemLetterRail,
   ProblemSwitcher,
   ProblemTopBar,
 } from '@/components/ProblemViewShell';
+import ProblemIde from '@/components/ide/ProblemIde';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -91,7 +91,18 @@ export default async function ProblemPage({ params }) {
 
   return (
       <ProblemViewShell rail={<ProblemLetterRail contest={contestForClient} current={prob} />}>
-      <ProblemCompiler contest={contestForClient} current={prob} />
+      {/* 题目页内嵌 IDE：完整复用 /ide（右半屏），自动建题目工作区与 Markdown 存档 */}
+      <ProblemIde
+        contest={contest ? { id: contest.id, title: contest.title, titleZh: contest.titleZh ?? null } : null}
+        problem={{
+          id: prob.id,
+          platform,
+          contestId: prob.contestId,
+          index: prob.index,
+          title: prob.title,
+          titleZh: prob.titleZh ?? null,
+        }}
+      />
       {/* AI 对话悬浮窗（右下角，可在设置中关闭） */}
       <AiFab
         problem={{

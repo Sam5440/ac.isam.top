@@ -19,6 +19,11 @@ const CodeEditor = dynamic(() => import("@/components/compiler/CodeEditor"), {
   loading: () => <div className="grid h-full place-items-center text-[13px] opacity-60">编辑器加载中…</div>,
 });
 
+const MarkdownEditor = dynamic(() => import("@/components/ide/MarkdownEditor"), {
+  ssr: false,
+  loading: () => <div className="grid h-full place-items-center text-[13px] opacity-60">Markdown 工作台加载中…</div>,
+});
+
 const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform || "");
 const MOD = isMac ? "⌘" : "Ctrl+";
 
@@ -79,6 +84,7 @@ export default function EditorPane({
   onRun,
   onStop,
   onNewFile,
+  onClose,
   showRun = true,
   fullscreen,
   pageFullscreen,
@@ -165,45 +171,72 @@ export default function EditorPane({
                 active={!!fullscreen}
               />
             )}
+            {onClose && (
+              <ActionButton icon={X} title="关闭 IDE 面板" onClick={onClose} />
+            )}
           </div>
         </div>
       )}
 
       {activePath ? (
         <>
-          {/* 面包屑 */}
-          <nav aria-label="面包屑" className="flex h-[22px] shrink-0 items-center gap-0.5 px-3 text-[13px] opacity-80" style={{ background: "var(--vsc-editor)" }}>
-            <span>工作区</span>
-            {activePath.split("/").map((seg, i, arr) => (
-              <span key={i} className="flex items-center gap-0.5">
-                <ChevronRight className="size-3.5 opacity-70" strokeWidth={1.5} />
-                {i === arr.length - 1 && <FileIcon lang={active?.lang} name={seg} />}
-                <span>{seg}</span>
-              </span>
-            ))}
+          {/* 面包屑：单行显示，长路径只截断目录段，文件名优先保留 */}
+          <nav aria-label="面包屑" className="flex h-[22px] shrink-0 items-center gap-0.5 overflow-hidden px-3 text-[13px] opacity-80" style={{ background: "var(--vsc-editor)" }}>
+            <span className="shrink-0">工作区</span>
+            {(() => {
+              const parts = activePath.split("/");
+              const file = parts.pop();
+              const dir = parts.join("/");
+              return (
+                <>
+                  {dir ? (
+                    <>
+                      <ChevronRight className="size-3.5 shrink-0 opacity-70" strokeWidth={1.5} />
+                      <span className="min-w-0 truncate" title={dir}>{dir}</span>
+                    </>
+                  ) : null}
+                  <ChevronRight className="size-3.5 shrink-0 opacity-70" strokeWidth={1.5} />
+                  <FileIcon lang={active?.lang} name={file} />
+                  <span className="min-w-0 truncate" title={activePath}>{file}</span>
+                </>
+              );
+            })()}
           </nav>
           <div className="min-h-0 flex-1">
-            <CodeEditor
-              language={lang}
-              value={code}
-              onChange={onChange}
-              diagnostics={diagnostics}
-              theme={theme}
-              getAi={getAi}
-              onAiStatus={onAiStatus}
-              onReady={(editor) => {
-                const report = () => {
-                  const pos = editor.getPosition();
-                  const sel = editor.getSelection();
-                  const model = editor.getModel();
-                  const selLen = sel && model && !sel.isEmpty() ? model.getValueInRange(sel).length : 0;
-                  onCursor?.({ line: pos?.lineNumber ?? 1, col: pos?.column ?? 1, sel: selLen });
-                };
-                editor.onDidChangeCursorPosition(report);
-                editor.onDidChangeCursorSelection(report);
-                report();
-              }}
-            />
+            {lang === "markdown" ? (
+              <MarkdownEditor
+                value={code}
+                onChange={onChange}
+                filePath={activePath}
+                theme={theme}
+                diagnostics={diagnostics}
+                getAi={getAi}
+                onAiStatus={onAiStatus}
+                onCursor={onCursor}
+              />
+            ) : (
+              <CodeEditor
+                language={lang}
+                value={code}
+                onChange={onChange}
+                diagnostics={diagnostics}
+                theme={theme}
+                getAi={getAi}
+                onAiStatus={onAiStatus}
+                onReady={(editor) => {
+                  const report = () => {
+                    const pos = editor.getPosition();
+                    const sel = editor.getSelection();
+                    const model = editor.getModel();
+                    const selLen = sel && model && !sel.isEmpty() ? model.getValueInRange(sel).length : 0;
+                    onCursor?.({ line: pos?.lineNumber ?? 1, col: pos?.column ?? 1, sel: selLen });
+                  };
+                  editor.onDidChangeCursorPosition(report);
+                  editor.onDidChangeCursorSelection(report);
+                  report();
+                }}
+              />
+            )}
           </div>
         </>
       ) : (

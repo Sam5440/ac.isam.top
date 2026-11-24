@@ -36,9 +36,10 @@ const MORE_NAV = [
 
 export default function SiteHeader() {
   const pathname = usePathname();
-  // 编译器只在题目页存在（题目页挂载 CompilerDock）；开合状态经
-  // body.compiler-open 同步（CompilerDock 是唯一写方，这里只读）。
+  // 编译器/IDE 只在题目页存在（题目页挂载 ProblemIde，模拟赛题目页挂 CompilerDock）；
+  // 开合状态经 body.compiler-open 同步（面板是唯一写方，这里只读）。
   const dockAvailable = pathname.startsWith('/problems/') || /^\/contests\/sim\/[^/]+\/problems\/[^/]+\/?$/.test(pathname);
+  const dockLabel = pathname.startsWith('/problems/') ? 'IDE' : '编译器';
   const [dockOpen, setDockOpen] = useState(false);
   // 「更多」下拉（轻量 popover：useState + 点击外部/ Esc 关闭，无新依赖）
   const [moreOpen, setMoreOpen] = useState(false);
@@ -229,10 +230,10 @@ export default function SiteHeader() {
               onClick={toggleCompiler}
               aria-expanded={dockOpen}
               aria-controls="compiler-panel"
-              title={dockOpen ? '收起编译器工作区（Ctrl/⌘+J）' : '打开编译器工作区（Ctrl/⌘+J）'}
+              title={dockOpen ? `收起${dockLabel}工作区（Ctrl/⌘+J）` : `打开${dockLabel}工作区（Ctrl/⌘+J）`}
             >
               <Terminal className="size-3.5" />
-              {!has('compilerLabel') && <span>编译器</span>}
+              {!has('compilerLabel') && <span>{dockLabel}</span>}
               {!has('kbd') && <kbd>⌘ J</kbd>}
             </Button>
           )}

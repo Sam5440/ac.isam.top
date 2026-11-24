@@ -274,7 +274,8 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   （`COMPILE_HARD_CAP_MS = 180s`）；wasm 无法从外部抢占，**超时/停止 =
   `terminate worker`**；交互运行 = SharedArrayBuffer + `Atomics.wait` 阻塞喂 stdin。
   Python worker 必须是 **module worker**，别改成经典 worker。
-- **编辑器只有一个实现**：题目页 `CompilerDock` 与 `/ide` 都用
+- **编辑器只有一个实现**：题目页 IDE（`ProblemIde` → `IdePage`）、模拟赛题目页
+  `CompilerDock` 与 `/ide` 都用
   `components/compiler/CodeEditor.jsx`（Monaco 0.57），补全/签名/hover/格式化/AI
   ghost 全在这一个文件里注册；两处要一致的行为改这里，别在 IDE 侧另写一份。
 - **补全的数据层在 `lib/compiler/completions.js`**（纯表 + 纯函数，可单测）。
@@ -291,6 +292,20 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   不稳）。区块计算在 `lib/compiler/line-clipboard.js`（纯函数 + 单测）。
   踩坑记录：Monaco 的 ITextModel **没有 `getLines()`**（那是 `getLinesContent()`），
   用错会让 copy 事件抛异常、连默认复制一起废掉，而且异常在事件里不显眼。
+- **题目页 IDE 是 /ide 的嵌入复用**（2026-11-25）：`components/ide/ProblemIde.jsx`
+  把 `IdePage embedded` 放进 `#compiler-dock-root` 的右半屏（`body.problem-ide-open`
+  覆盖 `--compiler-w: 50vw`，复用 `body.compiler-open` 分栏动画；移动端沿用
+  `compiler-cover-mode` 全屏）。模拟赛题目页仍用 `CompilerDock`，别把两套入口混用。
+  `IdePage` 收到 `problemSeed` 时会调 `lib/problem-workspace.mjs` 自动建
+  `<比赛编号>-<名字>-<题目 id>/<题号>.cpp|.py` 与同名 `.md`（只补缺，不覆盖用户内容），
+  并把样例绑定到代码文件。
+- **Markdown 编辑在 `components/ide/MarkdownEditor.jsx`**：默认左 Monaco 原文 / 右
+  `renderRich` 预览，另有 contentEditable 所见即所得与纯预览；DOM→Markdown 的唯一
+  序列化器是 `lib/markdown-dom.js`（公式在可编辑态保持 `$...$` 原始文本，不能先交给
+  全局 KatexRuntime，否则无法回写）。导出/分享在 `lib/markdown-export.mjs`：打印走
+  隐藏 iframe，PDF 是手写的最小 PDF（每页 JPEG，无额外依赖），图片走 SVG
+  foreignObject → canvas；导出用 KaTeX 的 **MathML** 输出，不依赖站内 CSS。
+  `lib/ide-workspace.js` 的 `langOf` 决定 Monaco 语言，新扩展名在那里登记。
 
 ### 3.7 AI 功能
 

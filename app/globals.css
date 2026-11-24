@@ -262,6 +262,58 @@
   @apply bg-muted/60 font-medium;
 }
 
+/* ---------- Markdown 工作台（IDE 内 .md 文件） ----------
+   分屏预览沿用 .md-body；所见即所得是可编辑的 .md-body，公式以原始 $...$
+   文本 + 浅底占位显示（不交给 KaTeX，否则 DOM 无法再序列化回 Markdown）。 */
+.md-wysiwyg {
+  outline: none;
+  min-height: 100%;
+  white-space: normal;
+}
+.md-wysiwyg p,
+.md-wysiwyg li {
+  overflow-x: visible;
+  overflow-y: visible;
+  overflow-wrap: anywhere;
+}
+.md-wysiwyg:empty::before {
+  content: "开始书写 Markdown…";
+  opacity: 0.45;
+  pointer-events: none;
+}
+.md-wysiwyg .md-math {
+  display: inline-block;
+  padding: 0 0.25em;
+  border-radius: 4px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+/* 题目页内嵌 IDE：右半屏。仍复用 CompilerDock 的 .compiler-track 分栏与
+   body.compiler-open 开合动画；窄屏由 compiler-cover-mode 接管为全屏。 */
+body.problem-ide-open {
+  --compiler-w: 50vw;
+}
+body.problem-ide-open.compiler-open .compiler-track {
+  flex-basis: min(50vw, max(360px, 100vw - 320px));
+}
+
+/* Markdown 预览：禁止段落内部横向滚动（题面样式的 overflow-x:auto 是给卡片
+   宽度的，IDE 分屏里会让每段都出现横向滚动条），长单词/URL 直接换行。 */
+.md-preview .md-body p,
+.md-preview .md-body li {
+  overflow-x: visible;
+  overflow-y: visible;
+  overflow-wrap: anywhere;
+}
+.md-preview .md-body a,
+.md-preview .md-body code {
+  overflow-wrap: anywhere;
+}
+
 /* 横向滚动：行内公式/长串不撑破卡片 */
 .md-body p,
 .md-body li {

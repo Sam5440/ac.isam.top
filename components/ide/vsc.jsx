@@ -8,13 +8,22 @@
 import { useEffect as useEffectCm, useRef as useRefCm } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 
-/** 文件图标（仿 Seti：C++ 蓝色 / Python 黄色字形）。 */
+/** 文件图标（仿 Seti：C++ 蓝色 / Python 黄色 / Markdown 蓝色字形）。 */
 export function FileIcon({ lang, name = "", className = "" }) {
   const ext = (name.split(".").pop() || "").toLowerCase();
   const isPy = lang === "python" || ext === "py";
+  const isMd = lang === "markdown" || ["md", "markdown", "mdx"].includes(ext);
   const isHeader = /^(h|hpp|hh)$/.test(ext);
-  const label = isPy ? "py" : isHeader ? "h" : ext === "txt" || ext === "in" || ext === "out" ? "≡" : "C+";
-  const color = isPy ? "#e8c34a" : isHeader ? "#a074c4" : label === "≡" ? "var(--vsc-fg-muted)" : "#519aba";
+  const label = isMd ? "M↓" : isPy ? "py" : isHeader ? "h" : ext === "txt" || ext === "in" || ext === "out" ? "≡" : "C+";
+  const color = isMd
+    ? "#519aba"
+    : isPy
+      ? "#e8c34a"
+      : isHeader
+        ? "#a074c4"
+        : label === "≡"
+          ? "var(--vsc-fg-muted)"
+          : "#519aba";
   return (
     <span
       aria-hidden
