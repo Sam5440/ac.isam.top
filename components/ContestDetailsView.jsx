@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, ExternalLink, Timer } from 'lucide-react';
 
 import { DifficultyBadge, PlatformBadge, TranslatedBadge } from '@/components/Badges';
+import ContestExportButton from '@/components/ContestExportButton';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -46,11 +47,30 @@ export default function ContestDetailsView({ contest, problems, platform, isSimu
                 <span className="font-mono">{isSimulator ? '模拟赛' : String(contest.id)}</span>
               </div>
             </div>
-            {isSimulator ? null : (
-              <Button asChild size="sm" className="shrink-0">
-                <a href={contest.url} target="_blank" rel="noreferrer">{platform?.label ?? '原站'}<ExternalLink className="size-3.5" /></a>
-              </Button>
-            )}
+            <div className="flex shrink-0 flex-wrap items-center gap-2">
+              <ContestExportButton
+                contest={{
+                  id: contest.id,
+                  platform: contest.platform || platform,
+                  title: contest.title,
+                  titleZh: contest.titleZh,
+                  url: contest.url || null,
+                }}
+                problems={problems.map((p) => ({
+                  platform: p.platform || platform,
+                  id: p.id,
+                  index: p.index,
+                  title: p.title,
+                  titleZh: p.titleZh,
+                }))}
+                sitePath={`/contests/${encodeURIComponent(platform || contest.platform)}/${encodeURIComponent(String(contest.id))}`}
+              />
+              {isSimulator ? null : (
+                <Button asChild size="sm">
+                  <a href={contest.url} target="_blank" rel="noreferrer">{platform?.label ?? '原站'}<ExternalLink className="size-3.5" /></a>
+                </Button>
+              )}
+            </div>
           </div>
         </CardHeader>
         <CardContent className="p-0">

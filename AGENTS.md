@@ -408,6 +408,27 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   + 远端地址 `statementPdf`）。`build-index.mjs` 内容未变时沿用旧 `generatedAt`，
   不产生空 data 提交。
 
+### 3.9 整场题目导出
+
+正式赛（`ContestDetailsView`）与模拟赛（`SimulatorContestView`）共用一个
+`components/ContestExportButton.jsx`：三种版式（`zh` / `en` / `both`）——
+`both` 是左中文 / 右英文两栏、每题 `break-before: page` 单独分页。HTML 生成在
+`lib/contest-export.mjs`（依赖 `renderMarkdownHtml`，公式输出 MathML），
+轻量常量与文件名工具在 `lib/contest-export-modes.mjs`（首屏可静态引用；
+按钮内部再**动态 import** 生成器，避免把 KaTeX 塞进比赛页首屏包）。
+
+- 题面按需从 `/api/problems/<platform>/<id>` 拉取（并发 4、组件内缓存），所以
+  正式赛页面不需要把整场题面塞进 RSC 载荷；模拟赛题单来自 URL hash / localStorage。
+  模拟赛的「本站比赛」链接只用 `/contests/sim/<id>`，不要把 `#data=` 分享载荷写进
+  导出文档（300 题时可达数百 KB）。
+- 每题固定输出两个链接：本站 `/problems/<platform>/<id>` 与原题 `problem.url`
+  （缺失时用 `originalProblemUrl`）。未收录的模拟赛题输出占位页 + 原题链接。
+- 输出动作：`printHtml`（隐藏 iframe → 打印/另存为 PDF，文字可选中；在
+  `lib/markdown-export.mjs`）或下载自包含 `.html`。缺译/缺英文时在页面内标注回退，
+  不要输出空题。
+- 回归：`test/contest-export.test.mjs` + `e2e/contest-export.js`（正式赛三版式与
+  模拟赛，检查链接与两栏结构）。
+
 ## 4. 测试约定
 
 - 框架：`node:test` + `node:assert/strict`，文件 `test/*.test.mjs`。
