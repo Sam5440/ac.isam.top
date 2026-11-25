@@ -37,6 +37,9 @@ export default function ProblemIde({ contest = null, problem = null }) {
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [everOpened, setEverOpened] = useState(false);
+  // 题目 / IDE 分栏宽度（px）：null = 跟随 CSS 默认 50vw；拖动左缘手柄调整
+  const [panelW, setPanelW] = useState(null);
+  const [resizing, setResizing] = useState(false);
   const panelRef = useRef(null);
 
   const seed = problem
@@ -87,6 +90,58 @@ export default function ProblemIde({ contest = null, problem = null }) {
   useEffect(() => {
     if (open) setEverOpened(true);
   }, [open]);
+
+  /* ---------- 题目 / IDE 分栏拖拽 ----------
+     面板在右：拖它的左缘。改 body 上的 --compiler-w（内联优先于
+     body.problem-ide-open 的 50vw）；拖拽期间挂 compiler-resizing 禁用开合
+     过渡与选中文本；双击手柄恢复 50vw，聚焦后 ←/→ 微调。 */
+  const clampPanelW = useCallback((w) => {
+    const max = Math.max(360, window.innerWidth - 320);
+    return Math.min(Math.max(Math.round(w), 360), max);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const body = document.body;
+    if (panelW) body.style.setProperty("--compiler-w", `${panelW}px`);
+    else body.style.removeProperty("--compiler-w");
+    return () => body.style.removeProperty("--compiler-w");
+  }, [panelW, mounted]);
+
+  // 视口变窄时把宽度收回可用范围，避免题目列被挤没
+  useEffect(() => {
+    if (!mounted || !panelW) return;
+    const onResize = () => setPanelW((w) => (w ? clampPanelW(w) : w));
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [mounted, panelW, clampPanelW]);
+
+  const beginResize = useCallback(
+    (e) => {
+      if (e.button !== 0 || !open) return;
+      e.preventDefault();
+      const startX = e.clientX;
+      const startW = panelRef.current?.getBoundingClientRect().width ?? window.innerWidth / 2;
+      let latest = startW;
+      setResizing(true);
+      document.body.classList.add("compiler-resizing");
+      const onMove = (ev) => {
+        latest = clampPanelW(startW + (startX - ev.clientX));
+        setPanelW(latest);
+      };
+      const onUp = () => {
+        document.removeEventListener("pointermove", onMove);
+        document.removeEventListener("pointerup", onUp);
+        document.removeEventListener("pointercancel", onUp);
+        document.body.classList.remove("compiler-resizing");
+        setResizing(false);
+      };
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", onUp);
+      document.addEventListener("pointercancel", onUp);
+    },
+    [clampPanelW, open],
+  );
 
   useEffect(() => {
     if (!mounted) return;
@@ -141,6 +196,25 @@ export default function ProblemIde({ contest = null, problem = null }) {
           aria-hidden={!open}
           inert={!open}
         >
+          {/* 左缘分栏拖拽手柄：改 --compiler-w（题目 / IDE 宽度），双击恢复 50vw */}
+          <div
+            role="separator"
+            aria-orientation="vertical"
+            aria-label="拖动调整题目与 IDE 宽度"
+            title="拖动调整宽度，双击恢复默认"
+            tabIndex={0}
+            data-dragging={resizing || undefined}
+            onPointerDown={beginResize}
+            onDoubleClick={() => setPanelW(null)}
+            onKeyDown={(e) => {
+              if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+              e.preventDefault();
+              const step = (e.shiftKey ? 64 : 16) * (e.key === "ArrowLeft" ? 1 : -1);
+              const base = panelW ?? panelRef.current?.getBoundingClientRect().width ?? window.innerWidth / 2;
+              setPanelW(clampPanelW(base + step));
+            }}
+            className="compiler-resize-w"
+          />
           <div className="flex h-[26px] shrink-0 items-center gap-1 border-b px-2" style={{ borderColor: "var(--vsc-border)" }}>
             <Braces className="size-3.5 shrink-0 opacity-70" />
             <span className="min-w-0 flex-1 truncate text-[11px] opacity-70">

@@ -296,9 +296,18 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   把 `IdePage embedded` 放进 `#compiler-dock-root` 的右半屏（`body.problem-ide-open`
   覆盖 `--compiler-w: 50vw`，复用 `body.compiler-open` 分栏动画；移动端沿用
   `compiler-cover-mode` 全屏）。模拟赛题目页仍用 `CompilerDock`，别把两套入口混用。
+  题目区与 IDE 中间的分隔条复用 `CompilerDock` 的 `.compiler-resize-w` 手柄：
+  拖动/双击复位/键盘微调都把 px 宽度**内联写到 `body`** 的 `--compiler-w`（覆盖
+  `body.problem-ide-open` 的 50vw；写 `<html>` 会被 body 规则压掉），钳制范围
+  360～(innerWidth-320)。
   `IdePage` 收到 `problemSeed` 时会调 `lib/problem-workspace.mjs` 自动建
   `<比赛编号>-<名字>-<题目 id>/<题号>.cpp|.py` 与同名 `.md`（只补缺，不覆盖用户内容），
+  **代码文件写入 `cp.templates[lang]` 默认模板**（设置里可改；存量空白文件也补写），
   并把样例绑定到代码文件。
+- **IDE 默认布局（2026-11-25 起）**：文件管理在左、样例测试在右（`useWorkbenchLayout`
+  的 `LAYOUT_DEFAULTS`），读取旧偏好时对「旧默认配对（样例左 / 文件右）」做一次
+  幂等换位迁移；嵌入题目页（`compact`）强制 `files: left` + `rightTab: samples`、
+  右侧栏默认以最小宽度（`LIMITS.rightW[0]` = 220px）展开，左侧栏与终端收起。
 - **Markdown 编辑在 `components/ide/MarkdownEditor.jsx`**：默认左 Monaco 原文 / 右
   `renderRich` 预览，另有 contentEditable 所见即所得与纯预览；DOM→Markdown 的唯一
   序列化器是 `lib/markdown-dom.js`（公式在可编辑态保持 `$...$` 原始文本，不能先交给

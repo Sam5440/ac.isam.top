@@ -7,7 +7,7 @@
  * 圆角边框、固定视口高度）；点「全屏」后仅 IDE 元素进入浏览器全屏
  * （Fullscreen API，不可用时 CSS 兜底），铺满屏幕。
  *
- *   ┌ 左侧栏（默认：样例 / 题面）│ 编辑器（VS Code 式：标签 · 面包屑 · Monaco）│ 右侧栏（默认：文件 / AI / 设置）┐
+ *   ┌ 左侧栏（默认：文件 / 题面）│ 编辑器（VS Code 式：标签 · 面包屑 · Monaco）│ 右侧栏（默认：样例 / AI / 设置）┐
  *   │                            ├────────────────────────────────────────────┤                                │
  *   │                            │ 终端 · 问题 · CI 日志（可拖拽高度）         │                                │
  *   └ 状态栏 ─────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -277,20 +277,28 @@ export default function IdePage({
         const full = await fetchProblem(problemSeed.platform, problemSeed.id);
         if (!alive) return;
         setSeedProblem(full);
+        const lang = cp.defaultLang === "python" ? "python" : "cpp";
         const plan = problemWorkspacePlan({
           contest: problemSeed.contest ?? (full.contestId ? { id: full.contestId } : null),
           problem: full,
-          language: cp.defaultLang === "python" ? "python" : "cpp",
+          language: lang,
         });
+        // 默认代码模板来自编译器偏好（设置里可改）；之前这里写空串，
+        // 导致打开题目时编辑器一片空白。
+        const template = String(cp.templates?.[lang] ?? "");
         const before = await listFiles();
         if (!alive) return;
         const existing = new Set(before.map((f) => f.path));
+        const codeEntry = before.find((f) => f.path === plan.codePath);
         const created = !existing.has(plan.codePath) || !existing.has(plan.mdPath);
         await wsCreateFolder(plan.folder);
         if (!existing.has(plan.mdPath)) {
           await putFile(plan.mdPath, problemMarkdown(full, { contest: problemSeed.contest }));
         }
-        if (!existing.has(plan.codePath)) await putFile(plan.codePath, "");
+        // 新文件写模板；旧版本写空的存量文件（content 为空白）也补上模板
+        if (!codeEntry || !String(codeEntry.content ?? "").trim()) {
+          await putFile(plan.codePath, template);
+        }
         const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
         if (!alive) return;
         setFolders(dirs);

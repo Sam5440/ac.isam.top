@@ -297,8 +297,9 @@
 body.problem-ide-open {
   --compiler-w: 50vw;
 }
+/* 内联 --compiler-w（拖动分栏手柄写入 body）优先于上面的 50vw */
 body.problem-ide-open.compiler-open .compiler-track {
-  flex-basis: min(50vw, max(360px, 100vw - 320px));
+  flex-basis: min(var(--compiler-w), max(360px, 100vw - 320px));
 }
 
 /* Markdown 预览：禁止段落内部横向滚动（题面样式的 overflow-x:auto 是给卡片

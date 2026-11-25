@@ -4,7 +4,7 @@
  * /ide 工作台几何与布局偏好（localStorage 持久化）：
  *  - 左右侧栏宽度 / 开合 / 当前标签，底部终端高度 / 开合 / 当前标签；
  *  - 功能块摆放 assign：samples / statement / files / chat / settings → 'left' | 'right'
- *    （settings 不可隐藏，保证总能改回来）；
+ *    （默认：文件 + 题面在左，样例 + AI + 设置在右；settings 不可隐藏，保证总能改回来）；
  *  - showRun：编辑器标题栏是否显示「运行」按钮。
  * 移动端（<768px）侧栏默认收起，以浮层打开。
  */
@@ -22,19 +22,31 @@ export const MODULES = [
 ];
 
 export const LAYOUT_DEFAULTS = {
-  assign: { samples: "left", statement: "left", files: "right", chat: "right", settings: "right" },
+  assign: { samples: "right", statement: "left", files: "left", chat: "right", settings: "right" },
   leftOpen: true,
   rightOpen: true,
   leftW: 300,
   rightW: 300,
-  leftTab: "samples",
-  rightTab: "files",
+  leftTab: "files",
+  rightTab: "samples",
   termOpen: true,
   termH: 220,
   termTab: "terminal", // terminal | problems | ci
   showRun: true,
 };
 const LIMITS = { leftW: [220, 600], rightW: [220, 640], termH: [90, 900] };
+
+/** 旧默认布局（样例在左、文件在右）一次性换位：文件管理放左、样例测试放右。
+    只交换「正好是旧默认配对」的布局，用户自定义过的排列不动；幂等。 */
+function migrateAssign(out) {
+  if (out.assign.files === "right" && out.assign.samples === "left") {
+    out.assign.files = "left";
+    out.assign.samples = "right";
+    if (out.leftTab === "samples") out.leftTab = "files";
+    if (out.rightTab === "files") out.rightTab = "samples";
+  }
+  return out;
+}
 
 function load() {
   try {
@@ -49,7 +61,7 @@ function load() {
         if (raw.assign[m.id] === "left" || raw.assign[m.id] === "right") out.assign[m.id] = raw.assign[m.id];
       }
     }
-    return out;
+    return migrateAssign(out);
   } catch {
     return { ...LAYOUT_DEFAULTS, assign: { ...LAYOUT_DEFAULTS.assign } };
   }
@@ -73,12 +85,22 @@ export function useWorkbenchLayout({ compact = false } = {}) {
     const mq = window.matchMedia("(max-width: 767px)");
     const mobile = mq.matches;
     setIsMobile(mobile);
+    const loaded = load();
     setLayout({
-      ...load(),
+      ...loaded,
       ...(mobile
         ? { leftOpen: false, rightOpen: false, termOpen: false }
         : compact
-          ? { rightOpen: false, leftOpen: false, leftTab: "samples", termOpen: false }
+          ? {
+              // 题目页半屏 IDE：文件管理在左（收起）、样例测试在右且默认展开到最小宽度
+              assign: { ...loaded.assign, files: "left", samples: "right" },
+              leftOpen: false,
+              leftTab: "files",
+              rightOpen: true,
+              rightTab: "samples",
+              rightW: LIMITS.rightW[0],
+              termOpen: false,
+            }
           : {}),
     });
     const sync = () => {
