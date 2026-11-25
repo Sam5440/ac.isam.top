@@ -72,6 +72,7 @@ import {
 } from "@/lib/ide-workspace";
 import { problemMarkdown, problemWorkspacePlan } from "@/lib/problem-workspace.mjs";
 import { loadIdeTabs, restoreIdeTabs, saveIdeTabs } from "@/lib/ide-tabs";
+import { loadIdeUi, patchIdeUi } from "@/lib/ide-ui";
 import {
   loadAllSamples,
   saveAllSamples,
@@ -190,6 +191,7 @@ export default function IdePage({
     setCp(loadCpSettings());
     setAi(loadAiSettings());
     setSamplesMap(loadAllSamples());
+    setRecent(loadIdeUi().recent);
     (async () => {
       try {
         // 恢复上次的标签栏：用户关掉过的标签不会因为「启动默认打开前几个文件」回来
@@ -942,6 +944,12 @@ export default function IdePage({
   useEffect(() => {
     if (activePath) setRecent((prev) => [activePath, ...prev.filter((p) => p !== activePath)].slice(0, 20));
   }, [activePath]);
+
+  // 快速打开的「最近文件」刷新后保持（设备本地数据，见 lib/ide-ui.js）
+  useEffect(() => {
+    if (!mounted) return;
+    patchIdeUi({ recent });
+  }, [mounted, recent]);
 
   /* ---------- 渲染 ---------- */
   const dirty = (f) => (savedSnapshot[f.path] ?? null) !== f.content;

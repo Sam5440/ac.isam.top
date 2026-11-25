@@ -149,7 +149,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 - 键位规划（勿新增前缀冲突）：
   - `stmt-settings-v1` 全部站点设置 / `stmt-custom-themes-v1` 自定义主题
   - `ysc-cp-settings-v1` 编译器偏好 / `ysc-cp-draft-<problem>-<lang>` 代码草稿
-  - `ysc-vec-mdppy-i6` IDE 侧栏布局 / `ysc-tbs-kqmwjz-r9` IDE 已打开标签（设备本地数据，不进设置导出）
+  - `ysc-vec-mdppy-i6` IDE 侧栏布局（含嵌入题目页的 `compact`）/ `ysc-tbs-kqmwjz-r9` IDE 已打开标签 / `ysc-uia-qznhxe-b3` IDE 界面偏好（Markdown 模式与分屏、展开的文件夹、最近文件）——均为设备本地数据，不进设置导出
   - `stmt-chat-v1-<scope>` AI 对话多会话（`lib/chat-store.js`，旧版单会话数组自动迁移）
   - `ac-simulator-contests-v1` 模拟赛定义与本机计时（设备本地数据，不进设置导出）
   - IndexedDB：MT 翻译缓存（`lib/zh-store.js`）、编译运行时（Cache API）
@@ -315,6 +315,16 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   题目页的自动铺开只在该题第一次出现或文件被重建时执行（`seeded` 记录问题键），
   否则每次刷新都会把用户关掉的 `.md` 重新塞回标签栏。问题是「关闭后刷新又出现」
   时先查这里，别再往缓存/IndexedDB 方向找。
+- **其它 IDE 界面状态同样要持久化**（2026-11-25 全局排查）：
+  - 题目页 IDE 的开合与分栏宽度存 `ysc-cp-settings-v1` 的 `problemIdeOpen` /
+    `problemIdeWidth`（与 CompilerDock 的 `panelOpen` 同思路；只有用户主动开合才写，
+    避免把视口默认写死）；
+  - 嵌入题目页的侧栏布局写在 `ysc-vec-mdppy-i6` 的 `compact` 字段（首次默认仍是
+    文件左 / 样例右 / 220px，之后用户调整刷新后保持，且不污染完整 `/ide` 布局）；
+  - Markdown 编辑模式与分屏比例、文件管理展开的文件夹、快速打开最近文件存
+    `ysc-uia-qznhxe-b3`（`lib/ide-ui.js`）。
+  新增「关闭 / 调整后刷新应保持」的 IDE 状态时，按上面三类选存放位置并补测试；
+  纯瞬时态（全屏、面板内的搜索框、样例运行结果）不要持久化。
 - **Markdown 编辑在 `components/ide/MarkdownEditor.jsx`**：默认左 Monaco 原文 / 右
   `renderRich` 预览，另有 contentEditable 所见即所得与纯预览；DOM→Markdown 的唯一
   序列化器是 `lib/markdown-dom.js`（公式在可编辑态保持 `$...$` 原始文本，不能先交给

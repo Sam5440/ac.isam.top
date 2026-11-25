@@ -21,6 +21,7 @@ import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Braces, ChevronLeft, X } from "lucide-react";
+import { loadCpSettings, saveCpSettings } from "@/lib/compiler/cp-settings";
 
 const IdePage = dynamic(() => import("@/components/ide/IdePage"), {
   ssr: false,
@@ -59,7 +60,18 @@ export default function ProblemIde({ contest = null, problem = null }) {
 
   useEffect(() => {
     setPortalRoot(document.getElementById("compiler-dock-root"));
-    setOpen(window.innerWidth >= 1024);
+    const s = loadCpSettings();
+    // 用户上次的开合状态优先（像 CompilerDock 的 panelOpen）；本机没有记录时
+    // 桌面默认展开、窄屏默认收起。宽度同理，null = 50vw。
+    const savedOpen = s.problemIdeOpen;
+    setOpen(
+      savedOpen === false
+        ? false
+        : savedOpen === true
+          ? window.innerWidth >= 900
+          : window.innerWidth >= 1024,
+    );
+    setPanelW(Number.isFinite(s.problemIdeWidth) ? s.problemIdeWidth : null);
     setMounted(true);
   }, []);
 
@@ -87,9 +99,20 @@ export default function ProblemIde({ contest = null, problem = null }) {
     return () => document.body.classList.remove("compiler-cover-mode");
   }, [isMobile, mounted]);
 
+  const openTouchedRef = useRef(false);
+  const setOpenSaved = useCallback((next) => {
+    openTouchedRef.current = true; // 只有用户主动开合才落盘，避免把「视口默认」写死
+    setOpen(next);
+  }, []);
+
   useEffect(() => {
     if (open) setEverOpened(true);
   }, [open]);
+
+  // 题目页 IDE 的开合状态刷新后保持（关掉就不会每次重新弹出来）
+  useEffect(() => {
+    if (mounted && openTouchedRef.current) saveCpSettings({ problemIdeOpen: open });
+  }, [open, mounted]);
 
   /* ---------- 题目 / IDE 分栏拖拽 ----------
      面板在右：拖它的左缘。改 body 上的 --compiler-w（内联优先于
@@ -135,6 +158,7 @@ export default function ProblemIde({ contest = null, problem = null }) {
         document.removeEventListener("pointercancel", onUp);
         document.body.classList.remove("compiler-resizing");
         setResizing(false);
+        if (Math.round(latest) !== Math.round(startW)) saveCpSettings({ problemIdeWidth: latest });
       };
       document.addEventListener("pointermove", onMove);
       document.addEventListener("pointerup", onUp);
@@ -145,16 +169,18 @@ export default function ProblemIde({ contest = null, problem = null }) {
 
   useEffect(() => {
     if (!mounted) return;
-    const toggle = () => setOpen((v) => !v);
+    const toggle = () => setOpenSaved((v) => !v);
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && (e.key ?? "").toLowerCase() === "j") {
         e.preventDefault();
-        setOpen((v) => !v);
+        setOpenSaved((v) => !v);
         return;
       }
       if (e.key !== "Escape" || e.defaultPrevented) return;
+      // 快速打开 / 右键菜单 / 设置对话框等弹层自己处理 Esc，别顺带把 IDE 关掉
+      if (e.target instanceof Element && e.target.closest('[role="dialog"],[role="menu"],[role="listbox"]')) return;
       const panel = panelRef.current;
-      if (panel && !panel.contains(document.activeElement)) setOpen(false);
+      if (panel && !panel.contains(document.activeElement)) setOpenSaved(false);
     };
     window.addEventListener("ysc-compiler-toggle", toggle);
     document.addEventListener("keydown", onKey);
@@ -162,9 +188,9 @@ export default function ProblemIde({ contest = null, problem = null }) {
       window.removeEventListener("ysc-compiler-toggle", toggle);
       document.removeEventListener("keydown", onKey);
     };
-  }, [mounted]);
+  }, [mounted, setOpenSaved]);
 
-  const close = useCallback(() => setOpen(false), []);
+  const close = useCallback(() => setOpenSaved(false), [setOpenSaved]);
 
   if (!mounted || !portalRoot) return null;
 
@@ -173,7 +199,7 @@ export default function ProblemIde({ contest = null, problem = null }) {
       {createPortal(
         <button
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={() => setOpenSaved(true)}
           aria-label={open ? "收起 IDE" : "展开 IDE"}
           aria-controls="compiler-panel"
           aria-expanded={open}
@@ -205,13 +231,18 @@ export default function ProblemIde({ contest = null, problem = null }) {
             tabIndex={0}
             data-dragging={resizing || undefined}
             onPointerDown={beginResize}
-            onDoubleClick={() => setPanelW(null)}
+            onDoubleClick={() => {
+              setPanelW(null);
+              saveCpSettings({ problemIdeWidth: null });
+            }}
             onKeyDown={(e) => {
               if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
               e.preventDefault();
               const step = (e.shiftKey ? 64 : 16) * (e.key === "ArrowLeft" ? 1 : -1);
               const base = panelW ?? panelRef.current?.getBoundingClientRect().width ?? window.innerWidth / 2;
-              setPanelW(clampPanelW(base + step));
+              const next = clampPanelW(base + step);
+              setPanelW(next);
+              saveCpSettings({ problemIdeWidth: next });
             }}
             className="compiler-resize-w"
           />

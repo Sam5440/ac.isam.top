@@ -8,7 +8,7 @@
  *  - 上传文件 / 上传文件夹（保留目录结构）、单文件下载、全部 ZIP。
  */
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -23,6 +23,7 @@ import {
   Upload,
 } from "lucide-react";
 import { toast } from "@/lib/toast";
+import { loadIdeUi, patchIdeUi } from "@/lib/ide-ui";
 import { buildZip } from "@/lib/ide-zip";
 import { ActionButton, ContextMenu, FileIcon, ViewHeader } from "@/components/ide/vsc";
 
@@ -126,19 +127,26 @@ export default function FileManager({
   const uploadDirRef = useRef(null);
   const uploadTarget = useRef("");
 
-  const toggle = (p) =>
-    setExpanded((prev) => {
-      const n = new Set(prev);
-      n.has(p) ? n.delete(p) : n.add(p);
-      return n;
-    });
-  const expandTo = (dir) =>
-    setExpanded((prev) => {
-      const n = new Set(prev);
-      const parts = dir.split("/").filter(Boolean);
-      parts.forEach((_, i) => n.add(parts.slice(0, i + 1).join("/")));
-      return n;
-    });
+  // 展开的文件夹刷新后保持（设备本地数据，见 lib/ide-ui.js）
+  useEffect(() => {
+    setExpanded(new Set(loadIdeUi().filesExpanded));
+  }, []);
+
+  const commitExpanded = (next) => {
+    setExpanded(next);
+    patchIdeUi({ filesExpanded: [...next] });
+  };
+  const toggle = (p) => {
+    const n = new Set(expanded);
+    n.has(p) ? n.delete(p) : n.add(p);
+    commitExpanded(n);
+  };
+  const expandTo = (dir) => {
+    const n = new Set(expanded);
+    const parts = dir.split("/").filter(Boolean);
+    parts.forEach((_, i) => n.add(parts.slice(0, i + 1).join("/")));
+    commitExpanded(n);
+  };
 
   /** 新建/上传的目标目录：选中文件夹 → 它；选中文件 → 其父目录；否则根。 */
   const targetDir = () => (selected ? (selected.type === "dir" ? selected.path : parentOf(selected.path)) : "");
@@ -373,7 +381,7 @@ export default function FileManager({
             <ActionButton icon={FolderUp} title="上传文件夹…" onClick={() => upload(true)} />
             <ActionButton icon={FolderDown} title="下载全部（ZIP）" onClick={downloadAll} disabled={!files.length} />
             <ActionButton icon={RefreshCw} title="刷新" onClick={onRefresh} />
-            <ActionButton icon={ChevronsDownUp} title="全部折叠" onClick={() => setExpanded(new Set())} />
+            <ActionButton icon={ChevronsDownUp} title="全部折叠" onClick={() => commitExpanded(new Set())} />
           </>
         }
       />

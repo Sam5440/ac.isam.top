@@ -44,6 +44,7 @@ import {
 import CodeEditor from "@/components/compiler/CodeEditor";
 import { ActionButton } from "@/components/ide/vsc";
 import { htmlToMarkdown, markdownToEditableHtml } from "@/lib/markdown-dom";
+import { loadIdeUi, patchIdeUi } from "@/lib/ide-ui";
 import { renderRich } from "@/lib/render";
 import {
   downloadBlob,
@@ -113,12 +114,14 @@ export default function MarkdownEditor({
   onCursor,
   onReady,
 }) {
-  const [mode, setMode] = useState("split");
+  const [mode, setMode] = useState(() => loadIdeUi().markdownMode);
   const [busy, setBusy] = useState("");
   const [shareOpen, setShareOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   // 分屏比例（左侧原文宽度百分比）：拖动中间分隔条调整，双击回到 50%
-  const [splitPct, setSplitPct] = useState(50);
+  const [splitPct, setSplitPct] = useState(() => loadIdeUi().markdownSplitPct);
+  const splitPctRef = useRef(splitPct);
+  splitPctRef.current = splitPct;
   const [draggingSplit, setDraggingSplit] = useState(false);
   const editorRef = useRef(null);
   const viewStateRef = useRef(null); // 切走时暂存 Monaco 的光标/滚动位置，切回来恢复
@@ -222,6 +225,7 @@ export default function MarkdownEditor({
   const endSplitDrag = useCallback((e) => {
     draggingRef.current = false;
     setDraggingSplit(false);
+    patchIdeUi({ markdownSplitPct: splitPctRef.current });
     try {
       e.currentTarget.releasePointerCapture?.(e.pointerId);
     } catch {}
@@ -231,10 +235,19 @@ export default function MarkdownEditor({
     (e) => {
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
       e.preventDefault();
-      setSplitPct((p) => clampSplit(p + (e.key === "ArrowLeft" ? -2 : 2)));
+      const next = clampSplit(splitPctRef.current + (e.key === "ArrowLeft" ? -2 : 2));
+      splitPctRef.current = next;
+      setSplitPct(next);
+      patchIdeUi({ markdownSplitPct: next });
     },
     [clampSplit],
   );
+
+  /** 切换编辑模式并记住（刷新后保持上次的选择）。 */
+  const switchMode = useCallback((id) => {
+    setMode(id);
+    patchIdeUi({ markdownMode: id });
+  }, []);
 
   /* ---------- 格式化：Monaco（分屏）与 contentEditable（所见即所得） ---------- */
   const wrapSelection = useCallback(
@@ -465,7 +478,7 @@ export default function MarkdownEditor({
               key={m.id}
               type="button"
               title={m.hint}
-              onClick={() => setMode(m.id)}
+              onClick={() => switchMode(m.id)}
               className="inline-flex h-[22px] items-center gap-1 rounded-[3px] px-2 text-[11px]"
               style={
                 mode === m.id
@@ -656,7 +669,11 @@ export default function MarkdownEditor({
                   onPointerMove={onSplitPointerMove}
                   onPointerUp={endSplitDrag}
                   onPointerCancel={endSplitDrag}
-                  onDoubleClick={() => setSplitPct(50)}
+                  onDoubleClick={() => {
+                    splitPctRef.current = 50;
+                    setSplitPct(50);
+                    patchIdeUi({ markdownSplitPct: 50 });
+                  }}
                   onKeyDown={onSplitKeyDown}
                   className="group relative w-[7px] shrink-0 cursor-col-resize select-none focus-visible:outline-none"
                   style={{ touchAction: "none" }}

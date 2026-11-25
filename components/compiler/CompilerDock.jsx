@@ -383,6 +383,8 @@ export default function CompilerDock({ problems, day, currentCode, currentProble
       if (
         e.key === "Escape" &&
         !e.defaultPrevented &&
+        // 弹层（设置对话框 / 右键菜单 / 列表）自己处理 Esc，别顺带收起编译器
+        !(e.target instanceof Element && e.target.closest('[role="dialog"],[role="menu"],[role="listbox"]')) &&
         !document
           .getElementById("compiler-panel")
           ?.contains(document.activeElement)
