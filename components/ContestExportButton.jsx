@@ -4,7 +4,7 @@
  * 整场题目导出按钮（正式赛 / 模拟赛共用）。
  *
  * 点击后选版式（纯中文 / 纯英文 / 中英对照），再选择：
- *  - 打印 / 另存为 PDF：把导出文档塞进隐藏 iframe 调起打印（文字可选中）；
+ *  - 下载 PDF：ICPC 版式（封面 + 每题从新页开始、连续页码），直接保存文件；
  *  - 下载 HTML：自包含文件（公式是 MathML），离线打开也能正常排版。
  *
  * 题面按需从 /api/problems/<platform>/<id> 拉取（CDN 缓存），并发 4；
@@ -12,7 +12,7 @@
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Download, FileDown, LoaderCircle, Printer } from "lucide-react";
+import { Download, FileDown, FileText, LoaderCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -35,11 +35,16 @@ async function fetchProblem(platform, id) {
 
 /** KaTeX / renderRich 只在真正导出时加载，别把几百 KB 塞进比赛页首屏。 */
 async function loadExportModules() {
-  const [builder, io] = await Promise.all([
+  const [builder, pdf, io] = await Promise.all([
     import("@/lib/contest-export.mjs"),
+    import("@/lib/contest-pdf.mjs"),
     import("@/lib/markdown-export.mjs"),
   ]);
-  return { buildContestExportHtml: builder.buildContestExportHtml, printHtml: io.printHtml, downloadBlob: io.downloadBlob };
+  return {
+    buildContestExportHtml: builder.buildContestExportHtml,
+    buildContestPdf: pdf.buildContestPdf,
+    downloadBlob: io.downloadBlob,
+  };
 }
 
 export default function ContestExportButton({ contest, problems = [], sitePath = "", className = "" }) {
@@ -161,13 +166,34 @@ export default function ContestExportButton({ contest, problems = [], sitePath =
       const format = normalizeExportMode(mode);
       setBusy(`正在获取题目 0/${entries.length}…`);
       try {
-        const html = await generate(entries);
-        const { printHtml, downloadBlob } = await loadExportModules();
-        if (action === "print") {
-          printHtml(html);
-          toast.info("在打印窗口选择「另存为 PDF」（文字可复制）");
+        const modules = await loadExportModules();
+        if (action === "pdf") {
+          const loaded = await loadAll(entries);
+          const origin = window.location.origin;
+          const result = await modules.buildContestPdf({
+            contest,
+            problems: loaded,
+            mode: format,
+            origin,
+            siteUrl: sitePath ? `${origin}${sitePath}` : `${origin}${window.location.pathname}${window.location.hash}`,
+            exportedAt: new Date().toLocaleDateString("zh-CN"),
+            onProgress: ({ stage, done, total, page, pages, label, title }) => {
+              if (stage === "render") {
+                setBusy(`正在排版 ${done + 1}/${total}${label ? `：${label}` : ""}${title ? ` ${title}` : ""}…`);
+              } else if (stage === "page") {
+                setBusy(`正在生成第 ${page}/${pages} 页${label ? `（${label}）` : ""}…`);
+              } else if (stage === "cover") {
+                setBusy("正在生成封面…");
+              } else if (stage === "write") {
+                setBusy("正在写入 PDF…");
+              }
+            },
+          });
+          modules.downloadBlob(result.blob, result.filename);
+          toast.success(`已导出 PDF（${result.pageCount} 页，每题独立分页）`);
         } else {
-          downloadBlob(new Blob([html], { type: "text/html;charset=utf-8" }), `${contestExportFileBase(contest, format)}.html`);
+          const html = await generate(entries);
+          modules.downloadBlob(new Blob([html], { type: "text/html;charset=utf-8" }), `${contestExportFileBase(contest, format)}.html`);
           toast.success(`已导出整场题目（${MODES.find((m) => m.id === format)?.label}）`);
         }
         setOpen(false);
@@ -177,7 +203,7 @@ export default function ContestExportButton({ contest, problems = [], sitePath =
         setBusy("");
       }
     },
-    [contest, generate, list, mode],
+    [contest, generate, list, loadAll, mode, sitePath],
   );
 
   return (
@@ -203,7 +229,7 @@ export default function ContestExportButton({ contest, problems = [], sitePath =
           className="bg-popover text-popover-foreground fixed inset-x-4 bottom-4 z-50 max-h-[70vh] overflow-y-auto rounded-lg border p-3 shadow-lg sm:absolute sm:inset-x-auto sm:top-full sm:right-0 sm:bottom-auto sm:mt-1 sm:w-80 sm:max-h-none sm:overflow-visible"
         >
           <p className="text-muted-foreground mb-2 text-xs">
-            导出本场 {list.length} 题，每题都带本站与原题链接。
+            导出本场 {list.length} 题：PDF 按 ICPC 版式排版，封面后每题从新的一页开始。
           </p>
           <div role="radiogroup" aria-label="导出语言" className="space-y-1">
             {MODES.map((m) => {
@@ -237,18 +263,18 @@ export default function ContestExportButton({ contest, problems = [], sitePath =
           </div>
 
           <div className="mt-3 flex gap-2">
-            <Button type="button" size="sm" className="flex-1" onClick={() => run("print")} disabled={!!busy}>
-              {busy ? <LoaderCircle className="animate-spin" /> : <Printer />}
-              打印 / PDF
+            <Button type="button" size="sm" className="flex-1" onClick={() => run("pdf")} disabled={!!busy}>
+              {busy ? <LoaderCircle className="animate-spin" /> : <FileDown />}
+              下载 PDF
             </Button>
             <Button type="button" variant="outline" size="sm" className="flex-1" onClick={() => run("download")} disabled={!!busy}>
-              <FileDown />
+              <FileText />
               下载 HTML
             </Button>
           </div>
 
           <p role="status" aria-live="polite" className="text-muted-foreground mt-2 text-[11px]">
-            {busy || "打印窗口里选择「另存为 PDF」即可得到可检索文字的 PDF。"}
+            {busy || "下载后即可直接分发/打印，不需要再打开打印窗口另存。"}
           </p>
         </div>
       )}

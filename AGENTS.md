@@ -80,6 +80,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/settings` | 静态 | 设置（5 分区单页切换） | `settings/` 各分区 |
 | `/api/mt/[channel]` | 动态 | 浏览器 MT 转发（deepl/youdao/caiyun/iflyrec） | `lib/mt-protect.js` 防滥用 |
 | `/api/ai/proxy` | 动态 | AI 接口转发（混合内容降级 + 域名白名单） | `lib/ai-proxy.mjs`、`AI_PROXY_ALLOWED_HOSTS` |
+| `/api/img` | 动态 | 题面图片同源代理（PDF canvas；HTTPS + 图床域名白名单） | `lib/image-proxy.mjs`、`lib/secure-proxy.mjs` |
 | `/sw.js`、`/ac-build.json`、`/offline-manifest.json` | 预渲染 | PWA 基础设施 | — |
 
 根布局 `app/layout.jsx` 的 `<head>` 有三样东西：`<meta name="ac-build">`、主题引导内联脚本
@@ -358,7 +359,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   全部地址必须公网 + 连接钉死解析结果**（防 rebinding SSRF）；禁重定向；方法/头白名单；
   请求 4MB / 响应 8MB 上限；55s 超时；120 req/min/IP；SSE 透传。`/api/mt/[channel]`：
   渠道白名单 + 串行 500ms + 超限 429，两者由 `test/security-and-query.test.mjs`
-  部分守卫——放宽任何一项先想清攻击面。`/api/contests/clist` 只读
+  部分守卫——放宽任何一项先想清攻击面。`/api/img` 复用同一套 DNS 钉死连接，
+  只允许 HTTPS、题库图床域名、图片 Content-Type、8MB 与 3 次重定向；开发环境因
+  本地 DNS 常解析到 198.18/15 透明代理段会关闭私网拦截，生产环境必须保留。
+  `/api/contests/clist` 只读
   `data/clist.json`，不访问上游；区间/排序/分页过滤在 `lib/clist-snapshot.mjs`，
   由 `test/clist-snapshot.test.mjs` 守卫（含禁用网络仍可读）。此接口只用于兼容；
   日历与首页通过 `lib/contest-schedule.js` 导入随构建发布的快照，在本地筛选，不发赛程请求。
@@ -437,11 +441,38 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 ### 3.9 整场题目导出
 
 正式赛（`ContestDetailsView`）与模拟赛（`SimulatorContestView`）共用一个
-`components/ContestExportButton.jsx`：三种版式（`zh` / `en` / `both`）——
-`both` 是左中文 / 右英文两栏、每题 `break-before: page` 单独分页。HTML 生成在
-`lib/contest-export.mjs`（依赖 `renderMarkdownHtml`，公式输出 MathML），
-轻量常量与文件名工具在 `lib/contest-export-modes.mjs`（首屏可静态引用；
-按钮内部再**动态 import** 生成器，避免把 KaTeX 塞进比赛页首屏包）。
+`components/ContestExportButton.jsx`：三种版式（`zh` / `en` / `both`）。`both`
+是**中文整段在前、英文整段在后**的顺序排版（不是左右两栏），避免窄栏把公式和
+表格挤坏。两个出口都按 ICPC 题集排版：封面 + 题目清单，**每题强制从新页开始**，
+绝不让两道题共享一页。轻量常量与文件名工具在 `lib/contest-export-modes.mjs`
+（首屏可静态引用；按钮内部再**动态 import** 生成器，避免把 KaTeX 塞进比赛页首屏包）。
+
+**PDF 出口（主路径，直接下载文件，不调用 `window.print`）**：
+
+- `lib/contest-pdf.mjs`（浏览器专用）：每题先渲染成一张 682px 宽的窄画布
+  （`foreignObject` + `data:image/svg+xml,...`，**不能用 `blob:`**，Chrome 会把
+  画布标记为污染），再按首页/续页高度切片，重新合成 794×1123 的 A4 页面；
+  题头、续页页眉、页脚线与页码由 canvas 绘制，页码/书签在 PDF 里是矢量对象。
+- `lib/contest-pdf-layout.mjs` 是纯排版参数（页高、题头高度、切片、封面分栏、
+  页码），`lib/pdf-images.mjs` 是无依赖的图片 PDF 写入器（JPEG `DCTDecode`、
+  UTF-16BE 中文书签、矢量 ASCII 页脚），两者都有单测。
+- 分页保护：`table` / `pre` / `img` / `figure` 是原子块，**`.sample-block` 不是**
+  （一个样例说明可能很长，锁成整块会浪费半页；样例框本身是 `pre`，仍然受保护）。
+  AtCoder 常见的「一个段落 + 多个 `<br>`」输入格式块（高度 ≤ 420px）也按原子块处理，
+  尽量让格式块整体留在同一页；紧邻的引导句（“如下”“as follows”）和前置的
+  `h2/h3/h4` 会并进同一区间。DOM 测量与 SVG 栅格化可能差一行，断点会额外提前
+  `BLOCK_KEEP_SLACK`（16px）；**不要**把 slack 写进区间坐标，否则相邻块会重叠并
+  触发连续回退（会把整页内容挤到下一页）。
+- `analyzeRenderedCanvas()` 会扫描画布，用最后一个非白像素行估算 `yScale`，并按
+  `#f7f8fa` 背景带找出每个 `pre` 的真实像素范围；`alignPreRanges()` 再把这些范围
+  映射回 DOM 坐标（标题/引导句用相对偏移带入）。精确区间只留 2px 间隙，标题跟随
+  区间只保留约两行（`HEADING_KEEP_NEXT`），普通原子块才用 16px 漂移保护。
+  `planSlices()` 的 `findBreak` 可返回 `{ y, force }`：原子块给出的强制提前断点
+  不再被“切得太靠前就丢弃”的保护逻辑覆盖，否则表格/样例框会被硬切。
+- 第三方图床图片必须经 `/api/img?url=` 同源代理（`inlineImages(root, { proxy: true })`），
+  否则 CORS / 画布污染会让导出失败；代理只放行题库图床域名、HTTPS、8MB 以内的图片。
+- `marked` 留下的空 `<p></p>` 会在 DOM 与 SVG 之间产生不同的外边距折叠，导出前
+  已在 `lib/contest-export.mjs` 清掉，别再加回来。
 
 - 题面按需从 `/api/problems/<platform>/<id>` 拉取（并发 4、组件内缓存），所以
   正式赛页面不需要把整场题面塞进 RSC 载荷；模拟赛题单来自 URL hash / localStorage。
@@ -449,11 +480,12 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   导出文档（300 题时可达数百 KB）。
 - 每题固定输出两个链接：本站 `/problems/<platform>/<id>` 与原题 `problem.url`
   （缺失时用 `originalProblemUrl`）。未收录的模拟赛题输出占位页 + 原题链接。
-- 输出动作：`printHtml`（隐藏 iframe → 打印/另存为 PDF，文字可选中；在
-  `lib/markdown-export.mjs`）或下载自包含 `.html`。缺译/缺英文时在页面内标注回退，
-  不要输出空题。
-- 回归：`test/contest-export.test.mjs` + `e2e/contest-export.js`（正式赛三版式与
-  模拟赛，检查链接与两栏结构）。
+- HTML 出口：`lib/contest-export.mjs` 生成自包含文档（公式用 KaTeX 的 MathML
+  输出，离线可排版），每题同样 `break-before: page`。缺译/缺英文时在页面内标注
+  回退，不要输出空题。
+- 回归：`test/contest-export.test.mjs`、`test/contest-pdf-layout.test.mjs`、
+  `test/pdf-images.test.mjs`；端到端 `e2e/contest-export.js` 直接监听下载事件，
+  校验 `%PDF-1.4`、页数 ≥ 题目数 + 1、HTML 单栏结构与模拟赛导出。
 
 ## 4. 测试约定
 

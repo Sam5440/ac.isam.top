@@ -5,6 +5,11 @@ import { isPublicIp } from '../lib/secure-proxy.mjs';
 import { sanitizeRichHtml } from '../lib/render.js';
 import { queryProblems } from '../lib/problem-query.mjs';
 import { translationChannels } from '../lib/translation-plan.mjs';
+import {
+  isAllowedImageContentType,
+  isAllowedImageHost,
+  normalizeImageProxyUrl,
+} from '../lib/image-proxy.mjs';
 
 test('rejects private, mapped, special and non-global IPs', () => {
   for (const ip of ['127.0.0.1', '10.0.0.1', '169.254.169.254', '::1', '::ffff:127.0.0.1', 'fc00::1', 'fe80::1', '2001:db8::1']) {
@@ -35,4 +40,34 @@ test('paginates and filters problem summaries consistently', () => {
 test('CI archive does not suppress explicitly selected MT channels', () => {
   assert.deepEqual(translationChannels({ mode: 'zh', channel: 'deepl', archived: true }), ['deepl']);
   assert.deepEqual(translationChannels({ mode: 'both', channel: 'ai', priority: ['ai', 'deepl'], archived: true }), []);
+});
+
+test('image proxy only accepts known image hosts over https', () => {
+  for (const host of [
+    'img.atcoder.jp',
+    'atcoder.jp',
+    'arc035.contest.atcoder.jp',
+    'espresso.codeforces.com',
+    'codeforces.com',
+    'uploadfiles.nowcoder.com',
+    'japl.pl',
+  ]) {
+    assert.equal(isAllowedImageHost(host), true, host);
+  }
+  for (const host of ['evil.com', 'atcoder.jp.evil.com', '127.0.0.1', 'localhost', 'nowcoder.com.evil.cn']) {
+    assert.equal(isAllowedImageHost(host), false, host);
+  }
+  assert.ok(normalizeImageProxyUrl('https://img.atcoder.jp/abc/004/3_1.png'));
+  assert.equal(normalizeImageProxyUrl('http://img.atcoder.jp/abc/004/3_1.png'), null);
+  assert.equal(normalizeImageProxyUrl('https://img.atcoder.jp.evil.com/a.png'), null);
+  assert.equal(normalizeImageProxyUrl('https://user:p@img.atcoder.jp/a.png'), null);
+  assert.equal(normalizeImageProxyUrl('https://img.atcoder.jp:8443/a.png'), null);
+  assert.equal(normalizeImageProxyUrl('file:///etc/passwd'), null);
+});
+
+test('image proxy content-type allowlist only accepts images', () => {
+  assert.equal(isAllowedImageContentType('image/png'), true);
+  assert.equal(isAllowedImageContentType('image/svg+xml; charset=utf-8'), true);
+  assert.equal(isAllowedImageContentType('text/html'), false);
+  assert.equal(isAllowedImageContentType('application/octet-stream'), false);
 });

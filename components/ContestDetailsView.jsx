@@ -55,6 +55,8 @@ export default function ContestDetailsView({ contest, problems, platform, isSimu
                   title: contest.title,
                   titleZh: contest.titleZh,
                   url: contest.url || null,
+                  startTime: contest.startTime || null,
+                  durationSeconds: contest.durationSeconds || null,
                 }}
                 problems={problems.map((p) => ({
                   platform: p.platform || platform,
