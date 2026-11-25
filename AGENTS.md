@@ -306,6 +306,13 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   隐藏 iframe，PDF 是手写的最小 PDF（每页 JPEG，无额外依赖），图片走 SVG
   foreignObject → canvas；导出用 KaTeX 的 **MathML** 输出，不依赖站内 CSS。
   `lib/ide-workspace.js` 的 `langOf` 决定 Monaco 语言，新扩展名在那里登记。
+  分屏细节（2026-11-25 修）：原文 Monaco 传 `wordWrap`（`CodeEditor` 的新可选 prop，
+  代码编辑器默认关闭）；中间分隔条可拖拽调左右宽度（20%–80%，双击回 50%，键盘 ←/→
+  微调）；三种模式的 DOM 分支必须带**显式 key**——contentEditable 的内容是命令式
+  写进 innerHTML 的（React 不认识它的子节点），若与分屏左栏复用同一个 DIV，切回分屏
+  时旧渲染节点会残留、Monaco 被挤到内容下方（表现为「左侧显示错乱 / 只有一行」）。
+  切走分屏时 Monaco 实例会销毁，光标/滚动位置靠 `saveViewState` 在每次光标与滚动
+  变化时持续快照，切回后 `restoreViewState` 恢复。
 
 ### 3.7 AI 功能
 

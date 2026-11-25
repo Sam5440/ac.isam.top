@@ -625,6 +625,7 @@ function registerAiProvider(monaco, getAi, onAiStatus) {
  * @param {boolean} [props.suppressSoftKeyboard] true 时切回 textarea 输入路径并设
  *   inputmode="none" 阻止系统软键盘（移动端用站内编程键盘输入；EditContext 的
  *   焦点元素是 div 压不住系统键盘，见 watchSoftKeyboardSuppression）
+ * @param {boolean} [props.wordWrap] true 时自动换行（Markdown 原文面板用；代码默认横向滚动）
  */
 export default function CodeEditor({
   language,
@@ -639,6 +640,7 @@ export default function CodeEditor({
   onReady,
   onFocused,
   suppressSoftKeyboard,
+  wordWrap = false,
 }) {
   const hostRef = useRef(null);
   const editorRef = useRef(null);
@@ -661,6 +663,7 @@ export default function CodeEditor({
     onReady,
     onFocused,
     suppressSoftKeyboard,
+    wordWrap,
   });
   stateRef.current = {
     language,
@@ -673,6 +676,7 @@ export default function CodeEditor({
     onReady,
     onFocused,
     suppressSoftKeyboard,
+    wordWrap,
   };
 
   /** 按当前 suppressSoftKeyboard 重接系统键盘抑制：切 textarea 输入路径 +
@@ -725,6 +729,8 @@ export default function CodeEditor({
         scrollBeyondLastLine: false,
         tabSize: 4,
         insertSpaces: true,
+        // Markdown 原文面板开启自动换行（长题面/长段落不横向滚动）；代码默认关闭
+        wordWrap: wordWrap ? "on" : "off",
         // Monaco 0.57 默认 quickSuggestions=offWhenInlineCompletions（实测不弹），
         // 必须 显式开启字母自动补全
         quickSuggestions: { other: "on", comments: false, strings: false },
@@ -862,6 +868,12 @@ export default function CodeEditor({
     if (!monaco || !theme) return;
     monaco.editor.setTheme(editorThemeDef(theme).id);
   }, [theme]);
+
+  // 自动换行开关（Markdown 原文面板开启，代码编辑器默认关闭）
+  useEffect(() => {
+    const editor = editorRef.current;
+    if (editor) editor.updateOptions({ wordWrap: wordWrap ? "on" : "off" });
+  }, [wordWrap]);
 
   // 诊断标记
   useEffect(() => {

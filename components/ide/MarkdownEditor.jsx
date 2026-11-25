@@ -117,8 +117,13 @@ export default function MarkdownEditor({
   const [busy, setBusy] = useState("");
   const [shareOpen, setShareOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
+  // 分屏比例（左侧原文宽度百分比）：拖动中间分隔条调整，双击回到 50%
+  const [splitPct, setSplitPct] = useState(50);
+  const [draggingSplit, setDraggingSplit] = useState(false);
   const editorRef = useRef(null);
+  const viewStateRef = useRef(null); // 切走时暂存 Monaco 的光标/滚动位置，切回来恢复
   const wysiwygRef = useRef(null);
+  const rowRef = useRef(null);
   const shareRef = useRef(null);
   const exportRef = useRef(null);
   const savedRangeRef = useRef(null);
@@ -185,6 +190,51 @@ export default function MarkdownEditor({
       document.removeEventListener("keydown", key, true);
     };
   }, [shareOpen, exportOpen]);
+
+  /* ---------- 分屏拖拽：分隔条调整原文/预览宽度 ---------- */
+  // 用 ref 做拖拽中的即时判断：state 更新要等 React 重渲染，pointerdown 后
+  // 紧跟着的 pointermove 会读到旧值而被丢掉
+  const draggingRef = useRef(false);
+  const clampSplit = useCallback((pct) => Math.min(80, Math.max(20, pct)), []);
+
+  const onSplitPointerDown = useCallback((e) => {
+    if (mode !== "split") return;
+    e.preventDefault();
+    try {
+      e.currentTarget.setPointerCapture?.(e.pointerId);
+    } catch {}
+    draggingRef.current = true;
+    setDraggingSplit(true);
+  }, [mode]);
+
+  const onSplitPointerMove = useCallback(
+    (e) => {
+      if (!draggingRef.current) return;
+      const row = rowRef.current;
+      if (!row) return;
+      const rect = row.getBoundingClientRect();
+      if (!rect.width) return;
+      setSplitPct(clampSplit(((e.clientX - rect.left) / rect.width) * 100));
+    },
+    [clampSplit],
+  );
+
+  const endSplitDrag = useCallback((e) => {
+    draggingRef.current = false;
+    setDraggingSplit(false);
+    try {
+      e.currentTarget.releasePointerCapture?.(e.pointerId);
+    } catch {}
+  }, []);
+
+  const onSplitKeyDown = useCallback(
+    (e) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      e.preventDefault();
+      setSplitPct((p) => clampSplit(p + (e.key === "ArrowLeft" ? -2 : 2)));
+    },
+    [clampSplit],
+  );
 
   /* ---------- 格式化：Monaco（分屏）与 contentEditable（所见即所得） ---------- */
   const wrapSelection = useCallback(
@@ -517,9 +567,16 @@ export default function MarkdownEditor({
       </div>
 
       {/* 正文 */}
-      <div className="flex min-h-0 flex-1">
+      <div
+        ref={rowRef}
+        className={`flex min-h-0 flex-1 ${draggingSplit ? "select-none" : ""}`}
+        style={draggingSplit ? { cursor: "col-resize" } : undefined}
+      >
         {mode === "wysiwyg" ? (
           <div
+            // 显式 key：contentEditable 的内容是命令式写入的（React 不知道它的子节点），
+            // 若与分屏左栏复用同一个 DIV，切回分屏时会残留旧渲染节点（左侧显示错乱）
+            key="wysiwyg"
             ref={wysiwygRef}
             role="textbox"
             aria-multiline="true"
@@ -536,33 +593,92 @@ export default function MarkdownEditor({
         ) : (
           <>
             {mode === "split" && (
-              <div className="flex min-h-0 w-1/2 min-w-0 flex-col border-r" style={{ borderColor: "var(--vsc-border)" }}>
-                <CodeEditor
-                  language="markdown"
-                  value={value}
-                  onChange={onChange}
-                  diagnostics={diagnostics}
-                  theme={theme}
-                  getAi={getAi}
-                  onAiStatus={onAiStatus}
-                  onReady={(editor) => {
-                    editorRef.current = editor;
-                    const report = () => {
-                      const pos = editor.getPosition();
-                      const sel = editor.getSelection();
-                      const model = editor.getModel();
-                      const selLen = sel && model && !sel.isEmpty() ? model.getValueInRange(sel).length : 0;
-                      onCursor?.({ line: pos?.lineNumber ?? 1, col: pos?.column ?? 1, sel: selLen });
-                    };
-                    editor.onDidChangeCursorPosition(report);
-                    editor.onDidChangeCursorSelection(report);
-                    report();
-                    onReady?.(editor);
-                  }}
-                />
-              </div>
+              <>
+                <div
+                  key="source"
+                  className="flex min-h-0 min-w-0 shrink-0 flex-col"
+                  style={{ width: `${splitPct}%` }}
+                >
+                  <CodeEditor
+                    language="markdown"
+                    value={value}
+                    onChange={onChange}
+                    diagnostics={diagnostics}
+                    theme={theme}
+                    getAi={getAi}
+                    onAiStatus={onAiStatus}
+                    wordWrap
+                    onReady={(editor) => {
+                      editorRef.current = editor;
+                      if (viewStateRef.current) {
+                        try {
+                          editor.restoreViewState(viewStateRef.current);
+                        } catch {}
+                        viewStateRef.current = null;
+                      }
+                      const report = () => {
+                        const pos = editor.getPosition();
+                        const sel = editor.getSelection();
+                        const model = editor.getModel();
+                        const selLen = sel && model && !sel.isEmpty() ? model.getValueInRange(sel).length : 0;
+                        onCursor?.({ line: pos?.lineNumber ?? 1, col: pos?.column ?? 1, sel: selLen });
+                      };
+                      // 持续快照光标/滚动位置：模式切走时 Monaco 实例会被销毁，
+                      // 等卸载后再 saveViewState 已经来不及（实例已 dispose）
+                      const snapshot = () => {
+                        try {
+                          viewStateRef.current = editor.saveViewState();
+                        } catch {}
+                      };
+                      editor.onDidChangeCursorPosition(() => {
+                        snapshot();
+                        report();
+                      });
+                      editor.onDidChangeCursorSelection(report);
+                      editor.onDidScrollChange?.(snapshot);
+                      report();
+                      onReady?.(editor);
+                    }}
+                  />
+                </div>
+                {/* 可拖拽分隔条（双击回到 50%；键盘 ←/→ 微调） */}
+                <div
+                  key="splitter"
+                  role="separator"
+                  aria-orientation="vertical"
+                  aria-label="调整原文与预览宽度"
+                  aria-valuenow={Math.round(splitPct)}
+                  aria-valuemin={20}
+                  aria-valuemax={80}
+                  tabIndex={0}
+                  title="拖动调整宽度，双击恢复 50%"
+                  onPointerDown={onSplitPointerDown}
+                  onPointerMove={onSplitPointerMove}
+                  onPointerUp={endSplitDrag}
+                  onPointerCancel={endSplitDrag}
+                  onDoubleClick={() => setSplitPct(50)}
+                  onKeyDown={onSplitKeyDown}
+                  className="group relative w-[7px] shrink-0 cursor-col-resize select-none focus-visible:outline-none"
+                  style={{ touchAction: "none" }}
+                >
+                  <span
+                    className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2"
+                    style={{ background: "var(--vsc-border)" }}
+                  />
+                  <span
+                    className={`pointer-events-none absolute inset-y-0 left-1/2 w-[3px] -translate-x-1/2 transition-opacity ${
+                      draggingSplit ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
+                    }`}
+                    style={{ background: "var(--vsc-accent)" }}
+                  />
+                </div>
+              </>
             )}
-            <div className="md-preview min-h-0 min-w-0 flex-1 overflow-auto" style={{ background: "var(--vsc-editor)" }}>
+            <div
+              key="preview"
+              className="md-preview min-h-0 min-w-0 flex-1 overflow-auto"
+              style={{ background: "var(--vsc-editor)" }}
+            >
               <div
                 className="md-body mx-auto max-w-none px-6 py-4"
                 dangerouslySetInnerHTML={{ __html: previewHtml }}
