@@ -149,6 +149,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 - 键位规划（勿新增前缀冲突）：
   - `stmt-settings-v1` 全部站点设置 / `stmt-custom-themes-v1` 自定义主题
   - `ysc-cp-settings-v1` 编译器偏好 / `ysc-cp-draft-<problem>-<lang>` 代码草稿
+  - `ysc-vec-mdppy-i6` IDE 侧栏布局 / `ysc-tbs-kqmwjz-r9` IDE 已打开标签（设备本地数据，不进设置导出）
   - `stmt-chat-v1-<scope>` AI 对话多会话（`lib/chat-store.js`，旧版单会话数组自动迁移）
   - `ac-simulator-contests-v1` 模拟赛定义与本机计时（设备本地数据，不进设置导出）
   - IndexedDB：MT 翻译缓存（`lib/zh-store.js`）、编译运行时（Cache API）
@@ -308,6 +309,12 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   的 `LAYOUT_DEFAULTS`），读取旧偏好时对「旧默认配对（样例左 / 文件右）」做一次
   幂等换位迁移；嵌入题目页（`compact`）强制 `files: left` + `rightTab: samples`、
   右侧栏默认以最小宽度（`LIMITS.rightW[0]` = 220px）展开，左侧栏与终端收起。
+- **IDE 标签栏会持久化**（`lib/ide-tabs.js`，键 `ysc-tbs-kqmwjz-r9`，设备本地数据）：
+  启动时恢复上次的 `openPaths` / `activePath`（过滤已删除文件），**不再固定打开工作区
+  前 4 个文件**——用户关掉的标签刷新后不会自己回来；空标签栏也是有效记录（欢迎页）。
+  题目页的自动铺开只在该题第一次出现或文件被重建时执行（`seeded` 记录问题键），
+  否则每次刷新都会把用户关掉的 `.md` 重新塞回标签栏。问题是「关闭后刷新又出现」
+  时先查这里，别再往缓存/IndexedDB 方向找。
 - **Markdown 编辑在 `components/ide/MarkdownEditor.jsx`**：默认左 Monaco 原文 / 右
   `renderRich` 预览，另有 contentEditable 所见即所得与纯预览；DOM→Markdown 的唯一
   序列化器是 `lib/markdown-dom.js`（公式在可编辑态保持 `$...$` 原始文本，不能先交给

@@ -71,6 +71,7 @@ import {
   importFiles,
 } from "@/lib/ide-workspace";
 import { problemMarkdown, problemWorkspacePlan } from "@/lib/problem-workspace.mjs";
+import { loadIdeTabs, restoreIdeTabs, saveIdeTabs } from "@/lib/ide-tabs";
 import {
   loadAllSamples,
   saveAllSamples,
@@ -161,6 +162,8 @@ export default function IdePage({
   const saveTimerRef = useRef(null);
   const contentRef = useRef({});
   const activeRef = useRef(null);
+  const openRef = useRef([]);
+  const seededRef = useRef(new Set()); // 已自动铺开过标签栏的题目键（持久化在 lib/ide-tabs.js）
   const runPathRef = useRef(null); // 本次对拍所属文件（结果落到该文件名下）
 
   const activeFile = files.find((f) => f.path === activePath) ?? null;
@@ -176,6 +179,7 @@ export default function IdePage({
 
   contentRef.current = Object.fromEntries(files.map((f) => [f.path, f.content]));
   activeRef.current = activePath;
+  openRef.current = openPaths;
 
   const appendConsole = useCallback((text) => {
     setConsoleText((prev) => (prev + text).slice(-CONSOLE_CAP));
@@ -188,13 +192,27 @@ export default function IdePage({
     setSamplesMap(loadAllSamples());
     (async () => {
       try {
+        // 恢复上次的标签栏：用户关掉过的标签不会因为「启动默认打开前几个文件」回来
+        const savedTabs = loadIdeTabs();
+        seededRef.current = new Set(savedTabs?.seeded ?? []);
         const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
         setFolders(dirs);
         if (list.length) {
           setFiles(list);
           setSavedSnapshot(Object.fromEntries(list.map((f) => [f.path, f.content])));
-          setOpenPaths(list.slice(0, 4).map((f) => f.path));
-          setActivePath(list[0].path);
+          const restored = savedTabs ? restoreIdeTabs(savedTabs, list) : null;
+          if (restored?.openPaths.length) {
+            setOpenPaths(restored.openPaths);
+            setActivePath(restored.activePath);
+          } else if (savedTabs && savedTabs.openPaths.length === 0) {
+            // 用户主动关掉了所有标签：刷新后保持空标签栏（可点「新建文件」重新开始）
+            setOpenPaths([]);
+            setActivePath(null);
+          } else {
+            // 首次使用，或记录里的文件已全部被删除：默认打开前几个文件
+            setOpenPaths(list.slice(0, 4).map((f) => f.path));
+            setActivePath(list[0].path);
+          }
         } else {
           const rec = await putFile("main.cpp", "");
           setFiles([rec]);
@@ -208,6 +226,15 @@ export default function IdePage({
       setMounted(true);
     })();
   }, []);
+
+  /* ---------- 标签栏持久化 ----------
+     打开 / 关闭 / 切换标签都落盘（设备本地数据，见 lib/ide-tabs.js），刷新后
+     恢复同一组标签；空标签栏也照实保存，不会在下次启动时被「默认打开前几个
+     文件」覆盖。 */
+  useEffect(() => {
+    if (!mounted) return;
+    saveIdeTabs({ openPaths, activePath, seeded: [...seededRef.current] });
+  }, [mounted, openPaths, activePath]);
 
   // 全局设置变化（主题联动 / 设置页修改编译器或 AI 补全）→ 同步
   useEffect(() => {
@@ -291,6 +318,11 @@ export default function IdePage({
         const existing = new Set(before.map((f) => f.path));
         const codeEntry = before.find((f) => f.path === plan.codePath);
         const created = !existing.has(plan.codePath) || !existing.has(plan.mdPath);
+        // 是否自动把本题文件铺进标签栏：首次见到该题、或文件刚被重建时才做。
+        // 之后用户关掉的标签保持关闭——否则每次刷新都会把 .md 重新塞回来。
+        const firstSeen = !seededRef.current.has(seedKey);
+        seededRef.current.add(seedKey);
+        const reveal = created || firstSeen;
         await wsCreateFolder(plan.folder);
         if (!existing.has(plan.mdPath)) {
           await putFile(plan.mdPath, problemMarkdown(full, { contest: problemSeed.contest }));
@@ -311,12 +343,16 @@ export default function IdePage({
           return [...map.values()].sort((a, b) => a.path.localeCompare(b.path));
         });
         setSavedSnapshot(Object.fromEntries(list.map((f) => [f.path, f.content])));
-        setOpenPaths((prev) => [...new Set([...prev, plan.codePath, plan.mdPath])]);
-        setActivePath(plan.codePath);
+        if (reveal) {
+          setOpenPaths((prev) => [...new Set([...prev, plan.codePath, ...(created ? [plan.mdPath] : [])])]);
+          setActivePath(plan.codePath);
+        }
         updateSamples((m) => {
           const cur = m[plan.codePath];
           return cur?.problem ? m : withSampleSet(m, plan.codePath, setFromProblem(full));
         });
+        // reveal 会触发标签持久化 effect；没触发时也要把 seeded 记下来
+        if (!reveal) saveIdeTabs({ openPaths: openRef.current, activePath: activeRef.current, seeded: [...seededRef.current] });
         if (created) toast.success(`已准备 ${plan.folder}/${plan.base}`);
       } catch (exn) {
         if (alive) toast.error(`题目工作区创建失败：${exn.message}`);
