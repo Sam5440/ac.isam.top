@@ -14,6 +14,7 @@ import {
   normalizeVaultIndex,
   normalizeVaultPayload,
   validateVaultPayload,
+  vaultFileHref,
 } from '../lib/private-vault.mjs';
 import {
   escapeText,
@@ -246,6 +247,16 @@ test('escapeText 实体化尖括号与方括号，并转义 markdown 记号', ()
 test('leftoverHtml 检出残留标签', () => {
   assert.equal(Boolean(leftoverHtml('plain $a$ text')), false);
   assert.ok(leftoverHtml('<div>x</div>'));
+});
+
+test('密文 URL：带版本号时换 URL，避免 CDN/SW 把重新 pack 前的旧密文喂回来', () => {
+  assert.equal(vaultFileHref('demo'), '/private/vault/demo.json');
+  const a = vaultFileHref('demo', '2026-11-26T16:57:57.627Z');
+  const b = vaultFileHref('demo', '2026-11-27T01:00:00.000Z');
+  assert.notEqual(a, b);
+  assert.ok(a.startsWith('/private/vault/demo.json?v='));
+  // id 仍要转义，不能借版本号做路径穿越
+  assert.equal(vaultFileHref('../x', 'v1'), '/private/vault/..%2Fx.json?v=v1');
 });
 
 test('仓库里的真实密文结构与索引一致（不解密）', async (t) => {

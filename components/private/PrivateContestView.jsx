@@ -38,7 +38,12 @@ export default function PrivateContestView({ contestId, entry }) {
             <h1 className="text-2xl font-bold tracking-tight">{entry?.label ?? contestId}</h1>
             <p className="text-muted-foreground mt-1 font-mono text-xs">{contestId}</p>
           </div>
-          <VaultUnlock contestId={contestId} label={entry?.label} bytes={entry?.bytes} />
+          <VaultUnlock
+            contestId={contestId}
+            label={entry?.label}
+            bytes={entry?.bytes}
+            version={entry?.createdAt}
+          />
         </div>
       </div>
     );

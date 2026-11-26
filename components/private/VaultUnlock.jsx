@@ -16,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { formatBytes } from '@/lib/private-vault.mjs';
 import { unlockVault, usePrivateVault } from '@/lib/private-store';
 
-export default function VaultUnlock({ contestId, label, bytes, onUnlocked }) {
+export default function VaultUnlock({ contestId, label, bytes, version = null, onUnlocked }) {
   const state = usePrivateVault(contestId);
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
@@ -30,7 +30,7 @@ export default function VaultUnlock({ contestId, label, bytes, onUnlocked }) {
     setBusy(true);
     setError('');
     try {
-      const payload = await unlockVault(contestId, password);
+      const payload = await unlockVault(contestId, password, version);
       setPassword('');
       onUnlocked?.(payload);
     } catch (err) {

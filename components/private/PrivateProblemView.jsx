@@ -72,7 +72,12 @@ export default function PrivateProblemView({ contestId, entry, index }) {
           </Link>
         </Button>
         <div className="mx-auto w-full max-w-2xl">
-          <VaultUnlock contestId={contestId} label={entry?.label} bytes={entry?.bytes} />
+          <VaultUnlock
+            contestId={contestId}
+            label={entry?.label}
+            bytes={entry?.bytes}
+            version={entry?.createdAt}
+          />
         </div>
       </div>
     );
