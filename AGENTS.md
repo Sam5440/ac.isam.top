@@ -40,6 +40,12 @@ npm run translate      # 只补 AI 翻译
 npm run index          # 只重建 data/index.json
 npm run normalize-ids  # 题目 id/文件名归一（Windows 安全字符集，幂等；加 --dry-run 只报告）
 npm run runtime        # 只下载浏览器编译器运行时
+
+# 私有化平台（加密题面，见 §3.6b）
+node scripts/private-vault.mjs list                      # 已入库场次与密文体积
+node scripts/private-vault.mjs verify --password '<密码>' # 校验能否解密、题目数
+node scripts/private-vault.mjs pack --from-html book.html --id my-contest \
+  --label "我的比赛 · 正式赛" --title "我的比赛"          # 加密入库
 ```
 
 cf-gyms 独立管线（与主 `fetch.mjs` 完全分离）：
@@ -69,6 +75,9 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/problems/[platform]/[problemId]` | 按需 SSG | 题目详情 | `ProblemViewShell`、`ProblemStatementViewer`、`AiFab`、`ProblemCompiler` |
 | `/contests` | 静态 | 比赛列表（类型/站点筛选，50条/页） | `ContestsBrowser` |
 | `/contests/[platform]/[contestId]` | 按需 SSG | 比赛详情 + 题目清单 | `ContestDetailsView` |
+| `/contests/private` | 静态 | 私有化平台入口（加密场次 + 添加提示词 + 加密用法） | `PrivateHub` |
+| `/contests/private/[contestId]` | SSG | 私有化比赛：输密码解锁后的题目清单 | `PrivateContestView`、`VaultUnlock` |
+| `/contests/private/[contestId]/problems/[index]` | 强制动态 | 私有化题面（浏览器内解密后渲染） | `PrivateProblemView` |
 | `/contests/sim/[contestId]` | 强制动态 | 自定义模拟赛详情、题单与统计（题单分享数据在 `#data=` 里）；静态段优先于 `[platform]` | `SimulatorContestView`、`SimTimer` |
 | `/contests/sim/[contestId]/problems/[number]` | 强制动态 | 模拟赛专属题面，按题单序号切题并共用比赛计时 | `SimulatorProblemView`、`ProblemViewShell` |
 | `/calendar` | 静态 | 比赛日历（读取 CI 的 Clist 快照） | `CalendarView` |
@@ -81,6 +90,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
 | `/api/mt/[channel]` | 动态 | 浏览器 MT 转发（deepl/youdao/caiyun/iflyrec） | `lib/mt-protect.js` 防滥用 |
 | `/api/ai/proxy` | 动态 | AI 接口转发（混合内容降级 + 域名白名单） | `lib/ai-proxy.mjs`、`AI_PROXY_ALLOWED_HOSTS` |
 | `/api/img` | 动态 | 题面图片同源代理（PDF canvas；HTTPS + 图床域名白名单） | `lib/image-proxy.mjs`、`lib/secure-proxy.mjs` |
+| `/private/vault/[file]` | 预渲染 | 私有化密文信封（AES-GCM，服务端不解密） | `lib/private-data.mjs` |
 | `/sw.js`、`/ac-build.json`、`/offline-manifest.json` | 预渲染 | PWA 基础设施 | — |
 
 根布局 `app/layout.jsx` 的 `<head>` 有三样东西：`<meta name="ac-build">`、主题引导内联脚本
@@ -340,6 +350,45 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   时旧渲染节点会残留、Monaco 被挤到内容下方（表现为「左侧显示错乱 / 只有一行」）。
   切走分屏时 Monaco 实例会销毁，光标/滚动位置靠 `saveViewState` 在每次光标与滚动
   变化时持续快照，切回后 `restoreViewState` 恢复。
+
+### 3.6b 私有化平台（加密题面）
+
+`platform = private`（展示名「私有化」）的题目**只以密文进仓库**：构建期、服务端、
+CDN、PR diff 都只见到 PBKDF2 + AES-256-GCM 密文，明文只在访客浏览器里输入密码后
+才出现。没有服务端数据库，也没有「找回密码」接口。
+
+- **文件布局**：`data/private/vault.json` 是明文索引（id / 场次名 / 体积 / 时间），
+  `data/private/vault/<id>.json` 是单场密文信封。索引里保留场次名是刻意的——访客
+  解锁前得先认出「这是哪一场」；题名、题面、样例、图片全部在密文里。
+- **格式**（`lib/private-vault.mjs`，Node/浏览器同构纯模块）：信封
+  `{format:'ac-private-vault',version,id,label,createdAt,bytes,kdf:{name:'PBKDF2',
+  hash:'SHA-256',iterations:310000,salt},cipher:{name:'AES-GCM',iv,tagLength:128},
+  ciphertext}`；载荷 `{format:'ac-private-contest',version:1,id,label,title,titleZh,
+  source,startTime,durationSeconds,note,problems[]}`。`validateVaultPayload` 是加解密
+  两侧的同一道闸：坏 format、重复题 id、空 `statementMd`、`statementPdf` 一律拒绝。
+- **入库**：`node scripts/private-vault.mjs pack --from-html <题册> --id <id>`（解析
+  `<article class="problem">` 题册，图片压到 ≤1100px webp）或 `--from-json <载荷>`；
+  密码来源 `--password` > `VAULT_PASSWORD` > 交互输入。`list` / `verify [--password]`
+  分别查看与校验。**密码绝不写进仓库**（忘记 = 该场无法恢复）。
+- **前端**：`/contests/private` 是入口（场次列表 + 「添加提示词」+「加密脚本用法」，
+  文案在 `lib/private-guide.mjs`，别在组件里另写一份）；`/contests/private/<id>` 解锁
+  后看题单，`/contests/private/<id>/problems/<题号>` 渲染题面。密文由
+  `/private/vault/<id>.json` 提供（`force-static` + CDN 缓存；不放 `/api` 下是为了让
+  SW 页面缓存覆盖，离线也能解锁已下载过的场次）。
+- **明文只活在内存在**（`lib/private-store.js`）：密码与解密结果都不进 localStorage /
+  sessionStorage / IndexedDB，刷新即上锁。**任何新入口都要守住这条**。
+- **题面渲染必须传 `offlineOnly`**：`ProblemStatementViewer` → `StatementBody` 的
+  `offlineOnly` 会关掉 MT 转发与用户 AI 接口，只显示载荷自带的中文。否则缺中文的段落
+  会把明文发到 `/api/mt/*`，「明文不出前端」就成了空话。
+- **IDE 不能走 `/api/problems`**：服务端没有私有化明文，请求必然 404。`ProblemIde`
+  的 `problemData` → `IdePage` 的 `problemOverride` 直接把已解密对象塞进
+  `problemCache`，自动建工作区/样例绑定都复用同一份。
+- **不要**把 `private` 加进 `lib/platforms.js` 的 `PLATFORMS`（那是抓取管线 + 全量
+  索引的权威四平台口径，会去遍历不存在的明文目录）；展示层用 `ALL_PLATFORMS` /
+  `platformOf()`。新增读 `data/private/**` 的路由时同步补
+  `next.config.mjs` 的 `outputFileTracingIncludes`。
+- 题面分段（`lib/statement-segments.js`）：中英块数不等时先剔除「纯图片块」再配对
+  （题册解析把插图单独成段、英文侧去重），否则整节会退化成一个段、其余段全丢译文。
 
 ### 3.7 AI 功能
 

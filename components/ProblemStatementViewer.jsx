@@ -20,6 +20,7 @@ export default function ProblemStatementViewer({
   hasPdf,
   hasText,
   pdfUrl,
+  offlineOnly = false,
 }) {
   return (
     <div className="space-y-6">
@@ -78,6 +79,7 @@ export default function ProblemStatementViewer({
             title={title}
             titleZh={titleZh}
             zhModel={zhModel}
+            offlineOnly={offlineOnly}
           />
         ) : (
           <div className="text-muted-foreground rounded-lg border border-dashed p-4 text-sm">

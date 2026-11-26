@@ -22,6 +22,11 @@ const nextConfig = {
     '/api/simulator/problems': ['./data/index.json', './data/*/contests.json', './data/*/problems/*.json'],
     '/api/problems/[platform]/[problemId]': ['./data/index.json', './data/*/problems/*.json'],
     '/ci': ['./data/ci-log.json'],
+    // 私有化平台：服务端只读明文索引与密文，永远不解密（见 lib/private-data.mjs）
+    '/contests/private': ['./data/private/vault.json'],
+    '/contests/private/[contestId]': ['./data/private/vault.json', './data/private/vault/*.json'],
+    '/contests/private/[contestId]/problems/[index]': ['./data/private/vault.json'],
+    '/private/vault/[file]': ['./data/private/vault.json', './data/private/vault/*.json'],
   },
   outputFileTracingExcludes: {
     '*': ['./data/.*', './data/*/.*'],

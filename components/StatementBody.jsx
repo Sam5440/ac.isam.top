@@ -186,15 +186,20 @@ function ZhLine({ segKey, archivedZh, channel, note, zhModel, seenSrcs }) {
  * @param {string} title 原文题名
  * @param {string|null} titleZh CI 存档题名
  * @param {string} [platform] 题目平台（牛客可设置默认不翻译）
+ * @param {boolean} [offlineOnly] 题面只能留在浏览器里时（私有化平台）打开：
+ *   关掉所有会把原文发出去的渠道（MT 转发 / 用户自己的 AI 接口），只显示
+ *   载荷自带的中文——否则「明文不出前端」就是空话。
  */
-export default function StatementBody({ code, segments, title, titleZh, zhModel, platform }) {
+export default function StatementBody({ code, segments, title, titleZh, zhModel, platform, offlineOnly = false }) {
   const { settings } = useSettings();
   const lang = useProblemLang(platform);
   const mode = lang.mode;
   const channel = lang.channel;
-  const ai = channel === 'ai_custom' ? resolveTranslationCfg(settings) : null;
+  const ai = !offlineOnly && channel === 'ai_custom' ? resolveTranslationCfg(settings) : null;
   const chain =
-    mode === 'both'
+    offlineOnly
+      ? null
+      : mode === 'both'
       ? { priority: settings.zhPriority }
       : channel === 'ai'
         ? { priority: ['ai'] }
@@ -214,12 +219,14 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel,
   ].map((segment) => ({
     ...segment,
     channels: translationChannels({ mode, channel, priority: settings.zhPriority, archived: segment.archived,
-      official: sameLang && (segment.key !== `${code}|title` || titleIsZh) }),
-  })), [code, segments, title, titleZh, mode, channel, settings.zhPriority, sameLang, titleIsZh]);
+      official: (sameLang && (segment.key !== `${code}|title` || titleIsZh)) || offlineOnly }),
+  })), [code, segments, title, titleZh, mode, channel, settings.zhPriority, sameLang, titleIsZh, offlineOnly]);
 
   useEffect(() => {
-    if (mode !== 'en') hydrateSegments(code, zhSegments);
-  }, [code, mode, zhSegments]);
+    // offlineOnly 完全不进翻译队列：既不发远程请求，也不把题面写进 IndexedDB
+    // （私有化题面的明文只该活在这一页的内存里）
+    if (!offlineOnly && mode !== 'en') hydrateSegments(code, zhSegments);
+  }, [code, mode, zhSegments, offlineOnly]);
 
   const segKeyOf = (i) => `${code}|p|${i}`;
 
@@ -236,6 +243,26 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel,
 
   const zhLineFor = (seg, i, note) => {
     const segKey = segKeyOf(i);
+    if (offlineOnly) {
+      // 只认载荷里自带的中文，绝不发起 MT / AI 请求
+      if (seg.zh) {
+        return (
+          <WithSourceChip
+            html={renderRich(seg.zh)}
+            source="ai:builtin"
+            model="官方原文"
+            seenSrcs={enRender.enSrcs}
+          />
+        );
+      }
+      // 纯图片段没有「译文」可言：中文侧同图在抓取时被去重，直接复用原文
+      if (/^(?:\s*!\[[^\]]*\]\([^)]*\)\s*)+$/.test(seg.en.trim())) {
+        return <div dangerouslySetInnerHTML={{ __html: renderRich(seg.en) }} />;
+      }
+      return (
+        <UntranslatedMark note="该段没有中文（私有化题面不外发翻译）" />
+      );
+    }
     if (channel === 'ai_custom') return <AiZhLine en={seg.en} ai={ai} note={note} aiReady={!!(ai?.baseUrl && ai?.apiKey)} seenSrcs={enRender.enSrcs} />;
     if (chain) return <ChainZhLine segKey={segKey} archivedZh={seg.zh} priority={chain.priority} note={note} zhModel={zhModel} seenSrcs={enRender.enSrcs} />;
     return <ZhLine segKey={segKey} archivedZh={seg.zh} channel={channel} note={note} zhModel={zhModel} seenSrcs={enRender.enSrcs} />;
@@ -243,7 +270,13 @@ export default function StatementBody({ code, segments, title, titleZh, zhModel,
 
   const titleLine =
     mode !== 'en' ? (
-      sameLang && titleIsZh ? (
+      offlineOnly ? (
+        titleZh ? (
+          <WithSourceChip html={renderRich(titleZh)} source="ai:builtin" model="官方原文" />
+        ) : (
+          <span>{title}</span>
+        )
+      ) : sameLang && titleIsZh ? (
         <WithSourceChip html={renderRich(title)} source="ai:builtin" model="官方原文" />
       ) : channel === 'ai_custom' ? (
         <AiZhLine en={title} ai={ai} note="标题" aiReady={!!(ai?.baseUrl && ai?.apiKey)} />

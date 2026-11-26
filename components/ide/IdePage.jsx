@@ -99,11 +99,21 @@ async function runtimeReady(lang, pyVersionId) {
   }
 }
 
-/** 题目全量 JSON 缓存（按 platform:id），避免切文件反复请求。 */
+/**
+ * 题目全量 JSON 缓存（按 platform:id），避免切文件反复请求。
+ *
+ * `override` 给「服务端拿不到题面」的入口用（私有化平台：题面只在浏览器
+ * 解密后的内存里，/api/problems/private/* 必然 404），调用方直接把已解密的
+ * 记录传进来，后续切文件复用同一份缓存。
+ */
 const problemCache = new Map();
-async function fetchProblem(platform, id) {
+async function fetchProblem(platform, id, override = null) {
   const key = `${platform}:${id}`;
   if (problemCache.has(key)) return problemCache.get(key);
+  if (override) {
+    problemCache.set(key, override);
+    return override;
+  }
   const res = await fetch(`/api/problems/${platform}/${encodeURIComponent(id)}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const data = await res.json();
@@ -120,6 +130,11 @@ export default function IdePage({
   embedded = false,
   /** 题目页种子：{ platform, id, index, contest: {id,title,titleZh} }，用来自动建工作区。 */
   problemSeed = null,
+  /**
+   * 题面来源：服务端拿不到题面的平台（私有化：题面只存在于浏览器解密后的
+   * 内存里）直接传已解密的题目对象，免去 /api/problems 请求。
+   */
+  problemOverride = null,
   /** 嵌入模式的关闭回调（标题栏 × / 外部）。 */
   onClose = null,
 }) {
@@ -281,14 +296,14 @@ export default function IdePage({
     const id = rest.join(":");
     let alive = true;
     setProblemLoading(true);
-    fetchProblem(platform, id)
+    fetchProblem(platform, id, problemOverride)
       .then((p) => alive && setProblem(p))
       .catch(() => alive && setProblem(null))
       .finally(() => alive && setProblemLoading(false));
     return () => {
       alive = false;
     };
-  }, [boundKey]);
+  }, [boundKey, problemOverride]);
 
   /* ---------- 题目页种子：自动创建工作区目录 + 代码文件 + 同名 Markdown ---------- */
   // 路径：<比赛编号>-<比赛名>-<题目 id>/<题号>.cpp(.py) 与同目录的 <题号>.md
@@ -303,7 +318,7 @@ export default function IdePage({
     let alive = true;
     (async () => {
       try {
-        const full = await fetchProblem(problemSeed.platform, problemSeed.id);
+        const full = await fetchProblem(problemSeed.platform, problemSeed.id, problemOverride);
         if (!alive) return;
         setSeedProblem(full);
         const lang = cp.defaultLang === "python" ? "python" : "cpp";

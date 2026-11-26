@@ -1,6 +1,6 @@
 'use client';
 
-import { Search } from 'lucide-react';
+import { Lock, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
@@ -18,6 +18,7 @@ const SITES = [
   { id: 'codeforces', label: 'Codeforces' },
   { id: 'cf-gyms', label: 'CF Gym' },
   { id: 'nowcoder', label: '牛客' },
+  { id: 'private', label: '私有化' },
 ];
 /** 组内已有站点名，"其他"类去掉站点前缀 */
 const SHORT_LABEL = { 'atcoder-other': '其他', other: '其他', 'nc-other': '其他' };
@@ -65,6 +66,23 @@ export default function ContestsBrowser({ contests }) {
 
   return (
     <div className="space-y-4">
+      <Link
+        href="/contests/private"
+        className="border-border bg-muted/40 hover:bg-accent/40 flex flex-wrap items-center gap-3 rounded-lg border border-dashed px-4 py-3 transition-colors"
+      >
+        <span className="bg-background text-muted-foreground grid size-9 shrink-0 place-items-center rounded-md">
+          <Lock className="size-4" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-medium">私有化 · 加密题面</span>
+          <span className="text-muted-foreground block text-xs leading-5">
+            题面只以密文入库，输入密码后在浏览器内解密。这里也提供添加新比赛的提示词与加密脚本用法。
+          </span>
+        </span>
+        <Badge variant="outline" className="shrink-0">
+          进入
+        </Badge>
+      </Link>
       <div className="flex flex-wrap items-center gap-3">
         <div className="bg-muted text-muted-foreground inline-flex max-w-full flex-wrap rounded-lg p-0.5 text-sm">
           {[{ id: 'all', label: '全部' }, ...SITES].map((t) => (
@@ -172,7 +190,14 @@ export default function ContestsBrowser({ contests }) {
                 {formatDateTime(c.startTime)}
               </span>
               <Badge variant="secondary" className="w-full justify-center tabular-nums">
-                {c.problemCount} 题
+                {c.locked ? (
+                  <span className="inline-flex items-center gap-1">
+                    <Lock className="size-3" />
+                    加密
+                  </span>
+                ) : (
+                  `${c.problemCount} 题`
+                )}
               </Badge>
             </Link>
           ))}

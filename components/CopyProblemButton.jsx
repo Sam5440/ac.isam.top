@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useProblemLang } from '@/components/settings';
 import { Button } from '@/components/ui/button';
-import { PLATFORMS } from '@/lib/platforms';
+import { platformOf } from '@/lib/platforms';
 import { meaningfulNote } from '@/lib/sample-notes';
 
 /** 围栏代码块：内容本身含 ``` 时升级为四反引号围栏。 */
@@ -48,7 +48,7 @@ function samplesMarkdown(samples, mode = 'both') {
 }
 
 function buildProblemMarkdown(p, mode) {
-  const label = PLATFORMS.find((x) => x.id === p.platform)?.label ?? p.platform;
+  const label = platformOf(p.platform)?.label ?? p.platform;
   const heading = `# ${p.index ? `${p.index}. ` : ''}${p.titleZh || p.title}`;
   const altTitle = p.titleZh && p.titleZh !== p.title ? `（${p.title}）` : '';
   const meta = [

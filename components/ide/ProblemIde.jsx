@@ -32,7 +32,11 @@ const IdePage = dynamic(() => import("@/components/ide/IdePage"), {
 
 const MOBILE_QUERY = "(max-width: 767.98px), (max-width: 920px) and (max-height: 500px)";
 
-export default function ProblemIde({ contest = null, problem = null }) {
+/**
+ * `problemData`：题面在服务端不存在的平台（私有化）由调用方直接传已解密的
+ * 题目对象，IdePage 用它代替 /api/problems 请求。
+ */
+export default function ProblemIde({ contest = null, problem = null, problemData = null }) {
   const [portalRoot, setPortalRoot] = useState(null);
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
@@ -262,7 +266,9 @@ export default function ProblemIde({ contest = null, problem = null }) {
             </button>
           </div>
           <div className="min-h-0 flex-1">
-            {everOpened ? <IdePage embedded problemSeed={seed} onClose={close} /> : null}
+            {everOpened ? (
+              <IdePage embedded problemSeed={seed} problemOverride={problemData} onClose={close} />
+            ) : null}
           </div>
         </aside>,
         portalRoot,
