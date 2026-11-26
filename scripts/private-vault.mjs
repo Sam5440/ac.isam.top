@@ -20,6 +20,9 @@
  *   node scripts/private-vault.mjs list
  *   node scripts/private-vault.mjs verify
  *
+ *   # 4) 删除一场（连索引一起摘掉）
+ *   node scripts/private-vault.mjs remove --id my-contest
+ *
  * 密码来源（按优先级）：--password、环境变量 VAULT_PASSWORD、交互输入。
  * 密码**绝不**写进仓库文件；忘记密码 = 该场无法恢复（AES-GCM 无后门）。
  */
@@ -232,12 +235,37 @@ async function cmdVerify(args) {
   if (bad) process.exitCode = 1;
 }
 
+/**
+ * 删除一场：删密文文件 + 从索引里摘掉。
+ * 手改 JSON 容易漏（索引留着 → 页面 404、verify 报缺文件），所以给个命令。
+ */
+function cmdRemove(args, positional = []) {
+  const id = String(args.id ?? positional[0] ?? '').trim().toLowerCase();
+  if (!id) throw new Error('请提供要删除的 id：remove --id <id>');
+  const indexFile = path.join(ROOT, VAULT_INDEX_FILE);
+  if (!fs.existsSync(indexFile)) throw new Error('还没有任何私有化比赛');
+  const index = normalizeVaultIndex(readJson(indexFile));
+  const entry = index.contests.find((c) => c.id === id);
+  if (!entry) throw new Error(`索引里没有 ${id}`);
+  const file = path.join(VAULT_SUBDIR, entry.file);
+  if (fs.existsSync(file)) fs.unlinkSync(file);
+  writeJson(indexFile, {
+    format: 'ac-private-index',
+    version: 1,
+    updatedAt: new Date().toISOString(),
+    contests: index.contests.filter((c) => c.id !== id),
+  });
+  console.log(`[vault] ✓ 已删除 ${id}（${entry.label}）`);
+  console.log('[vault]   记得把 data/private/ 的删除一起提交');
+}
+
 async function main() {
   const [cmd, ...rest] = process.argv.slice(2);
   const args = parseArgs(rest);
   if (cmd === 'pack') return cmdPack(args);
   if (cmd === 'list') return cmdList();
   if (cmd === 'verify') return cmdVerify(args);
+  if (cmd === 'remove') return cmdRemove(args, rest.filter((a) => !a.startsWith('--')));
   console.log(fs.readFileSync(new URL(import.meta.url), 'utf8').split('*/')[0].replace(/^#!.*\n/, ''));
   process.exitCode = cmd ? 2 : 0;
 }

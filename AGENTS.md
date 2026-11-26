@@ -46,6 +46,7 @@ node scripts/private-vault.mjs list                      # 已入库场次与密
 node scripts/private-vault.mjs verify --password '<密码>' # 校验能否解密、题目数
 node scripts/private-vault.mjs pack --from-html book.html --id my-contest \
   --label "我的比赛 · 正式赛" --title "我的比赛"          # 加密入库
+node scripts/private-vault.mjs remove --id my-contest      # 删场（连索引一起）
 ```
 
 cf-gyms 独立管线（与主 `fetch.mjs` 完全分离）：
