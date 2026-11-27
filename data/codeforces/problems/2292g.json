@@ -1,0 +1,29 @@
+{
+  "id": "2292G",
+  "platform": "codeforces",
+  "contestId": 2292,
+  "index": "G",
+  "title": "Soft Memories",
+  "url": "https://codeforces.com/contest/2292/problem/G",
+  "difficulty": null,
+  "tags": [
+    "greedy",
+    "sortings"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "Returning home and wrapping themselves in a warm blanket, Sunny and Aubrey pulled out a box of old photos. In total, they have $m$ photos. The $i$-th photo has an emotional tone $a_i$: some pictures are very quiet and peaceful, while others are bright, noisy, and joyful.\n\nThe friends want to arrange an evening of memories and view the photos according to a special system. To do this, they choose a number of photos $n$ ($1 \\le n \\le m$) that is a power of two, select any $n$ photos from the box, and arrange them in a row: $p_1, p_2, \\dots, p_n$.\n\nThen, a tournament of memories is held, consisting of $\\log_2 n$ rounds:\n\n1. In the current round, the photos are divided into adjacent pairs.\n2. For each pair with photo tones $x$ and $y$, the friends gain $|x - y| - k$ resonance points, where $k$ is a fixed emotional cost per comparison.\n3. The photo with the larger tone $\\max(x, y)$ advances to the next round (if $x = y$, either photo advances). The winners form a new row, preserving their relative order, after which the next round begins.\n\nThe process ends when a single photo remains. Help Sunny and Aubrey choose the number $n$, the photos themselves, and their initial order $p_1, p_2, \\dots, p_n$ to maximize the total resonance over all rounds.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains two integers $m$ and $k$ ($1 \\le m \\le 2 \\cdot 10^5$, $0 \\le k \\le 10^9$) — the total number of photos and the cost per comparison.\n\nThe second line contains $m$ integers $a_1, a_2, \\dots, a_m$ ($-10^9 \\le a_i \\le 10^9$) — the emotional tones of the photos.\n\nThe sum of $m$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print a single integer — the maximum possible total resonance over the entire comparison process.\n\nThe answer may not fit into a 32-bit signed integer.\n\n## Note\n\nIn the first test case use the order $20,5,15,10$. The first two pairs score $15-3=12$ and $5-3=2$. The final compares $20$ and $15$ for another $2$ points, giving $16$ in total.\n\nIn the second test case choose the photos with tones $-5$ and $5$. Their one comparison scores $10$.\n\nIn the third test case there is just one photo and no comparison, so the score is $0$.\n\nIn the fourth test case, pair each zero with a one in the first round. These four pairs score one point each. Only ones remain, so all later comparisons score zero. Each point requires a zero to lose, and there are only four zeros.",
+  "samples": [
+    {
+      "input": "5\n4 3\n10 20 5 15\n3 0\n-5 0 5\n1 4\n-2\n8 0\n0 0 0 0 1 1 1 1\n2 0\n-1 -1\n",
+      "output": "16\n10\n0\n4\n0\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-27T22:06:49.182Z",
+  "titleZh": "温柔的回忆",
+  "statementZhMd": "回到家后，Sunny 和 Aubrey 裹上温暖的毯子，拿出了一盒老照片。他们一共有 $m$ 张照片。第 $i$ 张照片的情感基调为 $a_i$：有些照片静谧而平和，有些则明亮、喧闹而欢乐。\n\n两位朋友想举办一个回忆之夜，并按照一种特殊的方式浏览照片。为此，他们选择一个照片数量 $n$（$1 \\le n \\le m$），其中 $n$ 必须是二的幂，然后从盒子中任选 $n$ 张照片，将它们排成一行：$p_1, p_2, \\dots, p_n$。\n\n随后，他们进行一场回忆锦标赛，共有 $\\log_2 n$ 轮：\n\n1. 在当前轮中，将照片按相邻位置两两配对。\n2. 对于情感基调分别为 $x$ 和 $y$ 的每一对照片，两位朋友获得 $|x - y| - k$ 点共鸣值，其中 $k$ 是每次比较所需付出的固定情感代价。\n3. 情感基调较大的照片，即基调为 $\\max(x, y)$ 的照片晋级下一轮（若 $x = y$，则任意一张晋级）。所有晋级的照片保持原有相对顺序，组成新的一行，随后开始下一轮。\n\n当只剩下一张照片时，过程结束。请帮助 Sunny 和 Aubrey 选择数量 $n$、所用的照片以及初始排列顺序 $p_1, p_2, \\dots, p_n$，使所有轮次获得的共鸣值总和最大。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含两个整数 $m$ 和 $k$（$1 \\le m \\le 2 \\cdot 10^5$，$0 \\le k \\le 10^9$）——照片总数和每次比较的代价。\n\n第二行包含 $m$ 个整数 $a_1, a_2, \\dots, a_m$（$-10^9 \\le a_i \\le 10^9$）——各张照片的情感基调。\n\n所有测试用例的 $m$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出一个整数——整个比较过程中能够获得的最大共鸣值总和。\n\n答案可能超出 32 位有符号整数的范围。\n\n## 说明\n\n在第一组测试用例中，使用排列顺序 $20,5,15,10$。第一轮的两对照片分别获得 $15-3=12$ 和 $5-3=2$ 点共鸣值。最后比较 $20$ 和 $15$，再获得 $2$ 点，共计 $16$ 点。\n\n在第二组测试用例中，选择情感基调为 $-5$ 和 $5$ 的照片。它们仅进行一次比较，获得 $10$ 点共鸣值。\n\n在第三组测试用例中，只有一张照片，不会进行比较，因此共鸣值为 $0$。\n\n在第四组测试用例中，在第一轮将每个零与一个一配对。这四对照片各获得一点共鸣值。此后只剩下基调为一的照片，因此后续所有比较获得的共鸣值均为零。每获得一点共鸣值，都需要淘汰一个零，而一共只有四个零。",
+  "translatedAt": "2026-11-27T22:09:03.384Z",
+  "translateModel": "gpt-6.1-sol"
+}

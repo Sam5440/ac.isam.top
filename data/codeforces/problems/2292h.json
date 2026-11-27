@@ -1,0 +1,30 @@
+{
+  "id": "2292H",
+  "platform": "codeforces",
+  "contestId": 2292,
+  "index": "H",
+  "title": "Missed Call",
+  "url": "https://codeforces.com/contest/2292/problem/H",
+  "difficulty": null,
+  "tags": [
+    "dp",
+    "graphs",
+    "trees"
+  ],
+  "timeLimitMs": 3000,
+  "memoryLimitMb": 256,
+  "statementMd": "In one of their old photos, Aubrey spotted Sunny holding a paper cup to his ear. A string stretched from the cup and out of the picture. She remembered the day they had built a whole phone network out of paper cups and string.\n\nThere were $n$ friends playing that day, including Sunny and Aubrey. The phone lines between them formed a tree. At the start of the game, each friend knew exactly one piece of news. No two friends had the same news.\n\nSunny kept a list of all $m$ calls in the order they took place. During each call, the two friends at opposite ends of the line told each other everything they knew. They remembered every piece of news they heard. The same line could be used more than once.\n\nThat evening, Aubrey wrote down how many different pieces of news each friend knew and added up the numbers. Let $S$ be this sum. For example, a piece of news known to three friends counts three times.\n\nHelp Sunny and Aubrey find, for each call, how much smaller $S$ would have been if that call had been missed. Consider each call independently. All the other calls take place in their original order.\n\n## Input\n\nEach test contains multiple test cases. The first line contains the number of test cases $t$ ($1 \\le t \\le 10^4$). The description of the test cases follows.\n\nThe first line of each test case contains two integers $n$ and $m$ ($2 \\le n \\le 4\\cdot 10^5$, $1 \\le m \\le 4\\cdot 10^5$) — the number of friends and the number of calls.\n\nFor $1 \\le i  \\lt  n$, the $i$-th of the next $n-1$ lines contains two integers $u_i$ and $v_i$ ($1 \\le u_i,v_i \\le n$, $u_i \\ne v_i$). Phone line $i$ connects friends $u_i$ and $v_i$. These lines form an undirected tree.\n\nThe last line of each test case contains $m$ integers $e_1,e_2,\\ldots,e_m$ ($1 \\le e_i  \\lt  n$). Call $i$ uses phone line $e_i$.\n\nIt is guaranteed that the sum of $n$ over all test cases does not exceed $4\\cdot 10^5$. It is guaranteed that the sum of $m$ over all test cases does not exceed $4\\cdot 10^5$.\n\n## Output\n\nFor each test case, print $m$ integers. The $i$-th integer is the difference between $S$ with all calls and $S$ with only call $i$ missed.\n\n## Note\n\nIn the first test case, the four friends finish the day knowing $2,4,4,4$ pieces of news, respectively. If the first call is missed, they finish with $1,3,3,3$. The first answer is $14-10=4$.\n\nIn the second test case, friends $2$ and $3$ call each other twice in a row. Missing either one of these calls leaves the final counts unchanged.",
+  "samples": [
+    {
+      "input": "4\n4 4\n1 2\n2 3\n3 4\n1 2 3 2\n4 4\n1 2\n2 3\n3 4\n1 2 2 3\n2 1\n1 2\n1\n3 3\n2 1\n3 2\n1 1 1\n",
+      "output": "4 2 5 1\n4 0 0 4\n2\n0 0 0\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-27T22:06:49.182Z",
+  "titleZh": "未接来电",
+  "statementZhMd": "在一张旧照片中，Aubrey 发现 Sunny 正把一个纸杯贴在耳边。一根绳子从纸杯延伸出去，伸到了照片之外。她想起了他们用纸杯和绳子搭建起整个电话网络的那一天。\n\n那天共有 $n$ 个朋友一起玩，包括 Sunny 和 Aubrey。他们之间的电话线构成了一棵树。游戏开始时，每个朋友都恰好知道一条消息，且任意两个朋友知道的消息都不同。\n\nSunny 按发生顺序记录了全部 $m$ 次通话。每次通话时，电话线两端的两个朋友都会把自己知道的所有消息告诉对方。他们会记住听到的每一条消息。同一条电话线可以使用多次。\n\n当天晚上，Aubrey 记下了每个朋友知道的不同消息的数量，并将这些数量相加。设这个总和为 $S$。例如，一条被三个朋友知道的消息会被计入三次。\n\n请帮助 Sunny 和 Aubrey 对于每次通话，求出如果错过了这次通话，$S$ 会减少多少。每次通话的情况独立考虑，其余所有通话仍按原来的顺序进行。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含测试用例的数量 $t$ ($1 \\le t \\le 10^4$)。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含两个整数 $n$ 和 $m$ ($2 \\le n \\le 4\\cdot 10^5$, $1 \\le m \\le 4\\cdot 10^5$)——朋友的数量和通话的次数。\n\n对于 $1 \\le i  \\lt  n$，接下来的 $n-1$ 行中的第 $i$ 行包含两个整数 $u_i$ 和 $v_i$ ($1 \\le u_i,v_i \\le n$, $u_i \\ne v_i$)。第 $i$ 条电话线连接朋友 $u_i$ 和 $v_i$。这些电话线构成一棵无向树。\n\n每组测试用例的最后一行包含 $m$ 个整数 $e_1,e_2,\\ldots,e_m$ ($1 \\le e_i  \\lt  n$)。第 $i$ 次通话使用电话线 $e_i$。\n\n保证所有测试用例的 $n$ 之和不超过 $4\\cdot 10^5$。保证所有测试用例的 $m$ 之和不超过 $4\\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出 $m$ 个整数。第 $i$ 个整数表示所有通话均进行时的 $S$，与仅错过第 $i$ 次通话时的 $S$ 之差。\n\n## 说明\n\n在第一组测试用例中，一天结束时，四个朋友知道的消息数量分别为 $2,4,4,4$。如果错过第一次通话，他们最终知道的消息数量将为 $1,3,3,3$。因此，第一个答案为 $14-10=4$。\n\n在第二组测试用例中，朋友 $2$ 和 $3$ 连续通话两次。错过其中任意一次通话，都不会改变最终的消息数量。",
+  "translatedAt": "2026-11-27T22:09:33.572Z",
+  "translateModel": "gpt-6.1-sol"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2292D",
+  "platform": "codeforces",
+  "contestId": 2292,
+  "index": "D",
+  "title": "Unexpected Precipitation",
+  "url": "https://codeforces.com/contest/2292/problem/D",
+  "difficulty": null,
+  "tags": [
+    "dp",
+    "games"
+  ],
+  "timeLimitMs": 2000,
+  "memoryLimitMb": 256,
+  "statementMd": "While experimenting with the clouds, Sunny and Aubrey accidentally summoned heavy rain and ran to take shelter inside the \"Othermart\" shopping mall. Along its long main corridor, there are $n$ pairs of shops. In the $i$-th pair, the shop on the left sells a product for $x_i$ coins, and the shop on the right sells a product for $y_i$ coins.\n\nThe friends visit the pairs of shops in order from $1$ to $n$. Initially, Sunny is on the left side of the corridor, and Aubrey is on the right side.\n\nAt each pair of shops, **the participant currently on the left** chooses one of the following actions:\n\n- **Buy.** Both participants buy a product: the participant on the left pays $x_i$ coins, and the participant on the right pays $y_i$ coins. They stay on their current sides for the next pair of shops.\n- **Skip.** Neither participant buys anything. They swap sides before proceeding to the next pair of shops.\n\nThere is no limit on the amount of money either participant can spend. Both participants know all the prices in advance.\n\nAfter all $n$ pairs of shops have been visited, let $d=s_1-s_2$, where $s_1$ is the total amount spent by Sunny and $s_2$ is the total amount spent by Aubrey. Sunny wants to maximize $d$, while Aubrey wants to minimize it.\n\nThe participant who spends more wins. Determine the outcome if both participants play optimally: Sunny wins if $d \\gt 0$, Aubrey wins if $d \\lt 0$, and the game is a draw if $d=0$.\n\n## Input\n\nEach test consists of multiple test cases. The first line contains an integer $t$ ($1 \\le t \\le 10^4$) — the number of test cases. The description of the test cases follows.\n\nThe first line of each test case contains an integer $n$ ($1 \\le n \\le 2 \\cdot 10^5$) — the number of pairs of shops.\n\nThe second line contains $n$ integers $x_1, x_2, \\dots, x_n$ ($1 \\le x_i \\le 10^9$) — the prices at the shops on the left side.\n\nThe third line contains $n$ integers $y_1, y_2, \\dots, y_n$ ($1 \\le y_i \\le 10^9$) — the prices at the shops on the right side.\n\nThe sum of $n$ over all test cases does not exceed $2 \\cdot 10^5$.\n\n## Output\n\nFor each test case, print the answer: `Sunny` (if $d  \\gt  0$), `Aubrey` (if $d  \\lt  0$), or `Draw` (if $d = 0$). Use the capitalization shown above.\n\n## Note\n\nIn the first test case Sunny can buy at the first pair and skip the second. The difference is now $1$. If Aubrey skips the third pair, Sunny buys at the fourth and the final difference is $2$. If Aubrey buys at the third, the difference becomes $3$, and if she buys at the fourth, the difference falls to $2$. Sunny can therefore guarantee a win.\n\nIn the sixth test case, buying immediately gives Sunny a difference of $1-4=-3$. He can recover only $3-2=1$ at the second pair. If he skips the first pair, Aubrey buys at the second and the difference becomes $2-3=-1$. Aubrey wins either way.",
+  "samples": [
+    {
+      "input": "8\n4\n4 3 1 4\n3 5 3 3\n1\n10\n5\n2\n5 10\n5 1\n2\n10 10\n10 10\n2\n2 3\n4 1\n2\n1 3\n4 2\n4\n2 2 2 2\n5 2 3 4\n4\n2 1 1 2\n1 5 2 1\n",
+      "output": "Sunny\nSunny\nSunny\nDraw\nDraw\nAubrey\nDraw\nSunny\n",
+      "note": "Input\n\nCopy\n\nOutput\n\nCopy"
+    }
+  ],
+  "language": "en",
+  "fetchedAt": "2026-11-27T22:06:49.182Z",
+  "titleZh": "意外的降雨",
+  "statementZhMd": "Sunny 和 Aubrey 在对云朵进行实验时，意外引发了一场大雨，于是跑进了“Othermart”购物中心避雨。购物中心长长的主走廊两侧共有 $n$ 对商店。在第 $i$ 对商店中，左侧商店的一件商品售价为 $x_i$ 枚硬币，右侧商店的一件商品售价为 $y_i$ 枚硬币。\n\n两人按从 $1$ 到 $n$ 的顺序依次经过这些商店。最初，Sunny 在走廊左侧，Aubrey 在走廊右侧。\n\n每到一对商店，**当前位于左侧的参与者**选择执行以下一种操作：\n\n- **购买。** 两人各购买一件商品：左侧的参与者支付 $x_i$ 枚硬币，右侧的参与者支付 $y_i$ 枚硬币。前往下一对商店时，两人保持各自所在的一侧。\n- **跳过。** 两人都不购买任何商品。在前往下一对商店之前，两人交换位置。\n\n两人的花费均没有上限，并且都提前知道所有商品的价格。\n\n经过全部 $n$ 对商店后，令 $d=s_1-s_2$，其中 $s_1$ 是 Sunny 的总花费，$s_2$ 是 Aubrey 的总花费。Sunny 希望最大化 $d$，而 Aubrey 希望最小化 $d$。\n\n花费更多的参与者获胜。请确定双方都采用最优策略时的结果：若 $d \\gt 0$，则 Sunny 获胜；若 $d \\lt 0$，则 Aubrey 获胜；若 $d=0$，则为平局。\n\n## 输入格式\n\n每个测试包含多组测试用例。第一行包含一个整数 $t$（$1 \\le t \\le 10^4$）——测试用例的数量。接下来是各组测试用例的描述。\n\n每组测试用例的第一行包含一个整数 $n$（$1 \\le n \\le 2 \\cdot 10^5$）——商店的对数。\n\n第二行包含 $n$ 个整数 $x_1, x_2, \\dots, x_n$（$1 \\le x_i \\le 10^9$）——左侧商店的商品价格。\n\n第三行包含 $n$ 个整数 $y_1, y_2, \\dots, y_n$（$1 \\le y_i \\le 10^9$）——右侧商店的商品价格。\n\n所有测试用例的 $n$ 之和不超过 $2 \\cdot 10^5$。\n\n## 输出格式\n\n对于每组测试用例，输出结果：`Sunny`（若 $d  \\gt  0$）、`Aubrey`（若 $d  \\lt  0$）或 `Draw`（若 $d = 0$）。大小写须与上述形式一致。\n\n## 说明\n\n在第一组测试用例中，Sunny 可以在第一对商店选择购买，在第二对商店选择跳过。此时差值为 $1$。如果 Aubrey 在第三对商店选择跳过，Sunny 就会在第四对商店选择购买，最终差值为 $2$。如果 Aubrey 在第三对商店选择购买，差值会变为 $3$；如果她在第四对商店也选择购买，差值会降至 $2$。因此，Sunny 可以保证获胜。\n\n在第六组测试用例中，立即购买会使 Sunny 的花费差值变为 $1-4=-3$。在第二对商店，他只能追回 $3-2=1$。如果他跳过第一对商店，Aubrey 就会在第二对商店选择购买，差值变为 $2-3=-1$。无论哪种情况，Aubrey 都会获胜。",
+  "translatedAt": "2026-11-27T22:08:35.911Z",
+  "translateModel": "gpt-6.1-sol"
+}
