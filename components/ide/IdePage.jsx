@@ -366,9 +366,18 @@ export default function IdePage({
         return null;
       }
     };
-    const contest = seedProblem?.contestId
-      ? { id: seedProblem.contestId, platform: seedProblem.platform ?? null, title: seedProblem.title ?? null }
-      : null;
+    // 清单里的 contest 是「比赛」元数据，不能拿题目记录冒充——题目标题会被
+    // 错写成比赛名（seedProblem 是题目对象）。优先用题目页传来的比赛信息。
+    const contest = problemSeed?.contest?.id
+      ? {
+          id: problemSeed.contest.id,
+          platform: problemSeed.platform ?? null,
+          title: problemSeed.contest.title ?? null,
+          titleZh: problemSeed.contest.titleZh ?? null,
+        }
+      : seedProblem?.contestId
+        ? { id: seedProblem.contestId, platform: seedProblem.platform ?? null, title: null, titleZh: null }
+        : null;
     const map = buildBindings({ contest, files, samplesMap, chatOf });
     const signature = JSON.stringify(map);
     if (signature === bindingsWriteRef.current) return;
