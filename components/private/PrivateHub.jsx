@@ -27,9 +27,11 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { PRIVATE_PROMPT, PRIVATE_USAGE } from '@/lib/private-guide.mjs';
+import { PRIVATE_PROMPT, PRIVATE_SHARE_NOTES, PRIVATE_USAGE } from '@/lib/private-guide.mjs';
 import { formatBytes } from '@/lib/private-vault.mjs';
 import { usePrivateVaultList } from '@/lib/private-store';
+import { clearAllSavedUnlocks, useSavedUnlocks } from '@/lib/private-unlock-store';
+import { unlockDaysLeft } from '@/lib/private-unlock.mjs';
 import { formatDateTime } from '@/lib/utils';
 
 function CopyButton({ text, label = '复制' }) {
@@ -86,8 +88,17 @@ function Collapsible({ title, description, icon: Icon, text, children }) {
 
 export default function PrivateHub({ contests = [] }) {
   const unlocked = usePrivateVaultList();
+  const saved = useSavedUnlocks();
   const unlockedSet = useMemo(() => new Set(unlocked), [unlocked.join('|')]);
   const total = contests.reduce((sum, c) => sum + (c.bytes ?? 0), 0);
+  const savedCount = Object.keys(saved).length;
+  const savedMaxDays = Object.values(saved).reduce((max, r) => Math.max(max, unlockDaysLeft(r)), 0);
+
+  const forgetAll = () => {
+    if (!savedCount) return;
+    if (!window.confirm(`清除本机记住的 ${savedCount} 场密码？清除后需要重新输入。`)) return;
+    clearAllSavedUnlocks();
+  };
 
   return (
     <div className="space-y-6 py-10">
@@ -101,7 +112,8 @@ export default function PrivateHub({ contests = [] }) {
         </div>
         <p className="text-muted-foreground mt-2 max-w-3xl text-sm leading-6">
           这里的题目只以密文存放在 GitHub 仓库里。你输入密码后，密钥在本地派生、题面在本地解密，
-          服务器与构建流程从不接触明文；密码不会被保存，刷新页面即重新上锁。
+          服务器与构建流程从不接触明文。默认在这台设备上记住 30 天，也可以随时上锁清除；
+          还可以生成带密码的链接，让对方点开即自动解锁。
         </p>
       </div>
 
@@ -120,8 +132,13 @@ export default function PrivateHub({ contests = [] }) {
         </Card>
         <Card>
           <CardContent className="p-5">
-            <div className="text-muted-foreground text-xs">本会话已解锁</div>
-            <div className="mt-1 text-2xl font-semibold tabular-nums">{unlocked.length}</div>
+            <div className="text-muted-foreground text-xs">本会话已解锁 / 本机免密</div>
+            <div className="mt-1 text-2xl font-semibold tabular-nums">
+              {unlocked.length} <span className="text-muted-foreground text-base font-normal">/ {savedCount}</span>
+            </div>
+            <div className="text-muted-foreground mt-1 text-[11px]">
+              {savedCount ? `最长还可免密 ${savedMaxDays} 天` : '未记住任何密码'}
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -164,7 +181,11 @@ export default function PrivateHub({ contests = [] }) {
                     {formatDateTime(c.createdAt)}
                   </span>
                   <span className="text-muted-foreground inline-flex shrink-0 items-center gap-1 text-xs">
-                    {unlockedSet.has(c.id) ? '已解锁' : '输入密码'}
+                    {unlockedSet.has(c.id)
+                      ? '已解锁'
+                      : saved[c.id]
+                        ? `免密 ${unlockDaysLeft(saved[c.id])} 天`
+                        : '输入密码'}
                     <ArrowRight className="size-3.5" />
                   </span>
                 </Link>
@@ -172,6 +193,17 @@ export default function PrivateHub({ contests = [] }) {
             </CardContent>
           </Card>
         )}
+        {savedCount ? (
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-dashed px-3 py-2">
+            <span className="text-muted-foreground inline-flex items-center gap-1.5 text-[11.5px] leading-5">
+              <KeyRound className="size-3.5 shrink-0" />
+              这台设备已记住 {savedCount} 场密码（30 天有效），共享设备请及时清除。
+            </span>
+            <Button type="button" variant="outline" size="sm" onClick={forgetAll}>
+              清除本机记住的密码
+            </Button>
+          </div>
+        ) : null}
       </section>
 
       <section className="space-y-3">
@@ -217,12 +249,19 @@ export default function PrivateHub({ contests = [] }) {
             </p>
           </div>
         </Collapsible>
-        <div className="text-muted-foreground flex items-start gap-2 rounded-lg border border-dashed p-3 text-[11.5px] leading-5">
-          <ShieldCheck className="mt-0.5 size-3.5 shrink-0" />
-          <span>
-            安全边界：本站没有服务端数据库，也没有任何「找回密码」接口。加密只能防止仓库与 CDN 泄漏内容，
-            不能防止拿到密码的人转发题面。
-          </span>
+        <div className="text-muted-foreground rounded-lg border border-dashed p-3 text-[11.5px] leading-5">
+          <div className="flex items-start gap-2">
+            <ShieldCheck className="mt-0.5 size-3.5 shrink-0" />
+            <span>
+              安全边界：本站没有服务端数据库，也没有任何「找回密码」接口。加密只能防止仓库与 CDN 泄漏内容，
+              不能防止拿到密码的人转发题面。
+            </span>
+          </div>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            {PRIVATE_SHARE_NOTES.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
         </div>
       </section>
     </div>

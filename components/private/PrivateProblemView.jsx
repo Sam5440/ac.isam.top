@@ -20,18 +20,20 @@ import ProblemViewShell, { ProblemLetterRail, ProblemSwitcher, ProblemTopBar } f
 import SamplesSection from '@/components/SamplesSection';
 import ProblemIde from '@/components/ide/ProblemIde';
 import VaultUnlock from '@/components/private/VaultUnlock';
+import VaultShareActions from '@/components/private/VaultShareActions';
+import VaultUnlocking from '@/components/private/VaultUnlocking';
+import useAutoUnlock from '@/components/private/useAutoUnlock';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { pairSegments } from '@/lib/statement-segments';
-import { usePrivateVault } from '@/lib/private-store';
 
 function problemHref(contestId, index) {
   return `/contests/private/${encodeURIComponent(contestId)}/problems/${encodeURIComponent(index)}`;
 }
 
 export default function PrivateProblemView({ contestId, entry, index }) {
-  const state = usePrivateVault(contestId);
+  const state = useAutoUnlock(contestId, entry?.createdAt ?? null);
   const payload = state.status === 'unlocked' ? state.payload : null;
   const problems = payload?.problems ?? [];
   const position = problems.findIndex((p) => String(p.index).toLowerCase() === String(index).toLowerCase());
@@ -72,12 +74,17 @@ export default function PrivateProblemView({ contestId, entry, index }) {
           </Link>
         </Button>
         <div className="mx-auto w-full max-w-2xl">
-          <VaultUnlock
-            contestId={contestId}
-            label={entry?.label}
-            bytes={entry?.bytes}
-            version={entry?.createdAt}
-          />
+          {state.status === 'loading' ? (
+            <VaultUnlocking label={entry?.label} />
+          ) : (
+            <VaultUnlock
+              contestId={contestId}
+              label={entry?.label}
+              bytes={entry?.bytes}
+              version={entry?.createdAt}
+              stateError={state.status === 'error' ? state.error : ''}
+            />
+          )}
         </div>
       </div>
     );
@@ -116,12 +123,15 @@ export default function PrivateProblemView({ contestId, entry, index }) {
           contestTitleZh: payload.titleZh ?? null,
         }}
       />
-      <Button asChild variant="ghost" size="sm">
-        <Link href={`/contests/private/${encodeURIComponent(contestId)}`} className="text-muted-foreground">
-          <ArrowLeft className="size-4" />
-          {payload.titleZh || payload.title}
-        </Link>
-      </Button>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <Button asChild variant="ghost" size="sm">
+          <Link href={`/contests/private/${encodeURIComponent(contestId)}`} className="text-muted-foreground">
+            <ArrowLeft className="size-4" />
+            {payload.titleZh || payload.title}
+          </Link>
+        </Button>
+        <VaultShareActions contestId={contestId} />
+      </div>
 
       <div className="min-w-0 space-y-6">
         <ProblemTopBar contest={contestForClient} current={current} />

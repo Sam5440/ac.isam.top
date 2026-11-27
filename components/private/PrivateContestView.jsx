@@ -9,18 +9,20 @@
 
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { ArrowLeft, ArrowRight, Clock, ExternalLink, FileLock2, Lock, Timer } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, ExternalLink, FileLock2, Timer } from 'lucide-react';
 
 import VaultUnlock from '@/components/private/VaultUnlock';
+import VaultShareActions from '@/components/private/VaultShareActions';
+import VaultUnlocking from '@/components/private/VaultUnlocking';
+import useAutoUnlock from '@/components/private/useAutoUnlock';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { formatBytes } from '@/lib/private-vault.mjs';
-import { lockVault, usePrivateVault } from '@/lib/private-store';
 import { formatDateTime } from '@/lib/utils';
 
 export default function PrivateContestView({ contestId, entry }) {
-  const state = usePrivateVault(contestId);
+  const state = useAutoUnlock(contestId, entry?.createdAt ?? null);
   const payload = state.status === 'unlocked' ? state.payload : null;
   const problems = useMemo(() => payload?.problems ?? [], [payload]);
 
@@ -38,12 +40,17 @@ export default function PrivateContestView({ contestId, entry }) {
             <h1 className="text-2xl font-bold tracking-tight">{entry?.label ?? contestId}</h1>
             <p className="text-muted-foreground mt-1 font-mono text-xs">{contestId}</p>
           </div>
-          <VaultUnlock
-            contestId={contestId}
-            label={entry?.label}
-            bytes={entry?.bytes}
-            version={entry?.createdAt}
-          />
+          {state.status === 'loading' ? (
+            <VaultUnlocking label={entry?.label} />
+          ) : (
+            <VaultUnlock
+              contestId={contestId}
+              label={entry?.label}
+              bytes={entry?.bytes}
+              version={entry?.createdAt}
+              stateError={state.status === 'error' ? state.error : ''}
+            />
+          )}
         </div>
       </div>
     );
@@ -58,10 +65,7 @@ export default function PrivateContestView({ contestId, entry }) {
             私有化
           </Link>
         </Button>
-        <Button variant="outline" size="sm" onClick={() => lockVault(contestId)}>
-          <Lock className="size-3.5" />
-          重新上锁
-        </Button>
+        <VaultShareActions contestId={contestId} />
       </div>
 
       <Card>
@@ -141,7 +145,8 @@ export default function PrivateContestView({ contestId, entry }) {
       </Card>
 
       <p className="text-muted-foreground text-[11px] leading-5">
-        题面已在你的浏览器内解密；密码与明文都不会发送到服务器，刷新页面后自动上锁。
+        题面已在你的浏览器内解密；密码与明文都不会发送到服务器。勾选过「记住 30 天」的本机可直接打开，
+        也可用「复制带密码链接」把这场比赛分享给需要的人。
       </p>
     </div>
   );

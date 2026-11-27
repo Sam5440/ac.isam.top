@@ -164,6 +164,7 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   - `ysc-vec-mdppy-i6` IDE 侧栏布局（含嵌入题目页的 `compact`）/ `ysc-tbs-kqmwjz-r9` IDE 已打开标签 / `ysc-uia-qznhxe-b3` IDE 界面偏好（Markdown 模式与分屏、展开的文件夹、最近文件）——均为设备本地数据，不进设置导出
   - `stmt-chat-v1-<scope>` AI 对话多会话（`lib/chat-store.js`，旧版单会话数组自动迁移）
   - `ac-simulator-contests-v1` 模拟赛定义与本机计时（设备本地数据，不进设置导出）
+  - `ac-private-unlock-v1` 私有化平台「记住 30 天」的密码（设备本地数据，不进设置导出）
   - IndexedDB：MT 翻译缓存（`lib/zh-store.js`）、编译运行时（Cache API）
 - 主题：`lib/themes.js` 模板主题 + `<html>` 上 `data-theme`/`dark`/`eink` 类。首帧防
   闪白靠 `app/layout.jsx` 的 `THEME_BOOTSTRAP` 内联脚本（服务端生成）——改主题机制时
@@ -376,8 +377,21 @@ CDN、PR diff 都只见到 PBKDF2 + AES-256-GCM 密文，明文只在访客浏�
   后看题单，`/contests/private/<id>/problems/<题号>` 渲染题面。密文由
   `/private/vault/<id>.json` 提供（`force-static` + CDN 缓存；不放 `/api` 下是为了让
   SW 页面缓存覆盖，离线也能解锁已下载过的场次）。
-- **明文只活在内存在**（`lib/private-store.js`）：密码与解密结果都不进 localStorage /
-  sessionStorage / IndexedDB，刷新即上锁。**任何新入口都要守住这条**。
+- **明文只活在内存在**（`lib/private-store.js`）：解密结果（题名/题面/样例/图片）永远
+  不进 localStorage / sessionStorage / IndexedDB。**任何新入口都要守住这条**。
+- **免密 30 天与带密码链接**（2026-11-28，用户显式要求的便利功能，覆盖旧版「密码一律
+  不落盘」）：密码在用户勾选「记住 30 天」或打开带密码链接时写进
+  `localStorage['ac-private-unlock-v1']`（`lib/private-unlock-store.js`，数据类键，
+  已登记进 `lib/settings-io.js` 的忽略名单，不进设置导出），记录形如
+  `{ [id]: { password, savedAt, expiresAt } }`，过期项读取时顺手清理，单机最多 50 场。
+  URL 分享用 `/contests/private/<id>#p=v1.<base64url(密码)>`（`lib/private-unlock.mjs`）：
+  用 hash 是为了不随请求发给服务器、不进 Referer；**密码只是编码不是加密**，
+  拿到链接即可解锁。`useAutoUnlock` 的优先级是「URL 密码 → 本机记住的密码 → 解锁卡」，
+  同一场只自动尝试一次，失败即清掉失效记录；URL 里的 `#p=` 在尝试结束后用
+  `history.replaceState` 抹掉（成功失败都抹，避免截图/复制地址泄漏）。
+  解锁页保留「复制带密码链接」与「重新上锁（清除本机记录）」两个出口，私有化首页有
+  「清除本机记住的密码」。页面文案的安全边界写在 `lib/private-guide.mjs` 的
+  `PRIVATE_SHARE_NOTES`，改机制时同步改它。
 - **题面渲染必须传 `offlineOnly`**：`ProblemStatementViewer` → `StatementBody` 的
   `offlineOnly` 会关掉 MT 转发与用户 AI 接口，只显示载荷自带的中文。否则缺中文的段落
   会把明文发到 `/api/mt/*`，「明文不出前端」就成了空话。

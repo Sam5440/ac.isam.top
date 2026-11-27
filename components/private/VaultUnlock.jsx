@@ -3,8 +3,8 @@
 /**
  * 私有化平台的解锁卡（输入密码 → 浏览器内解密）。
  *
- * 明文只存在于这个页面的内存里：密码不上传、不进 localStorage/IndexedDB，
- * 刷新即失效（见 lib/private-store.js）。
+ * 明文只存在于这个页面的内存里：密码不上传。默认刷新即上锁；勾选
+ * 「记住 30 天」才会把密码写进本机 localStorage（见 lib/private-unlock-store.js）。
  */
 
 import { useId, useState } from 'react';
@@ -15,14 +15,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { formatBytes } from '@/lib/private-vault.mjs';
 import { unlockVault, usePrivateVault } from '@/lib/private-store';
+import { clearSavedUnlock, saveUnlock } from '@/lib/private-unlock-store';
 
-export default function VaultUnlock({ contestId, label, bytes, version = null, onUnlocked }) {
+export default function VaultUnlock({ contestId, label, bytes, version = null, onUnlocked, stateError = '' }) {
   const state = usePrivateVault(contestId);
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [staleDismissed, setStaleDismissed] = useState(false);
+  const [remember, setRemember] = useState(true);
   const inputId = useId();
+  const shownError = error || (staleDismissed ? '' : stateError);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -31,6 +35,8 @@ export default function VaultUnlock({ contestId, label, bytes, version = null, o
     setError('');
     try {
       const payload = await unlockVault(contestId, password, version);
+      if (remember) saveUnlock(contestId, password);
+      else clearSavedUnlock(contestId);
       setPassword('');
       onUnlocked?.(payload);
     } catch (err) {
@@ -51,7 +57,7 @@ export default function VaultUnlock({ contestId, label, bytes, version = null, o
             <CardTitle className="text-base leading-snug">这场比赛的题面是加密的</CardTitle>
             <CardDescription className="mt-1.5">
               仓库里只存 AES-256-GCM 密文{bytes ? `（${formatBytes(bytes)}）` : ''}。密码只在你的浏览器里派生密钥并解密，
-              不会发送到服务器，也不会被保存；刷新页面后需要重新输入。
+              不会发送到服务器。默认记住 30 天，也可以随时上锁并清除本机记录。
             </CardDescription>
           </div>
         </div>
@@ -71,14 +77,15 @@ export default function VaultUnlock({ contestId, label, bytes, version = null, o
                 onChange={(e) => {
                   setPassword(e.target.value);
                   if (error) setError('');
+                  if (stateError) setStaleDismissed(true);
                 }}
                 autoComplete="off"
                 autoCapitalize="off"
                 spellCheck={false}
                 placeholder="输入密码…"
                 className="pl-9 pr-9"
-                aria-invalid={Boolean(error)}
-                aria-describedby={error ? `${inputId}-err` : undefined}
+                aria-invalid={Boolean(shownError)}
+                aria-describedby={shownError ? `${inputId}-err` : undefined}
               />
               <button
                 type="button"
@@ -99,11 +106,23 @@ export default function VaultUnlock({ contestId, label, bytes, version = null, o
               {busy || state.status === 'loading' ? '解密中…' : '解锁'}
             </Button>
           </div>
-          {error ? (
+          {shownError ? (
             <p id={`${inputId}-err`} className="text-destructive text-sm">
-              {error}
+              {shownError}
             </p>
           ) : null}
+          <label className="flex cursor-pointer items-start gap-2 text-xs leading-5">
+            <input
+              type="checkbox"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+              className="mt-0.5 size-3.5 shrink-0"
+            />
+            <span className="text-muted-foreground">
+              在这台设备上记住 <strong className="text-foreground font-medium">30 天</strong>
+              （密码存在本机浏览器里，共享设备请勿勾选）
+            </span>
+          </label>
           <p className="text-muted-foreground flex items-start gap-1.5 text-[11px] leading-5">
             <ShieldCheck className="mt-0.5 size-3.5 shrink-0" />
             解密在本地完成：密码经 PBKDF2（31 万轮）派生 AES-256 密钥，密文校验失败即密码错误。
