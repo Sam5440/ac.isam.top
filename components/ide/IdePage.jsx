@@ -54,7 +54,7 @@ import EditorPane from "@/components/ide/EditorPane";
 import FileManager from "@/components/ide/FileManager";
 import TerminalPane from "@/components/ide/TerminalPane";
 import SamplesPanel from "@/components/ide/SamplesPanel";
-import { DetailsPanel, IdeSettingsPanel, StatementPanel } from "@/components/ide/IdeSidePanels";
+import { DetailsPanel, IdeSettingsPanel, OutlinePanel, StatementPanel } from "@/components/ide/IdeSidePanels";
 import ChatPanel from "@/components/chat/ChatPanel";
 import { ActionButton } from "@/components/ide/vsc";
 import { PanelHeader, ProblemsList, QuickOpen, StatusBar, StatusItem } from "@/components/ide/Workbench";
@@ -1279,6 +1279,21 @@ export default function IdePage({
             selection={selection}
             files={files}
             folders={folderRecords}
+          />
+        );
+      case "outline":
+        return (
+          <OutlinePanel
+            path={activePath}
+            lang={lang}
+            code={code}
+            onJump={(sym) => {
+              const ed = window.__ysMonaco?.editor;
+              if (!ed) return;
+              ed.setPosition({ lineNumber: sym.line, column: sym.col || 1 });
+              ed.revealLineInCenter(sym.line);
+              ed.focus();
+            }}
           />
         );
       case "chat":

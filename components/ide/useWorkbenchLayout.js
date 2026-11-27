@@ -20,6 +20,7 @@ export const MODULES = [
   { id: "statement", label: "题面" },
   { id: "files", label: "文件" },
   { id: "details", label: "详情" },
+  { id: "outline", label: "结构" },
   { id: "chat", label: "AI 对话" },
   { id: "settings", label: "设置" },
 ];
@@ -30,6 +31,7 @@ export const LAYOUT_DEFAULTS = {
     statement: "left",
     files: "left",
     details: "right",
+    outline: "right",
     chat: "right",
     settings: "right",
   },

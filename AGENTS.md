@@ -333,9 +333,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   （macOS 上 Ctrl+click 是系统右键，多选要用 ⌘），行背景按 `pathHue` 着色；工具栏
   可按名称 / 创建时间 / 最后编辑正反排序。注意 macOS 上 Playwright 的
   `click({modifiers:['Control']})` 会触发右键菜单，多选回归要用 `Meta`。
-- **右侧模块**除样例/题面/对话/设置外还有 `details`（详情）：显示路径、类型、
-  创建/最后编辑时间、大小、行数（`folders` 允许传路径数组或 IndexedDB 记录，
-  `DetailsPanel` 内部统一）。
+- **右侧模块**除样例/题面/对话/设置外还有 `details`（详情）与 `outline`（结构）：
+  详情显示路径、类型、创建/最后编辑时间、大小、行数（`folders` 允许传路径数组或
+  IndexedDB 记录，`DetailsPanel` 内部统一）；结构来自 `lib/ide-outline.mjs`
+  （C++/Python/Markdown 大纲，纯函数 + 单测），点击跳到对应行。
 - **IDE 默认布局（2026-11-25 起）**：文件管理在左、样例测试在右（`useWorkbenchLayout`
   的 `LAYOUT_DEFAULTS`），读取旧偏好时对「旧默认配对（样例左 / 文件右）」做一次
   幂等换位迁移；嵌入题目页（`compact`）强制 `files: left` + `rightTab: samples`、

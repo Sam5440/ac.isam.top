@@ -21,6 +21,70 @@ import { MODULES } from "@/components/ide/useWorkbenchLayout";
 import { ViewHeader } from "@/components/ide/vsc";
 import { Spinner } from "@/components/ui/LoadingOverlay";
 import { fileStats, folderOfPath } from "@/lib/ide-bindings.mjs";
+import { OUTLINE_KINDS, outlineOf } from "@/lib/ide-outline.mjs";
+
+/* ---------------- 结构（大纲） ---------------- */
+
+const KIND_ICON = {
+  function: "ƒ",
+  method: "ƒ",
+  class: "C",
+  struct: "S",
+  enum: "E",
+  namespace: "N",
+  variable: "v",
+  constant: "c",
+  macro: "#",
+  typedef: "T",
+  heading: "H",
+  label: "L",
+};
+
+/**
+ * 「结构」视图：参考 VS Code 的 Outline，列出当前文件的函数 / 变量 /
+ * 结构体 / 类 / 命名空间（Markdown 为标题）。点击跳到编辑器对应行。
+ */
+export function OutlinePanel({ path, lang, code, onJump }) {
+  const symbols = useMemo(() => outlineOf(lang, code), [lang, code]);
+  return (
+    <section aria-label="结构" className="flex h-full min-w-0 flex-col overflow-hidden">
+      <ViewHeader title="结构" />
+      {!path ? (
+        <p className="px-4 py-2 text-[12px] leading-5 opacity-70">打开一个文件后，这里会列出它的函数、变量、结构体等符号。</p>
+      ) : symbols.length === 0 ? (
+        <p className="px-4 py-2 text-[12px] leading-5 opacity-70">
+          这个文件里没有识别到可跳转的符号（结构视图支持 C++、Python 与 Markdown）。
+        </p>
+      ) : (
+        <ul className="min-h-0 flex-1 overflow-auto pb-6 text-[13px]">
+          {symbols.map((s, i) => (
+            <li key={`${s.line}:${s.col}:${s.name}:${i}`}>
+              <button
+                type="button"
+                onClick={() => onJump?.(s)}
+                title={`第 ${s.line} 行 · ${OUTLINE_KINDS[s.kind] ?? s.kind}`}
+                className="flex min-h-[22px] w-full items-start gap-1.5 py-[3px] pr-3 text-left hover:bg-[color:var(--vsc-hover)]"
+                style={{ paddingLeft: 10 + s.depth * 12 }}
+              >
+                <span
+                  aria-hidden
+                  className="mt-px inline-flex w-4 shrink-0 justify-center font-mono text-[10px] leading-4 font-bold"
+                  style={{ color: s.kind === "function" || s.kind === "method" ? "var(--vsc-info)" : "var(--vsc-fg-muted)" }}
+                >
+                  {KIND_ICON[s.kind] ?? "·"}
+                </span>
+                <span className="min-w-0 flex-1 break-words">{s.name}</span>
+                <span className="shrink-0 text-[10px] tabular-nums opacity-50">{s.line}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+/* ---------------- 详情 ---------------- */
 
 /* ---------------- 详情 ---------------- */
 
