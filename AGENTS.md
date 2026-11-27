@@ -337,6 +337,24 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   详情显示路径、类型、创建/最后编辑时间、大小、行数（`folders` 允许传路径数组或
   IndexedDB 记录，`DetailsPanel` 内部统一）；结构来自 `lib/ide-outline.mjs`
   （C++/Python/Markdown 大纲，纯函数 + 单测），点击跳到对应行。
+
+### 3.6c AI 对话 / Agent 模式
+
+`components/chat/ChatPanel.jsx` 顶部有「对话 / Agent」切换与模型下拉：
+
+- **模式随会话保存**（`lib/chat-store.js` 的 `session.agent.mode`，缺省读主设置
+  `chat.mode`），切换会同时写回 `chat.mode` 作为新会话默认值。
+- **模型下拉**只列 `aiAssign.chat` 绑定服务商的 `models`，选择写回
+  `aiAssign.chat.model`；增删/编辑模型仍在 设置 → AI 服务商（`ProviderEditor`）。
+  不要在这里另存 API Key 或 Base URL。
+- **Agent 用文本协议而不是 tool calling**（`lib/ai-agent.mjs`，纯函数 + 单测）：
+  模型输出 `<run language="cpp|python">…</run>`（可选 `<stdin>…</stdin>`），
+  前端 `extractRunRequest` 解析后交给 `lib/ai-agent-runner.js` 在**浏览器沙盒**
+  （`CppClient` / `PyClient`，wasm）跑题目样例，`formatRunReport` 把真实判题结果
+  作为下一条 user 消息回灌，最多 `AGENT_MAX_ROUNDS` 轮。全程不联网、不落盘，
+  不引入服务端执行——新增能力时别改成服务端跑代码。
+- 回灌消息带 `hidden/agentReport` 标记，UI 渲染为可折叠的「沙盒运行结果」；
+  停止生成会同时 `stopAgentSandbox()` 终止 worker（wasm 无法抢占）。
 - **IDE 默认布局（2026-11-25 起）**：文件管理在左、样例测试在右（`useWorkbenchLayout`
   的 `LAYOUT_DEFAULTS`），读取旧偏好时对「旧默认配对（样例左 / 文件右）」做一次
   幂等换位迁移；嵌入题目页（`compact`）强制 `files: left` + `rightTab: samples`、

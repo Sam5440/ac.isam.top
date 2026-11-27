@@ -23,8 +23,10 @@ import {
   Copy,
   Download,
   Eraser,
+  FlaskConical,
   History,
   MessageSquarePlus,
+  MessagesSquare,
   PanelRight,
   Pencil,
   Scan,
@@ -49,6 +51,17 @@ import { on as onIdeBus } from '@/lib/ide-bus';
 import { toast } from '@/lib/toast';
 import { Spinner } from '@/components/ui/LoadingOverlay';
 import { renderRich } from '@/lib/render';
+import { normalizeProviders } from '@/lib/ai-providers';
+import {
+  AGENT_MAX_ROUNDS,
+  agentRoundExceeded,
+  agentSystemPrompt,
+  extractRunRequest,
+  formatRunReport,
+  normalizeAgentState,
+  stripRunBlocks,
+} from '@/lib/ai-agent.mjs';
+import { runAgentSandbox, stopAgentSandbox } from '@/lib/ai-agent-runner';
 
 const STATEMENT_CAP = 8000;
 const CODE_CAP = 6000;
@@ -312,6 +325,52 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
   const activeSession = sessionsState.sessions.find((s) => s.id === sessionsState.activeId) || null;
   const activeId = activeSession?.id || null;
 
+  /* ---------- 对话 / Agent 模式 + 模型选择 ---------- */
+  // 模式跟随会话记录（sessions 里没有该字段时用全局默认），切换即持久化。
+  const agentState = normalizeAgentState(activeSession?.agent ?? { mode: chatCfg.mode });
+  const mode = agentState.mode;
+  const [agentRound, setAgentRound] = useState(0);
+  const [agentStage, setAgentStage] = useState('');
+  const [modelMenu, setModelMenu] = useState(false);
+
+  // 当前 chat 模块绑定的服务商及其模型列表（设置 → AI 服务商里可增删/编辑）
+  const providers = normalizeProviders(settings.aiProviders);
+  const chatAssign = settings.aiAssign?.chat || {};
+  const providerId = !chatAssign.providerId || chatAssign.providerId === 'auto' ? providers.activeId : chatAssign.providerId;
+  const chatProvider = providers.list.find((p) => p.id === providerId) || null;
+  const chatModels = chatProvider?.models?.length ? chatProvider.models : [];
+  const currentModel = chatAssign.model || chatModels[0] || '';
+
+  const setMode = (next) => {
+    const target = next === 'agent' ? 'agent' : 'chat';
+    setAgentRound(0);
+    setAgentStage('');
+    const prev = sessionsRef.current;
+    if (!prev.activeId) {
+      patchChat({ mode: target });
+      return;
+    }
+    const state = {
+      activeId: prev.activeId,
+      sessions: prev.sessions.map((s) => (s.id === prev.activeId ? { ...s, agent: { ...(s.agent || {}), mode: target } } : s)),
+    };
+    sessionsRef.current = state;
+    saveSessions(scope, state);
+    setSessionsState(state);
+    patchChat({ mode: target });
+  };
+
+  const pickModel = (model) => {
+    setSettings((prev) => ({
+      ...prev,
+      aiAssign: {
+        ...(prev.aiAssign || {}),
+        chat: { ...(prev.aiAssign?.chat || {}), model },
+      },
+    }));
+    setModelMenu(false);
+  };
+
   /* ---------- ide-bus：最近一次运行结果 ---------- */
   useEffect(() => {
     const off = onIdeBus('run-finished', (payload) => {
@@ -494,6 +553,7 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
 
   const stop = () => {
     abortRef.current?.abort();
+    stopAgentSandbox();
   };
 
   // 导出整段会话为 Markdown 文档（跳过报错中间态）
@@ -531,20 +591,26 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
       setNotice('尚未配置 AI 接口：请在设置 →「AI 助手」中添加服务商（Base URL 与 API Key）。');
       return;
     }
+    if (mode === 'agent' && agentRoundExceeded(agentRound)) {
+      setNotice(`Agent 模式单轮最多自动验证 ${AGENT_MAX_ROUNDS} 次，请新建会话或切回对话模式继续。`);
+      return;
+    }
     setNotice('');
     lastUserRef.current = text;
 
-    const system = buildSystemPrompt(problem, {
+    const systemBase = buildSystemPrompt(problem, {
       includeStatement: chatCfg.includeStatement !== false,
       includeCode: chatCfg.includeCode !== false,
       includeSamples: chatCfg.includeSamples !== false,
       runResult: chatCfg.includeRunErrors !== false ? runResultRef.current : null,
     });
+    const samples = chatCfg.includeSamples !== false ? (problem?.samples || []).slice(0, 3) : [];
+    const system =
+      mode === 'agent' ? `${systemBase}\n\n${agentSystemPrompt({ hasSamples: samples.length > 0 })}` : systemBase;
     const history = messages
       .filter((m) => !m.error && m.content)
       .slice(-MAX_HISTORY)
       .map(({ role, content }) => ({ role, content }));
-    const payload = [{ role: 'system', content: system }, ...history, { role: 'user', content: text }];
 
     const ctrl = new AbortController();
     abortRef.current = ctrl;
@@ -555,13 +621,68 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
       { role: 'assistant', content: '', streaming: true },
     ]);
     try {
-      await sendChat({
-        messages: payload,
-        cfg,
-        signal: ctrl.signal,
-        onDelta: (_d, fullText, reasoningFull) =>
-          updateLast((m) => ({ ...m, content: fullText, reasoning: reasoningFull || undefined })),
-      });
+      let turnMessages = [{ role: 'system', content: system }, ...history, { role: 'user', content: text }];
+      let round = 0;
+      for (;;) {
+        const reply = await sendChat({
+          messages: turnMessages,
+          cfg,
+          signal: ctrl.signal,
+          onDelta: (_d, fullText, reasoningFull) =>
+            updateLast((m) => ({ ...m, content: fullText, reasoning: reasoningFull || undefined })),
+        });
+
+        // 对话模式：单轮结束
+        if (mode !== 'agent') break;
+        const req = extractRunRequest(reply);
+        if (!req) break;
+        if (agentRoundExceeded(round + 1)) {
+          updateLast((m) => ({
+            ...m,
+            content: stripRunBlocks(reply),
+            streaming: false,
+            agent: { ...(m.agent || {}), stopped: true },
+          }));
+          break;
+        }
+
+        round += 1;
+        setAgentRound(round);
+        setAgentStage('沙盒准备中…');
+        let report;
+        try {
+          const run = await runAgentSandbox(req, { samples, onStage: setAgentStage });
+          report = formatRunReport(run);
+          setAgentStage(
+            run.compileError
+              ? '编译失败，已回灌给模型'
+              : `${run.results.filter((r) => r.verdict === 'AC').length}/${run.results.length} 通过`,
+          );
+        } catch (exn) {
+          report = `【沙盒运行结果】沙盒启动失败：${exn?.message || exn}`;
+          setAgentStage('沙盒失败');
+        }
+        if (ctrl.signal.aborted) break;
+
+        // 把这一轮回复与真实运行结果写入会话，再开一条新的 assistant 占位
+        persist((prev) => {
+          const next = [...prev];
+          const last = next[next.length - 1];
+          if (last?.role === 'assistant') {
+            const prose = stripRunBlocks(reply);
+            next[next.length - 1] = {
+              ...last,
+              content: prose || '（已把代码提交到沙盒运行，结果见下方）',
+              streaming: false,
+              agent: { round, language: req.language },
+            };
+          }
+          next.push({ role: 'user', content: report, ts: Date.now(), hidden: true, agentReport: true });
+          next.push({ role: 'assistant', content: '', streaming: true });
+          return next;
+        });
+        turnMessages = [...turnMessages, { role: 'assistant', content: reply }, { role: 'user', content: report }];
+      }
       updateLast((m) => ({ ...m, streaming: false }));
     } catch (e) {
       const aborted = ctrl.signal.aborted || e?.name === 'AbortError';
@@ -574,6 +695,7 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
     } finally {
       abortRef.current = null;
       setStreaming(false);
+      setAgentStage('');
       // 流结束后把最终内容（含 reasoning）落盘
       saveActiveMessages(messagesRef.current);
     }
@@ -731,6 +853,91 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
     </div>
   );
 
+  const modeBarNode = (
+    <div className="flex flex-wrap items-center gap-1.5 border-b px-3 py-2">
+      <div
+        role="group"
+        aria-label="对话模式"
+        className="inline-flex overflow-hidden rounded-md border text-[11px]"
+      >
+        {[
+          { id: 'chat', label: '对话', icon: MessagesSquare, title: '普通问答，不自动运行代码' },
+          { id: 'agent', label: 'Agent', icon: FlaskConical, title: '可在浏览器沙盒运行代码、按样例自检后迭代' },
+        ].map((m) => {
+          const Icon = m.icon;
+          const on = mode === m.id;
+          return (
+            <button
+              key={m.id}
+              type="button"
+              title={m.title}
+              aria-pressed={on}
+              onClick={() => setMode(m.id)}
+              className={`inline-flex items-center gap-1 px-2 py-1 transition-colors ${
+                on ? 'bg-primary/15 text-foreground' : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              <Icon className="size-3" />
+              {m.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* 模型选择：来自设置里 chat 模块绑定的服务商模型列表 */}
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setModelMenu((v) => !v)}
+          aria-haspopup="listbox"
+          aria-expanded={modelMenu}
+          title="选择本轮使用的模型（在设置 → AI 服务商里增删/编辑模型）"
+          className="text-muted-foreground hover:text-foreground inline-flex max-w-[11rem] items-center gap-1 rounded-md border px-1.5 py-1 text-[11px]"
+        >
+          <span className="truncate">{currentModel || '未选择模型'}</span>
+          <ChevronDown className="size-3 shrink-0" />
+        </button>
+        {modelMenu && (
+          <div
+            role="listbox"
+            aria-label="选择模型"
+            className="bg-popover text-popover-foreground absolute top-full left-0 z-30 mt-1 max-h-64 w-56 overflow-auto rounded-md border p-1 shadow-xl"
+          >
+            {chatProvider && (
+              <p className="text-muted-foreground px-1.5 py-1 text-[10px]">{chatProvider.name}</p>
+            )}
+            {chatModels.length === 0 && (
+              <p className="text-muted-foreground px-1.5 py-1 text-[11px] leading-relaxed">
+                该服务商还没有模型列表。到 设置 → AI 服务商 里点开服务商，拉取或手工添加模型。
+              </p>
+            )}
+            {chatModels.map((m) => (
+              <button
+                key={m}
+                type="button"
+                role="option"
+                aria-selected={m === currentModel}
+                onClick={() => pickModel(m)}
+                className={`flex w-full items-center gap-1 rounded px-1.5 py-1 text-left text-[11px] ${
+                  m === currentModel ? 'bg-accent' : 'hover:bg-accent/60'
+                }`}
+              >
+                {m === currentModel ? <Check className="size-3" /> : <span className="w-3" />}
+                <span className="truncate">{m}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {mode === 'agent' && (
+        <span className="text-muted-foreground ml-auto text-[10px]">
+          {agentStage ? agentStage : `沙盒轮次 ${agentRound}/${AGENT_MAX_ROUNDS}`}
+        </span>
+      )}
+    </div>
+  );
+
   const messagesNode = (
     <div ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto px-3 py-3">
       {messages.length === 0 && (
@@ -741,7 +948,17 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
         </div>
       )}
       {messages.map((m, i) =>
-        m.role === 'user' ? (
+        m.role === 'user' && m.agentReport ? (
+          <details
+            key={i}
+            className="text-muted-foreground rounded-lg border border-dashed px-2.5 py-1.5 text-[11px] leading-relaxed"
+          >
+            <summary className="cursor-pointer select-none">🧪 沙盒运行结果（点击展开）</summary>
+            <pre className="mt-1.5 max-h-64 overflow-auto whitespace-pre-wrap break-words font-mono text-[11px]">
+              {m.content}
+            </pre>
+          </details>
+        ) : m.role === 'user' ? (
           <div key={i} className="flex justify-end">
             <div className="bg-primary/10 max-w-[85%] rounded-xl rounded-br-sm px-3 py-2 text-[13px] leading-relaxed whitespace-pre-wrap">
               {m.content}
@@ -840,6 +1057,7 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
       <div className="relative flex h-full min-h-0 flex-col" aria-label="AI 对话">
         {headerNode}
         {contextNode}
+        {modeBarNode}
         <div className="relative flex min-h-0 flex-1 flex-col">
           {listOpen && (
             <div className="bg-popover text-popover-foreground absolute inset-x-2 top-1 z-20 max-h-[70%] overflow-hidden rounded-lg border shadow-xl">
@@ -895,6 +1113,7 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
         >
           {headerNode}
           {contextNode}
+          {modeBarNode}
           <div className="relative flex min-h-0 flex-1 flex-col">
             {/* float 模式：顶部会话条 + 列表 popover */}
             {listOpen && (
@@ -935,6 +1154,7 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
         <aside className="chat-panel-anim absolute top-0 right-0 flex h-full w-full flex-col border-l bg-card shadow-2xl sm:w-[420px]">
           {headerNode}
           {contextNode}
+          {modeBarNode}
           {messagesNode}
           {inputNode}
         </aside>

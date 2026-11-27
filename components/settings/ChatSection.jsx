@@ -52,6 +52,28 @@ export default function ChatSection() {
           ]}
         />
       </Row>
+      <Row
+        label="默认对话模式"
+        hint="对话：普通问答。Agent：模型可在浏览器沙盒里真实运行代码、按样例自检后迭代（wasm，不联网、不落盘）。面板内可随时切换，选择随会话保存。"
+      >
+        <SegButtons
+          ariaLabel="默认对话模式"
+          value={chat.mode === 'agent' ? 'agent' : 'chat'}
+          onChange={(v) => patchChat({ mode: v })}
+          options={[
+            { id: 'chat', label: '对话' },
+            { id: 'agent', label: 'Agent' },
+          ]}
+        />
+      </Row>
+      <Row
+        label="对话模型"
+        hint="在下方「各功能使用的模型」里为 AI 对话挑选服务商与模型；面板顶部也能直接切换。模型的增删与编辑在「AI 服务商」中。"
+      >
+        <span className="text-muted-foreground text-[12px]">
+          {ready ? `${cfg.model || '服务商首个模型'}` : '未配置'}
+        </span>
+      </Row>
       <SwitchRow
         label="自动附带当前题面"
         hint="把题目标题、题面（自动截断）与时间 / 内存限制放入上下文，AI 能直接针对本题作答。"

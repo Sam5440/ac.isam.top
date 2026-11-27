@@ -67,6 +67,8 @@ export const DEFAULT_CHAT = {
   displayMode: 'float',
   includeSamples: true,
   includeRunErrors: true,
+  // 默认对话模式（'chat' 普通问答 | 'agent' 可调用浏览器沙盒运行验证）；会话内可随时切换
+  mode: 'chat',
 };
 
 export const DEFAULT_SETTINGS = {
