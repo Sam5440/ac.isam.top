@@ -20,13 +20,18 @@ test('safeSegment: 清洗 Windows 非法字符并压空白', () => {
   assert.equal(safeSegment('x'.repeat(80), 'f', 10), 'x'.repeat(10));
 });
 
-test('contestFolderName: 比赛编号 + 名字 + 题目 id', () => {
+test('contestFolderName: 一场比赛只有一个目录（比赛编号 + 名字）', () => {
   const folder = contestFolderName(
     { id: 'arc234', titleZh: '第 234 场 AtCoder Regular Contest++' },
     { id: 'arc234_b' },
   );
   assert.match(folder, /^arc234-/);
-  assert.match(folder, /arc234_b$/);
+  // 同场比赛的两道题必须落在同一个目录里
+  assert.equal(
+    contestFolderName({ id: 'arc234', titleZh: '第 234 场 AtCoder Regular Contest++' }, { id: 'arc234_c' }),
+    folder,
+  );
+  assert.ok(!folder.includes('arc234_b'));
   assert.ok(!/[\\/:*?"<>|]/.test(folder));
 });
 

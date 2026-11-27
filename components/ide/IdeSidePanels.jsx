@@ -20,6 +20,93 @@ import { CPP_VERSION } from "@/lib/compiler/runtimes";
 import { MODULES } from "@/components/ide/useWorkbenchLayout";
 import { ViewHeader } from "@/components/ide/vsc";
 import { Spinner } from "@/components/ui/LoadingOverlay";
+import { fileStats, folderOfPath } from "@/lib/ide-bindings.mjs";
+
+/* ---------------- 详情 ---------------- */
+
+function fmtTime(ms) {
+  const n = Number(ms);
+  if (!Number.isFinite(n) || n <= 0) return "—";
+  const d = new Date(n);
+  const pad = (x) => String(x).padStart(2, "0");
+  return `${d.getFullYear()}/${pad(d.getMonth() + 1)}/${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+
+function fmtBytes(n) {
+  const v = Number(n) || 0;
+  if (v < 1024) return `${v} B`;
+  if (v < 1024 * 1024) return `${(v / 1024).toFixed(1)} KB`;
+  return `${(v / 1024 / 1024).toFixed(2)} MB`;
+}
+
+/**
+ * 选中文件 / 文件夹的详细信息：创建时间、最后编辑时间、大小、行数。
+ * 数据来自 IndexedDB 记录（lib/ide-workspace 的 createdAt/updatedAt）。
+ */
+export function DetailsPanel({ selection, files = [], folders = [] }) {
+  if (!selection) {
+    return (
+      <section aria-label="详情" className="flex h-full min-w-0 flex-col overflow-hidden">
+        <ViewHeader title="详情" />
+        <p className="px-4 py-2 text-[12px] leading-5 opacity-70">
+          在文件管理里选中一个文件或文件夹，这里会显示它的创建时间、最后编辑时间、大小与行数。
+        </p>
+      </section>
+    );
+  }
+  const isDir = selection.type === "dir";
+  // folders 允许传路径数组或 IndexedDB 记录（{path, createdAt, updatedAt}），统一成记录再查。
+  const folderRecs = folders.map((f) => (typeof f === "string" ? { path: f } : f)).filter((f) => f && f.path);
+  const dir = isDir ? selection.path : folderOfPath(selection.path);
+  const under = isDir
+    ? files.filter((f) => f.path === selection.path || f.path.startsWith(`${selection.path}/`))
+    : files.filter((f) => f.path === selection.path);
+  const subFolders = isDir
+    ? folderRecs.filter((r) => r.path === selection.path || r.path.startsWith(`${selection.path}/`))
+    : [];
+  const stats = under.reduce(
+    (acc, f) => {
+      const s = fileStats(f.content);
+      return { bytes: acc.bytes + s.bytes, lines: acc.lines + s.lines };
+    },
+    { bytes: 0, lines: 0 },
+  );
+  const createdAt = under.reduce((min, f) => (f.createdAt && (!min || f.createdAt < min) ? f.createdAt : min), 0);
+  const updatedAt = under.reduce((max, f) => Math.max(max, Number(f.updatedAt) || 0), 0);
+  const folderRec = isDir ? folderRecs.find((r) => r.path === selection.path) : null;
+
+  const rows = [
+    ["路径", selection.path],
+    ["类型", isDir ? "文件夹" : under[0]?.lang ? `文件 · ${under[0].lang}` : "文件"],
+    ["创建时间", fmtTime(folderRec?.createdAt ?? createdAt)],
+    ["最后编辑", fmtTime(folderRec?.updatedAt ?? updatedAt)],
+    ["大小", fmtBytes(stats.bytes)],
+    ["行数", String(stats.lines)],
+    ...(isDir
+      ? [
+          ["文件数", String(under.length)],
+          ["子文件夹", String(Math.max(0, subFolders.length - 1))],
+        ]
+      : [["所在目录", dir || "（根目录）"]]),
+  ];
+
+  return (
+    <section aria-label="详情" className="flex h-full min-w-0 flex-col overflow-hidden">
+      <ViewHeader title="详情" />
+      <div className="min-h-0 flex-1 overflow-auto px-4 pb-6">
+        <h3 className="mb-2 text-[13px] font-semibold break-words">{selection.path.split("/").pop()}</h3>
+        <dl className="space-y-1.5 text-[12px]">
+          {rows.map(([k, v]) => (
+            <div key={k} className="flex gap-2">
+              <dt className="w-[4.5rem] shrink-0 opacity-60">{k}</dt>
+              <dd className="min-w-0 flex-1 break-all tabular-nums">{v}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
 
 /* ---------------- 题面 ---------------- */
 

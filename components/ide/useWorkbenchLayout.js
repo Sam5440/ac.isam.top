@@ -19,12 +19,20 @@ export const MODULES = [
   { id: "samples", label: "样例" },
   { id: "statement", label: "题面" },
   { id: "files", label: "文件" },
+  { id: "details", label: "详情" },
   { id: "chat", label: "AI 对话" },
   { id: "settings", label: "设置" },
 ];
 
 export const LAYOUT_DEFAULTS = {
-  assign: { samples: "right", statement: "left", files: "left", chat: "right", settings: "right" },
+  assign: {
+    samples: "right",
+    statement: "left",
+    files: "left",
+    details: "right",
+    chat: "right",
+    settings: "right",
+  },
   leftOpen: true,
   rightOpen: true,
   leftW: 300,

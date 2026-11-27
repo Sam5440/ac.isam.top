@@ -315,9 +315,27 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   `body.problem-ide-open` 的 50vw；写 `<html>` 会被 body 规则压掉），钳制范围
   360～(innerWidth-320)。
   `IdePage` 收到 `problemSeed` 时会调 `lib/problem-workspace.mjs` 自动建
-  `<比赛编号>-<名字>-<题目 id>/<题号>.cpp|.py` 与同名 `.md`（只补缺，不覆盖用户内容），
-  **代码文件写入 `cp.templates[lang]` 默认模板**（设置里可改；存量空白文件也补写），
-  并把样例绑定到代码文件。
+  `<比赛编号>-<名字>/<题号>.cpp|.py` 与同名 `.md`（只补缺，不覆盖用户内容）——
+  **一场比赛只有一个目录**，同场全部题目都在里面；没有比赛归属的题目落到
+  `未归属比赛/`，文件名带平台前缀。**代码文件写入 `cp.templates[lang]` 默认模板**
+  （设置里可改；存量空白文件也补写），并把样例绑定到代码文件。每次进入题目页都会
+  把该题文件移到标签栏最左、设为置顶（`pinnedPath`）并打开。
+- **目录级绑定清单 `workspace.json`**（`lib/ide-bindings.mjs`，format
+  `ac-ide-bindings` v1）：每个目录（包括根）一份，`files: { 文件名: { problem,
+  samples, chat } }`，记录文件↔题目、样例、这道题的 AI 对话。它是纯文本，随
+  「下载全部 ZIP」一起导出；挂载时只补本地缺失的绑定，不覆盖用户已有数据。AI 对话
+  通过 `storage` 事件 + `ysc-chat-saved` 自定义事件（1.5s 防抖）镜像进来。
+- **标签栏**（`components/ide/TabList.jsx`，横排/竖排共用）：按路径取稳定色相
+  （`pathHue`）做相邻色差、长名换行、右键「置顶 / 关闭其他 / 关闭全部 / 关闭左（上）
+  侧 / 关闭右（下）侧」。竖排开关与自动换行存 `ysc-cp-settings-v1` 的
+  `verticalTabs` / `wordWrap`（**代码默认开启自动换行**）。
+- **文件管理**（`components/ide/FileManager.jsx`）：`⌘/Ctrl` 点选 + `Shift` 连选
+  （macOS 上 Ctrl+click 是系统右键，多选要用 ⌘），行背景按 `pathHue` 着色；工具栏
+  可按名称 / 创建时间 / 最后编辑正反排序。注意 macOS 上 Playwright 的
+  `click({modifiers:['Control']})` 会触发右键菜单，多选回归要用 `Meta`。
+- **右侧模块**除样例/题面/对话/设置外还有 `details`（详情）：显示路径、类型、
+  创建/最后编辑时间、大小、行数（`folders` 允许传路径数组或 IndexedDB 记录，
+  `DetailsPanel` 内部统一）。
 - **IDE 默认布局（2026-11-25 起）**：文件管理在左、样例测试在右（`useWorkbenchLayout`
   的 `LAYOUT_DEFAULTS`），读取旧偏好时对「旧默认配对（样例左 / 文件右）」做一次
   幂等换位迁移；嵌入题目页（`compact`）强制 `files: left` + `rightTab: samples`、

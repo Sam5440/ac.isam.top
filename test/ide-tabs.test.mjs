@@ -21,6 +21,7 @@ test('ide-tabs: 存取往返 + 首次无记录返回 null', () => {
   assert.deepEqual(loadIdeTabs(store), {
     openPaths: ['a.cpp', 'b.md'],
     activePath: 'b.md',
+    pinnedPath: null,
     seeded: ['atcoder:abc1'],
   });
   assert.ok(store.getItem(IDE_TABS_KEY));
@@ -33,14 +34,14 @@ test('ide-tabs: 非法数据与脏字段归一化', () => {
   store.setItem(IDE_TABS_KEY, '[1,2]');
   assert.equal(loadIdeTabs(store), null);
   store.setItem(IDE_TABS_KEY, JSON.stringify({ openPaths: ['a.cpp', 3, '', 'a.cpp'], activePath: 'zzz', seeded: ['x', null, 'x'] }));
-  assert.deepEqual(loadIdeTabs(store), { openPaths: ['a.cpp'], activePath: 'a.cpp', seeded: ['x'] });
-  assert.deepEqual(normalizeIdeTabs(null), { openPaths: [], activePath: null, seeded: [] });
+  assert.deepEqual(loadIdeTabs(store), { openPaths: ['a.cpp'], activePath: 'a.cpp', pinnedPath: null, seeded: ['x'] });
+  assert.deepEqual(normalizeIdeTabs(null), { openPaths: [], activePath: null, pinnedPath: null, seeded: [] });
 });
 
 test('ide-tabs: 空标签栏是有效记录（用户关掉了所有标签）', () => {
   const store = memStore();
-  saveIdeTabs({ openPaths: [], activePath: null, seeded: [] }, store);
-  assert.deepEqual(loadIdeTabs(store), { openPaths: [], activePath: null, seeded: [] });
+  saveIdeTabs({ openPaths: [], activePath: null, pinnedPath: null, seeded: [] }, store);
+  assert.deepEqual(loadIdeTabs(store), { openPaths: [], activePath: null, pinnedPath: null, seeded: [] });
 });
 
 test('ide-tabs: 恢复时丢弃已删除文件，active 失效回落第一个', () => {
@@ -48,10 +49,11 @@ test('ide-tabs: 恢复时丢弃已删除文件，active 失效回落第一个', 
   assert.deepEqual(restoreIdeTabs(saved, ['a.cpp', 'b.cpp', 'c.cpp']), {
     openPaths: ['a.cpp', 'b.cpp'],
     activePath: 'a.cpp',
+    pinnedPath: null,
   });
-  assert.deepEqual(restoreIdeTabs(saved, [{ path: 'b.cpp' }]), { openPaths: ['b.cpp'], activePath: 'b.cpp' });
-  assert.deepEqual(restoreIdeTabs(saved, []), { openPaths: [], activePath: null });
-  assert.deepEqual(restoreIdeTabs(null, ['a.cpp']), { openPaths: [], activePath: null });
+  assert.deepEqual(restoreIdeTabs(saved, [{ path: 'b.cpp' }]), { openPaths: ['b.cpp'], activePath: 'b.cpp', pinnedPath: null });
+  assert.deepEqual(restoreIdeTabs(saved, []), { openPaths: [], activePath: null, pinnedPath: null });
+  assert.deepEqual(restoreIdeTabs(null, ['a.cpp']), { openPaths: [], activePath: null, pinnedPath: null });
 });
 
 test('ide-tabs: seeded 去重并保留最近 500 个', () => {

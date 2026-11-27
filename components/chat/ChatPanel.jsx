@@ -414,6 +414,11 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
   const persistState = (state) => {
     sessionsRef.current = state;
     saveSessions(scope, state);
+    // 同标签页不会收到 storage 事件：发个自定义事件让 IDE 把对话镜像进
+    // 文件夹的 workspace.json（lib/ide-bindings.mjs）。
+    try {
+      window.dispatchEvent(new CustomEvent('ysc-chat-saved', { detail: { scope } }));
+    } catch {}
     setSessionsState(state);
   };
 
@@ -479,6 +484,9 @@ export default function ChatPanel({ problem, open, onClose, embedded = false }) 
     const state = { activeId: prev.activeId, sessions };
     sessionsRef.current = state;
     saveSessions(scope, state);
+    try {
+      window.dispatchEvent(new CustomEvent('ysc-chat-saved', { detail: { scope } }));
+    } catch {}
     setSessionsState(state);
   };
 

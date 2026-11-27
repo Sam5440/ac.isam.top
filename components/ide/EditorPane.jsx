@@ -11,8 +11,9 @@
  */
 
 import dynamic from "next/dynamic";
-import { Braces, ChevronRight, Expand, Maximize, Minimize, Play, Save, Shrink, Square, X } from "lucide-react";
+import { Braces, ChevronRight, Expand, Maximize, Minimize, PanelLeft, Play, Save, Shrink, Square, X } from "lucide-react";
 import { ActionButton, FileIcon } from "@/components/ide/vsc";
+import TabList from "@/components/ide/TabList";
 
 const CodeEditor = dynamic(() => import("@/components/compiler/CodeEditor"), {
   ssr: false,
@@ -70,6 +71,11 @@ export default function EditorPane({
   activePath,
   onSelectTab,
   onCloseTab,
+  onCloseMany,
+  pinnedPath = null,
+  onTogglePin,
+  verticalTabs = false,
+  onToggleVerticalTabs,
   code,
   lang,
   onChange,
@@ -85,6 +91,8 @@ export default function EditorPane({
   onStop,
   onNewFile,
   onClose,
+  wordWrap = true,
+  onToggleWordWrap,
   showRun = true,
   fullscreen,
   pageFullscreen,
@@ -97,57 +105,30 @@ export default function EditorPane({
   return (
     <section aria-label="代码编辑器" className="flex h-full min-h-0 min-w-0 flex-col overflow-hidden" style={{ background: "var(--vsc-editor)" }}>
       {/* 标签栏 */}
-      {(
+      {!verticalTabs && (
         <div className="flex h-[35px] shrink-0" style={{ background: "var(--vsc-tabs)" }}>
-          <div className="vsc-tabs flex min-w-0 flex-1 overflow-x-auto overflow-y-hidden" role="tablist">
-            {openPaths.map((path) => {
-              const f = fileOf(path);
-              const isActive = path === activePath;
-              const dirty = f && isDirty?.(f);
-              return (
-                <div
-                  key={path}
-                  role="tab"
-                  aria-selected={isActive}
-                  tabIndex={0}
-                  onClick={() => onSelectTab(path)}
-                  onKeyDown={(e) => e.key === "Enter" && onSelectTab(path)}
-                  onAuxClick={(e) => e.button === 1 && onCloseTab(path)}
-                  title={path}
-                  className="group relative flex h-full max-w-56 min-w-0 shrink-0 cursor-pointer items-center gap-1.5 border-r pr-1.5 pl-2.5 text-[13px]"
-                  style={{
-                    borderColor: "var(--vsc-border)",
-                    background: isActive ? "var(--vsc-editor)" : "transparent",
-                    color: isActive ? "var(--vsc-tab-active-fg)" : "var(--vsc-tab-inactive-fg)",
-                    boxShadow: isActive ? "inset 0 1px 0 var(--vsc-accent)" : undefined,
-                  }}
-                >
-                  {/* 活动标签底边与编辑器连通 */}
-                  {!isActive && <span className="absolute inset-x-0 bottom-0 h-px" style={{ background: "var(--vsc-border)" }} />}
-                  <FileIcon lang={f?.lang} name={f?.name ?? path} />
-                  <span className={`truncate ${isActive ? "" : "group-hover:text-[color:var(--vsc-tab-active-fg)]"}`}>{f ? f.name : path}</span>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onCloseTab(path);
-                    }}
-                    aria-label={`关闭 ${path}`}
-                    title={`关闭 (${MOD}W)`}
-                    className={`grid size-5 shrink-0 place-items-center rounded-[5px] hover:bg-[color:var(--vsc-statusbar-hover)] ${
-                      dirty || isActive ? "" : "opacity-0 group-hover:opacity-100"
-                    }`}
-                  >
-                    {dirty && <span className="size-2 rounded-full bg-current group-hover:hidden" />}
-                    <X className={`size-4 ${dirty ? "hidden group-hover:block" : ""}`} strokeWidth={1.5} />
-                  </button>
-                </div>
-              );
-            })}
-            <span className="min-w-4 flex-1 border-b" style={{ borderColor: "var(--vsc-border)" }} />
-          </div>
+          <TabList
+            openPaths={openPaths}
+            files={files}
+            activePath={activePath}
+            pinnedPath={pinnedPath}
+            onSelect={onSelectTab}
+            onClose={onCloseTab}
+            onCloseMany={onCloseMany}
+            onTogglePin={onTogglePin}
+            isDirty={isDirty}
+          />
+          <span className="min-w-4 flex-1 border-b" style={{ borderColor: "var(--vsc-border)" }} />
           {/* 编辑器标题动作 */}
           <div className="flex shrink-0 items-center gap-0.5 border-b px-2" style={{ borderColor: "var(--vsc-border)" }}>
+            {onToggleVerticalTabs && (
+              <ActionButton
+                icon={PanelLeft}
+                title={verticalTabs ? "标签栏改为顶部横排" : "标签栏改为左侧竖排"}
+                onClick={onToggleVerticalTabs}
+                active={verticalTabs}
+              />
+            )}
             {showRun &&
               (running ? (
                 <ActionButton icon={Square} title="停止运行" onClick={onStop} className="text-[color:var(--vsc-error)]" />
@@ -155,6 +136,14 @@ export default function EditorPane({
                 <ActionButton icon={Play} title="运行当前文件 (F5)" onClick={onRun} disabled={!activePath} className="text-[color:var(--vsc-success)]" />
               ))}
             <ActionButton icon={Save} title={`保存 (${MOD}S)`} onClick={onSave} disabled={!activePath} />
+            {onToggleWordWrap && (
+              <ActionButton
+                icon={Braces}
+                title={wordWrap ? "关闭自动换行" : "开启自动换行"}
+                onClick={onToggleWordWrap}
+                active={wordWrap}
+              />
+            )}
             {onTogglePageFullscreen && (
               <ActionButton
                 icon={pageFullscreen ? Shrink : Expand}
@@ -179,7 +168,34 @@ export default function EditorPane({
       )}
 
       {activePath ? (
-        <>
+        <div className={verticalTabs ? "flex min-h-0 flex-1" : "contents"}>
+          {verticalTabs && (
+            <div
+              className="flex w-[190px] shrink-0 flex-col border-r"
+              style={{ background: "var(--vsc-tabs)", borderColor: "var(--vsc-border)" }}
+            >
+              <div className="flex h-[26px] shrink-0 items-center justify-between px-2 text-[11px] tracking-wide uppercase opacity-70">
+                <span>已打开的编辑器</span>
+                {onToggleVerticalTabs && (
+                  <ActionButton icon={PanelLeft} title="标签栏改为顶部横排" onClick={onToggleVerticalTabs} active />
+                )}
+              </div>
+              <TabList
+                openPaths={openPaths}
+                files={files}
+                activePath={activePath}
+                pinnedPath={pinnedPath}
+                onSelect={onSelectTab}
+                onClose={onCloseTab}
+                onCloseMany={onCloseMany}
+                onTogglePin={onTogglePin}
+                isDirty={isDirty}
+                orientation="vertical"
+                className="min-h-0 flex-1"
+              />
+            </div>
+          )}
+          <div className="flex min-w-0 min-h-0 flex-1 flex-col">
           {/* 面包屑：单行显示，长路径只截断目录段，文件名优先保留 */}
           <nav aria-label="面包屑" className="flex h-[22px] shrink-0 items-center gap-0.5 overflow-hidden px-3 text-[13px] opacity-80" style={{ background: "var(--vsc-editor)" }}>
             <span className="shrink-0">工作区</span>
@@ -219,6 +235,7 @@ export default function EditorPane({
                 language={lang}
                 value={code}
                 onChange={onChange}
+                wordWrap={wordWrap}
                 diagnostics={diagnostics}
                 theme={theme}
                 getAi={getAi}
@@ -238,7 +255,8 @@ export default function EditorPane({
               />
             )}
           </div>
-        </>
+          </div>
+        </div>
       ) : (
         <div className="min-h-0 flex-1">
           <Watermark onNewFile={onNewFile} />

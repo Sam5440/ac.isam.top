@@ -54,7 +54,7 @@ import EditorPane from "@/components/ide/EditorPane";
 import FileManager from "@/components/ide/FileManager";
 import TerminalPane from "@/components/ide/TerminalPane";
 import SamplesPanel from "@/components/ide/SamplesPanel";
-import { IdeSettingsPanel, StatementPanel } from "@/components/ide/IdeSidePanels";
+import { DetailsPanel, IdeSettingsPanel, StatementPanel } from "@/components/ide/IdeSidePanels";
 import ChatPanel from "@/components/chat/ChatPanel";
 import { ActionButton } from "@/components/ide/vsc";
 import { PanelHeader, ProblemsList, QuickOpen, StatusBar, StatusItem } from "@/components/ide/Workbench";
@@ -62,7 +62,9 @@ import { LAYOUT_DEFAULTS, modulesOn, useWorkbenchLayout } from "@/components/ide
 import {
   listFiles,
   listFolders,
+  listFolderRecords,
   putFile,
+  getFile,
   deleteFile as wsDeleteFile,
   renameFile as wsRenameFile,
   createFolder as wsCreateFolder,
@@ -71,7 +73,19 @@ import {
   importFiles,
 } from "@/lib/ide-workspace";
 import { problemMarkdown, problemWorkspacePlan } from "@/lib/problem-workspace.mjs";
-import { loadIdeTabs, restoreIdeTabs, saveIdeTabs } from "@/lib/ide-tabs";
+import { closeTab as closeTabState, loadIdeTabs, openTab, pinTab, restoreIdeTabs, saveIdeTabs, tabsToClose } from "@/lib/ide-tabs";
+import {
+  BINDINGS_FILE,
+  bindingsPathOf,
+  buildBindings,
+  chatsFromBindings,
+  folderOfPath,
+  isBindingsPath,
+  normalizeBindings,
+  pathHue,
+  samplesFromBindings,
+  sortEntries,
+} from "@/lib/ide-bindings.mjs";
 import { loadIdeUi, patchIdeUi } from "@/lib/ide-ui";
 import {
   loadAllSamples,
@@ -83,6 +97,7 @@ import {
   removeKeys,
   setFromProblem,
 } from "@/lib/ide-samples";
+import { loadSessions } from "@/lib/chat-store";
 
 const CONSOLE_CAP = 200 * 1024;
 
@@ -152,11 +167,18 @@ export default function IdePage({
   const [ai, setAi] = useState(null); // AI 补全设置（全局）
   const [files, setFiles] = useState([]); // [{path,name,lang,content,updatedAt}]
   const [folders, setFolders] = useState([]); // 显式文件夹路径
+  const [folderRecords, setFolderRecords] = useState([]); // 文件夹记录（含时间戳，详情面板用）
+  const [selection, setSelection] = useState(null); // 文件管理当前选中项 {path,type}
+  const [fileSort, setFileSort] = useState({ by: "name", dir: "asc" });
   const [openPaths, setOpenPaths] = useState([]);
   const [activePath, setActivePath] = useState(null);
+  const [pinnedPath, setPinnedPath] = useState(null);
   const [savedSnapshot, setSavedSnapshot] = useState({});
   // 样例（按文件绑定）与运行结果（按文件）
   const [samplesMap, setSamplesMap] = useState({});
+  const bindingsLoadedRef = useRef(false);
+  const bindingsWriteRef = useRef("");
+  const [bindingsTick, setBindingsTick] = useState(0);
   const [resultsMap, setResultsMap] = useState({}); // path → cases[]
   const [problem, setProblem] = useState(null); // 当前文件绑定题目的全量 JSON
   const [seedProblem, setSeedProblem] = useState(null); // 题目页种子（嵌入模式，供题面 / AI 面板使用）
@@ -179,6 +201,7 @@ export default function IdePage({
   const contentRef = useRef({});
   const activeRef = useRef(null);
   const openRef = useRef([]);
+  const pinnedRef = useRef(null);
   const seededRef = useRef(new Set()); // 已自动铺开过标签栏的题目键（持久化在 lib/ide-tabs.js）
   const runPathRef = useRef(null); // 本次对拍所属文件（结果落到该文件名下）
 
@@ -196,6 +219,7 @@ export default function IdePage({
   contentRef.current = Object.fromEntries(files.map((f) => [f.path, f.content]));
   activeRef.current = activePath;
   openRef.current = openPaths;
+  pinnedRef.current = pinnedPath;
 
   const appendConsole = useCallback((text) => {
     setConsoleText((prev) => (prev + text).slice(-CONSOLE_CAP));
@@ -212,8 +236,9 @@ export default function IdePage({
         // 恢复上次的标签栏：用户关掉过的标签不会因为「启动默认打开前几个文件」回来
         const savedTabs = loadIdeTabs();
         seededRef.current = new Set(savedTabs?.seeded ?? []);
-        const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+        const [list, dirs, folderRecs] = await Promise.all([listFiles(), listFolders(), listFolderRecords()]);
         setFolders(dirs);
+        setFolderRecords(folderRecs);
         if (list.length) {
           setFiles(list);
           setSavedSnapshot(Object.fromEntries(list.map((f) => [f.path, f.content])));
@@ -221,6 +246,7 @@ export default function IdePage({
           if (restored?.openPaths.length) {
             setOpenPaths(restored.openPaths);
             setActivePath(restored.activePath);
+            setPinnedPath(restored.pinnedPath);
           } else if (savedTabs && savedTabs.openPaths.length === 0) {
             // 用户主动关掉了所有标签：刷新后保持空标签栏（可点「新建文件」重新开始）
             setOpenPaths([]);
@@ -250,8 +276,8 @@ export default function IdePage({
      文件」覆盖。 */
   useEffect(() => {
     if (!mounted) return;
-    saveIdeTabs({ openPaths, activePath, seeded: [...seededRef.current] });
-  }, [mounted, openPaths, activePath]);
+    saveIdeTabs({ openPaths, activePath, pinnedPath, seeded: [...seededRef.current] });
+  }, [mounted, openPaths, activePath, pinnedPath]);
 
   // 全局设置变化（主题联动 / 设置页修改编译器或 AI 补全）→ 同步
   useEffect(() => {
@@ -286,6 +312,104 @@ export default function IdePage({
     });
   }, []);
 
+  /* ---------- 绑定清单：workspace.json ←→ samplesMap ----------
+     打开工作区时把每个目录的 workspace.json 读回来（补齐 localStorage 里
+     没有的绑定，例如换了浏览器 / 清了缓存）；绑定变化时写回文件。
+     写入用序列化结果去重，避免光标移动这类无关重渲染反复写盘。 */
+  useEffect(() => {
+    if (!mounted || bindingsLoadedRef.current) return;
+    bindingsLoadedRef.current = true;
+    let alive = true;
+    (async () => {
+      try {
+        const dirs = [...new Set(files.map((f) => folderOfPath(f.path)).filter(Boolean))];
+        if (!dirs.length) return;
+        const recovered = {};
+        for (const dir of dirs) {
+          const rec = await getFile(bindingsPathOf(dir));
+          if (!rec?.content) continue;
+          const parsed = normalizeBindings(rec.content);
+          if (parsed) Object.assign(recovered, samplesFromBindings(parsed, dir));
+        }
+        if (!alive || !Object.keys(recovered).length) return;
+        updateSamples((m) => {
+          const next = { ...m };
+          let changed = false;
+          for (const [path, set] of Object.entries(recovered)) {
+            const cur = next[path];
+            // 只在本地没有绑定、或本地没有样例时用文件补齐，绝不覆盖用户刚做的修改
+            if (!cur?.problem && set.problem) {
+              next[path] = { problem: set.problem, cases: cur?.cases?.length ? cur.cases : set.cases };
+              changed = true;
+            } else if (cur && !cur.cases?.length && set.cases?.length) {
+              next[path] = { ...cur, cases: set.cases };
+              changed = true;
+            }
+          }
+          return changed ? next : m;
+        });
+      } catch {}
+    })();
+    return () => {
+      alive = false;
+    };
+    // 只在工作区首次加载后跑一次；files 后续变化由写入方向处理
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!mounted || !files.length) return;
+    const chatOf = (scope) => {
+      try {
+        return loadSessions(scope);
+      } catch {
+        return null;
+      }
+    };
+    const contest = seedProblem?.contestId
+      ? { id: seedProblem.contestId, platform: seedProblem.platform ?? null, title: seedProblem.title ?? null }
+      : null;
+    const map = buildBindings({ contest, files, samplesMap, chatOf });
+    const signature = JSON.stringify(map);
+    if (signature === bindingsWriteRef.current) return;
+    bindingsWriteRef.current = signature;
+    (async () => {
+      try {
+        for (const [dir, bindings] of Object.entries(map)) {
+          const path = bindingsPathOf(dir);
+          const cur = await getFile(path);
+          const text = JSON.stringify(bindings, null, 2);
+          if (cur?.content === text) continue;
+          await putFile(path, text);
+        }
+      } catch {}
+    })();
+    // 依赖路径列表而不是 files：编辑内容会高频更新 files，但绑定清单与正文无关。
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted, files.map((f) => f.path).join("\n"), samplesMap, seedProblem, bindingsTick]);
+
+  // AI 对话变化（lib/chat-store 写 localStorage）→ 把最新对话镜像进 workspace.json。
+  useEffect(() => {
+    if (!mounted) return;
+    let timer = null;
+    const onStorage = (e) => {
+      if (e.key && !String(e.key).startsWith("stmt-chat-v1-")) return;
+      clearTimeout(timer);
+      timer = setTimeout(() => setBindingsTick((n) => n + 1), 1500);
+    };
+    const onChatSaved = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => setBindingsTick((n) => n + 1), 1500);
+    };
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("ysc-chat-saved", onChatSaved);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("ysc-chat-saved", onChatSaved);
+    };
+  }, [mounted]);
+
   const boundKey = sampleSet.problem ? `${sampleSet.problem.platform}:${sampleSet.problem.id}` : null;
   useEffect(() => {
     if (!boundKey) {
@@ -306,8 +430,8 @@ export default function IdePage({
   }, [boundKey, problemOverride]);
 
   /* ---------- 题目页种子：自动创建工作区目录 + 代码文件 + 同名 Markdown ---------- */
-  // 路径：<比赛编号>-<比赛名>-<题目 id>/<题号>.cpp(.py) 与同目录的 <题号>.md
-  // 已存在则只补缺文件，绝不覆盖用户内容；同一题只跑一次。
+  // 路径：<比赛编号>-<比赛名>/<题号>.cpp(.py)、<题号>.md 与 workspace.json。
+  // 一场比赛只有一个目录，全部题目共用；已存在则只补缺文件，绝不覆盖用户内容。
   const seedKey = problemSeed
     ? `${problemSeed.platform}:${problemSeed.id}:${problemSeed.contest?.id ?? ""}`
     : null;
@@ -348,9 +472,38 @@ export default function IdePage({
         if (!codeEntry || !String(codeEntry.content ?? "").trim()) {
           await putFile(plan.codePath, template);
         }
-        const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+        // 文件夹的绑定清单：不存在就建一个空清单，已有就原样保留（它是用户数据）。
+        const bindingsPath = plan.bindingsPath;
+        if (!existing.has(bindingsPath)) {
+          const contestMeta = problemSeed.contest
+            ? {
+                id: problemSeed.contest.id ?? null,
+                platform: problemSeed.platform ?? null,
+                title: problemSeed.contest.title ?? null,
+                titleZh: problemSeed.contest.titleZh ?? null,
+              }
+            : full.contestId
+              ? { id: full.contestId, platform: problemSeed.platform ?? null, title: null, titleZh: null }
+              : null;
+          await putFile(
+            bindingsPath,
+            JSON.stringify(
+              {
+                format: "ac-ide-bindings",
+                version: 1,
+                contest: contestMeta,
+                updatedAt: new Date().toISOString(),
+                files: {},
+              },
+              null,
+              2,
+            ),
+          );
+        }
+        const [list, dirs, folderRecs] = await Promise.all([listFiles(), listFolders(), listFolderRecords()]);
         if (!alive) return;
         setFolders(dirs);
+        setFolderRecords(folderRecs);
         setFiles((prev) => {
           const map = new Map(list.map((f) => [f.path, f]));
           // 保留可能还没落盘的编辑内容（网络慢时用户已经动过键盘）
@@ -360,16 +513,27 @@ export default function IdePage({
           return [...map.values()].sort((a, b) => a.path.localeCompare(b.path));
         });
         setSavedSnapshot(Object.fromEntries(list.map((f) => [f.path, f.content])));
-        if (reveal) {
-          setOpenPaths((prev) => [...new Set([...prev, plan.codePath, ...(created ? [plan.mdPath] : [])])]);
-          setActivePath(plan.codePath);
-        }
+        // 切到这道题：它的文件移到最左侧、置顶，并成为当前标签。
+        // （每次进入题目页都这样做；只有首次/新建时才顺带打开 .md 存档）
+        setOpenPaths((prev) => {
+          const add = [plan.codePath, ...(reveal && created ? [plan.mdPath] : []), ...prev];
+          return add.filter((p, i, arr) => arr.indexOf(p) === i);
+        });
+        setPinnedPath(plan.codePath);
+        setActivePath(plan.codePath);
         updateSamples((m) => {
           const cur = m[plan.codePath];
           return cur?.problem ? m : withSampleSet(m, plan.codePath, setFromProblem(full));
         });
         // reveal 会触发标签持久化 effect；没触发时也要把 seeded 记下来
-        if (!reveal) saveIdeTabs({ openPaths: openRef.current, activePath: activeRef.current, seeded: [...seededRef.current] });
+        if (!reveal) {
+          saveIdeTabs({
+            openPaths: openRef.current,
+            activePath: activeRef.current,
+            pinnedPath: pinnedRef.current,
+            seeded: [...seededRef.current],
+          });
+        }
         if (created) toast.success(`已准备 ${plan.folder}/${plan.base}`);
       } catch (exn) {
         if (alive) toast.error(`题目工作区创建失败：${exn.message}`);
@@ -455,15 +619,53 @@ export default function IdePage({
 
   /* ---------- 文件 / 文件夹管理 ---------- */
   const openFile = useCallback((path) => {
-    setOpenPaths((prev) => (prev.includes(path) ? prev : [...prev, path]));
+    setOpenPaths((prev) => {
+      const next = openTab(prev, pinnedRef.current, path);
+      pinnedRef.current = next.pinnedPath;
+      return next.openPaths;
+    });
     setActivePath(path);
   }, []);
 
   const closeTab = useCallback((path) => {
     setOpenPaths((prev) => {
-      const next = prev.filter((p) => p !== path);
-      setActivePath((cur) => (cur === path ? next[next.length - 1] ?? null : cur));
-      return next;
+      const next = closeTabState(prev, pinnedRef.current, path);
+      pinnedRef.current = next.pinnedPath;
+      setPinnedPath(next.pinnedPath);
+      setActivePath((cur) => (cur === path ? next.openPaths[next.openPaths.length - 1] ?? null : cur));
+      return next.openPaths;
+    });
+  }, []);
+
+  /** 右键批量关闭：others|all|left|right；置顶标签与活动标签按模式保留。 */
+  const closeTabs = useCallback(
+    (path, mode) => {
+      setOpenPaths((prev) => {
+        const drop = new Set(tabsToClose(prev, path, mode));
+        let next = prev.filter((p) => !drop.has(p));
+        const pin = pinnedRef.current;
+        // 「关闭其他」保留置顶标签；「关闭全部」连置顶一起关。
+        if (mode === "others" && pin && prev.includes(pin)) {
+          next = [pin, ...next.filter((p) => p !== pin)];
+        }
+        if (!next.length) setActivePath(null);
+        else if (!next.includes(activeRef.current)) setActivePath(path && next.includes(path) ? path : next[next.length - 1]);
+        const stillPinned = pin && next.includes(pin) ? pin : null;
+        pinnedRef.current = stillPinned;
+        setPinnedPath(stillPinned);
+        return next;
+      });
+    },
+    [],
+  );
+
+  /** 手动置顶 / 取消置顶当前标签。 */
+  const togglePin = useCallback((path) => {
+    setOpenPaths((prev) => {
+      const next = pinnedRef.current === path ? { openPaths: prev, pinnedPath: null } : pinTab(prev, path);
+      pinnedRef.current = next.pinnedPath;
+      setPinnedPath(next.pinnedPath);
+      return next.openPaths;
     });
   }, []);
 
@@ -566,7 +768,9 @@ export default function IdePage({
       try {
         const { moved } = await wsRenameFolder(from, to);
         const map = new Map(moved.map((m) => [m.from, m.to]));
-        const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+        const [list, dirs, folderRecs] = await Promise.all([listFiles(), listFolders(), listFolderRecords()]);
+        setFolders(dirs);
+        setFolderRecords(folderRecs);
         setFiles((prev) => {
           const byPath = new Map(list.map((f) => [f.path, f]));
           // 保留未落盘的编辑内容
@@ -575,7 +779,6 @@ export default function IdePage({
             return old ? { ...byPath.get(f.path), content: old.content } : f;
           });
         });
-        setFolders(dirs);
         setSavedSnapshot((prev) => Object.fromEntries(Object.entries(prev).map(([k, v]) => [map.get(k) ?? k, v])));
         updateSamples((m) => renamePrefix(m, from, to));
         setResultsMap((prev) => renamePrefix(prev, from, to));
@@ -593,9 +796,10 @@ export default function IdePage({
       try {
         const imported = await importFiles(fileList, dir);
         if (!imported.length) return;
-        const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+        const [list, dirs, folderRecs] = await Promise.all([listFiles(), listFolders(), listFolderRecords()]);
         setFiles(list);
         setFolders(dirs);
+        setFolderRecords(folderRecs);
         setSavedSnapshot((prev) => ({ ...prev, ...Object.fromEntries(imported.map((r) => [r.path, r.content])) }));
         openFile(imported[0].path);
         toast.success(`已导入 ${imported.length} 个文件`);
@@ -608,9 +812,10 @@ export default function IdePage({
 
   const refreshFiles = useCallback(async () => {
     try {
-      const [list, dirs] = await Promise.all([listFiles(), listFolders()]);
+      const [list, dirs, folderRecs] = await Promise.all([listFiles(), listFolders(), listFolderRecords()]);
       setFiles(list);
       setFolders(dirs);
+      setFolderRecords(folderRecs);
       setSavedSnapshot(Object.fromEntries(list.map((f) => [f.path, f.content])));
       if (!list.some((f) => f.path === activeRef.current)) setActivePath(list[0]?.path ?? null);
     } catch {}
@@ -1058,6 +1263,22 @@ export default function IdePage({
             onDeleteFolder={removeFolder}
             onUpload={uploadFiles}
             onRefresh={refreshFiles}
+            onSelectDetail={(node) => {
+              setSelection(node);
+              // 选中文件/文件夹时把右侧切到「详情」，用户不用自己找
+              if (node) wb.showModule("details");
+            }}
+            sort={fileSort}
+            onSort={setFileSort}
+            wrapNames
+          />
+        );
+      case "details":
+        return (
+          <DetailsPanel
+            selection={selection}
+            files={files}
+            folders={folderRecords}
           />
         );
       case "chat":
@@ -1106,7 +1327,11 @@ export default function IdePage({
         }`}
         style={{ width, background: "var(--vsc-panel)", borderColor: "var(--vsc-border)" }}
       >
-        <div role="tablist" className="flex h-[35px] shrink-0 items-stretch border-b" style={{ borderColor: "var(--vsc-border)" }}>
+        <div
+          role="tablist"
+          className="flex h-[35px] shrink-0 items-stretch overflow-x-auto overflow-y-hidden border-b"
+          style={{ borderColor: "var(--vsc-border)" }}
+        >
           {mods.map((m) => {
             const on = m.id === cur;
             return (
@@ -1116,7 +1341,7 @@ export default function IdePage({
                 role="tab"
                 aria-selected={on}
                 onClick={() => wb.patch({ [tabKey]: m.id })}
-                className="relative px-3 text-[12px]"
+                className="relative shrink-0 px-2.5 text-[12px] whitespace-nowrap"
                 style={{ color: on ? "var(--vsc-fg-strong)" : "var(--vsc-fg-muted)" }}
               >
                 {m.label}
@@ -1194,8 +1419,15 @@ export default function IdePage({
                 openPaths={openPaths}
                 files={files}
                 activePath={activePath}
+                pinnedPath={pinnedPath}
                 onSelectTab={setActivePath}
                 onCloseTab={closeTab}
+                onCloseMany={closeTabs}
+                onTogglePin={togglePin}
+                verticalTabs={Boolean(cp.verticalTabs)}
+                onToggleVerticalTabs={() => patchCp({ verticalTabs: !cp.verticalTabs })}
+                wordWrap={cp.wordWrap !== false}
+                onToggleWordWrap={() => patchCp({ wordWrap: cp.wordWrap === false })}
                 code={code}
                 lang={lang}
                 onChange={handleEditorChange}

@@ -25,6 +25,7 @@ import {
 import { toast } from "@/lib/toast";
 import { loadIdeUi, patchIdeUi } from "@/lib/ide-ui";
 import { buildZip } from "@/lib/ide-zip";
+import { pathHue, sortEntries } from "@/lib/ide-bindings.mjs";
 import { ActionButton, ContextMenu, FileIcon, ViewHeader } from "@/components/ide/vsc";
 
 const INDENT = 10;
@@ -41,7 +42,7 @@ function saveBlob(blob, name) {
 }
 
 /** 文件 + 文件夹 → 树。返回 {dirs: Map<path, {path,name,children:[]}>, root}。 */
-function buildTree(files, folders) {
+function buildTree(files, folders, sort = { by: "name", dir: "asc" }) {
   const root = { path: "", name: "", type: "dir", children: [] };
   const dirs = new Map([["", root]]);
   const ensureDir = (p) => {
@@ -58,11 +59,13 @@ function buildTree(files, folders) {
     const i = f.path.lastIndexOf("/");
     ensureDir(i < 0 ? "" : f.path.slice(0, i)).children.push({ ...f, type: "file" });
   }
-  const sort = (n) => {
-    n.children.sort((a, b) => (a.type !== b.type ? (a.type === "dir" ? -1 : 1) : a.name.localeCompare(b.name)));
-    n.children.forEach((c) => c.type === "dir" && sort(c));
+  const applySort = (n) => {
+    const dirs = n.children.filter((c) => c.type === "dir");
+    const rest = n.children.filter((c) => c.type !== "dir");
+    n.children = [...sortEntries(dirs, sort), ...sortEntries(rest, sort)];
+    n.children.forEach((c) => c.type === "dir" && applySort(c));
   };
-  sort(root);
+  applySort(root);
   return { root, dirs };
 }
 
@@ -115,10 +118,16 @@ export default function FileManager({
   onDeleteFolder, // (path)
   onUpload, // (FileList, dir)
   onRefresh,
+  onSelectDetail, // (node|null) 选中项 → 右侧详情
+  sort = { by: "name", dir: "asc" },
+  onSort,
+  wrapNames = true,
 }) {
-  const { root } = useMemo(() => buildTree(files, folders), [files, folders]);
+  const { root } = useMemo(() => buildTree(files, folders, sort), [files, folders, sort.by, sort.dir]);
   const [expanded, setExpanded] = useState(() => new Set());
   const [selected, setSelected] = useState(null); // {path, type}
+  const [multi, setMulti] = useState([]); // 多选：路径数组（Ctrl/⌘ 点选、Shift 连选）
+  const lastIndexRef = useRef(-1);
   const [creating, setCreating] = useState(null); // {dir, type:'file'|'dir'}
   const [renaming, setRenaming] = useState(null); // {path, type}
   const [menu, setMenu] = useState(null);
@@ -150,6 +159,38 @@ export default function FileManager({
 
   /** 新建/上传的目标目录：选中文件夹 → 它；选中文件 → 其父目录；否则根。 */
   const targetDir = () => (selected ? (selected.type === "dir" ? selected.path : parentOf(selected.path)) : "");
+
+  /** 扁平可见节点顺序（多选连选用）。 */
+  const flatPaths = useMemo(() => {
+    const out = [];
+    const walk = (node, depth) => {
+      for (const c of node.children) {
+        out.push(c.path);
+        if (c.type === "dir" && expanded.has(c.path)) walk(c, depth + 1);
+      }
+    };
+    walk(root, 0);
+    return out;
+  }, [root, expanded]);
+
+  /** 点击行：Ctrl/⌘ 切换、Shift 连选、普通点击单选并打开。 */
+  const selectRow = (node, e) => {
+    setSelected({ path: node.path, type: node.type });
+    onSelectDetail?.(node);
+    if (e.metaKey || e.ctrlKey) {
+      setMulti((prev) => (prev.includes(node.path) ? prev.filter((p) => p !== node.path) : [...prev, node.path]));
+      lastIndexRef.current = flatPaths.indexOf(node.path);
+      return;
+    }
+    if (e.shiftKey && lastIndexRef.current >= 0) {
+      const i = flatPaths.indexOf(node.path);
+      const [a, b] = [Math.min(i, lastIndexRef.current), Math.max(i, lastIndexRef.current)];
+      setMulti(flatPaths.slice(a, b + 1));
+      return;
+    }
+    setMulti([node.path]);
+    lastIndexRef.current = flatPaths.indexOf(node.path);
+  };
 
   const startCreate = (type, dir = targetDir()) => {
     if (dir) expandTo(dir);
@@ -267,30 +308,34 @@ export default function FileManager({
         </li>
       );
     }
-    const isSel = selected?.path === n.path;
+    const isSel = multi.includes(n.path) || selected?.path === n.path;
+    const hue = pathHue(n.path);
+    const tintBg = `hsl(${hue} 45% 50% / ${multi.includes(n.path) ? 0.16 : 0.06})`;
     if (n.type === "dir") {
       const open = expanded.has(n.path);
       return (
         <li key={n.path} role="treeitem" aria-expanded={open}>
           <div
             className={rowCls(isSel, false, dropTarget === n.path)}
-            style={rowStyle(depth)}
+            style={{ ...rowStyle(depth), background: isSel ? undefined : tintBg }}
             tabIndex={0}
-            onClick={() => {
-              setSelected({ path: n.path, type: "dir" });
+            onClick={(e) => {
+              selectRow(n, e);
               toggle(n.path);
             }}
             onFocus={() => setSelected({ path: n.path, type: "dir" })}
             onContextMenu={(e) => {
               e.preventDefault();
               setSelected({ path: n.path, type: "dir" });
+              if (!multi.includes(n.path)) setMulti([n.path]);
+              onSelectDetail?.(n);
               setMenu({ x: e.clientX, y: e.clientY, node: n });
             }}
             {...dndProps(n)}
           >
             {open ? <ChevronDown className="size-4 shrink-0 opacity-80" strokeWidth={1.5} /> : <ChevronRight className="size-4 shrink-0 opacity-80" strokeWidth={1.5} />}
             {open ? <FolderOpen className="size-4 shrink-0 text-[color:var(--vsc-warning)]" strokeWidth={1.5} /> : <Folder className="size-4 shrink-0 text-[color:var(--vsc-warning)]" strokeWidth={1.5} />}
-            <span className="min-w-0 flex-1 truncate">{n.name}</span>
+            <span className={`min-w-0 flex-1 ${wrapNames ? "break-words" : "truncate"}`}>{n.name}</span>
           </div>
           {open && <ul role="group">{renderChildren(n, depth + 1)}</ul>}
         </li>
@@ -301,23 +346,25 @@ export default function FileManager({
       <li key={n.path} role="treeitem">
         <div
           className={rowCls(isSel, n.path === activePath, false)}
-          style={{ paddingLeft: 8 + depth * INDENT + 16 }}
+          style={{ paddingLeft: 8 + depth * INDENT + 16, background: isSel ? undefined : tintBg }}
           tabIndex={0}
           title={n.path}
-          onClick={() => {
-            setSelected({ path: n.path, type: "file" });
+          onClick={(e) => {
+            selectRow(n, e);
             onOpen(n.path);
           }}
           onFocus={() => setSelected({ path: n.path, type: "file" })}
           onContextMenu={(e) => {
             e.preventDefault();
             setSelected({ path: n.path, type: "file" });
+            if (!multi.includes(n.path)) setMulti([n.path]);
+            onSelectDetail?.(n);
             setMenu({ x: e.clientX, y: e.clientY, node: n });
           }}
           {...dndProps(n)}
         >
           <FileIcon lang={n.lang} name={n.name} />
-          <span className={`min-w-0 flex-1 truncate ${dirty ? "text-[color:var(--vsc-warning)]" : ""}`}>{n.name}</span>
+          <span className={`min-w-0 flex-1 ${wrapNames ? "break-words" : "truncate"} ${dirty ? "text-[color:var(--vsc-warning)]" : ""}`}>{n.name}</span>
           {dirty && <span className="text-[11px] font-semibold text-[color:var(--vsc-warning)]">M</span>}
         </div>
       </li>
@@ -375,6 +422,27 @@ export default function FileManager({
         title="文件"
         actions={
           <>
+            {onSort && (
+              <span className="flex items-center gap-0.5">
+                <select
+                  value={sort.by}
+                  onChange={(e) => onSort({ ...sort, by: e.target.value })}
+                  aria-label="排序依据"
+                  title="排序依据"
+                  className="vsc-input !h-[22px] !w-auto !text-[11px]"
+                >
+                  <option value="name">名称</option>
+                  <option value="created">创建时间</option>
+                  <option value="updated">最后编辑</option>
+                </select>
+                <ActionButton
+                  title={sort.dir === "asc" ? "升序（点击改为降序）" : "降序（点击改为升序）"}
+                  onClick={() => onSort({ ...sort, dir: sort.dir === "asc" ? "desc" : "asc" })}
+                >
+                  <span className="text-[12px] leading-none">{sort.dir === "asc" ? "↑" : "↓"}</span>
+                </ActionButton>
+              </span>
+            )}
             <ActionButton icon={FilePlus} title="新建文件…" onClick={() => startCreate("file")} />
             <ActionButton icon={FolderPlus} title="新建文件夹…" onClick={() => startCreate("dir")} />
             <ActionButton icon={Upload} title="上传文件…" onClick={() => upload(false)} />
@@ -411,7 +479,12 @@ export default function FileManager({
         role="tree"
         aria-label="工作区文件"
         className="min-h-0 flex-1 overflow-auto pb-6"
-        onClick={(e) => e.target === e.currentTarget && setSelected(null)}
+        onClick={(e) => {
+          if (e.target !== e.currentTarget) return;
+          setSelected(null);
+          setMulti([]);
+          onSelectDetail?.(null);
+        }}
         onContextMenu={(e) => {
           if (e.target === e.currentTarget) {
             e.preventDefault();
@@ -434,6 +507,22 @@ export default function FileManager({
         }}
         style={dropTarget === "" ? { outline: "1px solid var(--vsc-accent)", outlineOffset: -1 } : undefined}
       >
+        {multi.length > 1 && (
+          <li className="bg-[color:var(--vsc-hover)] px-3 py-1 text-[11px]">
+            已选择 {multi.length} 项 ·{" "}
+            <button
+              type="button"
+              className="text-[color:var(--vsc-info)] hover:underline"
+              onClick={() => {
+                setMulti([]);
+                setSelected(null);
+                onSelectDetail?.(null);
+              }}
+            >
+              清除选择
+            </button>
+          </li>
+        )}
         {!files.length && !folders.length && !creating && (
           <li className="px-4 py-2 text-[12px] leading-5">
             <p className="opacity-75">工作区为空。</p>

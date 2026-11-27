@@ -142,7 +142,8 @@ export function ContextMenu({ x, y, items, onClose }) {
             key={i}
             type="button"
             role="menuitem"
-            className="flex h-6 w-full items-center justify-between gap-6 rounded-[3px] px-3 text-left text-[13px] hover:bg-[color:var(--vsc-accent)] hover:text-[color:var(--vsc-accent-fg)]"
+            disabled={it.disabled}
+            className="flex h-6 w-full items-center justify-between gap-6 rounded-[3px] px-3 text-left text-[13px] hover:bg-[color:var(--vsc-accent)] hover:text-[color:var(--vsc-accent-fg)] disabled:pointer-events-none disabled:opacity-40"
             onClick={() => {
               onClose();
               it.onClick?.();
