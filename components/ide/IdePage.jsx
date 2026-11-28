@@ -70,9 +70,11 @@ import {
   createFolder as wsCreateFolder,
   renameFolder as wsRenameFolder,
   deleteFolder as wsDeleteFolder,
+  mergeFolders as wsMergeFolders,
   importFiles,
 } from "@/lib/ide-workspace";
 import { problemMarkdown, problemWorkspacePlan } from "@/lib/problem-workspace.mjs";
+import { legacyFolderTarget, planFolderMerge } from "@/lib/ide-folder-merge.mjs";
 import { closeTab as closeTabState, loadIdeTabs, openTab, pinTab, restoreIdeTabs, saveIdeTabs, tabsToClose } from "@/lib/ide-tabs";
 import {
   BINDINGS_FILE,
@@ -100,6 +102,98 @@ import {
 import { loadSessions } from "@/lib/chat-store";
 
 const CONSOLE_CAP = 200 * 1024;
+
+/**
+ * 把旧「一题一目录」合并成「一场比赛一个目录」（幂等，启动时跑一次）。
+ *
+ * 迁移依据是每个旧目录里 `workspace.json` 的 contest 元数据（新格式清单里
+ * 一直带着它）；没有清单的目录不动，避免误伤用户自己建的结构。合并会同时
+ * 迁移样例绑定、标签栏与清单里的文件名，保证迁移后绑定关系不丢。
+ */
+async function migrateLegacyFolders() {
+  const recs = await listFolderRecords();
+  if (!recs.length) return false;
+  const files = await listFiles();
+  const byPath = new Map(files.map((f) => [f.path, f]));
+  const targets = [];
+  for (const dir of recs) {
+    if (dir.path.includes("/")) continue; // 只看顶层比赛目录
+    const bindings = byPath.get(`${dir.path}/${BINDINGS_FILE}`);
+    if (!bindings) continue;
+    let meta = null;
+    try {
+      meta = JSON.parse(bindings.content)?.contest ?? null;
+    } catch {}
+    const target = legacyFolderTarget(dir.path, meta);
+    if (target && target !== dir.path) targets.push({ folder: dir.path, target });
+  }
+  if (!targets.length) return false;
+
+  const plan = planFolderMerge(
+    [
+      ...recs.map((r) => ({ path: r.path, type: "dir" })),
+      ...files.map((f) => ({ path: f.path, type: "file", content: f.content })),
+    ],
+    targets,
+  );
+  if (!plan.moves.length) return false;
+
+  // 每个目录只保留**一份** workspace.json：多个旧目录各自带一份清单，合并时
+  // 要把它们的 files 并起来，而不是留成 workspace.json + workspace-2.json。
+  const targetOf = new Map(targets.map((t) => [t.folder, t.target]));
+  const mergedBindings = new Map(); // 新目录 → { contest, files }
+  for (const [folder, target] of targetOf) {
+    const src = byPath.get(`${folder}/${BINDINGS_FILE}`);
+    if (!src) continue;
+    let doc = null;
+    try {
+      doc = JSON.parse(src.content);
+    } catch {}
+    if (!doc) continue;
+    const cur = mergedBindings.get(target) ?? { contest: doc.contest ?? null, files: {} };
+    for (const [name, value] of Object.entries(doc.files ?? {})) {
+      const oldPath = `${folder}/${name}`;
+      const newPath = plan.moves.find((m) => m.from === oldPath)?.to ?? `${target}/${name}`;
+      cur.files[newPath.split("/").pop()] = value;
+    }
+    mergedBindings.set(target, cur);
+  }
+
+  // 清单文件本身不参与普通搬运：由下面按目标目录统一写一份。
+  const renameMap = new Map(plan.moves.map((m) => [m.from, m.to]));
+  const bindingsMoves = plan.moves.filter((m) => isBindingsPath(m.from));
+  const plainMoves = plan.moves.filter((m) => !isBindingsPath(m.from));
+  await wsMergeFolders(
+    {
+      ...plan,
+      moves: plainMoves,
+      drops: [...plan.drops, ...bindingsMoves.map((m) => m.from)],
+    },
+    null,
+  );
+  for (const [target, doc] of mergedBindings) {
+    await putFile(
+      `${target}/${BINDINGS_FILE}`,
+      JSON.stringify({ format: "ac-ide-bindings", version: 1, contest: doc.contest, updatedAt: new Date().toISOString(), files: doc.files }, null, 2),
+    );
+  }
+
+  // 样例绑定（localStorage 按文件路径存）与标签栏同步改路径
+  let samples = loadAllSamples();
+  for (const m of plan.moves) samples = renameKey(samples, m.from, m.to);
+  saveAllSamples(samples);
+  const tabs = loadIdeTabs();
+  if (tabs) {
+    const remap = (p) => renameMap.get(p) ?? p;
+    saveIdeTabs({
+      ...tabs,
+      openPaths: [...new Set(tabs.openPaths.map(remap))],
+      activePath: tabs.activePath ? remap(tabs.activePath) : null,
+      pinnedPath: tabs.pinnedPath ? remap(tabs.pinnedPath) : null,
+    });
+  }
+  return true;
+}
 
 /** 运行时是否已就绪（未就绪 → 首次运行触发下载 toast）。 */
 async function runtimeReady(lang, pyVersionId) {
@@ -233,6 +327,10 @@ export default function IdePage({
     setRecent(loadIdeUi().recent);
     (async () => {
       try {
+        // 旧版「一题一目录」→「一场比赛一个目录」：幂等，先跑再读工作区
+        try {
+          await migrateLegacyFolders();
+        } catch {}
         // 恢复上次的标签栏：用户关掉过的标签不会因为「启动默认打开前几个文件」回来
         const savedTabs = loadIdeTabs();
         seededRef.current = new Set(savedTabs?.seeded ?? []);

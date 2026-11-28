@@ -325,6 +325,11 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   samples, chat } }`，记录文件↔题目、样例、这道题的 AI 对话。它是纯文本，随
   「下载全部 ZIP」一起导出；挂载时只补本地缺失的绑定，不覆盖用户已有数据。AI 对话
   通过 `storage` 事件 + `ysc-chat-saved` 自定义事件（1.5s 防抖）镜像进来。
+- **旧「一题一目录」自动合并**（`lib/ide-folder-merge.mjs`，纯函数 + 单测）：
+  旧目录名是 `<比赛id>-<比赛名>-<题目id>`，启动时按每个目录 `workspace.json` 的
+  `contest` 元数据算出目标名并合并（幂等）。合并时**文件重名加 `-2` 不覆盖**，
+  多个旧目录的 `workspace.json` 会并成目标目录唯一的一份（不是 `workspace-2.json`）；
+  样例绑定（localStorage）与标签栏路径同步改写。没有清单的目录一律不动。
 - **标签栏**（`components/ide/TabList.jsx`，横排/竖排共用）：按路径取稳定色相
   （`pathHue`）做相邻色差、长名换行、右键「置顶 / 关闭其他 / 关闭全部 / 关闭左（上）
   侧 / 关闭右（下）侧」。竖排开关与自动换行存 `ysc-cp-settings-v1` 的
@@ -333,6 +338,9 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   （macOS 上 Ctrl+click 是系统右键，多选要用 ⌘），行背景按 `pathHue` 着色；工具栏
   可按名称 / 创建时间 / 最后编辑正反排序。注意 macOS 上 Playwright 的
   `click({modifiers:['Control']})` 会触发右键菜单，多选回归要用 `Meta`。
+  文件树行高是 `min-h-[22px]` 而不是固定 `h-[22px]`——长文件夹名会换行，固定行高
+  会让第二行文字压到下一项上；改回固定高度时 `e2e/ide-workspace-v3.js` 的
+  「换行文件名不压住下一行」会失败。
 - **右侧模块**除样例/题面/对话/设置外还有 `details`（详情）与 `outline`（结构）：
   详情显示路径、类型、创建/最后编辑时间、大小、行数（`folders` 允许传路径数组或
   IndexedDB 记录，`DetailsPanel` 内部统一）；结构来自 `lib/ide-outline.mjs`

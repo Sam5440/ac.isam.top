@@ -131,6 +131,17 @@ try {
   const sort = aside.locator('select[aria-label="排序依据"]');
   check("文件可按名称/创建/编辑排序", (await sort.count()) === 1 && (await sort.locator("option").count()) === 3);
 
+  // 长文件夹名换行后行高要跟着长，不能压到下一行
+  const rowBoxes = await aside.locator('[role="treeitem"] > div').evaluateAll((els) =>
+    els.map((e) => {
+      const r = e.getBoundingClientRect();
+      return { top: Math.round(r.top), bottom: Math.round(r.bottom), h: Math.round(r.height) };
+    }),
+  );
+  let overlap = 0;
+  for (let i = 1; i < rowBoxes.length; i += 1) if (rowBoxes[i].top < rowBoxes[i - 1].bottom - 1) overlap += 1;
+  check("换行文件名不压住下一行", overlap === 0, `rows=${rowBoxes.length} overlap=${overlap}`);
+
   // 4. 详情面板
   const detail = await page.locator('aside[aria-label="右侧栏"]').innerText().catch(() => "");
   check("详情显示时间/大小/行数", /创建时间/.test(detail) && /最后编辑/.test(detail) && /大小/.test(detail) && /行数/.test(detail));

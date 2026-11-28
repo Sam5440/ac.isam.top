@@ -223,8 +223,10 @@ export default function FileManager({
   };
 
   const rowStyle = (depth) => ({ paddingLeft: 8 + depth * INDENT });
+  // 行高用 min-h 而不是固定 h：长文件夹名换行后整行要跟着长高，否则第二行
+  // 文字会压到下一项上（看起来像文字叠在一起）。
   const rowCls = (isSel, isActive, isDrop) =>
-    `group flex h-[22px] w-full cursor-pointer items-center gap-1 pr-2 text-left text-[13px] ${
+    `group flex min-h-[22px] w-full cursor-pointer items-center gap-1 py-[2px] pr-2 text-left text-[13px] ${
       isDrop
         ? "bg-[color:var(--vsc-hover)] outline outline-1 -outline-offset-1 outline-[color:var(--vsc-accent)]"
         : isSel
@@ -335,7 +337,7 @@ export default function FileManager({
           >
             {open ? <ChevronDown className="size-4 shrink-0 opacity-80" strokeWidth={1.5} /> : <ChevronRight className="size-4 shrink-0 opacity-80" strokeWidth={1.5} />}
             {open ? <FolderOpen className="size-4 shrink-0 text-[color:var(--vsc-warning)]" strokeWidth={1.5} /> : <Folder className="size-4 shrink-0 text-[color:var(--vsc-warning)]" strokeWidth={1.5} />}
-            <span className={`min-w-0 flex-1 ${wrapNames ? "break-words" : "truncate"}`}>{n.name}</span>
+            <span className={`min-w-0 flex-1 leading-4 ${wrapNames ? "break-words" : "truncate"}`}>{n.name}</span>
           </div>
           {open && <ul role="group">{renderChildren(n, depth + 1)}</ul>}
         </li>
@@ -364,7 +366,7 @@ export default function FileManager({
           {...dndProps(n)}
         >
           <FileIcon lang={n.lang} name={n.name} />
-          <span className={`min-w-0 flex-1 ${wrapNames ? "break-words" : "truncate"} ${dirty ? "text-[color:var(--vsc-warning)]" : ""}`}>{n.name}</span>
+          <span className={`min-w-0 flex-1 leading-4 ${wrapNames ? "break-words" : "truncate"} ${dirty ? "text-[color:var(--vsc-warning)]" : ""}`}>{n.name}</span>
           {dirty && <span className="text-[11px] font-semibold text-[color:var(--vsc-warning)]">M</span>}
         </div>
       </li>
