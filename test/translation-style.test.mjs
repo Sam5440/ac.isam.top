@@ -12,9 +12,10 @@ import {
   TRANSLATION_FONTS,
   TRANSLATION_PRESETS,
   translationAppearance,
+  toggleTranslationPreset,
 } from '../lib/translation-style.mjs';
 
-test('译文预设涵盖附件里的 24 种互斥效果', () => {
+test('译文预设涵盖附件里的 24 种可组合效果', () => {
   assert.equal(TRANSLATION_PRESETS.length, 24);
   assert.equal(new Set(TRANSLATION_PRESETS.map(({ id }) => id)).size, 24);
   for (const id of ['dashedBorder', 'highlight', 'mask', 'wavy', 'background']) {
@@ -32,12 +33,11 @@ test('译文样式规范化保留旧版偏好并处理无效配置', () => {
     underline: true,
   }), {
     ...DEFAULT_ZH_STYLE,
-    preset: 'nativeUnderline',
+    presets: ['nativeUnderline', 'italic'],
     colorMode: 'custom',
     color: '#aabbcc',
     fontSize: 24,
     weight: 600,
-    italic: true,
   });
   assert.deepEqual(normalizeTranslationStyle({
     preset: '<script>',
@@ -48,7 +48,23 @@ test('译文样式规范化保留旧版偏好并处理无效配置', () => {
     fontFamily: 'Arial; color:red',
   }), { ...DEFAULT_ZH_STYLE });
   assert.equal(isTranslationStyleCustomized(normalizeTranslationStyle({})), false);
-  assert.equal(isTranslationStyleCustomized(normalizeTranslationStyle({ preset: 'bold' })), true);
+  assert.equal(isTranslationStyleCustomized(normalizeTranslationStyle({ presets: ['bold'] })), true);
+});
+
+test('译文样式将旧单个预设迁移为组合列表并验证已选效果', () => {
+  assert.deepEqual(normalizeTranslationStyle({ preset: 'highlight' }).presets, ['highlight']);
+  assert.deepEqual(normalizeTranslationStyle({ presets: ['bold', 'dashed', 'bold', 'invalid', 'none'] }).presets, ['bold', 'dashed']);
+  assert.deepEqual(normalizeTranslationStyle({ presets: 'bold' }).presets, []);
+  assert.deepEqual(normalizeTranslationStyle({ preset: 'italic', presets: ['italic', 'mask'] }).presets, ['italic', 'mask']);
+  assert.deepEqual(normalizeTranslationStyle({ presets: ['dashed', 'nativeUnderline', 'bold', 'italic', 'highlight', 'marker'] }).presets, ['nativeUnderline', 'bold', 'italic', 'marker']);
+  assert.deepEqual(normalizeTranslationStyle({ preset: 'italic', italic: false }).presets, []);
+  assert.deepEqual(normalizeTranslationStyle({ preset: 'bold' }).presets, ['bold']);
+  assert.deepEqual(normalizeTranslationStyle({ underline: true, bold: true }).presets, ['nativeUnderline']);
+  assert.deepEqual(toggleTranslationPreset(['nativeUnderline', 'dashedBorder', 'bold'], 'highlight'), ['nativeUnderline', 'dashedBorder', 'bold', 'highlight']);
+  assert.deepEqual(toggleTranslationPreset(['dashed', 'bold'], 'wavy'), ['bold', 'wavy']);
+  assert.deepEqual(toggleTranslationPreset(['highlight', 'bold'], 'marker'), ['bold', 'marker']);
+  assert.deepEqual(toggleTranslationPreset(['italic'], 'none'), []);
+  assert.deepEqual(toggleTranslationPreset(['italic'], 'bold'), ['italic', 'bold']);
 });
 
 test('译文颜色、字号、行距与字体值只接收安全白名单输入', () => {
@@ -68,7 +84,7 @@ test('译文颜色、字号、行距与字体值只接收安全白名单输入',
 
 test('译文样式生成隔离的主题变量并将用户选项回退到默认值', () => {
   const style = normalizeTranslationStyle({
-    preset: 'highlight',
+    presets: ['highlight'],
     colorMode: 'inverse',
     backgroundColor: '#fff1aa',
     borderColor: '#336699',
@@ -79,7 +95,7 @@ test('译文样式生成隔离的主题变量并将用户选项回退到默认�
     fontFamily: 'Noto Sans SC, sans-serif',
   });
   const props = translationAppearance(style);
-  assert.equal(props['data-zh-preset'], 'highlight');
+  assert.equal(props['data-zh-presets'], 'highlight');
   assert.equal(props['data-zh-background'], '');
   assert.equal(props['data-zh-spaced'], '');
   assert.equal(props.style['--zh-ink'], 'var(--zh-inverse)');
@@ -88,6 +104,7 @@ test('译文样式生成隔离的主题变量并将用户选项回退到默认�
   assert.equal(props.style['--zh-zoom'], 1.2);
   assert.equal(props.style['--zh-line-height'], 1.8);
   assert.deepEqual(normalizeTranslationStyle(DEFAULT_ZH_STYLE), { ...DEFAULT_ZH_STYLE });
+  assert.equal(Object.hasOwn(props, 'data-zh-preset'), false);
 });
 
 test('译文段落只为普通文字加样式锚点', () => {

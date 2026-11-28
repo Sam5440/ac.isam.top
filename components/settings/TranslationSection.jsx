@@ -9,7 +9,7 @@
  */
 
 import { useEffect, useRef, useState } from 'react';
-import { Activity, RotateCcw } from 'lucide-react';
+import { Activity, Check, RotateCcw } from 'lucide-react';
 
 import {
   ARCHIVED_CHANNELS,
@@ -18,16 +18,19 @@ import {
   DEFAULT_PRIORITY,
   useSettings,
 } from '@/components/settings';
+import TranslationBlock from '@/components/TranslationBlock';
+import { Button } from '@/components/ui/button';
 import {
   DEFAULT_ZH_STYLE,
   isTranslationStyleCustomized,
   normalizeTranslationStyle,
   TRANSLATION_FONTS,
   TRANSLATION_PRESETS,
-  translationAppearance,
+  toggleTranslationPreset,
 } from '@/lib/translation-style.mjs';
 import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { toast } from '@/lib/toast';
+import { cn } from '@/lib/utils';
 import { clearMtStats, HEALTH_SAMPLE, loadMtStats, rankedStats, runHealthCheck } from '@/lib/mt-health';
 import ModuleAssignPicker from './ModuleAssignPicker';
 import { CONTEST_TYPES } from '@/lib/contest-type';
@@ -93,9 +96,11 @@ export default function TranslationSection() {
   };
 
   const zhStyle = settings.zhStyle || DEFAULT_ZH_STYLE;
-  const patchZhStyle = (patch) =>
+  const patchZhStyle = (update) =>
     setSettings((prev) => {
-      const next = normalizeTranslationStyle({ ...(prev.zhStyle || DEFAULT_ZH_STYLE), ...patch });
+      const current = prev.zhStyle || DEFAULT_ZH_STYLE;
+      const patch = typeof update === 'function' ? update(current) : update;
+      const next = normalizeTranslationStyle({ ...current, ...patch });
       if (Object.hasOwn(patch, 'color')) next.colorMode = patch.color ? 'custom' : 'theme';
       return { ...prev, zhStyle: next };
     });
@@ -260,7 +265,7 @@ export default function TranslationSection() {
 
       <Group
         title="译文样式"
-        desc="选择 24 种文字效果并即时预览；原文、来源标签、代码与公式不受影响。"
+        desc="不同效果可叠加；同类互斥样式会自动替换。点击「无」可清除效果。"
         right={
           zhStyleCustomized && (
             <SmallButton onClick={resetZhStyle}>
@@ -271,37 +276,38 @@ export default function TranslationSection() {
         }
       >
         <Pad>
-          <div className="space-y-3">
+          <div className="space-y-3" role="group" aria-label="译文效果">
             {['常规', '下划线', '边框与背景', '文字效果'].map((group) => {
               const presets = TRANSLATION_PRESETS.filter((preset) => preset.group === group);
               return (
                 <fieldset key={group} className="space-y-1.5">
                   <legend className="text-muted-foreground text-[11px] font-medium">{group}</legend>
                   <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 lg:grid-cols-4">
-                    {presets.map((preset) => (
-                      <button
-                        key={preset.id}
-                        type="button"
-                        role="radio"
-                        aria-checked={zhStyle.preset === preset.id}
-                        aria-label={preset.label}
-                        onClick={() => patchZhStyle({ preset: preset.id })}
-                        className={`min-h-[68px] min-w-0 cursor-pointer rounded-lg border p-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                          zhStyle.preset === preset.id
-                            ? 'border-primary/70 bg-primary/10 ring-1 ring-primary/40'
-                            : 'bg-background hover:border-primary/40 hover:bg-accent/50'
-                        }`}
-                      >
-                        <span className="zh-styled text-foreground block truncate text-[12px] font-medium" data-zh-preset={preset.id} data-zh-gallery>
-                          {preset.label}
-                        </span>
-                        <span className="zh-styled text-muted-foreground mt-1 block truncate text-[12px]" data-zh-preset={preset.id} data-zh-gallery>
-                          <span className="zh-copy">
-                            <span data-zh-prose="">夜色渐深，答案仍清晰可见。</span>
+                    {presets.map(({ id, label }) => {
+                      const pressed = id === 'none' ? zhStyle.presets.length === 0 : zhStyle.presets.includes(id);
+                      return (
+                        <Button
+                          key={id}
+                          type="button"
+                          variant="outline"
+                          aria-pressed={pressed}
+                          aria-label={label}
+                          onClick={() => patchZhStyle((style) => ({ presets: toggleTranslationPreset(style.presets, id) }))}
+                          className={cn(
+                            'h-auto min-h-[68px] min-w-0 flex-col items-stretch justify-center gap-1 whitespace-normal p-2 text-left text-xs shadow-none',
+                            pressed ? 'border-primary bg-primary/10 hover:bg-primary/15' : 'bg-background hover:bg-accent/50',
+                          )}
+                        >
+                          <span className="flex min-w-0 items-start justify-between gap-1">
+                            <span>{label}</span>
+                            <Check aria-hidden className={cn('text-primary size-3.5', !pressed && 'invisible')} />
                           </span>
-                        </span>
-                      </button>
-                    ))}
+                          <span className="zh-styled text-muted-foreground block truncate" data-zh-presets={id === 'none' ? '' : id} data-zh-gallery aria-hidden>
+                            <span className="zh-copy"><span data-zh-prose="">夜色渐深，答案仍清晰可见。</span></span>
+                          </span>
+                        </Button>
+                      );
+                    })}
                   </div>
                 </fieldset>
               );
@@ -310,11 +316,7 @@ export default function TranslationSection() {
           <div className="bg-background rounded-md border px-3 py-2.5">
             <p className="text-muted-foreground mb-1 text-[10px] font-medium uppercase tracking-wider">实时预览 · 题面原文</p>
             <p className="text-muted-foreground md-body text-[13px]">Given an integer n, print the value of 2n.</p>
-            <div className="zh-styled mt-1 text-[13px]" lang="zh-Hans" {...translationAppearance(zhStyle)}>
-              <span className="zh-copy">
-                <p><span data-zh-prose="">给定一个整数 n，输出 2n 的值。每次修改都会立即预览并保存在本机。</span></p>
-              </span>
-            </div>
+            <TranslationBlock className="mt-1 text-[13px]" markdown="给定一个整数 n，输出 2n 的值。" data-zh-preview="" />
           </div>
           <div className="space-y-3 border-t pt-3">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
@@ -390,15 +392,6 @@ export default function TranslationSection() {
                 </label>
               )}
               <StyleNumber label="字重" value={zhStyle.weight} defaultValue="" placeholder="默认" min={100} max={900} step={1} onChange={(weight) => patchZhStyle({ weight })} />
-              <button
-                type="button"
-                aria-label="译文斜体"
-                aria-pressed={zhStyle.italic === true}
-                onClick={() => patchZhStyle({ italic: zhStyle.italic !== true })}
-                className={`min-h-9 cursor-pointer rounded-md border px-3 text-xs italic transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${zhStyle.italic === true ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
-              >
-                斜体{zhStyle.italic === true ? '：开启' : '：关闭'}
-              </button>
             </div>
             <p className="text-muted-foreground/70 text-[10px] leading-relaxed">反转色随当前主题背景自动变化；调整边框颜色时，可选择「自定义」并指定译文颜色。</p>
           </div>

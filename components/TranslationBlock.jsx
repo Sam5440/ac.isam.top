@@ -23,7 +23,7 @@ export default function TranslationBlock({
       : deduped + sourceChip;
     return { html: withChip, hasProse: rendered.includes('<span data-zh-prose="">') };
   }, [markdown, original, seenSrcs, sourceChip]);
-  const masking = !original && hasProse && settings.zhStyle.preset === 'mask';
+  const masking = !original && hasProse && settings.zhStyle.presets?.includes('mask');
   const [revealed, setRevealed] = useState(false);
   useEffect(() => setRevealed(false), [markdown, masking]);
 
