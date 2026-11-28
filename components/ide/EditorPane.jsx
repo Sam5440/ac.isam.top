@@ -118,7 +118,10 @@ export default function EditorPane({
             onTogglePin={onTogglePin}
             isDirty={isDirty}
           />
-          <span className="min-w-4 flex-1 border-b" style={{ borderColor: "var(--vsc-border)" }} />
+          {/* 只负责把标签栏底部边框延伸到操作按钮前：固定 16px，不能与
+              上面的 TabList 同时 flex-1，否则两者各分一半剩余宽度，标签区
+              会被压窄、右侧留出一条空挡（看起来像遮挡条）。 */}
+          <span className="w-4 shrink-0 border-b" style={{ borderColor: "var(--vsc-border)" }} />
           {/* 编辑器标题动作 */}
           <div className="flex shrink-0 items-center gap-0.5 border-b px-2" style={{ borderColor: "var(--vsc-border)" }}>
             {onToggleVerticalTabs && (

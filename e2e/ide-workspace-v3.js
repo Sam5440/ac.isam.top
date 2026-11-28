@@ -92,6 +92,21 @@ try {
   );
   await page.keyboard.press("Escape");
 
+  // 标签栏的填充条只能是 16px：它和 TabList 同时 flex-1 会把标签区压窄一半
+  const barBox = await page.evaluate(() => {
+    const bar = document.querySelector('section[aria-label="代码编辑器"] > div');
+    const list = bar?.querySelector('[role="tablist"]');
+    const filler = [...(bar?.children ?? [])].find((c) => c.tagName === "SPAN");
+    const w = (el) => Math.round(el.getBoundingClientRect().width);
+    if (!list || !filler) return null;
+    return { bar: w(bar), list: w(list), filler: w(filler), scrollW: list.scrollWidth };
+  });
+  check(
+    "标签栏填充条不抢标签宽度",
+    barBox && barBox.filler <= 20 && barBox.list >= Math.min(barBox.scrollW, barBox.bar - 200),
+    JSON.stringify(barBox),
+  );
+
   // 3. 文件多选 + 排序
   if (!(await page.locator('aside[aria-label="左侧栏"]').count())) {
     await page.getByTitle(/切换左侧栏/).first().click();
