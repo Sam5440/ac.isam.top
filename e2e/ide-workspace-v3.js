@@ -125,6 +125,7 @@ try {
     await page.waitForTimeout(400);
     const banner = await aside.getByText(/已选择\s*\d+\s*项/).first().innerText().catch(() => "");
     check("文件支持多选", /已选择\s*2\s*项/.test(banner), banner);
+    check("多选行可同时复制/剪切/删除", await aside.getByRole("button", { name: "复制所选项目" }).count() === 1 && await aside.getByRole("button", { name: "剪切所选项目" }).count() === 1 && await aside.getByRole("button", { name: "删除所选项目" }).count() === 1);
   } else {
     check("文件支持多选", false, `rows=${await rows.count()}`);
   }

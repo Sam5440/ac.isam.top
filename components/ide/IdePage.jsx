@@ -70,6 +70,8 @@ import {
   createFolder as wsCreateFolder,
   renameFolder as wsRenameFolder,
   deleteFolder as wsDeleteFolder,
+  applyEntries as wsApplyEntries,
+  deleteEntries as wsDeleteEntries,
   mergeFolders as wsMergeFolders,
   importFiles,
 } from "@/lib/ide-workspace";
@@ -100,6 +102,7 @@ import {
   setFromProblem,
 } from "@/lib/ide-samples";
 import { loadSessions } from "@/lib/chat-store";
+import { planIdeDeletion, planIdeFileTransfer, transferIdeMap } from "@/lib/ide-file-ops.mjs";
 
 const CONSOLE_CAP = 200 * 1024;
 
@@ -840,6 +843,106 @@ export default function IdePage({
     [closeTab, updateSamples],
   );
 
+  const removeMany = useCallback(async (selected) => {
+    const records = [...files, ...folderRecords];
+    const plan = planIdeDeletion(records, selected);
+    if (!plan.paths.length) return false;
+    if (!window.confirm(`确定删除所选 ${selected.length} 项及其内容？此操作不可撤销。`)) return false;
+    try {
+      await wsDeleteEntries(plan.paths);
+      setFiles((previous) => previous.filter((file) => !plan.paths.includes(file.path)));
+      setFolders((previous) => previous.filter((path) => !plan.paths.includes(path)));
+      setFolderRecords((previous) => previous.filter((folder) => !plan.paths.includes(folder.path)));
+      updateSamples((previous) => removeKeys(previous, plan.files));
+      setResultsMap((previous) => Object.fromEntries(Object.entries(previous).filter(([path]) => !plan.files.includes(path))));
+      setSavedSnapshot((previous) => Object.fromEntries(Object.entries(previous).filter(([path]) => !plan.files.includes(path))));
+      const removed = new Set(plan.files);
+      setOpenPaths((previous) => {
+        const next = previous.filter((path) => !removed.has(path));
+        if (!next.includes(activeRef.current)) setActivePath(next.at(-1) ?? null);
+        if (!next.includes(pinnedRef.current)) {
+          pinnedRef.current = null;
+          setPinnedPath(null);
+        }
+        return next;
+      });
+      toast.success(`已删除 ${plan.paths.length} 项`);
+      return true;
+    } catch (exn) {
+      toast.error(`批量删除失败：${exn.message}`);
+      return false;
+    }
+  }, [files, folderRecords, updateSamples]);
+
+  const transferMany = useCallback(async (selected, destination, mode, copiedRecords) => {
+    try {
+      const allRecords = mode === "copy" ? copiedRecords.map((record) => ({
+        ...record,
+        content: Object.hasOwn(contentRef.current, record.path) ? contentRef.current[record.path] : record.content,
+      })) : [...files, ...folderRecords];
+      if (mode === "cut" && activeRef.current) {
+        clearTimeout(saveTimerRef.current);
+        await persist(activeRef.current, contentRef.current[activeRef.current] ?? "");
+      }
+      const currentRecords = [...files, ...folderRecords].map((record) => ({
+        ...record,
+        content: Object.hasOwn(contentRef.current, record.path) ? contentRef.current[record.path] : record.content,
+      }));
+      if (mode === "cut") {
+        const selectedPaths = new Set(selected.flatMap(({ path, type }) => currentRecords
+          .filter((record) => record.path === path || (type === "dir" && record.path.startsWith(`${path}/`)))
+          .map((record) => record.path)));
+        for (const file of files.filter((record) => selectedPaths.has(record.path) && record.path !== activeRef.current)) {
+          const liveContent = contentRef.current[file.path];
+          if (liveContent !== file.content) {
+            await persist(file.path, liveContent ?? file.content);
+          }
+        }
+      }
+      const plan = planIdeFileTransfer({ records: currentRecords, copyRecords: allRecords, selected, destination, mode });
+      if (!plan.puts.length) {
+        toast.info("项目已位于此文件夹");
+        return false;
+      }
+      await wsApplyEntries({ dels: plan.dels, puts: plan.puts });
+      const [list, dirs, folderRecs] = await Promise.all([listFiles(), listFolders(), listFolderRecords()]);
+      const oldContents = new Map(files.map((file) => [file.path, Object.hasOwn(contentRef.current, file.path) ? contentRef.current[file.path] : file.content]));
+      setFiles((previous) => {
+        const oldByNewPath = new Map([...plan.fileMap].map(([from, to]) => [to, previous.find((file) => file.path === from)]));
+        return list.map((file) => {
+          const existing = previous.find((item) => item.path === file.path);
+          if (existing) return { ...file, content: oldContents.get(file.path) ?? existing.content };
+          const source = oldByNewPath.get(file.path);
+          return source ? { ...file, content: oldContents.get(source.path) ?? source.content } : file;
+        });
+      });
+      setFolders(dirs);
+      setFolderRecords(folderRecs);
+      setSavedSnapshot((previous) => {
+        const next = { ...previous };
+        for (const path of plan.dels) delete next[path];
+        for (const [from, to] of plan.fileMap) {
+          const content = mode === "copy" ? allRecords.find((record) => record.path === from)?.content : oldContents.get(from) ?? previous[from];
+          if (content !== undefined) next[to] = content;
+        }
+        return next;
+      });
+      updateSamples((previous) => transferIdeMap(previous, plan.fileMap, mode));
+      setResultsMap((previous) => transferIdeMap(previous, plan.fileMap, mode));
+      if (mode === "cut") {
+        setOpenPaths((previous) => previous.map((path) => plan.fileMap.get(path) ?? path).filter((path) => list.some((file) => file.path === path)));
+        setActivePath((previous) => plan.fileMap.get(previous) ?? previous);
+        setPinnedPath((previous) => plan.fileMap.get(previous) ?? previous);
+      }
+      setBindingsTick((value) => value + 1);
+      toast.success(mode === "cut" ? `已移动 ${plan.fileMap.size} 个文件` : `已复制 ${plan.fileMap.size} 个文件`);
+      return true;
+    } catch (exn) {
+      toast.error(`粘贴失败：${exn.message}`);
+      return false;
+    }
+  }, [files, folderRecords, persist, updateSamples]);
+
   const renameFile = useCallback(
     async (oldPath, newPath) => {
       const clean = String(newPath ?? "").trim().replace(/^\/+/, "");
@@ -1368,6 +1471,8 @@ export default function IdePage({
             onRenameFolder={renameFolder}
             onDelete={removeFile}
             onDeleteFolder={removeFolder}
+            onDeleteMany={removeMany}
+            onTransfer={transferMany}
             onUpload={uploadFiles}
             onRefresh={refreshFiles}
             onSelectDetail={(node) => {

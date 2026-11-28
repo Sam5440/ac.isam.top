@@ -157,8 +157,11 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   「默认翻译」开关）。
 - 译文样式定义与校验在 `lib/translation-style.mjs`（纯模块），视觉库在
   `app/translation-style.css`；`TranslationBlock` 把统一设置应用于题目标题、译文
-  及样例说明。译文经 `renderRich(..., { translation: true })` 标记纯文本，代码、公式、
-  图像与来源标签不会被样式覆盖；样式测试在 `test/translation-style.test.mjs`。
+  及样例说明。译文效果保存在 `zhStyle.presets` 数组中，可组合下划线、边框/背景和
+  文字效果；同一互斥组（如下划线类型）再次选择会替换旧效果，「无」清空全部效果。
+  译文经 `renderRich(..., { translation: true })` 标记纯文本，代码、公式、图像与来源
+  标签不会被样式覆盖；样式测试在 `test/translation-style.test.mjs`，浏览器回归在
+  `e2e/translation-style.js`。
 - 设置导出/导入：`lib/settings-io.js` 列举全部「设置类」键——**新增 localStorage 键
   时同步登记**，并决定它属于「设置」（进导出）还是「数据」（不进，如 IndexedDB 翻译
   缓存、对话记录、代码草稿）。
@@ -342,6 +345,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   （macOS 上 Ctrl+click 是系统右键，多选要用 ⌘），行背景按 `pathHue` 着色；工具栏
   可按名称 / 创建时间 / 最后编辑正反排序。注意 macOS 上 Playwright 的
   `click({modifiers:['Control']})` 会触发右键菜单，多选回归要用 `Meta`。
+  多选项目可直接复制、剪切、粘贴和删除（键盘快捷键、行内操作或右键菜单）；目录操作
+  会保留层级、自动处理重名，并同步样例绑定、运行结果、打开标签和置顶状态。纯计划
+  逻辑在 `lib/ide-file-ops.mjs`，IndexedDB 批量事务在 `lib/ide-workspace.js`，回归脚本
+  为 `e2e/ide-file-operations.js`。
   文件树行高是 `min-h-[22px]` 而不是固定 `h-[22px]`——长文件夹名会换行，固定行高
   会让第二行文字压到下一项上；改回固定高度时 `e2e/ide-workspace-v3.js` 的
   「换行文件名不压住下一行」会失败。

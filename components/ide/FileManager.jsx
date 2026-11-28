@@ -13,6 +13,8 @@ import {
   ChevronDown,
   ChevronRight,
   ChevronsDownUp,
+  ClipboardPaste,
+  Copy,
   FilePlus,
   Folder,
   FolderDown,
@@ -20,6 +22,8 @@ import {
   FolderPlus,
   FolderUp,
   RefreshCw,
+  Scissors,
+  Trash2,
   Upload,
 } from "lucide-react";
 import { toast } from "@/lib/toast";
@@ -116,6 +120,8 @@ export default function FileManager({
   onRenameFolder, // (from, to)
   onDelete, // (path) 文件
   onDeleteFolder, // (path)
+  onDeleteMany,
+  onTransfer,
   onUpload, // (FileList, dir)
   onRefresh,
   onSelectDetail, // (node|null) 选中项 → 右侧详情
@@ -127,6 +133,7 @@ export default function FileManager({
   const [expanded, setExpanded] = useState(() => new Set());
   const [selected, setSelected] = useState(null); // {path, type}
   const [multi, setMulti] = useState([]); // 多选：路径数组（Ctrl/⌘ 点选、Shift 连选）
+  const [fileClipboard, setFileClipboard] = useState(null);
   const lastIndexRef = useRef(-1);
   const [creating, setCreating] = useState(null); // {dir, type:'file'|'dir'}
   const [renaming, setRenaming] = useState(null); // {path, type}
@@ -135,6 +142,52 @@ export default function FileManager({
   const uploadRef = useRef(null);
   const uploadDirRef = useRef(null);
   const uploadTarget = useRef("");
+  const selectedItems = useMemo(() => {
+    const paths = multi.length ? multi : selected ? [selected.path] : [];
+    return paths.map((path) => ({ path, type: path === selected?.path ? selected.type : rootNodeType(root, path) })).filter((item) => item.type);
+  }, [multi, selected, root]);
+
+  const copyItems = (selection, mode = "copy") => {
+    if (!selection.length) return;
+    const records = [
+      ...files,
+      ...folders.filter((path) => !files.some((file) => file.path === path)).map((path) => ({ path, name: path.split("/").pop(), type: "dir" })),
+    ];
+    const items = selection.filter((item) => !selection.some((parent) => parent.type === "dir" && parent.path !== item.path && item.path.startsWith(`${parent.path}/`)));
+    const paths = new Set(items.flatMap((item) => records
+      .filter((record) => record.path === item.path || (item.type === "dir" && record.path.startsWith(`${item.path}/`)))
+      .map((record) => record.path)));
+    setFileClipboard({ mode, items, records: records.filter((record) => paths.has(record.path)) });
+    toast.success(mode === "cut" ? `已剪切 ${items.length} 项` : `已复制 ${items.length} 项`);
+  };
+
+  const copySelection = (mode = "copy") => copyItems(selectedItems, mode);
+
+  const pasteSelection = async (destination = targetDir()) => {
+    if (!fileClipboard?.items?.length) return;
+    const success = await onTransfer?.(fileClipboard.items, destination, fileClipboard.mode, fileClipboard.records);
+    if (!success) return;
+    if (fileClipboard.mode === "cut") {
+      setFileClipboard(null);
+      setMulti([]);
+      setSelected(null);
+      onSelectDetail?.(null);
+    }
+    if (destination) expandTo(destination);
+  };
+
+  const deleteSelection = async () => {
+    if (selectedItems.length > 1) {
+      const deleted = await onDeleteMany?.(selectedItems);
+      if (deleted) {
+        setMulti([]);
+        setSelected(null);
+        onSelectDetail?.(null);
+      }
+    }
+    else if (selectedItems[0]?.type === "dir") onDeleteFolder(selectedItems[0].path);
+    else if (selectedItems[0]) onDelete(selectedItems[0].path);
+  };
 
   // 展开的文件夹刷新后保持（设备本地数据，见 lib/ide-ui.js）
   useEffect(() => {
@@ -175,13 +228,17 @@ export default function FileManager({
 
   /** 点击行：Ctrl/⌘ 切换、Shift 连选、普通点击单选并打开。 */
   const selectRow = (node, e) => {
-    setSelected({ path: node.path, type: node.type });
-    onSelectDetail?.(node);
     if (e.metaKey || e.ctrlKey) {
-      setMulti((prev) => (prev.includes(node.path) ? prev.filter((p) => p !== node.path) : [...prev, node.path]));
+      const nextMulti = multi.includes(node.path) ? multi.filter((path) => path !== node.path) : [...multi, node.path];
+      const nextSelected = nextMulti.length ? findRootNode(root, nextMulti.at(-1)) : null;
+      setSelected(nextSelected ? { path: nextSelected.path, type: nextSelected.type } : null);
+      onSelectDetail?.(nextSelected);
+      setMulti(nextMulti);
       lastIndexRef.current = flatPaths.indexOf(node.path);
       return;
     }
+    setSelected({ path: node.path, type: node.type });
+    onSelectDetail?.(node);
     if (e.shiftKey && lastIndexRef.current >= 0) {
       const i = flatPaths.indexOf(node.path);
       const [a, b] = [Math.min(i, lastIndexRef.current), Math.max(i, lastIndexRef.current)];
@@ -213,13 +270,10 @@ export default function FileManager({
     (dirMode ? uploadDirRef : uploadRef).current?.click();
   };
 
-  const move = (src, destDir) => {
-    const name = src.path.split("/").pop();
-    const to = join(destDir, name);
-    if (to === src.path || destDir === src.path || destDir.startsWith(`${src.path}/`)) return;
-    if (src.type === "dir") onRenameFolder(src.path, to);
-    else onRename(src.path, to);
-    if (destDir) expandTo(destDir);
+  const move = async (src, destDir) => {
+    const selection = Array.isArray(src) ? src : [src];
+    const success = await onTransfer?.(selection, destDir, "cut");
+    if (success && destDir) expandTo(destDir);
   };
 
   const rowStyle = (depth) => ({ paddingLeft: 8 + depth * INDENT });
@@ -239,7 +293,7 @@ export default function FileManager({
   const dndProps = (node) => ({
     draggable: true,
     onDragStart: (e) => {
-      e.dataTransfer.setData("application/x-ide-path", JSON.stringify({ path: node.path, type: node.type }));
+      e.dataTransfer.setData("application/x-ide-path", JSON.stringify(multi.includes(node.path) ? selectedItems : [{ path: node.path, type: node.type }]));
       e.dataTransfer.effectAllowed = "move";
     },
     ...(node.type === "dir"
@@ -256,7 +310,8 @@ export default function FileManager({
             e.stopPropagation();
             setDropTarget(null);
             try {
-              move(JSON.parse(e.dataTransfer.getData("application/x-ide-path")), node.path);
+              const selection = JSON.parse(e.dataTransfer.getData("application/x-ide-path"));
+              move(selection, node.path);
             } catch {}
           },
         }
@@ -316,14 +371,15 @@ export default function FileManager({
     if (n.type === "dir") {
       const open = expanded.has(n.path);
       return (
-        <li key={n.path} role="treeitem" aria-expanded={open}>
+          <li key={n.path} role="treeitem" aria-expanded={open} aria-selected={isSel}>
           <div
             className={rowCls(isSel, false, dropTarget === n.path)}
+            data-path={n.path}
             style={{ ...rowStyle(depth), background: isSel ? undefined : tintBg }}
             tabIndex={0}
             onClick={(e) => {
               selectRow(n, e);
-              toggle(n.path);
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey) toggle(n.path);
             }}
             onFocus={() => setSelected({ path: n.path, type: "dir" })}
             onContextMenu={(e) => {
@@ -345,15 +401,16 @@ export default function FileManager({
     }
     const dirty = isDirty?.(n);
     return (
-      <li key={n.path} role="treeitem">
+      <li key={n.path} role="treeitem" aria-selected={isSel}>
         <div
           className={rowCls(isSel, n.path === activePath, false)}
+          data-path={n.path}
           style={{ paddingLeft: 8 + depth * INDENT + 16, background: isSel ? undefined : tintBg }}
           tabIndex={0}
           title={n.path}
           onClick={(e) => {
             selectRow(n, e);
-            onOpen(n.path);
+            if (!e.metaKey && !e.ctrlKey && !e.shiftKey) onOpen(n.path);
           }}
           onFocus={() => setSelected({ path: n.path, type: "file" })}
           onContextMenu={(e) => {
@@ -378,6 +435,7 @@ export default function FileManager({
       return [
         { label: "新建文件…", onClick: () => startCreate("file", "") },
         { label: "新建文件夹…", onClick: () => startCreate("dir", "") },
+        ...(fileClipboard ? [{ label: `粘贴 ${fileClipboard.items.length} 项`, keybinding: "⌘V", onClick: () => pasteSelection("") }] : []),
         "sep",
         { label: "上传文件…", onClick: () => upload(false, "") },
         { label: "上传文件夹…", onClick: () => upload(true, "") },
@@ -387,11 +445,14 @@ export default function FileManager({
       return [
         { label: "新建文件…", onClick: () => startCreate("file", node.path) },
         { label: "新建文件夹…", onClick: () => startCreate("dir", node.path) },
+        ...(fileClipboard ? [{ label: `粘贴 ${fileClipboard.items.length} 项`, keybinding: "⌘V", onClick: () => pasteSelection(node.path) }] : []),
         { label: "上传文件到此处…", onClick: () => upload(false, node.path) },
         "sep",
         { label: "复制路径", onClick: () => navigator.clipboard?.writeText(node.path) },
         "sep",
         { label: "重命名…", keybinding: "F2", onClick: () => setRenaming({ path: node.path, type: "dir" }) },
+        { label: "复制", keybinding: "⌘C", onClick: () => { setMulti([node.path]); setSelected({ path: node.path, type: "dir" }); copyItems([{ path: node.path, type: "dir" }]); } },
+        { label: "剪切", keybinding: "⌘X", onClick: () => { setMulti([node.path]); setSelected({ path: node.path, type: "dir" }); copyItems([{ path: node.path, type: "dir" }], "cut"); } },
         { label: "删除", keybinding: "Delete", onClick: () => onDeleteFolder(node.path) },
       ];
     return [
@@ -401,6 +462,8 @@ export default function FileManager({
       { label: "复制路径", onClick: () => navigator.clipboard?.writeText(node.path) },
       "sep",
       { label: "重命名…", keybinding: "F2", onClick: () => setRenaming({ path: node.path, type: "file" }) },
+      { label: "复制", keybinding: "⌘C", onClick: () => { setMulti([node.path]); setSelected({ path: node.path, type: "file" }); copyItems([{ path: node.path, type: "file" }]); } },
+      { label: "剪切", keybinding: "⌘X", onClick: () => { setMulti([node.path]); setSelected({ path: node.path, type: "file" }); copyItems([{ path: node.path, type: "file" }], "cut"); } },
       { label: "删除", keybinding: "Delete", onClick: () => onDelete(node.path) },
     ];
   };
@@ -410,13 +473,23 @@ export default function FileManager({
       aria-label="文件管理"
       className="flex h-full min-w-0 flex-col overflow-hidden"
       onKeyDown={(e) => {
-        if (!selected || renaming || creating || e.target.tagName === "INPUT") return;
-        if (e.key === "F2") {
+        if (renaming || creating || e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "c" && selectedItems.length) {
+          e.preventDefault();
+          copySelection("copy");
+        } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "x" && selectedItems.length) {
+          e.preventDefault();
+          copySelection("cut");
+        } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "v") {
+          e.preventDefault();
+          pasteSelection();
+        } else if ((e.key === "Delete" || (e.key === "Backspace" && e.metaKey)) && selectedItems.length) {
+          e.preventDefault();
+          deleteSelection();
+        } else if (!selected || e.metaKey || e.ctrlKey) return;
+        else if (e.key === "F2") {
           e.preventDefault();
           setRenaming(selected);
-        } else if (e.key === "Delete" || (e.key === "Backspace" && e.metaKey)) {
-          e.preventDefault();
-          selected.type === "dir" ? onDeleteFolder(selected.path) : onDelete(selected.path);
         }
       }}
     >
@@ -445,6 +518,7 @@ export default function FileManager({
                 </ActionButton>
               </span>
             )}
+            {fileClipboard && <ActionButton icon={ClipboardPaste} title={`${fileClipboard.mode === "cut" ? "移动" : "粘贴"} ${fileClipboard.items.length} 项到当前文件夹`} onClick={() => pasteSelection()} />}
             <ActionButton icon={FilePlus} title="新建文件…" onClick={() => startCreate("file")} />
             <ActionButton icon={FolderPlus} title="新建文件夹…" onClick={() => startCreate("dir")} />
             <ActionButton icon={Upload} title="上传文件…" onClick={() => upload(false)} />
@@ -491,6 +565,7 @@ export default function FileManager({
           if (e.target === e.currentTarget) {
             e.preventDefault();
             setSelected(null);
+            setMulti([]);
             setMenu({ x: e.clientX, y: e.clientY, node: null });
           }
         }}
@@ -504,14 +579,31 @@ export default function FileManager({
           e.preventDefault();
           setDropTarget(null);
           try {
-            move(JSON.parse(e.dataTransfer.getData("application/x-ide-path")), "");
+            const selection = JSON.parse(e.dataTransfer.getData("application/x-ide-path"));
+            move(selection, "");
           } catch {}
         }}
         style={dropTarget === "" ? { outline: "1px solid var(--vsc-accent)", outlineOffset: -1 } : undefined}
       >
-        {multi.length > 1 && (
-          <li className="bg-[color:var(--vsc-hover)] px-3 py-1 text-[11px]">
-            已选择 {multi.length} 项 ·{" "}
+      {multi.length > 1 && (
+          <li className="bg-[color:var(--vsc-hover)] flex flex-wrap items-center gap-x-2 gap-y-1 px-3 py-1 text-[11px]">
+            <span>已选择 {multi.length} 项</span>
+            <button type="button" className="inline-flex items-center gap-1 text-[color:var(--vsc-info)] hover:underline" aria-label="复制所选项目" onClick={() => copySelection("copy")}>
+              <Copy className="size-3" />复制
+            </button>
+            <button type="button" className="inline-flex items-center gap-1 text-[color:var(--vsc-info)] hover:underline" aria-label="剪切所选项目" onClick={() => copySelection("cut")}>
+              <Scissors className="size-3" />剪切
+            </button>
+            <button type="button" className="inline-flex items-center gap-1 text-[color:var(--vsc-info)] hover:underline disabled:opacity-40" aria-label="粘贴项目" disabled={!fileClipboard} onClick={pasteSelection}>
+              <ClipboardPaste className="size-3" />粘贴
+            </button>
+            <button type="button" className="inline-flex items-center gap-1 text-red-400 hover:underline" aria-label="删除所选项目" onClick={deleteSelection}>
+              <Trash2 className="size-3" />删除
+            </button>
+            <span className="text-[color:var(--vsc-fg-muted)]">
+              {fileClipboard ? `${fileClipboard.mode === "cut" ? "剪切" : "复制"}${fileClipboard.items.length} 项` : ""}
+            </span>
+            <span>·</span>
             <button
               type="button"
               className="text-[color:var(--vsc-info)] hover:underline"
@@ -535,7 +627,30 @@ export default function FileManager({
         )}
         {renderChildren(root, 0)}
       </ul>
-      {menu && <ContextMenu x={menu.x} y={menu.y} onClose={() => setMenu(null)} items={menuItems(menu.node)} />}
+      {menu && <ContextMenu x={menu.x} y={menu.y} onClose={() => setMenu(null)} items={multi.length > 1 ? [
+        { label: `复制 ${multi.length} 项`, keybinding: "⌘C", onClick: () => copySelection("copy") },
+        { label: `剪切 ${multi.length} 项`, keybinding: "⌘X", onClick: () => copySelection("cut") },
+        ...(fileClipboard ? [{ label: `粘贴 ${fileClipboard.items.length} 项`, keybinding: "⌘V", onClick: pasteSelection }] : []),
+        "sep",
+        { label: `删除 ${multi.length} 项`, keybinding: "Delete", danger: true, onClick: deleteSelection },
+      ] : menuItems(menu.node)} />}
     </section>
   );
+}
+
+function rootNodeType(root, path) {
+  return findRootNode(root, path)?.type ?? null;
+}
+
+function findRootNode(root, path) {
+  const node = root.children;
+  const parts = path.split("/");
+  let children = node;
+  let found = null;
+  for (const part of parts) {
+    found = children.find((item) => item.name === part);
+    if (!found) return null;
+    children = found.children ?? [];
+  }
+  return found ?? null;
 }
