@@ -16,6 +16,7 @@ import { CONTEST_TYPES } from '@/lib/contest-type';
 import { DEFAULT_HOME_LAYOUT } from '@/lib/home-presets.mjs';
 import { DEFAULT_HOME_WEATHER, normalizeCfHandle, normalizeHomeWeather } from '@/lib/home-layout.mjs';
 import { DEFAULT_WIDGETS, normalizeHomeConfig } from '@/lib/home-grid.mjs';
+import { DEFAULT_ZH_STYLE, normalizeTranslationStyle } from '@/lib/translation-style.mjs';
 
 // IDE 主题联动写入：动态 import 编译器偏好纯模块（浏览器端写入 localStorage，
 // 并通知已打开的 CompilerDock 刷新）。binding = 'auto' 时随网页主题切换联动。
@@ -45,9 +46,6 @@ export const ARCHIVED_CHANNELS = ['deepl', 'youdao', 'caiyun', 'iflyrec'];
 export const DEFAULT_PRIORITY = ['ai', 'deepl', 'caiyun', 'iflyrec', 'youdao'];
 
 export const channelLabel = (id) => CHANNELS.find((c) => c.id === id)?.label || id;
-
-// 译文样式偏好：空字符串/false = 跟随默认（.zh-styled 的回退值等价于无操作）
-export const DEFAULT_ZH_STYLE = { color: '', fontSize: '', bold: false, italic: false, underline: false };
 
 export const DEFAULT_HOME_TYPES = CONTEST_TYPES.map((t) => t.id);
 
@@ -174,7 +172,7 @@ function loadSettings() {
         ...DEFAULT_SETTINGS,
         ...rest,
         ...(Object.keys(chatBehavior).length ? { chat: { ...DEFAULT_CHAT, ...chatBehavior } } : {}),
-        zhStyle: { ...DEFAULT_ZH_STYLE, ...(v.zhStyle || {}) },
+        zhStyle: normalizeTranslationStyle(v.zhStyle),
         homeContestTypes: Array.isArray(v.homeContestTypes) ? v.homeContestTypes : DEFAULT_HOME_TYPES,
         ...normalizeHomeConfig(v),
         homeCfHandle: normalizeCfHandle(v.homeCfHandle),
@@ -281,20 +279,6 @@ export function SettingsProvider({ children }) {
   useEffect(() => {
     ensureStyleEl('ac-user-css', settings.customCss || '');
   }, [settings.customCss]);
-
-  // 译文样式偏好 → <html>：颜色/字号走 CSS 变量，加粗/斜体/下划线走开关类
-  useEffect(() => {
-    const st = settings.zhStyle || DEFAULT_ZH_STYLE;
-    const root = document.documentElement;
-    root.classList.toggle('zh-bold', !!st.bold);
-    root.classList.toggle('zh-italic', !!st.italic);
-    root.classList.toggle('zh-underline', !!st.underline);
-    if (st.color) root.style.setProperty('--zh-color', st.color);
-    else root.style.removeProperty('--zh-color');
-    const n = Number(st.fontSize);
-    if (st.fontSize !== '' && Number.isFinite(n) && n >= 8 && n <= 40) root.style.setProperty('--zh-font-size', `${n}px`);
-    else root.style.removeProperty('--zh-font-size');
-  }, [settings.zhStyle]);
 
   const setSettings = (next) => {
     setSettingsState((prev) => {

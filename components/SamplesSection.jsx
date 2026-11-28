@@ -1,6 +1,7 @@
 'use client';
 
 import CopyBox from '@/components/CopyBox';
+import TranslationBlock from '@/components/TranslationBlock';
 import { useProblemLang } from '@/components/settings';
 import { renderRich } from '@/lib/render';
 import { meaningfulNote } from '@/lib/sample-notes';
@@ -41,14 +42,11 @@ export default function SamplesSection({ samples, platform }) {
               />
             ) : null}
             {showZh ? (
-              <div
-                className={
-                  mode === 'both'
-                    ? 'stmt-zh border-primary/40 text-muted-foreground mt-1 border-l-2 pl-3 text-[13px] md-body'
-                    : 'text-muted-foreground md-body text-sm'
-                }
+              <TranslationBlock
+                markdown={zh}
+                className="text-muted-foreground md-body text-sm"
+                paired={mode === 'both'}
                 data-note-lang="zh"
-                dangerouslySetInnerHTML={{ __html: renderRich(zh) }}
               />
             ) : null}
             {missingZh ? (

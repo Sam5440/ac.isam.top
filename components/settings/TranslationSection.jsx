@@ -16,9 +16,16 @@ import {
   channelLabel,
   CHANNELS,
   DEFAULT_PRIORITY,
-  DEFAULT_ZH_STYLE,
   useSettings,
 } from '@/components/settings';
+import {
+  DEFAULT_ZH_STYLE,
+  isTranslationStyleCustomized,
+  normalizeTranslationStyle,
+  TRANSLATION_FONTS,
+  TRANSLATION_PRESETS,
+  translationAppearance,
+} from '@/lib/translation-style.mjs';
 import { resolveTranslationCfg } from '@/lib/ai-providers';
 import { toast } from '@/lib/toast';
 import { clearMtStats, HEALTH_SAMPLE, loadMtStats, rankedStats, runHealthCheck } from '@/lib/mt-health';
@@ -86,11 +93,14 @@ export default function TranslationSection() {
   };
 
   const zhStyle = settings.zhStyle || DEFAULT_ZH_STYLE;
-  const patchZhStyle = (p) =>
-    setSettings((prev) => ({ ...prev, zhStyle: { ...(prev.zhStyle || DEFAULT_ZH_STYLE), ...p } }));
+  const patchZhStyle = (patch) =>
+    setSettings((prev) => {
+      const next = normalizeTranslationStyle({ ...(prev.zhStyle || DEFAULT_ZH_STYLE), ...patch });
+      if (Object.hasOwn(patch, 'color')) next.colorMode = patch.color ? 'custom' : 'theme';
+      return { ...prev, zhStyle: next };
+    });
   const resetZhStyle = () => setSettings({ zhStyle: { ...DEFAULT_ZH_STYLE } });
-  const zhStyleCustomized =
-    zhStyle.color || zhStyle.fontSize !== '' || zhStyle.bold || zhStyle.italic || zhStyle.underline;
+  const zhStyleCustomized = isTranslationStyleCustomized(zhStyle);
 
   const toggleHealthChannel = (id) => {
     if (running) return;
@@ -250,7 +260,7 @@ export default function TranslationSection() {
 
       <Group
         title="译文样式"
-        desc="题面中文译文的外观；来源标签、行内代码与公式不受影响。"
+        desc="选择 24 种文字效果并即时预览；原文、来源标签、代码与公式不受影响。"
         right={
           zhStyleCustomized && (
             <SmallButton onClick={resetZhStyle}>
@@ -261,56 +271,136 @@ export default function TranslationSection() {
         }
       >
         <Pad>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <label className="text-muted-foreground flex items-center gap-1.5 text-xs">
-              字号
-              <input
-                type="number"
-                min={8}
-                max={40}
-                value={zhStyle.fontSize}
-                placeholder="默认"
-                onChange={(e) => patchZhStyle({ fontSize: e.target.value.replace(/[^0-9]/g, '').slice(0, 2) })}
-                className="bg-background w-16 rounded-md border px-2 py-1 text-sm outline-none focus:border-primary/60"
-              />
-              <span>px</span>
-            </label>
-            <label className="text-muted-foreground flex items-center gap-1.5 text-xs">
-              颜色
-              <input
-                type="color"
-                value={/^#[0-9a-fA-F]{6}$/.test(zhStyle.color) ? zhStyle.color : '#8b8b9e'}
-                onChange={(e) => patchZhStyle({ color: e.target.value })}
-                aria-label="译文颜色"
-                className="bg-background size-7 cursor-pointer rounded-md border p-0.5"
-              />
-            </label>
-            <div className="flex items-center gap-1">
-              {[
-                { key: 'bold', label: 'B', cls: 'font-bold', name: '加粗' },
-                { key: 'italic', label: 'I', cls: 'italic', name: '斜体' },
-                { key: 'underline', label: 'U', cls: 'underline', name: '下划线' },
-              ].map((t) => (
-                <button
-                  key={t.key}
-                  type="button"
-                  aria-pressed={!!zhStyle[t.key]}
-                  aria-label={`译文${t.name}`}
-                  title={`译文${t.name}`}
-                  onClick={() => patchZhStyle({ [t.key]: !zhStyle[t.key] })}
-                  className={`inline-flex size-7 items-center justify-center rounded-md border text-xs transition-colors ${t.cls} ${
-                    zhStyle[t.key]
-                      ? 'border-primary/60 bg-primary/10 text-foreground ring-1 ring-primary/50'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {t.label}
-                </button>
-              ))}
+          <div className="space-y-3">
+            {['常规', '下划线', '边框与背景', '文字效果'].map((group) => {
+              const presets = TRANSLATION_PRESETS.filter((preset) => preset.group === group);
+              return (
+                <fieldset key={group} className="space-y-1.5">
+                  <legend className="text-muted-foreground text-[11px] font-medium">{group}</legend>
+                  <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 lg:grid-cols-4">
+                    {presets.map((preset) => (
+                      <button
+                        key={preset.id}
+                        type="button"
+                        role="radio"
+                        aria-checked={zhStyle.preset === preset.id}
+                        aria-label={preset.label}
+                        onClick={() => patchZhStyle({ preset: preset.id })}
+                        className={`min-h-[68px] min-w-0 cursor-pointer rounded-lg border p-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                          zhStyle.preset === preset.id
+                            ? 'border-primary/70 bg-primary/10 ring-1 ring-primary/40'
+                            : 'bg-background hover:border-primary/40 hover:bg-accent/50'
+                        }`}
+                      >
+                        <span className="zh-styled text-foreground block truncate text-[12px] font-medium" data-zh-preset={preset.id} data-zh-gallery>
+                          {preset.label}
+                        </span>
+                        <span className="zh-styled text-muted-foreground mt-1 block truncate text-[12px]" data-zh-preset={preset.id} data-zh-gallery>
+                          <span className="zh-copy">
+                            <span data-zh-prose="">夜色渐深，答案仍清晰可见。</span>
+                          </span>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+              );
+            })}
+          </div>
+          <div className="bg-background rounded-md border px-3 py-2.5">
+            <p className="text-muted-foreground mb-1 text-[10px] font-medium uppercase tracking-wider">实时预览 · 题面原文</p>
+            <p className="text-muted-foreground md-body text-[13px]">Given an integer n, print the value of 2n.</p>
+            <div className="zh-styled mt-1 text-[13px]" lang="zh-Hans" {...translationAppearance(zhStyle)}>
+              <span className="zh-copy">
+                <p><span data-zh-prose="">给定一个整数 n，输出 2n 的值。每次修改都会立即预览并保存在本机。</span></p>
+              </span>
             </div>
           </div>
-          <div className="bg-background rounded-md border px-2.5 py-2">
-            <p className="zh-styled text-[13px] leading-6">预览：给定一个整数 n，输出 2n 的值。每次修改立即生效并保存在本机。</p>
+          <div className="space-y-3 border-t pt-3">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+              <span className="text-muted-foreground shrink-0 text-[11px]">译文颜色</span>
+              <div className="flex flex-wrap gap-1.5" role="group" aria-label="译文颜色模式">
+                {[
+                  { id: 'theme', label: '跟随主题' },
+                  { id: 'inverse', label: '反转背景色' },
+                  { id: 'custom', label: '自定义' },
+                ].map((option) => (
+                  <button
+                    key={option.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={zhStyle.colorMode === option.id}
+                    onClick={() => patchZhStyle({
+                      colorMode: option.id,
+                      ...(option.id === 'custom' && !zhStyle.color ? { color: '#8b8b9e' } : {}),
+                    })}
+                    className={`min-h-8 cursor-pointer rounded-md border px-2 text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                      zhStyle.colorMode === option.id ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+              {zhStyle.colorMode === 'custom' && (
+                <label className="bg-background inline-flex h-8 items-center gap-2 rounded-md border px-2 text-xs">
+                  <span className="sr-only">自定义译文颜色</span>
+                  <input
+                    type="color"
+                    value={zhStyle.color || '#8b8b9e'}
+                    onChange={(event) => patchZhStyle({ color: event.target.value })}
+                    aria-label="译文字体颜色"
+                    className="size-8 cursor-pointer sm:size-5"
+                  />
+                  <span className="text-muted-foreground font-mono">{zhStyle.color || '选择颜色'}</span>
+                </label>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+              <StyleColor label="边框颜色" value={zhStyle.borderColor} fallback="#6b8afd" ariaLabel="译文边框颜色" onChange={(borderColor) => patchZhStyle({ borderColor })} />
+              <StyleColor label="背景颜色" value={zhStyle.backgroundColor} fallback="#ffe56c" ariaLabel="译文背景颜色" onChange={(backgroundColor) => patchZhStyle({ backgroundColor })} />
+              <StyleNumber label="字号" value={zhStyle.fontSize} defaultValue="" placeholder="默认" min={8} max={40} step={1} onChange={(fontSize) => patchZhStyle({ fontSize })} />
+              <StyleNumber label="缩放比例" value={zhStyle.zoom} defaultValue={100} min={50} max={200} step={1} suffix="%" onChange={(zoom) => patchZhStyle({ zoom })} />
+              <StyleNumber label="段间距倍数" value={zhStyle.spacingScale} defaultValue={1} min={0.5} max={10} step={0.1} onChange={(spacingScale) => patchZhStyle({ spacingScale })} />
+              <StyleNumber label="行高倍数" value={zhStyle.lineHeight} defaultValue={1.65} min={1} max={3} step={0.05} onChange={(lineHeight) => patchZhStyle({ lineHeight })} />
+              <label className="text-muted-foreground col-span-2 flex min-w-0 items-center gap-2 text-xs sm:col-span-1 sm:flex-col sm:items-stretch">
+                <span className="shrink-0">字体</span>
+                <select
+                  className={`${inputCls} min-w-0`}
+                  aria-label="译文字体"
+                  value={zhStyle.font}
+                  onChange={(event) => patchZhStyle({ font: event.target.value })}
+                >
+                  {TRANSLATION_FONTS.map(({ id, label }) => <option key={id} value={id}>{label}</option>)}
+                </select>
+              </label>
+              {zhStyle.font === 'custom' && (
+                <label className="text-muted-foreground col-span-2 min-w-0 space-y-1 text-xs sm:col-span-3">
+                  自定义字体名称
+                  <input
+                    type="text"
+                    maxLength={160}
+                    value={zhStyle.fontFamily}
+                    placeholder="例如：Noto Sans SC, sans-serif"
+                    onChange={(event) => patchZhStyle({ fontFamily: event.target.value.slice(0, 160) })}
+                    className={inputCls}
+                    aria-label="自定义译文字体名称"
+                  />
+                  <span className="text-muted-foreground/70 block text-[10px]">填写本机已安装的字体名称；该字体若未安装会回退到默认字体。</span>
+                </label>
+              )}
+              <StyleNumber label="字重" value={zhStyle.weight} defaultValue="" placeholder="默认" min={100} max={900} step={1} onChange={(weight) => patchZhStyle({ weight })} />
+              <button
+                type="button"
+                aria-label="译文斜体"
+                aria-pressed={zhStyle.italic === true}
+                onClick={() => patchZhStyle({ italic: zhStyle.italic !== true })}
+                className={`min-h-9 cursor-pointer rounded-md border px-3 text-xs italic transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${zhStyle.italic === true ? 'border-primary/60 bg-primary/10 text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
+              >
+                斜体{zhStyle.italic === true ? '：开启' : '：关闭'}
+              </button>
+            </div>
+            <p className="text-muted-foreground/70 text-[10px] leading-relaxed">反转色随当前主题背景自动变化；调整边框颜色时，可选择「自定义」并指定译文颜色。</p>
           </div>
         </Pad>
       </Group>
@@ -518,5 +608,70 @@ function DaysInput({ value, max, onChange, label }) {
       />
       天
     </span>
+  );
+}
+
+function StyleColor({ label, value, fallback, ariaLabel, onChange }) {
+  return (
+    <label className="bg-background flex min-h-9 min-w-0 items-center justify-between gap-2 rounded-md border px-2 text-xs">
+      <span className="text-muted-foreground truncate">{label}</span>
+      <input
+        type="color"
+        value={value || fallback}
+        onChange={(event) => onChange(event.target.value)}
+        aria-label={ariaLabel}
+        className="size-8 shrink-0 cursor-pointer sm:size-5"
+      />
+    </label>
+  );
+}
+
+function StyleNumber({ label, value, defaultValue, placeholder, min, max, step, suffix, onChange }) {
+  const [draft, setDraft] = useState(String(value));
+  useEffect(() => setDraft(String(value)), [value]);
+  const commit = () => {
+    if (draft.trim() === '') {
+      setDraft(String(defaultValue));
+      onChange('');
+      return;
+    }
+    const candidate = Number(draft);
+    if (!Number.isFinite(candidate)) {
+      setDraft(String(value));
+      return;
+    }
+    const bounded = Math.min(max, Math.max(min, candidate));
+    const precision = step < 1 ? String(step).split('.')[1]?.length || 0 : 0;
+    const rounded = Number((Math.round(bounded / step) * step).toFixed(precision));
+    setDraft(String(rounded));
+    onChange(rounded);
+  };
+
+  return (
+    <label className="text-muted-foreground flex min-w-0 items-center gap-2 text-xs sm:flex-col sm:items-stretch">
+      <span className="flex shrink-0 items-center justify-between gap-1">
+        <span>{label}</span>
+        {suffix && <span>{suffix}</span>}
+      </span>
+      <input
+        type="number"
+        min={min}
+        max={max}
+        step={step}
+        value={draft}
+        placeholder={placeholder}
+        aria-label={`译文${label}`}
+        onChange={(event) => {
+          const raw = event.target.value;
+          setDraft(raw);
+          if (raw === '') return onChange('');
+          const next = Number(raw);
+          if (Number.isFinite(next) && next >= min && next <= max) onChange(next);
+        }}
+        onBlur={commit}
+        onKeyDown={(event) => event.key === 'Enter' && commit()}
+        className={`${inputCls} min-w-0 py-1`}
+      />
+    </label>
   );
 }

@@ -155,6 +155,10 @@ node --input-type=module -e "const {SW_SOURCE}=await import('./lib/pwa/sw-source
   3. 对应分区 UI（`components/settings/` 或 compiler 分区）。
 - 消费方：`useSettings()` Context；题面语言用 `useProblemLang(platform)`（牛客有独立
   「默认翻译」开关）。
+- 译文样式定义与校验在 `lib/translation-style.mjs`（纯模块），视觉库在
+  `app/translation-style.css`；`TranslationBlock` 把统一设置应用于题目标题、译文
+  及样例说明。译文经 `renderRich(..., { translation: true })` 标记纯文本，代码、公式、
+  图像与来源标签不会被样式覆盖；样式测试在 `test/translation-style.test.mjs`。
 - 设置导出/导入：`lib/settings-io.js` 列举全部「设置类」键——**新增 localStorage 键
   时同步登记**，并决定它属于「设置」（进导出）还是「数据」（不进，如 IndexedDB 翻译
   缓存、对话记录、代码草稿）。
